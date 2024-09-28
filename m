@@ -1,71 +1,71 @@
-Return-Path: <devicetree+bounces-106082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFF639890F5
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:54:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3B5B989119
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 21:27:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F29BD1C20A05
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 17:54:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC54C1C21175
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 19:27:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5CDB14D6EF;
-	Sat, 28 Sep 2024 17:54:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56557158A36;
+	Sat, 28 Sep 2024 19:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="LtF02LbJ"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="TdlHA2HQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22741422A8
-	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 17:54:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 868EE17C95
+	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 19:27:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727546090; cv=none; b=NTX/EUAlBhT+6Xp9u8x9SIJE39Tpm/Mo5Q5BK7pWoaqQJ3g5jWwSR28vciONG0jRz4uf+8p0VOb5ry2TU5Yh8Z0uGWuCoyUx0g1oFjgCDRmUXYn9233467SApQbe+iQGMpQAraYpAkdKiceYeeWU2S45zh6BYvRaaQYPYtfuPZw=
+	t=1727551632; cv=none; b=nyX8HyVs6POqBPWbA5jZrvu3McK54mLA7x/7cFcRPJ5pV8OSD92PqMn//n/SslJTKqUnLkSIh64IKo59R7bT4lI13rpvvc4pPiybwLOXp/tKDao6sjPzD3zr9qfov8fVDALLtixbP3wSe04+VX3b8O1OyTIUq6z7Om9DKpN41j0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727546090; c=relaxed/simple;
-	bh=YnJn56dspqrgEO4yZyq18ioo9BpMKUylvweGnP0SlM4=;
+	s=arc-20240116; t=1727551632; c=relaxed/simple;
+	bh=Ke5M2bzJZMGA0rx3L5zcW7DOtXBhjSEgxr0Xn2oVOTI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jDLHCfmTghMU7vwGdRB6tF7X+6n0IGMnaayuhdQwNb969qyTYLI+u06xmdHyAvYSxvou8WZh6//R6LCkDlRiPyDBPi0uhGU6Vn8wNAloRd8MY7L9mVEhqxeX1gX4rio6XfR5fY8FKT7CVMWryvDn5w+7dAL2hN5zM6Y5rkVAqug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org; spf=pass smtp.mailfrom=linuxfoundation.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=LtF02LbJ; arc=none smtp.client-ip=209.85.166.178
+	 In-Reply-To:Content-Type; b=OvlnGzx1qY22u1ezJL12rZx8aGSAfYl9G/LqZeY7QMdya3p4SuxrX0r/3Abd5HLvwxZde17pB93EvQGwIxNPaMyqluAGO1jklPLrGH2DEZFOQkoJTJrPE0Si/wr9HGJyFQbKqJWR5Xk9gBsTFW1U2QdbiFULzqoAKZLkELVJH9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org; spf=pass smtp.mailfrom=linuxfoundation.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=TdlHA2HQ; arc=none smtp.client-ip=209.85.166.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linuxfoundation.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linuxfoundation.org
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-3a1a7c0f612so16938395ab.3
-        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 10:54:48 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-82aac438539so160081139f.1
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 12:27:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linuxfoundation.org; s=google; t=1727546088; x=1728150888; darn=vger.kernel.org;
+        d=linuxfoundation.org; s=google; t=1727551630; x=1728156430; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Msen2x255bExjiElFNnAzBvYvdv/zmccGmPf0vr8LjM=;
-        b=LtF02LbJ1HXgJmjNP9XGTDrC00am9G5T8FDVKKOw6tpvRZWrlzHlCxdEg2qb+4kJb5
-         84z9WQPORhJ6Xa7MxnYC5ht6FsY/h3SdwOZ56VDzIWUAZ8UPNK1lCoNVPPdMDI7AEzn/
-         n6zt9tGYBaBnWotZPl0PRXBLCz2GJOKKzAioM=
+        bh=X+DZWccg96cZ6nO8zxhSFiTG/Zg2x5D9SPND5SVdZ7U=;
+        b=TdlHA2HQ1dDlkJJIzFLLj6wF6zerhUhk28YhLKXXqnLDSwVE44gU6rKlv7P2tiQg4I
+         CD5RxrpTlg+YgWmv0F0YP97dYSoPHCncXCsqgUU25SftHyVJO/dltHqWjFQovXgyK/jD
+         5Kq/3vC09fQfqIlIlUDQawH7oVWGigW7dE09w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727546088; x=1728150888;
+        d=1e100.net; s=20230601; t=1727551630; x=1728156430;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Msen2x255bExjiElFNnAzBvYvdv/zmccGmPf0vr8LjM=;
-        b=onb7eCbCS+tCyTbbArq94U5yKYoRYVPKmoBZAJYB++wPdwLh8fKEyDOsRMi+4qYaoD
-         sDgteUKoYZIvZb0DhVlUcty0RMQhMTCcaULa7wAY0wy5+3Bdpc7rhQ1YobcpCwdnOL/R
-         zPR2jNPuMTjAdB82Sq37rFThupac/oULnquIASkmyDcUL2CMnb5Y+GChZ3HAeqlWKXKx
-         LwXYz3n17UblxBadIPa38Np7WyFUibcIfHSo5JgDl6l5OfinVyjJ4yfh40k7aXWgojF5
-         ifSwI6DgrE6b6Nnq1vZAuv6XcLur5tEeTDeRNleI1T/ik9H4+noNOwgC4GU+GcdLXU+h
-         l7GQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWhg6+ywM4Pks5+zXkXD6NaTmV19VJhJVsPb8yB5vlRnoGY8U4yMkx3RjRTsnglD4fc03w897WKcDq0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7N6byeHTqSOyvq1WBtYXm9IlXmdV8+o3aW682eFhC1pqLUzRu
-	SWuSX/mO1Gkz5dFfpIhxXz8YRcX9XFu7AAqNHz/SA9YdNW6JoAS2DpNzle+QUzY=
-X-Google-Smtp-Source: AGHT+IH4BRzR5A26RUJXbqOU2RQnz3HhhzO3kNc4QEEwnwocfFFf2kbjmbqKEAg8TshvYlzb9Orozw==
-X-Received: by 2002:a05:6e02:214e:b0:3a0:909c:812d with SMTP id e9e14a558f8ab-3a345174574mr64314205ab.11.1727546088065;
-        Sat, 28 Sep 2024 10:54:48 -0700 (PDT)
+        bh=X+DZWccg96cZ6nO8zxhSFiTG/Zg2x5D9SPND5SVdZ7U=;
+        b=LpDK8l1ItX0SGraMu72PNtxFKOty07WpQ4jy0R9RSdFiR3aQ9zwfBcwuUmoIef+ldG
+         clCqPzT5NG/pnQlqEmm9Z9/46g/tf2eOBsK9SJgZNrmoqCrpqEE25VdoI8FW2HDnmrNb
+         j48ewgc11PBuzDR1j51jz6c42gyTTbxBWlYUazmvWnOpJivAGX+bWljEBqU/T6hYMk32
+         7WaX2UgNBa08sCKum/s3m6t+TnXRRqZUtO9kfshkn+LFR9y/jr8vgK7a7F2Gb8m5Lo1B
+         Z0A+ZQOjdxwZjuq5NHx4SLXT217MZMTQeb6NW3UqWPed+V4SeDEL8EDUROrm87wqperT
+         Lujw==
+X-Forwarded-Encrypted: i=1; AJvYcCX+KupjzfurHRUm4N7rMUPRpUFGE0vekVEBVSkW1N+WUMKL8Klq4e96Bkw5VYuJ6LCgNNeM5EQ2AIXQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfRsqqhZ1ZC/iDjFxV9KGx7vqxWfspRHTa2drC/sKDvQRHtL7e
+	568/HZK8IgQNgrWtz0lN3PMcLoZUmZtmBEb8Hs5lp9BSgLrvTCcy3TzafxnbjtI=
+X-Google-Smtp-Source: AGHT+IE52kMDYc8cTV6xfdfVDMfxNEDyxKcur10Po9ZKv+rKoDwbwuwvV4NYy+Y854Z6saLyRNwySA==
+X-Received: by 2002:a05:6602:2c03:b0:82b:40f:63c6 with SMTP id ca18e2360f4ac-834931cc6e7mr583881039f.4.1727551629680;
+        Sat, 28 Sep 2024 12:27:09 -0700 (PDT)
 Received: from [192.168.1.128] ([38.175.170.29])
-        by smtp.gmail.com with ESMTPSA id e9e14a558f8ab-3a344d60728sm13621865ab.2.2024.09.28.10.54.46
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4d888872548sm1199776173.79.2024.09.28.12.27.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Sep 2024 10:54:47 -0700 (PDT)
-Message-ID: <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
-Date: Sat, 28 Sep 2024 11:54:46 -0600
+        Sat, 28 Sep 2024 12:27:09 -0700 (PDT)
+Message-ID: <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
+Date: Sat, 28 Sep 2024 13:27:07 -0600
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,100 +98,107 @@ References: <20240718210513.3801024-1-sboyd@kernel.org>
  <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org>
  <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net>
  <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
+ <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
 Content-Language: en-US
 From: Shuah Khan <skhan@linuxfoundation.org>
-In-Reply-To: <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
+In-Reply-To: <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 9/28/24 11:31, Guenter Roeck wrote:
-> On 9/27/24 17:08, Guenter Roeck wrote:
->> On 9/27/24 13:45, Shuah Khan wrote:
->>> On 9/27/24 10:19, Guenter Roeck wrote:
->>>> Copying devicetree maintainers.
->>>>
->>>> On Thu, Sep 26, 2024 at 09:39:38PM -0700, Guenter Roeck wrote:
->>>>> On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
->>>>>> Hi Stephen,
->>>>>>
->>>>>> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
->>>>>>> Test that clks registered with 'struct clk_parent_data' work as
->>>>>>> intended and can find their parents.
+On 9/28/24 11:54, Shuah Khan wrote:
+> On 9/28/24 11:31, Guenter Roeck wrote:
+>> On 9/27/24 17:08, Guenter Roeck wrote:
+>>> On 9/27/24 13:45, Shuah Khan wrote:
+>>>> On 9/27/24 10:19, Guenter Roeck wrote:
+>>>>> Copying devicetree maintainers.
+>>>>>
+>>>>> On Thu, Sep 26, 2024 at 09:39:38PM -0700, Guenter Roeck wrote:
+>>>>>> On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
+>>>>>>> Hi Stephen,
 >>>>>>>
+>>>>>>> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
+>>>>>>>> Test that clks registered with 'struct clk_parent_data' work as
+>>>>>>>> intended and can find their parents.
+>>>>>>>>
+>>>>>>>
+>>>>>>> When testing this on arm64, I see the error below. The error is only
+>>>>>>> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
+>>>>>>> qemu parameter.
+>>>>>>>
+>>>>>>> Any idea what might cause the problem ?
+>>>>>>>
+>>>>>> I noticed that the new overlay tests fail as well, also with "path '/' not
+>>>>>> found".
 >>>>>>
->>>>>> When testing this on arm64, I see the error below. The error is only
->>>>>> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
->>>>>> qemu parameter.
+>>>>>> [Maybe] answering my own question: I think the problem may be that there
+>>>>>> is no devicetree file and thus no devicetree root when booting through
+>>>>>> efi (in other words, of_root is NULL). Would it make sense to skip the
+>>>>>> tests in that case ?
 >>>>>>
->>>>>> Any idea what might cause the problem ?
->>>>>>
->>>>> I noticed that the new overlay tests fail as well, also with "path '/' not
->>>>> found".
 >>>>>
->>>>> [Maybe] answering my own question: I think the problem may be that there
->>>>> is no devicetree file and thus no devicetree root when booting through
->>>>> efi (in other words, of_root is NULL). Would it make sense to skip the
->>>>> tests in that case ?
+>>>>> The problem is that of_root is not initialized in arm64 boots if ACPI
+>>>>> is enabled.
+>>>>>
+>>>>>  From arch/arm64/kernel/setup.c:setup_arch():
+>>>>>
+>>>>>     if (acpi_disabled)
+>>>>>         unflatten_device_tree();        // initializes of_root
+>>>>>
+>>>>> ACPI is enabled if the system boots from EFI. This also affects
+>>>>> CONFIG_OF_KUNIT_TEST, which explicitly checks if of_root exists and
+>>>>> fails the test if it doesn't.
+>>>>>
+>>>>> I think those tests need to add a check for this condition, or affected
+>>>>> machines won't be able to run those unit tests. The obvious solution would
+>>>>> be to check if of_root is set, but then the associated test case in
+>>>>> CONFIG_OF_KUNIT_TEST would not make sense.
+>>>>>
+>>>>> Any suggestions ?
 >>>>>
 >>>>
->>>> The problem is that of_root is not initialized in arm64 boots if ACPI
->>>> is enabled.
+>>>> Would it work if these tests check if acpi_disabled and skip if it isn't
+>>>> disabled? It might be low overhead condition to check from these tests.
 >>>>
->>>>  From arch/arm64/kernel/setup.c:setup_arch():
+>>>> acpi_disabled is exported:
 >>>>
->>>>     if (acpi_disabled)
->>>>         unflatten_device_tree();        // initializes of_root
->>>>
->>>> ACPI is enabled if the system boots from EFI. This also affects
->>>> CONFIG_OF_KUNIT_TEST, which explicitly checks if of_root exists and
->>>> fails the test if it doesn't.
->>>>
->>>> I think those tests need to add a check for this condition, or affected
->>>> machines won't be able to run those unit tests. The obvious solution would
->>>> be to check if of_root is set, but then the associated test case in
->>>> CONFIG_OF_KUNIT_TEST would not make sense.
->>>>
->>>> Any suggestions ?
+>>>> arch/arm64/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
+>>>> arch/loongarch/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
+>>>> arch/riscv/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
+>>>> arch/x86/kernel/acpi/boot.c:EXPORT_SYMBOL(acpi_disabled);
 >>>>
 >>>
->>> Would it work if these tests check if acpi_disabled and skip if it isn't
->>> disabled? It might be low overhead condition to check from these tests.
+>>> I don't think that would work. Looking through the use of acpi_init,
+>>> I don't think that of_root is always NULL when acpi_init is false; that
+>>> just happens to be the case on arm64 when booting through efi.
+>>> However, even arm64 has the following code.
 >>>
->>> acpi_disabled is exported:
+>>>          if (acpi_disabled)
+>>>                  psci_dt_init();
+>>>          else
+>>>                  psci_acpi_init();
 >>>
->>> arch/arm64/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>> arch/loongarch/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>> arch/riscv/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>> arch/x86/kernel/acpi/boot.c:EXPORT_SYMBOL(acpi_disabled);
+>>> While psci_dt_init() doesn't set of_root, it does try to do a devicetree
+>>> match. So there must be some other condition where acpi_disabled is set
+>>> but of_root is set anyway. I just have not found that code path.
 >>>
 >>
->> I don't think that would work. Looking through the use of acpi_init,
->> I don't think that of_root is always NULL when acpi_init is false; that
->> just happens to be the case on arm64 when booting through efi.
->> However, even arm64 has the following code.
+>> I ended up disabling all affected unit tests for arm64. I'll do the same
+>> for other architectures if I encounter the problem there as well.
 >>
->>          if (acpi_disabled)
->>                  psci_dt_init();
->>          else
->>                  psci_acpi_init();
+>> Unfortunately that includes all clock unit tests because the tests requiring
+>> devicetree support can not be enabled/disabled separately, but that can't be
+>> helped and is still better than "mandatory" failures.
 >>
->> While psci_dt_init() doesn't set of_root, it does try to do a devicetree
->> match. So there must be some other condition where acpi_disabled is set
->> but of_root is set anyway. I just have not found that code path.
->>
-> 
-> I ended up disabling all affected unit tests for arm64. I'll do the same
-> for other architectures if I encounter the problem there as well.
-> 
-> Unfortunately that includes all clock unit tests because the tests requiring
-> devicetree support can not be enabled/disabled separately, but that can't be
-> helped and is still better than "mandatory" failures.
 > 
 
-I am hoping Stephen will have a solution for this problem. In the meantime,
-I will look into this to see if we can find a check that works.
+of_root is set in drivers/of/pdt.c when it creates the root node.
+This could be a definitive test for kunit tests that depend on
+devicetree support.
+
+It is an exported symbol. drivers/of/base.c exports it.
 
 thanks,
--- Shuah
+-- SHuah
+
 
 
