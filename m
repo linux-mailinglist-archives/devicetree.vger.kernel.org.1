@@ -1,270 +1,253 @@
-Return-Path: <devicetree+bounces-106090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418F498918F
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 23:32:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E27DE9891F2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 00:43:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 431C01C22ECF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 21:32:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A25DA285D1A
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 22:43:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DB37165EFE;
-	Sat, 28 Sep 2024 21:32:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3E74187859;
+	Sat, 28 Sep 2024 22:43:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O0zMjgyZ"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="GMuJZiYK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFEAC2CA8;
-	Sat, 28 Sep 2024 21:32:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB4C1183CD6;
+	Sat, 28 Sep 2024 22:43:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727559163; cv=none; b=cCSzfyvdwQXZAl0j+ATpc4uee7y5HkZMBYSmrk/9n7Esty8+jJmrB3yPY8cvJ/VdvrgQtQbKJv3Wd+L1iCHRaVzldcaHKG/0UwPbjnlXSMWhHSK6XbVZWbJX9ZQrwYetwn/dTq/OexwvAYMv01kTxZxiggkv8RiSdHlc7ZobEYM=
+	t=1727563385; cv=none; b=nh5+0jeOGrlByRwIPy1xaC4hUBM5Dv4w7YO/wDcJoOVl1rTeg8VL5RtosrVRMBRsM/N2VUtnCc71Mcfb7nJDaxuVNVemwMPaDlWbb0ytZRPIXURB6zjW7yxC84OH9WoZzEd4/T/Fa1Q8UOp/NovU6J6RLCZXTCEgRZnUNTC+bg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727559163; c=relaxed/simple;
-	bh=J6dwjekvHhc6lard0YJQTOrwb5C5Bq/heygrtrluqeE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VDaQq8URSq/r78J1V6iUVc7SY2JKVqTx8Ru2sZY/+89IC7ViDE3itoTZdGzz3QYPoAB1yIDSnkBZ8MxkLZGsi3mZMPcNLoV6LKE2uk3SoaoYHq62rOPAL7gYAM1NiIgDaNZVq4aPbvyGJQmG+TWWWLsUa/1BMXZcbANPg81OFQ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O0zMjgyZ; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20551eeba95so31598745ad.2;
-        Sat, 28 Sep 2024 14:32:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727559161; x=1728163961; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=YP5C5sb9/S1CBp32rgGNh9i41OJdRJponvkLQNw/TMU=;
-        b=O0zMjgyZZFuNPwz0iXx8/3p4FH0gwWgRdA/uTZZ7jqA3bkIrRXwGcCzNoN+FF4aBJG
-         GpjCtJXz19+AmFQhCVhcZTwgJ1yu4ObPyVzHCXJh6x95u37sO9cWTonK8aYEkspX1vcq
-         0mnKObwPq9SWA2lJ1nnljheN/a34GJ2WONtMSudN09SaRVme3GxKrMbbcSN1+gLnmhpU
-         gfDBFlJhgy2PjewjWkchf6gM3p4xFlBxxo6sUFxUSNUjV4d7Wr6FTkdAX2W3+eNsOZzT
-         m2vIGF8GL06dXdiWL+4EGZgUMJ6LuFll2dIEflsYuPDJSIFw4LuFv99+ppGm20fd0a4D
-         YzgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727559161; x=1728163961;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YP5C5sb9/S1CBp32rgGNh9i41OJdRJponvkLQNw/TMU=;
-        b=K8rZIg6xBMD9Sf8C+mVjUL2m3E5ObqTe1Z+2nnME1FD+7TSpEumHcikqyKgnrlr1H2
-         63a+mMoPoFL8pjnWIX9vp29E1MTz8Ne16PEG3sm+0jDyfnCPSvyIoMZPJ8oA0I7t5cfS
-         BlXnDqsnEFnRs5PvpijEmapWXHsdaSU4EwV65vrGeXRyoMjsC9ujtQF3xXQ9wF2zQiNw
-         nNju2iSVhAZr23gipektRZWczxsCUX1yagxpFUZYi5A+ZWtVrKZmORBttIt56hxt4Nx9
-         Qup8MGRH7syk4kj6bEC9KYu7F2ZvJwHwTKhybtIUiwV2k3Mi/fFJSjT+04XovHaCwy7Q
-         jsnA==
-X-Forwarded-Encrypted: i=1; AJvYcCUy2RBShJraatBPKLEE+KgjsCv3RR1eoho+pij7e0kke0GPGVzAHhf5cLMcbYrxylNko0pxy/S4aXIz@vger.kernel.org, AJvYcCVYeeOMPNeN5UcTZyUzhmuha/YrUm0umd2MFG+vuLqdMRoxyinpgUpMaB4tbWt3xHWWmUODQJNmjxYRVVak0Vul@vger.kernel.org, AJvYcCWcidMFyE8EN1dMv1oSlJGvxbHpcDS08os5W9ZXvuStxsKiIeiXIaDzLjGsZn2R3Qc9OuQIH4rITwG5Bqrc@vger.kernel.org, AJvYcCWrYcVjAgr5DUkX9H9qa6AFVSGftrjg4xSkEmEDlcVcNasLsxDyLo+wFi++ZDgszbiMOrQxCyEBXmc5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZgCevNkub8uq6AqJ7xjAhYBXo0AubsXVqYh60wQihOrc2NfSi
-	BEU6Th3+Up0Xw3c/50Qr/ZblGoZO/DDQAbaD8AGBdGTYxJOQUK0C
-X-Google-Smtp-Source: AGHT+IEmTwzDUx5UTP7lyRpx6IWQLxeALqPfM6iu19eYnPcKfIhjmZz3c91oAC2kwc/XZa2m5HlO+A==
-X-Received: by 2002:a17:902:d550:b0:206:96bf:b0cf with SMTP id d9443c01a7336-20b367098c9mr114156025ad.0.1727559159621;
-        Sat, 28 Sep 2024 14:32:39 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37d6717fsm31078535ad.14.2024.09.28.14.32.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 28 Sep 2024 14:32:38 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f5f1c42d-77c0-48c7-ac52-3d4a3b5c2b47@roeck-us.net>
-Date: Sat, 28 Sep 2024 14:32:35 -0700
+	s=arc-20240116; t=1727563385; c=relaxed/simple;
+	bh=YFA7+X5Us21+0eHKxfY/TIJcacjOdOm4GiRiiJcOWn8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=B9oizFIubWQ6ZrIaqPeB9FaTPNjetQbQ3izJ9NpCkKimjh9m7n4bhO3cQBFZh+1P4MsAaDIslO7ZIp1RSj0yQHr91ROq/5E/7BM6A9KFXvUQN5HGeBmmylky3soHj92oURCy+RqGHWPl4mCuhYWC5ztOpjCrx2flQU2XhaKRHQg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=GMuJZiYK; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727563045;
+	bh=YFA7+X5Us21+0eHKxfY/TIJcacjOdOm4GiRiiJcOWn8=;
+	h=From:Subject:Date:To:Cc:From;
+	b=GMuJZiYKRVrZ4/37ClX+ImfSVMFde/btQ7TnkwdygUHLfFOz1Kn49zmI9Utrwz0aa
+	 cLECno8dsUvJzOz4i0zmtZzH9GSOB3e7UNKzKlgDzwTavhm6yZkwzufzFI3fMjQZdf
+	 6FnXb6vDmy1rBhXikuXVEydFUW1i0+DKSubX8OXbwYAJvUqS2WWtUZuA/XZRvB5YxD
+	 6SQJy64Ip0C2F+oo+7CgBHxamFQ729lu24lfxtSbx61DScTFWBjvMG8v1McQJtiZpi
+	 ehsySxBS+YbXKNxRuNTW7OgVWsqndNi7+A3oNU6i7Zs3KYndEndKiPTW2pV7Bfszz4
+	 x7VIRZQaZpPEA==
+Received: from localhost (100.121.120.78.rev.sfr.net [78.120.121.100])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8D4E217E0E2D;
+	Sun, 29 Sep 2024 00:37:25 +0200 (CEST)
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Subject: [PATCH v8 0/3] Add initial support for the Rockchip RK3588 HDMI TX
+ Controller
+Date: Sun, 29 Sep 2024 01:36:46 +0300
+Message-Id: <20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
- struct clk_parent_data
-To: Shuah Khan <skhan@linuxfoundation.org>, Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- patches@lists.linux.dev, kunit-dev@googlegroups.com,
- linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
- Brendan Higgins <brendan.higgins@linux.dev>, David Gow
- <davidgow@google.com>, Rae Moar <rmoar@google.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- "Rafael J . Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
- Saravana Kannan <saravanak@google.com>, Daniel Latypov
- <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
- Geert Uytterhoeven <geert+renesas@glider.be>
-References: <20240718210513.3801024-1-sboyd@kernel.org>
- <20240718210513.3801024-9-sboyd@kernel.org>
- <6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net>
- <a339ec8c-38f6-425a-94d1-ad69b5ddbd88@roeck-us.net>
- <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net>
- <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org>
- <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net>
- <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
- <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
- <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP6E+GYC/43QzWrDMAwH8FcpPs/DkvyVnfYeowfbsVeztilOF
+ zpK3n1OLw0jmB3/EvoJ6c7GWHIc2dvuzkqc8piHcw32ZcfCwZ0/I899zQwFSqEFcC95+SJlLfc
+ l97X/fRmvJboTd2i8Swm8TYHV+UuJKd8e9se+5kMer0P5eayaYKn+R52AC540CjKKkNC/h+F4d
+ H4o7jUMJ7bIEz4129awal1yWhknI6hNjdaaaWlUNS167Z0XfTBhS5MrDbqWJhdNggkG6y9lt6W
+ plUbNS9VyqRLkY4gCSG9p+ql1Qrc0XTVHgDZ5EBQ3/2ZWGsiWZqqGHkhaIANIf7V5nn8Bzl1U/
+ 5oCAAA=
+To: Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>, 
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ devicetree@vger.kernel.org, kernel@collabora.com, 
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>, 
+ Algea Cao <algea.cao@rock-chips.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.1
 
-On 9/28/24 12:27, Shuah Khan wrote:
-> On 9/28/24 11:54, Shuah Khan wrote:
->> On 9/28/24 11:31, Guenter Roeck wrote:
->>> On 9/27/24 17:08, Guenter Roeck wrote:
->>>> On 9/27/24 13:45, Shuah Khan wrote:
->>>>> On 9/27/24 10:19, Guenter Roeck wrote:
->>>>>> Copying devicetree maintainers.
->>>>>>
->>>>>> On Thu, Sep 26, 2024 at 09:39:38PM -0700, Guenter Roeck wrote:
->>>>>>> On Thu, Sep 26, 2024 at 09:14:11PM -0700, Guenter Roeck wrote:
->>>>>>>> Hi Stephen,
->>>>>>>>
->>>>>>>> On Thu, Jul 18, 2024 at 02:05:07PM -0700, Stephen Boyd wrote:
->>>>>>>>> Test that clks registered with 'struct clk_parent_data' work as
->>>>>>>>> intended and can find their parents.
->>>>>>>>>
->>>>>>>>
->>>>>>>> When testing this on arm64, I see the error below. The error is only
->>>>>>>> seen if I boot through efi, i.e., with "-bios QEMU_EFI-aarch64.fd"
->>>>>>>> qemu parameter.
->>>>>>>>
->>>>>>>> Any idea what might cause the problem ?
->>>>>>>>
->>>>>>> I noticed that the new overlay tests fail as well, also with "path '/' not
->>>>>>> found".
->>>>>>>
->>>>>>> [Maybe] answering my own question: I think the problem may be that there
->>>>>>> is no devicetree file and thus no devicetree root when booting through
->>>>>>> efi (in other words, of_root is NULL). Would it make sense to skip the
->>>>>>> tests in that case ?
->>>>>>>
->>>>>>
->>>>>> The problem is that of_root is not initialized in arm64 boots if ACPI
->>>>>> is enabled.
->>>>>>
->>>>>>  From arch/arm64/kernel/setup.c:setup_arch():
->>>>>>
->>>>>>     if (acpi_disabled)
->>>>>>         unflatten_device_tree();        // initializes of_root
->>>>>>
->>>>>> ACPI is enabled if the system boots from EFI. This also affects
->>>>>> CONFIG_OF_KUNIT_TEST, which explicitly checks if of_root exists and
->>>>>> fails the test if it doesn't.
->>>>>>
->>>>>> I think those tests need to add a check for this condition, or affected
->>>>>> machines won't be able to run those unit tests. The obvious solution would
->>>>>> be to check if of_root is set, but then the associated test case in
->>>>>> CONFIG_OF_KUNIT_TEST would not make sense.
->>>>>>
->>>>>> Any suggestions ?
->>>>>>
->>>>>
->>>>> Would it work if these tests check if acpi_disabled and skip if it isn't
->>>>> disabled? It might be low overhead condition to check from these tests.
->>>>>
->>>>> acpi_disabled is exported:
->>>>>
->>>>> arch/arm64/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>>> arch/loongarch/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>>> arch/riscv/kernel/acpi.c:EXPORT_SYMBOL(acpi_disabled);
->>>>> arch/x86/kernel/acpi/boot.c:EXPORT_SYMBOL(acpi_disabled);
->>>>>
->>>>
->>>> I don't think that would work. Looking through the use of acpi_init,
->>>> I don't think that of_root is always NULL when acpi_init is false; that
->>>> just happens to be the case on arm64 when booting through efi.
->>>> However, even arm64 has the following code.
->>>>
->>>>          if (acpi_disabled)
->>>>                  psci_dt_init();
->>>>          else
->>>>                  psci_acpi_init();
->>>>
->>>> While psci_dt_init() doesn't set of_root, it does try to do a devicetree
->>>> match. So there must be some other condition where acpi_disabled is set
->>>> but of_root is set anyway. I just have not found that code path.
->>>>
->>>
->>> I ended up disabling all affected unit tests for arm64. I'll do the same
->>> for other architectures if I encounter the problem there as well.
->>>
->>> Unfortunately that includes all clock unit tests because the tests requiring
->>> devicetree support can not be enabled/disabled separately, but that can't be
->>> helped and is still better than "mandatory" failures.
->>>
->>
-> 
-> of_root is set in drivers/of/pdt.c when it creates the root node.
-> This could be a definitive test for kunit tests that depend on
-> devicetree support.
-> 
+The Rockchip RK3588 SoC family integrates the Synopsys DesignWare HDMI
+2.1 Quad-Pixel (QP) TX controller, which is a new IP block, quite
+different from those used in the previous generations of Rockchip SoCs.
 
-That is not always the case, including arm64. It is primarily set in
-unflatten_devicetree(), which is not called on arm64 unless acpi_is disabled
-(see above).
+The controller supports the following features, among others:
 
-> It is an exported symbol. drivers/of/base.c exports it.
-> 
+* Fixed Rate Link (FRL)
+* Display Stream Compression (DSC)
+* 4K@120Hz and 8K@60Hz video modes
+* Variable Refresh Rate (VRR) including Quick Media Switching (QMS)
+* Fast Vactive (FVA)
+* SCDC I2C DDC access
+* Multi-stream audio
+* Enhanced Audio Return Channel (EARC)
 
-Yes, checking if of_root is NULL and skipping the test in that case might help,
-but then there is the of_dtb_root_node_populates_of_root unit test which
-explicitly fails if of_root is NULL. The comment describing the test is
+This is the last component that needs to be supported in order to enable
+the HDMI output functionality on the RK3588 based SBCs, such as the
+RADXA Rock 5B.  The other components are the Video Output Processor
+(VOP2) and the Samsung IP based HDMI/eDP TX Combo PHY, for which basic
+support has been already made available via [1] and [2], respectively.
 
-/*
-  * Test that the 'of_root' global variable is always populated when DT code is
-  * enabled. Remove this test once of_root is removed from global access.
-  */
+Please note this is a reworked version of the original series, which
+relied on a commonized dw-hdmi approach.  Since the general consensus
+was to handle it as an entirely new IP, I dropped all patches related to
+the old dw-hdmi and Rockchip glue code - a few of them might still make
+sense as general improvements and will be submitted separately.
 
-The devicetree unit test code explicitly assumes that of_root is set if
-CONFIG_OF_EARLY_FLATTREE is enabled, but that is not always the case
-(again, of_root is NULL on arm64 unless acpi is disabled).
+It's worth mentioning the HDMI output support is currently limited to
+RGB output up to 4K@60Hz, without audio, CEC or any of the HDMI 2.1
+specific features.  Moreover, the VOP2 driver is not able to properly
+handle all display modes supported by the connected screens, e.g. it
+doesn't cope with non-integer refresh rates.
 
-Guenter
+A possible workaround consists of enabling the display controller to
+make use of the clock provided by the HDMI PHY PLL.  This is still work
+in progress and will be submitted later, as well as the required DTS
+updates.
+
+To facilitate testing and experimentation, all HDMI output related
+patches, including those part of this series, are available at [3].
+
+So far I could only verify this on the RADXA Rock 5B board.
+
+Thanks,
+Cristian
+
+[1]: 5a028e8f062f ("drm/rockchip: vop2: Add support for rk3588")
+[2]: 553be2830c5f ("phy: rockchip: Add Samsung HDMI/eDP Combo PHY driver")
+[3]: https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commits/rk3588-hdmi-bridge-next-20240913
+[4]: https://lore.kernel.org/lkml/20240801-dw-hdmi-qp-tx-v1-0-148f542de5fd@collabora.com/
+
+Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+---
+Changes in v8:
+- Added R-b tag from Maxime on the HDMI controller library patch
+- Dropped dw_hdmi_qp_rockchip_encoder_mode_set() from the platform
+  driver according to Maxime's review, the ref_clk rate adjustment is
+  already handled in dw_hdmi_qp_rockchip_encoder_enable()
+- Link to v7: https://lore.kernel.org/r/20240914-b4-rk3588-bridge-upstream-v7-0-2b1348137123@collabora.com
+
+Changes in v7:
+- Added R-b from Krzysztof on DT binding patch (also dropped the
+  superfluous minItems property from resets)
+- Fixed a sparse warning reported by kernel test robot when returning
+  the error pointer from devm_platform_ioremap_resource() (made use of
+  ERR_CAST() helper)
+- Simplified locking in dw_hdmi_qp_i2c_xfer() via guard() (Markus)
+- Dropped high TMDS clock ratio and scrambling support for now (will be
+  submitted separately when ready)
+- Introduced dw_hdmi_qp_bridge_mode_valid() function to filter out
+  unsupported mode clocks
+- Dropped the superfluous 'display' parameter of ->init() in struct
+  dw_hdmi_qp_phy_ops
+- Improved error handling in dw_hdmi_qp_bridge_atomic_enable()
+- Handled dw_hdmi_qp_i2c_adapter() errors as fatal for bridge setup
+- Rebased series onto next-20240913
+- Updated ROCKCHIP_DW_HDMI_QP kconfig to select the recently introduced
+  DRM_BRIDGE_CONNECTOR dependency (Heiko)
+- Link to v6: https://lore.kernel.org/r/20240906-b4-rk3588-bridge-upstream-v6-0-a3128fb103eb@collabora.com
+
+Changes in v6:
+- Improved scrambling setup by using a delayed work queue in conjunction
+  with the bridge ->detect() callback to support use cases like modetest
+  where ->atomic_enable() is not called on reconnection (Maxime)
+- Explicitly include workqueue.h in platform driver
+- Dropped the common binding patch after merging its content into RK
+  specific one; also moved the clocks & irq setup from the bridge
+  library to the platform driver
+- Got rid of the phy-names property and fixed indentation in the binding
+  example (Krzysztof)
+- Link to v5: https://lore.kernel.org/r/20240831-b4-rk3588-bridge-upstream-v5-0-9503bece0136@collabora.com
+
+Changes in v5:
+- Renamed Rockchip binding file to match the SoC compatible (Conor)
+- Made all clocks mandatory (Conor)
+- Renamed rockchip,vo1-grf property to rockchip,vo-grf as future SoCs
+  (e.g. RK3576) may refer to it as vo0 instead of vo1
+- Reworked the setup of high TMDS clock ratio and scrambling
+  * Dropped curr_conn & pix_clock from struct dw_hdmi_qp
+  * Also removed exported function dw_hdmi_qp_set_high_tmds_clock_ratio()
+  * A few additional (mostly cosmetic) changes
+- Link to v4: https://lore.kernel.org/r/20240819-b4-rk3588-bridge-upstream-v4-0-6417c72a2749@collabora.com
+
+Changes in v4:
+- Added Tested-by tag from Heiko
+- Updated "[PATCH v3 3/5] dt-bindings: display: rockchip: Add schema for
+  RK3588 HDMI TX Controller" according to Rob's review
+  * Referenced full path for synopsys,dw-hdmi-qp.yaml
+  * Moved ports to common schema and updated descriptions
+  * Renamed rockchip,vo1_grf to rockchip,vo1-grf and updated "[PATCH v3
+    5/5] drm/rockchip: Add basic RK3588 HDMI output support" accordingly
+- Dropped "[PATCH v3 4/5] drm/rockchip: Explicitly include bits header"
+  already applied by Heiko
+- Link to v3: https://lore.kernel.org/r/20240807-b4-rk3588-bridge-upstream-v3-0-60d6bab0dc7c@collabora.com
+
+Changes in v3:
+- Reintegrated bridge patchset [4] to allow automated testing and
+  simplify reviewing (Krzysztof); the after-split changes were:
+  * Made use of the new bridge HDMI helpers indicated by Dmitry
+  * Dropped connector creation to ensure driver does only support
+    DRM_BRIDGE_ATTACH_NO_CONNECTOR
+  * Updated I2C segment handling to properly handle connected DVI
+    displays (reported and fixed by Heiko)
+- Updated schema for DW HDMI QP TX IP providing some hardware details
+- Updated patch for DW HDMI QP TX Controller module referring to a
+  support library instead of a platform driver (Krzysztof)
+- Drop empty dw_hdmi_qp_unbind() export from the library and related
+  usage from RK platform driver
+- Drop Fixes tag from "drm/rockchip: Explicitly include bits header"
+  patch (Krzysztof)
+- Link to v2: https://lore.kernel.org/r/20240801-b4-rk3588-bridge-upstream-v2-0-9fa657a4e15b@collabora.com
+
+Changes in v2:
+- Reworked the glue code for RK3588 into a new Rockchip platform driver
+- Moved bridge driver patches to a separate series [4]
+- Dropped all the patches touching to the old dw-hdmi and RK platform
+  drivers
+- Added connector creation to ensure the HDMI QP bridge driver does only
+  support DRM_BRIDGE_ATTACH_NO_CONNECTOR
+- Link to v1: https://lore.kernel.org/r/20240601-b4-rk3588-bridge-upstream-v1-0-f6203753232b@collabora.com
+
+---
+Cristian Ciocaltea (3):
+      drm/bridge: synopsys: Add DW HDMI QP TX Controller support library
+      dt-bindings: display: rockchip: Add schema for RK3588 HDMI TX Controller
+      drm/rockchip: Add basic RK3588 HDMI output support
+
+ .../rockchip/rockchip,rk3588-dw-hdmi-qp.yaml       | 188 +++++
+ drivers/gpu/drm/bridge/synopsys/Kconfig            |   8 +
+ drivers/gpu/drm/bridge/synopsys/Makefile           |   2 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       | 645 ++++++++++++++++
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.h       | 834 +++++++++++++++++++++
+ drivers/gpu/drm/rockchip/Kconfig                   |   9 +
+ drivers/gpu/drm/rockchip/Makefile                  |   1 +
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 425 +++++++++++
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.c        |   2 +
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   1 +
+ include/drm/bridge/dw_hdmi_qp.h                    |  32 +
+ 11 files changed, 2147 insertions(+)
+---
+base-commit: 5acd9952f95fb4b7da6d09a3be39195a80845eb6
+change-id: 20240601-b4-rk3588-bridge-upstream-a27baff1b8fc
 
 
