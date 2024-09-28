@@ -1,156 +1,131 @@
-Return-Path: <devicetree+bounces-106007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F302988DED
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 07:46:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C9E988E01
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 08:27:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5A69D1F21D13
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 05:46:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64363282A87
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 06:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 389E21537D7;
-	Sat, 28 Sep 2024 05:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BE5C14F9E9;
+	Sat, 28 Sep 2024 06:27:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZZ+DM20r"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RykQEm7x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-pg1-f173.google.com (mail-pg1-f173.google.com [209.85.215.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C07B27442;
-	Sat, 28 Sep 2024 05:45:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21C54381C7;
+	Sat, 28 Sep 2024 06:27:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727502341; cv=none; b=tebztYFiIwFxTkkJh/qoV+DUiwr0hfjMrG4UhTnhWyl7yuMSdpR86azRMFeQnPSCrgHETp1NEUzHka2HLF4W0J4oV3V87zm8U4IiVrwUASgfJAb1Us44IuL14m+Lzv2UOZjHrs75QVAYBALf8hr72CS3s2o6zHCoEPLjcavhsNI=
+	t=1727504825; cv=none; b=jjFclTe66JzsJe5Dtvz984jx1KsKY88aQMhsnkihIY/9Rk9X5DosX+VzP5Owzpfgq4b6utTm4wbECsOwK2Q2Cx4oaXqkPvWnJEn1ua/3H4WujtH0L8EG6aFNILPm9FNYDqoldkGYXV77KAjXbNC3qvFvy31rFsmDSOWN02zVaQw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727502341; c=relaxed/simple;
-	bh=OMydpLK0PY+Yh18OZc5/cuq9AjTJ/jM8OBP0Hopy1Wk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ooxDNhZFo0ZkF04Qmtyh5R3o14lVkxlpUHd+p8yEv2iHOaMJHk8oKRFeOQdk9QEs9uHkvIeCl56pqUBzeU8wZqr/5us+Bz5dMY6/D8dlX27fTr6Jdsd5T0Y/SPf1Q46oc3BM0zpkNh83YufgQby3DIXukp3Z6iaI1QOyi4/htdM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZZ+DM20r; arc=none smtp.client-ip=209.85.219.177
+	s=arc-20240116; t=1727504825; c=relaxed/simple;
+	bh=tPc7mhKokWGM2Kapg8cvJg9yAiZSEoe7437Ns8CXF68=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IcoBUrl7yFRxH0XJOnXieNAnvjrjY+NW8kvDHCa/StZIFUuB8GDt4DIp4Eo2hvSrgyKSZmbgKJibfNxKAOnyFkpNUwN4bAX66YWqYAa2Vyyh+kWZRetzhyVjtNf/UKaVVXTrj9HeF98cLsCcFZMmEgN7HvQTZP23NTlfgAAYs88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RykQEm7x; arc=none smtp.client-ip=209.85.215.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e05f25fb96eso2610124276.1;
-        Fri, 27 Sep 2024 22:45:39 -0700 (PDT)
+Received: by mail-pg1-f173.google.com with SMTP id 41be03b00d2f7-7d50a42ce97so1298429a12.0;
+        Fri, 27 Sep 2024 23:27:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727502338; x=1728107138; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y4n59r0MQ2lceVoqhaUy5pddzOLHa+DfJWD8ZO0fKyc=;
-        b=ZZ+DM20rZZdzG808CSqgNNno67fLdOAOB16J+ZwgX5vBwF6MFac2D+dvs/DaVi4l5s
-         AX0w/HPmYOl223xOOQjGGIgd/cVH0pcPxArdb5/bTpntf88klNgea5VOCM7m3mUQibAK
-         bCeq5EbeAlYYRRzMrv6gxyEC7BUmrxsuNW5Er6DNSdl8yrVOv6NTkySzPHvgljigDfT+
-         Taj01/POMQQz1z3bvcN6pScIuYbTA0fnYVUJDOS1vapAjlxS13QonecPMzSox+a2QjjW
-         sLIOFW0Jx17vHhl1HlSJ+mAHEDI5eXj5fFg2aOIeH2EJKGQSKgNKtF1zVpOc9ejGxIm0
-         OXeg==
+        d=gmail.com; s=20230601; t=1727504823; x=1728109623; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oT+Xix7EUZojgVt8PEv25I8lZLGn+Rt8jomt28eBKxo=;
+        b=RykQEm7x0upQPnBmCl8AM5AxXcwh2ONBxCWm9H26UPN8BREaawX1CzjOWcqL7RWjEd
+         6EAXX+tBavID9NpVtNPLRTzxqEqaCMVW05zggd32lvcda9q4vEzY5cw/Jp4Vhda9AFBV
+         EvYawRkoY0nDBih34XlFslcK0DEOChG99ZsR7JJstyP+97a/A4FLIiVQWgR04E8XHo2m
+         ojigYaBgNd8+3gvu2GJ3692QBfEfP1UMV7lrTOCrBIZ/YjiN4XPK7r/SEJ4kfSNkmN7n
+         SG1m7GFY0NWWfoDu3FBHQzoXhIy7RXlkczzjSCXZrQB9+++dDnBT+MsvPo95L4lNo449
+         aGKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727502338; x=1728107138;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y4n59r0MQ2lceVoqhaUy5pddzOLHa+DfJWD8ZO0fKyc=;
-        b=Jf9P0OatLfME587NhZ0laC3oweTLuUYJkthkztX3SmDVHXaD8fI2VkzTAVYzXjTDlD
-         WuwegW3Dc8+pDRfCNJrfF/RAz3HjLwdBqt1jPlc//WwDXXFwXnR4aPHyWVSrjE3sNupe
-         YGMXICOPhdOvRR4wIGc/0t6jitaCLW9dIN56SUtxI9gbUDQ/za7LVOmznuwPxrIxCwA5
-         xoc5K0YNdFc6r1sNk0cKTOv0tLI4LvZZ0kUK313TMNUQMKaKXt8baTc+udOsItlaO+xm
-         npyG+SKXTbAIYUCYmgIymPAQfzHFkCaYPvViGfItUPEVxQZu2SSqrmq8KrfadCGYl1fE
-         B5RQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWY2W8E4JB/LWRAebyaTM1FzsMYGJcfVZVjrVdw6AQ5fDEnKNtHCSHnUe7C+fFmvCR+MEm4Qx8H3IqAJynL@vger.kernel.org, AJvYcCWh6jJaugyw+7qAtdnB6EDCtEP+gz4q+cuRcC5nqqF2bYvbzQbTma83mvgEdddiNQEP8j+rdidro9eX@vger.kernel.org, AJvYcCXkFlYKPGoaxl5We0iPivL2Yg8poBNxHldc8q8Jil7qFhSkrnlEy/DIvTqEtcx85Mrm6UGuYXefaOS/DTXact+r/VLp3w==@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0ZEKa0+ko7IEJMagiPM2vqcGVpxI9iW3cPFeEAIM9815j1p0M
-	3D7POBn+DI6gL28v/VDLqsax/y5W3pLBKIb8Qz4A0wTxBGTjOYi646Dcww==
-X-Google-Smtp-Source: AGHT+IHdIyudcbZPrMrN50SqMgLgXlXfxqJrLCoxY4NEbKZMEI2AvtFg+xxAKSKoMqFCFcvp7mu8UQ==
-X-Received: by 2002:a05:6902:2849:b0:e24:9893:bc5 with SMTP id 3f1490d57ef6-e2604b3bdb5mr4642269276.20.1727502338291;
-        Fri, 27 Sep 2024 22:45:38 -0700 (PDT)
-Received: from ?IPV6:2604:2d80:4022:0:9007:a741:5566:7d2e? ([2604:2d80:4022:0:9007:a741:5566:7d2e])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e25e4011e5fsm778643276.25.2024.09.27.22.45.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 27 Sep 2024 22:45:37 -0700 (PDT)
-Message-ID: <a0e00c43-a879-4a4c-a3b4-26c485e0c261@gmail.com>
-Date: Sat, 28 Sep 2024 00:45:36 -0500
+        d=1e100.net; s=20230601; t=1727504823; x=1728109623;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oT+Xix7EUZojgVt8PEv25I8lZLGn+Rt8jomt28eBKxo=;
+        b=HJLjZXAqVe87lZP1iViEWvlyzuGHDWKXj84ysT3F96vPTsue9D07AbUHXj7ku3MGHa
+         Rd50IuclJgURjo8nwC6WS9Usa5XLx2UEXSbIELraE70qsleuFAWnxWQH1pRW6OiVSpnl
+         KDHpQNAEhV8FG9OOqt+3M1BIciP82db3l3al/9+fHF4ObkxukY+8KujjGV2qVQthvX1T
+         Xk+zydoUTji8I92C5vJ+L3FCNASjjk510yLOMNRpLG37mPSO0HWHKTv2G/6YiaxCe1K5
+         1wwfMyAFcCnsDIhW2iyXMkkTQpF88QP2s9cypfQU4SZGV5Ife5qQQlGNnSnuDQmgQpKr
+         gAaw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/PxQ+gxvVu9R2nNFtid3w056RTaf4dzB13KoZx8krL6POVxPz1tD4MTeqJrMT9ztGa5A8QJ/YpzvW@vger.kernel.org, AJvYcCXXtUeh9S09cGfTqqHbp39yWQEeIoOICj4oJOVDRq8Psl6krL7rVfK8htCHw+T+B7yYtewm/IPnOOW1Okme@vger.kernel.org
+X-Gm-Message-State: AOJu0YzWEVVhRgylgZGGy6JoC0Ho+lzuZ4amDsUPfCivYDs/ILhg4aIz
+	Iud/KlVhQL6KuToRm29J3McmGBpuCPIAftSh1JZtwAR9aadTn656rU0bGCh8kGDpmlrvefebRdu
+	wyPQbVP6SYM6WqRDcwEdB1ciML+0=
+X-Google-Smtp-Source: AGHT+IEDhLZNbykD45F4jKtK/hB6A1oiqmApfybjKEaAP/yF36hspj+oOy9wPm7opnb1bFde8Oak9aefQMvq09yocyw=
+X-Received: by 2002:a05:6a20:d489:b0:1cf:2b8c:b5e0 with SMTP id
+ adf61e73a8af0-1d4fa78baffmr9539894637.37.1727504823180; Fri, 27 Sep 2024
+ 23:27:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] novatek-nvt-ts: add support for NT36672A
- touchscreen
-To: Hans de Goede <hdegoede@redhat.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
- <ilpo.jarvinen@linux.intel.com>
-Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
-Content-Language: en-US
-From: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-In-Reply-To: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <ZvQ27pvrnEYA8BB9@Emma> <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
+ <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com>
+In-Reply-To: <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com>
+From: Karan Sanghavi <karansanghvi98@gmail.com>
+Date: Sat, 28 Sep 2024 11:56:51 +0530
+Message-ID: <CAEDjzLKZSb8JJXjpbC5tFa4hc7+wdz+v6esimmZuOuYt8tWJ6Q@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: broadcom: Add missing required fields
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stefan Wahren <wahrenst@gmx.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, Shuah Khan <skhan@linuxfoundation.org>, 
+	Anup <anupnewsmail@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi,
+On Thu, 26 Sept 2024 at 02:08, Florian Fainelli
+<florian.fainelli@broadcom.com> wrote:
+>
+> On 9/25/24 09:39, Stefan Wahren wrote:
+> > Hi Karan,
+> >
+> > Am 25.09.24 um 18:14 schrieb Karan Sanghavi:
+> >> Added below mentioned required fields
+> >>    1. interrupt-controller
+> >>    2. #interrupt-cells
+> >> in the bcm2711.dtsi file for the
+> >> interrupt-controller@40000000 block as defined in the
+> >> bindings/interrupt-controller/brcm,bcm2836-l1-intc.yaml.
+> >> This issue was noticed while compiling the dtb file
+> >> for broadcom/bcm2711-rpi-4-b.dts file.
+> >> After including the above fields in the dtsi file
+> >> interrupt-conntroller error was resolved.
+> > looks like you made the same mistake like me [1]. This change breaks
+> > boot of Raspberry Pi 4 [2].
+> >
+> > There are a lot of DT schema warnings to fix, but this doesn't belong to
+> > the trivial ones.
+>
+> Including the #interrupt-cells would not have a functional impact
+> however, and we ought to be able to do that.
+>
+> The 'interrupt-controller' property presence means that the controller
+> will be picked up by of_irq_init() and that is was causes problems for
+> people testing this. Stefan, do you know if the VPU firmware
+> removes/inserts that property to tell Linux which interrupt controller
+> (bcm2836-l1-intc or ARM GIC) to use or does it make use of the "status"
+> property which would be the canonical way about doing that?
+>
+> Thanks!
+> --
+> Florian
 
-A gentle ping to the maintainers/reviewers. I was initially hoping this 
-patch would land in 6.11. And it got kind of missed. So I am currently 
-hoping it would land in 6.12. But I haven't seen any update in the 
-patch. There is no hurry and can wait for 6.13 or future. Just don't 
-want the patch to be forgotten/lost/missed. Kindly let me know if any 
-further changes are required! I will be happy to fix them.
+Hello Florian,
 
-Thank you,
-Joel Selvaraj
+So should I send a patch with only #interrupt-cells to solve one problem?
 
-On 6/1/24 15:44, Joel Selvaraj via B4 Relay wrote:
-> Extend the novatek touchscreen driver to support NT36672A chip which
-> is found in phones like qcom/sdm845-xiaomi-beryllium-tianma.dts.
-> Added devicetree support for the driver and used i2c chip data to handle
-> the variation in chip id and wake type. Also added vcc and iovcc
-> regulators which are used to power the touchscreen hardware.
-> 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
-> ---
-> Changes in v5:
-> - Made the chip data a local variable as it is only used during probe.
-> - Handle the regulator disable correctly for all exit paths in probe.
-> - Link to v4: https://lore.kernel.org/r/20240601-nvt-ts-devicetree-regulator-support-v4-0-e0c0174464c4@gmail.com
-> 
-> Changes in v4:
-> - Use lowercase i2c device id as suggested by Hans de Goede.
-> - Disable the regulators after nvt_ts_read_data during probe.
-> - Link to v3: https://lore.kernel.org/r/20240526-nvt-ts-devicetree-regulator-support-v3-0-aa88d10ccd9a@gmail.com
-> 
-> Changes in v3:
-> - Fix indentation in the binding as suggested by Krzysztof Kozlowski.
-> - Picked up Krzysztof Kozlowski's Reviewed-by tag for the binding.
-> - Link to v2: https://lore.kernel.org/r/20240524-nvt-ts-devicetree-regulator-support-v2-0-b74947038c44@gmail.com
-> 
-> Changes in v2:
-> - The generic i2c device id is now replaced with the correct IC variant
->    provided by Hans de Goede
-> - Updated the bindings to reflect the latest changes and also incorporated
->    the suggestions provided by Krzysztof Kozlowski
-> - Link to v1: https://lore.kernel.org/r/20240521-nvt-ts-devicetree-regulator-support-v1-0-8d766c639dca@gmail.com
-> 
-> ---
-> Joel Selvaraj (3):
->        Input: novatek-nvt-ts: replace generic i2c device id with specific IC variant
->        dt-bindings: input: document Novatek NVT touchscreen controller
->        Input: novatek-nvt-ts: add support for NT36672A touchscreen
-> 
->   .../bindings/input/touchscreen/novatek,nvt-ts.yaml | 62 ++++++++++++++++++++
->   MAINTAINERS                                        |  1 +
->   drivers/input/touchscreen/novatek-nvt-ts.c         | 67 ++++++++++++++++++++--
->   drivers/platform/x86/x86-android-tablets/other.c   |  2 +-
->   4 files changed, 125 insertions(+), 7 deletions(-)
-> ---
-> base-commit: 6578aac6a270bd6deb9f9319b991dd430de263dd
-> change-id: 20240518-nvt-ts-devicetree-regulator-support-ac9e49b78a16
-> 
-> Best regards,
-
+Thank you.
 
