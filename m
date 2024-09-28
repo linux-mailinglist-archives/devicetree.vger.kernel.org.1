@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-106057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BADC6988FCA
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 17:00:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FBB989027
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 17:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 790F9281CBB
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 15:00:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA3DAB215AA
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 15:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37A6017999;
-	Sat, 28 Sep 2024 15:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 066022837D;
+	Sat, 28 Sep 2024 15:50:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BR+NbwEL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O+Md+vDj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA1A101E2;
-	Sat, 28 Sep 2024 15:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16E119470;
+	Sat, 28 Sep 2024 15:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727535641; cv=none; b=u7rBGcbGtJ94Vg6BJpUhPeCX4WT+RzP6ZvsJ2O/HaWHz5Z8USe38IYXHIqosUYi0v4EtgWg4z21csJL5OSvoT1TfLhCsbg4sIKw2Qj0c1TmTi4h0qalI2ee5Vmpa+gbklhAco7XZD8cMAbvLOVOem1pZi+BUWxHPWC8Qt0ms0Y4=
+	t=1727538623; cv=none; b=QuhRwIVS/w5Oj+SYrLvxav5k2m3NVPpX5IcPiLH/yaHqGnmzy78ocTJLeJzDpePLuDJtipJ+YMQ8r1zGgQg3LGGIHLzEza/KvKpnwJs3oEBcuiat391MRzKQYit4zBaAFKQqW0vXcHQv57f3h185KLIW6gGnp8hlS8SQMRsJ+TY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727535641; c=relaxed/simple;
-	bh=W5DRZ84lYNw5fKdfYqvY9tGzDb4B/HiLZlDLH24rXfQ=;
+	s=arc-20240116; t=1727538623; c=relaxed/simple;
+	bh=mRta/wbu5/MssN1857WJD7KYGrXXB98douJKixzLznM=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AYNOc8Ewd+pYDO3Vmqomto0inUtZNTIq4FcPhAw3qEYvJaBhXSP3VE6n7kfGiN/0lOysGZHU+O5OWMWrZxbA5EhrRaRVZ2RSGs3Pw2Zke/F42TXpi4UzB2rJtNrsGEakyH2YDK+EcwHleyNT2xis99ODAYWIMISXhd2F8z+Shk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BR+NbwEL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D2BC4CEC3;
-	Sat, 28 Sep 2024 15:00:35 +0000 (UTC)
+	 MIME-Version:Content-Type; b=XvRWq5ituw4NQ58123G7LlidmXYd1AjrTLJ/zNfc6lFuMa2cqxN0pmoUYuZdZRlyPIzubLzo2BCRJS8aLXIRDgTbIUtbU1Pb6CcusQeEh0/hU/zkBaiRLyK2IkZ7hKaxwdTO0BaAlx+K3BZGNHfgoKo6IZgbjWBAUcPVVbsHUco=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O+Md+vDj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA1B0C4CEC3;
+	Sat, 28 Sep 2024 15:50:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727535640;
-	bh=W5DRZ84lYNw5fKdfYqvY9tGzDb4B/HiLZlDLH24rXfQ=;
+	s=k20201202; t=1727538623;
+	bh=mRta/wbu5/MssN1857WJD7KYGrXXB98douJKixzLznM=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=BR+NbwELUkVCQnIhbug8SXfIkt3fWS9bHuafL5jtuHflIRJcmx4Ee5qmGOuIGvcdc
-	 XdGMzRATx1QTVhjJ7k1xGMfV2l2w+HCYBOLxn5PbyMearhMU5mW5f/j7SCeo/e5I5b
-	 wqAjEhcmb6Putkq0Ye7AaUflnV+buggxYEvF4gXSTKodTELTRgydvXzkSlcT3E6/pK
-	 Xbm1gFpy/2k7C8GS2JpGBKNpEENdklKIzdkplhJwqmG6MTRAMeeThQ0bciRVBNw1Ow
-	 zHjR83ux/krO0HExv2MyNDKQDKYVs4M2cV+b/F6eiKluAYfCJcGHzbC3stRmy9ocC0
-	 M5DWRMrC+62lg==
-Date: Sat, 28 Sep 2024 16:00:30 +0100
+	b=O+Md+vDjwy+y7J6snfS5yWW7qYMXsfmqi4OJCF8tH007mWngupn8RAz02RYTYQlIO
+	 epV6bFtG8h+KT0O3QjOCgEz/C7q6vEUrEZ8jl4BZtjIybCBO8g3jysAQfcRwBhHiNt
+	 FrXpw/Hrd/Igj3bRh/J6ODbuu7eJnxSQatwWlNttU1xAsxx92RNTe2oyGBiZYxarxR
+	 a9GkYFfFCWrYqjndb+Q9ysXAwXpcM1UumsKTvEwCio60znBcsiBujnvLvMre0q6dZ2
+	 oesYKXyxPnXgCYMyQlvc/R102sstmlwTLlKx+IMQl6Fxn/x3QNJD1Nm3aojyBfBKrB
+	 kTSuoqkGrpJwA==
+Date: Sat, 28 Sep 2024 16:50:15 +0100
 From: Jonathan Cameron <jic23@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
- ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
- biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
- semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v7 0/4] pressure: bmp280: Minor cleanup and interrupt
- support
-Message-ID: <20240928160030.3e5d914b@jic23-huawei>
-In-Reply-To: <20240918193724.GA6917@vamoiridPC>
-References: <20240914002900.45158-1-vassilisamir@gmail.com>
-	<20240914153617.3f816e5a@jic23-huawei>
-	<20240918193724.GA6917@vamoiridPC>
+To: Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, INV Git Commit
+ <INV.git-commit@tdk.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+ <conor+dt@kernel.org>, "lars@metafoo.de" <lars@metafoo.de>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Add iam20680ht/hp
+ bindings to mpu6050
+Message-ID: <20240928165015.419fb5d0@jic23-huawei>
+In-Reply-To: <FR3P281MB1757A18AD6B116CF34E9B811CE6C2@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+References: <20240920133615.167726-1-inv.git-commit@tdk.com>
+	<20240920133615.167726-2-inv.git-commit@tdk.com>
+	<43982b29-e456-4e7b-9cda-322ff876a276@kernel.org>
+	<FR3P281MB1757A18AD6B116CF34E9B811CE6C2@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
 X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -65,78 +65,64 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 18 Sep 2024 21:37:24 +0200
-Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+On Fri, 20 Sep 2024 14:39:14 +0000
+Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com> wrote:
 
-> On Sat, Sep 14, 2024 at 03:36:17PM +0100, Jonathan Cameron wrote:
-> > On Sat, 14 Sep 2024 02:28:56 +0200
-> > Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> >   
-> > > Depends on this: https://lore.kernel.org/linux-iio/20240823172017.9028-1-vassilisamir@gmail.com
-> > >   
-> > This looks fine, but given outstanding comments on that patch I can't
-> > take it quite yet.
-> > 
-> > Jonathan  
-> 
-> Hi Jonathan,
-> 
-> Thanks for the review. I will fix the other patch and poke you again on
-> this one, you don't have to keep a note. In case, I could rebase this
-> patch-series, without the depended patch since they are not related
-> functionally in order for you to be able to pick up this series while
-> we still review the depended patch. Let me know how you feel.
+> Hello,
+>=20
+> sorry about that, since there are no modifications at all in the patches =
+and just sent them with the added email lists, I wasn't thinking there was =
+a need to update the version.
+>=20
+> I will resend with an updated version number to the right lists then, eve=
+n if the patches are strictly the same.
 
-If you think that dependency will go in soon Id' not bother with a rebase
-of this one.  We have plenty of time this cycle after all!
+[RESEND PATCH...] and say  in the cover letter why the resend and then don'=
+t change the revision.
 
 Jonathan
 
-> 
-> Cheers,
-> Vasilis
-> 
-> >   
-> > > Changes in v7:
-> > > 
-> > > [PATCH 1/4]:
-> > > 	- Use 5ms instead of 5000us in comment
-> > > 	- Use USEC_PER_MSEC
-> > > 	- Move parenthesis to make checkpatch.pl --strict happy
-> > > 
-> > > [PATCH 2/4]:
-> > > 	- Remove interrupt description since enforcement was added.
-> > > 
-> > > Added also review tags for patches 1,3 and ack tag for patch 2.
-> > > 
-> > > ---
-> > > v6: https://lore.kernel.org/linux-iio/20240912233234.45519-1-vassilisamir@gmail.com
-> > > v5: https://lore.kernel.org/linux-iio/20240902184222.24874-1-vassilisamir@gmail.com
-> > > v4: https://lore.kernel.org/linux-iio/20240828205128.92145-1-vassilisamir@gmail.com
-> > > v3: https://lore.kernel.org/linux-iio/20240823181714.64545-1-vassilisamir@gmail.com
-> > > v2: https://lore.kernel.org/linux-iio/20240725231039.614536-1-vassilisamir@gmail.com
-> > > v1: https://lore.kernel.org/linux-iio/20240711211558.106327-1-vassilisamir@gmail.com
-> > > 
-> > > Vasileios Amoiridis (4):
-> > >   iio: pressure: bmp280: Use sleep and forced mode for oneshot captures
-> > >   dt-bindings: iio: pressure: bmp085: Add interrupts for BMP3xx and
-> > >     BMP5xx devices
-> > >   iio: pressure: bmp280: Add data ready trigger support
-> > >   iio: pressure: bmp280: Move bmp085 interrupt to new configuration
-> > > 
-> > >  .../bindings/iio/pressure/bmp085.yaml         |  22 +-
-> > >  drivers/iio/pressure/bmp280-core.c            | 580 ++++++++++++++++--
-> > >  drivers/iio/pressure/bmp280-i2c.c             |   4 +-
-> > >  drivers/iio/pressure/bmp280-spi.c             |   4 +-
-> > >  drivers/iio/pressure/bmp280.h                 |  43 ++
-> > >  5 files changed, 612 insertions(+), 41 deletions(-)
-> > > 
-> > > 
-> > > base-commit: fec496684388685647652ab4213454fbabdab099
-> > > prerequisite-patch-id: e4f81f31f4fbb2aa872c0c74ed4511893eee0c9a  
-> >   
+>=20
+> Sorry about that.
+>=20
+> Thanks,
+> JB
+>=20
+> ________________________________________
+> From:=C2=A0Krzysztof Kozlowski <krzk@kernel.org>
+> Sent:=C2=A0Friday, September 20, 2024 15:39
+> To:=C2=A0INV Git Commit <INV.git-commit@tdk.com>; jic23@kernel.org <jic23=
+@kernel.org>; robh@kernel.org <robh@kernel.org>; krzk+dt@kernel.org <krzk+d=
+t@kernel.org>; conor+dt@kernel.org <conor+dt@kernel.org>
+> Cc:=C2=A0lars@metafoo.de <lars@metafoo.de>; linux-iio@vger.kernel.org <li=
+nux-iio@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@vger.kerne=
+l.org>; Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>
+> Subject:=C2=A0Re: [PATCH 1/2] dt-bindings: iio: imu: mpu6050: Add iam2068=
+0ht/hp bindings to mpu6050
+> =C2=A0
+> This Message Is From an External Sender
+> This message came from outside your organization.
+> =C2=A0
+> On 20/09/2024 15:36, inv.git-commit@tdk.com wrote:
+> > From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> >=20
+> > IAM-20680HT & HP are 2 variants of IAM-20680 fully compatible.
+> > They just have better specs, temperature range and a bigger FIFO.
+> >=20
+> > Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com> =
+=20
+>=20
+> You just sent it... please do not send the same over and over again. See
+> submitting patches. Your contributions should be versioned and provide
+> changelog in cover letter or within patch's changelog (---).
+>=20
+> Sending the same over and over will get the same answer: nope.
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
 
