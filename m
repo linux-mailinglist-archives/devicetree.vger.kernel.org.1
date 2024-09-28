@@ -1,139 +1,221 @@
-Return-Path: <devicetree+bounces-106029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106031-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46EFF988ED4
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 11:30:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6177D988F02
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 12:46:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78EC91C20D59
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 09:30:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 842E61C20C2F
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 10:46:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1514C19F130;
-	Sat, 28 Sep 2024 09:30:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 425291865E2;
+	Sat, 28 Sep 2024 10:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="PKogq611"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q2i/naNj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F22A3107A0
-	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 09:30:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D2B6183CD6
+	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 10:46:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727515814; cv=none; b=cPKBWDjRPPmKKsqdID61fZgJWfq9K8Wblc2We5gQomuVStS9bRGrK+w1iEU2dxYoCZ60Bv1IE4EpCRcVQhtgTw0ZC1oVrLoNWvZ1IUCILGfwTrLiz4ZQimJkC+otoGK20W4awbzBaDr1CQGN8OV/v9td4dRxjN2I9KbXaYEtvw8=
+	t=1727520404; cv=none; b=jOgXpw/DUN56SNUap+pC0UPCEnxbx2LE0yfzuOWVSsoRal/zwcSXev8LRPn3ZDOJtHaI2hYZaVN6U7soh+bH1xr5nRTIUMrXiXz/tg+cQOCXa2bdX3RpLkOnFXPRARkzin1IbNuy3u5PNBQB1mJgPRXQamZmqWIZajdZFtQ8hNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727515814; c=relaxed/simple;
-	bh=knyrR7zyUV2Y/r85GYeyJ5Kkg0n27fv4OfiY9zZmi5M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Lt8f3jdPK7JFyi5PxdWkcq7RZ2A71u1VZQLMCS92RLsIunCntJ9cskpqJXhng6g6htZRSsFGUQrwHeDx+zAYikcqU9BeeIfHkiN/MARxqzFXwFsiSV4oo/U3fjWNaC5LK/bgwlD/oVswJPl6iuOTsP/lJDk+jvUBSv5CXpdMTtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=PKogq611; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=from:to:cc:subject:date:message-id
-	:in-reply-to:references:mime-version:content-transfer-encoding;
-	 s=k1; bh=yqUQpRTqBk6LIsR5oJyq4UEzqpOHG2dmtj7khx6ivSo=; b=PKogq6
-	114987gBB3AP7G96sudAjHYNqo8lY1yl+CnJQCQqlopYFxdC7TjTJPGF/7o6kEuM
-	u903GksABH0qiyY7aKNYwE/iIymEh2JBWKXJHXCZFh85MGFS7/t1izaf+APoMHPC
-	DoEot69A8YemuL/cFsUk4ceBVRfqowMeckaUIUyxAq8k8zpKOsdI81SJH1cixOeM
-	mo0Ls8L8jSEGsmc2NXG2lRAKgI38dlqr8V6rwT9cG/6kUZzybRE6omJFi2Xs28lK
-	LtUb/P4jjBChM60jQ0d1bqTu0KppWGlK6lSvXYDT4ch11ZnNWKYK34YQtWwNZd6w
-	xVsHGhWNlHuv0eMw==
-Received: (qmail 1576755 invoked from network); 28 Sep 2024 11:30:08 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 28 Sep 2024 11:30:08 +0200
-X-UD-Smtp-Session: l3s3148p1@6BQbnioj2uIgAQnoAHS0AAL7owIOnAiN
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: linux-renesas-soc@vger.kernel.org
-Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 3/3] ARM: dts: renesas: genmai: enable MMCIF
-Date: Sat, 28 Sep 2024 11:29:56 +0200
-Message-ID: <20240928092953.2982-8-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240928092953.2982-5-wsa+renesas@sang-engineering.com>
-References: <20240928092953.2982-5-wsa+renesas@sang-engineering.com>
+	s=arc-20240116; t=1727520404; c=relaxed/simple;
+	bh=Ei6/ccAdpO9+K8ToXprbjnDvfcVFhhzoN0+sWM3un3o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LCAMELJZXQpCaHIT3zkjWFq+4sETFi9hcAez3D9kOfJlTSwbGOimhPoQmbx7NMuZqvFlySvsPv9EkAok1dfSVZ3Q+onNlO+xohX5a+CqrL02cgkZHaLtMb1mOJM9qBHRJmatccD1nInMtrSqs96a8GP+48dQEGFVfkFMBLgMv5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q2i/naNj; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5398aeceb51so137443e87.0
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 03:46:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727520400; x=1728125200; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TXl4k8mZsxgHoI3VWw6PVnVAQPFUA35ZT1bf6htZGpw=;
+        b=Q2i/naNjF5E89/ugKAV7A5ioLVfKbTsnt/K6+sbBksI6Kcp/4uFm3a4Mrxy0vR2UGO
+         FCNexXdm1RCaPY2NZ0Sd0UlOGi6Br4xTKcq+45Om36KAJ8VHCox/HNPCt0zdL4x+N7hl
+         4j41uORW0UzfYY6CJH+QOM4zmiVPDLJIZiiBnl8/7xQSogv9qdanValGxq1TJtqzzED+
+         w4ROtf8l60IYA58P/22jU3DBkiSztZB0X0VWjnTEhY77NFX97aiy+OLpgEziehrEwZvP
+         8kccJFFqU2MbdgpX4FrD9D090Gx8ogL3aqh07PvTVCPdVsxma55oDjx7Ewp2N6HZtFTD
+         RZMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727520400; x=1728125200;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXl4k8mZsxgHoI3VWw6PVnVAQPFUA35ZT1bf6htZGpw=;
+        b=Zd83Lk+9j+WJDmMve5CYaxC7XG72brbuK8xJPSVhk/nTrZnoVMdlqL+xI0L7LvV2Bw
+         JsbLGCx9sMZKSuPaxIc8CaomWGeseYj7ymH1IImj11gVu9VWO/4kwPgzu1nu+cUC5Ptj
+         PlAMVRxgABMFzsULRHmyEbPLbq5kKI8zi8HjNNFARcFlN6djwwll40PinwfGhRz+fTqa
+         s506alicrAwLLvWPfyImk5UwUIVzvaTdIf5EBzss/7RAOm4EfgcHC5xNKc5lk+sKY8J0
+         Lf2rBWc85I600m2TPOEAdf7f8b79zJb6sCUJDxZJk4CmfKLC9NEajssuWWtDmBBTFwxF
+         qRtg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3qGq3qbufx7EOnl8ys84caFdxbR6v/+7ooyHN32cdsHYSkQqJLXZ3ywCBCKYcCp8+kF3CaNPQN4C3@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGwXugiNCjEH77MsH7a5qjAUAj1P4q3aLVWeu/CG/79SE1C3oA
+	ed2Fj1r2DNYYZCajvqtAzrr+PchRAda7J9GdquMSm9DBnhZJiW6JceXwkqqX4b0=
+X-Google-Smtp-Source: AGHT+IGsmYsnTJi0UA9gkkFBqJigGWkiZumRwMsuVRnPqYW+9Inz7cEUrpbiw3sVbiDeWsbzm89sxQ==
+X-Received: by 2002:a05:6512:1396:b0:52c:def2:d8af with SMTP id 2adb3069b0e04-5389fc430a0mr1143476e87.4.1727520400331;
+        Sat, 28 Sep 2024 03:46:40 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-538a0458ffesm610795e87.300.2024.09.28.03.46.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 28 Sep 2024 03:46:38 -0700 (PDT)
+Message-ID: <f8d1ef2d-3bf8-4c34-914c-7c3277264751@linaro.org>
+Date: Sat, 28 Sep 2024 13:46:37 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 0/7] Add SDM670 camera subsystem
+Content-Language: en-US
+To: Richard Acayan <mailingradian@gmail.com>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Loic Poulain <loic.poulain@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-i2c@vger.kernel.org, linux-media@vger.kernel.org
+References: <20240904020448.52035-9-mailingradian@gmail.com>
+ <tthbaop6bkyvebpibiyvyct4khrd5o4apdbipqdthnidxmu2cx@m726xv4ocblg>
+ <ZtpqrANbJurWNOzV@radian> <5c58b41a-7fc7-456d-979c-edb8dbe4305d@linaro.org>
+ <a27adb94-5280-4213-a532-0dcc907f80b7@linaro.org> <ZvcwbCh97WKnvarS@radian>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <ZvcwbCh97WKnvarS@radian>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Luckily, I still had an MMC card lying around. Works fine.
+Hi Richard.
 
-Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
----
- arch/arm/boot/dts/renesas/r7s72100-genmai.dts | 34 +++++++++++++++++++
- 1 file changed, 34 insertions(+)
+On 9/28/24 01:23, Richard Acayan wrote:
+> On Fri, Sep 06, 2024 at 04:00:32PM +0300, Vladimir Zapolskiy wrote:
+>> Hi Bryan, Richard,
+>>
+>> On 9/6/24 15:19, Bryan O'Donoghue wrote:
+>>> On 06/09/2024 03:36, Richard Acayan wrote:
+>>>> On Thu, Sep 05, 2024 at 10:09:34PM +0200, Andi Shyti wrote:
+>>>>> Hi Richard,
+>>>>>
+>>>>> On Tue, Sep 03, 2024 at 10:04:49PM GMT, Richard Acayan wrote:
+>>>>>> This adds support for the camera subsystem on the Snapdragon 670.
+>>>>>>
+>>>>>> As of next-20240902, camss seems to be a bit broken, but the same series
+>>>>>> works on stable (although it is much less reliable now that the CCI clock
+>>>>>> frequency is not being assigned).
+>>>>>
+>>>>> I am not understanding this bit: is this series making it better
+>>>>> or not? Can you please clarify what is broken, what is less
+>>>>> reliable and what works?
+>>>>
+>>>> When applying this camss series and some camera sensor patches on
+>>>> linux-next, the Pixel 3a seems to hang when camera capture starts.
+>>>>
+>>>> When applying the same patches on stable, the camera does not cause the
+>>>> Pixel 3a to hang.
+>>>
+>>> Right so -next isn't stable that's not exactly a revelation.
+>>>
+>>>
+>>>> When these device tree properties from the previous series were removed:
+>>>>
+>>>> 			assigned-clocks = <&camcc CAM_CC_CCI_CLK>;
+>>>> 			assigned-clock-rates = <37500000>;
+>>>>
+>>>> the CCI would sometimes fail to probe with the error:
+>>>
+>>> Right, we don't have clk_set_rate in the cci driver.
+>>>
+>>> Maybe just leave the assigned clock for this submission and we can do a
+>>> sweep of fixes to CCI at a later stage including setting the clock
+>>> instead of having it be assigned.
+>>
+>> first of all it would be nice to confirm that the setting of a particular
+>> clock frequency is actually needed.
+>>
+>> Fortunately it's pretty trivial to check it in runtime with a temporary
+>> modification in the board dts file, namely disable CAMSS in board dts file,
+>> but keep CCI enabled, then simply scan the bus with a regular "i2cdetect"
+>> tool in runtime.
+>>
+>> If i2cdetect on the CCI bus works only for 37.5MHz clock frequency, then it
+>> is needed, otherwise (and this is my expectation) it is not needed neither
+>> in the dtsi files nor in the driver.
+>>
+>>>>
+>>>> 	[   51.572732] i2c-qcom-cci ac4a000.cci: deferred probe timeout, ignoring dependency
+>>>> 	[   51.572769] i2c-qcom-cci ac4a000.cci: probe with driver i2c-qcom-cci failed with error -110
+>>>>
+>>>> On further testing, the rate can be set to 19.2 MHz, and there would be
+>>>> no failure (or rather, it wouldn't happen often enough for me to witness
+>>>> it).
+>>>
+>>> That's expected 19.2 and 37.5 MHz are supported by CAMCC for your part.
+>>>
+>>
+>> I read it as the setting of 37.5MHz clock frequency is not needed, please
+>> correct me.
+> 
+> It is not. My test setup just needs specific EPROBE_DEFER behaviour
+> (my setup being postmarketOS with a full-disk encryption password prompt
+> and camcc-sdm845 loaded after mounting the root filesystem).
 
-diff --git a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-index e93f444b2442..2403e21f2676 100644
---- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-+++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-@@ -88,6 +88,15 @@ led2 {
- 			gpios = <&port4 11 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	cvcc2: regulator-mmc {
-+		compatible = "regulator-fixed";
-+		regulator-name = "CVcc2";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
- };
- 
- &bsc {
-@@ -179,6 +188,17 @@ eeprom@50 {
- 	};
- };
- 
-+&mmcif {
-+	pinctrl-0 = <&mmcif_pins>;
-+	pinctrl-names = "default";
-+	cd-gpios = <&port3 8 GPIO_ACTIVE_LOW>;
-+
-+	vmmc-supply = <&cvcc2>;
-+	vqmmc-supply = <&cvcc2>;
-+	bus-width = <8>;
-+	status = "okay";
-+};
-+
- &mtu2 {
- 	status = "okay";
- };
-@@ -224,6 +244,20 @@ keyboard_pins: keyboard {
- 		pinmux = <RZA1_PINMUX(3, 1, 3)>;
- 	};
- 
-+	mmcif_pins: mmcif {
-+		/* MMCIF: P3_8 is CD_GPIO, P3_10 up to P3_15, P4_0 up to P4_3 */
-+		pinmux = <RZA1_PINMUX(3, 10, 8)>,	/* MMC_D1 */
-+			 <RZA1_PINMUX(3, 11, 8)>,	/* MMC_D0 */
-+			 <RZA1_PINMUX(3, 12, 8)>,	/* MMC_CLK */
-+			 <RZA1_PINMUX(3, 13, 8)>,	/* MMC_CMD */
-+			 <RZA1_PINMUX(3, 14, 8)>,	/* MMC_D3 */
-+			 <RZA1_PINMUX(3, 15, 8)>,	/* MMC_D2 */
-+			 <RZA1_PINMUX(4, 0, 8)>,	/* MMC_D4 */
-+			 <RZA1_PINMUX(4, 1, 8)>,	/* MMC_D5 */
-+			 <RZA1_PINMUX(4, 2, 8)>,	/* MMC_D6 */
-+			 <RZA1_PINMUX(4, 3, 8)>;	/* MMC_D7 */
-+	};
-+
- 	scif2_pins: serial2 {
- 		/* P3_0 as TxD2; P3_2 as RxD2 */
- 		pinmux = <RZA1_PINMUX(3, 0, 6)>, <RZA1_PINMUX(3, 2, 4)>;
--- 
-2.45.2
+Good, let the assigned clock frequency be dropped from the dtsi file then.
 
+> In drivers/base/platform.c, the platform_probe() function calls
+> of_clk_set_defaults() then dev_pm_domain_attach() prior to probing the
+> driver:
+> 
+> 	static int platform_probe(struct device *_dev)
+> 	{
+> 		...
+> 		ret = of_clk_set_defaults(_dev->of_node, false);
+> 		if (ret < 0)
+> 			return ret;
+> 	
+> 		ret = dev_pm_domain_attach(_dev, true);
+> 		if (ret)
+> 			goto out;
+> 	
+> 		if (drv->probe) {
+> 			ret = drv->probe(dev);
+> 			if (ret)
+> 				dev_pm_domain_detach(_dev, true);
+> 		}
+> 		...
+> 	}
+> 
+> When handling the assigned-clock-rates property,
+> of_clk_get_hw_from_clkspec() eventually returns ERR_PTR(-EPROBE_DEFER),
+> being propagated all the way.
+> 
+> When handling the power-domains property (if not avoided by deferring
+> with the assigned clock), __genpd_dev_pm_attach() returns a value
+> returned by driver_deferred_probe_check_state(), which is immediately
+> -ETIMEDOUT.
+
+I grasp it from the problem description, thank you for the explanation.
+
+For sake of simplicity please make camcc-sdm845 as a built-in driver while
+testing, it will allow to progress with the platform CAMSS support.
+
+The issue with the observed ETIMEDOUT is generic and it's kind of unrelated
+to the CCI/CAMSS support on SDM670.
+
+--
+Best wishes,
+Vladimir
 
