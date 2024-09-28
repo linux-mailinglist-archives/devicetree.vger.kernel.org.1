@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106039-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCDE988F4B
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 14:54:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B7E988F51
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 15:02:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CFE128225D
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 12:54:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 894D61C20C90
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 13:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF9FD187FF2;
-	Sat, 28 Sep 2024 12:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA352187FEA;
+	Sat, 28 Sep 2024 13:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LqRkZFV7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VX1wH/Aw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BAFD1DFF7;
-	Sat, 28 Sep 2024 12:54:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3ED9187876;
+	Sat, 28 Sep 2024 13:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727528064; cv=none; b=b7/O/H/b9t/s2ZeijF9+ymPs9a7EqCkRSExjj+s6XoGYBeksNkKE8UTtuSTWGE5PUjrYiKerUswokh9u/i4M0cWv2FApmJbK+rr3wsALe6SyWfkh27wKjaSdB1Kz8xV5gwsSW6YMfQV0qwlhnfOm8oiHT4h6p0qFk3+Y1MuqqXA=
+	t=1727528573; cv=none; b=cc+52OnfmPIXiWnGKOOShw/qlCZyHPdLMELIPynBsEhiHBRJ/fizVVMqpZJ48XFPpHg3dn9UaEI1lhQa4c+v7w4prajjxofX2V1teh7tH35XRkhZK8cVeFniPkPt+dFmy9e95FGst5Qn5hCSqWoA2nJs/y7dac6z3p5OI1dY2cA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727528064; c=relaxed/simple;
-	bh=7eInjk8rKWyJEFU9PAt4bj5scGmoe6yY4T/+7Mmv3DI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jTVR1tLrzLTO7EOuBCWHULi3TDdFNOL+FM/REI8KA5AGVeFrcvltshH8DlvcRrALD7qIecQngtg1FLfB4I0hcFeGTD5vdJVlv4WxcpUZX62DjStj5GDDv8eJrXDN9gTcuxqyaJe2tAJ4HQfBrmLHJRnE1x7F3uCxHuJNoqkzKuk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LqRkZFV7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0E05C4CEC3;
-	Sat, 28 Sep 2024 12:54:19 +0000 (UTC)
+	s=arc-20240116; t=1727528573; c=relaxed/simple;
+	bh=urz7cW1OH9XkyT5GAilgziDYPmw013WbO3RQCNixOsc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=kPxgeyAYMYJljwwmFxmpkTlNuFiK0CPynfhOpZsliXDZh4rsGLzK9c+fieAijypFL1RzDO+/H1lo0PD9ZNZ30hdQqJeopeUYzq+gBB+8NhJ9EpYSAKtrT0qKcOTy4xOFqQZuaUzCvNmeWcxksw/lT3+5AhB3rCx9xbT04HM/TfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VX1wH/Aw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38213C4CEC3;
+	Sat, 28 Sep 2024 13:02:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727528064;
-	bh=7eInjk8rKWyJEFU9PAt4bj5scGmoe6yY4T/+7Mmv3DI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=LqRkZFV77cIrmf6br7qf8CLcSZyVl+gQIO82hLutSbNFQ3TaAynPG0BoK+C0g/X8Y
-	 tLLVFpKYZf0TPdOXkMnhlYz2uQ7EF5BTg0zE/O7tpIuWTrB9xLFnyTjadShhEWBu7B
-	 cDMDDh77iyPWPpQYXwGZtV9MTl6MW4dXrV2u10WnBRlNZIM+VnG92U25OWaH4SpY6x
-	 GPPgwTFEOat5MOIlMzhjs8KFAI/hOCTEaNb1iz/YHO2Ym0XmJN3rec71q+9fOY4gnL
-	 6y0L4ov/cLHlL6ixCopFm5KoXjIsUr2qqz2EUmFOZtzprhWqGWTlT/UXwswGXPc6Pt
-	 +Q6k6EnLpv6dg==
-Message-ID: <100dff5a-a07a-487f-b1a4-50c3e94804b0@kernel.org>
-Date: Sat, 28 Sep 2024 14:54:18 +0200
+	s=k20201202; t=1727528573;
+	bh=urz7cW1OH9XkyT5GAilgziDYPmw013WbO3RQCNixOsc=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=VX1wH/Aw3LgHIRk8asB6TLmzWoWD6+i8+ctwZL7EWlZocXZTKTyhQHlqeTVHCAMU7
+	 Vp+ZjwUS1YvDPps1shoV2dwis0FpzshNDthcE8AmKA7Ex05TtQj/P2JiKBMdJAvoEH
+	 bGywmBCHDj/MW48VLi9fOz8MND0wPHMVzj7EvP4z/hMSp69P/kcDOnSxQGT8SPEldv
+	 s0K8uVk50WrYUO6AkSddibLBpJp7bmT8FwYGXcRBCqDctQNLGAN+3hCYAGoI85WJls
+	 9L/UhOfM24Aod9ZNmRRgiENEBzQ2D2mOqDNFU8C8ABpOY62chPtVfmHiiVZ7wlV5Nk
+	 2ynOkpdFQcEHw==
+Message-ID: <7a2e8819-ac70-4070-a731-53994c72cd79@kernel.org>
+Date: Sat, 28 Sep 2024 15:02:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/10] ARM: dts: samsung: exynos4212-tab3: Add battery
- node with charge current value
-To: Artur Weber <aweber.kernel@gmail.com>,
- Chanwoo Choi <cw00.choi@samsung.com>
-Cc: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, Henrik Grimler <henrik@grimler.se>,
- Wolfgang Wiedmeyer <wolfgit@wiedmeyer.de>,
- Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
-References: <20240729-max77693-charger-extcon-v3-0-02315a6869d4@gmail.com>
- <20240729-max77693-charger-extcon-v3-8-02315a6869d4@gmail.com>
+Subject: Re: [PATCH RFC 1/2] dt-bindings: mtd: ubi-volume: add
+ 'volume-is-critical' property
+To: Daniel Golle <daniel@makrotopia.org>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Zhihao Cheng <chengzhihao1@huawei.com>,
+ John Crispin <john@phrozen.org>, linux-mtd@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,27 +105,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240729-max77693-charger-extcon-v3-8-02315a6869d4@gmail.com>
+In-Reply-To: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/07/2024 19:47, Artur Weber wrote:
-> This value was verified by comparing register dumps of the MAX77693
-> charger with on mainline with a downstream kernel under Android; the
-> value on downstream was set to 1.8 amps when charging with a proper
-> charger.
+On 28/09/2024 14:47, Daniel Golle wrote:
+> Add the 'volume-is-critical' boolean property which marks a UBI volume
+> as critical for the device to boot. If set it prevents the user from
+> all kinds of write access to the volume as well as from renaming it or
+> detaching the UBI device it is located on.
 > 
-> Add it to a new battery node and pass it to the MAX77693 charger
-> so that the fast charge current setting can be used for charging.
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> ---
+>  .../devicetree/bindings/mtd/partitions/ubi-volume.yaml   | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
-> ---
-> Changes in v2:
-> - Switched to monitored-battery
-> ---
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> index 19736b26056b..2bd751bb7f9e 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> @@ -29,6 +29,15 @@ properties:
+>      description:
+>        This container may reference an NVMEM layout parser.
+>  
+> +  volume-is-critical:
+> +    description: This parameter, if present, indicates that the UBI volume
+> +      contains early-boot firmware images or data which should not be clobbered.
+> +      If set, it prevents the user from renaming the volume, writing to it or
+> +      making any changes affecting it, as well as detaching the UBI device it is
+> +      located on, so direct access to the underlying MTD device is prevented as
+> +      well.
+> +    type: boolean
 
-Please ping me or resend DTS when the bindings got accepted to power
-supply tree.
+UBI volumes are mapping to partitions 1-to-1, right? So rather I would
+propose to use partition.yaml - we already have read-only there with
+very similar description.
 
 Best regards,
 Krzysztof
