@@ -1,51 +1,52 @@
-Return-Path: <devicetree+bounces-106096-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106097-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FDB98920A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 01:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8120C98920B
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 01:50:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34B9F1F215EF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 23:50:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1DC71F23DFF
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 23:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53C15187866;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B841714B6;
 	Sat, 28 Sep 2024 23:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="GlEgHzwi"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bhJOXp4w"
 X-Original-To: devicetree@vger.kernel.org
 Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 615091714B6
-	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 23:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2200187FF4
+	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 23:50:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727567423; cv=none; b=I8wfVfy69cA8to3IiEYNxG9wc0jMLsgi5EjL0szu0wJueszSDm5F/2NVS898liyG2eBtKecA1PBukD91aP/rP3hFtTJgKeosdEdMioCwDNKQ1ojHexwicc6YZ+pQPmHrhJvRkdMUZs2IHLmE1Ppsctf0PmMnQlibCyf/0I1a3v4=
+	t=1727567423; cv=none; b=JebNV/+25GeSOHaD2FPMG3uPoDX0m7QQKJ0FBT3EUMfp9ERQw8rxC1stU3RGHTCtSjBxVrD8m5aou97XSYNqvVNlrUHfgRPnPgePOCdhoGzA4DoVcfyVtwctiw4ARaWT5JvcE6GgxYoiqctt9DcHaFUX39ETQvPZMG34XUp3P4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1727567423; c=relaxed/simple;
-	bh=MAXLRiW5fvxR3Tcyvd8+iENJysL/5MXZd91EbCDONxQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qnnLw2ZUY0tyj7E3tYKns5kLTxX3U7O6PuT1go8ITwHvPu7ljnWhLRnQ4gw9b7SN1e1FMnUHxrPGxYpdYhHE0cFjgfZhrupfsLY7R+ufV13QfP6PjzE/B17LxDUCnH+0N8+N9uRL+Z8eGM0QXngQjqMZ5bkhQM6TLMVrHvXUArM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=GlEgHzwi; arc=none smtp.client-ip=85.214.62.61
+	bh=3kpaIbPw0iqYFC9tE2R7JRVqs/j+sOtF38jHtaDs+xA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=oCajPMN9bwFZXrtNs1LFntepe4N4wHitEbPkzm0Zy5V5E32UK8tjgBri6Kkr0ghmBYq+OxETR30aqsjtVA9nm7NGPiqWOpQuvaQFrE69ByfotWIR2f7gMinBvjA74Wr4+ZznFLJMctLRkYlHVKZtUlqUBO83rICC8pHE4MYINx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bhJOXp4w; arc=none smtp.client-ip=85.214.62.61
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
 Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
 	(No client certificate requested)
 	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 34C3488972;
-	Sun, 29 Sep 2024 01:50:12 +0200 (CEST)
+	by phobos.denx.de (Postfix) with ESMTPSA id 280DC8897C;
+	Sun, 29 Sep 2024 01:50:13 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
 	s=phobos-20191101; t=1727567413;
-	bh=mvVcwj4kP03YMZk4e1ujC0JF26SHAyC8zjA22Sj6ab4=;
-	h=From:To:Cc:Subject:Date:From;
-	b=GlEgHzwiiufaqOGH2HuAgEUlWw2SH0NExOrwrR+ZsFLWcEhdi3sN+UFdSXqdIAawJ
-	 U1sPI1lET1ApHya9oXtrjTK96CkDT575cInNCCQ49vSUMVTnFav/LlAxQ+s6qy+ZoD
-	 J0XlKtjB++TaD3ZF0WzjKx4hH3z42zlv561lF6dlxKHRXCszKZd6xDVUUCGwExhmYh
-	 ydoJgPEoIld5qM3nUyfIZCkaAUhCW46BtoXoq46T6iEmrUtTwjUBXW/nlOExu4oeIN
-	 zAJ9wxk21hPuLZ9g5FBHhxLjZU9HjfPYWGq44rUGd5GbMSiBoK+pXQ54kyqBGjMwef
-	 6f+P2GnaoFj/Q==
+	bh=iDWMIbxq79xeR7CgPXMuwRUwG+Gp8qp+4O94CVtnqGQ=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=bhJOXp4weQ9q4yS4q0981ZGJOQ77ktD9OgarkX973Dowk9Xe1lO3ZmzPepNepgWN1
+	 cK4KNTDQFmNUMFXcwfwrKFoV9q7NtY5OoH4cPZArFKMlQ/XG/EEVXdy6u2TumFOgO9
+	 vYZjledv8AFdxUbl5DMTkFqhk6T1hVxHuvf4b/Rbiu4quJQU+U40tgQvpHv6G9UHHh
+	 zKgSNfjPdnSe6fN+4M3Tp7bHGqwVRBOYsmoqHBVmVvVME+v5UJEmKjWEwprsP+94nt
+	 Q3360AGRVU1+u3TKHNkpm4HDegWJhB2SBCA9tkhZxe6P/s4tEPppTDrcl7ek2J5eUM
+	 exAYmm5oOU1AA==
 From: Marek Vasut <marex@denx.de>
 To: linux-arm-kernel@lists.infradead.org
 Cc: kernel@dh-electronics.com,
@@ -68,10 +69,12 @@ Cc: kernel@dh-electronics.com,
 	Shawn Guo <shawnguo@kernel.org>,
 	devicetree@vger.kernel.org,
 	imx@lists.linux.dev
-Subject: [PATCH 1/2] dt-bindings: arm: fsl: Document DH electronics i.MX8M Plus DHCOM PicoITX
-Date: Sun, 29 Sep 2024 01:48:08 +0200
-Message-ID: <20240928234949.357893-1-marex@denx.de>
+Subject: [PATCH 2/2] arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM PicoITX
+Date: Sun, 29 Sep 2024 01:48:09 +0200
+Message-ID: <20240928234949.357893-2-marex@denx.de>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240928234949.357893-1-marex@denx.de>
+References: <20240928234949.357893-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,9 +85,9 @@ Content-Transfer-Encoding: 8bit
 X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
 X-Virus-Status: Clean
 
-Document support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carrier
-board. This system is populated with serial console, EQoS ethernet, eMMC, SD,
-SPI NOR, LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
+Add support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carrier board.
+This system is populated with serial console, EQoS ethernet, eMMC, SD, SPI NOR,
+LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
 
 Signed-off-by: Marek Vasut <marex@denx.de>
 ---
@@ -108,21 +111,205 @@ Cc: devicetree@vger.kernel.org
 Cc: imx@lists.linux.dev
 Cc: linux-arm-kernel@lists.infradead.org
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../dts/freescale/imx8mp-dhcom-picoitx.dts    | 176 ++++++++++++++++++
+ 2 files changed, 177 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 09027a4ef515c..319dc8f0f5a63 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -1103,6 +1103,7 @@ properties:
-               - dh,imx8mp-dhcom-drc02        # i.MX8MP DHCOM SoM on DRC02 board
-               - dh,imx8mp-dhcom-pdk2         # i.MX8MP DHCOM SoM on PDK2 board
-               - dh,imx8mp-dhcom-pdk3         # i.MX8MP DHCOM SoM on PDK3 board
-+              - dh,imx8mp-dhcom-picoitx      # i.MX8MP DHCOM SoM on PicoITX board
-           - const: dh,imx8mp-dhcom-som       # i.MX8MP DHCOM SoM
-           - const: fsl,imx8mp
- 
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index f6b8041c1e8f7..4e33cb33ba297 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -170,6 +170,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-som-a-bmb-08.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-drc02.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-picoitx.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
+new file mode 100644
+index 0000000000000..703cf0fb3d2be
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
+@@ -0,0 +1,176 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (C) 2023-2024 Marek Vasut <marex@denx.de>
++ *
++ * DHCOM iMX8MP variant:
++ * DHCM-iMX8ML8-C160-R204-F1638-SPI16-E-SD-RTC-T-RGB-I-01D2
++ * DHCOM PCB number: 660-200 or newer
++ * PicoITX PCB number: 487-600 or newer
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/leds/common.h>
++#include "imx8mp-dhcom-som.dtsi"
++
++/ {
++	model = "DH electronics i.MX8M Plus DHCOM PicoITX";
++	compatible = "dh,imx8mp-dhcom-picoitx", "dh,imx8mp-dhcom-som",
++		     "fsl,imx8mp";
++
++	chosen {
++		stdout-path = &uart1;
++	};
++
++	led {
++		compatible = "gpio-leds";
++
++		led-0 {
++			color = <LED_COLOR_ID_YELLOW>;
++			default-state = "off";
++			function = LED_FUNCTION_INDICATOR;
++			gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>; /* GPIO I */
++			pinctrl-0 = <&pinctrl_dhcom_i>;
++			pinctrl-names = "default";
++		};
++	};
++};
++
++&eqos {	/* First ethernet */
++	pinctrl-0 = <&pinctrl_eqos_rmii>;
++	phy-handle = <&ethphy0f>;
++	phy-mode = "rmii";
++
++	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>,
++				 <&clk IMX8MP_SYS_PLL2_100M>,
++				 <&clk IMX8MP_SYS_PLL2_50M>;
++	assigned-clock-rates = <0>, <100000000>, <50000000>;
++};
++
++&ethphy0g {	/* Micrel KSZ9131RNXI */
++	status = "disabled";
++};
++
++&ethphy0f {	/* SMSC LAN8740Ai */
++	status = "okay";
++};
++
++&fec {
++	status = "disabled";
++};
++
++&flexcan1 {
++	status = "okay";
++};
++
++&gpio1 {
++	gpio-line-names =
++		"DHCOM-G", "", "", "",
++		"", "DHCOM-I", "PicoITX-HW0", "PicoITX-HW2",
++		"DHCOM-B", "DHCOM-A", "", "DHCOM-H", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio2 {
++	gpio-line-names =
++		"", "", "", "", "", "", "", "",
++		"", "", "", "PicoITX-HW1", "", "", "", "",
++		"", "", "", "", "DHCOM-INT", "", "", "",
++		"", "", "", "", "", "", "", "";
++};
++
++&gpio4 {
++	gpio-line-names =
++		"", "", "", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "SOM-HW1", "", "", "", "",
++		"", "", "", "PicoITX-Out2", "", "", "", "";
++};
++
++&gpio5 {
++	gpio-line-names =
++		"", "", "PicoITX-In2", "", "", "", "", "",
++		"", "", "", "", "", "", "", "",
++		"", "", "", "",
++		"", "", "PicoITX-In1", "PicoITX-Out1",
++		"", "", "", "", "", "", "", "";
++};
++
++/* No HS connector on this SoM variant, so no HDMI, PCIe and only USB HS. */
++&hdmi_blk_ctrl {
++	status = "disabled";
++};
++
++&hdmi_pvi {
++	status = "disabled";
++};
++
++&hdmi_tx {
++	status = "disabled";
++};
++
++&hdmi_tx_phy {
++	status = "disabled";
++};
++
++&irqsteer_hdmi {
++	status = "disabled";
++};
++
++&lcdif3 {
++	status = "disabled";
++};
++
++&pcie_phy {
++	status = "disabled";
++};
++
++&pcie {
++	status = "disabled";
++};
++
++/* No WiFi/BT chipset on this SoM variant. */
++&uart2 {
++	bluetooth {
++		status = "disabled";
++	};
++};
++
++/* USB_OTG port is not routed out on PicoITX. */
++&usb3_0 {
++	status = "disabled";
++};
++
++&usb_dwc3_0 {
++	status = "disabled";
++};
++
++&usb3_1 {
++	fsl,over-current-active-low;
++};
++
++&usb_dwc3_1 {
++	dr_mode = "host";
++	maximum-speed = "high-speed";
++};
++
++/* No WiFi/BT chipset on this SoM variant. */
++&usdhc1 {
++	status = "disabled";
++};
++
++&iomuxc {
++	/*
++	 * The following DHCOM GPIOs are used on this board.
++	 * Therefore, they have been removed from the list below.
++	 * I: yellow led
++	 */
++	pinctrl-0 = <&pinctrl_dhcom_a &pinctrl_dhcom_b &pinctrl_dhcom_c
++		     &pinctrl_dhcom_d &pinctrl_dhcom_e &pinctrl_dhcom_f
++		     &pinctrl_dhcom_g &pinctrl_dhcom_h &pinctrl_dhcom_j
++		     &pinctrl_dhcom_k &pinctrl_dhcom_l &pinctrl_dhcom_m
++		     &pinctrl_dhcom_n &pinctrl_dhcom_o &pinctrl_dhcom_p
++		     &pinctrl_dhcom_q &pinctrl_dhcom_r &pinctrl_dhcom_s
++		     &pinctrl_dhcom_int>;
++};
 -- 
 2.45.2
 
