@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 908DE988E23
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 09:27:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395EB988E29
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 09:31:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 51C9E282FAE
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 07:27:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BC5C1C20FA5
+	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 07:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA9AF19E7C7;
-	Sat, 28 Sep 2024 07:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA11719AD85;
+	Sat, 28 Sep 2024 07:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oam4lTIe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R3BETcDc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBE6B15A8;
-	Sat, 28 Sep 2024 07:27:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CD581859;
+	Sat, 28 Sep 2024 07:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727508447; cv=none; b=Z+czCD2pojo8Hz0jSQVBOySqWbyLXIv6xyYtnXjjGIumxd/YJOFifd2yUCp1XPn4+vypJxU12zVCIo7Y1QZdkHRPODbm4MVq2ESa5wxzvYzNM66xO0CxM6wSTvgNpdcEpoXx0+5zfqcIVHgEitGveRcOv2bpsg5abf+48WUOwEo=
+	t=1727508715; cv=none; b=dlIwi7G9z666SRF+r+ywJ0Ai4CcPByE94QuaB5RLiRrXjlfBIC3jGhptwieV3i9bjrkpjm29iw5e69mlyGikQjwxWebubK4YVTDqqwlPt4CeILfi8R6vk+DW32cVxU8croiTxqJmm3LvY+1ud4Ree9mmmulYXktsizzNTvKYAuM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727508447; c=relaxed/simple;
-	bh=VtEhDPbrmFi1yUDyOT1ZAa0flBzfQV54ftpM9FZnIOE=;
+	s=arc-20240116; t=1727508715; c=relaxed/simple;
+	bh=YcrXNs/yZ3nUKsxdQjoyr6fgGMjvgH7aNff0uH5SnmM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=os2r+G3tYtA5tXXGJWdm2GeHFompWkAB49BvtEZ1vDrGrxFZUeAsCHqpB8XigX29NEoP8468unC4+6A56VhhabQgBEbheWlIvOXT7InarzXZYTuuPBoL/wu0GiIolY0s3Y2HZ7Q6k6jKbaIJSfNmrqjLVYCWnCLCP8mgcR86/LE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oam4lTIe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0C82C4CEC3;
-	Sat, 28 Sep 2024 07:27:21 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=uMDZkPOSZNptKoEU/rd4xYFLlkNcTLiiFfpjfzFFo4YUiovMaJxiwibABIZ+yOt8sEL3FRy5t3WvLRsoCN/NRFQl8lm6hKEM5iTMttxyNRrlcZsiMb1rmnYyazCmixt4lg53RHrzr6MnH0W9zK8TcP1YKKw9er2uFe7U0WKhmGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R3BETcDc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FD18C4CEC3;
+	Sat, 28 Sep 2024 07:31:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727508447;
-	bh=VtEhDPbrmFi1yUDyOT1ZAa0flBzfQV54ftpM9FZnIOE=;
+	s=k20201202; t=1727508715;
+	bh=YcrXNs/yZ3nUKsxdQjoyr6fgGMjvgH7aNff0uH5SnmM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=oam4lTIew4knRuvoaST1mDGl86r/QfSm4GdriNLftUyw0qjBsPm+dwBUcHzW4DZ0Y
-	 79Ry+yf9j+JJ16mt/B/yELPe2OtOJ8/YkMn1QEGspBzpxHJgb4wPEX4scCaYV1uwG4
-	 uen1a4dlUo4QpVCV74VC2khxc8vYuktJlv++9yN5/plLNZ5PBwSYZAGyFdeK8ZHSdo
-	 2I39UFwmuOPg+87w+zirYSDLp8j+ROaz/ZulA1/DCK0NNPfm5u5gxjrFKp9jB7TCgi
-	 xR6UScbixoLvdXQ5cfbplmibHD/FOFX1t9utGNaJ2xw/VebSr4013+v5ExKw0J04uO
-	 V5Kaz34XMrSYA==
-Message-ID: <1efbf081-6ac6-43bc-97b9-53b24a8d130d@kernel.org>
-Date: Sat, 28 Sep 2024 09:27:19 +0200
+	b=R3BETcDczWPBOkAwWqlYT3rF7Rr1HoHrUjo03Mpq6WSKnXVmwvWD6F/I40zjZ+QCt
+	 Vu5BNQGNluzg9w5Km0JGCXiE3bpqIhL/ERIVXdyqH27s09y7VhMU2G+WiSx3gqr2X3
+	 nZ9zWVZmj3XLk/0ZjBcJKSaukPaLR4TxhhO6MxzL1gcfJfxIX8L3c+gKNQEhNLisOe
+	 SBh9eL8YHa5z9CspjhkRs9dmgYYmDFzBg+V/v1OSRPkSNZUJCj3I4LizFBV+Y75iKQ
+	 hZlMjA7pRd03s29Y+1cuIGsa2Y/caMS+3Wl2gMdW1bYrdO3dpWLKT0zy+GB03Ecy6N
+	 zVjdi/QqTcaAQ==
+Message-ID: <c6ac1c4d-7f7a-41a9-9f32-55428f88bdfe@kernel.org>
+Date: Sat, 28 Sep 2024 09:31:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,28 +50,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: net: Add T-HEAD dwmac support
-To: Drew Fustini <dfustini@tenstorrent.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Jisheng Zhang <jszhang@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org
-References: <20240926-th1520-dwmac-v2-0-f34f28ad1dc9@tenstorrent.com>
- <20240926-th1520-dwmac-v2-1-f34f28ad1dc9@tenstorrent.com>
- <4pxpku3btckw7chyxlqw56entdb2s3gqeas4w3owbu5egmq3nf@5v76h4cczv4z>
- <ZvcawOIcufEHXCHU@x1>
+Subject: Re: [PATCH 2/3] dt-bindings: fpga: Add Efinix serial SPI programming
+ bindings
+To: Ian Dannapel <iansdannapel@gmail.com>
+Cc: mdf@kernel.org, hao.wu@intel.com, yilun.xu@intel.com, trix@redhat.com,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ neil.armstrong@linaro.org, heiko.stuebner@cherry.de, rafal@milecki.pl,
+ linus.walleij@linaro.org, linux-fpga@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240927141445.157234-1-iansdannapel@gmail.com>
+ <20240927141445.157234-2-iansdannapel@gmail.com>
+ <dd9ae106-3c39-423b-9413-5a7ca57f7aec@kernel.org>
+ <CAKrir7irvRbwCsdjF_NNfWy68wTDfRuyW2oHb90gYgBA=L7-Tg@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -117,129 +107,132 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZvcawOIcufEHXCHU@x1>
+In-Reply-To: <CAKrir7irvRbwCsdjF_NNfWy68wTDfRuyW2oHb90gYgBA=L7-Tg@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/09/2024 22:51, Drew Fustini wrote:
-> On Fri, Sep 27, 2024 at 11:34:48AM +0200, Krzysztof Kozlowski wrote:
->> On Thu, Sep 26, 2024 at 11:15:50AM -0700, Drew Fustini wrote:
->>> From: Jisheng Zhang <jszhang@kernel.org>
+On 27/09/2024 17:34, Ian Dannapel wrote:
+> Thanks for the review Krzysztof.
+> 
+> Am Fr., 27. Sept. 2024 um 16:26 Uhr schrieb Krzysztof Kozlowski
+> <krzk@kernel.org>:
+>>
+>> On 27/09/2024 16:14, iansdannapel@gmail.com wrote:
+>>> From: Ian Dannapel <iansdannapel@gmail.com>
 >>>
->>> Add documentation to describe T-HEAD dwmac.
+>>> Add device tree binding documentation for configuring Efinix FPGA
+>>> using serial SPI passive programming mode.
 >>>
->>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
->>> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->>> [drew: change apb registers from syscon to second reg of gmac node]
->>> [drew: rename compatible, add thead rx/tx internal delay properties]
->>> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+>>> Signed-off-by: Ian Dannapel <iansdannapel@gmail.com>
 >>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml        |   1 +
->>>  .../devicetree/bindings/net/thead,th1520-gmac.yaml | 109 +++++++++++++++++++++
->>>  MAINTAINERS                                        |   1 +
->>>  3 files changed, 111 insertions(+)
+>>>  .../fpga/efinix,trion-spi-passive.yaml        | 85 +++++++++++++++++++
+>>>  1 file changed, 85 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/fpga/efinix,trion-spi-passive.yaml
 >>>
->>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> index 4e2ba1bf788c..474ade185033 100644
->>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> @@ -99,6 +99,7 @@ properties:
->>>          - snps,dwxgmac-2.10
->>>          - starfive,jh7100-dwmac
->>>          - starfive,jh7110-dwmac
->>> +        - thead,th1520-gmac
->>>  
->>>    reg:
->>>      minItems: 1
->>> diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
+>>> diff --git a/Documentation/devicetree/bindings/fpga/efinix,trion-spi-passive.yaml b/Documentation/devicetree/bindings/fpga/efinix,trion-spi-passive.yaml
 >>> new file mode 100644
->>> index 000000000000..1070e891c025
+>>> index 000000000000..ec6697fa6f44
 >>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
->>> @@ -0,0 +1,109 @@
+>>> +++ b/Documentation/devicetree/bindings/fpga/efinix,trion-spi-passive.yaml
+>>> @@ -0,0 +1,85 @@
 >>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 >>> +%YAML 1.2
 >>> +---
->>> +$id: http://devicetree.org/schemas/net/thead,th1520-gmac.yaml#
+>>> +$id: http://devicetree.org/schemas/fpga/efinix,trion-spi-passive.yaml#
 >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >>> +
->>> +title: T-HEAD TH1520 GMAC Ethernet controller
+>>> +title: Efinix SPI FPGA Manager
 >>> +
 >>> +maintainers:
->>> +  - Drew Fustini <dfustini@tenstorrent.com>
+>>> +  - Ian Dannapel <iansdannapel@gmail.com>
 >>> +
 >>> +description: |
->>> +  The TH1520 GMAC is described in the TH1520 Peripheral Interface User Manual
->>> +  https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
+>>> +  Efinix Trion and Titanium Series FPGAs support a method of loading the
+>>> +  bitstream over what is referred to as "SPI Passive Programming".
+>>> +  Only serial (1x bus width) is supported, setting the programming mode
+>>> +  is not in the scope the this manager and must be done elsewhere.
 >>> +
->>> +  Features include
->>> +    - Compliant with IEEE802.3 Specification
->>> +    - IEEE 1588-2008 standard for precision networked clock synchronization
->>> +    - Supports 10/100/1000Mbps data transfer rate
->>> +    - Supports RGMII/MII interface
->>> +    - Preamble and start of frame data (SFD) insertion in Transmit path
->>> +    - Preamble and SFD deletion in the Receive path
->>> +    - Automatic CRC and pad generation options for receive frames
->>> +    - MDIO master interface for PHY device configuration and management
+>>> +  Warning: The slave serial link is not technically SPI and therefore it is
+>>> +  not recommended to have other devices on the same bus since it might
+>>> +  interfere or be interfered by other transmissions.
 >>> +
->>> +  The GMAC Registers consists of two parts
->>> +    - APB registers are used to configure clock frequency/clock enable/clock
->>> +      direction/PHY interface type.
->>> +    - AHB registers are use to configure GMAC core (DesignWare Core part).
->>> +      GMAC core register consists of DMA registers and GMAC registers.
->>> +
->>> +select:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        enum:
->>> +          - thead,th1520-gmac
->>> +  required:
->>> +    - compatible
+>>> +  References:
+>>> +  - https://www.efinixinc.com/docs/an033-configuring-titanium-fpgas-v2.6.pdf
+>>> +  - https://www.efinixinc.com/docs/an006-configuring-trion-fpgas-v6.0.pdf
 >>> +
 >>> +allOf:
->>> +  - $ref: snps,dwmac.yaml#
+>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
 >>> +
 >>> +properties:
 >>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - thead,th1520-gmac
->>> +      - const: snps,dwmac-3.70a
+>>> +    enum:
+>>> +      - efinix,trion-spi-passive
+>>> +      - efinix,titanium-spi-passive
+>>
+>> 1. Your driver suggests these are compatible, so make them compatible
+>> with using fallback.
+>>
+>> 2. What is "spi-passive"? Compatible is supposed to be the name of the
+>> device, so I assume this is "trion"? Can trion be anything else than fpga?
+> spi-passive is the programming mode, where the device is in slave
+> mode. There are also other modes, but not supported by this driver.
+
+But we do no describe here drivers, so it does no matter what it supports.
+
+> The name was inspired by similar drivers (spi-xilinx.c). Isn't just
+> "efinix,trion"/"efinix,titanium" too generic?
+
+What do you mean too generic? What else could it be? BTW, that was my
+question, which you did not answer. Bindings describe hardware, so
+describe here hardware.
+
+>>
+>>> +
+>>> +  spi-cpha: true
+>>> +
+>>> +  spi-cpol: true
+>>> +
+>>> +  spi-max-frequency:
+>>> +    maximum: 25000000
 >>> +
 >>> +  reg:
->>> +    items:
->>> +      - description: DesignWare GMAC IP core registers
->>> +      - description: GMAC APB registers
+>>> +    maxItems: 1
 >>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: dwmac
->>> +      - const: apb
+>>> +  creset-gpios:
+>>
+>> reset-gpios
+>>
+>> Do not invent own properties.
+>>
+>>> +    description:
+>>> +      reset and re-configuration trigger pin (low active)
+>>> +    maxItems: 1
 >>> +
->>> +  thead,rx-internal-delay:
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    description: |
->>> +      RGMII receive clock delay. The value is used for the delay_ctrl
->>> +      field in GMAC_RXCLK_DELAY_CTRL. Units are not specified.
+>>> +  cs-gpios:
+>>> +    description:
+>>> +      chip-select pin (low active)
 >>
->> What do you mean by "unspecified units"? They are always specified,
->> hardware does not work randomly, e.g. once uses clock cycles, but next
->> time you run it will use picoseconds.
->>
->> You also miss default (property is not required) and some sort of constraints.
-> 
-> I should have stated that I don't know the units for delay_ctrl. The
-> 5-bit field has a max value of 31 which seems far too small for
-> picoseconds. Unfortunately, the documentation from the SoC vendor does
-> not give anymore details about what the value represents.
-> 
-> Andrew Lunn replied [1] to my cover letter that it is best to hard code
-> the field to 0 (which is the hardware reset value) if I don't know what
-> the units are for delay_ctrl. The hardware that I have works okay with
-> delay_ctrl of 0, so it seems these new vendor properties are not needed.
+>> Eee? That's a property of controller, not child. Aren't you duplicating
+>> existing controller property?
+> This device uses this pin in combination with the reset to enter the
+> programming mode. Also, the driver must guarantee that the pin is
 
-Then just say that this is using register values directly.
+Isn't this the same on every SPI device?
+
+> active for the whole transfer process, including ending dummy bits.
+> This is why I added a warning to NOT use this driver with other
+> devices on the same bus.
+
+Not really related. None of this grants exception from duplicating
+controller's property.
+
+How do you think it will even work in Linux, if same GPIO is requested
+twice (imagine controller also has it)? Till now, this would be -EBUSY.
+
+But regardless of implementation, I still do not understand why do you
+need duplicate same chip-select. Maybe just the naming is the confusion,
+dunno.
+
 
 Best regards,
 Krzysztof
