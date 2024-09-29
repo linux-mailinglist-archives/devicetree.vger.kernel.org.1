@@ -1,131 +1,122 @@
-Return-Path: <devicetree+bounces-106210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC9C989762
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 22:40:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D7C7098986E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 01:44:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 137131F213AA
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 20:40:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 918CE1F2180C
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 23:44:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746CA1865FA;
-	Sun, 29 Sep 2024 20:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAF9917839C;
+	Sun, 29 Sep 2024 23:44:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hHCRTV2b"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="ZdMRbD+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7171862B3;
-	Sun, 29 Sep 2024 20:39:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B703718EB0;
+	Sun, 29 Sep 2024 23:44:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727642349; cv=none; b=Vu3aPBWCe5eObY8/Oo5yNrygx5RAOz/FZg15l9Emhqq9J0OWai+66VqqvYamC/x+HF1X78eQNqzLk2tNEpTFZqVf9zctmT49NR/iSKkvlkdH4YuGZ+y6q3yTKd67j2X6YpAW/5XYpttslAurjnTOgPWmWc8ha/1IErmS8kkcuAE=
+	t=1727653464; cv=none; b=M+qe+6lgOyKSGM/ZSW8I6OEtdfQGssjmYu7OweydFQ3KKocAKFC4Mjel+zQl2qz7U93cGRoGPJXPjbwQWXLO59qYJgRL1Zq3+PTc3ON+tgbm/uKW3npJVm70VG1S1zvTYL0Uk9M/o08Vs/Z+X89CWPZdteHEQovEe5+49XZbWvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727642349; c=relaxed/simple;
-	bh=nikxwyB1KSy0wsMXbnH8xFpdMCf+mKH8/245lMmqi5s=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lJlXcvviVEuAFQNLInh0Ufu1n6XCGb4sbSzgJJC696hpeztN7RJYO6x4Hz9MHbhbE+ex5xHItHxdb9j4uwAvPje5p7d5W30DoII4U9SOfGrhrmeZdhhbzhV/UY6zlfdoGjVmDjoGzFO8CeSF8AJ4bzKs90bbkpfNlPMjC+8OtK8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hHCRTV2b; arc=none smtp.client-ip=209.85.208.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c71f1396e4so4587227a12.0;
-        Sun, 29 Sep 2024 13:39:07 -0700 (PDT)
+	s=arc-20240116; t=1727653464; c=relaxed/simple;
+	bh=DUHSA+H0FzMEJ1EbxCc6fKlUtQOM8ce4G5R8tqRAodk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=hjM64+HpWWfHxysQzvNRqe2Z24WAm5tMH1dJGm3XjYbsdqMmcteEJ3UO8956Kmn6TuAok+47pneYjXP1eGVASsRt3lxLvWYW3UfSdJbCju3BWmiDBHnYLLsNq+Tvs652G4rPr4ZS8++/rMvGidYLZmXksRxx72giCiwMRb/Q8tw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=ZdMRbD+a; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727642346; x=1728247146; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YYZIE0YZeGeQMwblv/AqzD6BdL1SJTh4oD4ee0SlK+8=;
-        b=hHCRTV2bnln9Nb6Tfkhn8X9+4DyLYAJ+z/4sRbOF57rPNyRZMbIyb+UANP7g8m96K3
-         dwIaxQqjrRMJhhN2hKfeONBCvaH7ws8o7L/91sMA4tr5F2mNq2pD1rxgFyPC/XrMQHxf
-         qw2hVwMY59V/tBZCB5AkGMYS6JThuZ7x8nHS9VET0aWuK+HlhlmRddxZCFPcpuBtYxsp
-         BO4n4CthyFxqP1oEEPnqMuuHEjQBwsqgjeZAFAgiK56GyfU7pTzd1KHR8WIqqIA5BR4I
-         hF2p22grb0dSEhlqeQBu0++Kf98F5ch6FWf3jYX49V+Vu2wVUUfbfkaTiiqn1hagVAd2
-         yDHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727642346; x=1728247146;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YYZIE0YZeGeQMwblv/AqzD6BdL1SJTh4oD4ee0SlK+8=;
-        b=p3Dcimje51WbxRjzAb+wfGmyTlQPFtJY89ZWBwVMhbxbLkFMa4IHkSSf5dPCr6dqT0
-         0uDtLUzH6ltZiY/zzEuK/ikdr4aELVqWi6LWnOArjwWoArvZt+ABgBE/Qa8bNeWvt+Tw
-         gpgbFwOlxT9PNeXTr8KZ3Wg1gR2Psma5mAPSsoEET8DW2zdcnIhGQ6gVOCClWCyNOWla
-         1xZZ0wLVy4A+DBhxEu02PLm3vML/03J1zVABLeMHKAT6JMJag8iRxkbKujjcfXJxGttq
-         Ko4G32R1T8iNUJEjbREpAqT9lCOlaRK6LiTvBu6AmVh+R7M9fMSPZ8iTtdjLT/VncwrP
-         vvtw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFkzxsAkO7GN6mEwvEnzA3z9m8EUjPpP7WaHuflk+kYyhPD7YjZ2W07FvagpSyejTwuauprgL9hF31@vger.kernel.org, AJvYcCX3eqUi01CNHKx5KoF3KLro19ziM5WRYx9kCa+p2OgOgRFKm1zSna6inwqyPacXNHRXWe6PIbWy8DHv9YIZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwridxWiicH+u6WBeXs8im5yGiTzcIMOM0G3hyRZDP9SHh9ipeh
-	iPkXRrGj1W/CDR310wGmW1fU68UhtuvvfwrFZrgZGnkkecrwoPjT
-X-Google-Smtp-Source: AGHT+IHDHCjPgBpORkOeVnZX+PWdwQZyIprUCxSaxxsKI0QYedP98oHO0HOYosJ94oUVNDjt6ZZFiA==
-X-Received: by 2002:a05:6402:26cb:b0:5c8:95ce:8cc2 with SMTP id 4fb4d7f45d1cf-5c895ce8ea9mr2371572a12.16.1727642346039;
-        Sun, 29 Sep 2024 13:39:06 -0700 (PDT)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-e2c0-9a60-64a8-717a.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:e2c0:9a60:64a8:717a])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8824051c2sm3487985a12.19.2024.09.29.13.39.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Sep 2024 13:39:04 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Sun, 29 Sep 2024 22:38:52 +0200
-Subject: [PATCH 7/7] iio: light: veml6070: use dev_err_probe in probe
- function
+	d=codeconstruct.com.au; s=2022a; t=1727653460;
+	bh=JwDoGKRxS+YXAWQHk5KGk+HoFswK8C94/IS1YdzMkug=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=ZdMRbD+aBX0vD0MMmOVvIhJ45cVbGYHTPtdoqZoiAopSOUIOd7Uywyj6nYWafm6Bh
+	 OEQz5fh95u5j/n8evDnrJfXc1mN38YJO+lf8Ag8Oqd/KYkSzruTEUzRgxkbhyepB5s
+	 25ShunBzKpjCZFbXoFUSYa3JsbKzr0WYhWA4fz88UCKMRyAZEM0GsOzws+F3rclQIs
+	 dAVKEn3NCLuVjCEUcMZWRhrNY4vazqRrUcKa0CiwClHMCX8Rsow5DJIyonWCm4g78F
+	 u8bqJO17C55rGlE/O6mwVqN8DuQcBLyNNAlkpDuZ7FCJ96j3FqZ6S4ubIH/z8xHRO5
+	 XjAKRHjiaamGw==
+Received: from [192.168.68.112] (ppp118-210-187-56.adl-adc-lon-bras34.tpg.internode.on.net [118.210.187.56])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 8B57765866;
+	Mon, 30 Sep 2024 07:44:18 +0800 (AWST)
+Message-ID: <16c89a7b9b85d21f1f23aa0d67742c6bde94a295.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for CPLD
+ IOE on Spider Board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Patrick Williams <patrick@stwcx.xyz>, Delphine_CC_Chiu/WYHQ/Wiwynn
+	 <Delphine_CC_Chiu@wiwynn.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Ricky
+ CX Wu <ricky.cx.wu.wiwynn@gmail.com>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Mon, 30 Sep 2024 09:14:17 +0930
+In-Reply-To: <Zvdq7o6NFXRVCJqX@heinlein.vulture-banana.ts.net>
+References: <20240926024133.3786712-1-Delphine_CC_Chiu@wiwynn.com>
+	 <fbdc9efe87a1bed9fea7d0abaf955aa1a3dc24ac.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853B51141F3D0610D970265D66B2@TYZPR04MB5853.apcprd04.prod.outlook.com>
+	 <Zvdq7o6NFXRVCJqX@heinlein.vulture-banana.ts.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240929-veml6070-cleanup-v1-7-a9350341a646@gmail.com>
-References: <20240929-veml6070-cleanup-v1-0-a9350341a646@gmail.com>
-In-Reply-To: <20240929-veml6070-cleanup-v1-0-a9350341a646@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1727642327; l=1046;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=nikxwyB1KSy0wsMXbnH8xFpdMCf+mKH8/245lMmqi5s=;
- b=fXk5tBeALOQQi99O7xzi5Ez+vuMPp40DcbCVWauoQW7Glg2WHGabdjBQam9g1F2BYqIRcjpqx
- ZKYXdy3hWSDC5aHUmCeMVfLtu7Lz3bF9YOd4NRON8RLlzMwwY7+wOBZ
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-Drop the common 'dev_err() + return' combination in the probe function
-and use 'return dev_err_probe()' instead.
+Hi Ricky, Patrick,
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/light/veml6070.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+On Fri, 2024-09-27 at 22:33 -0400, Patrick Williams wrote:
+> On Fri, Sep 27, 2024 at 09:24:11AM +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wr=
+ote:
+>=20
+> > Would like to ask should I base on the openbmc/linux repo to create the
+> > remaining patches that have context dependencies and add the lore link
+> > of the those patches that I've sent in the cover letter?
+>=20
+> I believe you're trying to get the patches applied onto the upstream
+> tree, so no you should not base on the openbmc/linux repo.  That repo is
+> a 6.6 branch.  You need to base the commits on torvalds/linux.
+>=20
 
-diff --git a/drivers/iio/light/veml6070.c b/drivers/iio/light/veml6070.c
-index 8d02899028d8..6221d07aa840 100644
---- a/drivers/iio/light/veml6070.c
-+++ b/drivers/iio/light/veml6070.c
-@@ -168,10 +168,9 @@ static int veml6070_probe(struct i2c_client *client)
- 		return ret;
- 
- 	data->client2 = i2c_new_dummy_device(client->adapter, VEML6070_ADDR_DATA_LSB);
--	if (IS_ERR(data->client2)) {
--		dev_err(&client->dev, "i2c device for second chip address failed\n");
--		return PTR_ERR(data->client2);
--	}
-+	if (IS_ERR(data->client2))
-+		return dev_err_probe(&client->dev, PTR_ERR(data->client2),
-+				     "i2c device for second chip address failed\n");
- 
- 	data->config = VEML6070_IT_10 | VEML6070_COMMAND_RSRVD |
- 		VEML6070_COMMAND_SD;
+In my previous email[1] I requested:
 
--- 
-2.43.0
+> Please assess the remaining yosemite4 devicetree patches (those you
+> haven't received a thank-you email for) and send an appropriately
+> constructed series so they can all be applied together, based on the
+> tree here:
+>=20
+> https://github.com/amboar/linux/tree/for/bmc/dt
 
+So I'm not sure why there's confusion and speculation as to which tree
+should be used :( Note that the for/bmc/dt branch above is currently
+based on v6.12-rc1.
+
+[1]: https://lore.kernel.org/all/fbdc9efe87a1bed9fea7d0abaf955aa1a3dc24ac.c=
+amel@codeconstruct.com.au/
+
+Anyway, I asked that because I have already applied one of the
+Yosemite4 patches there, and developing the remaining patches against
+any other tree will again cause conflicts (due to the lack of that
+patch).
+
+More broadly though, Patrick is right: If you're sending your patches
+upstream, it is required that you develop and test your patches against
+an appropriate upstream tree. Usually this is the most recent -rc1 tag,
+unless there are reasons otherwise (such as conflicts). The OpenBMC
+kernel fork is not an appropriate tree on which to base work you intend
+to send upstream.
+
+Thanks,
+
+Andrew
 
