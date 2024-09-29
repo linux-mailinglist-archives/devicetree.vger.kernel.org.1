@@ -1,316 +1,157 @@
-Return-Path: <devicetree+bounces-106097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8120C98920B
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 01:50:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E6A6989227
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 02:34:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1DC71F23DFF
-	for <lists+devicetree@lfdr.de>; Sat, 28 Sep 2024 23:50:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB2C3282047
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 00:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3B841714B6;
-	Sat, 28 Sep 2024 23:50:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F016C538A;
+	Sun, 29 Sep 2024 00:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="bhJOXp4w"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="da9OAMN/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2200187FF4
-	for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 23:50:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C4C8488
+	for <devicetree@vger.kernel.org>; Sun, 29 Sep 2024 00:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727567423; cv=none; b=JebNV/+25GeSOHaD2FPMG3uPoDX0m7QQKJ0FBT3EUMfp9ERQw8rxC1stU3RGHTCtSjBxVrD8m5aou97XSYNqvVNlrUHfgRPnPgePOCdhoGzA4DoVcfyVtwctiw4ARaWT5JvcE6GgxYoiqctt9DcHaFUX39ETQvPZMG34XUp3P4U=
+	t=1727570089; cv=none; b=BY9e7NLSsR2rqNIQRdmjXFCIDAMXsfzxWqxFR91QhRJwJ3HOCV24Y3NAAWobV3QHKKBPD0IacO+SwBKa0iCNci86BfDypb+Dtzhx+nPLUgWyhcpsI2tKYmg+b7sa8uH/q60OKAPQ5SDZo44O61BtQwDGI0keGbkNo3QY8aoEVWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727567423; c=relaxed/simple;
-	bh=3kpaIbPw0iqYFC9tE2R7JRVqs/j+sOtF38jHtaDs+xA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oCajPMN9bwFZXrtNs1LFntepe4N4wHitEbPkzm0Zy5V5E32UK8tjgBri6Kkr0ghmBYq+OxETR30aqsjtVA9nm7NGPiqWOpQuvaQFrE69ByfotWIR2f7gMinBvjA74Wr4+ZznFLJMctLRkYlHVKZtUlqUBO83rICC8pHE4MYINx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=bhJOXp4w; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 280DC8897C;
-	Sun, 29 Sep 2024 01:50:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727567413;
-	bh=iDWMIbxq79xeR7CgPXMuwRUwG+Gp8qp+4O94CVtnqGQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=bhJOXp4weQ9q4yS4q0981ZGJOQ77ktD9OgarkX973Dowk9Xe1lO3ZmzPepNepgWN1
-	 cK4KNTDQFmNUMFXcwfwrKFoV9q7NtY5OoH4cPZArFKMlQ/XG/EEVXdy6u2TumFOgO9
-	 vYZjledv8AFdxUbl5DMTkFqhk6T1hVxHuvf4b/Rbiu4quJQU+U40tgQvpHv6G9UHHh
-	 zKgSNfjPdnSe6fN+4M3Tp7bHGqwVRBOYsmoqHBVmVvVME+v5UJEmKjWEwprsP+94nt
-	 Q3360AGRVU1+u3TKHNkpm4HDegWJhB2SBCA9tkhZxe6P/s4tEPppTDrcl7ek2J5eUM
-	 exAYmm5oOU1AA==
-From: Marek Vasut <marex@denx.de>
-To: linux-arm-kernel@lists.infradead.org
-Cc: kernel@dh-electronics.com,
-	Marek Vasut <marex@denx.de>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Michael Walle <mwalle@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH 2/2] arm64: dts: imx8mp: Add support for DH electronics i.MX8M Plus DHCOM PicoITX
-Date: Sun, 29 Sep 2024 01:48:09 +0200
-Message-ID: <20240928234949.357893-2-marex@denx.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240928234949.357893-1-marex@denx.de>
-References: <20240928234949.357893-1-marex@denx.de>
+	s=arc-20240116; t=1727570089; c=relaxed/simple;
+	bh=FUnK5WsqIt7SFr1ZuMbM54fJeM1wSWwCSGDvqC9enzc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BqHicY4r3ByqVdQitLKzR8TMiPOW1LY/n51P1YZNpypD9JZWOA2Z8GsKnIt2g6ewNPEoPD/9tGoVqtezN0xKQO5ZuKhK61V0WYRWhF2fBQ29YSshDXf0NJ6ukeeTcbZ27eTNEv/T0Fai65x79TPpiAJILXL+W2Q7dpoowB4pftM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=da9OAMN/; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1727570071;
+ bh=xENoRDlaw7uEZQLQGR7uTWdX3LD1ukayJIDfRPDH3Vo=;
+ b=da9OAMN/U5XBUZyoZfiZdGSYTzXYwpNid04GT0SdGXMxYWmNAWJRxJmiIFDlrmZLsS0HCvuqy
+ rq1K0FfgrMY2xq+0UAMgTzf6wEB1R48Pk619RiGzud5pyVexqo3fGlDVMT07Gmbmb1gIS6PMMg1
+ 2kKbxWGYS3s5aA+PRaXVEMSCeOOgx5T3mNnK8n+57IB/pnBFG3/WUGe4A/4R2NUMa5PiVxUs2/0
+ lsRQ7wyDeGMJDGixJG88GMnrkvPTslTdb/c7LKYcycgFeDpyk0e18ABh1W0rF6WJ+cK6OQ+GW2Y
+ xF5zi2Aghx5rHt60Z8h+wbmqSXC1jG3uKmABXU636nTw==
+Message-ID: <83349da6-17bc-432d-badc-5946c42a53ed@kwiboo.se>
+Date: Sun, 29 Sep 2024 02:34:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+References: <20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com>
+ <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66f8a093ed0aa09774abf316
 
-Add support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carrier board.
-This system is populated with serial console, EQoS ethernet, eMMC, SD, SPI NOR,
-LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
+Hi Cristian,
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Gregor Herburger <gregor.herburger@ew.tq-group.com>
-Cc: Hiago De Franco <hiago.franco@toradex.com>
-Cc: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Cc: Joao Paulo Goncalves <joao.goncalves@toradex.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Mathieu Othacehe <m.othacehe@gmail.com>
-Cc: Max Merchel <Max.Merchel@ew.tq-group.com>
-Cc: Michael Walle <mwalle@kernel.org>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: imx@lists.linux.dev
-Cc: linux-arm-kernel@lists.infradead.org
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mp-dhcom-picoitx.dts    | 176 ++++++++++++++++++
- 2 files changed, 177 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
+On 2024-09-29 00:36, Cristian Ciocaltea wrote:
+> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
+> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
+> Samsung IP block.
+> 
+> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
+> without audio, CEC or any of the HDMI 2.1 specific features.
+> 
+> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+> Tested-by: Heiko Stuebner <heiko@sntech.de>
+> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+> ---
+>  drivers/gpu/drm/rockchip/Kconfig               |   9 +
+>  drivers/gpu/drm/rockchip/Makefile              |   1 +
+>  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 425 +++++++++++++++++++++++++
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.c    |   2 +
+>  drivers/gpu/drm/rockchip/rockchip_drm_drv.h    |   1 +
+>  5 files changed, 438 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index f6b8041c1e8f7..4e33cb33ba297 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -170,6 +170,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-debix-som-a-bmb-08.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-drc02.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-pdk3.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-dhcom-picoitx.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
-new file mode 100644
-index 0000000000000..703cf0fb3d2be
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-dhcom-picoitx.dts
-@@ -0,0 +1,176 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2023-2024 Marek Vasut <marex@denx.de>
-+ *
-+ * DHCOM iMX8MP variant:
-+ * DHCM-iMX8ML8-C160-R204-F1638-SPI16-E-SD-RTC-T-RGB-I-01D2
-+ * DHCOM PCB number: 660-200 or newer
-+ * PicoITX PCB number: 487-600 or newer
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/leds/common.h>
-+#include "imx8mp-dhcom-som.dtsi"
-+
-+/ {
-+	model = "DH electronics i.MX8M Plus DHCOM PicoITX";
-+	compatible = "dh,imx8mp-dhcom-picoitx", "dh,imx8mp-dhcom-som",
-+		     "fsl,imx8mp";
-+
-+	chosen {
-+		stdout-path = &uart1;
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+
-+		led-0 {
-+			color = <LED_COLOR_ID_YELLOW>;
-+			default-state = "off";
-+			function = LED_FUNCTION_INDICATOR;
-+			gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>; /* GPIO I */
-+			pinctrl-0 = <&pinctrl_dhcom_i>;
-+			pinctrl-names = "default";
-+		};
-+	};
-+};
-+
-+&eqos {	/* First ethernet */
-+	pinctrl-0 = <&pinctrl_eqos_rmii>;
-+	phy-handle = <&ethphy0f>;
-+	phy-mode = "rmii";
-+
-+	assigned-clock-parents = <&clk IMX8MP_SYS_PLL1_266M>,
-+				 <&clk IMX8MP_SYS_PLL2_100M>,
-+				 <&clk IMX8MP_SYS_PLL2_50M>;
-+	assigned-clock-rates = <0>, <100000000>, <50000000>;
-+};
-+
-+&ethphy0g {	/* Micrel KSZ9131RNXI */
-+	status = "disabled";
-+};
-+
-+&ethphy0f {	/* SMSC LAN8740Ai */
-+	status = "okay";
-+};
-+
-+&fec {
-+	status = "disabled";
-+};
-+
-+&flexcan1 {
-+	status = "okay";
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"DHCOM-G", "", "", "",
-+		"", "DHCOM-I", "PicoITX-HW0", "PicoITX-HW2",
-+		"DHCOM-B", "DHCOM-A", "", "DHCOM-H", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "PicoITX-HW1", "", "", "", "",
-+		"", "", "", "", "DHCOM-INT", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "SOM-HW1", "", "", "", "",
-+		"", "", "", "PicoITX-Out2", "", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "PicoITX-In2", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "",
-+		"", "", "PicoITX-In1", "PicoITX-Out1",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+/* No HS connector on this SoM variant, so no HDMI, PCIe and only USB HS. */
-+&hdmi_blk_ctrl {
-+	status = "disabled";
-+};
-+
-+&hdmi_pvi {
-+	status = "disabled";
-+};
-+
-+&hdmi_tx {
-+	status = "disabled";
-+};
-+
-+&hdmi_tx_phy {
-+	status = "disabled";
-+};
-+
-+&irqsteer_hdmi {
-+	status = "disabled";
-+};
-+
-+&lcdif3 {
-+	status = "disabled";
-+};
-+
-+&pcie_phy {
-+	status = "disabled";
-+};
-+
-+&pcie {
-+	status = "disabled";
-+};
-+
-+/* No WiFi/BT chipset on this SoM variant. */
-+&uart2 {
-+	bluetooth {
-+		status = "disabled";
-+	};
-+};
-+
-+/* USB_OTG port is not routed out on PicoITX. */
-+&usb3_0 {
-+	status = "disabled";
-+};
-+
-+&usb_dwc3_0 {
-+	status = "disabled";
-+};
-+
-+&usb3_1 {
-+	fsl,over-current-active-low;
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	maximum-speed = "high-speed";
-+};
-+
-+/* No WiFi/BT chipset on this SoM variant. */
-+&usdhc1 {
-+	status = "disabled";
-+};
-+
-+&iomuxc {
-+	/*
-+	 * The following DHCOM GPIOs are used on this board.
-+	 * Therefore, they have been removed from the list below.
-+	 * I: yellow led
-+	 */
-+	pinctrl-0 = <&pinctrl_dhcom_a &pinctrl_dhcom_b &pinctrl_dhcom_c
-+		     &pinctrl_dhcom_d &pinctrl_dhcom_e &pinctrl_dhcom_f
-+		     &pinctrl_dhcom_g &pinctrl_dhcom_h &pinctrl_dhcom_j
-+		     &pinctrl_dhcom_k &pinctrl_dhcom_l &pinctrl_dhcom_m
-+		     &pinctrl_dhcom_n &pinctrl_dhcom_o &pinctrl_dhcom_p
-+		     &pinctrl_dhcom_q &pinctrl_dhcom_r &pinctrl_dhcom_s
-+		     &pinctrl_dhcom_int>;
-+};
--- 
-2.45.2
+[snip]
+
+> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+> new file mode 100644
+> index 000000000000..6103d30d40fb
+
+[snip]
+
+> +static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
+> +{
+> +	struct rockchip_hdmi_qp *hdmi = dev_id;
+> +	u32 intr_stat, val;
+> +	int debounce_ms;
+> +
+> +	regmap_read(hdmi->regmap, RK3588_GRF_SOC_STATUS1, &intr_stat);
+> +	if (!intr_stat)
+> +		return IRQ_NONE;
+> +
+> +	val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_CLR,
+> +			    RK3588_HDMI0_HPD_INT_CLR);
+> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
+> +
+> +	debounce_ms = intr_stat & RK3588_HDMI0_LEVEL_INT ? 150 : 20;
+> +	mod_delayed_work(system_wq, &hdmi->hpd_work,
+> +			 msecs_to_jiffies(debounce_ms));
+
+If I am understanding this correctly this will wait for 150 ms after HPD
+goes high and 20 ms after HPD goes low to trigger the hpd_work.
+
+Would it not make more sense to be the other way around? In order to
+reduce unnecessary HOTPLUG=1 uevents from being triggered during short
+EDID refresh pulses? At least that is what I am playing around with for
+dw-hdmi.
+
+Regards,
+Jonas
+
+> +
+> +	val |= HIWORD_UPDATE(0, RK3588_HDMI0_HPD_INT_MSK);
+> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+[snip]
 
 
