@@ -1,180 +1,223 @@
-Return-Path: <devicetree+bounces-106189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C78FE989687
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 19:28:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 460839896CA
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 20:45:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 898762841F2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 17:27:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1531C208CF
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 18:45:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A6DB36AEC;
-	Sun, 29 Sep 2024 17:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E66C364BA;
+	Sun, 29 Sep 2024 18:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="BvSAKI2j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EUDst9rb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B76D27462
-	for <devicetree@vger.kernel.org>; Sun, 29 Sep 2024 17:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DC118641;
+	Sun, 29 Sep 2024 18:45:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727630871; cv=none; b=LIA5d0OP8HegqgVh83SLRU+h6p9kW1GH7xBTNznTRd6H5xI8pFD46CzS3MQ0lq7MqpjpXIlzVenYpXHOS7dShH7ekrBYHOAGWHLM6UFoUm25Dm0SX8IQfYS+XYrifk5dwPBGTw3bF4hVXTcQpslNOFo3OGIxadto7b3aoN1nWKk=
+	t=1727635546; cv=none; b=MSO8eIZKRH7BihtIF7TFBKsrwlnNk3DuSPQ5fkAg52jZ69j3VeFNtafx/ePWLVHn6WIOsCJnA6JAxO7KkwnHjqZU9sjm3bwIwc5fqGzCNf972U+/qgPXBNy+oX4+GKZw5Ee3jSTAJf0VOMLhARf0Jf1shtos1BDC3nmYz6S+Xow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727630871; c=relaxed/simple;
-	bh=uvG2ZBBvlONgFb6ld/20Z5sUyTEIwR4mml2r/1eTS0Y=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=nhrHii+t53XwqtiWeudarEVSkEw04bZc6NlrhbQpCu5ZF3VvQVamqTyfc2iRtmUuq8JZDgN4vb7qvSdemb4FeM0tlJcl8AkeAoOidDfgKm411EcrwPaJRGVw/VKHogXZ3UBeUiT98RLvk+GG0XNSF5y+hUA1ua9CIHaORmCHowc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=BvSAKI2j; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a8d0d82e76aso585855566b.3
-        for <devicetree@vger.kernel.org>; Sun, 29 Sep 2024 10:27:49 -0700 (PDT)
+	s=arc-20240116; t=1727635546; c=relaxed/simple;
+	bh=uYls481jlDe0DTJnA7lUtIOzYy0kIMsHafgrDtax/FA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=knnWyZ8v8uWEjvzphq21y873/qdXh/Kc+6deLf/tRMfW2nFJYm84QbG9iNeQT4wVEEt+qWr8Je/2aj2hHioAdVZqUdclKiqX5xJKbB4jmfSz35nhBjoYXQwGcCm5q2GiKUxPchUiI1V5nm79EHsV7yU12NVLQiNmJgllAZPp1BI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EUDst9rb; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c5bca6603aso4252688a12.1;
+        Sun, 29 Sep 2024 11:45:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1727630868; x=1728235668; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zsgh0kyD9U5ZxoRxA8QRLb2QSbsWIvPPTG1CIfNu7Us=;
-        b=BvSAKI2jmHIwip2Gm1EwxGgDYXK5QOo6YOmqsK55xjp4geggKiLEVhz5Z4P2S0SZMs
-         67UTvIebprLPCasWNLj7I+334ZdGm3efwF1he7byN7UZHQfgS/zRFkIcDBIXwMukrjJk
-         Iwq8hlVdpy1LjTNQH8t8fKcilzoOUVKcS9Xyo=
+        d=gmail.com; s=20230601; t=1727635543; x=1728240343; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=8XQ5+9bYl+OA/OhjnjesBHAyLC1+4svUXWybex59KOE=;
+        b=EUDst9rbK3lNwVv30ju3kdHcoj0mKeXt2SVTGg6WzHvnZBjhW+7X8h74ko/TREVG6h
+         cW7PKoJfA274pBZKnVGXBDE88MhwJj8rCiEXvMXDEOnD9N2LO0xdy+GbrwubiAKYhyOV
+         VgEae6ujObJkVPkLxJAdEpwqO7RH+U60mOCd8ehArT25aUaGkwc9u45Zwm23ofm3WmNU
+         92omiCryNeU4ruIhOW09dLUzvx7hcqg00B+rVaJKURbqf8Bs7rv75UlsLV9v1cYDdLio
+         QuejJ8cP/6Jf1QFIWecMK6ubM/JuMIwhuvLWn5TNLX3rsjNLi45aiWDFyP494wjMu0mF
+         ulaQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727630868; x=1728235668;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zsgh0kyD9U5ZxoRxA8QRLb2QSbsWIvPPTG1CIfNu7Us=;
-        b=P2D+oO4EnrR015SYUuP4bQpn4Me6VZ5gJLCx/WCVbnkdIjgErrN3MTMyIpYa+WwGtY
-         FGLfqDCJzZNIjB7LH/4TDAILKMaoKWQMpDB3Tz2OAK5PQrO94it9h79+8VgLfnxSZt5h
-         SRqqN60cmBZ8Xq3I7ExUHvqUKbL8QYeUa9UMeK9dsP0f6P8sq1mqPNNXhWI19Cvry0ey
-         G1oz6Jo/KtnhbT0ic0VBdvVZ07W3KvXeKBK7R9ie9kNqQ2LQd2yVwVexC7HxvRSiR3uE
-         kpvTAOEbHSoq0PMDJ2J1OZDQfDrgI2GErrzQIMq+wRVvfm1aeNDYaa0kvWW4sYgZZxjT
-         aBhw==
-X-Forwarded-Encrypted: i=1; AJvYcCXWFMcAdUv7eK6A2TFqTZjQA+Oi6ys9KNsDAQCNLLb64H5saR6L8h3Andj8qBPnx1gyAFNkhaYnoJM1@vger.kernel.org
-X-Gm-Message-State: AOJu0YzubsscZtILtRmY6qPzsAxyCSrM9r314UheOioNpLWPaRGE2x5E
-	y0xy8ZKasGjbsSz0Xrt7OC/T/7Cdz1KWFA4LVom5RCQml79gvm+ge+BizzN4bjA/HI/T44sX0VH
-	Wo7Y=
-X-Google-Smtp-Source: AGHT+IH0U0CFGTyBm5aWi0+/zzNcuCbHRfOuBcATCnCKjGvCfFUbitCFY9qFU4g74wA0OIxwoHN6QQ==
-X-Received: by 2002:a17:907:3182:b0:a7a:a892:8e05 with SMTP id a640c23a62f3a-a93c492a4eemr1095867166b.33.1727630867626;
-        Sun, 29 Sep 2024 10:27:47 -0700 (PDT)
-Received: from dario-ThinkPad-T14s-Gen-2i.homenet.telecomitalia.it (host-79-54-102-102.retail.telecomitalia.it. [79.54.102.102])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c27776a1sm403176866b.8.2024.09.29.10.27.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Sep 2024 10:27:47 -0700 (PDT)
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-To: linux-kernel@vger.kernel.org
-Cc: linux-amarula@amarulasolutions.com,
-	Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Stephen Boyd <sboyd@kernel.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v2 1/6] dt-bindings: clock: imx8m-anatop: support spread spectrum clocking
-Date: Sun, 29 Sep 2024 19:27:11 +0200
-Message-ID: <20240929172743.1758292-2-dario.binacchi@amarulasolutions.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240929172743.1758292-1-dario.binacchi@amarulasolutions.com>
-References: <20240929172743.1758292-1-dario.binacchi@amarulasolutions.com>
+        d=1e100.net; s=20230601; t=1727635543; x=1728240343;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8XQ5+9bYl+OA/OhjnjesBHAyLC1+4svUXWybex59KOE=;
+        b=qw67HMr4uSJTLV7BiP8Udd4x4GoxX+38j0LfAPTUTG7Oiz7Bvu0SsiAo4IPr1TPZlj
+         a93RZCGNsxX37aWOEeUUrwSCHCohNJ5ZdjaFQPCfIf/OBGhxY8Y0Sy3pL4aoDLHqK/uh
+         +svlafMV1yRnSEgkQg8xnMzmqDH5vpemKIU8+AO4S3rcF2o6EFcEXRKERpyWveuIQN5j
+         CBWhfi5lhG3b4SYRp4FBaTJZdhRqBoS1x92h34Y4iRA7jiSOWet4eOnHL+YGrs+NkL1P
+         uaPXziSJP1468+vAwNd/gLwjKHsLuG4aYxOdNzvWDrP5m5KdIIu+ICVRjHFmgjN5Ut+H
+         xxxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUAuYG667eo3RJSnOe53Wby6x4D8IX33wv5a/2RrbtIGvOkXCXsyXC3WwWiF1nJcPzTdHzNJoR49qGm@vger.kernel.org, AJvYcCWHsGZe7TaDcqPs1SWxWz1ABLlA7jKig+cxidhiYrGG/2ZLNa0PBXEN0XBJQo0q7xuHIUTNcTKHSU1vm/+d@vger.kernel.org, AJvYcCWJQcWet3KCqitzcPXZO0ZCRpk69xaBfmJaHZTb3j6PlMIvM2uEhOgMDHFuy9T5DfCBbOT0hqrW4Ydo@vger.kernel.org
+X-Gm-Message-State: AOJu0YxX9WR7i4Hw7cceVTeCQe7G3GL6s3+XEK/+7VAWV5iwbUhdNlPX
+	irTHkVuMVVeYg+vtRhaV3KT+r09sQTw/yrfWx7rAqG2d/fx+l5IQ
+X-Google-Smtp-Source: AGHT+IFOZFQUTLWY7kdVEDbwWE9GVkSr3ezpnMEaf9UamCwAtr86MOfeL+o7Mv47hqGghyTofWfdCw==
+X-Received: by 2002:a17:906:794d:b0:a7a:9ca6:527 with SMTP id a640c23a62f3a-a93c48f0dd1mr1198590566b.8.1727635542572;
+        Sun, 29 Sep 2024 11:45:42 -0700 (PDT)
+Received: from ?IPV6:2a02:8389:41cf:e200:e2c0:9a60:64a8:717a? (2a02-8389-41cf-e200-e2c0-9a60-64a8-717a.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:e2c0:9a60:64a8:717a])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c27c5a7dsm412361266b.62.2024.09.29.11.45.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 29 Sep 2024 11:45:42 -0700 (PDT)
+Message-ID: <b4a72e65-b8b0-41da-ac6e-372371f3943a@gmail.com>
+Date: Sun, 29 Sep 2024 20:45:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 06/10] iio: light: veml6030: use read_avail() for
+ available attributes
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20240923-veml6035-v2-0-58c72a0df31c@gmail.com>
+ <20240923-veml6035-v2-6-58c72a0df31c@gmail.com>
+ <20240928171922.0caccaf3@jic23-huawei>
+Content-Language: en-US, de-AT
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+In-Reply-To: <20240928171922.0caccaf3@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The patch adds the DT bindings for enabling and tuning spread spectrum
-clocking generation.
+On 28/09/2024 18:19, Jonathan Cameron wrote:
+> On Mon, 23 Sep 2024 00:17:54 +0200
+> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+> 
+>> Drop custom attributes by using the standard read_avail() callback to
+>> read scale and integration time. When at it, define these attributes as
+>> available by all channels, as they affect the values of both the ALS and
+>> the WHITE channel.
+>>
+>> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+> Hi Javier
+> 
+> Some comments inline
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+>> ---
+>>  drivers/iio/light/veml6030.c | 64 +++++++++++++++++++++++++++++++-------------
+>>  1 file changed, 45 insertions(+), 19 deletions(-)
+>>
+>> diff --git a/drivers/iio/light/veml6030.c b/drivers/iio/light/veml6030.c
+>> index 89c98bfc5191..a3190fab3add 100644
+>> --- a/drivers/iio/light/veml6030.c
+>> +++ b/drivers/iio/light/veml6030.c
+>> @@ -58,25 +58,24 @@ struct veml6030_data {
+>>  	int cur_integration_time;
+>>  };
+>>  
+>> -/* Integration time available in seconds */
+>> -static IIO_CONST_ATTR(in_illuminance_integration_time_available,
+>> -				"0.025 0.05 0.1 0.2 0.4 0.8");
+>> +static const int veml6030_it_times[][2] = {
+>> +	{0, 25000},
+> Really minor but I'm trying to get IIO standardized on formatting for this
+> sort of array and I'd like not to introduce more instances of it
+> done without the extra spaces as it will just give more to clean up
+> at some point.
+> 
+> 	{ 0, 25000 },
+> etc please.
+>> +	{0, 50000},
+>> +	{0, 100000},
+>> +	{0, 200000},
+>> +	{0, 400000},
+>> +	{0, 800000},
+>> +};
+>>  
+>>  /*
+>>   * Scale is 1/gain. Value 0.125 is ALS gain x (1/8), 0.25 is
+>>   * ALS gain x (1/4), 1.0 = ALS gain x 1 and 2.0 is ALS gain x 2.
+>>   */
+>> -static IIO_CONST_ATTR(in_illuminance_scale_available,
+>> -				"0.125 0.25 1.0 2.0");
+>> -
+>> -static struct attribute *veml6030_attributes[] = {
+>> -	&iio_const_attr_in_illuminance_integration_time_available.dev_attr.attr,
+>> -	&iio_const_attr_in_illuminance_scale_available.dev_attr.attr,
+>> -	NULL
+>> -};
+>> -
+>> -static const struct attribute_group veml6030_attr_group = {
+>> -	.attrs = veml6030_attributes,
+>> +static const int veml6030_scale_vals[][2] = {
+>> +	{0, 125000},
+>> +	{0, 250000},
+>> +	{1, 0},
+>> +	{2, 0},
+> 
+> As above, add some spaces for minor readability improvement.
+> 
+>>  };
+>>  
+>>  /*
+>> @@ -197,9 +196,11 @@ static const struct iio_chan_spec veml6030_channels[] = {
+>>  		.type = IIO_LIGHT,
+>>  		.channel = CH_ALS,
+>>  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>> -				BIT(IIO_CHAN_INFO_PROCESSED) |
+>> -				BIT(IIO_CHAN_INFO_INT_TIME) |
+>> -				BIT(IIO_CHAN_INFO_SCALE),
+>> +				BIT(IIO_CHAN_INFO_PROCESSED),
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					       BIT(IIO_CHAN_INFO_SCALE),
+> This bit is an ABI change and technically old code wasn't a bug, so
+> we don't really have a good enough reason to change it.  So Please
+> leave these as separate.
+> 
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SCALE),
+> That doesn't stop us sharing the available as that always was shared
+> in the attribute naming above.
+> 
+>>  		.event_spec = veml6030_event_spec,
+>>  		.num_event_specs = ARRAY_SIZE(veml6030_event_spec),
+>>  	},
+>> @@ -210,6 +211,10 @@ static const struct iio_chan_spec veml6030_channels[] = {
+>>  		.channel2 = IIO_MOD_LIGHT_BOTH,
+>>  		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>>  				BIT(IIO_CHAN_INFO_PROCESSED),
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					       BIT(IIO_CHAN_INFO_SCALE),
+> This confuses me.  Is it fixing a bug by effectively adding attributes for this
+> channel that were previously missing? If so we'll have to go with searpte
+> even though they are shared to avoid breaking the ABI for other channel.
+> 
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SCALE),
+>>  	},
+>>  };
+>>  
+> 
+> 
 
-Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+This confused me as well, because even though the attributes where
+defined as separate for the ALS channel, modifying their values affected
+the values from the WHITE channel.
 
----
+The integration time and the scale affect both channels, and therefore I
+thought they should be shared attributes. But in that case, and to avoid
+breaking the ABI for the other channel, I will make them separate even
+though writing to one of them will change the value of the other as well.
 
-Changes in v2:
-- Add "allOf:" and place it after "required:" block, like in the
-  example schema.
-- Move the properties definition to the top-level.
-- Drop unit types as requested by the "make dt_binding_check" command.
-
- .../bindings/clock/fsl,imx8m-anatop.yaml      | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-index bbd22e95b319..a142c04fef00 100644
---- a/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-+++ b/Documentation/devicetree/bindings/clock/fsl,imx8m-anatop.yaml
-@@ -33,11 +33,56 @@ properties:
-   '#clock-cells':
-     const: 1
- 
-+  fsl,ssc-clocks:
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    description:
-+      List of phandle and clock specifier pairs of PLLs with spread
-+      spectrum generation hardware capability.
-+    maxItems: 4
-+
-+  fsl,ssc-modfreq-hz:
-+    description:
-+      The values of modulation frequency (Hz unit) of spread spectrum
-+      clocking for each PLL.
-+    maxItems: 4
-+
-+  fsl,ssc-modrate-percent:
-+    description:
-+      The percentage values of modulation rate of spread spectrum
-+      clocking for each PLL.
-+    maxItems: 4
-+
-+  fsl,ssc-modmethod:
-+    $ref: /schemas/types.yaml#/definitions/string-array
-+    description:
-+      The modulation techniques of spread spectrum clocking for
-+      each PLL.
-+    oneOf:
-+      - enum:
-+          - down-spread
-+          - up-spread
-+          - center-spread
-+    maxItems: 4
-+
- required:
-   - compatible
-   - reg
-   - '#clock-cells'
- 
-+allOf:
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              const: fsl,imx8mm-anatop
-+    then:
-+      properties:
-+        fsl,ssc-clocks: false
-+        fsl,ssc-modfreq-hz: false
-+        fsl,ssc-modrate-percent: false
-+        fsl,ssc-modmethod: false
-+
- additionalProperties: false
- 
- examples:
--- 
-2.43.0
+Thanks and best regards,
+Javier Carrasco
 
 
