@@ -1,257 +1,249 @@
-Return-Path: <devicetree+bounces-106112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F84798933B
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 08:11:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 07E8D989379
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 09:38:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E74E28561C
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 06:11:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84E17B20D7A
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 07:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A940B13AA45;
-	Sun, 29 Sep 2024 06:10:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6833C13959D;
+	Sun, 29 Sep 2024 07:38:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xqhqkg7F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LEbv6UPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12BEF13AA36;
-	Sun, 29 Sep 2024 06:10:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13271F95A;
+	Sun, 29 Sep 2024 07:38:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727590245; cv=none; b=cq4YqrkyejYoiqygWqPacd3hbBBn1d7LENhGBEEFULNk7VsG/r6ZXcweT60p+NoLszUhnSCaDr1x8kNh3/CNycUvevmdxqS23L8V0PZyBs33Xi6voH2woyvlV4drrldUILHDp3oPMAUktB7moBZdLkKkd+LWNnW2+UwOsDzaNvw=
+	t=1727595499; cv=none; b=ccfEjtcRQLlDondZsWQLJte9UMG/oB/QYUsA9h4Nrvs/7f++eiF9zbL0RzpK0pPKJnS94vSHUNKlNz04D41xw3s2ZSrcZcoiIOqqt76Z8Y5zp3RIFUonusZYTO7LoicVt3PJxk1amGlzTB5VQ4SgWdXINfKOrEGqphA70gbHky0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727590245; c=relaxed/simple;
-	bh=7kMMcUkhN5lcXSz/DWQSnram/1C4vZdGAbV480sstWw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=lnLb5w52C2FMcDW8gqRc3xS7jG14+uK8hpZqUBmHC7dggUFD94B0/MqtnIFFsKwtuOD4M8irN0xaTiGWdhI/wnvVEpAS4Fmh+9+jURgBNvyg6rxZTehN6D/qCJvXwHobNcy5EA3G4c6K55o4KjGd4CdnOl7rdFup/mB1hUNVmoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Xqhqkg7F; arc=none smtp.client-ip=209.85.210.177
+	s=arc-20240116; t=1727595499; c=relaxed/simple;
+	bh=uZqm/vVvL62S3Ei5w3HeKSAwjQt1+NE5f4nmgTdVDDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=X9w2O1yHQqmTiUTJKOz2NmgaIQ7ub1HIvWoACbo2ES28ZxMpE4k/gnNXEe1jeXobAesuhGXMsagyc7Lv6CxTAekkPcv4JTiiWtVfnPSz8uEsY0g0JMz/LYVtG7zNmHNTGvRiQlwPzFmbD0Gy4pmHIhLFCOw3yJqOMUDjxpt5M80=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LEbv6UPB; arc=none smtp.client-ip=209.85.214.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-71829963767so280609b3a.1;
-        Sat, 28 Sep 2024 23:10:43 -0700 (PDT)
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2054feabfc3so32385505ad.1;
+        Sun, 29 Sep 2024 00:38:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727590243; x=1728195043; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1727595497; x=1728200297; darn=vger.kernel.org;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9Akpn0thmbgIzVjfPV0oA4PJDLdf9K15fHM30omhDao=;
-        b=Xqhqkg7FK36SKL0F4lwqPxYYe4ILK6/6RJMQtRwUAGmr90EizFcD8hppYCR9jcghdU
-         /9p9mAjKiBavPA7eShK55qnL+zmBczEZQL4oVm05+y4ar11zBUEJed5UQOLiL1Bcx9WS
-         H+49o+JKse9Zzpj7MwFpTE7k6CxhEQGv4e5T1p7wEajoiJdLDTc9Oglcd4tNjPau5/lG
-         4iA1EZBlLYPg2T1dvBeVQmfphMTsbfdZn2dtTeFyiL6r9Q/ruSPhmTJxXSapW3sLfu03
-         Zj2aDZFyCrjEhFQ4r7KzdTOQkfVMx6ALhar2zblXp+m4SEMnewIAEq8RUJThB7MZgOKj
-         F2vQ==
+        bh=bxg86KR6sOyXP7avilmE6FsFPoosRZPYDwPpN3nt2Uc=;
+        b=LEbv6UPBLVPzr1HT9FX/rAjAE24c5PnqpAQ8w+PY5h/Wbf+8etQuKfLPtn3a7FukYH
+         LHI8L0rfeggFNkfliZvGaFvzJc4NtFM47yAK9ahYNeCb0p9W1kBKu/77QNwGpsMwm39k
+         H+paBo896f4NM888YqDHK2rmWHREiTGsjMiwOsPm62F7dS9WhlzlgR33+riFlSO9hODy
+         Jd3nNx3UItys1cfYrgDhTWU9aBU7eK3MvXVHPIYcH4PTftJMKMGWR4YDhl07hdizjhLu
+         UObiQpOmfQX4bEep4C9JnFOnCQYJKXbHbO2ruqa0bA8e7WJxD7G0rWozNVLr+7apc6M+
+         udyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727590243; x=1728195043;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1727595497; x=1728200297;
+        h=content-transfer-encoding:content-disposition:mime-version
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9Akpn0thmbgIzVjfPV0oA4PJDLdf9K15fHM30omhDao=;
-        b=fptOMqdmw8GmUh2p8oz0D4QxvrMs/Qjbysm9rxfMtO5DO5b8orkhiX/13wspBjoWfr
-         Xdd/2anEHYtuM7nM+rw+C4zwft4s3MNIMIBjoSQdKghZJ2M7VvnqprpZY/IeUnJ0Ub5K
-         YOQ3xY/BfNR3bPRGlvAwU+VJ7Gyec+MvRoA1p7KS/6/FdmjrQA0dGin73UNpUGm/yJe7
-         QcywcJbLvtN0RKUdwsgCAnFyCeqN7WBKLKQB+EVj3uF9KYanxel+7seSdz7TQZQAl545
-         eOOzvPiFnBP4mhEStm7rTzy/n8KMYcDzdkPimqJwiqDFc/VDDQ6bHp8NRk71rzdvXutY
-         kd0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUK6QqVVQk1dIdrh+F49YsFm0OZQUamITLfGoQjXJkdf3ffkKv3a3mmNj+q4DYfuBRZ1um0w7/Q9FbX@vger.kernel.org, AJvYcCXKV86X27qPQCKYWvIHoD3YNNMk1+LojTGMAKehy5i9R1YrPdEIIQ7xF/Pc0b9NS5a95f8kqqJ9gcY9MDdz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwjNUYYiS+hujeK867TUZpBpbHp0i7urQVs8/BA+wYy8osbXjFf
-	I6guJxxa18WT9eNRAzO4YRTcUBDaRLIq5LapbtZsoHmaACEeYNyO
-X-Google-Smtp-Source: AGHT+IF2iogTKpcc4OC3wX2AKFC19wwkglyqmU4gozQpOj4E0scTjZJgjLmWS2b6wIO27RM0B0DA3Q==
-X-Received: by 2002:a05:6a00:1990:b0:717:8b4e:98ad with SMTP id d2e1a72fcca58-71c6352f3demr2763841b3a.0.1727590243221;
-        Sat, 28 Sep 2024 23:10:43 -0700 (PDT)
-Received: from localhost.localdomain ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6db2b974bsm4269584a12.34.2024.09.28.23.10.38
+        bh=bxg86KR6sOyXP7avilmE6FsFPoosRZPYDwPpN3nt2Uc=;
+        b=akgnYGcYZliiw3Zf2nn9Wm6qwff7zn4G8HTwFKXmIHiOb+z9BNXMe7nDeIpYdcQaxk
+         7ySJahFJGSyFj1EWjOyiUXsAJ6xXos9er8CYX31mL3/lcpxYSHL7aMDkcADPvOqeIVQS
+         fOWx28TMQsJ6AOcfsrk/1DJ8CQJkJU4UmJ6e0gdMEctnlvj9NZBnR4mkM0aK/kcM/DCF
+         FksP22HhYgSklr1vclO1W7iep+D3MhqJ6iclp0GU/xNPyRkaAEmnolZ+NBDJUNrm/9V3
+         qZlJT5dDjbtrXbCeGbHZVn0BpbHG0zzQolIe8ZUTPpDJcnoQdJTHU1johcJQlGubOGv6
+         YX8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUXfep4AEVH0635wFouqz+FLsk1ktvHEDnXQr77RTPPXrnZ+/KWTPDivc2+JYvxle+RpG9KaVrYbVHn@vger.kernel.org, AJvYcCW8gGq/wpOOpty/sGfYpPk/JHNT4Dpqc5FFygE2u8HIhNqv7NoSTO1pX4npo0YfUBVwD0lJBS9If5j+@vger.kernel.org, AJvYcCWrmjGiZ/F/gUQTSCH45O3TYRFe+qyaNQXjfBzhXhMVjWVB5qtOmrpZpuz6mqHZ/dmJ5y/zlTQyL6MjZaUc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxgQqtP4SxBCTk2TTuzxwi/r6kS8MbsSKyFyj3n31zhWzB/PeOl
+	HMjCObEP+lmtzqbTD6YsAPJMIVaGA3v3YyqfWB55gl/qaiXesWNr
+X-Google-Smtp-Source: AGHT+IHnOei7oW47GqQ4k3VZSvkF4bqNfH1Cv9JrR9elGwyRf8ai7bXn1hMNSk4j4aZ424fYn3rplg==
+X-Received: by 2002:a17:902:f691:b0:206:ae88:417f with SMTP id d9443c01a7336-20b367ca60bmr151796385ad.6.1727595496728;
+        Sun, 29 Sep 2024 00:38:16 -0700 (PDT)
+Received: from Emma ([2401:4900:1c97:3972:5054:ff:fe53:2787])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37e577edsm35910455ad.263.2024.09.29.00.38.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 28 Sep 2024 23:10:42 -0700 (PDT)
-From: Frank Wang <frawang.cn@gmail.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	heiko@sntech.de
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
+        Sun, 29 Sep 2024 00:38:16 -0700 (PDT)
+Date: Sun, 29 Sep 2024 07:22:37 +0000
+From: Karan Sanghavi <karansanghvi98@gmail.com>
+To: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
 	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	william.wu@rock-chips.com,
-	tim.chen@rock-chips.com,
-	frank.wang@rock-chips.com
-Subject: [PATCH v4 3/3] phy: rockchip: inno-usb2: Add usb2 phys support for rk3576
-Date: Sun, 29 Sep 2024 14:10:25 +0800
-Message-ID: <20240929061025.3704-3-frawang.cn@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240929061025.3704-1-frawang.cn@gmail.com>
-References: <20240929061025.3704-1-frawang.cn@gmail.com>
+	Shuah Khan <skhan@linuxfoundation.org>,
+	Anup <anupnewsmail@gmail.com>
+Subject: [PATCH] dt-bindings: spi: Add bcm2835-aux-spi.yaml file.
+Message-ID: <ZvkAPUoa96GHPnZE@Emma>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 
-From: William Wu <william.wu@rock-chips.com>
+Converted the brcm,bcm2835-aux-spi.txt file to
+its respective yaml file format.
 
-The RK3576 SoC has two independent USB2.0 PHYs, and each PHY has
-one port. This adds device specific data for it.
-
-Signed-off-by: William Wu <william.wu@rock-chips.com>
-Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
 ---
-Changelog:
-v4:
- - split the bulk clock management as a new patch, and this just leave
-   adding rk3576-specific data.
 
-v3:
- - amend the commit log adds clocks converting.
- - retrieve the clock by "clks.id" in *_clk480m_register() function.
+While running
+make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb,
+I encountered an error related to the compatible property
+for brcm,bcm2835-aux-spi. To resolve this, I converted the
+text file to a YAML binding file and checked it with
 
-v2:
- - no changes.
+make dt_binding_check DT_SCHEMA_FILES=brcm,bcm2835-aux-spi.yaml
 
-v1:
- - https://patchwork.kernel.org/project/linux-phy/patch/20240923025326.10467-2-frank.wang@rock-chips.com/
+and
 
+make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb
 
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 103 ++++++++++++++++++
- 1 file changed, 103 insertions(+)
+and generates no error.
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index ad3e65dc6aa4..629f71e7cd1b 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -1524,6 +1524,30 @@ static int rk3128_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- 				BIT(2) << BIT_WRITEABLE_SHIFT | 0);
- }
- 
-+static int rk3576_usb2phy_tuning(struct rockchip_usb2phy *rphy)
-+{
-+	int ret;
-+	u32 reg = rphy->phy_cfg->reg;
+However, I have a question regarding the cs-gpios property.
+The BCM2711 datasheet mentions that each Universal SPI
+Master has 3 independent chip selects. I’m wondering
+if this means these chip select (CS) pins are native,
+or if we still need to attach GPIOs to them.
+If GPIOs are required for these 3 CS pins,
+does that mean we also need to include them in the
+device tree schema? and also as arequired property in
+binding?
+
+ .../bindings/spi/brcm,bcm2835-aux-spi.txt     | 38 -----------
+ .../bindings/spi/brcm,bcm2835-aux-spi.yaml    | 66 +++++++++++++++++++
+ 2 files changed, 66 insertions(+), 38 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
+ create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+
+diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
+deleted file mode 100644
+index d7668f41b03b..000000000000
+--- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
++++ /dev/null
+@@ -1,38 +0,0 @@
+-Broadcom BCM2835 auxiliary SPI1/2 controller
+-
+-The BCM2835 contains two forms of SPI master controller, one known simply as
+-SPI0, and the other known as the "Universal SPI Master"; part of the
+-auxiliary block. This binding applies to the SPI1/2 controller.
+-
+-Required properties:
+-- compatible: Should be "brcm,bcm2835-aux-spi".
+-- reg: Should contain register location and length for the spi block
+-- interrupts: Should contain shared interrupt of the aux block
+-- clocks: The clock feeding the SPI controller - needs to
+-	  point to the auxiliary clock driver of the bcm2835,
+-	  as this clock will enable the output gate for the specific
+-	  clock.
+-- cs-gpios: the cs-gpios (native cs is NOT supported)
+-	    see also spi-bus.txt
+-
+-Example:
+-
+-spi1@7e215080 {
+-	compatible = "brcm,bcm2835-aux-spi";
+-	reg = <0x7e215080 0x40>;
+-	interrupts = <1 29>;
+-	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	cs-gpios = <&gpio 18>, <&gpio 17>, <&gpio 16>;
+-};
+-
+-spi2@7e2150c0 {
+-	compatible = "brcm,bcm2835-aux-spi";
+-	reg = <0x7e2150c0 0x40>;
+-	interrupts = <1 29>;
+-	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	cs-gpios = <&gpio 43>, <&gpio 44>, <&gpio 45>;
+-};
+diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+new file mode 100644
+index 000000000000..4c24cf2fe214
+--- /dev/null
++++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
+@@ -0,0 +1,66 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/spi/brcm,bcm2835-aux-spi.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	/* Deassert SIDDQ to power on analog block */
-+	ret = regmap_write(rphy->grf, reg + 0x0010, GENMASK(29, 29) | 0x0000);
-+	if (ret)
-+		return ret;
++title: Broadcom BCM2835 Auxiliary SPI1/2 Controller
 +
-+	/* Do reset after exit IDDQ mode */
-+	ret = rockchip_usb2phy_reset(rphy);
-+	if (ret)
-+		return ret;
++maintainers:
++  - Karan Sanghavi <karansanghvi98@gmail.com>
 +
-+	/* HS DC Voltage Level Adjustment 4'b1001 : +5.89% */
-+	ret |= regmap_write(rphy->grf, reg + 0x000c, GENMASK(27, 24) | 0x0900);
++description: |
++  The BCM2835 contains two forms of SPI master controller. One is known simply as
++  SPI0, and the other as the "Universal SPI Master," part of the auxiliary block.
++  This binding applies to the SPI1 and SPI2 auxiliary controllers.
 +
-+	/* HS Transmitter Pre-Emphasis Current Control 2'b10 : 2x */
-+	ret |= regmap_write(rphy->grf, reg + 0x0010, GENMASK(20, 19) | 0x0010);
++allOf:
++  - $ref: spi-controller.yaml#
 +
-+	return ret;
-+}
++properties:
++  compatible:
++    enum:
++      - brcm,bcm2835-aux-spi
++    description: Broadcom BCM2835 Auxiliary SPI controller for SPI1 and SPI2.
 +
- static int rk3588_usb2phy_tuning(struct rockchip_usb2phy *rphy)
- {
- 	int ret;
-@@ -1952,6 +1976,84 @@ static const struct rockchip_usb2phy_cfg rk3568_phy_cfgs[] = {
- 	{ /* sentinel */ }
- };
- 
-+static const struct rockchip_usb2phy_cfg rk3576_phy_cfgs[] = {
-+	{
-+		.reg = 0x0,
-+		.num_ports	= 1,
-+		.phy_tuning	= rk3576_usb2phy_tuning,
-+		.clkout_ctl	= { 0x0008, 0, 0, 1, 0 },
-+		.port_cfgs	= {
-+			[USB2PHY_PORT_OTG] = {
-+				.phy_sus	= { 0x0000, 8, 0, 0, 0x1d1 },
-+				.bvalid_det_en	= { 0x00c0, 1, 1, 0, 1 },
-+				.bvalid_det_st	= { 0x00c4, 1, 1, 0, 1 },
-+				.bvalid_det_clr = { 0x00c8, 1, 1, 0, 1 },
-+				.ls_det_en	= { 0x00c0, 0, 0, 0, 1 },
-+				.ls_det_st	= { 0x00c4, 0, 0, 0, 1 },
-+				.ls_det_clr	= { 0x00c8, 0, 0, 0, 1 },
-+				.disfall_en	= { 0x00c0, 6, 6, 0, 1 },
-+				.disfall_st	= { 0x00c4, 6, 6, 0, 1 },
-+				.disfall_clr	= { 0x00c8, 6, 6, 0, 1 },
-+				.disrise_en	= { 0x00c0, 5, 5, 0, 1 },
-+				.disrise_st	= { 0x00c4, 5, 5, 0, 1 },
-+				.disrise_clr	= { 0x00c8, 5, 5, 0, 1 },
-+				.utmi_avalid	= { 0x0080, 1, 1, 0, 1 },
-+				.utmi_bvalid	= { 0x0080, 0, 0, 0, 1 },
-+				.utmi_ls	= { 0x0080, 5, 4, 0, 1 },
-+			}
-+		},
-+		.chg_det = {
-+			.cp_det		= { 0x0080, 8, 8, 0, 1 },
-+			.dcp_det	= { 0x0080, 8, 8, 0, 1 },
-+			.dp_det		= { 0x0080, 9, 9, 1, 0 },
-+			.idm_sink_en	= { 0x0010, 5, 5, 1, 0 },
-+			.idp_sink_en	= { 0x0010, 5, 5, 0, 1 },
-+			.idp_src_en	= { 0x0010, 14, 14, 0, 1 },
-+			.rdm_pdwn_en	= { 0x0010, 14, 14, 0, 1 },
-+			.vdm_src_en	= { 0x0010, 7, 6, 0, 3 },
-+			.vdp_src_en	= { 0x0010, 7, 6, 0, 3 },
-+		},
-+	},
-+	{
-+		.reg = 0x2000,
-+		.num_ports	= 1,
-+		.phy_tuning	= rk3576_usb2phy_tuning,
-+		.clkout_ctl	= { 0x2008, 0, 0, 1, 0 },
-+		.port_cfgs	= {
-+			[USB2PHY_PORT_OTG] = {
-+				.phy_sus	= { 0x2000, 8, 0, 0, 0x1d1 },
-+				.bvalid_det_en	= { 0x20c0, 1, 1, 0, 1 },
-+				.bvalid_det_st	= { 0x20c4, 1, 1, 0, 1 },
-+				.bvalid_det_clr = { 0x20c8, 1, 1, 0, 1 },
-+				.ls_det_en	= { 0x20c0, 0, 0, 0, 1 },
-+				.ls_det_st	= { 0x20c4, 0, 0, 0, 1 },
-+				.ls_det_clr	= { 0x20c8, 0, 0, 0, 1 },
-+				.disfall_en	= { 0x20c0, 6, 6, 0, 1 },
-+				.disfall_st	= { 0x20c4, 6, 6, 0, 1 },
-+				.disfall_clr	= { 0x20c8, 6, 6, 0, 1 },
-+				.disrise_en	= { 0x20c0, 5, 5, 0, 1 },
-+				.disrise_st	= { 0x20c4, 5, 5, 0, 1 },
-+				.disrise_clr	= { 0x20c8, 5, 5, 0, 1 },
-+				.utmi_avalid	= { 0x2080, 1, 1, 0, 1 },
-+				.utmi_bvalid	= { 0x2080, 0, 0, 0, 1 },
-+				.utmi_ls	= { 0x2080, 5, 4, 0, 1 },
-+			}
-+		},
-+		.chg_det = {
-+			.cp_det		= { 0x2080, 8, 8, 0, 1 },
-+			.dcp_det	= { 0x2080, 8, 8, 0, 1 },
-+			.dp_det		= { 0x2080, 9, 9, 1, 0 },
-+			.idm_sink_en	= { 0x2010, 5, 5, 1, 0 },
-+			.idp_sink_en	= { 0x2010, 5, 5, 0, 1 },
-+			.idp_src_en	= { 0x2010, 14, 14, 0, 1 },
-+			.rdm_pdwn_en	= { 0x2010, 14, 14, 0, 1 },
-+			.vdm_src_en	= { 0x2010, 7, 6, 0, 3 },
-+			.vdp_src_en	= { 0x2010, 7, 6, 0, 3 },
-+		},
-+	},
-+	{ /* sentinel */ }
-+};
++  reg:
++    maxItems: 1
 +
- static const struct rockchip_usb2phy_cfg rk3588_phy_cfgs[] = {
- 	{
- 		.reg = 0x0000,
-@@ -2123,6 +2225,7 @@ static const struct of_device_id rockchip_usb2phy_dt_match[] = {
- 	{ .compatible = "rockchip,rk3366-usb2phy", .data = &rk3366_phy_cfgs },
- 	{ .compatible = "rockchip,rk3399-usb2phy", .data = &rk3399_phy_cfgs },
- 	{ .compatible = "rockchip,rk3568-usb2phy", .data = &rk3568_phy_cfgs },
-+	{ .compatible = "rockchip,rk3576-usb2phy", .data = &rk3576_phy_cfgs },
- 	{ .compatible = "rockchip,rk3588-usb2phy", .data = &rk3588_phy_cfgs },
- 	{ .compatible = "rockchip,rv1108-usb2phy", .data = &rv1108_phy_cfgs },
- 	{}
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: Reference to the auxiliary clock driver for the BCM2835.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/bcm2835-aux.h>
++    spi@7e215080 {
++        compatible = "brcm,bcm2835-aux-spi";
++        reg = <0x7e215080 0x40>;
++        interrupts = <1 29>;
++        clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
++
++  - |
++    #include <dt-bindings/clock/bcm2835-aux.h>
++    spi@7e2150c0 {
++        compatible = "brcm,bcm2835-aux-spi";
++        reg = <0x7e2150c0 0x40>;
++        interrupts = <1 29>;
++        clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
++        #address-cells = <1>;
++        #size-cells = <0>;
++    };
++
 -- 
-2.34.1
+2.43.0
 
 
