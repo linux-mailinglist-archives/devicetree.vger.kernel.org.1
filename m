@@ -1,157 +1,118 @@
-Return-Path: <devicetree+bounces-106154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106155-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D4E29894B9
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 12:08:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C3AC9894D1
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 12:39:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1E44284BB0
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 10:08:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CF5BA2851D9
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 10:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09EA914F100;
-	Sun, 29 Sep 2024 10:08:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102CB143C49;
+	Sun, 29 Sep 2024 10:38:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b="SXNfqtJe";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WgBBXh4d"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6Xe5zQc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a2-smtp.messagingengine.com (fhigh-a2-smtp.messagingengine.com [103.168.172.153])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D1A14B970;
-	Sun, 29 Sep 2024 10:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A6C3C00;
+	Sun, 29 Sep 2024 10:38:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727604513; cv=none; b=dHqAGeimeiauDMOlBtpI8W+s0COFe7r3fyDam67Vtj/pLfqA6uMj6fTxoaupg+bwJ+sRth50sNAc+P4aeI8FusbZHvNO0LXhhagHuDJdty/DSGQcqL9YhoukuSMih+yRX/4bf01cMZJu7bzBfFebKdwSEJBUrDoGfFT03Rd2FPQ=
+	t=1727606336; cv=none; b=S/7xk1DEIfvhExXvESv9C4R/62FaPCeoI1r8wDbbo7sWLQdCxFvRkOopbOk/YAw0r/Ci4PxSTdhvY4ul/vN7v5B4xyQWfdRLRoKVU2kFK24Pq4KkuSlq48wJHNAK+jz0Zr0nfEy4h+a/F1GaRVBO8tehNrSjJ/8roTzCJt9yWeY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727604513; c=relaxed/simple;
-	bh=0caErVZPlpzndpHmj+voRZvMX3al5mRLBGXESVLHSSQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RssVOjUaMpQ6r1iEo69jml2Augg6XIOr3ct9EVCx2zrVvF9Ydqnj6fYo/GkxEEw5VidnDrH3j4WrE3JplU8z7MaFPzZUO2NPKkQYo/Elwm342m61G/BDCmcvWf20fiHkFord7FeQCZEn7lWFRR0aE4VgId1LUuLaN/4oD2u5ZPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com; spf=pass smtp.mailfrom=testtoast.com; dkim=pass (2048-bit key) header.d=testtoast.com header.i=@testtoast.com header.b=SXNfqtJe; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WgBBXh4d; arc=none smtp.client-ip=103.168.172.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=testtoast.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=testtoast.com
-Received: from phl-compute-04.internal (phl-compute-04.phl.internal [10.202.2.44])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id B39B311402B9;
-	Sun, 29 Sep 2024 06:08:31 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-04.internal (MEProxy); Sun, 29 Sep 2024 06:08:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=testtoast.com;
-	 h=cc:cc:content-transfer-encoding:content-type:date:date:from
-	:from:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=fm2; t=1727604511; x=
-	1727690911; bh=pz+twYS3K1z8m9MxHiKtXSoqES3mtjf9wkrxGDpITqs=; b=S
-	XNfqtJewp84yXFraiGlUQYjljI//PHhEuR95vdGQ12I/4UvoN9X55ratDt2LMY8E
-	g9+GePUvtKir2g9Sm9mCmZ4WVRgy1bnssHwbkmBtjAO0X2s52shGGsJMdUWHebIA
-	/B5iAO5iuwK4Y33Wmx/PgNnLPRTZXjAdG1yuKgU7CoDrr/AvwsRDWlMik5n+ONzf
-	i9ZTHwjEwUsjWoI3RNDVukyawwYaO5LAD41bwJJjrV5bDWc5hqtvo5g4NSRVyfa/
-	1DnhL54XjdrqS33K8i/dke8NB/p+SAE+gcq1Igx5Lj+v8pwCL33n6qPr+LtRGCuC
-	mNP9jHEgHdIUXaBqr7mPw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:date:date:feedback-id:feedback-id:from:from
-	:in-reply-to:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1727604511; x=
-	1727690911; bh=pz+twYS3K1z8m9MxHiKtXSoqES3mtjf9wkrxGDpITqs=; b=W
-	gBBXh4dCjZEdIrqzcKaVAci7dLpHyna7vu9b6R0z8n66DC3laRlZ1AZtdWde0Yoi
-	FEuj2UovcqyaFwVb6PeE3S6APcJUgm1ScPSQiR642/9u6592rYnmG6G2YFoA3AOW
-	1yLKiRQjixgcDsJKq0Kaf0YC6RLWl/NtNAhAOi4jCIKxPeAqVv3KC1wxXaUy0OdQ
-	Kjrdyl2w0TukqBDc8XgcD9C+3UYIGhHBMTmthEhfdIEG0BoUPHpawaawAwHRejfV
-	LuqVMbYZhibHReFwP7SETd96fVTJ3zwJ0yA1sqtlaqh/yFF0PsHLYBpUWGJunEjG
-	2A3jr8Alcj14anwk5YIYg==
-X-ME-Sender: <xms:Hyf5ZvFqLz8S0Fc-BkeHbnaTmWWk9PQNNbWWsSkGF1yFXxRncgO_aA>
-    <xme:Hyf5ZsUqZ115lgurNo1WBUvvaOAR3fKWU9fIL94N5bpNVFJj0gPui6b8Tta88N8Zo
-    VIuDkTWg0lrCnTwzA>
-X-ME-Received: <xmr:Hyf5ZhKMVrA9MIc-OzS7BBMNgURTg5hNxQtXaZ4SZSjdtqzo3xUhVYgwQxFqJiqcVdhrn-UPpYmIChu9_ZMjhUqLGV37-vtoh7NwomW_JkV6BuOi>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddufedgvdeiucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhephffvvefufffkofgjfhgggfestdekredtredttden
-    ucfhrhhomheptfihrghnucghrghlkhhlihhnuceorhihrghnsehtvghsthhtohgrshhtrd
-    gtohhmqeenucggtffrrghtthgvrhhnpeffheeiffegtdfgffejteevgeefkeelieelkeev
-    ueetffetteduffevgeeiieehteenucevlhhushhtvghrufhiiigvpedunecurfgrrhgrmh
-    epmhgrihhlfhhrohhmpehrhigrnhesthgvshhtthhorghsthdrtghomhdpnhgspghrtghp
-    thhtohepudefpdhmohguvgepshhmthhpohhuthdprhgtphhtthhopehlghhirhgufihooh
-    gusehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghrohhonhhivgeskhgvrhhnvghlrdho
-    rhhgpdhrtghpthhtohepphgvrhgvgiesphgvrhgvgidrtgiipdhrtghpthhtohepthhifi
-    grihesshhushgvrdgtohhmpdhrtghpthhtohepfigvnhhssegtshhivgdrohhrghdprhgt
-    phhtthhopehjvghrnhgvjhdrshhkrhgrsggvtgesghhmrghilhdrtghomhdprhgtphhtth
-    hopehsrghmuhgvlhesshhhohhllhgrnhgurdhorhhgpdhrtghpthhtoheplhhinhhugidq
-    shhouhhnugesvhhgvghrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqd
-    grrhhmqdhkvghrnhgvlheslhhishhtshdrihhnfhhrrgguvggrugdrohhrgh
-X-ME-Proxy: <xmx:Hyf5ZtE7LdhlwKjU-QqapCchWr1k2Aoqua1wXAbSJ03EaQ7I3xGYeQ>
-    <xmx:Hyf5ZlUC8E2f9PIuopeJ-LCTusmk4CqUMQ2JxvxlhvTQ5SMbMOApKA>
-    <xmx:Hyf5ZoP4iy75HM98llTlFnRUoey3z0-vCaht2JqSfeaPCd9-mGp0zQ>
-    <xmx:Hyf5Zk0TQLgOODMutXc9_ZixS4pKob3xRrbBAnx6oYJp9TiaAtUonw>
-    <xmx:Hyf5ZqWB7nYSKkfkJ5a_YpQ95jCz8hMjt4rRiTiXSUai48SUjMS0gRp5>
-Feedback-ID: idc0145fc:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 29 Sep 2024 06:08:27 -0400 (EDT)
-From: Ryan Walklin <ryan@testtoast.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>
-Cc: linux-sound@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	Ryan Walklin <ryan@testtoast.com>
-Subject: [PATCH 6/6] arm64: dts: allwinner: h616: Add audio codec node
-Date: Sun, 29 Sep 2024 23:06:07 +1300
-Message-ID: <20240929100750.860329-7-ryan@testtoast.com>
-X-Mailer: git-send-email 2.46.1
-In-Reply-To: <20240929100750.860329-1-ryan@testtoast.com>
-References: <20240929100750.860329-1-ryan@testtoast.com>
+	s=arc-20240116; t=1727606336; c=relaxed/simple;
+	bh=YBpyBquEfJujqvJ1DdB/62ACgpbbhxGwQxCwC79CJUI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=eEnC2cZ+p2AgnvL33+BPzS+TkDA4lr44WNLdfM6jOiUx7ULHvL9KSYoxvqfU3FI/3pZCU2CGms4sqT/xSLwJVfFt3F8WiAGIKzjq5LnSemqigbvujCMh9/g3gsoZFJbzQAYExmthAEThaYwSuuDjoxES4EShbAhfhUC7wIsxu/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6Xe5zQc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23050C4CEC5;
+	Sun, 29 Sep 2024 10:38:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727606335;
+	bh=YBpyBquEfJujqvJ1DdB/62ACgpbbhxGwQxCwC79CJUI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=U6Xe5zQcSNpJrai5WSdTaQKuLyH7K2x6JGZcC5KMeS2zNOVKIWhWbBkGLoepwwbNa
+	 A1+UE7ivRiGEHW1zDQPswCi+jD/WBXSZpb5TW75WN0day5MI87xrL+0nXMhZIhOxxg
+	 ceQFChQ33EIeJ5VdhgO2b7/TypsSXN/gzMcMFBY+IJj7wHFMF2TMoRC3Ic/EgsEgRU
+	 u8s+c4LLWd64A4nm2UlEb6ueVE8SowQF3WSevQLieCni2xEGTvis6EDR51BPwdIHbq
+	 cYonGyMepbHWJXtHysY6KJ1vCqqjJfFQittmG0HYzgBhycaRSjb8Bk5qGzNLugWrFc
+	 X7mxNxEkzNlNg==
+Date: Sun, 29 Sep 2024 11:38:48 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
+ Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ dlechner@baylibre.com
+Subject: Re: [PATCH v3 01/10] iio: backend: adi-axi-dac: fix wrong register
+ bitfield
+Message-ID: <20240929113848.6d3affb2@jic23-huawei>
+In-Reply-To: <c247b5dab409475633ea8dac5ad23fb75aecb1ef.camel@gmail.com>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-1-a17b9b3d05d9@baylibre.com>
+	<c247b5dab409475633ea8dac5ad23fb75aecb1ef.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-Now that the sun4i codec driver supports the H616, add a node in the
-device tree for it.
+On Fri, 20 Sep 2024 14:45:42 +0200
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-Signed-off-by: Ryan Walklin <ryan@testtoast.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+> On Thu, 2024-09-19 at 11:19 +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> >=20
+> > Fix ADI_DAC_R1_MODE of AXI_DAC_REG_CNTRL_2.
+> >=20
+> > Both generic DAC and ad3552r DAC IPs docs are reporting
+> > bit 5 for it.
+> >=20
+> > https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
+> > https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-index e88c1fbac6acc..006fdb7e7e0ae 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h616.dtsi
-@@ -645,6 +645,21 @@ spdif: spdif@5093000 {
- 			status = "disabled";
- 		};
- 
-+		codec: codec@05096000 {
-+			#sound-dai-cells = <0>;
-+			compatible = "allwinner,sun50i-h616-codec";
-+			reg = <0x05096000 0x31c>;
-+			interrupts = <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_AUDIO_CODEC>,
-+				 <&ccu CLK_AUDIO_CODEC_1X>,
-+				 <&ccu CLK_AUDIO_CODEC_4X>;
-+			clock-names = "apb", "codec", "audio-codec-4x";
-+			resets = <&ccu RST_BUS_AUDIO_CODEC>;
-+			dmas = <&dma 6>;
-+			dma-names = "tx";
-+			status = "disabled";
-+		};
-+
- 		gpadc: adc@5070000 {
- 			compatible = "allwinner,sun50i-h616-gpadc",
- 				     "allwinner,sun20i-d1-gpadc";
--- 
-2.46.1
+Can also turn these into Link: tags though that isn't particularly
+important for reference links like these.  If you do, they are
+part of the main tags block so no blank line between them
+and your SoB.
+
+> >=20
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > --- =20
+>=20
+> Ouch... Missing Fixes tag. With that,
+>=20
+> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+>=20
+> > =C2=A0drivers/iio/dac/adi-axi-dac.c | 2 +-
+> > =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-da=
+c.c
+> > index 0cb00f3bec04..b8b4171b8043 100644
+> > --- a/drivers/iio/dac/adi-axi-dac.c
+> > +++ b/drivers/iio/dac/adi-axi-dac.c
+> > @@ -46,7 +46,7 @@
+> > =C2=A0#define AXI_DAC_REG_CNTRL_1		0x0044
+> > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_SYNC			BIT(0)
+> > =C2=A0#define AXI_DAC_REG_CNTRL_2		0x0048
+> > -#define	=C2=A0 ADI_DAC_R1_MODE		BIT(4)
+> > +#define	=C2=A0 ADI_DAC_R1_MODE		BIT(5)
+> > =C2=A0#define AXI_DAC_DRP_STATUS		0x0074
+> > =C2=A0#define=C2=A0=C2=A0 AXI_DAC_DRP_LOCKED		BIT(17)
+> > =C2=A0/* DAC Channel controls */
+> >  =20
+>=20
 
 
