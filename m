@@ -1,249 +1,114 @@
-Return-Path: <devicetree+bounces-106113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07E8D989379
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 09:38:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED539989389
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 09:46:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 84E17B20D7A
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 07:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A43661F233C8
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 07:46:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6833C13959D;
-	Sun, 29 Sep 2024 07:38:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664217E583;
+	Sun, 29 Sep 2024 07:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LEbv6UPB"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="GAT1U+L3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D13271F95A;
-	Sun, 29 Sep 2024 07:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9F6918C3E;
+	Sun, 29 Sep 2024 07:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727595499; cv=none; b=ccfEjtcRQLlDondZsWQLJte9UMG/oB/QYUsA9h4Nrvs/7f++eiF9zbL0RzpK0pPKJnS94vSHUNKlNz04D41xw3s2ZSrcZcoiIOqqt76Z8Y5zp3RIFUonusZYTO7LoicVt3PJxk1amGlzTB5VQ4SgWdXINfKOrEGqphA70gbHky0=
+	t=1727595982; cv=none; b=nF6k5BeOzIy6OkoDfM1TlJqs+U/VsT71UbhAQ/UihxR+vtWGn2lzzLrNfNDOlwfjgBUqXCkfp2ofstAsIufodsfnXqpVOn995lDoFQ+CAPGVyOtp12MWs/smv0+uiT1enTQbvOs9F/il/j+U84jJZWwX4FsZqwPT0HmcGe3xCUk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727595499; c=relaxed/simple;
-	bh=uZqm/vVvL62S3Ei5w3HeKSAwjQt1+NE5f4nmgTdVDDs=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=X9w2O1yHQqmTiUTJKOz2NmgaIQ7ub1HIvWoACbo2ES28ZxMpE4k/gnNXEe1jeXobAesuhGXMsagyc7Lv6CxTAekkPcv4JTiiWtVfnPSz8uEsY0g0JMz/LYVtG7zNmHNTGvRiQlwPzFmbD0Gy4pmHIhLFCOw3yJqOMUDjxpt5M80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LEbv6UPB; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-2054feabfc3so32385505ad.1;
-        Sun, 29 Sep 2024 00:38:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727595497; x=1728200297; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bxg86KR6sOyXP7avilmE6FsFPoosRZPYDwPpN3nt2Uc=;
-        b=LEbv6UPBLVPzr1HT9FX/rAjAE24c5PnqpAQ8w+PY5h/Wbf+8etQuKfLPtn3a7FukYH
-         LHI8L0rfeggFNkfliZvGaFvzJc4NtFM47yAK9ahYNeCb0p9W1kBKu/77QNwGpsMwm39k
-         H+paBo896f4NM888YqDHK2rmWHREiTGsjMiwOsPm62F7dS9WhlzlgR33+riFlSO9hODy
-         Jd3nNx3UItys1cfYrgDhTWU9aBU7eK3MvXVHPIYcH4PTftJMKMGWR4YDhl07hdizjhLu
-         UObiQpOmfQX4bEep4C9JnFOnCQYJKXbHbO2ruqa0bA8e7WJxD7G0rWozNVLr+7apc6M+
-         udyA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727595497; x=1728200297;
-        h=content-transfer-encoding:content-disposition:mime-version
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bxg86KR6sOyXP7avilmE6FsFPoosRZPYDwPpN3nt2Uc=;
-        b=akgnYGcYZliiw3Zf2nn9Wm6qwff7zn4G8HTwFKXmIHiOb+z9BNXMe7nDeIpYdcQaxk
-         7ySJahFJGSyFj1EWjOyiUXsAJ6xXos9er8CYX31mL3/lcpxYSHL7aMDkcADPvOqeIVQS
-         fOWx28TMQsJ6AOcfsrk/1DJ8CQJkJU4UmJ6e0gdMEctnlvj9NZBnR4mkM0aK/kcM/DCF
-         FksP22HhYgSklr1vclO1W7iep+D3MhqJ6iclp0GU/xNPyRkaAEmnolZ+NBDJUNrm/9V3
-         qZlJT5dDjbtrXbCeGbHZVn0BpbHG0zzQolIe8ZUTPpDJcnoQdJTHU1johcJQlGubOGv6
-         YX8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUXfep4AEVH0635wFouqz+FLsk1ktvHEDnXQr77RTPPXrnZ+/KWTPDivc2+JYvxle+RpG9KaVrYbVHn@vger.kernel.org, AJvYcCW8gGq/wpOOpty/sGfYpPk/JHNT4Dpqc5FFygE2u8HIhNqv7NoSTO1pX4npo0YfUBVwD0lJBS9If5j+@vger.kernel.org, AJvYcCWrmjGiZ/F/gUQTSCH45O3TYRFe+qyaNQXjfBzhXhMVjWVB5qtOmrpZpuz6mqHZ/dmJ5y/zlTQyL6MjZaUc@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgQqtP4SxBCTk2TTuzxwi/r6kS8MbsSKyFyj3n31zhWzB/PeOl
-	HMjCObEP+lmtzqbTD6YsAPJMIVaGA3v3YyqfWB55gl/qaiXesWNr
-X-Google-Smtp-Source: AGHT+IHnOei7oW47GqQ4k3VZSvkF4bqNfH1Cv9JrR9elGwyRf8ai7bXn1hMNSk4j4aZ424fYn3rplg==
-X-Received: by 2002:a17:902:f691:b0:206:ae88:417f with SMTP id d9443c01a7336-20b367ca60bmr151796385ad.6.1727595496728;
-        Sun, 29 Sep 2024 00:38:16 -0700 (PDT)
-Received: from Emma ([2401:4900:1c97:3972:5054:ff:fe53:2787])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37e577edsm35910455ad.263.2024.09.29.00.38.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Sep 2024 00:38:16 -0700 (PDT)
-Date: Sun, 29 Sep 2024 07:22:37 +0000
-From: Karan Sanghavi <karansanghvi98@gmail.com>
-To: Mark Brown <broonie@kernel.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	linux-kernel@vger.kernel.org,
-	Shuah Khan <skhan@linuxfoundation.org>,
-	Anup <anupnewsmail@gmail.com>
-Subject: [PATCH] dt-bindings: spi: Add bcm2835-aux-spi.yaml file.
-Message-ID: <ZvkAPUoa96GHPnZE@Emma>
+	s=arc-20240116; t=1727595982; c=relaxed/simple;
+	bh=vbWrw/gqCIdcm6xt/nYYymwi/IMuYpY2RklLNQyxA8A=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mb4agQ3ek2Kt2gEmmg4gMEl+88H99ybN03TbUAue6B83rPmCsbwznw4HmzJpBu/+CKtFeIBHCKdJWMfbU+vKjLhtAg9PT2uLqA8iWLTYUFEHWSdGLVTKqToZ4sNjkawkSkrXjR/UviyMredSfRJYnNGzm7LDNV6lrGqejexfXKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=GAT1U+L3; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: e7b9b79c7e3611ef8b96093e013ec31c-20240929
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=STXCOfMr88bze3bpw9ORgaFnaHy/N/l30mbf79iV5nA=;
+	b=GAT1U+L3zSmujkwyli3YM7z1A5Jfsd1Xcpyn1xXPmyO+qChA7bQDK6iTu00TRftW+F7MBiU2zGIuDFJob71lcWk9UZfIW6dnVq1XveWNoP2CJDhDjWYu+lrsBPoPorY6oAPyylNaUMry9dLRLxefB0HtJCNcKjClNlZMWqXF+AA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:dfcb7fd5-9121-44b5-bbd4-d42295a80905,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:6638ba9e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: e7b9b79c7e3611ef8b96093e013ec31c-20240929
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
+	(envelope-from <andy-ld.lu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1567370212; Sun, 29 Sep 2024 15:46:15 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 29 Sep 2024 15:46:14 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 29 Sep 2024 15:46:13 +0800
+From: Andy-ld Lu <andy-ld.lu@mediatek.com>
+To: <ulf.hansson@linaro.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<matthias.bgg@gmail.com>, <angelogioacchino.delregno@collabora.com>,
+	<wenbin.mei@mediatek.com>
+CC: <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Andy-ld Lu <andy-ld.lu@mediatek.com>
+Subject: [PATCH v2 0/2] Add mtk-sd support for MT8196
+Date: Sun, 29 Sep 2024 15:44:04 +0800
+Message-ID: <20240929074558.2076-1-andy-ld.lu@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-Converted the brcm,bcm2835-aux-spi.txt file to
-its respective yaml file format.
+There are some new features for Mediatek SoC MT8196, which include new
+command/data transmitting and receiving path (abbreviated as tx/rx), and
+two modified register settings.
 
-Signed-off-by: Karan Sanghavi <karansanghvi98@gmail.com>
+The driver code has to be adapted to implement the above changes, and the
+compatible string 'mediatek,mt8196-mmc' is added to driver and devicetree
+bindings.
+
 ---
+Changes in v2:
+- Use compatible string 'mediatek,mt8196-mmc' to replace 'mediatek,msdc-v2';
+- Remove the 'mediatek,stop-dly-sel', 'mediatek,pop-en-cnt' and 'mediatek,
+  prohibit-gate-cg' in devicetree bindings, due to SoC dependent;
+- Add 'stop_dly_sel' and 'pop_en_cnt' to the compatiblity structure for
+  different register settings;
+- The SoC's upgraded version would discard the bus design that detect source
+  clock CG when the CPU access the IP registers, so drop the related control
+  flow with 'prohibit_gate_cg' flag.
 
-While running
-make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb,
-I encountered an error related to the compatible property
-for brcm,bcm2835-aux-spi. To resolve this, I converted the
-text file to a YAML binding file and checked it with
+Link to v1:
+https://patchwork.kernel.org/patch/13812924
 
-make dt_binding_check DT_SCHEMA_FILES=brcm,bcm2835-aux-spi.yaml
+---
+Andy-ld Lu (2):
+  mmc: mtk-sd: Add support for MT8196
+  dt-bindings: mmc: mtk-sd: Add support for MT8196
 
-and
+ .../devicetree/bindings/mmc/mtk-sd.yaml       |   2 +
+ drivers/mmc/host/mtk-sd.c                     | 162 +++++++++++++++---
+ 2 files changed, 143 insertions(+), 21 deletions(-)
 
-make CHECK_DTBS=y broadcom/bcm2711-rpi-4-b.dtb
-
-and generates no error.
-
-However, I have a question regarding the cs-gpios property.
-The BCM2711 datasheet mentions that each Universal SPI
-Master has 3 independent chip selects. I’m wondering
-if this means these chip select (CS) pins are native,
-or if we still need to attach GPIOs to them.
-If GPIOs are required for these 3 CS pins,
-does that mean we also need to include them in the
-device tree schema? and also as arequired property in
-binding?
-
- .../bindings/spi/brcm,bcm2835-aux-spi.txt     | 38 -----------
- .../bindings/spi/brcm,bcm2835-aux-spi.yaml    | 66 +++++++++++++++++++
- 2 files changed, 66 insertions(+), 38 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
- create mode 100644 Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
-
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-deleted file mode 100644
-index d7668f41b03b..000000000000
---- a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.txt
-+++ /dev/null
-@@ -1,38 +0,0 @@
--Broadcom BCM2835 auxiliary SPI1/2 controller
--
--The BCM2835 contains two forms of SPI master controller, one known simply as
--SPI0, and the other known as the "Universal SPI Master"; part of the
--auxiliary block. This binding applies to the SPI1/2 controller.
--
--Required properties:
--- compatible: Should be "brcm,bcm2835-aux-spi".
--- reg: Should contain register location and length for the spi block
--- interrupts: Should contain shared interrupt of the aux block
--- clocks: The clock feeding the SPI controller - needs to
--	  point to the auxiliary clock driver of the bcm2835,
--	  as this clock will enable the output gate for the specific
--	  clock.
--- cs-gpios: the cs-gpios (native cs is NOT supported)
--	    see also spi-bus.txt
--
--Example:
--
--spi1@7e215080 {
--	compatible = "brcm,bcm2835-aux-spi";
--	reg = <0x7e215080 0x40>;
--	interrupts = <1 29>;
--	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	cs-gpios = <&gpio 18>, <&gpio 17>, <&gpio 16>;
--};
--
--spi2@7e2150c0 {
--	compatible = "brcm,bcm2835-aux-spi";
--	reg = <0x7e2150c0 0x40>;
--	interrupts = <1 29>;
--	clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
--	#address-cells = <1>;
--	#size-cells = <0>;
--	cs-gpios = <&gpio 43>, <&gpio 44>, <&gpio 45>;
--};
-diff --git a/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
-new file mode 100644
-index 000000000000..4c24cf2fe214
---- /dev/null
-+++ b/Documentation/devicetree/bindings/spi/brcm,bcm2835-aux-spi.yaml
-@@ -0,0 +1,66 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/spi/brcm,bcm2835-aux-spi.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM2835 Auxiliary SPI1/2 Controller
-+
-+maintainers:
-+  - Karan Sanghavi <karansanghvi98@gmail.com>
-+
-+description: |
-+  The BCM2835 contains two forms of SPI master controller. One is known simply as
-+  SPI0, and the other as the "Universal SPI Master," part of the auxiliary block.
-+  This binding applies to the SPI1 and SPI2 auxiliary controllers.
-+
-+allOf:
-+  - $ref: spi-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - brcm,bcm2835-aux-spi
-+    description: Broadcom BCM2835 Auxiliary SPI controller for SPI1 and SPI2.
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Reference to the auxiliary clock driver for the BCM2835.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    spi@7e215080 {
-+        compatible = "brcm,bcm2835-aux-spi";
-+        reg = <0x7e215080 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI1>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/bcm2835-aux.h>
-+    spi@7e2150c0 {
-+        compatible = "brcm,bcm2835-aux-spi";
-+        reg = <0x7e2150c0 0x40>;
-+        interrupts = <1 29>;
-+        clocks = <&aux_clocks BCM2835_AUX_CLOCK_SPI2>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+    };
-+
 -- 
-2.43.0
+2.46.0
 
 
