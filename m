@@ -1,193 +1,168 @@
-Return-Path: <devicetree+bounces-106161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E43AD9894F5
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 13:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C3B2D98950C
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 13:23:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92B7A2839B5
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 11:05:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 812FF282F78
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 11:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554C1157488;
-	Sun, 29 Sep 2024 11:05:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aqoONKPL"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4811157488;
+	Sun, 29 Sep 2024 11:23:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from szxga01-in.huawei.com (szxga01-in.huawei.com [45.249.212.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244AD566A;
-	Sun, 29 Sep 2024 11:05:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE47E130A54;
+	Sun, 29 Sep 2024 11:23:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727607945; cv=none; b=WBia0C5qZyQStdpx8MVSM3vtipfOH/++f7iuIPeTjRiS9PBS8Eg1Qu1UBfwo4s+zOF7+mHbsBnidGtdv0anxCQ0Bz3456wqQQvDA4Lcu9N0CaHnSMNUzm+MbJoRQS7V1RcG4gAmtht+pZgT67t8b+Ny/HqxEOUw5IMHbyMKqUVk=
+	t=1727609006; cv=none; b=k7Vgj8VF03OcwvZDJ7uTMXntFNk9c8pVZoC/XjoSAZLWcsDld5JeMDOuP75X9WTyTqueKCuRHR7OeoI7e+6Eqjbez+FjZe95da/K+klPRmjXdDt6SSgiETNFi9OPjj1wJuJO+LOGe8zyIjpU/AUzQtz+w+sxW/ApSKB6q+PZuRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727607945; c=relaxed/simple;
-	bh=lpNNnz2zMa2kX8OFRLZ4OPgb40TpGDY4V9dqbRspwJw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VksUGIRLbEqJytiUVFlNWV9uKKWi62hp0ia7dyvgovXZtqMGrFZ7ckmkwjc4WtJ8OA7Kg61MPb6be/DHGcihM1x3iPUvdx8xYQqVgreAOSLS4C52h98K4lu9oU6CaO9h9rNMP2HxJJLc1EdOOHxw/62gAEuTQbdsD0lb6OUZB54=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aqoONKPL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D643C4CEC5;
-	Sun, 29 Sep 2024 11:05:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727607944;
-	bh=lpNNnz2zMa2kX8OFRLZ4OPgb40TpGDY4V9dqbRspwJw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aqoONKPLIvjAPjQeVYc09GYLhmL/6XPjLyGPwXjTFZuE9onpNTxraRXpTngtO/Fh4
-	 u3LVu8sMG9g9SiVMfZ1xoA9nypAuHRJZZMdaMsx9eciRWDh5kRt0clhbkmMGbDiDkB
-	 3JDdptums7KhoxW2NGIyRZNm3lt1CeP0z2qd4Z5fK1EQNKl25SlJAud0s9d+0spr3U
-	 mw7fqaXfvyxsGDcxbCIthmHvWMUTL05p3mQtkEQa7/YpZXvoPcy/FYrx7QfTDf6EO2
-	 PBsjxHGTTqRRq5lku178K6rO3ZCp5YaPQexk5A5MChBbw1Obzdsw9noSSXLm6c1Ael
-	 2dz1oWse1Gqqw==
-Date: Sun, 29 Sep 2024 12:05:35 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH v3 05/10] iio: backend: extend features
-Message-ID: <20240929120535.6b41c37e@jic23-huawei>
-In-Reply-To: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1727609006; c=relaxed/simple;
+	bh=cb8CFz7Xajukpz5KaVfiOGq1p8u1V1JOAyfqbfpMwPM=;
+	h=Subject:To:CC:References:From:Message-ID:Date:MIME-Version:
+	 In-Reply-To:Content-Type; b=H8JXL0UqkETR5YL/uZKJSs0J45aG/nfx3RmPIkYUw3viM40bFNygK8SLfyjvhFQzr0xD3/+UjTS87AxIPVmGh6/yR5LIn4H0iy7Kv/76rAv/rkiXL1X7I6dCVKcH5Abqw9rLg0q/bVdvsghikO0p5OxGwmpxCiERujSeYtcWfNE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.19.162.254])
+	by szxga01-in.huawei.com (SkyGuard) with ESMTP id 4XGhcc5xc7zySb1;
+	Sun, 29 Sep 2024 19:22:08 +0800 (CST)
+Received: from kwepemm000013.china.huawei.com (unknown [7.193.23.81])
+	by mail.maildlp.com (Postfix) with ESMTPS id 47F7818010A;
+	Sun, 29 Sep 2024 19:23:14 +0800 (CST)
+Received: from [10.174.178.46] (10.174.178.46) by
+ kwepemm000013.china.huawei.com (7.193.23.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2507.39; Sun, 29 Sep 2024 19:23:13 +0800
+Subject: Re: [PATCH RFC 1/2] dt-bindings: mtd: ubi-volume: add
+ 'volume-is-critical' property
+To: Daniel Golle <daniel@makrotopia.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, Miquel Raynal
+	<miquel.raynal@bootlin.com>, Richard Weinberger <richard@nod.at>, Vignesh
+ Raghavendra <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, John
+ Crispin <john@phrozen.org>, <linux-mtd@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
+ <7a2e8819-ac70-4070-a731-53994c72cd79@kernel.org>
+ <Zvf_84xxhxwpPgee@makrotopia.org>
+ <18e9d774-813b-427e-9938-53853d695e18@kernel.org>
+ <ZvgU0eBEwTJ3sHuN@makrotopia.org>
+ <ad5a3811-c856-4f4b-f569-bb67a0e3f751@huawei.com>
+ <Zvkxi-6J8R1K95PQ@makrotopia.org>
+From: Zhihao Cheng <chengzhihao1@huawei.com>
+Message-ID: <3fbc4221-5967-fb9a-3cee-91cd5de2b805@huawei.com>
+Date: Sun, 29 Sep 2024 19:23:12 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.5.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <Zvkxi-6J8R1K95PQ@makrotopia.org>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: dggems704-chm.china.huawei.com (10.3.19.181) To
+ kwepemm000013.china.huawei.com (7.193.23.81)
 
-On Thu, 19 Sep 2024 11:20:01 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
-
-> From: Angelo Dureghello <adureghello@baylibre.com>
+在 2024/9/29 18:52, Daniel Golle 写道:
+> On Sun, Sep 29, 2024 at 12:03:11PM +0800, Zhihao Cheng wrote:
+>> 在 2024/9/28 22:38, Daniel Golle 写道:
+>>> On Sat, Sep 28, 2024 at 03:45:49PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 28/09/2024 15:09, Daniel Golle wrote:
+>>>>> On Sat, Sep 28, 2024 at 03:02:47PM +0200, Krzysztof Kozlowski wrote:
+>>>>>> On 28/09/2024 14:47, Daniel Golle wrote:
+>>>>>>> Add the 'volume-is-critical' boolean property which marks a UBI volume
+>>>>>>> as critical for the device to boot. If set it prevents the user from
+>>>>>>> all kinds of write access to the volume as well as from renaming it or
+>>>>>>> detaching the UBI device it is located on.
+>>>>>>>
+>>>>>>> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+>>>>>>> ---
+>>>>>>>    .../devicetree/bindings/mtd/partitions/ubi-volume.yaml   | 9 +++++++++
+>>>>>>>    1 file changed, 9 insertions(+)
+>>>>>>>
+>>>>>>> diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>>>>>> index 19736b26056b..2bd751bb7f9e 100644
+>>>>>>> --- a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>>>>>> +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+>>>>>>> @@ -29,6 +29,15 @@ properties:
+>>>>>>>        description:
+>>>>>>>          This container may reference an NVMEM layout parser.
+>>>>>>> +  volume-is-critical:
+>>>>>>> +    description: This parameter, if present, indicates that the UBI volume
+>>>>>>> +      contains early-boot firmware images or data which should not be clobbered.
+>>>>>>> +      If set, it prevents the user from renaming the volume, writing to it or
+>>>>>>> +      making any changes affecting it, as well as detaching the UBI device it is
+>>>>>>> +      located on, so direct access to the underlying MTD device is prevented as
+>>>>>>> +      well.
+>>>>>>> +    type: boolean
+>>>>>>
+>>>>>> UBI volumes are mapping to partitions 1-to-1, right? So rather I would
+>>>>>> propose to use partition.yaml - we already have read-only there with
+>>>>>> very similar description.
+>>>>>
+>>>>> No, that's not the case.
+>>>>>
+>>>>> An MTD partition can be used as UBI device. A UBI device (and hence MTD
+>>>>> partition) can host *several* UBI volumes.
+>>>>>
+>>>>> Marking the MTD partition as 'read-only' won't work, as UBI needs
+>>>>> read-write access to perform bad block relocation, scrubbing, ...
+>>>>
+>>>> OK, so not partition but read-only volume.
+>>>
+>>> +1
+>>>
+>>>>
+>>>>>
+>>>>> Also, typically not all UBI volumes on a UBI device are
+>>>>> read-only/critical but only a subset of them.
+>>>>>
+>>>>> But you are right that the description is inspired by the description
+>>>>> of the 'read-only' property in partition.yaml ;)
+>>>>>
+>>>>> I initially thought to also name the property 'read-only', just like
+>>>>> for MTD partitions. However, as the desired effect goes beyond
+>>>>> preventing write access to the volume itself, I thought it'd be
+>>>>> better to use a new name.
+>>>>
+>>>> Yeah, maybe... critical indeed covers multiple cases but is also
+>>>> subjective. For some bootloader is critical, for other bootloader still
+>>>> might be fully A/B updateable thus could be modifiable. For others, they
+>>>> want to use fw_setenv from user-space so not critical at all.
+>>>
+>>> The case I want to cover here is the bootloader itself being stored
+>>> inside a UBI volume. MediaTek's fork of ARM TrustedFirmware-A bl2 comes
+>>> with support for UBI and loads BL3 (which is TF-A BL31 and U-Boot, and
+>>> maybe OP-TEE as well) from a static UBI volume. Removing, renaming or
+>>> altering that volume results in the device not being able to boot any
+>>> more and requiring a complicated intervention (at attaching debugging
+>>> UART and using low-level recovery tool) in order to recover.
+>>
+>> Who removes/renames the 'critical' volume? I suggest to fix it in the upper
+>> layer(not in kernel). After looking through the patch 2, it seems a hack
+>> solution.
 > 
-> Extend backend features with new calls needed later on this
-> patchset from axi version of ad3552r.
+> The enemy is the user, the upper layer is between the keyboard and the
+> screen. Just like for 'read-only' MTD partitions I'm looking
+> for a similar solution for UBI which prevents the user from accidentally
+> deleting or destroying the bootloader, lets say, when logged in via SSH.
+> .
 > 
-> The follwoing calls are added:
-> 
-> iio_backend_ext_sync_enable
-> 	enable synchronize channels on external trigger
-> iio_backend_ext_sync_disable
-> 	disable synchronize channels on external trigger
-> iio_backend_ddr_enable
-> 	enable ddr bus transfer
-> iio_backend_ddr_disable
-> 	disable ddr bus transfer
-> iio_backend_set_bus_mode
-> 	select the type of bus, so that specific read / write
-> 	operations are performed accordingly
-> iio_backend_buffer_enable
-> 	enable buffer
-> iio_backend_buffer_disable
-> 	disable buffer
-> iio_backend_data_transfer_addr
-> 	define the target register address where the DAC sample
-> 	will be written.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-Hi Angelo,
-A few trivial comments inline.
 
-> ---
->  drivers/iio/industrialio-backend.c | 111 +++++++++++++++++++++++++++++++++++++
->  include/linux/iio/backend.h        |  23 ++++++++
->  2 files changed, 134 insertions(+)
-> 
-> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industrialio-backend.c
-> index 20b3b5212da7..f4802c422dbf 100644
-> --- a/drivers/iio/industrialio-backend.c
-> +++ b/drivers/iio/industrialio-backend.c
-> @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct device *dev, struct iio_backend *back)
-...
-
-> +/**
-> + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate) mode
-> + * @back: Backend device
-> + *
-> + * Disabling DDR data is generated byt the IP at rising or falling front
-
-Spell check your comments.
-
-> + * of the interface clock signal (SDR, Single Data Rate).
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ddr_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ddr_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
-				 struct fwnode_handle *fwnode)
->  {
-> diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
-> index 37d56914d485..41619b803cd6 100644
-> --- a/include/linux/iio/backend.h
-> +++ b/include/linux/iio/backend.h
-> @@ -14,12 +14,14 @@ struct iio_dev;
->  enum iio_backend_data_type {
->  	IIO_BACKEND_TWOS_COMPLEMENT,
->  	IIO_BACKEND_OFFSET_BINARY,
-> +	IIO_BACKEND_DATA_UNSIGNED,
->  	IIO_BACKEND_DATA_TYPE_MAX
->  };
->  
->  enum iio_backend_data_source {
->  	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
->  	IIO_BACKEND_EXTERNAL,
-> +	IIO_BACKEND_INTERNAL_RAMP_16BIT,
->  	IIO_BACKEND_DATA_SOURCE_MAX
->  };
->  
-> @@ -89,6 +91,13 @@ enum iio_backend_sample_trigger {
->   * @read_raw: Read a channel attribute from a backend device
->   * @debugfs_print_chan_status: Print channel status into a buffer.
->   * @debugfs_reg_access: Read or write register value of backend.
-> + * @ext_sync_enable: Enable external synchronization.
-> + * @ext_sync_disable: Disable external synchronization.
-> + * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
-> + * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
-> + * @buffer_enable: Enable data buffer.
-> + * @buffer_disable: Disable data buffer.
-
-This needs more specific text. What buffer?  I think this came
-up earlier but it needs to say something about the fact it's enabling
-or disabling the actual capture of data into the DMA buffers that
-userspace will read.
-
-> + * @data_transfer_addr: Set data address.
->   **/
->  struct iio_backend_ops {
->  	int (*enable)(struct iio_backend *back);
-> @@ -129,6 +138,13 @@ struct iio_backend_ops {
->  					 size_t len);
->  	int (*debugfs_reg_access)(struct iio_backend *back, unsigned int reg,
->  				  unsigned int writeval, unsigned int *readval);
-> +	int (*ext_sync_enable)(struct iio_backend *back);
-I know we've done it this way for existing items, but I wonder if we should
-squish down the ops slightly and have new enable/disable pairs as
-single functions.
-	int (*ext_sync_set_state)(struct iio_backend *back, bool enable);
-etc.  If nothing else reduces how many things need documentation ;)
-
-Nuno, what do you think? Worth squashing these pairs into single
-callbacks?
-
-> +	int (*ext_sync_disable)(struct iio_backend *back);
-> +	int (*ddr_enable)(struct iio_backend *back);
-> +	int (*ddr_disable)(struct iio_backend *back);
-> +	int (*buffer_enable)(struct iio_backend *back);
-> +	int (*buffer_disable)(struct iio_backend *back);
-> +	int (*data_transfer_addr)(struct iio_backend *back, u32 address);
->  };
+I guess that other partitions(excepts mtd) have the similar situations, 
+users could delete a rootfs(ext4) partition by operation the raw block 
+device. The kernel has no way to stop user doing this, what if the user 
+just want to rebuild partions?
+Marking volume as critical(by a stopper in kernel) could prevent user 
+mistakenly operating, but I think it is more important that user need to 
+know what he/she is doing.
 
