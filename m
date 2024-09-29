@@ -1,80 +1,104 @@
-Return-Path: <devicetree+bounces-106105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80FA49892BA
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 04:42:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 11C479892F2
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 05:58:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 773F51C2048F
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 02:42:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E0471C22888
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 03:58:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4345F18C31;
-	Sun, 29 Sep 2024 02:42:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74EA42231C;
+	Sun, 29 Sep 2024 03:58:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M/ZjhZTb"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="ATK5Ec35"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09D631CA9C;
-	Sun, 29 Sep 2024 02:42:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4BDF219EB
+	for <devicetree@vger.kernel.org>; Sun, 29 Sep 2024 03:58:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727577735; cv=none; b=emUfCkSpaExNTJunyPubjPT6Q9I0iG9m8skb5CqqCm8zluNUEHgyGfKB5a3v33/DP4SmgZofeqirO8L66hkP++/EknliEHOQGWHrzf5tPPRh+GTNn+7sW6+8/ErQB8EfavPE7yZudqKd0gyfN2cXsrG7HBVovjrbtSR+QENvWNU=
+	t=1727582289; cv=none; b=hhd/WUPDadrk4vJ4QJAeJJLp7RZ/FVC1uXWvIzx6BfYJExMTzKHvgRE20bvqVadnV5kpLIfJZjhwn/6TKDzVKu9rI2eeMyBMECU0/0+hag1UvJsRptOA761XvI0NclmZYizZL3AcakMqmI6ciudXjF56p2o3o8wuRKOJcZPqtcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727577735; c=relaxed/simple;
-	bh=YPx5QA97jipQMMLwP45wplNXnHwAHBwZK8de9l31+I4=;
+	s=arc-20240116; t=1727582289; c=relaxed/simple;
+	bh=aaVSKdkRgN4OaH6OgMY4XkDmYKUvaQpfJVKpqLC/iIc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=i3EnOqbrJV7TYenwHZfQj7aN3XomNQMiyFAnCghFZxb8LmzMAOGtYoH7BLyNXSHMmJWL7F9qOudunuFj04f8EbIwjZXmNjxe7jgXg0gYATjBt/54Mc02oAgEj4dhmg+DWGkTdXLp4IBrBosLyzAt1QBQlvCtO3oGAtO4X6Ua7Go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M/ZjhZTb; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727577734; x=1759113734;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YPx5QA97jipQMMLwP45wplNXnHwAHBwZK8de9l31+I4=;
-  b=M/ZjhZTbCBudGK/+mIeOdaK+ylyrhDE2zRJSBqsfgO17RuBcdLWPXHKD
-   t6xlLH1Lb6ojUB9iz7gPxPbGirV4RhmMES10Xt5JGqsyTyPH2XnQuxrFt
-   GMKDs2c1NNPHZQjpYecqn9eeRSVVZ7TzXL+3tZcY2uDarTN3c6Y1lgMmP
-   hB+KDuV6CT3xke0HxIHy8FqGWrNzzSsyO+gVnIdDVEnPBAT9oxQl1ACR1
-   Q8f+v1WkgEM+NFQBWDCEGkWNOpFwsJV3C937cBhFFU8uPGmB9kmWyRK37
-   WBN+s6i28U0crikhrtmYLAOxcccoM+I8PmVNtm6R2R/CZ1pbTx5mLUuEI
-   w==;
-X-CSE-ConnectionGUID: ygH1ZY9OTCCF+xgFMv0xpg==
-X-CSE-MsgGUID: dnH9syX+REefFvE42NwM8A==
-X-IronPort-AV: E=McAfee;i="6700,10204,11209"; a="30390405"
-X-IronPort-AV: E=Sophos;i="6.11,162,1725346800"; 
-   d="scan'208";a="30390405"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2024 19:42:13 -0700
-X-CSE-ConnectionGUID: jGBL3PlkSTqpE3bOuJ2t/g==
-X-CSE-MsgGUID: LuVzNOm3T9uf/yX7GmShIg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,162,1725346800"; 
-   d="scan'208";a="77311263"
-Received: from lkp-server01.sh.intel.com (HELO 53e96f405c61) ([10.239.97.150])
-  by fmviesa005.fm.intel.com with ESMTP; 28 Sep 2024 19:42:10 -0700
-Received: from kbuild by 53e96f405c61 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sujst-000NqV-1Z;
-	Sun, 29 Sep 2024 02:42:07 +0000
-Date: Sun, 29 Sep 2024 10:41:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, lee@kernel.org, sre@kernel.org,
-	tsbogend@alpha.franken.de
-Cc: oe-kbuild-all@lists.linux.dev, linux-i2c@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=IrJ1oprR+iV624xs7lX27AM7VHUGc5c0dOP0ocNBGLBOmzIiopHL7oC5KSDjiiM9RchVoG7ZWEKuxi21X2nxT9dAEs9dUXNyzr+YFdUaRJU7e/7E1HJT8ru23xgF6ZpVS0pofewgu+usMWy5yYLURPmRb+CE+iQaduXfv8brZkw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=ATK5Ec35; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-20b5affde14so6357495ad.3
+        for <devicetree@vger.kernel.org>; Sat, 28 Sep 2024 20:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1727582287; x=1728187087; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=1YkWfPvtAH4vWwmKQhiADe/rYImGBQg3vsS8ImzGFis=;
+        b=ATK5Ec35NTMqsRmoTJEMJnDZwRkG786hWBuzzYWq0ASYfbzSdHxX4j7S9S7Jdu+Olt
+         IbbwpBHlQ5czooZr+XuoQIYjE/D9l99Dv2A6Tv/uJFv6wT4XSb5qS9OR/Y2ysN6Jg7Rt
+         nU4ZGj30RHs9qqUY78bjB6BlC63Pm2fZGuXZFwjQe9RKPxdE15JwiU8tdItUtLo9Kfdz
+         0pWfvMor4XlZGSjgCYcJp860OHnZTipVk94paAuZn0kroT30NJB/R9tNFiPR0JCYyS49
+         yS3KtfvBFPWRS6QOIXRHY4xBMUuzzwFUMTH85RXkHYMCQm1srxRTlperJ7671ir7YRkJ
+         6PDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727582287; x=1728187087;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1YkWfPvtAH4vWwmKQhiADe/rYImGBQg3vsS8ImzGFis=;
+        b=fIInVOhNaOPYu2tFyniE0Ij8Mnyl4ADX4BrPZpGMEBbf7N1q0DRiIH/v68eKmfy1NF
+         SQD4057UAzc/90c4ug9w2hkF4Q0gxH5J9Jdh1jkJEg7g57NKWwRvV2wH+n+9ONBXaRef
+         NmP0GEeBzIq3C+ELb1oF4GzRb7gnX0T5XUC3l/QlYsFw2B9Cm2ubdCAOXggq0bc30yah
+         wLbp5Cks/BB3ust5bvN9ep3kPYLKR37GdLotVPV8m/U9BbX2LHe9gpEAqhRBUM0nKl+V
+         G3gITMv9wBTNUkHVkHRND+6/ClU5K/kGyNz3zG2y+ISiPeurJegS4HMBcq2RiX9CLgrw
+         9gnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUi7y4BcTv02ZXcO3poEWOncttQEHi5x9WrC6CREsBKyAGM95gbHM8KolJ04WSLBwy7jvR5daZGcBg3@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2+9D2ytlE+yaCGknyN2ZPSxQ5hjfQcUrm+TmQBimIQKQCzCDh
+	88siJkg8z9JKRY0WAjHTEdRzb7K1KHR5hLNWLACNN8Nwp9YGdiWROxagjQJ4SyY=
+X-Google-Smtp-Source: AGHT+IGV/f9jzts7RDAjmlHZvifv1MNEX/u7uVlkFGTpdrqBwMyA+z/HUMV+o4vjzAPi2t1Jy3PuxA==
+X-Received: by 2002:a17:903:8cc:b0:20b:5b16:b16b with SMTP id d9443c01a7336-20b5b16b29dmr54329085ad.36.1727582286974;
+        Sat, 28 Sep 2024 20:58:06 -0700 (PDT)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37e36fe7sm33519615ad.211.2024.09.28.20.58.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 28 Sep 2024 20:58:06 -0700 (PDT)
+Date: Sat, 28 Sep 2024 20:58:04 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v5 6/6] i2c: Add driver for the RTL9300 I2C controller
-Message-ID: <202409291025.P4M4O1F2-lkp@intel.com>
-References: <20240925215847.3594898-7-chris.packham@alliedtelesis.co.nz>
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] riscv: dts: thead: Add TH1520 ethernet nodes
+Message-ID: <ZvjQTD9jG12rX8Gx@x1>
+References: <20240926-th1520-dwmac-v2-0-f34f28ad1dc9@tenstorrent.com>
+ <20240926-th1520-dwmac-v2-3-f34f28ad1dc9@tenstorrent.com>
+ <3e26f580-bc5d-448e-b5bd-9b607c33702b@lunn.ch>
+ <ZvWyQo+2mwsC1HS6@x1>
+ <0b49b681-2289-412a-8969-d134ffcfb7fc@lunn.ch>
+ <ZvYJfrPx75FA1IFC@x1>
+ <5076789c-3a35-4349-9733-f5d47528c184@lunn.ch>
+ <ZvhviRUb/CitmhgQ@x1>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,45 +107,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240925215847.3594898-7-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <ZvhviRUb/CitmhgQ@x1>
 
-Hi Chris,
+On Sat, Sep 28, 2024 at 02:05:13PM -0700, Drew Fustini wrote:
+> On Fri, Sep 27, 2024 at 01:58:40PM +0200, Andrew Lunn wrote:
+> > > I tried to setup an nfs server with a rootfs on my local network. I can
+> > > mount it okay from my laptop so I think it is working okay. However, it
+> > > does not seem to work on the lpi4a [3]. It appears the rgmii-id
+> > > validation fails and the dwmac driver can not open the phy:
+> > > 
+> > >  thead-dwmac ffe7060000.ethernet eth0: Register MEM_TYPE_PAGE_POOL RxQ-0
+> > >  thead-dwmac ffe7060000.ethernet eth0: validation of rgmii-id with support \
+> > >              00,00000000,00000000,00006280 and advertisementa \
+> > > 	     00,00000000,00000000,00006280 failed: -EINVAL
+> > >  thead-dwmac ffe7060000.ethernet eth0: __stmmac_open: Cannot attach to PHY (error: -22)
+> > 
+> > Given what Emil said, i would suggest flipping the MDIO busses
+> > around. Put the PHYs on gmac1's MDIO bus, and set the pinmux so that
+> > its MDIO bus controller is connected to the outside world. Then, when
+> > gmac1 probes first, its MDIO bus will be probed at the same time, and
+> > its PHY found.
+> > 
+> > 	Andrew
+> 
+> I'm trying to configure the pinmux to have gmac1 control the mdio bus
+> but it seems I've not done so correctly. I changed pins "GMAC0_MDC" and
+> "GMAC0_MDIO" to function "gmac1" (see the patch below).
+> 
+> I don't see any errors about the dwmac or phy in the boot log [1] but
+> ultimately there is no carrier detected and the ethernet interface does
+> not come up.
+> 
+> Section "3.3.4.103 G3_MUXCFG_007" in the TH1520 System User Manual shows
+> that bits [19:16] control GMAC0_MDIO_MUX_CFG where value of 2 selects
+> GMAC1_MDIO. Similarly, bits [15:12] control GMAC0_MDC_MUX_CFG where a
+> value of 2 also selects GMAC1_MDC.
+> 
+> Emil - do you have any suggestion as to what I might be doing wrong with
+> the pinmux?
 
-kernel test robot noticed the following build warnings:
+I've been thinking about this and I don't think there is any problem on
+the LPi4a. Both Ethernet jacks work when I have the mdio bus muxed for
+gmac0 to control it. It seems to control both phy's okay.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on andi-shyti/i2c/i2c-host sre-power-supply/for-next linus/master v6.11 next-20240927]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Earlier, I tried to setup nfs root but it didn't work. I believe this is
+just due to my ignorance of how to configure it correctly. I've instead
+switched to just adding 'ip=dhcp' to the kernel command. This causes
+stmmac_open() to happen shortly after the thead-dwmac is probed for both
+gmac0 and gmac1. The phy is found for both and there are no errors.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Chris-Packham/dt-bindings-reset-syscon-reboot-Add-reg-property/20240926-060355
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20240925215847.3594898-7-chris.packham%40alliedtelesis.co.nz
-patch subject: [PATCH v5 6/6] i2c: Add driver for the RTL9300 I2C controller
-config: csky-randconfig-r111-20240929 (https://download.01.org/0day-ci/archive/20240929/202409291025.P4M4O1F2-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20240929/202409291025.P4M4O1F2-lkp@intel.com/reproduce)
+Without 'ip=dhcp', stmmac_open() is not called until around 40 seconds
+into boot when NetworkManager tries to open it. Everything works
+correctly but the delay of over 30 seconds from thead-dwmac probe to
+interface up looks odd in the logs, but I am pretty sure this is just
+due the point in time at which NetworkManager decides to bring up
+the network interfaces.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202409291025.P4M4O1F2-lkp@intel.com/
+Booting with gmac0 connected to Ethernet cable:
+https://gist.github.com/pdp7/e1a8e7666706c7d3c99b6b7a3b43f070
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/i2c/busses/i2c-rtl9300.c:321:27: sparse: sparse: symbol 'rtl9300_i2c_quirks' was not declared. Should it be static?
+Booting with gmac1 connected to Ethernet cable:
+https://gist.github.com/pdp7/8a9c2066a2c20377ec3b479213b9be4c
 
-vim +/rtl9300_i2c_quirks +321 drivers/i2c/busses/i2c-rtl9300.c
+thead-dwmac probe for gmac happens around 6 seconds. stmmac_open()
+occurs shortly after that. The interface is up by around 10 seconds
+into boot. DHCP request works okay and the interface is up and working
+once the shell is ready.
 
-   320	
- > 321	struct i2c_adapter_quirks rtl9300_i2c_quirks = {
-   322		.flags		= I2C_AQ_NO_CLK_STRETCH,
-   323		.max_read_len	= 16,
-   324		.max_write_len	= 16,
-   325	};
-   326	
+In short, I believe the dts configuration in patch 3/3 of this series
+works okay for both Ethernet ports on the LPi4a.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Thanks,
+Drew
 
