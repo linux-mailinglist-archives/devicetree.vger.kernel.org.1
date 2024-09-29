@@ -1,164 +1,152 @@
-Return-Path: <devicetree+bounces-106158-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106159-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B26759894E2
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 12:52:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 837B09894E8
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 12:53:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 66E86283FD3
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 10:52:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 451B8283F02
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 10:53:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DA80155A24;
-	Sun, 29 Sep 2024 10:52:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bqffkAEM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C118155A24;
+	Sun, 29 Sep 2024 10:53:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10AE813A878;
-	Sun, 29 Sep 2024 10:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DE1152E1C;
+	Sun, 29 Sep 2024 10:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727607120; cv=none; b=V9uJpEQ/mmJbQJRATYh+cnPeOry0HsC/TXfhi0X+aMon85bCUkCjRSVy2/fHDGxJOlZSd2RUFHQ+yHwbupMyvC1W3l5y413nxPYGdrIkzzPaHLmQGTJ3vC9zfWsAq4LlAyeEsUA808bR1jfmerwa0k3E63AnEg26spfjRO3Hbbo=
+	t=1727607199; cv=none; b=qsPV5UuClOwtUe8KRvt/N6ejL9UEhihHQvuYXKMkXxzJEdvV4iMlo8rlNHWviqSGhwsXni2LDjrVqH0fOoeJLQ6xi9O3/n7BCQ4+KExg6ZT4PwEb3G5H8EP2XTesPMCAVw6g2APCR4g+yjBamYQOCl7TUa/l6f/nUUH+q9++4QE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727607120; c=relaxed/simple;
-	bh=W2VIIbTK72xMf1IVwA07QupuewDLSJU1I75NKD5Q/bI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Vim26tpuo0/aL5Os7dEDmZ///CVX5xrnvB11BpkqJiB//NAmswIhjCqiZJ6JGqH6rIdSmrjPLF+aYKiAXG0X64OY94wumogCCpgolQzCTeT6ckocqQ4NyHDL2YBC19J0KTfj5Zqzu2W9wSDSXaeIwsJTyuDwKIFMLlMRd8rY21k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bqffkAEM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB67BC4CEC5;
-	Sun, 29 Sep 2024 10:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727607119;
-	bh=W2VIIbTK72xMf1IVwA07QupuewDLSJU1I75NKD5Q/bI=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=bqffkAEM3w+hF9k0kHNx35Jx0cEb4wOVepFu9Iz8XJ8CbMXTgTJK/4BrrhzIXFwdx
-	 VZZ0DODFsAR+7061eKiJY8haLPHInqzDlRo4J4h9XaqY0BSiQaYy1B9pd+4bUfNTSi
-	 Y5+m0M0gWGh7Pw5Ze50Kpn9WRXIiLSsgU4TKXYP3VPy4s8lKawif1LkQE6BWURKbkl
-	 58MpyXAb10K2okFay4oydGAisHKLbBcmvlUTd2rTnYDWpcg3WKGLhTi6K2c3KvJCWb
-	 Ywr5mdDxjHzoa24652qRfJgIEzw+Cd7eo+WSGp8pVgiZMLA4AJcTum5QqYcT0L3xLc
-	 B8+FD2+72T/nA==
-Date: Sun, 29 Sep 2024 11:51:50 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
- support
-Message-ID: <20240929115150.6d1c22b3@jic23-huawei>
-In-Reply-To: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1727607199; c=relaxed/simple;
+	bh=cPqISAcZ4H8167b3x7BdNIv2c5BtODWuLOlPU3TW730=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KVhT1/1aINwAZnAIPotz4RmYE9N1uRqSYjVevyL6WEREDZxWsar+Llp1pBrJ7J/+JTs9xmHhSva15yx8kneIMPOdyvzQ+EEqV7VMU54L7DfSaQNf40oR27Z17x9+6bK3K8QsuBTQ2FbnbfIE0hi4JkEtICTYII6/9siW5grU2l0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1surY2-000000007Ck-3WVz;
+	Sun, 29 Sep 2024 10:53:06 +0000
+Date: Sun, 29 Sep 2024 11:52:59 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Zhihao Cheng <chengzhihao1@huawei.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, John Crispin <john@phrozen.org>,
+	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 1/2] dt-bindings: mtd: ubi-volume: add
+ 'volume-is-critical' property
+Message-ID: <Zvkxi-6J8R1K95PQ@makrotopia.org>
+References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org>
+ <7a2e8819-ac70-4070-a731-53994c72cd79@kernel.org>
+ <Zvf_84xxhxwpPgee@makrotopia.org>
+ <18e9d774-813b-427e-9938-53853d695e18@kernel.org>
+ <ZvgU0eBEwTJ3sHuN@makrotopia.org>
+ <ad5a3811-c856-4f4b-f569-bb67a0e3f751@huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ad5a3811-c856-4f4b-f569-bb67a0e3f751@huawei.com>
 
-On Thu, 19 Sep 2024 11:20:00 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
-
-> From: Angelo Dureghello <adureghello@baylibre.com>
+On Sun, Sep 29, 2024 at 12:03:11PM +0800, Zhihao Cheng wrote:
+> 在 2024/9/28 22:38, Daniel Golle 写道:
+> > On Sat, Sep 28, 2024 at 03:45:49PM +0200, Krzysztof Kozlowski wrote:
+> > > On 28/09/2024 15:09, Daniel Golle wrote:
+> > > > On Sat, Sep 28, 2024 at 03:02:47PM +0200, Krzysztof Kozlowski wrote:
+> > > > > On 28/09/2024 14:47, Daniel Golle wrote:
+> > > > > > Add the 'volume-is-critical' boolean property which marks a UBI volume
+> > > > > > as critical for the device to boot. If set it prevents the user from
+> > > > > > all kinds of write access to the volume as well as from renaming it or
+> > > > > > detaching the UBI device it is located on.
+> > > > > > 
+> > > > > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > > > > > ---
+> > > > > >   .../devicetree/bindings/mtd/partitions/ubi-volume.yaml   | 9 +++++++++
+> > > > > >   1 file changed, 9 insertions(+)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> > > > > > index 19736b26056b..2bd751bb7f9e 100644
+> > > > > > --- a/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/ubi-volume.yaml
+> > > > > > @@ -29,6 +29,15 @@ properties:
+> > > > > >       description:
+> > > > > >         This container may reference an NVMEM layout parser.
+> > > > > > +  volume-is-critical:
+> > > > > > +    description: This parameter, if present, indicates that the UBI volume
+> > > > > > +      contains early-boot firmware images or data which should not be clobbered.
+> > > > > > +      If set, it prevents the user from renaming the volume, writing to it or
+> > > > > > +      making any changes affecting it, as well as detaching the UBI device it is
+> > > > > > +      located on, so direct access to the underlying MTD device is prevented as
+> > > > > > +      well.
+> > > > > > +    type: boolean
+> > > > > 
+> > > > > UBI volumes are mapping to partitions 1-to-1, right? So rather I would
+> > > > > propose to use partition.yaml - we already have read-only there with
+> > > > > very similar description.
+> > > > 
+> > > > No, that's not the case.
+> > > > 
+> > > > An MTD partition can be used as UBI device. A UBI device (and hence MTD
+> > > > partition) can host *several* UBI volumes.
+> > > > 
+> > > > Marking the MTD partition as 'read-only' won't work, as UBI needs
+> > > > read-write access to perform bad block relocation, scrubbing, ...
+> > > 
+> > > OK, so not partition but read-only volume.
+> > 
+> > +1
+> > 
+> > > 
+> > > > 
+> > > > Also, typically not all UBI volumes on a UBI device are
+> > > > read-only/critical but only a subset of them.
+> > > > 
+> > > > But you are right that the description is inspired by the description
+> > > > of the 'read-only' property in partition.yaml ;)
+> > > > 
+> > > > I initially thought to also name the property 'read-only', just like
+> > > > for MTD partitions. However, as the desired effect goes beyond
+> > > > preventing write access to the volume itself, I thought it'd be
+> > > > better to use a new name.
+> > > 
+> > > Yeah, maybe... critical indeed covers multiple cases but is also
+> > > subjective. For some bootloader is critical, for other bootloader still
+> > > might be fully A/B updateable thus could be modifiable. For others, they
+> > > want to use fw_setenv from user-space so not critical at all.
+> > 
+> > The case I want to cover here is the bootloader itself being stored
+> > inside a UBI volume. MediaTek's fork of ARM TrustedFirmware-A bl2 comes
+> > with support for UBI and loads BL3 (which is TF-A BL31 and U-Boot, and
+> > maybe OP-TEE as well) from a static UBI volume. Removing, renaming or
+> > altering that volume results in the device not being able to boot any
+> > more and requiring a complicated intervention (at attaching debugging
+> > UART and using low-level recovery tool) in order to recover.
 > 
-> There is a version AXI DAC IP block (for FPGAs) that provides
-> a physical bus for AD3552R and similar chips, and acts as
-> an SPI controller.
+> Who removes/renames the 'critical' volume? I suggest to fix it in the upper
+> layer(not in kernel). After looking through the patch 2, it seems a hack
+> solution.
 
-Wrap is a bit short. Aim for < 75 chars for patch descriptions.
-
-> 
-> For this case, the binding is modified to include some
-> additional properties.
-> 
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> ---
->  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
->  1 file changed, 42 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> index 41fe00034742..aca4a41c2633 100644
-> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> @@ -60,6 +60,18 @@ properties:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [0, 1, 2, 3]
->  
-> +  io-backends:
-> +    description: The iio backend reference.
-
-Give a description of what the backend does in this case.  I.e. that it is
-a qspi DDR backend with ...
-
-> +      An example backend can be found at
-> +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
-> +    maxItems: 1
-> +
-> +  adi,synchronous-mode:
-> +    description: Enable waiting for external synchronization signal.
-> +      Some AXI IP configuration can implement a dual-IP layout, with internal
-> +      wirings for streaming synchronization.
-
-I've no idea what a dual-IP layout is.  Can you provide a little more info
-here?  What are the two IPs?
-
-> +    type: boolean
-> +
->    '#address-cells':
->      const: 1
->  
-> @@ -128,6 +140,7 @@ patternProperties:
->            - custom-output-range-config
->  
->  allOf:
-> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->    - if:
->        properties:
->          compatible:
-> @@ -238,4 +251,33 @@ examples:
->              };
->          };
->      };
-> +
-> +  - |
-> +    axi_dac: spi@44a70000 {
-> +        compatible = "adi,axi-ad3552r";
-> +        reg = <0x44a70000 0x1000>;
-> +        dmas = <&dac_tx_dma 0>;
-> +        dma-names = "tx";
-> +        #io-backend-cells = <0>;
-> +        clocks = <&ref_clk>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        dac@0 {
-> +            compatible = "adi,ad3552r";
-> +            reg = <0>;
-> +            reset-gpios = <&gpio0 92 0>;
-> +            io-backends = <&axi_dac>;
-> +            spi-max-frequency = <66000000>;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            channel@0 {
-> +                reg = <0>;
-> +                adi,output-range-microvolt = <(-10000000) (10000000)>;
-> +            };
-> +        };
-> +    };
->  ...
-> 
-
+The enemy is the user, the upper layer is between the keyboard and the
+screen. Just like for 'read-only' MTD partitions I'm looking
+for a similar solution for UBI which prevents the user from accidentally
+deleting or destroying the bootloader, lets say, when logged in via SSH.
 
