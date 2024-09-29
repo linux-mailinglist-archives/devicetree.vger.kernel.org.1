@@ -1,120 +1,136 @@
-Return-Path: <devicetree+bounces-106202-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106203-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB4C9989742
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 22:17:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3893E98974D
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 22:38:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F43428215E
-	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 20:17:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690CC1C209F1
+	for <lists+devicetree@lfdr.de>; Sun, 29 Sep 2024 20:38:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE99A5FDA7;
-	Sun, 29 Sep 2024 20:17:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A01717DA8C;
+	Sun, 29 Sep 2024 20:38:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="KcJ7uV53"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JgLgWhsF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55B554207A
-	for <devicetree@vger.kernel.org>; Sun, 29 Sep 2024 20:17:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7E6745C18;
+	Sun, 29 Sep 2024 20:38:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727641060; cv=none; b=Pukovb8vqlT9MoD2iKynosuKtqLwYWx/S9U+rBkofjlQvRVSGx4dfAKBJ5V1CTQASw8jUiqTBGd8zQpv+1IkTUI6ekpn0ecleOCeXSSXDSVSdTi1BZuYNse+QGkjyoVYGH1uZMxIxh/1pqCJMGJQ2TyMYdYNnYHPJnJMCIh3IZY=
+	t=1727642333; cv=none; b=FbXQOGw9UnzDCUl9CcJxSxZqCKqhpN1cfM+57ZH+uZN0h65Sbf8jMmuxJKIXoOF4dPXyqHxDXZAuk2nOWrmzyruSxQpHNY7hF6Df/ClIhKcWW3tBIaLR63lY3WVnxg92lEdfVQ4ur4vbeRAQ1A7LOzXWn2mxcdJCIWV6cuRrn/A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727641060; c=relaxed/simple;
-	bh=e/DLduMorhCuSFXTa5d51gLMRFOsS5++OOTim6BWp6g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u5ozQ7qRSQlmy2DHVFQWu4skH5Hu9oG2BvA2oIb4rE7hS0+nsh4Y6yk+kXrWk/hcPkqk110PPAjQqPlL2aT1BG/pFcqq5QHxdzw06PklSvbuG5YiYA8IhgxnenwT4Sm/M+S+EqWzo2mlFA8X7sjY0Cuf4+TXbbRVVKL/iK0y5WM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=KcJ7uV53; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 364B32C04A9;
-	Mon, 30 Sep 2024 09:17:35 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1727641055;
-	bh=YN7kpomPes0I6UW4Xml3XD6fCY2IicArvQi2UkGGKzQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KcJ7uV53RcFvg4kIf3/n5E06cCXoeXbKSHtxaYjMTk6ruov8HxUtUq4Q5vmbBCqJC
-	 dQCn94K/rlodLeq0N8B3ibkv7ND7MXCtcbHtQjYZTpz4EJRp/zb/AdBhTx6gEg269C
-	 f8vNw5Kyjlsae6HdTF0HSe2JkP4yv3ztCLrdfJVvvcGn14wsNrOAOVfFwZaJMZkMkJ
-	 mbaaAJp1QixmZ4aaXKxU6HPoK71A4b9iwYPEy6QAxBtMfLcniE8Vo9R+8hZ6jCCrDD
-	 9IcCXmf8gwWLtL4PgBzgin56kLCVsigWmMW1Rj0xx7u62N6cmyIG4xqdrnX6NfzNI4
-	 ykqH8sy59j2ug==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B66f9b5df0000>; Mon, 30 Sep 2024 09:17:35 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 1B85B13EE36;
-	Mon, 30 Sep 2024 09:17:35 +1300 (NZDT)
-Message-ID: <0c94d0fc-dc0c-4e35-a6c1-2d7e01a3eb43@alliedtelesis.co.nz>
-Date: Mon, 30 Sep 2024 09:17:34 +1300
+	s=arc-20240116; t=1727642333; c=relaxed/simple;
+	bh=ZT03Gl7EcIyCpIsNcxfxqkKztgiam/EU+vMyxpmHsGc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jNcTIMZmje4YzxSIqYQXvVQ+Nbu9FjQ9qUe1D8avIkpRYCAWuR3MPY1qLHTbwKMu6y46u8sPJUJSzl+64ve7HKnFZmgd2kQPWZSz4I1/ClZz1QfPnikurSAKhZrbMHa4EiriJSUhp13OILQ3FYPQM35ghqo5GH6nz1kG0+LQX3I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JgLgWhsF; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8d446adf6eso636918066b.2;
+        Sun, 29 Sep 2024 13:38:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727642330; x=1728247130; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=putZppQgXwDvNv+RZA6pcl4OAhvfYEne4ISwcXTtxBk=;
+        b=JgLgWhsFbYIMY+/tU4ogJyn/F/peU/ay+aKmWzhaNr2YIcPaFPLFxivPxdyJMemsH/
+         13MJFDLEI3ZFxDM+ByD4kv5eV5qx07CBSWU34Ywm7j0bMxMEXwLKGoEg2U/xCnX1n14A
+         8/OEMqlVbp5yTkgjBnBoB+9YS76pgvfjIEVPtUzVqCKpdbqMjUVS8rhfmJR+dj+d55Mj
+         CuMkVWFaXFsD1ch5RSj9qmPTcOh+V6ge3f9/jEmQVe6elRcFOVE5ZhuYwu56+5SHAPoc
+         mqVl9ixzO7DnqQmbB+iGKdIrqkBaDp+GzeltONwaCw4N/qtIe7SlTc3Od30KC30hwTWB
+         ynJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727642330; x=1728247130;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=putZppQgXwDvNv+RZA6pcl4OAhvfYEne4ISwcXTtxBk=;
+        b=nXj/ssx2symy7A0k4d6rEJZmFoZlbOM/wK+VahupfNRdxmIvmOKCWbFRvtCtto3V49
+         gCXmB5KsCG/Q1fovRckms/0XqqkAVALysoSUGoikSfmO+PSVeDMDcLDeXBp+CpXciFIs
+         7T5KWM0SdxxO3uU4J/Zy5Y1SVxjokAtKKRw2MH10PbLKI1JaVFnxvvc/VeCJGVbVBjzd
+         6c84DRktWnWcXl4jJp/B+HI33zxgDIAcl12o5iFAd6G+W27fZY6qwUrQCK5QLs4XzDsS
+         7HX+lbt9o0s63PgeGhOx7KBPq5McoVYGG0eiBeZePIOrMcleBkct3PzvpImm54BlALAH
+         b/eA==
+X-Forwarded-Encrypted: i=1; AJvYcCVT7wGeCMxwaLOKKHX3yR47T8tHukHbZuR5oad7ueVydIMqzgNp/j7chahFZnbwq+66YY5jeKJpj/i4@vger.kernel.org, AJvYcCWxHTqB2Byg29+iSjtoepy29UaN9XIG6E1+MNdKWwwdDPDN2Uo9DMSP+WVUNzIKEh6Xqs9MCeFjrfepj6Tf@vger.kernel.org
+X-Gm-Message-State: AOJu0YykdWYUMtfNWq5nYbs6VkxZEH+deHWFLpmYPYr1ylfnXW8hPcFX
+	cPpPCB+wuLQAre1AYsBMSXUsQqcpaGgx7T6LC1F558gToJar4nRw
+X-Google-Smtp-Source: AGHT+IGyPWoz26+OpR6JitvAyLC+0JNsOOQdP9wZCb794YJDQTFsvLc4R9Nac+2AU2xHAPLf1L0XPA==
+X-Received: by 2002:a17:907:74b:b0:a86:7e7f:69ab with SMTP id a640c23a62f3a-a93c49087f3mr1048028366b.15.1727642329957;
+        Sun, 29 Sep 2024 13:38:49 -0700 (PDT)
+Received: from [127.0.1.1] (2a02-8389-41cf-e200-e2c0-9a60-64a8-717a.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:e2c0:9a60:64a8:717a])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8824051c2sm3487985a12.19.2024.09.29.13.38.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 29 Sep 2024 13:38:48 -0700 (PDT)
+From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Subject: [PATCH 0/7] iio: light: veml6070: update code to current IIO best
+ practices
+Date: Sun, 29 Sep 2024 22:38:45 +0200
+Message-Id: <20240929-veml6070-cleanup-v1-0-a9350341a646@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v5 6/6] i2c: Add driver for the RTL9300 I2C controller
-To: Markus Elfring <Markus.Elfring@web.de>, linux-i2c@vger.kernel.org,
- linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Sebastian Reichel <sre@kernel.org>,
- =?UTF-8?Q?Thomas_Bogend=C3=B6rfer?= <tsbogend@alpha.franken.de>
-Cc: LKML <linux-kernel@vger.kernel.org>
-References: <20240925215847.3594898-7-chris.packham@alliedtelesis.co.nz>
- <096aebcd-778c-4160-b478-bb26025f3940@web.de>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <096aebcd-778c-4160-b478-bb26025f3940@web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=66f9b5df a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=EaEq8P2WXUwA:10 a=P-IC7800AAAA:8 a=VwQbUJbxAAAA:8 a=czHN8OwSvR-A_l93-LoA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=d3PnA9EDa4IxuAV0gXij:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANW6+WYC/x3MQQqAIBBA0avErBNGicKuEi2yxhowEyUJwrsnL
+ d/i/xcSRaYEY/NCpMyJL18h2wbWY/E7Cd6qQaHqUCstMp2uxwHF6mjxdxADmh61MdKihZqFSJa
+ ffznNpXx6t0WDYgAAAA==
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727642327; l=1300;
+ i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
+ bh=ZT03Gl7EcIyCpIsNcxfxqkKztgiam/EU+vMyxpmHsGc=;
+ b=kkyqhMHF9gCWUWY6bTo9x/poJxSaUvSKr8CkgIXIZbVR/W2jApDPzhW4IY6jgpppGZn9xdJym
+ z2NmSqW4ygVDXxIsgvp/Tr2Ir10z/2O8g8ZFhZIAp2NVIGvq7kax0Nq
+X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
+ pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
 
-Hi Markus,
+This series updates the driver in preparation to add new features. The
+cleanup consists of:
 
-On 29/09/24 21:45, Markus Elfring wrote:
-> =E2=80=A6
->> +++ b/drivers/i2c/busses/i2c-rtl9300.c
->> @@ -0,0 +1,422 @@
-> =E2=80=A6
->> +static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr,=
- unsigned short flags,
->> +				  char read_write, u8 command, int size,
->> +				  union i2c_smbus_data *data)
->> +{
-> =E2=80=A6
->> +	mutex_lock(&i2c->lock);
->> +	if (chan->sda_pin !=3D i2c->sda_pin) {
-> =E2=80=A6
->> +out_unlock:
->> +	mutex_unlock(&i2c->lock);
->> +
->> +	return ret;
->> +}
-> =E2=80=A6
->
-> Under which circumstances would you become interested to apply a statem=
-ent
-> like =E2=80=9Cguard(mutex)(&i2c->lock);=E2=80=9D?
-> https://elixir.bootlin.com/linux/v6.11/source/include/linux/mutex.h#L19=
-6
+1. Device-managed registering for:
+- iio device
+- action (unregister i2c device)
+- regulator
 
-At this stage I don't what to change unless Andi insists that I do.
+2. Code update to use a guard for the mutex handling and
+   dev_err_probe in the probe function.
 
-I can't find much mention of using guard() on=20
-https://www.kernel.org/doc/html/latest/ but I can see enough examples=20
-(although notably none in drivers/i2c) that I _think_ I can see how I=20
-could use it.
+3. Devicetree support (document the device bindings and register the
+compatible in the driver).
+
+Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+---
+Javier Carrasco (7):
+      iio: light: veml6070: add action for i2c_unregister_device
+      iio: light: veml6070: use guard to handle mutex
+      iio: light: veml6070: use device managed iio_device_register
+      iio: light: veml6070: add support for a regulator
+      dt-bindings: iio: light: vishay,veml6075: add vishay,veml6070
+      iio: light: veml6070: add devicetree support
+      iio: light: veml6070: use dev_err_probe in probe function
+
+ .../bindings/iio/light/vishay,veml6075.yaml        |  3 +-
+ drivers/iio/light/veml6070.c                       | 63 +++++++++++-----------
+ 2 files changed, 35 insertions(+), 31 deletions(-)
+---
+base-commit: 4057951fb272efda718dca665f6607c348d5785b
+change-id: 20240929-veml6070-cleanup-70b609bb1f0f
+
+Best regards,
+-- 
+Javier Carrasco <javier.carrasco.cruz@gmail.com>
 
 
