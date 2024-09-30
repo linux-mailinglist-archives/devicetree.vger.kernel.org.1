@@ -1,79 +1,70 @@
-Return-Path: <devicetree+bounces-106516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9080398A7DF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:55:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0440E98A7E5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:55:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33A26280FF2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:55:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A92D51F212C3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:55:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12561194AE2;
-	Mon, 30 Sep 2024 14:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBE019258C;
+	Mon, 30 Sep 2024 14:54:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYrk5QmY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N45EoeQg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C35194ACB;
-	Mon, 30 Sep 2024 14:53:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E7C192580;
+	Mon, 30 Sep 2024 14:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727708017; cv=none; b=Txv1CMPJ76WYiSTrL9X+TUzSFaq1N604l8alLJ7TV1y78Jn+efvW3jip0g86AAmmX4yyqjNkOhmVpp820Frc4dadrXHxIEXk1VQa4BqtxtRyn+8oZblEwEb2jBMcfbdbR1jWiKs3z6Fskx458PO0zmRbK3GcQV/1lxu4uz23y9M=
+	t=1727708079; cv=none; b=rJ+rJ2gLJYCCAVF2cNNX0Htf5dPz1L+j7vbjvPThvXV2y4L3IPl5hoO/HLuG53vHKFFgIh0ho01K6iaKYGqBaMxFdAvVLsXFRkNm5VW7hbPQZH4H/hTyhh66WTc7jlbTi8JMHSp/wjDWaxxDR76mmkxhI0WcXjQslQF31SDLWLs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727708017; c=relaxed/simple;
-	bh=H5EV1RRodrsbm5ea8UJTy16lJkA2S9iZk7mZhOSIW6c=;
+	s=arc-20240116; t=1727708079; c=relaxed/simple;
+	bh=yHz+HqtCHC83WSkLLK6bPyeJEEQZt60aErkk1WVXJoo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eS1/hgtJZkrKRHGziEqpWTsfkdpjFz39X0qEQzQTGMOJnESNXvbA9p7KBHC0l+PvNlNudgBY1lMWl1LcsAWIV6ESng+q1u+Pj1F8Nza3OEgH9qI+4n4KawsKg+IPlyxWRtuRyPhMTMKh/wm4fYfMVxIBB/L13BJ/yEGeDAoxSt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYrk5QmY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6125DC4CEC7;
-	Mon, 30 Sep 2024 14:53:31 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pS2sMAi045GYfoNY6wPLuRjDDlwUXDkKnem1I4dKoNjI4Ad9MkySuxpTqpDyvn7d9fqWzlzQbiglWq+HD+ETQj7YaOWC4aBLu3IGLaDW5fynmJVklStgrkF5gDb4t1j8o+q58nQcPBdyWg32gkJ2aXIluhshupAwMy0UpQK4I68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N45EoeQg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE236C4CEC7;
+	Mon, 30 Sep 2024 14:54:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727708016;
-	bh=H5EV1RRodrsbm5ea8UJTy16lJkA2S9iZk7mZhOSIW6c=;
+	s=k20201202; t=1727708078;
+	bh=yHz+HqtCHC83WSkLLK6bPyeJEEQZt60aErkk1WVXJoo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rYrk5QmYKX+nqa2DOTziaQLHU1l3FYbC+Gm6UhuDJc2L/qbKfCagYtQCo1nvqnCIW
-	 HYb7iCyDTwGSHQlhehyoUClmn4xYvkFVQvWndELKO8Qq+DLn5g0cKGD0SbVvnzDNdH
-	 zjhjFHhty2JNVl5PXDQnSX5QjB4PxjjJ3fuJtB0Evn7njpZfEYX1TqJizIpR2cp8dX
-	 6gwkYuV1bn84Rg7RgiSBibektX8xbfWyAfSN0J5n7hjvkRpJ1sN/4rgmVSA5dpcwYk
-	 bUmFeDjHugx51UhhkxPdGo+h5/NC5h/t8v5OBef7ABGcLad9vS5AJHiibwBsphpZdp
-	 fnrah/znakWnw==
-Date: Mon, 30 Sep 2024 15:53:29 +0100
+	b=N45EoeQgaLTmd7WBql3abq8jJzFj75BYqMqlP4Qx0NgyEn8269WHt4HIMtaVMaAlr
+	 dXwbuBuLajuuvKlfAhwVT2tuWQx3iNcq+7crYqxN6gRWMsGdhuTpqo9zhG/b9RZNpv
+	 WrLBrVou3sCOHFMQGp/U+qKpaOMbO+fz9z6rV//9xJdXqdHF/eO8G5FHHfBgbIQ3Dd
+	 JRq03vCpg3VX1yNsyD57i6sx6+mzoCB9JWA2V2/ukJloTUTZ3RhCQ22nSmdMaK78t+
+	 kw2899YtsaKirzGLtXyE3Q37vbapA/663j4qpMjO4azjAoechFqoLZ3cotqVeg87F9
+	 U5iRlGu7W0prQ==
+Date: Mon, 30 Sep 2024 15:54:32 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Aoba K <nExp_0x17@outlook.com>
-Cc: "charlie@rivosinc.com" <charlie@rivosinc.com>,
-	"ajones@ventanamicro.com" <ajones@ventanamicro.com>,
-	"andy.chiu@sifive.com" <andy.chiu@sifive.com>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"conor.dooley@microchip.com" <conor.dooley@microchip.com>,
-	"corbet@lwn.net" <corbet@lwn.net>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"evan@rivosinc.com" <evan@rivosinc.com>,
-	"guoren@kernel.org" <guoren@kernel.org>,
-	"heiko@sntech.de" <heiko@sntech.de>,
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-	"jrtc27@jrtc27.com" <jrtc27@jrtc27.com>,
-	"jszhang@kernel.org" <jszhang@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
-	"palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"samuel.holland@sifive.com" <samuel.holland@sifive.com>,
-	"samuel@sholland.org" <samuel@sholland.org>,
-	"shuah@kernel.org" <shuah@kernel.org>,
-	"wens@csie.org" <wens@csie.org>
-Subject: Re: [PATCH v10 00/14] riscv: Add support for xtheadvector
-Message-ID: <20240930-reenact-stratus-9d42d7439df4@spud>
-References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
- <a1f41f92-6bd0-48b6-a931-e7ad7aba18cc@outlook.com>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
+	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+	Hiago De Franco <hiago.franco@toradex.com>,
+	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Mathieu Othacehe <m.othacehe@gmail.com>,
+	Max Merchel <Max.Merchel@ew.tq-group.com>,
+	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document DH electronics
+ i.MX8M Plus DHCOM PicoITX
+Message-ID: <20240930-smokiness-tricolor-f649d01e7ec0@spud>
+References: <20240928234949.357893-1-marex@denx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,63 +72,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Hamb1NyozR0uOSVn"
+	protocol="application/pgp-signature"; boundary="uQ7vq3tWddTOPZN2"
 Content-Disposition: inline
-In-Reply-To: <a1f41f92-6bd0-48b6-a931-e7ad7aba18cc@outlook.com>
+In-Reply-To: <20240928234949.357893-1-marex@denx.de>
 
 
---Hamb1NyozR0uOSVn
+--uQ7vq3tWddTOPZN2
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 29, 2024 at 12:44:07PM +0000, Aoba K wrote:
-> Hello Charlie,
+On Sun, Sep 29, 2024 at 01:48:08AM +0200, Marek Vasut wrote:
+> Document support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carr=
+ier
+> board. This system is populated with serial console, EQoS ethernet, eMMC,=
+ SD,
+> SPI NOR, LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
 >=20
-> I've been working on bringing up the Sipeed Lichee RV Dock
-> (which also uses the D1 SoC) with the kernel patches you provided.
-> The patches applied cleanly to Palmer's for-next branch,
-> but I've encountered a couple of issues:
->=20
-> 1. Skiffos Compilation Error during the compilation process of `cgo`:
-> `unknown relocation type 17; compiled without -fpic?`
-> Unfortunately, I closed the terminal before saving the full log,
-> so I don't have the complete details, but the result should be reproducib=
-le.
-> While this should be a SkiffOS issue, mention it in case SkiffOS is the m=
-ethod
-> that you mentioned for bringing up the device.
->=20
-> 2. Image Building with sehraf/riscv-arch-image-builder:
-> After building the image, the device failed to start at an early stage.
-> I suspect this may be related to incorrect RAM size detection,
-> as the board only has 512MB of RAM.
-> Interestingly, the vendor image reports 1GB, and the Sipeed website also =
-states
-> that the Dock has 1GB, despite there being no extra memory bank present.
->=20
-> You can find the boot log here: https://fars.ee/bdYk.log
->=20
-> Any help would be appreciated, and big thanks to your work
-> to make the efficient part of this board to work (again)!
+> Signed-off-by: Marek Vasut <marex@denx.de>
 
-The log you posted at https://fars.ee/XFzR appears to be using the
-devicetree of a Nezha not the Lichee RV Dock. Why are you doing that,
-when the Lichee RV Dock is supported in the kernel already?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Conor.
-
---Hamb1NyozR0uOSVn
+--uQ7vq3tWddTOPZN2
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvq7aQAKCRB4tDGHoIJi
-0iYzAP42CtXDZpcWhRrFXf/pP66arAHe2Q5uoLqijR0QtCN9HQEApur4oRSzITjL
-SgCrOuckDuHJRCTBo9J9wNnIVrJC/AQ=
-=iwxp
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvq7qAAKCRB4tDGHoIJi
+0tuHAP411326zmUIUamXX8Tvex7dncg8LcBfKQcqgOIp/ASN5gD9HRr4avS4s+ZP
+1HQwhxzv8oUsvMMVpmjKt232cZNw+QM=
+=gfQ1
 -----END PGP SIGNATURE-----
 
---Hamb1NyozR0uOSVn--
+--uQ7vq3tWddTOPZN2--
 
