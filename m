@@ -1,149 +1,100 @@
-Return-Path: <devicetree+bounces-106550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D40698AC1A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 20:34:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF8198AC45
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 20:43:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B99521C22B43
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 18:34:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 019C7281F00
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 18:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB6DE192D7F;
-	Mon, 30 Sep 2024 18:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="hzj4srso"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D97E9198850;
+	Mon, 30 Sep 2024 18:43:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E030E43AD2;
-	Mon, 30 Sep 2024 18:34:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC1DF14A627;
+	Mon, 30 Sep 2024 18:43:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727721264; cv=none; b=eRXnoDkikcbWjAfPb7JqiLenXkCp3DcucCUFYjpUejHBICbIQJji/MIYdb0Y3tdtFtZmaV/og7j0GMXCVcEg7vocOSgKN7mcyn0N4CDl8fsBPtSU918nu3nusT9Mr/HOKFt9EsZJj9/ovyV4lCI3mDS9AVeRzT0gb5UEllR885w=
+	t=1727721832; cv=none; b=Sp/L2YeeqZNMFawvuZN8gQ7WwYU5txSHdPmuHRpRL2ixRrQ+6NCpHDD0LgQ1iBG1mIuheW3imwkw0Zaffzd2yVLPQ67KfdAvX5lGINx4BZL+jGTSP4mNHzBorlMcPlnwDr4NR5GwX1zqjuIJc4kicozs2uTlfWnpVnTvajvDqNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727721264; c=relaxed/simple;
-	bh=DKsTlu8wW/M9F55tjFU0JXFSEqFN4I8eOkv5bl8qe3E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RZwgPgquRBMP+taiOTOB66p8UZAHBX/7yeieV5lPBqPeNgsx5BxvOSBTahYafqwvykVn0skIPOtMwk7si1GoWQ7Bp5oD8E475izHe64ElPAfXJTict9N4pEsZ1QDyRXMYRdkBKtS20iqNTXSyMbIQ8OrjNIDx8ZRdQlwYjyBt1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=hzj4srso; arc=none smtp.client-ip=212.227.17.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1727721247; x=1728326047; i=wahrenst@gmx.net;
-	bh=DKsTlu8wW/M9F55tjFU0JXFSEqFN4I8eOkv5bl8qe3E=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=hzj4srso5jH8STcJYzgjVbEZclC9BfFrF/3Tbw14LeqHZquU2RRmqQ7fhrlWyY7L
-	 b8wppjaQK17+4WS+RUMQUjEz5ZWh+8SkuALVavea4ZT+1FLXOgOtar4HHCMUcC0uO
-	 mz5sHRtRBkhBvcx/nMmhkPKA9pBmxNap1aY2LyWhwP/nRFYSP+R6P7k37Ke+OWtsq
-	 K01rh4aJ0owUVIxmwfG9pTP2FMIm1LccAJw2xch5N9eyrb201I2ssKYIjpvPniWhJ
-	 oUWXfsZb0FRkSfEWivoSZfLQ9y7gQJ6nal/YwwZ0waQzIIhtRk99jJLg8chMI33r0
-	 eEkFnkCG0iCjZC70mg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.104] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6qC-1sC3md2fTI-00pf4S; Mon, 30
- Sep 2024 20:34:07 +0200
-Message-ID: <916d584f-6a9d-4eec-b6c4-319cfb298675@gmx.net>
-Date: Mon, 30 Sep 2024 20:34:06 +0200
+	s=arc-20240116; t=1727721832; c=relaxed/simple;
+	bh=O0+V9e/iDm2cJDhnR5sRzAjI5+c1nwpVnK1xf6sQeeQ=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=szEX4uDbYTD4wvZ7WqWIsto41nNgoAPbTIWCbEFcTX3UakFyre/pyZat3sUMboDSz0+F4QaXpcL2hpdbUlbtJJT0hyrGp2T3FUrrsr3rE/nzwCSe4TET4gdowtumw3c3070dalxO67n9ZV7RbW3RHXgn7FNnW6jNreOZy6hDvYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 4447664CD871;
+	Mon, 30 Sep 2024 20:43:41 +0200 (CEST)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
+	with ESMTP id Vt2OYhpY_iKE; Mon, 30 Sep 2024 20:43:40 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 807DA63CF3E7;
+	Mon, 30 Sep 2024 20:43:40 +0200 (CEST)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id wo08-DoSlZS3; Mon, 30 Sep 2024 20:43:40 +0200 (CEST)
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+	by lithops.sigma-star.at (Postfix) with ESMTP id 5BA4264CD871;
+	Mon, 30 Sep 2024 20:43:40 +0200 (CEST)
+Date: Mon, 30 Sep 2024 20:43:40 +0200 (CEST)
+From: Richard Weinberger <richard@nod.at>
+To: chengzhihao1 <chengzhihao1@huawei.com>
+Cc: Daniel Golle <daniel@makrotopia.org>, 
+	Miquel Raynal <miquel.raynal@bootlin.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, robh <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, John Crispin <john@phrozen.org>, 
+	linux-mtd <linux-mtd@lists.infradead.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>
+Message-ID: <364911897.123906.1727721820227.JavaMail.zimbra@nod.at>
+In-Reply-To: <ed98871a-b41a-9755-4eed-18ad9e00869c@huawei.com>
+References: <e0936674dd1d6c98322e35831b8f0538a5cfa7a3.1727527457.git.daniel@makrotopia.org> <b43a7155f80995c3986893951c092291caf3a5f4.1727527457.git.daniel@makrotopia.org> <251386789.117942.1727612762462.JavaMail.zimbra@nod.at> <ed98871a-b41a-9755-4eed-18ad9e00869c@huawei.com>
+Subject: Re: [PATCH RFC 2/2] mtd: ubi: add support for protecting critical
+ volumes
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: dts: broadcom: Add missing required fields
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
- Karan Sanghavi <karansanghvi98@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, kernel-list@raspberrypi.com
-Cc: devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Shuah Khan <skhan@linuxfoundation.org>, Anup <anupnewsmail@gmail.com>
-References: <ZvQ27pvrnEYA8BB9@Emma>
- <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
- <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:oAXDcj/lVWQpMkkcSOhxmYT9B0o/dTtMDwVUMzWA1cWYIoZx7hG
- TaAvoPvrAhBHuTI+bI89gMw1cM9gPp/Co8mdxtPTXZ/r+0oqc+IjyqpTa8RZFngPZW/6412
- 1ob55Ist23cWSeTXj9mL1MeKpXU2Y/0vSguz3dvZXP/kLZxXsIlVi4N7k4RQW6DjNB9MwDM
- uWuMmDCch2IJu5abeut1g==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:wjxs5VoYkX0=;C6vrBoX9zTva/5XVl4gTQF4sqTe
- WMrPEN0OMn3jRI9zUdpA5VjykYecSknVwQ6oSXLkATd7YGjr9W+O+BjQoFCVbGl3aziUyQX0p
- ZUYYuTTcHU23h7dLPxrodl3It45U4ntGr7yyThc9j84venE9umahvWf6aWwDTsjJS/2B8rHEN
- 1tRfVllfuLTfE+9V6WFwlZgJBm+bzeB7LpVNUnPTojwCVoFrg2Ahmq+zvzz0lr4ZeJWUx1cSX
- qER8CB5Z5Nhxn4rvoxuJmu17qsKLszahl2qVtnCuCNUbjaLWbY1fTo0HLo3AmhTp6LIBTCYiD
- LnCvPrJRjhNGbx2VXZkMEeAYML+pu9cnrVaG8SMLmDc8+pE9bC4VjTu0nFgSn2AuOx193GD56
- 1EbpxXU3i7yOITa4t/dTnc7OxSWKXxj15ARV4xwH+8Vnsikih6saJJfr7amSHQ6VVo+v1bZKn
- /6TEo8e9kcI3e/YJ4iiSUI+XCCoTYq2TmsH4Mjgw70VQJzDFs+hF7m04gBwhYaDL1sn3dgXHp
- sWAinciqQlqub8cg/EkAd6XPanZfVJbJSDv6MzO2Ytkvsv6A3b02nVYXQS3Vd0cN4KJoj3pPA
- RQLw/JZIqGQkD3k5Mtwglmk5jmRxamqrLF7HMLUbEEholySIwP3YbeEInGBx9wed2F/9MXEn0
- d0YDbg0Dvshu9kEkKJjpvVjLEWvfuPQkaUyPl9AVDJv7z7Jj3Jf9dh+rzB7DLhQHhlP9ESOLL
- sT1CAul5Hu5RUufmL4qt4EqA3MK/KHATXaHJ3md/BqpFHK/E+iaFrJ4r5NbrsLYeBLixzsvk8
- HtjCtD75KfinXiK0eBw2CHtQ==
+X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF130 (Linux)/8.8.12_GA_3809)
+Thread-Topic: add support for protecting critical volumes
+Thread-Index: lFqEN+m/q9e+j70Sp4sOBoOPT5+Uhg==
 
-Hi Florian,
+----- Urspr=C3=BCngliche Mail -----
+> Von: "chengzhihao1" <chengzhihao1@huawei.com>
+>>> Von: "Daniel Golle" <daniel@makrotopia.org>
+>>> Allow the boot firmware to define volumes which are critical for the
+>>> system to boot, such as the bootloader itself if stored inside a UBI
+>>> volume. Protect critical volumes by preventing the user from removing,
+>>> resizing or writing to them, and also prevent the UBI device from
+>>> being detached if a critical volume is present.
+>>=20
+>> I agree with the doubts raised in patch 1/2, if userspace is so hostile
+>> to delete system partitions, there is little hope.
+>> But I'm still open for discussion.
+>=20
+> Yes, I agree that it is meaningful to prevent user from operating
+> volumes accidently. How about doing that by some existing methods? Eg.
+> selinux(Design sepolicy for ioctl cmd).
 
-Am 25.09.24 um 22:38 schrieb Florian Fainelli:
-> On 9/25/24 09:39, Stefan Wahren wrote:
->> Hi Karan,
->>
->> Am 25.09.24 um 18:14 schrieb Karan Sanghavi:
->>> Added below mentioned required fields
->>> =C2=A0=C2=A0 1. interrupt-controller
->>> =C2=A0=C2=A0 2. #interrupt-cells
->>> in the bcm2711.dtsi file for the
->>> interrupt-controller@40000000 block as defined in the
->>> bindings/interrupt-controller/brcm,bcm2836-l1-intc.yaml.
->>> This issue was noticed while compiling the dtb file
->>> for broadcom/bcm2711-rpi-4-b.dts file.
->>> After including the above fields in the dtsi file
->>> interrupt-conntroller error was resolved.
->> looks like you made the same mistake like me [1]. This change breaks
->> boot of Raspberry Pi 4 [2].
->>
->> There are a lot of DT schema warnings to fix, but this doesn't belong t=
-o
->> the trivial ones.
->
-> Including the #interrupt-cells would not have a functional impact
-> however, and we ought to be able to do that.
->
-> The 'interrupt-controller' property presence means that the controller
-> will be picked up by of_irq_init() and that is was causes problems for
-> people testing this. Stefan, do you know if the VPU firmware
-> removes/inserts that property to tell Linux which interrupt controller
-> (bcm2836-l1-intc or ARM GIC) to use or does it make use of the
-> "status" property which would be the canonical way about doing that?
-There is a config.txt parameter for this, which is called "enable_gic".
-But if i use this i couldn't see any difference to /proc/device-tree.
-Also i couldn't see any modifications by the firmware to the node in
-general:
+Another thought, do we really need to enforce this in kernel space?
+Teaching ubi-tools to be super careful with some volumes is also an option.
 
-interrupt-controller@40000000 {
- =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 compatible =3D "brcm,bcm2836-l1-int=
-c";
- =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 reg =3D <0x40000000 0x100>;
- =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 phandle =3D <0x8e>;
-};
+like a ubirmvol ... --i-know-what-im-doing.
 
-Except of this i don't have any clue about the VPU firmware.
-
-Regards
->
-> Thanks!
+Thanks,
+//richard
 
 
