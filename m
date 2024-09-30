@@ -1,143 +1,106 @@
-Return-Path: <devicetree+bounces-106504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C4D398A6F0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:26:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC74F98A6F9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC5BF1F235CA
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:26:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EDA01F236AD
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0510C190685;
-	Mon, 30 Sep 2024 14:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lJk5Id0U"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 172CA1917C9;
+	Mon, 30 Sep 2024 14:27:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BC813D539;
-	Mon, 30 Sep 2024 14:26:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DB15191484;
+	Mon, 30 Sep 2024 14:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727706384; cv=none; b=t9OeU5T6vVj/zKMH9cWt0/qxnsqAh4+9riWghhgnfFM95LeShZzhhbckYPTlI8ta1yESEqdRjFGmgZGWap0cTQdIf3JE/jo65IQLR2KFAcY7TruN9tHpanNcQALjTxjmKh4Jtdk+c4JlAmX5ZvtbIxh6uPiAft2L57sRskBie4s=
+	t=1727706476; cv=none; b=iTOeTtuXEVYBaAqMvyDL5cZQ1J1rASYTsf3l6N9sBv/sbnNE6Qm3Yc3CayC509TxH6uOcu4lAXixtmDG4oC5LsTFCt6qU0kpnpl3ySDy/qqRCNBowrm39NcbhPfKPKLtPlUVeZznc+VfB5HN8r9QLi7e8yGfcIVrW5vdehuSfEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727706384; c=relaxed/simple;
-	bh=D/K4G0cY8c9Tt7CPwn45PDwSHjjMdVwTLalAuFeMgGc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Iu8jjlMfTw1XT+xHKwyc90vW2sQDZEt6MYsPk+u1ITypLDzRFAmB8ltLY9zqnxl5RgbLLaqalA0zwelCoeRxUHTbBb9vPCmSaouMabHZ14uLZzS2WksdNT8C6P1SA/AfUzdQNUwZZgla6qPEHy6yAID+5KM1o9rJL900p+5VaX4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lJk5Id0U; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 877491BF203;
-	Mon, 30 Sep 2024 14:26:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727706379;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bHMb96CYM+I+SvYzsm1sJNO/ARCPSEaKP4XT+TbHTIM=;
-	b=lJk5Id0UepP86gzHpP/dlKkKwbypXwcEBW3CFsDfgEeBQifjRwKcN7ldV4IH7iiKc6SheF
-	/nI8Pep9ZoT15NkY1KJ2XDfoPvV5TxqWN12eizzTfvlYIb1ZwL74iK59lKnbbTvOjVVDaa
-	1nQGU9RgCeQg/W9xEi8UlyhF9jtTd5YvN4o0kcQ1FqeO4IlTYF6wXr3cNYUYo4dcNxX3zD
-	ql9MmxvShpL4H432wVUQchnzC3n6LFq48khfjvzg2ITiBneBHmbf2L4WeM6Th90n3SFCDC
-	Hmn+SA9CDyq6dkLkKj2G+Jw/kT8BHsEqa6khY+XcggMgeCpjJlyGiJQJ8jW4Nw==
-Date: Mon, 30 Sep 2024 16:26:16 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>, "Andy Shevchenko"
- <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>, "Lee Jones"
- <lee@kernel.org>, "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars Povlsen"
- <lars.povlsen@microchip.com>, "Steen Hegelund"
- <Steen.Hegelund@microchip.com>, "Daniel Machon"
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
- "David S . Miller" <davem@davemloft.net>, "Eric Dumazet"
- <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
- <pabeni@redhat.com>, "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
- Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 2/7] reset: mchp: sparx5: Use the second reg item
- when cpu-syscon is not present
-Message-ID: <20240930162616.2241e46f@bootlin.com>
-In-Reply-To: <d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
-References: <20240930121601.172216-1-herve.codina@bootlin.com>
-	<20240930121601.172216-3-herve.codina@bootlin.com>
-	<d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1727706476; c=relaxed/simple;
+	bh=oPTIw5YfsovYjrnxs4UQ84cLGGp8sPG7eUb3P5w4wd8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=qUwwOpNQZB4q82R1PEHLz5yGvkujhvUB9pX0NabapFSUGkYASrYXTHPceZ2F2W+1h99HTK1jBUHKMGGUQtiR5vRpOj+NSOcOgDG61b6be96a4Gs+O3z58NnsriaTXZmCB3LZEYhruhwt+lvQkZNV4g3dQXZAdMhLN4GzTbtpHl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e1651f48c31so4298322276.0;
+        Mon, 30 Sep 2024 07:27:54 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727706473; x=1728311273;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qIwcknFjfAOkd16gzyHHjbVxkGkOzmZX89V7ikbQToA=;
+        b=hgsxn2tr2U/wBLsDzVwyypzoaoq7tlITrmqNfLyPnyydl8rhcbuNe7PAsHxw9EwaAk
+         cj8NYp8ecKg/VhAGgBTeWkFiJWBMOVAOBjosceA3d4cMCef3qyydwOyYPPynAZhytXoX
+         V/w1adBRjJ8d5k9DEjDoJgYGSfGrKishJOwbVQcwuCzDK4jJpbHhimYz1vLxYsK/7TlD
+         RKwx/kv88zjOeTtNLbcdHIs7yinc7UhKQ+VewIPPf+rA9NUUUCT74Lt/0dn3fqkhKn7h
+         caLEfBpMIRKkdK6kvpHcCqSLQDaC2lKMvplJGQ7/j4dt1AwbeW7AK2nZ9bJNbUYf1FQN
+         loJw==
+X-Forwarded-Encrypted: i=1; AJvYcCWI8+mVJO8lhUErn2FllmgbyjaSWEfbH5BZjAcH3kRWFqLjrBg3nH7dknETit1C8nirquObpVUfMKC/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAz6ES2UUZrcWMn1ABh8HoH0Mz/u//SOYJare8tff3OJj73suA
+	Am42zzZXGOvlQuieL8K//d0V5RxaylLDJh+NEHPXshwisVZKfdsakH67oW3L
+X-Google-Smtp-Source: AGHT+IE5cTK46SBaiOLOOnwrwnk3Yxz64sgNo4ZJWWOUIcAIJj/n2eSv5Fbn1Y+wkjzcxJFjWOHl9w==
+X-Received: by 2002:a05:6902:230b:b0:e26:486:5be with SMTP id 3f1490d57ef6-e2604b1527dmr8021034276.11.1727706472720;
+        Mon, 30 Sep 2024 07:27:52 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e25e3ef8ee8sm2361150276.1.2024.09.30.07.27.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 07:27:52 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6db4b602e38so34916577b3.1;
+        Mon, 30 Sep 2024 07:27:52 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXkxxI+iUSLNUKS9bilqhnr7UnfH7+VGKtgWKCBsq4twEPiX/ihDI5AsD5oQFxA9yCslU5VOdnijJF9@vger.kernel.org
+X-Received: by 2002:a05:690c:3691:b0:6dd:c2e4:d245 with SMTP id
+ 00721157ae682-6e2475498a3mr101009707b3.14.1727706472256; Mon, 30 Sep 2024
+ 07:27:52 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20240927095414.10241-6-wsa+renesas@sang-engineering.com> <20240927095414.10241-7-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240927095414.10241-7-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 30 Sep 2024 16:27:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXUpFAt4BX9ApxehohLpsjn_OHBsFHJeGxbPfafF3Dekw@mail.gmail.com>
+Message-ID: <CAMuHMdXUpFAt4BX9ApxehohLpsjn_OHBsFHJeGxbPfafF3Dekw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] ARM: dts: renesas: marzen: use interrupts-extended
+ for gpio-keys
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 30 Sep 2024 13:57:01 +0000
-"Arnd Bergmann" <arnd@arndb.de> wrote:
+On Fri, Sep 27, 2024 at 11:54=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Using the inherited interrupt-parent is discouraged. Use
+> interrupts-extended to fully describe the interrupt.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
-> > In the LAN966x PCI device use case, syscon cannot be used as syscon
-> > devices do not support removal [1]. A syscon device is a core "system"
-> > device and not a device available in some addon boards and so, it is not
-> > supposed to be removed.
-> >
-> > In order to remove the syscon usage, use a local mapping of a reg
-> > address range when cpu-syscon is not present.
-> >
-> > Link: https://lore.kernel.org/all/20240923100741.11277439@bootlin.com/ [1]
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---  
-> 
-> >>  	err = mchp_sparx5_map_syscon(pdev, "cpu-syscon", &ctx->cpu_ctrl);  
-> > -	if (err)
-> > +	switch (err) {
-> > +	case 0:
-> > +		break;
-> > +	case -ENODEV:  
-> 
-> I was expecting a patch that would read the phandle and map the
-> syscon node to keep the behavior unchanged, but I guess this one
-> works as well.
-> 
-> The downside of your approach is that it requires an different
-> DT binding, which only works as long as there are no other
-> users of the syscon registers.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.13.
 
-Yes, I knwow but keeping the binding with the syscon device (i.e. compatible
-= "...", "syscon";) leads to confusion.
-Indeed, the syscon API cannot be used because using this API leads issues
-when the syscon device is removed.
-That means the you have a "syscon" node (compatible = "syscon") but we cannot
-use the syscon API (include/linux/mfd/syscon.h) with this node.
+Gr{oetje,eeting}s,
 
-Also, in order to share resources between several consumers of the "syscon"
-registers, we need exactly what is done in syscon. I mean we need to map
-resources only once, provide this resource throught a regmap an share this
-regmap between the consumers. Indeed a lock needs to be shared in order to
-protect against registers RMW accesses done by several consumers.
-In other word, we need to copy/paste syscon code with support for removal
-implemented (feature needed in the LAN966x PCI device use case).
+                        Geert
 
-So, I found really simpler and less confusing to fully discard the syscon node
-and handle registers directly in the only one consumer.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-With all of these, do you thing my approach can be acceptable ?
-
-Best regards,
-Hervé
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
