@@ -1,133 +1,569 @@
-Return-Path: <devicetree+bounces-106466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDA1798A45D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:11:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8269A98A492
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67A03B23314
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:11:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5EB21C231C6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83FBC18FC79;
-	Mon, 30 Sep 2024 13:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC3B190497;
+	Mon, 30 Sep 2024 13:19:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZZOEIdwe"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="F5cGO/fE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from TYVP286CU001.outbound.protection.outlook.com (mail-japaneastazon11011064.outbound.protection.outlook.com [52.101.125.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73FB18F2DD;
-	Mon, 30 Sep 2024 13:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727701856; cv=none; b=KE+2F3snyoXPumeIQ5X8m26tSaC+HQWzbMICZwbGcpmf9vC9VAawt2EYjq0B62TeptbTqvto9iz4XYdhogA6APYlD6sn4FznhhQ657hazj4bYHGENz5A0+QIt3+l/UQr6R42+6ZldLD8O7dr3ZPCa7m52iarZVGdgWR3TGb2NDU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727701856; c=relaxed/simple;
-	bh=MsNBzkkOxOwUVNVjEhVI8pun/ecfev3LMj5pMkngkAE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ugGAEHVUVLWO7T5DTBXYB49NxINu+9sm6EaO6Yb118guKbjvLEu7l/Zvm66i0AGUxp27DgYCDxkZ8KPOkd08AUatOklPK8K58S+/i80Cq1CfKNdBvdwH4nAV3zjOYEiRqtZ8Gl7Emmv5agbRShSYu0D6ybhAqE4cr+aDZopAKZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZZOEIdwe; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5398939d29eso3041678e87.0;
-        Mon, 30 Sep 2024 06:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727701853; x=1728306653; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MsNBzkkOxOwUVNVjEhVI8pun/ecfev3LMj5pMkngkAE=;
-        b=ZZOEIdwej7XTtQfD/dsM1C9/U96tAI+gvakmEeWtSgY54xKCSZbx+qwYb3g1dpMQwq
-         yL1EvgPq8ouTuUt0SdPNlnE3hDqLPCUMLTz2bGC985hblBu+scCuYv/s2/rQrfAtCc+T
-         soidmb1ju8lujoST7mO0YX3C1nhPf3Wjf5zKJeEjBPlnYnEWqelNUn3fIeAIOLSnEbJD
-         c+uIt4lVV+sTBI6zNxLIuK3SMRLnkZrAKeCNrDWydsmDSro0TaRr185bjZGMKjQgMKn0
-         ivsOy+EhDKDaQDCNFdcry+wMhL6zDtCTKymDsyzpskhc05mt5fWllxIuyZMmmIEab9Za
-         xWTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727701853; x=1728306653;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MsNBzkkOxOwUVNVjEhVI8pun/ecfev3LMj5pMkngkAE=;
-        b=WdhYD/iBNCklA/rBFC86Gsn5rHVOkolKhPYpaSbb5J5qENfGhKqfFQtvRSPmSon8at
-         VIvp8XKZWVTgvk7gihY0GiaOPOA+Xn7mCkOdeEXm6/+SEfJl0k8ETqoRHpfPoWBF6Vxs
-         /WuvEL+kCEil7vFN3vYPksyfORrhbKGeaBkJJw+j5PQaxMHks3yGEPopY5cr60h1Qsvi
-         dl+NrS5qE9NMIZm+oFU90uQvRtGaFWnEh/4c8Hos/3J8CuZLm1/3iIQVtbsTWo71MTuf
-         ZS9kHcoV0vkYoUdAVeKssMalD2o00bAtvol+1HIMXEFMHEicSP0NtD0Bc3ONMRMdrrt8
-         JDuw==
-X-Forwarded-Encrypted: i=1; AJvYcCUJLOzPma9/kRuGi78x7uer6/8AkScmA6kGaXJ9dx44/dT0KM/n8FZVdfjc166Pr9dVJ/CS5XrHd8Qb@vger.kernel.org, AJvYcCUfGglNxO8FiGZYFt6youH4dxMV/fsdg6Bl3c9uowv5xsHofSg7jFmkSiqEEygtJscP3dJtNcdy39nw@vger.kernel.org, AJvYcCVP4MRDkE4yW0vHjPJ5BDv97ye4ovO/pTJcTOE7rM4heD1FwGMmMUa7hNgo9nLDDhK7SQGo6OlekAfF@vger.kernel.org, AJvYcCX1hpecKjM1P0XSebojurPShlENMTjdwIYu/wOv9mqG97FPmCT5sCmkFXkxSTym6Tzl/bDGI3LAvpgfBcyP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw5RaGKKJ4qY3o5xbHoa74N5RwfnDDDyFmUUXbp3i9ZLPzmzpAn
-	oVOcHdi2R8YGRZ2aErKQxx1x1TiIAeN0m4aHCFs1XCPH05LpWX0a
-X-Google-Smtp-Source: AGHT+IGJaBMVIPRV8/Hnao8AWBVPUIlmy3kBZTBg1lwUwo0SO22GBzigdY+To11KOesjNu6mJq/oTg==
-X-Received: by 2002:a05:6512:3e05:b0:533:47b5:c023 with SMTP id 2adb3069b0e04-5389fc3bb57mr5468997e87.13.1727701851197;
-        Mon, 30 Sep 2024 06:10:51 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef02:2700:7684:3ff1:6790:3866? (p200300f6ef02270076843ff167903866.dip0.t-ipconnect.de. [2003:f6:ef02:2700:7684:3ff1:6790:3866])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88640fe9asm3469538a12.82.2024.09.30.06.10.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 06:10:50 -0700 (PDT)
-Message-ID: <6ce76f0a7c503cc800b4795e682f91c8bfc0bb7a.camel@gmail.com>
-Subject: Re: [PATCH v3 02/10] dt-bindings: iio: dac: axi-dac: add ad3552r
- axi variant
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Jonathan Cameron
-	 <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
- <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring	
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley	
- <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com, Mark Brown
- <broonie@kernel.org>, 	linux-spi@vger.kernel.org
-Date: Mon, 30 Sep 2024 15:15:03 +0200
-In-Reply-To: <sowmuxfsedwdshyothf7jc6mcrbzqbs2vzw7x4p3tg3iqnlnjt@5qa3kazkce46>
-References: 
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-2-a17b9b3d05d9@baylibre.com>
-	 <20240929114606.7500ba7e@jic23-huawei>
-	 <sowmuxfsedwdshyothf7jc6mcrbzqbs2vzw7x4p3tg3iqnlnjt@5qa3kazkce46>
-Content-Type: text/plain; charset="UTF-8"
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93C68190064;
+	Mon, 30 Sep 2024 13:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.125.64
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727702346; cv=fail; b=QIlfeJ1/516S0TrzoztPm6WFrTW0Wk3VzK26VsMjlyGvcV47daae4BvrlFd+t/d3hDtcoH1Zfvgp6hmWqnscyRbiRTCY45dODm/MrSvbUTzZ708SEKGQSNEYilNvxbPYD4/BuEXcKWNk3sHgET6RpkDFBNAsnKFBEdGIKIvc1nQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727702346; c=relaxed/simple;
+	bh=QBowFs4Tfw1qMPZmHb/NWHdzErqOPstCK3uhPoefgZM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mCF9DUP/+wEj9CgJcuG3yM1oN1jqvocKnh/2HTYyGy89+AWIcHphN78nWk12euM3CY4KVmwxBnC5yyL9Fxumgr6r4MSi0FkPlybnLfnrgM9ClJZ74LYNN+20ADZfMwPyKtTfsDV54RnWbJDxHMd4lHrcut8RVoBZVEPNIikwtZo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=F5cGO/fE; arc=fail smtp.client-ip=52.101.125.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=GQIvzal7NRjtoWeDZfEYn3q+k4QCo0C2PZMW6aKDSe0nkGZrIKhQ6KKWWZympQYbEdkF4TuPsQeeTHZXA0CdNXgJQWI0aLEIKmy7ihXS9kYmGWWyrP51W9BmHjgHbSyz4gwUhFef6n75oI4/Mg7iQ1/lm0u5vkHKr9DfKgOgB+44EiIa2/4NHq6ICq2esOqSg+4EZX8fXGb39b8cEg7rOs9pQqFk7/264srqiiuEEf1K1FtAFOC+QePybAkVmjKWwqC2lVsqrjda7df5zHVgEvPmuVEAG14Hjl6Q/3q7akSWiguG8CUr9BQfTYMKuD4SUuk3f71kMRQgkQbBjSSgZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=harHIwdLMaLmA7mtveKrUceOrW8Y74DU0EaKgzwz2DU=;
+ b=EsRe2bi+3wsmvex19JWDFkoGuyPvagKPXtnNUE/t/o3HfZ7jhkoq4aU5RUPdrn3EI3YF4TLj8m381I8Zy7WtQEx3TeQWMcBAbAWW1wwvS/6/pEMIRW2bJyAhJqyx/Mqx28afK0YWGxPaHaJjVJ0BJXYigXRyC3QkyyzdLEQwLQzMLZP0pUOmMqqDSYt2Bf5OdVeMrhEj2dWXdevozZW5+srdZ21RV20ojAwyv7SiRfJKkP3SA75DIVk10dS3Y+8jRVUGNhgbNSY+1FN38chiElJOz+qhBdw3YaVQpCvQ94THwQ4RtIkay5dxnsTgEzxOpWWz73gQwnhnLx/yPEQKsA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=harHIwdLMaLmA7mtveKrUceOrW8Y74DU0EaKgzwz2DU=;
+ b=F5cGO/fEvN+myKeKOGuyB9G3g486cJMO6LEgiJHeaPAIufbP6cFzHG+F95ZVnOT3V8+RmC4Dqyq8oJKPra7m3y8pfjk+9GCu7HQ00r8tcb31+ALOYZAVkG3zKHVbFDFJz4zbpy7Sn5feZiz+YhX8O29mrMvbmu5vGUeu6dxYLMU=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYCPR01MB11973.jpnprd01.prod.outlook.com (2603:1096:400:38c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Mon, 30 Sep
+ 2024 13:18:55 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%5]) with mapi id 15.20.8005.026; Mon, 30 Sep 2024
+ 13:18:55 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Liu Ying <victor.liu@nxp.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+CC: "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
+	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org"
+	<rfoss@kernel.org>, laurent.pinchart <laurent.pinchart@ideasonboard.com>,
+	"jonas@kwiboo.se" <jonas@kwiboo.se>, "jernej.skrabec@gmail.com"
+	<jernej.skrabec@gmail.com>, "maarten.lankhorst@linux.intel.com"
+	<maarten.lankhorst@linux.intel.com>, "mripard@kernel.org"
+	<mripard@kernel.org>, "tzimmermann@suse.de" <tzimmermann@suse.de>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
+	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de"
+	<s.hauer@pengutronix.de>, "kernel@pengutronix.de" <kernel@pengutronix.de>,
+	"festevam@gmail.com" <festevam@gmail.com>, "catalin.marinas@arm.com"
+	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>,
+	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>,
+	"dmitry.baryshkov@linaro.org" <dmitry.baryshkov@linaro.org>, "arnd@arndb.de"
+	<arnd@arndb.de>, "nfraprado@collabora.com" <nfraprado@collabora.com>,
+	"o.rempel@pengutronix.de" <o.rempel@pengutronix.de>, "y.moog@phytec.de"
+	<y.moog@phytec.de>
+Subject: RE: [PATCH 5/8] dt-bindings: display: bridge: Add ITE IT6263 LVDS to
+ HDMI converter
+Thread-Topic: [PATCH 5/8] dt-bindings: display: bridge: Add ITE IT6263 LVDS to
+ HDMI converter
+Thread-Index: AQHbEvsvallXUWq+cES3Z1QK8DhHC7JwB6XAgABHliA=
+Date: Mon, 30 Sep 2024 13:18:55 +0000
+Message-ID:
+ <TY3PR01MB113466D86F0CA0FA8FB9B866D86762@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20240930052903.168881-1-victor.liu@nxp.com>
+ <20240930052903.168881-6-victor.liu@nxp.com>
+ <TY3PR01MB11346CF2BE6F838A718E64F5586762@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+In-Reply-To:
+ <TY3PR01MB11346CF2BE6F838A718E64F5586762@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB11973:EE_
+x-ms-office365-filtering-correlation-id: d8c7636b-ef96-4d55-e0dc-08dce1526f6f
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|7416014|376014|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?PB0xU08OsY9UNFgfXVGf2WFqFa8eqfOZmO2hTMr4zxpDeQvGqmpezJsY0YLS?=
+ =?us-ascii?Q?V2nmKIr2jmU8NsfvTweJ7Z85iqMgu1SpUBAZ0UpBebVDCnXpeq1tTfDxVoZr?=
+ =?us-ascii?Q?tXW1bcJlnSGdcu2H99Q0hYDE3XnBgBzPB73YcV3oPPUNgml9uf63zL3tj2Ch?=
+ =?us-ascii?Q?21Yo1cpOZQPQg8vqf0u3dMysy6khBI3WrzJCFr5A8ljIv2L34Jvh+3GRJhyO?=
+ =?us-ascii?Q?UpV/nhoCynFhpy1cXBJLS8Yud0RFQdNu02FUAZ1GY9+g29x9eNBFpKMvecWl?=
+ =?us-ascii?Q?/ND440ZAZDDdk6rLzJ/MpB/ENc10i1/uyEu4puXHIWP3h+ASBfCCHvrd2DhV?=
+ =?us-ascii?Q?j0KyuwvD3L++7TyAMWFMKX533zXgGO/teEvqZVdsMdMxtJbmo8sP7WwE9sHo?=
+ =?us-ascii?Q?QDuu29/t3i4s95gGdbe5VTcDLEvgPznbetPUwmA8JyAB+DiJ+9VsxmUUDB6K?=
+ =?us-ascii?Q?mK0dqSBIWU4nbhWrn1lhTvXGGgq6FklhKtRMCoP5YGJpiJVLdiOndvEzfZ6x?=
+ =?us-ascii?Q?q20a7dLwUnSjSzh+WTyBEaNhzmiMaiT7bjyOX13vvjJSVlaHdbnGyYa8O84B?=
+ =?us-ascii?Q?U/njae7Ybu2uvMY3HZde3Dcl2JcrUvWYtMAjdvG/TwVi1CCJI8Pa8b9NZzX3?=
+ =?us-ascii?Q?ErwFKaZZ0Y72QzxWr5z3MWA7xRXA7FFfsnDasovKkYxdLrWeWBVEvoOHKk2d?=
+ =?us-ascii?Q?6/TugYHZmZWtsS81CNqPSsOGe0M+PWGyzvf0TDcRfZJfy3jDVR6oA1SIVeAK?=
+ =?us-ascii?Q?PorWPyD2bLgObQn8qgVrPQ5htOV4H5t+IrZ7GTcqoHmMIFnaMJPWgez4B2H5?=
+ =?us-ascii?Q?LeynjTBaAxgNzFZvmKlM5U47E4GBQV0EMDIMNMpQHFMClb5c88/PAN/O9Csb?=
+ =?us-ascii?Q?tIz/7H4Jk0/G/RhldyplC4rfvjHqsTU8c0+7R+OvnB50LjlwUk8SSOZCRw2o?=
+ =?us-ascii?Q?e7irtKcOcIpir9aogv1X8n/O+Tj3UTz/Ql1VebFkkTEbYs+ROFC5XdsxqUYw?=
+ =?us-ascii?Q?0FTUql6vJYlO1RZTCZHLrIXaZ8XatlGjPpakroLq0ySQY2FxajXkPy++jIkE?=
+ =?us-ascii?Q?zT5CGRcX43R6nHcW2C1t+CL+PON+46llW1nqT948bzkdg+yu0JrmxTDURiHF?=
+ =?us-ascii?Q?3gAShlBtzgn+WNpqMNq5Yz41xhOxGJC2m8k5oJFgGg9QAikz4wKqL92xVe0z?=
+ =?us-ascii?Q?erheOTX4mD0E6ykDjDJA7X/OB88E/ZmgYetgQHWQbO9m2BOti/dO1DlFGdeL?=
+ =?us-ascii?Q?lObwkd/yckfn0/f0eHlwGX1LRCaR8soGoRk8L0Bv/Q=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?TInwb8S8EPODysA6HNeK37C7ug6wAAEl+eU6aF3ePLy++fgo+KTMIRssC304?=
+ =?us-ascii?Q?lqhZdwRFB8vKhwJ0QX/WzcJcmM7lVfb1nksb38Q/cj4bo7yZTr2YMWuSy6+X?=
+ =?us-ascii?Q?MwOCDo71sWgfY7/GMIqkKnDCpj5TvDfD4VEiHbg6PydQe/I9lpcMM8AuxUgW?=
+ =?us-ascii?Q?PP5jPExrwnta+x/8e4QdvjrPlNlZSiCHEaz8IX8uSn55ellhElNwf73apNQ2?=
+ =?us-ascii?Q?UjfScFXKwd9aZ/Vw5cE23l7d+lMg/GVI+DYX6M+gLUa/IQRltLjfWln/SudY?=
+ =?us-ascii?Q?eF/thfY2+58WJVYm8l1CpXLd1mVhVqtUEG1FVIRTgbDNp+bEu07jgpCTFTQE?=
+ =?us-ascii?Q?Hyx3LM5B9aQbvA+6zO6a4dmL6om6Shua6lz5zfxRiEH9QLrqDaNVbaLTh2jm?=
+ =?us-ascii?Q?/QNy4Pao4LQHyYZXQxJ4DGndbv+1B2+qS8CrqoJqkFSAumIJspmtVeScpnVz?=
+ =?us-ascii?Q?BltF64pJvRNAcYmwUcXLr6aW7+T8FfUGbP5s0vVZBigG7qVTru5L0nRl8mtx?=
+ =?us-ascii?Q?nTGS6xmzipIsPqWNcHycVmYmmId7ZwFQ3ZBoqPqamj8MukAvhkUGUdQnmA8m?=
+ =?us-ascii?Q?wgYPM4jBIxp1Ep0mhw6rJSzhUcLVsvPC9MG4TMqdMq+Fo/FCMoXD5GAzdak5?=
+ =?us-ascii?Q?2p3JWyOMjltv2eb3lefsn+FiBx6xOoDHP7rsRXyhrH56hdAAN40U5cgb3GlT?=
+ =?us-ascii?Q?TvzQ2eAkSDuWy3tAHra7bEh8GyeqQ0ic6/476e/L++cJcjy0l732E09dkCBE?=
+ =?us-ascii?Q?T94SN2ldRTB4CjlQxQ7Q7hDJIf+JWyW2HPzo1U5pmTmfBzkWHgD9WAssTTOh?=
+ =?us-ascii?Q?fSigNSAO6b4dSevrpaNovIV+pmR63T9GkUJAypjMoUN7eXdyHJTnVp4Avepm?=
+ =?us-ascii?Q?wKuZhXmQX20WZSersgvvVw1i0QYZAU/7XZhBHc8bP5sGlE6YC4OWB2X3ogEL?=
+ =?us-ascii?Q?TEYqYm/xl345ZKPcv3KWTWhc+4QDiu7moin1HqJBe49iFVYGw01spCUCYd6h?=
+ =?us-ascii?Q?ezGf0OGFAt3i7xVwrRd1wa+ibFzsiRFVMKc4CS1EDKIloI+FLzmznCb5fnJn?=
+ =?us-ascii?Q?QWv05WrLbz7dEgFTA6jIEm+vB82BqVbpcmuh5PJXaXNBfJqn+iH2AFuwJ8p4?=
+ =?us-ascii?Q?V54/fyyif4j+YQp6oyLMkZbJiiAre4K8fuF2rSPuvbMCcyz8N4DXvPAtDK45?=
+ =?us-ascii?Q?70nkiD2dc8mbbQ9LVmCqYkuoCixBYr2GSFNyvPYwwWC6P3hqQxGqLflnPqMt?=
+ =?us-ascii?Q?2ovrGrjIAzSY9T8CVtjki1fH6XWeQhNHrHYuAr15Evw5kXo+LMDEr+ybYeEZ?=
+ =?us-ascii?Q?2yLvLrSdJz/v3C49RLXhtkRXb1iZRrYsw34ZMJmXmSqj2ziSu/IyexDm68va?=
+ =?us-ascii?Q?DCVgOHQYeDfaMdjIGRcQHf6ZjRBI3XAbRB1xq2+fBummO7VnzlApcS+CSlQz?=
+ =?us-ascii?Q?S+cxnNde5gJPSIPmfXpPO070QGLXR/2SE3xK4+46K7PwMUb63oNKbUAdD9L2?=
+ =?us-ascii?Q?wvnBEWt7R3JaXCneube1qgzPayqFmu7w/aRXtDVSGUF2sN87+NAsLTBgurBu?=
+ =?us-ascii?Q?+wYr5fD8ubUl5zcgRitvGERQxBtkFa+yMazU4kY0?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d8c7636b-ef96-4d55-e0dc-08dce1526f6f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Sep 2024 13:18:55.2370
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yfo6Kn+fT8kxk2vHqQ5b+QSzOhA7MYyiXn/qtt2BBgJ9sxFjDCk2b1Kc4UxvBWYs+r4vWdX+K2DrCe0bgibv0I/gIrQGu97BPTINiGhwVCc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11973
 
-On Mon, 2024-09-30 at 14:52 +0200, Angelo Dureghello wrote:
-> On 29.09.2024 11:46, Jonathan Cameron wrote:
-> > On Thu, 19 Sep 2024 11:19:58 +0200
-> > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> >=20
-> > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > >=20
-> > > Add a new compatible and related bindigns for the fpga-based
-> > > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
-> > >=20
-> > > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-> > > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-> > > mainly to reach high speed transfer rates using an additional QSPI
-> >=20
-> > I'd drop the word additional as I assume it is an 'either/or' situation
-> > for the interfaces.
-> >=20
-> > Do we have other devices using this same IP?=C2=A0 I.e. does it make
-> > sense to provide a more generic compatible as a fallback for this one
-> > so that other devices would work without the need for explicit support?
-> >=20
-> >=20
-> no, actually ad3552r-axi is only interfacing to ad3552r.
-> I could eventually set adi,axi-dac-9.1.b as a fallback, since it
-> is the "gneric" AXI implementation.
+Hi Liu,
 
-Yes but the generic IP does not have this spi bus implementation so the dev=
-ice
-would be unusable (unless I'm missing something)
+> -----Original Message-----
+> From: Biju Das
+> Sent: Monday, September 30, 2024 10:04 AM
+> Subject: RE: [PATCH 5/8] dt-bindings: display: bridge: Add ITE IT6263 LVD=
+S to HDMI converter
+>=20
+> Hi Liu,
+>=20
+> thanks for the patch.
+>=20
+> > -----Original Message-----
+> > From: linux-arm-kernel <linux-arm-kernel-bounces@lists.infradead.org>
+> > On Behalf Of Liu Ying
+> > Sent: Monday, September 30, 2024 6:29 AM
+> > Subject: [PATCH 5/8] dt-bindings: display: bridge: Add ITE IT6263 LVDS
+> > to HDMI converter
+> >
+> > Document ITE IT6263 LVDS to HDMI converter.
+> >
+> > Product link:
+> > https://www.ite.com.tw/en/product/cate1/IT6263
+> >
+> > Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > ---
+> >  .../bindings/display/bridge/ite,it6263.yaml   | 310 ++++++++++++++++++
+> >  1 file changed, 310 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> > b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> > new file mode 100644
+> > index 000000000000..97fb81e5bc4a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> > @@ -0,0 +1,310 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ITE IT6263 LVDS to HDMI converter
+> > +
+> > +maintainers:
+> > +  - Liu Ying <victor.liu@nxp.com>
+> > +
+> > +description: |
+> > +  The IT6263 is a high-performance single-chip De-SSC(De-Spread
+> > +Spectrum) LVDS
+> > +  to HDMI converter.  Combined with LVDS receiver and HDMI 1.4a
+> > +transmitter,
+> > +  the IT6263 supports LVDS input and HDMI 1.4 output by conversion fun=
+ction.
+> > +  The built-in LVDS receiver can support single-link and dual-link
+> > +LVDS inputs,
+> > +  and the built-in HDMI transmitter is fully compliant with HDMI
+> > +1.4a/3D, HDCP
+> > +  1.2 and backward compatible with DVI 1.0 specification.
+> > +
+> > +  The IT6263 also encodes and transmits up to 8 channels of I2S
+> > + digital audio,  with sampling rate up to 192KHz and sample size up to=
+ 24 bits.
+> > + In addition,  an S/PDIF input port takes in compressed audio of up to=
+ 192KHz frame rate.
+> > +
+> > +  The newly supported High-Bit Rate(HBR) audio by HDMI specifications
+> > + v1.3 is  provided by the IT6263 in two interfaces: the four I2S
+> > + input ports or the  S/PDIF input port.  With both interfaces the
+> > + highest possible HBR frame rate  is supported at up to 768KHz.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: ite,it6263
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: audio master clock
+> > +
+> > +  clock-names:
+> > +    const: mclk
+> > +
+> > +  reset-gpios:
+> > +    maxItems: 1
+> > +
+> > +  ivdd-supply:
+> > +    description: 1.8V digital logic power
+> > +
+> > +  ovdd-supply:
+> > +    description: 3.3V I/O pin power
+> > +
+> > +  txavcc18-supply:
+> > +    description: 1.8V HDMI analog frontend power
+> > +
+> > +  txavcc33-supply:
+> > +    description: 3.3V HDMI analog frontend power
+> > +
+> > +  pvcc1-supply:
+> > +    description: 1.8V HDMI frontend core PLL power
+> > +
+> > +  pvcc2-supply:
+> > +    description: 1.8V HDMI frontend filter PLL power
+> > +
+> > +  avcc-supply:
+> > +    description: 3.3V LVDS frontend power
+> > +
+> > +  anvdd-supply:
+> > +    description: 1.8V LVDS frontend analog power
+> > +
+> > +  apvdd-supply:
+> > +    description: 1.8V LVDS frontend PLL power
+> > +
+> > +  "#sound-dai-cells":
+> > +    const: 0
+> > +
+> > +  ite,i2s-audio-fifo-sources:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +    items:
+> > +      enum: [0, 1, 2, 3]
+> > +    description:
+> > +      Each array element indicates the pin number of an I2S serial dat=
+a input
+> > +      line which is connected to an audio FIFO, from audio FIFO0 to FI=
+FO3.
+> > +
+> > +  ite,rl-channel-swap-audio-sources:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +    minItems: 1
+> > +    maxItems: 4
+> > +    uniqueItems: true
+> > +    items:
+> > +      enum: [0, 1, 2, 3]
+> > +    description:
+> > +      Each array element indicates an audio source whose right channel=
+ and left
+> > +      channel are swapped by this converter. For I2S, the element is t=
+he pin
+> > +      number of an I2S serial data input line. For S/PDIF, the element=
+ is always
+> > +      0.
+> > +
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +
+> > +    oneOf:
+> > +      - properties:
+> > +          port@0:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: the first LVDS input link
+> > +
+> > +          port@1: false
+> > +
+> > +          port@2:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: video port for the HDMI output
+> > +
+> > +          port@3:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: sound input port
+> > +
+> > +        required:
+> > +          - port@0
+> > +          - port@2
+> > +
+> > +      - properties:
+> > +          port@0:
+> > +            $ref: /schemas/graph.yaml#/$defs/port-base
+> > +            unevaluatedProperties: false
+> > +            description: the first LVDS input link
+> > +
+> > +            properties:
+> > +              dual-lvds-odd-pixels:
+> > +                type: boolean
+> > +                description: the first sink port for odd pixels
+> > +
+> > +              dual-lvds-even-pixels:
+> > +                type: boolean
+> > +                description: the first sink port for even pixels
+> > +
+> > +            oneOf:
+> > +              - required: [dual-lvds-odd-pixels]
+> > +              - required: [dual-lvds-even-pixels]
+> > +
+> > +          port@1:
+> > +            $ref: /schemas/graph.yaml#/$defs/port-base
+> > +            unevaluatedProperties: false
+> > +            description: the second LVDS input link
+> > +
+> > +            properties:
+> > +              dual-lvds-even-pixels:
+> > +                type: boolean
+> > +                description: the second sink port for even pixels
+> > +
+> > +              dual-lvds-odd-pixels:
+> > +                type: boolean
+> > +                description: the second sink port for odd pixels
+> > +
+> > +            oneOf:
+> > +              - required: [dual-lvds-even-pixels]
+> > +              - required: [dual-lvds-odd-pixels]
+>=20
+>=20
+> > +
+> > +          port@2:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: video port for the HDMI output
+> > +
+> > +          port@3:
+> > +            $ref: /schemas/graph.yaml#/properties/port
+> > +            description: sound input port
+>=20
+> What about single lvds as device support it?
+>=20
+> Cheers,
+> Biju
+>=20
+> > +
+> > +        required:
+> > +          - port@0
+> > +          - port@1
+> > +          - port@2
+> > +
+> > +        allOf:
+> > +          - if:
+> > +              properties:
+> > +                port@0:
+> > +                  required:
+> > +                    - dual-lvds-odd-pixels
+> > +            then:
+> > +              properties:
+> > +                port@1:
+> > +                  properties:
+> > +                    dual-lvds-odd-pixels: false
+> > +
+> > +          - if:
+> > +              properties:
+> > +                port@0:
+> > +                  required:
+> > +                    - dual-lvds-even-pixels
+> > +            then:
+> > +              properties:
+> > +                port@1:
+> > +                  properties:
+> > +                    dual-lvds-even-pixels: false
 
-- Nuno S=C3=A1
+Do we need to document ite,data-mapping to support both VESA and JEIDA form=
+ats??
 
+Or
+
+Is there any run time info available to get this info? Currently,
+I see it is hardcoded in driver.
+
+Cheers,
+Biju
+
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - ivdd-supply
+> > +  - ovdd-supply
+> > +  - txavcc18-supply
+> > +  - txavcc33-supply
+> > +  - pvcc1-supply
+> > +  - pvcc2-supply
+> > +  - avcc-supply
+> > +  - anvdd-supply
+> > +  - apvdd-supply
+> > +  - ports
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    /* single-link LVDS input */
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        hdmi@4c {
+> > +            compatible =3D "ite,it6263";
+> > +            reg =3D <0x4c>;
+> > +            reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
+> > +            ivdd-supply =3D <&reg_buck5>;
+> > +            ovdd-supply =3D <&reg_vext_3v3>;
+> > +            txavcc18-supply =3D <&reg_buck5>;
+> > +            txavcc33-supply =3D <&reg_vext_3v3>;
+> > +            pvcc1-supply =3D <&reg_buck5>;
+> > +            pvcc2-supply =3D <&reg_buck5>;
+> > +            avcc-supply =3D <&reg_vext_3v3>;
+> > +            anvdd-supply =3D <&reg_buck5>;
+> > +            apvdd-supply =3D <&reg_buck5>;
+> > +
+> > +            ports {
+> > +                #address-cells =3D <1>;
+> > +                #size-cells =3D <0>;
+> > +
+> > +                port@0 {
+> > +                    reg =3D <0>;
+> > +
+> > +                    it6263_lvds_link1: endpoint {
+> > +                        remote-endpoint =3D <&ldb_lvds_ch0>;
+> > +                    };
+> > +                };
+> > +
+> > +                port@2 {
+> > +                    reg =3D <2>;
+> > +
+> > +                    it6263_out: endpoint {
+> > +                        remote-endpoint =3D <&hdmi_in>;
+> > +                    };
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > +
+> > +  - |
+> > +    /* dual-link LVDS input */
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +
+> > +    i2c {
+> > +        #address-cells =3D <1>;
+> > +        #size-cells =3D <0>;
+> > +
+> > +        hdmi@4c {
+> > +            compatible =3D "ite,it6263";
+> > +            reg =3D <0x4c>;
+> > +            reset-gpios =3D <&gpio1 10 GPIO_ACTIVE_LOW>;
+> > +            ivdd-supply =3D <&reg_buck5>;
+> > +            ovdd-supply =3D <&reg_vext_3v3>;
+> > +            txavcc18-supply =3D <&reg_buck5>;
+> > +            txavcc33-supply =3D <&reg_vext_3v3>;
+> > +            pvcc1-supply =3D <&reg_buck5>;
+> > +            pvcc2-supply =3D <&reg_buck5>;
+> > +            avcc-supply =3D <&reg_vext_3v3>;
+> > +            anvdd-supply =3D <&reg_buck5>;
+> > +            apvdd-supply =3D <&reg_buck5>;
+> > +
+> > +            ports {
+> > +                #address-cells =3D <1>;
+> > +                #size-cells =3D <0>;
+> > +
+> > +                port@0 {
+> > +                    reg =3D <0>;
+> > +                    dual-lvds-odd-pixels;
+> > +
+> > +                    it6263_lvds_link1_dual: endpoint {
+> > +                        remote-endpoint =3D <&ldb_lvds_ch0>;
+> > +                    };
+> > +                };
+> > +
+> > +                port@1 {
+> > +                    reg =3D <1>;
+> > +                    dual-lvds-even-pixels;
+> > +
+> > +                    it6263_lvds_link2_dual: endpoint {
+> > +                        remote-endpoint =3D <&ldb_lvds_ch1>;
+> > +                    };
+> > +                };
+> > +
+> > +                port@2 {
+> > +                    reg =3D <2>;
+> > +
+> > +                    it6263_out_dual: endpoint {
+> > +                        remote-endpoint =3D <&hdmi_in>;
+> > +                    };
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > --
+> > 2.34.1
+> >
 
 
