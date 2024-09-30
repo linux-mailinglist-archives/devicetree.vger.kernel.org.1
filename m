@@ -1,399 +1,163 @@
-Return-Path: <devicetree+bounces-106227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3678598996E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:25:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 747A7989975
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:28:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 524B31C20E26
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 03:25:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36054280F68
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 03:28:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D9582D7B8;
-	Mon, 30 Sep 2024 03:25:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1214D9FE;
+	Mon, 30 Sep 2024 03:27:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eU0fej81"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FED438396;
-	Mon, 30 Sep 2024 03:24:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227282D05D;
+	Mon, 30 Sep 2024 03:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727666704; cv=none; b=eJ60PdMjJ/anM1u08Pkrw5+lYcqhd9UFHVrlu7890Xtz43G3ekZ6ow08hIkdtP9+5jL8xJC3NATb/xeFE6oFhwOJVbQmQLWmJbRmqu9BO/1NhXeRXCx++sCrT69foOzuE9ZSb8lXFYdiP8q/lPLPZvPOotz1NzsT0qy5VooCiUc=
+	t=1727666876; cv=none; b=jaZeMzLyi4GxHb4OPcvDxs1xEUnGRAti6xKBB19M2vMyuoV+gjMWbVRymQaSU2NS0rPXmS4dUNST6JqyMpJEWtqxNgZjINnVFiIvpLWA3+INT8onkINXtbGM5IaKuoIG5yq9ZBzq0290mvF8trCfW1g/a6Y7u5JtUv2U3+DVqWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727666704; c=relaxed/simple;
-	bh=L74EFNmBJ+BoRuTlV9M9pl97yZnpubHkwY2PpjTKtvo=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=PwpCCooCfSavKspt+sCxQbt2DaAUE7kn5zOZ0IPVAkoAjGL0C8YqiKYQP8fTjTht1NLx6bS3BnI9bvzzzpMHGEykXm95DOZhJVYQoZnVo2w80N8B31A05TDbGk/Y0/tyIfYtyrztgUG7vbMou7hgximVrFy7w0Nj4iJg5LGQgdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.20.42.164])
-	by gateway (Coremail) with SMTP id _____8DxxrAJGvpmDl8EAA--.4294S3;
-	Mon, 30 Sep 2024 11:24:57 +0800 (CST)
-Received: from [10.20.42.164] (unknown [10.20.42.164])
-	by front2 (Coremail) with SMTP id qciowMBxOsYGGvpmLtcYAA--.22697S2;
-	Mon, 30 Sep 2024 11:24:54 +0800 (CST)
-Subject: Re: [PATCH v5 2/2] Loongarch: EDAC driver for loongson memory
- controller
-To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- chenhuacai@kernel.org, bp@alien8.de, tony.luck@intel.com,
- linux-edac@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@xen0n.name, james.morse@arm.com,
- mchehab@kernel.org, rric@kernel.org, loongarch@lists.linux.dev
-References: <20240925024038.9844-1-zhaoqunqin@loongson.cn>
- <20240925024038.9844-3-zhaoqunqin@loongson.cn>
- <20240925101331.00000e63@Huawei.com>
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-Message-ID: <2b8b6384-4c6b-b49d-b88e-93c1390017e4@loongson.cn>
-Date: Mon, 30 Sep 2024 11:24:42 +0800
-User-Agent: Mozilla/5.0 (X11; Linux mips64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+	s=arc-20240116; t=1727666876; c=relaxed/simple;
+	bh=knzdApybWNkXs/EWy4A0OK+7trxRVW4r3IepuHUyAVk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tF2U3651PFvzKCeZkTjLQV+JsDiuBtilP5xlyba3tUxywindP2TZPs5RpN28N1G29rSVskicHe+RMq9Z7WgKzVvYx56H4dGOJv+NAjO4lzeT6ALtTygBSSc1I1mPwoVzdG0lJwEcctCoOk+U/JxQHN+fqcEW7/TX5+ttGcFO16Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eU0fej81; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F0C9C4CEC6;
+	Mon, 30 Sep 2024 03:27:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727666875;
+	bh=knzdApybWNkXs/EWy4A0OK+7trxRVW4r3IepuHUyAVk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=eU0fej81ykmly+dr+iIyfrVNyMjShf1QYYO2qbG+fQ8FqXW4LiuVhZL2h8x48GNvq
+	 7quqEz6ttd6B+wyqy1z7zwBLPYBifM+xMuc624lV+QdWpslBgqi/8ML6aAQYM3N7W0
+	 6wnD81A/EXtVoQam5PUgqTN82bGh6Mp9OTqY8aAYHmiO4RASOMCSZb3S5MQoY4oKP+
+	 RkqVNy5BI/d94cRnQwpCX/yjX3Op4a6Hg/IRTiNhCQXu9HQJOKnjwSTJW32uUS5fhO
+	 5subcCx26GaPrXbdX0mzFZeKfQb2Mr/EHJAkxHBydMfRJvQ/Gy/yIpw1dAC0KQ2kDm
+	 Rp2qDR74aUnpA==
+Date: Sun, 29 Sep 2024 22:27:52 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: konrad.dybcio@linaro.org, andi.shyti@kernel.org, 
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org, 
+	devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org, 
+	Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org, 
+	krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v3 3/4] soc: qcom: geni-se: Do not keep GPIOs to sleep
+ state for shared SE usecase
+Message-ID: <vnpl6a5accygarfowtiixbba6guxvgsyipdcte3tzf2vrvyve7@zjw4bnuckvmi>
+References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
+ <20240927063108.2773304-4-quic_msavaliy@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20240925101331.00000e63@Huawei.com>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-CM-TRANSID:qciowMBxOsYGGvpmLtcYAA--.22697S2
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3AryrCF1kWF48Xry7ZFykXrc_yoWfAF43pF
-	98Aa15Cr48tr17AwsYvryUuF1Yvws7KF12k3y3tay29r9Fyrykur9Yqry2kFn7CryDGrW0
-	va4rKwsruF4YkrgCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUPIb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJVW8Jr1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6r4UJVWxJr1ln4kS14v26r126r1DM2AIxVAIcxkEcVAq07x20xvEncxIr21l57IF6xkI12
-	xvs2x26I8E6xACxx1l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
-	6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
-	1lc7I2V7IY0VAS07AlzVAYIcxG8wCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxG
-	rwCFx2IqxVCFs4IE7xkEbVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14
-	v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkG
-	c2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI42IY6xIIjxv20xvEc7CjxVAFwI
-	0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4U
-	MIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x07j0mhrUUU
-	UU=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240927063108.2773304-4-quic_msavaliy@quicinc.com>
 
+On Fri, Sep 27, 2024 at 12:01:07PM GMT, Mukesh Kumar Savaliya wrote:
+> Currently the driver provides a function called geni_serial_resources_off()
+> to turn off resources like clocks and  pinctrl.
+> 
+> For shared SE between two SS, we don't need to keep pinctrl to sleep state
+> as other SS may be actively transferring data over SE.
 
-ÔÚ 2024/9/25 ÏÂÎç5:13, Jonathan Cameron Ð´µÀ:
-> On Wed, 25 Sep 2024 10:40:38 +0800
-> Zhao Qunqin <zhaoqunqin@loongson.cn> wrote:
->
->> Reports single bit errors (CE) only.
->>
->> Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
-> Hi. A few quick comments inline
->
-> Jonathan
->
->> ---
->> Changes in v5:
->> 	- Drop the loongson_ prefix from all static functions.
->> 	- Align function arguments on the opening brace.
->> 	- Drop useless comments and useless wrapper. Drop side comments.
->> 	- Reorder variable declarations.
->>
->> Changes in v4:
->> 	- None
->>
->> Changes in v3:
->> 	- Addressed review comments raised by Krzysztof and Huacai
->>
->> Changes in v2:
->> 	- Addressed review comments raised by Krzysztof
->>
->>   MAINTAINERS                  |   1 +
->>   arch/loongarch/Kconfig       |   1 +
->>   drivers/edac/Kconfig         |   8 ++
->>   drivers/edac/Makefile        |   1 +
->>   drivers/edac/loongson_edac.c | 168 +++++++++++++++++++++++++++++++++++
->>   5 files changed, 179 insertions(+)
->>   create mode 100644 drivers/edac/loongson_edac.c
->>
->> diff --git a/MAINTAINERS b/MAINTAINERS
->> index 6cc8cfc8f..5b4526638 100644
->> --- a/MAINTAINERS
->> +++ b/MAINTAINERS
->> @@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
->>   L:	linux-edac@vger.kernel.org
->>   S:	Maintained
->>   F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
->> +F:	drivers/edac/loongson_edac.c
->>   
->>   LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
->>   M:	Sathya Prakash <sathya.prakash@broadcom.com>
->> diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
->> index 70f169210..9c135f1a2 100644
->> --- a/arch/loongarch/Kconfig
->> +++ b/arch/loongarch/Kconfig
->> @@ -181,6 +181,7 @@ config LOONGARCH
->>   	select PCI_MSI_ARCH_FALLBACKS
->>   	select PCI_QUIRKS
->>   	select PERF_USE_VMALLOC
->> +	select EDAC_SUPPORT
->>   	select RTC_LIB
->>   	select SPARSE_IRQ
->>   	select SYSCTL_ARCH_UNALIGN_ALLOW
->> diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
->> index 81af6c344..719bb6ca7 100644
->> --- a/drivers/edac/Kconfig
->> +++ b/drivers/edac/Kconfig
->> @@ -564,5 +564,13 @@ config EDAC_VERSAL
->>   	  Support injecting both correctable and uncorrectable errors
->>   	  for debugging purposes.
->>   
->> +config EDAC_LOONGSON3
->> +	tristate "Loongson-3 Memory Controller"
->> +	depends on LOONGARCH || COMPILE_TEST
->> +	help
->> +	  Support for error detection and correction on the Loongson-3
->> +	  family memory controller. This driver reports single bit
->> +	  errors (CE) only. Loongson-3A5000/3C5000/3D5000/3C5000L/3A6000/3C6000
->> +	  are compatible.
->>   
->>   endif # EDAC
->> diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
->> index faf310eec..e72ca1be4 100644
->> --- a/drivers/edac/Makefile
->> +++ b/drivers/edac/Makefile
->> @@ -88,3 +88,4 @@ obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
->>   obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
->>   obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
->>   obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
->> +obj-$(CONFIG_EDAC_LOONGSON3)		+= loongson_edac.o
->> diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
->> new file mode 100644
->> index 000000000..2721dfba5
->> --- /dev/null
->> +++ b/drivers/edac/loongson_edac.c
->> @@ -0,0 +1,168 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2024 Loongson Technology Corporation Limited.
->> + */
->> +
->> +#include <linux/edac.h>
->> +#include <linux/module.h>
->> +#include <linux/init.h>
->> +#include <linux/platform_device.h>
->> +
->> +#include "edac_module.h"
->> +
->> +enum ecc_index {
->> +	ECC_SET = 0,
->> +	ECC_RESERVED,
->> +	ECC_COUNT,
->> +	ECC_CS_COUNT,
->> +	ECC_CODE,
->> +	ECC_ADDR,
->> +	ECC_DATA0,
->> +	ECC_DATA1,
->> +	ECC_DATA2,
->> +	ECC_DATA3,
->> +};
->> +
->> +struct loongson_edac_pvt {
->> +	u64 *ecc_base;
->> +	int last_ce_count;
->> +};
->> +
->> +static int read_ecc(struct mem_ctl_info *mci)
->> +{
->> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
->> +	u64 ecc;
->> +	int cs;
->> +
->> +	if (!pvt->ecc_base)
->> +		return pvt->last_ce_count;
->> +
->> +	ecc = pvt->ecc_base[ECC_CS_COUNT];
->> +	/* cs0 -- cs3 */
->> +	cs = ecc & 0xff;
->> +	cs += (ecc >> 8) & 0xff;
->> +	cs += (ecc >> 16) & 0xff;
->> +	cs += (ecc >> 24) & 0xff;
-> This smells like an endian swap.
-> swab32() or is this fixing a wrong endian register?
-> In which case b32_to_cpu()
-Not an endian swap. Just add up the values of the lowest four bytes.
->
->> +
->> +	return cs;
->> +}
->> +
->> +static void edac_check(struct mem_ctl_info *mci)
->> +{
->> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
->> +	int new, add;
->> +
->> +	new = read_ecc(mci);
->> +	add = new - pvt->last_ce_count;
->> +	pvt->last_ce_count = new;
->> +	if (add <= 0)
-> This has be a little confused. Either this counter can
-> wrap in which case why drop out here, or it can't in which case
-> does < occur?
-The ce count of loongson memory controller should only increase.
->
->> +		return;
->> +
->> +	edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
->> +			     0, 0, 0, 0, 0, -1, "error", "");
->> +	edac_mc_printk(mci, KERN_INFO, "add: %d", add);
->> +}
->> +
->> +static int get_dimm_config(struct mem_ctl_info *mci)
->> +{
->> +	struct dimm_info *dimm;
->> +	u32 size, npages;
->> +
->> +	/* size not used */
->> +	size = -1;
->> +	npages = MiB_TO_PAGES(size);
->> +
->> +	dimm = edac_get_dimm(mci, 0, 0, 0);
->> +	dimm->nr_pages = npages;
->> +	snprintf(dimm->label, sizeof(dimm->label),
->> +		 "MC#%uChannel#%u_DIMM#%u", mci->mc_idx, 0, 0);
->> +	dimm->grain = 8;
->> +
->> +	return 0;
->> +}
->> +
->> +static void pvt_init(struct mem_ctl_info *mci, u64 *vbase)
->> +{
->> +	struct loongson_edac_pvt *pvt = mci->pvt_info;
->> +
->> +	pvt->ecc_base = vbase;
->> +	pvt->last_ce_count = read_ecc(mci);
->> +}
->> +
->> +static int edac_probe(struct platform_device *pdev)
->> +{
->> +	struct edac_mc_layer layers[2];
->> +	struct loongson_edac_pvt *pvt;
->> +	struct mem_ctl_info *mci;
->> +	u64 *vbase;
->> +	int ret;
->> +
->> +	vbase = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(vbase))
->> +		return PTR_ERR(vbase);
->> +
->> +	/* allocate a new MC control structure */
->> +	layers[0].type = EDAC_MC_LAYER_CHANNEL;
->> +	layers[0].size = 1;
->> +	layers[0].is_virt_csrow = false;
->> +	layers[1].type = EDAC_MC_LAYER_SLOT;
->> +	layers[1].size = 1;
->> +	layers[1].is_virt_csrow = true;
-> Could move this to a c99 style
->
-> 	struct edac_mc_layer layers[2] = {
-> 		{
-> 			.type = EDAC_MC_LAYER_CHANNEL,
-> 			.size = 1,
-> 			.is_virt_csrow = false,
-> 		}, {
-> 			.type = EDAC_MC_LAYER_SLOT,
-> 			.size = 1,
-> 			is_virt_csrow = true,
-> 		}
-> 	};
-> Not particularly important though.
->
->> +	mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
->> +	if (mci == NULL)
-> Probably !mci is sufficient but I'm not sure on local edac style.
->
->> +		return -ENOMEM;
->> +
->> +	mci->mc_idx = edac_device_alloc_index();
->> +	mci->mtype_cap = MEM_FLAG_RDDR4;
->> +	mci->edac_ctl_cap = EDAC_FLAG_NONE;
->> +	mci->edac_cap = EDAC_FLAG_NONE;
->> +	mci->mod_name = "loongson_edac.c";
->> +	mci->ctl_name = "loongson_edac_ctl";
->> +	mci->dev_name = "loongson_edac_dev";
->> +	mci->ctl_page_to_phys = NULL;
->> +	mci->pdev = &pdev->dev;
->> +	mci->error_desc.grain = 8;
->> +	/* Set the function pointer to an actual operation function */
->> +	mci->edac_check = edac_check;
-> Similar to above, can initialize this structure more cleanly
-> using
->
-> 	*mci = (struct mem_ctl_info) {
-> 		.mc_idx = edac_device_alloc_index,
-> 	...
-> 	};
->> +
->> +	pvt_init(mci, vbase);
->> +	get_dimm_config(mci);
->> +
->> +	ret = edac_mc_add_mc(mci);
-> I'd be tempted to use devm_add_action_or_cleanup() for this and the
-> alloc above, but not common in edac but it is done in al_mc_edac.c if
-> you want an example.
-Your idea is great, but I don't think it's necessary to make things so 
-complicated
->> +	if (ret) {
->> +		edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
->> +		edac_mc_free(mci);
->> +		return ret;
->> +	}
->> +	edac_op_state = EDAC_OPSTATE_POLL;
->> +
->> +	return 0;
->> +}
->> +
->> +static void edac_remove(struct platform_device *pdev)
->> +{
->> +	struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
->> +
->> +	if (mci)
->> +		edac_mc_free(mci);
-> Very odd if you got to remove and edac_mc_del_mc() failed.
-> Do we need this check?  At least some drivers (I checked a few
-> at random) don't check this.
+"don't need to" sounds like an optimization. Is this really the case?
+The comment in the code below seems to indicate no.
 
-Yes, odd if edac_mc_del_mc() failed. Dose it better to add a check just 
-in case
+As with the other commit message, expand your abbreviations.
 
-edac_mc_del_mc() failed ?
+> Hence,bypass keeping
+> pinctrl to sleep state conditionally using shared_geni_se flag.
+> 
+> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> ---
+>  drivers/soc/qcom/qcom-geni-se.c  | 14 ++++++++++----
+>  include/linux/soc/qcom/geni-se.h |  3 +++
+>  2 files changed, 13 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/soc/qcom/qcom-geni-se.c b/drivers/soc/qcom/qcom-geni-se.c
+> index 2e8f24d5da80..89cf18699336 100644
+> --- a/drivers/soc/qcom/qcom-geni-se.c
+> +++ b/drivers/soc/qcom/qcom-geni-se.c
+> @@ -1,5 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>  
+>  /* Disable MMIO tracing to prevent excessive logging of unwanted MMIO traces */
+>  #define __DISABLE_TRACE_MMIO__
+> @@ -503,10 +504,15 @@ int geni_se_resources_off(struct geni_se *se)
+>  
+>  	if (has_acpi_companion(se->dev))
+>  		return 0;
+> -
+> -	ret = pinctrl_pm_select_sleep_state(se->dev);
+> -	if (ret)
+> -		return ret;
+> +	/* Keep pinctrl to sleep state only for regular usecase.
+> +	 * Do not sleep pinctrl for shared SE because other SS(subsystems)
+> +	 * may continueto perform transfer.
+> +	 */
+> +	if (se->shared_geni_se == false) {
+> +		ret = pinctrl_pm_select_sleep_state(se->dev);
 
+I'm a bit rusty on the pinctrl API, but wouldn't you achieve the same
+result by just not specifying a "sleep" pinctrl state?
 
-Thanks,
+> +		if (ret)
+> +			return ret;
+> +	}
+>  
+>  	geni_se_clks_off(se);
+>  	return 0;
+> diff --git a/include/linux/soc/qcom/geni-se.h b/include/linux/soc/qcom/geni-se.h
+> index c3bca9c0bf2c..359041c64ad8 100644
+> --- a/include/linux/soc/qcom/geni-se.h
+> +++ b/include/linux/soc/qcom/geni-se.h
+> @@ -1,6 +1,7 @@
+>  /* SPDX-License-Identifier: GPL-2.0 */
+>  /*
+>   * Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>   */
+>  
+>  #ifndef _LINUX_QCOM_GENI_SE
+> @@ -61,6 +62,7 @@ struct geni_icc_path {
+>   * @num_clk_levels:	Number of valid clock levels in clk_perf_tbl
+>   * @clk_perf_tbl:	Table of clock frequency input to serial engine clock
+>   * @icc_paths:		Array of ICC paths for SE
+> + * @shared_geni_se:	Tells if SE is used by two SS in shared environment.
 
-Zhao Qunqin
+Please avoid the abbreviations. Be succinct, e.g. does it matter that
+it's two SS - what if it's 3?
+"Tell" is not the correct verb here, struct members don't speak.
 
->
->> +}
->> +
->> +static const struct of_device_id loongson_edac_of_match[] = {
->> +	{ .compatible = "loongson,ls3a5000-mc-edac", },
->> +	{}
->> +};
->> +MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
->> +
->> +static struct platform_driver loongson_edac_driver = {
->> +	.probe		= edac_probe,
->> +	.remove		= edac_remove,
->> +	.driver		= {
->> +		.name	= "loongson-mc-edac",
->> +		.of_match_table = loongson_edac_of_match,
->> +	},
->> +};
->> +module_platform_driver(loongson_edac_driver);
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>");
->> +MODULE_DESCRIPTION("EDAC driver for loongson memory controller");
+Regards,
+Bjorn
 
+>   */
+>  struct geni_se {
+>  	void __iomem *base;
+> @@ -70,6 +72,7 @@ struct geni_se {
+>  	unsigned int num_clk_levels;
+>  	unsigned long *clk_perf_tbl;
+>  	struct geni_icc_path icc_paths[3];
+> +	bool shared_geni_se;
+>  };
+>  
+>  /* Common SE registers */
+> -- 
+> 2.25.1
+> 
 
