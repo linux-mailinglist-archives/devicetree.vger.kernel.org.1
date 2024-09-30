@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-106485-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4004598A5C0
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:46:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DF4998A5C5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:47:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 057562825B3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:46:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6DFC1C218DB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:47:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0044F18E02A;
-	Mon, 30 Sep 2024 13:46:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EE7917C21B;
+	Mon, 30 Sep 2024 13:47:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T3ZYtKfy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L2TqyLHw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C94E11EA91;
-	Mon, 30 Sep 2024 13:46:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2728E19047C;
+	Mon, 30 Sep 2024 13:47:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727703979; cv=none; b=OYQDsA1wtrY2aiqNEIEZhF3w69BDqnVUzrZ06OdvWOoWpx71gaFU4AqPrTqNpMNDg18PELyDsBl3m+NNQa6OlbolGR5OD2IMJ8XUqWlh+zDqtAis94hCpMFnJglk2tQ8+Qr3QrqlarEPakKUshaWLT56dn8gTu1ICwpKGL1AV8k=
+	t=1727704028; cv=none; b=uuSr5kA0SU7X6TgPngtK5NxiuNQdCGiZh6VICzOMxzop4ReP6bgXWRBADiUtTeHkCf80ORA7hhTjWPpfgoDNn6JbTq0yqnup7nk/Dt3kjFsb3K54zd9rngfFiRKY6OofnKKr2ME0ZBBDsfF5TQ3M/CxF7XsXoC+IeTR1y4vFciM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727703979; c=relaxed/simple;
-	bh=aMJaYzXY1jg3S4x/G45yWq/QZRII8Ge4YR9ZlqyRsB8=;
+	s=arc-20240116; t=1727704028; c=relaxed/simple;
+	bh=ziv26nKdeGHyeDvoebEHZtakmkZCrhTwBfu3X0oREtw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jy4yLAiyDIYB/zkA5XmglPm2SBBULn4K7qbyRTXsgraGSvGd6/mpWVm0Keuy7g7INZnDNEDsC2FXg9KQHxUCDCC58lDP7bkgeN8tGamQxNNguoVEUiFwYOgBYDIFqzJioPlI1qGe09XhQYDz3wV9MjFR5P4Ubi45hB/qhbLVbZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T3ZYtKfy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC98AC4CEC7;
-	Mon, 30 Sep 2024 13:46:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GT8n/4Qh/PC/sNkswI4kC8Dfxnk42U2/x9WQhsV53+w7GSsSl5asAeuwt9tWGlXYigmMv8WgPc1SyoXzbtEvpkAKN5ZnxpJE3kYxA8/qRGuAB6nMQdxEpawLvI1CIURdADJJihRb8Jmq0xcieoIMAMNUq3B2mFozaI7QZCKYQJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L2TqyLHw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3786C4CEC7;
+	Mon, 30 Sep 2024 13:47:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727703979;
-	bh=aMJaYzXY1jg3S4x/G45yWq/QZRII8Ge4YR9ZlqyRsB8=;
+	s=k20201202; t=1727704027;
+	bh=ziv26nKdeGHyeDvoebEHZtakmkZCrhTwBfu3X0oREtw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=T3ZYtKfyUFS48qvHgbCX7RTJf1ZyWm6pNL1pfytw04oTlnFB/AOTlFL93z46iPwP8
-	 UduAsF/71nTs4Phg+5oPhQMfaBYeEWabmqUEDzx+AoMiCSwyL2MNXeld7T0X6Mvx0F
-	 EPAMvxPL/97ZXqiYd6BkpfcosuV+paPkiQsL8CtQn+lPIxOlDfjItho6vmuxXTUurY
-	 wo+Tll2augLHeF0U65Qz6qFCitBe0NbSycwFT4vS4upHhzbELvouP4aMYAFH2kjyQk
-	 qgMdz6tUsc3nx1dvUMHbrRBqTihE6Utgf+EBEK0jiFrrRMKB+0Tx3XJ2y9giKB65gN
-	 3jK0vFOIV76PQ==
-Date: Mon, 30 Sep 2024 14:46:14 +0100
+	b=L2TqyLHwPaml91v43oa1uhJ6COrdhQdrNvWFZrF/KDnz1jqFeG7dzsmRkOvJiigzM
+	 0OI9S7FCm1jUuahKVUhEkA3ex+zYv2/mChNJeh0tw0MPHPJqCW2QX7coYn/UAerff5
+	 1fRZPwjzbXhsw7RA/S1+iqN6XXEaBv9ktMTNRem/Pro+U+zMMjUXnFakEl5stwu8Xy
+	 On4kM65Lt12N5IcEadaXGRUKkEONBEIudKiyf7w/94tyMFoRAtzjlPndVfzWtsghVM
+	 eLtNoW+bvlXpibSPW69aqB7hfDzd3YSplcFxzTV6s/6WXl7bR7IwfTx70xfpJFrnKQ
+	 gl752ELo9iW/Q==
+Date: Mon, 30 Sep 2024 14:47:03 +0100
 From: Conor Dooley <conor@kernel.org>
 To: pierre-henry.moussay@microchip.com
-Cc: Linux4Microchip@microchip.com,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+Cc: Linux4Microchip@microchip.com, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [linux][PATCH v2 05/20] dt-bindings: gpio: mpfs-gpio: Add
- PIC64GX GPIO compatibility
-Message-ID: <20240930-mourner-sharpness-1b049c7e5c85@spud>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [linux][PATCH v2 06/20] dt-bindings: cache: sifive,ccache0: add
+ a PIC64GX compatible
+Message-ID: <20240930-ploy-outpost-9d16f9573c20@spud>
 References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
- <20240930095449.1813195-6-pierre-henry.moussay@microchip.com>
+ <20240930095449.1813195-7-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,83 +62,70 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="xs4yn0wAy3h5xCya"
+	protocol="application/pgp-signature"; boundary="cuCIrOF2wBq4Nn+p"
 Content-Disposition: inline
-In-Reply-To: <20240930095449.1813195-6-pierre-henry.moussay@microchip.com>
+In-Reply-To: <20240930095449.1813195-7-pierre-henry.moussay@microchip.com>
 
 
---xs4yn0wAy3h5xCya
+--cuCIrOF2wBq4Nn+p
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 30, 2024 at 10:54:34AM +0100, pierre-henry.moussay@microchip.co=
+On Mon, Sep 30, 2024 at 10:54:35AM +0100, pierre-henry.moussay@microchip.co=
 m wrote:
 > From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 >=20
-> PIC64GX GPIO is compatible with mpfs-gpio controller, just add fallback
+> The PIC64GX use the same IP than MPFS, therefore add compatibility with
+> MPFS as fallback
 >=20
 > Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > ---
->  .../bindings/gpio/microchip,mpfs-gpio.yaml        | 15 ++++++++++-----
->  1 file changed, 10 insertions(+), 5 deletions(-)
+>  Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >=20
-> diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.y=
-aml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> index d61569b3f15b..febe8c2cd70d 100644
-> --- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-> @@ -11,10 +11,14 @@ maintainers:
-> =20
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - microchip,mpfs-gpio
-> -          - microchip,coregpio-rtl-v3
-> +    oneOf:
+> diff --git a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml =
+b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+> index 7e8cebe21584..9d064feb2ab1 100644
+> --- a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+> +++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+> @@ -47,6 +47,11 @@ properties:
+>            - const: microchip,mpfs-ccache
+>            - const: sifive,fu540-c000-ccache
+>            - const: cache
 > +      - items:
-> +          - const: microchip,pic64gx-gpio
-> +          - const: microchip,mpfs-gpio
-> +      - items:
-
-This items shouldn't be required, the enum should suffice alone.
-
-> +          - enum:
-> +              - microchip,mpfs-gpio
-> +              - microchip,coregpio-rtl-v3
+> +          - const: microchip,pic64gx-ccache
+> +          - const: microchip,mpfs-ccache
+> +          - const: sifive,fu540-c000-ccache
+> +          - const: cache
 > =20
->    reg:
->      maxItems: 1
+>    cache-block-size:
+>      const: 64
+> @@ -93,6 +98,7 @@ allOf:
+>                - starfive,jh7100-ccache
+>                - starfive,jh7110-ccache
+>                - microchip,mpfs-ccache
+> +              - microchip,pic64gx-ccache
 
-> @@ -69,7 +73,8 @@ allOf:
->        properties:
->          compatible:
->            contains:
-> -            const: microchip,mpfs-gpio
-> +            enum:
-> +              - microchip,mpfs-gpio
+Is this required? Shouldn't the fallback activate it?
 
-This doesn't need to be changed, it is fine as is, no?
-
+> =20
 >      then:
->        required:
->          - interrupts
+>        properties:
 > --=20
 > 2.30.2
 >=20
->=20
 
---xs4yn0wAy3h5xCya
+--cuCIrOF2wBq4Nn+p
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqrpgAKCRB4tDGHoIJi
-0rDzAP9pyLnXr2ho/eWNw9/JV5Swb++EFvIPKm55QehjzAbh1QEA+DpSQJaEpK8z
-I83zNR0nHiajzvuhxVkKZjofswIbuQ4=
-=Z0/3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqr1wAKCRB4tDGHoIJi
+0ieYAP4l09p3b+zq6wwEW+eJRsKgHwmoFiyLk7Qy4SxEFLq3IAD/TdV7wnajZ/7Y
+s49CAKjLjWev5IgQkHS698tDluAONAU=
+=oUfe
 -----END PGP SIGNATURE-----
 
---xs4yn0wAy3h5xCya--
+--cuCIrOF2wBq4Nn+p--
 
