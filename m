@@ -1,189 +1,113 @@
-Return-Path: <devicetree+bounces-106419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E98F989F7B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:34:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3458D989FA6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:46:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFF081C21B4D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:34:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6658E1C222C0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:46:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64FF189B98;
-	Mon, 30 Sep 2024 10:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B01718C014;
+	Mon, 30 Sep 2024 10:46:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S1A4Gpad"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IuoSAus0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49561741D1;
-	Mon, 30 Sep 2024 10:34:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3E543155
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 10:46:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727692466; cv=none; b=llOioANUGSEHsePzTDXLEs1DAgIxWE5/d2C7TB8CtEVuvGYu4qg3oQZbbNdHEOeq7+euacDFPAaiSDz2Th1GuWwrFemV0AfnufPBo5f+i2BZQvQ5lt6t6rke8ASpbz1woUKSyTBxUD5iV7CbjWKr8vwDR+vAnH36pyGYlojka0Q=
+	t=1727693172; cv=none; b=eiycUWR8rND2Yoj2VTa1Nk0zW4m7Z6JUOKnQLW1khn6zyvomCwinQGRdeFDXM9njoNUZ5WiHb4MrnViiDDyr2hYwDBOQVsQCU1qBg3fFc9amfQwSdA7SGdmxeT+NOHL03jOljis+3uvz0x197RGCtyMHXgk4BAMbnqDXbGQ/PgY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727692466; c=relaxed/simple;
-	bh=IYOqevHyIhjK/PhsNoeCcGvpHqEq4H8Wi3Oxk0NdzkM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WasLlITtxmZC3O6Hx0lesXPCAQolpMrfZHxGk1Ls0rlbjuLh3729h5EKeGhJjP7+Aj0hU4ehAaP9xMyVlQTGb2MT2CKB1hfyjRx9jqs4AbKG4BLc2t6J+oq+kERbnlL8ejKV3A2IoxyzwCzxekwhR0i6t+mk1iJH/lckCHeSCzo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S1A4Gpad; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48UAYHEX003645;
-	Mon, 30 Sep 2024 05:34:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727692457;
-	bh=8ZWya66Wrk3d2reuZyBB9skj19ZrGqZzSN/E8Z86hfY=;
-	h=From:To:CC:Subject:Date;
-	b=S1A4Gpad1EGHuHFs1o/5ohEVYwMkL3qA+/r+Qxa7cKY1krDOsAcC64OUxCOUDZYar
-	 x8z+FbXYR8NL4bFE3959ySqSp1Uv5SYhHfV8LQzPRW4YRE9qknTi7+b9aO46ZNQ9ef
-	 aECu8szBjXriKgjGhHRjhhZF/AIO6Wh0X9YIFsWg=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48UAYH3q030401
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 30 Sep 2024 05:34:17 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 30
- Sep 2024 05:34:17 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 30 Sep 2024 05:34:17 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48UAYDA6111596;
-	Mon, 30 Sep 2024 05:34:14 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-am642-evm: Add overlay for PCIe0 EP mode
-Date: Mon, 30 Sep 2024 16:04:13 +0530
-Message-ID: <20240930103413.3085689-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
+	s=arc-20240116; t=1727693172; c=relaxed/simple;
+	bh=WgmAWdhnVHJCqthbZexYZzR19w5rQpCuoBowws7Hp7Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Om/7BMMMEu8atTrB35nR9aKBDoRmspTqSKfOXQOSpTzhZv7mtMooRk88CDQWxwVfXseE4HVmgp2M5tn75FuCsRY8vZdKnZ0NWuzhqjnYf/aYFcFdS4Fhk9P62GK9BIQnvZE6kQkRuRsnZWyO283es7qE/zWu3RKhQ/cNA36mUUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IuoSAus0; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5c8835ba4b1so561009a12.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 03:46:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727693168; x=1728297968; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vbHVTx2eRiNgxrAOA2z8vgvBG35XROi0+GKzueTB33k=;
+        b=IuoSAus0fvYAydUb7gbk4CDAtIBCbr7zFsauzP5tDJB6CnMuN6IzPEw8HsHeiPPbXw
+         4yaBUONKCsEXD/R4wDQ6v6Vet5aO10uvZUcVI5QEpI2ogMRdvd5/TWtpLDww/UVKkt2R
+         CDq5qLGQXPZO5AnHhMp6Nv7aDTAA2J7K7jflStQ9WxBb4HXh6z/lC+/jMrlsVq4ncTkw
+         4GdOkouJpzMarezzNzqKV0AbsZZBcYt9/PzelPjRJyYeVDoTz1X6lze6bIWkKk0+iyCq
+         Y5uBdiPN6zQ5EtvkvwvCYlkkRMbr0lbhwszLeRjA2PcqcEMU0fTCEC0Qq2aH0bfp9tDI
+         np+Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727693168; x=1728297968;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vbHVTx2eRiNgxrAOA2z8vgvBG35XROi0+GKzueTB33k=;
+        b=d3e8ZKYe9PHM5iWqgDrIjgA/g9er16pMqZ5bzyAqlU/KEHz/Fb04SxNlHcGibSVnAj
+         QDECh45LkJsTVTjXn2EcrW58wf+nhdfJPZb4gLesLz46EdOny1B+3Ygko6pS7KWz/oY0
+         39dDGlQFf9uG/vJAjspyigpvwpXzGQGL/oraI6WOxXEjBdHIouPqOVs2TQFEJUoLEEQJ
+         1RI1npmafDnsOfmItbt7WUynzfLyb7xHIOXdcLE7TIbNsJ/EYyuGDZ5JDj4trzuNQV7+
+         1kaCWRGDqdNtIVdLMS8fDbKf/ppsq6ARaL9GyL9wgPx5KPbWlztAOm/JJ4KPBLuRKrQm
+         K7XA==
+X-Forwarded-Encrypted: i=1; AJvYcCV1AOmAA4caTWlomtGcbg1tKa8/XQdf8EOHvPtw+jkw+NJVTY9ug1Ekhaq3gLXYEm9NcnrWNVFPjwOD@vger.kernel.org
+X-Gm-Message-State: AOJu0YylYJh4m9XJ9pmMHpamYwoaiy6mW82HdtC5F+lrdrYtj/kJJ7x9
+	Dsoi7B8VThFtokyRUJt+a1DW4kKkS0U6/qtGDmZ7uzZobWxQ2MhGhkhacP/09ys=
+X-Google-Smtp-Source: AGHT+IFHembOa8x5rUT1ds4+ai8M6G7orJf5YCQHOpgWKvx3ElxTstOvoPR6aBxDBnte1bb0kpLemw==
+X-Received: by 2002:a05:6402:380e:b0:5c8:8381:c2a0 with SMTP id 4fb4d7f45d1cf-5c889b30e51mr2944919a12.2.1727693167742;
+        Mon, 30 Sep 2024 03:46:07 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c885f5336csm3387933a12.97.2024.09.30.03.46.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 03:46:07 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Michael Walle <mwalle@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+Cc: imx@lists.linux.dev
+In-Reply-To: <20240909165358.2384975-1-Frank.Li@nxp.com>
+References: <20240909165358.2384975-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH v4 1/1] dt-bindings: memory-controllers: fsl,ifc: split
+ child node differences
+Message-Id: <172769316609.26942.4799733036157642363.b4-ty@linaro.org>
+Date: Mon, 30 Sep 2024 12:46:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-Add overlay to enable the PCIe0 instance of PCIe on AM642-EVM in
-Endpoint mode of operation.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+On Mon, 09 Sep 2024 12:53:57 -0400, Frank Li wrote:
+> ifc can connect nor, nand and fpag. Split "^.*@..." into "nand@..." and
+> "(flash|fpga|board-control|cpld)@..." to better describe the child's node
+> binding requirements.
+> 
+> Fix below warning:
+> arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dtb: /soc/memory-controller@1530000/nand@1,0:
+> 	failed to match any schema with compatible: ['fsl,ifc-nand']
+> 
+> [...]
 
-Hello,
+Applied, thanks!
 
-This patch is based on linux-next tagged next-20240930.
+[1/1] dt-bindings: memory-controllers: fsl,ifc: split child node differences
+      https://git.kernel.org/krzk/linux-mem-ctrl/c/89e6684538f59093d89eda50e30a6f2644b06ab6
 
-Logs validating the device-tree overlay with AM642-EVM as Endpoint and
-J784S4-EVM as Root Complex:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/d3c071d0a34b7ef162e1413f1688cc9d
-
-Regards,
-Siddharth.
-
- arch/arm64/boot/dts/ti/Makefile               |  4 ++
- .../boot/dts/ti/k3-am642-evm-pcie0-ep.dtso    | 51 +++++++++++++++++++
- 2 files changed, 55 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index bcd392c3206e..c1417b38a4e6 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -48,6 +48,7 @@ k3-am642-hummingboard-t-usb3-dtbs := \
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-pcie0-ep.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
-@@ -168,6 +169,8 @@ k3-am642-evm-icssg1-dualemac-dtbs := \
- 	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
- k3-am642-evm-icssg1-dualemac-mii-dtbs := \
- 	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac-mii.dtbo
-+k3-am642-evm-pcie0-ep-dtbs := \
-+	k3-am642-evm.dtb k3-am642-evm-pcie0-ep.dtbo
- k3-am642-phyboard-electra-disable-eth-phy-dtbs := \
- 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-eth-phy.dtbo
- k3-am642-phyboard-electra-disable-rtc-dtbs := \
-@@ -217,6 +220,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am62p5-sk-csi2-tevi-ov5640.dtb \
- 	k3-am642-evm-icssg1-dualemac.dtb \
- 	k3-am642-evm-icssg1-dualemac-mii.dtb \
-+	k3-am642-evm-pcie0-ep.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
- 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
- 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-new file mode 100644
-index 000000000000..6b029539e0db
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
-@@ -0,0 +1,51 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
-+ * AM642 EVM.
-+ *
-+ * AM642 EVM Product Link: https://www.ti.com/tool/TMDS64EVM
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/soc/ti,sci_pm_domain.h>
-+
-+#include "k3-pinctrl.h"
-+
-+/*
-+ * Since Root Complex and Endpoint modes are mutually exclusive
-+ * disable Root Complex mode.
-+ */
-+&pcie0_rc {
-+	status = "disabled";
-+};
-+
-+&cbass_main {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	interrupt-parent = <&gic500>;
-+
-+	pcie0_ep: pcie-ep@f102000 {
-+		compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
-+		reg = <0x00 0x0f102000 0x00 0x1000>,
-+		      <0x00 0x0f100000 0x00 0x400>,
-+		      <0x00 0x0d000000 0x00 0x00800000>,
-+		      <0x00 0x68000000 0x00 0x08000000>;
-+		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
-+		interrupt-names = "link_state";
-+		interrupts = <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>;
-+		max-link-speed = <2>;
-+		num-lanes = <1>;
-+		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
-+		clocks = <&k3_clks 114 0>;
-+		clock-names = "fck";
-+		max-functions = /bits/ 8 <1>;
-+		phys = <&serdes0_pcie_link>;
-+		phy-names = "pcie-phy";
-+		ti,syscon-pcie-ctrl = <&main_conf 0x4070>;
-+	};
-+};
+Best regards,
 -- 
-2.40.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
