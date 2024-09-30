@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-106316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60596989CB6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41523989CB7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:25:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A2FC281749
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:25:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF85C281B56
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDA90176AC8;
-	Mon, 30 Sep 2024 08:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6318176AB5;
+	Mon, 30 Sep 2024 08:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hjDw2DZd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Qix+cmrW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DAE7175D4C
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:25:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EF62175D25
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727684725; cv=none; b=SEpdGYEa012UZRWIDeDMvBiL+1W3kZonjlAfb0VEN7uWiG6ECC+0QZnBIHt9bWye6mo9L8y8KLlSRb6Ch4+UYJ6n8wcIpA5Qq4SYMHMJ53JN2kwZ8ZrI4RAVUh8PLJn0VFE2WlnTd6gxeoymAMF29eRHysSxSzLBBGkn9TqOC5Q=
+	t=1727684735; cv=none; b=N80SBHCs6Oa497juS0d9RN1Dh/0hc+hRmfIX8jgv4hcMJ+aIW4sExO+RWxtcINbrkvxOP9iJk4o6CxyZp+JKetQZnAEUtM2sN6ABWdkMW+1VHLOMQ9QpIJQGHoBQBOU78sh81rSJFcZuaz6mIP8kdcx6Umwnaenq/O5+5dxhIPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727684725; c=relaxed/simple;
-	bh=Y/RNunii3rVQV3VQX2yQ/2zYfpCv1APHMsLjJulVUjU=;
+	s=arc-20240116; t=1727684735; c=relaxed/simple;
+	bh=BfZEEmsOyOgIok+iSWm/w2ZshW+WyMtC25/JDe9ErKA=;
 	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=MTYT6fkWLYiwclQhGB0KjsJDachq2YRQTA0vWnXphbI+FnhTR6JX7XtAUYDdfu13+R1b77mcDwczHbJGwF67Mj1pKno37822yXn0XYdz7mmDY0mYLrCniKzutBfnqq+8F69oaWplH/n7rEtnD/udtBOleh3Mn25OePdy0LGu9HM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hjDw2DZd; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:Content-Type; b=F1Uixw7UtrTKWSsbL7ma/ylqC/SXDE1Uq/wzejYuk1d/I+IwVs3oAJangzmfVKIBv25Nv7HHLOMgzPfNeAYN7eksUEGdJTRilULhQXRqtrxEU2BYUji093He4iGGNX9GCHgLyMqiHCeA+8EvFrCencJhLhdd4AzT5cJh03pyBEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Qix+cmrW; arc=none smtp.client-ip=209.85.221.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-42cbface8d6so50600345e9.3
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:25:23 -0700 (PDT)
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37cd26c6dd1so3106296f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:25:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727684722; x=1728289522; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727684732; x=1728289532; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=SNSe7nHDNsF6xHuvZzvlBgr2nivSlxfJNTEMlMt3xn4=;
-        b=hjDw2DZdizhbGP+lJIf+Lzd8sHmyqagj0LFMmfnmbT98Fe5y3QLcwz4jTElaXheNC4
-         5r2dw2i6SO7GVRrcA9SiRmmnfumfG/E1XwldbKwTwK8NkeX3KJG6xwaGscbAb8gu8OND
-         pXvCvo4q71cR4gcmHpUBZsoYTNaOdBlyJ5x+RvuR/YYZ2f7Xe8pHASpGnw6KZuP8iJtD
-         TTJMRCC1/A/GBTfTp0Y4ownjmh22ShFzRsZX0lmy+TQ3sQShpHHM7bRBZXatXwggk7mJ
-         pP7b/P0VgqG8Rl+VCuTdjPCPUlBjeXQyYEYhqc1SJDQSerCyhSQpUeZ/9rNwCJk306B+
-         5YWg==
+        bh=t+9R5h4iSSryv9VH/T6tcjQsVcqymidoiGYA7+n82eE=;
+        b=Qix+cmrWW882KIKAhppFmr048geCrUwXlpYiCV3mlVzs6ewA4iLw5nIkxpvOfXgqTQ
+         iQh86IhTwksNxwUT8hMpGlBKtPTukTeC+SHEK8VBH/Kt0Vuhuq6Y6hBdhtjk9cTpnSS4
+         +L1hhMZQ00zi8cDPCm5MDuO0PQykqwuVDqsxUaY/EgpQn2zxuT/3j5xXvnFnAMRWkud0
+         K6ITulA7iON4MgAWNQWJdIwtzqOxTwYb8fTZG3AXM3O1KMyXKJS0/UQaI1y0uElX+nCk
+         s7AF+T7+11vm7Am+7wcQbjNfhwMy0tnqtT3C+FRemHH2qwbCu668WrGe7PuDqYDfKaPf
+         umvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727684722; x=1728289522;
+        d=1e100.net; s=20230601; t=1727684732; x=1728289532;
         h=content-transfer-encoding:in-reply-to:organization:autocrypt
          :content-language:references:cc:to:subject:reply-to:from:user-agent
          :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
          :date:message-id:reply-to;
-        bh=SNSe7nHDNsF6xHuvZzvlBgr2nivSlxfJNTEMlMt3xn4=;
-        b=aSU6i0fOITI04Xj0Q1OXRNy8TVM4eJGcfkc+/BPVmxGccsvM4jd5xOqUK3/v6TZBHj
-         V8vjpm4lNq2gZMEzIaQbeEon4hmyMl0aVqsamSq4mimTMeqU0JdYeliqfhxvnnNK1kUZ
-         TSUhBPP27M+cO7umlPbdbf4Q1OZsNQf8r+QEbcrdSrIFSM4KffouKcsxFpdEFdgEkNNv
-         oRmlHNPTJKSMJ1rQdr8SoM9pomfufCEUyJBr+msaNplhYAuzUR9Qf1Ri/+1DGGHF9/KR
-         0cMzx6XZ6mzFPfoLWds9QZD/jk0iM2FJjdokmdiEo+9zV7cTDKBmR+hNsvLR3/E4nP5F
-         pUlw==
-X-Forwarded-Encrypted: i=1; AJvYcCWZuMs87Ysl+SlENXQd1uUauNVawgLywEtK9jBLfckv4RDHhbv7WHkSTrOQYHGjWhucroXIDWG8eB8/@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw85cBblYO7SuL1v7W/T23Prj+/+WDuSK+1AUF97IgXHAdA74mc
-	az8cXHnH0DQ8VAYDw/3nk6tJ40HU5TZAf4htpnbo3ssGUmTuuWBm6LZkqZBhAJI=
-X-Google-Smtp-Source: AGHT+IGeOQmG5BUJ5/CrxgSLI45tVnOmcna0w9dgnQQb/rmXiDOTIUb9z2UIg/A92H04utV8bcIlUQ==
-X-Received: by 2002:a05:600c:511a:b0:42c:b995:20db with SMTP id 5b1f17b1804b1-42f5840dd5bmr117362445e9.5.1727684722253;
-        Mon, 30 Sep 2024 01:25:22 -0700 (PDT)
+        bh=t+9R5h4iSSryv9VH/T6tcjQsVcqymidoiGYA7+n82eE=;
+        b=wiVWxbBcyIRBpfTioZjDdXbG8Q0qusXWAD1Q5sLpyshS24Q41bl3fAK6gXF1oYeenF
+         YWxRCUIAh2V0MQpHWUgqbzO1AJVi3HzwZwetG3u2n/mdL5Z/o42y2HtPXOPEoS7IKECe
+         jrzrKKr0e+b73fAtmyy3UE1oZCHkEVHDyUASkne/p1tkcZPWIpfhTpMxa8XyH1mpuCf8
+         4krvPjwEx0sfKW52woW8zN72tvJZhBQmlMRgIsGdJxn58uM6k4zQ0adg7nWErrxFbm4B
+         Pr/ZTImtkxqlb9SBfKJxbX+QDZECUi7ad4hZWle+hFwpGFVKDP6O8+uZtP0vSUi7pOpj
+         zc/A==
+X-Forwarded-Encrypted: i=1; AJvYcCUhyzYuK6hGU/GlScMGa/ZQi5IdUKh7kJAwZZuMhTe0RDBWCuNg1xjTpesGQN06Q08AQiUZ8QkQdmKV@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRQvz/CJXcnE6Iu73+Ot3FgJHu0yt7xuyQRyKR7VtYI/r2yQV7
+	XgPtHPqSDTEP3RUhh5fhsQXXgs31OQWvAP0PxAsT4Zt1tDCDWyf1tsO7PxAs35I=
+X-Google-Smtp-Source: AGHT+IFrRV8HvBX/whBQ9+RSDYAzDpM6iK+KlOcZfthQcc1Xgu0aNJd/phdvlZ+jhqDOtbabqelQCQ==
+X-Received: by 2002:a5d:6886:0:b0:37c:cfa4:d998 with SMTP id ffacd0b85a97d-37cd5b1515amr9436611f8f.49.1727684732434;
+        Mon, 30 Sep 2024 01:25:32 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:bdc6:abc9:5047:7828? ([2a01:e0a:982:cbb0:bdc6:abc9:5047:7828])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f57e30621sm96602665e9.47.2024.09.30.01.25.21
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd5730fc6sm8384809f8f.76.2024.09.30.01.25.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Sep 2024 01:25:21 -0700 (PDT)
-Message-ID: <03b3f923-bf45-49a9-8c44-cad8865e2175@linaro.org>
-Date: Mon, 30 Sep 2024 10:25:20 +0200
+        Mon, 30 Sep 2024 01:25:32 -0700 (PDT)
+Message-ID: <9ebfd386-5aa6-430c-99fa-04a8025a311d@linaro.org>
+Date: Mon, 30 Sep 2024 10:25:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,8 +80,8 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 From: neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 6/9] arm64: dts: qcom: sm8650: don't disable dispcc by
- default
+Subject: Re: [PATCH 7/9] arm64: dts: qcom: sm8650-hdk: remove status property
+ from dispcc device tree node
 To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>,
  Konrad Dybcio <konradybcio@kernel.org>
@@ -89,7 +89,7 @@ Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240924100602.3813725-1-vladimir.zapolskiy@linaro.org>
- <20240924100602.3813725-7-vladimir.zapolskiy@linaro.org>
+ <20240924100602.3813725-8-vladimir.zapolskiy@linaro.org>
 Content-Language: en-US, fr
 Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -116,32 +116,35 @@ Autocrypt: addr=neil.armstrong@linaro.org; keydata=
  4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
  QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
 Organization: Linaro
-In-Reply-To: <20240924100602.3813725-7-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20240924100602.3813725-8-vladimir.zapolskiy@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 24/09/2024 12:05, Vladimir Zapolskiy wrote:
-> Enable display clock controller for all Qualcomm SM8650 powered boards
-> by default.
+On 24/09/2024 12:06, Vladimir Zapolskiy wrote:
+> After a change enabling display clock controller for all Qualcomm SM8650
+> powered board by default there is no more need to set a status property
+> of dispcc on SM8650-HDK board.
 > 
 > Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 --
->   1 file changed, 2 deletions(-)
+>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 4 ----
+>   1 file changed, 4 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 01ac3769ffa6..173e092b15e2 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -3841,8 +3841,6 @@ dispcc: clock-controller@af00000 {
->   			#clock-cells = <1>;
->   			#reset-cells = <1>;
->   			#power-domain-cells = <1>;
-> -
-> -			status = "disabled";
->   		};
+> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> index 127c7aacd4fc..f00bdff4280a 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+> @@ -814,10 +814,6 @@ vreg_l7n_3p3: ldo7 {
+>   	};
+>   };
 >   
->   		usb_1_hsphy: phy@88e3000 {
+> -&dispcc {
+> -	status = "okay";
+> -};
+> -
+>   &gpi_dma1 {
+>   	status = "okay";
+>   };
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
