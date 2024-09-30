@@ -1,86 +1,74 @@
-Return-Path: <devicetree+bounces-106462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4779E98A38E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:53:48 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3E5698A398
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:54:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4059FB23AB1
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:53:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B175B25D01
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:54:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3835118E775;
-	Mon, 30 Sep 2024 12:53:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KhOGiAG9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E12818E751;
+	Mon, 30 Sep 2024 12:54:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B91E18E346
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 12:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF5D41A84;
+	Mon, 30 Sep 2024 12:54:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727700813; cv=none; b=EDu26jI1DkJ+XXpjugoe73KgEMfPQ/Ijse/9JddCHMot3beKBRbOosu4zBgJpAk/AcbgTUy50frv/L0onKNvqbJl2aETFR1JewIkBhXAhnp0Ns39yXuFyButYMDKHSWsZaVRliWG8sINY50yiRJHrfDUYsVvDuQGZEMbNvOH2do=
+	t=1727700855; cv=none; b=soh33BE2WzbbvxLVajoKHs9WyS0F8dqlKyNP1hWohzEDIH8RSmQTpWHUSY6H6Zvwffjg8/1a9eiSWoLkBp8R8uOIDGHOwH7BTnYXD9unEPhcUf2ZYUJPVzIzXwqZVVLjXHl5Oheq1mDB1Rln9Tmq85nLI7UjDQ80t1d7n9ylJBg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727700813; c=relaxed/simple;
-	bh=FI6P/Vz2G1P9FtQdIR02rYpG8hPx1kHCzzvah3QhfmA=;
+	s=arc-20240116; t=1727700855; c=relaxed/simple;
+	bh=JbymPE1wAX7oLNeBnVW/EsUQEOcGrDy36SdgxsVK40U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YLcm2yz9HKi5Ytng1f2acZylc6ksHEMb+IqhPBlx6Tq/LI18qkdxVcizFPZRjwHTiFVAmneu4OWS3svUxSVQFmUnLZc7RFdvN+2tFmvgPcE3krRbGl9dmOj9ySiT2YJ6zJQ5f9n0wIO2//aotzsh0dIBmkCtVTpJ5Et7FK8z6iQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KhOGiAG9; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42e748f78d6so35100585e9.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 05:53:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727700808; x=1728305608; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=h849igZr4Ixq8Z3CBdQvzfuVtVpkRBJfrNu7EAZT8oc=;
-        b=KhOGiAG9x7rt54sFgjlrYMWehkvltRzsi27TmeuM0bRCGH7OVRlOudlwCWY5Ihn7yL
-         61c/B8e2g7IkJL2XKGDEzIsx4CRMKwTXNi9tbu8F5CTgTe6R+pbXLToGPna2o+JcRVNP
-         W0OKCuwDk449W4kiOgH+9awyGrL8ljE5HG34CER+krRYLfV75ZmyqltoRdww7YxVUt9H
-         LJyUyRAWqwnOhNJsAdF8cAhYI6ZuO0c/Ff12x8PBAwjTOJ0LcrISB2j1AMNb8KwK6i5d
-         KdojA448eeZOOsQxPOt0ax2/NfCJAnmvksjj2gSFR/bGCYsjCNkU5fOmdmry77jIPouK
-         4x+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727700808; x=1728305608;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h849igZr4Ixq8Z3CBdQvzfuVtVpkRBJfrNu7EAZT8oc=;
-        b=kG6bhSQl97w50bVTCsiMMPW94MJQ4ox+Q/kCkCbmjWeJbasFaGay3pC+gz7JKC6JuQ
-         OgBJfbT1hUE60unU3tdGs/BkF0H4Lmd2OP8bcKH5CRZB9nH+aEFrepJ26gpPsNe9kWXi
-         NFNUsZHb6+X1P3WNRFY5x6JzUi3/ekhiyhq/yujFwcZH+N/2hdwYvSoxpJl7b3FDzU3E
-         62wX7kFcxKBIWIHu5e6yX8L6ClW6Z62F1iYVHKyNu1J+070oQ+lv8JAhwsmDaJQqbn/M
-         NqxtSFLc0ZYqZEAJrNyCGYAO0GuPaFidfBfdCZtd0+2HNsV2hY4XE+KCi57BYyJh2gkr
-         cNaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVa/8S19XKvl69sTowqzHQcr1JzYRH4ydbFMi/lCiogYtDO2cHBBKaNUlnRv3nYy5XVd5sm4EPbTfi9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5CeCc38bbmY3GNU2It+Fzns2KUO+fB0ZFkRjYBE2nSSWZgJGf
-	DRJDRyfEENueuXgm7h/2WPWMrGG2MEE9BhFNWV9UpwOFwNpbH9SBPY6VFCweq48=
-X-Google-Smtp-Source: AGHT+IGGEtHWxlpRHRB4xGyRHsYZF85KLKYWr8ofp+5/Ypf02UC8nfqWCvvKeV7hxj3tjVwUYi4U0Q==
-X-Received: by 2002:a05:600c:4f14:b0:42c:de2f:da27 with SMTP id 5b1f17b1804b1-42f5840e765mr93078445e9.2.1727700807785;
-        Mon, 30 Sep 2024 05:53:27 -0700 (PDT)
-Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd56e6547sm9076767f8f.58.2024.09.30.05.53.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 05:53:27 -0700 (PDT)
-Date: Mon, 30 Sep 2024 14:52:10 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com, Mark Brown <broonie@kernel.org>, 
-	linux-spi@vger.kernel.org
-Subject: Re: [PATCH v3 02/10] dt-bindings: iio: dac: axi-dac: add ad3552r axi
- variant
-Message-ID: <sowmuxfsedwdshyothf7jc6mcrbzqbs2vzw7x4p3tg3iqnlnjt@5qa3kazkce46>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-2-a17b9b3d05d9@baylibre.com>
- <20240929114606.7500ba7e@jic23-huawei>
+	 Content-Type:Content-Disposition:In-Reply-To; b=FJg0RCzLbt8ejyp2Isv2EILjX1upHDM6rQy2X930aRjzIQfuW4rHwOp83dP/hpUC/HUB+9Oe+0cQty5ibd7EeHybM4mohUhcxJCxHKw8RfYliWFIQkXmlOcExwPQaCWhwwY/xzmbMTwpstxCbkwlF/RZnvBB8kMGRn56z2nJw6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: 4Cl5IOWHSYOx9akl6V4CHA==
+X-CSE-MsgGUID: hwDgEIaLTJqGqWNTZ8J5EA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26946175"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; 
+   d="scan'208";a="26946175"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2024 05:54:13 -0700
+X-CSE-ConnectionGUID: UFrOowHtT9C1RadabsDP0w==
+X-CSE-MsgGUID: YC01WcDRQtugj8jMJbQ4xg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; 
+   d="scan'208";a="72963878"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2024 05:54:08 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1svFue-0000000EfCj-3mlL;
+	Mon, 30 Sep 2024 15:54:04 +0300
+Date: Mon, 30 Sep 2024 15:54:04 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	INAGAKI Hiroshi <musashino.open@gmail.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Ming Lei <ming.lei@redhat.com>,
+	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Subject: Re: [PATCH v4 0/5] block: partition table OF support
+Message-ID: <ZvqfbNDfI2QWZEBg@smile.fi.intel.com>
+References: <20240930113045.28616-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,155 +77,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240929114606.7500ba7e@jic23-huawei>
+In-Reply-To: <20240930113045.28616-1-ansuelsmth@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 29.09.2024 11:46, Jonathan Cameron wrote:
-> On Thu, 19 Sep 2024 11:19:58 +0200
-> Angelo Dureghello <adureghello@baylibre.com> wrote:
+On Mon, Sep 30, 2024 at 01:30:07PM +0200, Christian Marangi wrote:
+> Hi,
+> this is an initial proposal to complete support for manually defining
+> partition table.
 > 
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Add a new compatible and related bindigns for the fpga-based
-> > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
-> > 
-> > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-> > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-> > mainly to reach high speed transfer rates using an additional QSPI
+> Some background on this. Many OEM on embedded device (modem, router...)
+> are starting to migrate from NOR/NAND flash to eMMC. The reason for this
+> is that OEM are starting to require more and more space for the firmware
+> and price difference is becoming so little that using eMMC is only benefits
+> and no cons.
 > 
-> I'd drop the word additional as I assume it is an 'either/or' situation
-> for the interfaces.
+> Given these reason, OEM are also using very custom way to provide a
+> partition table and doesn't relay on common method like writing a table
+> on the eMMC.
 > 
-> Do we have other devices using this same IP?  I.e. does it make
-> sense to provide a more generic compatible as a fallback for this one
-> so that other devices would work without the need for explicit support?
+> One way that is commonly used is to hardcode the partition table and
+> pass it to the system via various way (cmdline, special glue driver,
+> block2mtd...)
+> This way is also used on Android where the partition table
+> is passed from the bootloader via cmdline.
 > 
->
-no, actually ad3552r-axi is only interfacing to ad3552r.
-I could eventually set adi,axi-dac-9.1.b as a fallback, since it
-is the "gneric" AXI implementation.
- 
-> I'd also ideally like a view point from Mark Brown as SPI maintainer
-> on how we should deal with this highly specialized spi controller.
-> Is he happy with us using an SPI like binding but not figuring out how
-> to fit this engine into the SPI subsystem.
+> One reason to use this method is to save space on the device and to
+> permit more flexibility on partition handling.
 > 
-> Please +CC Mark and the spi list (done here) on future versions + provide
-> a clear description of what is going on for them.
+> What this series does is complete support for this feature.
+> It's possible to use the cmdline to define a partition table similar
+> to how it's done for MTD but this is problematic for a number of device
+> where tweaking the cmdline is not possible. This series adds OF support
+> to make it possible to define a partition table in the Device Tree.
 > 
+> We implement a similar schema to the MTD fixed-partition, where we define
+> a "label" and a "reg" with "offset" and "size".
+> 
+> A new block partition parser is introduced that check if the block device
+> have an OF node attached and check if a fixed-partition table is defined.
+> 
+> If a correct node is found, then partition table is filled. cmdline will
+> still have priority to this new parser.
+> 
+> Some block device also implement boot1 and boot2 additional disk. Similar
+> to the cmdline parser, these disk can have OF support using the
+> "partitions-boot0" and "partitions-boot1" additional node.
+> 
+> It's also completed support for declaring partition as read-only as this
+> feature was introduced but never finished in the cmdline parser.
 
-Ok.
-Actually i fixed the bindings for v4 setting axi-ad3552r as an
-spi-controller, and the target ad3552r as a spi-peripheral (child node).
-This axi-ad3552r is not only a pure spi-controller since providing
-some synchronization features not typical of a spi-controller. 
 
-> Maybe with the binding fixed as spi compliant, we can figure out the
-> if we eventually want to treat this as an SPI controller from the
-> kernel driver point of view even if we initially do something 'special'.
->
-
-> Jonathan
-> 
-> 
-> > DDR interface.
-> > 
-> > The ad3552r device is defined as a child of the AXI DAC, that in
-> > this case is acting as an SPI controller.
-> > 
-> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > ---
-> >  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 40 ++++++++++++++++++++--
-> >  1 file changed, 37 insertions(+), 3 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > index a55e9bfc66d7..6cf0c2cb84e7 100644
-> > --- a/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.yaml
-> > @@ -19,11 +19,13 @@ description: |
-> >    memory via DMA into the DAC.
-> >  
-> >    https://wiki.analog.com/resources/fpga/docs/axi_dac_ip
-> > +  https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
-> >  
-> >  properties:
-> >    compatible:
-> >      enum:
-> >        - adi,axi-dac-9.1.b
-> > +      - adi,axi-ad3552r
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -41,22 +43,54 @@ properties:
-> >    '#io-backend-cells':
-> >      const: 0
-> >  
-> > +  '#address-cells':
-> > +    const: 1
-> > +
-> > +  '#size-cells':
-> > +    const: 0
-> > +
-> >  required:
-> >    - compatible
-> >    - dmas
-> >    - reg
-> >    - clocks
-> >  
-> > +patternProperties:
-> > +  "^.*@([0-9])$":
-> > +    type: object
-> > +    additionalProperties: true
-> > +    properties:
-> > +      io-backends:
-> > +        description: |
-> > +          AXI backend reference
-> > +    required:
-> > +      - io-backends
-> > +
-> >  additionalProperties: false
-> >  
-> >  examples:
-> >    - |
-> >      dac@44a00000 {
-> > -        compatible = "adi,axi-dac-9.1.b";
-> > -        reg = <0x44a00000 0x10000>;
-> > -        dmas = <&tx_dma 0>;
-> > +      compatible = "adi,axi-dac-9.1.b";
-> > +      reg = <0x44a00000 0x10000>;
-> > +      dmas = <&tx_dma 0>;
-> 
-> If it makes sense to reformat then separate patch
-> please as this is hard to read as a result of this
-> change.  Also, as pointed out, be consistent with spacing.
-> 
-> > +      dma-names = "tx";
-> > +      #io-backend-cells = <0>;
-> > +      clocks = <&axi_clk>;
-> > +    };
-> > +
-> > +  - |
-> > +    axi_dac: spi@44a70000 {
-> > +        compatible = "adi,axi-ad3552r";
-> > +        reg = <0x44a70000 0x1000>;
-> > +        dmas = <&dac_tx_dma 0>;
-> >          dma-names = "tx";
-> >          #io-backend-cells = <0>;
-> >          clocks = <&axi_clk>;
-> > +
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        /* DAC devices */
-> >      };
-> >  ...
-> > 
-> 
+I'm not sure I fully understood the problem you are trying to solve.
+I have a device at hand that uses eMMC (and was produced almost ten years ago).
+This device has a regular GPT on eMMC and no kernel needs to be patched for that.
+So, why is it a problem for the mentioned OEMs to use standard GPT approach?
 
 -- 
+With Best Regards,
+Andy Shevchenko
 
-  o/ QW5nZWxvIER1cmVnaGVsbG8=
-   www.kernel-space.org
-    e: angelo at kernel-space.org
-      c: +39 388 8550663
-       
+
 
