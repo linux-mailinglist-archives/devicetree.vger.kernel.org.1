@@ -1,139 +1,142 @@
-Return-Path: <devicetree+bounces-106527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAD8598A851
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:18:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFF998A884
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:32:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11553283823
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:18:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21865281AC2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7627913D539;
-	Mon, 30 Sep 2024 15:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152D5199EB8;
+	Mon, 30 Sep 2024 15:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="KDX/juuT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09C320B0F;
-	Mon, 30 Sep 2024 15:18:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82DE199E9B
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 15:29:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727709522; cv=none; b=usgXAL2JPDqDoanIaNcJ2+ylk00lwaN0DxwW2pwhTE5o/0XiC0qv2YNrpFErSHqTuDK1IwiQJDDpDWgyRq0V8tETPoMQgVBNoYRrmvThDW7t8Hc6ON+KmaxYVZIBF9ZRxZvPH4IBDv2D0XYR//m0gLp8GIMW9RTZBTbt9FVnjbw=
+	t=1727710155; cv=none; b=As6EHIsV8d041QTUeAIazXLV9kD+tuUiDBTgXZHSynH+NTyNOF33t5Zi8peZP9QxEqWC6jJHuyweTspsUeHSq4iSkOhHod87tEUAOOQHPWbJqEUWGVOvJQMYc05pKkqdJraMF7xfPMyshNJV5Lm3JvYfdSQMRncb3XB2ZD5PZgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727709522; c=relaxed/simple;
-	bh=kwrBPpdJTUt+Eyt1rgudzzcjjYAGqYuG2lb+789Z/Kk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AYbanmazWnVSgpbrV67M0DRd/9f9kT+KXobYWTX94eCpxWB0IW2iR9D7mgOHwcQ6RjzI87Ri7Znk2yeng8mGhnmXQBDVNH1uJHomVVHGgGojVCR9BxhhLK1XYnGutA52x5E5d/4mGRwMq34QE1XRyJ6ItBCFlJU18wka7i6kl3E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e25d164854dso3652108276.2;
-        Mon, 30 Sep 2024 08:18:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727709519; x=1728314319;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0qLjXIFOvxfXI8WNtNjpNj1QzNPYduZSH+sMM8qEjWI=;
-        b=La/3CVkHvlsSoJ7EDoW09BYHs6FM2oRiWl4usWcWd1jqMX/4lboJe95Suar1J8sl+1
-         vEP+NLWCRD9w7636UvybIA+Ob0Gn2ksYGPpoZiBv/vwBSgVdmBmb8bBv79kPncE3Ta0S
-         TGM9BB3dPdasgI/rbB4IWeo3CpMiNVS3QU0rVNx2WwZ0p/RowXTezL4oTxBycOdmFZH/
-         pK5V+pODwRDktzPvn4vHUOcdOQuepcRma9yevcIuuN3rdiTtmSNtgWm4e724sKfsnww1
-         sJ8/xTVXqOjlw+9xv0Ws+qjR3vGQVYgya7zy54yJRXcHOBuJO/W0kPT2zrkPBsn0QNO6
-         vpPA==
-X-Forwarded-Encrypted: i=1; AJvYcCWpo5fRM5Js5aQA5zuVjQ6EQuh1sSNcmwFxD+swYzjUbBNH0Wtq/33uMndkqkBZJjOm5TBe5DTcNz6W@vger.kernel.org, AJvYcCXwAvGs6oPPJET7RGtsm+dw3HQ9ubYCP6mzW4L1VhlEP2k2Ul84USGQTzlf2REgmdkuVvwKQ8ovsw21@vger.kernel.org
-X-Gm-Message-State: AOJu0YxczX8cZT3U/isLQQ8P0Aj65hABocH+VXyhXjxmglxfP5XRE0E3
-	QA58sUn/Ne68uL5tP7/EQ9TQUfSUe8vL9FCrrthXIGfu97B76seFbmjxcdua
-X-Google-Smtp-Source: AGHT+IEb4jBvKR1SgGtHG2Up90mMYY93ul1WCfmuPhfwVZOOPe8FvlMegI08+Nth7KR1ycohvS9e3g==
-X-Received: by 2002:a05:6902:1022:b0:e26:46f:967d with SMTP id 3f1490d57ef6-e2604b3c107mr9299203276.23.1727709519031;
-        Mon, 30 Sep 2024 08:18:39 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e25e6c31679sm2296923276.58.2024.09.30.08.18.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Sep 2024 08:18:38 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6e214c3d045so34872247b3.0;
-        Mon, 30 Sep 2024 08:18:38 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVzHzaX6gy79uZG2C0SUVeIMFGrO5jwVIw2I2ZuN8U+OXp+LnEhVoWoLLfWWGlfnZvWmJ7lFv0w8C+S@vger.kernel.org, AJvYcCWb8CeLmdkZb9v8ZQV25R+4Zguqbqrc/PzNQhcQUAz4GO0QtUnrh4IkD+a7QVxpnU0/48cwaS9T4/2v@vger.kernel.org
-X-Received: by 2002:a05:690c:102:b0:6ac:d0ac:f74d with SMTP id
- 00721157ae682-6e25426fe19mr59332797b3.26.1727709518681; Mon, 30 Sep 2024
- 08:18:38 -0700 (PDT)
+	s=arc-20240116; t=1727710155; c=relaxed/simple;
+	bh=c4wR8tcH9RdAEoe2+47MbswBVdNokOoEY8naXrFqhiU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tL9j6EmaItxhlAoddN/+864SdNsy9Yosse1EajZY2JmrU75VVDPN5ZcnBpYegvqMhGwqVuRYMBShjeApWL4u64+nkuqrk5KEJrrA7hIBJ63CBwP38tJQUbLe/RPU7cBHugkyQ3tXY7hTUyN/tz7zSV0Q6txoK8L5FNrf/EyMTyU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=KDX/juuT; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1727710124;
+ bh=oySoeZXgklnZqRgl9rNvs2Vy1xJO0hdqK2BVTQwjHjk=;
+ b=KDX/juuTwun4bp98WIV9bM+WjCrXK9QFl5f1ZlTIh2X6XLMnK6iT4JMctEu2gVIn5XOyXLYkC
+ 3Ar4MEr/20yYClvL7OibkbXfmnBxLFW9NtePnhY0ws4GQBd/5z4vUzDA688Q6HE/uTzs/cY+V8I
+ d3f1F0qubs6zO7CROViw4nMd+00FZx8leHdN3qVHPMuQEXdFsosAsSCJMydaS5uORjr7zGKXKWF
+ O+83HBps7FlUgPZA65OCcSdaEXvjsorv0Mn8t8LBCRPCG9qaxuMFzMBUn9ksT3MNysuqbbOYix/
+ 8APluXmWwHtUXiI01Yn7mirAjxELBDS4UUKPn8ILOYgw==
+Message-ID: <3acf37cf-321e-4a03-a989-aff03fdec137@kwiboo.se>
+Date: Mon, 30 Sep 2024 17:28:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240930145955.4248-1-wsa+renesas@sang-engineering.com> <20240930145955.4248-3-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20240930145955.4248-3-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 30 Sep 2024 17:18:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWa7QXU+Ka6FipF6sbcn=UOnVtYa-+an4F7thprNt6ALQ@mail.gmail.com>
-Message-ID: <CAMuHMdWa7QXU+Ka6FipF6sbcn=UOnVtYa-+an4F7thprNt6ALQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1L SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/9] media: dt-bindings: rockchip,vdec: Add RK3288
+ compatible
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+ Christopher Obbard <chris.obbard@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20231105233630.3927502-1-jonas@kwiboo.se>
+ <20231105233630.3927502-7-jonas@kwiboo.se> <3342168.44csPzL39Z@diego>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <3342168.44csPzL39Z@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Report-Abuse-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-ForwardEmail-Version: 0.4.40
+X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-ForwardEmail-ID: 66fac3a9961bc87980ba467d
 
-Hi Wolfram,
+Hi Heiko,
 
-Thanks for your patch!
+On 2024-09-30 16:46, Heiko Stübner wrote:
+> Hi Jonas,
+> 
+> Am Montag, 6. November 2023, 00:36:13 CEST schrieb Jonas Karlman:
+>> Add a RK3288 compatible for a version of the Rockchip VDEC IP that only
+>> support HEVC decoding.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> 
+> While looking for something else in my inbox, I stumbled upon this series.
+> Looking at 6.12-rc1, it seems the rk3288 parts at least didn't make it in
+> yet, so I guess I a rebase+resend might be in order?
 
-On Mon, Sep 30, 2024 at 5:00=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Document the Renesas RZ/A1L DMAC block. This one does not require clocks
+Yes, this needs to be updated and resent, this series should still apply
+clean on top of the dependent h264 high10 v6 series [1], however there
+was some minor feedback to address in this series. Hoping to see some
+progress on the h264 high10 v6 series and send an updated v2 of this
+hevc series in near future.
 
-RZ/A1H
+Also trying to finish up a FFmpeg v4l2request hwaccel v3 series before I
+take a closer look at a v2 of this rkvdec hevc series.
 
-> and resets, so update the bindings accordingly.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+[1] https://lore.kernel.org/linux-media/20240909192522.1076704-1-jonas@kwiboo.se/
 
-> --- a/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> +++ b/Documentation/devicetree/bindings/dma/renesas,rz-dmac.yaml
-> @@ -4,18 +4,16 @@
->  $id: http://devicetree.org/schemas/dma/renesas,rz-dmac.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> -title: Renesas RZ/{G2L,G2UL,V2L} DMA Controller
-> +title: Renesas RZ/{A1L,G2L,G2UL,V2L} DMA Controller
+Regards,
+Jonas
 
-"A1H", or perhaps just "RZ-series"?
+> 
+> 
+> Heiko
+> 
+>> ---
+>>  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>> index 08b02ec16755..0f00e9c86737 100644
+>> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
+>> @@ -16,7 +16,9 @@ description: |-
+>>  properties:
+>>    compatible:
+>>      oneOf:
+>> -      - const: rockchip,rk3399-vdec
+>> +      - enum:
+>> +          - rockchip,rk3288-vdec
+>> +          - rockchip,rk3399-vdec
+>>        - items:
+>>            - enum:
+>>                - rockchip,rk3228-vdec
+>>
+> 
+> 
+> 
+> 
 
->
->  maintainers:
->    - Biju Das <biju.das.jz@bp.renesas.com>
->
-> -allOf:
-> -  - $ref: dma-controller.yaml#
-> -
->  properties:
->    compatible:
->      items:
->        - enum:
-> +          - renesas,r7s72100-dmac # RZ/A1L
-
-RZ/A1H
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
