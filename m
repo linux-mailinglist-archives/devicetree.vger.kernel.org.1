@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106270-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 806A0989AC7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:44:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A7CA989AD4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:45:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BAA1283685
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 06:44:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C7938B22425
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 06:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61F5166307;
-	Mon, 30 Sep 2024 06:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740B8154C05;
+	Mon, 30 Sep 2024 06:45:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WqgAYol5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KORR6dOC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA949165EEB;
-	Mon, 30 Sep 2024 06:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FF4C154BE3;
+	Mon, 30 Sep 2024 06:45:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727678548; cv=none; b=SZ0NDT6g1hx96bggXi8RUFN3Oq94jp9xJ8NB2VILXsGcGltE5GnXXpj4REkMKaVCwODNo+N3L/C50p22OxF7kt143xhNXwStBvngd+/EmzQUsrEOl3kZzYYezp5eWp/L7612G7f0/G49gpu5Zg8U2pdEYhxFDKpCXV/dfoREWhU=
+	t=1727678734; cv=none; b=megxFgOF0TUCAdm32MTLAy5NpKPt0ErfIOVpo5wNqz3Zw4s8oysG38yjGA/LKl5F8JVkUWgk0nq/K4jqBiIietnF5XD5NsI34CWueJ2FanCwts+jTo3o5eSHJEyZRJPqKJW9o9dEJjvuYREDuw8cocGee4r1rH0IHHwIFEdSobw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727678548; c=relaxed/simple;
-	bh=5VoQhXwgKxpbg8eBCDJRN8Z4bGhUFPO8t2fAmZVipxA=;
+	s=arc-20240116; t=1727678734; c=relaxed/simple;
+	bh=wndrKYNmLj1UApLUrQYwAzb1LZEandWNUjBkNlYoCyw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MeMJcMmdYI5s0kLyY4/Ke0EqiMK7nmMVsRfcCEmLQ+hcmDSwUdUceYeWnu/VlDyUXDQEjV+JqaVxRLOAT6ZwfpkG0UD+s1PR2P1MU1ls9g7UCgQ+1hdG2JSMPbTGsoEKTBAPfaLneJIhInbN+EAIX5dtdKtqMpiBWpXcL/CjZR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WqgAYol5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51AB4C4CECE;
-	Mon, 30 Sep 2024 06:42:25 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=iZ+U40+Qqs1tPD/Xpr7Hx76Ykt9JEkBmYzatrZycR5RaODJ4zs+dU/HAjD5SUH6kthDh4cgKPTHPYIEtG+fIuKp2Xki8vYnkhvjxKBZdaEBAtC8yb9MYwFfewSSj4lWZS4VvkwE5fddfn8z+xuXDjx5ixsCUbgjbudvjHH0Ghro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KORR6dOC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BF7FC4CECF;
+	Mon, 30 Sep 2024 06:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727678548;
-	bh=5VoQhXwgKxpbg8eBCDJRN8Z4bGhUFPO8t2fAmZVipxA=;
+	s=k20201202; t=1727678733;
+	bh=wndrKYNmLj1UApLUrQYwAzb1LZEandWNUjBkNlYoCyw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WqgAYol5ywLVs/5o3BAkiQbKvlsRysyy92uuvDLVQ6fu2aT/OXtXJwXej2jyB4w/j
-	 6InZMwUOyV5BI1qdMDlI8HfV8s2iyVlLq1Acm8DnokOuil+uSiNABdrLmpN22S6mYi
-	 3t5Qc5SdnqN3zJ1gx/071DGzgqNELhG+MNSuZFUViabACpGYHrWL81u84t/Gmjp9Pb
-	 eA1GksvYHf6w6P480MGTenPe447yhye0b0+/2I1ci3v2q6RhzvYAuhn1ldDfsFC4cX
-	 GWK8q3HjOmyUXoU/dTeXN35oHx9ji6hfb1mJGznqTHF7SshtxU8e4IrCKjKFhKBY5Q
-	 Vu0XworOzCrjA==
-Message-ID: <8d5ff5c7-1f66-4a1b-a235-868d13afe03e@kernel.org>
-Date: Mon, 30 Sep 2024 08:42:22 +0200
+	b=KORR6dOCKluJo4Oe+D/2GtPg4MthMBNRplaTt/CmKhNq5rZkN/xWT2Uy8zpDB+7DE
+	 YuJEb/5+tHzG5+fq29/tJTzBwbQ3PLrhOFn1XKYVh9/ukGsRGi6QUW8lVCrXXYlVQo
+	 K1icMYQ+oT0sz8LPQt8ZhK+32+F4PoMTMq292s/EQTLmmPkcr5GzCD13R9VyAPgnwR
+	 41MxWrBiabsYxmrwb5V2zIjH7+NEIRR+XgbX8tvXuBJ/LIkmDehaBC6VUMbjESp0CF
+	 zhnMR+TUljNmeUgAtUZLXDL8KUhN2y1tCtVv7DuFS8XR6Pj0Z0qMddalCy+0UNHzNH
+	 htIiTvG2jum/A==
+Message-ID: <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org>
+Date: Mon, 30 Sep 2024 08:45:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] dt-bindings: input: Goodix SPI HID Touchscreen
-To: Charles Wang <charles.goodix@gmail.com>
-Cc: jikos@kernel.org, bentiss@kernel.org, hbarnor@chromium.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
-References: <20240926044217.9285-1-charles.goodix@gmail.com>
- <20240926044217.9285-3-charles.goodix@gmail.com>
- <998ccefa-8d4a-40c1-aacd-0897070190ce@kernel.org>
- <ZvUwFur1vWYteQMy@ux-UP-WHL01>
- <87d49032-cb94-4cf8-a5e0-44eb2ec37111@kernel.org>
- <ZvoZbWQx5BfMI_Cd@ux-UP-WHL01>
+Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
+ spectrum clocking
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
+ <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
+ <566859c1-a397-4465-987e-0682b07a703e@kernel.org>
+ <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,94 +111,39 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ZvoZbWQx5BfMI_Cd@ux-UP-WHL01>
+In-Reply-To: <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/09/2024 05:22, Charles Wang wrote:
-> Hi Krzysztof,
-> Thank you very much for your advice.
-> 
-> On Thu, Sep 26, 2024 at 02:32:05PM +0200, Krzysztof Kozlowski wrote:
->> On 26/09/2024 11:57, Charles Wang wrote:
->>>>>  1 file changed, 71 insertions(+)
->>>>>  create mode 100644 Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>>>> new file mode 100644
->>>>> index 000000000..849117639
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/input/goodix,gt7986u.yaml
->>>>> @@ -0,0 +1,71 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/input/goodix,gt7986u.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: GOODIX GT7986U SPI HID Touchscreen
->>>>> +
->>>>> +maintainers:
->>>>> +  - Charles Wang <charles.goodix@gmail.com>
->>>>> +
->>>>> +description: Supports the Goodix GT7986U touchscreen.
->>>>> +  This touch controller reports data packaged according to the HID protocol,
->>>>> +  but is incompatible with Microsoft's HID-over-SPI protocol.
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - goodix,gt7986u-spi
->>>>
->>>> NAK, you duplicate again the binding. You cannot have bus-flavors.
->>>> Device is the same.
->>>>
->>>
->>> Could you provide some suggestions regarding this issue?
+On 29/09/2024 22:00, Dario Binacchi wrote:
 >>
->> What is exactly the question or problem? There is a binding for this
->> device. Extend it with SPI parts, e.g.
->> https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/iio/accel/adi,adxl313.yaml#L22
 >>
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        enum:
+>>> +          - fsl,imx8mm-anatop
+>>> +
+>>> +then:
+>>> +  properties:
+>>> +    fsl,ssc-clocks:
+>>
+>> Nope. Properties must be defined in top-level.
+>>
+>>> +      $ref: /schemas/types.yaml#/definitions/phandle-array
+>>> +      description:
+>>> +        The phandles to the PLLs with spread spectrum clock generation
+>>> +        hardware capability.
+>>
+>> These should be clocks.
 > 
-> This seems a little different from the adxl313.yaml.
+> Sorry, but I can't understand what you're asking me.
+> Could you kindly explain it to me in more detail?
 
-Hm? I am reading below:
+You added new property instead of using existing one for this purpose:
+'clocks'.
 
-> 
-> The issue we're encountering involves the chip model gt7986u,
-> which supports both I2C and SPI interfaces. For the I2C interface
-> (using the HID-over-I2C driver), it has already been declared in
-> the goodix,gt7375p.yaml file as follows:
-> 
-> i2c {
->   #address-cells = <1>;
->   #size-cells = <0>;
-> 
->   ap_ts: touchscreen@5d {
->     compatible = "goodix,gt7986u";
->   }
-> }
-> 
-> Currently, our design requires utilizing the SPI interface with
-> a custom SPI driver. However, the declarations within the binding
-> file have led to conflicts, as shown here:
-> 
-> spi {
->   #address-cells = <1>;
->   #size-cells = <0>;
-> 
->   touchscreen@0 {
->     compatible = "goodix,gt7986u";
->   }
-> }
-> 
-> Should I consider merging both YAML files into a single one to fix this?
 
-And there is no difference. I don't understand the problem.
 
 Best regards,
 Krzysztof
