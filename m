@@ -1,78 +1,116 @@
-Return-Path: <devicetree+bounces-106459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A3DD98A363
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:48:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D08098A360
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 15CD8B27129
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:47:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B30AC1F246E7
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BE119259E;
-	Mon, 30 Sep 2024 12:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vA4N8vvG"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9904318FDAB;
+	Mon, 30 Sep 2024 12:45:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9B4B1922F6;
-	Mon, 30 Sep 2024 12:45:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1017118EFEB;
+	Mon, 30 Sep 2024 12:45:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727700310; cv=none; b=PEXB0Sx9eywyUnxR1tkx8lceO1vOCV9fl/k/034DA00Knmz2zY3Yhfx/b9mJBk434H2mOx4DoaTcMKnqpulWcIvUlrWTCf1pihRD+VnavI2ILQ+xVWwRQU0f7jI1b9wjxYgeOgiv3+e9C0ntnAymAM1YCuhdTsxdo1pRwoyR4MQ=
+	t=1727700339; cv=none; b=enGG3vD4hOKS9QUENctEYfWrVuQAUE0E5441b1DSP7O5rhz1iYnCx5aTJCnz69b51Vpw/EfT6+YkXoWA5zU1M1gb2B9wbpIj+Fjqi7P1EcLtMPQ7+IbfgO29CspWVagjEaDPHQSoj3ABNcR1woSVo5TX+4/+7lbDjU9yYhMUuFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727700310; c=relaxed/simple;
-	bh=1LLJRG16VH/MbBDwirg7NpK9iFySyV15gPh3ahzzhGo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rl6BkaluQw35HP7TSJvjDQs3BNpCbDAVdhtkGl4kfWL+xFVQWxXafbPl2PBgpNyCXsAvtAc21e34hiklDKrMJ+iL669dkR4ofJR3x5EB/CTzPm2IDOEdQZFW0cuiW+Md2+8ZDPaOSs4DjdRT+uhoRGtfm/fBnY43nqMLV7XhZaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vA4N8vvG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23119C4CEC7;
-	Mon, 30 Sep 2024 12:45:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727700310;
-	bh=1LLJRG16VH/MbBDwirg7NpK9iFySyV15gPh3ahzzhGo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=vA4N8vvGg+k27GdwEAzQNgZDF3DjXiWl9JrKWc9tmHr7U7tCWqnH/tD5Qg6mG2DDI
-	 LLbcT2DKxxaCrXRMPEf2rzTMenliERgSYeiMvh/SQ/Fhwc/+Qqz/s1YO5TtIuw53R0
-	 WNhwyuZ7uE55SHz2yqLtzujy9SpUErMNjGFYbpTo4Ra29Nl13MZhVceQH8+YOQUJgf
-	 ArF731piYWgvTKuAYeJvk1fyfsH2M5oe4vEymhsOg1a+9y9tciwr2zKTikG2QfJjL1
-	 9oZxiqEQplt0+IXkGumSFhOX0pyXHxe/J1s+haBj1MvTH+r1+gvnZYmbFgUDHJCHHm
-	 IkYpx55u0DR3g==
-Message-ID: <09018943-41c0-422a-8ee7-2e2ce5343b48@kernel.org>
-Date: Mon, 30 Sep 2024 14:45:04 +0200
+	s=arc-20240116; t=1727700339; c=relaxed/simple;
+	bh=Ut0lQ2g9exrMix45yy0WQ7t9mzUrHTgaYqmEtChH8t4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tu9JcruUt5Hc8uB6eOe2JT0p7dyJdROqZLmxQRbnU2k/pDdxuC6/fsYTSbC5JzSbhWV0X6eL66/d3/LfAXsWnnOkbWYJZ2N0mmLtBCWhKbQdyCdMpCjmFo0j42QfBl15y2R2L9jnIdOjYkhv8VrFNo15zGHGiHldpEgWRHy44Fw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: KD10S7boS7mTEbF15noccg==
+X-CSE-MsgGUID: KbXWujLhQ1Kud92A2UV0Ow==
+X-IronPort-AV: E=McAfee;i="6700,10204,11210"; a="26908858"
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; 
+   d="scan'208";a="26908858"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2024 05:45:37 -0700
+X-CSE-ConnectionGUID: LpizH6AiS6S8a9x6XhV00Q==
+X-CSE-MsgGUID: /nBZg+QPSQucfIQtGeE3mg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; 
+   d="scan'208";a="73262705"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2024 05:45:32 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1svFmK-0000000Ef39-3uEe;
+	Mon, 30 Sep 2024 15:45:28 +0300
+Date: Mon, 30 Sep 2024 15:45:28 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Kees Cook <kees@kernel.org>,
+	Daniel Golle <daniel@makrotopia.org>,
+	INAGAKI Hiroshi <musashino.open@gmail.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Ming Lei <ming.lei@redhat.com>,
+	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com,
+	Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: Re: [PATCH v4 3/5] string: add strends() helper to check if a string
+ ends with a suffix
+Message-ID: <ZvqdaLAVbUF0i1Zi@smile.fi.intel.com>
+References: <20240930113045.28616-1-ansuelsmth@gmail.com>
+ <20240930113045.28616-4-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: Add EC to Lenovo Yoga Slim 7x
-To: Maya Matuszczyk <maccraft123mc@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240927185345.3680-1-maccraft123mc@gmail.com>
- <20240927185345.3680-3-maccraft123mc@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konradybcio@kernel.org>
-In-Reply-To: <20240927185345.3680-3-maccraft123mc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240930113045.28616-4-ansuelsmth@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 27.09.2024 8:53 PM, Maya Matuszczyk wrote:
-> This device has an EC on i2c5 bus at address 0x76, driver for the EC was
-> added in a previous patch.
-> 
-> Signed-off-by: Maya Matuszczyk <maccraft123mc@gmail.com>
-> ---
+On Mon, Sep 30, 2024 at 01:30:10PM +0200, Christian Marangi wrote:
+> Add strends() helper to check if a string ends with a suffix. The
+> unreadable strends is chosen to keep consistency with the parallel
+> strstarts helper used to check if a string starts with a prefix.
 
-Reviewed-by: Konrad Dybcio <konradybcio@kernel.org>
+strstarts()
 
-Konrad
+> To prevent out-of-bounds read, len of string is checked against the
+> prefix length before comparing the 2 string at the offset.
+
+...
+
+> +/**
+> + * strends - does @str end with @suffix?
+> + * @str: string to examine
+> + * @suffix: suffix to look for.
+
+Please, run kernel doc validator
+
+	scripts/kernel-doc -Wall -none ...
+
+and fix the warning.
+
+> + */
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
