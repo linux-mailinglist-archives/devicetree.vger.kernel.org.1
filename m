@@ -1,172 +1,216 @@
-Return-Path: <devicetree+bounces-106331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB013989D3A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:49:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B692989D41
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:50:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78451281462
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:49:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48282281D05
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F11517B4FC;
-	Mon, 30 Sep 2024 08:49:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF6217F394;
+	Mon, 30 Sep 2024 08:50:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PEZEQAo4"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zGAnHetR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EE813D531;
-	Mon, 30 Sep 2024 08:49:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2568F13D531;
+	Mon, 30 Sep 2024 08:50:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727686152; cv=none; b=Y70voHhKX8Q6bzxL6CoxD6YxbQb2GHnjB269zsZtlwhfEImEENyZpn5fRR8U2uRht3EaSA4+jHVnvDTwsxZMHLRVd2Sjj/UL4wU/fBPBL84KjTjXvqWQRWPz4KbKbW+dMTVlDG921wdDKIv7WUorbViJTzwLKNsroEHX7I+nd9s=
+	t=1727686208; cv=none; b=nPrPwrF1Ln3/fuzgVbIEezI/EgiTZMscs/CEdPyC/FWbJ2g/7wa3jWhuXEABAxaYd2HZLyxN3sTFH7YLnr09j29AyLBhkRnfR2UaPpPAIj7fDr4WpZZVNLpS02DEUKMt7oOX2RZUzu4ajMU3FkFT0LZdxrEHmJlKAPApw0ESte8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727686152; c=relaxed/simple;
-	bh=VJzCGMMRci/BiZjulnBSG77pRU6y2deSbKtvy/pU2pY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gX0F4zmUc1TjkddrsuDs/7AgE1OjoSLxLOPLhceZfxUrCgICjFpACPPNUtH5u+rn6SnaqUbaxpGsUZiFNTdFWB9F8yZjWpDUm0UaMLYtcpfheVzYKTYFwY2zbfubyJ1bzrvS6AmSMX1VycmEooz7K/N3B+hQNuv72v+Il9k9GFE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PEZEQAo4; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727686147;
-	bh=VJzCGMMRci/BiZjulnBSG77pRU6y2deSbKtvy/pU2pY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PEZEQAo4oB0HrZ6hyP//YB/w7n6xJyG5PinuwSHzdOx8AOmj5Ixfq89MPhXWSxLjH
-	 KEi+/4bQzhnDIybedEyuX/RZBdi7K8UmoiaXn2zHwV4nJFYdlPrA1AQlUVIEjBMKOm
-	 UHx623s1TF8BknFyk1paXHosCBPSeYgwLrIC5b+D9DMlPRCWVXDH24ixypfyzzCLyy
-	 EQcIcVE0GLjGByWkc7qohQpkONmrKnrc9nPPDH1iJi/2XuSWVxbgYUl9ANpMGPvYe7
-	 1skqXCgezJWh+s/+N3XhNKLqRLmKJhmHh7OtBnB7BywKpUWNuxu7j4Q6lMPCXeOAz4
-	 kdQ8HOqp53crQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 98BEC17E10AB;
-	Mon, 30 Sep 2024 10:49:06 +0200 (CEST)
-Message-ID: <8883c84d-8333-4b04-83b5-022be5b6153c@collabora.com>
-Date: Mon, 30 Sep 2024 10:49:06 +0200
+	s=arc-20240116; t=1727686208; c=relaxed/simple;
+	bh=f5AxsC392i8EIHuBCSxVTm1FtkBX856hy/Rie/U83Pg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U6ADSFR22JZMNZkgNjG4tcxrvZpeHamF2IO90xnuB/eWE48pKKM0qDeBHOeyF1hAcXrzUGq8pCjiYcSy/pzzwF3YoqbXJT0T8dswf6tO6QG6Qf5Oc8EKdbQ6weDPW3UtUmjFDJVgV8LV4LBqIzoiQfZLh2dzh5evSQROlFkvhko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zGAnHetR; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=BZhvBdz24UU/9na5K2urGxf2dHFtMLDWkuqh0tEIars=; b=zGAnHetRD6a16YnCi2N/2hdaJU
+	EonkVFH9akA6WSXZ1EDQfZeelFXDEKOpFmwx33yf/5aMHMMSqowRVhdcRkYEz/HI3GKMm/krCwNDB
+	sIlYA6FzqIsV78RGjLoUbufl4NtJz2jUtaNKFrK++86caCIx9Sl/Pb8+omZgmWLabUOCfSxPLo2/T
+	3XnvMh92z9Cl/9C+T5uMQ6QlLWk7ec+/VHu3Nq2kEfI5wodaoNm20gb2Mavc4ETc+9YqVRVyp8TWB
+	4nQ1z691ioNDznXSPqMVzez0B85z84dNl6V6uMNwJA0VjIwIr4k6CQ9BOieh9gY4LqKEmcC6U/Zif
+	USI+6blg==;
+Received: from i5e861925.versanet.de ([94.134.25.37] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1svC6H-0003lg-7C; Mon, 30 Sep 2024 10:49:49 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Daniel Semkowicz <dse@thaumatec.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Dragan Simic <dsimic@manjaro.org>,
+ Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+ Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add power button for RK3399 Puma
+Date: Mon, 30 Sep 2024 10:49:48 +0200
+Message-ID: <4620941.LvFx2qVVIh@diego>
+In-Reply-To: <54c49375-cb2a-40fe-abcd-fc56c04d0c53@cherry.de>
+References:
+ <20240925072945.18757-1-dse@thaumatec.com>
+ <54c49375-cb2a-40fe-abcd-fc56c04d0c53@cherry.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/5] dt-bindings: iommu: mediatek: Fix interrupt count
- constraint for new SoCs
-To: Macpaul Lin <macpaul.lin@mediatek.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>,
- Matthias Brugger <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
- Jitao shi <jitao.shi@mediatek.com>, Tinghan Shen
- <tinghan.shen@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>,
- Ben Lok <ben.lok@mediatek.com>, "Nancy . Lin" <nancy.lin@mediatek.com>,
- dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20240926111449.9245-1-macpaul.lin@mediatek.com>
- <20240926111449.9245-2-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20240926111449.9245-2-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Il 26/09/24 13:14, Macpaul Lin ha scritto:
-> The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
-> to an excessively long 'interrupts' property. The error message was:
+Hey Quentin, Daniel,
+
+Am Donnerstag, 26. September 2024, 14:34:30 CEST schrieb Quentin Schulz:
+> On 9/25/24 9:28 AM, Daniel Semkowicz wrote:
+> > There is a PWRBTN# input pin exposed on a Q7 connector. The pin
+> > is routed to a GPIO0_A1 through a diode. Q7 specification describes
+> > the PWRBTN# pin as a Power Button signal.
+> > Configure the pin as KEY_POWER, so it can function as power button and
+> > trigger device shutdown.
+> > Add the pin definition to RK3399 Puma dts, so it can be reused
+> > by derived platforms, but keep it disabled by default.
+> > 
+> > Enable the power button input on Haikou development board.
+> > 
+> > Signed-off-by: Daniel Semkowicz <dse@thaumatec.com>
 > 
->    infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
->                       [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
->                       is too long
+> This works, thanks.
 > 
-> To address this issue, add "minItems: 1" and "maxItems: 5" constraints to
-> the 'interrupts' property in the DT binding schema. This change allows for
-> flexibility in the number of interrupts for new SoCs.
-> The purpose of these 5 interrupts is also added.
+> Tested-by: Quentin Schulz <quentin.schulz@cherry.de>
 > 
-> Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->   .../bindings/iommu/mediatek,iommu.yaml        | 25 ++++++++++++++++++-
->   1 file changed, 24 insertions(+), 1 deletion(-)
+> Now I have some questions I wasn't able to answer myself, maybe someone 
+> can provide some feedback on those :)
 > 
-> Changes for v2:
->   - commit message: re-formatting and add a description of adding 5 interrupts.
->   - add 'description' and 'maxItems: 5' for 'interrupt' property of
->     'mt8195-iommu-infra'
->   - others keeps 'maxItems: 1'
+> We already have a gpio-keys for buttons on Haikou, c.f. 
+> https://elixir.bootlin.com/linux/v6.11/source/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts#L22. 
+> Those signals are directly routed to the SoM and follow the Qseven standard.
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index ea6b0f5f24de..fdd2996d2a31 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -96,7 +96,8 @@ properties:
->       maxItems: 1
->   
->     interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 5
->   
->     clocks:
->       items:
-> @@ -210,6 +211,28 @@ allOf:
->         required:
->           - mediatek,larbs
->   
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8195-iommu-infra
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          description: |
+> The same applies to PWRBTN# signal.
+> 
+> However, here we have one gpio-keys for PWRBTN# in Puma DTSI and one 
+> gpio-keys for the buttons and sliders on Haikou devkit in Haikou DTS.
+> 
+> I'm a bit undecided on where this should go.
+> 
+> Having all button/slider signals following the Qseven standard in Puma 
+> DTSI and enable the gpio-keys only in the devkit would make sense to me, 
+> so that other baseboards could easily make use of it. However, things 
+> get complicated if the baseboard manufacturer decides to only implement 
+> **some** of the signals, for which we then need to remove some nodes 
+> from gpio-keys (and pinctrl entries) since gpio-keys doesn't check the 
+> "status" property in its child nodes (though that could be fixed). At 
+> which point, it's not entirely clear if having it in Puma DTSI is 
+> actually beneficial.
+> 
+> Someone has an opinion/recommendation on that?
 
-Do you really need to keep the formatting?
+I guess from a platform perspective nobody really cares, so as that is
+"your" board, it comes down to a policy decision on your part ;-) .
 
-If you rephrase that as:
+While pins follow the q7 standard, there may very well be some lax
+handling of that standard in some places, and I guess gpio lines could
+be re-used for something else if needed, as something like the lid-switch
+is probably non-essential.
 
-The infra IOMMU in MT8195 has five banks: each features one set
-of APB registers for the normal world (set 0), one for the protected
-world (sets 1-3) and one for the secure world (set 4), and each set
-has its own interrupt. Therefore, five interrupts are needed.
+Also a gpio-key input does not create that much code-overhead if
+replicated, so personally I'd just stick the power-button with the other
+buttons in the haikou dts.
 
-...you won't need the bar :-)
+Which is also a way better thing than having multiple gpio-keys instances
+that userspace then has to handle.
 
-> +            The IOMMU of MT8195 has 5 banks: 0/1/2/3/4.
-> +            Each bank has a set of APB registers corresponding to the
-> +            normal world, protected world 1/2/3, and secure world, respectively.
-> +            Therefore, 5 interrupt numbers are needed.
-> +          maxItems: 5
 
-minItems: 5
+Heiko
 
-Cheers,
-Angelo
+
+> > ---
+> > 
+> >   .../boot/dts/rockchip/rk3399-puma-haikou.dts  |  4 ++++
+> >   arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 22 +++++++++++++++++++
+> >   2 files changed, 26 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> > index f6f15946579e..0999026b16d0 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> > @@ -143,6 +143,10 @@ vddd_codec: vddd-codec {
+> >   	};
+> >   };
+> >   
+> > +&gpio_key_power {
+> > +	status = "okay";
+> > +};
+> > +
+> >   &hdmi {
+> >   	ddc-i2c-bus = <&i2c3>;
+> >   	status = "okay";
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> > index 650b1ba9c192..389ffe604e74 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> > @@ -3,6 +3,7 @@
+> >    * Copyright (c) 2017 Theobroma Systems Design und Consulting GmbH
+> >    */
+> >   
+> > +#include <dt-bindings/input/input.h>
+> >   #include <dt-bindings/pwm/pwm.h>
+> >   #include "rk3399.dtsi"
+> >   
+> > @@ -39,6 +40,19 @@ clkin_gmac: external-gmac-clock {
+> >   		#clock-cells = <0>;
+> >   	};
+> >   
+> > +	gpio_key_power: gpio-key-power {
+> > +		compatible = "gpio-keys";
+> > +		pinctrl-0 = <&pwrbtn_pin>;
+> > +		pinctrl-names = "default";
+> > +		status = "disabled";
+> > +
+> > +		button-pwrbtn-n {
+> > +			gpios = <&gpio0 RK_PA1 GPIO_ACTIVE_LOW>;
+> > +			label = "PWRBTN#";
+> > +			linux,code = <KEY_POWER>;
+> > +		};
+> > +	};
+> > +
+> >   	vcc1v2_phy: vcc1v2-phy {
+> >   		compatible = "regulator-fixed";
+> >   		regulator-name = "vcc1v2_phy";
+> > @@ -475,6 +489,14 @@ &pinctrl {
+> >   	pinctrl-names = "default";
+> >   	pinctrl-0 = <&q7_thermal_pin &bios_disable_override_hog_pin>;
+> >   
+> > +	buttons {
+> > +		pwrbtn_pin: pwrbtn-pin {
+> > +			rockchip,pins =
+> > +				/* PWRBTN# */
+> > +				<0 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
+> > +		};
+> > +	};
+> > +
+> >   	gpios {
+> >   		bios_disable_override_hog_pin: bios-disable-override-hog-pin {
+> >   			rockchip,pins =
+> 
+> 
+
+
 
 
 
