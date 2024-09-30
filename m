@@ -1,108 +1,97 @@
-Return-Path: <devicetree+bounces-106518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0440E98A7E5
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:55:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0E498A803
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:00:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A92D51F212C3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:55:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19D561C23435
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:00:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBE019258C;
-	Mon, 30 Sep 2024 14:54:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17DB1192593;
+	Mon, 30 Sep 2024 15:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N45EoeQg"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="CW6XFPid"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41E7C192580;
-	Mon, 30 Sep 2024 14:54:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFED190471
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 14:59:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727708079; cv=none; b=rJ+rJ2gLJYCCAVF2cNNX0Htf5dPz1L+j7vbjvPThvXV2y4L3IPl5hoO/HLuG53vHKFFgIh0ho01K6iaKYGqBaMxFdAvVLsXFRkNm5VW7hbPQZH4H/hTyhh66WTc7jlbTi8JMHSp/wjDWaxxDR76mmkxhI0WcXjQslQF31SDLWLs=
+	t=1727708401; cv=none; b=erM/zM4uAlb3lL1olaRr1IyvvnwmLBAxXMF4Ho8tsYBpmpHJ/nPsUIS8VYRjxCMDZZ3t5/aeqXptkQqAR8meFbfGwOylPl7ZnJarSe8Mtryvf0ecjE3+RRy/tLc2Hhq4r93NBCic8hfVD8XbidwhGXukxfC2TdlCmAR3YvDqS68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727708079; c=relaxed/simple;
-	bh=yHz+HqtCHC83WSkLLK6bPyeJEEQZt60aErkk1WVXJoo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pS2sMAi045GYfoNY6wPLuRjDDlwUXDkKnem1I4dKoNjI4Ad9MkySuxpTqpDyvn7d9fqWzlzQbiglWq+HD+ETQj7YaOWC4aBLu3IGLaDW5fynmJVklStgrkF5gDb4t1j8o+q58nQcPBdyWg32gkJ2aXIluhshupAwMy0UpQK4I68=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N45EoeQg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE236C4CEC7;
-	Mon, 30 Sep 2024 14:54:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727708078;
-	bh=yHz+HqtCHC83WSkLLK6bPyeJEEQZt60aErkk1WVXJoo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N45EoeQgaLTmd7WBql3abq8jJzFj75BYqMqlP4Qx0NgyEn8269WHt4HIMtaVMaAlr
-	 dXwbuBuLajuuvKlfAhwVT2tuWQx3iNcq+7crYqxN6gRWMsGdhuTpqo9zhG/b9RZNpv
-	 WrLBrVou3sCOHFMQGp/U+qKpaOMbO+fz9z6rV//9xJdXqdHF/eO8G5FHHfBgbIQ3Dd
-	 JRq03vCpg3VX1yNsyD57i6sx6+mzoCB9JWA2V2/ukJloTUTZ3RhCQ22nSmdMaK78t+
-	 kw2899YtsaKirzGLtXyE3Q37vbapA/663j4qpMjO4azjAoechFqoLZ3cotqVeg87F9
-	 U5iRlGu7W0prQ==
-Date: Mon, 30 Sep 2024 15:54:32 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-arm-kernel@lists.infradead.org, kernel@dh-electronics.com,
-	Alexander Stein <alexander.stein@ew.tq-group.com>,
+	s=arc-20240116; t=1727708401; c=relaxed/simple;
+	bh=xinIHUprBI52PsIRaJ4JZcTeZPje0snSfpYXu/fggQk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=TtPFBleAvBXFJyh2MwlyxIKlUhk9cQJE1L73AoHwYuRK6VcFKzCMMHcvy085XbyIjWzTs7UGUHLLCclXzFtsuTc2OYfRs2SdXpuw5bynvXkpgN9rpq0Imee1ZcK9IClYBVt/SDBC2BOXhXHp42ZuSPbZNRHypnwqR7GLYliyQ7U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=CW6XFPid; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=Zh1yObY8WHow/K
+	ijC4LeeBHtkdQnh8DwECG6Q2RxrFk=; b=CW6XFPidi8bt7iDwyc7Fh+ufYrIZQ2
+	CIBpMeW9F+jcanYCIGt7S7N4ViCgCNV6NvI5fP0DMl4B4+HgZtmF+2gGYFjcGEyI
+	vhM0wL1fHEwxA+AHCePHVH9fI80za3GRwps9XVWlYBFft3B0jCd6aMMsKrntJq2E
+	gJ1wK2vpl6sjXAeONadfQ+cv7x1vHjZ+w7L2WfVHPaHJNnW9/plFrvTUZT8lQXQe
+	pBGtgCNGGk6FR80HGyDIbt269ssy7KhixqH7r9jtAqJpKXQZz3tQmRNGTAvP5TKX
+	/us73NGEvAHrQJ94X2yLqu5fLj4HVzBpb74kTOCoVGJ9qHRNOldMDQmA==
+Received: (qmail 2222573 invoked from network); 30 Sep 2024 16:59:56 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 30 Sep 2024 16:59:56 +0200
+X-UD-Smtp-Session: l3s3148p1@eSVCdVcj3uYujnsJ
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Gregor Herburger <gregor.herburger@ew.tq-group.com>,
-	Hiago De Franco <hiago.franco@toradex.com>,
-	Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-	Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+	devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Mathieu Othacehe <m.othacehe@gmail.com>,
-	Max Merchel <Max.Merchel@ew.tq-group.com>,
-	Michael Walle <mwalle@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Document DH electronics
- i.MX8M Plus DHCOM PicoITX
-Message-ID: <20240930-smokiness-tricolor-f649d01e7ec0@spud>
-References: <20240928234949.357893-1-marex@denx.de>
+	Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH 0/3] dmaengine: sh: rz-dmac: add r7s72100 support
+Date: Mon, 30 Sep 2024 16:59:51 +0200
+Message-ID: <20240930145955.4248-1-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="uQ7vq3tWddTOPZN2"
-Content-Disposition: inline
-In-Reply-To: <20240928234949.357893-1-marex@denx.de>
+Content-Transfer-Encoding: 8bit
 
+When activating good old Genmai board for regression testing, I found
+out that not much is needed to activate the DMA controller for A1L.
+Which makes sense, because the driver was initially written for this
+SoC. Let it come home ;)
 
---uQ7vq3tWddTOPZN2
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patch 1 is a generic fix. The other patches are the actual enablement.
+A branch with DTS additions for MMCIF can be found here:
 
-On Sun, Sep 29, 2024 at 01:48:08AM +0200, Marek Vasut wrote:
-> Document support for DH electronics i.MX8M Plus DHCOM SoM on PicoITX carr=
-ier
-> board. This system is populated with serial console, EQoS ethernet, eMMC,=
- SD,
-> SPI NOR, LEDs and USB 3.0 host used in USB 2.0 mode on PicoITX.
->=20
-> Signed-off-by: Marek Vasut <marex@denx.de>
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/genmai-upstreaming
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+These will be upstreamed once the driver parts are in next. Adding SDHI
+is still WIP because RZ/A1L usage exposes a SDHI driver bug. So much for
+the value of regression testing...
 
---uQ7vq3tWddTOPZN2
-Content-Type: application/pgp-signature; name="signature.asc"
+Wolfram Sang (3):
+  dmaengine: sh: rz-dmac: handle configs where one address is zero
+  dt-bindings: dma: rz-dmac: Document RZ/A1L SoC
+  dmaengine: sh: rz-dmac: add r7s72100 support
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/dma/renesas,rz-dmac.yaml         | 27 +++++++++++++------
+ drivers/dma/sh/Kconfig                        |  6 ++---
+ drivers/dma/sh/rz-dmac.c                      | 27 ++++++++++---------
+ 3 files changed, 37 insertions(+), 23 deletions(-)
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvq7qAAKCRB4tDGHoIJi
-0tuHAP411326zmUIUamXX8Tvex7dncg8LcBfKQcqgOIp/ASN5gD9HRr4avS4s+ZP
-1HQwhxzv8oUsvMMVpmjKt232cZNw+QM=
-=gfQ1
------END PGP SIGNATURE-----
+-- 
+2.45.2
 
---uQ7vq3tWddTOPZN2--
 
