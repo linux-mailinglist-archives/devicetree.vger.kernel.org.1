@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-106330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B914989D2A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:47:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB013989D3A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:49:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCE211F224C6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:47:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78451281462
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAAD517DFEB;
-	Mon, 30 Sep 2024 08:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F11517B4FC;
+	Mon, 30 Sep 2024 08:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ox4HGyed"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PEZEQAo4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18FFA17AE1C
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:46:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EE813D531;
+	Mon, 30 Sep 2024 08:49:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727686021; cv=none; b=VAtWzACmyXCk6/748MBkgBoHjU+WvHfiU5L00bsUn1c9CV7m67QsTC0IDY1ACBVW2tbgyawtse7TtQtysjWw33XmQPwAFh9486uizWyFG6zLvdPjYaKL1Fz23Oay7xKyuz1tRXKUbSZMn9Lip2i8o5UR/Ahw/ZYZHM+nWhjb6kI=
+	t=1727686152; cv=none; b=Y70voHhKX8Q6bzxL6CoxD6YxbQb2GHnjB269zsZtlwhfEImEENyZpn5fRR8U2uRht3EaSA4+jHVnvDTwsxZMHLRVd2Sjj/UL4wU/fBPBL84KjTjXvqWQRWPz4KbKbW+dMTVlDG921wdDKIv7WUorbViJTzwLKNsroEHX7I+nd9s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727686021; c=relaxed/simple;
-	bh=zBOaCIiplMCpZGY0jjaPb2V+UzWItcf34o6TiHwy4Xw=;
+	s=arc-20240116; t=1727686152; c=relaxed/simple;
+	bh=VJzCGMMRci/BiZjulnBSG77pRU6y2deSbKtvy/pU2pY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MpHpk3YehqYjLXbdj7Ua4Ej1LozdD8rSeYC1JMD5xNKyRYfmvQHL1NTVc4/dOrdwskN7zqDBS6nJnCYpHoBjCZeHa8IKbSqdtjikdfQZifK7MZw9PockDFxMfbi3cV1OeOjYNJLO1GAGP+g/hcMd9UVTqZ8+/i24MJmB0H3FOMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ox4HGyed; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5389e536198so448032e87.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:46:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727686018; x=1728290818; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OtMzIEmSeHrSindSP0Zy7HyY0VWOBIsMj6Cl6nDXOFs=;
-        b=ox4HGyedgXHYRfLJYqEK9TThNNLbTYZWQi3L/R9XLvECCnVmiQtQnZ73Ce00j/Jiql
-         4Ab6pfsqj12TT/BSF2gAWAku2A8tkKEoHyza/xAJT1I07tuONC98qiN6A9bMthebXEv6
-         u8ypPoiZDLn7+A+CVrDu6nzz25FzXQPhezbFW7tMKBmuQrHUAU2jPRBkyoqTy0nX0yvJ
-         N0cclosyuED+5BVPe12pFtOGuKGQtr264LznXtPm8VILGN29H1QXOlZBvtSXdx24AqR4
-         UfxibCxaY2NPIdAhBk9TV+87Prc4wPQykVahNchiBeZF+MXZwFNBn1zLB6tRVMnl1jyg
-         QqwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727686018; x=1728290818;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OtMzIEmSeHrSindSP0Zy7HyY0VWOBIsMj6Cl6nDXOFs=;
-        b=HuRqwIhTevSLvqZdULD7tbhLj1XrNSf6so/kYepsoSnxDfShzvYC+Ec0vcr1W/JL+H
-         /N5k4boRq2a6kTSgXMVcXQtjUF5ic14aorBPEBPDP2N0d1Jv/RaP284JI/RNCssapw8I
-         5N7TzW7RY9R1lgg+1PVC3NpLb1ziXpLG9frgkJa/mWynbFeP4ycRZ70amFXl0gKrcxBR
-         plJzAoWM/bat3yW7RM1GAS/FvFpIC2OrdhleAqMj5xH2UvJ5p+4yMP1PPkwDyKP0gQom
-         j+hgA7J5ZTIa1qR4I/+wS4t/wRQvmgP90YBGmN/wat2zILiBZ0kRAhafRAERgtUqVGTo
-         WFCA==
-X-Forwarded-Encrypted: i=1; AJvYcCXsnDNEtNIL4R1umsaYDHxoOknvcrFK/PO4lpRMI8j0nYxc7eGFXIV6P5oYqI+IG5GdBN1AB311qlVk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG6Nfutn5Y3pm01/YzH8i6Rmtun1U4W6zc7P/GvWFAx4jTS2ee
-	TppwPR9Y5N+EURO4Q8xjDzCI90PUk6HLu2d5P/yeW51cYD0iK7B4sicGQVTBJEM=
-X-Google-Smtp-Source: AGHT+IFD+QksQwqwWe9YMhvYeWxUxYvljx6Exd041dtgf4st8hShEVFT0rzEYhFQU/g1Q5R2XdhGfA==
-X-Received: by 2002:a05:6512:3190:b0:535:4144:f9d3 with SMTP id 2adb3069b0e04-5398c31aa74mr864994e87.11.1727686018222;
-        Mon, 30 Sep 2024 01:46:58 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-538a0439110sm1164327e87.184.2024.09.30.01.46.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Sep 2024 01:46:56 -0700 (PDT)
-Message-ID: <87419076-c355-4eb9-8bf4-a9f2064e3c0a@linaro.org>
-Date: Mon, 30 Sep 2024 11:46:55 +0300
+	 In-Reply-To:Content-Type; b=gX0F4zmUc1TjkddrsuDs/7AgE1OjoSLxLOPLhceZfxUrCgICjFpACPPNUtH5u+rn6SnaqUbaxpGsUZiFNTdFWB9F8yZjWpDUm0UaMLYtcpfheVzYKTYFwY2zbfubyJ1bzrvS6AmSMX1VycmEooz7K/N3B+hQNuv72v+Il9k9GFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PEZEQAo4; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727686147;
+	bh=VJzCGMMRci/BiZjulnBSG77pRU6y2deSbKtvy/pU2pY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PEZEQAo4oB0HrZ6hyP//YB/w7n6xJyG5PinuwSHzdOx8AOmj5Ixfq89MPhXWSxLjH
+	 KEi+/4bQzhnDIybedEyuX/RZBdi7K8UmoiaXn2zHwV4nJFYdlPrA1AQlUVIEjBMKOm
+	 UHx623s1TF8BknFyk1paXHosCBPSeYgwLrIC5b+D9DMlPRCWVXDH24ixypfyzzCLyy
+	 EQcIcVE0GLjGByWkc7qohQpkONmrKnrc9nPPDH1iJi/2XuSWVxbgYUl9ANpMGPvYe7
+	 1skqXCgezJWh+s/+N3XhNKLqRLmKJhmHh7OtBnB7BywKpUWNuxu7j4Q6lMPCXeOAz4
+	 kdQ8HOqp53crQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 98BEC17E10AB;
+	Mon, 30 Sep 2024 10:49:06 +0200 (CEST)
+Message-ID: <8883c84d-8333-4b04-83b5-022be5b6153c@collabora.com>
+Date: Mon, 30 Sep 2024 10:49:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,76 +57,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Depeng Shao <quic_depengs@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, bryan.odonoghue@linaro.org, mchehab@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+Subject: Re: [PATCH v2 2/5] dt-bindings: iommu: mediatek: Fix interrupt count
+ constraint for new SoCs
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>,
+ Jitao shi <jitao.shi@mediatek.com>, Tinghan Shen
+ <tinghan.shen@mediatek.com>, Seiya Wang <seiya.wang@mediatek.com>,
+ Ben Lok <ben.lok@mediatek.com>, "Nancy . Lin" <nancy.lin@mediatek.com>,
+ dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-8-quic_depengs@quicinc.com>
- <9ed92660-5f42-4a1a-9261-b8800133972a@linaro.org>
- <ed012367-1bfd-4eef-931b-37e1ac839176@quicinc.com>
- <65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org>
+ iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20240926111449.9245-1-macpaul.lin@mediatek.com>
+ <20240926111449.9245-2-macpaul.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20240926111449.9245-2-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hello Krzysztof,
-
-On 9/30/24 10:16, Krzysztof Kozlowski wrote:
-> On 25/09/2024 17:13, Depeng Shao wrote:
->> Hi Vladimir,
->>
->> On 9/6/2024 11:56 PM, Vladimir Zapolskiy wrote:
->>
->>>> +            compatible = "qcom,sm8550-camss";
->>>> +
->>>> +            reg = <0 0x0acb7000 0 0xd00>,
->>>> +                  <0 0x0acb9000 0 0xd00>,
->>>> +                  <0 0x0acbb000 0 0xd00>,
->>>> +                  <0 0x0acca000 0 0xa00>,
->>>> +                  <0 0x0acce000 0 0xa00>,
->>>> +                  <0 0x0acb6000 0 0x1000>,
->>>> +                  <0 0x0ace4000 0 0x2000>,
->>>> +                  <0 0x0ace6000 0 0x2000>,
->>>> +                  <0 0x0ace8000 0 0x2000>,
->>>> +                  <0 0x0acea000 0 0x2000>,
->>>> +                  <0 0x0acec000 0 0x2000>,
->>>> +                  <0 0x0acee000 0 0x2000>,
->>>> +                  <0 0x0acf0000 0 0x2000>,
->>>> +                  <0 0x0acf2000 0 0x2000>,
->>>> +                  <0 0x0ac62000 0 0xf000>,
->>>> +                  <0 0x0ac71000 0 0xf000>,
->>>> +                  <0 0x0ac80000 0 0xf000>,
->>>> +                  <0 0x0accb000 0 0x2800>,
->>>> +                  <0 0x0accf000 0 0x2800>;
->>>
->>> Please sort the list above in numerical order, this will change positions
->>> of "vfe_lite0", "vfe_lite1" etc.
->>>
->>> Another note, since it's not possible to map less than a page, so I believe
->>> it might make sense to align all sizes to 0x1000.
->>>
->>
->> Sure, I previously sorted by the alphabetical order of reg_name.
->> I will update it based on your suggestion. And will also make sure the
->> align all sizes to 0x1000.
+Il 26/09/24 13:14, Macpaul Lin ha scritto:
+> The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
+> to an excessively long 'interrupts' property. The error message was:
 > 
-> If I understood correctly, you want to change the order from existing
-> devices, so no. You are supposed to keep the same order, as much as
-> possible.
+>    infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
+>                       [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
+>                       is too long
+> 
+> To address this issue, add "minItems: 1" and "maxItems: 5" constraints to
+> the 'interrupts' property in the DT binding schema. This change allows for
+> flexibility in the number of interrupts for new SoCs.
+> The purpose of these 5 interrupts is also added.
+> 
+> Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>   .../bindings/iommu/mediatek,iommu.yaml        | 25 ++++++++++++++++++-
+>   1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> Changes for v2:
+>   - commit message: re-formatting and add a description of adding 5 interrupts.
+>   - add 'description' and 'maxItems: 5' for 'interrupt' property of
+>     'mt8195-iommu-infra'
+>   - others keeps 'maxItems: 1'
+> 
+> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> index ea6b0f5f24de..fdd2996d2a31 100644
+> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+> @@ -96,7 +96,8 @@ properties:
+>       maxItems: 1
+>   
+>     interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 5
+>   
+>     clocks:
+>       items:
+> @@ -210,6 +211,28 @@ allOf:
+>         required:
+>           - mediatek,larbs
+>   
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt8195-iommu-infra
+> +
+> +    then:
+> +      properties:
+> +        interrupts:
+> +          description: |
 
-Please elaborate, what do you mean here by the "existing evices"?
+Do you really need to keep the formatting?
 
-The list is not sorted by reg values, I ask to sort the list by reg values.
+If you rephrase that as:
 
---
-Best wishes,
-Vladimir
+The infra IOMMU in MT8195 has five banks: each features one set
+of APB registers for the normal world (set 0), one for the protected
+world (sets 1-3) and one for the secure world (set 4), and each set
+has its own interrupt. Therefore, five interrupts are needed.
+
+...you won't need the bar :-)
+
+> +            The IOMMU of MT8195 has 5 banks: 0/1/2/3/4.
+> +            Each bank has a set of APB registers corresponding to the
+> +            normal world, protected world 1/2/3, and secure world, respectively.
+> +            Therefore, 5 interrupt numbers are needed.
+> +          maxItems: 5
+
+minItems: 5
+
+Cheers,
+Angelo
+
+
 
