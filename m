@@ -1,90 +1,70 @@
-Return-Path: <devicetree+bounces-106418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A0AA989F66
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:31:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E98F989F7B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:34:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02B46B231CF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:31:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFF081C21B4D
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:34:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13C0518D65E;
-	Mon, 30 Sep 2024 10:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64FF189B98;
+	Mon, 30 Sep 2024 10:34:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="uABbopjg"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="S1A4Gpad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5214918CBFA
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 10:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49561741D1;
+	Mon, 30 Sep 2024 10:34:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727692258; cv=none; b=hSuqAPAszPdpUNCwHID3NU1T+q7ZdRGmHNzzFaZixH+SwqY85jAj3jK6wYnFishxpABqoGyzPSa2k7xHeetMLpn9m1SF4G+U3SkFeHldxJ6+qqFXR/X7wRRyKimRyJ5+LxR6Yv6EeQ5Y7UyjZzRwbIT8awwHRUmqnWdujXBE0c8=
+	t=1727692466; cv=none; b=llOioANUGSEHsePzTDXLEs1DAgIxWE5/d2C7TB8CtEVuvGYu4qg3oQZbbNdHEOeq7+euacDFPAaiSDz2Th1GuWwrFemV0AfnufPBo5f+i2BZQvQ5lt6t6rke8ASpbz1woUKSyTBxUD5iV7CbjWKr8vwDR+vAnH36pyGYlojka0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727692258; c=relaxed/simple;
-	bh=XqjaR/d+4nA4AF+LZTpoGqHhkUJy91Jwj67qG0Wq6ho=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bmdr7bq7R0tyEQDxfyVaxGayBsJKbqAYbl44/0SorUk0oR7xTi1vtn9gzsV3AkfyP1gH5KBjRRsaESkO3t569I9rUH+3+NkNtT90NRfW30NuVWI9Xs89kaMJ5GLxqmz7ngAD47GP0OGrN4fSfYDeKQiUT6pRHnNruRT//Qj8ubE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=uABbopjg; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37ce18b042fso1213096f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 03:30:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727692255; x=1728297055; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GW/QJNJ8nNrd40FA3cHMy88AWtEH7wB7y90tYnC9J0E=;
-        b=uABbopjgU3TU22EVUdZgwKgeeTdkJmVxWGCmndtiBemCcIGDGE5JV/WDqG9ACbxmgZ
-         2e3ARk5ltRmOgpsNTuxMRKLk/Dm0UvyaJCWXFCkrscPGUrJkBoOumFejGiXhKDnsjVc3
-         m0LB8ZIymOcuJS13NWl838sTXeoiCmXLxY8kyUWYxp80XabSkZz/fdZg+ueGNuEhtsCx
-         TpZFdzDxFr3Z3nfzvvYxEWH1EsjFoO/plKQxfcZY+jwBmjM/JDdkOv8e/5nqEjHjbGIf
-         +lg8TP0tzMWalOmGgvr7/E8Bk6US6fD1GvlyXKfO7cX01BeJrvzWxAzmqVqRad7NFdyd
-         P6Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727692255; x=1728297055;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GW/QJNJ8nNrd40FA3cHMy88AWtEH7wB7y90tYnC9J0E=;
-        b=FKoPzFo9VoK7oFkTjK5vIxMS9w3aHM6oQNnF+H1VWmtXinNktUU6f4nEuTQ6kifq/J
-         MQHez9jDNtZoAYtOr3p5CFjYn+2oJ/NNbt3ZbCIzpNIGYWrC73Q+s+FkNT1VBH/OHLUM
-         gfFt8cI0L4y8PjAWMtxiuQxgOhOFu1vRkqWi2WxHnuwjIdx6TLNLEJolHQkPr2aw2zBn
-         ATG2GfwqNdUEs1dNE5e7c68M9wsJROqUe8uLwCvAN/l682uognoL3AMj5litjP5s8MwF
-         SkpzUaQnealeh1fYOrWDdJ859p1/qJAB4O0OECjAzCV3V/FpcOuxExnBOSV5tcQ9XODI
-         DY7g==
-X-Forwarded-Encrypted: i=1; AJvYcCVStF/ImYSG4NDRyOCi3qifI3KJDPNrVJL+rtLHZ75tHOIKVi/zoTZ2bojVgbg96RQ1WX4cIkpYDSAM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/ZI0YAPnnthPpWVj2cJOKJ8qDiiQAJ5JPGfdtlbAazpqU5RJq
-	gnqTFPhDr3SYPBy7xeKXQtvG0Ez3kROYVVHojVsqck9s3t9EJZN1dRXnC4ImMvY=
-X-Google-Smtp-Source: AGHT+IFT/KiDXB2vyRF0VhSogHyTD4Xzls+HpKnh4lVIK6Ax8vju52xL/HVQuWpE1ertMMwB1PhjVQ==
-X-Received: by 2002:a5d:6791:0:b0:37c:d001:856d with SMTP id ffacd0b85a97d-37cd5b106d5mr6051416f8f.42.1727692254562;
-        Mon, 30 Sep 2024 03:30:54 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:8791:e3e5:a9ca:31a6])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd55a5414sm8835051f8f.0.2024.09.30.03.30.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 03:30:53 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Steev Klimaszewski <steev@kali.org>
-Subject: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
-Date: Mon, 30 Sep 2024 12:30:39 +0200
-Message-ID: <20240930103041.49229-4-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240930103041.49229-1-brgl@bgdev.pl>
-References: <20240930103041.49229-1-brgl@bgdev.pl>
+	s=arc-20240116; t=1727692466; c=relaxed/simple;
+	bh=IYOqevHyIhjK/PhsNoeCcGvpHqEq4H8Wi3Oxk0NdzkM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=WasLlITtxmZC3O6Hx0lesXPCAQolpMrfZHxGk1Ls0rlbjuLh3729h5EKeGhJjP7+Aj0hU4ehAaP9xMyVlQTGb2MT2CKB1hfyjRx9jqs4AbKG4BLc2t6J+oq+kERbnlL8ejKV3A2IoxyzwCzxekwhR0i6t+mk1iJH/lckCHeSCzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=S1A4Gpad; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48UAYHEX003645;
+	Mon, 30 Sep 2024 05:34:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1727692457;
+	bh=8ZWya66Wrk3d2reuZyBB9skj19ZrGqZzSN/E8Z86hfY=;
+	h=From:To:CC:Subject:Date;
+	b=S1A4Gpad1EGHuHFs1o/5ohEVYwMkL3qA+/r+Qxa7cKY1krDOsAcC64OUxCOUDZYar
+	 x8z+FbXYR8NL4bFE3959ySqSp1Uv5SYhHfV8LQzPRW4YRE9qknTi7+b9aO46ZNQ9ef
+	 aECu8szBjXriKgjGhHRjhhZF/AIO6Wh0X9YIFsWg=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48UAYH3q030401
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 30 Sep 2024 05:34:17 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 30
+ Sep 2024 05:34:17 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 30 Sep 2024 05:34:17 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48UAYDA6111596;
+	Mon, 30 Sep 2024 05:34:14 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-am642-evm: Add overlay for PCIe0 EP mode
+Date: Mon, 30 Sep 2024 16:04:13 +0530
+Message-ID: <20240930103413.3085689-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -92,169 +72,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Add overlay to enable the PCIe0 instance of PCIe on AM642-EVM in
+Endpoint mode of operation.
 
-Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-and bluetooth nodes to consume the PMU's outputs.
-
-With this we can drop the regulator-always-on properties from vreg_s11b
-and vreg_s12b as they will now be enabled by the power sequencing
-driver.
-
-Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
 ---
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 100 +++++++++++++++---
- 1 file changed, 86 insertions(+), 14 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 6a28cab97189..7230d5420199 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
- 			};
- 		};
- 	};
+Hello,
+
+This patch is based on linux-next tagged next-20240930.
+
+Logs validating the device-tree overlay with AM642-EVM as Endpoint and
+J784S4-EVM as Root Complex:
+https://gist.github.com/Siddharth-Vadapalli-at-TI/d3c071d0a34b7ef162e1413f1688cc9d
+
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/Makefile               |  4 ++
+ .../boot/dts/ti/k3-am642-evm-pcie0-ep.dtso    | 51 +++++++++++++++++++
+ 2 files changed, 55 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index bcd392c3206e..c1417b38a4e6 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -48,6 +48,7 @@ k3-am642-hummingboard-t-usb3-dtbs := \
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac-mii.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-pcie0-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
+@@ -168,6 +169,8 @@ k3-am642-evm-icssg1-dualemac-dtbs := \
+ 	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac.dtbo
+ k3-am642-evm-icssg1-dualemac-mii-dtbs := \
+ 	k3-am642-evm.dtb k3-am642-evm-icssg1-dualemac-mii.dtbo
++k3-am642-evm-pcie0-ep-dtbs := \
++	k3-am642-evm.dtb k3-am642-evm-pcie0-ep.dtbo
+ k3-am642-phyboard-electra-disable-eth-phy-dtbs := \
+ 	k3-am642-phyboard-electra-rdk.dtb k3-am6xx-phycore-disable-eth-phy.dtbo
+ k3-am642-phyboard-electra-disable-rtc-dtbs := \
+@@ -217,6 +220,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am62p5-sk-csi2-tevi-ov5640.dtb \
+ 	k3-am642-evm-icssg1-dualemac.dtb \
+ 	k3-am642-evm-icssg1-dualemac-mii.dtb \
++	k3-am642-evm-pcie0-ep.dtb \
+ 	k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+ 	k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+ 	k3-am68-sk-base-board-csi2-dual-imx219.dtb \
+diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+new file mode 100644
+index 000000000000..6b029539e0db
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-am642-evm-pcie0-ep.dtso
+@@ -0,0 +1,51 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/**
++ * DT Overlay for enabling PCIE0 instance in Endpoint Configuration with the
++ * AM642 EVM.
++ *
++ * AM642 EVM Product Link: https://www.ti.com/tool/TMDS64EVM
++ *
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
 +
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
++/dts-v1/;
++/plugin/;
 +
-+		pinctrl-0 = <&bt_default>, <&wlan_en>;
-+		pinctrl-names = "default";
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/ti,sci_pm_domain.h>
 +
-+		wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
++#include "k3-pinctrl.h"
 +
-+		vddio-supply = <&vreg_s10b>;
-+		vddaon-supply = <&vreg_s12b>;
-+		vddpmu-supply = <&vreg_s12b>;
-+		vddrfa0p95-supply = <&vreg_s12b>;
-+		vddrfa1p3-supply = <&vreg_s11b>;
-+		vddrfa1p9-supply = <&vreg_s1c>;
-+		vddpcie1p3-supply = <&vreg_s11b>;
-+		vddpcie1p9-supply = <&vreg_s1c>;
++/*
++ * Since Root Complex and Endpoint modes are mutually exclusive
++ * disable Root Complex mode.
++ */
++&pcie0_rc {
++	status = "disabled";
++};
 +
-+		regulators {
-+			vreg_pmu_rfa_cmn_0p8: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn_0p8";
-+			};
++&cbass_main {
++	#address-cells = <2>;
++	#size-cells = <2>;
++	interrupt-parent = <&gic500>;
 +
-+			vreg_pmu_aon_0p8: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p8";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p8: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p8";
-+			};
-+
-+			vreg_pmu_btcmx_0p8: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p8";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo5 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo6 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo8 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo9 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+		};
++	pcie0_ep: pcie-ep@f102000 {
++		compatible = "ti,am64-pcie-ep", "ti,j721e-pcie-ep";
++		reg = <0x00 0x0f102000 0x00 0x1000>,
++		      <0x00 0x0f100000 0x00 0x400>,
++		      <0x00 0x0d000000 0x00 0x00800000>,
++		      <0x00 0x68000000 0x00 0x08000000>;
++		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
++		interrupt-names = "link_state";
++		interrupts = <GIC_SPI 203 IRQ_TYPE_EDGE_RISING>;
++		max-link-speed = <2>;
++		num-lanes = <1>;
++		power-domains = <&k3_pds 114 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 114 0>;
++		clock-names = "fck";
++		max-functions = /bits/ 8 <1>;
++		phys = <&serdes0_pcie_link>;
++		phy-names = "pcie-phy";
++		ti,syscon-pcie-ctrl = <&main_conf 0x4070>;
 +	};
- };
- 
- &apps_rsc {
-@@ -426,7 +487,6 @@ vreg_s11b: smps11 {
- 			regulator-min-microvolt = <1272000>;
- 			regulator-max-microvolt = <1272000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--			regulator-always-on;
- 		};
- 
- 		vreg_s12b: smps12 {
-@@ -434,7 +494,6 @@ vreg_s12b: smps12 {
- 			regulator-min-microvolt = <984000>;
- 			regulator-max-microvolt = <984000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--			regulator-always-on;
- 		};
- 
- 		vreg_l1b: ldo1 {
-@@ -927,6 +986,16 @@ wifi@0 {
- 		compatible = "pci17cb,1103";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
- 
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+
- 		qcom,ath11k-calibration-variant = "LE_X13S";
- 	};
- };
-@@ -1258,20 +1327,16 @@ &uart2 {
- 	bluetooth {
- 		compatible = "qcom,wcn6855-bt";
- 
--		vddio-supply = <&vreg_s10b>;
--		vddbtcxmx-supply = <&vreg_s12b>;
--		vddrfacmn-supply = <&vreg_s12b>;
--		vddrfa0p8-supply = <&vreg_s12b>;
--		vddrfa1p2-supply = <&vreg_s11b>;
--		vddrfa1p7-supply = <&vreg_s1c>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
- 
- 		max-speed = <3200000>;
--
--		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
--		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
--
--		pinctrl-0 = <&bt_default>;
--		pinctrl-names = "default";
- 	};
- };
- 
-@@ -1761,4 +1826,11 @@ reset-pins {
- 			bias-disable;
- 		};
- 	};
-+
-+	wlan_en: wlan-en-state {
-+		pins = "gpio134";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+	};
- };
++};
 -- 
-2.30.2
+2.40.1
 
 
