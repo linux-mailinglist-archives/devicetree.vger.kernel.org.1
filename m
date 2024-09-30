@@ -1,183 +1,117 @@
-Return-Path: <devicetree+bounces-106421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ED6B989FBC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:48:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A886989FCE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 12:52:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4C22828390B
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:48:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5175C1F20FB3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:52:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506F718C35C;
-	Mon, 30 Sep 2024 10:48:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ABED18CBF5;
+	Mon, 30 Sep 2024 10:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bnlzcv0C"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eZSo/vkJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78A7518BB8E;
-	Mon, 30 Sep 2024 10:48:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953E518C014
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 10:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727693303; cv=none; b=W2QjFvK6X6vzGeZeRh5MlAc+Craih5CkoRHM0lYYPus4QZ+DyvR3V4z04admQniaZ//lipv80YlwBS507NXtm7WKYy+Szkw81bEYdZ4KGR9mE8Gu8chlqpZrRgN9C5KdAR5mjov/mdy42Z5dCe/ZN+DTSUVhWv5Syonz6l9/aQ4=
+	t=1727693518; cv=none; b=ey7eUmJE5YzxFzlbUreQeeD7wPXTGuLAebP30S7viHeSFdnWWMbkdfY0dqfrIFOFTPYd8ROuJtY9WTt0XufAi6ybDCa4JIqZrTTcwDPypcuA6K/Ol8gi4l/0j4cGl4bczofIqsL9O8xSBXY9qaOKMo/0BTtL/J3dTeafFDgBJd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727693303; c=relaxed/simple;
-	bh=A1QdosurTp0ef+7RMeZEr38JQEYF3lsGB4Pabjonqys=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S/jiPelI4Hhf7EqM20y/ppVjG1XRgd1D3tTd5EFtnf8VvqsQrB3RQZYT8IMK8Kg87ugDOf7GXv2B2Mc+43aZLqjLYCf3HMTkkv6WKrD6jtVdptMb6VuIKCb7bfNFLqv/xSmHT00k7EO5h1c3nScJdqXQvTvVMXxKXIVze+MUrNs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bnlzcv0C; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2faccccbca7so7512001fa.2;
-        Mon, 30 Sep 2024 03:48:21 -0700 (PDT)
+	s=arc-20240116; t=1727693518; c=relaxed/simple;
+	bh=qs7ZJEUvQkDuGY/NdNPSo7a5/3b+K7XWq8qcKl9g+0Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=rOaIzlxIvNHwZIZw7OUkggnNEhT/VIQqAz+PPJOxV58Zo8Odw2DF/mjuDpTHum8ehrvCMU3CZu0NRQUftcruWtzoHyDwGLxSLV9Sq7YbAauyQoeuVQ+487hgBuX/5PTzKrHmW9Br4yAlmLxN+K+pvRI2RuVY7wm2BWfcVTbPj9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eZSo/vkJ; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-42cae563348so5864695e9.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 03:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727693299; x=1728298099; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=wFh8kU+qt/WiTGXVF0NW8orHkyxzKHI7cefqhBGwbUI=;
-        b=Bnlzcv0CwP9He0lberQaVJ17xFrhq6tG/a7NODHXKyejXiW1RvV1aR1XDiSHWSmGWZ
-         03la4hHB3rZMBpIYHTgKarGZETBmBcX8U+rsO035cOrHeklmPUIluZ8/yE+zVcgDbKjS
-         pVckf1pCM6QURrxw2xvmRvMEO58+skozq5cz/c5liHP+QhRb8rp2mBHkPxBxQD6+wo3n
-         +5Mx95EMhzr0j1XRt32ouuO6BJSUwDveCdf+4vevusa3SPRD3+ubW7cCAh51kcuP0d5U
-         6kEvQ2Z9gTFjXLZyqPsT5aifaCogFe/X0MZ5e4im0xQEt1A24oKNR/nDkN4CgxAkpeJ4
-         /4jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727693299; x=1728298099;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1727693515; x=1728298315; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=wFh8kU+qt/WiTGXVF0NW8orHkyxzKHI7cefqhBGwbUI=;
-        b=L9TfrZy+B3FVC3iT8zBz//I0378VtVJdOiH5CBlHolInpiQas/Fhog3MlqbaNUMAu8
-         fHfHG9dmPOcOq8NDj/5NUdmit9Exnh7FgT1zGppiuiWgG3MpNSpQibaPinIsjZNBh4Dn
-         BavaCiDWJOLmxofjkdCeQ1Ry86mkJe7DCEQ6S0Ii1ChRnNm8qGrpulde7F4EqFNDgTpY
-         5k6KIZojT7MXvA27du1haDOAR8+6XxNforyeN+vNw/w1A9P4EiWcIA/dFieOmXhE2E4r
-         q5GXLicg6wwf1FIOr6i0eygjwSb0iNBOyfAPql2vUcSDwe7E5q5QbPN/MYrAvoBv265b
-         SKUA==
-X-Forwarded-Encrypted: i=1; AJvYcCU+GUERI8DlelDInDim9Ww/rOgMU9v8dpgL7MayWPu4Vuldpq2+l9L2kt6Y+1s2cj5pappxWEHLhWjRkn4=@vger.kernel.org, AJvYcCUHL77SFvxjOlw5n/yOQrj7DjfEBj/stP3QZoJp9GgkBNGdCYlPPuv3BzNEjQQwwL4XuysTKrfRZsvA@vger.kernel.org, AJvYcCUdvlXtwWHY++MQTGi4ewDIkvAeD6yrYKLvhe59BmPQ8j65sY2C1Q2aShqFE/YrwyhuXoRGEqMZOXCh@vger.kernel.org, AJvYcCVjyfraQFHw3p98u63zmbjQbSygyzQ5MgyHZPjuvsRSiee/Mo0WWKxGn9SOxj84rj/T+5CV0vTCWUk+@vger.kernel.org, AJvYcCXtzEyfPA+9YFFkWlTYnVM6ofmfECMpjmcfB56N9W4k8AxQtKWRJ4G+jJ99bf6+bUMEBbRwbJ8DApfhqKQr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzGXCbaIpvTYNk1vVXlA6xqVOVH9s6UcL+YEoJjGqOZMgbNVBW+
-	IxR0Imwmgtc4BFJzbIjMIY+R8rR/sTTrsa1NP/Dy5+iMsPDVrisU
-X-Google-Smtp-Source: AGHT+IH/V+rGK2bCvCQYKk/IC08xHxURSfbBgJZqxqlIHy8pllnZiZI+dX79uI70VLH/nEeAnsEWuw==
-X-Received: by 2002:a05:651c:19aa:b0:2fa:c46a:eb4c with SMTP id 38308e7fff4ca-2fac46aecb9mr31133321fa.3.1727693299138;
-        Mon, 30 Sep 2024 03:48:19 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f57e1392fsm100666965e9.31.2024.09.30.03.48.17
+        bh=5NrpcGzq2X7FUeooo3oK/NoZGdoCws8o9zjwmd3SwC4=;
+        b=eZSo/vkJNw2QUhTp47vWhqDHAXDX5Ph+nFm7KsItW3z3SZ0GvjtKtPMFetYX8sUfBT
+         GoBdVqXSuZZjiY0uzgcuHNw/uw+ncDn71HZGcqe5c5P8mpffUckUsMRggzExSHs4MTvI
+         aouGbHhxbkD64ErVgr6rbAqnN5UyElu6oXyFZzll3ty3MmPqPTCcUUWC84iGtVPjpIVJ
+         1xhtnwmN8GttYO2tfUw3RjkDAVS9HitI2V31ACqbP5vblH3YCjqiRtObQyuTbkBlH7vD
+         S7BWNocvGQXDPEmcmPodixFUaN4ZKJ9zSGs1H180n4a1ff+XIyyvQyfvC6xOv4ynaSF/
+         WU2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727693515; x=1728298315;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5NrpcGzq2X7FUeooo3oK/NoZGdoCws8o9zjwmd3SwC4=;
+        b=WtMwBHGES4u2DfnEfH8BIlbYVjglqi/ipwI3+qbxFBv7A28GSm3ty8TIFwNp6NiPnW
+         nd1UvOnY9bpvmTeJna4GqskNF3KUGFSoztcvqaprgUWtzlUSR8v0JuK4xr9zrUFBBlty
+         3a6DVGfoL3C4csg+V2r//7cN3P95lSCddI31CtgwmTSYQhHzs+HOxbhapHuEubtGKSip
+         FO4KhRou8ncl7x09DL1rfNjt4IT738qKUujzzoMaB2saRU3WcPwWPobt0fGtC1d886h9
+         TEIHMJ6KEmLnMIR09BugOGhW6zVOfXncQDRmmbBd15G9wy/wkm96oVIzBNWPaK7ETl/E
+         oNRQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX+4jxekbKsPQbeUufGOXNrJ0axnseFrduBdYGsFJv3CzBGlra/PtYzh8/m2D5RHNOKgmMc8w1Lubhd@vger.kernel.org
+X-Gm-Message-State: AOJu0YxaT2NUB3ALGdh2Y8GH//FkkHb73FPZuXq2sv0WVzwIVl5Tj+iR
+	UM7ZHiUbg4ZeSrTgqOZ/U3o1Deif6yQJpi4iHaiQzYenxzdASFaRrJ3Q5OYrLgA=
+X-Google-Smtp-Source: AGHT+IEOO29rsmHXOq1A8VX2uRLf7D10lSyWawJH83ILxagvL2rZ5u7vPabfYAr/tIknh/8GVqnDTg==
+X-Received: by 2002:a05:600c:4fd2:b0:42c:baba:13cb with SMTP id 5b1f17b1804b1-42f5e37365bmr26702885e9.2.1727693515024;
+        Mon, 30 Sep 2024 03:51:55 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f57dd3106sm98632815e9.7.2024.09.30.03.51.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 03:48:18 -0700 (PDT)
-Message-ID: <66fa81f2.050a0220.3358eb.f750@mx.google.com>
-X-Google-Original-Message-ID: <ZvqB64jZL8xhSZzO@Ansuel-XPS.>
-Date: Mon, 30 Sep 2024 12:48:11 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Jan Kara <jack@suse.cz>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
-Subject: Re: [PATCH v3 3/4] block: add support for partition table defined in
- OF
-References: <20240929140713.6883-1-ansuelsmth@gmail.com>
- <20240929140713.6883-4-ansuelsmth@gmail.com>
- <877catlcni.fsf@prevas.dk>
+        Mon, 30 Sep 2024 03:51:54 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: krzk@kernel.org, s.nawrocki@samsung.com, cw00.choi@samsung.com, 
+ alim.akhtar@samsung.com, mturquette@baylibre.com, sboyd@kernel.org, 
+ linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+ devicetree@vger.kernel.org, Inbaraj E <inbaraj.e@samsung.com>
+Cc: pankaj.dubey@samsung.com, gost.dev@samsung.com
+In-Reply-To: <20240917094355.37887-1-inbaraj.e@samsung.com>
+References: <CGME20240917094449epcas5p37c2593fe8f181d6b19a9a1b290488186@epcas5p3.samsung.com>
+ <20240917094355.37887-1-inbaraj.e@samsung.com>
+Subject: Re: [PATCH 0/2] clk: samsung: remove number of clocks from
+ bindings
+Message-Id: <172769351330.28623.202959929040095252.b4-ty@linaro.org>
+Date: Mon, 30 Sep 2024 12:51:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <877catlcni.fsf@prevas.dk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
-On Mon, Sep 30, 2024 at 11:21:53AM +0200, Rasmus Villemoes wrote:
-> Christian Marangi <ansuelsmth@gmail.com> writes:
+
+On Tue, 17 Sep 2024 15:13:53 +0530, Inbaraj E wrote:
+> This patch series moves number of clock from dt-binding to driver for FSD
+> SoC.
 > 
-> > diff --git a/block/partitions/of.c b/block/partitions/of.c
-> > new file mode 100644
-> > index 000000000000..bc6200eb86b3
-> > --- /dev/null
-> > +++ b/block/partitions/of.c
-> > @@ -0,0 +1,151 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +
-> > +#include <linux/blkdev.h>
-> > +#include <linux/major.h>
-> > +#include <linux/of.h>
-> > +#include "check.h"
-> > +
-> > +#define BOOT0_STR	"boot0"
-> > +#define BOOT1_STR	"boot1"
-> > +
-> > +static struct device_node *get_partitions_node(struct device_node *disk_np,
-> > +					       struct gendisk *disk)
-> > +{
-> > +	const char *node_name = "partitions";
-> > +
-> > +	/*
-> > +	 * JEDEC specification 4.4 for eMMC introduced 3 additional partition
-> > +	 * present on every eMMC. These additional partition are always hardcoded
-> > +	 * from the eMMC driver as boot0, boot1 and rpmb. While rpmb is used to
-> > +	 * store keys and exposed as a char device, the other 2 are exposed as
-> > +	 * real separate disk with the boot0/1 appended to the disk name.
-> > +	 *
-> > +	 * Here we parse the disk_name in search for such suffix and select
-> > +	 * the correct partition node.
-> > +	 */
-> > +	if (disk->major == MMC_BLOCK_MAJOR) {
-> > +		const char *disk_name = disk->disk_name;
-> > +
-> > +		if (!memcmp(disk_name + strlen(disk_name) - strlen(BOOT0_STR),
-> > +			    BOOT0_STR, sizeof(BOOT0_STR)))
-> > +			node_name = "partitions-boot0";
+> Inbaraj E (2):
+>   clk: samsung: fsd: do not define number of clocks in bindings
+>   dt-bindings: clock: samsung: remove define with number of clocks for
+>     FSD
 > 
-> If strlen(disk_name) is less than 5 (and I don't know if that's actually
-> possible), this well end up doing out-of-bounds access.
-> 
-> We have a strstarts() helper, could you also add a strends() helper that
-> handles this correctly? Something like
-> 
-> /**
->  * strends - does @str end with @suffix?
->  * @str: string to examine
->  * @suffix: suffix to look for.
->  */
-> static inline bool strends(const char *str, const char *suffix)
-> {
-> 	size_t n = strlen(str);
->         size_t m = strlen(suffix);
->         return n >= m && !memcmp(str + n - m, suffix, m);
-> }
-> 
-> [or name it str_has_suffix() or str_ends_with(), "strends" is not
-> particularly readable, it's unfortunate that the existing strstarts is
-> spelled like that].
->
+> [...]
 
-Nice idea and thanks for checking the problem with the out-of-bounds
-read.
+Applied, thanks!
 
-Out of consistency with the unreadable strstarts I'm tempted to use
-strends.
+[1/2] clk: samsung: fsd: do not define number of clocks in bindings
+      https://git.kernel.org/krzk/linux/c/a86ffa40a64bd4d119c260a99e28f2a71f86d9f4
+[2/2] dt-bindings: clock: samsung: remove define with number of clocks for FSD
+      https://git.kernel.org/krzk/linux/c/2d3e0135cefccbcd8459112a8afe260e7b51ff6d
 
-Since checking suffix of a string can't be something that unreal I
-searched for the 3 function name and to my surprise all 3 suggested name
-have a variant of the function statically defined hahaha.
-
-To not pollute this series I will just introduce the helper but I will
-add on my TODO list to convert the other function to make use of this
-helper instead.
-
+Best regards,
 -- 
-	Ansuel
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
