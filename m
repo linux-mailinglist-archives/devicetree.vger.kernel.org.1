@@ -1,165 +1,221 @@
-Return-Path: <devicetree+bounces-106327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29384989D15
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:43:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6080A989D1A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:44:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF7741F245B2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:43:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEAFCB21053
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:44:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77FD17C9AC;
-	Mon, 30 Sep 2024 08:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A07E17C21B;
+	Mon, 30 Sep 2024 08:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RP2EStk4"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="fkXBNU2r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AS8PR04CU009.outbound.protection.outlook.com (mail-westeuropeazon11011015.outbound.protection.outlook.com [52.101.70.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA6617BB34
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727685798; cv=none; b=uk7PPZzBwbWN4mLRLnlWd+op9diXy3nGSMBVvjpvq6Is4Nh07FcJONADKJ/IGazfL2cswsP67dV6BUZAI0XjJpB1wqnRxM16mPiIJicXoxBcp02ZnFELAc0ep2NumqW+B0mNaAUwpV4TeHu3e9cR6mt9o3QMStFKwMCZma7KRf0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727685798; c=relaxed/simple;
-	bh=u/Hlf+zXHRGDPVK0pqQYxpZ8KaChJ70atyetPvNuwu4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lesj9egvRMJxWOZu8CZpGsuelVLV3K3JxrcoIiY/ylsEu8nfDwubsbYJPouRIwBLJ2I0TdKOVcNQZh2J4ZFEmrLY07oR8+mh8PD+dcBd9HVnejrq03LQ9d93sFNdkQjQTQMLsJESPB4JwKmoKTTV6wtpB3R5w+AmAaYv8yPXtEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RP2EStk4; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5389e190518so441718e87.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:43:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727685794; x=1728290594; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k4NAWPmjNPYkmusJzkJ7wkfek3KORLL4wcikp5OsQO0=;
-        b=RP2EStk4X/Ag1mv7miG8jiGHsVvOnGv8eszPM9+tYLnITQ56gKJ+vUUezBFeEbPlUR
-         gu5tJQTfKdBigVsk1RHffiuZSfXLZoD3MoZqjF+ZUOlmSBY7+whjaqutdAugsrP6iCbX
-         ofw0UQnr5T6i8BTngRkHu2OGm5hzdcUaYow950mH/bMJpnMkGUrKF2EXA/maQ4BeE9NJ
-         +io6yAEuVP8YYBRCjRIZvTLZ3TAV3N6Wnp/I1kwhhGIGLeL4iGmXQciWQNayRsC534+8
-         vpZ0VGcd9bI3OS285SgBtmmhOzlWuLFkplIfh/Vg5r+6BTeWMXo/wroERTqIO808uXP2
-         T5vw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727685794; x=1728290594;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k4NAWPmjNPYkmusJzkJ7wkfek3KORLL4wcikp5OsQO0=;
-        b=GEZcjdK6cNPB8B0nGZjbmjnTG3+EiT0pnBlsq8BlBj3LL8WsJJW9TLYcADFmZcKsk4
-         J5gp9t8mCT5drtqErNKCiBi02EWX8VPirLvefXrdNqyhiqRV9tE7f84QgCon+tCa7Gu0
-         YlsWewRkl9F+nDKxjx0K3rqqMbm5wCx61dxKxvWS8okduw7lgrTn0xFCsS5K7D46tqGt
-         VT+me5SumErFe1GbsqNCN5ibg0dMiL/gQuYRNyi/ktFlw5RqGFWtDQ6L8gJH9mlYV/4N
-         MYJzvxiSZur4u2qx3Udp/34nG2MNuKd2D1GzAh/KmH8S5NCFjIiJJaHKWwr0Uy0tzibm
-         ATZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWEp1TQXpvTy9SgPbyWA6HgBZjB8p/Tjtf1P8dG17An31wKj7eHX90tDw0cn4wDRXycM1ws5EgtnLsx@vger.kernel.org
-X-Gm-Message-State: AOJu0YwprOyhq+nge0+nC77WN7uou2IbrrgplYnTO/FqTwqGNwIDKJ3M
-	qx6uvTqwxQou7h1dduKivegYfyLD9m6YaKq0RJWe7MoExjO9leEwyBjfZLBClHE=
-X-Google-Smtp-Source: AGHT+IG2Enj9PsmvL9L1IwvFblCS0bQWt5hYPTEU3fS+wCddhij9k1pM8XG7cl8cjBoSProSlI4oSA==
-X-Received: by 2002:a05:6512:6502:b0:539:8d9b:b62a with SMTP id 2adb3069b0e04-5398d9bb68cmr707544e87.9.1727685794513;
-        Mon, 30 Sep 2024 01:43:14 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5389fd539e7sm1183156e87.22.2024.09.30.01.43.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 30 Sep 2024 01:43:13 -0700 (PDT)
-Message-ID: <62528cd4-a5b0-4991-bba4-49cac161a895@linaro.org>
-Date: Mon, 30 Sep 2024 11:43:12 +0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6865517BB34;
+	Mon, 30 Sep 2024 08:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.70.15
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727685842; cv=fail; b=Eq8Ys9IAggfgQIduYBF4r8Lsxf0Ywr+nnQ3NH6Q+J9zcGnej8L5lD+aYG8VKglef4j6anspe4zZTIa5ruTiQ2y2aOU1yHdbtt0rE27qJ2noht4Q6eXvGKQoCYpL1cmqV+euyaApFoEiG2BgJKI5Yp0fQ2QLi3+PJtxy/RECe2DU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727685842; c=relaxed/simple;
+	bh=T65YoPAPvB35HuaeBXO97VTbd8R/sSxqTQUH7pyx2x4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=MC4y2VJTY441yCV+Rx6X0rp+fyePKb3boj0OorjetLlrQ78yQ4I4RUKBeyM/04c/oHEkoBDYQGN5/k7ytxdhKS+HoKOwc6rgH2ebo13CKR1hh6U8Zm60xH9JSXAhbmUIPWrg22/ZgFDagTlqBzOv+IBWIPEhg4djz9p5Gayqm3U=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=fkXBNU2r; arc=fail smtp.client-ip=52.101.70.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ABcNP4oibiFCeypWMksDqhhJp91DgDOLGImcP+uUrEMOWDRFwOqvRgkvPX3RBxpwvD9rxh5ZbyL0p0vab9od4u2dPBwaZl85nxpGujRUHeSNvkFwp9O4dg0sQCjJd0UoHK1HDeS+jYXlCpp85gqTJasIplUqyNoYuIcM186p00LVP3irShOhi/ThvzJLWpYn2mJaJihPHI85xtbNXkH9uGkSJxr7tE2m2ADOopRgA/ZIh3d0MdRU+ZGYVxJ428sxXxPtd5nAcwo94JkWmYnxiC3VqVB5+NzbvGW05llZP6KRR2SxLLY5unAhvW7czpoSAPJvYrvWpffpXmFjdBORxg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uMs50eefJPObkuty3lpU8Q+bVLjUv7VLzOdtnob3VEY=;
+ b=TNGMrQQEtiqyLLXkpCjHwkMoigvs2GAoNTl6x9WBm+792QNxNwDpwmWmuiM6vy5ep21sACvyrl8HpS10Lp6BMW0emE8ijPBxmUySgq84ZgxN21qKUUKUj9bvEC6tsP3LbsZ8Zt7W7u7lmJGzrpjKOMZDJZGUZgd8cg1Y8lB2daLhZbmclK6jbACtzr5vwMcqmm5ENlIn07Bn0G41tNI1zZAdY4Yl8/ycif3o8xoPt/r485k9RvbjHgIriilGpxQbY7n3MsS3WImOgsAQRcx/UzlzEubwrnapTp8b6wtQ3RmFwEZ2kjO/PqtZfTDZm5wjQ3KidRvl0jvq/EN1PDQG9Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uMs50eefJPObkuty3lpU8Q+bVLjUv7VLzOdtnob3VEY=;
+ b=fkXBNU2r+Cx7+CBDSVIdRVsSvYaEVdEEM+wqjhv5YYont8G6FZH0s21fvmrr/4GOkZKdGSkzk28sopBrS1FENlGOWQuGNFJm4B20g6eISBxtJipI46GFUaAkx9WHJoTCrZGsA0E28X0eBiCxmnm9hwHk95hp5wywo5fgk6AwLrfwSaAHcQoWrBEGqPI6rP7fopkCEDuUAi6aJZWaeccwQv2Lmimz54PnkzRK35/wUbcUq7WmQfJDpMncJJx5VRbXLcG8Jb2AA5H/4ldLWXoWfB+zkRA4WQPzu5PGKdHrJZAgHHYBmwh4K37ipQp8JWu8ENFV87eW9QpKLYJyzXIeZg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
+ by AM9PR04MB8970.eurprd04.prod.outlook.com (2603:10a6:20b:409::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7918.27; Mon, 30 Sep
+ 2024 08:43:57 +0000
+Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
+ ([fe80::d1ce:ea15:6648:6f90%4]) with mapi id 15.20.8005.024; Mon, 30 Sep 2024
+ 08:43:56 +0000
+Message-ID: <2017eb23-a2a9-4fa5-8d9f-675cc6d114ec@nxp.com>
+Date: Mon, 30 Sep 2024 16:44:17 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6/8] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
+To: Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ catalin.marinas@arm.com, will@kernel.org, quic_bjorande@quicinc.com,
+ geert+renesas@glider.be, dmitry.baryshkov@linaro.org, arnd@arndb.de,
+ nfraprado@collabora.com, o.rempel@pengutronix.de, y.moog@phytec.de
+References: <20240930052903.168881-1-victor.liu@nxp.com>
+ <20240930052903.168881-7-victor.liu@nxp.com>
+ <y4ala34bejzmw5wt3vw5ncoxdzpzda2cwi7bdzve5bn4udmr3b@eiguckpaui6d>
+From: Liu Ying <victor.liu@nxp.com>
+Content-Language: en-US
+In-Reply-To: <y4ala34bejzmw5wt3vw5ncoxdzpzda2cwi7bdzve5bn4udmr3b@eiguckpaui6d>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SI2P153CA0036.APCP153.PROD.OUTLOOK.COM
+ (2603:1096:4:190::11) To AM7PR04MB7046.eurprd04.prod.outlook.com
+ (2603:10a6:20b:113::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8550: Change camcc power domain
- from MMCX to MXC
-Content-Language: en-US
-To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Stephen Boyd <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240927103212.4154273-1-vladimir.zapolskiy@linaro.org>
- <20240927103212.4154273-2-vladimir.zapolskiy@linaro.org>
- <a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AM9PR04MB8970:EE_
+X-MS-Office365-Filtering-Correlation-Id: 83affbb3-5c32-44de-b2b5-08dce12c055e
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|7416014|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info:
+ =?utf-8?B?eGVHNE96MWRlaFVnOWpSS1JWWC9leEZUQ1FvRmUrZUs4c0Y4dzM1Si8rODZs?=
+ =?utf-8?B?NGNkZWpITjlJV0J2TUVXaWwwK0RxK01YZDQ2dVdtUktQaXo4Nk5VMHc1d21O?=
+ =?utf-8?B?T1l4Qk0zS0JqSlc4djBxbWZRbnNodGhBNnRQbnhDRVI2cEpob3B3R1M1UFRE?=
+ =?utf-8?B?VHVrcSswUHZxMGF5RnUzQ2lEMXcxTElya2JTbnNINi9tdmk4ZkR1WlF6SWhC?=
+ =?utf-8?B?SWt1YUtOZ2JGeWtXYms2Z1YrMkRUcHMxblJMSlRTL3d0S0xyU1RWQVByUW1x?=
+ =?utf-8?B?RHJQN3ozK0Q1a2IvcjlEUmpsaWlQOG1hTWN0eVhCYk91YUp5MjcvMVlnY2xs?=
+ =?utf-8?B?azRpVytmdFRBMmk1cG9sMEYxSDFOU29GZFpOYVFzb01jbHEwNzRjVkhrYTZF?=
+ =?utf-8?B?UkpYY1JVL21BR2pnRVNLMDRkR3pBQm5nNUdScFRMODM2TW55NHlkblA0VGpT?=
+ =?utf-8?B?bWs2NEo5QkZ0ZGI1R1ZVREp4V3lQa0xPalBNeFNKc3pJSWttY2xQdm92bEly?=
+ =?utf-8?B?aWZzUVZENTFXdEFQdmNJL2cvVUxYMXh1ZjQrRWdxUTZJelJkRnF6K3pzYm5H?=
+ =?utf-8?B?RUh2TnQ1YU1xWGttQVhmOG9ta2ZZQ21jSThKTFR4SVN4TExDVkxaNnV1cEZ5?=
+ =?utf-8?B?YVhwOUZscFFFSXZNZ1h5MmNoNHRzV1ZpQytQelYzSmpBUlBDMi80eWltdXdT?=
+ =?utf-8?B?ZkJ0cTNBWHFSRUU4dlJORzZhaTF1NTJ4ZGlnWG5lY2Q5Ty9pNDIrZEZvN2dx?=
+ =?utf-8?B?RjFYVHFLRi9WekQ3QlNvVEZuMXNkM1QwY1Fyb1E2aDl6SFVoVHdTSFRXUk1Y?=
+ =?utf-8?B?dXNWMkFzam9PTVdVK00yMTV4Vlc4WVJkY2svKzluRlV6d1NPMms0OFhNWTlT?=
+ =?utf-8?B?SmxRSXE5WXZoS282dGhPMHNDNVRLYUU4NytlbE9uWkxmVUZIb1BYZnpoazlK?=
+ =?utf-8?B?SG1pazlOYTQ2QUNLc1UwUDl6TldWYnpQeXhIbW9PVTBuSjMyc0wrQkp3N2FI?=
+ =?utf-8?B?MUZaU1J6anl4OC9JeUJQRVE4dnIvbk9aLzMrVUxIeFlKcExmRmtnNXN3RkZs?=
+ =?utf-8?B?VmZIUDJkdnBnMW5vaGFSbktiWWF0ZGdTMlNwNmhPY2NuSFRUcEplc2trU0tY?=
+ =?utf-8?B?Zzhmc2p1T2ZYSmtmM05ER3FaajRjYmRVSWZXNUFDV2NHbHNJQ2ovK0l0K3po?=
+ =?utf-8?B?SnE4S0gzcGRrbmREdWhkUXpoRkp0ZDlMYWg2RUF1UnA5VVQ3Umw0UkZZOVdV?=
+ =?utf-8?B?VTVoVHNqZUl1V0JNeFJGMjVPNHJ5Q0psUXkrZkpEV3Q1emlaUXUzVzFwTU9D?=
+ =?utf-8?B?VjUvZHFMc01xNjlOZ3lSSXZUU1BSMG4wbmwwcU5xZmdTQkg4NGtFVnBxT1gr?=
+ =?utf-8?B?Y0thS2xpNVRTa2J1M0tlUkFjSHk5QVdLcEU0V1A1SWpxYnZVNTRSUitabjRk?=
+ =?utf-8?B?UVdSSE9MSFZUOXZsb282a3JzN24waEFCVTRkdy9TaTVWN3NvaU1vZHJmcE5X?=
+ =?utf-8?B?dU9oNHd0TzV4eUtzYUQ3eWJxK2J2aGJRdklRK1NhMnN2VVlzb2lQNzhQeUxp?=
+ =?utf-8?B?ckZQTkxGY0NldUtiS01IQStDQWpIanZ2cEZuRmFoVFRWc1VremhuVXQzQUc2?=
+ =?utf-8?B?eGlDRHRIOWZ2MTRiVjNGcG9uN3RTOXpraHJCcEdmU2xEdHpyUlIxZWF2Yzhp?=
+ =?utf-8?B?a1JmalVFQkgwSWw5R2Z4YUFheHJGSmVmTnAwMlY0MVd3eGx0ZFpqTEFNUE94?=
+ =?utf-8?B?SWlMeUdiVkROaFNpNjM1UFhKVGNVOXVtSUkrb01veDF2REQ4ck5EWlBCOGMv?=
+ =?utf-8?B?RmJWd3Buek5HdzVzeGRodz09?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?utf-8?B?d25SQTNTcERJL0NZaUJKU2tSRGVjTTRMSXhyWXRVaHhBOFVPYWdUVXpET1dr?=
+ =?utf-8?B?cG5FS2szRDFzQ2pyelM4MU00OE40c2kvZVdVQnZ1Z1lsQW10UnY1WG1oMUNn?=
+ =?utf-8?B?anNZQ3pRWVAvZzdPb1VhcitVOWJBdUd6TlU2ZDdYZHM3eXF1a2REOTN5MjIr?=
+ =?utf-8?B?Wlg3Vy9QWEJBZjJlZlBHV2lKRUUvcFRRbWJxdkRNMEFtaVVxTUVXb3VNY3BL?=
+ =?utf-8?B?SEV1TVNxSEg3dmR4VnZpUG9UVS9jUnhCNnhGT2xiME9QeVFSc0cveE5GM0pj?=
+ =?utf-8?B?cTJkTnlITUhhaHIwVnpsNEZsVXVoUDZDYk1OMmVocUE5VjIzNmpUTkJFL01m?=
+ =?utf-8?B?NlNZR2VrenQrVEtmTEd1L2U5ZVRhQlNmS04yWGw0K1pUSndaMlMxTUVZVXdK?=
+ =?utf-8?B?eHpXNEZMc1NsQ1hoUS9mSE90cVY5TW1FMzYvWUJRUkhORHNqMU90V3pPaHl0?=
+ =?utf-8?B?d1d5WUt3M3JGeG1LbFkwbHhEM2h6VUJocWtCbzlOa0VCVnphQVc3eDZLZTUr?=
+ =?utf-8?B?R0UvN1RjcFJ6SDhSQ3ord2J0eEVoS2ZrVCt6RGl1SWRFRGdsSDZUS2dOdWV5?=
+ =?utf-8?B?b0RZLzRMVVhIQnFjNUEwNEE1YVc0QlEyT3hOZ1kwSDdTOWswVnBBUlVrazlR?=
+ =?utf-8?B?WkgxWjFBWi9DSnpiNnIrdDFraiswSUk5NVFOYWEyVzAyWEpmTU1hS2xuWlJ3?=
+ =?utf-8?B?WGdVc251S1YzZzBjZC8yN01oTmdHSEo2cWc5SHRmSG1nZ24yMm1oM0txYy9n?=
+ =?utf-8?B?Uy9hU0lJZ1RGTEVBZkJ4Y3VNZ0hGbkVhRThzVTlLU3lBd0hPSm4wNkFiSWsz?=
+ =?utf-8?B?Sk9xR2twYjdYaWtTcEZqMThRLy9Lc2M1MFY3aFBrQmVjM0pGUlBLb0pzSDY2?=
+ =?utf-8?B?SDhyalN0U0kzamxBbEhqUUwzV1dvZW1Da1FMQVhESm5rSXNYdFJTLytHSW9o?=
+ =?utf-8?B?ZmR1N0lNek9KbThEUG1hRDJtN3g0SzhrQlAxSVNGY296L1VnYUUvSTc2eEIv?=
+ =?utf-8?B?cGg1TnpsbU1KTUtNdTlTZDBKUWlWcVdjUVozbHN3aGxEWEY2TXpCaXQySjFH?=
+ =?utf-8?B?SlZHUmJuT2dNQWdOUjB4bE9sVGhoaFJYRmhsTE5mZlllbnFQU2hCb1J0bVow?=
+ =?utf-8?B?M2tXc3Rab2lPYlBidWlHSEhLVjNWQmMwRkVPaWZla1BRcDhVVmpnV1BFd1pw?=
+ =?utf-8?B?ejV3K2JFMzNjcUpLdWdQN3I4TTR6MWR6NEw4a2p5Y05tNXZLZStvR2tYek8v?=
+ =?utf-8?B?SXVkUVVQSURmQ3NJcHVIa0RUbkw5dTRiTlJtRlFoWkQxOFBDUXphanFjZlhK?=
+ =?utf-8?B?RE5TdzZDa3J1MXhpRWlMUDlROW1rNWw0bFFtOEh5K3RVQjc2My9LYUVUTUpo?=
+ =?utf-8?B?VGd4YkZSeThUNHZtSGpHU0xQTDg1YkNpYVd1MVY0dWdrQjdKOWJRdE5TQXVP?=
+ =?utf-8?B?YTFML056bG95TXYwdGdVL0ZzNzR2Q1FxZ1AvaUNNNnJEWlIwZUQraSs3K3lQ?=
+ =?utf-8?B?UWxER0h2L2laS1MwVXdzeXVtZEJBd2lXOTV1RmVqUk81SDVZQkdnc1pUb29Z?=
+ =?utf-8?B?Q1V0dU1xbFlyaUpqaEZ3UXJzRjBSdVo0bDI1ZmVjbHZSM0UxOEhKRmh3dmxv?=
+ =?utf-8?B?cHBPalI5Nzh5bEc2SjZtWlBRcGJpTndBeVozZ3grRFR1b2VRL3Vxam8ydnh2?=
+ =?utf-8?B?YlpYUXRYUXptVG0rSFVrNTJWSHJiVXEyS29oWWVsMWhrc1JvOWdlYlZrbjFR?=
+ =?utf-8?B?KytkNjZXdCs0bzZLb2RDLzU5VTVKY3kzdG9tQlU3bE9mS09EWGcxYkhzeHVk?=
+ =?utf-8?B?Ulk4UkxQL3BhR0JPK2F4UFRCbDJDN0wwZnZxVTRqVjJidnVvOHpkS0Z4ZjVN?=
+ =?utf-8?B?VVZ2Vmt6cE9CMXVSMGt0OVkvWjlOZkMrL2djaU16QU9vVHlCRTNVTWJaOXg5?=
+ =?utf-8?B?a05OWk1KR0RsdEsvOHdkMEY2dnN6TE1VOWRzb1RwbDRxK1Jqamd5S0hnUGVT?=
+ =?utf-8?B?Q2lYV1BXVE1FLzM2TU5qLzg2bmhvcjRxT2xoTXNzbFFGSGRwWWxZS3R6NmFj?=
+ =?utf-8?B?YWVSOXVFMHdiK0R1OGVsN2ZDUFptUzJ4ZExvY0YxVFlsRDIzQnpad2tyUmVh?=
+ =?utf-8?Q?2vtaOYgq1m4+pmid7TNbnAydl?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 83affbb3-5c32-44de-b2b5-08dce12c055e
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 08:43:56.7413
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Ra4gdZ5ER9EKsGzBH+JGpyyIxawORAUyxlRquEAkZstK4zBK66NHBu1oBdkDJQ9NgUX8qvg6hFK92oiB0Ne35Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8970
 
-Hello Taniya.
+On 09/30/2024, Maxime Ripard wrote:
+> Hi,
 
-On 9/30/24 08:57, Taniya Das wrote:
+Hi,
+
 > 
-> 
-> On 9/27/2024 4:02 PM, Vladimir Zapolskiy wrote:
->> Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
->> an error message that the gdsc is stuck at 'off' state, this can be
->> easily verified just by setting cci0 status on:
+> On Mon, Sep 30, 2024 at 01:29:01PM GMT, Liu Ying wrote:
+>> Add basic HDMI video output support. Currently, only RGB888 output
+>> pixel format is supported.  At the LVDS input side, the driver
+>> supports single LVDS link and dual LVDS links with "jeida-24" LVDS
+>> mapping.
 >>
->>       cam_cc_titan_top_gdsc status stuck at 'off'
->>       WARNING: CPU: 6 PID: 89 at drivers/clk/qcom/gdsc.c:178 gdsc_toggle_logic+0x154/0x168
+>> Product link:
+>> https://www.ite.com.tw/en/product/cate1/IT6263
 >>
->> However if MMCX power domain is replaced by MXC one, it allows to turn
->> titan_top_gdsc on successfully, even if MMCX is remained off according
+>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
 > 
-> MMCX is absolutely required for Camera Clock controller as it is the
-> main power domain. The access will not go through if this domain is not ON.
-> While I agree that MXC is also required to be enabled for GDSC powering
-> up, but the below is not the correct way to handle the condition.
-> In your case the MMCX could be left ON in hardware and that could be the
-> reason for the access to go through.
+> Generally speaking, you need to use the new HDMI bridge infrastructure.
+> There's a lot of required things you're not dealing with here (such as
+> infoframes)
 
-Sure, it's the most probable case.
+I'll add AVI infoframe support in the next version.
+My system doesn't wire up any audio line to IT6263, so I cannot
+add audio infoframe.  I hope this is enough.
 
-> I am currently working on the necessary changes to address these
-> conditions where a clock controller (GDSC) has multiple power domain
-> dependencies.
 > 
->> to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
->>
+> Also, you should add a MAINTAINERS entry
 
-If you find it possible, I kindly ask you to check and probably correct
-the reported MMCX status as 'off', when it's 'on' actually.
+Ok, will add this.
 
-Nevertheless the work on GDSCs is kind of dependent on DT bindings
-description, I will send v2 shortly with two power domains as the property
-value and a new property power-domain-names with "mmcx", "mxc" values,
-unless you have objections.
-
->> Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
->> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
->> ---
->>    arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
->>    1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> index 9dc0ee3eb98f..5c07d1b35615 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
->> @@ -2846,7 +2846,7 @@ camcc: clock-controller@ade0000 {
->>    				 <&bi_tcxo_div2>,
->>    				 <&bi_tcxo_ao_div2>,
->>    				 <&sleep_clk>;
->> -			power-domains = <&rpmhpd SM8550_MMCX>;
->> +			power-domains = <&rpmhpd SM8550_MXC>;
 > 
-> 
->>    			required-opps = <&rpmhpd_opp_low_svs>;
->>    			#clock-cells = <1>;
->>    			#reset-cells = <1>;
-> 
+> Maxime
 
---
-Best wishes,
-Vladimir
+-- 
+Regards,
+Liu Ying
+
 
