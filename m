@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-106570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5502A98AD56
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:52:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B52C898AD5C
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:52:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B3F1DB24822
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:52:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3377528260B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E03519F495;
-	Mon, 30 Sep 2024 19:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64C321A00D7;
+	Mon, 30 Sep 2024 19:51:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="ELURFnCo"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="U24fbq6A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884BF19E810
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 19:51:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97ED819DF40
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 19:51:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727725876; cv=none; b=AUlKMgy+2QOolq5qH/m9Fqs257KHvFiJPGydx/eympMZxiI7ln57VQ057OlVD9oa/6gjuq/l7tHYr2s26JDQXPlG/yGrww+Bu3RGqtNQH7Lb+5e8NDWTXVUKEARQcFyYrHVUKnFwJFB/8ucgIjVSrASr4pqrKHaVffp4IUiqMXk=
+	t=1727725877; cv=none; b=SolRWl0cz8pTm3XhHrGy8cKyS/2pTtdOt968pIPXLorArm+EVL5LWKQ9zF/eMpBgPsP58B3PfrW+5gIeSi1Ii5xLFAqflMO6lNLuop7rSElJP3KYiZ/w3sbQLnns4BBJxsoLNp7LGMeYmIyxJKswtFgp6H1nh4zN5yOyZSgpGvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727725876; c=relaxed/simple;
-	bh=3MknxfvOT96VQ1CbgaEVXM2q2XJ6sRmP4c8Ma4FS4HM=;
+	s=arc-20240116; t=1727725877; c=relaxed/simple;
+	bh=vYj5/By2MHeVIqLmc4BCFQXnO2uHpMAioQuqwRTRItY=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dAIHQx4eC1MVmFmR7hN6m5qP8aBfst/hzBkCFGWOXbs2RN49qQVBhWXTOkHR0eKsZUIrUdMVuh6r11bqN8weKw0ipklAc5BL4QC2k3qLafK6qHO+fIl5E5xkKcyzh/PuiqENWy9v2KirfdaAtvxlteP6IYW0cnO3kXg3hRBG5Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=ELURFnCo; arc=none smtp.client-ip=209.85.210.169
+	 In-Reply-To:To:Cc; b=jSf7V4+qFWaxq87Scdl6vz2cEPCeX166YBOH7GwDoqyrB7Mta/VziA/Le5xCwhGaT20pf5xCktGmzXLcTWWh8AqUAbH52WBWklJo50yO7rG0+aj+krvahqEm4nO9BiyRziHsS0Sfl+NBGDwzlFQHK0rfwAeX9jNqqaTRGKlIQOc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=U24fbq6A; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71781f42f75so4432168b3a.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 12:51:14 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-718e2855479so3389328b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 12:51:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1727725874; x=1728330674; darn=vger.kernel.org;
+        d=tenstorrent.com; s=google; t=1727725875; x=1728330675; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=ICpyCTkGsdJm7eeaXUsSjDldVjlYUz+0ZOAQ13h1xnU=;
-        b=ELURFnCo9nDWgLCZd8VbvXwiX3WmHTPBZ6jO5RyJqoYvxlfjPh9ENwUCCJ5UpTKbos
-         q7a0KIDSsNyn8BDZqpObI9vQPuyMBvo6/LFFkdPyY+gQPqzSX77KNVGjzofF2uXN7646
-         fP48uxeiIPhGJQlPrOO5DBl8Y7HzWPrvd26XOvg8y4lN7lcZs4fujk5u87Euc5LnMR2F
-         EubKAVPJ6RS4xKQQP8nbaYSljRQdGBitH7TCw0Te3jESOXHzbS9gdtWftVSOtJF71R+N
-         WNZ2n0dmgqkOI3o+HvnIMCVN2n+EAV/4a4FfHCJOuBsvsn+ZQ9FCWkz7ikml0Vx+l2yK
-         0dng==
+        bh=uZdSF4JqYyS0KQvdy68Lr3bkRoh68PGBl8bGIxtVBZI=;
+        b=U24fbq6ATKvj4zXgOIQjIdKPJr6m+xZ20yIwZFItUNz+INaDtAk0/47hDedN9a7QXU
+         qRrnBPdaxEXZhVfQvwBPkz2xOrcOZogtxQVky92CXM9c5zJCsoRMpGVFkRVUjUaJGJsQ
+         XSiyRaIYspeZ/A0TTZ7nGH6lyh7Atu/9LT2jdGgRGLcWZWhjOIJ1VTp4w+SBmjj55edh
+         sKB0BTO93KPUF7nSztPGP7d5UoYDURoBA1m+bU6PXAhGYf9jzDE1MkCmbnzaqaAT8cd/
+         VsgPXJtetthMLHeo4oqH94Qfh6xja4Mu84PwlnOFhyPn9ktYfvPKUpIWloLO7WgxBLV8
+         5V+Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727725874; x=1728330674;
+        d=1e100.net; s=20230601; t=1727725875; x=1728330675;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ICpyCTkGsdJm7eeaXUsSjDldVjlYUz+0ZOAQ13h1xnU=;
-        b=VbzJ3fuBmyEtGHg4Vavt87mRaPAlMmFgSDsDRw4/X8f0xjJmjJX0xI+UwHgYcy3q6U
-         jc60QgxlDUwfdmGAoq9a2pJM3UVN3nT0JZ4NUCzRBB9w3Etz+5gZs4yTn9tcvFGm7QHB
-         X2hgaq3hpZsOV1IN+MGMbDOwc6Ebe4GOBOkQ8CnVUlsuogeEc7Nm7wnpN5zigPITR1zk
-         pEb9yjUi532+BCMxDLijOpZAEVA6TNzfVWHKOL9Zvq9DhnPNfunGKetfQip+MHWC1Grc
-         lEFQgUGAW1awaJjbfi0IhibiPBtc4EbiSCPOIntgPtvBhy/ZUQ9vOmIDBV0eNhyY+ixa
-         lDtw==
-X-Forwarded-Encrypted: i=1; AJvYcCUhjQQjuFLDNy+/AXMfanANwcyUDnw05K6fPrYJK1pevLdKEycJyZ4QXiiK8wJ2uhy+SqShSNHpAJnR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxF46KtnGwFZR3OkSoRYruthAScI5KibVJx4hTAk+coxqfPKaaP
-	Y17je8OOSedNWtnesHbifJ+VaClYEiB6S6GNWNdYeMX0eh1fTGCAK/gXZbk36Uk=
-X-Google-Smtp-Source: AGHT+IGNiVUtiKwsFmCbb9BMFxoZhqZNHK240MQuF/IFFw8Khki2fl4uSD7/w4pR2J1UZBbSAna/1w==
-X-Received: by 2002:a05:6a00:2d18:b0:706:6af8:e08a with SMTP id d2e1a72fcca58-71b25f00e5cmr19917887b3a.2.1727725874095;
+        bh=uZdSF4JqYyS0KQvdy68Lr3bkRoh68PGBl8bGIxtVBZI=;
+        b=ae1Uu4xhBrFbtzJDqX20Uhx5AKiBNpIGrugtfnv9IV9q7Ld06eIs69FfBfj5k35qib
+         LYpYmZb+t396xu4kgJApxVSm32jRFtAnN7rvEXYDKEeyLgkW1blCqqJlFJl+6yFQ4wIy
+         8ERRxJef++enoR/mUzZtOmymEHiKHcj38ae53jDRByo+LHyYG/hiA3n38KSFYZExinfM
+         9d0aegJJTGKkygjDjOSH+qQJuEgyvyhJA09e74jDNMfbZanZG/kQBTF7rsLd5UaUH4nb
+         ZR1uCkNyAFmpP3KyplPzQOygsaEudvEXO0/G3DUiUKFCpnNufaZjLhz17QX82GVNaDbT
+         ztng==
+X-Forwarded-Encrypted: i=1; AJvYcCU4hKXHlW1dDFpKBGdvQCf63T6aWOitXewep/KZFb7zNw8mOHWzRFHGLdDftYTKLOSqrGUGTvVB6OCi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNp73Xj5aRFLQqNE78mSXrZ365urIvWvfUTxI6b0hVxof47jPW
+	E8yREODdfOj1FuoFBWqfkZOECUX07oXI+sI2AqNbi3RdtcEhjF/x0+qfePUGJwo=
+X-Google-Smtp-Source: AGHT+IH1UWn6GR0PSUwjld9YOqDEPEWUiDR7fiim+3Ls/OwdAW7upk1oDC+Mq7kZcHJ6ZqHR7mr4lQ==
+X-Received: by 2002:a05:6a00:4b13:b0:70d:1b48:e362 with SMTP id d2e1a72fcca58-71b2607a58fmr18203751b3a.26.1727725874895;
         Mon, 30 Sep 2024 12:51:14 -0700 (PDT)
 Received: from [127.0.1.1] (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b26529d4bsm6630213b3a.158.2024.09.30.12.51.13
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b26529d4bsm6630213b3a.158.2024.09.30.12.51.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 12:51:13 -0700 (PDT)
+        Mon, 30 Sep 2024 12:51:14 -0700 (PDT)
 From: Drew Fustini <dfustini@tenstorrent.com>
-Date: Mon, 30 Sep 2024 12:50:57 -0700
-Subject: [PATCH v3 7/8] riscv: dts: thead: Add TH1520 pinctrl settings for
- UART0
+Date: Mon, 30 Sep 2024 12:50:58 -0700
+Subject: [PATCH v3 8/8] riscv: dtb: thead: Add BeagleV Ahead LEDs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240930-th1520-pinctrl-v3-7-32cea2bdbecb@tenstorrent.com>
+Message-Id: <20240930-th1520-pinctrl-v3-8-32cea2bdbecb@tenstorrent.com>
 References: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
 In-Reply-To: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
 To: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
@@ -97,93 +96,96 @@ X-Mailer: b4 0.14.1
 
 From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 
-Add pinctrl settings for UART0 used as the default debug console on
-both the Lichee Pi 4A and BeagleV Ahead boards.
+Add nodes for the 5 user controllable LEDs on the BeagleV Ahead board.
 
 Tested-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
 Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
 Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
 ---
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 26 ++++++++++++++++++++++
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  | 26 ++++++++++++++++++++++
- 2 files changed, 52 insertions(+)
+ arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 55 ++++++++++++++++++++++
+ 1 file changed, 55 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index 69f82e7afd0b..6c0b768e8d17 100644
+index 6c0b768e8d17..5a5888f4eda6 100644
 --- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
 +++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -71,7 +71,33 @@ &sdio0 {
- 	status = "okay";
- };
+@@ -7,6 +7,8 @@
+ /dts-v1/;
  
-+&padctrl0_apsys {
-+	uart0_pins: uart0-0 {
-+		tx-pins {
-+			pins = "UART0_TXD";
-+			function = "uart";
-+			bias-disable;
-+			drive-strength = <3>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+
-+		rx-pins {
-+			pins = "UART0_RXD";
-+			function = "uart";
-+			bias-disable;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
+ #include "th1520.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/leds/common.h>
+ 
+ / {
+ 	model = "BeagleV Ahead";
+@@ -35,7 +37,42 @@ chosen {
+ 	memory@0 {
+ 		device_type = "memory";
+ 		reg = <0x0  0x00000000  0x1 0x00000000>;
 +	};
-+};
 +
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
++	leds {
++		pinctrl-names = "default";
++		pinctrl-0 = <&led_pins>;
++		compatible = "gpio-leds";
++
++		led-1 {
++			gpios = <&gpio4 8 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led1";
++		};
++
++		led-2 {
++			gpios = <&gpio4 9 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led2";
++		};
++
++		led-3 {
++			gpios = <&gpio4 10 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led3";
++		};
++
++		led-4 {
++			gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led4";
++		};
  
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index 58ad381fc1c3..f60b1879192d 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -30,7 +30,33 @@ chosen {
++		led-5 {
++			gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
++			color = <LED_COLOR_ID_BLUE>;
++			label = "led5";
++		};
  	};
  };
  
-+&padctrl0_apsys {
-+	uart0_pins: uart0-0 {
-+		tx-pins {
-+			pins = "UART0_TXD";
-+			function = "uart";
+@@ -71,6 +108,24 @@ &sdio0 {
+ 	status = "okay";
+ };
+ 
++&padctrl_aosys {
++	led_pins: led-0 {
++		led-pins {
++			pins = "AUDIO_PA8",  /* GPIO4_8 */
++			       "AUDIO_PA9",  /* GPIO4_9 */
++			       "AUDIO_PA10", /* GPIO4_10 */
++			       "AUDIO_PA11", /* GPIO4_11 */
++			       "AUDIO_PA12"; /* GPIO4_12 */
++			function = "gpio";
 +			bias-disable;
 +			drive-strength = <3>;
 +			input-disable;
 +			input-schmitt-disable;
 +			slew-rate = <0>;
 +		};
-+
-+		rx-pins {
-+			pins = "UART0_RXD";
-+			function = "uart";
-+			bias-disable;
-+			drive-strength = <1>;
-+			input-enable;
-+			input-schmitt-enable;
-+			slew-rate = <0>;
-+		};
 +	};
 +};
 +
- &uart0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
- 
+ &padctrl0_apsys {
+ 	uart0_pins: uart0-0 {
+ 		tx-pins {
 
 -- 
 2.34.1
