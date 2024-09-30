@@ -1,222 +1,296 @@
-Return-Path: <devicetree+bounces-106476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 705F398A57A
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:39:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23C0A98A4DF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:27:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59282B2716C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:26:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BAC71C214C9
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:27:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27F8C19258C;
-	Mon, 30 Sep 2024 13:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40267190064;
+	Mon, 30 Sep 2024 13:25:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="vBO/P7qT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r+PFsEo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2047.outbound.protection.outlook.com [40.107.22.47])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38324191F8D;
-	Mon, 30 Sep 2024 13:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.47
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727702684; cv=fail; b=Hx4tCFasrhyEqQ192qs9VFz1BIV7BYEq0lyZUMb4GHmcfWpU0t2s7SsKZlEJF2hGVqkPoiEIKNfuKigEGDBhJ39sqJbOeJeBUCGyHBwrFiw+b3CZbyhjP5srAdiT6oPM4DcfckdfEny/yLK/bqkx//N+zY0Uab+tx5O+YamOZ04=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727702684; c=relaxed/simple;
-	bh=IIqydPKUuRwRFV10OA8VqChS+LzE6yxUEEmJPWphX+k=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=TlkLButeo5QhGmbAA5ZqPf81UMFCyTv12/d6Iqey89jfnxBFQGcN7bdqUq7pS4zw0M58M2pdLTXLEFjll4h+TN9lxsGdIU/Esyp/gr6UBQ0Lh+8JK4zIPv5n9N7BFTCVOKb3FDaU120JSBN29gfDjjWqnwupoSWwEsvm1dTpde8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=vBO/P7qT; arc=fail smtp.client-ip=40.107.22.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZQHZSr1ypzl2C3kjVlHOamFnQAM+cjyarG8O2oOUMVn9gVtPFp0UEtWGW9pAx9dNg2nJv4elgS3XlCZyqCicTduLwshJBM0g7gE7guNjSqUrSdi5tKmGiuSNeCCt/LH3HgvF0Sy1WyD70mK2kl21NcxM4YzXEFFw57ex+mXck/3Y+2iO/KfhbgP+eE1V/m2A/9UVkoxf8Pyk4xN39Z7jLyaskYEbxJAZmmxD7HqKsyX6gooO3fKoD5o4NqemNAiiUFNQsWId9eMRfUD4OzclUghVx2BH5Gdi+huBDoJp2+MyEYxFy/MWyLNMFxf5q+1tDxeV0Xxic2LQV8lwiq36Rg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0sGpbSZvn4g3Dyz4+7AQ7G+gkRvz2cxmfGJ3F/p0k5U=;
- b=rR5eookFAQ1aMKQUpD7vbmjePnVtkncWCfS7TgBxuJlTnmhkX2gs9BK0C/IIp1ixdK1vqcrYAJgIuuq0KHnGjuNLLC5+2TtQDk5MTFsUYoSxoKPy5RsOotKHDXklkgVIyfTL0KFOTGpMmlY+IB0/uULEvzLy7WJfIv0EwSWSQ/V3ND1mv5vuUOnLv2MoohhSgFxHqDL65JznoGn6878xk5UkIN9v4txAkJH3uZHEaCVtlWItgRHPvZ39MrR5HkUCyazscc9dIWdtmmUknHK943JBkOrfEMJRUhZauPknDHeb8XEh8DxbrZvnc3EDGvXDpk6ggrX/JakkQj6r9Nif0g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0sGpbSZvn4g3Dyz4+7AQ7G+gkRvz2cxmfGJ3F/p0k5U=;
- b=vBO/P7qT+Yc7taKtag8OSVRVFqS1Uaj0inAuBRu2AxFWjh/kApps6kY2ixjfGTPbIYHKhC705uMoLOiPOMdjUDpGTPdSBAwgxQd6V88sasQVEaZjDJDvtMyfrkalZeqmWF6nqMAYGb70ktpHUZqRbddJABbgjc/WbhEtZpHWM3pQK/5KgicqBXogPRQCpdFlZIiPha7IoqfJtg5bnrOdkqC5LjlsL/bOh+0zssa/dbfZiyxQgj3If7QRHKLAFQD478UlTMCwcyZGaXR/nXU/3a+q9sF3cx78itCe/N1vswsDvbE5ytZWyOPL2i5zAh7ImtYPP75SrCACyjpu5kxNFA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com (2603:10a6:20b:41a::6)
- by VI0PR04MB10879.eurprd04.prod.outlook.com (2603:10a6:800:25c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Mon, 30 Sep
- 2024 13:24:37 +0000
-Received: from AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455]) by AM9PR04MB8487.eurprd04.prod.outlook.com
- ([fe80::6d7a:8d2:f020:455%5]) with mapi id 15.20.7962.022; Mon, 30 Sep 2024
- 13:24:37 +0000
-From: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-To: Dong Aisheng <aisheng.dong@nxp.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Jacky Bai <ping.bai@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	imx@lists.linux.dev,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Subject: [PATCH 3/3] arm64: dts: S32G3: add S32G3 compatible for the pinctrl node
-Date: Mon, 30 Sep 2024 16:23:44 +0300
-Message-ID: <20240930132344.3001876-4-andrei.stefanescu@oss.nxp.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240930132344.3001876-1-andrei.stefanescu@oss.nxp.com>
-References: <20240930132344.3001876-1-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: AM0PR02CA0116.eurprd02.prod.outlook.com
- (2603:10a6:20b:28c::13) To AM9PR04MB8487.eurprd04.prod.outlook.com
- (2603:10a6:20b:41a::6)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19946189902;
+	Mon, 30 Sep 2024 13:25:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727702743; cv=none; b=m0wh6YjUM4dPxRnjCWbc4GX4TfG3uY5StBq9H/7apiTI+YSNFwRHZATI+OhiFL2BJz+eLIHUlDElt1tzdCkSy/skICu3WwKLXe4JiqA+vDTcACxoYaNJHDDpXkFpVU1u5aJRFKaksSMOZEGHrLpXp/f7HpvwkKWskfIev5OH0eA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727702743; c=relaxed/simple;
+	bh=AgxyAnJ5EQ/LR3SVJtEalqWx68cjEE7WvGTJNPg4MJY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=UhDV10T5gjLC+kPS30vfUE5zvwEyxGjjQiJ9IT4I9ksIbZxOJOSdS52Yq/gH9GyLfqIkSye+eYQ1+TOJu0hNYrhkVbxgV898Zktp1/HjLHhwpXa+wmfWbAvt0tOEW54tkEWy5yiqsJgEHwKV/ioBniSnq9xeGNifEltf0Kba3zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r+PFsEo6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14BE8C4CECF;
+	Mon, 30 Sep 2024 13:25:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727702742;
+	bh=AgxyAnJ5EQ/LR3SVJtEalqWx68cjEE7WvGTJNPg4MJY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=r+PFsEo6FraBZuvaXE0ZiuhmI5gaG2OLqM/Ej34DNje4AnqzPexqyMeJbffhI8Lkm
+	 9Z33ljcE25eOP/Y0HsPQoDvLNT4hGTHCsrXJJ4hcu1g4xYK9vGcG8IlGedWnI4rz01
+	 y5NOseuPwbvFa19YzfFd01ibCL67UgmDL1wWNmE4Bvjj+EqlOonJ9mGe6IgXbQDGW3
+	 9z8z6PoBOpXJOmMDOKbTNwBxqVUNrlZr0mkx2xOniPSQBms/ao5UCPGldDNzsqWDeF
+	 GNbPxcQ2+p+TFQ5YRLw3LiuwnrJI1xMk9aFA15MNjEYP0I86o79OLKjQT+/L/hzHbt
+	 5it+AVW3b7auw==
+Message-ID: <3cc10e1c-bec7-4432-a067-72f8eb514b5f@kernel.org>
+Date: Mon, 30 Sep 2024 15:25:37 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM9PR04MB8487:EE_|VI0PR04MB10879:EE_
-X-MS-Office365-Filtering-Correlation-Id: 77f5c295-a6a7-4184-a29f-08dce1533b2b
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|52116014|7416014|376014|1800799024|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?R0pBdEUwRi9WWmdNNFgrTDQwczRONFRTTm01aEVCM1lUN1Q3NWtSbXlKUCtN?=
- =?utf-8?B?anpYTkFOeDBPeDBJS3o1bGhUNGxNejdTaDlGMFQvbzdrb05sYmpuTmNqNUxj?=
- =?utf-8?B?MjNteDlnejAwMHZpZWV2Q21NUnYyNk5YSDlHczJ1MTltS1NvajBvcWhRcEU4?=
- =?utf-8?B?ZklkMVFIRkJybkhvbWlYaHRKVUVoVjdDT3M1M0c2b01DMkl3aWc3RklFZnpP?=
- =?utf-8?B?NDQzSjRaTjFDakI2SE9qaTgvVlVXZ2hLZE1kWlV4VG5HdExwUE95TzY0azZM?=
- =?utf-8?B?RkhIUzNNZUt3aE85eEtGK0hWZzh1OHMwVHVGWHZLOUloU09FdGdhbEhUeUtr?=
- =?utf-8?B?dXZsNkc4a1V2T2lNSkgreFdsOXp4SndQNjRiTmFvemxSZWtEdld2M00yZDV5?=
- =?utf-8?B?b1UzMk51TEswRG9CcGtJekhNZDhqdHd5YUt3S3FudnNzKzhUWEszeVJEdlVV?=
- =?utf-8?B?SmNkYWFmRmsyeFdualpickpHdTFiYmtiVmxNN0ZHaVBrMUJuWDJSR2JFd0Rm?=
- =?utf-8?B?NE80czM5TlJyNkwxbm9BQkxodWRHenpxK3ZmY3hJc1MyWjNjQ2RMVHFBV0Q3?=
- =?utf-8?B?NCs0cFRzT3FoRkMvOE8zMDIvVlZFS1R3ZlZIcnNEUnNzOXdLRTFncWlvckNF?=
- =?utf-8?B?QnJjUlZLUzlGbHlsdWZXUUhhbFFLM1c4dzZVS09VdXZiZlZVdnhVYitLNTBL?=
- =?utf-8?B?NWtSOFU5Z3pKODBoalJMcFVqR1FLR0lBOTlIL2ZlWFJlZDA2WUpyeEowMDdN?=
- =?utf-8?B?UTdrbnlsMjQwVzBmaGJqcE5VLzc1aTVDaUlLSE5xUjE3eVFpeGlyUWkvSVMw?=
- =?utf-8?B?TDN2TXdmZ0puV0dCazFMWUM2SGRQc2gzQUs3TkdXL0EwaVFJazRvZVplR2F1?=
- =?utf-8?B?aStkZUFnckljdkgrenNoREd6SlU4RkRWaVQwUmxMSXFuRERtWk5oUGJ4YWdu?=
- =?utf-8?B?Vlpvdm5wcHp6dk94cys4aHBjOHdhRCtJc2dIQ3Y5cThMVHBwRisvanRjcnRi?=
- =?utf-8?B?YnVuak9USHAzdlBiam9JUXFwTXBUeTFRUG1xalUvYWNSWTlZL0J6cXlJNmwv?=
- =?utf-8?B?eXkzL0ZQejZmOURvMkhvOVlaQWdUaHFucFdiZmY0ZjcxOFlCbnYvUlI5OTJn?=
- =?utf-8?B?ZThVWXR1UW8rdk1DazlLRkNZTllnd1l1UmFJOVRiZGd6aWVNallXak0xaDhj?=
- =?utf-8?B?NjVwanN5ckphaXlIcmp1am1CZm5PSFJ5SDBVbUgvRlA5QmVSa05pYWFySzBK?=
- =?utf-8?B?SGxtbnhPYVhLMzBxaStteTJNbE96S3gzbTBHeDNaK2MwSk40bjliT0RDVXc5?=
- =?utf-8?B?a0NEYUtUVUU2dW80Q2Zaa09jVUp6MWRjdUFub1VFOVIydzVaV1dUaXBVNm5N?=
- =?utf-8?B?WU1HV3lObGJPci9Jc1M0ZGVsUVhZbkcxNmYvemllOU9tcGs0N2h3bnhGN1Fj?=
- =?utf-8?B?U29NZENoeFFvRWdmdTRhV1g1cVFMQ095QXVJYjFtdFJIV21RZFN3NDBjVkcr?=
- =?utf-8?B?NS9aS0tTMlRsdWFXWG90WFo5L1JpMFdaL3V0K3U2YkE1TWk1QWUxS1g4SDFX?=
- =?utf-8?B?ZEs2U3dhZHorRjlTNmNYRXdzQzA0UGRXSDl2SFhnNnlrOG5Ielh6M05nUThs?=
- =?utf-8?B?Rk9CVUw4SytnK09vZTYvL1FLUEtnUTQwQ2d0Sm5kYThlaHNLV3JjYTR6bEtu?=
- =?utf-8?B?RjdabXZqR0U2U1NMb2kzSXVXQ3hoWDJxUURZL1dWblVXcWJBNFBzeHlSeFk2?=
- =?utf-8?B?dFR4em9WYzlrZityZmdwU3FzdHByTlBEQjBqYnBJcUpWR3pvNi9xZUFqTU40?=
- =?utf-8?B?a0ovUTliaVlOUzdGdFZaVVFMMGJ2Qnh5WXVGdUdDRk5jUDRzR3RRS2Jiemtu?=
- =?utf-8?B?aE5BYm53MnRQOFJ5elNwYVdsMjhkTGRQZDhSYmVqSmJVSjZiSkZFcjROSVR1?=
- =?utf-8?Q?qVktou7sDEs=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB8487.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(52116014)(7416014)(376014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RVZEdmNOZ05qZFZWVzlDbFliOFFncjZMbDdJVXZpN1hDaTJPRmROWVl5T1B6?=
- =?utf-8?B?MkwxOW1wNkYrc0lHZm5NSXY1bDNmZHpNYW1ibVdxUlpWS3FqZXF5TzBIN3U3?=
- =?utf-8?B?SkVlMnhPNnRNS1puam5pNGNGZjFGeVFpRzgvRG5oTkdJSzZlM1dCN1d2K0pG?=
- =?utf-8?B?S3JTWDl4TTFVSVBMSHhiOUJJcGJmRXZhTlBvZy82ZHdzdFNMRDRmY0g3Q3pN?=
- =?utf-8?B?d0ltby9mSG5EMGEwYk02Nmg2TFl5RkEvcmdGNmVQMERQRnkzZGRxVnVJL0xZ?=
- =?utf-8?B?em1wMzR1bjhLcFp3Yloxb3RnTmF1ZVcvUnUveUFqTDZJZ0E2QURiZ29WeHlw?=
- =?utf-8?B?Z3k0dGQ5REpNWFB2Mk5zNGtET01pY3dNM0QvWStOVGhqWXovbWdVbTJuN2Nx?=
- =?utf-8?B?Y0YvN2FiazQ3MW9lbCtwWjNRd05SRml2NnZkYk9GWjZXZXdLdUpZREtLc0FC?=
- =?utf-8?B?RUVneFRGci9xdVJMN0xQS3lXQXdPOVpQdUJRVUdZNGJlUGw4NnFLblkraVJQ?=
- =?utf-8?B?eGxnVTNhMCtlNGorWmZTUEJTWUs4OW1IL2orSEo0Z0tXSDNIdUdPOTJDdStn?=
- =?utf-8?B?Z2IzN2Y4U2dZMXZkclZaMXVVWlR1L2tGV3VmT2RYS0M1eWxhdjZxY2RGcHBY?=
- =?utf-8?B?RndDRkdrMzZEc2dzOFhBT1ltaWtCRXplTVh3c1hZRWV2U0VjVGJRNU9idmpw?=
- =?utf-8?B?cEZTZnNsc0tsekhtUGhJL0Y2VjdtSDZsVFhCZzVhZ2dsVkUyYTNLZWpiV0RM?=
- =?utf-8?B?NVVoU2k4Ui9jVUI5TC8rQlRsTldsMkVOcDVWK3krdDRqbzZSMGxXeE52cFUr?=
- =?utf-8?B?YndsM0lIQlF4SFpSbDR1enloU1p2bDQwbDZhRzJlSWVQTFdEZDZXN1RMYUsv?=
- =?utf-8?B?KzFFbTJLdnFWcDh4QjVxd3oxOFpjWXVUQXcyZHYyOWlJZHhFTStnNjZzcVI1?=
- =?utf-8?B?SmxXZ0NIbEcyRXVvU3d1TkxSb0JwcXFRREFZY2RtaWNsTXBoYXZJdXNvcDZC?=
- =?utf-8?B?VDY2NDlvOEFzRmRRUUR4c2tNZWswU2ZzU2RlQU5BaTcyVWdQMFNkUjNjWm1w?=
- =?utf-8?B?VFMvdTZtb0FDbnJJbTBQYzdlb3lUT0lhdFZaT2dabjN3QUh6ckxwM0F3OU5X?=
- =?utf-8?B?dG14VkE5M2MvZm11L2pMVDhKQlMxV0JrK29DUG9NZnBiWUtjT3VUQUVrQjRO?=
- =?utf-8?B?WkkyeEhsSnh1Ui9MeU92N3hPb0xhSHMxUmJTdW56emt5b3o5a0VmR2I1cER2?=
- =?utf-8?B?elFkSFdEZHhCZUZOdEx6R25EQjVtWURpSlBIWnB6NDJPWkYybHVBRUdkaHo3?=
- =?utf-8?B?cjhUVnloREtOYmo5VDJWcU9Memk1d0U3YmpuRjY4Y1R2Qmd3UWtSUVhTZkxx?=
- =?utf-8?B?QXhJaVpMM05BaEN5U1MyM1hlZmFxYVFQcWdYL3VxS0hSTXZQUVdPaVJNOWJi?=
- =?utf-8?B?WFN4cFN1TVVmMTRRd2l1a2Q5YXR2VmVqem1CUi8yNWFPMFp5eURKQVNiUWpj?=
- =?utf-8?B?RUVMaXR1Q0dmV1Z4cnBPWGp3MUoyL29uNGE5amdqRDR4Um9PZUtMNTdMdzIv?=
- =?utf-8?B?aGRaUVpYbU5PMTRMbEdPd2NyWE5FWEVzUTE4SUVrS2hOd1hEQ3Z5RkV4ZFRv?=
- =?utf-8?B?T2JyUERRdXl2VE1GSXdpNDF3VlpYQXU1ckIrUk9ta0ZSWU1LNTlja2VVMXh3?=
- =?utf-8?B?NU5yMkp4clNnMHZWTnVrNjI5dXlpRUJIM2NBVTlaTmhkVWFBa0xSL0xBcUpV?=
- =?utf-8?B?ZWZ3ZTVpNGJuUjR4RTBFeWx0MVY1U0thUXdRQTVJbVc5OFZ1MnUyaWVlQlRS?=
- =?utf-8?B?R2lORXp3bHhhbktFZHk4TXVhaU5MTkszYWF1MStDbnRtMHR0RXVzeTlUbkMz?=
- =?utf-8?B?TndkVVRxVHM2TWFER2VFbmIvTk15VEZRQmVZVlN2YzRydnAybGU3cGczUVBW?=
- =?utf-8?B?UFgzbjdJZHVOOGNFTktpVEowaU0wdTB3TUViU2dlWUEvR0lteS80d0xPNVQx?=
- =?utf-8?B?cGhuM0VCWUJHTmlRbjNIWkQyS1VhNzc4TlNtbG1SOXJlYm5lZHRXZE1PT1RH?=
- =?utf-8?B?N2FrNXhRb2JzdjNQTDVHdEI0ZzhLKzFpQ21EcnFMay91SUVrN1lISFZrTVlY?=
- =?utf-8?B?cWJ0M3FxQ2gxb3dpZHMxRWlNa3E5ZlpFUGFQY3AyaDZJT3NoLzY4Q3p3VjlV?=
- =?utf-8?B?c0E9PQ==?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 77f5c295-a6a7-4184-a29f-08dce1533b2b
-X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB8487.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 13:24:37.2787
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 822kueiGHzAEsWl6UG7LVILSgKUKCubej0A1AzarKe6ZO3rvhvLVAb4dkayHL/ajm0roqws/HR2bCpBSFRXVI0ics+Y5v+OXrzAyxq/Cd2w=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10879
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v9 4/7] Add SPAcc AEAD support
+To: Pavitrakumar M <pavitrakumarm@vayavyalabs.com>,
+ devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
+ linux-crypto@vger.kernel.org, robh@kernel.org
+Cc: Ruud.Derwig@synopsys.com, manjunath.hadli@vayavyalabs.com,
+ bhoomikak@vayavyalabs.com, Shweta Raikar <shwetar@vayavyalabs.com>
+References: <20240930093054.215809-1-pavitrakumarm@vayavyalabs.com>
+ <20240930093054.215809-5-pavitrakumarm@vayavyalabs.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240930093054.215809-5-pavitrakumarm@vayavyalabs.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the newly introduced S32G3 compatible for the pinctrl node.
-Currently, it will fall back to the S32G2 compatible.
+On 30/09/2024 11:30, Pavitrakumar M wrote:
+> Add AEAD support to SPAcc driver.
+> Below are the supported AEAD algos:
+> - ccm(sm4)
+> - ccm(aes)
+> - gcm(sm4)
+> - gcm(aes)
+> - rfc7539(chacha20,poly1305)
 
-Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
----
- arch/arm64/boot/dts/freescale/s32g3.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+...
 
-diff --git a/arch/arm64/boot/dts/freescale/s32g3.dtsi b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-index b4226a9143c8..f6aafe44c9d7 100644
---- a/arch/arm64/boot/dts/freescale/s32g3.dtsi
-+++ b/arch/arm64/boot/dts/freescale/s32g3.dtsi
-@@ -172,7 +172,8 @@ soc@0 {
- 		ranges = <0 0 0 0x80000000>;
- 
- 		pinctrl: pinctrl@4009c240 {
--			compatible = "nxp,s32g2-siul2-pinctrl";
-+			compatible = "nxp,s32g3-siul2-pinctrl",
-+				     "nxp,s32g2-siul2-pinctrl";
- 				/* MSCR0-MSCR101 registers on siul2_0 */
- 			reg = <0x4009c240 0x198>,
- 				/* MSCR112-MSCR122 registers on siul2_1 */
--- 
-2.45.2
+> +
+> +struct spacc_iv_buf {
+> +	unsigned char iv[SPACC_MAX_IV_SIZE];
+> +	unsigned char spacc_adata[ADATA_BUF_SIZE];
+> +	struct scatterlist sg[2], spacc_adata_sg[2];
+> +	struct scatterlist *spacc_ptextsg, temp_aad[2];
+> +};
+> +
+> +static struct kmem_cache *spacc_iv_pool;
+
+How do you handle multiple devices? I don't see it...
+
+> +
+> +static struct mode_tab possible_aeads[] = {
+> +	{ MODE_TAB_AEAD("rfc7539(chacha20,poly1305)",
+> +			CRYPTO_MODE_CHACHA20_POLY1305, CRYPTO_MODE_NULL,
+> +			16, 12, 1), .keylen = { 16, 24, 32 }
+> +	},
+> +	{ MODE_TAB_AEAD("gcm(aes)",
+> +			CRYPTO_MODE_AES_GCM, CRYPTO_MODE_NULL,
+> +			16, 12, 1), .keylen = { 16, 24, 32 }
+> +	},
+> +	{ MODE_TAB_AEAD("gcm(sm4)",
+> +			CRYPTO_MODE_SM4_GCM, CRYPTO_MODE_NULL,
+> +			16, 12, 1), .keylen = { 16 }
+> +	},
+> +	{ MODE_TAB_AEAD("ccm(aes)",
+> +			CRYPTO_MODE_AES_CCM, CRYPTO_MODE_NULL,
+> +			16, 16, 1), .keylen = { 16, 24, 32 }
+> +	},
+> +	{ MODE_TAB_AEAD("ccm(sm4)",
+> +			CRYPTO_MODE_SM4_CCM, CRYPTO_MODE_NULL,
+> +			16, 16, 1), .keylen = { 16, 24, 32 }
+> +	},
+> +};
+
+...
+
+> +
+> +static int spacc_register_aead(unsigned int aead_mode,
+> +			       struct platform_device *spacc_pdev)
+> +{
+> +	int rc;
+> +	struct spacc_alg *salg;
+> +
+> +	salg = kmalloc(sizeof(*salg), GFP_KERNEL);
+> +	if (!salg)
+> +		return -ENOMEM;
+> +
+> +	salg->mode	= &possible_aeads[aead_mode];
+> +	salg->dev[0]	= &spacc_pdev->dev;
+> +	salg->dev[1]	= NULL;
+> +	salg->calg	= &salg->alg.aead.base;
+> +	salg->alg.aead	= spacc_aead_algs;
+> +
+> +	spacc_init_aead_alg(salg->calg, salg->mode);
+> +
+> +	salg->alg.aead.ivsize		  = salg->mode->ivlen;
+> +	salg->alg.aead.maxauthsize	  = salg->mode->hashlen;
+> +	salg->alg.aead.base.cra_blocksize = salg->mode->blocklen;
+> +
+> +	salg->keylen_mask = possible_aeads[aead_mode].keylen_mask;
+> +
+> +	if (salg->mode->aead.ciph & SPACC_MANGLE_IV_FLAG) {
+> +		switch (salg->mode->aead.ciph & 0x7F00) {
+> +		case SPACC_MANGLE_IV_RFC3686: /*CTR*/
+> +		case SPACC_MANGLE_IV_RFC4106: /*GCM*/
+> +		case SPACC_MANGLE_IV_RFC4543: /*GMAC*/
+> +		case SPACC_MANGLE_IV_RFC4309: /*CCM*/
+> +		case SPACC_MANGLE_IV_RFC8998: /*GCM/CCM*/
+> +			salg->alg.aead.ivsize  = 12;
+> +			break;
+> +		}
+> +	}
+> +
+> +	rc = crypto_register_aead(&salg->alg.aead);
+> +	if (rc < 0) {
+> +		kfree(salg);
+> +		return rc;
+> +	}
+> +
+> +	dev_dbg(salg->dev[0], "Registered %s\n", salg->mode->name);
+
+Drop, too trivial.
+
+> +
+> +	mutex_lock(&spacc_aead_alg_mutex);
+> +	list_add(&salg->list, &spacc_aead_alg_list);
+> +	mutex_unlock(&spacc_aead_alg_mutex);
+> +
+> +	return 0;
+> +}
+> +
+> +int probe_aeads(struct platform_device *spacc_pdev)
+> +{
+> +	int err;
+> +	unsigned int x, y;
+> +	struct spacc_priv *priv = NULL;
+> +
+> +	size_t alloc_size = max_t(unsigned long,
+> +			roundup_pow_of_two(sizeof(struct spacc_iv_buf)),
+> +			dma_get_cache_alignment());
+> +
+> +	spacc_iv_pool = kmem_cache_create("spacc-aead-iv", alloc_size,
+> +					  alloc_size, 0, NULL);
+> +
+> +	if (!spacc_iv_pool)
+> +		return -ENOMEM;
+> +
+> +	for (x = 0; x < ARRAY_SIZE(possible_aeads); x++) {
+> +		possible_aeads[x].keylen_mask = 0;
+> +		possible_aeads[x].valid       = 0;
+> +	}
+> +
+> +	/* compute cipher key masks (over all devices) */
+> +	priv = dev_get_drvdata(&spacc_pdev->dev);
+> +
+> +	for (x = 0; x < ARRAY_SIZE(possible_aeads); x++) {
+> +		for (y = 0; y < ARRAY_SIZE(possible_aeads[x].keylen); y++) {
+> +			if (spacc_isenabled(&priv->spacc,
+> +					    possible_aeads[x].aead.ciph & 0xFF,
+> +					possible_aeads[x].keylen[y]))
+> +				possible_aeads[x].keylen_mask |= 1u << y;
+> +		}
+> +	}
+> +
+> +	/* scan for combined modes */
+> +	priv = dev_get_drvdata(&spacc_pdev->dev);
+> +
+> +	for (x = 0; x < ARRAY_SIZE(possible_aeads); x++) {
+> +		if (!possible_aeads[x].valid && possible_aeads[x].keylen_mask) {
+> +			if (spacc_isenabled(&priv->spacc,
+> +					    possible_aeads[x].aead.hash & 0xFF,
+> +					possible_aeads[x].hashlen)) {
+> +
+> +				possible_aeads[x].valid = 1;
+> +				err = spacc_register_aead(x, spacc_pdev);
+> +				if (err < 0)
+> +					goto error;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +error:
+> +	return err;
+> +}
+> +
+> +int spacc_unregister_aead_algs(void)
+
+Why do you make it global but without headers? Or you split the change
+so weirdly that header is not here?
+
+> +{
+> +	struct spacc_alg *salg, *tmp;
+> +
+> +	mutex_lock(&spacc_aead_alg_mutex);
+> +
+> +	list_for_each_entry_safe(salg, tmp, &spacc_aead_alg_list, list) {
+> +		crypto_unregister_alg(salg->calg);
+> +		list_del(&salg->list);
+> +		kfree(salg);
+> +	}
+> +
+> +	mutex_unlock(&spacc_aead_alg_mutex);
+> +
+> +	kmem_cache_destroy(spacc_iv_pool);
+> +
+> +	return 0;
+> +}
+
+Best regards,
+Krzysztof
 
 
