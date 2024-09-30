@@ -1,70 +1,99 @@
-Return-Path: <devicetree+bounces-106436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612D098A024
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:15:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D68698A0C3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:33:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 92ABE1C211E8
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 11:15:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 007EE1F27CA3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 11:33:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E91918B463;
-	Mon, 30 Sep 2024 11:15:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C81718E74D;
+	Mon, 30 Sep 2024 11:31:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="klhcrj9R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cWAt2evQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5F4189BAC;
-	Mon, 30 Sep 2024 11:15:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F05618E74C;
+	Mon, 30 Sep 2024 11:31:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727694918; cv=none; b=YstRjWAhg9RPZELiYjAognljiYDdsdBSYq9Bca2xded9ZYkeF9/7la76vivr7hpqRIMWXAy1r7HX/n3al3kEU4ZPc9CPFnlwPh4mu675kDsYkPfq0uJFkLh8D4IUJr3ONa2saaN15RuQqpiHazO6AoAv23GS9oVzHXtizzWp5Lo=
+	t=1727695889; cv=none; b=c9dsf+L40WIuwQi7pZuKud2yxAxRVMHWQakW83nbVe/wnbeMCVRTHJG0Rtwcd4s6bzYHieJKLWthHfVCSFXYGqOoOFYZ9txmr/mGt2QIw/qoCusoFQg+9TMrOAkJzG4X7v+w53lcmsoX/XN7/jLt01ugtyHxA81gxgr0FOYl++M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727694918; c=relaxed/simple;
-	bh=CKaTzLzt5Ay9NRYZSPhS9mvPXNtg1LNXzUb/dJPkJBg=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=C03Xw0IvwJQoWS5ZBQwTY9VJf/oRQK1OcwaSINSp985kyYYjBGtKREf/V1qitnXP9HQB96o4ngEx0zsrAmJ+P8SxqTVHRpe1MgKnrss4tdr5HCsvHRYd4PD30lEev4QeT3p4vZRGhi3w/dQ7HS40o87oiA4hV/j9K/+F8orLzLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=klhcrj9R; arc=none smtp.client-ip=198.47.19.142
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 48UBF9Ds072041;
-	Mon, 30 Sep 2024 06:15:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727694909;
-	bh=/6aOaHEijaebC4X0cTgxm/vVUhcilH7QcmkZ4BzLP5M=;
-	h=From:To:CC:Subject:Date;
-	b=klhcrj9Ra15EYq+691UjIE3iMLFUgjp8k2jQjO5CgrtBc5K3C+jeLmj1eDKa5yX09
-	 6LkgFywCuelkbw+bNJe/VoJJ8OCZghHQ1J78rFmqS7AskkJgWZ4+xTWHYMzYp3RuAP
-	 KJVkkWQDwFLpS5TyLxMLKTnaqg+1gGYVF4k0n2I0=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 48UBF9Ii122516
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 30 Sep 2024 06:15:09 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 30
- Sep 2024 06:15:09 -0500
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 30 Sep 2024 06:15:09 -0500
-Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 48UBF5Eo130049;
-	Mon, 30 Sep 2024 06:15:06 -0500
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j784s4-main: Enable ACSPCIE output for PCIe1
-Date: Mon, 30 Sep 2024 16:45:05 +0530
-Message-ID: <20240930111505.3101047-1-s-vadapalli@ti.com>
-X-Mailer: git-send-email 2.40.1
+	s=arc-20240116; t=1727695889; c=relaxed/simple;
+	bh=Gz5KW5hALie3z9g2VJENb2IHqaJJS+XfH8IpYkcxYQY=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=bYNOX2LRhcBN0nXvBR9neK2c7iuxUKcWdJStRch2dLxRUjYUZZOPh5bSmKwFihrFWpdNzd7nYQxiuRj8pVr0uJNdMLu46uOmxjpVydrW3eGkMY+/tMSqxq8ozCfe9tad0HxQXU3VGEnVu5tSor08b8dSb68IbVQA4UbV3GtMk+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cWAt2evQ; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37ce8458ae3so894668f8f.1;
+        Mon, 30 Sep 2024 04:31:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727695886; x=1728300686; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3YiIs3bHOwFCglJ1XZ2b3oRoZl2j5PvNMKUkUk+rZC0=;
+        b=cWAt2evQBB3goeNESmR75n9KNr0dQ8Rm7DhK6O3oU9FgWULR8f3WYpq1YO6ZbbsqKn
+         JEsk9u48hbq9rnVRG7H5No4E8DPVb8T+0JFneWqnDdxZvbXP2jQv5CadDy/wIKMPcNXu
+         l389UeP/+gw//oF3g5HGXDwqPF8o22uFrmundkJGuWySFrxi8XKd6aT/DtwnB7Ehenrc
+         h435MpMZLBZUiJOGGWKEbV6Z67IELWCcNp+mWwiWH6OQq5aN9bmCbKK5jLwzDDqi3JmI
+         BaE1cSzFWaK5pkDbsnPZfaHqSuDJhXjwyWlB79sG46htibBWlxSu+NzW04dPclWnjqS/
+         8EMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727695886; x=1728300686;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3YiIs3bHOwFCglJ1XZ2b3oRoZl2j5PvNMKUkUk+rZC0=;
+        b=M1ZIXYIz3NgUcdTKPSH9v9TqVeS4elmwyXYmw22wn/YCxBnYj70uQ8+457G2H6ynBq
+         BbXCAKF3glIlpU0dmM0EwYpE6yxwKdT/GRIvQ+k2Ku56UOvhC/0zDA5+ph2eGwcQaMEm
+         o4Y1N3p0ec6c/Fey7lf4ePuLrnj+Vs46DDOw8j6hWmsyM7s86U6aDSvIf10NmbYJfUYL
+         7v01OAWCACLLu/6wr1P3aJyJ5b9fL6/05YiWap4wOImwRCm+KllCjrnfnJsG1glxN5rV
+         iXAPdjglu6NYWdMbqNwkmJ8Ixi0CrDTFy33ICAtVclgMELS4ohA8/qI+jCFZCJyuQXAC
+         Ge5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUDuem/bf7r6R/+CWNpynymmJjAbqdVbHb8wB4A/zW25sFfT07kJC86aV8H5/B01ewVos/NUDYidSQr@vger.kernel.org, AJvYcCUS1HDjggyRhvL5HCDxa20gl6Ql3ubQwzPynntXo5f1RGi2l7z9vD6ySgFxTbLW5Aywp/OeiE+w9arJb04=@vger.kernel.org, AJvYcCUfix8eqNATeOivlL395nnZ7Oy7Nov0hkibH/Uvai1mLkPdaC//WGsMB/YbrCyUCMXAj2G2Xo4M4iGP@vger.kernel.org, AJvYcCVD78MNkrJw9mbJSeTUkvvcllQ4Rf32h1Jxt5nYK2N69PMKxs8mzj2XTIU53uJS8bO8cPwSohkw8torIInQ@vger.kernel.org, AJvYcCVEigZmhzPGkcCEZxdXr2Xj2lg9IaJqD+SJsUjaK1dUeoI0DwY2Dv+MQSY1qpoZfW9K7VwkqGHSeuftwRHEINwS@vger.kernel.org, AJvYcCXPZfKJnYhFYyOoodMm2sU5U4qZlZkI/Hx8oRDet5k6qFkHc/n/2yGdAXEzB7I2g3RyAdokApv78arS@vger.kernel.org
+X-Gm-Message-State: AOJu0YxlGWf9BtJdQ1g2b6/PSNIYskTdEqfpCj7Dm6sxBCKzv5on5Fvb
+	/HSNlCby+QyWAJmmxi/H8MpzqKo2D4uL9HK6JZLnzTF6AWw139Rx
+X-Google-Smtp-Source: AGHT+IEIsdcRgsyK864MeREGM2feJVQach96Q/sGvKiTG2PTKeFbkb9eida+L8WPLH+9ZNFVIrSS3Q==
+X-Received: by 2002:a5d:5447:0:b0:378:8b84:4de9 with SMTP id ffacd0b85a97d-37cd5a69798mr10450453f8f.12.1727695885496;
+        Mon, 30 Sep 2024 04:31:25 -0700 (PDT)
+Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37cd57427c6sm8889363f8f.96.2024.09.30.04.31.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 04:31:24 -0700 (PDT)
+From: Christian Marangi <ansuelsmth@gmail.com>
+To: Jens Axboe <axboe@kernel.dk>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kees Cook <kees@kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Daniel Golle <daniel@makrotopia.org>,
+	INAGAKI Hiroshi <musashino.open@gmail.com>,
+	Christian Brauner <brauner@kernel.org>,
+	Al Viro <viro@zeniv.linux.org.uk>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Ming Lei <ming.lei@redhat.com>,
+	Christian Heusel <christian@heusel.eu>,
+	linux-block@vger.kernel.org,
+	linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-hardening@vger.kernel.org,
+	Miquel Raynal <miquel.raynal@bootlin.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	upstream@airoha.com
+Subject: [PATCH v4 0/5] block: partition table OF support
+Date: Mon, 30 Sep 2024 13:30:07 +0200
+Message-ID: <20240930113045.28616-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,78 +101,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-The PCIe reference clock required by the PCIe Endpoints connected to the
-PCIe connector corresponding to the PCIe1 instance of PCIe on J784S4-EVM
-is driven by the ACSPCIE module. Add the device-tree support for enabling
-the same.
+Hi,
+this is an initial proposal to complete support for manually defining
+partition table.
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
----
+Some background on this. Many OEM on embedded device (modem, router...)
+are starting to migrate from NOR/NAND flash to eMMC. The reason for this
+is that OEM are starting to require more and more space for the firmware
+and price difference is becoming so little that using eMMC is only benefits
+and no cons.
 
-Hello,
+Given these reason, OEM are also using very custom way to provide a
+partition table and doesn't relay on common method like writing a table
+on the eMMC.
 
-This patch is based on linux-next tagged next-20240930.
-The dependencies mentioned in the v1 patch have been merged and this
-patch doesn't have dependencies anymore.
+One way that is commonly used is to hardcode the partition table and
+pass it to the system via various way (cmdline, special glue driver,
+block2mtd...)
+This way is also used on Android where the partition table
+is passed from the bootloader via cmdline.
 
-v1:
-https://lore.kernel.org/r/20240715123301.1184833-1-s-vadapalli@ti.com/
-Changes since v1:
-- Rebased patch on next-20240930.
+One reason to use this method is to save space on the device and to
+permit more flexibility on partition handling.
 
-Logs validating this patch with an NVMe SSD connected to the PCIe connector
-corresponding to the PCIe1 instance of PCIe on J784S4 EVM:
-https://gist.github.com/Siddharth-Vadapalli-at-TI/19a878518b657df434396b4bed78f945
+What this series does is complete support for this feature.
+It's possible to use the cmdline to define a partition table similar
+to how it's done for MTD but this is problematic for a number of device
+where tweaking the cmdline is not possible. This series adds OF support
+to make it possible to define a partition table in the Device Tree.
 
-Regards,
-Siddharth.
+We implement a similar schema to the MTD fixed-partition, where we define
+a "label" and a "reg" with "offset" and "size".
 
- arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+A new block partition parser is introduced that check if the block device
+have an OF node attached and check if a fixed-partition table is defined.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-index e73bb750b09a..bef115575cab 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi
-@@ -7,6 +7,7 @@
- 
- #include <dt-bindings/mux/mux.h>
- #include <dt-bindings/phy/phy.h>
-+#include <dt-bindings/phy/phy-cadence.h>
- #include <dt-bindings/phy/phy-ti.h>
- 
- #include "k3-serdes.h"
-@@ -81,6 +82,11 @@ pcie3_ctrl: pcie3-ctrl@407c {
- 			reg = <0x407c 0x4>;
- 		};
- 
-+		acspcie0_proxy_ctrl: acspcie0-ctrl@1a090 {
-+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
-+			reg = <0x1a090 0x4>;
-+		};
-+
- 		serdes_ln_ctrl: mux-controller@4080 {
- 			compatible = "reg-mux";
- 			reg = <0x00004080 0x30>;
-@@ -1094,11 +1100,12 @@ pcie1_rc: pcie@2910000 {
- 		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
- 		device_type = "pci";
- 		ti,syscon-pcie-ctrl = <&pcie1_ctrl 0x0>;
-+		ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x1>;
- 		max-link-speed = <3>;
- 		num-lanes = <4>;
- 		power-domains = <&k3_pds 333 TI_SCI_PD_EXCLUSIVE>;
--		clocks = <&k3_clks 333 0>;
--		clock-names = "fck";
-+		clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
-+		clock-names = "fck", "pcie_refclk";
- 		#address-cells = <3>;
- 		#size-cells = <2>;
- 		bus-range = <0x0 0xff>;
+If a correct node is found, then partition table is filled. cmdline will
+still have priority to this new parser.
+
+Some block device also implement boot1 and boot2 additional disk. Similar
+to the cmdline parser, these disk can have OF support using the
+"partitions-boot0" and "partitions-boot1" additional node.
+
+It's also completed support for declaring partition as read-only as this
+feature was introduced but never finished in the cmdline parser.
+
+Posting as RFC for any comments or additional checks on OF parser code.
+
+I hope this solution is better accepted as downstream this is becoming
+a real problem with a growing number of strange solution for the simple
+task of providing a fixed partition table.
+
+Changes v4:
+- Fix wrong description and title in Kconfig
+- Validate reg len with addr and size cells
+- Drop offset 0 constraint (not needed)
+- Rework bytes to sector conversion
+- Follow common logic with ignore partitions after state->limit
+- Better handle device_node put
+- Add suggested strends string helper
+Changes v3:
+- Out of RFC
+- Drop partition schema generalization and simplify it
+- Require fixed-partitions compatible to adapt to MTD schema
+- Make label property optional and fallback to node name
+Changes v2:
+- Reference bytes in DT instead of Sector Size
+- Validate offset and size after Sector Size conversion
+- Limit boot0 and boot1 to eMMC and add comments about JEDEC spec
+- Generalize MTD partition schema and introduce block partitions schema
+- Add missing code to actually attach the OF parser to block partition core
+- Add reviewed by tag for read-only patch
+
+Christian Marangi (5):
+  block: add support for defining read-only partitions
+  docs: block: Document support for read-only partition in cmdline part
+  string: add strends() helper to check if a string ends with a suffix
+  block: add support for partition table defined in OF
+  dt-bindings: mmc: Document support for partition table in mmc-card
+
+ Documentation/block/cmdline-partition.rst     |   5 +-
+ .../devicetree/bindings/mmc/mmc-card.yaml     |  52 ++++++
+ block/blk.h                                   |   1 +
+ block/partitions/Kconfig                      |   9 ++
+ block/partitions/Makefile                     |   1 +
+ block/partitions/check.h                      |   1 +
+ block/partitions/cmdline.c                    |   3 +
+ block/partitions/core.c                       |   6 +
+ block/partitions/of.c                         | 151 ++++++++++++++++++
+ include/linux/string.h                        |  13 ++
+ 10 files changed, 241 insertions(+), 1 deletion(-)
+ create mode 100644 block/partitions/of.c
+
 -- 
-2.40.1
+2.45.2
 
 
