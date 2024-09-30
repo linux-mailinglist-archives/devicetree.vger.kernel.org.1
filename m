@@ -1,709 +1,223 @@
-Return-Path: <devicetree+bounces-106534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CF2F98A93C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:56:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8B3A98A9A1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 18:20:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11D8FB2A891
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:54:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC0F31C232B4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:20:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65CF8192D68;
-	Mon, 30 Sep 2024 15:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="zC8O6U8p"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F24F192B99;
+	Mon, 30 Sep 2024 16:19:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from benson.vs.mythic-beasts.com (benson.vs.mythic-beasts.com [46.235.224.207])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09CF918CBEE;
-	Mon, 30 Sep 2024 15:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 014A93BB24
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 16:19:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.224.207
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727711655; cv=none; b=tVe5/LHW8tx9hnEkDFHSBs381sFCX3cKIMHVckDV6aLFz3nvVahJH3c/2AAEG6UGFNZKffEWccs+lVOdiI9hr2gliotP5AeozDPTHCbEGvQqnOzSYStamnhjyZrKVhB869cXWPV0cbJvLpaP2yeCgeUzWZfWi6vzWNhcoraVum0=
+	t=1727713193; cv=none; b=hsU2Cs6kprOmCVgTRb6TFj4TAyFX78YgoWpOLOsf8cymQvKA1WZn32pGaeNE3yGT80OVEP5Z3oEUh8rzvFeoeUIV3AKUb/fUMSUYF+j7NRUZLjcUnb3HdrWOI0U04CD2Q+Givjyt9YpKMQMHrueqEFvIcU2DE3GEFWKRn9pEaZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727711655; c=relaxed/simple;
-	bh=EQDYm67UBM0HrqZlrLK6UC+jMx9bS2oIfo0/CBoCJDA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nKe+8W2NeUgMy3fEOltVhWD7RDAt1z7eG4LlHRLA8GpbqdMMh6Vuz5/QO7DvksdHHuQGDsfjX9N5VH4S/dUr2PzWBoeMXbHLuhrsqfSzOqIFwZljkuf/JTZFB9beC5B6e0rtUblULupjkAWaKGbg1G71d/TBDaPfUFUg/kmdNgw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=zC8O6U8p; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=4LxsTAN26HIURdcXMcX20uKi6Ih9gxk5NO22wPlrhak=; b=zC8O6U8pn7z57zP0F7HYb68PF0
-	CraHT2cGc/l0OwG5VF6n/Av7YWdw/2RNVmeLWbolhV4eEPJ4ApwwAkE2gySg5dCfdPr0QObCRO1lZ
-	VJgpxi/1ed7xfOE4MLhZkJVC5f4HzdQaikfL0vJioOxjx8M20dE0Auz1hsHYv2ePgdVcNQKeJA7fV
-	2CnuONyIXDhWrE5WEIyPg3yrRspA00WKZNP3BM8RSKW5UWwBGxmbvWzGXIDHsgSiv5Lc1QEnzCkmi
-	S4cUv7sEtfDNuqgXhufw9XDc/+xvGQsKFX49m9z+wUPr+CG/pILBpSkKNyW6uDCPVAot3+aE/+/W7
-	omEbGSvA==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-pm@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	tony@atomide.com,
-	linux-kernel@vger.kernel.org,
-	linux-omap@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	devicetree@vger.kernel.org,
-	Sebastian Reichel <sre@kernel.org>,
-	Rob Herring <robh@kernel.org>
-Cc: Andreas Kemnade <andreas@kemnade.info>
-Subject: [PATCH v2 3/3] power: supply: initial support for TWL6030/32
-Date: Mon, 30 Sep 2024 17:54:04 +0200
-Message-Id: <20240930155404.1275702-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240930155404.1275702-1-andreas@kemnade.info>
-References: <20240930155404.1275702-1-andreas@kemnade.info>
+	s=arc-20240116; t=1727713193; c=relaxed/simple;
+	bh=JwgyS1/8EuLcaGV8MbX7Bolp1+FxZ9jBIGjX3JhohjY=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZTMjS1p/Hgy71UuOovpMWNIppCFkYk2XV/EZmjhjxlsSKuNyhMJdP2NPlr6yFffWXhmTv2HOAfQgyI66oKljsZwhL+H5VclGxH/Lk1iR+9XwyQNfNji9tYGlBPXftAaNzJuBXPTKIEwmsS7NvRW/f2PNFHADc1KmuxLj/EMnWFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hellion.org.uk; spf=pass smtp.mailfrom=hellion.org.uk; arc=none smtp.client-ip=46.235.224.207
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hellion.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=hellion.org.uk
+Received: from cmbg-18-b2-v4wan-169768-cust68.vm17.cable.virginm.net ([81.101.144.69] helo=dagon.hellion.org.uk)
+	by benson.vs.mythic-beasts.com with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <ijc@hellion.org.uk>)
+	id 1svISG-00Adyt-23;
+	Mon, 30 Sep 2024 15:36:56 +0000
+Message-ID: <1d3780b6017ac15a9f0c42085a18647df02a1958.camel@hellion.org.uk>
+Subject: Re: [PATCH devicetree-rebasing] Add support for overlays
+From: Ian Campbell <ijc@hellion.org.uk>
+To: Jan Kiszka <jan.kiszka@siemens.com>, devicetree
+ <devicetree@vger.kernel.org>
+Date: Mon, 30 Sep 2024 16:36:56 +0100
+In-Reply-To: <034401d8-cc96-455f-9d2d-780fb917d5d5@siemens.com>
+References: <034401d8-cc96-455f-9d2d-780fb917d5d5@siemens.com>
+Autocrypt: addr=ijc@hellion.org.uk; prefer-encrypt=mutual;
+ keydata=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
+ 7EkE=
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.3-1 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Add a driver for the charger in the TWL6030/32. For now it does not report
-much in sysfs but parameters are set up for USB, charging is enabled with
-the specified parameters. It stops charging when full and also restarts
-charging.
-This prevents ending up in a system setup where you run out of battery
-although a charger is plugged in after precharge completed.
+Thanks, I've pushed this.
 
-Battery voltage behavior was checked via the GPADC.
+Ian.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- drivers/power/supply/Kconfig           |  10 +
- drivers/power/supply/Makefile          |   1 +
- drivers/power/supply/twl6030_charger.c | 580 +++++++++++++++++++++++++
- 3 files changed, 591 insertions(+)
- create mode 100644 drivers/power/supply/twl6030_charger.c
-
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index bcfa63fb9f1e2..9f2eef6787f7a 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -493,6 +493,16 @@ config CHARGER_TWL4030
- 	help
- 	  Say Y here to enable support for TWL4030 Battery Charge Interface.
- 
-+config CHARGER_TWL6030
-+	tristate "OMAP TWL6030 BCI charger driver"
-+	depends on IIO && TWL4030_CORE
-+	help
-+	  Say Y here to enable support for TWL6030/6032 Battery Charge
-+	  Interface.
-+
-+	  This driver can be build as a module. If so, the module will be
-+	  called twl6030_charger.
-+
- config CHARGER_LP8727
- 	tristate "TI/National Semiconductor LP8727 charger driver"
- 	depends on I2C
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index 8dcb415453171..59c4a9f40d28a 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -69,6 +69,7 @@ obj-$(CONFIG_CHARGER_CPCAP)	+= cpcap-charger.o
- obj-$(CONFIG_CHARGER_ISP1704)	+= isp1704_charger.o
- obj-$(CONFIG_CHARGER_MAX8903)	+= max8903_charger.o
- obj-$(CONFIG_CHARGER_TWL4030)	+= twl4030_charger.o
-+obj-$(CONFIG_CHARGER_TWL6030)	+= twl6030_charger.o
- obj-$(CONFIG_CHARGER_LP8727)	+= lp8727_charger.o
- obj-$(CONFIG_CHARGER_LP8788)	+= lp8788-charger.o
- obj-$(CONFIG_CHARGER_GPIO)	+= gpio-charger.o
-diff --git a/drivers/power/supply/twl6030_charger.c b/drivers/power/supply/twl6030_charger.c
-new file mode 100644
-index 0000000000000..cbb46eb472414
---- /dev/null
-+++ b/drivers/power/supply/twl6030_charger.c
-@@ -0,0 +1,580 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * TWL6030 charger
-+ *
-+ * Copyright (C) 2024 Andreas Kemnade <andreas@kemnade.info>
-+ *
-+ * based on older 6030 driver found in a v3.0 vendor kernel
-+ *
-+ * based on twl4030_bci_battery.c by TI
-+ * Copyright (C) 2008 Texas Instruments, Inc.
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/module.h>
-+#include <linux/slab.h>
-+#include <linux/err.h>
-+#include <linux/of.h>
-+#include <linux/bits.h>
-+#include <linux/platform_device.h>
-+#include <linux/interrupt.h>
-+#include <linux/mfd/twl.h>
-+#include <linux/power_supply.h>
-+#include <linux/notifier.h>
-+#include <linux/usb/otg.h>
-+#include <linux/iio/consumer.h>
-+#include <linux/devm-helpers.h>
-+
-+#define CONTROLLER_INT_MASK	0x00
-+#define CONTROLLER_CTRL1	0x01
-+#define CONTROLLER_WDG		0x02
-+#define CONTROLLER_STAT1	0x03
-+#define CHARGERUSB_INT_STATUS	0x04
-+#define CHARGERUSB_INT_MASK	0x05
-+#define CHARGERUSB_STATUS_INT1	0x06
-+#define CHARGERUSB_STATUS_INT2	0x07
-+#define CHARGERUSB_CTRL1	0x08
-+#define CHARGERUSB_CTRL2	0x09
-+#define CHARGERUSB_CTRL3	0x0A
-+#define CHARGERUSB_STAT1	0x0B
-+#define CHARGERUSB_VOREG	0x0C
-+#define CHARGERUSB_VICHRG	0x0D
-+#define CHARGERUSB_CINLIMIT	0x0E
-+#define CHARGERUSB_CTRLLIMIT1	0x0F
-+#define CHARGERUSB_CTRLLIMIT2	0x10
-+#define ANTICOLLAPSE_CTRL1	0x11
-+#define ANTICOLLAPSE_CTRL2	0x12
-+
-+/* TWL6032 registers 0xDA to 0xDE - TWL6032_MODULE_CHARGER */
-+#define CONTROLLER_CTRL2	0x00
-+#define CONTROLLER_VSEL_COMP	0x01
-+#define CHARGERUSB_VSYSREG	0x02
-+#define CHARGERUSB_VICHRG_PC	0x03
-+#define LINEAR_CHRG_STS		0x04
-+
-+#define LINEAR_CHRG_STS_CRYSTL_OSC_OK	0x40
-+#define LINEAR_CHRG_STS_END_OF_CHARGE	0x20
-+#define LINEAR_CHRG_STS_VBATOV		0x10
-+#define LINEAR_CHRG_STS_VSYSOV		0x08
-+#define LINEAR_CHRG_STS_DPPM_STS	0x04
-+#define LINEAR_CHRG_STS_CV_STS		0x02
-+#define LINEAR_CHRG_STS_CC_STS		0x01
-+
-+#define FG_REG_00	0x00
-+#define FG_REG_01	0x01
-+#define FG_REG_02	0x02
-+#define FG_REG_03	0x03
-+#define FG_REG_04	0x04
-+#define FG_REG_05	0x05
-+#define FG_REG_06	0x06
-+#define FG_REG_07	0x07
-+#define FG_REG_08	0x08
-+#define FG_REG_09	0x09
-+#define FG_REG_10	0x0A
-+#define FG_REG_11	0x0B
-+
-+/* CONTROLLER_INT_MASK */
-+#define MVAC_FAULT		BIT(7)
-+#define MAC_EOC			BIT(6)
-+#define LINCH_GATED		BIT(5)
-+#define MBAT_REMOVED		BIT(4)
-+#define MFAULT_WDG		BIT(3)
-+#define MBAT_TEMP		BIT(2)
-+#define MVBUS_DET		BIT(1)
-+#define MVAC_DET		BIT(0)
-+
-+/* CONTROLLER_CTRL1 */
-+#define CONTROLLER_CTRL1_EN_LINCH	BIT(5)
-+#define CONTROLLER_CTRL1_EN_CHARGER	BIT(4)
-+#define CONTROLLER_CTRL1_SEL_CHARGER	BIT(3)
-+
-+/* CONTROLLER_STAT1 */
-+#define CONTROLLER_STAT1_EXTCHRG_STATZ	BIT(7)
-+#define CONTROLLER_STAT1_LINCH_GATED	BIT(6)
-+#define CONTROLLER_STAT1_CHRG_DET_N	BIT(5)
-+#define CONTROLLER_STAT1_FAULT_WDG	BIT(4)
-+#define CONTROLLER_STAT1_VAC_DET	BIT(3)
-+#define VAC_DET	BIT(3)
-+#define CONTROLLER_STAT1_VBUS_DET	BIT(2)
-+#define VBUS_DET	BIT(2)
-+#define CONTROLLER_STAT1_BAT_REMOVED	BIT(1)
-+#define CONTROLLER_STAT1_BAT_TEMP_OVRANGE BIT(0)
-+
-+/* CHARGERUSB_INT_STATUS */
-+#define EN_LINCH		BIT(4)
-+#define CURRENT_TERM_INT	BIT(3)
-+#define CHARGERUSB_STAT		BIT(2)
-+#define CHARGERUSB_THMREG	BIT(1)
-+#define CHARGERUSB_FAULT	BIT(0)
-+
-+/* CHARGERUSB_INT_MASK */
-+#define MASK_MCURRENT_TERM		BIT(3)
-+#define MASK_MCHARGERUSB_STAT		BIT(2)
-+#define MASK_MCHARGERUSB_THMREG		BIT(1)
-+#define MASK_MCHARGERUSB_FAULT		BIT(0)
-+
-+/* CHARGERUSB_STATUS_INT1 */
-+#define CHARGERUSB_STATUS_INT1_TMREG	BIT(7)
-+#define CHARGERUSB_STATUS_INT1_NO_BAT	BIT(6)
-+#define CHARGERUSB_STATUS_INT1_BST_OCP	BIT(5)
-+#define CHARGERUSB_STATUS_INT1_TH_SHUTD	BIT(4)
-+#define CHARGERUSB_STATUS_INT1_BAT_OVP	BIT(3)
-+#define CHARGERUSB_STATUS_INT1_POOR_SRC	BIT(2)
-+#define CHARGERUSB_STATUS_INT1_SLP_MODE	BIT(1)
-+#define CHARGERUSB_STATUS_INT1_VBUS_OVP	BIT(0)
-+
-+/* CHARGERUSB_STATUS_INT2 */
-+#define ICCLOOP		BIT(3)
-+#define CURRENT_TERM	BIT(2)
-+#define CHARGE_DONE	BIT(1)
-+#define ANTICOLLAPSE	BIT(0)
-+
-+/* CHARGERUSB_CTRL1 */
-+#define SUSPEND_BOOT	BIT(7)
-+#define OPA_MODE	BIT(6)
-+#define HZ_MODE		BIT(5)
-+#define TERM		BIT(4)
-+
-+/* CHARGERUSB_CTRL2 */
-+#define UA_TO_VITERM(x) (((x) / 50000 - 1) << 5)
-+
-+/* CHARGERUSB_CTRL3 */
-+#define VBUSCHRG_LDO_OVRD	BIT(7)
-+#define CHARGE_ONCE		BIT(6)
-+#define BST_HW_PR_DIS		BIT(5)
-+#define AUTOSUPPLY		BIT(3)
-+#define BUCK_HSILIM		BIT(0)
-+
-+/* CHARGERUSB_VOREG */
-+#define UV_TO_VOREG(x) (((x) - 3500000) / 20000)
-+#define VOREG_TO_UV(x) (((x) & 0x3F) * 20000 + 3500000)
-+#define CHARGERUSB_VOREG_3P52		0x01
-+#define CHARGERUSB_VOREG_4P0		0x19
-+#define CHARGERUSB_VOREG_4P2		0x23
-+#define CHARGERUSB_VOREG_4P76		0x3F
-+
-+/* CHARGERUSB_VICHRG */
-+/*
-+ * might be inaccurate for < 500 mA, diffent scale might apply,
-+ * either starting from 100 mA or 300 mA
-+ */
-+#define UA_TO_VICHRG(x) (((x) / 100000) - 1)
-+#define VICHRG_TO_UA(x) (((x) & 0xf) * 100000 + 100000)
-+
-+/* CHARGERUSB_CINLIMIT */
-+#define CHARGERUSB_CIN_LIMIT_100	0x1
-+#define CHARGERUSB_CIN_LIMIT_300	0x5
-+#define CHARGERUSB_CIN_LIMIT_500	0x9
-+#define CHARGERUSB_CIN_LIMIT_NONE	0xF
-+
-+/* CHARGERUSB_CTRLLIMIT2 */
-+#define CHARGERUSB_CTRLLIMIT2_1500	0x0E
-+#define		LOCK_LIMIT		BIT(4)
-+
-+/* ANTICOLLAPSE_CTRL2 */
-+#define BUCK_VTH_SHIFT			5
-+
-+/* FG_REG_00 */
-+#define CC_ACTIVE_MODE_SHIFT	6
-+#define CC_AUTOCLEAR		BIT(2)
-+#define CC_CAL_EN		BIT(1)
-+#define CC_PAUSE		BIT(0)
-+
-+#define REG_TOGGLE1		0x90
-+#define REG_PWDNSTATUS1		0x93
-+#define FGDITHS			BIT(7)
-+#define FGDITHR			BIT(6)
-+#define FGS			BIT(5)
-+#define FGR			BIT(4)
-+#define BBSPOR_CFG		0xE6
-+#define	BB_CHG_EN		BIT(3)
-+
-+struct twl6030_charger_info {
-+	struct device		*dev;
-+	struct power_supply	*usb;
-+	struct power_supply_battery_info *binfo;
-+	struct work_struct	work;
-+	int			irq_chg;
-+	int			input_current_limit;
-+	struct iio_channel	*channel_vusb;
-+	struct delayed_work	charger_monitor;
-+	bool			extended_current_range;
-+};
-+
-+struct twl6030_charger_chip_data {
-+	bool extended_current_range;
-+};
-+
-+static int twl6030_charger_read(u8 reg, u8 *val)
-+{
-+	return twl_i2c_read_u8(TWL_MODULE_MAIN_CHARGE, val, reg);
-+}
-+
-+static int twl6030_charger_write(u8 reg, u8 val)
-+{
-+	return twl_i2c_write_u8(TWL_MODULE_MAIN_CHARGE, val, reg);
-+}
-+
-+static int twl6030_config_cinlimit_reg(struct twl6030_charger_info *charger,
-+				       unsigned int ua)
-+{
-+	if (ua >= 50000 && ua <= 750000) {
-+		ua = (ua - 50000) / 50000;
-+	} else if ((ua > 750000) && (ua <= 1500000) && charger->extended_current_range) {
-+		ua = ((ua % 100000) ? 0x30 : 0x20) + ((ua - 100000) / 100000);
-+	} else {
-+		if (ua < 50000) {
-+			dev_err(charger->dev, "invalid input current limit\n");
-+			return -EINVAL;
-+		}
-+		/* This is no current limit */
-+		ua = 0x0F;
-+	}
-+
-+	return twl6030_charger_write(CHARGERUSB_CINLIMIT, ua);
-+}
-+
-+/*
-+ * rewriting all stuff here, resets to extremely conservative defaults were
-+ * seen under some circumstances, like charge voltage to 3.5V
-+ */
-+static int twl6030_enable_usb(struct twl6030_charger_info *charger)
-+{
-+	int ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_VICHRG,
-+				    UA_TO_VICHRG(charger->binfo->constant_charge_current_max_ua));
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CONTROLLER_WDG, 0xff);
-+	if (ret < 0)
-+		return ret;
-+
-+	charger->input_current_limit = 500000;
-+	ret = twl6030_config_cinlimit_reg(charger, charger->input_current_limit);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_CINLIMIT, CHARGERUSB_CIN_LIMIT_500);
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_VOREG,
-+				    UV_TO_VOREG(charger->binfo->constant_charge_voltage_max_uv));
-+	if (ret < 0)
-+		return ret;
-+
-+	ret = twl6030_charger_write(CHARGERUSB_CTRL1, TERM);
-+	if (ret < 0)
-+		return ret;
-+
-+	if (charger->binfo->charge_term_current_ua != -EINVAL) {
-+		ret = twl6030_charger_write(CHARGERUSB_CTRL2,
-+					    UA_TO_VITERM(charger->binfo->charge_term_current_ua));
-+		if (ret < 0)
-+			return ret;
-+	}
-+
-+	return twl6030_charger_write(CONTROLLER_CTRL1, CONTROLLER_CTRL1_EN_CHARGER);
-+}
-+
-+static void twl6030_charger_wdg(struct work_struct *data)
-+{
-+	struct twl6030_charger_info *charger =
-+		container_of(data, struct twl6030_charger_info,
-+			     charger_monitor.work);
-+
-+	u8 val;
-+	u8 int_stat;
-+	u8 stat_int1;
-+	u8 stat_int2;
-+
-+	twl6030_charger_read(CONTROLLER_STAT1, &val);
-+	twl6030_charger_read(CHARGERUSB_INT_STATUS, &int_stat);
-+	twl6030_charger_read(CHARGERUSB_STATUS_INT1, &stat_int1);
-+	twl6030_charger_read(CHARGERUSB_STATUS_INT2, &stat_int2);
-+	dev_dbg(charger->dev,
-+		"wdg: stat1: %02x %s INT_STATUS %02x STATUS_INT1 %02x STATUS_INT2 %02x\n",
-+		val, (val & VBUS_DET) ? "usb online" :  "usb offline",
-+		int_stat, stat_int1, stat_int2);
-+
-+	twl6030_charger_write(CONTROLLER_WDG, 0xff);
-+	schedule_delayed_work(&charger->charger_monitor,
-+			      msecs_to_jiffies(10000));
-+}
-+
-+static irqreturn_t twl6030_charger_interrupt(int irq, void *arg)
-+{
-+	struct twl6030_charger_info *charger = arg;
-+	u8 val;
-+	u8 int_stat;
-+	u8 stat_int1;
-+	u8 stat_int2;
-+
-+	if (twl6030_charger_read(CONTROLLER_STAT1, &val) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_INT_STATUS, &int_stat) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_STATUS_INT1, &stat_int1) < 0)
-+		return IRQ_HANDLED;
-+
-+	if (twl6030_charger_read(CHARGERUSB_STATUS_INT2, &stat_int2) < 0)
-+		return IRQ_HANDLED;
-+
-+	dev_dbg(charger->dev,
-+		"charger irq: stat1: %02x %s INT_STATUS %02x STATUS_INT1 %02x STATUS_INT2 %02x\n",
-+		val, (val & VBUS_DET) ? "usb online" :  "usb offline",
-+		int_stat, stat_int1, stat_int2);
-+	power_supply_changed(charger->usb);
-+
-+	if (val & VBUS_DET) {
-+		if (twl6030_charger_read(CONTROLLER_CTRL1, &val) < 0)
-+			return IRQ_HANDLED;
-+
-+		if (!(val & CONTROLLER_CTRL1_EN_CHARGER)) {
-+			if (twl6030_enable_usb(charger) < 0)
-+				return IRQ_HANDLED;
-+
-+			schedule_delayed_work(&charger->charger_monitor,
-+					      msecs_to_jiffies(10000));
-+		}
-+	} else {
-+		cancel_delayed_work(&charger->charger_monitor);
-+	}
-+	return IRQ_HANDLED;
-+}
-+
-+static int twl6030_charger_usb_get_property(struct power_supply *psy,
-+					    enum power_supply_property psp,
-+					    union power_supply_propval *val)
-+{
-+	struct twl6030_charger_info *charger = power_supply_get_drvdata(psy);
-+	int ret;
-+	u8 stat1;
-+	u8 intstat;
-+
-+	ret = twl6030_charger_read(CONTROLLER_STAT1, &stat1);
-+	if (ret)
-+		return ret;
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_STATUS:
-+		if (!(stat1 & VBUS_DET)) {
-+			val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+			break;
-+		}
-+		ret = twl6030_charger_read(CHARGERUSB_STATUS_INT2, &intstat);
-+		if (ret)
-+			return ret;
-+
-+		if (intstat & CHARGE_DONE)
-+			val->intval = POWER_SUPPLY_STATUS_FULL;
-+		else if (intstat & CURRENT_TERM)
-+			val->intval = POWER_SUPPLY_STATUS_NOT_CHARGING;
-+		else
-+			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-+		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		if (!charger->channel_vusb)
-+			return -ENODATA;
-+
-+		ret = iio_read_channel_processed_scale(charger->channel_vusb, &val->intval, 1000);
-+		if (ret < 0)
-+			return ret;
-+
-+		break;
-+	case POWER_SUPPLY_PROP_ONLINE:
-+		val->intval = !!(stat1 & VBUS_DET);
-+		break;
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		val->intval = charger->input_current_limit;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int twl6030_charger_usb_set_property(struct power_supply *psy,
-+					    enum power_supply_property psp,
-+					    const union power_supply_propval *val)
-+{
-+	struct twl6030_charger_info *charger = power_supply_get_drvdata(psy);
-+
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		charger->input_current_limit = val->intval;
-+		return twl6030_config_cinlimit_reg(charger, charger->input_current_limit);
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int twl6030_charger_usb_property_is_writeable(struct power_supply *psy,
-+						     enum power_supply_property psp)
-+{
-+	dev_info(&psy->dev, "is %d writeable?\n", (int)psp);
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static enum power_supply_property twl6030_charger_props[] = {
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_ONLINE,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+	POWER_SUPPLY_PROP_INPUT_CURRENT_LIMIT,
-+};
-+
-+static const struct power_supply_desc twl6030_charger_usb_desc = {
-+	.name		= "twl6030_usb",
-+	.type		= POWER_SUPPLY_TYPE_USB,
-+	.properties	= twl6030_charger_props,
-+	.num_properties	= ARRAY_SIZE(twl6030_charger_props),
-+	.get_property	= twl6030_charger_usb_get_property,
-+	.set_property	= twl6030_charger_usb_set_property,
-+	.property_is_writeable	= twl6030_charger_usb_property_is_writeable,
-+};
-+
-+static int twl6030_charger_probe(struct platform_device *pdev)
-+{
-+	struct twl6030_charger_info *charger;
-+	const struct twl6030_charger_chip_data *chip_data;
-+	struct power_supply_config psy_cfg = {};
-+	int ret;
-+	u8 val;
-+
-+	charger = devm_kzalloc(&pdev->dev, sizeof(*charger), GFP_KERNEL);
-+	if (!charger)
-+		return -ENOMEM;
-+
-+	charger->dev = &pdev->dev;
-+	charger->irq_chg = platform_get_irq(pdev, 0);
-+
-+	chip_data = device_get_match_data(&pdev->dev);
-+	if (!chip_data)
-+		return dev_err_probe(&pdev->dev, -EINVAL, "missing chip data\n");
-+
-+	charger->extended_current_range = chip_data->extended_current_range;
-+	platform_set_drvdata(pdev, charger);
-+	psy_cfg.drv_data = charger;
-+
-+	charger->channel_vusb = devm_iio_channel_get(&pdev->dev, "vusb");
-+	if (IS_ERR(charger->channel_vusb)) {
-+		ret = PTR_ERR(charger->channel_vusb);
-+		if (ret == -EPROBE_DEFER)
-+			return ret;	/* iio not ready */
-+		dev_warn(&pdev->dev, "could not request vusb iio channel (%d)",
-+			 ret);
-+		charger->channel_vusb = NULL;
-+	}
-+
-+	charger->usb = devm_power_supply_register(&pdev->dev,
-+						  &twl6030_charger_usb_desc,
-+						  &psy_cfg);
-+	if (IS_ERR(charger->usb))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(charger->usb),
-+				     "Failed to register usb\n");
-+
-+	ret = power_supply_get_battery_info(charger->usb, &charger->binfo);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "Failed to get battery info\n");
-+
-+	dev_info(&pdev->dev, "battery with vmax %d imax: %d\n",
-+		 charger->binfo->constant_charge_voltage_max_uv,
-+		 charger->binfo->constant_charge_current_max_ua);
-+
-+	if (charger->binfo->constant_charge_voltage_max_uv == -EINVAL) {
-+		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT1, &val);
-+		if (ret < 0)
-+			return ret;
-+
-+		charger->binfo->constant_charge_voltage_max_uv =
-+			VOREG_TO_UV(val);
-+	}
-+
-+	if (charger->binfo->constant_charge_voltage_max_uv > 4760000 ||
-+	    charger->binfo->constant_charge_voltage_max_uv < 350000)
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+				     "Invalid charge voltage\n");
-+
-+	if (charger->binfo->constant_charge_current_max_ua == -EINVAL) {
-+		ret = twl6030_charger_read(CHARGERUSB_CTRLLIMIT2, &val);
-+		if (ret < 0)
-+			return ret;
-+
-+		charger->binfo->constant_charge_current_max_ua = VICHRG_TO_UA(val);
-+	}
-+
-+	if (charger->binfo->constant_charge_current_max_ua < 100000 ||
-+	    charger->binfo->constant_charge_current_max_ua > 1500000) {
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+			 "Invalid charge current\n");
-+	}
-+
-+	if ((charger->binfo->charge_term_current_ua != -EINVAL) &&
-+	    (charger->binfo->charge_term_current_ua > 400000 ||
-+	     charger->binfo->charge_term_current_ua < 50000)) {
-+		return dev_err_probe(&pdev->dev, -EINVAL,
-+			"Invalid charge termination current\n");
-+	}
-+
-+	ret = devm_delayed_work_autocancel(&pdev->dev,
-+					   &charger->charger_monitor,
-+					   twl6030_charger_wdg);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "Failed to register delayed work\n");
-+
-+	ret = devm_request_threaded_irq(&pdev->dev, charger->irq_chg, NULL,
-+					twl6030_charger_interrupt,
-+					IRQF_ONESHOT, pdev->name,
-+					charger);
-+	if (ret < 0)
-+		return dev_err_probe(&pdev->dev, ret,
-+				     "could not request irq %d\n",
-+				     charger->irq_chg);
-+
-+	/* turing to charging to configure things */
-+	twl6030_charger_write(CONTROLLER_CTRL1, 0);
-+	twl6030_charger_interrupt(0, charger);
-+
-+	return 0;
-+}
-+
-+static const struct twl6030_charger_chip_data twl6030_data = {
-+	.extended_current_range = false,
-+};
-+
-+static const struct twl6030_charger_chip_data twl6032_data = {
-+	.extended_current_range = true,
-+};
-+
-+static const struct of_device_id twl_charger_of_match[] = {
-+	{.compatible = "ti,twl6030-charger", .data = &twl6030_data},
-+	{.compatible = "ti,twl6032-charger", .data = &twl6032_data},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, twl_charger_of_match);
-+
-+static struct platform_driver twl6030_charger_driver = {
-+	.probe = twl6030_charger_probe,
-+	.driver	= {
-+		.name	= "twl6030_charger",
-+		.of_match_table = twl_charger_of_match,
-+	},
-+};
-+module_platform_driver(twl6030_charger_driver);
-+
-+MODULE_DESCRIPTION("TWL6030 Battery Charger Interface driver");
-+MODULE_LICENSE("GPL");
--- 
-2.39.2
+On Mon, 2024-09-30 at 07:41 +0200, Jan Kiszka wrote:
+> From: Jan Kiszka <jan.kiszka@siemens.com>
+>=20
+> Make sure that upstream overlays can also be built and, thus,
+> checked.
+>=20
+> Signed-off-by: Jan Kiszka <jan.kiszka@siemens.com>
+> ---
+> =A0Makefile | 24 +++++++++++++++++++-----
+> =A01 file changed, 19 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Makefile b/Makefile
+> index fb51acef7c..210830c688 100644
+> --- a/Makefile
+> +++ b/Makefile
+> @@ -100,25 +100,29 @@ clean_%:
+> =A0ifeq ($(ARCH),)
+> =A0
+> =A0ALL_DTS		:=3D $(shell find src/* -name \*.dts)
+> +ALL_DTSO	:=3D $(shell find src/* -name \*.dtso)
+> =A0
+> =A0ALL_DTB		:=3D $(patsubst %.dts,%.dtb,$(ALL_DTS))
+> +ALL_DTBO	:=3D $(patsubst %.dtso,%.dtbo,$(ALL_DTSO))
+> =A0
+> -$(ALL_DTB): ARCH=3D$(word 2,$(subst /, ,$@))
+> -$(ALL_DTB): FORCE
+> +$(ALL_DTB) $(ALL_DTBO): ARCH=3D$(word 2,$(subst /, ,$@))
+> +$(ALL_DTB) $(ALL_DTBO): FORCE
+> =A0	$(Q)$(MAKE) ARCH=3D$(ARCH) $@
+> =A0
+> =A0else
+> =A0
+> =A0ARCH_DTS	:=3D $(shell find src/$(ARCH) -name \*.dts)
+> +ARCH_DTSO	:=3D $(shell find src/$(ARCH) -name \*.dtso)
+> =A0
+> =A0ARCH_DTB	:=3D $(patsubst %.dts,%.dtb,$(ARCH_DTS))
+> +ARCH_DTBO	:=3D $(patsubst %.dtso,%.dtbo,$(ARCH_DTSO))
+> =A0
+> =A0src	:=3D src/$(ARCH)
+> =A0obj	:=3D src/$(ARCH)
+> =A0
+> =A0include scripts/Kbuild.include
+> =A0
+> -cmd_files :=3D $(wildcard $(foreach f,$(ARCH_DTB),$(dir $(f)).$(notdir
+> $(f)).cmd))
+> +cmd_files :=3D $(wildcard $(foreach f,$(ARCH_DTB) $(ARCH_DTBO),$(dir
+> $(f)).$(notdir $(f)).cmd))
+> =A0
+> =A0ifneq ($(cmd_files),)
+> =A0=A0 include $(cmd_files)
+> @@ -143,15 +147,25 @@ cmd_dtc =3D $(CPP) $(dtc_cpp_flags) -x assembler-
+> with-cpp -o $(dtc-tmp) $< ; \
+> =A0$(obj)/%.dtb: $(src)/%.dts FORCE
+> =A0	$(call if_changed_dep,dtc)
+> =A0
+> +quiet_cmd_dtco =3D DTCO=A0=A0=A0 $@
+> +cmd_dtco =3D $(CPP) $(dtc_cpp_flags) -x assembler-with-cpp -o $(dtc-
+> tmp) $< ; \
+> +=A0=A0=A0=A0=A0=A0=A0 $(DTC) -@ -O dtb -o $@ -b 0 \
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -i $(src) $(DTC_FLAGS) \
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -d $(depfile).dtc.tmp $(dt=
+c-tmp) ; \
+> +=A0=A0=A0=A0=A0=A0=A0 cat $(depfile).pre.tmp $(depfile).dtc.tmp > $(depf=
+ile)
+> +
+> +$(obj)/%.dtbo: $(src)/%.dtso FORCE
+> +	$(call if_changed_dep,dtco)
+> +
+> =A0PHONY +=3D all_arch
+> -all_arch: $(ARCH_DTB)
+> +all_arch: $(ARCH_DTB) $(ARCH_DTBO)
+> =A0	@:
+> =A0
+> =A0RCS_FIND_IGNORE :=3D \( -name SCCS -o -name BitKeeper -o -name .svn -o
+> -name CVS \
+> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 -o -name .pc -o=
+ -name .hg -o -name .git \) -prune
+> -o
+> =A0
+> =A0PHONY +=3D clean_arch
+> -clean_arch: __clean-files =3D $(ARCH_DTB)
+> +clean_arch: __clean-files =3D $(ARCH_DTB) $(ARCH_DTBO)
+> =A0clean_arch: FORCE
+> =A0	$(call cmd,clean)
+> =A0	@find . $(RCS_FIND_IGNORE) \
 
 
