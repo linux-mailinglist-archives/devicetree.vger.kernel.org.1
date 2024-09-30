@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-106496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1981C98A656
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:57:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3051598A659
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:58:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF4CC2850BF
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:57:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF0361F228A6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:58:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 527201922D9;
-	Mon, 30 Sep 2024 13:54:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87ABB1925AF;
+	Mon, 30 Sep 2024 13:54:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WysnG83C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJXUfV7c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD8C18FDD8;
-	Mon, 30 Sep 2024 13:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DEFD190462;
+	Mon, 30 Sep 2024 13:54:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727704440; cv=none; b=mhuQGygHk445sVcrCLXwvh93kBDx5ZP3pjf/bxmJA5f9VbdMkW+RcpWkNl3iO1XZxaFH9EXk7pJbYNFTUOeWhxHGTP8QUaMI4NdrD5hQ0hTOC+dbb61i1mMUqQ2l7XsrqXCLitnadHBEqoApqJAQ8vkYrYR+toy0SKmOc6qiuhA=
+	t=1727704473; cv=none; b=Twxtqm9qI6H/F1MzHmwog/ejG4GwHfLKJjgcg1P0ez+BZXQJd3ewv9jkglVwSrXPKkMsoCHGFMzwduJqhL9zSKAx/AYEYuojSp1H06VCUmDLc2X6NQ5xk/xlb8YkJMdTNRnGUwwKhd9qIEiGxiDM4T+Ov7abEnKNZN3AT5fgO58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727704440; c=relaxed/simple;
-	bh=pCgtNUlDws28YKTzJDQZoNSiw0mc+bFIyJBWjYcPoK0=;
+	s=arc-20240116; t=1727704473; c=relaxed/simple;
+	bh=d7gElJyf7D9ksXwAIpophG5Uqbgtl7nqygwS91dUJ38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U7d3y5yvri8DG+VHjZwjU2aRESVtez21hwJkfiwkBDDbf5MPaa7ztJxIKbZGqTazWpyfbrJNdixJl20rE2nNNeU+pHlLvOz8Uqz168sKIjD/zXDaY8XpGZUVLnaJqGN5R/pIMCJYcmPSy2YpG9h2RNngDDp/sKn1xI/z3Jur9h0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WysnG83C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C20DFC4CEC7;
-	Mon, 30 Sep 2024 13:53:57 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lOrwHZGQI8rDDd7pgquWm4njMa8p8BHj5oWNzH8XoLgx3NiByfwo+cGcUqRkrafhp5P4CkB09nVoSCuHPeNZRdj0Kt+EfrqKCVFdyxwX4/D0LAACgJf3KgWC+5dMNjSEJV+KDruOxsrriD+j/b2fgnJMR16rgQ+z1pfJLfnt3Nk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJXUfV7c; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B9C0C4CECF;
+	Mon, 30 Sep 2024 13:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727704439;
-	bh=pCgtNUlDws28YKTzJDQZoNSiw0mc+bFIyJBWjYcPoK0=;
+	s=k20201202; t=1727704470;
+	bh=d7gElJyf7D9ksXwAIpophG5Uqbgtl7nqygwS91dUJ38=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WysnG83CKIrIeBANzf2lJRzkrWWTNiiMDY7duwnOsKgmgmCSbRxlRRx2xiKF6PuNO
-	 Nv/pq7bpYHa/MKtowGJTbtjI3MEOVqCqNGnRkg04RrBkGNLZiJqFChPzdauKe6UrmC
-	 dPnCq+OX2vZiCWuXOXsfurSiF8qhcErbQrwt6+IuqhW5yQonZWRZLU7KZ07r26m4+j
-	 c6/3YsNSscp+mnLbZVGiDooEGd07YyubftQXk1NuslGKgC2q+7sKO26XDWW26x3WJI
-	 xuK/oUoJ+Td0I8GWnjArW5kd1T5jc+Lk91UO3/9pybt1iUbYd4jzoKROwNA2IcbVBu
-	 /hJyaQkf7kqQg==
-Date: Mon, 30 Sep 2024 14:53:55 +0100
+	b=cJXUfV7cCMSkCaK5VN1ykIgI6bvWdDJfSG4mh1k5Hr5NeY/xi9qatMjlr3Ud077uv
+	 LSX0khtMy9DyBRAaoLTeNoU6DOx5PIXX1qHipQIaiNHaZ0HA5M+LJQYKq+t4deHzQd
+	 6dVO+ffGD+oMUrgIaGE2PD0Y8D+q0IxWw7u427cphbu3aqHEN4SOZZvi6JMXvA45xe
+	 12L5azxtBta4vRmon85LlA4ttUv9tcfjUv49zpQDyMWzYbEn+WAyAXlW+cLc9UMHPV
+	 Fihnc1GI9xwrbVOuprYjw71PEspjD/geJxVVkcwviChiJu/Pa10M+voCQ1WfGurHGQ
+	 asCWbvZ8mgTAw==
+Date: Mon, 30 Sep 2024 14:54:25 +0100
 From: Conor Dooley <conor@kernel.org>
 To: pierre-henry.moussay@microchip.com
 Cc: Linux4Microchip@microchip.com,
@@ -49,13 +49,15 @@ Cc: Linux4Microchip@microchip.com,
 	Daire McNamara <daire.mcnamara@microchip.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [linux][PATCH v2 14/20] dt-bindings: soc: microchip:
- mpfs-sys-controller: Add PIC64GX compatibility
-Message-ID: <20240930-patio-portly-cd5d3c95152d@spud>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [linux][PATCH v2 15/20] dt-bindings: riscv: microchip: document
+ the PIC64GX curiosity kit
+Message-ID: <20240930-knelt-sway-04060e0ee22b@spud>
 References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
- <20240930095449.1813195-15-pierre-henry.moussay@microchip.com>
+ <20240930095449.1813195-16-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,67 +65,37 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="/Hf2aEzpa7rylryo"
+	protocol="application/pgp-signature"; boundary="7QH427KuhNWnm3Mj"
 Content-Disposition: inline
-In-Reply-To: <20240930095449.1813195-15-pierre-henry.moussay@microchip.com>
+In-Reply-To: <20240930095449.1813195-16-pierre-henry.moussay@microchip.com>
 
 
---/Hf2aEzpa7rylryo
+--7QH427KuhNWnm3Mj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 30, 2024 at 10:54:43AM +0100, pierre-henry.moussay@microchip.co=
+On Mon, Sep 30, 2024 at 10:54:44AM +0100, pierre-henry.moussay@microchip.co=
 m wrote:
 > From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 >=20
-> PIC64GX is compatible with mpfs-sys-controller, without additional
-> feature
+> Update devicetree bindings document with PIC64GX Curiosity Kit, known
+> by its "Curiosity-GX1000" product code.
 >=20
 > Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
-> ---
->  .../soc/microchip/microchip,mpfs-sys-controller.yaml        | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/microchip/microchip,mp=
-fs-sys-controller.yaml b/Documentation/devicetree/bindings/soc/microchip/mi=
-crochip,mpfs-sys-controller.yaml
-> index a3fa04f3a1bd..af89d5959747 100644
-> --- a/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-=
-controller.yaml
-> +++ b/Documentation/devicetree/bindings/soc/microchip/microchip,mpfs-sys-=
-controller.yaml
-> @@ -24,7 +24,11 @@ properties:
->      maxItems: 1
-> =20
->    compatible:
-> -    const: microchip,mpfs-sys-controller
-> +    oneOf:
-> +      - items:
-> +          - const: microchip,pic64gx-sys-controller
-> +          - const: microchip,mpfs-sys-controller
-> +      - const: microchip,mpfs-sys-controller
 
-NAK, v1 commentary has not been implemented here.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-> =20
->    microchip,bitstream-flash:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> --=20
-> 2.30.2
->=20
->=20
-
---/Hf2aEzpa7rylryo
+--7QH427KuhNWnm3Mj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqtcwAKCRB4tDGHoIJi
-0of3AQClj5XAcu2rD37lVMgv2I7vxtKm1S4Djn4z1U4mVytKFwEAwwLrP0ODJjQb
-IbOg/VwrTyRSuKT94PEUetB5QCDLMQU=
-=UBFn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqtkQAKCRB4tDGHoIJi
+0s9QAQCk+iAJ6+t1MuQmVPsS7UwIejIRLvJZBRC44V9oqc7iUQEA6iSPYqHZ0Byj
+a5bXIew4y2/U/Gbw6YuzeCkNzT4jOAY=
+=IK+Q
 -----END PGP SIGNATURE-----
 
---/Hf2aEzpa7rylryo--
+--7QH427KuhNWnm3Mj--
 
