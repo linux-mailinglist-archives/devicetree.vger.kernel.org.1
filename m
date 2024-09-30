@@ -1,344 +1,223 @@
-Return-Path: <devicetree+bounces-106232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83140989984
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:32:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FBD9989998
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:46:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15DDB1F21934
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 03:32:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AAD55B2137E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 03:46:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382CD811F7;
-	Mon, 30 Sep 2024 03:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCA411DA21;
+	Mon, 30 Sep 2024 03:46:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SIWkq1ZU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6DE55E73;
-	Mon, 30 Sep 2024 03:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA751878;
+	Mon, 30 Sep 2024 03:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727667108; cv=none; b=ekaQyC1LGXHODwbLbsfkdxUXkRq8gcdF7f7si6ZmhFIumiL2h2jfhs1qgJiNYEKoyE3k4bsjwILo0eXV6R4KEzDFHgmhKslj1BWIs0NmNvPDpfJh2tPjWJV1G5MgaxWOuVwBlZGF8DqXMIJH/aSyl8tIm2uHiUwYseGBG1lQgCc=
+	t=1727668001; cv=none; b=MBQBIvzf6fB7NW4oXDgQ38HtFJTwr8h5jvKDVrWkCa8UT9pqg1TosOWodVx08UrsBwWOOCPbpFihfB8g6zFZl2VeUE1cTYjI0vnqZugeIyT4IZ+VU4az6iIQKqGwHUSkG0yh3RGAm0BlwK+wk2abVBhpmPqQqhRmTFTIG6ruUSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727667108; c=relaxed/simple;
-	bh=ExdNWHNzkd5pS53sl8d0jjJJ/SMyEYWzXyVEg3EQa7o=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Nb1c1lZb7uDsZx6aoclecp2fx0x5iFXFC+6oGSmhFWl6UKykTG+Z6zXSfKa6aYbVaK4AQOPQ0wLTzFJ9ZBX+YR9DfMBBpbkJyuIle9mr0ZC8MjXVh4Ew/1hRPXI2/04ZXKXNuFZy1XLKqd7eN1OZSKAeWC1nAcPDSNdkuuDs4As=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [10.40.54.90])
-	by gateway (Coremail) with SMTP id _____8Dxn_GgG_pmtF8EAA--.8833S3;
-	Mon, 30 Sep 2024 11:31:44 +0800 (CST)
-Received: from localhost.localdomain (unknown [10.40.54.90])
-	by front2 (Coremail) with SMTP id qciowMCxbceZG_pmD9gYAA--.23677S4;
-	Mon, 30 Sep 2024 11:31:42 +0800 (CST)
-From: Zhao Qunqin <zhaoqunqin@loongson.cn>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	chenhuacai@kernel.org,
-	bp@alien8.de,
-	tony.luck@intel.com,
-	james.morse@arm.com,
-	mchehab@kernel.org,
-	rric@kernel.org
-Cc: linux-edac@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	kernel@xen0n.name,
-	loongarch@lists.linux.dev,
-	Jonathan.Cameron@Huawei.com,
-	Zhao Qunqin <zhaoqunqin@loongson.cn>
-Subject: [PATCH v6 2/2] EDAC: Add EDAC driver for loongson memory controller
-Date: Mon, 30 Sep 2024 11:29:43 +0800
-Message-Id: <20240930032943.5182-3-zhaoqunqin@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20240930032943.5182-1-zhaoqunqin@loongson.cn>
-References: <20240930032943.5182-1-zhaoqunqin@loongson.cn>
+	s=arc-20240116; t=1727668001; c=relaxed/simple;
+	bh=3ZRQb9frZrN0U2tLqZABd0zVgfSMsnleCdXyG8mS+KE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qhS01NF86MJGEhaRbK3mUB5iu4stczBEbd0dv69ZD6Pdd2zI1lFmr/Rays2Vm+QQ39Tz9/+nCXgV/apCBkp/uSXrQDbuHaENJ16wCULMaJzvHZFbEjDoSR4a53QThqq350dMlazzm2FQnr+3xZ1GPopdEJO2kBKnYizq5TAijsQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SIWkq1ZU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFDCAC4CEC4;
+	Mon, 30 Sep 2024 03:46:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727668000;
+	bh=3ZRQb9frZrN0U2tLqZABd0zVgfSMsnleCdXyG8mS+KE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SIWkq1ZUBe2fdkk+pYKC8athvpuJSOisu9in60smfN355pj3z6/O6qvR+CXJGz/0f
+	 lhp6yECMYO7TDKRLNV9hK9nwn0i63aC6xaqQnkEUMc6R8hoUmXAMtjm4qbORfC8k+X
+	 8DAduYsPQ57h59sWO/Ve5Jhjob+BCdUQc9m7Uc7MeSysREJZmrP+3USHp4HBIY28E4
+	 NFrNEypnmQbNU3DVqdBJiTBe9o6hxOoRFG1k5YOLUaz0W1VVHn6HxJl5nXOAwnYSUI
+	 c8hX9Aqzz+RU6hPdQU9LYCjuG1jra+1e/nx7lJ9xbTRay132Nrk7Z91lgNr9lU9N5l
+	 Z5MTkkt4WYLuQ==
+Date: Sun, 29 Sep 2024 22:46:37 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Cc: konrad.dybcio@linaro.org, andi.shyti@kernel.org, 
+	linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-i2c@vger.kernel.org, conor+dt@kernel.org, agross@kernel.org, 
+	devicetree@vger.kernel.org, vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org, 
+	Frank.Li@nxp.com, konradybcio@kernel.org, bryan.odonoghue@linaro.org, 
+	krzk+dt@kernel.org, robh@kernel.org
+Subject: Re: [PATCH v3 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
+ between two subsystems
+Message-ID: <lmo4jylfwt3wingdqb6zc6ew2537kqksuckfyd7vwuu4ufg5cr@ic2j7bv2r6e4>
+References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
+ <20240927063108.2773304-5-quic_msavaliy@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qciowMCxbceZG_pmD9gYAA--.23677S4
-X-CM-SenderInfo: 52kd01pxqtx0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW3ArWUXr18Kr45Jr1fKFy5ZFc_yoWxur13pF
-	15Aw1fGrW8tr13uws3ZrWUuF15Cws2ga42y3y3A3yY93srAryDZr95tFy2yFnrCrykGrW3
-	Xa4rKw4DuF4DGwbCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBSb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAF
-	wI0_Gr1j6F4UJwAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2
-	xF0cIa020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_
-	Jw0_WrylYx0Ex4A2jsIE14v26r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwCY1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwCFI7km07C267AKxVWUAVWUtwC20s026c02F40E14v26r1j6r18MI8I3I0E74
-	80Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0
-	I7IYx2IY67AKxVW5JVW7JwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Cr0_Gr1UMIIF0xvE42
-	xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVW8JVWxJwCI42IY6I8E87Iv6xkF
-	7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjxU4YLvDUUUU
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240927063108.2773304-5-quic_msavaliy@quicinc.com>
 
-Reports single bit errors (CE) only.
+On Fri, Sep 27, 2024 at 12:01:08PM GMT, Mukesh Kumar Savaliya wrote:
+> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
+> Use "qcom,shared-se" flag in a particular i2c instance node if the usecase
+> requires i2c controller to be shared.
+> 
 
-Signed-off-by: Zhao Qunqin <zhaoqunqin@loongson.cn>
----
-Changes in v6:
-	- Change the Kconfig name to CONFIG_EDAC_LOONGSON
+Please start your commit message by describing the problem your patch
+is solving.
 
-Changes in v5:
-	- Drop the loongson_ prefix from all static functions.
-	- Align function arguments on the opening brace.
-	- Drop useless comments and useless wrapper. Drop side comments.
-	- Reorder variable declarations.
+> Sharing of SE(Serial engine) is possible only for GSI mode as each
+> subsystem(SS) can queue transfers over its own GPII Channel. For non GSI
+> mode, we should force disable this feature even if set by user from DT by
+> mistake.
+> 
+> I2C driver just need to mark first_msg and last_msg flag to help indicate
+> GPI driver to take lock and unlock TRE there by protecting from concurrent
+> access from other EE or Subsystem.
+> 
+> gpi_create_i2c_tre() function at gpi.c will take care of adding Lock and
+> Unlock TRE for the respective transfer operations.
+> 
+> Since the GPIOs are also shared between two SS, do not unconfigure them
+> during runtime suspend. This will allow other SS to continue to transfer
+> the data without any disturbance over the IO lines.
+> 
 
-Changes in v4:
-	- None
+This last paragraph describes patch 3, right?
 
-Changes in v3:
-	- Addressed review comments raised by Krzysztof and Huacai
+> Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+> ---
+>  drivers/i2c/busses/i2c-qcom-geni.c | 24 ++++++++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/i2c/busses/i2c-qcom-geni.c b/drivers/i2c/busses/i2c-qcom-geni.c
+> index 212336f724a6..479fa8e1c33f 100644
+> --- a/drivers/i2c/busses/i2c-qcom-geni.c
+> +++ b/drivers/i2c/busses/i2c-qcom-geni.c
+> @@ -1,5 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2017-2018, The Linux Foundation. All rights reserved.
+> +// Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>  
+>  #include <linux/acpi.h>
+>  #include <linux/clk.h>
+> @@ -602,6 +603,7 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
+>  	peripheral.clk_div = itr->clk_div;
+>  	peripheral.set_config = 1;
+>  	peripheral.multi_msg = false;
+> +	peripheral.shared_se = gi2c->se.shared_geni_se;
+>  
+>  	for (i = 0; i < num; i++) {
+>  		gi2c->cur = &msgs[i];
+> @@ -612,6 +614,8 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
+>  		if (i < num - 1)
+>  			peripheral.stretch = 1;
+>  
+> +		peripheral.first_msg = (i == 0);
+> +		peripheral.last_msg = (i == num - 1);
 
-Changes in v2:
-	- Addressed review comments raised by Krzysztof
+There are multiple error paths in this loop, which would result in us
+never issuing the unlock TRE - effectively blocking other subsystems
+from accessing the serial engine until we perform our next access
+(assuming that APSS issuing a lock TRE when APSS already has the channel
+locked isn't a problem?)
 
- MAINTAINERS                  |   1 +
- arch/loongarch/Kconfig       |   1 +
- drivers/edac/Kconfig         |   8 ++
- drivers/edac/Makefile        |   1 +
- drivers/edac/loongson_edac.c | 168 +++++++++++++++++++++++++++++++++++
- 5 files changed, 179 insertions(+)
- create mode 100644 drivers/edac/loongson_edac.c
+>  		peripheral.addr = msgs[i].addr;
+>  
+>  		ret =  geni_i2c_gpi(gi2c, &msgs[i], &config,
+> @@ -631,8 +635,11 @@ static int geni_i2c_gpi_xfer(struct geni_i2c_dev *gi2c, struct i2c_msg msgs[], i
+>  		dma_async_issue_pending(gi2c->tx_c);
+>  
+>  		time_left = wait_for_completion_timeout(&gi2c->done, XFER_TIMEOUT);
+> -		if (!time_left)
+> +		if (!time_left) {
+> +			dev_dbg(gi2c->se.dev, "I2C timeout gpi flags:%d addr:0x%x\n",
+> +						gi2c->cur->flags, gi2c->cur->addr);
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6cc8cfc8f..5b4526638 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13242,6 +13242,7 @@ M:	Zhao Qunqin <zhaoqunqin@loongson.cn>
- L:	linux-edac@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/edac/loongson,ls3a5000-mc-edac.yaml
-+F:	drivers/edac/loongson_edac.c
- 
- LSILOGIC MPT FUSION DRIVERS (FC/SAS/SPI)
- M:	Sathya Prakash <sathya.prakash@broadcom.com>
-diff --git a/arch/loongarch/Kconfig b/arch/loongarch/Kconfig
-index 70f169210..9c135f1a2 100644
---- a/arch/loongarch/Kconfig
-+++ b/arch/loongarch/Kconfig
-@@ -181,6 +181,7 @@ config LOONGARCH
- 	select PCI_MSI_ARCH_FALLBACKS
- 	select PCI_QUIRKS
- 	select PERF_USE_VMALLOC
-+	select EDAC_SUPPORT
- 	select RTC_LIB
- 	select SPARSE_IRQ
- 	select SYSCTL_ARCH_UNALIGN_ALLOW
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 81af6c344..1cf432102 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -564,5 +564,13 @@ config EDAC_VERSAL
- 	  Support injecting both correctable and uncorrectable errors
- 	  for debugging purposes.
- 
-+config EDAC_LOONGSON
-+	tristate "Loongson Memory Controller"
-+	depends on LOONGARCH || COMPILE_TEST
-+	help
-+	  Support for error detection and correction on the Loongson
-+	  family memory controller. This driver reports single bit
-+	  errors (CE) only. Loongson-3A5000/3C5000/3D5000/3C5000L/3A6000/3C6000
-+	  are compatible.
- 
- endif # EDAC
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index faf310eec..f8bdbc895 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -88,3 +88,4 @@ obj-$(CONFIG_EDAC_DMC520)		+= dmc520_edac.o
- obj-$(CONFIG_EDAC_NPCM)			+= npcm_edac.o
- obj-$(CONFIG_EDAC_ZYNQMP)		+= zynqmp_edac.o
- obj-$(CONFIG_EDAC_VERSAL)		+= versal_edac.o
-+obj-$(CONFIG_EDAC_LOONGSON)		+= loongson_edac.o
-diff --git a/drivers/edac/loongson_edac.c b/drivers/edac/loongson_edac.c
-new file mode 100644
-index 000000000..2721dfba5
---- /dev/null
-+++ b/drivers/edac/loongson_edac.c
-@@ -0,0 +1,168 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2024 Loongson Technology Corporation Limited.
-+ */
-+
-+#include <linux/edac.h>
-+#include <linux/module.h>
-+#include <linux/init.h>
-+#include <linux/platform_device.h>
-+
-+#include "edac_module.h"
-+
-+enum ecc_index {
-+	ECC_SET = 0,
-+	ECC_RESERVED,
-+	ECC_COUNT,
-+	ECC_CS_COUNT,
-+	ECC_CODE,
-+	ECC_ADDR,
-+	ECC_DATA0,
-+	ECC_DATA1,
-+	ECC_DATA2,
-+	ECC_DATA3,
-+};
-+
-+struct loongson_edac_pvt {
-+	u64 *ecc_base;
-+	int last_ce_count;
-+};
-+
-+static int read_ecc(struct mem_ctl_info *mci)
-+{
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+	u64 ecc;
-+	int cs;
-+
-+	if (!pvt->ecc_base)
-+		return pvt->last_ce_count;
-+
-+	ecc = pvt->ecc_base[ECC_CS_COUNT];
-+	/* cs0 -- cs3 */
-+	cs = ecc & 0xff;
-+	cs += (ecc >> 8) & 0xff;
-+	cs += (ecc >> 16) & 0xff;
-+	cs += (ecc >> 24) & 0xff;
-+
-+	return cs;
-+}
-+
-+static void edac_check(struct mem_ctl_info *mci)
-+{
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+	int new, add;
-+
-+	new = read_ecc(mci);
-+	add = new - pvt->last_ce_count;
-+	pvt->last_ce_count = new;
-+	if (add <= 0)
-+		return;
-+
-+	edac_mc_handle_error(HW_EVENT_ERR_CORRECTED, mci, add,
-+			     0, 0, 0, 0, 0, -1, "error", "");
-+	edac_mc_printk(mci, KERN_INFO, "add: %d", add);
-+}
-+
-+static int get_dimm_config(struct mem_ctl_info *mci)
-+{
-+	struct dimm_info *dimm;
-+	u32 size, npages;
-+
-+	/* size not used */
-+	size = -1;
-+	npages = MiB_TO_PAGES(size);
-+
-+	dimm = edac_get_dimm(mci, 0, 0, 0);
-+	dimm->nr_pages = npages;
-+	snprintf(dimm->label, sizeof(dimm->label),
-+		 "MC#%uChannel#%u_DIMM#%u", mci->mc_idx, 0, 0);
-+	dimm->grain = 8;
-+
-+	return 0;
-+}
-+
-+static void pvt_init(struct mem_ctl_info *mci, u64 *vbase)
-+{
-+	struct loongson_edac_pvt *pvt = mci->pvt_info;
-+
-+	pvt->ecc_base = vbase;
-+	pvt->last_ce_count = read_ecc(mci);
-+}
-+
-+static int edac_probe(struct platform_device *pdev)
-+{
-+	struct edac_mc_layer layers[2];
-+	struct loongson_edac_pvt *pvt;
-+	struct mem_ctl_info *mci;
-+	u64 *vbase;
-+	int ret;
-+
-+	vbase = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(vbase))
-+		return PTR_ERR(vbase);
-+
-+	/* allocate a new MC control structure */
-+	layers[0].type = EDAC_MC_LAYER_CHANNEL;
-+	layers[0].size = 1;
-+	layers[0].is_virt_csrow = false;
-+	layers[1].type = EDAC_MC_LAYER_SLOT;
-+	layers[1].size = 1;
-+	layers[1].is_virt_csrow = true;
-+	mci = edac_mc_alloc(0, ARRAY_SIZE(layers), layers, sizeof(*pvt));
-+	if (mci == NULL)
-+		return -ENOMEM;
-+
-+	mci->mc_idx = edac_device_alloc_index();
-+	mci->mtype_cap = MEM_FLAG_RDDR4;
-+	mci->edac_ctl_cap = EDAC_FLAG_NONE;
-+	mci->edac_cap = EDAC_FLAG_NONE;
-+	mci->mod_name = "loongson_edac.c";
-+	mci->ctl_name = "loongson_edac_ctl";
-+	mci->dev_name = "loongson_edac_dev";
-+	mci->ctl_page_to_phys = NULL;
-+	mci->pdev = &pdev->dev;
-+	mci->error_desc.grain = 8;
-+	/* Set the function pointer to an actual operation function */
-+	mci->edac_check = edac_check;
-+
-+	pvt_init(mci, vbase);
-+	get_dimm_config(mci);
-+
-+	ret = edac_mc_add_mc(mci);
-+	if (ret) {
-+		edac_dbg(0, "MC: failed edac_mc_add_mc()\n");
-+		edac_mc_free(mci);
-+		return ret;
-+	}
-+	edac_op_state = EDAC_OPSTATE_POLL;
-+
-+	return 0;
-+}
-+
-+static void edac_remove(struct platform_device *pdev)
-+{
-+	struct mem_ctl_info *mci = edac_mc_del_mc(&pdev->dev);
-+
-+	if (mci)
-+		edac_mc_free(mci);
-+}
-+
-+static const struct of_device_id loongson_edac_of_match[] = {
-+	{ .compatible = "loongson,ls3a5000-mc-edac", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, loongson_edac_of_match);
-+
-+static struct platform_driver loongson_edac_driver = {
-+	.probe		= edac_probe,
-+	.remove		= edac_remove,
-+	.driver		= {
-+		.name	= "loongson-mc-edac",
-+		.of_match_table = loongson_edac_of_match,
-+	},
-+};
-+module_platform_driver(loongson_edac_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Zhao Qunqin <zhaoqunqin@loongson.cn>");
-+MODULE_DESCRIPTION("EDAC driver for loongson memory controller");
--- 
-2.43.0
+This looks useful, but unrelated to this patch.
 
+>  			gi2c->err = -ETIMEDOUT;
+> +		}
+>  
+>  		if (gi2c->err) {
+>  			ret = gi2c->err;
+> @@ -800,6 +807,11 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  		gi2c->clk_freq_out = KHZ(100);
+>  	}
+>  
+> +	if (of_property_read_bool(pdev->dev.of_node, "qcom,shared-se")) {
+> +		gi2c->se.shared_geni_se = true;
+
+	gi2c->se.shared_geni_se = of_property_read_bool(dev->of_node, "qcom,shared-se");
+
+> +		dev_dbg(&pdev->dev, "I2C is shared between subsystems\n");
+> +	}
+> +
+>  	if (has_acpi_companion(dev))
+>  		ACPI_COMPANION_SET(&gi2c->adap.dev, ACPI_COMPANION(dev));
+>  
+> @@ -870,8 +882,10 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  	else
+>  		fifo_disable = readl_relaxed(gi2c->se.base + GENI_IF_DISABLE_RO) & FIFO_IF_DISABLE;
+>  
+> -	if (fifo_disable) {
+> -		/* FIFO is disabled, so we can only use GPI DMA */
+> +	if (fifo_disable || gi2c->se.shared_geni_se) {
+> +		/* FIFO is disabled, so we can only use GPI DMA.
+> +		 * SE can be shared in GSI mode between subsystems, each SS owns a GPII.
+> +		 **/
+
+I think you're trying to document why we're entering the "GPI-only"
+branch. The addition you made was that if the user has requested
+"shared-se", then it's GPI-only.
+
+But I'm not able to wrap my head around your addition here. Why does it
+matter that each subsystem own a GPII? Is that a reason for choosing
+GPI-only mode?
+
+>  		gi2c->gpi_mode = true;
+>  		ret = setup_gpi_dma(gi2c);
+>  		if (ret) {
+> @@ -883,6 +897,9 @@ static int geni_i2c_probe(struct platform_device *pdev)
+>  		dev_dbg(dev, "Using GPI DMA mode for I2C\n");
+>  	} else {
+>  		gi2c->gpi_mode = false;
+> +
+> +		/* Force disable shared SE case for non GSI mode */
+
+GSI or GPI mode?
+
+> +		gi2c->se.shared_geni_se = false;
+
+If shared_geni_se was true prior to this assignment, wouldn't we have
+entered the if (fifo_disable ...) branch?
+
+>  		tx_depth = geni_se_get_tx_fifo_depth(&gi2c->se);
+>  
+>  		/* I2C Master Hub Serial Elements doesn't have the HW_PARAM_0 register */
+> @@ -964,7 +981,6 @@ static int __maybe_unused geni_i2c_runtime_suspend(struct device *dev)
+>  	if (ret) {
+>  		enable_irq(gi2c->irq);
+>  		return ret;
+> -
+
+Please avoid such unrelated cleanups.
+
+Regards,
+Bjorn
+
+>  	} else {
+>  		gi2c->suspended = 1;
+>  	}
+> -- 
+> 2.25.1
+> 
 
