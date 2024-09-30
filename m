@@ -1,157 +1,104 @@
-Return-Path: <devicetree+bounces-106480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2851198A590
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:41:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1E598A597
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAEED1F228A6
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:41:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F0EC928328A
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:41:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA17F18FDBC;
-	Mon, 30 Sep 2024 13:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E443190068;
+	Mon, 30 Sep 2024 13:41:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G4wlcYa1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p/PWdgjG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94F0117CA04;
-	Mon, 30 Sep 2024 13:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3DE718E779;
+	Mon, 30 Sep 2024 13:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727703633; cv=none; b=flYj46+r3G2GZwGTnrhA2pQzF+PPAU0tPuHc2E60AZa6UzhGy/UQWgMnNoExQZUa2nXHEKR8YS3b+hVrGzs+jMQfQooS0NvoSrnhJDC6n+//RwL00ZhAGvKHATfKALqLsBG5vQ/rCcvAFkno5JTl8zotcmfFQciBBdCPpknJB38=
+	t=1727703693; cv=none; b=VvayUy09+NyKICPScj23lg2ZAqADRkmp0gqA3JXn79zzbpFYD2U+FEuHQmmUdVukCK/LRIPQYxh7zrLjOKnQ11wmGc768XOpeZIMYvSM4b3jl3hD0vKZLAVE9WSPhVWSJuy5jgWjJvdspmBoEXmOrTQgqK6XKENkuWbz/IdWjJU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727703633; c=relaxed/simple;
-	bh=cMpL1ge+irar1j/2iS+9dxrdCQRx5hYtvdPq55O+AGE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qZOzLOEOp/G4p1opBCJYxfD+RoUS0gKxh7naJM6VHdZBraE2wcWLrAt2RzIvJZF4P1yS3x4QabJd6cvU75fEP4R75Q0VacOc8UOwne+tBx++PyHYuNAh+nsEnsAn0YdmkyHSSNaao1M3krY3kT5TyiecV8KMDXr4ZKcF+gj/rRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G4wlcYa1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6054DC4CEC7;
-	Mon, 30 Sep 2024 13:40:26 +0000 (UTC)
+	s=arc-20240116; t=1727703693; c=relaxed/simple;
+	bh=XuIxcWV90Pt6xKt7ogNiIxpo5TOpoq4J541bjNJwqag=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HDxYp8YgwzOHRn16aMF1tQL/dHAfm0B2+eKLynVhqOQUyY6JZidzoAI8SSwrIv6Fo8uSOz7EaAguXAEd1kTenP3tyK/do9ChUwX9C1VNbunhOJECV8a3E1EtbzjRxC0kzW/2JeI8r/J7UhsBsj9QSF/LguCEN8IRmNcmPQBTL3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p/PWdgjG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 34562C4CECE;
+	Mon, 30 Sep 2024 13:41:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727703633;
-	bh=cMpL1ge+irar1j/2iS+9dxrdCQRx5hYtvdPq55O+AGE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G4wlcYa1cYoWgiLV91Qrs9BIXUT4v3f+f8LSjQ6EBqcTZZMMHNyhwODRMRNLFVilP
-	 aHnaWqTPgsZG41jMl3vVDHaQBmIoRqQMwTn7os4OcUqCtV0/BySh649TwZg7O6zbi4
-	 TbOs1t9InNUQnhk8bX5hYYx3vsOF126Ylwne1/BoFh20BSbhXJHU3C3QRmQdt+5JVm
-	 IJzWoMDShoaSUx8eroWPvxNUPE14PBRyCsdiZIwSjc0oaAJRsckkPeKyvYBcJeaZoo
-	 V8ORnU39qIdyRuFY9KqNraCtXX27mOJMhN6QOtgEfWY/RLm1mXbC/yhIXwQnxhllGS
-	 jmAmQm2WOpBIQ==
-Message-ID: <7080c117-199a-425a-9053-891a7f331f6a@kernel.org>
-Date: Mon, 30 Sep 2024 15:40:24 +0200
+	s=k20201202; t=1727703693;
+	bh=XuIxcWV90Pt6xKt7ogNiIxpo5TOpoq4J541bjNJwqag=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=p/PWdgjGHFmG4a9TeIg92cCR3b53QtlukirDa0WYMdHKixucwR9yo13JHac/Cxbij
+	 tntZ/2FwufIcSYwmBoJBBK4do+bRogXXJFVPI7fImhhJa40MJ3wS951qvfbNMHq/G0
+	 bpqHHiIDY+j0LLwjkuYefn3ToR3bWuAsq3XJ2jqDJ/2uMQ9fYf2SHvvx1G9ibfdnCd
+	 2aJ4M/cAnfW4kAaDgMFhrQ6bap8Rn7qAvvq496T76Z5jDB5pkcYeo7JlVVSSphDX8x
+	 0hJV877W2z/I7VFx6nHWwgAGIHRWUq3xacHJelunGpWo/+NnRpilCa2aOtT3xpmUgR
+	 POJBFfImmhGBQ==
+Date: Mon, 30 Sep 2024 14:41:25 +0100
+From: Conor Dooley <conor@kernel.org>
+To: pierre-henry.moussay@microchip.com
+Cc: Linux4Microchip@microchip.com,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Marc Kleine-Budde <mkl@pengutronix.de>,
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-riscv@lists.infradead.org, linux-can@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [linux][PATCH v2 01/20] dt-bindings: can: mpfs: add PIC64GX CAN
+ compatibility
+Message-ID: <20240930-transpose-isolating-5c20f43745b1@spud>
+References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
+ <20240930095449.1813195-2-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: add S32G3 compatible for the
- SIUL2 driver
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>,
- Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
- Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Ghennadi Procopciuc
- <Ghennadi.Procopciuc@oss.nxp.com>, Chester Lin <chester62515@gmail.com>,
- Matthias Brugger <mbrugger@suse.com>, Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- imx@lists.linux.dev, NXP S32 Linux Team <s32@nxp.com>,
- Christophe Lizzi <clizzi@redhat.com>, Alberto Ruiz <aruizrui@redhat.com>,
- Enric Balletbo <eballetb@redhat.com>
-References: <20240930132344.3001876-1-andrei.stefanescu@oss.nxp.com>
- <20240930132344.3001876-3-andrei.stefanescu@oss.nxp.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20240930132344.3001876-3-andrei.stefanescu@oss.nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="ITDHeWGvw1IVSKQ3"
+Content-Disposition: inline
+In-Reply-To: <20240930095449.1813195-2-pierre-henry.moussay@microchip.com>
 
-On 30/09/2024 15:23, Andrei Stefanescu wrote:
-> The SIUL2 hardware module is also integrated into the S32G3 SoC. Add
-> another compatible for it.
-> 
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> ---
->  .../bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml      | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
-> index a24286e4def6..454773e7aa07 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml
-> @@ -25,8 +25,14 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - nxp,s32g2-siul2-pinctrl
-> +    oneOf:
-> +      - description: for S32G2 SoCs
 
-Drop
+--ITDHeWGvw1IVSKQ3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> +        items:
+On Mon, Sep 30, 2024 at 10:54:30AM +0100, pierre-henry.moussay@microchip.co=
+m wrote:
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+>=20
+> PIC64GX CAN is compatible with the MPFS CAN, only add a fallback
+>=20
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-That's jus tenum
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> +          - const: nxp,s32g2-siul2-pinctrl
+--ITDHeWGvw1IVSKQ3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Drop
+-----BEGIN PGP SIGNATURE-----
 
-> +      - description: for S32G3 SoCs
-> +        items:
-Best regards,
-Krzysztof
+iHQEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqqhQAKCRB4tDGHoIJi
+0jNVAP0ZEUhs6p76YEPVv+A3Xa03N4ZG3xl3Y1mmGJW8BNWHuAD4wyvWl7QbHbq/
+Px7FmbCsj+wyZHmXwRcSgEpzuMnuBA==
+=s7yU
+-----END PGP SIGNATURE-----
 
+--ITDHeWGvw1IVSKQ3--
 
