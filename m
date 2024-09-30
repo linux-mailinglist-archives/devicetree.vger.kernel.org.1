@@ -1,242 +1,188 @@
-Return-Path: <devicetree+bounces-106524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D24F298A81E
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:07:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC7598A831
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:10:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D5F1C22CB9
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:07:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 490BD1C23519
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:10:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E737192584;
-	Mon, 30 Sep 2024 15:07:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 256861922E6;
+	Mon, 30 Sep 2024 15:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbsO7g4P"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ZNAaDYF0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 044F31922E5;
-	Mon, 30 Sep 2024 15:07:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7732C1922DA
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 15:10:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727708837; cv=none; b=eg4yfm7JFTbtE2iOU6sCFQ3655o5gHWB0aHscdZrs1JlgJ41CqcZud3SuDZtEa1D1ghmmXU8ip5xFf1IP05LgjjcDgLS5Qh7wKsr44ryTsD+2tXxRI/5AbS7PvwvjBj0h2MYMpYjqcZRgW3UIW6R97KMfDLIm8r3UPIx1KFjZlI=
+	t=1727709010; cv=none; b=CXGAFut1iI3f7p5k3kO8R2MKxW975DLtpYFZdDaWRNGHPPinZ/EeFZaGCXUctaQBiA3xqN28Cgd8MXYTncZ1jmEbq4GK7Peau9BS/Xd8f6d7TPcGOhkck2wR32FI5yDDdFnT7eyKFg5ASep8wR2oLMylmyjoi6wG92Q+28WghS4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727708837; c=relaxed/simple;
-	bh=1mdFYVUyk9PvCk+d9I1dqxT4nmATsY89D3M/XmBH7uI=;
+	s=arc-20240116; t=1727709010; c=relaxed/simple;
+	bh=q89+6LizALqE7+dTK4H6W6WDZ5mPTCBjapC8OoSTGwQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E2tZxQ3Vyn6qiG3+FUqphICKbfl+kuhsr6deZaG+FTL3P1FUZILjhtwxvL9r3YyTAl15/82RADKmsdKn+l0ApfWUfWP5Ce0zArcq/vExZokqaXm47/hCnuTUNJddlhXfDULwmYvEmTF0EmGijAxNv8uiuYY8HWg95xJVNCJD0aI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbsO7g4P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F9C0C4CEC7;
-	Mon, 30 Sep 2024 15:07:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727708836;
-	bh=1mdFYVUyk9PvCk+d9I1dqxT4nmATsY89D3M/XmBH7uI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SbsO7g4P6V1MhXPMCtd91iXqb8ha/RVg8lmgjLW925cTpYbI3mpRZ84Xz0/MohUsX
-	 Ld1gGAeJfc+LkO75un+qB7jmW2XXDRTMsu6htxU2QuRyN1MfaA4rp5R2GYmkz4+zW0
-	 2Sv+Nwbd+Wi2h5qtWAuNYA5CaH51HMxWfdDQdEg7s+X663VTrlBEu8j0nOnU8YFCrH
-	 Z88RdWG3GdBTXJNziXCDExlsn/pxYu9moA5v8mHQ//q0ODO57Bf/2ctSXY4qkpUoqQ
-	 1oQBJyXrWwgEFiV1KZf3ZsMcS01zYgyLT7Wq238czM+Oir3uMlutX77iL4migCeWHN
-	 xUE5W2RWnGrRw==
-Date: Mon, 30 Sep 2024 16:07:08 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP
- S32G2/S32G3 SoCs
-Message-ID: <20240930-bamboo-curliness-eb4787b81ea3@spud>
-References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
- <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
- <20240926-apricot-unfasten-5577c54a3e2f@spud>
- <c2d8f121-903d-4722-825f-c00604ef3991@oss.nxp.com>
- <20240930-shortness-unedited-650f7996e912@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NmtOs+98UIq8GbHkLCWW1Icb2mysKt6+Mt+cb9sk5HWLdtoo2h4Mr00TWxWRC8HZXd/PCOwiZUme75uKS3w0BnGCGlZgyq8K3C+nDMsugH2MN4Im4RoiS33Hdne/UtIy6xeTxsfmmZerUPRvo+f6lglyv8wnI/Q+S8ReJpEO9as=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ZNAaDYF0; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37cc846fbc4so3188477f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:10:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727709006; x=1728313806; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iuNK8THGglLLztzdTYizr6QDcFkhinuV96Oc5O9ZvwU=;
+        b=ZNAaDYF0HrsLjlG5TdOYu5qm+HkD8mkMo6OojgR1/efrpMdV1INOZVdo4wtTD2lpz9
+         81Q1bLePMXcnZEKd/yz1jDEeOV1FlsG0TAULRCXtDa0fBJmZCLmdTvyI9+7UaOSI2mxB
+         FdX4a87nCw2unKaqW+lrHqLL/Fmnml/h3YPOJzPD59BabLs6q8gSdUqwtudtJVlkQCsZ
+         O1HV6rqyz00Cu7P8L58n5T7al7Q+blMmDTvFkFTqje+xNZI8+gQiYMdRZF7IOUonomMR
+         W+Ql53Xl0Qre7gPNu9acCPt8pOC++YdCb7UlcnxfCxbwZ37rGM/6Z73w7hjJ3KMWizwh
+         BX4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727709006; x=1728313806;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iuNK8THGglLLztzdTYizr6QDcFkhinuV96Oc5O9ZvwU=;
+        b=g86g7/TR0y7s8/jhM5fc4o7Yg9C+tO5Llex3S+c/Jo7YaMb/GOAc3E1UHhkrZZy8x9
+         TywX6AN8LYq0ZjVrWMUP2MK/i5xT6crt3xEgUktE45EX4D5VKFIz9WvE7rojQ8SUsAj5
+         QvhS/70hMSpriUPraPI+W8OK1+SY84FcZdFjeH80l6IRScc7fGpUcrLJ8DdTFUj8nlVD
+         NGMndqJMIX2qDGwYdJtpOPb3Qb1OX/Uw/wmUt5cKigMt++R6aho19WmYeGt6kzfGP63Y
+         hz1adG8s4uFvA3gwc0F+oAfF3TYvmGtlp5pi+Gn59eKq1Jka1Qcu9R11Gs+g3Va70MDo
+         pCbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUumCS4HIIt/t+5k/ezzgRCLYg/JW07O1ROQw6e3PYgfpze/2Ccee3KoxHuaEJrfTCgnX1hSHTBIryV@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuQUjgmPfl2QnC7uZy/DCsT0evG1y1qGMCvu+aiIuXvdw5udYR
+	Fr8dQf+1in1iDPidS20Mv0zp36Ac9ZCingc8HYJhNuLNfw1Reof3ZV7dBVBzowE=
+X-Google-Smtp-Source: AGHT+IEd3uHtC1UBjfQ6Kv9MfqRsxH68O8CtXMxfd27TDYQvTEdsHObwZnWKGTsmDidAOl8R8DKfkg==
+X-Received: by 2002:adf:ab47:0:b0:37c:d28f:bbb0 with SMTP id ffacd0b85a97d-37cd5a9ed7bmr8447203f8f.20.1727709005523;
+        Mon, 30 Sep 2024 08:10:05 -0700 (PDT)
+Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd56e65c3sm9252434f8f.60.2024.09.30.08.10.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 08:10:04 -0700 (PDT)
+Date: Mon, 30 Sep 2024 17:08:48 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+Message-ID: <ipnqs4uektoysenkr7jvf6ic2rh56n3e5fmmheay323yhavs7u@th7qmxwmkiqo>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+ <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+ <20240929115150.6d1c22b3@jic23-huawei>
+ <oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
+ <20240930154958.00004507@Huawei.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rI5CiW6I9ZSnzML4"
-Content-Disposition: inline
-In-Reply-To: <20240930-shortness-unedited-650f7996e912@spud>
-
-
---rI5CiW6I9ZSnzML4
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240930154958.00004507@Huawei.com>
 
-On Mon, Sep 30, 2024 at 04:00:57PM +0100, Conor Dooley wrote:
-> On Fri, Sep 27, 2024 at 10:13:54AM +0300, Andrei Stefanescu wrote:
-> > Hi Conor,
-> >=20
-> > Thank you very much for the prompt review!
-> >=20
-> > On 26/09/2024 18:38, Conor Dooley wrote:
-> > > On Thu, Sep 26, 2024 at 05:31:19PM +0300, Andrei Stefanescu wrote:
-> > >> Add support for the GPIO driver of the NXP S32G2/S32G3 SoCs.
-> > >>
-> > >> Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> > >> Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > >> Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > >> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> > >=20
-> > > What's up with this SoB chain? You're the author what did
-> > > the other 3 people do? Are they missing co-developed-by tags?
-> >=20
-> > Yes, thank you for suggesting it! I will also add Co-developed-by tags
-> > for them. In the end it should look like this:
-> >=20
-> > Co-developed-by: Phu Luu An <phu.luuan@nxp.com>
-> > Signed-off-by: Phu Luu An <phu.luuan@nxp.com>
-> > Co-developed-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Signed-off-by: Larisa Grigore <larisa.grigore@nxp.com>
-> > Co-developed-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > Signed-off-by: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-> >=20
-> > >> +
-> > >> +examples:
-> > >> +  - |
-> > >> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > >> +    #include <dt-bindings/interrupt-controller/irq.h>
-> > >> +
-> > >> +    gpio@4009d700 {
-> > >> +        compatible =3D "nxp,s32g2-siul2-gpio";
-> > >> +        reg =3D <0x4009d700 0x10>,
-> > >> +              <0x44011700 0x18>,
-> > >> +              <0x4009d740 0x10>,
-> > >> +              <0x44011740 0x18>,
-> > >> +              <0x44010010 0xb4>,
-> > >> +              <0x44011078 0x80>;
-> > >=20
-> > > Huh, I only noticed this now. Are you sure that this is a correct
-> > > representation of this device, and it is not really part of some sysc=
-on?
-> > > The "random" nature of the addresses  and the tiny sizes of the
-> > > reservations make it seem that way. What other devices are in these
-> > > regions?
->=20
-> Thanks for your answer to my second question, but I think you missed this
-> part here ^^^
+On 30.09.2024 15:49, Jonathan Cameron wrote:
+> On Mon, 30 Sep 2024 16:15:41 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
+> 
+> > On 29.09.2024 11:51, Jonathan Cameron wrote:
+> > > On Thu, 19 Sep 2024 11:20:00 +0200
+> > > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> > >   
+> > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > 
+> > > > There is a version AXI DAC IP block (for FPGAs) that provides
+> > > > a physical bus for AD3552R and similar chips, and acts as
+> > > > an SPI controller.  
+> > > 
+> > > Wrap is a bit short. Aim for < 75 chars for patch descriptions.
+> > >   
+> > > > 
+> > > > For this case, the binding is modified to include some
+> > > > additional properties.
+> > > > 
+> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > > ---
+> > > >  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
+> > > >  1 file changed, 42 insertions(+)
+> > > > 
+> > > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > > index 41fe00034742..aca4a41c2633 100644
+> > > > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > > @@ -60,6 +60,18 @@ properties:
+> > > >      $ref: /schemas/types.yaml#/definitions/uint32
+> > > >      enum: [0, 1, 2, 3]
+> > > >  
+> > > > +  io-backends:
+> > > > +    description: The iio backend reference.  
+> > > 
+> > > Give a description of what the backend does in this case.  I.e. that it is
+> > > a qspi DDR backend with ...
+> > >   
+> > > > +      An example backend can be found at
+> > > > +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  adi,synchronous-mode:
+> > > > +    description: Enable waiting for external synchronization signal.
+> > > > +      Some AXI IP configuration can implement a dual-IP layout, with internal
+> > > > +      wirings for streaming synchronization.  
+> > > 
+> > > I've no idea what a dual-IP layout is.  Can you provide a little more info
+> > > here?  What are the two IPs?
+> > >  
+> > IP is a term used in fpga design as "intellectual property", that is
+> > intended as a functional block of logic or data used to make a 
+> > field-programmable gate array module.
+> > 
+> > A dual layout is just 2 same fpga modules in place of one.
+> >  
+> > I can add a "fpga" regerence to be more clear.
+> 
+> IP I was familiar with.  I'm more interested in what each IP is doing in this
+> case.  Or at least an example of what sort of split of functionality might
+> make use of this.
+>
 
-Reading it again, I think you might have answered my first question,
-though not explicitly. The regions in question do both pinctrl and gpio,
-but you have chosen to represent it has lots of mini register regions,
-rather than as a simple-mfd type device - which I think would be the
-correct representation. .
-
-Cheers,
-Conor.
-
->=20
-> > >=20
-> > > Additionally, it looks like "opads0" and "ipads0" are in a different
-> > > region to their "1" equivalents. Should this really be represented as
-> > > two disctint GPIO controllers?
-> >=20
-> > I will add a bit more context regarding the hardware.
-> >=20
-> > The hardware module which implements pinctrl & GPIO is called SIUL2.
-> > For both S32G2 and S32G3 we have the same version of the module and=20
-> > it is integrated in the same way. Each SoC has two SIUL2 instances which
-> > mostly have the same register types and only differ in the number
-> > of pads associated to them:
-> >=20
-> > - SIUL2_0 mapped at address 0x4009c000, handling pins 0 - 101
-> > - SIUL2_1 mapped at address 0x44010000, handling pins 112 - 190
-> >=20
-> > There are multiple registers for the SIUL2 modules which are important
-> > for pinctrl & GPIO:
-> >=20
-> > - MSCR (Multiplexed Signal Configuration Register)
-> >   It configures the function of a pin and some
-> >   pinconf properties:
-> >     - input buffer
-> >     - output buffer
-> >     - open-drain
-> >     - pull-up/pull-down
-> >     - slew rate
-> >   Function 0 means the pin is to be used as a GPIO.
-> >=20
-> > - IMCR (Input Multiplexed Signal and Configuration Register)
-> >   If the signal on this pad is to be read by another hardware
-> >   module, this register is similar to a multiplexer, its value
-> >   configures which pad the hardware will link to the module.
-> >   As an example let's consider the I2C0 SDA line. It has one
-> >   IMCR associated to it. Below are its possible pins and
-> >   corresponding IMCR values:
-> >     pin 16 <- 2
-> >     pin 24 <- 7
-> >     pin 31 <- 3
-> >     pin 122 <- 4=20
-> >       (Note that MSCR122 is part of SIUL2_1 but the IMCR for
-> >        I2C0_SDA is part of SIUL2_0)
-> >     pin 153 <- 5
-> >     pin 161 <- 6
-> >   The IMCR values should be aligned with the function bits in the
-> >   MSCR bits. If we want to use pin 122 for I2C0_SDA we will configure
-> >   the function bits in MSCR122 and write the value 4 to the I2C0_SDA
-> >   IMCR.=20
-> >=20
-> > - PGPDO/PGPDI Parallel GPIO Pad Data Out/In
-> >   16 bit registers where each bit(besides some gaps) represents
-> >   a GPIO's output/input value
-> >=20
-> > - DISR0, DIRER0, IREER0, IFEER0
-> >   These registers are used for: status, enable, rising/falling edge
-> >   configuration for interrupts. We have 32 interrupts called EIRQ and
-> >   each interrupt has one or more pads associated with it (controlled
-> >   by an IMCR register per EIRQ).
-> >=20
-> >   However, one important thing to note is that even though there are
-> >   EIRQs for SIUL2_0 pads, all the interrupt registers mentioned above
-> >   are only present in SIUL2_1.
-> >=20
-> > Because of mixed pins (I2C0_SDA in the example above with the MSCR
-> > in SIUL2_1 for pad 122 and the IMCR in SIUL2_0) and the interrupt
-> > configuration registers in SIUL2_1 we decided to have a single
-> > driver instance.
-> >=20
-> > >=20
-> > >=20
-> > > Cheers,
-> > > Conor.
-> > >=20
-> >=20
-> > Best regards,
-> > Andrei
-> >=20
+I have an image of the project (that is under development or testing now),
+not sure how to attach the image here, btw, something as
+ 
+          axi_ad3552r_0  ----------->---- qspi0
+              sync_ext_device --.
+       .- external_sync          |
+       |                         |
+       |-------------<-----------                        
+       |
+       |   axi_ad3552r_1 ----------->---- qspi1
+       `- external_sync
+ 
+My understanding is that it's just a method to use a octal spi,
+duplicating the transfer rate. I can collect more info in case.
 
 
+> Jonathan
 
---rI5CiW6I9ZSnzML4
-Content-Type: application/pgp-signature; name="signature.asc"
+Regards,
+Angelo
 
------BEGIN PGP SIGNATURE-----
+-- 
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvq+nAAKCRB4tDGHoIJi
-0iQdAQDpVmzuFtiWSE3Ed5Pn+Tzm5lXzptDhPwqs5ffBQtwd3wEAt7HQn7QqknYP
-n+uLRcALZudJ6e7jYxDU3DZjIF3ueAM=
-=Wd+D
------END PGP SIGNATURE-----
-
---rI5CiW6I9ZSnzML4--
+  o/ QW5nZWxvIER1cmVnaGVsbG8=
+   www.kernel-space.org
+    e: angelo at kernel-space.org
+      c: +39 388 8550663
+       
 
