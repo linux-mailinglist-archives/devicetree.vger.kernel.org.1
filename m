@@ -1,109 +1,240 @@
-Return-Path: <devicetree+bounces-106221-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106222-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BB098991F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 04:14:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE1D0989943
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 04:36:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D30BB2837C4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 02:14:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 840D02829C2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 02:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B67621799B;
-	Mon, 30 Sep 2024 02:14:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA6B1CD2B;
+	Mon, 30 Sep 2024 02:36:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ng3i+Pbp"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="T0R8omgC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DC711CA9;
-	Mon, 30 Sep 2024 02:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C2412904;
+	Mon, 30 Sep 2024 02:36:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727662481; cv=none; b=m15z9nudLwdTIjUYrlAohLmQ3Frl0Kl9EfJmDgBw4IYPQ0Ey04OBy21hXqUxCLSc0BR0Ewi5Y7m4vtff5Y8PC0a2wcILBgbwKEjG0sEhzZzzr04zWsZ+hWf5Z3nH9yvsQFxMOheJeQbByVr0dqabJRF3gnKP1Lu6hCTDn1Cui60=
+	t=1727663803; cv=none; b=mVtQ0Ca4jyjB6U0g6gcUmH0mNum7z+NyzwRwl6FD7BfowexR/cZ7u7dL1a/LCOiITHjyZy3qSKZZnYlUNWnUPgFpybn+OYkOQNTxR0kbrCZUIGQZUsLClNumhWcx5kCOhlY5uO2v9zzDCMtdD1E23uAJsk5zRhYz3BMEI7q8EcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727662481; c=relaxed/simple;
-	bh=gK1BBoZgChkfSZ7WANKhWWuEckpRI8D41X1S01uHoJQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NNQaeJiqguHRo2Mul18wN67jseXpTUyJLJM/ZKGGfI91zNFxIXrpnVR10uPBt+dMAab78ehpeaMaCuAMeM7BDT4XMHNfeDLlH5s+uT4s1a/x6GicskxiGvhD98uUnPBv7lYUwEl5ZWNV4YVULE8F+Diwf4Il9klmD42advI4cKE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ng3i+Pbp; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-71afb729f24so2906304b3a.0;
-        Sun, 29 Sep 2024 19:14:39 -0700 (PDT)
+	s=arc-20240116; t=1727663803; c=relaxed/simple;
+	bh=hEHgXjiUW3RbX6sCTRaIwuFsgk4/FwzgI00+DpIiFF0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=KmswOwIkGsDBY4sa1PbVTApxy5oE/OAIdoXVapmTtZlet0aQ3oVLW0JBEuG/LLRZaunY0t5UuaKUisbpMHtDke2Us2cATw6EMe66+gwSkL/2L6eyIhoVBnz8NuB3yh5yqxcN2/RAY2XbiyK95smsdz6j0eDR2fb/Tkst6Zx3ADA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=T0R8omgC; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727662479; x=1728267279; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ChLyKdnx+gSb/hCqQlfdYD8OWuUHcIg2ZmiHod0R/4w=;
-        b=ng3i+PbpemAJUj8egxoFY+amotFEHpDw+L/C21CCEBuu6rRZvjsdhXJ2A+brdRIBsi
-         gdvCzm8wz32xzK7RfD+o0yU6w5CJ11u00XKUH5ApBJeABSoxvj+PhbqS8VP6kNrAcTk9
-         fhzjrLIPYw6LkvmWJMH1XqqetNEEJ2/OxZ2n9gNAI6kKIBIeSCU1j0ZFEmBE/TBqEPcW
-         wD0gkPvj1kQHDT2kaKKAmQrK+jG/3myKiKWiqSmP1yGlcjKTG2HXIRQOxFeujqrscVs6
-         Dyv8w3a73gZ7jVNy6uS5pP2sNHSKtWrYwvOl12y+h/7hQeauxMM/rYO3Hew7TJVIWc3M
-         lHbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727662479; x=1728267279;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ChLyKdnx+gSb/hCqQlfdYD8OWuUHcIg2ZmiHod0R/4w=;
-        b=ImbrmZPng4o+2fNWnYZbaQY2Z5PpMe5BjxIG43gWmR10jNxcnvp/V9bb8qM8ekTk1X
-         FWu2NiQEOsaOx5eRLXXIer6OIetmU8PnORf+EIylTrM4eGZVf8Lmu9DQy3p4HL0O2Ksa
-         T2DCIpSeWosfGDM1P/jWxPFB4XiW0ZKwgs9ebzCnrACHgHEvIj5pVoa6czbdOM07W40q
-         SgyZjXxzpAl1DRLwGssE1cQ0hUhIb4PUHl74jyoOzlkLNWoB3Py1vce85CFQv0FrS5HK
-         wZ5WGsX0JeeN5utzKvqiLae+mS6kAW1BrpXvsLJYY0s/VINBCAur3KbTnFQZRrBnwKXA
-         4mwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUxlqXelPLk8XxgUPN6GwoRb4VWLtF1M9RoP9PMRSjTFBbd8J+L4t+0BA9q8FiWV9vO6nMLsdAWJdzHrVM=@vger.kernel.org, AJvYcCVb/cw3INCxFDbc0EAe/HlvmuMZmtnYtXZcqfzjFkEH05RJ79ptZac4vLszw0p7NptItzN9mVqTAHXI@vger.kernel.org, AJvYcCXCh2uPGaz4X/H55Oaz3KuLV8Llf00kiMmA/sLqzZbnZUFWsQBLm8s1+1o2mqb54TMOSnFOLDMJfXZY0+1a@vger.kernel.org, AJvYcCXdGkRy0XWqzXQFhA3Fc2T1WESdraWEIf3VhzxPBq2Gigrfv2XZNv/mLpd+GTWL2EzKIjiYmxdQt5H427zRM/Guh1mU7A==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzoN3hWA2IELrPp8Joedj42EaMi8sYd0wCO7ufRNMpXfvl25Xbv
-	J2oPkl6yyrliEtbOAnGyG+4rN9JCF0q5SIz4WxoCnF86tBkS7/qGUWgEZQ==
-X-Google-Smtp-Source: AGHT+IGY+kaxk2R1ggPIcsAArEa6JtfWGotzUKErAP7X1L04ZVOHFs2rgvWf5e5YFRsSaQbdPc3ctA==
-X-Received: by 2002:a05:6a00:99e:b0:705:9a28:aa04 with SMTP id d2e1a72fcca58-71b260815d9mr15698970b3a.23.1727662479327;
-        Sun, 29 Sep 2024 19:14:39 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:671d:78af:f80f:975b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b263553c2sm5179734b3a.0.2024.09.29.19.14.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 29 Sep 2024 19:14:39 -0700 (PDT)
-Date: Sun, 29 Sep 2024 19:14:36 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: joelselvaraj.oss@gmail.com
-Cc: Hans de Goede <hdegoede@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 0/3] novatek-nvt-ts: add support for NT36672A
- touchscreen
-Message-ID: <ZvoJjCY5kXfenXgE@google.com>
-References: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
+	d=codeconstruct.com.au; s=2022a; t=1727663798;
+	bh=6poyunsspmaVm43bgUWJe5BKtQ8nrMQqrGb7DxulcwM=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=T0R8omgCdo6X05+Z5/ziiLtzO6hzYL4anPHmGoTtQqB+KNRbkoEFBN3mORtaiBezr
+	 2xcFE+5WY2gHiK4/IwZGXokX0+7WfXHBW8kjNwzE0lEPYl5TvHre02z922JDlUxtH5
+	 Y9qicWUqrLHIO7UlQqOQar1bFGeI6LmjIsF1fVp7XfcunirvMMafAZi9tpnX6ARGZ2
+	 8By4rwiAPzHbLS50JMtvSuWrWJOB4mWooFJ7G4GTD/zzwCSSkAhF42k3JsI1aR7JGw
+	 YTzjcS8mCmokTPdDca1AXMVIkfl4lBzXV/tSERWWrOtESdxL4ZFWDhQZYtdygGJ6+x
+	 t2PNFmDzSdssQ==
+Received: from [192.168.105.88] (unknown [120.20.51.218])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 56B7365013;
+	Mon, 30 Sep 2024 10:36:35 +0800 (AWST)
+Message-ID: <ef0e0be6cbdcf410ca7854884f32da0e3cf6b295.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for CPLD
+ IOE on Spider Board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>, Patrick
+	Williams <patrick@stwcx.xyz>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Ricky
+ CX Wu <ricky.cx.wu.wiwynn@gmail.com>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Mon, 30 Sep 2024 12:06:34 +0930
+In-Reply-To: <TYZPR04MB5853A70A99CEDE8EB64A317DD6762@TYZPR04MB5853.apcprd04.prod.outlook.com>
+References: <20240926024133.3786712-1-Delphine_CC_Chiu@wiwynn.com>
+	 <fbdc9efe87a1bed9fea7d0abaf955aa1a3dc24ac.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853B51141F3D0610D970265D66B2@TYZPR04MB5853.apcprd04.prod.outlook.com>
+	 <Zvdq7o6NFXRVCJqX@heinlein.vulture-banana.ts.net>
+	 <16c89a7b9b85d21f1f23aa0d67742c6bde94a295.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853A70A99CEDE8EB64A317DD6762@TYZPR04MB5853.apcprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240601-nvt-ts-devicetree-regulator-support-v5-0-aa9bf986347d@gmail.com>
 
-On Sat, Jun 01, 2024 at 03:44:42PM -0500, Joel Selvaraj via B4 Relay wrote:
-> Extend the novatek touchscreen driver to support NT36672A chip which
-> is found in phones like qcom/sdm845-xiaomi-beryllium-tianma.dts.
-> Added devicetree support for the driver and used i2c chip data to handle
-> the variation in chip id and wake type. Also added vcc and iovcc
-> regulators which are used to power the touchscreen hardware.
-> 
-> Signed-off-by: Joel Selvaraj <joelselvaraj.oss@gmail.com>
+On Mon, 2024-09-30 at 01:47 +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
+>=20
+> > -----Original Message-----
+> > From: Andrew Jeffery <andrew@codeconstruct.com.au>
+> > Sent: Monday, September 30, 2024 7:44 AM
+> > To: Patrick Williams <patrick@stwcx.xyz>; Delphine_CC_Chiu/WYHQ/Wiwynn
+> > <Delphine_CC_Chiu@wiwynn.com>
+> > Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.=
+org>;
+> > Conor Dooley <conor+dt@kernel.org>; Joel Stanley <joel@jms.id.au>; Rick=
+y CX
+> > Wu <ricky.cx.wu.wiwynn@gmail.com>; devicetree@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
+> > linux-kernel@vger.kernel.org
+> > Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for CP=
+LD
+> > IOE on Spider Board
+> >=20
+> >  [External Sender]
+> >=20
+> >  [External Sender]
+> >=20
+> > Hi Ricky, Patrick,
+> >=20
+> > On Fri, 2024-09-27 at 22:33 -0400, Patrick Williams wrote:
+> > > On Fri, Sep 27, 2024 at 09:24:11AM +0000,
+> > Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
+> > >=20
+> > > > Would like to ask should I base on the openbmc/linux repo to create
+> > > > the remaining patches that have context dependencies and add the
+> > > > lore link of the those patches that I've sent in the cover letter?
+> > >=20
+> > > I believe you're trying to get the patches applied onto the upstream
+> > > tree, so no you should not base on the openbmc/linux repo.  That repo
+> > > is a 6.6 branch.  You need to base the commits on torvalds/linux.
+> > >=20
+> >=20
+> > In my previous email[1] I requested:
+> >=20
+> > > Please assess the remaining yosemite4 devicetree patches (those you
+> > > haven't received a thank-you email for) and send an appropriately
+> > > constructed series so they can all be applied together, based on the
+> > > tree here:
+> > >=20
+> > > https://urldefense.com/v3/__https://github.com/amboar/linux/tree/for/=
+b
+> > >=20
+> > mc/dt__;!!J63qqgXj!N56Dq0KcUR0NerePsoY0JUBCDvFG_F3KyRF0D4qNdu_Ozc
+> > SGVPC
+> > > SBOJk6u28AWPfgDRWsLE1B__-_ZNVKYv-zhc_6PY$
+> >=20
+> > So I'm not sure why there's confusion and speculation as to which tree =
+should
+> > be used :( Note that the for/bmc/dt branch above is currently based on
+> > v6.12-rc1.
+> >=20
+> > [1]:
+> > https://urldefense.com/v3/__https://lore.kernel.org/all/fbdc9efe87a1bed=
+9fea7
+> > d0abaf955aa1a3dc24ac.camel@codeconstruct.com.au/__;!!J63qqgXj!N56Dq0
+> > KcUR0NerePsoY0JUBCDvFG_F3KyRF0D4qNdu_OzcSGVPCSBOJk6u28AWPfgDRW
+> > sLE1B__-_ZNVKYv-uNCc7qE$
+> >=20
+> > Anyway, I asked that because I have already applied one of the
+> > Yosemite4 patches there, and developing the remaining patches against a=
+ny
+> > other tree will again cause conflicts (due to the lack of that patch).
+> >=20
+> > More broadly though, Patrick is right: If you're sending your patches u=
+pstream,
+> > it is required that you develop and test your patches against an approp=
+riate
+> > upstream tree. Usually this is the most recent -rc1 tag, unless there a=
+re reasons
+> > otherwise (such as conflicts). The OpenBMC kernel fork is not an approp=
+riate
+> > tree on which to base work you intend to send upstream.
+> >=20
+> > Thanks,
+> >=20
+> > Andrew
+>=20
+> Hi Andrew,
+>=20
+> Sorry for my misunderstanding.
 
-Applied the series, it will go in the next merge window. Sorry for the
-delay.
+No worries, hopefully we can get it sorted out. I realise the sentiment
+of my responses below is quite direct, but I'm trying to cut through
+the confusion. Please bear with me.
 
-Thanks.
+> So I should combine the remaining yosemite4 device tree patches as a sing=
+le serial
+>=20
 
--- 
-Dmitry
+Specifically, any patches that have dependencies on each other. In this
+case, patches that share diff context need to be in a single series so
+they don't generate conflicts when I try to apply them.
+
+>  based on torvalds/linux
+>=20
+
+No. In _this specific instance_, please base the series on
+
+https://github.com/amboar/linux/tree/for/bmc/dt
+
+If you look, you will find this is itself already based on v6.12-rc1,
+and contains ASPEED devicetree patches both yourself and others have
+sent that are intended to appear in v6.13.
+
+I need you to do this because I've _already_ applied one yosemite4
+patch there which is generating conflicts with your other yosemite4
+patches.
+
+_However_, in almost all other cases, you should base your series on
+the latest -rc1.
+
+>  and test on openbmc/linux
+>=20
+
+No. If you're sending the patches upstream you must test them as
+applied to the relevant upstream tree. In _this_ case, it's the
+for/bmc/dt branch I've linked above.
+
+>  then send the serial patches to torvalds/linux.
+
+You send them to the lists as you have done here, yes.
+
+> And you will help to fix the conflicts
+>=20
+
+No. I'm asking you to fix the conflicts that your patches are
+generating. I don't want to be in the business of resolving other
+people's conflicts and risking incorrect results. The conflict
+resolutions should be tested to the usual expectations.
+
+>  when you apply the serial patches to openbmc/linux.
+
+I'm doing two separate-but-related roles:
+
+1. Upstream patch collector for BMC-related devicetrees
+2. OpenBMC kernel janitor
+
+The first role is how I'm interacting with you in this thread. At the
+moment I'm helping Joel out: recently he's been taking the patches I've
+collected in the for/bmc/dt branch I linked above and has sent a PR to
+Arnd for integration into torvalds/linux via the SoC tree.
+
+However, in the process of collecting your patches in role 1 I also
+happen to switch to role 2, where I backport your upstream patches to
+OpenBMC's v6.6-based (LTS) tree _if_ applying the patch/series directly
+to that tree does not cause conflicts. If there are conflicts, then I
+expect you to also send a backport patch that accounts for the
+conflicts to _only_ the openbmc list (and not the upstream lists and
+maintainers also on Cc here).
+
+So in neither case should you expect me to be resolving conflicts for
+you. The resolution still needs testing as noted above, and I'm rarely
+in a position to do that myself.
+
+I hope that helps.
+
+Andrew
 
