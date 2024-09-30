@@ -1,216 +1,165 @@
-Return-Path: <devicetree+bounces-106326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE2D0989D00
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29384989D15
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:43:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F54C1F23381
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:41:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF7741F245B2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5183C17BED6;
-	Mon, 30 Sep 2024 08:41:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D77FD17C9AC;
+	Mon, 30 Sep 2024 08:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="p0qkg/Nr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RP2EStk4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241F93FB0E;
-	Mon, 30 Sep 2024 08:41:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EA6617BB34
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727685666; cv=none; b=G4MsMRWEhlz0Y0xCNmyqudJ72e/Zs/xmjnb+ZXXp2Fw1lWQgL4VdWej+HmwhNrSFsAdINOBK0B1QbG1H6Czx1FwGlCOet1aDjarKyq66ePbw2d1CgchVEYCvIdiHJ1CvipLZulduDbktkX06Jrb4O0c/ozt+NsszOVUipLr89EM=
+	t=1727685798; cv=none; b=uk7PPZzBwbWN4mLRLnlWd+op9diXy3nGSMBVvjpvq6Is4Nh07FcJONADKJ/IGazfL2cswsP67dV6BUZAI0XjJpB1wqnRxM16mPiIJicXoxBcp02ZnFELAc0ep2NumqW+B0mNaAUwpV4TeHu3e9cR6mt9o3QMStFKwMCZma7KRf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727685666; c=relaxed/simple;
-	bh=/IgEcOq/Pg9LpJttfLXnkydtM1MrKagW/YX3Y9ydk0I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=f/fA6WSpmnhTXrMVXL/vihQCPgYqS7Ct8G3maucPere59MBAuuP+QpVpgh7dh2Npgho2QYrnzFZ5gm+/gFQOoFCuMuTnLeac+qOQWcokeD2mTXGPkyxfXj/OX1kHXD9mpjrAZ1GH01+mCGN26mcVWH0YBdMi8fp3Lj2qPRA362Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=p0qkg/Nr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32788C4CECD;
-	Mon, 30 Sep 2024 08:40:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727685665;
-	bh=/IgEcOq/Pg9LpJttfLXnkydtM1MrKagW/YX3Y9ydk0I=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=p0qkg/Nr9hqD3CxrTeaPW6Cp1EtF4GfsVbaKNxkCCwH21N2EaE4lvjnWrFeO/tDfs
-	 PkKZfwM1bYV8dBfxDoorRzr8DVvHHONwCYk1By+NmZAhXEB4x3XJP87OyJrrjuerkn
-	 MqjJo1i9YBcjmYueXjZbCLMnMHsaw+sBI0kz/2UAsFW3HXI2hnDHYGzsIElrvuq5x9
-	 YVR2G1uoWdoe5DBxoPL1c1jVklb7V9DX//MTWUx3YKAWlzatppE/CQmonmu3BJ8pnw
-	 VaM0jD8KprZFH7UZd8+3F8qJ89tR1DWQNy0owN7lcpuxOMtVfGp76bKujshyM3k5tN
-	 oUlqY/QLqKyzQ==
-Date: Mon, 30 Sep 2024 09:40:54 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: "Tinaco, Mariel" <Mariel.Tinaco@analog.com>
-Cc: Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, "Hennerich, Michael"
- <Michael.Hennerich@analog.com>, Conor Dooley <conor+dt@kernel.org>, Marcelo
- Schmitt <marcelo.schmitt1@gmail.com>, Dimitri Fedrau
- <dima.fedrau@gmail.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Subject: Re: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-Message-ID: <20240930094054.30cb0365@jic23-huawei>
-In-Reply-To: <SJ0PR03MB6224756A0B570A8CCAEF021091762@SJ0PR03MB6224.namprd03.prod.outlook.com>
-References: <20240912095435.18639-1-Mariel.Tinaco@analog.com>
-	<20240912095435.18639-3-Mariel.Tinaco@analog.com>
-	<8f869b3b-df3f-49a9-9b6e-640697aa91dd@wanadoo.fr>
-	<20240928151930.0c22e5e9@jic23-huawei>
-	<SJ0PR03MB6224756A0B570A8CCAEF021091762@SJ0PR03MB6224.namprd03.prod.outlook.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1727685798; c=relaxed/simple;
+	bh=u/Hlf+zXHRGDPVK0pqQYxpZ8KaChJ70atyetPvNuwu4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=lesj9egvRMJxWOZu8CZpGsuelVLV3K3JxrcoIiY/ylsEu8nfDwubsbYJPouRIwBLJ2I0TdKOVcNQZh2J4ZFEmrLY07oR8+mh8PD+dcBd9HVnejrq03LQ9d93sFNdkQjQTQMLsJESPB4JwKmoKTTV6wtpB3R5w+AmAaYv8yPXtEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RP2EStk4; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5389e190518so441718e87.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:43:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727685794; x=1728290594; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=k4NAWPmjNPYkmusJzkJ7wkfek3KORLL4wcikp5OsQO0=;
+        b=RP2EStk4X/Ag1mv7miG8jiGHsVvOnGv8eszPM9+tYLnITQ56gKJ+vUUezBFeEbPlUR
+         gu5tJQTfKdBigVsk1RHffiuZSfXLZoD3MoZqjF+ZUOlmSBY7+whjaqutdAugsrP6iCbX
+         ofw0UQnr5T6i8BTngRkHu2OGm5hzdcUaYow950mH/bMJpnMkGUrKF2EXA/maQ4BeE9NJ
+         +io6yAEuVP8YYBRCjRIZvTLZ3TAV3N6Wnp/I1kwhhGIGLeL4iGmXQciWQNayRsC534+8
+         vpZ0VGcd9bI3OS285SgBtmmhOzlWuLFkplIfh/Vg5r+6BTeWMXo/wroERTqIO808uXP2
+         T5vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727685794; x=1728290594;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k4NAWPmjNPYkmusJzkJ7wkfek3KORLL4wcikp5OsQO0=;
+        b=GEZcjdK6cNPB8B0nGZjbmjnTG3+EiT0pnBlsq8BlBj3LL8WsJJW9TLYcADFmZcKsk4
+         J5gp9t8mCT5drtqErNKCiBi02EWX8VPirLvefXrdNqyhiqRV9tE7f84QgCon+tCa7Gu0
+         YlsWewRkl9F+nDKxjx0K3rqqMbm5wCx61dxKxvWS8okduw7lgrTn0xFCsS5K7D46tqGt
+         VT+me5SumErFe1GbsqNCN5ibg0dMiL/gQuYRNyi/ktFlw5RqGFWtDQ6L8gJH9mlYV/4N
+         MYJzvxiSZur4u2qx3Udp/34nG2MNuKd2D1GzAh/KmH8S5NCFjIiJJaHKWwr0Uy0tzibm
+         ATZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWEp1TQXpvTy9SgPbyWA6HgBZjB8p/Tjtf1P8dG17An31wKj7eHX90tDw0cn4wDRXycM1ws5EgtnLsx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwprOyhq+nge0+nC77WN7uou2IbrrgplYnTO/FqTwqGNwIDKJ3M
+	qx6uvTqwxQou7h1dduKivegYfyLD9m6YaKq0RJWe7MoExjO9leEwyBjfZLBClHE=
+X-Google-Smtp-Source: AGHT+IG2Enj9PsmvL9L1IwvFblCS0bQWt5hYPTEU3fS+wCddhij9k1pM8XG7cl8cjBoSProSlI4oSA==
+X-Received: by 2002:a05:6512:6502:b0:539:8d9b:b62a with SMTP id 2adb3069b0e04-5398d9bb68cmr707544e87.9.1727685794513;
+        Mon, 30 Sep 2024 01:43:14 -0700 (PDT)
+Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5389fd539e7sm1183156e87.22.2024.09.30.01.43.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 01:43:13 -0700 (PDT)
+Message-ID: <62528cd4-a5b0-4991-bba4-49cac161a895@linaro.org>
+Date: Mon, 30 Sep 2024 11:43:12 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8550: Change camcc power domain
+ from MMCX to MXC
+Content-Language: en-US
+To: Taniya Das <quic_tdas@quicinc.com>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Stephen Boyd <sboyd@kernel.org>, Jagadeesh Kona <quic_jkona@quicinc.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240927103212.4154273-1-vladimir.zapolskiy@linaro.org>
+ <20240927103212.4154273-2-vladimir.zapolskiy@linaro.org>
+ <a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com>
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+In-Reply-To: <a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, 30 Sep 2024 04:28:09 +0000
-"Tinaco, Mariel" <Mariel.Tinaco@analog.com> wrote:
+Hello Taniya.
 
-> > -----Original Message-----
-> > From: Jonathan Cameron <jic23@kernel.org>
-> > Sent: Saturday, September 28, 2024 10:20 PM
-> > To: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-> > Cc: Tinaco, Mariel <Mariel.Tinaco@analog.com>; linux-iio@vger.kernel.or=
-g;
-> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Lars-Peter Cl=
-ausen
-> > <lars@metafoo.de>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
-> > <krzk+dt@kernel.org>; Hennerich, Michael
-> > <Michael.Hennerich@analog.com>; Conor Dooley <conor+dt@kernel.org>;
-> > Marcelo Schmitt <marcelo.schmitt1@gmail.com>; Dimitri Fedrau
-> > <dima.fedrau@gmail.com>; David Lechner <dlechner@baylibre.com>; Nuno S=
-=C3=A1
-> > <noname.nuno@gmail.com>
-> > Subject: Re: [PATCH v4 2/2] iio: dac: support the ad8460 Waveform DAC
-> >=20
-> > [External]
-> >=20
-> > On Sat, 14 Sep 2024 20:21:56 +0200
-> > Christophe JAILLET <christophe.jaillet@wanadoo.fr> wrote:
-> >  =20
-> > > Le 12/09/2024 =C3=A0 11:54, Mariel Tinaco a =C3=A9crit=C2=A0: =20
-> > > > The AD8460 is a =E2=80=9Cbits in, power out=E2=80=9D high voltage, =
-high-power,
-> > > > high-speed driver optimized for large output current (up to =C2=B11=
- A)
-> > > > and high slew rate (up to =C2=B11800 V/=CE=BCs) at high voltage (up=
- to =C2=B140 V)
-> > > > into capacitive loads.
-> > > >
-> > > > A digital engine implements user-configurable features: modes for
-> > > > digital input, programmable supply current, and fault monitoring and
-> > > > programmable protection settings for output current, output voltage,
-> > > > and junction temperature. The AD8460 operates on high voltage dual
-> > > > supplies up to =C2=B155 V and a single low voltage supply of 5 V.
-> > > >
-> > > > Signed-off-by: Mariel Tinaco
-> > > > <Mariel.Tinaco-OyLXuOCK7orQT0dZR+AlfA@public.gmane.org>
-> > > > --- =20
-> >=20
-> > Rather than go around again, I fixed up all the comments made and the
-> > autobuilder issues then applied this.
-> >=20
-> > Diff follows. The only bit I'm not 100% sure on was your intent with the
-> > temperature channel. I've made it an input but shout if I'm missing som=
-ething.
-> >=20
-> > With this diff applied on top, applied to the togreg branch of iio.git =
-which is
-> > only pushed out as testing for now as I'll rebase on rc1 once available.
-> >=20
-> > Thanks,
-> >=20
-> > Jonathan
-> >  =20
->=20
-> Hi Jonathan,
->=20
-> Thank you for finding the time to fix up the inline comments from the
-> previous rounds! I have created a patch for that but was unable to send it
-> yet because I'm still clueless about the temp channel. Apologies about th=
-at
->=20
-> About the temperature channel, it does make sense to set it as input sinc=
-e the
-> value is read-only.=20
+On 9/30/24 08:57, Taniya Das wrote:
+> 
+> 
+> On 9/27/2024 4:02 PM, Vladimir Zapolskiy wrote:
+>> Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
+>> an error message that the gdsc is stuck at 'off' state, this can be
+>> easily verified just by setting cci0 status on:
+>>
+>>       cam_cc_titan_top_gdsc status stuck at 'off'
+>>       WARNING: CPU: 6 PID: 89 at drivers/clk/qcom/gdsc.c:178 gdsc_toggle_logic+0x154/0x168
+>>
+>> However if MMCX power domain is replaced by MXC one, it allows to turn
+>> titan_top_gdsc on successfully, even if MMCX is remained off according
+> 
+> MMCX is absolutely required for Camera Clock controller as it is the
+> main power domain. The access will not go through if this domain is not ON.
+> While I agree that MXC is also required to be enabled for GDSC powering
+> up, but the below is not the correct way to handle the condition.
+> In your case the MMCX could be left ON in hardware and that could be the
+> reason for the access to go through.
 
-Input means that we are measuring a signal from the outside world.  As you =
-can
-read the temperature it should be an input (doesn't matter that it comes fr=
-om
-elsewhere - in this case an ADC channel is providing the service of reading
-that voltage for us).
+Sure, it's the most probable case.
 
-> About the implementation of the channel, I'm wondering
-> what would happen if the consumer-get-channel would throw -EPROBE_DEFER
-> half the time?
+> I am currently working on the necessary changes to address these
+> conditions where a clock controller (GDSC) has multiple power domain
+> dependencies.
+> 
+>> to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
+>>
 
-It will return -EPROBE_DEFER, it then later the driver providing the ADC ch=
-annel will probe
-and we will go around again with it succeeding.  Roughly speaking every
-time a driver is successfully bound (probe finishes) the kernel tries again
-for any deferred instances.
+If you find it possible, I kindly ask you to check and probably correct
+the reported MMCX status as 'off', when it's 'on' actually.
 
-The only nasty corner is the DT supplies the channel but we don't have the
-driver for the ADC built. I'd argue that is a kernel miss configuration
-where the right approach is to fix that and provide the ADC driver.
+Nevertheless the work on GDSCs is kind of dependent on DT bindings
+description, I will send v2 shortly with two power domains as the property
+value and a new property power-domain-names with "mmcx", "mxc" values,
+unless you have objections.
 
+>> Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
+>> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+>> ---
+>>    arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
+>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> index 9dc0ee3eb98f..5c07d1b35615 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+>> @@ -2846,7 +2846,7 @@ camcc: clock-controller@ade0000 {
+>>    				 <&bi_tcxo_div2>,
+>>    				 <&bi_tcxo_ao_div2>,
+>>    				 <&sleep_clk>;
+>> -			power-domains = <&rpmhpd SM8550_MMCX>;
+>> +			power-domains = <&rpmhpd SM8550_MXC>;
+> 
+> 
+>>    			required-opps = <&rpmhpd_opp_low_svs>;
+>>    			#clock-cells = <1>;
+>>    			#reset-cells = <1>;
+> 
 
-> Is it not possible to skip it over since the channel is optional
-> anyway? Or does this defer error from the consumer mean that the other
-> configurations for the succeeding attributes will be blocked, which is wh=
-y we
-> have to return probe instantly?
-
-If we don't defer then we never try again and succeed.
-We could skip it but that would effectively be so unreliable we would be
-better off not providing that feature at all as it will be the source
-of lots of bug reports.
-
->=20
-> 	state->tmp_adc_channel =3D devm_iio_channel_get(dev, "ad8460-tmp");
-> 	if (IS_ERR(state->tmp_adc_channel)) {
-> 		state->tmp_adc_channel =3D NULL;
-> 		indio_dev->channels =3D ad8460_channels;
-> 		indio_dev->num_channels =3D ARRAY_SIZE(ad8460_channels);
-> 	} else {
-> 		ret =3D iio_get_channel_type(state->tmp_adc_channel, &temp);
-> 		if (ret < 0)
-> 			return ret;
->=20
-> 		if (temp !=3D IIO_TEMP)
-> 			return dev_err_probe(dev, -EINVAL,
-> 					     "Incompatible channel type %d\n", temp);
->=20
-> 		indio_dev->channels =3D ad8460_channels_with_tmp_adc;
-> 		indio_dev->num_channels =3D ARRAY_SIZE(ad8460_channels_with_tmp_adc);
-> 	}
->=20
-> I also found other implementations where the type of channel is checked. =
-Thought
-> That maybe it's a good addition for security.
-
-in this case it would be a DT bug on a very simple binding so I'm not sure =
-we care.
-It is also very unlikely to be a temperature channel given we need to read =
-the voltage
-from this chips output pin
-
-Jonathan
-
-
->=20
-> Thanks,
->=20
-> Mariel
-
+--
+Best wishes,
+Vladimir
 
