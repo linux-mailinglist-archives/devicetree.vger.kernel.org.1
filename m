@@ -1,58 +1,58 @@
-Return-Path: <devicetree+bounces-106599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ABBA98AEFB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 23:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B417498AF11
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 23:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4FB882821E7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:27:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72FD8282639
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 336D01A2C2D;
-	Mon, 30 Sep 2024 21:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC1351AE85B;
+	Mon, 30 Sep 2024 21:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L1Nxf/gt"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z++vsUfR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0885E1A2C24;
-	Mon, 30 Sep 2024 21:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5921AED56;
+	Mon, 30 Sep 2024 21:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727731593; cv=none; b=E9TUnDmU3HtwzCQsbqTmjITL6LDsOHnAtlI624HjSTS1FDQ1cWDn8FG1QR6kkxx5rADdWyZRStSwCeADLYusNfpSBZK5+YP/4bC8fGNAkr6e3OFKUQJSNhAmmoW3idYe9OR4wzIILeb4CbhVSLeOJc/FMr+14/0Ulsvcn/g0abo=
+	t=1727731608; cv=none; b=KPGpddEsBVc8ghsUWSNyp0dqwEHmnux/sOdsAcFvKv65pWBHBH7ekNitNfNt89zkto+McbJDnRZV7xl1BFoioEBePZdwh/hU3I/bVqejRhBmdaJXBuGbU+hfj+aXK8awLwbcxjxJCly062t62xdzuKSKyRK6JN9NOT05JIxIv2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727731593; c=relaxed/simple;
-	bh=3V5RK7vBNv1esonI1+GJwEVtF3mnPRsHJn3lEIJVWco=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=e24LqL/b1Bt6uVifaUdwcy3kPbHNNVQSvB2VTh/gtV/zMgP+nO72gYFDoGvcMWk9m3X3h7bc+JleCyCdwgeSJgyJjkJQzN6sG6KEAFVIoOQICxUalo+UKXQDotFBw7uNCk7ydr1VMtREJHqs5eJTaUH+8Ph1bzIWaGAjaqU7stc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L1Nxf/gt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2008CC4CED2;
-	Mon, 30 Sep 2024 21:26:28 +0000 (UTC)
+	s=arc-20240116; t=1727731608; c=relaxed/simple;
+	bh=fy4TyZjrHxyyox+cwJRMsw2U4PWSehMZUZBuTrFsaE0=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=kohcSX1wLeC+sc7mmWmaGVL6bLjWsJ3HskCKreA4hpe+QZeM4aHKjfS/s9xt1f7jdwdWANiudLVP6wuu386Jvix1qOh1x4y/2HGV6YtCpgOOBybe+3eR+xbEEkC/OyHQaURQgiuxU9R37tCQ/LLVTBic65SIfjA25/eeuWcK6Ig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z++vsUfR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80241C4CEC7;
+	Mon, 30 Sep 2024 21:26:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727731590;
-	bh=3V5RK7vBNv1esonI1+GJwEVtF3mnPRsHJn3lEIJVWco=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=L1Nxf/gtVjBNSQm9ZtPCZRNcqCO2MaLm6ioqh+jC3gAvdNxMVXkBw2pxy0TzsEfcq
-	 KdwbCjgAP2DVpD/0bq3X03+zATJ4AWc/ErZl6ZdJOksgHelVVIngpC5DwNf/DrBvXn
-	 9cNl+SI/TPx2b+zp+NR/23MosviZin4/0gbTlCg+21z2nEGa//kp8TKv3Xzjl18mUw
-	 4I46kjUCjD5Mt+cx/EsGVrkSe18qwVL4qRU+RSTCzM/Ht6xr2nLZ8paouvilQEIYNV
-	 v2nlysMQ1FpGP/nwo1YegdXzXvErkQdOME3o62Td2OXx2DyKR6EoW8jcsvpWNUhv/m
-	 1s5fOhdKwyx6g==
+	s=k20201202; t=1727731608;
+	bh=fy4TyZjrHxyyox+cwJRMsw2U4PWSehMZUZBuTrFsaE0=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=Z++vsUfRaKfelK2EnUNl/GxwkUzw7+eMC0Gk4MgDxHPHsHLQEas/QlQlsV/bKScqK
+	 5K70wQZmllNKHsG81Xopur7RKc4aO9EPZsZ6syw04viKyfk90scndHE8hirVkp4jGg
+	 3Kyh8SZhxMLX538IJ19g8kYCs6Gzk/S1iyGGPh5pqmOQ4pF4Vu4hewAzOTsdObypDh
+	 va0TvULHwNQs0L1Fj7xMkmUzeQ9ZzTEyno+o8DuehELhucRVohHFDXXdlSdajXdE/+
+	 veKbLQf9KnsPH1NR3F4AFJSaG0+awZnqWehiXs3il7qo9dg7bsRboesIj6+ktWkkR0
+	 2B0Zfv+0SHboQ==
 From: Mark Brown <broonie@kernel.org>
 To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
-References: <20240911-topic-amlogic-arm32-upstream-bindings-fixes-covert-realtek-rt5640-v1-1-6b3745e34540@linaro.org>
-Subject: Re: [PATCH] ASoC: dt-bindings: realtek,rt5640: Convert to dtschema
-Message-Id: <172773158891.2197048.8205687551751490665.b4-ty@kernel.org>
-Date: Mon, 30 Sep 2024 22:26:28 +0100
+ Conor Dooley <conor+dt@kernel.org>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>
+In-Reply-To: <20240927205618.4093591-1-Frank.Li@nxp.com>
+References: <20240927205618.4093591-1-Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/1] ASoC: dt-bindings: fsl-esai: Add power-domains for
+ fsl,imx8qm-esai
+Message-Id: <172773160630.2197048.10836164029932712084.b4-ty@kernel.org>
+Date: Mon, 30 Sep 2024 22:26:46 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,8 +63,9 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-99b12
 
-On Wed, 11 Sep 2024 17:34:01 +0200, Neil Armstrong wrote:
-> Convert the RT5640/RT5639 audio CODEC bindings to DT schema.
+On Fri, 27 Sep 2024 16:56:18 -0400, Frank Li wrote:
+> i.MX8QM's esai require power-domains property. Keep the same restriction
+> for other compatible string.
 > 
 > 
 
@@ -74,8 +75,8 @@ Applied to
 
 Thanks!
 
-[1/1] ASoC: dt-bindings: realtek,rt5640: Convert to dtschema
-      commit: eba5a0bac211075b9673139df42bab955e984fce
+[1/1] ASoC: dt-bindings: fsl-esai: Add power-domains for fsl,imx8qm-esai
+      commit: a2bd5a25c1b548609fb2f095c7356fcae8fabac2
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
