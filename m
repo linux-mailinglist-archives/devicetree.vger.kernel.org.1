@@ -1,200 +1,159 @@
-Return-Path: <devicetree+bounces-106578-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E94C98AE04
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 22:18:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBF098AE4E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 22:28:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 122571F213E2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 20:18:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78049281CB1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 20:28:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45151AD9F2;
-	Mon, 30 Sep 2024 20:14:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2632C1A2551;
+	Mon, 30 Sep 2024 20:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IgQ1+e/a"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="i38FK1l6";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="g/tDmJaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback2.i.mail.ru (fallback2.i.mail.ru [79.137.243.68])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AA0B1A255C
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 20:14:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 808171A0B0E;
+	Mon, 30 Sep 2024 20:25:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.68
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727727288; cv=none; b=tFIScLrB4g4BKxgSan23brSF377TL6FE9n3yQ9kDSy42J2L0GMshIdMgLlDnI2+PiUpHObRVMtQjLJFxVVj9PFESHSOrXQU3NrpmEyXgS9C5g0p3Fi05PtSz9i8o68e+qht/E0l9ztl/BdmsnBH8jJdu5mw1OO+mkZri2T6/vR4=
+	t=1727727922; cv=none; b=NLyEVE70bNdxtSgkMMY9+79rIOhwKaSPaNIGUoRFBOHFqzWA/LMZ3H4NuyUQ0lrGnxl1ggcDd8PStN7Qet0Niw0xskFlL9nf4qhzFYbqVS0akrlH1mGoYn1HAZvvQfH8iDk3f1mmNdfDiuI5KJ3uCsGb2kEZNrdz8leN3LTmDXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727727288; c=relaxed/simple;
-	bh=X/4e7mZxuw2J+n9vnToA8fMOd1pL/QZg+X4D355Gd6g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=mrGL+bbSxvgJjpzCGtoDgjy6NILUIGgS+0RF52Wn2jTNfQT5doEhF+jtTAtzIRdkfP0aLat/3YyzmxWLp3DvmOTNz1R1/D5yZPqtYsogwMB74rzHrPRNCYPqBAZZ5OQPv6UbLakmlLYqjtEp1kj0W7dkPNAVfMZF/knKaHHiPsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IgQ1+e/a; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6e214c3d045so37726777b3.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 13:14:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727727284; x=1728332084; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pprKSaNRuk4RU9vGlhC9xypgMoYbs/DlEn6atpZhZX0=;
-        b=IgQ1+e/aYhrvpPcZVPrCJ9h+UaepHAeuRAE5y4GV+e9YKVZ1n2SLbXTWXGULYm/YFn
-         QiGlpagbdKg9pX5TjQgQkHhzOs8nOLhNsCsYPg5JKPWuKus40DVR16dp9OiGVCUZv8MW
-         Pu4olqTwWnUDDjrvD2GRPUHBQ4mWoOM/thaPREmADIMqwqwNM4ujytpy2+Ra/kTTtiMB
-         zElSnqrhOrq28+3hSFR0qXjBEvkYaC1nBvFgbDRVIjJXUFUn/7R6MXmbTlf7nVvHdYZi
-         nsg+1gUe/y1zgjA5zTNJSx6LRd2Zd5qW3/cmj5IWsl1TyarjnoqI6nWU3bqIjsamhl9G
-         IyYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727727284; x=1728332084;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pprKSaNRuk4RU9vGlhC9xypgMoYbs/DlEn6atpZhZX0=;
-        b=RX1KrFupnEDsAPISSPV6H5RL3yLVBJ74/rwwb+91xKERBBSIF5tNT3jtQPewxOd+3d
-         ly8IBMW762Pe3qxOAGhiY7saWLkSEy6FcBVTINmNF4h7uhtW+YeFfjCwuMxUbUm69tro
-         /hjWAOy5qeaYu1Byw1/cXbyfngdDGIgzDIKBh6IfqrYknvbRm0EJFpekY3iPaLdQMsUN
-         vqm8+J2DZ84gHUZ4GK222YDo2A2WwbD0yTBcs/k78XeZiwuxTkASxbZwyWi+SkQNy73e
-         5/B+EP/oTsvixleRf4JF7rlP6V71zF2Qiy9WSNABkOZl0NCBucDc4527BBA0mR5F9FSM
-         5/oA==
-X-Forwarded-Encrypted: i=1; AJvYcCU0S8Zl60JCEaDWo8MWx6xTV8RlmxsaZMtpeOl9r2BGjBtO0RE59rwWLiq0H1asUV5wQ+PEGwB8s1VS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9x4KPVsN6cjCPsIWkvxN06fAkbVfO091mkvjfgao4F4g9ln2A
-	pTyJP72dq8oYaH/3v3szrGaBTXSm86msn8iOE+13un1VT0jZIhKDxc7Cr86Zr2RoITCL3w+ToM5
-	br5qNqsTVrk4myRBjZzRmRwey8GTHEOrn70Gcuw==
-X-Google-Smtp-Source: AGHT+IGw89Yi103G7oHwBihXrrG7C1HKFwoxrFWy4eJ4ItSgybQDiDfYN6d7HhLwkVImZdJ046BeMXWV/7ACSsaScYs=
-X-Received: by 2002:a05:690c:6403:b0:646:7b75:5c2c with SMTP id
- 00721157ae682-6e247546f2bmr112204887b3.16.1727727284450; Mon, 30 Sep 2024
- 13:14:44 -0700 (PDT)
+	s=arc-20240116; t=1727727922; c=relaxed/simple;
+	bh=3M6iDobpMtVHDu/EO4Q248Yy2294W9teRcMZ8b/So14=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Gwh2NDj18nnhIgFRCFVSiQBhkSfQpzb4OioAvuTe3okF9X57DjD/8EA3PsoYVsJ9cYD5JJ1bFvKlkIF9vDa+ZjCiCxTtH232BMlJnb6grpLZcu/8Va5UsgXm03ABFjRp1if5WdmojzMBHO1tfv23mC23qvE2G9uTDrizzzsFgt8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=i38FK1l6; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=g/tDmJaM; arc=none smtp.client-ip=79.137.243.68
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=eB29JtlsHjhVvHnx+pcGQPtAc7wpfme/nwcJRyj2I3E=;
+	t=1727727920;x=1727817920; 
+	b=i38FK1l6IC65GZfJgR+zqepGkoJx6gcWeGb/woFNRN0QTOOVX0YLyfkrwS8Y+JEO1bBWWOPYl2+KISdBQZwYr28dl3WSQoBMpBmuVbJ2fYdZoeK+31UlWrOlW2WZV+NFAHZJpE/etX+VL0PmyTYrBu2CJkDACzUrr860o36iJMk=;
+Received: from [10.12.4.4] (port=40340 helo=smtp16.i.mail.ru)
+	by fallback2.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1svMxE-000FL0-0V; Mon, 30 Sep 2024 23:25:12 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=eB29JtlsHjhVvHnx+pcGQPtAc7wpfme/nwcJRyj2I3E=; t=1727727912; x=1727817912; 
+	b=g/tDmJaM/hiJItbJk+WKkk8apd+505xas3Qkiz89+IY1uhuvNjC664Fpf/LT4UlJ0WZJXL/MoyR
+	/6O5777LXXAta0BmgBLJel1dLYQFX3Fhdfeg1lFHwC39aP3TJ0m5NLSHKtpiXfRx+7wLI46G5BSIo
+	Oj32iDFBaROKX3VrGzI=;
+Received: by exim-smtp-69fb954d46-6fqd6 with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1svMww-00000000HGp-3IF7; Mon, 30 Sep 2024 23:24:55 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	adrian@travitia.xyz,
+	degdagmohamed@gmail.com,
+	linux@mainlining.org,
+	Danila Tikhonov <danila@jiaxyga.com>
+Subject: [PATCH v3 0/2] Add Samsung AMS639RQ08 panel support
+Date: Mon, 30 Sep 2024 23:24:46 +0300
+Message-ID: <20240930202448.188051-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CGME20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b@epcas2p4.samsung.com>
- <20240913080325.3676181-1-trunixs.kim@samsung.com> <20240913080325.3676181-3-trunixs.kim@samsung.com>
-In-Reply-To: <20240913080325.3676181-3-trunixs.kim@samsung.com>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Mon, 30 Sep 2024 15:14:33 -0500
-Message-ID: <CAPLW+4k0rpS0F14sqMGPbq_m=aMqK+g=PZewtZYYroQ+OQBeOQ@mail.gmail.com>
-Subject: Re: [PATCH 2/3] watchdog: s3c2410_wdt: add support for exynosautov920 SoC
-To: Taewan Kim <trunixs.kim@samsung.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-watchdog@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
-	Byoungtae Cho <bt.cho@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD964E86F54238FCC39C3784A4327226DB3819A5FA7125B1930182A05F5380850403B9362816B6F46E33DE06ABAFEAF670592BCB6CB7EB6A6801C5DC97C387795A570620434C0A4BCCF
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE7AD2F2D6F6013FF7FC2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE75263010198C72082EA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38B043BF0FB74779F36206E5B6CC72E505B4A8E081920376F909FD42FC85D2B00CFA471835C12D1D9774AD6D5ED66289B5259CC434672EE6371117882F4460429724CE54428C33FAD30A8DF7F3B2552694AC26CFBAC0749D213D2E47CDBA5A9658378DA827A17800CE7ABB305BD10C6E5099FA2833FD35BB23DF004C90652538430302FCEF25BFAB3454AD6D5ED66289B5278DA827A17800CE7BCF6856210B26C42D32BA5DBAC0009BE395957E7521B51C2330BD67F2E7D9AF1090A508E0FED62991661749BA6B97735ABD590C9C6A374A6CD04E86FAF290E2DB606B96278B59C421DD303D21008E29813377AFFFEAFD269176DF2183F8FC7C056E33EBA9EC0A35D68655334FD4449CB26055571C92BF10FCE5475246E174218D5E8D9A59859A8B6EB4D44AFC205D51D089D37D7C0E48F6C5571747095F342E88FB05168BE4CE3AF
+X-C1DE0DAB: 0D63561A33F958A579BF5C0F0A45CFCD5002B1117B3ED696143590F355A774FEC66B2B37046EC955823CB91A9FED034534781492E4B8EEAD69BF13FED57427F1C79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF80880810C07507E0344D3823C1D04A7DF54DB47C94A1D58AFE166049F1FC8F93698455FC0CD9C182A06F21331F7F71AF7A55F5C4D5B3B2B5DAB1623086507E5B434F79741C29DD4E0D035775BAD7A4FF02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojbL9S8ysBdXgdAFNAgs695iSfrzhpT1Bf
+X-Mailru-Sender: 0A26D9779F8DDEAB5292BC5C4A2F20933E72752B4F29A4B9B951B70A5BD4BD8EE96F85FC93FE546849EBE2174CCC9479210985D6C440852E55B4A2144138A88088F510C62CFD139357C462056C5AD9112068022A3E05D37EB4A721A3011E896F
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B4CB1E8E83197BFF8464E828B268E23EA2B83D8C6643CBE5E468F3CF0E9FE49B6959AB7659C5DDE2DE0E2D885F6E84AF1907855D3478A187770B6EFB612D32F868
+X-7FA49CB5: 0D63561A33F958A5892510C71E9B0216F2A5BDCDF8A52466E4437CF7B4A7BD2E8941B15DA834481FA18204E546F3947C2A2A42EA92AE1E8FF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F79006370EB3F966903511E7389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C39B1AFFD6BD8BDD3135872C767BF85DA2F004C90652538430E4A6367B16DE6309
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojNqGc3Zc5qMlOb9TWM7amOw==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-On Fri, Sep 13, 2024 at 3:04=E2=80=AFAM Taewan Kim <trunixs.kim@samsung.com=
-> wrote:
->
-> From: Byoungtae Cho <bt.cho@samsung.com>
->
-> Adds the compatibles and drvdata for the ExynosAuto V920 SoC. This SoC
-> is almost similar to ExynosAutoV9, but some CPU configurations are quite
-> different, so it should be added. Plus it also support DBGACK like as
-> GS101 SoC.
->
-> Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
-> Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
-> ---
->  drivers/watchdog/s3c2410_wdt.c | 37 +++++++++++++++++++++++++++++++++-
->  1 file changed, 36 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/watchdog/s3c2410_wdt.c b/drivers/watchdog/s3c2410_wd=
-t.c
-> index 686cf544d0ae..c25133348f0e 100644
-> --- a/drivers/watchdog/s3c2410_wdt.c
-> +++ b/drivers/watchdog/s3c2410_wdt.c
-> @@ -63,6 +63,10 @@
->  #define EXYNOS850_CLUSTER1_NONCPU_INT_EN       0x1644
->  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_OUT       0x1520
->  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_INT_EN    0x1544
-> +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT     0x1420
-> +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN  0x1444
-> +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT     0x1720
-> +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN  0x1744
->
->  #define EXYNOS850_CLUSTER0_WDTRESET_BIT                24
->  #define EXYNOS850_CLUSTER1_WDTRESET_BIT                23
-> @@ -303,6 +307,32 @@ static const struct s3c2410_wdt_variant drv_data_gs1=
-01_cl1 =3D {
->                   QUIRK_HAS_DBGACK_BIT,
->  };
->
-> +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl0 =3D =
-{
-> +       .mask_reset_reg =3D EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN,
-> +       .mask_bit =3D 2,
-> +       .mask_reset_inv =3D true,
-> +       .rst_stat_reg =3D EXYNOS5_RST_STAT_REG_OFFSET,
-> +       .rst_stat_bit =3D EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT,
-> +       .cnt_en_reg =3D EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT,
-> +       .cnt_en_bit =3D 7,
-> +       .quirks =3D QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-> +                 QUIRK_HAS_DBGACK_BIT,
-> +};
-> +
-> +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl1 =3D =
-{
-> +       .mask_reset_reg =3D EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN,
-> +       .mask_bit =3D 2,
-> +       .mask_reset_inv =3D true,
-> +       .rst_stat_reg =3D EXYNOS5_RST_STAT_REG_OFFSET,
-> +       .rst_stat_bit =3D EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT,
-> +       .cnt_en_reg =3D EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT,
-> +       .cnt_en_bit =3D 7,
-> +       .quirks =3D QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-> +                 QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-> +                 QUIRK_HAS_DBGACK_BIT,
-> +};
-> +
->  static const struct of_device_id s3c2410_wdt_match[] =3D {
->         { .compatible =3D "google,gs101-wdt",
->           .data =3D &drv_data_gs101_cl0 },
-> @@ -320,6 +350,8 @@ static const struct of_device_id s3c2410_wdt_match[] =
-=3D {
->           .data =3D &drv_data_exynos850_cl0 },
->         { .compatible =3D "samsung,exynosautov9-wdt",
->           .data =3D &drv_data_exynosautov9_cl0 },
-> +       { .compatible =3D "samsung,exynosautov920-wdt",
-> +         .data =3D &drv_data_exynosautov920_cl0},
->         {},
->  };
->  MODULE_DEVICE_TABLE(of, s3c2410_wdt_match);
-> @@ -643,7 +675,8 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev=
-, struct s3c2410_wdt *wdt)
->         /* Choose Exynos850/ExynosAutov9 driver data w.r.t. cluster index=
- */
->         if (variant =3D=3D &drv_data_exynos850_cl0 ||
->             variant =3D=3D &drv_data_exynosautov9_cl0 ||
-> -           variant =3D=3D &drv_data_gs101_cl0) {
-> +           variant =3D=3D &drv_data_gs101_cl0 ||
-> +           variant =3D=3D &drv_data_exynosautov920_cl0) {
->                 u32 index;
->                 int err;
->
-> @@ -662,6 +695,8 @@ s3c2410_get_wdt_drv_data(struct platform_device *pdev=
-, struct s3c2410_wdt *wdt)
->                                 variant =3D &drv_data_exynosautov9_cl1;
->                         else if (variant =3D=3D &drv_data_gs101_cl0)
->                                 variant =3D &drv_data_gs101_cl1;
-> +                       else if (variant =3D=3D &drv_data_exynosautov920_=
-cl1)
+This series adds Samsung AMS639RQ08 panel support used in:
+- Xiaomi Mi 9 Lite / CC9 (sdm710-xiaomi-pyxis)
+- Xiaomi Mi 9T / Redmi K20 (sm7150-xiaomi-davinci)
+- Xiaomi Mi 9T Pro / Redmi K20 Pro (sm8150-xiaomi-raphael)
 
-Shouldn't it be cl0 here?
+Was tested on sm7150-xiaomi-davinci and sm8150-xiaomi-raphael. Based on my
+analysis of the downstream DTS, this driver should be fully compatible with
+the sdm710-xiaomi-pyxis (unfortunately not tested) without requiring any
+modifications.
 
-> +                               variant =3D &drv_data_exynosautov920_cl1;
->                         break;
->                 default:
->                         return dev_err_probe(dev, -EINVAL, "wrong cluster=
- index: %u\n", index);
-> --
-> 2.46.0
->
->
+Changes in v3:
+- Switch to mipi_dsi wrapped functions in patch 2
+- Switch to devm_regulator_bulk_get_const in patch 2
+(Based on patches from Neil Armstrong)
+- Link to v2:
+https://lore.kernel.org/all/20240612083405.15750-1-danila@jiaxyga.com/
+
+Changes in v2:
+- Drop the extra '|' symbol in the description block of patch 1 (Krzysztof)
+- Relocate the additionalProperties section after the "required:" block in
+patch 1 (Krzysztof)
+- Add Krzysztof's R-b tag to patch 1
+- Swap the descriptions for vsn and vsp supply in patch 1
+- Add Neil's R-b tag to patch 2
+- Link to v1:
+https://lore.kernel.org/all/20240609203618.49413-1-danila@jiaxyga.com/
+
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: Jens Reidel <adrian@travitia.xyz>
+Cc: Degdag Mohamed <degdagmohamed@gmail.com>
+Cc: linux@mainlining.org
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+
+Danila Tikhonov (2):
+  dt-bindings: display: panel: Add Samsung AMS639RQ08
+  drm/panel: Add Samsung AMS639RQ08 panel driver
+
+ .../display/panel/samsung,ams639rq08.yaml     |  80 +++++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-samsung-ams639rq08.c  | 329 ++++++++++++++++++
+ 4 files changed, 419 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams639rq08.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-ams639rq08.c
+
+-- 
+2.46.1
+
 
