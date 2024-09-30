@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-106395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E6E989EDB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 11:56:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3540B989ED1
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 11:56:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B01D4281BCD
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:56:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AF361C21FA3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:56:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B6B118E041;
-	Mon, 30 Sep 2024 09:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D582127E18;
+	Mon, 30 Sep 2024 09:55:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="RRJOUvzq"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="VAlrO/dT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E8F18A922;
-	Mon, 30 Sep 2024 09:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DD618A924;
+	Mon, 30 Sep 2024 09:55:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727690149; cv=none; b=ALYI2I0Uf6HjGYYEy5QvXbYLHVha/RZpuSlg+xCUpVr7gVteJIS/hHjfVahMGKrZFbr/wkIVqf0HBgNa7yb8dmrXszaSpKNO4TNsULhqUGpLkOjXR210Y9cfaQjxqIknfSq59pq9myl0vRlfKraisMR9bViNpQE3zSmEohRJMRQ=
+	t=1727690135; cv=none; b=uT1vhch7N5s093PP7XbGrlaC2QXZbseJGtCtg7uo7tRHKuEpnsEXjZRUAsGZOXYNEt9spcXQj10CMqKlPI6CpsslHTl2s9u19cdA9WcMzTNomZJy7ZHfROOcNtpqS7q1aB1q4bSAEAyJFmtSk0stDFU2Do+6JFX/tvTJ1AFa6c4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727690149; c=relaxed/simple;
-	bh=eznE8iaIyvpWxVm1s8pg4O+PApWejE/1A5HpNtfm8wU=;
+	s=arc-20240116; t=1727690135; c=relaxed/simple;
+	bh=d6Utj+JguD6h5aoqdJ+L9X7NxnZGnIVxFRe79x6iqbc=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YM9xPLxdVHO/aLRiWx+nijkJNrCzm1mG347I4NTiaeznVWpLEfP+CliIPpDmrbZAPYt7eVtnnt5RvV3om10BNZsfQWTb0axKWHSem2N1Ujy08CI6D9C/oGBA5x8rWEmcZnHiBiEuVX2VUJTL8WGeGn3KVSoqDUzc6OHlkaneJLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=RRJOUvzq; arc=none smtp.client-ip=68.232.153.233
+	 MIME-Version:Content-Type; b=DWCLXpNwREvPm3JCLSodxPM7zLr1zz1lb2JH9iP+nTHjfOXrF3i0WGsZ3K4iPKpdzEddQ2BwH6fZBKi8859D1JS/RK5iXbUy/YM62RGAAzaf/bk5/c8fogu3xPx4z4TFItfZar+DC8smWEBBfMWVNjZnh9pTVdgfItPBVzrod00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=VAlrO/dT; arc=none smtp.client-ip=68.232.154.123
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1727690148; x=1759226148;
+  t=1727690133; x=1759226133;
   h=from:to:cc:subject:date:message-id:in-reply-to:
    references:mime-version:content-transfer-encoding;
-  bh=eznE8iaIyvpWxVm1s8pg4O+PApWejE/1A5HpNtfm8wU=;
-  b=RRJOUvzqL8PDMj2H5m9mPbnuu+SVzGlHfuewqWHnSqxEggN8LrB8RNOo
-   Rhsj/lzqk5kR/NTMnbaKYdMi3w8LGOZ/IGqaxPbc0hQPlIl9fWBusOLCY
-   eXmqDv1PsgrKuveF/pn52X/cyuZKHBNAJ1erA5x0G4t/v6XvnTxBv1be4
-   aOX7rArxzr6J+FHQcI4a+AinejuGc0G949vZk4nOB6WV3wvN3gguLYBup
-   ZJPhNMM9pcYERM2AGzCsmfaPxUIqlJF5gesdPYd5hkqidriMKFG2hlOEB
-   4OB3nvFzBYS5q/q+vBWnWDwUMFL3QYafdl+zh9aUB5Lx/7EgZwmz3/IYX
-   A==;
-X-CSE-ConnectionGUID: VDfGPtv3TTmpuSmsWgS4Xg==
-X-CSE-MsgGUID: Swqj+S/cTSOJb/XURGQBiQ==
+  bh=d6Utj+JguD6h5aoqdJ+L9X7NxnZGnIVxFRe79x6iqbc=;
+  b=VAlrO/dTKpm93yzm//hc4s/oPtZoheBzOTNowtM700lmKLMSFHX1cCBK
+   mUPVjko9fMErLIXgPJTNLin/el0UuWyJa78u8SN/AM2IrGJv4edjifsFi
+   UwBsyZ6/UG6c6+uhIc3OGf5crXZYPmioVdGHZB9M+Uv88JXbdkPSJ36DE
+   +XnSoXHqK2qr2KR+Mngc4U+3nNHYTBtdoehuC8iPqfbOmGsBw+wvHW4Cd
+   afBxlFSeUV7vumN71O1TURi/3bh9E+AxV+sZ3jNcHbfJ3eNPKg7woHiu5
+   7DT3bn92xk1Xb11Wh+ceKKy3syXIMn4ybNxI0b50X4IbHXuTJ7iU8zG7J
+   w==;
+X-CSE-ConnectionGUID: XiGZNwQLQnOpHGCFR5gKFQ==
+X-CSE-MsgGUID: 9AoJVu+JS8e8q4pSHU4uWg==
 X-IronPort-AV: E=Sophos;i="6.11,165,1725346800"; 
-   d="scan'208";a="263420163"
+   d="scan'208";a="32248830"
 X-Amp-Result: SKIPPED(no attachment in message)
 Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Sep 2024 02:55:40 -0700
+  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 30 Sep 2024 02:55:23 -0700
 Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 30 Sep 2024 02:55:10 -0700
+ 15.1.2507.35; Mon, 30 Sep 2024 02:55:13 -0700
 Received: from ph-emdalo.microchip.com (10.10.85.11) by
  chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Mon, 30 Sep 2024 02:55:08 -0700
+ 15.1.2507.35 via Frontend Transport; Mon, 30 Sep 2024 02:55:11 -0700
 From: <pierre-henry.moussay@microchip.com>
-To: <Linux4Microchip@microchip.com>, Conor Dooley
-	<conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>,
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski
-	<brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>
+To: <Linux4Microchip@microchip.com>, Conor Dooley <conor@kernel.org>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Paul
+ Walmsley" <paul.walmsley@sifive.com>, Samuel Holland
+	<samuel.holland@sifive.com>
 CC: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>,
-	<linux-riscv@lists.infradead.org>, <linux-gpio@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [linux][PATCH v2 05/20] dt-bindings: gpio: mpfs-gpio: Add PIC64GX GPIO compatibility
-Date: Mon, 30 Sep 2024 10:54:34 +0100
-Message-ID: <20240930095449.1813195-6-pierre-henry.moussay@microchip.com>
+	<devicetree@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+Subject: [linux][PATCH v2 06/20] dt-bindings: cache: sifive,ccache0: add a PIC64GX compatible
+Date: Mon, 30 Sep 2024 10:54:35 +0100
+Message-ID: <20240930095449.1813195-7-pierre-henry.moussay@microchip.com>
 X-Mailer: git-send-email 2.30.2
 In-Reply-To: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
 References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
@@ -84,46 +83,38 @@ Content-Type: text/plain
 
 From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-PIC64GX GPIO is compatible with mpfs-gpio controller, just add fallback
+The PIC64GX use the same IP than MPFS, therefore add compatibility with
+MPFS as fallback
 
 Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 ---
- .../bindings/gpio/microchip,mpfs-gpio.yaml        | 15 ++++++++++-----
- 1 file changed, 10 insertions(+), 5 deletions(-)
+ Documentation/devicetree/bindings/cache/sifive,ccache0.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-index d61569b3f15b..febe8c2cd70d 100644
---- a/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/microchip,mpfs-gpio.yaml
-@@ -11,10 +11,14 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - microchip,mpfs-gpio
--          - microchip,coregpio-rtl-v3
-+    oneOf:
+diff --git a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+index 7e8cebe21584..9d064feb2ab1 100644
+--- a/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
++++ b/Documentation/devicetree/bindings/cache/sifive,ccache0.yaml
+@@ -47,6 +47,11 @@ properties:
+           - const: microchip,mpfs-ccache
+           - const: sifive,fu540-c000-ccache
+           - const: cache
 +      - items:
-+          - const: microchip,pic64gx-gpio
-+          - const: microchip,mpfs-gpio
-+      - items:
-+          - enum:
-+              - microchip,mpfs-gpio
-+              - microchip,coregpio-rtl-v3
++          - const: microchip,pic64gx-ccache
++          - const: microchip,mpfs-ccache
++          - const: sifive,fu540-c000-ccache
++          - const: cache
  
-   reg:
-     maxItems: 1
-@@ -69,7 +73,8 @@ allOf:
-       properties:
-         compatible:
-           contains:
--            const: microchip,mpfs-gpio
-+            enum:
-+              - microchip,mpfs-gpio
+   cache-block-size:
+     const: 64
+@@ -93,6 +98,7 @@ allOf:
+               - starfive,jh7100-ccache
+               - starfive,jh7110-ccache
+               - microchip,mpfs-ccache
++              - microchip,pic64gx-ccache
+ 
      then:
-       required:
-         - interrupts
+       properties:
 -- 
 2.30.2
 
