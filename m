@@ -1,134 +1,143 @@
-Return-Path: <devicetree+bounces-106541-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D407398AA93
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:04:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 245BA98AAC4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:12:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8730A288B3D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:04:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 974E91F22E9B
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:12:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14358194096;
-	Mon, 30 Sep 2024 17:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D2E197A7E;
+	Mon, 30 Sep 2024 17:11:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="AF5JwnyZ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="mElHPizM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F74193426
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 17:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6239019047D;
+	Mon, 30 Sep 2024 17:11:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727715894; cv=none; b=HdUSqHdT6RGre81yBxsMSe//udHtgKy3Hs7zx8ZvWB8PE86yy+hM/oQhzGj6msshs7F9CPGP7W4uX+vEBDzRRBvuXdEa1RN7rulhWyHFpdTUDYM7SCkZa52Q78s10F/SNusO3Gsul0FpPaumIK7fTTF4qx9oogXNiqcHM4Umyxw=
+	t=1727716305; cv=none; b=k7CT2hrRnwsrUGm+ADUqY80SZb6Z7B80Xd42U0OhL7NvgEVqZ/387VRFV2PLA+IXbiP/pXdS5+ZguFteZ8Ox/XqA/xjRw0t8rpukTBCC/PF6jxpPQh12ocyhnGeNhDYf5YzZbcwpWz3YN3SmAnMIl6CerGYm5+SV9IdHLFcxQ3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727715894; c=relaxed/simple;
-	bh=DsFjvp6V0bUt3fQrlC3zZfx5v7AY6PiaWkupBsGfwY4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZRGHP/0IqzV8odfhbJGidMDtL/aCm3MrOjT9A8NCK/iEHBjNO1hogqU+eTLl1uT4xbbO59OQx1bUF41999J7q9KYCsAjo9gR/m762s97chk8qdsOh1n0KDffPK2AK8DgYfabrvCqhyI2fOj8d4ntUQxL9Ix8xlhZvW3KsC7l1Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=AF5JwnyZ; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-71970655611so4299688b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 10:04:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727715891; x=1728320691; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Xz+bkfejvthPlgPdQSvVCfDsoTn99Xm9hmAjc8LPyr4=;
-        b=AF5JwnyZEVz27AkN3p7pLqlTxziQ0D9gti9i0xwRA56sfE00p2KLl4Bg50fRFG627e
-         /e9wPXVkGHYBEe4RMiyt/H0GFqHlXrD/wIA7oCNUHv6V3/YF7HWZTHRJq/ATePIV3wat
-         BuOMV3qYDVJO7M1LxfnBhP0C3KzVY2ZnHTHPbiFv+3dsQs6c+xovgtZc+nBJaRDQmw7r
-         IA3Z0wY2QbuR/smOalu9YSzz/8DVGN3AjcMIyPd13eWJxJZbwx4CP0VYjepzafUZa9DF
-         pSgBcbQmshGRHGQJk0WSs1OqX/lbIw7P482GvWkzZNkPCpdh94GhPsg8yH+orLS/yqHI
-         I6Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727715891; x=1728320691;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Xz+bkfejvthPlgPdQSvVCfDsoTn99Xm9hmAjc8LPyr4=;
-        b=RKexUeDDQfwCrFfuBs+4YGwexScuHRNs2XN6Eh1Ov0NrJYUnu5MxirdNS8e7Nagb7p
-         zgGsUnd6PngWDQ7ofY9Z0JbSROYmcHoqgXyU+ea+ed+Mg89LMHSDJSZEHUm713Q13AP0
-         4sZs2WnUzi47u8oZNsRBgFAfqQ+o3H5iq1bsNH4SLSEFrw+lK7k++u48iXtY71i3gegy
-         /FdyoYbilLhKE3cLczZmcZsJJ51cnN10wnla/Php2jBZUpKOemRuYF2AiiE4k0hCPJBX
-         rO071wkvIw8MWAN8ndNAHP4bhhTv7yHNP04GN6GixMMeJ3wqPAiQ6tkTNCSCmkA8CuYo
-         9YOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWkU+0jTGsgKg7BTmvha/0+w981AmvBqfCM+izj7imFKNmw65SWNsaayEbyOt5nvOz/grLyCwRPWVRt@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPtAbiSKtzy61XrSsM2neX84h21MS4jhlnYGV+vAw33in+NGM7
-	VJbFCIXXdn0lgxGOj87Dq5kbx0WkxANkmzJUVacziYp6uKN58Dkt4wvEiuGZMFQ=
-X-Google-Smtp-Source: AGHT+IGj3wqkwReKg8OnHSxdCc7zaYOfFfaOE8qXpsQ0EjTy/gbYQvbdblFQ+sQxStUGKpCkov+09g==
-X-Received: by 2002:a05:6a00:4fc4:b0:717:950e:b589 with SMTP id d2e1a72fcca58-71b26049452mr18911436b3a.19.1727715891519;
-        Mon, 30 Sep 2024 10:04:51 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e6db2cadcdsm6784562a12.56.2024.09.30.10.04.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 10:04:51 -0700 (PDT)
-Date: Mon, 30 Sep 2024 10:04:49 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Max Hsu <max.hsu@sifive.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>
-Subject: Re: [PATCH RFC v2 1/3] dt-bindings: riscv: Add Svukte entry
-Message-ID: <ZvraMdZa8Shs/yyQ@debug.ba.rivosinc.com>
-References: <20240927-dev-maxh-svukte-rebase-2-v2-0-9afe57c33aee@sifive.com>
- <20240927-dev-maxh-svukte-rebase-2-v2-1-9afe57c33aee@sifive.com>
+	s=arc-20240116; t=1727716305; c=relaxed/simple;
+	bh=SGV86IGPJOnIA4QJ0RiJGpbSVxmOl8J8yZKUrvny960=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=seFuGwf8HFSCwG8WoT2q33J7sKEH/lTuVd2d/FQBXM5AjmVebGiEz8k4TYcjoFjtndgdyifagNekWatOpm+Sj0ydZgb/UvLNfJSLcalIDI2WzQQK+on1Gt8IE1eVGVZ7XbuDHyX0D+KtEjkM8Ela44OVgrKrIentuL0Z8f+swoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=mElHPizM; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48UF6erI024278;
+	Mon, 30 Sep 2024 19:11:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=HVbVIuMnYgI/uVf03GAehr
+	thX3/lL12kpBFuZAaZFJE=; b=mElHPizMOTVPDHTayfBISw0XXoBWW8qR8Bsc3H
+	l0MsQqDVoFjHysisV+fJKrkBW6tOQCfWQuqYJRVHB20OAD1+ZLCiSKTAV1C7TFy6
+	Oq5oIQW2xrCvOIlZ2RC1cGf64gsvQcK5gzzomjNVFvoLNhypK7c2SgezlneOmNNL
+	FkGW9MmNQzSvJMsxoqDWGb8aOz3Xq4jVALCQBO1v+RxNi7oRknrqPUwHCA49RWUf
+	NQk7ch6V0TxLu2icR/6zckMTaojlLPutoTLYeQAPVHDoh/z+fspAYmUC+3369sO6
+	cEFlEHAgOue4XmQZzuIwBjTWxi0GFWD665/1ems9jFI3wNBw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41xuc0y8j0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Sep 2024 19:11:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6B75A4005D;
+	Mon, 30 Sep 2024 19:09:41 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C1AA02A5D4E;
+	Mon, 30 Sep 2024 19:08:59 +0200 (CEST)
+Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 30 Sep
+ 2024 19:08:59 +0200
+From: Christian Bruel <christian.bruel@foss.st.com>
+To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
+        <p.zabel@pengutronix.de>
+CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        <fabrice.gasnier@foss.st.com>,
+        Christian Bruel <christian.bruel@foss.st.com>
+Subject: [PATCH v9 0/5] Add STM32MP25 USB3/PCIE COMBOPHY driver 
+Date: Mon, 30 Sep 2024 19:08:42 +0200
+Message-ID: <20240930170847.948779-1-christian.bruel@foss.st.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240927-dev-maxh-svukte-rebase-2-v2-1-9afe57c33aee@sifive.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Fri, Sep 27, 2024 at 09:41:43PM +0800, Max Hsu wrote:
->Add an entry for the Svukte extension to the riscv,isa-extensions
->property.
->
->Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
->Signed-off-by: Max Hsu <max.hsu@sifive.com>
->---
-> Documentation/devicetree/bindings/riscv/extensions.yaml | 9 +++++++++
-> 1 file changed, 9 insertions(+)
->
->diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->index 2cf2026cff574d39793157418a4d4211df87315f..9f730e3aaae949debc18396183b989b504dcb899 100644
->--- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->+++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->@@ -171,6 +171,15 @@ properties:
->             memory types as ratified in the 20191213 version of the privileged
->             ISA specification.
->
->+        - const: svukte
->+          description:
->+            The standard Svukte supervisor-level extensions for making user-mode
->+            accesses to supervisor memory raise page faults in constant time,
->+            mitigating attacks that attempt to discover the supervisor
->+            software's address-space layout. Currently under review as Pull
->+            Request number 1564 at commit 81dc9277 ("Svukte v0.3") of
->+            riscv-isa-manual.
+Changes in v9:
+   - Fix bot clang warnings: uninitialized variables and
+     include bitfield.h for FIELD_GET
 
-Reviewed-by: Deepak Gupta <debug@rivosinc.com>
+Changes in v7/v8:
+   - MAINTAINERS: Reorder STM32MP25 DRIVER entry
 
->+
->         - const: svvptc
->           description:
->             The standard Svvptc supervisor-level extension for
->
->-- 
->2.43.2
->
->
+Changes in v6:
+   - stm32_combophy_pll_init: merge combophy_cr1 accesses and error path.
+   - Use devm_reset_control_get_exclusive
+
+Changes in v5:
+   - Drop syscfg phandle and change driver to use lookup_by_compatible
+   - Use clk_bulk API and drop stm32_combophy_enable/disable_clocks
+   - Reorder required: list.
+   - Fix access-controllers maxItems
+
+Changes in v4:
+   - "#phy-cells": Drop type item description since it is specified
+     by user node phandle.
+   - Rename stm32-combophy.yaml to match compatible
+   - Drop wakeup-source from bindings (should be generic)
+   - Alphabetically reorder required: list.
+   - Drop "Reviewed-by" since those previous changes
+
+Changes in v3:
+   - Reorder MAINTAINERS patch
+
+Changes in v2:
+   - Reorder entries
+   - Rename clock_names and reset_names bindings
+   - Rename and clarify rx-equalizer binding
+
+Christian Bruel (5):
+  dt-bindings: phy: Add STM32MP25 COMBOPHY bindings
+  phy: stm32: Add support for STM32MP25 COMBOPHY.
+  MAINTAINERS: add entry for ST STM32MP25 COMBOPHY driver
+  arm64: dts: st: Add combophy node on stm32mp251
+  arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
+
+ .../bindings/phy/st,stm32mp25-combophy.yaml   | 119 ++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi        |  16 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts    |  14 +
+ drivers/phy/st/Kconfig                        |  11 +
+ drivers/phy/st/Makefile                       |   1 +
+ drivers/phy/st/phy-stm32-combophy.c           | 598 ++++++++++++++++++
+ 7 files changed, 765 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/st,stm32mp25-combophy.yaml
+ create mode 100644 drivers/phy/st/phy-stm32-combophy.c
+
+
+base-commit: 9bd8e1ba97b1f2d0410db9ff182d677992084770
+-- 
+2.34.1
+
 
