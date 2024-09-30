@@ -1,146 +1,118 @@
-Return-Path: <devicetree+bounces-106300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C048989BA2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:34:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7D9E989BA3
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:36:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 33610B22E61
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:34:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEFBC1C21619
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:36:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B63517C228;
-	Mon, 30 Sep 2024 07:33:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815D2156C7B;
+	Mon, 30 Sep 2024 07:36:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WZ93GS0B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHk8kVgB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CBFE17B433
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 07:33:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A4F13D8A4;
+	Mon, 30 Sep 2024 07:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727681621; cv=none; b=RViD4gdrUfV2+JEGKSU2QKSlbdvprDc53ODdS4cmsn9GJ4mktprer8Q/sLUvrOMlkVGSjjIEYScdwDkyCbHm4XuyosFforF2Sn4atFQmss9pAHR3ov79Tx7Nn2u5CpVwhadahUxVsCq24O16VP6bOCuWtyKMiTWkYJFF3ge0k/A=
+	t=1727681765; cv=none; b=grs/VUnAAytA30kAMxogXL8eCCOQkabaQ/f8FKTRapybGHm3mzRunR9UJhu44yIEN4Wih4Aea6IZ0GiR5uMWwpIQb5vfv8AmEQHh93CcourTERdRnksM3R6qVtcZkwbLRV1ix8TtU7GwE7teUPcWHjaMnlD97Yv77E4SvDIH66Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727681621; c=relaxed/simple;
-	bh=P7Uo+EtmFtLIczihn/B0DVex/aCRuBuU1akWzDHLmoY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=KnWTZOtodzm7QNhrBuBcanvADw2t+ODXtkTsHROVanQsXdxJNOWrJCqBqWiC22LP17NCYg2O6TYS9qyTbstqDA2z+QPH6n9JPBnTGV0/jRfELeAguFM0DjOkAIZI0/tZojNdeYz/K0mYgyiOyVrVT6qpl1AeIfPSDegxVwXoWts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WZ93GS0B; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-42f6bec84b5so3626925e9.1
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 00:33:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727681617; x=1728286417; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ge67RKvyAjwxvFyFHbHP8Cjfyu4HRjQ4k8rzGZeOScU=;
-        b=WZ93GS0BUY9NBuDiSdOsxUWu9yAtKr3U7qnpQlxEfwHcpnhlh8sOiNKz1fGaskV5WK
-         YeAuzgAo/F7znctcWPTmtScDEAR8cubQlOcoXNQTY9+S1ZtCOogBMSrhvKGfgFUAj8XK
-         Rm5G/JrDt7R+GGYCC3IZdUJdcn++1qH4KjlP9hDPE6VDJ68Dmu3LFzf7uwsjmaWrhz2j
-         DkPPeM66MTHiV7Bv+WkTdNqdq70IuQBJPD/IxwKEz/GR3MuWuiN5KhWWNQIRs/DS5mEU
-         oDr6Y4QpytjKEQ4ZrXkhM9UVvIHnba0/gUvAuzqFyeFNZTIznx9lI8keO8RdBFCY8stV
-         Qbtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727681617; x=1728286417;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ge67RKvyAjwxvFyFHbHP8Cjfyu4HRjQ4k8rzGZeOScU=;
-        b=ZxeKkpB0KK3f/EPQh0pSXZI1lM36lwN1fAaHSkycSxdDYgwsXm/6Vf8L5tvmc5+8Yi
-         8riK04euXOCCLPVhinOg1SDfynujC8Lng9APPfx4ws/1khYV5oLgY63nIr3e8ocxrTcv
-         1n9+e+2CWB1I/Gvut/3luuyQc7NYW+atsANC4CO1CcFhYxxk2VQdNKvehd7kCpRlfk4Q
-         klIHy/91lW8L3M2nOdBtrdNVxZo0A0wRV7nxOrwLFNdvSgqI6pS+MuJJ7uPyZ99Ija2Y
-         0gB4PTomOB6clMoVuuLoU3OH+Tes9/KMn9dU8ecl+uakd/ssxDjId0ujpbRfcy0RSxEh
-         9maA==
-X-Forwarded-Encrypted: i=1; AJvYcCUz1kH+QzEqNfJBXCcZw4Ut7sCYBWI+ZzPHj3fwvEX5MFaSAZiwZMxEqOYJRvYX7P5uWyAuKNB24iU9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzciFibRzu7n0DP/Hb7KFlkkFZsfw0xLrC32IFayyqGrdRgC9wF
-	MfsRtjao/Q3PLTz9Ogl12pkhOIF5Om9fXyPRLyarrIqiMknr+tP8IUPUJJuGZv4=
-X-Google-Smtp-Source: AGHT+IEILOGstLLqV+dwL8EFZQMfy9IEnSMRvstj3RzZnzCOZfqZUywgp/v+TiHhIJ5gXhKCMQqgWw==
-X-Received: by 2002:a05:600c:1e16:b0:42c:b95c:65b7 with SMTP id 5b1f17b1804b1-42f58437692mr89334255e9.8.1727681616959;
-        Mon, 30 Sep 2024 00:33:36 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e90274aa0sm105673295e9.0.2024.09.30.00.33.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 00:33:35 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, khilman@baylibre.com, jbrunet@baylibre.com, 
- martin.blumenstingl@googlemail.com, glaroque@baylibre.com, 
- rafael@kernel.org, daniel.lezcano@linaro.org, rui.zhang@intel.com, 
- lukasz.luba@arm.com, b.galvani@gmail.com, mmkurbanov@sberdevices.ru, 
- George Stark <gnstark@salutedevices.com>
-Cc: linux-i2c@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- kernel@salutedevices.com
-In-Reply-To: <20240710223214.2348418-1-gnstark@salutedevices.com>
-References: <20240710223214.2348418-1-gnstark@salutedevices.com>
-Subject: Re: (subset) [PATCH v2 0/3] amlogic SoC's power-domains fixes
-Message-Id: <172768161502.3724702.6653433141402666004.b4-ty@linaro.org>
-Date: Mon, 30 Sep 2024 09:33:35 +0200
+	s=arc-20240116; t=1727681765; c=relaxed/simple;
+	bh=UwQAYfkqO+7NbChaILjq1p3+O1Kla+UdCJwA5Zn+i+8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dVIxHOsnlHt6Smvk0DYMXCr2ej/O/NKCtA5pa31ZqlXW0CjSrHSPfHQLVX4+Mn0fHhCE0J02FUL4GyWCD/YcRXniVv6jJMajSRRO2ZUvY0WO0vmsJTD1usitbFCGggkOzJUbtzK5Z5aA7jCH5c9fJHVJA19d5A1N5NoxpGsv5a8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHk8kVgB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62884C4CED1;
+	Mon, 30 Sep 2024 07:36:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727681764;
+	bh=UwQAYfkqO+7NbChaILjq1p3+O1Kla+UdCJwA5Zn+i+8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kHk8kVgBpj2ON88akPzrIYylMLUgkV1Q6RkC0c2RjwJt/BSIJ87fNshgke5fe46ZJ
+	 iYU3wwLz/69kaTz1omPQYJShXxSKJ4LGClpckh5sDkrdpInZCf3YgRU+SbKOqZvsiR
+	 C8Xn1I1qxQa3k4ka/MSTR4nRRXlhF4MWv/e9dyB59hX3KoXUv+1PtHykAslywsg2f3
+	 wahc09BFFjbHfGmM3aPRurHbNlQ4oR9cZ7P25Wgi5vuSanUHaYREnvBKycnR8Zmvil
+	 la5KA0V5/ykcedOKIHuFB+hwMBF9CU1svFkKdsScPnOzIYe/D2q8rWjlRlMB3VC/u5
+	 0fZ7wEnwu32FQ==
+Date: Mon, 30 Sep 2024 09:36:02 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Sandy Huang <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>, 
+	Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mark Yao <markyao0591@gmail.com>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Simona Vetter <simona@ffwll.ch>, Simona Vetter <simona.vetter@ffwll.ch>, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
+	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
+	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
+Subject: Re: [PATCH v8 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+Message-ID: <i2nsst5bvz2emy54r7ll5pi6uihnvdodkgewevumhrdrr7jr6a@uui3shhzhz2y>
+References: <20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com>
+ <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="7s67ya4tohfqd2w2"
+Content-Disposition: inline
+In-Reply-To: <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+
+
+--7s67ya4tohfqd2w2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
 Hi,
 
-On Thu, 11 Jul 2024 01:32:11 +0300, George Stark wrote:
-> Here's some fixes to the bindings and device tree related to Amlogic A1 SoC.
-> The SoC provides dedicated power domain for for almost all periphery.
-> 
-> Changes in v2:
->   dt-bindings: spi: amlogic,a1-spifc: make power-domains required
->     - drop the patch
->   dt-bindings: thermal: amlogic,thermal: add optional power-domains
->     - drop required conditional
->     - rewrite commit message
->   dt-bindings: i2c: amlogic,meson6-i2c: add optional power-domains
->     - add RvB: Neil Armstrong <neil.armstrong@linaro.org>
->     - add RvB: Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->   arm64: dts: meson: a1: bind power domain to temperature sensor
->     - add RvB: Neil Armstrong <neil.armstrong@linaro.org>
->   previous version [1]
-> 
-> [...]
+On Sun, Sep 29, 2024 at 01:36:49AM GMT, Cristian Ciocaltea wrote:
+> +static void dw_hdmi_qp_rockchip_encoder_enable(struct drm_encoder *encoder)
+> +{
+> +	struct rockchip_hdmi_qp *hdmi = to_rockchip_hdmi_qp(encoder);
+> +	struct drm_crtc *crtc = encoder->crtc;
+> +	int rate;
+> +
+> +	/* Unconditionally switch to TMDS as FRL is not yet supported */
+> +	gpiod_set_value(hdmi->enable_gpio, 1);
+> +
+> +	if (crtc && crtc->state) {
+> +		clk_set_rate(hdmi->ref_clk,
+> +			     crtc->state->adjusted_mode.crtc_clock * 1000);
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.13/arm64-dt)
+Sorry, I should have seen it in your previous version, but the rate here
+should be the TMDS character rate, not the pixel clock, right?
 
-[3/3] arm64: dts: meson: a1: bind power domain to temperature sensor
-      https://git.kernel.org/amlogic/c/7e3b4f56a76b233a70db09ddaa5e822f7cddf371
+Once fixed,
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
-These changes has been applied on the intermediate git tree [1].
+Maxime
 
-The v6.13/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+--7s67ya4tohfqd2w2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+-----BEGIN PGP SIGNATURE-----
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvpU4QAKCRAnX84Zoj2+
+drrdAYDIR05FELJA0qfbce9Chdkrm4BQoxsM7sNZLCHRE9StuP0VWBJNhNidV5Ql
+k8L4akQBf2bEy3dcSYB6/4q5XJpS664ZDID1RP/TgfiVQJp8F+o0pEH1pevFglig
+lzo1uFYjqg==
+=sHau
+-----END PGP SIGNATURE-----
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
-
--- 
-Neil
-
+--7s67ya4tohfqd2w2--
 
