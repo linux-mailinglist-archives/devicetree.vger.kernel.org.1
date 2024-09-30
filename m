@@ -1,216 +1,206 @@
-Return-Path: <devicetree+bounces-106332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B692989D41
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:50:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2613989D58
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 10:55:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48282281D05
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:50:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D467B1C21318
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CF6217F394;
-	Mon, 30 Sep 2024 08:50:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62C0C17E918;
+	Mon, 30 Sep 2024 08:55:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zGAnHetR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x2IddKr4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2568F13D531;
-	Mon, 30 Sep 2024 08:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF4E17DFEB
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 08:55:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727686208; cv=none; b=nPrPwrF1Ln3/fuzgVbIEezI/EgiTZMscs/CEdPyC/FWbJ2g/7wa3jWhuXEABAxaYd2HZLyxN3sTFH7YLnr09j29AyLBhkRnfR2UaPpPAIj7fDr4WpZZVNLpS02DEUKMt7oOX2RZUzu4ajMU3FkFT0LZdxrEHmJlKAPApw0ESte8=
+	t=1727686524; cv=none; b=ggQ9+yg6jO4bEZIhnx59oH5VMfjCE9EoQJyfdiigM5vXQDxI8NAijceO6Ai4Kka9sa5Gz6qiROqF7A3XOeK5RFEp6iAbo5eespNdXRIf3RQgRm3+7E9M4Jr6dAq4Fi62UKSEqHuSExJkj+g0EqxkVWtnGyN56I1j9Cb7jeT3akU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727686208; c=relaxed/simple;
-	bh=f5AxsC392i8EIHuBCSxVTm1FtkBX856hy/Rie/U83Pg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=U6ADSFR22JZMNZkgNjG4tcxrvZpeHamF2IO90xnuB/eWE48pKKM0qDeBHOeyF1hAcXrzUGq8pCjiYcSy/pzzwF3YoqbXJT0T8dswf6tO6QG6Qf5Oc8EKdbQ6weDPW3UtUmjFDJVgV8LV4LBqIzoiQfZLh2dzh5evSQROlFkvhko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zGAnHetR; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=BZhvBdz24UU/9na5K2urGxf2dHFtMLDWkuqh0tEIars=; b=zGAnHetRD6a16YnCi2N/2hdaJU
-	EonkVFH9akA6WSXZ1EDQfZeelFXDEKOpFmwx33yf/5aMHMMSqowRVhdcRkYEz/HI3GKMm/krCwNDB
-	sIlYA6FzqIsV78RGjLoUbufl4NtJz2jUtaNKFrK++86caCIx9Sl/Pb8+omZgmWLabUOCfSxPLo2/T
-	3XnvMh92z9Cl/9C+T5uMQ6QlLWk7ec+/VHu3Nq2kEfI5wodaoNm20gb2Mavc4ETc+9YqVRVyp8TWB
-	4nQ1z691ioNDznXSPqMVzez0B85z84dNl6V6uMNwJA0VjIwIr4k6CQ9BOieh9gY4LqKEmcC6U/Zif
-	USI+6blg==;
-Received: from i5e861925.versanet.de ([94.134.25.37] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1svC6H-0003lg-7C; Mon, 30 Sep 2024 10:49:49 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Daniel Semkowicz <dse@thaumatec.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Quentin Schulz <quentin.schulz@cherry.de>
-Cc: Dragan Simic <dsimic@manjaro.org>,
- Farouk Bouabid <farouk.bouabid@theobroma-systems.com>,
- Quentin Schulz <quentin.schulz@theobroma-systems.com>,
- Vahe Grigoryan <vahe.grigoryan@theobroma-systems.com>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add power button for RK3399 Puma
-Date: Mon, 30 Sep 2024 10:49:48 +0200
-Message-ID: <4620941.LvFx2qVVIh@diego>
-In-Reply-To: <54c49375-cb2a-40fe-abcd-fc56c04d0c53@cherry.de>
-References:
- <20240925072945.18757-1-dse@thaumatec.com>
- <54c49375-cb2a-40fe-abcd-fc56c04d0c53@cherry.de>
+	s=arc-20240116; t=1727686524; c=relaxed/simple;
+	bh=Sc0whwRYzUxHFiiKA/Byp9+TYn/ZBK0ajmkeKMsqwEY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=l/cJ91YLXP6EvGpMQ2LTlUgcAf7puAAwQwy6gIXm7D01XXMhlrdVrR9NfgBjHPCYwaX+P1lVbBoJ8MhstDqujlyUDg1uBlOYJtiL+tdHiSN4pMwGhG54gph8ftMr+38Ltb4jaIFgGOrd7ffdpLWKtEMzLB7SBClp+aOCtLJ6/NM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x2IddKr4; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a8d43657255so646092066b.0
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 01:55:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727686521; x=1728291321; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NUlj16IZIlE/BnsrhQgqo6rfm+qX/DDN32OWCmaTHPo=;
+        b=x2IddKr4Z4xcdeO9sQbz3KfXg8PfKyhuN31cByp8W7VfVQsHtpUfqI+C7Zm0hhdLIB
+         1+mpo9gA/ECDxIOM7hiDFWaH6L9PhfP59cWLram9DOW0cjqo1RsLfCwHJCt8c5hDPEA1
+         O8Dr9YErbe3AY/5zXKXm0h0QDKLvinfYgzGlqPKQ9hDSZPBxDwhzymjqAkTodEza0WZp
+         /jICOmpIwUYBwUECMrkkUyhw8cchcLFlKZS5fL35TWc5W74ex+jODbGiU2S4kLkogj+m
+         EAD1Tzi8cB/lwYbqdNA/978O/6s6dFnNn6aUn2s6kDiTrDhLHhkuE9yRzy8vEtWki8Q4
+         K6Mg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727686521; x=1728291321;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NUlj16IZIlE/BnsrhQgqo6rfm+qX/DDN32OWCmaTHPo=;
+        b=d0aZhgW0wdIDdjzm446Q621gdtEUoZ9b3soVNxXvrdCe+c7++72zYb+iC8fQ13j5/J
+         zQ38Q/pB23hI14SRhvhPa7LWxgQD7dFGfb+AkbpO7t7i+13oJmUdgZRPm5hLKpzghf8s
+         m9pLyRQQpuuOpa3QunjBfw05ovaBBDS0qssLo8OL+CkL58T81S/V+2d7ZXAy1bilLPRt
+         yGMhhuE3xyeZl2KSr+fkvQ8xgijR8sgxseUxlLuHahMhZoEzuBSdvKGc7uWxJtKk9uDD
+         bjTUP9j732QAtvzsKI4QhLT/b5xKPf8MxA2IhgoeScQnUGf1Mv4rLjk9pMkUeRga4VNK
+         uJEw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEMA/NnSMWML4CLPYR2HGfGCuoyNftlv/ycLkBXHdt076ZThLMXgpT+Ep1gI1CpmE52cjfcU3QH5xc@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxzifbq9+iNO9gTBmU9ucOzzU2ZBBI+5eST2tKckwECGC2UHglx
+	kyZy4lORsvVMP5QPDk1/xwgOK+X0bx0RCqkcNGutYtueN1JGKyQi/+nEeyAxZNo=
+X-Google-Smtp-Source: AGHT+IFgvE/PliHY6TjajbPHmCe35TGmXquD6tqKuayO2zMJA/3GTARoVqGeboOAWokff0EVeBn8bg==
+X-Received: by 2002:a17:907:74b:b0:a86:7e7f:69ab with SMTP id a640c23a62f3a-a93c49087f3mr1182345666b.15.1727686520863;
+        Mon, 30 Sep 2024 01:55:20 -0700 (PDT)
+Received: from [192.168.0.15] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c2997f50sm492236566b.198.2024.09.30.01.55.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 01:55:20 -0700 (PDT)
+Message-ID: <c1539cce-92eb-43fc-9267-f6e002611bbb@linaro.org>
+Date: Mon, 30 Sep 2024 09:55:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Depeng Shao
+ <quic_depengs@quicinc.com>, rfoss@kernel.org, todor.too@gmail.com,
+ mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <9ed92660-5f42-4a1a-9261-b8800133972a@linaro.org>
+ <ed012367-1bfd-4eef-931b-37e1ac839176@quicinc.com>
+ <65e5796a-8b8d-44f0-aef4-e420083b9d52@kernel.org>
+ <87419076-c355-4eb9-8bf4-a9f2064e3c0a@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <87419076-c355-4eb9-8bf4-a9f2064e3c0a@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hey Quentin, Daniel,
-
-Am Donnerstag, 26. September 2024, 14:34:30 CEST schrieb Quentin Schulz:
-> On 9/25/24 9:28 AM, Daniel Semkowicz wrote:
-> > There is a PWRBTN# input pin exposed on a Q7 connector. The pin
-> > is routed to a GPIO0_A1 through a diode. Q7 specification describes
-> > the PWRBTN# pin as a Power Button signal.
-> > Configure the pin as KEY_POWER, so it can function as power button and
-> > trigger device shutdown.
-> > Add the pin definition to RK3399 Puma dts, so it can be reused
-> > by derived platforms, but keep it disabled by default.
-> > 
-> > Enable the power button input on Haikou development board.
-> > 
-> > Signed-off-by: Daniel Semkowicz <dse@thaumatec.com>
+On 30/09/2024 09:46, Vladimir Zapolskiy wrote:
+> Hello Krzysztof,
 > 
-> This works, thanks.
+> On 9/30/24 10:16, Krzysztof Kozlowski wrote:
+>> On 25/09/2024 17:13, Depeng Shao wrote:
+>>> Hi Vladimir,
+>>>
+>>> On 9/6/2024 11:56 PM, Vladimir Zapolskiy wrote:
+>>>
+>>>>> +            compatible = "qcom,sm8550-camss";
+>>>>> +
+>>>>> +            reg = <0 0x0acb7000 0 0xd00>,
+>>>>> +                  <0 0x0acb9000 0 0xd00>,
+>>>>> +                  <0 0x0acbb000 0 0xd00>,
+>>>>> +                  <0 0x0acca000 0 0xa00>,
+>>>>> +                  <0 0x0acce000 0 0xa00>,
+>>>>> +                  <0 0x0acb6000 0 0x1000>,
+>>>>> +                  <0 0x0ace4000 0 0x2000>,
+>>>>> +                  <0 0x0ace6000 0 0x2000>,
+>>>>> +                  <0 0x0ace8000 0 0x2000>,
+>>>>> +                  <0 0x0acea000 0 0x2000>,
+>>>>> +                  <0 0x0acec000 0 0x2000>,
+>>>>> +                  <0 0x0acee000 0 0x2000>,
+>>>>> +                  <0 0x0acf0000 0 0x2000>,
+>>>>> +                  <0 0x0acf2000 0 0x2000>,
+>>>>> +                  <0 0x0ac62000 0 0xf000>,
+>>>>> +                  <0 0x0ac71000 0 0xf000>,
+>>>>> +                  <0 0x0ac80000 0 0xf000>,
+>>>>> +                  <0 0x0accb000 0 0x2800>,
+>>>>> +                  <0 0x0accf000 0 0x2800>;
+>>>>
+>>>> Please sort the list above in numerical order, this will change 
+>>>> positions
+>>>> of "vfe_lite0", "vfe_lite1" etc.
+>>>>
+>>>> Another note, since it's not possible to map less than a page, so I 
+>>>> believe
+>>>> it might make sense to align all sizes to 0x1000.
+>>>>
+>>>
+>>> Sure, I previously sorted by the alphabetical order of reg_name.
+>>> I will update it based on your suggestion. And will also make sure the
+>>> align all sizes to 0x1000.
+>>
+>> If I understood correctly, you want to change the order from existing
+>> devices, so no. You are supposed to keep the same order, as much as
+>> possible.
 > 
-> Tested-by: Quentin Schulz <quentin.schulz@cherry.de>
+> Please elaborate, what do you mean here by the "existing evices"?
 > 
-> Now I have some questions I wasn't able to answer myself, maybe someone 
-> can provide some feedback on those :)
+> The list is not sorted by reg values, I ask to sort the list by reg values.
 > 
-> We already have a gpio-keys for buttons on Haikou, c.f. 
-> https://elixir.bootlin.com/linux/v6.11/source/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts#L22. 
-> Those signals are directly routed to the SoM and follow the Qseven standard.
-> 
-> The same applies to PWRBTN# signal.
-> 
-> However, here we have one gpio-keys for PWRBTN# in Puma DTSI and one 
-> gpio-keys for the buttons and sliders on Haikou devkit in Haikou DTS.
-> 
-> I'm a bit undecided on where this should go.
-> 
-> Having all button/slider signals following the Qseven standard in Puma 
-> DTSI and enable the gpio-keys only in the devkit would make sense to me, 
-> so that other baseboards could easily make use of it. However, things 
-> get complicated if the baseboard manufacturer decides to only implement 
-> **some** of the signals, for which we then need to remove some nodes 
-> from gpio-keys (and pinctrl entries) since gpio-keys doesn't check the 
-> "status" property in its child nodes (though that could be fixed). At 
-> which point, it's not entirely clear if having it in Puma DTSI is 
-> actually beneficial.
-> 
-> Someone has an opinion/recommendation on that?
+> -- 
+> Best wishes,
+> Vladimir
 
-I guess from a platform perspective nobody really cares, so as that is
-"your" board, it comes down to a policy decision on your part ;-) .
+We always sort by address:
 
-While pins follow the q7 standard, there may very well be some lax
-handling of that standard in some places, and I guess gpio lines could
-be re-used for something else if needed, as something like the lid-switch
-is probably non-essential.
+                 camss: camss@ac5a000 {
+                         compatible = "qcom,sc8280xp-camss";
 
-Also a gpio-key input does not create that much code-overhead if
-replicated, so personally I'd just stick the power-button with the other
-buttons in the haikou dts.
+                         reg = <0 0x0ac5a000 0 0x2000>,
+                               <0 0x0ac5c000 0 0x2000>,
+                               <0 0x0ac65000 0 0x2000>,
+                               <0 0x0ac67000 0 0x2000>,
+                               <0 0x0acaf000 0 0x4000>,
+                               <0 0x0acb3000 0 0x1000>,
+                               <0 0x0acb6000 0 0x4000>,
+                               <0 0x0acba000 0 0x1000>,
+                               <0 0x0acbd000 0 0x4000>,
+                               <0 0x0acc1000 0 0x1000>,
+                               <0 0x0acc4000 0 0x4000>,
+                               <0 0x0acc8000 0 0x1000>,
+                               <0 0x0accb000 0 0x4000>,
+                               <0 0x0accf000 0 0x1000>,
+                               <0 0x0acd2000 0 0x4000>,
+                               <0 0x0acd6000 0 0x1000>,
+                               <0 0x0acd9000 0 0x4000>,
+                               <0 0x0acdd000 0 0x1000>,
+                               <0 0x0ace0000 0 0x4000>,
+                               <0 0x0ace4000 0 0x1000>;
+                         reg-names = "csiphy2",
+                                     "csiphy3",
+                                     "csiphy0",
+                                     "csiphy1",
+                                     "vfe0",
+                                     "csid0",
+                                     "vfe1",
+                                     "csid1",
+                                     "vfe2",
+                                     "csid2",
+                                     "vfe_lite0",
+                                     "csid0_lite",
+                                     "vfe_lite1",
+                                     "csid1_lite",
+                                     "vfe_lite2",
+                                     "csid2_lite",
+                                     "vfe_lite3",
+                                     "csid3_lite",
+                                     "vfe3",
+                                     "csid3";
 
-Which is also a way better thing than having multiple gpio-keys instances
-that userspace then has to handle.
+This is the way.
 
-
-Heiko
-
-
-> > ---
-> > 
-> >   .../boot/dts/rockchip/rk3399-puma-haikou.dts  |  4 ++++
-> >   arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi | 22 +++++++++++++++++++
-> >   2 files changed, 26 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-> > index f6f15946579e..0999026b16d0 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
-> > @@ -143,6 +143,10 @@ vddd_codec: vddd-codec {
-> >   	};
-> >   };
-> >   
-> > +&gpio_key_power {
-> > +	status = "okay";
-> > +};
-> > +
-> >   &hdmi {
-> >   	ddc-i2c-bus = <&i2c3>;
-> >   	status = "okay";
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > index 650b1ba9c192..389ffe604e74 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
-> > @@ -3,6 +3,7 @@
-> >    * Copyright (c) 2017 Theobroma Systems Design und Consulting GmbH
-> >    */
-> >   
-> > +#include <dt-bindings/input/input.h>
-> >   #include <dt-bindings/pwm/pwm.h>
-> >   #include "rk3399.dtsi"
-> >   
-> > @@ -39,6 +40,19 @@ clkin_gmac: external-gmac-clock {
-> >   		#clock-cells = <0>;
-> >   	};
-> >   
-> > +	gpio_key_power: gpio-key-power {
-> > +		compatible = "gpio-keys";
-> > +		pinctrl-0 = <&pwrbtn_pin>;
-> > +		pinctrl-names = "default";
-> > +		status = "disabled";
-> > +
-> > +		button-pwrbtn-n {
-> > +			gpios = <&gpio0 RK_PA1 GPIO_ACTIVE_LOW>;
-> > +			label = "PWRBTN#";
-> > +			linux,code = <KEY_POWER>;
-> > +		};
-> > +	};
-> > +
-> >   	vcc1v2_phy: vcc1v2-phy {
-> >   		compatible = "regulator-fixed";
-> >   		regulator-name = "vcc1v2_phy";
-> > @@ -475,6 +489,14 @@ &pinctrl {
-> >   	pinctrl-names = "default";
-> >   	pinctrl-0 = <&q7_thermal_pin &bios_disable_override_hog_pin>;
-> >   
-> > +	buttons {
-> > +		pwrbtn_pin: pwrbtn-pin {
-> > +			rockchip,pins =
-> > +				/* PWRBTN# */
-> > +				<0 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
-> > +		};
-> > +	};
-> > +
-> >   	gpios {
-> >   		bios_disable_override_hog_pin: bios-disable-override-hog-pin {
-> >   			rockchip,pins =
-> 
-> 
-
-
-
-
+---
+bod
 
