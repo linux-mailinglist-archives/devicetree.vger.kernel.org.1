@@ -1,121 +1,136 @@
-Return-Path: <devicetree+bounces-106512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAC4598A78F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:46:40 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEFCD98A7C4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:52:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ECC421C22C6F
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:46:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9550FB26C39
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:52:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E831917FF;
-	Mon, 30 Sep 2024 14:46:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="yhcfCDwQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C4941925A6;
+	Mon, 30 Sep 2024 14:50:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A536E19005B;
-	Mon, 30 Sep 2024 14:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7182919258E;
+	Mon, 30 Sep 2024 14:50:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727707587; cv=none; b=YyLQfcurMhIc76BU187qUtUrDAgRa+5EXVEb2Q+v/PbuE9vvjXTl0QoCvYJyVYfnwxIprG9wBNUegy5CLtB1aFAlj0CBBMiG/0aMskARt2A+B+cyQCqubXwUnCsIf1U8c3I1WCuyWi1ilQt6GfHH27d73jf0qs66ncfD9PXL+f0=
+	t=1727707805; cv=none; b=RFhn13fdPM4RvUojtAuwgRFUMpuBEmfIFnB3nHlyYO/1he0mYtpW9Nkrg4+26D6Md1d1x2NPaoKVV6lAPJtgUu3PcvWPbR8pqLJgnLlRugQFY3snj0ZEqH1B4rbOz1dmQ8df0QWvZetlY5DYltLtZLC2Lm1yGNZ3Rw8356Vvv3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727707587; c=relaxed/simple;
-	bh=YKuV5v9gHDlSOprD8Mnk9qpPDZtmdUzIXqNwf3v5iIg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=M0elgg3y9jRDqlFdQd2ZlMCQwGZOra9DfHgbh7RhNsQcxo9fhCW9xKItjMXhZEdlMFDXLEyykNpwGwl9//CRyNA3WJyH0nzS/MWlE1VXO1zTujKe1894cYgtZXTj7LsjD1M3LyAp2f2Uvy9QyX+RYvgb6sfSQOdana7L4PdzeAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=yhcfCDwQ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=+/5cL9UnfJbkuScQXbDl9+5xv+uD29Ok6MxJQa09pCg=; b=yhcfCDwQ4IAS2bgSSUMmxGo21t
-	awZWRCAQj4opOeRg7sKAKhSBTODy9Y8e9bZkC4dtj8FuirG3ld/gNdmcJ4w+f8wdfDxzXZ0yb2w5x
-	a9wBPj8pbd0Z8tAlalMeucIE/+Qt8cSbT9VoGlNCOTv0tbSb8NEA5vIOTT0Zaman1TjDIBtTlzOAC
-	uRjiEtfjhnM5bj42j3quY9/PPRiXhjhToH0PI6rpGY6JSudon2kSbwiFvoALLRS6ot2J4KY2NjHz/
-	i8xXvZNY9klR1CfAT/o0L/5SCnJD6xccmtPtmgWYE0jiTVZwmWHytAIMKsfnLqKEL2nx6ZBnSppKJ
-	bH9zVQ3w==;
-Received: from i5e861925.versanet.de ([94.134.25.37] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1svHfG-00064Q-Sd; Mon, 30 Sep 2024 16:46:18 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Jonas Karlman <jonas@kwiboo.se>
-Cc: Alex Bee <knaerzche@gmail.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Christopher Obbard <chris.obbard@collabora.com>, linux-media@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-staging@lists.linux.dev,
- linux-kernel@vger.kernel.org, Jonas Karlman <jonas@kwiboo.se>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject:
- Re: [PATCH 6/9] media: dt-bindings: rockchip,vdec: Add RK3288 compatible
-Date: Mon, 30 Sep 2024 16:46:17 +0200
-Message-ID: <3342168.44csPzL39Z@diego>
-In-Reply-To: <20231105233630.3927502-7-jonas@kwiboo.se>
-References:
- <20231105233630.3927502-1-jonas@kwiboo.se>
- <20231105233630.3927502-7-jonas@kwiboo.se>
+	s=arc-20240116; t=1727707805; c=relaxed/simple;
+	bh=TfmtS75kWC5W9a+jK++P0hyVvmDVltOuZCz4t340fvQ=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DugC6KxlIiUOSupDDLDZfzMaPlYoQAtfF/G/GNqDB2uQ3Z0Jxpn2AafVDDqecAHXTsnRkq4unZTfsgDudm9Z5c8WWaqVr1n8WXsv9yEqLvN//v300BZDANXmFJc7LH/SmkJ//xya4ZioFkbNHKe3uAsYrtN2tLdMr+5K0HIoN5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XHP5H137vz6D9js;
+	Mon, 30 Sep 2024 22:45:55 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 3F43D1404F9;
+	Mon, 30 Sep 2024 22:50:01 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 30 Sep
+ 2024 16:50:00 +0200
+Date: Mon, 30 Sep 2024 15:49:58 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Angelo Dureghello <adureghello@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>, "Nuno Sa"
+	<nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Olivier Moysan
+	<olivier.moysan@foss.st.com>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<dlechner@baylibre.com>
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+Message-ID: <20240930154958.00004507@Huawei.com>
+In-Reply-To: <oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+	<20240929115150.6d1c22b3@jic23-huawei>
+	<oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Hi Jonas,
+On Mon, 30 Sep 2024 16:15:41 +0200
+Angelo Dureghello <adureghello@baylibre.com> wrote:
 
-Am Montag, 6. November 2023, 00:36:13 CEST schrieb Jonas Karlman:
-> Add a RK3288 compatible for a version of the Rockchip VDEC IP that only
-> support HEVC decoding.
+> On 29.09.2024 11:51, Jonathan Cameron wrote:
+> > On Thu, 19 Sep 2024 11:20:00 +0200
+> > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >   
+> > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > 
+> > > There is a version AXI DAC IP block (for FPGAs) that provides
+> > > a physical bus for AD3552R and similar chips, and acts as
+> > > an SPI controller.  
+> > 
+> > Wrap is a bit short. Aim for < 75 chars for patch descriptions.
+> >   
+> > > 
+> > > For this case, the binding is modified to include some
+> > > additional properties.
+> > > 
+> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > ---
+> > >  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
+> > >  1 file changed, 42 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > index 41fe00034742..aca4a41c2633 100644
+> > > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> > > @@ -60,6 +60,18 @@ properties:
+> > >      $ref: /schemas/types.yaml#/definitions/uint32
+> > >      enum: [0, 1, 2, 3]
+> > >  
+> > > +  io-backends:
+> > > +    description: The iio backend reference.  
+> > 
+> > Give a description of what the backend does in this case.  I.e. that it is
+> > a qspi DDR backend with ...
+> >   
+> > > +      An example backend can be found at
+> > > +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+> > > +    maxItems: 1
+> > > +
+> > > +  adi,synchronous-mode:
+> > > +    description: Enable waiting for external synchronization signal.
+> > > +      Some AXI IP configuration can implement a dual-IP layout, with internal
+> > > +      wirings for streaming synchronization.  
+> > 
+> > I've no idea what a dual-IP layout is.  Can you provide a little more info
+> > here?  What are the two IPs?
+> >  
+> IP is a term used in fpga design as "intellectual property", that is
+> intended as a functional block of logic or data used to make a 
+> field-programmable gate array module.
 > 
-> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+> A dual layout is just 2 same fpga modules in place of one.
+>  
+> I can add a "fpga" regerence to be more clear.
 
-While looking for something else in my inbox, I stumbled upon this series.
-Looking at 6.12-rc1, it seems the rk3288 parts at least didn't make it in
-yet, so I guess I a rebase+resend might be in order?
+IP I was familiar with.  I'm more interested in what each IP is doing in this
+case.  Or at least an example of what sort of split of functionality might
+make use of this.
 
-
-Heiko
-
-> ---
->  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> index 08b02ec16755..0f00e9c86737 100644
-> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
-> @@ -16,7 +16,9 @@ description: |-
->  properties:
->    compatible:
->      oneOf:
-> -      - const: rockchip,rk3399-vdec
-> +      - enum:
-> +          - rockchip,rk3288-vdec
-> +          - rockchip,rk3399-vdec
->        - items:
->            - enum:
->                - rockchip,rk3228-vdec
-> 
-
-
-
-
+Jonathan
 
