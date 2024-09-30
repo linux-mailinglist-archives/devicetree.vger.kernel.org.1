@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-106491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 989DC98A5D4
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:49:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B327298A5E6
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:52:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59E7A28178D
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:49:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 748A8283137
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 13:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41DD018FC9F;
-	Mon, 30 Sep 2024 13:49:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BE7318FDAB;
+	Mon, 30 Sep 2024 13:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q+C1Aw4B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pkmEAuNS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136B818FC74;
-	Mon, 30 Sep 2024 13:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4137A4D9FE;
+	Mon, 30 Sep 2024 13:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727704154; cv=none; b=d4i6qcvJyfTHZHl/KZtDFKg07aucIvw7dCSI2lLQSxHgepyjYYmygv2kzVzo90sxat4LQxVE4DpC/6AsXi/qh1emDwGoQUqMxmZnNJY9jw3rnTs0BqIvyjAS6rzfYqpY+l+5sy3eWs0kF1TEjRuNOjROhpYwmr38BgSm2/y8Xek=
+	t=1727704332; cv=none; b=b6ZevhylbBuFQEVR0Trm1kKGypNGPRxfJABDWQNW7Uq9K6YFZxcWvIeIc3mx6L5lB3dGh9dkAhWhwOspZ588mqtxwQZZyypewx+YE+yH+My7Z+/bMwjoDXnirn2hO/ebrfRivSQBjpfas4TQqKw8quMbR8sG/Ur3HOqiW6cWHiY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727704154; c=relaxed/simple;
-	bh=SkKdWR6Zc3Q+WJ73XbYu0E7L3E7jp16JZ4FTbmoEYow=;
+	s=arc-20240116; t=1727704332; c=relaxed/simple;
+	bh=gRyrUqnsVTZ04DmjZlOcDqqFW1akJcUB1uvMMHzWt/Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dBuvYHZEy0P8LDzrGoeaCOyylx6LrhWZIo7UEXzg3GeIkMbwJdoZSynZ7R7e+L7BarIBK5mKBwHoMeRxP5xR9iYGpBZJguv8Ws9wUa2nPcN23hsEXSI+lR2lzrNVmbIOH0IhhMiExfL1wZ4QC6GgHXcKCMJSo4tHyAam8hQIxEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q+C1Aw4B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D1ACC4CEC7;
-	Mon, 30 Sep 2024 13:49:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HA/865aRlkxqkVQOi2H0PPrIsOEgYyg7Iz/x1+rwlUe1omIcXkvNwFLEpiVUrf1iOAOvZUnS5f6OFz5I9UCuTBT0S0i0n4BY4/3fSPQ5vD40MMQGOx1xrAhpPixK31cSt1e1eebhRE4QkkO3rMZjP8kEY2WdvAKFElNDGzPYdJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pkmEAuNS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E424EC4CEC7;
+	Mon, 30 Sep 2024 13:52:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727704153;
-	bh=SkKdWR6Zc3Q+WJ73XbYu0E7L3E7jp16JZ4FTbmoEYow=;
+	s=k20201202; t=1727704331;
+	bh=gRyrUqnsVTZ04DmjZlOcDqqFW1akJcUB1uvMMHzWt/Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q+C1Aw4BGq8+xPUColHxaqwGn8bn497CTJ/3ZKnacQdt68jlva79GJinOgc4OoG03
-	 QebsMKFlHSSUKK/5fRsaeIZ6NsXoq+8/vwF4xltfD9zOdqI4VHQ6T9ED2Y8L/+pwXm
-	 AHwhBKB+0fnuPOKKq17S31eVMDbJpY8ls5A6d3nQrmc0Lt5kldiTE4uKaQ4RiwY1eD
-	 ozR3cW0fz2Tud+uCHGVqR/nddW4qHzN/RHMI6hLBXO5HA2UwpkvUBR3TAY87MOLwiN
-	 OLzdywjVluVPuttI2hCh/9QY4R6tKFCh850bnFooWRnXlF8I1jVxKznc7HrPZ6YGEm
-	 fBuXZ5lxxiIMw==
-Date: Mon, 30 Sep 2024 14:49:09 +0100
+	b=pkmEAuNSoHxHqmL+ZHpv1567Q5bOr3gONzre5aoFoX1ZHarVqStk5kAtUZMLtmdeE
+	 1U24YHV/DmKJ16BasnQGdBitG+8xfp+DnQZuUbbTPKpYQgFEH1/ajaaygtBUlIRKYb
+	 PLJnNJ528IYlIiY4OIPJGSdW+TnLROp8sbWZqx2zeIQx10YpHBRqe4AuBvJOVOmfn6
+	 wDG0IeVgmOC6yed1zJlrJDa0pAKbItWpbE/UoxJdz+GEldR7PzW3wNfzBtQOKCqDb+
+	 SlQG6tsBwp/vc/2jolqwjzZig1wWcsg8v9RXXTKWU1G++ZT6msaqjRrWr2UuPB56Kx
+	 1Ns8/9EzdGsvw==
+Date: Mon, 30 Sep 2024 14:52:06 +0100
 From: Conor Dooley <conor@kernel.org>
 To: pierre-henry.moussay@microchip.com
-Cc: Linux4Microchip@microchip.com, Ulf Hansson <ulf.hansson@linaro.org>,
+Cc: Linux4Microchip@microchip.com, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Masahiro Yamada <yamada.masahiro@socionext.com>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [linux][PATCH v2 11/20] dt-bindings: mmc: cdns: document
- Microchip PIC64GX MMC/SDHCI controller
-Message-ID: <20240930-chimp-comma-6db698200b62@spud>
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [linux][PATCH v2 12/20] dt-bindings: net: cdns,macb: Add PIC64GX
+ compatibility
+Message-ID: <20240930-unify-scratch-bbc8adf4e39d@spud>
 References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
- <20240930095449.1813195-12-pierre-henry.moussay@microchip.com>
+ <20240930095449.1813195-13-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,36 +65,63 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="hOdBjTLrXI5lY4Lo"
+	protocol="application/pgp-signature"; boundary="OLuPF48/Wq3esOBj"
 Content-Disposition: inline
-In-Reply-To: <20240930095449.1813195-12-pierre-henry.moussay@microchip.com>
+In-Reply-To: <20240930095449.1813195-13-pierre-henry.moussay@microchip.com>
 
 
---hOdBjTLrXI5lY4Lo
+--OLuPF48/Wq3esOBj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 30, 2024 at 10:54:40AM +0100, pierre-henry.moussay@microchip.co=
+On Mon, Sep 30, 2024 at 10:54:41AM +0100, pierre-henry.moussay@microchip.co=
 m wrote:
 > From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 >=20
-> PIC64GX is compatible with cdns,sd4hc without any additional feature
+> PIC64GX uses cdns,macb IP, without additional vendor features
+
+That's not really true. There's a mpfs specific match data structure in
+the driver which the pic64gx also needs to use.
+
 >=20
 > Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/net/cdns,macb.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/cdns,macb.yaml b/Docum=
+entation/devicetree/bindings/net/cdns,macb.yaml
+> index 3c30dd23cd4e..25ca7f5a7357 100644
+> --- a/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> +++ b/Documentation/devicetree/bindings/net/cdns,macb.yaml
+> @@ -38,7 +38,10 @@ properties:
+>                - cdns,sam9x60-macb     # Microchip sam9x60 SoC
+>                - microchip,mpfs-macb   # Microchip PolarFire SoC
+>            - const: cdns,macb          # Generic
+> -
+> +      - items:
+> +          - const: microchip,pic64gx-macb # Microchip PIC64GX SoC
+> +          - const: microchip,mpfs-macb    # Microchip PolarFire SoC
+> +          - const: cdns,macb              # Generic
+>        - items:
+>            - enum:
+>                - atmel,sama5d3-macb    # 10/100Mbit IP on Atmel sama5d3 S=
+oCs
+> --=20
+> 2.30.2
+>=20
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---hOdBjTLrXI5lY4Lo
+--OLuPF48/Wq3esOBj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqsVQAKCRB4tDGHoIJi
-0oOKAQCU4R/1xo9B6pPOR3TbYx9IffvFqwHarfzW6jfN1QcgIAEAzfaGJijbvaMD
-i9LsJJTBZhtJTwZBS0t4kj0xWvPEdwA=
-=2x+V
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvqtBgAKCRB4tDGHoIJi
+0pmRAP453ZWh5pXP53sHIW3HHT4o23sKukkC4I3CZSzhXf54OAD+ImfTrAvyCU9x
+gfrLa0Li1So6ci+g92nO/ujiDMopngw=
+=BmjB
 -----END PGP SIGNATURE-----
 
---hOdBjTLrXI5lY4Lo--
+--OLuPF48/Wq3esOBj--
 
