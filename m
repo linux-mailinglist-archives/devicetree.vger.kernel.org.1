@@ -1,125 +1,143 @@
-Return-Path: <devicetree+bounces-106515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC3F98A7D3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:54:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9080398A7DF
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:55:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9697D1F24887
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:54:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33A26280FF2
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:55:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C47D1922E6;
-	Mon, 30 Sep 2024 14:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12561194AE2;
+	Mon, 30 Sep 2024 14:53:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rYrk5QmY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D0CB191F7A;
-	Mon, 30 Sep 2024 14:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1C35194ACB;
+	Mon, 30 Sep 2024 14:53:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727707981; cv=none; b=o6YwX9csH4+JH6AGnHxl08KTPYaLmmFbPmqFSwisMSMmQqCoq9czILs8UZiYVcCh7zqut0yZU8bp92FZT+IQ3FtNzaHadITV1v6fWmXhtY0Bnz2Rx54s06GbQIT0vMU2B7wnZMliNMgiEnNW3zGLk7RzDcGrdWWwLi4DJrKWQIA=
+	t=1727708017; cv=none; b=Txv1CMPJ76WYiSTrL9X+TUzSFaq1N604l8alLJ7TV1y78Jn+efvW3jip0g86AAmmX4yyqjNkOhmVpp820Frc4dadrXHxIEXk1VQa4BqtxtRyn+8oZblEwEb2jBMcfbdbR1jWiKs3z6Fskx458PO0zmRbK3GcQV/1lxu4uz23y9M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727707981; c=relaxed/simple;
-	bh=xEfx68TKEKbrunn51KUOWGeLB8H7zXoKtykWGpU75XU=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=RQGmvM/MmQS9KEDrch+4vK6HGK/L5sTDY1igtIELtSdTQR8hKLQ3GQDVrhkXG6LKEsVQw0qloaG1TP71SHUfik4+AuFN1JXa/Ut3dM4y9d1qcqKyXG/WgqPds0Shl22JpRLrnneE78otyiG5ljrfyNhZj0kE+i7ZN8fLceQ2IeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XHP8f1q97z6D9rT;
-	Mon, 30 Sep 2024 22:48:50 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5A16F140B30;
-	Mon, 30 Sep 2024 22:52:56 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Mon, 30 Sep
- 2024 16:52:55 +0200
-Date: Mon, 30 Sep 2024 15:52:54 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-CC: Angelo Dureghello <adureghello@baylibre.com>, Jonathan Cameron
-	<jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
-	<Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
-	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <dlechner@baylibre.com>, Mark Brown
-	<broonie@kernel.org>, <linux-spi@vger.kernel.org>
-Subject: Re: [PATCH v3 02/10] dt-bindings: iio: dac: axi-dac: add ad3552r
- axi variant
-Message-ID: <20240930155254.00004b8e@Huawei.com>
-In-Reply-To: <6ce76f0a7c503cc800b4795e682f91c8bfc0bb7a.camel@gmail.com>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-2-a17b9b3d05d9@baylibre.com>
-	<20240929114606.7500ba7e@jic23-huawei>
-	<sowmuxfsedwdshyothf7jc6mcrbzqbs2vzw7x4p3tg3iqnlnjt@5qa3kazkce46>
-	<6ce76f0a7c503cc800b4795e682f91c8bfc0bb7a.camel@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1727708017; c=relaxed/simple;
+	bh=H5EV1RRodrsbm5ea8UJTy16lJkA2S9iZk7mZhOSIW6c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eS1/hgtJZkrKRHGziEqpWTsfkdpjFz39X0qEQzQTGMOJnESNXvbA9p7KBHC0l+PvNlNudgBY1lMWl1LcsAWIV6ESng+q1u+Pj1F8Nza3OEgH9qI+4n4KawsKg+IPlyxWRtuRyPhMTMKh/wm4fYfMVxIBB/L13BJ/yEGeDAoxSt0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rYrk5QmY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6125DC4CEC7;
+	Mon, 30 Sep 2024 14:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727708016;
+	bh=H5EV1RRodrsbm5ea8UJTy16lJkA2S9iZk7mZhOSIW6c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rYrk5QmYKX+nqa2DOTziaQLHU1l3FYbC+Gm6UhuDJc2L/qbKfCagYtQCo1nvqnCIW
+	 HYb7iCyDTwGSHQlhehyoUClmn4xYvkFVQvWndELKO8Qq+DLn5g0cKGD0SbVvnzDNdH
+	 zjhjFHhty2JNVl5PXDQnSX5QjB4PxjjJ3fuJtB0Evn7njpZfEYX1TqJizIpR2cp8dX
+	 6gwkYuV1bn84Rg7RgiSBibektX8xbfWyAfSN0J5n7hjvkRpJ1sN/4rgmVSA5dpcwYk
+	 bUmFeDjHugx51UhhkxPdGo+h5/NC5h/t8v5OBef7ABGcLad9vS5AJHiibwBsphpZdp
+	 fnrah/znakWnw==
+Date: Mon, 30 Sep 2024 15:53:29 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Aoba K <nExp_0x17@outlook.com>
+Cc: "charlie@rivosinc.com" <charlie@rivosinc.com>,
+	"ajones@ventanamicro.com" <ajones@ventanamicro.com>,
+	"andy.chiu@sifive.com" <andy.chiu@sifive.com>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"conor.dooley@microchip.com" <conor.dooley@microchip.com>,
+	"corbet@lwn.net" <corbet@lwn.net>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"evan@rivosinc.com" <evan@rivosinc.com>,
+	"guoren@kernel.org" <guoren@kernel.org>,
+	"heiko@sntech.de" <heiko@sntech.de>,
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"jrtc27@jrtc27.com" <jrtc27@jrtc27.com>,
+	"jszhang@kernel.org" <jszhang@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"linux-sunxi@lists.linux.dev" <linux-sunxi@lists.linux.dev>,
+	"palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"samuel.holland@sifive.com" <samuel.holland@sifive.com>,
+	"samuel@sholland.org" <samuel@sholland.org>,
+	"shuah@kernel.org" <shuah@kernel.org>,
+	"wens@csie.org" <wens@csie.org>
+Subject: Re: [PATCH v10 00/14] riscv: Add support for xtheadvector
+Message-ID: <20240930-reenact-stratus-9d42d7439df4@spud>
+References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com>
+ <a1f41f92-6bd0-48b6-a931-e7ad7aba18cc@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Hamb1NyozR0uOSVn"
+Content-Disposition: inline
+In-Reply-To: <a1f41f92-6bd0-48b6-a931-e7ad7aba18cc@outlook.com>
+
+
+--Hamb1NyozR0uOSVn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100004.china.huawei.com (7.191.162.219) To
- frapeml500008.china.huawei.com (7.182.85.71)
 
-On Mon, 30 Sep 2024 15:15:03 +0200
-Nuno S=E1 <noname.nuno@gmail.com> wrote:
-
-> On Mon, 2024-09-30 at 14:52 +0200, Angelo Dureghello wrote:
-> > On 29.09.2024 11:46, Jonathan Cameron wrote: =20
-> > > On Thu, 19 Sep 2024 11:19:58 +0200
-> > > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> > >  =20
-> > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > >=20
-> > > > Add a new compatible and related bindigns for the fpga-based
-> > > > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
-> > > >=20
-> > > > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-> > > > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-> > > > mainly to reach high speed transfer rates using an additional QSPI =
-=20
-> > >=20
-> > > I'd drop the word additional as I assume it is an 'either/or' situati=
-on
-> > > for the interfaces.
-> > >=20
-> > > Do we have other devices using this same IP?=A0 I.e. does it make
-> > > sense to provide a more generic compatible as a fallback for this one
-> > > so that other devices would work without the need for explicit suppor=
-t?
-> > >=20
-> > >  =20
-> > no, actually ad3552r-axi is only interfacing to ad3552r.
-> > I could eventually set adi,axi-dac-9.1.b as a fallback, since it
-> > is the "gneric" AXI implementation. =20
+On Sun, Sep 29, 2024 at 12:44:07PM +0000, Aoba K wrote:
+> Hello Charlie,
 >=20
-> Yes but the generic IP does not have this spi bus implementation so the d=
-evice
-> would be unusable (unless I'm missing something)
-Falling back to the generic IP doesn't make sense as they aren't compatible.
-
-I'd more expect some future device support that happens to need the same
-sort of bus support might be able to use this FPGA IP.  Anyhow, it is fine
-to fallback to this specific compatible anyway, so lets go with this rather
-than trying for a generic name.
-
-Jonathan
-
+> I've been working on bringing up the Sipeed Lichee RV Dock
+> (which also uses the D1 SoC) with the kernel patches you provided.
+> The patches applied cleanly to Palmer's for-next branch,
+> but I've encountered a couple of issues:
 >=20
-> - Nuno S=E1
+> 1. Skiffos Compilation Error during the compilation process of `cgo`:
+> `unknown relocation type 17; compiled without -fpic?`
+> Unfortunately, I closed the terminal before saving the full log,
+> so I don't have the complete details, but the result should be reproducib=
+le.
+> While this should be a SkiffOS issue, mention it in case SkiffOS is the m=
+ethod
+> that you mentioned for bringing up the device.
 >=20
+> 2. Image Building with sehraf/riscv-arch-image-builder:
+> After building the image, the device failed to start at an early stage.
+> I suspect this may be related to incorrect RAM size detection,
+> as the board only has 512MB of RAM.
+> Interestingly, the vendor image reports 1GB, and the Sipeed website also =
+states
+> that the Dock has 1GB, despite there being no extra memory bank present.
 >=20
+> You can find the boot log here: https://fars.ee/bdYk.log
 >=20
+> Any help would be appreciated, and big thanks to your work
+> to make the efficient part of this board to work (again)!
 
+The log you posted at https://fars.ee/XFzR appears to be using the
+devicetree of a Nezha not the Lichee RV Dock. Why are you doing that,
+when the Lichee RV Dock is supported in the kernel already?
+
+Cheers,
+Conor.
+
+--Hamb1NyozR0uOSVn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvq7aQAKCRB4tDGHoIJi
+0iYzAP42CtXDZpcWhRrFXf/pP66arAHe2Q5uoLqijR0QtCN9HQEApur4oRSzITjL
+SgCrOuckDuHJRCTBo9J9wNnIVrJC/AQ=
+=iwxp
+-----END PGP SIGNATURE-----
+
+--Hamb1NyozR0uOSVn--
 
