@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-106301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D9E989BA3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:36:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A22C989BCA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 09:45:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DEFBC1C21619
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:36:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D5461F211EE
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:45:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815D2156C7B;
-	Mon, 30 Sep 2024 07:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8AA916F0E8;
+	Mon, 30 Sep 2024 07:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kHk8kVgB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FQGExqGq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A4F13D8A4;
-	Mon, 30 Sep 2024 07:36:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EEC16EB54;
+	Mon, 30 Sep 2024 07:44:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727681765; cv=none; b=grs/VUnAAytA30kAMxogXL8eCCOQkabaQ/f8FKTRapybGHm3mzRunR9UJhu44yIEN4Wih4Aea6IZ0GiR5uMWwpIQb5vfv8AmEQHh93CcourTERdRnksM3R6qVtcZkwbLRV1ix8TtU7GwE7teUPcWHjaMnlD97Yv77E4SvDIH66Q=
+	t=1727682293; cv=none; b=b632fi8fY5Keu4aYi5oib7udGAwrKtcTruq7LBVTqtnDn4CaBFSleiQ9ZVwg+azURiDn9ZeB+Te8j/Kmh16hpscmgUQ+b8bVjJdFYqYOfqk+dzHY/OQUabm+lBX9pClmu9PnZJhQTsII0p6vJe8Es+Afb9ph5Gnlh1GUyVM55Nc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727681765; c=relaxed/simple;
-	bh=UwQAYfkqO+7NbChaILjq1p3+O1Kla+UdCJwA5Zn+i+8=;
+	s=arc-20240116; t=1727682293; c=relaxed/simple;
+	bh=hNlNzwLvuBX9rwWnjO4/JPLaI48Tlz1qJu1m0jUpdr0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dVIxHOsnlHt6Smvk0DYMXCr2ej/O/NKCtA5pa31ZqlXW0CjSrHSPfHQLVX4+Mn0fHhCE0J02FUL4GyWCD/YcRXniVv6jJMajSRRO2ZUvY0WO0vmsJTD1usitbFCGggkOzJUbtzK5Z5aA7jCH5c9fJHVJA19d5A1N5NoxpGsv5a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kHk8kVgB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62884C4CED1;
-	Mon, 30 Sep 2024 07:36:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JlsPLrDGdoNT6iwAoITa3bblvFy6hW+48CAJmnfvPdz5yBxDU5LsYfdqcVYIzH2SUCGwFi7cYGlM1mr0FDea/zj3NbsLW1zjosLGp6K6w1nuaXPQAENk25YKgIeAcjmyW8v2Mt2XPa1S0fT8kxUxeHsLTSUfdK54KHgEwujPUfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FQGExqGq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0200CC4CED5;
+	Mon, 30 Sep 2024 07:44:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727681764;
-	bh=UwQAYfkqO+7NbChaILjq1p3+O1Kla+UdCJwA5Zn+i+8=;
+	s=k20201202; t=1727682293;
+	bh=hNlNzwLvuBX9rwWnjO4/JPLaI48Tlz1qJu1m0jUpdr0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kHk8kVgBpj2ON88akPzrIYylMLUgkV1Q6RkC0c2RjwJt/BSIJ87fNshgke5fe46ZJ
-	 iYU3wwLz/69kaTz1omPQYJShXxSKJ4LGClpckh5sDkrdpInZCf3YgRU+SbKOqZvsiR
-	 C8Xn1I1qxQa3k4ka/MSTR4nRRXlhF4MWv/e9dyB59hX3KoXUv+1PtHykAslywsg2f3
-	 wahc09BFFjbHfGmM3aPRurHbNlQ4oR9cZ7P25Wgi5vuSanUHaYREnvBKycnR8Zmvil
-	 la5KA0V5/ykcedOKIHuFB+hwMBF9CU1svFkKdsScPnOzIYe/D2q8rWjlRlMB3VC/u5
-	 0fZ7wEnwu32FQ==
-Date: Mon, 30 Sep 2024 09:36:02 +0200
+	b=FQGExqGq2aPE3j4VEmerBOuBA9h+AxXSq37e0bOCBjl/je9eYV+/ykLoVah07BrfE
+	 GVpRcpdUYmGx0opBIcT2tWCB6liMeIfMnbp9hvKqEVhCOUSKPsY6PTVSyccnrg9A/b
+	 epH66JiWfAQKHua644mmkoe6mw3Dz6x/AycVgQtL3LrwSQCBCUfOLmnZEmqu+d0sb6
+	 oRO6cdYhak5DUXAaB2Z9mhBs+S7fFhG+kHPdBdQQsPNrkSrXcOT+m8DWXcJpkdoXvd
+	 hK/6T+Sw5oNLLUvsFF92/E6p6ySbhyAZ7EY/jTvMwGrthrH+QGhP9avQj6wNWreY2K
+	 ijU0JQ8Ec0hGA==
+Date: Mon, 30 Sep 2024 09:44:51 +0200
 From: Maxime Ripard <mripard@kernel.org>
 To: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Cc: Andrzej Hajda <andrzej.hajda@intel.com>, 
@@ -58,10 +58,11 @@ Cc: Andrzej Hajda <andrzej.hajda@intel.com>,
 	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org, 
 	kernel@collabora.com, Alexandre ARNOUD <aarnoud@me.com>, 
 	Luis de Arquer <ldearquer@gmail.com>, Algea Cao <algea.cao@rock-chips.com>
-Subject: Re: [PATCH v8 3/3] drm/rockchip: Add basic RK3588 HDMI output support
-Message-ID: <i2nsst5bvz2emy54r7ll5pi6uihnvdodkgewevumhrdrr7jr6a@uui3shhzhz2y>
+Subject: Re: [PATCH v8 1/3] drm/bridge: synopsys: Add DW HDMI QP TX
+ Controller support library
+Message-ID: <hax2zu7wlpucxllqapc5dzjirvrkanxkzdxtd2shu3tlc53t3m@ctpcuxifl3ds>
 References: <20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com>
- <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+ <20240929-b4-rk3588-bridge-upstream-v8-1-83538c2cc325@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,50 +70,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="7s67ya4tohfqd2w2"
+	protocol="application/pgp-signature"; boundary="s7gahhjnit22mlpj"
 Content-Disposition: inline
-In-Reply-To: <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+In-Reply-To: <20240929-b4-rk3588-bridge-upstream-v8-1-83538c2cc325@collabora.com>
 
 
---7s67ya4tohfqd2w2
+--s7gahhjnit22mlpj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-Hi,
-
-On Sun, Sep 29, 2024 at 01:36:49AM GMT, Cristian Ciocaltea wrote:
-> +static void dw_hdmi_qp_rockchip_encoder_enable(struct drm_encoder *encoder)
+On Sun, Sep 29, 2024 at 01:36:47AM GMT, Cristian Ciocaltea wrote:
+> +static enum drm_mode_status
+> +dw_hdmi_qp_bridge_mode_valid(struct drm_bridge *bridge,
+> +			     const struct drm_display_info *info,
+> +			     const struct drm_display_mode *mode)
 > +{
-> +	struct rockchip_hdmi_qp *hdmi = to_rockchip_hdmi_qp(encoder);
-> +	struct drm_crtc *crtc = encoder->crtc;
-> +	int rate;
+> +	struct dw_hdmi_qp *hdmi = bridge->driver_private;
 > +
-> +	/* Unconditionally switch to TMDS as FRL is not yet supported */
-> +	gpiod_set_value(hdmi->enable_gpio, 1);
-> +
-> +	if (crtc && crtc->state) {
-> +		clk_set_rate(hdmi->ref_clk,
-> +			     crtc->state->adjusted_mode.crtc_clock * 1000);
+> +	if (mode->clock > HDMI14_MAX_TMDSCLK / 1000) {
+> +		dev_dbg(hdmi->dev, "Unsupported mode clock: %d\n", mode->clock);
+> +		return MODE_CLOCK_HIGH;
+> +	}
 
-Sorry, I should have seen it in your previous version, but the rate here
-should be the TMDS character rate, not the pixel clock, right?
+Similarly, you should use drm_hdmi_compute_mode_clock here, with RGB and 8bpc
 
 Once fixed,
 Reviewed-by: Maxime Ripard <mripard@kernel.org>
 
 Maxime
 
---7s67ya4tohfqd2w2
+--s7gahhjnit22mlpj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvpU4QAKCRAnX84Zoj2+
-drrdAYDIR05FELJA0qfbce9Chdkrm4BQoxsM7sNZLCHRE9StuP0VWBJNhNidV5Ql
-k8L4akQBf2bEy3dcSYB6/4q5XJpS664ZDID1RP/TgfiVQJp8F+o0pEH1pevFglig
-lzo1uFYjqg==
-=sHau
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCZvpW8gAKCRAnX84Zoj2+
+dmA3AX9ZbkD3HSjUw8ZudFDWE7bSMD1N/4nblONlQVzDTPoRo/xUWVvxRifyIpHo
+n8eWlTcBfjfxBcgbXzYRvbh16CIBICTLF7N9txHbxgi0eIVoUlyBZm+LQF7eS823
+KwAALtJWVg==
+=VY2V
 -----END PGP SIGNATURE-----
 
---7s67ya4tohfqd2w2--
+--s7gahhjnit22mlpj--
 
