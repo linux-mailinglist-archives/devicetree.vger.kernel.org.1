@@ -1,159 +1,98 @@
-Return-Path: <devicetree+bounces-106265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A98BE989A59
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:57:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C824B989A64
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 08:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C8CA1F213BC
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:57:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ABEE28279E
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 06:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB9C145B2C;
-	Mon, 30 Sep 2024 05:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E98F6433C9;
+	Mon, 30 Sep 2024 06:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="CKHdVomb"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="XLQdj67u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE222D7B8;
-	Mon, 30 Sep 2024 05:57:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6424C153803;
+	Mon, 30 Sep 2024 06:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727675860; cv=none; b=kDEAElovZIalLE/0+khL82h+iMsmj/0KsmWOMLP6H9xCtcyqvBb4qb3iLQewuPUHpgqgWjTs+vsmdf+kR5UZ9XBaiarKz3E3lgB3nnyBi2dkFG6VBnWqmCQJ5vragUG6oKG+bjxbXr1uokHinaCff2rufBs6CBDAi0aDQglmfnU=
+	t=1727676128; cv=none; b=Kp1brDQre3IxckNOgNwZZuJtVmR1JVlWg6a0Y+qxYxpTYZqz/qfSNjXX2fcmKoC8bgHYkkHjxwlb/ka6elUKPA3FnpEaj4YApjGUqWlF8yGW97NkoRrGaB1yA60wMuZp1fPd0hQs8+FNdXGJ8GPcPv3OuoJld4yZDYUddaxqUfI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727675860; c=relaxed/simple;
-	bh=olHHtOUYKJ4+dKSHsGlVo3M7l/oRSgnwW/o68xo6bEM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PG64h4oAjeWwwsFXaT9YkeY1caBqir2J8pN9FLaA1COcQQnLX+FmUiWfwhR+GmvX2tL4hFf5PW9DgNDFTcpmSby4+iH/b5reQtU3GqRfdb6Um4hullyD/u4WICfF3ErUahXItCLdOmTruKvD+iXDF6nxJ/gAX32OtlOXK6i1FDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=CKHdVomb; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48U0rVcb001985;
-	Mon, 30 Sep 2024 05:57:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	mFYit8cSvR8FTkzXPIxY4RaSog6d/tfpTQTiPM3KVXE=; b=CKHdVombCG58ddK7
-	LWUrust0A7dKoMM5+BHn8NOIPJtdETYEPLI5WBLDUT5xmb2JdX4IeXoUDHq+lZCv
-	yBAuD7o8T/B+peuwpVEabPVANqxo+8T8iX1HCq3sAfsB57bQRL6DYENp4pxtU8SL
-	k+L1/2sSzXGcQVLrNY99TrLm6lr5mB6/u2sU3adfEOJeDFTGwmsYkl4CQ1IemBUo
-	tdjoxqSwBfs8LDZ2Kk13d42eBaQtckX8bo97Eanu2QVUO2qapF4fKhCtKrZCL3o5
-	8E7Ec5VFZwt0ie3FVs1PTtFWIfVRbLJSk/PJbrS4JlRCJWMg7a4tBsaK6Iz1egvn
-	SnrXAA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41xte0tc9m-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Sep 2024 05:57:34 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48U5vWZs015794
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Sep 2024 05:57:32 GMT
-Received: from [10.217.216.152] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Sep
- 2024 22:57:28 -0700
-Message-ID: <a5540676-9402-45c4-b647-02fdc2b92233@quicinc.com>
-Date: Mon, 30 Sep 2024 11:27:25 +0530
+	s=arc-20240116; t=1727676128; c=relaxed/simple;
+	bh=0FIVczdjZnCRLTZ3CDy6YJYArxaNWoYo7j0LdVqWlTs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=lSdyJq7dSFXcwR5Tuh5y7lQWKOjAug+H6FsOXQ9sKZqAsWhsibSYA4/wLK1iXz6KGNLV5jYUsOKHi9spnshkqOQaIfWr77rh3zDmq0PgKzeW5+9y0CstWGL+fM1dy9sDxRVumHOPMyAbX6YRlKHckiX1zXQ81JGxKroQHMe3jhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=XLQdj67u; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1727676125;
+	bh=0FIVczdjZnCRLTZ3CDy6YJYArxaNWoYo7j0LdVqWlTs=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=XLQdj67ubHBsQPOaEGpb9XFb3TW3Q0pRmnam5ggOpYNaYCaEzpUVSFchAkT9RZTXw
+	 6ooxsvRM2k1wmby0nyBhsjGbQysYXi7gpn7pPUaPKm52IDsv5/sasjdqWxOxl4uCDp
+	 BloCEd5jneNt8BKMYAbMUYnJEKlRxFRqIHBdFd3+1GqdCFTgh5Y7ABJpHKmHFR9Yxz
+	 PFMdNyD2XZKAqYPWxDqRtIg9GPEAvp+W1NDO1PQ8KT2v694TnCvyutaUuqavt/zGTd
+	 PU/bcP1sNHkd4JbyMiTuNkoAuFg8TcEfTC7uZotIAEoTcqrZDWbkZVSaW7h9dSb8Gl
+	 h3yDFIDwSqpbA==
+Received: from [192.168.68.112] (ppp118-210-73-17.adl-adc-lon-bras32.tpg.internode.on.net [118.210.73.17])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E9EFC6511E;
+	Mon, 30 Sep 2024 14:02:02 +0800 (AWST)
+Message-ID: <81b9916f299bbf29583aba610c0147c8b8afd092.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v1] ARM: dts: aspeed: yosemite4: Add i2c-mux for CPLD
+ IOE on Spider Board
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>, Patrick
+	Williams <patrick@stwcx.xyz>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+  Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Ricky
+ CX Wu <ricky.cx.wu.wiwynn@gmail.com>,  "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+ <linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>
+Date: Mon, 30 Sep 2024 15:32:01 +0930
+In-Reply-To: <TYZPR04MB5853D743126A23AD41BE3E0DD6762@TYZPR04MB5853.apcprd04.prod.outlook.com>
+References: <20240926024133.3786712-1-Delphine_CC_Chiu@wiwynn.com>
+	 <fbdc9efe87a1bed9fea7d0abaf955aa1a3dc24ac.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853B51141F3D0610D970265D66B2@TYZPR04MB5853.apcprd04.prod.outlook.com>
+	 <Zvdq7o6NFXRVCJqX@heinlein.vulture-banana.ts.net>
+	 <16c89a7b9b85d21f1f23aa0d67742c6bde94a295.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853A70A99CEDE8EB64A317DD6762@TYZPR04MB5853.apcprd04.prod.outlook.com>
+	 <ef0e0be6cbdcf410ca7854884f32da0e3cf6b295.camel@codeconstruct.com.au>
+	 <TYZPR04MB5853D743126A23AD41BE3E0DD6762@TYZPR04MB5853.apcprd04.prod.outlook.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8550: Change camcc power domain
- from MMCX to MXC
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Stephen Boyd
-	<sboyd@kernel.org>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>
-CC: Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20240927103212.4154273-1-vladimir.zapolskiy@linaro.org>
- <20240927103212.4154273-2-vladimir.zapolskiy@linaro.org>
-Content-Language: en-US
-From: Taniya Das <quic_tdas@quicinc.com>
-In-Reply-To: <20240927103212.4154273-2-vladimir.zapolskiy@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 84h45fEDulEb0hxbZ88H-63PSBOg33QD
-X-Proofpoint-GUID: 84h45fEDulEb0hxbZ88H-63PSBOg33QD
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- suspectscore=0 spamscore=0 impostorscore=0 lowpriorityscore=0 adultscore=0
- priorityscore=1501 bulkscore=0 phishscore=0 mlxscore=0 clxscore=1011
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2409300041
 
+On Mon, 2024-09-30 at 05:55 +0000, Delphine_CC_Chiu/WYHQ/Wiwynn wrote:
+>=20
+> I have one more question that if I need to add the DTS based on the patch=
+es that
+> have been applied but haven't been merged in torvalds/linux.
+> Should I also based on the branch "for/bmc/dt" from amboar/linux to creat=
+e the
+> patch?
+>=20
 
+You can do that, yes. We can at least then be sure your work won't
+generate conflicts when I try to apply it (unless you've
+inappropriately split your series).
 
-On 9/27/2024 4:02 PM, Vladimir Zapolskiy wrote:
-> Any attempt to enable titan_top_gdsc on SM8550-QRD fails and produces
-> an error message that the gdsc is stuck at 'off' state, this can be
-> easily verified just by setting cci0 status on:
-> 
->      cam_cc_titan_top_gdsc status stuck at 'off'
->      WARNING: CPU: 6 PID: 89 at drivers/clk/qcom/gdsc.c:178 gdsc_toggle_logic+0x154/0x168
-> 
-> However if MMCX power domain is replaced by MXC one, it allows to turn
-> titan_top_gdsc on successfully, even if MMCX is remained off according
+Cheers,
 
-MMCX is absolutely required for Camera Clock controller as it is the 
-main power domain. The access will not go through if this domain is not ON.
-While I agree that MXC is also required to be enabled for GDSC powering 
-up, but the below is not the correct way to handle the condition.
-In your case the MMCX could be left ON in hardware and that could be the 
-reason for the access to go through.
+Andrew
 
-I am currently working on the necessary changes to address these 
-conditions where a clock controller (GDSC) has multiple power domain 
-dependencies.
-
-> to /sys/kernel/debug/pm_genpd/pm_genpd_summary report.
-> 
-> Fixes: e271b59e39a6 ("arm64: dts: qcom: sm8550: Add camera clock controller")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> index 9dc0ee3eb98f..5c07d1b35615 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-> @@ -2846,7 +2846,7 @@ camcc: clock-controller@ade0000 {
->   				 <&bi_tcxo_div2>,
->   				 <&bi_tcxo_ao_div2>,
->   				 <&sleep_clk>;
-> -			power-domains = <&rpmhpd SM8550_MMCX>;
-> +			power-domains = <&rpmhpd SM8550_MXC>;
-
-
->   			required-opps = <&rpmhpd_opp_low_svs>;
->   			#clock-cells = <1>;
->   			#reset-cells = <1>;
-
--- 
-Thanks & Regards,
-Taniya Das.
 
