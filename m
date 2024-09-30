@@ -1,210 +1,173 @@
-Return-Path: <devicetree+bounces-106257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3686D989A21
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:31:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27A51989A32
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 07:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EB661C211EB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:31:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D54C4281C72
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 05:38:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08BF2161328;
-	Mon, 30 Sep 2024 05:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AA5C13B59B;
+	Mon, 30 Sep 2024 05:38:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Bsdj+JrP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WmtYzL0T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2088.outbound.protection.outlook.com [40.107.22.88])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B56416631C;
-	Mon, 30 Sep 2024 05:30:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727674205; cv=fail; b=Hzw7pZ13nbcwcAU+PSeB6m0hhEzgIoefctjy/0IGrt/7oGNXxTU/OJZ0LhVS6UoidInoIzPeOjjZutZQtBkK+UtNNcYHei+SID/NL+G1Sbh2B14bYDLL4MJK6nzXgz/AO8iNE5uED5WJkAkKIpX9oV+qy7Hz4KPGayZ6LHLMvAE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727674205; c=relaxed/simple;
-	bh=j7fA/JC5FjzP1Y9PzRidYGYjANyLpO7yYjJ5TlKxFOU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=R01J+s6Rtptm/hKNTEhJpGuNqQWn7xm7qx/P9QLYrlByYSqmctE0n8Lu751evDwlwWcQ4MNYrsmS2bwQC+VKZ7LvqdmfPkHOxKlXZ85/XbMRaiQKKMItYUdhx2SzBCkIR8XtyWbK8H+Li9cM7Y8H2GKUbzhHe9S9tGudwhTJUVk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Bsdj+JrP; arc=fail smtp.client-ip=40.107.22.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=riIETv8+dE8a7un6iin2pUIpsVvUWQaAYSUzmS3wVkMz6FLJ94BZi05cs5668NQaxEdShUj+kyp2/zBG7IIUUsF2P/VUfjyT2O7s2ZXXLJTpE98WVo2xKWu30XvoLN7NKl8BAasTSJJ4Ts17tyD9vLokC9e+qs2+FsFYcHTk5kUkk0clGc77PSrvhir5W53a0IUAn6baD/6netnt+iNLbe0fOz8RuvjDkZJQjv7xgDZg5ENQf98zgQxTguJ7QlxShXgX7AcaLBWUVEUOEB5lNXSdwTsrz2GsoEkv10xwNeZpLjRX9PTpZzxhemDnKSuam7/PUHrHLLKg3Lt+WxwmjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5RUqrTNZbKimeOVTPjdQkQNCF4ikDMS01e5WkWjIIzE=;
- b=fVh+kxUy5GgiLBHENCTp2EIoz9nyKNjsFFR85cN9RSEm1eneCG64pfKrslQbVXNQAi0h8pHvczhSh3ZLIQ3sHsL1HAvDl/sKwIewEMNdybJM9mkD5fMS3P89ugFLNt9l2sqiwgKQf1YXquDTmtwXvdQFTxqJn1cP/f/D10wnp7YSCnu7tPVxsT37OLesBNX55EKBLbtiQbNprOoSh7D3gSDkQ35IXd7uMpkJisUPzM7+JnyK0yEWUztI8o1adiW8hTHHduFCZdKAKh9dHIPYZmEUNcnAjTOtHu3+zdfMeE72JhfvSAu9uSre9Zco8bmGRw9z92f/f9qVADuWGaIdJg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5RUqrTNZbKimeOVTPjdQkQNCF4ikDMS01e5WkWjIIzE=;
- b=Bsdj+JrP3dKKhogFIcXrb/EkT57qSnybNmqq7CJ1QGmgfFFVm0UgWN/7eOgq/RELuE0VVzi6apf3bS9txXxe5JH1OmWBKt0QvM4eiOLS7xE9NY9RrNDX80pkNAW/bgir20LzLVC45LpbULoeaJlKtRl9vvEpmkxPBupxUSuFEUrzKaYkdEa1UFXGFHKGhvnMPMeXbiIPxonw3EPC3U5xjDisEUkR21lsSwS49tWa1h+pQ6HqeOhNISse4rrHDUojo9gfE0HTj+0bG0TJvkNI99W3Fnow4Z/T0/JJqlTSs5OrC/KGGtUhWA4qn06i0jV/ASPZRFuX34M3/nFYQ2hH7Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com (2603:10a6:20b:113::22)
- by AS8PR04MB9141.eurprd04.prod.outlook.com (2603:10a6:20b:448::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7939.24; Mon, 30 Sep
- 2024 05:30:01 +0000
-Received: from AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90]) by AM7PR04MB7046.eurprd04.prod.outlook.com
- ([fe80::d1ce:ea15:6648:6f90%4]) with mapi id 15.20.8005.024; Mon, 30 Sep 2024
- 05:30:01 +0000
-From: Liu Ying <victor.liu@nxp.com>
-To: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org
-Cc: andrzej.hajda@intel.com,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	Laurent.pinchart@ideasonboard.com,
-	jonas@kwiboo.se,
-	jernej.skrabec@gmail.com,
-	maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org,
-	tzimmermann@suse.de,
-	airlied@gmail.com,
-	simona@ffwll.ch,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	quic_bjorande@quicinc.com,
-	geert+renesas@glider.be,
-	dmitry.baryshkov@linaro.org,
-	arnd@arndb.de,
-	nfraprado@collabora.com,
-	o.rempel@pengutronix.de,
-	y.moog@phytec.de
-Subject: [PATCH 8/8] arm64: defconfig: Enable ITE IT6263 driver
-Date: Mon, 30 Sep 2024 13:29:03 +0800
-Message-Id: <20240930052903.168881-9-victor.liu@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240930052903.168881-1-victor.liu@nxp.com>
-References: <20240930052903.168881-1-victor.liu@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR06CA0015.apcprd06.prod.outlook.com
- (2603:1096:4:186::7) To AM7PR04MB7046.eurprd04.prod.outlook.com
- (2603:10a6:20b:113::22)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF64A47;
+	Mon, 30 Sep 2024 05:38:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727674691; cv=none; b=FqfsrMvNuX8TJpIjLOD4OuJT13CR0m7jB8yUc50mHO0JkzSPUEkOSKBI8/grSavOtRHtUlto8AvcK2UImfRMjQWSD/3/1qUB+EDtzh5sC3qfIqRWfxmiRlU1SRI+bqV7qySXCU4F+CLSAWMC1hNEqnp4GrNHuiUw2QkwiJzKj/4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727674691; c=relaxed/simple;
+	bh=y6BqW0adLuSNbEpDtlt1wTQwouIIcVZHMgkSlDe6AIg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=HZ61mahcMT+H5SsRIteDrENN1001mex4YhUaZm7vdXxqn8UEcAAzfEAnssZM0D6Ig4k56dkmDSx2iDOQzGhdFy7OarPhsIq/IvSyiXE7HAVrbni27ygFQ9sr7VQdwNE7fqdHAEMwjSaCvwntOccbSMKePywoaBrvg1vbUFLTpRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WmtYzL0T; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48TMTuOm001779;
+	Mon, 30 Sep 2024 05:37:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YltmkjNOP5VKAuTTCBOm6ghW3ZDdOOIG25kE35a0XaA=; b=WmtYzL0T5t1Vbk23
+	MnVdr0LI0mOfmKi52+BlFPc0ZGq1+S/J5N+D9N3D6VvaVcg7BwPBek1BZzPKdvbO
+	wLlhCRr/YDEjTIw9J/q/vQWWHp8FlpUqphmWuIURPOuYbmcIWFx5nLowiLCsyZ0S
+	kPZDi6SaFoTE3s1VXYShi/wkRF0UUi3oJT4ukQdnvIYGeEzqHOo7tNjAibWnZDNs
+	Hh+Zj53egUEs3yFTwNRIPykrVlq4N+V1hvr7TK5TW+y2DVrg7qrqW7m/a9cv6RgP
+	S4L/OsKi/WfZRvG2U1BaNQEDvFMqOtZCcI9HkZhMD+8FWfPUJUh2TcUa4hL7/taD
+	LataRQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41xa12knd3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Sep 2024 05:37:52 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48U5bphg028551
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Sep 2024 05:37:51 GMT
+Received: from [10.239.97.152] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 29 Sep
+ 2024 22:37:46 -0700
+Message-ID: <f31c2b15-d1ae-41fa-952b-eab806b0e15d@quicinc.com>
+Date: Mon, 30 Sep 2024 13:37:43 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM7PR04MB7046:EE_|AS8PR04MB9141:EE_
-X-MS-Office365-Filtering-Correlation-Id: cfb61ac6-a946-462e-9fc6-08dce110ee1e
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|376014|52116014|366016|1800799024|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?EJLG1dsHzCcTjaiWLrauQM8cKQGW1YMSxEAo9mVR0wD7hmAJKBrKittagn7O?=
- =?us-ascii?Q?xCILRPeZfiRvpRDTPSJ/EJJmOHOENCpdupuTLEpcfb7OsxipbsxB06SoiOXj?=
- =?us-ascii?Q?Rkartq2DClEzGesWbW6rzCd2J/tsWs62Zlxbh46Pzc+7+XEIQ/Pv+2SVJm/e?=
- =?us-ascii?Q?0wpjtv/qr3hphWpjUW/aeNcZIkvHMpTHMwyqw/m8ygW9SrN/+olXwU5pYTYg?=
- =?us-ascii?Q?C0cYmV+JlVq2bNiGgId7EALsa6Ai/LRISAFHRQQUw/AlLeZIQ2Xj1UEMmWT+?=
- =?us-ascii?Q?+mI3E0WeDLBhIhspXYhopN4qtdlovqj2KMP83QsxPWepq4K/2YSrC5/kjF35?=
- =?us-ascii?Q?LfV4JBBz4a/RO9hRH3Egxu8qL0H8pXGZncjMTrhM7Qd5XdtC2XL6/D4I03Md?=
- =?us-ascii?Q?K0Jf9uY90owksLd5DnPAodGP/rDTMdG5x/Pf4kbuVUcz4QqjSUvc6y5r2fn5?=
- =?us-ascii?Q?PIJDtllCAIp3tmrZG1fmGwRtPOUgOS0m9auRZfZn/c/EDsEezADCdGoF1/DE?=
- =?us-ascii?Q?COMGrWGI0qVnwxmYKflJGvEjYtjlNCgDeTqbEX/m2fK85AeLjPOPlp/KIB3M?=
- =?us-ascii?Q?20/RiqEuwk06LvksDcSPSeqiUZA9zN75gWFiY59EkaX0lgi0uUhUQoACjcLu?=
- =?us-ascii?Q?pqtZYk+PBQR2RKw3ZNFIkPeVARGp/ti4QZ6EY/z/Y/Xbtb6tnPH7GXWiaAle?=
- =?us-ascii?Q?nmVGZ0gMiSxjCXgNbJdjUOHcyp/9pHeLwqNGkU+Wb4BjxvNZkRT6E52/pWBP?=
- =?us-ascii?Q?ZydyNIq/OXt3PjKaCGSiQej+vl/qRoRViP1uu5wdTZ8hKBhVLfDeMueMkimY?=
- =?us-ascii?Q?6jaim5tn5hkujGYrAzepW/swkEiRswgahxvdVQtrheBPSyZi7STz77jvXyYf?=
- =?us-ascii?Q?Y0jRdceUp9pAlx9jBQcf5d0TDg2o+dtDJ42iJQtre3W4Or+mtPc40+WyuLbl?=
- =?us-ascii?Q?ING5K5iNB4+JTJDhXLaBr40zNtEzW9UpXB2FXY7rWVksVJpAzrSmOYDIfhbB?=
- =?us-ascii?Q?OSIQNxu1yl64UCIfRsBmjOz8WfOh4FCALNVTvIBtsBEDucPxzJ8BZ3u8VhlF?=
- =?us-ascii?Q?U0r3j8HmD0lMHF0/jcSIPTObLRNVIzIKskDtz0HiVKkGfhS8EwwbezbbG88j?=
- =?us-ascii?Q?M8lDQEUobyA7SveDkx7mz5+TVNiXkt1YpUFrQG9ynQDOfkoAQhsTJXN6dv3l?=
- =?us-ascii?Q?k3EyKjp1XtMC2mvWVB4EvImfAlF87FKBBD8+YkufDzjbdRS3hicftz/7964e?=
- =?us-ascii?Q?Fj4dk4xsYR16VGZ/K6I+ikLZFzjCrUGpHq6qv7rc1bZCbG+GSJDKow4FDxGD?=
- =?us-ascii?Q?N8Is/Iv4loTJxsfISUq3lO5Qhtd+XXG2sH3bfyQngJebiNE3ZPtGOm/E1IgC?=
- =?us-ascii?Q?MRAe8AgTmvCGo79LFke7b9SZK9gwf6El8QzVp59ZuPiQn8GuuA=3D=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7046.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(1800799024)(7416014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?LFTzD88T2Ve0/wdvT+mrDSoeA7YEO/L0SjB4o+ZriRjXD+7bmBQZbNibIPls?=
- =?us-ascii?Q?pJH1VBptYO+aUOGk8Pa3K2bKCOYZPhiL5apRJwVHgmsHV/MkWJvtLf26t5FJ?=
- =?us-ascii?Q?zjjroTCUW0prgBSAKygrZgurhbgHn6wIR821DcIIDDQZU55DsHvBUZYbW6oM?=
- =?us-ascii?Q?RLwfkfWcJZ3sj0uBnmqx1W4FLbvd1lywXhUscSy5bUqoM8KCbRbI3VMFr6VN?=
- =?us-ascii?Q?ZgExr5Zyc5jrbRtF6dAoFoNKI2KOl8M6QpZHdnqOAQ9IahoQSxw8fW2fBGmB?=
- =?us-ascii?Q?I74vWhb9z1tSsRAHCAudm1n24XtKhGE+DNaGD6L/UwQX6jmQTE+n62kMOOs0?=
- =?us-ascii?Q?paXFOVQSQIBj57Qjpns4eSZ+IbYv7V7jiPUV0ByJmo+/3HJxRrHP+JdAa9v2?=
- =?us-ascii?Q?ga0j6dv6O05BV5A/zg6yan9seEvIn7fjnNmGkK5AKD+t8pPtl/+xtm82Ebk6?=
- =?us-ascii?Q?TfBF/D70okbSpm8ZD+0W6k5SyS5H6Eq/wQuN8QDEqoEBqI2kRFG4GrX4eaSz?=
- =?us-ascii?Q?J7GRvABRWXZ9RziUzyLIf+on+ZK1nG5qh19CyWYm4ma+pNtbK9wTxIQMcys1?=
- =?us-ascii?Q?aLCGuMidzx6rXEy/VAlspJFmWSRJFgAvyNMGZddM/BJvJkfz+b9iecRrA9nL?=
- =?us-ascii?Q?5/YhBkdITz2C6X99Nt02iaMjQj2Hs3UsIUmYQNawn4QYzDa+aHDfcESCh4Y4?=
- =?us-ascii?Q?C+WguSy8OyKNJ9jvA6Wqhz+cfcThq7t9ZHG2L2UG5xlqGSCC+zeuYiK+vMgm?=
- =?us-ascii?Q?WxVSqyD6sOk6+iviW65cTbknWGOZJZUkDuUvVRuY2EOZ3X145Yd+8qrMsrvZ?=
- =?us-ascii?Q?pVsalBlAmejnJRJsQvcyMrdvZwxHDpEaKQNrNQdfLmKLDYrBnUpZO+4NXaxm?=
- =?us-ascii?Q?byha+vncCayD1I+ggiRk41QEgVcomqcHyjTSA+RWP5gprkA1+mnfgiVVLpGf?=
- =?us-ascii?Q?RMV7F3qcbDXXJ8gGS/pdVrv3gocEsHR+66x0ktklyfdQgWE9xR8c4f5kGns/?=
- =?us-ascii?Q?uvdS+1XO7NIB+ISQika2AkDMZsaG1ole1jeagvKRVa33aA/7HoWa5Mbp8IAJ?=
- =?us-ascii?Q?PLSBE8gfjzjGjL6EKucN9Qe3iLJsGKRRlCZqGxEKb1gi+DfH34GUJLIAikM4?=
- =?us-ascii?Q?5F2skaPrMFME7DF5xuwMa2ZMaCeAbD5c4vygK7c63KJb07AR0+GhPzHyYJgc?=
- =?us-ascii?Q?cFl9rHzLd5Q+0YJfSfzg304QhsRYbzZF93lAdRHCqyX91MQcvyNxtiquDS01?=
- =?us-ascii?Q?lR5IgEze9+49SXHzUiA6Jc2JN8nUpXrXCeDF4FmvHb/qyaBdMszw9CyBRKtW?=
- =?us-ascii?Q?UA00xPjAByIurWQ4BkrCqpKzO8wWFDhJc+VARXGl2IcPbLd2E0Wv8+zd01//?=
- =?us-ascii?Q?d/B5sdtC2U7eueD4bpjDnGlvjYA5V8KWSLjhkXnoLXkNQAiq/ey4s7MAmpS1?=
- =?us-ascii?Q?bbuLoS8p9cNoFmAXb4w0YFhcWQdnUOnOzOroGbnaahmAzEFaRlZjOtkwN1p0?=
- =?us-ascii?Q?w5RyX+Tk7FlImKOvz6VM2C5Uo63YP+DmjfdmIoq4NCGh/gYcHSRjsZgnYTa2?=
- =?us-ascii?Q?yLwtavfzJqSYARU6EVK3nICwaUH9ibrO8zBGFv1c?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cfb61ac6-a946-462e-9fc6-08dce110ee1e
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7046.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 05:30:01.3684
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mJRNkwDKc/7zloWKwmgInf3XnzmhwVfuYcO6N5u/jWS7UGLPRMJlu5hlfOWYMxIuwOTw7ACFNxenulcecrnZGQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9141
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 13/13] media: qcom: camss: Add support for VFE hardware
+ version Titan 780
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, <rfoss@kernel.org>,
+        <todor.too@gmail.com>, <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>, Yongsheng Li <quic_yon@quicinc.com>
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-14-quic_depengs@quicinc.com>
+ <6ddaa41b-86cf-44e5-a671-fd70f266642b@linaro.org>
+ <eb77972c-9c9a-48f9-b850-21e6c2df005a@quicinc.com>
+ <d842a992-e04f-4a11-abaa-da50808fea77@quicinc.com>
+ <6b702201-4418-4bbe-95b2-50039c08b4d8@linaro.org>
+Content-Language: en-US
+From: Depeng Shao <quic_depengs@quicinc.com>
+In-Reply-To: <6b702201-4418-4bbe-95b2-50039c08b4d8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: iiMyueU0O6mCP_eI_8A9IKY2BvRqXltt
+X-Proofpoint-GUID: iiMyueU0O6mCP_eI_8A9IKY2BvRqXltt
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 lowpriorityscore=0 suspectscore=0
+ bulkscore=0 malwarescore=0 spamscore=0 clxscore=1015 mlxscore=0
+ adultscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409300039
 
-ITE IT6263 LVDS to HDMI converter is populated on NXP IMX-LVDS-HDMI
-and IMX-DLVDS-HDMI adapter cards.  The adapter cards can connect to
-i.MX8MP EVK base board to support video output through HDMI connectors.
-Build the ITE IT6263 driver as a module.
+Hi Bryan,
 
-Signed-off-by: Liu Ying <victor.liu@nxp.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+On 9/30/2024 7:57 AM, Bryan O'Donoghue wrote:
+> On 29/09/2024 02:28, Depeng Shao wrote:
+>>>>
+>>>
+>>> Thanks for catching this, I forget to add the rup irq, so this logic 
+>>> is also missed. I have tried it just now, the logic works good, will 
+>>> add it in next version patch.
+>>>
+>>
+>> I go through the code again, and find we don't do the wait for 
+>> completion in VFE 480 driver, this is just used in VFE gen1 driver and 
+>> just during disabling port.
+> 
+> Right but, we _should_ wait for completion there, the fact we don't is a 
+> bug.
+> 
+> One context issues a command to take an action and another context in 
+> this case an ISR has to fire for that action to be complete.
+> 
+> Therefore we _should_ wait_for_completion() in the initiating context 
+> and timeout if it exceeds a reasonable timeout.
+> 
+> Granted, we've "dropped the ball" in 480 you're right, it needs to be 
+> fixed and will be but, please in your submission do the right thing.
+> 
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5fdbfea7a5b2..d8a232e285d4 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -899,6 +899,7 @@ CONFIG_DRM_PANEL_SITRONIX_ST7703=m
- CONFIG_DRM_PANEL_TRULY_NT35597_WQXGA=m
- CONFIG_DRM_PANEL_VISIONOX_VTDR6130=m
- CONFIG_DRM_FSL_LDB=m
-+CONFIG_DRM_ITE_IT6263=m
- CONFIG_DRM_LONTIUM_LT8912B=m
- CONFIG_DRM_LONTIUM_LT9611=m
- CONFIG_DRM_LONTIUM_LT9611UXC=m
--- 
-2.34.1
+Qualcomm downstream camera driver use the rup to move the req to a list 
+to maintenance a state machine. If we don't get rup then we will enter 
+bubble state.
+But we are downplaying this process now due to AUP, and the bubble 
+processing has been disabled in latest code base, since we think the 
+buffer must be filled to the given address if we have configured the AUP 
+and got buf done irq.
+
+
+And this per frame wait_for_completion flow isn't exist in whole camss 
+code, and current camss driver just use buf done irq to trigger the per 
+frame flow.
+
+E.g.,
+irqreturn_t vfe_irq()
+{
+	if (rup_irq)
+		reg_update_clear();
+
+	if (buf_done_irq) {
+		vfe_wm_update();
+		reg_update();    --> We can't do wait_for_completion at here in irq 
+context
+		vb2_buffer_done();
+	}
+}
+
+Just VFE gen1 driver use this wait_for_complete in vfe_disable_output, 
+and this flow has been removed in vfe gen2(camss-vfe.c), so looks like
+we don't need to add this wait_for_completion support and also can 
+remove below code in camss-vfe-480.c
+
+vfe_isr_reg_update()
+{
+	if (output->wait_reg_update) {
+		output->wait_reg_update = 0;
+		complete(&output->reg_update);
+	}
+}
+
+Thanks,
+Depeng
 
 
