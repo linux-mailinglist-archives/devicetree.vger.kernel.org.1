@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-106528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AFF998A884
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:32:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DE6B98A8E5
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:44:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21865281AC2
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:32:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3360C1F23D51
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 15:44:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 152D5199EB8;
-	Mon, 30 Sep 2024 15:29:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382EE193426;
+	Mon, 30 Sep 2024 15:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="KDX/juuT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oI4L83S1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E82DE199E9B
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 15:29:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 576331922F8;
+	Mon, 30 Sep 2024 15:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727710155; cv=none; b=As6EHIsV8d041QTUeAIazXLV9kD+tuUiDBTgXZHSynH+NTyNOF33t5Zi8peZP9QxEqWC6jJHuyweTspsUeHSq4iSkOhHod87tEUAOOQHPWbJqEUWGVOvJQMYc05pKkqdJraMF7xfPMyshNJV5Lm3JvYfdSQMRncb3XB2ZD5PZgU=
+	t=1727710948; cv=none; b=miGEXR+yifmdauFS9hPnUmaROYajU6cWqrHXtlphHVWqv/O48f1GnG5i+O6ydIUiwMDrS+sx2rWlzp27G8gaSMF9VFrdr1jeqn0kktLSee6hoqauvv4QdSrMqqy7AWLXTSkeCVW3KsrGBbHKDGArQEltlHGDsfoKt2p2oeFSY8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727710155; c=relaxed/simple;
-	bh=c4wR8tcH9RdAEoe2+47MbswBVdNokOoEY8naXrFqhiU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tL9j6EmaItxhlAoddN/+864SdNsy9Yosse1EajZY2JmrU75VVDPN5ZcnBpYegvqMhGwqVuRYMBShjeApWL4u64+nkuqrk5KEJrrA7hIBJ63CBwP38tJQUbLe/RPU7cBHugkyQ3tXY7hTUyN/tz7zSV0Q6txoK8L5FNrf/EyMTyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=KDX/juuT; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1727710124;
- bh=oySoeZXgklnZqRgl9rNvs2Vy1xJO0hdqK2BVTQwjHjk=;
- b=KDX/juuTwun4bp98WIV9bM+WjCrXK9QFl5f1ZlTIh2X6XLMnK6iT4JMctEu2gVIn5XOyXLYkC
- 3Ar4MEr/20yYClvL7OibkbXfmnBxLFW9NtePnhY0ws4GQBd/5z4vUzDA688Q6HE/uTzs/cY+V8I
- d3f1F0qubs6zO7CROViw4nMd+00FZx8leHdN3qVHPMuQEXdFsosAsSCJMydaS5uORjr7zGKXKWF
- O+83HBps7FlUgPZA65OCcSdaEXvjsorv0Mn8t8LBCRPCG9qaxuMFzMBUn9ksT3MNysuqbbOYix/
- 8APluXmWwHtUXiI01Yn7mirAjxELBDS4UUKPn8ILOYgw==
-Message-ID: <3acf37cf-321e-4a03-a989-aff03fdec137@kwiboo.se>
-Date: Mon, 30 Sep 2024 17:28:32 +0200
+	s=arc-20240116; t=1727710948; c=relaxed/simple;
+	bh=Cc7YRhvoDQtKghJg2029k4QYtuU686bB42dKb2xpnTI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mWYzKnRMC0vw1cmWZ4xrIYbDzPMHB/gs//sO8nq6G/dFftQsXMchmR+OIAkLpwckPB2cwkzMcJyKjBld+vgnLzK8L/FVv5JUazIQEg6RKgfElWw0YrU5q2+2DRKi69HLZp47bKSAfCBzQJ/Iy2bT0uYVld64FmLYx+v388fOzcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oI4L83S1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48U6RwYN014784;
+	Mon, 30 Sep 2024 15:41:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Gc55ob5J5ocO4uDw82svtlrKc6l6j/9azVaUVKIUbzg=; b=oI4L83S1Yru2ByEf
+	oaSvklSYWWKAJIYTd4fvvdv+/1FLUWnJikQlFF5FAc63q+qsAwuiyItbPPoS+NPb
+	mEln0G2d5hjOMOnr4VTm9vVGsFq4r2HAGV0KiBCMaVsIx9VEYtwfyxyUcx+zSJHS
+	7Anduf9GAHea1R1mcz6Zm9Wod/1GCg3EqCi1WuMMLi56MFFARyhacR/adVIiO0lI
+	3u2vVTqMs1dPKKNuPn3k1W/FQ3QNqV73fzPlxtmGXyjsm8fvutJjJqbijwvDPrY2
+	Fv96HIwV0e/IxaRio+HnMmGyWqgxy7O1GtfGGZRa/Aa+eAApRZYwKaB9X94Iyvay
+	SpISrQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41yprahfsv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Sep 2024 15:41:53 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 48UFfqHM000802
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 30 Sep 2024 15:41:52 GMT
+Received: from [10.216.16.87] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Sep
+ 2024 08:41:41 -0700
+Message-ID: <942f6385-295a-4b48-8c1b-159930eeb828@quicinc.com>
+Date: Mon, 30 Sep 2024 21:11:36 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,93 +65,153 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/9] media: dt-bindings: rockchip,vdec: Add RK3288
- compatible
-To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- Sebastian Fricke <sebastian.fricke@collabora.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alex Bee <knaerzche@gmail.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Christopher Obbard <chris.obbard@collabora.com>,
- linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
- linux-staging@lists.linux.dev, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20231105233630.3927502-1-jonas@kwiboo.se>
- <20231105233630.3927502-7-jonas@kwiboo.se> <3342168.44csPzL39Z@diego>
+Subject: Re: [PATCH v2 4/5] drm/msm/dpu: Add SA8775P support
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <robdclark@gmail.com>, <quic_abhinavk@quicinc.com>, <sean@poorly.run>,
+        <marijn.suijten@somainline.org>, <airlied@gmail.com>,
+        <daniel@ffwll.ch>, <maarten.lankhorst@linux.intel.com>,
+        <mripard@kernel.org>, <tzimmermann@suse.de>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <swboyd@chromium.org>,
+        <konrad.dybcio@linaro.org>, <danila@jiaxyga.com>,
+        <bigfoot@classfun.cn>, <neil.armstrong@linaro.org>,
+        <mailingradian@gmail.com>, <quic_jesszhan@quicinc.com>,
+        <andersson@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>, <freedreno@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_kalyant@quicinc.com>, <quic_jmadiset@quicinc.com>,
+        <quic_vpolimer@quicinc.com>
+References: <20240926110137.2200158-1-quic_mahap@quicinc.com>
+ <20240926110137.2200158-5-quic_mahap@quicinc.com>
+ <w26xpuqeltoxjvewo4zesnjazw23onovcasltzcwrejdpgav2h@p6fj2lts2n4s>
 Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <3342168.44csPzL39Z@diego>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 66fac3a9961bc87980ba467d
+From: Mahadevan P <quic_mahap@quicinc.com>
+In-Reply-To: <w26xpuqeltoxjvewo4zesnjazw23onovcasltzcwrejdpgav2h@p6fj2lts2n4s>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: dsmez5AIwekIwyx4FTHzul4uvDZHFR0g
+X-Proofpoint-ORIG-GUID: dsmez5AIwekIwyx4FTHzul4uvDZHFR0g
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 mlxscore=0 phishscore=0 impostorscore=0
+ clxscore=1015 adultscore=0 mlxlogscore=999 bulkscore=0 priorityscore=1501
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2409300112
 
-Hi Heiko,
 
-On 2024-09-30 16:46, Heiko Stübner wrote:
-> Hi Jonas,
-> 
-> Am Montag, 6. November 2023, 00:36:13 CEST schrieb Jonas Karlman:
->> Add a RK3288 compatible for a version of the Rockchip VDEC IP that only
->> support HEVC decoding.
+On 9/26/2024 6:39 PM, Dmitry Baryshkov wrote:
+> On Thu, Sep 26, 2024 at 04:31:36PM GMT, Mahadevan wrote:
+>> Add definitions for the display hardware used on the
+>> Qualcomm SA8775P platform.
 >>
->> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> 
-> While looking for something else in my inbox, I stumbled upon this series.
-> Looking at 6.12-rc1, it seems the rk3288 parts at least didn't make it in
-> yet, so I guess I a rebase+resend might be in order?
-
-Yes, this needs to be updated and resent, this series should still apply
-clean on top of the dependent h264 high10 v6 series [1], however there
-was some minor feedback to address in this series. Hoping to see some
-progress on the h264 high10 v6 series and send an updated v2 of this
-hevc series in near future.
-
-Also trying to finish up a FFmpeg v4l2request hwaccel v3 series before I
-take a closer look at a v2 of this rkvdec hevc series.
-
-[1] https://lore.kernel.org/linux-media/20240909192522.1076704-1-jonas@kwiboo.se/
-
-Regards,
-Jonas
-
-> 
-> 
-> Heiko
-> 
+>> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
 >> ---
->>  Documentation/devicetree/bindings/media/rockchip,vdec.yaml | 4 +++-
->>  1 file changed, 3 insertions(+), 1 deletion(-)
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>
+> Minor nit below.
+>
+>> [v2]
+>> - Reorder compatible string of DPU based on alphabetical order.[Dmitry]
 >>
->> diff --git a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> index 08b02ec16755..0f00e9c86737 100644
->> --- a/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> +++ b/Documentation/devicetree/bindings/media/rockchip,vdec.yaml
->> @@ -16,7 +16,9 @@ description: |-
->>  properties:
->>    compatible:
->>      oneOf:
->> -      - const: rockchip,rk3399-vdec
->> +      - enum:
->> +          - rockchip,rk3288-vdec
->> +          - rockchip,rk3399-vdec
->>        - items:
->>            - enum:
->>                - rockchip,rk3228-vdec
+>> ---
+>>   .../msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h   | 485 ++++++++++++++++++
+>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c    |   3 +-
+>>   .../gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h    |   3 +-
+>>   drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c       |   3 +-
+>>   4 files changed, 491 insertions(+), 3 deletions(-)
+>>   create mode 100644 drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
 >>
-> 
-> 
-> 
-> 
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
+>> new file mode 100644
+>> index 000000000000..14d65b5d4093
+>> --- /dev/null
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/catalog/dpu_8_4_sa8775p.h
+>> @@ -0,0 +1,485 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2015-2018, 2020 The Linux Foundation. All rights reserved.
+> What exactly is copyrighted by LF?
 
+
+LF copyright is not needed.
+
+Thanks for pointing out the copyrights in other files too. Will update 
+in subsequent patch.
+
+
+>
+>> + */
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> index dcb4fd85e73b..6f60fff2c9a6 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.c
+>> @@ -1,6 +1,6 @@
+>>   // SPDX-License-Identifier: GPL-2.0-only
+>>   /* Copyright (c) 2015-2018, The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2022-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+> I am not a lawyer, but I don't think a single #include is copyrightable.
+> Neither are single data lines in other files.
+>
+>>    */
+>>   
+>>   #define pr_fmt(fmt)	"[drm:%s:%d] " fmt, __func__, __LINE__
+>> @@ -699,6 +699,7 @@ static const struct dpu_qos_lut_entry sc7180_qos_nrt[] = {
+>>   
+>>   #include "catalog/dpu_8_0_sc8280xp.h"
+>>   #include "catalog/dpu_8_1_sm8450.h"
+>> +#include "catalog/dpu_8_4_sa8775p.h"
+>>   
+>>   #include "catalog/dpu_9_0_sm8550.h"
+>>   
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> index 37e18e820a20..cff16dcf277f 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_hw_catalog.h
+>> @@ -1,6 +1,6 @@
+>>   /* SPDX-License-Identifier: GPL-2.0-only */
+>>   /*
+>> - * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2022-2024, Qualcomm Innovation Center, Inc. All rights reserved.
+>>    * Copyright (c) 2015-2018, 2020 The Linux Foundation. All rights reserved.
+>>    */
+>>   
+>> @@ -850,6 +850,7 @@ extern const struct dpu_mdss_cfg dpu_sm8350_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_sc7280_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_sc8280xp_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_sm8450_cfg;
+>> +extern const struct dpu_mdss_cfg dpu_sa8775p_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_sm8550_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_sm8650_cfg;
+>>   extern const struct dpu_mdss_cfg dpu_x1e80100_cfg;
+>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> index 9bcae53c4f45..16a0b417435e 100644
+>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_kms.c
+>> @@ -2,7 +2,7 @@
+>>   /*
+>>    * Copyright (C) 2013 Red Hat
+>>    * Copyright (c) 2014-2018, The Linux Foundation. All rights reserved.
+>> - * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+>> + * Copyright (c) 2022, 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>>    *
+>>    * Author: Rob Clark <robdclark@gmail.com>
+>>    */
+>> @@ -1447,6 +1447,7 @@ static const struct dev_pm_ops dpu_pm_ops = {
+>>   static const struct of_device_id dpu_dt_match[] = {
+>>   	{ .compatible = "qcom,msm8998-dpu", .data = &dpu_msm8998_cfg, },
+>>   	{ .compatible = "qcom,qcm2290-dpu", .data = &dpu_qcm2290_cfg, },
+>> +	{ .compatible = "qcom,sa8775p-dpu", .data = &dpu_sa8775p_cfg, },
+>>   	{ .compatible = "qcom,sdm630-mdp5", .data = &dpu_sdm630_cfg, },
+>>   	{ .compatible = "qcom,sdm660-mdp5", .data = &dpu_sdm660_cfg, },
+>>   	{ .compatible = "qcom,sdm670-dpu", .data = &dpu_sdm670_cfg, },
+>> -- 
+>> 2.34.1
+>>
 
