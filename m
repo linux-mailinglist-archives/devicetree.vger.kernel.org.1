@@ -1,193 +1,198 @@
-Return-Path: <devicetree+bounces-106556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D69498AC91
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:14:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE25D98ACB4
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 21:20:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 807681C214E7
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:14:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 384BEB22D85
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0380199250;
-	Mon, 30 Sep 2024 19:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B614199E82;
+	Mon, 30 Sep 2024 19:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="RQcp2ovD"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d7sqlWWJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2078.outbound.protection.outlook.com [40.107.223.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E11F43AB0;
-	Mon, 30 Sep 2024 19:13:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727723628; cv=fail; b=IUeGaKkor9cwebPYLK1wM3qDfHcuUQaC447VOAzKzQlU5L+GO2rpnnnOIDutfGmNfNlAVCY+xB5gkWftmfKTCeUwH7cW64WjsMwDgfOTWQz2ILjyvrfu7HSRBtjX8yq5C+J/LiavsLWI0Xds7+dhPzrJyN0tC2FdofdBb0t1a6w=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727723628; c=relaxed/simple;
-	bh=GFGW6I4yioVu62C1cplLbRKpSt4SpqM7YNhHaMet6gA=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=HnIJc0qvy1XWKQM77o/h/Je/dDHlkeKQQUk/nAay1pjY+Q2bYvCJ7446hYF96qbXFJtBkZSUweGDqk0F49qJgJeuwkbIu3b3YLi4oqFoXUYJu+SNeLwsMkjZfaCG8lHoW/Jpq19q0k02YfRdBzk1fiX07qBR1CWkLtX/xPh7mJA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=RQcp2ovD; arc=fail smtp.client-ip=40.107.223.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NgV77Ap4nEUAPr9rUMYrzvUJ1n3aWJGw+Hk+JhKBse2oSv1nvwaQr79jq+KgHpz2UQeoZ3Oq9K/8Eljx08mFpWEA2IYh925yw8Np5M5d0O6alzNaW6EhfYIgZ8Bkf2aD/Kh+M3n5wmEoTW/gdRDo1byISl+gEjYUeadtgfFxVYe7xDsC+Bpm9mwAwd/bemn3GdasVBgGjaMV5ghtNBY9zU/Fwucwcn1FaOSiKnU3HousjtFRThk3eerl5JL2Dk8uonPc1EwdkVwNY8zWaMvyaTb0gjO7aSN3r6SyU8+pD3i9srmxA047JW8icnx1V7skvMwOrJA2crwZ11C+kUVGIg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=qpsiBrBzDEMnN0KBph4SfMMClbSpPnwO9mSLpoI1YKA=;
- b=FLRhSmdQPnPIMy1g7eQZWjUTrFCT2A098wF/EqzWmsE6yLUwcbbeZVIg3uG35yQD3WQa2wbhZi6ZmJLgJW7kxCWLgIm7dunXE+ezneHwPYq2oxPZYDCogWXCvUp2+H5J6dQQ7vscYtxivSr3mq1Qo+NPq471yLqlU9bhrALcQ989CRD4yM/ephvEVZWrILqms6C2I5/GYso3cdQAHgPefGkTXWvOPj/mjI7zjBpYEiOvt6TGNJjIis2LaN7/7PPjcMlgCWQS/V0ThDMnqLwU//smfjZsj9guYyORtI7PAFkMHzLXzKtKScxPwNAW+F04axiEBtTu7M/WdGygrRlKoA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qpsiBrBzDEMnN0KBph4SfMMClbSpPnwO9mSLpoI1YKA=;
- b=RQcp2ovDDNdX9mihoJo9kcAZRvXGTyrPBpjLnDFA58eo/OdqI8/MCNxTK+m3cF/E6qTd3AjmaiSJnidGpNTR2u3penI3g4yW75Xo2Xu/jt+igzp7fWy3tzXPr6tA06h3W08NOBHVeU5kIeuXay8lRhfI262NTTSYGOVVdqzVvrU=
-Received: from BN0PR03CA0059.namprd03.prod.outlook.com (2603:10b6:408:e7::34)
- by CH3PR12MB8307.namprd12.prod.outlook.com (2603:10b6:610:12f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Mon, 30 Sep
- 2024 19:13:44 +0000
-Received: from BL02EPF0002992E.namprd02.prod.outlook.com
- (2603:10b6:408:e7:cafe::df) by BN0PR03CA0059.outlook.office365.com
- (2603:10b6:408:e7::34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27 via Frontend
- Transport; Mon, 30 Sep 2024 19:13:44 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL02EPF0002992E.mail.protection.outlook.com (10.167.249.59) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Mon, 30 Sep 2024 19:13:44 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 30 Sep
- 2024 14:13:42 -0500
-Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
- Transport; Mon, 30 Sep 2024 14:13:39 -0500
-From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-To: <radhey.shyam.pandey@amd.com>, <davem@davemloft.net>,
-	<edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
-	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <git@amd.com>, Ravikanth Tuniki
-	<ravikanth.tuniki@amd.com>
-Subject: [PATCH net] dt-bindings: net: xlnx,axi-ethernet: Add missing reg minItems
-Date: Tue, 1 Oct 2024 00:43:35 +0530
-Message-ID: <1727723615-2109795-1-git-send-email-radhey.shyam.pandey@amd.com>
-X-Mailer: git-send-email 2.1.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A282743AB0
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 19:20:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.182
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727724022; cv=none; b=QOOfkAubautNHSOSB209S17sZ/bV/xNPeTZDuByWNP+bMSUFYnif7HfUCsx+WLXNwMD8/a+vmXocbqAUYysY/xxtQYfD9TL/ubLWsZJ9me06KbFq9+g1Ydtbd8r/gAk/OoGwTA0TF0DHR+AahoxqVUrWz4EZwcPa8iZqyRkY3bQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727724022; c=relaxed/simple;
+	bh=v33zJJImsgWY5WZ6J+4rL4X+i9E5OfT0yAer3DbY/EI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kWxy6SV9ngue1rXO+ayi9z3WWAbKMmYS23cev84XRe3QimZEBvS5toUUWrmsbH3KbKWGHgvOL12yA6GkJaiwALkEgtgNgE0EZnrFpRc0hkzMhxuwXuY+zFQ3Vs0rj0GOXnGuiLGxf1GbXfvC3YwFDSsiGbcxvgutLu03MJ0LRqE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d7sqlWWJ; arc=none smtp.client-ip=209.85.167.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oi1-f182.google.com with SMTP id 5614622812f47-3e3a47ae905so698015b6e.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 12:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727724018; x=1728328818; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kTVVRMqsPGHu6bOYdoMoWVl7/YgauExSen9EjsdvUOQ=;
+        b=d7sqlWWJ0WM8T13ksJ6durhLMp4VrSp2wIWSmh1uP7M41GI5LPl4cenP4THoSt40Ax
+         1UFlXEoeb8YS9mbuUDNi4OEzNtdpRjsSRauRtGVCD866tMrI9nBbAT4/U/I41+S/joBA
+         Vkv7BGqbhA8VTSUiHnde2KHP6xwyKFHHct/i7vxT5CeCLMTQ8k0agdXiDeyBmK0UZ95S
+         a1TVR0lcYUPPuIJQLuRy11R5a4lUKfcyA0l/khVcM33Ft/523UZVVnepVBqBou+6E8uf
+         p8fNX3rQiYVVH9qNFwzLueC2p7tx0WS257dpePu+85VMI8QOUaXoxIJ7U429tHoQU0FK
+         v0Qg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727724018; x=1728328818;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kTVVRMqsPGHu6bOYdoMoWVl7/YgauExSen9EjsdvUOQ=;
+        b=Hh5lcnEJacVpmD4ymgnsZTEZ6kORpkRWcKla3dIX5Syjd6vYFXQW+r72FYKBmsb3Ih
+         WOeOSpktbdysJRcDcCDRgk8GN6DhH2HonkwQ/5X3YrbiTYUtrafV75gvbphUsOHVln+A
+         /ct1k+fG6zxvO9xfvA8Qrh0TNiicFemRl+rRaGPR4rJHq5EFGdcekLe+9yOD9HFv5jKh
+         CwXAnfoxNkwxHC8+o/Wqkhq6DHOVCyGOE8Ih/wFAyDGyBUt93g3ttf+3Cx6sr43v5NI4
+         wkVFF+PvQV/sO8TxtaQW1lNJ+SV2bkmpAtHoKm4KKhCYXge2x5jP9lDPNxGfeQ6oe4fj
+         Qzjg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyaQOVHzL6TQTPdiSse/XBxOYvTqL5TEfXbjFsfOdz8ZtnR4yxP4H84kSjq96DYLmo9eFJkmc2oEGI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzk1bL9hQohHQ9zq2zddrwJ/XC9+o9KWmZjN3qbCGtK0/Vo/TLv
+	8rPZ+GkYSVCx+B+MV/E1gujaEPZYoLhOEgs17VoW0DcsnEwvyp7WXAzh1lnjrgU=
+X-Google-Smtp-Source: AGHT+IFHzPyHZYh+zdE2H8Gm2U7gQ3q4+OkB0iAnn6eHXVEkNp8HCjYM7po70AdANgZRBSb9KNsr6Q==
+X-Received: by 2002:a05:6808:bd5:b0:3d9:350b:4159 with SMTP id 5614622812f47-3e3939dcb37mr8405496b6e.31.1727724017728;
+        Mon, 30 Sep 2024 12:20:17 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5e770da39fcsm2352823eaf.1.2024.09.30.12.20.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 12:20:16 -0700 (PDT)
+Message-ID: <453ab98b-618f-45ba-9eab-e462829d25ae@baylibre.com>
+Date: Mon, 30 Sep 2024 14:20:14 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-Received-SPF: None (SATLEXMB04.amd.com: radhey.shyam.pandey@amd.com does not
- designate permitted sender hosts)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL02EPF0002992E:EE_|CH3PR12MB8307:EE_
-X-MS-Office365-Filtering-Correlation-Id: b3502169-bc54-4f93-557e-08dce184008e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|82310400026|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?EjL8w3qSBZ5p8Tp3N7lFHRod1dU475RFrvmgAqujy2jNrwFuTsFpnocZB8qT?=
- =?us-ascii?Q?7GbTuq3xwrqdiT+oO+Qb+ZC4nns7z+nD1JODbVlpAcSPDbQsqK7Ax/CKWagb?=
- =?us-ascii?Q?mHqHIX75hdrdJOisBNUk6KcXxYEipO4sdPGm/1VedfdrmJuKlrHy0WOfeWaH?=
- =?us-ascii?Q?ltS3OUaEGYxZ2Jl3U2W9jGgIBJRUv6E+N4oFUByJA7c4fdYUWw8KdTWTlBBQ?=
- =?us-ascii?Q?2OSNN+yvN1ksaTR/DJFtzQsbMT38Dl2HhDbMGKBv09ZjgwqXwEBtRlFli3tk?=
- =?us-ascii?Q?CsXS4qFGjluhN52ax9vB1GHNF3iVBVRzDvqRS+z696JEIbjivmw5thRs3DfO?=
- =?us-ascii?Q?5I6NRf90Ln1+y5izbeOG1tlov5sW+YXaVivfuYuKzOYcMc3bV9encrUP9fiN?=
- =?us-ascii?Q?dapQbEN5QyzKB5XtpZxmYxw5nWaShMjHGh6R+Ii6wMkYsUSTERI0zkfH99yb?=
- =?us-ascii?Q?Tx0fL3QmmXB38O233Oc71++1VoiNA9iSZIG7aIuQjOXnyacFTn8Y3cAqV+fK?=
- =?us-ascii?Q?MUDQW6zF/FSisQYuZrWFoSimbEJloV99hM6LAGj3MK2RgSRamCq4+kP+aK+d?=
- =?us-ascii?Q?/Dp9zMLaEX8+diPCqyDX3j5tvdyVcpS0CqQzyP6QnC8f399crHsr3MoxoBAH?=
- =?us-ascii?Q?DhuYly7JZFjOLtJ0gwTIWq5TltxDmSmJ06CClKtVvrIDaywpqAB495eLhm2l?=
- =?us-ascii?Q?ydn004SJPGlplwSMG6T6SMvlwCotDI8x3sfCVofTQeuabgqennxf5vE6PmCY?=
- =?us-ascii?Q?rCMmJ+UBEGkswXILJQkp0M5FzvkFwFVa3RztSbnJ8wukcqYRImSTpd0BCweb?=
- =?us-ascii?Q?JZa3XOb4CemgJte0uZiesZ59Dsm4nO9v8tubOtl7WRErZlj52ornpIwhCkBA?=
- =?us-ascii?Q?l+d32IYoUE3HW9UhDbIET2/907ehoBCr0Nqo/1kfYC3siNiOoi0b6tGyrVs5?=
- =?us-ascii?Q?u749oHlcBuNEtGEKLueKR/NZk8T6pbV17Eo+JHm52HIbqd0JTaFNmiTz+rwu?=
- =?us-ascii?Q?PAvIqmPi4NZYSwmC25XPbMiaAFd1jytYJZ3PX3hycg+r/nwQkRilh9lqGgT6?=
- =?us-ascii?Q?D1dEEAmwvWK/f8lNF3INBqs7LfHFByXuSlvEQFOdCWEr96vLH3WBKE88Sujy?=
- =?us-ascii?Q?x8kloJyoI+JaVcZLoXTjgheR/mSGds6zXJP+Xe2X0YzkIlV4yYZoSyGZ6cOW?=
- =?us-ascii?Q?6XYZK7h0N5vAAx0vkONX6Aj5t5IPlS4ojdy0J24hSrLFXSgCRve3VWLIsT7D?=
- =?us-ascii?Q?s8QbtvCLP4K6h12CUhf5zXWSjIJf5o7HdgxuQ9NBs3EbGsnkmy+cyNrzeWKq?=
- =?us-ascii?Q?PgJ+JyWcbM5Vmw3jVDBrSiLbWgsVK74WxJdoo3GiLJ0WupG+fRRe9tTTAgvF?=
- =?us-ascii?Q?oePi2rn0RSqHZ8wnprUcY1BOU9Yzs8o3oB3cCbYYGU8s1tKQWTk7nUT1CEkz?=
- =?us-ascii?Q?Yl8799uiQ6OCx1665Et4oFKfNwrmvFoF?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(82310400026)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2024 19:13:44.0403
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b3502169-bc54-4f93-557e-08dce184008e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL02EPF0002992E.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8307
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+To: Angelo Dureghello <adureghello@baylibre.com>,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+ <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+ <20240929115150.6d1c22b3@jic23-huawei>
+ <oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
+ <20240930154958.00004507@Huawei.com>
+ <ipnqs4uektoysenkr7jvf6ic2rh56n3e5fmmheay323yhavs7u@th7qmxwmkiqo>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <ipnqs4uektoysenkr7jvf6ic2rh56n3e5fmmheay323yhavs7u@th7qmxwmkiqo>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Ravikanth Tuniki <ravikanth.tuniki@amd.com>
+On 9/30/24 10:08 AM, Angelo Dureghello wrote:
+> On 30.09.2024 15:49, Jonathan Cameron wrote:
+>> On Mon, 30 Sep 2024 16:15:41 +0200
+>> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>>
+>>> On 29.09.2024 11:51, Jonathan Cameron wrote:
+>>>> On Thu, 19 Sep 2024 11:20:00 +0200
+>>>> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>>>>   
+>>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+>>>>>
+>>>>> There is a version AXI DAC IP block (for FPGAs) that provides
+>>>>> a physical bus for AD3552R and similar chips, and acts as
+>>>>> an SPI controller.  
+>>>>
+>>>> Wrap is a bit short. Aim for < 75 chars for patch descriptions.
+>>>>   
+>>>>>
+>>>>> For this case, the binding is modified to include some
+>>>>> additional properties.
+>>>>>
+>>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+>>>>> ---
+>>>>>  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
+>>>>>  1 file changed, 42 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+>>>>> index 41fe00034742..aca4a41c2633 100644
+>>>>> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+>>>>> @@ -60,6 +60,18 @@ properties:
+>>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+>>>>>      enum: [0, 1, 2, 3]
+>>>>>  
+>>>>> +  io-backends:
+>>>>> +    description: The iio backend reference.  
+>>>>
+>>>> Give a description of what the backend does in this case.  I.e. that it is
+>>>> a qspi DDR backend with ...
+>>>>   
+>>>>> +      An example backend can be found at
+>>>>> +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  adi,synchronous-mode:
+>>>>> +    description: Enable waiting for external synchronization signal.
+>>>>> +      Some AXI IP configuration can implement a dual-IP layout, with internal
+>>>>> +      wirings for streaming synchronization.  
+>>>>
+>>>> I've no idea what a dual-IP layout is.  Can you provide a little more info
+>>>> here?  What are the two IPs?
+>>>>  
+>>> IP is a term used in fpga design as "intellectual property", that is
+>>> intended as a functional block of logic or data used to make a 
+>>> field-programmable gate array module.
+>>>
+>>> A dual layout is just 2 same fpga modules in place of one.
+>>>  
+>>> I can add a "fpga" regerence to be more clear.
+>>
+>> IP I was familiar with.  I'm more interested in what each IP is doing in this
+>> case.  Or at least an example of what sort of split of functionality might
+>> make use of this.
+>>
+> 
+> I have an image of the project (that is under development or testing now),
+> not sure how to attach the image here, btw, something as
+>  
+>           axi_ad3552r_0  ----------->---- qspi0
+>               sync_ext_device --.
+>        .- external_sync          |
+>        |                         |
+>        |-------------<-----------                        
+>        |
+>        |   axi_ad3552r_1 ----------->---- qspi1
+>        `- external_sync
+>  
+> My understanding is that it's just a method to use a octal spi,
+> duplicating the transfer rate. I can collect more info in case.
+> 
 
-Add missing reg minItems as based on current binding document
-only ethernet MAC IO space is a supported configuration.
+No, it's not for octal SPI. It is for synchronizing the data
+transfer to two different DAC chips.
 
-There is a bug in schema, current examples contain 64-bit
-addressing as well as 32-bit addressing. The schema validation
-does pass incidentally considering one 64-bit reg address as
-two 32-bit reg address entries. If we change axi_ethernet_eth1
-example node reg addressing to 32-bit schema validation reports:
+I think we need a bit more in the DT bindings for this to fully
+describe the wiring shown. We need to indicate that both of the
+two AXI AD3552R IP blocks have external_sync connected, so a
+adi,external-sync flag could be used for this. Then we also need
+to describe that sync_ext_device is only wired up on one of the
+IP blocks. So we would need a separate adi,sync-ext-device flag.
 
-Documentation/devicetree/bindings/net/xlnx,axi-ethernet.example.dtb:
-ethernet@40000000: reg: [[1073741824, 262144]] is too short
-
-To fix it add missing reg minItems constraints and to make things clearer
-stick to 32-bit addressing in examples.
-
-Fixes: cbb1ca6d5f9a ("dt-bindings: net: xlnx,axi-ethernet: convert bindings document to yaml")
-Signed-off-by: Ravikanth Tuniki <ravikanth.tuniki@amd.com>
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
----
- Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-index bbe89ea9590c..e95c21628281 100644
---- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-+++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-@@ -34,6 +34,7 @@ properties:
-       and length of the AXI DMA controller IO space, unless
-       axistream-connected is specified, in which case the reg
-       attribute of the node referenced by it is used.
-+    minItems: 1
-     maxItems: 2
- 
-   interrupts:
-@@ -181,7 +182,7 @@ examples:
-         clock-names = "s_axi_lite_clk", "axis_clk", "ref_clk", "mgt_clk";
-         clocks = <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>, <&mgt_clk>;
-         phy-mode = "mii";
--        reg = <0x00 0x40000000 0x00 0x40000>;
-+        reg = <0x40000000 0x40000>;
-         xlnx,rxcsum = <0x2>;
-         xlnx,rxmem = <0x800>;
-         xlnx,txcsum = <0x2>;
-
-base-commit: d505d3593b52b6c43507f119572409087416ba28
--- 
-2.34.1
-
+Then the driver would use this information to A) know that we
+need to set the external sync arm bit when starting buffered
+reads and B) know that the buffered read for the IP block
+instance with sync_ext_device needs to be started last so that
+the data streams for both DACs will be synchronized.
 
