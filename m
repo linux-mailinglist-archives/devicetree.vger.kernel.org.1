@@ -1,208 +1,143 @@
-Return-Path: <devicetree+bounces-106503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A10A598A6D3
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4D398A6F0
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 16:26:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 314B91F2358C
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:17:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC5BF1F235CA
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 14:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DF6418E035;
-	Mon, 30 Sep 2024 14:17:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0510C190685;
+	Mon, 30 Sep 2024 14:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tuWm9eEo"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lJk5Id0U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 554A62CA5
-	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 14:17:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4BC813D539;
+	Mon, 30 Sep 2024 14:26:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727705822; cv=none; b=OE42ImrPuJjeZjlJI91GP5mysNIvTiOS0kkRsvvM8uoIZg1xEFy6Tc3+QmJ/aAt4w5zv56f8huLthu+ollQJiZIp2E7mlBMare7ax4Ivk86b+86n20TuZnnBN3V8p3B4Mxj1o1c2fMtBkHr7Wnu2Cv6fhLJ+3g4KsROE6keLG2g=
+	t=1727706384; cv=none; b=t9OeU5T6vVj/zKMH9cWt0/qxnsqAh4+9riWghhgnfFM95LeShZzhhbckYPTlI8ta1yESEqdRjFGmgZGWap0cTQdIf3JE/jo65IQLR2KFAcY7TruN9tHpanNcQALjTxjmKh4Jtdk+c4JlAmX5ZvtbIxh6uPiAft2L57sRskBie4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727705822; c=relaxed/simple;
-	bh=n5YfBVlZGJzjqd3xdXk2PnimFcnATvjiKeL1SmweExM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H7hOdRb2HGYDhWLZX2CnZVZr4TCNaqSxcjF8ecblXVd8cSjpF6caNWaAjvtS4hJDPwAHYSEyum+b9tli3eOqoPHwqhzXCqWG1rEZK8KwNFGhfbF/qu+7oOBHNYw9N7t2EcH756YslRNy+WdB51w02QAaY+a6fAV7MgFkQBIreCc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tuWm9eEo; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37cdb42b29dso1640603f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 07:17:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727705819; x=1728310619; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VFOVFwYjoF4fxpgMI56XK1zOuahk2wnp54J6hso7bWM=;
-        b=tuWm9eEoF3SpWfIMtEjdcelPuJ5tQ7wtLR8sdh6yd82lERee1n3a4iI53zT1ysusYS
-         iYdXtSTF0XHAfpkCNg1weYCIa3H4vUhPg9fELoX1g0c3+wBH2UWdOa0KcUAxwj/JTCLn
-         AuUB+zzVXrXi+04lUMUE5xN8mMbq2v3ikkyMJJrkkTrngXMqV7SNJGEIH7NaZ6vtrHOV
-         /M5QQqjiTV6qHtkBAl3h7ILv5MNqHSMF8SqJL26zhHuAu98Vj1alVz7gv7phaUcS+FLy
-         TvRHh81yO2y6mW6ybAmKl0d8N6j/1wB17UMNLSnpqfXu4ftDpmfqoj36BHzWUp0OOyUs
-         B+7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727705819; x=1728310619;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VFOVFwYjoF4fxpgMI56XK1zOuahk2wnp54J6hso7bWM=;
-        b=LeIS9ooo5BJ5ycyBrVtYxnfDVHTHVQAOybPfEUCoC0n2lkkB5Gi2OeEyV0HjGWWq67
-         8rhLLfxP1VwwBTFcwqpRqZShAotuvW1ols77IgvvAcG+sQoT4BmtFAXgYaMJv77eg2Nh
-         HfaRsAWvPPEgsl0V6oFKR3ym1AGrhMTgCCOvEL34Wpxqp50+E8chUNlSULAMDwBZMkNj
-         J8c1MXR9zNP5j0NB5f83wV4mgAYXxupTVZ9TVnWCU2ODy+nBmAXPenS7NRRUTfDU/4iy
-         c7I53QUKN7V55Ak0qW2cBPkDzjvyslU+jM2qhGh5NhgAHP+zbrNhptSKu7H5Rua9ak6p
-         L8fg==
-X-Forwarded-Encrypted: i=1; AJvYcCWjSKmYvyZustFZ8indnoCa5IzNTFMkUr9qNrQ8r/XaKuxd3uhtT+OLgT+wxmHC742m+SgnLq6JaB3J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZ4TsjeM4qns04Dcx1NIElw75AWlwclfRCTtbUDHR+/IyaRq7q
-	mXgfSH3J/68rGb9tWz3Xf7vMXoOZmMAImzS36oXhmIWSSg5RptP6wN9CJoTpeDQ=
-X-Google-Smtp-Source: AGHT+IHftwfUBo6pzdrUhKd0aJFd4MebeXnEU5QwFMsPWvGui292M+2dObmcHg0SZANLx6oXYSWqLw==
-X-Received: by 2002:adf:ce8f:0:b0:37c:d179:2f73 with SMTP id ffacd0b85a97d-37cd5a93aeemr6753207f8f.13.1727705818679;
-        Mon, 30 Sep 2024 07:16:58 -0700 (PDT)
-Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd564d2aasm9239338f8f.4.2024.09.30.07.16.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 30 Sep 2024 07:16:58 -0700 (PDT)
-Date: Mon, 30 Sep 2024 16:15:41 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
- support
-Message-ID: <oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
- <20240929115150.6d1c22b3@jic23-huawei>
+	s=arc-20240116; t=1727706384; c=relaxed/simple;
+	bh=D/K4G0cY8c9Tt7CPwn45PDwSHjjMdVwTLalAuFeMgGc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Iu8jjlMfTw1XT+xHKwyc90vW2sQDZEt6MYsPk+u1ITypLDzRFAmB8ltLY9zqnxl5RgbLLaqalA0zwelCoeRxUHTbBb9vPCmSaouMabHZ14uLZzS2WksdNT8C6P1SA/AfUzdQNUwZZgla6qPEHy6yAID+5KM1o9rJL900p+5VaX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lJk5Id0U; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 877491BF203;
+	Mon, 30 Sep 2024 14:26:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727706379;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=bHMb96CYM+I+SvYzsm1sJNO/ARCPSEaKP4XT+TbHTIM=;
+	b=lJk5Id0UepP86gzHpP/dlKkKwbypXwcEBW3CFsDfgEeBQifjRwKcN7ldV4IH7iiKc6SheF
+	/nI8Pep9ZoT15NkY1KJ2XDfoPvV5TxqWN12eizzTfvlYIb1ZwL74iK59lKnbbTvOjVVDaa
+	1nQGU9RgCeQg/W9xEi8UlyhF9jtTd5YvN4o0kcQ1FqeO4IlTYF6wXr3cNYUYo4dcNxX3zD
+	ql9MmxvShpL4H432wVUQchnzC3n6LFq48khfjvzg2ITiBneBHmbf2L4WeM6Th90n3SFCDC
+	Hmn+SA9CDyq6dkLkKj2G+Jw/kT8BHsEqa6khY+XcggMgeCpjJlyGiJQJ8jW4Nw==
+Date: Mon, 30 Sep 2024 16:26:16 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>, "Andy Shevchenko"
+ <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>, "Lee Jones"
+ <lee@kernel.org>, "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars Povlsen"
+ <lars.povlsen@microchip.com>, "Steen Hegelund"
+ <Steen.Hegelund@microchip.com>, "Daniel Machon"
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
+ "David S . Miller" <davem@davemloft.net>, "Eric Dumazet"
+ <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
+ <pabeni@redhat.com>, "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
+ Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 2/7] reset: mchp: sparx5: Use the second reg item
+ when cpu-syscon is not present
+Message-ID: <20240930162616.2241e46f@bootlin.com>
+In-Reply-To: <d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
+References: <20240930121601.172216-1-herve.codina@bootlin.com>
+	<20240930121601.172216-3-herve.codina@bootlin.com>
+	<d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240929115150.6d1c22b3@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-On 29.09.2024 11:51, Jonathan Cameron wrote:
-> On Thu, 19 Sep 2024 11:20:00 +0200
-> Angelo Dureghello <adureghello@baylibre.com> wrote:
-> 
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > There is a version AXI DAC IP block (for FPGAs) that provides
-> > a physical bus for AD3552R and similar chips, and acts as
-> > an SPI controller.
-> 
-> Wrap is a bit short. Aim for < 75 chars for patch descriptions.
-> 
-> > 
-> > For this case, the binding is modified to include some
-> > additional properties.
-> > 
-> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > ---
-> >  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > index 41fe00034742..aca4a41c2633 100644
-> > --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
-> > @@ -60,6 +60,18 @@ properties:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      enum: [0, 1, 2, 3]
-> >  
-> > +  io-backends:
-> > +    description: The iio backend reference.
-> 
-> Give a description of what the backend does in this case.  I.e. that it is
-> a qspi DDR backend with ...
-> 
-> > +      An example backend can be found at
-> > +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
-> > +    maxItems: 1
-> > +
-> > +  adi,synchronous-mode:
-> > +    description: Enable waiting for external synchronization signal.
-> > +      Some AXI IP configuration can implement a dual-IP layout, with internal
-> > +      wirings for streaming synchronization.
-> 
-> I've no idea what a dual-IP layout is.  Can you provide a little more info
-> here?  What are the two IPs?
->
-IP is a term used in fpga design as "intellectual property", that is
-intended as a functional block of logic or data used to make a 
-field-programmable gate array module.
+On Mon, 30 Sep 2024 13:57:01 +0000
+"Arnd Bergmann" <arnd@arndb.de> wrote:
 
-A dual layout is just 2 same fpga modules in place of one.
- 
-I can add a "fpga" regerence to be more clear.
-
-> > +    type: boolean
-> > +
-> >    '#address-cells':
-> >      const: 1
-> >  
-> > @@ -128,6 +140,7 @@ patternProperties:
-> >            - custom-output-range-config
-> >  
-> >  allOf:
-> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-> >    - if:
-> >        properties:
-> >          compatible:
-> > @@ -238,4 +251,33 @@ examples:
-> >              };
-> >          };
-> >      };
-> > +
-> > +  - |
-> > +    axi_dac: spi@44a70000 {
-> > +        compatible = "adi,axi-ad3552r";
-> > +        reg = <0x44a70000 0x1000>;
-> > +        dmas = <&dac_tx_dma 0>;
-> > +        dma-names = "tx";
-> > +        #io-backend-cells = <0>;
-> > +        clocks = <&ref_clk>;
-> > +
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        dac@0 {
-> > +            compatible = "adi,ad3552r";
-> > +            reg = <0>;
-> > +            reset-gpios = <&gpio0 92 0>;
-> > +            io-backends = <&axi_dac>;
-> > +            spi-max-frequency = <66000000>;
-> > +
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            channel@0 {
-> > +                reg = <0>;
-> > +                adi,output-range-microvolt = <(-10000000) (10000000)>;
-> > +            };
-> > +        };
-> > +    };
-> >  ...
-> > 
+> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
+> > In the LAN966x PCI device use case, syscon cannot be used as syscon
+> > devices do not support removal [1]. A syscon device is a core "system"
+> > device and not a device available in some addon boards and so, it is not
+> > supposed to be removed.
+> >
+> > In order to remove the syscon usage, use a local mapping of a reg
+> > address range when cpu-syscon is not present.
+> >
+> > Link: https://lore.kernel.org/all/20240923100741.11277439@bootlin.com/ [1]
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---  
 > 
+> >>  	err = mchp_sparx5_map_syscon(pdev, "cpu-syscon", &ctx->cpu_ctrl);  
+> > -	if (err)
+> > +	switch (err) {
+> > +	case 0:
+> > +		break;
+> > +	case -ENODEV:  
+> 
+> I was expecting a patch that would read the phandle and map the
+> syscon node to keep the behavior unchanged, but I guess this one
+> works as well.
+> 
+> The downside of your approach is that it requires an different
+> DT binding, which only works as long as there are no other
+> users of the syscon registers.
 
-Regards,
-Angelo
+Yes, I knwow but keeping the binding with the syscon device (i.e. compatible
+= "...", "syscon";) leads to confusion.
+Indeed, the syscon API cannot be used because using this API leads issues
+when the syscon device is removed.
+That means the you have a "syscon" node (compatible = "syscon") but we cannot
+use the syscon API (include/linux/mfd/syscon.h) with this node.
 
--- 
+Also, in order to share resources between several consumers of the "syscon"
+registers, we need exactly what is done in syscon. I mean we need to map
+resources only once, provide this resource throught a regmap an share this
+regmap between the consumers. Indeed a lock needs to be shared in order to
+protect against registers RMW accesses done by several consumers.
+In other word, we need to copy/paste syscon code with support for removal
+implemented (feature needed in the LAN966x PCI device use case).
 
-  o/ QW5nZWxvIER1cmVnaGVsbG8=
-   www.kernel-space.org
-    e: angelo at kernel-space.org
-      c: +39 388 8550663
-       
+So, I found really simpler and less confusing to fully discard the syscon node
+and handle registers directly in the only one consumer.
+
+With all of these, do you thing my approach can be acceptable ?
+
+Best regards,
+Hervé
 
