@@ -1,134 +1,183 @@
-Return-Path: <devicetree+bounces-106548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106542-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C185798AACB
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:13:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F32D098AAAB
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 19:10:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83211287079
-	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:13:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A9149280C36
+	for <lists+devicetree@lfdr.de>; Mon, 30 Sep 2024 17:10:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C2D197543;
-	Mon, 30 Sep 2024 17:12:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B8BA19342B;
+	Mon, 30 Sep 2024 17:10:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="Kp71obvj"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="hYtK6Zi+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B17A1953BA;
-	Mon, 30 Sep 2024 17:12:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644F317DFFD
+	for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 17:10:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727716339; cv=none; b=io4fHtjwV/qAszztZlBdG8/EVCSLBD1bgQ/2tTkWhbdcEJ+I+/bs21y77WOWCDsqWvDI2YsvghRlxVsKh87mvnF9+FiI4iP9nMtfa/t7CA4YFyJ1C8w2Wb61jQPlBdCQ+UY4XX9nQwZrcGIQLBJV4w5fxfV9sXNsULrpYybCeaA=
+	t=1727716218; cv=none; b=mcTWs5ThHuyLY1uiMxArihQ5EEfpS6QCbYph/o4k4FYZ+9fpKrlTt4U1l6TzCqojNI10T0movdqR6YpYZrRxUQKt/FikecmkymZzhX0sxA4MEHfKnyYOuuDyP1394Wd9+dTKvUM/o9/0MQ0jGotiHgBefkQ87VWbNW2nSi5vnE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727716339; c=relaxed/simple;
-	bh=oLlTW2bh8VJAWJfDthgoq2uvZctY02SJcHJtrpkYkO8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s12uBajsq4qFplg7h7QfdRB0VzglxtSaRYDpwpXUn5rYZ5caUmQDK9SGPyWcvwgxQ6c+1jV2juEcxJGZ7jp+KEY2iaFbXI4TPHW/Yr4n+ersRfbqwv9ql9Xo+r8I6wYYkvOlszhParJnL3LM91GWft3yyRxM9vreA0mTaULH7JY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=Kp71obvj; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48UG7lsk020632;
-	Mon, 30 Sep 2024 19:12:08 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	oFevO1WzCe1lndyKIcqDqzd48GJyNyJUl83cjIp11to=; b=Kp71obvjX+yzgaT/
-	KQ4IC8PcXm7DiyZw0oU2dOVzA8diV9g2440dlClBYV88fpErpqTkbkMv1Gl7HwYI
-	013pps/JCLY+FfsyEcyh7yZaDtsZShkeP81cwruLgdctvEHEApTkvhsOmpd1H9tE
-	hYe2d+HsijVcM1pBnoPMPov2I94tAyX8WgTew6RxQndM0BZH4Q9A1mjx3zWXWLM2
-	iL/mNx9uZ5F2Ee1CtxvklfclWu1usojbSxfaIhmF/pL9aBuaLKmtmLDpXuPMwxMH
-	3mBJTcmvyycSJ2k+eTRQOfI5us7aysqRSqI2QBKGeV8L2OFdIn60dnMJoChh9gYM
-	99TBFA==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 41x94xt04v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 30 Sep 2024 19:12:08 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 9C0A24004B;
-	Mon, 30 Sep 2024 19:10:59 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E691F27329C;
-	Mon, 30 Sep 2024 19:10:09 +0200 (CEST)
-Received: from localhost (10.129.178.212) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 30 Sep
- 2024 19:10:09 +0200
-From: Christian Bruel <christian.bruel@foss.st.com>
-To: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <mcoquelin.stm32@gmail.com>, <alexandre.torgue@foss.st.com>,
-        <p.zabel@pengutronix.de>
-CC: <linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <fabrice.gasnier@foss.st.com>,
-        Christian Bruel <christian.bruel@foss.st.com>
-Subject: [PATCH v9 5/5] arm64: dts: st: Enable COMBOPHY on the stm32mp257f-ev1 board
-Date: Mon, 30 Sep 2024 19:08:47 +0200
-Message-ID: <20240930170847.948779-6-christian.bruel@foss.st.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240930170847.948779-1-christian.bruel@foss.st.com>
-References: <20240930170847.948779-1-christian.bruel@foss.st.com>
+	s=arc-20240116; t=1727716218; c=relaxed/simple;
+	bh=DYY3gi/yxQqi/2eYpYQoIg+BIxy/g46w7yv+BZUnrdY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PVmlEJSFVN9hfq2OT3fb+GjPVqo5z3js+daNvJp+I8npWrUCzW776kEA2Bm+mTgWieaI3p8XcZJrDH6Y65RWCqejSRrpGWXYngC7hlJA03bRdvlhdZZ79sDfu9/oUytSQ1L81W+kXEA+nnDvxZk4ypYwDpcRSF9PLX0HiX1emsw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=hYtK6Zi+; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20aff65aa37so37713745ad.1
+        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 10:10:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727716216; x=1728321016; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kx5xY759dyUvA9Oa0etxE9VI1UhfQHqL7wndkbURsJU=;
+        b=hYtK6Zi+rvPg/Ao4wsqvxqDb/4DykqoGyCW65rFNjhxAF9hiDEwMO/Lq/I9A3l03dL
+         8YqteNUNdUFnHSX5qSw1HQWkvLg5/9snJZMnppD6SDT4VJFG9mq5Dyj4SvTB7otL4k2N
+         QY8nli4pxaeMLpQKElf0ZF2KFJImCgy0R0dqKvqLBdLVTQTbp+UILqJ/p9yR8mmFNd+6
+         63McIgMJ1/4PWpg/91TFYs0SUMPv1hFCgVaW03U6h3bJZrE2GhCOno0NBC91Q55zQ+Ug
+         TMKKHBsGS7nAwpQDZISa53TFj4VvOext46g+f8FfSmf5qCvb1uvsCl/oMOqCR3UDtSQk
+         q87A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727716216; x=1728321016;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Kx5xY759dyUvA9Oa0etxE9VI1UhfQHqL7wndkbURsJU=;
+        b=hl+3PRrp4LI/pRPO2TxNBywr5YUC+KjFAysF8MqG1HdmZBz2gQf/GOGqbcqDKDERVw
+         adYXL+bFXLz72nVvOjPpDEeeXt+BW+vEwju9O2JNEMIxkEEO3/Zn1hat3hF2PnCZHQUx
+         LxKTlE+no0TgXqsQZCEUThsDl39ystf2E36eB3mI83RVssIRrJ0w0LXE7fTXwYJIJXv2
+         UsFJj29onwP+dVWZTJ08pgLjA/ZKwXjYsvsFBLxfOvxOqU0N9iVjnDOdeP2OURTR4bMM
+         GeGkvIrwei47e4TkXNbSujqOBy7zEVQed2BCxxuTG31/g3+nSM6btDQShQvYY/sZAf5S
+         vwyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUxH4spjaKyUfJdAyStpiG28MkIFxRyYVAjvpo2PMvF94/qf7N1g7RA7W6dNQzTQC++S2xZogQ/lk39@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIwq9ca3fZ0YKSlDTXrhNYrqy/x4VdXPFJVKT6J2YqlFcx0qpU
+	dxpKQjYA6RA2X2U4t2cR6lTUHfd2vcvg+z5PN6G9SL1u7ZYFldBxjLwaMGqWo/g=
+X-Google-Smtp-Source: AGHT+IHhm9pcVh5+FAyHVsQ1m3+mrrvYcuAeUKlMpqmlUG23x4p++fjWVQHljqdw9xU30Zn1dsMTzg==
+X-Received: by 2002:a17:903:40d1:b0:20b:3f70:2e05 with SMTP id d9443c01a7336-20b3f702f68mr178426175ad.41.1727716215778;
+        Mon, 30 Sep 2024 10:10:15 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b533fa125sm42501775ad.141.2024.09.30.10.10.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 10:10:15 -0700 (PDT)
+Date: Mon, 30 Sep 2024 10:10:13 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Max Hsu <max.hsu@sifive.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Anup Patel <anup@brainfault.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Palmer Dabbelt <palmer@sifive.com>, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	kvm@vger.kernel.org, kvm-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>
+Subject: Re: [PATCH RFC v2 2/3] riscv: Add Svukte extension support
+Message-ID: <ZvrbdUrU+/L3H+CR@debug.ba.rivosinc.com>
+References: <20240927-dev-maxh-svukte-rebase-2-v2-0-9afe57c33aee@sifive.com>
+ <20240927-dev-maxh-svukte-rebase-2-v2-2-9afe57c33aee@sifive.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240927-dev-maxh-svukte-rebase-2-v2-2-9afe57c33aee@sifive.com>
 
-Enable the COMBOPHY with external pad clock on stm32mp257f-ev1
-board, to be used for the PCIe clock provider.
+On Fri, Sep 27, 2024 at 09:41:44PM +0800, Max Hsu wrote:
+>Svukte extension introduce senvcfg.UKTE, hstatus.HUKTE.
+>
+>This patch add CSR bit definition, and detects if Svukte ISA extension
+>is available, cpufeature will set the correspond bit field so the
+>svukte-qualified memory accesses are protected in a manner that is
+>timing-independent of the faulting virtual address.
+>
+>Since hstatus.HU is not enabled by linux, enabling hstatus.HUKTE will
+>not be affective.
+>
+>This patch depends on patch "riscv: Per-thread envcfg CSR support" [1]
+>
+>Link: https://lore.kernel.org/linux-riscv/20240814081126.956287-1-samuel.holland@sifive.com/ [1]
+>
+>Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+>Signed-off-by: Max Hsu <max.hsu@sifive.com>
+>---
+> arch/riscv/include/asm/csr.h   | 2 ++
+> arch/riscv/include/asm/hwcap.h | 1 +
+> arch/riscv/kernel/cpufeature.c | 4 ++++
+> 3 files changed, 7 insertions(+)
+>
+>diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+>index 25966995da04e090ff22a11e35be9bc24712f1a8..62b50667d539c50a0bfdadd1c6ab06cda948f6a8 100644
+>--- a/arch/riscv/include/asm/csr.h
+>+++ b/arch/riscv/include/asm/csr.h
+>@@ -122,6 +122,7 @@
+> #define HSTATUS_VSXL		_AC(0x300000000, UL)
+> #define HSTATUS_VSXL_SHIFT	32
+> #endif
+>+#define HSTATUS_HUKTE		_AC(0x01000000, UL)
+> #define HSTATUS_VTSR		_AC(0x00400000, UL)
+> #define HSTATUS_VTW		_AC(0x00200000, UL)
+> #define HSTATUS_VTVM		_AC(0x00100000, UL)
+>@@ -195,6 +196,7 @@
+> /* xENVCFG flags */
+> #define ENVCFG_STCE			(_AC(1, ULL) << 63)
+> #define ENVCFG_PBMTE			(_AC(1, ULL) << 62)
+>+#define ENVCFG_UKTE			(_AC(1, UL) << 8)
+> #define ENVCFG_CBZE			(_AC(1, UL) << 7)
+> #define ENVCFG_CBCFE			(_AC(1, UL) << 6)
+> #define ENVCFG_CBIE_SHIFT		4
+>diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+>index 46d9de54179ed40aa7b1ea0ec011fd6eea7218df..3591a4f40131ff5958c07857a1bd1624723d6550 100644
+>--- a/arch/riscv/include/asm/hwcap.h
+>+++ b/arch/riscv/include/asm/hwcap.h
+>@@ -93,6 +93,7 @@
+> #define RISCV_ISA_EXT_ZCMOP		84
+> #define RISCV_ISA_EXT_ZAWRS		85
+> #define RISCV_ISA_EXT_SVVPTC		86
+>+#define RISCV_ISA_EXT_SVUKTE		87
+>
+> #define RISCV_ISA_EXT_XLINUXENVCFG	127
+>
+>diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+>index 3a8eeaa9310c32fce2141aff534dc4432b32abbe..e0853cae1dc0ba844d5969a42c30d44287e3250a 100644
+>--- a/arch/riscv/kernel/cpufeature.c
+>+++ b/arch/riscv/kernel/cpufeature.c
+>@@ -381,6 +381,7 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+> 	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> 	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+> 	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+>+	__RISCV_ISA_EXT_SUPERSET(svukte, RISCV_ISA_EXT_SVUKTE, riscv_xlinuxenvcfg_exts),
+> 	__RISCV_ISA_EXT_DATA(svvptc, RISCV_ISA_EXT_SVVPTC),
+> };
+>
+>@@ -921,6 +922,9 @@ void riscv_user_isa_enable(void)
+> {
+> 	if (riscv_cpu_has_extension_unlikely(smp_processor_id(), RISCV_ISA_EXT_ZICBOZ))
+> 		csr_set(CSR_ENVCFG, ENVCFG_CBZE);
+>+
+>+	if (riscv_has_extension_unlikely(RISCV_ISA_EXT_SVUKTE))
+>+		current->thread.envcfg |= ENVCFG_UKTE;
 
-Signed-off-by: Christian Bruel <christian.bruel@foss.st.com>
----
- arch/arm64/boot/dts/st/stm32mp257f-ev1.dts | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Pending merge of samuel's patches, this looks good to me.
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-index 214191a8322b..bcf84d533cb2 100644
---- a/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-+++ b/arch/arm64/boot/dts/st/stm32mp257f-ev1.dts
-@@ -27,6 +27,14 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	clocks {
-+		pad_clk: pad-clk {
-+			#clock-cells = <0>;
-+			compatible = "fixed-clock";
-+			clock-frequency = <100000000>;
-+		};
-+	};
-+
- 	memory@80000000 {
- 		device_type = "memory";
- 		reg = <0x0 0x80000000 0x1 0x0>;
-@@ -50,6 +58,12 @@ &arm_wdt {
- 	status = "okay";
- };
- 
-+&combophy {
-+	clocks = <&rcc CK_BUS_USB3PCIEPHY>, <&rcc CK_KER_USB3PCIEPHY>, <&pad_clk>;
-+	clock-names = "apb", "ker", "pad";
-+	status = "okay";
-+};
-+
- &ethernet2 {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&eth2_rgmii_pins_a>;
--- 
-2.34.1
+Reviewed-by: Deepak Gupta <debug@rivosinc.com>
 
+> }
+>
+> #ifdef CONFIG_RISCV_ALTERNATIVE
+>
+>-- 
+>2.43.2
+>
+>
 
