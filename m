@@ -1,175 +1,118 @@
-Return-Path: <devicetree+bounces-106642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C61398B29A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 04:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B413398B2B3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 05:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE44E284473
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 02:57:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E2C8282AC8
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 03:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5063725771;
-	Tue,  1 Oct 2024 02:57:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5ED8193411;
+	Tue,  1 Oct 2024 03:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b="FX0kwgIP"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jV0gkQSV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9E1DA5F
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 02:57:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30DA3193401;
+	Tue,  1 Oct 2024 03:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727751473; cv=none; b=F1GmkpnOpdRxs2PNJoRZ/aKElnhHZ9dAI5Wy36zZqKghs2Jzaf8kr/kMlmpCqEPvOXMi5iSMPyd7sIUxlyKU2PoNakgvB374p8y4eFjixrG+2rlBqM/FI7IkVRgl2fORHHrtsUwdCJI186gaBnf9+slxE3UIo9+JmZOhk230lVE=
+	t=1727753488; cv=none; b=WgTj6Tb7FKPh9taHqsFiv3cYWJhPF27BpsJ17f6Z7+hgzDrpveeW70nJy4Z6NBZhhNZeZNeUorlzm0doKYc8JXOe6Nywd9dbeS83J+etislLJXpQajHs2bZ9fAQKlXq25kAnGucx2FwPhhat5gV6unp86IiHylI4n2ZpnR9/OnU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727751473; c=relaxed/simple;
-	bh=a7gE8MxTh835RNRXGIOa2/xHJJmADtOY2kgSyMPAR1k=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sltr0uDWxdg14W2qQZl7VPEBQjYLnLYx10/KoaEHSNJAzBj/ntxuJe+j5mIL9udDkNCT5isSnewRCV1XSrgQf00f69EWEE+a1D3CvAwYY3baK//Y2UNJghOUis7zHWgwgPnK3G27qSePmE1vYds6abcB7TmKsiJOwUC2T9Ai7cU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com; spf=pass smtp.mailfrom=vayavyalabs.com; dkim=pass (1024-bit key) header.d=vayavyalabs.com header.i=@vayavyalabs.com header.b=FX0kwgIP; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=vayavyalabs.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vayavyalabs.com
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e25d164854dso4225158276.2
-        for <devicetree@vger.kernel.org>; Mon, 30 Sep 2024 19:57:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=vayavyalabs.com; s=google; t=1727751470; x=1728356270; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/Zmmviv8Nbf7NFD947/zuQfLYwqSSIVbYL4cdeXLyvc=;
-        b=FX0kwgIPDvC4CXol+IuftRDm+fA2Ryheqi6oDCeU3toMQePROXji2/2uGgrsZR3PB0
-         bl3gRkLLtJ78xCLyPOmF17A7P6/ooZWKx3vFyOiy8XobgBU+VP+f6Y7GXniw7dK9Y+9x
-         tcI+1gwI7WC/8UMfriGhK6PlQZnC0msJ/PXQY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727751470; x=1728356270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/Zmmviv8Nbf7NFD947/zuQfLYwqSSIVbYL4cdeXLyvc=;
-        b=uw45PVJsC1tS213D7npNJPwWkt2/1yoCSDxxg58a+MvOASCSDTyL86FNuHO1evlXrm
-         A8+47P9XoD9H2nmQP1Q4QwdGYUkFIOrDwbk4vqm9SCgpaoTbPm7jfi+6cVzEWDLZcThT
-         3E9b/MreBjyQMf+2BUI2X09pwX07JMWWqXWXTjAmCrn0vj9YsnYcDaBzNNKdKg2XYjB7
-         WFYBsym5ourkQlpcWnKJdRY/lEEvatSuS3ipRFy+VGR3MjTTUnKofqPoKvsvjRsdDT+E
-         8Wk6vT4cEIDGoM7CntrYVBnptC5rkHf+dF9fQemkg9yBy40+O9A/7jrV7yeRDwkmlpHN
-         pN2g==
-X-Gm-Message-State: AOJu0YyEv8bbJPNlueRXZ52x4G81c6LKsYrFBWmAnd1O6+jVCtoBRUTq
-	fFxTV34rkVoSQcimxOGXEsqxazP9xIiuJTKL7c2t0wzVbbYDAs/8P6g99l4bR9SkS4IbzJe4xpQ
-	UIfGTD39nbMOgrP4EBEOPXjoWQeJytIRhP+2pVg==
-X-Google-Smtp-Source: AGHT+IH1mDHLPd77fwrmf4LGhrAPJo4Z5Zacv4dRF9GJmC8icx81sdl8WyUbXB83Ajnu5pcguW0R0YiL6NBcYC6wOW0=
-X-Received: by 2002:a05:6902:2509:b0:e26:1be1:5a44 with SMTP id
- 3f1490d57ef6-e261be15c33mr4330216276.33.1727751470715; Mon, 30 Sep 2024
- 19:57:50 -0700 (PDT)
+	s=arc-20240116; t=1727753488; c=relaxed/simple;
+	bh=b0L6JJPpppqY1shg9ElFVlPW+ZopgEIqzTKKsySnFoA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dxm3e3FFBHXMsWXdMZXAe0iODECChni/lyy0gsy+lxtBCR5etj8XqwVFlckzT/3beMGZcv+v3qByxsxvYPGIpJKbcWgt2UEi/gcXsuqKaFZoBeLJ1uqWFKNAoMd8kCa9RSU7LUARbhg3IdMbzeUSRsppTD/24OxV9Gg15vEn5RI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jV0gkQSV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 48UMvelc008791;
+	Tue, 1 Oct 2024 03:31:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=aERLxCnZBoiTjW9/f3SsgB
+	85s84JsQsKyh9ZiNxQSw8=; b=jV0gkQSVqiL9sOwzBFSOFcjMdl8nA/NEOyw4Y3
+	IOyyySQLkyqDh1TXs8vBvyPUY90IHyLdjSav5TfbbgYVPKnprvPJp7Zwug7Mm8XD
+	wT8LEyfDGBkA8b8fJnYozcjzi+d+spAMV+BeCfL7R/8hob1MUK3X7Dew1jmeNq0x
+	o3uBVNqZJPx8ZfKwHhjzRVS7r+4ZGN8CobX+CJHB6X641KSpOHKG7K7CtDJyarsJ
+	EQYCIaDI0rPRNSzFBRX8as5dAtjE7w04k2q60rIOfnt/noJA86h58plNGaJtWnHP
+	rpgN2hB4SAQQlhSj8bN1Ru/rv6qfpbydxTOoHnahIygIjc8g==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41x7ge70ue-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 01 Oct 2024 03:31:21 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4913VKRU028856
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 1 Oct 2024 03:31:20 GMT
+Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 30 Sep 2024 20:31:18 -0700
+From: Miaoqing Pan <quic_miaoqing@quicinc.com>
+To: <kvalo@kernel.org>
+CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
+        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Miaoqing Pan <quic_miaoqing@quicinc.com>
+Subject: [PATCH 0/2] add firmware-name device tree property for ath11k
+Date: Tue, 1 Oct 2024 11:30:50 +0800
+Message-ID: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240930093054.215809-1-pavitrakumarm@vayavyalabs.com>
- <20240930093054.215809-8-pavitrakumarm@vayavyalabs.com> <6ae71793-4188-4356-b314-e2d2db5b3cb1@kernel.org>
-In-Reply-To: <6ae71793-4188-4356-b314-e2d2db5b3cb1@kernel.org>
-From: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Date: Tue, 1 Oct 2024 08:27:39 +0530
-Message-ID: <CALxtO0=7+8sX5LXK0XLjrCJH7P3s9FkKWPGVjp2q_dgq1q2M3g@mail.gmail.com>
-Subject: Re: [PATCH v9 7/7] dt-bindings: crypto: Document support for SPAcc
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, herbert@gondor.apana.org.au, 
-	linux-crypto@vger.kernel.org, robh@kernel.org, Ruud.Derwig@synopsys.com, 
-	manjunath.hadli@vayavyalabs.com, bhoomikak@vayavyalabs.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: zHbVF5GGiXIMC2qwiXgIZ2r_NLWt-hte
+X-Proofpoint-GUID: zHbVF5GGiXIMC2qwiXgIZ2r_NLWt-hte
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
+ bulkscore=0 mlxlogscore=839 lowpriorityscore=0 spamscore=0
+ priorityscore=1501 suspectscore=0 malwarescore=0 impostorscore=0
+ clxscore=1011 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2408220000 definitions=main-2410010023
 
-Hi Krzysztof,
-   Thanks for the quick review and I do really appreciate everybody's time =
-here.
-   If something got missed, it's just because of the exhaustive
-hardware and the SystemC Model testing.
-   We make minimal/incremental changes and run things in debug mode
-which takes a lot of time,
-   since this is a large code base. Never ignored anything till date.
-   Every single comment has been and will be addressed. We will work
-on code quality as per your inputs.
+QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
+firmware, which is customized for IoE platforms. And the 'pci-device-id +
+soc-hw-version + soc-hw-sub-version' may not be enough to identify the
+correct firmware directory path.
 
-Warm regards,
-PK
+The device tree allows "firmware-name" to define the firmware path,
+    wifi@c000000 {
+        firmware-name = "QCA6698AQ";
+        status = "okay";
+    };
+
+Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
+---
+
+Miaoqing Pan (2):
+  dt-bindings: net: wireless: ath11k: add firmware-name property
+  wifi: ath11k: add firmware-name device tree property
+
+ .../bindings/net/wireless/qcom,ath11k.yaml           |  7 +++++++
+ drivers/net/wireless/ath/ath11k/core.c               | 12 ++++++++++++
+ drivers/net/wireless/ath/ath11k/core.h               | 11 +++--------
+ 3 files changed, 22 insertions(+), 8 deletions(-)
 
 
-On Mon, Sep 30, 2024 at 6:50=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 30/09/2024 11:30, Pavitrakumar M wrote:
-> > Add DT bindings related to the SPAcc driver for Documentation.
-> > DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
-> > Engine is a crypto IP designed by Synopsys.
-> >
-> > Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> > Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
-> > Co-developed-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> > Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-> > Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
-> > ---
-> >  .../bindings/crypto/snps,dwc-spacc.yaml       | 71 +++++++++++++++++++
-> >  1 file changed, 71 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-s=
-pacc.yaml
->
-> Bindings come before users, so please re-order your patches.
+base-commit: 8ed36fe71fd60c851540839b105fd1fddc870c61
+-- 
+2.25.1
 
-PK: Will re-order
->
->
-> >
-> > diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.ya=
-ml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> > new file mode 100644
-> > index 000000000000..6b94d0aa7280
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
-> > @@ -0,0 +1,71 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto=
- Engine
-> > +
-> > +maintainers:
-> > +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
-> > +
-> > +description:
-> > +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto En=
-gine is
-> > +  a crypto IP designed by Synopsys, that can accelerate cryptographic
-> > +  operations.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    contains:
->
-> Nope, you cannot have contains. From where did you get it? Please use
-> existing, recent bindings as starting point or just use exampl-eschema.
-
-PK: Will fix that.
->
->
-> Eh, you already got this comment and just ignored it.
-
-PK: It got missed, never ignored. Too valuable to ignore comments from demi=
-gods.
->
->
-> You ignored all other comments as well. This is quite disappointing to
-> ask us to do the same review over and over.
-
-PK: That never was the intent nor the impression I wanted to make.
-Appreciate everybody's time here.
->
->
-> Best regards,
-> Krzysztof
->
 
