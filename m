@@ -1,173 +1,172 @@
-Return-Path: <devicetree+bounces-106935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F0398C457
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 19:20:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1676498C467
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 19:30:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BE9D28349D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:20:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C08E62856E4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:30:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C391CC171;
-	Tue,  1 Oct 2024 17:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CBFE1CC144;
+	Tue,  1 Oct 2024 17:30:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jXkSfCCO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i30gMClf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC6A1CB53A
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 17:19:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB65321D;
+	Tue,  1 Oct 2024 17:30:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727803171; cv=none; b=aW44ElDXQoPRkARV+m3Pj4+r1/Ijgy/zQq25E01zM1MB8PcwSLwLo45hhP85HLnHQjyZZgO6qG/54TaqH4ZOrmHqS+PJjWO3LYswcivE1QKj9+Bk/V7IgzSuWvocZfXi2mq5AS03UaN5nCeo+5IU964ebtHviyhp7exvRgRZsbA=
+	t=1727803807; cv=none; b=UxrUyxE0FR1cPG04Q0jw8/6+xSGrpEOedabR81Jp0Syt5vsgHrQtaD4pOwh74LIIzQozfdivHiUF3YCnpzJdXJ3GRSxW53kX93g8nEAu42tdHUXDI3oOWTN1SX7qRFXpjmHeLlXMf+JxN8juRixqNz6Ni2v5l+HkuyHUA634M5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727803171; c=relaxed/simple;
-	bh=oO/Dd2KCEmuIxkNvFknsLaiwceuy/Dj9EmYaMyEszrw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=NvIVnZJ1Y3prKz5x0pfPllapHJlVftiYuqO55QIX+Z7E+n+EegFOqJyOvvdHRClyMvaKPcMciDCZs0H6HnJImcUzLvNJY8jRQDZrbY+Awn3SPGiqNPOyaX0qjFWFjyM4vEZ/PCSNMy3PT6Ju28jaMPOAsj7qGyIq3zJkbD6W74M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jXkSfCCO; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2facf40737eso26503841fa.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 10:19:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727803167; x=1728407967; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y06DXlCXnvKJ/fY/x+blP4HdFfUV0z6ja0IGcj9Ke4M=;
-        b=jXkSfCCOBzb72JNbGLGSVkzXSG0BxVF0x3cxTPJPQc2driU9sf7bAbiFiHdRMysb8/
-         ir5A7R26AdgsaXDKJk/pe52Fr+psIwXcP/VGiuG2+PFqsV8mGmZF7OOcF2ux1iZf/hdl
-         JdKcIgoMOtQ/SXk0b7J+qF+yWrwRUymJhBDIhmhb6wtzS4/FX5oy7iv0inusR/86w+xk
-         lrN6VzgSGKuCpoGqTpAu88fbTiZMkib/YjwahWt9BaXIFkt0J+V3WlVdHpsHLVs0Edn9
-         sT4cSp8PW1/kiXAVCYpbIgltzM56aMtMqwdWaPF398CjLzXihX0GzGT5zAbxhrW4Ppai
-         tn7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727803167; x=1728407967;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y06DXlCXnvKJ/fY/x+blP4HdFfUV0z6ja0IGcj9Ke4M=;
-        b=DDY33Ma8Alx4dL+FA0Aa4ge+GBvLzVxpIYCaFIF9W8CK1j97D9xwFYUtHHQnqEWRoc
-         Mshy6/DZjBKJ+kiC01elKTJ8sngpwXMS1byjVKrznSivKnxKlvmiZvGAj/lSC3qhax5p
-         H5AiR3QYohecZoNKl07W8S5MWfLVzw4kmfEFkZA5n7+pH4vAOwVCLfntLn3g0ECblpCf
-         H45SfQ6rCgM2NAmHSkwYIMRNtfrBlzcXCqkC3CrMT4uMG6paQqYldQF1b2v9JYjxB1wD
-         nJkOCNOEglapdma3R4y1/LG8kokJ3uEF4tz3rYMIlwuAbXu42D5qNOxZ4h44nnn7obFe
-         i9yg==
-X-Forwarded-Encrypted: i=1; AJvYcCXO4gHvExKTbXAr7E5Jfik/Fhv6ZWxG+vlV5qgRpjG01qYC6p2Rs8U2QxTnkqpyeE1UZpG9A7Y7WZSZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YycJ8rbvKMpO1cttOE3yCRrz5kxrh96VPr+jv2EOneT7+3BVwR7
-	z3jOVcKywv4Xap5X7Psn/scIWcVdscarfy1icImUHJnYYmoAy9DtK6Blp4R3T6Gs/HexfNa/LE1
-	b5X/f6li1NjlkqhDLdNO/KHbf9UF47d3IsHGb2w==
-X-Google-Smtp-Source: AGHT+IGCyAjSmUUhOOxonn0IXFjPj/ZIpq3rE7R5JDf3UZSodApeIDdzmaENM9VLJd8jJBLSLHTJ5cTcssP94Nc/hz4=
-X-Received: by 2002:a05:651c:220d:b0:2fa:c9eb:53ce with SMTP id
- 38308e7fff4ca-2fae106d1cfmr3888261fa.26.1727803167103; Tue, 01 Oct 2024
- 10:19:27 -0700 (PDT)
+	s=arc-20240116; t=1727803807; c=relaxed/simple;
+	bh=k41iufEvAgZKKjtKzshB6ZOXsBvWR7K1rRznnG1aVTI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QMJ5MIVeFX6MRMhlIFMiGeiXMgmIfTZQMNk8ZTnbQSTGpGx0j2nH7rLo94/GKvuZrVY4nLoZTxr+pdCixIn53aUt2AATPEw5IRoSn/TW4jhJchvj1RKHmT7MObdvCJgVnYK2y9pRuM/cwGVq4i5rWsjaJT9G/O8Df41roY7wReA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i30gMClf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71044C4CEC6;
+	Tue,  1 Oct 2024 17:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727803807;
+	bh=k41iufEvAgZKKjtKzshB6ZOXsBvWR7K1rRznnG1aVTI=;
+	h=From:Subject:Date:To:Cc:From;
+	b=i30gMClf8GT+f0jPFRdVB5GECcVbPD79WWw+qYhevh0w0zaY2EboAtLJzK2Bez4YS
+	 XsW7aUYJF1Fs+zJ+dUTdl++yWs85kBBHk00ZqhcBzEtqIB3OkT0HDoj5R1m7rOqXoW
+	 6bPtt31LFB1c+/1u0BITYX61XaEONSMzpG+Q4NZ3vQcJ03yThjVyn/vDaap+3fnfX0
+	 y4GhINwFqQ7bUz3KNWjvaT2SbUbW9JlC/yFXzjgb4JhTMm6yaar1CgxisaL4+gZdZa
+	 pN2WgQ2Vz92yfVYO6dIYItko7xGOj3OpVMWsyGuOW3A5vaLh+58ZXBEAIyevuEAUV2
+	 pnCxxZoDxlbnA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+Subject: [PATCH v5 0/5] Add mfd, pinctrl and pwm support to EN7581 SoC
+Date: Tue, 01 Oct 2024 19:29:29 +0200
+Message-Id: <20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241001074618.350785-1-herve.codina@bootlin.com> <20241001074618.350785-4-herve.codina@bootlin.com>
-In-Reply-To: <20241001074618.350785-4-herve.codina@bootlin.com>
-From: David Lechner <dlechner@baylibre.com>
-Date: Tue, 1 Oct 2024 12:19:16 -0500
-Message-ID: <CAMknhBHRY=MKmpiMnwHk8Gpdi5pWaUOZosyKTzX=83DuAxBvOA@mail.gmail.com>
-Subject: Re: [PATCH 3/4] iio: adc: Add support for the GE HealthCare PMC ADC
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, Ian Ray <ian.ray@gehealthcare.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAHkx/GYC/2WQy07DMBBFf6XyGkd+jF9d8R+IhScZtxYlLk6Ig
+ Kr/jpsiFejyjnTunJkTm6hmmth2c2KVljzlMrZgHjas38dxRzwPLTMlFAgvPafRGS/5MY/9XA9
+ cYpJKSANIgjXoWCnlj7Xw6bnlVMsrn/eV4lojBqMdeY8WPDjsgSA4Y1FBQEVp6BP4gEF10imtg
+ wKAbpfn7lAqjV/l8YXqSIeu1N3Pskpv7016vm68OW83q7EThqdSueVScjwmHjUESr3wQ/LbRbG
+ L4z5Pc6mf6w/a6NJzPVep/+cuiguOURoTpNPRpd9Gl65F/+K1vON144MnwoQwRGvveLjxQd7z0
+ HgrYh/04KxA/MOfz+dvo5lC69EBAAA=
+To: Lorenzo Bianconi <lorenzo@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Lee Jones <lee@kernel.org>, 
+ =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>
+Cc: linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
+ linux-pwm@vger.kernel.org
+X-Mailer: b4 0.14.1
 
-On Tue, Oct 1, 2024 at 2:47=E2=80=AFAM Herve Codina <herve.codina@bootlin.c=
-om> wrote:
->
-> The GE HealthCare PMC Analog to Digital Converter (ADC) is a 16-Channel
-> (voltage and current), 16-Bit ADC with an I2C Interface.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
+Introduce airoha-mfd driver in order to load pinctrl and pwm drivers for
+EN7581 SoC. airoha-mfd is needed since both pinctrl and pwm drivers
+needs to access the same memory block (gpio memory region) to configure
+{gio,irq}_chip and pwm functionalities respectively, so model them as
+childs of a parent mfd driver.
+Current EN7581 pinctrl driver supports the following functionalities:
+- pin multiplexing via chip_scu syscon
+- pin pull-up, pull-down, open-drain, current strength,
+  {input,output}_enable, output_{low,high} via chip_scu syscon
+- gpio controller
+- irq controller
 
-...
+---
+Changes in v5:
+- use spin_lock in airoha_pinctrl_rmw instead of a mutex since it can run
+  in interrupt context
+- remove unused includes in pinctrl driver
+- since the irq_chip is immutable, allocate the gpio_irq_chip struct
+  statically in pinctrl driver
+- rely on regmap APIs in pinctrl driver but keep the spin_lock local to the
+  driver
+- rely on guard/guard_scope APIs in pinctrl driver
+- improve naming convention pinctrl driver
+- introduce airoha_pinconf_set_pin_value utility routine
+- Link to v4: https://lore.kernel.org/r/20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org
 
-> +static int pmc_adc_read_raw_ch(struct pmc_adc *pmc_adc, u8 cmd, int *val=
-)
-> +{
-> +       s32 ret;
-> +
-> +       ret =3D i2c_smbus_read_word_swapped(pmc_adc->client, cmd);
-> +       if (ret < 0) {
-> +               dev_err(&pmc_adc->client->dev, "i2c read word failed (%d)=
-\n", ret);
-> +               return ret;
-> +       }
-> +
-> +       *val =3D sign_extend32(ret, 16);
+Changes in v4:
+- add 'Limitation' description in pwm driver
+- fix comments in pwm driver
+- rely on mfd->base __iomem pointer in pwm driver, modify register
+  offsets according to it and get rid of sgpio_cfg, flash_cfg and
+  cycle_cfg pointers
+- simplify register utility routines in pwm driver
+- use 'generator' instead of 'waveform' suffix for pwm routines
+- fix possible overflow calculating duty cycle in pwm driver
+- do not modify pwm state in free callback in pwm driver
+- cap the maximum period in pwm driver
+- do not allow inverse polarity in pwm driver
+- do not set of_xlate callback in the pwm driver and allow the stack to
+  do it
+- fix MAINTAINERS file for airoha pinctrl driver
+- fix undefined reference to __ffsdi2 in pinctrl driver
+- simplify airoha,en7581-gpio-sysctl.yam binding
+- Link to v3: https://lore.kernel.org/r/20240831-en7581-pinctrl-v3-0-98eebfb4da66@kernel.org
 
-Shouldn't this be 15, not 16?
+Changes in v3:
+- introduce airoha-mfd driver
+- add pwm driver to the same series
+- model pinctrl and pwm drivers as childs of a parent mfd driver.
+- access chip-scu memory region in pinctrl driver via syscon
+- introduce a single airoha,en7581-gpio-sysctl.yaml binding and get rid
+  of dedicated bindings for pinctrl and pwm
+- add airoha,en7581-chip-scu.yaml binding do the series
+- Link to v2: https://lore.kernel.org/r/20240822-en7581-pinctrl-v2-0-ba1559173a7f@kernel.org
 
-> +       return 0;
-> +}
-> +
+Changes in v2:
+- Fix compilation errors
+- Collapse some register mappings for gpio and irq controllers
+- update dt-bindings according to new register mapping
+- fix some dt-bindings errors
+- Link to v1: https://lore.kernel.org/all/cover.1723392444.git.lorenzo@kernel.org/
 
-...
+---
+Benjamin Larsson (1):
+      pwm: airoha: Add support for EN7581 SoC
 
-> +
-> +static int pmc_adc_probe(struct i2c_client *client)
-> +{
-> +       struct iio_dev *indio_dev;
-> +       struct pmc_adc *pmc_adc;
-> +       struct clk *clk;
-> +       s32 val;
-> +       int ret;
-> +
-> +       ret =3D devm_regulator_bulk_get_enable(&client->dev, ARRAY_SIZE(p=
-mc_adc_regulator_names),
-> +                                            pmc_adc_regulator_names);
-> +       if (ret)
-> +               return dev_err_probe(&client->dev, ret, "Failed to get re=
-gulators\n");
-> +
-> +       clk =3D devm_clk_get_optional_enabled(&client->dev, "osc");
-> +       if (IS_ERR(clk))
-> +               return dev_err_probe(&client->dev, PTR_ERR(clk), "Failed =
-to get osc clock\n");
-> +
-> +       indio_dev =3D devm_iio_device_alloc(&client->dev, sizeof(*pmc_adc=
-));
-> +       if (!indio_dev)
-> +               return -ENOMEM;
-> +
-> +       pmc_adc =3D iio_priv(indio_dev);
-> +       pmc_adc->client =3D client;
-> +
-> +       val =3D i2c_smbus_read_byte_data(pmc_adc->client, PMC_ADC_CMD_REQ=
-UEST_PROTOCOL_VERSION);
-> +       if (val < 0)
-> +               return dev_err_probe(&client->dev, val, "Failed to get pr=
-otocol version\n");
-> +
-> +       if (val !=3D 0x01) {
-> +               dev_err(&client->dev, "Unsupported protocol version 0x%02=
-x\n", val);
+Christian Marangi (2):
+      dt-bindings: mfd: Add support for Airoha EN7581 GPIO System Controller
+      mfd: airoha: Add support for Airoha EN7581 MFD
 
-Use dev_err_probe?
+Lorenzo Bianconi (2):
+      dt-bindings: arm: airoha: Add the chip-scu node for EN7581 SoC
+      pinctrl: airoha: Add support for EN7581 SoC
 
-> +               return -EINVAL;
-> +       }
-> +
-> +       indio_dev->name =3D "pmc_adc";
-> +       indio_dev->info =3D &pmc_adc_info;
-> +       indio_dev->channels =3D pmc_adc_channels;
-> +       indio_dev->num_channels =3D ARRAY_SIZE(pmc_adc_channels);
-> +
-> +       return devm_iio_device_register(&client->dev, indio_dev);
-> +}
+ .../bindings/arm/airoha,en7581-chip-scu.yaml       |   42 +
+ .../bindings/mfd/airoha,en7581-gpio-sysctl.yaml    |  433 +++
+ MAINTAINERS                                        |    7 +
+ drivers/mfd/Kconfig                                |    8 +
+ drivers/mfd/Makefile                               |    2 +
+ drivers/mfd/airoha-en7581-gpio-mfd.c               |   72 +
+ drivers/pinctrl/mediatek/Kconfig                   |   17 +-
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/pinctrl-airoha.c          | 3007 ++++++++++++++++++++
+ drivers/pwm/Kconfig                                |   10 +
+ drivers/pwm/Makefile                               |    1 +
+ drivers/pwm/pwm-airoha.c                           |  414 +++
+ include/linux/mfd/airoha-en7581-mfd.h              |    9 +
+ 13 files changed, 4022 insertions(+), 1 deletion(-)
+---
+base-commit: 437d220f284a16e52c7d7f819e4a1a7e25fe8fe9
+change-id: 20240818-en7581-pinctrl-1bf120154be0
+prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
+
+Best regards,
+-- 
+Lorenzo Bianconi <lorenzo@kernel.org>
+
 
