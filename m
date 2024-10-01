@@ -1,165 +1,149 @@
-Return-Path: <devicetree+bounces-106655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C4398B31D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 06:39:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4DF98B3F3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 07:56:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4143EB225FF
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 04:39:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0B5F1F23C86
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 05:56:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A080B1B9842;
-	Tue,  1 Oct 2024 04:39:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921261BBBC0;
+	Tue,  1 Oct 2024 05:56:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="eiXw0rh5"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LDDEEblA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F4A51B9837;
-	Tue,  1 Oct 2024 04:39:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DEE736AF8;
+	Tue,  1 Oct 2024 05:56:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727757593; cv=none; b=em9Ir+ZwED/ua5IxigqFVCTwDWJDwaI5InNDx/Uusv1LjTXZrjy3jCxRNsfvwale9s9dvk/PXhsVvI0ynbS/9YMqSAx4Pk2jh3bbTfy2IBveBSbIzXgECje09pBM940kXQ5qZaRASww1YwywC6uHn3QaJ4EzRHCkU8+p0g7Xd2c=
+	t=1727762180; cv=none; b=BLhPK2XZpiX5lyR+BNuUyvhF3Ka7WXHL8FJhhFgJ/mhZISIEkQ6S18jOdKuq7IBCqNtaqIM9Gl7j/WFdmJKwOiI5tMubxC1Rtpvr2TRkV9EsW4p0DT8Tlv73ERwwbt0h92JL1q7bJFjfEPfd5Z7S16ybnwkhvFLPZfwdYStpEhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727757593; c=relaxed/simple;
-	bh=0V1Ookeeycp/R5rCacItScFvCKb6+3jLczQxITY6ufc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ddQlpL6dpy9qvu76HvEnPFLE+00wWPQKze6EEJyG5RyWKFV/xxVy4/lJJEsL6WZV71u8ZROFJqEbt9TQioJof+Tw2QOmJ/ysw3MBbZApzkWPiTukB8XzPUzUOaSKHtjV5zJz1b+D0FSppjaL6DpCkJCdkLwdp91kC7S9hTM1Y14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=eiXw0rh5; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8A5ED23CAD;
-	Tue,  1 Oct 2024 06:39:50 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id W90cDK1kOghZ; Tue,  1 Oct 2024 06:39:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1727757589; bh=0V1Ookeeycp/R5rCacItScFvCKb6+3jLczQxITY6ufc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=eiXw0rh5fMrnLqvcXty6qEiTI3w19WxPvQ0wG5vl7/KzU0qCckejE1MxJk890Q2mL
-	 qs0JOGececmxZpMYctfKAoEJnS122T02kaKdOjY+qj+kDH3HJvWfRg+Ec6QK6/kcVN
-	 d4MhWM1oCxyVklv7qHCMyt+Ejef7Jm12KHZ0E5kPOfpYZznAwIsdKKH7t7dBAaWBg0
-	 4PCyI2F9tpmkn3rz+ambGFNCGlIdi45wC6/jFvzRUZCIwsZ3Mq3+tq4neP+s6DQAhI
-	 wDfMK+IJc8TkKclVpdivmKrKFFQmnfNTRV7ACt6JoQBk0Ugu3Ls9YdMss5qU2OwpmZ
-	 KSUgZfwk/4Rvw==
-From: Yao Zi <ziyao@disroot.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Celeste Liu <CoelacanthusHex@gmail.com>,
-	Yao Zi <ziyao@disroot.org>
-Subject: [PATCH 8/8] arm64: dts: rockchip: Add UART clocks for RK3528 SoC
-Date: Tue,  1 Oct 2024 04:38:38 +0000
-Message-ID: <20241001043838.31963-2-ziyao@disroot.org>
-In-Reply-To: <20241001042401.31903-2-ziyao@disroot.org>
-References: <20241001042401.31903-2-ziyao@disroot.org>
+	s=arc-20240116; t=1727762180; c=relaxed/simple;
+	bh=ExMjnSP9sJ1OhmA+NnmHR9K1OURkugire2cpBKFzPjk=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lmWY6jPVRwILXHbP8fZl8nzahk0ULKfjy/UpMqhuiIIzRTzRuU6KQ3SewB/663Arq5DzEMimkm5E1akWuqBNAzCIGF+1Elkos2dzZaifekSpDxM6fBetT/R/+w7sHWdFgGYWi/7M9lqG0WWQ7ehlbAugebNq6SuAaQKcnlpc2ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LDDEEblA; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4915trho116154;
+	Tue, 1 Oct 2024 00:55:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1727762153;
+	bh=2NdUyEyvt9UUPlWmqWz0ga5Ikg4GePs2gjqgOXQbphc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=LDDEEblA1DPsLrfUlyw59AZ9GHr0sDFeCd6Hmj3ZILko830JJjCscs6k9PmlR5DIj
+	 u4RxFBCsfzY+q0Afabnw8a1sbH0SOwLR2I4YTa8DYfWaoROTU6N9aHSE97UfdRGmVR
+	 PUmKufo6IhES4XPlNhwbKb2H//TUddtgExP88lx8=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4915trGO005685
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 1 Oct 2024 00:55:53 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 1
+ Oct 2024 00:55:52 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 1 Oct 2024 00:55:52 -0500
+Received: from localhost (uda0497581.dhcp.ti.com [10.24.68.185])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4915tpPT008934;
+	Tue, 1 Oct 2024 00:55:52 -0500
+Date: Tue, 1 Oct 2024 11:25:51 +0530
+From: Manorit Chawdhry <m-chawdhry@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Udit Kumar <u-kumar1@ti.com>,
+        Neha Malcom
+ Francis <n-francis@ti.com>,
+        Aniket Limaye <a-limaye@ti.com>, Beleswar Padhi
+	<b-padhi@ti.com>,
+        Siddharth Vadapalli <s-vadapalli@ti.com>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RESEND v6 0/5] Introduce J742S2 SoC and EVM
+Message-ID: <20241001055551.md35lxzwsvx4mktj@uda0497581>
+References: <20240903-b4-upstream-j742s2-v6-0-49d980fed889@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240903-b4-upstream-j742s2-v6-0-49d980fed889@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Add missing clocks in UART nodes for RK3528 SoC.
+Hi Vignesh/Nishanth,
 
-Signed-off-by: Yao Zi <ziyao@disroot.org>
----
- arch/arm64/boot/dts/rockchip/rk3528.dtsi | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+On 13:42-20240903, Manorit Chawdhry wrote:
+> The series adds support for J742S2 family of SoCs. Also adds J742S2 EVM
+> Support and re-uses most of the stuff from the superset device J784s4.
+> 
+> It initially cleans up the J784s4 SoC files so that they can be
+> re-usable for j742s2 by introducing -common files. Next it cleans up the
+> EVM files for j784s4 in a similar way and then goes about adding the
+> support for j742s2.
+> 
+> Signed-off-by: Manorit Chawdhry <m-chawdhry@ti.com>
+> ---
+> Changes in v6:
+> - Rebased on upstream-next
+> - Add a comment for MSMC node (Udit)
+> - Link to v5: https://lore.kernel.org/r/20240828-b4-upstream-j742s2-v5-0-9aaa02a0faee@ti.com
+> 
+> Changes in v5:
+> - Rebased on upstream-next
+> - Align j742s2 and j784s4 comments (Siddharth)
+> - Link to v4: https://lore.kernel.org/r/20240819-b4-upstream-j742s2-v4-0-f2284f6f771d@ti.com
+> 
+> ---
+> Manorit Chawdhry (5):
+>       arm64: dts: ti: Refactor J784s4 SoC files to a common file
+>       arm64: dts: ti: Refactor J784s4-evm to a common file
+>       dt-bindings: arm: ti: Add bindings for J742S2 SoCs and Boards
+>       arm64: dts: ti: Introduce J742S2 SoC family
+>       arm64: dts: ti: Add support for J742S2 EVM board
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-index c0552ff7cd31..9c28e1d0d7ea 100644
---- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-@@ -166,7 +166,8 @@ cru: clock-controller@ff4a0000 {
- 		uart0: serial@ff9f0000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xff9f0000 0x0 0x100>;
--			clock-frequency = <24000000>;
-+			clocks = <&cru SCLK_UART0>, <&cru PCLK_UART0>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -176,6 +177,8 @@ uart0: serial@ff9f0000 {
- 		uart1: serial@ff9f8000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xff9f8000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -185,6 +188,8 @@ uart1: serial@ff9f8000 {
- 		uart2: serial@ffa00000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xffa00000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -193,6 +198,8 @@ uart2: serial@ffa00000 {
- 
- 		uart3: serial@ffa08000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
-+			clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
-+			clock-names = "baudclk", "apb_pclk";
- 			reg = <0x0 0xffa08000 0x0 0x100>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -202,6 +209,8 @@ uart3: serial@ffa08000 {
- 		uart4: serial@ffa10000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xffa10000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -211,6 +220,8 @@ uart4: serial@ffa10000 {
- 		uart5: serial@ffa18000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xffa18000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -220,6 +231,8 @@ uart5: serial@ffa18000 {
- 		uart6: serial@ffa20000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xffa20000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
-@@ -229,6 +242,8 @@ uart6: serial@ffa20000 {
- 		uart7: serial@ffa28000 {
- 			compatible = "rockchip,rk3528-uart", "snps,dw-apb-uart";
- 			reg = <0x0 0xffa28000 0x0 0x100>;
-+			clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
-+			clock-names = "baudclk", "apb_pclk";
- 			interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
- 			reg-io-width = <4>;
- 			reg-shift = <2>;
--- 
-2.46.0
+The patches are still valid for 6.12-rc1.
 
+Regards,
+Manorit
+
+> 
+>  Documentation/devicetree/bindings/arm/ti/k3.yaml   |    6 +
+>  arch/arm64/boot/dts/ti/Makefile                    |    4 +
+>  arch/arm64/boot/dts/ti/k3-j742s2-evm.dts           |   26 +
+>  arch/arm64/boot/dts/ti/k3-j742s2-main.dtsi         |   45 +
+>  arch/arm64/boot/dts/ti/k3-j742s2.dtsi              |   98 +
+>  arch/arm64/boot/dts/ti/k3-j784s4-evm.dts           | 1488 +---------
+>  .../arm64/boot/dts/ti/k3-j784s4-j742s2-common.dtsi |  148 +
+>  .../boot/dts/ti/k3-j784s4-j742s2-evm-common.dtsi   | 1490 ++++++++++
+>  .../boot/dts/ti/k3-j784s4-j742s2-main-common.dtsi  | 2671 ++++++++++++++++++
+>  ...tsi => k3-j784s4-j742s2-mcu-wakeup-common.dtsi} |    2 +-
+>  ...l.dtsi => k3-j784s4-j742s2-thermal-common.dtsi} |    0
+>  arch/arm64/boot/dts/ti/k3-j784s4-main.dtsi         | 2847 +-------------------
+>  arch/arm64/boot/dts/ti/k3-j784s4.dtsi              |  133 +-
+>  13 files changed, 4592 insertions(+), 4366 deletions(-)
+> ---
+> base-commit: ecc768a84f0b8e631986f9ade3118fa37852fef0
+> change-id: 20240620-b4-upstream-j742s2-7ba652091550
+> 
+> Best regards,
+> -- 
+> Manorit Chawdhry <m-chawdhry@ti.com>
+> 
 
