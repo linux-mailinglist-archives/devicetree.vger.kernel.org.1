@@ -1,142 +1,205 @@
-Return-Path: <devicetree+bounces-106964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B290198C664
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 22:00:16 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DA3A98C677
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 22:07:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BD8A1F24CCC
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:00:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA3E5B21BC4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4062D1CCEEC;
-	Tue,  1 Oct 2024 20:00:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC221CDFA9;
+	Tue,  1 Oct 2024 20:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="dOvEmBvP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sPrrp6Oe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF2F11CDFBE;
-	Tue,  1 Oct 2024 20:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC381CBE98;
+	Tue,  1 Oct 2024 20:07:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727812812; cv=none; b=TvnNSn7BrlNSmeRtYkgVKJSif76oP0+D/O50sL7TAocJA+7i7WKXhmkEHFROgmrIUtH8fHb1QwWLtsrNoB/JtZxxH9y6CuYQx+7H9PP5XCHxlyhkSx/+9naGwlae7TXgtGIlAXWmXDE/BXWsMGFl/bz6t+mInGsC0eoWnhCYsJo=
+	t=1727813256; cv=none; b=f7KvBADwjzXNBIfuWmlF/VjDOhOtX4WDY3lVeIWHLzClvYakDcad7qk0uS128hLUP1pKphVvhnsaQPdRg4/6AiYmOVXFBq95YJIzci1ZfA2p0NhQ7ef9RJA9DteXzE6VnHoyOWLO6aWbk6EXNm5HomWWo24mag2DvPBsC/Svhko=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727812812; c=relaxed/simple;
-	bh=9nxNhpLrx3HJEq9JhEouMSM4YNgGI4tmenEeJnI7KaI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uv3R5UQQFHXY4/67gY2qRHQb+mwRPUm3qcOsVmfUDEEcZVtVOt8oQ/WURwSl0yTqJLLneMGENwRtqOYM/oHnRU0UYRWe7Wl01C78Gj57mHI0i1PYOj669xWpRdebsWaSrFHuXvgS4PHfbCD8JyhSiNgmAe0Rd365/lWom24HPwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=dOvEmBvP; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-20b7259be6fso32127965ad.0;
-        Tue, 01 Oct 2024 13:00:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1727812810; x=1728417610; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Txj9X25LmbjQ//MeIX5ksz2p7RxnM6sQFO6w2mk7FrQ=;
-        b=dOvEmBvPamriXlYTdJUeJ9JQvPEsV1ben9lzbzUIZ9HHbp6mjkLrFvfD57QabzUaJB
-         V2gdZu8k7TzvpK1KuHoS66KnKzlZ4wK2VqJax/ZHSS6mL7dwbpAvl/nuUn/62/XS90Em
-         Aka6+MMWmkYEcsQrU0LBKhoBgKANnIR56KLtUEJEwSdnIzTsF8IXVODbKlZrDC27FHdz
-         92s05d8QmhKxpJRxydrQZJCGamh98WDF5Kn0yY5W9Z24feRNEAZjvpGZ5iKozCenWnMt
-         HWXYrAL/qpaKMZEZCgcPN/jWYKXsLUdhRpC+7WGmeXgOe4gmcI7Zp4SNUuUEogol/UTU
-         zlVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727812810; x=1728417610;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Txj9X25LmbjQ//MeIX5ksz2p7RxnM6sQFO6w2mk7FrQ=;
-        b=XkRfivHwdkmMi4gaWKS6ihyScQy1pq8M4cuvzfsN5myCGFebeqFNIAGN0hOsrxKY6Q
-         2uM3YS0WcW2alRxhqlonuHvmHPmBj307DYpNym7eauCFb9sTqxAGbN/rsyHbVBFe8VOq
-         gxdAGpZ5/0HGnPQ4fFCEfur+TJis2+zvXuz1zuIWzRgBscCaLviGkCJ2+DJKylsIVNBz
-         +xe5HmSsvwW3u6HI5fLkH6XMW7JnCwMj3hQZCkm1ROPPS/ehZ/M5M92R4M+YfWGSLsUt
-         03m8fEBVOEnmsJBgwPjLsvjtd+4fHLGvs8DrYtQEHBt8WfBlcUs3lFuLks5Vx/4byG+d
-         j2Uw==
-X-Forwarded-Encrypted: i=1; AJvYcCUm2Ob+/N7wM2+qQiEIpr8YY8foSjEtEq5QVt7yPWbdiPyCw24khEGCuGLnq3DPkvyVZgL5wKA5mshODPFO8lWEh5s=@vger.kernel.org, AJvYcCUvP2ABPXHjVCEHtiTZXMISl7fM4EIV6M5sSQp3lH7j4BsUFhuUZxfuBI/PxGw9p7swPmtdJsNmx6F3KH60TqCR3g8=@vger.kernel.org, AJvYcCVnyPRPZW3NyGU+cogkxCaN5uaKZpP2zQUfA2Lp9qk+gaigz7rfwqChBNU7eBXsytc+g9H1JtohGyBCoS2ssA==@vger.kernel.org, AJvYcCXQSogziQtb+6seRW1XzSswGYxW2/6Wwq/HmJ406haVaerMnqdy3ZAhA1xFqDaZ0OW93wM268qAI2H+oCue@vger.kernel.org, AJvYcCXhvF4W249EWiW+p19ai52nZrFS2WWM6U/od8qEwHJA8BY7L1I3He302PNsrxCHiK7BIqjONqtyza1Csg==@vger.kernel.org, AJvYcCXp0UkWtIuxP2TqvPclKZ9AvVCpjzlZBonvD+AXzpV5OVyhH7bP5XgksugCpFUteSFdPjJ+2sKRmsjezBw=@vger.kernel.org, AJvYcCXyTT7hSFmdWLNJLiMj+BcLHPz+eEqUisava0LsHpnFPBM60zi/66AzJxmdYtyeDIMc5HFPzIvxSZfc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz19uYRHGJY3WLqWa6hEI580EU49boq0L+G2N0VOfw/13iQj+hj
-	OhiWQSusLBL81ZHkQPqhoM/tL53k7Jl0IbEFx/7+Nq82eDNAF4GYBfjR9aOb+r8BRXUbRqRJjbP
-	vR44ZFJERoWVzKcTKioZrcpKoDAo=
-X-Google-Smtp-Source: AGHT+IEzN68oFH6UETNrpbvCGpopcDsigqPvgYKygFNF7D6FUqPz4x1zQ8ZA7UoZNXXUi84OPMM6AhdceSvhM1DdNJ4=
-X-Received: by 2002:a17:902:e550:b0:20b:720d:734 with SMTP id
- d9443c01a7336-20bc5a5cd06mr11151925ad.41.1727812809889; Tue, 01 Oct 2024
- 13:00:09 -0700 (PDT)
+	s=arc-20240116; t=1727813256; c=relaxed/simple;
+	bh=RwlNbHbEggXjoUOJqdOh2JuBuCr/584bhOnSF2T317M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=K4uBInIRA/FieUxM8iPWrMA/luD5upfq8djkjGt17HYAX1chZvzK0koM2hkjlxp9bngfDUvTOb9mY95PPGXWPqkOyudxpSn/hHyhgUIPMQrJP109Gnlaan4YZyh9hPodMHkLLFL485qzAtdAoCr95zAQ+sHo4a+nE1KzR2zJfYA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sPrrp6Oe; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=aaXdue1ZA7Ch185TFMrVveuH4KfcXYm2oKa4uAKPZV8=; b=sPrrp6OefCaCsCtsBGAyER+oCN
+	MZLPVM8LiVivw5EbzY7Dbeeq/mtCncrngNoyVL5tPMxNK+gtziwzvn8QziwgRxkVczo7xHN+8Y4W0
+	of1WUoiliHl9FvPJz6lvxYvqcX5TFGEM9RE3hDfQ14le9sZGtwhV/lNGZmEa8+v5kj+A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1svj9U-008lmx-Qm; Tue, 01 Oct 2024 22:07:20 +0200
+Date: Tue, 1 Oct 2024 22:07:20 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Andrew Halaney <ahalaney@redhat.com>
+Cc: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>,
+	"Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Abhishek Chauhan <quic_abchauha@quicinc.com>,
+	Serge Semin <fancer.lancer@gmail.com>, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFT] of: property: fw_devlink: Add support for the
+ "phy-handle" binding
+Message-ID: <5bded0f6-a49b-4606-b990-dc5aad360bf8@lunn.ch>
+References: <20240930-phy-handle-fw-devlink-v1-1-4ea46acfcc12@redhat.com>
+ <CAGETcx-z+Evd95QzhPePOf3=fZ7QUpWC2spA=q_ASyAfVHJD1A@mail.gmail.com>
+ <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240930223550.353882-1-rosenp@gmail.com> <20240930223550.353882-3-rosenp@gmail.com>
-In-Reply-To: <20240930223550.353882-3-rosenp@gmail.com>
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date: Tue, 1 Oct 2024 21:59:58 +0200
-Message-ID: <CAFBinCB1Rz+C=Tj+RJAL5KZbk9K7cnpF_uR6rKkMeqyCuDBo4A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] ARM: dts: assign reg to memory nodes
-To: Rosen Penev <rosenp@gmail.com>
-Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Antoine Tenart <atenart@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, Joel Stanley <joel@jms.id.au>, 
-	Andrew Jeffery <andrew@codeconstruct.com.au>, Jesper Nilsson <jesper.nilsson@axis.com>, 
-	Lars Persson <lars.persson@axis.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	Viresh Kumar <vireshk@kernel.org>, Shiraz Hashim <shiraz.linux.kernel@gmail.com>, 
-	"maintainer:SPEAR PLATFORM/CLOCK/PINCTRL SUPPORT" <soc@kernel.org>, Marek Vasut <marex@denx.de>, Jisheng Zhang <jszhang@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, David Lechner <david@lechnology.com>, Nishanth Menon <nm@ti.com>, 
-	Santosh Shilimkar <ssantosh@kernel.org>, Tony Lindgren <tony@atomide.com>, 
-	Enric Balletbo i Serra <eballetbo@gmail.com>, Javier Martinez Canillas <javier@dowhile0.org>, 
-	Alexey Charkov <alchark@gmail.com>, Denis Burkov <hitechshell@mail.ru>, Arnd Bergmann <arnd@arndb.de>, 
-	Stefan Wahren <wahrenst@gmx.net>, Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
-	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
-	=?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>, 
-	Nicolas Chauvet <kwizart@gmail.com>, Tomasz Maciej Nowak <tmn505@gmail.com>, 
-	Robert Eckelmann <longnoserob@gmail.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>, open list <linux-kernel@vger.kernel.org>, 
-	"open list:ARM/Amlogic Meson SoC support" <linux-amlogic@lists.infradead.org>, 
-	"moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>, 
-	"moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" <linux-rpi-kernel@lists.infradead.org>, 
-	"moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>, 
-	"moderated list:ARM/NUVOTON NPCM ARCHITECTURE" <openbmc@lists.ozlabs.org>, 
-	"open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>, 
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
-	"open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>, 
-	"open list:DH ELECTRONICS IMX6 DHCOM/DHCOR BOARD SUPPORT" <kernel@dh-electronics.com>, 
-	"moderated list:ARM/STM32 ARCHITECTURE" <linux-stm32@st-md-mailman.stormreply.com>, 
-	"open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>, 
-	"open list:ARM/RISC-V/RENESAS ARCHITECTURE" <linux-renesas-soc@vger.kernel.org>, 
-	"open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>, 
-	"open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES" <linux-samsung-soc@vger.kernel.org>, 
-	"open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
 
-Hello Rosen,
+> Let me see if I can hack something up on this board (which has a decent
+> dependency tree for testing this stuff) to use the generic phy driver
+> instead of the marvell one that it needs and see how that goes. It won't
+> *actually* work from a phy perspective, but it will at least test out
+> the driver core bits here I think.
+> 
+> > 
+> > But like you said, it's been a while and fw_devlink has improved since
+> > then (I think). So please go ahead and give this a shot. If you can
+> > help fix any issues this highlights, I'd really appreciate it and I'd
+> > be happy to guide you through what I think needs to happen. But I
+> > don't think I have the time to fix it myself.
+> 
+> Sure, I tend to agree. Let me check the generic phy driver path for any
+> issues and if that test seems to go okay I too am of the opinion that
+> without any solid reasoning against this we enable it and battle through
+> (revert and fix after the fact if necessary) any newly identified issues
+> that prevent phy-handle and fw_devlink have with each other.
 
-when you re-send this, please drop the Amlogic files.
+Here is one for you to look at:
 
-On Tue, Oct 1, 2024 at 12:36=E2=80=AFAM Rosen Penev <rosenp@gmail.com> wrot=
-e:
-[...]
->  arch/arm/boot/dts/amlogic/meson6-atv1200.dts                    | 2 +-
-This file was dropped with [0]
+https://elixir.bootlin.com/linux/v6.11.1/source/drivers/net/ethernet/freescale/fec_main.c#L2481
 
->  arch/arm/boot/dts/amlogic/meson8-minix-neo-x8.dts               | 2 +-
->  arch/arm/boot/dts/amlogic/meson8b-ec100.dts                     | 2 +-
->  arch/arm/boot/dts/amlogic/meson8b-mxq.dts                       | 2 +-
->  arch/arm/boot/dts/amlogic/meson8b-odroidc1.dts                  | 2 +-
->  arch/arm/boot/dts/amlogic/meson8m2-mxiii-plus.dts               | 2 +-
-These got updated with [1]
+I don't know if there is a real issue here, but if the order of the
+probe gets swapped, i think the usage of mii_cnt will break.
+
+I don't remember what broke last time, and i'm currently too lazy to
+go look. But maybe take a look at devices like this:
+
+arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-b.dts
+
+       mdio-mux {
+                compatible = "mdio-mux-gpio";
+                pinctrl-0 = <&pinctrl_mdio_mux>;
+                pinctrl-names = "default";
+                gpios = <&gpio0 8  GPIO_ACTIVE_HIGH
+                         &gpio0 9  GPIO_ACTIVE_HIGH
+                         &gpio0 24 GPIO_ACTIVE_HIGH
+                         &gpio0 25 GPIO_ACTIVE_HIGH>;
+                mdio-parent-bus = <&mdio1>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                mdio_mux_1: mdio@1 {
+                        reg = <1>;
+                        #address-cells = <1>;
+                        #size-cells = <0>;
+
+                        switch0: switch@0 {
+                                compatible = "marvell,mv88e6085";
+                                pinctrl-0 = <&pinctrl_gpio_switch0>;
+                                pinctrl-names = "default";
+                                reg = <0>;
+                                dsa,member = <0 0>;
+                                interrupt-parent = <&gpio0>;
+                                interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
+                                interrupt-controller;
+                                #interrupt-cells = <2>;
+                                eeprom-length = <512>;
+
+                                ports {
+                                        #address-cells = <1>;
+                                        #size-cells = <0>;
+
+                                        port@0 {
+                                                reg = <0>;
+                                                label = "lan0";
+                                                phy-handle = <&switch0phy0>;
+                                        };
+
+                                        port@1 {
+                                                reg = <1>;
+                                                label = "lan1";
+                                                phy-handle = <&switch0phy1>;
+                                        };
+
+                                        port@2 {
+                                                reg = <2>;
+                                                label = "lan2";
+                                                phy-handle = <&switch0phy2>;
+                                        };
+
+                                        switch0port5: port@5 {
+                                                reg = <5>;
+                                                label = "dsa";
+                                                phy-mode = "rgmii-txid";
+                                                link = <&switch1port6
+                                                        &switch2port9>;
+                                                fixed-link {
+                                                        speed = <1000>;
+                                                        full-duplex;
+                                                };
+                                        };
+
+                                        port@6 {
+                                                reg = <6>;
+                                                phy-mode = "rmii";
+                                                ethernet = <&fec1>;
+
+                                                fixed-link {
+                                                        speed = <100>;
+                                                        full-duplex;
+                                                };
+                                        };
+                                };
+                                mdio {
+                                        #address-cells = <1>;
+                                        #size-cells = <0>;
+                                        switch0phy0: switch0phy0@0 {
+                                                reg = <0>;
+                                                interrupt-parent = <&switch0>;
+                                                interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+                                        };
+                                        switch0phy1: switch1phy0@1 {
+                                                reg = <1>;
+                                                interrupt-parent = <&switch0>;
+                                                interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
+                                        };
+                                        switch0phy2: switch1phy0@2 {
+                                                reg = <2>;
+                                                interrupt-parent = <&switch0>;
+                                                interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
+                                        };
+                                };
+                        };
+                };
 
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git/commi=
-t/?h=3Dv6.13/arm-dt&id=3De2a3f11ae11c9f9ee780bf49f00a69f12dce3529
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git/commi=
-t/?h=3Dv6.13/arm-dt&id=3D7947fd2d350e6057e7514459c7ee2db39d1096a2
+This would be an example of circular dependencies, with the interrupt
+properties closing the loop.
+
+switch -> mdio -> phy
+ ^                |
+ |----------------+
+
+	Andrew
 
