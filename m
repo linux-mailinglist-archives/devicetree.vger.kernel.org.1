@@ -1,113 +1,140 @@
-Return-Path: <devicetree+bounces-106874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E7798C189
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:26:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 539F398C1AA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:31:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D9261F22900
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:26:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E00B5B217F9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD5791C8FD6;
-	Tue,  1 Oct 2024 15:26:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999E21DFCB;
+	Tue,  1 Oct 2024 15:31:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="IsRCdtlk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HRuIQdjm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD69B645;
-	Tue,  1 Oct 2024 15:26:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7103633D5;
+	Tue,  1 Oct 2024 15:31:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727796368; cv=none; b=mGZ0AuJzQoHuM9PejuY5QP4gQooH4WG+TdvEi9BDVStWk0dZB4nNqN1f8E1Ep6Uy8ipQpktGxyye6nBeUkFScjTdqVompceUjRnHEnV+l9UNeKfzVM1khfRAJehV/t0iBi/IZbUe4ZQKYuBUJed8jN7NcVptNestcD/MotNsNV0=
+	t=1727796686; cv=none; b=jYo8ZIVR1pOUnwdOLP6SatJcXpwacbQbg8PEIc1+VNum2arc3zTMzO2t82fo5bji+Eced9VZWfBGNbEHrqmJBYHfeaSmVQFepTEEnlHwqq1bi6pUotFG3+7iOw1+lfmJheMV34kS93MfN4GhK3N6OUAjeYxt93Ud0e1rRBsLS1c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727796368; c=relaxed/simple;
-	bh=+YZZSxfbdyiIr93tIMUZDxqaYcghUxhFXzEBtAfe9Sw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KO6SYNQfkuGY/Y33xFzaMGeWP2McpihAovPxVgW/3SdQFJG2HtNvM6nBWkajzZN5o//9CqzVE5rkF8HgFdwWIGnj8G0Q/mN0OdzjP8j9OvDn3qg4EBTteP5z1nsFcdcat70RorInKYx4hHByM4Zz1x2XhSBI2fTmHNUTvGgdjmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=IsRCdtlk; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727796364;
-	bh=+YZZSxfbdyiIr93tIMUZDxqaYcghUxhFXzEBtAfe9Sw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=IsRCdtlkZPMbwZhF685OXK4Jrwj57OtfDIQHj1ZDuS1AA3K5BX0ZP7O0HY8uDgHna
-	 Ej9yVcpiofM61HL21cd/KWYTTG2XmHoQIbJw7PznJ8mJQbT2GCInkt4SLh65yLIgyv
-	 vD+5Sf3esOwjR3PIhtzxULPXDsWeHX2eyLV10QW1jsAqU5tQqLu8lQPTPBjFcp7j5m
-	 8UvMF9Z1ApUljwa9IkHvwwYMrbP+eaKpqnMiDV4++YPNdyqvuwhp4adlvQkxPvIQpn
-	 ShnMZmveHuhDrVOB1oV5YCJHVEmEqyhf+jw1fB1Pd5B9trw/EdBfFOdrAeLh50tW50
-	 phIwzx9zBxqhA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9B21417E0FDC;
-	Tue,  1 Oct 2024 17:26:03 +0200 (CEST)
-Message-ID: <a3089f16-bc43-4ee0-b313-94e5a37cb449@collabora.com>
-Date: Tue, 1 Oct 2024 17:26:03 +0200
+	s=arc-20240116; t=1727796686; c=relaxed/simple;
+	bh=JTjMeNjAdjcmlXBo4g1OYjHb8ddMEYPTWyFl5S+f3Nk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LdovAgaWNo0yjKKK+C6ipQ0FkQ+F6OqyxxXsdKwoSZZkBYqqKyhtXDo7iYlPQgp7VIfU1JARZKmyyrWl3H5NxewYLZiqVVkrUhlF5+9x1jrzOU3gXkcpojZPUL223EPREF3GFcYt7KMhQusdZojTgr6bvBBNBXOX9/C4/DYDl+Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HRuIQdjm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBEE2C4CEC6;
+	Tue,  1 Oct 2024 15:31:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727796686;
+	bh=JTjMeNjAdjcmlXBo4g1OYjHb8ddMEYPTWyFl5S+f3Nk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HRuIQdjmGzWE9tAgt1bkBn1uYU8vXEtQKjdeuYPoCSsXIw8nZQvKapHO1bDLbXU9g
+	 HJ4HEa0SNiMYEKbuKt5G7nvxJUKKFn3e7qub3T/BWvATjy0Nw44YPQVq/9+4S5AsHv
+	 A6c/2T3rJWHL6FUXi3//WZUzxa6SDFtwFZxEurBDNXpmfo42MDU1cFLtqy3+l3I7RB
+	 7sNE4RGFcllB6TGK3JNFntauk7e/Mkz9wKwPyFxLZIqs/Wt3XRXOYm9iJCwZMyxFBd
+	 HZBp4hkvslt6Rzh11p38mDEEZOYEIqK02cQV9+VKKrmCGCQDijC+Egv7lz3N84NPJ3
+	 HdGuKClpsDk7Q==
+Date: Tue, 1 Oct 2024 16:31:21 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrei Simion <andrei.simion@microchip.com>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+	alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Alexander Dhal <ada@thorsis.com>
+Subject: Re: [PATCH v2 4/4] ARM: dts: microchip: aks-cdu: Add label for LED
+ sub nodes
+Message-ID: <20241001-sleet-bronchial-867258945373@spud>
+References: <20241001152541.91945-1-andrei.simion@microchip.com>
+ <20241001152541.91945-5-andrei.simion@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/3] regulator: dt-bindings: mt6323: Convert to DT
- schema
-To: Macpaul Lin <macpaul.lin@mediatek.com>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sen Chu <sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>,
- Andrew Lunn <andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>,
- Vladimir Oltean <olteanv@gmail.com>, "David S . Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Sebastian Reichel <sre@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- linux-pm@vger.kernel.org, netdev@vger.kernel.org, linux-rtc@vger.kernel.org,
- linux-sound@vger.kernel.org, Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20241001104145.24054-1-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241001104145.24054-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-
-Il 01/10/24 12:41, Macpaul Lin ha scritto:
-> Convert the MT6323 regulator binding from the old text-based format to
-> the new DT schema style. The property "regulator-name" has been added
-> as required property to reflect current usage in mt6323.dtsi.
-> 
-> Examples have been streamlined and relocated to the parent schema file:
->    mfd/mediatek,mt6397.yaml.
-> 
-> Update maintainer and submitter information with new entries from MediaTek.
-> 
-> The reference document cited in "mediatek,mt7530.yaml" has been updated
-> to point to this new DT schema file
-> 
-> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Acked-by: Mark Brown <broonie@kernel.org>
-
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="pp7amhUoR3YGJ6qY"
+Content-Disposition: inline
+In-Reply-To: <20241001152541.91945-5-andrei.simion@microchip.com>
 
 
+--pp7amhUoR3YGJ6qY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Tue, Oct 01, 2024 at 06:25:41PM +0300, Andrei Simion wrote:
+> Add the label property here and use the old node name as value to stay
+> stable and avoid breaking the userspace applications that depend on those
+> paths.
+>=20
+> Suggested-by: Alexander Dhal <ada@thorsis.com>
+> Signed-off-by: Andrei Simion <andrei.simion@microchip.com>
+
+Shouldn't this be squashed with 3/4 so as not to break it in one commit,
+only to fix it in another?
+
+> ---
+> v1 -> v2:
+> - added in v2 by suggestion of Alexander Dhal
+> ---
+>  arch/arm/boot/dts/microchip/aks-cdu.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/microchip/aks-cdu.dts b/arch/arm/boot/dts/=
+microchip/aks-cdu.dts
+> index 0c3373ad1723..b65f80e1ef05 100644
+> --- a/arch/arm/boot/dts/microchip/aks-cdu.dts
+> +++ b/arch/arm/boot/dts/microchip/aks-cdu.dts
+> @@ -99,22 +99,26 @@ leds {
+>  		compatible =3D "gpio-leds";
+> =20
+>  		led-red {
+> +			label =3D "red";
+>  			gpios =3D <&pioC 10 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger =3D "none";
+>  		};
+> =20
+>  		led-green {
+> +			label =3D "green";
+>  			gpios =3D <&pioA 5 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger =3D "none";
+>  			default-state =3D "on";
+>  		};
+> =20
+>  		led-yellow {
+> +			label =3D "yellow";
+>  			gpios =3D <&pioB 20 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger =3D "none";
+>  		};
+> =20
+>  		led-blue {
+> +			label =3D "blue";
+>  			gpios =3D <&pioB 21 GPIO_ACTIVE_LOW>;
+>  			linux,default-trigger =3D "none";
+>  		};
+> --=20
+> 2.34.1
+>=20
+
+--pp7amhUoR3YGJ6qY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvwVtwAKCRB4tDGHoIJi
+0puLAP9wTZxsWq9bQcikzeyGjPnJ9hykcLmPOcqId6xgxzKIywEAgLxNnEe+o0No
+sgVGhPNyUqz+VHFmJwNhgI92IxjAPgs=
+=yRwO
+-----END PGP SIGNATURE-----
+
+--pp7amhUoR3YGJ6qY--
 
