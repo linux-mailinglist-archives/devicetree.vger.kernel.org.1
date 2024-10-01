@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-106810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 036A898BD30
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5579F98BD36
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:16:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27B451C23849
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:16:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78D8A1C220E3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:16:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D921C3F1C;
-	Tue,  1 Oct 2024 13:15:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62F791C4624;
+	Tue,  1 Oct 2024 13:16:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EzZJuVWq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rRyYp68M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CC41C2431
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 13:15:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D95A1C3F0A
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 13:15:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727788558; cv=none; b=HplabBm4+l6pvCzrz7XEx/S/YOlBz+Np6/FbiHaWoKcuOzLqyryqpYSw2EVlSMRN+C9cU/EVrxeX6t+mdHPdY8C8ljOBPV9Bjl3jHDlgB2nqHmgNC9ALVjqA/RTS2QcHQO+AcdOpP3i8i+l29HfliAuVCIW68Dx9qknLQYcwya4=
+	t=1727788561; cv=none; b=ZMy3AndtDdBhc8kM9Ub4EZpWIVVpKk9sI1NmFYOvfmB1vz5cbUyuiOcTd1vYJm8OB5HDoE8FN0Tmp1ZxeDc76zGKwu/Q/M9r1QvfJFBjZMeOz3hg6oDC5JB7o5pB2W5H69bxvA53XIiwCwrjPXCr7p+rtPRcCplRubiIONTkMSk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727788558; c=relaxed/simple;
-	bh=vTwVvG8iZlHzHza+YS67mEwp2zyunt+kNzBDYWtFYWc=;
+	s=arc-20240116; t=1727788561; c=relaxed/simple;
+	bh=Lqdd3Iex9Ieycc9m4bbhq0l+g+TliLP6Lt7etgxesno=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p8Xcnk/oJoMRD0iw3cmb/5H9VvZKvxe2Iz6WZiOhFCo3j4I/3uF8Lkd8DL1Bw2YAJznctmqfK2GmniTwsinyGwgi236fUbe6ARCzm7t3SKYzBVXJn30Pu7CJZ8QzanBwCTxCnhriLRQ9tZ7t1Xz9eYhxyDAEbpW+GM31HEnvdiA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EzZJuVWq; arc=none smtp.client-ip=209.85.208.173
+	 In-Reply-To:To:Cc; b=mwenSuLmeeuzeFIIrdAbrKuaJOSMS6lTmVu94LSPA1af/DPjrxcpqFj5acrEpz0CpUPOhvwWhtYkpqcs50WQdUr1Ib2+Qko4WHhBjWI7qW70Az2GssA1RUM85HSvqfmgCzRyPIm0uiF/WVJPey9OC6N9caKAwIFhL9PAGiGqiFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rRyYp68M; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fac6b3c220so29260281fa.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 06:15:56 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-5389917ef34so6346393e87.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 06:15:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727788555; x=1728393355; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1727788556; x=1728393356; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=E7nKjwcfTxwC0PwN6GrPgJAgBaaTNk6QSx4URpDS/gc=;
-        b=EzZJuVWqe4dq4DSLEYafF1RDbQ37B8sYfE6VIFtY0ohWA2rjHysQraV9dT6lhN8s2n
-         /VnDr/bpZ1KrsfO3+zNTQ3c25wGgnoCLlOgMlzPEcIzz8SYZ16b9OPl8HZKghlq50opV
-         rUezgJdvDF7rAlC1+qY4sIh9EuC7BW/OgM/jCasHcSbjQCvaD9OyOkZWPyoP9fIfIqxI
-         y+s3pBOryA9Hqunvh5wt+8VuNVtPix+A5CMWCMSQrnuvKd8docvJIdJBR7x2SXH+FHWY
-         PXruVoTERxOIINowsrmctxlMbHnxA3+nh/wCEdqyvdXu9sxgh2Biop1AnGJk4oi2+CAd
-         k1eg==
+        bh=OlXAikEDwAtjOIbwMBno+zyl47bykwn2jCgyJZs+uR8=;
+        b=rRyYp68M75u/4bHH8YZdY61UMh8BI9UJiMC7ws8CpspEQj10MvGI65bwxEYhYllhvA
+         KgN0VRa7eTK5OuYEqMQXrhjME6PKVQdMbd3qwnp2CQ9oGGLzlWTvPMiVWbyD26sWYuiy
+         NSwf0OW0nrVgrpvpoPpBqqzYuzdLMKKE06AiTP0Ieu+61mePbQ0+DbGRjEkHBIRiAhJn
+         ruCiXxtVL3SkRlaChcn4bq1fvuek67PqR+txaSVY8USnQE/ktfrZDASr0bXEZZtJrYqE
+         GOrQcmEm5cleDVonQqnu9AAxD4Tutyo3N3g7bERbTfol6UjuHk3oByATseCV9jybfhjQ
+         8Imw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727788555; x=1728393355;
+        d=1e100.net; s=20230601; t=1727788556; x=1728393356;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=E7nKjwcfTxwC0PwN6GrPgJAgBaaTNk6QSx4URpDS/gc=;
-        b=W/j5S8weUn+YmC8kJR2H3OILPM0oBQV3N78O80YcZ5sDJEZsjKunL15uLqxcdtLDMW
-         qMIbRLVGivTCITv/Sdygwo9KjW+tJHsh86kvF+ZyCz6AWpqTPYoKSY9VYWBOGYXkFWSZ
-         MTVYFvDsKZIORdXRCXqjzXNfwv//ZFGaUM4QvNdZV84U2wJEn7qu5OX/Kcqt+hxqPqVY
-         gP0fN+qQvg4z1t7ioOd6AbCTX4Y7AbJjtUIzioElmiYb0zOt1SrKN72zwEAwTNC9XgTP
-         T1IS2F+XekkAcZN0p23QP0qIK7kenLOL3xFrPX4hKHEi82/Te9mFR5JPLsHdpFLd4whj
-         hSPg==
-X-Forwarded-Encrypted: i=1; AJvYcCUzPMIVTSLb4imsggnIXibI+HTdWm/2G3TOxPiL5M5Y+C+64KmivneKUnLBV5h04V1m36ArvzMPBG7A@vger.kernel.org
-X-Gm-Message-State: AOJu0YyI1waIxwjh9wz/o+dhI26hwV8+Z3JNbWCybsx/60pkHjer51lR
-	DrqJ5x5UxobLle3Pw3FHgS6LFIEplUttJatGCd/ejRb+jGtAHZe0QD3353cat3OK3Y27AR2Rs/8
-	OSZU=
-X-Google-Smtp-Source: AGHT+IGnYlidwKx74FpXp9lnAfLCOvamYKKTjUzv/lAopPuJt0yTpxQDXRhkk1HEkGvbsHnREX5bKg==
-X-Received: by 2002:a05:651c:54d:b0:2ef:2905:f36d with SMTP id 38308e7fff4ca-2f9d3e4966dmr118969421fa.16.1727788554878;
-        Tue, 01 Oct 2024 06:15:54 -0700 (PDT)
+        bh=OlXAikEDwAtjOIbwMBno+zyl47bykwn2jCgyJZs+uR8=;
+        b=ZG4hoHbWoPhvvd1PbkN2h5b6srfLPrrM5K4eksGz/dvJBv4+Q0VwbZAkrHQklPUAy1
+         /j69klhif7C+EhxtClym0fvczrltgzo08pe5QB4saanK3CQaMnlVxvWcBlnFbdXhnGRk
+         NmII9l3hT3ckEJqYwXbD4DY7mvzqeLuyYPqflMXJgQr6GaCVBz9EO4/D4q4yg1EEOJYK
+         NKJjO9FnvcNF0R9VUr/KEKuXLyOnL/pRephc5LMtPqxXWqeAmuvSkiuQtqNsgr5j0NXk
+         hwDCIv91AHzGpLjahn0xtHAB14wDWGHmyAlT47pPa60PmuT0YHLped+YJLjarhc1tE5q
+         H3pw==
+X-Forwarded-Encrypted: i=1; AJvYcCWE1dLjjajxQZbxYo+XF2WQq1LnDPbSZ+aLH2SR+uFO8fCCgzYnbObtfF1KJFYM8KvO3/VnNF1BxHBv@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyyBQlYcwpoCIvypMO/SNfovkTQQBi62eAxcJ8WhnpAGCybOwK
+	4mihnZKDFrvqrh2QCpimjLQ6RTZ4nMybzAW9g5CuEis9dgd+9QOWzsEBxok0QkhW8Fzfc8wZ8Xj
+	tti0=
+X-Google-Smtp-Source: AGHT+IHNo9CACCWv9p7CK3KBj/Iiahgfbdnox0jvdyvCrXh8Zhk6yeMmUeyRPHsmRWzsVYK0FMwxHA==
+X-Received: by 2002:a05:6512:b21:b0:536:54df:bff2 with SMTP id 2adb3069b0e04-5389fc6ce3fmr8500110e87.54.1727788556018;
+        Tue, 01 Oct 2024 06:15:56 -0700 (PDT)
 Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88248abf5sm6170875a12.77.2024.10.01.06.15.53
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88248abf5sm6170875a12.77.2024.10.01.06.15.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 06:15:54 -0700 (PDT)
+        Tue, 01 Oct 2024 06:15:55 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Tue, 01 Oct 2024 14:15:49 +0100
-Subject: [PATCH v2 1/4] media: ov08x40: Fix burst write sequence
+Date: Tue, 01 Oct 2024 14:15:50 +0100
+Subject: [PATCH v2 2/4] media: dt-bindings: Add OmniVision OV08X40
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241001-b4-master-24-11-25-ov08x40-v2-1-e478976b20c1@linaro.org>
+Message-Id: <20241001-b4-master-24-11-25-ov08x40-v2-2-e478976b20c1@linaro.org>
 References: <20241001-b4-master-24-11-25-ov08x40-v2-0-e478976b20c1@linaro.org>
 In-Reply-To: <20241001-b4-master-24-11-25-ov08x40-v2-0-e478976b20c1@linaro.org>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -90,104 +90,160 @@ To: Sakari Ailus <sakari.ailus@linux.intel.com>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- stable@vger.kernel.org
+ devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2802;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3777;
  i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=vTwVvG8iZlHzHza+YS67mEwp2zyunt+kNzBDYWtFYWc=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBm+/YH9ifjoLl/q8cwHxx2jKcu3VxWfPPCtvJZo
- /m1Al51PXiJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCZvv2BwAKCRAicTuzoY3I
- OgtSD/9f5tponllpWndL3ew/MCurWWz4cP041CVQGSjiHOQLs4LBamTk9/p9sKU4bS/o4gjHUHg
- agBB5f9rog4wQrb6BFR167obvnUf4XWKFTuRBVxpvi+oIBqDITmlhL0BciQPDFGH5Gy/o93WiWO
- hV4kdU7APdnnB1xyYwPgZWdMfUOHBcw3P3MzGzpfyck6qn0cMg8GTDTbCfBot5vuQVW80vBgtU4
- FUWE5Y48bxjGayg9r8UDprRN3byOoZfT3JfCfXcv7ONWqwxJfh7dlXS9OQ2/lRBPMulFifZAU+t
- lzU1pBGeGFTfh6G4oN9LkI95RyvIv5Yq+uIYwKR6IzIoYJsmU0S1kDUQxf5hm4k1Tk91P4Us4f2
- SbO43XBmBJm1Jq7PySQES2XrXUaokra+Y7z5X1NAzhdqpzDOCm49V8blv1s85WoOc4moMuvFJ8c
- x+m3JlIPyByA1RXvVKwETAlyZxqrD1Ive4nbO9EJytCFY1Onq1bfOxFcO+rLZwADw3en4SHphAO
- f0a5rQVhjPAN4/0Bj4cR8g+qthITvOQSmL/eySByJfbUapjMNv16pylo44ttjKndKV3Q6+7m02z
- 5B/cc+hfV/0kJglbUK55B5fy4e/biOlSWjfPlbHG4uyL4LtvX+FRZCIF0gnd0V5qadSIje0YsJX
- v8tM3xQHeUNLcXg==
+ bh=Lqdd3Iex9Ieycc9m4bbhq0l+g+TliLP6Lt7etgxesno=;
+ b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBm+/YH6qhGt1OnCw8VR4lfYovDxEKyANfFBA6g+
+ dywFMkGSTyJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCZvv2BwAKCRAicTuzoY3I
+ OrukEACIOwTCc0LpzFRqm+9/Zk+l2pvjzV+EOLMeex4UhL5hZMH+E0CFUHmZRKVO+5fc2mnqOvX
+ Mu7FabWbBFD/UM2EKBKFOOl6NGSNqmbityXYBuvsmRhEWdjLHLcT3kwA29sanK8ICEOfH53IfV6
+ Yc1FO2B2U+27/CnWU7a4rU4eTe1GVq6oAUGBgRav8qw0eruL8XrCWJn7pkF9Zt0hUW6Yc5TFHlx
+ YFVHI65QRM5LTPH2dIbCua02n6xrK7D5SefwPjZF0RrSrkhE7cGTiXR+ISk4GOYZZaWKoErIzd4
+ JIETyDgar7v1DwF8UFshz9z62L1zQxyavdMpuGQLa9a2kKCmxTwepwW2meSQuWxX/c/GiK92CWC
+ Cos6ud5SRL3XCNPdfD21MiU5zgT8Q8bX9x/Uh/NQqcTNoNPufcEUPcRRETekDMk1JF2zNVtGVLO
+ 5H0KT4ywTnFgSYdSRx9YShIggwSRMuRxOFkdFMf3XVJPfyHQtzjxSDLugjWiS3Pu1yWV/RmKATS
+ EdyLo/wislwX7T84N2ffLa+4p077Jq1iPkcNxN/RFL6sZI+LN5FRCDQXu0zgCD0OYnYEc1Ja3QV
+ hMczJBD+l9RdlqljumAkxGO95N7ygsALcaI9rYhJAPSQPFU00mpy/DDyLkX5Aujuw84TYeeDE1T
+ FvyZmVmTKHoqdBQ==
 X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
  fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
-It is necessary to account for I2C quirks in the burst mode path of this
-driver. Not all I2C controllers can accept arbitrarily long writes and this
-is represented in the quirks field of the adapter structure.
+Add bindings for the already upstream OV08X40 to enable usage of this
+sensor on DT based systems.
 
-Prior to this patch the following error message is seen on a Qualcomm
-X1E80100 CRD.
-
-[   38.773524] i2c i2c-2: adapter quirk: msg too long (addr 0x0036, size 290, write)
-[   38.781454] ov08x40 2-0036: Failed regs transferred: -95
-[   38.787076] ov08x40 2-0036: ov08x40_start_streaming failed to set regs
-
-Fix the error by breaking up the write sequence into the advertised maximum
-write size of the quirks field if the quirks field is populated.
-
-Fixes: 8f667d202384 ("media: ov08x40: Reduce start streaming time")
-Cc: stable@vger.kernel.org # v6.9+
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e80100-crd
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- drivers/media/i2c/ov08x40.c | 33 ++++++++++++++++++++++++++++-----
- 1 file changed, 28 insertions(+), 5 deletions(-)
+ .../bindings/media/i2c/ovti,ov08x40.yaml           | 120 +++++++++++++++++++++
+ 1 file changed, 120 insertions(+)
 
-diff --git a/drivers/media/i2c/ov08x40.c b/drivers/media/i2c/ov08x40.c
-index 48df077522ad0bb2b5f64a6def8844c02af6a193..be25e45175b1322145dca428e845242d8fea2698 100644
---- a/drivers/media/i2c/ov08x40.c
-+++ b/drivers/media/i2c/ov08x40.c
-@@ -1339,15 +1339,13 @@ static int ov08x40_read_reg(struct ov08x40 *ov08x,
- 	return 0;
- }
- 
--static int ov08x40_burst_fill_regs(struct ov08x40 *ov08x, u16 first_reg,
--				   u16 last_reg,  u8 val)
-+static int __ov08x40_burst_fill_regs(struct i2c_client *client, u16 first_reg,
-+				     u16 last_reg, size_t num_regs, u8 val)
- {
--	struct i2c_client *client = v4l2_get_subdevdata(&ov08x->sd);
- 	struct i2c_msg msgs;
--	size_t i, num_regs;
-+	size_t i;
- 	int ret;
- 
--	num_regs = last_reg - first_reg + 1;
- 	msgs.addr = client->addr;
- 	msgs.flags = 0;
- 	msgs.len = 2 + num_regs;
-@@ -1373,6 +1371,31 @@ static int ov08x40_burst_fill_regs(struct ov08x40 *ov08x, u16 first_reg,
- 	return 0;
- }
- 
-+static int ov08x40_burst_fill_regs(struct ov08x40 *ov08x, u16 first_reg,
-+				   u16 last_reg,  u8 val)
-+{
-+	struct i2c_client *client = v4l2_get_subdevdata(&ov08x->sd);
-+	size_t num_regs, num_write_regs;
-+	int ret;
+diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+new file mode 100644
+index 0000000000000000000000000000000000000000..bc499e4b5d48ed57250dec33a91c92552f137cf9
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov08x40.yaml
+@@ -0,0 +1,120 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright (c) 2024 Linaro Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/ovti,ov08x40.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	num_regs = last_reg - first_reg + 1;
-+	num_write_regs = num_regs;
++title: Omnivision OV08X40 CMOS Sensor
 +
-+	if (client->adapter->quirks && client->adapter->quirks->max_write_len)
-+		num_write_regs = client->adapter->quirks->max_write_len - 2;
++maintainers:
++  - Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 +
-+	while (first_reg < last_reg) {
-+		ret = __ov08x40_burst_fill_regs(client, first_reg, last_reg,
-+						num_write_regs, val);
-+		if (ret)
-+			return ret;
++description: |
++  The Omnivision OV08X40 is a 9.2 megapixel, CMOS image sensor which supports:
++  - Automatic black level calibration (ABLC)
++  - Programmable controls for frame rate, mirror and flip, binning, cropping
++    and windowing
++  - Output formats 10-bit 4C RGB RAW, 10-bit Bayer RAW
++  - 4-lane MIPI D-PHY TX @ 1 Gbps per lane
++  - 2-lane MPIP D-PHY TX @ 2 Gbps per lane
++  - Dynamic defect pixel cancellation
++  - Standard SCCB command interface
 +
-+		first_reg += num_write_regs;
-+	}
++properties:
++  compatible:
++    const: ovti,ov08x40
 +
-+	return 0;
-+}
++  reg:
++    maxItems: 1
 +
- /* Write registers up to 4 at a time */
- static int ov08x40_write_reg(struct ov08x40 *ov08x,
- 			     u16 reg, u32 len, u32 __val)
++  assigned-clocks: true
++  assigned-clock-parents: true
++  assigned-clock-rates: true
++
++  clocks:
++    maxItems: 1
++
++  avdd-supply:
++    description: Analogue circuit voltage supply.
++
++  dovdd-supply:
++    description: I/O circuit voltage supply.
++
++  dvdd-supply:
++    description: Digital circuit voltage supply.
++
++  reset-gpios:
++    description: Active low GPIO connected to XSHUTDOWN pad of the sensor.
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            oneOf:
++              - items:
++                  - const: 1
++                  - const: 2
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++          link-frequencies: true
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        ov08x40: camera@36 {
++            compatible = "ovti,ov08x40";
++            reg = <0x36>;
++
++            reset-gpios = <&tlmm 111 GPIO_ACTIVE_LOW>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&cam_rgb_defaultt>;
++
++            clocks = <&ov08x40_clk>;
++
++            assigned-clocks = <&ov9282_clk>;
++            assigned-clock-parents = <&ov9282_clk_parent>;
++            assigned-clock-rates = <19200000>;
++
++            avdd-supply = <&vreg_l7b_2p8>;
++            dvdd-supply = <&vreg_l7b_1p8>;
++            dovdd-supply = <&vreg_l3m_1p8>;
++
++            port {
++                ov08x40_ep: endpoint {
++                    remote-endpoint = <&csiphy4_ep>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <400000000>;
++                };
++            };
++        };
++    };
++...
 
 -- 
 2.46.2
