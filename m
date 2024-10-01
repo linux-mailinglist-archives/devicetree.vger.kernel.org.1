@@ -1,290 +1,178 @@
-Return-Path: <devicetree+bounces-106707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3405F98B694
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:10:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 314CD98B6A9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:21:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 581581C22139
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:10:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE7E81F223C3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C42D1BE24A;
-	Tue,  1 Oct 2024 08:10:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F00319ABA3;
+	Tue,  1 Oct 2024 08:21:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emJxK/jt"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="FXXXaAvO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2050.outbound.protection.outlook.com [40.107.117.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AD6C1BDAA8;
-	Tue,  1 Oct 2024 08:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727770238; cv=none; b=HK1szR9lBTFeOHPRYyzVsBWU+42MaXvoOf7KiSQpOwtxri4iyQaOB4nkwBbWEltEA4SUUn8I5/F7DJ9qUev8U+3bkYFO+jwIpVQlL0+vKbzrp9eXICpOdZnmyA+Tzn52ai0ppMDLjzdERRRaF01NJq51olNlUW4KWsUj+JZWJNY=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727770238; c=relaxed/simple;
-	bh=42O3WG7idEz0kt6z2OClF0wZmbxLAUMQFZADcf0A7DQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=XBHwQvfmmJJzZ5HrxERrocs3ztMLRqpNKfkCq3/mjYwpFg4VinyZKGBYXqnGl9BU/Ld24hO4aPbxJIG6vBpbA9sDLBEAOnllsVvxkINS3YzF78SfAccPoU1M5gjgZzWr4PSxsediAhCU/52THPUVRrz+dCItgPJ6alloGTp4xjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emJxK/jt; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37cdb42b29dso2166921f8f.0;
-        Tue, 01 Oct 2024 01:10:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727770234; x=1728375034; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=gCFgGTaj2mpysw+k4DdlR3/nJ2KKF9nZPNZv+TdifjM=;
-        b=emJxK/jtQlR60or3AcaLQde0mgq4nl4FSeaRbYSChFlEY4jnF5F6YxUTjj1EAaEX5g
-         Hj8ec9Izpa5y6doxB9sqLVJjV3mjNdjdDbE7k5i/NoHeTkp6YuqlksicinWjPPz9z+n3
-         SmRaZUkctAB1yMfAYePnNcxPyncT27reWD08xnwNKTaz/0umSYHnkzAOmN6bvgPnvwBR
-         a+n6Sg5FRrSC2BzLnwO843qlLh7cCAiQxKYIY7uM2QuhaRQVxdoq/26kB43syiXQulk1
-         jfYyhdM62tgWsWf2QgBHyE/VhqZHDZYtQ6j3gF4KeoxSRA1o0pbDOE7xrWGODBTkVtjN
-         p1Ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727770234; x=1728375034;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gCFgGTaj2mpysw+k4DdlR3/nJ2KKF9nZPNZv+TdifjM=;
-        b=ZZ4ERzDi0Mb9Itzng3poIIO80GANkh106KKcvd/bkn/NDZogqjD/9TIc2qLMBsD+Z2
-         8k/ZJA+G3oDI0nQJdzz5uQJ/YpxjZZobePVfOiVkXptXYN+qOlwHMhn4aMRQMQhkBDOY
-         05Wls6BJraPPcGQbzwtmEdy/iyoBSaPzUW9+b1MpB7KO/lYoXyeVCa4/LbOUfAAmLVnG
-         rF44luGd1UvbxVs3C+JKTVaVpEmDDwFT0fTJTrA2v8XVdFf9FFCqMS4COr9iWMpavD3x
-         PFTMUzOEh+PAaPvV0KDGWrnGwyvj/nebNKO13x1bObd1QziuCG7YzQppUuYcZzwOYCX3
-         hf1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUYLVq2oy0G5mT1gkTMfr4QHYmSciN3rwterLxsQAxH+7s4BgHnwQuyr1MizSXCy9mD+JdMSdNnIQ3n@vger.kernel.org, AJvYcCWM9LsbVITpddv5CcFYoaNnsc2XbE1aqRyFQku1PZGFtrNksgNm5+mN89EizfZO0lNqnNAQb16x+NyK@vger.kernel.org, AJvYcCX4YEMdtn71aRJ+rPX6S98ei3KjfdeTUL421FXDwW1RqilrApOocwp7X7KWcgCnKobrIlGVrFxxTehUfDjj@vger.kernel.org
-X-Gm-Message-State: AOJu0YzMS5SboAj2xqfbMb1VZaZkQ+dZyPv3reFPkNRXNzHQnPUsO2QF
-	7UYt9LUmdaRqRBJ+ar6lRK3R677QGIumeL+3dinNi5HOU+w4sKoE
-X-Google-Smtp-Source: AGHT+IG8zsGXHj764hEucv2Jn32Z7x2kMFq36S9oUI53hN/t80pUkIhlERR7i1FrvE9QOrLC3TLRfw==
-X-Received: by 2002:a5d:6751:0:b0:37c:cca1:b1e3 with SMTP id ffacd0b85a97d-37cd5aec57cmr8224211f8f.41.1727770234141;
-        Tue, 01 Oct 2024 01:10:34 -0700 (PDT)
-Received: from ?IPv6:2003:f6:ef02:2700:7684:3ff1:6790:3866? (p200300f6ef02270076843ff167903866.dip0.t-ipconnect.de. [2003:f6:ef02:2700:7684:3ff1:6790:3866])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd575d459sm11131609f8f.113.2024.10.01.01.10.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 01:10:33 -0700 (PDT)
-Message-ID: <3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
-Subject: Re: [PATCH v3 05/10] iio: backend: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: David Lechner <dlechner@baylibre.com>, Jonathan Cameron
- <jic23@kernel.org>,  Angelo Dureghello <adureghello@baylibre.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
-	 <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring
-	 <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	 <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Date: Tue, 01 Oct 2024 10:14:45 +0200
-In-Reply-To: <c9e30ebf-c661-4345-87bd-3169b57175fc@baylibre.com>
-References: 
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	 <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-	 <20240929120535.6b41c37e@jic23-huawei>
-	 <c9e30ebf-c661-4345-87bd-3169b57175fc@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.54.0 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB65199384;
+	Tue,  1 Oct 2024 08:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.117.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727770862; cv=fail; b=ZgRnrC9oKcuyKJWyttVd0sAwI6UOkytryWp/zKHAQtYnhDcXn0ciDqtpRhpRn8DuEX66k8wcNRRj+/Q6c1VZVON3B6vJun8D3ppSCd3NbutMHAmvSuLJAjDV0DiQzY1Zyuz3VBquAz4f/ii7Ay8ZcFWwNu03r2qnmBcXN9Bp6ZM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727770862; c=relaxed/simple;
+	bh=Tq2+Lo2rgOQdpPJ4fVYG1PJI6kaDebd6kaoHfeRj8Jk=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=JFHZKYCAQZ8Ki5gmqPTXT0OuvxO90vWfBfNpi4J3A6KT/DHDm1LFM3WuUzfJsbfMDy5OKOjgzq47hLIByM4N7sASzTz8zhjbYFo1QUADG63utCK9pnpcoin45icnZHKgaX9bbVduScupznVkyE7iPY/Cz0/HgcbhcAivyriegKk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=FXXXaAvO; arc=fail smtp.client-ip=40.107.117.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=pztB13Gx/D9Dab71+V3+sXCsE62sfKITsNgbe04a/vR5KekExixOOYfTM4HExD5ehBs9YuMzK07XCG/Z2Ak0DhrSAbhEHzqT7KVpMDpvodyqH87jMlvkLT+lMlkVPoFs/HcY8Lwee2yqCdi7XRklCsFM9/ZJEM4ImIaBIY7hrhDYZT2zX7Ww7Ldyl2tKNhLGNB8BauhEt8OhAq6xkrr4dWI5UiMNI9LdggQxO3IlgfMepuBlEhF5NzC9SOZSE57UsgafB696qivH46qJyX6Ws2Ptu4Kcb1i0FGvXVGN9fLz0Btu30/pNATSFTUlPu2RADT6geQPEmq7FL82U4GGzHQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=s/n4bvPQyIa47fxKGAYst7E47NyH2+WHJVqeVlJdk3c=;
+ b=GXg/6xp1hUfvQWPMj2oqkWELlqd/SqZRIqy07EkElXRwqdxip0zOIqdJ5C8rOdjdAlTHtQMY4ZKHeFvWItzgduwrwLIumqEFQP6+C6MRlo59NJ81Vie9Rai/+EsAnosF/CMrxLZa534kOCXSHzyMwTxi22b2TjPYEQrK3Xm8iew4TQyBJd1FCq5+Lrgl4xyTwHeLUyUXpdOv5VJ6HNqDHQWbZbee8FBTWeGefsWQQIDNLvaW8RyTo9vlSPhzI49QNAPTsGSi30SidFIYVcmsFwP4YxLI7OPvid0wORj1HvjtPjLxf1f1sB/KVdn7luslKhc+asv0wqztg4084dPy1g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=s/n4bvPQyIa47fxKGAYst7E47NyH2+WHJVqeVlJdk3c=;
+ b=FXXXaAvOG5SYeP04DTFD/QpchVO7FnDVEuTyFMIE+lSHb4IyLGlMyE0eTFDrFhNOc4HRQ7quIW//hvC59hlL3a6GxjHI74/wev9plxUTFjK7vfBC6DuqLvKlNJ7kLthO0W/+R0psqlNOf+KA8/QJo2jUq2Z7+0anG5Mq/jtgWKBDhf2nDNLNX/czmhyP1o7RbxRdsMVPHDJQOqOR9Eh2q37dp3PlgcigwiFnwitYfwMvs/sXMlNFF3oMPncpu8sHGPDj200NYq1QC1ZU5nd+VvrEsAfZCeD8bAJko6jTIxIo1Z0VVqQIeBUKXq9FkLPNVywFjGTlHrA2Yzz1wtOjjA==
+Received: from PS2PR02CA0096.apcprd02.prod.outlook.com (2603:1096:300:5c::36)
+ by TYSPR04MB8168.apcprd04.prod.outlook.com (2603:1096:405:9c::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Tue, 1 Oct
+ 2024 08:20:55 +0000
+Received: from HK3PEPF00000221.apcprd03.prod.outlook.com
+ (2603:1096:300:5c:cafe::fa) by PS2PR02CA0096.outlook.office365.com
+ (2603:1096:300:5c::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.34 via Frontend
+ Transport; Tue, 1 Oct 2024 08:20:55 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF00000221.mail.protection.outlook.com (10.167.8.43) with Microsoft SMTP
+ Server id 15.20.8026.11 via Frontend Transport; Tue, 1 Oct 2024 08:20:54
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v2 00/10] Add I2C mux devices for yosemite4
+Date: Tue,  1 Oct 2024 16:20:42 +0800
+Message-Id: <20241001082053.3455836-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF00000221:EE_|TYSPR04MB8168:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 0b329018-1a83-4ff5-bb0c-08dce1f1f87c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|82310400026|1800799024|36860700013|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Wc5nSXUGj+GpuUC+AkhHSXnean38qCuOkdD7SzQGjHsXMyeg/CJKyAr5jaCo?=
+ =?us-ascii?Q?87o4U4J/RM0tP65ZjvreaDQlbPyG012IiWc6vj8W8qteZEo+I4zuW82ZUY5e?=
+ =?us-ascii?Q?cLZ2sKD62bALQYBITIs+p1jX79Kzvd5tT4kURQAfq4bVaVlLOuxo1o0lmyrf?=
+ =?us-ascii?Q?TXMEtYuAvedWwnjpFHke1G+b6GK1UQ7wft2BGxMoqyvjkfJ+oDtwTSKUfXTO?=
+ =?us-ascii?Q?TbadJJZU82wEdADJZldcwJTHttOeselleuSZCtR26vgz4+iUVFd3YRqHvbNH?=
+ =?us-ascii?Q?Tv4Yt7TwGbG+ASr5flDuzNxhBnv4Sl3E2Ux5AUXyMXu9DsficMahDUt1Ii5O?=
+ =?us-ascii?Q?Ff+Tzzz7YmYRCCS9zAfuPYkIYRp2xk0aUK2p4d1r2NcGJ50RJL9fzj0zWspN?=
+ =?us-ascii?Q?/oS5Nz5KzfXs/oT+0OE2qLOIAZaOFRfObQPFVJT5jsxOzstSblDuuyzAVWB+?=
+ =?us-ascii?Q?oqBfhn4gQ0A+pHLGV2J9ADeGtc6jIyXJPZZumpMwtKsWuSXb0+7h8So3+KO6?=
+ =?us-ascii?Q?DhBHNS3m/bq9IVPeBoEvTPvyKxvfL1093s7tlKcVOcbnUBZT7jgC/A5cEMgK?=
+ =?us-ascii?Q?VZyrh5xsY0n217SxMhi9gf1GB7Pt77zv8LqkKkx8pX8NhA/6KwMnqxY/jhHu?=
+ =?us-ascii?Q?5ksMIQWjxL/Vr3Ca39Xsd8j7qHZOTx1ETIZoqdaRDGdRolBBrHBmazHGw9F8?=
+ =?us-ascii?Q?/nLchlL65YWF7kOY7RZzBX7gCWB8/Aij+ArS2pi/PR1cy4LO5lukchMFZx16?=
+ =?us-ascii?Q?koXnIKtqUYNQbWswT6nKPToSNTbR8ZnWNiXKLNSa8bpRBteQd0TyYOIl2T3X?=
+ =?us-ascii?Q?+7HOSdfOZ/lP8Y0W4EXXP2Ih4DqXrPU4bCKQBx0lfkH4SeCQ2fanqmllex6m?=
+ =?us-ascii?Q?BDoZwhqsn53bd3dPlFpVsX7eDN1vC9NWXUp/3HlzT83/t49Z9KXot1fZ1K4g?=
+ =?us-ascii?Q?OqT+qQLiS44Rup2bcz/j2kh701kSbooSYMx83hkc5afu0Or6xAfH94pnkwkx?=
+ =?us-ascii?Q?SLDX0ei6n4QikVN/BFvWNqR0C5X5RVeWtVhbk67a1XD2CNbZTHr9Fhs0AK13?=
+ =?us-ascii?Q?6tHjYWbFJNUgiCMbjUhftKwBRx9wHSXzcmsoquYOr7k79glCh2el1gzy4OSA?=
+ =?us-ascii?Q?uSE6XSHy/5kiB7/bTKFbHtvxi57/fWbJr7p0TQlCP05zyIIcknhLPtch28aa?=
+ =?us-ascii?Q?F2j4zSajxn/xkQJM+6mIeIadVwPuSCJnGbLUpwPY2iXWhYSA0RNvYvxWNvY9?=
+ =?us-ascii?Q?+cypxp+uPovxVz9OjEWzy/sPytulkrsqwsG2h9e5x2A6J//2svv6T2DWHL+q?=
+ =?us-ascii?Q?+r4qzIRMqRB68/PFZTaMr/aGI+3Hjbe6ypywMx9zdxYrE53zyASmHRjVEUJa?=
+ =?us-ascii?Q?rHdpAcDzE079plxp/PihMUsGLrfDfwZd63fEh6QglwfExpqNS3zKhH4GZ9Yl?=
+ =?us-ascii?Q?kKzqactOQJhNQt2nhS4YpWP6WmqdVXAu?=
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(82310400026)(1800799024)(36860700013)(7416014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2024 08:20:54.9872
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0b329018-1a83-4ff5-bb0c-08dce1f1f87c
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF00000221.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR04MB8168
 
-On Mon, 2024-09-30 at 14:25 -0500, David Lechner wrote:
-> On 9/29/24 6:05 AM, Jonathan Cameron wrote:
-> > On Thu, 19 Sep 2024 11:20:01 +0200
-> > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> >=20
-> > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > >=20
-> > > Extend backend features with new calls needed later on this
-> > > patchset from axi version of ad3552r.
-> > >=20
-> > > The follwoing calls are added:
-> > >=20
-> > > iio_backend_ext_sync_enable
-> > > 	enable synchronize channels on external trigger
-> > > iio_backend_ext_sync_disable
-> > > 	disable synchronize channels on external trigger
-> > > iio_backend_ddr_enable
-> > > 	enable ddr bus transfer
-> > > iio_backend_ddr_disable
-> > > 	disable ddr bus transfer
-> > > iio_backend_set_bus_mode
-> > > 	select the type of bus, so that specific read / write
-> > > 	operations are performed accordingly
-> > > iio_backend_buffer_enable
-> > > 	enable buffer
-> > > iio_backend_buffer_disable
-> > > 	disable buffer
-> > > iio_backend_data_transfer_addr
-> > > 	define the target register address where the DAC sample
-> > > 	will be written.
-> > >=20
-> > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > Hi Angelo,
-> > A few trivial comments inline.
-> >=20
-> > > ---
-> > > =C2=A0drivers/iio/industrialio-backend.c | 111
-> > > +++++++++++++++++++++++++++++++++++++
-> > > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 |=C2=A0 23 ++++++++
-> > > =C2=A02 files changed, 134 insertions(+)
-> > >=20
-> > > diff --git a/drivers/iio/industrialio-backend.c
-> > > b/drivers/iio/industrialio-backend.c
-> > > index 20b3b5212da7..f4802c422dbf 100644
-> > > --- a/drivers/iio/industrialio-backend.c
-> > > +++ b/drivers/iio/industrialio-backend.c
-> > > @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct device
-> > > *dev, struct iio_backend *back)
-> > ...
-> >=20
-> > > +/**
-> > > + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate=
-)
-> > > mode
-> > > + * @back: Backend device
-> > > + *
-> > > + * Disabling DDR data is generated byt the IP at rising or falling f=
-ront
-> >=20
-> > Spell check your comments.
-> >=20
-> > > + * of the interface clock signal (SDR, Single Data Rate).
-> > > + *
-> > > + * RETURNS:
-> > > + * 0 on success, negative error number on failure.
-> > > + */
-> > > +int iio_backend_ddr_disable(struct iio_backend *back)
-> > > +{
-> > > +	return iio_backend_op_call(back, ddr_disable);
-> > > +}
-> > > +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
-> > 				 struct fwnode_handle *fwnode)
-> > > =C2=A0{
-> > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.=
-h
-> > > index 37d56914d485..41619b803cd6 100644
-> > > --- a/include/linux/iio/backend.h
-> > > +++ b/include/linux/iio/backend.h
-> > > @@ -14,12 +14,14 @@ struct iio_dev;
-> > > =C2=A0enum iio_backend_data_type {
-> > > =C2=A0	IIO_BACKEND_TWOS_COMPLEMENT,
-> > > =C2=A0	IIO_BACKEND_OFFSET_BINARY,
-> > > +	IIO_BACKEND_DATA_UNSIGNED,
-> > > =C2=A0	IIO_BACKEND_DATA_TYPE_MAX
-> > > =C2=A0};
-> > > =C2=A0
-> > > =C2=A0enum iio_backend_data_source {
-> > > =C2=A0	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
-> > > =C2=A0	IIO_BACKEND_EXTERNAL,
-> > > +	IIO_BACKEND_INTERNAL_RAMP_16BIT,
-> > > =C2=A0	IIO_BACKEND_DATA_SOURCE_MAX
-> > > =C2=A0};
-> > > =C2=A0
-> > > @@ -89,6 +91,13 @@ enum iio_backend_sample_trigger {
-> > > =C2=A0 * @read_raw: Read a channel attribute from a backend device
-> > > =C2=A0 * @debugfs_print_chan_status: Print channel status into a buff=
-er.
-> > > =C2=A0 * @debugfs_reg_access: Read or write register value of backend=
-.
-> > > + * @ext_sync_enable: Enable external synchronization.
-> > > + * @ext_sync_disable: Disable external synchronization.
-> > > + * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
-> > > + * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
-> > > + * @buffer_enable: Enable data buffer.
-> > > + * @buffer_disable: Disable data buffer.
-> >=20
-> > This needs more specific text. What buffer?=C2=A0 I think this came
-> > up earlier but it needs to say something about the fact it's enabling
-> > or disabling the actual capture of data into the DMA buffers that
-> > userspace will read.
-> >=20
-> > > + * @data_transfer_addr: Set data address.
-> > > =C2=A0 **/
-> > > =C2=A0struct iio_backend_ops {
-> > > =C2=A0	int (*enable)(struct iio_backend *back);
-> > > @@ -129,6 +138,13 @@ struct iio_backend_ops {
-> > > =C2=A0					 size_t len);
-> > > =C2=A0	int (*debugfs_reg_access)(struct iio_backend *back, unsigned i=
-nt
-> > > reg,
-> > > =C2=A0				=C2=A0 unsigned int writeval, unsigned int
-> > > *readval);
-> > > +	int (*ext_sync_enable)(struct iio_backend *back);
-> > I know we've done it this way for existing items, but I wonder if we sh=
-ould
-> > squish down the ops slightly and have new enable/disable pairs as
-> > single functions.
-> > 	int (*ext_sync_set_state)(struct iio_backend *back, bool enable);
-> > etc.=C2=A0 If nothing else reduces how many things need documentation ;=
-)
-> >=20
-> > Nuno, what do you think? Worth squashing these pairs into single
-> > callbacks?
->=20
-> I'm not a fan of combining enable and disable functions into one function=
-.
->=20
-> The implementation will pretty much always be:
->=20
-> if (enabled) {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* so stuff */
-> } else {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* do other stuff */
-> }
->=20
-> Which just adds indent and makes code harder to read.
->=20
+- v2
+ - Remove mctp property on I2C Bus 15.
+ - Add required properties for IOE on fan boards.
 
-Hi Jonathan and David,
+- v1
+ - Add i2c-mux for ADC monitor on Spider Board.
+ - Revise adc128d818 adc mode on Fan Boards.
+ - Change the address of Fan IC on fan boards.
+ - Correct the compatible string for max31790.
+ - Revise address of i2c-mux for two fan boards.
+ - Add i2c-mux for CPLD IOE on Spider Board.
+ - Add i2c-mux for four NICs.
+ - Add i2c-mux for all Server Board slots.
 
-Yeah, I have this on my todo list and to be fair with Angelo, he already ha=
-d
-something like you're suggesting. I kind of asked him to postpone that so w=
-e
-don't have mixed styles in the file for now. Then I would convert them all.=
- My
-plan would be to squash the .ops into one and then have inline
-enable()/disable() helpers (at least for the current users in order to keep
-things easier to convert).
+Ricky CX Wu (10):
+  ARM: dts: aspeed: yosemite4: add i2c-mux for all Server Board slots
+  ARM: dts: aspeed: yosemite4: Remove mctp property on I2C Bus 15
+  ARM: dts: aspeed: yosemite4: Add i2c-mux for four NICs
+  ARM: dts: aspeed: yosemite4: Add i2c-mux for CPLD IOE on Spider Board
+  ARM: dts: aspeed: yosemite4: Add required properties for IOE on fan
+    boards
+  ARM: dts: aspeed: yosemite4: Revise address of i2c-mux for two fan
+    boards
+  ARM: dts: aspeed: yosemite4: correct the compatible string for
+    max31790
+  ARM: dts: aspeed: yosemite4: Change the address of Fan IC on fan
+    boards
+  ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode on Fan Boards
+  ARM: dts: aspeed: yosemite4: Add i2c-mux for ADC monitor on Spider
+    Board
 
-As for David's comment, I see your point but one can always improve things =
-a bit
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 483 +++++++++++++++---
+ 1 file changed, 422 insertions(+), 61 deletions(-)
 
-if (enable) {
-	/* do stuff */
-	return;
-}
+-- 
+2.25.1
 
-/* do disable stuff */
-return 0
-
-I'm aware the above is always not that straight... but I do think there's a=
-lways
-ways to rearrange things a bit to make it better. Because even with the
-enable()/disable() approach, if you start to have a lot of common code, lik=
-ely
-you'll add an helper function. In some cases, one can even add the helper r=
-ight
-away with an 'enable' argument effectively doing what is being suggested in
-here. It always depends on the person implementing the ops :)
-
-Anyways, I really don't have a strong feeling about this. I had in my mind =
-to do
-something like this. It feels that Jonathan would already be ok with it. If=
- it's
-not that awful for David, I'll eventually send the patches (unless Angelo w=
-ants
-to take care if it in this series).
-
-- Nuno S=C3=A1
->=20
 
