@@ -1,168 +1,153 @@
-Return-Path: <devicetree+bounces-106645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC1B098B2BA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 05:32:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0553698B2BE
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 05:38:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A004C282C48
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 03:32:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 998241F237BB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 03:38:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34AD2193415;
-	Tue,  1 Oct 2024 03:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C026E1A303A;
+	Tue,  1 Oct 2024 03:38:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BiNSUds+"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="nmebeck7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E047193096;
-	Tue,  1 Oct 2024 03:31:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91A2D1A302A;
+	Tue,  1 Oct 2024 03:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727753494; cv=none; b=rxGyfIfr2a3zi1EMwcK74Yyimw1UdpcDfQ10Ijc01ELfsw4/Y8JgNmcJlWxT9CJ8XyWYVxOW6x/SBM/hf5zlIcAgkKR8Ci1H1ksEsZwvXdk9TDBExjDP9l/xCicEuH+CWnw3yiQuWqHDPtOfDbYfx0Wt/jtf4ZhEHwhNWA4VupE=
+	t=1727753927; cv=none; b=IJ745l6R1MLSDRgNn5EMNqE27KyYqjIZkLWC/LCVG22cvgNd0XZdOPUbJ7vGhKNboPOWvsQfnK0pcFRbtzROSnYoZMxGCkO8zQFslVtwohG/lp+lDVw65UgPjfLobwMd1aGJUMhKWxBwTi3iG6w1JUkNw3C+MV6J/UL9FfzDUpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727753494; c=relaxed/simple;
-	bh=nCNLezVuP8fOJEVcbltXjdP/Gri8fL6cTqD1m4Bh0oQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PuAiOi/ufjApPHaWmtNez0Gu3bwqY0rrDjbQQcgFX1MIGneuo6K2fN8MQbm3XtsnRooJhwSvoVnzcY99iM3NtguEdlrm/8KSOVwyMC7NpyvIDpzQBuIHJEV0Bo4LJFTYPef7sscjJLqyJOEFgs0s8p6g8g8t5icCoax/dGy0+Ik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BiNSUds+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4910HM5O025075;
-	Tue, 1 Oct 2024 03:31:26 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	FQMEVX0dqad/HEWEyybScIJiZF9i2wSYdOXNnOgONmQ=; b=BiNSUds+ofd72VJt
-	kt3CoGXpPTlSdrROGFj/jBJVYWy2tB6IZ/+kQC+c1FrVKZIrL3W0/QhU3JhbMkd6
-	BPLf8TIJThNBii1fY0mxd6WH40N5aUpcvXvFCdZkjVBF9TnF/1g9v33vqRp85l/D
-	+eczeIX5Ea48McODKCQdWw3BoGebXSCBKNv74GPbuTxMPwg5WyOeIr/Ax8Z6EUps
-	wNDbQefFfmjLviD8fikkvIIg/vEPudEcdNLwh5X8hy+PdMx/FoHN2ya5897MzEgg
-	iirqJxYyn9ucQ25CRpvfzjZDZDzXP+AoLAzcDHNV6wg7Jfeknk+MBOYDTarXSylN
-	KxLCmg==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41x8t6pw5g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Oct 2024 03:31:26 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4913VOS4026738
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 1 Oct 2024 03:31:24 GMT
-Received: from Z2-SFF-G9-MQ.ap.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+	s=arc-20240116; t=1727753927; c=relaxed/simple;
+	bh=BruhvztGVRz244FjNt3OmnFlYUoo08jl3Gsy1pYwjiM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JoJh6pB7Y1FDQBePrQEBuMqyIhKu6weRMvZXzAWtRtzeTgRl1EEYrcV1iOxWkjaKVl0m/yl087BYbuKNkSEMcS+VB6PbN1C5issW9/elERXpqkhhnpODyGVySNTnl2HAQJdcMBdN0fTQJ2bzJ0tvuThBAJ5xccgKYk8p9lTFEzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=nmebeck7; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: a45739047fa611ef8b96093e013ec31c-20241001
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=Gjo5+pSdTGHwq6JJECrTZEup0IvHwkFVyPMeb0WdRaM=;
+	b=nmebeck7ebIeyinQZ2dJqTvoYFiPslU4ffov857EPbhwoXhLMHz9MBIbRsi1UhKBceD4msWOXH6cL2d/RLc87VCeM9NtaxnNbOHxkQFwNBPJ4ugyZ0tjZSzWpjAlJ6hJLzmD2yYJtucQ1ZDsgeAUKtCQzbUzJ+olXYxdICxcVp8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:6375fd9d-b426-4f14-9928-58c5951137ea,IP:0,U
+	RL:0,TC:0,Content:3,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:3
+X-CID-META: VersionHash:6dc6a47,CLOUDID:c986d39e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: a45739047fa611ef8b96093e013ec31c-20241001
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw02.mediatek.com
+	(envelope-from <pablo.sun@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1679239653; Tue, 01 Oct 2024 11:38:37 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 30 Sep 2024 20:31:22 -0700
-From: Miaoqing Pan <quic_miaoqing@quicinc.com>
-To: <kvalo@kernel.org>
-CC: <quic_jjohnson@quicinc.com>, <ath11k@lists.infradead.org>,
-        <linux-wireless@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Miaoqing Pan <quic_miaoqing@quicinc.com>
-Subject: [PATCH 2/2] wifi: ath11k: add firmware-name device tree property
-Date: Tue, 1 Oct 2024 11:30:52 +0800
-Message-ID: <20241001033053.2084360-3-quic_miaoqing@quicinc.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
-References: <20241001033053.2084360-1-quic_miaoqing@quicinc.com>
+ 15.2.1118.26; Tue, 1 Oct 2024 11:38:35 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 1 Oct 2024 11:38:33 +0800
+Message-ID: <329b554b-e029-0dfe-7c18-67c7c58f8302@mediatek.com>
+Date: Tue, 1 Oct 2024 11:38:33 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2 3/6] nvmem: mtk-efuse: Enable postprocess for mt8188
+ GPU speed binning
+Content-Language: en-US
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>
+References: <20240927103005.17605-1-pablo.sun@mediatek.com>
+ <20240927103005.17605-4-pablo.sun@mediatek.com>
+ <57dfe684-c9a1-4cb3-8c87-9d2fef09aed7@collabora.com>
+From: Pablo Sun <pablo.sun@mediatek.com>
+In-Reply-To: <57dfe684-c9a1-4cb3-8c87-9d2fef09aed7@collabora.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jZC0mlPbWnQtrFdVUijQy7YKQBsBzvWh
-X-Proofpoint-ORIG-GUID: jZC0mlPbWnQtrFdVUijQy7YKQBsBzvWh
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 mlxlogscore=999 bulkscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 adultscore=0 spamscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2410010023
 
-QCA6698AQ uses different firmware/bdf/regdb with existing WCN6855
-firmware, which is customized for IoE platforms. And the 'pci-device-id +
-soc-hw-version + soc-hw-sub-version' may not be enough to identify the
-correct firmware directory path.
+Hi Angelo,
 
-The device tree allows "firmware-name" to define the firmware path,
-    wifi@c000000 {
-        firmware-name = "QCA6698AQ";
-        status = "okay";
-    };
 
-Tested-on: QCA6698AQ hw2.1 PCI WLAN.HSP.1.1-04402-QCAHSPSWPL_V1_V2_SILICONZ_IOE-1
+On 9/30/24 17:40, AngeloGioacchino Del Regno wrote:
+> Il 27/09/24 12:30, Pablo Sun ha scritto:
+>> Similar to mt8186, the efuse data for mt8188's GPU speed binning
+>> requires post-process to convert the bit field format expected
+>> by the OPP table.
+>>
+>> Since mt8188 efuse is not compatible to mt8186, add a new compatible
+>> entry for mt8188 and enable postprocess.
+>>
+>> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+> 
+> I know I told you to just reuse the pdata from 8186, but there's something else
+> that came to mind, here...
+> 
+> ...actually, the efuse block from 8188 is indeed compatible with 8186, meaning
+> that the register r/w, etc, are all the same (bar the addresses, yes)
+> 
+> So, I wonder if it's not just a better idea to not even add mt8188-efuse in this
+> driver's of_device_id array, and just add that to the binding so that we permit
+> using
+>          efuse: efuse@11f20000 {
+>              compatible = "mediatek,mt8188-efuse",
+>                       "mediatek,mt8186-efuse", "mediatek,efuse";
+>              [etc]
+>          }
 
-Signed-off-by: Miaoqing Pan <quic_miaoqing@quicinc.com>
----
- drivers/net/wireless/ath/ath11k/core.c | 12 ++++++++++++
- drivers/net/wireless/ath/ath11k/core.h | 11 +++--------
- 2 files changed, 15 insertions(+), 8 deletions(-)
+Thanks for proposing this. I agree that in the case of Mali GPU speed binning
+info, mt8188 behaves exactly the same as mt8186, only the cell addresses are
+different.
 
-diff --git a/drivers/net/wireless/ath/ath11k/core.c b/drivers/net/wireless/ath/ath11k/core.c
-index be67382c00f6..7720f467b11b 100644
---- a/drivers/net/wireless/ath/ath11k/core.c
-+++ b/drivers/net/wireless/ath/ath11k/core.c
-@@ -1178,6 +1178,18 @@ static int ath11k_core_create_chip_id_board_name(struct ath11k_base *ab, char *n
- 					       ATH11K_BDF_NAME_CHIP_ID);
- }
- 
-+void ath11k_core_create_firmware_path(struct ath11k_base *ab,
-+				      const char *filename,
-+				      void *buf, size_t buf_len)
-+{	const char *variant = NULL;
-+
-+	of_property_read_string(ab->dev->of_node, "firmware-name", &variant);
-+
-+	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
-+		 variant ? : ab->hw_params.fw.dir, filename);
-+}
-+EXPORT_SYMBOL(ath11k_core_create_firmware_path);
-+
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *file)
- {
-diff --git a/drivers/net/wireless/ath/ath11k/core.h b/drivers/net/wireless/ath/ath11k/core.h
-index 09c37e19a168..ce4102cfed4d 100644
---- a/drivers/net/wireless/ath/ath11k/core.h
-+++ b/drivers/net/wireless/ath/ath11k/core.h
-@@ -1249,6 +1249,9 @@ bool ath11k_core_coldboot_cal_support(struct ath11k_base *ab);
- 
- const struct firmware *ath11k_core_firmware_request(struct ath11k_base *ab,
- 						    const char *filename);
-+void ath11k_core_create_firmware_path(struct ath11k_base *ab,
-+				      const char *filename,
-+				      void *buf, size_t buf_len);
- 
- static inline const char *ath11k_scan_state_str(enum ath11k_scan_state state)
- {
-@@ -1295,14 +1298,6 @@ static inline struct ath11k *ath11k_ab_to_ar(struct ath11k_base *ab,
- 	return ab->pdevs[ath11k_hw_mac_id_to_pdev_id(&ab->hw_params, mac_id)].ar;
- }
- 
--static inline void ath11k_core_create_firmware_path(struct ath11k_base *ab,
--						    const char *filename,
--						    void *buf, size_t buf_len)
--{
--	snprintf(buf, buf_len, "%s/%s/%s", ATH11K_FW_DIR,
--		 ab->hw_params.fw.dir, filename);
--}
--
- static inline const char *ath11k_bus_str(enum ath11k_bus bus)
- {
- 	switch (bus) {
--- 
-2.25.1
+I wrote "mt8188 efuse is not compatible to mt8186" because I thought
+different eFuse cell layout leads to incompatibility, but it is correct that
+the cell layout differences can be expressed by the device tree nodes,
+so they are actually compatible in terms of hardware interface.
 
+I'll drop this patch ("nvmem: mtk-efuse: Enable postprocess for mt8188 GPU speed binning")
+in v3 and update dt-binding "mediatek,efuse.yaml" instead.
+
+> Means that in mediatek,efuse.yaml you'll have to add...
+> 
+>        - items:
+>            - enum:
+>                - mediatek,mt8188-efuse
+>            - const: mediatek,mt8186-efuse
+>            - const: mediatek,efuse <---- or without this, even.
+> 
+> In the end, the "mediatek,efuse" property is somewhat deprecated, so that'd
+> also be a good time to start the dropping process, as I imagine that future SoCs
+> would also need the same speedbin transformations - which means that they'll all
+> be compatible with 8186....
+[snip]
+
+But I am not sure if we should now drop "mediatek,efuse". The post-process for
+GPU speed binning info is only applicable to ARM Mali. Since there are MediaTek
+SoCs that are not using ARM Mali, or not having GPU at all, would it make more sense
+to keep the "mediatek,efuse" fallback compatible for those cases?
+
+
+Best regards,
+Pablo
 
