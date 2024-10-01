@@ -1,298 +1,213 @@
-Return-Path: <devicetree+bounces-106950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5AAC98C56F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:33:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C07E98C578
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:38:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76A631F25EB5
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:33:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61AF12853C4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:38:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E210F1CC8B0;
-	Tue,  1 Oct 2024 18:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A67A81CCB53;
+	Tue,  1 Oct 2024 18:38:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CFxoa5Y/"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="msb+mQor"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2045.outbound.protection.outlook.com [40.107.105.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B32D91CB321;
-	Tue,  1 Oct 2024 18:32:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727807574; cv=none; b=TfnA50WtU1Kg4IPNrbwax55UwzlkIR//Qb65fsXV0p2xzj184/oqEwk//Ax3zBNJZvjl7FRZgAe6O3gN4x963vgx7NJf5MXbtS8chsKp+nrTXCupyxDA7xGz3/66FtFwGGS+iKz0eugIS8U0Baf11bjcZfer+l6j3W0LvmkD2E8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727807574; c=relaxed/simple;
-	bh=d23Q00gU+FeycgK4tDLG1W5Ncp40bUeGPY6agYfsGUE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ZW4spKfTMgtU33DOoPlXCRrTr9+0ooGmt9rGXE0cdB1Q2txs3x27OmYX5GLxVLhWTqFhZVZXfADf5nI+2n2BTef3R9fnmlWMtY7J2fIZ8ZGNlEyrVdTMYfQE6WfB7Z33bwAJSgUEUPduPze0SkUulIPevx3anqEemwDQx+p00oM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CFxoa5Y/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D316C4CEC6;
-	Tue,  1 Oct 2024 18:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727807574;
-	bh=d23Q00gU+FeycgK4tDLG1W5Ncp40bUeGPY6agYfsGUE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=CFxoa5Y/ISG8+4SVhk+d/qGfIHfTgybr8sOvrxJ93M5LNrvfbWc0kM9mrZZgZd38S
-	 VN4w8CIgboOcwKrePIU75cXFHvQES3pr13+b2zBh0nBryiC8hbBzGFkp/v6u6ARvcW
-	 R4IGK5ZQDuS1MnL9XgIzF//qF7UHwQ9bx1z6RstSvilwSJ/hd0K/Xs9vNB94X4X/UK
-	 IZ1YJaP6QkanxN6jIdl5fkIp0mPzRaofrxqvCxPSYTXUPJ3Kstwx/cdOiy3o4PKrmg
-	 q9LJf1yb+kPZdRfhzc52SmJrtqNdH+vfWi8ywlgCjpmTTa8Pj3B24wXF1BeK714oyQ
-	 xw233mtnzeqyQ==
-Date: Tue, 1 Oct 2024 19:32:44 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Angelo Dureghello <adureghello@baylibre.com>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, David Lechner
- <dlechner@baylibre.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
- Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Olivier Moysan <olivier.moysan@foss.st.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 05/10] iio: backend: extend features
-Message-ID: <20241001193244.4503b667@jic23-huawei>
-In-Reply-To: <urf6tm7iosewgb42cd6q3ssx2hjaysuzhk2weu4xmoq5xsm7ir@hvwb7qgxko2h>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
-	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
-	<20240929120535.6b41c37e@jic23-huawei>
-	<c9e30ebf-c661-4345-87bd-3169b57175fc@baylibre.com>
-	<3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
-	<urf6tm7iosewgb42cd6q3ssx2hjaysuzhk2weu4xmoq5xsm7ir@hvwb7qgxko2h>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B90E91CBE8E;
+	Tue,  1 Oct 2024 18:38:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.45
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727807886; cv=fail; b=Yf9MA52DeinZt1rjwJAGmkkadbt23Swa2L0PosP/Wd9amIgSd9ijamvKc7YkJEp56QV2yuH486sEe6NRf5MND5W3JNLiB9QEBsZgoOJloQnayyjeovQ+MjdXFGIrboRINOQ4IMLihoZkVLT64iGEPO5jj6V2qmXm+wCIOe7fusI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727807886; c=relaxed/simple;
+	bh=Do/kW6S3aWJMYNR52JBDJ6/vLjs3UoO6DWr6oLkcZKs=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=XJQfOE+6sj+/xaHF63l+dS0ZwJjJLEe9DfU1D06QLnId4HyihZsVhPC4Kq37FSJ6ojOFJkhR9Rr91KXi7ajQSBIcg6Cz88LDE+TM8krji4JN1hmooJ8+HHRWhMYKS2sxuGJ87Bu/I6zB5vva65eKC7F/0bItOUlwIrBoQRe4XGI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=msb+mQor; arc=fail smtp.client-ip=40.107.105.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=CkUgoUYQJ29f5uIwvmAAYKi2tKuJC9AFU2OFA2NWuUABK+pu4UJoLY8TbwuqHIvXIF6LoNeQLp/PncpGOXhOkEh+y4lpJiXDA1gjbXuLx9ptbf6rwDumAhLa4BvZXy11sv4Wy0geQhOnCtEyhe7H7j76JvaVsHOSh9+ySmNS6mzKoAWiekV4dN5zTIrTyRbNP7FWotIu++zLiUWOJVDXdFgur3EwyyuLF98Muz1R47EWu1cQpUUuBdEiNC2St9GGGgrHJ2imOpKUEnDmxo84OyPFJp3H+EhK+zy+GJBFY7dhLjKOyMd6el/Au4FS+Rggo+vl2uh9eguaFeuWUt+LCQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=o9xXMOlzD5HFSxgSrDsGMEP1t3pnUaQf7x1FyzcExe8=;
+ b=j46X1TLBi/MzKnb2j09m3kdT4/N2Ii9VEKLxdxGoRLrtS0lAnA85+QhxkRQWx/7u1vBu9AYdSlbXM5HccESGPWf+daU5VDc6ueU+LKh+wmLABeAUyRfG7gIVwUPZBibk5onZHXHWoQENrnqpsG6UR0mNnDgwl1j2ooy+Gtlwkh1v3nBLOPHgJRWy8s9w4LMWDYn5vtWkmoGT1yYC76ug41OBX7IpwOW4vy8d2sgUcp3ns2NFdfKQDpkNNCeskN2v6zssZcR1bSzA6p56/HuQRdLcJk2XqmpjIcuBP43Xok2yBtWblQJc3L49W0RFl3pZO6eNaTb9/8HYaSTaDIx5Zg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=o9xXMOlzD5HFSxgSrDsGMEP1t3pnUaQf7x1FyzcExe8=;
+ b=msb+mQor4jaKp+c3jcgblxPVMZ5gBkW7NVlQnJR55ohRO0z+OI90CfCAjZEZwcJcmW5rtUNFYVmJrDU7h579LpxuegpKSqbBWIYIQwcRo8riX87bEnpCEhPm8XmrN/cOdm8zZcq1gjllvvhHQCFSl0JXYTMUOMPZTctvfPLoBu1hkonOcEF0Nb2eFWPy7jXh78HbHgtCyCTtiUpOJSPC9615lgPg7potGW7u9Gs7BVeNEK9nLUoXqATF//kHcwwLIG4ZvLJUaA437U5Wv9pEeEiY3aT6SKohOb9w1NV6P8hrvIuYs0UiTAjB2aZxMsZ3qBadcEh+KDUYJJLwjyU5Jg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by PR3PR04MB7210.eurprd04.prod.outlook.com (2603:10a6:102:8f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7962.17; Tue, 1 Oct
+ 2024 18:38:01 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8005.024; Tue, 1 Oct 2024
+ 18:38:01 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH 1/1] arm64: dts: imx8mp-evk: add PCIe Endpoint function overlay file
+Date: Tue,  1 Oct 2024 14:37:47 -0400
+Message-Id: <20241001183748.256607-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SA0PR11CA0180.namprd11.prod.outlook.com
+ (2603:10b6:806:1bb::35) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PR3PR04MB7210:EE_
+X-MS-Office365-Filtering-Correlation-Id: 966f1b29-db8a-4e85-7129-08dce2482df7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|366016|52116014|7416014|1800799024|38350700014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ZJm4X1wNlEawur9zWUOFYDlf7IIGt1nbRQ+TSCdU/qMwXZyqUpO/I3rSYwo+?=
+ =?us-ascii?Q?evTs62y9qNQxJjjXp7ZfOTvDqXn3rwz9uXyVg8YBkOqWVaJ8R5LxAjn7eE+k?=
+ =?us-ascii?Q?4uMf/fTR2rA/Qj/lw7yaMH1plxu200LoH8lXMjHKi94t7Qx14cAjx7+YMW6i?=
+ =?us-ascii?Q?7SC/yw7efqobmd5TsH2hnBTZXNBHQJz7gUrqXomk0X+vWBO+To/3PTwrn5Y8?=
+ =?us-ascii?Q?BI2MrlgDFDjmGaff2DuqD8nZuSXjk8e+EmPov3AlDGlwj6JlD6hwBuiwae6M?=
+ =?us-ascii?Q?AWbTayTDbhqbV2J5PJCHstVXUSo/icnocW7oCSdjkho/LYyk+vozKjWwEE9Y?=
+ =?us-ascii?Q?SXflPROQIjMfYpCudQrRcP6qH7m51TyL2ekqkxUuXHI3IADiKAiS64e50onM?=
+ =?us-ascii?Q?VWn+PzMmTlbr4ZRqHwAzw7B7gBj5WlIaGgKmuVWZi2KWYlL++2AS+9EMhO60?=
+ =?us-ascii?Q?C9QSpIAx2gU3z22PY15mBXEzBmLVye4DoEqUvvdTVptGphX2mEqwRiBbP3p+?=
+ =?us-ascii?Q?FWxMiKQUXojHIAd5Nssl/Q/HGA9wPUrj3KhYnMjmXeszMHtLd6nWQf2bEHfB?=
+ =?us-ascii?Q?61Ap8f5PwrN/mXtNLDxZpMAEOjFr04e+sX3qQhXHI2ZlYl4n0GyXHji1d18G?=
+ =?us-ascii?Q?T18lGUXFDgrL02/f9b9jMYwQibY6zztnGNic7/lJj0/3xlkIqOh08G1g6uNy?=
+ =?us-ascii?Q?6szaVObPH5Yem9Rg+DX2wMy1Opz4AJtsMBQ6ssjimmbIqBtWr8qJgN+SYNB2?=
+ =?us-ascii?Q?3TwHLB6uTmEKKVjqDl3gtB98L1j0lCJ0RD5N8ZcXA5bpRB0JvEwWLRmu4woA?=
+ =?us-ascii?Q?CEWzjjGyZW/UISb2I8+OIUhrMaLlVDda08oVoHr/1EYq1bH4ZF6FLx81rBCk?=
+ =?us-ascii?Q?7QcxQ9nphAlEpZITQASfxFY4qTS/PHIONkajswiXbMpfyH0VPseKvP4NDRZ3?=
+ =?us-ascii?Q?9PXwj0zain1A4XcGon9m6F/MJysTZxNH0X+UIJfXvlhtL364pfQPsMlWCPL0?=
+ =?us-ascii?Q?BkL+7eunDopy4BPo2wX1g6/uIl0wFsCvzeKj6jGJlTPJvvg5NtsNaXPz8i1z?=
+ =?us-ascii?Q?TSmrM8fdC7dhra9Ziv1McrCPL6mwwJJJrNJJls7EV/Ns/2UwL3t/y+vOKT6m?=
+ =?us-ascii?Q?HsAImWNKdgoia4ToIN3kLibnMBwy1WNzaDlTP+NLWYiP6oFMUYZRyg4Tk9u+?=
+ =?us-ascii?Q?Irm7urkojJygFQQc63Wt8sqZXN4Hf2XD9EURhoTbxfVWI4l8WrKCfFM+RQg8?=
+ =?us-ascii?Q?ha//7WnLvjfovlXiUFug3o+pF521m7XYlGvlEmYaUpsSd27YnIkByQX9d4x5?=
+ =?us-ascii?Q?Buqcvr+vgn472cE8L8dbGEYELr0GaRu1TznefShpJGp+qq2osnV0fnBaH3cz?=
+ =?us-ascii?Q?jt30VYUr+qEo+Y/nA32UJ2aIh1DCB2DNPgiyGkh+fS9rPOGFodEezMOBTOwS?=
+ =?us-ascii?Q?eq02R03edtw=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(52116014)(7416014)(1800799024)(38350700014)(921020);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?dEf8x6CohFkoaW6Ip1dDumQB9zh4oWCqfoofXnukUEIOLo68dSf4whujyyj4?=
+ =?us-ascii?Q?XgCevNbRHGy78N8JRdr3HvSbJ2s2ROR2Fz71k5RZ2idLipp7AbGix8vuDTip?=
+ =?us-ascii?Q?9ZOVUd7yEfoxiXW2FdhkeLRy3k1SYKeMyyAB5N+jDLYKxdwg1CHvPyigGstt?=
+ =?us-ascii?Q?1srS46qpwox1CrxGselzeTBjPjt5d7ROxmmbEL1En+YKbY56C6cQTq1FhKpb?=
+ =?us-ascii?Q?U4c+3wBkPPqIfX+PgmrRZmRItBK0+gVfuB37HDBIz9wNqcj5QhrQThnkDN3E?=
+ =?us-ascii?Q?vLFVtTYKoFazXd2dNIv6DzYgyK+velIJ8nPmSL40MPS7RIAS/z4N505tCS6m?=
+ =?us-ascii?Q?SL+guE8/YZch0dkqCFU6I6p0kEeafkI1zUVrnx5u92H9SodEFwkjR3ZIh776?=
+ =?us-ascii?Q?xaS96ii8NX+TItNJe3GrRe8Gtuk6OA3Aa64x8RlXWDbzPMF8WJmn5oDeiruk?=
+ =?us-ascii?Q?GlYe724vwl4B0/5tnjFVNJqcQK8iCwRJc3FskFbwStOPefp67Nzl9aFJrGbs?=
+ =?us-ascii?Q?QgmnDSNVYn2PD7FUDphWeZVN7sSnay0RxeOl1J5HyfP+VNgBfJi5ZTdy/gbS?=
+ =?us-ascii?Q?P/briat29JAK2qDpeChZK0vs7yN9ZNp0pMVE6PCPhM6auRbnfK8u4MQs7Gjz?=
+ =?us-ascii?Q?RT0n17rF1IoT7SGjUFEOfD1vCUsXECTQQYFeHrpFHLLj6JcQCdkSS4fdgDG9?=
+ =?us-ascii?Q?Pgib+q4ZKdjjHrd+/ptJvLwg5IH/4WlW9cD4mntT2Fp3nHhrOdr5aAPBxHYD?=
+ =?us-ascii?Q?HxFvwVKTIjzwxw38AJ3H/hMIstm56Noc0i7h0JyVBiWGVmwbXXfAQIrJBJlL?=
+ =?us-ascii?Q?VKeijCLA41EsZU9zDg1j6H7hWo34MCxFbo7u4KzHZMQkNZpNpw6ojx3X7gd5?=
+ =?us-ascii?Q?w43/1u/BmuGdgIUNaGwaY8kL/yv9wmQPZyCfAF/0DMHsGyYXLCE+EiEcBLrP?=
+ =?us-ascii?Q?Gsx6F1RmrNlEoIh2mZgJwmYqYqSODDOOHhsvmShhCUbY9g52Hj5bZiDTq9Wt?=
+ =?us-ascii?Q?Pe3ne1/tJ1UC56GyjFRt/xsLcGRLfC+9VT26NQZvRf8PijGzDjIKCJZf0IKH?=
+ =?us-ascii?Q?3qcFlM70LiuFIvp1djBBgxNavKcYALvF+jLxr44CwJ+eDEqGvROyv4JurD26?=
+ =?us-ascii?Q?mNZshHdXzBF3CTgcUcO7wx4SiMb2vMt2l5H59YBj+T5CpVrj411/+ZqPmLfn?=
+ =?us-ascii?Q?G21kCw5V1cw3vD8fdlMOgGHVCCuSbLio7olWwp7fhkNVdzEjMvGsrpYktf/x?=
+ =?us-ascii?Q?DLqs81ASPzDFVdUoSeRf/nV7FhW5wDGhcEorPovVMfJQ6mNeD1ktR5X+P5Di?=
+ =?us-ascii?Q?3ByArFkKeQu+z1lJZ96QLwy9GOFTUQotckI6wBCcIvjz2KINlsJ+1BOnOA1U?=
+ =?us-ascii?Q?4MzLkZPzk5sr92sHSoKSo1iat7Hmyh9hMdnO5eAHPd9EV2XAuIehyQb8JiWM?=
+ =?us-ascii?Q?cPOucFX4CvqBkKX4ze1pzB7zRb3gYOZq9WJiW61BS1dxyxbxtV+r+KeLy0MZ?=
+ =?us-ascii?Q?vWGgfPkAwGGYmcUZsVRhMG6vzAFTi1XAnBx+NE7AOFwWFcpSXAFB0AuULwtn?=
+ =?us-ascii?Q?Jmjy/uEcJ7DnRo6biOSFYFsVdPuPQXBlQ+v6CkpQ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 966f1b29-db8a-4e85-7129-08dce2482df7
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2024 18:38:01.7654
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: N1Dsvw9hFY0mpeLZP1LlSdckrEogrtkm7joI0YQpeLwEJqgBoRvJvVYVBWxef9Y9PH4vAOgujId/mMQ8A71Beg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7210
 
-On Tue, 1 Oct 2024 10:35:17 +0200
-Angelo Dureghello <adureghello@baylibre.com> wrote:
+PCIe of i.MX8MP is dual role PCIe controller, which can work as root
+complex (RC) mode and endpoint (EP) mode. Add overlay file to let it work
+as EP mode.
 
-> On 01.10.2024 10:14, Nuno S=C3=A1 wrote:
-> > On Mon, 2024-09-30 at 14:25 -0500, David Lechner wrote: =20
-> > > On 9/29/24 6:05 AM, Jonathan Cameron wrote: =20
-> > > > On Thu, 19 Sep 2024 11:20:01 +0200
-> > > > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> > > >  =20
-> > > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > >=20
-> > > > > Extend backend features with new calls needed later on this
-> > > > > patchset from axi version of ad3552r.
-> > > > >=20
-> > > > > The follwoing calls are added:
-> > > > >=20
-> > > > > iio_backend_ext_sync_enable
-> > > > > 	enable synchronize channels on external trigger
-> > > > > iio_backend_ext_sync_disable
-> > > > > 	disable synchronize channels on external trigger
-> > > > > iio_backend_ddr_enable
-> > > > > 	enable ddr bus transfer
-> > > > > iio_backend_ddr_disable
-> > > > > 	disable ddr bus transfer
-> > > > > iio_backend_set_bus_mode
-> > > > > 	select the type of bus, so that specific read / write
-> > > > > 	operations are performed accordingly
-> > > > > iio_backend_buffer_enable
-> > > > > 	enable buffer
-> > > > > iio_backend_buffer_disable
-> > > > > 	disable buffer
-> > > > > iio_backend_data_transfer_addr
-> > > > > 	define the target register address where the DAC sample
-> > > > > 	will be written.
-> > > > >=20
-> > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com> =20
-> > > > Hi Angelo,
-> > > > A few trivial comments inline.
-> > > >  =20
-> > > > > ---
-> > > > > =C2=A0drivers/iio/industrialio-backend.c | 111
-> > > > > +++++++++++++++++++++++++++++++++++++
-> > > > > =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 |=C2=A0 23 ++++++++
-> > > > > =C2=A02 files changed, 134 insertions(+)
-> > > > >=20
-> > > > > diff --git a/drivers/iio/industrialio-backend.c
-> > > > > b/drivers/iio/industrialio-backend.c
-> > > > > index 20b3b5212da7..f4802c422dbf 100644
-> > > > > --- a/drivers/iio/industrialio-backend.c
-> > > > > +++ b/drivers/iio/industrialio-backend.c
-> > > > > @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct de=
-vice
-> > > > > *dev, struct iio_backend *back) =20
-> > > > ...
-> > > >  =20
-> > > > > +/**
-> > > > > + * iio_backend_ddr_disable - Disable interface DDR (Double Data =
-Rate)
-> > > > > mode
-> > > > > + * @back: Backend device
-> > > > > + *
-> > > > > + * Disabling DDR data is generated byt the IP at rising or falli=
-ng front =20
-> > > >=20
-> > > > Spell check your comments.
-> > > >  =20
-> > > > > + * of the interface clock signal (SDR, Single Data Rate).
-> > > > > + *
-> > > > > + * RETURNS:
-> > > > > + * 0 on success, negative error number on failure.
-> > > > > + */
-> > > > > +int iio_backend_ddr_disable(struct iio_backend *back)
-> > > > > +{
-> > > > > +	return iio_backend_op_call(back, ddr_disable);
-> > > > > +}
-> > > > > +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND); =20
-> > > > 				 struct fwnode_handle *fwnode) =20
-> > > > > =C2=A0{
-> > > > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/back=
-end.h
-> > > > > index 37d56914d485..41619b803cd6 100644
-> > > > > --- a/include/linux/iio/backend.h
-> > > > > +++ b/include/linux/iio/backend.h
-> > > > > @@ -14,12 +14,14 @@ struct iio_dev;
-> > > > > =C2=A0enum iio_backend_data_type {
-> > > > > =C2=A0	IIO_BACKEND_TWOS_COMPLEMENT,
-> > > > > =C2=A0	IIO_BACKEND_OFFSET_BINARY,
-> > > > > +	IIO_BACKEND_DATA_UNSIGNED,
-> > > > > =C2=A0	IIO_BACKEND_DATA_TYPE_MAX
-> > > > > =C2=A0};
-> > > > > =C2=A0
-> > > > > =C2=A0enum iio_backend_data_source {
-> > > > > =C2=A0	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
-> > > > > =C2=A0	IIO_BACKEND_EXTERNAL,
-> > > > > +	IIO_BACKEND_INTERNAL_RAMP_16BIT,
-> > > > > =C2=A0	IIO_BACKEND_DATA_SOURCE_MAX
-> > > > > =C2=A0};
-> > > > > =C2=A0
-> > > > > @@ -89,6 +91,13 @@ enum iio_backend_sample_trigger {
-> > > > > =C2=A0 * @read_raw: Read a channel attribute from a backend device
-> > > > > =C2=A0 * @debugfs_print_chan_status: Print channel status into a =
-buffer.
-> > > > > =C2=A0 * @debugfs_reg_access: Read or write register value of bac=
-kend.
-> > > > > + * @ext_sync_enable: Enable external synchronization.
-> > > > > + * @ext_sync_disable: Disable external synchronization.
-> > > > > + * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
-> > > > > + * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
-> > > > > + * @buffer_enable: Enable data buffer.
-> > > > > + * @buffer_disable: Disable data buffer. =20
-> > > >=20
-> > > > This needs more specific text. What buffer?=C2=A0 I think this came
-> > > > up earlier but it needs to say something about the fact it's enabli=
-ng
-> > > > or disabling the actual capture of data into the DMA buffers that
-> > > > userspace will read.
-> > > >  =20
-> > > > > + * @data_transfer_addr: Set data address.
-> > > > > =C2=A0 **/
-> > > > > =C2=A0struct iio_backend_ops {
-> > > > > =C2=A0	int (*enable)(struct iio_backend *back);
-> > > > > @@ -129,6 +138,13 @@ struct iio_backend_ops {
-> > > > > =C2=A0					 size_t len);
-> > > > > =C2=A0	int (*debugfs_reg_access)(struct iio_backend *back, unsign=
-ed int
-> > > > > reg,
-> > > > > =C2=A0				=C2=A0 unsigned int writeval, unsigned int
-> > > > > *readval);
-> > > > > +	int (*ext_sync_enable)(struct iio_backend *back); =20
-> > > > I know we've done it this way for existing items, but I wonder if w=
-e should
-> > > > squish down the ops slightly and have new enable/disable pairs as
-> > > > single functions.
-> > > > 	int (*ext_sync_set_state)(struct iio_backend *back, bool enable);
-> > > > etc.=C2=A0 If nothing else reduces how many things need documentati=
-on ;)
-> > > >=20
-> > > > Nuno, what do you think? Worth squashing these pairs into single
-> > > > callbacks? =20
-> > >=20
-> > > I'm not a fan of combining enable and disable functions into one func=
-tion.
-> > >=20
-> > > The implementation will pretty much always be:
-> > >=20
-> > > if (enabled) {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* so stuff */
-> > > } else {
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* do other stuff */
-> > > }
-> > >=20
-> > > Which just adds indent and makes code harder to read.
-> > >  =20
-> >=20
-> > Hi Jonathan and David,
-> >=20
-> > Yeah, I have this on my todo list and to be fair with Angelo, he alread=
-y had
-> > something like you're suggesting. I kind of asked him to postpone that =
-so we
-> > don't have mixed styles in the file for now. Then I would convert them =
-all. My
-> > plan would be to squash the .ops into one and then have inline
-> > enable()/disable() helpers (at least for the current users in order to =
-keep
-> > things easier to convert).
-> >=20
-> > As for David's comment, I see your point but one can always improve thi=
-ngs a bit
-> >=20
-> > if (enable) {
-> > 	/* do stuff */
-> > 	return;
-> > }
-> >=20
-> > /* do disable stuff */
-> > return 0
-> >=20
-> > I'm aware the above is always not that straight... but I do think there=
-'s always
-> > ways to rearrange things a bit to make it better. Because even with the
-> > enable()/disable() approach, if you start to have a lot of common code,=
- likely
-> > you'll add an helper function. In some cases, one can even add the help=
-er right
-> > away with an 'enable' argument effectively doing what is being suggeste=
-d in
-> > here. It always depends on the person implementing the ops :)
-> >=20
-> > Anyways, I really don't have a strong feeling about this. I had in my m=
-ind to do
-> > something like this. It feels that Jonathan would already be ok with it=
-. If it's
-> > not that awful for David, I'll eventually send the patches (unless Ange=
-lo wants
-> > to take care if it in this series).
-> > =20
->=20
-> I agree a single function for enable/disable may be good, reducing the ca=
-lls and
-> also the code size should benefit of some few bytes.
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/Makefile         |  2 ++
+ .../boot/dts/freescale/imx8mp-evk-pcie-ep.dtso | 18 ++++++++++++++++++
+ 2 files changed, 20 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-evk-pcie-ep.dtso
 
-Normally I'd be on David's side on this but I don't really want to end up
-with hundreds of callbacks (vs a single hundred). Thinking more about it, m=
-aybe
-I don't care about keeping them split.
-
->=20
-> Honestly, i would not do this in this patchset since i am a bit in diffic=
-ulties
-> to have this job accepted as is, and also cannot retest all of them prope=
-rly
-> right now.
-
-That's fine given it's an open question on whether it is even a good idea
-and not really related to your work here.
-
-Jonathan
-
-> =20
-> > - Nuno S=C3=A1 =20
-> > >  =20
->=20
+diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+index 9d3df8b218a2e..0d8cf020ec2dd 100644
+--- a/arch/arm64/boot/dts/freescale/Makefile
++++ b/arch/arm64/boot/dts/freescale/Makefile
+@@ -197,7 +197,9 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-mallow.dtb
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-verdin-wifi-yavia.dtb
+ 
+ imx8mp-evk-mx8-dlvds-lcd1-dtbs += imx8mp-evk.dtb imx8mp-evk-mx8-dlvds-lcd1.dtbo
++imx8mp-evk-pcie-ep-dtbs += imx8mp-evk.dtb imx8mp-evk-pcie-ep.dtbo
+ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-mx8-dlvds-lcd1.dtb
++dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk-pcie-ep.dtb
+ 
+ imx8mp-tqma8mpql-mba8mpxl-lvds-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds.dtbo
+ imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01-dtbs += imx8mp-tqma8mpql-mba8mpxl.dtb imx8mp-tqma8mpql-mba8mpxl-lvds-g133han01.dtbo
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk-pcie-ep.dtso b/arch/arm64/boot/dts/freescale/imx8mp-evk-pcie-ep.dtso
+new file mode 100644
+index 0000000000000..400e36db9dccf
+--- /dev/null
++++ b/arch/arm64/boot/dts/freescale/imx8mp-evk-pcie-ep.dtso
+@@ -0,0 +1,18 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright 2024 NXP
++ */
++
++/dts-v1/;
++/plugin/;
++
++&pcie {
++	status = "disabled";
++};
++
++&pcie_ep {
++	pinctrl-0 = <&pinctrl_pcie0>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+-- 
+2.34.1
 
 
