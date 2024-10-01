@@ -1,121 +1,83 @@
-Return-Path: <devicetree+bounces-106771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0254198BAD9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:18:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6641698BAFB
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:27:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34F6E1C21F4E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:18:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B311283A24
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:27:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BBE1BF339;
-	Tue,  1 Oct 2024 11:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD04F1BF801;
+	Tue,  1 Oct 2024 11:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eg+8lt8Y"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="LDe1RSQT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2120519B3F3
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38A61BF805;
+	Tue,  1 Oct 2024 11:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727781524; cv=none; b=IcfKpgzLB79yfOfAorKo/wysm++Jmw9Ljw0mx4tAD5P/VQyAQvkNse2mRGvEBSH7AflDhJI/lfevV5sRY+sWH6oV0mFeIsrhJMRJ9tJ3Sy2cC6FGR+/8g0mAU/MyuAWDGXqBIAYOkjDQeGfmqciN7VJyGfsi3ZTSpwV42pd3o0w=
+	t=1727782023; cv=none; b=c9b/hfzAJbujeTZxtAvTZ3ASIkW+eFILOMcmAUNxk4Q+1H7YXZR1cwWhy1k6K8cZEjhkqheb08yj7Wa48YWBu6fjuuROR8kqiUB/Js9aizUc6zqHQRM2Ba8XuJhiybXVwUMVd6/i7dGJ4mQIGWoXUahUqbA2/jCShsboR3f8rjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727781524; c=relaxed/simple;
-	bh=0icwQPXpYDOh3mLTMMknGBG8ooO+cXmtB/vqPjajuBI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MlamnBw8ZrA5KMfanTcVOlg/fjafRK9DQVXkzzzLTk6u2l/hLBnpILSAlsycxj6LHx9C+H8duH9BdD7uI5l1Ct9uOk1PC1nzr7B4M1/ML/oDHo3f4cT9v+wtBaOI99jAW931DXepUp1e1b9Wicb4h8JF02yiK0uWqIyaBPJROBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eg+8lt8Y; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53993c115cfso2503867e87.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:18:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727781521; x=1728386321; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=H1U6SzjOLd9tmaMIoGva4xG/5LpPu0blevtyOevY71Y=;
-        b=eg+8lt8YLxr+bnejVRAHXZxhyOaOWsxIq2Kiy0ePgoq45O3ee1iw1/sn4qr4+9WdTo
-         zPUXrwBDnIFUy1u3nEI0V/BiVVOxJFelJVARYj3wuSgHi05bbLf1tC/pwgd3Y3E5NZCo
-         z+FZxwifAi8un5rrYwrvlldazlNlUla5N3Ox4IEToKewoL3h4HQLDAnh0XTG3Wyq1eTx
-         DvaUTUQ0za8UT8faDAJ21ciwmti7UHeVOce8ODhqSj/UECEw/p9iJfBkK3a5PIsOnNfB
-         rkkI3bvrpY7Aga/xxGxaKjoV1B4hAhwBw6bArTONhRFnEePzo72Tm/6L4IJokbeYqA89
-         jryQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727781521; x=1728386321;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=H1U6SzjOLd9tmaMIoGva4xG/5LpPu0blevtyOevY71Y=;
-        b=spfMMD9Kl96nRf4PgOzl8de7OOJrkI2W3Eh5VIk1SWsx+Xj3BveOs8TeeeYTPeF/9r
-         aFYA/xAJMttHSh4LhGcqOyV1YgHCZnLEe8DZf3mrzjpvOsjbzxyCu4m3O4KTf4PH6Zz7
-         TdWqiPFu3CgWlnYdblwDlJo8xnLgF8qNdaSE8qy/8SgN7w+h4a7FXDqiXklvMmf/xkou
-         cUPaXGxmDMUaON6Onqbzj/FUju+Iag2Xah6MeXdnvd4erS54oztm4jeOUuCSl0pgQr9E
-         UT+Z6bP8Ly/mjk+o71lbDfjBn6yBZqMvs+Xxgvw7A4fCKp2W/EgZOx0F2Z3xqBEJUYxa
-         bnAA==
-X-Forwarded-Encrypted: i=1; AJvYcCWk6UkqvTccavHgGNAly33nCeerl2qb4mEbuLruBGqhGSKFJ2T22AC9wAG+k6nVBIltleLZUWdj/mKF@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyj6ej1RX8YAH2JUEZ68hrdDv5uFRZExa0Te9AmviHW3tD9nlyu
-	Bxyc9nmSPbhyz2bypnPlwaeM7vqi2KBnwKC7l7j70Fn6uAZCUKbJbqjKGGHECQSK5e34CuKNBew
-	SvM2bWbKQL3FaM4zRTaLgKZIpqn/yTtOaIUZr8CB1EbhdZHf8Gdw=
-X-Google-Smtp-Source: AGHT+IGVVP3SM9Y2lyoLaAnlnjr6mEhgDJWR/7EVr3JhTVLLX2ydx2IsKFpPjBzPzSbWiYJaSMdHQbaIhVvCr5IDT2M=
-X-Received: by 2002:a05:6512:3041:b0:52c:adc4:137c with SMTP id
- 2adb3069b0e04-5389fc3b745mr8112536e87.20.1727781521088; Tue, 01 Oct 2024
- 04:18:41 -0700 (PDT)
+	s=arc-20240116; t=1727782023; c=relaxed/simple;
+	bh=xEUxcuofVqD9wWT6Rn/0Or9UbqqBK0vbX1VkyuD7YpQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kYgfBhzlMGJ6p8w9DRI2tQHnRpCFFVHJ6LRX1i404y/S0aeBOxlfeCODwKh2xrK6WimyqgJdoYkXQKNWyXILJxYWl1A4gipzUmRYj/GiNdkDAF2bxSYEYXCjw3vVKxP+ErMIzlBgNJ83asQ7Ct/VhGSdi4bR5m1SLGRmhmRGr4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=LDe1RSQT; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id C394C20347;
+	Tue,  1 Oct 2024 13:26:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1727782010;
+	bh=Fgu77PRRzytQUIA2WUNU7g2WxK+xwIRy8YMbWMyv1RA=; h=From:To:Subject;
+	b=LDe1RSQTtDaAIutpaxulrtQu9un7DLpIBgWE1c0Cv5G4wdkIjTtWRFpBQO9EP2mqf
+	 RY5UbwL4tgiVfLJ/QlvznFjVPJVeXKEhMeF2QCPsuckGtAv6fM6E8F3e8nuBP7ygUk
+	 2UnXYZWJiawNH98qd/HgEgF84xIVT4iMh1y2FK9YCGEDBLXEYcTygUZMwG2GTkEJeX
+	 eQpJ9o7BRL9WrH3QTtLou+HxNC/kgMRZ4K2UPif9CFM2TuHddCdy83gK1Clo82WQzP
+	 H9O8/G0SuFq1xyN2iBCyZqhNbJBOBM5pAipzicjkAMmppZdlOBEhpcfKGuAvAiMUQ3
+	 GFMr7TMctE0Xw==
+Date: Tue, 1 Oct 2024 13:26:45 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: =?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>
+Cc: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-verdin: Update tla2024 adc
+ compatible
+Message-ID: <20241001112645.GA29051@francesco-nb>
+References: <20241001111413.10390-1-jpaulo.silvagoncalves@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
- <20240928-bcm63138-leds-v2-1-f6aa4d4d6ef2@linaro.org> <fmuxz5w77tfkodvntaley2b6kv2c7acgcfb6ojk3plw7g6rbdd@sahgzglndrda>
-In-Reply-To: <fmuxz5w77tfkodvntaley2b6kv2c7acgcfb6ojk3plw7g6rbdd@sahgzglndrda>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 1 Oct 2024 13:18:29 +0200
-Message-ID: <CACRpkdYqR3N0EaS64gqSfRfezsrSueSKHPbMc4A0g3hHg3y6dw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: leds: bcm63138: Add shift register bits
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
-	Kursad Oney <kursad.oney@broadcom.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
-	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241001111413.10390-1-jpaulo.silvagoncalves@gmail.com>
 
-On Sat, Sep 28, 2024 at 10:05=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
-> On Sat, Sep 28, 2024 at 12:29:47AM +0200, Linus Walleij wrote:
-> > +  brcm,serial-shift-bits:
->
-> bits is an uint32-array, so you need to limit number of items, e.g.
-> items:
->  - minimum: 1
->    maximum: 32
+On Tue, Oct 01, 2024 at 08:14:13AM -0300, João Paulo Gonçalves wrote:
+> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> 
+> With commit f1c9ce0ced2d ("iio: adc: ti-ads1015: Add TLA2024 support") a
+> new compatible was introduced for TLA2024 ADC. Update the device
+> tree to use the correct compatible for the Verdin-AM62 hardware.
+> 
+> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
 
-OK this is what I do on the next lines:
+Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-> > +    minimum: 1
-> > +    maximum: 32
 
-Am I doing something wrong here? I see you have a dash
-  - minimum in your comment but when I grep through the
-existing bindings for stuff ending with -bits it seems they
-do what I do.
-
-> default: [0]? or something else?
-
-Since we need to stay compatible with older device trees
-the default is whatever is in the hardware after boot :/
-
-I guess I could write something about it in the description.
-
-Yours,
-Linus Walleij
 
