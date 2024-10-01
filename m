@@ -1,138 +1,128 @@
-Return-Path: <devicetree+bounces-106832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B06698BE14
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:38:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D55AB98BE2D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:42:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D2051C21A70
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:38:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 129DA1C22780
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:42:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7074C1C68A1;
-	Tue,  1 Oct 2024 13:38:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55B41C3F2B;
+	Tue,  1 Oct 2024 13:42:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="aGzdJfsc"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="a6eolNAq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06E771C6897;
-	Tue,  1 Oct 2024 13:38:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9770F19F110
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 13:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727789884; cv=none; b=G2ASrYSxw1uERrfmwYsDXxqLPGYlfLhfe+V5ZLMfaEvvPy+THfr702L62Xubq+7FYjyuFZJPPWZqeihqYYIcoamDC0HcPSbz9NRJx2twy2Z4g7bqfsV8Z1uoFxZ+EeVAp4iLojeOx8DoA8ymb4zhLX+qZ6P0qF9xLbL3FtF9nqY=
+	t=1727790147; cv=none; b=gf/5dVcpoHvqshcKcmtesZ2ZZtUGoXYK1Wp8jwSKw80wu5K3mjk4Eb3OZFfstIJNGL3X4vWYuDJYa6qOZrFaOTqA+YyqePZG1X6efaGatpa6gqWo+vdNG4hyS4GWY6nrhe+9dpBQUl9VNjBmqZtiuO65LwcZuAB/bqq3R4P6HwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727789884; c=relaxed/simple;
-	bh=/frtW8ntDXQ5Ik7ENk4o+f5CaYehduCwg1NlNKd98Qg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=Rob6cO357Ii433eCAtL82QxGE/6LJRXDlM/WOPB9IjrSpbtsTHXhanlR8RWZcRhxgFPYR236zmG8YPpB9NQYWnwZ82JV6mAn8o2sKDdmzMMiR8c4ZB11W3da/k+/nhGvZ9zP9bXh2OChAoX/tD+pVDOVEwQRmYuZtkggoVi/uSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=aGzdJfsc; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 491C3bSL017051;
-	Tue, 1 Oct 2024 09:37:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=VXhGt
-	+Hv1GloUMPxriT4VjWKaDaFPkGeQDuGehZ2F7Q=; b=aGzdJfscAalkxmGibm+vF
-	WARzdIvtkWgK45JwYxUAZBptuotMBmEbqfqqxC5lCqonFdtCu0rTFKljEuz9BkED
-	gcHFDERoO0RblmtQtEyc5NqTV6ia+hJ+cUhK99+1JEbBl7C1weVvm7Q/UcQbvgYq
-	0uYmVjoLhizNDpI5ZUo9VEox7L8T9TREuU63DuFnfkgFtHASZYDS9N3YYR9eU9Ee
-	Sg0V1lP7ehDwa6+3QhT5rzM8mmgViPrA4XptZ2vR+cUPJgVAaqid3x2hvAxjrphT
-	PWxKUJRwq4BTBLRZ2yA15p70TiQPejIas8+miqtU97UCaI8uIbPkoMKk4lS9fllm
-	A==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 420c0dshr7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Oct 2024 09:37:55 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 491Dbsdw054580
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Tue, 1 Oct 2024 09:37:54 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 1 Oct 2024 09:37:54 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.14; Tue, 1 Oct 2024 09:37:54 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.2.986.14 via Frontend
- Transport; Tue, 1 Oct 2024 09:37:54 -0400
-Received: from [127.0.0.1] ([10.44.3.60])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 491DbTeW022143;
-	Tue, 1 Oct 2024 09:37:51 -0400
-From: Nuno Sa <nuno.sa@analog.com>
-Date: Tue, 1 Oct 2024 15:41:44 +0200
-Subject: [PATCH 13/13] Input: adp5589-keys: add regulator support
+	s=arc-20240116; t=1727790147; c=relaxed/simple;
+	bh=Hxb93VBN2wjQjq7K7CdVUFSYbZsXI3NIAZECR/42fBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ANBLWqRJuna2pJ8lAoFcp67chc1Kikpl+nkrilXsP+hWKLUOYtsoB7pvV0dkie4ZTEUCkGcciLKSNS2bJo5yD8zCXr02oZ/tR4yD80AKX2QtQKC5kx7i4Ar0TzGdJ9hIHyyW/rm1pzsG8AFVsDNyYOwPFeF29uSxmPltXmgd8do=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=a6eolNAq; arc=none smtp.client-ip=209.85.210.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-71116d8504bso3479166a34.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 06:42:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727790144; x=1728394944; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zO30q9nPhm3Q0tzD5dpPGZWjk6LKGp2tiZZl58C+1tQ=;
+        b=a6eolNAqg22EG38jDFtNyR6guZblbQak/M1hurm/mnq2Is1Wd5OUf09eAa0iBLedRn
+         RVYt/WlHBY4OARtLjEukhSWKmMmNRB3S3gpd1I9ldHqi5lojz7Jw1UOWR6jpoUeAruun
+         fdsDyErKzImR8LNgrMP6LtKhWTHuRTudxRa2FomX6C1JvpxP4BcNbClp9hkVvI/gh5n9
+         Zssw8CxjeliWmKH9u6a906n+wGEZt6PWNU4AGCFYfZ90Nch3miPPL4NOXf68BmJpdBhY
+         wrWM8GJq0eSvIbvYoPtrBbQOY91qyQ6v/Ky1ccKnw0IorxCbezerzY9xpjkFCBDH40rj
+         XhiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727790144; x=1728394944;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zO30q9nPhm3Q0tzD5dpPGZWjk6LKGp2tiZZl58C+1tQ=;
+        b=SRQpy94qmKpG1cXJUjCtSQ17isYo3D4thyY5fcYv+DGjk2MnZITn1ex4odPhN93zsT
+         TO9Zws+v5BwIFHBvZjqj61v5IHC3idx2X4szlQ4KtrM1NrxP2ArGPyz3nOGxiDwR28WY
+         AAbPrYBZXnNxevnBvEjf7/M6wJNh2tnOZnTYXlpAEhDZv/KIxFzEP5Gaq5K77PWkLwtX
+         Jfrh50Fi8cpNzxyFrILwk9z+X00pLbxy9FsVuda64FPymcDpYurBpqb2JZGpGMXE76LA
+         CCI6vdc5IFA0G8+JSLFAJb8NTsS2RJyU0SKoRUazQj8G/I+B/BSiIWHgj7i419INgP8n
+         9Tiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWRvrsnKn577B3Bg+NjRWQ6Gg5yFQfk3uSPBao3IZR8Yx5KaqCElqN7FSV7mUDem4ovf4ITeJ+BhD6j@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV/fMdobyvhuYr3ntUXAGw+SxnYMVnkqDsDULZqV3NAsi5i/d1
+	LoRqnel1+s2UyqUKmBHa8E5qBY4MSrvnCbe2NJ/JoUEuSQa/FqqWCxKlY0uuI4Y=
+X-Google-Smtp-Source: AGHT+IHFNuEbhuCxlZk9FEMhWvFEJI416om35o/BvxuQUNU1PzqlhDNXl67kUSrg3vRnuGn7A+ok6g==
+X-Received: by 2002:a05:6830:3819:b0:713:8b3b:8289 with SMTP id 46e09a7af769-714fbe8fc85mr12996098a34.10.1727790144500;
+        Tue, 01 Oct 2024 06:42:24 -0700 (PDT)
+Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-714fb64fd10sm2889619a34.10.2024.10.01.06.42.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Oct 2024 06:42:24 -0700 (PDT)
+Message-ID: <047034ae-135b-4ce9-a407-9b2a00841324@baylibre.com>
+Date: Tue, 1 Oct 2024 08:42:23 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241001-b4-dev-adp5589-fw-conversion-v1-13-fca0149dfc47@analog.com>
-References: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
-In-Reply-To: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Mike Frysinger
-	<vapier@gentoo.org>, Dmitry Torokhov <dtor@mail.ru>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1727790102; l=787;
- i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
- bh=/frtW8ntDXQ5Ik7ENk4o+f5CaYehduCwg1NlNKd98Qg=;
- b=9X2s3bDrng75BJMwJe8p+YQu1g6AnaXr2buJ/HvMbGVhzcikCSv8mU1pRophi23vKtpGaOKsM
- 5dLls4yaIfDB8SC9QNqF8kFLSAWrtbeki9AgBQSEIEqQFcaVL31oQkO
-X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
- pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: mbQMY1ix08rEYg17P8-A3rN8QrLgHHvL
-X-Proofpoint-ORIG-GUID: mbQMY1ix08rEYg17P8-A3rN8QrLgHHvL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- bulkscore=0 impostorscore=0 mlxscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 clxscore=1015 suspectscore=0 phishscore=0
- mlxlogscore=816 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2410010087
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 8/8] iio: adc: ad7606: add support for AD7606C-{16,18}
+ parts
+To: Alexandru Ardelean <aardelean@baylibre.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc: jic23@kernel.org, krzk+dt@kernel.org, robh@kernel.org, lars@metafoo.de,
+ michael.hennerich@analog.com, gstols@baylibre.com
+References: <20240919130444.2100447-1-aardelean@baylibre.com>
+ <20240919130444.2100447-9-aardelean@baylibre.com>
+ <CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Support feeding VCC through a regulator.
+On 10/1/24 3:26 AM, Alexandru Ardelean wrote:
+> On Thu, Sep 19, 2024 at 4:05 PM Alexandru Ardelean
+> <aardelean@baylibre.com> wrote:
+>>
 
-Signed-off-by: Nuno Sa <nuno.sa@analog.com>
----
- drivers/input/keyboard/adp5589-keys.c | 4 ++++
- 1 file changed, 4 insertions(+)
+...
 
-diff --git a/drivers/input/keyboard/adp5589-keys.c b/drivers/input/keyboard/adp5589-keys.c
-index a3d51e36132b73ef07715f256b82e428c81bd6f6..f3a0ea1bec4a7a8ed0a5a96211decc5d86728b71 100644
---- a/drivers/input/keyboard/adp5589-keys.c
-+++ b/drivers/input/keyboard/adp5589-keys.c
-@@ -1445,6 +1445,10 @@ static int adp5589_probe(struct i2c_client *client)
- 	if (!kpad->info)
- 		return -ENODEV;
- 
-+	error = devm_regulator_get_enable(&client->dev, "vcc");
-+	if (error)
-+		return error;
-+
- 	error = devm_add_action_or_reset(&client->dev, adp5589_clear_config,
- 					 kpad);
- 	if (error)
+>> @@ -153,7 +349,19 @@ static int ad7606_scan_direct(struct iio_dev *indio_dev, unsigned int ch,
+>>         if (ret)
+>>                 goto error_ret;
+>>
+>> -       *val = sign_extend32(st->data[ch], 15);
+>> +       chan = &indio_dev->channels[ch + 1];
+>> +       if (chan->scan_type.sign == 'u') {
+>> +               if (storagebits > 16)
+>> +                       *val = st->data.buf32[ch];
+>> +               else
+>> +                       *val = st->data.buf16[ch];
+>> +               return 0;
+> 
+> Arrggh...
+> I messed up here.
+> Guillaume found a bug here, where this should be "goto error_ret" or
+> do an "if ()  {} else {}"
+> How should we do it here?
+> 
+> Do we send a fix-patch or send a new series?
+> 
 
--- 
-2.46.1
+Since this patch is already applied, just follow up with another
+patch with a Fixes: tag.
+
+
 
 
