@@ -1,239 +1,206 @@
-Return-Path: <devicetree+bounces-106705-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106706-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C466F98B642
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 09:57:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1849298B691
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:10:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD03E1C21EED
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 07:57:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9230F1F21DEA
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:10:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093761BDAA6;
-	Tue,  1 Oct 2024 07:56:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FB251BE229;
+	Tue,  1 Oct 2024 08:10:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ixsN0XFA"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iqhe7qvw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833642BAF1;
-	Tue,  1 Oct 2024 07:56:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3183B1BD514
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 08:10:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727769414; cv=none; b=E++KXc5ZSfYy8sfRVIUTuyF1PiLXA8IZnhxz6uFBwq9XtCk60aTX60tldDulxGtiIWjBK3l1Vm7Pona/I/0IVXgf7Mc6vSZCqLvzluUteubQc07n5fOEXSlRt9qiFJMcaEL2eiMiakx41NGzvpeLC689Q6f0RWb8fy48VA3TyJ0=
+	t=1727770236; cv=none; b=C937n2gB4LbtYRM0GnDQRedRc2XRiEOmHc/PmqlrA4obatQLTbTE9aqMYFVIr39NjbsmMqINMj6MY87ScbRYbKo9cA9VynQR/vrd/aTU7yxuc3Jp3cHak3HBAMvG00Ccvvob6VJ51SUxdgtB1I/hm5mxYbs3wlNRF23QyucTHy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727769414; c=relaxed/simple;
-	bh=kqtCwrNQyrsCPH14IeF49CkrTD3Sxwt2LYZ89HY0hjY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=sFxjQ9sinNe+sphtTEdv+idoiP4CdKoQTVdFtdkWnSjat1KS6DhDE1s4GnuDWdCvkJiFeETj5HjhDRrOEZJHSbmOcM5iJo6k6T9DzIbLtyWs2ai13yCNGZ97vO3SPuqLqWDGFrFMPw96i3zmRTdrbXckw8ep4y9rSpYZHfkMNO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ixsN0XFA; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b47bc4707fca11efb66947d174671e26-20241001
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=TjMavNplUZELeajR9FcsG6MetaDg0Rbfa8IeC3xIwEU=;
-	b=ixsN0XFAJsan5Ev6vc+tKGXpJIGcjVl1HX9AIgoj+lxKnrbYXc6ny+CWdptP/KZUo+YTJdKx2AjVz71BCgkOE360jJOM1VzIj8JAjHytnTY1Nqp2ePMmpK82UbmpnOhd5DoAoAwoCytFOfr+fOvhtu0u28b8JOZp3i6TfD5wZ9I=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:42482f59-f8ee-4621-8c1a-6436a83ad0d4,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:5b18d79e-8e9a-4ac1-b510-390a86b53c0a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
-X-UUID: b47bc4707fca11efb66947d174671e26-20241001
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 462655724; Tue, 01 Oct 2024 15:56:45 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 1 Oct 2024 15:56:44 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Tue, 1 Oct 2024 15:56:43 +0800
-Message-ID: <52f8b482-cf53-cace-5942-728dcb50ff13@mediatek.com>
-Date: Tue, 1 Oct 2024 15:56:41 +0800
+	s=arc-20240116; t=1727770236; c=relaxed/simple;
+	bh=xDBEBJYP/Tdw9WDuI3MHDdod4ymMNREYAh/l2E6YSV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TX44d/LCyfxgGwWkS3rGXO4Bb8nJ1bKQV/VIEt1qG0KJAebH9eo/1mS+gIJvzlUDGrt+U/egeag4pGRt165/CH+06RjdjQGz6gTRRXpUxbDQEsOaFWZcyLxzXQWBSizp/ms0B8d5ebKVm4wBMsiTbjrHk5irTtbUs7mLjJ3QGuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iqhe7qvw; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42cae6bb895so47569285e9.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 01:10:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727770231; x=1728375031; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=mt71aA3aNionD9vjty8trgPSbvpRPNwvwgRBKUpuCro=;
+        b=iqhe7qvwgsAYOosPsxBxNtKnzSPvRJLpAEnOTsufYh6RP+Zf47Eqdh2lIJTo4tYReK
+         fkrPWRlKu1pwS6GPAHiDrilHxefninkzuT6A0X5jXF5Yrb6/9ojRBE8D9gb1H6j2ATLg
+         O2ayBumTl6pP+YqVJzxheTL27FyT3mjY4v59mPqCtamdYRCrHDNCTsjYHlCvbAkvDVeu
+         kZn/9UdqYRRG5yOIH0z3ZpMX+cwXQYE+NFPPnootd+p/+Sxdxn7TxdA4vd9MW0uy8K7D
+         /Z5rhSunAM3LdBm+H3xF8A+8zICD3pbKKcAfPT2o5A/EoQ8f1UZ9xaoceZfI52YPyNG+
+         mlpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727770231; x=1728375031;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mt71aA3aNionD9vjty8trgPSbvpRPNwvwgRBKUpuCro=;
+        b=fIC/jDXXqzkxcNQ+eX5a7XIBUsVFOKE1laz8q42C+bzov3+HXgQ6FAbMO2J1X0hQSj
+         H3HCIM1RHKshpFQdcSslY46zJaERM5PViabeMlo+kAw0KThoFcsOMWEqgDmpfTCwVLY3
+         HOvTYF7FFNfIdBdS9XX+jhejad4dnKAR3UmHQZXtm9ojmdacGr9Gqm1YSq3+3Biqn/0I
+         7fkJoZKyqM9WSaCzwLR5UtYs3tUSqQ6AnCUln1aeq+j8FKzTtsU0ERyJVp4TuLLwCDau
+         Qz8Brq/RTaVaMW1pmIqvIG5SAYdVXskE/VCnYLvcF5PmZZwok85hPlx/ewhJQhhd9nYr
+         y5/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVGnd4A0Qvjy2UjidTxdeMCdLYZAS/zJ/Ziwyp/OD22adggRUinzaGE9Oe65iRd9XSNZwBBb1NjfSTx@vger.kernel.org
+X-Gm-Message-State: AOJu0YwP7aXV0wdFr9WmEcC6J8CnuT7fA7Gqkdq/bgM4qP4EFtFKzL51
+	Pm5Td/Mdn+5YOQpixy664HZhvqobqZiDrHyAspgqB4rImT17jbELwBKx1UWUHHM=
+X-Google-Smtp-Source: AGHT+IFAT2GKz+3bbbUxTwJ5qGuV5dXG3CAZRzMSRP57EqszCzBxYwM1Phs9qCxbipijlK+Xp1Ma5w==
+X-Received: by 2002:a05:600c:458b:b0:42c:b1ee:4b04 with SMTP id 5b1f17b1804b1-42f58488161mr101014635e9.28.1727770231366;
+        Tue, 01 Oct 2024 01:10:31 -0700 (PDT)
+Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f57e13524sm125973965e9.37.2024.10.01.01.10.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2024 01:10:29 -0700 (PDT)
+Date: Tue, 1 Oct 2024 10:09:11 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+Message-ID: <bih7fzhv6ecpk2lkszsnweiduycc6ensofxpjjrfxwqz7wyplt@3mtqxpl7bsc6>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+ <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+ <20240929115150.6d1c22b3@jic23-huawei>
+ <oh2xoym6dwvfn5lbzx3j5ckd3gfzvl2ukohrs4ukumkv6kzwi5@ume3z224gjta>
+ <20240930154958.00004507@Huawei.com>
+ <ipnqs4uektoysenkr7jvf6ic2rh56n3e5fmmheay323yhavs7u@th7qmxwmkiqo>
+ <453ab98b-618f-45ba-9eab-e462829d25ae@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v7 3/3] dt-bindings: mfd: mediatek: mt6397: Convert to DT
- schema format
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones
-	<lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino
- Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu
-	<sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Andrew Lunn
-	<andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
-	<olteanv@gmail.com>, "David S . Miller" <davem@davemloft.net>, Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Sebastian Reichel <sre@kernel.org>, Liam Girdwood
-	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, <linux-input@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-leds@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-	<netdev@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-	<linux-sound@vger.kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>,
-	Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-References: <20240930073311.1486-1-macpaul.lin@mediatek.com>
- <20240930073311.1486-3-macpaul.lin@mediatek.com>
- <psjwbo2vecr54vmz5ib2eurhpcaynpc67rc2nwuj2gtej6gqiu@4ysahn2ghthf>
- <5a29ddaf-cc01-498c-943c-b65736e2899e@kernel.org>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <5a29ddaf-cc01-498c-943c-b65736e2899e@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <453ab98b-618f-45ba-9eab-e462829d25ae@baylibre.com>
 
-
-On 10/1/24 14:35, Krzysztof Kozlowski wrote:
-> 	
+On 30.09.2024 14:20, David Lechner wrote:
+> On 9/30/24 10:08 AM, Angelo Dureghello wrote:
+> > On 30.09.2024 15:49, Jonathan Cameron wrote:
+> >> On Mon, 30 Sep 2024 16:15:41 +0200
+> >> Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >>
+> >>> On 29.09.2024 11:51, Jonathan Cameron wrote:
+> >>>> On Thu, 19 Sep 2024 11:20:00 +0200
+> >>>> Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >>>>   
+> >>>>> From: Angelo Dureghello <adureghello@baylibre.com>
+> >>>>>
+> >>>>> There is a version AXI DAC IP block (for FPGAs) that provides
+> >>>>> a physical bus for AD3552R and similar chips, and acts as
+> >>>>> an SPI controller.  
+> >>>>
+> >>>> Wrap is a bit short. Aim for < 75 chars for patch descriptions.
+> >>>>   
+> >>>>>
+> >>>>> For this case, the binding is modified to include some
+> >>>>> additional properties.
+> >>>>>
+> >>>>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> >>>>> ---
+> >>>>>  .../devicetree/bindings/iio/dac/adi,ad3552r.yaml   | 42 ++++++++++++++++++++++
+> >>>>>  1 file changed, 42 insertions(+)
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> >>>>> index 41fe00034742..aca4a41c2633 100644
+> >>>>> --- a/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> >>>>> +++ b/Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
+> >>>>> @@ -60,6 +60,18 @@ properties:
+> >>>>>      $ref: /schemas/types.yaml#/definitions/uint32
+> >>>>>      enum: [0, 1, 2, 3]
+> >>>>>  
+> >>>>> +  io-backends:
+> >>>>> +    description: The iio backend reference.  
+> >>>>
+> >>>> Give a description of what the backend does in this case.  I.e. that it is
+> >>>> a qspi DDR backend with ...
+> >>>>   
+> >>>>> +      An example backend can be found at
+> >>>>> +        https://analogdevicesinc.github.io/hdl/library/axi_ad3552r/index.html
+> >>>>> +    maxItems: 1
+> >>>>> +
+> >>>>> +  adi,synchronous-mode:
+> >>>>> +    description: Enable waiting for external synchronization signal.
+> >>>>> +      Some AXI IP configuration can implement a dual-IP layout, with internal
+> >>>>> +      wirings for streaming synchronization.  
+> >>>>
+> >>>> I've no idea what a dual-IP layout is.  Can you provide a little more info
+> >>>> here?  What are the two IPs?
+> >>>>  
+> >>> IP is a term used in fpga design as "intellectual property", that is
+> >>> intended as a functional block of logic or data used to make a 
+> >>> field-programmable gate array module.
+> >>>
+> >>> A dual layout is just 2 same fpga modules in place of one.
+> >>>  
+> >>> I can add a "fpga" regerence to be more clear.
+> >>
+> >> IP I was familiar with.  I'm more interested in what each IP is doing in this
+> >> case.  Or at least an example of what sort of split of functionality might
+> >> make use of this.
+> >>
+> > 
+> > I have an image of the project (that is under development or testing now),
+> > not sure how to attach the image here, btw, something as
+> >  
+> >           axi_ad3552r_0  ----------->---- qspi0
+> >               sync_ext_device --.
+> >        .- external_sync          |
+> >        |                         |
+> >        |-------------<-----------                        
+> >        |
+> >        |   axi_ad3552r_1 ----------->---- qspi1
+> >        `- external_sync
+> >  
+> > My understanding is that it's just a method to use a octal spi,
+> > duplicating the transfer rate. I can collect more info in case.
+> > 
 > 
-> External email : Please do not click links or open attachments until you 
-> have verified the sender or the content.
+> No, it's not for octal SPI. It is for synchronizing the data
+> transfer to two different DAC chips.
 > 
-> On 01/10/2024 08:29, Krzysztof Kozlowski wrote:
->> On Mon, Sep 30, 2024 at 03:33:11PM +0800, Macpaul Lin wrote:
->>> Convert the mfd: mediatek: mt6397 binding to DT schema format.
->>>
->>> MT6323, MT6358, and MT6397 are PMIC devices with multiple function
->>> subdevices. They share a common PMIC design but have variations in
->>> subdevice combinations.
->>>
->>> Key updates in this conversion:
->>>
->>> 1. RTC:
->>>    - Convert rtc-mt6397.txt and merge into parent MT6397 PMIC DT schema.
->>>
->>> 2. Regulators:
->>>    - Align to generic name "regulators".
->>>    - Update references from .txt to .yaml for mt6323, mt6358, and mt6397
->>>      regulators.
->>>    - Simplify regulator name labels in device tree examples.
->>>    - Add a new 'mt6359-regulator' to the compatibles of regulators.
->> 
->> Why?
->> 
->>>      Merge from the other patch [1].
->>>
->>> 3. ADC:
->>>    - Add a new 'adc' property and include a $ref for sub-device node of
->>>      MT6359 PMIC AUXADC: 'mediatek,mt6359-auxadc'.
->>>      Merge from the other patch [1].
->>>
->>> 4. Audio Codec:
->>>    - Simplify Audio Codec part with updating compatible items.
->>>    - Add 'mt6359-codec' to the compatible
->> 
->> Why?
->> .
->>>
->>> 5. Clocks:
->>>    - Align to generic name "clocks" for clockbuffer subdevices.
->>>
->>> 6. LEDs:
->>>    - Convert leds-mt6323.txt and merge into parent MT6397 PMIC DT schema.
->>>    - Update LED binding.
->>>
->>> 7. Keys:
->>>    - Add detailed descriptions for power and home keys.
->>>    - Add compatible: mediatek,mt6358-keys.
->>>
->>> 8. Power Controller:
->>>    - Convert mt6323-poweroff.txt and merge into parent MT6397 PMIC DT
->>>      schema.
->>>    - Add #power-domain-cells property to fix dt-binding check error.
->>>    - Clarify "BBPU" as "Baseband power up".
->>>
->>> 9. Pinctrl:
->>>    - Align to generic name "pinctrl" instead of "pin-controller".
->>>
->>> 10. Compatible:
->>>    - Drop "mediatek,mt6357" since there is a separated DT Schema
->>>      for PMIC MT6357.
->>>
->>> 11. Examples:
->>>    - MT6323: Retain complete examples for this PMIC.
->>>    - MT6358 and MT6397: simplify settings in regulators.
->>>     - Preserve "audio-codec", "clocks", "pinctrl", "rtc", and "keys"
->>>       sections as they contain typical settings for different PMICs.
->>>
->>> Additional updates:
->>> - MAINTAINERS: Add co-maintainers and reference to
->>>   mfd/mediatek,mt6397.yaml for LED and power-controller drivers.
->>> - input/mediatek,pmic-keys.yaml: Update reference to
->>>   mfd/mediatek,mt6397.yaml.
->>>
->>> References:
->>> [1] https://lore.kernel.org/all/20240925171156.9115-1-macpaul.lin@mediatek.com/
->>>
->>> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
->>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->>> ---
->> 
->>> +
->>> +  adc:
->>> +    type: object
->>> +    $ref: /schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
->>> +    unevaluatedProperties: false
->>> +
->>> +  audio-codec:
->>> +    type: object
->>> +    description:
->>> +      Audio codec support with MT6358, MT6359, and MT6397.
->>> +    additionalProperties: true
->> 
->> No, this cannot be true. Schema is incomplete for listed compatibles.
+> I think we need a bit more in the DT bindings for this to fully
+> describe the wiring shown. We need to indicate that both of the
+> two AXI AD3552R IP blocks have external_sync connected, so a
+> adi,external-sync flag could be used for this. Then we also need
+> to describe that sync_ext_device is only wired up on one of the
+> IP blocks. So we would need a separate adi,sync-ext-device flag.
 > 
-> I saw now your patch for ASoC, so this is fine.
-> 
-> All my other questions stay valid - why are you adding new devices in
-> patch which is supposed to be ONLY conversion.
-> 
+> Then the driver would use this information to A) know that we
+> need to set the external sync arm bit when starting buffered
+> reads and B) know that the buffered read for the IP block
+> instance with sync_ext_device needs to be started last so that
+> the data streams for both DACs will be synchronized.
 
-Ok, I'll drop adding new devices from other reviewed patch for this ONLY
-conversion.
+I thought to add this sync stuff thinking that it will be needed
+soon, btw, it is not used right now for a single IP. 
+I suggest to remove it entirely, since it is actually dead code,
+and this hopefully can fast up things.
 
->> 
->>> +
->>> +    properties:
->>> +      compatible:
->>> +        oneOf:
->>> +          - enum:
->>> +              - mediatek,mt6358-sound
->>> +              - mediatek,mt6359-codec
->> 
->> There was no such compatible.
->> 
->> Why do you add non-existing compatibles during conversion?
->> 
+-- 
 
-Same here, will drop it in this conversion.
-
-
-> Best regards,
-> Krzysztof
-> 
-> 
-
-Thanks
-Macpaul Lin
+Regards,
+  Angelo
+       
 
