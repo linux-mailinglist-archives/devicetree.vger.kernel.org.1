@@ -1,390 +1,127 @@
-Return-Path: <devicetree+bounces-106759-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106760-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8297B98B9B2
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:29:08 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56EE398B9C7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:33:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3E06028456F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:29:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD378B20A60
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79A401A08AB;
-	Tue,  1 Oct 2024 10:29:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PXad7WlA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02CBF1A0B10;
+	Tue,  1 Oct 2024 10:33:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401B33209;
-	Tue,  1 Oct 2024 10:28:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59C621A08CB
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 10:33:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727778541; cv=none; b=TjLhn5LJ44F+TAyJ4zn3fpnoQyCYHxKTe9xt5cllpznSYNi+UvSasr2yGYsiErsBdARyqRvNRBQK5ueNuwnFawFVNsWT+wsYgyDEnVJqXd+sS1iOL0avtVteIoMhH/VsonuX4RhIrk3p4uTilFvXNAKlF7WJas3NFd1xsOqB3mM=
+	t=1727778785; cv=none; b=iQNzQpBY4GYNMI0B//1cihDLXKUyC+kSwkC1dOEvUe/eSxPtyYV2NHMC3VKfFVwPi9TrXWxhyj+k5zFhR4bcJaFFmJvkbECwjhgVFvtYqKh0I2sPswf7dp3troPq+vP6RTpReJBMwWwx5Y3UvCXUyobJ0N8vjIGl2+SVO17NO6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727778541; c=relaxed/simple;
-	bh=I6Qr/Ob7Ff/m0p/vV8bz76GhU1KYcAYQ3zoI0yMDfcg=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ef6pgLda65kol1TvDQJaRc/NEVPjtNQd1EvE7gAGU8AxAzJXL35sBETAlAZWcKfkSqMY8HfWbZ6veZNEnJMKbhdyQBnqL5bW+IQgMLauzhkPaWZGkGkC9pxr5+RB51QX+S429tRgEt0sxrrTIEDfXLm+3jbqLTvUKHCUYudsz1U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PXad7WlA; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37ccd81de57so3326115f8f.0;
-        Tue, 01 Oct 2024 03:28:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727778537; x=1728383337; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=XxxaxknpIr+rYBfvQOLwgicD/hlb/iC9+wZ3tE8jGrk=;
-        b=PXad7WlAZvMUdJGxEJbnrjUf1xPZyYRXnG6e43STQ1euMU87S0bjVFMkw5t9Ltppra
-         5QZTdWtpp8+tqkry4HPWftkw8Vh2iEN0kIxo5l02X1U0QIofTUx98icCCwWJwxNxOloX
-         FKNYOemfIl0Gq213g4B3CbAYVnjAT1YAaGop9KINoP3noHl+uXhinv+CIaOkPTMywZII
-         3vIGMTPS4vV+yH0jglQQrEptOMDnt4fJqp9MazBxzygH5PBAh1ahFVgSrO5zeDM0BTYZ
-         dXE8xsrEMC3g+uQBIy1HT974Fq5DcBn1T+a5MeAAQwrAr52UDJl0NgH4IgOw/XGandvj
-         9yyg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727778537; x=1728383337;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:subject:cc:to:from:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XxxaxknpIr+rYBfvQOLwgicD/hlb/iC9+wZ3tE8jGrk=;
-        b=M0Hy28xPZ5Y6uqQDm6wbAbH6aO2jFjMk4ej5xeZj6EF1lD61mOydsRSt9T+5jitU7u
-         39jeOVsPn2FsSkydSSc+HcJfQJ4j6GCSvppttXJYrLZ/hJHiee62njqu/GTk23pOOdgS
-         QSSl02nCso1eu/UAIouRre26aCKY29MWnXTnQ+Uz7F/wcf8L/9OdUS6R2tBS5ooVPYog
-         RPmBAVDFb0lDO6KclJnN4PHGhtIk99yBNMGQvER8H5S4KJNhT1cEzjlpgMqg75pQOk0R
-         pdFMlwkINDT+hHI01tcI8XdLnYrCKqSv0igkVzlVeAPT+1BD8ELPAh+Jd0XM417XrZkB
-         nr2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVTqZmdtBEUsigwTVfxjopLOlo6FmtFdIASr0Z4C0+Szt0U/fTm9SWyOb+9n5BpI74Rcelf0c8N7A4qNBgv@vger.kernel.org, AJvYcCXBRtH/DfskMEoh4xXZfOESVNKrM/hYNKaqngomwAnnLSN2ylLvZECIHPLqc9NGFa8c7eAZKMjCRE8h@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcP+fFYsz8VVtpcfEgp6w/hkbyJIrdLIz1SurbaJ2ssimY/293
-	gDLyuDckw2vSq/PNy6uFOpY7XVlOCxYWhpg9AljL4pYfY86QfrNP
-X-Google-Smtp-Source: AGHT+IGKollpdraY9TlsQu6ZSshUlo/5yR2eEYDo1CRP7REYF+jzfTN9M2CEbhYPINZAKREV3K3hmg==
-X-Received: by 2002:adf:ae19:0:b0:374:cc89:174b with SMTP id ffacd0b85a97d-37cf289c56fmr1384753f8f.4.1727778537127;
-        Tue, 01 Oct 2024 03:28:57 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd575de73sm11383189f8f.115.2024.10.01.03.28.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 03:28:56 -0700 (PDT)
-Message-ID: <66fbcee8.df0a0220.2ad0cb.4f6a@mx.google.com>
-X-Google-Original-Message-ID: <ZvvO4-N6wVe-f33I@Ansuel-XPS.>
-Date: Tue, 1 Oct 2024 12:28:51 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1727778785; c=relaxed/simple;
+	bh=1+9qU1dmRsSbY8K7d//xOhQyUobepu7L+bzDYYZnbPo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZBov2QhgAkQU2ybUZ1+h0fkP5CLMerBRYfC0Uv51jUJ7yJSuBmyRdgWSqF54tfTuFJITH7vQNZZYR+2gu++Mdr0AQCnF7LsYN0rFhyV/8xlZ9JY8i6GCCEcTnCX4Yix0U4CETniJ4N9LYZl9xduKSipkzbkAHoyN8Tv+fu9TdB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1svaBS-0007b2-C6; Tue, 01 Oct 2024 12:32:46 +0200
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1svaBR-002qxB-M9; Tue, 01 Oct 2024 12:32:45 +0200
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1svaBR-004wOM-1s;
+	Tue, 01 Oct 2024 12:32:45 +0200
+Date: Tue, 1 Oct 2024 12:32:45 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Pankaj Gupta <pankaj.gupta@nxp.com>
+Cc: Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>,
-	upstream@airoha.com
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add Documentation for Airoha
- fixed-partitions
-References: <20240925101422.8373-1-ansuelsmth@gmail.com>
- <20240925101422.8373-3-ansuelsmth@gmail.com>
- <20240925133003.619c40c4@xps-13>
- <66f3f58e.5d0a0220.5d655.b48a@mx.google.com>
- <20240925135256.32d3a0f7@xps-13>
- <66f3fcb7.5d0a0220.3ca4c2.ba83@mx.google.com>
- <20240930114819.609f9341@xps-13>
- <66fa7915.050a0220.1da288.aeca@mx.google.com>
- <20241001104225.67483dab@xps-13>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [EXT] Re: [PATCH v7 4/5] firmware: imx: add driver for NXP
+ EdgeLock Enclave
+Message-ID: <ZvvPzfUHUK9gbYMi@pengutronix.de>
+References: <20240904-imx-se-if-v7-0-5afd2ab74264@nxp.com>
+ <20240904-imx-se-if-v7-4-5afd2ab74264@nxp.com>
+ <Zt7n0AxGEw-ZXbui@pengutronix.de>
+ <AS8PR04MB85932B4E47EFC519B0EF6D9A95632@AS8PR04MB8593.eurprd04.prod.outlook.com>
+ <Zu1kUDb5dfB5dRbe@pengutronix.de>
+ <AM9PR04MB86042C9BF315EF130FF0408A95692@AM9PR04MB8604.eurprd04.prod.outlook.com>
+ <ZvUupApT8q_TRJds@pengutronix.de>
+ <AS8PR04MB85935C0146A9393E6D75456A95772@AS8PR04MB8593.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241001104225.67483dab@xps-13>
+In-Reply-To: <AS8PR04MB85935C0146A9393E6D75456A95772@AS8PR04MB8593.eurprd04.prod.outlook.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Tue, Oct 01, 2024 at 10:42:25AM +0200, Miquel Raynal wrote:
-> Hi Christian,
+On Tue, Oct 01, 2024 at 07:49:39AM +0000, Pankaj Gupta wrote:
+> >> >Either compile the firmware into the kernel or the ELE driver as module.
+> >>
+> >> Cannot compile as part of Firmware.
+> >> There are OTA scenarios where the latest FW, that is downloaded to 
+> >> replace the image in RFS, and FW needs to be re-init with this new 
+> >> image, by putting the Linux to power-down state.
+> >
+> >> ELE driver is compiled as module only, by default. But if someone like 
+> >> to make it as in-line to kernel image, still it should work.
 > 
-> ansuelsmth@gmail.com wrote on Mon, 30 Sep 2024 12:10:21 +0200:
+> > I am also not very happy with the situation that we can't compile drivers
+> into the kernel and just get the firmware later once it is available.
 > 
-> > On Mon, Sep 30, 2024 at 11:48:19AM +0200, Miquel Raynal wrote:
-> > > Hi Christian,
-> > > 
-> > > ansuelsmth@gmail.com wrote on Wed, 25 Sep 2024 14:06:11 +0200:
-> > >   
-> > > > On Wed, Sep 25, 2024 at 01:52:56PM +0200, Miquel Raynal wrote:  
-> > > > > Hi Christian,
-> > > > > 
-> > > > > ansuelsmth@gmail.com wrote on Wed, 25 Sep 2024 13:35:38 +0200:
-> > > > >     
-> > > > > > On Wed, Sep 25, 2024 at 01:30:03PM +0200, Miquel Raynal wrote:    
-> > > > > > > Hi Christian,
-> > > > > > > 
-> > > > > > > ansuelsmth@gmail.com wrote on Wed, 25 Sep 2024 12:13:58 +0200:
-> > > > > > >       
-> > > > > > > > Add Documentation for Airoha fixed-partitions compatibles.
-> > > > > > > > 
-> > > > > > > > Airoha based SoC declare a dedicated partition at the end of the flash to
-> > > > > > > > store calibration and device specific data, in addition to fixed
-> > > > > > > > partitions.
-> > > > > > > > 
-> > > > > > > > The offset of this special partition is not well defined as a custom bad
-> > > > > > > > block management driver is used that reserve space at the end of the flash.
-> > > > > > > > 
-> > > > > > > > This binding allows defining all fixed partitions and marking the last one
-> > > > > > > > to detect the correct offset.
-> > > > > > > > 
-> > > > > > > > Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
-> > > > > > > > ---
-> > > > > > > >  .../partitions/airoha,fixed-partitions.yaml   | 80 +++++++++++++++++++
-> > > > > > > >  .../bindings/mtd/partitions/partitions.yaml   |  1 +
-> > > > > > > >  2 files changed, 81 insertions(+)
-> > > > > > > >  create mode 100644 Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
-> > > > > > > > 
-> > > > > > > > diff --git a/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
-> > > > > > > > new file mode 100644
-> > > > > > > > index 000000000000..a45df51065af
-> > > > > > > > --- /dev/null
-> > > > > > > > +++ b/Documentation/devicetree/bindings/mtd/partitions/airoha,fixed-partitions.yaml
-> > > > > > > > @@ -0,0 +1,80 @@
-> > > > > > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > > > > > > +%YAML 1.2
-> > > > > > > > +---
-> > > > > > > > +$id: http://devicetree.org/schemas/mtd/partitions/airoha,fixed-partitions.yaml#
-> > > > > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > > > > +
-> > > > > > > > +title: Airoha SoC partitioning
-> > > > > > > > +
-> > > > > > > > +description: |
-> > > > > > > > +  Airoha based SoC declare a dedicated partition at the end of the flash to
-> > > > > > > > +  store calibration and device specific data, in addition to fixed partitions.
-> > > > > > > > +
-> > > > > > > > +  The offset of this special partition is not well defined as a custom bad block
-> > > > > > > > +  management driver is used that reserve space at the end of the flash.
-> > > > > > > > +
-> > > > > > > > +  This binding allows defining all fixed partitions and marking the last one to
-> > > > > > > > +  detect the correct offset from the new end of the flash.
-> > > > > > > > +
-> > > > > > > > +maintainers:
-> > > > > > > > +  - Christian Marangi <ansuelsmth@gmail.com>
-> > > > > > > > +
-> > > > > > > > +select: false
-> > > > > > > > +
-> > > > > > > > +properties:
-> > > > > > > > +  compatible:
-> > > > > > > > +    const: airoha,fixed-partitions
-> > > > > > > > +
-> > > > > > > > +  "#address-cells":
-> > > > > > > > +    enum: [ 1, 2 ]
-> > > > > > > > +
-> > > > > > > > +  "#size-cells":
-> > > > > > > > +    enum: [ 1, 2 ]
-> > > > > > > > +
-> > > > > > > > +patternProperties:
-> > > > > > > > +  "^partition@[0-9a-f]+$":
-> > > > > > > > +    $ref: partition.yaml#
-> > > > > > > > +    properties:
-> > > > > > > > +      compatible:
-> > > > > > > > +        const: airoha,dynamic-art
-> > > > > > > > +    unevaluatedProperties: false
-> > > > > > > > +
-> > > > > > > > +required:
-> > > > > > > > +  - "#address-cells"
-> > > > > > > > +  - "#size-cells"
-> > > > > > > > +
-> > > > > > > > +additionalProperties: false
-> > > > > > > > +
-> > > > > > > > +examples:
-> > > > > > > > +  - |
-> > > > > > > > +    partitions {
-> > > > > > > > +        compatible = "airoha,fixed-partitions";
-> > > > > > > > +        #address-cells = <1>;
-> > > > > > > > +        #size-cells = <1>;
-> > > > > > > > +
-> > > > > > > > +        partition@0 {
-> > > > > > > > +          label = "bootloader";
-> > > > > > > > +          reg = <0x00000000 0x00080000>;
-> > > > > > > > +        };
-> > > > > > > > +
-> > > > > > > > +        partition@80000 {
-> > > > > > > > +          label = "tclinux";
-> > > > > > > > +          reg = <0x00080000 0x02800000>;
-> > > > > > > > +        };
-> > > > > > > > +
-> > > > > > > > +        partition@2880000 {
-> > > > > > > > +          label = "tclinux_slave";
-> > > > > > > > +          reg = <0x02880000 0x02800000>;
-> > > > > > > > +        };
-> > > > > > > > +
-> > > > > > > > +        partition@5080000 {
-> > > > > > > > +          label = "rootfs_data";
-> > > > > > > > +          reg = <0x5080000 0x00800000>;
-> > > > > > > > +        };
-> > > > > > > > +
-> > > > > > > > +        partition@ffffffff {
-> > > > > > > > +          compatible = "airoha,dynamic-art";
-> > > > > > > > +          label = "art";
-> > > > > > > > +          reg = <0xffffffff 0x00300000>;      
-> > > > > > > 
-> > > > > > > I'm a little bit puzzled by this kind of information which is known to
-> > > > > > > be wrong. As the partition offset and size must be dynamically
-> > > > > > > calculated, this reg property (as well as the size parameter of the
-> > > > > > > previous one) are notably wrong. I guess we are not fully constrained
-> > > > > > > by the fixed-partitions schema here, so could we avoid the reg property
-> > > > > > > in the airoha,dynamic-art partition? Maybe we also need a #define for a
-> > > > > > > specific placeholder in the penultimate reg property too (for the size).
-> > > > > > >      
-> > > > > > 
-> > > > > > Maybe instead of reg we can use a property like size?
-> > > > > > 
-> > > > > > Can you better elaborate the suggestion about the #define?
-> > > > > > 
-> > > > > > Do you mean for case where the last partition might overlap
-> > > > > > with the penultimate? Honestly in such case I would error hard, that
-> > > > > > case happen when too much space is reserved and that is a
-> > > > > > misconfiguration of the system (developer error)    
-> > > > > 
-> > > > > That's not what I mean.
-> > > > > 
-> > > > > In the above case you say partition "partition@5080000" is 0x800000
-> > > > > bytes long. This is obviously wrong otherwise you would know where the
-> > > > > art partition starts. And right after you're saying partition
-> > > > > "partition@ffffffff" starts at 0xffffffff and is 0x300000 bytes long.
-> > > > > This is also wrong because 0xffffffff is not a valid start address and
-> > > > > IIUC 0x300000 is also unknown and dynamically derived.
-> > > > > 
-> > > > > So for the art partition my advise if you know nothing about the
-> > > > > start/length is to just skip the reg property. For the previous
-> > > > > partition I'd maybe use a definition (whose name is to discuss) instead
-> > > > > of the wrong size argument (the start offset being correct on his side).
-> > > > >    
-> > > > 
-> > > > Ok probably the description isn't clear enough. The missing info that
-> > > > require this parser is the flash end.
-> > > > 
-> > > > Following the example we know the size of rootfs_data and start offset
-> > > > AND we know the size of the ART partition.
-> > > > 
-> > > > There might be a space in the middle unused between the rootfs_data
-> > > > partition and the art partition. What is derived is the starting offset
-> > > > of the art partition that is flash end - art partition size.
-> > > > (where flash end change and is not always the same due to how the special
-> > > > bad block managament table reserved space is handled)
-> > > > 
-> > > > This is why 0xffffffff, used as a dummy offset to signal it will be parsed at
-> > > > runtime. On second tought tho maybe using this dummy offset is wrong and
-> > > > I should just have something like
-> > > > 
-> > > > length = <0x300000>;
-> > > > 
-> > > > Is it clear now? Sorry for any confusion.  
-> > > 
-> > > I'm sorry but not really. You know the end of the physical device and
-> > > the size of the ART partition, so you must know its start as well?
-> > >  
-> > 
-> > Before the system boot we know:
-> > - size of the ART partition
-> > - real size of the physical device (512mb... 1G... 64mb...)
-> > 
-> > When the physical device is probed (nand) a special driver is loaded
-> > (before mtd parsing logic) that change the physical size of the device
-> > (mtd->size) as at the end of the nand some space is reserved for bad
-> > block management and other metadata info.
+> Driver is enabling the ROM API supports at probe time. 
+> And, once the rootfs is available, and the Firmware image is loaded, then it
+> will enable the complete set of FW API(s), along with ROM API(s).
 > 
-> Here you are explaining what you intend Linux to do, right? I would
-> like to understand what you are trying to solve. I dont understand why
-> you need the size change, I don't understand why you don't know the
-> start of the ART partition, I don't understand what the data you are
-> hiding contains and who uses it :-) I'm sorry, this is too unclear yet.
+> Hence, Driver can be compiled into the kernel to enable ELE-ROM API(s).
 
-Totally not a problem and thanks a lot for you keep asking them... More
-than happy to clear things, I'm trying to solve a problem present on
-Airoha SoC and upstreaming a correct parser for it.
+I see what the code does, I just don't think that it's safe to assume
+that the rootfs will be mounted after the 50*20ms timeout you use.
 
-What I'm trying to solve:
+I also think that it's a valid usecase for builtin code to retry
+firmware loading after the rootfs has been mounted. This should be
+integrated into the firmware loading code though and not be done as a
+driver specific hack.
 
-Correct access to this partition at the end of the flash in an automated
-way.
+Anyway, it won't be me who merges this code and I am just telling you
+that you'll likely have a problem getting this upstream as is.
 
-The content of this partition is the usual ART partition found on lots of
-embedded devices. MAC address, wifi calibration data, serial. Usage is
-NVMEM cells and userspace with dd command to extract data from.
-
-Airoha use something also used by some mediatek SoC. They call it BMT
-and it's currently used downstream in OpenWrt and they firmware. This is
-also used in the bootloader.
-
-The usage of BMT is a custom way to handle bad blocks entirely by
-software. At the end of the flash some space is reserved where info
-about all the blocks of the flash are put. I'm not 100% sure about the
-functionality of this but it can relocate block and do magic things to
-handle bad blocks. For the scope of this change, the important info is
-that after the BMT is probed, the operation of "reserving space" is done
-by reducing the MTD flash size. So from the MTD subsystem, it does see a
-smaller flash than it actually is.
-
-The reserved space change! Across SoC or even devices but the BMT is a
-must where it's used as bootloader makes use of it and writing to it
-might confuse the bootloader corrupting data. (one block might be
-flagged as bad ad data moved, BMT driver validates his table and do
-operation)
-
-We discover this the hard way at times with firmware getting corrupted
-on upgrading it.
-
-The intention of this parser is to handle this problem transparently and
-easier.
-
-The Airoha partition scheme always follow this logic:
-- bootloader
-- fit image (kernel+rootfs)
-- fit image backup (kernel+rootfs) (optional)
-- rootfs_data
-- opaque data (no partition)
-- ART partition (end of partition = start of reserved BMT)
-- BMT reserved space
-- end of flash
-
-What I'm trying to solve is making it easy to calculate the offset of
-the partition written before the BMT reserved space.
-
-Feel free to ask more question about this and again thanks the help in
-figuring this out.
-
-> 
-> Quoting your cover letter:
-> 
-> 	"This require dynamic calculation of the offset as some
-> 	dedicated driver for bad block management might be used that
-> 	reserve some space at the end of the flash for bad block
-> 	accounting. This special driver change the end offset of the
-> 	flash hence a dynamic parser is needed."
-> 
-> I don't know what this "dedicated driver" is, I don't understand why it
-> is needed.
-
-I hope it's clear what is the usage of this driver now. (In short a
-software way to handle bad block from Mediatek that propagated to Airoha)
-
-> 
-> > So on the mtd parsing logic we know:
-> > - size of the ART partitiomn
-> > - new size of the physical device (512-reserved space...)
-> > 
-> > And we calculate the start offset of the ART partition.
-> > 
-> > It's very difficult to know what is the new size of the physical device
-> > after the driver change it as it might change based on the internal
-> > configuration of the driver itself.
-> 
-> Thanks,
-> Miquèl
+Sascha
 
 -- 
-	Ansuel
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
