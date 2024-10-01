@@ -1,409 +1,176 @@
-Return-Path: <devicetree+bounces-106631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6891E98B1D0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 03:35:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F51898B221
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 04:36:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3C25EB22CC4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 01:35:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 093EBB21765
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 02:36:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C76D33E7;
-	Tue,  1 Oct 2024 01:35:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B55DF2209B;
+	Tue,  1 Oct 2024 02:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ayy5E3qA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LG3ezPRq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f45.google.com (mail-qv1-f45.google.com [209.85.219.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DE215E81;
-	Tue,  1 Oct 2024 01:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A5EFC08;
+	Tue,  1 Oct 2024 02:36:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727746509; cv=none; b=heNISjXv6pkFm590EwDXXioTcBLbVbqIyW/8cWOYaE0HdyYskQXyoZhKV2aqPNl1ZhD4Qhsfu6O8xDCigP2EXuXbInMc0Fsp4gOatoLJidK9GHmipJHVy6a3uakHWmwP2wUJPEqiJIuujs3LCOBYHEdgZwzW4YKMoerMzCJrGEI=
+	t=1727750191; cv=none; b=tSd0+igOh9sUtb5a0MrXC6fJwnFT5wD0UqaIz1eZDqmxVLd8gPQhlsGnSyU2Vv3WVfqi5q8+AT6MyoDFqB+QUyHUNVWoQaDbp/573vzcH161UNslnAv4Nh+DFLb3xU4u1vCG4f9NFXFmgR1NTEZDDedqJ8c/6z7FXSsYQLZY+H0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727746509; c=relaxed/simple;
-	bh=KvRv3HPoCks40UF9WJLGU1n5KP/egUTkwFc+vw6xKVs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=K1EiP3il+W9ZkveMH4Dx2jau/IV7hBGG7fFhBP8sfiNDOO44swI5nnHx8QpPc+0yD1Z3dXywLVFciLjZb83nlVvjvc5c8o0yqogaudyBEHs7E3jc+9YkZsAFoHPCjJUczjYndJoKEl2eE1ImxgIqR13cx6xVIn25P0xVTr7BbBE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ayy5E3qA; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4910dqCs002704;
-	Tue, 1 Oct 2024 01:34:44 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	lHR3SFuJ30QEWYqARN/DWsz2+YsrlyYzUMhMJaMWu2Y=; b=ayy5E3qApDFWLTUu
-	L1cGhKaUnfWB27R2Nh0snRoK9heV55HVfhNXvombFtEUeuhm0YCfvx/KAM/KI+FC
-	hyimCycYUfLgqF0O0d1MHepaTY6xnviCYvMJq50zgTCi2+cDMIHH0TB8LB2n3ojN
-	2Oji+yHlxaC+Jb5IcIcxL0CQOmNSqRxtPc7U1/7m08Xamkum1HwMX1VlCWTD1/Ov
-	WwDy/SMM/KOb7yB2yZUU1LkCmjLWz+y9EcX2dMgLVmQKQzRtE8l9nehCplaOjDaZ
-	tCBXctM5knGawQGHOV9y78ilWXK0sQlHKXWV1qaftwaxbcZuBBMWwpN/J9f5qKSk
-	74QGvQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41x7ge6sa3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 01 Oct 2024 01:34:43 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4911Yf8j002469
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 1 Oct 2024 01:34:41 GMT
-Received: from [10.110.124.200] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 30 Sep
- 2024 18:34:39 -0700
-Message-ID: <eec96e68-4fc4-48c5-b526-62166ab96d9e@quicinc.com>
-Date: Mon, 30 Sep 2024 18:34:38 -0700
+	s=arc-20240116; t=1727750191; c=relaxed/simple;
+	bh=AXJC0H+UsRse+932wT8U4PWiSnezLCwlCGRsDaCdmso=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VCpcNhN99tMi1Et/Xto1XgVq1gqCbC+Xtrbxh+rrT+UYv/trspGHD1XiU2PX7bB9ptDh6PLssvLzKhnLUMH0wej5AdJSBPPA99UszH3msP8xlZXjsQObjdEEcUXm+Wj/duirR87oGvqqofvgLuVDcBJZ2OiOlzargQyY/XTQhS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LG3ezPRq; arc=none smtp.client-ip=209.85.219.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f45.google.com with SMTP id 6a1803df08f44-6cb4f1137a8so17455776d6.2;
+        Mon, 30 Sep 2024 19:36:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727750189; x=1728354989; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=lPG9q5l19vwEBXwpbDlrZx88+QoCty36iyTE1Wr6eRQ=;
+        b=LG3ezPRqrvmpZEDFABuXvpUMQyqCtnWkkV9kU6b/SGfP3TP0lkdmhkX6z3+tRdXrEv
+         R/i+a2R1/5SEdcXEkEMrhpgqTp1LjR3mpcJH36yv0DVqZ9WKASugeLCJsx/WzWzMdle+
+         fWwA2W6gOuJGfVOnHn8jXU/8+Si4H/TE6b1PFV7lOEYh/NOX9AuN+idsn1BidpnTkdZW
+         GYl0S+q6AieHfgrYI05QxJ+ze1wqDrA1AQg/O6YAFhabOcyW36AwlRInzZo42Y+v031S
+         T7Vlic3pVbB5zyjkZhIkbOh1wJE8qeasBoLxoP639tC117kmTM1j0dg6VMSIWwwmldts
+         9YjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727750189; x=1728354989;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lPG9q5l19vwEBXwpbDlrZx88+QoCty36iyTE1Wr6eRQ=;
+        b=DL7rDQji3NSBsNnDrRmh5AzKgaAloGURQGib7P1xRZswo/YDoB6I/tPBhTvPOqeQOB
+         cMCCUL9MUluh4As38nBUnYScccQ8b2BfBSg/PvGK+bTwQRzKEsq46X/f9I7opTPo/q0e
+         RXwJ3uLP4QzM77nsO5urjzj3CZWMkK4AKnhhg+SVIFz9jYolPCPkfKO9GRKJb8ayFKh4
+         D7KAXMxp+Fki0VOWUx+KaYvXo2wU/Jz4usfGZLiczA/HbR3RkWHxwM5D4FfYYXOVSDcI
+         l+l/sXIXoPKwZ03NCZFInE7FI0v7hZwmhmET0EvGwvUtArfv/m79HTordGITJ7+LLHb5
+         cXZw==
+X-Forwarded-Encrypted: i=1; AJvYcCULBjnF1/NUtHoqSbhcQrP9kYfaQEBHoey3Nwm+oLZr5MWv0Pe6zkI17zP8OhDAbiX/de8APT2/FEstFn+Ewg==@vger.kernel.org, AJvYcCUotURdxX7llm8wMrqjnQumTLNjWdSRRxitNlhyebo1Egd8zs6/vfL4+QIZXaUtkeKNPF8XuyrKkw/8@vger.kernel.org, AJvYcCV1S9OoY8fbX1ldYdm4BxV1e2mRHhEvZtSkyRhK1YHypPiHjQdbez46M/btH/p6s33Dhd4swOh8M/K7@vger.kernel.org, AJvYcCVfEyIZm0P24frJ6mmnk6yQCf2VDlg5L5fflLXjfrJnEH9VkyCI8IcOVpFg2kt2Nw2rChHCxToiLpNA@vger.kernel.org, AJvYcCWSmj2sSJGyIEmO6n1TZzqnaiIGbaHlKOZJ+9CscF7AXaeSNIyxoBL+tiRxE9mgGaOYAXnxedXpkZyi9kc=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwelI5NhIUfmE5CxxPbcgRR6d9OefAjxUkISQ/3nCL/7VsQwaaE
+	1QwSjRzb6UISf67qNetxgZRsqzwK2KHyurh64RF+eb1DOpI6pKlR
+X-Google-Smtp-Source: AGHT+IEMvPdRU/92CB4wfyoxRZxEPorM6DB81gE9iF2LUxzQ9WPXYkhPsOwaNzh1NdNhahEm5pTNMw==
+X-Received: by 2002:a05:6214:87:b0:6cb:386e:244a with SMTP id 6a1803df08f44-6cb3b644015mr206851346d6.39.1727750188762;
+        Mon, 30 Sep 2024 19:36:28 -0700 (PDT)
+Received: from localhost ([2607:fea8:52a3:d200::1a17])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cb3b5ff171sm45441186d6.1.2024.09.30.19.36.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 30 Sep 2024 19:36:28 -0700 (PDT)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Loic Poulain <loic.poulain@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Todor Tomov <todor.too@gmail.com>,
+	"Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v5 0/7] Add SDM670 camera subsystem
+Date: Mon, 30 Sep 2024 22:35:21 -0400
+Message-ID: <20241001023520.547271-9-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v28 18/32] ASoC: doc: Add documentation for SOC USB
-To: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
-        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
-        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
-        <tiwai@suse.com>, <krzk+dt@kernel.org>, <Thinh.Nguyen@synopsys.com>,
-        <bgoswami@quicinc.com>, <robh@kernel.org>,
-        <gregkh@linuxfoundation.org>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
-References: <20240925010000.2231406-1-quic_wcheng@quicinc.com>
- <20240925010000.2231406-19-quic_wcheng@quicinc.com>
- <86c557ca-2b86-4334-bc42-40dfe8203b71@linux.intel.com>
-Content-Language: en-US
-From: Wesley Cheng <quic_wcheng@quicinc.com>
-In-Reply-To: <86c557ca-2b86-4334-bc42-40dfe8203b71@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: KmBYZu2VdFx-qQuSiLPR_1h9Sy_5m9cT
-X-Proofpoint-GUID: KmBYZu2VdFx-qQuSiLPR_1h9Sy_5m9cT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- bulkscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
- priorityscore=1501 suspectscore=0 malwarescore=0 impostorscore=0
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2410010010
 
-Hi Pierre,
+This adds support for the camera subsystem on the Snapdragon 670.
 
-On 9/25/2024 7:43 AM, Pierre-Louis Bossart wrote:
->> +	int snd_soc_usb_setup_offload_jack(struct snd_soc_component *component,
->> +					struct snd_soc_jack *jack)
->> +..
->> +
->> +  - ``component``: ASoC component to add the jack
->> +  - ``jack``: jack component to populate
->> +
->> +**snd_soc_usb_setup_offload_jack()** is a helper to add a sound jack control to
->> +the platform sound card.  This will allow for consistent naming to be used on
->> +designs that support USB audio offloading.
->> +
->> +Returns 0 on success, negative otherwise.
->> +
->> +.. code-block:: rst
->> +
->> +	int snd_soc_usb_disable_offload_jack(struct snd_soc_component *component)
->> +..
->> +
->> +  - ``component``: ASoC component to disable the jack
->> +
->> +**snd_soc_usb_disable_offload_jack()** is a helper to disable a sound jack control
->> +on the platform sound card.
-> is disable_offload_jack() the companion operation to setup_offload_jack()?
->
-> it's not clear to me if there's any relationship between the two.
-I guess there is a relation in that one creates the jack and the other will disable it when needed.  Might need to have a respective enable API, because I believe there are some situations during PM suspend where a jack may want to be disabled and re-enabled on PM resume.
->> +
->> +Returns 0 on success, negative otherwise.
->> +
->> +.. code-block:: rst
->> +
->> +	int snd_soc_usb_update_offload_route(struct device *dev, int card, int pcm,
->> +					     int direction, long *route)
->> +..
->> +
->> +  - ``dev``: USB device to look up offload path mapping
->> +  - ``card``: USB sound card index
->> +  - ``pcm``: USB sound PCM device index
->> +  - ``direction``: direction to fetch offload routing information
->> +  - ``route``: mapping of sound card and pcm indexes for the offload path.  This is
->> +	       an array of two integers that will carry the card and pcm device indexes
->> +	       in that specific order.  This can be used as the array for the kcontrol
->> +	       output.
->> +
->> +**snd_soc_usb_update_offload_route()** calls a registered callback to the USB BE DAI
->> +link to fetch the information about the mapped ASoC devices for executing USB audio
->> +offload for the device. ``route`` may be a pointer to a kcontrol value output array,
->> +which carries values when the kcontrol is read.
->> +
->> +Returns 0 on success, negative otherwise.
-> please clarify what happens if there is no offloaded device for a
-> specific USB card. from [2] below it looks like the intended behavior
-> for a device without offload capabilities would be to return 0 but the
-> mapping would use the -1 magic value to state there is no offload?
->
-That is the idea... If we return -1,-1 that is an invalid card/pcm device index, so it would signify that offloading is not available for a USB device.
->> +**snd_soc_usb_free_port()** frees a SOC USB device.
->> +
->> +.. code-block:: rst
->> +
->> +	void snd_soc_usb_add_port(struct snd_soc_usb *usb);
->> +..
->> +
->> +  - ``usb``: SOC USB device to add
->> +
->> +**snd_soc_usb_add_port()** add an allocated SOC USB device to the SOC USB framework.
->> +Once added, this device can be referenced by further operations.
->> +
->> +.. code-block:: rst
->> +
->> +	void snd_soc_usb_remove_port(struct snd_soc_usb *usb);
->> +..
->> +
->> +  - ``usb``: SOC USB device to remove
->> +
->> +**snd_soc_usb_remove_port()** removes a SOC USB device from the SOC USB framework.
->> +After removing a device, any SOC USB operations would not be able to reference the
->> +device removed.
-> I don't think the last sentence is correct, below [1] you show an
-> example where the free_port() routine is required...
->
-The remove will remove it from the available list of SOC USB ports.  The free will just make sure the memory allocated for the SOC USB port is freed.
->> +
->> +	static void q6usb_component_remove(struct snd_soc_component *component)
->> +	{
->> +		...
-> [1]
->
->> +		snd_soc_usb_remove_port(data->usb);
->> +		snd_soc_usb_free_port(data->usb);
->> +	}
->> +
->> +	static const struct snd_soc_component_driver q6usb_dai_component = {
->> +		.probe = q6usb_component_probe,
->> +		.remove = q6usb_component_remove,
->> +		.name = "q6usb-dai-component",
->> +		...
->> +	};
->> +..
->> +
->> +BE DAI links can pass along vendor specific information as part of the
->> +call to allocate the SOC USB device.  This will allow any BE DAI link
->> +parameters or settings to be accessed by the USB offload driver that
->> +resides in USB SND.
->> +
->> +USB Audio Device Connection Flow
->> +--------------------------------
->> +USB devices can be hotplugged into the USB ports at any point in time.
->> +The BE DAI link should be aware of the current state of the physical USB
->> +port, i.e. if there are any USB devices with audio interface(s) connected.
->> +connection_status_cb() can be used to notify the BE DAI link of any change.
->> +
->> +This is called whenever there is a USB SND interface bind or remove event,
->> +using snd_soc_usb_connect() or snd_soc_usb_disconnect():
->> +
->> +.. code-block:: rst
->> +
->> +	static void qc_usb_audio_offload_probe(struct snd_usb_audio *chip)
->> +	{
->> +		...
->> +		snd_soc_usb_connect(usb_get_usb_backend(udev), sdev);
->> +		...
->> +	}
->> +
->> +	static void qc_usb_audio_offload_disconnect(struct snd_usb_audio *chip)
->> +	{
->> +		...
->> +		snd_soc_usb_disconnect(usb_get_usb_backend(chip->dev), dev->sdev);
->> +		...
->> +	}
->> +..
->> +
->> +In order to account for conditions where driver or device existence is
->> +not guaranteed, USB SND exposes snd_usb_rediscover_devices() to resend the
->> +connect events for any identified USB audio interfaces.  Consider the
->> +the following situation:
->> +
->> +	**usb_audio_probe()**
->> +	  | --> USB audio streams allocated and saved to usb_chip[]
->> +	  | --> Propagate connect event to USB offload driver in USB SND
->> +	  | --> **snd_soc_usb_connect()** exits as USB BE DAI link is not ready
->> +
->> +	BE DAI link component probe
->> +	  | --> DAI link is probed and SOC USB port is allocated
->> +	  | --> The USB audio device connect event is missed
->> +
->> +To ensure connection events are not missed, **snd_usb_rediscover_devices()**
->> +is executed when the SOC USB device is registered.  Now, when the BE DAI
->> +link component probe occurs, the following highlights the sequence:
->> +
->> +	BE DAI link component probe
->> +	  | --> DAI link is probed and SOC USB port is allocated
->> +	  | --> SOC USB device added, and **snd_usb_rediscover_devices()** runs
->> +
->> +	**snd_usb_rediscover_devices()**
->> +	  | --> Traverses through usb_chip[] and for non-NULL entries issue
->> +	  |     **connection_status_cb()**
->> +
->> +In the case where the USB offload driver is unbound, while USB SND is ready,
->> +the **snd_usb_rediscover_devices()** is called during module init.  This allows
->> +for the offloading path to also be enabled with the following flow:
->> +
->> +	**usb_audio_probe()**
->> +	  | --> USB audio streams allocated and saved to usb_chip[]
->> +	  | --> Propagate connect event to USB offload driver in USB SND
->> +	  | --> USB offload driver **NOT** ready!
->> +
->> +	BE DAI link component probe
->> +	  | --> DAI link is probed and SOC USB port is allocated
->> +	  | --> No USB connect event due to missing USB offload driver
->> +
->> +	USB offload driver probe
->> +	  | --> **qc_usb_audio_offload_init()**
->> +	  | --> Calls **snd_usb_rediscover_devices()** to notify of devices
->> +
->> +USB Offload Related Kcontrols
->> +=============================
->> +Details
->> +-------
->> +A set of kcontrols can be utilized by applications to help select the proper sound
->> +devices to enable USB audio offloading.  SOC USB exposes the get_offload_dev()
->> +callback that designs can use to ensure that the proper indices are returned to the
->> +application.
->> +
->> +Implementation
->> +--------------
->> +
->> +**Example:**
->> +
->> +  **Sound Cards**:
->> +
->> +	::
->> +
->> +	  0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
->> +						SM8250-MTP-WCD9380-WSA8810-VA-DMIC
->> +	  1 [Seri           ]: USB-Audio - Plantronics Blackwire 3225 Seri
->> +						Plantronics Plantronics Blackwire
->> +						3225 Seri at usb-xhci-hcd.1.auto-1.1,
->> +						full sp
->> +	  2 [C320M          ]: USB-Audio - Plantronics C320-M
->> +                      Plantronics Plantronics C320-M at usb-xhci-hcd.1.auto-1.2, full speed
->> +
->> +  **USB Sound Card** - card#1:
->> +
->> +	::
->> +
->> +	  USB Offload Playback Route PCM#0        -1, -1 (range -1->255)
->> +
->> +  **USB Sound Card** - card#2:
->> +
->> +	::
->> +
->> +	  USB Offload Playback Route PCM#0        0, 1 (range -1->255)
->> +
->> +The above example shows a scenario where the system has one ASoC platform card
->> +(card#0) and two USB sound devices connected (card#1 and card#2).  When reading
->> +the available kcontrols for each USB audio device, the following kcontrol lists
->> +the mapped offload path for the specific device:
->> +
->> +	``USB Offload Playback Route#*``
->> +
->> +The kcontrol is indexed, because a USB audio device could potentially have
->> +several PCM devices.  The above kcontrols are defined as:
->> +
->> +  - ``USB Offload Playback Route PCM`` **(R)**: Returns the ASoC platform sound
->> +    card and PCM device index.  The output **"0, 1"** (card index, PCM device index)
->> +    signifies that there is an available offload path for the USB SND device
->> +    through card#0 - PCM device#1.  If **"-1, -1"** is seen, then no offload path is
->> +    available for the USB SND device.
-> [2]
->
-> maybe I got this wrong but you may want to clarify that the kcontrol is
-> always created, but the values indicate if the offload support is real
-> or not?
-Sure, I will explicitly mention that the kcontrol always exists, and if the path is not available, then this would show -1, -1
->
->> +
->> +USB Offload Playback Route Kcontrol
->> +-----------------------------------
->> +In order to allow for vendor specific implementations on audio offloading device
->> +selection, the SOC USB layer exposes the following:
->> +
->> +.. code-block:: rst
->> +
->> +	int (*update_offload_route_info)(struct snd_soc_component *component,
->> +				int card, int pcm, long *route);
->> +..
->> +
->> +These are specific for the **USB Offload Playback Route PCM#** kcontrol.
->> +
->> +When users issue get calls to the kcontrol, the registered SOC USB callbacks will
->> +execute the registered function calls to the DPCM BE DAI link.
->> +
->> +**Callback Registration:**
->> +
->> +.. code-block:: rst
->> +
->> +	static int q6usb_component_probe(struct snd_soc_component *component)
->> +	{
->> +	...
->> +	usb = snd_soc_usb_allocate_port(component, 1, &data->priv);
->> +	if (IS_ERR(usb))
->> +		return -ENOMEM;
->> +
->> +	usb->connection_status_cb = q6usb_alsa_connection_cb;
->> +	usb->update_offload_route_info = q6usb_get_offload_dev;
->> +
->> +	ret = snd_soc_usb_add_port(usb);
->> +..
->> +
->> +Existing USB Sound Kcontrol
->> +---------------------------
->> +With the introduction of USB offload support, the above USB offload kcontrol
->> +can be added to the pre existing list of kcontrols identified by the USB sound
-> is this 'can be added' or 'will be added'? The latter seems more correct
-> to me, I don't see anything optional or conditional in the description
-> and the example below.
+As of next-20240930, the bugs with camss have been resolved. The
+dt-bindings were tested on v6.10 with:
 
-Will be added sounds better.  Will change that.
+    make O=.output ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=clock/qcom,sdm845-camcc.yaml
+    make O=.output ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=i2c/qcom,i2c-cci.yaml
+    make O=.output ARCH=arm64 dt_binding_check DT_SCHEMA_FILES=media/qcom,sdm670-camss.yaml
 
-Thanks
+Changes since v4 (20240904020448.52035-9-mailingradian@gmail.com):
+- change camss interrupts to rising edge in dts (7/7)
+- change IRQs to rising edge in camss dt-bindings example (4/7)
+- move gcc and ahb clocks in camss dt-bindings example (4/7)
+- add reviewed-by for camcc dt-bindings patch (1/7)
 
-Wesley Cheng
+Changes since v3 (20240819221051.31489-7-mailingradian@gmail.com):
+- add specific sdm670 compatible for camcc to dt schema and dts (1/7, 6/7)
+- pick up patch from Bryan for CCI driver (3/7)
+- stop assigning CCI frequency in dts (7/7)
+- add maxItems for sdm670 cci clocks (2/7)
+- remove empty line at top of camss dt schema (4/7)
+- move regs and reg-names up in camss dt schema (4/7)
+- move gcc and ahb clocks up in dts and dt schema (4/7, 7/7)
+- add reviewed-by from Vladimir for CCI dt-bindings patch (2/7)
+- add reviewed-by from Bryan for dts patch (7/7)
+- add reviewed-by from Krzysztof for camss dt-bindings patch (4/7)
+- add rewiew tags for camss driver patch (5/7)
 
->> +framework.  These kcontrols are still the main controls that are used to
->> +modify characteristics pertaining to the USB audio device.
->> +
->> +	::
->> +
->> +	  Number of controls: 9
->> +	  ctl     type    num     name                                    value
->> +	  0       INT     2       Capture Channel Map                     0, 0 (range 0->36)
->> +	  1       INT     2       Playback Channel Map                    0, 0 (range 0->36)
->> +	  2       BOOL    1       Headset Capture Switch                  On
->> +	  3       INT     1       Headset Capture Volume                  10 (range 0->13)
->> +	  4       BOOL    1       Sidetone Playback Switch                On
->> +	  5       INT     1       Sidetone Playback Volume                4096 (range 0->8192)
->> +	  6       BOOL    1       Headset Playback Switch                 On
->> +	  7       INT     2       Headset Playback Volume                 20, 20 (range 0->24)
->> +	  8       INT     2       USB Offload Playback Route PCM#0        -1, -1 (range -1->255)
->> +
->> +Since USB audio device controls are handled over the USB control endpoint, use the
->> +existing mechanisms present in the USB mixer to set parameters, such as volume.
+Changes since v2 (20240813230037.84004-8-mailingradian@gmail.com):
+- drop unnecessary assigned AXI clock frequency (5/5)
+- drop src clocks from cci (5/5)
+- add unit name, remove mmio properties from port in example dts (2/5)
+- correct the reg-names order (2/5)
+- add parent_dev_ops to csid (3/5)
+- remove CSID clocks from VFE (3/5)
+- remove AXI clock from CSIPHY (3/5)
+- change subsystem part of the commit message summary (3/5)
+- add reviewed-by (4/5)
+
+Changes since v1 (20240806224219.71623-7-mailingradian@gmail.com):
+- define dedicated resource structs/arrays for sdm670 (3/5)
+- separate camcc device tree node into its own patch (4/5)
+- specify correct dual license (2/5)
+- add include directives in dt-bindings camss example (2/5)
+- remove src clocks from dt-bindings (2/5)
+- remove src clocks from dtsi (5/5)
+- add power-domain-names to camss (5/5)
+- specify power domain names (3/5)
+- restrict cci-i2c clocks (1/5)
+- populate a commit message with hw info (2/5)
+- reword commit message (3/5)
+
+Bryan O'Donoghue (1):
+  i2c: qcom-cci: Stop complaining about DT set clock rate
+
+Richard Acayan (6):
+  dt-bindings: clock: qcom,sdm845-camcc: add sdm670 compatible
+  dt-bindings: i2c: qcom-cci: Document SDM670 compatible
+  dt-bindings: media: camss: Add qcom,sdm670-camss
+  media: qcom: camss: add support for SDM670 camss
+  arm64: dts: qcom: sdm670: add camcc
+  arm64: dts: qcom: sdm670: add camss and cci
+
+ .../bindings/clock/qcom,sdm845-camcc.yaml     |   6 +-
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml |  19 ++
+ .../bindings/media/qcom,sdm670-camss.yaml     | 318 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          | 195 +++++++++++
+ drivers/i2c/busses/i2c-qcom-cci.c             |   8 -
+ drivers/media/platform/qcom/camss/camss.c     | 191 +++++++++++
+ 6 files changed, 728 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/qcom,sdm670-camss.yaml
+
+-- 
+2.46.2
+
 
