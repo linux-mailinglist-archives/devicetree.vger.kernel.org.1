@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-106657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0495C98B41C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:15:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4AE1598B421
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 318401C226A1
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 06:15:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 62CB01C22798
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 06:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 636C2194C6A;
-	Tue,  1 Oct 2024 06:15:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1A601A3BDA;
+	Tue,  1 Oct 2024 06:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VAO3yY/j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BarxashM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3790B19046D;
-	Tue,  1 Oct 2024 06:15:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACDB5C153;
+	Tue,  1 Oct 2024 06:16:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727763320; cv=none; b=nTkdJSa9nATFCC8wW/FEJ2+itefs4xMlFi5l8jJF7pOJotM36fipny5+ecnwceSy9vUwtsTqQyqh9Im9mwNs2zzGgBTfCv8JJjmzR0+dDUUrg+fnP55AzSJiTQEVG/Fka5BYDcwQtQHiJpXHrsWEM1RCk2EK0bqWiiYjLxi0xvU=
+	t=1727763415; cv=none; b=TQPKfhkg1c1XsKExPK8rQqEm7Hc0NjO5JVbg26xde4MgER7nZ6uFOWMbZ/vSIU00WPqxwif+8zA6CYlgmUqktWWOhmrPc2Im4E5c9/GxwvF2yDX81EmzfMY1N94AuYhpyebpgNbfKO21kG9jL/59t8b7N+wy3RAWTIyz3va3k0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727763320; c=relaxed/simple;
-	bh=OegZC1242Zp7CgKqrvj9akACc0AqF46h+an7DqwsBlc=;
+	s=arc-20240116; t=1727763415; c=relaxed/simple;
+	bh=Hg4IVEOTj4JriXTMF/0hLXqKoldcay2hkZN5Fq1Yakc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MVLedC5xg7TZnixzCb3yylHFwwGd1JrLHBaj3qeBM9wYG8DfN+2CBMHJdDRJQKf7ggZHrkWUEZNk7WDjxznjuCV784rZV+lTixBN71yrQPmhHLJOB6OiTS6CMgOeSKgzRSg5o/UIGpbhTtzdOeVXshNEd3SXoYtjMRSrmD7UhCA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VAO3yY/j; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EC857C4CEC6;
-	Tue,  1 Oct 2024 06:15:16 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=mTfxIEIug3fPndbcaeYk+j4jfndE8gfc4EyXaXhnlhegIYawvLtwvbPI0UysZdlhQy6/VcL/5EwS+zwSS2zJch62UrrNUWUG6ilaVuCFNPzBV2Osda0jrxxgWlDnaXbUY4SFg8JLh32IQynMtb37aISj9eswfwx3kNbFHfiMdQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BarxashM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9DDCC4CEC6;
+	Tue,  1 Oct 2024 06:16:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727763319;
-	bh=OegZC1242Zp7CgKqrvj9akACc0AqF46h+an7DqwsBlc=;
+	s=k20201202; t=1727763415;
+	bh=Hg4IVEOTj4JriXTMF/0hLXqKoldcay2hkZN5Fq1Yakc=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=VAO3yY/jzbn0YIB5e2g1a38pH7KRmQhW1cFjIcekvwz5TnDP6orkqbEE0GaB+X6ea
-	 sHaT0dcALPuWVkG7YWQvbZZ3DNb2eK/LeFajfSDmnE9gV+uHyw2/nvEam+At2aQeoF
-	 3RCj7dN9kyBF1ujr3HjXQvLJEjHBB4bjxvwUh0hxuPZTXhgPhuY/Nx9Da19uXI71+o
-	 uKAm/W7SA1UYe0xrOJ4qhV6567v2aQAog5zM5Hc7U27O4uGUWtDaSytzmEfhEw6ekB
-	 1DMkKNZWQdmMGRWneqw+LGanlB6FwFMZeCUEMPimKAB1wYVSewJROX8f+CFuV7YQwx
-	 j3I2IYNvBTZ5Q==
-Message-ID: <5f3969cb-268e-4383-a6b9-51c169f2e94a@kernel.org>
-Date: Tue, 1 Oct 2024 08:15:13 +0200
+	b=BarxashMr3+CY5FBEM2U/PJW5q6wPC6dVt+mzB8egTBhcrlaVcQFYdktWYgO+j7Yv
+	 st50W7cT6gVEA1/dqDGaNjGnQ9AA7gJD8n39MO3BV+QS8PYRyKkFgRwCwRf2uXp2Y8
+	 dp0MSy8wQU32Rg+er7QSDMBsvPmxO8FtjjNjWdI+RBSy9Pkiff17xYddZcuy1U7MmD
+	 8G2j28TOkFm0vYpz5O+m6VrxQgVrUbADYqKtkm4v+kH0x6BE0wOgLNe9/byQAyhzAt
+	 oANVnz/YuEyuHy0rS3qUYr1qmkfNjzY7Or6LCFfrX8R+CDPDSbqK8TRB8tpythzZkI
+	 KC1d+v2a8Gx6A==
+Message-ID: <2915d4aa-a01d-4d00-ada9-43bbc227f9eb@kernel.org>
+Date: Tue, 1 Oct 2024 08:16:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,64 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 7/7] dt-bindings: crypto: Document support for SPAcc
-To: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
-Cc: devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
- linux-crypto@vger.kernel.org, robh@kernel.org, Ruud.Derwig@synopsys.com,
- manjunath.hadli@vayavyalabs.com, bhoomikak@vayavyalabs.com
-References: <20240930093054.215809-1-pavitrakumarm@vayavyalabs.com>
- <20240930093054.215809-8-pavitrakumarm@vayavyalabs.com>
- <6ae71793-4188-4356-b314-e2d2db5b3cb1@kernel.org>
- <CALxtO0=7+8sX5LXK0XLjrCJH7P3s9FkKWPGVjp2q_dgq1q2M3g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: replace gpio = with gpios =
+To: Rosen Penev <rosenp@gmail.com>, linux-arm-kernel@lists.infradead.org
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Samuel Holland <samuel@sholland.org>, Antoine Tenart <atenart@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Jesper Nilsson <jesper.nilsson@axis.com>,
+ Lars Persson <lars.persson@axis.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Viresh Kumar <vireshk@kernel.org>,
+ Shiraz Hashim <shiraz.linux.kernel@gmail.com>,
+ "maintainer:SPEAR PLATFORM/CLOCK/PINCTRL SUPPORT" <soc@kernel.org>,
+ Marek Vasut <marex@denx.de>, Jisheng Zhang <jszhang@kernel.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, David Lechner <david@lechnology.com>,
+ Nishanth Menon <nm@ti.com>, Santosh Shilimkar <ssantosh@kernel.org>,
+ Tony Lindgren <tony@atomide.com>,
+ Enric Balletbo i Serra <eballetbo@gmail.com>,
+ Javier Martinez Canillas <javier@dowhile0.org>,
+ Alexey Charkov <alchark@gmail.com>, Denis Burkov <hitechshell@mail.ru>,
+ Arnd Bergmann <arnd@arndb.de>, Stefan Wahren <wahrenst@gmx.net>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ Nicolas Chauvet <kwizart@gmail.com>, Tomasz Maciej Nowak <tmn505@gmail.com>,
+ Robert Eckelmann <longnoserob@gmail.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:ARM/Allwinner sunXi SoC support" <linux-sunxi@lists.linux.dev>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:ARM/Amlogic Meson SoC support"
+ <linux-amlogic@lists.infradead.org>,
+ "moderated list:ARM/ASPEED MACHINE SUPPORT" <linux-aspeed@lists.ozlabs.org>,
+ "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE"
+ <linux-rpi-kernel@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>,
+ "moderated list:ARM/NUVOTON NPCM ARCHITECTURE" <openbmc@lists.ozlabs.org>,
+ "open list:TEGRA ARCHITECTURE SUPPORT" <linux-tegra@vger.kernel.org>,
+ "open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+ "open list:TQ SYSTEMS BOARD & DRIVER SUPPORT" <linux@ew.tq-group.com>,
+ "open list:DH ELECTRONICS IMX6 DHCOM/DHCOR BOARD SUPPORT"
+ <kernel@dh-electronics.com>,
+ "moderated list:ARM/STM32 ARCHITECTURE"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ "open list:ARM/QUALCOMM SUPPORT" <linux-arm-msm@vger.kernel.org>,
+ "open list:ARM/RISC-V/RENESAS ARCHITECTURE"
+ <linux-renesas-soc@vger.kernel.org>,
+ "open list:ARM/Rockchip SoC support" <linux-rockchip@lists.infradead.org>,
+ "open list:ARM/SAMSUNG S3C, S5P AND EXYNOS ARM ARCHITECTURES"
+ <linux-samsung-soc@vger.kernel.org>,
+ "open list:OMAP DEVICE TREE SUPPORT" <linux-omap@vger.kernel.org>
+References: <20240930223550.353882-1-rosenp@gmail.com>
+ <20240930223550.353882-2-rosenp@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,109 +153,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CALxtO0=7+8sX5LXK0XLjrCJH7P3s9FkKWPGVjp2q_dgq1q2M3g@mail.gmail.com>
+In-Reply-To: <20240930223550.353882-2-rosenp@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 01/10/2024 04:57, Pavitrakumar Managutte wrote:
-> Hi Krzysztof,
->    Thanks for the quick review and I do really appreciate everybody's time here.
->    If something got missed, it's just because of the exhaustive
-> hardware and the SystemC Model testing.
->    We make minimal/incremental changes and run things in debug mode
-> which takes a lot of time,
->    since this is a large code base. Never ignored anything till date.
->    Every single comment has been and will be addressed. We will work
-> on code quality as per your inputs.
+On 01/10/2024 00:35, Rosen Penev wrote:
+> Found with dtc:
+> 
+> Warning (deprecated_gpio_property): '[*-]gpio' is deprecated, use
+> '[*-]gpios' instead
+> 
+> Transformation performed with
+> 
+> find -name "*.dts" -exec sed -i 's/\tgpio = </\tgpios = </g' '{}' \
+> find -name "*.dtsi" -exec sed -i 's/\tgpio = </\tgpios = </g' '{}' \
 
-No, it was not addressed.
-
-Do you want proofs? Look:
-
-1. Drop contains. The list of compatible strings and order must be defined.
-Not addressed at all.
-
-2. crypto@40000000
-Ignored completely
-
-3.  Generally drivers aren't limited to some number of instances (except...
-Also ignored completely
-
-and more..
-
+Uh, no, please check if each is correct and already handled by bindings.
 
 > 
-> Warm regards,
-> PK
-> 
-> 
-> On Mon, Sep 30, 2024 at 6:50 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>
->> On 30/09/2024 11:30, Pavitrakumar M wrote:
->>> Add DT bindings related to the SPAcc driver for Documentation.
->>> DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto
->>> Engine is a crypto IP designed by Synopsys.
->>>
->>> Co-developed-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
->>> Signed-off-by: Bhoomika Kadabi <bhoomikak@vayavyalabs.com>
->>> Co-developed-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
->>> Signed-off-by: Pavitrakumar Managutte <pavitrakumarm@vayavyalabs.com>
->>> Acked-by: Ruud Derwig <Ruud.Derwig@synopsys.com>
->>> ---
->>>  .../bindings/crypto/snps,dwc-spacc.yaml       | 71 +++++++++++++++++++
->>>  1 file changed, 71 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
->>
->> Bindings come before users, so please re-order your patches.
-> 
-> PK: Will re-order
->>
->>
->>>
->>> diff --git a/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
->>> new file mode 100644
->>> index 000000000000..6b94d0aa7280
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/crypto/snps,dwc-spacc.yaml
->>> @@ -0,0 +1,71 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/crypto/snps,dwc-spacc.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Synopsys DesignWare Security Protocol Accelerator(SPAcc) Crypto Engine
->>> +
->>> +maintainers:
->>> +  - Ruud Derwig <Ruud.Derwig@synopsys.com>
->>> +
->>> +description:
->>> +  DWC Synopsys Security Protocol Accelerator(SPAcc) Hardware Crypto Engine is
->>> +  a crypto IP designed by Synopsys, that can accelerate cryptographic
->>> +  operations.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    contains:
->>
->> Nope, you cannot have contains. From where did you get it? Please use
->> existing, recent bindings as starting point or just use exampl-eschema.
-> 
-> PK: Will fix that.
->>
->>
->> Eh, you already got this comment and just ignored it.
-> 
-> PK: It got missed, never ignored. Too valuable to ignore comments from demigods.
->>
->>
->> You ignored all other comments as well. This is quite disappointing to
->> ask us to do the same review over and over.
-> 
-> PK: That never was the intent nor the impression I wanted to make.
-> Appreciate everybody's time here.
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
 
-Then why do you ignore review?
+
 
 Best regards,
 Krzysztof
