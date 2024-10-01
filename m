@@ -1,206 +1,519 @@
-Return-Path: <devicetree+bounces-106719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17F4E98B6C9
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:23:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B3D098B6A1
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:19:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36B2B1C2149D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:23:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E1041C220A6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:19:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2996319F102;
-	Tue,  1 Oct 2024 08:21:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33810175D22;
+	Tue,  1 Oct 2024 08:19:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="tR9fxnAb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jIuS9brh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2080.outbound.protection.outlook.com [40.107.215.80])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7780E19CC32;
-	Tue,  1 Oct 2024 08:21:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727770888; cv=fail; b=u2sqlfHrM5KasMIEZulLp2fHHYres8vzEspepVOFeAIXbPpl7/h70aHzl6zKneDr+0HxQdvAi8fIyJxLumHLGKFdlzlSJvjaqSbVs40E/NS1fj9wbqRpCjIBLvGTBOBH3xMhMjqdJENUoTStHqKEASmTXFHytiLv8bBNIs+xFng=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727770888; c=relaxed/simple;
-	bh=t1Or76TyDWCxXIYztTCFdXpLdyxNOTIjSrmHeKC1jQk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UqNpeRD6ckWyOGG2Cg+bv1cWLuWt9ODiGdEFw0UOOjhEgi2YBGU1/2CEgyDmz5HD1SGjylr19LmBYJx/6Ft17BUMA+RIknvGK3CCgMkyk6RW1TCYBoVcxbP1jUfMHSieMkeWDOsRmjbTwvHjaT2c3eqSPAqkATqS8z4b+edvPmE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=tR9fxnAb; arc=fail smtp.client-ip=40.107.215.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZpLQO6KDswdo8AO0GpzLo0eSnP9EloPrPz32xAZxF5gm1MbeSJCTbMyNgEQpz4DISSL7ab9X9T48h+O7WXuKBIYaxB0ToH7v4p/kzfjM6MyoeZOiJz4+hgctzgLTJK6Sdrn7IEHiHLyMQLHQGPC7XPWGGzvusoR5furtXfzvk9gpr9hcO3FXod35crt4NLAUG61lIkz3ExpXn/3ilt1QbLIZ6d2kzdPss/DZG7iLjApgWbKXlpUimvopbWRtiy87F7zu0vDk2VZUiN9stoFQVlcDn1+fSelQdU9m5JDUwv/4GA/hlG5o1XgW5JS0MwuAwoZ3gZ2b9H7Q72QA7aZuYQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5i/bZoHyJSmMZJxO/mPyILNKiTIbi6Pc5Yof8O1IPjI=;
- b=uImjXzuaqa5LXnkT9fYUv6urX9KlPDbH1hTakgJqZtaWpJv3bXXkrpnpx43/fgoYtZm3aXcXXzYICv7+fgjsAgIuUDGHe2GdfEvQtdQFUeuseQiHF/+Kr/I0orEVfcL9CuProUsgHb2t6zjVMF4nQHgxi7X9Cd1aZQuMbBTpbk2gOy4UG6G4KAB0v72z8ipqGm+iEKNkMqw1xY5VsKzKThDPY60Stgw0PxFOdql4/WZReq/btTe0an+GWektvzj2ocqZjPy0RTjRZ9cHrpP3OSdphp2PPTH2k/eL8MMygXOI6AZRo+kth7LdcrZV7/uSiDYVTGm5JVk2oiDJWajCBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=5i/bZoHyJSmMZJxO/mPyILNKiTIbi6Pc5Yof8O1IPjI=;
- b=tR9fxnAbRUn7kY7gTgpDzNxEsJOxNjVzQecATPduGUAS+nyk22tpzMeu/Z21nNopPeP8xXq6i21oQmaIewvSk6r9LP46WyKJLvsctNR7vnudUWYHb+9NEAkp5EWiiTeJ7SaNGmnp8nRxGNtfWO9Bzb3B25ag/HxnxukEHcfU63SX99gASESDAaWFb162WUzKxQu5UFLg7xSSA/jOwFyappB4CiAuofZuqiXIXv1e8JpUS2vbV+uoYZdu2+8E3GiCvM1XVpc4I4ee9IqQAzl8b0ISTJ7qXrvaX2DUXW3ROT638g8h/PJqmpv9tDfIYeoT88wrq8m7Yq0XD23qzJm8FQ==
-Received: from PS2PR02CA0090.apcprd02.prod.outlook.com (2603:1096:300:5c::30)
- by TYZPR04MB6787.apcprd04.prod.outlook.com (2603:1096:400:340::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27; Tue, 1 Oct
- 2024 08:21:20 +0000
-Received: from HK3PEPF00000221.apcprd03.prod.outlook.com
- (2603:1096:300:5c:cafe::b2) by PS2PR02CA0090.outlook.office365.com
- (2603:1096:300:5c::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.34 via Frontend
- Transport; Tue, 1 Oct 2024 08:21:20 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- HK3PEPF00000221.mail.protection.outlook.com (10.167.8.43) with Microsoft SMTP
- Server id 15.20.8026.11 via Frontend Transport; Tue, 1 Oct 2024 08:21:19
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 10/10] ARM: dts: aspeed: yosemite4: Add i2c-mux for ADC monitor on Spider Board
-Date: Tue,  1 Oct 2024 16:20:52 +0800
-Message-Id: <20241001082053.3455836-11-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241001082053.3455836-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20241001082053.3455836-1-Delphine_CC_Chiu@wiwynn.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE37A38396;
+	Tue,  1 Oct 2024 08:19:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727770777; cv=none; b=gX9jNf+vJsLE+2wVgiIvR/V2gS0hUoNiVlZk8l3HCfbhh66cOnqtK1yBYV3hbr2yij62AgPDJYwfYEXX1hwVZpIsHsydaY489ygRmpHbuHutJZ/zKPTRPM7hh02ftZmKWrTFL1JkUgyRrWJv4P2WYXaokG6Pgu7FyxPO4m5q0hQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727770777; c=relaxed/simple;
+	bh=XA6A99rSA6GSg0PZseoUxHeLdsLZcW4xVNZ5+mfZTiI=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=WgLnfU9kv4AD8/tcBz9AOirnb/ewrl0syH78FbZV3kk8QMQm/vcM8aSIW/kMkMwvc0NSTtjr1ycaECKOG1MPDtg/VBlXIdipE5NgwqjdJolOL4pzM+l53WB5ZtHIcorWFFxadJ0SE7yAHnDfDagHDpTLxZMJBs91jPwhyOyNbMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jIuS9brh; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37ce9644daaso1366928f8f.3;
+        Tue, 01 Oct 2024 01:19:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727770773; x=1728375573; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XA6A99rSA6GSg0PZseoUxHeLdsLZcW4xVNZ5+mfZTiI=;
+        b=jIuS9brhX9oErQZMvWla5b0VJzcVBLr9RYFOfGLbbgN5l92OwYoEFdVRqatZQOBMI3
+         9OUSdo1ZIDgbFHfVN8E1uTkR2eTFmIm6/6tO1wRQUCTM6SWuXz6vEOsuE0claVWKX299
+         But4ffYRpAJT/ZkFXyarhoQZCE8ttSV8XfJYJ0czvV1ttXNT3bcLnnK/zusOwo7z1GM0
+         5h5/NduCeCOsSntC5eLOSIylDbuXisO5V9CVLhAJVhpqIUxC9ABwldMA/Qp1dabzOQFX
+         AL+mC6ErL9BCLFbGhYqiOshYWRStkGKIsb7Tgqtr3hIrdpbtTalqVjSEYsj/xHVz2cMn
+         EVeA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727770773; x=1728375573;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=XA6A99rSA6GSg0PZseoUxHeLdsLZcW4xVNZ5+mfZTiI=;
+        b=RiV0Wsc/VzWMTVGAhOXFiWZgIN3NMNH0HIj3P/ZTH5wjnr3RlucaZMtoxqP06pO8x8
+         pE6zAoOpUQWdNzk5LVVsRwag+4u2AVZaYSzs1ca6ics3/sWNRFQPTV82WsgAOmS9w/nb
+         jBYyZeOhF8CDcSK0KiJkrZcBNM1SDjr6YrNTLO9w24fCEdh/7ewIpo810bIK4B8AHIPj
+         w4F8qSyseYaP2ZmaomQxzK30jG5wKhA0xRtHdJu1DFjWaeKjwnUnjA8TTeszig1hrBZb
+         70pL43DhG2iy1nsOx3rtR4NJ1Fl9alBTjxyohFK56YD07OP9G9+PRE6aIXsc1PPusEbw
+         EMDw==
+X-Forwarded-Encrypted: i=1; AJvYcCUcoGDmYIPo15byqg2g/jvPVz6V3WARLQA07Lhq3aW7OmjvOwaLwK2YOK1hYgb5ALdFDYGngvpSx1hD@vger.kernel.org, AJvYcCWMyfNoRLYG+1d0eT9WMzL0HsjOxXhghwhHWq3eU+0X/fxVT9DpYTswD9ttWyJLlIRL7kdd8m8zREkIk4m3@vger.kernel.org, AJvYcCXGiyJtdMQej2302RjwoPOgxj9G0+BFu9v5NgbeujWb9RxzwUpRr6cFkqFlF4Edeln9M/JBvG9vA8A+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyAgX7eXgcHILutEfghDPJQoxNunD4ib0ERNWNEnVzu5VTmQwy
+	g2wMhSRTA8NzWr65MRdGyuKLI8SBztLaoSsijxQAiVPFvJlagdbz
+X-Google-Smtp-Source: AGHT+IHPaAQykWILDKDS/COzgf9TI4xu5EwcJN9fsfRV9aA7ymACMu7Roo/bfg7hKUHTJJKICoUOSw==
+X-Received: by 2002:adf:efc3:0:b0:37c:d0b5:6c16 with SMTP id ffacd0b85a97d-37cd5aec965mr8390601f8f.46.1727770772775;
+        Tue, 01 Oct 2024 01:19:32 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef02:2700:7684:3ff1:6790:3866? (p200300f6ef02270076843ff167903866.dip0.t-ipconnect.de. [2003:f6:ef02:2700:7684:3ff1:6790:3866])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd575de8fsm11140853f8f.116.2024.10.01.01.19.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2024 01:19:32 -0700 (PDT)
+Message-ID: <80eb0949508d31a55f2b8ab999210a7c7cd5cbe2.camel@gmail.com>
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Angelo Dureghello
+	 <adureghello@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Krzysztof Kozlowski
+ <krzk@kernel.org>,  Lars-Peter Clausen	 <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Nuno Sa	 <nuno.sa@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Olivier Moysan	
+ <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ dlechner@baylibre.com
+Date: Tue, 01 Oct 2024 10:23:45 +0200
+In-Reply-To: <20240930160947.00007c8a@Huawei.com>
+References: 
+	<20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+		<gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
+		<418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
+		<e8af0f3f-a09c-42d7-b8ca-dd633539af73@kernel.org>
+		<0279203b6cd9f1312d9c03654c262c04ac12fbd9.camel@gmail.com>
+		<fa27dc74-7b1f-4ef5-81dc-cc434da4ff89@kernel.org>
+		<c721861809c17776c0fe89ead331b6e2e6b9d4b4.camel@gmail.com>
+		<28834db1-3e9e-47f4-b00e-a548589d77e9@kernel.org>
+		<20240929115919.0318034c@jic23-huawei>
+		<ae4cfdfb9880e0a833c105fcb9e9442ef04f461b.camel@gmail.com>
+		<h7ajn5c7f4d7xtjd6jwayen2v5go2vyciwfebikoxlnksodvd2@4dph5nxigi56>
+	 <20240930160947.00007c8a@Huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: HK3PEPF00000221:EE_|TYZPR04MB6787:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: bb2f8178-6439-4969-b314-08dce1f2075e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|36860700013|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?s4+SlLpFQSH4/P/w53BqI8vBGeygydlL9IFPTPp++vSl9eW/VHh6aueVId0m?=
- =?us-ascii?Q?F3PZ+aogww7hkjM8uw0t56esGPA8eoOnguWogGugs97H0tXPeq/7wSxfPwWo?=
- =?us-ascii?Q?um3Qb9jtVSW9CjqJI7RxsxDJSpJUFreOw/UKHSQo9WuA0PPCecIVSXzO+S98?=
- =?us-ascii?Q?2eWNkS4oUQJnYlB0T1LAW5k/vAKT5f+Ex+F5rxW1kIaPtwltsUH4cdDkyxd+?=
- =?us-ascii?Q?m3PRdKrdpwUuE9SCCs1CPoL22o76LOnroCWW7E/mwMYVlk6wZ5VCX4A8IRXW?=
- =?us-ascii?Q?/7rfzkitwM2LhHtUe8sB8JWKkDrG90RO7kl+XRE5cMY/KHQHnYFYoCZ6LdpM?=
- =?us-ascii?Q?oliu/ir8z+1filvc2bssbyJrJMv1hvLPtafA9VBBz1pZSKKQPPN79dafMPv8?=
- =?us-ascii?Q?V1tLkfRljb6VHR+GxqiPzdi+1Op1pfIwemzbc8cOaCQTM8A1WWNhyoUnnLdV?=
- =?us-ascii?Q?2D7u8FejcBkNofwhoU5zHQDXXchny1MCOut615jUUkdRkWYi0HjjvHIhT5sG?=
- =?us-ascii?Q?vmRKE3ZJHOmvnwh1vCsFPyxpaPtUC/n58RUkJyN4T5j4CAW0V2+aEFVFZU3W?=
- =?us-ascii?Q?ypJTnWs4CZ07htSUkFgmygglB1y4kqW8qJkV4k/JeuUC/cVwkQdCWwjioUoJ?=
- =?us-ascii?Q?n7n2ii2f/X44N6XJ+zkB3wvFH70VCVoc1TdUXVvdDfnvwSmV5h8f2jjm4D8h?=
- =?us-ascii?Q?5HCjKTEc7wEX7jqHPV4W5LE0W3wcE3iN1D/krPja9FEGBYOx/IXH9cyiKReM?=
- =?us-ascii?Q?6C0PXf71gaHJnJ1qW5qtceijLjS+w7zmr5RPJmzRCIc7uTvQuaIz9xOCBpRf?=
- =?us-ascii?Q?BDKeXDm8Gg6jMnAVrGM6bx3PkSkJ+PcC+psIk1o+CPaKhXaHjuWMsqFbaqaD?=
- =?us-ascii?Q?EcqBSEkoVnUQNJZfX4p1EefYjPAg2MwBi3zgP8uxz6SiL5GeQYW6FfPCoa99?=
- =?us-ascii?Q?CR60J8FhoAaY9yYBd0GiME/KXi4XhdqdCz6rfX5OKLWIifqqfkyunyC1R9VL?=
- =?us-ascii?Q?Z9YvfdZOXRkBObcRHk9w+52gNw0Y8zUlX7llUXaHZgqqleELsHr/2Bkt32/M?=
- =?us-ascii?Q?Gz1jR6V9GIXRmRUlRY5i7CixIoI4YhrpdhcIkKmYjJTKJ6M+oGJoKJZ+TzfS?=
- =?us-ascii?Q?yr2KPey5HKpn8U8ohsQsmgtxRToMiRk++S3A9nJw5w5mDkxHFn1RrJRq5fpL?=
- =?us-ascii?Q?d4EQLyWrFglS2BIAuEfaOdbtj3PbaD4w+YN8ao1+ioj71JmS99tq7zlzkAZA?=
- =?us-ascii?Q?mnkG4JjfYRi0l2fbFL9q+fr3U2GlMNNiLqhaljqB7ecua9YYKQm+cL0WLxc7?=
- =?us-ascii?Q?cWkWDpnFjnPcgJbrNEdX/Q8RfKH+WZreoHY1qkb4aAwuSfcFoFWddbLcqkn1?=
- =?us-ascii?Q?0mgIHwDmkoVaeQII5ROtZOS8FEXQ5dUosyd1RRdL8uucBl90tihA9VTP3HXe?=
- =?us-ascii?Q?piaUgy42cVOVdeObv2pf9O0K2UrddMmi?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(376014)(7416014)(36860700013)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2024 08:21:19.9406
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb2f8178-6439-4969-b314-08dce1f2075e
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	HK3PEPF00000221.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR04MB6787
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+On Mon, 2024-09-30 at 16:09 +0100, Jonathan Cameron wrote:
+> On Mon, 30 Sep 2024 15:22:01 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
+>=20
+> > On 30.09.2024 09:20, Nuno S=C3=A1 wrote:
+> > > On Sun, 2024-09-29 at 11:59 +0100, Jonathan Cameron wrote:=C2=A0=20
+> > > > On Sat, 28 Sep 2024 14:20:29 +0200
+> > > > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > =C2=A0=20
+> > > > > On 25/09/2024 13:55, Nuno S=C3=A1 wrote:=C2=A0=20
+> > > > > > On Wed, 2024-09-25 at 09:22 +0200, Krzysztof Kozlowski wrote:=
+=C2=A0=C2=A0=C2=A0=20
+> > > > > > > On 24/09/2024 14:27, Nuno S=C3=A1 wrote:=C2=A0=C2=A0=C2=A0=
+=20
+> > > > > > > > On Tue, 2024-09-24 at 10:02 +0200, Krzysztof Kozlowski wrot=
+e:=C2=A0=C2=A0=C2=A0
+> > > > > > > > > On 23/09/2024 17:50, Angelo Dureghello wrote:=C2=A0=C2=A0=
+=C2=A0=20
+> > > > > > > > > > Hi Krzysztof,
+> > > > > > > > > >=20
+> > > > > > > > > > On 22/09/24 23:02, Krzysztof Kozlowski wrote:=C2=A0=C2=
+=A0=C2=A0=20
+> > > > > > > > > > > On Thu, Sep 19, 2024 at 11:20:00AM +0200, Angelo
+> > > > > > > > > > > Dureghello
+> > > > > > > > > > > wrote:=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > There is a version AXI DAC IP block (for FPGAs) tha=
+t
+> > > > > > > > > > > > provides
+> > > > > > > > > > > > a physical bus for AD3552R and similar chips, and a=
+cts
+> > > > > > > > > > > > as
+> > > > > > > > > > > > an SPI controller.
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > For this case, the binding is modified to include s=
+ome
+> > > > > > > > > > > > additional properties.
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > Signed-off-by: Angelo Dureghello
+> > > > > > > > > > > > <adureghello@baylibre.com>
+> > > > > > > > > > > > ---
+> > > > > > > > > > > > =C2=A0 .../devicetree/bindings/iio/dac/adi,ad3552r.=
+yaml=C2=A0=C2=A0 |
+> > > > > > > > > > > > 42
+> > > > > > > > > > > > ++++++++++++++++++++++
+> > > > > > > > > > > > =C2=A0 1 file changed, 42 insertions(+)
+> > > > > > > > > > > >=20
+> > > > > > > > > > > > diff --git
+> > > > > > > > > > > > a/Documentation/devicetree/bindings/iio/dac/adi,ad3=
+552r.
+> > > > > > > > > > > > yaml
+> > > > > > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,ad3=
+552r.
+> > > > > > > > > > > > yaml
+> > > > > > > > > > > > index 41fe00034742..aca4a41c2633 100644
+> > > > > > > > > > > > ---
+> > > > > > > > > > > > a/Documentation/devicetree/bindings/iio/dac/adi,ad3=
+552r.
+> > > > > > > > > > > > yaml
+> > > > > > > > > > > > +++
+> > > > > > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,ad3=
+552r.
+> > > > > > > > > > > > yaml
+> > > > > > > > > > > > @@ -60,6 +60,18 @@ properties:
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/types=
+.yaml#/definitions/uint32
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [0, 1, 2, 3]
+> > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > +=C2=A0 io-backends:
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 description: The iio backend re=
+ference.
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 An example backend =
+can be found at
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > > > > > > > > > > > https://analogdevicesinc.github.io/hdl/library/axi_=
+ad3552r/index.html
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +=C2=A0 adi,synchronous-mode:
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 description: Enable waiting for=
+ external
+> > > > > > > > > > > > synchronization
+> > > > > > > > > > > > signal.
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Some AXI IP configu=
+ration can implement a dual-IP
+> > > > > > > > > > > > layout,
+> > > > > > > > > > > > with
+> > > > > > > > > > > > internal
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wirings for streami=
+ng synchronization.
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > > > > > > > > > > > +
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0 '#address-cells':
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: 1
+> > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > @@ -128,6 +140,7 @@ patternProperties:
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 - custom-output-range-config
+> > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > =C2=A0 allOf:
+> > > > > > > > > > > > +=C2=A0 - $ref: /schemas/spi/spi-peripheral-props.y=
+aml#
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0 - if:
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 properti=
+es:
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 compatible:
+> > > > > > > > > > > > @@ -238,4 +251,33 @@ examples:
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 };
+> > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +=C2=A0 - |
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 axi_dac: spi@44a70000 {
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compati=
+ble =3D "adi,axi-ad3552r";=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > > That is either redundant or entire example should go =
+to
+> > > > > > > > > > > the
+> > > > > > > > > > > parent
+> > > > > > > > > > > node,
+> > > > > > > > > > > if this device is fixed child of complex device (IOW,
+> > > > > > > > > > > adi,ad3552r
+> > > > > > > > > > > cannot
+> > > > > > > > > > > be used outside of adi,axi-ad3552r).=C2=A0=C2=A0=C2=
+=A0=20
+> > > > > > > > > >=20
+> > > > > > > > > > ad3552r can still be used by a generic "classic" spi
+> > > > > > > > > > controller (SCLK/CS/MISO) but at a slower samplerate, f=
+pga
+> > > > > > > > > > controller only (axi-ad3552r) can reach 33MUPS.=C2=A0=
+=C2=A0=C2=A0=20
+> > > > > > > > >=20
+> > > > > > > > > OK, then this is just redundant. Drop the node. Parent ex=
+ample
+> > > > > > > > > should
+> > > > > > > > > contain the children, though.=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > =C2=A0=C2=A0=20
+> > > > > > > > > > > =C2=A0=C2=A0=20
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =3D=
+ <0x44a70000 0x1000>;
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dmas =
+=3D <&dac_tx_dma 0>;
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-nam=
+es =3D "tx";
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #io-bac=
+kend-cells =3D <0>;
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clocks =
+=3D <&ref_clk>;
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #addres=
+s-cells =3D <1>;
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size-c=
+ells =3D <0>;
+> > > > > > > > > > > > +
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dac@0 {
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 compatible =3D "adi,ad3552r";
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 reg =3D <0>;
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio0 92 0>;=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > > Use standard defines for GPIO flags.=C2=A0=C2=A0=C2=
+=A0=20
+> > > > > > > > > >=20
+> > > > > > > > > > fixed, thanks
+> > > > > > > > > > =C2=A0=C2=A0=20
+> > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 io-backends =3D <&axi_dac>;=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > > > Why do you need to point to the parent? How much coup=
+led
+> > > > > > > > > > > are
+> > > > > > > > > > > these
+> > > > > > > > > > > devices? Child pointing to parent is not usually expe=
+cted,
+> > > > > > > > > > > because
+> > > > > > > > > > > that's obvious.=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > "io-backends" is actually the way to refer to the backe=
+nd
+> > > > > > > > > > module,
+> > > > > > > > > > (used already for i.e. ad9739a),
+> > > > > > > > > > it is needed because the backend is not only acting as =
+spi-
+> > > > > > > > > > controller,
+> > > > > > > > > > but is also providing some APIs for synchronization and=
+ bus
+> > > > > > > > > > setup
+> > > > > > > > > > support.=C2=A0=C2=A0=C2=A0=20
+> > > > > > > > >=20
+> > > > > > > > >=20
+> > > > > > > > > But if backend is the parent, then this is redundant. You=
+ can
+> > > > > > > > > take
+> > > > > > > > > it
+> > > > > > > > > from the child-parent relationship. Is this pointing to o=
+ther
+> > > > > > > > > devices
+> > > > > > > > > (non-parent) in other ad3552r configurations?
+> > > > > > > > > =C2=A0=C2=A0=20
+> > > > > > > >=20
+> > > > > > > > The backend is a provider-consumer type of API. On the cons=
+umer
+> > > > > > > > side
+> > > > > > > > (which
+> > > > > > > > is the
+> > > > > > > > driver the child node will probe on), we need to call
+> > > > > > > > devm_iio_backend_get()
+> > > > > > > > to get
+> > > > > > > > the backend object (which obviously is the parent). For tha=
+t,
+> > > > > > > > 'io-
+> > > > > > > > backends'
+> > > > > > > > is being=C2=A0=C2=A0=C2=A0=20
+> > > > > > >=20
+> > > > > > > You described the driver, so how does it matter? Driver can c=
+all
+> > > > > > > get_backend_from_parent(), right? Or
+> > > > > > > get_backend_from_fwnode(parent)?=C2=A0=C2=A0=C2=A0=20
+> > > > > >=20
+> > > > > > Well yes, just stating what the framework (also in terms of
+> > > > > > bindings) is
+> > > > > > expecting. Of course that on the driver side we can paper aroun=
+d it
+> > > > > > the
+> > > > > > way we
+> > > > > > want. But my main point was that we can only paper around it if=
+ we
+> > > > > > use
+> > > > > > code that
+> > > > > > is meant not to be used.
+> > > > > >=20
+> > > > > > And, FWIW, I was (trying) replying to your comment
+> > > > > >=20
+> > > > > > "You can take it from the child-parent relationship"
+> > > > > >=20
+> > > > > > Again, we can only do that by introducing new code or use code
+> > > > > > that's not
+> > > > > > meant
+> > > > > > to be used. The way we're supposed to reference backends is by
+> > > > > > explicitly
+> > > > > > using
+> > > > > > the proper FW property.
+> > > > > >=20
+> > > > > > Put it in another way and a completely hypothetical case. If we=
+ have
+> > > > > > a spi
+> > > > > > controller which happens to export some clock and one of it's
+> > > > > > peripherals
+> > > > > > ends
+> > > > > > up using that clock, wouldn't we still use 'clocks' to referenc=
+e
+> > > > > > that
+> > > > > > clock?=C2=A0=C2=A0=C2=A0=20
+> > > > >=20
+> > > > > I asked how coupled are these devices. Never got the answer and y=
+ou
+> > > > > are
+> > > > > reflecting with question. Depends. Please do not create hypotheti=
+cal,
+> > > > > generic scenarios and then apply them to your one particular oppo=
+site
+> > > > > case.=C2=A0=20
+> > > >=20
+> > > > I'll throw a possible clarifying question in here.=C2=A0 Could we u=
+se this
+> > > > device with a multimaster SPI setup such that the control is on a
+> > > > conventional
+> > > > SPI controller (maybe a qspi capable one), and the data plane only =
+goes
+> > > > through
+> > > > a specific purpose backend?=C2=A0 If so, then they are not tightly =
+coupled
+> > > > and
+> > > > the reference makes sense.=C2=A0 Putting it another way, the differ=
+ence
+> > > > between
+> > > > this case and all the prior iio-backend bindings is the control and
+> > > > dataplanes
+> > > > use the same pins.=C2=A0 Does that have to be the case at the host =
+end?=C2=A0 If
+> > > > it
+> > > > does,
+> > > > then the reference isn't strictly needed and this becomes a bit lik=
+e
+> > > > registering a single device on an spi bus or an i2c bus depending o=
+n who
+> > > > does the registering (which is down to the parent in DT).
+> > > > =C2=A0=20
+> > >=20
+> > > So, we currently have two drivers (with a new one being added in this
+> > > series)
+> > > for the same device:
+> > >=20
+> > > 1) A SPI one tied to a typical spi controller. This is the "low speed=
+"
+> > > implementation and does not use backends;
+> > > 2) The new platform device that is connected like this to the backend=
+.
+> > >=20
+> > > So yes, my understanding (but Angelo should know better :)) is that t=
+hey
+> > > are
+> > > tightly coupled. Putting it in another way, the new platform device i=
+s
+> > > very much
+> > > specific to this parent (and yeah, this is a very special usecase whe=
+re
+> > > control
+> > > and data planes are controlled by the IIO backend) and should not exi=
+st
+> > > with it.=C2=A0=20
+> >=20
+> > ad3552r device can be coupled to the axi-ad3552r controller or to a gen=
+eric=20
+> > spi controler.
+> >=20
+> > We have actually 2 drivers, SPI and platform (for AXI controller, in th=
+is
+> > patch).
+> >=20
+> > Scenario 1 (SPI):
+> > ad3522r can hypotetically work with whatever simple spi controller that=
+ can
+> > read/write registers in raw mode. On simple SPI (CS, SCLK, MOSI), due t=
+o
+> > ad3552r
+> > chip limitation of 66Mhz clock, the maximum 33MUPS (16 bit samples) can=
+not
+> > be
+> > reached. Some QSPI DDR controller seems to be around, in that case, ad3=
+552r
+> > may work extending the SPI driver.=20
+> >=20
+> > Scenario 2 (AXI):
+> > From an hardware-only point ov view axi-ad3552r IP acts as QSPI+DDR
+> > controller
+> > plus some additional features for stream synchronization.
+> > From a sowftware point of view, really different from a spi controller
+> > driver.
+> > It's just a backend with APIes that can be called from the child driver=
+.
+>=20
+> Potential? scenario 3 is the one that interested me.
+>=20
+> ad3552 double wired to a normal SPI controller (so like option 1) and
+> to a an offload engine (so like option 2).=C2=A0 With a few pull up resis=
+tors
+> (cs and clk?) and some care it should electrically work I think.
+> In that case we'd need the io-backend reference because the parent
+> would be the option 1 like SPI bus and the io-backend would not be
+> the parent.
+>=20
+> _______________________
+> Host=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MOSI=C2=A0=C2=A0=C2=A0 |----=
+---------------\
+> hard=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MISO 0-3|----------------\=
+=C2=A0 |
+> QSPI=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI CLK=C2=A0=C2=A0=C2=A0=C2=A0 =
+|--------------\=C2=A0 | |
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI CS=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |----------\=C2=A0=C2=A0=C2=A0 | | |
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 | | |
+> FPGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 | | |=C2=A0=C2=A0 |
+> Soft=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MOSI=C2=A0=C2=A0=C2=A0 |----=
+-------|---|-|-x---|
+> QSPI=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MISO 0-3|-----------|---|-x-=
+----|=C2=A0 DAC
+> Offload=C2=A0=C2=A0=C2=A0 SPI CLK=C2=A0=C2=A0=C2=A0=C2=A0 |-----------|--=
+-x-------|
+> with DDR=C2=A0=C2=A0 SPI CS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |-----------x--=
+---------|
+> _______________________|
+>=20
+> Makes all sorts of assumptions about the SPI controllers being designed
+> for multi controllers on the same SPI buses but I'm not aware of a reason
+> you can't do that.
+>=20
+> As the only control message that would need to go over the offload engine
+> would be the exit DDR (I think) that might be hard coded into a slightly
+> simpler soft IP along with the bulk data transfer stuff.
+>=20
 
-Add I2C mux for ADC monitors on Spider Board.
+Not even sure if DDR would be a problem. Right now, I __think__ we need to
+enable DDR both the peripheral and on the backend. On the peripheral we cou=
+ld
+use the control link on the non offload controller. On the offload controll=
+er,
+we would set it through IIO backend and that would be a backend config and =
+not
+go over the bus.
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
+To make a correction on my previous reply to Krzysztof, the HW folks made s=
+ome
+experiments with the SPI ENIGINE IP (with the offload engine) but without t=
+he
+AXI DAC IP. So, effectively only one controller in place. That said, I'm al=
+so
+not seeing any reason why something like the above would not be possible.
 
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index e235ff7c7a9b..ec2d8a783ac1 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -34,6 +34,8 @@ aliases {
- 		i2c29 = &imux29;
- 		i2c30 = &imux30;
- 		i2c31 = &imux31;
-+		i2c32 = &imux32;
-+		i2c33 = &imux33;
- 		i2c34 = &imux34;
- 		i2c35 = &imux35;
- 	};
-@@ -1128,29 +1130,25 @@ eeprom@51 {
- 
- 	i2c-mux@73 {
- 		compatible = "nxp,pca9544";
-+		reg = <0x73>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--
--		idle-state = <0>;
- 		i2c-mux-idle-disconnect;
--		reg = <0x73>;
- 
--		i2c@0 {
-+		imux32: i2c@0 {
-+			reg = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0>;
--
- 			adc@35 {
- 				compatible = "maxim,max11617";
- 				reg = <0x35>;
- 			};
- 		};
- 
--		i2c@1 {
-+		imux33: i2c@1 {
-+			reg = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0>;
--
- 			adc@35 {
- 				compatible = "maxim,max11617";
- 				reg = <0x35>;
--- 
-2.25.1
+- Nuno S=C3=A1
 
 
