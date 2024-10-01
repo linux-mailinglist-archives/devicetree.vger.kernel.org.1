@@ -1,119 +1,190 @@
-Return-Path: <devicetree+bounces-106885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0744F98C241
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:06:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E650998C252
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:07:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1BB3281474
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:06:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 681F4B21DE3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBF281C7B69;
-	Tue,  1 Oct 2024 16:06:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 837131CBE8F;
+	Tue,  1 Oct 2024 16:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LCTKsXvn"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="L+gTsnYC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB75F1C9EB3;
-	Tue,  1 Oct 2024 16:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 246CF1CB528
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 16:07:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727798791; cv=none; b=u5jPDJCe3ZwytreLWrDnjurpGeReZDpobr9RpJikTQpWOfEo/aJzCNQ0MilMgB3uLWXUsV2tiaNGYMzWXhUxUfZFdbNjOujKHJUvKO2Kv4ttZXPjdpJjLA5XnwGGoWfbHNUXpV1wqO3jADRvEYhaEgN25nbpy5Y9YrL6XwatN+U=
+	t=1727798824; cv=none; b=kc7RHvEcUKzX/APU0BeHQinIjdKEm/E3uUqVIZRXz6S9gFW+YLMD6URpNCR1Y6XmC+7bkqSmHK+NHMkGGX3mql9gUf+c3GS+z+fUYWZBWRG/V64l67Lb3PpZdDi5qoXa1ZXjK67TViSMZQWuaZG/INNuDc6TKgCwUpNbO420yPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727798791; c=relaxed/simple;
-	bh=yolmBkz3ljbf7antDyyquX8zhL5x+7PHzQi1hzQFCW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=onbCrgmAJZbpp2nn6m3iNz819tRMCv2t/tn7LTGC0hdIBMGYqMNq55RgNZjmele3xh5B098UVyl+twujZE9XB7h5WFnRlakiRZRN31qKcKJrpZLxg0WrRZqG/89FlqkNz75TQ2W6J1F9JgdKAfAuU0on5KVbNK0WdxbJLULejNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LCTKsXvn; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 841EE240007;
-	Tue,  1 Oct 2024 16:06:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727798784;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=s11bFBgMBVIa6r2QYg0pEn8AS/G0E8C5GTuxI/JostY=;
-	b=LCTKsXvny5ow713Z5B9P3m5gIl1LomlDIIFV4K4NhG9ZBLcsrZszohOY8EoNbHzDZENz7t
-	AiRVmpztdPYhIurAa72idPmj68cfoPNQUSVmMsITFbBMe75bUtPgbyeIVWZ9Yns014jdfH
-	KitzdWIyWXPGVzSdIaInKLapGSt6HIRaYZRqRpmehSGsYezMV6WjVeHyAiEFdx5YV7qSwR
-	B2c0TLSHUKM2eRPTlrAOr3ZqhV7JKhIC1BQa7roOZq8tU1ze9EzTVw3TvDukjKcQZCsD4H
-	usFRtN1AkfU1B1P1FgtxtN6l1cU3iVZD3AlFyXhqXqGdrYDoJDSWkk5CyoEqKA==
-Date: Tue, 1 Oct 2024 18:06:21 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, Lee Jones
- <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan
- <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen
- <lars.povlsen@microchip.com>, Steen Hegelund
- <Steen.Hegelund@microchip.com>, Daniel Machon
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Saravana Kannan <saravanak@google.com>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub
- Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org, linux-pci@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 1/7] dt-bindings: reset: microchip,rst: Allow to
- replace cpu-syscon by an additional reg item
-Message-ID: <20241001180621.76e497d0@bootlin.com>
-In-Reply-To: <emcl3vfclrmy273kknsakpqpzolvo5vohrjnw64ml3op4dwzvu@lwqfgc7jxxzq>
-References: <20240930121601.172216-1-herve.codina@bootlin.com>
-	<20240930121601.172216-2-herve.codina@bootlin.com>
-	<emcl3vfclrmy273kknsakpqpzolvo5vohrjnw64ml3op4dwzvu@lwqfgc7jxxzq>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1727798824; c=relaxed/simple;
+	bh=UyWMIIBCmwkbjPM0A+FmTU87MU0ZGnNGDXu/rgKEGp8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Jj9IHGGZcZT8U39MaChbj0vhQ21KP0GilM22R/kcqsFOTgRHiJTcqe1145sIBF1P7rsDATlknVyZMa8gV6fvnvopMKsbCrgyh8f/wUXvNLIhulv2/WAKLWDdR6JJXBCbUjFod08y+egsWY5VJPz7Bqf5/mmVtB6ACdbvYQyuwIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=L+gTsnYC; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-207115e3056so50469395ad.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 09:07:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727798821; x=1728403621; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pcb1JUl7nxyzCR2L+K51gN2ROJJ8XrFInAPZeivTlr8=;
+        b=L+gTsnYCu9stnnO17H/zQAfCHigLou3l1RHCrbc7E2KQD5cNhnEhRGGe0SZtfrTCUP
+         4BM95mXYobeV3JJuyfXkdWjMaf1N7hgiZPiiIz3xWas7d8lVB8CYdun2yg0XLLm2pU+Y
+         SMCi2X4msSYvpuBtPFBEdSI4WGkvJYFL0aEiCRyWXZF9N9tcJVCKIHNeVV9L59LmgSWw
+         f3AbHV5WlGRMrNhuLcEgCvXzIW3320P6RoZgO6edfpI5w6BiqIfrp4OAF9Q1DaIT/CKs
+         SpwElHcYOMmK6tr/V6PYRlIGtN7JOrog8mS93mVucZReZ6L8Kws1NXocJz2LmpIDauTW
+         dXBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727798821; x=1728403621;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pcb1JUl7nxyzCR2L+K51gN2ROJJ8XrFInAPZeivTlr8=;
+        b=rUsrI8Th3ZxSPVgbyFhCQKrwavngJUS8P+hS95pcMpiPrk3xvFpV9ARgHSZYS2kT+q
+         QuXJDl4FB9adxyyhlmjx2hBTSCKy4547jjZyr4ppV0siDxnkQFHSYANTs+layLU6NFog
+         SwaKeffxkpJfVBjUFNk4U1ydzEW/DRgeR1KR7Dd+0mIGj/eZ316w2YggTiSLj7nB+sMZ
+         h0ulON49H9a9awXd3KKDSKPJUDESnIgbZDf1JzJU2m7kK4VCz57VutJkIPnecJsKg1ae
+         O69339wi2dxNYdtE2jf7Me5GYAJjAGTTJ7k3V5WlOV+22HFPUsmH/63mDyFi2lkEeJ/W
+         91gw==
+X-Forwarded-Encrypted: i=1; AJvYcCWQp+Ot2NEMAf9/tQ8epupmV2eqXS9kI7MvDR6PVblD/GekGEr9H1398zRfI8WOq5FR8oQVmfAbJER5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyhKK3/58B16XfWTibjEZtkJn9ZSQOFo2X+MSyoWXFjQz3opyZ
+	ObIt9YtRMdTdMLzcN5LNLLypRQXFQwP59tcMbIP/dTxiZIPE/FB7/zRpFiRgYu4=
+X-Google-Smtp-Source: AGHT+IG/9AhOFkVlsb1ZH2XMKlQ6f717lLd7IRjhRM+ZTMobdV3S8kdqvcOsBq5NGgSC9+zelAG6Ow==
+X-Received: by 2002:a17:90a:650c:b0:2cc:ff56:5be1 with SMTP id 98e67ed59e1d1-2e184526f71mr233618a91.7.1727798821325;
+        Tue, 01 Oct 2024 09:07:01 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e06e1d7d47sm13843973a91.28.2024.10.01.09.06.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2024 09:07:00 -0700 (PDT)
+From: Deepak Gupta <debug@rivosinc.com>
+Date: Tue, 01 Oct 2024 09:06:06 -0700
+Subject: [PATCH 01/33] mm: Introduce ARCH_HAS_USER_SHADOW_STACK
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241001-v5_user_cfi_series-v1-1-3ba65b6e550f@rivosinc.com>
+References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
+In-Reply-To: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
+To: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, 
+ Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>, 
+ x86@kernel.org, "H. Peter Anvin" <hpa@zytor.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@suse.cz>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
+ Christian Brauner <brauner@kernel.org>, 
+ Peter Zijlstra <peterz@infradead.org>, Oleg Nesterov <oleg@redhat.com>, 
+ Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ linux-mm@kvack.org, linux-riscv@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-arch@vger.kernel.org, 
+ linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org, 
+ alistair.francis@wdc.com, richard.henderson@linaro.org, jim.shu@sifive.com, 
+ andybnac@gmail.com, kito.cheng@sifive.com, charlie@rivosinc.com, 
+ atishp@rivosinc.com, evan@rivosinc.com, cleger@rivosinc.com, 
+ alexghiti@rivosinc.com, samitolvanen@google.com, broonie@kernel.org, 
+ rick.p.edgecombe@intel.com, Deepak Gupta <debug@rivosinc.com>, 
+ David Hildenbrand <david@redhat.com>, 
+ Carlos Bilbao <carlos.bilbao.osdev@gmail.com>
+X-Mailer: b4 0.14.0
 
-Hi Krystoff,
+From: Mark Brown <broonie@kernel.org>
 
-On Tue, 1 Oct 2024 08:43:23 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
+Since multiple architectures have support for shadow stacks and we need to
+select support for this feature in several places in the generic code
+provide a generic config option that the architectures can select.
 
-> On Mon, Sep 30, 2024 at 02:15:41PM +0200, Herve Codina wrote:
-> > In the LAN966x PCI device use case, syscon cannot be used as syscon
-> > devices do not support removal [1]. A syscon device is a core "system"
-> > device and not a device available in some addon boards and so, it is not
-> > supposed to be removed.  
-> 
-> That's not accurate. syscon is our own, Linux term which means also
-> anything exposing set of registers.
-> 
-> If you need to unload syscons, implement it. syscon is the same resource
-> as all others so should be handled same way.
-> 
-> > 
-> > In order to remove the syscon device usage, allow the reset controller
-> > to have a direct access to the address range it needs to use.  
-> 
-> So you map same address twice? That's not good, because you have no
-> locking over concurrent register accesses.
-> 
+Suggested-by: David Hildenbrand <david@redhat.com>
+Acked-by: David Hildenbrand <david@redhat.com>
+Signed-off-by: Mark Brown <broonie@kernel.org>
+Reviewed-by: Rick Edgecombe <rick.p.edgecombe@intel.com>
+Reviewed-by: Deepak Gupta <debug@rivosinc.com>
+Reviewed-by: Carlos Bilbao <carlos.bilbao.osdev@gmail.com>
+---
+ arch/x86/Kconfig   | 1 +
+ fs/proc/task_mmu.c | 2 +-
+ include/linux/mm.h | 2 +-
+ mm/Kconfig         | 6 ++++++
+ 4 files changed, 9 insertions(+), 2 deletions(-)
 
-I will remove this patch and keep using the syscon node in the next
-iteration.
+diff --git a/arch/x86/Kconfig b/arch/x86/Kconfig
+index 2852fcd82cbd..8ccae77d40f7 100644
+--- a/arch/x86/Kconfig
++++ b/arch/x86/Kconfig
+@@ -1954,6 +1954,7 @@ config X86_USER_SHADOW_STACK
+ 	depends on AS_WRUSS
+ 	depends on X86_64
+ 	select ARCH_USES_HIGH_VMA_FLAGS
++	select ARCH_HAS_USER_SHADOW_STACK
+ 	select X86_CET
+ 	help
+ 	  Shadow stack protection is a hardware feature that detects function
+diff --git a/fs/proc/task_mmu.c b/fs/proc/task_mmu.c
+index 72f14fd59c2d..23f875e78eae 100644
+--- a/fs/proc/task_mmu.c
++++ b/fs/proc/task_mmu.c
+@@ -971,7 +971,7 @@ static void show_smap_vma_flags(struct seq_file *m, struct vm_area_struct *vma)
+ #ifdef CONFIG_HAVE_ARCH_USERFAULTFD_MINOR
+ 		[ilog2(VM_UFFD_MINOR)]	= "ui",
+ #endif /* CONFIG_HAVE_ARCH_USERFAULTFD_MINOR */
+-#ifdef CONFIG_X86_USER_SHADOW_STACK
++#ifdef CONFIG_ARCH_HAS_USER_SHADOW_STACK
+ 		[ilog2(VM_SHADOW_STACK)] = "ss",
+ #endif
+ #if defined(CONFIG_64BIT) || defined(CONFIG_PPC32)
+diff --git a/include/linux/mm.h b/include/linux/mm.h
+index ecf63d2b0582..57533b9cae95 100644
+--- a/include/linux/mm.h
++++ b/include/linux/mm.h
+@@ -354,7 +354,7 @@ extern unsigned int kobjsize(const void *objp);
+ #endif
+ #endif /* CONFIG_ARCH_HAS_PKEYS */
+ 
+-#ifdef CONFIG_X86_USER_SHADOW_STACK
++#ifdef CONFIG_ARCH_HAS_USER_SHADOW_STACK
+ /*
+  * VM_SHADOW_STACK should not be set with VM_SHARED because of lack of
+  * support core mm.
+diff --git a/mm/Kconfig b/mm/Kconfig
+index 4c9f5ea13271..4b2a1ef9a161 100644
+--- a/mm/Kconfig
++++ b/mm/Kconfig
+@@ -1296,6 +1296,12 @@ config NUMA_EMU
+ 	  into virtual nodes when booted with "numa=fake=N", where N is the
+ 	  number of nodes. This is only useful for debugging.
+ 
++config ARCH_HAS_USER_SHADOW_STACK
++	bool
++	help
++	  The architecture has hardware support for userspace shadow call
++          stacks (eg, x86 CET, arm64 GCS or RISC-V Zicfiss).
++
+ source "mm/damon/Kconfig"
+ 
+ endmenu
 
-Best regards,
-Hervé
+-- 
+2.45.0
+
 
