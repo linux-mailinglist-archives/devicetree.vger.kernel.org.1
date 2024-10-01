@@ -1,126 +1,216 @@
-Return-Path: <devicetree+bounces-106921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A96D98C32E
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7B9998C340
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:23:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC9531F22948
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:21:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 712F11F2303D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:23:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7891C9EBF;
-	Tue,  1 Oct 2024 16:15:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6DFB1CF5CB;
+	Tue,  1 Oct 2024 16:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RqbtuRFJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gyadSO9P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F291C2424;
-	Tue,  1 Oct 2024 16:15:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 888681CC886;
+	Tue,  1 Oct 2024 16:18:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727799322; cv=none; b=C1I8WRTCqd1fGxDHTTnOwyPPK/xrEviSpQfZ5Rm+avtgGL2rt/mZ+U2xXBd20VIJl5PbFYe+kCIP/d+g7cJ/iWA4EMRoWtorkROOc/4XjWVpuICz8DRLTsiScyVgLxa6/3eLkmaaIoLqIE0egXvEiZaJS9HxWiGojsYfgzkXwo4=
+	t=1727799515; cv=none; b=rSi8/9PO8iQqcuSbS0M9K3SNqYOqEyaSbc4tRhRRyR6NXlGmFtupTTpQEvSW7P4m5+z9SAtmtLLWD1lOqb4NB4Rugtz9bmBklSnHbXCrXof62HgLoYA+jSki67TkPlWXRSxPA1dhFbb52iHzVmBFppL5SOmJklrwVnn43J/t7wM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727799322; c=relaxed/simple;
-	bh=+OmrwFFvI55GhiVmjwakGzI55IFXbs0OQLhUUTgaw38=;
+	s=arc-20240116; t=1727799515; c=relaxed/simple;
+	bh=8CYtzeuLs6CCIRD2fBZvkMPfTc4SmlBullhKTpkXAIw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lk6e6sn+V5O0J8pu84TRelserARq6EW8u/lzt8EeAs06Y6rK9VN2AxuzIAQwSeetWdJINW6qkx0HU0vayZw1frCvr3VDoqdT1yv85VoWzguud5G6Xk5U5hD/Q6C9WjFDkBYi0fK3n5dfDyNsD0JpEdLX6BnyENeb1WJrXnLIgcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RqbtuRFJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B64E3C4CEC7;
-	Tue,  1 Oct 2024 16:15:11 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=OWMz8ALIh0BtJPLRCw1ibsNOR2t7UeTH00AbdBAWDH5xvxVGds8p6HiT3f6N3xdFPPWZWEN/USQF4QjPCg25iaS0ezXWuT0Rv7LsFluoPfqVsvsgtmu8+ovSY2L/qM+vIyiY/NW4MkTjtkSSsw8PEyGwpwifd1O+j+c8Hf1m/qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gyadSO9P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B65C2C4CEC6;
+	Tue,  1 Oct 2024 16:18:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727799321;
-	bh=+OmrwFFvI55GhiVmjwakGzI55IFXbs0OQLhUUTgaw38=;
+	s=k20201202; t=1727799515;
+	bh=8CYtzeuLs6CCIRD2fBZvkMPfTc4SmlBullhKTpkXAIw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RqbtuRFJU3u7JGA6mstBP8v+VnF2+BpPvJBISYpoE1myMPoeofcLOfETglwd/qqZX
-	 x6xbtmUE/AaEcoWn0ZA8t0QUZQjaEsa66J35m09JoEfVzTDOIpJbSzpgGrbYGk7ROR
-	 Imomv1HBZRnI/fzOcUfTyuK6zGFljqtNCMIAK2siGRxnBJbqwPASU2pU1LcPDOROtb
-	 yxFRIIJPpDmySpyG1SG6qGCbTLZLpLzu+QVE7YuzjfOhmInh2W/JnLERnqF9jC+jh+
-	 uPLt33Yevu1qKZxJS38du1tCjiT/+4HgU/OhVG31JhV+AgobMsR7Pk5M44bCsRITkI
-	 oGQGlV/9jIzhQ==
-Date: Tue, 1 Oct 2024 17:15:08 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=gyadSO9PSycQp+6mA1O5shA068U3KckO5T0wizaXBNFdLSvBo1eeKZfTuwe0AsGKN
+	 NPM9YOKd9LyY9CMk9/9RKnPMzlMbX3rI9jOBYvbE6UBCZfuH2daVoz78fwiGzKWHrz
+	 neHUM9dcbkOuNDc64y6zkeTcY430du4NCNoXuYE8x4iosCwj7z9oWm2+U7/QE4iSKB
+	 vLdDtv2cwRyLVZCHp5+vfvop/jrLj9WLLh9gqD3gF7iBX1X242kU1qmZC4UCo57TnH
+	 tc7claQZdOMZob8dl4Nv2+5A8zNi2AF7pAZsTQLTVcqedKQUKRD1neFqvfWy+IzZLC
+	 O6NTFQA7tUkIA==
+Date: Tue, 1 Oct 2024 17:18:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, rick.p.edgecombe@intel.com
-Subject: Re: [PATCH 17/33] prctl: arch-agnostic prctl for shadow stack
-Message-ID: <e7c48ad8-5fe2-46d8-b137-e04046b7c572@sirena.org.uk>
-References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
- <20241001-v5_user_cfi_series-v1-17-3ba65b6e550f@rivosinc.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Ian Ray <ian.ray@gehealthcare.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 2/4] dt-bindings: iio: adc: Add the GE HealthCare PMC ADC
+Message-ID: <20241001-corrode-preteen-546c98d45976@spud>
+References: <20241001074618.350785-1-herve.codina@bootlin.com>
+ <20241001074618.350785-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="HnBpW/dMWd9OANPk"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="WU91GRG2OkpcK9lH"
 Content-Disposition: inline
-In-Reply-To: <20241001-v5_user_cfi_series-v1-17-3ba65b6e550f@rivosinc.com>
-X-Cookie: Even a hawk is an eagle among crows.
+In-Reply-To: <20241001074618.350785-3-herve.codina@bootlin.com>
 
 
---HnBpW/dMWd9OANPk
+--WU91GRG2OkpcK9lH
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 01, 2024 at 09:06:22AM -0700, Deepak Gupta wrote:
-> From: Mark Brown <broonie@kernel.org>
-
-> This is based on a patch originally written by Deepak Gupta but later
-> modified by Mark Brown for arm's GCS patch series.
+On Tue, Oct 01, 2024 at 09:46:16AM +0200, Herve Codina wrote:
+> The GE HealthCare PMC Analog to Digital Converter (ADC) is a 16-Channel
+> (voltage and current), 16-Bit ADC with an I2C Interface.
 >=20
-> Signed-off-by: Mark Brown <broonie@kernel.org>
-> Co-developed-by: Deepak Gupta <debug@rivosinc.com>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 > ---
+>  .../bindings/iio/adc/gehc,pmc-adc.yaml        | 82 +++++++++++++++++++
+>  include/dt-bindings/iio/adc/gehc,pmc-adc.h    | 10 +++
+>  2 files changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/gehc,pmc-ad=
+c.yaml
+>  create mode 100644 include/dt-bindings/iio/adc/gehc,pmc-adc.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml =
+b/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml
+> new file mode 100644
+> index 000000000000..6b2bb1309767
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml
+> @@ -0,0 +1,82 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/gehc,pmc-adc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GE HealthCare PMC Analog to Digital Converter (ADC)
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description:
+> +  The GE HealthCare PMC ADC is a 16-Channel (voltage and current), 16-Bi=
+t ADC
+> +  with an I2C Interface.
+> +
+> +properties:
+> +  compatible:
+> +    const: gehc,pmc-adc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description:
+> +      Regulator for the VDD power supply.
+> +
+> +  vdda-supply:
+> +    description:
+> +      Regulator for the VDD analog (VDDA) power supply.
+> +
+> +  vddio-supply:
+> +    description:
+> +      Regulator for the VDD IO (VDDIO) power supply.
+> +
+> +  vref-supply:
+> +    description:
+> +      Regulator for the voltage reference power supply.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: osc
 
-You need to add your own signoff to this when reposting, see
-submitting-patches.rst.
+Since there's no datasheet for me to look up, why is the clock optional?
 
---HnBpW/dMWd9OANPk
+> +
+> +  "#io-channel-cells":
+> +    const: 2
+> +    description: |
+> +      The first cell is the channel type (dt-bindings/iio/adc/gehc,pmc-a=
+dc.h
+> +      defines these values):
+> +       - 0: voltage
+> +       - 1: current
+> +      The second cell is the channel number from 0 to 15.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vdda-supply
+> +  - vddio-supply
+> +  - vref-supply
+> +  - '#io-channel-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells =3D <1>;
+> +        #size-cells =3D <0>;
+> +
+> +        adc@14 {
+> +            compatible =3D "gehc,pmc-adc";
+> +            reg =3D <0x14>;
+> +            vdd-supply =3D <&reg_vdd>;
+> +            vdda-supply =3D <&reg_vdda>;
+> +            vddio-supply =3D <&reg_vddio>;
+> +            vref-supply =3D <&reg_vref>;
+> +            #io-channel-cells =3D <2>;
+> +        };
+> +    };
+> +...
+> diff --git a/include/dt-bindings/iio/adc/gehc,pmc-adc.h b/include/dt-bind=
+ings/iio/adc/gehc,pmc-adc.h
+> new file mode 100644
+> index 000000000000..2f291e3c76ae
+> --- /dev/null
+> +++ b/include/dt-bindings/iio/adc/gehc,pmc-adc.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +
+> +#ifndef _DT_BINDINGS_IIO_ADC_GEHC_PMC_ADC_H
+> +#define _DT_BINDINGS_IIO_ADC_GEHC_PMC_ADC_H
+> +
+> +/* ADC channel type */
+> +#define GEHC_PMC_ADC_VOLTAGE	0
+> +#define GEHC_PMC_ADC_CURRENT	1
+> +
+> +#endif
+> --=20
+> 2.46.1
+>=20
+
+--WU91GRG2OkpcK9lH
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmb8IAsACgkQJNaLcl1U
-h9DrwQf7BAFQooaBsGyKz4K0gmdZvizPyAYQqIuRAHGgQfFjNxxMAxr9uixHnfTg
-/mZbG5XRVKtI2yxwczMB6CMGwI1HZ4s2Inp/eJbCxUbAH6vU8tYpveECIII9zKk3
-I7sr3LtJGO2vNA6jL4aC9sjIBK8ArFU3U3q3xFvuNA3rweEVNh/pN2syIsK+WXuS
-cdkujVFleyQUjcyYIPGZIDNctM39NDfOhgBe3mSiAwDzXnTay7MMBdpFP9DffM/Z
-+VzTmLgom8P7XIJJglgDDUYqrh0D5VsztFKJ1BPcwUR7y7KJpO0EBPuvglcXPbqa
-Qm1qEKcpAzSR4Y56hqjCRCmPB4fIXw==
-=G7w+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvwg1gAKCRB4tDGHoIJi
+0jPVAP4oToTpqpGn/77nFWojDllgTo0ty5NPLB3GfOchQgHa1QEAlZUZ3pXca1tt
+n3jvx/zH1u4Neq9UNHyU6wh4BIFnyQE=
+=3iSn
 -----END PGP SIGNATURE-----
 
---HnBpW/dMWd9OANPk--
+--WU91GRG2OkpcK9lH--
 
