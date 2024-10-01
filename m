@@ -1,144 +1,169 @@
-Return-Path: <devicetree+bounces-106841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B6BA98BF10
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:08:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2187C98BF7D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:16:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 60EC3283FFA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:08:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A34571F245A6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:16:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DBDA1C6F43;
-	Tue,  1 Oct 2024 14:08:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A79A1CB505;
+	Tue,  1 Oct 2024 14:13:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="UUbYmXHv"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="spjDrQm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F37A1C68A1
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 14:08:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBA91CB326;
+	Tue,  1 Oct 2024 14:13:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727791711; cv=none; b=P4p3TFHyP4JVPdujbU6C+yeEJTGj7BdYYTx+InRybhr/O2gL00x59fCYux1hzSh2HumX6V5bb7x/UeYkXxQB6eFPBZn+GvRIxpBnbMtdCac0NShNLJE5unmwnDiPmt4WFMjGp6ZQ4z6JFsvmwiM9e9vr0atUUWZvNfXYXozy190=
+	t=1727791987; cv=none; b=SiCD1WgpePmg74NwU4wUq7yotlYA0c07Saaa7YA6tsiPlKiJKsHsRSGzsNfVaAfTipHigUfkD+OBEiegD9Yn23d+4QRsCrTBMcXZoC5pC9fobGduOnW8nsMh//ldnlnPeTtD2+t7nm4zkXyxvvrMssUxYsflVFdEqQ/gXJ/l5vk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727791711; c=relaxed/simple;
-	bh=LxMk/y3rVIkpdyzZf1Og5DUR9rP9qmiEF0dsQLbC1II=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZDA25J/riQtI8kyQfebkE5/16pcauuyOmGZHDG9Z5zJk4HhLQpVrnGbbYOcD5CotTyznleIPH4LhFN67EfL7Rh1zaHyRKnmlA2taPTj6CYPtm+Y6TOMTNLtopMcKOLYQQIajiSoSWQ7LFvUhcwCg4fudMt4uJK5Jbt4Dn5YePII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=UUbYmXHv; arc=none smtp.client-ip=209.85.160.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-2781cb281abso2822151fac.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 07:08:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727791708; x=1728396508; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mFO0hmNFsD4G4qShm99ZAaM1SpaTEf6DP+ldNadetMo=;
-        b=UUbYmXHvplJLbO92movkLfvEXQZJ9xBQj1bVFT7UEyUpEVGPeN1jq3Et4XSNhZJWM4
-         INDPbx0/N6uqyT6qcaEV2n6Z/fTB0Jda+Ejen0sW2eKKsQ6Cr3ejpmqlc7CxpaEBmD6z
-         m/HQ8rsRguqHiby30BtKJ58thp6+jTQNK+qDvppGvNWiXS1Ex91phtNPNEs/usywm3kj
-         +Dgg/fTptNLrJLbOpeKbPSXEG+VmPmE1X95JBf9mtj+Ejub/xAh2UvhLBcKRZKX2r07o
-         3VubmsheD4RXVNEgVAC+tgniqwvVEIggLzRAcBtscPcJJQDogmlFOAVmy7GHZ3ZhaIND
-         EAfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727791708; x=1728396508;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mFO0hmNFsD4G4qShm99ZAaM1SpaTEf6DP+ldNadetMo=;
-        b=RxqqRF78Q8ekmrErzbP9ssqSEkwZfG9oRHmWItRbmYBCdyDVNLkPy2G/KBYsH6WSHC
-         XP6n6Nmc54+O6RzXAU8FC2y66AYokelhVUSv+hmGjdeowcse5cNFxVMSc4u48sB/UX0m
-         T3DGYZtbKRYaMZr+A2gqs7kL5aSDgyPGCMjKpk1qFKnQrdO+61tXvHfmhtSDT91mPYI/
-         LBtd/g4Z0PJxLfaVKp3igJ2Z9Lnsi47UpL+o5izq7Vr14OlddVS6cuNzuDSKioNF5I1n
-         sbkIH13MbAxS90F0NhhXLmgKgeN3TIW/61vX0mNWugW2BI9d82R6EWqXPsi4KskwVMSg
-         /V9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVXovzOSJtgeQkPOjINRgbh3x7/Uzr/L0hT692Lhes80w5C9MNtHsePpSZk8FInfEGo4PfY8ZINqULE@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUrfHN4yCV9aQbge+3h4ya6d4SqGEP7jcZ6gmHxLTuy69Kz+yM
-	tRWS39zt6ixKe1CNM9QJgY7hTPo8S0FI+vkNoJJyzBO60L5cun/zD5QdzZdGBVk=
-X-Google-Smtp-Source: AGHT+IElLO0MVEB7oOv84+nshnYaGtCpTDiF3nTZmiTrRq8956kEoE3s5ZNWsIo8c7z+uPLk2FidyQ==
-X-Received: by 2002:a05:6870:d624:b0:270:6ec0:c00 with SMTP id 586e51a60fabf-28710a4c7c9mr10847923fac.12.1727791708433;
-        Tue, 01 Oct 2024 07:08:28 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-2870f7d8ae6sm3466490fac.19.2024.10.01.07.08.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2024 07:08:26 -0700 (PDT)
-Message-ID: <4ee001d2-67d0-45ab-ae62-ce5b8dd7553e@baylibre.com>
-Date: Tue, 1 Oct 2024 09:08:25 -0500
+	s=arc-20240116; t=1727791987; c=relaxed/simple;
+	bh=Bv1lZ9pYZX4a1F0IxYaJoGt/bx5QFgBAtiX+7uCGqXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=aEHDnJaX+jX6oFf6X9/evRXnJ9/1T5oE3qkUCTrWOFWd2bFzJZRShl+6gqgUjWVNzDCB/p8xRC5SVAlWR9vno9gt5oMO1Nu17LprdDXE90+1EmLlhIPqUsQJxzt0mwzExIGxePeCCddsZsR5BGvmxd7FwUdxNFSCRazcpugWqWA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=spjDrQm6; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 780F01F9BE;
+	Tue,  1 Oct 2024 16:13:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1727791981;
+	bh=HkIi6vdWzZRL9mRqwCQESkyqXZUUQQRvVyjVDYHczpM=;
+	h=Received:From:To:Subject;
+	b=spjDrQm6RjfD+ES2VkYGpNMvdca/QmvzvP6MXC0fmwGxrAbgSdz7UwYAmX6PFx7zI
+	 uwxc4Fn6lACjXQyDQNFDZ0Umt4t2ntYnTiXSN4hRiD8+bRTpDQuBmwDjRqVFOU53zY
+	 36NNeUAVjrtPfve5B9OZt0bJr7ctLH465/OyEWTpRhyjPllzC3gT/FtlkZpN/aikkx
+	 4FWoVuZ7a3rtzbrBl/7j86JepQDqqFCp1neXYIGPKOayaKUiKNQLArTCmjmfjfw3kj
+	 VTsuL1y58XI26bRfZKKa8mZbcYN3HpISD93SZrx4JSVnHU3ujGO8xIiE6d9mi5gbkt
+	 r76CSW6vPcPXA==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 15CCF7F919; Tue,  1 Oct 2024 16:13:01 +0200 (CEST)
+Date: Tue, 1 Oct 2024 16:13:01 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>, Nishanth Menon <nm@ti.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <jpaulo.silvagoncalves@gmail.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: ti: k3-am62-verdin: Update tla2024 adc
+ compatible
+Message-ID: <ZvwDbch2H6ycTfEv@gaggiata.pivistrello.it>
+References: <20241001111413.10390-1-jpaulo.silvagoncalves@gmail.com>
+ <a5890be6-914c-48cc-9abd-761961ccb7ca@kernel.org>
+ <20241001130128.GA36341@francesco-nb>
+ <3d9de1b8-488b-4df5-b984-7581b1d02241@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>,
- Andy Shevchenko <andy@kernel.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, "Hennerich, Michael" <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>,
- =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
- "Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
- =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
- Mike Looijmans <mike.looijmans@topic.nl>,
- Dumitru Ceclan <mitrutzceclan@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Alisa-Dariana Roman <alisadariana@gmail.com>,
- "Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
- "Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
- <20240923101206.3753-7-antoniu.miclaus@analog.com>
- <20240928184722.314b329b@jic23-huawei>
- <CY4PR03MB33991208029C4877760B528D9B772@CY4PR03MB3399.namprd03.prod.outlook.com>
- <Zvvw7ah4wGsl2vjw@smile.fi.intel.com>
- <CY4PR03MB3399D90F2A3C7AE3505B60A29B772@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <CY4PR03MB3399D90F2A3C7AE3505B60A29B772@CY4PR03MB3399.namprd03.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3d9de1b8-488b-4df5-b984-7581b1d02241@kernel.org>
 
-On 10/1/24 8:51 AM, Miclaus, Antoniu wrote:
->>> Regarding the bulk writes/reads, the msb/mid/lsb registers need to be
->>> read/write in a specific order and the addresses are not incremental,
->>
->> We have _noinc() variants of regmap accessors.
-> [Miclaus, Antoniu] 
-> I think _noinc() functions read from the same register address so it doesn't
-> apply.
-> I am reading values from multiple register addresses that are not reg_addr,
-> reg_addr+1, reg_addr+2.
-
-I'm confused by the statement that the registers are not incremental.
-
-For example, this patch defines...
-
-+#define AD485X_REG_CHX_OFFSET_LSB(ch)	AD485X_REG_CHX_OFFSET(ch)
-+#define AD485X_REG_CHX_OFFSET_MID(ch)	(AD485X_REG_CHX_OFFSET_LSB(ch) + 0x01)
-+#define AD485X_REG_CHX_OFFSET_MSB(ch)	(AD485X_REG_CHX_OFFSET_MID(ch) + 0x01)
-
-This looks exactly like reg_addr, reg_addr+1, reg_addr+2 to me.
-
+On Tue, Oct 01, 2024 at 03:59:39PM +0200, Krzysztof Kozlowski wrote:
+> On 01/10/2024 15:01, Francesco Dolcini wrote:
+> > On Tue, Oct 01, 2024 at 01:54:56PM +0200, Krzysztof Kozlowski wrote:
+> >> On 01/10/2024 13:14, João Paulo Gonçalves wrote:
+> >>> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> >>>
+> >>> With commit f1c9ce0ced2d ("iio: adc: ti-ads1015: Add TLA2024 support") a
+> >>> new compatible was introduced for TLA2024 ADC. Update the device
+> >>> tree to use the correct compatible for the Verdin-AM62 hardware.
+> >>>
+> >>> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> >>> ---
+> >>>  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 2 +-
+> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> >>> index 5bef31b8577b..f201722d81b3 100644
+> >>> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> >>> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> >>> @@ -1220,7 +1220,7 @@ sensor@48 {
+> >>>  	};
+> >>>
+> >>>  	adc@49 {
+> >>> -		compatible = "ti,ads1015";
+> >>> +		compatible = "ti,tla2024";
+> >>
+> >> So it is not always TI, who breaks their users. :) (as pointed out in
+> >> LPC DT BoF).
+> > 
+> > So, let's adjust what I said at that time, I think is important, and I
+> > appreciate you giving me an excuse for doing that :-)
+> > 
+> > Lately as Toradex we are working a lot with TI, and one of the reasons is
+> > that they have a great software support, backed-up by a great strategy
+> > on the way they contribute to the various upstream projects they build
+> > their SDK on top (Linux, U-Boot, and more).
+> > 
+> > With that is normal that while working so closely with them we find
+> > issues, everybody have those, it's just that those are the one we
+> > care the most at the moment :-). Not to mention that we started working
+> > with TI a couple of years ago, so TI is still somehow "new" to us and we
+> > are still "learning".
+> > 
+> > On this regards I was recently working on updating our BSP to the
+> > latest SDK from TI, that is based on a v6.6 stable kernel and looking at
+> > the patches we had to apply on top, the total counts of the patches we
+> > do not have in mainline to support the board subject of this patch is
+> > just _zero_. This to me is a great achievement.
+> > 
+> > Nishant: this is also for you, and feel free to "market" this
+> > internally/externally :-)
+> > 
+> > 
+> >> If you want to break users, sure, but at least explain in commit msg why.
+> > 
+> > Now, on this specific topic, the actual device that is assembled on this
+> > board is a TI TLA2024, and it's like that since ever, the board never
+> > changed. The current compatible is not matching what is assembled on
+> > board. It works because the device is close enough to TI ADS1015.
+> > 
+> > With that said, I do not think this is breaking any actual compatibility
+> > issue.
+> > 
+> >  - The old DTB will keep working with old and new kernel.
 > 
->>> so I am not sure how the bulk functions fit. On this matter, we will need
->>> unsigned int (not u8) to store the values read via regmap_read, and in this
->>> case we will need extra casts and assignments to use get_unaligned.
->>
->> --
->> With Best Regards,
->> Andy Shevchenko
->>
-> 
+> New DTB stops working with old kernel and this is what we talked about
+> during LPC.
+
+My mind at that time was really on using old DTB with a new kernel, not that
+other way around.
+
+In any case, I do not think that this comment applies on this specific case,
+as I wrote you cannot really run this board on a kernel that does not support
+the ti,tla2024 compatible.
+
+> All out-of-tree users of this DTS, like other operating systems, will be
+> affected as well probably.
+
+Well, yes. From what I know those user do not exist and this is just
+theoretical, but, I might be as well wrong and I see your point.
+
+So, let me try to sum it up, I see 2 options:
+
+ 1 - we drop this change. this is fine for me.
+ 2 - we add a comment in the commit message that this is a breaking change, and
+     while I am not aware of any impact with real software that is available today,
+     I might have incomplete information.
+
+Francesco
 
 
