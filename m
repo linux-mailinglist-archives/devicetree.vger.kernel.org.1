@@ -1,88 +1,83 @@
-Return-Path: <devicetree+bounces-106777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59CD798BB29
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:33:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FEA398BB2C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:33:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7ECD1F22C45
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:33:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 712CC1C2349E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:33:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C0881C1746;
-	Tue,  1 Oct 2024 11:31:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9DE81C3F1F;
+	Tue,  1 Oct 2024 11:31:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="F8CQ6njQ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TqnW0ByB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93EEC1C3F00
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:31:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6641C3F19
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:31:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727782292; cv=none; b=kGqG8LGxcRhSD7fliAsu7kQ6/7Foeeb7PmqCRCDvb0k7/2vqYioobsnqbVH0Npda3tG8v1M6rjn78Yl/nHwudyIfDWRqjby8I0UoTA0D378sa5iBmxZdoPCrxG6ZfCNmpbe1j0BnZTe9g63UgvVA8gveqOZIXU62CuaZ11lAmVY=
+	t=1727782294; cv=none; b=Qc+4nwoTjQgtqvByEt3gO9scHu3WJIlyHBdh6ptdinzCrxzCy7roiO+1yIy6mfJq59wf5ZHEWgEhKqRBAzuywOEW8jq1D7YtWcTBi5LbY5w+DG+N4HjlYac2uTFtGFUOdZ6PUmU1sXM61F+Xo/3l1fz8A2s2PlLImxn5y7ScYIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727782292; c=relaxed/simple;
-	bh=EHoDEsvWTt9VkUwIM9206H+lpKLH7dHhsd9ut8QxmG0=;
+	s=arc-20240116; t=1727782294; c=relaxed/simple;
+	bh=nLKLUoRAXjBaJW9yZt4O5whKBT4sDQoOBzI695cAKQs=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=iABEdelBFSIBRYBOEvd+OJC0E/mCOx5VM3eGLwArNeoLtPeF0UkvAliKbtsOC9Wt5OoaFrd5YQ+XNMsZqV7PCnEewUHyghP7N/cCgyKdZv/eRqFIYtcZUvmiEJp+MkT/x/zo9QKF1kHzxkP665o6ENaDRJYzDxqnd8xxtizLPPo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=F8CQ6njQ; arc=none smtp.client-ip=209.85.210.169
+	 MIME-Version; b=pNRy4rjDDBKTi+6L70lDLSxn8DNavqwPvAgKqNuAfO0t8T+iNywKyo9a/2GTicYgP4H2WMKRIHOaKMSnXDYDOTwLvqvoMq41koiEozZCdr0zEGeiVDzgd8H7ppiummsh/vSKSI2JNFTVUZ0FqXznbOqqZWyJPKsJhkaLH/YUSZU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TqnW0ByB; arc=none smtp.client-ip=209.85.210.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71c702b2d50so1676607b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:31:30 -0700 (PDT)
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-718d6ad6050so4517775b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:31:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727782290; x=1728387090; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1727782293; x=1728387093; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=ejGJNBzCUSn/2STvxEtP4Qm9W+BBPtGa+kdNm7gnwwU=;
-        b=F8CQ6njQluj4CD91XJndjo2egqyAfZZ70e5IuT4B4vLuKeRFrfkazLFK88NkvlTogC
-         07URlJpxMNql/WRqIUVyM3y1mp3t3o5pRbfaJTwbKcfBILToAzRnmTMWBbdcA6RbyWtG
-         sZ9WeGboq8AM7coEjR1pz4Mfj4Y4iyniaIvVM=
+        bh=LkkLEEucgoW7bgbQKsmRzFtFQZp/ikQpw3ZnY6QygrQ=;
+        b=TqnW0ByBDthk759UhDyS1XknDeryE1wDn+3Z3mM5ss9PiJhcmDuVLq5okD+3i8dYxQ
+         Yws+36B+GYM08mDLXRR11kYxqSl4SwN9lTWXvrxCUbwb/kOe8zLG+vYz+R7FOx3A3zyu
+         3LJaEk9pjpOeRjFBu9Y3UBP8mMwGHvj4tvPhE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727782290; x=1728387090;
+        d=1e100.net; s=20230601; t=1727782293; x=1728387093;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=ejGJNBzCUSn/2STvxEtP4Qm9W+BBPtGa+kdNm7gnwwU=;
-        b=TB9g/Mp/RZVBQIjQQJPIcA1miiwe9PVBnwsyiHF8jAkbOIPsEs2EWTytsuQOhgRTXP
-         eJAxQs/tOMMyPSO/bu+J2RFHQXDlJGMjU4LS9lsJLTCuW2d2GCd0C+2feP7RUb5ChLdd
-         q7DJUPilIGZOGj2IhL5UYpYsIbzCyYn4Lqt1X2hN5+9GpgkM9SbUIXj4Nj7v+yujymjG
-         tru3plYKqx9HRBTJVqe35r/rMZDCXZsuph/dW+mhAkORGnv1yjbTOlmzPOsVMGscsDnO
-         rOqDRKM7rHf+/hwcerdhc72pbmLt1SJVmbw1BwOoTkWCp4sQaKIK6rmv3tnu4SuUANc2
-         dqDA==
-X-Forwarded-Encrypted: i=1; AJvYcCX8QRb5ZgvYosWcXS/GRWQ1bfDfNv/Chv5OryYagF9KBe1laE8kmFSzW7QtHgRzBw/NSYWeqHD2vUEl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwkVTUiWTaUgxxfDzdjcTi1jy4rOkkorx6g+L4cBhxJVhDEPNE4
-	8QRXDKwnTnqIToQzJ0XoIiirqTO8x9FbrSeTLY5cmEM5ZIhtXSlV9aqPet07Qg==
-X-Google-Smtp-Source: AGHT+IGmqm0A1CKXunN+IYhXZlTEbv5bvkc+2qchW2O8DdvX6JHtqPJaxZtG+8eE9yYDL747Fo4WoQ==
-X-Received: by 2002:a05:6a21:1583:b0:1d4:e500:ad6c with SMTP id adf61e73a8af0-1d4fa64d6a4mr21967043637.3.1727782289986;
-        Tue, 01 Oct 2024 04:31:29 -0700 (PDT)
+        bh=LkkLEEucgoW7bgbQKsmRzFtFQZp/ikQpw3ZnY6QygrQ=;
+        b=VamRyJCtg6jBONVBQGOohDmCU4CIXfhutAbJYOUzpKceH2PpNfjuxfHcYQKx8pbK4F
+         xSGkkwGdJP3g/eibypbVRO/5tPEgcfyDAtI+o43XfKgi32NFMflQ1ihBpld+OD4gsiQF
+         kfSzZ4WrE4Z9uechJw4DV2l0VtalYTjGDQtcJOVV0b8mtgRabCj59RQ5JB8AfMFgFpX/
+         SOknExFeVJ7WpwpWWFvjZWY6C5K1Fc/phnnXwuSrGyXukoVCVDVA7OwnqQi8HAXC6IWk
+         yW6Gl/iuII/lzKiFoHnE/KaECHvFdQ0+27WTMRUgA1w+JPqxnHp/cPSkZedkky8i2nd9
+         YJ6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXhuZxcNyv7QzypaanrIPyrC/8YYZNYfWU75VEfIPxEzTsrO2zmLEJ+BGhotqJ5nczV+2MCcL508ybn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEYKBBzV4TGNnkW559FIyzNTIB78/T02D6EeDuRuXY9j/9WiGI
+	SoFzhajH+bhac6vR/1hT/8vmPyKby5bSKzkwvJNm1kboohF291bB0YGEhzy7VQ==
+X-Google-Smtp-Source: AGHT+IEgzRkoFd2sNCI4/vjWyPLOdY4pO3TPXtmTpmnMfuOP0TUArqKEjA+xqCTmER3Sm89xeggSoA==
+X-Received: by 2002:a05:6a00:194f:b0:717:e01d:312f with SMTP id d2e1a72fcca58-71b26078cf5mr25062339b3a.27.1727782292819;
+        Tue, 01 Oct 2024 04:31:32 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:e044:f156:126b:d5c6])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b264b63d9sm7810646b3a.52.2024.10.01.04.31.27
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b264b63d9sm7810646b3a.52.2024.10.01.04.31.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 04:31:29 -0700 (PDT)
+        Tue, 01 Oct 2024 04:31:32 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: Fei Shao <fshao@chromium.org>,
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
 	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Tiffany Lin <tiffany.lin@mediatek.com>,
-	Yunfei Dong <yunfei.dong@mediatek.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 4/8] dt-bindings: media: mediatek,vcodec: Revise description
-Date: Tue,  1 Oct 2024 19:27:22 +0800
-Message-ID: <20241001113052.3124869-5-fshao@chromium.org>
+Subject: [PATCH v2 5/8] arm64: dts: mediatek: mt8188: Add missing dma-ranges to soc node
+Date: Tue,  1 Oct 2024 19:27:23 +0800
+Message-ID: <20241001113052.3124869-6-fshao@chromium.org>
 X-Mailer: git-send-email 2.46.1.824.gd892dcdcdd-goog
 In-Reply-To: <20241001113052.3124869-1-fshao@chromium.org>
 References: <20241001113052.3124869-1-fshao@chromium.org>
@@ -94,140 +89,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Revise the description of MediaTek video decoder to improve wording, fix
-typos, simplify diagram, and extend the pipeline architecture used in
-newer MediaTek SoCs (MT8186 and MT8188).
+Add the missing dma-ranges property to the soc node, similar to how it
+was done for MT8195 and MT8192.
 
+This allows the entire 16GB of iova range to be used and enables
+multimedia processing usages, like vcodec and MIPI camera.
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
-Feedback are welcome.
-I've tried my best to organize the existing information with some
-educated guesses, but there might be inaccuracies or gaps still.
-Please let me know if you have anything to add so we can make this more
-comprehensive. Thanks!
 
-Changes in v2:
-New patch.
+(no changes since v1)
 
- .../media/mediatek,vcodec-subdev-decoder.yaml | 100 +++++++++++-------
- 1 file changed, 59 insertions(+), 41 deletions(-)
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-index a500a585c692..52a96a5aec96 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-subdev-decoder.yaml
-@@ -5,52 +5,70 @@
- $id: http://devicetree.org/schemas/media/mediatek,vcodec-subdev-decoder.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+index cd27966d2e3c..69390da9cfe0 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+@@ -878,6 +878,7 @@ soc {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+ 		compatible = "simple-bus";
++		dma-ranges = <0x0 0x0 0x0 0x0 0x4 0x0>;
+ 		ranges;
  
--title: Mediatek Video Decode Accelerator With Multi Hardware
-+title: MediaTek Video Decode Accelerator With Multi Hardware
- 
- maintainers:
-   - Yunfei Dong <yunfei.dong@mediatek.com>
- 
- description: |
--  Mediatek Video Decode is the video decode hardware present in Mediatek
--  SoCs which supports high resolution decoding functionalities. Required
--  parent and child device node.
--
--  About the Decoder Hardware Block Diagram, please check below:
--
--    +------------------------------------------------+-------------------------------------+
--    |                                                |                                     |
--    |  input -> lat soc HW -> lat HW -> lat buffer --|--> lat buffer -> core HW -> output  |
--    |            ||             ||                   |                     ||              |
--    +------------||-------------||-------------------+---------------------||--------------+
--                 ||     lat     ||                   |               core workqueue  <parent>
--    -------------||-------------||-------------------|---------------------||---------------
--                 ||<------------||----------------HW index---------------->||        <child>
--                 \/             \/                                         \/
--               +-------------------------------------------------------------+
--               |                          enable/disable                     |
--               |                 clk     power    irq    iommu               |
--               |                   (lat/lat soc/core0/core1)                 |
--               +-------------------------------------------------------------+
--
--  As above, there are parent and child devices, child mean each hardware. The child device
--  controls the information of each hardware independent which include clk/power/irq.
--
--  There are two workqueues in parent device: lat workqueue and core workqueue. They are used
--  to lat and core hardware decoder. Lat workqueue need to get input bitstream and lat buffer,
--  then enable lat to decode, writing the result to lat buffer, dislabe hardware when lat decode
--  done. Core workqueue need to get lat buffer and output buffer, then enable core to decode,
--  writing the result to output buffer, disable hardware when core decode done. These two
--  hardwares will decode each frame cyclically.
--
--  For the smi common may not the same for each hardware, can't combine all hardware in one node,
--  or leading to iommu fault when access dram data.
--
--  Lat soc is a hardware which is related with some larb(local arbiter) ports. For mt8195
--  platform, there are some ports like RDMA, UFO in lat soc larb, need to enable its power and
--  clock when lat start to work, don't have interrupt.
--
--  mt8195: lat soc HW + lat HW + core HW
--  mt8192: lat HW + core HW
-+  MediaTek Video Decode Accelerator is the video decoding hardware present in
-+  MediaTek SoCs that supports high-resolution decoding functionalities.
-+  It consists of parent and child nodes.
-+
-+  The decoder hardware block diagram is shown below:
-+
-+    +------------------------------------------------+------------------------------+
-+    |                                                |                              |
-+    |  input -> LAT-SoC HW -> LAT HW -> LAT buffer --|--> Core HW -> output buffer  |
-+    |              ||           ||                   |       ||                     |
-+    +--------------||-----------||-------------------+-------||---------------------+
-+                    LAT Workqueue                    |  Core Workqueue       <parent>
-+    ---------------||-----------||-------------------|-------||----------------------
-+                   ||<----------||---------HW index--------->||              <child>
-+                   \/           \/                           \/
-+           +-------------------------------------------------------------+
-+           |                          enable/disable                     |
-+           |                 clk     power    irq    iommu               |
-+           |                   (lat/lat-soc/core0/core1)                 |
-+           +-------------------------------------------------------------+
-+
-+  The child nodes represent the individual hardware blocks within the decoding
-+  pipeline, such as LAT-SoC, LAT and Core.
-+  Each child node is responsible for managing the dedicated resources of the
-+  hardware, such as clocks, power domains, interrupts and IOMMUs.
-+
-+  The parent node is a central point of control for the child nodes.
-+  It identifies the specific video decoding pipeline architecture used by the
-+  SoC, manages the shared resources like workqueues and platform data, and
-+  handles V4L2 API calls on behalf of the underlying hardware.
-+
-+  The parent utilizes two workqueues to manage the decoding process.
-+  1. LAT Workqueue, for LAT-SoC and LAT decoder:
-+     Its workers take input bitstream and LAT buffer, enable the hardware for
-+     decoding tasks, write the result to LAT buffer, and disable the hardware
-+     after the LAT decoding is done.
-+  2. Core Workqueue, for Core decoder:
-+     Its workers take LAT buffer and output buffer, enable the hardware for
-+     decoding tasks, write the result to output buffer, and disable the hardware
-+     after the Core decoding is done.
-+
-+  These hardware decode each frame cyclically.
-+
-+  The hardware might be associated with different SMI-common devices.
-+  To prevent IOMMU faults during DRAM access in such cases, each hardware with
-+  the unique SMI-common device must be placed under a separate parent node in
-+  the device tree.
-+
-+  LAT-SoC refers to another hardware block that connected to additional LARB
-+  (local arbiter) ports, such as RDMA and UFO.
-+  It requires independent power and clock control to work with LAT decoder, and
-+  it doesn't have a dedicated interrupt.
-+
-+  The used video decoding pipeline architecture across various Mediatek SoC:
-+    MT8195: LAT-SoC + LAT + Core
-+    MT8192: LAT + Core
-+    MT8188: LAT + Core
-+    MT8186: Core
- 
- properties:
-   compatible:
+ 		gic: interrupt-controller@c000000 {
 -- 
 2.46.1.824.gd892dcdcdd-goog
 
