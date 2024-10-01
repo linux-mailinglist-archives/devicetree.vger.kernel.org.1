@@ -1,205 +1,105 @@
-Return-Path: <devicetree+bounces-106965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DA3A98C677
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 22:07:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4112798C684
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 22:10:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AA3E5B21BC4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:07:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E28681F250E6
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:10:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC221CDFA9;
-	Tue,  1 Oct 2024 20:07:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911EA1CDFD2;
+	Tue,  1 Oct 2024 20:10:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="sPrrp6Oe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pJvNdWxl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC381CBE98;
-	Tue,  1 Oct 2024 20:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B6ED1CBE98;
+	Tue,  1 Oct 2024 20:10:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727813256; cv=none; b=f7KvBADwjzXNBIfuWmlF/VjDOhOtX4WDY3lVeIWHLzClvYakDcad7qk0uS128hLUP1pKphVvhnsaQPdRg4/6AiYmOVXFBq95YJIzci1ZfA2p0NhQ7ef9RJA9DteXzE6VnHoyOWLO6aWbk6EXNm5HomWWo24mag2DvPBsC/Svhko=
+	t=1727813439; cv=none; b=CSt28DFlI5gV0QdSHOP9Llcaoj6ragrMflfrPHz41ng8Vt1VMCqqF2DkaDaER3D0veE80oXXQHpykfzeY/+jKEamJ3kTM/t6DgJAzUO2hQTje8o1XqRPKLQ7FdH9X3czqlZ8RGvI3N3lsftvdFYW8yHYzd7EOsHSIJlpKXUNGWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727813256; c=relaxed/simple;
-	bh=RwlNbHbEggXjoUOJqdOh2JuBuCr/584bhOnSF2T317M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K4uBInIRA/FieUxM8iPWrMA/luD5upfq8djkjGt17HYAX1chZvzK0koM2hkjlxp9bngfDUvTOb9mY95PPGXWPqkOyudxpSn/hHyhgUIPMQrJP109Gnlaan4YZyh9hPodMHkLLFL485qzAtdAoCr95zAQ+sHo4a+nE1KzR2zJfYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=sPrrp6Oe; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=aaXdue1ZA7Ch185TFMrVveuH4KfcXYm2oKa4uAKPZV8=; b=sPrrp6OefCaCsCtsBGAyER+oCN
-	MZLPVM8LiVivw5EbzY7Dbeeq/mtCncrngNoyVL5tPMxNK+gtziwzvn8QziwgRxkVczo7xHN+8Y4W0
-	of1WUoiliHl9FvPJz6lvxYvqcX5TFGEM9RE3hDfQ14le9sZGtwhV/lNGZmEa8+v5kj+A=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1svj9U-008lmx-Qm; Tue, 01 Oct 2024 22:07:20 +0200
-Date: Tue, 1 Oct 2024 22:07:20 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Andrew Halaney <ahalaney@redhat.com>
-Cc: Saravana Kannan <saravanak@google.com>, Rob Herring <robh@kernel.org>,
-	"Russell King (Oracle)" <linux@armlinux.org.uk>,
-	Abhishek Chauhan <quic_abchauha@quicinc.com>,
-	Serge Semin <fancer.lancer@gmail.com>, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFT] of: property: fw_devlink: Add support for the
- "phy-handle" binding
-Message-ID: <5bded0f6-a49b-4606-b990-dc5aad360bf8@lunn.ch>
-References: <20240930-phy-handle-fw-devlink-v1-1-4ea46acfcc12@redhat.com>
- <CAGETcx-z+Evd95QzhPePOf3=fZ7QUpWC2spA=q_ASyAfVHJD1A@mail.gmail.com>
- <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
+	s=arc-20240116; t=1727813439; c=relaxed/simple;
+	bh=+f3L/ZvGox5IMgxhIOOFSRnBC9DEF6HvTk3GIKF9PFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lqTKHXOZHq1hY1Q4MtXpnXqH4tIWFLpaVHlHaZYT9OQQzd32OlFiZeYhV6hvyJPLeJl0W3T2QJ55nZDnk0gO3DoWwqefb5iCT+VcPeRo5z17dv1b4yGuNLOBSM7jRTwhTPH0JZMGuNwV1t8qw+MMios/J1jI4iWJ0+134qeQnzs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pJvNdWxl; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2BF6FFF802;
+	Tue,  1 Oct 2024 20:10:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727813435;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wciwjokDugAnsWeKdaqfhfP5WiHTbppV884jMM94Ra0=;
+	b=pJvNdWxl4CIRZtaAqKyVjFpDtqhO7S5V282fRVAkWEPq1EjGEGWrkg5tqpQUN9ZjwKj/wZ
+	5y10EzL2mBeKRmqBEfg62vQNJiV41laisO4NRr3oWSxg1li6qu1qqxG2FRTWCAMuYiTUs3
+	Ul+aPkNA3E37TElAmTBPeGJvGtrlyjmHctkJe4ITohWh6QA8T6TIbRsY8WvXy7Yp2nDlWB
+	JLgrJIX/fTmTcMG06pRjluk3udr1Q+nsk8VfBfnWbtlnlPDmhPK77h9Dyc+MHa1XunTbbp
+	Sd/ZokFCPRudEV+ykPvritiOrRfJszeBjWxScYBT5E1vn07sVMUGgb3+arfz5w==
+Date: Tue, 1 Oct 2024 22:10:32 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
+ <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: mtd: davinci: add support for on-die
+ ECC engine type
+Message-ID: <20241001221032.525be1e4@xps-13>
+In-Reply-To: <20241001-ondie-v1-2-a3daae15c89d@gmail.com>
+References: <20241001-ondie-v1-0-a3daae15c89d@gmail.com>
+	<20241001-ondie-v1-2-a3daae15c89d@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-> Let me see if I can hack something up on this board (which has a decent
-> dependency tree for testing this stuff) to use the generic phy driver
-> instead of the marvell one that it needs and see how that goes. It won't
-> *actually* work from a phy perspective, but it will at least test out
-> the driver core bits here I think.
-> 
-> > 
-> > But like you said, it's been a while and fw_devlink has improved since
-> > then (I think). So please go ahead and give this a shot. If you can
-> > help fix any issues this highlights, I'd really appreciate it and I'd
-> > be happy to guide you through what I think needs to happen. But I
-> > don't think I have the time to fix it myself.
-> 
-> Sure, I tend to agree. Let me check the generic phy driver path for any
-> issues and if that test seems to go okay I too am of the opinion that
-> without any solid reasoning against this we enable it and battle through
-> (revert and fix after the fact if necessary) any newly identified issues
-> that prevent phy-handle and fw_devlink have with each other.
+Hi Marcus,
 
-Here is one for you to look at:
+marcus.folkesson@gmail.com wrote on Tue, 01 Oct 2024 12:42:27 +0200:
 
-https://elixir.bootlin.com/linux/v6.11.1/source/drivers/net/ethernet/freescale/fec_main.c#L2481
+> Some chips, e.g. Micron MT29F1G08ABBFAH4, has a mandatory on-die ECC.
+> Add "on-die" as ECC engine type in order to be compatible with those.
+>=20
+> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/davinci-nand.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/Doc=
+umentation/devicetree/bindings/mtd/davinci-nand.txt
+> index eb8e2ff4dbd2901b3c396f2e66c1f590a32dcf67..9afda5cd956494c6b3171bdba=
+ecaeb289acd64ea 100644
+> --- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+> +++ b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+> @@ -44,6 +44,7 @@ Recommended properties :
+>  				- "none"
+>  				- "soft"
+>  				- "hw"
+> +				- "on-die"
 
-I don't know if there is a real issue here, but if the order of the
-probe gets swapped, i think the usage of mii_cnt will break.
+This file is very legacy and this addition would be totally unneeded if
+that file had been converted to yaml earlier. Just referencing
+nand-controller.yaml will authorize nand-ecc-mode =3D "on-die" (while
+still marking it legacy). Would you mind converting this file please?
 
-I don't remember what broke last time, and i'm currently too lazy to
-go look. But maybe take a look at devices like this:
-
-arch/arm/boot/dts/nxp/vf/vf610-zii-dev-rev-b.dts
-
-       mdio-mux {
-                compatible = "mdio-mux-gpio";
-                pinctrl-0 = <&pinctrl_mdio_mux>;
-                pinctrl-names = "default";
-                gpios = <&gpio0 8  GPIO_ACTIVE_HIGH
-                         &gpio0 9  GPIO_ACTIVE_HIGH
-                         &gpio0 24 GPIO_ACTIVE_HIGH
-                         &gpio0 25 GPIO_ACTIVE_HIGH>;
-                mdio-parent-bus = <&mdio1>;
-                #address-cells = <1>;
-                #size-cells = <0>;
-
-                mdio_mux_1: mdio@1 {
-                        reg = <1>;
-                        #address-cells = <1>;
-                        #size-cells = <0>;
-
-                        switch0: switch@0 {
-                                compatible = "marvell,mv88e6085";
-                                pinctrl-0 = <&pinctrl_gpio_switch0>;
-                                pinctrl-names = "default";
-                                reg = <0>;
-                                dsa,member = <0 0>;
-                                interrupt-parent = <&gpio0>;
-                                interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-                                interrupt-controller;
-                                #interrupt-cells = <2>;
-                                eeprom-length = <512>;
-
-                                ports {
-                                        #address-cells = <1>;
-                                        #size-cells = <0>;
-
-                                        port@0 {
-                                                reg = <0>;
-                                                label = "lan0";
-                                                phy-handle = <&switch0phy0>;
-                                        };
-
-                                        port@1 {
-                                                reg = <1>;
-                                                label = "lan1";
-                                                phy-handle = <&switch0phy1>;
-                                        };
-
-                                        port@2 {
-                                                reg = <2>;
-                                                label = "lan2";
-                                                phy-handle = <&switch0phy2>;
-                                        };
-
-                                        switch0port5: port@5 {
-                                                reg = <5>;
-                                                label = "dsa";
-                                                phy-mode = "rgmii-txid";
-                                                link = <&switch1port6
-                                                        &switch2port9>;
-                                                fixed-link {
-                                                        speed = <1000>;
-                                                        full-duplex;
-                                                };
-                                        };
-
-                                        port@6 {
-                                                reg = <6>;
-                                                phy-mode = "rmii";
-                                                ethernet = <&fec1>;
-
-                                                fixed-link {
-                                                        speed = <100>;
-                                                        full-duplex;
-                                                };
-                                        };
-                                };
-                                mdio {
-                                        #address-cells = <1>;
-                                        #size-cells = <0>;
-                                        switch0phy0: switch0phy0@0 {
-                                                reg = <0>;
-                                                interrupt-parent = <&switch0>;
-                                                interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-                                        };
-                                        switch0phy1: switch1phy0@1 {
-                                                reg = <1>;
-                                                interrupt-parent = <&switch0>;
-                                                interrupts = <1 IRQ_TYPE_LEVEL_HIGH>;
-                                        };
-                                        switch0phy2: switch1phy0@2 {
-                                                reg = <2>;
-                                                interrupt-parent = <&switch0>;
-                                                interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
-                                        };
-                                };
-                        };
-                };
-
-
-This would be an example of circular dependencies, with the interrupt
-properties closing the loop.
-
-switch -> mdio -> phy
- ^                |
- |----------------+
-
-	Andrew
+Thanks,
+Miqu=C3=A8l
 
