@@ -1,82 +1,83 @@
-Return-Path: <devicetree+bounces-106805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2399D98BCDA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:54:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65A1A98BCF7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:01:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D957F28385C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:54:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E854281A29
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:01:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61861C32ED;
-	Tue,  1 Oct 2024 12:54:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 199941BFE04;
+	Tue,  1 Oct 2024 13:01:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Wv+cumaM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239C81A0733;
-	Tue,  1 Oct 2024 12:54:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971D5637;
+	Tue,  1 Oct 2024 13:01:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727787255; cv=none; b=bKylHrmJBxwn7VNcAsffLPzxG09a1TdVLMzZvWail7weYJQdPKACEAek7XKDNw+lyfiN6sl9rTmIha8t1L9TaCRmRVtC/LkKyvdMWUd1iDlxE39FDzNgQ1PRY6xq+8TL/f8z4tCv+sTg650oH8fmDgIuVRUrkIf1UIWKGgNhogs=
+	t=1727787667; cv=none; b=hyDpuLeb72btdP2qbT/mGGTiS/pNtV5uP9ony1DzEd6qy1QS7NAQP6NEHg3//wsfapehRPPEGAqAFI4sTIFHy5WS39W7Kol7KXgPSqsFmAY29+R9/KS0H3nseHl4smEBklbJq5A1VcB+tjlTSeHqnsyPxbhCGiFMvsOrN7d6cYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727787255; c=relaxed/simple;
-	bh=ZXXbUqt1MI3dgRFUEtXUCu3+/KWfXxEGNPo9YGuAnkg=;
+	s=arc-20240116; t=1727787667; c=relaxed/simple;
+	bh=R+raIcKFhEY6v2icKc4lD2NDCqcyjJdPJWGmY0vPyS4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IP0V7vtINaEm6ubsAFd2/NwBhDLhSN5lK/PNYh/OeRVYp6//2e6ps5kZ4UwxWdF95qkFNvNfBA2RoO6/xcb+2RuSNqf4Jz8Roh4AcXDAtG6r9G6fmfmD/x2j7k9NfMJy86onqNHOUVC5bH2GTqVyJNj8Gj0WMTQyUl58rlm9FYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: 2I/ocrZrQIK7HrCml6Ve/g==
-X-CSE-MsgGUID: rNXRqZxwTrCP2K/c2jzIsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="27058876"
+	 Content-Type:Content-Disposition:In-Reply-To; b=Qh8YvRYI2bbLa+AtUjQKK0si2xRdJlwX/FGK/FDV7yhvvx9AGcLabpLkTXoFuBdxbC/TmOtI2RYoOvX2NijxPyiIP4eCXGLiqoXohF6Hd0PYPzj/0Z/xOSMrXy840RnUvVLS1CSbUDs2d1as0k0PuPj/JT2f5ivOXyvzngfJiME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Wv+cumaM; arc=none smtp.client-ip=192.198.163.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727787665; x=1759323665;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=R+raIcKFhEY6v2icKc4lD2NDCqcyjJdPJWGmY0vPyS4=;
+  b=Wv+cumaMCXXqs/HurTpQIuacBoGCR+ZaESviUIbECYXrcMiRhmrZNouZ
+   chaBhGSmfv6RAGbUcQRtbN8uWkPj6xfz114L2xePxLLibt/4xAN6AAGOL
+   Tez7zZ48FJo31mDbrxB1ZJTQbfxzZu/2h5njf1pVauvjopHAV0/gg41VC
+   uc/XlKeTowFvPGMderg656QJUniVIe18kTgVtNMUV6KQV4UI6g6b5lWCI
+   FwHwOkNjtDktmtCLwstTDX6ebr7Qufve3XGkk8Mk9Uda8Dik8+vgE1frt
+   xKgDn49kvX2GnprvyxYHdk1pRREiigbI5O6ti65HQmqqrU2N11V1yND15
+   A==;
+X-CSE-ConnectionGUID: qdsxX3e1SjesZrvyoensqQ==
+X-CSE-MsgGUID: Dv2lCH0eS8Ot0YeprdOlFg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11212"; a="29802313"
 X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; 
-   d="scan'208";a="27058876"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2024 05:54:14 -0700
-X-CSE-ConnectionGUID: 4R8C4JUETC+XwIOofpirMw==
-X-CSE-MsgGUID: f5DcL2aTTcS+80fNN6H4xA==
+   d="scan'208";a="29802313"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2024 06:01:04 -0700
+X-CSE-ConnectionGUID: QtzwuE4WQnqea3wKHo7IOg==
+X-CSE-MsgGUID: MN8lmyvDTLCU6mlEIfT0vA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.11,167,1725346800"; 
-   d="scan'208";a="73905649"
+   d="scan'208";a="73319461"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2024 05:54:08 -0700
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2024 06:01:02 -0700
 Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy@kernel.org>)
-	id 1svcOD-0000000FCEh-1PCQ;
-	Tue, 01 Oct 2024 15:54:05 +0300
-Date: Tue, 1 Oct 2024 15:54:05 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
-	Rob Herring <robh@kernel.org>,
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1svcUs-0000000FCL5-1IZ0;
+	Tue, 01 Oct 2024 16:00:58 +0300
+Date: Tue, 1 Oct 2024 16:00:58 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michael Wu <michael.wu@kneron.us>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	"Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
-	"Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
-Message-ID: <Zvvw7ah4wGsl2vjw@smile.fi.intel.com>
-References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
- <20240923101206.3753-7-antoniu.miclaus@analog.com>
- <20240928184722.314b329b@jic23-huawei>
- <CY4PR03MB33991208029C4877760B528D9B772@CY4PR03MB3399.namprd03.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Morgan Chang <morgan.chang@kneron.us>, mvp.kutali@gmail.com
+Subject: Re: [PATCH v3 2/2] i2c: dwsignware: determine HS tHIGH and tLOW
+ based on HW parameters
+Message-ID: <Zvvyii7aViGCklcT@smile.fi.intel.com>
+References: <20241001082937.680372-1-michael.wu@kneron.us>
+ <20241001082937.680372-3-michael.wu@kneron.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,19 +86,49 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CY4PR03MB33991208029C4877760B528D9B772@CY4PR03MB3399.namprd03.prod.outlook.com>
+In-Reply-To: <20241001082937.680372-3-michael.wu@kneron.us>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Tue, Oct 01, 2024 at 11:53:18AM +0000, Miclaus, Antoniu wrote:
+On Tue, Oct 01, 2024 at 04:29:34PM +0800, Michael Wu wrote:
+> In commit 35eba185fd1a ("i2c: designware: Calculate SCL timing parameter
+> for High Speed Mode") hs_hcnt and hs_lcnt are calculated based on fixed
+> tHIGH = 160 and tLOW = 120. However, the set of these fixed values only
+> applies to the combination of hardware parameters IC_CAP_LOADING = 400pF
+> and IC_CLK_FREQ_OPTIMIZATION = 1. Outside of this combination, if these
+> fixed tHIGH = 160 and tLOW = 120 are still used, the calculated hs_hcnt
+> and hs_lcnt may not be small enough, making it impossible for the SCL
+> frequency to reach 3.4 MHz.
+> 
+> Section 3.15.4.5 in DesignWare DW_apb_i2b Databook v2.03 says that when
+> IC_CLK_FREQ_OPTIMIZATION = 0,
+> 
+>     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
+> 		     = 120 ns for 3.4 Mbps, bus loading = 400pF
+>     MIN_SCL_LOWtime = 160 ns for 3.4 Mbps, bus loading = 100pF
+> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
+> 
+> and section 3.15.4.6 says that when IC_CLK_FREQ_OPTIMIZATION = 1,
+> 
+>     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
+> 		     = 160 ns for 3.4 Mbps, bus loading = 400pF
+>     MIN_SCL_LOWtime = 120 ns for 3.4 Mbps, bus loading = 100pF
+> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
+> 
+> In order to calculate more accurate hs_hcnt amd hs_lcnt, two hardware
+> parameters IC_CAP_LOADING and IC_CLK_FREQ_OPTIMIZATION must be
+> considered together.
 
-> Regarding the bulk writes/reads, the msb/mid/lsb registers need to be
-> read/write in a specific order and the addresses are not incremental,
+...
 
-We have _noinc() variants of regmap accessors.
+> + * @bus_capacitance_pf: bus capacitance in picofarads
 
-> so I am not sure how the bulk functions fit. On this matter, we will need
-> unsigned int (not u8) to store the values read via regmap_read, and in this
-> case we will need extra casts and assignments to use get_unaligned.
+Since it seems a new version of the series is warranted, and looking into
+the current kernel source (no other users of this unit were observed),
+I think we may do correct capitalisation here for the sake of physics
+and unit system, i.e.
+
+ * @bus_capacitance_pF: bus capacitance in picofarads
+
 
 -- 
 With Best Regards,
