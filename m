@@ -1,86 +1,92 @@
-Return-Path: <devicetree+bounces-106774-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106775-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71C3298BB1C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:32:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55B1A98BB22
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:32:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 058E81F22245
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:32:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02B3E282C60
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:32:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D10F1C242D;
-	Tue,  1 Oct 2024 11:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C66FF1C2DCB;
+	Tue,  1 Oct 2024 11:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="ixo/95YI"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="STgCD/Ll"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9642C1C232C
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:31:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FF251C2DA1
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:31:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727782281; cv=none; b=sE5foGd6sfMVzeDS4syWobX1naxEwa73F1NG87kUcUB4gYz+NRazC7rxh04tnVLy3TZhaGGSJ4Lw/8Il2RcwcYPR+scRs0uonJh6KnPg8qtdltlx2SWI8fY1rc0gW6Tfq19cAuWkgrm6i/ZVcSIkZgrVF+WzQRSWY3fshJ0PHz0=
+	t=1727782285; cv=none; b=RierAR8JFBlyUEJwqkqqxC+izVsA3rQ09eUrx72Xnmq/GrmfGD8r9Djwh83bhx2q9ggtrdnkmfsS7l8h3WK8gxSSJ+6yLsskPKjRd14RdOICw8TfQYP5LxloZwlG9sVDVsi85wwVzdiOPFG4eJ0dpEkSUpZlEfzTLKbWMQ7f7pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727782281; c=relaxed/simple;
-	bh=sShREPlwOgYi48TlfWU7rZGEFqAEt5/32xZh4z+tIJY=;
+	s=arc-20240116; t=1727782285; c=relaxed/simple;
+	bh=MCBPCSdf0r5zSImbTGJmv5u3+Yij9V9+fbe7lh4RBNc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=J1SsFqT+E1mxGSSIAbDIdQIBya7glL0lIIDB2WlazV9S7UUF0H/dnE7wyCXbi4rMJTOVmELXdO0RTO18TKVl94ZxzGk5SljtNXi5HmFzGLwKBbmReCv502x6VvlmOeufwXDjzgkI92E8Z5omVWUolOTJwaEgQDmlLo8xLtfk0K0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=ixo/95YI; arc=none smtp.client-ip=209.85.210.174
+	 MIME-Version; b=r9F+kjRJFCNOKkFQNomrGC5GWXRQ18uyY45uAyfzVilIraYYh3MUpf0HyspYAqdc3qZQAbBtHFZi+Onj6yYCmYdZCb1mPQ/qEOgTZnGZIob9nu/LrQIIJD/PWyJQg0cxapgJlai1sOYGMnj5sLwE23AUYJfjrbt2b6tPjETKEec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=STgCD/Ll; arc=none smtp.client-ip=209.85.210.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71b8d10e9b3so3031841b3a.3
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:31:20 -0700 (PDT)
+Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-71b070ff24dso4806940b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:31:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727782280; x=1728387080; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1727782284; x=1728387084; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=23R0TZIA0axsqA2eYwuXEJ8B9IwUUAXH2P+ON9b6WwU=;
-        b=ixo/95YIPb5rWEV6145ieOYDxsmpz8/CwcbuFofwrMeTpldLGStPI5j9RdOlkk3qBb
-         Qpl8SoSi5H3ImCYv9PulGgoWSiMFngf7cTNOOKRua49hRGUB5h9sowpiQHohag7zr78c
-         WUci4P7K9ms7lOxQiIBcL4jftydKKciVY/Zso=
+        bh=HExE/eexnESQrLRIjvabM8eZD3ePYvWvDq6AbBnCJhI=;
+        b=STgCD/LlSuC/vlEvwN8oN40yo6gWLblVY8oQ9uoYBUnozmdPMyn8FCgS/NXDXEya4v
+         pmjfwOJ9XitYIaFW1tn1juCOyU2b2pdDEIdJ6I5napYB2LAj+fWC0kotWlUUZKQwG9in
+         PfhevUdINp0cRcgx3Dd2feeAagKDYQeMCmMDo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727782280; x=1728387080;
+        d=1e100.net; s=20230601; t=1727782284; x=1728387084;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=23R0TZIA0axsqA2eYwuXEJ8B9IwUUAXH2P+ON9b6WwU=;
-        b=WYbzJISE7JjqvBSaD+Y4CwiNMMMuVpswMVnNtw2Dh8W5n2uypHH4GqyvmQB7a6W7nB
-         MZQIV/QHyyZdCtglC3ZcrHiehnE/zKaaBkAHDGaznC4awxQNn59yg4kwC07g+fIJYzqO
-         7PvF0y98snctX+vsmAJAQ9FP3D1lXmMTNcDAwTIxIMhUGDsUCPvM5rM2QG5BYp3fJjsa
-         KGP9ricj8N7NEDc4lB6iHfX4DwTW1Ih347f1b98FdGrh53SgJCI8yDK3+UniNJKw6OOK
-         6gEWpDREM4KTPxkGwXG6i2pntI9Gl2yiOlHEzwpQc/FEnCzA/dHCFN6IccDz6hOqUR3W
-         YJqw==
-X-Forwarded-Encrypted: i=1; AJvYcCVAfnn2ULl1o74bkjID4VMVnDavF3zKspFm4BxJivEVj0YwJp0/vN90XyK7m+eyK/y6JRKnXyZRKcYX@vger.kernel.org
-X-Gm-Message-State: AOJu0YxlJQG+WiBIJXe1g9suw+OjFv1fs/MNVcag2P5mc3dHDcErLYeT
-	ndbFgD0/FX6Acnf5jLypMb8BCklscv4bFQCJeTodOuNs8cOf1ZQzNY2+KM1uRA==
-X-Google-Smtp-Source: AGHT+IF0uBLqB/6IIB8dOP9zNZ4TWM/ZpZfM3H+BJ9RdIgLyjCLjfViOtBRFUY/B925GuvlwYj39cg==
-X-Received: by 2002:a05:6a00:194f:b0:70d:1dcf:e2b4 with SMTP id d2e1a72fcca58-71b25f00bf2mr23616838b3a.1.1727782279856;
-        Tue, 01 Oct 2024 04:31:19 -0700 (PDT)
+        bh=HExE/eexnESQrLRIjvabM8eZD3ePYvWvDq6AbBnCJhI=;
+        b=vzevGhY8x5kxKcN5KT7l3GoCI0cWIdVe8Qtz684mDZELKfLJ/5M3ZgAGKeQ/oQS8Du
+         8NzLZZgQO+rXz4dwvkVRJDjrWAMO+WB5A3Y0PLW8pczpoUqb2JMEHk7MCFxvKW9DYstN
+         xjQR0Exi+V+V0ynRlbt1dJcx6J/yHkRjy35CREdeGCZmxwe/lYCihUg5g0nWw1ssIvAJ
+         0eMmVL3CxfFS8MvYUeRQaHJknHTdrOUtUaqCUp9d78iNDCDJTGGFJfkgl9Zerr62+pPd
+         YxVGnVdbL6KGX6ovz9MYoR/qMtFxsVXrONAHt9Aqp7XE/XoqWKzhOV/PoACXyS2/judl
+         kEMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUtANXa/dmDqGchGpByV1e7SC5vzteKO/S2CsPN/l0laD7H0FTJZNzQClLuAiGXOoU4xAJwtw2dhAxY@vger.kernel.org
+X-Gm-Message-State: AOJu0YwusTPhruNW6FHFNUE323KWisEK2D6AfpPFiOBQYAQS0OCr28Qz
+	d/5axSefC0Bq/r9aj5uxw1pkdDLOkWD1+QwY+2EEOp7QIjdYJ5CzVKcCqadtNg==
+X-Google-Smtp-Source: AGHT+IEKMhrohdkvwi4Udq7vmrZm1RN5zUB0skQ6nIN1r9c0R1TPgRRbL55DWTsl/CIJ8EZMUnlJMA==
+X-Received: by 2002:a05:6a00:8c2:b0:710:bd4b:8b96 with SMTP id d2e1a72fcca58-71b26079af9mr22686021b3a.28.1727782283633;
+        Tue, 01 Oct 2024 04:31:23 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:e044:f156:126b:d5c6])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b264b63d9sm7810646b3a.52.2024.10.01.04.31.17
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71b264b63d9sm7810646b3a.52.2024.10.01.04.31.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 04:31:18 -0700 (PDT)
+        Tue, 01 Oct 2024 04:31:23 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Cc: Fei Shao <fshao@chromium.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Fabien Parent <fparent@baylibre.com>,
+	Jianjun Wang <jianjun.wang@mediatek.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	MandyJH Liu <mandyjh.liu@mediatek.com>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Ryder Lee <ryder.lee@mediatek.com>,
 	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: [PATCH v2 1/8] dt-bindings: power: mediatek: Add another nested power-domain layer
-Date: Tue,  1 Oct 2024 19:27:19 +0800
-Message-ID: <20241001113052.3124869-2-fshao@chromium.org>
+	linux-mediatek@lists.infradead.org,
+	linux-pci@vger.kernel.org
+Subject: [PATCH v2 2/8] dt-bindings: PCI: mediatek-gen3: Allow exact number of clocks only
+Date: Tue,  1 Oct 2024 19:27:20 +0800
+Message-ID: <20241001113052.3124869-3-fshao@chromium.org>
 X-Mailer: git-send-email 2.46.1.824.gd892dcdcdd-goog
 In-Reply-To: <20241001113052.3124869-1-fshao@chromium.org>
 References: <20241001113052.3124869-1-fshao@chromium.org>
@@ -92,37 +98,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The MT8188 SoC has a more in-depth power-domain tree, and the
-CHECK_DTBS=y check could fail because the current MediaTek power
-dt-binding is insufficient to cover its CAM_SUBA and CAM_SUBB
-sub-domains.
+In MediaTek PCIe gen3 bindings, "clocks" accepts a range of 1-6 clocks
+across all SoCs. But in practice, each SoC requires a particular number
+of clocks as defined in "clock-names", and the length of "clocks" and
+"clock-names" can be inconsistent with current bindings.
 
-Add one more nested power-domain layer to pass the check.
+For example:
+- MT8188, MT8192 and MT8195 all require 6 clocks, while the bindings
+  accept 4-6 clocks.
+- MT7986 requires 4 clocks, while the bindings accept 4-6 clocks.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Update minItems and maxItems properties for individual SoCs as needed to
+only accept the correct number of clocks.
+
+Fixes: c6abd0eadec6 ("dt-bindings: PCI: mediatek-gen3: Add support for Airoha EN7581")
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
 
 (no changes since v1)
 
- .../devicetree/bindings/power/mediatek,power-controller.yaml  | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../devicetree/bindings/pci/mediatek-pcie-gen3.yaml          | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-index 8985e2df8a56..a7df4041b745 100644
---- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-@@ -54,6 +54,10 @@ patternProperties:
-             patternProperties:
-               "^power-domain@[0-9a-f]+$":
-                 $ref: "#/$defs/power-domain-node"
-+                patternProperties:
-+                  "^power-domain@[0-9a-f]+$":
-+                    $ref: "#/$defs/power-domain-node"
-+                    unevaluatedProperties: false
-                 unevaluatedProperties: false
-             unevaluatedProperties: false
-         unevaluatedProperties: false
+diff --git a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+index 898c1be2d6a4..f05aab2b1add 100644
+--- a/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
++++ b/Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
+@@ -149,7 +149,7 @@ allOf:
+     then:
+       properties:
+         clocks:
+-          minItems: 4
++          minItems: 6
+ 
+         clock-names:
+           items:
+@@ -178,7 +178,7 @@ allOf:
+     then:
+       properties:
+         clocks:
+-          minItems: 4
++          minItems: 6
+ 
+         clock-names:
+           items:
+@@ -207,6 +207,7 @@ allOf:
+       properties:
+         clocks:
+           minItems: 4
++          maxItems: 4
+ 
+         clock-names:
+           items:
 -- 
 2.46.1.824.gd892dcdcdd-goog
 
