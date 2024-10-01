@@ -1,306 +1,165 @@
-Return-Path: <devicetree+bounces-106871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106872-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C57998C137
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:10:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6E7998C168
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 17:18:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1642A1F2299B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:10:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB7BF1C23CA7
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 15:18:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21E41CBEA2;
-	Tue,  1 Oct 2024 15:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 013D01C68AC;
+	Tue,  1 Oct 2024 15:18:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hj//nvyr"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PpGB4869"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8221C9DD8
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 15:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0872D1373;
+	Tue,  1 Oct 2024 15:18:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727795309; cv=none; b=WbfbwdMiQj/tlHcBtWUjTaSeRZ8Ia5ytYCeRhQxWcWEdhved63O3kHGwbvk+AK9KAC9RK/J2MfvIlMAski7gD3qEo3tY4zVVLDmkjsi9XR0L2lsSJdeC8aoudlS8MajICRr512yucVshfO76pn5ytRXoEDHsgnrbhlC6pX7/if8=
+	t=1727795905; cv=none; b=jM2nkYLLItnSG++GzlmUtPx1ACU8QzTHOFTfBurMPZlwRKFVb7edYfZBFwwCmq1vFbaEko7yp6a/CfH83kMvQke8JnwsW0mC4urnMeOVMiwdJz2TsbcKL+mcZPexvJZf0XI3Z2clxGX7j19bb3eYZ+nnomxO5oWS/Qcs/o/lMMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727795309; c=relaxed/simple;
-	bh=hLVPT5QH2w8aqwv4hbzPqWtCw+OVzoiV6A3MkiezLAo=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=RM7xU3ThQYU4C+AAQlZmPhJrucXyieUN/WyesSgBVDbObvGlr9jfvAMkGYmjhYLR+Wiml0bRvb0wObYyQYiKlw3CqqtBica9OupHGhR/TN01xAsd5p3gsdkrUi68HZ69jKRH4GUkTMvT+HkmfESAJeG1PxuZJVnggtML8I1Q6+w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hj//nvyr; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a8d6ac24a3bso1051678266b.1
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 08:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727795306; x=1728400106; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=+HFBIFAHPWeADzPyyjFCnfZeSNABfX68tOfLHeTVYdQ=;
-        b=hj//nvyr/sUp02l/HwQyYJhb93BUOt0VBPPvR72lQrcglfKEloMk53swj5zM/veP1r
-         2AQYX7oVSfHVeWqME0QgU1qXkiVOrZFEJ9KAWhbuEZBuL3nbuT5CvU8WgJmLYZCpgK3N
-         GvvdneVDnbUNzV9WgjZaB48vYrcaOUbpvn+u/gUSYmu/Qalijr15V83XqCsf2tFD+zTO
-         e87wrBzEXB1xrpXUiTL9Vl+u/ERIKmiK7fHvkdV+C7x98FxHijmYBmEBxZ9pABHgwT8E
-         400LllcPHosICufB0cEjvj7RtaV2x/X600AnTSVpBrON5gDD9/x1ZILx+ic5hce/tOSe
-         nViw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727795306; x=1728400106;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=+HFBIFAHPWeADzPyyjFCnfZeSNABfX68tOfLHeTVYdQ=;
-        b=Kry3jRN0mKMHbDU4EUWXPSfDaxQwJt5tG6H+GOGuaPwwOtP9imFXGUaRMdOkNfza2I
-         Nj4sHL9bHx8DT7fMb+GS3+swGS10Vw+3V8/TKaMaTVMzYEQ169J66zTEhT8708aKWdhu
-         BIumFFf41EafbJK7x7KvCukM16W5jSOLGmaK6c6atbIrUzJTqJG0TOwDIrIUAPIb3gH3
-         z4vbvAF3ZmhXig+j3Q1mV++4fu7GfIEt6d38UaPmSKkMATCwzYAzhaGOHR2mKrpJqI7Q
-         6r8if8D9wsUeHT2P2WbDoTiOQ0YZ4bkIMhnZcrAv9qcVVCcoD0/mIcUonMJ7BFo0FaF5
-         M8Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9e0vHQybxDxEswyT7nBuQ0sBbrtka7cU07rLsic7TVpK5Q6r8bIUepSaTw7SZ7hWBqcklui6aj4+7@vger.kernel.org
-X-Gm-Message-State: AOJu0YyereF/sXglWEZZSfrVnlGnGn94OYxZWm+c/ZzMXvgkJJHSaTvN
-	lxLGXiDcZf1AJg2SQzncNuDGxSbw6GJM1w2Y/lEy4J2ZZRgBh61huuQHEJMbw0I=
-X-Google-Smtp-Source: AGHT+IF0nfq6Su2Wb1UxQmT9CiFUoqToCVHj3y5LzPTsSuMeePzCAt1PJVN7jghswxKLG6/uLz84tg==
-X-Received: by 2002:a17:906:478b:b0:a8d:65f4:c7c6 with SMTP id a640c23a62f3a-a967c0853ddmr407697366b.24.1727795306172;
-        Tue, 01 Oct 2024 08:08:26 -0700 (PDT)
-Received: from [127.0.0.1] ([188.119.23.43])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c2947af3sm730357266b.134.2024.10.01.08.08.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2024 08:08:25 -0700 (PDT)
-Date: Tue, 01 Oct 2024 18:08:19 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-CC: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_vbadigan@quicinc.com, quic_ramkri@quicinc.com,
- quic_nitegupt@quicinc.com, quic_skananth@quicinc.com,
- quic_parass@quicinc.com
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
-User-Agent: K-9 Mail for Android
-In-Reply-To: <20241001141948.g74rn6777ywvtcmx@thinkpad>
-References: <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com> <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com> <CAA8EJprsm5Tw=vFpmfEKL8fxS-S+aW+YR0byfyL=v78k75TGEw@mail.gmail.com> <3ad77846-b4a8-80ee-e9e1-d5cbf4add6d8@quicinc.com> <CAA8EJprRF0tVFZK9c=MT8bSRcBdRvcugBaeEzpX5-wfRyNgc3Q@mail.gmail.com> <c8be2bbf-a51c-a38f-6e6f-a88801f953d5@quicinc.com> <20240209075716.GA12035@thinkpad> <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com> <20241001101622.ys36slymgjbaz26q@thinkpad> <8459161B-87B8-481F-AE71-3D5156B1CA56@linaro.org> <20241001141948.g74rn6777ywvtcmx@thinkpad>
-Message-ID: <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
+	s=arc-20240116; t=1727795905; c=relaxed/simple;
+	bh=WzhQBUU0W7hHsulAWgsxJ5bVS81u+Wqsj4XE0fczMc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KTY+QoBkZiTt21P6KplI+2MT2XF4+giUo9nvUWL0xTyng0OFvEnpdNN8i3rm2pw1ssX7j+4rOmu93RVkU3rNebz6k0xP/frZAq/POmidgfKy4EedgN7ybG0JqV3yVl8bAgVnHRfowJvcj177InjVAAuU42cv45RRD4BY/EHEL9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PpGB4869; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727795897;
+	bh=WzhQBUU0W7hHsulAWgsxJ5bVS81u+Wqsj4XE0fczMc4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PpGB4869JZUQPobQgIGGkmTjpZKJCRR7GbmEqWYRA6/4yIxwZ4wyiHSDsd/daymrh
+	 XHxqyQUjXlzd7A6gYO3mZm8lI9r5UBhsLXuTNSKD60B+QdYRXfzuxGlHMhSNtdygQ8
+	 fTEpiqN/H4gCtTlYj5Zek81ZncDnNk5XScu7CQ8g5zOh7A0T7aRJZIEPVtCZLd23SS
+	 ktL+Ubx4lonnuck0uYMmQc6uXQTNV5jYviBdZPZzWhA/JxQAk3N1RELRiVsaVf0jVS
+	 3J6oHkSYO3TVxgcy77Aj2gkovVMrg/A3IT94sCMQcsX9OqnRRRyDZPrJrtmy6nFlUy
+	 ftTTCyW8Kl5/w==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1A1CE17E0FD5;
+	Tue,  1 Oct 2024 17:18:17 +0200 (CEST)
+Message-ID: <908e6fcb-d1bc-4ab1-b4b8-6a13096b837c@collabora.com>
+Date: Tue, 1 Oct 2024 17:18:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/6] nvmem: mtk-efuse: Enable postprocess for mt8188
+ GPU speed binning
+To: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-clk@vger.kernel.org
+References: <20240927103005.17605-1-pablo.sun@mediatek.com>
+ <20240927103005.17605-4-pablo.sun@mediatek.com>
+ <57dfe684-c9a1-4cb3-8c87-9d2fef09aed7@collabora.com>
+ <329b554b-e029-0dfe-7c18-67c7c58f8302@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <329b554b-e029-0dfe-7c18-67c7c58f8302@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On October 1, 2024 5:19:48 PM GMT+03:00, Manivannan Sadhasivam <manivannan=
-=2Esadhasivam@linaro=2Eorg> wrote:
->On Tue, Oct 01, 2024 at 03:30:14PM +0300, Dmitry Baryshkov wrote:
->> On October 1, 2024 1:16:22 PM GMT+03:00, Manivannan Sadhasivam <manivan=
-nan=2Esadhasivam@linaro=2Eorg> wrote:
->> >On Fri, Feb 09, 2024 at 12:56:18PM +0200, Dmitry Baryshkov wrote:
->> >> On Fri, 9 Feb 2024 at 09:57, Manivannan Sadhasivam
->> >> <manivannan=2Esadhasivam@linaro=2Eorg> wrote:
->> >> >
->> >> > On Fri, Feb 09, 2024 at 12:58:15PM +0530, Krishna Chaitanya Chundr=
-u wrote:
->> >> > >
->> >> > >
->> >> > > On 2/8/2024 8:49 PM, Dmitry Baryshkov wrote:
->> >> > > > On Thu, 8 Feb 2024 at 16:58, Krishna Chaitanya Chundru
->> >> > > > <quic_krichai@quicinc=2Ecom> wrote:
->> >> > > > > On 2/8/2024 12:21 PM, Dmitry Baryshkov wrote:
->> >> > > > > > On Thu, 8 Feb 2024 at 08:14, Krishna Chaitanya Chundru
->> >> > > > > > <quic_krichai@quicinc=2Ecom> wrote:
->> >> > > > > > >
->> >> > > > > > >
->> >> > > > > > >
->> >> > > > > > > On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
->> >> > > > > > > > On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
->> >> > > > > > > > <quic_krichai@quicinc=2Ecom> wrote:
->> >> > > > > > > > >
->> >> > > > > > > > > Enable PCIe1 controller and its corresponding PHY no=
-des on
->> >> > > > > > > > > qcs6490-rb3g2 platform=2E
->> >> > > > > > > > >
->> >> > > > > > > > > PCIe switch is connected to PCIe1, PCIe switch has m=
-ultiple endpoints
->> >> > > > > > > > > connected=2E For each endpoint a unique BDF will be =
-assigned and should
->> >> > > > > > > > > assign unique smmu id=2E So for each BDF add smmu id=
-=2E
->> >> > > > > > > > >
->> >> > > > > > > > > Signed-off-by: Krishna chaitanya chundru <quic_krich=
-ai@quicinc=2Ecom>
->> >> > > > > > > > > ---
->> >> > > > > > > > >     arch/arm64/boot/dts/qcom/qcs6490-rb3gen2=2Edts |=
- 42 ++++++++++++++++++++++++++++
->> >> > > > > > > > >     1 file changed, 42 insertions(+)
->> >> > > > > > > > >
->> >> > > > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen=
-2=2Edts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2=2Edts
->> >> > > > > > > > > index 8bb7d13d85f6=2E=2E0082a3399453 100644
->> >> > > > > > > > > --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2=2Edts
->> >> > > > > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2=2Edts
->> >> > > > > > > > > @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
->> >> > > > > > > > >            };
->> >> > > > > > > > >     };
->> >> > > > > > > > >
->> >> > > > > > > > > +&pcie1 {
->> >> > > > > > > > > +       perst-gpios =3D <&tlmm 2 GPIO_ACTIVE_LOW>;
->> >> > > > > > > > > +
->> >> > > > > > > > > +       pinctrl-0 =3D <&pcie1_reset_n>, <&pcie1_wake=
-_n>;
->> >> > > > > > > > > +       pinctrl-names =3D "default";
->> >> > > > > > > > > +
->> >> > > > > > > > > +       iommu-map =3D <0x0 &apps_smmu 0x1c80 0x1>,
->> >> > > > > > > > > +                   <0x100 &apps_smmu 0x1c81 0x1>,
->> >> > > > > > > > > +                   <0x208 &apps_smmu 0x1c84 0x1>,
->> >> > > > > > > > > +                   <0x210 &apps_smmu 0x1c85 0x1>,
->> >> > > > > > > > > +                   <0x218 &apps_smmu 0x1c86 0x1>,
->> >> > > > > > > > > +                   <0x300 &apps_smmu 0x1c87 0x1>,
->> >> > > > > > > > > +                   <0x400 &apps_smmu 0x1c88 0x1>,
->> >> > > > > > > > > +                   <0x500 &apps_smmu 0x1c89 0x1>,
->> >> > > > > > > > > +                   <0x501 &apps_smmu 0x1c90 0x1>;
->> >> > > > > > > >
->> >> > > > > > > > Is the iommu-map really board specific?
->> >> > > > > > > >
->> >> > > > > > > The iommu-map for PCIe varies if PCIe switch is connecte=
-d=2E
->> >> > > > > > > For this platform a PCIe switch is connected and for tha=
-t reason
->> >> > > > > > > we need to define additional smmu ID's for each BDF=2E
->> >> > > > > > >
->> >> > > > > > > For that reason we defined here as these ID's are applic=
-able only
->> >> > > > > > > for this board=2E
->> >> > > > > >
->> >> > > > > > So, these IDs are the same for all boards, just being unus=
-ed on
->> >> > > > > > devices which have no bridges / switches connected to this=
- PCIe host=2E
->> >> > > > > > If this is correct, please move them to sc7280=2Edtsi=2E
->> >> > > > > >
->> >> > > > > Yes ID's will be same for all boards=2E we can move them sc7=
-280=2Edtsi
->> >> > > > > but the BDF to smmu mapping will be specific to this board o=
-nly=2E
->> >> > > > > if there is some other PCIe switch with different configurat=
-ion is
->> >> > > > > connected to different board of same variant in future again=
- these
->> >> > > > > mapping needs to updated=2E
->> >> > > >
->> >> > > > Could you possibly clarify this? Are they assigned one at a ti=
-me
->> >> > > > manually? Or is it somehow handled by the board's TZ code, whi=
-ch
->> >> > > > assigns them sequentially to the known endpoints? And is it do=
-ne via
->> >> > > > probing the link or via some static configuration?
->> >> > >
->> >> > > There is no assignment of SID's in TZ for PCIe=2E
->> >> > > PCIe controller has BDF to SID mapping table which we need to
->> >> > > program with the iommu map table=2E
->> >> > >
->> >> > > https://git=2Ekernel=2Eorg/pub/scm/linux/kernel/git/torvalds/lin=
-ux=2Egit/tree/drivers/pci/controller/dwc/pcie-qcom=2Ec?h=3Dv6=2E8-rc3#n997
->> >> > >
->> >> > > Based upon switch the BDF to SID table will change for example I=
- had two
->> >> > > switches with one switch has 2 PCIe ports and other has 3 ports =
-one
->> >> > > embedded port which supports multiple functions=2E
->> >> > >
->> >> > > For the first switch the BDF's are
->> >> > >       - 0x000(root complex),
->> >> > >       - 0x100(USP),
->> >> > >       - 0x208(DSP 0),
->> >> > >       - 0x210(DSP 1),
->> >> > >       - 0x300(endpoint connected to DSP 0),
->> >> > >       - 0x400( endpoint connected to DSP 1)=2E
->> >> > >
->> >> > > For 2nd switch the BDF's are
->> >> > >       - 0x000(root complex),
->> >> > >       - 0x100(USP),
->> >> > >       - 0x208(embeeded DSP 0),
->> >> > >       - 0x210(DSP 1),
->> >> > >       - 0x218 (DSP 2),
->> >> > >       - 0x300(embedded endpoint function 0),
->> >> > >       - 0x301 (embedded endpoint function 1)
->> >> > >       - 0x400( endpoint connected to DSP 1)
->> >> > >       - 0x500(endpoint connected to DSP2)=2E
->> >> > >
->> >> > > For these two switches we need different BDF to SID table so for=
- that
->> >> > > reason we are keeping iommu map here as this is specific to this=
- board=2E
->> >> > >
->> >> >
->> >> > I don't understand why the SID table has to change between PCIe de=
-vices=2E The SID
->> >> > mapping should be part of the SoC dtsi, where a single SID would b=
-e defined for
->> >> > the devices under a bus=2E And all the devices under the bus have =
-to use the same
->> >> > SID=2E
->> >>=20
->> >> This sounds like a sane default, indeed=2E Nevertheless, I see a poi=
-nt
->> >> in having per-device-SID assignment=2E This increases isolation and =
-can
->> >> potentially prevent security issues=2E However in such case SID
->> >> assignment should be handled in some automagic way=2E In other words=
-,
->> >> there must be no need to duplicate the topology of the PCIe bus in t=
-he
->> >> iommu-maps property=2E
->> >>=20
->> >
->> >Agree with you on this=2E This is what I suggested some time back to h=
-ave the
->> >logic in the SMMU/PCIe drivers to assign SIDs dynamically=2E Unfortuna=
-tely, it is
->> >not a trivial work and it requires a broader discussion with the commu=
-nity=2E
->> >
->> >Also starting with SMMUv3, there are practically no limitations in SID=
-s and
->> >each device should get a unique SID by default=2E
->> >
->> >So I got convinced that we can have these static mappings in the DT *a=
-tm* for
->> >non SMMUv3 based hardwares and at the same time let the discussion hap=
-pen with
->> >the community=2E But this static mapping solution is just an interim o=
-ne and won't
->> >scale if more devices are added to the topology=2E
->>=20
->> My main question to this approach is if it can support additional devic=
-es plugged into the switch=2E If there is no way to plug addon cards, then =
-it is fine as a temporary measure=2E
->>=20
->
->The logic here is that the fixed endpoints in the switch will get an uniq=
-ue SID
->and the devices getting attached to slots will share the same SID of the =
-bus
->(this is the usual case with all Qcom SoCs)=2E
->
->But I guess we would need 'iommu-map-mask' as well=2E Hope this addresses=
- your
->concern=2E
+Il 01/10/24 05:38, Pablo Sun ha scritto:
+> Hi Angelo,
+> 
+> 
+> On 9/30/24 17:40, AngeloGioacchino Del Regno wrote:
+>> Il 27/09/24 12:30, Pablo Sun ha scritto:
+>>> Similar to mt8186, the efuse data for mt8188's GPU speed binning
+>>> requires post-process to convert the bit field format expected
+>>> by the OPP table.
+>>>
+>>> Since mt8188 efuse is not compatible to mt8186, add a new compatible
+>>> entry for mt8188 and enable postprocess.
+>>>
+>>> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+>>
+>> I know I told you to just reuse the pdata from 8186, but there's something else
+>> that came to mind, here...
+>>
+>> ...actually, the efuse block from 8188 is indeed compatible with 8186, meaning
+>> that the register r/w, etc, are all the same (bar the addresses, yes)
+>>
+>> So, I wonder if it's not just a better idea to not even add mt8188-efuse in this
+>> driver's of_device_id array, and just add that to the binding so that we permit
+>> using
+>>          efuse: efuse@11f20000 {
+>>              compatible = "mediatek,mt8188-efuse",
+>>                       "mediatek,mt8186-efuse", "mediatek,efuse";
+>>              [etc]
+>>          }
+> 
+> Thanks for proposing this. I agree that in the case of Mali GPU speed binning
+> info, mt8188 behaves exactly the same as mt8186, only the cell addresses are
+> different.
+> 
+> I wrote "mt8188 efuse is not compatible to mt8186" because I thought
+> different eFuse cell layout leads to incompatibility, but it is correct that
+> the cell layout differences can be expressed by the device tree nodes,
+> so they are actually compatible in terms of hardware interface.
+> 
+> I'll drop this patch ("nvmem: mtk-efuse: Enable postprocess for mt8188 GPU speed 
+> binning")
+> in v3 and update dt-binding "mediatek,efuse.yaml" instead.
+> 
+>> Means that in mediatek,efuse.yaml you'll have to add...
+>>
+>>        - items:
+>>            - enum:
+>>                - mediatek,mt8188-efuse
+>>            - const: mediatek,mt8186-efuse
+>>            - const: mediatek,efuse <---- or without this, even.
+>>
+>> In the end, the "mediatek,efuse" property is somewhat deprecated, so that'd
+>> also be a good time to start the dropping process, as I imagine that future SoCs
+>> would also need the same speedbin transformations - which means that they'll all
+>> be compatible with 8186....
+> [snip]
+> 
+> But I am not sure if we should now drop "mediatek,efuse". The post-process for
+> GPU speed binning info is only applicable to ARM Mali. Since there are MediaTek
+> SoCs that are not using ARM Mali, or not having GPU at all, would it make more sense
+> to keep the "mediatek,efuse" fallback compatible for those cases?
+> 
+> 
 
-Yes, thank you!
+No, not really... because a specific SoC may *either* have Mali *or* PowerVR...
 
+Counting that every SoC will, in any case, need a model-specific compatible (as in,
+you can't ever have `compatible = "mediatek,efuse"`, but you will always have
+`compatible = "mediatek,mt(model)", "mediatek,mt(othermodel)"` or similar), you
+will still have to add that new SoC to the binding.
 
->
->- Mani
->
+In case, that SoC can be still added to the list in the driver if there's any
+incompatibility with the others (such as different register layout or binning
+interpreter).
 
+But then, keep in mind that the code that interprets the binning data in the fuses
+is converting it from MediaTek format (1-2-3-4..etc) to the "generic" format that
+is required by the OPP framework, which is *not* specific to ARM Mali.
 
---=20
-With best wishes
-Dmitry
+Just to say - if the (MediaTek) format of the fuse data for binning is the same
+for both PVR and Mali (so, it's still always 1,2,3,4,etc), then there wouldn't be
+any incompatibility between the two, as PVR anyway uses OPP tables as much as Mali.
+
+Cheers,
+Angelo
 
