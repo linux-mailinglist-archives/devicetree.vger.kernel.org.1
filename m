@@ -1,62 +1,55 @@
-Return-Path: <devicetree+bounces-106928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FCB498C371
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:31:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4691C98C37F
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:33:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5131F1C24266
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:31:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC7DC1F2176C
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 16:33:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 010C81C9EB7;
-	Tue,  1 Oct 2024 16:31:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7A371C9DCD;
+	Tue,  1 Oct 2024 16:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kXKCKTEB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YzFW1AOp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7C2D1C6889;
-	Tue,  1 Oct 2024 16:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B038C1C6889;
+	Tue,  1 Oct 2024 16:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727800265; cv=none; b=DVizmRC6vJpC238UV9XSsScN/mVEC8xn4PATCXIna1Hg0R1h5LuTXhZp21wlhDmcALk4GRQCAQ1Eg27qZSXnfnCN+xgm9X8d2fQKbPahzNM5oGmf8eGEU86ukrbhJ/v7IYAKJqDHKIeCoXya3iIPAYjnoteRsGqHf22CUVhoha0=
+	t=1727800400; cv=none; b=OKjlyOdfGWmYeGqiyvpnWYa9I7hUUIZCHEruM9ndQUhM2yL1L2o4k3XXJPRuM4FsZRhxL5vOfvFSrah+dr8U0Zl2PZ2NOun592JoiFTsr+VFNwf5WFigbaYH8/qsLDsOTEZvpYIBBt/50GjdMgR/jboCFtBxJx0PaMzaDuQf0WA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727800265; c=relaxed/simple;
-	bh=QgVPcOM3o0Kq7RqDI/SUeOlNzo3Y7dfS0Do08vgt/1o=;
+	s=arc-20240116; t=1727800400; c=relaxed/simple;
+	bh=X0lJq5RdgPEACT/WdHb/x2NfIY4RhprJCqlbygUaMaE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RA+fRD5yWYwhJ4Orvp4nPbDj2oySfHH6495qPxJ9KFa2yOFwKJ8r8A/CAuOYiHjsTZnxexoEndJaFHgRdz3kBVeM4Hj3L/sjNpHJwK5SiraKys1IojfP8AoOLzOBIA2OyYmca8JV8jvy6hA8xG2uMfLrDab8CTF8MB3W4b/QuSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kXKCKTEB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB187C4CEC6;
-	Tue,  1 Oct 2024 16:31:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DWKoANLHAj1V64wkuXYnPEktzWhlpOHALf2Rpwqkgq6p71Ax5XB3QUMRcvH7rvBES1+DCUOG9tucO04isJofLmYD13wu7J/sjAJu7dhFrvI9tb2S7ECdLqrWptJ/Dg25b6DV/aQOCtwV02y6tDyfypwAjGkmEfiWu9UdM4rvj+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YzFW1AOp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E02DC4CEC6;
+	Tue,  1 Oct 2024 16:33:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727800265;
-	bh=QgVPcOM3o0Kq7RqDI/SUeOlNzo3Y7dfS0Do08vgt/1o=;
+	s=k20201202; t=1727800400;
+	bh=X0lJq5RdgPEACT/WdHb/x2NfIY4RhprJCqlbygUaMaE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kXKCKTEBXhOglnmN5ytvXFx0QTyC/OJxB58EnVOTKAj+z507UNE4AnH9gCUv123Hy
-	 UNvAPJfMHLmVeArMxOLPT9LEtMkSzHLu8p0zLnRJp52Xh+PBDpIO2wx6oj/qHbWKaN
-	 WDJbZQbv3QW6cpoHLDEGmBP4jThSS63yzkp9huU/sVhVkC0Ls+NAEqJf7uxX1u1IWJ
-	 dOfme2xQxwr8uyBYPLorinPTcrxA1a0JP8R0CjzFeknEN+CodbAn76yYub34GrUC84
-	 WwtU2l4XWXPKoff3IMVwS5+crPKYP217peULnQlO5fsrReqI7Gyl4bFE2xQeTLb4fS
-	 GNUkKJuAE7F2A==
-Date: Tue, 1 Oct 2024 17:31:00 +0100
+	b=YzFW1AOpy469RKawKUfXdJ6L/eRuZbdzob5SrZp+C580YNUs9a42kgHjA4u93T0Sg
+	 QWMZY+KY+g0K9Z0a7McI76dsOC8d1++btsAVr4dtQE5TeLPEOSCTiosCcrdGT30QOX
+	 zvd198xB1swEzKWUj/FcPtZ0uwwSDqeJMN9FQnKDjALf5rDOXGR941hVzd8Z+avPLm
+	 1y7MC5uVf+iSChH6BQfpcrLR8jKpuyWgtsLiWgzEDX7bJG7Ug/dXFBwBpws3ycfsLI
+	 G33BjGm+InXft043BymQQh/2jDEyee5euEBUJ6Vxt97G7sGDnZSwILunmHwT9HXA+D
+	 wcvMWQ1HbbPtg==
+Date: Tue, 1 Oct 2024 17:33:16 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 1/4] dt-bindings: vendor-prefixes: Add an entry for GE
- HealthCare
-Message-ID: <20241001-reusable-thermos-6263386b5ed5@spud>
-References: <20241001074618.350785-1-herve.codina@bootlin.com>
- <20241001074618.350785-2-herve.codina@bootlin.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: vctrl-regulator: convert to YAML
+Message-ID: <20241001-purplish-extrude-4e4e74361ec8@spud>
+References: <20240930210424.1994047-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,34 +57,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fszP1xD3fpRamcxt"
+	protocol="application/pgp-signature"; boundary="GbHUkAU+w4x7KlLL"
 Content-Disposition: inline
-In-Reply-To: <20241001074618.350785-2-herve.codina@bootlin.com>
+In-Reply-To: <20240930210424.1994047-1-heiko@sntech.de>
 
 
---fszP1xD3fpRamcxt
+--GbHUkAU+w4x7KlLL
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 01, 2024 at 09:46:15AM +0200, Herve Codina wrote:
-> Add the "gehc" entry for GE HealthCare.
-> https://www.gehealthcare.com
+On Mon, Sep 30, 2024 at 11:04:24PM +0200, Heiko Stuebner wrote:
+> Convert the vctrl-regulator bindings to DT schema.
+> This resolves a dtbs check warning for the rk3399-gru devices.
 >=20
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---fszP1xD3fpRamcxt
+--GbHUkAU+w4x7KlLL
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvwjxAAKCRB4tDGHoIJi
-0jCYAQDc2C4+W5UzhbZ7HUYeDVyeTymoZvA8IvBrS0e63Yt9+QEAuj2AOD7PBTm6
-pcoPFYa/1KLXgk5ITRfuarWYT6uJCA0=
-=KNww
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZvwkTAAKCRB4tDGHoIJi
+0nQRAQCNRlqFTWXfbpQ2K+hdGQ3hM0+FtNiHTWqxVRCGjQf/fAD/aU8P1g8bx7V/
+KBXaKK664muw9qBwrekuaNtQjg7rjgA=
+=N7sW
 -----END PGP SIGNATURE-----
 
---fszP1xD3fpRamcxt--
+--GbHUkAU+w4x7KlLL--
 
