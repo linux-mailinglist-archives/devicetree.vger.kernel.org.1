@@ -1,1215 +1,523 @@
-Return-Path: <devicetree+bounces-106948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C54CE98C51A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:09:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E8B998C557
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 20:29:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C42DBB22F8A
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:09:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA4181C250D9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 18:29:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 397011CC89D;
-	Tue,  1 Oct 2024 18:09:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6B621CCEED;
+	Tue,  1 Oct 2024 18:29:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KckVN6oj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZEebGQXU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 835DE1BBBC6
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 18:09:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C651CCEE0;
+	Tue,  1 Oct 2024 18:29:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727806177; cv=none; b=VVk7nwBMaACvB1VmPuhx7m+HcASQ51YLM7m1UP9vxnAJc+mGCJEDnYGy0e7DKgIEXIj3J8/t/aW/tu1J0G2fAYRAgDlxMadeVd2SCUemFY2l5diYL6N0tmPJUpqWCUiekfBJBLR6TlVgoB/G7Ng8Zz9qrbCXzMblE/I3ftrXPZc=
+	t=1727807363; cv=none; b=IQlCHhDCZRbhs0uk1zcZP9D59XSFm80TDlbk61QEvfpqF+7XM2Tn/q1VFIRvBXnlKd3FBA5TPBqgjg0GuYau9ZNnff5Kc+hbLez2w6ID7vLRzWAxM0ahlK8hcu785ylxJoSUSWF5BLf05HhNwRcwQeFGGRud5iiVgbcgg9voA3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727806177; c=relaxed/simple;
-	bh=9GSvMEl72LJuWwZy5OvJWatCHGl756fpkWNVAX2c+Iw=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=VMSZ/+IoUny5G0HB2NJcJYN1Vyy1jIS69ER8EdoF60/78Jns/w1QQXidd8/WeAv1/5mxexRIvy/ptkIGQJsWqN9i7ghvPvwj2g4I8PO5IDosfLpC+1eCgPT/EKpHvbLOQ3Nw7o7wzouDAJhIK+6ANoIMG+JHaPbbR3fWbEhQXnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KckVN6oj; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-53993c115cfso3139151e87.2
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 11:09:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727806172; x=1728410972; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=6EtF1/a9SA5SorCJxpOUjj0kuAp0K2SoCCYh6LWsvX8=;
-        b=KckVN6oj4+tmFeEXJ//1akkrDRUBijOSA5Ovi34jEoLJr25vt8O59fnw0aYZJGxVYE
-         rxk39otjh9cVAIhdcgnL611Qi0NsbvbDt1HpZIzPouKY3Lh7eJpQau78mjXV4aTVpZz2
-         VK0xcBhs1of4lst9IOX169j4ekX1zlmqfakNQwWOCmb+HonW9jS6ENwOmNyVpLUz2ImQ
-         nc1iRZlmXgbM/h93Xy81rdG8mZgmuZp+GeT172TXt/PLPVaYUcn4Dx1VSWEuEqbJAZ0C
-         5CFMfmLGjr2jyS54oR+xaKt9fA6H7DZZPbNo5qYLH6OP5JFPK9vJXT9fgNF7MZb26Xiq
-         qxqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727806172; x=1728410972;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6EtF1/a9SA5SorCJxpOUjj0kuAp0K2SoCCYh6LWsvX8=;
-        b=lTMpV/YNWlZyB5Hoh5q/n8jtCDAF3q+wmZngqxJVGz9338xjfWcodhUz9/qXt9iX0G
-         FXlgvcyultCmqW0cyu4ZJ/EAs6gUZNMdqr5RaBifrZTTo4+GzwEvGg3fhp9IdpIkZp8T
-         +bs4BDb3uMUxD9k6LqZd614VD3WzqqAADe2tjgc0z9BbzqovKo+icBUCHktWMK5SOBGQ
-         4+YzSZg9pRWekxyT1o1V4g/smpySZEMey67YpjxeWQo5lRaM+1lkl8lcIyS09nXHLrET
-         MCXtn+l/tdC44ivnu+3TFnhhsGF9queeV0Zdcw5Gqlop9MbROyai5TX5xwPh2ga1/mm2
-         FIeA==
-X-Forwarded-Encrypted: i=1; AJvYcCW41h9AjXqj983S+dVpeFZDrMj80Xjuyviwx139IuyRDn5gmRQVlEaX1Rz7IptIrmvjSfUVo4eeyr2j@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOOMDnoy2CGVYiyHv7mAEYVCtpAA9wmwnd26k5KasRJC7S+PfA
-	1/FyrH4PS31BbxnxfWw3AxLKw+eUYJ+ug0gtDCp+5kDiS8/7snHoXz2k1pl7WEM=
-X-Google-Smtp-Source: AGHT+IFdtZS7tvPqYUGKeafYPgFHMGNprDe9eWEjhbEpFlvhKZxz/aiffoi3kDRJ4Ap6K/kIrlUuPg==
-X-Received: by 2002:a05:6512:234f:b0:52c:adc4:137c with SMTP id 2adb3069b0e04-539a0664df3mr185879e87.20.1727806171318;
-        Tue, 01 Oct 2024 11:09:31 -0700 (PDT)
-Received: from [127.0.0.1] ([37.155.79.147])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88240517fsm6551213a12.4.2024.10.01.11.09.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 01 Oct 2024 11:09:30 -0700 (PDT)
-Date: Tue, 01 Oct 2024 21:09:25 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Laurentiu Tudor <tudor.laurentiu.oss@gmail.com>,
- Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
- "Kemp, Bryan" <Bryan.Kemp@dell.com>
-CC: Bjorn Andersson <andersson@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rob Clark <robdclark@gmail.com>, Peter de Kraker <peterdekraker@umito.nl>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_3/3=5D_arm64=3A_dts=3A_qcom=3A_Ad?=
- =?US-ASCII?Q?d_support_for_X1-based_Dell_XPS_13_9345?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <d54d98f2-f678-491b-8448-0dd2be32aa82@gmail.com>
-References: <20240921163455.12577-1-alex.vinarskis@gmail.com> <20240921163455.12577-4-alex.vinarskis@gmail.com> <f9997a19-5aae-41c9-9ca2-c847d8071230@gmail.com> <CAMcHhXohz6kquH_JT9eAKMntxxyjDt+oZUB_kfAO840oJ5=LPQ@mail.gmail.com> <PH8PR19MB7071756BFAFA1BA3E92AF3C09E772@PH8PR19MB7071.namprd19.prod.outlook.com> <CAMcHhXo7PNxoOs3BEhbS7v-hDqEZQSyQJnzHbpTMoRbeaunp3g@mail.gmail.com> <d54d98f2-f678-491b-8448-0dd2be32aa82@gmail.com>
-Message-ID: <1A53A2B8-8FCE-49AE-983D-A4F8E91CF4BB@linaro.org>
+	s=arc-20240116; t=1727807363; c=relaxed/simple;
+	bh=KARCicZZFTRtFNo2aBcQJTnCExQNXjt1GZEnTdfDsyg=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uvllHoPHTgiE4NQDVgYwgohBSRKHdMBItWXDF+E7Xiv698/KQJllfALOWxSdg/ez+ovsMuLO9y7AgH47aORjK7ACFs8umyWb4Z6ncmQHNK1dsY9ZYHgKcguDj28MyY01NBdNCfp3hWCA4O+33Id5EgfxRj1R8sg2xVnmAzk+a44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZEebGQXU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6EA1C4CEC6;
+	Tue,  1 Oct 2024 18:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727807363;
+	bh=KARCicZZFTRtFNo2aBcQJTnCExQNXjt1GZEnTdfDsyg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ZEebGQXUVhwatPtuszAnghhsu1UrZ0VS+vy0P37IHP8yIBem+CkzLE98D+9GUqFbX
+	 1FL6lq8A+p8RWBEcD0bSj62I6CMDFu79402a1yFVwiQCyHyXFVMqO8Kud6P4K1AJWf
+	 yzQEOv3naSt3VWG/0JmPH2g5JBUIsgQbDb0OU5wPiS01Tw/5VUkbY6b94Si/vrix4U
+	 dcY3oRHb/CIetu00Vx1+6IYD6vdAHbHgEmbBF12eV86uY3l6f+cdikTrnNJl0XQcPE
+	 OM5rbmyIFPQZchu9x0DRtjXOBM2p0lJ+1DEue7oJ7nkvUXqCmdCfGTxh0vDJVt7OZO
+	 NRfgHvQK2E4hw==
+Date: Tue, 1 Oct 2024 19:29:13 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Jonathan Cameron <Jonathan.Cameron@Huawei.com>, Angelo Dureghello 
+ <adureghello@baylibre.com>, Krzysztof Kozlowski <krzk@kernel.org>,
+ Lars-Peter Clausen	 <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Nuno Sa	 <nuno.sa@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Olivier Moysan	 <olivier.moysan@foss.st.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH v3 04/10] dt-bindings: iio: dac: ad3552r: add io-backend
+ support
+Message-ID: <20241001192913.5b848dfc@jic23-huawei>
+In-Reply-To: <80eb0949508d31a55f2b8ab999210a7c7cd5cbe2.camel@gmail.com>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-4-a17b9b3d05d9@baylibre.com>
+	<gojq6ardhvt6vcs2kawdhdn2cj6qbpzp4p5mjjgwsypuatm5eo@3u6k4q7le46s>
+	<418a8a9b-3bcf-4b8f-92a0-619a3bf26ab5@baylibre.com>
+	<e8af0f3f-a09c-42d7-b8ca-dd633539af73@kernel.org>
+	<0279203b6cd9f1312d9c03654c262c04ac12fbd9.camel@gmail.com>
+	<fa27dc74-7b1f-4ef5-81dc-cc434da4ff89@kernel.org>
+	<c721861809c17776c0fe89ead331b6e2e6b9d4b4.camel@gmail.com>
+	<28834db1-3e9e-47f4-b00e-a548589d77e9@kernel.org>
+	<20240929115919.0318034c@jic23-huawei>
+	<ae4cfdfb9880e0a833c105fcb9e9442ef04f461b.camel@gmail.com>
+	<h7ajn5c7f4d7xtjd6jwayen2v5go2vyciwfebikoxlnksodvd2@4dph5nxigi56>
+	<20240930160947.00007c8a@Huawei.com>
+	<80eb0949508d31a55f2b8ab999210a7c7cd5cbe2.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
 
-On October 1, 2024 7:23:21 PM GMT+03:00, Laurentiu Tudor <tudor=2Elaurentiu=
-=2Eoss@gmail=2Ecom> wrote:
->Hi Alex,
->
->On 10/1/24 19:09, Aleksandrs Vinarskis wrote:
->> On Tue, 1 Oct 2024 at 02:47, Kemp, Bryan <Bryan=2EKemp@dell=2Ecom> wrot=
-e:
->>>=20
->>> Fascinating topic=2E First of all, thank you Alex for the explanation =
-of your logic, and thank you as well for the work on the device tree for th=
-e XPS 13=2E I understand completely how the Dell naming/numbering scheme is=
- confusing=2E The shortened version down to just the model number could als=
-o be confusing=2E For example, there is an XPS 9520 as well as a Latitude 9=
-520=2E The 9 basically translates to "premium" not a specific line of busin=
-ess=2E For what it is worth, I would prefer the dell-xps13-9345 naming and =
-I think we can have to be mindful to avoid a naming collision in a decade=
-=2E
->>>=20
->>=20
->> Hi,
->>=20
->> Thanks for the input, it's really nice to have Dell's perspective as we=
-ll=2E
->> That's a good point with latitude, I was only aware of 5XXX/7XXX
->> naming for that one=2E=2E=2E which I guess further highlights the confu=
-sing
->> naming scheme=2E
->
->Yeah, completely agree=2E We will raise this internally so that in the fu=
-ture we'll do a better job at naming platforms=2E
+On Tue, 01 Oct 2024 10:23:45 +0200
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-BTW, as we are discussing the new XPS, any chance that Dell might release =
-HLOS firmware into the linux-firmware repo? In the past Lenovo did this for=
- the X13s WoA laptop=2E It significantly improves Linux user experience on =
-these laptops=2E=20
-
-Feel free to ask if you need additional details=2E
-
-
->
->> I will re-spin with `dell-xps13-9345` and `dell,xps13-9345`
->> respectively as proposed then, unless there will be any other feedback
->> on the V3 series before tomorrow=2E
->
->Great, thanks!
->
->Couple of points:
-> - i'm thinking that maybe at a later point, as more dell platforms are g=
-etting added, we can re-organize the device trees, e=2Eg=2E have a common '=
-dell-xps=2Edtsi' which gets inherited by specific platforms
-> - just noticed that the firmware paths point to something like "=2E=2E=
-=2E/dell/tributo/=2E=2E=2E"=2E Should we reconsider these too? Maybe someth=
-ing like "=2E=2E=2E/dell/xps/=2E=2E=2E" would be better?
->
->---
->Thanks & Best Regards, Laurentiu
->
->> Thanks,
->> Alex
->>=20
->>>=20
->>> Thanks again for the support=2E
->>>=20
->>> Bryan Kemp
->>> Architect - Linux OS Engineering
->>>=20
->>>=20
->>> Internal Use - Confidential
->>> -----Original Message-----
->>> From: Aleksandrs Vinarskis <alex=2Evinarskis@gmail=2Ecom>
->>> Sent: Monday, September 30, 2024 2:24 PM
->>> To: Laurentiu Tudor <tudor=2Elaurentiu=2Eoss@gmail=2Ecom>
->>> Cc: Bjorn Andersson <andersson@kernel=2Eorg>; Krzysztof Kozlowski <krz=
-ysztof=2Ekozlowski@linaro=2Eorg>; Dmitry Baryshkov <dmitry=2Ebaryshkov@lina=
-ro=2Eorg>; linux-arm-msm@vger=2Ekernel=2Eorg; devicetree@vger=2Ekernel=2Eor=
-g; linux-kernel@vger=2Ekernel=2Eorg; Tudor, Laurentiu <Laurentiu=2ETudor1@d=
-ell=2Ecom>; Konrad Dybcio <konradybcio@kernel=2Eorg>; Rob Herring <robh@ker=
-nel=2Eorg>; Krzysztof Kozlowski <krzk+dt@kernel=2Eorg>; Conor Dooley <conor=
-+dt@kernel=2Eorg>; Rob Clark <robdclark@gmail=2Ecom>; Peter de Kraker <pete=
-rdekraker@umito=2Enl>; Kemp, Bryan <Bryan_Kemp@Dell=2Ecom>
->>> Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add support for X1-based=
- Dell XPS 13 9345
->>>=20
->>>=20
->>> [EXTERNAL EMAIL]
->>>=20
->>> On Mon, 30 Sept 2024 at 20:26, Laurentiu Tudor <tudor=2Elaurentiu=2Eos=
-s@gmail=2Ecom> wrote:
->>>>=20
->>>> Hi Alex,
->>>>=20
->>>> Thanks for this! Comment inline=2E
->>>>=20
->>>> On 9/21/24 19:33, Aleksandrs Vinarskis wrote:
->>>>> Initial support for Dell XPS 9345 13" 2024 (Tributo) based on X1E801=
-00=2E
->>>>>=20
->>>>> Working:
->>>>> * Touchpad
->>>>> * Keyboard (only post suspend&resume, i2c-hid patch WIP)
->>>>> * eDP, with brightness control
->>>>> * NVME
->>>>> * USB Type-C ports in USB2/USB3 (one orientation)
->>>>> * WiFi
->>>>> * GPU/aDSP/cDSP firmware loading (requires binaries from Windows)
->>>>> * Lid switch
->>>>> * Sleep/suspend, nothing visibly broken on resume
->>>>>=20
->>>>> Not working:
->>>>> * Speakers (WIP, pin guessing, x4 WSA8845)
->>>>> * Microphones (WIP, pin guessing)
->>>>> * Fingerprint Reader (WIP, USB MP with ptn3222)
->>>>> * USB as DP/USB3 (WIP, PS8830 based)
->>>>> * Camera
->>>>> * Battery Info
->>>>>=20
->>>>> Should be working, but cannot be tested due to lack of hw:
->>>>> * Higher res OLED, higher res IPS panels
->>>>> * Touchscreen
->>>>>=20
->>>>> Signed-off-by: Aleksandrs Vinarskis <alex=2Evinarskis@gmail=2Ecom>
->>>>> ---
->>>>>    arch/arm64/boot/dts/qcom/Makefile             |   1 +
->>>>>    =2E=2E=2E/dts/qcom/x1e80100-dell-tributo-13=2Edts     | 860 +++++=
-+++++++++++++
->>>>=20
->>>>=20
->>>> Could you please use the marketing name for the device tree file name
->>>> & machine compatible, e=2Eg=2E "x1e80100-dell-xps13-9345=2Edts" for t=
-he dts
->>>> file and "dell,xps13-9345" for the compat? I'm thinking that this wil=
-l
->>>> help people to identify it more easily=2E
->>>=20
->>> Hi,
->>>=20
->>> Even though I agree that it may be easier to identify for a non-develo=
-per, I am a bit skeptical as Dell has a pretty weird naming convention whic=
-h sometimes results in the name being non-unique=2E
->>> In particular case - 9345 - 9 stands for XPS series, 3 stands for 13",=
- and 45 would typically be the last digit of year + 0 (so 40), but with the=
- introduction of last year's ''13 Plus"series they added a 5=2E At present,=
- this is unique, however in 10 years it may not be=2E
->>>=20
->>> I have recently hit this issue when working on Dell XPS 15" 2024 (9530=
-), which has the same model number as Dell XPS 15" 2013 and led to huge con=
-fusions=2E Only way to distinguish them is by codename ('fiorano' for the n=
-ewer one), or using a complete name including the year=2E=2E=2E The codenam=
-e on the other hand is easily searchable both in the source code and online=
-=2E
->>>=20
->>> I tried to browse the source code for existing notation, but didn't fi=
-nd anything strongly supporting one or another way, so decided to follow Mi=
-crosoft Surface's example with codenames ('romulus')=2E
->>> Codenaming is also imperfect though, as in Dell's case it typically re=
-fers to chassis, rather than _the_ particular device, which typically lasts=
- several years=2E Typically throughout chassis generation internals stay +/=
-- the same, but we can't know if any of the changes would be breaking=2E Pe=
-rhaps then, `x1e80100-dell-tributo-9345` and `dell,tributo-9345` respective=
-ly, as this would be the shortest yet most complete description? 'Tributo' =
-already implies its XPS 13" and chassis variation (touchar, hidden trackpad=
- etc etc), '9345' implies XPS 13" of 2024 (?) and in combination with chass=
-is variant pinpoints the model=2E
->>> Otherwise, if it's strongly desired to use marketing names it can be r=
-educed down to `x1e80100-dell-9345=2Edts` and `dell,9345` altogether as
->>> 9345 implies it being both 'XPS' series and 13", and we can hope that =
-by 2034 Dell won't repeat the same mistake with naming=2E Curious to hear m=
-aintainers' opinions as well=2E
->>>=20
->>> P=2ES=2E I've sent the V3 version of the series, it probably makes sen=
-se to move this conversation there for visibility=2E
->>>=20
->>> Alex
->>>=20
->>>>=20
->>>> ---
->>>> Thanks & Best Regards, Laurentiu
->>>>=20
->>>>>    2 files changed, 861 insertions(+)
->>>>>    create mode 100644
->>>>> arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13=2Edts
->>>>=20
->>>>=20
->>>>=20
->>>>> diff --git a/arch/arm64/boot/dts/qcom/Makefile
->>>>> b/arch/arm64/boot/dts/qcom/Makefile
->>>>> index ae002c7cf126=2E=2E111c589d6bae 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/Makefile
->>>>> +++ b/arch/arm64/boot/dts/qcom/Makefile
->>>>> @@ -271,6 +271,7 @@ dtb-$(CONFIG_ARCH_QCOM)   +=3D sm8650-qrd=2Edtb
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e78100-lenovo-thinkpad-t14s=2E=
-dtb
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e80100-asus-vivobook-s15=2Edtb
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e80100-crd=2Edtb
->>>>> +dtb-$(CONFIG_ARCH_QCOM)      +=3D x1e80100-dell-tributo-13=2Edtb
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e80100-lenovo-yoga-slim7x=2Edt=
-b
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e80100-microsoft-romulus13=2Ed=
-tb
->>>>>    dtb-$(CONFIG_ARCH_QCOM)     +=3D x1e80100-microsoft-romulus15=2Ed=
-tb
->>>>> diff --git a/arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13=2Edts
->>>>> b/arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13=2Edts
->>>>> new file mode 100644
->>>>> index 000000000000=2E=2Eec04b64f9558
->>>>> --- /dev/null
->>>>> +++ b/arch/arm64/boot/dts/qcom/x1e80100-dell-tributo-13=2Edts
->>>>> @@ -0,0 +1,860 @@
->>>>> +// SPDX-License-Identifier: BSD-3-Clause
->>>>> +/*
->>>>> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc=2E All rights=
- reserved=2E
->>>>> + * Copyright (c) 2024 Aleksandrs Vinarskis
->>>>> +<alex=2Evinarskis@gmail=2Ecom>  */
->>>>> +
->>>>> +/dts-v1/;
->>>>> +
->>>>> +#include <dt-bindings/gpio/gpio=2Eh>
->>>>> +#include <dt-bindings/input/gpio-keys=2Eh> #include
->>>>> +<dt-bindings/input/input=2Eh> #include <dt-bindings/leds/common=2Eh=
->
->>>>> +#include <dt-bindings/regulator/qcom,rpmh-regulator=2Eh>
->>>>> +
->>>>> +#include "x1e80100=2Edtsi"
->>>>> +#include "x1e80100-pmics=2Edtsi"
->>>>> +
->>>>> +/ {
->>>>> +     model =3D "Dell XPS 13 9345";
->>>>> +     compatible =3D "dell,tributo-13", "qcom,x1e80100";
->>>>> +     chassis-type =3D "laptop";
->>>>> +
->>>>> +     gpio-keys {
->>>>> +             compatible =3D "gpio-keys";
->>>>> +
->>>>> +             pinctrl-0 =3D <&hall_int_n_default>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +
->>>>> +             switch-lid {
->>>>> +                     gpios =3D <&tlmm 92 GPIO_ACTIVE_LOW>;
->>>>> +                     linux,input-type =3D <EV_SW>;
->>>>> +                     linux,code =3D <SW_LID>;
->>>>> +                     wakeup-source;
->>>>> +                     wakeup-event-action =3D <EV_ACT_DEASSERTED>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     leds {
->>>>> +             compatible =3D "gpio-leds";
->>>>> +
->>>>> +             pinctrl-names =3D "default";
->>>>> +             pinctrl-0 =3D <&cam_indicator_en>;
->>>>> +
->>>>> +             led-camera-indicator {
->>>>> +                     label =3D "white:camera-indicator";
->>>>> +                     function =3D LED_FUNCTION_INDICATOR;
->>>>> +                     color =3D <LED_COLOR_ID_WHITE>;
->>>>> +                     gpios =3D <&tlmm 110 GPIO_ACTIVE_HIGH>;
->>>>> +                     linux,default-trigger =3D "none";
->>>>> +                     default-state =3D "off";
->>>>> +                     /* Reuse as a panic indicator until we get a "=
-camera on" trigger */
->>>>> +                     panic-indicator;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     pmic-glink {
->>>>> +             compatible =3D "qcom,x1e80100-pmic-glink",
->>>>> +                          "qcom,sm8550-pmic-glink",
->>>>> +                          "qcom,pmic-glink";
->>>>> +             orientation-gpios =3D <&tlmm 121 GPIO_ACTIVE_HIGH>,
->>>>> +                                 <&tlmm 123 GPIO_ACTIVE_HIGH>;
->>>>> +             #address-cells =3D <1>;
->>>>> +             #size-cells =3D <0>;
->>>>> +
->>>>> +             /* Right-side USB Type-C port */
->>>>> +             connector@0 {
->>>>> +                     compatible =3D "usb-c-connector";
->>>>> +                     reg =3D <0>;
->>>>> +                     power-role =3D "dual";
->>>>> +                     data-role =3D "dual";
->>>>> +
->>>>> +                     ports {
->>>>> +                             #address-cells =3D <1>;
->>>>> +                             #size-cells =3D <0>;
->>>>> +
->>>>> +                             port@0 {
->>>>> +                                     reg =3D <0>;
->>>>> +
->>>>> +                                     pmic_glink_ss0_hs_in: endpoint=
+> On Mon, 2024-09-30 at 16:09 +0100, Jonathan Cameron wrote:
+> > On Mon, 30 Sep 2024 15:22:01 +0200
+> > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> >  =20
+> > > On 30.09.2024 09:20, Nuno S=C3=A1 wrote: =20
+> > > > On Sun, 2024-09-29 at 11:59 +0100, Jonathan Cameron wrote:=C2=A0  =
+=20
+> > > > > On Sat, 28 Sep 2024 14:20:29 +0200
+> > > > > Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> > > > > =C2=A0  =20
+> > > > > > On 25/09/2024 13:55, Nuno S=C3=A1 wrote:=C2=A0  =20
+> > > > > > > On Wed, 2024-09-25 at 09:22 +0200, Krzysztof Kozlowski wrote:=
+=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > On 24/09/2024 14:27, Nuno S=C3=A1 wrote:=C2=A0=C2=A0=C2=A0 =
+ =20
+> > > > > > > > > On Tue, 2024-09-24 at 10:02 +0200, Krzysztof Kozlowski wr=
+ote:=C2=A0=C2=A0=C2=A0 =20
+> > > > > > > > > > On 23/09/2024 17:50, Angelo Dureghello wrote:=C2=A0=C2=
+=A0=C2=A0  =20
+> > > > > > > > > > > Hi Krzysztof,
+> > > > > > > > > > >=20
+> > > > > > > > > > > On 22/09/24 23:02, Krzysztof Kozlowski wrote:=C2=A0=
+=C2=A0=C2=A0  =20
+> > > > > > > > > > > > On Thu, Sep 19, 2024 at 11:20:00AM +0200, Angelo
+> > > > > > > > > > > > Dureghello
+> > > > > > > > > > > > wrote:=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > There is a version AXI DAC IP block (for FPGAs) t=
+hat
+> > > > > > > > > > > > > provides
+> > > > > > > > > > > > > a physical bus for AD3552R and similar chips, and=
+ acts
+> > > > > > > > > > > > > as
+> > > > > > > > > > > > > an SPI controller.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > For this case, the binding is modified to include=
+ some
+> > > > > > > > > > > > > additional properties.
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > Signed-off-by: Angelo Dureghello
+> > > > > > > > > > > > > <adureghello@baylibre.com>
+> > > > > > > > > > > > > ---
+> > > > > > > > > > > > > =C2=A0 .../devicetree/bindings/iio/dac/adi,ad3552=
+r.yaml=C2=A0=C2=A0 |
+> > > > > > > > > > > > > 42
+> > > > > > > > > > > > > ++++++++++++++++++++++
+> > > > > > > > > > > > > =C2=A0 1 file changed, 42 insertions(+)
+> > > > > > > > > > > > >=20
+> > > > > > > > > > > > > diff --git
+> > > > > > > > > > > > > a/Documentation/devicetree/bindings/iio/dac/adi,a=
+d3552r.
+> > > > > > > > > > > > > yaml
+> > > > > > > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,a=
+d3552r.
+> > > > > > > > > > > > > yaml
+> > > > > > > > > > > > > index 41fe00034742..aca4a41c2633 100644
+> > > > > > > > > > > > > ---
+> > > > > > > > > > > > > a/Documentation/devicetree/bindings/iio/dac/adi,a=
+d3552r.
+> > > > > > > > > > > > > yaml
+> > > > > > > > > > > > > +++
+> > > > > > > > > > > > > b/Documentation/devicetree/bindings/iio/dac/adi,a=
+d3552r.
+> > > > > > > > > > > > > yaml
+> > > > > > > > > > > > > @@ -60,6 +60,18 @@ properties:
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 $ref: /schemas/typ=
+es.yaml#/definitions/uint32
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 enum: [0, 1, 2, 3]
+> > > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > > +=C2=A0 io-backends:
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 description: The iio backend =
+reference.
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 An example backen=
+d can be found at
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0
+> > > > > > > > > > > > > https://analogdevicesinc.github.io/hdl/library/ax=
+i_ad3552r/index.html
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 maxItems: 1
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +=C2=A0 adi,synchronous-mode:
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 description: Enable waiting f=
+or external
+> > > > > > > > > > > > > synchronization
+> > > > > > > > > > > > > signal.
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 Some AXI IP confi=
+guration can implement a dual-IP
+> > > > > > > > > > > > > layout,
+> > > > > > > > > > > > > with
+> > > > > > > > > > > > > internal
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 wirings for strea=
+ming synchronization.
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 type: boolean
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0 '#address-cells':
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: 1
+> > > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > > @@ -128,6 +140,7 @@ patternProperties:
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 - custom-output-range-config
+> > > > > > > > > > > > > =C2=A0=20
+> > > > > > > > > > > > > =C2=A0 allOf:
+> > > > > > > > > > > > > +=C2=A0 - $ref: /schemas/spi/spi-peripheral-props=
+.yaml#
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0 - if:
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 proper=
+ties:
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 compatible:
+> > > > > > > > > > > > > @@ -238,4 +251,33 @@ examples:
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 };
+> > > > > > > > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 };
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +=C2=A0 - |
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0 axi_dac: spi@44a70000 {
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 compa=
+tible =3D "adi,axi-ad3552r";=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > > > That is either redundant or entire example should g=
+o to
+> > > > > > > > > > > > the
+> > > > > > > > > > > > parent
+> > > > > > > > > > > > node,
+> > > > > > > > > > > > if this device is fixed child of complex device (IO=
+W,
+> > > > > > > > > > > > adi,ad3552r
+> > > > > > > > > > > > cannot
+> > > > > > > > > > > > be used outside of adi,axi-ad3552r).=C2=A0=C2=A0=C2=
+=A0  =20
+> > > > > > > > > > >=20
+> > > > > > > > > > > ad3552r can still be used by a generic "classic" spi
+> > > > > > > > > > > controller (SCLK/CS/MISO) but at a slower samplerate,=
+ fpga
+> > > > > > > > > > > controller only (axi-ad3552r) can reach 33MUPS.=C2=A0=
+=C2=A0=C2=A0  =20
+> > > > > > > > > >=20
+> > > > > > > > > > OK, then this is just redundant. Drop the node. Parent =
+example
+> > > > > > > > > > should
+> > > > > > > > > > contain the children, though.=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > > =C2=A0=C2=A0  =20
+> > > > > > > > > > > > =C2=A0=C2=A0  =20
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg =
+=3D <0x44a70000 0x1000>;
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dmas =
+=3D <&dac_tx_dma 0>;
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dma-n=
+ames =3D "tx";
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #io-b=
+ackend-cells =3D <0>;
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 clock=
+s =3D <&ref_clk>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #addr=
+ess-cells =3D <1>;
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 #size=
+-cells =3D <0>;
+> > > > > > > > > > > > > +
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 dac@0=
  {
->>>>> +                                             remote-endpoint =3D <&=
-usb_1_ss0_dwc3_hs>;
->>>>> +                                     };
->>>>> +                             };
->>>>> +
->>>>> +                             port@1 {
->>>>> +                                     reg =3D <1>;
->>>>> +
->>>>> +                                     pmic_glink_ss0_ss_in: endpoint=
- {
->>>>> +                                             remote-endpoint =3D <&=
-usb_1_ss0_qmpphy_out>;
->>>>> +                                     };
->>>>> +                             };
->>>>> +                     };
->>>>> +             };
->>>>> +
->>>>> +             /* Left-side USB Type-C port */
->>>>> +             connector@1 {
->>>>> +                     compatible =3D "usb-c-connector";
->>>>> +                     reg =3D <1>;
->>>>> +                     power-role =3D "dual";
->>>>> +                     data-role =3D "dual";
->>>>> +
->>>>> +                     ports {
->>>>> +                             #address-cells =3D <1>;
->>>>> +                             #size-cells =3D <0>;
->>>>> +
->>>>> +                             port@0 {
->>>>> +                                     reg =3D <0>;
->>>>> +
->>>>> +                                     pmic_glink_ss1_hs_in: endpoint=
- {
->>>>> +                                             remote-endpoint =3D <&=
-usb_1_ss1_dwc3_hs>;
->>>>> +                                     };
->>>>> +                             };
->>>>> +
->>>>> +                             port@1 {
->>>>> +                                     reg =3D <1>;
->>>>> +
->>>>> +                                     pmic_glink_ss1_ss_in: endpoint=
- {
->>>>> +                                             remote-endpoint =3D <&=
-usb_1_ss1_qmpphy_out>;
->>>>> +                                     };
->>>>> +                             };
->>>>> +                     };
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     reserved-memory {
->>>>> +             linux,cma {
->>>>> +                     compatible =3D "shared-dma-pool";
->>>>> +                     size =3D <0x0 0x8000000>;
->>>>> +                     reusable;
->>>>> +                     linux,cma-default;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     vreg_edp_3p3: regulator-edp-3p3 {
->>>>> +             compatible =3D "regulator-fixed";
->>>>> +
->>>>> +             regulator-name =3D "VREG_EDP_3P3";
->>>>> +             regulator-min-microvolt =3D <3300000>;
->>>>> +             regulator-max-microvolt =3D <3300000>;
->>>>> +
->>>>> +             gpio =3D <&tlmm 70 GPIO_ACTIVE_HIGH>;
->>>>> +             enable-active-high;
->>>>> +
->>>>> +             pinctrl-0 =3D <&edp_reg_en>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +
->>>>> +             regulator-boot-on;
->>>>> +     };
->>>>> +
->>>>> +     vreg_nvme: regulator-nvme {
->>>>> +             compatible =3D "regulator-fixed";
->>>>> +
->>>>> +             regulator-name =3D "VREG_NVME_3P3";
->>>>> +             regulator-min-microvolt =3D <3300000>;
->>>>> +             regulator-max-microvolt =3D <3300000>;
->>>>> +
->>>>> +             gpio =3D <&tlmm 18 GPIO_ACTIVE_HIGH>;
->>>>> +             enable-active-high;
->>>>> +
->>>>> +             pinctrl-0 =3D <&nvme_reg_en>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +     };
->>>>> +
->>>>> +     vreg_vph_pwr: regulator-vph-pwr {
->>>>> +             compatible =3D "regulator-fixed";
->>>>> +
->>>>> +             regulator-name =3D "vph_pwr";
->>>>> +             regulator-min-microvolt =3D <3700000>;
->>>>> +             regulator-max-microvolt =3D <3700000>;
->>>>> +
->>>>> +             regulator-always-on;
->>>>> +             regulator-boot-on;
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&apps_rsc {
->>>>> +     regulators-0 {
->>>>> +             compatible =3D "qcom,pm8550-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "b";
->>>>> +             vdd-bob1-supply =3D <&vreg_vph_pwr>;
->>>>> +             vdd-bob2-supply =3D <&vreg_vph_pwr>;
->>>>> +             vdd-l1-l4-l10-supply =3D <&vreg_s4c_1p8>;
->>>>> +             vdd-l2-l13-l14-supply =3D <&vreg_bob1>;
->>>>> +             vdd-l5-l16-supply =3D <&vreg_bob1>;
->>>>> +             vdd-l6-l7-supply =3D <&vreg_bob2>;
->>>>> +             vdd-l8-l9-supply =3D <&vreg_bob1>;
->>>>> +             vdd-l12-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l15-supply =3D <&vreg_s4c_1p8>;
->>>>> +             vdd-l17-supply =3D <&vreg_bob2>;
->>>>> +
->>>>> +             vreg_bob1: bob1 {
->>>>> +                     regulator-name =3D "vreg_bob1";
->>>>> +                     regulator-min-microvolt =3D <3008000>;
->>>>> +                     regulator-max-microvolt =3D <3960000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_bob2: bob2 {
->>>>> +                     regulator-name =3D "vreg_bob2";
->>>>> +                     regulator-min-microvolt =3D <2504000>;
->>>>> +                     regulator-max-microvolt =3D <3008000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l2b_3p0: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2b_3p0";
->>>>> +                     regulator-min-microvolt =3D <3072000>;
->>>>> +                     regulator-max-microvolt =3D <3072000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l4b_1p8: ldo4 {
->>>>> +                     regulator-name =3D "vreg_l4b_1p8";
->>>>> +                     regulator-min-microvolt =3D <1800000>;
->>>>> +                     regulator-max-microvolt =3D <1800000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l6b_1p8: ldo6 {
->>>>> +                     regulator-name =3D "vreg_l6b_1p8";
->>>>> +                     regulator-min-microvolt =3D <1800000>;
->>>>> +                     regulator-max-microvolt =3D <2960000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l8b_3p0: ldo8 {
->>>>> +                     regulator-name =3D "vreg_l8b_3p0";
->>>>> +                     regulator-min-microvolt =3D <3072000>;
->>>>> +                     regulator-max-microvolt =3D <3072000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l9b_2p9: ldo9 {
->>>>> +                     regulator-name =3D "vreg_l9b_2p9";
->>>>> +                     regulator-min-microvolt =3D <2960000>;
->>>>> +                     regulator-max-microvolt =3D <2960000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l12b_1p2: ldo12 {
->>>>> +                     regulator-name =3D "vreg_l12b_1p2";
->>>>> +                     regulator-min-microvolt =3D <1200000>;
->>>>> +                     regulator-max-microvolt =3D <1200000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l13b_3p0: ldo13 {
->>>>> +                     regulator-name =3D "vreg_l13b_3p0";
->>>>> +                     regulator-min-microvolt =3D <3072000>;
->>>>> +                     regulator-max-microvolt =3D <3072000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l14b_3p0: ldo14 {
->>>>> +                     regulator-name =3D "vreg_l14b_3p0";
->>>>> +                     regulator-min-microvolt =3D <3072000>;
->>>>> +                     regulator-max-microvolt =3D <3072000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l15b_1p8: ldo15 {
->>>>> +                     regulator-name =3D "vreg_l15b_1p8";
->>>>> +                     regulator-min-microvolt =3D <1800000>;
->>>>> +                     regulator-max-microvolt =3D <1800000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l17b_2p5: ldo17 {
->>>>> +                     regulator-name =3D "vreg_l17b_2p5";
->>>>> +                     regulator-min-microvolt =3D <2504000>;
->>>>> +                     regulator-max-microvolt =3D <2504000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-1 {
->>>>> +             compatible =3D "qcom,pm8550ve-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "c";
->>>>> +             vdd-l1-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l2-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-l3-supply =3D <&vreg_s1f_0p7>;
->>>>> +
->>>>> +             vreg_s4c_1p8: smps4 {
->>>>> +                     regulator-name =3D "vreg_s4c_1p8";
->>>>> +                     regulator-min-microvolt =3D <1856000>;
->>>>> +                     regulator-max-microvolt =3D <2000000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l1c_1p2: ldo1 {
->>>>> +                     regulator-name =3D "vreg_l1c_1p2";
->>>>> +                     regulator-min-microvolt =3D <1200000>;
->>>>> +                     regulator-max-microvolt =3D <1200000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l2c_0p8: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2c_0p8";
->>>>> +                     regulator-min-microvolt =3D <880000>;
->>>>> +                     regulator-max-microvolt =3D <880000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l3c_0p9: ldo3 {
->>>>> +                     regulator-name =3D "vreg_l3c_0p9";
->>>>> +                     regulator-min-microvolt =3D <920000>;
->>>>> +                     regulator-max-microvolt =3D <920000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-2 {
->>>>> +             compatible =3D "qcom,pmc8380-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "d";
->>>>> +             vdd-l1-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-l2-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-l3-supply =3D <&vreg_s4c_1p8>;
->>>>> +             vdd-s1-supply =3D <&vreg_vph_pwr>;
->>>>> +
->>>>> +             vreg_l1d_0p8: ldo1 {
->>>>> +                     regulator-name =3D "vreg_l1d_0p8";
->>>>> +                     regulator-min-microvolt =3D <880000>;
->>>>> +                     regulator-max-microvolt =3D <880000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l2d_0p9: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2d_0p9";
->>>>> +                     regulator-min-microvolt =3D <912000>;
->>>>> +                     regulator-max-microvolt =3D <912000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l3d_1p8: ldo3 {
->>>>> +                     regulator-name =3D "vreg_l3d_1p8";
->>>>> +                     regulator-min-microvolt =3D <1800000>;
->>>>> +                     regulator-max-microvolt =3D <1800000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-3 {
->>>>> +             compatible =3D "qcom,pmc8380-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "e";
->>>>> +             vdd-l2-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-l3-supply =3D <&vreg_s5j_1p2>;
->>>>> +
->>>>> +             vreg_l2e_0p8: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2e_0p8";
->>>>> +                     regulator-min-microvolt =3D <880000>;
->>>>> +                     regulator-max-microvolt =3D <880000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l3e_1p2: ldo3 {
->>>>> +                     regulator-name =3D "vreg_l3e_1p2";
->>>>> +                     regulator-min-microvolt =3D <1200000>;
->>>>> +                     regulator-max-microvolt =3D <1200000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-4 {
->>>>> +             compatible =3D "qcom,pmc8380-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "f";
->>>>> +             vdd-l1-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l2-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l3-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-s1-supply =3D <&vreg_vph_pwr>;
->>>>> +
->>>>> +             vreg_s1f_0p7: smps1 {
->>>>> +                     regulator-name =3D "vreg_s1f_0p7";
->>>>> +                     regulator-min-microvolt =3D <700000>;
->>>>> +                     regulator-max-microvolt =3D <1100000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-6 {
->>>>> +             compatible =3D "qcom,pm8550ve-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "i";
->>>>> +             vdd-l1-supply =3D <&vreg_s4c_1p8>;
->>>>> +             vdd-l2-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l3-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-s1-supply =3D <&vreg_vph_pwr>;
->>>>> +             vdd-s2-supply =3D <&vreg_vph_pwr>;
->>>>> +
->>>>> +             vreg_s1i_0p9: smps1 {
->>>>> +                     regulator-name =3D "vreg_s1i_0p9";
->>>>> +                     regulator-min-microvolt =3D <900000>;
->>>>> +                     regulator-max-microvolt =3D <920000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_s2i_1p0: smps2 {
->>>>> +                     regulator-name =3D "vreg_s2i_1p0";
->>>>> +                     regulator-min-microvolt =3D <1000000>;
->>>>> +                     regulator-max-microvolt =3D <1100000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l1i_1p8: ldo1 {
->>>>> +                     regulator-name =3D "vreg_l1i_1p8";
->>>>> +                     regulator-min-microvolt =3D <1800000>;
->>>>> +                     regulator-max-microvolt =3D <1800000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l2i_1p2: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2i_1p2";
->>>>> +                     regulator-min-microvolt =3D <1200000>;
->>>>> +                     regulator-max-microvolt =3D <1200000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l3i_0p8: ldo3 {
->>>>> +                     regulator-name =3D "vreg_l3i_0p8";
->>>>> +                     regulator-min-microvolt =3D <880000>;
->>>>> +                     regulator-max-microvolt =3D <880000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     regulators-7 {
->>>>> +             compatible =3D "qcom,pm8550ve-rpmh-regulators";
->>>>> +             qcom,pmic-id =3D "j";
->>>>> +             vdd-l1-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-l2-supply =3D <&vreg_s5j_1p2>;
->>>>> +             vdd-l3-supply =3D <&vreg_s1f_0p7>;
->>>>> +             vdd-s5-supply =3D <&vreg_vph_pwr>;
->>>>> +
->>>>> +             vreg_s5j_1p2: smps5 {
->>>>> +                     regulator-name =3D "vreg_s5j_1p2";
->>>>> +                     regulator-min-microvolt =3D <1256000>;
->>>>> +                     regulator-max-microvolt =3D <1304000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l1j_0p9: ldo1 {
->>>>> +                     regulator-name =3D "vreg_l1j_0p9";
->>>>> +                     regulator-min-microvolt =3D <912000>;
->>>>> +                     regulator-max-microvolt =3D <912000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l2j_1p2: ldo2 {
->>>>> +                     regulator-name =3D "vreg_l2j_1p2";
->>>>> +                     regulator-min-microvolt =3D <1256000>;
->>>>> +                     regulator-max-microvolt =3D <1256000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +
->>>>> +             vreg_l3j_0p8: ldo3 {
->>>>> +                     regulator-name =3D "vreg_l3j_0p8";
->>>>> +                     regulator-min-microvolt =3D <880000>;
->>>>> +                     regulator-max-microvolt =3D <880000>;
->>>>> +                     regulator-initial-mode =3D <RPMH_REGULATOR_MOD=
-E_HPM>;
->>>>> +             };
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&gpu {
->>>>> +     status =3D "okay";
->>>>> +
->>>>> +     zap-shader {
->>>>> +             firmware-name =3D "qcom/x1e80100/dell/tributo/qcdxkmsu=
-c8380=2Embn";
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&i2c0 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +     status =3D "okay";
->>>>> +
->>>>> +     keyboard@5 {
->>>>> +             compatible =3D "hid-over-i2c";
->>>>> +             reg =3D <0x5>;
->>>>> +
->>>>> +             hid-descr-addr =3D <0x20>;
->>>>> +             interrupts-extended =3D <&tlmm 67 IRQ_TYPE_LEVEL_LOW>;
->>>>> +
->>>>> +             pinctrl-0 =3D <&kybd_default>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +
->>>>> +             wakeup-source;
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&i2c3 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +     status =3D "disabled";
->>>>> +     /* PS8830 Retimer @0x8 */
->>>>> +     /* Unknown device @0x9 */
->>>>> +};
->>>>> +
->>>>> +&i2c5 {
->>>>> +     clock-frequency =3D <100000>;
->>>>> +     status =3D "disabled";
->>>>> +     /* Unknown device @0x3b */
->>>>> +};
->>>>> +
->>>>> +&i2c7 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +     status =3D "disabled";
->>>>> +     /* PS8830 Retimer @0x8 */
->>>>> +     /* Unknown device @0x9 */
->>>>> +};
->>>>> +
->>>>> +&i2c8 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +
->>>>> +     touchscreen@0 {
->>>>> +             compatible =3D "hid-over-i2c";
->>>>> +             reg =3D <0x0>;
->>>>> +
->>>>> +             hid-descr-addr =3D <0x1>;
->>>>> +             interrupts-extended =3D <&tlmm 51 IRQ_TYPE_LEVEL_LOW>;
->>>>> +
->>>>> +             pinctrl-0 =3D <&ts0_default>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&i2c9 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +     status =3D "disabled";
->>>>> +     /* USB3 retimer device @0x4f */ };
->>>>> +
->>>>> +&i2c17 {
->>>>> +     clock-frequency =3D <400000>;
->>>>> +     status =3D "okay";
->>>>> +
->>>>> +     touchpad@2c {
->>>>> +             compatible =3D "hid-over-i2c";
->>>>> +             reg =3D <0x2c>;
->>>>> +
->>>>> +             hid-descr-addr =3D <0x20>;
->>>>> +             interrupts-extended =3D <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
->>>>> +
->>>>> +             pinctrl-0 =3D <&tpad_default>;
->>>>> +             pinctrl-names =3D "default";
->>>>> +
->>>>> +             wakeup-source;
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&mdss {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&mdss_dp3 {
->>>>> +     compatible =3D "qcom,x1e80100-dp";
->>>>> +     /delete-property/ #sound-dai-cells;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +
->>>>> +     aux-bus {
->>>>> +             panel {
->>>>> +                     /* 1920x1200 IPS panel is SHP1593, PNP09FF com=
-patible */
->>>>> +                     compatible =3D "edp-panel";
->>>>> +                     power-supply =3D <&vreg_edp_3p3>;
->>>>> +
->>>>> +                     port {
->>>>> +                             edp_panel_in: endpoint {
->>>>> +                                     remote-endpoint =3D <&mdss_dp3=
-_out>;
->>>>> +                             };
->>>>> +                     };
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     ports {
->>>>> +             port@1 {
->>>>> +                     reg =3D <1>;
->>>>> +
->>>>> +                     mdss_dp3_out: endpoint {
->>>>> +                             data-lanes =3D <0 1 2 3>;
->>>>> +                             link-frequencies =3D /bits/ 64
->>>>> + <1620000000 2700000000 5400000000 8100000000>;
->>>>> +
->>>>> +                             remote-endpoint =3D <&edp_panel_in>;
->>>>> +                     };
->>>>> +             };
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&mdss_dp3_phy {
->>>>> +     vdda-phy-supply =3D <&vreg_l3j_0p8>;
->>>>> +     vdda-pll-supply =3D <&vreg_l2j_1p2>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&pcie4 {
->>>>> +     perst-gpios =3D <&tlmm 146 GPIO_ACTIVE_LOW>;
->>>>> +     wake-gpios =3D <&tlmm 148 GPIO_ACTIVE_LOW>;
->>>>> +
->>>>> +     pinctrl-0 =3D <&pcie4_default>;
->>>>> +     pinctrl-names =3D "default";
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&pcie4_phy {
->>>>> +     vdda-phy-supply =3D <&vreg_l3i_0p8>;
->>>>> +     vdda-pll-supply =3D <&vreg_l3e_1p2>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&pcie6a {
->>>>> +     perst-gpios =3D <&tlmm 152 GPIO_ACTIVE_LOW>;
->>>>> +     wake-gpios =3D <&tlmm 154 GPIO_ACTIVE_LOW>;
->>>>> +
->>>>> +     vddpe-3v3-supply =3D <&vreg_nvme>;
->>>>> +
->>>>> +     pinctrl-0 =3D <&pcie6a_default>;
->>>>> +     pinctrl-names =3D "default";
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&pcie6a_phy {
->>>>> +     vdda-phy-supply =3D <&vreg_l1d_0p8>;
->>>>> +     vdda-pll-supply =3D <&vreg_l2j_1p2>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&qupv3_0 {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&qupv3_1 {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&qupv3_2 {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&remoteproc_adsp {
->>>>> +     firmware-name =3D "qcom/x1e80100/dell/tributo/qcadsp8380=2Embn=
-",
->>>>> +                     "qcom/x1e80100/dell/tributo/adsp_dtbs=2Eelf";
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&remoteproc_cdsp {
->>>>> +     firmware-name =3D "qcom/x1e80100/dell/tributo/qccdsp8380=2Embn=
-",
->>>>> +                     "qcom/x1e80100/dell/tributo/cdsp_dtbs=2Eelf";
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&smb2360_0_eusb2_repeater {
->>>>> +     vdd18-supply =3D <&vreg_l3d_1p8>;
->>>>> +     vdd3-supply =3D <&vreg_l2b_3p0>; };
->>>>> +
->>>>> +&smb2360_1_eusb2_repeater {
->>>>> +     vdd18-supply =3D <&vreg_l3d_1p8>;
->>>>> +     vdd3-supply =3D <&vreg_l14b_3p0>; };
->>>>> +
->>>>> +&tlmm {
->>>>> +     gpio-reserved-ranges =3D <44 4>,  /* SPI11 (TPM) */
->>>>> +                            <76 4>,  /* SPI19 (TZ Protected) */
->>>>> +                            <238 1>; /* UFS Reset */
->>>>> +
->>>>> +     cam_indicator_en: cam-indicator-en-state {
->>>>> +             pins =3D "gpio110";
->>>>> +             function =3D "gpio";
->>>>> +             drive-strength =3D <2>;
->>>>> +             bias-disable;
->>>>> +     };
->>>>> +
->>>>> +     edp_reg_en: edp-reg-en-state {
->>>>> +             pins =3D "gpio70";
->>>>> +             function =3D "gpio";
->>>>> +             drive-strength =3D <16>;
->>>>> +             bias-disable;
->>>>> +     };
->>>>> +
->>>>> +     hall_int_n_default: hall-int-n-state {
->>>>> +             pins =3D "gpio92";
->>>>> +             function =3D "gpio";
->>>>> +
->>>>> +             bias-disable;
->>>>> +     };
->>>>> +
->>>>> +     kybd_default: kybd-default-state {
->>>>> +             pins =3D "gpio67";
->>>>> +             function =3D "gpio";
->>>>> +             bias-pull-up;
->>>>> +     };
->>>>> +
->>>>> +     nvme_reg_en: nvme-reg-en-state {
->>>>> +             pins =3D "gpio18";
->>>>> +             function =3D "gpio";
->>>>> +             drive-strength =3D <2>;
->>>>> +             bias-disable;
->>>>> +     };
->>>>> +
->>>>> +     pcie4_default: pcie4-default-state {
->>>>> +             clkreq-n-pins {
->>>>> +                     pins =3D "gpio147";
->>>>> +                     function =3D "pcie4_clk";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +
->>>>> +             perst-n-pins {
->>>>> +                     pins =3D "gpio146";
->>>>> +                     function =3D "gpio";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-disable;
->>>>> +             };
->>>>> +
->>>>> +             wake-n-pins {
->>>>> +                     pins =3D "gpio148";
->>>>> +                     function =3D "gpio";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     pcie6a_default: pcie6a-default-state {
->>>>> +             clkreq-n-pins {
->>>>> +                     pins =3D "gpio153";
->>>>> +                     function =3D "pcie6a_clk";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +
->>>>> +             perst-n-pins {
->>>>> +                     pins =3D "gpio152";
->>>>> +                     function =3D "gpio";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-disable;
->>>>> +             };
->>>>> +
->>>>> +             wake-n-pins {
->>>>> +                     pins =3D "gpio154";
->>>>> +                     function =3D "gpio";
->>>>> +                     drive-strength =3D <2>;
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     tpad_default: tpad-default-state {
->>>>> +             disable-pins {
->>>>> +                     pins =3D "gpio38";
->>>>> +                     function =3D "gpio";
->>>>> +                     output-high;
->>>>> +             };
->>>>> +
->>>>> +             int-n-pins {
->>>>> +                     pins =3D "gpio3";
->>>>> +                     function =3D "gpio";
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +
->>>>> +             reset-n-pins {
->>>>> +                     pins =3D "gpio52";
->>>>> +                     function =3D "gpio";
->>>>> +                     bias-disable;
->>>>> +             };
->>>>> +     };
->>>>> +
->>>>> +     ts0_default: ts0-default-state {
->>>>> +             disable-pins {
->>>>> +                     pins =3D "gpio75";
->>>>> +                     function =3D "gpio";
->>>>> +                     output-high;
->>>>> +             };
->>>>> +
->>>>> +             int-n-pins {
->>>>> +                     pins =3D "gpio51";
->>>>> +                     function =3D "gpio";
->>>>> +                     bias-pull-up;
->>>>> +             };
->>>>> +
->>>>> +             reset-n-pins {
->>>>> +                     /* Technically should be High-Z input */
->>>>> +                     pins =3D "gpio48";
->>>>> +                     function =3D "gpio";
->>>>> +                     output-low;
->>>>> +                     drive-strength =3D <2>;
->>>>> +             };
->>>>> +     };
->>>>> +};
->>>>> +
->>>>> +&uart21 {
->>>>> +     compatible =3D "qcom,geni-debug-uart";
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss0_hsphy {
->>>>> +     vdd-supply =3D <&vreg_l3j_0p8>;
->>>>> +     vdda12-supply =3D <&vreg_l2j_1p2>;
->>>>> +
->>>>> +     phys =3D <&smb2360_0_eusb2_repeater>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss0_qmpphy {
->>>>> +     vdda-phy-supply =3D <&vreg_l3e_1p2>;
->>>>> +     vdda-pll-supply =3D <&vreg_l1j_0p9>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss0 {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss0_dwc3 {
->>>>> +     dr_mode =3D "host";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss0_dwc3_hs {
->>>>> +     remote-endpoint =3D <&pmic_glink_ss0_hs_in>; };
->>>>> +
->>>>> +&usb_1_ss0_qmpphy_out {
->>>>> +     remote-endpoint =3D <&pmic_glink_ss0_ss_in>; };
->>>>> +
->>>>> +&usb_1_ss1_hsphy {
->>>>> +     vdd-supply =3D <&vreg_l3j_0p8>;
->>>>> +     vdda12-supply =3D <&vreg_l2j_1p2>;
->>>>> +
->>>>> +     phys =3D <&smb2360_1_eusb2_repeater>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss1_qmpphy {
->>>>> +     vdda-phy-supply =3D <&vreg_l3e_1p2>;
->>>>> +     vdda-pll-supply =3D <&vreg_l2d_0p9>;
->>>>> +
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss1 {
->>>>> +     status =3D "okay";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss1_dwc3 {
->>>>> +     dr_mode =3D "host";
->>>>> +};
->>>>> +
->>>>> +&usb_1_ss1_dwc3_hs {
->>>>> +     remote-endpoint =3D <&pmic_glink_ss1_hs_in>; };
->>>>> +
->>>>> +&usb_1_ss1_qmpphy_out {
->>>>> +     remote-endpoint =3D <&pmic_glink_ss1_ss_in>; };
->>>>=20
->
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 compatible =3D "adi,ad3552r";
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 reg =3D <0>;
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 reset-gpios =3D <&gpio0 92 0>;=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > > > Use standard defines for GPIO flags.=C2=A0=C2=A0=C2=
+=A0  =20
+> > > > > > > > > > >=20
+> > > > > > > > > > > fixed, thanks
+> > > > > > > > > > > =C2=A0=C2=A0  =20
+> > > > > > > > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 io-backends =3D <&axi_dac>;=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > > > Why do you need to point to the parent? How much co=
+upled
+> > > > > > > > > > > > are
+> > > > > > > > > > > > these
+> > > > > > > > > > > > devices? Child pointing to parent is not usually ex=
+pected,
+> > > > > > > > > > > > because
+> > > > > > > > > > > > that's obvious.=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > > >=20
+> > > > > > > > > > >=20
+> > > > > > > > > > > "io-backends" is actually the way to refer to the bac=
+kend
+> > > > > > > > > > > module,
+> > > > > > > > > > > (used already for i.e. ad9739a),
+> > > > > > > > > > > it is needed because the backend is not only acting a=
+s spi-
+> > > > > > > > > > > controller,
+> > > > > > > > > > > but is also providing some APIs for synchronization a=
+nd bus
+> > > > > > > > > > > setup
+> > > > > > > > > > > support.=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > > > >=20
+> > > > > > > > > >=20
+> > > > > > > > > > But if backend is the parent, then this is redundant. Y=
+ou can
+> > > > > > > > > > take
+> > > > > > > > > > it
+> > > > > > > > > > from the child-parent relationship. Is this pointing to=
+ other
+> > > > > > > > > > devices
+> > > > > > > > > > (non-parent) in other ad3552r configurations?
+> > > > > > > > > > =C2=A0=C2=A0  =20
+> > > > > > > > >=20
+> > > > > > > > > The backend is a provider-consumer type of API. On the co=
+nsumer
+> > > > > > > > > side
+> > > > > > > > > (which
+> > > > > > > > > is the
+> > > > > > > > > driver the child node will probe on), we need to call
+> > > > > > > > > devm_iio_backend_get()
+> > > > > > > > > to get
+> > > > > > > > > the backend object (which obviously is the parent). For t=
+hat,
+> > > > > > > > > 'io-
+> > > > > > > > > backends'
+> > > > > > > > > is being=C2=A0=C2=A0=C2=A0  =20
+> > > > > > > >=20
+> > > > > > > > You described the driver, so how does it matter? Driver can=
+ call
+> > > > > > > > get_backend_from_parent(), right? Or
+> > > > > > > > get_backend_from_fwnode(parent)?=C2=A0=C2=A0=C2=A0  =20
+> > > > > > >=20
+> > > > > > > Well yes, just stating what the framework (also in terms of
+> > > > > > > bindings) is
+> > > > > > > expecting. Of course that on the driver side we can paper aro=
+und it
+> > > > > > > the
+> > > > > > > way we
+> > > > > > > want. But my main point was that we can only paper around it =
+if we
+> > > > > > > use
+> > > > > > > code that
+> > > > > > > is meant not to be used.
+> > > > > > >=20
+> > > > > > > And, FWIW, I was (trying) replying to your comment
+> > > > > > >=20
+> > > > > > > "You can take it from the child-parent relationship"
+> > > > > > >=20
+> > > > > > > Again, we can only do that by introducing new code or use code
+> > > > > > > that's not
+> > > > > > > meant
+> > > > > > > to be used. The way we're supposed to reference backends is by
+> > > > > > > explicitly
+> > > > > > > using
+> > > > > > > the proper FW property.
+> > > > > > >=20
+> > > > > > > Put it in another way and a completely hypothetical case. If =
+we have
+> > > > > > > a spi
+> > > > > > > controller which happens to export some clock and one of it's
+> > > > > > > peripherals
+> > > > > > > ends
+> > > > > > > up using that clock, wouldn't we still use 'clocks' to refere=
+nce
+> > > > > > > that
+> > > > > > > clock?=C2=A0=C2=A0=C2=A0  =20
+> > > > > >=20
+> > > > > > I asked how coupled are these devices. Never got the answer and=
+ you
+> > > > > > are
+> > > > > > reflecting with question. Depends. Please do not create hypothe=
+tical,
+> > > > > > generic scenarios and then apply them to your one particular op=
+posite
+> > > > > > case.=C2=A0  =20
+> > > > >=20
+> > > > > I'll throw a possible clarifying question in here.=C2=A0 Could we=
+ use this
+> > > > > device with a multimaster SPI setup such that the control is on a
+> > > > > conventional
+> > > > > SPI controller (maybe a qspi capable one), and the data plane onl=
+y goes
+> > > > > through
+> > > > > a specific purpose backend?=C2=A0 If so, then they are not tightl=
+y coupled
+> > > > > and
+> > > > > the reference makes sense.=C2=A0 Putting it another way, the diff=
+erence
+> > > > > between
+> > > > > this case and all the prior iio-backend bindings is the control a=
+nd
+> > > > > dataplanes
+> > > > > use the same pins.=C2=A0 Does that have to be the case at the hos=
+t end?=C2=A0 If
+> > > > > it
+> > > > > does,
+> > > > > then the reference isn't strictly needed and this becomes a bit l=
+ike
+> > > > > registering a single device on an spi bus or an i2c bus depending=
+ on who
+> > > > > does the registering (which is down to the parent in DT).
+> > > > > =C2=A0  =20
+> > > >=20
+> > > > So, we currently have two drivers (with a new one being added in th=
+is
+> > > > series)
+> > > > for the same device:
+> > > >=20
+> > > > 1) A SPI one tied to a typical spi controller. This is the "low spe=
+ed"
+> > > > implementation and does not use backends;
+> > > > 2) The new platform device that is connected like this to the backe=
+nd.
+> > > >=20
+> > > > So yes, my understanding (but Angelo should know better :)) is that=
+ they
+> > > > are
+> > > > tightly coupled. Putting it in another way, the new platform device=
+ is
+> > > > very much
+> > > > specific to this parent (and yeah, this is a very special usecase w=
+here
+> > > > control
+> > > > and data planes are controlled by the IIO backend) and should not e=
+xist
+> > > > with it.=C2=A0  =20
+> > >=20
+> > > ad3552r device can be coupled to the axi-ad3552r controller or to a g=
+eneric=20
+> > > spi controler.
+> > >=20
+> > > We have actually 2 drivers, SPI and platform (for AXI controller, in =
+this
+> > > patch).
+> > >=20
+> > > Scenario 1 (SPI):
+> > > ad3522r can hypotetically work with whatever simple spi controller th=
+at can
+> > > read/write registers in raw mode. On simple SPI (CS, SCLK, MOSI), due=
+ to
+> > > ad3552r
+> > > chip limitation of 66Mhz clock, the maximum 33MUPS (16 bit samples) c=
+annot
+> > > be
+> > > reached. Some QSPI DDR controller seems to be around, in that case, a=
+d3552r
+> > > may work extending the SPI driver.=20
+> > >=20
+> > > Scenario 2 (AXI):
+> > > From an hardware-only point ov view axi-ad3552r IP acts as QSPI+DDR
+> > > controller
+> > > plus some additional features for stream synchronization.
+> > > From a sowftware point of view, really different from a spi controller
+> > > driver.
+> > > It's just a backend with APIes that can be called from the child driv=
+er. =20
+> >=20
+> > Potential? scenario 3 is the one that interested me.
+> >=20
+> > ad3552 double wired to a normal SPI controller (so like option 1) and
+> > to a an offload engine (so like option 2).=C2=A0 With a few pull up res=
+istors
+> > (cs and clk?) and some care it should electrically work I think.
+> > In that case we'd need the io-backend reference because the parent
+> > would be the option 1 like SPI bus and the io-backend would not be
+> > the parent.
+> >=20
+> > _______________________
+> > Host=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MOSI=C2=A0=C2=A0=C2=A0 |--=
+-----------------\
+> > hard=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MISO 0-3|----------------\=
+=C2=A0 |
+> > QSPI=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI CLK=C2=A0=C2=A0=C2=A0=C2=
+=A0 |--------------\=C2=A0 | |
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI CS=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0 |----------\=C2=A0=C2=A0=C2=A0 | | |
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 | | |
+> > FPGA=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 | | |=C2=A0=C2=A0 |
+> > Soft=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MOSI=C2=A0=C2=A0=C2=A0 |--=
+---------|---|-|-x---|
+> > QSPI=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 SPI MISO 0-3|-----------|---|-=
+x-----|=C2=A0 DAC
+> > Offload=C2=A0=C2=A0=C2=A0 SPI CLK=C2=A0=C2=A0=C2=A0=C2=A0 |-----------|=
+---x-------|
+> > with DDR=C2=A0=C2=A0 SPI CS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |-----------x=
+-----------|
+> > _______________________|
+> >=20
+> > Makes all sorts of assumptions about the SPI controllers being designed
+> > for multi controllers on the same SPI buses but I'm not aware of a reas=
+on
+> > you can't do that.
+> >=20
+> > As the only control message that would need to go over the offload engi=
+ne
+> > would be the exit DDR (I think) that might be hard coded into a slightly
+> > simpler soft IP along with the bulk data transfer stuff.
+> >  =20
+>=20
+> Not even sure if DDR would be a problem. Right now, I __think__ we need to
+> enable DDR both the peripheral and on the backend. On the peripheral we c=
+ould
+> use the control link on the non offload controller. On the offload contro=
+ller,
+> we would set it through IIO backend and that would be a backend config an=
+d not
+> go over the bus.
+
+It's the path back to SDR that I wasn't sure about as it might need a
+DDR register write?
+
+>=20
+> To make a correction on my previous reply to Krzysztof, the HW folks made=
+ some
+> experiments with the SPI ENIGINE IP (with the offload engine) but without=
+ the
+> AXI DAC IP. So, effectively only one controller in place. That said, I'm =
+also
+> not seeing any reason why something like the above would not be possible.
+
+Conclusion / summary for Krzystoff and other DT binding
+folk. It's possible to use this with another backend (which no one has
+written the IP for yet) so I (at least) think the reference is needed
+even though the only one we have right now is also the parent.
+
+Driver wise, we could in theory poke the parent if the property isn't there
+on the off chance it is a suitable backend, but we can't assume that's
+the one in use even if it has some suitable support.  Maybe there
+is a more capable one double wired?
+
+So I'd like to keep the io-backend phandle there.
+
+Jonathan
 
 
---=20
-With best wishes
-Dmitry
+>=20
+> - Nuno S=C3=A1
+>=20
+
 
