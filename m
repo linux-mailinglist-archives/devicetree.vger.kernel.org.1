@@ -1,179 +1,121 @@
-Return-Path: <devicetree+bounces-106770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A4B298BAC4
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:15:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0254198BAD9
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 13:18:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4DA821C220A0
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:15:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34F6E1C21F4E
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 11:18:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E4AA1BF814;
-	Tue,  1 Oct 2024 11:14:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7BBE1BF339;
+	Tue,  1 Oct 2024 11:18:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MYjxCiB0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eg+8lt8Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0195B1BF7E2;
-	Tue,  1 Oct 2024 11:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2120519B3F3
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 11:18:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727781274; cv=none; b=rTMSdt7//r8Ked7plczOO1+vbns+JpcxGZyVLGBG6cO2VycLXOmuieES4/ke/3rUZwVveskDC1TIKRbEH+vmYSdEfnjPHRc4sfJ/w5khLWExLDu0XqVWDirV5rVdUPSN1hZg+Y40bmvkX3HaSlBtGNL1sIIsfnGP0aLkIZKI9Tw=
+	t=1727781524; cv=none; b=IcfKpgzLB79yfOfAorKo/wysm++Jmw9Ljw0mx4tAD5P/VQyAQvkNse2mRGvEBSH7AflDhJI/lfevV5sRY+sWH6oV0mFeIsrhJMRJ9tJ3Sy2cC6FGR+/8g0mAU/MyuAWDGXqBIAYOkjDQeGfmqciN7VJyGfsi3ZTSpwV42pd3o0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727781274; c=relaxed/simple;
-	bh=ruLyCdWUMzr5cBzM1traRkaSuN17eS+NHK9v1U2KnP0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kjAohNkOzR+kP12HqoEVwuij9uQUCrRLU7Il3zS9SQzLhXGSlxiYSD7rp+Pe8LUw4EJm73D3+GyQaeBQD8Nvm7hyrATizRTkDgI60fzNwsTnnFsp7Tlu15Qe/vVu+5ThI9r6BxHGn0ZEei/CVb1MkasFnq/78zakGUdIV5eeJF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MYjxCiB0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BDB4C4CEC6;
-	Tue,  1 Oct 2024 11:14:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727781273;
-	bh=ruLyCdWUMzr5cBzM1traRkaSuN17eS+NHK9v1U2KnP0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MYjxCiB0RrI1JP7+CtX1zX6Rai6fFBLHIdY523yHhsaMqcocO17T8mPYbL3YuTbjB
-	 XMmiGN1M4s3sVEucpVLwYcpX8LUWPsqcsnz/3UDXzPR0qXl0YsMFEQYgGDHbOMjalF
-	 ZZIZFaAmFI7LB6qvk56F6MzDKmADLko3z6N7Z09uk//m6i55ezD4YBXUUui+Xy3Sti
-	 Js8P/Q8CJE1PIkUcaZWFKv/yrS1XaJg4Q8zG9yimS6Az/OslExpxAXsXRS37SUld9H
-	 AysDKS+HWJNvjx1iEh90qigjFK43ITPyRCOJTlk2+nckP6ODuKOAwggPd/jViHMHlT
-	 oJPuiO6sw9IqQ==
-Date: Tue, 1 Oct 2024 13:14:29 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Michael Wu <michael.wu@kneron.us>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
-	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Morgan Chang <morgan.chang@kneron.us>, mvp.kutali@gmail.com
-Subject: Re: [PATCH v3 2/2] i2c: dwsignware: determine HS tHIGH and tLOW
- based on HW parameters
-Message-ID: <hk62cwc33jqxmddgdxhnqqwp6wxqwt2ovpv36mykyvxchc6tpz@2nwnhcrvbew4>
-References: <20241001082937.680372-1-michael.wu@kneron.us>
- <20241001082937.680372-3-michael.wu@kneron.us>
+	s=arc-20240116; t=1727781524; c=relaxed/simple;
+	bh=0icwQPXpYDOh3mLTMMknGBG8ooO+cXmtB/vqPjajuBI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MlamnBw8ZrA5KMfanTcVOlg/fjafRK9DQVXkzzzLTk6u2l/hLBnpILSAlsycxj6LHx9C+H8duH9BdD7uI5l1Ct9uOk1PC1nzr7B4M1/ML/oDHo3f4cT9v+wtBaOI99jAW931DXepUp1e1b9Wicb4h8JF02yiK0uWqIyaBPJROBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eg+8lt8Y; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-53993c115cfso2503867e87.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 04:18:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727781521; x=1728386321; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H1U6SzjOLd9tmaMIoGva4xG/5LpPu0blevtyOevY71Y=;
+        b=eg+8lt8YLxr+bnejVRAHXZxhyOaOWsxIq2Kiy0ePgoq45O3ee1iw1/sn4qr4+9WdTo
+         zPUXrwBDnIFUy1u3nEI0V/BiVVOxJFelJVARYj3wuSgHi05bbLf1tC/pwgd3Y3E5NZCo
+         z+FZxwifAi8un5rrYwrvlldazlNlUla5N3Ox4IEToKewoL3h4HQLDAnh0XTG3Wyq1eTx
+         DvaUTUQ0za8UT8faDAJ21ciwmti7UHeVOce8ODhqSj/UECEw/p9iJfBkK3a5PIsOnNfB
+         rkkI3bvrpY7Aga/xxGxaKjoV1B4hAhwBw6bArTONhRFnEePzo72Tm/6L4IJokbeYqA89
+         jryQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727781521; x=1728386321;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=H1U6SzjOLd9tmaMIoGva4xG/5LpPu0blevtyOevY71Y=;
+        b=spfMMD9Kl96nRf4PgOzl8de7OOJrkI2W3Eh5VIk1SWsx+Xj3BveOs8TeeeYTPeF/9r
+         aFYA/xAJMttHSh4LhGcqOyV1YgHCZnLEe8DZf3mrzjpvOsjbzxyCu4m3O4KTf4PH6Zz7
+         TdWqiPFu3CgWlnYdblwDlJo8xnLgF8qNdaSE8qy/8SgN7w+h4a7FXDqiXklvMmf/xkou
+         cUPaXGxmDMUaON6Onqbzj/FUju+Iag2Xah6MeXdnvd4erS54oztm4jeOUuCSl0pgQr9E
+         UT+Z6bP8Ly/mjk+o71lbDfjBn6yBZqMvs+Xxgvw7A4fCKp2W/EgZOx0F2Z3xqBEJUYxa
+         bnAA==
+X-Forwarded-Encrypted: i=1; AJvYcCWk6UkqvTccavHgGNAly33nCeerl2qb4mEbuLruBGqhGSKFJ2T22AC9wAG+k6nVBIltleLZUWdj/mKF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj6ej1RX8YAH2JUEZ68hrdDv5uFRZExa0Te9AmviHW3tD9nlyu
+	Bxyc9nmSPbhyz2bypnPlwaeM7vqi2KBnwKC7l7j70Fn6uAZCUKbJbqjKGGHECQSK5e34CuKNBew
+	SvM2bWbKQL3FaM4zRTaLgKZIpqn/yTtOaIUZr8CB1EbhdZHf8Gdw=
+X-Google-Smtp-Source: AGHT+IGVVP3SM9Y2lyoLaAnlnjr6mEhgDJWR/7EVr3JhTVLLX2ydx2IsKFpPjBzPzSbWiYJaSMdHQbaIhVvCr5IDT2M=
+X-Received: by 2002:a05:6512:3041:b0:52c:adc4:137c with SMTP id
+ 2adb3069b0e04-5389fc3b745mr8112536e87.20.1727781521088; Tue, 01 Oct 2024
+ 04:18:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241001082937.680372-3-michael.wu@kneron.us>
+References: <20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org>
+ <20240928-bcm63138-leds-v2-1-f6aa4d4d6ef2@linaro.org> <fmuxz5w77tfkodvntaley2b6kv2c7acgcfb6ojk3plw7g6rbdd@sahgzglndrda>
+In-Reply-To: <fmuxz5w77tfkodvntaley2b6kv2c7acgcfb6ojk3plw7g6rbdd@sahgzglndrda>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Tue, 1 Oct 2024 13:18:29 +0200
+Message-ID: <CACRpkdYqR3N0EaS64gqSfRfezsrSueSKHPbMc4A0g3hHg3y6dw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: bcm63138: Add shift register bits
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, Florian Fainelli <florian.fainelli@broadcom.com>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Michael,
+On Sat, Sep 28, 2024 at 10:05=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.o=
+rg> wrote:
+> On Sat, Sep 28, 2024 at 12:29:47AM +0200, Linus Walleij wrote:
+> > +  brcm,serial-shift-bits:
+>
+> bits is an uint32-array, so you need to limit number of items, e.g.
+> items:
+>  - minimum: 1
+>    maximum: 32
 
-On Tue, Oct 01, 2024 at 04:29:34PM GMT, Michael Wu wrote:
-> In commit 35eba185fd1a ("i2c: designware: Calculate SCL timing parameter
-> for High Speed Mode") hs_hcnt and hs_lcnt are calculated based on fixed
-> tHIGH = 160 and tLOW = 120. However, the set of these fixed values only
-> applies to the combination of hardware parameters IC_CAP_LOADING = 400pF
-> and IC_CLK_FREQ_OPTIMIZATION = 1. Outside of this combination, if these
-> fixed tHIGH = 160 and tLOW = 120 are still used, the calculated hs_hcnt
-> and hs_lcnt may not be small enough, making it impossible for the SCL
-> frequency to reach 3.4 MHz.
+OK this is what I do on the next lines:
 
-If someone is not familiar with the terms you are using this
-paragraph is completely meaningless. Can you please describe or
-at least expandi in parenthesis:
+> > +    minimum: 1
+> > +    maximum: 32
 
-  hs_hcnt
-  hs_lcnt
-  tHIGH/tLOW (this is easy, but redundancy in commit log is never
-              enough)
-  IC_CAP_LOADING
-  IC_CLK_FREQ_OPTIMIZATION
+Am I doing something wrong here? I see you have a dash
+  - minimum in your comment but when I grep through the
+existing bindings for stuff ending with -bits it seems they
+do what I do.
 
-> Section 3.15.4.5 in DesignWare DW_apb_i2b Databook v2.03 says that when
-> IC_CLK_FREQ_OPTIMIZATION = 0,
-> 
->     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
-> 		     = 120 ns for 3.4 Mbps, bus loading = 400pF
->     MIN_SCL_LOWtime = 160 ns for 3.4 Mbps, bus loading = 100pF
-> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
-> 
-> and section 3.15.4.6 says that when IC_CLK_FREQ_OPTIMIZATION = 1,
-> 
->     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
-> 		     = 160 ns for 3.4 Mbps, bus loading = 400pF
->     MIN_SCL_LOWtime = 120 ns for 3.4 Mbps, bus loading = 100pF
-> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
-> 
-> In order to calculate more accurate hs_hcnt amd hs_lcnt, two hardware
-> parameters IC_CAP_LOADING and IC_CLK_FREQ_OPTIMIZATION must be
-> considered together.
-> 
-> Signed-off-by: Michael Wu <michael.wu@kneron.us>
-> ---
+> default: [0]? or something else?
 
-...
+Since we need to stay compatible with older device trees
+the default is whatever is in the hardware after boot :/
 
-> + * @bus_capacitance_pf: bus capacitance in picofarads
-> + * @clk_freq_optimized: indicate whether hardware input clock frequency is
+I guess I could write something about it in the description.
 
-/indicate/indicates/
-/hardware/the hardware/
-
-> + *	reduced by reducing the internal latency
-
-The sentence above is not really meaningful and it's not
-describing what "clk_freq_optimized" is.
-
->   *
->   * HCNT and LCNT parameters can be used if the platform knows more accurate
->   * values than the one computed based only on the input clock frequency.
-
-...
-
-> +			u32 t_high, t_low;
-> +
-> +			/*
-> +			 * The legal values stated in the databook for bus
-> +			 * capacitance are only 100pF and 400pF.
-> +			 * If dev->bus_capacitance_pf is greater than or equals
-> +			 * to 400, t_high and t_low are assumed to be
-> +			 * appropriate values for 400pF, otherwise 100pF.
-> +			 */
-> +			if (dev->bus_capacitance_pf >= 400) {
-> +				/* assume bus capacitance is 400pF */
-> +				t_high = dev->clk_freq_optimized ? 160 : 120;
-> +				t_low = 320;
-> +			} else {
-> +				/* assume bus capacitance is 100pF */
-> +				t_high = 60;
-> +				t_low = dev->clk_freq_optimized ? 120 : 160;
-> +			}
-> +
->  			ic_clk = i2c_dw_clk_rate(dev);
->  			dev->hs_hcnt =
->  				i2c_dw_scl_hcnt(dev,
->  						DW_IC_HS_SCL_HCNT,
->  						ic_clk,
-> -						160,	/* tHIGH = 160 ns */
-> +						t_high,
->  						sda_falling_time,
->  						0,	/* DW default */
->  						0);	/* No offset */
-> @@ -167,7 +186,7 @@ static int i2c_dw_set_timings_master(struct dw_i2c_dev *dev)
->  				i2c_dw_scl_lcnt(dev,
->  						DW_IC_HS_SCL_LCNT,
->  						ic_clk,
-> -						320,	/* tLOW = 320 ns */
-> +						t_low,
-
-This looks fine to me.
-
-Thanks,
-Andi
-
->  						scl_falling_time,
->  						0);	/* No offset */
->  		}
-> -- 
-> 2.43.0
-> 
+Yours,
+Linus Walleij
 
