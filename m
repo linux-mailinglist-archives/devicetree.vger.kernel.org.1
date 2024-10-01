@@ -1,283 +1,145 @@
-Return-Path: <devicetree+bounces-106731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1706398B71B
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:37:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA3298B715
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C450B2837A3
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:37:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFE951C21E4D
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEE419CD19;
-	Tue,  1 Oct 2024 08:36:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3F6019CD04;
+	Tue,  1 Oct 2024 08:35:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nHccNDbE"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="lTnCdc6c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874C219ABD4
-	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 08:36:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FE4719ABC4
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 08:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727771799; cv=none; b=lBcK4DXDEoJ2ahRczBpFw7yvEW5rd4d0xuu0FKG22PoSSpmMrbhIdjgnXqiIxn3Ss7yWRfz5DXqcj9oCW5BQPkGB8sfSrTP611Dbxnf2Blbjq+hsrSHd+OoVCi+P26uMmwjfTlueKlfwphaaRDmUIou7zv/4O+UScUgp9yDAIa4=
+	t=1727771756; cv=none; b=H0KXtRAZwByelxAYIKA/wWC4TmGZ7J7YFaglQH4sNlKMcAppmq65wA1w10UVq8pThQEM5jU5WhruNTm+OXjt4/Uagk557r4UyFEs65+LUtt2Ju88m9pkiinccjBLtUFxt2zrIeVo6I5MgeA3lFSelB4HWtqJ2Z6z8aUCU13C39s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727771799; c=relaxed/simple;
-	bh=s8yQgqbpqiJJW4fsDu52UKvVj4I70qefK+BiUTDSCKw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ONa65EyB+BqaOUgfdtHDYZjd9tVs0qcpm9VkzD9hiXxTUjy2uZqEx/oSBdz/X9pepa/Id38ddzfI3ObsTKFX4SUbzdIUvLLszGwbDLwucYWof1YUe2uPqYCBNZiS033QSJMFoka9usm+1fv6pps5yvQvSZF7repjv0xiN+a5VhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nHccNDbE; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cb1e623d1so48527315e9.0
-        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 01:36:37 -0700 (PDT)
+	s=arc-20240116; t=1727771756; c=relaxed/simple;
+	bh=8zGh0kEmV1zxwa3UDG+uvR3v7BKGI+RhSkGnZ8K3K8A=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VIQmwYWk4D7sc8YdAnsgHq77SW83qqT9mhRaBpmKBmZRKavVKcVSS9TKAfmWmh+tLgxfTmfqxJDEA4YX+aQOiVeVOMid4pDpYNIJovAPs21QHB2q0vrvLQVG/jLAIby5NDmqtHeZHTj8iwy12tlNkt3eefINsLt9DCYi2wAZxiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=lTnCdc6c; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5399651d21aso1547531e87.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 01:35:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727771796; x=1728376596; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=mOBK0pAqTeYNcJo77rPRofGMGVSl1KOZYzYP+PBorDk=;
-        b=nHccNDbEsLXRFKUulgDbt9+o3Pn3Jwle3GpoGMIVKzUySj/GBT7ehkLxu0B/+h6aUJ
-         Ad18TxkYS1z5sa/+BXgHlfQt9w96kHOdIws57ouCUCUKQ69Ovw1/AbVZ/f0a717vuhU4
-         9gh69u4lkLHibp24eYkYVlnyANOxLK0i8Y1X3gXjKmBLHhDxniQxMbJaI3i+aUkkJZp5
-         5OhENxRGyDSApTHvQabiPMhmibIk+bVOAwvf6x/zbpcwIWIrhH4MQKuIHeOH/265UoSR
-         ujjB2dhoS6Kqn8Q8T3IZBqOI/vlL9SrQyk+I+nr6hO7Xc7nGXmY3z2bEB2nkXwFSUxQy
-         UmZQ==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727771751; x=1728376551; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jUp1+1xtRJBJdIV6DSCD7fKdIiiuv6C/815+UMMRw1I=;
+        b=lTnCdc6cEO5Mxq2tZHa1lzMlOW9WYXis83DclrClyBQtthr2eWUFcmz3fbIER5ba2Z
+         lr5jRZfBCn/RBX2Bl2YE52VYVCyCyrf7Zl0ovS6Xn8fhwf3OKtHh5Kx5aBv17AEfpEE9
+         4OzVWCab+Zth+9idzJvLs07ZJvwNKflhK2TFxSCLTPTSCLT4i0nztciTg+JvR7d0U+qu
+         a53TKxyYo7dU9rB48s/s012F/7hBmAkzsGUMxnrVtvsOnLfnso3ytePKS2D6L/10ZKn+
+         rGQQ2B3Ttt3fYuyIHigyXJMFfRDDiv2Cne16XODBKuLpOeCHInB7e3BEYTQirpTEQSjs
+         GAkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727771796; x=1728376596;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mOBK0pAqTeYNcJo77rPRofGMGVSl1KOZYzYP+PBorDk=;
-        b=OOILkZeGa/MImfGRuF0R57T6Nnj0/JHK9jOVGmdBAkgpNZ4mfd+TDLT9UrEm7ab4RB
-         k8t5RZRg821AOVTcz2aHkiDVBFWGs2qha4Vg2JVxQLIDEn25rAktJoDSF8TInZo/BvA9
-         wFumcaqEuklybWeflu2Mz5AHgQllk6hZPBjpSoZ28YaHUm7VDHEnb4t0+xZxgXDQd5KQ
-         iPCOmwTrAEQZyYSRRDiIVtJGxKheP35fw9qnx05azxNK/7fczjmNUPBiw7SFfFwvC11u
-         EMXCQdVdcQS8Tq+5rnGgMRCAJLREQz+wL43UFwEzrPtThf2u+jTKKVoEtREn2Vc+01Iv
-         cx+A==
-X-Forwarded-Encrypted: i=1; AJvYcCWE1lzAUGTil42qSUVzODExMGT8P7zdc3uHteypVNbNlAEhNU27Kky67y1Wu6r1Yk4soWl+nKK98nMh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxurOOqV9pIV/xU4dnNstfh5e4CRTZfOZW9/7i0fRG6SXVvfyvH
-	COTbahFjVlmB32bzjVdcg/nfRGSf7GyB3QJ72FSHJRNkLX4uvHfRpMUafL/UNMc=
-X-Google-Smtp-Source: AGHT+IHwHSvzYXZP63dc1ggv+efXfJTVJ2qzT4c3+KBMcqG+xS/4e8BrkRc5655ZOfJrvxkOKEJcIw==
-X-Received: by 2002:a05:600c:46cb:b0:42c:bb41:a077 with SMTP id 5b1f17b1804b1-42f58497f0fmr93793585e9.23.1727771795795;
-        Tue, 01 Oct 2024 01:36:35 -0700 (PDT)
-Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e969f244asm173501805e9.17.2024.10.01.01.36.34
+        d=1e100.net; s=20230601; t=1727771751; x=1728376551;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jUp1+1xtRJBJdIV6DSCD7fKdIiiuv6C/815+UMMRw1I=;
+        b=lVKI0hG9mV5U0O+JZ7u6xYzBdNmylamnoKggWpLG+lxl7t4uEFv8EJe4oijDv7rgDF
+         P+Epew3O6/5kFJwIBkewlmx0DU1oYaBy6DSV8ZTqi/DFS6WIW/7nzIyE2kbLbH1r99A8
+         q5TjbuWwKxTPG97ynnGoLPD2Yxk0kks1PZ3gPCCOQrHUeZ5JN8/bUWkX4LT9csTwYhEb
+         OPM7smt+AQGWD4P1bKHnmahnCNGSgIdssHHYbhhVy9Rn6UIqgXj//CzoxHLXdOXbMQbl
+         jMwQAcPWSz5rEeUtthMZ8srb1fbyRqXvbv3gwRP723ypvdwESUco3Tzmx4p7MHjxMrQD
+         QRpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVUV1e4/TN5xgdWnV0re4i5g6vOz/PepmNE1BCfNF50z68jUZc/bXJYd7hAWquJZ0BlQade77bVrsnl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUE0yqjwRiQTIk6Nf64evy8zXF+ra8KrvEQiP7PPPKZl5fAa56
+	q2LE+iFEX/2T7wWAK6t5k/2hkedYSOkg6m6vAlnFNzCoc/t+lF+fc1zSuX7alAU=
+X-Google-Smtp-Source: AGHT+IFTkGvNYK2a0K4iJqJ6WKb6onvmxPAJCp9ewXHevNyJRgZ67BYCm/URXwMiEX9+e1lBpv+vUw==
+X-Received: by 2002:a05:6512:4006:b0:535:63a9:9d8c with SMTP id 2adb3069b0e04-5389fc3987fmr7056545e87.17.1727771751061;
+        Tue, 01 Oct 2024 01:35:51 -0700 (PDT)
+Received: from [127.0.1.1] ([2a01:cb1d:dc:7e00:b926:7e5e:6e5b:896])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd565e881sm11231406f8f.44.2024.10.01.01.35.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 01:36:35 -0700 (PDT)
-Date: Tue, 1 Oct 2024 10:35:17 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, 
-	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 05/10] iio: backend: extend features
-Message-ID: <urf6tm7iosewgb42cd6q3ssx2hjaysuzhk2weu4xmoq5xsm7ir@hvwb7qgxko2h>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
- <20240929120535.6b41c37e@jic23-huawei>
- <c9e30ebf-c661-4345-87bd-3169b57175fc@baylibre.com>
- <3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
+        Tue, 01 Oct 2024 01:35:50 -0700 (PDT)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: [PATCH v7 0/2] arm64: dts: qcom: extend the register range for ICE
+ on sm8[56]50
+Date: Tue, 01 Oct 2024 10:35:29 +0200
+Message-Id: <20241001-wrapped-keys-dts-v7-0-a668519b7ffe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFG0+2YC/32NQQ6CMBBFr0Jm7ZgC2ior72FY1HYKEw0lU4ISw
+ t2tHMDle8l/f4VEwpSgKVYQmjlxHDKYQwGut0NHyD4zVKo6qavS+BY7juTxSUtCPyV8mLr21p1
+ Lr0rIs1Eo8GdP3tvMPacpyrI/zPpn/8RmjQrroKqLcaHUhm4vHqzEY5QO2m3bvqCtI/ixAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Om Prakash Singh <quic_omprsing@quicinc.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Gaurav Kashyap <quic_gaurkash@quicinc.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1156;
+ i=bartosz.golaszewski@linaro.org; h=from:subject:message-id;
+ bh=8zGh0kEmV1zxwa3UDG+uvR3v7BKGI+RhSkGnZ8K3K8A=;
+ b=owEBbQKS/ZANAwAKARGnLqAUcddyAcsmYgBm+7RikEGYnNtFyI1lxfef6VHr+GD0L+E1TpWJu
+ rUj7NeL6c6JAjMEAAEKAB0WIQQWnetsC8PEYBPSx58Rpy6gFHHXcgUCZvu0YgAKCRARpy6gFHHX
+ crWcD/9d5peSt8Pm5aQ1pPbxdcCylLYOfEBbW2f2WEVAGcs5sSV8aV70uTqYEpLP801Vc1QSgGi
+ 1/4dxjLlPtnq9njzA4vf/Bp0/pHujrpZv5FuKacwxxx6LQCfiuTlPJvy4l2FMCoCDZ7ThNVa5C5
+ klwrl3gosy9kX8eLxoFMEiifK2fHPJUSr5E12tG3cT+UClo2T5SB/pFmurhlc2mpSE8D+5xCr3G
+ tC1ARRtWzoSyN39IYH0ZlBI69dyEY2vSszGTmDFBpIvX0PNdD3Cirj5CBPzYUfMMeyAWQ8rd0//
+ yzW2exISaMcieu+4qSW6I8Y04j28VqRVr/N3diBMHe3TEmhXg5FfJfNrmIPykaSHNh9lWtdXHNz
+ 9uZnkd04Yo6x6IXmTJYGMIhI8N7PXnv7aYvcXFfLBH11T697hbpY3402TcNr17htOysR2AbsQHp
+ u/EoVqxAsaYaDXGmtkuYHgxji+9WT62OAmysuRm2G/7pAxH7xHd+7wLUFSji28Knzfs3w5Tb/Ip
+ mRE4vf3KUJ8q2ph1cZn+oLS3IrmirAgD7/npjIJz8+GZUBrhQaZSUpeJgL4Vhe7WRI9SgL5vrML
+ J5Iwjrmma+ZtJBHHPxXYdx6GxN0rQOXD9Biq8SrJ1ymMeB1P1yfooVOiXCGxXAekunXs31anZFD
+ BKYH5dkYR4vZ7YA==
+X-Developer-Key: i=bartosz.golaszewski@linaro.org; a=openpgp;
+ fpr=169DEB6C0BC3C46013D2C79F11A72EA01471D772
 
-On 01.10.2024 10:14, Nuno Sá wrote:
-> On Mon, 2024-09-30 at 14:25 -0500, David Lechner wrote:
-> > On 9/29/24 6:05 AM, Jonathan Cameron wrote:
-> > > On Thu, 19 Sep 2024 11:20:01 +0200
-> > > Angelo Dureghello <adureghello@baylibre.com> wrote:
-> > > 
-> > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > 
-> > > > Extend backend features with new calls needed later on this
-> > > > patchset from axi version of ad3552r.
-> > > > 
-> > > > The follwoing calls are added:
-> > > > 
-> > > > iio_backend_ext_sync_enable
-> > > > 	enable synchronize channels on external trigger
-> > > > iio_backend_ext_sync_disable
-> > > > 	disable synchronize channels on external trigger
-> > > > iio_backend_ddr_enable
-> > > > 	enable ddr bus transfer
-> > > > iio_backend_ddr_disable
-> > > > 	disable ddr bus transfer
-> > > > iio_backend_set_bus_mode
-> > > > 	select the type of bus, so that specific read / write
-> > > > 	operations are performed accordingly
-> > > > iio_backend_buffer_enable
-> > > > 	enable buffer
-> > > > iio_backend_buffer_disable
-> > > > 	disable buffer
-> > > > iio_backend_data_transfer_addr
-> > > > 	define the target register address where the DAC sample
-> > > > 	will be written.
-> > > > 
-> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > Hi Angelo,
-> > > A few trivial comments inline.
-> > > 
-> > > > ---
-> > > >  drivers/iio/industrialio-backend.c | 111
-> > > > +++++++++++++++++++++++++++++++++++++
-> > > >  include/linux/iio/backend.h        |  23 ++++++++
-> > > >  2 files changed, 134 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/iio/industrialio-backend.c
-> > > > b/drivers/iio/industrialio-backend.c
-> > > > index 20b3b5212da7..f4802c422dbf 100644
-> > > > --- a/drivers/iio/industrialio-backend.c
-> > > > +++ b/drivers/iio/industrialio-backend.c
-> > > > @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct device
-> > > > *dev, struct iio_backend *back)
-> > > ...
-> > > 
-> > > > +/**
-> > > > + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate)
-> > > > mode
-> > > > + * @back: Backend device
-> > > > + *
-> > > > + * Disabling DDR data is generated byt the IP at rising or falling front
-> > > 
-> > > Spell check your comments.
-> > > 
-> > > > + * of the interface clock signal (SDR, Single Data Rate).
-> > > > + *
-> > > > + * RETURNS:
-> > > > + * 0 on success, negative error number on failure.
-> > > > + */
-> > > > +int iio_backend_ddr_disable(struct iio_backend *back)
-> > > > +{
-> > > > +	return iio_backend_op_call(back, ddr_disable);
-> > > > +}
-> > > > +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
-> > > 				 struct fwnode_handle *fwnode)
-> > > >  {
-> > > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
-> > > > index 37d56914d485..41619b803cd6 100644
-> > > > --- a/include/linux/iio/backend.h
-> > > > +++ b/include/linux/iio/backend.h
-> > > > @@ -14,12 +14,14 @@ struct iio_dev;
-> > > >  enum iio_backend_data_type {
-> > > >  	IIO_BACKEND_TWOS_COMPLEMENT,
-> > > >  	IIO_BACKEND_OFFSET_BINARY,
-> > > > +	IIO_BACKEND_DATA_UNSIGNED,
-> > > >  	IIO_BACKEND_DATA_TYPE_MAX
-> > > >  };
-> > > >  
-> > > >  enum iio_backend_data_source {
-> > > >  	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
-> > > >  	IIO_BACKEND_EXTERNAL,
-> > > > +	IIO_BACKEND_INTERNAL_RAMP_16BIT,
-> > > >  	IIO_BACKEND_DATA_SOURCE_MAX
-> > > >  };
-> > > >  
-> > > > @@ -89,6 +91,13 @@ enum iio_backend_sample_trigger {
-> > > >   * @read_raw: Read a channel attribute from a backend device
-> > > >   * @debugfs_print_chan_status: Print channel status into a buffer.
-> > > >   * @debugfs_reg_access: Read or write register value of backend.
-> > > > + * @ext_sync_enable: Enable external synchronization.
-> > > > + * @ext_sync_disable: Disable external synchronization.
-> > > > + * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
-> > > > + * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
-> > > > + * @buffer_enable: Enable data buffer.
-> > > > + * @buffer_disable: Disable data buffer.
-> > > 
-> > > This needs more specific text. What buffer?  I think this came
-> > > up earlier but it needs to say something about the fact it's enabling
-> > > or disabling the actual capture of data into the DMA buffers that
-> > > userspace will read.
-> > > 
-> > > > + * @data_transfer_addr: Set data address.
-> > > >   **/
-> > > >  struct iio_backend_ops {
-> > > >  	int (*enable)(struct iio_backend *back);
-> > > > @@ -129,6 +138,13 @@ struct iio_backend_ops {
-> > > >  					 size_t len);
-> > > >  	int (*debugfs_reg_access)(struct iio_backend *back, unsigned int
-> > > > reg,
-> > > >  				  unsigned int writeval, unsigned int
-> > > > *readval);
-> > > > +	int (*ext_sync_enable)(struct iio_backend *back);
-> > > I know we've done it this way for existing items, but I wonder if we should
-> > > squish down the ops slightly and have new enable/disable pairs as
-> > > single functions.
-> > > 	int (*ext_sync_set_state)(struct iio_backend *back, bool enable);
-> > > etc.  If nothing else reduces how many things need documentation ;)
-> > > 
-> > > Nuno, what do you think? Worth squashing these pairs into single
-> > > callbacks?
-> > 
-> > I'm not a fan of combining enable and disable functions into one function.
-> > 
-> > The implementation will pretty much always be:
-> > 
-> > if (enabled) {
-> >         /* so stuff */
-> > } else {
-> >         /* do other stuff */
-> > }
-> > 
-> > Which just adds indent and makes code harder to read.
-> > 
-> 
-> Hi Jonathan and David,
-> 
-> Yeah, I have this on my todo list and to be fair with Angelo, he already had
-> something like you're suggesting. I kind of asked him to postpone that so we
-> don't have mixed styles in the file for now. Then I would convert them all. My
-> plan would be to squash the .ops into one and then have inline
-> enable()/disable() helpers (at least for the current users in order to keep
-> things easier to convert).
-> 
-> As for David's comment, I see your point but one can always improve things a bit
-> 
-> if (enable) {
-> 	/* do stuff */
-> 	return;
-> }
-> 
-> /* do disable stuff */
-> return 0
-> 
-> I'm aware the above is always not that straight... but I do think there's always
-> ways to rearrange things a bit to make it better. Because even with the
-> enable()/disable() approach, if you start to have a lot of common code, likely
-> you'll add an helper function. In some cases, one can even add the helper right
-> away with an 'enable' argument effectively doing what is being suggested in
-> here. It always depends on the person implementing the ops :)
-> 
-> Anyways, I really don't have a strong feeling about this. I had in my mind to do
-> something like this. It feels that Jonathan would already be ok with it. If it's
-> not that awful for David, I'll eventually send the patches (unless Angelo wants
-> to take care if it in this series).
->
+The following changes extend the register range for ICE IPs on sm8550
+and sm8650 in order to cover the registers used for wrapped key support
+on these platforms.
 
-I agree a single function for enable/disable may be good, reducing the calls and
-also the code size should benefit of some few bytes.
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Honestly, i would not do this in this patchset since i am a bit in difficulties
-to have this job accepted as is, and also cannot retest all of them properly
-right now.
- 
-> - Nuno Sá
-> > 
+Changes in v7:
+- bring the ICE register range up to its full size of 0x18000
+- Link to v6: https://lore.kernel.org/r/20240906-wrapped-keys-dts-v6-0-3f0287cf167e@linaro.org
 
+Changes in v6:
+- split out the DT changes into a separate series
+- remove the new DT property from the series
+- rework commit messages
+Link to v5: https://lore.kernel.org/lkml/20240617005825.1443206-1-quic_gaurkash@quicinc.com/
+
+---
+Bartosz Golaszewski (2):
+      arm64: dts: qcom: sm8650: extend the register range for UFS ICE
+      arm64: dts: qcom: sm8550: extend the register range for UFS ICE
+
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 3 ++-
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+---
+base-commit: 77df9e4bb2224d8ffbddec04c333a9d7965dad6c
+change-id: 20240906-wrapped-keys-dts-b733dac51d01
+
+Best regards,
 -- 
-Regards,
-  Angelo
-       
+Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+
 
