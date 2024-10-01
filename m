@@ -1,125 +1,131 @@
-Return-Path: <devicetree+bounces-106801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9BD98BC8F
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:46:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBA1C98BC9B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:48:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FD1AB22DDA
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:46:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 093BF1C231B2
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:48:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9EB819C55F;
-	Tue,  1 Oct 2024 12:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD6B31BFDF4;
+	Tue,  1 Oct 2024 12:48:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ddN+6VgQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQqbTNkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f41.google.com (mail-pj1-f41.google.com [209.85.216.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EE721C3305;
-	Tue,  1 Oct 2024 12:45:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9243C1A073B;
+	Tue,  1 Oct 2024 12:48:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727786748; cv=none; b=Gl66In1zzZhNvryzDBq2ew1ZwV3MkwGZlskkXzwP2BCPoivWDB5VSHs/fOaHt4ILd+GPexSi2QS3ozdaond9Vf24H/NoqpnZkW4fIhLzOQFr2+MCkos9trCliV82Oks3/2Dt24gHrgL/8EApnnujsv/M/YMnHVLdufXepzOgQiQ=
+	t=1727786908; cv=none; b=osvI1sHJ9wuhu0nZNejkhO/zpXq+9wwzEc9hnhqX/xisPCGo/KqPMWnWweMKgTfHxB+scnltiUpkbc6JYaMrxu8wistgdjONdsqaCh+xhoOtdg1wNzHf8LMPnSC884KyE6L2wzG7CHzlpZDUwy9UKmDnyb3HM9yeG+PQs1lLzVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727786748; c=relaxed/simple;
-	bh=vIJP//LDwqp9d1ES2JWxaeW61nA8Y5L2wZyNrUb4Jxk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ENo9tjDLpaaCOUeTtWtmkeEjowE2Fg2zxN+4kzknMMoNLeseKApSSngK5Y6v156dpD1b5Y4GnWw3JNEbpdWKNH3iLZLqp5XWhiPRgmeCf+yk4Jd82t6b2DZSoxnHAAco275QDdaNZ1V9Dy/VLK8VLHbgcr/N4KIGeXSsrgh+6Xw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ddN+6VgQ; arc=none smtp.client-ip=209.85.216.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f41.google.com with SMTP id 98e67ed59e1d1-2e0a5088777so4394066a91.2;
-        Tue, 01 Oct 2024 05:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727786747; x=1728391547; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2lgFxHwlPgcqQWOe6Kh3f55RJmwv7Nk1Xd/rGvKcrl8=;
-        b=ddN+6VgQ4SmHAR/OIOid+eAkUZNYXVy7CZlWZPiLRYTXoe7JsecaI1KMq534McYze+
-         YrIY6IHvBcXWHc5yivhrZVwEU6H0Ll55C2lxfjliKK8tbX4h1pD5uvJA7Ijn0tHPxJ3q
-         Fn5SoV83df/4DL+7zdart/BrDSPf3KcK5RHi+swY9WBerEnyPkrhhWXklhHcHx0QFgv+
-         GsudBgPyJ2Ty+Imubz3BEt7qy+eCjxWFlhof/rXkmG8v7DN3DaivWMa/LHfaWiNWw80K
-         n74ky4EeJYWggKeLv6NzQUT+1TB0F3LfjTg3hhwmahruLDM/IMGqkcCGZJW1P3/1jNh5
-         41TA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727786747; x=1728391547;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2lgFxHwlPgcqQWOe6Kh3f55RJmwv7Nk1Xd/rGvKcrl8=;
-        b=sDkLBvW2CB+tMDLg399OIfPxsNgxnkAjSo9WVDMF7i5Sf2Tdi6Ko/KNrq1cvwRbi4a
-         fUBLDWloA0Dk8iYceni6hRvTJ56ctvCoo5FL/rzHO7jW229Ew+16AWFABDtTk+GfYdyR
-         h6Gai12k4w/GxhMJ7iDobRktC781Ml73oIJGKuqaD7BTwiJ839JAWPTwL5HVx6aTkep9
-         Z7PylCDMW8SIsbvPRclkbgznl3eXYaaahoIuFByXwDfH2XzBkToFkd0ky+ow0a1eRHaZ
-         4AnVcnJyXjS1Uikym5ov0MoDlYwuNFWtzBdQoPxzD9B6WW+aIaXLTORdWbFzHRV3b7WM
-         ICCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXXotXtbWBW5N1j2hjSKyaX/5aG0zUvMMezOeNIRMjHGSAkQhnvyJjkiA8bvwIGjO8XooJWasRVjdO@vger.kernel.org, AJvYcCXwDOKwj3d/yd5By/8pef7s9Ync/dq0CVdX+Fi1YoDgLtpRWShFkN3g8sViu8T+EVylROTuk5Lzy1AMBpnp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+lqF4OYQCrXyd6D/OJwwMGG6tyTxZ1cZUGl4bWMGpN7Xe/BCr
-	REnOqKFSQHtWXJNJKTAgHBkg2RPwBQuQKkrxfLWZyeSP9oyMOzP5
-X-Google-Smtp-Source: AGHT+IGzSrL30VOUfoLyClRDdPoMyMLBNdWGQn7nW9CpSugHO/Cg/vDjbiv7uwVw9+a1echxGAVagQ==
-X-Received: by 2002:a17:90a:ad98:b0:2d8:d098:4f31 with SMTP id 98e67ed59e1d1-2e0b8a20263mr17797001a91.17.1727786746876;
-        Tue, 01 Oct 2024 05:45:46 -0700 (PDT)
-Received: from joaog-nb.corp.toradex.com ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e06e1704bdsm13629171a91.5.2024.10.01.05.45.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 05:45:46 -0700 (PDT)
-From: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <jpaulo.silvagoncalves@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?q?Jo=C3=A3o=20Paulo=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 2/2] arm64: dts: imx8mm-verdin: Update tla2024 adc compatible
-Date: Tue,  1 Oct 2024 09:45:04 -0300
-Message-Id: <20241001124505.73857-3-jpaulo.silvagoncalves@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241001124505.73857-1-jpaulo.silvagoncalves@gmail.com>
-References: <20241001124505.73857-1-jpaulo.silvagoncalves@gmail.com>
+	s=arc-20240116; t=1727786908; c=relaxed/simple;
+	bh=SDGvMZdZA/8Hfcdkmic8jEaOvZTvputcv1dK4N2ezxc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=a+3mdVwqK9iGzMUMhY9NJCwVfG9ENj14zPX9Zx+Lqdubfpu1If7O193/6tSNH5wb3kmhgSTDjNldSasggUC5K6ZyF70UmreGc0vXPMYkBgCjBYcE9FWFuURRe1DIaPjL2Dca+yku54iwtklfLSep55eGra6OyIgMKL4J2WSENyA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQqbTNkR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B361FC4CEC6;
+	Tue,  1 Oct 2024 12:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727786908;
+	bh=SDGvMZdZA/8Hfcdkmic8jEaOvZTvputcv1dK4N2ezxc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=KQqbTNkRjLlIAx6lzAi9IsdFzZx48Xd3za70rk8p1S15C2BA61X4tzZpGvre7xTnr
+	 zsdVDrwLQ2ednQHIvfXhM6ScQNH60G9HaYaQ7WgeX9wEXeskf0sbhcxG7eL58lZcQ5
+	 NACthjugAJUq9lko8XbkptkKivuOuldrKhPjSBV0YfvWB+Dmq9+Om5vP5KrzaxYf53
+	 V2RH9hAYR046720MZfJzQTH9yuoLirBlxt2QCzxVXQVOjlxtG90RUEF4iE3dHwn1Yy
+	 7UvB7trS16Z8m0MpWUsXX8DDYIaoekqn4rPX08Uk96ATCCdWGaXTcO4wroyxqabCLQ
+	 RHOJbuIQxpKgg==
+Message-ID: <2012629e-c1c4-47b5-aaf2-3dfe94d2dc53@kernel.org>
+Date: Tue, 1 Oct 2024 14:48:20 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp-verdin: Update tla2024 adc
+ compatible
+To: =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?=
+ <jpaulo.silvagoncalves@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241001124505.73857-1-jpaulo.silvagoncalves@gmail.com>
+ <20241001124505.73857-2-jpaulo.silvagoncalves@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241001124505.73857-2-jpaulo.silvagoncalves@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On 01/10/2024 14:45, João Paulo Gonçalves wrote:
+> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+> 
+> With commit f1c9ce0ced2d ("iio: adc: ti-ads1015: Add TLA2024 support") a
+> new compatible was introduced for TLA2024 ADC. Update the device tree to
+> use the correct compatible for the Verdin-iMX8MP hardware.
 
-With commit f1c9ce0ced2d ("iio: adc: ti-ads1015: Add TLA2024 support") a
-new compatible was introduced for TLA2024 ADC. Update the device tree to
-use the correct compatible for the Verdin-iMX8MM hardware.
+Can you slow down please? You got comment on your other patch, which you
+did not resolve but you keep sending similar patches.
 
-Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
----
- arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Same comment here.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-index 5fa395914191..49562ec7969b 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm-verdin.dtsi
-@@ -484,7 +484,7 @@ rtc_i2c: rtc@32 {
- 	};
- 
- 	adc@49 {
--		compatible = "ti,ads1015";
-+		compatible = "ti,tla2024";
- 		reg = <0x49>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
