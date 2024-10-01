@@ -1,138 +1,283 @@
-Return-Path: <devicetree+bounces-106727-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E8BA98B700
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:32:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1706398B71B
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:37:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB6291F21D89
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:32:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C450B2837A3
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 08:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAC7019CCF4;
-	Tue,  1 Oct 2024 08:31:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCEE419CD19;
+	Tue,  1 Oct 2024 08:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CtMgGcIU"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nHccNDbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81DD4199953;
-	Tue,  1 Oct 2024 08:31:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 874C219ABD4
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 08:36:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727771462; cv=none; b=LPW4xY0lKIqGhS8BN1Nu+YdtdRLbHDX0A/fqGbNkTTFMVfd0TDp5AonPS15jdECJIYhoohoN2c4iTSvL9y+lcJMX0cmyo5STv6/QWEYvS1pz3Wz0RZdb4yGljKcutqke3VxRGG0g9C2yBBXodGMZXQj93wkRMBTeBJGMhdpPw0I=
+	t=1727771799; cv=none; b=lBcK4DXDEoJ2ahRczBpFw7yvEW5rd4d0xuu0FKG22PoSSpmMrbhIdjgnXqiIxn3Ss7yWRfz5DXqcj9oCW5BQPkGB8sfSrTP611Dbxnf2Blbjq+hsrSHd+OoVCi+P26uMmwjfTlueKlfwphaaRDmUIou7zv/4O+UScUgp9yDAIa4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727771462; c=relaxed/simple;
-	bh=f0h7Jx2hweEXtflBpFhTStGCtlRkjiqw8I06XPsdHKg=;
+	s=arc-20240116; t=1727771799; c=relaxed/simple;
+	bh=s8yQgqbpqiJJW4fsDu52UKvVj4I70qefK+BiUTDSCKw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kKRaMYvN2/TX+A83o+H/SoQZ0hKBgI95molQtceo8FJqoH8uAm3laCo6Tz07cu3nv/pCWvelOPSoK01uQ96Neb7sgNO2h8qsS4+hPMDPVx9r11xFeiSXlNDcQzC4qpULG1Urnoc1zoT2hH2hdM+zb86/cNKSgL6VrFizEkjuLuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CtMgGcIU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA233C4CEC6;
-	Tue,  1 Oct 2024 08:31:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727771462;
-	bh=f0h7Jx2hweEXtflBpFhTStGCtlRkjiqw8I06XPsdHKg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CtMgGcIUYy4reC/foYGFZxrzXQN5ppS9LJ6nNEDyEUe+X1BmBNFqOfpPyiCBoBslF
-	 uYpje2EzEXdZMbSe4wlyiwo6vhcd0s4Ns4ckd0QMSEDiNN9dOtVx1xAQIX6n/9njvK
-	 j2VMkI8uwbQuBir/ovWdcWixkOpKAwUhYvN26NQqTkhRfUemmRNpFxAmJ22ZzLqFxE
-	 +utjIwmb822dgJaT5HisF4EIeuGOdHJlYP7AzfpU+Sq31rRJJdnJUsL0DRnWkFzfMM
-	 FWzDCYTA33kmGb5QX3sba6rmd6DwHB1bvrCZTNGhke2p6sZZUe0lExajhBzNamKPXl
-	 74L2KX9Jeuuwg==
-Date: Tue, 1 Oct 2024 10:30:59 +0200
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	upstream@airoha.com, angelogioacchino.delregno@collabora.com,
-	linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com,
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH v2 0/7] clk: en7523: Update register mapping for EN7581
-Message-ID: <ZvuzQxjuN2zRrAMG@lore-desk>
-References: <20240903-clk-en7581-syscon-v2-0-86fbe2fc15c3@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ONa65EyB+BqaOUgfdtHDYZjd9tVs0qcpm9VkzD9hiXxTUjy2uZqEx/oSBdz/X9pepa/Id38ddzfI3ObsTKFX4SUbzdIUvLLszGwbDLwucYWof1YUe2uPqYCBNZiS033QSJMFoka9usm+1fv6pps5yvQvSZF7repjv0xiN+a5VhE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nHccNDbE; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cb1e623d1so48527315e9.0
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 01:36:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727771796; x=1728376596; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=mOBK0pAqTeYNcJo77rPRofGMGVSl1KOZYzYP+PBorDk=;
+        b=nHccNDbEsLXRFKUulgDbt9+o3Pn3Jwle3GpoGMIVKzUySj/GBT7ehkLxu0B/+h6aUJ
+         Ad18TxkYS1z5sa/+BXgHlfQt9w96kHOdIws57ouCUCUKQ69Ovw1/AbVZ/f0a717vuhU4
+         9gh69u4lkLHibp24eYkYVlnyANOxLK0i8Y1X3gXjKmBLHhDxniQxMbJaI3i+aUkkJZp5
+         5OhENxRGyDSApTHvQabiPMhmibIk+bVOAwvf6x/zbpcwIWIrhH4MQKuIHeOH/265UoSR
+         ujjB2dhoS6Kqn8Q8T3IZBqOI/vlL9SrQyk+I+nr6hO7Xc7nGXmY3z2bEB2nkXwFSUxQy
+         UmZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727771796; x=1728376596;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mOBK0pAqTeYNcJo77rPRofGMGVSl1KOZYzYP+PBorDk=;
+        b=OOILkZeGa/MImfGRuF0R57T6Nnj0/JHK9jOVGmdBAkgpNZ4mfd+TDLT9UrEm7ab4RB
+         k8t5RZRg821AOVTcz2aHkiDVBFWGs2qha4Vg2JVxQLIDEn25rAktJoDSF8TInZo/BvA9
+         wFumcaqEuklybWeflu2Mz5AHgQllk6hZPBjpSoZ28YaHUm7VDHEnb4t0+xZxgXDQd5KQ
+         iPCOmwTrAEQZyYSRRDiIVtJGxKheP35fw9qnx05azxNK/7fczjmNUPBiw7SFfFwvC11u
+         EMXCQdVdcQS8Tq+5rnGgMRCAJLREQz+wL43UFwEzrPtThf2u+jTKKVoEtREn2Vc+01Iv
+         cx+A==
+X-Forwarded-Encrypted: i=1; AJvYcCWE1lzAUGTil42qSUVzODExMGT8P7zdc3uHteypVNbNlAEhNU27Kky67y1Wu6r1Yk4soWl+nKK98nMh@vger.kernel.org
+X-Gm-Message-State: AOJu0YxurOOqV9pIV/xU4dnNstfh5e4CRTZfOZW9/7i0fRG6SXVvfyvH
+	COTbahFjVlmB32bzjVdcg/nfRGSf7GyB3QJ72FSHJRNkLX4uvHfRpMUafL/UNMc=
+X-Google-Smtp-Source: AGHT+IHwHSvzYXZP63dc1ggv+efXfJTVJ2qzT4c3+KBMcqG+xS/4e8BrkRc5655ZOfJrvxkOKEJcIw==
+X-Received: by 2002:a05:600c:46cb:b0:42c:bb41:a077 with SMTP id 5b1f17b1804b1-42f58497f0fmr93793585e9.23.1727771795795;
+        Tue, 01 Oct 2024 01:36:35 -0700 (PDT)
+Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42e969f244asm173501805e9.17.2024.10.01.01.36.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 01 Oct 2024 01:36:35 -0700 (PDT)
+Date: Tue, 1 Oct 2024 10:35:17 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 05/10] iio: backend: extend features
+Message-ID: <urf6tm7iosewgb42cd6q3ssx2hjaysuzhk2weu4xmoq5xsm7ir@hvwb7qgxko2h>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+ <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-5-a17b9b3d05d9@baylibre.com>
+ <20240929120535.6b41c37e@jic23-huawei>
+ <c9e30ebf-c661-4345-87bd-3169b57175fc@baylibre.com>
+ <3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="UkCTyigatkMAuJc7"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240903-clk-en7581-syscon-v2-0-86fbe2fc15c3@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3370ba6d9a6bb8da5ca1415c354a6076de6f1d79.camel@gmail.com>
 
+On 01.10.2024 10:14, Nuno Sá wrote:
+> On Mon, 2024-09-30 at 14:25 -0500, David Lechner wrote:
+> > On 9/29/24 6:05 AM, Jonathan Cameron wrote:
+> > > On Thu, 19 Sep 2024 11:20:01 +0200
+> > > Angelo Dureghello <adureghello@baylibre.com> wrote:
+> > > 
+> > > > From: Angelo Dureghello <adureghello@baylibre.com>
+> > > > 
+> > > > Extend backend features with new calls needed later on this
+> > > > patchset from axi version of ad3552r.
+> > > > 
+> > > > The follwoing calls are added:
+> > > > 
+> > > > iio_backend_ext_sync_enable
+> > > > 	enable synchronize channels on external trigger
+> > > > iio_backend_ext_sync_disable
+> > > > 	disable synchronize channels on external trigger
+> > > > iio_backend_ddr_enable
+> > > > 	enable ddr bus transfer
+> > > > iio_backend_ddr_disable
+> > > > 	disable ddr bus transfer
+> > > > iio_backend_set_bus_mode
+> > > > 	select the type of bus, so that specific read / write
+> > > > 	operations are performed accordingly
+> > > > iio_backend_buffer_enable
+> > > > 	enable buffer
+> > > > iio_backend_buffer_disable
+> > > > 	disable buffer
+> > > > iio_backend_data_transfer_addr
+> > > > 	define the target register address where the DAC sample
+> > > > 	will be written.
+> > > > 
+> > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > > Hi Angelo,
+> > > A few trivial comments inline.
+> > > 
+> > > > ---
+> > > >  drivers/iio/industrialio-backend.c | 111
+> > > > +++++++++++++++++++++++++++++++++++++
+> > > >  include/linux/iio/backend.h        |  23 ++++++++
+> > > >  2 files changed, 134 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/iio/industrialio-backend.c
+> > > > b/drivers/iio/industrialio-backend.c
+> > > > index 20b3b5212da7..f4802c422dbf 100644
+> > > > --- a/drivers/iio/industrialio-backend.c
+> > > > +++ b/drivers/iio/industrialio-backend.c
+> > > > @@ -718,6 +718,117 @@ static int __devm_iio_backend_get(struct device
+> > > > *dev, struct iio_backend *back)
+> > > ...
+> > > 
+> > > > +/**
+> > > > + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate)
+> > > > mode
+> > > > + * @back: Backend device
+> > > > + *
+> > > > + * Disabling DDR data is generated byt the IP at rising or falling front
+> > > 
+> > > Spell check your comments.
+> > > 
+> > > > + * of the interface clock signal (SDR, Single Data Rate).
+> > > > + *
+> > > > + * RETURNS:
+> > > > + * 0 on success, negative error number on failure.
+> > > > + */
+> > > > +int iio_backend_ddr_disable(struct iio_backend *back)
+> > > > +{
+> > > > +	return iio_backend_op_call(back, ddr_disable);
+> > > > +}
+> > > > +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
+> > > 				 struct fwnode_handle *fwnode)
+> > > >  {
+> > > > diff --git a/include/linux/iio/backend.h b/include/linux/iio/backend.h
+> > > > index 37d56914d485..41619b803cd6 100644
+> > > > --- a/include/linux/iio/backend.h
+> > > > +++ b/include/linux/iio/backend.h
+> > > > @@ -14,12 +14,14 @@ struct iio_dev;
+> > > >  enum iio_backend_data_type {
+> > > >  	IIO_BACKEND_TWOS_COMPLEMENT,
+> > > >  	IIO_BACKEND_OFFSET_BINARY,
+> > > > +	IIO_BACKEND_DATA_UNSIGNED,
+> > > >  	IIO_BACKEND_DATA_TYPE_MAX
+> > > >  };
+> > > >  
+> > > >  enum iio_backend_data_source {
+> > > >  	IIO_BACKEND_INTERNAL_CONTINUOUS_WAVE,
+> > > >  	IIO_BACKEND_EXTERNAL,
+> > > > +	IIO_BACKEND_INTERNAL_RAMP_16BIT,
+> > > >  	IIO_BACKEND_DATA_SOURCE_MAX
+> > > >  };
+> > > >  
+> > > > @@ -89,6 +91,13 @@ enum iio_backend_sample_trigger {
+> > > >   * @read_raw: Read a channel attribute from a backend device
+> > > >   * @debugfs_print_chan_status: Print channel status into a buffer.
+> > > >   * @debugfs_reg_access: Read or write register value of backend.
+> > > > + * @ext_sync_enable: Enable external synchronization.
+> > > > + * @ext_sync_disable: Disable external synchronization.
+> > > > + * @ddr_enable: Enable interface DDR (Double Data Rate) mode.
+> > > > + * @ddr_disable: Disable interface DDR (Double Data Rate) mode.
+> > > > + * @buffer_enable: Enable data buffer.
+> > > > + * @buffer_disable: Disable data buffer.
+> > > 
+> > > This needs more specific text. What buffer?  I think this came
+> > > up earlier but it needs to say something about the fact it's enabling
+> > > or disabling the actual capture of data into the DMA buffers that
+> > > userspace will read.
+> > > 
+> > > > + * @data_transfer_addr: Set data address.
+> > > >   **/
+> > > >  struct iio_backend_ops {
+> > > >  	int (*enable)(struct iio_backend *back);
+> > > > @@ -129,6 +138,13 @@ struct iio_backend_ops {
+> > > >  					 size_t len);
+> > > >  	int (*debugfs_reg_access)(struct iio_backend *back, unsigned int
+> > > > reg,
+> > > >  				  unsigned int writeval, unsigned int
+> > > > *readval);
+> > > > +	int (*ext_sync_enable)(struct iio_backend *back);
+> > > I know we've done it this way for existing items, but I wonder if we should
+> > > squish down the ops slightly and have new enable/disable pairs as
+> > > single functions.
+> > > 	int (*ext_sync_set_state)(struct iio_backend *back, bool enable);
+> > > etc.  If nothing else reduces how many things need documentation ;)
+> > > 
+> > > Nuno, what do you think? Worth squashing these pairs into single
+> > > callbacks?
+> > 
+> > I'm not a fan of combining enable and disable functions into one function.
+> > 
+> > The implementation will pretty much always be:
+> > 
+> > if (enabled) {
+> >         /* so stuff */
+> > } else {
+> >         /* do other stuff */
+> > }
+> > 
+> > Which just adds indent and makes code harder to read.
+> > 
+> 
+> Hi Jonathan and David,
+> 
+> Yeah, I have this on my todo list and to be fair with Angelo, he already had
+> something like you're suggesting. I kind of asked him to postpone that so we
+> don't have mixed styles in the file for now. Then I would convert them all. My
+> plan would be to squash the .ops into one and then have inline
+> enable()/disable() helpers (at least for the current users in order to keep
+> things easier to convert).
+> 
+> As for David's comment, I see your point but one can always improve things a bit
+> 
+> if (enable) {
+> 	/* do stuff */
+> 	return;
+> }
+> 
+> /* do disable stuff */
+> return 0
+> 
+> I'm aware the above is always not that straight... but I do think there's always
+> ways to rearrange things a bit to make it better. Because even with the
+> enable()/disable() approach, if you start to have a lot of common code, likely
+> you'll add an helper function. In some cases, one can even add the helper right
+> away with an 'enable' argument effectively doing what is being suggested in
+> here. It always depends on the person implementing the ops :)
+> 
+> Anyways, I really don't have a strong feeling about this. I had in my mind to do
+> something like this. It feels that Jonathan would already be ok with it. If it's
+> not that awful for David, I'll eventually send the patches (unless Angelo wants
+> to take care if it in this series).
+>
 
---UkCTyigatkMAuJc7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I agree a single function for enable/disable may be good, reducing the calls and
+also the code size should benefit of some few bytes.
 
-On Sep 03, Lorenzo Bianconi wrote:
-> Map all clock-controller memory region in a single block for EN7581 SoC.
-> Introduce chip_scu regmap pointer since EN7581 SoC will access chip-scu
-> memory area through a syscon node.
-> REG_PCIE*_MEM and REG_PCIE*_MEM_MASK registers (PBUS_CSR) are not
-> part of the scu block on the EN7581 SoC and they are used to select the
-> PCIE ports on the PBUS, so configure them via in the PCIE host driver.
-> This series does not introduce any backward incompatibility since the
-> dts for EN7581 SoC is not upstream yet.
+Honestly, i would not do this in this patchset since i am a bit in difficulties
+to have this job accepted as is, and also cannot retest all of them properly
+right now.
+ 
+> - Nuno Sá
+> > 
 
-Hi,
-
-any update on this series? Are we supposed to do something?
-
+-- 
 Regards,
-Lorenzo
-
->=20
-> ---
-> Changes in v2:
-> - fix smatch warnings in en7581_register_clocks()
-> - fix dt-bindings for EN7581 clock
-> - move REG_PCIE*_MEM and REG_PCIE*_MEM_MASK register configuration in
->   the PCIE host driver
-> - Link to v1: https://lore.kernel.org/r/20240831-clk-en7581-syscon-v1-0-5=
-c2683541068@kernel.org
->=20
-> ---
-> Lorenzo Bianconi (7):
->       dt-bindings: clock: airoha: Update reg mapping for EN7581 SoC.
->       clk: en7523: remove REG_PCIE*_{MEM,MEM_MASK} configuration
->       clk: en7523: move clock_register in hw_init callback
->       clk: en7523: introduce chip_scu regmap
->       clk: en7523: fix estimation of fixed rate for EN7581
->       clk: en7523: move en7581_reset_register() in en7581_clk_hw_init()
->       clk: en7523: map io region in a single block
->=20
->  .../bindings/clock/airoha,en7523-scu.yaml          |  23 +-
->  drivers/clk/clk-en7523.c                           | 309 ++++++++++++++-=
-------
->  2 files changed, 217 insertions(+), 115 deletions(-)
-> ---
-> base-commit: f0e992956eb617c8f16119944bfe101dea074147
-> change-id: 20240823-clk-en7581-syscon-100c6ea60c50
-> prerequisite-change-id: 20240705-for-6-11-bpf-a349efc08df8:v2
->=20
-> Best regards,
-> --=20
-> Lorenzo Bianconi <lorenzo@kernel.org>
->=20
-
---UkCTyigatkMAuJc7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZvuzQwAKCRA6cBh0uS2t
-rGrNAP9TeQLIxDes7MAEgydGoNkQ/vdCk3U1fQ9A2V1SP8PXTgEAkBJKOcGXqrh/
-efFB5am1dPOMBVaHQKjydJy41iKtNQE=
-=02H+
------END PGP SIGNATURE-----
-
---UkCTyigatkMAuJc7--
+  Angelo
+       
 
