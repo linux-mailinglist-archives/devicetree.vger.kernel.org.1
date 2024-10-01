@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-106803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106804-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4B5498BC9D
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:48:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94CE998BCA5
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 14:50:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 65F80283A30
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:48:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EBD71F23313
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:50:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CFDF1BFE01;
-	Tue,  1 Oct 2024 12:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91CB91C244D;
+	Tue,  1 Oct 2024 12:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tjJ+3mws"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Mj7rdSzd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623771A073B;
-	Tue,  1 Oct 2024 12:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC767188000
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 12:49:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727786915; cv=none; b=WZE8hPQ9CpY+OY6PjaV42lxkKfOMxJQLCxhBYlsiEZPQ9CIEDChocKKdXhu54bGVa033dUr4i4u787Evb3GMgFX4h9E+8nGu7MY2OIAPf2uUt2brGx2VzUOxFGHsNAecM3dGCeClOVGdSYw1StUmiqt/h3yNXlNdpEMofjSIDt4=
+	t=1727786997; cv=none; b=VdF/B5AtDtdh/EajWJzDhKh9+C88pTaXCIESYsqqadEY/JMCrFv5ybSpYOw69W2HlDkulPGvaIhgaFlbGuqamG01RE8bqWd6P7r1j+Ne8ZUtZ5sYmpK8C+vPU/PNm9y4n8Qy2aXruqjl4TmIHIBxk46IAmSBMUtZnMVEO+LyNvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727786915; c=relaxed/simple;
-	bh=Kzth8fzr8i+b7KIafyb2o77dibcrJbkdE7yZFTq23CU=;
+	s=arc-20240116; t=1727786997; c=relaxed/simple;
+	bh=CbT+qiU/vq9R0tnkpOy3+PJvaW5jLycGAU8OpY63rRo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=llNcDuDwxoIz65DWu8g3jHNwpVCBvZv0GY43cOM2iHo39sCOKIQMc0cJ2OKBI1dS2Tbgs3Ta0PpwTHXeijZpEIOukR5oRY67RSQPxaxQ2gGh0ic/zDEZ03Xuok/nhf1ukH0dTrbBKpHZM+Ou9Cr8gfit2gi/KbKog3sXZueMkcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tjJ+3mws; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 758F3C4CECE;
-	Tue,  1 Oct 2024 12:48:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727786914;
-	bh=Kzth8fzr8i+b7KIafyb2o77dibcrJbkdE7yZFTq23CU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=tjJ+3mwsqf9LqMKWUT5bXszhpgAB5uTYsxM8G2Wo6d+ggMjIDoTWl8W5wKFFpbzAt
-	 kBbn3KO5KEJ8TPWw2fDNwvpcjpRR4u45aiaxZJ9R8HT3zeELIs9MFll+OBuu73WczR
-	 5SE4GJHeTGANwKT0RvO58j4O7dpeVs0KZiV8MiP0avT230ccmEeOdDB/RZIlviThfj
-	 MfLenW+2eBu1DEO6ijlCuRztdfVnH19EZ0t5S+cQcPN2rZr6C1iuRnvIGirv84g7PD
-	 +MYvJyA36uMD/DpzEdXomz7KaIM++q35vd1kjt4BShHjk6clbHgknDa7IX+xXMMVbp
-	 gIIpyQz77N/xA==
-Message-ID: <4230823f-60cb-4cf9-a32d-5e85445141da@kernel.org>
-Date: Tue, 1 Oct 2024 14:48:30 +0200
+	 In-Reply-To:Content-Type; b=lwkLyxntgIksGKFtgJqIfMct3oUKhpivXgoP0WSOaRs6Hw0bU3ueMFpklwQ+2+4PYg2VUCWsuA2jc91NG8MNalkiVwDN3+XC+f+LwR3D9PFAdl+ZpZx+kH95arqLWQ9KQd0uzhMSwc0nFLicG4kZJfikIzTa4LpnFjOaqBObvHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Mj7rdSzd; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a8d6ac24a3bso1020757766b.1
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 05:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727786994; x=1728391794; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9afpXEL55MUlwjnfdU5WzlBLeVBfmS2NJq+jPkuACDs=;
+        b=Mj7rdSzd4w+kU0IrgmMBpiSG67XbvddizBUp1g8mEukNy1gtluFwIrD6epDoloHJIo
+         m7uTQvLuvTuEqFRHc1JPmOrUITTRw4WPLV7Phj5+SD5hBZ9Kunjd1L0bPXFDd6DZSRut
+         WZq0xg97pXd+LYR+rAFhSpFrfnc/CY4sXy6NwvooFfTNvaiZpvDG90c7gFWKIQvHqZyG
+         R9M3hHnGXWp7JNDXE4Q0ns2cH5VEU18wkIXHvJwhajvbNjBvnI0BA07EyUWTSotxv5x8
+         YmeYEWVWn3KZ5QyG1E8q1UT+lvgy1eBof6jnAtYCWDNU67Nl3lTWd+2pxqtFXv62Lite
+         5WYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727786994; x=1728391794;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9afpXEL55MUlwjnfdU5WzlBLeVBfmS2NJq+jPkuACDs=;
+        b=atRzUmwV97w1sCFbcgeIP2Trin37w7AhEys6SuyUjA7wG1f4/50pAqWZPHPfmptWhG
+         gij5WUAdIutsZqYoG1+SRf1wens/JmiKbRhJnlujaf1fhqerWWW+2V76Pz4XRheJ/+kf
+         D+u8Vb2q71A0uk9WqM6ajJlsNaOzygPfsmlM8BRAKTnaxEoeSlaLrH4b+5cYD5EYvWFf
+         g33nxNd1h7xB7EYCmtwrJXfggql4DQvbRPEerc/Fsw1MrfCQaTsm5VdPxGkwNjHB7VA1
+         42BCor8oEMbNyl2xJJJsKFiRRjO1pVci7FgGZ/S4stPemeQemUNqYSl1PEvuhEza3bZb
+         lzZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUVjQpPB7wZN2NNDfRN8Xc800moxK/+w7wTYLNoZXQGOR88XRA4jleFdY5gcINYNtf41o/LROTO9ukB@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEFtSXL8YPh1FoOsI9W5JNagICrT/mG1xCc0ZpWFBR5RqbQ6WJ
+	NjLUjBkQLSZIFsMLv80HcLo7SbmMwjEgMfBW7t6iYIxD+j+bOTAX/8e2aCWZ2Pw=
+X-Google-Smtp-Source: AGHT+IFdeytN/mmapjvnod27wfN3C5x03kaUeBmTVVQbHTk9ROmaV2euFnRoXPRA5dJwoBB2aYDOeg==
+X-Received: by 2002:a17:906:dc90:b0:a8d:592d:f56 with SMTP id a640c23a62f3a-a967c0b53e0mr293748866b.31.1727786994094;
+        Tue, 01 Oct 2024 05:49:54 -0700 (PDT)
+Received: from [192.168.0.15] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c299861bsm705327566b.192.2024.10.01.05.49.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Oct 2024 05:49:53 -0700 (PDT)
+Message-ID: <c912f2da-519c-4bdc-a5cb-e19c3aa63ea8@linaro.org>
+Date: Tue, 1 Oct 2024 13:49:51 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,82 +76,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] arm64: dts: imx8mm-verdin: Update tla2024 adc
- compatible
-To: =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?=
- <jpaulo.silvagoncalves@gmail.com>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 00/10] (no cover subject)
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Vikram Sharma <quic_vikramsa@quicinc.com>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: =?UTF-8?Q?Jo=C3=A3o_Paulo_Gon=C3=A7alves?= <joao.goncalves@toradex.com>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241001124505.73857-1-jpaulo.silvagoncalves@gmail.com>
- <20241001124505.73857-3-jpaulo.silvagoncalves@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <conor+dt@kernel.org>, Kapatrala Syed <akapatra@quicinc.com>,
+ Hariram Purushothaman <hariramp@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+ cros-qcom-dts-watchers@chromium.org,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,
+ Suresh Vankadara <quic_svankada@quicinc.com>,
+ Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>, stable@vger.kernel.org,
+ Hariram Purushothaman <quic_hariramp@quicinc.com>
+References: <20240904-camss_on_sc7280_rb3gen2_vision_v2_patches-v1-0-b18ddcd7d9df@quicinc.com>
+ <D4JK8TRL7XBL.3TBA1FBF32RXL@fairphone.com>
+ <fc0ce5cd-e42a-432b-ad74-01de67ec0d5c@linaro.org>
+ <D4KBQ3ENKF5Y.3D2AK81PELAEZ@fairphone.com>
+ <e7cc5f91-a0a8-48fc-9eb6-b9c46b22dfeb@linaro.org>
+ <D4KFVNV1A4KG.CFLT81CFBDTM@fairphone.com>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241001124505.73857-3-jpaulo.silvagoncalves@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <D4KFVNV1A4KG.CFLT81CFBDTM@fairphone.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 01/10/2024 14:45, João Paulo Gonçalves wrote:
-> From: João Paulo Gonçalves <joao.goncalves@toradex.com>
+On 01/10/2024 12:39, Luca Weiss wrote:
+
+> And v4l-subdev5 is msm_csid0 on my device.
+
+<snip>
+
 > 
-> With commit f1c9ce0ced2d ("iio: adc: ti-ads1015: Add TLA2024 support") a
-> new compatible was introduced for TLA2024 ADC. Update the device tree to
-> use the correct compatible for the Verdin-iMX8MM hardware.
-> 
-> Signed-off-by: João Paulo Gonçalves <joao.goncalves@toradex.com>
-> ---
+> - entity 16: msm_csid0 (5 pads, 22 links, 0 routes)
+>               type V4L2 subdev subtype Unknown flags 0
+>               device node name /dev/v4l-subdev5
+>          pad0: Sink
+>                  [stream:0 fmt:SRGGB10_1X10/4056x3040 field:none colorspace:srgb]
+>                  <- "msm_csiphy0":1 []
+>                  <- "msm_csiphy1":1 []
+>                  <- "msm_csiphy2":1 []
+>                  <- "msm_csiphy3":1 []
+>                  <- "msm_csiphy4":1 []
+>          pad1: Source
+>                  [stream:0 fmt:SRGGB10_1X10/4056x3040 field:none colorspace:srgb]
+>                  -> "msm_vfe0_rdi0":0 [ENABLED]
+>                  -> "msm_vfe1_rdi0":0 []
+>                  -> "msm_vfe2_rdi0":0 []
+>                  -> "msm_vfe3_rdi0":0 []
+>                  -> "msm_vfe4_rdi0":0 []
 
-Same issue here.
+<snip>
 
-Best regards,
-Krzysztof
+media-ctl --reset
+yavta --no-query -w '0x009f0903 2' /dev/v4l-subdev5
+yavta --list /dev/v4l-subdev5
+media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
+media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
+media-ctl -d /dev/media0 -p
 
+That command list and this
+
+yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
+
+should work.
+
+I have to test Vladimir's two patches. I'll verify rb5 TPG while I'm at 
+it, perhaps the error is not sdm670 specific.
+
+That said last time I tested it, it worked and no changes have gone in, 
+in the meantime.
+
+---
+bod
 
