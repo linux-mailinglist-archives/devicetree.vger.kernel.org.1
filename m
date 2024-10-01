@@ -1,236 +1,239 @@
-Return-Path: <devicetree+bounces-106704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A41A198B62C
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 09:53:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C466F98B642
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 09:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBE8BB21BB6
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 07:52:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AD03E1C21EED
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 07:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F60E1BDA90;
-	Tue,  1 Oct 2024 07:52:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 093761BDAA6;
+	Tue,  1 Oct 2024 07:56:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="Qkx74dQ1"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="ixsN0XFA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2061.outbound.protection.outlook.com [40.107.255.61])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7921419992D;
-	Tue,  1 Oct 2024 07:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727769172; cv=fail; b=GJsHjsxBSO8HzO4EcWm6fVEUK25FhcQ6cajgqgF8ukJLBE/JGVBOrotIMZoDsZRZWy9EI3k7QmGF3s3gZJD+5QBl1MfpksOcmTzi710ye6qgPNepv+/6FIc8iqE9wPdpIZswnrLcZOB4foHCW90dry5qeKVGQ3o3GaxeSXd1g/U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727769172; c=relaxed/simple;
-	bh=dP/Czn9fsu8evogjIbPattR2+URcaLlShzH5L6Hcz3E=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Y/zTNGffYGcUINhaMbbcTQ6cdq3g36RZUYUjLkPHmceKZqCQRXdp3YurA5fQ01Arb5KwcGrnhyIEHgZUE2IvC5dyxyMS8zAurysDZV+geeDrt0P+U1EQQduWxCqSkx6pRjhqUeSqpr3GCduOj/NycJGkDazAVCSdq9Tn1NLXTHk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=Qkx74dQ1; arc=fail smtp.client-ip=40.107.255.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hgvjz+Lo48pAr8AbB5RqWm9rR+r2QweUD+puWrT1e9jrD+TGmtupa0DHl1FQuCFAa2k8roqy38X4Ji7m2h3pHG37oIPleb8GKuiXog1cLk0yVh0LTl1V02zAXZbleaaMWe3TOK508DUW5/OQPnTBli+Ta4E6ThFwjPAW+tQMgr/N3ZK+5xh58X9ZW60P/Oqr9dOm/5onKXeBNh873OMyyhQ4d9Y3NdzvwaMfKtjPrGQEZuOgAMoNpN02H9z4hsk4mRa+c4+x0mElFZdJ6C5SFESLsLVRWoZ6UqdA/NRNOdbcBE5jINE7HVJc7ywA13c4s1Dbz5mzPRXpZdVvrB4lUw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dP/Czn9fsu8evogjIbPattR2+URcaLlShzH5L6Hcz3E=;
- b=bK+6UtXUBXo5k1geAJrntwKzZI7b6rqY6g7Irjghp+7VL74bc4T69Osl2xTUs5Lrya9KEzOlNuP7U5FkyfRuRJtVzi85aRnjzRuvFDRAcrcFxyBr6VKTmTRAyUMiIe7Hf7pC5TnsyFeDy9dfMVAKbL4Go3rLYZ7GNqbgtP3/Wz5Fg7tvV/QaBezFVfqUSs/GEj3oMrSrBPKDigiySIiV/nxHoxyjN85DgR/ENhx+MFbMheZBApIMZLXt19JQ393ipHYsSbzc5ar632/Lrgg/1fEw1n9EYaI6AC6wLHGDSuSEdVbjAcZp9UAH0x9//ax1RDKq4RCAyPV1Xk9SlwGkyg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wiwynn.com; dmarc=pass action=none header.from=wiwynn.com;
- dkim=pass header.d=wiwynn.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=dP/Czn9fsu8evogjIbPattR2+URcaLlShzH5L6Hcz3E=;
- b=Qkx74dQ1l0iCSb88Xia/zNORhXeSY4TtdaiYYCMBCagPhUEDJf2paGafZhDuB8CWz9vXFNltVdqdafEqd8M/3O4+lEL/fgDNva5b/ZxJi1ZUa4PkcvFADynuAkysS/oHgzLPOWZ8d2b+HwS38T4aA9TyhtEWo3iwOhOjb2PvORgZvXnHDHBG2GQOzO5JE3VA9GMAfEerdFjnPSxRKnNGXT3x1FAgyQkKHLmCg3bZrJD+y93DOvcbModldRPZVvL4UgdnAQxke3gkgP8AeasSZxlfX09or2LLZaRZ+jbwa0kmpKOTSLgWW9qPYyScaNC7kIkEWTHQSxcbT3I0BMJiPA==
-Received: from TYZPR04MB5853.apcprd04.prod.outlook.com (2603:1096:400:1f3::5)
- by KL1PR04MB7516.apcprd04.prod.outlook.com (2603:1096:820:11c::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Tue, 1 Oct
- 2024 07:52:46 +0000
-Received: from TYZPR04MB5853.apcprd04.prod.outlook.com
- ([fe80::ae7d:7486:9319:8d96]) by TYZPR04MB5853.apcprd04.prod.outlook.com
- ([fe80::ae7d:7486:9319:8d96%6]) with mapi id 15.20.8005.026; Tue, 1 Oct 2024
- 07:52:46 +0000
-From: Delphine_CC_Chiu/WYHQ/Wiwynn <Delphine_CC_Chiu@wiwynn.com>
-To: Andrew Jeffery <andrew@codeconstruct.com.au>, Delphine_CC_Chiu/WYHQ/Wiwynn
-	<Delphine_CC_Chiu@wiwynn.com>, "patrick@stwcx.xyz" <patrick@stwcx.xyz>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-CC: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v1 2/8] ARM: dts: aspeed: yosemite4: Add i2c-mux for four
- NICs
-Thread-Topic: [PATCH v1 2/8] ARM: dts: aspeed: yosemite4: Add i2c-mux for four
- NICs
-Thread-Index: AQHbEwcaMrmlQxTcsU+R+KRlEx+LtrJxDhuAgAB3jQA=
-Date: Tue, 1 Oct 2024 07:52:46 +0000
-Message-ID:
- <TYZPR04MB585305DCD18AF723B8A48480D6772@TYZPR04MB5853.apcprd04.prod.outlook.com>
-References: <20240930070500.3174431-1-Delphine_CC_Chiu@wiwynn.com>
-	 <20240930070500.3174431-3-Delphine_CC_Chiu@wiwynn.com>
- <fffb98e40d407c68dc3de6fd21c8a724be96e38a.camel@codeconstruct.com.au>
-In-Reply-To:
- <fffb98e40d407c68dc3de6fd21c8a724be96e38a.camel@codeconstruct.com.au>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wiwynn.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR04MB5853:EE_|KL1PR04MB7516:EE_
-x-ms-office365-filtering-correlation-id: c25dc48c-c8a9-4705-fb52-08dce1ee0a03
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?VGJTYkdXWmo1UDVHcTJmeHBNTUxoK2VvSW81TlRFT3RKZGRkUjFyNXZySjc2?=
- =?utf-8?B?Yjc2NnZqVm9EUFJFUG51TnRtWDBRRDBYSU1TSkZuUlI3d2xubGVzUm5mSWEx?=
- =?utf-8?B?ak1mUVpldkFHdXh1c20wSmNEN1dOVSs1cU05K2x3WlBaTGV5YStrMEtwMG81?=
- =?utf-8?B?cXhUL0Y2TEpuRCtnY1NRRGF1L1lQVENwenF5NnFZbFQ1QWhicllzdXh0eXZ1?=
- =?utf-8?B?UnRuVjVLcHExeC9EU0QwRzRJU2tMQXd6U2sxS3ZNaUcrbDFXRExXQStTTS9L?=
- =?utf-8?B?QnVRNlhxazA1UzVIUUhxQ2lLVW10eFZ3VURLbE5DQzZFTVlQNHV4bWRjZGpO?=
- =?utf-8?B?SmoxTUtYM1lNZWJvQjZLWjJKNDVYek5VWk9vS0ExWHVWNmF0YzlMTDFodXVF?=
- =?utf-8?B?aE54RGwraVlmTDJLd3RXOEp5QWZZRnljbHJzczBuNU9BNDFLZ1AxSzE0ejlv?=
- =?utf-8?B?SU1HTHpURUdKclpBbGdFTVNySC9LVGVHNnN1dVBJcERVblM3RGh4d3EzR2FD?=
- =?utf-8?B?b2F0bzRlK2xyb0czYU1SaG9vWHN3Ry9nUlBac2tkY3RJZlAyamFybXI3RVVB?=
- =?utf-8?B?Rmg5Mnl2djM0REVlR1dqSHdnUDcvQXdhMkw0V0lkS0JRc05JZW9nTzJ3MjVr?=
- =?utf-8?B?RjVRRHJnQWh4R1pFamR6SUduNmF2MnVMcXR0cmJ6VHBaNjJSV0pjR2tFWUs4?=
- =?utf-8?B?Z1hLaXNhVEpNcm1SdGpnbzcyTEZjdzM0OSswWmc1cDRlS0xPOHBPRXdRd0gr?=
- =?utf-8?B?SGg4UTFXS01hWFBLRGRZT0tzbXZWZ1FvTUJHK2hXZTdHUm80dHZuTXZQOG1B?=
- =?utf-8?B?MFVVR3RjdGVPWWFwTWFTa3c0QjJIMnhvMWZGQndxV2crRjhCRTFFQ3dmcGZB?=
- =?utf-8?B?dzhIWGdmNThxUjRtU3lYbHV2MFlCdjB1K2pVL1JhdjVlN20rRjJxbnlLbGRn?=
- =?utf-8?B?Z1JLUnEzOTRFdkJCQ05HSnRIcEZoOC9wMWcvaHJUbkFzNzdKTlc4YWg4YzNM?=
- =?utf-8?B?UWpkRUFwYkR2UTBrbC9WTXBEc2I5VnRxeUE0ajJTeS9HTnppb2JXOWgyT3lD?=
- =?utf-8?B?T1VLeGNrRkN3Qkc3bzlZWGdXZG1OMTdGZmF1ZWc0THFPVlFaWm1oY25ncTRE?=
- =?utf-8?B?bXZub1pXS1lQNkkvVlJ6enZUQjZTM1VBR1h1cnZZZnBJa2laelZkTm9WeHdT?=
- =?utf-8?B?eXhvNWc0OHFTM3ZkSGZpQmJxaUdkcXZjaG1tNG5rYUwrRllyWXFmT0FEMGk2?=
- =?utf-8?B?cDkxSTR3d0tZVjdNRTlGdG5QY1FxcER3VFJBdnZCd0FqV2g3dGwvNFUvR1lF?=
- =?utf-8?B?U0RVbGw1Ly9STDNKRHdWOTdlS3hOK01uWjR5SmtkYTYrekl1L01yVm9KcGo4?=
- =?utf-8?B?ZWIwbmsvRUdUZHBrbWg5RkdRUnF1ZitycEhJSVhDN0hTQ0JFdHpSekdzanBG?=
- =?utf-8?B?WkRIK24zNElCSS9qM2VRVDRqZWVkdHFSYWxheXB5WEJzSzFMRUhKTUxuT3Bj?=
- =?utf-8?B?eWU4SnNpTzNTdElCaHFnZTZRM3FjUnVBZi9lQ1A0clIzcmlwQ3J3aHlhekF2?=
- =?utf-8?B?b1FmZDdFSzlua09yTTJBdktvOEcyY3YrYll0bDExRzVZS2xEOS9rQys1SFdy?=
- =?utf-8?B?MlJsem8wVThaWUVOL3Z1ZTJyU2pHSjhiNjZpa2lpNy9nNnlrRGhnTUw2NEtw?=
- =?utf-8?B?Sm01dWVuK1c0bHhVUXRLSjFQVkUvbmV2SEtHRHlhTTA0VnlPTUNiTVpPUFQv?=
- =?utf-8?B?aWF5VTVTZUlqNlN0UjBoay9UNSt6VWkyTHB2TjNLK2xIVllRWGd1d2xpQ0U3?=
- =?utf-8?B?VlVjVDNScGR5bkJ3MndHR0pzbmc2cTE4N1Ywak42SVFwUzgvcTdQRDhydUdT?=
- =?utf-8?B?YlRPRnREeU5wQmNkV0pVWGR6enk2R3l3UGthMVJOTXBHSUE9PQ==?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR04MB5853.apcprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?OWpLTDljY0xXNEpyYmFvaytUc3ZGdW0wdHkrTjkrUFNyTGdWRmo0VWF1cit6?=
- =?utf-8?B?ZzVJMVo1eHpXTld3TytNWEVkeUl0Y3kwWTQ5VzI3RThjQUlCWkJ4NzVPdVd5?=
- =?utf-8?B?eFVzZVhGRFZoNzhicHlUT0lzSlhDbkoyaXZ5VDcyUy9mV1Bma3I1S1R6Z3Zp?=
- =?utf-8?B?OEVySnNwTElSUEFadklhRjFvaXZSMm9WVWxWZk1ZU0RoT0tsOVd5YnpvdmI1?=
- =?utf-8?B?MTJyQlV2Uk83RmhaVzlBd1RodGpGNXBwS0ZPMnI1bmh2U0ZWMUtSOThuR2tB?=
- =?utf-8?B?Q0Jxc3F5U09Tb3FiVFRYQS9uZFhNSzhnbTZkRkVjVE52ZDVvMUZselJiMytK?=
- =?utf-8?B?QUNZWFZyWWJGc0RmQUZKZDZHazFibG5DRVUvWjYrV010QjV6S3IxUUEvU0Jz?=
- =?utf-8?B?WFpvakx5bTdpbERnSUt1MG1zY0dTMlZ4UEF0d1pHSVh0ZFFtVElFaTdwc1FL?=
- =?utf-8?B?SkgwalFyN2RkRGlob3phR3hZa0ZyN2dSSmJ2c1NFREFaS2ZWZ3hCZ25Yckw2?=
- =?utf-8?B?Y0M1Y3BaZm1HcnBMWTFnY1pYcnRrT1YwUlIrQVRtOU5acEM2SXlTK2loM2tu?=
- =?utf-8?B?MEJEcUVsS2hoa0wwL1JLSjNmYzhsMldoZVY2THI1MkZ6dGZpN05rUkZ5dVFx?=
- =?utf-8?B?MDFMenFsSWR3OHhqOVRZR09OSWNtZG9leTBOR1o5WXY3UVQ2djUwRkppN2NK?=
- =?utf-8?B?NVJINnZrbWM5YlFkTVZTR2xNbVZmb29iUzA1TFA2UVdLZytDZ2UxSWovK1lx?=
- =?utf-8?B?TDBtNHpUdSsrdEppalZzK21OU1BvcmluaUh3clozUHNlYjljZHhLRFBFdDVz?=
- =?utf-8?B?dUEyTUN1djVGQmI0N3lpTWU4N0EvN1FlSlAzcm9QSE9kek1TSlR4TVV2NDJn?=
- =?utf-8?B?c3dtalZTK1dmQW14SjRlZWpKTHdxR0JvQ0VpOUxmQXorMU5tRzZKMU12Qi9v?=
- =?utf-8?B?M3AzNlFGL3FUQkFZc3dYTzlrc21xRll3Ly8xQmtoK3JWYTNUU010QlVoelcz?=
- =?utf-8?B?dVdLSTJkNnNMdi94bzJkUWpVYlFlRXhrRm5kWUlBTy9jZlRON29oTkczTG5F?=
- =?utf-8?B?a2szcFdoc2tkdVlRWTJYQU80RHVIU2hDMGIrWHlER1dBU2NLUXhFS1d3bk0r?=
- =?utf-8?B?ZDB1bEFQQXZ5Y1ZaMGd5cW9jVU5OTDRMN3hqK1ZoaUpraHFzdEhKaWIyZG1T?=
- =?utf-8?B?Z1NwSE9VeWlCRzcwTGNSSWtFSGpIc2FIOW9zTFczN2p1ZmlZUWI2b1NVbmsy?=
- =?utf-8?B?R04rcFArUTdORmVPMVVqZEdWRE1pMGhhdmNlR2x3Mk50SUZwTkVVbXRycWtR?=
- =?utf-8?B?RlpqenY0YXdFZ2pKbGFUNGFlODM3TDVVOWE3STdrNkppZEg5aDF3azhxVEpM?=
- =?utf-8?B?R3Y0d2ZMMVJtNWVZQ2o0OVNVSWxQd1dpcUlWeG5KdGJ0RUxMNC9YOW82Y1RP?=
- =?utf-8?B?alZHZUMycE55VThlQ0ExQzZ4K1pnY2ZCOEhoVkJ1UWFidzFsRWpDK0llOU92?=
- =?utf-8?B?N2dVVlpVNmMyM0YzL0lUejNOclZTTzhSWVdYWDdMWStkUDdsN1RUekFwQmVT?=
- =?utf-8?B?cWorTjdSMlo1NzlWWGlPVm1SOUNuN1ZMamN4eHh6VUVsWWpzK1h2b0NsZjFW?=
- =?utf-8?B?RFpQVHJsRzBtcy95ajBNamVPTldyTndiRysvZTcvbThnVllvMTJ1RVdlMGoy?=
- =?utf-8?B?eHkwYmZPZ1c4V2NyamFLOHFRd2twR2NhMGxPT0lSVEZEZ0t5NGV3L3c3MkJ0?=
- =?utf-8?B?K2FSbTArc2NST0g5R1N0dFVML1JkMTBQYlRsRFRmbUxubDNKNEt6b2FXbEkw?=
- =?utf-8?B?b3YveE5wZThoUWZvK2JkcHQrRzcyeEtzajE1ZjlVenRLZlRwYWhkYUZLeFV4?=
- =?utf-8?B?dUIvQlU5RExDeFVFc2hCbllHaEgxMmkrQ2loS0Z6bnRiWjcyVGdQVWFwVVNo?=
- =?utf-8?B?UDgxckE1bU1PandUWTlIMmFtOWRkL1FmVDdET3BNakQ5T0lQSmE1QUxibGUw?=
- =?utf-8?B?TGduMEFkNHFleGUxZHQrS2FBbkdTbUk1TERKVU1jRC9zSkd0bTQxelJCdWNy?=
- =?utf-8?B?R0RrSVQrZy9IcVZ1WHJpVm92UUF5ckVsYUg1ZzJtRUg0cWkvWmRZKzd3Qi9V?=
- =?utf-8?Q?KBKbNumw/Ikzm79LlWBUwsguA?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 833642BAF1;
+	Tue,  1 Oct 2024 07:56:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727769414; cv=none; b=E++KXc5ZSfYy8sfRVIUTuyF1PiLXA8IZnhxz6uFBwq9XtCk60aTX60tldDulxGtiIWjBK3l1Vm7Pona/I/0IVXgf7Mc6vSZCqLvzluUteubQc07n5fOEXSlRt9qiFJMcaEL2eiMiakx41NGzvpeLC689Q6f0RWb8fy48VA3TyJ0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727769414; c=relaxed/simple;
+	bh=kqtCwrNQyrsCPH14IeF49CkrTD3Sxwt2LYZ89HY0hjY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=sFxjQ9sinNe+sphtTEdv+idoiP4CdKoQTVdFtdkWnSjat1KS6DhDE1s4GnuDWdCvkJiFeETj5HjhDRrOEZJHSbmOcM5iJo6k6T9DzIbLtyWs2ai13yCNGZ97vO3SPuqLqWDGFrFMPw96i3zmRTdrbXckw8ep4y9rSpYZHfkMNO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=ixsN0XFA; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b47bc4707fca11efb66947d174671e26-20241001
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=TjMavNplUZELeajR9FcsG6MetaDg0Rbfa8IeC3xIwEU=;
+	b=ixsN0XFAJsan5Ev6vc+tKGXpJIGcjVl1HX9AIgoj+lxKnrbYXc6ny+CWdptP/KZUo+YTJdKx2AjVz71BCgkOE360jJOM1VzIj8JAjHytnTY1Nqp2ePMmpK82UbmpnOhd5DoAoAwoCytFOfr+fOvhtu0u28b8JOZp3i6TfD5wZ9I=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:42482f59-f8ee-4621-8c1a-6436a83ad0d4,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:5b18d79e-8e9a-4ac1-b510-390a86b53c0a,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-UUID: b47bc4707fca11efb66947d174671e26-20241001
+Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 462655724; Tue, 01 Oct 2024 15:56:45 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 1 Oct 2024 15:56:44 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Tue, 1 Oct 2024 15:56:43 +0800
+Message-ID: <52f8b482-cf53-cace-5942-728dcb50ff13@mediatek.com>
+Date: Tue, 1 Oct 2024 15:56:41 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR04MB5853.apcprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c25dc48c-c8a9-4705-fb52-08dce1ee0a03
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2024 07:52:46.6130
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: o+ZXd2Niz4JLGEIoYPrTGAFnXmMMnKTwTY6KtePuU9LubMFCReOOcSYgl8YOB3XS3DFKJNmu3bSHEdgmuPH6pg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR04MB7516
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v7 3/3] dt-bindings: mfd: mediatek: mt6397: Convert to DT
+ schema format
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>, Lee Jones
+	<lee@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino
+ Del Regno <angelogioacchino.delregno@collabora.com>, Sen Chu
+	<sen.chu@mediatek.com>, Sean Wang <sean.wang@mediatek.com>, Andrew Lunn
+	<andrew@lunn.ch>, Florian Fainelli <f.fainelli@gmail.com>, Vladimir Oltean
+	<olteanv@gmail.com>, "David S . Miller" <davem@davemloft.net>, Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
+	<pabeni@redhat.com>, Sebastian Reichel <sre@kernel.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, <linux-input@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-leds@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+	<netdev@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
+	<linux-sound@vger.kernel.org>, Alexandre Mergnat <amergnat@baylibre.com>,
+	Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+References: <20240930073311.1486-1-macpaul.lin@mediatek.com>
+ <20240930073311.1486-3-macpaul.lin@mediatek.com>
+ <psjwbo2vecr54vmz5ib2eurhpcaynpc67rc2nwuj2gtej6gqiu@4ysahn2ghthf>
+ <5a29ddaf-cc01-498c-943c-b65736e2899e@kernel.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <5a29ddaf-cc01-498c-943c-b65736e2899e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQW5kcmV3IEplZmZlcnkg
-PGFuZHJld0Bjb2RlY29uc3RydWN0LmNvbS5hdT4NCj4gU2VudDogVHVlc2RheSwgT2N0b2JlciAx
-LCAyMDI0IDg6MzcgQU0NCj4gVG86IERlbHBoaW5lX0NDX0NoaXUvV1lIUS9XaXd5bm4gPERlbHBo
-aW5lX0NDX0NoaXVAd2l3eW5uLmNvbT47DQo+IHBhdHJpY2tAc3R3Y3gueHl6OyBSb2IgSGVycmlu
-ZyA8cm9iaEBrZXJuZWwub3JnPjsgS3J6eXN6dG9mIEtvemxvd3NraQ0KPiA8a3J6aytkdEBrZXJu
-ZWwub3JnPjsgQ29ub3IgRG9vbGV5IDxjb25vcitkdEBrZXJuZWwub3JnPjsgSm9lbCBTdGFubGV5
-DQo+IDxqb2VsQGptcy5pZC5hdT4NCj4gQ2M6IFJpY2t5IENYIFd1IDxyaWNreS5jeC53dS53aXd5
-bm5AZ21haWwuY29tPjsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1r
-ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gbGludXgtYXNwZWVkQGxpc3RzLm96bGFicy5v
-cmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCB2
-MSAyLzhdIEFSTTogZHRzOiBhc3BlZWQ6IHlvc2VtaXRlNDogQWRkIGkyYy1tdXggZm9yIGZvdXIN
-Cj4gTklDcw0KPiANCj4gIFtFeHRlcm5hbCBTZW5kZXJdDQo+IA0KPiAgW0V4dGVybmFsIFNlbmRl
-cl0NCj4gDQo+IE9uIE1vbiwgMjAyNC0wOS0zMCBhdCAxNTowNCArMDgwMCwgRGVscGhpbmUgQ0Mg
-Q2hpdSB3cm90ZToNCj4gPiBGcm9tOiBSaWNreSBDWCBXdSA8cmlja3kuY3gud3Uud2l3eW5uQGdt
-YWlsLmNvbT4NCj4gPg0KPiA+IEFkZCBpMmMtbXV4IG9uIFNwaWRlciBib2FyZCBmb3IgZm91ciBO
-SUNzIGFuZCBhZGQgdGhlIHRlbXBlcmF0dXJlDQo+ID4gc2Vuc29yIGFuZCBFRVBST00gZm9yIHRo
-ZSBOSUNzLg0KPiA+DQo+ID4gU2lnbmVkLW9mZi1ieTogUmlja3kgQ1ggV3UgPHJpY2t5LmN4Lnd1
-Lndpd3lubkBnbWFpbC5jb20+DQo+ID4gU2lnbmVkLW9mZi1ieTogRGVscGhpbmUgQ0MgQ2hpdSA8
-RGVscGhpbmVfQ0NfQ2hpdUB3aXd5bm4uY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYXNwZWVkL2Fz
-cGVlZC1ibWMtZmFjZWJvb2steW9zZW1pdGU0LmR0cyAgfCA3NQ0KPiA+ICsrKysrKysrKysrKysr
-KysrKy0NCj4gPiAgMSBmaWxlIGNoYW5nZWQsIDcyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25z
-KC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9hcmNoL2FybS9ib290L2R0cy9hc3BlZWQv
-YXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZTQuZHRzDQo+ID4gYi9hcmNoL2FybS9ib290L2R0
-cy9hc3BlZWQvYXNwZWVkLWJtYy1mYWNlYm9vay15b3NlbWl0ZTQuZHRzDQo+ID4gaW5kZXggZGJj
-OTkyYTYyNWI3Li5iODEzMTQwYjNjNWIgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm0vYm9vdC9k
-dHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJvb2steW9zZW1pdGU0LmR0cw0KPiA+ICsrKyBiL2Fy
-Y2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQtYm1jLWZhY2Vib29rLXlvc2VtaXRlNC5kdHMN
-Cj4gPiBAQCAtMjYsNiArMjYsMTAgQEAgYWxpYXNlcyB7DQo+ID4gICAgICAgICAgICAgICBpMmMy
-MSA9ICZpbXV4MjE7DQo+ID4gICAgICAgICAgICAgICBpMmMyMiA9ICZpbXV4MjI7DQo+ID4gICAg
-ICAgICAgICAgICBpMmMyMyA9ICZpbXV4MjM7DQo+ID4gKyAgICAgICAgICAgICBpMmMyNCA9ICZp
-bXV4MjQ7DQo+ID4gKyAgICAgICAgICAgICBpMmMyNSA9ICZpbXV4MjU7DQo+ID4gKyAgICAgICAg
-ICAgICBpMmMyNiA9ICZpbXV4MjY7DQo+ID4gKyAgICAgICAgICAgICBpMmMyNyA9ICZpbXV4Mjc7
-DQo+ID4gICAgICAgICAgICAgICBpMmMzNCA9ICZpbXV4MzQ7DQo+ID4gICAgICAgICAgICAgICBp
-MmMzNSA9ICZpbXV4MzU7DQo+ID4gICAgICAgfTsNCj4gPiBAQCAtMTE5Niw4ICsxMjAwLDkgQEAg
-YWRjQDM1IHsNCj4gPiAgfTsNCj4gPg0KPiA+ICAmaTJjMTUgew0KPiA+ICsgICAgICNhZGRyZXNz
-LWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KPiA+ICAgICAgIHN0
-YXR1cyA9ICJva2F5IjsNCj4gPiAtICAgICBtY3RwLWNvbnRyb2xsZXI7DQo+IA0KPiBXaHkgYXJl
-IHlvdSBkZWxldGluZyB0aGlzIGlmIHlvdSdyZSBub3QgYWxzbyBkZWxldGluZyB0aGUgTUNUUCBl
-bmRwb2ludCBub2RlPw0KPiANCj4gVW5sZXNzIHRoZXJlJ3Mgc29tZSByZWFzb24gdGhpcyBpcyBy
-ZWxhdGVkIHRvIHRoZSBOSUNzLCB0aGlzIHNob3VsZCBiZSBpdHMgb3duDQo+IHBhdGNoIHdpdGgg
-aXRzIG93biBqdXN0aWZpY2F0aW9uLg0KPiANCj4gQW5kcmV3DQpIaSBBbmRyZXcsDQoNCldlIGhh
-dmUgZGlzY3Vzc2VkIHdpdGggSmVyZW15IGZyb20gQ29kZSBDb25zdHJ1Y3QgYWJvdXQgcmVtb3Zp
-bmcgdGhlDQptY3RwLWNvbnRyb2xsZXIgb24gYnVzIDE1IGJlZm9yZS4NCg0KSGUgdGhvdWdodCBp
-dCB3b3VsZCBiZSBiZXR0ZXIgdG8gYWRkIHRoZSBtY3RwLWNvbnRyb2xsZXIgb24gZWFjaCBpMmMg
-bXV4IHBvcnQNCnNvIHRoZSBNQ1RQIGRyaXZlciB3b3VsZCBlbnN1cmUgdGhhdCB0aGUgbXV4IHdh
-cyBjb25maWd1cmVkIHByb3Blcmx5IGJlZm9yZQ0KY29tbXVuaWNhdGluZyB3aXRoIHRoZSBkZXZp
-Y2UuDQoNCkknbGwgc3BsaXQgYSBwYXRjaCB0byByZW1vdmUgdGhlIG1jdHAtY29udHJvbGxlciBv
-biBidXMgMTUgaW4gbmV4dCBzZXJpYWwgb2YgcGF0Y2hlcy4NCg0KUmVnYXJkcywNClJpY2t5DQo=
+
+On 10/1/24 14:35, Krzysztof Kozlowski wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On 01/10/2024 08:29, Krzysztof Kozlowski wrote:
+>> On Mon, Sep 30, 2024 at 03:33:11PM +0800, Macpaul Lin wrote:
+>>> Convert the mfd: mediatek: mt6397 binding to DT schema format.
+>>>
+>>> MT6323, MT6358, and MT6397 are PMIC devices with multiple function
+>>> subdevices. They share a common PMIC design but have variations in
+>>> subdevice combinations.
+>>>
+>>> Key updates in this conversion:
+>>>
+>>> 1. RTC:
+>>>    - Convert rtc-mt6397.txt and merge into parent MT6397 PMIC DT schema.
+>>>
+>>> 2. Regulators:
+>>>    - Align to generic name "regulators".
+>>>    - Update references from .txt to .yaml for mt6323, mt6358, and mt6397
+>>>      regulators.
+>>>    - Simplify regulator name labels in device tree examples.
+>>>    - Add a new 'mt6359-regulator' to the compatibles of regulators.
+>> 
+>> Why?
+>> 
+>>>      Merge from the other patch [1].
+>>>
+>>> 3. ADC:
+>>>    - Add a new 'adc' property and include a $ref for sub-device node of
+>>>      MT6359 PMIC AUXADC: 'mediatek,mt6359-auxadc'.
+>>>      Merge from the other patch [1].
+>>>
+>>> 4. Audio Codec:
+>>>    - Simplify Audio Codec part with updating compatible items.
+>>>    - Add 'mt6359-codec' to the compatible
+>> 
+>> Why?
+>> .
+>>>
+>>> 5. Clocks:
+>>>    - Align to generic name "clocks" for clockbuffer subdevices.
+>>>
+>>> 6. LEDs:
+>>>    - Convert leds-mt6323.txt and merge into parent MT6397 PMIC DT schema.
+>>>    - Update LED binding.
+>>>
+>>> 7. Keys:
+>>>    - Add detailed descriptions for power and home keys.
+>>>    - Add compatible: mediatek,mt6358-keys.
+>>>
+>>> 8. Power Controller:
+>>>    - Convert mt6323-poweroff.txt and merge into parent MT6397 PMIC DT
+>>>      schema.
+>>>    - Add #power-domain-cells property to fix dt-binding check error.
+>>>    - Clarify "BBPU" as "Baseband power up".
+>>>
+>>> 9. Pinctrl:
+>>>    - Align to generic name "pinctrl" instead of "pin-controller".
+>>>
+>>> 10. Compatible:
+>>>    - Drop "mediatek,mt6357" since there is a separated DT Schema
+>>>      for PMIC MT6357.
+>>>
+>>> 11. Examples:
+>>>    - MT6323: Retain complete examples for this PMIC.
+>>>    - MT6358 and MT6397: simplify settings in regulators.
+>>>     - Preserve "audio-codec", "clocks", "pinctrl", "rtc", and "keys"
+>>>       sections as they contain typical settings for different PMICs.
+>>>
+>>> Additional updates:
+>>> - MAINTAINERS: Add co-maintainers and reference to
+>>>   mfd/mediatek,mt6397.yaml for LED and power-controller drivers.
+>>> - input/mediatek,pmic-keys.yaml: Update reference to
+>>>   mfd/mediatek,mt6397.yaml.
+>>>
+>>> References:
+>>> [1] https://lore.kernel.org/all/20240925171156.9115-1-macpaul.lin@mediatek.com/
+>>>
+>>> Signed-off-by: Sen Chu <sen.chu@mediatek.com>
+>>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>>> ---
+>> 
+>>> +
+>>> +  adc:
+>>> +    type: object
+>>> +    $ref: /schemas/iio/adc/mediatek,mt6359-auxadc.yaml#
+>>> +    unevaluatedProperties: false
+>>> +
+>>> +  audio-codec:
+>>> +    type: object
+>>> +    description:
+>>> +      Audio codec support with MT6358, MT6359, and MT6397.
+>>> +    additionalProperties: true
+>> 
+>> No, this cannot be true. Schema is incomplete for listed compatibles.
+> 
+> I saw now your patch for ASoC, so this is fine.
+> 
+> All my other questions stay valid - why are you adding new devices in
+> patch which is supposed to be ONLY conversion.
+> 
+
+Ok, I'll drop adding new devices from other reviewed patch for this ONLY
+conversion.
+
+>> 
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        oneOf:
+>>> +          - enum:
+>>> +              - mediatek,mt6358-sound
+>>> +              - mediatek,mt6359-codec
+>> 
+>> There was no such compatible.
+>> 
+>> Why do you add non-existing compatibles during conversion?
+>> 
+
+Same here, will drop it in this conversion.
+
+
+> Best regards,
+> Krzysztof
+> 
+> 
+
+Thanks
+Macpaul Lin
 
