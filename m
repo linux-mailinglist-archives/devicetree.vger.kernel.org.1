@@ -1,134 +1,152 @@
-Return-Path: <devicetree+bounces-106766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046E598B9FB
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:44:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DC2198BA23
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 12:54:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 360F11C22D79
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:44:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63E7A281AC4
+	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 10:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831AB1BF811;
-	Tue,  1 Oct 2024 10:43:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7304B1BDAA3;
+	Tue,  1 Oct 2024 10:54:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="S78t62yF"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="LeyaX072"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C24E61BC9F0;
-	Tue,  1 Oct 2024 10:43:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAB4319D8BF
+	for <devicetree@vger.kernel.org>; Tue,  1 Oct 2024 10:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727779385; cv=none; b=CfGr26Fzfk4FmCWvH2gYaF2rR09qsMyI1eN0lUZ3hxUMRcDks/D4YOottrLdaPJus/paT3bS1PYQSgpTcCgOq21elloW5DaWvS8IZLYOZo5pexI3AR/AASZMnm7BrRE3JxQ3Jmh85MA0zdZuEK3fUGHyzNnrXUxRlJXKEiiI3KQ=
+	t=1727780078; cv=none; b=o92YLUPl8BISr+iAnAfOqN+tSlI+IRhxnQymBMFN7Tp7xLXKIzZhRU0IgRpIPjldWJVEpn3t99FaBK9wa696Ihdc45ZoTnJrP07rjVQzBujButukL+agYq5E3Tlr1KzWo75KVO4w0bJeP+oagfmJwuN4OeLFDiUqfITpA9WH5v8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727779385; c=relaxed/simple;
-	bh=DIJd3A+pL3pwCvVpZYZHLv8qgZCCLKHcPaV5BNsBVZk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=j/q80KGyCB/D6MWoxXN9LMCVNzms8M817kBGRwHCausLfUzoxrwpW5Ao03xOjP0vILeXDR35VYH0IK9hj9Xq6TpXRJ39+Y7OA6IMufpFcKfMa6UYskbcZKKPW2cpVybiUCYHDMkZAwRyQ87K1o34mAB0jN3pa2mfsgwyZsXO8ME=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=S78t62yF; arc=none smtp.client-ip=209.85.208.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fad100dd9fso25438851fa.3;
-        Tue, 01 Oct 2024 03:43:03 -0700 (PDT)
+	s=arc-20240116; t=1727780078; c=relaxed/simple;
+	bh=KAhqO5BJmYLN3Pdw2X6KaKyyCWQEvISE60APhrDdUHo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ud8HfANBAf8NbWrOUgA8xEdmbeI6+F+xD2CYSTI8LxXlxoXZSbYS2++YZ7WI+L0anmttyUXHtCRrSetiF4CnFGZS6zVqyqK4oroYzxCp5i+UPAltYP5RYi7yHqmM6wAEcMss+reR4JIPxiYTakVmiY0yno0PW0tvqgEfl4pNYhk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=LeyaX072; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-e25d380b464so4633667276.2
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 03:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727779382; x=1728384182; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4gTlEHj9Q71TsTr8MnAWDk5krfAyH76L06aPqx8tAa8=;
-        b=S78t62yFLQLOe1uaSgoq/FBRjEmmka+nSHZthZik+QmDDMBEYwHVOacyZrwA4cQmDG
-         m12uQn5DF6ezd31KQQuIwHtHA0DQ3gAJfy3g4hLTJ69pdEQPjFWo3A0wL9hlmKwezfzR
-         9zFeOcJls9Tb0aLIJMS6lGWLs57J6IHIrc7h2wnA8A9rh0nXlBd7cTxfLv618iiLroUq
-         jE7R+xrQCzdXO+nB8kkVoYZiOEvUWKGqq2BqfNZk2Koz3EdxP7lRbdynG7jtstTNqAc6
-         2kBs2oSg7QF0QUjAzwHvmCoVu1ZPvnEsscF4iEVpJVDcg/Fga4yRJorSyaODPqoWiztp
-         JI9Q==
+        d=raspberrypi.com; s=google; t=1727780076; x=1728384876; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HJVTEZA0F9slRMs734ykkG2JzVDg00Afe49QeNoa8W8=;
+        b=LeyaX072xh3WgO7zgJnFBXrMt/CXvv6L9aMD8ILJI4HXlcPNMA9HfarYnMUXk3zk1B
+         x/qFSBzB8qTwsLyY0F9xaNc2DhefA2avZ0cA2Ov7WmFxosi5xOaUU7jNr5V551XZpZI8
+         +JxD1XKI5vfXef0ArnNi6RmmO28p0lzVdQa/w3KbODFoHEZ0l7B6ZN8KwWt9W8gc2pDc
+         3j3e+ahVU4Fi8g+b2nerVcjDbMXCUdsl02lpbQSSt5iJPslrWLj0FDNXrfjNKEN1euft
+         UEWbkXjtIzZTatbR2V58Lfz7pARZUxB3KEfpdDEhO0Y0znWLoyA4DrdmYK07Pp29ykAa
+         vIAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727779382; x=1728384182;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4gTlEHj9Q71TsTr8MnAWDk5krfAyH76L06aPqx8tAa8=;
-        b=vpY3lvCE/1qDPAwACmE4J2Zed7IxDhSNVQw//7wD5WlJSeiYCEr2e8Wrm0x6sBHsQN
-         HiMNSLcnSQc8M9hZ477n5n0H755D5Dm8x1yvSkAPmUv/j6hZXxOUXIW/1xM+Fr8PSkp8
-         Zdmmdf4NLVilkcCxc4EjLLHPSJFYWpqoz/6fKcIOTnPDRm+050mw8mnpS8xcXaHGLB0c
-         NLlCO114c8nWb8HrV+TXv9EhqFt4ZxN0gkZvP2eICqogPS5w/br/rjPYQylTMzmwrJNT
-         6xBNlTqL9yrTgywgrESqTEjui/Eu2qGuGsq602u7Q/ZhvtChi/6OeaZunr+KdTWlK9Ki
-         X0zw==
-X-Forwarded-Encrypted: i=1; AJvYcCUygHPTgwImw8LX/OLRBubJ+CRzuXXiVFa/seYR1XI6pBX3i/OLk1orEZuU+asDH/LgEmLU1qa1KK5u@vger.kernel.org, AJvYcCWLTeQaXHpJ5/EIallw0OXqCMv6imDbKTwp2w1/Jwt9bEzQq868ksz7RiGAQtxG7Cf/yDgXZpWqFCejTRg3@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywi+9rwOK+pyqLInlu6nhH7mNKbppN57uAQWeB2vbmLzjlW/hNN
-	ZzMFUedI9mBljW5XVEfgLKGtLZrCDiVRv7PIDF3SqO4+UvclCNwS
-X-Google-Smtp-Source: AGHT+IHX8+dV27BgFxvhe7PgklGbWFHUwtV8QZVgBSzLO1UxzH6RYRRuhcBk2foBeqx2XCgYXnpEPg==
-X-Received: by 2002:a05:6512:220a:b0:539:9155:e8c1 with SMTP id 2adb3069b0e04-5399155ebcbmr5899268e87.8.1727779381471;
-        Tue, 01 Oct 2024 03:43:01 -0700 (PDT)
-Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5389fd53a02sm1549026e87.31.2024.10.01.03.43.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 03:43:00 -0700 (PDT)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Tue, 01 Oct 2024 12:42:27 +0200
-Subject: [PATCH 2/2] dt-bindings: mtd: davinci: add support for on-die ECC
- engine type
+        d=1e100.net; s=20230601; t=1727780076; x=1728384876;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HJVTEZA0F9slRMs734ykkG2JzVDg00Afe49QeNoa8W8=;
+        b=Aag1bARAGyd3EmtuhHWiN6Cm2JAAxhQz5/3b7Df2FMcLnU9tk46cWaf+4N+cumZCRG
+         nkd9fF1eRTGFWMZ4I66Kp3VJYp+kujme7OcTthsxEOumCrNX1gibtO8dnXmSDqrZom3C
+         BRSK4vv2yyc5g48cc668wqCgFoGmLeVdVcjrJSuYkAFYBmENU2PksgLwpG6fismZ/m8n
+         jLDZaG1LrnbU38801NKro2mltP+G51DLPMQAl8/REAeC+fcjZxBXBLZSKV7wW155HnIK
+         gRhWf6cSYfOdw2KTeNz2/DsJB9ccbw3jcOXbd7DPOuuRKQZDbJp4XoCQ7ZT+M/d4FNqL
+         DvAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXEc0PabI8EK/GGoC2yiE3op2JrDuEueWBzs9VawgeQDMbOcaqmkhXVwbsZnSzOEuQv3E+u6g3Aaobn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKzxA2D9MwKrD5aBFUUXRGms8sMhjLS25jUr11EXFdxNGRAT4o
+	J8KJnut/XP1U8jCWrzkCf9+ON7RvIBhCZIfotFTOWu2YTbiOz2mwRB5ESr4aZHMDFNpPbVNUmvq
+	6kffYLjDezcssqhzTwG14A2odyZcEQdVNRToh9w==
+X-Google-Smtp-Source: AGHT+IGGam+COCYGUu+zG6oZ5j7GiUe97jMLKD14U0AGW3C1PjuQ7CcyBIb9p3B85I+Rkh1gHWNflMhT2EtigC/A1uc=
+X-Received: by 2002:a05:6902:983:b0:e22:60b0:7a73 with SMTP id
+ 3f1490d57ef6-e2604b75ba1mr10997106276.44.1727780075728; Tue, 01 Oct 2024
+ 03:54:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241001-ondie-v1-2-a3daae15c89d@gmail.com>
-References: <20241001-ondie-v1-0-a3daae15c89d@gmail.com>
-In-Reply-To: <20241001-ondie-v1-0-a3daae15c89d@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=850;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=DIJd3A+pL3pwCvVpZYZHLv8qgZCCLKHcPaV5BNsBVZk=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBm+9InEINnOwjIHtlMxxzHGWORqR+nk3f8q/rL8
- 0qVC7qXfzqJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZvvSJwAKCRCIgE5vWV1S
- MvuKD/0bJQJF5QZD7y7FYMLNQFq8G5Hv0kKNNl6Lcvtglhj638zTGcP+Gr0sSYK8vfY3aFZKt2G
- 2OWmJW+3v7c2EscvBkvAASkpA5nr2lRmREjXZ3muAB9iSRLj6tohbH/Y9RvxDUuB9VkEpim4XaE
- hO0pYLGx+LdcuxAKRL6Ma/11wxHSylgMeReeWTElr+RK1dv/5B/PCV+a+EyA0THAGPEAC5gkZe2
- iqJ3u1H8+Q01v3hQ38ZOFcQChUS5EKdmI2BSnXWTGJ2Jb/siIWuqhgp9lvpxOuWZejqMyZdlnR/
- 1r8KQPfZJdGdwBVF16YsKYP6d69jesXT3aB+hzBAJA1+k3P56JJEc+M2wT6Bz/MjWLsaOEGAoX9
- 9EjYwNxE4qCuKxpQYcgJ4+ltx6Ptt1ZvM5WtYV2FuOX5yDHCTvHD5b82TM11fUHWyMT7BC9Z8PD
- HpXP22b18gYGOByVvEK17MtB4DHfOgPY5nJJmhAVZ/ddUnHjT0fpHkIRBqR1cE01uTx2UiAIaNh
- V+4ZYUg6LPjvmV78Ju/3SYBEsII9gfRuu2ge8RT2if8A3MSWjtSLbmu2ES14LtDDqirZb5x02SH
- YKBp4gB64ZQjkOcUmDkazt7IATGcRjImYM3Gxd1tWDt9oJ2+bPPf/rnjqendWs2IN/1STmgdLJl
- /jgofbW5aCEE1zQ==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
+References: <ZvQ27pvrnEYA8BB9@Emma> <3e296eed-5dbc-4098-ac3c-3c3125a352d8@gmx.net>
+ <6723d91c-ac15-436e-878c-2d6fc1aac5e2@broadcom.com> <916d584f-6a9d-4eec-b6c4-319cfb298675@gmx.net>
+In-Reply-To: <916d584f-6a9d-4eec-b6c4-319cfb298675@gmx.net>
+From: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Date: Tue, 1 Oct 2024 11:54:19 +0100
+Message-ID: <CAPY8ntDVEuyPE6ftYaP0B46ToC1v1AAXiO-h8KpoScB=gXkUyA@mail.gmail.com>
+Subject: Re: [PATCH] arm: dts: broadcom: Add missing required fields
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Karan Sanghavi <karansanghvi98@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, kernel-list@raspberrypi.com, 
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Shuah Khan <skhan@linuxfoundation.org>, Anup <anupnewsmail@gmail.com>, 
+	Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Some chips, e.g. Micron MT29F1G08ABBFAH4, has a mandatory on-die ECC.
-Add "on-die" as ECC engine type in order to be compatible with those.
+Hi Stefan and Florian
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- Documentation/devicetree/bindings/mtd/davinci-nand.txt | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, 30 Sept 2024 at 19:36, Stefan Wahren <wahrenst@gmx.net> wrote:
+>
+> Hi Florian,
+>
+> Am 25.09.24 um 22:38 schrieb Florian Fainelli:
+> > On 9/25/24 09:39, Stefan Wahren wrote:
+> >> Hi Karan,
+> >>
+> >> Am 25.09.24 um 18:14 schrieb Karan Sanghavi:
+> >>> Added below mentioned required fields
+> >>>    1. interrupt-controller
+> >>>    2. #interrupt-cells
+> >>> in the bcm2711.dtsi file for the
+> >>> interrupt-controller@40000000 block as defined in the
+> >>> bindings/interrupt-controller/brcm,bcm2836-l1-intc.yaml.
+> >>> This issue was noticed while compiling the dtb file
+> >>> for broadcom/bcm2711-rpi-4-b.dts file.
+> >>> After including the above fields in the dtsi file
+> >>> interrupt-conntroller error was resolved.
+> >> looks like you made the same mistake like me [1]. This change breaks
+> >> boot of Raspberry Pi 4 [2].
+> >>
+> >> There are a lot of DT schema warnings to fix, but this doesn't belong to
+> >> the trivial ones.
+> >
+> > Including the #interrupt-cells would not have a functional impact
+> > however, and we ought to be able to do that.
+> >
+> > The 'interrupt-controller' property presence means that the controller
+> > will be picked up by of_irq_init() and that is was causes problems for
+> > people testing this. Stefan, do you know if the VPU firmware
+> > removes/inserts that property to tell Linux which interrupt controller
+> > (bcm2836-l1-intc or ARM GIC) to use or does it make use of the
+> > "status" property which would be the canonical way about doing that?
+> There is a config.txt parameter for this, which is called "enable_gic".
+> But if i use this i couldn't see any difference to /proc/device-tree.
+> Also i couldn't see any modifications by the firmware to the node in
+> general:
+>
+> interrupt-controller@40000000 {
+>          compatible = "brcm,bcm2836-l1-intc";
+>          reg = <0x40000000 0x100>;
+>          phandle = <0x8e>;
+> };
+>
+> Except of this i don't have any clue about the VPU firmware.
 
-diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-index eb8e2ff4dbd2901b3c396f2e66c1f590a32dcf67..9afda5cd956494c6b3171bdbaecaeb289acd64ea 100644
---- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-+++ b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-@@ -44,6 +44,7 @@ Recommended properties :
- 				- "none"
- 				- "soft"
- 				- "hw"
-+				- "on-die"
- 
- - ti,davinci-ecc-bits:		used ECC bits, currently supported 1 or 4.
- 
+cc Phil so he can correct me if I get this wrong.
 
--- 
-2.46.0
+The firmware looks at the DTB and automatically sets the enable_gic
+property if DT /interrupt-parent points at a node with compatible
+string "arm,gic-400". It doesn't modify DT around the interrupt
+controller nodes.
 
+Manually setting enable_gic should only be necessary on a system which
+isn't using DT where they wish to control whether to use the GIC or
+bcm2836-l1-intc.
+
+  Dave
 
