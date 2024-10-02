@@ -1,105 +1,100 @@
-Return-Path: <devicetree+bounces-107118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1423098CFC0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:10:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AD298CFCA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:11:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 436DE1C24347
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:10:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 573C5B26155
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:11:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E19C7199249;
-	Wed,  2 Oct 2024 09:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A839619885B;
+	Wed,  2 Oct 2024 09:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="J3kpGnbd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E/YMZX2x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E1A197A83;
-	Wed,  2 Oct 2024 09:04:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D292C197A67;
+	Wed,  2 Oct 2024 09:08:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727859865; cv=none; b=mmZTzEfVwx5FJOQXcfjybbFycofTBrx/W+ZX1CIy5vcP6rUQc3GAofp+RMOlc4Sp+WXqSEMoRrxfD/SUfsRMayXmQPIpaFYoN15tsDHgVPYLsQcOA/+BfGLDciJQgp4FEy9Vm2Tv8mSjX6uTqfHL6rYzz0xsY+gpMFG9xh1kudc=
+	t=1727860089; cv=none; b=je5lDtjDvLGz6CUvPGrQ8oz87M0iyJr99zhCmwhpr98zmUCANEDjVshPcx2bNgVPmDJIwOmlePYxGGtexWQaUzHmqonQ09OAtOjbhXdOujsdyCWEN7kHXpj7yJrrnvlA9LM6cMHBXNpNgmfkQWZIlZL2jSjRVCufVXxtSe9lnDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727859865; c=relaxed/simple;
-	bh=jxLDslYuOD+YznuDFJUnZ5M44gOE/KRsomvPe3DU65g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UR4zw5krImGY6rlBx+xLRUPx2WJ4yC2I96PWY8UyaqT6QDSSkOZzf+k3TZvXVEkGXiXncN7+uYgDuKbQMiZXymYhq0CqPRgkWIAvlKtxJE/YXFefR4jkhiCgP8v4bcaFGgoByrvfdeHzKNB1T+b9yYUXf6GojBLFs02vG4kRmbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=J3kpGnbd; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=2aHze20+7LQImPVoQ/MWOAXeRu7EL6uT/pNqwZ1azQg=; b=J3kpGnbdLiUyM289edkjhaf+Gz
-	x5m/ffPQqO38JaZ7nuBysJPGIPTBgfdr4aHvv/8NGWDHjOD+gJAy88ZHQUWZW24VTPq49LMoSxmGI
-	hF1TMtV9DC4jJC5NFjXEor1Cteg5byBHje3wsnrF5q6kAKgl7Fiv+db5bMoQFBrZWXPFxZfHIR2ps
-	VKe+E2NwnUgB1nu+AI9LXd90Ow5NhU8FY5/079f6tkaqN5vQPOAauQ2Om1UQ5yUa0q8Pe/cajkekT
-	iAodD+hKKKsb7wCpHpDpn5WcwZllReOFnMeMsC9hqng8l8CCBGMCDPQHG1gzcByT440y0avqaO9In
-	td+cnqyw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98 #2 (Red Hat Linux))
-	id 1svvHM-00000005G8U-0Iuo;
-	Wed, 02 Oct 2024 09:04:16 +0000
-Date: Wed, 2 Oct 2024 02:04:16 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Christoph Hellwig <hch@infradead.org>, Jens Axboe <axboe@kernel.dk>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Ming Lei <ming.lei@redhat.com>,
-	Jan Kara <jack@suse.cz>, Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	Avri Altman <avri.altman@wdc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>,
-	Riyan Dhiman <riyandhiman14@gmail.com>,
-	Jorge Ramirez-Ortiz <jorge@foundries.io>,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Li Zhijian <lizhijian@fujitsu.com>, linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>, upstream@airoha.com
-Subject: Re: [PATCH v5 3/6] block: introduce device_add_of_disk()
-Message-ID: <Zv0MkM1R4tglpWwY@infradead.org>
-References: <20241001221931.9309-1-ansuelsmth@gmail.com>
- <20241001221931.9309-4-ansuelsmth@gmail.com>
- <Zv0HGh0IjPCt3pYt@infradead.org>
- <66fd087c.050a0220.3b87ae.3666@mx.google.com>
+	s=arc-20240116; t=1727860089; c=relaxed/simple;
+	bh=Xtda8GgdmpzB/6piVb67QcbqKu9enLjmiJSRfaL4WgE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=TBEDN4VWQZzksh7855joFLmIxiV/PDrYRR+hDgYSDGP83LqmofeBNzDTiMdvKmWRxYzGHX8OPSgeNwF9+SzjrU5FhQ06hE1eWLwJKkm/EKJa2228RsPZq7yfx7XrNnp2qlsO6q7FMT5QsOMmCUteTKcyp5WM1JiukHNveOt57Uo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=E/YMZX2x; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1727860086;
+	bh=Xtda8GgdmpzB/6piVb67QcbqKu9enLjmiJSRfaL4WgE=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=E/YMZX2xXUFZOGClSYWCrQeBKYJH5iA1V5TKBUPVfMiTSX/RSn9r2zZFdOqopzOIB
+	 d/TmRttPlHx4KkojpmDKtl8iMax2n955FPyEw5cVDgNr/xV6jizXnFY561kWWWjj5K
+	 Xs7mzP1SBkNDo0BK/QXawTzgFt0x7qxxVu+qUITEDMIDcrylcDAn7cI0Q8b4m3KTNP
+	 Je1C9m+puoRlziweE0ZKx1UWz5/F76xn04zgrEx9AOqnv+S+u3OimO5AQ+/N0QqGvJ
+	 gVmn3dCG0DtF4V0gowxpeqnVaJjn8v9aJig2Dkjwma9RETssKeFtnOfPIOAJMRDdcY
+	 ob2L6bL4+11Lg==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A84D917E10D2;
+	Wed,  2 Oct 2024 11:08:05 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ Pablo Sun <pablo.sun@mediatek.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20241002022138.29241-1-pablo.sun@mediatek.com>
+References: <20241002022138.29241-1-pablo.sun@mediatek.com>
+Subject: Re: (subset) [PATCH v3 0/6] Enable Mali GPU on MediaTek Genio 700
+ EVK
+Message-Id: <172786008562.33539.7007504716451192939.b4-ty@collabora.com>
+Date: Wed, 02 Oct 2024 11:08:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <66fd087c.050a0220.3b87ae.3666@mx.google.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Wed, Oct 02, 2024 at 10:46:46AM +0200, Christian Marangi wrote:
-> Very happy you like it, yes I wasn't sure what was the correct way to
-> introduce the helper. If you notice in the blkdev.h we have also add_disk()
-> that is a static inline wrapper for device_add_disk().
+On Wed, 02 Oct 2024 10:21:32 +0800, Pablo Sun wrote:
+> This series is based on linux-next, tag: next-20240927
 > 
-> Wonder if device_add_disk() should have the same treatement? No idea if
-> it would cause problem with symbol with external modules, that is why I
-> used the wrapper.
+> Enables the GPU on mt8390-genio-700-evk.dts.
+> The panfrost driver probed with dmesg:
+> 
+> panfrost 13000000.gpu: clock rate = 390000000
+> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
+> panfrost 13000000.gpu: features: 00000000,000019f7,
+>   issues: 00000003,80000400
+> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
+>   Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
+> panfrost 13000000.gpu: shader_present=0x10005 l2_present=0x1
+> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
+> 
+> [...]
 
-We could make it an inline wrapper, but it's not in a high performance
-path so there isn't really much of a point in doing so.  I don't
-remember why it was done for add_disk.
+Applied to v6.12-next/soc, thanks!
+
+[5/6] soc: mediatek: mediatek-regulator-coupler: Support mt8188
+      https://git.kernel.org/mediatek/c/32ab0090
+
+Cheers,
+Angelo
+
 
 
