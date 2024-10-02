@@ -1,263 +1,146 @@
-Return-Path: <devicetree+bounces-107017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B9BC98CB54
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 04:45:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3BA598CB63
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 05:09:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 888ED1C225D7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 02:45:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12ECD285A90
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 03:09:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A95123AD;
-	Wed,  2 Oct 2024 02:45:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A3BD529;
+	Wed,  2 Oct 2024 03:09:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="jZ5Ityfj"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="RHBZzYqC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0521B23CE;
-	Wed,  2 Oct 2024 02:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F3502F24;
+	Wed,  2 Oct 2024 03:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727837152; cv=none; b=aoXeWzOnEE7MBr7o/0AzMKQO8be79iK+8Lri4t/VtuOS7f+jytdfFo77hf5RCYn5NQRiB/V9RSjt4MSrpJPdTHn6/bHON1NmcwguWN3phuWgHYOcwSA7z1G7kO5DPbsa4+Ao7/oQHqaL0qnJ8OjOQ8IdhH/s/OMCJ58hiT6uM/I=
+	t=1727838561; cv=none; b=bJj/Ne3L/qZTqLfD05vWDB9SH4bTqKpqW8YZtSg7tSWw8P75rbgv9AxA/Sef4LLPkNXqz5ldUFlLPPU8Nxz5FIxjtYHf+pglAUwv2wb+nSTXnZAV2XLY9opP9enUIixftewplGVhSZydY49kCSJlNZekpttZCsfwkuqbYCgbc9U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727837152; c=relaxed/simple;
-	bh=jWZ6RdC0I62902PjQu11rJ+CA5NZHRH00CZoAstycUk=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PYGNV6RNV0pF0LXM8K4oKVc7Qvq98UcttSBmYAEylWxpvWSwqWcTNplrZ1g8BA0+/AYsFEuP8Ny5rJnb7GStkWY1FSyJcaQES4M2jaHOKIblLmTj/FE/hCY9Lt0ZPct+rJ2dCaNvx2Ff8QirSlnYFbfEYzMDrOvi/WGrOZebvqE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=jZ5Ityfj; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1727837144;
-	bh=ZUn9UovPgHmeFFF+zpOHis/BLdKXh4bjjfAz3/zpkgg=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=jZ5ItyfjzqHkHG4BJI0XaEm5VX2scMBhebfeXRkfxMNTrPj32sSp2GZq3PgfolvSJ
-	 iLUeicqHmM4RE/mIeOjNwdHrJVoXM+DItiSnxU8F2M0Z+B0C8OwNsaiuBnMmaL8A4c
-	 ht4M4PjWdlVEqc03BlIUbwf14Ohd8TwbcSnraWOTX49gx0X4aSeeVUUAjc98ag2Y4M
-	 m1t/qZ3uJHJsdzE+jnIaTW1Kx633YCyMCPlse1XROs4TLTW4Brylmr5oFRMQTOUBq6
-	 R+pW3ivP3sAhrMTdFwlbeymtepypAwbufkz3Lx1SfBbZQBS6iHNOaFqNiXB61tB/6u
-	 ISKt5NCWru9tA==
-Received: from [192.168.68.112] (ppp118-210-73-17.adl-adc-lon-bras32.tpg.internode.on.net [118.210.73.17])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id F237964BDC;
-	Wed,  2 Oct 2024 10:45:43 +0800 (AWST)
-Message-ID: <965d0f005ed9a36eeaefe69d897cad44839d06cc.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: nuvoton: Add UDC nodes
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "William A. Kennington III" <william@wkennington.com>, Tomer Maimon
-	 <tmaimon77@gmail.com>, Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, openbmc@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 02 Oct 2024 12:15:43 +0930
-In-Reply-To: <20240925093956.2449119-1-william@wkennington.com>
-References: <20240925093956.2449119-1-william@wkennington.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1727838561; c=relaxed/simple;
+	bh=TQqFkTNSBcKj/3jywJA1QIPBBqJ23KUNHG19JpQTK+s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=m6ejvPY2YYLTKGCq6Q9tU24V82LcOi+5umILsgXpiT83JdHCxguKScwoCnn0X+nVByZopd22ZSVVgnvqZ65mX12G3fbbM5e+8eWm3x2BlA4WXlsZWGMVtxTpxkDrudPjcGbPzAajNizwVTESARSUtP24uU7KhwRO37w4Fz14CQ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=RHBZzYqC; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b29240e8806b11ef8b96093e013ec31c-20241002
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=2g8tKHBs88WWFxv64z1cVEtqY0rKkhBPjnwbXsFsUyc=;
+	b=RHBZzYqCGrEb7nWfjAmIuZFK3yrcirmULc7g/ukJvsQXo0vCbUxrAor7sUJ9IP9k7UFoULRrNjvt5Nry/DE8BfNZa6z95JFjKa2+BAgvbqO5wXbtYi2y7ACZ77R32S459hgCVu7m+uXQNKy3jpfqTW28BmHrV8/0eMoyx2DGCDQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:72dfb011-11b6-4428-8c0f-2cb8c0d0216a,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:03f92988-3a5d-4d9e-b012-e875acfb157d,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: b29240e8806b11ef8b96093e013ec31c-20241002
+Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1639784707; Wed, 02 Oct 2024 11:09:11 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs11n2.mediatek.inc (172.21.101.187) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 2 Oct 2024 11:09:10 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 2 Oct 2024 11:09:09 +0800
+Message-ID: <7f212146-3dc7-9a0d-baf4-ac7a5b845060@mediatek.com>
+Date: Wed, 2 Oct 2024 11:09:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v4 5/5] dt-bindings: display: mediatek: dpi: correct
+ power-domains property
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+CC: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon
+	<will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Rohit Agarwal
+	<rohiagar@chromium.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, Pablo Sun
+	<pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu
+	<sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, MediaTek
+ Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	Chen-Yu Tsai <wenst@chromium.org>, Jitao Shi <jitao.shi@mediatek.com>
+References: <20240930083854.7267-1-macpaul.lin@mediatek.com>
+ <20240930083854.7267-5-macpaul.lin@mediatek.com>
+ <20241002015120.GA236278-robh@kernel.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20241002015120.GA236278-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi William,
 
-On Wed, 2024-09-25 at 02:39 -0700, William A. Kennington III wrote:
-> The driver support was already added but we are missing the nodes in our
-> common devicetree. This enables npcm7xx platforms to enable the udc
-> nodes and expose USB devices endpoints.
->=20
-> Signed-off-by: William A. Kennington III <william@wkennington.com>
-> ---
->  .../dts/nuvoton/nuvoton-common-npcm7xx.dtsi   | 71 +++++++++++++++++++
->  .../arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi | 65 +++++++++++++++++
->  2 files changed, 136 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi b/arch=
-/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> index 868454ae6bde..358b52894ac0 100644
-> --- a/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-common-npcm7xx.dtsi
-> @@ -99,6 +99,11 @@ rst: rst@801000 {
->  		};
->  	};
-> =20
-> +	udc0_phy: usb-phy {
-> +		compatible =3D "usb-nop-xceiv";
-> +		#phy-cells =3D <0>;
-> +	};
-> +
->  	ahb {
->  		#address-cells =3D <1>;
->  		#size-cells =3D <1>;
-> @@ -179,6 +184,72 @@ fiux: spi@fb001000 {
->  			status =3D "disabled";
->  		};
-> =20
-> +		udc5: udc@f0835000 {
 
-Testing this with `make CHECK_DTBS=3Dy nuvoton/nuvoton-npcm750-evb.dtb`
-causes the following additional warning:
+On 10/2/24 09:51, Rob Herring wrote:
+> 	
+> 
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
+> 
+> On Mon, Sep 30, 2024 at 04:38:54PM +0800, Macpaul Lin wrote:
+>> The MediaTek DPI module is typically associated with one of the
+>> following multimedia power domains:
+>>  - POWER_DOMAIN_DISPLAY
+>>  - POWER_DOMAIN_VDOSYS
+>>  - POWER_DOMAIN_MM
+>> The specific power domain used varies depending on the SoC design.
+>> 
+>> These power domains are shared by multiple devices within the SoC.
+>> In most cases, these power domains are enabled by other devices.
+>> As a result, the DPI module of legacy SoCs often functions correctly
+>> even without explicit configuration.
+>> 
+>> It is recommended to explicitly add the appropriate power domain
+>> property to the DPI node in the device tree. Hence drop the
+>> compatible checking for specific SoCs.
+>> 
+>> Fixes: 5474d49b2f79 ("dt-bindings: display: mediatek: dpi: Add power domains")
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+>> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+>> Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+>> ---
+>>  .../display/mediatek/mediatek,dpi.yaml        | 24 ++++++++-----------
+>>  1 file changed, 10 insertions(+), 14 deletions(-)
+> 
+> You missed Krzysztof's R-by tag.
+> 
 
-+/home/andrew/src/kernel.org/linux/origin/build.multi_v5/arch/arm/boot/dts/=
-nuvoton/nuvoton-npcm750-evb.dtb: udc@f0835000: $nodename:0: 'udc@f0835000' =
-does not match '^usb(@.*)?'
-+       from schema $id: http://devicetree.org/schemas/usb/ci-hdrc-usb2.yam=
-l#
+Oh, I just missed that reply for v3 in the mailbox
+and thought it still need to be reviewed.
+I just found Krzysztof's R-by tag in the mailbox right now.
 
-This is the same for all the other nodes added.
+I'll send an update for this patch set.
+Thanks for the reminder.
 
-Can you please fix that up in a v2?
-
-Andrew
-
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0xf0835000 0x1000
-> +			       0xfffd2800 0x800>;
-> +			interrupts =3D <GIC_SPI 56 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc6: udc@f0836000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0xf0836000 0x1000
-> +			       0xfffd3000 0x800>;
-> +			interrupts =3D <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc7: udc@f0837000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0xf0837000 0x1000
-> +			       0xfffd3800 0x800>;
-> +			interrupts =3D <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc8: udc@f0838000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0xf0838000 0x1000
-> +			       0xfffd4000 0x800>;
-> +			interrupts =3D <GIC_SPI 59 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc9: udc@f0839000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0xf0839000 0x1000
-> +			       0xfffd4800 0x800>;
-> +			interrupts =3D <GIC_SPI 60 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			nuvoton,sysgcr =3D <&gcr>;
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
->  		apb {
->  			#address-cells =3D <1>;
->  			#size-cells =3D <1>;
-> diff --git a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi b/arch/arm/bo=
-ot/dts/nuvoton/nuvoton-npcm750.dtsi
-> index 30eed40b89b5..00615e7d1462 100644
-> --- a/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton/nuvoton-npcm750.dtsi
-> @@ -58,5 +58,70 @@ gmac1: eth@f0804000 {
->  					&rg2mdio_pins>;
->  			status =3D "disabled";
->  		};
-> +
-> +		udc0:udc@f0830000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0x0 0xf0830000 0x0 0x1000
-> +			       0x0 0xfffeb000 0x0 0x800>;
-> +			interrupts =3D <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc1:udc@f0831000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0x0 0xf0831000 0x0 0x1000
-> +			       0x0 0xfffeb800 0x0 0x800>;
-> +			interrupts =3D <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc2:udc@f0832000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0x0 0xf0832000 0x0 0x1000
-> +			       0x0 0xfffec000 0x0 0x800>;
-> +			interrupts =3D <GIC_SPI 53 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc3:udc@f0833000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0x0 0xf0833000 0x0 0x1000
-> +			       0x0 0xfffec800 0x0 0x800>;
-> +			interrupts =3D <GIC_SPI 54 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
-> +
-> +		udc4:udc@f0834000 {
-> +			compatible =3D "nuvoton,npcm750-udc";
-> +			reg =3D <0x0 0xf0834000 0x0 0x1000
-> +			       0x0 0xfffed000 0x0 0x800>;
-> +			interrupts =3D <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-> +			clocks =3D <&clk NPCM7XX_CLK_SU>;
-> +			clock-names =3D "clk_usb_bridge";
-> +			phys =3D <&udc0_phy>;
-> +			phy_type =3D "utmi_wide";
-> +			dr_mode =3D "peripheral";
-> +			status =3D "disabled";
-> +		};
->  	};
->  };
-
+Regards,
+Macpaul Lin
 
