@@ -1,71 +1,60 @@
-Return-Path: <devicetree+bounces-107049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6867898CCE7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1FF98CCED
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:08:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 015A9B20D38
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:04:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EFD61C20845
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:08:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A257640855;
-	Wed,  2 Oct 2024 06:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C23F480054;
+	Wed,  2 Oct 2024 06:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o1l4vKo+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n9d0BGw7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBFB28F4;
-	Wed,  2 Oct 2024 06:04:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9741C28F4;
+	Wed,  2 Oct 2024 06:08:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727849069; cv=none; b=j5P13QGafBPMtvz64/gbQWVs7gHwuOCFMlytRLTG84yngorWRQaYiuO/+gQgUDNO/ZQ1zgCNgvhll7eMHdEFhpEJAYaxFUEY3lF3ZGOlCLaX6vEbKC5hrcXKvUkw/VyIZMh+lNogisbwRpqVmGjNELSA1SPNuyKxfZYmAEsCryY=
+	t=1727849326; cv=none; b=NPJNfeQp6nYHuRHwF6PZnFP6c45g4RH4asv+l7cx8uEUC48vS3+JlKfM1BGfd25cf+vVyFrn3PfeMWRa0NJVMJ0HQeIuVZjGPHTm0cJjROG2b8A8/9eL9aozLPnNg8F4aP1PK9sjXTKFCRWTS7jI9rFHJkNozWLAu4JyjsVvtjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727849069; c=relaxed/simple;
-	bh=eRDH2gRHruASGT5jIjGwtC0n2ZkTL8neYpxlhmRvEhc=;
+	s=arc-20240116; t=1727849326; c=relaxed/simple;
+	bh=oYooHsaM+39HQ9f/BVj0rXCGr4MDgTvb1QumxXJyDcU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Mo7x/HYfngvkvDlbQX1iTjE6ter4js6ljD6pJOOCleLAWiELaa0jzOgyq6XzetapQ3FD4sAWzIbKtn0Cyx6tADwL1q0ES/67ZcFtf87tC8dqxj6tzlJmFaDREdI/A9bEkpQd+Lm68wMXxKPk3U5JSUojqhEmKxVW+2qefYqWQTo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o1l4vKo+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B438C4CEC5;
-	Wed,  2 Oct 2024 06:04:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=AgGf/kSIAXPYpYeyWHs4/mnUJGTWmGw0oJCq0xABGdTWck4HeDkYwh9i/XH+SrNXjww1/aZU5dZGOyX4fi479TRKz4A8CpDfTJGq0M+KjtEIK5LUGqy8HO4k2QTh5+fcAqCfbURKDrh8H6/dYBiT6rVHsX2fA/S9VeCHS+3EzAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n9d0BGw7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F124C4CEC5;
+	Wed,  2 Oct 2024 06:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727849069;
-	bh=eRDH2gRHruASGT5jIjGwtC0n2ZkTL8neYpxlhmRvEhc=;
+	s=k20201202; t=1727849326;
+	bh=oYooHsaM+39HQ9f/BVj0rXCGr4MDgTvb1QumxXJyDcU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o1l4vKo+R24aKUhtoK4RPWqg3hTdfs5DZ8QTcKArXPES9xZ/CMZxzDEIDZmGdtBN6
-	 i4YrOt9UWjUMHOMl+Vc3xNYigCtDHmP6ZIqlrw2/KUTRP7g8iWO7MtU+NVW38eHma+
-	 Hjo3/2okxFlyS6xpnivTf8T3Hp/fvqkFjo2y4tAMP39+z49ZYFyP9d0uY+PSSHe4LY
-	 0J6j4mBx5kBwn3uvOpSX+B0VHnjPazoNR1M9X2CaYcLOSXAx4pgJlXxrAVTXUmJNK8
-	 dk7SnCyAkfFVdwuLjcFeTM+cxgMgqVHULozvZp8tsLuCbMbPkdxiRP1E8qlIbxFtqs
-	 S8cnpJhj1mNuA==
-Date: Wed, 2 Oct 2024 08:04:24 +0200
+	b=n9d0BGw7FAIZQVWKdj/yJCzLVoTwCRTXeoQQgjz0GyRLJEDKT3VbPcOObOYPP2d+o
+	 PTjM5SPI5PWm9ikYtEl6EHQNK35iPJFOc70gPXn5Tamf7kGIyKIyIHwheLKkiHzQlh
+	 Fo8SIGEP9MBsiM1o0Sh51OM0Ia/H9J1VTIbmrHKHaL/aBPFmA7ePuAaz+hQCeH5o2d
+	 IF/qy9ox/L9qUSaf/ACfoY4v62tWg7IJuLUhwpSvDlwnSiWEXDRWIOdHIkLgcFJery
+	 g0tiBlY/RCq873dI/7+/Fif64CyOb0px2R+qwOfsHY9va4NawUDV0/IX9wyvB0mrzp
+	 IVenLLY0l3hnA==
+Date: Wed, 2 Oct 2024 08:08:42 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Rob Herring <robh@kernel.org>, Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+To: Michael Wu <michael.wu@kneron.us>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Yong Wu <yong.wu@mediatek.com>, Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, 
-	Robin Murphy <robin.murphy@arm.com>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rohit Agarwal <rohiagar@chromium.org>, 
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, 
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, 
-	Chris-qj chen <chris-qj.chen@mediatek.com>, 
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai <wenst@chromium.org>, 
-	Jitao Shi <jitao.shi@mediatek.com>
-Subject: Re: [PATCH v4 5/5] dt-bindings: display: mediatek: dpi: correct
- power-domains property
-Message-ID: <idkorrjd5g2yjcnclks55pozf6rrv2w4fyhbwaaznvq5ngmcdm@vxpjh6q4visi>
-References: <20240930083854.7267-1-macpaul.lin@mediatek.com>
- <20240930083854.7267-5-macpaul.lin@mediatek.com>
- <20241002015120.GA236278-robh@kernel.org>
- <7f212146-3dc7-9a0d-baf4-ac7a5b845060@mediatek.com>
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Morgan Chang <morgan.chang@kneron.us>, mvp.kutali@gmail.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: snps,designware-i2c: declare
+ bus capacitance and clk freq optimized
+Message-ID: <cmm7l2kxu2wl55rmcoi3q43ieejnivi5rvjdy6j3wvj6qahse7@ocgi7nyju4je>
+References: <20241001082937.680372-1-michael.wu@kneron.us>
+ <20241001082937.680372-2-michael.wu@kneron.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,53 +63,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7f212146-3dc7-9a0d-baf4-ac7a5b845060@mediatek.com>
+In-Reply-To: <20241001082937.680372-2-michael.wu@kneron.us>
 
-On Wed, Oct 02, 2024 at 11:09:07AM +0800, Macpaul Lin wrote:
+On Tue, Oct 01, 2024 at 04:29:33PM +0800, Michael Wu wrote:
+> Since there are no registers controlling the hardware parameters
+> IC_CAP_LOADING and IC_CLK_FREQ_OPTIMIZATION, their values can only be
+> declared in the device tree.
 > 
+> snps,bus-capacitance-pf indicates the bus capacitance in picofarads (pF).
+> It affects the high and low pulse width of SCL line in high speed mode.
+> The legal values for this property are 100 and 400 only, and default
+> value is 100. This property corresponds to IC_CAP_LOADING.
 > 
-> On 10/2/24 09:51, Rob Herring wrote:
-> > 	
-> > 
-> > External email : Please do not click links or open attachments until you
-> > have verified the sender or the content.
-> > 
-> > On Mon, Sep 30, 2024 at 04:38:54PM +0800, Macpaul Lin wrote:
-> > > The MediaTek DPI module is typically associated with one of the
-> > > following multimedia power domains:
-> > >  - POWER_DOMAIN_DISPLAY
-> > >  - POWER_DOMAIN_VDOSYS
-> > >  - POWER_DOMAIN_MM
-> > > The specific power domain used varies depending on the SoC design.
-> > > 
-> > > These power domains are shared by multiple devices within the SoC.
-> > > In most cases, these power domains are enabled by other devices.
-> > > As a result, the DPI module of legacy SoCs often functions correctly
-> > > even without explicit configuration.
-> > > 
-> > > It is recommended to explicitly add the appropriate power domain
-> > > property to the DPI node in the device tree. Hence drop the
-> > > compatible checking for specific SoCs.
-> > > 
-> > > Fixes: 5474d49b2f79 ("dt-bindings: display: mediatek: dpi: Add power domains")
-> > > Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> > > Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> > > Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
-> > > ---
-> > >  .../display/mediatek/mediatek,dpi.yaml        | 24 ++++++++-----------
-> > >  1 file changed, 10 insertions(+), 14 deletions(-)
-> > 
-> > You missed Krzysztof's R-by tag.
-> > 
+> snps,clk-freq-optimized indicates whether the hardware input clock
+> frequency is reduced by reducing the internal latency. This property
+> corresponds to IC_CLK_FREQ_OPTIMIZATION.
 > 
-> Oh, I just missed that reply for v3 in the mailbox
-> and thought it still need to be reviewed.
-> I just found Krzysztof's R-by tag in the mailbox right now.
+> The driver can calculate hs_hcnt and hs_lcnt appropriate for the hardware
+> based on these two properties.
 > 
-> I'll send an update for this patch set.
-> Thanks for the reminder.
+> Signed-off-by: Michael Wu <michael.wu@kneron.us>
+> ---
+>  .../bindings/i2c/snps,designware-i2c.yaml     | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> index 60035a787e5c..c373f3acd34b 100644
+> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> @@ -97,6 +97,21 @@ properties:
+>        - const: tx
+>        - const: rx
+>  
+> +  snps,bus-capacitance-pf:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: >
 
-Plaese, instead just start using b4...
+I asked to drop |, so you replaced it with something else? So drop >...
+and then you are going to replace it with another one?
+
+That's not a cat and mouse.
+
+> +      This property indicates the bus capacitance in picofarads (pF).
+> +      This value is used to compute the tHIGH and tLOW periods for high speed
+> +      mode.
+> +    default: 100
+
+I asked for some constraints here. min/maximum. I think you never
+replied to this.
+
+> +
+> +  snps,clk-freq-optimized:
+> +    description: >
+> +      This property indicates whether the hardware input clock frequency is
+> +      reduced by reducing the internal latency. This value is used to compute
+> +      the tHIGH and tLOW periods for high speed mode.
+> +    type: boolean
+> +
+>  unevaluatedProperties: false
+>  
+>  required:
+> @@ -146,4 +161,13 @@ examples:
+>        interrupts = <8>;
+>        clocks = <&ahb_clk>;
+>      };
+> +  - |
+> +    i2c@c5000000 {
+> +      compatible = "snps,designware-i2c";
+
+Extend EXISTING example. Not add new example.
 
 Best regards,
 Krzysztof
