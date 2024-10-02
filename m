@@ -1,132 +1,122 @@
-Return-Path: <devicetree+bounces-107227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107229-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E132C98D327
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:26:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 47E8298D34B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:31:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FD511C21556
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:26:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7D04B23FF7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E70C1D016E;
-	Wed,  2 Oct 2024 12:23:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B4451CF5FC;
+	Wed,  2 Oct 2024 12:31:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b2ZdAEPx"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="UpD0Uve5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 524311CFED2;
-	Wed,  2 Oct 2024 12:23:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2E41D52B;
+	Wed,  2 Oct 2024 12:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727871810; cv=none; b=hh4rJr/4dVwIRutgc4TYEZhugMOB4sfRLesKlqmBYbMMc5AkGyLMEjWwchADS3kEvvOoxAjX0At763FIF9ZAoZ1FQUv4gtqHrrX1ZYnBxUGAPgI0D2PbTJTIqTYkUQokssJIr75v04h7cC2KZ/uyH69P+2XGt+yRkfkuq65tgf0=
+	t=1727872282; cv=none; b=C8tpxXfiMDaw0kIxHbAO8VDB+mpRC4kOgmKWEb9qnmktSqO6AAVaDSWYYLUBHl+N2yyEx10oFrLKg9UbtJ0R/FYT0eH5GmE0uPaX2pyD7vEzn5q+VSkSrAjFQynoM4wPPAAsSQkOSHREs56aERxVzEqS78at5i1HrBhks5up/u0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727871810; c=relaxed/simple;
-	bh=P6uiYwN8aF6b5+rvgzGikoFHVdnoMkvebU4Faz9b2kc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h0O82BQsGaaqymn68gyq8M749rXIPGhBh2vHGOiQkBZcI0J+cog4SESy3TCPs0wfbfWeOUxuXXzEry5J666naVwhKgN6V56WckaWL4qT2nswvRr+JpJ/PnQrhtCX0NP41jU+Bym5sdz7ckL7Zj2B8DUj+B2fdAzCqF2w5SbFCN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b2ZdAEPx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89273C4AF53;
-	Wed,  2 Oct 2024 12:23:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727871809;
-	bh=P6uiYwN8aF6b5+rvgzGikoFHVdnoMkvebU4Faz9b2kc=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b2ZdAEPx4jFMPfZzVBY9TYO9d9agL2aGG1sWZCVk1SyvPCO4Ks7jZiPyEXNTNTIGX
-	 UcNKJ/MWfjLSt2wfAh8AUQhzVRGMAif7qyjMFCDv1JDqgf+sWRHabdAUR1GeGictRs
-	 XM30AtKSwvXLItFms2+aKA1icB600UYePoLurIyOtImZfjNdpb3WLvsIrf7J+v9XBm
-	 bipbgpvM3jw8UgVut4Zqojg5Os40cfCXaJxSSJz89hjFFBJFJxN5UH972Rk0zPj9ym
-	 bg2f9jcjJVFT03QfwopksKYZA3xQvKEF12YAM/WDJTP0Zw0nYSHVIcDS4fsvtgWB65
-	 bBRGZnMvDmr8Q==
-Message-ID: <f5265bcb-aa25-4bd7-a177-c980be1eee7a@kernel.org>
-Date: Wed, 2 Oct 2024 14:23:24 +0200
+	s=arc-20240116; t=1727872282; c=relaxed/simple;
+	bh=My2Zzn0sOOinoFVOcRjTYtx7KfC0Pg7q0KDSuV30GFA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rtSDNTOx1u8gC2KqeHtpj9Pw7wi4Y7TlY0wjytvhx2eUTuIK0mhA2uIIS+6xaq5mHfc2fZvJVf18meLxZ8solqJCUhfJgumC+sSaysv4t+tkgfgzZ7suZArN0fHb+cuz9DR1FuPjbHnhbOFvr9uAiNxSjmnNXAD3Rwp+4oIY9qM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=UpD0Uve5; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1727872279; x=1759408279;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=My2Zzn0sOOinoFVOcRjTYtx7KfC0Pg7q0KDSuV30GFA=;
+  b=UpD0Uve5vAJiFt/H4pNLVOb7EAyzeF68zpgI3L7jyvV8zK0zkZreCS5z
+   pMIIgTwOz1Agokj3SoMOglVLhj9qVv6GZ0Lufw8FXsY9dVkcLLlD4vTWy
+   aG2KaLz6pY2o7oY6OPWv8Um9D/U+KuEfiGhn4uKJAuJUcwp663JL20qgF
+   cOnKYelXACQiU7DMO0GBua3+m2riYJj03WU7iTSM+RXUjW+uBJDqL3BUx
+   m3RwlQHhKQiXFzy760MqcsbdLnipBQR9VD7fVrOK3mNPlmIPSFHj9htFT
+   nMSiLjabzPWlkMUqu3at7PrOKEtIlWAlTq6xgMzpBUpzl/sxRIKX4ioQL
+   w==;
+X-CSE-ConnectionGUID: gsXlODJpTSiMie2QZcRNiA==
+X-CSE-MsgGUID: mbZ1E0RzRACHgJSrfyeTTw==
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; 
+   d="scan'208";a="33109838"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Oct 2024 05:31:18 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 2 Oct 2024 05:30:57 -0700
+Received: from ROB-ULT-M76677.microchip.com (10.10.85.11) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Wed, 2 Oct 2024 05:30:55 -0700
+From: Andrei Simion <andrei.simion@microchip.com>
+To: <nicolas.ferre@microchip.com>, <claudiu.beznea@tuxon.dev>,
+	<alexandre.belloni@bootlin.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Andrei Simion <andrei.simion@microchip.com>
+Subject: [PATCH v3 0/3] Cosmetic Work for ARM/Microchip (AT91)
+Date: Wed, 2 Oct 2024 15:30:08 +0300
+Message-ID: <20241002123010.111028-1-andrei.simion@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: qcom: add Linksys EA9350 V3
-To: Karl Chan <exxxxkc@getgoogleoff.me>, linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241002120804.25068-1-exxxxkc@getgoogleoff.me>
- <20241002120804.25068-3-exxxxkc@getgoogleoff.me>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241002120804.25068-3-exxxxkc@getgoogleoff.me>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On 02/10/2024 14:08, Karl Chan wrote:
-> Document linksys,jamaica for Linksys EA9350 V3.
-> 
-> Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 5cb54d69af0b..fa22f653a55f 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -340,6 +340,7 @@ properties:
->            - enum:
->                - qcom,ipq5018-rdp432-c2
->                - tplink,archer-ax55-v1
-> +              - linksys,jamaica
+This patch series updates node names and labels in the Microchip ARM DTS
+files to align with Device Tree specificatios
 
-Keep alphabetical order.
+changelog:
+v2 -> v3:
+- squash ARM: dts: microchip: aks-cdu: Add label for LED sub nodes
 
-Best regards,
-Krzysztof
+v1 -> v2:
+- drop patch : Rename the usb node
+- add patch : ARM: dts: microchip: aks-cdu: Add label for LED sub nodes
+
+Andrei Simion (4):
+  ARM: dts: microchip: Rename the eeprom nodename
+  ARM: dts: microchip: Rename the pmic node
+  ARM: dts: microchip: Rename LED sub nodes name
+
+ arch/arm/boot/dts/microchip/aks-cdu.dts              | 12 ++++++++----
+ arch/arm/boot/dts/microchip/animeo_ip.dts            |  8 ++++----
+ arch/arm/boot/dts/microchip/at91-kizbox2-common.dtsi |  2 +-
+ arch/arm/boot/dts/microchip/at91-sam9x60ek.dts       |  6 +++---
+ arch/arm/boot/dts/microchip/at91-sama5d27_som1.dtsi  |  2 +-
+ .../arm/boot/dts/microchip/at91-sama5d27_wlsom1.dtsi |  2 +-
+ .../boot/dts/microchip/at91-sama5d29_curiosity.dts   |  2 +-
+ arch/arm/boot/dts/microchip/at91-sama5d2_icp.dts     |  2 +-
+ arch/arm/boot/dts/microchip/at91-sama5d2_ptc_ek.dts  |  2 +-
+ .../arm/boot/dts/microchip/at91-sama5d2_xplained.dts |  2 +-
+ .../arm/boot/dts/microchip/at91-sama5d3_xplained.dts |  2 +-
+ arch/arm/boot/dts/microchip/at91-sama7g5ek.dts       |  2 +-
+ arch/arm/boot/dts/microchip/at91rm9200ek.dts         |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9260ek.dts        |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9261ek.dts        |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9263ek.dts        |  6 +++---
+ arch/arm/boot/dts/microchip/at91sam9g20ek.dts        |  4 ++--
+ .../arm/boot/dts/microchip/at91sam9g20ek_common.dtsi |  2 +-
+ arch/arm/boot/dts/microchip/sama5d34ek.dts           |  2 +-
+ arch/arm/boot/dts/microchip/sama5d3xcm_cmp.dtsi      |  2 +-
+ 20 files changed, 41 insertions(+), 37 deletions(-)
+
+
+base-commit: fe21733536749bb1b31c9c84e0b8d2ab8d82ce13
+-- 
+2.34.1
 
 
