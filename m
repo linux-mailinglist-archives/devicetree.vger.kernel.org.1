@@ -1,179 +1,200 @@
-Return-Path: <devicetree+bounces-107347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D91F298E4C9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:20:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586EB98E4E3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:26:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F17161C21A82
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:20:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C4A51C219E3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:26:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C05216A24;
-	Wed,  2 Oct 2024 21:20:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43C6C217328;
+	Wed,  2 Oct 2024 21:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YS54HsHu"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="hL3cH/ex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2084.outbound.protection.outlook.com [40.107.22.84])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C6BD1946B9;
-	Wed,  2 Oct 2024 21:20:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727904045; cv=none; b=NOKZO3VfDAiVAj4bVl+T+fY+0q0QwG6uguCvY8mKa3N2JSBaqQ9xcj71klWPpYR91KLs38d4cZ6q/1LOIlVO8C14atVL4ga4HfwgG178UnpFsTJqMGlPaiR3I0BQ4O103Peia9UmFhTaFfXkLA1dkTsjiwpk0p/bXf6H0jReLw4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727904045; c=relaxed/simple;
-	bh=WOZJowlZmyTzhhIM25DP7gggpGjOS9oOh8m5/SnwFNE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p6TkOrdphIVt1Or9iw0gjv/tT9G4UETARij3TBwcyedT1y9U3VwkqnY6IxpPUhwop6kczhzZ1dutMBxVuV4VV1xFNI2Hhr/LUOVmq/8HtwKbFXKEv0SfCnFvJ3Pog38gIz+kbWLeJ+a82H8Na3GAG1sUdwAxv6WaR7xYw6yUW/A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YS54HsHu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 284D5C4CEC5;
-	Wed,  2 Oct 2024 21:20:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727904044;
-	bh=WOZJowlZmyTzhhIM25DP7gggpGjOS9oOh8m5/SnwFNE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YS54HsHu/vZmCX4jzHcFaDeHgnuyeyib5kgeYowtuRymutC0iSzKFgmD3OCoYBdmd
-	 rZBsnLiRQ/mhL12oz7o9yjOVfPVKwK+0Wy87wgEZgX42v6XsxqjMhQmYlK2+L5og4x
-	 p8d1bBD36aAyi7uIFCbGHwnQdpYjIhR7ow68aWRWFFls067L13E300hckDQaG3748U
-	 HPkBL6PbpSClM0IHP6KBtk1sNcpIRNTVOpPK8Zsy4+lArw6IrwO+K44ekBlbOQnDqV
-	 WP+f4UlD0Ap6XHO+atUxDmblvYZ5xOKbq8sHLolHX/bx5Fc8hGf1bnc7LL3UtYxpkF
-	 kPBA9VGjVZ1SQ==
-Date: Wed, 2 Oct 2024 16:20:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5904E745F4;
+	Wed,  2 Oct 2024 21:26:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727904394; cv=fail; b=j4EkHp0DwPuWZkUDJy4JBNG1TIIvJf34Z6xDrJXB21ioNRFD4GLZM5iWlBVNMIVRtBo7hUheTSAl/2wN64G64jVsHd2GhNnXtYFv5UUrSkLXUOwUIwlMyaVzhFYzxWzlg0EOpSF/LRgl777usbj2l65RHoFA6Vqv/lbPJSlfRO4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727904394; c=relaxed/simple;
+	bh=RrFhughtGHGhcu0r7vmzm8k5q/S7ogYk4JWHVrzciQA=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=AY+mNHHL+LhNi6hG5f/IRILnZVrYn9aTYEGMRWgmJDV90stTfd3mmER0CAPxJ1E6C7TPPPiL4Wf9cXxyub73DB9bKiOmQwMN5OOt+n2modsnGWRc/VX/ginjp+SREJGi5QYDLVxx90bGj4q8+ElHDG8dqOI7umpoHd7JBCeYbKY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=hL3cH/ex; arc=fail smtp.client-ip=40.107.22.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=LoU+bGHBYsqiqNLldgXXybnrjLoOap0J14YLNRFTOLYHaclCVXG5WDVAyM8FP7FFbWxftWCxoArM/lH0tDWk92yhGCqimKrMvfmN04kv+L/1GgdDlxBXhZalfgx5AQ5cwSOkLb4rFU7xyxKd27efLF6FFeTn11J7IjtsTzrxqwaiy9DODMLkhcCRlbIj4jete3V514hmlmgqW8/Me2MdulZwllKk1K25LM0bjz1VVRiSt0CjoDz+N+bRMaXNq9FBexHV/POphKwuQQdXMBW4wnrjdW1LT+d8xrk7XQCvyTLGINhI1UjHAualSzjaXqF9JMzlTN+lMvjudx3WY9pj2w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MhV7H1pH/H1+RPhV3jA5HqGwqr94OUQqieIx8k8ZDMg=;
+ b=R8Frb9/Aq6sB8/0fqpP/6sptNot5C3O9JRLhqrs+gCAahzYtBiSUkj2orG45cYcHALblYd0ZaaacAqpdFvhK9wK9lFBF2V0dlJjgYhsUx+O8xMjS9cpdLCk9UwFduR6aNcP970HFyXnK0xqgfdnseiMWEChnUIYFgkaqMbVbFR87+zlpLYrUITjT/y8j0PLb5JDtc7D70h80yh2JcFclHkCsUSYGny37394wG6quUHcy3uW62xf1ZzKurmhtt9+Ix+Th52zZD+3eKqHmfcg3IdxzQIhdos2VSiijYo9E19xJ9iDyLo0AxD9J/BiVS0HVgsn/QbxV9eOmxT1WchtR2A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MhV7H1pH/H1+RPhV3jA5HqGwqr94OUQqieIx8k8ZDMg=;
+ b=hL3cH/exwdVEyFuRdPfdJZKtBm/WpN3HccVwkaTkdzChipgOM74QLYK6xRXVkppSwqheBjI/WrXI5GA3YrDO5aYTcevSy1KTalCUg/0SX2qB7MTbHwb+IcqudWyJigs0oAgqNIrddtpUhkNJHXV8l8z5wY5jEalUk3+X7g/i02nH/W0Ml3weDQZztVK3AW/EhhOlb7rJPdiMgFecL+RQT72YSBKfrggQwuB1NsG+HxCH4l/OCAmsIfD4hGpCPu1D+oXHWVGwW+wvPKTVbRyAfH1Jjc5rocJOT4EGaCRGMwYzXNaz4c0dZGBIhO1PsrAEKMZ6scsbhFYfNkfOkGxaXA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by AM9PR04MB8260.eurprd04.prod.outlook.com (2603:10a6:20b:3e6::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
+ 2024 21:26:28 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8026.016; Wed, 2 Oct 2024
+ 21:26:28 +0000
+From: Frank Li <Frank.Li@nxp.com>
+To: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>,
-	Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rohit Agarwal <rohiagar@chromium.org>,
-	dri-devel@lists.freedesktop.org, linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	iommu@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	Alexandre Mergnat <amergnat@baylibre.com>,
-	Bear Wang <bear.wang@mediatek.com>,
-	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>,
-	Sen Chu <sen.chu@mediatek.com>,
-	Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	Chen-Yu Tsai <wenst@chromium.org>
-Subject: Re: [PATCH v5 2/5] dt-bindings: iommu: mediatek: Fix interrupt count
- constraint for new SoCs
-Message-ID: <20241002212029.GA1320580-robh@kernel.org>
-References: <20241002051620.2050-1-macpaul.lin@mediatek.com>
- <20241002051620.2050-2-macpaul.lin@mediatek.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
+Cc: imx@lists.linux.dev
+Subject: [PATCH 1/1] dt-bindings: interrupt-controller: fsl,ls-extirq: workaround wrong interrupt-map number
+Date: Wed,  2 Oct 2024 17:26:13 -0400
+Message-Id: <20241002212613.599687-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR13CA0080.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::25) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241002051620.2050-2-macpaul.lin@mediatek.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM9PR04MB8260:EE_
+X-MS-Office365-Filtering-Correlation-Id: 251a7e3f-fa16-4685-9d85-08dce328e046
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|1800799024|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?EWoNlgRM0SBh4QKp7ZotyFLbT0LO4pumnkw5/cV88SKwoTXfaQ5WtQGfeqta?=
+ =?us-ascii?Q?EUhGvJhe5AscExL3XsMzTSnHj9VWTVUSyjpbAuZuioZwfTDIdnSpcIgtCgPK?=
+ =?us-ascii?Q?gUxna+VHQ/aoJjg9OTz9TJKN9WE28U1SRaaOFu213FH5RIAsf8U8RKYXa1+t?=
+ =?us-ascii?Q?VaJVzPCzIkla+E5HU6UQ5dq8wVQglrSXb5X1OKYmsqwct4bi3eHdHG9qQZYw?=
+ =?us-ascii?Q?YCBR3SO873p21jBMgLOjciAgndHomCSoJSl8CYxM5rpmkEsgg8j2O62enOfN?=
+ =?us-ascii?Q?CuG8tWXrmHsEcp4HbC6quHF14lhlhqu6hfRaAcZ4T/OkkaA/KVKD7ensbA3+?=
+ =?us-ascii?Q?n0OZhyNGHeMdtuNyuhIvhr9G2dcG9Urct1TvgXujkyyXAYjXxwu1dEOkPdCx?=
+ =?us-ascii?Q?ybnAKgBpaJyayn4IkH6h1/VnWQQ/Ok33eDokAGaMZ4WK8QiD/5uLz3FBH9w2?=
+ =?us-ascii?Q?dE6G+13c68HSKibHnr8hkvszdc3wP3VGqSPPXhjh9Al/Ahx8PaeJ6QWboTAv?=
+ =?us-ascii?Q?BSurQpj1C5UahZBvDVSu5O+EpABKIp393ig8gD0sGQ+NvB+YrIxbO5p5S796?=
+ =?us-ascii?Q?BFis+/XOMu9ud36AkVJM5vahbWZgZofYeS8n0Z+pKTbpxpbKi1eRQXjGtVRJ?=
+ =?us-ascii?Q?fIj67IVAMaLdPeX4uVTOQXx3OdfQnu6gKOae/mBLwfiQuYS2ak7oYJ2InZYw?=
+ =?us-ascii?Q?1OrPSlhYu8+zhgaleOlOtkBO/dkB9CekMVq99YKH94WzsKSEbmxkYqzQAgeE?=
+ =?us-ascii?Q?A+aHuHhDyvfwSz3/a83qJKQrN07JWH98Dqc8nw60I+k9V7RwZx2XDmaJFq80?=
+ =?us-ascii?Q?Cx/DJiw+fh83N/cg+vtaWbYU+OUCgBE+rFImDOll98fYrZdFv0pNrhwTJ9on?=
+ =?us-ascii?Q?wW59k/weLbgm+gxXc7x73XooqjwhRNRhTQwH93tYxH/cSXG4G6FAyosDxd+J?=
+ =?us-ascii?Q?B4W3cqipim6/9ResdcPq//w+T9EpWemVzWNDvkVcpN0Nj8/8MsjNr6FO+Qr8?=
+ =?us-ascii?Q?XpKicCh63z0YlcK+TgaNoFfAzt3Cwvl4i0BP0Qugx92GSnnnvVq6OuTli+xk?=
+ =?us-ascii?Q?b8CGYUZn3TJvSD+7pAXMcmWB/SAYNp4bHc0MnyS3tZErd0vRTScRAWvVytJw?=
+ =?us-ascii?Q?FIvNJWQPuFFg3AlBVeI5A8CF0CtABfUyqPai26yRuB1MJVjUgkwD5+tzNMzk?=
+ =?us-ascii?Q?Ge1GCT5wGexM1fXat0+XpVY/BgphxOZigQq/kBYS2cbDNkL7DS4JV4S8v7jn?=
+ =?us-ascii?Q?CDcqBhKA9qIfHQyNip/CuJhePghwYiXTZOxZqbbtjGRp1GkTRXrFJwm5LTvg?=
+ =?us-ascii?Q?y/loiYFeGK43xxQot0/lbcFweVgbdgpW4LaAQ189UESvJQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(1800799024)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?+mrmrHeSLOwpCyhMe9qQWyhpxxW6A03fb21ATJhSKl+Tzbp+yM2juTWBcC5r?=
+ =?us-ascii?Q?PWv5ipMamg6vC5PMNv4ZmnYoL9K4Xh6cO3XT1kOrZrjj2VpkvxAKPzlRv9bm?=
+ =?us-ascii?Q?v0HykpcGl34VKVwTmPyq6X9Hv7S9CDDrV5jmc1RpqnBPjW11CrpmIWIVEKze?=
+ =?us-ascii?Q?ab5qlDgLgHZMVNg5791OTeRsVjJiRKPPwA9CrvstLeKlE1w3JNY22k+Ft/ud?=
+ =?us-ascii?Q?pvzKLxTx1Z4fRghqbptSD3PIu5AxEqyQWjosO4lWi1Xxsn0CyW/XJDj+RqUI?=
+ =?us-ascii?Q?42hnMr1PXrzP3/0EkV7MHuXC5IAFDUnjuMqkESWsJehGMBDBZ8cdWkRVoIQa?=
+ =?us-ascii?Q?Td7nn3GxT7QiZ7pFaOvh2kjkPFmWhXet36QPAwJ8Rv5OnI0qXuGIPnyDTXqj?=
+ =?us-ascii?Q?tmEdxVP6A5e3uYduNzRgfIddCmQGyLZU5ZcZqF6/SYn4ppjBYykHhuO4I6rS?=
+ =?us-ascii?Q?5YC2i63Zqep5mqmRZt+Fc34i0O1Tf8Kbh9G4W2SFBEtUQedVYOwCuxCBL273?=
+ =?us-ascii?Q?u+nJ/+iVK3qZJ86rkBM/Dlc08wkLkGKhQfGbYSPe8KGEyvFNhGx+JVNkej77?=
+ =?us-ascii?Q?hJClTuHJ7VHjUWbLE9S+7cE0F0mYBQ4lITfL54O9Pu5Ns1r6zV3wJpo2RR+S?=
+ =?us-ascii?Q?Nz6MHaVy97y8iS+pb2Lq81C1clXjPqNLL7Ul6HLIPU/S9M3jZ4E5SIr2txy0?=
+ =?us-ascii?Q?7k99TXs83p9/c6sjcP6evKuwoORkBc5T15nwnMfoQBAr78MxAsySob+lRtjd?=
+ =?us-ascii?Q?BM9Cgtgl3/U4PjvDFOzUmJmPtKp7rlsXdsgFLRdbaRvNHAaeVj4RCdtxi2nV?=
+ =?us-ascii?Q?EF66Cu/ikhUo+BEQYH3Mum0AAc3WE8sHcvTzT2IQ40b6Rd6gYLq1xKa5N4TB?=
+ =?us-ascii?Q?t9nAUdAhW/rQa2zGnSej1uAVKo5HaSn/KaUoZibcjtmwQYTWGYpd5Y7Ooc5J?=
+ =?us-ascii?Q?G6X5P5y60RKxK4+zfuHD2E4tCcL5QePE2Rf3CocO2b0+G4+b1BWUCa1kG0zG?=
+ =?us-ascii?Q?Aj1ztVtBvmu3Fg34ScLl5m5uyMEGVK5KRBEEMd/GxyJREIROp5E6l3B2T+OW?=
+ =?us-ascii?Q?kno52oewlnjcE1W1n/6nKgcMs/mYBr/sV9d62NE4cvGP8ua+qRfichDC2KT3?=
+ =?us-ascii?Q?tR+Uw1Qx71XODY4VJbc7YJCAAgDlTK3lV9r42seNzl4F67m2kezgwdYvm/sy?=
+ =?us-ascii?Q?587lOTNMZKARsxlNnpJeGUQUGPT8IVnH+gDOjLK9wO0eH9SkdN2FSb7sDM/Y?=
+ =?us-ascii?Q?/8/4K7RFUGMb2FmvK6f1IM8ElTmivrmrD0MyB4FhFCZlR/1qjw9UlooVL0Nr?=
+ =?us-ascii?Q?JvGmPu7FGFvT8q/Wt6RPIIdwsJtYtuvOcy8Oc0W+aHOceaQqFA7x2EdGLWeN?=
+ =?us-ascii?Q?uQLmCtb2c46oLAXin+WJknU7KAU147yJQxTuPSaiewZiQVa0uWim2OlD4KGI?=
+ =?us-ascii?Q?HA7sFh8MddrpzzjnvHXyqaJaW6R1wgGV9caYjoKNDtEH81RlDN62tRy7ufmT?=
+ =?us-ascii?Q?h3ZcbMse94CCCnpBPtpTaHbt6CS5uN5s8nPvDtiQgqg8XhEkQWD8n1Urwigm?=
+ =?us-ascii?Q?USfWY4fOWcGflPBwEEU=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 251a7e3f-fa16-4685-9d85-08dce328e046
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 21:26:28.2137
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: pBCACIlwTZghXTx6ktaSUX2amCBqN6MayoQFZ781o/dmzmmazSLo/QRosT9AK/CN/dysbZvxOxCeudjhCc7ADQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8260
 
-On Wed, Oct 02, 2024 at 01:16:17PM +0800, Macpaul Lin wrote:
-> The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
-> to an excessively long 'interrupts' property. The error message was:
-> 
->   infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
->                      [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
->                      is too long
-> 
-> To address this issue, update the compatbile matching rule for
-> 'interrupts' property. This change allows flexibility in the number
-> of interrupts for new SoCs like MT8195.
-> The purpose of these 5 interrupts is also added into description.
-> 
-> Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-> ---
->  .../bindings/iommu/mediatek,iommu.yaml        | 29 ++++++++++++++++++-
->  1 file changed, 28 insertions(+), 1 deletion(-)
-> 
-> Changes for v2:
->  - commit message: re-formatting and add a description of adding 5 interrupts.
->  - add 'description' and 'maxItems: 5' for 'interrupt' property of
->    'mt8195-iommu-infra'
->  - others keeps 'maxItems: 1'
-> 
-> Changes for v3:
->  - Refine the description for 'interrupts' property and fixes the compatible
->    matching rules.
->  - Refine commit message.
-> 
-> Changes for v4:
->   - add missing 'minItems: 5' to 'mediatek,mt8195-iommu-infra'.
->     Thanks the explanation from Conor and Krzysztof. 
-> 
-> Changes for v5:
->   - Repharse the description for interrupts property of MT8195.
-> 
-> diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> index ea6b0f5f24de..df8b2429008e 100644
-> --- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> +++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
-> @@ -96,7 +96,16 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> -    maxItems: 1
-> +    description: |
-> +      Usually, the IOMMU requires only one interrupt.
-> +
-> +      The infra IOMMU in MT8195 has five banks: each features one set
-> +      of APB registers. One for the normal world (set 0), three for the
-> +      protected world (sets 1-3), and one for the secure world (set 4).
-> +      and each set has its own interrupt. Therefore, five interrupts
-> +      are needed.
-> +    minItems: 1
-> +    maxItems: 5
->  
->    clocks:
->      items:
-> @@ -210,6 +219,24 @@ allOf:
->        required:
->          - mediatek,larbs
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt8195-iommu-infra
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 5
-> +          maxItems: 5
+The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
+function function to parser interrupt-map. So it doesn't consider
+'#address-size' in parent interrupt controller, such as GIC.
 
-You only need minItems. The max is already 5.
+When dt-binding verify interrupt-map, item data matrix is spitted at
+incorrect position. So cause below warning:
 
-With that,
+arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: interrupt-controller@14:
+interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 0, 1, 4, 2, 0, 1, 0], ...
+is too short
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Reduce minItems to workaround this warning.
 
-> +
-> +    else:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.45.2
-> 
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+ .../bindings/interrupt-controller/fsl,ls-extirq.yaml     | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+index 199b34fdbefc4..b52abfd3e19d4 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
++++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+@@ -85,10 +85,17 @@ allOf:
+               - fsl,ls1088a-extirq
+               - fsl,ls2080a-extirq
+               - fsl,lx2160a-extirq
++# The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
++# function function to parser interrupt-map. So it doesn't consider
++# '#address-size' in parent interrupt controller, such as GIC.
++#
++# When  dt-binding verify interrupt-map, item data matrix is spitted at
++# incorrect position. Reduce minItems to workaround this problem.
++
+     then:
+       properties:
+         interrupt-map:
+-          minItems: 12
++          minItems: 8
+           maxItems: 12
+         interrupt-map-mask:
+           items:
+-- 
+2.34.1
+
 
