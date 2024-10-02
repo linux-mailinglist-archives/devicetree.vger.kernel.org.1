@@ -1,149 +1,224 @@
-Return-Path: <devicetree+bounces-107152-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107153-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6024F98D066
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:47:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 609CB98D070
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:50:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83A5F1C2136B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:47:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C24A8B22FF2
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:50:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 859F01E1A36;
-	Wed,  2 Oct 2024 09:47:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B431E4116;
+	Wed,  2 Oct 2024 09:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dTDKIrqI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LwVsEj3j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A5BA198836;
-	Wed,  2 Oct 2024 09:47:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 975D21A2561;
+	Wed,  2 Oct 2024 09:50:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727862465; cv=none; b=njvTlZAJtmGKqoJjs6t/tKuZR3eTFlayKTXc2Q/BwIRS2jHj/GA5vEcYRIV3nvzRWJkH0lsoiodY+pcWmaG85aN7ZU0iR0l+VOo80IUUJ9iVPu+DZ7hTz/uBhyF2jbPI2QQxqB5hwahU31knEtABOBaHnmY0A5Xm33wu1Aiuleo=
+	t=1727862636; cv=none; b=Lu91a6eun48v+WcFlaefdr7bah2JDrm1A3dLlzVYcO2YyoXcvJie0pgG3u7iP0nKPncRQHIgKqrtkyiOIWOj5DYtGlHaVlTIJ9bttsazaF6blL/OyfN3pRyeomgR2ISA85W8XUMwdDv6FTRRkbjGXI1TagZ4WWGr+jxp7nyVRIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727862465; c=relaxed/simple;
-	bh=8DKd69N+3md0qAF7aqO+LjgYkyEIyxp4My6srEwUCOU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IXF75u7sEgeDRNlZvJdSDjsMvZuuclKyFoV5qMVDwJ2nj8IYpysH+AG1KhfakYfoQQRqmHaEQZz2oZRkEOjX2XOVJJFhMM2HADdcfs/7y42QLPKCF5NbZ1r0VgzSs9mxyh/pvfDpg7utbyKPdUiHrJP8B9IRy5x5cMbq78KZtv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dTDKIrqI; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-20b7259be6fso37269345ad.0;
-        Wed, 02 Oct 2024 02:47:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727862463; x=1728467263; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Urik/s4KVO/h3jfvtlTjPUIMhzRShqohLSVoyoiAQ4Y=;
-        b=dTDKIrqIrhFlX8o6WeRr4xk03HfKyArrOkqU+Lmt8dHEqb+g1mpe80BnsyuFJ5FdXU
-         hT2m1/kcXIuc7JMenIZ/NjQx3PavNDBOUFeAj80eDpKr4nNCRWeTSPr2ySOjU9i0DvsJ
-         x2lD2zI0oDlDS/ueXaSUqZXW6rYRoaTmQZWdSKpBK8Jepz6zGttyRAle+LLk3ukUJ3tZ
-         3HdpkZAHguDN5707J4gHJ/sLD5JH29GUaMRyGcF8yjlNCCLvLOWuXF5Ga5nVYXbG0NVI
-         ZqxYurS1e2eTNLSAqvSYniTAi3mqPsKikWxvXsjZdl+9UkWCEpD2jp6j/VXAqH2BBRCl
-         bdwA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727862463; x=1728467263;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Urik/s4KVO/h3jfvtlTjPUIMhzRShqohLSVoyoiAQ4Y=;
-        b=EuHQjDUOvb6JX4wGMiuSbkOIoDJ+LsJwg9wZWXbrF7Ug8tj7kUGfZpRj92cnUsX7L4
-         VMa0pKg8MnU9oHQ/e5zmLe/uszRk0E4s8Xq6sZdfTXz60U1F/P2+VpggmbyQxxUfeotD
-         PgEjI41tT19osFQNzr5rgQVPZwORhL1yrdUSqiUNwC8lG5iSNZla+toyo3OnamEDK3Zw
-         QByBrKL0wEKK2QLb5pfQKEAJVyUppW37WjoRiWIPJA3YULYMcrqLhnmH+Dy0GTjhanRS
-         MBhvgT3l8cHJIK0AZxvVrlhFtzKtC6EnA44NJNe69u+X+GWX05HexBgcbOJRSbTHGpAy
-         er3A==
-X-Forwarded-Encrypted: i=1; AJvYcCUP0xwWoZzC2pHreG8vVIow9hHybiIPxcS/GZZ7Yldht4REshZbF1VfFplUPC9ET0Scj7XZOxzVGMyOAzo=@vger.kernel.org, AJvYcCUxquJCr7qKSRrp2OrxcShlJyoTKISm4UZsDOjRejRVyI6VnZ8FezATj7twetVxWCSOG34cZ7raswzA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzovg2vl+kBbAD4w2Z3yAGu9fDfgcD/w5OABHav82zcyUuPHsd3
-	YNlcNzo45KbXerQTlcAXJu7gjQwgUamTaDcveKZmRNF2FdLUAryQ
-X-Google-Smtp-Source: AGHT+IGnAp7/AIEUV8PNiG4EmQSf0voS9emx/ar0Qokl0/5USD7nGzPjpdth9Fc6AYSKzvWG4VkICw==
-X-Received: by 2002:a17:902:ec8f:b0:20b:6f02:b4e5 with SMTP id d9443c01a7336-20bc59ae323mr37121385ad.9.1727862463203;
-        Wed, 02 Oct 2024 02:47:43 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:59b3:a140:3cbe:62fc])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b37e6c997sm81230165ad.307.2024.10.02.02.47.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 02:47:42 -0700 (PDT)
-Date: Wed, 2 Oct 2024 02:47:40 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, Mike Frysinger <vapier@gentoo.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 03/13] Input: adp5589-keys: add chip_info structure
-Message-ID: <Zv0WvDCMH1-D1pdq@google.com>
-References: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
- <20241001-b4-dev-adp5589-fw-conversion-v1-3-fca0149dfc47@analog.com>
- <ZvwNV4zor-MTKigP@google.com>
- <22f246a0809e2d1fc738178400f8a3d67fc4dc56.camel@gmail.com>
+	s=arc-20240116; t=1727862636; c=relaxed/simple;
+	bh=tgOv91OiDd8J5MOXQ01xCtdDOt7IXkWmGZgDsxQWysg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sIQj+rRGoozmoEnDOAHp0fSYaZfwD/wzlT/osm8f3BHFQ153cnZ4Ihl6f068nb4fkn9JXvTnEzxVQI2QbMO0R1ayy8587f6QaADtzhDVrZYf4JlKezthtB22azYnYAP3FYjOGTpLTu93Rx247UM3kQ52N+EjkKrM4Za3O4MQatg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LwVsEj3j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7902C4CEC5;
+	Wed,  2 Oct 2024 09:50:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727862636;
+	bh=tgOv91OiDd8J5MOXQ01xCtdDOt7IXkWmGZgDsxQWysg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=LwVsEj3jeoM0odvHxt4LDHtF4MIwJO4mPTIf55X4mn2jWJJL+WbQO4IEC6ar7UL5k
+	 3UOlsCH77ahMtf5In92Sig/TQj9bXTNpylj7ZBx9Ly5WzXP0dl6vtDINu+G3nDMFs8
+	 oM4kCBBgpTfHIokysAltnNPEe3dvHgKngV0YlnMl6q4bodBxyyGDPweC4Ikw9dl5Sp
+	 GsSw/a2jRce3IqLUdgI4BEH7jh8el8c/ZNtYlpUHHFZOPWYhyqY0WEWyroLvloO6lB
+	 UkXLPyfWq1SuVmWbO9ANVWsukGCohtSPXSuJWDLOY89UOO6kfgv/vEg3DxzIwmBGqP
+	 hEWgC2KOUyAQg==
+Message-ID: <f67bcf92-ded6-42cb-827b-8a3d79f8f7d0@kernel.org>
+Date: Wed, 2 Oct 2024 11:50:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: i2c: snps,designware-i2c: declare bus
+ capacitance and clk freq optimized
+To: Michael Wu <Michael.Wu@kneron.us>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Mika Westerberg <mika.westerberg@linux.intel.com>,
+ Jan Dabros <jsd@semihalf.com>,
+ "linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ morgan chang <morgan.chang@kneron.us>,
+ "mvp.kutali@gmail.com" <mvp.kutali@gmail.com>
+References: <20241001082937.680372-1-michael.wu@kneron.us>
+ <20241001082937.680372-2-michael.wu@kneron.us>
+ <cmm7l2kxu2wl55rmcoi3q43ieejnivi5rvjdy6j3wvj6qahse7@ocgi7nyju4je>
+ <IA1PR14MB6224944B2294577212DB26508A702@IA1PR14MB6224.namprd14.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <IA1PR14MB6224944B2294577212DB26508A702@IA1PR14MB6224.namprd14.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <22f246a0809e2d1fc738178400f8a3d67fc4dc56.camel@gmail.com>
 
-On Wed, Oct 02, 2024 at 11:13:05AM +0200, Nuno Sá wrote:
-> On Tue, 2024-10-01 at 07:55 -0700, Dmitry Torokhov wrote:
-> > On Tue, Oct 01, 2024 at 03:41:34PM +0200, Nuno Sa wrote:
-> > > Add a more natural chip_info structure and add it to the i2c id table
-> > > driver data so that we do not need an enum a switch() to get the
-> > > specific bits of each device.
-> > > 
-> > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > ---
-> > >  drivers/input/keyboard/adp5589-keys.c | 181 ++++++++++++++++++----------------
-> > >  1 file changed, 95 insertions(+), 86 deletions(-)
-> > > 
-> > > diff --git a/drivers/input/keyboard/adp5589-keys.c
-> > > b/drivers/input/keyboard/adp5589-keys.c
-> > > index
-> > > 922d3ab998f3a5dfbaf277f10eb19e5cd1b35415..eaa5440d4f9e14352409dd880cd254354612bf3
-> > > e 100644
-> > > --- a/drivers/input/keyboard/adp5589-keys.c
-> > > +++ b/drivers/input/keyboard/adp5589-keys.c
-> > > @@ -228,16 +228,20 @@ struct adp_constants {
-> > >  	u8 (*reg) (u8 reg);
-> > >  };
-> > >  
-> > > +struct adp5589_info {
-> > > +	const struct adp_constants *var;
-> > > +	bool support_row5;
-> > 
-> > Is it possible to derive "row5" data from keymap information to avoid
-> > having this fake "adp5585-02-keys" device?
-> > 
+On 02/10/2024 11:20, Michael Wu wrote:
+>> On Tue, Oct 01, 2024 at 04:29:33PM +0800, Michael Wu wrote:
+>>> Since there are no registers controlling the hardware parameters
+>>> IC_CAP_LOADING and IC_CLK_FREQ_OPTIMIZATION, their values can only be
+>>> declared in the device tree.
+>>>
+>>> snps,bus-capacitance-pf indicates the bus capacitance in picofarads (pF).
+>>> It affects the high and low pulse width of SCL line in high speed mode.
+>>> The legal values for this property are 100 and 400 only, and default
+>>> value is 100. This property corresponds to IC_CAP_LOADING.
+>>>
+>>> snps,clk-freq-optimized indicates whether the hardware input clock
+>>> frequency is reduced by reducing the internal latency. This property
+>>> corresponds to IC_CLK_FREQ_OPTIMIZATION.
+>>>
+>>> The driver can calculate hs_hcnt and hs_lcnt appropriate for the hardware
+>>> based on these two properties.
+>>>
+>>> Signed-off-by: Michael Wu <michael.wu@kneron.us>
+>>> ---
+>>>  .../bindings/i2c/snps,designware-i2c.yaml     | 24
+>> +++++++++++++++++++
+>>>  1 file changed, 24 insertions(+)
+>>>
+>>> diff --git
+>> a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+>> b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+>>> index 60035a787e5c..c373f3acd34b 100644
+>>> --- a/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+>>> +++ b/Documentation/devicetree/bindings/i2c/snps,designware-i2c.yaml
+> ...
+>>> +      This property indicates the bus capacitance in picofarads (pF).
+>>> +      This value is used to compute the tHIGH and tLOW periods for high
+>> speed
+>>> +      mode.
+>>> +    default: 100
+>>
+>> I asked for some constraints here. min/maximum. I think you never
+>> replied to this.
+>>
 > 
-> This is not a fake device. Looking at the adp5585 datasheet you can see there's
-> module with 25 keys (without GPIO5) and another with 11 GPIOS. From the datasheet:
+> In I2C DesignWare Databook v2.03a the mandatory option is provided to
+> select whether the bus capacitance is 400pF or 100pF. It presents the
+> description like that:
 > 
-> "- 10 configurable I/Os allowing functions such as Key pad decoding for a matrix of 
-> up to 5 × 5
-> - 11 GPIOs (5 × 6) with ADP5585ACxZ-01-R7 models"
-
-Ah, I misunderstood. I thought it was a runtime configuration.
-
+>   Description:
+>     For high speed mode, the bus loading (pF) affects the high and low
+>     pulse width of SCL.
+>   Values: 100, 400
+>   Default Value: 100
+>   Parameter Name: IC_CAP_LOADING
 > 
-> Why its named adp5585-02 in the driver I'm not sure. I kept the same name as the i2c
-> id? Should I call it ADP5585-1 instead? Or even ADP5585-1-r7?
+> There is no further information describing this option except to the
+> declaration of legal values â€‹â€‹above, let alone minimum and maximum limits.
 
-I think this question is better answered by the DT folks.
-
-BTW, in case of not using row5 we need to describe this pin as a reset
-line for the chip, right?
+So only two values are valid? Then not min/max but enum.
 
 
-Thanks.
+> As a user I don't think I have the right to define a value range for the
+> vendor.
+> 
+> From the information provided in the data sheet, I prefer to list the
+> legal values like the following:
+> 
+>   enum: [100, 400]
+>   default: 100
+> 
+> â€‹â€‹instead of declaring its range. What do you think?
+> 
+> In patches v2 I used if (dev->bus_capacitance_pf == 400) {... } else {...}
+> and other statements in the driver code to indicate that the capacitance
+> can only be 400pf or not. Maybe this is a metaphor. I'm sorry that I
+> wasn't more explicit about the constraints.
+> 
+>>> +
+>>> +  snps,clk-freq-optimized:
+>>> +    description: >
+>>> +      This property indicates whether the hardware input clock frequency
+>> is
+>>> +      reduced by reducing the internal latency. This value is used to
+>> compute
+>>> +      the tHIGH and tLOW periods for high speed mode.
+>>> +    type: boolean
+>>> +
+>>>  unevaluatedProperties: false
+>>>
+>>>  required:
+>>> @@ -146,4 +161,13 @@ examples:
+>>>        interrupts = <8>;
+>>>        clocks = <&ahb_clk>;
+>>>      };
+>>> +  - |
+>>> +    i2c@c5000000 {
+>>> +      compatible = "snps,designware-i2c";
+>>
+>> Extend EXISTING example. Not add new example.
+> 
+> Should I insert these two properties into one or all existing examples?
 
--- 
-Dmitry
+Into any example, where it looks reasonable.
+
+Best regards,
+Krzysztof
+
 
