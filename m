@@ -1,115 +1,152 @@
-Return-Path: <devicetree+bounces-107107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5E2498CF1B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:43:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AAF598CF18
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98C491F2344F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:43:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D828F282707
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D82A19644C;
-	Wed,  2 Oct 2024 08:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E431194AFE;
+	Wed,  2 Oct 2024 08:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="evp+CPym"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DWsFiSHR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE44B1940BC;
-	Wed,  2 Oct 2024 08:43:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F38218EFF8;
+	Wed,  2 Oct 2024 08:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727858601; cv=none; b=G1OXp73F5CcKSNHoeoaTreVizVUeQ++wDejGH3mkLLaQ0eIyRyKtOE5gp5kplopmVHrzpMmZeWcvpEeIUragCLj/2kt5POVnj7H6FJDvyNxZCwLIs8HVHAxeRZL7VISFBs8xudjBz/g7yfPcQzeR2C/rQtcAPlFzp2CTqqMuwXU=
+	t=1727858600; cv=none; b=Mx/phi/SOIpjSGQWvaJnD0Usy+uI/tnp3uxy8iuY6jFE/cJ0rkxJB8j6ilbfKUf8VNr6+NqBDb1DXJ/GE9zhoFQ23shToWiM7419sZcM6n2ndRJQiNkE/boZ9qt/WPYfgq4yYVf+9yTjDJTuLmODd8QYwKqudkykxLkEQzQI8xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727858601; c=relaxed/simple;
-	bh=oR7poKQkS4ps7da71/gORSXX0ZMu3sXqJaASnGOW8u4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QO20EZuMF+xB4Id3OqBuXLJS6ruAiLO8QiR3npR6e0Sziv6xj8RdStcRIxfEHgX8kxoC7laVzgwWMJO3wWeqxxHo8sTutIcLVqIPV7TPrdAtXFwlSDH+nhv7+Gksw30dMEwsEl4tUmnbpFCFJBzPv7FjYmgRte/vIRN4fWLtzos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=evp+CPym; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=zqTgHmGeTQIj5rCUjw3eJsZGjfP9Kf4g2n+yKtbQSII=; b=evp+CPymp4rfeaohFlPL3jsjkX
-	lSDSdOW2fVKMjJ0btWQWUs27jPbzBmSpu5LItDShUlLn6wllFLRHTj4Qh7/YLPr+kYI6BpJmARZLy
-	rGMeeQNupLBaOOTRNkKTzG8yGLLdK2HFuL9OxV6Sy5picrYh1PU1kNsyWF+QfU6xdBdFy2bpn9pQo
-	FfY24hLadtrsvn70Pf9gOP+diollduXZVAVZTZ0zwq/Jox5ocbl5ww3ixm5REEtIkZTmwHnCB9PY5
-	fUsxeYI3B48TO0L4/l/qwhj39YbsK5uPUhhCbC7M7vLLKwCKU7/SIgnpiy0Mb90qtHcKcOelBP6XR
-	9wsBAKgg==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98 #2 (Red Hat Linux))
-	id 1svux0-00000005CKu-0nQM;
-	Wed, 02 Oct 2024 08:43:14 +0000
-Date: Wed, 2 Oct 2024 01:43:14 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Ming Lei <ming.lei@redhat.com>,
-	Jan Kara <jack@suse.cz>, Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	Avri Altman <avri.altman@wdc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>,
-	Riyan Dhiman <riyandhiman14@gmail.com>,
-	Jorge Ramirez-Ortiz <jorge@foundries.io>,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Li Zhijian <lizhijian@fujitsu.com>, linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>, upstream@airoha.com
-Subject: Re: [PATCH v5 5/6] block: add support for partition table defined in
- OF
-Message-ID: <Zv0HotHuCGDpmFp7@infradead.org>
-References: <20241001221931.9309-1-ansuelsmth@gmail.com>
- <20241001221931.9309-6-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1727858600; c=relaxed/simple;
+	bh=VeqJiGZPeoJt/vn3E557Zb7LdzLEwvG5p+tBIW9OoC8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HVsRscz95uLBqHqyrqZqhtY62QG9QjWRo7MpmmX1wzSL5v1pkaRac5bOX0BnoSkU51tdjU7bpjhLD/9iZFmL03AIrfa67/TVrUxmtM/pbU8lZSeE/8uKt32THmdWlLyQt5am/+z21XWohpURPb6BX71/QGiJ4Z+OtQrwl6hpB2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DWsFiSHR; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5389917ef34so7476854e87.2;
+        Wed, 02 Oct 2024 01:43:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727858597; x=1728463397; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7nXaZCtHNq7BKKF3CmtoESBg4ulxhWJtDtjqd9cV8Hs=;
+        b=DWsFiSHRcXyN2CYqxVICdDQejZ79Mk0KT0PfbemL1oYJ5my4b5rarAtbP36yMzZxXP
+         PJtFkgtmhBRqCF5dxuEGL5n+LmuHeULl5gtGC4YJeFgeyG7OWwKTrtfFiLcNA50NKU1e
+         TYI7UfZnWKwtqj/6Ilna2mZZO94pns9hEDs5QOMJRbxh1ydND4sZj5rlXDaWi83yiUQn
+         pXuFcLd5IqvFNvrn+7jDc1YryJiYx+Jhqwnh+7d9eZIwp095Astxz2v9ClaCg3IWGcMQ
+         Q5xpJKg82mGMLIImx6bOjI4q9exQgzOfC6d68cjFSMUEkh6PFd5Ch+OOO4DQkY2Esdj7
+         n9Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727858597; x=1728463397;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7nXaZCtHNq7BKKF3CmtoESBg4ulxhWJtDtjqd9cV8Hs=;
+        b=DUzj5zPc3dn1UEItjK1o2HUV+B+Nu8yens/91stTODHYSM/77quzl47j5iikY1TOSj
+         78DLRkspWdcIyYo+O5T3EBUuPyS0udA7QXphZR4a4Map+jkIA13bG8EXN3V0+Vo5duqb
+         JbWUH/w9y07AoCoEUQIPHBGeTs+ubZbzgBucH35kHwUDm0EiiAKCt0ubXVQ7VsIVbolp
+         w4Px1wjK+uYcIHC0Z9nvXIEbZjG0QZ9x5asTh3kX1PGsl4B79SFNrS3CIApMjBL4kbWO
+         SNDRTMSqZuYHoKbh1VapSyFWqjyCYZWiGq06yUa47yjZZ5u5e8NNTanZPtJliqB+lzNn
+         GYow==
+X-Forwarded-Encrypted: i=1; AJvYcCUg0zayTU6vRUuhaPw1O9+D02S0+OraOtdmoNTO/VNEE4toRXD0caNXX7aL5P13R5tTPBX7BEhuSE2l@vger.kernel.org, AJvYcCX7WMZHH9fqiY6YnEpUEUHB6VSFFbtWrxbOOhip8xnXdzxR+1FSHLeIQmI8t/fmMDn0SyyXO3OLh+THd/8=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJDtWOtlCPqGmvncGAbKvPxM8F81ffb5UZpHE5RPoxCihL2C8F
+	gPJHxNYihQed9LG5HYdHyNnJeN7iqe0jnvYuyEM3P/RtGFsn+ATX
+X-Google-Smtp-Source: AGHT+IGixNj4W4W7revkITaUB2HOY3ocF0+RwQ4hilUEhSgxQLDa+RAmgwv2ziLfVvWZf0H5TVg3HQ==
+X-Received: by 2002:a05:6512:31ca:b0:52e:9e70:d068 with SMTP id 2adb3069b0e04-539a065c507mr1202032e87.4.1727858596239;
+        Wed, 02 Oct 2024 01:43:16 -0700 (PDT)
+Received: from [10.0.0.100] (host-85-29-124-88.kaisa-laajakaista.fi. [85.29.124.88])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5389fd54746sm1868550e87.29.2024.10.02.01.43.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Oct 2024 01:43:12 -0700 (PDT)
+Message-ID: <a67e031b-5685-48f2-b3b0-5181dd7371f2@gmail.com>
+Date: Wed, 2 Oct 2024 11:43:56 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241001221931.9309-6-ansuelsmth@gmail.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ASoC: dt-bindings: davinci-mcasp: Fix interrupts property
+To: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20241001204749.390054-1-miquel.raynal@bootlin.com>
+Content-Language: en-US
+From: =?UTF-8?Q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>
+In-Reply-To: <20241001204749.390054-1-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 02, 2024 at 12:18:57AM +0200, Christian Marangi wrote:
-> +static int validate_of_partition(struct device_node *np, int slot)
-> +{
-> +	int a_cells, s_cells;
-> +	const __be32 *reg;
-> +	u64 offset, size;
-> +	int len;
-> +
-> +	reg = of_get_property(np, "reg", &len);
-> +
-> +	a_cells = of_n_addr_cells(np);
-> +	s_cells = of_n_size_cells(np);
+Hi,
 
-Just personal preference, but I find code easier to read if variables
-are initialized at declaration time whenever possible:
+On 01/10/2024 23:47, Miquel Raynal wrote:
+> My understanding of the interrupts property is that it can either be:
+> 1/ - TX
+> 2/ - TX
+>    - RX
+> 3/ - Common/combined.
+> 
+> There are very little chances that either:
+>    - TX
+>    - Common/combined
+> or even
+>    - TX
+>    - RX
+>    - Common/combined
+> could be a thing.
 
-	const __be32 *reg = of_get_property(np, "reg", &len);
-	int a_cells = of_n_addr_cells(np);
-	int s_cells = of_n_size_cells(np);
+For interrupt these are the valid onesÉ
+- Common only
+- TX and RX
+- TX only
+- RX only
 
-(same for a few other functions below)
+The driver cuts this through by trying to request all and leaves it for
+DT to specify the correct irqs.
 
-Otherwise looks good:
+Note: in case of common only, we still have RX+TX, TX only, RX only
+operation, but that is just a side note.
 
-Reviewed-by: Christoph Hellwig <hch@lst.de>
+> 
+> Looking at the interrupt-names definition (which uses oneOf instead of
+> anyOf), it makes indeed little sense to use anyOf in the interrupts
+> definition. I believe this is just a mistake, hence let's fix it.
+> 
+> Fixes: 8be90641a0bb ("ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema")
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+> ---
+>  .../devicetree/bindings/sound/davinci-mcasp-audio.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> index 7735e08d35ba..ab3206ffa4af 100644
+> --- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> @@ -102,7 +102,7 @@ properties:
+>      default: 2
+>  
+>    interrupts:
+> -    anyOf:
+> +    oneOf:
+>        - minItems: 1
+>          items:
+>            - description: TX interrupt
+
+-- 
+Péter
+
 
