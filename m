@@ -1,120 +1,146 @@
-Return-Path: <devicetree+bounces-107065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA2F98CD50
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:46:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5ACA98CD76
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:56:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6346CB210B9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:46:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6E32F28749D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:56:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8476F7E0E9;
-	Wed,  2 Oct 2024 06:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1AF13D893;
+	Wed,  2 Oct 2024 06:56:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XVrHOdX/"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OPooQOpK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f68.google.com (mail-ej1-f68.google.com [209.85.218.68])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD6E2F34;
-	Wed,  2 Oct 2024 06:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDDD285270;
+	Wed,  2 Oct 2024 06:56:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727851598; cv=none; b=VE0nMlV8YmNuN64STV8oUWwc5/b1esVW+yb/Yy0jdC8f4p9Ld4FuL1BaMspCMG4uWKnSWpn89FQdtRg+BxJDDhIQZnp6iduyMoYua6/ZIIrVYXSfO0kTJ5D/0pKE9PG/Ua2oAAAJJhQIXdF2ODsLLwgn0Ez5k7CBilmkPXccKAQ=
+	t=1727852171; cv=none; b=XGB4+dP0dbg//kBnkRYSIgAFrmpPDSeqB/6bqH0tlOO+972z5hvXt1PSJua6xsRG8DE3Ttrcuf5yVzV58LA4A77AZQYu/9OX0FZVmjOaYJowkLuoOz5FdcbllNay1IYE5ae9Jamyt/L+DuXO0VwxwYEvVnO8q5tPer5QAS80yRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727851598; c=relaxed/simple;
-	bh=wctSq/XRfN6c/zY3pYT7Ab32oqXQYI/ll9PioD5Zq6U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RInNmHenCmERLUElTgMRhEH8ryMqwhsVUKYx9Pj5D7fMjVVnkCMv/k/Y5Nki0lBqHdDK8bWIhU4NMXD7kfAv9bh4mNh1DSBovL/Xaw3uLlBJC89Ycry5PIwWYPsaAtmlxaJbhx1DtgzUR5CitGnG1lNYpKPXa0wUZ8aEU1LDUmw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XVrHOdX/; arc=none smtp.client-ip=209.85.218.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f68.google.com with SMTP id a640c23a62f3a-a90349aa7e5so917144166b.0;
-        Tue, 01 Oct 2024 23:46:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727851595; x=1728456395; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wctSq/XRfN6c/zY3pYT7Ab32oqXQYI/ll9PioD5Zq6U=;
-        b=XVrHOdX/BJbVNFuH03fA7j1CbrP+yAO29zHuUtEufmj4szD6RlK3LiSkpupXPS2j5r
-         tGzGZrhMa+Eb/9KC0v6mEFIcpRYUNG0u4TNsVH5TWzwbY792JhmZGJGXMSLluaT2F/Ep
-         EaOqmJhm8MVz3mKWtw6z74f+cane6FSEVODeymIQrta8QYVqXJVzhZVqLmQxg4yOXgq5
-         JHEWgsQTiRjU2iT0nEDjUFDcZ8r/pxu+68eKdmREzZEaB6AHmxk01sWTHefgyMz1aMiX
-         JzR2KtuRCbcEal97I9u2jEINLsaOOzI5EmjDbMUAi6dCAMx0173S705LLXuPUxiE1VxC
-         ZmTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727851595; x=1728456395;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wctSq/XRfN6c/zY3pYT7Ab32oqXQYI/ll9PioD5Zq6U=;
-        b=RQCsuIy44Lpd/dnXdhmSchaxD+RuYwQw4VvlV37NOKDIuS6O0MR/C47BFRJRM7Yi+d
-         opI5ISJQOc/aTPdDPSpJHPsKpcds4MBMaRk0ndGeT88N0tJ8+Vp/vFw1e81inEkgq/3X
-         Ke2D278nKDYJKaNAuxr7ylzw4dWJg7cu+cPy2L5LYwP1Fsjj+Ig2Bi54i3baeODYP2bP
-         37P9Tge6zd8E7HtQmxHugozHroKQbhl9+MunGN3wC8X9RR6IRYYv9pykRCx4qIS307fQ
-         K2h6B2HE4d4+f7l6bg4CN7ySVCxhsFgrl5M4/4H2ljzAkGmt36VMGzbnfFG9DYIL2F8P
-         6nyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU1IMJeqkoSzlDnkhQaLZPC/4/e9B28e3ZzcLXoS+vLu5Ftk9X93GSztQ5jjnrlfLo2W61ABecSxS2N7cUdOWCIQak=@vger.kernel.org, AJvYcCVkZ+3Nk+46762zg1fRXP2asLcxehFT2cynHEUzXiyoSBgBC44cl/bq7EqGoeIu5w3xhmh6Ul95YZgjcAU=@vger.kernel.org, AJvYcCW0sXz5epCAT4zYuQENhioy9y3zSzwkldDifKRFqQsK2Kw3WypQdO07gHkv7BBxU/B7IhzIpeFSevHd@vger.kernel.org, AJvYcCWnNfJhW+CLxp3MN8EwIEgPupAOX4ktD1dcrLLSOOtud9rMJ9TcdgHMUilwelUzjsth9FqA3VucXDJn5BgS@vger.kernel.org, AJvYcCXaZ4MXCORA607OV3X/3wLtz9euniaUI98qmhmqng+am1vaYl8GHdFlZGGpxhtK3PFxSsVBHxbw6b8C@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJyPwMRfKb78OVL7a92jg5UYePH9SCTxG477PcMRuZu0+krHJO
-	Q+2N82/YO0iWwL2CyAehDzRC4VgR8+71NyvnYxKg27leWNZK8pbCuYpKNjt1fojU1lt0oC8c3W4
-	Cq91nrZkNQRBCMuAYbpXeoaig5M4=
-X-Google-Smtp-Source: AGHT+IEiXtMz4rxzDMKRte0sJHDSAHpnwg21JUAp8+Jm5ixZyVfSZu7RM1C4x8lbGrZJKdcSr7C/6bSq33X6fCnhhTQ=
-X-Received: by 2002:a17:906:7949:b0:a8d:2faf:d33d with SMTP id
- a640c23a62f3a-a98f820092bmr187121566b.9.1727851594983; Tue, 01 Oct 2024
- 23:46:34 -0700 (PDT)
+	s=arc-20240116; t=1727852171; c=relaxed/simple;
+	bh=1x8FsTYKTElgsro6hjXvj/EoIu+83Ck3wv1piHuIC9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=s/+Uwxo6SSqqJG84szJhdSOdu52h5SekhEA0gnf4Tv7M8jxXrHPqMrqDq7zQ/6V6g0r2o08r3OmvWDQhihOCsf67X3h4XeBqMHGtsG/3RlydLpvnQGptgcPdmkrgPhh6bhgQhBK8h+Ve69iDWSejlwcsos9S2nBJpZxrGlByqbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OPooQOpK; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5141120002;
+	Wed,  2 Oct 2024 06:56:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727852167;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=EHrsnih06kMmn0kAxCYeMqMQc7boKhbn730umSdHFlY=;
+	b=OPooQOpKYrL9KBqvrSgkCbk52UkG1+O8zOtQ+3tYXfY9H3R+7i69jE+OGeWcHDYAycOPwS
+	JcPV1gSkC3Tj4n85gWBX4Pj8aYCq0+oNEkyggb9IQydRDvf8mXuI7UeGuyxyoLFWGOG77w
+	iAIZV0lx45aAabcYA1mkuzXUS2XUdQ+T0m1NfM888QPBVJ3LJfFvNbrF6CUYKqa3nLofmZ
+	fufOhNgx9/5vq7TqH/YaOmraHM6NYuoG6p1qu+VXkSKf1TYOiIEiVdKuqpujKDnE5DZy+z
+	OMZBgRzHzA3LZv3NFuG+O7DD5MDy8dOCE++H+GrBIUIGT4wFnyrjkuH4lbrb3g==
+Date: Wed, 2 Oct 2024 08:56:04 +0200
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Peter Ujfalusi <peter.ujfalusi@gmail.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Jayesh Choudhary <j-choudhary@ti.com>,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: davinci-mcasp: Fix interrupts
+ property
+Message-ID: <20241002085604.277d5006@xps-13>
+In-Reply-To: <7f5wtbnn32l6l76z2yjjfponrysr55yi7hgfmtdegilg7dcc4h@pkupvwap4up4>
+References: <20241001204749.390054-1-miquel.raynal@bootlin.com>
+	<7f5wtbnn32l6l76z2yjjfponrysr55yi7hgfmtdegilg7dcc4h@pkupvwap4up4>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925031131.14645-1-yikai.tsai.wiwynn@gmail.com>
- <20240925031131.14645-2-yikai.tsai.wiwynn@gmail.com> <5r43dvdywunpottd3uuobjzrzfn4w6xgy2vug46niufih6v6vy@jsix2hkc2dg7>
-In-Reply-To: <5r43dvdywunpottd3uuobjzrzfn4w6xgy2vug46niufih6v6vy@jsix2hkc2dg7>
-From: Yikai Tsai <yikai.tsai.wiwynn@gmail.com>
-Date: Wed, 2 Oct 2024 14:46:24 +0800
-Message-ID: <CAL5-g4VcV61gNinezs_1ZPmvAeeDdTEM2NAVywxMfW2_bjsUQA@mail.gmail.com>
-Subject: Re: [PATCH v7 1/2] dt-bindings: hwmon: add renesas,isl28022
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: patrick@stwcx.xyz, =?UTF-8?Q?Carsten_Spie=C3=9F?= <mail@carsten-spiess.de>, 
-	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Jonathan Corbet <corbet@lwn.net>, linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
 Hi Krzysztof,
 
-Thank you for your reminder. I'm really sorry.
-Probably I deleted it by mistake. It will be corrected.
+krzk@kernel.org wrote on Wed, 2 Oct 2024 08:34:44 +0200:
 
+> On Tue, Oct 01, 2024 at 10:47:49PM +0200, Miquel Raynal wrote:
+> > My understanding of the interrupts property is that it can either be:
+> > 1/ - TX
+> > 2/ - TX
+> >    - RX
+> > 3/ - Common/combined.
+> >=20
+> > There are very little chances that either:
+> >    - TX
+> >    - Common/combined
+> > or even
+> >    - TX
+> >    - RX
+> >    - Common/combined
+> > could be a thing.
+> >=20
+> > Looking at the interrupt-names definition (which uses oneOf instead of
+> > anyOf), it makes indeed little sense to use anyOf in the interrupts
+> > definition. I believe this is just a mistake, hence let's fix it.
+> >=20
+> > Fixes: 8be90641a0bb ("ASoC: dt-bindings: davinci-mcasp: convert McASP b=
+indings to yaml schema")
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> > ---
+> >  .../devicetree/bindings/sound/davinci-mcasp-audio.yaml          | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audi=
+o.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> > index 7735e08d35ba..ab3206ffa4af 100644
+> > --- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> > +++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> > @@ -102,7 +102,7 @@ properties:
+> >      default: 2
+> > =20
+> >    interrupts:
+> > -    anyOf:
+> > +    oneOf: =20
+>=20
+>=20
+> You need to change interrupt-names as well.
 
-Best regards,
-Yikai
+interrupt-names is already using 'oneOf'!
 
+The extended diff looks like that:
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2024=E5=B9=B49=E6=9C=8825=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:37=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+   interrupts:
+-    anyOf:
++    oneOf:
+       - minItems: 1
+         items:
+           - description: TX interrupt
+           - description: RX interrupt
+       - items:
+           - description: common/combined interrupt
+=20
+   interrupt-names:
+     oneOf:
+       - minItems: 1
+         items:
+           - const: tx
+           - const: rx
+       - const: common
 
-
->
-> On Wed, Sep 25, 2024 at 11:11:27AM +0800, Yikai Tsai wrote:
-> > Add dt-bindings for Renesas ISL28022 power monitor.
-> >
-> > Signed-off-by: Carsten Spie=C3=9F <mail@carsten-spiess.de>
-> > Signed-off-by: Yikai Tsai <yikai.tsai.wiwynn@gmail.com>
->
-> ??? What happened here? So you are going to ignoreo silently our
-> reviews?
->
-> Best regards,
-> Krzysztof
->
+Thanks,
+Miqu=C3=A8l
 
