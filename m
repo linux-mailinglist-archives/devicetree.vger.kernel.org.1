@@ -1,49 +1,61 @@
-Return-Path: <devicetree+bounces-107059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A8B98CD15
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:22:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56CFA98CD2E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:32:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 580F92857E6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:22:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F7F51C21608
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:32:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11FC8405D;
-	Wed,  2 Oct 2024 06:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA3284D0E;
+	Wed,  2 Oct 2024 06:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ncjxFHpx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A82584E16;
-	Wed,  2 Oct 2024 06:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E0E9374CB;
+	Wed,  2 Oct 2024 06:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727850157; cv=none; b=uLNWIhZFzSIES+anEmqu3STNZ5npL1ZS0ilb5di+sDTT6/xMbuhVaCXNYObooenGqWs8hbDLIrjY7L9Y6ZSh7dFHyBa8Tw9K2DcUsGMwPiGLuKoG215MjR6R30WvmBC4O1diLEKCF607aCztabAep51eKwHRUuN30H7QD7FuPzc=
+	t=1727850717; cv=none; b=fjpCegV7X7OJXRea+dx+hhhDKU3MiEOcz0N703hsQ6ySjRlFqyEKxhpGlSKX4yRZ8j8pWHakiZx484vO8wEKD5hncJURVfCQXu57Zr0hxm39jSkNvgojJbN4GSbIzURP4g04kzpg7m5q/dQKk7P657xcDXXKnKJhWkGOuf1yBto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727850157; c=relaxed/simple;
-	bh=qhtMKLfMrHWg7xcq22fCBHpt4Xx3c2YhTdS/dFAoA3A=;
+	s=arc-20240116; t=1727850717; c=relaxed/simple;
+	bh=9mmW3A2mka4fNt/DPUrZkJU0+CpxJBPkqAKENYhBKAc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgJq3TiiV7CwbwkzlODv6zufT7bXikFEW6PT/ckh/ClykH2uZ8CrEVjgJATostvmBvX7Cyz9+vKlinlYZhPYzJGTcWsT4GCZhGx2tSCrToL+ZWk77ZnkhOjpVF5hambrmlAifYaBiNAnEK7neCQRAzwrr2AUWwx4MfX57whK9yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 616CEC4CEC5;
-	Wed,  2 Oct 2024 06:22:36 +0000 (UTC)
-Date: Wed, 2 Oct 2024 08:22:34 +0200
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Alexey Klimov <alexey.klimov@linaro.org>
-Cc: linux-sound@vger.kernel.org, srinivas.kandagatla@linaro.org, 
-	bgoswami@quicinc.com, lgirdwood@gmail.com, broonie@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org, 
-	alsa-devel@alsa-project.org, devicetree@vger.kernel.org, elder@linaro.org, 
-	dmitry.baryshkov@linaro.org, caleb.connolly@linaro.org, linux-kernel@vger.kernel.org, 
-	a39.skl@gmail.com
-Subject: Re: [PATCH v2 1/7] ASoC: dt-bindings: qcom,sm8250: add
- qrb4210-rb2-sndcard
-Message-ID: <wcrkdgri4o3v252dzdimp2qng3zqlthynkozodukuxecm6k4tf@bglumhiwiwri>
-References: <20241002022015.867031-1-alexey.klimov@linaro.org>
- <20241002022015.867031-2-alexey.klimov@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pYbVB0rS6Oa4lTyBGKduLe26HW2fn/4zRU2QvkP35i90ILXR7wkcFvG6cAGVDIs6ac34qNmMAosbN0z4EO/qRtA3ZZvGavR73r9F79TLRNuZXg7xroeOHq3rzR/J5Kyc2gy5LUSnjg5XIZ2TBnaCSbA3vAWP9O/S5WvlIsfOarE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ncjxFHpx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 772A8C4CEC5;
+	Wed,  2 Oct 2024 06:31:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727850717;
+	bh=9mmW3A2mka4fNt/DPUrZkJU0+CpxJBPkqAKENYhBKAc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ncjxFHpx/tAa4VQQ8d79hb9t2wUz7dmGIZW2H4jvEE60uM3oQHdkcFfVTe1TXMvJl
+	 2Kl8Mah5jmcZB2bgz2anaOGDTzpe5K3iWEWJxWrxwQLaNWJzGjCj8O2di1Bj40TE/p
+	 TWzpfvThAKFGjkPLfzEr/om80Q12qI8DFW+cEuyCyH+Uf0biGtDyiGqDNy+T0kZeO5
+	 mfB+6Codfjz54tYG7w5wvSl37MdPP9eMgYVmtmIhXR/U870cZN5bNVY228Axq/LhlI
+	 XyaZkgyTpSdrruh3Mm5oVYvRzRVYHpA8FLBG/iip20UIX5NLYV362N//KSKc8lpZTn
+	 IzUS+iwXIPj4A==
+Date: Wed, 2 Oct 2024 08:31:53 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	Celeste Liu <CoelacanthusHex@gmail.com>
+Subject: Re: [PATCH 2/8] dt-bindings: reset: Add reset ID definition for
+ Rockchip RK3528
+Message-ID: <kg7lh6gafeegmljsygukhfjiztx5wbothngtxrcreccao3itpy@f4bxf4w346ky>
+References: <20241001042401.31903-2-ziyao@disroot.org>
+ <20241001042401.31903-4-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,18 +64,64 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241002022015.867031-2-alexey.klimov@linaro.org>
+In-Reply-To: <20241001042401.31903-4-ziyao@disroot.org>
 
-On Wed, Oct 02, 2024 at 03:20:09AM +0100, Alexey Klimov wrote:
-> Add adsp-backed soundcard compatible for QRB4210 RB2 platform,
-> which as of now looks fully compatible with SM8250.
+On Tue, Oct 01, 2024 at 04:23:56AM +0000, Yao Zi wrote:
+> Similar to previous Rockchip generations, reset IDs for RK3528 SoC
+> are register offsets.
 > 
-> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
 > ---
->  Documentation/devicetree/bindings/sound/qcom,sm8250.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  .../dt-bindings/reset/rockchip,rk3528-cru.h   | 292 ++++++++++++++++++
+>  1 file changed, 292 insertions(+)
+>  create mode 100644 include/dt-bindings/reset/rockchip,rk3528-cru.h
+> 
+> diff --git a/include/dt-bindings/reset/rockchip,rk3528-cru.h b/include/dt-bindings/reset/rockchip,rk3528-cru.h
+> new file mode 100644
+> index 000000000000..1f8c0d38bb88
+> --- /dev/null
+> +++ b/include/dt-bindings/reset/rockchip,rk3528-cru.h
+> @@ -0,0 +1,292 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Wrong license, run checkpatch.
+
+Also, as Conor noted, this should eb squashed with device binding.
+
+> +/*
+> + * Copyright (c) 2022 Rockchip Electronics Co. Ltd.
+> + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
+> + * Author: Joseph Chen <chenjh@rock-chips.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_RESET_ROCKCHIP_RK3528_H
+> +#define _DT_BINDINGS_RESET_ROCKCHIP_RK3528_H
+> +
+> +// CRU_SOFTRST_CON03 (Offset: 0xA0C)
+> +#define SRST_CORE0_PO			0x00000030
+> +#define SRST_CORE1_PO			0x00000031
+> +#define SRST_CORE2_PO			0x00000032
+> +#define SRST_CORE3_PO			0x00000033
+> +#define SRST_CORE0			0x00000034
+> +#define SRST_CORE1			0x00000035
+> +#define SRST_CORE2			0x00000036
+> +#define SRST_CORE3			0x00000037
+> +#define SRST_NL2			0x00000038
+> +#define SRST_CORE_BIU			0x00000039
+> +#define SRST_CORE_CRYPTO		0x0000003A
+> +
+> +// CRU_SOFTRST_CON05 (Offset: 0xA14)
+> +#define SRST_P_DBG			0x0000005D
+> +#define SRST_POT_DBG			0x0000005E
+> +#define SRST_NT_DBG			0x0000005F
+
+What are all these? Registers? Not a binding.
+
+Binding constants are numerical values from 0, incremented by one,
+serving as abstraction layer between DTS and driver.
+
+None of these here are bindings.
 
 Best regards,
 Krzysztof
