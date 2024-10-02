@@ -1,329 +1,111 @@
-Return-Path: <devicetree+bounces-107324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DC3C98E387
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:34:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64C4498E38B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:37:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C133D1C23432
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 19:34:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FB9C285C82
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 19:37:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A730216A16;
-	Wed,  2 Oct 2024 19:34:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1E8A1DB93C;
+	Wed,  2 Oct 2024 19:37:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="gRbqGMRo"
+	dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b="BMFrkAZM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97240216A01
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 19:34:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+Received: from bout3.ijzerbout.nl (bout3.ijzerbout.nl [136.144.140.114])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C905157A6C;
+	Wed,  2 Oct 2024 19:37:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=136.144.140.114
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727897675; cv=none; b=ZgWHcqAqyIYoOCaQIV62Con5OaOz2H94wYveRZrBO8dWiMSCKZ9L9wIsByZ05RAsiVvFn5foFg8jtbZ3+LO6a1eqxOsH61dEb3v6xXAzFtqvKsk319zNQmm5JCxNU9Bot05+IQGzOfoGJ1KwxjiEEblvz76r02EpZIf0BrIS9H0=
+	t=1727897834; cv=none; b=izZMOWLaSIJflopj1lTsUca0BhuS43k6WPu9VNh46xo9aTQPThanem4gFMpD4r6bCoj+rUHte0tCizrGfZW8GPedOReIU9ma7I7Rd5b4TSBOJmENQIA+3QK93so7VOXTe925stUfpCb7Xd+gKhuIytJaEk222tbaNoyslHvcX5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727897675; c=relaxed/simple;
-	bh=2+vEyTgqFwkWvfvYGoa8abT80T+sgTrAdgCfin2DnyU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iUjR1JNXmz7O/FxX7Nh3hkqaaU08c9+WUVg5UbvGGa06kyLj3gTrCdAfRKT1U4arf7UnQI0kg/67S4rmzYOjt8eTi91eBdi27tH/mDxD49vgb1bc+1gTp3hVYrtIgPx4FojsR39lb9nKDjSKYEs4lQRkweozOHXQrr14pTFGeSg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=gRbqGMRo; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1727897672;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+ec1NxEf4cUD1tlgHleEFcFBP8GH2hEq9TibQIYmFEg=;
-	b=gRbqGMRoy2UQR8rw31jMwWm81EsYQZcylZhjOV4x44og3WiPlYJc0XybA9uW24C1WvBAAg
-	tWvIFzWIzdGo6gYuC3xC2g3PYbPICic7ZqFszkYWLx5d+hfhnGKALhUYSu7vegUcgDhi8o
-	aIYEitIWmSH4tew6MdCBgRBhIzMAomM=
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com
- [209.85.219.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-212-_QGSMl2uPlWa7k1x46CVKg-1; Wed, 02 Oct 2024 15:34:29 -0400
-X-MC-Unique: _QGSMl2uPlWa7k1x46CVKg-1
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-6c58e9bf10bso3166816d6.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 12:34:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727897669; x=1728502469;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+ec1NxEf4cUD1tlgHleEFcFBP8GH2hEq9TibQIYmFEg=;
-        b=YcZr0gDcr06XYq3yUx9tAZ4ls+zJWN+jA5GUwPa8jjW+hhgbG3BLxGjXlmi43raelt
-         EZxjFMLaxzdgbdLNLgs4wisyqUG3o2B+yMD2/zgYlepyqPTISvsBY0tq0rVvXCtMuPJh
-         2Nwn/0iJOxy+zgxShH0/sWW6ytsuCLIvNzDwz3eZfD4TpFvDKgOxwIHHYeiRJuxSIRDe
-         Upkdo36JBSRvenYcELddjQtdJq2B+XUZzYYpGRsaZqJIOH5poRg7pZbJAsqrjTstHgNO
-         K10UmvJRRSuLsDxJWGApFnp1jjDBQjAWcADUD0OzC4TLiOXIiGDJtlsTSJzYOjJ7pW/o
-         aG9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU4kAR4YUV74IhQKlFHsIW1HhUapsvXJG8XWSwobShRccek2uTcJINsSgXQLNkfMHJy2pHzJ4P6tF8R@vger.kernel.org
-X-Gm-Message-State: AOJu0YxD+hFdCodyCISc2qj2aNfrTLl54kkzx3lLsvFU7JoxnfvrO4nt
-	BJTkHVsqj8E/xqiHWyH/G/Xxzu48Z59GK6tZQnPgp/2D/WaOvRmxHPUvtKNRb+NcmUglGkANTEB
-	sXzvb8jtniMEQpj4AkFnU+uRsaJyPV4LCp98P0622ptzE968gBFXuOucPw68=
-X-Received: by 2002:a05:6214:4604:b0:6cb:4a84:e02a with SMTP id 6a1803df08f44-6cb819dda70mr70688396d6.16.1727897668643;
-        Wed, 02 Oct 2024 12:34:28 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFJB6uBn4n+neMl08RDBU9++wfZdEzfnVhcS1bJM/L1t5Y3dEm5XFXOMjVQwS4a57zuVS8Oqg==
-X-Received: by 2002:a05:6214:4604:b0:6cb:4a84:e02a with SMTP id 6a1803df08f44-6cb819dda70mr70688096d6.16.1727897668239;
-        Wed, 02 Oct 2024 12:34:28 -0700 (PDT)
-Received: from x1gen2nano ([2600:1700:1ff0:d0e0::40])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cb3b62d520sm63718966d6.67.2024.10.02.12.34.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 12:34:27 -0700 (PDT)
-Date: Wed, 2 Oct 2024 14:34:25 -0500
-From: Andrew Halaney <ahalaney@redhat.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	"Russell King (Oracle)" <linux@armlinux.org.uk>, Andrew Lunn <andrew@lunn.ch>, 
-	Abhishek Chauhan <quic_abchauha@quicinc.com>, Serge Semin <fancer.lancer@gmail.com>, 
-	devicetree@vger.kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFT] of: property: fw_devlink: Add support for the
- "phy-handle" binding
-Message-ID: <hnsjzxd4tgqdrol76qfzpl5fhesz4klqeurdwebflfshfrwpqb@r5iiiihplfgr>
-References: <20240930-phy-handle-fw-devlink-v1-1-4ea46acfcc12@redhat.com>
- <CAGETcx-z+Evd95QzhPePOf3=fZ7QUpWC2spA=q_ASyAfVHJD1A@mail.gmail.com>
- <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
+	s=arc-20240116; t=1727897834; c=relaxed/simple;
+	bh=RoFKBVRxYfTHWfBz6uS38ckS7VuXYibcgS/2JavRY7E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qCNYXT2G5t0HSd0tIM7RlJc7haH9yyGbYTHZQpdvXMiAOb/Uw9z6bAR2QNTDivJ19j2dU4G6riSWYsirXZgb+yQB8VaDomWZcnQuUQ4EnErsQOEGOkiO/Wm+pE2oouszX/zoeLrwxMCCmQfBb2YrAzRfyIA2/uVg9ct1zrgmmOs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl; spf=pass smtp.mailfrom=ijzerbout.nl; dkim=pass (4096-bit key) header.d=ijzerbout.nl header.i=@ijzerbout.nl header.b=BMFrkAZM; arc=none smtp.client-ip=136.144.140.114
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ijzerbout.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ijzerbout.nl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ijzerbout.nl; s=key;
+	t=1727897824; bh=RoFKBVRxYfTHWfBz6uS38ckS7VuXYibcgS/2JavRY7E=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BMFrkAZMQg/Uxb/7vcM4o7BbiH+chLwVFy+EHYXuy+i1aL+Ym2XwSZtj4pEv6yTuY
+	 E1VHLcL0qaaQE4HonN0nDjrHmlPAJUEjZO2tlPnfNpZrpd9qtbRyfT4On7ppjMoYsH
+	 PCeEtRvCO5BXUMpUXs62y5SA4bhom53lY2cL/LzNvX4kldDNdooyPfKoXhTSK4dWxR
+	 eFtC3TuZwDfxSfZ3aLKMgx4Wix0AY+nJgJjGnvK15WxwJCgLxSTFOr0nYhvUPAKqPw
+	 GBmldsRIiaMjpbqlTWwD/zKQilAbHs74x/ovUEjltOwUo8UXewvrK02vWEefcWmH4l
+	 DNlqkfwS5ehiY0X1yIQwLkA6GLCcMR1fpY8IRJCWg3SwnEPlN9pLd0McatOsoZSiFC
+	 xJfnGehxadjFaK9Gs+O7Ib8nKKkOuJesfbh4T8+jtUaAkKhL7fOPQHqhW3DLvnWCzq
+	 FNlGuxcdtBDwV99itYAyW3FHya7oQpoEqGL5crsJGQF334t1ZzSl++drGiK7Yk9f6A
+	 SFFoGwUYYf8DG9b57SeIdcwg5agVDrGTJ3ZE8aOqvCkPAmJpV+2j9VRNZastgS8Glt
+	 GyMxQix/SC1J5wEqMjPBuPrZnKo7GFDdCf2A/mq067rACCL7SLI1Zv6oIeXNZldj9d
+	 KYBhB3vYrU4qWpT2wIJVXstc=
+Received: from [IPV6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a] (racer.ijzerbout.nl [IPv6:2a10:3781:99:1:1ac0:4dff:fea7:ec3a])
+	by bout3.ijzerbout.nl (Postfix) with ESMTPSA id A8660168387;
+	Wed,  2 Oct 2024 21:37:02 +0200 (CEST)
+Message-ID: <87770518-5f63-4adf-b6ea-c7f92b58ce22@ijzerbout.nl>
+Date: Wed, 2 Oct 2024 21:36:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/8] pinctrl: Add driver for the T-Head TH1520 SoC
+To: Drew Fustini <dfustini@tenstorrent.com>, Drew Fustini <drew@pdp7.com>,
+ Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Cc: linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
+ <20240930-th1520-pinctrl-v3-2-32cea2bdbecb@tenstorrent.com>
+Content-Language: en-US
+From: Kees Bakker <kees@ijzerbout.nl>
+In-Reply-To: <20240930-th1520-pinctrl-v3-2-32cea2bdbecb@tenstorrent.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij>
 
-On Tue, Oct 01, 2024 at 02:22:23PM GMT, Andrew Halaney wrote:
-> On Mon, Sep 30, 2024 at 05:12:42PM GMT, Saravana Kannan wrote:
-> > On Mon, Sep 30, 2024 at 2:28 PM Andrew Halaney <ahalaney@redhat.com> wrote:
-> > >
-> > > Add support for parsing the phy-handle binding so that fw_devlink can
-> > > enforce the dependency. This prevents MACs (that use this binding to
-> > > claim they're using the corresponding phy) from probing prior to the
-> > > phy, unless the phy is a child of the MAC (which results in a
-> > > dependency cycle) or similar.
-> > >
-> > > For some motivation, imagine a device topology like so:
-> > >
-> > >     &ethernet0 {
-> > >             phy-mode = "sgmii";
-> > >             phy-handle = <&sgmii_phy0>;
-> > >
-> > >             mdio {
-> > >                     compatible = "snps,dwmac-mdio";
-> > >                     sgmii_phy0: phy@8 {
-> > >                             compatible = "ethernet-phy-id0141.0dd4";
-> > >                             reg = <0x8>;
-> > >                             device_type = "ethernet-phy";
-> > >                     };
-> > >
-> > >                     sgmii_phy1: phy@a {
-> > >                             compatible = "ethernet-phy-id0141.0dd4";
-> > >                             reg = <0xa>;
-> > >                             device_type = "ethernet-phy";
-> > >                     };
-> > >             };
-> > >     };
-> > >
-> > >     &ethernet1 {
-> > >             phy-mode = "sgmii";
-> > >             phy-handle = <&sgmii_phy1>;
-> > >     };
-> > >
-> > > Here ethernet1 depends on sgmii_phy1 to function properly. In the below
-> > > link an issue is reported where ethernet1 is probed and used prior to
-> > > sgmii_phy1, resulting in a failure to get things working for ethernet1.
-> > > With this change in place ethernet1 doesn't probe until sgmii_phy1 is
-> > > ready, resulting in ethernet1 functioning properly.
-> > >
-> > > ethernet0 consumes sgmii_phy0, but this dependency isn't enforced
-> > > via the device_links backing fw_devlink since ethernet0 is the parent of
-> > > sgmii_phy0. Here's a log showing that in action:
-> > >
-> > >     [    7.000432] qcom-ethqos 23040000.ethernet: Fixed dependency cycle(s) with /soc@0/ethernet@23040000/mdio/phy@8
-> > >
-> > > With this change in place ethernet1's dependency is properly described,
-> > > and it doesn't probe prior to sgmii_phy1 being available.
-> > >
-> > > Link: https://lore.kernel.org/netdev/7723d4l2kqgrez3yfauvp2ueu6awbizkrq4otqpsqpytzp45q2@rju2nxmqu4ew/
-> > > Suggested-by: Serge Semin <fancer.lancer@gmail.com>
-> > > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> > > ---
-> > > I've marked this as an RFT because when looking through old mailing
-> > > list discusssions and kernel tech talks on this subject, I was unable
-> > > to really understand why in the past phy-handle had been left out. There
-> > > were some loose references to circular dependencies (which seem more or
-> > > less handled by fw_devlink to me), and the fact that a lot of behavior
-> > > happens in ndo_open() (but I couldn't quite grok the concern there).
-> > >
-> > > I'd appreciate more testing by others and some feedback from those who
-> > > know this a bit better to indicate whether fw_devlink is ready to handle
-> > > this or not.
-> > >
-> > > At least in my narrow point of view, it's working well for me.
-> > 
-> > I do want this to land and I'm fairly certain it'll break something.
-> > But it's been so long that I don't remember what it was. I think it
-> > has to do with the generic phy driver not working well with fw_devlink
-> > because it doesn't go through the device driver model.
-> 
-> Let me see if I can hack something up on this board (which has a decent
-> dependency tree for testing this stuff) to use the generic phy driver
-> instead of the marvell one that it needs and see how that goes. It won't
-> *actually* work from a phy perspective, but it will at least test out
-> the driver core bits here I think.
-> 
-> > 
-> > But like you said, it's been a while and fw_devlink has improved since
-> > then (I think). So please go ahead and give this a shot. If you can
-> > help fix any issues this highlights, I'd really appreciate it and I'd
-> > be happy to guide you through what I think needs to happen. But I
-> > don't think I have the time to fix it myself.
-> 
-> Sure, I tend to agree. Let me check the generic phy driver path for any
-> issues and if that test seems to go okay I too am of the opinion that
-> without any solid reasoning against this we enable it and battle through
-> (revert and fix after the fact if necessary) any newly identified issues
-> that prevent phy-handle and fw_devlink have with each other.
-> 
-
-Hmmm, yes the generic phy driver path for this
-doesn't seem to work well. Its fine and dandy if there's
-no device_link (current situation), but if there is one
-(say with my patch and in my example above between ethernet1 and phy@a,
-you can ignore the ethernet0 relationship since its a cycle
-and therefore no device_link is created as mentioned in the patch)
-you run into problems with the generic phy driver.
-
-In my original test you can see I use the marvell driver
-for the phy. In that case things work well. In the generic phy
-case however, ethernet1's probe is actually delayed far past
-phy@a. Here's some logs that show that the device_link getting
-"relaxed" due to no driver being bound, which has fw_devlink
-thinking this supplier phy isn't going to get a driver ever,
-so it finally tries to unblock (probe) the consumer (ethernet1):
-
-    [   40.695570] platform 23000000.ethernet: Relaxing link with stmmac-0:0a
-    [   40.702274] CPU: 4 UID: 0 PID: 111 Comm: kworker/u34:1 Not tainted 6.12.0-rc1-next-20240930-00004-gb766c5527800-dirty #155
-    [   40.713605] Hardware name: Qualcomm SA8775P Ride (DT)
-    [   40.718789] Workqueue: events_unbound deferred_probe_work_func
-    [   40.724774] Call trace:
-    [   40.727295]  dump_backtrace+0x108/0x190
-    [   40.731233]  show_stack+0x24/0x38
-    [   40.734638]  dump_stack_lvl+0x40/0x88
-    [   40.738406]  dump_stack+0x18/0x28
-    [   40.741811]  fw_devlink_unblock_consumers+0x78/0xe8
-    [   40.746824]  device_add+0x290/0x3f8
-    [   40.750411]  phy_device_register+0x6c/0xd0
-    [   40.754615]  fwnode_mdiobus_phy_device_register+0xe8/0x178
-    [   40.760246]  fwnode_mdiobus_register_phy+0x214/0x268
-    [   40.765344]  __of_mdiobus_parse_phys+0x80/0x280
-    [   40.769995]  __of_mdiobus_register+0xd0/0x230
-    [   40.774465]  stmmac_mdio_register+0x220/0x3c8 [stmmac]
-    [   40.779755]  stmmac_dvr_probe+0x91c/0xd70 [stmmac]
-    [   40.784682]  devm_stmmac_pltfr_probe+0x54/0xe0 [stmmac_platform]
-    [   40.790846]  qcom_ethqos_probe+0x404/0x438 [dwmac_qcom_ethqos]
-    [   40.796830]  platform_probe+0x94/0xd8
-
-If I understand correctly that's because the generic phy driver
-is bound during a MAC's (like ethernet1 here) phylink_fwnode_phy_connect() call
-in ndo_open() currently.. here's another dump_stack() (yes I abuse that alot)
-showing when that happens:
-
-    [   42.980611] net end1: Before phylink_fwnode_phy_connect
-    [   42.986011] CPU: 4 UID: 0 PID: 310 Comm: NetworkManager Not tainted 6.12.0-rc1-next-20240930-00004-gb766c5527800-dirty #156
-    [   42.997436] Hardware name: Qualcomm SA8775P Ride (DT)
-    [   43.002632] Call trace:
-    [   43.005152]  dump_backtrace+0x108/0x190
-    [   43.009106]  show_stack+0x24/0x38
-    [   43.012518]  dump_stack_lvl+0x40/0x88
-    [   43.016290]  dump_stack+0x18/0x28
-    [   43.019701]  phy_attach_direct+0x2d4/0x3e0
-    [   43.023918]  phylink_fwnode_phy_connect+0xc4/0x178
-    [   43.028848]  __stmmac_open+0x698/0x6e0 [stmmac]
-    [   43.033534]  stmmac_open+0x54/0xe0 [stmmac]
-    [   43.037850]  __dev_open+0x110/0x228
-    [   43.041442]  __dev_change_flags+0xbc/0x1d0
-
-
-And here's the code for the binding of the generic phy driver:
-
-    /**
-     * phy_attach_direct - attach a network device to a given PHY device pointer
-     * @dev: network device to attach
-     * @phydev: Pointer to phy_device to attach
-     * @flags: PHY device's dev_flags
-     * @interface: PHY device's interface
-     *
-     * Description: Called by drivers to attach to a particular PHY
-     *     device. The phy_device is found, and properly hooked up
-     *     to the phy_driver.  If no driver is attached, then a
-     *     generic driver is used.  The phy_device is given a ptr to
-     *     the attaching device, and given a callback for link status
-     *     change.  The phy_device is returned to the attaching driver.
-     *     This function takes a reference on the phy device.
-     */
-    int phy_attach_direct(struct net_device *dev, struct phy_device *phydev,
-                          u32 flags, phy_interface_t interface)
-    {
-            struct mii_bus *bus = phydev->mdio.bus;
-            struct device *d = &phydev->mdio.dev;
-            struct module *ndev_owner = NULL;
-            bool using_genphy = false;
-            int err;
-
-            /* For Ethernet device drivers that register their own MDIO bus, we
-             * will have bus->owner match ndev_mod, so we do not want to increment
-             * our own module->refcnt here, otherwise we would not be able to
-             * unload later on.
-             */
-            if (dev)
-                    ndev_owner = dev->dev.parent->driver->owner;
-            if (ndev_owner != bus->owner && !try_module_get(bus->owner)) {
-                    phydev_err(phydev, "failed to get the bus module\n");
-                    return -EIO;
-            }
-
-            get_device(d);
-
-            /* Assume that if there is no driver, that it doesn't
-             * exist, and we should use the genphy driver.
-             */
-            if (!d->driver) {
-                    if (phydev->is_c45)
-                            d->driver = &genphy_c45_driver.mdiodrv.driver;
-                    else
-                            d->driver = &genphy_driver.mdiodrv.driver;
-
-                    using_genphy = true;
-                    dump_stack();
-            }
-
-            if (!try_module_get(d->driver->owner)) {
-                    phydev_err(phydev, "failed to get the device driver module\n");
-                    err = -EIO;
-                    goto error_put_device;
-            }
-
-            if (using_genphy) {
-                    err = d->driver->probe(d);
-                    if (err >= 0)
-                            err = device_bind_driver(d);
-
-                    if (err)
-                            goto error_module_put;
-            }
-
-            ...
-    }
-
-Something will need to be done for the generic phy driver case before
-this patch could be considered acceptable as this would slow the boot time
-for the topology I described in the patch description if the generic phy
-driver was used.
-
+Op 30-09-2024 om 21:50 schreef Drew Fustini:
+> From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+>
+> Add pinctrl driver for the T-Head TH1520 RISC-V SoC.
+>
+> Tested-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> [dfustini: use thead,pad-group to identify the pin controller instance]
+> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
+> ---
+>   MAINTAINERS                      |   1 +
+>   drivers/pinctrl/Kconfig          |  13 +
+>   drivers/pinctrl/Makefile         |   1 +
+>   drivers/pinctrl/pinctrl-th1520.c | 907 +++++++++++++++++++++++++++++++++++++++
+>   4 files changed, 922 insertions(+)
+>
+> [...]
+> +static int th1520_pinmux_set_mux(struct pinctrl_dev *pctldev,
+> +				 unsigned int fsel, unsigned int gsel)
+> +{
+> +	struct th1520_pinctrl *thp = pinctrl_dev_get_drvdata(pctldev);
+> +	const struct function_desc *func = pinmux_generic_get_function(pctldev, fsel);
+func can be NULL after calling pinmux_generic_get_function
+Please add something to avoid NULL pointer dereferencing in the next 
+statement.
+All other callers of pinmux_generic_get_function have something like this:
+     if (!func)
+         return -EINVAL;
+> +
+> +	return th1520_pinmux_set(thp, thp->desc.pins[gsel].number,
+> +				 (uintptr_t)thp->desc.pins[gsel].drv_data & TH1520_PAD_MUXDATA,
+> +				 (uintptr_t)func->data);
+> +}
+> +
 
