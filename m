@@ -1,73 +1,64 @@
-Return-Path: <devicetree+bounces-107109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D03298CF30
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:47:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9442D98CF34
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:49:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FCDB1C220D6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:47:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 456AA285D8A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:49:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3D49195F17;
-	Wed,  2 Oct 2024 08:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1A65196446;
+	Wed,  2 Oct 2024 08:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X+lx96e7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E83JInBM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C99D9194ACF;
-	Wed,  2 Oct 2024 08:47:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8557180BEC;
+	Wed,  2 Oct 2024 08:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727858827; cv=none; b=MzJeDbf8qJO/RVohJ3Gm2UJL/OcHwbPiYJXTkEbGyuQ3Em+O9vjz6y7psHCUe61GOXyM9J1ky4AIGPu2NTU3Eh5EkRuEEcxnzfXqorliCOzFpPwjT5kUtz8/YB6YeSlcU2b79WluF1yYfHq+DVvIdJY8Jt4QVqfZzxJ9fmMf1Vw=
+	t=1727858966; cv=none; b=CjsHs8bZNGnVpofOSXB9Fj4cL+nvvRhs3AVARnUPJOA5Zkdl+rTZseHtV3QVoGUCMBnW3OL/JajkEyA//yhFYQT4nADlGB5EC6DfxVS//DdOQAASZADAUh+Vi652ytRHQuLuM3MF5rJHRjlXhmgxGPN6zckpUYZONmbMdYqkCJE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727858827; c=relaxed/simple;
-	bh=T06SY+FA/1uKT7e+gKN04QDv17JBT5pYP2bXjFrAIWw=;
+	s=arc-20240116; t=1727858966; c=relaxed/simple;
+	bh=sWtS55ESt/gXMlKhyy2AY5SPV9Ghvj60fO52Wmird08=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VQyE8MZaAENCfRHQFgjzHgz2yN7mJzqMRMj7+VtCD8EvDihawjQRdYvHZFnZmIGOQIUOXiAkN8xFmoNHoc6m+mPNj8a0Is0fCKQMziShPXVk2oBJ5dtAMgiySVFQkS6k1wBmFYqxM4pB5AXSsNuaIuEjFnGBxGxHg1VIto5kUUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X+lx96e7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F058DC4CEC5;
-	Wed,  2 Oct 2024 08:47:03 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=a9onqpZt/rN7LnN/pwSzorMD+pVyv9PlWiEPkWMybGriTh/knMnox+aBJvp6j03AxZs6er5wYtpySD/w2bx1ORA0Aivi37ooTq0J2sh48+CT/e4w4TJJEX0aIRhK6V3tX8bp0776ktxEkeG6RHwTeXG3E4yQhx41fihux7Aceis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E83JInBM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BB5BC4CEC5;
+	Wed,  2 Oct 2024 08:49:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727858827;
-	bh=T06SY+FA/1uKT7e+gKN04QDv17JBT5pYP2bXjFrAIWw=;
+	s=k20201202; t=1727858966;
+	bh=sWtS55ESt/gXMlKhyy2AY5SPV9Ghvj60fO52Wmird08=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=X+lx96e7BhbdGGAlxY40bwtIhe1ieXI4LXzmfdPeTjA5+NtuC6uPflppTHr/FJlTQ
-	 YpIEjn+BLUs2zUsMMgJJOWS/2StCubAUF01mBo8YoNWAgO0XglW4v0KNsTJk4qnQF/
-	 JbVKyR+eBa6F1RXbRbX/dhA+ElGhm4o8lr2V66PZZNjHCseuE1HhLsoICi5duRRWx7
-	 k4kmMEuyqlj6hHhGVvUXlcbP3Khh07zbEjSIw172FJY6VORKzv9Z/TSNrhn/KMyT/5
-	 hRU7+EbPp3r2SclmIXt+4XR0RDJoYQ8zteoMum5Hzjc77Vd6ouGgsMY60sGevVJwVr
-	 FcZ6Jne3OiVdQ==
-Date: Wed, 2 Oct 2024 09:47:01 +0100
+	b=E83JInBMFeg02wHuNmKFMc5RpgM9dMYCLZwB7VhZuY8yTGiUKWw5mOTo/NVa5TVpJ
+	 SrgZD07YWUHcL/uHISnML8JGWQfb3F+p4Ru9CKsVqQsI4kouBpDqpqxVHv8so0OOPb
+	 2qftyG/7MNdcXtLSNFCv2e60ZQlA2Sa8xqBfVm1irRMrVNAlupr47glDELHhgyJbva
+	 FZsheZplGrH865151krbsIwGBO3iCC9xOIjI/jjoP21x99GYx2JFWO1sheCUZTWLlm
+	 YpD65fe7RETBMASqtAb2Wmi2YNzq7y5o7iwsYiavMIk+03/IHJmYYY4aKEvd+j6EYX
+	 Bl29XUR6SocYA==
+Date: Wed, 2 Oct 2024 09:49:21 +0100
 From: Conor Dooley <conor@kernel.org>
-To: "Pandey, Radhey Shyam" <radhey.shyam.pandey@amd.com>
-Cc: "davem@davemloft.net" <davem@davemloft.net>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"Simek, Michal" <michal.simek@amd.com>,
-	"Joseph, Abin" <Abin.Joseph@amd.com>,
-	"u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-	"elfring@users.sourceforge.net" <elfring@users.sourceforge.net>,
-	"Katakam, Harini" <harini.katakam@amd.com>,
-	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"git (AMD-Xilinx)" <git@amd.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: emaclite: Add clock
- support
-Message-ID: <20241002-revivable-crummy-f780adec538c@spud>
-References: <1727726138-2203615-1-git-send-email-radhey.shyam.pandey@amd.com>
- <1727726138-2203615-2-git-send-email-radhey.shyam.pandey@amd.com>
- <20241001-battered-stardom-28d5f28798c2@spud>
- <MN0PR12MB59539E54E8BD46575FEC01B2B7772@MN0PR12MB5953.namprd12.prod.outlook.com>
+To: Yao Zi <ziyao@disroot.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Celeste Liu <CoelacanthusHex@gmail.com>
+Subject: Re: [PATCH 3/8] dt-bindings: clock: Add rockchip,rk3528-cru
+Message-ID: <20241002-sash-gigantic-f79da2043875@spud>
+References: <20241001042401.31903-2-ziyao@disroot.org>
+ <20241001042401.31903-5-ziyao@disroot.org>
+ <20241001-name-stooge-7a939f71a08e@spud>
+ <Zvxm71YvGbF1s_2w@pineapple>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,130 +66,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="LWGjWgvHc6ACTYuQ"
+	protocol="application/pgp-signature"; boundary="CYfpvVWBFMQNLcdo"
 Content-Disposition: inline
-In-Reply-To: <MN0PR12MB59539E54E8BD46575FEC01B2B7772@MN0PR12MB5953.namprd12.prod.outlook.com>
+In-Reply-To: <Zvxm71YvGbF1s_2w@pineapple>
 
 
---LWGjWgvHc6ACTYuQ
+--CYfpvVWBFMQNLcdo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 01, 2024 at 07:06:12PM +0000, Pandey, Radhey Shyam wrote:
-> > -----Original Message-----
-> > From: Conor Dooley <conor@kernel.org>
-> > Sent: Tuesday, October 1, 2024 10:22 PM
-> > To: Pandey, Radhey Shyam <radhey.shyam.pandey@amd.com>
-> > Cc: davem@davemloft.net; edumazet@google.com; kuba@kernel.org;
-> > pabeni@redhat.com; robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel=
-=2Eorg;
-> > Simek, Michal <michal.simek@amd.com>; Joseph, Abin <Abin.Joseph@amd.com=
->;
-> > u.kleine-koenig@pengutronix.de; elfring@users.sourceforge.net; Katakam,=
- Harini
-> > <harini.katakam@amd.com>; netdev@vger.kernel.org; devicetree@vger.kerne=
-l.org;
-> > linux-kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; git=
- (AMD-Xilinx)
-> > <git@amd.com>
-> > Subject: Re: [PATCH net-next 1/3] dt-bindings: net: emaclite: Add clock=
- support
-> >=20
-> > On Tue, Oct 01, 2024 at 01:25:36AM +0530, Radhey Shyam Pandey wrote:
-> > > From: Abin Joseph <abin.joseph@amd.com>
-> > >
-> > > Add s_axi_aclk AXI4 clock support and make clk optional to keep DTB
-> > > backward compatibility. Define max supported clock constraints.
-> >=20
-> > Why was the clock not provided before, but is now?
-> > Was it automatically enabled by firmware and that is no longer done?
-> > I'm suspicious of the clock being made optional, but the driver doing n=
-othing other
-> > than enable it. That reeks of actually being required to me.
->=20
-> Traditionally these IP were used on microblaze platforms which had fixed
-> clocks enabled all the time. Since AXI Ethernet Lite is a PL IP, it can a=
-lso
-> be used on SoC platforms like Zynq UltraScale+ MPSoC which combines=20
-> processing system (PS) and user-programmable logic (PL) into the same=20
-> device. On these platforms instead of fixed enabled clocks it is mandatory
-> to explicitly enable IP clocks for proper functionality.=20
->=20
-> It gets more interesting when the PL clock is shared between two IPs=20
-> and one of the drivers is clock adopted and disable the clocks after use=
-=20
-> and clock framework does not know about other clock users (emaclite=20
-> IP using clock) and it will turn off the clocks which would lead to=20
-> hang on emaclite reg access. So, it is needed to correctly model the
-> clock consumers.
-
-That means the clock _is_ required, and should be added as such in the
-binding. The older platforms having a fixed clock doesn't impact whether
-or not the emaclite IP itself requires the clock to function or not.
-Mark it required in the binding, although of course the driver cannot
-require it for backwards compatibility reasons.
-
-> While browsing i found a similar usecase for GMII to RGMII PL IP.
-> Similar to dt-bindings: net: xilinx_gmii2rgmii: Add clock support[1]
-> [1]: https://lore.kernel.org/all/4ae4d926-73f0-4f30-9d83-908a92046829@ker=
-nel.org/
->=20
-> In this series - I noticed that Krzysztof suggested to:
-> Nope, just write the description as items in clocks, instead of
-> maxItems. And drop clock names, are not needed and are kind of obvious.
->=20
-> So something like the below would be fine?
->=20
-> +  clocks:
-> +    items:
-> +      - description: AXI4 clock.
-
-This would be fine, but your patch is not the same as the one you linked
-to. It was using clock-names to provide information on the clock, yours
-does not do that. If there's only one clock, there's usually little
-point in having clock-names, which is why Krzysztof made that
-suggestion.
-
-Cheers,
-Conor.
-
-> > >
-> > > Signed-off-by: Abin Joseph <abin.joseph@amd.com>
-> > > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+On Tue, Oct 01, 2024 at 09:18:03PM +0000, Yao Zi wrote:
+> On Tue, Oct 01, 2024 at 05:29:15PM +0100, Conor Dooley wrote:
+> > On Tue, Oct 01, 2024 at 04:23:57AM +0000, Yao Zi wrote:
+> > > Document Rockchip RK3528 clock and reset unit.
+> > >=20
+> > > Signed-off-by: Yao Zi <ziyao@disroot.org>
 > > > ---
-> > >  Documentation/devicetree/bindings/net/xlnx,emaclite.yaml | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-> > > b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-> > > index 92d8ade988f6..8fcf0732d713 100644
-> > > --- a/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/xlnx,emaclite.yaml
-> > > @@ -29,6 +29,9 @@ properties:
-> > >    interrupts:
-> > >      maxItems: 1
-> > >
-> > > +  clocks:
+> > >  .../bindings/clock/rockchip,rk3528-cru.yaml   | 63 +++++++++++++++++=
+++
+> > >  1 file changed, 63 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/clock/rockchip,=
+rk3528-cru.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/clock/rockchip,rk3528-=
+cru.yaml b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+> > > new file mode 100644
+> > > index 000000000000..ae51dfde5bb9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/clock/rockchip,rk3528-cru.yaml
+> > > @@ -0,0 +1,63 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/clock/rockchip,rk3528-cru.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Rockchip RK3528 Clock and Reset Controller
+> > > +
+> > > +maintainers:
+> > > +  - Yao Zi <ziyao@disroot.org>
+> > > +
+> > > +description: |
+> > > +  The RK3528 clock controller generates the clock and also implement=
+s a reset
+> > > +  controller for SoC peripherals. For example, it provides SCLK_UART=
+0 and
+> > > +  PCLK_UART0 as well as SRST_P_UART0 and SRST_S_UART0 for the first =
+UART
+> > > +  module.
+> > > +  Each clock is assigned an identifier, consumer nodes can use it to=
+ specify
+> > > +  the clock. All available clock and reset IDs are defined in dt-bin=
+ding
+> > > +  headers.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - rockchip,rk3528-cru
+> >=20
+> > nit: This can probably be a const, rather than an enum.
+> >=20
+> > > +
+> > > +  reg:
 > > > +    maxItems: 1
 > > > +
-> > >    phy-handle: true
-> > >
-> > >    local-mac-address: true
-> > > --
-> > > 2.34.1
-> > >
+> > > +  assigned-clocks: true
+> > > +
+> > > +  assigned-clock-rates: true
+> > > +
+> > > +  clocks:
+> > > +    minItems: 2
+> > > +    maxItems: 2
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: xin24m
+> > > +      - const: phy_50m_out
+> >=20
+> > Why is this input clock named "out"? clocks should be named after how
+> > they're used in the IP in question, not the name of the source of that
+> > clock in the SoC.
+> > Without descriptions provided in the clocks property, it is hard to
+> > understand what this second clock is for.
+>=20
+> Thanks for explaination, it should something like "clk_gmac0".
 
---LWGjWgvHc6ACTYuQ
+So it is actually an input clock to the cru? I'd like to see an items
+list in the clocks property please, describing what these clocks are.
+Also, "clk" is redundant, since these are all clocks, so drop that from
+the name.
+
+>=20
+> > > +
+> > > +  "#clock-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#reset-cells":
+> > > +    const: 1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> >=20
+> > Why would the input clocks be optional?
+>=20
+> This follows other Rockchip SoCs, which often omit input clocks in
+> devicetree and depend on clock names registered in common clock
+> framework to work.
+>=20
+> For completeness, they really shouldn't be optional.
+
+Then please make it required. If the input clocks are required to make
+the clock controller function, they should be marked as required.
+
+>=20
+> > > +  - "#clock-cells"
+> > > +  - "#reset-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    cru: clock-controller@ff4a0000 {
+> >=20
+> > nit: the cru label is not used and can be dropped.
+>=20
+> All comments will be adapted in next revision. Thanks.
+
+Cool.
+
+Thanks,
+Conor.
+
+--CYfpvVWBFMQNLcdo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv0IhQAKCRB4tDGHoIJi
-0tAqAP9ILmku/+QIzGhSUpt0Bd/94GWO6IoZgy5C2TdU/bdgxwEAsoACORHcQ/mH
-mj2EfA+WpOjJp+iz9+KnsuRGccrUeQo=
-=BzPo
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv0JEQAKCRB4tDGHoIJi
+0q77AP4svyfgFeIg5M8q6tYMIlV1Get9O8PkiwvRHS3d5WgiaAEAi7sdWhJsOmlg
+vIHc87DT12ekfJaqgebKL90ejlTyAgQ=
+=E7tQ
 -----END PGP SIGNATURE-----
 
---LWGjWgvHc6ACTYuQ--
+--CYfpvVWBFMQNLcdo--
 
