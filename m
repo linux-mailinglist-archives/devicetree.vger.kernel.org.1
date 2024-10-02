@@ -1,61 +1,57 @@
-Return-Path: <devicetree+bounces-107061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACDB998CD35
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:32:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A5AF98CD38
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D0EF28775E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:32:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AFEC51F238F7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:34:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D636212DD90;
-	Wed,  2 Oct 2024 06:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00F11126C11;
+	Wed,  2 Oct 2024 06:34:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kcS2/lAL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGhF7yqn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FD9374CB;
-	Wed,  2 Oct 2024 06:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD297374CB;
+	Wed,  2 Oct 2024 06:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727850769; cv=none; b=PpRF7h25fRdD9XCOWggE3/OUPsvBdw+hhcn9ZVerEK/smz9NNVf+nMwxvAadxeVa5PAa6OY/HIrI3Een+jwtt6bWbupJLfvoNpc5OW1HTW6FI6Dyts3ma66Dge45uSFHOT+ibVDppynUwf0eH4r4W3HH9GuwIKJ8ALEIERXft74=
+	t=1727850888; cv=none; b=XZkPCYD4YoYlIDZ1zzO2kF5cH9gkQk6wP9pG7hWXD4iTuVSuRW7bcWmQq8JUw19ZLgckdRNmNmH7ApmpLFovxp0yh2xpEU2JldSw0xbzoICTs58Ek8cesJm6ADNc+P2STLscFmiC4w6SjpDu4g9rtM6yFUoGoh2jPDG3ZqqUFcY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727850769; c=relaxed/simple;
-	bh=ANwIj+ZUzR6i/VHBj0MdBJN4I3sPD9eZBxis5eVt93s=;
+	s=arc-20240116; t=1727850888; c=relaxed/simple;
+	bh=kZactbzkGLvIf55iTrfvDZUTnZYhhrM6fam3OYt5M60=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FCq8Vg3JpJUBy3qFliwzIXrejl8VjQRUMrm4gLwcy7+xjpoBNs4SKjBuNRSDS3r7ACzW8ZYgZBXFG1BTeYChdl6nuLN5Bq8q/KkOK4tzq9s45N4ZDqXkxIjSs+E3+OeLGicDjA+O2XiBeOH2El4dXtx2aVn49qHSDLE4VOAV4I4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kcS2/lAL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA61FC4CEC5;
-	Wed,  2 Oct 2024 06:32:48 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qKhs0VK6BPJ+wBrXklXVIKS+rdjPAD5CavXidURNEjq4yigqJNIMpb7qvkSVnbunvkudi5o4xNDYdRSice22tmSXGiK5LuLY7WFvvUvWByV3i1EH2dMLNHJaMOoJAetz+s/1GMnC1LPWZ/RrJNUO2/5yDPuGRFiL3tMGtYymdM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGhF7yqn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41DF4C4CEC5;
+	Wed,  2 Oct 2024 06:34:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727850769;
-	bh=ANwIj+ZUzR6i/VHBj0MdBJN4I3sPD9eZBxis5eVt93s=;
+	s=k20201202; t=1727850888;
+	bh=kZactbzkGLvIf55iTrfvDZUTnZYhhrM6fam3OYt5M60=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kcS2/lALqEJvzuBK5e+XNOKIbO2E+NykVYLi0GRmt6Ncz1EA6spi35sOOVZZR31EA
-	 kfmJotnzJKp/06z+gmwapFuqWsOHDCUypL9sedYn9IHU97liGfYW0vsAn1dPIMATjQ
-	 yMMEXeV4UGaoDrF6ZKIxa+UTsWDW3bq3E85Sr/mIcjYa6v+L1GOKYq8jRNkC7QCLYr
-	 aCGVoCJfKnL/XrToiIxBepFqsp486iHjh/W/HvGS5fykHGNxa8LsJAN6WfQMphdwmN
-	 JWzEBocNjxv/Q//msKsJjg0vxUhkidijSi/cZEkY5hhckF9eX29KMvJnj+bKZNI8BA
-	 7fQYZYozXn+vw==
-Date: Wed, 2 Oct 2024 08:32:45 +0200
+	b=BGhF7yqnJ4N9URaNogLV1xTP6Ja1d18GsaE0NpThtLb8t9SFOuHx36Dch+NIbarDP
+	 EVLW1+APOzu3H6q1BoSxDpYHTV1IwhNYWielXKWvEdML3iJx7WpxVRfeqaMAqKgRiK
+	 Pejze5Jh9FGCkyWBpLRM1+7VtNH6zwD7YgjCxWpXKI5euN06grBQ7M+PRSB2lhhb9s
+	 bV6wbY02W9yMe5jgAUTfyrUbfDxT1x/8Zr9slkTP0RAZdahmcvvKEHev44I73W2rzR
+	 a4YNunCY9i4botDsNVMtKjNyk8LA0kcOTHYbMjibXYeQXsgjyA/9DS7WwmlLhQU0oM
+	 SORzAASIKqJxg==
+Date: Wed, 2 Oct 2024 08:34:44 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Yao Zi <ziyao@disroot.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Peter Ujfalusi <peter.ujfalusi@gmail.com>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	Celeste Liu <CoelacanthusHex@gmail.com>
-Subject: Re: [PATCH 1/8] dt-bindings: clock: Add clock ID definition for
- Rockchip RK3528
-Message-ID: <gb2g7wj3nzc3euhmz7s5szms22qkuhm5yqpnyheq3zm6xf5gmr@tljctg6fpzqu>
-References: <20241001042401.31903-2-ziyao@disroot.org>
- <20241001042401.31903-3-ziyao@disroot.org>
+	Jayesh Choudhary <j-choudhary@ti.com>, alsa-devel@alsa-project.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH] ASoC: dt-bindings: davinci-mcasp: Fix interrupts property
+Message-ID: <7f5wtbnn32l6l76z2yjjfponrysr55yi7hgfmtdegilg7dcc4h@pkupvwap4up4>
+References: <20241001204749.390054-1-miquel.raynal@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,41 +60,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241001042401.31903-3-ziyao@disroot.org>
+In-Reply-To: <20241001204749.390054-1-miquel.raynal@bootlin.com>
 
-On Tue, Oct 01, 2024 at 04:23:55AM +0000, Yao Zi wrote:
-> There are two types of clocks in RK3528 SoC, CRU-managed and
-> SCMI-managed. They are assigned independent clock IDs.
+On Tue, Oct 01, 2024 at 10:47:49PM +0200, Miquel Raynal wrote:
+> My understanding of the interrupts property is that it can either be:
+> 1/ - TX
+> 2/ - TX
+>    - RX
+> 3/ - Common/combined.
 > 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> There are very little chances that either:
+>    - TX
+>    - Common/combined
+> or even
+>    - TX
+>    - RX
+>    - Common/combined
+> could be a thing.
+> 
+> Looking at the interrupt-names definition (which uses oneOf instead of
+> anyOf), it makes indeed little sense to use anyOf in the interrupts
+> definition. I believe this is just a mistake, hence let's fix it.
+> 
+> Fixes: 8be90641a0bb ("ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema")
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  .../dt-bindings/clock/rockchip,rk3528-cru.h   | 453 ++++++++++++++++++
->  1 file changed, 453 insertions(+)
->  create mode 100644 include/dt-bindings/clock/rockchip,rk3528-cru.h
+> ---
+>  .../devicetree/bindings/sound/davinci-mcasp-audio.yaml          | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/include/dt-bindings/clock/rockchip,rk3528-cru.h b/include/dt-bindings/clock/rockchip,rk3528-cru.h
-> new file mode 100644
-> index 000000000000..c90b25f57973
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/rockchip,rk3528-cru.h
-> @@ -0,0 +1,453 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-or-later OR MIT) */
+> diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> index 7735e08d35ba..ab3206ffa4af 100644
+> --- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> +++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+> @@ -102,7 +102,7 @@ properties:
+>      default: 2
+>  
+>    interrupts:
+> -    anyOf:
+> +    oneOf:
 
-Wrong license.
 
-> +/*
-> + * Copyright (c) 2022 Rockchip Electronics Co. Ltd.
-> + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
-> + * Author: Joseph Chen <chenjh@rock-chips.com>
-> + */
-> +
-> +#ifndef _DT_BINDINGS_CLK_ROCKCHIP_RK3528_H
-> +#define _DT_BINDINGS_CLK_ROCKCHIP_RK3528_H
-> +
-> +/* cru-clocks indices */
-> +#define PLL_APLL                       1
-
-Start from 0. Just like your other - SCMI - list.
+You need to change interrupt-names as well.
 
 Best regards,
 Krzysztof
