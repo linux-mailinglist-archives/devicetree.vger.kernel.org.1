@@ -1,190 +1,192 @@
-Return-Path: <devicetree+bounces-107278-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107279-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EEC298DC1A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:38:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF47998DC82
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:41:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F353A1F252D4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:38:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6D09281E9A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:41:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31271D3564;
-	Wed,  2 Oct 2024 14:31:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6781A1D1510;
+	Wed,  2 Oct 2024 14:35:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="gHCx2vIV";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="mv6zbJTO"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Y/maeouu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a3-smtp.messagingengine.com (fout-a3-smtp.messagingengine.com [103.168.172.146])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D91A1D1F4F;
-	Wed,  2 Oct 2024 14:31:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.146
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46191D1518;
+	Wed,  2 Oct 2024 14:35:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727879498; cv=none; b=VYwSZ+ovkIFbco42OJE57cV2THcOu3wxi1a73MPkJ+aXuMP52GyRPFvwKDonQeADmZToWWNo3nSQ2m74g1mYYhiSa/PHPwmdHJiUnBhGV5TOYqipiEspCLETHWV12ZQKdbGfLFUlIupMKM107wr/JcL0CWi3PpLrm+UrXnOL7NA=
+	t=1727879746; cv=none; b=aGruK0i3/Sz1RUZ1NecvtuZhO7qPvQHxIkPHPtaYyIKUdMRkntntGl002alZnxFRcE8sJTCmt5/EdpBeoZHxrC5vjf3kGfPH/N6bSbdm4cZtWXhT0HhnvHigbcnVqtcG2o4C8+PBvZoM+sVPl2y05XWRP+LYiR3SDbsCGO12ZHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727879498; c=relaxed/simple;
-	bh=NCDxRgu1iK1osuKd5Zm+/2EGnP34AlujI1EbScfYr0Y=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=lwdI/GFDF0cmHnsI/wCT3xBANRVGfxB4FlFQywAssSdqKEhfuwiY472lZ4DN2Y+QZXfXvlGpSnRDpk7jGnu2GCu9Wfa1kHOykdW59UOpPYjqIWPEtoOSMVRPSh76EVjQUGC+cCy2IaQwJH012nJHE5IdA1HBKJcbW8PSqiCNUVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=gHCx2vIV; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=mv6zbJTO; arc=none smtp.client-ip=103.168.172.146
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfout.phl.internal (Postfix) with ESMTP id 874461380231;
-	Wed,  2 Oct 2024 10:31:35 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Wed, 02 Oct 2024 10:31:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1727879495;
-	 x=1727965895; bh=rf8by3v4c6wxG2SAfkG+4QnwQIhprVnUb59Vlto1X6A=; b=
-	gHCx2vIV9QfuNqjkmEElSCZDvXFYgcB4Q5oB+v7a+6I7jPaJFGMbbHCFfpw0sngl
-	7tR7ZVJFoMcCJjHjDpm3WwQBdTxrM4GCxvPikn1tkzMlF7gTmlQINLmJBCjgEuHr
-	OhefoKZOdDRY2y9SdX5sZoErlV6T2B6rmE9cgPWkton46yJ8tZPevghDQyFBKspr
-	9WFFfhIFVGsGSLhLwnjvGwxOQ45gYQyylVrfiSll6nWrPcKLxKfhLQ66JlePoy+b
-	dYFUwLGXgf4bw7wgi4/ZNwHtDHyPGCv+Uev+88bScjrvgxttzmaIc5ih3z2AjUwh
-	2XcGYDzKBl4WSF77heYaXw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1727879495; x=
-	1727965895; bh=rf8by3v4c6wxG2SAfkG+4QnwQIhprVnUb59Vlto1X6A=; b=m
-	v6zbJTOVhP/uBzJEIDY9m4jU+6GBUw37ibxpilkl3q4K7m5rDOz81+/mleqTUnvL
-	/77Bu8kZJ9l3P71fE7fEau+3a4rSIQkebSoJ0ANG0vAG5bGEXuHg10XrchRXzSr7
-	tpByorYv77N9mS5ULxWtWxgaNhH34TPtrcAC6bwwqdJuDM3j6uVf34sUXD1wGeDj
-	bljI0abJwiTlVo6YgIg++r7hSkvUhxzD002J39GiFDljnFW9ShF8TwEcV7zui/zf
-	qDEt3DKcGLQeQbyil5nD1H8UvB24QExWEddCDxRmjuzGWiYr2gEYeSNlg4bmnnDd
-	abcWTB8AVA9ybtcJSjfaQ==
-X-ME-Sender: <xms:Rln9ZtZf5cgQxHmStXMSrLis5BgTaZvCAxiWBXbBP02122_WUHx2qw>
-    <xme:Rln9ZkYuAtMSyLFNl21caHz0kNaKHC1VSd8iEhD1LwxYr-nxs4rek6V-zejnsWV8E
-    0UTql6lclOFEPjeZVE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdduledgjeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
-    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepfedv
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeguvghrvghkrdhkihgvrhhnrghnse
-    grmhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdrtgho
-    mhdprhgtphhtthhopehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdprh
-    gtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghp
-    thhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtg
-    hpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegrnhgu
-    hidrshhhvghvtghhvghnkhhosehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghhvghlgh
-    grrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegvughumhgriigvthesghhoohhg
-    lhgvrdgtohhm
-X-ME-Proxy: <xmx:Rln9Zv_vaCGx15zWrOqITWuikEoalJdRpR43q_8tYPQh7-mJM-h2rQ>
-    <xmx:Rln9Zrq1RCfB7hFitPHtKz7KzaotC-TvuySs5kpPqKl695t_L1XCZw>
-    <xmx:Rln9ZopAQoMedU_A2RU5bIGodo42JFIWnCLkxKQQPeykRArv0lQOIg>
-    <xmx:Rln9ZhQTUBXwlLKOpmy_cHD2NVBm7QNmCVYD0eQyd2HQ5LHOMJTIPA>
-    <xmx:R1n9Zu0cPaNNipONgtasztfjGETuBHU79SnAInW0Mwo97I1TJGRuSgIk>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 6899A2220071; Wed,  2 Oct 2024 10:31:34 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1727879746; c=relaxed/simple;
+	bh=reX/HEz8p8JLCDKEMNA3o/Kp5RQsQN6emEVJh9u5XcE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sj20uWXURKDijHdzXfvWZ51EiuRXGebuhG7v1woFmlHCUkF6oRfZFW6ofjXUzilWg+nuk702qvoFnIRtfs6yf6WSnrqLmQltIEriKwoaM5w9mg0r07femk/aI7Zf2FPlPnoOcZQn17iOdg2s79hz/KlAbVjPAIDZluSlP8gf9Jw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Y/maeouu; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727879745; x=1759415745;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=reX/HEz8p8JLCDKEMNA3o/Kp5RQsQN6emEVJh9u5XcE=;
+  b=Y/maeouuNCF5tMLw4ktquCan768XQuzCHiDeTI5D4RXPcxYGE0D9gGvB
+   tHBukfURTO46cY61bLX1ZLSlUd3yCBPPX1ZI4w9X94vZ1IrGX34immjH/
+   SMckl5bAVPOus0liusI/ix/IxrnMv/98p5r3gu66VXo9ZIN/hYuohNJKw
+   hzG/kO9o7TKQMoaugah0gT+6NDcQq5pfZXXkC2biMQtrRG1EH7u3MbN1m
+   PlpbUGL5mJPVbMd2meQX4lCxdFtlyIbEWCgpeUQYDptAzdQT7p4koKkt4
+   qu1IvfVyYwfmmhIYNzRsaJ1Oeblmy3nPYlNuMDqaRAplpxqAJSLR+xHv2
+   A==;
+X-CSE-ConnectionGUID: 2InvyAmeTAGfpG58o9eGOw==
+X-CSE-MsgGUID: lqk38gURQbqgU8RIE9M9ww==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38179588"
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; 
+   d="scan'208";a="38179588"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 07:35:44 -0700
+X-CSE-ConnectionGUID: +Yds6v1JQI6HXv66faUHeQ==
+X-CSE-MsgGUID: AkbSVDKJSyaGbdwMNNJS3A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; 
+   d="scan'208";a="74262436"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 07:35:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1sw0S1-0000000FhjB-1sj4;
+	Wed, 02 Oct 2024 17:35:37 +0300
+Date: Wed, 2 Oct 2024 17:35:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Ryan Chen <ryan_chen@aspeedtech.com>
+Cc: brendan.higgins@linux.dev, benh@kernel.crashing.org, joel@jms.id.au,
+	andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, andrew@codeconstruct.com.au,
+	p.zabel@pengutronix.de, linux-i2c@vger.kernel.org,
+	openbmc@lists.ozlabs.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v14 0/3] Add ASPEED AST2600 I2Cv2 controller driver
+Message-ID: <Zv1aOedi9xl2mg9b@smile.fi.intel.com>
+References: <20241002070213.1165263-1-ryan_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 02 Oct 2024 14:31:13 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- "Simon Horman" <horms@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- UNGLinuxDriver@microchip.com, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Message-Id: <3e21a3ba-623e-4b75-959b-3cdf906ee1bd@app.fastmail.com>
-In-Reply-To: <20241002144119.45c78aa7@bootlin.com>
-References: <20240930121601.172216-1-herve.codina@bootlin.com>
- <20240930121601.172216-4-herve.codina@bootlin.com>
- <b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
- <20241002144119.45c78aa7@bootlin.com>
-Subject: Re: [PATCH v6 3/7] misc: Add support for LAN966x PCI device
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241002070213.1165263-1-ryan_chen@aspeedtech.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Oct 2, 2024, at 12:41, Herve Codina wrote:
-> On Wed, 02 Oct 2024 11:08:15 +0000
-> "Arnd Bergmann" <arnd@arndb.de> wrote:
->> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
->> 
->> > +			pci-ep-bus@0 {
->> > +				compatible = "simple-bus";
->> > +				#address-cells = <1>;
->> > +				#size-cells = <1>;
->> > +
->> > +				/*
->> > +				 * map @0xe2000000 (32MB) to BAR0 (CPU)
->> > +				 * map @0xe0000000 (16MB) to BAR1 (AMBA)
->> > +				 */
->> > +				ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
->> > +				          0xe0000000 0x01 0x00 0x00 0x1000000>;  
->> 
->> I was wondering about how this fits into the PCI DT
->> binding, is this a child of the PCI device, or does the
->> "pci-ep-bus" refer to the PCI device itself?
->
-> This is a child of the PCI device.
-> The overlay is applied at the PCI device node and so, the pci-ep-bus is
-> a child of the PCI device node.
+On Wed, Oct 02, 2024 at 03:02:10PM +0800, Ryan Chen wrote:
+> This series add AST2600 i2cv2 new register set driver. The i2cv2 driver
+> is new register set that have new clock divider option for more
+> flexiable generation. And also have separate i2c master and slave register
+> set for control, patch #2 is i2c master driver only, patch #3 is add
+> i2c slave mode driver.
+> 
+> The legacy register layout is mix master/slave register control together.
+> The following is add more detail description about new register layout.
+> And new feature set add for register.
+> 
+> -Add new clock divider option for more flexible and accurate clock rate
+> generation -Add tCKHighMin timing to guarantee SCL high pulse width.
+> -Add support dual pool buffer mode, split 32 bytes pool buffer of each
+> device into 2 x 16 bytes for Tx and Rx individually.
+> -Increase DMA buffer size to 4096 bytes and support byte alignment.
+> -Re-define the base address of BUS1 ~ BUS16 and Pool buffer.
+> -Re-define registers for separating master and slave mode control.
+> -Support 4 individual DMA buffers for master Tx and Rx, slave Tx and Rx.
+> 
+> And following is new register set for package transfer sequence.
+> -New Master operation mode:
+>  S -> Aw -> P
+>  S -> Aw -> TxD -> P
+>  S -> Ar -> RxD -> P
+>  S -> Aw -> RxD -> Sr -> Ar -> TxD -> P
+> -Bus SDA lock auto-release capability for new master DMA command mode.
+> -Bus auto timeout for new master/slave DMA mode.
+> 
+> The following is two versus register layout.
+> Old:
+> {I2CD00}: Function Control Register
+> {I2CD04}: Clock and AC Timing Control Register
+> {I2CD08}: Clock and AC Timing Control Register
+> {I2CD0C}: Interrupt Control Register
+> {I2CD10}: Interrupt Status Register
+> {I2CD14}: Command/Status Register
+> {I2CD18}: Slave Device Address Register
+> {I2CD1C}: Pool Buffer Control Register
+> {I2CD20}: Transmit/Receive Byte Buffer Register
+> {I2CD24}: DMA Mode Buffer Address Register
+> {I2CD28}: DMA Transfer Length Register
+> {I2CD2C}: Original DMA Mode Buffer Address Setting
+> {I2CD30}: Original DMA Transfer Length Setting and Final Status
+> 
+> New Register mode
+> {I2CC00}: Master/Slave Function Control Register
+> {I2CC04}: Master/Slave Clock and AC Timing Control Register
+> {I2CC08}: Master/Slave Transmit/Receive Byte Buffer Register
+> {I2CC0C}: Master/Slave Pool Buffer Control Register
+> {I2CM10}: Master Interrupt Control Register
+> {I2CM14}: Master Interrupt Status Register
+> {I2CM18}: Master Command/Status Register
+> {I2CM1C}: Master DMA Buffer Length Register
+> {I2CS20}: Slave~ Interrupt Control Register
+> {I2CS24}: Slave~ Interrupt Status Register
+> {I2CS28}: Slave~ Command/Status Register
+> {I2CS2C}: Slave~ DMA Buffer Length Register
+> {I2CM30}: Master DMA Mode Tx Buffer Base Address
+> {I2CM34}: Master DMA Mode Rx Buffer Base Address
+> {I2CS38}: Slave~ DMA Mode Tx Buffer Base Address
+> {I2CS3C}: Slave~ DMA Mode Rx Buffer Base Address
+> {I2CS40}: Slave Device Address Register
+> {I2CM48}: Master DMA Length Status Register
+> {I2CS4C}: Slave  DMA Length Status Register
+> {I2CC50}: Current DMA Operating Address Status
+> {I2CC54}: Current DMA Operating Length  Status
+> 
+> aspeed,global-regs:
+> This global register is needed, global register is setting for
+> new clock divide control, and new register set control.
+> 
+> ASPEED SOC chip is server product, i2c bus may have fingerprint
+> connect to another board. And also support hotplug.
+> The following is board-specific design example.
+> Board A                                         Board B
+> -------------------------                       ------------------------
+> |i2c bus#1(master/slave)  <===fingerprint ===> i2c bus#x (master/slave)|
+> |i2c bus#2(master)-> tmp i2c device |          |                       |
+> |i2c bus#3(master)-> adc i2c device |          |                       |
+> -------------------------                       ------------------------
+> 
+> i2c-scl-clk-low-timeout-us:
+> For example I2C controller as slave mode, and suddenly disconnected.
+> Slave state machine will keep waiting for master clock in for rx/tx
+> transmit. So it need timeout setting to enable timeout unlock controller
+> state. And in another side. In Master side also need avoid suddenly
+> slave miss(un-plug), Master will timeout and release the SDA/SCL.
+> 
+> aspeed,enable-dma:
+> For example The bus#1 have trunk data needed for transfer,
+> it can enable bus dma mode transfer, it can reduce cpu utilized.
+> Others bus bus#2/3 use defautl buffer mode.
 
-Ok
+Is it possible to switch to new terminology wherever it's possible?
+I.e. master --> controller, slave --> target. See, for example,
+f872d28500bd ("i2c: uniphier-f: reword according to newest specification").
 
-> 				/*
-> 				 * Ranges items allow to reference BAR0,
-> 				 * BAR1, ... from children nodes.
-> 				 * The property is created by the PCI core
-> 				 * during the PCI bus scan.
-> 				 */
-> 				ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
-> 					  0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
-> 					  0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000
+-- 
+With Best Regards,
+Andy Shevchenko
 
->
-> Hope this full picture helped to understand the address translations
-> involved.
 
-Right, that makes a lot of sense now, I wasn't aware of those
-range properties getting set. Now I have a new question though:
-
-Is this designed to work both on hosts using devicetree and on
-those not using it? If this is used on devicetree on a board
-that has a hardwired lan966x, we may want to include the
-overlay contents in the board dts file itself in order to
-describe any possible connections between the lan966x chip
-and other onboard components such as additional GPIOs or
-ethernet PHY chips, right?
-
-      Arnd
 
