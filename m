@@ -1,100 +1,135 @@
-Return-Path: <devicetree+bounces-107119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8AD298CFCA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:11:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A452F98CFCF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:11:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 573C5B26155
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:11:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53B2628D4B9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A839619885B;
-	Wed,  2 Oct 2024 09:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EDA1990C0;
+	Wed,  2 Oct 2024 09:09:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="E/YMZX2x"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="Ql0lH9E5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D292C197A67;
-	Wed,  2 Oct 2024 09:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A66194AE8;
+	Wed,  2 Oct 2024 09:09:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727860089; cv=none; b=je5lDtjDvLGz6CUvPGrQ8oz87M0iyJr99zhCmwhpr98zmUCANEDjVshPcx2bNgVPmDJIwOmlePYxGGtexWQaUzHmqonQ09OAtOjbhXdOujsdyCWEN7kHXpj7yJrrnvlA9LM6cMHBXNpNgmfkQWZIlZL2jSjRVCufVXxtSe9lnDk=
+	t=1727860163; cv=none; b=Hs5v1dxkGkVLiXGtyyMtLRNBsqCnvCPfbT0PngtswSJAFIAX0P/+6usYQmbdaVAykTn9Dk4/eP5+JMlkKZN3OCk4k4IKXFxAUHuvUyIrqxcHQWIQErODEf3duXOn4FVpQyN8cyvlZhmwLK/LL6FrpVvvuobCcF+9T9NiA5jGT2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727860089; c=relaxed/simple;
-	bh=Xtda8GgdmpzB/6piVb67QcbqKu9enLjmiJSRfaL4WgE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=TBEDN4VWQZzksh7855joFLmIxiV/PDrYRR+hDgYSDGP83LqmofeBNzDTiMdvKmWRxYzGHX8OPSgeNwF9+SzjrU5FhQ06hE1eWLwJKkm/EKJa2228RsPZq7yfx7XrNnp2qlsO6q7FMT5QsOMmCUteTKcyp5WM1JiukHNveOt57Uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=E/YMZX2x; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727860086;
-	bh=Xtda8GgdmpzB/6piVb67QcbqKu9enLjmiJSRfaL4WgE=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=E/YMZX2xXUFZOGClSYWCrQeBKYJH5iA1V5TKBUPVfMiTSX/RSn9r2zZFdOqopzOIB
-	 d/TmRttPlHx4KkojpmDKtl8iMax2n955FPyEw5cVDgNr/xV6jizXnFY561kWWWjj5K
-	 Xs7mzP1SBkNDo0BK/QXawTzgFt0x7qxxVu+qUITEDMIDcrylcDAn7cI0Q8b4m3KTNP
-	 Je1C9m+puoRlziweE0ZKx1UWz5/F76xn04zgrEx9AOqnv+S+u3OimO5AQ+/N0QqGvJ
-	 gVmn3dCG0DtF4V0gowxpeqnVaJjn8v9aJig2Dkjwma9RETssKeFtnOfPIOAJMRDdcY
-	 ob2L6bL4+11Lg==
-Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	s=arc-20240116; t=1727860163; c=relaxed/simple;
+	bh=z3qVt3aq6xHKfyBtITWNSaiM9zLgWRd52sZpxCWShh0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BdBdKGjAadyEJmTAcq5vQikb5w4bEJicK82mV9b65oVCdPoGWFj4BnKg5PJq+uWDYl6Dy9Clk+NX8fZCwPR9a4aVTxPnxY1osACMnXn/+vRbBYADJPPwu/LlgCwgcfvL/fLpQVcMH6xCQD+dMy78x/1Gg0+Qk6CnKfygptgHv8g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=Ql0lH9E5; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 9D20940E0198;
+	Wed,  2 Oct 2024 09:09:11 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id n_wrIeIIcGBE; Wed,  2 Oct 2024 09:09:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1727860145; bh=u7WrhdtUdM2CZPjYE8gSq6pu8OUfgUSF0bC4CJ+gHs8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Ql0lH9E5m071LeXaMw8E2iP6NyAU+ppBVBJKxBOc+GXx1SFsIOJcPloAXad3/OR5B
+	 +T+EthaWDV9gb1qaJNYaKWiu6dkBseq8cYLFzBlLOPAURg7aOtSARMKVRyaUumEM9J
+	 ++cW8jdu4RjbxJtZN5ja/w1aqp08fID35e+6GPBfTiaen/zbiUN/L83Iu9ryLdpqcF
+	 dXDS+D4bcf8v9r5CNAlggTBVkNh8LrpF0eIbHRk+g9Ez7jOPIALgRh3E+QDfMrEhdA
+	 3olm2PFhnPSba/O9vVyF+ooaXf4zEy5uWojjgp8vyz1FNmDWGB8WjN4SQXlLgFHtWi
+	 MVRSe6tQoKb8gYwxAk5fQzrSyYR2zuc9DnuX0yRpU/ewhEiBVawmL1DTiRedE5BRit
+	 gjvpvnl2iM41WR0x92e7tlxZTmlQVI74rOTSpTLX6RvLlv7em6PY3HWco6SU8LkbFm
+	 DgWkRfc0otaA6iCErBC6DwlKZm0kgGO/XY9TPmpRr/AaDi24FTi3Bq4BFjF1SxmKLy
+	 UEN+hfhvNqINYIGjAbbMA4su99kdVE5WM7sOtTMORiJIUFkw0z2MdjKqSrGoNg2SaO
+	 FrgkTE1OobkYjV6W9gmz3ew+PFnMNJLxAXoUYcj0icfXLrxloGMWjQ28ogoj5w6iC3
+	 iqMC43HBhubmVORfB8IWLmE8=
+Received: from nazgul.tnic (214.red-2-136-55.staticip.rima-tde.net [2.136.55.214])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
 	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A84D917E10D2;
-	Wed,  2 Oct 2024 11:08:05 +0200 (CEST)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- Pablo Sun <pablo.sun@mediatek.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20241002022138.29241-1-pablo.sun@mediatek.com>
-References: <20241002022138.29241-1-pablo.sun@mediatek.com>
-Subject: Re: (subset) [PATCH v3 0/6] Enable Mali GPU on MediaTek Genio 700
- EVK
-Message-Id: <172786008562.33539.7007504716451192939.b4-ty@collabora.com>
-Date: Wed, 02 Oct 2024 11:08:05 +0200
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 4692D40E021A;
+	Wed,  2 Oct 2024 09:08:40 +0000 (UTC)
+Date: Wed, 2 Oct 2024 11:08:34 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Frank Li <Frank.li@nxp.com>
+Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Borislav Petkov <bp@suse.de>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	Priyanka Singh <priyanka.singh@nxp.com>,
+	Sherry Sun <sherry.sun@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Ye Li <ye.li@nxp.com>, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 0/6] EDAC: fsl-ddr, add imx9 support
+Message-ID: <20241002090834.GAZv0Nkp5YKcy86UmZ@fat_crate.local>
+References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
+ <ZvsNJrxF6TpUC6ws@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <ZvsNJrxF6TpUC6ws@lizhi-Precision-Tower-5810>
 
-On Wed, 02 Oct 2024 10:21:32 +0800, Pablo Sun wrote:
-> This series is based on linux-next, tag: next-20240927
+On Mon, Sep 30, 2024 at 04:42:14PM -0400, Frank Li wrote:
+> On Tue, Jul 09, 2024 at 04:23:01PM -0400, Frank Li wrote:
+> > Add imx9 support for fsl-ddr.
+> >
+> > Patch 1-2 is prepare patch, no function chagne
+> > Patch 3 is small fix for bit shift
+> > Patch 4 is dt binding patch.
+> > Patch 5 is driver change to support imx9
+> > Patch 6 is imx93 dts change
+> >
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
 > 
-> Enables the GPU on mt8390-genio-700-evk.dts.
-> The panfrost driver probed with dmesg:
+> Borislav Petkov:
 > 
-> panfrost 13000000.gpu: clock rate = 390000000
-> panfrost 13000000.gpu: mali-g57 id 0x9093 major 0x0 minor 0x0 status 0x0
-> panfrost 13000000.gpu: features: 00000000,000019f7,
->   issues: 00000003,80000400
-> panfrost 13000000.gpu: Features: L2:0x08130206 Shader:0x00000000
->   Tiler:0x00000809 Mem:0x1 MMU:0x00002830 AS:0xff JS:0x7
-> panfrost 13000000.gpu: shader_present=0x10005 l2_present=0x1
-> [drm] Initialized panfrost 1.2.0 for 13000000.gpu on minor 0
+> 	More than 2 monthes. I ping at Thu, 29 Aug
+> https://lore.kernel.org/imx/ZtDwG2xFGaUssJVN@lizhi-Precision-Tower-5810/
 > 
-> [...]
+> 	Any reason why not pick these EDAC patches?
 
-Applied to v6.12-next/soc, thanks!
+$ ./scripts/get_maintainer.pl -f  drivers/edac/fsl_ddr_edac.c
+York Sun <york.sun@nxp.com> (maintainer:EDAC-FSL_DDR)
+Borislav Petkov <bp@alien8.de> (supporter:EDAC-CORE)
+Tony Luck <tony.luck@intel.com> (supporter:EDAC-CORE)
+James Morse <james.morse@arm.com> (reviewer:EDAC-CORE)
+Mauro Carvalho Chehab <mchehab@kernel.org> (reviewer:EDAC-CORE)
+Robert Richter <rric@kernel.org> (reviewer:EDAC-CORE)
+linux-edac@vger.kernel.org (open list:EDAC-FSL_DDR)
+linux-kernel@vger.kernel.org (open list)
 
-[5/6] soc: mediatek: mediatek-regulator-coupler: Support mt8188
-      https://git.kernel.org/mediatek/c/32ab0090
+This driver has a maintainer. Is he going to review it or can I remove
+him from MAINTAINERS?
 
-Cheers,
-Angelo
+-- 
+Regards/Gruss,
+    Boris.
 
-
+https://people.kernel.org/tglx/notes-about-netiquette
 
