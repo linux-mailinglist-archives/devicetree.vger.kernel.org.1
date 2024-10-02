@@ -1,380 +1,167 @@
-Return-Path: <devicetree+bounces-107298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA24098DFCF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:53:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 218F798E00B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 18:02:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CB371F2A2EC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:53:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5BEC286EE7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:02:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CF41D0F4F;
-	Wed,  2 Oct 2024 15:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BE341D0DFE;
+	Wed,  2 Oct 2024 16:02:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cFXvov9E"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Y7ZFDe3Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A494B1D0F48
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 15:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E81771D0B88;
+	Wed,  2 Oct 2024 16:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727884330; cv=none; b=Hpjzi80LwmcLu/jhBDWAi/3TcbgOcwURQd802yrcLcTN9h2zNV9KNBzY+BKKzT/JTggRbkbZhP4jcqiHEcxD+zq0KalYgHkrlsXbVRzjWsOav+wDliW3/zglP2Y1OaheVyDErUYRceEMQVMh+Si/stO/PFeTa7alLjisgh6/d6Y=
+	t=1727884939; cv=none; b=VVoZaVB211qBgfxiS3MidvAI6r/fo7siQlVQO4pDQL+Vp0jqnanUsrOqaOESNnC9F07kgpGrXds6Be+U5Cbc5iR3N1yMty8pqcEsuUKyv0eKJJvCqA2f3i2Loxw6pYmk2dbOEtEZKudY6hY7mw4erv6vhEVS89G85B5viIINBg8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727884330; c=relaxed/simple;
-	bh=DPOBMVOFtBxq64pYAj3gYwkHHn943QhY1vmX9X1ELuM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=umtxdy/+av3Wr5AfZog1euhmSwuKLDPw9JasSEkBZLNVVnYb6rMWhA1bTStE8DRDQNwhJWPSrTrhB00ngRD0yvXW8C3D/zkbjhY/RZqNVTrbdTInL6mylOhdzCe0+qXLYp6dRsLAl64ESnofSy2BQ9QrqAWNHKNvzaFis34T3uk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cFXvov9E; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37cd0b5515fso3679644f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 08:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727884327; x=1728489127; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=XkqFkShsZW17goxJbUUEu8c6bpmyrXaccB+BjouEhx0=;
-        b=cFXvov9ENTVYE7mqZ6IkH9s5HqvEf0SKtZ4Ey7Khae6tnGWUyAA/oBN7wsEnWkOUSF
-         WBsYcHuY+d7gM7DhKkKQclkLn/1WlFNvYknY3iJYHmsWQEv9otvYMVdeaGuvBT0Lqjgz
-         LjByxYhuKYYhLb3SdqHfXbLpuGKr6CambxGsKYlwI2Mzk5iYq6c8vf//72WFndjc1OVS
-         kDJ2Dcm/94ba91cT8NjauOwJX+z/qxflPPQQIhdgMIAmD5BTEhtWkXacVqP+kDAyJLvB
-         4lmJJSOgkQKPTR52N2hBTFPBJeTkI545huCrqCvk9w6vlEsd2C6rbdQaC0/Y/EeFslXg
-         bObQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727884327; x=1728489127;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XkqFkShsZW17goxJbUUEu8c6bpmyrXaccB+BjouEhx0=;
-        b=ebdKTeG/sM0Gq4hUfrG5rQaqIVpsxAkvYXBBZ0Bj8Rq7KTxGoudEGlfYAe4lJZzulJ
-         V5aaxPeVaEs+0qzFBEfuXtvvObisFw/yw+iJeK0MQ2s0TmnlX71x7qnvRO2MjBY6LeKV
-         p6QZHZ79IFyX4t0LAjZ5G3TD65CkDlDR0zMYmtBf94IttOmYh+pXndZ3bP8qmYJdgKmn
-         XkElGX5AosvyGjSgN1twN9CWbG/+Oec6Q8UrCDeivMuiOmWOI05/xX5U50Ws+fRgm4yS
-         25EK9Y4VBqYMqI6rwG/TOyKcNBxC4sZd7LlireDxXpjYolRTUnYGqqe1HyMG/xfgSyIX
-         qj1w==
-X-Forwarded-Encrypted: i=1; AJvYcCUaJsq7NBHuER+SYJ1W9RcGv3/FyZoFXYvZBiNz3dFuihGzR/s1V2xACogbbBmVJ3syLodQ2FrJg9an@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeBA9v9PJbZJHrdXmKwju3AWRa5OVLJxrjgsCLO5GFlhE4qsGT
-	MSvBZXxtYTz+UHgvfkGsFTBFgbARqRyWnrFd2LfQSpyEhUTbMXv23L6q8yeX/SJPVKatSNSKr18
-	P
-X-Google-Smtp-Source: AGHT+IFXMW0efT+6z4FvuUo6EF/E6vuy6aUKegSmExgoi0ybBCxjbP/IeTYXT59s/kqUyFmcD3C6Mw==
-X-Received: by 2002:a05:6000:186c:b0:374:ba23:4b3f with SMTP id ffacd0b85a97d-37cfb8a621emr2336627f8f.9.1727884326764;
-        Wed, 02 Oct 2024 08:52:06 -0700 (PDT)
-Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd56e65e4sm14111501f8f.61.2024.10.02.08.52.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 08:52:06 -0700 (PDT)
-Date: Wed, 2 Oct 2024 17:50:45 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, dlechner@baylibre.com
-Subject: Re: [PATCH v3 08/10] iio: dac: ad3552r: extract common code (no
- changes in behavior intended)
-Message-ID: <zlfrwjnr6spzzmy75qifbdn3tuhsjsr3emxxrzoahejxf3ehem@ajymvtzgfuno>
-References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
- <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-8-a17b9b3d05d9@baylibre.com>
- <20240929125753.789bda87@jic23-huawei>
+	s=arc-20240116; t=1727884939; c=relaxed/simple;
+	bh=zfvEMiGi3OWlIY/pUBW+RpmzYW8vFnzIKQEPYoIhFng=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JjEYbRpmovcgTtKwnEwOXq2iROkJRX6uxG1XAAxus8eDwmi8c+r86T76RblqdZGT61JzwD1qnV2pRVpS5Nhm3dCPVq/rNsN9xYeFTryMNSXi/9BkwIuvgPZ0Uk69XQIFnD9FgCzhZjTK3MNOFHqd6fKB905qW3e8P5HTXZV+qr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Y7ZFDe3Y; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 283EC20009;
+	Wed,  2 Oct 2024 16:02:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727884933;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/tWok2bNeEgvlRS2Fbg5hLuPkTCb5xkbJGALutssM5Y=;
+	b=Y7ZFDe3Yp6ievVkmBjmO+efxu/CRrFYn2knnsPIe8WcPk4uHSdyluYtjBSewabxMDu448n
+	7URRD7Q+geaOvCDFJSY8cPRcwPAejsnubbQNLv6v+uovZrK91Tm6zch5pNrbaEMgSBVcmr
+	1pd87n9sqg6h+IgbmBUKTTNIs4xik65dr6wfKvSgVYN422PUpT9EOI3kn2/zM+RCJWgV1p
+	rVQAJO++rKQAkMcr8meohHFNW6Kx7qQootIiaPV5J6AW9kjRzhbmutBIXpqfjKKLlf13V5
+	ZhdAFXCYsMizEIZIrnpv3HobwATMro1xlIa+YRbZ81m1Wd7QnH+766uS9IHnzQ==
+Date: Wed, 2 Oct 2024 18:02:07 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>, "Andy Shevchenko"
+ <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>, "Lee Jones"
+ <lee@kernel.org>, "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars Povlsen"
+ <lars.povlsen@microchip.com>, "Steen Hegelund"
+ <Steen.Hegelund@microchip.com>, "Daniel Machon"
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
+ "David S . Miller" <davem@davemloft.net>, "Eric Dumazet"
+ <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
+ <pabeni@redhat.com>, "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
+ Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 3/7] misc: Add support for LAN966x PCI device
+Message-ID: <20241002180207.550e4cbb@bootlin.com>
+In-Reply-To: <3e21a3ba-623e-4b75-959b-3cdf906ee1bd@app.fastmail.com>
+References: <20240930121601.172216-1-herve.codina@bootlin.com>
+	<20240930121601.172216-4-herve.codina@bootlin.com>
+	<b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
+	<20241002144119.45c78aa7@bootlin.com>
+	<3e21a3ba-623e-4b75-959b-3cdf906ee1bd@app.fastmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240929125753.789bda87@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Jonathan,
+On Wed, 02 Oct 2024 14:31:13 +0000
+"Arnd Bergmann" <arnd@arndb.de> wrote:
 
-On 29.09.2024 12:57, Jonathan Cameron wrote:
-> On Thu, 19 Sep 2024 11:20:04 +0200
-> Angelo Dureghello <adureghello@baylibre.com> wrote:
+> On Wed, Oct 2, 2024, at 12:41, Herve Codina wrote:
+> > On Wed, 02 Oct 2024 11:08:15 +0000
+> > "Arnd Bergmann" <arnd@arndb.de> wrote:  
+> >> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
+> >>   
+> >> > +			pci-ep-bus@0 {
+> >> > +				compatible = "simple-bus";
+> >> > +				#address-cells = <1>;
+> >> > +				#size-cells = <1>;
+> >> > +
+> >> > +				/*
+> >> > +				 * map @0xe2000000 (32MB) to BAR0 (CPU)
+> >> > +				 * map @0xe0000000 (16MB) to BAR1 (AMBA)
+> >> > +				 */
+> >> > +				ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
+> >> > +				          0xe0000000 0x01 0x00 0x00 0x1000000>;    
+> >> 
+> >> I was wondering about how this fits into the PCI DT
+> >> binding, is this a child of the PCI device, or does the
+> >> "pci-ep-bus" refer to the PCI device itself?  
+> >
+> > This is a child of the PCI device.
+> > The overlay is applied at the PCI device node and so, the pci-ep-bus is
+> > a child of the PCI device node.  
 > 
-> > From: Angelo Dureghello <adureghello@baylibre.com>
-> > 
-> > Extracting common code, to share common code to be used later
-> > by the AXI driver version (ad3552r-axi.c).
-> > 
-> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> For these, main request is to move them to a namespace + GPL is
-> probably the appropriate choice here.
+> Ok
 > 
+> > 				/*
+> > 				 * Ranges items allow to reference BAR0,
+> > 				 * BAR1, ... from children nodes.
+> > 				 * The property is created by the PCI core
+> > 				 * during the PCI bus scan.
+> > 				 */
+> > 				ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
+> > 					  0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
+> > 					  0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000  
 > 
-> > ---
-> >  drivers/iio/dac/Makefile         |   2 +-
-> >  drivers/iio/dac/ad3552r-common.c | 173 +++++++++++++++++++++++
-> >  drivers/iio/dac/ad3552r.c        | 293 ++++-----------------------------------
-> >  drivers/iio/dac/ad3552r.h        | 190 +++++++++++++++++++++++++
-> >  4 files changed, 390 insertions(+), 268 deletions(-)
-> > 
-> > diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
-> > index 2cf148f16306..56a125f56284 100644
-> > --- a/drivers/iio/dac/Makefile
-> > +++ b/drivers/iio/dac/Makefile
-> > @@ -4,7 +4,7 @@
-> >  #
-> >  
-> >  # When adding new entries keep the list in alphabetical order
-> > -obj-$(CONFIG_AD3552R) += ad3552r.o
-> > +obj-$(CONFIG_AD3552R) += ad3552r.o ad3552r-common.o
-> >  obj-$(CONFIG_AD5360) += ad5360.o
-> >  obj-$(CONFIG_AD5380) += ad5380.o
-> >  obj-$(CONFIG_AD5421) += ad5421.o
-> > diff --git a/drivers/iio/dac/ad3552r-common.c b/drivers/iio/dac/ad3552r-common.c
-> > new file mode 100644
-> > index 000000000000..624f3f97cdea
-> > --- /dev/null
-> > +++ b/drivers/iio/dac/ad3552r-common.c
-> > @@ -0,0 +1,173 @@
-> > +// SPDX-License-Identifier: GPL-2.0+
-> > +//
-> > +// Copyright (c) 2010-2024 Analog Devices Inc.
-> > +// Copyright (c) 2024 Baylibre, SAS
-> > +
-> > +#include <linux/device.h>
-> > +#include <linux/module.h>
-> > +#include <linux/property.h>
-> > +#include <linux/regulator/consumer.h>
-> > +
-> > +#include "ad3552r.h"
-> > +
-> > +const s32 ad3552r_ch_ranges[AD3552R_MAX_RANGES][2] = {
-> > +	[AD3552R_CH_OUTPUT_RANGE_0__2P5V]	= { 0, 2500 },
-> > +	[AD3552R_CH_OUTPUT_RANGE_0__5V]		= { 0, 5000 },
-> > +	[AD3552R_CH_OUTPUT_RANGE_0__10V]	= { 0, 10000 },
-> > +	[AD3552R_CH_OUTPUT_RANGE_NEG_5__5V]	= { -5000, 5000 },
-> > +	[AD3552R_CH_OUTPUT_RANGE_NEG_10__10V]	= { -10000, 10000 }
-> > +};
-> > +EXPORT_SYMBOL(ad3552r_ch_ranges);
+> >
+> > Hope this full picture helped to understand the address translations
+> > involved.  
 > 
-> GPL and namespace them to avoid poluting the general namespace with driver
-> specific exports.
+> Right, that makes a lot of sense now, I wasn't aware of those
+> range properties getting set. Now I have a new question though:
 > 
-> EXPORT_SYMBOL_NS_GPL() etc.
+> Is this designed to work both on hosts using devicetree and on
+> those not using it? If this is used on devicetree on a board
+> that has a hardwired lan966x, we may want to include the
+> overlay contents in the board dts file itself in order to
+> describe any possible connections between the lan966x chip
+> and other onboard components such as additional GPIOs or
+> ethernet PHY chips, right?
 > 
-> 
-> > +
-> > +u16 ad3552r_calc_custom_gain(u8 p, u8 n, s16 goffs)
-> > +{
-> > +	u16 reg;
-> > +
-> > +	reg = FIELD_PREP(AD3552R_MASK_CH_RANGE_OVERRIDE, 1);
-> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_GAIN_SCALING_P, p);
-> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_GAIN_SCALING_N, n);
-> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_OFFSET_BIT_8, abs((s32)goffs) >> 8);
-> Hmm. Not sure the s32 case does anything useful here.
-> Also this is a little messy from local view of code. It is not obvious
-> that only BIT(0) can be set here.  I'd be tempted to mask that
-> before passing to FIELD_PREP()
-> 
-> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_OFFSET_POLARITY, (s32)goffs < 0);
-> 
-> Why do you need the s32 cast for this last line?
-> 
-> > +
-> > +	return reg;
-> > +}
-> > +
-> > +int ad3552r_get_ref_voltage(struct device *dev)
-> > +{
-> > +	int voltage;
-> > +	int delta = 100000;
-> > +
-> > +	voltage = devm_regulator_get_enable_read_voltage(dev, "vref");
-> > +	if (voltage < 0 && voltage != -ENODEV)
-> > +		return dev_err_probe(dev, voltage,
-> > +				     "Error getting vref voltage\n");
-> > +
-> > +	if (voltage == -ENODEV) {
-> > +		if (device_property_read_bool(dev, "adi,vref-out-en"))
-> > +			return AD3552R_INTERNAL_VREF_PIN_2P5V;
-> > +		else
-> > +			return AD3552R_INTERNAL_VREF_PIN_FLOATING;
-> > +	}
-> > +
-> > +	if (voltage > 2500000 + delta || voltage < 2500000 - delta) {
-> > +		dev_warn(dev, "vref-supply must be 2.5V");
-> > +		return -EINVAL;
-> > +	}
-> 
-> Obviously this is legacy code, but why do we care in the driver?
-> If someone has circuitry or configuration that is wrong, do we need to check
-> that?  I guess it does little harm though.
-> 
-> > +
-> > +	return AD3552R_EXTERNAL_VREF_PIN_INPUT;
-> > +}
-> > +
-> > +int ad3552r_get_drive_strength(struct device *dev, u32 *val)
-> > +{
-> > +	int err;
-> > +
-> > +	err = device_property_read_u32(dev, "adi,sdo-drive-strength", val);
-> > +	if (err)
-> > +		return err;
-> > +
-> > +	if (*val > 3) {
->
+>       Arnd
 
+On host with the base hardware described without device-tree (ACPI on
+x86 for instance), I have a couple of patches not yet sent upstream.
+With those patches, I have a the LAN966x PCI board working on x86.
+I plan to send them as soon as this series is applied.
 
- 
-> Usually we avoid setting values passed back on error if it is easy to do so.
-> I'd bounce via a local variable and only set *val = drive_strength
-> after you know it is in range.
-> 
-> > +		dev_err(dev,
-> > +			"adi,sdo-drive-strength must be less than 4\n");
-> > +		return -EINVAL;
-> Is dev_err_probe() appropriate here?  I haven't checked if this is called
-> from non probe paths so ignore this comment if it is.
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +int ad3552r_get_custom_gain(struct device *dev, struct fwnode_handle *child,
-> > +			    u8 *gs_p, u8 *gs_n, u16 *rfb, s16 *goffs)
-> > +{
-> > +	int err;
-> > +	u32 val;
-> > +	struct fwnode_handle *gain_child __free(fwnode_handle) =
-> > +				fwnode_get_named_child_node(child,
-> One tab more than the line above is fine for cases like this and makes for
-> more readable code.
->
-Aligning with c then line comes to long. 
-I can offer, as in other drivers:
+Rob said that before looking at ACPI, we need to have a working system
+on DT based systems.
+  https://lore.kernel.org/all/CAL_JsqKNC1Qv+fucobnzoXmxUYNockWR=BbGhds2tNAYZWqgOA@mail.gmail.com/
 
-int ad3552r_get_custom_gain(struct device *dev, struct fwnode_handle *child,
-			    u8 *gs_p, u8 *gs_n, u16 *rfb, s16 *goffs)
-{
-	int err;
-	u32 val;
-	struct fwnode_handle *gain_child __free(fwnode_handle) =
-		fwnode_get_named_child_node(child,
-					    "custom-output-range-config");
+If hardwired on a board, the same LAN966x PCI driver could be used.
+A possible improvement of the driver could be to request the overlay
+from the user-space using request_firmware().
+With that, the overlay can be extended with specific onboard parts the
+LAN966x PCI device is connected to.
 
-Also, do you prefer 80 or 100 as eol limit ?
+This improvement can be done later when the use case appears.
 
- 
-> > +				"custom-output-range-config");
-> 
-> Align this final parameter with c of child.
-> 
-> > +
-> > +	if (!gain_child)
-> > +		return dev_err_probe(dev, -EINVAL,
-> > +				     "custom-output-range-config mandatory\n");
-> > +
-> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-scaling-p", &val);
-> > +	if (err)
-> > +		return dev_err_probe(dev, err,
-> > +				     "adi,gain-scaling-p mandatory\n");
-> > +	*gs_p = val;
-> > +
-> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-scaling-n", &val);
-> > +	if (err)
-> > +		return dev_err_probe(dev, err,
-> > +				     "adi,gain-scaling-n property mandatory\n");
-> > +	*gs_n = val;
-> > +
-> > +	err = fwnode_property_read_u32(gain_child, "adi,rfb-ohms", &val);
-> > +	if (err)
-> > +		return dev_err_probe(dev, err,
-> > +				     "adi,rfb-ohms mandatory\n");
-> > +	*rfb = val;
-> > +
-> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-offset", &val);
-> > +	if (err)
-> > +		return dev_err_probe(dev, err,
-> > +				     "adi,gain-offset mandatory\n");
-> > +	*goffs = val;
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int ad3552r_find_range(u16 id, s32 *vals)
-> > +{
-> > +	int i, len;
-> > +	const s32 (*ranges)[2];
-> > +
-> > +	if (id == AD3542R_ID) {
-> 
-> This is already in your model_data. Use that not another lookup via
-> an ID enum.  The ID enum approach doesn't scale as we add more parts
-> as it scatters device specific code through the driver.
->
-
-This function is only used internally to this common part.
- 
-> 
-> > +		len = ARRAY_SIZE(ad3542r_ch_ranges);
-> > +		ranges = ad3542r_ch_ranges;
-> > +	} else {
-> > +		len = ARRAY_SIZE(ad3552r_ch_ranges);
-> > +		ranges = ad3552r_ch_ranges;
-> > +	}
-> > +
-> > +	for (i = 0; i < len; i++)
-> > +		if (vals[0] == ranges[i][0] * 1000 &&
-> > +		    vals[1] == ranges[i][1] * 1000)
-> > +			return i;
-> > +
-> > +	return -EINVAL;
-> > +}
-> > +
-> > +int ad3552r_get_output_range(struct device *dev, enum ad3552r_id chip_id,
-> > +			     struct fwnode_handle *child, u32 *val)
-> As above, don't pass the enum. Either pass the model_data or pass the
-> actual stuff you need which is the ranges array and size of that array.
->
-
-Cannot pass model data, structures of the 2 drviers are different.
-If i pass arrays, the logic of deciding what array (checking the id)
-must be done in the drivers, but in this way, there will be less
-common code.
- 
-> > +{
-> > +	int ret;
-> > +	s32 vals[2];
-> > +
-> > +	/* This property is optional, so returning -ENOENT if missing */
-> > +	if (!fwnode_property_present(child, "adi,output-range-microvolt"))
-> > +		return -ENOENT;
-> > +
-> > +	ret = fwnode_property_read_u32_array(child,
-> > +					     "adi,output-range-microvolt",
-> > +					     vals, 2);
-> > +	if (ret)
-> > +		return dev_err_probe(dev, ret,
-> > +				"invalid adi,output-range-microvolt\n");
-> > +
-> > +	ret = ad3552r_find_range(chip_id, vals);
-> > +	if (ret < 0)
-> > +		return dev_err_probe(dev, ret,
-> > +			"invalid adi,output-range-microvolt value\n");
-> > +
-> > +	*val = ret;
-> > +
-> > +	return 0;
-> > +}
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
-
-Thanks,
-
--- 
-Regards,
-  Angelo
+Best regards,
+Hervé
 
