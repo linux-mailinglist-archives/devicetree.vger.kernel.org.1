@@ -1,118 +1,133 @@
-Return-Path: <devicetree+bounces-107319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9FC298E24E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:22:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CC098E29F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:35:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B05AB21BDF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 18:22:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B4DE1C20A3B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 18:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60BF212F09;
-	Wed,  2 Oct 2024 18:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2202141BB;
+	Wed,  2 Oct 2024 18:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HeKlvi7Q"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="N8IEU5pu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73C171D1743;
-	Wed,  2 Oct 2024 18:22:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCDBC2141B9
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 18:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727893351; cv=none; b=C4DjWUXSuWn1dyhZTZmu6eLFLADy8Oik+WQ4mHCMsEwx/5hjog7SWQzMFTVNc6zuvhF87a+7dB1zowMc+n7PFYS0gsvOxAGo001PZAaCXuN56Vnqv88aZGh7DSMZw6msmbLOlPF2ieOYdPEVCysENT4IBTbW7D8NV7Df4+ZZ/z0=
+	t=1727894102; cv=none; b=URgueoU8WgI9C051yEo507HTf5JhGz26xb77PaHb0X3XgaYwGozyx2ynk2KvEInYrz61N8NEkFAcY8gTrzYQ1c5v7zRNxwkej1EWAW23DZNyGMaYEbPZXVldoWeo7Pt4tGE3G+temtol24ZUbPaOF3oziIUt1XbszQtKPxqXCmo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727893351; c=relaxed/simple;
-	bh=vrEwO142Vt6SPOAdlphqDikIDAg1+nVpkIbjIETDyC4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=KQenfIjDbs83GCTww/LdyRlLKjvMBdWzVf4Wjp2/TK6LiHbjgn/+tDDlJK8aVQTaikInW9PUdhYB1o/9paj38ekj0x/3R3KFcYcuss1wun0/mAHJWsQVzx3QtHh6le4mpRQPN+p5znYzH77szXiWAfZOmd3/r72NgfbGq+ahKNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HeKlvi7Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7437CC4CEC2;
-	Wed,  2 Oct 2024 18:22:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727893351;
-	bh=vrEwO142Vt6SPOAdlphqDikIDAg1+nVpkIbjIETDyC4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=HeKlvi7Q7CEwPk/CifDRD2PjgNdtz7KGMKKJHrKkui4OM6lvXfno9FXsyrMCSztTQ
-	 tWKDI2w0xO2Oqy8oaQv31Go61tlIK4NTmS//ms5jcYwEWcAXTdvNY/4PFbfWoOjgeO
-	 Ny1gR62gaQMYvsS8orTxh1pshkKMhtP+gKjQh3bsnaFAT/411n67Jrm9ipZoeaUdHi
-	 uoxZ5KF94bXG9Cmkgzr1kar2dlkD+Xcl2XlXp8gx2BSeTVYRYK4K5VBxeMITs4QIJf
-	 X6ZFjtDiqnDHlmVQJsacmIFN/vQd3jlolht/ECqAnD1SXnjLg1aIMuPnyhTPfbmkvi
-	 VW0e0bIRSRf2Q==
-From: Mark Brown <broonie@kernel.org>
-To: linux-sound@vger.kernel.org, srinivas.kandagatla@linaro.org, 
- bgoswami@quicinc.com, lgirdwood@gmail.com, 
- Alexey Klimov <alexey.klimov@linaro.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- andersson@kernel.org, perex@perex.cz, tiwai@suse.com, 
- linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org, 
- devicetree@vger.kernel.org, dmitry.baryshkov@linaro.org, 
- krzysztof.kozlowski@linaro.org, caleb.connolly@linaro.org, 
- linux-kernel@vger.kernel.org, a39.skl@gmail.com, 
- Konrad Dybcio <konradybcio@kernel.org>, Alex Elder <elder@kernel.org>
-In-Reply-To: <20241002022015.867031-1-alexey.klimov@linaro.org>
-References: <20241002022015.867031-1-alexey.klimov@linaro.org>
-Subject: Re: (subset) [PATCH v2 0/7] qrb4210-rb2: add HDMI audio playback
- support
-Message-Id: <172789334720.173380.12816331564584587389.b4-ty@kernel.org>
-Date: Wed, 02 Oct 2024 19:22:27 +0100
+	s=arc-20240116; t=1727894102; c=relaxed/simple;
+	bh=4mOa3i0op2Pd4Qv4ekVZza/cC60XQdp58G07WH/bwuk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E6cN1IWyjthaFJTbTQOQP9eo4FxPzqe5nstyYW0JxqpedXzT3icTx1oSIk+qxuvisDbBR180Mg+LNgmPKW35497lRV6oEYiI7gkDtN9awP5ZH1ZfcqdQgYCNUN0Nl3p02oi8Dqih/uSbMUQ9xDBGW/HpRvaQ9gqHlZP1UnNlD3E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=N8IEU5pu; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-20b90984971so474395ad.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 11:35:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tenstorrent.com; s=google; t=1727894100; x=1728498900; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=2bn2F/yqD7qU/04cqSEQXSLsFN+5ARfldGIgsw/yx6w=;
+        b=N8IEU5puvbxPLucPJc3ufjkilft89dUJxRPIfS5RrKgYvOi/K8W3bmLhVnpCZYA9FV
+         80Bk5ckUgiRhjWByZpOgkOvRVzKkhGl8bInt2FabSUV1W+BBuxj8KA/MqfI3uYSzHGjp
+         UZZUMnGNbivZ98sI3uLjHcos/cJMhQpcBBQNeJA8Jp4Uo3lSLfZGgkZPZIsfpOXlf0q7
+         SwBccXXm+qcPzH5ufHgifzqS58D/uVEcR1/A7NnJ6fOmgCXWLw4HWt3Aohyc9XfkW2i8
+         iaAZ4VK7CzFnK5DIjebtpTQza01ueIZ00/9ujurp9Bzv9QT8jr7Frugx6ZXAXgIlyljU
+         9dCQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727894100; x=1728498900;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2bn2F/yqD7qU/04cqSEQXSLsFN+5ARfldGIgsw/yx6w=;
+        b=ZTyIgemy7c7HP24QVhpJ3M7POio4WM4DL/ULP8rMb4UA3Kidos6wM5hR7yWbDmbOfc
+         bPl8wAVWLFcDLpoK1t4AySACtVGWCWjZWwGi/VmrmWgXfc3bfSpVKPagIt72psPQAy8o
+         YPwb2QvJt9qT6NI1NLsi6m2wj2AP0AtbL8JBgf5NR2pok9/tG/pFo6LdkLBySFoxXp5U
+         JDd3h5a4Wf2to38i/Zq0OVs+O4vXNK0OcTILnNZPK7W5QU51IY1viXBoiJNLTjzDcpBx
+         1+Q6hFaLGTt6Bb59zFl0KvGKmwv/aSOl/jUrwGOWG6on51U6UPUx8ernQWHV4neYg7LC
+         srjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUvr/nSLdN16zUYsAwz3Ygx4hbDuCLMzBM9rOnUFz6mQmqWVMnGfI6U7Hg7u0GQZ4NaeaZ+ZY9bTFrN@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSCBLoCrrh76Eih9GLGUrLTCulMiPbVGIwG0oaF8BOpLpzsS+J
+	XtF2h0ZEyyQZ6cbXX1AeaIk2nP3+H6v+rhEikXkmCG/P1lOI+76c+5U0PejbA8s=
+X-Google-Smtp-Source: AGHT+IGyYDFCPfBUD6cqyyaq/aeFBAk0GqWubZItpSq29H18WWXrjLh/21OEwSnJg9ub9uTxFHI7LQ==
+X-Received: by 2002:a17:902:dac4:b0:20b:13a8:9f67 with SMTP id d9443c01a7336-20bc59ec852mr70149115ad.1.1727894100059;
+        Wed, 02 Oct 2024 11:35:00 -0700 (PDT)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20b5b167128sm69551315ad.283.2024.10.02.11.34.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 11:34:59 -0700 (PDT)
+Date: Wed, 2 Oct 2024 11:34:57 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] pinctrl: Add T-Head TH1520 SoC pin controllers
+Message-ID: <Zv2SUVv2PUYqwOzh@x1>
+References: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
+ <CACRpkdavPAv2sPRREQhx_A7EtOj6Ld_n+NcO+vH0QCnfVedXKw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-dedf8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CACRpkdavPAv2sPRREQhx_A7EtOj6Ld_n+NcO+vH0QCnfVedXKw@mail.gmail.com>
 
-On Wed, 02 Oct 2024 03:20:08 +0100, Alexey Klimov wrote:
-> Rebased on top of -master, tested.
+On Tue, Oct 01, 2024 at 02:13:20PM +0200, Linus Walleij wrote:
+> On Mon, Sep 30, 2024 at 9:51 PM Drew Fustini <dfustini@tenstorrent.com> wrote:
 > 
-> Changes since v1:
-> -- removed handling of MI2S clock in sm2450_snd_shutdown(): setting clock rate
->    and disabling it causes audio delay on playback start;
-> -- removed empty sound { } node from sm6115.dtsi as suggested by Krzysztof;
-> -- moved lpi_i2s2_active pins description to qrb423310 board-specific file
->    as suggested by Dmitry Baryshkov;
-> -- moved q6asmdai DAIs to apr soc node as suggested by Konrad Dybcio;
-> -- lpass_tlmm is not disabled;
-> -- lpass_tlmm node moved to sm4250.dtsi;
-> -- kept MultiMedia DAIs as is, without them the sound card driver doesn't initialise;
-> -- added some reviewed-by tags.
+> > This adds a pin control driver created by Emil for the T-Head TH1520
+> > RISC-V SoC used on the Lichee Pi 4A and BeagleV Ahead boards and updates
+> > the device trees to make use of it.
 > 
-> [...]
+> Thanks Drew, v3 looks good. I've merged it to an immutable branch:
+> https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git/log/?h=ib-thead-th1520
+> 
+> Then I merged that into my "devel" branch for v6.13.
 
-Applied to
+Thanks for taking this. Will that also end up in linux-next eventually?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+I'm working on a TH1520 Ethernet driver which depends on the pinctrl
+driver. Andrew Lunn replied to me that all the dependencies need to be
+in linux-next [1].
 
-Thanks!
+> You can merge the DTS/DTSI files through the SoC tree, FWIW:
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
 
-[1/7] ASoC: dt-bindings: qcom,sm8250: add qrb4210-rb2-sndcard
-      commit: bbd1e5ea66f6ca88624faefe0a153637f53ad15d
-[2/7] ASoC: qcom: sm8250: add qrb4210-rb2-sndcard compatible string
-      commit: b97bc0656a66f89f78098d4d72dc04fa9518ab11
+Thanks, I'll take the dts through my thead tree [2].
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+> I think I'll make a stab at using guarded mutexes etc and see what
+> you think about it!
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Do you mean using scoped_guard() for thp->mutex in
+th1520_pinctrl_dt_node_to_map()?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+thanks,
+drew
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+[1] https://lore.kernel.org/linux-riscv/99af411c-ff40-4396-a6e2-5aac179ba1be@lunn.ch/T/#t
+[2] https://github.com/pdp7/linux/tree/thead-dt-for-next
 
