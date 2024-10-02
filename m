@@ -1,164 +1,161 @@
-Return-Path: <devicetree+bounces-107198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E70E998D1D0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AEEF98D1D3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:59:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CB25B26318
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:59:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5B336B264BC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AC61EC013;
-	Wed,  2 Oct 2024 10:57:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87E2D1E7679;
+	Wed,  2 Oct 2024 10:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PZBOn4Re"
+	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="SEK2BTr1";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="evMpYrSi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3D320012B;
-	Wed,  2 Oct 2024 10:57:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3126319D07D;
+	Wed,  2 Oct 2024 10:58:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727866676; cv=none; b=pgYSSR7IRgpHoTZBUNWb944xhec/l8KA47JUEvzs2s+HgduTHNP/3DK5j4WIqtIkhj5oIbKjHj4xQtM7KrvD8B57avqoYVq9cx03y++UKTQJMI1wU94HnrpiG3froWpZNOnnAoniIucmVig7f2+4yDah/bPHoJwE5AnSn9yqWi0=
+	t=1727866718; cv=none; b=sIOjNbxphgbybS/l3aGFZ61foxPrMsdt0V3sCAA58jL9cdnlmsFnyiInv+zPiE1SNtp/ufKPi6Tb9nJxGcXj7wvroWvNkMqQGtrqa6kvi5Hg8y4eS05MxVV3hYb94Ulp6y1YhLg8SFm15T33rW8wqD0WT3lusIRz40kKRxoI0Js=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727866676; c=relaxed/simple;
-	bh=YQOnzV0XzNWxQan5zPLtTbwkOceAW5d8/D+fOoQ522c=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LPn7ksSGbKpo4etsCDOe3zmW5HPXJnchjYO+KiRTvFfCC+sqNgctykmNCi5EjSxaVrfHJwvXYBfKOAYg80F9UpR1MvZ5sTsvk3O5SOKNRi5gxTefRq0wzqo5uDzNgAavpO/XqDdk80tp8W1Ouu3ZIrbp7JQV++qnYDACBSQ5Xd4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PZBOn4Re; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42cbc22e1c4so49162745e9.2;
-        Wed, 02 Oct 2024 03:57:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727866673; x=1728471473; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=LqJIjH8EAYz9SJiVoSSFFxtTnEPgi1WsrXj6pJVb9LQ=;
-        b=PZBOn4RebKeCna9QJAZIU9RRkSVtVVvpN/5EX582aDPYYx23H4ALyOy67jxWNx6nSE
-         YOXIZY5yZpvvd8FCSjVFbtTpNIZ93qHolqYoTTEMH9xi0/w9zxFfxZfEc2+EoTitVds2
-         vpdRexQQQkN0vhSB8XmluPSBQ59kYlMN+FkJcsp8icHYcPz1Z5WqwpoHsd1rtRKXjKBB
-         OZTz5Zss7kjlK9isrBVX9ag5Xn4QMZnnb9pZ8ntVFqIqEZqLw3Ga5+nQNvMJj/GnfTW8
-         ZXkwwxCZZa5ocTtMCbA1cC4FjErcR6Ch18WBY4Swdw0rcAMuBH3OWtZFx3TX2drAkxeE
-         pgag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727866673; x=1728471473;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LqJIjH8EAYz9SJiVoSSFFxtTnEPgi1WsrXj6pJVb9LQ=;
-        b=DgcYnFJO7OCeZXuUxtZrmpehHRlps9CC2be0KRfoqdssyu48a7nZ3uhFMDPXXp9haV
-         lCGzeOz5DTVlzQt1zKaUfm006MovKTd1HLHztOydXj7msMXgCv8H8ywMDih4R5n1167h
-         rHwVEhbykIXi8eZX0B5dQuqJxRfKl/VIgjaVvNpfbGB1ZZ/s8ACKorCNbDMfAoM+7HtJ
-         jVX4elxLh3VNhDb163AkYaOq8zm/to3tlTXq1q1/0W1jARrO7obin9Wmah84ax4NFdCo
-         B4yONUxePqcxNO/DkgvJEFqEK7rC47wJmd4pVaoWcNjWrczJZTZAHcGkpYKoL2iCsYWy
-         HyzQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU1vjI6Lzl2GMz1yISC2ESeyyxFW6wHiFhHnVKYrqQzVoAei8Qlba7zc2a+Lvki9uPz9YySIajwgKJg@vger.kernel.org, AJvYcCUq+bFEfw+Mhy6nZEBqEKG0ExAIKQ7F/erPffVtvShMqybZGwrt90ttMp0hGRqLGuuRTzr07uhjr1Pu71c=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJASK3slE5GS5HxGC5cYYGSssjxjL6pPypJU8wAtyzU4QwCa7k
-	N1H0jkf18af6I42tl7AdtDtzf5FVJTFf2pr9mZtXv48JC4RQ4W2J
-X-Google-Smtp-Source: AGHT+IEoLF/7iglMe1HA0tHNDK0LB2NTOVqIdupICyDoDZyF5geFDh9eclSiBelxTgrNOBqi3CeNOw==
-X-Received: by 2002:a05:600c:4751:b0:426:6308:e2f0 with SMTP id 5b1f17b1804b1-42f778f17c0mr18108855e9.26.1727866672491;
-        Wed, 02 Oct 2024 03:57:52 -0700 (PDT)
-Received: from nsa.fritz.box ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f79fc9054sm15490575e9.28.2024.10.02.03.57.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 03:57:52 -0700 (PDT)
-Message-ID: <8ed2076b0db95f5400d981facd58f98ddd5fdb6b.camel@gmail.com>
-Subject: Re: [PATCH 03/13] Input: adp5589-keys: add chip_info structure
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Nuno Sa <nuno.sa@analog.com>, Mike Frysinger <vapier@gentoo.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org
-Date: Wed, 02 Oct 2024 12:57:51 +0200
-In-Reply-To: <Zv0WvDCMH1-D1pdq@google.com>
-References: 
-	<20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
-	 <20241001-b4-dev-adp5589-fw-conversion-v1-3-fca0149dfc47@analog.com>
-	 <ZvwNV4zor-MTKigP@google.com>
-	 <22f246a0809e2d1fc738178400f8a3d67fc4dc56.camel@gmail.com>
-	 <Zv0WvDCMH1-D1pdq@google.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1727866718; c=relaxed/simple;
+	bh=4vFwnNPpmHyTPToeDrBdVgUAamCUW30oGc8DaS53qnw=;
+	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
+	 Subject:Content-Type; b=Fq4qNx9ZE2H8RnoQAHOFOBgYh8arGXW+g30OpyhR8gLwN2ZHcp7L3AEuU9kf5b0bR8MLYWqadHEEZLBN49alC+M2ljfCij/BCp2DK4ZFU0xeNgjJdXwyissetrS2kWe97xkSMM8WGzZktwRnchZXyjLxwCsgVibGWzMlnUxaitE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=SEK2BTr1; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=evMpYrSi; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
+Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
+	by mailfout.phl.internal (Postfix) with ESMTP id 51E451380554;
+	Wed,  2 Oct 2024 06:58:35 -0400 (EDT)
+Received: from phl-imap-11 ([10.202.2.101])
+  by phl-compute-10.internal (MEProxy); Wed, 02 Oct 2024 06:58:35 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1727866715;
+	 x=1727953115; bh=3PgC2ig0zG3RLRqTe6L/apCO0Mah4/hfhEiKjGfQW7E=; b=
+	SEK2BTr1rAX6MfZYSG8+jfPoOFrsnbcImBk8GG9uzHKXKZJuFFIV9WwwrMWYiPn9
+	GIfUPXVDmFonvWmjEbYXjLDEHsPjotBcvmYNWJy93vm+l2QtIGzdtiKTpYRE3Rma
+	NCMUQhOh9bftY+zmA8zEkg8KqWRnp5yvyiLobV01T1EMjTXfNCQC08CsRwh1g6AV
+	Csq5wLgCYJx3gL2jjqYJJ6KHRWySGklgkEkdmh62qt6JtVHqFU1a98+7Ch5aFW0/
+	zKuNk1+mVebhUqMrUk1KtxFM+5wmLi+Q9qnnjLtq9x7fFEnUDx6LxfNsKnGZOn1v
+	9jeOkZAMSVmLoNYe0Wt1og==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1727866715; x=
+	1727953115; bh=3PgC2ig0zG3RLRqTe6L/apCO0Mah4/hfhEiKjGfQW7E=; b=e
+	vMpYrSisR0DULODq3UhkXZ5BPP5iEYgMJ0j3/dwxLqLPwIDUG3MuiA7C90cJ4DW4
+	moFnBvMA4rJ7SCWQS/F3PpEWD1Dd1oRZhM6Jz6kXH50BA/UBBowmf2qi3ggEdaz6
+	Vad6uwAFdq5mhD+sxIsYQ/mqEmLtV7634LpK6nE6P2920oNXCDIeuVQPnNWajLqX
+	BnqoBGErzfpTPMPm2DzaPfDJPdJ8e11U1gAAvZbcGq+ySGB5R6WVvpxMTJL8zKA7
+	Gr1sFh225lpQlIqJkxJbZJEkmy0bmdw6NXJ8ZVcSY60fLa49ArDvBfiH8CkGx5y0
+	HGKCmVJTYfXD8yc0I4wyQ==
+X-ME-Sender: <xms:WSf9Zshyyk8bpUIXYuABpHLjqLbVGZlzshgDiVY9VlPZGnEBks4eGw>
+    <xme:WSf9ZlCrqGTnyTqesLLGjbMtD3IoTWF2do_akVYLXvjvMe4qvQsGAnGfYc7QFaark
+    Z1OL2tUKz_YJvJtTk0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdduledgfeduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtjeertdertddt
+    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
+    guvgeqnecuggftrfgrthhtvghrnhephfdthfdvtdefhedukeetgefggffhjeeggeetfefg
+    gfevudegudevledvkefhvdeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
+    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepfedv
+    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeguvghrvghkrdhkihgvrhhnrghnse
+    grmhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdrtgho
+    mhdprhgtphhtthhopehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdprh
+    gtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghp
+    thhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtg
+    hpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegrnhgu
+    hidrshhhvghvtghhvghnkhhosehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghhvghlgh
+    grrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegvughumhgriigvthesghhoohhg
+    lhgvrdgtohhm
+X-ME-Proxy: <xmx:Wif9ZkEp26rbnIn2jp59vKVnSxktSsF06cFqvtADU9BS1Nc_TNGNrw>
+    <xmx:Wif9ZtRiMFFIBbqQ4s9f1GlxOreH06e9-cGyx-ys_KAEc4QyOMoVrg>
+    <xmx:Wif9ZpxQGDo3K98z_zQKtG6fA-6sPc8p-btQrtco4cKehnDG_g6oqA>
+    <xmx:Wif9Zr4Wfa1TozUSW8Tpvg0o6Xs3_m9KamAHtbOQo55e18151wai8g>
+    <xmx:Wyf9ZjdekCknkTcY6CZYhAy5eQf7KTkgbHY1rwllPpbasfYZjOwyvucb>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.phl.internal (Postfix, from userid 501)
+	id E09DA2220072; Wed,  2 Oct 2024 06:58:33 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Date: Wed, 02 Oct 2024 10:58:13 +0000
+From: "Arnd Bergmann" <arnd@arndb.de>
+To: "Herve Codina" <herve.codina@bootlin.com>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
+ "Andy Shevchenko" <andy.shevchenko@gmail.com>,
+ "Simon Horman" <horms@kernel.org>, "Lee Jones" <lee@kernel.org>,
+ "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
+ "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+ "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>,
+ "Lars Povlsen" <lars.povlsen@microchip.com>,
+ "Steen Hegelund" <Steen.Hegelund@microchip.com>,
+ "Daniel Machon" <daniel.machon@microchip.com>,
+ UNGLinuxDriver@microchip.com, "Rob Herring" <robh@kernel.org>,
+ "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
+ "Conor Dooley" <conor+dt@kernel.org>,
+ "Saravana Kannan" <saravanak@google.com>,
+ "David S . Miller" <davem@davemloft.net>,
+ "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
+ "Paolo Abeni" <pabeni@redhat.com>,
+ "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ "Allan Nielsen" <allan.nielsen@microchip.com>,
+ "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
+ "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Message-Id: <3029e115-e5d5-4941-a87e-26bf31341f0d@app.fastmail.com>
+In-Reply-To: <20241002121957.1f10bf8e@bootlin.com>
+References: <20240930121601.172216-1-herve.codina@bootlin.com>
+ <20240930121601.172216-3-herve.codina@bootlin.com>
+ <d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
+ <20240930162616.2241e46f@bootlin.com> <20241001183038.1cc77490@bootlin.com>
+ <bd40a139-6222-48c5-ab9a-172034ebc0e9@app.fastmail.com>
+ <20241002121957.1f10bf8e@bootlin.com>
+Subject: Re: [PATCH v6 2/7] reset: mchp: sparx5: Use the second reg item when
+ cpu-syscon is not present
+Content-Type: text/plain
+Content-Transfer-Encoding: 7bit
 
-On Wed, 2024-10-02 at 02:47 -0700, Dmitry Torokhov wrote:
-> On Wed, Oct 02, 2024 at 11:13:05AM +0200, Nuno S=C3=A1 wrote:
-> > On Tue, 2024-10-01 at 07:55 -0700, Dmitry Torokhov wrote:
-> > > On Tue, Oct 01, 2024 at 03:41:34PM +0200, Nuno Sa wrote:
-> > > > Add a more natural chip_info structure and add it to the i2c id tab=
-le
-> > > > driver data so that we do not need an enum a switch() to get the
-> > > > specific bits of each device.
-> > > >=20
-> > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > > > ---
-> > > > =C2=A0drivers/input/keyboard/adp5589-keys.c | 181 +++++++++++++++++=
-+--------------
-> > > > --
-> > > > =C2=A01 file changed, 95 insertions(+), 86 deletions(-)
-> > > >=20
-> > > > diff --git a/drivers/input/keyboard/adp5589-keys.c
-> > > > b/drivers/input/keyboard/adp5589-keys.c
-> > > > index
-> > > > 922d3ab998f3a5dfbaf277f10eb19e5cd1b35415..eaa5440d4f9e14352409dd880=
-cd25435461
-> > > > 2bf3
-> > > > e 100644
-> > > > --- a/drivers/input/keyboard/adp5589-keys.c
-> > > > +++ b/drivers/input/keyboard/adp5589-keys.c
-> > > > @@ -228,16 +228,20 @@ struct adp_constants {
-> > > > =C2=A0	u8 (*reg) (u8 reg);
-> > > > =C2=A0};
-> > > > =C2=A0
-> > > > +struct adp5589_info {
-> > > > +	const struct adp_constants *var;
-> > > > +	bool support_row5;
-> > >=20
-> > > Is it possible to derive "row5" data from keymap information to avoid
-> > > having this fake "adp5585-02-keys" device?
-> > >=20
-> >=20
-> > This is not a fake device. Looking at the adp5585 datasheet you can see=
- there's
-> > module with 25 keys (without GPIO5) and another with 11 GPIOS. From the
-> > datasheet:
-> >=20
-> > "- 10 configurable I/Os allowing functions such as Key pad decoding for=
- a matrix
-> > of=20
-> > up to 5 =C3=97 5
-> > - 11 GPIOs (5 =C3=97 6) with ADP5585ACxZ-01-R7 models"
->=20
-> Ah, I misunderstood. I thought it was a runtime configuration.
->=20
-> >=20
-> > Why its named adp5585-02 in the driver I'm not sure. I kept the same na=
-me as the
-> > i2c
-> > id? Should I call it ADP5585-1 instead? Or even ADP5585-1-r7?
->=20
-> I think this question is better answered by the DT folks.
->=20
-> BTW, in case of not using row5 we need to describe this pin as a reset
-> line for the chip, right?
->=20
+On Wed, Oct 2, 2024, at 10:19, Herve Codina wrote:
+> On Wed, 02 Oct 2024 09:29:35 +0000
 
-Oh yes. I can add a reset pin to the bindings. And make it false for the mo=
-del where
-R5 is in place.
+> Thanks for this reply.
+>
+> Exactly, on sparx5 syscon is shared...
+> $ git grep 'microchip,sparx5-cpu-syscon'
+> ...
+> arch/arm64/boot/dts/microchip/sparx5.dtsi:                      
+> compatible = "microchip,sparx5-cpu-syscon", "syscon",
+> drivers/mmc/host/sdhci-of-sparx5.c:     const char *syscon = 
+> "microchip,sparx5-cpu-syscon";
+> drivers/power/reset/ocelot-reset.c:     .syscon          = 
+> "microchip,sparx5-cpu-syscon",
+> drivers/spi/spi-dw-mmio.c:      const char *syscon_name = 
+> "microchip,sparx5-cpu-syscon";
+> $
 
-- Nuno S=C3=A1=20
+Ok, got it. In that case, your suggestion looks fine.
 
+       Arnd
 
