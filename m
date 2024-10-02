@@ -1,167 +1,113 @@
-Return-Path: <devicetree+bounces-107082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFC8098CE1E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:51:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1267098CE2A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:56:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A08C7281621
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:51:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7246284B2F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6254F194151;
-	Wed,  2 Oct 2024 07:51:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C81F1946C9;
+	Wed,  2 Oct 2024 07:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="WIf+8lNl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kq6MHxQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-MW2-obe.outbound.protection.outlook.com (mail-mw2nam04on2049.outbound.protection.outlook.com [40.107.101.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 921D6D517;
-	Wed,  2 Oct 2024 07:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.101.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727855488; cv=fail; b=QKnXDKciQBwCLyjVuEXA7oKKVkBjt3571lrOm/l+LQEGK0dviTs/t0RBoHfA4uL8oB86Xc7p1hyL3ItvjsWaQBOp8DMuHvu5cKDgAMrjb30Nx41pTjnoFP4nKMX1QDOXgd1AvfjLUySmGqml4batnwhRCiWGBN8/D+aVdvLSzSk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727855488; c=relaxed/simple;
-	bh=7EaE/CvvU/cFgsjgpD7l4dfeEsy2AeLpeXsx7WCChWE=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gnEnz4CBu3jRLembtbs+Q9sv2mLOYX3m73XT41agTjZl3JlpohMz3uNG+BRggLAUiVbMnyR7InrW8ehyiUu/h/yHipiwc1zh4WgoPw9FX3v9gCE2AdEIPb5Xlyn8uEDu6Gf6rieJrUZoDQJa1gO7wpMvA45PuT3M/DSG5fbrJGA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=WIf+8lNl; arc=fail smtp.client-ip=40.107.101.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=GK+rJSt+uiRSubx4blh5P20omKesfzkQrepXnX59sFWUy+ggUX7vhpHd9RBMliEGdoxF8jmXPbC31mieT0nDsCMIRU0ZDPrZayjn3xiJ74n4fS5pcRtfHsNc0z0j8Xzhit1jC0ZXB+L2x1CfZrz16eaB7R2yX1eLA113GY1TOxnrW1Fb4b7ikDzjjA3kNxwxq12UL/IBJwH67eYoVbiXu+UI0NnrViKLjSAi2/NVECa178gZ6BpcC4bndQPIpox8jSbMAdZSCNxFw/KCIHvmdH7wFka+Zmb0fXHmGlN5B65Kyy/mPMFLINKaCgiOuOciMn/Mse4a5Qmq2Wj9eJXWxQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vsZgWQe7gol7KfAmv3Pk9owuFCnQdEicb9rWHMxfqm8=;
- b=Rlcb1FHRGSdZGCalTPwlyNwsXUwY6LelvFDzG+SJcGz51hwNGzHV5ZqD4+qsdA2EYR6OHJg2rSr29K3rKvH3nqK51+nc5GBVBtLfRsYZJMZUifSi5bZfOa0RkANbNVlV4vPI/xrMUl+beQQiiE1vE8ZYEBlQO8zSlN25Xl5H2C2BwE8YfxLg5mtFndUWCpbtKCJBiJ9VzdMpH6glPY5ceujRchLSMwjWGqHdH55OL6p/4nhchvo8BRA8kW9PqT7TpvDwlAg/t/baXXH1BaB5NxMH1E/wWueOYD1SFhwlB7QdL9MilhtWNl38DS2k9YQ8toxu8J1QPD2ltRipG39iLg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vsZgWQe7gol7KfAmv3Pk9owuFCnQdEicb9rWHMxfqm8=;
- b=WIf+8lNlVABJKhMBbwkxWmc7zwSaneYrgVnNYlkvk6xPd03S9nkcLNbROo4K0eX8qBc07UeSEbpe8JBDa91ZFqTGbnCt+3kloi1OvJ1ADKZ0Eh83ZScEZIi2HCGH/lJCS0zcyoIs2kdS+oYdtzJqGm5RcjJcNqXQU7ygQSNyMEg=
-Received: from BN9PR03CA0177.namprd03.prod.outlook.com (2603:10b6:408:f4::32)
- by SJ2PR12MB8737.namprd12.prod.outlook.com (2603:10b6:a03:545::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
- 2024 07:51:23 +0000
-Received: from BL6PEPF0001AB58.namprd02.prod.outlook.com
- (2603:10b6:408:f4:cafe::88) by BN9PR03CA0177.outlook.office365.com
- (2603:10b6:408:f4::32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.27 via Frontend
- Transport; Wed, 2 Oct 2024 07:51:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- BL6PEPF0001AB58.mail.protection.outlook.com (10.167.241.10) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.8026.11 via Frontend Transport; Wed, 2 Oct 2024 07:51:23 +0000
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Wed, 2 Oct
- 2024 02:51:19 -0500
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: =?UTF-8?q?Alvin=20=C5=A0ipraga?= <alsi@bang-olufsen.dk>, Conor Dooley
-	<conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Michael
- Turquette" <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, "Stephen
- Boyd" <sboyd@kernel.org>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>, "open list:COMMON CLK FRAMEWORK"
-	<linux-clk@vger.kernel.org>
-Subject: [PATCH] dt-bindings: clock: si5351: Make compatible string required property
-Date: Wed, 2 Oct 2024 09:51:07 +0200
-Message-ID: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3F431946A0
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 07:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727855763; cv=none; b=RjiZ3Ty1TRFs6znOYJVfBpO+kIpoQq1/IoZ1ThAcpviM7mk6kZg4SmgrOG5A1aBdhh/r4vL7pNn4p65hdeKSmXkN6htrB2aGcrkhSJD+La/TOOqEP6b2P+/UjsjDgMCiaLVvm1pJGGkwWv0cZrhAZ2PDUu0p6WbFwsIZWLtf+4A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727855763; c=relaxed/simple;
+	bh=kU6RM+ooIXXcM9c/jbqH0Uw85/XTZ3Xgd+5hv0PQbhE=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zz8dwpa3rQSvBzeIlzp6lfV9Y6KJpZTGrvSRRjedJM24LtSKclj6F7ZWXChzkpitATwvW5MqnGpHovo7/GslmCv/PiOwmT7a9yg18MOIQUALXQThgs0cwe5oA3mUPcClt//jSlwTOTh7HT+JuOBRMuXgfNTLRsL3rFXhDvZ5648=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kq6MHxQB; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42cae563348so8740715e9.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 00:56:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727855760; x=1728460560; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hdUrO5/+wLUDv1vGiyhZonnC5/peZ4QYzj75J80RoD8=;
+        b=kq6MHxQB4jOG1cxD5GjjNvU+5EfKOK2jUEUkGTqnoLvQ0BZAyn61I4FqV1QVclKdhi
+         asz5qQKuvs9e3tVp53z6F3f5LpGWqWF/XXCQeuGeU0xMAf3pq61rHbIjkkWBUSS5iENQ
+         o47VHfzE1V+3eRkHsphvHT27pwJh7/9VAWiqdE8RHN1A6FiAmkmu+31W19zyPD6MRrRo
+         M0XKG/a0uLz8PrU9Rl/TJWL942CMdfVV3EXFiMpUH4iQ9Sbd8sOhueLgQQK2cq+Q/2MB
+         peAOteEqaD/s5f8rZuCdeULwXsA/OKWDbymQHu6rMoh1k+klEwLF9SRMnH18Pk9VqVyB
+         dSEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727855760; x=1728460560;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=hdUrO5/+wLUDv1vGiyhZonnC5/peZ4QYzj75J80RoD8=;
+        b=CODQ62ApRodnVGKvKa7HG4eqUj5pPv2nR3UQJZwLbJ/vLQZKWEgGyIWwRJbbl1VIhW
+         XsodGv5DSvV4pFJFFyIZvBsDOW6xnWWoj4uR5SeA+b/MQajFwDjBc2nZ/neC9vTNHR18
+         tJrwovCPQvVAsmbcBPe6savUAEzzFbT6Im+oFH71GH/s3SQ0rtgS5SHbbXZGp211uMWr
+         rKy4Ox/UkkRMlF9Q7Ufhp0aOqbtPD+H+KTJVhfJEDYh+mKafMkQnDBL1WzPABNGYS4ot
+         wSUTAPbHYjcOiv9hbGNZEq9gp+uh4NLtJmYTRtM1zloiCRCM1kxsGLtVAQOUVjqvt98O
+         QsQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUpcKrrLg2ZyuS1BAj3GWfyvihEINFK28Hy1rmoVT/abt2SOJzao7QU1YUpRhh97vCjsYi16Ax5ONGj@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWs7XfoFVN00sSF2rSBM6IJtygy9EHuzyG+Q6vIIfvgJQcYCIB
+	fmT5RDjKn8BQ2rJvUNVQ9kVXwXaRA7CbLsMhLaupJs2EtaB0kvtwihbxUdk3m0o=
+X-Google-Smtp-Source: AGHT+IFXXwUeZK6UR2BLcwewuQ+H5PGWRWeXcyQ+J4runoR7VA00QSHe7mz0Sn9gV/K8lWTsFr7udg==
+X-Received: by 2002:a05:600c:458a:b0:42c:aeee:da87 with SMTP id 5b1f17b1804b1-42f77900776mr6649195e9.9.1727855759948;
+        Wed, 02 Oct 2024 00:55:59 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f7a01f52csm11176545e9.37.2024.10.02.00.55.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 00:55:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Sylwester Nawrocki <s.nawrocki@samsung.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	linux-samsung-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v5 04/10] dt-bindings: pinctrl: samsung: Add compatible for Exynos8895 SoC
+Date: Wed,  2 Oct 2024 09:55:52 +0200
+Message-ID: <172785575195.22593.4753948681084660914.b4-ty@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240920154508.1618410-5-ivo.ivanov.ivanov1@gmail.com>
+References: <20240920154508.1618410-1-ivo.ivanov.ivanov1@gmail.com> <20240920154508.1618410-5-ivo.ivanov.ivanov1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=675; i=michal.simek@amd.com; h=from:subject:message-id; bh=7EaE/CvvU/cFgsjgpD7l4dfeEsy2AeLpeXsx7WCChWE=; b=owGbwMvMwCR4yjP1tKYXjyLjabUkhrQ/vwuvTv/86F5E0v+rxr0Tl81+6cLLZvLpbvvcCXrz2 b45imlUdMSyMAgyMciKKbJI21w5s7dyxhThi4flYOawMoEMYeDiFICJLDrGMIfv5wuRx1NXbPKW 9rufYXsxbFXqYjmGBbOkJsyT+slSqPXyuGTw3ey0+Ue7CgA=
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
- (10.181.40.145)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL6PEPF0001AB58:EE_|SJ2PR12MB8737:EE_
-X-MS-Office365-Filtering-Correlation-Id: f3f1127a-e470-42af-12bd-08dce2b702a0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?FLeQBTYbHHtI+wXsJvfaiTNn2udgl13NgJKUPFXUfxnBNkxrGtGN3gCfLdoN?=
- =?us-ascii?Q?ZWMHtjUfgmHgBKUnYxledjE7OV+mQjKyNff7tHJURUnh4SzQDxdGx4IDFMmc?=
- =?us-ascii?Q?m3rXP+gI0dxSQf8VqUut/RLBUWpeztYfPvwwAfY74E3TLnJoqqX5mFlKSpZM?=
- =?us-ascii?Q?8IlFkZ8YSSGVZWqMMrVT3rYYnSg/4cdRDgaACltfHufhky3KhmOIR3AZq59l?=
- =?us-ascii?Q?DFNbuWzRMZcosDHHHGiQiZkKRa8+ou0D+NS/y9TOKo2a0vznllTgLLg4UQ4J?=
- =?us-ascii?Q?HpsXBMEy/dneDdTWjVIB7jpok6e9B5drizwafJIx7+aZiDx/n8CTmf/ukPZy?=
- =?us-ascii?Q?E5DmeG3Vc1rz++IkgnlDWYehP1zim5zpXu0+jNpJCQoh/oZwcfwW8BgE/xgm?=
- =?us-ascii?Q?v5KhmrwnsOZKmU1S9PmYC9Ce7EvQlFbed5QPPTqarE+/Kc/iVwO1bziZ5Xnc?=
- =?us-ascii?Q?zRgpX/KOD5I2aaFnezSPxUSvg+eT39jNczX78uWunXzDE6KP6plwau7e/Z2Y?=
- =?us-ascii?Q?7zoxuV34uBEG1bvSaEZj4eAztKcc5KAmEpIcVp7jeVY2ogLJvd/WNqLoJyMV?=
- =?us-ascii?Q?oQ+VRvJgcBEGt07sRhBve4TdDUrrQHbdjZ/AtRpCFwX6rbYDdppNdgI7o+Ov?=
- =?us-ascii?Q?GPhuj8iHRqmZLld+MEHrXNNV6nKEUNUtB0i5D6fbouwQpO7+dqgWVgBSvuND?=
- =?us-ascii?Q?IqTJI+qkPrZ/jZf5dT1k4Soqy9ndpi/ZmTmxWyS5Fh0hCHvTwnD70yRWjh4z?=
- =?us-ascii?Q?keixdmFNnL4XPKvFMMMFQ+yBilmWLvSq5qLPcA47ensDG2xxf7kxC8CxYty1?=
- =?us-ascii?Q?ler5QV946rn+FrkX21jd7TIbTWuhpEhVxbHJ+dNItCQtIjY7lpNLsEyB76R4?=
- =?us-ascii?Q?3EJZ9QkF/uN0trT8Q6UsJJn9oxuJKcgyMS4HfBXN6hMtXwEil2G/WPDSQEXm?=
- =?us-ascii?Q?0uS5rWyRP0/rfqXpFMejahdHLYV2q2dgpQTH5TLAYeKW52MYjLOHwSdSbrNs?=
- =?us-ascii?Q?Wt7nsTQQuSn0+2l2OxR6N3OqjweW1xIBc2vM9rHtSo7j8TWbDm5W/a2/Rm7T?=
- =?us-ascii?Q?D3O6gVFqU0CzFM0D9/+vOWHxxn9L5VZHpbqqxRRggwnJctGSibSyJEEudYIe?=
- =?us-ascii?Q?gjSt+szMyU5RAztVSKg1uhbw7nakNG3ebQ9gBkilpy+giy43wNi3qknx7SsA?=
- =?us-ascii?Q?qzW5bGM78s5c2eK2FP3AX9STqTeyRAU2qW2pl4fQbI0Kzp7Egi411VeO+mJs?=
- =?us-ascii?Q?w2mETAKe2pJTiNq36dsN5rY7OGmf5ZFMZhx7ZCU85WcxdVFN54e49kf9fnSh?=
- =?us-ascii?Q?pPOQ8uM7T5weeX5L78rR0E14ZQd+CAAaLIBvC/4U4YDdmjSmOnAhEpudvpCN?=
- =?us-ascii?Q?p0xPg3djptmXNA4A8lMK2r7bSHd1?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(7416014)(376014);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2024 07:51:23.0080
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3f1127a-e470-42af-12bd-08dce2b702a0
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	BL6PEPF0001AB58.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB8737
 
-Compatible property is likely also required property.
 
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+On Fri, 20 Sep 2024 18:45:02 +0300, Ivaylo Ivanov wrote:
+> Add compatible for Exynos8895 SoC.
+> 
+> 
 
- Documentation/devicetree/bindings/clock/silabs,si5351.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Applied, thanks!
 
-diff --git a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-index d3e0ec29993b..3442400715d0 100644
---- a/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-+++ b/Documentation/devicetree/bindings/clock/silabs,si5351.yaml
-@@ -187,6 +187,7 @@ allOf:
-           maxItems: 1
- 
- required:
-+  - compatible
-   - reg
-   - "#address-cells"
-   - "#size-cells"
+[04/10] dt-bindings: pinctrl: samsung: Add compatible for Exynos8895 SoC
+        https://git.kernel.org/pinctrl/samsung/c/724d52a3cd33774570c43cff06403b4cdda00abe
+
+Best regards,
 -- 
-2.43.0
-
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
