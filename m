@@ -1,64 +1,70 @@
-Return-Path: <devicetree+bounces-107148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D16998D04A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:35:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A5D798D044
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:34:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B31D4281870
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:35:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFA97B25941
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:34:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816BE1E202B;
-	Wed,  2 Oct 2024 09:33:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBC541E1A13;
+	Wed,  2 Oct 2024 09:33:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ZcGORcVI"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="p922LMMS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5C0E1E1303;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E751B1E130B;
 	Wed,  2 Oct 2024 09:33:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727861617; cv=none; b=hDvcO+WA2AYXN0L+bH5WY8PvlIzIQtQzQJkJqFd+lr9+qJOgZgm/xxjjmBdwnMxjwsRQmTk+jWjl7yqBKBDvIDaGgNW7jyZujmN+ZQWgHGdx6E/CaMB1hlW3q+G8VcNpzDrstRLrTP2nKN6l9f46i0jkm2Tbm/vQ8hAgwRibRMw=
+	t=1727861615; cv=none; b=JpuhcOzuq/gLJccpCuidAaJQRqSrcB00+EmcZWe1nBggaAyOy/xt6WGiviFa3pZUxIHMmbldWhC1fgNL1M9MfIXJVePQS9YbIJ0efpw3Ga9whrkkZBa0HMQI6Xpj5K/nwXVAJCUvjCIIAVLjYK4VVX6XOw4rfqYFszq1bl5Ak+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727861617; c=relaxed/simple;
-	bh=73Y1hofBdzftE9emw1h4sgSdtWbw3t5KD4Ae+00mWZ8=;
+	s=arc-20240116; t=1727861615; c=relaxed/simple;
+	bh=aEZ3V0e96llw0qLEbix5vImUGc2T9SakySfi4kktqIw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=haFf/EksfR7iVDJfMZKL+fuPyeUdhVNZCMTCeWhxW9RcmFXfQz84Abwx/l28Wmw9cfNfCKP/jy3gMstjjHksuwOIWmT/F5ChleucQVvNd3hI2b/IlTB1evJOMHO74J9XBfbzoc4276CvjhyPvbKLUnvgOwJ89lJ2jviJcbCL9rA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ZcGORcVI; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version:Content-Type; b=NWGf56OJhJM8FY30FHYQpoSqMxJ2cNP/p7lvUYg0yLthqx3vd0gKnJsqOxcuRdYmXdcNyl43FyIuJWDcYwPRovI8hijfv+qIPSwdZVsQGPRzjgdErS2zCZYq2p4BAcCva+z5cKDI2ovuvxxVA5oZBzmpxs01VAhK4edHGY+3ohQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=p922LMMS; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1727861611;
-	bh=73Y1hofBdzftE9emw1h4sgSdtWbw3t5KD4Ae+00mWZ8=;
+	s=mail; t=1727861612;
+	bh=aEZ3V0e96llw0qLEbix5vImUGc2T9SakySfi4kktqIw=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ZcGORcVIoEv/QucTxE9d6FFbQpEv/unJlHYP6JXDtWZGBuQ3Q3nkwOmKNSEXy+USi
-	 +iIg9y3t3ie2k3TcjD8riUyFXUjV6Xzk9lhKYyad8wwhPZf/ArBAt1iif/Li5PPGXu
-	 cAY1RHZo0OA69oRlQxKWW99Ij0+FpZwc0BtNl85S1nAUxCmtQwDAf3JN/Z8R8i0k1c
-	 O5YIzOGzA8pfu2KQ1keF0g+a5dn1ArU0ZSH5csYeGIpsJNhAnL36KC26FfSFO6ll7x
-	 qrG0bUJ8/o83es1/USqO3qMnQlOe+u3bRC/bCGlLHZuGlrJCk9gSKc4gfivKuET4j9
-	 1nzMDEts0XvYQ==
+	b=p922LMMSqLkHVljF+Ecm6Wyqj53PprrTan/GuHAnocAa0td6pPXoXZlJJIbXKd9O2
+	 CmGPaXvOMBG1gxZpsTVMC67Y2vbLvQUou3fZweCVWY/uhprnRdqixMUJHoQUX1ft6D
+	 L3mO8ubA4ZbZrYuwBko9oUEZR9CIJtKqGtqn0rIjHdoiYF5x2L4EQOpOD96gH+eHAX
+	 li4O+9aCtLeOKdKFwNjO2r6hbP3ccMYIhmuGyU92uOdvFB46GrpMIS5KPRtGgrURkk
+	 UyJ9z0E008SHk2egkElJ3XurYW6hMJOFJ3lEDyn6YEHNjeOCtnaJ/7qXqTIx6iLhf0
+	 EOD0frFlh1fEQ==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9727717E1227;
-	Wed,  2 Oct 2024 11:33:30 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id AD9C717E1250;
+	Wed,  2 Oct 2024 11:33:31 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: linux-kernel@vger.kernel.org, 
- Max Weng <max_weng@compal.corp-partner.google.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- matthias.bgg@gmail.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-In-Reply-To: <20240924101559.879167-1-max_weng@compal.corp-partner.google.com>
-References: <20240924101559.879167-1-max_weng@compal.corp-partner.google.com>
-Subject: Re: [PATCH v3] arm64: dts: mediatek: mt8186: add FHCTL node
-Message-Id: <172786161056.39477.7674013877665193650.b4-ty@collabora.com>
-Date: Wed, 02 Oct 2024 11:33:30 +0200
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, CK Hu <ck.hu@mediatek.com>, 
+ Pin-yen Lin <treapking@chromium.org>
+Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ devicetree@vger.kernel.org, Fabien Parent <fparent@baylibre.com>, 
+ Jitao shi <jitao.shi@mediatek.com>, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20240912144430.3161717-1-treapking@chromium.org>
+References: <20240912144430.3161717-1-treapking@chromium.org>
+Subject: Re: (subset) [PATCH 0/2] Fix dtcheck warnings for mediatek,dpi
+ binding
+Message-Id: <172786161165.39477.4684212034089747258.b4-ty@collabora.com>
+Date: Wed, 02 Oct 2024 11:33:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,15 +75,22 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
-On Tue, 24 Sep 2024 18:15:59 +0800, Max Weng wrote:
-> add FHCTL device node for Frequency Hopping and Spread Spectrum clock function.
+On Thu, 12 Sep 2024 22:43:57 +0800, Pin-yen Lin wrote:
+> This series fixes two binding schema errors in mediatek,dpi binding.
+> The first patch adds the power-domain property to the binding, and the
+> second patch adds the port node as it's required by the binding.
 > 
 > 
+> Pin-yen Lin (2):
+>   dt-bindings: display: mediatek: dpi: Add power-domains to the bindings
+>   arm64: dts: mt8183: Add port node to dpi node
+> 
+> [...]
 
 Applied to v6.12-next/dts64, thanks!
 
-[1/1] arm64: dts: mediatek: mt8186: add FHCTL node
-      https://git.kernel.org/mediatek/c/43a9d9ea
+[2/2] arm64: dts: mt8183: Add port node to dpi node
+      https://git.kernel.org/mediatek/c/ec1a37b3
 
 Cheers,
 Angelo
