@@ -1,121 +1,96 @@
-Return-Path: <devicetree+bounces-107154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107156-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6618898D08C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:55:44 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EA698D0B1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:02:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 882F9B257F2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:55:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A5731C216DA
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAB31E2020;
-	Wed,  2 Oct 2024 09:54:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55DD21E631A;
+	Wed,  2 Oct 2024 10:02:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="h/NgNNyV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VwJ3dnoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41B5918027;
-	Wed,  2 Oct 2024 09:54:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B4EF1E503D;
+	Wed,  2 Oct 2024 10:02:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727862885; cv=none; b=DN8Tvh+m4jU9rAB+mrt3iFp69bw7PNyLCtxmelt4lafn0gZeQ4us0DHfQUgSxOZ7RJYp/P7ELBl4HaKu3Bj1KyqpwyuHlePOxNJDzVmIxsZQTo1cqWoEIPBHHG2ZM4FaO1ayZKyOrETja4TCovkC1IY/eYdXR6wRf+rUZjwj01I=
+	t=1727863355; cv=none; b=pjAVjSAWUzQF7pSOp8Zuu8Cg+Yj7gw1yu4/GpCD7hDO40AIeR8gKFEhlLW+sMIQiASlRoTsYEY//wP+HJNepb4T6Wll1JqAze6fCbaVRnQhq4DaAMX2Qu2iQaar0Wv0mRTwBb0oAnFZKkZAjmTOr79bK9D90q7imZbSn9eLO0J4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727862885; c=relaxed/simple;
-	bh=xSMt1kdSUdvpC5ZcDXz5AqDxOhErvDD1+6Rv89kNfwA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e8TCc+nFPgS8weeLa3HUUuydEbewVED1rmfkIrXsZkJZicalDopTYSpdB5eU1zOxNIFfCKBOSgg4DmnLVE9DfmX7aCi1HFUUtpw1aNqw6fQrMTUrBlIAQ3ZSqLtmhqd6xa2kFa+9/eYKMorEz0fke3kkuEsOJrKh2sGRu1yjuEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=h/NgNNyV; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id AFFC720410;
-	Wed,  2 Oct 2024 11:54:41 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id SRQmozoVNeoh; Wed,  2 Oct 2024 11:54:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1727862881; bh=xSMt1kdSUdvpC5ZcDXz5AqDxOhErvDD1+6Rv89kNfwA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=h/NgNNyVEHy0CqgBObDYEx05zHyGSr14BwOL+E1a7IYWzz6eG1iNGPfNGA9F4Tk0G
-	 Pl9yeSDg5sHmFAx46UxMMVIKbGd3x80TTu24MbIKbLr2F6S3BwHDw15eLw725+NBBt
-	 l/mjM6jxsViaFTePNVqqcM66nnntk+18IVefuucl1nZXK8P7kwTuQiIE4q/pg8gAeM
-	 nwr6VuGyFcdfY7qf4eGswCBqT2uyr0rYpEHxaUwm9yclmeVtXNBE+mD8XMhaiQQyFz
-	 vPMX/uIOrvEsBdL/PyadGsjWJa6ftA1PT9QAK9D3X3lW4IuZIINtDTZcdzx6KpOB3G
-	 6yk2T+ray6DZQ==
-Date: Wed, 2 Oct 2024 09:54:14 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1727863355; c=relaxed/simple;
+	bh=0uMyPUeXCbYvDYxu8/2Q36pRaWyEFmQn4NnsBqq3vtI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UYSg5jM5xYwCn1RGjLuGapZSgZ2SqFQ8blkp8zxW3KzXR1kYYbC7KCuk3267fwT7kd8HD0S6dFQUL2atuukd1+3zknT7CMWtmSr1bgOzNrGcEBjjjzHdZCStgGJs2ANpuUAkNxxcIuXdnL+cY/FhUMM5yFl50yjazNbwYHqGuLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VwJ3dnoH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD756C4CEC5;
+	Wed,  2 Oct 2024 10:02:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727863354;
+	bh=0uMyPUeXCbYvDYxu8/2Q36pRaWyEFmQn4NnsBqq3vtI=;
+	h=From:To:Cc:Subject:Date:From;
+	b=VwJ3dnoHXMkr98OOGTJBH7PRsSZCloBUp+Q7UotMHXYoM2vsSnrVApB4qHOpm6LSX
+	 vjUbOwTAKiaCntFqZsSSCMTDfSSoLZ8EnU+RD8YyP4ewP1/fZhn1wScTF82a9C561L
+	 s1pynv8wIV9oia58wNkzQ0RwUsXYb0rhfc2jbavz5kEHsly1I4DSswlrxH5rOqGR0e
+	 +ihwjtiVkiazKpj0oWhS/3YDOBCohbWcno9eB9YpnrUty+BscEk1tDh4qf9+ewfPfn
+	 IKXX+LJ3cmOsHO6icNKknOX6hZXMdTnYssxKj0EjWqt9fZFjrkqke8wrWDlfR8D13Y
+	 zJV4xfdWgQ/FQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan+linaro@kernel.org>)
+	id 1svwBm-000000004uu-31Nf;
+	Wed, 02 Oct 2024 12:02:34 +0200
+From: Johan Hovold <johan+linaro@kernel.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Celeste Liu <CoelacanthusHex@gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: reset: Add reset ID definition for
- Rockchip RK3528
-Message-ID: <Zv0YRkabzDTARc-L@pineapple>
-References: <20241001042401.31903-2-ziyao@disroot.org>
- <20241001042401.31903-4-ziyao@disroot.org>
- <kg7lh6gafeegmljsygukhfjiztx5wbothngtxrcreccao3itpy@f4bxf4w346ky>
+	Mukesh Ojha <quic_mojha@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Johan Hovold <johan+linaro@kernel.org>
+Subject: [PATCH 0/2] firmware: qcom: scm: suppress download mode error
+Date: Wed,  2 Oct 2024 12:01:20 +0200
+Message-ID: <20241002100122.18809-1-johan+linaro@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <kg7lh6gafeegmljsygukhfjiztx5wbothngtxrcreccao3itpy@f4bxf4w346ky>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 02, 2024 at 08:31:53AM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Oct 01, 2024 at 04:23:56AM +0000, Yao Zi wrote:
-> > +/*
-> > + * Copyright (c) 2022 Rockchip Electronics Co. Ltd.
-> > + * Copyright (c) 2024 Yao Zi <ziyao@disroot.org>
-> > + * Author: Joseph Chen <chenjh@rock-chips.com>
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_RESET_ROCKCHIP_RK3528_H
-> > +#define _DT_BINDINGS_RESET_ROCKCHIP_RK3528_H
-> > +
-> > +// CRU_SOFTRST_CON03 (Offset: 0xA0C)
-> > +#define SRST_CORE0_PO			0x00000030
-> > +#define SRST_CORE1_PO			0x00000031
-> > +#define SRST_CORE2_PO			0x00000032
-> > +#define SRST_CORE3_PO			0x00000033
-> > +#define SRST_CORE0			0x00000034
-> > +#define SRST_CORE1			0x00000035
-> > +#define SRST_CORE2			0x00000036
-> > +#define SRST_CORE3			0x00000037
-> > +#define SRST_NL2			0x00000038
-> > +#define SRST_CORE_BIU			0x00000039
-> > +#define SRST_CORE_CRYPTO		0x0000003A
-> > +
-> > +// CRU_SOFTRST_CON05 (Offset: 0xA14)
-> > +#define SRST_P_DBG			0x0000005D
-> > +#define SRST_POT_DBG			0x0000005E
-> > +#define SRST_NT_DBG			0x0000005F
-> 
-> What are all these? Registers? Not a binding.
-> 
-> Binding constants are numerical values from 0, incremented by one,
+When booting 6.12-rc1 on x1e80100 I noticed a new error in the boot log,
+which I had previously also seen on reboots.
 
-Do we have related documentation about this, or I just miss it?
+Turns out the scm driver is incorrectly logging the fact that the
+download mode feature is not available as an error on both boot and
+shutdown even when the user has not requested the system to enable dump
+mode.
 
-> serving as abstraction layer between DTS and driver.
->
-> None of these here are bindings.
+The second patch enables the download mode feature on x1e80100, which
+from 6.12-rc1 specifically results in a reboot instead of entering crash
+dump mode after a hypervisor reset on the x1e80100 CRD by default.
 
-Thanks for explaination. Will fix it in next revision.
+Johan
 
-Best regards,
-Yao Zi
+
+Johan Hovold (2):
+  firmware: qcom: scm: suppress download mode error
+  arm64: dts: qcom: x1e80100: describe tcsr download mode register
+
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
+ drivers/firmware/qcom/qcom_scm.c       | 2 +-
+ 2 files changed, 2 insertions(+), 1 deletion(-)
+
+-- 
+2.45.2
+
 
