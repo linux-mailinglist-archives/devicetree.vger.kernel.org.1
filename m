@@ -1,132 +1,110 @@
-Return-Path: <devicetree+bounces-107273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C645798DAA3
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:24:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9FA898DB06
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:27:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C48481C22509
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:24:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 70DC91F24FEE
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:27:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8332F1D1504;
-	Wed,  2 Oct 2024 14:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC8EE1D0F74;
+	Wed,  2 Oct 2024 14:22:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="RzYqECuE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sJCiRoVJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D317E1D04B4;
-	Wed,  2 Oct 2024 14:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 756611D0F71;
+	Wed,  2 Oct 2024 14:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727878672; cv=none; b=RA4Y2iq2lT2yqWMSRpawkY//xbwmteynHeHD95ykYXTA6yTegoAXgkc/SL6Ku39gr4B7Nb7c31w6eQNM+uQ22T1npV+lkwWsEj//EnzKNpXt5hZWPBeVDoNiri66opV1OrZcJHkhlFVq5+6MDrH8zEQ58r+JuoMPxF88Mir318g=
+	t=1727878938; cv=none; b=jVazVk80h1ZjA0I/nBaeoiWuV7YRIBugcXiV5RnVVaUHqjlyPLcYiJEOZdEegPplo2/ZY5LTCrcMmslQbQdMr0gMX70R8X7WSFhTJJOtqoCG5IdCF+feBDrkkqFnaoqyo+OCi2DkN38vv6TYj9Ga/mI2rBQt6r65lCOuZMqRW18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727878672; c=relaxed/simple;
-	bh=JDy/5M+MSSdrYgjg7Gt56ua5yDBOvLFx7IfmLEJRtIM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YTnsmDE//i7kMbAqQtXr8FXKGdWcPCvJ3lf2NFR+umKuWKcbK5/FNjKhyPdVO68qWk23QumfRkHCMP0JCDh54e8jmt2AJdeF84y9z6JnGuWPIo0zYhggG79u9v+4tVfQeDYBHPnWbi2t5G8m5PlP6vxbYD4sjKFK0hXP2DrGKgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=RzYqECuE; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727878671; x=1759414671;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JDy/5M+MSSdrYgjg7Gt56ua5yDBOvLFx7IfmLEJRtIM=;
-  b=RzYqECuEdU4MQSPtkUlknBWNvXDsPeHz3OUpOV3VmEmbhBYZ8rvSr77h
-   i5FPOoi1arzSmDCTIUpnGbBIDSOLy3HJfgZMjssJNb1Q6nB7JhutkCRi9
-   WiGKOsML0DmbOV1hUMg6R+Z2ViDyx6pjdWrcLvTErv25vqFu8txOx7hZW
-   rqW9+vx66KpzG6iNqi/it4KYKT5VbFXgk0+u+6BEp5scH88lTpcRrG9v6
-   DcpZO2ebroMRK0MCHiUkPBETbI3npAlYJwl9DSDRxnLT1LuQRh5zue6+H
-   F9CNg4UygK7ocLTIHZk2FjDpGJsdkFdfQ51YiVO1Sesji3022F3N/Hp0V
-   g==;
-X-CSE-ConnectionGUID: AllwtCjvSoSpUVspcLZyEQ==
-X-CSE-MsgGUID: VJ3EvfKnTTafRhZNvRvbcw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="26548728"
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; 
-   d="scan'208";a="26548728"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 07:17:50 -0700
-X-CSE-ConnectionGUID: 1LGnQ33RTYSGfa0OFmdK+w==
-X-CSE-MsgGUID: JLDFBi7JS/iMFCHC6ldDcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,171,1725346800"; 
-   d="scan'208";a="74037019"
-Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 07:17:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sw0Ai-0000000FhJW-2D5s;
-	Wed, 02 Oct 2024 17:17:44 +0300
-Date: Wed, 2 Oct 2024 17:17:44 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Michael Wu <Michael.Wu@kneron.us>
-Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
-	Mika Westerberg <mika.westerberg@linux.intel.com>,
-	Jan Dabros <jsd@semihalf.com>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	morgan chang <morgan.chang@kneron.us>,
-	"mvp.kutali@gmail.com" <mvp.kutali@gmail.com>
-Subject: Re: [PATCH v3 2/2] i2c: dwsignware: determine HS tHIGH and tLOW
- based on HW parameters
-Message-ID: <Zv1WCAROWamTfI4z@smile.fi.intel.com>
-References: <20241001082937.680372-1-michael.wu@kneron.us>
- <20241001082937.680372-3-michael.wu@kneron.us>
- <Zvvyii7aViGCklcT@smile.fi.intel.com>
- <IA1PR14MB62241CADFE580EC861C591F58A702@IA1PR14MB6224.namprd14.prod.outlook.com>
+	s=arc-20240116; t=1727878938; c=relaxed/simple;
+	bh=2SrLfB54i0n+nB96XgKNRFkKMrLGl0RXmHN2/ftbl9U=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZTLlGxwfnILqzBn2YCqf0dS/XhwqJpiOfDQmwNgNxAOkQgjHpXhgpL+RbBljW1sFm6hcwBP/tHf949DpzBvL6iyygFCsNc+UE78yv79Ylt3guC9DnHyO6rey3X6Oiwso+tYl4JmcoWCpx4tAcEHLrwmoe+fw9m/zbzsF+Jio3zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sJCiRoVJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 446C0C4CECD;
+	Wed,  2 Oct 2024 14:22:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727878938;
+	bh=2SrLfB54i0n+nB96XgKNRFkKMrLGl0RXmHN2/ftbl9U=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sJCiRoVJ2VX7Zv/PucdIM1++E19KhNDWwG2WQ9XZ7imYga3P3LRz4bAc3uNcDj6CS
+	 +4mMMGHoKiGE8k2cOuCzLGbfjV5JgaannSCR1XWbEvDJ6kBTCz6ddWd8X2ujYXeEeS
+	 gM46XIOItthc+fu/nWVImTipm6fvtmkOLRzIwEPNX3kSUdJc/PGfOkuDp5YIM7PPrh
+	 HCvjDJzhANml+ZSlfMwHtiY15VCSfi6BLoNG249GNMCjDxPaYOlQcL6X/kEhHh47p9
+	 2rEGlfBujfG/RqLX/wUzTTXS0eBNoyHyCIxo4Z4h3bg64rfKH+uwuWHoPYDuH6wtC3
+	 0uOMZeh+xjgew==
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-53988c54ec8so6204077e87.0;
+        Wed, 02 Oct 2024 07:22:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUWJIwFiaAt4v9bcKDzUFaCmuwbaDPXxCFKnTYzUtqKtFtuga+ANaqx6jidL+qj2tMQ77wr74WSIU6B8FFi@vger.kernel.org, AJvYcCXXvTL27jO29DtjtOj9eyW6aePbSsDDsE9P/Q0wO+A8pSH/5mUAZULFuNdls0pTY1QuQLlWNi+t1NDm3g==@vger.kernel.org, AJvYcCXamLGh+T1g2ZHgHa8g1ieWL3ByICGFBuRtkYag4otZQJxso7cEOF5ZXfSEWVYyQBpxp6C2YnZfgwRW@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4uLHEeqcuXJSaEYaiuPL4Ii7/jKVD4CKXD19vM8hRm//AKve+
+	4DRti7QR2E0+s4HD9kxMZn2OE3d4hHcBzjQ1XGo4kpPmeuUOuYuxZWRqTv0teDelIBPxZ6YUPls
+	Yj3Vi20JmgWfmbysgDmdJa9KEmg==
+X-Google-Smtp-Source: AGHT+IHgfZX6X89URDIQx3zhgPCvhBbz2WhgVN86b2htMQnLx1g3W/UhzAdWE/tXBKOj+8dUzY2C8TSqBSFUDwHi1A0=
+X-Received: by 2002:a05:6512:2203:b0:539:8d2c:c01c with SMTP id
+ 2adb3069b0e04-539a079eb2dmr1919798e87.41.1727878936658; Wed, 02 Oct 2024
+ 07:22:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <IA1PR14MB62241CADFE580EC861C591F58A702@IA1PR14MB6224.namprd14.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240925173504.1906872-1-robh@kernel.org> <CACRpkdYh22c08kLWDJ3wmK+i9-C2ngXdJwhg-kAXfdy2+mcB0Q@mail.gmail.com>
+ <CAMRc=McdAwEUCDouUeOENt36LZ+d4Fd=yeqzm9dn83XSqZpQFA@mail.gmail.com>
+In-Reply-To: <CAMRc=McdAwEUCDouUeOENt36LZ+d4Fd=yeqzm9dn83XSqZpQFA@mail.gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 2 Oct 2024 09:22:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK8HxEYicNKu0zhfWKY8Ui9657PWEDFr8maSWKaeJijXg@mail.gmail.com>
+Message-ID: <CAL_JsqK8HxEYicNKu0zhfWKY8Ui9657PWEDFr8maSWKaeJijXg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: gpio: st,nomadik-gpio: Add missing
+ "#interrupt-cells" to example
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 02, 2024 at 09:31:00AM +0000, Michael Wu wrote:
-> > On Tue, Oct 01, 2024 at 04:29:34PM +0800, Michael Wu wrote:
+On Wed, Oct 2, 2024 at 8:32=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl> =
+wrote:
+>
+> On Wed, Oct 2, 2024 at 3:04=E2=80=AFPM Linus Walleij <linus.walleij@linar=
+o.org> wrote:
+> >
+> > On Wed, Sep 25, 2024 at 7:35=E2=80=AFPM Rob Herring (Arm) <robh@kernel.=
+org> wrote:
+> >
+> > > Enabling dtc interrupt_provider check reveals the example is missing =
+the
+> > > "#interrupt-cells" property as it is a dependency of
+> > > "interrupt-controller".
+> > >
+> > > Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> >
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> >
+> > Can you please merge this into the DT git tree?
+> >
+> > Yours,
+> > Linus Walleij
+>
+> It's already upstream. I learned it when I tried picking it up. Rob:
+> any chance you could send b4 notifications when applying patches to
+> your tree?
 
-...
+It's not upstream. The ep9301 one is because Arnd applied it.
 
-> > > + * @bus_capacitance_pf: bus capacitance in picofarads
-> > 
-> > Since it seems a new version of the series is warranted, and looking into
-> > the current kernel source (no other users of this unit were observed),
-> > I think we may do correct capitalisation here for the sake of physics
-> > and unit system, i.e.
-> > 
-> >  * @bus_capacitance_pF: bus capacitance in picofarads
-> 
-> Are you serious?
+I do send notifications when applying things. Not using b4 though
+because I haven't converted my scripts to it for that yet.
 
-Are we in the circus?
-
-> I have never seen capital letters used to declare a
-> variable name. Although checkpatch.pl does not consider this as an issue,
-> is this against everyone's custom or unspoken rules?
-
-I do not really care about checkpatch or any rules as any good rule will have
-a few exceptions anyway. The rationale here is to follow the science with much
-longer history than anything related to the computer programming.
-
-Now, since you haven't looked for the existing examples, try this
-
-	git grep -n _u[AV]\;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Rob
 
