@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-107055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94D1E98CD05
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:17:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A86498CD08
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:19:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC3451C20F41
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:17:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BB45D285663
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 06:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A88678C67;
-	Wed,  2 Oct 2024 06:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B61578C67;
+	Wed,  2 Oct 2024 06:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iLyXMNbv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gsq55Jai"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D4042581;
-	Wed,  2 Oct 2024 06:17:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E34CF2581;
+	Wed,  2 Oct 2024 06:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727849821; cv=none; b=IP8jWZcggncFcl5a6jLDXWG9/0yHHQAJxzazhu2NusL+WEHlichXzCnMxDjbc8TeOReMQL7rtmpeOa+2VrIuK4KTexVD8+MnKN+J9vZSI2xSJVhDpk1+QO3vNOcRLT4NEhTub/s10by2+w3eJjWt3TIvgk1ZsJWtmSURev5lFSU=
+	t=1727849948; cv=none; b=CZuqFH2b/pwa0j6p7EOOWSDgcvmTyhLcTyCSb+vx0KZ0rg3dDjrI+XnkNg25+v0HuLolN8DRzXi6n0mI407Z4lPw8HRBye0xVKhoW9hsrqeEakoQTFUrPQ+MFjIzaMj4bReRfKwGj70a0zzqFMzSQPvFHPZRHq/ANWeQ/M3EuZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727849821; c=relaxed/simple;
-	bh=OFVg8fIX+xvAe6Xup+mksgw/mFNgnlC3BvGhOzQyrDI=;
+	s=arc-20240116; t=1727849948; c=relaxed/simple;
+	bh=Ec69O9tYD2gVzjwH4yVPMdo8/xd0Z/q0QMbyEZrhR5M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jKHlzMGKAHu9vdJIaCmOKdj4vxhtyrfcPgIzkRQbr9PbTx1rSfUFrLouNMC8JliOSlaJTbZbHgg5FSzhzY4LIwErNgubBBgVhMil1zoinasGlTSDBwWVCtgafXaKtJP8vW8lS06cT/TjsofGiabEUBcHAGL62VAMsHu/EGceEcE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iLyXMNbv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0984DC4CEC5;
-	Wed,  2 Oct 2024 06:16:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G+ne/JtqjlWkf5HIgpz3g6HwumweCIXTyjWMLjlI4o9iJvbmlzsJHB+a/ZcEckLJNIxpaOCWLrD5GgfJrUCd3uYyMhU11HScA8TtDE60tKZiduQLbNun6huMk1thkJZzQu038Ay6jguuam+M4NGCiaDf25Xt8PnxrpVSX16iTi4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gsq55Jai; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 998E1C4CEC5;
+	Wed,  2 Oct 2024 06:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727849820;
-	bh=OFVg8fIX+xvAe6Xup+mksgw/mFNgnlC3BvGhOzQyrDI=;
+	s=k20201202; t=1727849947;
+	bh=Ec69O9tYD2gVzjwH4yVPMdo8/xd0Z/q0QMbyEZrhR5M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iLyXMNbv1KT7bPzjbpXv4QMhO1w1rXIDUdkZhmuUlQsWKLDCvm+7BtxCx9RoHw47s
-	 74T1n1xcvfYY+EthltWB+a5O/q4YbFNkxppfWbeOOCBTtwmIHtcibRVKp+vwSfFPOV
-	 P3uZQC7JbvZHYiiysotmf9pc+XMBu1pNwzLDAnnp+fkdS5CBXLzSvWR3JAkdmqEBRv
-	 xWRwz9Ga5NFNGF/7AkQbzJEe1ILSYjO2IyhFF4zjrZQtz2KCt5KsiFJ0wjdR1yWAl6
-	 8SKCXIgWWh+SBuPeXOIae/26j7w7XHF9OoI/eA4ygW5Gss4z097KiKcXpaHLw/3Izn
-	 6AFCoKc7UD5rQ==
-Date: Wed, 2 Oct 2024 08:16:57 +0200
+	b=gsq55Jai/rVlmYmu9vZu8GVdmryh5Q+w4TDqtyfLLvEqD+DwI7uDEqWMTCDDfqlKI
+	 1UVCuyuySerrVb2X9qVUYOdE6pVt+a7s5+pDxEWakBsuyGMDliPFZCC11cLQvGFCYS
+	 3ImcC1kgoB/sCzzM/kJNHZNL1idi4SdMQPfJ6X+kXXv0ouMB/XspR0vTaI+4oINXI3
+	 2Pn02QBmMNc8F4lW+nBWHBBresJPcTXaEF1DkGcJynOpWQAAbY9DqYTISqQh1GKOSG
+	 xdQIyoZhNrU+VrurTcFAwG9cD3bL9IT4jrV6q5AgNDU4t0J080zknc3KUPzleewl0v
+	 eUY6Sx6WUKMeQ==
+Date: Wed, 2 Oct 2024 08:19:03 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Fei Shao <fshao@chromium.org>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Andrew-CT Chen <andrew-ct.chen@mediatek.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Tiffany Lin <tiffany.lin@mediatek.com>, Yunfei Dong <yunfei.dong@mediatek.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 4/8] dt-bindings: media: mediatek,vcodec: Revise
- description
-Message-ID: <sl5rrmqh3zwhaz4dfbcworgmluc5albeov2f4qmka4ih4phfhf@g7vs2bwhhd6l>
-References: <20241001113052.3124869-1-fshao@chromium.org>
- <20241001113052.3124869-5-fshao@chromium.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
+Message-ID: <qifp4hpndfhe6jlmzjmngr7uolfzvj663donhjg5x7kmeb4ey3@a2a66w5l35zf>
+References: <20241001124310.2336-1-wsa+renesas@sang-engineering.com>
+ <20241001124310.2336-3-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,28 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241001113052.3124869-5-fshao@chromium.org>
+In-Reply-To: <20241001124310.2336-3-wsa+renesas@sang-engineering.com>
 
-On Tue, Oct 01, 2024 at 07:27:22PM +0800, Fei Shao wrote:
-> Revise the description of MediaTek video decoder to improve wording, fix
-> typos, simplify diagram, and extend the pipeline architecture used in
-> newer MediaTek SoCs (MT8186 and MT8188).
-> 
-> Signed-off-by: Fei Shao <fshao@chromium.org>
-> ---
-> Feedback are welcome.
-> I've tried my best to organize the existing information with some
-> educated guesses, but there might be inaccuracies or gaps still.
-> Please let me know if you have anything to add so we can make this more
-> comprehensive. Thanks!
-> 
-> Changes in v2:
-> New patch.
-> 
->  .../media/mediatek,vcodec-subdev-decoder.yaml | 100 +++++++++++-------
->  1 file changed, 59 insertions(+), 41 deletions(-)
+On Tue, Oct 01, 2024 at 02:43:08PM +0200, Wolfram Sang wrote:
+> Document the Renesas RZ/A1H DMAC block. This one does not require clocks
+> and resets, so update the bindings accordingly. Introduce a generic name
+> in the header to make future additions easier.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Does not require or does not have? What does it mean that device does
+not require clocks? It has its own, internal clock oscillator? But then
+how does it match with external clocks which are still apparently
+supplied?
+
+It looks like constrains are relaxed because of current driver
+structure or current DTS...
 
 Best regards,
 Krzysztof
