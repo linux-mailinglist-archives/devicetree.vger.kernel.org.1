@@ -1,97 +1,165 @@
-Return-Path: <devicetree+bounces-107079-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107080-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1800C98CDF7
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:45:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1E2998CE14
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:50:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 495841C211DA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:45:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B1DDB2207C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:50:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893EA188918;
-	Wed,  2 Oct 2024 07:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E39A1946A0;
+	Wed,  2 Oct 2024 07:49:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="jWhW7GU0"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lm3tu2fy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E9031FA4;
-	Wed,  2 Oct 2024 07:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 668A519412D;
+	Wed,  2 Oct 2024 07:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727855145; cv=none; b=PKNV717jn7lk2nw2YIsYsEAyNW1VG6x6/xy7w4x3SNenajVRlVh3vqz94oqImmcyrfIAxEY0du3fpYyOdyWv9zQ8h9FpLe5dD7PdeXStSTnR2Qu8hX9VLcrzuYEfkeBNVkjAg39nwbhSAWhkxUpJP5u8tWoA42kRfR5v86QAMuc=
+	t=1727855393; cv=none; b=q0dmAbsc6eamkDmh+iMqk7oh0+nNd2cAiRQsZS/1JGQRxxKVRHetSo11PppLpxhGfPC1tTbfyTBvtkObpvZdlNI/w8EeCYxtT9WUI9t6NccTO6KZJnUjaBCPYoSwVYjD5u4z+T9UecYhVaoraWpBPyoumryjbfDRe6mxPDWJWkM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727855145; c=relaxed/simple;
-	bh=kMJLqEV9tqhVK4MaaTaIf2NqFonku/YMWeCm0UPMw+g=;
+	s=arc-20240116; t=1727855393; c=relaxed/simple;
+	bh=bHKherBZIJQ0rf9UpZjIheDMfktZ2mxDX0RcPv7bFjA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EcDOaNUJSgPqOpvVF2thnQyVdGxBct+Ec7f5SUSXFT9qOxd2b1LgwlUvBCCihWV9oVniqoR1E9UhzDV0ML/L4dUtS1P0rnd8EKlk1gKvmQ6Ra5rQonu4ZV2ngX/Jn3rWeaAnPfHR7n4mSbu/zRSRlcSrENzuTxqfcUR6Iuy6ImI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=jWhW7GU0; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bombadil.srs.infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=In-Reply-To:Content-Type:MIME-Version
-	:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description;
-	bh=+DhPlvZlgWyskAxxSMsqdkfwqzEhNZOw6Hp35GCELxs=; b=jWhW7GU067oIFkt/MVbbr+n18I
-	wGHnBAxyd6w8KVrImRRpeg0e8F9y2jHDIEVqUQPj0tMABOnVUHDgg3vzJV/cL7mqxIFVyGQW0k04R
-	mG1/tE0hfZiTGC2OcXUAiomagy9LPxMJewGF+HXgqsdPBLHd1iZ3LNImSJDZCB+5/Y+Aiq2mg3ULJ
-	ucLYzc7Zh6MzKOqZ4cIHtwFaZrcLqFDHtQE/pR16gQuQoANDxGhaHkj9iY48UC32IXqQR8lkRb5Ub
-	+8b/Seys7fulUj0BxasEhk18bXdnehu6debe2cwDX2SIt8Rh6EVGlOAoPCbxiJ5/xZuncm8hB+cxE
-	bYVueTUw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.98 #2 (Red Hat Linux))
-	id 1svu3F-000000053lB-1BAr;
-	Wed, 02 Oct 2024 07:45:37 +0000
-Date: Wed, 2 Oct 2024 00:45:37 -0700
-From: Christoph Hellwig <hch@infradead.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Christoph Hellwig <hch@infradead.org>, Jens Axboe <axboe@kernel.dk>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=b0kw3iw7WGwlevPbLFzFfCZBTptESNQcjlWNL4ptZxf5AEIvIYzurmrT9iLFoA/Aj7aoM377+bxFona5dVdp2KLVh3zx07WYV5WZLs78pVjTEotkI5hWrR6HfiZBBs2DjGOy+jtUyfStDIK/zqOPww4+jWXXgUw58I+0O2joiBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lm3tu2fy; arc=none smtp.client-ip=209.85.208.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fad0f66d49so41787101fa.3;
+        Wed, 02 Oct 2024 00:49:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727855389; x=1728460189; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=jpWmhulI7Msld3hi9gp2HgczvTxG5GAZGwAH8UaHcsM=;
+        b=Lm3tu2fy5moULI4RDklc4AKX6/pd13DAesRm2As200XxUWIZb8MFRWZN9NZMlnjg/u
+         cKeoZ0uoqCtpyAIXWunXPWMb7+05bm36zeNACQzWgSpvDbb38ERdCYt1xsBtvYHv/n0K
+         V9GGCN9DzU2BPvh7ah/81qae4/LHIxr/Pf24Por+My5BWIckmEv/I11Ww2PGIYxgFCnF
+         ZUXJyumBNFmeGNGgGAruxZrPK3VOgZD+SQ4wmxabftiU7tPcLgqn3NEicNKViYSJdwiF
+         h58skaOrzO1YAl2KlX1kAGg4Xw6Rwi+TuXgCMDre6cvAgePpiNWxfiwFEUnMi238oFW3
+         8t5A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727855389; x=1728460189;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jpWmhulI7Msld3hi9gp2HgczvTxG5GAZGwAH8UaHcsM=;
+        b=ZE8RHr7nvokaCEPi659GC7phtKT4zEhlLpNME7f/Hb9Qf7HW8zZU8grdLh1jzoHp7n
+         gQhSpbLvAh7wrk8fMXd92azSCAecCvJbYb91K5pL+QBD1kJogLZVVy3XF5S3j3sxN6l1
+         ig+HL7u2RNqc8LdJR12gUtgSNoGUrAJ7crKpBnfFcO7Qhn/QkcB1xwzVXzhBJ0tN7BlH
+         kisjVrsmFtpEgqhy7KhUg9pcQjkOXI3N59DRtnvryjzayrzvpo4Pi9DWmV5+xNcvjwhx
+         geBLrkA2NeJFrT3l3TBro/jHqzPklbHBmYqZI48hBPyqgxZ98vWbQzoJ+30BQmvlb2hR
+         H7jA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+hu54HMyGmztuzDIoVDbNLtCp0M2nLiv2EHCbPccybMAauMDgUl5Fv6l5LZXEY6o3CunSn0yWdgy3UqK/@vger.kernel.org, AJvYcCXILRbRuvkbYeMpPtCkGvWswpchRE83aFVSLyk0PetCV6XocDCtE/nIAzQbn9ouDEw/U6RewAfki9OE@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyBN4/l24nrx6ILZXzJkVfBp/uesKUqiXaYcfpf7htJGPimz3o
+	4SxbyY+JWDNP85/sB4BmT+VLb8n922TAB1S19VlTyYLcmwPuVC8I
+X-Google-Smtp-Source: AGHT+IHhov8RkI1UXkOeqc8PEFKDi1iQhiClpEJgsMXzPz5POtDD26bfPFGLmFLSN7vjMrEA3cn9xQ==
+X-Received: by 2002:a05:6512:3d0c:b0:52c:8abe:51fb with SMTP id 2adb3069b0e04-539a065ec3dmr1190028e87.10.1727855389127;
+        Wed, 02 Oct 2024 00:49:49 -0700 (PDT)
+Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-538a04321d3sm1860966e87.161.2024.10.02.00.49.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 00:49:47 -0700 (PDT)
+Date: Wed, 2 Oct 2024 09:49:44 +0200
+From: Marcus Folkesson <marcus.folkesson@gmail.com>
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>, Ming Lei <ming.lei@redhat.com>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>, linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>
-Subject: Re: [RFC PATCH 3/4] block: add support for partition table defined
- in OF
-Message-ID: <Zvz6ITaMKmo0U3c3@infradead.org>
-References: <20240923105937.4374-1-ansuelsmth@gmail.com>
- <20240923105937.4374-4-ansuelsmth@gmail.com>
- <ZvJdjRpFaPUuFhIO@infradead.org>
- <66f291c5.5d0a0220.328e5a.2c9e@mx.google.com>
- <Zvu0sRreId59-lpH@infradead.org>
- <66fbc042.050a0220.3523ed.a6f9@mx.google.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: mtd: davinci: add support for on-die
+ ECC engine type
+Message-ID: <Zvz7GDA278Vam4nQ@gmail.com>
+References: <20241001-ondie-v1-0-a3daae15c89d@gmail.com>
+ <20241001-ondie-v1-2-a3daae15c89d@gmail.com>
+ <20241001221032.525be1e4@xps-13>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Lk0Il1dqjQ3kDTVE"
 Content-Disposition: inline
-In-Reply-To: <66fbc042.050a0220.3523ed.a6f9@mx.google.com>
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+In-Reply-To: <20241001221032.525be1e4@xps-13>
 
-On Tue, Oct 01, 2024 at 11:26:22AM +0200, Christian Marangi wrote:
-> > No.  ->disk_name is in no way reliable, we can't hardcode that into
-> > a partition parser.
-> > 
-> 
-> Then any hint on this or alternative way?
 
-The normal way would be to use eui/ngui/uuid provided by the storage
-device.  We have a interface for that in the block layer support by
-scsi and nvme, but I don't know how to wire that up for eMMC which
-I suspect is what you care about.
+--Lk0Il1dqjQ3kDTVE
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+Hi Miquel,
+
+On Tue, Oct 01, 2024 at 10:10:32PM +0200, Miquel Raynal wrote:
+> Hi Marcus,
+>=20
+> marcus.folkesson@gmail.com wrote on Tue, 01 Oct 2024 12:42:27 +0200:
+>=20
+> > Some chips, e.g. Micron MT29F1G08ABBFAH4, has a mandatory on-die ECC.
+> > Add "on-die" as ECC engine type in order to be compatible with those.
+> >=20
+> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/mtd/davinci-nand.txt | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/D=
+ocumentation/devicetree/bindings/mtd/davinci-nand.txt
+> > index eb8e2ff4dbd2901b3c396f2e66c1f590a32dcf67..9afda5cd956494c6b3171bd=
+baecaeb289acd64ea 100644
+> > --- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+> > +++ b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
+> > @@ -44,6 +44,7 @@ Recommended properties :
+> >  				- "none"
+> >  				- "soft"
+> >  				- "hw"
+> > +				- "on-die"
+>=20
+> This file is very legacy and this addition would be totally unneeded if
+> that file had been converted to yaml earlier. Just referencing
+> nand-controller.yaml will authorize nand-ecc-mode =3D "on-die" (while
+> still marking it legacy). Would you mind converting this file please?
+
+Sure, I will give it a try.
+I will send out a v2 later today.
+
+>=20
+> Thanks,
+> Miqu=E8l
+
+
+Best regards,
+Marcus Folkesson
+
+--Lk0Il1dqjQ3kDTVE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmb8+xMACgkQiIBOb1ld
+UjJLTxAAhwmz/MNJlzpTjWl4SPKqPklm4sjeubkDZ73otz7FQlpIIr1Gont3sP/q
+jAEWpXLaNaaD64advLi5zJJawCf26etULk1zMb5IjU4xgxKz+to6umsPdebMGMwY
+64l4cD6qeTUGtflYzQLQt68RXen/XDP8XV9Zf/S6o8WbZLqyxjtzMFb7s/NJu5yA
+kziZknr6F0Jr0ucYqjJyJwtql+lZescz4MY4iR4i2VjtZL8SNYWGPHHZphKQJU0n
+byht+9dr60UNPjXVfdtMT+hA+3bRmfXP+xRXArh2cekjnybw2c7kecjxX39nvVtt
+72KsVWuHDqGLSWpfnEDIOf+tPDpLD78+e70ZLmZmSEKaR0E2LnhlyHmAVYGyIBkF
+mPNFRONHQFicbebsDIQ4Je/yZAkv3HhDGNzZELpy65TxOI/oWgU9I8wz4iTBuSiX
+1v4IChntLAEhlATWaRIJ3xM/KgadXBUcmPv1cA9fzPwmxZxpU0DXYdys5QfPBMvE
+xTEVYarg11Nflza/A+iDjhYRrlgED7TBfrMGkLaT2j08hXlvjFHmuJ06fffKGe2W
+L7wdI7c/eEjbYhfF1WKRZydl60N/YIG0pSuEOaUAcvm25uLcC10iFoHK8HYPs4TC
+AYcmpmE2ruja2beiblQRpsgBC1+/Ox5Cymt4SostqV2LJ7/eoVw=
+=Xrsg
+-----END PGP SIGNATURE-----
+
+--Lk0Il1dqjQ3kDTVE--
 
