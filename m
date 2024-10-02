@@ -1,175 +1,223 @@
-Return-Path: <devicetree+bounces-107135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A534D98D023
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8B5298D026
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:31:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 04A26B2235E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:30:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CC970B23DB6
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 09:31:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 070361C3F36;
-	Wed,  2 Oct 2024 09:30:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17C47194A4C;
+	Wed,  2 Oct 2024 09:31:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b="fgAVgRu/";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="B0Jzg89B"
+	dkim=pass (1024-bit key) header.d=kneron.us header.i=@kneron.us header.b="no3Tc1cQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2117.outbound.protection.outlook.com [40.107.244.117])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96E7C1C2DBE;
-	Wed,  2 Oct 2024 09:30:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727861411; cv=none; b=GFiuDKY0raax611dSgmVYTcJpFp+nsEsiEhrLKc0cxD+Er7PSCEsNBX4OC4nU4rZhJHjrb7U9CV+VmqN3vH8efpcB9/QTWfHejuTH7rL4l/IZt+EQbKExjlETLzVOL9SSGr44MM5sd7IlLJqmdU+RiuegrdgSqNXQ6H1nxisdKI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727861411; c=relaxed/simple;
-	bh=F4uPivEyvqmkg6qk17zm92vr+Ef3iWGqwQwnGh0igRQ=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=l1BR1iwKx1afh+GQTsJFtLLtwPC0R7xRBoSWgbdnQHvjKIYOgnTKmF0F1ZnX6ILGoGnHz1HqTbmx3hQKp24zZJ9b9J6RqfbZitY9QpiUHv0p6FOP8Jwti0xTxDB4BYIMwP7kvC5PAgRRUkhs5yjjnwYLZmb/iiw1t6TeK73K38w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de; spf=pass smtp.mailfrom=arndb.de; dkim=pass (2048-bit key) header.d=arndb.de header.i=@arndb.de header.b=fgAVgRu/; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=B0Jzg89B; arc=none smtp.client-ip=103.168.172.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arndb.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arndb.de
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 811A71140206;
-	Wed,  2 Oct 2024 05:30:08 -0400 (EDT)
-Received: from phl-imap-11 ([10.202.2.101])
-  by phl-compute-10.internal (MEProxy); Wed, 02 Oct 2024 05:30:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1727861408;
-	 x=1727947808; bh=6ZaWIYHqvT0trQqwJl3ZdMtJTTyJ1btUIeNi3HbNeug=; b=
-	fgAVgRu/VUQIL4YZtZuzBdiFaeoz3UW6cC7LmRVM8T+OlEbJHGLY1i0CrTo6CJw5
-	TuUWSH8WM2OB1q652bkIDHhhUdo0GLYLEY443Wt+7J8Jmzf1HPlZG0PNRzOdUuto
-	0lMTrJPQR917Z5ln9n0io9ZtkjUgjr+h1Fkk1NG3X9XI2LdSLKR/4c83MpyqhNk6
-	hv6/tuZgHNqeUMZDvsacfU0SwC0W4RXcEU0FMgYRC+lFkcCg+nc2d9q6dofGh5AE
-	7cH1w7Eu3wcAb+39Q65/sZPjDO9TzOLsPMlYelpNuzPRt8At/mVqniE0JbzOWdXo
-	K0zIRzc25TUuf20qEdPTGw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1727861408; x=
-	1727947808; bh=6ZaWIYHqvT0trQqwJl3ZdMtJTTyJ1btUIeNi3HbNeug=; b=B
-	0Jzg89BPUPIBWeZB3g4Ne4Wmf9+BiU59cdYm8JRlfd0EMBr4Bt+EOLgqCu74kr6K
-	x2CVBGXJGdXkIdS44rk6A5T0gPWPE2rmPi9CSCj6Tyl2aQ1cFB6MAg+DJE9ymLfj
-	IEWYZlqqQfS0S4vaEogzhEltfI1Mwp7bPFQ9tO2CfN0Nm2vJ34d9gcrTgwCNjcIN
-	3QV8mL7CM5AhODdrYk58l73LQ1p9oqc40E68seNLfJmZfsvlBQAu9RdtzHclrOdl
-	h4UFl418uBDjLTc5KCdDRryNEvjxAi3pcw74YhZGdQcTSA63kV5nIY5c3OHzuCdq
-	zhIzsN7ABzwlpuDdi4nCw==
-X-ME-Sender: <xms:nxL9ZoT_CgYCUfSRQJsgX-S-8_CGEH4M-pC79GqeoGRRkHGZKENrqA>
-    <xme:nxL9Zlx_5cHSFIIK51Vz7UDLtM24UvdGIBh52r6tzUIeLGaPMF4ML9yO73Ha6lHUm
-    3IvlZ2smgDeWEjviHk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvdduledgudegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepofggfffhvfevkfgjfhfutgfgsehtqhertdertdej
-    necuhfhrohhmpedftehrnhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrd
-    guvgeqnecuggftrfgrthhtvghrnhepvdfhvdekueduveffffetgfdvveefvdelhedvvdeg
-    jedvfeehtdeggeevheefleejnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpe
-    hmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvgdpnhgspghrtghpthhtohepfedv
-    pdhmohguvgepshhmthhpohhuthdprhgtphhtthhopeguvghrvghkrdhkihgvrhhnrghnse
-    grmhgurdgtohhmpdhrtghpthhtohepughrrghgrghnrdgtvhgvthhitgesrghmugdrtgho
-    mhdprhgtphhtthhopehhvghrvhgvrdgtohguihhnrgessghoohhtlhhinhdrtghomhdprh
-    gtphhtthhopehluhgtrgdrtggvrhgvshholhhisegsohhothhlihhnrdgtohhmpdhrtghp
-    thhtohepthhhohhmrghsrdhpvghtrgiiiihonhhisegsohhothhlihhnrdgtohhmpdhrtg
-    hpthhtohepuggrvhgvmhesuggrvhgvmhhlohhfthdrnhgvthdprhgtphhtthhopegrnhgu
-    hidrshhhvghvtghhvghnkhhosehgmhgrihhlrdgtohhmpdhrtghpthhtohepsghhvghlgh
-    grrghssehgohhoghhlvgdrtghomhdprhgtphhtthhopegvughumhgriigvthesghhoohhg
-    lhgvrdgtohhm
-X-ME-Proxy: <xmx:nxL9Zl06VOcrBeoF6pwyXEozUaLhRo5uaN-WsJ-r_zeQd1nvOOc9Yw>
-    <xmx:nxL9ZsDT6-MQasEkI4Gr0_eD215kT0GxDEPm-JXQyGxZdlROfLuMvA>
-    <xmx:nxL9Zhht69zyf2l6upRWSDQlUtb7VYlG5oHIrIyXe85wQtxpBVjYQQ>
-    <xmx:nxL9ZoqfR3cVJRIK4tsYrtczQ7WvNJZ9MkBLXLJQHt9dLuhoVIQUhw>
-    <xmx:oBL9ZsPdlsnGTgWuo_6eKK1tH3TkpfLhEVyZ1nS4p-m9m0BMxVBxUtn->
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 2881B2220071; Wed,  2 Oct 2024 05:30:07 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8944714F9F1;
+	Wed,  2 Oct 2024 09:31:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.244.117
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727861467; cv=fail; b=JsNfyYH5PodNDhsoFZMDy0FOcYra6kHUPgjRAlGng5es4JhQcNlSWSF/ck5cO4/Hs0ewB+cgFmhms0dZ5UB39HIbqY+jjH22yRtBht0D/D4k+wJbU5XJbUvbDX0RVWkdo4jyneNsw564UOKCUn8YP2AtOe1Xxd6ZR9c+plKGj9s=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727861467; c=relaxed/simple;
+	bh=rbD2YCks0BYQ6/VPNERGW8k2bUbzl9tYIVc3K5z6Fk8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KDLdfnYj+0vXkXJ/dUS3NE8dR1Ho0qQ/a7ZCyPdb2IPCm+DgWlHalDvETc+Oa6MzScFN2BXprj6kPFdMmhrQNhjpq4UCk8vsqlo3qDzncCsfTdjj2nA7WYtduGUYdbx04Ev0LwdBpW41QCLH28v2Zqo6Jlz7Q6WGHa0NY8VHhxY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kneron.us; spf=pass smtp.mailfrom=kneron.us; dkim=pass (1024-bit key) header.d=kneron.us header.i=@kneron.us header.b=no3Tc1cQ; arc=fail smtp.client-ip=40.107.244.117
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kneron.us
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kneron.us
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A0xbXXbXvz1AGxQfintqlyPUXiIBjRbOQ0ZIcaHv8DfOaBtITzWP20iCcbRB+YhFotTbZam4ySVnFAQrwdjUokXA6NDjnIuAu02ODy1t6Ayo2LDfh1ns6u1ufUe46c4AWyOwL7As1rgVI2wUq9Vnz4jt27RE2W2niIHMx1RE6bkrzNhHUz/UC4CWoem4v2+jFdY8wUcf8Nuno0GVoMHLvxSVXlKP19JuINrNKQXW55qeXzs01/hi3fVwlsMCO8DT8AruLiqUxF1Rk/XHjhIyhai2LexIpzl8OHgd9HWSIRTVTM2geeHUCdzkzNKndIxclL9QDkF0JCVObYhLknftpA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=y75+lS4/X34HFe9V/NdRX57oGJLzxsCLn2dP3LZgELo=;
+ b=rP1uM10nzjsEoKD/xONC67K4t8epp/m9DA9yxizrcd9dhV520wQpHPcvotURGt1E6WjIKSoP/T5NVMWe4IaLr+JBJKwEzOIv+hRj1W5gNMr7Aonk6dskyAklb1TiXTir3/HU/nmZWyl1A/SAKkOuuhZuxuOoKSA+qzwFIatzRsuBSU8E6PzD2E+8BNp9RKJfHgXHmQZNloXiHiH9UmxN0/HJDzO9qbq470mGRul9yN8dP/qANF+xG8Yao+SJMaN1ZYc1dZ5yLeO8B4Iy2f/vt9o7A8mTWU0TW3bCRhARHuPjmBgzMWZlPzr2a0tC/fz1iKdf3NXLUVwAu3h5nKWC3w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kneron.us; dmarc=pass action=none header.from=kneron.us;
+ dkim=pass header.d=kneron.us; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kneron.us;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=y75+lS4/X34HFe9V/NdRX57oGJLzxsCLn2dP3LZgELo=;
+ b=no3Tc1cQ75EPU7PYP7wtgWCBEb178X6G1n9CgriJVbHgD/k0CcrcehUcKrCuLVOiABazuooOO1CG1IgQy7HDfya9zYsy1UEMkYDC6haf4eoqK4BLSDOE5eHBNNOSURb+u2U+Ei0djNwDRQSgAOfrEFu+mrjQcDb6GaYxymBjQiY=
+Received: from IA1PR14MB6224.namprd14.prod.outlook.com (2603:10b6:208:42b::6)
+ by CH2PR14MB3722.namprd14.prod.outlook.com (2603:10b6:610:6b::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Wed, 2 Oct
+ 2024 09:31:01 +0000
+Received: from IA1PR14MB6224.namprd14.prod.outlook.com
+ ([fe80::c527:653c:698d:3d94]) by IA1PR14MB6224.namprd14.prod.outlook.com
+ ([fe80::c527:653c:698d:3d94%3]) with mapi id 15.20.8026.016; Wed, 2 Oct 2024
+ 09:31:00 +0000
+From: Michael Wu <Michael.Wu@kneron.us>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+CC: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>, Mika Westerberg
+	<mika.westerberg@linux.intel.com>, Jan Dabros <jsd@semihalf.com>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, morgan chang
+	<morgan.chang@kneron.us>, "mvp.kutali@gmail.com" <mvp.kutali@gmail.com>
+Subject: RE: [PATCH v3 2/2] i2c: dwsignware: determine HS tHIGH and tLOW based
+ on HW parameters
+Thread-Topic: [PATCH v3 2/2] i2c: dwsignware: determine HS tHIGH and tLOW
+ based on HW parameters
+Thread-Index: AQHbE9w0Sra2RyfSFke7Tnu31GzDM7Jx3DIAgAFVAAA=
+Date: Wed, 2 Oct 2024 09:31:00 +0000
+Message-ID:
+ <IA1PR14MB62241CADFE580EC861C591F58A702@IA1PR14MB6224.namprd14.prod.outlook.com>
+References: <20241001082937.680372-1-michael.wu@kneron.us>
+ <20241001082937.680372-3-michael.wu@kneron.us>
+ <Zvvyii7aViGCklcT@smile.fi.intel.com>
+In-Reply-To: <Zvvyii7aViGCklcT@smile.fi.intel.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kneron.us;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA1PR14MB6224:EE_|CH2PR14MB3722:EE_
+x-ms-office365-filtering-correlation-id: 0e94affa-5744-4216-cc87-08dce2c4edb1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|80162021|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?ZrcAmyvbcNZ6aeVLgpsPSn9unh/yQreRVcCLQhbSJyuNg5IhQ34TGBrb27Vm?=
+ =?us-ascii?Q?jD7uui25a8S5b/1cKsu/tBc0L7H+VqUVa8+XuHe1RE/Afeh+2RNggg49Sz9b?=
+ =?us-ascii?Q?4QbWQ2C1Hb/3ifvNDunSgoJooNP8WPgpR2ootmCaCpGjuJMykAgIY5tJGsER?=
+ =?us-ascii?Q?pPuEh05svk6kaWY6VlEazDVAgavHx2Any5EEJxIUT4UGLb6MHn5+c265Ljvt?=
+ =?us-ascii?Q?XPfmv3B3sueQkNC9AR1Dnjc7Ieowqn7xqNEkQMl3Y2Q60eXYBVRs3Rpi89Mc?=
+ =?us-ascii?Q?KwB2mKk0HoLLjSRZnlGnFdGle5h80OTKCrxMgsruGba8V/zfRuogw9/DqUAt?=
+ =?us-ascii?Q?ymB341kTwDf0mnjRbSt7Spa4DzD6nlfmumebEKpd8MpiiTMmE4OCFqQSepwu?=
+ =?us-ascii?Q?rJY+xxgm+geYvwTQzVY606o/sp0LHOdrvo4X/GeeSX6Gj79mTeau4PUa9Tac?=
+ =?us-ascii?Q?4GLDUFuax0iYHtjx7c/joc2NghZVvzRctb3x5EJM99G0DV3OyeqyRsNv15iO?=
+ =?us-ascii?Q?kFo0/Rp7j6txCARuG9kNaApFC1HxZcTiN+0vSrkZC/4m2DtkFp5JyPuGyNnr?=
+ =?us-ascii?Q?vzd6tkm+xlkPX4GFteSAtRQRzo3xGqaSU8aAWGmr3fK2bBsJ091y9ONSibx2?=
+ =?us-ascii?Q?u9RkF1cVBOQ+/BTRGOuP0+jBo5VA223XoH7gNoGYABt1wS5+5tRNPgNLZO+W?=
+ =?us-ascii?Q?s9Thxt1h05WvWEGlqRBtX4ghqPRLBd96u0SOmdxrMGZFkSpe2ZlOR1h3vx3C?=
+ =?us-ascii?Q?YgLhkqyOWausDO9fda53bxNTKHTIkZiwRA9SjP6sXZCbMrJ9x3Eu2pKr7epG?=
+ =?us-ascii?Q?OM8qARK7oXt+l5tVoDQP3L/Oc4qVbVnm9fVJZCoGRc17A/qBHpu/HZRib0IV?=
+ =?us-ascii?Q?VCliJsuCf4dI1vxEmAFHLCr8GhqYz7RNI9lCATi6BN1TdanqIooqNPrntfbO?=
+ =?us-ascii?Q?zFjzxVYBgSJDxffY0bQDp9xvWdkexndHATBJbbpN41a98q6gvmR6w/XdqEeO?=
+ =?us-ascii?Q?+9Bm1yE0nnNOdjEdCXacSwP60qB7hPD2AgvtuUDyB0bdpdf+RTghFsWL9lgx?=
+ =?us-ascii?Q?l9ZWjtFTwalKVzFbkNKnULZaC3zL7nQrLK8mH4cX9r/pDSgXYz3+SCaDoXKY?=
+ =?us-ascii?Q?kKFzzVaV3wom4H6pSADW4NDE4KU1P4ibdE5L53fAIzjKOjLaQxX18pDITvwD?=
+ =?us-ascii?Q?MF8UiDKAQ5QSZShz7bYlTVqBLsz52/xfHaXcySyAkZAH+cMrqofq59cQM8Db?=
+ =?us-ascii?Q?Sj27UrwObE3ZluAvDS49+QRMcNVTAkVD+sflg6jW6POxJ4aAtFAVzERg6EDX?=
+ =?us-ascii?Q?RPvFPBNTGoJmKSZZMa/CSkc4aWmvda6hdPkLlQaPLoaiQOOi1+59+qeteReH?=
+ =?us-ascii?Q?mg1y0Qw=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA1PR14MB6224.namprd14.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(80162021)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?kNzvvJQJrO2RQB+XDwb/GJdlTbWoehipIUYhvwhzBvMc9SqCJGeZ9hbkaMjX?=
+ =?us-ascii?Q?IZZEGUtPHCx8zE+EexEXu+t+koL09ulzXzixhMhVpj4JexeF1Z//KJx9Z1A9?=
+ =?us-ascii?Q?Srlbq1IaLkW5lAEGZV0vxYCwW7vZz8Mf4fbFXLivZn9PBQ+jeKvQzloZM9gb?=
+ =?us-ascii?Q?PIxoBeAYXSLLMqN4rwKI/Uh/8as3Neh1HlU+6CHagQu0KulJZZ/NI4Kyrogz?=
+ =?us-ascii?Q?Rz4LtkTuysJuq6Bo43x1BUQ6Km7vWjoKeLJXok043tGim3NaC/dsAtD3GiPE?=
+ =?us-ascii?Q?5XzoEG32be7Fc/fOKmOmwQpWWlQxsOeaeDkwCq+H9nFGo0VYg3kBQogdKKzi?=
+ =?us-ascii?Q?tMPN/M/4DwYD/ox77IJ05FdOZdyVNWZjY6uufTP4Ttb4FYQ6UMGrxwL4R3Q3?=
+ =?us-ascii?Q?wUzZ8RRX0UyhTWtI+bJlNLKXokc0gLeaTTsF0h0lUVdztn/dwajU3iuvrKgd?=
+ =?us-ascii?Q?LgIVfdSQJAkG+UUsTEtxMhWwndiRMf8oMx76JfODgKrgr2ubAkoHd5Z8NLVl?=
+ =?us-ascii?Q?/QlhRtpKhCctXsvuZCCEHsXiSumzcZZdfOQuIQ0MlAHulnwjbcsOlsRG5U+C?=
+ =?us-ascii?Q?Ph6vCWGqm+cv34seWFRB03eMdfTADf6DChyqlnygUe76NPT274PNTV2dVPnc?=
+ =?us-ascii?Q?uLMGgJ3Wzz2BUTEzKRsOsRvoHK5RPePPl7jViIDvkU9flrk7gsJZBN52LO9Y?=
+ =?us-ascii?Q?JJX8PLHzV1AUdZqdsaS6qvbcn+fxdHvgt+Xz7qENph3SGxQU3+IyLXBSyDwa?=
+ =?us-ascii?Q?TeDLVDpqzKT9+HRgMhZa+o/stjk9lB+hAZY2flONHsr3UKYBXnHH34Jt4yDs?=
+ =?us-ascii?Q?ClQ5euCGDMGMpiEc4bj2kituv0Rr7wRqnw8iR+rzC9MO1mcdwhquKF33lQpv?=
+ =?us-ascii?Q?ztzjUXoNEQGMFXH1c/rEgyxi3gnXHY/cP2e2dnOpIdu1GuHB3MkygQcr4Zo0?=
+ =?us-ascii?Q?z8+1yTv4rJ28V8FK2Ml+y4x+0n2PcybpmhtGY99wiTL7M7muF4disASvLRbk?=
+ =?us-ascii?Q?s+HcesLziVqSqBSfmkTnt79IP3dkJPOOdOZUdtaY21YK/vl8akL4sFsXN3C2?=
+ =?us-ascii?Q?r5t/sgcSA/tSPbkv+yDx3bLKlFT1EjlJ2LzJ4KWBL1ZXMM6ram5ejuFEGAb0?=
+ =?us-ascii?Q?+ALiiVsfjYqMZbtfaIH4EBtaiT2sEeh42CLt8PUu0N/6pQ3ta6VBuz10EZzk?=
+ =?us-ascii?Q?EJm1JCWt3DPcqISm1VBswmFErCkXh9vaB4zcsQ5F+xhSK8gsSXLHNHyj8SdU?=
+ =?us-ascii?Q?R4b+/D6eyCvrLJk8mUCsW30sFf3+sOD/P15svsXGBemaJBbiWuwy/sFpbeNT?=
+ =?us-ascii?Q?XjjcmtbUBKi2rU8BnxGwv6Z0MbWlzNOqL3NcLMjU1N/Sl5bob2gJzuBBnCEQ?=
+ =?us-ascii?Q?QwfpTO5zRzvO9nT7jkEdeIyDSCXmi+9D9/2KOnGpZZZ0Wxpp1LQr84gejOof?=
+ =?us-ascii?Q?y2hyALYnwkUGLG+6ndtwYtNOATMCzPgT7mbtcH1mGvIPRtGtfLCoXkymYyDE?=
+ =?us-ascii?Q?ytNhjGDFSXn/E6n1n+mzWvpO6g/Raaq45A7ezbm1Ha71xkbHc9w1hR5M3h6y?=
+ =?us-ascii?Q?9fU7ggpdxzhsTxQqJkc=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Wed, 02 Oct 2024 09:29:35 +0000
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Herve Codina" <herve.codina@bootlin.com>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Andy Shevchenko" <andy.shevchenko@gmail.com>,
- "Simon Horman" <horms@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>,
- "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
- "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>,
- "Lars Povlsen" <lars.povlsen@microchip.com>,
- "Steen Hegelund" <Steen.Hegelund@microchip.com>,
- "Daniel Machon" <daniel.machon@microchip.com>,
- UNGLinuxDriver@microchip.com, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>,
- "Saravana Kannan" <saravanak@google.com>,
- "David S . Miller" <davem@davemloft.net>,
- "Eric Dumazet" <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>,
- "Paolo Abeni" <pabeni@redhat.com>,
- "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- "Allan Nielsen" <allan.nielsen@microchip.com>,
- "Luca Ceresoli" <luca.ceresoli@bootlin.com>,
- "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
-Message-Id: <bd40a139-6222-48c5-ab9a-172034ebc0e9@app.fastmail.com>
-In-Reply-To: <20241001183038.1cc77490@bootlin.com>
-References: <20240930121601.172216-1-herve.codina@bootlin.com>
- <20240930121601.172216-3-herve.codina@bootlin.com>
- <d244471d-b85e-49e8-8359-60356024ce8a@app.fastmail.com>
- <20240930162616.2241e46f@bootlin.com> <20241001183038.1cc77490@bootlin.com>
-Subject: Re: [PATCH v6 2/7] reset: mchp: sparx5: Use the second reg item when
- cpu-syscon is not present
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: kneron.us
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR14MB6224.namprd14.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0e94affa-5744-4216-cc87-08dce2c4edb1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2024 09:31:00.9055
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: f92b0f4b-650a-4d8a-bae3-0e64697d65f2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: HDPi2XWwtzh6gZXgo36BtxxNxGdkeqrF86C7YJoRbaBsEt2WrJV+WtQNK0Ixf1bFnzb0DIHeWGwgtDIewOYf1A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR14MB3722
 
-On Tue, Oct 1, 2024, at 16:30, Herve Codina wrote:
-> On Mon, 30 Sep 2024 16:26:16 +0200
-> Herve Codina <herve.codina@bootlin.com> wrote:
-> --- 8< ---
->
-> In mchp_sparx5_map_syscon(), I will call the syscon API or the local
-> function based on the device compatible string:
-> 	--- 8< ---
-> 	if (of_device_is_compatible(pdev->dev.of_node,=20
-> "microchip,lan966x-switch-reset"))
-> 		regmap =3D mchp_lan966x_syscon_to_regmap(&pdev->dev, syscon_np);
-> 	else
-> 		regmap =3D syscon_node_to_regmap(syscon_np);
-> 	--- 8< ---
->
-> Is this kind of solution you were expecting?
-> If you have thought about something different, can you give me some po=
-inters?
+Hi,
 
-Hi Herv=C3=A9,
+> On Tue, Oct 01, 2024 at 04:29:34PM +0800, Michael Wu wrote:
+> > In commit 35eba185fd1a ("i2c: designware: Calculate SCL timing paramete=
+r
+> > for High Speed Mode") hs_hcnt and hs_lcnt are calculated based on fixed
+> > tHIGH =3D 160 and tLOW =3D 120. However, the set of these fixed values =
+only
+> > applies to the combination of hardware parameters IC_CAP_LOADING =3D
+> 400pF
+> > and IC_CLK_FREQ_OPTIMIZATION =3D 1. Outside of this combination, if the=
+se
+> > fixed tHIGH =3D 160 and tLOW =3D 120 are still used, the calculated hs_=
+hcnt
+> > and hs_lcnt may not be small enough, making it impossible for the SCL
+> > frequency to reach 3.4 MHz.
+> >
+> > Section 3.15.4.5 in DesignWare DW_apb_i2b Databook v2.03 says that when
+> > IC_CLK_FREQ_OPTIMIZATION =3D 0,
+> >
+> >     MIN_SCL_HIGHtime =3D 60 ns for 3.4 Mbps, bus loading =3D 100pF
+> > 		     =3D 120 ns for 3.4 Mbps, bus loading =3D 400pF
+> >     MIN_SCL_LOWtime =3D 160 ns for 3.4 Mbps, bus loading =3D 100pF
+> > 		    =3D 320 ns for 3.4 Mbps, bus loading =3D 400pF
+> >
+> > and section 3.15.4.6 says that when IC_CLK_FREQ_OPTIMIZATION =3D 1,
+> >
+> >     MIN_SCL_HIGHtime =3D 60 ns for 3.4 Mbps, bus loading =3D 100pF
+> > 		     =3D 160 ns for 3.4 Mbps, bus loading =3D 400pF
+> >     MIN_SCL_LOWtime =3D 120 ns for 3.4 Mbps, bus loading =3D 100pF
+> > 		    =3D 320 ns for 3.4 Mbps, bus loading =3D 400pF
+> >
+> > In order to calculate more accurate hs_hcnt amd hs_lcnt, two hardware
+> > parameters IC_CAP_LOADING and IC_CLK_FREQ_OPTIMIZATION must be
+> > considered together.
+>=20
+> ...
+>=20
+> > + * @bus_capacitance_pf: bus capacitance in picofarads
+>=20
+> Since it seems a new version of the series is warranted, and looking into
+> the current kernel source (no other users of this unit were observed),
+> I think we may do correct capitalisation here for the sake of physics
+> and unit system, i.e.
+>=20
+>  * @bus_capacitance_pF: bus capacitance in picofarads
 
-The way I had imagined this was to not need an if() check
-at all but unconditionally map the syscon registers in the
-reset driver.
+Are you serious? I have never seen capital letters used to declare a
+variable name. Although checkpatch.pl does not consider this as an issue,
+is this against everyone's custom or unspoken rules?
 
-The most important part here is to have sensible bindings
-that don't need to describe the difference between PCI
-and SoC mode. This seems fine for the lan966x case, but
-I'm not sure why you need to handle sparx5 differently here.
-Do you expect the syscon to be shared with other drivers
-on sparx5 but not lan966x?
+Sincerely,
+Michael
 
-I don't thinkt this bit matters too much and what you suggest
-works fine, I just want to be sure I understand what you are
-doing.
-
-      Arnd
 
