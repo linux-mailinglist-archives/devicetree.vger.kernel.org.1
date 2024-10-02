@@ -1,237 +1,204 @@
-Return-Path: <devicetree+bounces-107294-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107295-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BBBC698DF50
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C561998DF58
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:36:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63CDE1F23B13
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:35:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CDD41F21706
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:36:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1001F1D0DF2;
-	Wed,  2 Oct 2024 15:35:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 901DA1D096B;
+	Wed,  2 Oct 2024 15:36:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvZ48ukx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hT+ODeYz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FC51D0DD9;
-	Wed,  2 Oct 2024 15:35:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6448323CE;
+	Wed,  2 Oct 2024 15:36:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727883344; cv=none; b=RYnwtZjO0O+ZFZUIMbf1jmfQUc0dfaONa8+bKtCihN5Wxxcjc8fqJ6dQjcnNOZa4tcwOpRLHZCVdX00/eDwEopBxoR/kQv4RqUi0qSf9j0JQz8TAUhOvK/L4vJJa8qkxaVnrEfplMPFCqIQrlneHsYjsQBDmnYJ5YnNFh71cByo=
+	t=1727883401; cv=none; b=CYzMc/BUnVTjE/Yq4xUOhZTiL/lMbA3wVv+AB1WF2zogy+ANhUKN5jm/t/5lIllhyp+YVxfMyiZsmaMVsW3BfLX3Rs9T6k/pAKF1FgvZrKqIzix967k8hBu/GC6jiMBwRk6KDztyKd5nne9cws48mQAUTnSR7L1tHtsz1io2hV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727883344; c=relaxed/simple;
-	bh=k1zW8KXz7EwiJvjqcAxwtSjygKZUVJO8HBFqTJuGMF0=;
+	s=arc-20240116; t=1727883401; c=relaxed/simple;
+	bh=lctykuC46Ge7cuFFtl6NptKvP7roRa2TVOdlVGRKfOI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rQ5iwQ/2ABMp30aiiUKMjLqvalzp4G8Jdu+R3KMqHwN0w+qPsrEDsoL/9TLj34Ri7yvKlnUvxezwlsRR6lhdyVula/HAoJgQ25kff4XkrLPXk1KZ5voP4/O8BQSQ2KIo0/h7AhuDRwJAFibA7JOrJLjebK3/il36ize+xN/IiBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvZ48ukx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF281C4CECD;
-	Wed,  2 Oct 2024 15:35:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=oHcUAKXJK66DuUX1XObMM3iTJikum/zQVzJ/gF3CkyEX4dTvYtpFEflBd69Xb51ki+bdhUM9UuaKG0Pd/SP29pqLR6tnrPNITBdNN+QNVF9l4LpJ73lXlRQHxAK62qqrmCsjtxaZ01Ffob3/Ns/mVIJV5mGGHVoH8LSFhI1xFOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hT+ODeYz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D213C4CEC2;
+	Wed,  2 Oct 2024 15:36:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727883343;
-	bh=k1zW8KXz7EwiJvjqcAxwtSjygKZUVJO8HBFqTJuGMF0=;
+	s=k20201202; t=1727883400;
+	bh=lctykuC46Ge7cuFFtl6NptKvP7roRa2TVOdlVGRKfOI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gvZ48ukxkvlA/tROM+XWQCC+GQjn1xdlFnYHeifEYVq3bNZE7U+/awWbv/IXObCLK
-	 Ysc1gbU85mEH1o377fQn2byyXFnnUwqVzaCVMUJDVsA8bKlOmU5vmNabqZmvyRGbGc
-	 X/7kX4t1SPLDknV2pBJAyf8aXxdc31pTUtOn2E1xJQ91H6DmdnOUL0nKg75YA48ga8
-	 /xwVQ+krKvfrEpXXbqzBZXcjjpO8Rpksw4EdnWB1XquWOMs6zS79szHrzEoSX0ZE31
-	 jvaKCO00kXJudpcVy4IoBnDzj6q4gdEc1EpMNZp4UTrHDbHjavRHXl1tGXmhrSbzdl
-	 mkgFXnebCgzIw==
-Date: Wed, 2 Oct 2024 16:35:36 +0100
-From: Lee Jones <lee@kernel.org>
-To: Junhao Xie <bigfoot@classfun.cn>
-Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-watchdog@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	Sebastian Reichel <sre@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>
-Subject: Re: [PATCH 7/9] leds: add Photonicat PMU LED driver
-Message-ID: <20241002153536.GG7504@google.com>
-References: <20240906093630.2428329-1-bigfoot@classfun.cn>
- <20240906093630.2428329-8-bigfoot@classfun.cn>
+	b=hT+ODeYzFnlF1CUJBWx1Do8y0KPikbSGpiRD2R0pveI9OLpJe7FQrQ3tH3z3liut8
+	 Rughfacwz7VjJNYXlaJgGWABfehCH8SHe3MFgXXN8V7BZmXBgMMY8WhQ8/Wv0o79Tg
+	 +pS3gKsghJftIkEU7pRQDy9EluO8SFACY7UNFYjPJ3jKfGJ9BtNv5GX3r2Or+BIpkQ
+	 HpYM+wUM9tjKRIl92wEIku/IhiF/77jJ+K4/rRkqgVn5m6cEaO6Xpy7aiDttwN0Oy2
+	 yg/Du//UebEzY6udF7tNlyVemf67kiuQ4vzckwQ1ZMdttPtQVJEWyN6lp0hrJoeLyR
+	 GOSw30bTmXi2g==
+Date: Wed, 2 Oct 2024 17:36:38 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v4 4/5] pinctrl: airoha: Add support for EN7581 SoC
+Message-ID: <Zv1ohibsTelBBMc9@lore-desk>
+References: <20240911-en7581-pinctrl-v4-0-60ac93d760bb@kernel.org>
+ <20240911-en7581-pinctrl-v4-4-60ac93d760bb@kernel.org>
+ <CACRpkdZbyQ5bk8oR+Q4UmQCdM5h1mF1ztBc26YzqNsze_B=ehA@mail.gmail.com>
+ <ZvKQe73ZKIFy4fny@lore-desk>
+ <CACRpkdbXWMU+wq6DvviCQPQ0EzKUm9oOnyFh34Bm=Y8K-HmT0Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="8Llyx+/6l0oTvjiz"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbXWMU+wq6DvviCQPQ0EzKUm9oOnyFh34Bm=Y8K-HmT0Q@mail.gmail.com>
+
+
+--8Llyx+/6l0oTvjiz
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240906093630.2428329-8-bigfoot@classfun.cn>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 06 Sep 2024, Junhao Xie wrote:
+> Hi Lorenzo,
+>=20
+> so these comments:
+>=20
+> On Tue, Sep 24, 2024 at 12:12=E2=80=AFPM Lorenzo Bianconi <lorenzo@kernel=
+=2Eorg> wrote:
+>=20
+> > > > +#include <linux/pinctrl/consumer.h>
+> > >
+> > > Why do you need the consumer header?
+> >
+> > we need it for pinctrl_gpio_direction_output() and
+> > pinctrl_gpio_direction_input() for direction_input and direction_output
+> > callbacks.
+>=20
+> I looked it over again and it looks good, I was just confused.
 
-> Photonicat has a network status LED that can be controlled by system.
-> The LED status can be set through command 0x19.
-> 
-> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
-> ---
->  drivers/leds/Kconfig           | 11 +++++
->  drivers/leds/Makefile          |  1 +
->  drivers/leds/leds-photonicat.c | 75 ++++++++++++++++++++++++++++++++++
->  3 files changed, 87 insertions(+)
->  create mode 100644 drivers/leds/leds-photonicat.c
-> 
-> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-> index 8d9d8da376e4..539adb5944e6 100644
-> --- a/drivers/leds/Kconfig
-> +++ b/drivers/leds/Kconfig
-> @@ -381,6 +381,17 @@ config LEDS_PCA9532_GPIO
->  	  To use a pin as gpio pca9532_type in pca9532_platform data needs to
->  	  set to PCA9532_TYPE_GPIO.
->  
-> +config LEDS_PHOTONICAT_PMU
-> +	tristate "LED Support for Photonicat PMU"
-> +	depends on LEDS_CLASS
-> +	depends on MFD_PHOTONICAT_PMU
-> +	help
-> +	  Photonicat has a network status LED that can be controlled by system,
+ack, no worries.
 
-"the system"
+>=20
+> > > > +               arg =3D airoha_pinctrl_gpio_get_direction(pinctrl, =
+gpio);
+> > >
+> > > I don't see why a pin would have to exist in a GPIO range in order to
+> > > be set as output or input?
+> > >
+> > > Can't you just set up the pin as requested and not care whether
+> > > it has a corresponding GPIO range?
+> > >
+> > > Is it over-reuse of the GPIO code? I'd say just set up the pin instea=
+d.
+> >
+> > Do you mean to get rid of PIN_CONFIG_OUTPUT_ENABLE, PIN_CONFIG_INPUT_EN=
+ABLE
+> > (and even PIN_CONFIG_OUTPUT in airoha_pinconf_set()) here?
+> > E.g. we need PIN_CONFIG_OUTPUT_ENABLE to enable pwm for pwm-leds:
+>=20
+> I was mainly thinking that the
+> airoha_pinctrl_gpio_get_direction() is limited to pins that are
+> used for GPIO.
+>=20
+> The callback should be usable on any pins, no matter if they
+> can be muxed to GPIO or not?
+>=20
+> > &mfd {
+> >         ...
+> >         pio: pinctrl {
+> >                 ...
+> >                 pwm_gpio18_idx10_pins: pwm-gpio18-idx10-pins {
+> >                         function =3D "pwm";
+> >                         pins =3D "gpio18";
+> >                         output-enable;
+> >                 };
+> >         };
+> > };
+>=20
+> Like this one.
+>=20
+> Which I think works.
+>=20
+> It's the name of the function which confuses me:
+> airoha_pinctrl_gpio_get_direction() and anything else that
+> is used directly from the airoha_pinconf_set() function
+> doesn't really care if the pin is used as GPIO or not does
+> it?
+>=20
+> Can you rename the functions just e.g. airoha_pinctrl_get_direction()
+> because it has nothing to do with GPIO. It's jus pin control.
 
-> +	  this option enables support for LEDs connected to the Photonicat PMU.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called leds-photonicat.
-> +
->  config LEDS_GPIO
->  	tristate "LED Support for GPIO connected LEDs"
->  	depends on LEDS_CLASS
-> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-> index 18afbb5a23ee..dcd5312aee12 100644
-> --- a/drivers/leds/Makefile
-> +++ b/drivers/leds/Makefile
-> @@ -76,6 +76,7 @@ obj-$(CONFIG_LEDS_PCA9532)		+= leds-pca9532.o
->  obj-$(CONFIG_LEDS_PCA955X)		+= leds-pca955x.o
->  obj-$(CONFIG_LEDS_PCA963X)		+= leds-pca963x.o
->  obj-$(CONFIG_LEDS_PCA995X)		+= leds-pca995x.o
-> +obj-$(CONFIG_LEDS_PHOTONICAT_PMU)	+= leds-photonicat.o
->  obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
->  obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
->  obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
-> diff --git a/drivers/leds/leds-photonicat.c b/drivers/leds/leds-photonicat.c
-> new file mode 100644
-> index 000000000000..3aa5ce525b83
-> --- /dev/null
-> +++ b/drivers/leds/leds-photonicat.c
-> @@ -0,0 +1,75 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024 Junhao Xie <bigfoot@classfun.cn>
-> + */
-> +
-> +#include <linux/mfd/photonicat-pmu.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/leds.h>
+ack, I will do in v6
 
-Alphabetical.
+>=20
+> Also some defines are confusing this way:
+>=20
+> +       /* set output enable */
+> +       mask =3D BIT(gpio % AIROHA_GPIO_BANK_SIZE);
+> +       index =3D gpio / AIROHA_GPIO_BANK_SIZE;
+> +       airoha_pinctrl_rmw(pinctrl, pinctrl->gpiochip.out[index],
+> +                          mask, !input ? mask : 0);
+>=20
+> Variables named "gpio" and AIROHA_GPIO_BANK_SIZE despite
+> it is used for pins that are not (in the Linux sense) GPIO all the time.
+> This is a big confusion for the mind.
+>=20
+> Can you rename the variable from "gpio" to "pin" or so
+> and the AIROHA_GPIO_BANK_SIZE to AIROHA_PIN_BANK_SIZE
+> etc so it is clear what is going on?
 
-> +struct pcat_leds {
-> +	struct device *dev;
+ack, I will do in v6
 
-Where is this used?
+>=20
+> I understand that the datasheet might be talking about
+> "GPIO this and GPIO that" but what hardware engineers mean
+> with GPIO is something else than what Linux mean: for them
+> it means "it can be muxed so it is kinda-general-purpose-kinda"
+> but in Linux this has a strict meaning: it can be used by the
+> gpiolib to control individual lines.
+>=20
+> I think this would make it easier for me (and possibly others)
+> ton understand the driver.
 
-> +	struct pcat_pmu *pmu;
+ack.
 
-Why do you need to store this?
+Regards,
+Lorenzo
 
-Can't you get this at the call-site by:
+>=20
+> Yours,
+> Linus Walleij
 
-  dev_get_drvdata(cdev->dev->parent)
+--8Llyx+/6l0oTvjiz
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +	struct led_classdev cdev;
-> +};
-> +
-> +static int pcat_led_status_set(struct led_classdev *cdev,
-> +			       enum led_brightness brightness)
-> +{
-> +	struct pcat_leds *leds = container_of(cdev, struct pcat_leds, cdev);
-> +	struct pcat_data_cmd_led_setup setup = { 0, 0, 0 };
-> +
-> +	if (brightness)
-> +		setup.on_time = 100;
-> +	else
-> +		setup.down_time = 100;
-> +	return pcat_pmu_write_data(leds->pmu, PCAT_CMD_NET_STATUS_LED_SETUP,
-> +				   &setup, sizeof(setup));
-> +}
-> +
-> +static int pcat_leds_probe(struct platform_device *pdev)
-> +{
-> +	int ret;
+-----BEGIN PGP SIGNATURE-----
 
-Small sized variables at the bottom please.
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZv1ohgAKCRA6cBh0uS2t
+rH+tAQDVCYAU8i0rHVxzYHBy1Ru8GILe3Gh2kkzSc5/XbFIkzQD/d6b4CDLvoUdk
+uGizF04DYikQfU5iZjLOTvNb53Wy3w4=
+=cKW5
+-----END PGP SIGNATURE-----
 
-> +	struct device *dev = &pdev->dev;
-> +	struct pcat_leds *leds;
-> +	const char *label;
-> +
-> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
-> +	if (!leds)
-> +		return -ENOMEM;
-> +
-> +	leds->dev = dev;
-
-Where is this used?
-
-> +	leds->pmu = dev_get_drvdata(dev->parent);
-> +	platform_set_drvdata(pdev, leds);
-
-Where do you platform_get_drvdata()
-
-> +	ret = of_property_read_string(dev->of_node, "label", &label);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "No label property\n");
-> +
-> +	leds->cdev.name = label;
-> +	leds->cdev.max_brightness = 1;
-> +	leds->cdev.brightness_set_blocking = pcat_led_status_set;
-> +
-> +	return devm_led_classdev_register(dev, &leds->cdev);
-> +}
-> +
-> +static const struct of_device_id pcat_leds_dt_ids[] = {
-> +	{ .compatible = "ariaboard,photonicat-pmu-leds", },
-
-How many LEDs are there?
-
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, pcat_leds_dt_ids);
-> +
-> +static struct platform_driver pcat_leds_driver = {
-> +	.driver = {
-> +		.name = "photonicat-leds",
-> +		.of_match_table = pcat_leds_dt_ids,
-> +	},
-> +	.probe = pcat_leds_probe,
-> +};
-> +module_platform_driver(pcat_leds_driver);
-> +
-> +MODULE_AUTHOR("Junhao Xie <bigfoot@classfun.cn>");
-> +MODULE_DESCRIPTION("Photonicat PMU Status LEDs");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.46.0
-> 
-
--- 
-0)
-Lee Jones [李琼斯]
+--8Llyx+/6l0oTvjiz--
 
