@@ -1,96 +1,109 @@
-Return-Path: <devicetree+bounces-107171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4715698D141
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:31:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95F3098D146
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB3B0B22DEA
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:31:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C87DA1C21D5F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:31:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED5851E633B;
-	Wed,  2 Oct 2024 10:30:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDC81E6DD2;
+	Wed,  2 Oct 2024 10:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="n8YRS93d"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="mgaU6W4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6415D18027
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 10:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB441E6DC0;
+	Wed,  2 Oct 2024 10:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727865057; cv=none; b=QHOuatJF9t+YPhc9tOyVGuIJKNCp+3g4jeP8ATL9LgwXGOcGRnNTCvmlcn8EZJl/opxKzZ+cbzWmnUQO6R8uKgJLhl6v+mdPA/YZXnXn11EdE9RC10W63u+pMhc0RP1zAIjgw7VbId9qdOBGgBZ3V5LaPvSBIuWQcH77wGcD+gM=
+	t=1727865081; cv=none; b=bz5WE0Mjh4uRz20K3awgrhvtBxnzMU/6CG3mQVIpz2jbmzYZ+gDLxfUjqdnfQGWz+zCTxoaaxXOkX52jeNDdFBfjV8QhJfAf21mBPrELVF/v5OgbFcYpuMNfrmWvY0LtaPWKgQVePwV2kcTHh4ypFp+vVlM7WA+C03z/WgDdCCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727865057; c=relaxed/simple;
-	bh=Gd79QcJxRs0c7MxVsLOexYIm9KUJ2F2ufM7fMk8Hm8w=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=k0SiRuTzSP0bWsBfCDlbf5IocPPR/eoWxCXmfNztvPslSDkM1J5haXmu3z/g4sjhHsXreNjBXDCc/a8FKcBByZY6ZoaN+HNxIKGMda4N9sAQr+gyds5AjD7a6rmzcJ9x0O9UxPLnEFoESNZ3cUYfkBOYtEr2LgX0/Vfl1m8GByw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=n8YRS93d; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Hy07rBgoHRslj4sPGDvnHmNWupEY5u+zxq1ov9k/fw4=; b=n8YRS93d8w5oA6CSFNgHpkGg6I
-	WUAyW3YHuA7Sq2WgKHMj13SZrk4fnMtoOxsrEMQ4IYvzJF+0q9HxzTDk3T49PzioChQsBWuGAaDi/
-	vGs+xRVT/hKj8GTrXZI6FnFAEn1jgQUSscUpvxBmI4ZB/mQ1rgZjeMMX3YnJm0RnEj57TKYjUkoQ2
-	BeC8T9l2rP2tyUQ0evnDjkEAlvnlsI5PFtMZXXi3F8WJcKeHc1p8ge98U/1pFlBb8q0fhIwy3dnAs
-	dg8DvR1wCgnPF8cFQXLr3xIh/pQO4xxX4zEfQBK7cOCnATjgg3B839xanKGyLnWg9n2L7KwfDfOz2
-	KigJcoaw==;
-Received: from i53875aa1.versanet.de ([83.135.90.161] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1svwdC-00057r-5F; Wed, 02 Oct 2024 12:30:54 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
-	Chris Morgan <macroalpha82@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	krzk+dt@kernel.org
-Subject: Re: [PATCH 0/2] Add Powkiddy RGB20SX
-Date: Wed,  2 Oct 2024 12:30:47 +0200
-Message-ID: <172786503305.2125927.10368247142330125313.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241001154016.87386-1-macroalpha82@gmail.com>
-References: <20241001154016.87386-1-macroalpha82@gmail.com>
+	s=arc-20240116; t=1727865081; c=relaxed/simple;
+	bh=rOELVSnjZgJ2jLuwmK36lE3rBUWz5L66VNmRiHrxopM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=II6xDFOaf8R4jBF8qawpl6yLJBjb4XMjW1RzRaK8xQgL1VfmGp4+ygBNDDI9w5FKWtQXhxi3CCaY3pXS4LmHGoaZ2xSt3kdjwVKkC2AzWzGR7eU2TMES86iDqeua2rU1lf1/6Z0clFVHbEgv/Yb+6gOUJ13hPJt8AKJekMK9soU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=mgaU6W4S; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id A9DBF23D7E;
+	Wed,  2 Oct 2024 12:31:17 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id TK-AFE1673VL; Wed,  2 Oct 2024 12:31:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1727865077; bh=rOELVSnjZgJ2jLuwmK36lE3rBUWz5L66VNmRiHrxopM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=mgaU6W4Saco/58d5mR20FQEGu4JFYvXxbwh7CBQ0+ocwf0qf1Xx6lHX0Fvwgegt+U
+	 uDpqd3DW8qCB4ibs9WeVtiV/kv0di7IMYsP8Kic5XrbfAZq/IqvADZMiNgBtMbgyA+
+	 cNsjgV3vSvpJUaGmAWVFYx0qMf5xbchdQVVTOgSW1HUxI09sQXrcOrIa3J+HZEVT/n
+	 MF1U6wXneVrB+4KrWf418YRTmDmZ1UYip+uIDyQUVDtDyMTjKVSzQPsk4q8QcE319A
+	 PriXAC11/uujFZh22CzfPIWwjhmaKmn+N1+2WVmFR9BoRwOjkw4Rj/1v6ahIca9SC6
+	 zKhOwZwZnQgmg==
+Date: Wed, 2 Oct 2024 10:30:55 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Celeste Liu <CoelacanthusHex@gmail.com>
+Subject: Re: [PATCH 5/8] clk: rockchip: Add clock type GATE_NO_SET_RATE
+Message-ID: <Zv0g3ytK2LgeUj4y@pineapple>
+References: <20241001042401.31903-2-ziyao@disroot.org>
+ <20241001042401.31903-7-ziyao@disroot.org>
+ <9365795.CDJkKcVGEf@diego>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <9365795.CDJkKcVGEf@diego>
 
-On Tue, 1 Oct 2024 10:40:14 -0500, Chris Morgan wrote:
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Wed, Oct 02, 2024 at 10:08:36AM +0200, Heiko Stübner wrote:
+> Hi,
 > 
-> Add support for the Powkiddy RGB20SX handheld gaming console. The
-> device is mostly identical to the RGB30 but with a few key differences.
-> Namely, the size of the battery and presense of a function button
-> differ from the RGB30; these changes cannot be detected at runtime and
-> necessitate a distinct devicetree.
+> Am Dienstag, 1. Oktober 2024, 06:23:59 CEST schrieb Yao Zi:
+> > This clock type is similar to GATE, but doesn't allow rate setting,
+> > which presents on RK3528 platform.
 > 
-> [...]
+> this definitly needs more explanation in the commit message.
+> 
+> I.e. regular individual gates always set the CLK_SET_RATE_PARENT flag
+> because of course the gates themselfs cannot influence the rate.
+> 
+> 
+> But in general, I'm also not convinced yet. Yes if some driver tries to
+> change the rate on those, it may affect the parent rate, but that is also
+> true for the other individual gates.
+> 
+> So what makes aclk_emmc (as GATE_NO_SET_RATE) more special than
+> "hclk_emmc" (as regular GATE). [Same for the other clocks of course] .
+> 
+> 
+> So this either needs more explanation, or for the sake of simplicity
+> use regular GATE for now for those and we revisit when it becomes
+> necessary.
 
-Applied, thanks!
+I agree that more digging is needed for GATE_NO_SET_RATE. If no obvious
+reason for adding a clock type could be found, will convert these clocks
+into general GATEs and give it a try.
 
-[1/2] dt-bindings: arm: rockchip: Add Powkiddy RGB20SX
-      commit: fbfff2f64673b5bc7e937ec806db6bee31c5d32d
-[2/2] arm64: dts: rockchip: Add Powkiddy RGB20SX
-      commit: de7e071ad5e46515e2d930862820c65fa53dbe2a
-
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Cheers,
+Yao Zi
 
