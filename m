@@ -1,94 +1,127 @@
-Return-Path: <devicetree+bounces-107167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46BBC98D11B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:22:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 463BD98D131
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 011572816B2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:22:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C32F9B214B9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:27:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954271E5031;
-	Wed,  2 Oct 2024 10:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52BC81E6DE1;
+	Wed,  2 Oct 2024 10:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="ZAUbyOdm"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="DeYiUKwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 302652F56;
-	Wed,  2 Oct 2024 10:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1F161E6306
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 10:27:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727864560; cv=none; b=DZ4qTdv0sfAs+dyXToiaLwpqH5ZNTvpYiN33eats7Glwe0LsXVJOEYRL/+usxSC9nnMMeaymZQPCx3zr7mrYCftixpaQYQblNJqze6jAF+XWj70U+44XeiB5NCv0ShzQnyLo5ZQFSqPVHanBO3vXFFSfr0UyrcCGCQb2sGq5iEc=
+	t=1727864857; cv=none; b=tPjSO/av+AFlayIpTNStSkNbPRtY8wjtSCK8qwZVDYmabOOLazQOvy2BmKfJGdHWc6Wa2D0NbpjP9r1jxJ4Ksld1tOYBZMpURaPW5W2MBBD9mfNSpcHVBK7M8uSzH1x7Dgyh8vzCYzl6PJ5SeKiQ5SoEeVl+4lEwqLpEPWamlHs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727864560; c=relaxed/simple;
-	bh=mJKvs9FLRZJEhIPy4X5obYmCOTWrv4Y6lROopBRIP0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LvrYeDLGMQz+H4r/3iHoa1UPj+g/Bqtqiz85/laGdpwsAQzgWUeduEwS/N/ycEb9qu/6UriNG6Grn7lgMXydFYZqlCVL2RorqrXBvs9rWsnKbAK6JHK+K0r/8XwqvIdgFhXsLq0E3AlDBWsX6nNCwe7QXBTBAMOB8/aYGifT7G0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=ZAUbyOdm; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id A677D23CB3;
-	Wed,  2 Oct 2024 12:22:37 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id JpG7VOy15MuO; Wed,  2 Oct 2024 12:22:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1727864557; bh=mJKvs9FLRZJEhIPy4X5obYmCOTWrv4Y6lROopBRIP0U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=ZAUbyOdmY1iWScCGppAp8saDjp7y/6eUmxNQjbT2zYu8/q+STLhhrCjb2J7gotCOk
-	 7aY3oWJuqtLAjs+jIQnqNjP49GsKu4jI8yWHKMk5bS8yiCn2Kl/VMABiBPDhuXka3H
-	 QMbFMNBfardQhG/pTgPFNy3inTf396+nbzZitoiMuN75kO3rJcGhiqUmm785U6PaxB
-	 nW4xm7PttncmUtKOOK+0FTbZttA8nWJo3szNesn1s68Y4YK+O/rLh6fyPYjyJj+eZ0
-	 jpWrZIRt4V8ZVs2VJMeTWeKxmYCGpn7isvCXFUA0thlmj3fNoXo44GP/1dsiwPsR5G
-	 DzuEwFqnAas2Q==
-Date: Wed, 2 Oct 2024 10:22:15 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Celeste Liu <CoelacanthusHex@gmail.com>
-Subject: Re: [PATCH 4/8] clk: rockchip: Add PLL flag ROCKCHIP_PLL_FIXED_MODE
-Message-ID: <Zv0e1_9AdNASLQMr@pineapple>
-References: <20241001042401.31903-2-ziyao@disroot.org>
- <8495918.NyiUUSuA9g@diego>
- <Zv0blIPaF0Y2Pmn1@pineapple>
- <3798659.MHq7AAxBmi@diego>
+	s=arc-20240116; t=1727864857; c=relaxed/simple;
+	bh=QhP8dAfjWNSaYUmoZ4flnUlLOBgW5BBKq7Dys4CJcPU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MtwmFVmxBl6KnjYiWyAiKrtLQ4hJpg5xB7W9WZm3ymQI8l28ab7W+8i/eHmlzgmnJMzf1nDD77Ya8uonHogxEU/+OsX2LLtm1ThiUzuvxCSI/iG/l6AOjpfYVnVEiv4MCnjUA0SFW4DZJ9eT2cyggTlBzsAcTls778HI1tfNIIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=DeYiUKwu; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e0a74ce880so5390045a91.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 03:27:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727864852; x=1728469652; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QhP8dAfjWNSaYUmoZ4flnUlLOBgW5BBKq7Dys4CJcPU=;
+        b=DeYiUKwu4J9nNTYpb+DB82MvLkFxjyeCiy38RxltVFFjrbtL7H3zTECTXjYclDDXem
+         Cyw9/3sSiBMHOky+zQys3wFRkU3jB4oyy5d2Y+eeFk0/LfPixXihAFR7h1kOr0rgzoyG
+         ldndZjwlrtXJ2VMAcilNAC6NezVqZNgcKGiVDbsUpvYVbxuryef1TXSS0xxV9hG0ntOb
+         VNNvYP4oYcoW+bPxkkF/Wh+RDoK16+/XFabxe9CWaVUorW/4J9cX4FxJJGMHa8rQWFCR
+         62CF1t7JPjnXhs+EoQNb/941Lr50+ia5f31cGt7Gad7VdDtNjjO8Po7OvdFojsBCZv/H
+         BUgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727864852; x=1728469652;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QhP8dAfjWNSaYUmoZ4flnUlLOBgW5BBKq7Dys4CJcPU=;
+        b=vO3fFuUBvaXqqL99qhrWD3Gj5rXHraz0Fp7zALUj9hlzNkruGnPXWdnd8rhSejfqvR
+         qAAwj3Z0cWar/VBeXlqkHxdRewXaRBBJjwfvcrhKGupnB0LwPMyj/tjHyQ09V2y7xLy+
+         fvVSZTrApcEnTuGH/nXHUgHC+6t5HIvU03swoYCoZ7Irx4mI2tft7f/kIOg93vCWYq69
+         3S0MX3YW8RN1YM0EiFp40DcYyCPzU1HRtTMoPj6d6VwrL/2O6Ar63n5ixt1uE2wPbr/9
+         IaHMFGuSH2mqKdNxJ3mBOKps728RPxcga5+Lv5fxSP8Y2+823ko1HfFf8GwPfbGzgCFM
+         ZGtg==
+X-Forwarded-Encrypted: i=1; AJvYcCXk+zSIg895cpgSAQjlyibPdms0klwk+pZJV1xlBYcNIg2FaMtCldGbAmgXx99VHjDDZl3szRQqXoYO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwTBPdSI3rDWN13DzKoscof6+cmlplVlOujVw9/mHTn4oG5Zl70
+	hI33An8tjcECXWhHWZoR2fqAzL0Z+ZfAtvaInXVMyMljQuPD4URPOz9XDfbsxRO1TzQztoDhNYG
+	Vyxff9ZAyJILh45tc8++ZjaANLUXNyy3fkA/ROQ==
+X-Google-Smtp-Source: AGHT+IGiI611bF0LSNL9d1Wo5FWjadPESUy6tI49+wZGoCskFJasqOAr97AM7LwOhTLXYHQPCWHSierz4rQt1kIywXA=
+X-Received: by 2002:a17:90a:ce84:b0:2e0:788f:6253 with SMTP id
+ 98e67ed59e1d1-2e18455899fmr3665606a91.10.1727864852193; Wed, 02 Oct 2024
+ 03:27:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3798659.MHq7AAxBmi@diego>
+References: <20240919094339.2407641-1-billy_tsai@aspeedtech.com>
+ <20240919094339.2407641-7-billy_tsai@aspeedtech.com> <CACRpkdbFD9CiqVwQ5xxZ9SfQtVvDJGCr=8spxBG4u-JQ0PKJ3w@mail.gmail.com>
+In-Reply-To: <CACRpkdbFD9CiqVwQ5xxZ9SfQtVvDJGCr=8spxBG4u-JQ0PKJ3w@mail.gmail.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Wed, 2 Oct 2024 12:27:19 +0200
+Message-ID: <CAMRc=MdvV7Z2yPpoR9mXLH6UCF5uA=TbkC_qUSj=akP_09M0WQ@mail.gmail.com>
+Subject: Re: [PATCH v4 6/6] gpio: aspeed: Add the flush write to ensure the
+ write complete.
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Billy Tsai <billy_tsai@aspeedtech.com>, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com, Peter.Yin@quantatw.com, 
+	Jay_Zhang@wiwynn.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 02, 2024 at 12:12:11PM +0200, Heiko Stübner wrote:
-> Am Mittwoch, 2. Oktober 2024, 12:08:20 CEST schrieb Yao Zi:
-> > On Wed, Oct 02, 2024 at 10:16:49AM +0200, Heiko Stübner wrote:
-> > btw, for the documentation, is there any technical reference manual
-> > of RK3528 available publicly? Please let me know if it's true, it will
-> > be quite helpful to understand clock tree better :)
-> 
-> Sadly not. So far there hasn't been a "leak" yet and Rockchip also seems
-> to have gotten more restrictive for whatever strange reason, so with my
-> NDA I also only got part1 of the manual.
+On Tue, Oct 1, 2024 at 4:18=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
+org> wrote:
+>
+> On Thu, Sep 19, 2024 at 11:43=E2=80=AFAM Billy Tsai <billy_tsai@aspeedtec=
+h.com> wrote:
+>
+> > Performing a dummy read ensures that the register write operation is fu=
+lly
+> > completed, mitigating any potential bus delays that could otherwise imp=
+act
+> > the frequency of bitbang usage. E.g., if the JTAG application uses GPIO=
+ to
+> > control the JTAG pins (TCK, TMS, TDI, TDO, and TRST), and the applicati=
+on
+> > sets the TCK clock to 1 MHz, the GPIO=E2=80=99s high/low transitions wi=
+ll rely on
+> > a delay function to ensure the clock frequency does not exceed 1 MHz.
+> > However, this can lead to rapid toggling of the GPIO because the write
+> > operation is POSTed and does not wait for a bus acknowledgment.
+> >
+> > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+>
+> If this applies cleanly on mainline I think it should go into fixes as-is=
+.
+>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+>
+> Yours,
+> Linus Walleij
 
-Oops, sad but also much thanks.
+I agree but it doesn't. :(
 
-Best regards,
-Yao Zi
+Billy: please send it separately and - while at it - use a C-style comment.
+
+Bart
 
