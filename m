@@ -1,201 +1,204 @@
-Return-Path: <devicetree+bounces-107228-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E18998D346
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:30:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89E5E98D374
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50DBD283FB9
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:30:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48A04282391
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2CF31CF7BD;
-	Wed,  2 Oct 2024 12:30:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8791D0148;
+	Wed,  2 Oct 2024 12:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Tlm2r/d1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cfdNCCY5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E88461CEEA7;
-	Wed,  2 Oct 2024 12:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9981CF5FB;
+	Wed,  2 Oct 2024 12:41:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727872221; cv=none; b=YRUNt+UC6EZV0VGS9gYfkCWpjYOBMqRrHHb1GX4yEybQok0ZWua4m4PaIJ3Jw0u2xfpgTaQZG8rDvyPqEFkwUufiD0NaJ5aW9eghb+sbjLX+H1PiblZXmadh53svdrUW4zAoZ3/fxoOW9wqITu/Llu+9xcIeB8XGwR731U46jnM=
+	t=1727872890; cv=none; b=flDinvAtsfkWvViEY1yLShX2IL/Z4eoO3AgRO8Og8ZFkwcdgX70F0t0ucFh39Bxer64oCc3OQ5SsoihmxpQPGaN7a7SFzP8hN630SJitN131LyMGJr8mRxn24Fc9W7Mt28ftftDr3JSr4wwvY8hMFfbCmZvWWW6BZzfWUiZSv38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727872221; c=relaxed/simple;
-	bh=79zx927LlijyEzz4SKUqBlH2oef8zYox6OWl6kxh6rU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cYildQ28hdU3Tg4BGcV+TZNgdHkPSKDJFFRnSzZes5QoIbsZ8q2WBpAlpayJxD8iUaQP8dofDNQIDN/+9VSAwo8/q72LamdB+c0kr9lVqbPrAMrMXPoz1OgtBJxh/XaMUeJ3uyAnQnyBY/9VYzve98ttUFjt38inP85ZWC8VOQE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Tlm2r/d1; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5c89f3f28b6so3294497a12.2;
-        Wed, 02 Oct 2024 05:30:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727872218; x=1728477018; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=l8H1qZqWLGCKxS3P4CcVPz8f/wGj7qAObb/kvtfFOhM=;
-        b=Tlm2r/d1VasNF1Pr5Rl8xmjrV4KIE7M2h/J99eT5TQpUHoSo1koscfODJAijZuMJ4h
-         tLBplCOYhwgS7h8az2apSGZCfMXfmz6foR2d/pXOWvnXbUx60DWHddsZ/Edzb/aP8uPe
-         CS+p6kLIoKhPfFeE4ynEHlTe7BfDjF3AnTknSyQrE8S/LYQnasefL4HYu4YT6vKIBYQ8
-         RZIKaCq5I+7LONHNC7CX9F7sGcaF5I+FuNZdT3QvFALji+QxfmDy87FjuTFKvSABwciA
-         e7rXXm6BNJ/6wEsmkxMV3mDGEA64SyoSdJU8omnwBWWtuffM/Q0YzNSjKLEBzwb2cZ5D
-         mWUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727872218; x=1728477018;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l8H1qZqWLGCKxS3P4CcVPz8f/wGj7qAObb/kvtfFOhM=;
-        b=n04PPE9Qkb0rTaMhsfnPLm5M3ScAcpPRUzBZv8uSIsD6q/0IjxACXBXI4XfXJPxL5U
-         Cln01rawA9LRghNirmMCE4G7H5Dle7SmHVOU+nJtv3UywVyEnX1kFHcrZ/KYJaFEo78o
-         KnBFZWEE7FXSPs/lHJsMRhxyn6UYBuhMlOHvQ+RfyvlLx2uzas8aIUC86Rn1nAzrTYoB
-         YmODcGO+1pEhXmw39T3UqLPaMT7lcOO3T9lh2yUJ9M6OYVvx4yICHHVnYMq2ANgRg3mX
-         4JndsrjZmRAzFA3jNhjb00tYmmJySWBudaOPlJ6ApeM7tXUTyvAqt2M4PSqJEMpS7RoG
-         26ZA==
-X-Forwarded-Encrypted: i=1; AJvYcCWBRnlJ722zGsNPkF81MxfiTvV51YpvzuStcjeMMy/DK0wRxjicMYt3YrQpWpakgesjFSgrCFIlaIRL@vger.kernel.org, AJvYcCWpXJI5T/65sQAFUbmzNTva324U2Pt9/V0ep418hp+OwhJvOBE1AEj2uM4nlAdLZuiCQ+VrS0029hrgRuFP@vger.kernel.org
-X-Gm-Message-State: AOJu0YxhpWvTjTQXOWPjdtju3wfeEGDifHbtBRnXr2tgaQbXiKmOswGC
-	+5tNkxvb+vcAybNiCDqHXDG2e/QV46951AFSvkF2kHIEnDcwoV6H
-X-Google-Smtp-Source: AGHT+IEZkn/hs4ylJ1sCqAWBMgmileHhDrVVQqRQ9dL1VUXC1/pU/3bGn8QhARJyoQ7mQEh244B4Pg==
-X-Received: by 2002:a05:6402:43ce:b0:5c0:ac1d:b970 with SMTP id 4fb4d7f45d1cf-5c8b1b8255fmr2407271a12.32.1727872217923;
-        Wed, 02 Oct 2024 05:30:17 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.162.240])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c88245ea57sm7514730a12.55.2024.10.02.05.30.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Oct 2024 05:30:16 -0700 (PDT)
-Message-ID: <e651ac20-eeb4-45c4-ad76-54e5e2481411@gmail.com>
-Date: Wed, 2 Oct 2024 14:30:14 +0200
+	s=arc-20240116; t=1727872890; c=relaxed/simple;
+	bh=VIzrkWZqS3BWBbgaONdAD3ExSq1hTIKL7R3IRUDAV+Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=LOy0Gu3e4kHJusvwyfWQuuMxlueguS94OI4Ka4fF7BywiLSh7W0x1FUaWpEuSK8wAc7b2AYDM+mHrIZK2zCOmYrV7lu9OitjVZOo5/y83cr3qUmVYAND2SF1fCGvPgBI/rk2iFAbKbU8E2FYoyWsJTu9+cAxouClDspnEpHBt4g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cfdNCCY5; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 05CB3240005;
+	Wed,  2 Oct 2024 12:41:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727872885;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=qYZmngo8Akclg+S7qnBbh5hBasgfuQJ2bFb2p9LdGC4=;
+	b=cfdNCCY5cEy03ATLTYtqzshKCSsOFcXvOwP4LW/qwI+tuYRZ8pvez7eyWrvgLhUwXnIpbq
+	Dxh8CER0uZUfXx035l1XCzawmG7ANRyFDVLT9sI+TpimuiAvBXDJECXzejJYY/Vkaz269k
+	OpM1YNVhttp+UIccvQYtyGojliCLxh4d42is77eKrVC9tGtz0TmK1V58tx3coovrq+/cwy
+	wbk4nl01W709SJPq20fnwIwkpEje3TiPOR9r+0V79QgFEvR30KsoYL3nnP+DFCN7ZAMXZc
+	UrjujYb5CtzDZ+wzyqae1XUu1peLwwrDxKc3AQwzgs1NIu/ULu0fSsHpOiq36A==
+Date: Wed, 2 Oct 2024 14:41:19 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: "Arnd Bergmann" <arnd@arndb.de>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>, "Andy Shevchenko"
+ <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>, "Lee Jones"
+ <lee@kernel.org>, "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
+ "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Bjorn Helgaas" <bhelgaas@google.com>,
+ "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars Povlsen"
+ <lars.povlsen@microchip.com>, "Steen Hegelund"
+ <Steen.Hegelund@microchip.com>, "Daniel Machon"
+ <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
+ "David S . Miller" <davem@davemloft.net>, "Eric Dumazet"
+ <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
+ <pabeni@redhat.com>, "Horatiu Vultur" <horatiu.vultur@microchip.com>,
+ "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
+ linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
+ Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
+ <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v6 3/7] misc: Add support for LAN966x PCI device
+Message-ID: <20241002144119.45c78aa7@bootlin.com>
+In-Reply-To: <b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
+References: <20240930121601.172216-1-herve.codina@bootlin.com>
+	<20240930121601.172216-4-herve.codina@bootlin.com>
+	<b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/2] dt-bindings: arm: mediatek: Add MT8186 Ponyta
- Chromebook
-To: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>,
- angelogioacchino.delregno@collabora.com, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, knoxchiou@google.com,
- hsinyi@google.com
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240914063122.1622196-1-cengjianeng@huaqin.corp-partner.google.com>
- <20240914063122.1622196-2-cengjianeng@huaqin.corp-partner.google.com>
-Content-Language: en-US, ca-ES, es-ES
-From: Matthias Brugger <matthias.bgg@gmail.com>
-Autocrypt: addr=matthias.bgg@gmail.com; keydata=
- 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
-In-Reply-To: <20240914063122.1622196-2-cengjianeng@huaqin.corp-partner.google.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Arnd,
 
+On Wed, 02 Oct 2024 11:08:15 +0000
+"Arnd Bergmann" <arnd@arndb.de> wrote:
 
-On 14/09/2024 08:31, Jianeng Ceng wrote:
-> Ponyta is a custom label Chromebook based on MT8186. It is a
-> self-developed project of Huaqin and has no fixed OEM.
+> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Jianeng Ceng <cengjianeng@huaqin.corp-partner.google.com>
+> > +			pci-ep-bus@0 {
+> > +				compatible = "simple-bus";
+> > +				#address-cells = <1>;
+> > +				#size-cells = <1>;
+> > +
+> > +				/*
+> > +				 * map @0xe2000000 (32MB) to BAR0 (CPU)
+> > +				 * map @0xe0000000 (16MB) to BAR1 (AMBA)
+> > +				 */
+> > +				ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
+> > +				          0xe0000000 0x01 0x00 0x00 0x1000000>;  
+> 
+> I was wondering about how this fits into the PCI DT
+> binding, is this a child of the PCI device, or does the
+> "pci-ep-bus" refer to the PCI device itself?
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+This is a child of the PCI device.
+The overlay is applied at the PCI device node and so, the pci-ep-bus is
+a child of the PCI device node.
 
+> 
+> Where do the "0x01 0x00 0x00" and "0x00 0x00 0x00" addresses
+> come from? Shouldn't those be "02000010 0x00 0x00" and
+> "02000014 0x00 0x00" to refer to the first and second
+> relocatable 32-bit memory BAR?
 
-> ---
-> Changes in v8:
-> - PATCH 1/2: Remove custom label.
-> - Link to v7:https://lore.kernel.org/all/01020191ea98a643-2d0be5d1-e00b-48e0-b823-bfe2c65b0d00-000000@eu-west-1.amazonses.com/
-> 
-> Chage since V6:
-> - No change.
-> 
-> Changes in v5:
-> - PATCH 1/2: Remove sku2147483647.
-> - Link to v4:https://lore.kernel.org/all/20240906085739.1322676-2-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v4:
-> - PATCH 1/2: Add more info for Ponyta custom label in commit.
-> - Link to v3:https://lore.kernel.org/all/20240904081501.2060933-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Changes in v3:
-> - PATCH 1/2: Modify lable to label.
-> - Link to v2:https://lore.kernel.org/all/20240903061603.3007289-1-cengjianeng@huaqin.corp-partner.google.com/
-> 
-> Chage since V2:
-> - No change.
-> 
-> ---
->   Documentation/devicetree/bindings/arm/mediatek.yaml | 10 ++++++++++
->   1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> index 1d4bb50fcd8d..88f50989ba3f 100644
-> --- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-> +++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-> @@ -257,6 +257,16 @@ properties:
->             - const: google,steelix-sku393218
->             - const: google,steelix
->             - const: mediatek,mt8186
-> +      - description: Google Ponyta
-> +        items:
-> +          - const: google,ponyta-sku0
-> +          - const: google,ponyta
-> +          - const: mediatek,mt8186
-> +      - description: Google Ponyta
-> +        items:
-> +          - const: google,ponyta-sku1
-> +          - const: google,ponyta
-> +          - const: mediatek,mt8186
->         - description: Google Rusty (Lenovo 100e Chromebook Gen 4)
->           items:
->             - const: google,steelix-sku196609
+These addresses are built dynamically by the PCI core during the PCI scan.
+  https://elixir.bootlin.com/linux/v6.11/source/drivers/pci/of_property.c#L101
+They are use to reference the BARs.
+0x00 for BAR0, 0x01 for BAR1, ...
+
+The full DT, once PCI device are present, scanned and the overlay applied,
+looks like the following:
+--- 8< ---
+	pcie@d0070000 {
+		/* Node present on the base device tree */
+		compatible = "marvell,armada-3700-pcie";
+		#address-cells = <0x03>;
+		#size-cells = <0x02>;
+		ranges = <0x82000000 0x00 0xe8000000 0x00 0xe8000000 0x00 0x7f00000
+			  0x81000000 0x00 0x00 0x00 0xefff0000 0x00 0x10000>;
+		device_type = "pci";
+		...
+
+		pci@0,0 {
+			/*
+			 * Node created at runtime during the PCI scan
+			 * This node is PCI bridge (class 604)
+			 */
+			#address-cells = <0x03>;
+			#size-cells = <0x02>;
+			device_type = "pci";
+			compatible = "pci11ab,100\0pciclass,060400\0pciclass,0604";
+			ranges = <0x82000000 0x00 0xe8000000 0x82000000 0x00 0xe8000000 0x00 0x4400000>;
+			...
+
+			dev@0,0 {
+				/*
+				 * Node created at runtime during the
+				 * PCI scan. This is my LAN966x PCI device.
+				 */
+				#address-cells = <0x03>;
+				interrupts = <0x01>;
+				#size-cells = <0x02>;
+				compatible = "pci1055,9660\0pciclass,020000\0pciclass,0200";
+
+				/*
+				 * Ranges items allow to reference BAR0,
+				 * BAR1, ... from children nodes.
+				 * The property is created by the PCI core
+				 * during the PCI bus scan.
+				 */
+				ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
+					  0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
+					  0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000
+					  0x03 0x00 0x00 0x82010000 0x00 0xeb800000 0x00 0x800000
+					  0x04 0x00 0x00 0x82010000 0x00 0xec000000 0x00 0x20000
+					  0x05 0x00 0x00 0x82010000 0x00 0xec020000 0x00 0x2000>;
+				...
+
+				pci-ep-bus@0 {
+					/* Node added by the overlay */
+					#address-cells = <0x01>;
+					#size-cells = <0x01>;
+					compatible = "simple-bus";
+
+					/*
+					 * Remap 0xe2000000 to BAR0 and
+					 * 0xe0000000 to BAR1
+					 */
+					ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
+						  0xe0000000 0x01 0x00 0x00 0x1000000>;
+					...
+
+					mdio@e200413c {
+						#address-cells = <0x01>;
+						resets = <0x25 0x00>;
+						#size-cells = <0x00>;
+						compatible = "microchip,lan966x-miim";
+						reg = <0xe200413c 0x24 0xe2010020 0x04>;
+						...
+--- 8< ---
+
+Hope this full picture helped to understand the address translations
+involved.
+
+Best regards,
+Hervé
 
