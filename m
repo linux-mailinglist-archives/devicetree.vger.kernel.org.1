@@ -1,137 +1,138 @@
-Return-Path: <devicetree+bounces-107201-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107202-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE9CA98D1E1
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 13:01:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3C2398D1E3
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 13:01:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 57F12B26792
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:01:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17E39286500
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 11:01:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3909A200133;
-	Wed,  2 Oct 2024 11:00:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C76C11EBFF8;
+	Wed,  2 Oct 2024 11:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZclqHa+H"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EOb0wXOb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F41620013C
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 11:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EB3A1EBFE5
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 11:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727866808; cv=none; b=pAjKkiYJqzfQAt8uD80Q6PiCFYXIEm+oekzQS1pYKvAtU0fvjxNSZv6iAcx41tQ5xkDd6W0t1dUonalTmh8agMMWDIhr6lZ1DsKQ1abrqH14sdxIF+OlW3L/KcPa99k0av90hvUjKptf5GCiM2WHs7iWlOMpDGa+CRgpR++2voA=
+	t=1727866833; cv=none; b=VH5QqmLwhIQCNs3AJIovXYx4tPoRaB1VknJKoVXS8Ux/eYLlahaP0eJJArvfGp4935hM/pGICq4Teq8nwWlYlv/5t/Jv/djF+tNTNytZvrhNg1oOyVHCZtaGKM0R8GMyhuI/bx0fH8EzzElnHFwB0XZb52pK8q8q1E9w5roqPMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727866808; c=relaxed/simple;
-	bh=PcrWdbduYxZeMb0YqP69rh1ZAPaHmW5lP2887js9ovI=;
+	s=arc-20240116; t=1727866833; c=relaxed/simple;
+	bh=xLLdgescBmTN3DuUCZqvW/nsMk9thoZPWyFqVcH9v/s=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Gbbsn/3euHMeJAUH6dLyyPTdd83ov8f0/J6BKXPxU4ZvVzvrNJ4K8xnaHg+jbvGdAbvIlzGTrwyKX0aL0Eh4kfd5GowBY4PkNMIXV2fRw8Qc+JK0TNnw4uzClppL6SsrMzbpr9iMQS4sDdN+eWZZCMjY/mIXoxiBtpsiuFHwLsc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZclqHa+H; arc=none smtp.client-ip=209.85.219.176
+	 To:Cc:Content-Type; b=nkiX3yrvr7yi07O/kZvf06IPDvc9e1Fw9FyeblQgdK5HBvJMqM8fI6mblQViwvNh1mLYS7OS0O/2wMoMfSDrJjwPvTQQfW7IbXdOKdJ7HUsonZW0cJNV936rHX+BfTPHV4pZdLD/OO7BwZme5rXfsPpM0t+deLQvMO3fd8cwFGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EOb0wXOb; arc=none smtp.client-ip=209.85.219.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e25cf3c7278so6151317276.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 04:00:05 -0700 (PDT)
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e25d405f255so5627708276.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 04:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727866804; x=1728471604; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqnwKXMtIPuvcjdLi+y6QFMRS5xvKxcyBVOpz9PIUOs=;
-        b=ZclqHa+H1zINNbkQKDCsfby5e2TbHpaQTKh81t3q9+VTQOm0GTB/yB87ZS5xVH9Jge
-         IJsvPdGfqjbu0AteWJ789ZrMI9ge5hS/7cCyw21imRBgSWoBaVeT9zpz/BFEAXenhUxh
-         2vUd2zbXkXNRfQIJHJ8YhCjilXdbcpXLIzz7eyzpVaGRq7zlm702Anku4x7DcYR8yGkG
-         CCPppspyzuu0dw8uLyZ2fRioG9rJ4FiTGXNAemn5mdITD7UJJ1QTiRa5pGmA3cjzftQl
-         CkiEuFLQJrRqifSrET3kBkfmBQL0A032a3P76o3cq9dqzZl3IY+QkjgHCt3otKn4tn4K
-         f/XA==
+        d=linaro.org; s=google; t=1727866831; x=1728471631; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lmcYZA7/wJjtWP/h4dJKihF0bgwj9/ex9+L3+MEoObU=;
+        b=EOb0wXObty2F63xGmDJ+74Ss3AjVGz4KeHgGzCHwI+2LTOWewaii+haMAspZcipXDP
+         0AKXjoz4bhZ3x789QhMZ1bu+nFg47UvLfKYQwKcWoJ59CQku4YJb9tkT1cpBiG7sl7ik
+         xYbTR4vulrzglPn25f23PhYyuSGSNIMNFE5Q0f8/kfMEWHlbG1tOD896IjXDiWZCn7Uu
+         wSQ95WSc1CWc6J3fqT9POnsy/v5QIHRGDO/wOsQZMBtM1FW7wYFuj3mQ5taP3W0ygnUP
+         3nRkfL1KH7zeyI0ZMFGwDB/stAbaCq+ymk32+QDdLPvgkydj5zMTuFUk3xK4/F3LBQal
+         Xxeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727866804; x=1728471604;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vqnwKXMtIPuvcjdLi+y6QFMRS5xvKxcyBVOpz9PIUOs=;
-        b=SXH+fXXZXbjFn6qXASXnF9wdoQx+BARc05MbhDYzUGw1BHEf18/hliDDLCeLcgm4GF
-         xJIvEnNsD1bk2rSZ5eMBpuB/kUj6HW58U8q/Y32cRjL+iDOo14Knc86RNFbP0JjvSGuL
-         y/bvYJ2pZvC+RTX7OJ3BBA2e4bGGBLy7sJvR3KBpuSHOtJb+QvDvN8wp4O9rjGNlyA4y
-         rgYWjNTNsB8zkAG0FSl8CKsxu0OouTRBbUbB7QF9ihmCcAsPUXvdcYQ4+ftfUupanfpu
-         +H0i8z6Zq3SgstxjiSV0iY+sDmDup5MFsrM/SbaugLeGwZWEIxswn2uZKy4SIlHMpp+a
-         lMaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVxt/fDaD5eeTzUjlCyaCSbel4yVHwoQs5SzZYL4Zdun0HykqY+3rxJbYYIPVgcrK8EZ+lwPGV3j264@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzM2N3GTfWi8Av8gxKH2n3/VKcAY8egltpdL0UWhFfjnPfYwmv
-	K3zNJIdWbORExByGA/oRPeIsXHZCbqwPFdhaqHE6bbJGpk9LUw2VvNOOGwpCzaNSUWEYz6m85ZK
-	c1rFjnMAnaMMRiqtyNO0+q0Tgdt/P7NEpnsh4vg==
-X-Google-Smtp-Source: AGHT+IGgpG+SeCoc89v9XXZAV+0OdGnBa1rr8GBqp7ZNHU2T0IKW4tijQJBHMruJay+8D5hiheKAuakS+Pmfcp7B/3o=
-X-Received: by 2002:a05:6902:1a49:b0:e24:fea0:f9b4 with SMTP id
- 3f1490d57ef6-e263840fdd3mr1985992276.38.1727866802706; Wed, 02 Oct 2024
- 04:00:02 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727866831; x=1728471631;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lmcYZA7/wJjtWP/h4dJKihF0bgwj9/ex9+L3+MEoObU=;
+        b=jhwoFk1b7+1A8bGtFEuYjaASHj1X47syHEELgzOoSvZOyQR5vpCR47vzAhGgUoMT7f
+         m/s2fuc5fPdx+h36j7our7+9uyi9+6W+/+xX11UP+VuOD2hmDgoFm3LRL8WrG6nhHVby
+         obrittCnK4z24wlEn1wngyWRtXakoEjgljDRFy61A2hHJIt3CA9a1G9GI9rhPV6nYvN6
+         AUsP3SjQ7+U8cY56m+xPczrhML2khTtPCwsy8XyaQPb5FCgm2erer020EPj5Ylx2jt0z
+         5WXJjYUp8Rqd8qDj5QM7YdZHPbRnGiY+tVw1wuoQlIeX++tSKIAhiZfTVCTWpfRqEd6r
+         VNnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWhsPtXRgbkMPDHguYJ9aioX3AvntiMcY93S9WfJWHRpM6tu73xFd7CCFSaq4+uIJzcimRLqOwwbW65@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZc3M3w9W87QOXXX5x7r3EyLEytbRjU156FJBFpa+u24CvhsPz
+	LRNfsFaxp5WO1VdXGhUGWPZcRmSME9YS41QFi8FkXTvq6MwOzn2lx00KlEHF1LFRBiJ9VVKnVXh
+	RnWotLyiKXlM1102EMvVbSbiHui3/savjO9orieEO6wEGKzhX
+X-Google-Smtp-Source: AGHT+IH1/OYH7PyqLLC06P011jS8wjK1A2ttW2EVTz1YfQDhiNruQopqyDimOPKCVrbB2cqpzD/2bH9uqx4KuH6NPos=
+X-Received: by 2002:a05:6902:2182:b0:e26:5b7:9f95 with SMTP id
+ 3f1490d57ef6-e263840f47bmr2076616276.35.1727866830962; Wed, 02 Oct 2024
+ 04:00:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-0-18c030ad7b68@quicinc.com>
-In-Reply-To: <20240927-add_qcs615_qcs8300_powerdomains_driver_support-v2-0-18c030ad7b68@quicinc.com>
+References: <20240919091834.83572-1-sebastian.reichel@collabora.com>
+In-Reply-To: <20240919091834.83572-1-sebastian.reichel@collabora.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 2 Oct 2024 12:59:27 +0200
-Message-ID: <CAPDyKFqXNC41VySryugwg-BOObPEqtnbyRZcR8NXj2R5tNPqfA@mail.gmail.com>
-Subject: Re: [PATCH v2 0/4] Add rpmhpd powerdomains support for QCS615/QCS8300
-To: Tingguo Cheng <quic_tingguoc@quicinc.com>
+Date: Wed, 2 Oct 2024 12:59:55 +0200
+Message-ID: <CAPDyKFpWYnqLGdxXc4Wvt_3MNsYkCpRfTJMeUddZzpKTwnY4Rw@mail.gmail.com>
+Subject: Re: [PATCH v2 0/6] Fix RK3588 GPU domain
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
 Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, kernel@quicinc.com, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, 
-	quic_fenglinw@quicinc.com, quic_tingweiz@quicinc.com, 
-	Shazad Hussain <quic_shazhuss@quicinc.com>
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Elaine Zhang <zhangqing@rock-chips.com>, 
+	=?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?= <adrian.larumbe@collabora.com>, 
+	Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai <wens@csie.org>, 
+	devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, kernel@collabora.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 27 Sept 2024 at 14:00, Tingguo Cheng <quic_tingguoc@quicinc.com> wrote:
+On Thu, 19 Sept 2024 at 11:18, Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
 >
-> Document the qcom,qcs8300-rpmhpd compatible and add power domains in
-> rpmhpd driver to support QCS8300.
-> Document the qcom,qcs615-rpmhpd compatible and add power domains in
-> rpmhpd driver to support QCS615.
+> Hi,
 >
-> Signed-off-by: Tingguo Cheng <quic_tingguoc@quicinc.com>
+> I got a report, that the Linux kernel crashes on Rock 5B when the panthor
+> driver is loaded late after booting. The crash starts with the following
+> shortened error print:
+>
+> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to =
+set domain 'gpu', val=3D0
+> rockchip-pm-domain fd8d8000.power-management:power-controller: failed to =
+get ack on domain 'gpu', val=3D0xa9fff
+> SError Interrupt on CPU4, code 0x00000000be000411 -- SError
+>
+> This series first does some cleanups in the Rockchip power domain
+> driver and changes the driver, so that it no longer tries to continue
+> when it fails to enable a domain. This gets rid of the SError interrupt
+> and long backtraces. But the kernel still hangs when it fails to enable
+> a power domain. I have not done further analysis to check if that can
+> be avoided.
+>
+> Last but not least this provides a fix for the GPU power domain failing
+> to get enabled - after some testing from my side it seems to require the
+> GPU voltage supply to be enabled.
+>
+> I'm not really happy about the hack to get a regulator for a sub-node,
+> which I took over from the Mediatek driver. I discussed this with
+> Chen-Yu Tsai and Heiko St=C3=BCbner at OSS EU and the plan is:
+>
+> 1. Merge Rockchip PM domain driver with this hack for now, since DRM CI
+>    people need it
+> 2. Chen-Yu will work on a series, which fixes the hack in Mediatek by
+>    introducing a new devm_regulator_get function taking an DT node as
+>    additional argument
+> 3. Rockchip PM domain later will switch to that once it has landed
 
-The series applied for next and by adding  Krzysztof's ack on the DT
-patches (next time, please carry them forward when posting new
-versions), thanks!
+I have just queued up 2) on my next branch.
 
-Note that the DT patch is also available on the immutable dt branch.
+My suggestion is to skip the intermediate step in 1) and go directly
+for 3) instead, unless you think there is a problem with that, of
+course?
+
+[...]
 
 Kind regards
 Uffe
-
-
-> ---
-> Changes in v2:
-> - Rebased patchsets on next-20240927.
-> - Combined 2 patchsets into one to resolve merge conflicts of touching
->   the same part of code.
->   - Current Patchset
->   |
->   |->Patchset 1:https://lore.kernel.org/r/20240920-add_qcs615_powerdomains_driver_support-v1-0-8846efaf9454@quicinc.com
->   |->Patchset 2:https://lore.kernel.org/r/20240920-add_qcs8300_powerdomains_driver_support-v1-0-96a2a08841da@quicinc.com
->
-> - Link to v1: https://lore.kernel.org/r/20240920-add_qcs8300_powerdomains_driver_support-v1-0-96a2a08841da@quicinc.com
->
-> ---
-> Tingguo Cheng (4):
->       dt-bindings: power: qcom,rpmpd: document qcs8300 RPMh power domains
->       pmdomain: qcom: rpmhpd: Add qcs8300 power domains
->       dt-bindings: power: qcom,rpmpd: document qcs615 RPMh power domains
->       pmdomain: qcom: rpmhpd: Add qcs615 power domains
->
->  .../devicetree/bindings/power/qcom,rpmpd.yaml      |  2 ++
->  drivers/pmdomain/qcom/rpmhpd.c                     | 36 ++++++++++++++++++++++
->  2 files changed, 38 insertions(+)
-> ---
-> base-commit: 40e0c9d414f57d450e3ad03c12765e797fc3fede
-> change-id: 20240927-add_qcs615_qcs8300_powerdomains_driver_support-7cd487126340
->
-> Best regards,
-> --
-> Tingguo Cheng <quic_tingguoc@quicinc.com>
->
 
