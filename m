@@ -1,126 +1,104 @@
-Return-Path: <devicetree+bounces-107268-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107269-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 659B098D8E6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:06:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A8498D8F8
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6AB8B24515
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:06:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80AFE1C20A95
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 655631D0792;
-	Wed,  2 Oct 2024 14:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZHqshu30"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D4D1D27AC;
+	Wed,  2 Oct 2024 14:02:10 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 834031D0DD3
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 14:01:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF401D0DD9;
+	Wed,  2 Oct 2024 14:02:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727877711; cv=none; b=HwV21AoP+ZelaDq+r9F9j/SDf4N13xgWG4DrRla4OMq8plQBqjP6OG9+kZAHQYMUbsVDovQa+DXqwSV+ug4wzpDkI/eYF7a+I9ZSOxnLRbK032AiVGNokLy4DbKbRnqE6RJpuHBVOOkYlsis1SqCqCscj3Wg4IwBPQ7wEuxrRKM=
+	t=1727877730; cv=none; b=gNl9uLMbElpQ1ERMMpNNjiRIfTBCkofG8OtKjEZX/ZBZr86yNwAC12lLDI4+h7e/rw1bYBna3g9VEwvWgy2tTW1vQevT9KvYUUVRiit+dcqUI8sHTCj4pw2QMQmwjFoVPI5btljMsVYIUZ+vds2WjAGzLPro7e/vGwa6+rwU/Ho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727877711; c=relaxed/simple;
-	bh=1pmb1sDkBayL7SpLFra03BlTRS8TALBgSPNxfcUCWr8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=A/gFhwSs/4G+IF0pQtg0aKN5hKVS4/83hQDsbfMcCq96lSbL6p9BQekJxVbI6riD8M/w36HVnhazH9qM87e6EoetC5tKuwuuWdof8PkYu0Q/F9W7ygu1iQcFx46e7anOuwepEsz3fg8j84zKE3NfRS54YAorRTcEPafVTXFnNMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZHqshu30; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so8323492e87.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 07:01:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727877708; x=1728482508; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1pmb1sDkBayL7SpLFra03BlTRS8TALBgSPNxfcUCWr8=;
-        b=ZHqshu30MKhy+ha4bqlsyDrTwhplZwJfVZujK9mlWbbhg4xD+qG5exJM+NLfdGo9zB
-         zheBlVXOc/h9hNDUPKu3wMRs03Fs0BXMXdzTXIbwfmnQ9J818co0Lj5VQ6jIGOL+wjN+
-         pEgyBUeouMOxCzy86dPMDLTIaU+zGuK/GmK6k8KYj3QCMxI2VYlaUNRqVrZC+7LwdKl/
-         qC8VpWX5FAHgnGagaJyjmZ0AmjkJ1rs7BmjNwDbTYlIEDLiNByAVz6OI8QvQhUxlPxTC
-         TrmasBFfeoj2sBOtHwcd/Nhh87iX9AV+Nb6SrOA3OGPbdRJNSI7goRhNOmD8rsYcik6c
-         JMWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727877708; x=1728482508;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1pmb1sDkBayL7SpLFra03BlTRS8TALBgSPNxfcUCWr8=;
-        b=mVKYKtl4zveL0+lw86OKxskhYUClqYO1rmpaKyun4kqlF1NE4EBRc89ijZFGstkfih
-         eNH+93c867ugrIPpwM3pGWRE/4FM1Jy6Zt84NMAuZJHzl1IE98bmJBZB15g7/WFiOlls
-         hUlWh//7wXPerHumLiz6NKmnhXKFWPgqYByBpvGyDyNYPPshCea9AqrENLP8XVCnyqKd
-         RSfhXlwDzmOxtDJhHNHxKs+5RrYhmgxG3ngzDtsQG3h4VMwLQ4x0ctcM+PHDzOaqhGY3
-         nI2JJMTRYlyLy5JZ8VMCpbLktHqpLgdb4MkTMoeaHlYYY/N//3r/8TCK4yu+MCXRHVpk
-         zlOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUx8mWO/LbdIaB3Fii+WoKIPrQkkivQIJV1JnpKkydvKOSXaYNSHUyOFDh8Cop/YnNvdce9GupC2Rs0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1yxxotbG96bWqkUIvQZZBm4xXa+ZAgJCdRGmlNw3aGzNpGyII
-	wA9cRE7T81EBHEcU9M3rHCFDPyvyqKtuPA04ElPUY/YjvOprbuma8hLWzn1UgB6QmGst7zgaM+N
-	e07sobPpmeOG+DaQ7g9RM4RVJVO9E0/eO4fsxrQ==
-X-Google-Smtp-Source: AGHT+IEW35z+SB32dXETmyauiAuNdaSBG8Cnz7/x5oVp37LUBxxVnzuKhCWcA0adW64UvBqEawl9nsr4IE3RS0Lg9+g=
-X-Received: by 2002:a05:6512:3192:b0:52c:e3bd:c708 with SMTP id
- 2adb3069b0e04-539a0658abemr1776489e87.10.1727877707635; Wed, 02 Oct 2024
- 07:01:47 -0700 (PDT)
+	s=arc-20240116; t=1727877730; c=relaxed/simple;
+	bh=VOJQuCqdUBhRksuB8YpG1sADNdGbpcrZPuEXdhuf4HM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hkr4DqQXyHAj8wZha+BCaDCRgrKkrNKuYDqvE9rYT3f8hHrccN7Fqz3u77pksnc1GzwgfiwpZBP3eX0J3oRU1/pln3+LFxsHhwx4iFG17/35z0gjjckWpzYu3KeBiiWOHA1q1C5v6BGa3BvCXfvT/Do84dkEhclpWCgvWAPJMic=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89A51339;
+	Wed,  2 Oct 2024 07:02:37 -0700 (PDT)
+Received: from [10.57.75.246] (unknown [10.57.75.246])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 997F33F58B;
+	Wed,  2 Oct 2024 07:02:05 -0700 (PDT)
+Message-ID: <2ac9bab0-2a00-44c8-bf43-2469b6d60b92@arm.com>
+Date: Wed, 2 Oct 2024 15:02:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241001221931.9309-1-ansuelsmth@gmail.com> <20241001221931.9309-7-ansuelsmth@gmail.com>
-In-Reply-To: <20241001221931.9309-7-ansuelsmth@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 2 Oct 2024 16:01:35 +0200
-Message-ID: <CACRpkdZ=QLcqNrynWrWn0oRxjBpqWDko8rw95idEWvyfw+xEOA@mail.gmail.com>
-Subject: Re: [PATCH v5 6/6] dt-bindings: mmc: Document support for partition
- table in mmc-card
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Jens Axboe <axboe@kernel.dk>, Jonathan Corbet <corbet@lwn.net>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	INAGAKI Hiroshi <musashino.open@gmail.com>, Daniel Golle <daniel@makrotopia.org>, 
-	Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>, 
-	Ming Lei <ming.lei@redhat.com>, Jan Kara <jack@suse.cz>, Li Lingfeng <lilingfeng3@huawei.com>, 
-	Christian Heusel <christian@heusel.eu>, Avri Altman <avri.altman@wdc.com>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Mikko Rapeli <mikko.rapeli@linaro.org>, 
-	Riyan Dhiman <riyandhiman14@gmail.com>, Jorge Ramirez-Ortiz <jorge@foundries.io>, 
-	Dominique Martinet <dominique.martinet@atmark-techno.com>, 
-	Jens Wiklander <jens.wiklander@linaro.org>, 
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Li Zhijian <lizhijian@fujitsu.com>, 
-	linux-block@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	devicetree@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>, 
-	Miquel Raynal <miquel.raynal@bootlin.com>, upstream@airoha.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 4/6] dt-bindings: power: rockchip: add regulator
+ support
+To: Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Elaine Zhang <zhangqing@rock-chips.com>,
+ =?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?=
+ <adrian.larumbe@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai
+ <wens@csie.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pm@vger.kernel.org, kernel@collabora.com
+References: <20240919091834.83572-1-sebastian.reichel@collabora.com>
+ <20240919091834.83572-5-sebastian.reichel@collabora.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20240919091834.83572-5-sebastian.reichel@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 2, 2024 at 12:20=E2=80=AFAM Christian Marangi <ansuelsmth@gmail=
-.com> wrote:
+On 2024-09-19 10:12 am, Sebastian Reichel wrote:
+> Add optional support for a voltage supply required to enable a
+> power domain. The binding follows the way it is handled by the
+> Mediatek binding to keep things consistent.
+> 
+> This will initially be used by the RK3588 GPU power domain, which
+> fails to be enabled when the GPU regulator is not enabled.
 
-> Document support for defining a partition table in the mmc-card node.
->
-> This is needed if the eMMC doesn't have a partition table written and
-> the bootloader of the device load data by using absolute offset of the
-> block device. This is common on embedded device that have eMMC installed
-> to save space and have non removable block devices.
->
-> If an OF partition table is detected, any partition table written in the
-> eMMC will be ignored and won't be parsed.
->
-> eMMC provide a generic disk for user data and if supported (JEDEC 4.4+)
-> also provide two additional disk ("boot1" and "boot2") for special usage
-> of boot operation where normally is stored the bootloader or boot info.
-> New JEDEC version also supports up to 4 GP partition for other usage
-> called "gp1", "gp2", "gp3", "gp4".
->
-> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+Note that this applies equally to RK3399 and quite possibly others too, 
+it's just that so far it's always been bodged by making the relevant 
+regulator always-on (e.g. [1]).
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Cheers,
+Robin.
 
-Yours,
-Linus Walleij
+[1] https://lore.kernel.org/all/20210619121446.7802-1-knaerzche@gmail.com/
+
+> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>   .../devicetree/bindings/power/rockchip,power-controller.yaml   | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> index 0d5e999a58f1..0b4c5b174812 100644
+> --- a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+> @@ -131,6 +131,9 @@ $defs:
+>             A number of phandles to clocks that need to be enabled
+>             while power domain switches state.
+>   
+> +      domain-supply:
+> +        description: domain regulator supply.
+> +
+>         pm_qos:
+>           $ref: /schemas/types.yaml#/definitions/phandle-array
+>           items:
 
