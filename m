@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-107329-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107330-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E38298E3D0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 22:01:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8051D98E3F9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 22:09:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CDE661F252B2
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:01:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4334F2868BD
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:09:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEEA216A2D;
-	Wed,  2 Oct 2024 20:01:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB91A1D1E8A;
+	Wed,  2 Oct 2024 20:09:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="JYmm18Fi"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OouigvW+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B0E9215F7A
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 20:01:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F061D0E28
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 20:09:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727899288; cv=none; b=htr6iydjtm5Ydbg4MQgJAs5PJ8sZTMysuMXVRXDEw8oD4XWJBveBvcWTCefBKaMTgEUM06HmQao69uWUthbBsEcw3176nDHpy3fuvkc2aDwuNW5ANcBA25yTY0PkFbuKc4a+mlWZOM5Gi8Y32/pe2OCvhEe6/dtZQSMeynkgbRs=
+	t=1727899792; cv=none; b=ZfgOvlICKpF+wrdjmh8CBYyRPHCcPeZlor02sf9ZPPM8ZP4szDsClBgez2O9qsKd6yKw2M9YOLxHrf9L4Bg/prcasK4ho85XFH2BnPrBaSPgJKc5Rpg7rL5QSaGltmZzLVsu80+8F+VkcWEf1NrikeyZMjIC5NPIN2mZpNMclZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727899288; c=relaxed/simple;
-	bh=vmXz5DptHKNfhCU297MSr/SZOtqvGTgmb2tR2k5zN8g=;
+	s=arc-20240116; t=1727899792; c=relaxed/simple;
+	bh=cPEWC+ms1931EI6qBFNLg3svt4urmza+0m6lhnuFJ08=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JYLxi4wAyLKPVqGWGyDnVCu5bX9te+5s5eak0TCMx4v0mGs8fAC8FqFzF9isDd02VSkwjCeu9CgI6htdiM2oZ5MaU9bdzU+NqrRwFHa/3tE2IHVtVZkJ1XglsdQ6TDbPvlKSSYSlAv5gFDTZkMp+Wj+VOX7/gj0QVYfejJ6Hcfc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=JYmm18Fi; arc=none smtp.client-ip=209.85.167.45
+	 To:Cc:Content-Type; b=LPb705R/1sstG6dYUYMA3pM9Hd4Ra7CFFJV/ykPLjxGxJ+S+2IUAQ2lcsWROWJ8CJl0EN572GjVbMlvMteu2cB4KEx+x29FYQORtbOK1HSIxalAUAiOFYuLFhfhbkmSmVLjv1cA3PUpPOpyU8nzTDSNomreHSFTwPIoHuGkb644=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OouigvW+; arc=none smtp.client-ip=209.85.208.169
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5398a26b64fso129916e87.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 13:01:26 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2f75c56f16aso2174291fa.0
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 13:09:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727899282; x=1728504082; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1727899789; x=1728504589; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4RTbP2THnQ7ZPSao3GlpGoyqfA8hmjwpPW28NYvs/R0=;
-        b=JYmm18FiCbmNCnRhvauaMxjh8UpSID8+x8OM75llgHi2V4fxCLR0BT4RifhY06SDsI
-         vLWqZ2XzaLBpx+qFBtMlkwvxhO1Ka9TJhloQ8J9xDgb868OWkV6MJKKLrtwVmXII1aDB
-         fwaYTDzKi3TREsuh+HxaaWFUQnbiVq3j+qfqM=
+        bh=91dAvx/GtXFhViAEPrc2ya71jT/cwYu2QCMwf3YXBnA=;
+        b=OouigvW+zSTjX587gEMaH9fqIKAXwblaUqClQeAD63liLZzscvNmO/c/qjBCy5XUVy
+         7DlaTk1oowQxOloroerpfMnaQ9L45My5Zyx80SMVnI6qwE0s0B03jngjETw/PE7Vn3ip
+         QpZr42I0AvR+uZx1XoGmE9l147DxyRN4RVwOA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727899282; x=1728504082;
+        d=1e100.net; s=20230601; t=1727899789; x=1728504589;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4RTbP2THnQ7ZPSao3GlpGoyqfA8hmjwpPW28NYvs/R0=;
-        b=RdXmnbbEYdanOTGmPbdO+y4sHkTxy38nobx2N4qTPv4R3M16JMjRGXCSpulk2K8/LE
-         NG+w/RnMi1PgiHgb/DwCAKkXs31gjCQN7NUObAiQsDwzbEfk4WBsWtBQcs0g2Z3Pt7LX
-         1cT14d3Z7LN+PMGlpufXzXqdDbouvqu8ME7xV72dpittED2DV+/opL/+c7IWwnO1/6y7
-         K5nXLH8LldvCAx6y8RUSRyg6LpH/NhLwWDwLBm4FnSR+2cewnFQXggL3Ckshep8oi8t/
-         6NFM7lZ1Dma7/nTL5SHjN+W+TdsDMJBqq6f6khc3hr1mWssWSHoxIaV1bcGaXHVw36kd
-         vzBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWVDbh21rqoyKZQ+ghPdAti+rrL6iQCiGx5C7DifOB+XnM8vMnc+bTXZj7IFMt3t6TDpQm8NyMa+X2B@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTGp7gbCsEyQzb1NFLCIbxNqMHj1mYDrOZ+rByYCeK0VzoGVxC
-	T5TT6JHnKnFN+wyB9lz9U/mOXQpr9/uWqHuU6lgWpv1h70sObzmbrkLGdjRB5qxOfM28vfel106
-	u0g==
-X-Google-Smtp-Source: AGHT+IHP3hrkIFOUUlDwKkVP1DJFdwtzeia+c8p2Z887aaUV/BZuLpcJCKKwknY5K19H38IrgKHCpQ==
-X-Received: by 2002:a05:6512:b90:b0:534:3cdc:dbfe with SMTP id 2adb3069b0e04-539a067c3demr2261677e87.28.1727899281710;
-        Wed, 02 Oct 2024 13:01:21 -0700 (PDT)
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com. [209.85.208.178])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5389fd5e3c5sm2002953e87.106.2024.10.02.13.01.20
+        bh=91dAvx/GtXFhViAEPrc2ya71jT/cwYu2QCMwf3YXBnA=;
+        b=pk7yBUvdoBRYLP7Mf2SKZ7x5EkqtXMGLV6R0lQ3xX2H+Slk51itcDd2fIpe2Zxe+P6
+         QQcR8Worh8Fjl+7hQyIYC988YJe+nop+b6BfBeslmMQ3g6UqpZNbXLyS902m+2e3yFzz
+         J7qT3xQjKa00wQweNkXES8PiyoCbWwXsh3yVp33AEtOoBF/iX+zOqqqMDWLEnDp4K6hO
+         jmzxJvvbWAgkFEEsZi+D4ty6Ir0k7GDam5WX8XLLKToEnx41APqrTPOrglLGwJ7wQQxa
+         DD9RHjQHGQkSLPcAKqYy/PXkRgUJCiDs7NaZOtTI2CcTRr8XW/A3NQKD0OHvuXQsS+ip
+         gfiA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqVOLD+s6gXZU0PF3mcWtUWWXTEKu7ZtNQ1R82UCOlHiLVohuJO+/YjamyQ+PegxdBqCbtX2eaAaWv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy32trKPrnfHitHuUMtFyPhW4Vn3Jl5JbgHICWN7NShPbywQQgM
+	PgXvGbGzC/MNAYCy/VuiZbemesSH22HdrYiNz0VzqPsMu5FvCRd+0/kGkIVSUvSuhCH661WcJOM
+	Q1+Nc
+X-Google-Smtp-Source: AGHT+IGgyjOW3fSimRQG9OlAC2Nrrlg3RUbNZ+7bvicgsrRCi78C5w3eq5WJ5YjLPr/LqlCJecNqWQ==
+X-Received: by 2002:a05:651c:1548:b0:2fa:d604:e525 with SMTP id 38308e7fff4ca-2fae1082edamr26867741fa.28.1727899788724;
+        Wed, 02 Oct 2024 13:09:48 -0700 (PDT)
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com. [209.85.208.180])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2f9d4618dabsm20278881fa.106.2024.10.02.13.09.48
         for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Oct 2024 13:01:21 -0700 (PDT)
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2fabd2c4ac0so2333481fa.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 13:01:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUBe+9kHD16gdy8Oy7DuIpQY5ncO8q25YTn3k3I+nA3qfNNH8YsNmKsA2nb45biLzyZLZd9DdYWM1Cn@vger.kernel.org
-X-Received: by 2002:a05:6512:b85:b0:539:896e:46c0 with SMTP id
- 2adb3069b0e04-539a079eaf0mr2740940e87.37.1727899279887; Wed, 02 Oct 2024
- 13:01:19 -0700 (PDT)
+        Wed, 02 Oct 2024 13:09:48 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fad0f66d49so2639801fa.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 13:09:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWFUcJSimj3g0NP+RTuLAVmugyAVTMiKCsgAVzbmqURr2BHVDdw2IayLyfyT0YJWSOlCvqOxJg2/H+N@vger.kernel.org
+X-Received: by 2002:a05:6512:3b1e:b0:536:56d8:24b4 with SMTP id
+ 2adb3069b0e04-539a065eb21mr2856666e87.5.1727899353357; Wed, 02 Oct 2024
+ 13:02:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,14 +79,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240927094340.18544-1-lvzhaoxiong@huaqin.corp-partner.google.com>
- <20240927094340.18544-2-lvzhaoxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240927094340.18544-2-lvzhaoxiong@huaqin.corp-partner.google.com>
+ <20240927094340.18544-3-lvzhaoxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240927094340.18544-3-lvzhaoxiong@huaqin.corp-partner.google.com>
 From: Doug Anderson <dianders@chromium.org>
-Date: Wed, 2 Oct 2024 13:01:03 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=Vm-MzhNrotMz1n-iYvm_VAfyVRDtTp4yrQ=6sCTzX1Vw@mail.gmail.com>
-Message-ID: <CAD=FV=Vm-MzhNrotMz1n-iYvm_VAfyVRDtTp4yrQ=6sCTzX1Vw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] drm/panel: jd9365da: Modify Kingdisplay and Melfas
- panel timing
+Date: Wed, 2 Oct 2024 13:02:16 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WTOCNtvvT3Z-5-7eRnFt4Um9R+vq2BB+V7DhWngsKrWA@mail.gmail.com>
+Message-ID: <CAD=FV=WTOCNtvvT3Z-5-7eRnFt4Um9R+vq2BB+V7DhWngsKrWA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] drm/panel: boe-th101mb31ig002: Modify Starry panel timing
 To: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 Cc: neil.armstrong@linaro.org, quic_jesszhan@quicinc.com, sam@ravnborg.org, 
 	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
@@ -107,20 +106,9 @@ On Fri, Sep 27, 2024 at 2:44=E2=80=AFAM Zhaoxiong Lv
 > a black screen after waking the machine. Reduce the disable delay
 > resolves this issue,
 
-This sounds _really_ suspicious to me and it feels like you're just
-pushing around timing to get lucky and avoid the problem. Generally if
-decreasing delays like this fixes a functional problem then the
-problem is still there (just hidden) and has the potential to come
-back if a little extra delay shows up.
-
-I don't understand _why_ it's important for DRM runtime resume to
-complete before the system enters sleep. Is this causing the Mediatek
-DRM driver to get confused? I would have expected that if the system
-went fully into suspend that it would have totally powered off the
-panel and then when we resume the panel shouldn't maintain any state
-from before the suspend.
-
-...so this needs to be debugged more and a real fix needs to be made.
+Similar to patch #1, this sounds very suspicious and I think you need
+to root cause the problem and submit a proper fix instead of just
+playing with timings.
 
 
 > The "backlight_off_to_display_off_delay_ms" was added between
@@ -129,22 +117,23 @@ from before the suspend.
 > a white screen. However, we removed this
 > "backlight_off_to_display_off_delay_ms" and found that this situation
 > did not occur. Therefore, in order to solve the problem mentioned
-> above, we reduced it from 100ms to 3ms (tCMD_OFF >=3D 1ms).
+> above, we removed this delay, and the delay between "display off" and
+> "enter sleep" is not defined in the spec, so we reduce it from 120ms
+> to 50ms.
 >
-> This is the timing specification for the two panels:
-> 1. Kingdisplay panel timing spec:
-> https://github.com/KD54183/-JD9365DA_Power-On-Off-Sequence_V0120240923
-> 2. LMFBX101117480 timing spec: https://github.com/chiohsin-lo/TDY-JD_LIB
+> In addition, T14 >=3D 120ms, so we change
+> "enter_sleep_to_reset_down_delay_ms" from 100ms to 120ms.
 >
-> Fixes: 2b976ad760dc ("drm/panel: jd9365da: Support for kd101ne3-40ti MIPI=
--DSI panel")
-> Fixes: c4ce398cf18a ("drm/panel: jd9365da: Support for Melfas lmfbx101117=
-480 MIPI-DSI panel")
+> The panel spec:
+> 1. https://github.com/Vme5o/power-on-off-sequential
+>
+> Fixes: e4bd1db1c1f7 ("drm/panel: boe-th101mb31ig002: Support for starry-e=
+r88577 MIPI-DSI panel")
 >
 > Signed-off-by: Zhaoxiong Lv <lvzhaoxiong@huaqin.corp-partner.google.com>
 
-For future reference: please don't put a blank line between the
-"Fixes" and the "Signed-off-by".
+Similar to patch #1, no blank space between the "Fixes:" tag and the
+"Signed-off-by:" tag.
 
 
 -Doug
