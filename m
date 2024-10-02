@@ -1,138 +1,102 @@
-Return-Path: <devicetree+bounces-107219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65ADA98D2AB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A96CC98D2C4
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:10:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20B8F284910
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:02:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CED7284D2C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 462881CDA16;
-	Wed,  2 Oct 2024 12:02:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6445B1CF5FD;
+	Wed,  2 Oct 2024 12:09:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qo86jsoV"
+	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="IyQRNNuI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A84A15D1;
-	Wed,  2 Oct 2024 12:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49E2B1CF5F7;
+	Wed,  2 Oct 2024 12:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727870562; cv=none; b=Eno4Nd80cGUL6JIuRVC61jo4Z08Lg6djgTpStJMEwE0ZSZLOViylFSzXANehIN3ZtK8iw7ZrsdfVdRydurJlztWkgiNCx8J8aJv2lRyJV322gNApiaSDW2J6LFTm0oln7PltAn2IQNq7rVj3DgSTr/Ufcr+aqplbmwHCOU0mIQg=
+	t=1727870989; cv=none; b=NsyDFWfy17kf7+aYOD1sDR5IkW5CkPB2nPpcgZAR3p3Pzklec9tHSBTQK7KRGv20CbH9cNIaCKWgYPjkcLtR5fs67MjhxLVRJfhUCGbs1rX9GJQ0Atz7nJpP8z7MkRaQnmAHAsCxhd3ObcYyU5dZ5A1/70bbq+QKTzt2DkdL+CY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727870562; c=relaxed/simple;
-	bh=Kg/JYoKqnWNGVZqxdcYr0Et5YhzAPh8xq94ASEFYEws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UaOv2ZLyQJhD5DHLLM8etpq3hJdOmIn4ENxVLZlkxslu2/TXRp45EeIKSOAj00NRsjW+08FMho3bfaJSyiZ07xV9pF+8ekwhrABCyRICC2DVR/rKaWi1vrrVo6PsXZcKFVEc8tEYsuYDEHGP4CKPYWG7Z9TJxfjJGSC9z3Q0wA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qo86jsoV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5B36C4CECE;
-	Wed,  2 Oct 2024 12:02:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727870561;
-	bh=Kg/JYoKqnWNGVZqxdcYr0Et5YhzAPh8xq94ASEFYEws=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Qo86jsoV6G0P/3twuha/zEykk/oVZSd5M0765CTkETQO24hj1AglBndgBU7oKlBjp
-	 VtiDPa5MgbG43E5IoqeqVEoXXW7f4n+tSTZXdckYa4HzEtZEbRNNvNgNkvVLFJ5zBJ
-	 G058QSKidWK5Tas0dimTB/LpeOX2i9fBrRXB1mRzJOugiZjMPXDxqsUWawGjFFB5sT
-	 UTAptZ5+1tPbI6OrLvfXIS1JJ1ahXM0wStwVY2Woawk8vOEsqOqvdIXKNIfEnR70iI
-	 /HYdlVL8KKMK8Gfkwu4EQu0X7cPfALw/Fm5DP+qlhAFRgBJEqw8IIlSwvgV+5nMSiX
-	 +KMXqnge92oAw==
-Message-ID: <16830e3c-5918-4da9-8c40-1606a99695bd@kernel.org>
-Date: Wed, 2 Oct 2024 14:02:35 +0200
+	s=arc-20240116; t=1727870989; c=relaxed/simple;
+	bh=EPmgFw92fTKQ5diVPlWlAhmnnLM2wgqsSmictvQL4oI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=l/MgbkfSBFEipiGBgzsOzm6VA3Qnkz/huKHq1oAU+JJmaQKI5h0eBiSvzNeCeouXiL8vKhXBikMlDM6fopM7e6cRLHe1XCGZmTu0tfDav4kMmzWx5+rk/eN7cidbT/0EmSteXVjG0LoQ3IJsSOUTOG1EQ4d7OPsDVvGeDJKG/Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=IyQRNNuI; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 4DDE12384D;
+	Wed,  2 Oct 2024 14:09:43 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id VbS-Q465ScLS; Wed,  2 Oct 2024 14:09:42 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
+	s=mail; t=1727870982;
+	bh=EPmgFw92fTKQ5diVPlWlAhmnnLM2wgqsSmictvQL4oI=;
+	h=From:To:Cc:Subject:Date;
+	b=IyQRNNuIrsRy6vBCCASFARvPQEERBTODWY75iY1FSL/MZsE6U/KRJIqMbyZV7l5Fi
+	 mbx7L2WtABetZ42EBfjPXisKyU2YLZRX4FnlpM4qaQSR+r/+AceJqjg2rpkFKwUmaO
+	 fLZ6x3obYtNNmTEji/mMnBNRCbpwGEX+tzw5wTZTBMHn1EmpNolqHnqexNHIfkPXbs
+	 O5ZrJ52YauEsK1Uwp6vSc5QXWyL6hQ1eN92iamDugoL9n/vunW8ABSYkDV6hQUh9Z2
+	 R/IU3waa7E+a1RBIoAuCDThPXYDUt0o0EyY5z1krpkyEhFaW527Slr6kquKdQJ2aZP
+	 Kz4wqXejbmW2Q==
+From: Karl Chan <exxxxkc@getgoogleoff.me>
+To: linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Karl Chan <exxxxkc@getgoogleoff.me>
+Subject: [PATCH 0/3] Initial for Linksys EA9350 V3 (linksys-jamaica)
+Date: Wed,  2 Oct 2024 20:08:01 +0800
+Message-ID: <20241002120804.25068-1-exxxxkc@getgoogleoff.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: si5351: Make compatible string
- required property
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-References: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
- <fa249ec7-409f-4dee-b853-736c5de464be@kernel.org>
- <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/10/2024 10:24, Michal Simek wrote:
-> 
-> 
-> On 10/2/24 10:19, Krzysztof Kozlowski wrote:
->> On 02/10/2024 09:51, Michal Simek wrote:
->>> Compatible property is likely also required property.
->>>
->>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>> ---
->>
->> That's a convention but not necessary, a no-op.
-> 
-> But how do you identify device then?
-> Or are you saying that device description is valid even if there is no 
-> compatible string?
+Add device tree source for Linksys EA9350 V3 which is a WiFi router based on the IPQ5018 SoC.
 
-No. I meant your change means nothing to the schema. It's a noop.
-Compatible is implied.
+As of now , only the UART,USB,USB LED,buttons is working.The front PWM LED require the IPQ PWM driver.Therefore the PWM LED isn't configed in the tree.
 
-Best regards,
-Krzysztof
+Also The original firmware from Linksys can only boot ARM32 kernels.
+
+As of now There seems to be no way to boot ARM64 kernels on those device.
+
+However, it is possible to use this device tree by compiling an ARM32 kernel instead.
+
+Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
+---
+Karl Chan (3):
+  arm64: dts: qcom: add Linksys EA9350 V3
+  dt-bindings: arm: qcom: add Linksys EA9350 V3
+  arm: dts: qcom-ipq5018-linksys-jamaica: Include dts from arm64 Build
+    the Linksys EA9350 V3 device trees from the arm64 tree together with
+    the ARM32 include to allow booting this device on ARM32.
+
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm/boot/dts/qcom/Makefile               |   1 +
+ .../dts/qcom/qcom-ipq5018-linksys-jamaica.dts |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/ipq5018-linksys-jamaica.dts | 114 ++++++++++++++++++
+ 5 files changed, 119 insertions(+)
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts
+
+-- 
+2.46.1
 
 
