@@ -1,65 +1,71 @@
-Return-Path: <devicetree+bounces-107280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107281-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FBAB98DE09
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:56:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FC2E98DE3D
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B2EF71F21B52
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:56:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD0881F26FA9
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C02AE1D0B86;
-	Wed,  2 Oct 2024 14:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0A941D0B8F;
+	Wed,  2 Oct 2024 15:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U+Aruj1H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLdb8/3X"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDFB1EA80;
-	Wed,  2 Oct 2024 14:53:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFE371CEEAF;
+	Wed,  2 Oct 2024 15:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727880836; cv=none; b=TN6c8mX1cXoCoRC6QqqHyesAduFMYRnb+c7RkooTHlLvjMYBuyxnF8oCtx8DzGIrmKxEKBvqI06QInxYRbOm4TVpRbabNS4a8oNvZDLWwgrI7atBWtF+b69/r5yZD6FHxXSsm5VBWohm/D+YDEAfXYsWM1UjvHILa7j5PsykOgQ=
+	t=1727881330; cv=none; b=gVYimK3TfijI9CwxDiLAy6o+GQZi+YcI82mZtH+JP3xUBUJKhL+YCN96sP850sPL9j6Ly++8P6lwIrZ57e3v1brPAraC1MTYQJHEFfK8WidacbO2blveGZgvJNhi4cV1v9yc9XJA6qK99a4KgBjUJWTJPlgy4QVYa7tw/Q/yXUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727880836; c=relaxed/simple;
-	bh=zOrO15nPsDNtmS7WaLdFBXVhXqwv2yitdNorrs4Lc00=;
+	s=arc-20240116; t=1727881330; c=relaxed/simple;
+	bh=z2eYCJF4rIaT1pnLBfDh2JPsO8OHxyySR91CO7CZvbM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bSjne94ShpbDUO57mq1o6Hpm7fXatNivJqvcaQ8sS3BFwdZiFovwGLkD+MxM8tkjLe4Txmp1oTATth9UqQobem9O97yHAKrTi85W0iHA7mrZTnK0TbgV02P3Df7fDROT7o/Knb+nJZqMQztjupjd4op3ViQI+uBulF02A/HKGUU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U+Aruj1H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC203C4CECD;
-	Wed,  2 Oct 2024 14:53:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bl8igaDfG1mYsQRTEGpukqAOKmAgtJYkrKEclrGOSU0Idawcm2MX3tVK/FLq76pn39TsgNGQN8ph+28eneS2FjiE2fZ6yGF684wBgiLbyVty67tQItm/AYTa9TWTC2FuiCxlilO0C2VGiwPOU9Tk0wQJMRmcjkR4ihzw7JJfBFc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLdb8/3X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5445AC4CECE;
+	Wed,  2 Oct 2024 15:02:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727880836;
-	bh=zOrO15nPsDNtmS7WaLdFBXVhXqwv2yitdNorrs4Lc00=;
+	s=k20201202; t=1727881330;
+	bh=z2eYCJF4rIaT1pnLBfDh2JPsO8OHxyySR91CO7CZvbM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U+Aruj1HX54XsERA6G4lHVm0y0j6uu34Gmcb3tjgTlGghtpMBjpeH5hFfKtjseNwo
-	 0DrJj8WNgIi/Vb6G8SpxH0oGL+Jt+SqGel4k4j+zOVbGlRgRjZUvvh0I1zYfBj6EOY
-	 nPgLZJE50vZVpJ52yoMDYhdhaC8oW5AxF7oZxuE+bzTn50OB4EsD8wAwLUyxG1fcAA
-	 09m/qcXz/gDOQpbJ0wDAtHySG7fENzJ1keIBA6TWgb1Yggs+1S5mYlVCjrOiyFY72S
-	 fdRYzBeUelJPZ3VpnAMxLIayywdTd+ynL55kGFchK/vjbwAChpFbDmyd0YJ7DgALpr
-	 R6frGPcWWNI0A==
-Date: Wed, 2 Oct 2024 15:53:51 +0100
+	b=jLdb8/3XqW+dtOmg1/V9DYQ2zsXnc5PHdh8zE8WSV495SS8dkn9pv+e9O/aBFtj7d
+	 w+Du4JEb18zd/FEJJvTxz4SxflesPZYAs0jh6k+l5ShS7WyczZ++mDm0RZl3b7t+gb
+	 UUtCTkXORS/FjnDLMSgPeSgaKU7YOzvOkh5ooWJIfsRZRrEXjiwCIMTCvR/NgGpegB
+	 qJJO180lq9c6cbDCAdY/VV3luVAunJm57GeaM++nG7PLyq88H09xQqYDkfgCai3AMF
+	 GYekK3sgjW3P0Cqo4bg7yFAEouqkvpyGQvLpoYgFH4PMUTALJ7LI+dvOoDsUDTjboM
+	 3hRWB5ib85HeA==
+Date: Wed, 2 Oct 2024 16:02:04 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: Dong Aisheng <aisheng.dong@nxp.com>, Fabio Estevam <festevam@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>, Jacky Bai <ping.bai@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Ian Ray <ian.ray@gehealthcare.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 2/4] dt-bindings: iio: adc: Add the GE HealthCare PMC ADC
-Message-ID: <20241002-doorstop-given-0987c28090ed@spud>
-References: <20241001074618.350785-1-herve.codina@bootlin.com>
- <20241001074618.350785-3-herve.codina@bootlin.com>
- <20241001-corrode-preteen-546c98d45976@spud>
- <20241001184602.7912c10d@bootlin.com>
- <20241001-gruffly-cruelness-b8aed444c36e@spud>
- <20241002090453.0849b668@bootlin.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Ghennadi Procopciuc <Ghennadi.Procopciuc@oss.nxp.com>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	imx@lists.linux.dev, NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: pinctrl: add S32G3 compatible for
+ the SIUL2 driver
+Message-ID: <20241002-finer-huddling-d02b451a7c16@spud>
+References: <20241002135920.3647322-1-andrei.stefanescu@oss.nxp.com>
+ <20241002135920.3647322-3-andrei.stefanescu@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,74 +73,72 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="2QdSbbXRzGQcgwo5"
+	protocol="application/pgp-signature"; boundary="Bn8q62BbtvVdo3hP"
 Content-Disposition: inline
-In-Reply-To: <20241002090453.0849b668@bootlin.com>
+In-Reply-To: <20241002135920.3647322-3-andrei.stefanescu@oss.nxp.com>
 
 
---2QdSbbXRzGQcgwo5
+--Bn8q62BbtvVdo3hP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 02, 2024 at 09:04:53AM +0200, Herve Codina wrote:
-> Hi Conor,
+On Wed, Oct 02, 2024 at 04:59:19PM +0300, Andrei Stefanescu wrote:
+> The SIUL2 hardware module is also integrated into the S32G3 SoC. Add
+> another compatible for it.
 >=20
-> On Tue, 1 Oct 2024 18:03:37 +0100
-> Conor Dooley <conor@kernel.org> wrote:
->=20
-> > On Tue, Oct 01, 2024 at 06:46:02PM +0200, Herve Codina wrote:
-> > > On Tue, 1 Oct 2024 17:18:30 +0100
-> > > Conor Dooley <conor@kernel.org> wrote:
-> > >  =20
-> > > > On Tue, Oct 01, 2024 at 09:46:16AM +0200, Herve Codina wrote: =20
-> > > > > The GE HealthCare PMC Analog to Digital Converter (ADC) is a 16-C=
-hannel
-> > > > > (voltage and current), 16-Bit ADC with an I2C Interface.
-> > > > >=20
-> > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > > > ---
-> > > > >  .../bindings/iio/adc/gehc,pmc-adc.yaml        | 82 +++++++++++++=
-++++++
-> > > > >  include/dt-bindings/iio/adc/gehc,pmc-adc.h    | 10 +++ =20
-> > > ... =20
-> > > > > +  clocks:
-> > > > > +    maxItems: 1
-> > > > > +
-> > > > > +  clock-names:
-> > > > > +    items:
-> > > > > +      - const: osc   =20
-> > > >=20
-> > > > Since there's no datasheet for me to look up, why is the clock opti=
-onal? =20
-> > >=20
-> > > The component uses an external oscillator (osc) if an external oscill=
-ator is
-> > > connected to its clock pins. Otherwise, it uses an internal reference=
- clock. =20
-> >=20
-> > Could you please add a description of the clock with this statement,
-> > given there's no datasheet or w/e linked here?
->=20
-> Sure, I will add a description in the next iteration.
->=20
-> There is no datasheet or any similar document available for this componen=
-t.
-> This is reason why I cannot add a link to this kind of dos.
+> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
 
-Yeah, I had taken a look last night and couldn't find one, so I figured
-that this was the case.
+I'm not convinced that the representation here is correct for the
+GPIO on these devices. See:
+https://lore.kernel.org/all/20240926143122.1385658-3-andrei.stefanescu@oss.=
+nxp.com/
+Since GPIO and pinctrl share the same regions, that lack of conviction
+extends to the pinctrl. I don't think adding another compatible here is
+right, when I am already of the opinion that the binding is wrong for
+the existing one.
 
---2QdSbbXRzGQcgwo5
+> ---
+>  .../bindings/pinctrl/nxp,s32g2-siul2-pinctrl.yaml         | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pi=
+nctrl.yaml b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinc=
+trl.yaml
+> index a24286e4def6..cff766c2f03b 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.y=
+aml
+> +++ b/Documentation/devicetree/bindings/pinctrl/nxp,s32g2-siul2-pinctrl.y=
+aml
+> @@ -25,8 +25,12 @@ description: |
+> =20
+>  properties:
+>    compatible:
+> -    enum:
+> -      - nxp,s32g2-siul2-pinctrl
+> +    oneOf:
+> +      - enum:
+> +          - nxp,s32g2-siul2-pinctrl
+> +      - items:
+> +          - const: nxp,s32g3-siul2-pinctrl
+> +          - const: nxp,s32g2-siul2-pinctrl
+> =20
+>    reg:
+>      description: |
+> --=20
+> 2.45.2
+>=20
+
+--Bn8q62BbtvVdo3hP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv1eawAKCRB4tDGHoIJi
-0jCRAQCPb7iI1ukVK9/aZyxiYlyQZeIg5oY3W+eyU84zXDwxtwEAl+KLvPQkPwut
-+6h4c6YDavBZk/d+1+H73Ch6wdMvkgA=
-=Pt72
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv1gbAAKCRB4tDGHoIJi
+0l1XAPwN6Pmv4rskvD0caLy6kyfvOdwcg4o9Ex7WCFpk3Uxn8AD/XWGCjgSBAdkO
+P1iCIHPaeObx53gJF58fdBN0336chA8=
+=Sq2D
 -----END PGP SIGNATURE-----
 
---2QdSbbXRzGQcgwo5--
+--Bn8q62BbtvVdo3hP--
 
