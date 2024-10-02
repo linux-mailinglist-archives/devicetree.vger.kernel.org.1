@@ -1,126 +1,140 @@
-Return-Path: <devicetree+bounces-107253-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107254-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3BF098D7DD
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:54:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E994D98D848
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:58:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B520D283CE5
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 13:54:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB95828311B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 13:58:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30F671D07A6;
-	Wed,  2 Oct 2024 13:53:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B6101D04BA;
+	Wed,  2 Oct 2024 13:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XEKqrHZk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bz0nXILr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47FF31D04BE
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 13:53:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1AC01D04B4;
+	Wed,  2 Oct 2024 13:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727877232; cv=none; b=Z9WE+yHlNEfvjskqJP5MUTOdtXY19eV5Uf66lT9Wb0tD2/FgG564/EiAAzZty+P5i3I/NjF27LeXjOzeaSaKoydZj140w8v8EcGso1bMbPOOZ5NJ3FW1DDWvOA8nbyA47Qe7Gq3uFSxdLl0x2sPrNFv7+F6rEKko43Oh6h5sz9c=
+	t=1727877475; cv=none; b=Tij2WR7x7AEnoz2O5zSQBc7/Ma8LVY1M9v8xDzrJOtG19pYY9N+aTCYQfiOl+/fIWoCIhIuwNrEOfhjy+fFlECrD+wa0Xl/eTPqTPyLn5kGEv7ps2/ARZIDUmtz0TbTil6+Tay9CaEi1nKoqjpzd0C+QFl7G4Ul/XFjIc96XaQQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727877232; c=relaxed/simple;
-	bh=j6xi0yErQ1R9JnzgLN0C+zTW2E96PBAw77wYIYi2zGY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VwEkr40AU4ZldmNAbZ0jEJx14QJ4rnMLx+T0HH8o/PNlQEg9QTTUsWNdTT3t0/tqcCqHu/y5/Cfra2TBduYYuzDRKeqXqGXSAOW1I08ywkkxl913qXupq/DUKxULj9oLHiQQ/yDE7Atqm/2h14gXePYSmjWV0UfJX2IBlb3hHPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XEKqrHZk; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5398f3be400so4536909e87.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 06:53:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727877228; x=1728482028; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j6xi0yErQ1R9JnzgLN0C+zTW2E96PBAw77wYIYi2zGY=;
-        b=XEKqrHZknefWA6d3N2kVwvX256DlJKf930Ah7NCrJDk20YfcxhYg3m6HznUt8iFKQ6
-         4fFFUqHqW5fLOLzWHVF79/9y69eewoFZsEd0DnJumM/WX/VIxbP7qt0XSG70/HJ05FCi
-         o2O4nnaAXF3kVuAqI0N8XsFOH74gTDLElAGQHqkMzsKtB5WyAxwh6UgcESq3AnvvK6D+
-         6KLM8Z9kTlNw3EjKTpF89RIt2V8krPr/5BpvPjxvPxF1soDFXz2rVjWnTxrD/qdSMKYZ
-         iKRJIj15e82Jk+SOJFqg4uTmtFSPFda8V4ba88a/uFw0pGNKTPzUChyk4Vi8I4vH1L0x
-         TWSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727877228; x=1728482028;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=j6xi0yErQ1R9JnzgLN0C+zTW2E96PBAw77wYIYi2zGY=;
-        b=oRRe4FPx2folorlSozujd33gO/OZoC6af9AzpGLWX4K44iyurzC025GJircwIrbE1u
-         Lhjlubzd/4HM4k/VJGQWHKzoWpu/2I6cBZQJjH82ozPl7igyA13NzLfYl5aCJ4EMDxqc
-         0thCoV00hEgbs6O6Zsdb8sh+tRdYaTxRHqXWvGkes2cfi5xRexLMj3MtYiaNhLLu2IjC
-         lach003VAsvm5qCQL14qthDtA8jlfr4XQCNUAYkps+KPu6flSF2XkMZeg+XUN+AGAVrT
-         VGIFEvSLuIOgWC6zmQwm+yHBe5KQM4XVkd1LcLDOQ0o+Ja4TjAOsEghMpaJX3vekeZ3A
-         k4lA==
-X-Forwarded-Encrypted: i=1; AJvYcCW3NL2nyFpNnrJBBvsiZbNlzxA5eYyqjnBUVzfXEydehZCw6icNQKU5s/zL4Zo2LUi6+5z6vL9sLyZa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxUE7AtCbul0554AEmnZb6flL6Ue2iXup/zh/S2dQJWiXj8PvT
-	iUnaZOPzJWEZUYIh2JbX5F38knJK6IJbVD41OJs9k45x4cWEK/enVWqg/W9RubSwu0+1UoyijJN
-	FP98mqx8/Ol27NJcS5KrC1/AGVemKVk4IZWE9SQ==
-X-Google-Smtp-Source: AGHT+IH6J/1hIBQYUuOO6E4cFW0dSWZmODFCQ9NK7J4/38LglqeQ+e19d7bbsLpye8LH/IrpVT7SzxHTLiNIBgM3MX8=
-X-Received: by 2002:a05:6512:31cd:b0:533:4676:c21c with SMTP id
- 2adb3069b0e04-539a079f587mr2037762e87.44.1727877228234; Wed, 02 Oct 2024
- 06:53:48 -0700 (PDT)
+	s=arc-20240116; t=1727877475; c=relaxed/simple;
+	bh=54BYRmAHbB5DYDhLg9b26tGQWbWtwO9FW205TTnrSbs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aLZ8TbPDGkKPJEegvKukoW84Xf12zD2cwQoIGEUI5MrjvYlE0g1/lq7FO0VpLQpNcagEyutEHvfr+219XD3Jcdj7SR03aDGCscaSeRSZ7WCBOo/Y8HQpl1eL2vB8i+1jqpvI/9LrIiRqQlZpz6usPhaGEeytnczs7OA9vANr2LI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bz0nXILr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86A64C4AF55;
+	Wed,  2 Oct 2024 13:57:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727877474;
+	bh=54BYRmAHbB5DYDhLg9b26tGQWbWtwO9FW205TTnrSbs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=bz0nXILrUF7AKeEp8lS9cqxmuGSrRjqpA13WZg11vdMwJ5N32pX/F8TlvO7COtyij
+	 cSsBPWnOafiBgXxnClDKN6rWZOIQ7M1Z/O7keopAXvMDUtUInZeLO5WMBv8+HZyhNd
+	 pT1Z7n2C7h+wj2TnYUP1b6g52RQ/GloiWoVckKQFIxSB7UC8lMVzF4XDkkmPhOl9dN
+	 UhDs5W390eXHwcBQw0xKdcJ0EU/Tlw8PyqGhIVSCKRwhDQdZ5O4j7SVLghIKHcls3G
+	 cQAlH2Wd5SSkD6A4fYzZm4ClplyJZiemK68BeBAm3N4GoPwUicPZD96zAvUaMYcqRZ
+	 9pfg5aL91K3WQ==
+Message-ID: <342d200e-5b3b-4ff9-bbf9-98ca4b103a20@kernel.org>
+Date: Wed, 2 Oct 2024 15:57:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240912-test-v1-0-458fa57c8ccf@analog.com> <20240912-test-v1-9-458fa57c8ccf@analog.com>
- <CACRpkdZb6AhxB7XEtOsxV5_oa=c1h2+ZApLFsTS_MQs-cjLmsg@mail.gmail.com> <CAAjXUapu1DBqnk24ng0izU7opn67YxiwpGpFtqrBmqNgyCxRVA@mail.gmail.com>
-In-Reply-To: <CAAjXUapu1DBqnk24ng0izU7opn67YxiwpGpFtqrBmqNgyCxRVA@mail.gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 2 Oct 2024 15:53:36 +0200
-Message-ID: <CACRpkdY7jJXOsKwyfbZWGq90jhnufwDeeF3=Dy0Rfps0rxmBGQ@mail.gmail.com>
-Subject: Re: [PATCH 09/21] gpio: add driver for ADI ADSP-SC5xx platform
-To: Greg Malysa <greg.malysa@timesys.com>
-Cc: arturs.artamonovs@analog.com, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Utsav Agarwal <Utsav.Agarwal@analog.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Thomas Gleixner <tglx@linutronix.de>, 
-	Andi Shyti <andi.shyti@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Jiri Slaby <jirislaby@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	linux-serial@vger.kernel.org, adsp-linux@analog.com, 
-	Nathan Barrett-Morrison <nathan.morrison@timesys.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: qcom: add Linksys EA9350 V3
+To: Karl Chan <exxxxkc@getgoogleoff.me>, linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241002132302.31608-1-exxxxkc@getgoogleoff.me>
+ <20241002132302.31608-2-exxxxkc@getgoogleoff.me>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241002132302.31608-2-exxxxkc@getgoogleoff.me>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 1, 2024 at 11:58=E2=80=AFPM Greg Malysa <greg.malysa@timesys.co=
-m> wrote:
+On 02/10/2024 15:23, Karl Chan wrote:
+> Document linksys,jamaica for Linksys EA9350 V3.
+> 
+> Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
+> ---
 
-> > Interrupt enable in the direction function? No thanks, poke the
-> > interrupt registers in your irqchip if you make one (you currently
-> > do not) in this case I'd say just disable all interrupts in probe()
-> > using something like writew(base + ADSP_PORT_REG_INEN_SET, 0xffff)
-> > and be done with it.
-> >
->
-> This will come up next time too so I wanted to mention that INEN here
-> means "input enable." The PORT design has two registers for
-> controlling pin direction, one to enable/disable output drivers (DIR)
-> and one to enable input drivers (INEN) to be able to read the pin
-> state from the gpio data register. If I recall the bare metal
-> reference code toggled both but we can review if setting INEN for all
-> pins and leaving it is acceptable as well to simplify things.
 
-Aha so that's what it means!
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Yeah play around with it and see what you can come up with.
 
-Perhaps you need to override the input/output enable
-callbacks with local versions rather than the gpio-mmio
-ones to set all bits. (This is possible to do after
-bgpio_init() but before adding the gpio_chip if necessary.)
+---
 
-Yours,
-Linus Walleij
+<form letter>
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+</form letter>
+
+Best regards,
+Krzysztof
+
 
