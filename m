@@ -1,114 +1,194 @@
-Return-Path: <devicetree+bounces-107352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC8AD98E56A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:41:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE6E98E56E
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:45:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75E8428241B
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:41:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E133A1C2196C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2DC216A35;
-	Wed,  2 Oct 2024 21:41:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D284194C94;
+	Wed,  2 Oct 2024 21:45:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvFdxoa2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uRJK0UQ5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38EE1D131B;
-	Wed,  2 Oct 2024 21:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3358B2F22;
+	Wed,  2 Oct 2024 21:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727905292; cv=none; b=NhpFBc8pv/J1bsO7WziR271WF2rWQWIrVnkQTDiHKDYHQvJ5hlmL7+t9JsbaV0JyuBt0QMio1EA5MAz1THNs7yAl3cYOAx/qoI3aXhPHU7krdhdaZekVIELSFeVz6gQ5XQKGUjGCRJmCwGQWtqJnb4Lmwg6tvS0PyUdjh/bhLOY=
+	t=1727905545; cv=none; b=YjZ0MWVo24xCGEw5KsL32DPQ+lrmZzpUIwDCjM6hCFDCIDmfYeS/ZK8HGZHLaNPFjx0Xhk/DRiV59gUk6+IIMtVCwlVEyPzHLPYrfQAUOQTCBdOnLWql5oL0MN2J7FJA0rSN6D+xfq0ajo7SndVRXSZtK/UbDOtPMBgIkj7Hf2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727905292; c=relaxed/simple;
-	bh=MhCybmHtvHC9lNdIeEmiXoehkqXFqlzKTsDQ0Q7WLRI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PrJzfgh7QJzq5NW3QJIRDwtRk64PCda/OiXAJTyUoiAXX8Q4fOry0HMXwX261nRFYKGySaMolKAgLS2/lKcfxgDalGJpN1gY/A7k417UepNxd2WWRan5IWqo+5/vj+99kZVjy5aPo8SiSvFt68hdSlaaMmfoQMV+DtbwzimV250=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvFdxoa2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E25EC4CEC2;
-	Wed,  2 Oct 2024 21:41:30 +0000 (UTC)
+	s=arc-20240116; t=1727905545; c=relaxed/simple;
+	bh=5ZurMQnP+2R05k8coVxg/oeyW/xXv1nBVioXAFGdZUg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=P3M9Ddl9mQ/JS9llLFOWReItiKVhsBMS6LFps4VvmF5fjY8pCHstPwNSryltmvXcv0Idycwy/uY5+RobPEF8q+sEWwDHPy6X0V82aqONchJLoGzKfQJi4OQNFS3Zwxer4Vy7EBFTmbMWj8Rnujn+6H9CDYut9A7BvLVWbdPkil4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uRJK0UQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D23EC4CEC2;
+	Wed,  2 Oct 2024 21:45:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727905290;
-	bh=MhCybmHtvHC9lNdIeEmiXoehkqXFqlzKTsDQ0Q7WLRI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XvFdxoa2dpgVrMZnOltYN8stAk4+Ke6MW6IomUDz5jEwpj3L5VJDEqKCATIpOsC7H
-	 hYd/YH2cP2eIEzddFsR/HpjJ8A5hYzlDkMC85CxcimtwHAzRqwZnsu5YaCH2hG5W+I
-	 okdyeL1bfrJnlASIUxNeooNbYjeFvGjPHphRtz6gt8kegKihJG6jXKoz4FJg6rO5hu
-	 J6+jX9LhdU5fUJQFcupBOd+nPQ2PMQCqSFoLIsBQIvX7LAV4pkN3EqK2xOAHOcCFCi
-	 SAjVSnsPPK93OJkYgpfnhX4mqZs8H2LXgl80Ynygp9KCeQJ/1b43+77YH9sc51Lg1J
-	 dFSKORiF7JTiw==
-Date: Wed, 2 Oct 2024 16:41:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
-	monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: si5351: Make compatible string
- required property
-Message-ID: <20241002214129.GA1347474-robh@kernel.org>
-References: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
- <fa249ec7-409f-4dee-b853-736c5de464be@kernel.org>
- <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
- <7695cae2-33a3-4879-b8e5-d296d81ffece@amd.com>
- <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
+	s=k20201202; t=1727905544;
+	bh=5ZurMQnP+2R05k8coVxg/oeyW/xXv1nBVioXAFGdZUg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=uRJK0UQ57Sc258fN7VazTaMddr6gpAwx2FozjCJr47w5IVPs9fqgQbsFq9Gv7A5CJ
+	 OGdSs5vog0YTwOWp5Arhvm39AV8fwID7VLEbgyXsRv5PM7xssdTRsLq5Hr9z7M1XdB
+	 MHzRKRt9Q6cYeUgUkManYsO8yiL1sLATkavTse+2ZzM5CZzNmxDowPmns6n6UEN8E6
+	 tQExFJ9ngUCtQ/XSxsbtPFngqYuQJ5+MwIr8T8nSIrA7GMhCKUPWsQs4Vs5T0UC5kq
+	 19D3DkmnfvWNBaXRjOUPaOcS+/7ZXv5pYU+7l4YFlolU33euv/BTgzqW17la0a/dFT
+	 tSGgE0C+n9cHQ==
+Date: Wed, 02 Oct 2024 16:45:43 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Naresh Solanki <naresh.solanki@9elements.com>
+Cc: linux-aspeed@lists.ozlabs.org, Conor Dooley <conor+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+In-Reply-To: <20241002084023.467383-1-naresh.solanki@9elements.com>
+References: <20241002084023.467383-1-naresh.solanki@9elements.com>
+Message-Id: <172790540060.1353939.8456815650107227718.robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
 
-On Wed, Oct 02, 2024 at 02:17:22PM +0200, Krzysztof Kozlowski wrote:
-> On 02/10/2024 12:31, Michal Simek wrote:
-> > 
-> > 
-> > On 10/2/24 10:24, Michal Simek wrote:
-> >>
-> >>
-> >> On 10/2/24 10:19, Krzysztof Kozlowski wrote:
-> >>> On 02/10/2024 09:51, Michal Simek wrote:
-> >>>> Compatible property is likely also required property.
-> >>>>
-> >>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
-> >>>> ---
-> >>>
-> >>> That's a convention but not necessary, a no-op.
-> >>
-> >> But how do you identify device then?
-> >> Or are you saying that device description is valid even if there is no 
-> >> compatible string?
-> > 
-> > One more thing
-> > commit 524dfbc4e9fc ("dt-bindings: clock: si5351: convert to yaml") is showing
-> > that compatible property was required in txt file.
-> > 
-> > -Required properties:
-> > -- compatible: shall be one of the following:
-> > -       "silabs,si5351a" - Si5351a, QFN20 package
-> > -       "silabs,si5351a-msop" - Si5351a, MSOP10 package
-> > 
-> > I can update commit message to describe it too.
+
+On Wed, 02 Oct 2024 14:10:17 +0530, Naresh Solanki wrote:
+> Document the new compatibles used on IBM SBP1.
 > 
-> Devices do not work without compatible, so this is obvious... and like
-> said - it is already required, so the change is redundant. Does not
-> harm, though.
+> Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
+> ---
+>  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-To put it another way, by the time the schema is applied, we already 
-know that compatible is present because that is *how* the schema gets 
-applied in the first place.
 
-Rob
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
+
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
+
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y aspeed/aspeed-bmc-ibm-sbp1.dtb' for 20241002084023.467383-1-naresh.solanki@9elements.com:
+
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: timer: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/timer/arm,arch_timer.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /sdram@1e6e0000: failed to match any schema with compatible: ['aspeed,ast2600-sdram-edac', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: bus@1e600000: compatible: ['aspeed,ast2600-ahbc', 'syscon'] is too long
+	from schema $id: http://devicetree.org/schemas/bus/aspeed,ast2600-ahbc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mdio@1e650010: Unevaluated properties are not allowed ('reset-assert-us', 'reset-deassert-us' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/aspeed,ast2600-mdio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mdio@1e650018: Unevaluated properties are not allowed ('reset-assert-us', 'reset-deassert-us' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/aspeed,ast2600-mdio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: syscon@1e6e2000: 'smp-memram@180' does not match any of the regexes: '^interrupt-controller@[0-9a-f]+$', '^p2a-control@[0-9a-f]+$', '^pinctrl(@[0-9a-f]+)?$', '^silicon-id@[0-9a-f]+$', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed,ast2x00-scu.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/syscon@1e6e2000/smp-memram@180: failed to match any schema with compatible: ['aspeed,ast2600-smpmem']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@560: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic0']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/syscon@1e6e2000/interrupt-controller@570: failed to match any schema with compatible: ['aspeed,ast2600-scu-ic1']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/display@1e6e6000: failed to match any schema with compatible: ['aspeed,ast2600-gfx', 'syscon']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9000: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: adc@1e6e9100: 'interrupts' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/iio/adc/aspeed,ast2600-adc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: crypto@1e6fa000: 'aspeed,ahbc' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/crypto/aspeed,ast2600-acry.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/video@1e700000: failed to match any schema with compatible: ['aspeed,ast2600-video-engine']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: gpio@1e780000: 'gpio-reserved-ranges' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/gpio/aspeed,ast2400-gpio.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/timer@1e782000: failed to match any schema with compatible: ['aspeed,ast2600-timer']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000: lpc-snoop@80: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: lpc@1e789000: reg-io-width: 4 is not of type 'object'
+	from schema $id: http://devicetree.org/schemas/mfd/aspeed-lpc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@24: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@28: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@2c: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: kcs@114: 'clocks' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/ipmi/aspeed,ast2400-kcs-bmc.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/lpc@1e789000/lhc@a0: failed to match any schema with compatible: ['aspeed,ast2600-lhc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/lpc@1e789000/ibt@140: failed to match any schema with compatible: ['aspeed,ast2600-ibt-bmc']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000: sdhci@1e740100:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: sdc@1e740000: sdhci@1e740200:compatible: ['aspeed,ast2600-sdhci', 'sdhci'] is too long
+	from schema $id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740100: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/sdc@1e740000/sdhci@1e740200: failed to match any schema with compatible: ['aspeed,ast2600-sdhci', 'sdhci']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-pvcore-nic2@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-pvcore-nic1@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-p3v3-nic@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-p1v2-nic@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-p1v8-nic@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/bus@1e78a000/i2c@280/bmc-slave@10: failed to match any schema with compatible: ['ipmb-dev']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: r38263-p1v05-pch-aux@40: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts', 'regulators' were unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38060-p1v8-pch-aux@40: Unevaluated properties are not allowed ('interrupt-parent', 'interrupts', 'regulators' were unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mux@77: interrupts: False schema does not allow [[44, 4]]
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-p5v-aux@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: ir38263-p3v3-aux@40: Unevaluated properties are not allowed ('regulators' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/infineon,ir38060.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cpu0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b000: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/fsi@1e79b000: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: fsi@1e79b100: compatible: ['aspeed,ast2600-fsi-master', 'fsi-master'] is too long
+	from schema $id: http://devicetree.org/schemas/fsi/aspeed,ast2600-fsi-master.yaml#
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/fsi@1e79b100: failed to match any schema with compatible: ['aspeed,ast2600-fsi-master', 'fsi-master']
+arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: /ahb/apb/dma-controller@1e79e000: failed to match any schema with compatible: ['aspeed,ast2600-udma']
+
+
+
+
+
 
