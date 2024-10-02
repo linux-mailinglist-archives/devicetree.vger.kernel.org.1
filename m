@@ -1,104 +1,92 @@
-Return-Path: <devicetree+bounces-107269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A8498D8F8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:07:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D25E98D987
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 16:12:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80AFE1C20A95
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:07:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6EDC31C20902
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D4D1D27AC;
-	Wed,  2 Oct 2024 14:02:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1558F1D14FB;
+	Wed,  2 Oct 2024 14:07:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ejWPZ3Kv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF401D0DD9;
-	Wed,  2 Oct 2024 14:02:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEEF198A1A;
+	Wed,  2 Oct 2024 14:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727877730; cv=none; b=gNl9uLMbElpQ1ERMMpNNjiRIfTBCkofG8OtKjEZX/ZBZr86yNwAC12lLDI4+h7e/rw1bYBna3g9VEwvWgy2tTW1vQevT9KvYUUVRiit+dcqUI8sHTCj4pw2QMQmwjFoVPI5btljMsVYIUZ+vds2WjAGzLPro7e/vGwa6+rwU/Ho=
+	t=1727878068; cv=none; b=o1Du6joZLjywWrpexRUppQFn81EPxmcKsubCjyEctzWLYDC/pN5AIWmSc10FV4FmTVCm12E6wqlJs4oBIWQvfiOUgE/WjRdUztjM4Cz6tnDcfjtOyzrBS94aAoZeGV254wAQBy/79Ou1GoKM8KEO+BTO2xE13PlVQcTkPKYeP3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727877730; c=relaxed/simple;
-	bh=VOJQuCqdUBhRksuB8YpG1sADNdGbpcrZPuEXdhuf4HM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hkr4DqQXyHAj8wZha+BCaDCRgrKkrNKuYDqvE9rYT3f8hHrccN7Fqz3u77pksnc1GzwgfiwpZBP3eX0J3oRU1/pln3+LFxsHhwx4iFG17/35z0gjjckWpzYu3KeBiiWOHA1q1C5v6BGa3BvCXfvT/Do84dkEhclpWCgvWAPJMic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 89A51339;
-	Wed,  2 Oct 2024 07:02:37 -0700 (PDT)
-Received: from [10.57.75.246] (unknown [10.57.75.246])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 997F33F58B;
-	Wed,  2 Oct 2024 07:02:05 -0700 (PDT)
-Message-ID: <2ac9bab0-2a00-44c8-bf43-2469b6d60b92@arm.com>
-Date: Wed, 2 Oct 2024 15:02:04 +0100
+	s=arc-20240116; t=1727878068; c=relaxed/simple;
+	bh=8Fu+NhRjMt9DZvQMbWNjfPX0Sw2ayIi7klwNzm9YV8k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=di+OkVtiK8X1hh46H/dsk+1+gwyIGk+5XinNVH6cCVOVxixEvQcbcI7TkQWS6kxjT3qOCRKTCWI0R1OlFM//waauhmvMSzEQM5WSOgJ/rUs801qp2rE9eZXGtOmwpyovj1fBZreVnJ9jJGGGz5qDKj8Tl0JEAMgnEfkT25qTLgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ejWPZ3Kv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70CC3C4CEC2;
+	Wed,  2 Oct 2024 14:07:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727878067;
+	bh=8Fu+NhRjMt9DZvQMbWNjfPX0Sw2ayIi7klwNzm9YV8k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ejWPZ3KvhY5ZDy9UN1E7hwKs5BfY0mWQ1fbu7z7k7qJ7qtJrHq8xn5hsn9HefcNyG
+	 EYIUUaSFnYNhyGOYxwTf3QTVxMhrpOPDUQrfPB2l2OZG4LB6noeH6F6899JzkPENcF
+	 QcUWTzOVUx/CinC7PoxO5p3zmpXpHT1Cy8e93i/oXSxDc6hFHzE7OhyZ1Y4Q6kx/r9
+	 redGt0KNc0wGLuXxTv2OiEXeQ762pc2Gc85jGzV6zQ6i96sBmqOfoLzKpwKDflQHvn
+	 IvvDywihkHLdmiVH1fUWJDXuE9vuBPsmBS8J5FC9SPtrfxX84EDOyo/2Kae+lp93aX
+	 a4mKEkQVNvPdA==
+Date: Wed, 2 Oct 2024 15:07:42 +0100
+From: Lee Jones <lee@kernel.org>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, kernel@quicinc.com,
+	quic_psodagud@quicinc.com,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Shazad Hussain <quic_shazhuss@quicinc.com>
+Subject: Re: [PATCH v3] dt-bindings: mfd: qcom,tcsr: document support for
+ SA8255p
+Message-ID: <20241002140742.GF7504@google.com>
+References: <20240905194741.3803345-1-quic_nkela@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/6] dt-bindings: power: rockchip: add regulator
- support
-To: Sebastian Reichel <sebastian.reichel@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Elaine Zhang <zhangqing@rock-chips.com>,
- =?UTF-8?Q?Adri=C3=A1n_Mart=C3=ADnez_Larumbe?=
- <adrian.larumbe@collabora.com>,
- Boris Brezillon <boris.brezillon@collabora.com>, Chen-Yu Tsai
- <wens@csie.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, kernel@collabora.com
-References: <20240919091834.83572-1-sebastian.reichel@collabora.com>
- <20240919091834.83572-5-sebastian.reichel@collabora.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20240919091834.83572-5-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240905194741.3803345-1-quic_nkela@quicinc.com>
 
-On 2024-09-19 10:12 am, Sebastian Reichel wrote:
-> Add optional support for a voltage supply required to enable a
-> power domain. The binding follows the way it is handled by the
-> Mediatek binding to keep things consistent.
+On Thu, 05 Sep 2024, Nikunj Kela wrote:
+
+> Add compatible for tcsr representing support on SA8255p SoC.
 > 
-> This will initially be used by the RK3588 GPU power domain, which
-> fails to be enabled when the GPU regulator is not enabled.
-
-Note that this applies equally to RK3399 and quite possibly others too, 
-it's just that so far it's always been bodged by making the relevant 
-regulator always-on (e.g. [1]).
-
-Cheers,
-Robin.
-
-[1] https://lore.kernel.org/all/20210619121446.7802-1-knaerzche@gmail.com/
-
-> Reviewed-by: Heiko Stuebner <heiko@sntech.de>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Shazad Hussain <quic_shazhuss@quicinc.com>
+> Signed-off-by: Nikunj Kela <quic_nkela@quicinc.com>
 > ---
->   .../devicetree/bindings/power/rockchip,power-controller.yaml   | 3 +++
->   1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> index 0d5e999a58f1..0b4c5b174812 100644
-> --- a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> +++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-> @@ -131,6 +131,9 @@ $defs:
->             A number of phandles to clocks that need to be enabled
->             while power domain switches state.
->   
-> +      domain-supply:
-> +        description: domain regulator supply.
-> +
->         pm_qos:
->           $ref: /schemas/types.yaml#/definitions/phandle-array
->           items:
+> Changes in v3:
+> 	- Removed the patch from original series[1]
+> 
+> Changes in v2:
+> 	- Added Reviewed-by tag
+> 
+> [1]: https://lore.kernel.org/all/20240903220240.2594102-1-quic_nkela@quicinc.com/
+> ---
+>  Documentation/devicetree/bindings/mfd/qcom,tcsr.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+
+Applied, thanks
+
+-- 
+Lee Jones [李琼斯]
 
