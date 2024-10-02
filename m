@@ -1,203 +1,109 @@
-Return-Path: <devicetree+bounces-107339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3649B98E46C
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 22:49:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0976F98E471
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 22:52:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A60111F23D22
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:49:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A23E1B21096
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:52:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F532217314;
-	Wed,  2 Oct 2024 20:49:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6487E21730B;
+	Wed,  2 Oct 2024 20:52:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Llc9XjG1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JUWRxZh3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FF64212F18
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 20:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1E58F40;
+	Wed,  2 Oct 2024 20:51:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727902178; cv=none; b=hFllaFwl3yCVdphpK4T+nuTcTyMe2dtoMtbJu9e+XazuWxbKwZrofYA4fm2H1qBilD2rKw1VWkJAJLTm1W21h260V9qxF++T4iivGVar/2gZXSpi0CdBdszHsSbq3sFkFtAhCpjkyHw6YwTDEy7TyVrYrfemnHZFRmrhLGA57H0=
+	t=1727902321; cv=none; b=NnloApG0vTPRoBL1RXHCd2IQzoQTKeY11tC5/voFMzdP3JNLtN/74SpA71V6ogXdcqMDrQjrJuQd0Jol7DjtHQInAMYYcsAIjWP2avWOLYj3M0Mduc7xZXhkYrherJ7qpn/0pjB0nOXxJUgr7MzPxdMzpVIKwDCP73rlRUv5/+A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727902178; c=relaxed/simple;
-	bh=uvsPBShSPO+yM/hAzKgPPqQv9tYuzcqq5Atfk72oAbQ=;
-	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
-	 MIME-Version:Content-Type; b=cylVNXvnsQmlXiEuXEOnEnz3Dpj+0L7AjTSk2vp7tOyCIcdhHb/7ngsb+YeihZq+VXi+hG1UyDVgOP/ZJrEJfyWb8dS2+A1sU6e+G1WwditdYq8dbhYXRF1ys0jXSyMuuXxISMec8vtJ6qpiDnzkeSyJXNV7NZoMK1SR95p1JlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Llc9XjG1; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5399041167cso304430e87.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 13:49:36 -0700 (PDT)
+	s=arc-20240116; t=1727902321; c=relaxed/simple;
+	bh=VEHAyZoQjBPuXBaQnp3bkKS9a1uzzrtwU6torraHTtE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JowuC9l+HoMtUq8u0gH7e8jEUGrqEwPxUkV8GMciLV4XEIrdJlwlVPJ3vU7xYnPGM1S0JxSzEBaFNFToxc6J4CaNtQ/DOpoKTdnoJVJEWnduZFf+7pEKN0EdmIz8Fy/EatP1YtXAbtKzsrdrUWopsiy7BNnpGzilv7dfJBeaP4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JUWRxZh3; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fac47f0b1aso3039171fa.1;
+        Wed, 02 Oct 2024 13:51:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727902175; x=1728506975; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1z0vltYtHMh6nM7Myzu/CUHs6ELzzDF6I8s/J7e4QNQ=;
-        b=Llc9XjG1tBjNg/tDob+QmPHIfFHuNvoYfcKOOUepchvBmghnqYRQR4c5/YkscD7oYu
-         CMDp3cgAk+xfnWnHEQ8y+YIHwueWeOtJ4k5h5XrAKsheqylMBzKTgBCnaaIZ/z96+nq5
-         YgSWAXN4/p2IOAsZr+KBCe3iD0I6NLyMaaLGeJZfuA1sEQzu21+2pXN4LOgKg3qV4nF7
-         4PW5le4Eb2xgDnocTas90g02X3pd2R+kyIuA9UTVEb5yaNi8wmy5yl8UUFC2zGhKm+kM
-         sNUkGIVvFHuFd4eHkutHdWCUEK1BWfyqYca2gTPGtj9fj+Z+myG/p5BSkQ+HNZP/Z5ar
-         sanA==
+        d=gmail.com; s=20230601; t=1727902318; x=1728507118; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DKTTMLpVNU1rbwFfrmI7lnoXgbZiPVbY+NtY+gwrero=;
+        b=JUWRxZh3fisEez6X44SvT1/LG5NjAgsT2YZku/ozbLKHIKMpyKopIeTA0xhhRnRHyl
+         QX6YYIaQYDznijXnaAmdjuMtIpjesAPii5cX40sUFmShQVZMeE/FCdSE4gSRXzb7+7AX
+         Q7t6oWMhfSjQU4x1ss9AKCliaV+3KjmC3xJyB58sU0mHJ/wZc9s+5kF2SWu+DmGJYMif
+         IrstpHfXLU5/x4NbUmIElpYdmvmefnuXXOZa3MZh7jsLAiD6h3yS+s1k2MP5djOqgXul
+         YhpsEDMm/0AVbjKscY56/XSvHfMF/OWJNRp4jCZh4zTvYS32TW+/RixzXyi9NcUZ0nvb
+         SlnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727902175; x=1728506975;
-        h=content-transfer-encoding:mime-version:message-id:references
-         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1z0vltYtHMh6nM7Myzu/CUHs6ELzzDF6I8s/J7e4QNQ=;
-        b=icE3pmQFVYpkFwWEVDUT/pqASd0Ml3QWPhOaV643NZwrle7/Y7szf1EEH5d414iaYm
-         omrVDddqCHYAIKzKyezVr/wq1F6yzwtSvQIHzTwahXKLH+6pcp9yhoSwY0+YxWLI5TQr
-         1fSDRGZY+V9uYdO5Jrc9mQe5q8WfhgJYPx1vbvhS1lzSCsFBUksbC5QsHeBDgBWjnFU3
-         a6/8OmhR6rgC6dYsZXMrXGYowsNGpCo65F7OGHDZX9sRa5lzN/Y5tDi4HBppUGJ4oT+d
-         SAjrksFeHuW9hIzlf//HZds9SayGwx/HqPiLU2TMb/1LSLow+awOfqqRgInwRAeP78c3
-         jeTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVsLQnjCOCBWNr4TCm5uniKVjv+LxZtihXf5infnId5jk466BWZjkch/U685oYwez8ojBTCqu3Ad5CB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0Q19n+ya1v39CsJTOP+xVHGagHUeP+IucIPJplo8RSeBfrEor
-	Z5zBkQdTRIpksW3GwZMKgW+SkO022nWcrpC2Z2U7bolxjHIt8m0bgHU9HKUXpjk=
-X-Google-Smtp-Source: AGHT+IHw+cshu10He6CNCBmdI2iYdCk1JHyIZU6NlAWirtthcx1GR1PIMz9XM9sPHv0UnO1QSgF8dA==
-X-Received: by 2002:a05:6512:1056:b0:52c:deb9:904b with SMTP id 2adb3069b0e04-539a0792f99mr4173573e87.38.1727902174449;
-        Wed, 02 Oct 2024 13:49:34 -0700 (PDT)
-Received: from [127.0.0.1] ([188.119.23.43])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93c2775ceasm911357066b.21.2024.10.02.13.49.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Oct 2024 13:49:33 -0700 (PDT)
-Date: Wed, 02 Oct 2024 23:49:27 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Laurentiu Tudor <tudor.laurentiu.oss@gmail.com>,
- Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-CC: "Kemp, Bryan" <Bryan.Kemp@dell.com>, Bjorn Andersson <andersson@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "Tudor, Laurentiu" <Laurentiu.Tudor1@dell.com>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Rob Clark <robdclark@gmail.com>, Peter de Kraker <peterdekraker@umito.nl>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v2_3/3=5D_arm64=3A_dts=3A_qcom=3A_Ad?=
- =?US-ASCII?Q?d_support_for_X1-based_Dell_XPS_13_9345?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <322946b9-bef1-488b-a1a7-e35b057ee018@gmail.com>
-References: <20240921163455.12577-1-alex.vinarskis@gmail.com> <20240921163455.12577-4-alex.vinarskis@gmail.com> <f9997a19-5aae-41c9-9ca2-c847d8071230@gmail.com> <CAMcHhXohz6kquH_JT9eAKMntxxyjDt+oZUB_kfAO840oJ5=LPQ@mail.gmail.com> <PH8PR19MB7071756BFAFA1BA3E92AF3C09E772@PH8PR19MB7071.namprd19.prod.outlook.com> <CAMcHhXo7PNxoOs3BEhbS7v-hDqEZQSyQJnzHbpTMoRbeaunp3g@mail.gmail.com> <d54d98f2-f678-491b-8448-0dd2be32aa82@gmail.com> <CAMcHhXr-0+mBggJ9PmT1G=Jti1BY-bmLfKJUz6=-oKg+4Rs2cg@mail.gmail.com> <322946b9-bef1-488b-a1a7-e35b057ee018@gmail.com>
-Message-ID: <ED86D6B5-E5F8-4965-BE59-C90535EA543A@linaro.org>
+        d=1e100.net; s=20230601; t=1727902318; x=1728507118;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DKTTMLpVNU1rbwFfrmI7lnoXgbZiPVbY+NtY+gwrero=;
+        b=aS42Irrt4uVkpy6NApE7R3UTW7UaGcVB9U7cedsbKUd7YJpXhjngtHb/30dWLhtWAl
+         tsOL/O9lldtuLF7W4RSSpLoPfdnXzbCJvN5Bk4jkyCEJVQvWu3UD9A7KXvvIIF0nYoiL
+         dWS0RFKOjeiI/F2dMDPfUUEDV2dVdW8WoD2i5RlGZ7xOCmx5ZiuB5SkBiDQDvunCdI77
+         YwVkGwPzI710nystzjjdNZ3j1+B2uTVlqBN4RPt2CA5CVWz/4cOwHlLSTbZXth7Kwhmw
+         fSNBBcmR3jr78bB0cj7DuXN125El144czVjRg933gxUHUVvLPiQJ1MLBjl4WajpKccGv
+         1gVw==
+X-Forwarded-Encrypted: i=1; AJvYcCWy/7xuvImS+7ChqN0bj+CTVh0I/J/z1kSwTRyf5gpG4fO69N8SttOoESwRUKvC2O+m8B3H6JxC9l8c@vger.kernel.org, AJvYcCXYnz9cjECnfGOPWHZF5GDUZWKv6EgD0PHHawQM/lYRC4B2j7TqGmm4EOL23R/G6zdiXVcpOqIPsD90NDOa@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9t2eo7GA/nkE56E9/goss9wqvKbn0fwBxjKcw8Ngah1ZVEPBS
+	40r+7/ak3efJ0gYYmMGM0spm1jVtFAlhCHGxSXQfAjTwVuGeeZ930px5F9uu2BGRDzcO6OV1thU
+	JEqnVmGkU9UGfTjr7KoI9ygdbse0=
+X-Google-Smtp-Source: AGHT+IGkBg1h2s8kkcXTyEZggePG6zCcw11Akl1BW7tIzxgdK/KH0WZ3KEBjraWlRZDcrGpcbllxYF4a0zGGCXXfq1c=
+X-Received: by 2002:a05:6512:3084:b0:537:a745:3e with SMTP id
+ 2adb3069b0e04-539a0795be3mr2627745e87.45.1727902317426; Wed, 02 Oct 2024
+ 13:51:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
+References: <20241002204750.597337-1-Frank.Li@nxp.com> <20241002204750.597337-4-Frank.Li@nxp.com>
+In-Reply-To: <20241002204750.597337-4-Frank.Li@nxp.com>
+From: Fabio Estevam <festevam@gmail.com>
+Date: Wed, 2 Oct 2024 17:51:45 -0300
+Message-ID: <CAOMZO5B+nGngoonBm4gzFXtKy_DR7SPNs1GQYSeOu8emcsRgyQ@mail.gmail.com>
+Subject: Re: [PATCH 4/4] arm64: dts: imx8qm-mek: Add PCIe and sata
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, 
+	open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On October 2, 2024 10:06:41 PM GMT+03:00, Laurentiu Tudor <tudor=2Elaurenti=
-u=2Eoss@gmail=2Ecom> wrote:
->Hi Alex,
->
->On 10/1/24 20:57, Aleksandrs Vinarskis wrote:
->> On Tue, 1 Oct 2024 at 18:23, Laurentiu Tudor
->> <tudor=2Elaurentiu=2Eoss@gmail=2Ecom> wrote:
->>>=20
->>> Hi Alex,
->>>=20
->>> On 10/1/24 19:09, Aleksandrs Vinarskis wrote:
->>>> On Tue, 1 Oct 2024 at 02:47, Kemp, Bryan <Bryan=2EKemp@dell=2Ecom> wr=
-ote:
->>>>>=20
->>>>> Fascinating topic=2E First of all, thank you Alex for the explanatio=
-n of your logic, and thank you as well for the work on the device tree for =
-the XPS 13=2E I understand completely how the Dell naming/numbering scheme =
-is confusing=2E The shortened version down to just the model number could a=
-lso be confusing=2E For example, there is an XPS 9520 as well as a Latitude=
- 9520=2E The 9 basically translates to "premium" not a specific line of bus=
-iness=2E For what it is worth, I would prefer the dell-xps13-9345 naming an=
-d I think we can have to be mindful to avoid a naming collision in a decade=
-=2E
->>>>>=20
->>>>=20
->>>> Hi,
->>>>=20
->>>> Thanks for the input, it's really nice to have Dell's perspective as =
-well=2E
->>>> That's a good point with latitude, I was only aware of 5XXX/7XXX
->>>> naming for that one=2E=2E=2E which I guess further highlights the con=
-fusing
->>>> naming scheme=2E
->>>=20
->>> Yeah, completely agree=2E We will raise this internally so that in the
->>> future we'll do a better job at naming platforms=2E
->>>=20
->>>> I will re-spin with `dell-xps13-9345` and `dell,xps13-9345`
->>>> respectively as proposed then, unless there will be any other feedbac=
-k
->>>> on the V3 series before tomorrow=2E
->>>=20
->>> Great, thanks!
->>>=20
->>> Couple of points:
->>>    - i'm thinking that maybe at a later point, as more dell platforms =
-are
->>> getting added, we can re-organize the device trees, e=2Eg=2E have a co=
-mmon
->>> 'dell-xps=2Edtsi' which gets inherited by specific platforms
->>=20
->> Completely agree=2E Although I'm not sure about the name - analyzing
->> DSDT of Tributo it seems there are quite a few more things defined
->> than particular laptop utilizes, eg=2E support for x3 TypeC and x3 USB
->> MP while current device only has x2 TypeC and x1 USB MP=2E I believe
->> these are either leftovers of examples being provided to Dell which
->> were just left there, or ACPI tables being (at least partially?)
->> shared between multiple platforms - eg=2E Inspiron 14" 7441/Latitude 14=
-"
->> 5455 etc=2E In the latter case (unfortunately cannot test myself due to
->> lack of hw) perhaps the =2Edtsi can be inherited by more than just XPS
->> family=2E If you/Kemp Bryan could share some insight on that already wr=
-t
->> to how much is shared (if any), I can split to dtsi/dts with upcoming
->> re-spin=2E Otherwise indeed can be done when the next platform is being
->> introduced=2E
->
->Regarding ACPI, hard to tell as I'm not familiar with what's exposed in t=
-here=2E=2E=2E there might be legacy / inconsistent things=2E
->
->For now, I'd suggest to just stick with what we have at the moment and bu=
-ild on that=2E More to the point, have the device tree for xps13-9345 accep=
-ted and derive from it, if / when at some point in time similar platforms s=
-how up=2E
->
->>>    - just noticed that the firmware paths point to something like
->>> "=2E=2E=2E/dell/tributo/=2E=2E=2E"=2E Should we reconsider these too? =
-Maybe something
->>> like "=2E=2E=2E/dell/xps/=2E=2E=2E" would be better?
->>=20
->> Yes, will drop 'tributo' altogether=2E Perhaps "=2E=2E/dell/xps13-9345"
->> then, to match the proposed compat?=20
->
->
->Sounds good to me=2E
->
->> Also when Divo/Huracan/Perfomante
->> will come out, those are still "XPS" but I would guess will have
->> different firmware files, so maybe it makes sense to be a bit more
->> precise with the naming?
->
->On naming, there are ongoing internal discussions to make them more coher=
-ent=2E
->
->Apart from that, could you please Cc: us if you plan to submit stuff to l=
-inux-firmware?
+On Wed, Oct 2, 2024 at 5:48=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
 
-Only Dell, the final copyright holder and product owner can submit files t=
-o linux-firmware=2E
+> +&pciea{
 
+Missing space: &pciea {
 
---=20
-With best wishes
-Dmitry
+> +       phys =3D <&hsio_phy 0 PHY_TYPE_PCIE 0>;
+> +       phy-names =3D "pcie-phy";
+> +       pinctrl-0 =3D <&pinctrl_pciea>;
+> +       pinctrl-names =3D "default";
+> +       reset-gpio =3D <&lsio_gpio4 29 GPIO_ACTIVE_LOW>;
+> +       vpcie-supply =3D <&reg_pciea>;
+> +       status =3D "okay";
+> +};
+> +
+> +&pcieb{
+
+Same here.
 
