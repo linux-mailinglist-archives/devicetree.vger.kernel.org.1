@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-107351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41F2598E55E
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8AD98E56A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:41:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0AF9B2888FC
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:37:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75E8428241B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:41:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C55A1D1E95;
-	Wed,  2 Oct 2024 21:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2DC216A35;
+	Wed,  2 Oct 2024 21:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JyYOVB/7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XvFdxoa2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69201D131B;
-	Wed,  2 Oct 2024 21:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C38EE1D131B;
+	Wed,  2 Oct 2024 21:41:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727905032; cv=none; b=MM/rn9HZyMxbuJv9pEoRmowHLPUNrwPG5SHdK6coENh+jRhnR+cqiu7YqmKkkxOcRcoxWLCL0jt1ObSFZ/uGj9WfO7fMUFuQP5zD7yAAduGxnxQRgfiOC+rduDnCxX9oHniSJlKuI4xNNhRq3zHhHLSOo4Lso7e8bKhrth4I33I=
+	t=1727905292; cv=none; b=NhpFBc8pv/J1bsO7WziR271WF2rWQWIrVnkQTDiHKDYHQvJ5hlmL7+t9JsbaV0JyuBt0QMio1EA5MAz1THNs7yAl3cYOAx/qoI3aXhPHU7krdhdaZekVIELSFeVz6gQ5XQKGUjGCRJmCwGQWtqJnb4Lmwg6tvS0PyUdjh/bhLOY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727905032; c=relaxed/simple;
-	bh=z6yZ/ShbdkhxihwxYPu4zhNzEVFScmUJDYnzhuSEUtY=;
+	s=arc-20240116; t=1727905292; c=relaxed/simple;
+	bh=MhCybmHtvHC9lNdIeEmiXoehkqXFqlzKTsDQ0Q7WLRI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O2aprbHq+lLNSPfgskM6rz4f3u0eetuz/XG7VKeFmua5m+ZHI163HiWXuz8mY500inEmzVzIVspGWNZbg1WEhaSEjt7IzZ/0JGCAT3PeoTj4INCcIk6BkBaoITDpUOfIpCGwXz+EjGFYSbrNiGF+BwMHoLzc/mjaSKHwNBYJguM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JyYOVB/7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52124C4CEC2;
-	Wed,  2 Oct 2024 21:37:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PrJzfgh7QJzq5NW3QJIRDwtRk64PCda/OiXAJTyUoiAXX8Q4fOry0HMXwX261nRFYKGySaMolKAgLS2/lKcfxgDalGJpN1gY/A7k417UepNxd2WWRan5IWqo+5/vj+99kZVjy5aPo8SiSvFt68hdSlaaMmfoQMV+DtbwzimV250=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XvFdxoa2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E25EC4CEC2;
+	Wed,  2 Oct 2024 21:41:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727905032;
-	bh=z6yZ/ShbdkhxihwxYPu4zhNzEVFScmUJDYnzhuSEUtY=;
+	s=k20201202; t=1727905290;
+	bh=MhCybmHtvHC9lNdIeEmiXoehkqXFqlzKTsDQ0Q7WLRI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JyYOVB/7MX4vW286i/lc3uLniyT+VM0KcB4OrRqaxj3GMaNOJvjvROoU7bok0cG2T
-	 QUFRfFoV9j//A5+R4N7g6GQTKSYAcpDMHR3yePhsR/NRETD1J4mJZ/JNfHiTWFxq4S
-	 9BKrPtdRYV3GRIUuKK1BuEQ+9/+YLqU00PJzuj8x9fqK7EB3XK6ydRbBZMYuILCE2q
-	 s0Qf5XV2vF4JGltY7jYvtjAC+um2QooDU3iQGFd7rkOwskM0QlSZwVq6yoI+yTr8rc
-	 vnrWyMsyvo3dIl7/JrgQc6d8oNT+GJVBBFMG+zY9ww/9y7EXUUq8yTP7WL1yayH1LP
-	 hCN4Bu1h7hXew==
-Date: Wed, 2 Oct 2024 16:37:11 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>,
+	b=XvFdxoa2dpgVrMZnOltYN8stAk4+Ke6MW6IomUDz5jEwpj3L5VJDEqKCATIpOsC7H
+	 hYd/YH2cP2eIEzddFsR/HpjJ8A5hYzlDkMC85CxcimtwHAzRqwZnsu5YaCH2hG5W+I
+	 okdyeL1bfrJnlASIUxNeooNbYjeFvGjPHphRtz6gt8kegKihJG6jXKoz4FJg6rO5hu
+	 J6+jX9LhdU5fUJQFcupBOd+nPQ2PMQCqSFoLIsBQIvX7LAV4pkN3EqK2xOAHOcCFCi
+	 SAjVSnsPPK93OJkYgpfnhX4mqZs8H2LXgl80Ynygp9KCeQJ/1b43+77YH9sc51Lg1J
+	 dFSKORiF7JTiw==
+Date: Wed, 2 Oct 2024 16:41:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
+	monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: usb: renesas,usbhs: Deprecate
- renesas,enable-gpio
-Message-ID: <172790502576.1347171.2357265482413319250.robh@kernel.org>
-References: <cover.1727853953.git.geert+renesas@glider.be>
- <e9cf476ffac794bad7b0860dc89afd62a9ebc812.1727853953.git.geert+renesas@glider.be>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: clock: si5351: Make compatible string
+ required property
+Message-ID: <20241002214129.GA1347474-robh@kernel.org>
+References: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
+ <fa249ec7-409f-4dee-b853-736c5de464be@kernel.org>
+ <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
+ <7695cae2-33a3-4879-b8e5-d296d81ffece@amd.com>
+ <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +69,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <e9cf476ffac794bad7b0860dc89afd62a9ebc812.1727853953.git.geert+renesas@glider.be>
+In-Reply-To: <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
 
-
-On Wed, 02 Oct 2024 09:35:12 +0200, Geert Uytterhoeven wrote:
-> Commit 2071d0968e564b4b ("Documentation: gpio: guidelines for bindings")
-> deprecated the "gpio" suffix for GPIO consumers in favor of the "gpios"
-> suffix.  Update the Renesas HS-USB DT bindings to reflect this.
+On Wed, Oct 02, 2024 at 02:17:22PM +0200, Krzysztof Kozlowski wrote:
+> On 02/10/2024 12:31, Michal Simek wrote:
+> > 
+> > 
+> > On 10/2/24 10:24, Michal Simek wrote:
+> >>
+> >>
+> >> On 10/2/24 10:19, Krzysztof Kozlowski wrote:
+> >>> On 02/10/2024 09:51, Michal Simek wrote:
+> >>>> Compatible property is likely also required property.
+> >>>>
+> >>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> >>>> ---
+> >>>
+> >>> That's a convention but not necessary, a no-op.
+> >>
+> >> But how do you identify device then?
+> >> Or are you saying that device description is valid even if there is no 
+> >> compatible string?
+> > 
+> > One more thing
+> > commit 524dfbc4e9fc ("dt-bindings: clock: si5351: convert to yaml") is showing
+> > that compatible property was required in txt file.
+> > 
+> > -Required properties:
+> > -- compatible: shall be one of the following:
+> > -       "silabs,si5351a" - Si5351a, QFN20 package
+> > -       "silabs,si5351a-msop" - Si5351a, MSOP10 package
+> > 
+> > I can update commit message to describe it too.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  Documentation/devicetree/bindings/usb/renesas,usbhs.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
+> Devices do not work without compatible, so this is obvious... and like
+> said - it is already required, so the change is redundant. Does not
+> harm, though.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+To put it another way, by the time the schema is applied, we already 
+know that compatible is present because that is *how* the schema gets 
+applied in the first place.
 
+Rob
 
