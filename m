@@ -1,219 +1,313 @@
-Return-Path: <devicetree+bounces-106991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 144CD98C826
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 00:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07D2E98C9BC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 02:02:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 87022B23142
-	for <lists+devicetree@lfdr.de>; Tue,  1 Oct 2024 22:22:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5997DB22AD1
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 00:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08B331CFEC8;
-	Tue,  1 Oct 2024 22:20:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AB7D1392;
+	Wed,  2 Oct 2024 00:02:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/2PcnVF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SLB6VJzc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51B101CFEB1;
-	Tue,  1 Oct 2024 22:20:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1BB618F58;
+	Wed,  2 Oct 2024 00:02:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727821252; cv=none; b=NhCDkpVBG30GFOdVJ90IjZ2nTSWEpZaZEeWjYHeb5dO6mgC6NgMlS8ufJ8INyxBHP4QTSi2Ke4J0kJvgOk19cCFKJzhN1A+O4jL6i5UxwfU3kDnzPw7CxSMYl3rYeN/jnM143nyTseSJUQ4R0sUuairDp3FVr9io4+z8Hkd3DsM=
+	t=1727827336; cv=none; b=R1ez0Iyk9RFq75h2AxFuE/70H1gdJkAP9yhyseQXrL27LjdYJRIvnlANFlMtyi/gHRojXYBcBRHCkqwe7GWRnPP0v3dYMu0y83CpBfbvjpqrqesFB7OzNXaWzTueXfpnRIZN22dJwbzmfWtawc7zr0S5pnbmofEwVAbO4qLfeHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727821252; c=relaxed/simple;
-	bh=ZGJWblZQ6mWDeDX3xWjLX4Hq31Cq8jNHK7pdlF6Useg=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HpeJUJ/ukTdVOvFi7W69+6RJN234FyJDNd3W5N44ffqJIy/Q7Xiq5FoyL2BN6l9jzIzPbfCqRUyQOEQtXsrYKIQAM6O9t0B9STM6n7wN8WyDxO89wMe9aBu7jAaXhJ8val4y7YAHWUk5ZQSQIsun0GGcOripf2l6Te8U8pLLbTQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e/2PcnVF; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42cb57f8b41so74016325e9.0;
-        Tue, 01 Oct 2024 15:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727821250; x=1728426050; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=gcRl7SYPnHXphMlwKdbFcqFdVK4YyXteBvfwt/gFJ9s=;
-        b=e/2PcnVFqVxSzpcUATNlcHesczaLStp6YCzi39PkRzNBJQcFdTL06q0oBK19FBMlKg
-         ESFigPQaE9jlZ7ZBv3OKcFatITmPM5pyBB957wn/maWwuG5TM2xQ1nECSA0E7eKLyjui
-         FDrxoHwZcVCtGgOLDXLk3p/jVlDO0KbOeOFMo5EIslKxjSCXWZjabSh2zfyueImh9Jaw
-         ihTHR1RiZQcf1CW6Wbvm+glBeMdnEPaEwdUY5zMdaWm7RKotfPIlEsKz6mqDP+IzCaun
-         Q9TUCbcFVWUr9qqhzU2d8s80m0rB7YDcJrB2XMLYpa5pS5lRz0BAX06EwtWTi793qjzZ
-         hDmg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727821250; x=1728426050;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gcRl7SYPnHXphMlwKdbFcqFdVK4YyXteBvfwt/gFJ9s=;
-        b=IinZxOi6Y1Aw4fopUbbg3TqYif2nwEjHi5xrg6tCTj+Ka+1AMzLllpxWaYa8o0Dclc
-         vHfwgsOYuFzqR+j5OJ3/OfpGG5mhK2h43jtISJ2cjW+GpYaRC3w0mZ5GI8oBnXFQd4J0
-         YsQratVfqZoCslBGRCNibl3zh+D8zO4sLw4G1LQEksW57E8YtrLDt2kIqkvMZmD+I7br
-         iRFUgwMhD9t1gXMGZaOwlxriQGr/1OAs/+qszkIn7kYS9U6Vtt3+eD3AVZGgEO2DVUeO
-         TLGCWBA6cQJeq8sb3GcPe6Ue5DqmHG1dHJ6uDXJqwonIUEN9733EbHcSzpIf1fzAz5SR
-         AC/A==
-X-Forwarded-Encrypted: i=1; AJvYcCUQIhQj9Xm+jQT6raOsieW9vb1fz81ODVnXy+02ToS/BizKZulEmPpiBwR48lZ6RmJFNC9NFmf3NHj4jZ4=@vger.kernel.org, AJvYcCWev9md2385wC891U4QCGO9kioM4vPHTo80ytEy6X55pQ2gX9Lbv2Fm6XrWzSyZXlFEWqIgrK/vkmCx@vger.kernel.org, AJvYcCWqYDddXdaklTS/FpuN4vL1p1B49H1YSRsHMg9NSj5WbZEU0XFCuZUox+LJQy52gXG5r3IWj5+egqCmcmg0@vger.kernel.org, AJvYcCXS7cFK1wdM0g6CaUQOFMz9HZbNBRwfP8DIMMhQD0/mqPosgMLH19aGCVgt4dqFK0KMqIkZ5v+g+dCS@vger.kernel.org, AJvYcCXr0vfdh9/VflTRYlbg4Dbos2Crdz/FcLK219ZChTg4xFIROj+p4B2xacxOhSXhGwDrLezo0hD2zO6L@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJlQq2KhUHN1C8hiTKIpaSL4NNid6pKzVsKUA6tmMitnPSieyi
-	D9Fj/T8aXZ4Y6FpKLpslN3YWcM3ir6FwUjkcDWopAlSut/Br1UDH
-X-Google-Smtp-Source: AGHT+IG7WeKRTItajpBK4SbfYQ6nw9VbEZOfPkIyKbhJk/0ty0lEMpKeTh3MQUz4EbpOtFm3SFoaFA==
-X-Received: by 2002:a05:600c:5254:b0:42c:b220:4769 with SMTP id 5b1f17b1804b1-42f778f65ebmr7833955e9.32.1727821249579;
-        Tue, 01 Oct 2024 15:20:49 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37cd57427fbsm12677089f8f.100.2024.10.01.15.20.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 01 Oct 2024 15:20:49 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Jens Axboe <axboe@kernel.dk>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	INAGAKI Hiroshi <musashino.open@gmail.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Christian Brauner <brauner@kernel.org>,
-	Al Viro <viro@zeniv.linux.org.uk>,
-	Ming Lei <ming.lei@redhat.com>,
-	Jan Kara <jack@suse.cz>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Christian Heusel <christian@heusel.eu>,
-	Avri Altman <avri.altman@wdc.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Mikko Rapeli <mikko.rapeli@linaro.org>,
-	Riyan Dhiman <riyandhiman14@gmail.com>,
-	Jorge Ramirez-Ortiz <jorge@foundries.io>,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	Li Zhijian <lizhijian@fujitsu.com>,
-	linux-block@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	upstream@airoha.com
-Subject: [PATCH v5 6/6] dt-bindings: mmc: Document support for partition table in mmc-card
-Date: Wed,  2 Oct 2024 00:18:58 +0200
-Message-ID: <20241001221931.9309-7-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241001221931.9309-1-ansuelsmth@gmail.com>
-References: <20241001221931.9309-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1727827336; c=relaxed/simple;
+	bh=aRIaCvZg7k4Uu4zwamCQXdJnCx+yZ1ZoA82VwpA4DfI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SYIsDu9lejlInBMwsX7Op5tkQUcHB5RFaWObAGH//iPrwmbEibVbhO/E9skxP89GhcH+8uyYYgayoW8jjEp1tsgNHWvwnkrWWC2wndZpxpdIxPqhOMrY9OvWFg+0ZtvsGRNzGjkHb6TKrz+3XOzEquTJB4PnGLaESmElq+cekxw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SLB6VJzc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8791DC4CEC6;
+	Wed,  2 Oct 2024 00:02:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727827335;
+	bh=aRIaCvZg7k4Uu4zwamCQXdJnCx+yZ1ZoA82VwpA4DfI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SLB6VJzcQ/yk6aTq7LT3xVeCCstO2cJNt15ECPPUZb+VNlEO3s2eSWnFExwlpqMWb
+	 +5TZWHri6YxUk5rfmJ0tJqT4nE/NqygCvY16SSlHx9oKXMBzi1wSK2Z5xaV/AdYTU2
+	 KJPcCThorV0XHCXdLCJV8a2ItYFZ3j1EorGuGg0Xy+phJydxFKGzPZNdXa+kWS8ycz
+	 bEYU70pAUJitnESJ9dsah1VfzEjsmT5JIqtHPof8jJeZuSADKEP0qeTBmypfdC1Bh4
+	 qbOeZeTrWC0DANOKSlHNQxpAXwICbc7oj8A0/spvQ1J6kR9B+20salw+E7ipBL9zzw
+	 vm4BPNrsCSgFQ==
+Date: Tue, 1 Oct 2024 19:02:14 -0500
+From: Rob Herring <robh@kernel.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org, rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+	jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	simona@ffwll.ch, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+	quic_bjorande@quicinc.com, geert+renesas@glider.be,
+	dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
+	o.rempel@pengutronix.de, y.moog@phytec.de
+Subject: Re: [PATCH 5/8] dt-bindings: display: bridge: Add ITE IT6263 LVDS to
+ HDMI converter
+Message-ID: <20241002000214.GA49657-robh@kernel.org>
+References: <20240930052903.168881-1-victor.liu@nxp.com>
+ <20240930052903.168881-6-victor.liu@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240930052903.168881-6-victor.liu@nxp.com>
 
-Document support for defining a partition table in the mmc-card node.
+On Mon, Sep 30, 2024 at 01:29:00PM +0800, Liu Ying wrote:
+> Document ITE IT6263 LVDS to HDMI converter.
+> 
+> Product link:
+> https://www.ite.com.tw/en/product/cate1/IT6263
+> 
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+>  .../bindings/display/bridge/ite,it6263.yaml   | 310 ++++++++++++++++++
+>  1 file changed, 310 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> new file mode 100644
+> index 000000000000..97fb81e5bc4a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it6263.yaml
+> @@ -0,0 +1,310 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/ite,it6263.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ITE IT6263 LVDS to HDMI converter
+> +
+> +maintainers:
+> +  - Liu Ying <victor.liu@nxp.com>
+> +
+> +description: |
+> +  The IT6263 is a high-performance single-chip De-SSC(De-Spread Spectrum) LVDS
+> +  to HDMI converter.  Combined with LVDS receiver and HDMI 1.4a transmitter,
+> +  the IT6263 supports LVDS input and HDMI 1.4 output by conversion function.
+> +  The built-in LVDS receiver can support single-link and dual-link LVDS inputs,
+> +  and the built-in HDMI transmitter is fully compliant with HDMI 1.4a/3D, HDCP
+> +  1.2 and backward compatible with DVI 1.0 specification.
+> +
+> +  The IT6263 also encodes and transmits up to 8 channels of I2S digital audio,
+> +  with sampling rate up to 192KHz and sample size up to 24 bits. In addition,
+> +  an S/PDIF input port takes in compressed audio of up to 192KHz frame rate.
+> +
+> +  The newly supported High-Bit Rate(HBR) audio by HDMI specifications v1.3 is
+> +  provided by the IT6263 in two interfaces: the four I2S input ports or the
+> +  S/PDIF input port.  With both interfaces the highest possible HBR frame rate
+> +  is supported at up to 768KHz.
+> +
+> +properties:
+> +  compatible:
+> +    const: ite,it6263
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: audio master clock
+> +
+> +  clock-names:
+> +    const: mclk
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  ivdd-supply:
+> +    description: 1.8V digital logic power
+> +
+> +  ovdd-supply:
+> +    description: 3.3V I/O pin power
+> +
+> +  txavcc18-supply:
+> +    description: 1.8V HDMI analog frontend power
+> +
+> +  txavcc33-supply:
+> +    description: 3.3V HDMI analog frontend power
+> +
+> +  pvcc1-supply:
+> +    description: 1.8V HDMI frontend core PLL power
+> +
+> +  pvcc2-supply:
+> +    description: 1.8V HDMI frontend filter PLL power
+> +
+> +  avcc-supply:
+> +    description: 3.3V LVDS frontend power
+> +
+> +  anvdd-supply:
+> +    description: 1.8V LVDS frontend analog power
+> +
+> +  apvdd-supply:
+> +    description: 1.8V LVDS frontend PLL power
+> +
+> +  "#sound-dai-cells":
+> +    const: 0
+> +
+> +  ite,i2s-audio-fifo-sources:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 4
+> +    items:
+> +      enum: [0, 1, 2, 3]
+> +    description:
+> +      Each array element indicates the pin number of an I2S serial data input
+> +      line which is connected to an audio FIFO, from audio FIFO0 to FIFO3.
+> +
+> +  ite,rl-channel-swap-audio-sources:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 4
+> +    uniqueItems: true
+> +    items:
+> +      enum: [0, 1, 2, 3]
+> +    description:
+> +      Each array element indicates an audio source whose right channel and left
+> +      channel are swapped by this converter. For I2S, the element is the pin
+> +      number of an I2S serial data input line. For S/PDIF, the element is always
+> +      0.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
 
-This is needed if the eMMC doesn't have a partition table written and
-the bootloader of the device load data by using absolute offset of the
-block device. This is common on embedded device that have eMMC installed
-to save space and have non removable block devices.
+Test your bindings. You need 'additionalProperties: false' here. Though 
+I can't remember if that can 'see' properties under the oneOf. So it may 
+have to be unevaluatedProperties instead.
 
-If an OF partition table is detected, any partition table written in the
-eMMC will be ignored and won't be parsed.
+> +
+> +    oneOf:
 
-eMMC provide a generic disk for user data and if supported (JEDEC 4.4+)
-also provide two additional disk ("boot1" and "boot2") for special usage
-of boot operation where normally is stored the bootloader or boot info.
-New JEDEC version also supports up to 4 GP partition for other usage
-called "gp1", "gp2", "gp3", "gp4".
+I think you can get rid of this. If port@1 requires the dual link 
+properties and then properties on port@0, then the only way you can have 
+a single link is removing port@1 from the DT. 
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
- .../devicetree/bindings/mmc/mmc-card.yaml     | 52 +++++++++++++++++++
- 1 file changed, 52 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/mmc/mmc-card.yaml b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-index fd347126449a..1d91d4272de0 100644
---- a/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-+++ b/Documentation/devicetree/bindings/mmc/mmc-card.yaml
-@@ -13,6 +13,10 @@ description: |
-   This documents describes the devicetree bindings for a mmc-host controller
-   child node describing a mmc-card / an eMMC.
- 
-+  It's possible to define a fixed partition table for an eMMC for the user
-+  partition, the 2 BOOT partition (boot1/2) and the 4 GP (gp1/2/3/4) if supported
-+  by the eMMC.
-+
- properties:
-   compatible:
-     const: mmc-card
-@@ -26,6 +30,24 @@ properties:
-       Use this to indicate that the mmc-card has a broken hpi
-       implementation, and that hpi should not be used.
- 
-+patternProperties:
-+  "^partitions(-boot[12]|-gp[14])?$":
-+    $ref: /schemas/mtd/partitions/partitions.yaml
-+
-+    patternProperties:
-+      "^partition@[0-9a-f]+$":
-+        $ref: /schemas/mtd/partitions/partition.yaml
-+
-+        properties:
-+          reg:
-+            description: Must be multiple of 512 as it's converted
-+              internally from bytes to SECTOR_SIZE (512 bytes)
-+
-+        required:
-+          - reg
-+
-+        unevaluatedProperties: false
-+
- required:
-   - compatible
-   - reg
-@@ -42,6 +64,36 @@ examples:
-             compatible = "mmc-card";
-             reg = <0>;
-             broken-hpi;
-+
-+            partitions {
-+                compatible = "fixed-partitions";
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                partition@0 {
-+                    label = "kernel"; /* Kernel */
-+                    reg = <0x0 0x2000000>; /* 32 MB */
-+                };
-+
-+                partition@2000000 {
-+                    label = "rootfs";
-+                    reg = <0x2000000 0x40000000>; /* 1GB */
-+                };
-+            };
-+
-+            partitions-boot1 {
-+                compatible = "fixed-partitions";
-+
-+                #address-cells = <1>;
-+                #size-cells = <1>;
-+
-+                partition@0 {
-+                    label = "bl";
-+                    reg = <0x0 0x2000000>; /* 32MB */
-+                    read-only;
-+                };
-+            };
-         };
-     };
- 
--- 
-2.45.2
-
+> +      - properties:
+> +          port@0:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: the first LVDS input link
+> +
+> +          port@1: false
+> +
+> +          port@2:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: video port for the HDMI output
+> +
+> +          port@3:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: sound input port
+> +
+> +        required:
+> +          - port@0
+> +          - port@2
+> +
+> +      - properties:
+> +          port@0:
+> +            $ref: /schemas/graph.yaml#/$defs/port-base
+> +            unevaluatedProperties: false
+> +            description: the first LVDS input link
+> +
+> +            properties:
+> +              dual-lvds-odd-pixels:
+> +                type: boolean
+> +                description: the first sink port for odd pixels
+> +
+> +              dual-lvds-even-pixels:
+> +                type: boolean
+> +                description: the first sink port for even pixels
+> +
+> +            oneOf:
+> +              - required: [dual-lvds-odd-pixels]
+> +              - required: [dual-lvds-even-pixels]
+> +
+> +          port@1:
+> +            $ref: /schemas/graph.yaml#/$defs/port-base
+> +            unevaluatedProperties: false
+> +            description: the second LVDS input link
+> +
+> +            properties:
+> +              dual-lvds-even-pixels:
+> +                type: boolean
+> +                description: the second sink port for even pixels
+> +
+> +              dual-lvds-odd-pixels:
+> +                type: boolean
+> +                description: the second sink port for odd pixels
+> +
+> +            oneOf:
+> +              - required: [dual-lvds-even-pixels]
+> +              - required: [dual-lvds-odd-pixels]
+> +
+> +          port@2:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: video port for the HDMI output
+> +
+> +          port@3:
+> +            $ref: /schemas/graph.yaml#/properties/port
+> +            description: sound input port
+> +
+> +        required:
+> +          - port@0
+> +          - port@1
+> +          - port@2
+> +
+> +        allOf:
+> +          - if:
+> +              properties:
+> +                port@0:
+> +                  required:
+> +                    - dual-lvds-odd-pixels
+> +            then:
+> +              properties:
+> +                port@1:
+> +                  properties:
+> +                    dual-lvds-odd-pixels: false
+> +
+> +          - if:
+> +              properties:
+> +                port@0:
+> +                  required:
+> +                    - dual-lvds-even-pixels
+> +            then:
+> +              properties:
+> +                port@1:
+> +                  properties:
+> +                    dual-lvds-even-pixels: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ivdd-supply
+> +  - ovdd-supply
+> +  - txavcc18-supply
+> +  - txavcc33-supply
+> +  - pvcc1-supply
+> +  - pvcc2-supply
+> +  - avcc-supply
+> +  - anvdd-supply
+> +  - apvdd-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
 
