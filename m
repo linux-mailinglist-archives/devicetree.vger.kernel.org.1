@@ -1,174 +1,80 @@
-Return-Path: <devicetree+bounces-107180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 754E098D169
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:38:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D85D698D172
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:41:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0FB01C20ED6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:38:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 166741C21496
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:41:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1309E1E764B;
-	Wed,  2 Oct 2024 10:38:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAB531E7651;
+	Wed,  2 Oct 2024 10:41:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="Asfn2mkS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SqFGTuvX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39CFD1E7646;
-	Wed,  2 Oct 2024 10:38:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE231E764D;
+	Wed,  2 Oct 2024 10:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727865510; cv=none; b=m9KxPaxMl+0ZKSdQxXmDqF44Sc/QYireeGbG+C22qIYtzT3FMqIidQ0dKQJSdgk+evlvM7iMS5H77o5YYYKx9PRqnzq7lDWsI6vnZe5FfLsM1NQWDRtBaX85ZCKELO+MVMhyMrhtzR451YnyaYJx4xMqsYQWwg0t9ptnFD92FHI=
+	t=1727865662; cv=none; b=EFfH8hbJCuGqPsSQg+i27VvJdK4t7K56YSK37ZjFGAiUyJxeXZ0Ol8DOa7GjYlNKFJSugd7Hh6TDDYG6M3Vz+re9NOH+/bgMauT/iTVt7GZPYD/Zo7vMnlqu2w5vU70itOCxTKUnh4wlD/O//TkOFPoe4UPQDp+B0TeJ3aTrsAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727865510; c=relaxed/simple;
-	bh=fJj7aRspLL8JY9ux4R5Q7WOeD6Y4JxxZWhSZzmD9p04=;
+	s=arc-20240116; t=1727865662; c=relaxed/simple;
+	bh=gvCktZEtJJF77mMB4+YlCM1pW2osgHebmjJ9rKLs1ko=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7GwgzndLO06iZUlNHPbd8gmGjcov5EKO2VuDCc2aO1KGIH9Y8ER9rLt3OPi5aDPCUcDXZq3BCS/Czw5OujkZ7c4YqACcql+CNWlUUGRQZ6CR+p2llJmM3tr1YmB2vQHE1w6A62QgxM/Jq+kSMob8lqJa1EDLJ9zLtSoFoE0748=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=Asfn2mkS; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 8CB9023CE1;
-	Wed,  2 Oct 2024 12:38:26 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id aGSuJFRni2Wp; Wed,  2 Oct 2024 12:38:25 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1727865505; bh=fJj7aRspLL8JY9ux4R5Q7WOeD6Y4JxxZWhSZzmD9p04=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=Asfn2mkS4NC56d0DdKrCewv1WVSdM8WEUkTHnYdn/uTtWP8lwF20X2+EE5MDN4H92
-	 BUVFZTDHfrrYwqcHZkp7UkusNwER7yf5+gZoMo9EH3I+ha/Gei23ORG6NNYTuhAVU4
-	 lbro09eeXywtTRSGYFAikB7ZfDDvNJqojob9UGdDLhu/YptfP6UiBIHl2+C5/VqLql
-	 9WfG34VBQQXI7pdRUOVfVoYUY+KkSbpZetuXbrYjXpZ06nX9w0ZN7wQxvu0rzC7HKQ
-	 C2iiFlCB9/x0D5L21iHix+cPf9+y6cWPG2Th7igxXPLMQJ/NmOALnAkLELPQlmp8S5
-	 lClL7cvvuAUiA==
-Date: Wed, 2 Oct 2024 10:38:04 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Celeste Liu <CoelacanthusHex@gmail.com>
-Subject: Re: [PATCH 6/8] clk: rockchip: Add clock controller driver for
- RK3528 SoC
-Message-ID: <Zv0ijCB6GfJEEJID@pineapple>
-References: <20241001042401.31903-2-ziyao@disroot.org>
- <20241001042401.31903-8-ziyao@disroot.org>
- <115216996.nniJfEyVGO@diego>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BGAnEu1SkHaGnaGpUFigJPIu6MujabdyAvvgD/knxNUYfRAjqRDx9Uf2lFqb+OAVNfndmd5JINa6twE2LxXbdRlplZpS7wHnNyIv2Q+OkIAha3Iie4ztjqCsokC0mDQJm4TAKioa1IlCIjnRfHzsxlh3RduPRvOH0RwuLA5DxIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SqFGTuvX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 369A9C4CEC5;
+	Wed,  2 Oct 2024 10:41:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727865662;
+	bh=gvCktZEtJJF77mMB4+YlCM1pW2osgHebmjJ9rKLs1ko=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SqFGTuvXaYWtBQLcNO360jKdNJvdqcvfwX9P6C028HC47aX7BrjSThFhmzZcyDi0l
+	 u14pcFKhtAXzq0XhQdMs452DCPn3AKf9pUSOy2SHidM+DKsLkP8QO+irsi/OXNNO3g
+	 oTbjFtpBIB/G3RbEmza+wmVmfpYjiOJSdJhRvIgBvJR6fg2ii45AYYmGxppJn18jfb
+	 Ois1vyuv51iGlCwkI+JDFDMCcSqwONaRfbb2W/UMPOhgO1BB0ELo/qstJY62Y4S9fj
+	 1v7RCU20S3GSpIj00EnPiL0TwKvesgsgPkPSR/soNPft5Aar/9BYvSEXSdbU5IQA+k
+	 RWddKqRG5A7sQ==
+Date: Wed, 2 Oct 2024 12:40:58 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: pierre-henry.moussay@microchip.com
+Cc: Linux4Microchip@microchip.com, 
+	Conor Dooley <conor.dooley@microchip.com>, Daire McNamara <daire.mcnamara@microchip.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	linux-riscv@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [linux][PATCH v2 10/20] dt-bindings: i2c: microchip: corei2c:
+ Add PIC64GX as compatible with driver
+Message-ID: <hcr7smlja6l3cpxjk7vn4qrxqikte4lfd3sl3ginwa4f5xauwz@wg7knjaqkbfg>
+References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com>
+ <20240930095449.1813195-11-pierre-henry.moussay@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <115216996.nniJfEyVGO@diego>
+In-Reply-To: <20240930095449.1813195-11-pierre-henry.moussay@microchip.com>
 
-On Wed, Oct 02, 2024 at 12:21:29PM +0200, Heiko Stübner wrote:
-> Am Dienstag, 1. Oktober 2024, 06:24:00 CEST schrieb Yao Zi:
-> > Add clock tree definition for RK3528. Similar to previous Rockchip
-> > SoCs, clock controller shares MMIO region with reset controller and
-> > they are probed together.
-> > 
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > ---
-> 
-> [...]
-> 
-> > +	GATE(ACLK_DDR_UPCTL, "aclk_ddr_upctl", "clk_ddrc_src", CLK_IS_CRITICAL,
-> > +	     RK3528_CLKGATE_CON(45), 11, GFLAGS),
-> > +	GATE(CLK_DDR_UPCTL, "clk_ddr_upctl", "clk_ddrc_src", CLK_IS_CRITICAL,
-> > +	     RK3528_CLKGATE_CON(45), 12, GFLAGS),
-> > +	GATE(CLK_DDRMON, "clk_ddrmon", "clk_ddrc_src", CLK_IS_CRITICAL,
-> > +	     RK3528_CLKGATE_CON(45), 13, GFLAGS),
-> > +	GATE(ACLK_DDR_SCRAMBLE, "aclk_ddr_scramble", "clk_ddrc_src",
-> > +	     CLK_IS_CRITICAL, RK3528_CLKGATE_CON(45), 14, GFLAGS),
-> > +	GATE(ACLK_SPLIT, "aclk_split", "clk_ddrc_src", CLK_IS_CRITICAL,
-> > +	     RK3528_CLKGATE_CON(45), 15, GFLAGS),
-> > +
-> > +	/* gpu */
-> > +	COMPOSITE_NODIV(ACLK_GPU_ROOT, "aclk_gpu_root",
-> > +			mux_500m_300m_100m_24m_p, CLK_IS_CRITICAL,
-> > +			RK3528_CLKSEL_CON(76), 0, 2, MFLAGS,
-> > +			RK3528_CLKGATE_CON(34), 0, GFLAGS),
-> 
-> Please keep the styling intact for all branch definitions.
-> (this one taken as an example, but applies to all)
-> 
-> I.e. if you look at the rk3588/rk3576/and everything else, you'll see
-> subsequent lines getting indented by 3 tabs all the time. For a large
-> set of definitions this makes it way easier to parse for the eye, than
-> having ever shifting offsets, when things get aligned to opening
-> parentheses.
-> 
-> Similarly, please also keep elements in their position, i.e. for the
-> aclk_gpu_root above, this would mean moving parents and CLK_IS_CRITICAL
-> up to the parent line.
-> 
-> (lines according to coding style are allowed up to 100 chars, and Rockchip
-> clock drivers sometimes exceed even that, because it makes handling the
-> clock drivers a lot easier)
+Hi Pierre-Henry,
 
-I'm not sure whether it is okay so wrapped these lines. Thanks for
-clarification.
-
-> > +};
-> > +
-> > +static int __init clk_rk3528_probe(struct platform_device *pdev)
-> > +{
-> > +	struct rockchip_clk_provider *ctx;
-> > +	struct device *dev = &pdev->dev;
-> > +	struct device_node *np = dev->of_node;
-> > +	unsigned long nr_branches = ARRAY_SIZE(rk3528_clk_branches);
-> > +	unsigned long nr_clks;
-> > +	void __iomem *reg_base;
-> > +
-> > +	nr_clks = rockchip_clk_find_max_clk_id(rk3528_clk_branches,
-> > +					       nr_branches) + 1;
-> > +
-> > +	pr_warn("%s: nr_clks = %lu\n", __func__, nr_clks);
-> > +
-> > +	reg_base = devm_platform_ioremap_resource(pdev, 0);
-> > +	if (IS_ERR(reg_base))
-> > +		return dev_err_probe(dev, PTR_ERR(reg_base),
-> > +				     "could not map cru region");
-> > +
-> > +	ctx = rockchip_clk_init(np, reg_base, nr_clks);
-> > +	if (IS_ERR(ctx))
-> > +		return dev_err_probe(dev, PTR_ERR(ctx),
-> > +				     "rockchip clk init failed");
-> > +
-> > +	rockchip_clk_register_plls(ctx, rk3528_pll_clks,
-> > +				   ARRAY_SIZE(rk3528_pll_clks),
-> > +				   RK3528_GRF_SOC_STATUS0);
-> > +	rockchip_clk_register_armclk(ctx, ARMCLK, "armclk",
-> > +				     mux_armclk, ARRAY_SIZE(mux_armclk),
-> > +				     &rk3528_cpuclk_data, rk3528_cpuclk_rates,
-> > +				     ARRAY_SIZE(rk3528_cpuclk_rates));
-> > +	rockchip_clk_register_branches(ctx, rk3528_clk_branches, nr_branches);
-> > +
-> > +	rockchip_register_softrst(np, 47, reg_base + RK3528_SOFTRST_CON(0),
-> > +				  ROCKCHIP_SOFTRST_HIWORD_MASK);
+On Mon, Sep 30, 2024 at 10:54:39AM GMT, pierre-henry.moussay@microchip.com wrote:
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 > 
-> here you'll like also want to check how rk3576 + rk3588 handle how the reset-ids
-> are not matched to the register offsets anymore.
-> (see rst-rk3588.c for example)
+> PIC64GX i2c is compatible with the microchip corei2c, just add fallback
+> 
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-Have checked them when replying to the former mails. Reset code will be
-largely refacted according to the recommended style in next revision.
+Just this one merged to i2c/i2c-host.
 
-Best regards,
-Yao Zi
+Thanks,
+Andi
 
