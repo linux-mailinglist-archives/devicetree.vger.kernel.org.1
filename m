@@ -1,189 +1,166 @@
-Return-Path: <devicetree+bounces-107089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBB8798CE4A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:00:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4876298CE61
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:08:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46DBAB21367
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:00:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9C961F23A9C
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 08:08:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21C6684A40;
-	Wed,  2 Oct 2024 08:00:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A86B1946B3;
+	Wed,  2 Oct 2024 08:08:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="AGBD6axw"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="urmDZD4S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D3B7199B8;
-	Wed,  2 Oct 2024 08:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18A05193436;
+	Wed,  2 Oct 2024 08:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727856013; cv=none; b=lDKJ0/JCJat4JGAasORhEVM6gGQ/4k3DFvlJ+mckjVXOlb7RDMOY/0vmpOzxUiHteM4zZZWGiWS2Neuf8Y+XPzmLlts7EuSDMq0aQANcpnPSq7mlMBCNlIVr8E+uaRpDup65UtrJVG4Ua3VtbwLt8laSqX1dBQOwXN1QbjAw8KU=
+	t=1727856528; cv=none; b=t4JuO+RjT/lFbBhxwU0c+yPjWiMfdmuoQlyEtXtQ1VmdrSqcdSuBtUhgrn5BsZH3FH0BEeG4CayCqq0VOdX8m8cYDtaoPDHdPRhjmiiGp+msa3uvV4hxFksOI7YSJ5ZCsebgf8U/6Iv5g2uJ5pU7KWKqxryaxAOlAp7PHJ7FDrQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727856013; c=relaxed/simple;
-	bh=DAhdOjt0asHlC1mfu8fko931oN2Vzrya+ovBvH9nca8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bs+j5buMzTc4xTHXg9L06EyzLxVFzBHrB6aPKGtprlaIbJ11gmDylDbksEiPc+ZqVwPV9OevGu+xTYA8kA5GnQizmlHJB4UUf8LPU1VEXExp0+bhLQeRIj2bmo27sKhZ9eUW66naVkOl7IGQtewAS1zslDkGvnH7aCKp+Y1XwOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=AGBD6axw; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A966B20008;
-	Wed,  2 Oct 2024 08:00:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727856009;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=QdMVKss6PfGeaKPjGTJR+yfI3wZkKGGFlk5dLU6k4ao=;
-	b=AGBD6axw4vf6lVnV1DAOu5qoAiJPXkoDR5TdC6xZLillMX0hyif9k1dLlmwcHGY/42eDNH
-	1gns3If6kpWgIiP1UGw5UJIpjq8MoYnQQttDRQg3j7LNdcwlFxCn0uMcYZHQzbcLrZU48r
-	RaUSzlQXZYcLUdjx1s8l10ySEtsEuB67fNOyDyyuq5gPvDuwAjQ9dOK0AbXI/NSfyrljhv
-	fCTsxA8j9dL9cx7zXrTVQvbmzenZFN9ueLijhEtQ3LuXJBN3IoZSXbJgyIOU7pZXX00Jyx
-	KPeJYCunDsRwx7nZU1HYT4T9UEnsZQFZPSQ4BBNBf3ec6wAt0Mc3L4y0Cb+adQ==
-Date: Wed, 2 Oct 2024 10:00:06 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Richard Weinberger <richard@nod.at>, Vignesh Raghavendra
- <vigneshr@ti.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Saravana Kannan
- <saravanak@google.com>, Florian Fainelli <f.fainelli@gmail.com>, Thomas
- Bogendoerfer <tsbogend@alpha.franken.de>, Wolfram Sang
- <wsa+renesas@sang-engineering.com>, linux-mtd@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Lorenzo Bianconi
- <lorenzo@kernel.org>, upstream@airoha.com
-Subject: Re: [PATCH 2/3] dt-bindings: mtd: Add Documentation for Airoha
- fixed-partitions
-Message-ID: <20241002100006.5995fd10@xps-13>
-In-Reply-To: <66fbcee8.df0a0220.2ad0cb.4f6a@mx.google.com>
-References: <20240925101422.8373-1-ansuelsmth@gmail.com>
-	<20240925101422.8373-3-ansuelsmth@gmail.com>
-	<20240925133003.619c40c4@xps-13>
-	<66f3f58e.5d0a0220.5d655.b48a@mx.google.com>
-	<20240925135256.32d3a0f7@xps-13>
-	<66f3fcb7.5d0a0220.3ca4c2.ba83@mx.google.com>
-	<20240930114819.609f9341@xps-13>
-	<66fa7915.050a0220.1da288.aeca@mx.google.com>
-	<20241001104225.67483dab@xps-13>
-	<66fbcee8.df0a0220.2ad0cb.4f6a@mx.google.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1727856528; c=relaxed/simple;
+	bh=1X78mcwhw2j9Egv//hQ57Fq0S6OZ0HLqU+fW/t5yyfc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ry0/SrRacYlslLI4kf6Sg34RpH46YmOdm3z8bJPWBKCOmDeyMR5NfJSpTFK8O8An7J6OhB8ccL0tnKjEDWpxf+lQ5m2bvupus7/aisZer0T4Ut5dr5uVX8Sd5kzLruqC1UioDM4jFKZXfL2eFtnXz/wfufrVyFNDXQt8SyWfMh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=urmDZD4S; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ngZtLcRpFZYEbU0cMN+iS53JV9+mVWdy4I6j/UNOpVw=; b=urmDZD4S+Y2oCsXJ4MD08zWl5l
+	arUKRdHB7l9nAkmsR0W2b6X0ziIKcpXmG396MxhfeEhMouCL+LbSm3eUtTo6ObaJTKG8mPTEu3lcx
+	4qWdk1yjb6vgDGRr3ph9Nq+gPlr1AMXD9wsd/enyc3m9fcdiu3wBoD/FSshzPBgicmezKCUazb0uX
+	s3+a/KXlsHmRmxebWrbcV0CREV/kxeA2K217roa4879uq83QWb8kGzK7bLbsKP/axjLvqmIezjbxI
+	Ap4vte2UAMt6CcbtQZRG/XqY5w9+IU17FP3Hr5XJytfnwedY6AjzWC3tVRbrY50fWWRXXPmTfHHB8
+	v/BwwHbw==;
+Received: from i53875aa1.versanet.de ([83.135.90.161] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1svuPV-0002ye-TS; Wed, 02 Oct 2024 10:08:37 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Yao Zi <ziyao@disroot.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Celeste Liu <CoelacanthusHex@gmail.com>,
+ Yao Zi <ziyao@disroot.org>
+Subject: Re: [PATCH 5/8] clk: rockchip: Add clock type GATE_NO_SET_RATE
+Date: Wed, 02 Oct 2024 10:08:36 +0200
+Message-ID: <9365795.CDJkKcVGEf@diego>
+In-Reply-To: <20241001042401.31903-7-ziyao@disroot.org>
+References:
+ <20241001042401.31903-2-ziyao@disroot.org>
+ <20241001042401.31903-7-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Christian,
+Hi,
 
-> > > > > Ok probably the description isn't clear enough. The missing info =
-that
-> > > > > require this parser is the flash end.
-> > > > >=20
-> > > > > Following the example we know the size of rootfs_data and start o=
-ffset
-> > > > > AND we know the size of the ART partition.
-> > > > >=20
-> > > > > There might be a space in the middle unused between the rootfs_da=
-ta
-> > > > > partition and the art partition. What is derived is the starting =
-offset
-> > > > > of the art partition that is flash end - art partition size.
-> > > > > (where flash end change and is not always the same due to how the=
- special
-> > > > > bad block managament table reserved space is handled)
-> > > > >=20
-> > > > > This is why 0xffffffff, used as a dummy offset to signal it will =
-be parsed at
-> > > > > runtime. On second tought tho maybe using this dummy offset is wr=
-ong and
-> > > > > I should just have something like
-> > > > >=20
-> > > > > length =3D <0x300000>;
-> > > > >=20
-> > > > > Is it clear now? Sorry for any confusion.   =20
-> > > >=20
-> > > > I'm sorry but not really. You know the end of the physical device a=
-nd
-> > > > the size of the ART partition, so you must know its start as well?
-> > > >   =20
-> > >=20
-> > > Before the system boot we know:
-> > > - size of the ART partition
-> > > - real size of the physical device (512mb... 1G... 64mb...)
-> > >=20
-> > > When the physical device is probed (nand) a special driver is loaded
-> > > (before mtd parsing logic) that change the physical size of the device
-> > > (mtd->size) as at the end of the nand some space is reserved for bad
-> > > block management and other metadata info. =20
-> >=20
-> > Here you are explaining what you intend Linux to do, right? I would
-> > like to understand what you are trying to solve. I dont understand why
-> > you need the size change, I don't understand why you don't know the
-> > start of the ART partition, I don't understand what the data you are
-> > hiding contains and who uses it :-) I'm sorry, this is too unclear yet.=
- =20
->=20
-> Totally not a problem and thanks a lot for you keep asking them... More
-> than happy to clear things, I'm trying to solve a problem present on
-> Airoha SoC and upstreaming a correct parser for it.
->=20
-> What I'm trying to solve:
->=20
-> Correct access to this partition at the end of the flash in an automated
-> way.
->=20
-> The content of this partition is the usual ART partition found on lots of
-> embedded devices. MAC address, wifi calibration data, serial. Usage is
-> NVMEM cells and userspace with dd command to extract data from.
->=20
-> Airoha use something also used by some mediatek SoC. They call it BMT
-> and it's currently used downstream in OpenWrt and they firmware. This is
-> also used in the bootloader.
->=20
-> The usage of BMT is a custom way to handle bad blocks entirely by
-> software. At the end of the flash some space is reserved where info
-> about all the blocks of the flash are put. I'm not 100% sure about the
-> functionality of this but it can relocate block and do magic things to
-> handle bad blocks. For the scope of this change, the important info is
-> that after the BMT is probed, the operation of "reserving space" is done
-> by reducing the MTD flash size. So from the MTD subsystem, it does see a
-> smaller flash than it actually is.
->=20
-> The reserved space change! Across SoC or even devices but the BMT is a
-> must where it's used as bootloader makes use of it and writing to it
-> might confuse the bootloader corrupting data. (one block might be
-> flagged as bad ad data moved, BMT driver validates his table and do
-> operation)
+Am Dienstag, 1. Oktober 2024, 06:23:59 CEST schrieb Yao Zi:
+> This clock type is similar to GATE, but doesn't allow rate setting,
+> which presents on RK3528 platform.
 
-Ok, I think that's way clearer now.
+this definitly needs more explanation in the commit message.
 
-So the BMT driver does not exist in mainline Linux, but you would like
-to skip this part of the MTD device to avoid smashing it. And it is in
-use by the vendor Bootloader I guess?
+I.e. regular individual gates always set the CLK_SET_RATE_PARENT flag
+because of course the gates themselfs cannot influence the rate.
 
-Is it some kind of table that is written by the chip itself in order to
-maintain a list of auto-replacement blocks for bad blocks? Can the size
-of this table move with the use of the device? (if yes, it's
-problematic, we don't want to resize MTD partitions without noticing,
-it would break eg. UBI).
 
-I believe this BMT block is going against the bad block handling in
-Linux, so I really wonder how one can use both mechanisms in a system.
-If the BMT layer takes "one random block" to map a corrupted one on it,
-it totally defeats the current bad block model we have in MTD/UBI
-and simply cannot be supported at all. Just skipping the
-currently-used-for-BMT blocks sounds like a very bad idea that will
-break your system, later.
+But in general, I'm also not convinced yet. Yes if some driver tries to
+change the rate on those, it may affect the parent rate, but that is also
+true for the other individual gates.
 
-Thanks,
-Miqu=C3=A8l
+So what makes aclk_emmc (as GATE_NO_SET_RATE) more special than
+"hclk_emmc" (as regular GATE). [Same for the other clocks of course] .
+
+
+So this either needs more explanation, or for the sake of simplicity
+use regular GATE for now for those and we revisit when it becomes
+necessary.
+
+
+Heiko
+
+
+> Signed-off-by: Yao Zi <ziyao@disroot.org>
+> ---
+>  drivers/clk/rockchip/clk.c |  8 ++++++++
+>  drivers/clk/rockchip/clk.h | 14 ++++++++++++++
+>  2 files changed, 22 insertions(+)
+> 
+> diff --git a/drivers/clk/rockchip/clk.c b/drivers/clk/rockchip/clk.c
+> index 73d2cbdc716b..7d233770e68b 100644
+> --- a/drivers/clk/rockchip/clk.c
+> +++ b/drivers/clk/rockchip/clk.c
+> @@ -521,6 +521,14 @@ void rockchip_clk_register_branches(struct rockchip_clk_provider *ctx,
+>  		case branch_gate:
+>  			flags |= CLK_SET_RATE_PARENT;
+>  
+> +			clk = clk_register_gate(NULL, list->name,
+> +				list->parent_names[0], flags,
+> +				ctx->reg_base + list->gate_offset,
+> +				list->gate_shift, list->gate_flags, &ctx->lock);
+> +			break;
+> +		case branch_gate_no_set_rate:
+> +			flags &= ~CLK_SET_RATE_PARENT;
+> +
+>  			clk = clk_register_gate(NULL, list->name,
+>  				list->parent_names[0], flags,
+>  				ctx->reg_base + list->gate_offset,
+> diff --git a/drivers/clk/rockchip/clk.h b/drivers/clk/rockchip/clk.h
+> index 1efc5c3a1e77..360d16402fe5 100644
+> --- a/drivers/clk/rockchip/clk.h
+> +++ b/drivers/clk/rockchip/clk.h
+> @@ -519,6 +519,7 @@ enum rockchip_clk_branch_type {
+>  	branch_divider,
+>  	branch_fraction_divider,
+>  	branch_gate,
+> +	branch_gate_no_set_rate,
+>  	branch_mmc,
+>  	branch_inverter,
+>  	branch_factor,
+> @@ -844,6 +845,19 @@ struct rockchip_clk_branch {
+>  		.gate_flags	= gf,				\
+>  	}
+>  
+> +#define GATE_NO_SET_RATE(_id, cname, pname, f, o, b, gf)	\
+> +	{							\
+> +		.id		= _id,				\
+> +		.branch_type	= branch_gate_no_set_rate,	\
+> +		.name		= cname,			\
+> +		.parent_names	= (const char *[]){ pname },	\
+> +		.num_parents	= 1,				\
+> +		.flags		= f,				\
+> +		.gate_offset	= o,				\
+> +		.gate_shift	= b,				\
+> +		.gate_flags	= gf,				\
+> +	}
+> +
+>  #define MMC(_id, cname, pname, offset, shift)			\
+>  	{							\
+>  		.id		= _id,				\
+> 
+
+
+
+
 
