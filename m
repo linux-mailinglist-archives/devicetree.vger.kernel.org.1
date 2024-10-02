@@ -1,97 +1,82 @@
-Return-Path: <devicetree+bounces-106994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-106995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5C098C9FB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 02:21:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5961E98CA05
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 02:26:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 694141F244F8
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 00:21:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 886EF1C2350A
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 00:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80EDD10F7;
-	Wed,  2 Oct 2024 00:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8F710F9;
+	Wed,  2 Oct 2024 00:26:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PX+QkRJf"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="FlwVgpGC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDFD621
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 00:21:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 081841854;
+	Wed,  2 Oct 2024 00:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727828490; cv=none; b=OvZ538xWOECmMB3ANgYMET34d/2xN4jazIjY3tCQxnH3z7+jDkuiTPW68Qv0M+Y2VN9QUPRnXccVem9nb/TspnsbjxTO6mNWIRmVlP/I/012Gw4JCvaoWQOprPjaUX1b/0QZPr0KQWygfGJuqY7WlY4cP2Kqf4sNoVMr3qcvI5o=
+	t=1727828813; cv=none; b=I+1eVjnwoQ5/GoMd/pdAD53sDuHk3+lJYUaQXotelBe9pV2xoz47gLJPc3+t9vVPJAUWaNojGOHQKM+dJoaW4F+Bp+l/zuQpzz4+6v1OceI5s7qQ6/m1Q7eyERLAdSby9tJ2WMuYtApze+1oRCaebOB8d2B4YWMPI1Xs6kqukds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727828490; c=relaxed/simple;
-	bh=tE34ob5YAlEgUzeQKbhVSbtlqHVINVmb1eQFaTucMdc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e/waD9YhlbjwTWSVycqALh67R1eOPl2Ry63H1qNvzMb7LPb3R4cVds7y383JQ3PUEod30nTXu47fLfvPtwYwuuT8mDJqThzHTSVzkndeGw6bS9cFgY17PWjTEDJEMJbXERmu4AHWCPjeAW6/Hq6cDNawxRKstYEi6pzLVaMrKmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PX+QkRJf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7909C4CEC6;
-	Wed,  2 Oct 2024 00:21:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727828489;
-	bh=tE34ob5YAlEgUzeQKbhVSbtlqHVINVmb1eQFaTucMdc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PX+QkRJfeymWVpquQlz+bUzgj+WAVAjuHiwbWHKoxwibKo8Fn/XL9r9+bZ4ebCrXF
-	 fuzwz3PbBVP3w87AjiiXuU1JHivh0EnHevPHiPm7CHufuzbpGg1XKXntAyGuZq9kIK
-	 euR5Z5Czhrs/hwIgyk3lQvZkL2Qd+GV5lgyd4G4pDJiaDM6qWFGQTjI/O+KKTOER0Q
-	 sEkFhf8slF95gaxNPlpzjn5hVgPqXd6mk57EOn96ejg6D3Bdb+Ogx2dn04vlFd2zHt
-	 tvnpqJ2d+Fj7rFYa45Hi12uAw0MEsYydx1ztwFV8ph9fG5JVTt4EEXSYdlh+RFREw1
-	 HCkNvyELS2YoA==
-Date: Tue, 1 Oct 2024 19:21:28 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, broonie@kernel.org,
-	conor+dt@kernel.org, otavio@ossystems.com.br
-Subject: Re: [PATCH RESEND v2] dt-bindings: display: elgin,jg10309-01: Add
- own binding
-Message-ID: <172782848686.108859.7660758085508666833.robh@kernel.org>
-References: <20240930213238.977833-1-festevam@gmail.com>
+	s=arc-20240116; t=1727828813; c=relaxed/simple;
+	bh=d1HotEFnVry+mOU3VGbaWefsXTpKheCrdqtp4TOraDQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=GrmLUSNiClA9X0sgZ85Qq5E5Q69+jflYpxAAiTHuPzuSyI0RWW0KzQjM9IpMgOhJYC384VYRXESiAuaEqcYo7IJPRdqUfpub8+Qlrr0+cmTxHEV7h/V09V2DkqCxVY9Zyg/IKAPSDK9B8oLZk+zSls+Qq/OJsR+gHJSAz8JJFXU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=FlwVgpGC; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1727828808;
+	bh=KjLbqCF2jq6cvivJ349ACXivUXPIkq508H08HywwaHQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date;
+	b=FlwVgpGCaV+Num08HCUA4wxbUH/Hk34Nc+nF5LRT0Xb2fDt3fzkSnSx/cyr01uRPO
+	 H7lqvI1jFZKGDFOROblf7oHOLTJSJLTKg4wA6y+0nIDaq3gC66oaNyD/hhbnUTGRyA
+	 oOnQrC5KKuBJE+iWiaYaM1Gyb8DFEMelup1Rv8iOBylKFT6m1qwAOsiockswszbgaS
+	 YsSMmOyS8ABUHz4ohf9n4UqZx3HUzz5TmSFq17DIQ5SXY0RyZICrNTuJz5rcDQmEHc
+	 DOSVywg3+Fmxjaq3ByVTwkRP5BKi22Funetag2q5KLEaCrddkA9e7TiRiAzYtj9Abe
+	 Vb7/DguZly2Bw==
+Received: from [127.0.1.1] (ppp118-210-73-17.adl-adc-lon-bras32.tpg.internode.on.net [118.210.73.17])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id E3BA465013;
+	Wed,  2 Oct 2024 08:26:46 +0800 (AWST)
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ joel@jms.id.au, eajames@linux.ibm.com, Ninad Palsule <ninad@linux.ibm.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20241001191756.234096-1-ninad@linux.ibm.com>
+References: <20241001191756.234096-1-ninad@linux.ibm.com>
+Subject: Re: [PATCH v1 0/3] Device tree changes for system1 BMC
+Message-Id: <172782880678.751051.14871757116202304815.b4-ty@codeconstruct.com.au>
+Date: Wed, 02 Oct 2024 09:56:46 +0930
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240930213238.977833-1-festevam@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.1
 
+On Tue, 01 Oct 2024 14:17:47 -0500, Ninad Palsule wrote:
+> Please review the device tree changes for BMC for system1 machine.
+> 
+> Ninad Palsule (3):
+>   ARM: dts: aspeed: system1: Bump up i2c busses freq
+>   ARM: dts: aspeed: system1: Enable serial gpio0
+>   ARM: dts: aspeed: system1: Add GPIO line names
+> 
+> [...]
 
-On Mon, 30 Sep 2024 18:32:38 -0300, Fabio Estevam wrote:
-> Currently, the compatible 'elgin,jg10309-01' is documented inside
-> trivial-devices.yaml, but it does not fit well there as it requires
-> extra properties such as spi-max-frequency, spi-cpha, and spi-cpol.
-> 
-> This causes the following dt-schema warnings:
-> 
-> make CHECK_DTBS=y rockchip/rv1108-elgin-r1.dtb -j12
-> 
->   DTC [C] arch/arm/boot/dts/rockchip/rv1108-elgin-r1.dtb
-> rv1108-elgin-r1.dtb:display@0: 'spi-cpha', 'spi-cpol' do not match any of the regexes:
-> ...
-> 
-> Fix this problem by introducing a specific binding for the Elgin
-> JG10309-01 SPI-controlled display.
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
-> Changes since last version:
-> - Resending with Krzysztof's Reviewed-by.
-> Changes since v1:
-> - None. Sent it to Mark as per Rob's suggestion.
-> 
->  .../bindings/display/elgin,jg10309-01.yaml    | 54 +++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |  2 -
->  2 files changed, 54 insertions(+), 2 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
-> 
+Thanks, I've applied this to be picked up through the BMC tree.
 
-Applied, thanks!
+--
+Andrew Jeffery <andrew@codeconstruct.com.au>
 
 
