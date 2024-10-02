@@ -1,152 +1,380 @@
-Return-Path: <devicetree+bounces-107297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADCDF98E009
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 18:02:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA24098DFCF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6C803B2C27A
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:51:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CB371F2A2EC
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D36841D1F53;
-	Wed,  2 Oct 2024 15:48:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09CF41D0F4F;
+	Wed,  2 Oct 2024 15:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Be2Rpkhl"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="cFXvov9E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AACB01D1F58
-	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 15:48:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A494B1D0F48
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 15:52:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727884111; cv=none; b=iwPnXEi59VbMHD3Y3fuoPjBm9ZIN3LS0A6QGmWg3oeKMBJzAW7nmZhAUCv/i2Y8EoWDOFpdl0EZZmKo63NS7fIyoZUdIpDxJtHCRLJnQaHeK6IvhGm9n5d4G4mcklAoykq7s1S4zvaIm3WTy1+L5ewZ5swqaocI11gLzoLyFjv4=
+	t=1727884330; cv=none; b=Hpjzi80LwmcLu/jhBDWAi/3TcbgOcwURQd802yrcLcTN9h2zNV9KNBzY+BKKzT/JTggRbkbZhP4jcqiHEcxD+zq0KalYgHkrlsXbVRzjWsOav+wDliW3/zglP2Y1OaheVyDErUYRceEMQVMh+Si/stO/PFeTa7alLjisgh6/d6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727884111; c=relaxed/simple;
-	bh=vPpmKPkGsBgRFJIeAW63489wqwk+a4kj5VX3dy2cbbk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Xsew5l2HYGSH+UB0bCXRMMfcQTLAf5fS6KsRjF9OsJ3kr0FaO0DxKL+RmMUOZYCxGJT/d6f0+vfXciV3gIh4GTM6LEX7D6qH4EgqmdM7eAvIFU3EFxvmUUfCNwhcDk8TArsE0vW5sLMnAKNh9mec5yIqC/KHf93WOarHs+K/q84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Be2Rpkhl; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2facf481587so32100791fa.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 08:48:29 -0700 (PDT)
+	s=arc-20240116; t=1727884330; c=relaxed/simple;
+	bh=DPOBMVOFtBxq64pYAj3gYwkHHn943QhY1vmX9X1ELuM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=umtxdy/+av3Wr5AfZog1euhmSwuKLDPw9JasSEkBZLNVVnYb6rMWhA1bTStE8DRDQNwhJWPSrTrhB00ngRD0yvXW8C3D/zkbjhY/RZqNVTrbdTInL6mylOhdzCe0+qXLYp6dRsLAl64ESnofSy2BQ9QrqAWNHKNvzaFis34T3uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=cFXvov9E; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-37cd0b5515fso3679644f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 08:52:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727884107; x=1728488907; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vPpmKPkGsBgRFJIeAW63489wqwk+a4kj5VX3dy2cbbk=;
-        b=Be2Rpkhlq0G+Mu/tt1/cev3WPgSUuUIz77yKGJnjWWyZD53hBEGXo33AS1sYVn86wf
-         mVm2892korUcNRK2BdEAvdHYVUtVOVlDeqM+jlnXQU1e1UsdbLtAFUpqXUyTDJnp4RDN
-         rTmOH8D75K76YpcoSNqazctg3G0/cBwyo2lxXHMex/pwmt9+t65VK1tP8SMtkHRQL/BJ
-         i17jcpJiqdDrLt6Z1KnepAsxJvOd+6D1FloF0hqR52Dxq5IEL2LB5pOQ8IwcovmHkXtO
-         +hIqBDrKiJS5VwqhjXqa18SD5OriqD7untFEvA1diZtSuACBiJ+T3yHd6RPfsNXck0xD
-         aWyQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727884327; x=1728489127; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=XkqFkShsZW17goxJbUUEu8c6bpmyrXaccB+BjouEhx0=;
+        b=cFXvov9ENTVYE7mqZ6IkH9s5HqvEf0SKtZ4Ey7Khae6tnGWUyAA/oBN7wsEnWkOUSF
+         WBsYcHuY+d7gM7DhKkKQclkLn/1WlFNvYknY3iJYHmsWQEv9otvYMVdeaGuvBT0Lqjgz
+         LjByxYhuKYYhLb3SdqHfXbLpuGKr6CambxGsKYlwI2Mzk5iYq6c8vf//72WFndjc1OVS
+         kDJ2Dcm/94ba91cT8NjauOwJX+z/qxflPPQQIhdgMIAmD5BTEhtWkXacVqP+kDAyJLvB
+         4lmJJSOgkQKPTR52N2hBTFPBJeTkI545huCrqCvk9w6vlEsd2C6rbdQaC0/Y/EeFslXg
+         bObQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727884107; x=1728488907;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vPpmKPkGsBgRFJIeAW63489wqwk+a4kj5VX3dy2cbbk=;
-        b=t0ZTrZVay86ON4146BcMae9GA7wEZTPf4UpJk4iaelWI6ol/nsA9FIfWT9Tp1ZPtAY
-         cyXy9YqSGI7hB/WgYScc7BhdtpBz9SF47JYSrevGTguCFsn7eJB5NHLZ7NRCVg6q19aK
-         9MdbdkQFB7/Y4525j7/IWT7e/B0aF2IKOruMrkTXCUvzYyTyDIWfk9s5NCVd4JA9WCoP
-         v88sfsPdNJBmzopgoH5nJZmfBTo0da4LI3i9afE8i9N6zcvSb/DyfcvbyUGTKeO5b4D1
-         PMqtBdFrutkq2eQinqh7XrDrfnMpX+yagXgDwyl2z7XwtL55/xRLwjkWQEk3n52+A8jV
-         krvg==
-X-Forwarded-Encrypted: i=1; AJvYcCV1/7Ho2g0olSMGVPlJ8PHjsvFCGPVKuaNHoIPpkOoAlU1PzuDiOCJssx9ePMsH62umFQzFvNIajxYy@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzf539v9TltIPnzj6ieXU1cYxSz12pFaRaT3MbQKIPqTVhomaL2
-	JuQLfGpC5QGGe10SF7Clw2qcUreLxdhYlY3s1KOzXmnI/cZQVPq70wu7znCFcbVhuX3EnN8JrJN
-	iB4AY81dMA7aswIJIDhvDyAux5jGqQkNTHZkb9g==
-X-Google-Smtp-Source: AGHT+IFtquU+/hcjv4KamAH8Yf+XATK5XoDLh3KzbtFyShyMUx8jgBBNpz1iQXTqzLz0TE6q0aUQe5/IgaOyycvE4tU=
-X-Received: by 2002:a2e:a17a:0:b0:2fa:c2c4:f9f5 with SMTP id
- 38308e7fff4ca-2fae109ca6emr18835131fa.38.1727884107406; Wed, 02 Oct 2024
- 08:48:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727884327; x=1728489127;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XkqFkShsZW17goxJbUUEu8c6bpmyrXaccB+BjouEhx0=;
+        b=ebdKTeG/sM0Gq4hUfrG5rQaqIVpsxAkvYXBBZ0Bj8Rq7KTxGoudEGlfYAe4lJZzulJ
+         V5aaxPeVaEs+0qzFBEfuXtvvObisFw/yw+iJeK0MQ2s0TmnlX71x7qnvRO2MjBY6LeKV
+         p6QZHZ79IFyX4t0LAjZ5G3TD65CkDlDR0zMYmtBf94IttOmYh+pXndZ3bP8qmYJdgKmn
+         XkElGX5AosvyGjSgN1twN9CWbG/+Oec6Q8UrCDeivMuiOmWOI05/xX5U50Ws+fRgm4yS
+         25EK9Y4VBqYMqI6rwG/TOyKcNBxC4sZd7LlireDxXpjYolRTUnYGqqe1HyMG/xfgSyIX
+         qj1w==
+X-Forwarded-Encrypted: i=1; AJvYcCUaJsq7NBHuER+SYJ1W9RcGv3/FyZoFXYvZBiNz3dFuihGzR/s1V2xACogbbBmVJ3syLodQ2FrJg9an@vger.kernel.org
+X-Gm-Message-State: AOJu0YzeBA9v9PJbZJHrdXmKwju3AWRa5OVLJxrjgsCLO5GFlhE4qsGT
+	MSvBZXxtYTz+UHgvfkGsFTBFgbARqRyWnrFd2LfQSpyEhUTbMXv23L6q8yeX/SJPVKatSNSKr18
+	P
+X-Google-Smtp-Source: AGHT+IFXMW0efT+6z4FvuUo6EF/E6vuy6aUKegSmExgoi0ybBCxjbP/IeTYXT59s/kqUyFmcD3C6Mw==
+X-Received: by 2002:a05:6000:186c:b0:374:ba23:4b3f with SMTP id ffacd0b85a97d-37cfb8a621emr2336627f8f.9.1727884326764;
+        Wed, 02 Oct 2024 08:52:06 -0700 (PDT)
+Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd56e65e4sm14111501f8f.61.2024.10.02.08.52.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 08:52:06 -0700 (PDT)
+Date: Wed, 2 Oct 2024 17:50:45 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, dlechner@baylibre.com
+Subject: Re: [PATCH v3 08/10] iio: dac: ad3552r: extract common code (no
+ changes in behavior intended)
+Message-ID: <zlfrwjnr6spzzmy75qifbdn3tuhsjsr3emxxrzoahejxf3ehem@ajymvtzgfuno>
+References: <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-0-a17b9b3d05d9@baylibre.com>
+ <20240919-wip-bl-ad3552r-axi-v0-iio-testing-v3-8-a17b9b3d05d9@baylibre.com>
+ <20240929125753.789bda87@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240919094339.2407641-1-billy_tsai@aspeedtech.com>
- <20240919094339.2407641-7-billy_tsai@aspeedtech.com> <CACRpkdbFD9CiqVwQ5xxZ9SfQtVvDJGCr=8spxBG4u-JQ0PKJ3w@mail.gmail.com>
- <CAMRc=MdvV7Z2yPpoR9mXLH6UCF5uA=TbkC_qUSj=akP_09M0WQ@mail.gmail.com> <OSQPR06MB7252DF4BB404D5C01785BB5B8B702@OSQPR06MB7252.apcprd06.prod.outlook.com>
-In-Reply-To: <OSQPR06MB7252DF4BB404D5C01785BB5B8B702@OSQPR06MB7252.apcprd06.prod.outlook.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Wed, 2 Oct 2024 17:48:16 +0200
-Message-ID: <CAMRc=MdXeRCj9ExsKH31isE9qdbNyC7=nWL=GgORknSZjf7oVg@mail.gmail.com>
-Subject: Re: [PATCH v4 6/6] gpio: aspeed: Add the flush write to ensure the
- write complete.
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"joel@jms.id.au" <joel@jms.id.au>, 
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>, 
-	"Peter.Yin@quantatw.com" <Peter.Yin@quantatw.com>, "Jay_Zhang@wiwynn.com" <Jay_Zhang@wiwynn.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240929125753.789bda87@jic23-huawei>
 
-On Wed, Oct 2, 2024 at 5:09=E2=80=AFPM Billy Tsai <billy_tsai@aspeedtech.co=
-m> wrote:
->
-> > >
-> > > On Thu, Sep 19, 2024 at 11:43=E2=80=AFAM Billy Tsai <billy_tsai@aspee=
-dtech.com> wrote:
-> > >
-> > > > Performing a dummy read ensures that the register write operation i=
-s fully
-> > > > completed, mitigating any potential bus delays that could otherwise=
- impact
-> > > > the frequency of bitbang usage. E.g., if the JTAG application uses =
-GPIO to
-> > > > control the JTAG pins (TCK, TMS, TDI, TDO, and TRST), and the appli=
-cation
-> > > > sets the TCK clock to 1 MHz, the GPIO=E2=80=99s high/low transition=
-s will rely on
-> > > > a delay function to ensure the clock frequency does not exceed 1 MH=
-z.
-> > > > However, this can lead to rapid toggling of the GPIO because the wr=
-ite
-> > > > operation is POSTed and does not wait for a bus acknowledgment.
-> > > >
-> > > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> > >
-> > > If this applies cleanly on mainline I think it should go into fixes a=
-s-is.
-> > >
-> > > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > >
-> > > Yours,
-> > > Linus Walleij
->
-> > I agree but it doesn't. :(
->
-> > Billy: please send it separately and - while at it - use a C-style comm=
-ent.
->
-> > Bart
->
-> Hi Linus Walleij and Bart,
->
-> Sorry, I don=E2=80=99t quite understand the meaning of =E2=80=9Csend it s=
-eparately.=E2=80=9D
-> Does this mean I need to send this patch individually after the GPIO patc=
-h series has been accepted?
+Hi Jonathan,
+
+On 29.09.2024 12:57, Jonathan Cameron wrote:
+> On Thu, 19 Sep 2024 11:20:04 +0200
+> Angelo Dureghello <adureghello@baylibre.com> wrote:
+> 
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Extracting common code, to share common code to be used later
+> > by the AXI driver version (ad3552r-axi.c).
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> For these, main request is to move them to a namespace + GPL is
+> probably the appropriate choice here.
+> 
+> 
+> > ---
+> >  drivers/iio/dac/Makefile         |   2 +-
+> >  drivers/iio/dac/ad3552r-common.c | 173 +++++++++++++++++++++++
+> >  drivers/iio/dac/ad3552r.c        | 293 ++++-----------------------------------
+> >  drivers/iio/dac/ad3552r.h        | 190 +++++++++++++++++++++++++
+> >  4 files changed, 390 insertions(+), 268 deletions(-)
+> > 
+> > diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+> > index 2cf148f16306..56a125f56284 100644
+> > --- a/drivers/iio/dac/Makefile
+> > +++ b/drivers/iio/dac/Makefile
+> > @@ -4,7 +4,7 @@
+> >  #
+> >  
+> >  # When adding new entries keep the list in alphabetical order
+> > -obj-$(CONFIG_AD3552R) += ad3552r.o
+> > +obj-$(CONFIG_AD3552R) += ad3552r.o ad3552r-common.o
+> >  obj-$(CONFIG_AD5360) += ad5360.o
+> >  obj-$(CONFIG_AD5380) += ad5380.o
+> >  obj-$(CONFIG_AD5421) += ad5421.o
+> > diff --git a/drivers/iio/dac/ad3552r-common.c b/drivers/iio/dac/ad3552r-common.c
+> > new file mode 100644
+> > index 000000000000..624f3f97cdea
+> > --- /dev/null
+> > +++ b/drivers/iio/dac/ad3552r-common.c
+> > @@ -0,0 +1,173 @@
+> > +// SPDX-License-Identifier: GPL-2.0+
+> > +//
+> > +// Copyright (c) 2010-2024 Analog Devices Inc.
+> > +// Copyright (c) 2024 Baylibre, SAS
+> > +
+> > +#include <linux/device.h>
+> > +#include <linux/module.h>
+> > +#include <linux/property.h>
+> > +#include <linux/regulator/consumer.h>
+> > +
+> > +#include "ad3552r.h"
+> > +
+> > +const s32 ad3552r_ch_ranges[AD3552R_MAX_RANGES][2] = {
+> > +	[AD3552R_CH_OUTPUT_RANGE_0__2P5V]	= { 0, 2500 },
+> > +	[AD3552R_CH_OUTPUT_RANGE_0__5V]		= { 0, 5000 },
+> > +	[AD3552R_CH_OUTPUT_RANGE_0__10V]	= { 0, 10000 },
+> > +	[AD3552R_CH_OUTPUT_RANGE_NEG_5__5V]	= { -5000, 5000 },
+> > +	[AD3552R_CH_OUTPUT_RANGE_NEG_10__10V]	= { -10000, 10000 }
+> > +};
+> > +EXPORT_SYMBOL(ad3552r_ch_ranges);
+> 
+> GPL and namespace them to avoid poluting the general namespace with driver
+> specific exports.
+> 
+> EXPORT_SYMBOL_NS_GPL() etc.
+> 
+> 
+> > +
+> > +u16 ad3552r_calc_custom_gain(u8 p, u8 n, s16 goffs)
+> > +{
+> > +	u16 reg;
+> > +
+> > +	reg = FIELD_PREP(AD3552R_MASK_CH_RANGE_OVERRIDE, 1);
+> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_GAIN_SCALING_P, p);
+> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_GAIN_SCALING_N, n);
+> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_OFFSET_BIT_8, abs((s32)goffs) >> 8);
+> Hmm. Not sure the s32 case does anything useful here.
+> Also this is a little messy from local view of code. It is not obvious
+> that only BIT(0) can be set here.  I'd be tempted to mask that
+> before passing to FIELD_PREP()
+> 
+> > +	reg |= FIELD_PREP(AD3552R_MASK_CH_OFFSET_POLARITY, (s32)goffs < 0);
+> 
+> Why do you need the s32 cast for this last line?
+> 
+> > +
+> > +	return reg;
+> > +}
+> > +
+> > +int ad3552r_get_ref_voltage(struct device *dev)
+> > +{
+> > +	int voltage;
+> > +	int delta = 100000;
+> > +
+> > +	voltage = devm_regulator_get_enable_read_voltage(dev, "vref");
+> > +	if (voltage < 0 && voltage != -ENODEV)
+> > +		return dev_err_probe(dev, voltage,
+> > +				     "Error getting vref voltage\n");
+> > +
+> > +	if (voltage == -ENODEV) {
+> > +		if (device_property_read_bool(dev, "adi,vref-out-en"))
+> > +			return AD3552R_INTERNAL_VREF_PIN_2P5V;
+> > +		else
+> > +			return AD3552R_INTERNAL_VREF_PIN_FLOATING;
+> > +	}
+> > +
+> > +	if (voltage > 2500000 + delta || voltage < 2500000 - delta) {
+> > +		dev_warn(dev, "vref-supply must be 2.5V");
+> > +		return -EINVAL;
+> > +	}
+> 
+> Obviously this is legacy code, but why do we care in the driver?
+> If someone has circuitry or configuration that is wrong, do we need to check
+> that?  I guess it does little harm though.
+> 
+> > +
+> > +	return AD3552R_EXTERNAL_VREF_PIN_INPUT;
+> > +}
+> > +
+> > +int ad3552r_get_drive_strength(struct device *dev, u32 *val)
+> > +{
+> > +	int err;
+> > +
+> > +	err = device_property_read_u32(dev, "adi,sdo-drive-strength", val);
+> > +	if (err)
+> > +		return err;
+> > +
+> > +	if (*val > 3) {
 >
 
-This is a fix, meaning: it should go upstream now and get backported
-to stable branches. The other patches from this series will go in the
-next merge window in two months or so. So send this as the first patch
-in the series with an appropriate Fixes: tag or even send it entirely
-independently from the rest.
 
-Bart
+ 
+> Usually we avoid setting values passed back on error if it is easy to do so.
+> I'd bounce via a local variable and only set *val = drive_strength
+> after you know it is in range.
+> 
+> > +		dev_err(dev,
+> > +			"adi,sdo-drive-strength must be less than 4\n");
+> > +		return -EINVAL;
+> Is dev_err_probe() appropriate here?  I haven't checked if this is called
+> from non probe paths so ignore this comment if it is.
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +int ad3552r_get_custom_gain(struct device *dev, struct fwnode_handle *child,
+> > +			    u8 *gs_p, u8 *gs_n, u16 *rfb, s16 *goffs)
+> > +{
+> > +	int err;
+> > +	u32 val;
+> > +	struct fwnode_handle *gain_child __free(fwnode_handle) =
+> > +				fwnode_get_named_child_node(child,
+> One tab more than the line above is fine for cases like this and makes for
+> more readable code.
+>
+Aligning with c then line comes to long. 
+I can offer, as in other drivers:
+
+int ad3552r_get_custom_gain(struct device *dev, struct fwnode_handle *child,
+			    u8 *gs_p, u8 *gs_n, u16 *rfb, s16 *goffs)
+{
+	int err;
+	u32 val;
+	struct fwnode_handle *gain_child __free(fwnode_handle) =
+		fwnode_get_named_child_node(child,
+					    "custom-output-range-config");
+
+Also, do you prefer 80 or 100 as eol limit ?
+
+ 
+> > +				"custom-output-range-config");
+> 
+> Align this final parameter with c of child.
+> 
+> > +
+> > +	if (!gain_child)
+> > +		return dev_err_probe(dev, -EINVAL,
+> > +				     "custom-output-range-config mandatory\n");
+> > +
+> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-scaling-p", &val);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "adi,gain-scaling-p mandatory\n");
+> > +	*gs_p = val;
+> > +
+> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-scaling-n", &val);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "adi,gain-scaling-n property mandatory\n");
+> > +	*gs_n = val;
+> > +
+> > +	err = fwnode_property_read_u32(gain_child, "adi,rfb-ohms", &val);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "adi,rfb-ohms mandatory\n");
+> > +	*rfb = val;
+> > +
+> > +	err = fwnode_property_read_u32(gain_child, "adi,gain-offset", &val);
+> > +	if (err)
+> > +		return dev_err_probe(dev, err,
+> > +				     "adi,gain-offset mandatory\n");
+> > +	*goffs = val;
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ad3552r_find_range(u16 id, s32 *vals)
+> > +{
+> > +	int i, len;
+> > +	const s32 (*ranges)[2];
+> > +
+> > +	if (id == AD3542R_ID) {
+> 
+> This is already in your model_data. Use that not another lookup via
+> an ID enum.  The ID enum approach doesn't scale as we add more parts
+> as it scatters device specific code through the driver.
+>
+
+This function is only used internally to this common part.
+ 
+> 
+> > +		len = ARRAY_SIZE(ad3542r_ch_ranges);
+> > +		ranges = ad3542r_ch_ranges;
+> > +	} else {
+> > +		len = ARRAY_SIZE(ad3552r_ch_ranges);
+> > +		ranges = ad3552r_ch_ranges;
+> > +	}
+> > +
+> > +	for (i = 0; i < len; i++)
+> > +		if (vals[0] == ranges[i][0] * 1000 &&
+> > +		    vals[1] == ranges[i][1] * 1000)
+> > +			return i;
+> > +
+> > +	return -EINVAL;
+> > +}
+> > +
+> > +int ad3552r_get_output_range(struct device *dev, enum ad3552r_id chip_id,
+> > +			     struct fwnode_handle *child, u32 *val)
+> As above, don't pass the enum. Either pass the model_data or pass the
+> actual stuff you need which is the ranges array and size of that array.
+>
+
+Cannot pass model data, structures of the 2 drviers are different.
+If i pass arrays, the logic of deciding what array (checking the id)
+must be done in the drivers, but in this way, there will be less
+common code.
+ 
+> > +{
+> > +	int ret;
+> > +	s32 vals[2];
+> > +
+> > +	/* This property is optional, so returning -ENOENT if missing */
+> > +	if (!fwnode_property_present(child, "adi,output-range-microvolt"))
+> > +		return -ENOENT;
+> > +
+> > +	ret = fwnode_property_read_u32_array(child,
+> > +					     "adi,output-range-microvolt",
+> > +					     vals, 2);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret,
+> > +				"invalid adi,output-range-microvolt\n");
+> > +
+> > +	ret = ad3552r_find_range(chip_id, vals);
+> > +	if (ret < 0)
+> > +		return dev_err_probe(dev, ret,
+> > +			"invalid adi,output-range-microvolt value\n");
+> > +
+> > +	*val = ret;
+> > +
+> > +	return 0;
+> > +}
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> 
+
+Thanks,
+
+-- 
+Regards,
+  Angelo
 
