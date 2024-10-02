@@ -1,59 +1,82 @@
-Return-Path: <devicetree+bounces-107341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107342-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF8BD98E47F
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 22:59:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9494898E48B
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 23:03:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B37B1C20B15
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 20:59:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 508C6282DB7
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 21:03:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3571C216A0F;
-	Wed,  2 Oct 2024 20:59:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EC81D1E60;
+	Wed,  2 Oct 2024 21:03:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b4iaP7/V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Jmwllp6j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D731D278D;
-	Wed,  2 Oct 2024 20:58:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECD4745F4;
+	Wed,  2 Oct 2024 21:03:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727902740; cv=none; b=HQ/VvmKCLoEG7dspTquRfMqEQOG/F0RnQ3vJO+Mvec5oSqSM1uWV69dkzR8TCbMN1T31kuP5Zg/oVFOdVKF71GEjmshUyYTL08Vg2AeO3Rb6zDQfocPhjpFYzn3oAtr5I3TS0X4xnG9nw7OjlxKupjq71Xxak9d7Ai6tnRb6MFQ=
+	t=1727903017; cv=none; b=PbAS9J6uhKL4KPU0wmgnAf18oyUVz8CQRYOFzHfu2uPj6IMkVWV2ErfIb+v32L0Y+qJapSQAPY1xSxIzkOAF8u5xT7J9ausrYdL7S1ttIzPfDf1GGjlmMj1K9S3wa/TQCz+7j03SAEbH4J1sfhDlKWqDwkGEV+/Vwx3SV/hMOtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727902740; c=relaxed/simple;
-	bh=9PB7X2t/YcDc9aHjUpTSRxtDr1mvveifceoncjWg/W8=;
+	s=arc-20240116; t=1727903017; c=relaxed/simple;
+	bh=T/J+bsNsUgw22rlBrYHJdcx0PE1m7ec1tmy77h9yuls=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lZ8fAYIPMtzU8QyiKF2Mqd67ya2xSlHoFX1oBrtXlzalb6qgMcve5Kl+B9QHaRoT+RiuOWVxdgKLwOP7vkDlr/XjxFRQ8NoH535L/mSTvzneongy/CAPYuN+176ePaLfqXfUYEmF7toREuERqMyEsI5xwEhl9oZBYCnte9woCMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b4iaP7/V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EDCBC4CEC2;
-	Wed,  2 Oct 2024 20:58:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IZp5MoLle7iAq6YMeasL8eNvzvGo10NY6/NYhyNu/yuIN/wuB3Gt46v9kewfCHp0iFJlTFzOhTh5ltqzpXT6sakDlPT+lW43rqpFjs9JurB0af80MHRKwpr9yAwFcFfuo9l0bwG5e+A2/OpbIjj6Gyfe4nH5yhYwbTp/VqZ7o5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Jmwllp6j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 60A9FC4CEC2;
+	Wed,  2 Oct 2024 21:03:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727902739;
-	bh=9PB7X2t/YcDc9aHjUpTSRxtDr1mvveifceoncjWg/W8=;
+	s=k20201202; t=1727903016;
+	bh=T/J+bsNsUgw22rlBrYHJdcx0PE1m7ec1tmy77h9yuls=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b4iaP7/ViKUi+jm6kvqrKFT4u0U55HNeD4x5kIwbMeYXjBTM9hUZeBmmspTdoq49f
-	 OWeyrfmFNZsBEoQw/XEYoqnjm2mfD87NBYudapFU/Y6ARdmCDUYkkC9ZrIeUvQbNZP
-	 V8164RG3q5DLalAOETwfGBh+DHDS7JWlwLqxrg442L4bfSuaSPaP3mV5mjR6vwfNTw
-	 Irz21Vb+e/QT45j2rg6JL58V/uX4qOl2+V1tHG7nrKdykl2cuhKHdr/+aBUw+z/3kN
-	 UN8778Rm4TKbfAFCJQdGKy9kpdYibcOvfVqhKiNpjcildR7ocrwMgLzVUIRMg9m970
-	 FqE74I8lo2EYw==
-Date: Wed, 2 Oct 2024 15:58:58 -0500
+	b=Jmwllp6jzRETuClzX6i3XersBeu6pr5GCmFLlKZUoLVMVYp98nR8I1WBsoziE1zwv
+	 EqLtCFWqPGJSD96kzZpm58e3IsTbFS7WDAX/QDivj9IgWJB8G+loz3oUm+b3k+Vvfg
+	 5fJ5j6eLgua8KQ7IIkJDZ4frWJ2mmOyEdrVzJL3Mhhg2OGLV7RgIUBMO+k0lqmw0wT
+	 nTitMwjJNI14VX3a/mC5weH5VNLpjfvsCpIjvdGAv1Jt3ysB1issay1HQfQxnI0rFp
+	 2tniOP6L1zeIj89TM5ZmkNI70CjZOSWSGmwzAhNH9ZgcYj++UnNtpYvJbDk2jxE51K
+	 ILXa6mUOgiYBA==
+Date: Wed, 2 Oct 2024 16:03:35 -0500
 From: Rob Herring <robh@kernel.org>
-To: Nuno Sa <nuno.sa@analog.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Mike Frysinger <vapier@gentoo.org>, Dmitry Torokhov <dtor@mail.ru>,
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 05/13] dt-bindings: input: Document adp5589 and similar
- devices
-Message-ID: <20241002205858.GA1285914-robh@kernel.org>
-References: <20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
- <20241001-b4-dev-adp5589-fw-conversion-v1-5-fca0149dfc47@analog.com>
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com
+Subject: Re: [PATCH 07/33] riscv: zicfilp / zicfiss in dt-bindings
+ (extensions.yaml)
+Message-ID: <20241002210335.GA1307114-robh@kernel.org>
+References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
+ <20241001-v5_user_cfi_series-v1-7-3ba65b6e550f@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,395 +85,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241001-b4-dev-adp5589-fw-conversion-v1-5-fca0149dfc47@analog.com>
+In-Reply-To: <20241001-v5_user_cfi_series-v1-7-3ba65b6e550f@rivosinc.com>
 
-On Tue, Oct 01, 2024 at 03:41:36PM +0200, Nuno Sa wrote:
-> Add device tree bindings for the adp5589 keypad (and similar devices). The
-> ADP5585 family has small differences like the lack of the unlock
-> function and less pins (cols x rows) for the keymap.
+On Tue, Oct 01, 2024 at 09:06:12AM -0700, Deepak Gupta wrote:
+> Make an entry for cfi extensions in extensions.yaml.
+
+Run "git log --oneline" on the file/subsystem and follow the subject 
+prefix pattern.
+
 > 
-> As there's no MAINTAINERS entry for these devices, add one. Also to note
-> that these devices were removed from trivial-devices.yaml.
-> 
-> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
 > ---
->  .../devicetree/bindings/input/adi,adp5589.yaml     | 310 +++++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml       |   6 -
->  MAINTAINERS                                        |   9 +
->  3 files changed, 319 insertions(+), 6 deletions(-)
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/adi,adp5589.yaml b/Documentation/devicetree/bindings/input/adi,adp5589.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..bdbc79758a0390952c8363ec28f48057dab929a9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/adi,adp5589.yaml
-> @@ -0,0 +1,310 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/input/adi,adp5589.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices ADP5589 and similar Keypad Controllers
-> +
-> +maintainers:
-> +  - Nuno Sa <nuno.sa@analog.com>
-> +  - Michael Hennerich <michael.hennerich@analog.com>
-> +
-> +description: |
-> +  Analog Devices Mobile I/O Expander and QWERTY Keypad Controllers
-> +   - https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5589.pdf
-> +   - https://www.analog.com/media/en/technical-documentation/data-sheets/ADP5585.pdf
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - adi,adp5589
-> +      - adi,adp5585
-> +      - adi,adp5585-2
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  vcc-supply: true
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  gpio-controller:
-> +    description:
-> +      This property applies if there are pins not used in the keypad.
-> +
-> +  '#gpio-cells':
-> +    const: 2
-> +
-> +  interrupt-controller:
-> +    description:
-> +      This property applies if there are pins not used in the keypad.
-> +
-> +  '#interrupt-cells':
-> +    const: 2
-> +
-> +  adi,cols-mask:
-> +    description:
-> +      Defines the number of pins (columns) being used ad part of the keymap. As
-> +      the device is fully configurable and we can have holes in the columns
-> +      being used, this is given as mask.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0x1
-> +    maximum: 0x3f
-> +
-> +  adi,rows-mask:
-> +    description:
-> +      Defines the number of pins (rows) being used ad part of the keymap. As
-> +      the device is fully configurable and we can have holes in the rows being
-> +      used, this is given as mask.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0x1
-> +    maximum: 0xff
-> +
-> +  adi,key-poll-ms:
-> +    description: Configure time between consecutive scan cycles.
-> +    enum: [10, 20, 30, 40]
-> +    default: 10
-> +
-> +  adi,unlock-keys:
-> +    description:
-> +      Specifies a maximum of 2 keys that can be used to unlock the keypad.
-> +      If this property is set, the keyboard will be locked and only unlocked
-> +      after these keys are pressed. The value 127 serves as a wildcard which
-> +      means any key can be used for unlocking.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 2
-
-You probably don't allow repeated key values? If so, then you can add 
-'uniqueItems: true' to enforce that.
-
-> +    items:
-> +      anyOf:
-> +        - minimum: 1
-> +          maximum: 88
-> +        - minimum: 97
-> +          maximum: 115
-> +        - const: 127
-> +
-> +  adi,unlock-trigger-sec:
-> +    description:
-> +      Defines the time in which the second unlock event must occur after the
-> +      first unlock event has occurred.
-> +    maximum: 7
-> +    default: 0
-> +
-> +  adi,reset1-keys:
-> +    description:
-> +      Defines the trigger events (key presses) that can generate reset
-> +      conditions one the reset1 block.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 3
-> +    items:
-> +      anyOf:
-> +        - minimum: 1
-> +          maximum: 88
-> +        - minimum: 97
-> +          maximum: 115
-> +
-> +  adi,reset2-keys:
-> +    description:
-> +      Defines the trigger events (key presses) that can generate reset
-> +      conditions one the reset2 block.
-> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      anyOf:
-> +        - minimum: 1
-> +          maximum: 88
-> +        - minimum: 97
-> +          maximum: 115
-> +
-> +  adi,reset1-active-high:
-> +    description: Sets the reset1 signal as active high.
-> +    type: boolean
-> +
-> +  adi,reset2-active-high:
-> +    description: Sets the reset2 signal as active high.
-> +    type: boolean
-> +
-> +  adi,rst-passtrough-enable:
-
-passthrough
-
-> +    description: Allows the RST pin to override (OR with) the reset1 signal.
-> +    type: boolean
-> +
-> +  adi,reset-trigger-ms:
-> +    description:
-> +      Defines the length of time that the reset events must be active before a
-> +      reset signal is generated. All events must be active at the same time for
-> +      the same duration.
-> +    enum: [0, 1000, 1500, 2000, 2500, 3000, 3500, 4000]
-> +    default: 0
-> +
-> +  adi,reset-pulse-width-us:
-> +    description: Defines the pulse width of the reset signals.
-> +    enum: [500, 1000, 2000, 10000]
-> +    default: 500
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^gpio@":
-
-'gpio' for node name is for gpio-controllers which this is not.
-
-> +    type: object
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        description: The GPIO number being configured.
-> +        maximum: 18
-> +
-> +      adi,pull-up-ohms:
-> +        description: The pullup resistor to be used.
-> +        enum: [100000, 300000]
-> +        default: 300000
-
-Key mode doesn't have a pull-up?
-
-Kind of overkill to have a node for 1 property. I'd probably just make 
-this an array of 18 entries for all pins using 0 or something if you 
-don't want to configure pins.
-
-> +
-> +    required:
-> +      - reg
-> +
-> +dependencies:
-> +  adi,rows-mask:
-> +    - linux,keymap
-> +    - adi,cols-mask
-> +  adi,cols-mask:
-> +    - linux,keymap
-> +    - adi,rows-mask
-> +  linux,keymap:
-> +    - adi,rows-mask
-> +    - adi,cols-mask
-> +    - interrupts
-> +  interrupt-controller:
-> +    - interrupts
-> +  adi,unlock-trigger-sec:
-> +    - adi,unlock-keys
-> +  adi,reset1-active-high:
-> +    - adi,reset1-keys
-> +  adi,rst-passtrough-enable:
-> +    - adi,reset1-keys
-> +  adi,reset2-active-high:
-> +    - adi,reset2-keys
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - vcc-supply
-> +
-> +allOf:
-> +  - $ref: matrix-keymap.yaml#
-> +  - $ref: input.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - adi,adp5585-2
-> +    then:
-> +      properties:
-> +        adi,unlock-keys: false
-> +        adi,unlock-trigger-sec: false
-> +        adi,rows-mask:
-> +          maximum: 0x2f
-> +        adi,cols-mask:
-> +          maximum: 0x1f
-> +        adi,reset1-keys:
-> +          items:
-> +            anyOf:
-> +              - minimum: 1
-> +                maximum: 30
-> +              - minimum: 37
-> +                maximum: 47
-> +        adi,reset2-keys:
-> +          items:
-> +            anyOf:
-> +              - minimum: 1
-> +                maximum: 30
-> +              - minimum: 37
-> +                maximum: 47
-> +      patternProperties:
-> +        "^gpio@":
-> +          properties:
-> +            reg:
-> +              maximum: 10
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - adi,adp5585
-> +    then:
-> +      properties:
-> +        adi,unlock-keys: false
-> +        adi,unlock-trigger-sec: false
-> +        adi,rows-mask:
-> +          maximum: 0x1f
-> +        adi,cols-mask:
-> +          maximum: 0x1f
-> +        adi,reset1-keys:
-> +          items:
-> +            anyOf:
-> +              - minimum: 1
-> +                maximum: 25
-> +              - enum: [37, 38, 39, 40, 41, 43, 44, 45, 46, 47]
-> +        adi,reset2-keys:
-> +          items:
-> +            anyOf:
-> +              - minimum: 1
-> +                maximum: 25
-> +              - enum: [37, 38, 39, 40, 41, 43, 44, 45, 46, 47]
-> +      patternProperties:
-> +        "^gpio@":
-> +          properties:
-> +            reg:
-> +              enum: [0, 1, 2, 3, 4, 6, 7, 8, 9, 10]
-> +
-> +unevaluatedProperties: false
-> +
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/input/input.h>
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        keys@34 {
-> +            compatible = "adi,adp5589";
-> +            reg = <0x34>;
-> +
-> +            vcc-supply = <&vcc>;
-> +            interrupts = <21 IRQ_TYPE_EDGE_FALLING>;
-> +            interrupt-parent = <&gpio>;
-> +
-> +            adi,rows-mask = <0x13>;
-> +            adi,cols-mask = <0xf>;
-> +
-> +            linux,keymap = <
-> +                MATRIX_KEY(0x00, 0x00, KEY_1)
-> +                MATRIX_KEY(0x00, 0x01, KEY_2)
-> +                MATRIX_KEY(0x00, 0x02, KEY_3)
-> +                MATRIX_KEY(0x00, 0x03, KEY_4)
-> +                MATRIX_KEY(0x01, 0x00, KEY_5)
-> +                MATRIX_KEY(0x01, 0x01, KEY_6)
-> +                MATRIX_KEY(0x01, 0x02, KEY_7)
-> +                MATRIX_KEY(0x01, 0x03, KEY_8)
-> +                MATRIX_KEY(0x04, 0x00, KEY_9)
-> +                MATRIX_KEY(0x04, 0x01, KEY_A)
-> +                MATRIX_KEY(0x04, 0x02, KEY_B)
-> +                MATRIX_KEY(0x04, 0x03, KEY_C)
-> +            >;
-> +
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            gpio@10 {
-> +                reg = <10>;
-> +                adi,pull-up-ohms = <100000>;
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 7913ca9b6b54020c58e387b3618922386ce03763..35238b1d89e65bfed09e1a1a5b421a07555f6351 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -38,12 +38,6 @@ properties:
->            - ad,adm9240
->              # AD5110 - Nonvolatile Digital Potentiometer
->            - adi,ad5110
-> -            # Analog Devices ADP5585 Keypad Decoder and I/O Expansion
-> -          - adi,adp5585
-> -            # Analog Devices ADP5585 Keypad Decoder and I/O Expansion with support for Row5
-> -          - adi,adp5585-02
-> -            # Analog Devices ADP5589 Keypad Decoder and I/O Expansion
-> -          - adi,adp5589
->              # Analog Devices LT7182S Dual Channel 6A, 20V PolyPhase Step-Down Silent Switcher
->            - adi,lt7182s
->              # AMS iAQ-Core VOC Sensor
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index a533d882b0022fd7580b829b68d846d319a4a8a7..120a1867b8f716ae11bffedab94a938c25888457 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -545,6 +545,15 @@ W:	https://ez.analog.com/linux-software-drivers
->  F:	Documentation/devicetree/bindings/input/adi,adp5588.yaml
->  F:	drivers/input/keyboard/adp5588-keys.c
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index 2cf2026cff57..356c60fd6cc8 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -368,6 +368,20 @@ properties:
+>              The standard Zicboz extension for cache-block zeroing as ratified
+>              in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
 >  
-> +ADP5589 QWERTY KEYPAD AND IO EXPANDER DRIVER (ADP5589/ADP5585)
-> +M:	Michael Hennerich <michael.hennerich@analog.com>
-> +M:	Nuno Sa <nuno.sa@analog.com>
-> +S:	Supported
-> +W:	https://ez.analog.com/linux-software-drivers
-> +F:	Documentation/devicetree/bindings/input/adi,adp5589.yaml
-> +F:	drivers/input/keyboard/adp5589-keys.c
-> +F:	include/linux/input/adp5589.h
+> +        - const: zicfilp
+> +          description: |
+> +            The standard Zicfilp extension for enforcing forward edge
+> +            control-flow integrity as ratified in commit 3f8e450 ("merge
+> +            pull request #227 from ved-rivos/0709") of riscv-cfi
+> +            github repo.
 > +
->  ADP8860 BACKLIGHT DRIVER (ADP8860/ADP8861/ADP8863)
->  M:	Michael Hennerich <michael.hennerich@analog.com>
->  S:	Supported
+> +        - const: zicfiss
+> +          description: |
+> +            The standard Zicfiss extension for enforcing backward edge
+> +            control-flow integrity as ratified in commit 3f8e450 ("merge
+> +            pull request #227 from ved-rivos/0709") of riscv-cfi
+> +            github repo.
+> +
+>          - const: zicntr
+>            description:
+>              The standard Zicntr extension for base counters and timers, as
 > 
 > -- 
-> 2.46.1
+> 2.45.0
 > 
 
