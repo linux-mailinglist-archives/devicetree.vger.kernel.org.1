@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-107225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4799498D2EB
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:17:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4997B98D322
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:26:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1005281DA4
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:17:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08A5E2858CF
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:26:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D341CF5FB;
-	Wed,  2 Oct 2024 12:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A731D0DDE;
+	Wed,  2 Oct 2024 12:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gypp0c43"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o8OU0Wey"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91A833D1;
-	Wed,  2 Oct 2024 12:17:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A97E1D015B;
+	Wed,  2 Oct 2024 12:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727871450; cv=none; b=r2ygqvJlgyH1K7C+1GiI3ad+nC7t8RgQBHsX1QiTVsbpMg+vImUyemTuXZYWmJ+xsfyfXCYwo6HxgPb7RYGOBGGj0H9UjCF3x8ODapzKMv28QIslyDuLUY9PZ+UTlFIuMrBOtcJYpAONdjuwP0B0lukfWZpvtpevy5/vOM5f7bI=
+	t=1727871792; cv=none; b=dhBVV8ASIHqPMK6HlyaNi0eISDSRREmMdgvvBlIbPYrR4QJHqyWto1X41/rdrWaaEb+YXInnKdHAsufkgfQT+eq+/iQT5rRDwrSoBEKhqmY5yosnzx6xs69Nm2SNPCG2u9Kp25BMtE8/KZPR/QV6as6xPCGUwU4BYyELEpCB1AM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727871450; c=relaxed/simple;
-	bh=jCfV1vgoOkoER45FWSCXRZHvYTXMw0sdI8I4sBcc/uY=;
+	s=arc-20240116; t=1727871792; c=relaxed/simple;
+	bh=MBzPicWBaX1VECfS2Sb+6T+LhbGJCQzrzg25zWYToqY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gJy/wI9ToWTYSqca0ld+h+80dVs+HrycPWGgyvPSEt7iy/AC74pxmsX+lgcPKsnNtm8oYLR83e6uA3+9AYbzuSqSgigS4guN2G65YUld940joHRwiW2bDAgSooUxNDfXvCczoR4gabyTLT2PxHwfF2EGwwr4KyL9ES/57P7cEbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gypp0c43; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12704C4CEC5;
-	Wed,  2 Oct 2024 12:17:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=VyE3vpX/V6YX6tOnZ90hi+HaNXwt/7qYQ6/Darx5UJ5GzbEBRv8mw4oW/IlTJ5goVa1pC4X/yPc0VTDKGDJyiXMnHlGQAJ5nWQLG6sqRi9R6fWPfgWTjW1NcSAL7Ah7OQdkLaLE1T+aF3tnNjctDeohZRo6fAj5LxZ415nD3wqo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o8OU0Wey; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B382AC4AF54;
+	Wed,  2 Oct 2024 12:23:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727871449;
-	bh=jCfV1vgoOkoER45FWSCXRZHvYTXMw0sdI8I4sBcc/uY=;
+	s=k20201202; t=1727871792;
+	bh=MBzPicWBaX1VECfS2Sb+6T+LhbGJCQzrzg25zWYToqY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Gypp0c43HvGDXm/+ttRbGTuBM1MpsXqmSv67aknZPjOePNXsG2z6ECeSofChzlbsY
-	 xlGPrZnTLv1kFhYoD85roenWKJYPyGQ1UQRgvqBraos+BVgTfxHs3333jp3kar6mvo
-	 hCfhey7CaZ2Miaax4bS8JL6dXSxcZz8lSkSaqDs3rWGdK/lXwyAv9sN1HIRvKE0n9N
-	 jhJb3VGvUmnA+rbNceI22Y+P9KgdNA6WhJKyJHS8s8RGDN8lU1ZAhfVlIgRI7fHj7L
-	 m+1OtZ5mjz5ZioyLTn+CJpAifq4XQ/5E2jJRN1h0mWROevIiS9zIMdV7rCj1keSrJC
-	 Pz+HLxcA1T03A==
-Message-ID: <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
-Date: Wed, 2 Oct 2024 14:17:22 +0200
+	b=o8OU0WeyUr5LJaHaYvyCE9iQyh+v14KhtDciwVMbiE3HOPITGfHeUIyxCNJKgX5KS
+	 Uj8EEyaXaTWjoxgOD5H9xIGA2Ev5e/6jmsPCz/O/KfueyF8oJ985W/+RWLKy9EBJcb
+	 FR18THU+2Toj52tO9NA04XKZMa8Oo7fgO8mk0RvpbJFlB0heUrtF8MuR7tz4enn+VT
+	 BXRSfzxFfaHh/2of4wBkpHsRiq1H/N+RokgkQD9QQabz1lnOOSpv15AkMI/2D/z+Gm
+	 M41/1Y6V3spgBL3r/Pbkbjpl1BddEdqCegwVHbLW30SKPVLjLnnRCKIPZ59X0qgL1n
+	 IyIbKBMyWaShA==
+Message-ID: <2ceaffdd-198b-44b2-8e8a-414e981f53e2@kernel.org>
+Date: Wed, 2 Oct 2024 14:23:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: clock: si5351: Make compatible string
- required property
-To: Michal Simek <michal.simek@amd.com>, linux-kernel@vger.kernel.org,
- monstr@monstr.eu, michal.simek@xilinx.com, git@xilinx.com
-Cc: =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
- Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>,
- "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
-References: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
- <fa249ec7-409f-4dee-b853-736c5de464be@kernel.org>
- <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
- <7695cae2-33a3-4879-b8e5-d296d81ffece@amd.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: add Linksys EA9350 V3
+To: Karl Chan <exxxxkc@getgoogleoff.me>, linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241002120804.25068-1-exxxxkc@getgoogleoff.me>
+ <20241002120804.25068-2-exxxxkc@getgoogleoff.me>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,43 +102,178 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <7695cae2-33a3-4879-b8e5-d296d81ffece@amd.com>
+In-Reply-To: <20241002120804.25068-2-exxxxkc@getgoogleoff.me>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/10/2024 12:31, Michal Simek wrote:
+On 02/10/2024 14:08, Karl Chan wrote:
+> Add device tree source for Linksys EA9350 V3 which is a WiFi router based on the IPQ5018 SoC.
 > 
+> As of now , only the UART,USB,USB LED,buttons is working.The front PWM LED require the IPQ PWM driver.Therefore the PWM LED isn't configed in the tree.
 > 
-> On 10/2/24 10:24, Michal Simek wrote:
->>
->>
->> On 10/2/24 10:19, Krzysztof Kozlowski wrote:
->>> On 02/10/2024 09:51, Michal Simek wrote:
->>>> Compatible property is likely also required property.
->>>>
->>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
->>>> ---
->>>
->>> That's a convention but not necessary, a no-op.
->>
->> But how do you identify device then?
->> Or are you saying that device description is valid even if there is no 
->> compatible string?
+> Also The original firmware from Linksys can only boot ARM32 kernels.
 > 
-> One more thing
-> commit 524dfbc4e9fc ("dt-bindings: clock: si5351: convert to yaml") is showing
-> that compatible property was required in txt file.
+> As of now There seems to be no way to boot ARM64 kernels on those device.
 > 
-> -Required properties:
-> -- compatible: shall be one of the following:
-> -       "silabs,si5351a" - Si5351a, QFN20 package
-> -       "silabs,si5351a-msop" - Si5351a, MSOP10 package
+> However, it is possible to use this device tree by compiling an ARM32 kernel instead.
 > 
-> I can update commit message to describe it too.
+> Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
+> ---
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/ipq5018-linksys-jamaica.dts | 114 ++++++++++++++++++
+>  2 files changed, 115 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index ae002c7cf126..9ddc1b695478 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -12,6 +12,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-ifc6640.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-rdp432-c2.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-tplink-archer-ax55-v1.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= ipq5018-linksys-jamaica.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp441.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp442.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= ipq5332-rdp468.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts b/arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts
+> new file mode 100644
+> index 000000000000..b6cb88884193
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts
+> @@ -0,0 +1,114 @@
+> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
+> +
+> +/dts-v1/;
+> +
+> +/*
+> + * NOTE: The original firmware from Linksys can only boot ARM32 kernels.
+> + *
+> + * As of now There seems to be no way to boot ARM64 kernels on those device.
+> + *
+> + * However, it is possible to use this device tree by compiling an ARM32 kernel
+> + * instead. For clarity and build testing this device tree is maintained next
+> + * to the other IPQ5018 device trees. However, it is actually used through
+> + * arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+> + */
+> +
+> +#include "ipq5018.dtsi"
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +
 
-Devices do not work without compatible, so this is obvious... and like
-said - it is already required, so the change is redundant. Does not
-harm, though.
+Just one blank line.
+
+> +/ {
+> +	model = "Linksys EA9350 V3";
+> +	compatible = "linksys,jamaica", "qcom,ipq5018";
+
+Please put bindings patch before users.
+
+> +
+> +	aliases {
+> +		serial0 = &blsp1_uart1;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-0 = <&led_pins>;
+> +		pinctrl-names = "default";
+> +
+> +		led-0 {
+> +			color = <LED_COLOR_ID_WHITE>;
+> +			function = LED_FUNCTION_USB;
+> +			gpios = <&tlmm 19 GPIO_ACTIVE_HIGH>;
+> +		};
+> +
+
+Drop blank line.
+
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		pinctrl-0 = <&button_pins>;
+> +		pinctrl-names = "default";
+> +
+> +		button-0 {
+> +			label = "reset";
+> +			linux,code = <KEY_RESTART>;
+> +			gpios = <&tlmm 28 GPIO_ACTIVE_LOW>;
+> +			debounce-interval = <60>;
+> +		};
+> +
+> +		button-1 {
+> +			label = "wps";
+> +			linux,code = <KEY_WPS_BUTTON>;
+> +			gpios = <&tlmm 27 GPIO_ACTIVE_LOW>;
+> +			debounce-interval = <60>;
+> +		};
+> +	};
+> +
+
+Drop blank line.
+
+> +};
+> +
+> +&blsp1_uart1 {
+> +	pinctrl-0 = <&uart1_pins>;
+> +	pinctrl-names = "default";
+> +	status = "okay";
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32000>;
+> +};
+> +
+> +&usbphy0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb {
+> +	status = "okay";
+> +};
+> +
+> +&usb_dwc {
+> +	dr_mode = "host";
+> +};
+> +
+> +&tlmm {
+
+Keep alphabetical order (or tlmm goes to the end).
+
+> +	button_pins: button-pins-state {
+> +		pins = "gpio27", "gpio28";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-pull-up;
+> +	};
+> +
+> +	led_pins: led-pins-state {
+> +		pins = "gpio19";
+> +		function = "gpio";
+> +		drive-strength = <2>;
+> +		bias-disable;
+> +	};
+> +
+
+Drop blank line.
+
+> +};
+> +
+> +&sleep_clk {
+> +	clock-frequency = <32000>;
+> +};
+> +
+> +&xo_board_clk {
+> +	clock-frequency = <24000000>;
+> +};
 
 Best regards,
 Krzysztof
