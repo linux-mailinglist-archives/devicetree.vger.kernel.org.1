@@ -1,97 +1,237 @@
-Return-Path: <devicetree+bounces-107293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2035798DF44
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:34:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBBC698DF50
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 17:35:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7E5A287163
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:34:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63CDE1F23B13
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 15:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161AD1D042F;
-	Wed,  2 Oct 2024 15:34:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1001F1D0DF2;
+	Wed,  2 Oct 2024 15:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bXHTMLw6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gvZ48ukx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A63A23CE;
-	Wed,  2 Oct 2024 15:34:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FC51D0DD9;
+	Wed,  2 Oct 2024 15:35:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727883283; cv=none; b=T/jt2HlcDELk18FD3OeUJQUq1y2Md0kqlAbtkaNlAw0G5/KPIfCeNlCuDX/AX64SkDK4UeiTDMNt/T9PqzLsA3+xCjL3hdgdZxL+CECJoId126ChLyZ0jYiNfa7OqWQkH6XEsDqKBx9NyCQoGBwJNfALs7JYIt5VGiuncAXgkOA=
+	t=1727883344; cv=none; b=RYnwtZjO0O+ZFZUIMbf1jmfQUc0dfaONa8+bKtCihN5Wxxcjc8fqJ6dQjcnNOZa4tcwOpRLHZCVdX00/eDwEopBxoR/kQv4RqUi0qSf9j0JQz8TAUhOvK/L4vJJa8qkxaVnrEfplMPFCqIQrlneHsYjsQBDmnYJ5YnNFh71cByo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727883283; c=relaxed/simple;
-	bh=zGKbB6Rkj8XhSmTSv3puCgtjf4+3gZ2Oewq9ug1a3TI=;
+	s=arc-20240116; t=1727883344; c=relaxed/simple;
+	bh=k1zW8KXz7EwiJvjqcAxwtSjygKZUVJO8HBFqTJuGMF0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nrZuDLT9nc3bWF7FilbIjwrFlUKETlsIMnR87oJbeavimnBY5TW9v/dWW6uUx/Qt/rfEtgMQ1yL1YJYd6ntUZ5xIqEcHfNZidf603wZivjs2nvyAcetDRE+Egv+xyYkRpNpGRShNwVqTYD+xSJqpxfpqs6iLusyWBbiCCzgPRL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bXHTMLw6; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=RF3Yt7mUhMh9oXBfNRlXYo/9TTj+JpEotlqG6mQiyzc=; b=bXHTMLw64O2XzJunhOyTUZn3TK
-	p6e+Z2FtDCcDxvP2FrrMqADCT5p80CU+vWpuRJAN3+95RLNLCv4bGCBxT6iz69fcGWiq8/MgboEtL
-	bANHYwMi5XO1bZ6OnOrpIeCHp4sadfowduY1EmaVqjiqVmi4UKbDvhE6E4ugdNk/zG3o=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1sw1Mr-008sC0-Kh; Wed, 02 Oct 2024 17:34:21 +0200
-Date: Wed, 2 Oct 2024 17:34:21 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Drew Fustini <dfustini@tenstorrent.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=rQ5iwQ/2ABMp30aiiUKMjLqvalzp4G8Jdu+R3KMqHwN0w+qPsrEDsoL/9TLj34Ri7yvKlnUvxezwlsRR6lhdyVula/HAoJgQ25kff4XkrLPXk1KZ5voP4/O8BQSQ2KIo0/h7AhuDRwJAFibA7JOrJLjebK3/il36ize+xN/IiBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gvZ48ukx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF281C4CECD;
+	Wed,  2 Oct 2024 15:35:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727883343;
+	bh=k1zW8KXz7EwiJvjqcAxwtSjygKZUVJO8HBFqTJuGMF0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gvZ48ukxkvlA/tROM+XWQCC+GQjn1xdlFnYHeifEYVq3bNZE7U+/awWbv/IXObCLK
+	 Ysc1gbU85mEH1o377fQn2byyXFnnUwqVzaCVMUJDVsA8bKlOmU5vmNabqZmvyRGbGc
+	 X/7kX4t1SPLDknV2pBJAyf8aXxdc31pTUtOn2E1xJQ91H6DmdnOUL0nKg75YA48ga8
+	 /xwVQ+krKvfrEpXXbqzBZXcjjpO8Rpksw4EdnWB1XquWOMs6zS79szHrzEoSX0ZE31
+	 jvaKCO00kXJudpcVy4IoBnDzj6q4gdEc1EpMNZp4UTrHDbHjavRHXl1tGXmhrSbzdl
+	 mkgFXnebCgzIw==
+Date: Wed, 2 Oct 2024 16:35:36 +0100
+From: Lee Jones <lee@kernel.org>
+To: Junhao Xie <bigfoot@classfun.cn>
+Cc: devicetree@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+	linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 0/3] Add the dwmac driver support for T-HEAD TH1520 SoC
-Message-ID: <99af411c-ff40-4396-a6e2-5aac179ba1be@lunn.ch>
-References: <20240930-th1520-dwmac-v3-0-ae3e03c225ab@tenstorrent.com>
+	linux-rockchip@lists.infradead.org,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Sebastian Reichel <sre@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Heiko Stuebner <heiko@sntech.de>, Chukun Pan <amadeus@jmu.edu.cn>
+Subject: Re: [PATCH 7/9] leds: add Photonicat PMU LED driver
+Message-ID: <20241002153536.GG7504@google.com>
+References: <20240906093630.2428329-1-bigfoot@classfun.cn>
+ <20240906093630.2428329-8-bigfoot@classfun.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240930-th1520-dwmac-v3-0-ae3e03c225ab@tenstorrent.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240906093630.2428329-8-bigfoot@classfun.cn>
 
-On Mon, Sep 30, 2024 at 11:23:23PM -0700, Drew Fustini wrote:
-> This series is based on 6.12-rc1 and depends on this pinctrl series:
+On Fri, 06 Sep 2024, Junhao Xie wrote:
 
-This is a network driver, so should be based on net-next/main.
+> Photonicat has a network status LED that can be controlled by system.
+> The LED status can be set through command 0x19.
+> 
+> Signed-off-by: Junhao Xie <bigfoot@classfun.cn>
+> ---
+>  drivers/leds/Kconfig           | 11 +++++
+>  drivers/leds/Makefile          |  1 +
+>  drivers/leds/leds-photonicat.c | 75 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 87 insertions(+)
+>  create mode 100644 drivers/leds/leds-photonicat.c
+> 
+> diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
+> index 8d9d8da376e4..539adb5944e6 100644
+> --- a/drivers/leds/Kconfig
+> +++ b/drivers/leds/Kconfig
+> @@ -381,6 +381,17 @@ config LEDS_PCA9532_GPIO
+>  	  To use a pin as gpio pca9532_type in pca9532_platform data needs to
+>  	  set to PCA9532_TYPE_GPIO.
+>  
+> +config LEDS_PHOTONICAT_PMU
+> +	tristate "LED Support for Photonicat PMU"
+> +	depends on LEDS_CLASS
+> +	depends on MFD_PHOTONICAT_PMU
+> +	help
+> +	  Photonicat has a network status LED that can be controlled by system,
 
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html
+"the system"
 
->  20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com
+> +	  this option enables support for LEDs connected to the Photonicat PMU.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called leds-photonicat.
+> +
+>  config LEDS_GPIO
+>  	tristate "LED Support for GPIO connected LEDs"
+>  	depends on LEDS_CLASS
+> diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
+> index 18afbb5a23ee..dcd5312aee12 100644
+> --- a/drivers/leds/Makefile
+> +++ b/drivers/leds/Makefile
+> @@ -76,6 +76,7 @@ obj-$(CONFIG_LEDS_PCA9532)		+= leds-pca9532.o
+>  obj-$(CONFIG_LEDS_PCA955X)		+= leds-pca955x.o
+>  obj-$(CONFIG_LEDS_PCA963X)		+= leds-pca963x.o
+>  obj-$(CONFIG_LEDS_PCA995X)		+= leds-pca995x.o
+> +obj-$(CONFIG_LEDS_PHOTONICAT_PMU)	+= leds-photonicat.o
+>  obj-$(CONFIG_LEDS_PM8058)		+= leds-pm8058.o
+>  obj-$(CONFIG_LEDS_POWERNV)		+= leds-powernv.o
+>  obj-$(CONFIG_LEDS_PWM)			+= leds-pwm.o
+> diff --git a/drivers/leds/leds-photonicat.c b/drivers/leds/leds-photonicat.c
+> new file mode 100644
+> index 000000000000..3aa5ce525b83
+> --- /dev/null
+> +++ b/drivers/leds/leds-photonicat.c
+> @@ -0,0 +1,75 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2024 Junhao Xie <bigfoot@classfun.cn>
+> + */
+> +
+> +#include <linux/mfd/photonicat-pmu.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/leds.h>
 
-Everything should meet up in linux-next, where it should work since
-all the dependencies are there.
+Alphabetical.
 
-    Andrew
+> +struct pcat_leds {
+> +	struct device *dev;
 
----
-pw-bot: cr
+Where is this used?
+
+> +	struct pcat_pmu *pmu;
+
+Why do you need to store this?
+
+Can't you get this at the call-site by:
+
+  dev_get_drvdata(cdev->dev->parent)
+
+> +	struct led_classdev cdev;
+> +};
+> +
+> +static int pcat_led_status_set(struct led_classdev *cdev,
+> +			       enum led_brightness brightness)
+> +{
+> +	struct pcat_leds *leds = container_of(cdev, struct pcat_leds, cdev);
+> +	struct pcat_data_cmd_led_setup setup = { 0, 0, 0 };
+> +
+> +	if (brightness)
+> +		setup.on_time = 100;
+> +	else
+> +		setup.down_time = 100;
+> +	return pcat_pmu_write_data(leds->pmu, PCAT_CMD_NET_STATUS_LED_SETUP,
+> +				   &setup, sizeof(setup));
+> +}
+> +
+> +static int pcat_leds_probe(struct platform_device *pdev)
+> +{
+> +	int ret;
+
+Small sized variables at the bottom please.
+
+> +	struct device *dev = &pdev->dev;
+> +	struct pcat_leds *leds;
+> +	const char *label;
+> +
+> +	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
+> +	if (!leds)
+> +		return -ENOMEM;
+> +
+> +	leds->dev = dev;
+
+Where is this used?
+
+> +	leds->pmu = dev_get_drvdata(dev->parent);
+> +	platform_set_drvdata(pdev, leds);
+
+Where do you platform_get_drvdata()
+
+> +	ret = of_property_read_string(dev->of_node, "label", &label);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "No label property\n");
+> +
+> +	leds->cdev.name = label;
+> +	leds->cdev.max_brightness = 1;
+> +	leds->cdev.brightness_set_blocking = pcat_led_status_set;
+> +
+> +	return devm_led_classdev_register(dev, &leds->cdev);
+> +}
+> +
+> +static const struct of_device_id pcat_leds_dt_ids[] = {
+> +	{ .compatible = "ariaboard,photonicat-pmu-leds", },
+
+How many LEDs are there?
+
+> +	{ /* sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, pcat_leds_dt_ids);
+> +
+> +static struct platform_driver pcat_leds_driver = {
+> +	.driver = {
+> +		.name = "photonicat-leds",
+> +		.of_match_table = pcat_leds_dt_ids,
+> +	},
+> +	.probe = pcat_leds_probe,
+> +};
+> +module_platform_driver(pcat_leds_driver);
+> +
+> +MODULE_AUTHOR("Junhao Xie <bigfoot@classfun.cn>");
+> +MODULE_DESCRIPTION("Photonicat PMU Status LEDs");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.46.0
+> 
+
+-- 
+0)
+Lee Jones [李琼斯]
 
