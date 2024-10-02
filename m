@@ -1,108 +1,163 @@
-Return-Path: <devicetree+bounces-107223-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1B3A98D2CF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:10:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DE8C98D2D5
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:11:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EEA01C21D09
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:10:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B0BEBB234C0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:11:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DF851D0178;
-	Wed,  2 Oct 2024 12:09:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="ah6A3hrW"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8448A1CF7C7;
+	Wed,  2 Oct 2024 12:10:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A9151D015F;
-	Wed,  2 Oct 2024 12:09:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E21B1CF5F7;
+	Wed,  2 Oct 2024 12:10:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727870996; cv=none; b=PoniCFSO/3C+KK539Qc28vcmplYBhBd6epHQZsplLgiGYl7N2veY0YhFIKFg7u35CGwsXtBHork1wgJrjMUWolNApm1RsBDduMwG0ZgPKdrDWulJkC/aKI3LidX1vRl/sFomJQLZ3HubXxH9IoIQ9y8LnVpRtYKzEnJur9EexB0=
+	t=1727871041; cv=none; b=OIfQgDQMsigQawfIjsvhu5XxToymRIPa6I4P2/Cby5hDF183z2sAyEFkCgJVFfCxA49mHJ27dFas0XBaepz4VAyLEdP+m1+P/qE5+U9+DyJQD7bCgI6U2SHfRYVlkSFJYE4Jb31+KJ9eYWZBhHPOhDBhxmYoAdN9S6gBHo/Hp2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727870996; c=relaxed/simple;
-	bh=JsGSJU00MTsZJFHy6awH6zQB3LFsQ79b2U+952KaTKc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KGXb6CXqusWYywh2UocI90AHve06NgBE3zFYbA99jKX570kDXJXTXpRx3n3dScJTNeL5uc8M9CSrzNV876+Z6HYjCv/sFoCAEbyO60B/HEzujMoybn5hmlmZQai6bZLnEKkJhwj8cXJ0GB0LfFQXUvqzFjG6TUNJjbpAoBY3iF4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=ah6A3hrW; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 3039F23D33;
-	Wed,  2 Oct 2024 14:09:53 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id rYC1WiORMz17; Wed,  2 Oct 2024 14:09:52 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
-	s=mail; t=1727870992;
-	bh=JsGSJU00MTsZJFHy6awH6zQB3LFsQ79b2U+952KaTKc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=ah6A3hrW2yfRKfTmmBWVTWbFISDXYeH4zOcZKS3hyAGoQWO7EiM06uGpSW7t8PsNh
-	 ham8Mz5mPhBoqvsbxZBb030pfoY0+BHOi4S/03ZOYAUojwzxJqKZujfLMG22wcAPrZ
-	 esXui53/Ya/yk2iypdcaWMyeML1jNZfWHt57KejW2R3cOJDfOuFeqmRdM0+P7LZfRF
-	 s8egfzNf3G2BwT0LFCobvJ4pCqPIC15j4AIwV37qB9+6c8o+6RCxZZyzmZW4L9Fkl6
-	 6kBbMp0M8ah4SZ/LG7uFOIMFYr89h6SY5q991Kz5SKCkk06c5KFUN5+YqM/YXKD5Hs
-	 DE/nFsb8Lt8Tw==
-From: Karl Chan <exxxxkc@getgoogleoff.me>
-To: linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Karl Chan <exxxxkc@getgoogleoff.me>
-Subject: [PATCH 3/3] arm: dts: qcom-ipq5018-linksys-jamaica: Include dts from arm64 Build the Linksys EA9350 V3 device trees from the arm64 tree together with the ARM32 include to allow booting this device on ARM32.
-Date: Wed,  2 Oct 2024 20:08:04 +0800
-Message-ID: <20241002120804.25068-4-exxxxkc@getgoogleoff.me>
-In-Reply-To: <20241002120804.25068-1-exxxxkc@getgoogleoff.me>
-References: <20241002120804.25068-1-exxxxkc@getgoogleoff.me>
+	s=arc-20240116; t=1727871041; c=relaxed/simple;
+	bh=Fvksa0iNMILeoXAqia39QdOl44rPJDo58115/hLsNVg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=oFoIfcfP3TmiQHsPE74OHB2JRYnt3V95rN2KYaNigUQHdtdwyLRMNOxu9QXsE96YsSXjUb7cAsatTlAMgvFF8wjv8bpWrJVv5gh8GeUG26u91E3oA/gsADWJFuLK+06zjaAp/u3MNSxKkHPFmnx8xShWUyYQaxtfJVSBZIya47E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e25d405f255so5686352276.2;
+        Wed, 02 Oct 2024 05:10:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727871038; x=1728475838;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ROuhH03n70iPDo/dg44LqUM9nlyhbM0k6XFT26deFGQ=;
+        b=caek+e8i0VRLLuYTAgNqTw8QDnUUJ6JIOVAfQY5gTAsryGmvg7AigFRDaOqIJ20c/r
+         Y5+H/vHr+Jr99VNQOuvKPeqjeKx2e6i+INb9DEtidBJr1wiXIuikMQRyqFkgF6WOcbkE
+         Mj+Ge7t6EExpP0VomL9b0YETDaF8gLB0MaixVTB6EfhHBhisSfJJGGXAAVxpRG40kAlG
+         ivJ8EFurMbkT0kf3G8X/xtdXUdhwCd93MkvQfus7k7qjqQQnbA127EzErMaaZM1beazw
+         ueGRxqq5Vy1JcbNFX2tWzRas4SnWf5N1a8Wt+3SqfWThjysZ7cqX9AefrbBwgE3n8+Hj
+         xTRA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4hC9XE5FC+U+Pbn6ugC4pbEe8d8lTNIb7MFORsGNURLJzDAtxRPG8PrbsiOgYzp0zE6lhiIx2BlXfpQ==@vger.kernel.org, AJvYcCUWxhd82DfJ62HNeTTX/Er4BEWDqcjux1q2m4NXInqWBTY5U7gb8i84pNE/J7a0y/WA4IwUwWopMSxo4Zzcq8E0M4c=@vger.kernel.org, AJvYcCVokRoS3ndDyWeiPJa5Ln/NrqqDtmoQ3nIH8uiaGcklz61uRlb60EUC+AyRXXw2NIcgFXC0Kquv4V8J@vger.kernel.org, AJvYcCX+Z2oNxgvloJ4HP5Pazc+O2BGaAXJ7aQC6vwUJP1zZZRfQv6PKjmvy31G2ybTIcASSRPYIYGZvnJYN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxK9XzLccmvSTI2tVOH6OtNvkuM6OeGBa/xvNjG/8c/6b5/vfiJ
+	qTD1XVNJkOk4px03jNVkO6qPHfqdLjfPc4JCtrs4aTwrBalaRoPJ89biED/O
+X-Google-Smtp-Source: AGHT+IErh1o9KMEPemeD2Jh5pwZ1GQZR5uJPgjiechB7xlKWS8fRhZZKKeZQmUCmjwDABsf4K25Erw==
+X-Received: by 2002:a05:690c:6610:b0:686:1240:621a with SMTP id 00721157ae682-6e2a2ddcdfbmr24156087b3.31.1727871037963;
+        Wed, 02 Oct 2024 05:10:37 -0700 (PDT)
+Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e24538d646sm24213237b3.124.2024.10.02.05.10.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 02 Oct 2024 05:10:37 -0700 (PDT)
+Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e26048d1235so4611633276.0;
+        Wed, 02 Oct 2024 05:10:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUkuJGYtLPL2cvH3HaBoshGwoL4krUDjRr8n4/bTptdmQdwEESpnppPIPFPFJtXVoec43jQuCx9Fm+nzw==@vger.kernel.org, AJvYcCVCNKpCeUQsuPd2WBjk4rjgt2OE6AjR0773ZdcB3neMVlWwzken+wriQ6gjan5aexOF8du5SqGaVurH@vger.kernel.org, AJvYcCVze0ax+UXCy5Ipbum9UVwB4RCv9sF5KksP/QH6eVBw/ZqpJTpUseI0aNiBQJObyWkkN4u3z7G0dHBR@vger.kernel.org, AJvYcCW9CYzojT/LBmkWBOG5VHsxG0vFt98c7DSG8N+nBWZIeJaXKgKtWoHV4gHzbJdEWwneACKyoeRkiDPETOlHY4it/6M=@vger.kernel.org
+X-Received: by 2002:a05:690c:6610:b0:686:1240:621a with SMTP id
+ 00721157ae682-6e2a2ddcdfbmr24155357b3.31.1727871036883; Wed, 02 Oct 2024
+ 05:10:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <cover.1727853953.git.geert+renesas@glider.be> <e9cf476ffac794bad7b0860dc89afd62a9ebc812.1727853953.git.geert+renesas@glider.be>
+ <Zvz8yA4sIKpKP8eD@ninjato>
+In-Reply-To: <Zvz8yA4sIKpKP8eD@ninjato>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 2 Oct 2024 14:10:23 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXGZPa8R78YjCd5izycug_t3o5wF0Kk_SpAw=k6uxpeZQ@mail.gmail.com>
+Message-ID: <CAMuHMdXGZPa8R78YjCd5izycug_t3o5wF0Kk_SpAw=k6uxpeZQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: renesas,usbhs: Deprecate renesas,enable-gpio
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, 
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, linux-usb@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	"open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The approach to include device tree files from other architectures is
-inspired from e.g. the Raspberry Pi (bcm2711-rpi-4-b.dts) where this is
-used to build the device tree for both ARM32 and ARM64.
+Hi Wolfram,
 
-Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
----
- arch/arm/boot/dts/qcom/Makefile                         | 1 +
- arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts | 2 ++
- 2 files changed, 3 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+CC gpio
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index f06c6d425e91..147dbeb30a6a 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-ipq4019-ap.dk04.1-c3.dtb \
- 	qcom-ipq4019-ap.dk07.1-c1.dtb \
- 	qcom-ipq4019-ap.dk07.1-c2.dtb \
-+	qcom-ipq5018-linksys-jamaica.dtb \
- 	qcom-ipq8064-ap148.dtb \
- 	qcom-ipq8064-rb3011.dtb \
- 	qcom-msm8226-microsoft-dempsey.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-new file mode 100644
-index 000000000000..9a6ad767ebd7
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-@@ -0,0 +1,2 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-+#include <arm64/qcom/ipq5018-linksys-jamaica.dts>
--- 
-2.46.1
+On Wed, Oct 2, 2024 at 9:56=E2=80=AFAM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > +  renesas,enable-gpios:
+>
+> Isn't this a good occasion to drop the "renesas"-prefix? Binding docs
+> are full of plain "enable-gpios".
 
+Well, that's of course another option (actually 3 ;-)
+Compared to simply switching from "renesas,enable-gpio" to
+"renesas,enable-gpios", dropping the vendor prefix requires changes to
+the HS-USB driver and/or to gpiolib.  Worse, this would also become
+a hard dependency for updating the DTS files.
+
+Option A: Add a call to devm_gpiod_get_optional(dev, "enable", GPIOD_IN)
+as a fallback to usbhs_probe().
+
+Option B: Switch usbhs_probe() from "renesas,enable" to "enable"
+and add quirks to of_find_gpio_rename():
+
+    #if IS_ENABLED(CONFIG_USB_RENESAS_USBHS)
+                   /*
+                    * The Renesas HS-USB DT bindings happened before
+enable-gpios
+                    * was established as a generic property
+                    */
+                   { "enable",     "renesas,enable-gpio",
+"renesas,rza1-usbhs" },
+                   { "enable",     "renesas,enable-gpio",
+"renesas,rza2-usbhs" },
+                   { "enable",     "renesas,enable-gpio",
+"renesas,rzg2l-usbhs" },
+                   { "enable",     "renesas,enable-gpio",
+"renesas,rcar-gen2-usbhs" },
+                   { "enable",     "renesas,enable-gpio",
+"renesas,rcar-gen3-usbhs" },
+     #endif
+
+Option C: Add a generic "strip vendor prefix" fallback to
+of_find_gpio():
+
+    const char *stripped;
+
+    if (gpiod_not_found(desc) && con_id &&
+        (stripped =3D strchr(con_id, ',')) && *(++stripped)) {
+            for_each_gpio_property_name(propname, stripped) {
+                    desc =3D of_get_named_gpiod_flags(np, propname, idx,
+&of_flags);
+                    if (!gpiod_not_found(desc))
+                            break;
+            }
+    }
+
+Option B adds a bit too much to my liking.
+Option C may be useful for others (e.g. {ti,nxp,maxim},enable-gpio(s)),
+but might be considered too dangerous as a general fallback?
+
+Thoughts?
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
