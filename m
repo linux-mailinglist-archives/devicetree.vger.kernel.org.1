@@ -1,202 +1,172 @@
-Return-Path: <devicetree+bounces-107041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 758DB98CC54
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:17:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE86498CC6F
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 07:44:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 533131C226F0
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 05:17:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 25F691F25298
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 05:44:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6856678274;
-	Wed,  2 Oct 2024 05:16:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAB527DA9C;
+	Wed,  2 Oct 2024 05:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="TL/sHVuJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yKDxJJRe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFA7524D7;
-	Wed,  2 Oct 2024 05:16:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F45C33EC
+	for <devicetree@vger.kernel.org>; Wed,  2 Oct 2024 05:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727846198; cv=none; b=JtrtQ7XaU0XmUr82t2eSq2qT32ERC1mtkt4+GUNhq8lw3wSjfhQ5TeazwBB86ZcjnXGMG+b1ENgH3zFYyfZyJoy261UlC/9mruPmKPszePySBo0Auv9DwXZDgx2qn/2MIqbf6bMsIEJwQUuXE+9Dlf6byZfSr2bJHul5+h0ZPCA=
+	t=1727847846; cv=none; b=YLlmeAprxwppHP+H0iWrXG2LTQsFpWFqSNBdn9x/GnllOX0ZKPn8w/sg/GT5M8eWG/8k7Df19NHOl5srLcJiguQus7z7NZlGD0dKA73O+CnjgErmI2GSac+mf8EZ40lA5D7xatinbLfUg3M4av2s0IZvLwS2NnlIK8D/fw20Y6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727846198; c=relaxed/simple;
-	bh=nvKqaX5GL7v5ki5PpykdhtGUtehV0J3puVuLevDkZ3I=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pyVwF9api8ahAPFl16cY2yoJMnA9X9suac7n0kINUqiyg26w9LtUc90GpcrlhS0hPAfzqjKlZwx084bn3PyUfwZGWwcajDjQd5KvvWZJ8fZ0GiVzeaFX6D54+5oS3bICx7oZThQ5cVpVL0JmEOveLFfWpEVW9A/zVN9xC8rn1YA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=TL/sHVuJ; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 7b0a5f18807d11ef8b96093e013ec31c-20241002
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=Bg67y45sJLDWjIhf42JgILUWAHQQxL5OwkXAp+pyoUM=;
-	b=TL/sHVuJ/HkEd0sGs5OyZ8Wm2AgpNJgS29R3/mC1HDOSSnP4iFS9MZPUCyVnzAj1lRv0wjMm9dQ7+/ZxVcEAG/izkWf/9Vegvge6AYD5OMA8TsWRa10zKDHGVGrciYjllEtfUz7/unR29FQIpplLIcovNeBdDVUXQqZFME+R2tI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:cfd62d70-5c99-4b64-99ec-bf71d2228481,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTI
-	ON:release,TS:-30
-X-CID-META: VersionHash:6dc6a47,CLOUDID:fb3c93bd-085c-4112-81e0-4d6de274b71a,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:1|19,IP:nil
-	,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:
-	1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 7b0a5f18807d11ef8b96093e013ec31c-20241002
-Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1176561340; Wed, 02 Oct 2024 13:16:29 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 2 Oct 2024 13:16:27 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 2 Oct 2024 13:16:27 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>, "Joerg
- Roedel" <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
-	<robin.murphy@arm.com>, Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Rohit
- Agarwal" <rohiagar@chromium.org>, <dri-devel@lists.freedesktop.org>,
-	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, "Sen
- Chu" <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>, Jitao Shi <jitao.shi@mediatek.com>
-Subject: [PATCH v5 5/5] dt-bindings: display: mediatek: dpi: correct power-domains property
-Date: Wed, 2 Oct 2024 13:16:20 +0800
-Message-ID: <20241002051620.2050-5-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20241002051620.2050-1-macpaul.lin@mediatek.com>
-References: <20241002051620.2050-1-macpaul.lin@mediatek.com>
+	s=arc-20240116; t=1727847846; c=relaxed/simple;
+	bh=Kcdi+7vhZbaP3x14Vk+xe5qn7+6+j1b2c4QJ/uCdaxc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iwMGYHmgbDTrHQkogglZ7frotKjE+Z51YYxkx1RLhpK0R18gR1NDxy9/GiVDrxqRTCNepgEFQeG957yyIrULbsgXODilV6l6cZCRAWPHd/MCvOSgU4OczV6jMhpICzf28fGHcPL7mdoucLqqX0jxaqgrMU6l3brtwDaGLqDk6rk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yKDxJJRe; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42cb3c6c353so8521875e9.3
+        for <devicetree@vger.kernel.org>; Tue, 01 Oct 2024 22:44:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727847843; x=1728452643; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=ujuP3qpmgGt6kYdioSw4gFcBrwiHMSeeyrZuKTrsjzc=;
+        b=yKDxJJReWc1QZYKWRgGIT+QAzpQ+cMvK8FN5IxLEY3OThEhoowIzx+ofj1DHzcuT+b
+         0/NDWCu8dyJ/wE0Sb5pY4b3J2Vc/XAhr5go+8L0fnynp4X4goTKcsunJdgBtXZKfREtL
+         OYCjagl3Ma2pES1isfP3ii7Bru9ezNqJVauEl2sU2Ql2sMVVbLc02JvUqACBhGRNtZQw
+         sHIRKDrceu5o29c9sb+ifMLRoWqgg29uTek12TrnnXBjrSVjxGpjh0b1zFRVDaNXhZ+w
+         ocAhGC8mYu2FXlpDDJZHgVgYLA/FlF5MV/0N+jIgtbqV228R+LqkKgD1b9lsaZqZfF3B
+         zWUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727847843; x=1728452643;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :from:references:cc:to:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ujuP3qpmgGt6kYdioSw4gFcBrwiHMSeeyrZuKTrsjzc=;
+        b=aGjzUwINQ3jRcKFISrybLbmHvYwoROTFL2ee4G4YtIoi3pINnRUfKcj0NmptuZK1Fo
+         9hH6mca11UbEgn+VFoexAJRhfnnUWNa+TKxE1zwrb5mQ2JrbxySL4/9RluDlT4eJD6xv
+         rOs5V2tDD0mRuyiy75VqZbABZgBfCtdvbMYny3PluNfRNSbNrVk0mzatEdWCXGrpEIcQ
+         EIEVWdpyddj9YKpdlAOHmpOixyI15+vtjb64s+mM5I08inAuhfsECnRvqJDCc5sz+9Ak
+         UWcFEse8qi+1wSLnO6/+gsBT2VMDCFUCVbXpLiyYtxA8dSSVsSBfRS1Wt4qZleoM6HCV
+         hu1g==
+X-Forwarded-Encrypted: i=1; AJvYcCXsvNwfEG/3cg//OC8xQ3yTuzNBSGocOqrEPaxtqOklHj7Go98wYlb28MVwCZxaewM9oTCqkMt+x+MQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC2Si2k/aMZn5PZuWxXs0+dZb34cIF1ug5tC4gHmSlx28f96bV
+	eyzjpwpv8s9Eh2Cy4Z7W7GwhAjEV5XBvTJ4Mew2SdI+fskEgCYJdN0aUfvxMa8c=
+X-Google-Smtp-Source: AGHT+IGeYKIxtY/vhJ8k9CdxnweFb8raN/GmDQEn3yCdox21Cd5IAUCHwOEaoVoG8p78sh1XNcpVlg==
+X-Received: by 2002:a05:600c:3b87:b0:42c:baba:13cb with SMTP id 5b1f17b1804b1-42f777affd4mr5730275e9.2.1727847843299;
+        Tue, 01 Oct 2024 22:44:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.211.167])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f7a00a266sm8383725e9.42.2024.10.01.22.44.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Oct 2024 22:44:02 -0700 (PDT)
+Message-ID: <8f460d95-3994-49df-a355-612d3d5c4c92@linaro.org>
+Date: Wed, 2 Oct 2024 07:44:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--10.634400-8.000000
-X-TMASE-MatchedRID: qW4A1GTxjidpqqYAQ+J6uSYRREGYqtmUmoKXVHfiMM9KUzR+o2IehUGW
-	yClQhQkvKY6B7sY8Ci7dRIKCUEZlk77J5yv1W35KY1bQMCMvmn4wCmrLlx+Sdd9RlPzeVuQQ5Jl
-	eqmLDfgeWjiti7ndJY6woSk24kDBQaxXbwRJk57z0hv/rD7WVZA+jS+LRpl81pzPA3TKVblhgIS
-	cCiWkKENIS3Y3mrYfnGcJ+wyELRguQwm5+b+ZNPWwbuvhCHs3cmyqQJWNsuklnuv8pVwMzSaPFj
-	JEFr+olwXCBO/GKkVqOhzOa6g8KrfkaNMSfS/D+K5v8OQfnaBP6qsC2xx+Wmy4ZRUSszZeETiVC
-	Ktsw/v8=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--10.634400-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	08878B16980C801A2C015D8BC46D98EC4BC1ADCE8371B370D402AF6CB3CBE6B22000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: qrb4210-rb2: add description of
+ lpi_i2s2 pins
+To: Alexey Klimov <alexey.klimov@linaro.org>, linux-sound@vger.kernel.org,
+ srinivas.kandagatla@linaro.org, bgoswami@quicinc.com, lgirdwood@gmail.com,
+ broonie@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, perex@perex.cz,
+ tiwai@suse.com, linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, elder@linaro.org, dmitry.baryshkov@linaro.org,
+ caleb.connolly@linaro.org, linux-kernel@vger.kernel.org, a39.skl@gmail.com
+References: <20241002022015.867031-1-alexey.klimov@linaro.org>
+ <20241002022015.867031-7-alexey.klimov@linaro.org>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20241002022015.867031-7-alexey.klimov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The MediaTek DPI module is typically associated with one of the
-following multimedia power domains:
- - POWER_DOMAIN_DISPLAY
- - POWER_DOMAIN_VDOSYS
- - POWER_DOMAIN_MM
-The specific power domain used varies depending on the SoC design.
+On 02/10/2024 04:20, Alexey Klimov wrote:
+> This is required to enable to HDMI audio playback on
+> QRB4210 RB2 board.
+> 
+> Signed-off-by: Alexey Klimov <alexey.klimov@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 36 ++++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> index 1888d99d398b..7731681688d5 100644
+> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+> @@ -634,6 +634,42 @@ sdc2_card_det_n: sd-card-det-n-state {
+>  	};
+>  };
+>  
+> +&lpass_tlmm {
+> +	lpi_i2s2_active: lpi-i2s2-active-state {
+> +		sck-pin {
 
-These power domains are shared by multiple devices within the SoC.
-In most cases, these power domains are enabled by other devices.
-As a result, the DPI module of legacy SoCs often functions correctly
-even without explicit configuration.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
-It is recommended to explicitly add the appropriate power domain
-property to the DPI node in the device tree. Hence drop the
-compatible checking for specific SoCs.
-
-Fixes: 5474d49b2f79 ("dt-bindings: display: mediatek: dpi: Add power domains")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- .../display/mediatek/mediatek,dpi.yaml        | 24 ++++++++-----------
- 1 file changed, 10 insertions(+), 14 deletions(-)
-
-Changes for v2:
- - Because of the corresponding dts fix has been reviewed with a Reviewed-by: tag.
-   [1] https://lore.kernel.org/all/20240925080515.16377-1-macpaul.lin@mediatek.com/
-   We still need this change to fix the 2 dtbs_check errors.
-   So keeps no change here.
-
-Changes for v3:
- - The origin patch is [2]
-   https://lore.kernel.org/all/20240926111449.9245-2-macpaul.lin@mediatek.com/
- - Thanks for Conor's reminding, after MediaTek's internal discussion,
-   This patch v3 is the replacement of [2] v2.
-   Because the DPI module should has a explicit configuration with power domain.
- - Drop Acked-by: tag since v3 is nearly a new patch for different approach.
-
-Changes for v4:
- - No change. Please help to review it again.
-
-Changes for v5:
- - Add missing Reviewed-by Tag from Krzysztof. Thanks.
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-index 3a82aec9021c..497c0eb4ed0b 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,dpi.yaml
-@@ -63,6 +63,16 @@ properties:
-       - const: sleep
- 
-   power-domains:
-+    description: |
-+      The MediaTek DPI module is typically associated with one of the
-+      following multimedia power domains:
-+        POWER_DOMAIN_DISPLAY
-+        POWER_DOMAIN_VDOSYS
-+        POWER_DOMAIN_MM
-+      The specific power domain used varies depending on the SoC design.
-+
-+      It is recommended to explicitly add the appropriate power domain
-+      property to the DPI node in the device tree.
-     maxItems: 1
- 
-   port:
-@@ -79,20 +89,6 @@ required:
-   - clock-names
-   - port
- 
--allOf:
--  - if:
--      not:
--        properties:
--          compatible:
--            contains:
--              enum:
--                - mediatek,mt6795-dpi
--                - mediatek,mt8173-dpi
--                - mediatek,mt8186-dpi
--    then:
--      properties:
--        power-domains: false
--
- additionalProperties: false
- 
- examples:
--- 
-2.45.2
+Best regards,
+Krzysztof
 
 
