@@ -1,164 +1,164 @@
-Return-Path: <devicetree+bounces-107197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC11698D1BF
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:52:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E70E998D1D0
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:59:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 043FCB234E6
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:52:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2CB25B26318
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 10:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CC181E7679;
-	Wed,  2 Oct 2024 10:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58AC61EC013;
+	Wed,  2 Oct 2024 10:57:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DDwH/7vC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PZBOn4Re"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F6941E766B;
-	Wed,  2 Oct 2024 10:52:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B3D320012B;
+	Wed,  2 Oct 2024 10:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727866364; cv=none; b=cw8tCdKJ+g8mkYd2HDZaVz6SQNb/76vHSRKjzA2YMcJlRTqbaBk9hKyNl7VPBRHA1xpaZ+Go9iAWriDbUoePvyvVHStDce413zUSDMaq46DGVLQjdCSl+I2l0XHykHS3spv5VArzJ5n0eFJ5exuw19NPBxCqWmrqdCn+b1JIYzM=
+	t=1727866676; cv=none; b=pgYSSR7IRgpHoTZBUNWb944xhec/l8KA47JUEvzs2s+HgduTHNP/3DK5j4WIqtIkhj5oIbKjHj4xQtM7KrvD8B57avqoYVq9cx03y++UKTQJMI1wU94HnrpiG3froWpZNOnnAoniIucmVig7f2+4yDah/bPHoJwE5AnSn9yqWi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727866364; c=relaxed/simple;
-	bh=p6wM7yoi7GfKuoD5YhbWY+B9mXoXSBTQn4zINgkEvdU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=KRQyXmhTnjJRsth+c7W6YynLaT023eipJPh+g2qB/x1/cdc9Tuy612fVMrNRY6oJajBUNplxc5QO43DaAwmva+qSKsIJd7Q/vlIaxxjwsbGMMwfpg5aKoc6i68TJtS/2ZWyfE1jZddRh84mgTHcRSZyQvmyp4uxpDkXQ0pLdHf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DDwH/7vC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23ADAC4CEC5;
-	Wed,  2 Oct 2024 10:52:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727866364;
-	bh=p6wM7yoi7GfKuoD5YhbWY+B9mXoXSBTQn4zINgkEvdU=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=DDwH/7vCkNAcQ87Yd4sFzTzAEfNG1R6O3wGlHGV97iOMu18JfmDsu2Z/1zg29zcZR
-	 QmWKZlXp1zJc18aEw5xT5RFVA1jqseh+70E+GwjXppTJ46/EyyK3dlWh63SpoSAlFe
-	 hbiwJFBCrFlD4sG+GNrUGCNVzCRZhsOcpnCCpk1nspJakft8jtXyk9/V7C33Dq67ik
-	 fD00lCtEZ7U4j2PD2rr/8tbIuV+yEW2VEC6zwhiAL0DzliLq9ty00P3ndst4agd9TB
-	 qK1IMULmJFqTO8EjaeYSXDSkH/+WcPfUTnPTCG7twPxmqVYvV2er6SokHPt60qWqIq
-	 kLWnbCXnSTdzg==
-Message-ID: <a624690e-12c1-44f2-a867-5a9959091c91@kernel.org>
-Date: Wed, 2 Oct 2024 12:52:35 +0200
+	s=arc-20240116; t=1727866676; c=relaxed/simple;
+	bh=YQOnzV0XzNWxQan5zPLtTbwkOceAW5d8/D+fOoQ522c=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=LPn7ksSGbKpo4etsCDOe3zmW5HPXJnchjYO+KiRTvFfCC+sqNgctykmNCi5EjSxaVrfHJwvXYBfKOAYg80F9UpR1MvZ5sTsvk3O5SOKNRi5gxTefRq0wzqo5uDzNgAavpO/XqDdk80tp8W1Ouu3ZIrbp7JQV++qnYDACBSQ5Xd4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PZBOn4Re; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-42cbc22e1c4so49162745e9.2;
+        Wed, 02 Oct 2024 03:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727866673; x=1728471473; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=LqJIjH8EAYz9SJiVoSSFFxtTnEPgi1WsrXj6pJVb9LQ=;
+        b=PZBOn4RebKeCna9QJAZIU9RRkSVtVVvpN/5EX582aDPYYx23H4ALyOy67jxWNx6nSE
+         YOXIZY5yZpvvd8FCSjVFbtTpNIZ93qHolqYoTTEMH9xi0/w9zxFfxZfEc2+EoTitVds2
+         vpdRexQQQkN0vhSB8XmluPSBQ59kYlMN+FkJcsp8icHYcPz1Z5WqwpoHsd1rtRKXjKBB
+         OZTz5Zss7kjlK9isrBVX9ag5Xn4QMZnnb9pZ8ntVFqIqEZqLw3Ga5+nQNvMJj/GnfTW8
+         ZXkwwxCZZa5ocTtMCbA1cC4FjErcR6Ch18WBY4Swdw0rcAMuBH3OWtZFx3TX2drAkxeE
+         pgag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727866673; x=1728471473;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=LqJIjH8EAYz9SJiVoSSFFxtTnEPgi1WsrXj6pJVb9LQ=;
+        b=DgcYnFJO7OCeZXuUxtZrmpehHRlps9CC2be0KRfoqdssyu48a7nZ3uhFMDPXXp9haV
+         lCGzeOz5DTVlzQt1zKaUfm006MovKTd1HLHztOydXj7msMXgCv8H8ywMDih4R5n1167h
+         rHwVEhbykIXi8eZX0B5dQuqJxRfKl/VIgjaVvNpfbGB1ZZ/s8ACKorCNbDMfAoM+7HtJ
+         jVX4elxLh3VNhDb163AkYaOq8zm/to3tlTXq1q1/0W1jARrO7obin9Wmah84ax4NFdCo
+         B4yONUxePqcxNO/DkgvJEFqEK7rC47wJmd4pVaoWcNjWrczJZTZAHcGkpYKoL2iCsYWy
+         HyzQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1vjI6Lzl2GMz1yISC2ESeyyxFW6wHiFhHnVKYrqQzVoAei8Qlba7zc2a+Lvki9uPz9YySIajwgKJg@vger.kernel.org, AJvYcCUq+bFEfw+Mhy6nZEBqEKG0ExAIKQ7F/erPffVtvShMqybZGwrt90ttMp0hGRqLGuuRTzr07uhjr1Pu71c=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJASK3slE5GS5HxGC5cYYGSssjxjL6pPypJU8wAtyzU4QwCa7k
+	N1H0jkf18af6I42tl7AdtDtzf5FVJTFf2pr9mZtXv48JC4RQ4W2J
+X-Google-Smtp-Source: AGHT+IEoLF/7iglMe1HA0tHNDK0LB2NTOVqIdupICyDoDZyF5geFDh9eclSiBelxTgrNOBqi3CeNOw==
+X-Received: by 2002:a05:600c:4751:b0:426:6308:e2f0 with SMTP id 5b1f17b1804b1-42f778f17c0mr18108855e9.26.1727866672491;
+        Wed, 02 Oct 2024 03:57:52 -0700 (PDT)
+Received: from nsa.fritz.box ([2001:a61:341e:1201:c434:b5b1:98a6:efed])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f79fc9054sm15490575e9.28.2024.10.02.03.57.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 03:57:52 -0700 (PDT)
+Message-ID: <8ed2076b0db95f5400d981facd58f98ddd5fdb6b.camel@gmail.com>
+Subject: Re: [PATCH 03/13] Input: adp5589-keys: add chip_info structure
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Nuno Sa <nuno.sa@analog.com>, Mike Frysinger <vapier@gentoo.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+ devicetree@vger.kernel.org
+Date: Wed, 02 Oct 2024 12:57:51 +0200
+In-Reply-To: <Zv0WvDCMH1-D1pdq@google.com>
+References: 
+	<20241001-b4-dev-adp5589-fw-conversion-v1-0-fca0149dfc47@analog.com>
+	 <20241001-b4-dev-adp5589-fw-conversion-v1-3-fca0149dfc47@analog.com>
+	 <ZvwNV4zor-MTKigP@google.com>
+	 <22f246a0809e2d1fc738178400f8a3d67fc4dc56.camel@gmail.com>
+	 <Zv0WvDCMH1-D1pdq@google.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] EDAC: fsl-ddr, add imx9 support
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Borislav Petkov <bp@alien8.de>, Frank Li <Frank.li@nxp.com>
-Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
- James Morse <james.morse@arm.com>, Mauro Carvalho Chehab
- <mchehab@kernel.org>, Robert Richter <rric@kernel.org>,
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
- linux-kernel@vger.kernel.org, Borislav Petkov <bp@suse.de>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, Priyanka Singh
- <priyanka.singh@nxp.com>, Sherry Sun <sherry.sun@nxp.com>,
- Li Yang <leoyang.li@nxp.com>, Ye Li <ye.li@nxp.com>,
- Peng Fan <peng.fan@nxp.com>
-References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
- <ZvsNJrxF6TpUC6ws@lizhi-Precision-Tower-5810>
- <20241002090834.GAZv0Nkp5YKcy86UmZ@fat_crate.local>
- <c90354e6-2e95-4f96-bbc9-508edb293183@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <c90354e6-2e95-4f96-bbc9-508edb293183@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 02/10/2024 12:48, Krzysztof Kozlowski wrote:
-> On 02/10/2024 11:08, Borislav Petkov wrote:
->> On Mon, Sep 30, 2024 at 04:42:14PM -0400, Frank Li wrote:
->>> On Tue, Jul 09, 2024 at 04:23:01PM -0400, Frank Li wrote:
->>>> Add imx9 support for fsl-ddr.
->>>>
->>>> Patch 1-2 is prepare patch, no function chagne
->>>> Patch 3 is small fix for bit shift
->>>> Patch 4 is dt binding patch.
->>>> Patch 5 is driver change to support imx9
->>>> Patch 6 is imx93 dts change
->>>>
->>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>>> ---
->>>
->>> Borislav Petkov:
->>>
->>> 	More than 2 monthes. I ping at Thu, 29 Aug
->>> https://lore.kernel.org/imx/ZtDwG2xFGaUssJVN@lizhi-Precision-Tower-5810/
->>>
->>> 	Any reason why not pick these EDAC patches?
->>
->> $ ./scripts/get_maintainer.pl -f  drivers/edac/fsl_ddr_edac.c
->> York Sun <york.sun@nxp.com> (maintainer:EDAC-FSL_DDR)
->> Borislav Petkov <bp@alien8.de> (supporter:EDAC-CORE)
->> Tony Luck <tony.luck@intel.com> (supporter:EDAC-CORE)
->> James Morse <james.morse@arm.com> (reviewer:EDAC-CORE)
->> Mauro Carvalho Chehab <mchehab@kernel.org> (reviewer:EDAC-CORE)
->> Robert Richter <rric@kernel.org> (reviewer:EDAC-CORE)
->> linux-edac@vger.kernel.org (open list:EDAC-FSL_DDR)
->> linux-kernel@vger.kernel.org (open list)
->>
->> This driver has a maintainer. Is he going to review it or can I remove
->> him from MAINTAINERS?
-> 
-> Let's drop York, it's a stale maintainer entry.
+On Wed, 2024-10-02 at 02:47 -0700, Dmitry Torokhov wrote:
+> On Wed, Oct 02, 2024 at 11:13:05AM +0200, Nuno S=C3=A1 wrote:
+> > On Tue, 2024-10-01 at 07:55 -0700, Dmitry Torokhov wrote:
+> > > On Tue, Oct 01, 2024 at 03:41:34PM +0200, Nuno Sa wrote:
+> > > > Add a more natural chip_info structure and add it to the i2c id tab=
+le
+> > > > driver data so that we do not need an enum a switch() to get the
+> > > > specific bits of each device.
+> > > >=20
+> > > > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
+> > > > ---
+> > > > =C2=A0drivers/input/keyboard/adp5589-keys.c | 181 +++++++++++++++++=
++--------------
+> > > > --
+> > > > =C2=A01 file changed, 95 insertions(+), 86 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/input/keyboard/adp5589-keys.c
+> > > > b/drivers/input/keyboard/adp5589-keys.c
+> > > > index
+> > > > 922d3ab998f3a5dfbaf277f10eb19e5cd1b35415..eaa5440d4f9e14352409dd880=
+cd25435461
+> > > > 2bf3
+> > > > e 100644
+> > > > --- a/drivers/input/keyboard/adp5589-keys.c
+> > > > +++ b/drivers/input/keyboard/adp5589-keys.c
+> > > > @@ -228,16 +228,20 @@ struct adp_constants {
+> > > > =C2=A0	u8 (*reg) (u8 reg);
+> > > > =C2=A0};
+> > > > =C2=A0
+> > > > +struct adp5589_info {
+> > > > +	const struct adp_constants *var;
+> > > > +	bool support_row5;
+> > >=20
+> > > Is it possible to derive "row5" data from keymap information to avoid
+> > > having this fake "adp5585-02-keys" device?
+> > >=20
+> >=20
+> > This is not a fake device. Looking at the adp5585 datasheet you can see=
+ there's
+> > module with 25 keys (without GPIO5) and another with 11 GPIOS. From the
+> > datasheet:
+> >=20
+> > "- 10 configurable I/Os allowing functions such as Key pad decoding for=
+ a matrix
+> > of=20
+> > up to 5 =C3=97 5
+> > - 11 GPIOs (5 =C3=97 6) with ADP5585ACxZ-01-R7 models"
+>=20
+> Ah, I misunderstood. I thought it was a runtime configuration.
+>=20
+> >=20
+> > Why its named adp5585-02 in the driver I'm not sure. I kept the same na=
+me as the
+> > i2c
+> > id? Should I call it ADP5585-1 instead? Or even ADP5585-1-r7?
+>=20
+> I think this question is better answered by the DT folks.
+>=20
+> BTW, in case of not using row5 we need to describe this pin as a reset
+> line for the chip, right?
+>=20
 
-I sent a patch now for this.
+Oh yes. I can add a reset pin to the bindings. And make it false for the mo=
+del where
+R5 is in place.
 
-Best regards,
-Krzysztof
+- Nuno S=C3=A1=20
 
 
