@@ -1,204 +1,160 @@
-Return-Path: <devicetree+bounces-107233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107234-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89E5E98D374
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:41:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38ED498D382
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 14:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48A04282391
-	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:41:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B9A81C20FCB
+	for <lists+devicetree@lfdr.de>; Wed,  2 Oct 2024 12:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8791D0148;
-	Wed,  2 Oct 2024 12:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E861CF7D3;
+	Wed,  2 Oct 2024 12:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cfdNCCY5"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="T+s41gYV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF9981CF5FB;
-	Wed,  2 Oct 2024 12:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D231CF5E7;
+	Wed,  2 Oct 2024 12:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727872890; cv=none; b=flDinvAtsfkWvViEY1yLShX2IL/Z4eoO3AgRO8Og8ZFkwcdgX70F0t0ucFh39Bxer64oCc3OQ5SsoihmxpQPGaN7a7SFzP8hN630SJitN131LyMGJr8mRxn24Fc9W7Mt28ftftDr3JSr4wwvY8hMFfbCmZvWWW6BZzfWUiZSv38=
+	t=1727872975; cv=none; b=PZL+bSxy609HsYFE6KulPzzNL76p36VbumYuZvwr8RvocOuU3k9tzhRymubyA03392t8d85mq59POQ+US1tdHyL6K2C+nqjHBBcZNlEwOXYoqjpwNYHJGp1xZvZqLzNFH6wNWpOEIh2XhwunTp3njgilufxWrlKt+nMmjjdbvGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727872890; c=relaxed/simple;
-	bh=VIzrkWZqS3BWBbgaONdAD3ExSq1hTIKL7R3IRUDAV+Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LOy0Gu3e4kHJusvwyfWQuuMxlueguS94OI4Ka4fF7BywiLSh7W0x1FUaWpEuSK8wAc7b2AYDM+mHrIZK2zCOmYrV7lu9OitjVZOo5/y83cr3qUmVYAND2SF1fCGvPgBI/rk2iFAbKbU8E2FYoyWsJTu9+cAxouClDspnEpHBt4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cfdNCCY5; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 05CB3240005;
-	Wed,  2 Oct 2024 12:41:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727872885;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qYZmngo8Akclg+S7qnBbh5hBasgfuQJ2bFb2p9LdGC4=;
-	b=cfdNCCY5cEy03ATLTYtqzshKCSsOFcXvOwP4LW/qwI+tuYRZ8pvez7eyWrvgLhUwXnIpbq
-	Dxh8CER0uZUfXx035l1XCzawmG7ANRyFDVLT9sI+TpimuiAvBXDJECXzejJYY/Vkaz269k
-	OpM1YNVhttp+UIccvQYtyGojliCLxh4d42is77eKrVC9tGtz0TmK1V58tx3coovrq+/cwy
-	wbk4nl01W709SJPq20fnwIwkpEje3TiPOR9r+0V79QgFEvR30KsoYL3nnP+DFCN7ZAMXZc
-	UrjujYb5CtzDZ+wzyqae1XUu1peLwwrDxKc3AQwzgs1NIu/ULu0fSsHpOiq36A==
-Date: Wed, 2 Oct 2024 14:41:19 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: "Arnd Bergmann" <arnd@arndb.de>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>, "Andy Shevchenko"
- <andy.shevchenko@gmail.com>, "Simon Horman" <horms@kernel.org>, "Lee Jones"
- <lee@kernel.org>, "derek.kiernan@amd.com" <derek.kiernan@amd.com>,
- "dragan.cvetic@amd.com" <dragan.cvetic@amd.com>, "Greg Kroah-Hartman"
- <gregkh@linuxfoundation.org>, "Bjorn Helgaas" <bhelgaas@google.com>,
- "Philipp Zabel" <p.zabel@pengutronix.de>, "Lars Povlsen"
- <lars.povlsen@microchip.com>, "Steen Hegelund"
- <Steen.Hegelund@microchip.com>, "Daniel Machon"
- <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Saravana Kannan" <saravanak@google.com>,
- "David S . Miller" <davem@davemloft.net>, "Eric Dumazet"
- <edumazet@google.com>, "Jakub Kicinski" <kuba@kernel.org>, "Paolo Abeni"
- <pabeni@redhat.com>, "Horatiu Vultur" <horatiu.vultur@microchip.com>,
- "Andrew Lunn" <andrew@lunn.ch>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Netdev <netdev@vger.kernel.org>,
- linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org, "Allan
- Nielsen" <allan.nielsen@microchip.com>, "Luca Ceresoli"
- <luca.ceresoli@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v6 3/7] misc: Add support for LAN966x PCI device
-Message-ID: <20241002144119.45c78aa7@bootlin.com>
-In-Reply-To: <b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
-References: <20240930121601.172216-1-herve.codina@bootlin.com>
-	<20240930121601.172216-4-herve.codina@bootlin.com>
-	<b4602de6-bf45-4daf-8b52-f06cc6ff67ef@app.fastmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1727872975; c=relaxed/simple;
+	bh=uwntXRwbNBTGsaI2fUr5lXsoUMzoaYf2YgRqtCM135U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PGrjSGhiNEzak9PalVEipIHvCdB06pfRx+DOvaQHN5JOJ7LyTtJTP7WqySgzCLqtat5OHp8Eey9H5PJmazmAiPleAR5MigGyO7Rr7u2qoJCvxR3KsM5Ptbu5XrhTicWpAv5KTn5UmcMh6xO/rD01n1GDnFilQX0krORU5QJmWzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=T+s41gYV; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d0c250d080bb11efb66947d174671e26-20241002
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=0Ni+WI8epTIdbJVSUpHgDqL3C5owd4TU9qiJVvDIbbE=;
+	b=T+s41gYVMlSDbJTTBzBDbUir/UGuDMhp++4DcNw6/1meYqL/ItQgJWyMHeJXnNCiE56M3bKsDkoIp2AMuejvbx4fQG11xlj6LxhQRTBkXpC1sAVFIpoOdqHQpu/8G0sGeqVVkAwbIAbpYAK0nVYMnpV8Dc7x4oDMz83KwvvbbE4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:9296df5e-1619-473c-87cd-d986ba839340,IP:0,U
+	RL:0,TC:0,Content:1,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:1
+X-CID-META: VersionHash:6dc6a47,CLOUDID:d209a9ed-33c7-4396-bf34-2026ee4f15f5,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|-5,EDM:-3,IP:ni
+	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 1,FCT|NGT
+X-CID-BAS: 1,FCT|NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: d0c250d080bb11efb66947d174671e26-20241002
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 171565082; Wed, 02 Oct 2024 20:42:42 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 2 Oct 2024 20:42:40 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 2 Oct 2024 20:42:40 +0800
+Message-ID: <7faeac1b-0b7a-a820-16a5-330b82d12e01@mediatek.com>
+Date: Wed, 2 Oct 2024 20:42:38 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH 2/9] arm64: dts: mediatek: mt8188: Add PCIe nodes
+Content-Language: en-US
+To: Fei Shao <fshao@chromium.org>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <jianguo.zhang@mediatek.com>,
+	<jian.yang@mediatek.com>, <jieyy.yang@mediatek.com>
+CC: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring
+	<robh@kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<linux-mediatek@lists.infradead.org>, Bear Wang <bear.wang@mediatek.com>,
+	Pablo Sun <pablo.sun@mediatek.com>
+References: <20241002114614.847553-1-fshao@chromium.org>
+ <20241002114614.847553-3-fshao@chromium.org>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <20241002114614.847553-3-fshao@chromium.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Arnd,
 
-On Wed, 02 Oct 2024 11:08:15 +0000
-"Arnd Bergmann" <arnd@arndb.de> wrote:
 
-> On Mon, Sep 30, 2024, at 12:15, Herve Codina wrote:
+On 10/2/24 19:41, Fei Shao wrote:
+> 	
 > 
-> > +			pci-ep-bus@0 {
-> > +				compatible = "simple-bus";
-> > +				#address-cells = <1>;
-> > +				#size-cells = <1>;
-> > +
-> > +				/*
-> > +				 * map @0xe2000000 (32MB) to BAR0 (CPU)
-> > +				 * map @0xe0000000 (16MB) to BAR1 (AMBA)
-> > +				 */
-> > +				ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
-> > +				          0xe0000000 0x01 0x00 0x00 0x1000000>;  
+> External email : Please do not click links or open attachments until you 
+> have verified the sender or the content.
 > 
-> I was wondering about how this fits into the PCI DT
-> binding, is this a child of the PCI device, or does the
-> "pci-ep-bus" refer to the PCI device itself?
-
-This is a child of the PCI device.
-The overlay is applied at the PCI device node and so, the pci-ep-bus is
-a child of the PCI device node.
-
 > 
-> Where do the "0x01 0x00 0x00" and "0x00 0x00 0x00" addresses
-> come from? Shouldn't those be "02000010 0x00 0x00" and
-> "02000014 0x00 0x00" to refer to the first and second
-> relocatable 32-bit memory BAR?
+> Add PCIe node and the associated PHY node.
+> Individual board device tree should enable the nodes as needed.
+> 
+> Signed-off-by: Fei Shao <fshao@chromium.org>
+> ---
+> 
+>   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 62 ++++++++++++++++++++++++
+>   1 file changed, 62 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> index 10195a4e4e9d..9431f3c5c228 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> @@ -1763,6 +1763,53 @@ xhci0: usb@112b0000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		pcie: pcie@112f0000 {
+> +			compatible = "mediatek,mt8188-pcie", "mediatek,mt8192-pcie";
+> +			reg = <0 0x112f0000 0 0x2000>;
+> +			reg-names = "pcie-mac";
 
-These addresses are built dynamically by the PCI core during the PCI scan.
-  https://elixir.bootlin.com/linux/v6.11/source/drivers/pci/of_property.c#L101
-They are use to reference the BARs.
-0x00 for BAR0, 0x01 for BAR1, ...
+It seems the property 'linux,pci-domain = <0>;' is missing?
 
-The full DT, once PCI device are present, scanned and the overlay applied,
-looks like the following:
---- 8< ---
-	pcie@d0070000 {
-		/* Node present on the base device tree */
-		compatible = "marvell,armada-3700-pcie";
-		#address-cells = <0x03>;
-		#size-cells = <0x02>;
-		ranges = <0x82000000 0x00 0xe8000000 0x00 0xe8000000 0x00 0x7f00000
-			  0x81000000 0x00 0x00 0x00 0xefff0000 0x00 0x10000>;
-		device_type = "pci";
-		...
+[snip]
 
-		pci@0,0 {
-			/*
-			 * Node created at runtime during the PCI scan
-			 * This node is PCI bridge (class 604)
-			 */
-			#address-cells = <0x03>;
-			#size-cells = <0x02>;
-			device_type = "pci";
-			compatible = "pci11ab,100\0pciclass,060400\0pciclass,0604";
-			ranges = <0x82000000 0x00 0xe8000000 0x82000000 0x00 0xe8000000 0x00 0x4400000>;
-			...
+> +			};
+> +		};
+> +
+>   		nor_flash: spi@1132c000 {
+>   			compatible = "mediatek,mt8188-nor", "mediatek,mt8186-nor";
+>   			reg = <0 0x1132c000 0 0x1000>;
+> @@ -1775,6 +1822,21 @@ nor_flash: spi@1132c000 {
+>   			status = "disabled";
+>   		};
+>   
+> +		pciephy: t-phy@11c20700 {
+> +			compatible = "mediatek,mt8188-tphy", "mediatek,generic-tphy-v3";
+> +			ranges = <0 0 0x11c20700 0x700>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			status = "disabled";
+> +
 
-			dev@0,0 {
-				/*
-				 * Node created at runtime during the
-				 * PCI scan. This is my LAN966x PCI device.
-				 */
-				#address-cells = <0x03>;
-				interrupts = <0x01>;
-				#size-cells = <0x02>;
-				compatible = "pci1055,9660\0pciclass,020000\0pciclass,0200";
+The power-domains property is missing.
+It should be 'power-domains = <&spm MT8188_POWER_DOMAIN_PEXTP_PHY_TOP>;'
 
-				/*
-				 * Ranges items allow to reference BAR0,
-				 * BAR1, ... from children nodes.
-				 * The property is created by the PCI core
-				 * during the PCI bus scan.
-				 */
-				ranges = <0x00 0x00 0x00 0x82010000 0x00 0xe8000000 0x00 0x2000000
-					  0x01 0x00 0x00 0x82010000 0x00 0xea000000 0x00 0x1000000
-					  0x02 0x00 0x00 0x82010000 0x00 0xeb000000 0x00 0x800000
-					  0x03 0x00 0x00 0x82010000 0x00 0xeb800000 0x00 0x800000
-					  0x04 0x00 0x00 0x82010000 0x00 0xec000000 0x00 0x20000
-					  0x05 0x00 0x00 0x82010000 0x00 0xec020000 0x00 0x2000>;
-				...
+> +			pcieport: pcie-phy@0 {
+> +				reg = <0 0x700>;
+> +				clocks = <&topckgen CLK_TOP_CFGREG_F_PCIE_PHY_REF>;
+> +				clock-names = "ref";
+> +				#phy-cells = <1>;
+> +			};
+> +		};
+> +
+>   		i2c1: i2c@11e00000 {
+>   			compatible = "mediatek,mt8188-i2c";
+>   			reg = <0 0x11e00000 0 0x1000>,
 
-				pci-ep-bus@0 {
-					/* Node added by the overlay */
-					#address-cells = <0x01>;
-					#size-cells = <0x01>;
-					compatible = "simple-bus";
-
-					/*
-					 * Remap 0xe2000000 to BAR0 and
-					 * 0xe0000000 to BAR1
-					 */
-					ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
-						  0xe0000000 0x01 0x00 0x00 0x1000000>;
-					...
-
-					mdio@e200413c {
-						#address-cells = <0x01>;
-						resets = <0x25 0x00>;
-						#size-cells = <0x00>;
-						compatible = "microchip,lan966x-miim";
-						reg = <0xe200413c 0x24 0xe2010020 0x04>;
-						...
---- 8< ---
-
-Hope this full picture helped to understand the address translations
-involved.
-
+Thanks!
 Best regards,
-Hervé
+Macpaul Lin
 
