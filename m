@@ -1,98 +1,136 @@
-Return-Path: <devicetree+bounces-107589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107590-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD06D98F1E4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 16:53:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3616698F235
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2ED31C20979
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:53:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E17201F21B9F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:12:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFDF149E13;
-	Thu,  3 Oct 2024 14:53:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JFmhVNCf"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986AE1A00F4;
+	Thu,  3 Oct 2024 15:12:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E61692E62C;
-	Thu,  3 Oct 2024 14:52:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55C917C224;
+	Thu,  3 Oct 2024 15:12:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727967180; cv=none; b=gWiBeC1eP7C6lEGuRNZM3U7ERZvd2f8DIDjvQLmpBYWXU0/jpzP0zZOwIrSLurmNxWYBw78DDvC9iDNrcNyBk+yyvSR9V2tB/Ibmzq6JoPjO7XixRmcgrPjsLTyvxFH2/+KHPdrUMspA2d94u7UFWs54WMNnU43DytwahODddX4=
+	t=1727968362; cv=none; b=eTbj6vl97PJvFdbHWOJ6Rjazev0D5sDArB/k56uJE6a+8IV6pNCJJE6KWXkuR95X/3Ooj1U5ru7aJXUXsytxOEzvqu8PHTED3XjUYQeKCC/G/HYSHQhKeuYg8pQ/Q9jGGRVVbmwdE/Vmma6ee43IvyIosP1F9yOKXIW2cVIjRaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727967180; c=relaxed/simple;
-	bh=FTejungkp1rV0ewWV0AZdfydCT1BXrEsUQdUSWtLuWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oQKR7iMkKf98HKCoFviiF3m3L+1w+3zRmyD3VI/tZ0bvRGPGGx6n07LeMzQRehntWZrtuHHzWipszkA/+3oqOtzq4oj7GAv6ksIFabtbNk/54EPZDszY4lxtZVrs15S8Y1uTyo2JC+kHsDrtLmUmS+UkKmYWJ1LO/ynISlk1S+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JFmhVNCf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06E70C4CEC5;
-	Thu,  3 Oct 2024 14:52:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727967179;
-	bh=FTejungkp1rV0ewWV0AZdfydCT1BXrEsUQdUSWtLuWc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JFmhVNCfyUZpKVZ/EfgpLyqXJ1T33ksm8IZBlmEaFHl/x8t7lsSk5FDZgh3QWFVm+
-	 SteiCedsRir11lAAJmD/d15hfUFfwUfdVp9X9ws5Q999tIWNhZxahn0jsz8NyBB9Il
-	 PWeNxhko9ApEPuQipZYtcP73M98RmDekXIEJpfKHqKrKXBVX1Fw3ucx5adAouGUH9k
-	 DbGYDILBgEBuogmEpCSSSD0+BNQauC2dl844hGxhuKkASWX/v4gvYsteIwBEt3g35j
-	 zsavQHwrh/v+VLcrBq1snfqCvb33/ShsCwM3LIPcrSbiH+5MX5f1MpHu9JtzxXJEAe
-	 MFmCJlN+dh4ww==
-Date: Thu, 3 Oct 2024 15:52:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Liam Girdwood <lgirdwood@gmail.com>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-	Martin Botka <martin.botka@somainline.org>,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 5/5] regulator: axp20x: add support for the AXP323
-Message-ID: <2c0b69d4-a7a2-42d4-a416-8eb39a1a7a66@sirena.org.uk>
-References: <20241003111444.543964-1-andre.przywara@arm.com>
- <20241003111444.543964-6-andre.przywara@arm.com>
+	s=arc-20240116; t=1727968362; c=relaxed/simple;
+	bh=gwKW4ycAUTNy1tipNB505j/jZ3lNfe3SfserdHNQQkU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jwy6UWbk6M+Rsa+S5GhTK7+s+CO3Htaw5VRJzeM7FoCKyaY1/Ly5AnlTfvbko7QMzNC4yCAZadz2V/2vTAaRL1ewyPHWFy+/zg82/dTHY9xIow/ZxeA4W8CHCOCpTyllHiG9NwH4E76VmhsNe0mJKy/Ra6o1Tw4evZUHL0noLo0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3a367da1f8cso4284565ab.2;
+        Thu, 03 Oct 2024 08:12:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727968355; x=1728573155;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=47KD1hatbg94UjbGvu7DyHwu3QN5WNe4psfvAfpMbAE=;
+        b=cbPLYk1lFMW7jq+V8ur3os+XP0MgSaqDNouxZozh6++/Zlpt4EuHi6M/H0e70ktzF6
+         b7OwVnRtnGgor0Mgv4Km6kdod3yHJb1wtyOipvqhqu/22jvDb3fp258a78Cy7JoinKTm
+         WvB0DtwjVBbvkZTUjGXBiedly36XSGQOsH2FCZxImxg/32jPDyBHnGeo/iaoVp0iaUnv
+         elMIjewctpL2QfLGBViVwpXuh8K7b81uYn1jLAXClOYA5rt6m74AEUTYJW8ehIoPe/Bu
+         1x3Zmw4jfvU5qmDj6sWpfR5hsrSvc+HcVK7SLRYX7/aLIgcB3ZJyybMgFfhj4JBoTFzm
+         33lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU+S3fWe4DZyiLQATdJBunlS9TlD4nLrQOu/8+9FOFwSwLuomddCadNMOTayxWN9Ovw4KL0zpjnVF3tfO+O@vger.kernel.org, AJvYcCWox1YoAnErMngfLbR7X+s08dkJ0EtL5+QtOlfLjSNtenN+RaSR58qzeVZtP8Zz62QR7OAnNya/A5jT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/MUNY9t+ZJqmoZiVwJAuQfnI+uH5Lm3ECzrAoCICrAqCibm1t
+	Z6XeydydF0R328HgR0seJMKMyF911M7RYnxUuY6t7FXxIBi6EqNPaMG47fnJ
+X-Google-Smtp-Source: AGHT+IGLzNmfgEZNEVxJSuO/fIcVpvdtfZYWVFG3ozV7qrdfHwgdOBkjrTLK6ugR5pW+PKSINhwioQ==
+X-Received: by 2002:a05:6e02:12e5:b0:3a0:9244:191d with SMTP id e9e14a558f8ab-3a365942fd5mr60489145ab.16.1727968354573;
+        Thu, 03 Oct 2024 08:12:34 -0700 (PDT)
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com. [209.85.166.54])
+        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4db55aa3784sm310131173.123.2024.10.03.08.12.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 08:12:31 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-834d3363a10so49601739f.1;
+        Thu, 03 Oct 2024 08:12:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUKREmqxfKSxfTVpkhM+Suap2dm1WNuCp5ezngJFC3TI4N3/r7RR7+Ja7cD7Kgj331mHCcG+EFujc1/Ehkt@vger.kernel.org, AJvYcCWtPbgjnnGFz8ewTeh97YMXQS5nT/+C6sdQ94lwiErSi0JmDWciaSP1D045Q0qB40N3DvI884+nfGqL@vger.kernel.org
+X-Received: by 2002:a05:6602:634e:b0:806:31ee:132 with SMTP id
+ ca18e2360f4ac-834d83f7467mr701739239f.4.1727968351148; Thu, 03 Oct 2024
+ 08:12:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RKu+djmcrttNTcdA"
-Content-Disposition: inline
-In-Reply-To: <20241003111444.543964-6-andre.przywara@arm.com>
-X-Cookie: I'm into SOFTWARE!
+References: <20241003111444.543964-1-andre.przywara@arm.com> <20241003111444.543964-2-andre.przywara@arm.com>
+In-Reply-To: <20241003111444.543964-2-andre.przywara@arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 3 Oct 2024 23:12:15 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65vx+9gD41yK_gcBSk2_GQKLxn1O806RJ9HpMqMA1gDAQ@mail.gmail.com>
+Message-ID: <CAGb2v65vx+9gD41yK_gcBSk2_GQKLxn1O806RJ9HpMqMA1gDAQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: mfd: x-powers,axp152: Document AXP323
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	Martin Botka <martin.botka@somainline.org>, Chris Morgan <macromorgan@hotmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Oct 3, 2024 at 7:15=E2=80=AFPM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
+>
+> The X-Powers AXP323 is a PMIC used on some newer Allwinner devices.
+> It is almost the same as the AXP313, but supports dual-phasing the first
+> two DC/DC converters. A pure AXP313 driver wouldn't know about this, and
+> might turn the linked DCDC2 regulator off, as it does not seem to be
+> used. This makes the AXP323 incompatible to the AXP313a.
+>
+> Add the new compatible string, and treat it like the AXP313a.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
---RKu+djmcrttNTcdA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-On Thu, Oct 03, 2024 at 12:14:44PM +0100, Andre Przywara wrote:
-> The X-Powers AXP323 is a very close sibling of the AXP313A. The only
-> difference seems to be the ability to dual-phase the first two DC/DC
-> converters.
-
-Reviewed-by: Mark Brown <broonie@kernel.org>
-
---RKu+djmcrttNTcdA
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmb+r8UACgkQJNaLcl1U
-h9BhDwf/RYTvpNDc1pAuZZM8MRv8tl4uVL4IMM6Lm1In2Nk8QdnAKEi2yjq0hHSD
-J2iHIWyYt9cVrXKjv+PKBn707TiqJfzMiTcKgaKdTi1RarEr5kl4RdYrAYApQyCL
-reThlZlBK4kROtC4tH/1YHK+JJHJANRL6Slu9sHVYjFUddXZ71lpEmlW6Mvm3Dxa
-X5uITJnOTFoIswrYhiShOIK6oUhNQgiGRwPINnB9o/R/jhBBwCc7BQfTRV71pJZJ
-pKnG+my1vNsKmRMqxagh3Q2CMWT2VspRpMxh++H5uSfh6rbd+IPp3PlXCW/dMCn5
-7U/wYl4qFGyMvouoEuj8Ik8ab7x2vA==
-=FxwP
------END PGP SIGNATURE-----
-
---RKu+djmcrttNTcdA--
+> ---
+>  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml b=
+/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> index 14ab367fc887..3f7661bdd202 100644
+> --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> @@ -71,6 +71,7 @@ allOf:
+>                  - x-powers,axp15060
+>                  - x-powers,axp305
+>                  - x-powers,axp313a
+> +                - x-powers,axp323
+>
+>      then:
+>        required:
+> @@ -82,6 +83,7 @@ allOf:
+>            contains:
+>              enum:
+>                - x-powers,axp313a
+> +              - x-powers,axp323
+>                - x-powers,axp15060
+>                - x-powers,axp717
+>
+> @@ -100,6 +102,7 @@ properties:
+>            - x-powers,axp221
+>            - x-powers,axp223
+>            - x-powers,axp313a
+> +          - x-powers,axp323
+>            - x-powers,axp717
+>            - x-powers,axp803
+>            - x-powers,axp806
+> --
+> 2.25.1
+>
 
