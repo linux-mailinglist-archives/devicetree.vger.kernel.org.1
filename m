@@ -1,196 +1,376 @@
-Return-Path: <devicetree+bounces-107376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 831CD98E79F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 02:17:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46CD298E839
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 04:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 828181C21643
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 00:17:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6D761F25095
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 02:08:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BED64C83;
-	Thu,  3 Oct 2024 00:16:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8E0315E96;
+	Thu,  3 Oct 2024 02:08:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oKI78aLz"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="KRxSt/Ht"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1C264A;
-	Thu,  3 Oct 2024 00:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E26F14012
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 02:08:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727914619; cv=none; b=npU24QZT1SHf/BdiSyxiyTkWUzkAvdbzRi3yz8F9S8CfDkP6nVxHchZW9+AkJALUzzANepkxJPhr4ljadxsyLkNQlTAT7C0RZQe3qoF7xNm0fQW1Aq1Vwyixa/fsL1nLGIWEEa3U0w8o76NKSyy2g48gIeuKoxuTaiEE5jYUk/s=
+	t=1727921285; cv=none; b=ivIhgIXzsA/lOHCCZz7gEKesoO9yvm8SWrAG9zuUVeLj0g9YcTR7cs8N/HzpNnLIN97SYDecsRp5VWpEgbrdF5gPv/RgSPsI5uQhFuhpZT+j6ReGEGHDl5h5X7TtRD3cun4twC7jn27T1VQUOLcH+MuP6fKlxLP4JyiJX0EyPCA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727914619; c=relaxed/simple;
-	bh=t783UiUjich5X9sa7ujzAR59XVGTzDqvLbn/mKTpiX0=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Kv5qYDtcKUg+EvnWQM1MQDjo6glTf3dBF+0dW4b1i2MzL1P5AeYOzlWnROgy4jKcBIQjHqzGrjaMhTe6vgaO4TOBSMR8jYwgeSbIdKmhxPSnJC08XDQFNPJpTMreRPIxOWRXaP+n7hskPkbX2E/R9MYjwzde+GF2l7ULZE6ShVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oKI78aLz; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727914618; x=1759450618;
-  h=message-id:subject:from:to:cc:date:in-reply-to:
-   references:content-transfer-encoding:mime-version;
-  bh=t783UiUjich5X9sa7ujzAR59XVGTzDqvLbn/mKTpiX0=;
-  b=oKI78aLzF16dDX65WzG8yegrEJ21c6mERrt2HiBlZ9xH9EjwsVrCHn0M
-   U7j9ae8204ICw7+DLPrhkXm+Wz5i6PV/34Nft+LjS/9zmTOP+XRh/stju
-   HtSBRlNmEWiZUog91EYDzs10aWHz0jO+JehYl/apKZm38ZlK/3DDQX+zG
-   L8hyDh77nyU6ZCBl0VjO0JkxFuL+GUzTLGIQN2oJkg2vNsglhMzjctTe6
-   kaOUdyMWkcESN5BMIWyBs+TSjazOZ3E73aRoUsYhVFtDR/Zb5E0sv0k/j
-   Mb7Kl7lT3D2kNBHgkNrN+LgfqctSTjk+dflgmpHF2wHcmipMkpiZAOFmF
-   Q==;
-X-CSE-ConnectionGUID: PnbsB371S06a2oHkoLZoKw==
-X-CSE-MsgGUID: gce1vaCFSNezU/I/vkJXKQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38483210"
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; 
-   d="scan'208";a="38483210"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 17:16:57 -0700
-X-CSE-ConnectionGUID: Uj2jFyvbQ+Og+6tBwNr1TA==
-X-CSE-MsgGUID: 5JQtABJwRCq2sp64ZE4utQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; 
-   d="scan'208";a="74419035"
-Received: from spandruv-desk1.amr.corp.intel.com ([10.125.109.106])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 17:16:57 -0700
-Message-ID: <edd074ed88830180527417aa45ff222cbb71c1f2.camel@linux.intel.com>
-Subject: Re: [PATCH v8 1/9] HID: hid-sensor-hub: don't use stale
- platform-data on remove
-From: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>
-To: Heiko Stuebner <heiko@sntech.de>, lee@kernel.org, jikos@kernel.org, 
-	jic23@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- jdelvare@suse.com,  linux@roeck-us.net, bentiss@kernel.org,
- dmitry.torokhov@gmail.com, pavel@ucw.cz,  ukleinek@debian.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org, 
- linux-iio@vger.kernel.org, linux-leds@vger.kernel.org
-Date: Wed, 02 Oct 2024 17:16:56 -0700
-In-Reply-To: <20240908210803.3339919-2-heiko@sntech.de>
-References: <20240908210803.3339919-1-heiko@sntech.de>
-	 <20240908210803.3339919-2-heiko@sntech.de>
-Autocrypt: addr=srinivas.pandruvada@linux.intel.com; prefer-encrypt=mutual;
- keydata=mQGNBGYHNAsBDAC7tv5u9cIsSDvdgBBEDG0/a/nTaC1GXOx5MFNEDL0LWia2p8Asl7igx
- YrB68fyfPNLSIgtCmps0EbRUkPtoN5/HTbAEZeJUTL8Xdoe6sTywf8/6/DMheEUzprE4Qyjt0HheW
- y1JGvdOA0f1lkxCnPXeiiDY4FUqQHr3U6X4FPqfrfGlrMmGvntpKzOTutlQl8eSAprtgZ+zm0Jiwq
- NSiSBOt2SlbkGu9bBYx7mTsrGv+x7x4Ca6/BO9o5dIvwJOcfK/cXC/yxEkr1ajbIUYZFEzQyZQXrT
- GUGn8j3/cXQgVvMYxrh3pGCq9Q0Q6PAwQYhm97ipXa86GcTpP5B2ip9xclPtDW99sihiL8euTWRfS
- TUsEI+1YzCyz5DU32w3WiXr3ITicaMV090tMg9phIZsjfFbnR8hY03n0kRNWWFXi/ch2MsZCCqXIB
- oY/SruNH9Y6mnFKW8HSH762C7On8GXBYJzH6giLGeSsbvis2ZmV/r+LmswwZ6ACcOKLlvvIukAEQE
- AAbQ5U3Jpbml2YXMgUGFuZHJ1dmFkYSA8c3Jpbml2YXMucGFuZHJ1dmFkYUBsaW51eC5pbnRlbC5j
- b20+iQHRBBMBCAA7FiEEdki2SeUi0wlk2xcjOqtdDMJyisMFAmYHNAsCGwMFCwkIBwICIgIGFQoJC
- AsCBBYCAwECHgcCF4AACgkQOqtdDMJyisMobAv+LLYUSKNuWhRN3wS7WocRPCi3tWeBml+qivCwyv
- oZbmE2LcxYFnkcj6YNoS4N1CHJCr7vwefWTzoKTTDYqz3Ma0D0SbR1p/dH0nDgN34y41HpIHf0tx0
- UxGMgOWJAInq3A7/mNkoLQQ3D5siG39X3bh9Ecg0LhMpYwP/AYsd8X1ypCWgo8SE0J/6XX/HXop2a
- ivimve15VklMhyuu2dNWDIyF2cWz6urHV4jmxT/wUGBdq5j87vrJhLXeosueRjGJb8/xzl34iYv08
- wOB0fP+Ox5m0t9N5yZCbcaQug3hSlgp9hittYRgIK4GwZtNO11bOzeCEMk+xFYUoa5V8JWK9/vxrx
- NZEn58vMJ/nxoJzkb++iV7KBtsqErbs5iDwFln/TRJAQDYrtHJKLLFB9BGUDuaBOmFummR70Rbo55
- J9fvUHc2O70qteKOt5A0zv7G8uUdIaaUHrT+VOS7o+MrbPQcSk+bl81L2R7TfWViCmKQ60sD3M90Y
- oOfCQxricddC
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1727921285; c=relaxed/simple;
+	bh=MRXbDv1NaCdJESKeYB3RYPjBlJ74d5vdelHYfALUsNY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ruYWj87TAx37xtf8d5j+qnVhK9f6A2AplQBqBTr8reXWxAew7+VeM/CkJheT2SSXNWrIcX1wWg3pugzmS0VbwRwZ6wgU7S6WwmushJslNEOU1TTANJdXuly4v6EbI671B1BGH2xbfIu3UJniZrfZoDUXNgVj5wObj0C0+9JLfG8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=KRxSt/Ht; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e0be1afa85so410731a91.1
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 19:08:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1727921283; x=1728526083; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SFn95vS7Q//bSehLM3fIRXc40YPHD8PD97/q9J+CjhQ=;
+        b=KRxSt/HtEaKt/2CKcd+e+64GIA5Y7uswOBiLxxBzVRQkhSVEZtpleqVPdVUtGmcWaU
+         AoLZCXefnRI2OuXPtK+BKAvLrUrRQ1CK+U+C7dsz+yW/vj+sPQQiXT54kfMhK3qmU6wc
+         xGKnwwYTjB2UxVVvuRGchB5ZwgMSE6lc89MeOPesXgMwr8tNE6GzBIX8OA5ysGqZDvYe
+         YtnUjZnEkJDNMBcsf9uMNIZIB7NzR61c96xAD5DJG4CDpt+ol2bUe4Zy3IkAOYDFieAT
+         L1W5JkFqXJX4dUs30zsnEdPWnxpUEmvEdizZGvKm5VcPj/rm2pRREfB7KNc3nVuqHjHJ
+         IPGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727921283; x=1728526083;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SFn95vS7Q//bSehLM3fIRXc40YPHD8PD97/q9J+CjhQ=;
+        b=gIM57fvg0svCfWqMKFaky4km3lt6As8HhGAa7qrjlEQVwvSYyHRvN3yKXGuv/63UH0
+         A1YV3h7p5o/DWWuO+DHNj/TDjROUsoOatsu1jJAZaJ/cu5iUOEfLoXFf3697aPo7USpO
+         cFqbf4OL5VmhkLb9xLx6ObrGU3cQ3JU/1kzVjEKxDXM546MOJG/MXQcUphnWa8temBRt
+         Z9IfgS+Z/IV28Mq2DLpbhA5jvo9Q2ttoX/f6gFGQjbCITDv6aGvpVOvWMr2bfclZ596R
+         9CGvLdmMuyXLaXC8l3uVRNiubwzlK7j8vEa6mGzIZ39bzTA2Qpwz1mVdlJ7athbZO/33
+         Aqsg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhPstL1OqY9dwBhpg5j+sLzkbd/c2c3aT+IqK1J8ilbaTx2H/7mfmNPG+VqDRgjaqlzCVGyEbdmpW5@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRjkByHi1N9qr3GGNW6CJriOOM1OrQHC6oetwoKWJPnWV+L4bq
+	8e7td6DafvX+aVjF79/FZGtYlV3VDGpRt3pkIgD/AgF1XgFKWoHijouMB6riv03Mjjr7J5IC9ty
+	UuYfGyqSrXtjjl60kszo2kl3wI4nneod0iMa3
+X-Google-Smtp-Source: AGHT+IHx43AN5kZJguxelc3559dpVF+xXLIG4ELJ+qqVynNs+qc1JbBr0HSo54Wt9hg3oM29Yp+EwC/fcDXVAAb9c/w=
+X-Received: by 2002:a17:90a:744a:b0:2d8:eba2:ac6e with SMTP id
+ 98e67ed59e1d1-2e18490a159mr6295395a91.29.1727921282773; Wed, 02 Oct 2024
+ 19:08:02 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240930-phy-handle-fw-devlink-v1-1-4ea46acfcc12@redhat.com>
+ <CAGETcx-z+Evd95QzhPePOf3=fZ7QUpWC2spA=q_ASyAfVHJD1A@mail.gmail.com>
+ <rqn4kaogp2oukghm3hz7sbbvayj6aiflgbtoyk6mhxg4jss7ig@iv24my4iheij> <hnsjzxd4tgqdrol76qfzpl5fhesz4klqeurdwebflfshfrwpqb@r5iiiihplfgr>
+In-Reply-To: <hnsjzxd4tgqdrol76qfzpl5fhesz4klqeurdwebflfshfrwpqb@r5iiiihplfgr>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 2 Oct 2024 19:07:22 -0700
+Message-ID: <CAGETcx-FSawzAtQRbJrhc5XtxLDMz0TTVqdGC85YnLjKFsQ7dw@mail.gmail.com>
+Subject: Re: [PATCH RFT] of: property: fw_devlink: Add support for the
+ "phy-handle" binding
+To: Andrew Halaney <ahalaney@redhat.com>
+Cc: Rob Herring <robh@kernel.org>, "Russell King (Oracle)" <linux@armlinux.org.uk>, Andrew Lunn <andrew@lunn.ch>, 
+	Abhishek Chauhan <quic_abchauha@quicinc.com>, Serge Semin <fancer.lancer@gmail.com>, 
+	devicetree@vger.kernel.org, netdev@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 2024-09-08 at 23:07 +0200, Heiko Stuebner wrote:
-> The hid-sensor-hub creates the individual device structs and
-> transfers them
-> to the created mfd platform-devices via the platform_data in the
-> mfd_cell.
->=20
-> Before commit e651a1da442a ("HID: hid-sensor-hub: Allow parallel
-> synchronous reads")
-> the sensor-hub was managing access centrally, with one "completion"
-> in the
-> hub's data structure, which needed to be finished on removal at the
-> latest.
->=20
-> The mentioned commit then moved this central management to each hid
-> sensor
-> device, resulting on a completion in each struct
-> hid_sensor_hub_device.
-> The remove procedure was adapted to go through all sensor devices and
-> finish any pending "completion".
->=20
-> What this didn't take into account was, platform_device_add_data()
-> that is
-> used by mfd_add{_hotplug}_devices() does a kmemdup on the submitted
-> platform-data. So the data the platform-device gets is a copy of the
-> original data, meaning that the device worked on a different
-> completion
-> than what sensor_hub_remove() currently wants to access.
->=20
-> To fix that, use device_for_each_child() to go through each child-
-> device
-> similar to how mfd_remove_devices() unregisters the devices later and
-> with that get the live platform_data to finalize the correct
-> completion.
->=20
-> Fixes: e651a1da442a ("HID: hid-sensor-hub: Allow parallel synchronous
-> reads")
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Acked-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
+On Wed, Oct 2, 2024 at 12:34=E2=80=AFPM Andrew Halaney <ahalaney@redhat.com=
+> wrote:
+>
+> On Tue, Oct 01, 2024 at 02:22:23PM GMT, Andrew Halaney wrote:
+> > On Mon, Sep 30, 2024 at 05:12:42PM GMT, Saravana Kannan wrote:
+> > > On Mon, Sep 30, 2024 at 2:28=E2=80=AFPM Andrew Halaney <ahalaney@redh=
+at.com> wrote:
+> > > >
+> > > > Add support for parsing the phy-handle binding so that fw_devlink c=
+an
+> > > > enforce the dependency. This prevents MACs (that use this binding t=
+o
+> > > > claim they're using the corresponding phy) from probing prior to th=
+e
+> > > > phy, unless the phy is a child of the MAC (which results in a
+> > > > dependency cycle) or similar.
+> > > >
+> > > > For some motivation, imagine a device topology like so:
+> > > >
+> > > >     &ethernet0 {
+> > > >             phy-mode =3D "sgmii";
+> > > >             phy-handle =3D <&sgmii_phy0>;
+> > > >
+> > > >             mdio {
+> > > >                     compatible =3D "snps,dwmac-mdio";
+> > > >                     sgmii_phy0: phy@8 {
+> > > >                             compatible =3D "ethernet-phy-id0141.0dd=
+4";
+> > > >                             reg =3D <0x8>;
+> > > >                             device_type =3D "ethernet-phy";
+> > > >                     };
+> > > >
+> > > >                     sgmii_phy1: phy@a {
+> > > >                             compatible =3D "ethernet-phy-id0141.0dd=
+4";
+> > > >                             reg =3D <0xa>;
+> > > >                             device_type =3D "ethernet-phy";
+> > > >                     };
+> > > >             };
+> > > >     };
+> > > >
+> > > >     &ethernet1 {
+> > > >             phy-mode =3D "sgmii";
+> > > >             phy-handle =3D <&sgmii_phy1>;
+> > > >     };
+> > > >
+> > > > Here ethernet1 depends on sgmii_phy1 to function properly. In the b=
+elow
+> > > > link an issue is reported where ethernet1 is probed and used prior =
+to
+> > > > sgmii_phy1, resulting in a failure to get things working for ethern=
+et1.
+> > > > With this change in place ethernet1 doesn't probe until sgmii_phy1 =
+is
+> > > > ready, resulting in ethernet1 functioning properly.
+> > > >
+> > > > ethernet0 consumes sgmii_phy0, but this dependency isn't enforced
+> > > > via the device_links backing fw_devlink since ethernet0 is the pare=
+nt of
+> > > > sgmii_phy0. Here's a log showing that in action:
+> > > >
+> > > >     [    7.000432] qcom-ethqos 23040000.ethernet: Fixed dependency =
+cycle(s) with /soc@0/ethernet@23040000/mdio/phy@8
+> > > >
+> > > > With this change in place ethernet1's dependency is properly descri=
+bed,
+> > > > and it doesn't probe prior to sgmii_phy1 being available.
+> > > >
+> > > > Link: https://lore.kernel.org/netdev/7723d4l2kqgrez3yfauvp2ueu6awbi=
+zkrq4otqpsqpytzp45q2@rju2nxmqu4ew/
+> > > > Suggested-by: Serge Semin <fancer.lancer@gmail.com>
+> > > > Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
+> > > > ---
+> > > > I've marked this as an RFT because when looking through old mailing
+> > > > list discusssions and kernel tech talks on this subject, I was unab=
+le
+> > > > to really understand why in the past phy-handle had been left out. =
+There
+> > > > were some loose references to circular dependencies (which seem mor=
+e or
+> > > > less handled by fw_devlink to me), and the fact that a lot of behav=
+ior
+> > > > happens in ndo_open() (but I couldn't quite grok the concern there)=
+.
+> > > >
+> > > > I'd appreciate more testing by others and some feedback from those =
+who
+> > > > know this a bit better to indicate whether fw_devlink is ready to h=
+andle
+> > > > this or not.
+> > > >
+> > > > At least in my narrow point of view, it's working well for me.
+> > >
+> > > I do want this to land and I'm fairly certain it'll break something.
+> > > But it's been so long that I don't remember what it was. I think it
+> > > has to do with the generic phy driver not working well with fw_devlin=
+k
+> > > because it doesn't go through the device driver model.
+> >
+> > Let me see if I can hack something up on this board (which has a decent
+> > dependency tree for testing this stuff) to use the generic phy driver
+> > instead of the marvell one that it needs and see how that goes. It won'=
+t
+> > *actually* work from a phy perspective, but it will at least test out
+> > the driver core bits here I think.
+> >
+> > >
+> > > But like you said, it's been a while and fw_devlink has improved sinc=
+e
+> > > then (I think). So please go ahead and give this a shot. If you can
+> > > help fix any issues this highlights, I'd really appreciate it and I'd
+> > > be happy to guide you through what I think needs to happen. But I
+> > > don't think I have the time to fix it myself.
+> >
+> > Sure, I tend to agree. Let me check the generic phy driver path for any
+> > issues and if that test seems to go okay I too am of the opinion that
+> > without any solid reasoning against this we enable it and battle throug=
+h
+> > (revert and fix after the fact if necessary) any newly identified issue=
+s
+> > that prevent phy-handle and fw_devlink have with each other.
+> >
+>
+> Hmmm, yes the generic phy driver path for this
+> doesn't seem to work well. Its fine and dandy if there's
+> no device_link (current situation), but if there is one
+> (say with my patch and in my example above between ethernet1 and phy@a,
+> you can ignore the ethernet0 relationship since its a cycle
+> and therefore no device_link is created as mentioned in the patch)
+> you run into problems with the generic phy driver.
+>
+> In my original test you can see I use the marvell driver
+> for the phy. In that case things work well. In the generic phy
+> case however, ethernet1's probe is actually delayed far past
+> phy@a. Here's some logs that show that the device_link getting
+> "relaxed" due to no driver being bound, which has fw_devlink
+> thinking this supplier phy isn't going to get a driver ever,
+> so it finally tries to unblock (probe) the consumer (ethernet1):
+>
+>     [   40.695570] platform 23000000.ethernet: Relaxing link with stmmac-=
+0:0a
+>     [   40.702274] CPU: 4 UID: 0 PID: 111 Comm: kworker/u34:1 Not tainted=
+ 6.12.0-rc1-next-20240930-00004-gb766c5527800-dirty #155
+>     [   40.713605] Hardware name: Qualcomm SA8775P Ride (DT)
+>     [   40.718789] Workqueue: events_unbound deferred_probe_work_func
+>     [   40.724774] Call trace:
+>     [   40.727295]  dump_backtrace+0x108/0x190
+>     [   40.731233]  show_stack+0x24/0x38
+>     [   40.734638]  dump_stack_lvl+0x40/0x88
+>     [   40.738406]  dump_stack+0x18/0x28
+>     [   40.741811]  fw_devlink_unblock_consumers+0x78/0xe8
+>     [   40.746824]  device_add+0x290/0x3f8
+>     [   40.750411]  phy_device_register+0x6c/0xd0
+>     [   40.754615]  fwnode_mdiobus_phy_device_register+0xe8/0x178
+>     [   40.760246]  fwnode_mdiobus_register_phy+0x214/0x268
+>     [   40.765344]  __of_mdiobus_parse_phys+0x80/0x280
+>     [   40.769995]  __of_mdiobus_register+0xd0/0x230
+>     [   40.774465]  stmmac_mdio_register+0x220/0x3c8 [stmmac]
+>     [   40.779755]  stmmac_dvr_probe+0x91c/0xd70 [stmmac]
+>     [   40.784682]  devm_stmmac_pltfr_probe+0x54/0xe0 [stmmac_platform]
+>     [   40.790846]  qcom_ethqos_probe+0x404/0x438 [dwmac_qcom_ethqos]
+>     [   40.796830]  platform_probe+0x94/0xd8
+>
+> If I understand correctly that's because the generic phy driver
+> is bound during a MAC's (like ethernet1 here) phylink_fwnode_phy_connect(=
+) call
+> in ndo_open() currently.. here's another dump_stack() (yes I abuse that a=
+lot)
+> showing when that happens:
+>
+>     [   42.980611] net end1: Before phylink_fwnode_phy_connect
+>     [   42.986011] CPU: 4 UID: 0 PID: 310 Comm: NetworkManager Not tainte=
+d 6.12.0-rc1-next-20240930-00004-gb766c5527800-dirty #156
+>     [   42.997436] Hardware name: Qualcomm SA8775P Ride (DT)
+>     [   43.002632] Call trace:
+>     [   43.005152]  dump_backtrace+0x108/0x190
+>     [   43.009106]  show_stack+0x24/0x38
+>     [   43.012518]  dump_stack_lvl+0x40/0x88
+>     [   43.016290]  dump_stack+0x18/0x28
+>     [   43.019701]  phy_attach_direct+0x2d4/0x3e0
+>     [   43.023918]  phylink_fwnode_phy_connect+0xc4/0x178
+>     [   43.028848]  __stmmac_open+0x698/0x6e0 [stmmac]
+>     [   43.033534]  stmmac_open+0x54/0xe0 [stmmac]
+>     [   43.037850]  __dev_open+0x110/0x228
+>     [   43.041442]  __dev_change_flags+0xbc/0x1d0
+>
+>
+> And here's the code for the binding of the generic phy driver:
+>
+>     /**
+>      * phy_attach_direct - attach a network device to a given PHY device =
+pointer
+>      * @dev: network device to attach
+>      * @phydev: Pointer to phy_device to attach
+>      * @flags: PHY device's dev_flags
+>      * @interface: PHY device's interface
+>      *
+>      * Description: Called by drivers to attach to a particular PHY
+>      *     device. The phy_device is found, and properly hooked up
+>      *     to the phy_driver.  If no driver is attached, then a
+>      *     generic driver is used.  The phy_device is given a ptr to
+>      *     the attaching device, and given a callback for link status
+>      *     change.  The phy_device is returned to the attaching driver.
+>      *     This function takes a reference on the phy device.
+>      */
+>     int phy_attach_direct(struct net_device *dev, struct phy_device *phyd=
+ev,
+>                           u32 flags, phy_interface_t interface)
+>     {
+>             struct mii_bus *bus =3D phydev->mdio.bus;
+>             struct device *d =3D &phydev->mdio.dev;
+>             struct module *ndev_owner =3D NULL;
+>             bool using_genphy =3D false;
+>             int err;
+>
+>             /* For Ethernet device drivers that register their own MDIO b=
+us, we
+>              * will have bus->owner match ndev_mod, so we do not want to =
+increment
+>              * our own module->refcnt here, otherwise we would not be abl=
+e to
+>              * unload later on.
+>              */
+>             if (dev)
+>                     ndev_owner =3D dev->dev.parent->driver->owner;
+>             if (ndev_owner !=3D bus->owner && !try_module_get(bus->owner)=
+) {
+>                     phydev_err(phydev, "failed to get the bus module\n");
+>                     return -EIO;
+>             }
+>
+>             get_device(d);
+>
+>             /* Assume that if there is no driver, that it doesn't
+>              * exist, and we should use the genphy driver.
+>              */
+>             if (!d->driver) {
+>                     if (phydev->is_c45)
+>                             d->driver =3D &genphy_c45_driver.mdiodrv.driv=
+er;
+>                     else
+>                             d->driver =3D &genphy_driver.mdiodrv.driver;
+>
+>                     using_genphy =3D true;
+>                     dump_stack();
+>             }
+>
+>             if (!try_module_get(d->driver->owner)) {
+>                     phydev_err(phydev, "failed to get the device driver m=
+odule\n");
+>                     err =3D -EIO;
+>                     goto error_put_device;
+>             }
+>
+>             if (using_genphy) {
+>                     err =3D d->driver->probe(d);
+>                     if (err >=3D 0)
+>                             err =3D device_bind_driver(d);
+>
+>                     if (err)
+>                             goto error_module_put;
+>             }
+>
+>             ...
+>     }
+>
+> Something will need to be done for the generic phy driver case before
+> this patch could be considered acceptable as this would slow the boot tim=
+e
+> for the topology I described in the patch description if the generic phy
+> driver was used.
 
-> ---
-> =C2=A0drivers/hid/hid-sensor-hub.c | 21 ++++++++++++++-------
-> =C2=A01 file changed, 14 insertions(+), 7 deletions(-)
->=20
-> diff --git a/drivers/hid/hid-sensor-hub.c b/drivers/hid/hid-sensor-
-> hub.c
-> index 26e93a331a51..3cd00afa453a 100644
-> --- a/drivers/hid/hid-sensor-hub.c
-> +++ b/drivers/hid/hid-sensor-hub.c
-> @@ -730,23 +730,30 @@ static int sensor_hub_probe(struct hid_device
-> *hdev,
-> =C2=A0	return ret;
-> =C2=A0}
-> =C2=A0
-> +static int sensor_hub_finalize_pending_fn(struct device *dev, void
-> *data)
-> +{
-> +	struct hid_sensor_hub_device *hsdev =3D dev->platform_data;
-> +
-> +	if (hsdev->pending.status)
-> +		complete(&hsdev->pending.ready);
-> +
-> +	return 0;
-> +}
-> +
-> =C2=A0static void sensor_hub_remove(struct hid_device *hdev)
-> =C2=A0{
-> =C2=A0	struct sensor_hub_data *data =3D hid_get_drvdata(hdev);
-> =C2=A0	unsigned long flags;
-> -	int i;
-> =C2=A0
-> =C2=A0	hid_dbg(hdev, " hardware removed\n");
-> =C2=A0	hid_hw_close(hdev);
-> =C2=A0	hid_hw_stop(hdev);
-> +
-> =C2=A0	spin_lock_irqsave(&data->lock, flags);
-> -	for (i =3D 0; i < data->hid_sensor_client_cnt; ++i) {
-> -		struct hid_sensor_hub_device *hsdev =3D
-> -			data-
-> >hid_sensor_hub_client_devs[i].platform_data;
-> -		if (hsdev->pending.status)
-> -			complete(&hsdev->pending.ready);
-> -	}
-> +	device_for_each_child(&hdev->dev, NULL,
-> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sensor_hub_finalize_pending_fn);
-> =C2=A0	spin_unlock_irqrestore(&data->lock, flags);
-> +
-> =C2=A0	mfd_remove_devices(&hdev->dev);
-> =C2=A0	mutex_destroy(&data->mutex);
-> =C2=A0}
+Right. And the way to do that is to move the generic phy driver
+matching to go through the normal probe model instead of doing a
+direct driver attach or directly calling the probe function. It's
+possible and I had a mental model a while ago, but didn't have the
+time to get around to it. Basically, if we find that none of the
+drivers match, we need to trigger something like -EPROBE_DEFER again
+and then match it with the generic phy driver. Or figure out some
+other way for the generic phy driver to NOT match if a better driver
+is available. Once we do that, I think the rest should be easy to fix.
 
+Let me know if there's anything I can do to help you move this forward.
+
+-Saravana
 
