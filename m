@@ -1,151 +1,85 @@
-Return-Path: <devicetree+bounces-107594-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107595-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F38698F271
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:22:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFEC698F2AE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:35:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36480280E42
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:22:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4F282B20A5E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:35:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0510219F410;
-	Thu,  3 Oct 2024 15:22:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061F31A08C4;
+	Thu,  3 Oct 2024 15:35:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KQKqVUye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CC5F4779F;
-	Thu,  3 Oct 2024 15:22:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D298E1A08AD;
+	Thu,  3 Oct 2024 15:35:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727968931; cv=none; b=PR49fzODC9qNMAoFju20sPcXjeD+W43lHmTEcgYhpg9q8RY66gzfK+Nof6+o0rY9YoIpc9ysBAOL7IerONtSJkTjKfeUQLL5VV1+GzuBes+5ULeq8czCtGcv6NPUHkLsrhXz1plkgWbk4Wb2JX1Db7/KJmDpjHHJPDQwyxcUztE=
+	t=1727969733; cv=none; b=Fzfqk9Sdo2dd3esAUCnwYjTIjzyqv9GMpqJYg558yC0N8l1ufVj8H8ab5OucBk1cIMNrETBfG5YGt3IS0i96nXtSzqmRqCCF9HHtgv79XkN0YvyyoTZKrLba4mzUlyLyryWEB9MuTLhmxTbg1wZnTIVXVOdN6apOY+UOQUBeGwQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727968931; c=relaxed/simple;
-	bh=ykGMWjUKIDhhhzJrM9GpYwxSH8y2AXPqMcCTCatD3zo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Bw4/UbjOrKieaCX4WP+5xcu0s6qMlEJmils1wROgqE1PZlYdmtVIZZw8nJobhbPnAvk2bJNT97f5FAGjA5HZtLfdM4aA3PAm0L0OVx8XMnbxZCLOqZvXF15uSKKEgVud8xJEHfmD38k4FwvpKPpRGNLd4u80MZ47sgp5tFTwdcs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.166.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-82aac438539so46782339f.1;
-        Thu, 03 Oct 2024 08:22:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727968926; x=1728573726;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=n4LKO0jgH7DyX+MQ6doJC00PWEp4e1Pim8oJtlmMS+s=;
-        b=kPN1Hf3+nGy1X1OoNzjtLbDGRXNBHpM+5K/7xScq4kpJmbvXIahoaytpJmxaeMY9Is
-         F0K3ILBcBJPDix4Cjib2KVoSEU3HezOcNsXMvUq6gDYFSNbeEoE+V2ELl5yrT+dWHs79
-         YQXDsAXRi3GPaNHUxQNjteSQyeKHzzYFmeweWuHBXxLP9LhRU81lISjW2RdtX4/WLLdC
-         7KviXJrgDk8iO4qD3Z1jkfX+HYK32kw4yCsWMOQ+vgbQ6umvNglxf/Mc52O0FcMqvYNz
-         HdX2vfRbmgDeKqjnmgYzWA3XK8ltWumUIwllS4C6xnwsUlkV0diDaBJjF6V5K9cKQz7S
-         jxYA==
-X-Forwarded-Encrypted: i=1; AJvYcCU4bypI69Kjtl/XTjb+56SXF5CeU605uX5jxdd9bexiLWrgQIepbI5imcx7oWi+1wyp08b22d9oqzJk@vger.kernel.org, AJvYcCWU2/Tl3la9k6Nl9uwESRnrDItUShVfKuzBUNIoxs1lTF/lYlAsYIdM25r7VRqNZODrKmUOE9KKes4glc7U@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLNQe19I0WZZNTs6cK5e990X4Sakih1huUiRbhz9WNf5mkUdQh
-	trWC7c5rkYcJZJsGWLcrOhAB/cdcCr0Z7dp+TcjB2hZaDZzMwhxO8uSr8stvytY=
-X-Google-Smtp-Source: AGHT+IG7UHCB5lSUQEIn8j8MT3InMhzfwC9MujIcd3nscEIpIduYkrWFkOeEu5S4hV7RckdeytWqQg==
-X-Received: by 2002:a05:6602:3f93:b0:82c:eb15:1ab1 with SMTP id ca18e2360f4ac-834d8435d7dmr586683139f.5.1727968925565;
-        Thu, 03 Oct 2024 08:22:05 -0700 (PDT)
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com. [209.85.166.44])
-        by smtp.gmail.com with ESMTPSA id ca18e2360f4ac-834efe376aesm29565039f.46.2024.10.03.08.22.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 08:22:05 -0700 (PDT)
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-82aa7c3b482so43577739f.2;
-        Thu, 03 Oct 2024 08:22:04 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVr2U9mu8xemFu/+6aDTGMHZMMqxORtt8d0sixuK9a10WoMoyy2s71+TjR4FYQDucS40d6latDGcblrj2dX@vger.kernel.org, AJvYcCVrqURXKGhY9iUesr0CFFhlCyfvYacDoB4+miNbO1c5j+O6HC2UD5hgcxrufMRRJyAK6VywkzgksRaU@vger.kernel.org
-X-Received: by 2002:a05:6602:29c4:b0:82c:ed3d:3a59 with SMTP id
- ca18e2360f4ac-834d84ba9fcmr818278039f.10.1727968924668; Thu, 03 Oct 2024
- 08:22:04 -0700 (PDT)
+	s=arc-20240116; t=1727969733; c=relaxed/simple;
+	bh=Xpnphwwd829gxgAEY0bfbdrdH0F885D32xY9lHA+LAc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=B17/OtaUlU0ixfXQ7tMR0876LYu3uS25V9rdmkvpBoDFpwWHx6vmNi1gzZrWDYZnMvNgF8mlsTUbPK46fpUhiw0O0DKA21URbFV/JVuUcFWsFomDXKqS8zkHDzqOVLp0e59TlCthNl2DX78YbjVi644fajsHn4WCZrgg2JzR7Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KQKqVUye; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40BEDC4CEC5;
+	Thu,  3 Oct 2024 15:35:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727969733;
+	bh=Xpnphwwd829gxgAEY0bfbdrdH0F885D32xY9lHA+LAc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KQKqVUye9Y2wwZkFnaqTXMkC/wC2pqd1NfH9fiba7/JSkgvHoGSrdV9K2i2IIll9F
+	 GNtWO4dzYcPUHPP4PBTOGY315ilw8fTG8FqaO5VpzpkShrlL0Z/lhpZu3GOCq2oNoA
+	 KRzGKWCLtYZJADKVMsfFbcm4etJDqA9anpEN2ksWJpYFCaozKtnLma/JU9j/9maZZg
+	 ztjjOi038x22PaYNNk+aEr4u60jloevT9au/bbt5o1wi5UfG//VcKUklpmZEFOFOqa
+	 BhWshIBVAc6/FscBBTM1sQDVlIlwIrDcZZSWnq6Vga0TYzH4YYIL43R9IdQJG8hTyY
+	 VeqEbrYGTW7Mw==
+Date: Thu, 3 Oct 2024 10:35:31 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: hao.wu@intel.com, krzk+dt@kernel.org, linux-fpga@vger.kernel.org,
+	mdf@kernel.org, conor+dt@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>, yilun.xu@intel.com,
+	trix@redhat.com, Fabio Estevam <festevam@denx.de>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND] dt-bindings: fpga: altr,fpga-passive-serial:
+ Convert to yaml
+Message-ID: <172796972949.1642216.12103783667342851354.robh@kernel.org>
+References: <20241003104230.1628813-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003111444.543964-1-andre.przywara@arm.com> <20241003111444.543964-6-andre.przywara@arm.com>
-In-Reply-To: <20241003111444.543964-6-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 3 Oct 2024 23:21:49 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64OYNUsfCAUnh2QEYec-AHWyugG+sXBc3XRCz3jtUrDmg@mail.gmail.com>
-Message-ID: <CAGb2v64OYNUsfCAUnh2QEYec-AHWyugG+sXBc3XRCz3jtUrDmg@mail.gmail.com>
-Subject: Re: [PATCH 5/5] regulator: axp20x: add support for the AXP323
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
-	Martin Botka <martin.botka@somainline.org>, Chris Morgan <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, Oct 3, 2024 at 7:15=E2=80=AFPM Andre Przywara <andre.przywara@arm.c=
-om> wrote:
->
-> The X-Powers AXP323 is a very close sibling of the AXP313A. The only
-> difference seems to be the ability to dual-phase the first two DC/DC
-> converters.
->
-> Place the new AXP323 ID next to the existing AXP313A checks, to let
-> them share most code.
-> The only difference is the poly-phase detection code, which gets
-> extended to check the respective bit in a newly used register.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-
-Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241003104230.1628813-1-festevam@gmail.com>
 
 
+On Thu, 03 Oct 2024 07:42:30 -0300, Fabio Estevam wrote:
+> From: Fabio Estevam <festevam@denx.de>
+> 
+> Convert the Altera Passive Serial SPI FPGA Manager binding
+> from text file to yaml format to allow devicetree validation.
+> 
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  drivers/regulator/axp20x-regulator.c | 11 +++++++++++
->  1 file changed, 11 insertions(+)
->
-> diff --git a/drivers/regulator/axp20x-regulator.c b/drivers/regulator/axp=
-20x-regulator.c
-> index 3ba76dbd0fb9..e3cc59b82ea6 100644
-> --- a/drivers/regulator/axp20x-regulator.c
-> +++ b/drivers/regulator/axp20x-regulator.c
-> @@ -1341,6 +1341,7 @@ static int axp20x_set_dcdc_freq(struct platform_dev=
-ice *pdev, u32 dcdcfreq)
->                 step =3D 150;
->                 break;
->         case AXP313A_ID:
-> +       case AXP323_ID:
->         case AXP717_ID:
->         case AXP15060_ID:
->                 /* The DCDC PWM frequency seems to be fixed to 3 MHz. */
-> @@ -1527,6 +1528,15 @@ static bool axp20x_is_polyphase_slave(struct axp20=
-x_dev *axp20x, int id)
->                 }
->                 break;
->
-> +       case AXP323_ID:
-> +               regmap_read(axp20x->regmap, AXP323_DCDC_MODE_CTRL2, &reg)=
-;
-> +
-> +               switch (id) {
-> +               case AXP313A_DCDC2:
-> +                       return !!(reg & BIT(1));
-> +               }
-> +               break;
-> +
->         default:
->                 return false;
->         }
-> @@ -1565,6 +1575,7 @@ static int axp20x_regulator_probe(struct platform_d=
-evice *pdev)
->                                                   "x-powers,drive-vbus-en=
-");
->                 break;
->         case AXP313A_ID:
-> +       case AXP323_ID:
->                 regulators =3D axp313a_regulators;
->                 nregulators =3D AXP313A_REG_ID_MAX;
->                 break;
-> --
-> 2.25.1
->
+>  .../bindings/fpga/altera-passive-serial.txt   | 29 --------
+>  .../fpga/altr,fpga-passive-serial.yaml        | 74 +++++++++++++++++++
+>  2 files changed, 74 insertions(+), 29 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/fpga/altera-passive-serial.txt
+>  create mode 100644 Documentation/devicetree/bindings/fpga/altr,fpga-passive-serial.yaml
+> 
+
+Applied, thanks!
+
 
