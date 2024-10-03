@@ -1,133 +1,106 @@
-Return-Path: <devicetree+bounces-107410-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107412-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44A4598EA52
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:28:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EED98EA7B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:38:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0609E28745D
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:28:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A6BAD2857DC
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF6CE84DFE;
-	Thu,  3 Oct 2024 07:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EDD312C460;
+	Thu,  3 Oct 2024 07:37:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HL3Svvap"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUcZIKmD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791CA53363;
-	Thu,  3 Oct 2024 07:28:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F3C053363;
+	Thu,  3 Oct 2024 07:37:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727940500; cv=none; b=CjBFzgEeVyEwueJp0Kyq7MQpHhoej5WP40s0toI4mKpd9rv+YY0+4l/A/lhkvwwJy+tRj457Fm0c5PdEi+7z6j9qYFo4axtjzx8l3KFpbyzPXloI9d92g0/PxG23CMN5GLGAfWJWuWGD3Bmcy2iMYjukLIyl3vsnJk0hgnYet3w=
+	t=1727941075; cv=none; b=REVCckcFt+zvC8IHHl/pZPBUhKFAIPygvMPhYZGG0Cyms6WgoyB05AXVKm3jQosYWoPBGGAdFuMPgIDLJVZmuN4KfsDjs3VKyyXcIDWh68/DLaM81Iepi3Fvm/zIOPhsz8h1Ndq5uNqewEySdy75dg0BttO3YLjEkKRLYv8hN+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727940500; c=relaxed/simple;
-	bh=k+kxyNjNtiHS+3bLGbe8kTVQyuCh/XyHx1/6zPqxCsQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gYSFGywXKaKgH8DqWW79Bd7FOo+yQSpDckV9bfcdZRbt+F10MJbBc9s8DsJiVk3q9n+o+mrAvU4PX9Qq0XBz1V6WhacB+qKACsyJfVxGRiQIhmqZkfOEKM8NI9VBqMqiBOtJiR6RZr/z2M5PSBc47Vu1ArhKewJ7xrl7A8sZEPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HL3Svvap; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7367C4CEC7;
-	Thu,  3 Oct 2024 07:28:14 +0000 (UTC)
+	s=arc-20240116; t=1727941075; c=relaxed/simple;
+	bh=kZh0SRdfxAr2VKYXWGtlFIDhd3Qqw+b7Z9aotoWwKmc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=SiLkMj+h8l5AoFO0rY/hd9pYekjOiX7+2KkxAoIRYwykbYV6thmaoPAdWCEvGa1AvQjjBLRahYto48rWyQyUzc6CNc4MaRtaF9+Pha8KT3HsSmU4Wea1qDnX28S/5ty2iKd9fMqHMOqABuKLKVxdCNJ2d4gzX0J5U0Xaij8h6xE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WUcZIKmD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id C8A9FC4CEC7;
+	Thu,  3 Oct 2024 07:37:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727940500;
-	bh=k+kxyNjNtiHS+3bLGbe8kTVQyuCh/XyHx1/6zPqxCsQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=HL3SvvapWF3Fb/ngjGnE23hkADQdtuanWfUA1YYOG1h18LgmvUxiln5FoliSKs4lA
-	 Xgzz+X1Vl7yVWzRwSf6GwUXck6d8iU9z7GjuJBUyl8YfSvo+f1EO5ySsqsRrzM3iM+
-	 YMJfdRjjiCfAv/vuh7jq8+etvRwyF+hlOUWK2CC/gS7OHFJoZ8a7ETe6Dj+yItkZ08
-	 mqKxTvJSM80fTJX9s+cGiZ8D8HTXWeQoSCM+64AGa6WMsbHlARZtB15wbvSIILrBHM
-	 iGv3/vRQhq8eG1kef0GZrGqdF0N/uKKb0zcJ9QqtIpt6qGWMFvVZ8VadMY5qxh2j/U
-	 Ax46UiM+CYVGQ==
-Message-ID: <4da5d801-6f23-4c9a-ba6c-54b81549f071@kernel.org>
-Date: Thu, 3 Oct 2024 09:28:12 +0200
+	s=k20201202; t=1727941074;
+	bh=kZh0SRdfxAr2VKYXWGtlFIDhd3Qqw+b7Z9aotoWwKmc=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=WUcZIKmDeDCRM5RoSGDOD6ADmuM12U6tlRozJtPa21UvC+UIP8rP39OLnvO7JcwzF
+	 Vq72p0p2/eWDHmYBXvUH6BT+3pAEKAcBlCIohftTpVHa0wK0bnLQPICtOxumWoRPSu
+	 43S5HeizmlpDmhYR5/Xka9yMEtq1q5pp565Vz+EFIWC3WQ3Exdev3469CY6o3hcFVN
+	 ++8EhxwOh9R0Zq4FtnrbSACWw1E6SGFTdG6oYP6IVfXtswEe6LYI9WxcvrdZeGaRho
+	 0jYcwHUEY74Aazxh1WDtvetI7nUQLbPW2hxsc582r0ReGy8ubDNMOZ8c6nqZuF7NHe
+	 cgUVTnJJL+IYg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B7B02CF31A2;
+	Thu,  3 Oct 2024 07:37:54 +0000 (UTC)
+From: Jean-Baptiste Maneyrol via B4 Relay <devnull+jean-baptiste.maneyrol.tdk.com@kernel.org>
+Subject: [PATCH 0/3] Update email addresses and add missing MAINTAINERS
+ entry
+Date: Thu, 03 Oct 2024 09:37:44 +0200
+Message-Id: <20241003-invn-maintainers-email-update-v1-0-7e4062ad68cf@tdk.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/5] dt-bindings: arm: qcom: add Linksys EA9350 V3
-To: Karl Chan <exxxxkc@getgoogleoff.me>, linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com,
- sboyd@kernel.org, linus.walleij@linaro.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <20241002232804.3867-1-exxxxkc@getgoogleoff.me>
- <20241002232804.3867-2-exxxxkc@getgoogleoff.me>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241002232804.3867-2-exxxxkc@getgoogleoff.me>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMhJ/mYC/x3MQQqDMBBG4avIrB3QGCh6leIijb92QKeS2FAQ7
+ 97BxVt8m3dSRhJkGqqTEopk+aihrSuK76ALWCYzucb5pncdixblLYgeFlJmGFb+7lM4wCG6Vxc
+ fHn5uyR57wiy/+/8cr+sPJy34xm8AAAA=
+X-Change-ID: 20240923-invn-maintainers-email-update-ac2b3c74e4f1
+To: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
+ Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1727941073; l=907;
+ i=jean-baptiste.maneyrol@tdk.com; s=20240923; h=from:subject:message-id;
+ bh=kZh0SRdfxAr2VKYXWGtlFIDhd3Qqw+b7Z9aotoWwKmc=;
+ b=K7GuIhgN7YfUjiIW3DJnziiuO2nmJwyKGioZf7wJ4GrMwPXHSDy8t1G1W7T0VmZJ7s2e8mozE
+ MZxn+m6a8HEBBy0/rEwPv9pTsQ+NSYYjf78NR1afnJ0A1o8/WJUkok6
+X-Developer-Key: i=jean-baptiste.maneyrol@tdk.com; a=ed25519;
+ pk=bRqF1WYk0hR3qrnAithOLXSD0LvSu8DUd+quKLxCicI=
+X-Endpoint-Received: by B4 Relay for
+ jean-baptiste.maneyrol@tdk.com/20240923 with auth_id=218
+X-Original-From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+Reply-To: jean-baptiste.maneyrol@tdk.com
 
-On 03/10/2024 01:28, Karl Chan wrote:
-> Document linksys,jamaica for Linksys EA9350 V3.
-> 
-> Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+Migrate invensense email addresses to TDK domain. Add missing entry
+for iio inv_mpu6050 driver.
 
-You received one valid tag. That tag should be added.
+Signed-off-by: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+---
+Jean-Baptiste Maneyrol (3):
+      MAINTAINERS: iio: migrate invensense email address to tdk domain
+      dt-bindings: iio: imu: migrate InvenSense email to TDK group domain
+      MAINAINERS: iio: imu: add entry for InvenSense MPU-6050 driver
 
-In previous versions you added that valid tag and then you added some
-fake tags to other patches. I asked to drop the fake tags, not the valid
-one.
-
-Can you please read carefully submitting patches document?
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ .../devicetree/bindings/iio/imu/invensense,icm42600.yaml       |  2 +-
+ .../devicetree/bindings/iio/imu/invensense,mpu6050.yaml        |  2 +-
+ MAINTAINERS                                                    | 10 +++++++++-
+ 3 files changed, 11 insertions(+), 3 deletions(-)
+---
+base-commit: 550aaa170cd9176655382364308d2ff54623b30b
+change-id: 20240923-invn-maintainers-email-update-ac2b3c74e4f1
 
 Best regards,
-Krzysztof
+-- 
+Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+
 
 
