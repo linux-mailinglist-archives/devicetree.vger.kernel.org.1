@@ -1,170 +1,136 @@
-Return-Path: <devicetree+bounces-107508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39E5198ED96
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:07:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80B6098EDD5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:17:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D59501F22E83
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:07:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F399DB24495
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:17:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561E8153565;
-	Thu,  3 Oct 2024 11:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 102A01865E5;
+	Thu,  3 Oct 2024 11:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NAzcmurs"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ALedOsC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B15D1514F8;
-	Thu,  3 Oct 2024 11:07:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D8A217CA00;
+	Thu,  3 Oct 2024 11:16:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727953638; cv=none; b=CYgCkEQ2Z5SmENgKRXMmfTOslwsLPeaO0WLg5BSA1gjozYIdBLkLT9kgcY+trhhQOo7SQ9RWJqCX0Qr4K1tyRnRIYVVXqEFnV5F6Zk+ebdbwuMv+DFh3iugOQxe1FKeN6/tyrE3OX4AlD+J3ja+ZlBAXFfanDIumjS0igWvTNyo=
+	t=1727954171; cv=none; b=A5jWSuPPRvJtK2ieHXwwEyeYhmy/vIOfVdrV1yIwSEXBC81RsIjeEM+fAR90vMaeEx2e77j6zUAgB1WqyGx8MQ71DiYMkd1n7Q+oZbrUn/1Y8iIP+6zIJGWkVVoOtB3OlLP1ORnRwU0ypE9L4RNmytr6UbqXr4fkPll9++bIIJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727953638; c=relaxed/simple;
-	bh=H0tqyKVyS8d9VvNGf2HV0FLQtDRwtSl9qI8LZamkcGs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FM6ScF7ya9GSxXdPjd2VVebMmrBVEDQVYB5sbSO2O3KBwt9ixR9EM6ETRwkKsZ0vi5dj6qdiQBdENWuznw6S8mEzBwPIZLNlHp56fL0DX8zRtvQV1aD9dbYO3pAxCCkBtsCYmNXhv+bBoRKxoCMkA58opS3mZI+Q6yM5dEM7hh4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NAzcmurs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A09DAC4CEC5;
-	Thu,  3 Oct 2024 11:07:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727953637;
-	bh=H0tqyKVyS8d9VvNGf2HV0FLQtDRwtSl9qI8LZamkcGs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NAzcmursO5VejK7HRotzHu/Zs3ciXYORGY9Z1YOhv0vUEXlOzABqeyjEWFeSTnx9i
-	 4xwF9A4Ffc4eckfx1hjiqyicSdNdEm+2zmsEBLl6K4vn3CSXhqjwRpKZoohU0aK2Vf
-	 t5wEm6f9JpIX9EYfKRTuwZCAAwR6S2BY4VxgODM9ce1D/GLKy6dYqTvsxvcVUPZBjl
-	 KAocAYWRWANgouesw9QthFoyKwtXwuNDFFjyUOuQPHhFO0orWapZUfhEYQUDO+XWln
-	 +0H6eQXI8maWwf8oUFujyn4n73g8OJdzLJoYlryG0LY7kY5Lg3x7YNrTL5GtK7bh3k
-	 plFZlqQj6LN0g==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1swJfy-000000003za-1zto;
-	Thu, 03 Oct 2024 13:07:19 +0200
-Date: Thu, 3 Oct 2024 13:07:18 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1727954171; c=relaxed/simple;
+	bh=kr8KkzqZqD7v494nJHUD9nRrTnPXw7FF2KUsOWYi+Ys=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PF5QAEOB3ubcV8HqZFGwdHYVXKfy9VYvzq6EMc28KFBjrpR7Qs6MrAIpsbGYGQmIQvxRTxT3FKvCywW+xIJg0PDX1rmCpEc+Cb8b1Y3tPwpKkEx3DG26z6XyiFwpZtS9MnWV1yetijH2TvBp65bjNF3TC95o3FLPHO446t2rV/w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ALedOsC1; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id 4B62788B89;
+	Thu,  3 Oct 2024 13:16:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1727954162;
+	bh=tcFmzDMbR5wEJTwT8WTvhkLx7TkTCIPPzwFiS9tBW8I=;
+	h=From:To:Cc:Subject:Date:From;
+	b=ALedOsC1yEiZOBA+gKNpfbZZrauTvIzp6ojNvEXIYbq159bTpCSy3iNdqOhnU9fU2
+	 YNxESMeOJ30B37aez54BEF0K6tzFQYH+1kx7SrXPHZkqmZzwSGabQaqctSmVLPwY4g
+	 gGreHQVHiwlRAUJgMkNFUV4uYACSK1+xm/FCmgQNKbCaj8XlO402OGoQ41ow7tOpNk
+	 NMavcD72T8nqInWX//K5Bc5DmOlVz0LuixkrU+/CMeNkzKQteBAd+LrJv6f0k1Tfgc
+	 0b1ncpGFxSdVWtp0Ks06735DNBgh6+2twWeWRJqEUFK8ZM+UJghj9MVwNs4wMUweXF
+	 cG2Yltqr+QIhw==
+From: Marek Vasut <marex@denx.de>
+To: linux-wireless@vger.kernel.org
+Cc: Marek Vasut <marex@denx.de>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Adham Abozaeid <adham.abozaeid@microchip.com>,
+	Ajay Singh <ajay.kathat@microchip.com>,
+	=?UTF-8?q?Alexis=20Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Steev Klimaszewski <steev@kali.org>
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
- the on-board wcn6855
-Message-ID: <Zv565olMDDGHyYVt@hovoldconsulting.com>
-References: <20240930103041.49229-1-brgl@bgdev.pl>
- <20240930103041.49229-4-brgl@bgdev.pl>
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: [PATCH v7 1/7] dt-bindings: wireless: wilc1000: Document WILC3000 compatible string
+Date: Thu,  3 Oct 2024 13:14:35 +0200
+Message-ID: <20241003111529.41232-1-marex@denx.de>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240930103041.49229-4-brgl@bgdev.pl>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On Mon, Sep 30, 2024 at 12:30:39PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-> and bluetooth nodes to consume the PMU's outputs.
-> 
-> With this we can drop the regulator-always-on properties from vreg_s11b
-> and vreg_s12b as they will now be enabled by the power sequencing
-> driver.
-> 
-> Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Document compatible string for the WILC3000 chip. The chip is similar
+to WILC1000, except that the register layout is slightly different and
+it does not support WPA3/SAE.
 
-Without this patch I'm seeing an indefinite probe deferral with
-6.12-rc1:
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Adham Abozaeid <adham.abozaeid@microchip.com>
+Cc: Ajay Singh <ajay.kathat@microchip.com>
+Cc: Alexis Lothoré <alexis.lothore@bootlin.com>
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Eric Dumazet <edumazet@google.com>
+Cc: Jakub Kicinski <kuba@kernel.org>
+Cc: Kalle Valo <kvalo@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Paolo Abeni <pabeni@redhat.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-wireless@vger.kernel.org
+Cc: netdev@vger.kernel.org
+---
+V2: - Use WILC1000 as fallback compatible string for WILC3000
+V3: - Swap the wilc1000/wilc3000 compatible order
+V4: - Add RB from Krzysztof
+V5: No change
+V6: - Rebase on next-20240926
+V7: - Rebase on next-20241003 / wireless-next/main 5a4d42c1688c
+      with v2 wifi: wilc1000: Keep slot powered on during suspend/resume
+---
+ .../bindings/net/wireless/microchip,wilc1000.yaml           | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-	platform 1c00000.pcie:pcie@0:wifi@0: deferred probe pending: pci-pwrctl-pwrseq: Failed to get the power sequencer
+diff --git a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+index 2460ccc082371..5d40f22765bb6 100644
+--- a/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
++++ b/Documentation/devicetree/bindings/net/wireless/microchip,wilc1000.yaml
+@@ -16,7 +16,11 @@ description:
+ 
+ properties:
+   compatible:
+-    const: microchip,wilc1000
++    oneOf:
++      - items:
++          - const: microchip,wilc3000
++          - const: microchip,wilc1000
++      - const: microchip,wilc1000
+ 
+   reg: true
+ 
+-- 
+2.45.2
 
-Can you please look into that and make sure that the existing DT
-continues to work without such warnings.
-
-> ---
->  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 100 +++++++++++++++---
->  1 file changed, 86 insertions(+), 14 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> index 6a28cab97189..7230d5420199 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-> @@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
->  			};
->  		};
->  	};
-> +
-> +	wcn6855-pmu {
-> +		compatible = "qcom,wcn6855-pmu";
-> +
-> +		pinctrl-0 = <&bt_default>, <&wlan_en>;
-> +		pinctrl-names = "default";
-> +
-> +		wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-> +		bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-
-> @@ -1258,20 +1327,16 @@ &uart2 {
->  	bluetooth {
->  		compatible = "qcom,wcn6855-bt";
->  
-> -		vddio-supply = <&vreg_s10b>;
-> -		vddbtcxmx-supply = <&vreg_s12b>;
-> -		vddrfacmn-supply = <&vreg_s12b>;
-> -		vddrfa0p8-supply = <&vreg_s12b>;
-> -		vddrfa1p2-supply = <&vreg_s11b>;
-> -		vddrfa1p7-supply = <&vreg_s1c>;
-> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
-> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
-> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
->  
->  		max-speed = <3200000>;
-> -
-> -		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> -		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-
-What about swctrl? You're just removing this pin from DT now without any
-comment on why you think that is the right thing to do.
-
-Should this one also be an input to the PMU block?
-
-> -
-> -		pinctrl-0 = <&bt_default>;
-> -		pinctrl-names = "default";
->  	};
->  };
->  
-> @@ -1761,4 +1826,11 @@ reset-pins {
->  			bias-disable;
->  		};
->  	};
-> +
-> +	wlan_en: wlan-en-state {
-> +		pins = "gpio134";
-> +		function = "gpio";
-> +		drive-strength = <8>;
-
-Yet another drive strength? Also from fw config?
-
-> +		bias-pull-down;
-> +	};
->  };
-
-Johan
 
