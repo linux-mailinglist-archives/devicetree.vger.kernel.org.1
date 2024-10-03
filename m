@@ -1,132 +1,140 @@
-Return-Path: <devicetree+bounces-107506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6BC98ED88
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:03:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C21998ED92
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA00AB2240E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:03:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E651F229F9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:05:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5211B1514F8;
-	Thu,  3 Oct 2024 11:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21DF14F9E7;
+	Thu,  3 Oct 2024 11:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qi1kM4A+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qn8FIOvZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6C314F123;
-	Thu,  3 Oct 2024 11:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC9C14431B;
+	Thu,  3 Oct 2024 11:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727953405; cv=none; b=cRA4VcIoaiRSdHELeib83Xqq31HN71vk/v1RWW5cV9Uk2t1pcG2ispktpPcwG/wImpNbB+rXUOa09wxXSkP73KVH9YeQkCnJG1VBjHrezEVHv/VUUjlvjAi81ZlCUapTMXlR4UPxZjqzlDFMIuIGMiOpT2OtPR9s9815TiQKFzc=
+	t=1727953534; cv=none; b=br/izNFbnaICPs4kN9gg0XpT316iYpPPaIPeZ0YrfXTMEDbJkZwiPQhX6Lf1VmGM4diKHul+QqHipVJ6BeR3SsvRLlZxQN3jk0PCiXBSXN9/pYMgVZ1VceqIMBJ/4ODsTLO6ALXsG8FPjmkDg+0AxEJk/xh7XtNSzi8Slz47KXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727953405; c=relaxed/simple;
-	bh=df2Nbj/hqQVIrGa+4waYwuDbuQZWuWu1AE+VTeU/f70=;
+	s=arc-20240116; t=1727953534; c=relaxed/simple;
+	bh=IRPu9PkUbz+dFzJ4rkLXyM9DGV9j0tNNK6BigQdP7XU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EJx7U6qEibMCwAGT8/2Saw8fTMs4oIrMQOKLeq18beVJZge/mzh9KMfV9YF3uFtIQaXZTm5pCGKqRiIiL6fwg/4AS3pj2SyxUjbP9pa+WE4MG2iMJn4vC0CPBrfnz29mOfT0wB/PSic/YXK3YanEF12bR9kuvPKc0kRLJsMba8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qi1kM4A+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46EA9C4CEC5;
-	Thu,  3 Oct 2024 11:03:15 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QiSvCdZH3YRh+UQHiTonbR6/gAZvm2lErCnSP1Xk75YOpxNQEVbiSqQ0Ua7zoovtPYOqJZDoXtRDBi2p7t8/8dr9xmYqlsURUDXeRMjzvR2Wx49SU1Ir2jZekylUUEP0+aZ/Jq46mS6EQs8LFMxlmvBObdiw6wuOzQJXx76irlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qn8FIOvZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85564C4CEC5;
+	Thu,  3 Oct 2024 11:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727953404;
-	bh=df2Nbj/hqQVIrGa+4waYwuDbuQZWuWu1AE+VTeU/f70=;
+	s=k20201202; t=1727953534;
+	bh=IRPu9PkUbz+dFzJ4rkLXyM9DGV9j0tNNK6BigQdP7XU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qi1kM4A+RaAdIARpZ5o6qFW04lMQITGmFeI+Agv1TzuVt+oC5bw6dyO9QGVzZc+yA
-	 vHwVYzgRyMie6OKvDhY9mlziKIX0IQdHhu5SPfMBOAU5iC0/prGGR44vzImFHiTspW
-	 WygKX3YTf8TbnIRWhBnwzrHjnLX6yypHAYSaKPKODk0PVnasgSrvF0npsCFfObBbtB
-	 ZnkfcD738tVwS9ipJwD4mmvpU8YYs2+E7F1Z451dZR5iCIsvTp4dJLn7sGH752lEq8
-	 o5GOthWHPR7petJ9P1Kpbm1rovHNYXteZoZqcJpoKP4G2M6hKGZpmklHWwozfbuCOL
-	 8bGZhf0oO4skQ==
-Date: Thu, 3 Oct 2024 12:03:11 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Shuah Khan <skhan@linuxfoundation.org>
-Cc: Deepak Gupta <debug@rivosinc.com>, Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	b=Qn8FIOvZ/VuTBe462XN7OHux1pUzHPFrIp1skj0zosXIeARv8hAj3E/ySCKtzxjxp
+	 09JkmE7ONJxgKMWEVhorjFc37C6cU+y9gN2o5LY5zBBw8Mc/LBdWwR46kfL2JMmIVi
+	 KE63zbkEwAsQmESM1I2BSaIKprnLlUlkpbHh2WxZi8YLdzT4MYSORfqhdShEOwY7bC
+	 o4mYZ4MUuymqwFJWEYs4ymOMSSFksDWk+tR5pX68/fMznfefLZlgdEMB2wDrSd6U4h
+	 tAMJT2KgB+dsipVTq7tiJ4EMXgYkodmosq/KheaGTa/BRq0O+rjNehlJfUWcZytdjj
+	 PKRjfVrmumBkw==
+Date: Thu, 3 Oct 2024 12:05:30 +0100
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
+Cc: linux-riscv@lists.infradead.org,
+	Conor Dooley <conor.dooley@microchip.com>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, rick.p.edgecombe@intel.com
-Subject: Re: [PATCH 33/33] kselftest/riscv: kselftest for user mode cfi
-Message-ID: <b4347055-46f7-4e06-b484-bbf147b80fe4@sirena.org.uk>
-References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
- <20241001-v5_user_cfi_series-v1-33-3ba65b6e550f@rivosinc.com>
- <fdf602e9-a8b1-4f62-9e26-bb62a7202d22@linuxfoundation.org>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC v1 5/5] dt-bindings: riscv: document vector crypto
+ requirements
+Message-ID: <20241003-variable-quirk-9a13fe040e4a@spud>
+References: <20241002-defeat-pavestone-73d712895f0b@spud>
+ <20241002-sincerity-urgent-acdb0e8d8a66@spud>
+ <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="kAfVHLmbYIIytvqg"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="HroZ+uV00yIqexpw"
 Content-Disposition: inline
-In-Reply-To: <fdf602e9-a8b1-4f62-9e26-bb62a7202d22@linuxfoundation.org>
-X-Cookie: I'm into SOFTWARE!
+In-Reply-To: <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
 
 
---kAfVHLmbYIIytvqg
-Content-Type: text/plain; charset=us-ascii
+--HroZ+uV00yIqexpw
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 02, 2024 at 05:18:36PM -0600, Shuah Khan wrote:
-> On 10/1/24 10:06, Deepak Gupta wrote:
+On Thu, Oct 03, 2024 at 09:59:38AM +0200, Cl=E9ment L=E9ger wrote:
+>=20
+>=20
+> On 02/10/2024 18:10, Conor Dooley wrote:
+> > From: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > Section 35.2. Extensions Overview of [1] says:
+> > | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the co=
+mposite extensions Zvkn and
+> > | Zvks-- (sic) require a Zve64x base, or application ("V") base Vector =
+Extension.
+> > | All of the other Vector Crypto Extensions can be built on any embedde=
+d (Zve*) or application ("V") base
+> > | Vector Extension
+> >=20
+> > Apply these rules in the binding, so that invalid combinations can be
+> > avoided.
+> >=20
+> > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-isa-=
+release-698e64a-2024-09-09 [1]
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  .../devicetree/bindings/riscv/extensions.yaml | 32 +++++++++++++++++++
+> >  1 file changed, 32 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
+Documentation/devicetree/bindings/riscv/extensions.yaml
+> > index abf2579171c5b..02b822bbf341d 100644
+> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> > @@ -651,6 +651,38 @@ properties:
+> >              - contains:
+> >                  const: zve64f
+> > =20
+> > +      - if:
+> > +          contains:
+> > +            anyOf:
+> > +              - const: zvbc
+> > +              - const: zvkn
+> > +              - const: zvknhb
+> > +              - const: zvks
+>=20
+> Shouldn't zvksed and zvksh be part odf this list ? My understanding of
+> the spec might be wrong but "Zvks--" seems like a poor-man's wildcard
+> for Zvks* extensions ?
 
-> > +#ifndef __NR_prctl
-> > +#define __NR_prctl 167
-> > +#endif
+I don't think so, there's a corresponding -- on the first line of the
+quote. I think it is some really odd styling that should be replaced by
+commas.
 
-> > +#ifndef __NR_map_shadow_stack
-> > +#define __NR_map_shadow_stack 453
 
-> Why do we need to define these? Shouldn't including
-> asm-generic/unistd.h sufficient?
-
-We have this issue on arm64 as well, there's some issue with directly
-pulling in the asm header interfering with libc in some situation (I
-can't immediately figure out which situation or which libc to remind
-myself what it is though...) so we've got local defines like we do for
-the NT_ defines for ptrace.  I see x86 is doing the same.
-
---kAfVHLmbYIIytvqg
+--HroZ+uV00yIqexpw
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmb+ee4ACgkQJNaLcl1U
-h9CFRQf/ZisHmPhxTo4GA9gvOyCclGJtTt5XbyRTnPd3KzS/hDF/0q+VpUbmWm+Y
-SmcaycdcESUg9VOXQZorDB8+tK3kaP7Sg2JmpaLB8yoKfuO3t/rVL6pt/vCKLlgX
-qwzZD6zQUDZlBt0SteGmZnXzHDKpjNrYf1MQdFSHYVkJSQCCnvPV0u2FXZVYj9Bb
-Jz/PNuyt9uexrRqPrBsbIKJcJUHREFq6SR1NYDMReO+lyYD8xLkKmXPH0K55C870
-FHSWZIUGQB5Lt80AJmT/FQrXn62k7+91Nalz/CyYtaqH/RdFHTD+mBkJtSs+c1gC
-i/L5TsJAiSLGEZl9I4rSRniStmUSlg==
-=2Xkh
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv56egAKCRB4tDGHoIJi
+0q+XAP4ja16VtZOTGXq9vok9Co1HNrwbljm0CPOR0Z0+0jPpEgD/TH4OjHN89AB3
+JmxtsmtuTZlulCNrokTF5ObEBZ8MSAw=
+=nnno
 -----END PGP SIGNATURE-----
 
---kAfVHLmbYIIytvqg--
+--HroZ+uV00yIqexpw--
 
