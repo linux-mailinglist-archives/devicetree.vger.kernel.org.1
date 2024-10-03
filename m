@@ -1,121 +1,150 @@
-Return-Path: <devicetree+bounces-107458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3426498EBA6
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:33:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 785AE98EBAF
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:34:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDA211F211FC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:33:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 006CB1F213C5
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:34:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A130B13B2A4;
-	Thu,  3 Oct 2024 08:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D8C13C69E;
+	Thu,  3 Oct 2024 08:34:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="px/1BsEF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hP/9M23Q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E561E83CD2
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 08:33:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1547213A869;
+	Thu,  3 Oct 2024 08:34:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727944387; cv=none; b=gad/bFLzC+bShMPlq/ZqIirY1+uP7cxZvnTMhb4NQXRKBEYBradockpJlOBzdPX8XVKWnuyH084QPT761shY3I8V+QqHDwMCFInLW5G6rAfjcMncf92qDKyXA4JW+vv+ehQH8sq+/UhLl1AET9gnq5G0tCusELAr0J0w8Cxc5dw=
+	t=1727944488; cv=none; b=BgtBZHW3g4C1C/T4MjBl9DyhvhK7UXR4dJYpcr3SNZ8o6zNzbXUw1t0FidVY0m4Z+L5N1djuxaaHGYSkEq3kZLIArBAtL43rIahFhwP75NDj9mz7eXupMNuPwQZNZe7GJ5ZsWziKxcs549H9AuTqDEIBcdKhAbVkjR9UQCRmD2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727944387; c=relaxed/simple;
-	bh=u4OLv+on1w5ZpzDGkYaICMJJsNef8x3hvDTkCCV6EDU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s4Ocx0St/uMRO4aoInOFTi967tl7NkpjI4bWQjOHfv9YIOYHncN4VliYSaJHT3QVtg2R9lURIp5biJCmp2GKSM1b3ePKBi2ibpBkmYUw31MwPlFKjepmYp0fJRyRWMEIzrMtIqoKUTU0iEuyAnVLeLAMQ/GS2+mLw+tGXxj1WN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=px/1BsEF; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fad0f66d49so10790471fa.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 01:33:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727944384; x=1728549184; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ut9/6tzTcXAHL2hTz8WOjBkkwiPd7bJB3/FRKaJ13Q8=;
-        b=px/1BsEFKwEtWdhQSRoqjazLq9us/KpEKWe0ENctIGnOmwJxgwCm0Cizv5TZslbQMe
-         txXv3kp8lOTmYBtmg/DLUdsOFRuceqDyw3Dfdf60zhSN4Y+rPyIa0BwQiqOXD8+LQMj5
-         cOTpaMOKfG9Y3iN3edz6AiTyviX62sVhP+aWUJtMHQ2Q+Va1aq83qxKmgCnDS5ss7atV
-         IPajX1f1dkwRMCR8gsWS7QP/d+VGoXtbTfXXnGBZZMI8tuazfi02mw5cVPEh0EOt24eI
-         q0bCxzxl49H0zOSVcCoU2hhAqFYFj/AjUD/e0W0LKkJjLpIM1/6wbfrvcfd5rHw902Xd
-         OPxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727944384; x=1728549184;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ut9/6tzTcXAHL2hTz8WOjBkkwiPd7bJB3/FRKaJ13Q8=;
-        b=UIGVGPYy8Z4K4JcR59eKammcZjVrRYmY80mORv1ax1J8aUt4Qx2azdcZfusPIJUeqF
-         styhGyrz4Ssxzt6jvuQyuHd7YqZoaKR2ONCDWqNB0rj1Hkwi2f8jYXjCFebCoJtOBNYA
-         vPjoz8Y3VJVfLnP4Oz5BTTRWpOyBbyYRqwodzQFgznPxl+2uMgNDvVWBnxp7P9H2PA6v
-         MJ1lUNIAF3ynaID4BXRpSxQ4l2oWRe/mHd1TvU+qVoWmDbAIg9vYs+dvqqN+G0ZhVdHN
-         fGROfvzS0zXLDPW/hjihNZ2Qfurs4LPIGiVZKM1cRvRuMavRJkfreoTzPhXFbZzrSjxH
-         3hng==
-X-Forwarded-Encrypted: i=1; AJvYcCW/DXhKCZdtvgOIruJUDo719EN8VVszzGAg5+v3oA60ejFETy/RklupDAD+w7+zKj895TspmQgref4Y@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX6mn2DR4xPRQXwYFZJ0I0RhF3EHx4QBe4tZekFdOQ9OVmVLD/
-	Qlm9UnlajhvjjA3n/mB/HxlVwr6oRYGCmWrxbn12Zobm7ByxAhzrM4rlcVazBo4=
-X-Google-Smtp-Source: AGHT+IFzzydZhzRyTcrKJI/fWPPYaGOnihdLKAdpEL3h8L33Wgv6a8fHoeQeUjmFsMHAoV6o50i6EQ==
-X-Received: by 2002:a2e:b8c1:0:b0:2f6:5f0a:9cfe with SMTP id 38308e7fff4ca-2fae1082debmr37433871fa.30.1727944383150;
-        Thu, 03 Oct 2024 01:33:03 -0700 (PDT)
-Received: from [192.168.0.15] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8ca3bd7bfsm452630a12.14.2024.10.03.01.33.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 01:33:02 -0700 (PDT)
-Message-ID: <a86d05c3-5151-4161-8612-58894b1d0203@linaro.org>
-Date: Thu, 3 Oct 2024 09:33:00 +0100
+	s=arc-20240116; t=1727944488; c=relaxed/simple;
+	bh=8aTsuHACr2frjXo/0NtlfWhF09Us83P33NSNYLo1kng=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rLIbyj6G5JAYk7JttiLI7nxa3VQw+fF6ZU8N8nIHCtNz8oruCjdJ5iLh1mHkZkO1Q73QYKxAtp1OKFt5RNXD1qJFKtmQWTAZet02Ls8JF9iT823G2C32izXb5dyZeh5UdbmjqW/27aMN+qbf9THMqxSoRq+IqP+QJzRg+6s1Sdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hP/9M23Q; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0284DC4CEC7;
+	Thu,  3 Oct 2024 08:34:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727944487;
+	bh=8aTsuHACr2frjXo/0NtlfWhF09Us83P33NSNYLo1kng=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hP/9M23QfCL2QJicEtiHlHfYTLSTs7/IV4wJ55lhG3N7VPOYG1CGUpKr9A1nmDE8l
+	 i9Qpf1F7FcLWpy6+g032wuarLiKbIsPglc27m3ZwH6Cb5F1JMZ03RbnsZPMjBB1eOD
+	 s4l/ZZLB41h+yY6usQ39t3w/1MO7oUsefoSLGFZTK7trz1M4mjmrPQiS+ihjOPK266
+	 s5lblsvik4I2nd1MP5vrE4wY0A6yp4eWySCUpU67zryYJOKByDZp1C/0bIOSnbmNsB
+	 pgV5jaMeX2AVXaX4WOh9nWuOvOoB4CJtONTbWc5ss6BD5wOO+IynAXSb0HZqalcaUG
+	 Lc7DXUK5ZXOBQ==
+Date: Thu, 3 Oct 2024 10:34:45 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Charan Pedumuru <charan.pedumuru@microchip.com>
+Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: net: can: atmel: Convert to json schema
+Message-ID: <xykmnsibdts7u73yu7b2vn3w55wx7puqo2nwhsji57th7lemym@f4l3ccxpevo4>
+References: <20241003-can-v2-1-85701d3296dd@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] media: dt-bindings: Add OmniVision OV08X40
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
- Jason Chen <jason.z.chen@intel.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sergey Senozhatsky <senozhatsky@chromium.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241002-b4-master-24-11-25-ov08x40-v3-0-483bcdcf8886@linaro.org>
- <20241002-b4-master-24-11-25-ov08x40-v3-2-483bcdcf8886@linaro.org>
- <t4fajppdqagkl7wr2krcucsga4zocz6liar64odk2mnasdyfms@5fp7bfwalson>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <t4fajppdqagkl7wr2krcucsga4zocz6liar64odk2mnasdyfms@5fp7bfwalson>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241003-can-v2-1-85701d3296dd@microchip.com>
 
-On 03/10/2024 09:29, Krzysztof Kozlowski wrote:
-> On Wed, Oct 02, 2024 at 02:58:44PM +0100, Bryan O'Donoghue wrote:
->> +        properties:
->> +          data-lanes:
->> +            oneOf:
->> +              - items:
->> +                  - const: 1
->> +                  - const: 2
->> +              - items:
->> +                  - const: 1
->> +                  - const: 2
->> +                  - const: 3
->> +                  - const: 4
->> +
->> +          link-frequencies: true
+On Thu, Oct 03, 2024 at 10:37:03AM +0530, Charan Pedumuru wrote:
+> Convert atmel-can documentation to yaml format
 > 
-> Not much changed here and you did not continued discussion about it.
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
+> ---
+> Changes in v2:
+> - Renamed the title to "Microchip AT91 CAN controller"
+> - Removed the unnecessary labels and add clock properties to examples
+> - Removed if condition statements and made clock properties as default required properties
+> - Link to v1: https://lore.kernel.org/r/20240912-can-v1-1-c5651b1809bb@microchip.com
+> ---
+>  .../bindings/net/can/atmel,at91sam9263-can.yaml    | 58 ++++++++++++++++++++++
+>  .../devicetree/bindings/net/can/atmel-can.txt      | 15 ------
+>  2 files changed, 58 insertions(+), 15 deletions(-)
 > 
-> Best regards,
-> Krzysztof
-> 
+> diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
+> new file mode 100644
+> index 000000000000..c818c01a718b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip AT91 CAN Controller
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +
+> +allOf:
+> +  - $ref: can-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - atmel,at91sam9263-can
+> +          - atmel,at91sam9x5-can
+> +      - items:
+> +          - enum:
+> +              - microchip,sam9x60-can
+> +          - const: atmel,at91sam9x5-can
 
-Ah my mistake, I didn't read the bit at the bottom of your email
+That is not what old binding said.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: can_clk
+
+These are new...
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+
+Here the same. Each change to the binding should be explained (answer
+to the: why) in commit msg.
+
+> +
+> +unevaluatedProperties: false
+
+Best regards,
+Krzysztof
+
 
