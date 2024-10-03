@@ -1,599 +1,272 @@
-Return-Path: <devicetree+bounces-107393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37B4D98E98A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:52:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D2C98E992
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ECF5A2866B0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:52:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 656DF1C2147C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D31E145023;
-	Thu,  3 Oct 2024 05:52:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 729194F1F2;
+	Thu,  3 Oct 2024 05:58:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="E23+LeT1"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="BY98tCMc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2065.outbound.protection.outlook.com [40.107.92.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D449B224D1
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 05:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727934763; cv=none; b=LOVbUx4wq4I7buY55uvuBAVB64ae83NWDh9z/XT4Pu7wFBX0rHeIuhLA2K9jb4F9AELUAgGsuMQ6QfSlG3fHhTWOeVCM2eXjyQIujwnUPpMaIDpyO8zw0hszbHE2OzmIGzfbF+brD5YhlQw0fkc0kMay+F3POuZ+vVn36fCppZI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727934763; c=relaxed/simple;
-	bh=oYdBANUQi6m9BQzHBhUpP00s5QK9lKhkLrD1z7fyiis=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U1FrccAuXfp3uTNIjIEcL4eaTra3wqTOLT2BgUEGHrnkiSsW/9dSg9yIfjrKxzOke1DmNGSeu3fizsvh8fYtGXTObGHLhheNdFcbPHYZN4+ePi6RrbYC993fVYJpmwaSAA2jEXohGCbOl+l9mvk/ui70kJ+qZOHRFf7heT6Okv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=E23+LeT1; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20aff65aa37so3745985ad.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 22:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1727934761; x=1728539561; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PWqERqg3U39KNd0HaWAEa6vnW1C/QZVmIPIZ8zAz/+s=;
-        b=E23+LeT16JCDhHYVglTaOXxbLSyVbJ7cOGYyKdVC6OUhv7OnaxsyhJ7ea4aGdSlliw
-         NKY98BappRxIoeZLVr032hEIuZNkea5M6rVdtawE1sBmOPpR/z7qCUlaR35Wazf3d5UO
-         zpRmLACRWS9uNjQZxbHvAgwzm8q7CDy1m57Z8kW6cqv7lOrJIidKHwuNRZMn7JwnWYxa
-         bGZov2OZcfY/gWuT/W9vMWQkYb/3C1enRUfqYcSjKCHxPiZCBPfzKHesKU2lAWDlE651
-         MP0bFC7vXWiJ0FQkCt6WjsxboiHOB60LiEq0PusyVbVmlZvI6myrK98tPMst+rUefSDW
-         fbSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727934761; x=1728539561;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PWqERqg3U39KNd0HaWAEa6vnW1C/QZVmIPIZ8zAz/+s=;
-        b=iChS+wl2OVj0zkXg4h4lzfYZyTNW0/0/UuBKgfwn5se/58X9m4sif/GrSJ/MaKKU9D
-         Y16tMwsO8igRsoEOoD43POkW5is9XPRLZeLLDuIgcatMBcAdE5QyD9WtRk5VXee6/H4m
-         DgVzes/SrHPC0E+U0+Jqm2lqMCVk+dHCpMbdvLfDx/6NWBTPt8CxeJoMDKa7z2IxaH4J
-         3jeAr/+XYoffuIor1X0p7vXHbFaoLYxpIcqjxEIcoNuNUqjY9yf0aKYDzrStAz/4Dg3+
-         9r3fatF5vRuJM9Fz8t0XXWrdMCNl1i9fwJCASZ9lTMG/6Zfelulf6XXvqM5fM/ynCCxz
-         THOA==
-X-Forwarded-Encrypted: i=1; AJvYcCX3EBznkgB+0vHSeQTUr1UxI5VYv83X+yDcchQMEO8lxS7MkUQwnaA4qCCbiBHiXG6BrUDw/XYUy3cr@vger.kernel.org
-X-Gm-Message-State: AOJu0YzaRFZDFwZv2vSJ683+OGFR5w4achHA81aYyi1jzYIpqVbkJ34q
-	h65CgxyfKc6QJ0fjlSFszxwPQbD8OaR8bYWA/8Qs+HRvwFULcNrtzYfiPEX4FZc=
-X-Google-Smtp-Source: AGHT+IHwG+qEvOVXqNgTsAzSqC6vFZ7T7Hg9FDqIn4lMxAVd8/F6MYaOVHqMKlTTCKJ0rlJTtIqTqA==
-X-Received: by 2002:a17:902:c947:b0:20b:7388:f74 with SMTP id d9443c01a7336-20bc59f06a6mr79326325ad.12.1727934760837;
-        Wed, 02 Oct 2024 22:52:40 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20bef70706esm2181765ad.291.2024.10.02.22.52.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 22:52:40 -0700 (PDT)
-Date: Wed, 2 Oct 2024 22:52:38 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 2/3] net: stmmac: Add glue layer for T-HEAD TH1520 SoC
-Message-ID: <Zv4xJge/rmMNzLAY@x1>
-References: <20240930-th1520-dwmac-v3-0-ae3e03c225ab@tenstorrent.com>
- <20240930-th1520-dwmac-v3-2-ae3e03c225ab@tenstorrent.com>
- <CAJM55Z-+-Ca3kNuNkTpfea8jYEDTdojhx=gM__MScVyT3Yomog@mail.gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4287B67A;
+	Thu,  3 Oct 2024 05:58:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.65
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727935082; cv=fail; b=lhy5OFdO1FAK7al8hMgTQHxwJxB5PwkAxmFFSrMS60vlyHJXiCi0mnFzmnHgH3pntO91QHZ9kuRbadLjB4F7lnHdeCafV6X75j1dodNeGD+r2q+ElwikuQr0yuwzzdY5FzuOdh258ixSRiomqFvgpgICryjXROQS648lR1SUVF4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727935082; c=relaxed/simple;
+	bh=VJbyl2r/GIZHiALhgCirBRizKX8UXTPkaxAWW2zLTNU=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=bplA8VXk4ZMY/egAHSp/sHgzA+zlvc+WtCM+ALayLYivd3HK+EYdEB9earrwf55b8Z2Ml+YVzIkqDR69SmhZLV5m/7wOoTUtxfXef9dd4jW0lIKaY0Fmtnrb70WbwodNYDszwqRMxEMIbUHGiJTKDc9Ij2LSZqhDwWQ1VAV+XDU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=BY98tCMc; arc=fail smtp.client-ip=40.107.92.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=mDW8dv4dCRIqBYkUxSf4IUj6515Z10sDDk+Z6qyuI2FxLwgoEh1y9W2RgRApHgGEstVORORTjIut02i/KFc3nyo36z2uZXSqOORbcjcHWqsD/C1Csta3B2S6DaTiZBpyfV13cwlXY/U1C4DW9nEOHxdq6Ku7rReufTHJPqUVa0+IYHXm1vNrMg+iL0u4TwrVTfFIcfpqgl1FYB9+MPYACeXXn56EZVI/uhEpTlqdIGjkobD05fiPRhSlxyVn0WHW+fQgLhOka3Xyw7RDcqgJMdWHhokznFAfb16reEaYkIGiS8sM5KNE+F47vt65npityooA6rR1Xs34ldmdEI35UQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sfPi1MR+9hZ0PeBacvwUVg9cOj65Tq+n7AFjYJVrT18=;
+ b=TzvySQveoFWS6zEwQ8m5RKZ61U7M2AKIT706ReraRPfragWc4rFt0R+ZGqE5gqbyACT74aIUsEXBQuhZm7PJu+nG9veAreDjxj9k/OHFTeHEzYHYs834yOhTYEIaej8jeScbzzhMokDi5e1t/ZUzeejqbNZ4yUCZLdbGFxSRmzn5cmUjvJ7JHtldlR2ac9CZgl2+kp5Ep0sCf7C+D6qnCdxdy7jr+CKRz7TUaWTe7dFU3m5Oa29XciavVXtLkzOaD+io7E/PcYvJDUlRGGADem2nSCzbMMXbO3slvcDn3bO66Ct61LUEgGautWuFPWr1TdjiWI/9Lw++ErDDMrqVrQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sfPi1MR+9hZ0PeBacvwUVg9cOj65Tq+n7AFjYJVrT18=;
+ b=BY98tCMcc22UU+3eFTHY7v+W7bQj+KuVyrnPjXiWalUB842mM9D/kNIvdOzrMe+DwWL/YiUVzBqax1DTl3eTvDV6AIWOaBRu5LWuQooliTPsjbKeyROkN8l9J7IZbZ20BvrCJzMImAW4SOkWGoAA0Y97msaGRB+sWtevLdQR/HE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
+ by SA1PR12MB7368.namprd12.prod.outlook.com (2603:10b6:806:2b7::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Thu, 3 Oct
+ 2024 05:57:57 +0000
+Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
+ ([fe80::7f35:efe7:5e82:5e30%6]) with mapi id 15.20.8026.016; Thu, 3 Oct 2024
+ 05:57:57 +0000
+Message-ID: <f85ff93a-20be-41de-92a5-55f43a580684@amd.com>
+Date: Thu, 3 Oct 2024 07:57:42 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: clock: si5351: Make compatible string
+ required property
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-kernel@vger.kernel.org, monstr@monstr.eu, michal.simek@xilinx.com,
+ git@xilinx.com, =?UTF-8?Q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>
+References: <b4b626c85ef3f75a0de936c818b2fff389e92c6d.1727855465.git.michal.simek@amd.com>
+ <fa249ec7-409f-4dee-b853-736c5de464be@kernel.org>
+ <74e07428-2ed4-47e2-a8ef-360df0252e17@amd.com>
+ <7695cae2-33a3-4879-b8e5-d296d81ffece@amd.com>
+ <938253b4-91d3-4217-a2c5-d8bd707f0e47@kernel.org>
+ <20241002214129.GA1347474-robh@kernel.org>
+Content-Language: en-US
+From: Michal Simek <michal.simek@amd.com>
+Autocrypt: addr=michal.simek@amd.com; keydata=
+ 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
+ 3i3l5DA=
+In-Reply-To: <20241002214129.GA1347474-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR0502CA0005.eurprd05.prod.outlook.com
+ (2603:10a6:803:1::18) To SJ2PR12MB8109.namprd12.prod.outlook.com
+ (2603:10b6:a03:4f5::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAJM55Z-+-Ca3kNuNkTpfea8jYEDTdojhx=gM__MScVyT3Yomog@mail.gmail.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|SA1PR12MB7368:EE_
+X-MS-Office365-Filtering-Correlation-Id: 60a3d8a1-643c-4a7f-f295-08dce3705445
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?S2NYek00aEZLelRGZFBvK3ZHb1FZUEMyemg3b0hKZFIwVTU2WVpGM1hzekpG?=
+ =?utf-8?B?cnhQZ1M5ZElSc3N1blQrQlpYWE5mci9hVmZ2QjI1cks5ck9jVmJhWlBmVmdI?=
+ =?utf-8?B?bHlWVzhwcGh5UFo4aEJ6UUFkbSsxY0pVNFZ6N2VFcXN6LzJ5b0lwZXpIWWJl?=
+ =?utf-8?B?b3FUZjNJT3RsNkEzQW9rZEt5YjRJREVLWEd1VjRGKzNPQjNUekFRUlRrNzR5?=
+ =?utf-8?B?N0xlazVFZjM0QThQWjJ3ckhKNlliN0J2OVdGWXFLbkM4d2ZIRkNLRVJxZGdz?=
+ =?utf-8?B?UTdoV3MrY3RSNDJLSkhYTjl0b3NRS2lFaG5Jaloycmw3K2NvaTJiSzQyL0kr?=
+ =?utf-8?B?TVZNRGwvL3gybi9SeC9zbUVnVEZoZTF3TXkxcDdab2xXaHBsai9lTm04cnJi?=
+ =?utf-8?B?MzhNaUxUcVMwblBhclI3RE1aRXRVMTUrTmZ1MC9YQVo5WUZONEFORVRhUmRZ?=
+ =?utf-8?B?LzNzK3QxNjh0RlI5bjVtU09jVmJ3ck1qOC9jODRrWkpqdDUxQ2FORjRuNEhH?=
+ =?utf-8?B?aGxMNDFva0UwcUY5ZWdUdUtLS1VsbDNkWm4vSThsVkpwanZFeStXcDVhdDJz?=
+ =?utf-8?B?VWdJemN2WlVpL1orSWZBNWNKRllBNldxeUZjaDUxV0l4bzZaTWp5OEV4UXdL?=
+ =?utf-8?B?NEhpT0hlZjBsUmZrQjdVVXVkOE1wQURzZEJXZnVxSTJrSW9tUGpRdlIyN2Ja?=
+ =?utf-8?B?cWZCM0ZDRW1mWSt5bDlNV1ZLMUZVWkxXNmhKNUZNazJYTENlU0I3TDZFcXN2?=
+ =?utf-8?B?QW5HdEp1YzFiYkVQSVpSeXNqV1B3MEd5STd5S3JLNGFvSlpLbk15VFlVNkts?=
+ =?utf-8?B?b2ZpUVBnTlFJLzRCdDJhcnNLZThSM09mbzhpeHluMi9DRkJkaWQvZVhORXVN?=
+ =?utf-8?B?bXB1YlJQbmgxaGhUSEtLeHBNTFBUY25NR3lWVU5GSzN4dGJrWjJoUEJSTmhw?=
+ =?utf-8?B?SlpBWTNZQkx5cGFINkI0TVY2RHNZZ3l2NFFORytXM3k1MUx0VGFpZmx3YmFX?=
+ =?utf-8?B?TEVYdkpRSFhhSG5pMmNEb3BMTXBBMjI0d0k2OGkzTzNWYjJwQ2kvcWlXNGtt?=
+ =?utf-8?B?M1pJTmd2WEhCT2x6TUxxQ3pjUkQ1YWtBUUpRNTRqdkc1eG9aMjdPbndEb3Qr?=
+ =?utf-8?B?U3ViYzRVRUlGejVrVi94NExMTiswS0VzVDVXNStLM0VYSW8zQkYzQ0hXaS9y?=
+ =?utf-8?B?MEhXR2FGaG41dWd6WWp2ZkRUMmd1bXQ3WlVDZWhEbThkdjQxM3U5bnJMTzJP?=
+ =?utf-8?B?MXI0b1ZNQUkvOGNxOXVxUWRsWE5UdXlwZTlYdnZrQU5CTmZCcE9XSklxSFQ4?=
+ =?utf-8?B?Y2NBUTU5SUliV1hwRzRzYTBjQ3E2RDlJSWZJMks2QVlKZk0wcDJydnQvRHpJ?=
+ =?utf-8?B?akxBQWJUL1BsenJ6bnNjaWhYR1dQWElUZnVRM3Y3bDV2dUdyd2IyNlpnMkE1?=
+ =?utf-8?B?ejgzclh3Nyt4bldFK0xqS2xQOTdPYUJWRHVadDdlZUdhcEVncFpUSXlBOUpK?=
+ =?utf-8?B?MWMzRUY5cUlGTmlKTnc4UmxWUlNaQjN0SVdUTHNqK1RzcjJCM3huWU9INDlu?=
+ =?utf-8?B?QWlZV2xvaEFGVjhEK24wTXBlTHhMMWxuK3hFTFY4OTllU1ZhZjdZNzNSZVlJ?=
+ =?utf-8?B?Rkk2czhwOWZ6cVVmOHNtcTBYc3ovZWpsRGdWMm1uSFl3UHVTSU9reTZJWW94?=
+ =?utf-8?B?QVcxOU15Z2NWSzZQejJGRkwrMEpVMnhIajFYeUFjQlNZSjdYSERaZG53PT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UGFrS0JSM0szZ3lPUzZpUzNKTW9kN1VKWFFBelRreUVtYXVMOC91dGUvVW5C?=
+ =?utf-8?B?RmdSZzAzMkxqcGlQRCtqSVBpQWE0eUVnendJMU5XSHFDdUhYMlB5RHJjVjNv?=
+ =?utf-8?B?c2hyMzNpZkVCd3RNa0tIcVpJbGtwaHNPakJvSHVzTmErSHhjUVk0Y0M3SGdr?=
+ =?utf-8?B?UFZwNmpZdGFhaVh4VnpMZTVHd1ZqMVhrQjNTSFlnMW1VQ2pIQ0g0eTc2ZVhD?=
+ =?utf-8?B?Zk95L0M5ODBZbUsrb0xsRkNVSTJYOEM0Rk42OE9FUDVacE0rT241d09XYVd0?=
+ =?utf-8?B?bVVHV3BRdzJDekd1QzJ1Vmk3RnNNbjFIa1JmeTE0MUFwMUkwMElsVmJ6Nmx0?=
+ =?utf-8?B?dmVrRDZlRHJ4N3Z2OHA5a3ZHeXgxV3p0eDlJSWtBNitEOFNRMTZ2d21pVGdv?=
+ =?utf-8?B?YzNGb3hzTnhWNjU2SnhGTVFUU2ZjS3lQbFpER0xUU1hIWjRBdzd5aFhPTHRO?=
+ =?utf-8?B?SmRsNHAyUG4raXEvdDM0MzVvRmJLWnlyLzZreEFNM0llM3lKOVUxdTMrNVZM?=
+ =?utf-8?B?VjdmVWFSRmQxd2krUXBMa1pYQnBhN2EwUEdFaktTOTU1Y3owZklqTkR5RGpC?=
+ =?utf-8?B?Tm5lcDlZcEs1aFg1emZ2TlNaUHIzamUzTitud05GWmRidXBzSjg2OVFnTitK?=
+ =?utf-8?B?TURZQitySm5jUTBZQVRVbTBiSFFlT0d4RVMrSW1KdHdOUGtNTFZsMHR2Sm5W?=
+ =?utf-8?B?UGFlaUV6b042eHlqOFJBcGdHVmN0d0dJbUwwaXpLaFhDTjVOejRlbFh6U3Rr?=
+ =?utf-8?B?MU5oV3lJT0hXd001SlZ0M2k0ZHBlcEM4R2FFUlQrRTF5OXJFbUN6cXpocHR5?=
+ =?utf-8?B?VjArV3pnMEdTOEwvYTZaUk5UeHcvbzI4RDBySFdoTGZWWTVsSFQyQ21rVGJz?=
+ =?utf-8?B?VXgxeXViNittY2M1all2M0w5Y2Q5RmhoWWxxcXl5dDRpMlp0OVgvUmdHZllx?=
+ =?utf-8?B?SUxJSFJUczFxS2J0dURiT1F3dG54WVY1RW5wMW1IbWkvSjRlK0RwcTlaZUd0?=
+ =?utf-8?B?cC8wSS94SEtDa1c3UjAwS05tNTJraFVQdGRTck5aWHBNa0VFVTVZY2NSMGkw?=
+ =?utf-8?B?SHpjV0FYcndTNTZDckdkOU9OcW5QcUJSeERURUdTRStRRG5sQmJmZG9PaFNY?=
+ =?utf-8?B?RU80RklDSExuYUtyV20wRzV6Y2FOTEVVZXI1NVdYNitIcFQ1THhxNFpwcGxJ?=
+ =?utf-8?B?NmUycWE3UGlMN2tZNHh0V3d0R21VUTVqUk1BcmthQzR0Rnl5ZnVnVHZkUC80?=
+ =?utf-8?B?UXhCU1drODlVMWtFNGFtZGdOeExqRFFiZHVNWmVwNlY2V3NCYi91T2U3Vmor?=
+ =?utf-8?B?Q1ZuVzcxUVZYQmtuc3NqY3p3Ky9Hd1RSb1QvbmNoUUhnMTVoUXhUZkpwdi9j?=
+ =?utf-8?B?dk9XdzhaZjMzZVRDQ0ViYVhqUVlJMjNDOFlFOGEvUnVtZFB6N0QzaG90enl6?=
+ =?utf-8?B?dXAwdUFuTldka0lGU1NOdW9WVm11Y2dMekhacldvU1haeXlua2tlTWR1N2Zh?=
+ =?utf-8?B?WUNxM0cxMW9pRU8xNi9FL0xCcW5tMkRnbVhMTHYvbVdQS1A5Y0I0UFNjQURI?=
+ =?utf-8?B?a0xjS3hwSzc2UDF4UFhPbXlsdEIzOFRhdU5CZGtvUjd4N1NEeWlEMjZUNW0z?=
+ =?utf-8?B?a1dMS3h2ZnB5OWlqVzdhRUdnUmo0ZHJ4K1prZG9DNWZOSDBYanV3bzF0MUtZ?=
+ =?utf-8?B?K00vV0VIbDl1UFRuN2t2VE1Gblc1aG1XZS9HMXVkTzVHOS9laTJjajBqL0lL?=
+ =?utf-8?B?UkdUS3krZkRXRlRpbzYranA4UHVyZHgyTUx0ZUp5MG1nWVBOSTRlN09BVWs1?=
+ =?utf-8?B?WGJ2N29vYjRwaTg2cEdzbjA3WW1UdFlGeWlEV0JsdHpyQWt3Sm9oWS9tSXlF?=
+ =?utf-8?B?bngwRmRldkpnWld6RmE1eGR1dGc5WjZVRjFhNGM4RHYrVGxsRnFmRnZhWmVs?=
+ =?utf-8?B?NUZrWWdva2NaRHpXNkJqalNvVFdLelpHSUFSVjRVaFI4eTY4RVYwdUxBeFBx?=
+ =?utf-8?B?V00wM2RSaEwzVmN0MkhhSHJxS2ZoSnJFR2ZXYzYrWVlueGlrTm1WVElTYk5P?=
+ =?utf-8?B?U0pIeDJTeldEYWxWeG1WbnFPSWh4bkFGa1hFdVpqdDE1UWNpN0FaUnFKM2Y3?=
+ =?utf-8?Q?S9U7RCBdZ4x9+L1F0bYb/SrQZ?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60a3d8a1-643c-4a7f-f295-08dce3705445
+X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 05:57:57.1817
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: m8Wea0vcgwcvzRjOFZPZKlKg9CaafrqklknGHM+HaFR/h8rbU6AOk9ClLbKAzC3M
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7368
 
-On Tue, Oct 01, 2024 at 02:48:13AM -0700, Emil Renner Berthing wrote:
-> Drew Fustini wrote:
-> > From: Jisheng Zhang <jszhang@kernel.org>
-> >
-> > Add dwmac glue driver to support the DesignWare-based GMAC controllers
-> > on the T-HEAD TH1520 SoC.
-> >
-> > Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> > [esmil: rename plat->interface -> plat->mac_interface,
-> >         use devm_stmmac_probe_config_dt()]
-> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > [drew: convert from stmmac_dvr_probe() to devm_stmmac_pltfr_probe()]
-> > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
-> > ---
-> >  MAINTAINERS                                       |   1 +
-> >  drivers/net/ethernet/stmicro/stmmac/Kconfig       |  11 +
-> >  drivers/net/ethernet/stmicro/stmmac/Makefile      |   1 +
-> >  drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c | 291 ++++++++++++++++++++++
-> >  4 files changed, 304 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 9e50107efb37..1d24863c01df 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -19946,6 +19946,7 @@ F:	Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
-> >  F:	Documentation/devicetree/bindings/pinctrl/thead,th1520-pinctrl.yaml
-> >  F:	arch/riscv/boot/dts/thead/
-> >  F:	drivers/clk/thead/clk-th1520-ap.c
-> > +F:	drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> >  F:	drivers/pinctrl/pinctrl-th1520.c
-> >  F:	include/dt-bindings/clock/thead,th1520-clk-ap.h
-> >
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > index 05cc07b8f48c..82030adaf16e 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-> > @@ -228,6 +228,17 @@ config DWMAC_SUN8I
-> >  	  stmmac device driver. This driver is used for H3/A83T/A64
-> >  	  EMAC ethernet controller.
-> >
-> > +config DWMAC_THEAD
-> > +	tristate "T-HEAD dwmac support"
-> > +	depends on OF && (ARCH_THEAD || COMPILE_TEST)
-> > +	select MFD_SYSCON
-> > +	help
-> > +	  Support for ethernet controllers on T-HEAD RISC-V SoCs
-> > +
-> > +	  This selects the T-HEAD platform specific glue layer support for
-> > +	  the stmmac device driver. This driver is used for T-HEAD TH1520
-> > +	  ethernet controller.
-> > +
-> >  config DWMAC_IMX8
-> >  	tristate "NXP IMX8 DWMAC support"
-> >  	default ARCH_MXC
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > index c2f0e91f6bf8..d065634c6223 100644
-> > --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
-> > @@ -28,6 +28,7 @@ obj-$(CONFIG_DWMAC_STI)		+= dwmac-sti.o
-> >  obj-$(CONFIG_DWMAC_STM32)	+= dwmac-stm32.o
-> >  obj-$(CONFIG_DWMAC_SUNXI)	+= dwmac-sunxi.o
-> >  obj-$(CONFIG_DWMAC_SUN8I)	+= dwmac-sun8i.o
-> > +obj-$(CONFIG_DWMAC_THEAD)	+= dwmac-thead.o
-> >  obj-$(CONFIG_DWMAC_DWC_QOS_ETH)	+= dwmac-dwc-qos-eth.o
-> >  obj-$(CONFIG_DWMAC_INTEL_PLAT)	+= dwmac-intel-plat.o
-> >  obj-$(CONFIG_DWMAC_LOONGSON1)	+= dwmac-loongson1.o
-> > diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > new file mode 100644
-> > index 000000000000..f2f94539c0d2
-> > --- /dev/null
-> > +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-> > @@ -0,0 +1,291 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * T-HEAD DWMAC platform driver
-> > + *
-> > + * Copyright (C) 2021 Alibaba Group Holding Limited.
-> > + * Copyright (C) 2023 Jisheng Zhang <jszhang@kernel.org>
-> > + *
-> > + */
-> > +
-> > +#include <linux/bitfield.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/of_net.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#include "stmmac_platform.h"
-> > +
-> > +#define GMAC_CLK_EN			0x00
-> > +#define  GMAC_TX_CLK_EN			BIT(1)
-> > +#define  GMAC_TX_CLK_N_EN		BIT(2)
-> > +#define  GMAC_TX_CLK_OUT_EN		BIT(3)
-> > +#define  GMAC_RX_CLK_EN			BIT(4)
-> > +#define  GMAC_RX_CLK_N_EN		BIT(5)
-> > +#define  GMAC_EPHY_REF_CLK_EN		BIT(6)
-> > +#define GMAC_RXCLK_DELAY_CTRL		0x04
-> > +#define  GMAC_RXCLK_BYPASS		BIT(15)
-> > +#define  GMAC_RXCLK_INVERT		BIT(14)
-> > +#define  GMAC_RXCLK_DELAY_MASK		GENMASK(4, 0)
-> > +#define  GMAC_RXCLK_DELAY_VAL(x)	FIELD_PREP(GMAC_RXCLK_DELAY_MASK, (x))
-> > +#define GMAC_TXCLK_DELAY_CTRL		0x08
-> > +#define  GMAC_TXCLK_BYPASS		BIT(15)
-> > +#define  GMAC_TXCLK_INVERT		BIT(14)
-> > +#define  GMAC_TXCLK_DELAY_MASK		GENMASK(4, 0)
-> > +#define  GMAC_TXCLK_DELAY_VAL(x)	FIELD_PREP(GMAC_RXCLK_DELAY_MASK, (x))
-> > +#define GMAC_PLLCLK_DIV			0x0c
-> > +#define  GMAC_PLLCLK_DIV_EN		BIT(31)
-> > +#define  GMAC_PLLCLK_DIV_MASK		GENMASK(7, 0)
-> > +#define  GMAC_PLLCLK_DIV_NUM(x)		FIELD_PREP(GMAC_PLLCLK_DIV_MASK, (x))
-> > +#define GMAC_GTXCLK_SEL			0x18
-> > +#define  GMAC_GTXCLK_SEL_PLL		BIT(0)
-> > +#define GMAC_INTF_CTRL			0x1c
-> > +#define  PHY_INTF_MASK			BIT(0)
-> > +#define  PHY_INTF_RGMII			FIELD_PREP(PHY_INTF_MASK, 1)
-> > +#define  PHY_INTF_MII_GMII		FIELD_PREP(PHY_INTF_MASK, 0)
-> > +#define GMAC_TXCLK_OEN			0x20
-> > +#define  TXCLK_DIR_MASK			BIT(0)
-> > +#define  TXCLK_DIR_OUTPUT		FIELD_PREP(TXCLK_DIR_MASK, 0)
-> > +#define  TXCLK_DIR_INPUT		FIELD_PREP(TXCLK_DIR_MASK, 1)
-> > +
-> > +#define GMAC_GMII_RGMII_RATE	125000000
-> > +#define GMAC_MII_RATE		25000000
-> > +
-> > +static const struct regmap_config regmap_config = {
-> > +	.reg_bits = 32,
-> > +	.val_bits = 32,
-> > +	.reg_stride = 4,
-> > +};
-> > +
-> > +struct thead_dwmac {
-> > +	struct plat_stmmacenet_data *plat;
-> > +	struct regmap *apb_regmap;
-> > +	struct device *dev;
-> > +};
-> > +
-> > +static int thead_dwmac_set_phy_if(struct plat_stmmacenet_data *plat)
-> > +{
-> > +	struct thead_dwmac *dwmac = plat->bsp_priv;
-> > +	u32 phyif;
-> > +
-> > +	switch (plat->mac_interface) {
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		phyif = PHY_INTF_MII_GMII;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +		phyif = PHY_INTF_RGMII;
-> > +		break;
-> > +	default:
-> > +		dev_err(dwmac->dev, "unsupported phy interface %d\n",
-> > +			plat->mac_interface);
-> > +		return -EINVAL;
-> > +	};
-> > +
-> > +	return regmap_write(dwmac->apb_regmap, GMAC_INTF_CTRL, phyif);
-> > +}
-> > +
-> > +static int thead_dwmac_set_txclk_dir(struct plat_stmmacenet_data *plat)
-> > +{
-> > +	struct thead_dwmac *dwmac = plat->bsp_priv;
-> > +	u32 txclk_dir;
-> > +
-> > +	switch (plat->mac_interface) {
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		txclk_dir = TXCLK_DIR_INPUT;
-> > +		break;
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +		txclk_dir = TXCLK_DIR_OUTPUT;
-> > +		break;
-> > +	default:
-> > +		dev_err(dwmac->dev, "unsupported phy interface %d\n",
-> > +			plat->mac_interface);
-> > +		return -EINVAL;
-> > +	};
-> > +
-> > +	return regmap_write(dwmac->apb_regmap, GMAC_TXCLK_OEN, txclk_dir);
-> > +}
-> > +
-> > +static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mode)
-> > +{
-> > +	struct plat_stmmacenet_data *plat;
-> > +	struct thead_dwmac *dwmac = priv;
-> > +	unsigned long rate;
-> > +	u32 div;
-> > +
-> > +	plat = dwmac->plat;
-> > +
-> > +	switch (plat->mac_interface) {
-> > +	/* For MII, rxc/txc is provided by phy */
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		return;
-> > +
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +		rate = clk_get_rate(plat->stmmac_clk);
-> > +		if (!rate || rate % GMAC_GMII_RGMII_RATE != 0 ||
-> > +		    rate % GMAC_MII_RATE != 0) {
-> > +			dev_err(dwmac->dev, "invalid gmac rate %ld\n", rate);
-> > +			return;
-> > +		}
-> > +
-> > +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV, GMAC_PLLCLK_DIV_EN, 0);
-> > +
-> > +		switch (speed) {
-> > +		case SPEED_1000:
-> > +			div = rate / GMAC_GMII_RGMII_RATE;
-> > +			break;
-> > +		case SPEED_100:
-> > +			div = rate / GMAC_MII_RATE;
-> > +			break;
-> > +		case SPEED_10:
-> > +			div = rate * 10 / GMAC_MII_RATE;
-> > +			break;
-> > +		default:
-> > +			dev_err(dwmac->dev, "invalid speed %u\n", speed);
-> > +			return;
-> > +		}
-> > +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
-> > +				   GMAC_PLLCLK_DIV_MASK, GMAC_PLLCLK_DIV_NUM(div));
-> > +
-> > +		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
-> > +				   GMAC_PLLCLK_DIV_EN, GMAC_PLLCLK_DIV_EN);
-> > +		break;
-> > +	default:
-> > +		dev_err(dwmac->dev, "unsupported phy interface %d\n",
-> > +			plat->mac_interface);
-> > +		return;
-> > +	}
-> > +}
-> > +
-> > +static int thead_dwmac_enable_clk(struct plat_stmmacenet_data *plat)
-> > +{
-> > +	struct thead_dwmac *dwmac = plat->bsp_priv;
-> > +	int err;
-> > +	u32 reg;
-> > +
-> > +	switch (plat->mac_interface) {
-> > +	case PHY_INTERFACE_MODE_MII:
-> > +		reg = GMAC_RX_CLK_EN | GMAC_TX_CLK_EN;
-> > +		break;
-> > +
-> > +	case PHY_INTERFACE_MODE_RGMII:
-> > +	case PHY_INTERFACE_MODE_RGMII_ID:
-> > +	case PHY_INTERFACE_MODE_RGMII_RXID:
-> > +	case PHY_INTERFACE_MODE_RGMII_TXID:
-> > +		/* use pll */
-> > +		err = regmap_write(dwmac->apb_regmap, GMAC_GTXCLK_SEL, GMAC_GTXCLK_SEL_PLL);
-> > +		if (err)
-> > +			return dev_err_probe(dwmac->dev, err,
-> > +					     "failed to set phy interface\n");
-> > +
-> > +		reg = GMAC_TX_CLK_EN | GMAC_TX_CLK_N_EN | GMAC_TX_CLK_OUT_EN |
-> > +		      GMAC_RX_CLK_EN | GMAC_RX_CLK_N_EN;
-> > +		break;
-> > +
-> > +	default:
-> > +		dev_err(dwmac->dev, "unsupported phy interface %d\n",
-> > +			plat->mac_interface);
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	return regmap_write(dwmac->apb_regmap, GMAC_CLK_EN, reg);
-> > +}
-> > +
-> > +static int thead_dwmac_init(struct platform_device *pdev, void *priv)
-> > +{
-> > +	struct thead_dwmac *dwmac = priv;
-> > +	int ret;
-> > +
-> > +	ret = thead_dwmac_set_phy_if(dwmac->plat);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = thead_dwmac_set_txclk_dir(dwmac->plat);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = regmap_write(dwmac->apb_regmap, GMAC_RXCLK_DELAY_CTRL,
-> > +			   GMAC_RXCLK_DELAY_VAL(0));
-> > +	if (ret)
-> > +		return dev_err_probe(dwmac->dev, ret,
-> > +				     "failed to set GMAC RX clock delay\n");
-> > +
-> > +	ret = regmap_write(dwmac->apb_regmap, GMAC_TXCLK_DELAY_CTRL,
-> > +			   GMAC_TXCLK_DELAY_VAL(0));
-> > +	if (ret)
-> > +		return dev_err_probe(dwmac->dev, ret,
-> > +				     "failed to set GMAC TX clock delay\n");
-> > +
-> > +	return thead_dwmac_enable_clk(dwmac->plat);
-> > +}
-> > +
-> > +static int thead_dwmac_probe(struct platform_device *pdev)
-> > +{
-> > +	struct stmmac_resources stmmac_res;
-> > +	struct plat_stmmacenet_data *plat;
-> > +	struct thead_dwmac *dwmac;
-> > +	void __iomem *apb;
-> > +	int ret;
-> > +
-> > +	ret = stmmac_get_platform_resources(pdev, &stmmac_res);
-> > +	if (ret)
-> > +		return dev_err_probe(&pdev->dev, ret,
-> > +				     "failed to get resources\n");
-> > +
-> > +	plat = devm_stmmac_probe_config_dt(pdev, stmmac_res.mac);
-> > +	if (IS_ERR(plat))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(plat),
-> > +				     "dt configuration failed\n");
-> > +
-> > +	dwmac = devm_kzalloc(&pdev->dev, sizeof(*dwmac), GFP_KERNEL);
-> > +	if (!dwmac)
-> > +		return -ENOMEM;
-> > +
-> > +	apb = devm_platform_ioremap_resource(pdev, 1);
-> > +	if (IS_ERR(apb))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(apb),
-> > +				     "Failed to remap gmac apb registers\n");
-> > +
-> > +	dwmac->apb_regmap = devm_regmap_init_mmio(&pdev->dev, apb, &regmap_config);
-> > +	if (IS_ERR(dwmac->apb_regmap))
-> > +		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->apb_regmap),
-> > +				     "Failed to access gmac apb registers\n");
+
+
+On 10/2/24 23:41, Rob Herring wrote:
+> On Wed, Oct 02, 2024 at 02:17:22PM +0200, Krzysztof Kozlowski wrote:
+>> On 02/10/2024 12:31, Michal Simek wrote:
+>>>
+>>>
+>>> On 10/2/24 10:24, Michal Simek wrote:
+>>>>
+>>>>
+>>>> On 10/2/24 10:19, Krzysztof Kozlowski wrote:
+>>>>> On 02/10/2024 09:51, Michal Simek wrote:
+>>>>>> Compatible property is likely also required property.
+>>>>>>
+>>>>>> Signed-off-by: Michal Simek <michal.simek@amd.com>
+>>>>>> ---
+>>>>>
+>>>>> That's a convention but not necessary, a no-op.
+>>>>
+>>>> But how do you identify device then?
+>>>> Or are you saying that device description is valid even if there is no
+>>>> compatible string?
+>>>
+>>> One more thing
+>>> commit 524dfbc4e9fc ("dt-bindings: clock: si5351: convert to yaml") is showing
+>>> that compatible property was required in txt file.
+>>>
+>>> -Required properties:
+>>> -- compatible: shall be one of the following:
+>>> -       "silabs,si5351a" - Si5351a, QFN20 package
+>>> -       "silabs,si5351a-msop" - Si5351a, MSOP10 package
+>>>
+>>> I can update commit message to describe it too.
+>>
+>> Devices do not work without compatible, so this is obvious... and like
+>> said - it is already required, so the change is redundant. Does not
+>> harm, though.
 > 
-> Why do you need to convert the APB range to a regmap? As far as I can tell it's
-> just regular 32bit memory mapped registers, so should work fine with just
-> readl()/writel()
+> To put it another way, by the time the schema is applied, we already
+> know that compatible is present because that is *how* the schema gets
+> applied in the first place.
 
-Good point, I don't think there is any benefit to using regmap. I will
-change the next revision to use writel() instead. I just tested this and
-the network interface still works okay.
+I get that argument but then based on this we should remove all records about 
+compatible string as required property.
 
 Thanks,
-Drew
-
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-index f2f94539c0d2..df2fe0fdd128 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-thead.c
-@@ -13,7 +13,6 @@
- #include <linux/of_device.h>
- #include <linux/of_net.h>
- #include <linux/platform_device.h>
--#include <linux/regmap.h>
- 
- #include "stmmac_platform.h"
- 
-@@ -52,15 +51,9 @@
- #define GMAC_GMII_RGMII_RATE	125000000
- #define GMAC_MII_RATE		25000000
- 
--static const struct regmap_config regmap_config = {
--	.reg_bits = 32,
--	.val_bits = 32,
--	.reg_stride = 4,
--};
--
- struct thead_dwmac {
- 	struct plat_stmmacenet_data *plat;
--	struct regmap *apb_regmap;
-+	void __iomem *apb_base;
- 	struct device *dev;
- };
- 
-@@ -85,7 +78,8 @@ static int thead_dwmac_set_phy_if(struct plat_stmmacenet_data *plat)
- 		return -EINVAL;
- 	};
- 
--	return regmap_write(dwmac->apb_regmap, GMAC_INTF_CTRL, phyif);
-+	writel(phyif, dwmac->apb_base + GMAC_INTF_CTRL);
-+	return 0;
- }
- 
- static int thead_dwmac_set_txclk_dir(struct plat_stmmacenet_data *plat)
-@@ -109,7 +103,8 @@ static int thead_dwmac_set_txclk_dir(struct plat_stmmacenet_data *plat)
- 		return -EINVAL;
- 	};
- 
--	return regmap_write(dwmac->apb_regmap, GMAC_TXCLK_OEN, txclk_dir);
-+	writel(txclk_dir, dwmac->apb_base + GMAC_TXCLK_OEN);
-+	return 0;
- }
- 
- static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int mode)
-@@ -117,7 +112,7 @@ static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int m
- 	struct plat_stmmacenet_data *plat;
- 	struct thead_dwmac *dwmac = priv;
- 	unsigned long rate;
--	u32 div;
-+	u32 div, reg;
- 
- 	plat = dwmac->plat;
- 
-@@ -137,7 +132,7 @@ static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int m
- 			return;
- 		}
- 
--		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV, GMAC_PLLCLK_DIV_EN, 0);
-+		writel(FIELD_PREP(GMAC_PLLCLK_DIV_EN, 0), dwmac->apb_base + GMAC_PLLCLK_DIV);
- 
- 		switch (speed) {
- 		case SPEED_1000:
-@@ -153,11 +148,10 @@ static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int m
- 			dev_err(dwmac->dev, "invalid speed %u\n", speed);
- 			return;
- 		}
--		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
--				   GMAC_PLLCLK_DIV_MASK, GMAC_PLLCLK_DIV_NUM(div));
- 
--		regmap_update_bits(dwmac->apb_regmap, GMAC_PLLCLK_DIV,
--				   GMAC_PLLCLK_DIV_EN, GMAC_PLLCLK_DIV_EN);
-+		reg = FIELD_PREP(GMAC_PLLCLK_DIV_EN, 1) |
-+		      FIELD_PREP(GMAC_PLLCLK_DIV_MASK, GMAC_PLLCLK_DIV_NUM(div));
-+		writel(reg, dwmac->apb_base + GMAC_PLLCLK_DIV);
- 		break;
- 	default:
- 		dev_err(dwmac->dev, "unsupported phy interface %d\n",
-@@ -169,7 +163,6 @@ static void thead_dwmac_fix_speed(void *priv, unsigned int speed, unsigned int m
- static int thead_dwmac_enable_clk(struct plat_stmmacenet_data *plat)
- {
- 	struct thead_dwmac *dwmac = plat->bsp_priv;
--	int err;
- 	u32 reg;
- 
- 	switch (plat->mac_interface) {
-@@ -182,11 +175,7 @@ static int thead_dwmac_enable_clk(struct plat_stmmacenet_data *plat)
- 	case PHY_INTERFACE_MODE_RGMII_RXID:
- 	case PHY_INTERFACE_MODE_RGMII_TXID:
- 		/* use pll */
--		err = regmap_write(dwmac->apb_regmap, GMAC_GTXCLK_SEL, GMAC_GTXCLK_SEL_PLL);
--		if (err)
--			return dev_err_probe(dwmac->dev, err,
--					     "failed to set phy interface\n");
--
-+		writel(GMAC_GTXCLK_SEL_PLL, dwmac->apb_base + GMAC_GTXCLK_SEL);
- 		reg = GMAC_TX_CLK_EN | GMAC_TX_CLK_N_EN | GMAC_TX_CLK_OUT_EN |
- 		      GMAC_RX_CLK_EN | GMAC_RX_CLK_N_EN;
- 		break;
-@@ -197,7 +186,8 @@ static int thead_dwmac_enable_clk(struct plat_stmmacenet_data *plat)
- 		return -EINVAL;
- 	}
- 
--	return regmap_write(dwmac->apb_regmap, GMAC_CLK_EN, reg);
-+	writel(reg, dwmac->apb_base + GMAC_CLK_EN);
-+	return 0;
- }
- 
- static int thead_dwmac_init(struct platform_device *pdev, void *priv)
-@@ -213,17 +203,8 @@ static int thead_dwmac_init(struct platform_device *pdev, void *priv)
- 	if (ret)
- 		return ret;
- 
--	ret = regmap_write(dwmac->apb_regmap, GMAC_RXCLK_DELAY_CTRL,
--			   GMAC_RXCLK_DELAY_VAL(0));
--	if (ret)
--		return dev_err_probe(dwmac->dev, ret,
--				     "failed to set GMAC RX clock delay\n");
--
--	ret = regmap_write(dwmac->apb_regmap, GMAC_TXCLK_DELAY_CTRL,
--			   GMAC_TXCLK_DELAY_VAL(0));
--	if (ret)
--		return dev_err_probe(dwmac->dev, ret,
--				     "failed to set GMAC TX clock delay\n");
-+	writel(GMAC_RXCLK_DELAY_VAL(0), dwmac->apb_base + GMAC_RXCLK_DELAY_CTRL);
-+	writel(GMAC_TXCLK_DELAY_VAL(0), dwmac->apb_base + GMAC_TXCLK_DELAY_CTRL);
- 
- 	return thead_dwmac_enable_clk(dwmac->plat);
- }
-@@ -255,13 +236,9 @@ static int thead_dwmac_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, PTR_ERR(apb),
- 				     "Failed to remap gmac apb registers\n");
- 
--	dwmac->apb_regmap = devm_regmap_init_mmio(&pdev->dev, apb, &regmap_config);
--	if (IS_ERR(dwmac->apb_regmap))
--		return dev_err_probe(&pdev->dev, PTR_ERR(dwmac->apb_regmap),
--				     "Failed to access gmac apb registers\n");
--
- 	dwmac->dev = &pdev->dev;
- 	dwmac->plat = plat;
-+	dwmac->apb_base = apb;
- 	plat->bsp_priv = dwmac;
- 	plat->fix_mac_speed = thead_dwmac_fix_speed;
- 	plat->init = thead_dwmac_init;
+Michal
 
