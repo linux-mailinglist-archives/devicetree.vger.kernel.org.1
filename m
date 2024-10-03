@@ -1,140 +1,170 @@
-Return-Path: <devicetree+bounces-107507-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107508-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C21998ED92
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:05:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39E5198ED96
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:07:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43E651F229F9
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:05:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D59501F22E83
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E21DF14F9E7;
-	Thu,  3 Oct 2024 11:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561E8153565;
+	Thu,  3 Oct 2024 11:07:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qn8FIOvZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NAzcmurs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC9C14431B;
-	Thu,  3 Oct 2024 11:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B15D1514F8;
+	Thu,  3 Oct 2024 11:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727953534; cv=none; b=br/izNFbnaICPs4kN9gg0XpT316iYpPPaIPeZ0YrfXTMEDbJkZwiPQhX6Lf1VmGM4diKHul+QqHipVJ6BeR3SsvRLlZxQN3jk0PCiXBSXN9/pYMgVZ1VceqIMBJ/4ODsTLO6ALXsG8FPjmkDg+0AxEJk/xh7XtNSzi8Slz47KXc=
+	t=1727953638; cv=none; b=CYgCkEQ2Z5SmENgKRXMmfTOslwsLPeaO0WLg5BSA1gjozYIdBLkLT9kgcY+trhhQOo7SQ9RWJqCX0Qr4K1tyRnRIYVVXqEFnV5F6Zk+ebdbwuMv+DFh3iugOQxe1FKeN6/tyrE3OX4AlD+J3ja+ZlBAXFfanDIumjS0igWvTNyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727953534; c=relaxed/simple;
-	bh=IRPu9PkUbz+dFzJ4rkLXyM9DGV9j0tNNK6BigQdP7XU=;
+	s=arc-20240116; t=1727953638; c=relaxed/simple;
+	bh=H0tqyKVyS8d9VvNGf2HV0FLQtDRwtSl9qI8LZamkcGs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QiSvCdZH3YRh+UQHiTonbR6/gAZvm2lErCnSP1Xk75YOpxNQEVbiSqQ0Ua7zoovtPYOqJZDoXtRDBi2p7t8/8dr9xmYqlsURUDXeRMjzvR2Wx49SU1Ir2jZekylUUEP0+aZ/Jq46mS6EQs8LFMxlmvBObdiw6wuOzQJXx76irlw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qn8FIOvZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 85564C4CEC5;
-	Thu,  3 Oct 2024 11:05:32 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FM6ScF7ya9GSxXdPjd2VVebMmrBVEDQVYB5sbSO2O3KBwt9ixR9EM6ETRwkKsZ0vi5dj6qdiQBdENWuznw6S8mEzBwPIZLNlHp56fL0DX8zRtvQV1aD9dbYO3pAxCCkBtsCYmNXhv+bBoRKxoCMkA58opS3mZI+Q6yM5dEM7hh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NAzcmurs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A09DAC4CEC5;
+	Thu,  3 Oct 2024 11:07:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727953534;
-	bh=IRPu9PkUbz+dFzJ4rkLXyM9DGV9j0tNNK6BigQdP7XU=;
+	s=k20201202; t=1727953637;
+	bh=H0tqyKVyS8d9VvNGf2HV0FLQtDRwtSl9qI8LZamkcGs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qn8FIOvZ/VuTBe462XN7OHux1pUzHPFrIp1skj0zosXIeARv8hAj3E/ySCKtzxjxp
-	 09JkmE7ONJxgKMWEVhorjFc37C6cU+y9gN2o5LY5zBBw8Mc/LBdWwR46kfL2JMmIVi
-	 KE63zbkEwAsQmESM1I2BSaIKprnLlUlkpbHh2WxZi8YLdzT4MYSORfqhdShEOwY7bC
-	 o4mYZ4MUuymqwFJWEYs4ymOMSSFksDWk+tR5pX68/fMznfefLZlgdEMB2wDrSd6U4h
-	 tAMJT2KgB+dsipVTq7tiJ4EMXgYkodmosq/KheaGTa/BRq0O+rjNehlJfUWcZytdjj
-	 PKRjfVrmumBkw==
-Date: Thu, 3 Oct 2024 12:05:30 +0100
-From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?Cl=E9ment_L=E9ger?= <cleger@rivosinc.com>
-Cc: linux-riscv@lists.infradead.org,
-	Conor Dooley <conor.dooley@microchip.com>,
+	b=NAzcmursO5VejK7HRotzHu/Zs3ciXYORGY9Z1YOhv0vUEXlOzABqeyjEWFeSTnx9i
+	 4xwF9A4Ffc4eckfx1hjiqyicSdNdEm+2zmsEBLl6K4vn3CSXhqjwRpKZoohU0aK2Vf
+	 t5wEm6f9JpIX9EYfKRTuwZCAAwR6S2BY4VxgODM9ce1D/GLKy6dYqTvsxvcVUPZBjl
+	 KAocAYWRWANgouesw9QthFoyKwtXwuNDFFjyUOuQPHhFO0orWapZUfhEYQUDO+XWln
+	 +0H6eQXI8maWwf8oUFujyn4n73g8OJdzLJoYlryG0LY7kY5Lg3x7YNrTL5GtK7bh3k
+	 plFZlqQj6LN0g==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1swJfy-000000003za-1zto;
+	Thu, 03 Oct 2024 13:07:19 +0200
+Date: Thu, 3 Oct 2024 13:07:18 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [RFC v1 5/5] dt-bindings: riscv: document vector crypto
- requirements
-Message-ID: <20241003-variable-quirk-9a13fe040e4a@spud>
-References: <20241002-defeat-pavestone-73d712895f0b@spud>
- <20241002-sincerity-urgent-acdb0e8d8a66@spud>
- <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Steev Klimaszewski <steev@kali.org>
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
+ the on-board wcn6855
+Message-ID: <Zv565olMDDGHyYVt@hovoldconsulting.com>
+References: <20240930103041.49229-1-brgl@bgdev.pl>
+ <20240930103041.49229-4-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="HroZ+uV00yIqexpw"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
+In-Reply-To: <20240930103041.49229-4-brgl@bgdev.pl>
 
+On Mon, Sep 30, 2024 at 12:30:39PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> 
+> Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
+> and bluetooth nodes to consume the PMU's outputs.
+> 
+> With this we can drop the regulator-always-on properties from vreg_s11b
+> and vreg_s12b as they will now be enabled by the power sequencing
+> driver.
+> 
+> Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
---HroZ+uV00yIqexpw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Without this patch I'm seeing an indefinite probe deferral with
+6.12-rc1:
 
-On Thu, Oct 03, 2024 at 09:59:38AM +0200, Cl=E9ment L=E9ger wrote:
->=20
->=20
-> On 02/10/2024 18:10, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > Section 35.2. Extensions Overview of [1] says:
-> > | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the co=
-mposite extensions Zvkn and
-> > | Zvks-- (sic) require a Zve64x base, or application ("V") base Vector =
-Extension.
-> > | All of the other Vector Crypto Extensions can be built on any embedde=
-d (Zve*) or application ("V") base
-> > | Vector Extension
-> >=20
-> > Apply these rules in the binding, so that invalid combinations can be
-> > avoided.
-> >=20
-> > Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-isa-=
-release-698e64a-2024-09-09 [1]
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  .../devicetree/bindings/riscv/extensions.yaml | 32 +++++++++++++++++++
-> >  1 file changed, 32 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index abf2579171c5b..02b822bbf341d 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -651,6 +651,38 @@ properties:
-> >              - contains:
-> >                  const: zve64f
-> > =20
-> > +      - if:
-> > +          contains:
-> > +            anyOf:
-> > +              - const: zvbc
-> > +              - const: zvkn
-> > +              - const: zvknhb
-> > +              - const: zvks
->=20
-> Shouldn't zvksed and zvksh be part odf this list ? My understanding of
-> the spec might be wrong but "Zvks--" seems like a poor-man's wildcard
-> for Zvks* extensions ?
+	platform 1c00000.pcie:pcie@0:wifi@0: deferred probe pending: pci-pwrctl-pwrseq: Failed to get the power sequencer
 
-I don't think so, there's a corresponding -- on the first line of the
-quote. I think it is some really odd styling that should be replaced by
-commas.
+Can you please look into that and make sure that the existing DT
+continues to work without such warnings.
 
+> ---
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 100 +++++++++++++++---
+>  1 file changed, 86 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 6a28cab97189..7230d5420199 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -400,6 +400,67 @@ usb1_sbu_mux: endpoint {
+>  			};
+>  		};
+>  	};
+> +
+> +	wcn6855-pmu {
+> +		compatible = "qcom,wcn6855-pmu";
+> +
+> +		pinctrl-0 = <&bt_default>, <&wlan_en>;
+> +		pinctrl-names = "default";
+> +
+> +		wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
+> +		bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
 
---HroZ+uV00yIqexpw
-Content-Type: application/pgp-signature; name="signature.asc"
+> @@ -1258,20 +1327,16 @@ &uart2 {
+>  	bluetooth {
+>  		compatible = "qcom,wcn6855-bt";
+>  
+> -		vddio-supply = <&vreg_s10b>;
+> -		vddbtcxmx-supply = <&vreg_s12b>;
+> -		vddrfacmn-supply = <&vreg_s12b>;
+> -		vddrfa0p8-supply = <&vreg_s12b>;
+> -		vddrfa1p2-supply = <&vreg_s11b>;
+> -		vddrfa1p7-supply = <&vreg_s1c>;
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
+> +		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+>  
+>  		max-speed = <3200000>;
+> -
+> -		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> -		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
 
------BEGIN PGP SIGNATURE-----
+What about swctrl? You're just removing this pin from DT now without any
+comment on why you think that is the right thing to do.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv56egAKCRB4tDGHoIJi
-0q+XAP4ja16VtZOTGXq9vok9Co1HNrwbljm0CPOR0Z0+0jPpEgD/TH4OjHN89AB3
-JmxtsmtuTZlulCNrokTF5ObEBZ8MSAw=
-=nnno
------END PGP SIGNATURE-----
+Should this one also be an input to the PMU block?
 
---HroZ+uV00yIqexpw--
+> -
+> -		pinctrl-0 = <&bt_default>;
+> -		pinctrl-names = "default";
+>  	};
+>  };
+>  
+> @@ -1761,4 +1826,11 @@ reset-pins {
+>  			bias-disable;
+>  		};
+>  	};
+> +
+> +	wlan_en: wlan-en-state {
+> +		pins = "gpio134";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+
+Yet another drive strength? Also from fw config?
+
+> +		bias-pull-down;
+> +	};
+>  };
+
+Johan
 
