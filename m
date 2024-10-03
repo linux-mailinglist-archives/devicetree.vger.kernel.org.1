@@ -1,156 +1,183 @@
-Return-Path: <devicetree+bounces-107467-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9810B98EC16
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:13:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6647798EC47
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:27:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B30CF1C21D1F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:13:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A475281D1F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:27:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6FC5126C13;
-	Thu,  3 Oct 2024 09:13:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540FB146017;
+	Thu,  3 Oct 2024 09:27:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BjjB3SAh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173A713DBB1;
-	Thu,  3 Oct 2024 09:13:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6174014658F
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 09:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727946814; cv=none; b=BR6J/9kH94aSeYSE6cIezzbQLCmY6dFV76DvA2BR9U4DW1z39IzBs55K4l4TV8FoG+4Pxv/Q8pV2vLkEUISQzIuAvgkjQqG0MTnmP6M9BnwqCkySEH8rUwgmvrqZ3jBa2s9ExlZ06+1rPomXqVjfwNWoex/z7WebNmS3oS42TYU=
+	t=1727947670; cv=none; b=RzrghkvVbG8IpprH0WF6qNo3PpNMrs8sdBDiQNCPZ4XIDfjCjGU74C3mtErE4GOADh9tJDTS38RgnEhOtJhLhwdVe2aCZzK0DaTDS9Mk2dZcXRzaGP/otvASrBxZPOD4WRgakdtbGRUI9JinOiOF+0t9Cqjy9oPqpGSkBDb7WjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727946814; c=relaxed/simple;
-	bh=NXCM33NdXsSEuRRLpBcQcMOtIahHrw3gOJde07MAaq4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YkB1E9vW86R49GTCmyKlPTHMF2XIlgXrgaLcEcBObgPcRDn9qk2dqNV+IozbUygCXxmfYb9uNoY0dMQ/HDynyirC8cUXceNMkXPaW0u3DOF4DbtOfN96yZBoW5iOiMjXc6iE1MySTZNmU6juRJTIcLjQTrKxhdt80vYqheNbzTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6ddfdeed0c9so5664027b3.2;
-        Thu, 03 Oct 2024 02:13:32 -0700 (PDT)
+	s=arc-20240116; t=1727947670; c=relaxed/simple;
+	bh=uXkA1kXEXhP7MvBmfvAhSdLcx27NcgjN9m+rUt+dGzQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=mUZMHcginlqlCXJJzCIuP4yx7d8hDgF57E3JGfucIdTLVsz13JFE6I23F5Wy8p9Xi/40EfIon7DzUgpaxUfDNbq+ic0bnju66jAz5Y2i64wdPKLa2EsNuWtFBbzx6xYIcowAi5BCn67A+nxJ3XWzW65nTYIgzXLWJ9uwMFthLUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BjjB3SAh; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37cc9aeb01dso518758f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 02:27:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727947667; x=1728552467; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8evBbk/IwxxgJLl6adf7U2FK+xKf3XGZPnSLuIWsvAs=;
+        b=BjjB3SAhywIBwg5O3WxWkrzYtTHxIf7YgS3Ornn3QgMO0/rvQKP+a5YEz9xciY8mCr
+         vTGhznu+ya4ZYLN+JyZVX2TQvesiTSRU7PmNEWfXEy4B57rWgFrvCVsh44bKrYvVW/Ae
+         H41lVdxZnA7RI4Al7NM1kh2xxSJJuWvuUDwJhARux3ZgPmy4dX5ikLAp9NueyxlIYboA
+         bu7BVDsYhfzbID3Y2mF+flps70W0zWMw6LVO2nm1vbaZOhi5vSMZGx4/ycNHXnr3qPe4
+         qoARx+GxLSmKuLLGr+9mcaPZeOq+C2LVxt6Uhgn3FVgCpSGD7AZTbAlgNfY27ZUZDfAW
+         cGRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727946811; x=1728551611;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=c7WgvebXXsaRMnWziPr4x8Pj8uGoCS6EaJvHvtQmBuY=;
-        b=skiEfA82QesGYJog62JU63cMx1yyt7EdfbhvJIsRGZXuzYzhyOJGY9KS+tgsmNkJlE
-         rKVN0/KoKIqFlWIqBsOTsXDCI+YwGOKKKScOQKnZhre2l/P8ML447jnzPLHs7NOl4aZm
-         5RYuQe8EgMJnp5S9d/z71owjSb2FCYdi90833HGsbz2mp++AxHyAh9bPE9NP/4BBmwM+
-         me4Lsc0gX4Yh5X/8TntH5RVuhIBhlEzGoTTPnpOJl5GLiywVEoWreTb5E/oaj6oO9HRx
-         rOgs+q8256or7lEpLATxZrbCe8Xxm0x/ugF4LTsD64HT7j0VdrxxS/P7lJ5nKPDtHOUP
-         19YA==
-X-Forwarded-Encrypted: i=1; AJvYcCUGur2MGfdOCjMsx/AkG1Wmxjbod5bU1S4XQWSSg/ZwQ4HSLlFPGT7xTZuL3T2wDXy0N2ifB944I8ftf6y0@vger.kernel.org, AJvYcCWWzVWB8phuSQkvgVdortL4/uSL8tVcelnb1jwOnf+6z78s719jQInlEN0I/NUp/Xk08YVWQFb3@vger.kernel.org, AJvYcCXRqWRrbB2mkLYysLuNkpzKgQiClx8IvTE33MIAyeAXV7uCMgHl/inQj0HRjMixDq/S6RmjH+sb0yrv@vger.kernel.org, AJvYcCXqLmCLpWR9LYYSGDj/X2bRzdzBlSZ3/RIPhCYveyhPdXbOgF8bc5bgzYdI4Ubd8SGt/3Oex0gmxQe4@vger.kernel.org
-X-Gm-Message-State: AOJu0YzBtPd0ImKYp2kLFnwENb0bhkkdFahehXcFj8MZMeONufcmqnwe
-	0TsxQHYjZrLTF4gf0AO/SsyhfNZ2e2Y3ut7yOT2gW89aaewWbci8hORumuniAYU=
-X-Google-Smtp-Source: AGHT+IGn18KDopn5fANqBk5+McBjmh6uePf8h4ryC2QhJR0RNJaG/0M5ek3KbypWMR3DGEBkmK/ztA==
-X-Received: by 2002:a05:690c:b13:b0:6e2:83d:dfd9 with SMTP id 00721157ae682-6e2a309f315mr62025137b3.44.1727946811113;
-        Thu, 03 Oct 2024 02:13:31 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2bc2d1de6sm1334357b3.68.2024.10.03.02.13.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 02:13:29 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6e232e260c2so6053897b3.0;
-        Thu, 03 Oct 2024 02:13:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV+vvUfrvAOYPhCbgy1OcVfwxSR64yz1OIrTbiz7/Ikj4LpElzYKdcB8cC4idfggou8Ki0FVxXSA6iQt3tz@vger.kernel.org, AJvYcCV0jO9Sst1ZcZ4T+SIY2g6UwAtW76oIWHxtA2A/HoGac7fbTGxye45m/YO+/rMKDrXlh5GO16IcJ8C3@vger.kernel.org, AJvYcCWJhotmCwgW8t6hvs1hfVawmel2bVrXfAuHhjfnFWxLwqh4UaWeXQYXemwuJ8wHCOh94lFfXIg3@vger.kernel.org, AJvYcCXF4Ag7lK4fYaqH2jmWHYct9Sfb4wXkrox76ebUdhuYocx7KzgM/+6Jfnwf7UeXOhRIYRlijganGRzo@vger.kernel.org
-X-Received: by 2002:a05:690c:660e:b0:6e2:636:d9ed with SMTP id
- 00721157ae682-6e2a2b72c98mr51489427b3.3.1727946809298; Thu, 03 Oct 2024
- 02:13:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727947667; x=1728552467;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8evBbk/IwxxgJLl6adf7U2FK+xKf3XGZPnSLuIWsvAs=;
+        b=aG9U0mH6YOeRt8ppSHgDqu7yX9k5NrUr/jhbbw5yoW6WO9DU2uRdI9ZIBbAsvl+jsI
+         vaSCtxpk66HcDAZcGdhY2buQNoBTwO6gheCAA9gs9/HlrLn2qQsJNOM45beY1PIvniE8
+         Z3ift6NKuhgL+ZSTfejw/6cVFgZpUUQRgnIlmRtfPoqiSV8eOXF+UZIvaTqnbjoWOqei
+         pfsRVUhXgXq1HUE5KHQv7JYNI3r8f7AzX5WjSBJOoJuuB/P5gzMa0aqhBhKtt89eT2Tb
+         dbGPrYDpYQx6OS6tocI6pUt6f9MdqJoKb6+obELIvAVyKYnEJYM0JmDuLRojkaVvu3iF
+         o7VA==
+X-Forwarded-Encrypted: i=1; AJvYcCVpDHA60FICuWfp1HzdHKncjg8fHWIdX7D4dYWG7pIGIWoHUPfRRY78wo5wPDpb//IGOdE+GpZsxQQq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/CJQVUIZ7AIe3Enhw7+ZIY4OKPj94CnGBzamiiDdlTA/KJLwj
+	RyI+LETV49kUB9x5I7AAmKqo/1Q1TN3chGRHzdmRHdIHsT88da6MFQQtQOjqCCo=
+X-Google-Smtp-Source: AGHT+IHekoCrEouitVYfb8Yy3HlP99xd5ZykhItjucwYVLFSB9uXwVt08HFWHlBeglYtqaJQ2Pm8Mg==
+X-Received: by 2002:a5d:4a90:0:b0:37c:d344:8b42 with SMTP id ffacd0b85a97d-37cfb8b2ec0mr3807558f8f.15.1727947666441;
+        Thu, 03 Oct 2024 02:27:46 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d08242d79sm847425f8f.51.2024.10.03.02.27.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2024 02:27:45 -0700 (PDT)
+Date: Thu, 3 Oct 2024 11:27:43 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Alex Lanzano <lanzano.alex@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Mehdi Djait <mehdi.djait@bootlin.com>, skhan@linuxfoundation.org, 
+	linux-kernel-mentees@lists.linuxfoundation.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v8 0/2] Add driver for Sharp Memory LCD
+Message-ID: <q53inyaxyvfib7okxzazepxzarqmq4rubbasumvvx2woioyp42@fbtn4poujsyh>
+References: <20241002033807.682177-1-lanzano.alex@gmail.com>
+ <t4lefcykpoe5i36wb4x5u23sseh6drnphtivuqc3mjviat2vvc@7hg4jyhxvpye>
+ <ees3m2qmazah2547ys62zvbrvo4dsgki2z2jwulwz4dfjtm4hk@kpmlapv6occv>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003081647.642468-1-herve.codina@bootlin.com> <20241003081647.642468-2-herve.codina@bootlin.com>
-In-Reply-To: <20241003081647.642468-2-herve.codina@bootlin.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 3 Oct 2024 11:13:17 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU=Huug5Hip+CCma8pzo=AHAeWtzPES8Zu-qCBAJ0Ng2w@mail.gmail.com>
-Message-ID: <CAMuHMdU=Huug5Hip+CCma8pzo=AHAeWtzPES8Zu-qCBAJ0Ng2w@mail.gmail.com>
-Subject: Re: [PATCH v7 1/6] misc: Add support for LAN966x PCI device
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Andy Shevchenko <andy.shevchenko@gmail.com>, Simon Horman <horms@kernel.org>, 
-	Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Derek Kiernan <derek.kiernan@amd.com>, 
-	Dragan Cvetic <dragan.cvetic@amd.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Lars Povlsen <lars.povlsen@microchip.com>, Steen Hegelund <Steen.Hegelund@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="s5o77kb33dofvcnw"
+Content-Disposition: inline
+In-Reply-To: <ees3m2qmazah2547ys62zvbrvo4dsgki2z2jwulwz4dfjtm4hk@kpmlapv6occv>
+
+
+--s5o77kb33dofvcnw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Hi Herv=C3=A9,
+Hello Alex,
 
-On Thu, Oct 3, 2024 at 10:17=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
-com> wrote:
-> Add a PCI driver that handles the LAN966x PCI device using a device-tree
-> overlay. This overlay is applied to the PCI device DT node and allows to
-> describe components that are present in the device.
->
-> The memory from the device-tree is remapped to the BAR memory thanks to
-> "ranges" properties computed at runtime by the PCI core during the PCI
-> enumeration.
->
-> The PCI device itself acts as an interrupt controller and is used as the
-> parent of the internal LAN966x interrupt controller to route the
-> interrupts to the assigned PCI INTx interrupt.
->
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+On Wed, Oct 02, 2024 at 10:33:13PM -0400, Alex Lanzano wrote:
+> On Wed, Oct 02, 2024 at 09:56:38AM GMT, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Oct 01, 2024 at 11:37:35PM -0400, Alex Lanzano wrote:
+> > > Changes in v8:
+> > > - Addressed review comments from Uwe
+> > >     - Replace pwm_get_state with pwm_init_state
+> > >     - Use pwm_set_relative_duty_cycle instead of manually setting per=
+iod and duty cycle
+> >=20
+> > You didn't explicitly mention that it's fine if the PWM doesn't emit the
+> > inactive state when you call pwm_disable(). You're code should continue
+> > to work if you drop all calls to pwm_disable().
+> >=20
+> > Ideally you mention that in a code comment to make others reading your
+> > code understand that.
+>=20
+> Sorry about that! The intent of the code is to stop the pwm from outputing
+> when the display is disabled since the signal is no longer needed. If
+> it's best to emit the inactive state rather than calling pwm_disable()
+> I'm fine with making that change.
 
-Thanks for your patch!
+Calling pwm_disable() is best iff you don't care about the output any
+more. If however you rely on it to emit the inactive level,
+pwm_disable() is wrong. I don't know enough about your display to judge
+=66rom here.
 
-> --- /dev/null
-> +++ b/drivers/misc/lan966x_pci.dtso
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2022 Microchip UNG
-> + */
-> +
-> +#include <dt-bindings/clock/microchip,lan966x.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/mfd/atmel-flexcom.h>
-> +#include <dt-bindings/phy/phy-lan966x-serdes.h>
-> +
-> +/dts-v1/;
-> +/plugin/;
-> +
-> +/ {
-> +       fragment@0 {
-> +               target-path=3D"";
+The code to disable the display looks (simplified) as follows:
 
-Nit: missing spaces around "=3D".
+	if (smd->enable_gpio)
+		gpiod_set_value(smd->enable_gpio, 0);
 
-> +               __overlay__ {
+	pwm_disable(smd->pwm_vcom_signal);
 
-Unfortunately we cannot use sugar syntax, as sugar syntax does not
-support empty target paths yet.
+so maybe the logic you need is:
 
-Gr{oetje,eeting}s,
+	if (smd->enable_gpio) {
+		gpiod_set_value(smd->enable_gpio, 0);
 
-                        Geert
+		/*
+		 * In the presence of a GPIO to disable the display the
+		 * behaviour of the PWM doesn't matter and we can
+		 * just disable it.
+		 */
+		pwm_disable(smd->pwm_vcom_signal);
+	} else {
+		struct pwm_state state;
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+		/*
+		 * However without a GPIO driving the display's output
+		 * enable pin the PWM must emit the inactive level,
+		 * which isn't guaranteed when calling pwm_disable(), so
+		 * configure it for duty_cycle =3D 0.
+		 */
+		 pwm_init_state(smd->pwm_vcom_signal, &state);
+		 state.duty_cycle =3D 0;
+		 state.enabled =3D true;
+		 pwm_apply_might_sleep(smd->pwm_vcom_signal, &state);
+	}
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+?
+
+Best regards
+Uwe
+
+--s5o77kb33dofvcnw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmb+Y40ACgkQj4D7WH0S
+/k6Jjwf/VkhVbrj5zZduvEjBR6Ryq5075XnahyFTpoqckqRcE+V8H/OzEfaT7fsA
+VAT9CFZPEfJ02N0jj2m4V82vzDlwk8m9Tiw0b8m5eFB3NeJLpKUh4Fi4Np3Lp5AK
+jIiCwhOEUY6Iw1bWsW2qj66Cism13MQ0tUlq43y7lxHNI/RzrysnZxYFX0FGCfkg
+PDQp7WW3JWJF3uH4yr1Mycw1gSzd0ECUG0/VG4rwiqc+jr7H2FYU3tcnVZgNPsD4
+Na680Wj75PWN6l5SYDEj04196IvNGz2psPJqxpaWwrtHquBLYQ/MvNXJ3XX21PnV
+k4ppnw4FCPFAuN7nTlta4MWjKi66gA==
+=YxME
+-----END PGP SIGNATURE-----
+
+--s5o77kb33dofvcnw--
 
