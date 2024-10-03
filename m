@@ -1,140 +1,194 @@
-Return-Path: <devicetree+bounces-107530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107529-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35E0D98EE4E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:39:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C96398EE4C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:38:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF88283196
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:39:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F4A1C20F34
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:38:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25862155757;
-	Thu,  3 Oct 2024 11:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57EF6154C12;
+	Thu,  3 Oct 2024 11:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="m1K/TLI9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GzWt/KQA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704551552ED
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 11:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FB11474C5;
+	Thu,  3 Oct 2024 11:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727955530; cv=none; b=ckk4jTo7+Fd4CD4gWdFEbHZ3cWwN9NZLG4vkU6ASvcdPumzfPqZtcfS56pI1I5w5N0KdVJp2GSTHCFzmP8TFQd9hT2g/Ha5MBHffIw2Y7a4wCXM/Ee5TxniwhX9Mam5+ipAriw1NOHixNdul1xSNiJC39K6NX9sgQSa2f59pLw8=
+	t=1727955528; cv=none; b=C5pjXdWSJ2Zt6XRj7GIsryZrLVAtbEIHxJgEsgJ3o45qJZ4JD7VK6AthH+A5FuKQ11YbkoD2DnrXSIuU9RQC69pyvbibwD2+WEX4El83zzBL8MO3GJzCobn7H3GdqGS6HcCeNct5IRHm9axr+8gapNau5ZDMKARv7E/hxouhJOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727955530; c=relaxed/simple;
-	bh=g6EvByoZPG/MdDyUnJMG5QMQON5GyIySoBJxBHHh9uA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HWV/CE3pn2m7huUcOUhz0YtQgK9ASa4hHUJffWsuGGlhV+rCa5lbXFJRlZVTw7QMP0X5loKr0ej1gAWLQY8510RLGhysASUdL70/nGXI+SFL7xlcdLDQBl+NIHyoT6rbeNm+cr0WlBN28zf5OV2V+mm7I56wckPWuOKOUYHRzds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=m1K/TLI9; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-537a399e06dso956489e87.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 04:38:48 -0700 (PDT)
+	s=arc-20240116; t=1727955528; c=relaxed/simple;
+	bh=tzdIj7Pmuk8vTXjUwDMnaYiElu+3TR3K2rs5MMV1AJw=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qqNhH6BMp/gjYMv0/FE76gzePrcwwSpioRr3K0rcvAdfF0HEX183/EbwOhDm2+HTd/mkzpKPpvfHag7WIR0dM8zHRUMVTDNNUxv5L3EqCyVBwwaqgGbhbqb9aBqmTQmE/af13/A/QD5m9cbzSaQaw3n3RggOKFPKUX6cBq/0MmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GzWt/KQA; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7ae3d9a93c0so87006585a.3;
+        Thu, 03 Oct 2024 04:38:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727955526; x=1728560326; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ial+kNUxVlagTAh5OXNTJXCmDuirvWQeTBwxkbQ8bdw=;
-        b=m1K/TLI9L+JdlMuAGbyh89sUHSfVMOyOtwjRoB8aBJflvh6RdqrZC5XL6uxd/Uja06
-         CmVFDaJNKBVp1tDnyhdcwQiBu455Ld5oVTKRp9NAnPslp2XoquKnvvmHVfXlnHWqslFD
-         BqiVMUde2qy5rONXv5FtX4WwCn2L/g83xeP8/F9N1cVbuHqvlSg9RmnDEsYl8ldvlftA
-         2PFceWgPWpX74oYs5q+RBFIAm9696r75IjVMwrnD1zT5eb4hD35eM2JqtALL7RS74v33
-         I9jLVz3dAdRMxdptIrqe5bdF97V24Xz4GL7OXUXypQjlUlXSpebK6OyLg/blHJp65alS
-         AODQ==
+        d=gmail.com; s=20230601; t=1727955525; x=1728560325; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QH30CE01/KIA8vmhQ9aUPnrMhqjqonBdBshFm2UJvlQ=;
+        b=GzWt/KQAbs/A3Rdc279i8cM3MurvV98HGBAovlZtQrGXDkJH7EnXf8dlvRWG5WDS49
+         HIu/TXm4a0PXxolG9hMxiCgKgPBvVZEB10fGB7WC3vq/tkbYLQYCO2u5tQ0rb36Rnb2K
+         aqz/VXZZaqnaW2zzFlZ0SHIulTos323Hvy7htVYbzo5v0lybOPpnskVdLu/4CXEpQJDQ
+         99FGzxSxuQCl/gu8KwkM5wKyQVwt23YL9PDDchnWgnzS3LA6OHVDeAsRFPz7h2viy1sk
+         mxmjnPBvnM/2Lw7HuNP2mOkO445V7jLKdlxYczAMnL5ekXKe8jrfVZ3tT4qbcbGAcVBO
+         La2w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727955526; x=1728560326;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ial+kNUxVlagTAh5OXNTJXCmDuirvWQeTBwxkbQ8bdw=;
-        b=l7Y+zTfSoM5Wo392D4ftMedliGkvPZyFdHJ/rNP0d3NU3qWGKpEU+tpd4rm1t2RA0b
-         FLGwmT17ajckCiK4ZDafIQPOQm/H6Rm9XbQRy5zSe/hDQmFe4A3x+twt4X4Rj3T4fojW
-         xS8q6zEzeymLE8IaNBIl7XmiCqqF/TFpoVykaeCbBXek2mHQRU8eBlb5UTtLSRucDg9u
-         XYA6KdfVscV4y1i2bY2F9YZgRQougsAEgYmh8LvnLToG8iOGBRGrPEvf1jXtL3dHCK4y
-         AOoCUV4Oh+vlgH1bbg/xoG7TL/EpcMnU4xolten7sVfGQZqeIQkK2H4CXrWcz5momRVH
-         7+cA==
-X-Forwarded-Encrypted: i=1; AJvYcCUyM1gE2NX9m6lJlKrh2J+j7hqOYWTCoDFHjnZCSuuSosYDulQlfxCzYDHtkaZhm9oZb0Iuoc7DDuae@vger.kernel.org
-X-Gm-Message-State: AOJu0YydPt9vODAZY+58wRg07K6uxOhm7qWANrZ9Sg41l+iWews/Yz99
-	z0Jfpid5pvY4zM5C4ldkoIeoyTtHX9peZIplByTJzxgTmM1ZMCKRXcag2c62K7kjFtHyq2WJTwu
-	/ttPlNr8e0d2gIr7XMqu3NNrRWpy8qbKf8sD3TA==
-X-Google-Smtp-Source: AGHT+IG2QJvSQ9kJ0Om0FLnVDouU3+iqMLBkxIekUgOC4DtsH1W6E4j1MFhH/9hsel0xtvam5zeR+i8StX9Pud2sywI=
-X-Received: by 2002:a05:6512:2312:b0:533:cf5a:eb32 with SMTP id
- 2adb3069b0e04-539a066595dmr4032156e87.19.1727955525941; Thu, 03 Oct 2024
- 04:38:45 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1727955525; x=1728560325;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QH30CE01/KIA8vmhQ9aUPnrMhqjqonBdBshFm2UJvlQ=;
+        b=jseUPaWUnmbsi8gD4+c+oSG7r2bpIJxqz8CGxNa2H4JkbCm74s2o+3FjMKGXWlsD60
+         Nj4wcFVN6SmfcjJpR2IEadvw5BwjMCWdeLYLjp9t4AsBt16GLNKi+FtKTCKdefITI5sk
+         29pDMUej6CqEWQBa0hpoe0DLJOm5oHShwvNZLrC8KQT3FRNwSjoTwDLUhU1tZTOfNbX2
+         oCWIgwgB2m+5/P8ikcUNNtTbkz6X1fe7s5j9jd1vm7vD++ur5uuuG9tp6OAkGxZAcQgM
+         bYYNNCPXhFuuXQ4BmtCvaSh1taeb3/G8aEB/+kw63LYTEh2mbtik1BUwSVhli4F+oJk4
+         3oog==
+X-Forwarded-Encrypted: i=1; AJvYcCVb4nsuXjEPneTq8wjSwPwmVWHCVep/kWQfGw+9/nH2bJDYCDspZ5wR0udZmkC5TzM5KG933m6E7SgC@vger.kernel.org, AJvYcCVczOVrVJAagx392dh2WhGToXR+DUPnjV+STLCtAUd61ABp3KpdAcGG8fZV5mLVEA23VTCicKKxddJLU/Ob@vger.kernel.org
+X-Gm-Message-State: AOJu0YyApBIF+MkMI89DkxlwSvoGhs8lf8oVuSp5Nx7l6MTTtNTf71vv
+	5PtLq1fSQPPIQOdLYPyUc7iGH3f6JR0N11veerSkC6ZGbkzC2Iw9
+X-Google-Smtp-Source: AGHT+IEsftUbErs0PEHHR3fZPjrpqAZaPwPf+30Hv6n3XFmFyIPXQLxmLuXNFR3P1/kV98FpLv5gzw==
+X-Received: by 2002:a05:620a:1921:b0:7a9:bb10:e072 with SMTP id af79cd13be357-7ae626bda77mr996374285a.23.1727955525448;
+        Thu, 03 Oct 2024 04:38:45 -0700 (PDT)
+Received: from localhost (fwdproxy-ash-004.fbsv.net. [2a03:2880:20ff:4::face:b00c])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ae6b39ca00sm43757985a.43.2024.10.03.04.38.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2024 04:38:44 -0700 (PDT)
+From: Usama Arif <usamaarif642@gmail.com>
+To: mark.rutland@arm.com,
+	will@kernel.org
+Cc: leitao@debian.org,
+	catalin.marinas@arm.com,
+	robh@kernel.org,
+	saravanak@google.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	kexec@lists.infradead.org,
+	Usama Arif <usamaarif642@gmail.com>
+Subject: [PATCH] of/kexec: save pa of initial_boot_params for arm64 and use it at kexec
+Date: Thu,  3 Oct 2024 12:38:40 +0100
+Message-ID: <20241003113840.2972416-1-usamaarif642@gmail.com>
+X-Mailer: git-send-email 2.43.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240930103041.49229-1-brgl@bgdev.pl> <20240930103041.49229-4-brgl@bgdev.pl>
- <Zv565olMDDGHyYVt@hovoldconsulting.com>
-In-Reply-To: <Zv565olMDDGHyYVt@hovoldconsulting.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Thu, 3 Oct 2024 13:38:35 +0200
-Message-ID: <CAMRc=Mc9jMe=hSXmcRLLX61abUjetCRZVeOK3G31vdx5JQNNMQ@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
- the on-board wcn6855
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Kalle Valo <kvalo@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Steev Klimaszewski <steev@kali.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 3, 2024 at 1:07=E2=80=AFPM Johan Hovold <johan@kernel.org> wrot=
-e:
->
-> On Mon, Sep 30, 2024 at 12:30:39PM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-> > and bluetooth nodes to consume the PMU's outputs.
-> >
-> > With this we can drop the regulator-always-on properties from vreg_s11b
-> > and vreg_s12b as they will now be enabled by the power sequencing
-> > driver.
-> >
-> > Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> Without this patch I'm seeing an indefinite probe deferral with
-> 6.12-rc1:
->
->         platform 1c00000.pcie:pcie@0:wifi@0: deferred probe pending: pci-=
-pwrctl-pwrseq: Failed to get the power sequencer
->
-> Can you please look into that and make sure that the existing DT
-> continues to work without such warnings.
->
+ __pa() is only intended to be used for linear map addresses and using
+it for initial_boot_params which is in fixmap for arm64 will give an
+incorrect value. Hence stash the physical address when it is known at
+boot time and use it at kexec time instead of converting the virtual
+address using __pa().
 
-Ah, dammit, I missed the fact that X13s already has this node defined
-so PCI pwrctl will consume it and try to get the power sequencer
-handle. I'm wondering how to tackle it though... It will most likely
-require some kind of a driver quirk where we check if we have the PMU
-node and if not, then don't try to set up power sequencing. Any other
-ideas?
+Reported-by: Breno Leitao <leitao@debian.org>
+Suggested-by: Mark Rutland <mark.rutland@arm.com>
+Signed-off-by: Usama Arif <usamaarif642@gmail.com>
+Fixes: ac10be5cdbfa ("arm64: Use common of_kexec_alloc_and_setup_fdt()")
+---
+ arch/arm64/kernel/setup.c | 8 ++++++++
+ drivers/of/fdt.c          | 6 ++++++
+ drivers/of/kexec.c        | 8 ++++++--
+ include/linux/of_fdt.h    | 2 ++
+ 4 files changed, 22 insertions(+), 2 deletions(-)
 
-> > -
-> > -             enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
-> > -             swctrl-gpios =3D <&tlmm 132 GPIO_ACTIVE_HIGH>;
->
-> What about swctrl? You're just removing this pin from DT now without any
-> comment on why you think that is the right thing to do.
->
-> Should this one also be an input to the PMU block?
->
+diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
+index b22d28ec8028..a4d96f5e2e05 100644
+--- a/arch/arm64/kernel/setup.c
++++ b/arch/arm64/kernel/setup.c
+@@ -194,6 +194,14 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
+ 	/* Early fixups are done, map the FDT as read-only now */
+ 	fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
+ 
++	/*
++	 * Save dt_phys address so that it can be used later for kexec. This
++	 * is done as __pa() is only intended to be used for linear map addresses
++	 * and using it for initial_boot_params which is in fixmap will give an
++	 * incorrect value.
++	 */
++	set_initial_boot_params_pa(dt_phys);
++
+ 	name = of_flat_dt_get_machine_name();
+ 	if (!name)
+ 		return;
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 4d528c10df3a..9e312b7c246e 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -457,6 +457,7 @@ int __initdata dt_root_addr_cells;
+ int __initdata dt_root_size_cells;
+ 
+ void *initial_boot_params __ro_after_init;
++phys_addr_t initial_boot_params_pa __ro_after_init;
+ 
+ #ifdef CONFIG_OF_EARLY_FLATTREE
+ 
+@@ -1185,6 +1186,11 @@ bool __init early_init_dt_scan(void *params)
+ 	return true;
+ }
+ 
++void __init set_initial_boot_params_pa(phys_addr_t params)
++{
++	initial_boot_params_pa = params;
++}
++
+ static void *__init copy_device_tree(void *fdt)
+ {
+ 	int size;
+diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
+index 9ccde2fd77cb..ca9f27b27f71 100644
+--- a/drivers/of/kexec.c
++++ b/drivers/of/kexec.c
+@@ -300,8 +300,12 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
+ 		goto out;
+ 	}
+ 
+-	/* Remove memory reservation for the current device tree. */
+-	ret = fdt_find_and_del_mem_rsv(fdt, __pa(initial_boot_params),
++	/* Remove memory reservation for the current device tree.
++	 * For arm64, initial_boot_params is a fixmap address, hence __pa(),
++	 * can't be used to get the physical address.
++	 */
++	ret = fdt_find_and_del_mem_rsv(fdt, IS_ENABLED(CONFIG_ARM64) ?
++				       initial_boot_params_pa : __pa(initial_boot_params),
+ 				       fdt_totalsize(initial_boot_params));
+ 	if (ret == -EINVAL) {
+ 		pr_err("Error removing memory reservation.\n");
+diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+index d69ad5bb1eb1..dbd99bf21ac8 100644
+--- a/include/linux/of_fdt.h
++++ b/include/linux/of_fdt.h
+@@ -31,6 +31,7 @@ extern void *of_fdt_unflatten_tree(const unsigned long *blob,
+ extern int __initdata dt_root_addr_cells;
+ extern int __initdata dt_root_size_cells;
+ extern void *initial_boot_params;
++extern phys_addr_t initial_boot_params_pa;
+ 
+ extern char __dtb_start[];
+ extern char __dtb_end[];
+@@ -73,6 +74,7 @@ extern int early_init_dt_scan_root(void);
+ extern bool early_init_dt_scan(void *params);
+ extern bool early_init_dt_verify(void *params);
+ extern void early_init_dt_scan_nodes(void);
++extern void set_initial_boot_params_pa(phys_addr_t params);
+ 
+ extern const char *of_flat_dt_get_machine_name(void);
+ extern const void *of_flat_dt_match_machine(const void *default_match,
+-- 
+2.43.5
 
-I recently added it to the bindings as an optional property. It's
-technically an output of the PMU to the host indicating the state of
-the clock supply to the BT module. We're not really using it but I can
-keep it here if you prefer.
-
-Bart
 
