@@ -1,135 +1,170 @@
-Return-Path: <devicetree+bounces-107434-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107435-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FD3B98EADE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:55:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7847B98EAF3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:59:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D79F11F22DAC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:55:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5DA86B25546
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:59:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAB0412C473;
-	Thu,  3 Oct 2024 07:55:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE22B12C552;
+	Thu,  3 Oct 2024 07:59:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jQTzBMJE"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="wlOQzFRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F36053363;
-	Thu,  3 Oct 2024 07:55:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D780C823DF
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 07:59:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727942123; cv=none; b=raxqW1OZuCdCePNQXCCCoRuqGWwuDgQjX7oNiTX+MJQKpttkjBVitM8HkTT98SufCrsr3DnYjKg0TqTB/dXa4Hgy/p5iGh+uEmHA5g4IAx676FpbXLrtW6u1cv7BBflX9HLAzjh5o8L8KpmhfZ5gtUH1SRqc7tyVLndIdsYoe7Y=
+	t=1727942382; cv=none; b=ttOOL/0VwWpA57hSlNWgN5Jhnm+6rnDv/kY5KZJ6q0gb3vnxCTsiUXPEE/GtSrVAwsh5NNMc9aKzyb8flozk/mS7H/6S5kNMl7vBeIQlh240K2BF8pYe+HuvilwAz4Ten4d4F67aYP6GWfH8EfpqwdWyeG8+ah4HduAO5U9H8kg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727942123; c=relaxed/simple;
-	bh=B1/LqVGQu6maiREI328zrITlgx61icUEJ8iMvU2ORW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YIrxnCZy7dUV1LGg1+6k+heV8SI/+ybCJH3s+1EMbdInCWdyFC+2YDSk+oail3iZ+zfkMrCCyYn3FtbBjiAgpHRV55eYkfcxSiV8aIRb6J+FRJ1xupbS+wR4dAsqWlMWyu7wMKuX7nd5/rQqDMyFmlg8lSOdceUO3qKg28Cos0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jQTzBMJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 54C5CC4CEC7;
-	Thu,  3 Oct 2024 07:55:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727942123;
-	bh=B1/LqVGQu6maiREI328zrITlgx61icUEJ8iMvU2ORW8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jQTzBMJEFmHIMxuufG4A0OtBKDnZxUNE3ViK9qhFszU7Adv7WfFmVxF3DevpAnWeh
-	 TuPqXv1W/X0d9FRExwtozTZhY9c7uKgInzKhYUTCPtPo4TV+b+PBFXOqd641+hW5pW
-	 hvSABhXKFxxA2J4ScqVLo790QSdsZ2akf1OGIu3qzGrJR8vO8mgRmvx6xA/7fBGzLe
-	 otuLYiF8SDFEo1fpZPKBaQrm9he/BP03JU4qVuvGvTNLVrl+CnCVBzgLZqikAKy+km
-	 Am/2H7QBR29DySr+CM8qWC77h/WoXfo7Wo2hJXYyw6/SzNt6ZMmOnTvG7oeOIDb78x
-	 S8ZCr9C685eTA==
-Date: Thu, 3 Oct 2024 09:55:19 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mahadevan <quic_mahap@quicinc.com>
-Cc: Rob Clark <robdclark@gmail.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Kalyan Thota <quic_kalyant@quicinc.com>, Jayaprakash Madisetty <quic_jmadiset@quicinc.com>, 
-	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] dt-bindings: display/msm: Document the DPU for
- SA8775P
-Message-ID: <mbhafnxq4fmndrszkv5bhvqjaik2c3v4sizjner47zapaagnvc@cfvjuvrjtxxx>
-References: <20241001-patchv3_1-v3-0-d23284f45977@quicinc.com>
- <20241001-patchv3_1-v3-2-d23284f45977@quicinc.com>
+	s=arc-20240116; t=1727942382; c=relaxed/simple;
+	bh=CzdQ3i2VK7UMasif6892vGA/ET644xX++JhT4/OWUH0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JFd4IWGbmWVjKmFSdEezYlIxkrEzJKe7XGbyaQI12ljSnICA7cTebLaVj04mteYsPFJtl7/pSpuyQ1H64TSKOaa7UGqwXAN3BsFSas4CGdWxrkTERoXT5I7yNUdPlLX9TAN/msRX4cBAm7lzkUQUyia1NZ7h/+5VdAECZJXgjxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=wlOQzFRn; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37ccfba5df5so532701f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 00:59:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727942379; x=1728547179; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7wZTumvS1FX7esdrpRKhVgflOZWM/kXat3TeZ3vkWLk=;
+        b=wlOQzFRnh6SzE4mZbV61+OolH9ndGmRDUM+ac8msJLPES30SQF8r3yNSICUjRqFo8Y
+         Do65/XugIeLWBkT0e/NQcLs/0av7X5eBUzKS2TU+KgWSUIU7p2pc/0Skr4jow11ulmsX
+         eO2r3u5Fn1FumazFhsBkDW5oHT22mQIWNWvCXfCorKs4n0oDllSuG088MqWtYNKmuezD
+         VPV/sA1e9Er/HeiRJWMJfju93rr3+Ok/NxLlxI0C+RIVdDmVa0+VUcT8SPeywT+oJYqF
+         ywZG88zTOkzBA4B2wZoXw4JRTtVP70Ni044tu/8kDqwhal2rTcpwLZHV5KxDS1mO/cVN
+         e0og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727942379; x=1728547179;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7wZTumvS1FX7esdrpRKhVgflOZWM/kXat3TeZ3vkWLk=;
+        b=S9jtrwrt2JxgjZw1hLeYG3+MdKjSOrbkXQ23l048+hMgAO5/Xs9/V4ABHGoMM+kTKZ
+         fAkngV64sM9/nceVOx29wtoKs9xJiho3PabP1UlOH+uD+x4pwWBVUcRp3zVmPjDJ6MuK
+         +7ZlPtg7FUMPH97zsIHbpORFD1r7DnHqBROQZ7DyCh8yioD1JTus2y3s2NQkQLMZ1HQv
+         c/ZlMdRArgeBrZ72UdbkcR59HUy/Alz9LOwOIz/CdE/kKJXroXLY152PqLlEl8Rpv/IP
+         Sw4Ujb1E6pn1SpeAivKLe8bAzxZpG/itstYMa3FYVzIkwYdaHiv5i7tYK9mi/r0K43hk
+         gSnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVSnF53x/bAWUXWYdJQFrkX7Cy3u4T/3RYvzIZ6y8/IDpEGs+lYBW1WuNrnOONWIVY+xSiMae+kw39/@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTcmVdY4oTZ+mjb2fmCPYFsFqnSoi4IubE8GHR+1fwHSuGGkU1
+	JcHdf5FHa0iyUnJH0EZ3K47sdkY3H3qwimgFjdxYBdwW2vmG2JSHZhS5EwVXnQk=
+X-Google-Smtp-Source: AGHT+IEsSdfcRZjKJ41FslpC8TPMBC/B2mp/qcKIEx519I9XW873b+QBemVm6u81uqeEgDbbK7zeeQ==
+X-Received: by 2002:a05:6000:1547:b0:374:c075:ff34 with SMTP id ffacd0b85a97d-37cfba04c19mr4773570f8f.38.1727942379165;
+        Thu, 03 Oct 2024 00:59:39 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d082d94f1sm669315f8f.110.2024.10.03.00.59.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 00:59:38 -0700 (PDT)
+Message-ID: <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
+Date: Thu, 3 Oct 2024 09:59:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241001-patchv3_1-v3-2-d23284f45977@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC v1 5/5] dt-bindings: riscv: document vector crypto
+ requirements
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241002-defeat-pavestone-73d712895f0b@spud>
+ <20241002-sincerity-urgent-acdb0e8d8a66@spud>
+Content-Language: en-US
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20241002-sincerity-urgent-acdb0e8d8a66@spud>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 01, 2024 at 12:11:37PM +0530, Mahadevan wrote:
-> Document the DPU for Qualcomm SA8775P platform.
+
+
+On 02/10/2024 18:10, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
+> Section 35.2. Extensions Overview of [1] says:
+> | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the composite extensions Zvkn and
+> | Zvks-- (sic) require a Zve64x base, or application ("V") base Vector Extension.
+> | All of the other Vector Crypto Extensions can be built on any embedded (Zve*) or application ("V") base
+> | Vector Extension
+> 
+> Apply these rules in the binding, so that invalid combinations can be
+> avoided.
+> 
+> Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-isa-release-698e64a-2024-09-09 [1]
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/display/msm/qcom,sa8775p-dpu.yaml     | 122 +++++++++++++++++++++
->  1 file changed, 122 insertions(+)
+>  .../devicetree/bindings/riscv/extensions.yaml | 32 +++++++++++++++++++
+>  1 file changed, 32 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-dpu.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..fda88bdbd04214e06255e105eae582ff926d72e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sa8775p-dpu.yaml
-> @@ -0,0 +1,122 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/msm/qcom,sa8775p-dpu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Technologies, Inc. SA8775P Display DPU
-> +
-> +maintainers:
-> +  - Mahadevan <quic_mahap@quicinc.com>
-> +
-> +$ref: /schemas/display/msm/dpu-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: qcom,sa8775p-dpu
-> +
-> +  reg:
-> +    items:
-> +      - description: Address offset and size for mdp register set
-> +      - description: Address offset and size for vbif register set
-> +
-> +  reg-names:
-> +    items:
-> +      - const: mdp
-> +      - const: vbif
-> +
-> +  clocks:
-> +    items:
-> +      - description: Display hf AXI
-> +      - description: Display AHB
-> +      - description: Display lut
-> +      - description: Display core
-> +      - description: Display vsync
-> +
-> +  clock-names:
-> +    items:
-> +      - const: bus
-> +      - const: iface
-> +      - const: lut
-> +      - const: core
-> +      - const: vsync
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index abf2579171c5b..02b822bbf341d 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -651,6 +651,38 @@ properties:
+>              - contains:
+>                  const: zve64f
+>  
+> +      - if:
+> +          contains:
+> +            anyOf:
+> +              - const: zvbc
+> +              - const: zvkn
+> +              - const: zvknhb
+> +              - const: zvks
 
-This looks the same as sm8650-dpu. Add the compatible there.
+Hey Conor,
 
-Best regards,
-Krzysztof
+Shouldn't zvksed and zvksh be part odf this list ? My understanding of
+the spec might be wrong but "Zvks--" seems like a poor-man's wildcard
+for Zvks* extensions ?
+
+Thanks,
+
+Clément
+
+> +        then:
+> +          contains:
+> +            anyOf:
+> +              - const: v
+> +              - const: zve64x
+> +
+> +      - if:
+> +          contains:
+> +            anyOf:
+> +              - const: zvbb
+> +              - const: zvkb
+> +              - const: zvkg
+> +              - const: zvkned
+> +              - const: zvknha
+> +              - const: zvksed
+> +              - const: zvksh
+> +              - const: zvknc
+> +              - const: zvkng
+> +              - const: zvkt
+> +        then:
+> +          contains:
+> +            anyOf:
+> +              - const: v
+> +              - const: zve32x
+> +
+>  allOf:
+>    # Zcf extension does not exist on rv64
+>    - if:
 
 
