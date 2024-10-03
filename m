@@ -1,212 +1,137 @@
-Return-Path: <devicetree+bounces-107645-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F5D898F863
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 23:02:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25E5998F890
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 23:08:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B69281D15
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 21:02:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 900E9B22E7D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 21:08:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1271AC8A2;
-	Thu,  3 Oct 2024 21:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 745C01B85CC;
+	Thu,  3 Oct 2024 21:06:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PM/4axmF"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mDTbh51H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEF61AB506;
-	Thu,  3 Oct 2024 21:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F301AAE39;
+	Thu,  3 Oct 2024 21:06:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.142
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727989317; cv=none; b=nwKXd8F3qpqmrF/Ytnny3J86y0lwW5N3IBEqFml0MlbRcZvN7e9cFI5OMlZOCUj9/pStr0+bmqqsiAbvTA+v/+zSJP3dlnf/fvBxazh9L+NaQTciiT0a40xwYjowEClxr2DxrdQx9mK08j3BQvBAIGPnX0oy2yZWmIg9CEsW9iQ=
+	t=1727989577; cv=none; b=fk8lNieuBScGSMbO+fSUH1W2Hq8jyEUNs5ptam3XfymNTh5+xVZjjNqGgltkH9LjJXucyWdLnhTOTkW03fKiiJB1RyZ+FKY/NrkKuutqu8AELWQVydq/nyhKxjYuBlPRKcDTZmYZ3trmvb74aaIxQ3VPURy3+geuTWaHNuZX08I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727989317; c=relaxed/simple;
-	bh=8eh574O4F9l+mKqRltFV+olJd6g3O6Fay42ID4YMX2U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=e1faqxgzvXda9fG1ytLi10QJEfNcyVh4G+qyCgr8tIORjl72ZjyzdE6mGUq5X6sR6sjlPg+cbwT3KkOs6yubl2AeUHJp6N3SA+bTyiLMJ4EBjfmremHby0tBk6onQSMalDa/FcYC17tzfso91SeGw85QU1z8ijTCLWvWVyHkJO0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PM/4axmF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0444FC4CECC;
-	Thu,  3 Oct 2024 21:01:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727989316;
-	bh=8eh574O4F9l+mKqRltFV+olJd6g3O6Fay42ID4YMX2U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PM/4axmFF0+7VXZB/glU985zwWmYbSL1v8BvxDrgS3+WkyM2CRYLqYgMhkVmNAN53
-	 Lc9D9XcHTVUbIMNZM4cMtxX8IKF+3oY/9ZiNnFXpOaScmv07wd7ic/WJH02qewlfQU
-	 rK5uCNCmS9Mirm5kTedGuv3uvAcTbhcM9l1/eBEQZy7djMw9QQYlmYjoIYYaNHWRey
-	 nOZGqhwgvPqOkKYZAvCX6OTLebLdzvcoGOFTaKkixqTlDQbjZWAe/2QOH3PiZbxQHu
-	 EOYvWzZ2+I1n7t5J2PxpOwWdVPI+MPA54kRNX575iBGlKCD/XH3lauRa40hIcLP4Pf
-	 8pOHmzy1a0Hkg==
-Date: Thu, 3 Oct 2024 22:01:50 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>
-Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP
- S32G2/S32G3 SoCs
-Message-ID: <20241003-overall-unblended-7139b17eae23@spud>
-References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
- <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
- <20240926-apricot-unfasten-5577c54a3e2f@spud>
- <c2d8f121-903d-4722-825f-c00604ef3991@oss.nxp.com>
- <20240930-shortness-unedited-650f7996e912@spud>
- <20240930-bamboo-curliness-eb4787b81ea3@spud>
- <20d46ef0-8c58-407d-9130-3c961dd1656f@oss.nxp.com>
- <230e575e-b8b6-4671-a37a-085fef761240@oss.nxp.com>
+	s=arc-20240116; t=1727989577; c=relaxed/simple;
+	bh=cHnd85X78e6FFbfVRrKy1KRgRQi8Bj/svD0Sbxmorn0=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TABGI46d5DO76BpNEaS6+IjJd1bZB8HINTRV7UU0/bBLTnCexZhJUouhUp6ANCKtT/YuyoxemitfsBaEuMtM0/12KHlamNbqrKPm94vCYgYLzDW0JrhI1hUDsZPXjWaVpEiX8L+YSdLxrzKsjhf/Qy5TMOz1Mk0Eg3f6c6HSFc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mDTbh51H; arc=none smtp.client-ip=198.47.19.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 493L66C5073927;
+	Thu, 3 Oct 2024 16:06:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1727989566;
+	bh=GXeSSrlQk/Y25qv8eRZnz896qL1ska8ltJANRgkvAqI=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=mDTbh51HH5tQfVO9jPxQ5xhj+oAmmxooOAh45i/IhL8QjjwTe31oC7mNL70rz7S4a
+	 yPa1acFBqkh4RKLjOBx5/DvQDNOfBLkrm7WlQZ97w/QyWhK5JhufauzTjpppQNqk+A
+	 I3l925ZDLHtj65tKB441B+ojz58A9oGqrlQN6X6w=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 493L666d086560;
+	Thu, 3 Oct 2024 16:06:06 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
+ Oct 2024 16:06:06 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 3 Oct 2024 16:06:06 -0500
+Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 493L66Rr030034;
+	Thu, 3 Oct 2024 16:06:06 -0500
+Date: Thu, 3 Oct 2024 16:06:06 -0500
+From: Bryan Brattlof <bb@ti.com>
+To: Andrew Davis <afd@ti.com>
+CC: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v12 2/5] arm64: dts: ti: k3-am625-sk: Add M4F remoteproc
+ node
+Message-ID: <20241003210606.2k7wyssklwfziod4@bryanbrattlof.com>
+X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
+References: <20241003170118.24932-1-afd@ti.com>
+ <20241003170118.24932-3-afd@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="K9R0DwJtUt9wGfTI"
+Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-In-Reply-To: <230e575e-b8b6-4671-a37a-085fef761240@oss.nxp.com>
+In-Reply-To: <20241003170118.24932-3-afd@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Andrew!
 
---K9R0DwJtUt9wGfTI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On October  3, 2024 thus sayeth Andrew Davis:
+> From: Hari Nagalla <hnagalla@ti.com>
+> 
+> The AM62x SoCs of the TI K3 family have a Cortex M4F core in the MCU
+> domain. This core can be used by non safety applications as a remote
+> processor. When used as a remote processor with virtio/rpmessage IPC,
+> two carveout reserved memory nodes are needed. The first region is used
+> as a DMA pool for the rproc device, and the second region will furnish
+> the static carveout regions for the firmware memory.
+> 
+> The current carveout addresses and sizes are defined statically for
+> each rproc device. The M4F processor does not have an MMU, and as such
+> requires the exact memory used by the firmware to be set-aside.
+> 
+> Signed-off-by: Hari Nagalla <hnagalla@ti.com>
+> Signed-off-by: Andrew Davis <afd@ti.com>
+> ---
+>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 44ff67b6bf1e4..6957b3e44c82f 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -56,6 +56,18 @@ linux,cma {
+>  			linux,cma-default;
+>  		};
+>  
+> +		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9cb00000 0x00 0x100000>;
+> +			no-map;
+> +		};
+> +
+> +		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
+> +			compatible = "shared-dma-pool";
+> +			reg = <0x00 0x9cc00000 0x00 0xe00000>;
+> +			no-map;
+> +		};
+> +
 
-On Thu, Oct 03, 2024 at 01:22:35PM +0300, Andrei Stefanescu wrote:
-> Hi Conor,
->=20
-> >>>>>
-> >>>>> Huh, I only noticed this now. Are you sure that this is a correct
-> >>>>> representation of this device, and it is not really part of some sy=
-scon?
-> >>>>> The "random" nature of the addresses  and the tiny sizes of the
-> >>>>> reservations make it seem that way. What other devices are in these
-> >>>>> regions?
-> >>>
-> >>> Thanks for your answer to my second question, but I think you missed =
-this
-> >>> part here ^^^
-> >>
-> >> Reading it again, I think you might have answered my first question,
-> >> though not explicitly. The regions in question do both pinctrl and gpi=
-o,
-> >> but you have chosen to represent it has lots of mini register regions,
-> >> rather than as a simple-mfd type device - which I think would be the
-> >> correct representation. .
-> >=20
-> > Yes, SIUL2 is mostly used for pinctrl and GPIO. The only other uses cas=
-e is
-> > to register a nvmem device for the first two registers in the SIUL2 MID=
-R1/MIDR2
-> > (MCU ID Register) which tell us information about the SoC (revision,
-> > SRAM size and so on).
-> >=20
-> > I will convert the SIUL2 node into a simple-mfd device and switch the
-> > GPIO and pinctrl drivers to use the syscon regmap in v5.
->=20
-> I replied in the other patch series
-> https://lore.kernel.org/all/a924bbb6-96ec-40be-9d82-a76b2ab73afd@oss.nxp.=
-com/
-> that I actually decided to unify the pinctrl&GPIO drivers instead of maki=
-ng
-> them mfd_cells.
+The only issue I have here is this takes away memory from people who do 
+not use these firmware or causes them to work around this patch if they 
+choose to have different carveouts.
 
-Yeah, I'm sorry I didn't reply to that sooner. I was being a lazy shit,
-and read a book instead of replying yesterday. Almost did it again today
-too...
+Would an overlay be appropriate for this?
 
-To answer the question there, about simple-mfd/syscon not being quite
-right:
-I guess you aren't a simple-mfd, but this region does seem to be an mfd
-to me, given it has 3 features. I wouldn't object to this being a single
-node/device with two reg regions, given you're saying that the SIUL2_0
-and SIUL2_1 registers both are required for the SIUL2 device to work but
-are in different regions of the memory map.
-
-> I have a question regarding the NVMEM driver that I mentioned earlier. I =
-haven't
-> yet created a patch series to upstream it but I wanted to discuss about it
-> here since it relates to SIUL2 and, in the future, we would like to upstr=
-eam it
-> as well.
->=20
-> We register a NVMEM driver for the first two registers of SIUL2 which can
-> then be read by other drivers to get information about the SoC. I think
-> there are two options for integrating it:
->=20
-> - Separate it from the pinctrl&GPIO driver as if it were part of a differ=
-ent
-> IP. This would look something like this in the device tree
->=20
-> /* SIUL2_0 base address is 0x4009c000 */
-> /* SIUL2_1 base address is 0x44010000 */
->=20
-> nvmem1@4009c000 {
-> 	/* The registers are 32bit wide but start at offset 0x4 */
-> 	reg =3D <0x4009c000 0xc>;
-> 	[..]
-> };
->=20
-> pinctrl-gpio@4009c010 {
-> 	reg =3D <0x4009c010 0xb84>,  /* SIUL2_0 32bit registers */
-> 	      <0x4009d700 0x50>,   /* SIUL2_0 16bit registers */
-> 	      <0x44010010 0x11f0>, /* SIUL2_1 32bit registers */
-> 	      <0x4401170c 0x4c>,   /* SIUL2_1 16bit registers */ =20
-> 	[..]
-> };
->=20
-> nvmem2@0x44010000 {
-> 	reg =3D <0x44010000 0xc>;
-> 	[..]
-> }
->=20
-> - have the nvmem as an mfd cell and the pinctrl&GPIO as another mfd cell
->=20
-> The first option keeps the nvmem completely separated from pinctrl&GPIO
-> but it makes the pinctrl&GPIO node start at an "odd" address. The second =
-one
-> more accurately represents the hardware (since the functionality is part =
-of
-> the same hardware block) but I am not sure if adding the mfd layer would =
-add
-> any benefit since the two functionalities don't have any shared resources=
- in
-> common.
-
-That's kinda what mfd is for innit, multiple (disparate) functions. I'm
-not sure that you need an nvmem child node though, you may be able to
-"just" ref nvmem.yaml, but I am not 100% sure how that interacts with
-the pinctrl child node you will probably want to house pinctrl
-properties in. The mfd driver would be capable of registering drivers
-for each of the functions, you don't need to have a child node and a
-compatible to register them. Cos of that, you shouldn't really require
-a child node for GPIO, the gpio controller properties could go in the
-mfd node itself.
-
---K9R0DwJtUt9wGfTI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv8GPgAKCRB4tDGHoIJi
-0gfaAQCK6A6FyKv8heEKlrefSlhG3fuedIfwM1oYYR5XcOSwlwEAhspxpxTZ7SIz
-HAtpUFOcJqqJf8c3/88JGym5xb29IA0=
-=+j7w
------END PGP SIGNATURE-----
-
---K9R0DwJtUt9wGfTI--
+~Bryan
 
