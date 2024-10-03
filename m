@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-107501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3232898ED44
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:46:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE76198ED49
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:47:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD5EE1F227A2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:46:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 095311C21059
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:47:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C99B814D2BD;
-	Thu,  3 Oct 2024 10:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7037B14F9CC;
+	Thu,  3 Oct 2024 10:47:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qVTYgZhj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gWbYlAhl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9990B3D68;
-	Thu,  3 Oct 2024 10:46:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4700F149E17;
+	Thu,  3 Oct 2024 10:47:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727952381; cv=none; b=eZfeSlmKODfZDC32HTzgp/bZVEQWzY5Y9Y9q2FxFYP9jA+RdxyvtNvY8uktPsuSPXz6gIFBY+LBpWKsxZS3WJMXzf9xx53t90hq36oHfZkThnrt4/o6POmHHg8pKVoBIFlQoIM+XDkgul4ANhyff9VNG8QuNKppg/j0UGtam5wM=
+	t=1727952439; cv=none; b=dU2bcj2PDGw6TFN/KOOo2EUVCvK+oAKELosIMtO4p1GEw1cuhko9zq5gRqFi3Cv2zJyD//q2Hv+DHEZj2Y2c7nqByxCe3xyhKOs9N5FCegBoBlnBEdXMlzPyPeX44aVx7KSfQiMVEaWfIWBhwIvXj9kaDWTHHEQ28G1lfWw+J54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727952381; c=relaxed/simple;
-	bh=m9/K6VvhKFRFfOMebN3I5d+4T6RrW1K2nP92qcHvI6A=;
+	s=arc-20240116; t=1727952439; c=relaxed/simple;
+	bh=+llipu1iluRugUyg/Mf8dzH7AFWhC7phSpmH/PN4SOU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YHsmVe+zCWcZFnvq63RhGgSl5Qrm/f4lbgy7eDeXcBiFhoHsCkU1qtJE10cfkBm0KUGReGsgTYeDM1vnELD30o1aZo68KhqyXbjL8j2YIRDcDYMVnzryhgATXDPiPf9Cr5pUqSwxXVzaWXzSylQQelTt3cHrGI0wShzw9K+VpEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qVTYgZhj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 132C5C4CEC5;
-	Thu,  3 Oct 2024 10:46:15 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=N48YsHo+1UXg8YTo/2Y8s+bQ5+GieSB82O4qpUWTFKIditphRdNetg2MjnsCgmoywFW6oh7Vqi41BYfa3bhyDV+wepyqL+zD5AAC0Z9Qzhc3KBkUHZYWYDcLkU10ACkg5HP8Yolg89G+ZleiBTctuO0QyvlDfy0IU+LGZ76IPm4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gWbYlAhl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11DE8C4CEC5;
+	Thu,  3 Oct 2024 10:47:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727952381;
-	bh=m9/K6VvhKFRFfOMebN3I5d+4T6RrW1K2nP92qcHvI6A=;
+	s=k20201202; t=1727952438;
+	bh=+llipu1iluRugUyg/Mf8dzH7AFWhC7phSpmH/PN4SOU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qVTYgZhjNCrm6XEtRVAvqp8LGSFWQsn68WS1I68rxULa62NDQHN45W2HAGtGnZF+V
-	 n8TWskvwAXqxF8mLnG/z8+Pb0BUVlDrymNvVvYW20yE3+02GDGNxDHPA+XVxXrI12E
-	 pM/g9eyFGc/uOnMzA7WNcCqkgQAM8qfrLTSQUl7KcTtPnNrw8UNGwC73yjM0ZENW9W
-	 9j2fIvsN2mNXlvmrdfPLlXaLhrKLyjgSde+L/euq+2mBrmFTtDvCC0Q0ufduWQm4Rz
-	 JuwecyTgFEB3yrmkmBEoBwVXfU5GTasKyPAlNU5iua3xQrFqTSwItUcYTO9qdgPqBb
-	 2FXjOksl5l8kA==
-Message-ID: <82db5037-bbd3-4005-bde9-02df1bf4c475@kernel.org>
-Date: Thu, 3 Oct 2024 12:46:13 +0200
+	b=gWbYlAhlBdaGDfoF9S0oZjHKLwP2sTUuPrb+Emp5dGehYHBM2kB3K6EP9k6xJKB91
+	 5QekmvjifjxUBnARCmF0jbvYycCFrUAFVc6WBmcc/97ZR/rIuduN656ONNuy7W52gi
+	 ySTE2HlPZqwZX3P8EYOPZW2kd5YP6JtHcas9wxcXadggmYjqtkuIhksMcFM2LAQTqL
+	 ZoamIeDq6nFnm+RYdNInOHgyn96FRHcCJlzueGG2Sk11zfu1dC1iRgLI5R8zfasEGV
+	 8dnEQfPKM8F+D8PBvpKaoTfL7mZmuTwlwpfqhJSI8CL+Ij+qG8n18ktJvS9Fqy2Igp
+	 FojHtbswiE59Q==
+Message-ID: <5478ec31-4d86-463b-ba2c-84a9f535debd@kernel.org>
+Date: Thu, 3 Oct 2024 12:47:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,24 +50,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
- spectrum clocking
-To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
- Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
- Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
- devicetree@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
- <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
- <566859c1-a397-4465-987e-0682b07a703e@kernel.org>
- <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
- <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org>
- <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: display: mediatek: split: add clocks
+ count constraint for MT8195
+To: =?UTF-8?B?TW91ZHkgSG8gKOS9leWul+WOnyk=?= <Moudy.Ho@mediatek.com>
+Cc: "linux-mediatek@lists.infradead.org"
+ <linux-mediatek@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+ =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= <Jason-JH.Lin@mediatek.com>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>,
+ "simona@ffwll.ch" <simona@ffwll.ch>, "mripard@kernel.org"
+ <mripard@kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>, "p.zabel@pengutronix.de"
+ <p.zabel@pengutronix.de>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "robh@kernel.org" <robh@kernel.org>,
+ =?UTF-8?B?TWFjcGF1bCBMaW4gKOael+aZuuaWjCk=?= <Macpaul.Lin@mediatek.com>,
+ "airlied@gmail.com" <airlied@gmail.com>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+ "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ "moudy.ho@mediatek.corp-partner.google.com"
+ <moudy.ho@mediatek.corp-partner.google.com>
+References: <20240927055140.19688-1-moudy.ho@mediatek.com>
+ <pnpj4pexz6nff72kmk6thupwvp2dgkz32ye7o44qdpuctbewb4@kpokc7c2rflr>
+ <e78c2a518b258d6287233367be1e071c2da1a724.camel@mediatek.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -113,126 +124,30 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
+In-Reply-To: <e78c2a518b258d6287233367be1e071c2da1a724.camel@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 01/10/2024 08:29, Dario Binacchi wrote:
-> On Mon, Sep 30, 2024 at 8:45 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On 30/09/2024 05:28, Moudy Ho (何宗原) wrote:
+>>>  required:
+>>>    - compatible
+>>> @@ -72,6 +75,9 @@ allOf:
+>>>              const: mediatek,mt8195-mdp3-split
+>>>  
+>>>      then:
+>>> +      properties:
+>>> +        clocks:
 >>
->> On 29/09/2024 22:00, Dario Binacchi wrote:
->>>>
->>>>
->>>>> +  properties:
->>>>> +    compatible:
->>>>> +      contains:
->>>>> +        enum:
->>>>> +          - fsl,imx8mm-anatop
->>>>> +
->>>>> +then:
->>>>> +  properties:
->>>>> +    fsl,ssc-clocks:
->>>>
->>>> Nope. Properties must be defined in top-level.
->>>>
->>>>> +      $ref: /schemas/types.yaml#/definitions/phandle-array
->>>>> +      description:
->>>>> +        The phandles to the PLLs with spread spectrum clock generation
->>>>> +        hardware capability.
->>>>
->>>> These should be clocks.
->>>
->>> Sorry, but I can't understand what you're asking me.
->>> Could you kindly explain it to me in more detail?
+>> missing minItems
 >>
->> You added new property instead of using existing one for this purpose:
->> 'clocks'.
-> 
->>
->>
->>
->> Best regards,
->> Krzysztof
+>> Missing constraints for all the variants.
 >>
 > 
-> I added this new property specifically for managing spread-spectrum.
-> Indeed, not all clocks/PLLs
-> managed by the node/peripheral support spread-spectrum, and the added
-> properties specify
-> parameters for enabling and tuning SSC for each individual PLL based
-> on the index of each list.
-> If I were to use the 'clocks' property and add a clock to this list
-> that does not support SSC, IMHO
-> the pairings would be less clear.
+> Does this mean that a 'maxItems:1' condition needs to be added for
+> mt8173 clock property under the 'allOf' seciton?
 
-You duplicate property with argument "pairings shall match". Well, I am
-not happy with the duplication. Clocks have specific order, thus it is
-explicit which one needs tuning. Your other properties can match them as
-well, just index from clocks is offset...
-
-
-> 
-> AFAIK the confusion arises from the fact that this node, which is a
-> clock controller, was used only
-> to export its base address, but perhaps it should have also exported
-> its clocks, which the other
-> clock controller does, as shown in:
-> Documentation/devicetree/bindings/clock/imx8m-clock.yaml.
-
-You use it as clocks, so I don't understand this comment.
-
-> If I consider its 'compatible' entries:
-> - 'fsl,imx8mm-ccm' -> drivers/clk/imx/clk-imx8mm.c
-> - 'fsl,imx8mn-ccm' -> drivers/clk/imx/clk-imx8mn.c
-> - 'fsl,imx8mp-ccm' -> drivers/clk/imx/clk-imx8mp.c
-> the probe function, triggered by fsl,imx8m{m,n,p}-ccm (and not
-> fsl,imx8m{m,n,p}-anatop),
-> retrieves the anatop node solely to get its base address, also
-> registering its clocks, which
-> I would have expected to be registered by another driver, specifically
-> the one for anatop:
-> 
-> static int imx8mn_clocks_probe(struct platform_device *pdev)
-> {
-> struct device *dev = &pdev->dev;
-> struct device_node *np = dev->of_node;
-> void __iomem *base;
-> struct imx_pll14xx_ssc pll1443x_ssc;
-> int ret;
-> 
-> clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws,
->                            IMX8MN_CLK_END), GFP_KERNEL);
-> if (WARN_ON(!clk_hw_data))
->     return -ENOMEM;
-> 
-> clk_hw_data->num = IMX8MN_CLK_END;
-> hws = clk_hw_data->hws;
-> 
-> hws[IMX8MN_CLK_DUMMY] = imx_clk_hw_fixed("dummy", 0);
-> hws[IMX8MN_CLK_24M] = imx_get_clk_hw_by_name(np, "osc_24m");
-> hws[IMX8MN_CLK_32K] = imx_get_clk_hw_by_name(np, "osc_32k");
-> hws[IMX8MN_CLK_EXT1] = imx_get_clk_hw_by_name(np, "clk_ext1");
-> hws[IMX8MN_CLK_EXT2] = imx_get_clk_hw_by_name(np, "clk_ext2");
-> hws[IMX8MN_CLK_EXT3] = imx_get_clk_hw_by_name(np, "clk_ext3");
-> hws[IMX8MN_CLK_EXT4] = imx_get_clk_hw_by_name(np, "clk_ext4");
-> 
-> np = of_find_compatible_node(NULL, NULL, "fsl,imx8mn-anatop");
-> base = devm_of_iomap(dev, np, 0, NULL);
-> of_node_put(np);
-> if (WARN_ON(IS_ERR(base))) {
->     ret = PTR_ERR(base);
->     goto unregister_hws;
-> }
-> 
-> hws[IMX8MN_AUDIO_PLL1_REF_SEL] = imx_clk_hw_mux("audio_pll1_ref_sel",
-> base + 0x0, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
-> hws[IMX8MN_AUDIO_PLL2_REF_SEL] = imx_clk_hw_mux("audio_pll2_ref_sel",
-> base + 0x14, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
-> hws[IMX8MN_VIDEO_PLL_REF_SEL] = imx_clk_hw_mux("video_pll_ref_sel",
-> base + 0x28, 0, 2, pll_ref_sels, ARRAY_SIZE(pll_ref_sels));
-
-Sorry, I am not going to dwell into drivers code. We talk here about
-bindings and new properties.
+This means that each variant must have clearly defined, fixed list of
+clocks (other properties as well)
 
 Best regards,
 Krzysztof
