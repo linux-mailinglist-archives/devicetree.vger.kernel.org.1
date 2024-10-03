@@ -1,100 +1,115 @@
-Return-Path: <devicetree+bounces-107436-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C72F298EB02
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 428DC98EB22
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:13:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8FDA8288C5C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:04:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08AD9281B6C
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:13:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAFE112C460;
-	Thu,  3 Oct 2024 08:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8050D136657;
+	Thu,  3 Oct 2024 08:13:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LfocnND2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dAXw7Q5M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68C49811E2;
-	Thu,  3 Oct 2024 08:04:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57AD512DD95;
+	Thu,  3 Oct 2024 08:13:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727942678; cv=none; b=FkeV63zWBrLdbm0DV5CktUdkkm5KSLgdqkkbwUlPtc+hmup5EcuLl04RZFTXNczK8aCzVn8ILOLZ9EZnDdHQtO1pqNq8MwJRPq+KBEQoHRrgNKCw9wd0dt6zls0NGpWY0hd4UrBjB+CCHmlqNF+A9puqENfoHzbr5ELRMOaZ9JA=
+	t=1727943228; cv=none; b=JJE3ZqWU5RCV6EY5YUKhhMub0s57dLd8sWiQXRgr4/qFFVuXd6n/pR+qKdi9/2Qp/KwCDzfqBGWjlV6dEyFwvSF6QSBNzVqDt0hK/JpX1M/psRJjoH4POZMYSwc5HFbUXKizROwo3F0E+IqKDVO2vgukITq37i2EnR4CVZ3VHXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727942678; c=relaxed/simple;
-	bh=1tae21s3e6QcaNtDUvIDGJ9EWbkfufNZC2HUUZNH7CE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qK8UhK9GK5/eJeqw54Ud1r4DNsnxSRmt9OzZdkvVh9bknvOR6/ZKEe6o9BkKdE2wrlzHoeDylZDvHQ6R7PctX8GNhTHIFqR6Kf81uJp8ouOCl3Mgi9Mz2ko9P01mgpqIRo+8pbcE86HcUPdJMtAuSb9HTjTOX/8k/J3VTFv+c90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LfocnND2; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AE9C0FF804;
-	Thu,  3 Oct 2024 08:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1727942674;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qaRvvQziLU6C2Xe7I8nl3yrGndFd7caE/VtEN8AnYx4=;
-	b=LfocnND2/LlhnlobhP3UzyK0PfGnWrlsplWokefGtvgXy06ye7AHzPQdLFf4CU3BOXAKbk
-	exlEz4R3i4CvRocUvhzaisF3HjwQ/ZMQ1LLUg8fH+Wc0QVvP+G6XPnBgwKmwEcCDWPYYNe
-	AZIrCxyoDGsDNCwg6xj+ov88MEXgKG0wo9UG/C2C4syggcjlngPqsIyKT/joekl3q8ZePQ
-	SvOd+oOCY/pTJRzJHixqQ+reF4jGe58Qp9vtmpG3CRsGeuQuUKjU7mnrCOhiurHCJcgB0s
-	ErAyt5eBbNIwbaES94GwUHZI+Te7elwNdj0RIQkXBFmm7i+R0psnkKzW9yICCg==
-Message-ID: <0321fc03-e1ea-4012-82a3-fcdc6f3b18eb@bootlin.com>
-Date: Thu, 3 Oct 2024 10:04:33 +0200
+	s=arc-20240116; t=1727943228; c=relaxed/simple;
+	bh=Itl0lNG3SHyzps1B6SjVO8EibEF/9aynPeJRbif+49g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CT0T9ebT5TggZk0zAjOko7SN81ZGMesabvDM1d0sC36BSP/cmyVjNjDvUxYj3GaA5ri4Q0SbPqnW4NtKu6WFsF6yhIWpN2b9bVVpSaFFWIrn0XUfc5c+7bIW6gUDeY+ERIgKjYfiY/0aJyBXmVICsDLMP9kUUoKtCQarj8Z09eQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dAXw7Q5M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FEADC4CEC7;
+	Thu,  3 Oct 2024 08:13:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727943227;
+	bh=Itl0lNG3SHyzps1B6SjVO8EibEF/9aynPeJRbif+49g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=dAXw7Q5M0keCOif6SbQ75a0Xvs+MmWKWITYiRBIFE5fEnxvwQSdHwSYDh/7K05bqa
+	 +laZ7ZA+sMwFgKh6dLhZM487lJ4IaUpjSYsSH7+CRlhpD6U/5zZFbPHPq4L8XiXeke
+	 gQ5OGvEbxEwq4vFRnWvT571Y/G28kzb/l/snDduc4iZyyMWf+A5hV77Mkidg3WfCGy
+	 hIZYBrnvKECo8vTEtJMBXeKAoMDBDXxwpB3psujRpiIYJdICVRmWhqpJl2jH3OXrQp
+	 2tiHTLWKNpDB7HAxI+HjYBTfXaM6f8I3ppEaih7n0CBG/CGO5oFq2Vdm2gxXQ6b4A0
+	 Tf6Lp9DikBGcQ==
+Date: Thu, 3 Oct 2024 10:13:44 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Pablo Sun <pablo.sun@mediatek.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 3/6] dt-bindings: nvmem: mediatek: efuse: Reuse
+ mt8186-efuse in mt8188
+Message-ID: <74uvqyd2n6cxzi4z3miqh5ay7xun2qapjuse7bav5thr44rlml@pr44cvxsngfe>
+References: <20241002022138.29241-1-pablo.sun@mediatek.com>
+ <20241002022138.29241-4-pablo.sun@mediatek.com>
+ <mh7upw2y2dclyosved3chw7chpqgdg4a3j5ftwftfhm6v5uqpt@cotoeuopfbqg>
+ <559fc2a5-631c-440a-812f-2907f84b16b4@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/7] wifi: wilc1000: Fold wilc_get_chipid() into wlan.c
-To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20240926195700.2823751-1-marex@denx.de>
- <20240926195700.2823751-2-marex@denx.de>
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-Content-Language: en-US
-In-Reply-To: <20240926195700.2823751-2-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <559fc2a5-631c-440a-812f-2907f84b16b4@collabora.com>
 
-Hello Marek,
+On Wed, Oct 02, 2024 at 09:42:32AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 02/10/24 08:11, Krzysztof Kozlowski ha scritto:
+> > On Wed, Oct 02, 2024 at 10:21:35AM +0800, Pablo Sun wrote:
+> > > mt8188 has the same GPU speed binning efuse field just
+> > > like mt8186, which requires post-processing to convert to the
+> > > bit field format specified by OPP table.
+> > > 
+> > > Add the binding for the compatible list:
+> > >    "mediatek,mt8188-efuse", "mediatek,mt8186-efuse"
+> > > so mt8188 uses the same conversion.
+> > > 
+> > > Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > Signed-off-by: Pablo Sun <pablo.sun@mediatek.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml | 4 ++++
+> > >   1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+> > > index 32b8c1eb4e80..70815a3329bf 100644
+> > > --- a/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+> > > +++ b/Documentation/devicetree/bindings/nvmem/mediatek,efuse.yaml
+> > > @@ -39,6 +39,10 @@ properties:
+> > >                 - mediatek,mt8195-efuse
+> > >                 - mediatek,mt8516-efuse
+> > >             - const: mediatek,efuse
+> > > +      - items:
+> > > +          - enum:
+> > > +              - mediatek,mt8188-efuse
+> > > +          - const: mediatek,mt8186-efuse
+> > 
+> > And this is not compatible with generic one? This is confusing. Why are
+> > you adding generic fallbacks if they are not valid?
+> > 
+> 
+> It was my suggestion to start dropping the usage of the generic "mediatek,efuse"
+> fallback, as I've seen multiple times feedback saying to not use generic fallbacks.
+> 
+> Was that wrong?
 
-On 9/26/24 21:55, Marek Vasut wrote:
-> Do not use wilc_get_chipid() outside of wlan.c . Instead, call
-> wilc_get_chipid() right after the SDIO/SPI interface has been
-> initialized to cache the device chipid, and then use the cached
-> chipid throughout the driver. Make wilc_get_chipid() return a
-> proper return value instead of a chipid.
+No, just nothing provided the background that such change is
+intentional. Please mention in commit msg that the preferred way from
+now on is not using the generic fallback.  Maybe even add it to the
+binding itself as comment, so people won't grow the enum with fallback.
 
-This new update now makes the commit message wrong, wilc_get_chipid is used in
-files other than wlan.c (and this change goal is now rather to get the chip id
-early enough to register wiphy with correct info)
+Best regards,
+Krzysztof
 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-
-With the point above fixed:
-
-Reviewed-by: Alexis Lothoré <alexis.lothore@bootlin.com>
-
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
