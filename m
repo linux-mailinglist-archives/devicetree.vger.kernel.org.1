@@ -1,183 +1,176 @@
-Return-Path: <devicetree+bounces-107468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6647798EC47
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:27:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F14498EC66
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A475281D1F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:27:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D2DA1C21021
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:43:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 540FB146017;
-	Thu,  3 Oct 2024 09:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0962E1465B1;
+	Thu,  3 Oct 2024 09:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="BjjB3SAh"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aPRf/DSG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6174014658F
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 09:27:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A1F1465AE;
+	Thu,  3 Oct 2024 09:43:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727947670; cv=none; b=RzrghkvVbG8IpprH0WF6qNo3PpNMrs8sdBDiQNCPZ4XIDfjCjGU74C3mtErE4GOADh9tJDTS38RgnEhOtJhLhwdVe2aCZzK0DaTDS9Mk2dZcXRzaGP/otvASrBxZPOD4WRgakdtbGRUI9JinOiOF+0t9Cqjy9oPqpGSkBDb7WjQ=
+	t=1727948593; cv=none; b=rM04JyJAgzv86a0gNBYHyAaHeQWZ/D5y4DENa2IlTeVs1e+KHgOMUYjTQdAlClaL1g30Sp2rySDzN7bs6J+M7DZv9Fg5jTAo4zYj3WsSaoV5t/4RnZ3Tx9eGF1grjcTy8TlbYKIyMaY/dgKhxXOOJOCT8Lt9IoEcBJG7UVH2PnY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727947670; c=relaxed/simple;
-	bh=uXkA1kXEXhP7MvBmfvAhSdLcx27NcgjN9m+rUt+dGzQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mUZMHcginlqlCXJJzCIuP4yx7d8hDgF57E3JGfucIdTLVsz13JFE6I23F5Wy8p9Xi/40EfIon7DzUgpaxUfDNbq+ic0bnju66jAz5Y2i64wdPKLa2EsNuWtFBbzx6xYIcowAi5BCn67A+nxJ3XWzW65nTYIgzXLWJ9uwMFthLUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=BjjB3SAh; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37cc9aeb01dso518758f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 02:27:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1727947667; x=1728552467; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8evBbk/IwxxgJLl6adf7U2FK+xKf3XGZPnSLuIWsvAs=;
-        b=BjjB3SAhywIBwg5O3WxWkrzYtTHxIf7YgS3Ornn3QgMO0/rvQKP+a5YEz9xciY8mCr
-         vTGhznu+ya4ZYLN+JyZVX2TQvesiTSRU7PmNEWfXEy4B57rWgFrvCVsh44bKrYvVW/Ae
-         H41lVdxZnA7RI4Al7NM1kh2xxSJJuWvuUDwJhARux3ZgPmy4dX5ikLAp9NueyxlIYboA
-         bu7BVDsYhfzbID3Y2mF+flps70W0zWMw6LVO2nm1vbaZOhi5vSMZGx4/ycNHXnr3qPe4
-         qoARx+GxLSmKuLLGr+9mcaPZeOq+C2LVxt6Uhgn3FVgCpSGD7AZTbAlgNfY27ZUZDfAW
-         cGRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727947667; x=1728552467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8evBbk/IwxxgJLl6adf7U2FK+xKf3XGZPnSLuIWsvAs=;
-        b=aG9U0mH6YOeRt8ppSHgDqu7yX9k5NrUr/jhbbw5yoW6WO9DU2uRdI9ZIBbAsvl+jsI
-         vaSCtxpk66HcDAZcGdhY2buQNoBTwO6gheCAA9gs9/HlrLn2qQsJNOM45beY1PIvniE8
-         Z3ift6NKuhgL+ZSTfejw/6cVFgZpUUQRgnIlmRtfPoqiSV8eOXF+UZIvaTqnbjoWOqei
-         pfsRVUhXgXq1HUE5KHQv7JYNI3r8f7AzX5WjSBJOoJuuB/P5gzMa0aqhBhKtt89eT2Tb
-         dbGPrYDpYQx6OS6tocI6pUt6f9MdqJoKb6+obELIvAVyKYnEJYM0JmDuLRojkaVvu3iF
-         o7VA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpDHA60FICuWfp1HzdHKncjg8fHWIdX7D4dYWG7pIGIWoHUPfRRY78wo5wPDpb//IGOdE+GpZsxQQq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/CJQVUIZ7AIe3Enhw7+ZIY4OKPj94CnGBzamiiDdlTA/KJLwj
-	RyI+LETV49kUB9x5I7AAmKqo/1Q1TN3chGRHzdmRHdIHsT88da6MFQQtQOjqCCo=
-X-Google-Smtp-Source: AGHT+IHekoCrEouitVYfb8Yy3HlP99xd5ZykhItjucwYVLFSB9uXwVt08HFWHlBeglYtqaJQ2Pm8Mg==
-X-Received: by 2002:a5d:4a90:0:b0:37c:d344:8b42 with SMTP id ffacd0b85a97d-37cfb8b2ec0mr3807558f8f.15.1727947666441;
-        Thu, 03 Oct 2024 02:27:46 -0700 (PDT)
-Received: from localhost ([2a02:8071:b783:6940:36f3:9aff:fec2:7e46])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d08242d79sm847425f8f.51.2024.10.03.02.27.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 02:27:45 -0700 (PDT)
-Date: Thu, 3 Oct 2024 11:27:43 +0200
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
-To: Alex Lanzano <lanzano.alex@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Mehdi Djait <mehdi.djait@bootlin.com>, skhan@linuxfoundation.org, 
-	linux-kernel-mentees@lists.linuxfoundation.org, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v8 0/2] Add driver for Sharp Memory LCD
-Message-ID: <q53inyaxyvfib7okxzazepxzarqmq4rubbasumvvx2woioyp42@fbtn4poujsyh>
-References: <20241002033807.682177-1-lanzano.alex@gmail.com>
- <t4lefcykpoe5i36wb4x5u23sseh6drnphtivuqc3mjviat2vvc@7hg4jyhxvpye>
- <ees3m2qmazah2547ys62zvbrvo4dsgki2z2jwulwz4dfjtm4hk@kpmlapv6occv>
+	s=arc-20240116; t=1727948593; c=relaxed/simple;
+	bh=kKheSpvNhKnnOCs4OPuTFoh9bYM2IVoqL5zJ0I4iiA0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N0/maka1qBx2+WTu84jAB/yycTWEnPVW+T9fIbH9/Bih41rpv4DB1JCZnXVMLhrYQAnQBskQoAg7OwyTqzHx7xBsu1hJZiiGBK0Vl4KQlG/MfVX0yxWubcOYACd02L1IR57Z8fSGpvwInSnN9w1kSn3fWQWTq4U/oVrxsAx9yc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aPRf/DSG; arc=none smtp.client-ip=198.175.65.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727948592; x=1759484592;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=kKheSpvNhKnnOCs4OPuTFoh9bYM2IVoqL5zJ0I4iiA0=;
+  b=aPRf/DSGO+v6faCuEZe1nSqYQkPRjs4DbgBxYn9sFfZq78ZLG5vhEHNA
+   uhZeuq1XRA2HCyMmN6fcnUihkAPhsxblCd4e8Yc3YUUX0OVVfHsTDoRPm
+   VPA7R3RHn7lUDdfEMeGtkQbKho/tI9C6POAfXd1ein8XTCUwPmuGqWuLn
+   fOqZrS3eGXRdMl2eBN84NzP3GM2AaJAhie+D1+yTiHblKjOLwdAtbmjfN
+   RngT5P9gnHjZhSXh8FYA/B0OHuqGdBS7+8tT8wuvsXRKH7pcg36YNpKas
+   ibNNQkJR4fTywPw+jSXz9lVROteAyARe5njS3kKAknj9Yin+cpB86MtOA
+   A==;
+X-CSE-ConnectionGUID: 6LQSsV2ESVuP5zF4cXg6VQ==
+X-CSE-MsgGUID: q4pgPw6gSaykf3ioyKC7tw==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="27004820"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
+   d="scan'208";a="27004820"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 02:43:10 -0700
+X-CSE-ConnectionGUID: O4wAEbQkTLmaeFPky2TQRA==
+X-CSE-MsgGUID: PWK+fE28TIuwbifN1Tu/fw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
+   d="scan'208";a="79062025"
+Received: from soc-5cg4213gc7.clients.intel.com (HELO [10.66.114.183]) ([10.66.114.183])
+  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 02:43:05 -0700
+Message-ID: <6523649b-9143-42d8-b301-a143088530b9@intel.com>
+Date: Thu, 3 Oct 2024 15:13:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="s5o77kb33dofvcnw"
-Content-Disposition: inline
-In-Reply-To: <ees3m2qmazah2547ys62zvbrvo4dsgki2z2jwulwz4dfjtm4hk@kpmlapv6occv>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Provide data-lines property to
+ input endpoint
+To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
+ neil.armstrong@linaro.org, rfoss@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
+References: <20241003082006.2728617-1-w.egorov@phytec.de>
+Content-Language: en-US
+From: Aradhya Bhatia <aradhya.bhatia@intel.com>
+In-Reply-To: <20241003082006.2728617-1-w.egorov@phytec.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+Hi Wadim,
 
---s5o77kb33dofvcnw
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the patch.
 
-Hello Alex,
+Probably a nit, but the dt-binding patch should come before the driver
+patch.
 
-On Wed, Oct 02, 2024 at 10:33:13PM -0400, Alex Lanzano wrote:
-> On Wed, Oct 02, 2024 at 09:56:38AM GMT, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Oct 01, 2024 at 11:37:35PM -0400, Alex Lanzano wrote:
-> > > Changes in v8:
-> > > - Addressed review comments from Uwe
-> > >     - Replace pwm_get_state with pwm_init_state
-> > >     - Use pwm_set_relative_duty_cycle instead of manually setting per=
-iod and duty cycle
-> >=20
-> > You didn't explicitly mention that it's fine if the PWM doesn't emit the
-> > inactive state when you call pwm_disable(). You're code should continue
-> > to work if you drop all calls to pwm_disable().
-> >=20
-> > Ideally you mention that in a code comment to make others reading your
-> > code understand that.
->=20
-> Sorry about that! The intent of the code is to stop the pwm from outputing
-> when the display is disabled since the signal is no longer needed. If
-> it's best to emit the inactive state rather than calling pwm_disable()
-> I'm fine with making that change.
+On 03-10-2024 13:50, Wadim Egorov wrote:
+> Introduce a data-lines property to define the number of parallel RGB
+> input pins connected to the transmitter. The input bus formats are updated
+> accordingly. If the property is not specified, default to 24 data lines.
+> 
+> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
+> ---
+>  drivers/gpu/drm/bridge/sii902x.c | 27 ++++++++++++++++++++++++++-
+>  1 file changed, 26 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> index 7f91b0db161e..3565c3533597 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -180,6 +180,8 @@ struct sii902x {
+>  	struct gpio_desc *reset_gpio;
+>  	struct i2c_mux_core *i2cmux;
+>  	bool sink_is_hdmi;
+> +	u32 pd_lines; /* number of Parallel Port Input Data Lines */
+> +
+>  	/*
+>  	 * Mutex protects audio and video functions from interfering
+>  	 * each other, by keeping their i2c command sequences atomic.
+> @@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>  						     u32 output_fmt,
+>  						     unsigned int *num_input_fmts)
+>  {
+> +
+> +	struct sii902x *sii902x = bridge_to_sii902x(bridge);
+>  	u32 *input_fmts;
+>  
+>  	*num_input_fmts = 0;
+> @@ -485,7 +489,19 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
+>  	if (!input_fmts)
+>  		return NULL;
+>  
+> -	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
+> +	switch (sii902x->pd_lines) {
+> +	case 16:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
+> +		break;
+> +	case 18:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
+> +		break;
+> +	default:
 
-Calling pwm_disable() is best iff you don't care about the output any
-more. If however you rely on it to emit the inactive level,
-pwm_disable() is wrong. I don't know enough about your display to judge
-=66rom here.
+For backward compatibility - in cases where the property is absent - you
+have already defaulted sii902x->pd_lines to 24 below, which I think is
+the right way.
 
-The code to disable the display looks (simplified) as follows:
+So, the default case should be kept separately, as an error case -
+which should then return back NULL / num_input_fmts = 0.
 
-	if (smd->enable_gpio)
-		gpiod_set_value(smd->enable_gpio, 0);
+> +	case 24:
+> +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
+> +		break;
+> +	}
+> +
+>  	*num_input_fmts = 1;
+>  
+>  	return input_fmts;
+> @@ -1167,6 +1183,15 @@ static int sii902x_probe(struct i2c_client *client)
+>  		return PTR_ERR(sii902x->reset_gpio);
+>  	}
+>
+> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
+> +	if (endpoint) {
+> +		ret = of_property_read_u32(endpoint, "data-lines", &sii902x->pd_lines);
+> +		if (ret) {
+> +			dev_dbg(dev, "Could not get data-lines, fallback to 24 data-lines\n");
+> +			sii902x->pd_lines = 24;
+> +		}
+> +	}
+> +
+>  	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
+>  	if (endpoint) {
+>  		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
 
-	pwm_disable(smd->pwm_vcom_signal);
+--
+Regards
+Aradhya
 
-so maybe the logic you need is:
-
-	if (smd->enable_gpio) {
-		gpiod_set_value(smd->enable_gpio, 0);
-
-		/*
-		 * In the presence of a GPIO to disable the display the
-		 * behaviour of the PWM doesn't matter and we can
-		 * just disable it.
-		 */
-		pwm_disable(smd->pwm_vcom_signal);
-	} else {
-		struct pwm_state state;
-
-		/*
-		 * However without a GPIO driving the display's output
-		 * enable pin the PWM must emit the inactive level,
-		 * which isn't guaranteed when calling pwm_disable(), so
-		 * configure it for duty_cycle =3D 0.
-		 */
-		 pwm_init_state(smd->pwm_vcom_signal, &state);
-		 state.duty_cycle =3D 0;
-		 state.enabled =3D true;
-		 pwm_apply_might_sleep(smd->pwm_vcom_signal, &state);
-	}
-
-?
-
-Best regards
-Uwe
-
---s5o77kb33dofvcnw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmb+Y40ACgkQj4D7WH0S
-/k6Jjwf/VkhVbrj5zZduvEjBR6Ryq5075XnahyFTpoqckqRcE+V8H/OzEfaT7fsA
-VAT9CFZPEfJ02N0jj2m4V82vzDlwk8m9Tiw0b8m5eFB3NeJLpKUh4Fi4Np3Lp5AK
-jIiCwhOEUY6Iw1bWsW2qj66Cism13MQ0tUlq43y7lxHNI/RzrysnZxYFX0FGCfkg
-PDQp7WW3JWJF3uH4yr1Mycw1gSzd0ECUG0/VG4rwiqc+jr7H2FYU3tcnVZgNPsD4
-Na680Wj75PWN6l5SYDEj04196IvNGz2psPJqxpaWwrtHquBLYQ/MvNXJ3XX21PnV
-k4ppnw4FCPFAuN7nTlta4MWjKi66gA==
-=YxME
------END PGP SIGNATURE-----
-
---s5o77kb33dofvcnw--
 
