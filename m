@@ -1,350 +1,147 @@
-Return-Path: <devicetree+bounces-107662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41E4398F996
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 00:10:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C8998F9FA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 00:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8CF81F211FB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 22:10:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBA9E1F23351
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 22:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F10D51CC16F;
-	Thu,  3 Oct 2024 22:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4D631CF5D1;
+	Thu,  3 Oct 2024 22:41:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KXL7M8Jw"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="fTOuRgmB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F9541CB327;
-	Thu,  3 Oct 2024 22:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C3F1CDFA8
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 22:41:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727993379; cv=none; b=SJSFtqDPBeujlA17aejuxuYdNO4/uRFGjjaEUl2NN0hRiVw/CxHAzd/8vPpYaYPDPSBm596cAp0rBFKehuORFIGO1YDEFo21ZGR1uKwVwX2fOnGDAyUA8G12eZpUVkyYY2xlHHlsRdoQ03FySPcF1AO9oZgcCN+vB9eR6caH7gc=
+	t=1727995283; cv=none; b=VpxlUewk5D+tkA/aNVIwK1MbYqUulMVnyfELOVyjrxzSaHRrQDQG9DsIv1KmexSJHEMSNAmyjhlpdlcQNBwPpjyLfMfMaM49eToRatZeO5dm05PeZoDl8/I5lPQB1xtNzaX12kgtEBjiMaJ9+wa97kwsI6ecC32pXjRC36qx0vM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727993379; c=relaxed/simple;
-	bh=4Q1Deb34MnXtuhesjeCLN57PwpyPJQ5GH+jgBDCLl0M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ktI6lz67vRCj0/DH+QUIbT7Ld/2wmE8g2/m8AvDOrt+Lrhmc1o4EpmwF2bFlfkGhAV97fRwgSq3/rTHWaQ2miv2PTv9ZUY8rGEyZUqzTCbmaPA263y4AcvRgLery4WD39h8l22SExXkTyDDehqGKRSXoSWAv5AlzAIzNgxMnmcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KXL7M8Jw; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-2e18aa9f06dso1112734a91.0;
-        Thu, 03 Oct 2024 15:09:38 -0700 (PDT)
+	s=arc-20240116; t=1727995283; c=relaxed/simple;
+	bh=Jo3jTu3gvdSY4hclX5Ayw7O/TbUjLGTC5b1dS6kU29Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=GWUvX6VV1Wu+6S17WHdMcd4ZyIvBas8XMwZlg/7ad2iy/qXRkcj/1PjCf5ZPQmquNYNVQoAlJFyBNcEZPiewIM7MK6XJ1Ns6uH6V6x5qOK6vr27NCLHZWDJQKYXnWaOLNVInywrCvWtp2kx3iiJp0Z4h+B6LpPhN/NPAfbAd/hw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=fTOuRgmB; arc=none smtp.client-ip=209.85.210.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-718d91eef2eso1115393b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 15:41:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727993378; x=1728598178; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=E91rfKcYw9IuIWwIQIGEzOIkm79LZ9bOHrsBMYtdt+A=;
-        b=KXL7M8JwvwfvaMCXccdIRzjq1WjugwwnL4hJ6LjA+17BCMD0r5g0mTE8r7kKfr/AfD
-         0Qs6oo88uGuAJZXOAk3HPpAADyrl2kYxuSWHw4z51L9YmbYbtxsTVpjZApoNcTOwRgf6
-         yDVcVtine7uEEAFlma3R97gjISqNElqmOKvK36iEbr+bo4/yuOhw8Is7kl11O4wRCxZy
-         p//MOjIrxm9VygBdKJwVJNJi6Dn76OaMiS99TcKb9iXfXkqODGYorI1pCnRqUyZqYWlv
-         IDHZC8XdbVRPt03f+mQLQw44dspO1Ep4d5r8cnpr3/njHVJVW7IjSwc3nDwB5zkmiNHI
-         CBFw==
+        d=broadcom.com; s=google; t=1727995280; x=1728600080; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JOOuScGzdxC4cr8jo6Z6y0fx9Os2Ix83Ys4a8jeW6gM=;
+        b=fTOuRgmBnvVSlFdJhJM4WkQOhmWD0P7FVSYLbgoc/MI3WtZ2KRdIev/mU/H812I07V
+         bbryA64zk2te6O5w3D9nCp30umpegWI7EYwWOtTcjGBUTO9V/ALmGfwRqbbrG/XHf3e2
+         +sfbTTVUH1UCmA0MTwqHDm9x61UXjT1vALTHA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727993378; x=1728598178;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=E91rfKcYw9IuIWwIQIGEzOIkm79LZ9bOHrsBMYtdt+A=;
-        b=S37Ge76VcsldWymsW0ECb1sXz1OsTpU1QbUFIpwM2nVuxurUxl9rIyndZf89nF+bcR
-         MipZyLBXAmmZFRPLPtgNtF/jETE+nUOwpefflOQ8YCpOvHbpVJsrTBT7vI7UTi2z1jf+
-         b98KOA8AdX8jZnW4t9T+ViO27tuaRyhVqyvg/RmWQ8HOadtThvg+lNw7Fs9E7umejlmf
-         4irYViDJPhOYaxQTl2la7cWUWxcrKPHGSatkJ65P8B7WtcEsoHQfM7sdon5rTLLjcXyN
-         iOEaaFqzyUJBEn6mk8OVL52v3ty5X94fnWAk100DIBF5XoNymaGOgxm3K26UiChGU1JA
-         kMPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVBzAGR1Bq9N1Bq24Jrm3x7Al3LBcMnO4aRSWt/WSFDJ9vpg/duxwmmG6NLVV9SPj87cvgKfe0puUB9JEy8@vger.kernel.org, AJvYcCVl8rJad83hp1Xtsw+tvV4PeDZ5GhE2CDbCzI8Fh6N6TDWT68I74OCUEiaU5uWyaCCXqZ6BK155xbG6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8WQE5ilurbHjzqnDTQPP6Xdxz7GHs9RWpbOXiF9RSzj7ytiKG
-	RAtzcaBNMpqq/EAISiOWofhEYDCM0I80VZUpBl8wsAhSv4zp6Pdj
-X-Google-Smtp-Source: AGHT+IEx31Wo3RHQhlQ+bJER9qwgWtEFev8OhjxjOYjmNLA5Ltf/UkCLEmUf765W3VIw0oyKUCENCg==
-X-Received: by 2002:a17:90b:33c9:b0:2d8:b510:170f with SMTP id 98e67ed59e1d1-2e1b398fe46mr5668153a91.20.1727993377654;
-        Thu, 03 Oct 2024 15:09:37 -0700 (PDT)
-Received: from luna.turtle.lan ([2601:1c2:c184:dc00:b8ac:3fa:437b:85fa])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85d211asm5976a91.14.2024.10.03.15.09.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 15:09:37 -0700 (PDT)
-From: Sam Edwards <cfsworks@gmail.com>
-X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
-	William Zhang <william.zhang@broadcom.com>,
-	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Sam Edwards <CFSworks@gmail.com>
-Subject: [PATCH 2/2] arm64: dts: broadcom: bcmbca: bcm4908: Add DT for Zyxel EX3510-B
-Date: Thu,  3 Oct 2024 15:08:20 -0700
-Message-ID: <20241003220820.1345048-3-CFSworks@gmail.com>
-X-Mailer: git-send-email 2.44.2
-In-Reply-To: <20241003220820.1345048-1-CFSworks@gmail.com>
-References: <20241003220820.1345048-1-CFSworks@gmail.com>
+        d=1e100.net; s=20230601; t=1727995280; x=1728600080;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JOOuScGzdxC4cr8jo6Z6y0fx9Os2Ix83Ys4a8jeW6gM=;
+        b=V2zOQ9LNAYbxkqtUy5sRS4RDgElBSirB8QUuDN2J2/ZCRn4M/FRNmPaHluu8+tjKth
+         1Rn4NsmhmllU3EpPAJ/uwrBodtL8bkQF9lpJdcu+zv0g3STG249pD0oRjNQdZeoJmKiH
+         a7DwN3Xm7e72Uom/XtLnYKAQJ7u34aeA065CR6Frv3p4KLuvEYDmUPvOFWCyZwxJChCK
+         bTZlQYocaJfZprdxGChBuYreNSm75pZBj1pftHxaO3F7dlTwt/Xm23azbQjuASy46AHk
+         AoLGHR7AwoX4cTdXS17Be6BI6T73rLCFcG7FAJqsWoCtqKvdTg8TCGAoc60iIu90fiQs
+         /aHA==
+X-Forwarded-Encrypted: i=1; AJvYcCXQKSAyRGqkISuUr4If8YZdbwGY/z18852AmrawV7GWDMdCXZEGAHCC0OgK4bi2rqvmLd3mJlTYDR6W@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoPfC5+iGx0Xa06YVCD9h77PEBtC+jI6P77ffy52cF8Et47LTj
+	bwZMt/CPjaF9qFde9YdS80HK4Y+4ajRPDDtkpr1vGtxR6pI7dIjtzQUTcOIy6g==
+X-Google-Smtp-Source: AGHT+IFVLgJFz8v9YeM8XoaHbIFpThc32hUC+mhSnSMer2REsIA3MjrBBIVcUPSsCAEWNGVm4/h5tw==
+X-Received: by 2002:a05:6a00:9495:b0:718:d4e4:a10a with SMTP id d2e1a72fcca58-71dd5af2450mr7405946b3a.4.1727995280413;
+        Thu, 03 Oct 2024 15:41:20 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71dd9def29fsm1899168b3a.155.2024.10.03.15.41.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 15:41:19 -0700 (PDT)
+Message-ID: <78f25b22-f35b-4183-baec-7ddc0c5e3fda@broadcom.com>
+Date: Thu, 3 Oct 2024 15:41:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE stub
+ area
+To: Sam Edwards <cfsworks@gmail.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241003213007.1339811-1-CFSworks@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20241003213007.1339811-1-CFSworks@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Zyxel EX3510-B is a WiFi 6 capable home gateway (family) based on the
-BCM4906 SoC, with 512MiB of RAM and 512MiB of NAND flash. WiFi support
-consists of a BCM6710 and a BCM6715 attached to separate PCIe buses.
+On 10/3/24 14:30, Sam Edwards wrote:
+> The CFE bootloader places a stub program at 0x0000-0xFFFF to hold the
+> secondary CPUs until the boot CPU writes the release address. If Linux
+> overwrites this program before execution reaches smp_prepare_cpus(), the
+> secondary CPUs may become inaccessible.
+> 
+> This is only a problem with CFE, and then only until the secondary CPUs
+> are brought online. However, since it is such a small amount of memory,
+> it is easiest to reserve it unconditionally.
+> 
+> Therefore, add a /reserved-memory node to bcm4908.dtsi to protect this
+> critical memory region.
+> 
+> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
 
-Add an initial devicetree for this system, with support for:
-- Onboard UART (per base dtsi)
-- USB (2.0 only; superspeed devices are treated as high-speed due to an
-    unknown cause)
-- Both buttons (rear reset, front WPS)
-- Almost all LEDs:
-  - Power (red/green)
-  - Internet (red/green)
-  - WAN (green)
-  - LAN (green; anode is connected to GPIO 13 so currently
-      nonfunctioning)
-  - USB (green)
-  - WPS button (red/green)
-  - Absent in DT: There are 2.4GHz/5.0GHz WiFi status LEDs connected to
-      the WiFi chips instead of the SoC.
-- NAND flash
-- Embedded Ethernet switch
-- Factory-programmed Ethernet MAC address
+Not objecting to the solution, but should not this be moved to a 
+per-board DTS given that there are boards using CFE, and some using 
+u-boot + ARM TF that are unlikely to suffer from that problem?
 
-WiFi cannot be enabled at this time due to Linux lacking drivers for
-both the PCIe controllers and the PCIe WiFi peripherals.
-
-Signed-off-by: Sam Edwards <CFSworks@gmail.com>
----
- arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   1 +
- .../broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts | 197 ++++++++++++++++++
- 2 files changed, 198 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts
-
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-index 27741b71ba9e..9a8461d91c8c 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/Makefile
-@@ -2,6 +2,7 @@
- dtb-$(CONFIG_ARCH_BCMBCA) += \
- 				bcm4906-netgear-r8000p.dtb \
- 				bcm4906-tplink-archer-c2300-v1.dtb \
-+				bcm4906-zyxel-ex3510b.dtb \
- 				bcm4908-asus-gt-ac5300.dtb \
- 				bcm4908-netgear-raxe500.dtb \
- 				bcm94908.dtb \
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts
-new file mode 100644
-index 000000000000..b70d8ffe4922
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts
-@@ -0,0 +1,197 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+
-+#include "bcm4906.dtsi"
-+
-+/ {
-+	compatible = "zyxel,ex3510b", "brcm,bcm4906", "brcm,bcm4908", "brcm,bcmbca";
-+	model = "Zyxel EX3510-B";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0 0 0 0x20000000>;
-+	};
-+
-+	gpio-keys-polled {
-+		compatible = "gpio-keys-polled";
-+		poll-interval = <100>;
-+
-+		key-wps {
-+			label = "WPS";
-+			linux,code = <KEY_WPS_BUTTON>;
-+			gpios = <&gpio0 22 GPIO_ACTIVE_LOW>;
-+		};
-+
-+		key-reset {
-+			label = "Reset";
-+			linux,code = <KEY_RESTART>;
-+			gpios = <&gpio0 23 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&leds {
-+	pinctrl-0 = <&pins_led_0_a>, <&pins_led_2_a>, <&pins_led_3_a>,
-+		    <&pins_led_4_a>, <&pins_led_10_a>, <&pins_led_12_a>,
-+		    <&pins_led_14_a>, <&pins_led_15_a>, <&pins_led_21_a>;
-+	pinctrl-names = "default";
-+
-+	led@0 {
-+		reg = <0x0>;
-+		function = LED_FUNCTION_POWER;
-+		color = <LED_COLOR_ID_RED>;
-+	};
-+
-+	led@2 {
-+		reg = <0x2>;
-+		function = LED_FUNCTION_WAN_ONLINE;
-+		color = <LED_COLOR_ID_GREEN>;
-+	};
-+
-+	led@3 {
-+		reg = <0x3>;
-+		function = LED_FUNCTION_WAN_ONLINE;
-+		color = <LED_COLOR_ID_RED>;
-+	};
-+
-+	led@4 {
-+		reg = <0x4>;
-+		function = LED_FUNCTION_USB;
-+		color = <LED_COLOR_ID_GREEN>;
-+		trigger-sources = <&ohci_port1>, <&ohci_port2>,
-+				  <&ehci_port1>, <&ehci_port2>,
-+				  <&xhci_port1>, <&xhci_port2>;
-+		linux,default-trigger = "usbport";
-+	};
-+
-+	led@a {
-+		reg = <0xa>;
-+		function = LED_FUNCTION_POWER;
-+		color = <LED_COLOR_ID_GREEN>;
-+		linux,default-trigger = "default-on";
-+	};
-+
-+	led@c {
-+		reg = <0xc>;
-+		function = LED_FUNCTION_LAN;
-+		color = <LED_COLOR_ID_GREEN>;
-+		active-low;
-+	};
-+
-+	led@e {
-+		reg = <0xe>;
-+		function = LED_FUNCTION_WPS;
-+		color = <LED_COLOR_ID_GREEN>;
-+		active-low;
-+	};
-+
-+	led@f {
-+		reg = <0xf>;
-+		function = LED_FUNCTION_WPS;
-+		color = <LED_COLOR_ID_RED>;
-+		active-low;
-+	};
-+
-+	led@15 {
-+		reg = <0x15>;
-+		function = LED_FUNCTION_WAN;
-+		color = <LED_COLOR_ID_GREEN>;
-+		active-low;
-+	};
-+};
-+
-+&enet {
-+	nvmem-cells = <&base_mac_addr>;
-+	nvmem-cell-names = "mac-address";
-+};
-+
-+&usb_phy {
-+	brcm,ioc = <1>;
-+	brcm,ipp = <1>;
-+	status = "okay";
-+};
-+
-+&ehci {
-+	status = "okay";
-+};
-+
-+&ohci {
-+	status = "okay";
-+};
-+
-+&xhci {
-+	status = "okay";
-+};
-+
-+&ports {
-+	port@0 {
-+		label = "lan1";
-+	};
-+
-+	port@1 {
-+		label = "lan2";
-+	};
-+
-+	port@2 {
-+		label = "lan3";
-+	};
-+
-+	port@3 {
-+		label = "lan4";
-+	};
-+
-+	port@7 {
-+		reg = <7>;
-+		phy-mode = "internal";
-+		phy-handle = <&phy12>;
-+		label = "wan";
-+	};
-+};
-+
-+&nand_controller {
-+	status = "okay";
-+};
-+
-+&nandcs {
-+	brcm,nand-oob-sector-size = <27>;
-+	nand-ecc-strength = <8>;
-+	nand-ecc-step-size = <512>;
-+	nand-on-flash-bbt;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	partitions {
-+		compatible = "brcm,bcm4908-partitions";
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+
-+		partition@0 {
-+			compatible = "nvmem-cells";
-+			label = "cferom";
-+			reg = <0x0 0x100000>;
-+			read-only;
-+
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges = <0 0x0 0x100000>;
-+
-+			base_mac_addr: mac@106a0 {
-+				reg = <0x106a0 0x6>;
-+			};
-+		};
-+
-+		partition@100000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x100000 0x5f80000>;
-+		};
-+
-+		partition@6080000 {
-+			compatible = "brcm,bcm4908-firmware";
-+			reg = <0x6080000 0x5f80000>;
-+		};
-+	};
-+};
 -- 
-2.44.2
-
+Florian
 
