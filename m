@@ -1,148 +1,279 @@
-Return-Path: <devicetree+bounces-107391-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107392-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C4398E97E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:43:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E98298E988
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 094A82867AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:43:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D108B22ACD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:51:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A166EB5C;
-	Thu,  3 Oct 2024 05:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89CD53363;
+	Thu,  3 Oct 2024 05:51:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="evgoOmHB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="H8Wr0n3n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88E9A2232A;
-	Thu,  3 Oct 2024 05:43:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79C151F5FF
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 05:51:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727934193; cv=none; b=iQlujvQO1Pfd7fvago4VOaffkvE5W28rzx8P3hLIESZEefHICqAKXYICo8DUqV87cunW1/o3AMWXPR8GjfcvNEPD9AmtbsDHz90S40KxWVSQ0E2mR/1E0VtTncdSd7Zjvh+VE8j1m4D4kW7Px8I0mBm1ZsI+zDLUMgewjuniST4=
+	t=1727934676; cv=none; b=Q5690oMVTnmDsjMNkg2SjF+VSGC13Uhq5LuFWOcv9e+bdctMYuo6SH8es7DI618TkJr1xGErTirgjpzsV1DwGuXmdpeTubEtmle13fML1jS9hXceAD6gC5HsieQjo588ENs2zAqVSbUDk56tDsJeIOyI93eNALDpvyEkNokeL+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727934193; c=relaxed/simple;
-	bh=T2aj2SuLoi5JOD1B4WKGxBQv8As0GXz+9P1Kdr3/6Ac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SfDqlrv5c2VMM7chskeIUfzvSflNUT5Qi5U5Ptf0d6Z4gwgxwjpo3yKD1Tta5U+V1rEULsyD1C4KnizS16XN2Xd0qmqC8cej6yxy73uA/FF+lVFK8Vdkao4VwGJLBOJTr1LcMRYK5nsiJCGR2bEb8JpX9UuDfJKIYwqAHlydmNo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=evgoOmHB; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4934W7UH000710;
-	Thu, 3 Oct 2024 05:43:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	o8VGzuX/8rUBjBNr9tC3zE8BeUNSdPjOp74nVHXruEI=; b=evgoOmHBwxVC0pJF
-	iyPZvPi8n0ha3bBxmoc6x6eu4V9cygE/OpGUgSc2gaEt3WyOkqZ3Vy+IE5vecGKd
-	CnwzL5KetHsJ965YnshIYTkfM/jnZWTagUxovhfnZSFvRmo59Z/QSmB8zJq3KUFd
-	/Rvvu+7kqSKpM6a/mOpI19ZIho/VlJuK5qPcjlrkh88lRgeybtIZsxd7O5ycCcD5
-	yrkbnHmxHnvEaO1d73zrafiRJw6H9/puFzfpZqDuWthG0PJDY7xd3xjerdz2Nuhw
-	rYgHqvyNvOr8oCCZhKF+imAWJaaVJtQAIggQ8kgVuguVflHrfDK7+MQ33yd1Aylo
-	ZuRXDA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 41x7gedp1x-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 03 Oct 2024 05:43:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4935h6MQ014327
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 3 Oct 2024 05:43:06 GMT
-Received: from [10.214.67.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 2 Oct 2024
- 22:43:02 -0700
-Message-ID: <2d4e47fd-0aaf-4533-a96f-95ada853d9a0@quicinc.com>
-Date: Thu, 3 Oct 2024 11:13:02 +0530
+	s=arc-20240116; t=1727934676; c=relaxed/simple;
+	bh=VFmboQ0WFDlCkx5RluuKwpmBTCKDTSlVFQNe17ed6T8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XNs4VJqNV97X+d6Y5C8rW2pP8wRsE+lOVGuXrk3wsRq4NyGsbeQCR//qwP8CZsUOCyiTyC+iOQgHa0I6LXQyTkh9erqq39Nf891Xw3MPOW9jBb26s1+r83qs8TflYn8zk86KOZZKU9HFEak0aeJhFNdi5d0kWDp2b93TnrPYCZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=H8Wr0n3n; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20ba8d92af9so3240415ad.3
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 22:51:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727934674; x=1728539474; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=x+I/rurAYPkV9R/iih9/yeq0qeeCIBS1txmeO8x6Thc=;
+        b=H8Wr0n3n0eqbienDjsLEJzdGLSHjK19vzW0aYMEnEg4uAsahRBMkbef+m+rAHtCqBM
+         ZIjigmvAh5nD5aq2izYasH110RdisuOJ7NnraaYR9Yso8Bevzm8NZasp8mTf5ZPPPmsN
+         eNDcdN/gBQKBUC0C5R+cNY+X3p+PJhRnQyMHEy+utlURoLIpZsuV7ThhX6461RSiWc92
+         GpkJ43UenBjOPQ5DjHx0Dy+60M1FwG8VO1tHpKmrqHVVOpX401TktTtpKtKyQo8w9Cm8
+         ElZO/oI/H025SYyDRcWXLVCjqxQVsJi3+z6EtVv6xWfP/PdIgFG1YGxPv3zF6yqin3RY
+         AJXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727934674; x=1728539474;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=x+I/rurAYPkV9R/iih9/yeq0qeeCIBS1txmeO8x6Thc=;
+        b=ggs6BCJcEVZBkc74IbjPnYybiSdHWnx6g7TBPrqW/q85l6KoZnTTM9CFw3tpDykbgg
+         wmZRb7Bo6BBt5jWJSLhDm7XvYy13Zwa+yono+ki5rD109/sTzSA0RMhCVoj1ORDEYplH
+         1a4CB1bshA96l4pMj90ws3HopnNEx6orBEBtn00yyQkAWKQHp09ZHzUmyAwrxLiq6Ax/
+         y+MydF8Xd5zXmWJsa7YhuEyASbB8xVqqorPhP0uz5Q2dj/3uyddADI4j7YGP6BV3oDVo
+         nkHEcsgjuvlUYtTo0sCyXR6HtXykOnRZiCoUV4QRkghxgbbh6bn1mrTyWRt++LCBT0Bf
+         oe2g==
+X-Forwarded-Encrypted: i=1; AJvYcCWT1AT2RKitHuVv7Ic/sD4q1CkW9n0goS+kxixJHA8q5RuV0pHURcEU6qOd29kD6xx1WmJoYLHkvpVq@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXvLzAd+hlH0tR1ocPlxB70QhVDsnlEY2/TQa/jkDF/lYGEssp
+	WffiSrEz6RbadRnMtY2sBZxlRENos7K1FzFmbv+TJB8bKwsN5alWfcjpsi+O2Q==
+X-Google-Smtp-Source: AGHT+IH4jjkOJP1RtIXH+LBCTfHZBvB58vRfsRO3uSDukfy6Z2x05FLvSSpdy6l8f7b6/7D4/s/J2A==
+X-Received: by 2002:a17:90b:1bc4:b0:2e0:a77e:8305 with SMTP id 98e67ed59e1d1-2e18496a8c7mr6423901a91.39.1727934673666;
+        Wed, 02 Oct 2024 22:51:13 -0700 (PDT)
+Received: from thinkpad ([36.255.17.222])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1bfb2f2dfsm579483a91.31.2024.10.02.22.51.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 22:51:13 -0700 (PDT)
+Date: Thu, 3 Oct 2024 11:21:06 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v3 2/3] PCI: dwc: Using parent_bus_addr in of_range to
+ eliminate cpu_addr_fixup()
+Message-ID: <20241003055106.sm4x23sg4hh67els@thinkpad>
+References: <20240930-pci_fixup_addr-v3-0-80ee70352fc7@nxp.com>
+ <20240930-pci_fixup_addr-v3-2-80ee70352fc7@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: mailbox: qcom,cpucp-mbox: Add sc7280
- cpucp mailbox instance
-To: Rob Herring <robh@kernel.org>
-CC: Sibi Sankar <quic_sibis@quicinc.com>,
-        Jassi Brar
-	<jassisinghbrar@gmail.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        <cros-qcom-dts-watchers@chromium.org>,
-        "Bjorn
- Andersson" <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Ramakrishna Gottimukkula
-	<quic_rgottimu@quicinc.com>
-References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
- <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
- <20240924232526.GA563039-robh@kernel.org>
-Content-Language: en-US
-From: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-In-Reply-To: <20240924232526.GA563039-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ckc6PATnCe_HXCnBKRRYq-fsA9yqpNen
-X-Proofpoint-GUID: ckc6PATnCe_HXCnBKRRYq-fsA9yqpNen
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 phishscore=0
- bulkscore=0 mlxlogscore=999 lowpriorityscore=0 spamscore=0
- priorityscore=1501 suspectscore=0 malwarescore=0 impostorscore=0
- clxscore=1015 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2408220000 definitions=main-2410030038
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240930-pci_fixup_addr-v3-2-80ee70352fc7@nxp.com>
 
-thanks Rob for reviewing this patch.
-
-
-On 9/25/2024 4:55 AM, Rob Herring wrote:
-> On Tue, Sep 24, 2024 at 10:39:39AM +0530, Shivnandan Kumar wrote:
->> sc7280 has a cpucp mailbox. Document them.
+On Mon, Sep 30, 2024 at 02:44:54PM -0400, Frank Li wrote:
+> parent_bus_addr in struct of_range can indicate address information just
+> ahead of PCIe controller. Most system's bus fabric use 1:1 map between
+> input and output address. but some hardware like i.MX8QXP doesn't use 1:1
+> map. See below diagram:
 > 
-> And is different from the existing device how?
+>             ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff0_0000    │            │
+>  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
+>  └─────┘    │   │     │ IA: 0x8ff8_0000 │  │            │
+>   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
+> 0x7ff0_0000─┼───┘  │  │             │   │  │            │
+>             │      │  │             │   │  │            │   PCI Addr
+> 0x7ff8_0000─┼──────┘  │             │   └──► CfgSpace  ─┼────────────►
+>             │         │             │      │            │    0
+> 0x7000_0000─┼────────►├─────────┐   │      │            │
+>             └─────────┘         │   └──────► IOSpace   ─┼────────────►
+>              BUS Fabric         │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
+> 
+> bus@5f000000 {
+> 	compatible = "simple-bus";
+> 	#address-cells = <1>;
+> 	#size-cells = <1>;
+> 	ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
+> 		 <0x80000000 0x0 0x70000000 0x10000000>;
 
-It is different with respect to the register placement.
+Does this address translation apply to all peripherals in the bus or just PCIe?
+If it is just PCIe, why can't you encode the mapping in the below PCIe node
+'ranges' property itself?
 
-Thanks,
-Shivnandan
+- Mani
 
 > 
->>
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> ---
->>   .../devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml         | 5 +++--
->>   1 file changed, 3 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->> index f7342d04beec..4a7ea072a3c1 100644
->> --- a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->> +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
->> @@ -15,8 +15,9 @@ description:
->>
->>   properties:
->>     compatible:
->> -    items:
->> -      - const: qcom,x1e80100-cpucp-mbox
->> +    enum:
->> +      - qcom,x1e80100-cpucp-mbox
->> +      - qcom,sc7280-cpucp-mbox
->>
->>     reg:
->>       items:
->> --
->> 2.25.1
->>
+> 	pcie@5f010000 {
+> 		compatible = "fsl,imx8q-pcie";
+> 		reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+> 		reg-names = "dbi", "config";
+> 		#address-cells = <3>;
+> 		#size-cells = <2>;
+> 		device_type = "pci";
+> 		bus-range = <0x00 0xff>;
+> 		ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+> 			 <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+> 	...
+> 	};
+> };
+> 
+> Term internal address (IA) here means the address just before PCIe
+> controller. After ATU use this IA instead CPU address, cpu_addr_fixup() can
+> be removed.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Change from v2 to v3
+> - %s/cpu_untranslate_addr/parent_bus_addr/g
+> - update diagram.
+> - improve commit message.
+> 
+> Change from v1 to v2
+> - update because patch1 change get untranslate address method.
+> - add using_dtbus_info in case break back compatibility for exited platform.
+> ---
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 42 +++++++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-designware.h      |  8 +++++
+>  2 files changed, 50 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index 3e41865c72904..823ff42c2e2c9 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -418,6 +418,34 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
+>  	}
+>  }
+>  
+> +static int dw_pcie_get_untranslate_addr(struct dw_pcie *pci, resource_size_t pci_addr,
+> +					resource_size_t *i_addr)
+> +{
+> +	struct device *dev = pci->dev;
+> +	struct device_node *np = dev->of_node;
+> +	struct of_range_parser parser;
+> +	struct of_range range;
+> +	int ret;
+> +
+> +	if (!pci->using_dtbus_info) {
+> +		*i_addr = pci_addr;
+> +		return 0;
+> +	}
+> +
+> +	ret = of_range_parser_init(&parser, np);
+> +	if (ret)
+> +		return ret;
+> +
+> +	for_each_of_pci_range(&parser, &range) {
+> +		if (pci_addr == range.bus_addr) {
+> +			*i_addr = range.parent_bus_addr;
+> +			break;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -427,6 +455,7 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  	struct resource_entry *win;
+>  	struct pci_host_bridge *bridge;
+>  	struct resource *res;
+> +	int index;
+>  	int ret;
+>  
+>  	raw_spin_lock_init(&pp->lock);
+> @@ -440,6 +469,13 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  		pp->cfg0_size = resource_size(res);
+>  		pp->cfg0_base = res->start;
+>  
+> +		if (pci->using_dtbus_info) {
+> +			index = of_property_match_string(np, "reg-names", "config");
+> +			if (index < 0)
+> +				return -EINVAL;
+> +			of_property_read_reg(np, index, &pp->cfg0_base, NULL);
+> +		}
+> +
+>  		pp->va_cfg0_base = devm_pci_remap_cfg_resource(dev, res);
+>  		if (IS_ERR(pp->va_cfg0_base))
+>  			return PTR_ERR(pp->va_cfg0_base);
+> @@ -462,6 +498,9 @@ int dw_pcie_host_init(struct dw_pcie_rp *pp)
+>  		pp->io_base = pci_pio_to_address(win->res->start);
+>  	}
+>  
+> +	if (dw_pcie_get_untranslate_addr(pci, pp->io_bus_addr, &pp->io_base))
+> +		return -ENODEV;
+> +
+>  	/* Set default bus ops */
+>  	bridge->ops = &dw_pcie_ops;
+>  	bridge->child_ops = &dw_child_pcie_ops;
+> @@ -733,6 +772,9 @@ static int dw_pcie_iatu_setup(struct dw_pcie_rp *pp)
+>  		atu.cpu_addr = entry->res->start;
+>  		atu.pci_addr = entry->res->start - entry->offset;
+>  
+> +		if (dw_pcie_get_untranslate_addr(pci, atu.pci_addr, &atu.cpu_addr))
+> +			return -EINVAL;
+> +
+>  		/* Adjust iATU size if MSG TLP region was allocated before */
+>  		if (pp->msg_res && pp->msg_res->parent == entry->res)
+>  			atu.size = resource_size(entry->res) -
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index c189781524fb8..e22d32b5a5f19 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -464,6 +464,14 @@ struct dw_pcie {
+>  	struct reset_control_bulk_data	core_rsts[DW_PCIE_NUM_CORE_RSTS];
+>  	struct gpio_desc		*pe_rst;
+>  	bool			suspended;
+> +	/*
+> +	 * Use device tree 'ranges' property of bus node instead using
+> +	 * cpu_addr_fixup(). Some old platform dts 'ranges' in bus node may not
+> +	 * reflect real hardware's behavior. In case break these platform back
+> +	 * compatibility, add below flags. Set it true if dts already correct
+> +	 * indicate bus fabric address convert.
+> +	 */
+> +	bool			using_dtbus_info;
+>  };
+>  
+>  #define to_dw_pcie_from_pp(port) container_of((port), struct dw_pcie, pp)
+> 
+> -- 
+> 2.34.1
+> 
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
