@@ -1,86 +1,67 @@
-Return-Path: <devicetree+bounces-107496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3911998ED1C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:36:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B614898ED25
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:40:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AE911C210C5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:36:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D6531F21F42
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:40:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA98A14EC73;
-	Thu,  3 Oct 2024 10:36:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D1CE14D2A6;
+	Thu,  3 Oct 2024 10:40:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aauPPTx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B21814E2CC;
-	Thu,  3 Oct 2024 10:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F10713D882;
+	Thu,  3 Oct 2024 10:40:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727951770; cv=none; b=OOnhKaS5sI+RKf1Nak3uSX+Dl56BftYf7n0MH2Xqd0dLTpi8SJLPYb6FtUVmk2d0DbTkD97H73tjLkPtPT56vlpecILETI8TO4qqOhSimLvTMYwThgms+TjzST4kzTz6A7WzFXuOr2VVGxUMkmNEe9n7AJsVxjaHpHmSkhyTW4s=
+	t=1727952023; cv=none; b=tmK83ONxq1RNSOUed5EmciDgSjeeY9qWKQ+TG4At75iMT0Lq7kK7JGM6py00t8mUmkglD6Ft61n2nYSZwxdeWD/+AOJlBH9aKVSO3YSDZEnbTD2tqQ1XNMEKqG/gcw+eh3md09BOjNxJ3h9H1Ihr0/MNTrAklGu/sLYDIYVLJe4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727951770; c=relaxed/simple;
-	bh=KL/7NaUf80px9j5kVh+PueqYs3ianbam9jVZoCRkYVI=;
+	s=arc-20240116; t=1727952023; c=relaxed/simple;
+	bh=1xeBYKTaSGVfI0BugeSI77i/Cy6QQIpj2vwo8xpRhcE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=La2QeH/7K7ObDTBnGl2l2OSyTVB3WSidkXbqaIEV9I8nz1nU8pj4rnZLrWslVsHG1KQtqs7c08sWHGgrKJrO2lwHNOnw5U+9OtNnl/ClXuEzkIJGw5WsFV5fbQ1wxa7/W5Q4KdNZyNEBlERil3t0dW091Da0SAvnATQ+ND6Uho8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: 5twSyTV4Rm+h5S0mZStl0g==
-X-CSE-MsgGUID: OkYm9Q10Siec09eEGiqfbA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="44667931"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="44667931"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 03:36:09 -0700
-X-CSE-ConnectionGUID: hC5HWsCOTkWpI/QYqeynEg==
-X-CSE-MsgGUID: K5s4KqXlSD6RMuVnLR0GaA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="79155394"
-Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 03:36:03 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy@kernel.org>)
-	id 1swJBg-0000000G5iz-0tcX;
-	Thu, 03 Oct 2024 13:36:00 +0300
-Date: Thu, 3 Oct 2024 13:35:59 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: David Lechner <dlechner@baylibre.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=lMeNG43u1KKBq7EIfo6iwWdK6pbbHUi71+bOUE1Ya+mLqBsAFGVOn20qAy4df9fIjECUKYkk/s1TMQvW6mxJ9tqU6rPuHwWzxiAgEGUQ4AdqbI8kRhVlEFk+wz+e9Mz7a/S3Dd+5CPRDFEUwilFDc8G4zDIJcIdRscDsodUL4HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aauPPTx/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B74AAC4CEC5;
+	Thu,  3 Oct 2024 10:40:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727952022;
+	bh=1xeBYKTaSGVfI0BugeSI77i/Cy6QQIpj2vwo8xpRhcE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aauPPTx/+VpnYM6pN5IcofkasU95OiDIhyxRAroBOtJ6MSxq9SstvQOFV1Ig7FZ25
+	 zgt4FERw9plGY35GpWabfW1UEs7vdRe/tqHMfSoRqA7YAj0To8y7pKN8hB5FVpWy7/
+	 AvJRh8TZ5TqF3YqSXsjSp7XRtkLR6DCI4+g99OGyS+ZFBIjN+26+Ec7uNIzdudDMNE
+	 qo6myQ1yZxWordI5uz0Lf15ivG6JwOTMx/ya0JS7m1UInBo7qAMqaklpToUBcWTdXu
+	 kXMmK7mowqj80J9/6/e6Bx77G8Ib0bACHOmRMM/Gv8uAboYW1Dt6Lht+CbgWK7KQ7r
+	 c/Zz6kR78bT1Q==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1swJFv-000000003cx-33tD;
+	Thu, 03 Oct 2024 12:40:23 +0200
+Date: Thu, 3 Oct 2024 12:40:23 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Mike Looijmans <mike.looijmans@topic.nl>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	"Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>,
-	"Bogdan, Dragos" <Dragos.Bogdan@analog.com>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
-Message-ID: <Zv5zj0PFhxoeBUXQ@smile.fi.intel.com>
-References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
- <20240923101206.3753-7-antoniu.miclaus@analog.com>
- <20240928184722.314b329b@jic23-huawei>
- <CY4PR03MB33991208029C4877760B528D9B772@CY4PR03MB3399.namprd03.prod.outlook.com>
- <Zvvw7ah4wGsl2vjw@smile.fi.intel.com>
- <CY4PR03MB3399D90F2A3C7AE3505B60A29B772@CY4PR03MB3399.namprd03.prod.outlook.com>
- <4ee001d2-67d0-45ab-ae62-ce5b8dd7553e@baylibre.com>
- <CY4PR03MB3399D9B9C5B4952E7A7F40F39B712@CY4PR03MB3399.namprd03.prod.outlook.com>
+	Conor Dooley <conor+dt@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v4 1/3] arm64: dts: qcom: sc8280xp-crd: model the PMU of
+ the on-board wcn6855
+Message-ID: <Zv50l7U_Rq91I1Dw@hovoldconsulting.com>
+References: <20240930103041.49229-1-brgl@bgdev.pl>
+ <20240930103041.49229-2-brgl@bgdev.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,48 +70,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CY4PR03MB3399D9B9C5B4952E7A7F40F39B712@CY4PR03MB3399.namprd03.prod.outlook.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240930103041.49229-2-brgl@bgdev.pl>
 
-On Thu, Oct 03, 2024 at 10:14:57AM +0000, Miclaus, Antoniu wrote:
-> > On 10/1/24 8:51 AM, Miclaus, Antoniu wrote:
-> > >>> Regarding the bulk writes/reads, the msb/mid/lsb registers need to be
-> > >>> read/write in a specific order and the addresses are not incremental,
-> > >>
-> > >> We have _noinc() variants of regmap accessors.
-> > > [Miclaus, Antoniu]
-> > > I think _noinc() functions read from the same register address so it doesn't
-> > > apply.
-> > > I am reading values from multiple register addresses that are not reg_addr,
-> > > reg_addr+1, reg_addr+2.
-> > 
-> > I'm confused by the statement that the registers are not incremental.
-> > 
-> > For example, this patch defines...
-> > 
-> > +#define AD485X_REG_CHX_OFFSET_LSB(ch)
-> > 	AD485X_REG_CHX_OFFSET(ch)
-> > +#define AD485X_REG_CHX_OFFSET_MID(ch)
-> > 	(AD485X_REG_CHX_OFFSET_LSB(ch) + 0x01)
-> > +#define AD485X_REG_CHX_OFFSET_MSB(ch)
-> > 	(AD485X_REG_CHX_OFFSET_MID(ch) + 0x01)
-> > 
-> > This looks exactly like reg_addr, reg_addr+1, reg_addr+2 to me.
-> Yes you are right. Although I tested with hardware and it seems that the registers
-> are not properly written when using bulk operations. My guess is that holding CS low during
-> the entire transaction might be a possible issue. Any suggestions are appreciated.
+On Mon, Sep 30, 2024 at 12:30:37PM +0200, Bartosz Golaszewski wrote:
+> From: Konrad Dybcio <konradybcio@kernel.org>
+> 
+> Add nodes for the WCN6855 PMU, the WLAN module and relevant regulators
+> and pin functions to fully describe how the wifi is actually wired on
+> this platform.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Konrad Dybcio <konradybcio@kernel.org>
+> [Bartosz:
+>   - write the commit message,
+>   - rebase Konrad's commit,
+>   - fix one of the supplies' name]
+> Co-developed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Okay, so each byte has to be written as a separate SPI transfer?
-I believe we have already examples of the drivers for such a hardware
-in the Linux kernel, but I can't throw any example form top of my head.
+First, make sure to CC people that help review your patches.
 
-> > >>> so I am not sure how the bulk functions fit. On this matter, we will need
-> > >>> unsigned int (not u8) to store the values read via regmap_read, and in this
-> > >>> case we will need extra casts and assignments to use get_unaligned.
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 110 ++++++++++++++++++++++
+>  1 file changed, 110 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> index 6020582b0a59..28721570c59f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
+> @@ -177,6 +177,17 @@ vreg_misc_3p3: regulator-misc-3p3 {
+>  		regulator-always-on;
+>  	};
+>  
+> +	vreg_s10b: regulator-s10b {
+> +		compatible = "regulator-fixed";
+> +
+> +		regulator-name = "VREG_S10B";
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +	};
 
--- 
-With Best Regards,
-Andy Shevchenko
+Again, this is not a fixed regulator. It's an supply from one of the
+PMICs that are already described in DT.
 
+> +
+>  	vreg_wlan: regulator-wlan {
+>  		compatible = "regulator-fixed";
+  
+> +&pcie4_port0 {
+> +	wifi@0 {
+> +		compatible = "pci17cb,1103";
+> +		reg = <0x10000 0x0 0x0 0x0 0x0>;
+> +
+> +		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
+> +		vddaon-supply = <&vreg_pmu_aon_0p8>;
+> +		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
+> +		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
+> +		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
+> +		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
+> +		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
+> +		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
+> +		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
+> +
+> +		qcom,ath11k-calibration-variant = "QC_8280XP_CRD";
 
+Not "SC8280XP"?
+
+> +	};
+> +};
+> +
+>  &pmc8280c_lpg {
+>  	status = "okay";
+>  };
+> @@ -829,6 +933,12 @@ reset-pins {
+>  		};
+>  	};
+>  
+> +	wlan_en: wlan-en-state {
+> +		pins = "gpio134";
+> +		function = "gpio";
+> +		bias-pull-down;
+
+We don't want a pull-down enabled on an active high enable signal.
+
+> +	};
+
+Please keep the nodes sorted by name.
+
+> +
+>  	nvme_reg_en: nvme-reg-en-state {
+>  		pins = "gpio135";
+>  		function = "gpio";
+
+Johan
 
