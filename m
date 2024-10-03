@@ -1,176 +1,137 @@
-Return-Path: <devicetree+bounces-107469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F14498EC66
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:43:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FC8398EC72
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:50:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D2DA1C21021
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:43:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A18251C2162F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0962E1465B1;
-	Thu,  3 Oct 2024 09:43:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954E513B58A;
+	Thu,  3 Oct 2024 09:50:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aPRf/DSG"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="OQbotMwR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2A1F1465AE;
-	Thu,  3 Oct 2024 09:43:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A621126C00
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 09:50:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727948593; cv=none; b=rM04JyJAgzv86a0gNBYHyAaHeQWZ/D5y4DENa2IlTeVs1e+KHgOMUYjTQdAlClaL1g30Sp2rySDzN7bs6J+M7DZv9Fg5jTAo4zYj3WsSaoV5t/4RnZ3Tx9eGF1grjcTy8TlbYKIyMaY/dgKhxXOOJOCT8Lt9IoEcBJG7UVH2PnY=
+	t=1727949003; cv=none; b=HOA9ztW/Fqt/ULcZYV4vFE4wZ34UgDd+d78ClVlP019Ukz4W9CwDoTvH2sjuYA2GzX//cSbcjGoGgbmv2PwylIjqyh0XUzkenF95m67pFOCY/CwMLg6XivT3DlOy9GI7sr38Df0XLINOCtAmeRqdqZdZT9+1lmcX6KOZvz3Bvk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727948593; c=relaxed/simple;
-	bh=kKheSpvNhKnnOCs4OPuTFoh9bYM2IVoqL5zJ0I4iiA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N0/maka1qBx2+WTu84jAB/yycTWEnPVW+T9fIbH9/Bih41rpv4DB1JCZnXVMLhrYQAnQBskQoAg7OwyTqzHx7xBsu1hJZiiGBK0Vl4KQlG/MfVX0yxWubcOYACd02L1IR57Z8fSGpvwInSnN9w1kSn3fWQWTq4U/oVrxsAx9yc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aPRf/DSG; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727948592; x=1759484592;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=kKheSpvNhKnnOCs4OPuTFoh9bYM2IVoqL5zJ0I4iiA0=;
-  b=aPRf/DSGO+v6faCuEZe1nSqYQkPRjs4DbgBxYn9sFfZq78ZLG5vhEHNA
-   uhZeuq1XRA2HCyMmN6fcnUihkAPhsxblCd4e8Yc3YUUX0OVVfHsTDoRPm
-   VPA7R3RHn7lUDdfEMeGtkQbKho/tI9C6POAfXd1ein8XTCUwPmuGqWuLn
-   fOqZrS3eGXRdMl2eBN84NzP3GM2AaJAhie+D1+yTiHblKjOLwdAtbmjfN
-   RngT5P9gnHjZhSXh8FYA/B0OHuqGdBS7+8tT8wuvsXRKH7pcg36YNpKas
-   ibNNQkJR4fTywPw+jSXz9lVROteAyARe5njS3kKAknj9Yin+cpB86MtOA
-   A==;
-X-CSE-ConnectionGUID: 6LQSsV2ESVuP5zF4cXg6VQ==
-X-CSE-MsgGUID: q4pgPw6gSaykf3ioyKC7tw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="27004820"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="27004820"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 02:43:10 -0700
-X-CSE-ConnectionGUID: O4wAEbQkTLmaeFPky2TQRA==
-X-CSE-MsgGUID: PWK+fE28TIuwbifN1Tu/fw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="79062025"
-Received: from soc-5cg4213gc7.clients.intel.com (HELO [10.66.114.183]) ([10.66.114.183])
-  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 02:43:05 -0700
-Message-ID: <6523649b-9143-42d8-b301-a143088530b9@intel.com>
-Date: Thu, 3 Oct 2024 15:13:02 +0530
+	s=arc-20240116; t=1727949003; c=relaxed/simple;
+	bh=8cirylqs9X/1jiwmQr4277G7dFywMyvY0SuXqZTEmMY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VwULHkaIEDmDKHwj5Poaevsg8VPK3oKM59OKL4AVbexMTmd9IFFQDkYN6GCrL6Qo1Oh0I2iBMbih4meOzP2xbO+uigsk4tIc1OqtyDIBAyE8Sbq/GL8LwAT1edrd70w3ymbs7RMssfc20YeUS2t2hocoYQfN37OaNLcsCeD93GY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=OQbotMwR; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1727948998;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=CeDoAHF0CNfZlTf5K4lvfk+NClUys0mGh57L32ShtE8=;
+	b=OQbotMwR8FXnKbAglWB9sitnCATUbNHue7XEoEMLRnTz+jBfr322LWpoanl5CXpbbrV0bJ
+	ozC4zImESZf57sIFD2PKSqDvaY2dBg5eQNyGMvoZIB+ZF5I98beVaxSHec2dKNoAgXkp3d
+	omRXrRVNcQu7XUQ6XUa7sAySa4SEGBUlPi+LN8SwvPM+yJOxrpDCKiSIFRQNW4Eo2MmbQl
+	Liint6HVqZNGxCLQpYxdSzfVJarjPCR5xyFLjO4dqHYmnKEyDjHJqtkYJAzrr7mpgwrARC
+	Eb7qSbo3tXiYZXDz6+PCTqPHAlU6yRFgO0FTEJ1Kgvu9epyRZslRnEGUOCQeJw==
+From: Diederik de Haas <didi.debian@cknow.org>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Diederik de Haas <didi.debian@cknow.org>
+Subject: [PATCH 0/5] Drop deprecated 'rockchip' prefix from s-p-c PMIC property
+Date: Thu,  3 Oct 2024 11:43:24 +0200
+Message-ID: <20241003094927.62042-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Provide data-lines property to
- input endpoint
-To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
-References: <20241003082006.2728617-1-w.egorov@phytec.de>
-Content-Language: en-US
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-In-Reply-To: <20241003082006.2728617-1-w.egorov@phytec.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 
-Hi Wadim,
+961748bb1555 ("dt-bindings: mfd: rk8xx: Deprecate rockchip,system-power-controller")
+made "rockchip,system-power-controller" deprecated in favor of (just)
+"system-power-controller" for the rk805, rk808, rk809/rk817, rk818
+PMICs.
+Drop the 'rockchip,' prefix from the px30, rk33** and rk356x DT files
+which still used the deprecated variant.
 
-Thanks for the patch.
+Diederik de Haas (5):
+  arm64: dts: rockchip: px30: Drop rockchip prefix from s-p-c PMIC property
+  arm64: dts: rockchip: rk3328: Drop rockchip prefix from s-p-c PMIC property
+  arm64: dts: rockchip: rk3368: Drop rockchip prefix from s-p-c PMIC property
+  arm64: dts: rockchip: rk3399: Drop rockchip prefix from s-p-c PMIC property
+  arm64: dts: rockchip: rk356x: Drop rockchip prefix from s-p-c PMIC property
 
-Probably a nit, but the dt-binding patch should come before the driver
-patch.
+ arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi | 2 +-
+ arch/arm64/boot/dts/rockchip/px30-evb.dts                | 2 +-
+ arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi  | 2 +-
+ arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts               | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-evb.dts              | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts           | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-rock64.dts           | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3368-geekbox.dts          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3368-lion.dtsi            | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dts          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-eaidk-610.dts        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-evb.dts              | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-firefly.dts          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-hugsun-x99.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-kobol-helios64.dts   | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-nanopi4.dtsi         | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-orangepi.dts         | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts    | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi            | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-roc-pc.dtsi          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts     | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rock960.dtsi         | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dtsi       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3399pro-vmarc-som.dtsi    | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-lckfb-tspi.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-lubancat-1.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-pinetab2.dtsi        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-roc-pc.dts           | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3566-soquartz.dtsi        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-evb1-v10.dts         | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-fastrhino-r66s.dtsi  | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-lubancat-2.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-nanopi-r5s.dtsi      | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-odroid-m1.dts        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-radxa-cm3i.dtsi      | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts           | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-rock-3a.dts          | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5.dts   | 2 +-
+ 52 files changed, 52 insertions(+), 52 deletions(-)
 
-On 03-10-2024 13:50, Wadim Egorov wrote:
-> Introduce a data-lines property to define the number of parallel RGB
-> input pins connected to the transmitter. The input bus formats are updated
-> accordingly. If the property is not specified, default to 24 data lines.
-> 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
->  drivers/gpu/drm/bridge/sii902x.c | 27 ++++++++++++++++++++++++++-
->  1 file changed, 26 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> index 7f91b0db161e..3565c3533597 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -180,6 +180,8 @@ struct sii902x {
->  	struct gpio_desc *reset_gpio;
->  	struct i2c_mux_core *i2cmux;
->  	bool sink_is_hdmi;
-> +	u32 pd_lines; /* number of Parallel Port Input Data Lines */
-> +
->  	/*
->  	 * Mutex protects audio and video functions from interfering
->  	 * each other, by keeping their i2c command sequences atomic.
-> @@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->  						     u32 output_fmt,
->  						     unsigned int *num_input_fmts)
->  {
-> +
-> +	struct sii902x *sii902x = bridge_to_sii902x(bridge);
->  	u32 *input_fmts;
->  
->  	*num_input_fmts = 0;
-> @@ -485,7 +489,19 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->  	if (!input_fmts)
->  		return NULL;
->  
-> -	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> +	switch (sii902x->pd_lines) {
-> +	case 16:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
-> +		break;
-> +	case 18:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
-> +		break;
-> +	default:
-
-For backward compatibility - in cases where the property is absent - you
-have already defaulted sii902x->pd_lines to 24 below, which I think is
-the right way.
-
-So, the default case should be kept separately, as an error case -
-which should then return back NULL / num_input_fmts = 0.
-
-> +	case 24:
-> +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-> +		break;
-> +	}
-> +
->  	*num_input_fmts = 1;
->  
->  	return input_fmts;
-> @@ -1167,6 +1183,15 @@ static int sii902x_probe(struct i2c_client *client)
->  		return PTR_ERR(sii902x->reset_gpio);
->  	}
->
-> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-> +	if (endpoint) {
-> +		ret = of_property_read_u32(endpoint, "data-lines", &sii902x->pd_lines);
-> +		if (ret) {
-> +			dev_dbg(dev, "Could not get data-lines, fallback to 24 data-lines\n");
-> +			sii902x->pd_lines = 24;
-> +		}
-> +	}
-> +
->  	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
->  	if (endpoint) {
->  		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
-
---
-Regards
-Aradhya
+-- 
+2.45.2
 
 
