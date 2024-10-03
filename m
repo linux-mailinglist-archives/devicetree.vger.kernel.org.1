@@ -1,137 +1,185 @@
-Return-Path: <devicetree+bounces-107379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9811C98E882
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 04:43:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0EC598E8A7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:09:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3B7F7B23828
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 02:43:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1CD4EB259B0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 03:09:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AFB018054;
-	Thu,  3 Oct 2024 02:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C151CFB6;
+	Thu,  3 Oct 2024 03:09:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="Kqedv9ub"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="lMk1/Q3e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC451A270
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 02:43:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE4211DDF5;
+	Thu,  3 Oct 2024 03:09:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727923398; cv=none; b=QwXE8Ax2pReGxJGD4iaFBCJeh9RXTaf3LWoSJyvBZ+m4XGI4hO9JiU4mE5iZhr2UHWzVyCvM/0TDpz1Y9gCf94mDd6cfmd+iOYezRwPxbaUHaf0fr7jCAKwLFfkkOdFAkxNwzXk9lfRBKPen6uCx1i0/bEOFN7gWVJ0ap3ScQ8w=
+	t=1727924974; cv=none; b=bDuXx2SOyTPKydy6AkS2KveyzSh9jk45qDQ1lY55qSbXtSLanAWnO1mdlEkdQJ8rVunTzk1nMl0xUXjq0xW7wXC9ASEcCx9dL+gXZ8Ei2YPU6hqnACrV6MDfI8jwGjgTiy2G8gg3geQ86RT+erRkj0ysz+ueJ8/PWIxhsMptcWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727923398; c=relaxed/simple;
-	bh=ntn9NuPWQhchEd27EVLiDhu8oBGQ5J9up85N1DXiVrM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Scwgl0d2yiRNHdiTOPp1XY41YlDC6T8+gb20V1UTYz3KSKSTGMHoJBvPCBMECPPhetCc3gd11guPvJc+9RDmaZ3C+OMqPsGIcYsCIXr4J93++W5HMf/kI2LKeaHaoIBjPIDaLsPhXsmyMUiVTcEmgRrSmoJoSA0fz0belJ+wI/s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=Kqedv9ub; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-20b8be13cb1so4069945ad.1
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 19:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1727923395; x=1728528195; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lXs8iVoA3xDw1I5xisdrYRt5+VMwKclfUTPuuGaalk4=;
-        b=Kqedv9ubElMseQWCYGO8c0BY9A8+0kzWS6/jax4nqijk0bqBXUL4sWFlFvXYZuhwL/
-         eA8mKcx6CeBOdbiyXbHkkpNRIUVFu5RLAjQIJaE5W8VYB3BVxWHiAnlUqSP0CAn8efLZ
-         fGmZCEaTqhbC8osf3lZC671nJP+e/YoLTVeRejBZznYdY+4tOMFqcQkRGBLKoKb3aZ5Y
-         UfF/+4WYh2C8pQd8tsomeqm6Qm8cRVF3l3xpoGrRhE6lZVfYQ0BQVyJNC4b8blCI3tS0
-         IIpiWDA93BVhmxO20jnZBHsHTdAf5e0exnZWFha15Ss6w/lQj63FJY0r7rMzbiwDuI8D
-         96bg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727923395; x=1728528195;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lXs8iVoA3xDw1I5xisdrYRt5+VMwKclfUTPuuGaalk4=;
-        b=P7rkCuWGZq9YHFF7oy0TvKBKcEqLUB2s8rjdFoCck7CyUYXVkrT/dUvggnk+4MI03a
-         5I68h5oKDohUZf6o9idcWj4AV2zaosWLFrlVLq7QRqj/j6AEMl8CEZmDxlIra8nBpOJ0
-         pYrM5QbwBGH7ZRkNwFmppxq+7enOCkp/NppzfQ/d67elAUZTFLkz+mODTSPgVLVuVpEX
-         pyvocBj9zDmGW+eB3ppnOD3jA1xDUlms56JsM75RtRBkPccuufWsj5p3WPBt6nlK8diT
-         erFk9QBOjeI86pQr2LdvjEMmJ/ABClDqEMnWxiJdGYmImpSuT/Hoc8bLBCn7mBltFgf0
-         cujg==
-X-Forwarded-Encrypted: i=1; AJvYcCVxf8bvfdGrarcyzGgZr7MkAB/dabiVxhSpBZktbNc+7vjLi+SA3xn3CNeeeyai+DFoh0iZ5EOCgsLQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfM0M/vTfGyGkGyMH/9W9Mm3cF1RVTgwQ9ABMe+fqLknBud1Kj
-	+5F+dArXkrMaJCXKX8esQuQ5jNMSEV/WP5jo+Zm+/ZD+UZaJYvEm86O4AFh/XiI=
-X-Google-Smtp-Source: AGHT+IFmnarGxtfVMhsP2WlVCNvnBFTDrQupQCfaWA8uaZjTwWGK1PTCiEnToYrWYyuvGooZGOdFZA==
-X-Received: by 2002:a17:902:ce87:b0:20b:9fa3:233c with SMTP id d9443c01a7336-20bc5a6a4c2mr70055895ad.40.1727923395210;
-        Wed, 02 Oct 2024 19:43:15 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20beeca4ad9sm173235ad.95.2024.10.02.19.43.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 19:43:14 -0700 (PDT)
-Date: Wed, 2 Oct 2024 19:43:13 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Kees Bakker <kees@ijzerbout.nl>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/8] pinctrl: Add driver for the T-Head TH1520 SoC
-Message-ID: <Zv4EwWPoSMir1C2J@x1>
-References: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
- <20240930-th1520-pinctrl-v3-2-32cea2bdbecb@tenstorrent.com>
- <87770518-5f63-4adf-b6ea-c7f92b58ce22@ijzerbout.nl>
+	s=arc-20240116; t=1727924974; c=relaxed/simple;
+	bh=LAzowDORi3usKijGOODCWDgnUFgIv/2A07scTU4XvEM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MoH6rLGvJqsKL1QRK9XCAPwfonIiQLUl+hYa6MaKpnvnryQI/Wy/vJjdBCXVzXGyDlEsoMAOqhWNxUHXosbRLe/Z9bUNdzJsdRwaxDZ6HlIH719Q40mYAUlAG7OidINzkg2jgpbTG7gHwbefoSyjdVesaSr0IrOX++KBaqaIxbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=lMk1/Q3e; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: e5e08332813411efb66947d174671e26-20241003
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=oTm1fXXyNbEjaSytwTVBGR6jZI+/WfArELCCgciIDnY=;
+	b=lMk1/Q3eD7+uKALsdTwMHkSTlX/m+pFHtSDSRqgSEEtoWd1NA7EVSBcIGq/l2oI2/gQzpG3PhdcFD2W10jlgKQF4sItO9L2i6vQnMxZ53nTBx1bOWasqO1J3E/Un47pE8BdmAYEw0tyjv8x3BgzbXwssXRdyA9LKs3ztuo7Ag6s=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:01bc9b6d-ac8e-4005-bc16-fe8110ae767f,IP:0,U
+	RL:0,TC:0,Content:0,EDM:-25,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6dc6a47,CLOUDID:f12134d3-4579-415a-b011-ed838761827b,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:1|19,IP:nil
+	,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:
+	1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: e5e08332813411efb66947d174671e26-20241003
+Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 996976255; Thu, 03 Oct 2024 11:09:26 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 3 Oct 2024 11:09:25 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 3 Oct 2024 11:09:25 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
+	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yong Wu <yong.wu@mediatek.com>, Joerg
+ Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>, Robin Murphy
+	<robin.murphy@arm.com>, Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Rohit
+ Agarwal <rohiagar@chromium.org>, <dri-devel@lists.freedesktop.org>,
+	<linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
+ Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+Subject: [PATCH v6 1/4] dt-bindings: iommu: mediatek: Fix interrupt count constraint for new SoCs
+Date: Thu, 3 Oct 2024 11:09:16 +0800
+Message-ID: <20241003030919.17980-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <87770518-5f63-4adf-b6ea-c7f92b58ce22@ijzerbout.nl>
+Content-Type: text/plain
+X-MTK: N
 
-On Wed, Oct 02, 2024 at 09:36:59PM +0200, Kees Bakker wrote:
-> Op 30-09-2024 om 21:50 schreef Drew Fustini:
-> > From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > 
-> > Add pinctrl driver for the T-Head TH1520 RISC-V SoC.
-> > 
-> > Tested-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-> > Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-> > [dfustini: use thead,pad-group to identify the pin controller instance]
-> > Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
-> > ---
-> >   MAINTAINERS                      |   1 +
-> >   drivers/pinctrl/Kconfig          |  13 +
-> >   drivers/pinctrl/Makefile         |   1 +
-> >   drivers/pinctrl/pinctrl-th1520.c | 907 +++++++++++++++++++++++++++++++++++++++
-> >   4 files changed, 922 insertions(+)
-> > 
-> > [...]
-> > +static int th1520_pinmux_set_mux(struct pinctrl_dev *pctldev,
-> > +				 unsigned int fsel, unsigned int gsel)
-> > +{
-> > +	struct th1520_pinctrl *thp = pinctrl_dev_get_drvdata(pctldev);
-> > +	const struct function_desc *func = pinmux_generic_get_function(pctldev, fsel);
-> func can be NULL after calling pinmux_generic_get_function
-> Please add something to avoid NULL pointer dereferencing in the next
-> statement.
-> All other callers of pinmux_generic_get_function have something like this:
->     if (!func)
->         return -EINVAL;
+The infra-iommu node in mt8195.dtsi was triggering a CHECK_DTBS error due
+to an excessively long 'interrupts' property. The error message was:
 
-Thanks for catching this. I see that another person has posted a patch
-as a result so I'll respond over in that thread [1].
+  infra-iommu@10315000: interrupts: [[0, 795, 4, 0], [0, 796, 4, 0],
+                     [0, 797, 4, 0], [0, 798, 4, 0], [0, 799, 4, 0]]
+                     is too long
 
-Drew
+To address this issue, update the compatbile matching rule for
+'interrupts' property. This change allows flexibility in the number
+of interrupts for new SoCs like MT8195.
+The purpose of these 5 interrupts is also added into description.
 
-[1] https://lore.kernel.org/lkml/20241003023307.2138695-1-clf700383@gmail.com/
+Fixes: bca28426805d ("dt-bindings: iommu: mediatek: Convert IOMMU to DT schema")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/iommu/mediatek,iommu.yaml        | 28 ++++++++++++++++++-
+ 1 file changed, 27 insertions(+), 1 deletion(-)
+
+Changes for v2:
+ - commit message: re-formatting and add a description of adding 5 interrupts.
+ - add 'description' and 'maxItems: 5' for 'interrupt' property of
+   'mt8195-iommu-infra'
+ - others keeps 'maxItems: 1'
+
+Changes for v3:
+ - Refine the description for 'interrupts' property and fixes the compatible
+   matching rules.
+ - Refine commit message.
+
+Changes for v4:
+  - add missing 'minItems: 5' to 'mediatek,mt8195-iommu-infra'.
+    Thanks the explanation from Conor and Krzysztof. 
+
+Changes for v5:
+  - Repharse the description for interrupts property of MT8195.
+
+Changes for v6:
+  - Remove maxItems for mt8195-iommu-infra.
+  - Add 'Reviewed-by' tag from Rob. Thanks for the review.
+
+diff --git a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+index ea6b0f5f24de..eeb39f5acf7e 100644
+--- a/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
++++ b/Documentation/devicetree/bindings/iommu/mediatek,iommu.yaml
+@@ -96,7 +96,16 @@ properties:
+     maxItems: 1
+ 
+   interrupts:
+-    maxItems: 1
++    description: |
++      Usually, the IOMMU requires only one interrupt.
++
++      The infra IOMMU in MT8195 has five banks: each features one set
++      of APB registers. One for the normal world (set 0), three for the
++      protected world (sets 1-3), and one for the secure world (set 4).
++      and each set has its own interrupt. Therefore, five interrupts
++      are needed.
++    minItems: 1
++    maxItems: 5
+ 
+   clocks:
+     items:
+@@ -210,6 +219,23 @@ allOf:
+       required:
+         - mediatek,larbs
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - mediatek,mt8195-iommu-infra
++
++    then:
++      properties:
++        interrupts:
++          minItems: 5
++
++    else:
++      properties:
++        interrupts:
++          maxItems: 1
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.45.2
+
 
