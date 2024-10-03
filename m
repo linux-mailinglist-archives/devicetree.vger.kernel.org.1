@@ -1,150 +1,132 @@
-Return-Path: <devicetree+bounces-107459-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107460-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 785AE98EBAF
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:34:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC0F098EBB8
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:36:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 006CB1F213C5
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:34:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EC10B238D0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:36:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43D8C13C69E;
-	Thu,  3 Oct 2024 08:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8046A13BAEE;
+	Thu,  3 Oct 2024 08:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hP/9M23Q"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="b2kb5dVf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1547213A869;
-	Thu,  3 Oct 2024 08:34:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87EEC13B280;
+	Thu,  3 Oct 2024 08:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727944488; cv=none; b=BgtBZHW3g4C1C/T4MjBl9DyhvhK7UXR4dJYpcr3SNZ8o6zNzbXUw1t0FidVY0m4Z+L5N1djuxaaHGYSkEq3kZLIArBAtL43rIahFhwP75NDj9mz7eXupMNuPwQZNZe7GJ5ZsWziKxcs549H9AuTqDEIBcdKhAbVkjR9UQCRmD2E=
+	t=1727944576; cv=none; b=Ctr0smyJjLXLABUEdjvKVGl5km35D6bJfmuWRi/2qdwp7SEsHctEOKnzYwcNEOMjRz65bG845RNj/UrPhIvcVtXDUXtCm171PtKUdzLwlv/6yjVjoDzN9A3TLjulHTC+MYmjXQtVPJRspNbQT/FKG/ZW1AF4IkgWQSS+NPS9S+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727944488; c=relaxed/simple;
-	bh=8aTsuHACr2frjXo/0NtlfWhF09Us83P33NSNYLo1kng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rLIbyj6G5JAYk7JttiLI7nxa3VQw+fF6ZU8N8nIHCtNz8oruCjdJ5iLh1mHkZkO1Q73QYKxAtp1OKFt5RNXD1qJFKtmQWTAZet02Ls8JF9iT823G2C32izXb5dyZeh5UdbmjqW/27aMN+qbf9THMqxSoRq+IqP+QJzRg+6s1Sdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hP/9M23Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0284DC4CEC7;
-	Thu,  3 Oct 2024 08:34:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727944487;
-	bh=8aTsuHACr2frjXo/0NtlfWhF09Us83P33NSNYLo1kng=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hP/9M23QfCL2QJicEtiHlHfYTLSTs7/IV4wJ55lhG3N7VPOYG1CGUpKr9A1nmDE8l
-	 i9Qpf1F7FcLWpy6+g032wuarLiKbIsPglc27m3ZwH6Cb5F1JMZ03RbnsZPMjBB1eOD
-	 s4l/ZZLB41h+yY6usQ39t3w/1MO7oUsefoSLGFZTK7trz1M4mjmrPQiS+ihjOPK266
-	 s5lblsvik4I2nd1MP5vrE4wY0A6yp4eWySCUpU67zryYJOKByDZp1C/0bIOSnbmNsB
-	 pgV5jaMeX2AVXaX4WOh9nWuOvOoB4CJtONTbWc5ss6BD5wOO+IynAXSb0HZqalcaUG
-	 Lc7DXUK5ZXOBQ==
-Date: Thu, 3 Oct 2024 10:34:45 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Charan Pedumuru <charan.pedumuru@microchip.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>, 
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
-	Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni <alexandre.belloni@bootlin.com>, 
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>, linux-can@vger.kernel.org, netdev@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: net: can: atmel: Convert to json schema
-Message-ID: <xykmnsibdts7u73yu7b2vn3w55wx7puqo2nwhsji57th7lemym@f4l3ccxpevo4>
-References: <20241003-can-v2-1-85701d3296dd@microchip.com>
+	s=arc-20240116; t=1727944576; c=relaxed/simple;
+	bh=aFhHoczV0rMWeh+VcHeNazYdIGsQ9DwYb7Mz6aNO70I=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=DsX3mpcupYQBTtimtFvIU5qKBNi5iFv+7geFETGpaMWHMw513pc5gUNcqaAfypkKwRbxbBQgCG4qdf0b3aGh2UYpTqEUWzaBD+5k+FnPULm3mHR0gecyOmoC3y4x/R7zbihLOmSXgZodaS4H8J5+aZl0vnfjTAizLLAvOF3PAkA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=b2kb5dVf; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5769FE0009;
+	Thu,  3 Oct 2024 08:36:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727944572;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=sQ9rph851MPwAwZwNHdKiFp9HyVOi/6POo4Z12r84Ug=;
+	b=b2kb5dVfJ4wTrXp881WOyqsREtea0iLIMGxJqHlw65SNFYfVdOFKQm/uufmr8futTjECFd
+	8CFV/F5pTqt8ZSo8/tSlfqKyE+iUBwscK6SZSscopBAZAhxXDtpQLHZU/OschV8CGWLy4t
+	IzZvUdB4lJ3vwke4kNymA2cQg/GVg6Bj+znq2Wk/gUWciqICGq5tKCmMIojl5utxXCs9TP
+	8BCgYcqpir/TJUxBzpxGZvbMVUDbWVsbK7MHp6kM0xlVfuggkb7U1PalZdEQNUarhYXqU6
+	HFtmMWa5bdMBV67G0zPUWY2jQ76dxGc7wmWzu2/8o7TYj0YI8mzjf7zrxx80Wg==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jayesh Choudhary <j-choudhary@ti.com>,
+	alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH] ASoC: dt-bindings: davinci-mcasp: Fix interrupt properties
+Date: Thu,  3 Oct 2024 10:36:11 +0200
+Message-ID: <20241003083611.461894-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241003-can-v2-1-85701d3296dd@microchip.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On Thu, Oct 03, 2024 at 10:37:03AM +0530, Charan Pedumuru wrote:
-> Convert atmel-can documentation to yaml format
-> 
-> Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
-> ---
-> Changes in v2:
-> - Renamed the title to "Microchip AT91 CAN controller"
-> - Removed the unnecessary labels and add clock properties to examples
-> - Removed if condition statements and made clock properties as default required properties
-> - Link to v1: https://lore.kernel.org/r/20240912-can-v1-1-c5651b1809bb@microchip.com
-> ---
->  .../bindings/net/can/atmel,at91sam9263-can.yaml    | 58 ++++++++++++++++++++++
->  .../devicetree/bindings/net/can/atmel-can.txt      | 15 ------
->  2 files changed, 58 insertions(+), 15 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
-> new file mode 100644
-> index 000000000000..c818c01a718b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
-> @@ -0,0 +1,58 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Microchip AT91 CAN Controller
-> +
-> +maintainers:
-> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
-> +
-> +allOf:
-> +  - $ref: can-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - enum:
-> +          - atmel,at91sam9263-can
-> +          - atmel,at91sam9x5-can
-> +      - items:
-> +          - enum:
-> +              - microchip,sam9x60-can
-> +          - const: atmel,at91sam9x5-can
+Combinations of "tx" alone, "rx" alone and "tx", "rx" together are
+supposedly valid (see link below), which is not the case today as "rx"
+alone is not accepted by the current binding.
 
-That is not what old binding said.
+Let's rework the two interrupt properties to expose all correct
+possibilities.
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: can_clk
+Cc: Péter Ujfalusi <peter.ujfalusi@gmail.com>
+Link: https://lore.kernel.org/linux-sound/20241003102552.2c11840e@xps-13/T/#m277fce1d49c50d94e071f7890aed472fa2c64052
+Fixes: 8be90641a0bb ("ASoC: dt-bindings: davinci-mcasp: convert McASP bindings to yaml schema")
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+---
+Hello Mark,
+This patch applies on top of the one you already took, but if you prefer
+you can squash them together, I don't mind.
+Cheers,
+Miquèl
+---
+ .../bindings/sound/davinci-mcasp-audio.yaml    | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-These are new...
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-
-Here the same. Each change to the binding should be explained (answer
-to the: why) in commit msg.
-
-> +
-> +unevaluatedProperties: false
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+index ab3206ffa4af..beef193aaaeb 100644
+--- a/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
++++ b/Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
+@@ -102,21 +102,21 @@ properties:
+     default: 2
+ 
+   interrupts:
+-    oneOf:
+-      - minItems: 1
+-        items:
+-          - description: TX interrupt
+-          - description: RX interrupt
+-      - items:
+-          - description: common/combined interrupt
++    minItems: 1
++    maxItems: 2
+ 
+   interrupt-names:
+     oneOf:
+-      - minItems: 1
++      - description: TX interrupt
++        const: tx
++      - description: RX interrupt
++        const: rx
++      - description: TX and RX interrupts
+         items:
+           - const: tx
+           - const: rx
+-      - const: common
++      - description: Common/combined interrupt
++        const: common
+ 
+   fck_parent:
+     $ref: /schemas/types.yaml#/definitions/string
+-- 
+2.43.0
 
 
