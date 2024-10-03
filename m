@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-107429-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107430-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B3C98EABE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:47:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E596898EAC3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:49:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6DA531C20A61
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:47:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A4184280E33
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:49:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49DF131E38;
-	Thu,  3 Oct 2024 07:47:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 405EA12C549;
+	Thu,  3 Oct 2024 07:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ACmNa5hg"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="NY5AGyPf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 872B9130E57;
-	Thu,  3 Oct 2024 07:47:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E303FB8B
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 07:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727941630; cv=none; b=mBp2B1bjtHs+eWBUIdwSbt6MMIF50SQdbnYktU1H22XihsQlekQNv6VtLE1Z8uSMbk6v8a+afny+4/RsD4PjCQJc6TPxOq8ZLNUyX51PraMmBgaR64PA4ZEkpaLmGQZV8p0/3HdKPpnqR/+lTD4fnHGPwWGmq5/V6hsJVdKNLmg=
+	t=1727941796; cv=none; b=CeTz9caqrKTP97Gq1ztFzdT0Jy2p905w55a3xUE4oC4ob7KY6AL7V+y+lrCG91MWC7yc/W/j+5OtnrXMtcpLWkqBmasAQwkHjT3mz/uwmQZSPQNAhG28+ZNjEbhPIdy0RsJP6ukTnA5syxx6GjutlMdAhhOzKp7e5t6+DC5aqHQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727941630; c=relaxed/simple;
-	bh=p6WqCzERm6aq0elcjS2UZHjg0ch54nfn4SlGcTmWtAU=;
+	s=arc-20240116; t=1727941796; c=relaxed/simple;
+	bh=KrsnW3KRAU1JoynmwJH5u2a/eU+TzfBlvEJS/tdrM3M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pc/vrDqYY1IjO5BgWNzREx2GGe80Y+Tzk2pgX/bDDGg8ErpuqCekJIoSm7SK/QRLe0RvrkKhIY9cwTV83npzLngSu2BrKVqS7KSpkrpnZSMRIsFQn9BEIXloM1i7+a7lNw0fbGTWqyWkGrfKDU+pX+ieO3qTfCbUtq2bLlou5T0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ACmNa5hg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A81E0C4CEC7;
-	Thu,  3 Oct 2024 07:47:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727941630;
-	bh=p6WqCzERm6aq0elcjS2UZHjg0ch54nfn4SlGcTmWtAU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ACmNa5hgt1j8fuldryUNK4LpJxMoX0QOGAluCskPef3MJe13UdhLDDWh1IP6IrPEz
-	 xsUfLRdq1y7OnVFMH1X3ofvUXsG3EHMvC53q99UWy80YIlzb8djD4L5RBo9xdnDj5/
-	 omeFuSrBrA+cXXmXRO1mW3vRQFAeTGcxCQkq6GAs4cX6peGn/6fXRjvAi5BR+BumZs
-	 rB/Qq0Mrs0jNhwVSteHH3yvlfAGfgW21udvKtgxdAYkJuhSyvoC21Nh992spaA1j60
-	 ghxVb2MojlXMMvUvy0Kp4/1Jq5hXuC777hGuH1RAiZW/2oiyIIBmfUxZAMG+iK7DJ+
-	 A9+Qr4u7D6+xg==
-Message-ID: <1368312a-4f48-4363-b97c-5f0675f721f7@kernel.org>
-Date: Thu, 3 Oct 2024 09:47:05 +0200
+	 In-Reply-To:Content-Type; b=YPV9ZkVrATiyNsDMzL1PRtIW7CMqwcT/e3k0DJMvwsCUrZQ18S/XVwdc0Ao7CnHxGYU36NAJPlGibKW7WcoN7kb7wXROr8yr0af13DGSS0ifRlIQQUAlA7fqETlhLUjtPjrNGCHDHODaCVOSJD/jQwCKUT3K8YnYZC4GgtT9GGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=NY5AGyPf; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37cd8a5aac9so375006f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 00:49:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727941793; x=1728546593; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=u1YwTr9h8LtbzMOl0TrTDXIEzjgLgPj2qUkc0qSTvso=;
+        b=NY5AGyPfts8ukv9a4Itka6xJaXvDEWU4q9mVM5kt5ZJ0qeXpFaIfxK7vf+bDcg3Jr3
+         9ZzE3u0sbQ2XLpiOQAsuF4U033FrtnFQJXVvM9BkskF0f14Y5roIGSiCR9GkbS8LZauy
+         K2kKjppKnZZmPSxcxGOBwYtDfAyoZz68iKNhh1Z7N+cSghmxRbXDMdS7edqktELig3RV
+         YH3y+SoauCTbg0ZBfFrrlHX9tAL+2pSHvXJKApT5Sxj7RoTiDyw6bKeVeTWRICD/VkbC
+         dYKmcySNFIQOdIWF4fKegSAe7esV/1ItMW5jSY+viKAv0nAbH7H7G/uXO6rh0Dptc1fV
+         bWfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727941793; x=1728546593;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=u1YwTr9h8LtbzMOl0TrTDXIEzjgLgPj2qUkc0qSTvso=;
+        b=mePwoBajbOatmBdSjUp42xGQhedn5bznIwvKzs8/2JabdP0GE3SUY5LA3iIKM+Z2kA
+         MUynFmpWseBgnZdu0gBtPkMsKpt+2yezM4g32/5WoFob0AnA+UJL1psWbKaeYMWim/Ym
+         kqktRWaY9g9bdqdvZ5IBgHrRi7Fa2y+ldAQGcCX3nHTq2r9mmT90bcCLb3tE3o/bRVtE
+         EIbUnt5u9X4BI/X8eYKBrxwM7Z6gBG+WT/rZPH44vSYmyBcYFPNIDHlpcTd2grHhl5jh
+         OTej5KEIcE5iATZQopgYU4geKBW05ExBQae1iPvEF50huIS0z2EtOYeBypMcZv1xdQdw
+         Y5oA==
+X-Forwarded-Encrypted: i=1; AJvYcCXkIChiPUU5ZK2nIayRQcmxOnscpASO87ahv+34SAeGAbEoOHxxYhVfjQhSyqt1OF8UHENRRWuwuu5h@vger.kernel.org
+X-Gm-Message-State: AOJu0YzkQepTUkfhcLSE9UKWiywSCxQ2ULytPPSQjHqQ1FTE0pieKPFd
+	pz3sTHyrF0TWVsM0qRlWoDF/q+rZd5sCYJXy07S0pVsTZh/bT2qE+8yOtPdZIrw=
+X-Google-Smtp-Source: AGHT+IGLcxSI9tvWu0h1tUW6RfGSAAByFwWwvbEAOy5Bn8EDCgNaJ6vYB5LX4/TpSeyYiKyDH03HuA==
+X-Received: by 2002:a5d:504e:0:b0:37c:d26c:8dc4 with SMTP id ffacd0b85a97d-37cfba03ea9mr4035595f8f.36.1727941792805;
+        Thu, 03 Oct 2024 00:49:52 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d0823ed00sm657222f8f.49.2024.10.03.00.49.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 00:49:52 -0700 (PDT)
+Message-ID: <6b735be2-93d2-4cc2-b690-438f6e71cf0b@rivosinc.com>
+Date: Thu, 3 Oct 2024 09:49:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,215 +76,111 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names
- properties
-To: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>,
- Conor Dooley <conor@kernel.org>
-Cc: "broonie@kernel.org" <broonie@kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
- <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "Simek, Michal" <michal.simek@amd.com>,
- "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "git (AMD-Xilinx)" <git@amd.com>,
- "amitrkcian2002@gmail.com" <amitrkcian2002@gmail.com>
-References: <20240923123242.2101562-1-amit.kumar-mahapatra@amd.com>
- <20240924-impaired-starving-eef91b339f67@spud>
- <IA0PR12MB76998D7BC3429606508E6202DC692@IA0PR12MB7699.namprd12.prod.outlook.com>
- <20240925-trapdoor-stunt-33516665fdc5@spud>
- <IA0PR12MB76999B696A9BA0834644AC71DC6B2@IA0PR12MB7699.namprd12.prod.outlook.com>
- <03a1c7e7-c516-41ab-a668-7c6785ab1c4f@kernel.org>
- <20240928-postcard-lively-c0c9bbe74d04@spud>
- <IA0PR12MB7699EDFA3753D25C8126D901DC762@IA0PR12MB7699.namprd12.prod.outlook.com>
- <20240930-unbalance-wake-e1a6f07ea79d@spud>
- <IA0PR12MB769964FA23FA8B889B47539DDC712@IA0PR12MB7699.namprd12.prod.outlook.com>
- <1195de0e-4a14-446f-bd1f-0116d4abf18b@kernel.org>
- <IA0PR12MB76992D9DDE6AF254FA884A52DC712@IA0PR12MB7699.namprd12.prod.outlook.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [RFC v1 2/5] RISC-V: add f & d extension validation checks
+To: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241002-defeat-pavestone-73d712895f0b@spud>
+ <20241002-stuffed-trance-1323386dd80b@spud>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <IA0PR12MB76992D9DDE6AF254FA884A52DC712@IA0PR12MB7699.namprd12.prod.outlook.com>
+From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
+In-Reply-To: <20241002-stuffed-trance-1323386dd80b@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 03/10/2024 09:42, Mahapatra, Amit Kumar wrote:
-> Hello Krzysztof,
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Thursday, October 3, 2024 12:31 PM
->> To: Mahapatra, Amit Kumar <amit.kumar-mahapatra@amd.com>; Conor Dooley
->> <conor@kernel.org>
->> Cc: broonie@kernel.org; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; Simek, Michal <michal.simek@amd.com>; linux-
->> spi@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->> kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git (AMD-Xilinx)
->> <git@amd.com>; amitrkcian2002@gmail.com
->> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names properties
->>
->> On 03/10/2024 08:23, Mahapatra, Amit Kumar wrote:
->>> Hello Conor,
->>>
->>>> -----Original Message-----
->>>> From: Conor Dooley <conor@kernel.org>
->>>> Sent: Monday, September 30, 2024 10:10 PM
->>>> To: Mahapatra, Amit Kumar <amit.kumar-mahapatra@amd.com>
->>>> Cc: Krzysztof Kozlowski <krzk@kernel.org>; broonie@kernel.org;
->>>> robh@kernel.org;
->>>> krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
->>>> <michal.simek@amd.com>; linux-spi@vger.kernel.org;
->>>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->>>> linux-kernel@vger.kernel.org; git (AMD-Xilinx) <git@amd.com>;
->>>> amitrkcian2002@gmail.com
->>>> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks &
->>>> clock-names properties
->>>>
->>>> On Mon, Sep 30, 2024 at 03:44:47PM +0000, Mahapatra, Amit Kumar wrote:
->>>>> Hello Conor,
->>>>>
->>>>>>>>>>> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks &
->>>>>>>>>>> clock-names properties
->>>>>>>>>>>
->>>>>>>>>>> On Mon, Sep 23, 2024 at 06:02:42PM +0530, Amit Kumar Mahapatra
->>>> wrote:
->>>>>>>>>>>> Include the 'clocks' and 'clock-names' properties in the AXI
->>>>>>>>>>>> Quad-SPI bindings. When the AXI4-Lite interface is enabled,
->>>>>>>>>>>> the core operates in legacy mode, maintaining backward
->>>>>>>>>>>> compatibility with version 1.00, and uses 's_axi_aclk' and
->>>>>>>>>>>> 'ext_spi_clk'. For the AXI interface, it uses 's_axi4_aclk'
->>>>>>>>>>>> and
->>>> 'ext_spi_clk'.
->>>>>>
->>>>>>>>>>>> +      properties:
->>>>>>>>>>>> +        clock-names:
->>>>>>>>>>>> +          items:
->>>>>>>>>>>> +            - const: s_axi_aclk
->>>>>>>>>>>> +            - const: ext_spi_clk
->>>>>>>>>>>
->>>>>>>>>>> These are all clocks, there should be no need to have "clk" in the
->> names.
->>>>>>>>>>
->>>>>>>>>> These are the names exported by the IP and used by the DTG.
->>>>>>>>>
->>>>>>>>> So? This is a binding, not a verilog file.
->>>>>>>>
->>>>>>>> Axi Quad SPI is an FPGA-based IP, and the clock names are derived
->>>>>>>> from the IP signal names as specified in the IP documentation [1].
->>>>>>>> We chose these names to ensure alignment with the I/O signal
->>>>>>>> names listed in Table 2-2 on page 19 of [1].
->>>>>>>>
->>>>>>>> [1]
->>>>>>>> chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.amd.
->>>>>>>> com/content/dam/xilinx/support/documents/ip_documentation/axi_qu
->>>>>>>> ad_s
->>>>>>>> pi/v3_2/pg153-axi-quad-spi.pdf
->>>>>>>
->>>>>>> So if hardware engineers call them "pink_pony_clk_aclk_really_clk"
->>>>>>> we should follow...
->>>>>>>
->>>>>>>  - bus or axi
->>>>>>>  - ext_spi or spi
->>>>>>>
->>>>>>> You have descriptions of each item to reference real signals.
->>>>>>> Conor's comment is valid - do no make it verilog file.
->>>>>>>
->>>>>>>>
->>>>>>>>>
->>>>>>>>>>>> +
->>>>>>>>>>>> +    else:
->>>>>>>>>>>> +      properties:
->>>>>>>>>>>> +        clock-names:
->>>>>>>>>>>> +          items:
->>>>>>>>>>>> +            - const: s_axi4_aclk
->>>>>>>>>>>> +            - const: ext_spi_clk
->>>>>>>
->>>>>>> Nah, these are the same.
->>>>>>
->>>>>> They may be different, depending on whether or not the driver has
->>>>>> to handle "axi4- lite" versus "axi" differently. That said, I find
->>>>>> the commit message kinda odd in that it states that axi4-lite goes
->>>>>> with the s_axi_aclk
->>>> clock and axi goes with s_axi4_aclk.
->>>>>
->>>>> Apologies for the typo. When the AXI4 interface is enabled, it uses
->>>>> s_axi4_aclk, and when the AXI4-Lite interface is enabled, it uses s_axi_aclk.
->>>>>
->>>>> In my next series I will update my commit message & change the
->>>>> clock-names 's_axi4_aclk', 's_axi_aclk' & 'ext_spi_clk' to 'axi4',
->>>>> 'axi' & 'ref' respectively
->>>>
->>>> There's no driver here, so it is hard to know (why isn't there?) -
->>>> are you using the axi
->>>
->>> We are working on the driver. Once it is ready we will send it to upstream.
->>
->> Why would you send separate binding from driver? That's only making everything
->> more difficult...
-> 
-> Alright, I will send the next version along with the driver changes.
-> 
->>
->>>
->>>> v axi4 to do some sort of differentiation in the driver?
->>> In the driver we don't do any different operations based on the clocks
->>> , we simply enable the available clocks in the driver.
->>
->> So it is the same clock?
-> 
-> These are two different clocks and depending on the mode—Legacy or 
-> Enhanced—either clock will be enabled, but the purpose of both the 
-> clocks are the same. We can have the name 'axi' for both the 
-> clocks (axi & axi4). Please let me know if you are fine with this.
 
-Please read my first comment in this thread. We are dragging this way
-too much...
 
-Best regards,
-Krzysztof
+On 02/10/2024 18:10, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Using Clement's new validation callbacks, support checking that
+> dependencies have been satisfied for the floating point extensions.
+> 
+> The check for "d" might be slightly confusingly shorter than that of "f",
+> despite "d" depending on "f". This is because the requirement that a
+> hart supporting double precision must also support single precision,
+> should be validated by dt-bindings etc, not the kernel but lack of
+> support for single precision only is a limitation of the kernel.
+> 
+> Since vector will now be disabled proactively, there's no need to clear
+> the bit in elf_hwcap in riscv_fill_hwcap() any longer.
+> 
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/kernel/cpufeature.c | 36 +++++++++++++++++++++++-----------
+>  1 file changed, 25 insertions(+), 11 deletions(-)
+> 
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index 84a2ad2581cb0..b8a22ee76c2ef 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -101,6 +101,29 @@ static int riscv_ext_zicboz_validate(const struct riscv_isa_ext_data *data,
+>  	return 0;
+>  }
+>  
+> +static int riscv_ext_f_validate(const struct riscv_isa_ext_data *data,
+> +				const unsigned long *isa_bitmap)
+> +{
+> +	if (!__riscv_isa_extension_available(isa_bitmap, RISCV_ISA_EXT_d)) {
+> +		pr_warn_once("This kernel does not support systems with F but not D\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (IS_ENABLED(CONFIG_FPU))
+> +		return -EINVAL;
+
+Hey Conor,
+
+Shouldn't this be !IS_ENABLED(CONFIG_FPU)) ? I mean, if the f extension
+is enabled but not CONFIG_FPU, then disable it.
+
+Clément
+
+> +
+> +	return 0;
+> +}
+> +
+> +static int riscv_ext_d_validate(const struct riscv_isa_ext_data *data,
+> +				const unsigned long *isa_bitmap)
+> +{
+> +	if (IS_ENABLED(CONFIG_FPU))
+> +		return -EINVAL;
+> +
+> +	return 0;
+> +}
+> +
+>  static int riscv_ext_vector_x_validate(const struct riscv_isa_ext_data *data,
+>  				     const unsigned long *isa_bitmap)
+>  {
+> @@ -351,8 +374,8 @@ const struct riscv_isa_ext_data riscv_isa_ext[] = {
+>  	__RISCV_ISA_EXT_DATA(i, RISCV_ISA_EXT_i),
+>  	__RISCV_ISA_EXT_DATA(m, RISCV_ISA_EXT_m),
+>  	__RISCV_ISA_EXT_DATA(a, RISCV_ISA_EXT_a),
+> -	__RISCV_ISA_EXT_DATA(f, RISCV_ISA_EXT_f),
+> -	__RISCV_ISA_EXT_DATA(d, RISCV_ISA_EXT_d),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(f, RISCV_ISA_EXT_f, riscv_ext_f_validate),
+> +	__RISCV_ISA_EXT_DATA_VALIDATE(d, RISCV_ISA_EXT_d, riscv_ext_d_validate),
+>  	__RISCV_ISA_EXT_DATA(q, RISCV_ISA_EXT_q),
+>  	__RISCV_ISA_EXT_SUPERSET(c, RISCV_ISA_EXT_c, riscv_c_exts),
+>  	__RISCV_ISA_EXT_SUPERSET_VALIDATE(v, RISCV_ISA_EXT_v, riscv_v_exts, riscv_ext_vector_float_validate),
+> @@ -912,15 +935,6 @@ void __init riscv_fill_hwcap(void)
+>  		}
+>  	}
+>  
+> -	/*
+> -	 * We don't support systems with F but without D, so mask those out
+> -	 * here.
+> -	 */
+> -	if ((elf_hwcap & COMPAT_HWCAP_ISA_F) && !(elf_hwcap & COMPAT_HWCAP_ISA_D)) {
+> -		pr_info("This kernel does not support systems with F but not D\n");
+> -		elf_hwcap &= ~COMPAT_HWCAP_ISA_F;
+> -	}
+> -
+>  	if (__riscv_isa_extension_available(NULL, RISCV_ISA_EXT_ZVE32X)) {
+>  		/*
+>  		 * This cannot fail when called on the boot hart
 
 
