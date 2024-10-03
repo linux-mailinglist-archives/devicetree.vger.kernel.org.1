@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-107486-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107487-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3B5498ECC4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:16:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98A3198ECD0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:17:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B4A31F24533
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:16:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA2121C21F33
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AAF714D44D;
-	Thu,  3 Oct 2024 10:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 184D3149C4A;
+	Thu,  3 Oct 2024 10:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="if7oMDoT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TeXrvxIz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B24414B081;
-	Thu,  3 Oct 2024 10:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1545148314;
+	Thu,  3 Oct 2024 10:17:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727950560; cv=none; b=YuuYolmfyomX7+e5s3YbtfdPGanlD8Qh52raoI1KVc2kcUIuvyLsZux0CAZsbLRbGdQ7ORHNd8pbVaH0pNsmFERh2tFFeijJINoqtLVnhT8u33NRKczGVgYt4AQaaEqnfTLDuGmFqSe1bxIUSx0ESx7+SICok4dWfSwLV5Lphpc=
+	t=1727950646; cv=none; b=TVu/krROr5UTDA6KirfVRU6z4UXo76v440vAPpN3lHVcdjyIMbkT8s5eVsnZawOBVM9ClmOHVGStIV1fnKLwChSz9/sujPssVBVTNAVrIdlt6lxiVnqvMeOIkT59aePuvwYOOnv60Hgl0s/Sa6JBH/gevDTjDMuUusI02Q/zUpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727950560; c=relaxed/simple;
-	bh=JfyDiXoH0eS3B8+Pjeg/MzW8rcuRvAUgL/8i6r4vJ6k=;
+	s=arc-20240116; t=1727950646; c=relaxed/simple;
+	bh=RjkHMa6NFpwQZS4eKH1S5lgppOyNMql2P81Y/JIoYrE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=b8sXij5TyEceLPymwKhLy324MzqZO3gTfuU0AFmywXZKvwRxHRZrH69wiAE1pLb10H2XO1spwc+kXZ67hvbTG8HmDJvIpIKKL8VZyVXSOIUkQLQsj2ONployZDYotCrkkh7FyZwVy0heESKk3FNMDzLUVA5yUYnGr9tAUtzFUes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=if7oMDoT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8E06C4CEC5;
-	Thu,  3 Oct 2024 10:15:55 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CGeqlemFxolA6Q/60gLS4IEPm4eMNVeE/AAbj9TWJeGEILcgsYmJW7T+6zmklwA7+L6bgu4YXPQ9GneS28SIPWK3g+rCXsKJVCHcOmzexv26M/mqprPGQ942kai+FwT2EENI9OzwIIKgWpcXRUXUEgCqZxPoL3hUCyuDLDfRxbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TeXrvxIz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18810C4CEC5;
+	Thu,  3 Oct 2024 10:17:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727950559;
-	bh=JfyDiXoH0eS3B8+Pjeg/MzW8rcuRvAUgL/8i6r4vJ6k=;
+	s=k20201202; t=1727950645;
+	bh=RjkHMa6NFpwQZS4eKH1S5lgppOyNMql2P81Y/JIoYrE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=if7oMDoTl6O1mUGCwbKhosDY6JjkGAUeqWnSYHVdVwQXfkkEXiyPUdnhmL7rGhxtJ
-	 VFX51Jj+mN3SvurMfI2O3Cm28qVqF6sSphYqThJUBp/AlZEu4ZHDjLJ1EFXWEG4Pjs
-	 BIFz7t8m+XiJlaKViym8FXjifYj7DikNj/LdOTxvLMjPeK9oZJHUGPDYAdC2/QCdSN
-	 qdBHL9Il3EcyMmWN06k2i8EBKuj8HPv0rEiM21C0mioESZYr9O+v+yHYLxeEIbRE6H
-	 6yUhWUC3QOry+cyET5gnG75zRYJJVOf1j0ods3Urd0iidNBs6S/iDgbU879a9V7Tom
-	 Uo/r2APxhYq+g==
-Message-ID: <b8bf66be-02c4-4001-bd40-f05834da57c2@kernel.org>
-Date: Thu, 3 Oct 2024 12:15:52 +0200
+	b=TeXrvxIztXw3IMuuqf806bD/4CN1wTKICwpkPWUWppCQlVH2+3RsiAGpOjCqDfN4H
+	 wO20ZYCbKfpGYnCty598SihEDDPbVUsl8o3nm6K8T/ZoXx3LQYZO4zpJWiqe4BxYSU
+	 5LISSmfsSsHrIcP/Rg7cSOp6JArLBtap9rGDutcGz94ki71zm0YM+fFl4B0tFDZBya
+	 l6gSQS4LjTy9GJYfAVyyoL7Ta5rk8xQ6SqXbY6z/lbxkLQE9VLERnRG6WcuKsh/htK
+	 wNPKXJBMhikQrVD7I8aONOnnVRWPJa0d9ufwjPUzA2UoYVSG/5GHJ9oKRK6n6SJ4hN
+	 5eonSmfhE5Wvw==
+Message-ID: <e8142566-aef5-498e-9d2d-8ac187ce8524@kernel.org>
+Date: Thu, 3 Oct 2024 12:17:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] MAINTAINERS: iio: migrate invensense email address to
- tdk domain
-To: Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>,
- Konstantin Ryabitsev <konstantin@linuxfoundation.org>, tools@linux.kernel.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Jonathan Cameron <jic23@kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <20241003-invn-maintainers-email-update-v1-0-7e4062ad68cf@tdk.com>
- <20241003-invn-maintainers-email-update-v1-1-7e4062ad68cf@tdk.com>
- <b8a359d7-5043-475f-95c2-0bad2a9f6f92@kernel.org>
- <FR3P281MB1757F280DAA6B8F4A5A44D51CE712@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v3 2/4] media: dt-bindings: Add OmniVision OV08X40
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Jason Chen <jason.z.chen@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241002-b4-master-24-11-25-ov08x40-v3-0-483bcdcf8886@linaro.org>
+ <20241002-b4-master-24-11-25-ov08x40-v3-2-483bcdcf8886@linaro.org>
+ <t4fajppdqagkl7wr2krcucsga4zocz6liar64odk2mnasdyfms@5fp7bfwalson>
+ <a86d05c3-5151-4161-8612-58894b1d0203@linaro.org>
+ <8554d372-18cb-4351-a5ab-894be09c613b@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,67 +110,56 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <FR3P281MB1757F280DAA6B8F4A5A44D51CE712@FR3P281MB1757.DEUP281.PROD.OUTLOOK.COM>
+In-Reply-To: <8554d372-18cb-4351-a5ab-894be09c613b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 03/10/2024 12:03, Jean-Baptiste Maneyrol wrote:
-> Hello Krzysztof,
-> 
-> this is strange because I run b4 prep --check and was expecting it to run checkpatch on the patches.
-> 
-> I am having trailing whitespaces errors, but not on the part I changed. It looks like these "spaces" that aren't even displayed correctly in an editor are introduced by git.
-> 
-> Do you have any idea on this kind of issues?
-> 
-> Thanks,
-> JB
-
-Not much details above, but anyway, I think that's `b4 prep --check` and
-I reproduced it on 0.14.2.
-
-Konstantin,
-
-`b4 prep --check` does not operate on patches, thus for example SoB
-checks are not working.
-
-Reproduce:
-1. Download this patchset, create patches (git format-patch).
-2. scripts/checkpatch.pl 0* - will report correctly errors.
-3. b4 prep --check will say everything is fine. Expected: same errors
-about SoB.
-
-P.S. I would bugspray you, but not sure how does it work :)
-
-Best regards,
-Krzysztof
-
-> 
-> ________________________________________
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Thursday, October 3, 2024 09:45
-> To: Jean-Baptiste Maneyrol <Jean-Baptiste.Maneyrol@tdk.com>; Jonathan Cameron <jic23@kernel.org>; Lars-Peter Clausen <lars@metafoo.de>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>
-> Cc: linux-kernel@vger.kernel.org <linux-kernel@vger.kernel.org>; linux-iio@vger.kernel.org <linux-iio@vger.kernel.org>; devicetree@vger.kernel.org <devicetree@vger.kernel.org>
-> Subject: Re: [PATCH 1/3] MAINTAINERS: iio: migrate invensense email address to tdk domain
->  
-> This Message Is From an External Sender
-> This message came from outside your organization.
->  
-> On 03/10/2024 09:37, Jean-Baptiste Maneyrol via B4 Relay wrote:
->> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+On 03/10/2024 10:38, Bryan O'Donoghue wrote:
+> On 03/10/2024 09:33, Bryan O'Donoghue wrote:
+>> On 03/10/2024 09:29, Krzysztof Kozlowski wrote:
+>>> On Wed, Oct 02, 2024 at 02:58:44PM +0100, Bryan O'Donoghue wrote:
+>>>> +        properties:
+>>>> +          data-lanes:
+>>>> +            oneOf:
+>>>> +              - items:
+>>>> +                  - const: 1
+>>>> +                  - const: 2
+>>>> +              - items:
+>>>> +                  - const: 1
+>>>> +                  - const: 2
+>>>> +                  - const: 3
+>>>> +                  - const: 4
+>>>> +
+>>>> +          link-frequencies: true
+>>>
+>>> Not much changed here and you did not continued discussion about it.
+>>>
+>>> Best regards,
+>>> Krzysztof
+>>>
 >>
->> InvenSense is part of TDK group. Update email address to use the
->> TDK domain.
+>> Ah my mistake, I didn't read the bit at the bottom of your email
 > 
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
+> I'll do this
 > 
-> Best regards,
-> Krzysztof
+> Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
 > 
+>            data-lanes:
+>              description:
+>                This property is for lane reordering between the THP7312
+>                and the SoC. The sensor supports either two-lane, or
+>                four-lane operation.
+>                If this property is omitted four-lane operation is
+>                assumed. For two-lane operation the property must be
+>                set to <1 2>.
+>              minItems: 2
+>              maxItems: 4
+>              items:
+>                maximum: 4
+> 
+> This captures what I'm after.
+
+I commented on link-frequencies.
 
 Best regards,
 Krzysztof
