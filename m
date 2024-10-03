@@ -1,144 +1,93 @@
-Return-Path: <devicetree+bounces-107620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DFC098F4BB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 19:02:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E11D998F4CE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 19:06:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A1CAB21A34
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:02:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 97D301F226A6
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFDA1AB51E;
-	Thu,  3 Oct 2024 17:01:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B3BD1A76C7;
+	Thu,  3 Oct 2024 17:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="pbpujpdA"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="RaF6r8TN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98A41AB505;
-	Thu,  3 Oct 2024 17:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9049019D081;
+	Thu,  3 Oct 2024 17:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727974897; cv=none; b=eOmYcAMCxYxcpWwekbnIiwVEgzR/e2tvu8xEotjltK8HBF067MkEN4AlacnNugpZAFKs5J8cJ6ZPZqgcPz5TMG+Kislq6EMV5STUaOmzJYe2Z1ivrotor7pDJzJ3WqzAPZ4eXh/KPMcplP2ApNNCyHr6MPP/w7xiHoUFp+DGK2U=
+	t=1727975174; cv=none; b=YMgi/vx4gTzTkQAywTXkfovsF3cLpUFnQgFmx6o/0FPhs/6Wa06JSAEWbTI9ka7CJ1kT6eDIhomHIYD1FLJ/e1QN65dLxTl6HJR8nRvmtOmeU/F3fBzdAb7JQIKbkHreEB1koidOtOcjtWGchvCIggExxbRUe/Ry4mBIvPFQfNA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727974897; c=relaxed/simple;
-	bh=xHdJpYqa3TXOA+dz+X8uvcICfSTHlkkpOc84aJoiLGM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KGnze/xxLDDOnU5cNUFemsRLaTCuAEjvbPYYy4mvVnWMz5/C7pGwyOBi37odTMNJEpboNLTRwWXYYpag+tnxMel97Aqb6CctI6rh4gYJkJBMS8jqnfqdk/cji3xeC/HDDcLvYZGnFTgFWaIYQaLGIWk/EAMwvyHcLBzyF3N1mCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=pbpujpdA; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 493H1JIe101058;
-	Thu, 3 Oct 2024 12:01:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1727974879;
-	bh=A7IlYLCprlJdSCs79v96vN3O5KdJB1FOmP0sj5nPQ80=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=pbpujpdA/VMUxfcta/kQCCeypHp9y0Au6N8G5PSKsGJa6VodEQ0ggPfTE6o7tLk/V
-	 5oKEHZ4ZN1wSrmniuC/DmGjQ+zGw0HNAlkmCjPLKVDBmiHogI6LV2Ix2sgGnbVc94C
-	 vcdkkc3it0yGHJ1OnSKIkFUu+cT92bEuz0dpAUr8=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 493H1J98044972
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 3 Oct 2024 12:01:19 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 3
- Oct 2024 12:01:18 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 3 Oct 2024 12:01:18 -0500
-Received: from ula0226330.dhcp.ti.com (ula0226330.dhcp.ti.com [128.247.81.173] (may be forged))
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 493H1IJe034882;
-	Thu, 3 Oct 2024 12:01:18 -0500
-From: Andrew Davis <afd@ti.com>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, Andrew Davis <afd@ti.com>
-Subject: [PATCH v12 5/5] arm64: dts: ti: k3-am642-evm: Add M4F remoteproc node
-Date: Thu, 3 Oct 2024 12:01:18 -0500
-Message-ID: <20241003170118.24932-6-afd@ti.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241003170118.24932-1-afd@ti.com>
-References: <20241003170118.24932-1-afd@ti.com>
+	s=arc-20240116; t=1727975174; c=relaxed/simple;
+	bh=8xtl08LIfB+PcgXl6pTyRTIC2AIYH3M6YsJkFy4VQnw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IhDk6kdSJADkG2MvzU4H6b/HpoplYI4guLxWSMMtD4KIyaheHITPncAwqb+tlB4xVZ62uMiaGMB147YmkMGaGsWFdoBKBgd3stSuFy/uai9U2gesLX+u1ApqmsylXcjMUvFr91QPf7gOgRVv4hXaHAC1H8c4Drwn3amn7xuUL2Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=RaF6r8TN; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=IZz+UidW/Gd8crcEeUt/a34aCAjHwfld1MoV/9qDFVQ=; b=RaF6r8TNzk1WcZ3sDYOrFtHWIj
+	BlhCtOvsrkBR9D7eWePA3x+V6A2OeVbr+/D+dKhei2virOJgG7UREAiwuxZDsYwYbRYVXdGVT8E1z
+	KrnCYxskSHcVDmmI0HJSsst0IfoQekGj/ga62QTH9pi501vVYFCNrZc1C3Nc/15C0qlU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1swPH4-008xw9-8n; Thu, 03 Oct 2024 19:05:58 +0200
+Date: Thu, 3 Oct 2024 19:05:58 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Divya.Koppera@microchip.com, hkallweit1@gmail.com, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	f.fainelli@gmail.com, kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux@armlinux.org.uk, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: ethernet-phy: Add
+ timing-role role property for ethernet PHYs
+Message-ID: <19207165-1708-4717-9883-19d914aea5c3@lunn.ch>
+References: <20241001073704.1389952-1-o.rempel@pengutronix.de>
+ <20241001073704.1389952-2-o.rempel@pengutronix.de>
+ <CO1PR11MB47715E80B4261E5BDF86153BE2712@CO1PR11MB4771.namprd11.prod.outlook.com>
+ <a11860cc-5804-4a15-9603-624406a29dba@lunn.ch>
+ <Zv6XOXveg-dU_t8V@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zv6XOXveg-dU_t8V@pengutronix.de>
 
-From: Hari Nagalla <hnagalla@ti.com>
+On Thu, Oct 03, 2024 at 03:08:09PM +0200, Oleksij Rempel wrote:
+> On Thu, Oct 03, 2024 at 02:08:00PM +0200, Andrew Lunn wrote:
+> > > > +      - 'force-master': The PHY is forced to operate as a master.
+> > > > +      - 'force-slave': The PHY is forced to operate as a slave.
+> > > > +      - 'prefer-master': Prefer the PHY to be master but allow negotiation.
+> > > > +      - 'prefer-slave': Prefer the PHY to be slave but allow negotiation.
+> > > > +
+> > > 
+> > > I would suggest to use "preferred" instead of "prefer" to be in sync with existing phy library macros.
+> > 
+> > How does 802.3 name it?
+> 
+> 802.3 use "Multiport device" for "preferred master" and "single-port device"
+> for "preferred slave". We decided to use other wording back in the past
+> to avoid confusing and align it with forced master/slave configurations. 
 
-The AM64x SoCs of the TI K3 family have a Cortex M4F core in the MCU
-domain. This core can be used by non safety applications as a remote
-processor. When used as a remote processor with virtio/rpmessage IPC,
-two carveout reserved memory nodes are needed. The first region is used
-as a DMA pool for the rproc device, and the second region will furnish
-the static carveout regions for the firmware memory.
+ethtool is preferred, so it would be more consistent with preferred
 
-The current carveout addresses and sizes are defined statically for
-each rproc device. The M4F processor does not have an MMU, and as such
-requires the exact memory used by the firmware to be set-aside.
+[Shrug]
 
-Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-Signed-off-by: Andrew Davis <afd@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 97ca16f00cd26..19d7ed8a9ea0f 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -101,6 +101,18 @@ main_r5fss1_core1_memory_region: r5f-memory@a3100000 {
- 			no-map;
- 		};
- 
-+		mcu_m4fss_dma_memory_region: m4f-dma-memory@a4000000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4000000 0x00 0x100000>;
-+			no-map;
-+		};
-+
-+		mcu_m4fss_memory_region: m4f-memory@a4100000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa4100000 0x00 0xf00000>;
-+			no-map;
-+		};
-+
- 		rtos_ipc_memory_region: ipc-memories@a5000000 {
- 			reg = <0x00 0xa5000000 0x00 0x00800000>;
- 			alignment = <0x1000>;
-@@ -776,6 +788,13 @@ &main_r5fss1_core1 {
- 			<&main_r5fss1_core1_memory_region>;
- };
- 
-+&mcu_m4fss {
-+	mboxes = <&mailbox0_cluster6 &mbox_m4_0>;
-+	memory-region = <&mcu_m4fss_dma_memory_region>,
-+			<&mcu_m4fss_memory_region>;
-+	status = "okay";
-+};
-+
- &serdes_ln_ctrl {
- 	idle-states = <AM64_SERDES0_LANE0_PCIE0>;
- };
--- 
-2.39.2
-
+	Andrew
 
