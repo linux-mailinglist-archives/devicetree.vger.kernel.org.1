@@ -1,204 +1,281 @@
-Return-Path: <devicetree+bounces-107395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D53E998E9B0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:18:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1ECF98E9B3
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:23:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3334DB2373E
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 06:18:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 467D61F24366
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 06:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94A8770F5;
-	Thu,  3 Oct 2024 06:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A881678281;
+	Thu,  3 Oct 2024 06:23:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="F5nXg1TM"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="wD/F1Y1F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com [209.85.222.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2084.outbound.protection.outlook.com [40.107.223.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1029C347C7
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 06:18:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727936318; cv=none; b=Cg0nggi73vNNqi2krXOKTMyDemjkq9q1Y8CP3YiajP9HwsAT2oK6nAgzMqCJlOH/w1qvJc1B6PLTP4tAc+wSLS9gm7si9QgKjR0QpaponNx7OjyFCv/tq3PTpY6iayN9v77qpTqrT7VMFNYX3Tua8NDCq4ylafva3Db8o49W0ks=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727936318; c=relaxed/simple;
-	bh=sBl0fCFHom5Hc09gdCxZI8m3P85FrpOdRPZ8njZoZjw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AxwoYW07mrnI8PzXpo1Q6/x9Ux4dRa003kXG+24GXiGs5/94gxrMT0XB81YILjU4FXVl9IVsv9R3vbYFtjzbN3eKIK+yiWYDYn6AoPjjA8YFXaZXMVLIgUwGFqw63tGkN87NCs59MCS0BgxUjpoOCGMJfvG0C+L82DoL5BfUqkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=F5nXg1TM; arc=none smtp.client-ip=209.85.222.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-84ea1516673so152909241.3
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 23:18:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1727936316; x=1728541116; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XjCn7wNLVdT3ReTaN+Qz+I/dQF+bFHwwiGL3poiE5os=;
-        b=F5nXg1TM8BhfFVqFd4i5Y19w6RBSCDXLEQEXplbI28LuyHZlC1IcdufbRgA6i1pV9W
-         B7b8RuuYqgcjZfm4xc/4713Bi1lsBx2UFV/fRfXdLUQLxwDKDM9Jt2fQ5q8fS20W8hH0
-         AU5yAiQqEi+0vefXvn4t/OAljRaFkR7Pn6Jc0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727936316; x=1728541116;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XjCn7wNLVdT3ReTaN+Qz+I/dQF+bFHwwiGL3poiE5os=;
-        b=cx/CIJoqoScy1CQ8obRcmRHKSG92eP7iQABmwMDa8jlJqVb2QwVV7eyvGJLj4JOBuf
-         e06juGnUZWQl8rj99vS+hvyGklFopCJ6J11JoXfNKpNholW1yiCNai0L+uwHcXBTysTd
-         tSprwpE75hh78r4x89zGgp2iG1W+3f9qW0sd9fwntMe90eLYtWCSNuQhMlmUplItZg77
-         GCFiFVUH0064In5/60FxmZ/ruGQXqlP0f/77W7aqaYVebkYrbzd5kpXYHJ0kkRKl2BWR
-         cFcnYXonpfgIKGj3YVA8qQB+GbOy1M6h1lCIdT5O8arvCu/NmXuHqAV8GPZhzVqq02IZ
-         lAsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVm6/v+rGfDguvELuDWt9UJ9ef2kOcOOhvJgM3iHe0f3H7/X/PX+kQH56wgwySMcRwPmKNq0SAc3fQ6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxg4+n0YNYeR1/kopqCiEeZ7a64y/+EGCLxxYtn2VGyrjs5eui4
-	21gu7nOaYYmWRMSe8g+xrVPzQKn9cvHR0lD2mqn5r5qDdlFZoPkMoUaZumx9ISJrvjTGWevRkhi
-	TBQ==
-X-Google-Smtp-Source: AGHT+IGYL/2NUMDWajrWRuQl0NoQEBz09nhU+y4SDUaZ/kJfc/4Yf6sjuidHYXlZHRY7BHsz1VwIzw==
-X-Received: by 2002:a05:6102:d8f:b0:49b:f255:179a with SMTP id ada2fe7eead31-4a3e682003fmr4466454137.5.1727936315694;
-        Wed, 02 Oct 2024 23:18:35 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4a3f9cc92f6sm92502137.26.2024.10.02.23.18.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 02 Oct 2024 23:18:35 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-4a39e7b38e1so230818137.2
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 23:18:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXm41fb0wTBE2ERt3RKHrfJC/MqBSh0n37ePw428sx5R1GX37d4eSteIR7zOhHoypVIBRy7HUwv14YV@vger.kernel.org
-X-Received: by 2002:a05:6102:3584:b0:4a3:a7a0:889a with SMTP id
- ada2fe7eead31-4a3e6924383mr4417458137.19.1727936314349; Wed, 02 Oct 2024
- 23:18:34 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB48A7441A;
+	Thu,  3 Oct 2024 06:23:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727936593; cv=fail; b=Nsgc8miYEdAlbKquglB327EB9s3IkNeksb3ZzwWzCugp2Z8wgF37zKR/HsMAWw2R24p5Ze2DIKfLoshRCOwTBUQQUagJPdwYgncsi9VgSi/1Md5axVggbEpq0Nr59t+JPXcyebCWnUomktayvdilt0X7Wx5fuVqdOe1PXuUl2NI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727936593; c=relaxed/simple;
+	bh=BCirnDUE5r0dHBTiFKoWNgKPSeBgUgRpkhhTGeChI7Q=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=DepYaELhRWeVWkoeZ8G+Vs/zkOR8kmlQFMhIQWmvix1QqZJzgV/Aj47pQjnQOXGZDbroQO9iLWPSxe0ce6TfVHR2KEPHA/pbAmhJE5V4LS3KEtZK0tkxLPApcBqkVV8u+SF6RsGXmw5wqpWL+mgcCNFbcAMQobQQ3Ls2foK1G30=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=wD/F1Y1F; arc=fail smtp.client-ip=40.107.223.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OEWFHifn6Xq0XMf3/SL2Ubb9PhyF0MfkaqtgIcVOkfapKqHQCVjcJVh35MsoLJmaOfgZ/38AV0wrkwvcSitrcFHac/ipq67mEqzPuK4qfiwhBNvzezwMIsGbCYrtYF4zux7yapgKUuIwW+T1ut7Z66tNR5LJlv32x0NXxz3QYQBFrx+i64ZfUdh6Ls/NZoyv0ebHP+tU0wUj3HCEg4ZA/Lmw0V+pNhCcCD4I8b5ghelZGMhlRos1mN8c+u55gaWUnexOrdqeiK/m2sWi+JaV/bbCX25iWxQWM9ConmaRy3An5tGtt7I2UjAYy3b4UfsP7YZaktQYBMvLzyKIdKSSOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=tkSSgF4zEJyI72kxT6dehuov7vV4LLq51W0+F2/R9Tw=;
+ b=PCe5FxE7JzUQIfLCtx0ALHEP1NI52VjeCS6qYagw9AaX7Y8YLPFVCzWKHXg/XQjHYVNRYgxy7Ex4/H5UNfaJvXDkaXvsFZi2hi0/E9hIg35DdZBNQylMzeOlN/Ca3Ft88F082qH/Dyanioy7uPrk8oqJk7fhR4wYe3eeLa0+ojZNOQkM+pOUHzUOYYP5wj8Ms2oCFuQea0NxFnVJqrIx4jTBMOFf/uxU1V6yam4m+0Pzvl25JR9ZM2HasJa+gzL5pDIycl3l7BgrSNOAYabVP85XNBHO7Zbl+aaP4x3niK0R7kOvrosIvpwqHY0SC3Cpr/fBrF2NBHUv08UW/Vp1GA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=tkSSgF4zEJyI72kxT6dehuov7vV4LLq51W0+F2/R9Tw=;
+ b=wD/F1Y1F+rRJrU+bh3A6R4cxZTetGagfW55DQRHUqAPXQi7bXjem0uBfAz6JaB2kdNWXeNSkMxPEPlONo03TRydbUJVYHC5oXWXnlTX97oiAHr6TYWdw6HJanc3Dd29D2t9CA55zn12UiyYu94tPVHBxPeObPGAPfYuV0ezSCfU=
+Received: from IA0PR12MB7699.namprd12.prod.outlook.com (2603:10b6:208:431::7)
+ by PH7PR12MB6659.namprd12.prod.outlook.com (2603:10b6:510:210::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.28; Thu, 3 Oct
+ 2024 06:23:07 +0000
+Received: from IA0PR12MB7699.namprd12.prod.outlook.com
+ ([fe80::7ed1:80d:75c:f1aa]) by IA0PR12MB7699.namprd12.prod.outlook.com
+ ([fe80::7ed1:80d:75c:f1aa%5]) with mapi id 15.20.8026.016; Thu, 3 Oct 2024
+ 06:23:07 +0000
+From: "Mahapatra, Amit Kumar" <amit.kumar-mahapatra@amd.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>, "broonie@kernel.org"
+	<broonie@kernel.org>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "Simek, Michal" <michal.simek@amd.com>,
+	"linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "git (AMD-Xilinx)" <git@amd.com>,
+	"amitrkcian2002@gmail.com" <amitrkcian2002@gmail.com>
+Subject: RE: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names
+ properties
+Thread-Topic: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names
+ properties
+Thread-Index:
+ AQHbDbS6IWXQrG+wX0CC5AjhvyS/qLJnJHoAgAE51XCAABg2AIAC3+PggAGMU4CAAMdKAIAC1yFggAASSoCABAjYMA==
+Date: Thu, 3 Oct 2024 06:23:07 +0000
+Message-ID:
+ <IA0PR12MB769964FA23FA8B889B47539DDC712@IA0PR12MB7699.namprd12.prod.outlook.com>
+References: <20240923123242.2101562-1-amit.kumar-mahapatra@amd.com>
+ <20240924-impaired-starving-eef91b339f67@spud>
+ <IA0PR12MB76998D7BC3429606508E6202DC692@IA0PR12MB7699.namprd12.prod.outlook.com>
+ <20240925-trapdoor-stunt-33516665fdc5@spud>
+ <IA0PR12MB76999B696A9BA0834644AC71DC6B2@IA0PR12MB7699.namprd12.prod.outlook.com>
+ <03a1c7e7-c516-41ab-a668-7c6785ab1c4f@kernel.org>
+ <20240928-postcard-lively-c0c9bbe74d04@spud>
+ <IA0PR12MB7699EDFA3753D25C8126D901DC762@IA0PR12MB7699.namprd12.prod.outlook.com>
+ <20240930-unbalance-wake-e1a6f07ea79d@spud>
+In-Reply-To: <20240930-unbalance-wake-e1a6f07ea79d@spud>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR12MB7699:EE_|PH7PR12MB6659:EE_
+x-ms-office365-filtering-correlation-id: 46380de7-acc9-437e-6701-08dce373d8a0
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|366016|1800799024|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?SIPs3LDaXhs5FadlqT6NhA9lEb8HvEJBXA5IBX8mp+4gxr94EVxAV70Ljj/d?=
+ =?us-ascii?Q?fa0xpQMQf5itcdr1j/mvnFERNsEowtqvhf1MQJK4DrnHban4+P0b9kqR2Y05?=
+ =?us-ascii?Q?YEdbaWjZqvCbDl4FFopQRfzhekucxeCoiE5lIK7YVgD8gPL49Mv2IxriEZba?=
+ =?us-ascii?Q?Bzo7rqbeknRqXNQttPX1KRY+mxr2h2fp4zLEEz8kzNzDSFg3xR03IlCvPF72?=
+ =?us-ascii?Q?pRkuHjhx/br0Fhj/l4PWCJAgD4O6sAx4ZoAR2RkgDp8uZYZ08sExOfKcg/DA?=
+ =?us-ascii?Q?4j0CokKI2ZrTH30t9o5wdFiQ7eiY+T2SEqlWlHsQo5qKpzPF5VpRFK8P6cTn?=
+ =?us-ascii?Q?iLnEx7ummk/5FNjZf3ywSJIomMuZUB7mJEsIcTMedoFreRMNYw1bKAY8vC4V?=
+ =?us-ascii?Q?RpSw1eT33W03Qs23Jw12R4REFVXuwDK72m6ZTblyq5GOPcKCqw5cvSQR7xsK?=
+ =?us-ascii?Q?pXfqurbzXiD1ORMRmDxWsEBSlp0jUIB8cdAIQz+Vdk2aUETIGv9IQaE01b8t?=
+ =?us-ascii?Q?MgaIyXNwnx6Yv1LQy5Wit93zJS1f0QGiT404YfPDwtLj3xD5YsBW+6XMVlRf?=
+ =?us-ascii?Q?GJq8Lwr0TXz5OwZlcxxDlRw3A2gNqfxDSSZe1i2KVsisc5CM8mQWz5PEMfG0?=
+ =?us-ascii?Q?EkuEJdW1dGFsuiJB0ziFaCSIfP1m2wyHMtAE0HrsJl5jVOAL4tDpy3vGskym?=
+ =?us-ascii?Q?CTIq72h+JKz8WaN0lKQQfvP8AAAReeE9tNKeyiXlMo8Yk84xHshL+tOoCclF?=
+ =?us-ascii?Q?qOZ2gAaRZw+c5vOfq+6scKSqplCN2dfQ78x3CqDYgApW5B30X8wAWxfCnRwK?=
+ =?us-ascii?Q?DWlqay8UnLBbf+szI5ikiCdqmNaVtfLTnlt/cbU6C43kJL0geIcYNgfxWCqC?=
+ =?us-ascii?Q?9l0KGGVPLMmlglknjLv0q6lXQ+dsocZxOaLJ3XU3zemfHb4QmHrM5SETvodK?=
+ =?us-ascii?Q?69pT0NKAacRkeFywH67nZOpDc4jBVeDD8Bcy9NYmXHvV82I3RpQ+h1v2wXOa?=
+ =?us-ascii?Q?+x0tKqG8mbbdjOOR1KkIyzFQf/SgR+o9RXSHC4bjIMF+aeVA9rt3BgfK2xHw?=
+ =?us-ascii?Q?l/RpjM6+tSQv5z06LY6YIQNim3YvJYsIZ1rifM+OOWu1GG4tFxAWgTq+DDWK?=
+ =?us-ascii?Q?/3ZKOVYcmW/pDzATxshTrVSwhV3WronK4YIr3k4EYa/2u3x8pyyxIbSQk4gu?=
+ =?us-ascii?Q?SIgmq+kbf+PjvfLdcqS//2zZ03HZPugmXA2DZ7PhP6lrk4cOkc8LV/S0kIdO?=
+ =?us-ascii?Q?QKCJVoYQDpYI/zgPBDDt82oEx0NpvNFpb4JTeoH6Mw=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR12MB7699.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(1800799024)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?3cuHywlhXp2gTXQPThXiHb5xwurr4qYDAeN9im6wcBdNiNHln7EcMhP1KeRD?=
+ =?us-ascii?Q?Tj3xE1G7aI7zpu2Ya1fUqK4+fnhfl3MZxnIhSPQeUPk4xJtEmgx8h2tSLiDq?=
+ =?us-ascii?Q?wduolUFEOrmZoKKNJObjVBVHy2KcYgqu9UN3kbgIxGs2J+/gE3A3afxRRXPZ?=
+ =?us-ascii?Q?sWM8lazwE9I3/JOTfJxwl50ZmwEVpjUg1/GmEljaSCo2j2jJxjsvF/Xo+VpR?=
+ =?us-ascii?Q?sQDaIZzjdWC1MOvkqvcieK8Hu5bdhnlGvvuLsDG7GaGkEG0KzWFOl610CkpM?=
+ =?us-ascii?Q?Dur1HkYaQrvOHAOG4TB46MrUnUXZZ2SzBjEu0SrokwaQU5ZktM4k3p0uuO98?=
+ =?us-ascii?Q?wpnduw+ZUgfkZnCCE9RYf2YXsXo/AygUUdotJICGk10o6cKt3dU78tAujNKg?=
+ =?us-ascii?Q?2yC/gDWhpSvb9pUu68hjVb0y/Ltgfx/6+MwofkA2qRfMlzdIThDgbEJAJeCk?=
+ =?us-ascii?Q?mRjipR7qHr5kwU5XkZtKiq/uqB3G/u8ijfuEZLHfESu889ySctOi75d/syyP?=
+ =?us-ascii?Q?A2CY19RWDxqLIzAfciXTqMQpivnQg1uLw4NCA4AIUhUSIi/Tzy9z8qHB6rbS?=
+ =?us-ascii?Q?Cd5wFlbkaGdt2RByfsd1Ny6otq4CCCX9I7wZuI9qSYXRTflHRYefxn50/hNF?=
+ =?us-ascii?Q?uYeZ+haLM4V6/Fn2NoR6l8JrljCHS3MZw7FtouFz6KYdXbEOSmQY9y0Rfe5N?=
+ =?us-ascii?Q?5CRkdoyMfkRgj1pEq6VbCV34r3EKsF/qsp3DEYRiEF7ZZnAtINRcSIkuRukh?=
+ =?us-ascii?Q?8p5e9Yg7bM4neZZnTdG8Jww4a8HVQSWUAS8/PpbYcjF+Oz5ZEgKncYgXuPSC?=
+ =?us-ascii?Q?IZ+wXFzb3j7/FH7xOJapJHCj4ThT6hNTPxRgUtYXcmtSFsHHRatCfRy8/8Uq?=
+ =?us-ascii?Q?0KktuRe3X9QebmpSJSTKu7tv9j7025KGhLC8/bVEGLT7UCIcU0HH/jbcvRb2?=
+ =?us-ascii?Q?6zCC2r+PlDsvj9GMr57T3Uf9iWSl0xZna/uQ+mEiv+yZTxJ4cO6Ha/gqoA0M?=
+ =?us-ascii?Q?iL507KhdPKYweUWnq+hp4LLoJfNE7NRiwjn+5HgNCIucdA7NUKyfTNCJffkm?=
+ =?us-ascii?Q?LaUhi5Aayw55pCkYWa8Yd8ssoIh8/nC5zqJmTl+hAEmUEMVSfsLwVQftPXf4?=
+ =?us-ascii?Q?eWW/4JqQbNFWKlj/GlqJcliF4s/7C51nm0IiZdEZsb8Tak+sU9e/adEir/an?=
+ =?us-ascii?Q?IDFCzWqr32YKDeTMf2oKf9aAVnH+xgK+BDg6wOcimXdMxpHmCowhsKsvaCbe?=
+ =?us-ascii?Q?L1JSSNnpC5+ujtLL0rAiK22cd04FXYBv7Ok+RY+P5quC/feZVq7g7KYbkcR7?=
+ =?us-ascii?Q?5YD61iQ25cOb1FnrJAe7QBx2Sk9GUU2ugoOnE3gE8Q+VmNUhpR036ghx23dZ?=
+ =?us-ascii?Q?yLQAk+oASIuB7EI3l1AmxBbIYlvkTGV2UcZ2Dt/WkpGcWkbd2Hc/aGHoaaDt?=
+ =?us-ascii?Q?tXJktNgg6l07sbN+tL5cRS/ErqCace8wySeLWXxh2jNSzUWrvHhjKw2o+RDg?=
+ =?us-ascii?Q?nGEkx3sgBw+rZW34oHbplFxzd9mqhNTDu4wu3CRimkEZdg1Jw2g7ZbtbTD2g?=
+ =?us-ascii?Q?eCR1xYgF5nrmGMIDuHM=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241002114614.847553-1-fshao@chromium.org> <20241002114614.847553-3-fshao@chromium.org>
- <7faeac1b-0b7a-a820-16a5-330b82d12e01@mediatek.com>
-In-Reply-To: <7faeac1b-0b7a-a820-16a5-330b82d12e01@mediatek.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Thu, 3 Oct 2024 14:17:57 +0800
-X-Gmail-Original-Message-ID: <CAC=S1niQQi_m+GB_CoZr-PTgyxVNCa_uwgZw+vGqgE-E5FBnCw@mail.gmail.com>
-Message-ID: <CAC=S1niQQi_m+GB_CoZr-PTgyxVNCa_uwgZw+vGqgE-E5FBnCw@mail.gmail.com>
-Subject: Re: [PATCH 2/9] arm64: dts: mediatek: mt8188: Add PCIe nodes
-To: Macpaul Lin <macpaul.lin@mediatek.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, jianguo.zhang@mediatek.com, 
-	jian.yang@mediatek.com, jieyy.yang@mediatek.com, 
-	Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org, Bear Wang <bear.wang@mediatek.com>, 
-	Pablo Sun <pablo.sun@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR12MB7699.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 46380de7-acc9-437e-6701-08dce373d8a0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Oct 2024 06:23:07.4742
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: CUiYfBPswxaAeIiZnu8oF1EDfqGDxtppzMGiypANhHkSV3kR5CjW+EVy1DWLULdIE/QTmjevt0B7NF6+d9VZcQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB6659
 
-On Wed, Oct 2, 2024 at 8:42=E2=80=AFPM Macpaul Lin <macpaul.lin@mediatek.co=
-m> wrote:
->
->
->
-> On 10/2/24 19:41, Fei Shao wrote:
-> >
-> >
-> > External email : Please do not click links or open attachments until yo=
-u
-> > have verified the sender or the content.
-> >
-> >
-> > Add PCIe node and the associated PHY node.
-> > Individual board device tree should enable the nodes as needed.
-> >
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
-> > ---
-> >
-> >   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 62 +++++++++++++++++++++++=
-+
-> >   1 file changed, 62 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot=
-/dts/mediatek/mt8188.dtsi
-> > index 10195a4e4e9d..9431f3c5c228 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> > @@ -1763,6 +1763,53 @@ xhci0: usb@112b0000 {
-> >                       status =3D "disabled";
-> >               };
-> >
-> > +             pcie: pcie@112f0000 {
-> > +                     compatible =3D "mediatek,mt8188-pcie", "mediatek,=
-mt8192-pcie";
-> > +                     reg =3D <0 0x112f0000 0 0x2000>;
-> > +                     reg-names =3D "pcie-mac";
->
-> It seems the property 'linux,pci-domain =3D <0>;' is missing?
+Hello Conor,
 
-I'll add that. I guess the fallback will assign a dynamic ID to it
-(likely also 0), but explicitly having a static domain ID is never a
-bad thing.
-
->
-> [snip]
->
-> > +                     };
-> > +             };
-> > +
-> >               nor_flash: spi@1132c000 {
-> >                       compatible =3D "mediatek,mt8188-nor", "mediatek,m=
-t8186-nor";
-> >                       reg =3D <0 0x1132c000 0 0x1000>;
-> > @@ -1775,6 +1822,21 @@ nor_flash: spi@1132c000 {
-> >                       status =3D "disabled";
-> >               };
+> -----Original Message-----
+> From: Conor Dooley <conor@kernel.org>
+> Sent: Monday, September 30, 2024 10:10 PM
+> To: Mahapatra, Amit Kumar <amit.kumar-mahapatra@amd.com>
+> Cc: Krzysztof Kozlowski <krzk@kernel.org>; broonie@kernel.org; robh@kerne=
+l.org;
+> krzk+dt@kernel.org; conor+dt@kernel.org; Simek, Michal
+> <michal.simek@amd.com>; linux-spi@vger.kernel.org; devicetree@vger.kernel=
+.org;
+> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; git (=
+AMD-Xilinx)
+> <git@amd.com>; amitrkcian2002@gmail.com
+> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks & clock-names p=
+roperties
+>=20
+> On Mon, Sep 30, 2024 at 03:44:47PM +0000, Mahapatra, Amit Kumar wrote:
+> > Hello Conor,
 > >
-> > +             pciephy: t-phy@11c20700 {
-> > +                     compatible =3D "mediatek,mt8188-tphy", "mediatek,=
-generic-tphy-v3";
-> > +                     ranges =3D <0 0 0x11c20700 0x700>;
-> > +                     #address-cells =3D <1>;
-> > +                     #size-cells =3D <1>;
-> > +                     status =3D "disabled";
-> > +
->
-> The power-domains property is missing.
-> It should be 'power-domains =3D <&spm MT8188_POWER_DOMAIN_PEXTP_PHY_TOP>;=
-'
+> > > > >>>> Subject: Re: [PATCH] dt-bindings: spi: xilinx: Add clocks &
+> > > > >>>> clock-names properties
+> > > > >>>>
+> > > > >>>> On Mon, Sep 23, 2024 at 06:02:42PM +0530, Amit Kumar Mahapatra
+> wrote:
+> > > > >>>>> Include the 'clocks' and 'clock-names' properties in the AXI
+> > > > >>>>> Quad-SPI bindings. When the AXI4-Lite interface is enabled,
+> > > > >>>>> the core operates in legacy mode, maintaining backward
+> > > > >>>>> compatibility with version 1.00, and uses 's_axi_aclk' and
+> > > > >>>>> 'ext_spi_clk'. For the AXI interface, it uses 's_axi4_aclk' a=
+nd
+> 'ext_spi_clk'.
+> > >
+> > > > >>>>> +      properties:
+> > > > >>>>> +        clock-names:
+> > > > >>>>> +          items:
+> > > > >>>>> +            - const: s_axi_aclk
+> > > > >>>>> +            - const: ext_spi_clk
+> > > > >>>>
+> > > > >>>> These are all clocks, there should be no need to have "clk" in=
+ the names.
+> > > > >>>
+> > > > >>> These are the names exported by the IP and used by the DTG.
+> > > > >>
+> > > > >> So? This is a binding, not a verilog file.
+> > > > >
+> > > > > Axi Quad SPI is an FPGA-based IP, and the clock names are
+> > > > > derived from the IP signal names as specified in the IP documenta=
+tion [1].
+> > > > > We chose these names to ensure alignment with the I/O signal
+> > > > > names listed in Table 2-2 on page 19 of [1].
+> > > > >
+> > > > > [1]
+> > > > > chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.a=
+md.
+> > > > > com/content/dam/xilinx/support/documents/ip_documentation/axi_qu
+> > > > > ad_s
+> > > > > pi/v3_2/pg153-axi-quad-spi.pdf
+> > > >
+> > > > So if hardware engineers call them "pink_pony_clk_aclk_really_clk"
+> > > > we should follow...
+> > > >
+> > > >  - bus or axi
+> > > >  - ext_spi or spi
+> > > >
+> > > > You have descriptions of each item to reference real signals.
+> > > > Conor's comment is valid - do no make it verilog file.
+> > > >
+> > > > >
+> > > > >>
+> > > > >>>>> +
+> > > > >>>>> +    else:
+> > > > >>>>> +      properties:
+> > > > >>>>> +        clock-names:
+> > > > >>>>> +          items:
+> > > > >>>>> +            - const: s_axi4_aclk
+> > > > >>>>> +            - const: ext_spi_clk
+> > > >
+> > > > Nah, these are the same.
+> > >
+> > > They may be different, depending on whether or not the driver has to
+> > > handle "axi4- lite" versus "axi" differently. That said, I find the
+> > > commit message kinda odd in that it states that axi4-lite goes with t=
+he s_axi_aclk
+> clock and axi goes with s_axi4_aclk.
+> >
+> > Apologies for the typo. When the AXI4 interface is enabled, it uses
+> > s_axi4_aclk, and when the AXI4-Lite interface is enabled, it uses s_axi=
+_aclk.
+> >
+> > In my next series I will update my commit message & change the
+> > clock-names 's_axi4_aclk', 's_axi_aclk' & 'ext_spi_clk' to 'axi4',
+> > 'axi' & 'ref' respectively
+>=20
+> There's no driver here, so it is hard to know (why isn't there?) - are yo=
+u using the axi
 
-I dropped this as the binding check was against it, and I thought it
-was a mistake because other tphy nodes don't seem to have a power
-domain either.
-And now I noticed your tphy binding patch in [1] so that explains,
-except that I still can't tell whether there should be a power domain
-for a given tphy node...
+We are working on the driver. Once it is ready we will send it to upstream.
 
-Anyway, I'll fix this one. Thanks!
-
-[1]: https://lore.kernel.org/all/20240926101804.22471-1-macpaul.lin@mediate=
-k.com/
+> v axi4 to do some sort of differentiation in the driver?
+In the driver we don't do any different operations based on the clocks ,=20
+we simply enable the available clocks in the driver.
 
 Regards,
-Fei
-
-
->
-> > +                     pcieport: pcie-phy@0 {
-> > +                             reg =3D <0 0x700>;
-> > +                             clocks =3D <&topckgen CLK_TOP_CFGREG_F_PC=
-IE_PHY_REF>;
-> > +                             clock-names =3D "ref";
-> > +                             #phy-cells =3D <1>;
-> > +                     };
-> > +             };
-> > +
-> >               i2c1: i2c@11e00000 {
-> >                       compatible =3D "mediatek,mt8188-i2c";
-> >                       reg =3D <0 0x11e00000 0 0x1000>,
->
-> Thanks!
-> Best regards,
-> Macpaul Lin
+Amit
 
