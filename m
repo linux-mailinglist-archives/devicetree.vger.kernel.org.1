@@ -1,352 +1,194 @@
-Return-Path: <devicetree+bounces-107601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A33198F2CE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:42:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D72E98F30B
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:46:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46A7528127A
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:42:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BEEB283E0D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:46:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810DB1A726B;
-	Thu,  3 Oct 2024 15:41:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 908101A4F19;
+	Thu,  3 Oct 2024 15:44:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AULHDCDe"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="CTJBMDdg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2072.outbound.protection.outlook.com [40.107.21.72])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9251A7053
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 15:41:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727970095; cv=none; b=u4Tcev3XQ6bzkPBTlGIR44Dbpri2KKljBrcQTqHj73kE2gI6LEtt5IGnbntbEiDa2o0St2it+nqdfmPCR/iue4OQVx9ISMLLjeHtm2PPXGMvbb+SOfFM/9kdrUEsWcBkoWNKjYtxhSWaGJgREoW+wDOs9npTlYLio6pN96Fmtgs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727970095; c=relaxed/simple;
-	bh=LL6t0/fJmZI9eHhzlG/ZhWayuHRs6YWaQKrP0a5lAkU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ugILHLWSI6QJEh4GPLsYJ0lS6tPp4UD94UNEuiFr70WNRcxThBWWtLiRg9uy6/mOS8KgvDxivtSuTSv7d6rOR0Kqznh/J5ufGcpunCDH8AhDIIfKiJCH18llthDSJS3BYT1gyr2SMeTv89EdQbF/56x/0w4g6qOvZE0Avf+C7jQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AULHDCDe; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a910860e4dcso179013366b.3
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 08:41:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727970092; x=1728574892; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=F1exe6gHY7SXzDJNE6ebEB1h7PVHhMSJMUSH5bL4x90=;
-        b=AULHDCDeVFZuvfo0jbUCKoonkzNuv6xN49f68C6QSlPtxsu2mbvfBSkqwI9uom/+ib
-         9ARchGIYSJzLXSfwHftyEmQpQLdTQOfuQ91o+C1NDoP93VTIOXcm1TLQGtsTqUsHYguq
-         RFi9JtW6AjpzFrQ6xJCelyKvQ9mPKYxn6cN9A1zNp+6mNIG1ks405PG4dcJzPo9ejXpx
-         r+kFtJ0A+NsJKrgjACjg2y4nbgO/vZlIQBKdhjZhkwopznSdkygMlzWJIzQKHnISEQr0
-         k9hLjcEjlxH2LQAWeiEsb+7I8ntNkYcjDFXvxSolYX/c6fTcMACsmb2J9j+bz8lI8uDx
-         aUeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727970092; x=1728574892;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=F1exe6gHY7SXzDJNE6ebEB1h7PVHhMSJMUSH5bL4x90=;
-        b=QhXCXaPBkxcCsiqrW4yOTnP0Dd/MmBkDEaZZdKx3HOPeN5CkvAVrewCvXlh/tc1QmO
-         u7cXdcwl88+rhQY5CL6MfrDGMrHkaokLSDdHNLxyZ83rSyqXB9xwrjGOrEjquZkAnGRt
-         nUw7Iq8f38kOmm31IE89GdRl/X2FT9N3YWGwijY50pf8t9+vXDvZC8aX7FZoSPGiLFwe
-         1fsu/ptUG294OrevRROLx/In7WNSD1CldupbPrmFUqZhXyzbENgjfJa9kfvlDo1gtVas
-         IETsUn/bDfjBPaacCDwzapXXiU901L+msrHLc2LvNqFPXsgTBNElQY5zaK2SlRSjz4Gu
-         1RAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUK+uOKH4WBaPMtiqcihaqsPPiOvHgyUXClSCn4WH9dzres+r14OYNXXF3+ZQcRJa3YjeYoKP1wV/c6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyX/XEb6jz52RltAbGqZ+EIjarYvpa9xEwLAB5s+yZbceWV/awc
-	FL9nIMRXc4rYGPlVjtxs1c6oFNMmncGkolT3bvJOwULHUXMdom/vyl5LVOBbvoE=
-X-Google-Smtp-Source: AGHT+IGaTmS3HxLqj56kTxvcBANO+K5RJiinJjG0Zr6ehiUcEzeOO4XRy+qR6pDcxufcx322/Da00Q==
-X-Received: by 2002:a17:907:74e:b0:a86:97e5:8d4e with SMTP id a640c23a62f3a-a98f822518amr669510366b.23.1727970091510;
-        Thu, 03 Oct 2024 08:41:31 -0700 (PDT)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99104c4f3fsm98492866b.200.2024.10.03.08.41.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 08:41:31 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Thu, 03 Oct 2024 16:41:28 +0100
-Subject: [PATCH v4 4/4] media: ov08x40: Add OF probe support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD8221A3AA7;
+	Thu,  3 Oct 2024 15:44:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.72
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727970260; cv=fail; b=hjyMPw7fzacihlQlHBWqgN1wCibW//Wp/D2CBQzb8/HsNPI3IgxpQq4RSlJHKZ14hLL8+qR/rmUUiNOwKy+0Zvb2OwOs4peQRop+5j+YfOMkxHkUk5fkpU+dPr/S0e5E6Yq/EoomYWHVvEv0PD5wu/fWDYg9Bw9eQxYhOlIeshc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727970260; c=relaxed/simple;
+	bh=nr0YUaw6osCxBu2G6zEx7EIccSaapA5eX9ZlztpZz0s=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=FnBpbUQc2HHvZMFH/QjywKdmCgOhJ1HNtwVytyqshFQwbV8Tdx3EeItFAuFLYnuYJGCzUVfTf0s579/nR9U8U2eSceeJGwxq3+CBqDQm129wtoEPnQp7sGelbGIBMTUYSFpvO29mrdDmbLu+Yp/em5kRoe3DyIBWMYIZQUtTeMs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=CTJBMDdg; arc=fail smtp.client-ip=40.107.21.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wJN768EHxYrv3hwIP8ZhkBe2ItWJBC3dvRdlwosIif2DEB6IEb9J4INqfpLtF45M8qFhkUkf0woNbG1gxHZzrjODF86xPc4l1bTCeK62IyC/i/FbRvB1VD+HsI3xkyKTbC/f6OTpYQaEDO6CCo4VJ4nyXIrKXICLmsxtTHB3OxaatJfnQRlV9rnM0iI52JSLmP+7w2BJbYPMjtw5+UPMgkoBtf5L1scIKPycDFQyGJ2Qw1avh2dqta2aBE2jNzBh1oSfikb07V7EZnpRzhUXWRWjXFXr/nl0F/KioS9Vk3W+uL7b8vSldudWWeeSELDC9f2zTFMpLI0AKMV94qgwWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=N/LXxqhUs4JR6IYtNZy6jYoY8+gknRoM1EjTjqg5+5c=;
+ b=HRnJO3+p4hefhx6RqKjwtmC+Th105bwcH+Oh6r2Wiu0dTWVoGMk4JHOdbGwxzkDP+HtvXNxAUUfB/0rakY4bz1XoGKQKNUB66YOIZQ1jzM5CfwfPoo83dCKTqgYAVJqcnUe6rn1xuIl6oWo/NMRodWc8kiiTXO6QVCSvoOg8qap4F46HzWKWFkJqqznYUz6gl5XmZszX2R2gUnd7IuJEkJkIMFlXIAY7mtxr/dbR54chv/xUZNaDbsyQeo6IzxDoU4kJn1/Xgv19ZIcCRUD5X8b3GwMu4kB6z0/pGmrfOgICeJkP/rh11xmb/CK/Ee9sSVOMswLTMCJ5jSfA8Qc05g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=N/LXxqhUs4JR6IYtNZy6jYoY8+gknRoM1EjTjqg5+5c=;
+ b=CTJBMDdgiwrDW2XwdWjaXUtdrGOdxndw5SsgXVhtqGiatj/x2yexUTbnSsMJxlyMlFIwwVxsfz879GmWCNoQdxZV/CgWHbBgjA5zE6wJx792X4AT2Y16bQnLx/vUfxX5hPcoZzfSI+i/ONoLpq0OuURza6LV6x8Nbu5kWrNgO28SMnFMPPMmNfLXxVV7GqXO0SR/CF1unzezG15bHu4/rdlG1U4UepQECGBmq0zLu8yP+ZmQVF3IOIKGEzairUL4msGyN52Tz+MeALjbDS3znT+KRl+LD26g9HfB2gDMMJ3jYEI8/jZc2DoaFFFCS56jeXmVrGP0sFKH301dMrqnWA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9692.eurprd04.prod.outlook.com (2603:10a6:20b:4fe::20)
+ by AS1PR04MB9558.eurprd04.prod.outlook.com (2603:10a6:20b:482::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8005.26; Thu, 3 Oct
+ 2024 15:44:13 +0000
+Received: from AS4PR04MB9692.eurprd04.prod.outlook.com
+ ([fe80::a2bf:4199:6415:f299]) by AS4PR04MB9692.eurprd04.prod.outlook.com
+ ([fe80::a2bf:4199:6415:f299%5]) with mapi id 15.20.8026.016; Thu, 3 Oct 2024
+ 15:44:12 +0000
+From: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+To: marcel@holtmann.org,
+	luiz.dentz@gmail.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: linux-bluetooth@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	amitkumar.karwar@nxp.com,
+	rohit.fule@nxp.com,
+	neeraj.sanjaykale@nxp.com,
+	sherry.sun@nxp.com,
+	ziniu.wang_1@nxp.com,
+	haibo.chen@nxp.com,
+	LnxRevLi@nxp.com
+Subject: [PATCH v2 0/2] Bluetooth: btnxpuart: Add GPIO mechanism to
+Date: Thu,  3 Oct 2024 21:15:05 +0530
+Message-Id: <20241003154507.537363-1-neeraj.sanjaykale@nxp.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: AM0PR03CA0014.eurprd03.prod.outlook.com
+ (2603:10a6:208:14::27) To AS4PR04MB9692.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4fe::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241003-b4-master-24-11-25-ov08x40-v4-4-7ee2c45fdc8c@linaro.org>
-References: <20241003-b4-master-24-11-25-ov08x40-v4-0-7ee2c45fdc8c@linaro.org>
-In-Reply-To: <20241003-b4-master-24-11-25-ov08x40-v4-0-7ee2c45fdc8c@linaro.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Jason Chen <jason.z.chen@intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9692:EE_|AS1PR04MB9558:EE_
+X-MS-Office365-Filtering-Correlation-Id: d6f0b224-a4b2-4bfa-6f48-08dce3c23a9b
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ymXEQ6BzYUPGHvEQlcjICEnoLxk843GO1ZCPO/e/S1xIgwlp1e96xvyqFx5p?=
+ =?us-ascii?Q?Ad8vEVNIKfQM17AgK1InrvUFZMO3W8Vp/Q8QYnagsV7RJPn1yGDt4ds8+zGM?=
+ =?us-ascii?Q?p9EYX/CJ0HsO/b1MUIkpppnQsMJJWWid17o/03IPE0ah8vfP9HS68xmClOUp?=
+ =?us-ascii?Q?mQuETL+9O+BkCf3LekYT2oGOL0DRDWOgqZmFVQT+cH5Rv1/x8mRq7y+Fj+ar?=
+ =?us-ascii?Q?5O+rOtTcbEgEC+LKevHbx3y/2CAGLsX0SbctJQ3b2muBAPVnu/OUUcqZJBlQ?=
+ =?us-ascii?Q?fWzRJCEbI993q4TZzNcrSKU+jj3pSKRFx2I0fGysf3XN1TEm4RxD0fqPw8Ev?=
+ =?us-ascii?Q?6G7F8DexsiGrHupiDn+ZohXpkOB6QJEE4XZWNVHJN7zv2QQI12AS339Wap/V?=
+ =?us-ascii?Q?I4ZvzovgGy5hkubLCIZjFYWOvXdq4n6mDvAGImHawk2J9E0mg05C8uELF8Mb?=
+ =?us-ascii?Q?WGRUi0gF+EYr1CbJTea2IXI8J6ZPWgbwFEXTjC0IUFukVSBELdY8YyqRU3o+?=
+ =?us-ascii?Q?kx14+NuocgmQWVc54IB6AAJmPRz83WN+iFq9fJgS0mFCvWFNpQnlvVRmEUXN?=
+ =?us-ascii?Q?948ComrvcVcl4+iPCJd3s+xy+/AE0E6oSvDeXSKk9/IxU8sSZFnZIKw8NQTm?=
+ =?us-ascii?Q?Cdt/14RdghxD/W6xsKp1ELKutbPw0OAJ5sePHq1X5vvIed1MEd+ipETlNJY5?=
+ =?us-ascii?Q?hTSD2RDCv6Az9H1dwY+rDVyFjVEkUffzvEUb0+HllXMeM9E2pMZmd/tbsJjg?=
+ =?us-ascii?Q?EeptHyVJh8wR3zHHOrPMBVnTtH4OArT8HkMgKsw9T6diQZyrp3oeJVysollE?=
+ =?us-ascii?Q?LQ1BMga9KoSFcyantkdmZ29MYYqsULVzgkFYp57kBnb8IIZyFUiKBlw0FeQG?=
+ =?us-ascii?Q?a3loYM9Ss9klCddNKc3YfSQP8a96ft2geH/E9QpTvgi8DiNwSkPLEH3sRPNy?=
+ =?us-ascii?Q?fbcb3iIve/k7obuKwYXDk2Hg6M+YWk07kP576EJa7ogpVTWxJTNJW45SdDTV?=
+ =?us-ascii?Q?cyjJMMOlMix9NNfFpJqQu4nmT/KvZgx6f46YknggjXY6ujWl+jHVYODHTA6c?=
+ =?us-ascii?Q?hGW6CwUPEp5VgQQpFiuymlMWZ9Yt0u98HBNjON4mS966J9kDOkV+dh8DmIXa?=
+ =?us-ascii?Q?r/etL7GZj+LbPVHEJF+KzdomYT+LcObZ60BuYhY2iBYJWCGe0hMh758CTuj6?=
+ =?us-ascii?Q?R6Rgff1VPK+JzasfmZmT0cvYj6GUeIKO+tsrMmvhau8Y5TcolGxvEOEJbA3Y?=
+ =?us-ascii?Q?8Vx/s1RDGKL5esH0vQ2ing0wPVTgFlTL9P0AA6fAsfkNusmMHQ3VugnP0ZFj?=
+ =?us-ascii?Q?33iihZdVCni8+FIglsK9Qn9GlmnLosBJ0WuR8qGUpbdQ8Q=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9692.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?L9XIzNXnMKnUkjQt6NNeR2fY/64U+1C3JmIgTOos84z4n7iRm08DYr9B+Upq?=
+ =?us-ascii?Q?HYoStNw0G+yYIwpIWDdmuHVtWbfZUG3B6EfsjxZjhaiyylLlJ1FJrtHmDisv?=
+ =?us-ascii?Q?rMB4SNJK/Kia1I+rcHAELHhW9k96ageMIq4BwNKzwDkDXNt4jNCN0+nd8cKq?=
+ =?us-ascii?Q?Nv3eNhgG5fCbHI7lwEb9+1shyvSbd8pS/aYG8kX4CpF62gfE3XLAT8q6RDcW?=
+ =?us-ascii?Q?eH/aabvomVmaDdBuubpCp3yXiO0AHVvurzrN/qNsty3qlCxQcmXX1AUEI+4G?=
+ =?us-ascii?Q?ufanJ0AmNtQ7OAudvLxWrGW4f1rT0SCoPMCejVitliLPS2dErK5UBEXCCeNr?=
+ =?us-ascii?Q?pSrPIlZj2bour3v+G1iFk3t1rZB8X1J1ld+d2Xfz28nKTA7mhGSMj33FRlhR?=
+ =?us-ascii?Q?qdhg1vZUDOVl40JZquThAeKX+d3WlSpYinO1Rny4/a+OHQqWieOgUKwbcYz4?=
+ =?us-ascii?Q?sD7Dvcx777nZhGS3jEDtG1JFZXow3GHz3n2QpSzd3CL+iEn+Jz8nq/LI8TCt?=
+ =?us-ascii?Q?SFkaZzR7HDA5pTAOf/lWVxdkMQJ28MxsaaKr5dygmuVYUuoQWxRWWNLfU2p7?=
+ =?us-ascii?Q?6cVHLvwH7GgLLnu+H1jPCg012eDxtlREryDvpoOjF4qgIz38FqT3UyjeBen1?=
+ =?us-ascii?Q?y8XSifhBK1+qRNSWsf+Kh9mku7wREO7pHodxRHJ++2+fHTxznwFQx8NNe+i3?=
+ =?us-ascii?Q?OvhV0Z8KXQ1I2/b9Goe+860BmHkSt/CoXLdQyh6baDb3aXmGenHWB5D1ewIQ?=
+ =?us-ascii?Q?U7Hrjw7I13EcQY1A5nTsl8qWBc1ZzCJFWS7yfxF5Xl7ZZyPuH6Z1JNKlGpmE?=
+ =?us-ascii?Q?De723l1fxUJvqX042dY0bNQGK0WKFSATXOJIGyoIofEMtAhgm9rGbdbXsJ63?=
+ =?us-ascii?Q?rmHhQdM2Y2FehWvUT1VPeW8iIOEI5YW3r5p+0ONVB68cv6eKYZPHLxm1es9n?=
+ =?us-ascii?Q?TFnv1aRpQoQgu+6QWjYtlPOTPOn4CNclfAVEhcZaLNhYSjdB6UvVwmzGfsiZ?=
+ =?us-ascii?Q?mM83Vz2TpS7UJNmlF/ISB9/N7Q1mrBIFwI/zSQoqEvCv6T7LhWvI1P5H2low?=
+ =?us-ascii?Q?VQ+QgjHnXIL5SmoCvxpeZkmewLU5jsGEQ8bfCea8ibEdFBK0DMDwbJwJTbi2?=
+ =?us-ascii?Q?4jfCcJeOUSc74TIMKwf3yLjhi9jYmDaY0UQQL5sYhsW/ZwO3JKJZ6wyk51z5?=
+ =?us-ascii?Q?cyiTL5t2yQB7PEZ/yQ6RhpKW2/VDpfOH3U521gm4dwvNgAnns2Lvfe3bsidx?=
+ =?us-ascii?Q?3vDz9wcCRKTaCdHvMRs5/yRINuSv47/Z6MKfF+Uooy78B/FXRaGu28wuNEEv?=
+ =?us-ascii?Q?Jk2jXrJ7EHXGzY0WNslOTHeEmIyk+mApNN7V6UgFzDJZKkaECm3cwL826Cnz?=
+ =?us-ascii?Q?KAULUQghLfiX7/GQ2u+xs6bqgskg0Y235FDPHhlZUv45tOOjYD9THVyMFlbn?=
+ =?us-ascii?Q?tBI7XTIfNco0Pt8XHlfOmh76ZeXqFq7Lqh0kRyZvErezGxs/zHl4pmbk6/+U?=
+ =?us-ascii?Q?H9iNYbhPY0IQS7bercsqpFtsHfE3mdVSI5BeTcdDmIDunA+D+WWqnCRW0lMN?=
+ =?us-ascii?Q?ienDdFND3hSDcozt5qLcUHPUbjPyMBLiPi9MA2sc0+2BYr2uAxMp5lW+WmIM?=
+ =?us-ascii?Q?Ig=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d6f0b224-a4b2-4bfa-6f48-08dce3c23a9b
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9692.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 15:44:12.9163
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wWfWO/0G/8SI2Oycyd/2DQDZ8QKu1k78Xa9I77XZQZosU+2w8MgTyzJWRiU9PUQr+Cj8gjCeKEb/a/dPkmKXcAwN3bctTc8wsgAqDaAWaAY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9558
 
-The ACPI version of this driver "just works" on dts based systems with a
-few extensions to facilitate.
+This patch series introduces a new optional device tree property
+h2c-ps-gpios, which specifies the GPIO connected to BT_WAKE_IN pin of
+the NXP chipset.
 
-- Add support for DT based probing
-- Add support for taking the part out of reset via a GPIO reset pin
-- Add in regulator bulk on/off logic for the power rails.
+If this property is defined, the BTNXPUART driver uses this GPIO to put
+the BT controller into sleep or wake it up, instead of the default UART
+break mechanism.
 
-Once done this sensor works nicely on a Qualcomm X1E80100 CRD.
+The vendor command parameters HCI_NXP_WAKEUP_METHOD are configured to
+use GPIO method instead of UART-break signal, to inform the chip about
+this new mechanism.
 
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e80100-crd
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/ov08x40.c | 138 +++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 124 insertions(+), 14 deletions(-)
+Once power save feature is enabled, the driver puts the chip into power
+save state by driving the GPIO high, and wakes it up by driving the GPIO
+low.
 
-diff --git a/drivers/media/i2c/ov08x40.c b/drivers/media/i2c/ov08x40.c
-index 3ab8b51df157af78fcccc1aaef73aedb2ae759c9..821102287580acecd544402254cfe0fb5c8dc299 100644
---- a/drivers/media/i2c/ov08x40.c
-+++ b/drivers/media/i2c/ov08x40.c
-@@ -3,10 +3,13 @@
- 
- #include <asm-generic/unaligned.h>
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/i2c.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/module.h>
- #include <linux/delay.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-device.h>
- #include <media/v4l2-fwnode.h>
-@@ -1279,6 +1282,12 @@ static const struct ov08x40_mode supported_modes[] = {
- 	},
- };
- 
-+static const char * const ov08x40_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- struct ov08x40 {
- 	struct v4l2_subdev sd;
- 	struct media_pad pad;
-@@ -1291,6 +1300,10 @@ struct ov08x40 {
- 	struct v4l2_ctrl *hblank;
- 	struct v4l2_ctrl *exposure;
- 
-+	struct clk		*xvclk;
-+	struct gpio_desc	*reset_gpio;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08x40_supply_names)];
-+
- 	/* Current mode */
- 	const struct ov08x40_mode *cur_mode;
- 
-@@ -1303,6 +1316,61 @@ struct ov08x40 {
- 
- #define to_ov08x40(_sd)	container_of(_sd, struct ov08x40, sd)
- 
-+static int ov08x40_power_on(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct ov08x40 *ov08x = to_ov08x40(sd);
-+	int ret;
-+
-+	if (is_acpi_node(dev_fwnode(dev)))
-+		return 0;
-+
-+	ret = clk_prepare_enable(ov08x->xvclk);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable xvclk\n");
-+		return ret;
-+	}
-+
-+	if (ov08x->reset_gpio) {
-+		gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+		usleep_range(1000, 2000);
-+	}
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ov08x40_supply_names),
-+				    ov08x->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		goto disable_clk;
-+	}
-+
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 0);
-+	usleep_range(1500, 1800);
-+
-+	return 0;
-+
-+disable_clk:
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+	clk_disable_unprepare(ov08x->xvclk);
-+
-+	return ret;
-+}
-+
-+static int ov08x40_power_off(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct ov08x40 *ov08x = to_ov08x40(sd);
-+
-+	if (is_acpi_node(dev_fwnode(dev)))
-+		return 0;
-+
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(ov08x40_supply_names),
-+			       ov08x->supplies);
-+	clk_disable_unprepare(ov08x->xvclk);
-+
-+	return 0;
-+}
-+
- /* Read registers up to 4 at a time */
- static int ov08x40_read_reg(struct ov08x40 *ov08x,
- 			    u16 reg, u32 len, u32 *val)
-@@ -2072,7 +2140,7 @@ static void ov08x40_free_controls(struct ov08x40 *ov08x)
- 	mutex_destroy(&ov08x->mutex);
- }
- 
--static int ov08x40_check_hwcfg(struct device *dev)
-+static int ov08x40_check_hwcfg(struct ov08x40 *ov08x, struct device *dev)
- {
- 	struct v4l2_fwnode_endpoint bus_cfg = {
- 		.bus_type = V4L2_MBUS_CSI2_DPHY
-@@ -2086,11 +2154,36 @@ static int ov08x40_check_hwcfg(struct device *dev)
- 	if (!fwnode)
- 		return -ENXIO;
- 
--	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
--				       &xvclk_rate);
--	if (ret) {
--		dev_err(dev, "can't get clock frequency");
--		return ret;
-+	if (!is_acpi_node(fwnode)) {
-+		ov08x->xvclk = devm_clk_get(dev, NULL);
-+		if (IS_ERR(ov08x->xvclk)) {
-+			dev_err(dev, "could not get xvclk clock (%pe)\n",
-+				ov08x->xvclk);
-+			return PTR_ERR(ov08x->xvclk);
-+		}
-+
-+		xvclk_rate = clk_get_rate(ov08x->xvclk);
-+
-+		ov08x->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-+							    GPIOD_OUT_LOW);
-+		if (IS_ERR(ov08x->reset_gpio))
-+			return PTR_ERR(ov08x->reset_gpio);
-+
-+		for (i = 0; i < ARRAY_SIZE(ov08x40_supply_names); i++)
-+			ov08x->supplies[i].supply = ov08x40_supply_names[i];
-+
-+		ret = devm_regulator_bulk_get(dev,
-+					      ARRAY_SIZE(ov08x40_supply_names),
-+					      ov08x->supplies);
-+		if (ret)
-+			return ret;
-+	} else {
-+		ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
-+					       &xvclk_rate);
-+		if (ret) {
-+			dev_err(dev, "can't get clock frequency");
-+			return ret;
-+		}
- 	}
- 
- 	if (xvclk_rate != OV08X40_XVCLK) {
-@@ -2143,32 +2236,37 @@ static int ov08x40_check_hwcfg(struct device *dev)
- }
- 
- static int ov08x40_probe(struct i2c_client *client)
--{
--	struct ov08x40 *ov08x;
-+{	struct ov08x40 *ov08x;
- 	int ret;
- 	bool full_power;
- 
-+	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
-+	if (!ov08x)
-+		return -ENOMEM;
-+
- 	/* Check HW config */
--	ret = ov08x40_check_hwcfg(&client->dev);
-+	ret = ov08x40_check_hwcfg(ov08x, &client->dev);
- 	if (ret) {
- 		dev_err(&client->dev, "failed to check hwcfg: %d", ret);
- 		return ret;
- 	}
- 
--	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
--	if (!ov08x)
--		return -ENOMEM;
--
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&ov08x->sd, client, &ov08x40_subdev_ops);
- 
- 	full_power = acpi_dev_state_d0(&client->dev);
- 	if (full_power) {
-+		ret = ov08x40_power_on(&client->dev);
-+		if (ret) {
-+			dev_err(&client->dev, "failed to power on\n");
-+			return ret;
-+		}
-+
- 		/* Check module identity */
- 		ret = ov08x40_identify_module(ov08x);
- 		if (ret) {
- 			dev_err(&client->dev, "failed to find sensor: %d\n", ret);
--			return ret;
-+			goto probe_power_off;
- 		}
- 	}
- 
-@@ -2210,6 +2308,9 @@ static int ov08x40_probe(struct i2c_client *client)
- error_handler_free:
- 	ov08x40_free_controls(ov08x);
- 
-+probe_power_off:
-+	ov08x40_power_off(&client->dev);
-+
- 	return ret;
- }
- 
-@@ -2224,6 +2325,8 @@ static void ov08x40_remove(struct i2c_client *client)
- 
- 	pm_runtime_disable(&client->dev);
- 	pm_runtime_set_suspended(&client->dev);
-+
-+	ov08x40_power_off(&client->dev);
- }
- 
- #ifdef CONFIG_ACPI
-@@ -2235,10 +2338,17 @@ static const struct acpi_device_id ov08x40_acpi_ids[] = {
- MODULE_DEVICE_TABLE(acpi, ov08x40_acpi_ids);
- #endif
- 
-+static const struct of_device_id ov08x40_of_match[] = {
-+	{ .compatible = "ovti,ov08x40" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ov08x40_of_match);
-+
- static struct i2c_driver ov08x40_i2c_driver = {
- 	.driver = {
- 		.name = "ov08x40",
- 		.acpi_match_table = ACPI_PTR(ov08x40_acpi_ids),
-+		.of_match_table = ov08x40_of_match,
- 	},
- 	.probe = ov08x40_probe,
- 	.remove = ov08x40_remove,
+Signed-off-by: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>
+
+Neeraj Sanjay Kale (2):
+  dt-bindings: net: bluetooth: nxp: Add support for power save feature
+    using GPIO
+  Bluetooth: btnxpuart: Add GPIO support to power save feature
+
+ .../net/bluetooth/nxp,88w8987-bt.yaml         |  8 +++++
+ drivers/bluetooth/btnxpuart.c                 | 36 +++++++++++++++++--
+ 2 files changed, 42 insertions(+), 2 deletions(-)
 
 -- 
-2.46.2
+2.25.1
 
 
