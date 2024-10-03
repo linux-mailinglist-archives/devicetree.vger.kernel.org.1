@@ -1,267 +1,224 @@
-Return-Path: <devicetree+bounces-107498-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107499-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1140298ED31
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:42:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id A559498ED34
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:42:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34FB21C215AC
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:42:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1448BB20519
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:42:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A9014D456;
-	Thu,  3 Oct 2024 10:42:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5A414D456;
+	Thu,  3 Oct 2024 10:42:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FYDvPl/7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VW6RQD/l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B681413D882;
-	Thu,  3 Oct 2024 10:42:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F87113A24A;
+	Thu,  3 Oct 2024 10:42:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727952139; cv=none; b=Fx3LO6QrVdONulBnF+eMdnamMj6wZaVf4maRoiR02f91xK3AdXXG0jSLqLNaoZiBTwoOu8hP/xJmzD806is8xGhVmPLumNquA2L+B1J7AcX4H5UueMCJGgxlHyToQi5yPsvMjlRy4u5mjNdRPjJeh0AVSin3/gTtKnURZqqqYcQ=
+	t=1727952169; cv=none; b=XwNw3jDOuQ09rQdkgZHtcwk3BC7VtvuxH4F+DfaW/xK/G06FAJAxloTl4lIFYs68Jx0mSUYQlw3TJE72/kaUoIBCe6ch9epox5FO8qDH3K5dkY1cDwpAbW1M5gZiu/US8e9Ct04/OB7gnMvOVkC4OwyujeKhrNHKxDXTVlrtLyE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727952139; c=relaxed/simple;
-	bh=a9KmoXJsFEjWSCOH7kCcCjD1NTNIR2CLPy5YKmcNJKw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kzTp6VEjI17rUMjMVmDzCVLfu08KVYER4FmEJeHVv4od5QBJz6bHQxUZ3kkFOyLhEE4LfO0q3QzYfLGfpSDYiiguVOwvS8VG5DHeShsu/yACSG3c2SPZ6rXQ4wXuIc/zDHdJiAfRtnatHu+14p4yjHb4xjXGNEl3D0KXDOj9ww0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FYDvPl/7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A18AC4CEC7;
-	Thu,  3 Oct 2024 10:42:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1727952138;
-	bh=a9KmoXJsFEjWSCOH7kCcCjD1NTNIR2CLPy5YKmcNJKw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=FYDvPl/7Y3AD+UT7KDhhmsWI/4AqOIYOSg8ZMLsUb/E0o4IHlkZQgQ7PGS4dIPIap
-	 3t721t1RSCZvOrh5q1v8tlqSwlbU3bbZAzktZLuzWngvAA/437w/8PU6vvDjWoLXFt
-	 Krel1zVBGmMqbMXo73G3cmMQZYNWXbP06pSZfdVJ8E3BOPOdemCjodG29d3rKFa18q
-	 o4F+du1pZjTDiajhO8z1Ovw/O8W6xQoEKhzEm4KXQEBrL9lwhQEvEpIUxCawV7EY8I
-	 GUh2bai96Aps1tWETgz2Thzvof08CSsX4IdYr7Y4VLuLKcAu/RxZFxbujjVktkUBEK
-	 REuiz2tGStUAA==
-Message-ID: <8f0a6e27-df0c-41fb-8714-10fdfbe976ab@kernel.org>
-Date: Thu, 3 Oct 2024 12:42:09 +0200
+	s=arc-20240116; t=1727952169; c=relaxed/simple;
+	bh=1z1JGA6U/odpvegzu5+AYDKhQPlTvvq6gUhBfx3KIQ4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mlSR4JIa/UfB3PqFls+3QFeb+fvMBgIkmcNptqCpysacEEOrQ3sSgFb+CCqO7FfpkKUDDotBlZttRBNv79Kkq6phDtWtOwqILwuIhphkknRZEi/ijNEv6+lzCf35zqiuZn4z3ydTPO9Bc3rIpBtb89+i1Pyn7Gc8EFoceG83S+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VW6RQD/l; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7db90a28cf6so1263223a12.0;
+        Thu, 03 Oct 2024 03:42:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1727952167; x=1728556967; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ujiQHahtbaEY1X1bz4oE4Y4jHXdqg8dZdzZ+KxxOoFs=;
+        b=VW6RQD/lu2Hc1X5BzAxYmSh9Jv5dm4DBW+EuxeQ+MG3Bi8Rd8q5NElB3uyUlhLEJLE
+         SsM0gRzpqL+bWs3t7Psk8pZ8zewRwKFwKG8+890FZ3zMTuTBS0sEOwR8tw1QfZnNpR/v
+         SmQxEriy12wYePUu8Xn+14ecboy0J6jLjPnsUuKV4MgNyLE1vf665nTxhES2Pb2KA7K9
+         lAWqeu7ZC9Xqdn97ABPwOA29fCnMxBxYyng98Dwb+dFpV7PY5dbee+NlloYE0z3JZEdE
+         UFT9A2Ma2w8R52ujiaUb5BwAWIp08FXUTeAHr6N5AIxOua1hyIg63NH4iNJ/SdU1m+Sm
+         XuZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727952167; x=1728556967;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ujiQHahtbaEY1X1bz4oE4Y4jHXdqg8dZdzZ+KxxOoFs=;
+        b=e4VPYstGxnHakMFFViTX0JWw2yCAJa5oPFzJXrvuFbGS7sKc5P6c9/KCikdBgLA74E
+         zEeqjj0w8zxQNUGdtprpdCq1ZN5Ia6VKfRhBZmbVYmVznUKGLKEPJkbNoGpklheKoI9h
+         ojkjZNgpxiezLgRUKRLCr5hRdfWTMFb5803cXs4gWqFLb1VzHzAMeDNoxSU1pT/XhCKr
+         KHJLt7/p9Y8U89/7JS8mqy14eYkp+JupuLtJB4/o1JzWkssloFolJOYYp/VOsTbAWlTv
+         oK0A8fIPBy7Noa1Kn1UFrQip6lZ5rIxdT8Mrwy/MWvEndm2rOmrXL7bNPFt3i+zAmAbP
+         sbKw==
+X-Forwarded-Encrypted: i=1; AJvYcCV+WPYLUqemy/P+j4+LU0Io+RcLMPYbEgpfgW/HuxpmXgvHfCkpvdZvYAb5JUNkhnUjBXrvy2aFnHg5@vger.kernel.org, AJvYcCWNDzniV+FeYgQlF1/h+Um/dm4gFtwJkEaPk0e7wILlz5rhJ1U6e/EAC9cZcBT7uCSjZ0H50Z+Uis1adA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YziDDHbbQaQn+B7NzdH7qYgz2JDP8zQF6OpqQmNIOUK6ZEGA8sS
+	LFriNwPHHLGpwhPbDncXdy5qA5C2l5TDDmNeIvx09ZgIw7CMYrpuW6tU5g==
+X-Google-Smtp-Source: AGHT+IFvxzNhIvczmb9INlw6qh/XNIabnid1kXj+lxTj6P0lKEG5/6WZHr/RmAq10UNUB9G6M9KFnA==
+X-Received: by 2002:a17:90b:148f:b0:2d8:7445:7ab2 with SMTP id 98e67ed59e1d1-2e1b392f6e7mr3370317a91.20.1727952166770;
+        Thu, 03 Oct 2024 03:42:46 -0700 (PDT)
+Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:b9a4:a119:38d1:3e69])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1bfb1c102sm1228285a91.23.2024.10.03.03.42.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 03 Oct 2024 03:42:46 -0700 (PDT)
+From: Fabio Estevam <festevam@gmail.com>
+To: robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	mdf@kernel.org,
+	hao.wu@intel.com,
+	yilun.xu@intel.com,
+	trix@redhat.com,
+	linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabio Estevam <festevam@denx.de>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH RESEND] dt-bindings: fpga: altr,fpga-passive-serial: Convert to yaml
+Date: Thu,  3 Oct 2024 07:42:30 -0300
+Message-Id: <20241003104230.1628813-1-festevam@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: net: Add T-HEAD dwmac support
-To: Drew Fustini <dfustini@tenstorrent.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Jisheng Zhang <jszhang@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Emil Renner Berthing <emil.renner.berthing@canonical.com>,
- Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
- Fu Wei <wefu@redhat.com>, Conor Dooley <conor@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-riscv@lists.infradead.org
-References: <20240930-th1520-dwmac-v3-0-ae3e03c225ab@tenstorrent.com>
- <20240930-th1520-dwmac-v3-1-ae3e03c225ab@tenstorrent.com>
- <wtknsih2yrbylqzanp6k753kklk4myf6iezjz6swnp4nsqr2hl@7mmm6lxhqemu>
- <Zv2aE7jmE2awLwcl@x1>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <Zv2aE7jmE2awLwcl@x1>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/10/2024 21:08, Drew Fustini wrote:
-> On Tue, Oct 01, 2024 at 08:58:34AM +0200, Krzysztof Kozlowski wrote:
->> On Mon, Sep 30, 2024 at 11:23:24PM -0700, Drew Fustini wrote:
->>> From: Jisheng Zhang <jszhang@kernel.org>
->>>
->>> Add documentation to describe the DesginWare-based GMAC controllers in
->>> the T-HEAD TH1520 SoC.
->>>
->>> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
->>> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
->>> [drew: rename compatible, add apb registers as second reg of gmac node]
->>> Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
->>> ---
->>>  .../devicetree/bindings/net/snps,dwmac.yaml        |  1 +
->>>  .../devicetree/bindings/net/thead,th1520-gmac.yaml | 97 ++++++++++++++++++++++
->>>  MAINTAINERS                                        |  1 +
->>>  3 files changed, 99 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> index 4e2ba1bf788c..474ade185033 100644
->>> --- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> +++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
->>> @@ -99,6 +99,7 @@ properties:
->>>          - snps,dwxgmac-2.10
->>>          - starfive,jh7100-dwmac
->>>          - starfive,jh7110-dwmac
->>> +        - thead,th1520-gmac
->>>  
->>>    reg:
->>>      minItems: 1
->>> diff --git a/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
->>> new file mode 100644
->>> index 000000000000..fef1810b10c4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/thead,th1520-gmac.yaml
->>> @@ -0,0 +1,97 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/thead,th1520-gmac.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: T-HEAD TH1520 GMAC Ethernet controller
->>> +
->>> +maintainers:
->>> +  - Drew Fustini <dfustini@tenstorrent.com>
->>> +
->>> +description: |
->>> +  The TH1520 GMAC is described in the TH1520 Peripheral Interface User Manual
->>> +  https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/tree/main/docs
->>> +
->>> +  Features include
->>> +    - Compliant with IEEE802.3 Specification
->>> +    - IEEE 1588-2008 standard for precision networked clock synchronization
->>> +    - Supports 10/100/1000Mbps data transfer rate
->>> +    - Supports RGMII/MII interface
->>> +    - Preamble and start of frame data (SFD) insertion in Transmit path
->>> +    - Preamble and SFD deletion in the Receive path
->>> +    - Automatic CRC and pad generation options for receive frames
->>> +    - MDIO master interface for PHY device configuration and management
->>> +
->>> +  The GMAC Registers consists of two parts
->>> +    - APB registers are used to configure clock frequency/clock enable/clock
->>> +      direction/PHY interface type.
->>> +    - AHB registers are use to configure GMAC core (DesignWare Core part).
->>> +      GMAC core register consists of DMA registers and GMAC registers.
->>> +
->>> +select:
->>> +  properties:
->>> +    compatible:
->>> +      contains:
->>> +        enum:
->>> +          - thead,th1520-gmac
->>> +  required:
->>> +    - compatible
->>> +
->>> +allOf:
->>> +  - $ref: snps,dwmac.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - thead,th1520-gmac
->>> +      - const: snps,dwmac-3.70a
->>> +
->>> +  reg:
->>> +    items:
->>> +      - description: DesignWare GMAC IP core registers
->>> +      - description: GMAC APB registers
->>> +
->>> +  reg-names:
->>> +    items:
->>> +      - const: dwmac
->>> +      - const: apb
->>
->> I don't get why none of snps,dwmac properties are restricted. How many
->> interrupts do you have here? How many clocks? resets?
-> 
-> Thanks for pointing this out. Yes, I forgot to document the clocks,
-> interrupts and resets.
-> 
-> There needs to be 2 clocks (stmmaceth and pclk). There also needs to be
-> 2 resets: each GMAC has a reset plus a seperate reset for the GMAC AXI
-> interface. There is 1 interrupt (macirq) but it is optional. The BeagleV
-> Ahead uses it but the LicheePi 4A does not use the interrupt.
-> 
-> However, I'm uncertain about how to restrict the snps,dwmac properties.
-> 
-> I see that starfive,jh7110-dwmac.yaml has the following logic. Should I
-> be adding something like this to restrict the snps,dwmac properties?
-> 
-> ---------------------------------------------------------------------
-> allOf:
->   - $ref: snps,dwmac.yaml#
-> 
->   - if:
->       properties:
->         compatible:
->           contains:
->             const: starfive,jh7100-dwmac
->     then:
->       properties:
->         interrupts:
->           minItems: 2
->           maxItems: 2
-> 
->         interrupt-names:
->           minItems: 2
->           maxItems: 2
-> 
->         resets:
->           maxItems: 1
-> 
->         reset-names:
->           const: ahb
+From: Fabio Estevam <festevam@denx.de>
 
-No, that's not necessary. You have one device in this binding, so in
-top-level should define how each such property looks like.
+Convert the Altera Passive Serial SPI FPGA Manager binding
+from text file to yaml format to allow devicetree validation.
 
-Best regards,
-Krzysztof
+Signed-off-by: Fabio Estevam <festevam@denx.de>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ .../bindings/fpga/altera-passive-serial.txt   | 29 --------
+ .../fpga/altr,fpga-passive-serial.yaml        | 74 +++++++++++++++++++
+ 2 files changed, 74 insertions(+), 29 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/fpga/altera-passive-serial.txt
+ create mode 100644 Documentation/devicetree/bindings/fpga/altr,fpga-passive-serial.yaml
+
+diff --git a/Documentation/devicetree/bindings/fpga/altera-passive-serial.txt b/Documentation/devicetree/bindings/fpga/altera-passive-serial.txt
+deleted file mode 100644
+index 48478bc07e29..000000000000
+--- a/Documentation/devicetree/bindings/fpga/altera-passive-serial.txt
++++ /dev/null
+@@ -1,29 +0,0 @@
+-Altera Passive Serial SPI FPGA Manager
+-
+-Altera FPGAs support a method of loading the bitstream over what is
+-referred to as "passive serial".
+-The passive serial link is not technically SPI, and might require extra
+-circuits in order to play nicely with other SPI slaves on the same bus.
+-
+-See https://www.altera.com/literature/hb/cyc/cyc_c51013.pdf
+-
+-Required properties:
+-- compatible: Must be one of the following:
+-	"altr,fpga-passive-serial",
+-	"altr,fpga-arria10-passive-serial"
+-- reg: SPI chip select of the FPGA
+-- nconfig-gpios: config pin (referred to as nCONFIG in the manual)
+-- nstat-gpios: status pin (referred to as nSTATUS in the manual)
+-
+-Optional properties:
+-- confd-gpios: confd pin (referred to as CONF_DONE in the manual)
+-
+-Example:
+-	fpga: fpga@0 {
+-		compatible = "altr,fpga-passive-serial";
+-		spi-max-frequency = <20000000>;
+-		reg = <0>;
+-		nconfig-gpios = <&gpio4 9 GPIO_ACTIVE_LOW>;
+-		nstat-gpios = <&gpio4 11 GPIO_ACTIVE_LOW>;
+-		confd-gpios = <&gpio4 12 GPIO_ACTIVE_LOW>;
+-	};
+diff --git a/Documentation/devicetree/bindings/fpga/altr,fpga-passive-serial.yaml b/Documentation/devicetree/bindings/fpga/altr,fpga-passive-serial.yaml
+new file mode 100644
+index 000000000000..ffb7cc54556f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/fpga/altr,fpga-passive-serial.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/fpga/altr,fpga-passive-serial.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Altera Passive Serial SPI FPGA Manager
++
++maintainers:
++  - Fabio Estevam <festevam@denx.de>
++
++description: |
++  Altera FPGAs support a method of loading the bitstream over what is
++  referred to as "passive serial".
++  The passive serial link is not technically SPI, and might require extra
++  circuits in order to play nicely with other SPI slaves on the same bus.
++
++  See https://www.altera.com/literature/hb/cyc/cyc_c51013.pdf
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++properties:
++  compatible:
++    enum:
++      - altr,fpga-passive-serial
++      - altr,fpga-arria10-passive-serial
++
++  spi-max-frequency:
++    maximum: 20000000
++
++  reg:
++    maxItems: 1
++
++  nconfig-gpios:
++    description:
++      Config pin (referred to as nCONFIG in the manual).
++    maxItems: 1
++
++  nstat-gpios:
++    description:
++      Status pin (referred to as nSTATUS in the manual).
++    maxItems: 1
++
++  confd-gpios:
++    description:
++      confd pin (referred to as CONF_DONE in the manual)
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - nconfig-gpios
++  - nstat-gpios
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      fpga@0 {
++        compatible = "altr,fpga-passive-serial";
++        reg = <0>;
++        nconfig-gpios = <&gpio4 18 GPIO_ACTIVE_LOW>;
++        nstat-gpios = <&gpio4 19 GPIO_ACTIVE_LOW>;
++        confd-gpios = <&gpio1 6 GPIO_ACTIVE_HIGH>;
++      };
++    };
++...
+-- 
+2.34.1
 
 
