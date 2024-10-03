@@ -1,78 +1,78 @@
-Return-Path: <devicetree+bounces-107592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1690698F269
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BC8F98F26E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 17:21:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE36D283D68
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:20:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5AF48283905
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 15:21:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954261A0AE9;
-	Thu,  3 Oct 2024 15:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82EA1A0AE9;
+	Thu,  3 Oct 2024 15:21:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDC572747B;
-	Thu,  3 Oct 2024 15:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9E0419CD0B;
+	Thu,  3 Oct 2024 15:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727968776; cv=none; b=AXmbW/bsqsKG6VqiZbmGVpkjKraT+e7RqLGl/K8cE+sKhPUmqozoNw1cepJi9ohrXWJPe3bFTs8Ce58fhIw2MAaZy6W43/dfWPXD7k1OLqHoTd5HmNoIa7/6iZ0UX9pn69dpv76BoC7JZS7dmg6pbnKsXFhasSTw95IfQnfD1Jk=
+	t=1727968879; cv=none; b=aHuTywd7EYgtzyNg6//Ae/aSPLGvhHv/bUJWd+q7E+neWzAnpoAbSbkxklV+CA0piXL4CtyHtje7OogmQlY0opP+EXUNV9MVRxVILnyEtBfrwnwSjcdszaMxoJaGzDpLcKeCsEEx2ySusjQuWSjf6njWgW72N49KCoKoTY7b4bY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727968776; c=relaxed/simple;
-	bh=qOBripUtAi6zPiMt73YB1Jwrl/ECFz0MdjfoZ5SWjhs=;
+	s=arc-20240116; t=1727968879; c=relaxed/simple;
+	bh=DDQ+PSlc/KTYGIbHad+/LM11N1DWg4popkbpIAz8l/8=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Hn5BipIJMvhXMPI7HSmFVkJiE920CsaEXR5LGnpfkRS/OOWUPCp8oWppBgRmvLIj93WahhZXCfLdLQ4ivzQ2FWNdFTHNRh8Tc92D811zyZw5rMrGKTShHsSa3qunD6tc8ipb1/4ZO2A8LAz8+5g+tl2bohneslYH8yCG+MncB1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.48
+	 To:Cc:Content-Type; b=Xg8JBd80Jagvvdulh1UqoBz/FiQMFiKkSgYKbJ77KRStsu2QNqBfl/mbYB/5BiFN2aI2kqR9yvncxI5QVDArlQzbKh6TWXghwNVYrCfCyqvuFRcYjMbEdpmcXY3oBIJOqDAfWNMIOYk0t5m9PmuN9rfkMuE3DyjLrAgKwGIlF3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5389fbb28f3so1181961e87.1;
-        Thu, 03 Oct 2024 08:19:34 -0700 (PDT)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-539908f238fso1331476e87.2;
+        Thu, 03 Oct 2024 08:21:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727968771; x=1728573571;
+        d=1e100.net; s=20230601; t=1727968874; x=1728573674;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :reply-to:in-reply-to:references:mime-version:x-gm-message-state
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EUoJLCJlNOrdcCBBrdtSB2Ow6qmvTKXbEuWR7svHuGY=;
-        b=SGb4W/gUBWmlHWgeKZy92BWI6hrpDkx3WG+DhMBIpXsjdjeXv/D58KxV9J+aJr0XTC
-         R7oj745x1bbLY78Dfhp+2CKdVyXJOHUTg4QXjvvF1VfgcVbjIukzoMdWxd5nnYS+MhDV
-         4osHNFfNiVhoIFWXKmaAnjRNJiU5TxlM6236tqEe+CiPJjRr6PnMrNmyh7PqSXmSeh+z
-         ZRJXQqwcphMk3OIWBK2UpmPTBZuiajFg3i+hgw1msbVh/NSSaMNAw8UUvyZ0xBa+P0gK
-         mFgKVFQxwP+h2gk0W0a+GXSjwaJRGalVOQM1v6HG3VEPUTW2PfpeEEwi2v1gdcW0Jdv3
-         uS8A==
-X-Forwarded-Encrypted: i=1; AJvYcCVka/LGFQAsxGDb9uQlQEFXdrgScXN/i0haTFdu7DLqe0v4z++iSQz4y0mrUk3x/mwkkU2vniSLhWN50nJ3@vger.kernel.org, AJvYcCVnvfXjwvuTpCJDH/32sWvfh1WFmUNtnauf7Hsb0DY0HOZULjhyRYO/Oq3IMHSHgTyPkQIBnIQZAii0@vger.kernel.org
-X-Gm-Message-State: AOJu0YysmCtADc84fMpe/x6DeJrHrXzyb4gNrrZGIhhPftLMVz0zPUrl
-	C6YmLYV/z1aixqQyiN+TSEHJsoyz4lGZ8XPcrqrWKp63fnU2rms1C6NLDhZwVqs=
-X-Google-Smtp-Source: AGHT+IHGp17z66hexRVSFg+rzv6eNyYaVg9ZhM/nP/QlE89k10uk+zGdbRnm0RU0w36kJQTXjuWaqw==
-X-Received: by 2002:a05:6512:e9c:b0:539:9452:6927 with SMTP id 2adb3069b0e04-539a625c69bmr1278206e87.2.1727968770774;
-        Thu, 03 Oct 2024 08:19:30 -0700 (PDT)
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com. [209.85.208.173])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2faecc959d0sm2309761fa.114.2024.10.03.08.19.30
+        bh=PS0oK8lHaTH+dL4v+mceS/ll5BSP4UtwYbCaVuDE/9E=;
+        b=LkFNvgGQoCQ79f1UaSUZX7AkbM0b4ucOdO4ZF0b2vmRwFAj6Opb2kLUj9MfsoqIYVe
+         OfofUoN0vgCmFSQ2XlfqdSJ3BDJLNHq5wt9aUgDC3w61tBOtMANzBYk2vhNSWLCtxdnH
+         k4lgsrdbB+684LEhvUwb3LBv9PY/QlXl51PIwhrR0E2+WVxFsd/9h+dWJVUwyjBP4Pja
+         GQ94ZmFJ8AUmLuUzqR0rbnM0aWTvpN4c0Iu762ltZ1/tV6nR33CsYyjjiKmgFvMSNjVc
+         lhbs9Kwsp/BOYejOlnhSNbdaCTej/tZ9CUX0IVau7/UeEuJ6EwLVjEpBKcy34WV9Ge/F
+         hKZA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5yGagjgEj0cNZBJhE9Qn2FvWz5SyZufpn6GJgV/JbvGUSVeAdEG63YAeiHWu866Urx+5RCv9RN0pysp6Q@vger.kernel.org, AJvYcCVjb3IwUEMDC86uIm0FzlC1F6V4DaK25mugFhMz86HcYJsoNAzn8N5aVBFSfQ1hjA5NE5jfcD8sRZg6@vger.kernel.org
+X-Gm-Message-State: AOJu0YyAxDfiG/MKDOHbhAmhz9WtWbnHC6d8auSURHUCSmY3IEQ7saKF
+	h8xpqt+xiN6QlRXXcDMYjElktDlHolQsEOgt3g7BdKg4zyqgKOYXgO9t3etnvzA=
+X-Google-Smtp-Source: AGHT+IFwosWHDVDQPaNJXu6SqgIW2hc97AIds79XDtrlPuXSsndWi4516qEoetwy2UNDg23syC0iPQ==
+X-Received: by 2002:a05:6512:33c8:b0:539:964c:16d4 with SMTP id 2adb3069b0e04-539a0685066mr4627881e87.36.1727968873506;
+        Thu, 03 Oct 2024 08:21:13 -0700 (PDT)
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539a82974e7sm197636e87.163.2024.10.03.08.21.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 08:19:30 -0700 (PDT)
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2fac5eb10ceso11298251fa.1;
-        Thu, 03 Oct 2024 08:19:30 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWDsS4j6MYglqNNJMDMUGL8R/AyzR0jWUyVuvtI+b5n4vXPxoYj4D0sPkpkQPxZ6sagappSX1H1kNecPODR@vger.kernel.org, AJvYcCXRPNvxY4NYBsRo29Nz60XTcPmDDAq2M9Nzn46rD39EcrKVO6uXEZF+Yrp1j0lAHR2JeksIhB53izeg@vger.kernel.org
-X-Received: by 2002:a2e:a552:0:b0:2f7:5900:1a37 with SMTP id
- 38308e7fff4ca-2faea25332amr11916321fa.17.1727968770274; Thu, 03 Oct 2024
- 08:19:30 -0700 (PDT)
+        Thu, 03 Oct 2024 08:21:13 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2fabd2c4ac0so13852971fa.1;
+        Thu, 03 Oct 2024 08:21:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUH4Xh0TE1F8VbU89Zuv8ehOqqoRZ3KXB5x7pCD4plXGgb7NUJI0197AZwlorkK4mBJVDKC+OLTGrc9@vger.kernel.org, AJvYcCWuITCC0S14Vy0sCclg0B40QOHQ/CmCDw9O+c/LQgcyiLzAizq8MkuUk18jElYzMMEuteuGq3dfyEcyglTn@vger.kernel.org
+X-Received: by 2002:a05:651c:2225:b0:2fa:d723:efba with SMTP id
+ 38308e7fff4ca-2fae1024579mr48127331fa.8.1727968872256; Thu, 03 Oct 2024
+ 08:21:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003111444.543964-1-andre.przywara@arm.com> <20241003111444.543964-4-andre.przywara@arm.com>
-In-Reply-To: <20241003111444.543964-4-andre.przywara@arm.com>
+References: <20241003111444.543964-1-andre.przywara@arm.com> <20241003111444.543964-5-andre.przywara@arm.com>
+In-Reply-To: <20241003111444.543964-5-andre.przywara@arm.com>
 Reply-To: wens@csie.org
 From: Chen-Yu Tsai <wens@csie.org>
-Date: Thu, 3 Oct 2024 23:19:16 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64c-KoCwzfXpPbyLtxgZbwoQ+e4uYAk7pcHCkrTRbfr3A@mail.gmail.com>
-Message-ID: <CAGb2v64c-KoCwzfXpPbyLtxgZbwoQ+e4uYAk7pcHCkrTRbfr3A@mail.gmail.com>
-Subject: Re: [PATCH 3/5] mfd: axp20x: Allow multiple regulators
+Date: Thu, 3 Oct 2024 23:20:58 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64jPk64Y-Aef1YPWkjCfp0eq6EasE2xszu8+WoX+Epv-A@mail.gmail.com>
+Message-ID: <CAGb2v64jPk64Y-Aef1YPWkjCfp0eq6EasE2xszu8+WoX+Epv-A@mail.gmail.com>
+Subject: Re: [PATCH 4/5] mfd: axp20x: Add support for AXP323
 To: Andre Przywara <andre.przywara@arm.com>
 Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -85,66 +85,144 @@ Content-Transfer-Encoding: quoted-printable
 On Thu, Oct 3, 2024 at 7:15=E2=80=AFPM Andre Przywara <andre.przywara@arm.c=
 om> wrote:
 >
-> At the moment trying to register a second AXP chip makes the probe fail,
-> as some sysfs registration fails due to a duplicate name:
+> The X-Powers AXP323 is a very close sibling of the AXP313A. The only
+> difference seems to be the ability to dual-phase the first two DC/DC
+> converter, which adds another register.
 >
-> ...
-> [    3.688215] axp20x-i2c 0-0035: AXP20X driver loaded
-> [    3.695610] axp20x-i2c 0-0036: AXP20x variant AXP323 found
-> [    3.706151] sysfs: cannot create duplicate filename '/bus/platform/dev=
-ices/axp20x-regulator'
-> [    3.714718] CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.12.0-rc=
-1-00026-g50bf2e2c079d-dirty #192
-> [    3.724020] Hardware name: Avaota A1 (DT)
-> [    3.728029] Call trace:
-> [    3.730477]  dump_backtrace+0x94/0xec
-> [    3.734146]  show_stack+0x18/0x24
-> [    3.737462]  dump_stack_lvl+0x80/0xf4
-> [    3.741128]  dump_stack+0x18/0x24
-> [    3.744444]  sysfs_warn_dup+0x64/0x80
-> [    3.748109]  sysfs_do_create_link_sd+0xf0/0xf8
-> [    3.752553]  sysfs_create_link+0x20/0x40
-> [    3.756476]  bus_add_device+0x64/0x104
-> [    3.760229]  device_add+0x310/0x760
-> [    3.763717]  platform_device_add+0x10c/0x238
-> [    3.767990]  mfd_add_device+0x4ec/0x5c8
-> [    3.771829]  mfd_add_devices+0x88/0x11c
-> [    3.775666]  axp20x_device_probe+0x70/0x184
-> [    3.779851]  axp20x_i2c_probe+0x9c/0xd8
-> ...
+> Add the required boilerplate to introduce a new PMIC to the AXP MFD
+> driver. Where possible, this just maps into the existing structs defined
+> for the AXP313A, only deviating where needed.
 >
-> This is because we use PLATFORM_DEVID_NONE for the mfd_add_devices()
-> call, which would number the child devices in the same 0-based way, even
-> for the second (or any other) instance.
->
-> Use PLATFORM_DEVID_AUTO instead, which automatically assigns
-> non-conflicting device numbers.
-
-That's weird... I don't remember running into this when working on the A80,
-which had two albeit different AXP chips. That was a long time ago though.
-
 > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> ---
+>  drivers/mfd/axp20x-i2c.c   |  1 +
+>  drivers/mfd/axp20x.c       | 26 ++++++++++++++++++++++++++
+>  include/linux/mfd/axp20x.h |  2 ++
+>  3 files changed, 29 insertions(+)
+>
+> diff --git a/drivers/mfd/axp20x-i2c.c b/drivers/mfd/axp20x-i2c.c
+> index 791a0b4cb64b..5c93136f977e 100644
+> --- a/drivers/mfd/axp20x-i2c.c
+> +++ b/drivers/mfd/axp20x-i2c.c
+> @@ -65,6 +65,7 @@ static const struct of_device_id axp20x_i2c_of_match[] =
+=3D {
+>         { .compatible =3D "x-powers,axp221", .data =3D (void *)AXP221_ID =
+},
+>         { .compatible =3D "x-powers,axp223", .data =3D (void *)AXP223_ID =
+},
+>         { .compatible =3D "x-powers,axp313a", .data =3D (void *)AXP313A_I=
+D },
+> +       { .compatible =3D "x-powers,axp323", .data =3D (void *)AXP323_ID =
+},
+>         { .compatible =3D "x-powers,axp717", .data =3D (void *)AXP717_ID =
+},
+>         { .compatible =3D "x-powers,axp803", .data =3D (void *)AXP803_ID =
+},
+>         { .compatible =3D "x-powers,axp806", .data =3D (void *)AXP806_ID =
+},
+> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
+> index bc08ae433260..8d90962b56d9 100644
+> --- a/drivers/mfd/axp20x.c
+> +++ b/drivers/mfd/axp20x.c
+> @@ -42,6 +42,7 @@ static const char * const axp20x_model_names[] =3D {
+>         [AXP223_ID] =3D "AXP223",
+>         [AXP288_ID] =3D "AXP288",
+>         [AXP313A_ID] =3D "AXP313a",
+> +       [AXP323_ID] =3D "AXP323",
+>         [AXP717_ID] =3D "AXP717",
+>         [AXP803_ID] =3D "AXP803",
+>         [AXP806_ID] =3D "AXP806",
+> @@ -193,6 +194,10 @@ static const struct regmap_range axp313a_writeable_r=
+anges[] =3D {
+>         regmap_reg_range(AXP313A_ON_INDICATE, AXP313A_IRQ_STATE),
+>  };
+>
+> +static const struct regmap_range axp323_writeable_ranges[] =3D {
+> +       regmap_reg_range(AXP313A_ON_INDICATE, AXP323_DCDC_MODE_CTRL2),
+> +};
+> +
+>  static const struct regmap_range axp313a_volatile_ranges[] =3D {
+>         regmap_reg_range(AXP313A_SHUTDOWN_CTRL, AXP313A_SHUTDOWN_CTRL),
+>         regmap_reg_range(AXP313A_IRQ_STATE, AXP313A_IRQ_STATE),
+> @@ -203,6 +208,11 @@ static const struct regmap_access_table axp313a_writ=
+eable_table =3D {
+>         .n_yes_ranges =3D ARRAY_SIZE(axp313a_writeable_ranges),
+>  };
+>
+> +static const struct regmap_access_table axp323_writeable_table =3D {
+> +       .yes_ranges =3D axp323_writeable_ranges,
+> +       .n_yes_ranges =3D ARRAY_SIZE(axp323_writeable_ranges),
+> +};
+> +
+>  static const struct regmap_access_table axp313a_volatile_table =3D {
+>         .yes_ranges =3D axp313a_volatile_ranges,
+>         .n_yes_ranges =3D ARRAY_SIZE(axp313a_volatile_ranges),
+> @@ -433,6 +443,15 @@ static const struct regmap_config axp313a_regmap_con=
+fig =3D {
+>         .cache_type =3D REGCACHE_MAPLE,
+>  };
+>
+> +static const struct regmap_config axp323_regmap_config =3D {
+> +       .reg_bits =3D 8,
+> +       .val_bits =3D 8,
+> +       .wr_table =3D &axp323_writeable_table,
+> +       .volatile_table =3D &axp313a_volatile_table,
+> +       .max_register =3D AXP323_DCDC_MODE_CTRL2,
+> +       .cache_type =3D REGCACHE_RBTREE,
+
+Maple tree instead?
+
+The rest looks fine, so once fixed,
 
 Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
-> ---
->  drivers/mfd/axp20x.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> +};
+> +
+>  static const struct regmap_config axp717_regmap_config =3D {
+>         .reg_bits =3D 8,
+>         .val_bits =3D 8,
+> @@ -1221,6 +1240,7 @@ static int axp20x_power_off(struct sys_off_data *da=
+ta)
+>         unsigned int shutdown_reg;
 >
-> diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-> index 5ceea359289f..bc08ae433260 100644
-> --- a/drivers/mfd/axp20x.c
-> +++ b/drivers/mfd/axp20x.c
-> @@ -1419,7 +1419,7 @@ int axp20x_device_probe(struct axp20x_dev *axp20x)
->                 }
->         }
+>         switch (axp20x->variant) {
+> +       case AXP323_ID:
+>         case AXP313A_ID:
+>                 shutdown_reg =3D AXP313A_SHUTDOWN_CTRL;
+>                 break;
+> @@ -1289,6 +1309,12 @@ int axp20x_match_device(struct axp20x_dev *axp20x)
+>                 axp20x->regmap_cfg =3D &axp313a_regmap_config;
+>                 axp20x->regmap_irq_chip =3D &axp313a_regmap_irq_chip;
+>                 break;
+> +       case AXP323_ID:
+> +               axp20x->nr_cells =3D ARRAY_SIZE(axp313a_cells);
+> +               axp20x->cells =3D axp313a_cells;
+> +               axp20x->regmap_cfg =3D &axp323_regmap_config;
+> +               axp20x->regmap_irq_chip =3D &axp313a_regmap_irq_chip;
+> +               break;
+>         case AXP717_ID:
+>                 axp20x->nr_cells =3D ARRAY_SIZE(axp717_cells);
+>                 axp20x->cells =3D axp717_cells;
+> diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
+> index 79ecaaaa2070..c3df0e615fbf 100644
+> --- a/include/linux/mfd/axp20x.h
+> +++ b/include/linux/mfd/axp20x.h
+> @@ -19,6 +19,7 @@ enum axp20x_variants {
+>         AXP223_ID,
+>         AXP288_ID,
+>         AXP313A_ID,
+> +       AXP323_ID,
+>         AXP717_ID,
+>         AXP803_ID,
+>         AXP806_ID,
+> @@ -113,6 +114,7 @@ enum axp20x_variants {
+>  #define AXP313A_SHUTDOWN_CTRL          0x1a
+>  #define AXP313A_IRQ_EN                 0x20
+>  #define AXP313A_IRQ_STATE              0x21
+> +#define AXP323_DCDC_MODE_CTRL2         0x22
 >
-> -       ret =3D mfd_add_devices(axp20x->dev, -1, axp20x->cells,
-> +       ret =3D mfd_add_devices(axp20x->dev, PLATFORM_DEVID_AUTO, axp20x-=
->cells,
->                               axp20x->nr_cells, NULL, 0, NULL);
->
->         if (ret) {
+>  #define AXP717_ON_INDICATE             0x00
+>  #define AXP717_PMU_STATUS_2            0x01
 > --
 > 2.25.1
 >
