@@ -1,168 +1,96 @@
-Return-Path: <devicetree+bounces-107547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED5798EEF0
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:17:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B0398EF18
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:21:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 880E1283758
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:17:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FF661F21C10
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:21:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3EA17ADE2;
-	Thu,  3 Oct 2024 12:17:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55F2D16F8EB;
+	Thu,  3 Oct 2024 12:20:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="S4pb+mbP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="H4FgrxZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09991176242;
-	Thu,  3 Oct 2024 12:17:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20071155A21;
+	Thu,  3 Oct 2024 12:20:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727957835; cv=none; b=RobcRA2vM4vZGx5K21pBtVQkmkLC2GEPvHczop0lZwXFlbUX4EWkQDChxNslDFmGpAQPnxibLoYZclycJy63d3DFV0yLO4eJoETAp3RJJP91GYIYs3DqpV7XFlPmUfkmnmTPdGVSt1ZUlChg4G0GObPOzk+SQEsMGlvLJSB6sp0=
+	t=1727958058; cv=none; b=j3XuBXMnY8x7jfylWPvJDcJW3K5qavJu1ECDj1YnDp34KCXE/Y9tdceQNV+LWKBjzEmL/RGN3VHJ68FPlRL6utUEbu0DjN9OJh+IbmMm8hwhLSQTsQteJK6CJYbYKd0A1Ei/q9hEiZmxmSQ9gRNFjVws/ZBRbuyrHefLNGen34w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727957835; c=relaxed/simple;
-	bh=R7pBcT90Zgbb+g9bFEE6La+M3EIlNlWLWdOOepGk+S8=;
+	s=arc-20240116; t=1727958058; c=relaxed/simple;
+	bh=Pf0+TU0f00yp9qWjNLSXwb+armxPLekuoPDpZwMlAbU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rBZurily1174c2fMpbiHzN2Ju6V9KNan/ErzLiukwyOp6YbUkaHi3cBQHovDYUD98NNROJr9GlBhKhF4OZTMKJV+HuRIQH2BeRxyXN4pOqScNLwXO7ZwCZlm9/1eZHfiNYGHd9ptsh8LFiPYAdZ7xIL5ZxSR//VQgbdLKNWtb3s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=S4pb+mbP; arc=none smtp.client-ip=192.198.163.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727957834; x=1759493834;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=R7pBcT90Zgbb+g9bFEE6La+M3EIlNlWLWdOOepGk+S8=;
-  b=S4pb+mbPG+gt9WfChrqbLLk92R1Clzarr43TvQmPf3u+s0FmvoQ5apv3
-   /qeHB2emPr1nv6cjyUM4DzCxINfF1mUglJhl0+pMmZ9BGUW7EKQuOEJ5o
-   zl+mA1SRjGFZQjL9OuoZrYROgm8gLtGXM8eidMz+H+1PAnRWpZ1rgoqRf
-   la7zBwdH8XcXXL1ZNVc9nJVd7ynhtCP8cmB1XkcMFWwx+R5ATWaisVr1E
-   k6XhKNk7dCD9SjxY3cZ+tkutoQbqT4QuaRReTOEG5+yYGglGY5FEtzy8f
-   O+VgFQYDcD8BwKr83F5XMLClfPut/mWmXFKHBaMsKdMv8CbqmrtZPTCTH
-   A==;
-X-CSE-ConnectionGUID: cHdJ/TJfQXixyHHra3O0MA==
-X-CSE-MsgGUID: r/JLvBXjRRanv2dQngy64g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="38506455"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="38506455"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 05:17:13 -0700
-X-CSE-ConnectionGUID: /5fk+eQkTCi+8fw0TOQDCA==
-X-CSE-MsgGUID: aKlkrb7VSzer62snBipiGA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="79296375"
-Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
-  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 05:17:11 -0700
-Received: from kekkonen.localdomain (localhost [127.0.0.1])
-	by kekkonen.fi.intel.com (Postfix) with ESMTP id 9B27811F83B;
-	Thu,  3 Oct 2024 15:17:07 +0300 (EEST)
-Date: Thu, 3 Oct 2024 12:17:07 +0000
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-From: Sakari Ailus <sakari.ailus@linux.intel.com>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Jason Chen <jason.z.chen@intel.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Sergey Senozhatsky <senozhatsky@chromium.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] media: dt-bindings: Add OmniVision OV08X40
-Message-ID: <Zv6LQ0q2XVHgUohh@kekkonen.localdomain>
-References: <20241002-b4-master-24-11-25-ov08x40-v3-0-483bcdcf8886@linaro.org>
- <20241002-b4-master-24-11-25-ov08x40-v3-2-483bcdcf8886@linaro.org>
- <t4fajppdqagkl7wr2krcucsga4zocz6liar64odk2mnasdyfms@5fp7bfwalson>
- <a86d05c3-5151-4161-8612-58894b1d0203@linaro.org>
- <8554d372-18cb-4351-a5ab-894be09c613b@linaro.org>
- <e8142566-aef5-498e-9d2d-8ac187ce8524@kernel.org>
- <c86f695f-28e2-406d-9f46-c291fca282e4@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IhREeQgLpCABEY++r7qiBLFojCiaqDtJ3snduH3uZDbYTR8nya0WNBJVIZ6HnsZcYu6ujju+RUCLZLnusZ+3gjeFBY4tmD+xHh1497GQ62XWHY6q+Z99x/yS+Q93WEA/mV0txbYh5auyxvVbcAAlhIt/kLfMlgwHsPN1iMp74j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=H4FgrxZE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CCCBC4CEC5;
+	Thu,  3 Oct 2024 12:20:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727958057;
+	bh=Pf0+TU0f00yp9qWjNLSXwb+armxPLekuoPDpZwMlAbU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=H4FgrxZEgU3kWjhmgdHrOtlgKcYXTXghBdWGkzxNjk6OIJqt+Pe476dPs11yGTjuu
+	 0tu4/7ntUBgEvNs/JFtoiW35MsWnsi8kQr4KHsDA456buueTqDWkgAZsZUY3liCQKc
+	 /BCml7jgM62ad7O21bW94xZjnyle2r22HOE6qDJRHqfLY4gRK21bIpI2Fit2TalhVK
+	 FwyO44A2clQQsnz4cn2TP/7wiFyiEbFw5NlkUtSFpIZe270R61Ap3plvZa6+UGriDr
+	 BpoXbJhQxBegfUYXZLxoBUF14TPA+cgkCe9nDa/I6Sm/Pnehfo96yFDD9ogZFcB2Vb
+	 OsYGVU6G2zRcw==
+Date: Thu, 3 Oct 2024 14:20:54 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Ryan Chen <ryan_chen@aspeedtech.com>, 
+	"brendan.higgins@linux.dev" <brendan.higgins@linux.dev>, "benh@kernel.crashing.org" <benh@kernel.crashing.org>, 
+	"joel@jms.id.au" <joel@jms.id.au>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>, 
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v14 0/3] Add ASPEED AST2600 I2Cv2 controller driver
+Message-ID: <dun5dterlkikft4p2yuuebb2e4nyzed7xeofmeivzldeardhmf@kzv3iokk6cxn>
+References: <20241002070213.1165263-1-ryan_chen@aspeedtech.com>
+ <Zv1aOedi9xl2mg9b@smile.fi.intel.com>
+ <SI6PR06MB75359904E108D7D0CC89A329F2712@SI6PR06MB7535.apcprd06.prod.outlook.com>
+ <Zv5u1gTK9yug7rbK@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <c86f695f-28e2-406d-9f46-c291fca282e4@linaro.org>
+In-Reply-To: <Zv5u1gTK9yug7rbK@smile.fi.intel.com>
 
-Hi Bryan, Krzysztof,
+Hi,
 
-On Thu, Oct 03, 2024 at 12:54:41PM +0100, Bryan O'Donoghue wrote:
-> On 03/10/2024 11:17, Krzysztof Kozlowski wrote:
-> > On 03/10/2024 10:38, Bryan O'Donoghue wrote:
-> > > On 03/10/2024 09:33, Bryan O'Donoghue wrote:
-> > > > On 03/10/2024 09:29, Krzysztof Kozlowski wrote:
-> > > > > On Wed, Oct 02, 2024 at 02:58:44PM +0100, Bryan O'Donoghue wrote:
-> > > > > > +        properties:
-> > > > > > +          data-lanes:
-> > > > > > +            oneOf:
-> > > > > > +              - items:
-> > > > > > +                  - const: 1
-> > > > > > +                  - const: 2
-> > > > > > +              - items:
-> > > > > > +                  - const: 1
-> > > > > > +                  - const: 2
-> > > > > > +                  - const: 3
-> > > > > > +                  - const: 4
-> > > > > > +
-> > > > > > +          link-frequencies: true
-> > > > > 
-> > > > > Not much changed here and you did not continued discussion about it.
-> > > > > 
-> > > > > Best regards,
-> > > > > Krzysztof
-> > > > > 
-> > > > 
-> > > > Ah my mistake, I didn't read the bit at the bottom of your email
-> > > 
-> > > I'll do this
-> > > 
-> > > Documentation/devicetree/bindings/media/i2c/thine,thp7312.yaml
-> > > 
-> > >             data-lanes:
-> > >               description:
-> > >                 This property is for lane reordering between the THP7312
-> > >                 and the SoC. The sensor supports either two-lane, or
-> > >                 four-lane operation.
-> > >                 If this property is omitted four-lane operation is
-> > >                 assumed. For two-lane operation the property must be
-> > >                 set to <1 2>.
-> > >               minItems: 2
-> > >               maxItems: 4
-> > >               items:
-> > >                 maximum: 4
-> > > 
-> > > This captures what I'm after.
-> > 
-> > I commented on link-frequencies.
-> > 
-> > Best regards,
-> > Krzysztof
-> > 
+On Thu, Oct 03, 2024 at 01:15:50PM GMT, Andy Shevchenko wrote:
+> On Thu, Oct 03, 2024 at 03:41:57AM +0000, Ryan Chen wrote:
+> > > On Wed, Oct 02, 2024 at 03:02:10PM +0800, Ryan Chen wrote:
 > 
-> Ah I understand you.
+> ...
 > 
-> You're saying the link-frequencies we have in
-> Documentation/devicetree/bindings/media/i2c/* are redundant absent hardware
-> specific link frequencies being enumerated.
+> > > Is it possible to switch to new terminology wherever it's possible?
+> > > I.e. master --> controller, slave --> target. See, for example, f872d28500bd
+> > > ("i2c: uniphier-f: reword according to newest specification").
+> > > 
+> > Just for cover latter? Or I should modify for each patches commit message?
+> > Or entire i2c driver statement need switch to target?
 > 
-> I'll either enumerate the acceptable set or drop this.
+> I believe everywhere, where it applies: driver code, comments, documentation,
+> commit messages...
 
-link-frequencies should remain mandatory in bindings, whether there are
-hardware specific limits in bindings or not.
-<URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera-sensor.html#handling-clocks>
+If the datasheet refers to a register, state, or any other
+hardware property as master/slave, we should retain the
+master/slave terminology. Otherwise, we should follow the i2c and
+smbus specifications and use controller/target.
 
--- 
-Kind regards,
-
-Sakari Ailus
+Andi
 
