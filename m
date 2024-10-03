@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-107438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9B4698EB35
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:14:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0920098EB38
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:14:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C4FD1F2333F
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAF35284C88
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:14:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B999913AD32;
-	Thu,  3 Oct 2024 08:14:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE15013D278;
+	Thu,  3 Oct 2024 08:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ch+LU498"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QFLInN7m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F06A613AD0F
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 08:14:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC28E13B280
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 08:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727943273; cv=none; b=uDOCwRe0inktQOXkJp8iAmPkrRLlMkJOW5K7r8+EHO3c1IL7UN3y+URrWG3b+8t25IZmLAd4GgPKjFCfDokhIuM4jdB1vaHKUEAy+Zd4hFeqFtaDMBOC20RYtiTlmcv69UiIEFN0j1Tx6iXWgwEac+CoL2wzGxxfRuiWsqFJqhk=
+	t=1727943275; cv=none; b=hIXx47z62GS+1VqNO9GMSpmAZH7wjijOiDDsC6/I+Kx9I0CL330mjqVkP9q6xNS8r83o3ULlKeOCUs6z5lTVKXkkj81/ZCbKUp8BErnFEh62mutMsU/qu1i/a9dVsvn4CGaQHSD8+tuI8/OWgqgu0hpcoGES/68nLSVP2WEF/gk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727943273; c=relaxed/simple;
-	bh=DhsL+XpaZovnfsrfiPwX/hOfQu/Ru2Ru+lnm2TcM++0=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mrEumRVhNEbG3G2oCap0f1nho8yKakkeRlzmM78TGW/tnsyv5vvIOAUB2uN+H4pspl2aaZJJdNo62nZVQdaglWgygfuIWJahI/H5lhdOd9mBbieINevHAR0HFwzKqKYLyDK+e5rIh5a1X5uTq9HbTw5G8A8tEI9jewgLva+PBYw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ch+LU498; arc=none smtp.client-ip=209.85.128.51
+	s=arc-20240116; t=1727943275; c=relaxed/simple;
+	bh=I5gkxxh+/Kn7rSd5JE9ZVp0kaBODXFkfmbSKaf1DYHc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=aBpKlNrUWRvjqelpe+B9/ViZcrv4uiQ2PlNBEHyo6PysLCeadzM379fbzkNwHVvrpswHk9evAfGMufa1sMrcki9/cxiXN3qrtR68+WMspyzdwqqjC9dtysKCpC5kA7upywwazIXQq0v88NJHX+ZSYtWNsb303WRX7NGUsgEPs/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QFLInN7m; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-42cddc969daso1014865e9.1
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 01:14:31 -0700 (PDT)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-42ee66c2c49so1027095e9.0
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 01:14:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727943270; x=1728548070; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vSEcLxbQ1rrHMFIK/V70J+zruVP09R5iUL/h7LGL//Y=;
-        b=ch+LU498NPxO8x8yU93eOxvHsUajavo9W7rqz9Yf2+jE7rCluwTPCIu2pr/D8W6wbj
-         Yrgz6v3GIAR/nDiMaPzGRE2/Qk/2LX1InVXtNEtgYVzTtGCaRbjHCLei/up/Dsy6BoE5
-         0epVlp1Uf1gZyckkLLoBB3ajYrtuhGLIfOs5zetVx/Kk4KKR83vOYX2jgMBdcbvuYeGl
-         8MVgIhi2LwwpyQSbDi3ghM9j5P4dJV35U5tumGwJsxA5z5DTly8faMsCTfqXk1a2baRA
-         yywO2yo5YArM+tLwZlbSZgr6SZUHYnZzRtmasmgC4g8pR7RSE8l26/g0pBGGuMFD9Tga
-         2y7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727943270; x=1728548070;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1727943272; x=1728548072; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vSEcLxbQ1rrHMFIK/V70J+zruVP09R5iUL/h7LGL//Y=;
-        b=LTXC9UIeHJwjju0nQV2CRz7pLglbjK1rHCqMMhHDGMFox8W1JfobTHgn5i0uT3WqGx
-         jcIChRYkjOWTiLUTyo1cFhITz5H4qk2DFEWNX6b6+67HLymtUohr90WceXXU2hbIx+je
-         Woo9AV5tKI+aY4jF5MLu3nvHQArNxcYjmJ/Lv4tOsPjbTqXU3Re6rZiG2HGNaD4bob4f
-         /CMKeh8ZDYiLXvqk/u6unqJxk4vzhttt1P58o6uu/MVJpbFvd/RDFpDUtuaWljk9PRVc
-         PaSfogqqylvUtwjPt/FfMfv0N2BhVFrw4NJcag0coOV/v5/5oD68lc3wvslVEvfDddyY
-         fBZw==
-X-Forwarded-Encrypted: i=1; AJvYcCX7aRqWosB9l7MA/+jLD2xAO+P/LxbUg1C4epMJe9tuuEn+cRu6zhPXViD5hZe0woJhHDhPdONu2SHC@vger.kernel.org
-X-Gm-Message-State: AOJu0YxX3VOQKEgjhooDJhnW9PipOCDqEQ6F+mln1InXeLmj/fF01k7t
-	u7GcEX6sPukF5BOhm/iXQ66ZK1lPxKuC6IrFRqXyf2lJZRnv95EAE9No8UQODP4=
-X-Google-Smtp-Source: AGHT+IH7t9y7v6imgHnd/sgCeFjFKtQdV6hpExhaAY/b/kJTtO2vgSpQdJmCamy8wnoMaUKMuCuBSQ==
-X-Received: by 2002:a05:6000:1567:b0:378:c6f5:9e61 with SMTP id ffacd0b85a97d-37cfb8b62ecmr1938691f8f.2.1727943270207;
-        Thu, 03 Oct 2024 01:14:30 -0700 (PDT)
+        bh=UHrfObhoXZxOjnZcmfI2vEOVJIbBll+cRB8dRqaKEJs=;
+        b=QFLInN7mDPxZ76Y+DBfNKyYAwLcqBTwBfTF0ESMF/3HEzU6TFDo+PRi+u1RcGJ3oOD
+         dXBNFPwT860Q4yskSJ2RsjMqpGEoElAb/cDgTDjJ6wyvveU2g2VMeH/y1HT8bg1OZPTy
+         8ZiG+IeEDAIUDHKS+Il9T2b/DUOP78vmxmcAPv/7zu2PVaiz3aCllkMIHAf0J/JVht55
+         1aKXgTQfCaJjPhID2q2qCAbR0oozS9dHUbsG/9MTnoZ2U89wmtWVE7nrvj5ILILcR1zB
+         5mFfWxbgDelegfrkXoWjeYaLxZ3SAPzPli0pEiB4ExwCjUM99TfQHUPXA248fmV0CX6J
+         RHsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727943272; x=1728548072;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UHrfObhoXZxOjnZcmfI2vEOVJIbBll+cRB8dRqaKEJs=;
+        b=kp7aq5yzrNCtU1c/X7mFDzlfrhaZeN+v8iXBzdCg+lK9qfMTXi00Xu3vK80aYFZZM7
+         R+U/H4NjwJPoM+2KGzDjD3oOIgWvCyQUIydk8IYWhnfrz4uAdUMP/kxylG8G1EevDJ3/
+         afmBtE4RQ4kPyAd2iOWx2xzklODTjgP2jn145Ip4S9qcvdivOaoZra46OG1Jdprs+3PF
+         Mqs1Lew8NJpUs7UY2ELeuHs+5IxfGY2/M+qHw9Dj02ts59bDmylQjB8AV87bX/8t+rOz
+         B96Nu5WntXZJMVQ0C5fwHiUTBFRtfmhhrdp8ld36UUeKPXGBsyD82wkeoFB5be4Ec7uD
+         nyKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUw67IKmip/49ON2Zt6fa4JxXMLeXXfAopWmbcqMHJw+KU9hNFZRoOQz0a4cqCyMNkRDbIG84zTA7Dt@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFX7xr4g7NSGGNBDjHUShtS9272U8eKQprI2lA0lJkZKaN0y5w
+	ErdrC/3FPNYXAupWUshBq5VDQwCLPP9+JzTyYRxXwwFKvFenscdTVu79IgtVgbI=
+X-Google-Smtp-Source: AGHT+IHMjRyVUMPEi+gSZ/24bRWlnva5QunmQXCmdsDcU6Mhxs+a79NfsNMAh1FZ1Yq85tIJ65W/ig==
+X-Received: by 2002:a05:6000:1ac6:b0:374:c962:a18a with SMTP id ffacd0b85a97d-37cfb8d068fmr2143166f8f.4.1727943271910;
+        Thu, 03 Oct 2024 01:14:31 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d082d230dsm702027f8f.94.2024.10.03.01.14.28
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d082d230dsm702027f8f.94.2024.10.03.01.14.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 01:14:29 -0700 (PDT)
+        Thu, 03 Oct 2024 01:14:31 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 0/5] dt-bindings: display/msm: dpu: merge bindings
-Date: Thu, 03 Oct 2024 10:14:17 +0200
-Message-Id: <20241003-dt-binding-display-msm-merge-v1-0-91ab08fc76a2@linaro.org>
+Date: Thu, 03 Oct 2024 10:14:18 +0200
+Subject: [PATCH 1/5] dt-bindings: display/msm: merge SC8280XP DPU into
+ SC7280
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,9 +79,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAFlS/mYC/x3MwQqDMAyA4VeRnA20qezgq8gOusQaWDtpRDaK7
- 77i8YOfv4JJUTEYuwpFTjX95Abfd/Da5hwFlZuBHA3euYB84KKZNUdktf09/zBZwiSltbxScEI
- P9gNBW+xFVv3e++l5XX8MLoyvbgAAAA==
+Message-Id: <20241003-dt-binding-display-msm-merge-v1-1-91ab08fc76a2@linaro.org>
+References: <20241003-dt-binding-display-msm-merge-v1-0-91ab08fc76a2@linaro.org>
+In-Reply-To: <20241003-dt-binding-display-msm-merge-v1-0-91ab08fc76a2@linaro.org>
 To: Rob Clark <robdclark@gmail.com>, 
  Abhinav Kumar <quic_abhinavk@quicinc.com>, 
  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
@@ -96,53 +98,188 @@ Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1306;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5123;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=DhsL+XpaZovnfsrfiPwX/hOfQu/Ru2Ru+lnm2TcM++0=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm/lJbfSn7GKpNe1OQyR16C3C0pTXS1ma7JYfjU
- mP0Xvg7RliJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZv5SWwAKCRDBN2bmhouD
- 1w8BD/4m+wJzud/U+Uq714fJwyJ48d/HyKIewSyrvLWZY818t0S4ivQR1u5iUIyq+ZM29xJezqC
- drnIO2JBH5zO2KP+kSE2eAlYpDkSpSnH7dgscrmefiy/A8P3SjuH64/3Ss/ixvpmkTnp7GfU5tB
- sXIcALKxfnpVeKP4L6Zo/5Fpi7CY3+gnxqQvRO9OnXJRyRhzHgZzkJe/gnpHYetI8MI2lAV2PIj
- ulv5dWOUcjmt0nUS8X09S/TZCfcEhVr0rQGJh9kOPfT+5jKUiHFP1cIrY4GqxJdE+klliyW1tYj
- w+VAEyG8ms6eOuxowKaN+jD3fuQM32+QiG16Gmtixoutvp74MTtXM7g8GPqevcNEK/r11Ue9GLV
- R24F+L+KI/rjDo3l8T7/u4zbtjIYimjWViR86f5BCOqmZHB+kwYS3qD0jEgOphNE/ow2eEMiLgX
- y0uzs8WLTzJCykbEEIh0PY7x1GEkZzc/ncrbbnTX4r2GjK+lM0C//tda4Dx87eWPZ48z6kvnS7O
- mDn4aRHyJoF1fiXlZkwxLYCrity1kUO5L39BOHb2QH86hXW2tmWD6Lr4Cz1HoI7V2fqU+xfDYf/
- hsLYNmaF7UAroxqqrxyae6shRRL0lZavzSwQJgAN7P5ImyS1iP6NnTbL2RbIf6aziS7IPXSHs02
- sq9dwezs7wUda2g==
+ bh=I5gkxxh+/Kn7rSd5JE9ZVp0kaBODXFkfmbSKaf1DYHc=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm/lJgpCz5PczWvVC4MOIIKhlQ6KLXaZenlrYJI
+ drKKpzFNpOJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZv5SYAAKCRDBN2bmhouD
+ 10fcD/4547yeLqXfKNqq/CjO1tHYFMiWiDA6JArchwq/G4NWZyVC+Xq8hEdf7u3a7ycQb0rs3cL
+ 0huBzw5X9Ufag9yLBEM3iS8noXXPgJuWSh/WqX8DTWpOvg1E3Bu8+w55lf/zy8GuUqGF4h1o7W0
+ qOmxHVECt5X4Ny+VxP5b6kxsezf4wUbVipwfW45ykmdqijK6D2qgrfF2CZMB+/aOZkVnUdavGtJ
+ gjMIYp5Pf/r9uGsCitHgUB0rULcJEippVF59cFhZdGD9ESFbSuuyS/CdaFmO9bmN3mPq/7UpD+i
+ kA8s7BwUumRlLjkhjAnSfC1+sg6vJln4nvp84XpySm80dTf6rRC8D3zfBlk2leVrq+eKr/4r8bF
+ 7x/I6rPiTHgPRHpsiwiVyR9BpzxnmvjQeCjlCHlGxW3Db+O3bbP6xvezxKYnHd6DTWm9ydIlNrU
+ UpONUCnuUvGy/SGhA6la9MlpRTcPlVCywjDAWVXW+U9ninUzNQqctGNSigCb9sgcp/oQEhgdrbG
+ XShEwlMGR1T1Co9HkghLDyQVMIqNGSc7htte0RjHVWqQadeLFyE/O+o2yA98PTrhN/PKR0A8Zj3
+ DNK0MrBAfS0fTQlkz0RNU2LrYSvNF51+fkpAQexMN5NMDH6zif5WdABJIKysAlQllhnMYh/63wo
+ KmkfVBAKxFOlbzA==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-In 2022 the bindings were split each device per file, but this makes
-not much sense.  Devices are the same in many cases, same clocks, same IO
-register space.
+Split of the bindings was artificial and not helping - we end up with
+multiple binding files for very similar devices thus increasing the
+chances of using different order of reg and clocks entries.
 
-Best regards,
-Krzysztof
+Unify DPU bindings of SC7280 and SC8280XP, because they are the same.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-Krzysztof Kozlowski (5):
-      dt-bindings: display/msm: merge SC8280XP DPU into SC7280
-      dt-bindings: display/msm: merge SM8250 DPU into SM8150
-      dt-bindings: display/msm: merge SM8350 DPU into SC7280
-      dt-bindings: display/msm: merge SM8450 DPU into SC7280
-      dt-bindings: display/msm: merge SM8550 DPU into SC7280
+ .../bindings/display/msm/qcom,sc7280-dpu.yaml      |   5 +-
+ .../bindings/display/msm/qcom,sc8280xp-dpu.yaml    | 122 ---------------------
+ 2 files changed, 4 insertions(+), 123 deletions(-)
 
- .../bindings/display/msm/qcom,sc7280-dpu.yaml      |  10 +-
- .../bindings/display/msm/qcom,sc8280xp-dpu.yaml    | 122 ------------------
- .../bindings/display/msm/qcom,sm8150-dpu.yaml      |   4 +-
- .../bindings/display/msm/qcom,sm8250-dpu.yaml      |  99 ---------------
- .../bindings/display/msm/qcom,sm8350-dpu.yaml      | 120 ------------------
- .../bindings/display/msm/qcom,sm8450-dpu.yaml      | 139 ---------------------
- .../bindings/display/msm/qcom,sm8550-dpu.yaml      | 133 --------------------
- 7 files changed, 12 insertions(+), 615 deletions(-)
----
-base-commit: 77df9e4bb2224d8ffbddec04c333a9d7965dad6c
-change-id: 20241003-dt-binding-display-msm-merge-df230e26d142
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+index b0fbe86219d1..fab7a3b9a20e 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
+@@ -7,13 +7,16 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Display DPU on SC7280
+ 
+ maintainers:
++  - Bjorn Andersson <andersson@kernel.org>
+   - Krishna Manikandan <quic_mkrishn@quicinc.com>
+ 
+ $ref: /schemas/display/msm/dpu-common.yaml#
+ 
+ properties:
+   compatible:
+-    const: qcom,sc7280-dpu
++    enum:
++      - qcom,sc7280-dpu
++      - qcom,sc8280xp-dpu
+ 
+   reg:
+     items:
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
+deleted file mode 100644
+index d19e3bec4600..000000000000
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc8280xp-dpu.yaml
++++ /dev/null
+@@ -1,122 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/display/msm/qcom,sc8280xp-dpu.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: Qualcomm SC8280XP Display Processing Unit
+-
+-maintainers:
+-  - Bjorn Andersson <andersson@kernel.org>
+-
+-description:
+-  Device tree bindings for SC8280XP Display Processing Unit.
+-
+-$ref: /schemas/display/msm/dpu-common.yaml#
+-
+-properties:
+-  compatible:
+-    const: qcom,sc8280xp-dpu
+-
+-  reg:
+-    items:
+-      - description: Address offset and size for mdp register set
+-      - description: Address offset and size for vbif register set
+-
+-  reg-names:
+-    items:
+-      - const: mdp
+-      - const: vbif
+-
+-  clocks:
+-    items:
+-      - description: Display hf axi clock
+-      - description: Display sf axi clock
+-      - description: Display ahb clock
+-      - description: Display lut clock
+-      - description: Display core clock
+-      - description: Display vsync clock
+-
+-  clock-names:
+-    items:
+-      - const: bus
+-      - const: nrt_bus
+-      - const: iface
+-      - const: lut
+-      - const: core
+-      - const: vsync
+-
+-unevaluatedProperties: false
+-
+-examples:
+-  - |
+-    #include <dt-bindings/clock/qcom,dispcc-sc8280xp.h>
+-    #include <dt-bindings/clock/qcom,gcc-sc8280xp.h>
+-    #include <dt-bindings/interrupt-controller/arm-gic.h>
+-    #include <dt-bindings/interconnect/qcom,sc8280xp.h>
+-    #include <dt-bindings/power/qcom-rpmpd.h>
+-
+-    display-controller@ae01000 {
+-        compatible = "qcom,sc8280xp-dpu";
+-        reg = <0x0ae01000 0x8f000>,
+-              <0x0aeb0000 0x2008>;
+-        reg-names = "mdp", "vbif";
+-
+-        clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+-                 <&gcc GCC_DISP_SF_AXI_CLK>,
+-                 <&dispcc0 DISP_CC_MDSS_AHB_CLK>,
+-                 <&dispcc0 DISP_CC_MDSS_MDP_LUT_CLK>,
+-                 <&dispcc0 DISP_CC_MDSS_MDP_CLK>,
+-                 <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
+-        clock-names = "bus",
+-                      "nrt_bus",
+-                      "iface",
+-                      "lut",
+-                      "core",
+-                      "vsync";
+-
+-        assigned-clocks = <&dispcc0 DISP_CC_MDSS_MDP_CLK>,
+-                          <&dispcc0 DISP_CC_MDSS_VSYNC_CLK>;
+-        assigned-clock-rates = <460000000>,
+-                               <19200000>;
+-
+-        operating-points-v2 = <&mdp_opp_table>;
+-        power-domains = <&rpmhpd SC8280XP_MMCX>;
+-
+-        interrupt-parent = <&mdss0>;
+-        interrupts = <0>;
+-
+-        ports {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+-
+-            port@0 {
+-                reg = <0>;
+-                endpoint {
+-                    remote-endpoint = <&mdss0_dp0_in>;
+-                };
+-            };
+-
+-            port@4 {
+-                reg = <4>;
+-                endpoint {
+-                    remote-endpoint = <&mdss0_dp1_in>;
+-                };
+-            };
+-
+-            port@5 {
+-                reg = <5>;
+-                endpoint {
+-                    remote-endpoint = <&mdss0_dp3_in>;
+-                };
+-            };
+-
+-            port@6 {
+-                reg = <6>;
+-                endpoint {
+-                    remote-endpoint = <&mdss0_dp2_in>;
+-                };
+-            };
+-        };
+-    };
+-...
 
-Best regards,
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.43.0
 
 
