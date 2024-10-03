@@ -1,210 +1,212 @@
-Return-Path: <devicetree+bounces-107644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107645-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AAE0A98F7F7
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 22:21:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5D898F863
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 23:02:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEE951F228BB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 20:20:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 13B69281D15
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 21:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4338D12FB0A;
-	Thu,  3 Oct 2024 20:20:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D1271AC8A2;
+	Thu,  3 Oct 2024 21:01:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="uBSPxLfI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PM/4axmF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AAC964C8F
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 20:20:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAEF61AB506;
+	Thu,  3 Oct 2024 21:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727986854; cv=none; b=hF3yENpuARz1VCTbr5Q3An0Te0yq57Lmqeinviw/wLoV2Vzn4LjC9rq0xir7g+wk+yxoewq6RdNNSNKIzyO7oRExC4XvupL3tktoQbtXvYVbNz7gSrP8LWi2dWaoO9xxLtxFxgUvlSLYcEy9gzxrIllv+Iqb+ztWscuNHpsAU9Y=
+	t=1727989317; cv=none; b=nwKXd8F3qpqmrF/Ytnny3J86y0lwW5N3IBEqFml0MlbRcZvN7e9cFI5OMlZOCUj9/pStr0+bmqqsiAbvTA+v/+zSJP3dlnf/fvBxazh9L+NaQTciiT0a40xwYjowEClxr2DxrdQx9mK08j3BQvBAIGPnX0oy2yZWmIg9CEsW9iQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727986854; c=relaxed/simple;
-	bh=1HqA9KteN1D6noDY7oLA2qZ2y/puqFdmUd8RBWatglc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fj5aEiucDSPNm8dDIxGeK8ai35s8mNYerEylMZ3hJE07ofaBO37M6UR/+9LeWCS/DX419ewWh8tpZI3Swlg3jVhXel0LdHcdbNdJdwdlZVqVMnY4no/OPH8inZIJoVL8AaXMHxleYnM1ZD7Q+zUL3RbhEJgCv+Foy0WeWOg7TrY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=uBSPxLfI; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20b0b2528d8so15726655ad.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 13:20:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1727986852; x=1728591652; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NbiE8Fwcd7rX+QDGcaE2iE4PLXbaZTOlfpn9YTt6nAU=;
-        b=uBSPxLfIGkFJA0lDKtF7ZwsRgcJ+KEtlBz74UT8c5TZTPFNk2fp6LHFKjNS/2POb9g
-         ns/vZl59kF+5ZNmt9aCQCaoIsWELgb7riTgpvACbPeVpKLSF6F8zvBZKK7gqjYXNm6tW
-         U6esT8PvabkELCijPUgpjt4PLpk8dspNhK6wQ1OAZ8oc0ZBj9z/hqmOjHI1OK4cJLmxU
-         QUST33Zx6baAADY/00ZDSh5DRAUKs+SVX+chkBHxOQU0qVe73b6wsxkIeS2UPqO/R5HH
-         xb5C49OyUFzPe3g7GBH6MdIXev6N3Ig+vFMtTiLUxaCTKcwcKeN3R5jaeV+Wav7PXoUS
-         RX0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727986852; x=1728591652;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NbiE8Fwcd7rX+QDGcaE2iE4PLXbaZTOlfpn9YTt6nAU=;
-        b=goJE82ZpjJs2oKRvPE3meqYz9u+2r38VlwNX+0VssXyorUn2lkaxuNVHu8LQ2G1czd
-         8YoPXoc6ODgN/XKtm1UUYvGBPOHYKiJP5ph2vxjxOmQu/tq4Kb/LzdJF+Z3jBA3u+hZc
-         my4McwhpAACmwlLHdEy5MUX+0sq21dcmkocbprrucrq3U2H7PISeNzCR5qfGk0mudW0j
-         153wPSsilvpGN2nnJeb1yLcR07rBPoDJkPghQuirpPl5YIg2OQ61sRM34h9I0rdoKn9I
-         etK0dXuMWl85XSNXWOipvMbdZQvcapQwDyAJzdoP+VR+x3vW/HdkzU+RLRen4gcJu4ph
-         UlEA==
-X-Forwarded-Encrypted: i=1; AJvYcCU92GujVDkavtDTU/v24zj7rwKHBOcDhkwlTyaDF/n35S12CWGHg89w/hZ2uyFjJujUEpYX1ljrfjmS@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz6ab4fRGbMH9gelrF1KY+uRPjX1O6YzYIIrgUnBSqU/mtTl/K0
-	u7BjvobRG9FWOnSFdAqcRI0YwnWvkY597Lv205FicUo+H7Z6Dfag8oKvpN2nw0sebYNoY8C6UxJ
-	xNKA/hfrp5/Y+7aj7k+1k6tfgeosaTTERGgjX
-X-Google-Smtp-Source: AGHT+IGoii5GTavodnbmoAzteJqE0sqbwGfZNG8ANhg0hXL3IWG7GenPq51doRWMGZRSZaCvUyqDkTDMmm0zeloQ2x0=
-X-Received: by 2002:a17:902:f68e:b0:20b:7a54:fe6f with SMTP id
- d9443c01a7336-20bff039e02mr4274625ad.50.1727986851673; Thu, 03 Oct 2024
- 13:20:51 -0700 (PDT)
+	s=arc-20240116; t=1727989317; c=relaxed/simple;
+	bh=8eh574O4F9l+mKqRltFV+olJd6g3O6Fay42ID4YMX2U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=e1faqxgzvXda9fG1ytLi10QJEfNcyVh4G+qyCgr8tIORjl72ZjyzdE6mGUq5X6sR6sjlPg+cbwT3KkOs6yubl2AeUHJp6N3SA+bTyiLMJ4EBjfmremHby0tBk6onQSMalDa/FcYC17tzfso91SeGw85QU1z8ijTCLWvWVyHkJO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PM/4axmF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0444FC4CECC;
+	Thu,  3 Oct 2024 21:01:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727989316;
+	bh=8eh574O4F9l+mKqRltFV+olJd6g3O6Fay42ID4YMX2U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PM/4axmFF0+7VXZB/glU985zwWmYbSL1v8BvxDrgS3+WkyM2CRYLqYgMhkVmNAN53
+	 Lc9D9XcHTVUbIMNZM4cMtxX8IKF+3oY/9ZiNnFXpOaScmv07wd7ic/WJH02qewlfQU
+	 rK5uCNCmS9Mirm5kTedGuv3uvAcTbhcM9l1/eBEQZy7djMw9QQYlmYjoIYYaNHWRey
+	 nOZGqhwgvPqOkKYZAvCX6OTLebLdzvcoGOFTaKkixqTlDQbjZWAe/2QOH3PiZbxQHu
+	 EOYvWzZ2+I1n7t5J2PxpOwWdVPI+MPA54kRNX575iBGlKCD/XH3lauRa40hIcLP4Pf
+	 8pOHmzy1a0Hkg==
+Date: Thu, 3 Oct 2024 22:01:50 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chester Lin <chester62515@gmail.com>,
+	Matthias Brugger <mbrugger@suse.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	NXP S32 Linux Team <s32@nxp.com>,
+	Christophe Lizzi <clizzi@redhat.com>,
+	Alberto Ruiz <aruizrui@redhat.com>,
+	Enric Balletbo <eballetb@redhat.com>
+Subject: Re: [PATCH v4 2/4] dt-bindings: gpio: add support for NXP
+ S32G2/S32G3 SoCs
+Message-ID: <20241003-overall-unblended-7139b17eae23@spud>
+References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
+ <20240926143122.1385658-3-andrei.stefanescu@oss.nxp.com>
+ <20240926-apricot-unfasten-5577c54a3e2f@spud>
+ <c2d8f121-903d-4722-825f-c00604ef3991@oss.nxp.com>
+ <20240930-shortness-unedited-650f7996e912@spud>
+ <20240930-bamboo-curliness-eb4787b81ea3@spud>
+ <20d46ef0-8c58-407d-9130-3c961dd1656f@oss.nxp.com>
+ <230e575e-b8b6-4671-a37a-085fef761240@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003113840.2972416-1-usamaarif642@gmail.com>
-In-Reply-To: <20241003113840.2972416-1-usamaarif642@gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 3 Oct 2024 13:20:10 -0700
-Message-ID: <CAGETcx9r+VwMBt=Ra-+-ZFgO66DK1LGjbT8cXFZ7v-c-N20qTQ@mail.gmail.com>
-Subject: Re: [PATCH] of/kexec: save pa of initial_boot_params for arm64 and
- use it at kexec
-To: Usama Arif <usamaarif642@gmail.com>
-Cc: mark.rutland@arm.com, will@kernel.org, leitao@debian.org, 
-	catalin.marinas@arm.com, robh@kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, kexec@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="K9R0DwJtUt9wGfTI"
+Content-Disposition: inline
+In-Reply-To: <230e575e-b8b6-4671-a37a-085fef761240@oss.nxp.com>
+
+
+--K9R0DwJtUt9wGfTI
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 3, 2024 at 4:38=E2=80=AFAM Usama Arif <usamaarif642@gmail.com> =
-wrote:
->
->  __pa() is only intended to be used for linear map addresses and using
-> it for initial_boot_params which is in fixmap for arm64 will give an
-> incorrect value. Hence stash the physical address when it is known at
-> boot time and use it at kexec time instead of converting the virtual
-> address using __pa().
->
-> Reported-by: Breno Leitao <leitao@debian.org>
-> Suggested-by: Mark Rutland <mark.rutland@arm.com>
-> Signed-off-by: Usama Arif <usamaarif642@gmail.com>
-> Fixes: ac10be5cdbfa ("arm64: Use common of_kexec_alloc_and_setup_fdt()")
-> ---
->  arch/arm64/kernel/setup.c | 8 ++++++++
->  drivers/of/fdt.c          | 6 ++++++
->  drivers/of/kexec.c        | 8 ++++++--
->  include/linux/of_fdt.h    | 2 ++
->  4 files changed, 22 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-> index b22d28ec8028..a4d96f5e2e05 100644
-> --- a/arch/arm64/kernel/setup.c
-> +++ b/arch/arm64/kernel/setup.c
-> @@ -194,6 +194,14 @@ static void __init setup_machine_fdt(phys_addr_t dt_=
-phys)
->         /* Early fixups are done, map the FDT as read-only now */
->         fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
->
-> +       /*
-> +        * Save dt_phys address so that it can be used later for kexec. T=
-his
-> +        * is done as __pa() is only intended to be used for linear map a=
-ddresses
-> +        * and using it for initial_boot_params which is in fixmap will g=
-ive an
-> +        * incorrect value.
-> +        */
-> +       set_initial_boot_params_pa(dt_phys);
-> +
->         name =3D of_flat_dt_get_machine_name();
->         if (!name)
->                 return;
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 4d528c10df3a..9e312b7c246e 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -457,6 +457,7 @@ int __initdata dt_root_addr_cells;
->  int __initdata dt_root_size_cells;
->
->  void *initial_boot_params __ro_after_init;
-> +phys_addr_t initial_boot_params_pa __ro_after_init;
->
->  #ifdef CONFIG_OF_EARLY_FLATTREE
->
-> @@ -1185,6 +1186,11 @@ bool __init early_init_dt_scan(void *params)
->         return true;
->  }
->
-> +void __init set_initial_boot_params_pa(phys_addr_t params)
-> +{
-> +       initial_boot_params_pa =3D params;
-> +}
-> +
->  static void *__init copy_device_tree(void *fdt)
->  {
->         int size;
-> diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-> index 9ccde2fd77cb..ca9f27b27f71 100644
-> --- a/drivers/of/kexec.c
-> +++ b/drivers/of/kexec.c
-> @@ -300,8 +300,12 @@ void *of_kexec_alloc_and_setup_fdt(const struct kima=
-ge *image,
->                 goto out;
->         }
->
-> -       /* Remove memory reservation for the current device tree. */
-> -       ret =3D fdt_find_and_del_mem_rsv(fdt, __pa(initial_boot_params),
-> +       /* Remove memory reservation for the current device tree.
-> +        * For arm64, initial_boot_params is a fixmap address, hence __pa=
-(),
-> +        * can't be used to get the physical address.
-> +        */
-> +       ret =3D fdt_find_and_del_mem_rsv(fdt, IS_ENABLED(CONFIG_ARM64) ?
-> +                                      initial_boot_params_pa : __pa(init=
-ial_boot_params),
->                                        fdt_totalsize(initial_boot_params)=
-);
+On Thu, Oct 03, 2024 at 01:22:35PM +0300, Andrei Stefanescu wrote:
+> Hi Conor,
+>=20
+> >>>>>
+> >>>>> Huh, I only noticed this now. Are you sure that this is a correct
+> >>>>> representation of this device, and it is not really part of some sy=
+scon?
+> >>>>> The "random" nature of the addresses  and the tiny sizes of the
+> >>>>> reservations make it seem that way. What other devices are in these
+> >>>>> regions?
+> >>>
+> >>> Thanks for your answer to my second question, but I think you missed =
+this
+> >>> part here ^^^
+> >>
+> >> Reading it again, I think you might have answered my first question,
+> >> though not explicitly. The regions in question do both pinctrl and gpi=
+o,
+> >> but you have chosen to represent it has lots of mini register regions,
+> >> rather than as a simple-mfd type device - which I think would be the
+> >> correct representation. .
+> >=20
+> > Yes, SIUL2 is mostly used for pinctrl and GPIO. The only other uses cas=
+e is
+> > to register a nvmem device for the first two registers in the SIUL2 MID=
+R1/MIDR2
+> > (MCU ID Register) which tell us information about the SoC (revision,
+> > SRAM size and so on).
+> >=20
+> > I will convert the SIUL2 node into a simple-mfd device and switch the
+> > GPIO and pinctrl drivers to use the syscon regmap in v5.
+>=20
+> I replied in the other patch series
+> https://lore.kernel.org/all/a924bbb6-96ec-40be-9d82-a76b2ab73afd@oss.nxp.=
+com/
+> that I actually decided to unify the pinctrl&GPIO drivers instead of maki=
+ng
+> them mfd_cells.
 
-Not sure about the correctness of the patch (not a kexec expert) but
-no need to do all of this inside a function parameter. Just create a
-variable and use it here.
+Yeah, I'm sorry I didn't reply to that sooner. I was being a lazy shit,
+and read a book instead of replying yesterday. Almost did it again today
+too...
 
--Saravana
+To answer the question there, about simple-mfd/syscon not being quite
+right:
+I guess you aren't a simple-mfd, but this region does seem to be an mfd
+to me, given it has 3 features. I wouldn't object to this being a single
+node/device with two reg regions, given you're saying that the SIUL2_0
+and SIUL2_1 registers both are required for the SIUL2 device to work but
+are in different regions of the memory map.
 
->         if (ret =3D=3D -EINVAL) {
->                 pr_err("Error removing memory reservation.\n");
-> diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
-> index d69ad5bb1eb1..dbd99bf21ac8 100644
-> --- a/include/linux/of_fdt.h
-> +++ b/include/linux/of_fdt.h
-> @@ -31,6 +31,7 @@ extern void *of_fdt_unflatten_tree(const unsigned long =
-*blob,
->  extern int __initdata dt_root_addr_cells;
->  extern int __initdata dt_root_size_cells;
->  extern void *initial_boot_params;
-> +extern phys_addr_t initial_boot_params_pa;
->
->  extern char __dtb_start[];
->  extern char __dtb_end[];
-> @@ -73,6 +74,7 @@ extern int early_init_dt_scan_root(void);
->  extern bool early_init_dt_scan(void *params);
->  extern bool early_init_dt_verify(void *params);
->  extern void early_init_dt_scan_nodes(void);
-> +extern void set_initial_boot_params_pa(phys_addr_t params);
->
->  extern const char *of_flat_dt_get_machine_name(void);
->  extern const void *of_flat_dt_match_machine(const void *default_match,
-> --
-> 2.43.5
->
+> I have a question regarding the NVMEM driver that I mentioned earlier. I =
+haven't
+> yet created a patch series to upstream it but I wanted to discuss about it
+> here since it relates to SIUL2 and, in the future, we would like to upstr=
+eam it
+> as well.
+>=20
+> We register a NVMEM driver for the first two registers of SIUL2 which can
+> then be read by other drivers to get information about the SoC. I think
+> there are two options for integrating it:
+>=20
+> - Separate it from the pinctrl&GPIO driver as if it were part of a differ=
+ent
+> IP. This would look something like this in the device tree
+>=20
+> /* SIUL2_0 base address is 0x4009c000 */
+> /* SIUL2_1 base address is 0x44010000 */
+>=20
+> nvmem1@4009c000 {
+> 	/* The registers are 32bit wide but start at offset 0x4 */
+> 	reg =3D <0x4009c000 0xc>;
+> 	[..]
+> };
+>=20
+> pinctrl-gpio@4009c010 {
+> 	reg =3D <0x4009c010 0xb84>,  /* SIUL2_0 32bit registers */
+> 	      <0x4009d700 0x50>,   /* SIUL2_0 16bit registers */
+> 	      <0x44010010 0x11f0>, /* SIUL2_1 32bit registers */
+> 	      <0x4401170c 0x4c>,   /* SIUL2_1 16bit registers */ =20
+> 	[..]
+> };
+>=20
+> nvmem2@0x44010000 {
+> 	reg =3D <0x44010000 0xc>;
+> 	[..]
+> }
+>=20
+> - have the nvmem as an mfd cell and the pinctrl&GPIO as another mfd cell
+>=20
+> The first option keeps the nvmem completely separated from pinctrl&GPIO
+> but it makes the pinctrl&GPIO node start at an "odd" address. The second =
+one
+> more accurately represents the hardware (since the functionality is part =
+of
+> the same hardware block) but I am not sure if adding the mfd layer would =
+add
+> any benefit since the two functionalities don't have any shared resources=
+ in
+> common.
+
+That's kinda what mfd is for innit, multiple (disparate) functions. I'm
+not sure that you need an nvmem child node though, you may be able to
+"just" ref nvmem.yaml, but I am not 100% sure how that interacts with
+the pinctrl child node you will probably want to house pinctrl
+properties in. The mfd driver would be capable of registering drivers
+for each of the functions, you don't need to have a child node and a
+compatible to register them. Cos of that, you shouldn't really require
+a child node for GPIO, the gpio controller properties could go in the
+mfd node itself.
+
+--K9R0DwJtUt9wGfTI
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZv8GPgAKCRB4tDGHoIJi
+0gfaAQCK6A6FyKv8heEKlrefSlhG3fuedIfwM1oYYR5XcOSwlwEAhspxpxTZ7SIz
+HAtpUFOcJqqJf8c3/88JGym5xb29IA0=
+=+j7w
+-----END PGP SIGNATURE-----
+
+--K9R0DwJtUt9wGfTI--
 
