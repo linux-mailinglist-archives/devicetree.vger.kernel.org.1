@@ -1,164 +1,196 @@
-Return-Path: <devicetree+bounces-107375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC8C98E780
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 02:02:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831CD98E79F
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 02:17:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 793E51C257DB
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 00:02:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 828181C21643
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 00:17:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57AB8F5C;
-	Thu,  3 Oct 2024 00:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BED64C83;
+	Thu,  3 Oct 2024 00:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="YUF92g3U"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="oKI78aLz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 947A61FB4
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 00:02:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1C264A;
+	Thu,  3 Oct 2024 00:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727913767; cv=none; b=p81u87HBeLocOhJWZ6eUUBp7/s5smwBQVWBbK2EFz8OtJJExlJsmqHMZapLGvq2QbfTAibXF2wFjlLEvjX6DAW0VC7aqvx0QuDz3S7Sw6LWXF+HfYOeHFD8OTiwUBEp+7sWRNixUyuSu4en6kUc8Au8+Ns+V1faxjlexVSAY7G0=
+	t=1727914619; cv=none; b=npU24QZT1SHf/BdiSyxiyTkWUzkAvdbzRi3yz8F9S8CfDkP6nVxHchZW9+AkJALUzzANepkxJPhr4ljadxsyLkNQlTAT7C0RZQe3qoF7xNm0fQW1Aq1Vwyixa/fsL1nLGIWEEa3U0w8o76NKSyy2g48gIeuKoxuTaiEE5jYUk/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727913767; c=relaxed/simple;
-	bh=wxXe4ejVOJTns3zNleYmVuoYGt2G0cHj/836wq+z4t0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Js6ALn0oR9oKvXN9m/tnnfdmTwDrUGnYYQMIN61VCgmTG1c0GzdTwQqFvYWP+AkSv2xkj1g+CgkyRy4e58FiYfjPUc9fe5Vrs/Tf8RWIJEV8Yo1ke2fbrNEGYocIzYADlqRSHE3G5w5TA/l9XdRBcVvG3GNqP4Sc8ULViF1MdMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=YUF92g3U; arc=none smtp.client-ip=209.85.214.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20bcae5e482so2821375ad.0
-        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 17:02:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1727913765; x=1728518565; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gUM6/c8POo3ZmmnwIz3ZYq2oPmzsWDU4VKk2RR1uleQ=;
-        b=YUF92g3Ub/bC6zHFYzuF0FrrOV5DUEtLZr1l7Ze6UWOycm3Zl+sDN9grY2JoZmJBIV
-         53n1wFyTOaR8ca1cvaJ0f1jCSdvouEoHxRf+C4uO1bTLekm1QvYa2ZTy62ZJnDMFma8i
-         yUjHsoUkY/14YtpYR3aLYaeS7oXomUgDAX+OfHn+fEV3cy7migzGPzKdf/q55rWBkiv+
-         koMb9OQjEXydOHrpAJsHbiHm5Wxmp3E8yF8uTUniBhGaofBqTPZ+vtpHpzVMnNaq316C
-         7KCGD5bo5y/68SIdR11R+vUg5k3to50Kux0Gby1SAi4iyVS5E3pzE8wTWTCNAYm8nAVv
-         TMHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727913765; x=1728518565;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gUM6/c8POo3ZmmnwIz3ZYq2oPmzsWDU4VKk2RR1uleQ=;
-        b=Rk++yI7rDoslOiEEXKgzp8fyz4H34TV2RKltwS0GR3ufNPX5OjJ2ZxTIkCEzAbpZj5
-         kIM6puLYB2HJP4CRHv39G+Duhj74Gk3HYOl5HYa/AGNXnuSIb037PBNItklCmIUkoLGD
-         dOpi/GfCk0A1Zl0PyHY1/Q+TwbMGvVo2D2dw7h6qkc94JEnIQzcP8u4b0wsGfjzk7MZb
-         0Dr+qYQ5NKECgGTsmr7qLx8jJanv0EBae/57Elr1u69ba+ga/Qw3wzPe2HwJzu44Ocsq
-         H+uGOKHEb/JmzJEy/DVe+8cqIfp8Wt8+Q9LufCX+FYUFp+0KVsZyLgebdvIB4UFBIRc7
-         Usnw==
-X-Forwarded-Encrypted: i=1; AJvYcCWd3LhhO602W3EEVCK8tZ7YaWg7Dot9t1J8Xl7f41FxJP2fIvMawYBZfommOJINXg97YZgmN7xXcH1E@vger.kernel.org
-X-Gm-Message-State: AOJu0YzIU5WwV0+XnoNJtS9mRKMsddb3jONF4rqeKLA6mtg6HO1dR9dz
-	8AwQNYJAR/WQFKrm1wfNx8mp2o3pSllgIV/STBdwYiXgdbBjqDOxNg8tBj1aIQU=
-X-Google-Smtp-Source: AGHT+IHmCdNn6jRxhW0IWH2DWwz1m/iZxhIonrOaAjcX0AB8vRdu8ZUUUlS4NfAWFjw2P+QvaTjpcQ==
-X-Received: by 2002:a17:902:f685:b0:208:d856:dbb7 with SMTP id d9443c01a7336-20bc5a5d0damr71931745ad.39.1727913764912;
-        Wed, 02 Oct 2024 17:02:44 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e18f77d235sm2268445a91.22.2024.10.02.17.02.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 02 Oct 2024 17:02:44 -0700 (PDT)
-Date: Wed, 2 Oct 2024 17:02:42 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	linux-riscv@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] pinctrl: Add T-Head TH1520 SoC pin controllers
-Message-ID: <Zv3fIuMUhukmOWQJ@x1>
-References: <20240930-th1520-pinctrl-v3-0-32cea2bdbecb@tenstorrent.com>
- <CACRpkdavPAv2sPRREQhx_A7EtOj6Ld_n+NcO+vH0QCnfVedXKw@mail.gmail.com>
- <Zv2SUVv2PUYqwOzh@x1>
- <CACRpkdZRg+k=N42EA3+3c4Er=DHf2Q1aVzzCM0OQuEx7xWMAvw@mail.gmail.com>
+	s=arc-20240116; t=1727914619; c=relaxed/simple;
+	bh=t783UiUjich5X9sa7ujzAR59XVGTzDqvLbn/mKTpiX0=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Kv5qYDtcKUg+EvnWQM1MQDjo6glTf3dBF+0dW4b1i2MzL1P5AeYOzlWnROgy4jKcBIQjHqzGrjaMhTe6vgaO4TOBSMR8jYwgeSbIdKmhxPSnJC08XDQFNPJpTMreRPIxOWRXaP+n7hskPkbX2E/R9MYjwzde+GF2l7ULZE6ShVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=oKI78aLz; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727914618; x=1759450618;
+  h=message-id:subject:from:to:cc:date:in-reply-to:
+   references:content-transfer-encoding:mime-version;
+  bh=t783UiUjich5X9sa7ujzAR59XVGTzDqvLbn/mKTpiX0=;
+  b=oKI78aLzF16dDX65WzG8yegrEJ21c6mERrt2HiBlZ9xH9EjwsVrCHn0M
+   U7j9ae8204ICw7+DLPrhkXm+Wz5i6PV/34Nft+LjS/9zmTOP+XRh/stju
+   HtSBRlNmEWiZUog91EYDzs10aWHz0jO+JehYl/apKZm38ZlK/3DDQX+zG
+   L8hyDh77nyU6ZCBl0VjO0JkxFuL+GUzTLGIQN2oJkg2vNsglhMzjctTe6
+   kaOUdyMWkcESN5BMIWyBs+TSjazOZ3E73aRoUsYhVFtDR/Zb5E0sv0k/j
+   Mb7Kl7lT3D2kNBHgkNrN+LgfqctSTjk+dflgmpHF2wHcmipMkpiZAOFmF
+   Q==;
+X-CSE-ConnectionGUID: PnbsB371S06a2oHkoLZoKw==
+X-CSE-MsgGUID: gce1vaCFSNezU/I/vkJXKQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11213"; a="38483210"
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; 
+   d="scan'208";a="38483210"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 17:16:57 -0700
+X-CSE-ConnectionGUID: Uj2jFyvbQ+Og+6tBwNr1TA==
+X-CSE-MsgGUID: 5JQtABJwRCq2sp64ZE4utQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; 
+   d="scan'208";a="74419035"
+Received: from spandruv-desk1.amr.corp.intel.com ([10.125.109.106])
+  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2024 17:16:57 -0700
+Message-ID: <edd074ed88830180527417aa45ff222cbb71c1f2.camel@linux.intel.com>
+Subject: Re: [PATCH v8 1/9] HID: hid-sensor-hub: don't use stale
+ platform-data on remove
+From: srinivas pandruvada <srinivas.pandruvada@linux.intel.com>
+To: Heiko Stuebner <heiko@sntech.de>, lee@kernel.org, jikos@kernel.org, 
+	jic23@kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ jdelvare@suse.com,  linux@roeck-us.net, bentiss@kernel.org,
+ dmitry.torokhov@gmail.com, pavel@ucw.cz,  ukleinek@debian.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-hwmon@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-input@vger.kernel.org, 
+ linux-iio@vger.kernel.org, linux-leds@vger.kernel.org
+Date: Wed, 02 Oct 2024 17:16:56 -0700
+In-Reply-To: <20240908210803.3339919-2-heiko@sntech.de>
+References: <20240908210803.3339919-1-heiko@sntech.de>
+	 <20240908210803.3339919-2-heiko@sntech.de>
+Autocrypt: addr=srinivas.pandruvada@linux.intel.com; prefer-encrypt=mutual;
+ keydata=mQGNBGYHNAsBDAC7tv5u9cIsSDvdgBBEDG0/a/nTaC1GXOx5MFNEDL0LWia2p8Asl7igx
+ YrB68fyfPNLSIgtCmps0EbRUkPtoN5/HTbAEZeJUTL8Xdoe6sTywf8/6/DMheEUzprE4Qyjt0HheW
+ y1JGvdOA0f1lkxCnPXeiiDY4FUqQHr3U6X4FPqfrfGlrMmGvntpKzOTutlQl8eSAprtgZ+zm0Jiwq
+ NSiSBOt2SlbkGu9bBYx7mTsrGv+x7x4Ca6/BO9o5dIvwJOcfK/cXC/yxEkr1ajbIUYZFEzQyZQXrT
+ GUGn8j3/cXQgVvMYxrh3pGCq9Q0Q6PAwQYhm97ipXa86GcTpP5B2ip9xclPtDW99sihiL8euTWRfS
+ TUsEI+1YzCyz5DU32w3WiXr3ITicaMV090tMg9phIZsjfFbnR8hY03n0kRNWWFXi/ch2MsZCCqXIB
+ oY/SruNH9Y6mnFKW8HSH762C7On8GXBYJzH6giLGeSsbvis2ZmV/r+LmswwZ6ACcOKLlvvIukAEQE
+ AAbQ5U3Jpbml2YXMgUGFuZHJ1dmFkYSA8c3Jpbml2YXMucGFuZHJ1dmFkYUBsaW51eC5pbnRlbC5j
+ b20+iQHRBBMBCAA7FiEEdki2SeUi0wlk2xcjOqtdDMJyisMFAmYHNAsCGwMFCwkIBwICIgIGFQoJC
+ AsCBBYCAwECHgcCF4AACgkQOqtdDMJyisMobAv+LLYUSKNuWhRN3wS7WocRPCi3tWeBml+qivCwyv
+ oZbmE2LcxYFnkcj6YNoS4N1CHJCr7vwefWTzoKTTDYqz3Ma0D0SbR1p/dH0nDgN34y41HpIHf0tx0
+ UxGMgOWJAInq3A7/mNkoLQQ3D5siG39X3bh9Ecg0LhMpYwP/AYsd8X1ypCWgo8SE0J/6XX/HXop2a
+ ivimve15VklMhyuu2dNWDIyF2cWz6urHV4jmxT/wUGBdq5j87vrJhLXeosueRjGJb8/xzl34iYv08
+ wOB0fP+Ox5m0t9N5yZCbcaQug3hSlgp9hittYRgIK4GwZtNO11bOzeCEMk+xFYUoa5V8JWK9/vxrx
+ NZEn58vMJ/nxoJzkb++iV7KBtsqErbs5iDwFln/TRJAQDYrtHJKLLFB9BGUDuaBOmFummR70Rbo55
+ J9fvUHc2O70qteKOt5A0zv7G8uUdIaaUHrT+VOS7o+MrbPQcSk+bl81L2R7TfWViCmKQ60sD3M90Y
+ oOfCQxricddC
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CACRpkdZRg+k=N42EA3+3c4Er=DHf2Q1aVzzCM0OQuEx7xWMAvw@mail.gmail.com>
 
-On Wed, Oct 02, 2024 at 10:46:41PM +0200, Linus Walleij wrote:
-> On Wed, Oct 2, 2024 at 8:35 PM Drew Fustini <dfustini@tenstorrent.com> wrote:
-> 
-> > > Then I merged that into my "devel" branch for v6.13.
-> >
-> > Thanks for taking this. Will that also end up in linux-next eventually?
-> 
-> Yes next -next.
-> 
-> > I'm working on a TH1520 Ethernet driver which depends on the pinctrl
-> > driver. Andrew Lunn replied to me that all the dependencies need to be
-> > in linux-next [1].
-> 
-> Well compile-time dependencies for sure, run-time dependencies
-> we are usually a bit lax with as long as we know they will
-> get there eventually.
-> 
-> > > I think I'll make a stab at using guarded mutexes etc and see what
-> > > you think about it!
-> >
-> > Do you mean using scoped_guard() for thp->mutex in
-> > th1520_pinctrl_dt_node_to_map()?
-> 
-> For all mutex and spinlocks in the driver.
+On Sun, 2024-09-08 at 23:07 +0200, Heiko Stuebner wrote:
+> The hid-sensor-hub creates the individual device structs and
+> transfers them
+> to the created mfd platform-devices via the platform_data in the
+> mfd_cell.
+>=20
+> Before commit e651a1da442a ("HID: hid-sensor-hub: Allow parallel
+> synchronous reads")
+> the sensor-hub was managing access centrally, with one "completion"
+> in the
+> hub's data structure, which needed to be finished on removal at the
+> latest.
+>=20
+> The mentioned commit then moved this central management to each hid
+> sensor
+> device, resulting on a completion in each struct
+> hid_sensor_hub_device.
+> The remove procedure was adapted to go through all sensor devices and
+> finish any pending "completion".
+>=20
+> What this didn't take into account was, platform_device_add_data()
+> that is
+> used by mfd_add{_hotplug}_devices() does a kmemdup on the submitted
+> platform-data. So the data the platform-device gets is a copy of the
+> original data, meaning that the device worked on a different
+> completion
+> than what sensor_hub_remove() currently wants to access.
+>=20
+> To fix that, use device_for_each_child() to go through each child-
+> device
+> similar to how mfd_remove_devices() unregisters the devices later and
+> with that get the live platform_data to finalize the correct
+> completion.
+>=20
+> Fixes: e651a1da442a ("HID: hid-sensor-hub: Allow parallel synchronous
+> reads")
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Acked-by: Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>
 
-The thp->lock spinlock is already using scoped_guard() everywhere.
+> ---
+> =C2=A0drivers/hid/hid-sensor-hub.c | 21 ++++++++++++++-------
+> =C2=A01 file changed, 14 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/drivers/hid/hid-sensor-hub.c b/drivers/hid/hid-sensor-
+> hub.c
+> index 26e93a331a51..3cd00afa453a 100644
+> --- a/drivers/hid/hid-sensor-hub.c
+> +++ b/drivers/hid/hid-sensor-hub.c
+> @@ -730,23 +730,30 @@ static int sensor_hub_probe(struct hid_device
+> *hdev,
+> =C2=A0	return ret;
+> =C2=A0}
+> =C2=A0
+> +static int sensor_hub_finalize_pending_fn(struct device *dev, void
+> *data)
+> +{
+> +	struct hid_sensor_hub_device *hsdev =3D dev->platform_data;
+> +
+> +	if (hsdev->pending.status)
+> +		complete(&hsdev->pending.ready);
+> +
+> +	return 0;
+> +}
+> +
+> =C2=A0static void sensor_hub_remove(struct hid_device *hdev)
+> =C2=A0{
+> =C2=A0	struct sensor_hub_data *data =3D hid_get_drvdata(hdev);
+> =C2=A0	unsigned long flags;
+> -	int i;
+> =C2=A0
+> =C2=A0	hid_dbg(hdev, " hardware removed\n");
+> =C2=A0	hid_hw_close(hdev);
+> =C2=A0	hid_hw_stop(hdev);
+> +
+> =C2=A0	spin_lock_irqsave(&data->lock, flags);
+> -	for (i =3D 0; i < data->hid_sensor_client_cnt; ++i) {
+> -		struct hid_sensor_hub_device *hsdev =3D
+> -			data-
+> >hid_sensor_hub_client_devs[i].platform_data;
+> -		if (hsdev->pending.status)
+> -			complete(&hsdev->pending.ready);
+> -	}
+> +	device_for_each_child(&hdev->dev, NULL,
+> +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sensor_hub_finalize_pending_fn);
+> =C2=A0	spin_unlock_irqrestore(&data->lock, flags);
+> +
+> =C2=A0	mfd_remove_devices(&hdev->dev);
+> =C2=A0	mutex_destroy(&data->mutex);
+> =C2=A0}
 
-I will post a patch that adds guard() for the thp->mutex like this:
-
-diff --git a/drivers/pinctrl/pinctrl-th1520.c b/drivers/pinctrl/pinctrl-th1520.c
-index 1bb78b212fd5..b7c2d998e9e7 100644
---- a/drivers/pinctrl/pinctrl-th1520.c
-+++ b/drivers/pinctrl/pinctrl-th1520.c
-@@ -444,8 +444,8 @@ static int th1520_pinctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
-                return -ENOMEM;
-
-        nmaps = 0;
--       mutex_lock(&thp->mutex);
--       for_each_available_child_of_node(np, child) {
-+       guard(mutex)(&thp->mutex);
-+       for_each_available_child_of_node_scoped(np, child) {
-                unsigned int rollback = nmaps;
-                enum th1520_muxtype muxtype;
-                struct property *prop;
-@@ -530,7 +530,6 @@ static int th1520_pinctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
-
-        *maps = map;
-        *num_maps = nmaps;
--       mutex_unlock(&thp->mutex);
-        return 0;
-
- free_configs:
-@@ -538,7 +537,6 @@ static int th1520_pinctrl_dt_node_to_map(struct pinctrl_dev *pctldev,
- put_child:
-        of_node_put(child);
-        th1520_pinctrl_dt_free_map(pctldev, map, nmaps);
--       mutex_unlock(&thp->mutex);
-        return ret;
- }
-
---
-Thanks,
-Drew
 
