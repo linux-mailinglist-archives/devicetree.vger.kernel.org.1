@@ -1,130 +1,136 @@
-Return-Path: <devicetree+bounces-107554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7562D98EF59
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:39:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9229F98EF68
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E0CC1C21215
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:39:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BA42281C83
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DD2A18893D;
-	Thu,  3 Oct 2024 12:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440C519993E;
+	Thu,  3 Oct 2024 12:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DQcExD/t"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="divFBXRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12310186E42;
-	Thu,  3 Oct 2024 12:39:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1F81991B0
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 12:40:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727959168; cv=none; b=i7cZN0d1aXVzPOOAfqUEFt8dj6lq6AmDnCq08E6WYS1aZWQ3v32E+RcF+QWQIiDKvROQkhIyAOskzsESgK5GEoxZSkXvjXSXNHw8/FTA9N1VuQqQIDCoThUcLmVtPrmvLCadUQW/T/qNqE5OP0w2gVCJeDdHr3McQK0LS/zELdw=
+	t=1727959239; cv=none; b=HZOoXbibWSfs+9nC7re+uZwcTJ0/f1bMGJq+EGNM1SugwtksHYDFJ0LQcsG2f/IrKAVVeZnOHec/aHOpnN8MUHmbbU2ZTOIxnb3bx0C/NNtmh79dn5YdNrB/HHtchKVDtzpCxGLsRv8KrzpWAbl6WmffD0VGjObO/P7N9b+V+b0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727959168; c=relaxed/simple;
-	bh=jJqZlWZyRRWoe9bZ1pTGj+NsxagcVSsJs5dIspW8QMY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=r1JpEJ4EwHOWMBl2LkrPxA65u7tSl11BuDlrhe7ECp+OjuBGfhON06Sj1ueDJ+RtX2lrtdLRIsSFiZgqegMrk9swphxGYRJf2eRyug/z8EXXZOat6GTkNH+yEky2gZv7i5RsMP1mMr1ZFvQWMGNeX+vlMfL744o61AtwZmnpoXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DQcExD/t; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1727959166; x=1759495166;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jJqZlWZyRRWoe9bZ1pTGj+NsxagcVSsJs5dIspW8QMY=;
-  b=DQcExD/t6LGZAyZr5rqu4MuMqZ4559rIo9EqHQ7HOeqmQ/knjmD1swI+
-   pjM5ItyW6Vnz4HOhIH15VtMWVC9P05N5/O16t30MS/F6AfleC0pRSsQie
-   Zc1bV10uOaRpJrtDySoFnfYsDZYX8UMxHR6QaVEQ3uqmgN+H8hGDZxGfO
-   5F4kV3TTT107bnrrhuMJFIriZxyFtnNoUFeUY1aqJMmvTGFA3CiS2N3j2
-   Jmnpb6ohkqZ4qzDdr+1gIks86k6EbHLHHZb+u1KPQT2JPt5+EiRf+xjvo
-   U6RG1Vvr5blNKeoKxbj5wzckXpK4VsF8Izot5yGFxGSA42L9HRhypdqrd
-   w==;
-X-CSE-ConnectionGUID: epIsiQW8TNa0Ns7XenoPvQ==
-X-CSE-MsgGUID: UlWk40AGQH+5XwVjQjR27g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="14766788"
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="14766788"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 05:39:25 -0700
-X-CSE-ConnectionGUID: VZ4FQ9ZJTiukwSGcRxIw8w==
-X-CSE-MsgGUID: Q+m6TP+eSkKye7Bb4NxYAQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
-   d="scan'208";a="74188410"
-Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 05:39:22 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1swL70-0000000G8x5-0KUx;
-	Thu, 03 Oct 2024 15:39:18 +0300
-Date: Thu, 3 Oct 2024 15:39:17 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Andi Shyti <andi.shyti@kernel.org>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>,
-	"brendan.higgins@linux.dev" <brendan.higgins@linux.dev>,
-	"benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-	"joel@jms.id.au" <joel@jms.id.au>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew@codeconstruct.com.au" <andrew@codeconstruct.com.au>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
-	"openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v14 0/3] Add ASPEED AST2600 I2Cv2 controller driver
-Message-ID: <Zv6QdUuiUFvXjcd4@smile.fi.intel.com>
-References: <20241002070213.1165263-1-ryan_chen@aspeedtech.com>
- <Zv1aOedi9xl2mg9b@smile.fi.intel.com>
- <SI6PR06MB75359904E108D7D0CC89A329F2712@SI6PR06MB7535.apcprd06.prod.outlook.com>
- <Zv5u1gTK9yug7rbK@smile.fi.intel.com>
- <dun5dterlkikft4p2yuuebb2e4nyzed7xeofmeivzldeardhmf@kzv3iokk6cxn>
+	s=arc-20240116; t=1727959239; c=relaxed/simple;
+	bh=KbnXjaNAtIzfFWvoHNklhDpIKSAZrkDbY3GlT7dESdI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MYywbpIR5iFnFxOnR77Uth1reSm0nPoTi0buLPBZqANAjbV1xLdSrFi7iiZaCvKWxkM/TkdRtLHrxRyrAq3U72CzPZJFHm+KichX/i6sXdQWsb/bP6LTk34QVg8ijlZZJxo7t3/luTv8z3xHgAP+grTMokITzn2tsXBCIuVQK9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=divFBXRn; arc=none smtp.client-ip=209.85.208.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-5c89e66012aso1053131a12.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 05:40:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727959236; x=1728564036; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EjdOUYxIDIsj1NDRnGS+ZQrnSUI8iTKovLZIcuAuKFk=;
+        b=divFBXRnTx6HyO55/VOCia1qoLgQrkQO9tKSNva5T9/oWxTRC+U28DJVqleDRmz2QX
+         sYBnUR/Sloq/0s7PP9aiVMWOgt0HT2pwjBBuXAMqOKjw4hdzAzNOewfqp3/VSkQmT94J
+         lNn7BdXqJW9hHm1uBxi5WhiOUhp1lRDvc2xv3mzpFbPKvuxg/pDCPzh9JYsy4Kbolom8
+         i4C6VcqvhQ5r4YeP/1mz6Vqy1ufKbXkMQS8izq01CiCHuJwHepmGfQcPzZYVws2+JPWd
+         Xmo/EodZtUqGElpLt0l1Sii/ifADsA1Vx2yn1xtA0CMEyR1OAnGx3INJ7/x+1P2dxkBB
+         iKCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727959236; x=1728564036;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EjdOUYxIDIsj1NDRnGS+ZQrnSUI8iTKovLZIcuAuKFk=;
+        b=kdKvwlldqjc9XkRe/odcxF5JhmejWDH4l3t2RJPXd0uRayTixrz1VC/n4dn7oAPC2b
+         zd+VDjFw6pkxDrhzH9+dNJUV6P6/tZM1QIIut0Q8aKofABk37JRY9SIiAI9gnBg49D6v
+         /2FP5o2O20mBIlo3cqo/pGmNSWFg4ZLVonHI4+LGqKpeZLj1OxaeurfdIDy7tVh0cLrY
+         +OD5eFf4S7uvAZvT09jQ1hXwjyXzEdPRKAevJUl3m1yxxmnDrQUs81B1yJapQ8HcdIfp
+         G2dOfWwrpo8qqRVacOkjy+AnCQv7TwGRi9xC+SYTVVZg6oStn6byoiOxsOd22PlbF7Mq
+         Rt8A==
+X-Forwarded-Encrypted: i=1; AJvYcCVqO1p+e5EMA6U807PzEmgoSC04GcGjugpVXA3QiDDkfhnUTVW5A4+DgNOvXVNvYCuP8eHcar2mEu/H@vger.kernel.org
+X-Gm-Message-State: AOJu0YwvpolOr6YTDDLd2s3V5QKopBzUQv3atKYFhScOW99MHlxFcrle
+	BeKcXVCCf9oeg70qwuzD/JkQ9nxWhfaRU7M3WuG+V1HjZrNLofP3YLYHu1mxR8Q=
+X-Google-Smtp-Source: AGHT+IGc68GqlUNmZdNXyxO0stgBEI2Pd11nTmeLyVYUb8/fBGwA4BWwL9fMF7mhaHIq0dtMPFVzJA==
+X-Received: by 2002:a17:907:3f9b:b0:a8d:2ab2:c99e with SMTP id a640c23a62f3a-a98f83875bbmr585224066b.55.1727959235759;
+        Thu, 03 Oct 2024 05:40:35 -0700 (PDT)
+Received: from [192.168.0.15] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99104d0058sm81033066b.216.2024.10.03.05.40.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 05:40:35 -0700 (PDT)
+Message-ID: <7ab7a7f0-c035-4210-b4d0-9e08291be475@linaro.org>
+Date: Thu, 3 Oct 2024 13:40:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dun5dterlkikft4p2yuuebb2e4nyzed7xeofmeivzldeardhmf@kzv3iokk6cxn>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] media: dt-bindings: Add OmniVision OV08X40
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc: Jason Chen <jason.z.chen@intel.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Sergey Senozhatsky <senozhatsky@chromium.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-media@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241002-b4-master-24-11-25-ov08x40-v3-0-483bcdcf8886@linaro.org>
+ <20241002-b4-master-24-11-25-ov08x40-v3-2-483bcdcf8886@linaro.org>
+ <t4fajppdqagkl7wr2krcucsga4zocz6liar64odk2mnasdyfms@5fp7bfwalson>
+ <a86d05c3-5151-4161-8612-58894b1d0203@linaro.org>
+ <8554d372-18cb-4351-a5ab-894be09c613b@linaro.org>
+ <e8142566-aef5-498e-9d2d-8ac187ce8524@kernel.org>
+ <c86f695f-28e2-406d-9f46-c291fca282e4@linaro.org>
+ <Zv6LQ0q2XVHgUohh@kekkonen.localdomain>
+ <1a4e5aa6-2308-41de-94e7-0077cb265b6d@kernel.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <1a4e5aa6-2308-41de-94e7-0077cb265b6d@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 03, 2024 at 02:20:54PM +0200, Andi Shyti wrote:
-> On Thu, Oct 03, 2024 at 01:15:50PM GMT, Andy Shevchenko wrote:
-> > On Thu, Oct 03, 2024 at 03:41:57AM +0000, Ryan Chen wrote:
-> > > > On Wed, Oct 02, 2024 at 03:02:10PM +0800, Ryan Chen wrote:
-
-...
-
-> > > > Is it possible to switch to new terminology wherever it's possible?
-> > > > I.e. master --> controller, slave --> target. See, for example, f872d28500bd
-> > > > ("i2c: uniphier-f: reword according to newest specification").
-> > > > 
-> > > Just for cover latter? Or I should modify for each patches commit message?
-> > > Or entire i2c driver statement need switch to target?
-> > 
-> > I believe everywhere, where it applies: driver code, comments, documentation,
-> > commit messages...
+On 03/10/2024 13:31, Krzysztof Kozlowski wrote:
+>>> Ah I understand you.
+>>>
+>>> You're saying the link-frequencies we have in
+>>> Documentation/devicetree/bindings/media/i2c/* are redundant absent hardware
+>>> specific link frequencies being enumerated.
+>>>
+>>> I'll either enumerate the acceptable set or drop this.
+>> link-frequencies should remain mandatory in bindings, whether there are
+>> hardware specific limits in bindings or not.
+>> <URL:https://hverkuil.home.xs4all.nl/spec/driver-api/camera- 
+>> sensor.html#handling-clocks>
+> Yep and my comment was not under required field. Why all this discussion
+> is taken out of context? No wonder everyone interprets it differently.
 > 
-> If the datasheet refers to a register, state, or any other
-> hardware property as master/slave, we should retain the
-> master/slave terminology. Otherwise, we should follow the i2c and
-> smbus specifications and use controller/target.
+> Best regards,
 
-Indeed, makes sense. Thank you, Andi, for the corrections!
+Just so I'm 100% clear.
 
--- 
-With Best Regards,
-Andy Shevchenko
+required:
+     link-frequencies
 
+is required but
 
+properties:
+     link-frequencies: true
+
+is not, and presumably should be dropped from other yaml descriptions 
+upstream.
+
+---
+bod
 
