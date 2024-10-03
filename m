@@ -1,204 +1,126 @@
-Return-Path: <devicetree+bounces-107426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D918D98EAB2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:45:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C2A98EAB7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 09:45:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 560A01F23FC4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:45:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E3C3CB25FB0
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:45:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A0513A25F;
-	Thu,  3 Oct 2024 07:43:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5DCA85283;
+	Thu,  3 Oct 2024 07:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="iaGkzbMz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NDnW413X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2049.outbound.protection.outlook.com [40.107.255.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A341B139CE9;
-	Thu,  3 Oct 2024 07:43:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727941408; cv=fail; b=aUp72WgfLDWEHKZprYfIhZz5OJ3PLqi/82+qtOMeO5VbRYVWnIvGCBRqKwTg82DZpb4S9i3MDWS6L+TOPX5nFyR+f2KYipNybTXUgZ2pxEZL6phxsnJKMr5n3LRdp7dm2YK9jIGgDU/1tve/QpUV/nYrmyI3utAy8Gh55Ihj4Z8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727941408; c=relaxed/simple;
-	bh=QESVgBwHWzMr1DJwcWFSl4a/+hzXgYgDRHCG2o+Cxjw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=mdYBad7UwbuUm8woC4790p1P7BlHOyviDQBoxoBvL8/3qMWFVT4w2SnTykoql+HwHJUnj0+3JzJv1WdJXBxdIGKIt87MWrqYAms9ISlb7juTVHGuC0Sc2UOHKvVXUhfVZCgkX4Ge8snkHV2CTewWzBoab5OTEGO8q3QF9mpB0wU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=iaGkzbMz; arc=fail smtp.client-ip=40.107.255.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fKlZeNrKhifSxne3BIsViC+io7+ufREj6T1qQMLpjiOLQl4eFKNy652ElbF3ZU1+CAOwAP0qORQkkThlSXwCNclB9IqoRilMXofgWuhSEMQEic9TJ9uJ60IltVMGP6krOJmQ0Nhgx7Xx0ckxUQTCBK5KWg9LSqt4Orw2/ovIVIcK/GK1Ljsq7jORr6QOHWq4eR9KMQMl7JPe+lJtIZqUGicDOMCqy026JzBLf8gIRfnN0ujBA9TjZzRDOwuBQuUh5mRZiD8kqtWyF94LbnXzjONQTge7gKv4y0fBtcIgMQ4RPFLAuoH1E1XPPXEGVAg74axPcO9En50d1EHEOnr45w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V8EXqVr6Gzq+ihzDYW3k94hfHuot/FrKhwqin4FkW+g=;
- b=nuxZ2R7QwI+mk7TNuK/q5Zg354LHfhuv8+lTEpx8WcSBF8DAEv1Tq3+dXXa7dkoT9YQpcBerA5OzPyj1asekUCOyER/dFvbld1hPK7rMfsYxLQGnYzSicEqgLDhlxiigxDCtmbuJWp/aKLExy2il1RXmeOPe8ikXFEHUvyR4Fk/Fd6tUxzfy0dohvzitOfSK88TP0z46oAqQwsnqKMuwWniy+57K9Rw8JgXF6/pu1xdmCkUogNQKKDimkZPxaLxKDuNkEAZTTNHs8h+W6t+LRyvirtdMYHwuAW0Sh9s8p41cB4DA/WcP2R6FRc+lfx7+LwpP14YtF1akdnVTSvfH2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
- 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
- (p=quarantine sp=quarantine pct=100) action=quarantine
- header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=V8EXqVr6Gzq+ihzDYW3k94hfHuot/FrKhwqin4FkW+g=;
- b=iaGkzbMzywjUelh/cSPfDtdFIpbQN6Q5nBTH/PR66s7lFcqg05ooYiuDECzlFYuF6JgKl0Ej2fpB69/izCUmlfmVSjoPXGHav+CmfM++zdfY4sCa3W3KVXy/sFiTwpi2ko+Hcu1L/1ZqXge/ujLYpG7fgrZFoOQ9LulpE2pts7QEJxPy+NrT+RLyRBeBX5pXYD5djyERvZy5v6NAL3XJqL/evMlf+qG1DPzvy8S4AjRcQCI42kfoIkm1E5hXJdtRQeyOLRAe51/r5hYZyPg6vA52QO0GG48wFnrJucmEtWB0joktXhfY7Iknvlham/laSbztyhoY+jVd1cY2J3FxuA==
-Received: from SI2PR02CA0012.apcprd02.prod.outlook.com (2603:1096:4:194::7) by
- JH0PR04MB8155.apcprd04.prod.outlook.com (2603:1096:990:a9::7) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.8026.16; Thu, 3 Oct 2024 07:43:17 +0000
-Received: from SG1PEPF000082E5.apcprd02.prod.outlook.com
- (2603:1096:4:194:cafe::cf) by SI2PR02CA0012.outlook.office365.com
- (2603:1096:4:194::7) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.34 via Frontend
- Transport; Thu, 3 Oct 2024 07:43:17 +0000
-X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
- smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
- header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
-Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
- designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
- client-ip=211.20.1.79; helo=localhost.localdomain;
-Received: from localhost.localdomain (211.20.1.79) by
- SG1PEPF000082E5.mail.protection.outlook.com (10.167.240.8) with Microsoft
- SMTP Server id 15.20.7918.13 via Frontend Transport; Thu, 3 Oct 2024 07:43:16
- +0000
-From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
-To: patrick@stwcx.xyz,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>
-Cc: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>,
-	Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 9/9] ARM: dts: aspeed: yosemite4: Add i2c-mux for ADC monitor on Spider Board
-Date: Thu,  3 Oct 2024 15:42:50 +0800
-Message-Id: <20241003074251.3818101-10-Delphine_CC_Chiu@wiwynn.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241003074251.3818101-1-Delphine_CC_Chiu@wiwynn.com>
-References: <20241003074251.3818101-1-Delphine_CC_Chiu@wiwynn.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8870E3FB8B;
+	Thu,  3 Oct 2024 07:45:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1727941520; cv=none; b=PaZmgb0aEkSD0ypHGfc8+CGUawosTaJGVtv1mbQPfXUZsJE41XyShJCeKRtafI1fN1Ip4P4znCsVgU69cLOSMPODTrekOoXc3kmL19Xor5GmR++BHNfXufLj+bIXVm/SfbMQdwvvwdUQRl36eOdHSNZbEBz3dkZtWaVBKRP1U/I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1727941520; c=relaxed/simple;
+	bh=bE6MbYhgMzGlZE2sW50SMrqDmoXmsqnOfqJ5Sf2hJpo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ThzvQiJIDuYkMG9pbpupmPxRNoLVhKUK3gWcKgSrizozP7WkqQMZ/T4nibxE1YfAoIHTxoTnygz18j5OGvhGaSgIyEATz2lh2pH3V+Q+mtWrGoH9dWWKn2ccUgqsShSw82A3bhkGb4NVkm2asq6CwQf89gebPAG3fv+Q4vuMh/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NDnW413X; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8FD6C4CEC7;
+	Thu,  3 Oct 2024 07:45:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1727941520;
+	bh=bE6MbYhgMzGlZE2sW50SMrqDmoXmsqnOfqJ5Sf2hJpo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NDnW413XSBfuSn+wZTUvDjwr7xd5bk4yNjsMNXU+Od4+J/VLwRIjA4kv+gCuSw2Af
+	 uOFe+F+4fhVBYoBercXsf2eqPykWKo64chV8mdl51KRtwrXSZIb93sdbBuDYPKAuMI
+	 qPiNEnZscmwhWCIcpwolyGHNdvDUlPID846NjNMzWFzzRUTOOvZnjEcwGq6neQRzh1
+	 +Xa0wNNlUB17+6DgetFHdMFIjEipYMULcbqhmodtyMbMBWdNS48oZWEOcjfEueu3I/
+	 364Glij+B8YHUmC2Ddor58ZLaReALy74MrRFH3z0Cyq82F0QAhS0ybDxJFCw4XUXhM
+	 BYZzD8FUAxWgQ==
+Message-ID: <b8a359d7-5043-475f-95c2-0bad2a9f6f92@kernel.org>
+Date: Thu, 3 Oct 2024 09:45:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SG1PEPF000082E5:EE_|JH0PR04MB8155:EE_
-Content-Type: text/plain
-X-MS-Office365-Filtering-Correlation-Id: fd6e5f69-fe71-4236-670a-08dce37f0b63
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|7416014|376014|82310400026|1800799024;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?poy4lyke/PXCRrvCcOlH0wOSqjJoXbUnXOCNM8VMixg4VNrrZW2QN+dTP97D?=
- =?us-ascii?Q?XdTt8ZO4/doKKPJu7RYpxxiiuxRasEHjmV+bvFNPXuJPO9Dp+bpGmq7Y8kAT?=
- =?us-ascii?Q?p8UaHUmw5/66UgLRjVdLS+HubFdXdZ5/Poj734GuStyIbEZ9Zulf15DpOZ0N?=
- =?us-ascii?Q?x8qEQ256noGda0dpfhsjqpsBKYxkNSLwbN6cfTrPQnn1IKTxYNsqEWmrixPo?=
- =?us-ascii?Q?YbsPTMUvaSJ3EuzbQZQ27MChAsML+ah/JGLpRFKdTDoc3Nvt40ydmtVtKwNf?=
- =?us-ascii?Q?HrPLBeas/k/ZJwVpCrS8DciRiRE3sa7s6uPqEhKL815wzIv5niPwSIj2vuaf?=
- =?us-ascii?Q?9BRNcSHVoRV7w+hHlBaA2KqB3IuSdnTSHwsw/j/5dvtCYyg58kCEx0XEX2vY?=
- =?us-ascii?Q?ZpWxR0sY1vYV5dSqm4kOBWhI/Sh4TKMD9kcGpCcASQGqDzXYEjD+4N9Dk2as?=
- =?us-ascii?Q?34GmhgrDOocB2goWrYCpy5xUwi86U6BIRDISK3N7PlKPmj03OXUUX2/z0QQL?=
- =?us-ascii?Q?S9An21jAMcOJrIjACbU/CNuNo6XpG/FQnrhA7wyvY4MDIdsd8pU2PYslIgjg?=
- =?us-ascii?Q?jEuBnI4JtQVM63zHs4u0fpP+bG2EorTsvEvWln8BBOX18XRGeQUOYVjtvKAp?=
- =?us-ascii?Q?0PDdDEbFDdZSG1aplS1qwQHe/SgCyKjzIYWJeslbchEWdy6ppWnqWY3y4AwQ?=
- =?us-ascii?Q?fXFbsbxKJnEwgjcsgRPmA8p1R0MTWxHXg7qZ6BfiOyzmWQA39kH66OO1UbUG?=
- =?us-ascii?Q?L01AJjw+Ds1ugbyNUv+08Qv/TjVSzhNq10fgdjdvd7j+QqcubIVZjR4HJsww?=
- =?us-ascii?Q?+9a/6/edDFl+3zrD9DtbAE7+Jm9G1O3BllbLbJ7ilaA79K0TFNMeJZFpl7zJ?=
- =?us-ascii?Q?cus9mneTffgmFL213tWIPqh9JYI+jbuxV+ayrv6UESIVpgUx+f/L59A+5zn7?=
- =?us-ascii?Q?Jh0GnZMoGEqBsCidF/tcLXd/FoyVdhh5uuo3SNy9ZHQI5mUI2SbMLEp7ypXb?=
- =?us-ascii?Q?vnGe+Hr8Q4lumRD35sfE9fM3KWi5NkPKi1uldCUACT+whrMtC5u8Ekslny6E?=
- =?us-ascii?Q?x8PSY8av6kneq6Qh3EEGAJ2O3lVAN++fcciq1BAKLCskiWOegU0VGcjQ4lKE?=
- =?us-ascii?Q?VEbMHAMIAjRcsInrSJ/HqC1LXZjaHr7oT8NQbsPKs2s7u1yxW55kl7m67CWh?=
- =?us-ascii?Q?ojz4mlLid/VPLvfKAqC8YTrOM0lr9O74D59vpjMfSxMMhETVKTWcuEZ5eN2L?=
- =?us-ascii?Q?c4/yrOlLCCPknKfo2esva0TKnbxKEDaqxQR0//oyiJHuc+xwD/wqaySk2ZOn?=
- =?us-ascii?Q?9WbIjMZVskmIwBf9tA3u0VkV8jVTKXGgj4CBRwaiGUdBdVsVJPgZWNRA3aTU?=
- =?us-ascii?Q?jxFR1mo=3D?=
-X-Forefront-Antispam-Report:
-	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230040)(36860700013)(7416014)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
-X-OriginatorOrg: wiwynn.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Oct 2024 07:43:16.1026
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fd6e5f69-fe71-4236-670a-08dce37f0b63
-X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SG1PEPF000082E5.apcprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: JH0PR04MB8155
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] MAINTAINERS: iio: migrate invensense email address to
+ tdk domain
+To: jean-baptiste.maneyrol@tdk.com, Jonathan Cameron <jic23@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20241003-invn-maintainers-email-update-v1-0-7e4062ad68cf@tdk.com>
+ <20241003-invn-maintainers-email-update-v1-1-7e4062ad68cf@tdk.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241003-invn-maintainers-email-update-v1-1-7e4062ad68cf@tdk.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
+On 03/10/2024 09:37, Jean-Baptiste Maneyrol via B4 Relay wrote:
+> From: Jean-Baptiste Maneyrol <jean-baptiste.maneyrol@tdk.com>
+> 
+> InvenSense is part of TDK group. Update email address to use the
+> TDK domain.
 
-Add I2C mux for ADC monitors on Spider Board.
+Please run scripts/checkpatch.pl and fix reported warnings. Then please
+run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+Some warnings can be ignored, especially from --strict run, but the code
+here looks like it needs a fix. Feel free to get in touch if the warning
+is not clear.
 
-Signed-off-by: Ricky CX Wu <ricky.cx.wu.wiwynn@gmail.com>
-Signed-off-by: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
----
- .../dts/aspeed/aspeed-bmc-facebook-yosemite4.dts | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-index bc25c11df255..ab4904cf2c0e 100644
---- a/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-yosemite4.dts
-@@ -34,6 +34,8 @@ aliases {
- 		i2c29 = &imux29;
- 		i2c30 = &imux30;
- 		i2c31 = &imux31;
-+		i2c32 = &imux32;
-+		i2c33 = &imux33;
- 		i2c34 = &imux34;
- 		i2c35 = &imux35;
- 	};
-@@ -1100,29 +1102,25 @@ eeprom@51 {
- 
- 	i2c-mux@73 {
- 		compatible = "nxp,pca9544";
-+		reg = <0x73>;
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--
--		idle-state = <0>;
- 		i2c-mux-idle-disconnect;
--		reg = <0x73>;
- 
--		i2c@0 {
-+		imux32: i2c@0 {
-+			reg = <0>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0>;
--
- 			adc@35 {
- 				compatible = "maxim,max11617";
- 				reg = <0x35>;
- 			};
- 		};
- 
--		i2c@1 {
-+		imux33: i2c@1 {
-+			reg = <1>;
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--			reg = <0>;
--
- 			adc@35 {
- 				compatible = "maxim,max11617";
- 				reg = <0x35>;
--- 
-2.25.1
+Best regards,
+Krzysztof
 
 
