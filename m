@@ -1,149 +1,140 @@
-Return-Path: <devicetree+bounces-107528-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F7ED98EE47
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:37:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35E0D98EE4E
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2830CB21A81
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:37:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF88283196
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:39:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEA4D155308;
-	Thu,  3 Oct 2024 11:36:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25862155757;
+	Thu,  3 Oct 2024 11:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="ELoH5JGx"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="m1K/TLI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127071474C5
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 11:36:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 704551552ED
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 11:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727955417; cv=none; b=ssHf9GQmR6iZavCMYIFiXG5VptTjlDcYXRMaz5+XQ3tSVCrCt2iSq7+g6y0dVArGnaEHsxGfc+9HXNpT6hQBiiSyzgRQE5uKrA7lu+3tWFuKihoju6AZLLh+lr/IRWZ0YuodkMZtA/IrAjK5vRGuERQuPuG+G/44Jf3QcvqSF0s=
+	t=1727955530; cv=none; b=ckk4jTo7+Fd4CD4gWdFEbHZ3cWwN9NZLG4vkU6ASvcdPumzfPqZtcfS56pI1I5w5N0KdVJp2GSTHCFzmP8TFQd9hT2g/Ha5MBHffIw2Y7a4wCXM/Ee5TxniwhX9Mam5+ipAriw1NOHixNdul1xSNiJC39K6NX9sgQSa2f59pLw8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727955417; c=relaxed/simple;
-	bh=9XNu2YiPVfCXMRsCJIzq5HdVuO3OfnQEUwzdN5epTWc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GQ2woNXvYA1YPY3dVl83ZkT+jU1QHTiDxsdXkwtb0xQqo+Jd5MetDSYqIMYp2gPQj2tMFCWso5q9uR0iM+WqyWEX0aooZ22LFNfIKZOWYbD61uw/1WWJhspRhue69UMSCRqA5ZxRG8rw1QWHZH/PzVIVjx/TTLDb24U/zDmev94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=ELoH5JGx; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20b6c311f62so7275325ad.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 04:36:54 -0700 (PDT)
+	s=arc-20240116; t=1727955530; c=relaxed/simple;
+	bh=g6EvByoZPG/MdDyUnJMG5QMQON5GyIySoBJxBHHh9uA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HWV/CE3pn2m7huUcOUhz0YtQgK9ASa4hHUJffWsuGGlhV+rCa5lbXFJRlZVTw7QMP0X5loKr0ej1gAWLQY8510RLGhysASUdL70/nGXI+SFL7xlcdLDQBl+NIHyoT6rbeNm+cr0WlBN28zf5OV2V+mm7I56wckPWuOKOUYHRzds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=m1K/TLI9; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-537a399e06dso956489e87.1
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 04:38:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1727955414; x=1728560214; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JQor36jTy9xL586/Rs54JpiyHVbpn/Wm9HFv91ZHsxY=;
-        b=ELoH5JGxvH/X6L1FL33IWcnkGZ152De6eb2y4hlJj2a1orRgRK4NwPoss0YWLhFDln
-         taOe1SeEpB29N3k3i/JRLCyz5VOPu4Z3jfP3jbgpuGPD/VhdaoeGVFBIb99c9AJwGUW1
-         PLQbjHYkCUuhoInvxoibdT2raf4q1XxuI1kR3/Mi1qYRE+zk5pLDqFX30KjGUs1oi1IQ
-         95xTUv/Mi+LJ6Uq5RuvQgnLmTes2Brtw4sxQwlYMeYmC/Jayhh+y1ynNn24q/aGMwvwn
-         3jNHKlpAoXChpR+w3Y1LBIeNQqBuIa0k/exhUFfQf2pyZODno+ymLAQaD54hJKD34uCR
-         crGw==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1727955526; x=1728560326; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ial+kNUxVlagTAh5OXNTJXCmDuirvWQeTBwxkbQ8bdw=;
+        b=m1K/TLI9L+JdlMuAGbyh89sUHSfVMOyOtwjRoB8aBJflvh6RdqrZC5XL6uxd/Uja06
+         CmVFDaJNKBVp1tDnyhdcwQiBu455Ld5oVTKRp9NAnPslp2XoquKnvvmHVfXlnHWqslFD
+         BqiVMUde2qy5rONXv5FtX4WwCn2L/g83xeP8/F9N1cVbuHqvlSg9RmnDEsYl8ldvlftA
+         2PFceWgPWpX74oYs5q+RBFIAm9696r75IjVMwrnD1zT5eb4hD35eM2JqtALL7RS74v33
+         I9jLVz3dAdRMxdptIrqe5bdF97V24Xz4GL7OXUXypQjlUlXSpebK6OyLg/blHJp65alS
+         AODQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727955414; x=1728560214;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JQor36jTy9xL586/Rs54JpiyHVbpn/Wm9HFv91ZHsxY=;
-        b=sMWHcbFRUeZrRizzYuqwSlq9KeYtzLoH0qkyOeCcHVJIeRF0Njk4O9sNIYjo5a1gB9
-         3Qx+AMhZ10eSHpH5ud8ymGz/DsWY/TgtKwp13LZKSyM0jcdwK42Tfrnk+m5+Y3CvWZJH
-         ZeKbYF0NLJu53jVyTr1Zt0awQbCSMgVSGu0EJRfMwt7aQVpXKIYPmZjeh4yEdibkswSB
-         kB/7VOe6bEu/crOfCKaWcGuFMYp/1+xKBusmRbpXkTzezHh72bC8cKfgYFxZx//XyNCb
-         Ksbi7/FkKDBKsiCIa4MAx5IXp3jB9quu2Mvuu5xgjfS8aJwlirjmTQBrgSKStwz8MA3R
-         Q4kQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUsWW0LW7feu2e8H/lTlvb46PB6Xq+hY/vXRZRyngSYEl8FmwNQ7I0dF9WcKKimbdR4qZYiXqKitnr1@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywx04F4Nezer349zPjnHrhLJ1sT83lIQ9733KhZ6uFtP/jnLz84
-	AB4hnKO63zL+G0MsZk965jFVAW17eOpoPCoUOtGhm39iI0vygrpN41WD/gkEOVs=
-X-Google-Smtp-Source: AGHT+IEQ68PlX9h44E20F8mxHs7TxeSSTPFiB6+vSfinW6ZvpbDDUvkv5/aJJDNY6+Od8jkr6Cptog==
-X-Received: by 2002:a17:90a:a10d:b0:2d8:e524:797b with SMTP id 98e67ed59e1d1-2e1846be8fbmr6630662a91.18.1727955414243;
-        Thu, 03 Oct 2024 04:36:54 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:e17:9700:16d2:7456:6634:9626? ([2a01:e0a:e17:9700:16d2:7456:6634:9626])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e18fa05087sm3476494a91.39.2024.10.03.04.36.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 04:36:53 -0700 (PDT)
-Message-ID: <9858968e-178b-4357-9eff-3374df84ec90@rivosinc.com>
-Date: Thu, 3 Oct 2024 13:36:43 +0200
+        d=1e100.net; s=20230601; t=1727955526; x=1728560326;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ial+kNUxVlagTAh5OXNTJXCmDuirvWQeTBwxkbQ8bdw=;
+        b=l7Y+zTfSoM5Wo392D4ftMedliGkvPZyFdHJ/rNP0d3NU3qWGKpEU+tpd4rm1t2RA0b
+         FLGwmT17ajckCiK4ZDafIQPOQm/H6Rm9XbQRy5zSe/hDQmFe4A3x+twt4X4Rj3T4fojW
+         xS8q6zEzeymLE8IaNBIl7XmiCqqF/TFpoVykaeCbBXek2mHQRU8eBlb5UTtLSRucDg9u
+         XYA6KdfVscV4y1i2bY2F9YZgRQougsAEgYmh8LvnLToG8iOGBRGrPEvf1jXtL3dHCK4y
+         AOoCUV4Oh+vlgH1bbg/xoG7TL/EpcMnU4xolten7sVfGQZqeIQkK2H4CXrWcz5momRVH
+         7+cA==
+X-Forwarded-Encrypted: i=1; AJvYcCUyM1gE2NX9m6lJlKrh2J+j7hqOYWTCoDFHjnZCSuuSosYDulQlfxCzYDHtkaZhm9oZb0Iuoc7DDuae@vger.kernel.org
+X-Gm-Message-State: AOJu0YydPt9vODAZY+58wRg07K6uxOhm7qWANrZ9Sg41l+iWews/Yz99
+	z0Jfpid5pvY4zM5C4ldkoIeoyTtHX9peZIplByTJzxgTmM1ZMCKRXcag2c62K7kjFtHyq2WJTwu
+	/ttPlNr8e0d2gIr7XMqu3NNrRWpy8qbKf8sD3TA==
+X-Google-Smtp-Source: AGHT+IG2QJvSQ9kJ0Om0FLnVDouU3+iqMLBkxIekUgOC4DtsH1W6E4j1MFhH/9hsel0xtvam5zeR+i8StX9Pud2sywI=
+X-Received: by 2002:a05:6512:2312:b0:533:cf5a:eb32 with SMTP id
+ 2adb3069b0e04-539a066595dmr4032156e87.19.1727955525941; Thu, 03 Oct 2024
+ 04:38:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC v1 5/5] dt-bindings: riscv: document vector crypto
- requirements
-To: Conor Dooley <conor@kernel.org>
-Cc: linux-riscv@lists.infradead.org, Conor Dooley
- <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Andy Chiu <andybnac@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241002-defeat-pavestone-73d712895f0b@spud>
- <20241002-sincerity-urgent-acdb0e8d8a66@spud>
- <0fa7461f-5c7c-4f18-ac02-66d37e2c559c@rivosinc.com>
- <20241003-variable-quirk-9a13fe040e4a@spud>
-Content-Language: en-US
-From: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <cleger@rivosinc.com>
-In-Reply-To: <20241003-variable-quirk-9a13fe040e4a@spud>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240930103041.49229-1-brgl@bgdev.pl> <20240930103041.49229-4-brgl@bgdev.pl>
+ <Zv565olMDDGHyYVt@hovoldconsulting.com>
+In-Reply-To: <Zv565olMDDGHyYVt@hovoldconsulting.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Thu, 3 Oct 2024 13:38:35 +0200
+Message-ID: <CAMRc=Mc9jMe=hSXmcRLLX61abUjetCRZVeOK3G31vdx5JQNNMQ@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of
+ the on-board wcn6855
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Kalle Valo <kvalo@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Steev Klimaszewski <steev@kali.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Oct 3, 2024 at 1:07=E2=80=AFPM Johan Hovold <johan@kernel.org> wrot=
+e:
+>
+> On Mon, Sep 30, 2024 at 12:30:39PM +0200, Bartosz Golaszewski wrote:
+> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> >
+> > Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
+> > and bluetooth nodes to consume the PMU's outputs.
+> >
+> > With this we can drop the regulator-always-on properties from vreg_s11b
+> > and vreg_s12b as they will now be enabled by the power sequencing
+> > driver.
+> >
+> > Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
+> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+>
+> Without this patch I'm seeing an indefinite probe deferral with
+> 6.12-rc1:
+>
+>         platform 1c00000.pcie:pcie@0:wifi@0: deferred probe pending: pci-=
+pwrctl-pwrseq: Failed to get the power sequencer
+>
+> Can you please look into that and make sure that the existing DT
+> continues to work without such warnings.
+>
 
+Ah, dammit, I missed the fact that X13s already has this node defined
+so PCI pwrctl will consume it and try to get the power sequencer
+handle. I'm wondering how to tackle it though... It will most likely
+require some kind of a driver quirk where we check if we have the PMU
+node and if not, then don't try to set up power sequencing. Any other
+ideas?
 
-On 03/10/2024 13:05, Conor Dooley wrote:
-> On Thu, Oct 03, 2024 at 09:59:38AM +0200, Clément Léger wrote:
->>
->>
->> On 02/10/2024 18:10, Conor Dooley wrote:
->>> From: Conor Dooley <conor.dooley@microchip.com>
->>>
->>> Section 35.2. Extensions Overview of [1] says:
->>> | The Zvknhb and Zvbc Vector Crypto Extensions --and accordingly the composite extensions Zvkn and
->>> | Zvks-- (sic) require a Zve64x base, or application ("V") base Vector Extension.
->>> | All of the other Vector Crypto Extensions can be built on any embedded (Zve*) or application ("V") base
->>> | Vector Extension
->>>
->>> Apply these rules in the binding, so that invalid combinations can be
->>> avoided.
->>>
->>> Link: https://github.com/riscv/riscv-isa-manual/releases/tag/riscv-isa-release-698e64a-2024-09-09 [1]
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>  .../devicetree/bindings/riscv/extensions.yaml | 32 +++++++++++++++++++
->>>  1 file changed, 32 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> index abf2579171c5b..02b822bbf341d 100644
->>> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
->>> @@ -651,6 +651,38 @@ properties:
->>>              - contains:
->>>                  const: zve64f
->>>  
->>> +      - if:
->>> +          contains:
->>> +            anyOf:
->>> +              - const: zvbc
->>> +              - const: zvkn
->>> +              - const: zvknhb
->>> +              - const: zvks
->>
->> Shouldn't zvksed and zvksh be part odf this list ? My understanding of
->> the spec might be wrong but "Zvks--" seems like a poor-man's wildcard
->> for Zvks* extensions ?
-> 
-> I don't think so, there's a corresponding -- on the first line of the
-> quote. I think it is some really odd styling that should be replaced by
-> commas.
-> 
+> > -
+> > -             enable-gpios =3D <&tlmm 133 GPIO_ACTIVE_HIGH>;
+> > -             swctrl-gpios =3D <&tlmm 132 GPIO_ACTIVE_HIGH>;
+>
+> What about swctrl? You're just removing this pin from DT now without any
+> comment on why you think that is the right thing to do.
+>
+> Should this one also be an input to the PMU block?
+>
 
-Oh yes, my bad.
+I recently added it to the bindings as an optional property. It's
+technically an output of the PMU to the host indicating the state of
+the clock supply to the BT module. We're not really using it but I can
+keep it here if you prefer.
 
+Bart
 
