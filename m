@@ -1,293 +1,343 @@
-Return-Path: <devicetree+bounces-107443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CC4198EB44
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:16:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5091398EB53
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 10:18:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5003B1C22839
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:16:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF65B1F215B7
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 08:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F361494BF;
-	Thu,  3 Oct 2024 08:14:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C360137905;
+	Thu,  3 Oct 2024 08:17:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LiEQ4yku"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fBemfihI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5D27148308
-	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 08:14:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E88710A1E;
+	Thu,  3 Oct 2024 08:17:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727943282; cv=none; b=m+1OB9IhYZd9hCHqVdIr2Tzqm+/6IQcVEC9CguQvqjWQM7l3d9EfPXviI4RcDd8S1HNt7ftvobHvCZp+d9NgfPY1U/VPeXcNsO3Jfo/HbpIq3eqBGuPmemFfQ47u1fWzkoS8aVkgosVQP3ujgbY4ysiwv2HeEaO4yKKo8IStalc=
+	t=1727943479; cv=none; b=gLKpRHNzfH7mA/msGmeJXwZCtLqPTK93oq4ZCs6P/2i2sLFVtLSWulTjRtXDQ9zU98XxNCfes3Q39pZ0zd8I1wcmyAnih1YBRDKqW0s6/WXO03HpdXBkhgXfE2i3ImPoewk6dmMk926xYJ1Ep9DZ51Wq4/X3hvpt5lZJgcIztiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727943282; c=relaxed/simple;
-	bh=519873eizrz1N27nvT3FmdiGwc5SoCwK9tJ1LGTJkmw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=NAuOoV5IkB0ajrYYyYNw1Ib8ne3TKYMSooFyiujZ8+/NPm7AEanZX8dkSC31WULlyrh1AuTNDi8vM19WMJabsK6d8/6GgDWfMRtIlhN8L8vWrhmlgwmuFXLThgNOGDgCnXwFrSg2v8nnBbsp57y4Pd5cHw1bEjhrTbhiiE9A5WQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LiEQ4yku; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cae563348so1136395e9.0
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 01:14:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1727943279; x=1728548079; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1rwyEFJ4idpDb4iBRYg6Jk2ZQkdCcSf0YAokuJ1SzVA=;
-        b=LiEQ4ykuQNx2cZVv573Lu5sf9QbKUZ9BwUkMMgBNzAJmbS+nFUgEBL1nrWNKIq5YvK
-         5zyjiitEhXSj396yD1Rzf95g1UIMhF1Wk9hrtrpPNUsxTpMqpgHRmbDoNSM5Kimj+hC6
-         M5JfQNBsL+kePcuFqFSVCBKEYnnyrCKxbuMwYuTM3f40E28lSD4JVfD/gYYPtLEMU0w3
-         OpX/vG/eyajtxypSHaY7mpvU9fkdHTbs8XPq4F6OuSPTSN68lHYCita7QDRZRC15l6o5
-         RvZ//Nohc+uBZLmUP4l9ZMNl7WAqv3niVMqAH4dklPBSSGkicfgA/MhysDKTbWlxtukO
-         WSfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727943279; x=1728548079;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1rwyEFJ4idpDb4iBRYg6Jk2ZQkdCcSf0YAokuJ1SzVA=;
-        b=qBR4OHCscLVUFzZ/b9Zc7mDB2hSIgBeHI7zaef7DYWCV07iqVYrduEuJnWuJarwxJ5
-         u+THJg47BSUKhuRD1iuSDPvUA3GErkKJsqwJJvw2BaMLjr6WJsGvHBUyeljyYOobr1px
-         RRG/LP516z7AbmgZSye5K0MFHdVbpD2oQF94u6CnRBcn6VWoaDaPoOcte/LkINxwbU8b
-         JVAzThqqG38ldgkRxKfxpxxC3pY0SoccVdeKGnygyOch+JuCXX7qQib0zahPkWFfI9WD
-         R+IfjKuL08L/1Ch9pkPmPi5F88NV1tWOThJjKQX4JcCkS4DIcElMH75OayBbRNHJXeEH
-         SsQg==
-X-Forwarded-Encrypted: i=1; AJvYcCU1vwjXMTaaB03VfNy7ZDNGZIegcTz4QKEJWTzed6/mh/O7iF9ZLF61UVe3Xi2oGRHn68CUySBcVDrM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxd+py0PeU9LH4sF9SLqCFMTOpV4t1Qi4Dz8cE8Wtk0nAkyqqA8
-	jyqYOphPOznBd/Ui5g09fu1/nZH6Y0sgKq2LwrUkrfPasvFF34YgHhJDgxrnnhY=
-X-Google-Smtp-Source: AGHT+IGM0q7njLtYkyHsjlENSHcXM/bNjMhqikyJ3G8Gq5rle1uFsdl97+lU80Xh3CPM0h4uTp3hpA==
-X-Received: by 2002:a05:600c:1897:b0:42c:aeee:da86 with SMTP id 5b1f17b1804b1-42f77d30905mr19803775e9.8.1727943279187;
-        Thu, 03 Oct 2024 01:14:39 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d082d230dsm702027f8f.94.2024.10.03.01.14.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 01:14:38 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Thu, 03 Oct 2024 10:14:22 +0200
-Subject: [PATCH 5/5] dt-bindings: display/msm: merge SM8550 DPU into SC7280
+	s=arc-20240116; t=1727943479; c=relaxed/simple;
+	bh=ZXzClI64uZKzurCYKQPW9rVg6HGvMO4FOjxDAyEWI2w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dyKLl5xggYVSw68N5Kq08X3RBPc4l4R7YEFn7x9jW4lRLXO0lb/qJyhamtGHPZ+yEQDZqA0nQrOhrgPwjoRfvxtZnssdOVzvXFlQUwwUITtvxHhOFPxFw/mnS0Dnk52hhlp8OriKN8HpTgni1flem4p8+5wfZ6vKriIiGVA9wDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fBemfihI; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 8F30AE0009;
+	Thu,  3 Oct 2024 08:17:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1727943474;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2UaNmS6xTczFvj5giaUw0inHxG9R/Dlh790DYEo0DRQ=;
+	b=fBemfihIgfkNAnJw5+TxGGLwaNX+Gu+MpIvteQpSsPmYbHnB3DRRx4ZjAEoydZnQ69H7Gq
+	xXlJ04KoB2TVp/OaCtYUUABcX1RlW/zTWxcuZiHZzzGDW8v/x1+4nCsLfe+k1ppRM243NO
+	998RMhFwEEy2YdwampvweILJwdETEu1onouGqqcX5Pb2aqS94STFDV0TpOctp3OD0v9TNI
+	bre8oxALoboETTNcxmtCqky7a3SOo2FomuNuALdqG00MJWIXICKslV0sNJA3g1TlRQw8mO
+	e+KxBYDJGXEQ7YRLCdf2VrGXxSPWoKtqCg6ufNHss2fszvdE+y4pJA6roFSQDg==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>,
+	Lee Jones <lee@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Steen Hegelund <Steen.Hegelund@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Saravana Kannan <saravanak@google.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: [PATCH v7 0/6] Add support for the LAN966x PCI device using a DT overlay
+Date: Thu,  3 Oct 2024 10:16:37 +0200
+Message-ID: <20241003081647.642468-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241003-dt-binding-display-msm-merge-v1-5-91ab08fc76a2@linaro.org>
-References: <20241003-dt-binding-display-msm-merge-v1-0-91ab08fc76a2@linaro.org>
-In-Reply-To: <20241003-dt-binding-display-msm-merge-v1-0-91ab08fc76a2@linaro.org>
-To: Rob Clark <robdclark@gmail.com>, 
- Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5278;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=519873eizrz1N27nvT3FmdiGwc5SoCwK9tJ1LGTJkmw=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBm/lJjJVqi58VnNZDpSmxF/yPjCq9ttq1x7JffO
- wwQ5dtGGliJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCZv5SYwAKCRDBN2bmhouD
- 176aD/4oATjZ3tdEJbCuEHszRygOjNaFfffil0utMA5XmiPMerjNs/BIIOcOH66nbj4ddfmYdUA
- 0E4vrdl3vSqyfS5V9JU14ebXyzspUgYv7Oo99XyI8vOFm+uOzlYvKBBjLOiRFykamVpRrAcP/rg
- j+FitluwEgTVQOFoG0HsrDnFtqWy+WuvUeVq0MttvA+2hZUMWCKQbBMpRKUg01Pbv6TGQv3EBSu
- qQStf0fz3iuwvjCEh0FXTS65QEp0csClhCfeGXLzz1KVjvLT+6szIwzFcURy/ZOUJRlHa36MYvm
- mR0xjRSYkt/SZWLyFCKEH0No4KEZNi7Hto1t1T44/pk0xAIRRTs5kv3fRxZUXumzs88SpchJBJp
- 08UVEAmS4hj2tcR2HZUlQNDFcxD3+neEoEPHs4wPqdpGq//uUtFbmRFaeMBBPrS7uKko/M6odnd
- IStITPXnIEPR3fL8rxiT2loTBwUL8eI4PiZRAVCFSGkyMI1bkHKV9xATWxeMc+ehzHqoXa2ONz9
- oizmEDr8zkm20TWXT4f5v7RU5wm5SATYTOvZUv2lILuIg/QiK1O88JCfcQDVg35HCxtGjUQjCtX
- lFbeQKiFqjWfoDDI4rNSOBB05D7+COA7Je1v0lnY332TmB3UVCEAG7exTZ1ApvZdgcOzF5JQ5MU
- G6kFNAERUhheIbw==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Split of the bindings was artificial and not helping - we end up with
-multiple binding files for very similar devices thus increasing the
-chances of using different order of reg and clocks entries.
+Hi,
 
-Unify DPU bindings of SC7280 and SM8550, because they are the same.
+This series adds support for the LAN966x chip when used as a PCI
+device.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../bindings/display/msm/qcom,sc7280-dpu.yaml      |   2 +
- .../bindings/display/msm/qcom,sm8550-dpu.yaml      | 133 ---------------------
- 2 files changed, 2 insertions(+), 133 deletions(-)
+For reference, the LAN996x chip is a System-on-chip that integrates an
+Ethernet switch and a number of other traditional hardware blocks such
+as a GPIO controller, I2C controllers, SPI controllers, etc. The
+LAN996x can be used in two different modes:
 
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-index 750230839fc9..6902795b4e2c 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7280-dpu.yaml
-@@ -8,6 +8,7 @@ title: Qualcomm Display DPU on SC7280
- 
- maintainers:
-   - Bjorn Andersson <andersson@kernel.org>
-+  - Neil Armstrong <neil.armstrong@linaro.org>
-   - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-   - Krishna Manikandan <quic_mkrishn@quicinc.com>
- 
-@@ -20,6 +21,7 @@ properties:
-       - qcom,sc8280xp-dpu
-       - qcom,sm8350-dpu
-       - qcom,sm8450-dpu
-+      - qcom,sm8550-dpu
- 
-   reg:
-     items:
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
-deleted file mode 100644
-index 16a541fca66f..000000000000
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-dpu.yaml
-+++ /dev/null
-@@ -1,133 +0,0 @@
--# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
--%YAML 1.2
-----
--$id: http://devicetree.org/schemas/display/msm/qcom,sm8550-dpu.yaml#
--$schema: http://devicetree.org/meta-schemas/core.yaml#
--
--title: Qualcomm SM8550 Display DPU
--
--maintainers:
--  - Neil Armstrong <neil.armstrong@linaro.org>
--
--$ref: /schemas/display/msm/dpu-common.yaml#
--
--properties:
--  compatible:
--    const: qcom,sm8550-dpu
--
--  reg:
--    items:
--      - description: Address offset and size for mdp register set
--      - description: Address offset and size for vbif register set
--
--  reg-names:
--    items:
--      - const: mdp
--      - const: vbif
--
--  clocks:
--    items:
--      - description: Display AHB
--      - description: Display hf axi
--      - description: Display MDSS ahb
--      - description: Display lut
--      - description: Display core
--      - description: Display vsync
--
--  clock-names:
--    items:
--      - const: bus
--      - const: nrt_bus
--      - const: iface
--      - const: lut
--      - const: core
--      - const: vsync
--
--required:
--  - compatible
--  - reg
--  - reg-names
--  - clocks
--  - clock-names
--
--unevaluatedProperties: false
--
--examples:
--  - |
--    #include <dt-bindings/clock/qcom,sm8550-dispcc.h>
--    #include <dt-bindings/clock/qcom,sm8550-gcc.h>
--    #include <dt-bindings/interrupt-controller/arm-gic.h>
--    #include <dt-bindings/power/qcom,rpmhpd.h>
--
--    display-controller@ae01000 {
--        compatible = "qcom,sm8550-dpu";
--        reg = <0x0ae01000 0x8f000>,
--              <0x0aeb0000 0x2008>;
--        reg-names = "mdp", "vbif";
--
--        clocks = <&gcc GCC_DISP_AHB_CLK>,
--                <&gcc GCC_DISP_HF_AXI_CLK>,
--                <&dispcc DISP_CC_MDSS_AHB_CLK>,
--                <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
--                <&dispcc DISP_CC_MDSS_MDP_CLK>,
--                <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
--        clock-names = "bus",
--                      "nrt_bus",
--                      "iface",
--                      "lut",
--                      "core",
--                      "vsync";
--
--        assigned-clocks = <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
--        assigned-clock-rates = <19200000>;
--
--        operating-points-v2 = <&mdp_opp_table>;
--        power-domains = <&rpmhpd RPMHPD_MMCX>;
--
--        interrupt-parent = <&mdss>;
--        interrupts = <0>;
--
--        ports {
--            #address-cells = <1>;
--            #size-cells = <0>;
--
--            port@0 {
--                reg = <0>;
--                dpu_intf1_out: endpoint {
--                    remote-endpoint = <&dsi0_in>;
--                };
--            };
--
--            port@1 {
--                reg = <1>;
--                dpu_intf2_out: endpoint {
--                    remote-endpoint = <&dsi1_in>;
--                };
--            };
--        };
--
--        mdp_opp_table: opp-table {
--            compatible = "operating-points-v2";
--
--            opp-200000000 {
--                opp-hz = /bits/ 64 <200000000>;
--                required-opps = <&rpmhpd_opp_low_svs>;
--            };
--
--            opp-325000000 {
--                opp-hz = /bits/ 64 <325000000>;
--                required-opps = <&rpmhpd_opp_svs>;
--            };
--
--            opp-375000000 {
--                opp-hz = /bits/ 64 <375000000>;
--                required-opps = <&rpmhpd_opp_svs_l1>;
--            };
--
--            opp-514000000 {
--                opp-hz = /bits/ 64 <514000000>;
--                required-opps = <&rpmhpd_opp_nom>;
--            };
--        };
--    };
--...
+- With Linux running on its Linux built-in ARM cores.
+  This mode is already supported by the upstream Linux kernel, with the
+  LAN996x described as a standard ARM Device Tree in
+  arch/arm/boot/dts/microchip/lan966x.dtsi. Thanks to this support,
+  all hardware blocks in the LAN996x already have drivers in the
+  upstream Linux kernel.
+
+- As a PCI device, thanks to its built-in PCI endpoint controller.
+  In this case, the LAN996x ARM cores are not used, but all peripherals
+  of the LAN996x can be accessed by the PCI host using memory-mapped
+  I/O through the PCI BARs.
+
+This series aims at supporting this second use-case. As all peripherals
+of the LAN996x already have drivers in the Linux kernel, our goal is to
+reuse them as-is to support this second use-case.
+
+Therefore, this patch series introduces a PCI driver that binds on the
+LAN996x PCI VID/PID, and when probed, instantiates all devices that are
+accessible through the PCI BAR. As the list and characteristics of such
+devices are non-discoverable, this PCI driver loads a Device Tree
+overlay that allows to teach the kernel about which devices are
+available, and allows to probe the relevant drivers in kernel, re-using
+all existing drivers with no change.
+
+This patch series for now adds a Device Tree overlay that describes an
+initial subset of the devices available over PCI in the LAN996x, and
+follow-up patch series will add support for more once this initial
+support has landed.
+
+In order to add this PCI driver, a number changes are needed:
+ - Patches 1 and 2 introduce the LAN996x PCI driver itself, together
+   with its DT overlay and the related MAINTAINER entry.
+
+ - Patch 3 removes the syscon API usage from the reset driver used for
+   the LAN966x.
+
+ - Patches 4 to 7 allow the reset driver used for the LAN996x to be
+   built as a module. Indeed, in the case where Linux runs on the ARM
+   cores, it is common to have the reset driver built-in. However, when
+   the LAN996x is used as a PCI device, it makes sense that all its
+   drivers can be loaded as modules.
+
+Compare to the previous iteration:
+  https://lore.kernel.org/lkml/20240930121601.172216-1-herve.codina@bootlin.com/
+this v7 series mainly:
+  - Remove the patch modifying the reset controller DT binding
+  - Re-order patches
+  - Remove the syscon API usage from the LAN966x reset controller (the
+    only syscon user).
+
+Best regards,
+Hervé
+
+Changes v6 -> v7
+  - Patch 1 (patch 3 in v6)
+    Re-introduce the syscon node in the overlay
+
+  - Patch 2 (patch 4 in v6)
+    No changes
+
+  - Patch 3 (patch 2 in v6)
+    Rework code to map the syscon device locally without using the
+    syscon API in the LAN966x case.
+    Update commit log
+
+  - Patches 4, 5 and 6 (patches 5, 6, and 7 in v6)
+    No changes
+
+  Patch removed in v7
+    - Patch 1 in v6 (reset controller DT binding modification)
+      Rejected
+
+Changes v5 -> v6
+  - Patch 1
+    New patch in v6 relatead to removing syscon usage.
+
+  - Patch 2
+    New patch in v6 related to removing syscon usage.
+
+  - Patch 3 (patch 1 in v5)
+    Add 'Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>'
+    Remove syscon node from the overlay.
+
+  - Patch 4, 5, 6 and 7 (patches 2, 4, 5 and 8 in v5)
+    No changes
+
+  Patches removed in v6
+    - Patch 3 in v5
+      Rejected
+
+    - Patch 6 in v5
+      No more applicable
+
+    - Patch 7 in v5
+      Already applied
+
+Changes v4 -> v5
+  - Patch 1
+    Add missing include files and keep pci_ids.h.
+    Remove IRQ_RETVAL() usage.
+    Use __free().
+    Remove the pdev->irq check.
+    Avoid local variables in devm_pci_dev_remove_intr_ctrl() and
+    lan966x_pci_load_overlay().
+    Use dev_err_probe().
+    Sort header includes in alphabetical order in dtbs file.
+
+  - Patch 3
+    Fix a typo in commit log.
+    Simplify modification done in device_node_get_syscon().
+    Use devm_add_action_or_reset().
+
+  - Patches 4, 5, 6 and 8
+    Add 'Reviewed-by: Steen Hegelund <Steen.Hegelund@microchip.com>'
+
+Changes v3 -> v4
+  - Patch 1 and 2 (v3 patch 6 and 7)
+    Move the driver from drivers/mfd to drivers/misc.
+
+  - Patch 4 and 5 (v3 patch 2)
+    Rework reset driver dependencies and module building support.
+    Split v3 patch into two distinct patches:
+      - patch 4, as suggested by Geert, add a dependency on the
+        LAN966x PCI device
+      - patch 5, allows to build the reset controller driver as a module
+
+  - Other patches
+    Except reordering, no changes
+
+Changes v2 -> v3
+  - Patches 1 and 5
+    No changes
+
+  - Patch 6 (v2 patch 18)
+    Add a blank line in the commit log to split paragraphs
+    Remove unneeded header file inclusion
+    Use IRQ_RETVAL()
+    Remove blank line
+    Use dev_of_node()
+    Use pci_{set,get}_drvdata()
+    Remove unneeded pci_clear_master() call
+    Move { 0, } to { }
+    Remove the unneeded pci_dev member from the lan966x_pci structure
+    Use PCI_VENDOR_ID_EFAR instead of the hardcoded 0x1055 PCI Vendor ID
+    Add a comment related to the of_node check.
+
+  - Patch 7 (v2 patch 19)
+    No changes
+
+  Patches removed in v3
+    - Patches 6 and 7
+      Extracted and sent separately
+      https://lore.kernel.org/lkml/20240620120126.412323-1-herve.codina@bootlin.com/
+
+    - Patches 9
+      Already applied
+
+    - Patches 8, 10 to 12
+      Extracted, reworked and sent separately
+      https://lore.kernel.org/lkml/20240614173232.1184015-1-herve.codina@bootlin.com/
+
+    - Patches 13 to 14
+      Already applied
+
+Changes v1 -> v2
+  - Patch 1
+    Fix a typo in syscon.h (s/intline/inline/)
+
+  - Patches 2..5
+    No changes
+
+  - Patch 6
+    Improve the reset property description
+
+  - Patch 7
+    Fix a wrong reverse x-mass tree declaration
+
+  - Patch 8 removed (sent alone to net)
+    https://lore.kernel.org/lkml/20240513111853.58668-1-herve.codina@bootlin.com/
+
+  - Patch 8 (v1 patch 9)
+    Add 'Reviewed-by: Rob Herring (Arm) <robh@kernel.org>'
+
+  - Patch 9 (v1 patch 10)
+    Rephrase and ident parameters descriptions
+
+  - Patch 10 (v1 patch 11)
+    No changes
+
+  - Patch 11 (v1 patch 12)
+    Fix a missing ret value assignment before a goto in .probe()
+    Limit lines to 80 columns
+    Use indices in register offset definitions
+
+  - Patch 13 and 14 (new patches in v2)
+    Add new test cases for existing of_changeset_add_prop_*()
+
+  - Patch 15 (v1 patch 14)
+    No changes
+
+  - Patch 16 (new patches in v2)
+    Add tests for of_changeset_add_prop_bool()
+
+  - Patch 17 (v1 patch 15)
+    Update commit subject
+    Rewrap a paragraph in commit log
+
+  - Patch 18 (v1 patch 16)
+    Use PCI_IRQ_INTX instead of PCI_IRQ_LEGACY
+
+  - Patch 19 (v1 patch 17)
+    No changes
+
+Clément Léger (2):
+  reset: mchp: sparx5: Allow building as a module
+  reset: mchp: sparx5: set the dev member of the reset controller
+
+Herve Codina (4):
+  misc: Add support for LAN966x PCI device
+  MAINTAINERS: Add the Microchip LAN966x PCI driver entry
+  reset: mchp: sparx5: Map cpu-syscon locally in case of LAN966x
+  reset: mchp: sparx5: Add MCHP_LAN966X_PCI dependency
+
+ MAINTAINERS                            |   6 +
+ drivers/misc/Kconfig                   |  24 +++
+ drivers/misc/Makefile                  |   3 +
+ drivers/misc/lan966x_pci.c             | 215 +++++++++++++++++++++++++
+ drivers/misc/lan966x_pci.dtso          | 167 +++++++++++++++++++
+ drivers/pci/quirks.c                   |   1 +
+ drivers/reset/Kconfig                  |   4 +-
+ drivers/reset/reset-microchip-sparx5.c |  38 ++++-
+ 8 files changed, 455 insertions(+), 3 deletions(-)
+ create mode 100644 drivers/misc/lan966x_pci.c
+ create mode 100644 drivers/misc/lan966x_pci.dtso
 
 -- 
-2.43.0
+2.46.1
 
 
