@@ -1,194 +1,135 @@
-Return-Path: <devicetree+bounces-107529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C96398EE4C
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:38:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C864898EE56
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F4A1C20F34
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:38:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CA20D1C214AE
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57EF6154C12;
-	Thu,  3 Oct 2024 11:38:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF683154C17;
+	Thu,  3 Oct 2024 11:41:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GzWt/KQA"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="EmdpvfWU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3FB11474C5;
-	Thu,  3 Oct 2024 11:38:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A60B154434;
+	Thu,  3 Oct 2024 11:41:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727955528; cv=none; b=C5pjXdWSJ2Zt6XRj7GIsryZrLVAtbEIHxJgEsgJ3o45qJZ4JD7VK6AthH+A5FuKQ11YbkoD2DnrXSIuU9RQC69pyvbibwD2+WEX4El83zzBL8MO3GJzCobn7H3GdqGS6HcCeNct5IRHm9axr+8gapNau5ZDMKARv7E/hxouhJOc=
+	t=1727955704; cv=none; b=oR36DPKDsjDUzqFk4H0elWQvhx9JHuGvo32J9/KdauVe8FcAwin+/vdswyeK/hpr7xjSyAkQkp1cJ/X/nJDvHDZ1KlgTuKEDXQoKvsQ1VfxEWtoH/o6vHDrCT03swf6MJ3mRyDIfs669G7U1o3ObeEU5P+VQJi5qdR2tYO3rllg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727955528; c=relaxed/simple;
-	bh=tzdIj7Pmuk8vTXjUwDMnaYiElu+3TR3K2rs5MMV1AJw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qqNhH6BMp/gjYMv0/FE76gzePrcwwSpioRr3K0rcvAdfF0HEX183/EbwOhDm2+HTd/mkzpKPpvfHag7WIR0dM8zHRUMVTDNNUxv5L3EqCyVBwwaqgGbhbqb9aBqmTQmE/af13/A/QD5m9cbzSaQaw3n3RggOKFPKUX6cBq/0MmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GzWt/KQA; arc=none smtp.client-ip=209.85.222.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7ae3d9a93c0so87006585a.3;
-        Thu, 03 Oct 2024 04:38:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727955525; x=1728560325; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QH30CE01/KIA8vmhQ9aUPnrMhqjqonBdBshFm2UJvlQ=;
-        b=GzWt/KQAbs/A3Rdc279i8cM3MurvV98HGBAovlZtQrGXDkJH7EnXf8dlvRWG5WDS49
-         HIu/TXm4a0PXxolG9hMxiCgKgPBvVZEB10fGB7WC3vq/tkbYLQYCO2u5tQ0rb36Rnb2K
-         aqz/VXZZaqnaW2zzFlZ0SHIulTos323Hvy7htVYbzo5v0lybOPpnskVdLu/4CXEpQJDQ
-         99FGzxSxuQCl/gu8KwkM5wKyQVwt23YL9PDDchnWgnzS3LA6OHVDeAsRFPz7h2viy1sk
-         mxmjnPBvnM/2Lw7HuNP2mOkO445V7jLKdlxYczAMnL5ekXKe8jrfVZ3tT4qbcbGAcVBO
-         La2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727955525; x=1728560325;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QH30CE01/KIA8vmhQ9aUPnrMhqjqonBdBshFm2UJvlQ=;
-        b=jseUPaWUnmbsi8gD4+c+oSG7r2bpIJxqz8CGxNa2H4JkbCm74s2o+3FjMKGXWlsD60
-         Nj4wcFVN6SmfcjJpR2IEadvw5BwjMCWdeLYLjp9t4AsBt16GLNKi+FtKTCKdefITI5sk
-         29pDMUej6CqEWQBa0hpoe0DLJOm5oHShwvNZLrC8KQT3FRNwSjoTwDLUhU1tZTOfNbX2
-         oCWIgwgB2m+5/P8ikcUNNtTbkz6X1fe7s5j9jd1vm7vD++ur5uuuG9tp6OAkGxZAcQgM
-         bYYNNCPXhFuuXQ4BmtCvaSh1taeb3/G8aEB/+kw63LYTEh2mbtik1BUwSVhli4F+oJk4
-         3oog==
-X-Forwarded-Encrypted: i=1; AJvYcCVb4nsuXjEPneTq8wjSwPwmVWHCVep/kWQfGw+9/nH2bJDYCDspZ5wR0udZmkC5TzM5KG933m6E7SgC@vger.kernel.org, AJvYcCVczOVrVJAagx392dh2WhGToXR+DUPnjV+STLCtAUd61ABp3KpdAcGG8fZV5mLVEA23VTCicKKxddJLU/Ob@vger.kernel.org
-X-Gm-Message-State: AOJu0YyApBIF+MkMI89DkxlwSvoGhs8lf8oVuSp5Nx7l6MTTtNTf71vv
-	5PtLq1fSQPPIQOdLYPyUc7iGH3f6JR0N11veerSkC6ZGbkzC2Iw9
-X-Google-Smtp-Source: AGHT+IEsftUbErs0PEHHR3fZPjrpqAZaPwPf+30Hv6n3XFmFyIPXQLxmLuXNFR3P1/kV98FpLv5gzw==
-X-Received: by 2002:a05:620a:1921:b0:7a9:bb10:e072 with SMTP id af79cd13be357-7ae626bda77mr996374285a.23.1727955525448;
-        Thu, 03 Oct 2024 04:38:45 -0700 (PDT)
-Received: from localhost (fwdproxy-ash-004.fbsv.net. [2a03:2880:20ff:4::face:b00c])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ae6b39ca00sm43757985a.43.2024.10.03.04.38.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 04:38:44 -0700 (PDT)
-From: Usama Arif <usamaarif642@gmail.com>
-To: mark.rutland@arm.com,
-	will@kernel.org
-Cc: leitao@debian.org,
-	catalin.marinas@arm.com,
-	robh@kernel.org,
-	saravanak@google.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	kexec@lists.infradead.org,
-	Usama Arif <usamaarif642@gmail.com>
-Subject: [PATCH] of/kexec: save pa of initial_boot_params for arm64 and use it at kexec
-Date: Thu,  3 Oct 2024 12:38:40 +0100
-Message-ID: <20241003113840.2972416-1-usamaarif642@gmail.com>
-X-Mailer: git-send-email 2.43.5
+	s=arc-20240116; t=1727955704; c=relaxed/simple;
+	bh=wNrw4eZwzrrYs1rZs/Rki+ec5IFjk/dB5RKKPmVtwM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VGHoghH1lwo2OAqE03nVbZALbxILMGS4LXYHT94G1t5vSN2m7xSCbMAl02N7wUl6LlvlAEFSe8QxIvfTFXx8MdF2d/7euo6AC2AuvvYY1h6nxT/IlIHGYTKvIg6u6wnNjQYHwOCVvW0l5sX01eGhVeR6ngO2SysSnasptj3NQ0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=EmdpvfWU; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1727955701; x=1759491701;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=wNrw4eZwzrrYs1rZs/Rki+ec5IFjk/dB5RKKPmVtwM8=;
+  b=EmdpvfWU+86RRy7kmMs0yWjryI5M4cQvM42JgwR/LcT2PZhS1lnMaduL
+   KlJMHXHO6dVIG6xKsLMrWCesktYukRfMksP+2e7nBUk9k+byZcfDB+Nr0
+   OqLZs1wPZZFy4/n+Yp0hyght6UnFTZJ0+rEQ2/r9CflS2ARt+2cdcMoyw
+   g7v8n6yXvDpeXfNuCdNY/J1PlUniXkkmahciwnvHi7Wi3tSxWkGudaIp0
+   iyWOX4NKPni/H/vy5lNidltL7PQK6HqfILX8Awq7VbPy/FcIsgoSYxSHA
+   rlwej9igKc9LjMcq5p7t+cJVhuLGlCeiWlr40LgFKH3E7s+e4nzOT/3L6
+   Q==;
+X-CSE-ConnectionGUID: e0rRGs/RRCu/vfnaQ02oIA==
+X-CSE-MsgGUID: y2DJdveiS96i9UXBh7VJYg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="37703061"
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
+   d="scan'208";a="37703061"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 04:41:41 -0700
+X-CSE-ConnectionGUID: /rMF49kITt+iLedw14j6OQ==
+X-CSE-MsgGUID: idKEmBdMQlq9C1jFiq1usQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,174,1725346800"; 
+   d="scan'208";a="74315091"
+Received: from unknown (HELO smile.fi.intel.com) ([10.237.72.154])
+  by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 04:41:40 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1swKDB-0000000G74l-1nNG;
+	Thu, 03 Oct 2024 14:41:37 +0300
+Date: Thu, 3 Oct 2024 14:41:37 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Michael Wu <michael.wu@kneron.us>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jarkko Nikula <jarkko.nikula@linux.intel.com>,
+	Mika Westerberg <mika.westerberg@linux.intel.com>,
+	Jan Dabros <jsd@semihalf.com>, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Morgan Chang <morgan.chang@kneron.us>, mvp.kutali@gmail.com
+Subject: Re: [PATCH v4 2/2] i2c: dwsignware: determine HS tHIGH and tLOW
+ based on HW parameters
+Message-ID: <Zv6C8Zj4NabZf_PM@smile.fi.intel.com>
+References: <20241003111525.779410-1-michael.wu@kneron.us>
+ <20241003111525.779410-3-michael.wu@kneron.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241003111525.779410-3-michael.wu@kneron.us>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
- __pa() is only intended to be used for linear map addresses and using
-it for initial_boot_params which is in fixmap for arm64 will give an
-incorrect value. Hence stash the physical address when it is known at
-boot time and use it at kexec time instead of converting the virtual
-address using __pa().
+On Thu, Oct 03, 2024 at 07:15:24PM +0800, Michael Wu wrote:
+> In commit 35eba185fd1a ("i2c: designware: Calculate SCL timing parameter
+> for High Speed Mode") the SCL high period count and low period count for
+> high speed mode are calculated based on fixed tHIGH = 160 and tLOW = 120.
+> However, the set of two fixed values is only applicable to the combination
+> of hardware parameters IC_CAP_LOADING is 400 and IC_CLK_FREQ_OPTIMIZATION
+> is true. Outside of this combination, the SCL frequency may not reach
+> 3.4 MHz because the fixed tHIGH and tLOW are not small enough.
+> 
+> If IC_CAP_LOADING is 400, it means the bus capacitance is 400pF;
+> Otherwise, 100 pF. If IC_CLK_FREQ_OPTIMIZATION is true, it means that the
+> hardware reduces its internal clock frequency by reducing the internal
+> latency required to generate the high period and low period of the SCL line.
+> 
+> Section 3.15.4.5 in DesignWare DW_apb_i2b Databook v2.03 says that when
+> IC_CLK_FREQ_OPTIMIZATION = 0,
+> 
+>     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
+> 		     = 120 ns for 3.4 Mbps, bus loading = 400pF
+>     MIN_SCL_LOWtime = 160 ns for 3.4 Mbps, bus loading = 100pF
+> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
+> 
+> and section 3.15.4.6 says that when IC_CLK_FREQ_OPTIMIZATION = 1,
+> 
+>     MIN_SCL_HIGHtime = 60 ns for 3.4 Mbps, bus loading = 100pF
+> 		     = 160 ns for 3.4 Mbps, bus loading = 400pF
+>     MIN_SCL_LOWtime = 120 ns for 3.4 Mbps, bus loading = 100pF
+> 		    = 320 ns for 3.4 Mbps, bus loading = 400pF
+> 
+> In order to calculate more accurate SCL high period count and low period
+> count for high speed mode, two hardware parameters IC_CAP_LOADING and
+> IC_CLK_FREQ_OPTIMIZATION must be considered together. Since there're no
+> registers controlliing these these two hardware parameters, users can
+> declare them in the device tree so that the driver can obtain them.
 
-Reported-by: Breno Leitao <leitao@debian.org>
-Suggested-by: Mark Rutland <mark.rutland@arm.com>
-Signed-off-by: Usama Arif <usamaarif642@gmail.com>
-Fixes: ac10be5cdbfa ("arm64: Use common of_kexec_alloc_and_setup_fdt()")
----
- arch/arm64/kernel/setup.c | 8 ++++++++
- drivers/of/fdt.c          | 6 ++++++
- drivers/of/kexec.c        | 8 ++++++--
- include/linux/of_fdt.h    | 2 ++
- 4 files changed, 22 insertions(+), 2 deletions(-)
+As long as DT schema (new properties) is accepted, this LGTM now,
+Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 
-diff --git a/arch/arm64/kernel/setup.c b/arch/arm64/kernel/setup.c
-index b22d28ec8028..a4d96f5e2e05 100644
---- a/arch/arm64/kernel/setup.c
-+++ b/arch/arm64/kernel/setup.c
-@@ -194,6 +194,14 @@ static void __init setup_machine_fdt(phys_addr_t dt_phys)
- 	/* Early fixups are done, map the FDT as read-only now */
- 	fixmap_remap_fdt(dt_phys, &size, PAGE_KERNEL_RO);
- 
-+	/*
-+	 * Save dt_phys address so that it can be used later for kexec. This
-+	 * is done as __pa() is only intended to be used for linear map addresses
-+	 * and using it for initial_boot_params which is in fixmap will give an
-+	 * incorrect value.
-+	 */
-+	set_initial_boot_params_pa(dt_phys);
-+
- 	name = of_flat_dt_get_machine_name();
- 	if (!name)
- 		return;
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 4d528c10df3a..9e312b7c246e 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -457,6 +457,7 @@ int __initdata dt_root_addr_cells;
- int __initdata dt_root_size_cells;
- 
- void *initial_boot_params __ro_after_init;
-+phys_addr_t initial_boot_params_pa __ro_after_init;
- 
- #ifdef CONFIG_OF_EARLY_FLATTREE
- 
-@@ -1185,6 +1186,11 @@ bool __init early_init_dt_scan(void *params)
- 	return true;
- }
- 
-+void __init set_initial_boot_params_pa(phys_addr_t params)
-+{
-+	initial_boot_params_pa = params;
-+}
-+
- static void *__init copy_device_tree(void *fdt)
- {
- 	int size;
-diff --git a/drivers/of/kexec.c b/drivers/of/kexec.c
-index 9ccde2fd77cb..ca9f27b27f71 100644
---- a/drivers/of/kexec.c
-+++ b/drivers/of/kexec.c
-@@ -300,8 +300,12 @@ void *of_kexec_alloc_and_setup_fdt(const struct kimage *image,
- 		goto out;
- 	}
- 
--	/* Remove memory reservation for the current device tree. */
--	ret = fdt_find_and_del_mem_rsv(fdt, __pa(initial_boot_params),
-+	/* Remove memory reservation for the current device tree.
-+	 * For arm64, initial_boot_params is a fixmap address, hence __pa(),
-+	 * can't be used to get the physical address.
-+	 */
-+	ret = fdt_find_and_del_mem_rsv(fdt, IS_ENABLED(CONFIG_ARM64) ?
-+				       initial_boot_params_pa : __pa(initial_boot_params),
- 				       fdt_totalsize(initial_boot_params));
- 	if (ret == -EINVAL) {
- 		pr_err("Error removing memory reservation.\n");
-diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
-index d69ad5bb1eb1..dbd99bf21ac8 100644
---- a/include/linux/of_fdt.h
-+++ b/include/linux/of_fdt.h
-@@ -31,6 +31,7 @@ extern void *of_fdt_unflatten_tree(const unsigned long *blob,
- extern int __initdata dt_root_addr_cells;
- extern int __initdata dt_root_size_cells;
- extern void *initial_boot_params;
-+extern phys_addr_t initial_boot_params_pa;
- 
- extern char __dtb_start[];
- extern char __dtb_end[];
-@@ -73,6 +74,7 @@ extern int early_init_dt_scan_root(void);
- extern bool early_init_dt_scan(void *params);
- extern bool early_init_dt_verify(void *params);
- extern void early_init_dt_scan_nodes(void);
-+extern void set_initial_boot_params_pa(phys_addr_t params);
- 
- extern const char *of_flat_dt_get_machine_name(void);
- extern const void *of_flat_dt_match_machine(const void *default_match,
 -- 
-2.43.5
+With Best Regards,
+Andy Shevchenko
+
 
 
