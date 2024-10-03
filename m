@@ -1,144 +1,115 @@
-Return-Path: <devicetree+bounces-107640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BACFD98F622
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 20:31:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79A0D98F65D
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 20:42:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6221E1F21FBE
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 18:31:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB91B1C218A9
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 18:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5921D6A33F;
-	Thu,  3 Oct 2024 18:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6B2E1AB51D;
+	Thu,  3 Oct 2024 18:42:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ODZymaUY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="0OKKxt81"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 915FDBA41;
-	Thu,  3 Oct 2024 18:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A840319F134;
+	Thu,  3 Oct 2024 18:42:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727980295; cv=none; b=s7tJzzscR2Cql3yS5qKuN6zHKc9ZBhTAaT/lWD50loU8esfPcBChOFJkIWvVxBVCOofZxLf82DY6MPZWyQnAcohT/8Bt6EWEnqBHHqYhHQT0cPVY8bzf1LrOb4Gx/zkYOcGCV/RaAsUbrbC1J32bfyRNp/ypu4FjgoqKPQ34TpE=
+	t=1727980959; cv=none; b=GoD97RnhDqXI/KV7hG6jwbsDlqEr/73j3nUGhuQZ15ieI7hO7ekq0q4k91iDy/mc3AxUZKP6Xn799YW9btkjCrWDxgAWxCG1ckSAaQAx0aOrx15a7iuxWOvPcFqwPZ2o3MXRWb9Tr+gnVWil3jOH6mxEQlJRW3m7I6nOdQrNhQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727980295; c=relaxed/simple;
-	bh=fYj3RyO1TCC1UywFyFsk8unCFvaNs309HO7H33lQWmg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uo1e9rHatdoMe9P/nVXkIcgy4eSVvvNpgqKHo41eHXxE38X210lnoXgE6XdOcoU33AkIwnV5oPLLmkjpdPOGBdSpookqj+m2+blha9BpXZn9Qz+k597S6DDRKsKDKGxUi4sWEtFxZ6D1fJiCZ3jHkdpIOZ3GYz1Aa5zCuTkUCRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ODZymaUY; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 835CB88EA7;
-	Thu,  3 Oct 2024 20:31:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1727980291;
-	bh=urWCAcPRU+WZu8zm+Uk5s33cemx3OGm+bIgFrNOe5yU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ODZymaUYrjwkQe3Y1Yt/wD05BRSM45RrLmdRmMz64X2/xXhBbSz2nKY5UBtAinG2Q
-	 CTbdaXqp2BHjnRjJ+Y1GBhNT0zM/VvuBwhogycyBboXsF/otKnePDdNhwlPyIv2xhD
-	 aOIFxM5MJPkqxROb/04XWeKczk8A0ftd58uaX3cQ59WaekEuC2rU6nce4QWtCgsGmD
-	 XnSCLso/QqdeERAS3tHQy7ftPX23g9Z23eWMfvcmjyQW3+gq2iA3kE5zda1LdcXvb2
-	 Q0wY4nztQh0Ur9+KTq/IzoMO5idCF7e7U2s/u9C+UyNROyx7t7eEpo36SMvrQqybNV
-	 59R8+PgZ8z3NA==
-Message-ID: <2f3bb6ce-50aa-40d9-959f-10c8193acaba@denx.de>
-Date: Thu, 3 Oct 2024 20:31:29 +0200
+	s=arc-20240116; t=1727980959; c=relaxed/simple;
+	bh=0q5SSCaXUaMZqbCx0JIierHaddgdHVXpOzVy1vt9hIw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tWe4hVXxKa1AGyAtKEUzGRgaSAB10GgS7N9SQOnFVAMWmmb54+eATx5CjcJYR3x6gnPaTFtG3/4R0QKIcdKqTJRZA9Sfv9tU5ogdkoJ1BTSYEYVjyNx8/njKjze75phOkVsCub36wnVZLrI2ocRhZ4pPs25zZ6ijbwoXZOW3344=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=0OKKxt81; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=2RDjJwzjseFZ2RBERk4BN7b4d/RJVlrbdFG7geetqgs=; b=0OKKxt81bC8V4FGa2ByITtAODv
+	FxcvNjNTGZd1DTFR5x+XXPzIV8mpoS6kZW1lGcL6HpOkd31SBgarDSet5Ew+deEPrGgO80gE4Ie6J
+	FIBjrpKVepAKWyx1b+YrZ+WNxHrJsgL2T4D2NFU2Y9+Dwli4pJ8OvoBCQqm15Jce9OH8=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1swQmP-008yMk-5X; Thu, 03 Oct 2024 20:42:25 +0200
+Date: Thu, 3 Oct 2024 20:42:25 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: "Kiran Kumar C.S.K" <quic_kkumarcs@quicinc.com>
+Cc: netdev@vger.kernel.org, Andy Gross <agross@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Jacob Keller <jacob.e.keller@intel.com>,
+	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, vsmuthu@qti.qualcomm.com,
+	arastogi@qti.qualcomm.com, linchen@qti.qualcomm.com,
+	john@phrozen.org, Luo Jie <quic_luoj@quicinc.com>,
+	Pavithra R <quic_pavir@quicinc.com>,
+	"Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
+	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
+Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
+Message-ID: <febe6776-53dc-454d-83b0-601540e45f78@lunn.ch>
+References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
+ <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
+ <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
+ <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/7] wifi: wilc1000: Clean up usage of
- wilc_get_chipid()
-To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
- linux-wireless@vger.kernel.org
-Cc: "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Ajay Singh <ajay.kathat@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241003111529.41232-1-marex@denx.de>
- <20241003111529.41232-2-marex@denx.de>
- <2d9d4896-a81a-4393-8cf3-8e42b36aaae2@bootlin.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <2d9d4896-a81a-4393-8cf3-8e42b36aaae2@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
 
-On 10/3/24 7:33 PM, Alexis Lothoré wrote:
-> On 10/3/24 13:14, Marek Vasut wrote:
->> Reduce the use of wilc_get_chipid(), use cached chip ID wherever
->> possible. Remove duplicated partial chip ID read implementations
->> from the driver. Update wilc_get_chipid() to always read the chip
->> ID out of the hardware and update the cached chip ID, and make it
->> return a proper return value instead of a chipid. Call wilc_get_chipid()
->> early to make the cached chip ID available to various sites using
->> is_wilc1000() to access the cached chip ID.
->>
->> Reviewed-by: Alexis Lothoré <alexis.lothore@bootlin.com>
->> Signed-off-by: Marek Vasut <marex@denx.de>
-> 
-> [...]
-> 
->> +int wilc_get_chipid(struct wilc *wilc)
->> +{
->> +	u32 chipid = 0;
->> +	u32 rfrevid = 0;
->> +
->> +	if (wilc->chipid == 0) {
->> +		wilc->hif_func->hif_read_reg(wilc, WILC_CHIPID, &chipid);
->> +		wilc->hif_func->hif_read_reg(wilc, WILC_RF_REVISION_ID,
->> +					     &rfrevid);
->> +		if (!is_wilc1000(chipid)) {
->> +			wilc->chipid = 0;
->> +			return -EINVAL;
->> +		}
->> +		if (chipid == WILC_1000_BASE_ID_2A) { /* 0x1002A0 */
->> +			if (rfrevid != 0x1)
->> +				chipid = WILC_1000_BASE_ID_2A_REV1;
->> +		} else if (chipid == WILC_1000_BASE_ID_2B) { /* 0x1002B0 */
->> +			if (rfrevid == 0x4)
->> +				chipid = WILC_1000_BASE_ID_2B_REV1;
->> +			else if (rfrevid != 0x3)
->> +				chipid = WILC_1000_BASE_ID_2B_REV2;
->> +		}
->> +
->> +		wilc->chipid = chipid;
->> +	}
->> +
->> +	return 0;
->> +}
-> 
-> My bad for not having spotted it in v6, but you are still missing an
-> EXPORT_SYMBOL_GPL(wilc_get_chipid) here, making the build fail if wilc support
-> is built as module:
-> 
-> ERROR: modpost: "wilc_get_chipid"
-> [drivers/net/wireless/microchip/wilc1000/wilc1000-sdio.ko] undefined!
-> ERROR: modpost: "wilc_get_chipid"
-> [drivers/net/wireless/microchip/wilc1000/wilc1000-spi.ko] undefined!
-> make[2]: *** [scripts/Makefile.modpost:145: Module.symvers] Error 1
-> make[1]: *** [/home/alexis/src/microchip/linux/Makefile:1878: modpost] Error 2
-> make: *** [Makefile:224: __sub-make] Error 2
-Fixed in V8, thanks.
+> Agree that switchdev is the right model for this device. We were
+> planning to enable base Ethernet functionality using regular
+> (non-switchdev) netdevice representation for the ports initially,
+> without offload support. As the next step, L2/VLAN offload support using
+> switchdev will be enabled on top. Hope this phased approach is fine.
 
-Before I send V8, can you have a look at the last two patches in this 
-series? They need some RB/TB.
+Since it is not a DSA switch, yes, a phased approach should be O.K.
 
-Thanks !
+> >> 3) PCS driver patch series:
+> >>         Driver for the PCS block in IPQ9574. New IPQ PCS driver will
+> >>         be enabled in drivers/net/pcs/
+> >> 	Dependent on NSS CC patch series (2).
+> > 
+> > I assume this dependency is pure at runtime? So the code will build
+> > without the NSS CC patch series?
+> 
+> The MII Rx/Tx clocks are supplied from the NSS clock controller to the
+> PCS's MII channels. To represent this in the DTS, the PCS node in the
+> DTS is configured with the MII Rx/Tx clock that it consumes, using
+> macros for clocks which are exported from the NSS CC driver in a header
+> file. So, there will be a compile-time dependency for the dtbindings/DTS
+> on the NSS CC patch series. We will clearly call out this dependency in
+> the cover letter of the PCS driver. Hope that this approach is ok.
+
+Since there is a compile time dependency, you might want to ask for
+the clock patches to be put into a stable branch which can be merged
+into netdev.
+
+Or you need to wait a kernel cycle.
+
+   Andrew
 
