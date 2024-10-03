@@ -1,196 +1,204 @@
-Return-Path: <devicetree+bounces-107385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594BE98E941
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:07:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5C298E960
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 07:34:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E20DC287DD4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:07:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8166C1C22083
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 05:34:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADCD648CFC;
-	Thu,  3 Oct 2024 05:07:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EAA40879;
+	Thu,  3 Oct 2024 05:34:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="kggU+RnZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GLpogeTX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C917A224EA;
-	Thu,  3 Oct 2024 05:07:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E09928F7
+	for <devicetree@vger.kernel.org>; Thu,  3 Oct 2024 05:34:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727932063; cv=none; b=JJDweDGwmZMfplTE+W1UvAMscOjW7BlOvATUEA82paFaB+dEm3mtjN3134MGOHYOiaChUpKDCtqVQy4CznDMdMajcg5tf6uU0FDQ/Irwku3MoS6CFYGR+F63vzra2nYwYOyd5DDaR2CJeVX57WZANKLn93zo8xByEUBjvyd2edg=
+	t=1727933690; cv=none; b=SyOvaSI6pMswwPYtVIz5j7ksEVeyuX503gs6XTu5BILOgdgAYwhVv4qZAmZgEfbGKCMWc280evTGl0vsiVcHUr5tp1FdjEKn4SfVgL/iYlDb4l5WKXDxO7tIMNi8Fsbbzc/6I3UKZZ0pNvBKZ46nt5avD0mKNdLtpFSu9e8lWQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727932063; c=relaxed/simple;
-	bh=dhA9dUnTQrlbjUojmNt+lPn+T0Gcazf90rUxsux0e4c=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=JI8Xa5xTeBmsoVZlz8M5GSwEWd6ec8pJmIXBU1VFAQIehdzvzDVevdgeBDoF378woG8DaFjyM0zMFpxsJHmabsRZzGEzVX8iCNqEqEVNir9DSgJgUGdO25RbKl+7O4U3voyxnPw3TthS0y9ArWIzLanlkw/qZguyjLLHPiZccWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=kggU+RnZ; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1727932062; x=1759468062;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=dhA9dUnTQrlbjUojmNt+lPn+T0Gcazf90rUxsux0e4c=;
-  b=kggU+RnZdAUHVnMHe5qRHta05Gtv5HZKDOn2If2mt7zq6UNHR6wkROx5
-   nFZKwstv5hfDHQkY6UTLQIFPhEYUlUBnCTl1jzLme44PBdScuqc19i9LF
-   ckcmZysUJPBx1FZ8sXAyVtD1FhLLOiSwQ8m8RMLcNVEOqhUPIBkgze+Bx
-   iMF+R4xV27+3qG2MRyunFPK2hxPU4AAJxRJ+sJHdlQBQVFhXW6FFZw6/7
-   cZzzHYc20PJJ9X3I0DdSG1kvU8rj5ndfCrdSBp5wbcV+N2jUU71B9zDVn
-   CI5f/SSmxVdZmc+b44jHwDT7o8J/HoEKMvTi2ar31h2kcMScKwGQgNL1f
-   w==;
-X-CSE-ConnectionGUID: tSbnCTCURiuQebcaCydRvg==
-X-CSE-MsgGUID: zdLMqo2iR/Szk5Hu91pizQ==
-X-IronPort-AV: E=Sophos;i="6.11,173,1725346800"; 
-   d="scan'208";a="33144171"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Oct 2024 22:07:34 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Wed, 2 Oct 2024 22:07:18 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Wed, 2 Oct 2024 22:07:12 -0700
-From: Charan Pedumuru <charan.pedumuru@microchip.com>
-Date: Thu, 3 Oct 2024 10:37:03 +0530
-Subject: [PATCH v2] dt-bindings: net: can: atmel: Convert to json schema
+	s=arc-20240116; t=1727933690; c=relaxed/simple;
+	bh=EDm+/tkGzYiUBi8ZkmlBNjgzxGpygo9gAhp62ALZ35Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SNW2JGWUMqrsngjV8GKbG/JWHY4igAsx+XVtinWRFj39UFnzeTrqZFwoWFvI9gX7SaMMz9fxzmu49kDoU+i5+kZcD6lMAbQd8/R3FOWvmF6t5vLiBO6Tf/Gm485KsBt9n6uK0KpBfHlE38O4t6pW5mYPB8096ef4rCClfcgW/0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GLpogeTX; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-71b0d9535c0so439385b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 02 Oct 2024 22:34:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1727933689; x=1728538489; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=HSml+1r4bZzAkwRWts40vTN9SrEXop2A63UnX854Gxc=;
+        b=GLpogeTXyapHGOFywv2Y/F4FfCJ4RNG7GtSHTxipIF7FFFklw/eY4ZWJzi2LFykMeh
+         TTCqhkt/+LK3pyDZ0RckYLgZiEKxGP4t6D9JYmYROqQBwh/y6qahqEKBbdeTfgIL5r5C
+         rBTLqYKcgGwz7EqWTeX5ja5pCWFlr9y+B8timJ/9fegI9NMM7Or650uiDGdOBckhNLdF
+         oYidljEkDtTWnVAx05S+0kIxQIGWy9uI6JkD9Lr+pu32kWe602gnXyCt6YjAc8dHUMQA
+         oBrbeHi9XSR2WPnX/29ZQ00je52q0lN7Y6HClv7xVhkqQiW22GfKM4ciiAx5umPt8kDh
+         jWtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727933689; x=1728538489;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HSml+1r4bZzAkwRWts40vTN9SrEXop2A63UnX854Gxc=;
+        b=XsTCLYaKGCSnLf7YzTEx0h8kqf5UMhVa+v2y76TYbOAbXegRSDZoOwS7dp8cTkx3eG
+         YNYUtOlRXEETEgjStmV76yFyJ8xeH7N1QPamCeGUaErx8bgncZC3x7yGsmK/yQ2dapvs
+         7HKOebHIRGb+yEjvuGCsUe2ZhvCT25kG8T336phIGn06w4TkhtvjKQV1lMhh4T5f2YUb
+         M91FEfr5mwvor4lTlCixHsoqfZ97OTaCRppJ4iPK3vHABWflSCtVcS1vpu6/MW04c3OP
+         FwkgzXlEiDM5NmpZXYDtZjhHeiTz6DMN/SJhZyPBHg9IqzYOK8xzHgLfb36Zbp8I1o3j
+         bmSg==
+X-Forwarded-Encrypted: i=1; AJvYcCWEtil2q2QJT1RPEdOvM6oW7md6HhesnB8P3JdKKwLPFfZEe13UraBMf8I8/r7iU0kzQYKSo7dSxZif@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxa1Lw9iP+KGGH4tNtwHRs9VAxD9S2PLfzrLi+OC46eY8bwrXl4
+	UdQkLzQek/rStV661frx4CohAEQoDrzdqryc7TAI6/EdwiqrCsYpEisgWfIcdw==
+X-Google-Smtp-Source: AGHT+IEhnqAJQDNpXwUuNi0Kwr7kqnn3sBdkE/2mLCX4Dd9WV3ch5BfYf8udYxNwIYPKwjCCMKEivQ==
+X-Received: by 2002:a05:6a00:acb:b0:71c:5b8a:ae0b with SMTP id d2e1a72fcca58-71dc5d71766mr9243388b3a.24.1727933688500;
+        Wed, 02 Oct 2024 22:34:48 -0700 (PDT)
+Received: from thinkpad ([36.255.17.222])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71dd9dee8b8sm480877b3a.145.2024.10.02.22.34.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 02 Oct 2024 22:34:48 -0700 (PDT)
+Date: Thu, 3 Oct 2024 11:04:40 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Richard Zhu <hongxing.zhu@nxp.com>,
+	Lucas Stach <l.stach@pengutronix.de>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
+Subject: Re: [PATCH v3 0/3] PCI: dwc: opitimaze RC host pci_fixup_addr()
+Message-ID: <20241003053440.5mv6kv27rxttekaq@thinkpad>
+References: <20240930-pci_fixup_addr-v3-0-80ee70352fc7@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241003-can-v2-1-85701d3296dd@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAHYm/mYC/1WMwQ7CIBAFf6XZsxggQqmn/ofpodCt7KHQgCGah
- n8Xe/M4L2/mgIyJMMO9OyBhoUwxNJCXDpyfwxMZLY1Bcnnjg5DMzYEZtP1qsFdaL9Cee8KV3mf
- lMTX2lF8xfc5oEb/13y+CCeaUVsIKwwdrx41cis7TfnVxg6nW+gVC6gWTmgAAAA==
-To: Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol
-	<mailhol.vincent@wanadoo.fr>, "David S. Miller" <davem@davemloft.net>, "Eric
- Dumazet" <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nicolas Ferre
-	<nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC: <linux-can@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Charan Pedumuru
-	<charan.pedumuru@microchip.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240930-pci_fixup_addr-v3-0-80ee70352fc7@nxp.com>
 
-Convert atmel-can documentation to yaml format
+On Mon, Sep 30, 2024 at 02:44:52PM -0400, Frank Li wrote:
+> ┌─────────┐                    ┌────────────┐
+>  ┌─────┐    │         │ IA: 0x8ff0_0000    │            │
+>  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
+>  └─────┘    │   │     │ IA: 0x8ff8_0000 │  │            │
+>   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
+> 0x7ff0_0000─┼───┘  │  │             │   │  │            │
+>             │      │  │             │   │  │            │   PCI Addr
+> 0x7ff8_0000─┼──────┘  │             │   └──► CfgSpace  ─┼────────────►
+>             │         │             │      │            │    0
+> 0x7000_0000─┼────────►├─────────┐   │      │            │
+>             └─────────┘         │   └──────► IOSpace   ─┼────────────►
+>              BUS Fabric         │          │            │    0
+>                                 │          │            │
+>                                 └──────────► MemSpace  ─┼────────────►
+>                         IA: 0x8000_0000    │            │  0x8000_0000
+>                                            └────────────┘
+> 
+> Current dwc implimemnt, pci_fixup_addr() call back is needed when bus
+> fabric convert cpu address before send to PCIe controller.
+> 
+>     bus@5f000000 {
+>             compatible = "simple-bus";
+>             #address-cells = <1>;
+>             #size-cells = <1>;
+>             ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
+>                      <0x80000000 0x0 0x70000000 0x10000000>;
+> 
+>             pcie@5f010000 {
+>                     compatible = "fsl,imx8q-pcie";
+>                     reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
+>                     reg-names = "dbi", "config";
+>                     #address-cells = <3>;
+>                     #size-cells = <2>;
+>                     device_type = "pci";
+>                     bus-range = <0x00 0xff>;
+>                     ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
+>                              <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
+>             ...
+>             };
+>     };
+> 
+> Device tree already can descript all address translate. Some hardware
+> driver implement fixup function by mask some bits of cpu address. Last
+> pci-imx6.c are little bit better by fetch memory resource's offset to do
+> fixup.
+> 
+> static u64 imx_pcie_cpu_addr_fixup(struct dw_pcie *pcie, u64 cpu_addr)
+> {
+> 	...
+> 	entry = resource_list_first_type(&pp->bridge->windows, IORESOURCE_MEM);
+> 	return cpu_addr - entry->offset;
+> }
+> 
+> But it is not good by using IORESOURCE_MEM to fix up io/cfg address map
+> although address translate is the same as IORESOURCE_MEM.
+> 
+> This patches to fetch untranslate range information for PCIe controller
+> (pcie@5f010000: ranges). So current config ATU without cpu_fixup_addr().
+> 
+> EP side patch:
+> https://lore.kernel.org/linux-pci/20240923-pcie_ep_range-v2-0-78d2ea434d9f@nxp.com/T/#mfc73ca113a69ad2c0294a2e629ecee3105b72973
+> 
+> The both pave the road to eliminate ugle cpu_fixup_addr() callback function.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> Changes in v3:
+> - see each patch
 
-Signed-off-by: Charan Pedumuru <charan.pedumuru@microchip.com>
----
-Changes in v2:
-- Renamed the title to "Microchip AT91 CAN controller"
-- Removed the unnecessary labels and add clock properties to examples
-- Removed if condition statements and made clock properties as default required properties
-- Link to v1: https://lore.kernel.org/r/20240912-can-v1-1-c5651b1809bb@microchip.com
----
- .../bindings/net/can/atmel,at91sam9263-can.yaml    | 58 ++++++++++++++++++++++
- .../devicetree/bindings/net/can/atmel-can.txt      | 15 ------
- 2 files changed, 58 insertions(+), 15 deletions(-)
+You should make the life easier for the reviewer, not hard. Please summarise
+what has changed since the last version.
 
-diff --git a/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
-new file mode 100644
-index 000000000000..c818c01a718b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/can/atmel,at91sam9263-can.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/can/atmel,at91sam9263-can.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip AT91 CAN Controller
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+
-+allOf:
-+  - $ref: can-controller.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - atmel,at91sam9263-can
-+          - atmel,at91sam9x5-can
-+      - items:
-+          - enum:
-+              - microchip,sam9x60-can
-+          - const: atmel,at91sam9x5-can
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-names:
-+    items:
-+      - const: can_clk
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/clock/at91.h>
-+    can@f000c000 {
-+          compatible = "atmel,at91sam9263-can";
-+          reg = <0xf000c000 0x300>;
-+          interrupts = <30 IRQ_TYPE_LEVEL_HIGH 3>;
-+          clocks = <&pmc PMC_TYPE_PERIPHERAL 12>;
-+          clock-names = "can_clk";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/can/atmel-can.txt b/Documentation/devicetree/bindings/net/can/atmel-can.txt
-deleted file mode 100644
-index 218a3b3eb27e..000000000000
---- a/Documentation/devicetree/bindings/net/can/atmel-can.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--* AT91 CAN *
--
--Required properties:
--  - compatible: Should be "atmel,at91sam9263-can", "atmel,at91sam9x5-can" or
--    "microchip,sam9x60-can"
--  - reg: Should contain CAN controller registers location and length
--  - interrupts: Should contain IRQ line for the CAN controller
--
--Example:
--
--	can0: can@f000c000 {
--		compatible = "atmel,at91sam9x5-can";
--		reg = <0xf000c000 0x300>;
--		interrupts = <40 4 5>
--	};
+- Mani
 
----
-base-commit: 62f92d634458a1e308bb699986b9147a6d670457
-change-id: 20240912-can-8eb7f8e7566d
+> - Link to v2: https://lore.kernel.org/r/20240926-pci_fixup_addr-v2-0-e4524541edf4@nxp.com
+> 
+> Changes in v2:
+> - see each patch
+> - Link to v1: https://lore.kernel.org/r/20240924-pci_fixup_addr-v1-0-57d14a91ec4f@nxp.com
+> 
+> ---
+> Frank Li (3):
+>       of: address: Add parent_bus_addr to struct of_pci_range
+>       PCI: dwc: Using parent_bus_addr in of_range to eliminate cpu_addr_fixup()
+>       PCI: imx6: Remove cpu_addr_fixup()
+> 
+>  drivers/of/address.c                              |  2 ++
+>  drivers/pci/controller/dwc/pci-imx6.c             | 22 ++----------
+>  drivers/pci/controller/dwc/pcie-designware-host.c | 42 +++++++++++++++++++++++
+>  drivers/pci/controller/dwc/pcie-designware.h      |  8 +++++
+>  include/linux/of_address.h                        |  1 +
+>  5 files changed, 55 insertions(+), 20 deletions(-)
+> ---
+> base-commit: 69940764dc1c429010d37cded159fadf1347d318
+> change-id: 20240924-pci_fixup_addr-a8568f9bbb34
+> 
+> Best regards,
+> ---
+> Frank Li <Frank.Li@nxp.com>
+> 
 
-Best regards,
 -- 
-Charan Pedumuru <charan.pedumuru@microchip.com>
-
+மணிவண்ணன் சதாசிவம்
 
