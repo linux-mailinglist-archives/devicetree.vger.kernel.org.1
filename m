@@ -1,65 +1,64 @@
-Return-Path: <devicetree+bounces-107542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 281A998EEA4
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 13:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A98A198EECD
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 14:11:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DDF152836B2
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 11:59:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63ADC284EC1
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 12:11:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B4015572E;
-	Thu,  3 Oct 2024 11:59:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 329FA15E5D3;
+	Thu,  3 Oct 2024 12:10:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="W6Qq55em"
+	dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b="Yl2V5Et3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-00176a03.pphosted.com (mx0b-00176a03.pphosted.com [67.231.157.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F52153BE4;
-	Thu,  3 Oct 2024 11:59:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E77414D708;
+	Thu,  3 Oct 2024 12:10:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.157.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727956778; cv=none; b=oL/CbvQXnnVkA7FhYIM6NFwcFHuHL6wHIj9qi/szLKyb7WLBPe5U1ZVBq7ZGhXQrOADyS+fRuW+xMvWijdJ3PQL6mxI5rB/6siT/u2JZvEWZGsPflyjkZnL64z9boqSqtbiijn0MkRLQhuXc3mMtHRA/succK9eEYKLNAcgpMaE=
+	t=1727957459; cv=none; b=BlU0pVPNgdYcStDXr8k8hyngSLGFz2vnYcTrDH3G+3SbCOyJbMl2ghdw6jXlMlzUzHxMb71viTS6njSVwQMMwwcQyGiqRod3W7xvwhYOV/ZKacZzIY0EVvhXVEN1o576y5JPquNQf1gJN8BOVxTYsTWkObc/7gSTBDcJcEBEaLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727956778; c=relaxed/simple;
-	bh=SYpAIjch7sjAvwc6DfsD+Yb8KF7SVa1BfiHQzyrY9UY=;
+	s=arc-20240116; t=1727957459; c=relaxed/simple;
+	bh=zcY13KIWIrUY8UFQ1kMAw23M2r5Ji5YpIDTzQZHJiww=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B/XI6me3EyNUAZACHLgsT/WBXzS8zOjLorFpHrIawpf4i8xj7MDAOeNPgzxyHBeNril3L2Ed40Xd1l39MVNGmRwoLsb/qyTiOQY3VMLFXo/ZVuL3Q7/j1vCm571Oczg0L+UPvL93RUqAJqdcjfU7ZLhHh9eHccOULrdCfj2pV80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=W6Qq55em; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 952ABC4CEC5;
-	Thu,  3 Oct 2024 11:59:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1727956778;
-	bh=SYpAIjch7sjAvwc6DfsD+Yb8KF7SVa1BfiHQzyrY9UY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W6Qq55em9Y+v8h2QVMDM5rZoxnoCFKUtBwczjyBQJBHtBssruG7SlzZS/Udo1e9xC
-	 wxzxV6FsDkZfOZM0Gcdy2b7pa+S2CFKavLcH3+H0qzVJDA3JUSEWAxU1VgIcwfCotj
-	 Vr+IT2tYo5ZuW/s4Q8TEVcRig2Z1qshHf4mQRba8=
-Date: Thu, 3 Oct 2024 13:59:35 +0200
-From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chester Lin <chester62515@gmail.com>,
-	Matthias Brugger <mbrugger@suse.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	NXP S32 Linux Team <s32@nxp.com>,
-	Christophe Lizzi <clizzi@redhat.com>,
-	Alberto Ruiz <aruizrui@redhat.com>,
-	Enric Balletbo <eballetb@redhat.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v4 1/4] drivers: provide
- devm_platform_get_and_ioremap_resource_byname()
-Message-ID: <2024100348-mortally-diary-f718@gregkh>
-References: <20240926143122.1385658-1-andrei.stefanescu@oss.nxp.com>
- <20240926143122.1385658-2-andrei.stefanescu@oss.nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MKk/20oO7hiNO+Huu4C1MpQxPMjcL4Qt3jCUwIf8xl8wVmjretHL2ojC6t/pKRvChByZWumEJ6YxwLAzfQCAcJE4xin0H/rHMPZ9tNlwixY8TfadXQ3AfL63NE54ybKCf4dw+e6JZUhm7GBbNjqHxcHxybfWl5/fxDoiHrfjx54=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com; spf=pass smtp.mailfrom=gehealthcare.com; dkim=pass (2048-bit key) header.d=gehealthcare.com header.i=@gehealthcare.com header.b=Yl2V5Et3; arc=none smtp.client-ip=67.231.157.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gehealthcare.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gehealthcare.com
+Received: from pps.filterd (m0048300.ppops.net [127.0.0.1])
+	by m0048300.ppops.net-00176a03. (8.18.1.2/8.18.1.2) with ESMTP id 493BTQn9018585;
+	Thu, 3 Oct 2024 07:56:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	gehealthcare.com; h=cc:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=outbound; bh=S
+	HlQdxbYpL9AvU3/VUMxJirlhY+RYkPiFenF7jPzuo4=; b=Yl2V5Et3py9dIRqMc
+	51n9c6v/FPhURwvGKbK0iy8J5/mXGF4yPHbuKjZfyN/6QHiAlYkkDYxrUXXVJqwr
+	SdZqa5p8hPfDNV7uhvIGnrh/PaQyb/0ITVJqo4ApA+dV9jlwnjNS6ksnsVNZ4LYE
+	09qL38GtlcXCNyvKTTgLbg/Sp6R7l2qAT7QJtNVr8b0XbkvvuakE/U1amizU1Tvd
+	leiciL5ECYKfdW50873lf2lZk0Q7VKl4MECod9j4uNqnV0nTiX/7SXk3wDP603AN
+	/TsrV+aDyoCjnqqlm6POdyi2V482OB+6IcuuJKFgmrrNhBPG10//fxIuk4Ej7ZdE
+	UUtJg==
+Date: Thu, 3 Oct 2024 14:56:03 +0300
+From: Ian Ray <ian.ray@gehealthcare.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: David Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 2/4] dt-bindings: iio: adc: Add the GE HealthCare PMC
+ ADC
+Message-ID: <Zv6GU3QuyJjgt0o1@852ed68de471>
+References: <20241003114641.672086-1-herve.codina@bootlin.com>
+ <20241003114641.672086-3-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,62 +67,146 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240926143122.1385658-2-andrei.stefanescu@oss.nxp.com>
+In-Reply-To: <20241003114641.672086-3-herve.codina@bootlin.com>
+X-Proofpoint-GUID: vlS15X4uHUT6nIMba0xM37AcmKNocuXX
+X-Proofpoint-ORIG-GUID: vlS15X4uHUT6nIMba0xM37AcmKNocuXX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ definitions=2024-10-03_06,2024-10-03_01,2024-09-30_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 impostorscore=0
+ adultscore=0 spamscore=0 suspectscore=0 malwarescore=0 lowpriorityscore=0
+ bulkscore=0 clxscore=1011 phishscore=0 mlxscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2408220000
+ definitions=main-2410030087
 
-On Thu, Sep 26, 2024 at 05:31:18PM +0300, Andrei Stefanescu wrote:
-> Similar to commit 890cc39a879906b63912482dfc41944579df2dc6
-> ("drivers: provide devm_platform_get_and_ioremap_resource()")
-> add a wrapper for "platform_get_resource_byname" and
-> "devm_ioremap_resource". This new wrapper also returns the resource, if
-> any, via a pointer.
+On Thu, Oct 03, 2024 at 01:46:39PM +0200, Herve Codina wrote:
 > 
-> Suggested-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Matthias Brugger <mbrugger@suse.com>
-> Signed-off-by: Andrei Stefanescu <andrei.stefanescu@oss.nxp.com>
+> WARNING: This email originated from outside of GE HealthCare. Please validate the sender's email address before clicking on links or attachments as they may not be safe.
+> 
+> The GE HealthCare PMC Analog to Digital Converter (ADC) is a 16-Channel
+> (voltage and current), 16-Bit ADC with an I2C Interface.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+
+Tested-by: Ian Ray <ian.ray@gehealthcare.com>
+
 > ---
->  drivers/base/platform.c         | 27 +++++++++++++++++++++++++++
->  include/linux/platform_device.h | 13 +++++++++++++
->  2 files changed, 40 insertions(+)
+>  .../bindings/iio/adc/gehc,pmc-adc.yaml        | 86 +++++++++++++++++++
+>  include/dt-bindings/iio/adc/gehc,pmc-adc.h    | 10 +++
+>  2 files changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml
+>  create mode 100644 include/dt-bindings/iio/adc/gehc,pmc-adc.h
 > 
-> diff --git a/drivers/base/platform.c b/drivers/base/platform.c
-> index 4c3ee6521ba5..da6827f9462a 100644
-> --- a/drivers/base/platform.c
-> +++ b/drivers/base/platform.c
-> @@ -108,6 +108,33 @@ devm_platform_get_and_ioremap_resource(struct platform_device *pdev,
->  }
->  EXPORT_SYMBOL_GPL(devm_platform_get_and_ioremap_resource);
->  
-> +/**
-> + * devm_platform_get_and_ioremap_resource_byname - call devm_ioremap_resource()
-> + *					    for a platform device and get
-> + *					    a resource by its name
-> + *
-> + * @pdev: platform device to use both for memory resource lookup as well as
-> + *        resource management
-> + * @name: resource name
-> + * @res: optional output parameter to store a pointer to the obtained resource.
-> + *
-> + * Return: a pointer to the remapped memory or an ERR_PTR() encoded error code
-> + * on failure.
-> + */
-> +void __iomem *
-> +devm_platform_get_and_ioremap_resource_byname(struct platform_device *pdev,
-> +					      const char *name,
-> +					      struct resource **res)
-> +{
-> +	struct resource *r;
+> diff --git a/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml b/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml
+> new file mode 100644
+> index 000000000000..2cea7c104a26
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/gehc,pmc-adc.yaml
+> @@ -0,0 +1,86 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: https://nam10.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fschemas%2Fiio%2Fadc%2Fgehc%2Cpmc-adc.yaml%23&data=05%7C02%7Cian.ray%40gehealthcare.com%7C29c6b87aecab477476ef08dce3a11117%7C9a309606d6ec4188a28a298812b4bbbf%7C0%7C0%7C638635528128598570%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=SDlnZF05zDF5iYE2X%2BsDV9BKN73B2rc5cAaPOJVY%2BrA%3D&reserved=0
+> +$schema: https://nam10.safelinks.protection.outlook.com/?url=http%3A%2F%2Fdevicetree.org%2Fmeta-schemas%2Fcore.yaml%23&data=05%7C02%7Cian.ray%40gehealthcare.com%7C29c6b87aecab477476ef08dce3a11117%7C9a309606d6ec4188a28a298812b4bbbf%7C0%7C0%7C638635528128610679%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=FbLudkkL4uUu2oTjkGLe7SFCI%2B5kXRCNhBPRcess0hc%3D&reserved=0
 > +
-> +	r = platform_get_resource_byname(pdev, IORESOURCE_MEM, name);
-> +	if (res)
-> +		*res = r;
-> +	return devm_ioremap_resource(&pdev->dev, r);
-
-Does this really help out much?  Where will the end be if we keep
-stacking these up like this, the function names are getting huge...
-
-I'm not going to object, but I'm also not going to ack it :)
-
-thanks,
-
-greg k-h
+> +title: GE HealthCare PMC Analog to Digital Converter (ADC)
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description:
+> +  The GE HealthCare PMC ADC is a 16-Channel (voltage and current), 16-Bit ADC
+> +  with an I2C Interface.
+> +
+> +properties:
+> +  compatible:
+> +    const: gehc,pmc-adc
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description:
+> +      Regulator for the VDD power supply.
+> +
+> +  vdda-supply:
+> +    description:
+> +      Regulator for the VDD analog (VDDA) power supply.
+> +
+> +  vddio-supply:
+> +    description:
+> +      Regulator for the VDD IO (VDDIO) power supply.
+> +
+> +  vref-supply:
+> +    description:
+> +      Regulator for the voltage reference power supply.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description:
+> +      The component uses an external oscillator (osc) if an external oscillator
+> +      is connected to its clock pins. Otherwise, it uses an internal reference
+> +      clock.
+> +
+> +  clock-names:
+> +    items:
+> +      - const: osc
+> +
+> +  "#io-channel-cells":
+> +    const: 2
+> +    description: |
+> +      The first cell is the channel type (dt-bindings/iio/adc/gehc,pmc-adc.h
+> +      defines these values):
+> +       - 0: voltage
+> +       - 1: current
+> +      The second cell is the channel number from 0 to 15.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vdda-supply
+> +  - vddio-supply
+> +  - vref-supply
+> +  - '#io-channel-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        adc@14 {
+> +            compatible = "gehc,pmc-adc";
+> +            reg = <0x14>;
+> +            vdd-supply = <&reg_vdd>;
+> +            vdda-supply = <&reg_vdda>;
+> +            vddio-supply = <&reg_vddio>;
+> +            vref-supply = <&reg_vref>;
+> +            #io-channel-cells = <2>;
+> +        };
+> +    };
+> +...
+> diff --git a/include/dt-bindings/iio/adc/gehc,pmc-adc.h b/include/dt-bindings/iio/adc/gehc,pmc-adc.h
+> new file mode 100644
+> index 000000000000..2f291e3c76ae
+> --- /dev/null
+> +++ b/include/dt-bindings/iio/adc/gehc,pmc-adc.h
+> @@ -0,0 +1,10 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+> +
+> +#ifndef _DT_BINDINGS_IIO_ADC_GEHC_PMC_ADC_H
+> +#define _DT_BINDINGS_IIO_ADC_GEHC_PMC_ADC_H
+> +
+> +/* ADC channel type */
+> +#define GEHC_PMC_ADC_VOLTAGE   0
+> +#define GEHC_PMC_ADC_CURRENT   1
+> +
+> +#endif
+> --
+> 2.46.1
+> 
+> 
 
