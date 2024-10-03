@@ -1,112 +1,89 @@
-Return-Path: <devicetree+bounces-107659-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107660-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3719298F966
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 23:59:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDB2B98F992
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 00:09:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5AC0B1C21D12
-	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 21:59:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 74A441F23140
+	for <lists+devicetree@lfdr.de>; Thu,  3 Oct 2024 22:09:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07C9E1D0178;
-	Thu,  3 Oct 2024 21:58:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20F481C8FC6;
+	Thu,  3 Oct 2024 22:09:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dCGxbuNG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GggXdu0G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f171.google.com (mail-pg1-f171.google.com [209.85.215.171])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822B01CFEB4;
-	Thu,  3 Oct 2024 21:58:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8BC61C8FDC;
+	Thu,  3 Oct 2024 22:09:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1727992686; cv=none; b=sqwMhB+UBoTCYh4SDtEUP8vc1gDBeSb22IAxGRWSTb4apeBolFit7sz3d9MPZcldyImWTEyrlG2GfzGZDfQ3bog80CWDPzEObNWsUBjaoB68GztvI7Uno3vkUW2P4QZPBLLqcM6R1/8d2HGZKtEkuMq6Q/m4nmxc4BvbZ/fLO2M=
+	t=1727993377; cv=none; b=K2CUK94eLNVmo34EZYpv4g3MoSepED4mILHQW4Xs5ILnX/wV7ymNPh9yPd/CJLfT9rsbX3QyjG5TC6b9X/ISx9uN0Gt5SeZJwlfFNgeAo18o5rtqD8ylXW9PpdCBRzoWu9+xjLBuqRzeZNLLM1ffVfOWG5EBpJZQor0TcKmTLYk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1727992686; c=relaxed/simple;
-	bh=AITe+joTDTE1ceSIiMueoTWM94jovWJaA1azP+bj0KE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=RvdMnbjnuFpzHizJof7bNtO+GsugB8eQytTSKQxfpqM1oogIOz/GtEPQ0vOGs3bJIY62z+Y9oVqoBEjYrRTX+dY/UkJNknB4l3IVvnINrCMW7FNDdCVIzSXu/UyAFD7wbefKHQf3llnMof2swR5S7rpaCxzYs2oFuM/tjXqVsmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dCGxbuNG; arc=none smtp.client-ip=209.85.215.171
+	s=arc-20240116; t=1727993377; c=relaxed/simple;
+	bh=6n7+vbomkFbCPFn4RZgv3mf6HVQn76NnYlC5aA49agU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Se29vas1syeImCgFA1mvKlc/3eQCE5Cuzja1uXtFXZuL0aAvixT6dYdh+Jn4qAOAqBEWHaVk139ApGZyc0zwJNfDY/21SWgZVNx9G0g9/61NP90jJ6M4f/7LFrgcYkcindcx7ZKSJuiCzcUG2ZUPZZXBuIZCQgERDmjgU+yW8Dk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GggXdu0G; arc=none smtp.client-ip=209.85.214.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f171.google.com with SMTP id 41be03b00d2f7-6e7b121be30so942598a12.1;
-        Thu, 03 Oct 2024 14:58:05 -0700 (PDT)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20b0b5cdb57so18623445ad.1;
+        Thu, 03 Oct 2024 15:09:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1727992685; x=1728597485; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BoWKDt0SpQuuIThiGyg8a6unwje1fIaaXWcdpLVdhAs=;
-        b=dCGxbuNG+KtnxZ41BD7ijOPNbfNqNT3+tItt7PCCvUfdBsAXAHNW191iwoUCFp0c82
-         trW96s5biPihv4t8PUH8MEiBVs1aAHqSqU+fDiTmIfRNSctbhX9PgiYXRsjsGfySiQ2D
-         wlFIHvvUT6OM1/437R4KPDQBFoExT7M2akNDIE1gCSGUP6CTqo4n8AFTkbt+Rw1jMGAX
-         BGTsBSwHIp/rlDeyX6kBc4qP0s1XEqiLf8hf34cAk7DC/FPmOQUdf57jc2T4lwi1LRY7
-         rqrWyie1RFX+Np7RSUdArI9xxRktbpTbN68bdyl5rfZVcj3h+D0w5rNkYysJolYeO7ga
-         7HmA==
+        d=gmail.com; s=20230601; t=1727993375; x=1728598175; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XoaMM0FtNY64LLsh00+XPndtkg5AZ7b/gyoqX8OSYIU=;
+        b=GggXdu0G/9DrhD9JPVtwgLsNfYcxAktdl6RFFsuFGjmF5ZHajXJyFWPldU/mDs7GiF
+         DV5JX7/NyG0qcAbuTeXZOk4fozMBsaCNq9ehLWriKxhSjP/oVb6QFSLjiBA9O6Oo5g22
+         Vur5rIabJXIrIHRzyLDyCKRYEKqYU4AgJ1GxjKbXObU93A1Z1c/HeZ9WZ+gs6+LAzisI
+         fb572R9pLhVqEgd8vV3AC3bzpFqdcmO5V+Gy/yczhmeb17hrbtN2EwlYe742/ThAfknF
+         UH/i25UkzXAn+w1xgozq66BEIR6t5Qg1KmanH//UP+y+PZXqLtg8dZFTGwREu2yqzkkM
+         uBBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1727992685; x=1728597485;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BoWKDt0SpQuuIThiGyg8a6unwje1fIaaXWcdpLVdhAs=;
-        b=STyiuEsqAOW3DQD1XXoDJBbb+SczPfsAj2bD8GE592E8jr1traH5q4yvaz+De0KbXV
-         JSS24tpDezYBz8AUoDprXOXkdZDJV8R8Q8NzAfIqH2TLEuXoijUNlNsrXKlJnO2+njll
-         wXlK1HvEeT1FhgLj7F4U41kY7oP5x8WdrChQ3JQENkE0sNZae2UdAj6//3NnpvI7IXOO
-         /vITC+omx+gJThlafA1ZFN/Y91pi+cCLm9WIkVaxiayMlDGMXJumDQTf4oXZMBoFVq99
-         bdTjK+Yzamte5icsoewE6kzz5HhSSMudMhni4QX7zxutL36NHVK2q948o/z50LIIev5J
-         2DDA==
-X-Forwarded-Encrypted: i=1; AJvYcCUbRJDkqMCwIzP2lkQIF4WqG80pzGUTOiuffhZhe1DuMTttTjBUxXd5NfgPpK5wjFnjEBmrCfELAYKO724/@vger.kernel.org, AJvYcCUsPrCCnmvaQxpo4gC8yrF3L9S2/cdIqkffOo0AKb+DsrpkcrxErOw1QS+sAAJ/EOTQhm2IKSrv@vger.kernel.org, AJvYcCXX87igfdtW9081sFN7V2p+gnKHIJs8Ztp7UiD9qaOHkXVHHQZCcbRg1ihl2c+QjfCdtxPdQFpuxRi6n19q@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeX7scgDpC90jRWLEDy41tWUyWjgsvphSjm5AYowrrkFgTYCsi
-	Ln2nU9pNGggw583bEwiouS9rcux0OpVIo6wYmVlO5HLloDa08uJbvX2Kn5SP
-X-Google-Smtp-Source: AGHT+IGKkbd3xJEakgda96Mzg7E21a6ZE9bsKsHRDvZzyTa8MLym/gUdPLpgQwzRTLIL4veRP+kBKw==
-X-Received: by 2002:a05:6a20:9f0f:b0:1d4:fac8:966 with SMTP id adf61e73a8af0-1d6dfa27e8emr889256637.10.1727992684786;
-        Thu, 03 Oct 2024 14:58:04 -0700 (PDT)
-Received: from ryzen.lan ([2601:644:8200:dab8::a86])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71dd9d6e67esm1863026b3a.39.2024.10.03.14.58.02
+        d=1e100.net; s=20230601; t=1727993375; x=1728598175;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XoaMM0FtNY64LLsh00+XPndtkg5AZ7b/gyoqX8OSYIU=;
+        b=Z9OYxItrD1GBhzwl2ZCpNcn6iCz4famx3EJ4WvOE8mwhfE+3Rsj1altDgA5PEjN/+E
+         QhMAMz1jbjQSdsU8JX1fIE6Zz+4NDR7CKobM2s0g6O2elUaVT1N0ypInjHYUh/MtQaqp
+         Vk9yFGf0Br9DECV6T3Ku7oZqMLkczSMDvVPDYDtVCXJvNqsA/UPoRujKtO3B7eyv24BO
+         6DpKD1oXnTvacFeztJJn+xeui+x0rItQqIUckGKBpN+1+xe0b9oYt3Ffp2L7pY4Uh5uk
+         WGzLVxMpLxI4Q93I5bFYvsXLtwPIA0/PmN0AC4qSAqgkwF1bt0BLckVPpRYs3YcxwqnL
+         vJHA==
+X-Forwarded-Encrypted: i=1; AJvYcCVydFKitTPMXEW15Ho/JO488SO8ZE9ZyV0iK76lCS8jpIWWfPi4doIkAV2OUdAqpJKBhe/zCpIrniLhutkz@vger.kernel.org, AJvYcCXpWQzuXPXmFlJMC6UaV5NUnndSS4oL0atVeEnY1gIICddYBeKblDoT5C/Abj8BHDOStzP3AAskdlam@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnZQhpxmO2nyQrx2tctmwH/uygGdtOO4+fhYkXTKL8Wb4/Ys0b
+	S+SsImdx6+mCP2dVN1YDRt37lYvo8D9pQwpBoR5Y13FoZFJpIu8Z
+X-Google-Smtp-Source: AGHT+IFYkjkt7nmGJX7sb7jqiPRkeeZ8yMA1paTGlr2Ko/zp9lZlmnRQag2WkG/aFdZcdXvLkL1yyQ==
+X-Received: by 2002:a17:90b:109:b0:2e0:89f2:f60c with SMTP id 98e67ed59e1d1-2e1e5d63376mr884854a91.11.1727993374925;
+        Thu, 03 Oct 2024 15:09:34 -0700 (PDT)
+Received: from luna.turtle.lan ([2601:1c2:c184:dc00:b8ac:3fa:437b:85fa])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85d211asm5976a91.14.2024.10.03.15.09.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 03 Oct 2024 14:58:04 -0700 (PDT)
-From: Rosen Penev <rosenp@gmail.com>
-To: devicetree@vger.kernel.org
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
+        Thu, 03 Oct 2024 15:09:34 -0700 (PDT)
+From: Sam Edwards <cfsworks@gmail.com>
+X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
 	William Zhang <william.zhang@broadcom.com>,
 	Anand Gore <anand.gore@broadcom.com>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	Kursad Oney <kursad.oney@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Andrew Lunn <andrew@lunn.ch>,
-	Gregory Clement <gregory.clement@bootlin.com>,
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rosen Penev <rosenp@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-mtd@lists.infradead.org (open list:MEMORY TECHNOLOGY DEVICES (MTD)),
-	linux-kernel@vger.kernel.org (open list),
-	netdev@vger.kernel.org (open list:NETWORKING DRIVERS),
-	linux-arm-msm@vger.kernel.org (open list:ARM/QUALCOMM MAILING LIST),
-	linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCMBCA ARM ARCHITECTURE),
-	linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC support)
-Subject: [PATCH 5/5] documentation: use nvmem-layout in examples
-Date: Thu,  3 Oct 2024 14:57:46 -0700
-Message-ID: <20241003215746.275349-6-rosenp@gmail.com>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241003215746.275349-1-rosenp@gmail.com>
-References: <20241003215746.275349-1-rosenp@gmail.com>
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Sam Edwards <CFSworks@gmail.com>
+Subject: [PATCH 0/2] Add support for Zyxel EX3510-B
+Date: Thu,  3 Oct 2024 15:08:18 -0700
+Message-ID: <20241003220820.1345048-1-CFSworks@gmail.com>
+X-Mailer: git-send-email 2.44.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,78 +92,44 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-nvmem-cells are deprecated and replaced with nvmem-layout. For these
-examples, replace. They're not relevant to the main point of the
-document anyway.
+Hello BCMBCA maintainers,
 
-Signed-off-by: Rosen Penev <rosenp@gmail.com>
----
- .../mtd/partitions/qcom,smem-part.yaml        | 19 +++++++++++--------
- .../bindings/net/marvell,aquantia.yaml        | 13 ++++++++-----
- 2 files changed, 19 insertions(+), 13 deletions(-)
+This pair of patches adds an initial DT for the Zyxel EX3510-B "series" based
+on BCM4906, encompassing the EX3510-B0 and EX3510-B1. As I am not aware of any
+software-affecting difference between these two, I am calling the "series" one
+model.
 
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-index 1c2b4e780ca9..8ae149534b23 100644
---- a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-+++ b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
-@@ -45,17 +45,20 @@ examples:
-             compatible = "qcom,smem-part";
- 
-             partition-art {
--                compatible = "nvmem-cells";
--                #address-cells = <1>;
--                #size-cells = <1>;
-                 label = "0:art";
- 
--                macaddr_art_0: macaddr@0 {
--                    reg = <0x0 0x6>;
--                };
-+                nvmem-layout {
-+                    compatible = "fixed-layout";
-+                    #address-cells = <1>;
-+                    #size-cells = <1>;
-+
-+                    macaddr_art_0: macaddr@0 {
-+                        reg = <0x0 0x6>;
-+                    };
- 
--                macaddr_art_6: macaddr@6 {
--                    reg = <0x6 0x6>;
-+                    macaddr_art_6: macaddr@6 {
-+                        reg = <0x6 0x6>;
-+                    };
-                 };
-             };
-         };
-diff --git a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-index 9854fab4c4db..f57a6e7d0049 100644
---- a/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-+++ b/Documentation/devicetree/bindings/net/marvell,aquantia.yaml
-@@ -98,15 +98,18 @@ examples:
-             /* ... */
- 
-             partition@650000 {
--                compatible = "nvmem-cells";
-                 label = "0:ethphyfw";
-                 reg = <0x650000 0x80000>;
-                 read-only;
--                #address-cells = <1>;
--                #size-cells = <1>;
- 
--                aqr_fw: aqr_fw@0 {
--                    reg = <0x0 0x5f42a>;
-+                nvmem-layout {
-+                    compatible = "fixed-layout"
-+                    #address-cells = <1>;
-+                    #size-cells = <1>;
-+
-+                    aqr_fw: aqr_fw@0 {
-+                        reg = <0x0 0x5f42a>;
-+                    };
-                 };
-             };
- 
+I found the BCM4906/8 support in Linux to be in need of a lot of TLC, and have
+just sent a few patches necessary to get Linux to boot without crashing on this
+platform. At a minimum, you will want to apply [1] to resolve a panic related
+to xHCI not initializing. If you are booting through CFE and want to use the
+secondary CPU, you will have to apply [2] as well.
+
+There are more patches to come. An issue with the switch driver is preventing
+the WAN port from operating, for example. I have worked around this locally so
+I can confirm that the DT I am submitting here is correct, but I will need to
+clean up my remaining local fixes before they can be sent.
+
+As always, thank you very much for your continued efforts and for your time
+reviewing these patches.
+
+Best regards,
+Sam
+
+[1]: https://lore.kernel.org/lkml/20241003211720.1339468-1-CFSworks@gmail.com/T/
+[2]: https://lore.kernel.org/lkml/20241003213007.1339811-1-CFSworks@gmail.com/T/
+
+Sam Edwards (2):
+  dt-bindings: arm64: bcmbca: Add Zyxel EX3510-B based on BCM4906
+  arm64: dts: broadcom: bcmbca: bcm4908: Add DT for Zyxel EX3510-B
+
+ .../bindings/arm/bcm/brcm,bcmbca.yaml         |   1 +
+ arch/arm64/boot/dts/broadcom/bcmbca/Makefile  |   1 +
+ .../broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts | 197 ++++++++++++++++++
+ 3 files changed, 199 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/broadcom/bcmbca/bcm4906-zyxel-ex3510b.dts
+
 -- 
-2.46.2
+2.44.2
 
 
