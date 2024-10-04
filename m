@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-107943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36B3E990867
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:03:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A273E99086E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EECEA288422
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:03:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5E3D1C21DEB
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 149191C3048;
-	Fri,  4 Oct 2024 16:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F27731C3021;
+	Fri,  4 Oct 2024 16:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r3jNf24c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="asK9Ilbn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95501E3765;
-	Fri,  4 Oct 2024 16:02:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6CEE1E3766;
+	Fri,  4 Oct 2024 16:04:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728057746; cv=none; b=K2fIwALzhqemd5wqd04E7nrED0S+kBmeUa5XnizRWjWzUWUHQNVV3xBlmVN5GXtBHLrRc4gK3EWqZlYBfZ5vMqV462dja8VX4XQzJ5Nr3xacpdNbReI6bGujaCY5N0caZr9FtznCfwskdCU37vBkmzBu0gpVVMGDb2G7mgt8U/U=
+	t=1728057857; cv=none; b=Y03nihe8FoTe6exeREPgdeYGasN/YvvZsFl6Z2WWL+gVsIUQvu0Vco80JmpPImRKlhFpmyMZOYXpoHtH196fspIGj7N5aLPl4hbFVUBbimBOH7nGx0XNmY6E/rBcxxukflDaQlDANaV01/R7Snf6rM4KLsehUY6m9jXpNda85R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728057746; c=relaxed/simple;
-	bh=33tPyCvrAOcvV+7O6+RLla52zkKYuAa9S3xf+ijQPTk=;
+	s=arc-20240116; t=1728057857; c=relaxed/simple;
+	bh=7nWePiMTOkb09psm6kqrNfokwIWfLXuYfsSBj2qWW7w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LtfiCoyvQ/pFaPDVLPrYrFNTiqoGQdi8lgnDX9xoGqIpRjV+O+wpzCc466Itmb4POQ0qkoWJqyiom0ptmhMRlqTihyMwHM4cCYRvL6coyulTnQbna9aMtsP5V0t8RUvjFZB/vM/KAHVgOAIUnCUlj6FDxeKVsX9bQdENWKMp4Ek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r3jNf24c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BC82C4CEC6;
-	Fri,  4 Oct 2024 16:02:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=TYfErz6fptCpdaLD8K1oyiUPIUWKcorm+wUBPSlyixiHXo984/94eclhXVUEgQXYU+hwc6wmH5p+zb2Y/1FGsbQnxSVqycSqU0cuNre5YwHY9gTls/e70K5cELAg6zpgpTk2LrRcTwNhoK/6X7AYHMzJQ/ERxOlSF83l1tOUxjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=asK9Ilbn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 842EAC4CEC7;
+	Fri,  4 Oct 2024 16:04:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728057745;
-	bh=33tPyCvrAOcvV+7O6+RLla52zkKYuAa9S3xf+ijQPTk=;
+	s=k20201202; t=1728057857;
+	bh=7nWePiMTOkb09psm6kqrNfokwIWfLXuYfsSBj2qWW7w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=r3jNf24cXdAIg8YTKOl5JpyTemjP/MP1fzObQ1SRsxOeQGaTc7LP2/Bk80LQMTkQV
-	 NW3T7+EM41usYFJF838Lpcv/NbFdihIRR0TiFsk22ud3DxA21HsYDfl6sTgzBPnUZS
-	 ARh75ISqVZumJLceZN5fJjYtnTEMJBLemy836mdYflIdFMSxXvdiZuMUTJt9uSD+zl
-	 UT+7bUt6Nobx9+MTz7cW/tcEZM521+lgdbq7ZNngoduaFIWWmq4wdAbf7VYfbWKo7E
-	 EJdgAsYRj5YNeKjxLsb3bNGaVdbTF2Ys3okiCG8vBGAQfLVXovAoSn8k8VIAPZqwgD
-	 B0AmfixzObzBA==
-Date: Fri, 4 Oct 2024 17:02:21 +0100
+	b=asK9IlbnUAMWgWoLJj2P57oA1qFJkT8xklaHuygRbnRYFqJR1VmEJv40w6McY8kck
+	 umpAhlCu79EhewlrlNvwDUFgvOVQgveFYsX+XOrnm4s2JWeAtCtGbRtHYd11ma+MRx
+	 /zN2VKgGmHYy1IUFKti5fxCN5lZOhNKYUoaSWAKwqfLUJ4nSAQvwiQPT6NR4S8lJlt
+	 MUclapIS16/fSF+oL/VAq4sFHhYSNw5s+ylM8unxrZrOcJmiV9eGEa4gQx6IfAjYAg
+	 6Ji6GkRKPWXXLsYfjYbFi1LW1ri+2rraafAofUcZCjglQ3nK/CiiwfkadTt1OkcfHm
+	 RZEpgVEf1SuYQ==
+Date: Fri, 4 Oct 2024 17:04:12 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Nuno Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] dt-bindings: usb: add TUSB73x0 PCIe
-Message-ID: <20241004-subtitle-bulk-a56af82de67a@spud>
-References: <20241004124521.53442-1-francesco@dolcini.it>
- <20241004124521.53442-2-francesco@dolcini.it>
- <20241004-calzone-sitcom-0f755e244497@spud>
- <ZwAKOKQ96sCoxsMN@gaggiata.pivistrello.it>
+	Mihail Chindris <mihail.chindris@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	devicetree@vger.kernel.org, dlechner@baylibre.com,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 05/11] dt-bindings: iio: dac: ad3552r: add iio backend
+ support
+Message-ID: <20241004-unawake-pushchair-58d4b2347897@spud>
+References: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-0-ceb157487329@baylibre.com>
+ <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-5-ceb157487329@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,111 +68,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="WlmiziZ1ocnCX/fq"
+	protocol="application/pgp-signature"; boundary="JCq2Q4DdpKt1JHME"
 Content-Disposition: inline
-In-Reply-To: <ZwAKOKQ96sCoxsMN@gaggiata.pivistrello.it>
+In-Reply-To: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-5-ceb157487329@baylibre.com>
 
 
---WlmiziZ1ocnCX/fq
+--JCq2Q4DdpKt1JHME
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 04, 2024 at 05:31:04PM +0200, Francesco Dolcini wrote:
-> Hello Conor,
+On Thu, Oct 03, 2024 at 07:29:02PM +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
 >=20
-> On Fri, Oct 04, 2024 at 04:23:18PM +0100, Conor Dooley wrote:
-> > On Fri, Oct 04, 2024 at 02:45:20PM +0200, Francesco Dolcini wrote:
-> > > From: Parth Pancholi <parth.pancholi@toradex.com>
-> > >=20
-> > > Add device tree bindings for TI's TUSB73x0 PCIe-to-USB 3.0 xHCI
-> > > host controller. The controller supports software configuration
-> > > through PCIe registers, such as controlling the PWRONx polarity
-> > > via the USB control register (E0h).
-> > >=20
-> > > Similar generic PCIe-based bindings can be found as qcom,ath11k-pci.y=
-aml
-> > > as an example.
-> > >=20
-> > > Datasheet: https://www.ti.com/lit/ds/symlink/tusb7320.pdf
-> > > Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
-> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > ---
-> > >  .../bindings/usb/ti,tusb73x0-pci.yaml         | 60 +++++++++++++++++=
-++
-> > >  1 file changed, 60 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/usb/ti,tusb73x0=
--pci.yaml
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.ya=
-ml b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-> > > new file mode 100644
-> > > index 000000000000..bcb619b08ad3
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-> > > @@ -0,0 +1,60 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/usb/ti,tusb73x0-pci.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: TUSB73x0 USB 3.0 xHCI Host Controller (PCIe)
-> > > +
-> > > +maintainers:
-> > > +  - Francesco Dolcini <francesco.dolcini@toradex.com>
-> > > +
-> > > +description:
-> > > +  TUSB73x0 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-> > > +  The TUSB7320 supports up to two downstream ports, the TUSB7340 sup=
-ports up
-> > > +  to four downstream ports.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: pci104C,8241
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  ti,tusb7320-pwron-polarity-invert:
-> >=20
-> > To me, "polarity-invert" makes less sense than calling this "active-hig=
-h"
-> > making the property a flag. active-low would then be the case where the
-> > property is not provided. Given you don't make the property required,
-> > what you've got here is effectively a flag anyway.
+> There is a version of AXI DAC IP block (for FPGAs) that provides
+> a physical QSPI bus for AD3552R and similar chips, so supporting
+> spi-controller functionalities.
 >=20
-> We had the same doubt when deciding which property name to propose, looki=
-ng
-> at the existing bindings it seemed that "polarity-invert" was more common.
+> For this case, the binding is modified to include some additional
+> properties.
 >=20
-> FTR the datasheet explicetly name the signals with a # suffix (PWRON1#,
-> PWRON2#, ...), they are defined as active-low by default.
->=20
-> With that said, if we prefer to have `ti,tusb7320-pwron-active-high`, I a=
-m 100%
-> good with it.
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 
-I think "active-high" is more explicit about what it does, but I'm not
-too bothered about it. Given it isn't a required property and the
-absence of the property means active-low (for backwards compatibility
-and alignment with the default hardware behaviour) the property is a
-flag, not a boolean, so it does need a type change at the very least.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
-Conor.
-
---WlmiziZ1ocnCX/fq
+--JCq2Q4DdpKt1JHME
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwARjQAKCRB4tDGHoIJi
-0h3NAP917btguu42PpJH87OJzJXq3Vt4fBleinmRdbEH7aPZ6gD+Jrb8ReHNCB7F
-dmbiAbKvHr+Bw+EwddORsppu5ZcICgU=
-=sN0O
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwAR/AAKCRB4tDGHoIJi
+0vGPAQC41tO/ln6tykdXvY1rih8XUVOH9JGl7QWP+4EKx7NOLgEA0KVS/ihoXc4O
+RAqEXUTGmB9rQsNoCWw/eo01YL3P3gM=
+=S6rC
 -----END PGP SIGNATURE-----
 
---WlmiziZ1ocnCX/fq--
+--JCq2Q4DdpKt1JHME--
 
