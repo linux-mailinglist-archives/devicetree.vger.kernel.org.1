@@ -1,160 +1,108 @@
-Return-Path: <devicetree+bounces-107883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 872089904E8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:54:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5D509904F1
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:55:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334001F22C1B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:54:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 023731C20FFD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:55:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C241212EFA;
-	Fri,  4 Oct 2024 13:54:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F119D212EE8;
+	Fri,  4 Oct 2024 13:55:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f179.google.com (mail-yb1-f179.google.com [209.85.219.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3CEA1BC59;
-	Fri,  4 Oct 2024 13:54:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55467212EF8;
+	Fri,  4 Oct 2024 13:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728050078; cv=none; b=Dp+ow6OIDIupPzD2KqUUaRGCF8U2/nNM6EcbC/K/UNBY8OpotMnQsqftcZb+Q5Qj/Rukbmk0HI1xSFoyAKgwA4mLinY33YUzUKF8u2jRQlI/zZ9cD7rTv1amKolpHlsTREIXVEihDAA83OBZvYkvQd/Dmbi5snpefwQ21QAS1yE=
+	t=1728050142; cv=none; b=bbkmQ0pPBJ+9/7vWT7Er9JbhQ1m6Tf38Y8sAb4lahV0Iqw/S+QWPc+soErvkEYwagqrfxD17g2T3hjI+wi7C3EVJm2epKdbdW3rLNvcTqg8nJIwHvwMnFe/p/3W6P1Jn05u4TedA2w3ehBpNxW39ZwXqVdRDF7pnn2SxGTExIXU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728050078; c=relaxed/simple;
-	bh=6Zyc5VBb+/KicI9y1i9ewO+fiOtM8228SQyczy9uL9U=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DF98CUxg3emRzShQ2Vduvulz/Q4+ZkjVRG2AYawvIQtsNtgQ4aEcTqoK6jNePhXigwW4y7pCHhtbLOQ3ATyCvtRV5by+vAE7ZyssNalos7mcuA3Co+6TC9mCled5EySCAVz5nnLJkhkZEVIyArBRW8alxbt2h8hD1LveFOMvkYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.216])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XKqm52z9Qz6HJV3;
-	Fri,  4 Oct 2024 21:54:29 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id 061481408F9;
-	Fri,  4 Oct 2024 21:54:33 +0800 (CST)
-Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Oct
- 2024 15:54:32 +0200
-Date: Fri, 4 Oct 2024 14:54:30 +0100
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Alexandru Ardelean <aardelean@baylibre.com>
-CC: Jonathan Cameron <jic23@kernel.org>, David Lechner
-	<dlechner@baylibre.com>, <linux-iio@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<krzk+dt@kernel.org>, <robh@kernel.org>, <lars@metafoo.de>,
-	<michael.hennerich@analog.com>, <gstols@baylibre.com>
-Subject: Re: [PATCH v7 8/8] iio: adc: ad7606: add support for
- AD7606C-{16,18} parts
-Message-ID: <20241004145430.000012f4@Huawei.com>
-In-Reply-To: <CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
-References: <20240919130444.2100447-1-aardelean@baylibre.com>
-	<20240919130444.2100447-9-aardelean@baylibre.com>
-	<CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
-	<047034ae-135b-4ce9-a407-9b2a00841324@baylibre.com>
-	<20241001194114.16e0ffa5@jic23-huawei>
-	<CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1728050142; c=relaxed/simple;
+	bh=qK19Tb4slLvZrRwVcJmPBbVvxfRRry3OzJxQb60YnKo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=pd4EPAW5AFAqSeA/eNDrVS2TKf5aBOM5hpK21bwaeLWtl+82hKQoIeNsDY8W2ELm7iOLtRD+rFNopBMK1e7JrjJo2vyQy1AMATVyvsKKPEQ8OshGr3dKPqFdwbJvnoGReliQbZIeal6TNtVXZO18nBFzkryiMZpN93/JRqwSkzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f179.google.com with SMTP id 3f1490d57ef6-e03caab48a2so1694568276.1;
+        Fri, 04 Oct 2024 06:55:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728050140; x=1728654940;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6ej7WUSE2P6Ee3k4IlTWH9mcujKPIZcgSPx5++Xro5Y=;
+        b=aalMqYUTkTJL5RI4Pdie/eE0WMnBQKl6MoSdGR/ET//BtjWaI46Ae38mJBZB+RYIo1
+         GxNvxBRjh6HucL7MwrfmS9qjLARjdqCPFsv+y8hk4l0glPVCLe9T+lMGvurFQjwdeELg
+         8A9uw7RjaCjucc+n2XPT7dW3zk4jC+6hy5kp5fKHY7qsXTGKX6v//tFvygjO7Wdi8FSV
+         n6diYUIeyfsBlIDDBsCwDyEV9L0AKnjfrddj7H9lemMB1yL72s1/VvJEZFGuKRji9v7i
+         Nn0RI9AidHr0x0+nGUWW0UoytEA95jQLL4qB5KNrYdFleGOAupVUPnoP2qIbEV7t/5Ex
+         ECPg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvC5kO5bFPVUJAlvGvc5+kjizC2bRFe4NaPKHLub+AuIPfgGoC9BFtiYMhg8h9+Wewe2Z3PwYobTcy@vger.kernel.org
+X-Gm-Message-State: AOJu0YyML9PAljsUQ1p+D/g/eShGuinIBhEpZzTTS9JXh+9iI2ZyXHVG
+	NIWL9uvrVl3rPADCNG4h7L4wb8s9S2rkfoAd1FHFmXl+eY1CYnlwF3I4tKZ9zpw=
+X-Google-Smtp-Source: AGHT+IHqLCBtVwg+NpQpMRGAd+lJczP73PFb5r8tBU9IsJyOEcctVWKWTiEwblV6jEW3cAPWB0Bn+Q==
+X-Received: by 2002:a05:6902:2304:b0:e26:677:656d with SMTP id 3f1490d57ef6-e2892ff2e27mr1962187276.10.1728050139716;
+        Fri, 04 Oct 2024 06:55:39 -0700 (PDT)
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com. [209.85.128.170])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e2885d6b5bcsm597837276.36.2024.10.04.06.55.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 06:55:39 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6dbc5db8a31so17145937b3.1;
+        Fri, 04 Oct 2024 06:55:38 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV3K1tOWTF3eDVeZzZlsmWAIEPQPT1ISzDGfCH/ShRgitS+PffbLbD4YptsXMX9Z78do76bIRjnpUy1@vger.kernel.org
+X-Received: by 2002:a05:690c:3081:b0:6e2:1c94:41f8 with SMTP id
+ 00721157ae682-6e2c7c31210mr14890377b3.10.1728050138447; Fri, 04 Oct 2024
+ 06:55:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240926103340.16909-4-wsa+renesas@sang-engineering.com> <20240926103340.16909-5-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240926103340.16909-5-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 4 Oct 2024 15:55:26 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWQ0uiPCZ=OUdUacc2HWHJf+y3XDAJHh+hAzoRHNu9zMQ@mail.gmail.com>
+Message-ID: <CAMuHMdWQ0uiPCZ=OUdUacc2HWHJf+y3XDAJHh+hAzoRHNu9zMQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] ARM: dts: renesas: add proper node names to (L)BSC devices
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
- frapeml500008.china.huawei.com (7.182.85.71)
 
-On Wed, 2 Oct 2024 09:12:09 +0300
-Alexandru Ardelean <aardelean@baylibre.com> wrote:
+On Thu, Sep 26, 2024 at 12:33=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> (L)BSC must have a "bus" node name [1] and no unit-address because
+> there is no reg-property. Fix these entries.
+>
+> [1] lbsc: $nodename:0: 'lbsc' does not match '^([a-z][a-z0-9\\-]+-bus|bus=
+|localbus|soc|axi|ahb|apb)(@.+)?$'
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-> On Tue, Oct 1, 2024 at 9:41=E2=80=AFPM Jonathan Cameron <jic23@kernel.org=
-> wrote:
-> >
-> > On Tue, 1 Oct 2024 08:42:23 -0500
-> > David Lechner <dlechner@baylibre.com> wrote:
-> > =20
-> > > On 10/1/24 3:26 AM, Alexandru Ardelean wrote: =20
-> > > > On Thu, Sep 19, 2024 at 4:05=E2=80=AFPM Alexandru Ardelean
-> > > > <aardelean@baylibre.com> wrote: =20
-> > > >> =20
-> > >
-> > > ...
-> > > =20
-> > > >> @@ -153,7 +349,19 @@ static int ad7606_scan_direct(struct iio_dev =
-*indio_dev, unsigned int ch,
-> > > >>         if (ret)
-> > > >>                 goto error_ret;
-> > > >>
-> > > >> -       *val =3D sign_extend32(st->data[ch], 15);
-> > > >> +       chan =3D &indio_dev->channels[ch + 1];
-> > > >> +       if (chan->scan_type.sign =3D=3D 'u') {
-> > > >> +               if (storagebits > 16)
-> > > >> +                       *val =3D st->data.buf32[ch];
-> > > >> +               else
-> > > >> +                       *val =3D st->data.buf16[ch];
-> > > >> +               return 0; =20
-> > > >
-> > > > Arrggh...
-> > > > I messed up here.
-> > > > Guillaume found a bug here, where this should be "goto error_ret" or
-> > > > do an "if ()  {} else {}"
-> > > > How should we do it here? =20
-> > if / else. Goto an error label when it's not an error would be horrible=
-! =20
-> > > >
-> > > > Do we send a fix-patch or send a new series?
-> > > > =20
-> > >
-> > > Since this patch is already applied, just follow up with another
-> > > patch with a Fixes: tag. =20
-> >
-> > I sometimes tweak these sort of things if I haven't pushed out
-> > as togreg yet (or they are really bad!) but in this case I'm not
-> > 100% sure what the comment is, so I'll just apply a fix on top.
-> >
-> > So David is entirely correct in general but by luck of timing
-> > this time I'll tweak it.
-> >
-> > Please check the result in iio.git/testing
-> > I'll hold off pushing that out as togreg until at least end of
-> > tomorrow.  One more day o =20
->=20
-> The "return 0" needs to be removed in the driver.
->=20
->         if (chan->scan_type.sign =3D=3D 'u') {
->                 if (storagebits > 16)
->                         *val =3D st->data.buf32[ch];
->                 else
->                         *val =3D st->data.buf16[ch];
-> -                return 0;
-Doh!.   Just goes to show why I shouldn't just edit these things.
-Stupid mistake.  I'll fix when on right machine.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.13.
 
-Jonathan
+Gr{oetje,eeting}s,
 
->         } else {
->                 if (storagebits > 16)
->                         *val =3D sign_extend32(st->data.buf32[ch], 17);
->                 else
->                         *val =3D sign_extend32(st->data.buf16[ch], 15);
->         }
->=20
->=20
->=20
-> >
-> > Jonathan
-> >
-> > =20
-> > >
-> > >
-> > > =20
-> > =20
->=20
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
