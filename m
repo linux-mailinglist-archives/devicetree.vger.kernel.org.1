@@ -1,239 +1,140 @@
-Return-Path: <devicetree+bounces-107964-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D289909C6
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:56:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C76E4990A00
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 19:11:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 22B77282A33
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:56:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 896D42839B2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:11:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 756201CACE1;
-	Fri,  4 Oct 2024 16:56:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 627DF1D9A54;
+	Fri,  4 Oct 2024 17:11:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="a07iYV3Q";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="WgWDG5SB"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="HrT7CNNe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D5E51C3037;
-	Fri,  4 Oct 2024 16:56:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC1D53E49D
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 17:11:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728061009; cv=none; b=OiD6sdLVOOpJN/JVcbFRI7nlKtBfSwo1qkEM7puPA/ZituuwMlIczB9HYOj2mdWyWZEtdp8A+Df6aMBqWYktLjIEK7A5aqI7rckAFHy/Jsy6QekbU1wEyJVUqZ7mFExyrMT853laDNe04ldBSw91NrjlxrRhHXNb9LaZg/2bz7E=
+	t=1728061904; cv=none; b=OgnxvUOj+birtXGMc6GgyXMFbTFYouX0ngVO5qIhuFvX/Wm91d0iDlsahay39OrPibd9x8btmAOHwsYeKoU/lDbmYmv0XQSlR9boBk9yrEJhiGe4pqKHfMWzOP5gBOjITXnve8V3xtmHo+yExzWcEWHWweZi+Bpm6NjGjGpw3lk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728061009; c=relaxed/simple;
-	bh=MbVUxh0m0BSVAkzGFrpYyhz/iDYYeMBswlctV06m0aY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YlrxBjeDEPAqePaQm+xJedeeBCEaPjM6oaGSxE7fapWeigLBOgAPOwDtojk8rMWWosC/wLWd4RoXrrGLNh4gPcctGwVX1xwFFwd9YPaymOZenL7Cz5kR17nzWzgvPf9VhTt31mEqABapLI54Jwm1EgYilwYkEFmCvy6VQLKjytM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=a07iYV3Q; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=WgWDG5SB; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-05.internal (phl-compute-05.phl.internal [10.202.2.45])
-	by mailfout.phl.internal (Postfix) with ESMTP id 598CB13802C5;
-	Fri,  4 Oct 2024 12:56:46 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-05.internal (MEProxy); Fri, 04 Oct 2024 12:56:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1728061006;
-	 x=1728147406; bh=kMFZSJt24MRWF3x5Oty+CzhvJp3asHgtDbIURQNAjHE=; b=
-	a07iYV3Q7H7UVOJtFN+JDOx5nQbnRzAK2g/IzSbPxDL2fF/noXkFTFjzobVK1NvD
-	LPFYTJrxfbRY+yRpTFz1Fg1x1mGfgSO3KCg+s0eJhTSUc7a2FH6ogd93Retb+J1O
-	xy/PFTpL7o4vkf9OkfTSQaOfKfnrsZCifwp0r8yT/0gEswp2cfYzjxRUnmEdbvZi
-	7JzLTaw4GA+r52m1f+HjzA9IbLWPDa8IYER9ytAlzJaU/ey96jSbHAjwAI7LQXxt
-	j04vrjQ5GpwtwcjdZYsOyctIfWzyytSqaoJu4KzZix13XIUS6EzQrGRUhqvfuGA/
-	pAyPefx0rjpSKN6FlfrHHQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728061006; x=
-	1728147406; bh=kMFZSJt24MRWF3x5Oty+CzhvJp3asHgtDbIURQNAjHE=; b=W
-	gWDG5SBuC8K7sMbNfj/rAKMcJJ4SuOVLzIOdMSZaCOgWUIS84Zgj/wDGLugP45fs
-	3ZQTU/418wOXf+Y7KzkUiL7d8rkpfGsHzRXCvGSMls6SkxbHi+phaX+9+h5b7yQE
-	LFtJwov+puxgkFWK/Ja7UunnqZvzYEOpffUXBgNGscBDG6wQ5O7y0MKlsJKGSWO+
-	FFs2fEKOu3gRYwicIy0blu1iyzXWheKf4OsVXBFU/XjeUdfRgQerK6h+hCemsNCQ
-	1JVTW+4zPBZzeLB7yYdCCNYqYCFylK4aNlUXOyBHv81al1RxeGj+urnhD+cWMQlw
-	DnWXKIwZiYZkqavcz5XFg==
-X-ME-Sender: <xms:Th4AZ4rZssvno8bH-lIkwlOy37RVg-e36LQ9MvBjTX3wJw-ZnAMWXA>
-    <xme:Th4AZ-q3xumCndDt-a4qgc3dmrPoGUYBZTpXolA_mG2Mt1qG6sIDpQTGroUz4ycsi
-    3oRlyyJT9W0AjjZ-yg>
-X-ME-Received: <xmr:Th4AZ9Pi8IGa1RybVCxB02Vy4OqPW93gL0sCa0KPlJJkzWDNTa5ds-ip5MtVVPzIclCvZ-UmHaaK_1EaTzG7qgiytHHnZa6Ezw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedguddthecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
-    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
-    guvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveet
-    gedtvddvhfdtkeeghfeffeehteehkeekgeefjeduieduueelgedtheekkeetnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhs
-    ohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepiedpmh
-    houggvpehsmhhtphhouhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhl
-    ihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtoh
-    hmpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhi
-    nhhgrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvg
-    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgv
-    lheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvg
-    htrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:Th4AZ_6RwRj1rI88iUyJabVWd5DEdHAX0_2S7zUt_lmzkwgpCBHWUw>
-    <xmx:Th4AZ34hAYpXSgCp0Xt46r4fxDd2N-E-HDn8brhZt7rNUlxjchuMSg>
-    <xmx:Th4AZ_gSoWun3Vv3YwnHCBDc7YwSZ7-ODFlLL101q6laiG5s6nimkg>
-    <xmx:Th4AZx513Yll73aJyK3YvseoEkBTgJuN1ShTw8yGTNBdjXMaLlP5PQ>
-    <xmx:Th4AZ0u1ERyh6RYhE_AdlexcwOw3-1OeCrcuDkr73HCF1Gowl9HxgmRd>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 4 Oct 2024 12:56:45 -0400 (EDT)
-Date: Fri, 4 Oct 2024 18:56:44 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 14/20] arm64: dts: renesas: Use interrupts-extended for
- I/O expanders
-Message-ID: <20241004165644.GE3542504@ragnatech.se>
-References: <cover.1728045620.git.geert+renesas@glider.be>
- <8409a184db92b8d03d95beffde2cc9a9752366a9.1728045620.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1728061904; c=relaxed/simple;
+	bh=Wc12BS3NasrIry+uAPk9MjgqH3msxi+QthvkQTUoSdc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qGjJLWGQbLPGX0v4rL0HhzIkMAYmlLKIqgrW9O5kG1XHLRxeD+WDAuEoUi2ux0ohDiZVxJqLHki1vBpLs23dg0Z25+Gkr37B926lyc3M8ebe1RrOGualvuAjAfav0xG9V4q342YLfKiX2FKhixwUYjpzynZu6/9yYPoqjHeN5Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=HrT7CNNe; arc=none smtp.client-ip=209.85.210.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-71def8abc2fso314752b3a.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 10:11:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1728061901; x=1728666701; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=J4RqBBR2gTR1jLy3l2HoZvtWsqW9LXx1qQ79MVcSG/0=;
+        b=HrT7CNNeEE3rUTJ0S2NCG5y5JH14cspVx50osGdvRaBRHkc3bz08rijHvdLvoAka6z
+         b2qvN1UP7a70ynTdsV/5AJ/ZevtZWa3i/oMv0HDKF/1CC/9zkO9eT05vot9yu1D1ujFO
+         LO5HFcjZyeyVaE1DqLAxt8TTN4Kp8ifrQB45E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728061901; x=1728666701;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=J4RqBBR2gTR1jLy3l2HoZvtWsqW9LXx1qQ79MVcSG/0=;
+        b=u94tJ+xOy5Xjp9C9Ra1w7lNK5XJFs8GwfJZG4qyyaeymkp/u+1ICEktmwlcqqSyyQC
+         s3zWoXirvSm2y8hwKf4v2cfqLryEB4gRrBv4jqJsIiIcObrVWs+J8oznBwys58/l0Zh9
+         pIwzQcvXQVs4bMzj5DVxAap9J1Q2X0H3aBZ8Gqut33eFz8C/yIqnKIoyrxGd2RrZGwaC
+         Fv8uInoQn5FFxJgN4OD+mzqyhBDVysIvTTDdC7eunhqQmv+2f0VL2+wb8ODr3/JsM6zd
+         IvZ04xwLRnlT58gaBEu5EOFa1pIfbMeOAOS1Qo7PeqcrOdM4pL+cPRDxoHBo2ZQH4YE4
+         ruqg==
+X-Forwarded-Encrypted: i=1; AJvYcCWARQ4BMHU+9merVkz1COb7+h0w4bRBn17+YiJn2Gr4sUUtyzxF2JA4OWvdwulfkjB/3/Q4sAa/8/6I@vger.kernel.org
+X-Gm-Message-State: AOJu0YwR+dy3kgXQMMZmB0LSSxtoOlaYZwyfJITFTMpAW34iNZOf9XQI
+	Ui3qNqbtRR5DI3d+AyFS4mFRvi5InuRmbGnBiOrI3cslOqn1y3/HMNzW4d3OVg==
+X-Google-Smtp-Source: AGHT+IH4nWlAOkfOUKHYzla1Do/N/yEfEqh0e/w6l4PQAG784OWTsu0uqkDnXcb7xezeWYoz0PAcqA==
+X-Received: by 2002:a05:6a00:2343:b0:70d:3777:da8b with SMTP id d2e1a72fcca58-71de2460338mr4505964b3a.25.1728061901134;
+        Fri, 04 Oct 2024 10:11:41 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0d7e5bdsm84386b3a.218.2024.10.04.10.11.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 10:11:39 -0700 (PDT)
+Message-ID: <333903e5-c899-4502-abce-07d5893f3427@broadcom.com>
+Date: Fri, 4 Oct 2024 10:11:38 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8409a184db92b8d03d95beffde2cc9a9752366a9.1728045620.git.geert+renesas@glider.be>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] mips: bmips: bcm6358/6368: define required
+ brcm,bmips-cbr-reg
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: kernel test robot <lkp@intel.com>
+References: <20241001152404.15830-1-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20241001152404.15830-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 2024-10-04 14:52:56 +0200, Geert Uytterhoeven wrote:
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
+On 10/1/24 08:23, Christian Marangi wrote:
+> For the bcm6358/6368 SoC the brcm,bmips-cbr-reg due to bootloader
+> misconfiguration or HW bug from running the system from TP1.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> A workaround is now present to handle broken system that suffer from
+> this bug hence add the now required property.
+> 
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202409251520.pE12GzHd-lkp@intel.com/
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
->  arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi  |  3 +--
->  arch/arm64/boot/dts/renesas/ebisu.dtsi               |  3 +--
->  .../boot/dts/renesas/r8a779h0-gray-hawk-single.dts   |  3 +--
->  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi             | 12 ++++--------
->  .../boot/dts/renesas/white-hawk-cpu-common.dtsi      |  3 +--
->  5 files changed, 8 insertions(+), 16 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-> index 5a15a956702a6be8..4a9d20249eaa9bc0 100644
-> --- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
-> @@ -130,8 +130,7 @@ pca9654: gpio@20 {
->  	pca9654_lte: gpio@21 {
->  		compatible = "onnn,pca9654";
->  		reg = <0x21>;
-> -		interrupt-parent = <&gpio5>;
-> -		interrupts = <25 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts-extended = <&gpio5 25 IRQ_TYPE_EDGE_FALLING>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  		gpio-controller;
-> diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-> index 4d16b8f0eae5474b..54ebffcd82d4337b 100644
-> --- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-> @@ -392,8 +392,7 @@ io_expander: gpio@20 {
->  		reg = <0x20>;
->  		gpio-controller;
->  		#gpio-cells = <2>;
-> -		interrupt-parent = <&gpio2>;
-> -		interrupts = <22 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&gpio2 22 IRQ_TYPE_LEVEL_LOW>;
->  	};
->  
->  	hdmi-encoder@39 {
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> index b1d035ca4d97a51a..58eabcc7e0e07f49 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
-> @@ -248,8 +248,7 @@ &i2c0 {
->  	io_expander_a: gpio@20 {
->  		compatible = "onnn,pca9654";
->  		reg = <0x20>;
-> -		interrupt-parent = <&gpio0>;
-> -		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&gpio0 0 IRQ_TYPE_LEVEL_LOW>;
->  		gpio-controller;
->  		#gpio-cells = <2>;
->  		interrupt-controller;
-> diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> index 5a5dd5ecb75e0e7c..f7330b2262b8af0c 100644
-> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> @@ -235,8 +235,7 @@ gpio_exp_74: gpio@74 {
->  		#gpio-cells = <2>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		interrupt-parent = <&gpio6>;
-> -		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts-extended = <&gpio6 8 IRQ_TYPE_EDGE_FALLING>;
->  
->  		audio-out-off-hog {
->  			gpio-hog;
-> @@ -296,8 +295,7 @@ gpio_exp_75: gpio@75 {
->  		#gpio-cells = <2>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		interrupt-parent = <&gpio6>;
-> -		interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts-extended = <&gpio6 4 IRQ_TYPE_EDGE_FALLING>;
->  	};
->  };
->  
-> @@ -317,8 +315,7 @@ gpio_exp_76: gpio@76 {
->  		#gpio-cells = <2>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		interrupt-parent = <&gpio7>;
-> -		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts-extended = <&gpio7 3 IRQ_TYPE_EDGE_FALLING>;
->  	};
->  
->  	gpio_exp_77: gpio@77 {
-> @@ -328,8 +325,7 @@ gpio_exp_77: gpio@77 {
->  		#gpio-cells = <2>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
-> -		interrupt-parent = <&gpio5>;
-> -		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupts-extended = <&gpio5 9 IRQ_TYPE_EDGE_FALLING>;
->  	};
->  };
->  
-> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> index 209cba75adec6d6c..337ba68342c475b5 100644
-> --- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> @@ -215,8 +215,7 @@ &i2c0 {
->  	io_expander_a: gpio@20 {
->  		compatible = "onnn,pca9654";
->  		reg = <0x20>;
-> -		interrupt-parent = <&gpio0>;
-> -		interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&gpio0 0 IRQ_TYPE_LEVEL_LOW>;
->  		gpio-controller;
->  		#gpio-cells = <2>;
->  		interrupt-controller;
-> -- 
-> 2.34.1
-> 
-> 
-
--- 
-Kind Regards,
-Niklas Söderlund
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+--
+Florian
 
