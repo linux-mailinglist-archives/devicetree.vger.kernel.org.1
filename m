@@ -1,64 +1,56 @@
-Return-Path: <devicetree+bounces-107837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E17A99033A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:45:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA820990434
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:27:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D0081C2159A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 12:45:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56405B23925
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:27:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 555001D6DCB;
-	Fri,  4 Oct 2024 12:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="g8m/PlFu"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C167421F42F;
+	Fri,  4 Oct 2024 13:22:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from andre.telenet-ops.be (andre.telenet-ops.be [195.130.132.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7531D61AD;
-	Fri,  4 Oct 2024 12:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0399E216A0F
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 13:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728045940; cv=none; b=NmrLyqScF/0ymWMRzjwBWUQDrIPtzAOaScCkDnCvqRs6IRgpac1gzAgbxYmn6EQAhbK2kf8qGnJbFeAKvJSH2hQVTZSubyxxi5en86AYAGVwuWrneQEXOJDCymGwIn7deWbIQBbBmBvv1tOsgXzfXUd1MCj7cF/isd9/AMHsDpE=
+	t=1728048169; cv=none; b=dgAYyS+7koKiCyy5xcScbhMnmdHXyV9piNPnIirwMvNIO5/buUG7CNUtlu8fLxS6N67Du/VsIr1dVpO855Dt8tCNn5U0Ma0nmT90rD5oTqXaMj5NrixCzO2EksCah670aWIPI5TzAFQVAG+CvGPKAYAYcbm+6GRLMPFB0dRBQRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728045940; c=relaxed/simple;
-	bh=uWsZNGe3pqxzZr79023FPOo8NHWjPAJAYWxwLX8dIJE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TuGaPKyRetAEJWyvOeGAB/umk7PneijBT44sJJEyp1b/pNVcHvvuTv/gXuT6W7x6+JVeCzMdwOJhpE9ux5yY6hIX+bpM/9vp7O24lrLj4lQjV8fKz0UXe1s8g6toHAQVOYO0V8WUlQKKASuV+ZBsRKxeECFgUPXoC+0CtBXkmLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=g8m/PlFu; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 087E520B3E;
-	Fri,  4 Oct 2024 14:45:27 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1728045927;
-	bh=kYBsUjE2mHIzazcKSvxnMOQn0HZCyzCwd7IP56x1zOo=; h=From:To:Subject;
-	b=g8m/PlFuZIimr/+DitGPyh4kPiMpJnYZVG8WuI10t0C41SNx+n+NTLI84QZ9480YH
-	 q67ScRwBzzDDdYcn+zfBh9iIgUHDq+ptc3z+IT/tu9oIO1k6ULk8A+VrlWo8UezAxS
-	 aZZzKvDWgsLeP1kRpHQuUmJH/9z6t/FOU0YPjqOUSmxLgz0jrIKNLdG/tScSLa88ns
-	 2eNTEEoVi4PDqAUmdRBVa0EzR+KBPy8kvx9akhkE+RiM5SEO1BHOr9OueHTNkYg6A9
-	 DOH0mtQ+wGdKhcLDINFKXJIGZHrYHBDQRWRrMcAxXEUigBF4vknfkV47hwwfdCgYDh
-	 t0vug5Hyfyvuw==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>
-Cc: Parth Pancholi <parth.pancholi@toradex.com>,
-	linux-usb@vger.kernel.org,
+	s=arc-20240116; t=1728048169; c=relaxed/simple;
+	bh=TGh7eOa0EBdIxKdSzn8xUltxSvBCZpatgt1kKjJJZqQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=rrTL6N1IJT1Hg79mccHi+Olfm9aoA1hVxQABNDnfcceu9rUHJSp4rUYOIDfryV6ZeEp1iOsSKrMPlQM8kkpK7lvjfM+PwI1dGuuk1EA8gO5qXNRjszSgZXSGIdZrOsEry33fjtQS6Vy+4lDOWP800oRDZYCRhdKmdxVX5CNIL70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:5518:aeb:d9c0:fc7c])
+	by andre.telenet-ops.be with cmsmtp
+	id LDNd2D00M4NXpdT01DNduz; Fri, 04 Oct 2024 15:22:37 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1swiGL-001EmF-Cv;
+	Fri, 04 Oct 2024 15:22:37 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1swhnu-006yTe-4Z;
+	Fri, 04 Oct 2024 14:53:06 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 1/2] dt-bindings: usb: add TUSB73x0 PCIe
-Date: Fri,  4 Oct 2024 14:45:20 +0200
-Message-Id: <20241004124521.53442-2-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241004124521.53442-1-francesco@dolcini.it>
-References: <20241004124521.53442-1-francesco@dolcini.it>
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH 00/20] renesas: dts: Use interrupts-extended
+Date: Fri,  4 Oct 2024 14:52:42 +0200
+Message-Id: <cover.1728045620.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,91 +59,118 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Parth Pancholi <parth.pancholi@toradex.com>
+	Hi all,
 
-Add device tree bindings for TI's TUSB73x0 PCIe-to-USB 3.0 xHCI
-host controller. The controller supports software configuration
-through PCIe registers, such as controlling the PWRONx polarity
-via the USB control register (E0h).
+This patch series is a follow-up to Wolfram's series "[PATCH 0/4] ARM:
+dts: renesas: use interrupts-extended for gpio-keys"[1].  It replaces
+pairs of "interrupt-parent" and "interrupts" properties in Renesas DTS
+files by the more concise "interrupts-extended" property, as suggested
+by [2].
 
-Similar generic PCIe-based bindings can be found as qcom,ath11k-pci.yaml
-as an example.
+To reduce the number of patches, I combined patches touching similar
+device types.  I still have the original indiviual patches, so I can
+easily remix upon request ;-)
+    
+I intend to queue this series in renesas-devel for v6.13.
 
-Datasheet: https://www.ti.com/lit/ds/symlink/tusb7320.pdf
-Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- .../bindings/usb/ti,tusb73x0-pci.yaml         | 60 +++++++++++++++++++
- 1 file changed, 60 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
+Thanks for your comments!
 
-diff --git a/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-new file mode 100644
-index 000000000000..bcb619b08ad3
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/ti,tusb73x0-pci.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TUSB73x0 USB 3.0 xHCI Host Controller (PCIe)
-+
-+maintainers:
-+  - Francesco Dolcini <francesco.dolcini@toradex.com>
-+
-+description:
-+  TUSB73x0 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
-+  The TUSB7320 supports up to two downstream ports, the TUSB7340 supports up
-+  to four downstream ports.
-+
-+properties:
-+  compatible:
-+    const: pci104C,8241
-+
-+  reg:
-+    maxItems: 1
-+
-+  ti,tusb7320-pwron-polarity-invert:
-+    type: boolean
-+    description:
-+      Configure the polarity of the PWRONx# signals. When this is false, the PWRONx#
-+      pins are active low and their internal pull-down resistors are enabled.
-+      When this is true, the PWRONx# pins are active high and their internal pull-down
-+      resistors are disabled.
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pcie {
-+        #address-cells = <3>;
-+        #size-cells = <2>;
-+
-+        pcie@0 {
-+            device_type = "pci";
-+            reg = <0x0 0x0 0x0 0x0 0x0>;
-+            bus-range = <0x01 0xff>;
-+
-+            #address-cells = <3>;
-+            #size-cells = <2>;
-+            ranges;
-+
-+            usb@0 {
-+                  compatible = "pci104C,8241";
-+                  reg = <0x10000 0x0 0x0 0x0 0x0>;
-+
-+                  ti,tusb7320-pwron-polarity-invert;
-+            };
-+        };
-+    };
+[1] https://lore.kernel.org/20240927095414.10241-6-wsa+renesas@sang-engineering.com
+[2] commit 6df58e485fd002f6 ("dt-bindings: Clarify interrupts-extended usage")
+
+Geert Uytterhoeven (20):
+  ARM: dts: renesas: Use interrupts-extended for Ethernet MACs
+  ARM: dts: renesas: Use interrupts-extended for Ethernet PHYs
+  ARM: dts: renesas: Use interrupts-extended for HDMI bridges
+  ARM: dts: renesas: Use interrupts-extended for PMICs
+  ARM: dts: renesas: Use interrupts-extended for touchpanels
+  ARM: dts: renesas: Use interrupts-extended for video decoders
+  ARM: dts: renesas: iwg22d-sodimm: Use interrupts-extended for port
+    expander
+  ARM: dts: renesas: r8a7742-iwg21m: Use interrupts-extended for RTC
+  ARM: dts: renesas: kzm9g: Use interrupts-extended for I/O expander
+  ARM: dts: renesas: kzm9g: Use interrupts-extended for sensors
+  arm64: dts: renesas: Use interrupts-extended for DisplayPort bridges
+  arm64: dts: renesas: Use interrupts-extended for Ethernet PHYs
+  arm64: dts: renesas: Use interrupts-extended for HDMI bridges
+  arm64: dts: renesas: Use interrupts-extended for I/O expanders
+  arm64: dts: renesas: Use interrupts-extended for PMICs
+  arm64: dts: renesas: Use interrupts-extended for USB muxes
+  arm64: dts: renesas: Use interrupts-extended for video decoders
+  arm64: dts: renesas: Use interrupts-extended for WLAN
+  arm64: dts: renesas: beacon-renesom: Use interrupts-extended for
+    touchscreen
+  arm64: dts: renesas: rzg3s-smarc: Use interrupts-extended for
+    gpio-keys
+
+ arch/arm/boot/dts/renesas/emev2-kzm9d.dts      |  3 +--
+ .../arm/boot/dts/renesas/iwg20d-q7-common.dtsi |  3 +--
+ .../boot/dts/renesas/iwg20d-q7-dbcm-ca.dtsi    |  3 +--
+ arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts  |  3 +--
+ .../dts/renesas/r8a7740-armadillo800eva.dts    |  3 +--
+ .../arm/boot/dts/renesas/r8a7742-iwg21d-q7.dts |  3 +--
+ arch/arm/boot/dts/renesas/r8a7742-iwg21m.dtsi  |  3 +--
+ arch/arm/boot/dts/renesas/r8a7743-sk-rzg1m.dts |  3 +--
+ .../renesas/r8a7745-iwg22d-sodimm-dbhd-ca.dts  |  3 +--
+ .../boot/dts/renesas/r8a7745-iwg22d-sodimm.dts |  3 +--
+ arch/arm/boot/dts/renesas/r8a7745-sk-rzg1e.dts |  3 +--
+ .../boot/dts/renesas/r8a77470-iwg23s-sbc.dts   |  6 ++----
+ arch/arm/boot/dts/renesas/r8a7778-bockw.dts    |  3 +--
+ arch/arm/boot/dts/renesas/r8a7779-marzen.dts   |  3 +--
+ arch/arm/boot/dts/renesas/r8a7790-lager.dts    | 15 +++++----------
+ arch/arm/boot/dts/renesas/r8a7790-stout.dts    | 15 +++++----------
+ arch/arm/boot/dts/renesas/r8a7791-koelsch.dts  | 15 +++++----------
+ arch/arm/boot/dts/renesas/r8a7791-porter.dts   | 12 ++++--------
+ arch/arm/boot/dts/renesas/r8a7792-blanche.dts  |  9 +++------
+ arch/arm/boot/dts/renesas/r8a7792-wheat.dts    |  3 +--
+ arch/arm/boot/dts/renesas/r8a7793-gose.dts     | 15 +++++----------
+ arch/arm/boot/dts/renesas/r8a7794-alt.dts      |  6 ++----
+ arch/arm/boot/dts/renesas/r8a7794-silk.dts     |  9 +++------
+ arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts     | 17 ++++++-----------
+ .../dts/renesas/beacon-renesom-baseboard.dtsi  |  6 ++----
+ .../boot/dts/renesas/beacon-renesom-som.dtsi   |  9 +++------
+ arch/arm64/boot/dts/renesas/cat875.dtsi        |  3 +--
+ arch/arm64/boot/dts/renesas/condor-common.dtsi |  6 ++----
+ arch/arm64/boot/dts/renesas/draak.dtsi         |  6 ++----
+ arch/arm64/boot/dts/renesas/ebisu.dtsi         | 17 ++++++-----------
+ arch/arm64/boot/dts/renesas/hihope-common.dtsi |  3 +--
+ .../arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi |  3 +--
+ .../arm64/boot/dts/renesas/r8a774c0-cat874.dts |  9 +++------
+ .../r8a77970-eagle-function-expansion.dtso     |  7 +++----
+ arch/arm64/boot/dts/renesas/r8a77970-eagle.dts |  6 ++----
+ arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts |  6 ++----
+ arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts |  6 ++----
+ .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi  |  3 +--
+ .../arm64/boot/dts/renesas/r8a779a0-falcon.dts |  3 +--
+ .../dts/renesas/r8a779f0-spider-ethernet.dtsi  |  9 +++------
+ arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts  |  6 ++----
+ .../dts/renesas/r8a779g2-white-hawk-single.dts |  3 +--
+ .../dts/renesas/r8a779h0-gray-hawk-single.dts  |  6 ++----
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi      |  6 ++----
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi   |  3 +--
+ .../boot/dts/renesas/rzg2lc-smarc-som.dtsi     |  3 +--
+ arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi  |  3 +--
+ .../boot/dts/renesas/rzg2ul-smarc-som.dtsi     |  6 ++----
+ .../boot/dts/renesas/rzg3s-smarc-som.dtsi      |  6 ++----
+ arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi   |  9 +++------
+ .../boot/dts/renesas/salvator-common.dtsi      | 11 ++++-------
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi       | 18 ++++++------------
+ arch/arm64/boot/dts/renesas/ulcb.dtsi          |  6 ++----
+ .../dts/renesas/white-hawk-cpu-common.dtsi     |  9 +++------
+ .../boot/dts/renesas/white-hawk-ethernet.dtsi  |  6 ++----
+ 55 files changed, 123 insertions(+), 241 deletions(-)
+
 -- 
-2.39.5
+2.34.1
 
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
