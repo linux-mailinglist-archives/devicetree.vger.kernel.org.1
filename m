@@ -1,131 +1,211 @@
-Return-Path: <devicetree+bounces-107722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42FA898FE0F
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:50:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F50398FE1C
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:54:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D4D91C21DA5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 07:50:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 15615282266
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 07:54:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951507F7CA;
-	Fri,  4 Oct 2024 07:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E8548288C;
+	Fri,  4 Oct 2024 07:54:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="m5YIBeqy"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mfUHIsPJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F328922EF0;
-	Fri,  4 Oct 2024 07:50:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7CD2209F;
+	Fri,  4 Oct 2024 07:54:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728028206; cv=none; b=ZPYEjhKnYGi/8KO0dl3SmvNz7TXUOO40ulWcsaIXggwn0qmGNIa/OBAtAc3+bNY2xHBMy/PHYngkmNMS7Qiep4zQFaKuZ97SAeE/0E1WO4cMBsW98uAs2vXtApHsrnE62LayWUDv1/2CkQvbtlTFRyDC1nCfxVAjFgIzKVDQglE=
+	t=1728028442; cv=none; b=F1qKOySdff8sDokV3H3/VGsE9u0RWDzZ2eHnzK1HrJ60gsxQCARjhN6RflbjhpExfH9H4udMVtWsNXkQdeoILtUlIzt5Js+cWvncMzViyRn19BBqeax+TaoTza398dXyjZ+OWOAMADelSgSdtWI800rnOOXapksOzHlw1UP8M8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728028206; c=relaxed/simple;
-	bh=2YNZy+PdWFS2aPMYJOfFJ0eWPZwXlsQQWuiD/KarH60=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fsM2/bhJKMiXfFQCNDPLm1NURzsCi6iIA9JZU7xPQ+NuhubYvi/zo7+FVTADztBvfOe6hjkgCZ0s16OhASh4112g58orvl2lPJW6NM7mTelMajOpRUQIwIZQIVgui4qieKjZaVB+Y+ztay8My2rfWf+xxp2O1kHUPuB96QeJOBw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=m5YIBeqy; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 40547134822511efb66947d174671e26-20241004
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=gnqkDbmzWlsqBGGV2jWV2TwelPd0ktIYHv7wQSsrf5o=;
-	b=m5YIBeqydpsRUjIiZdDg9P5sDn7dj3xNhts3QI6msg6lQXzzduYmOrLVryNPKR4AhgtHdxU5+bDv5+GkWzleTaQPMmSro0WC20nlTFWCqQYaW2kuEcPH0+kw/bNTiB3iYsoFOa/lUqccPwa/Mh+Bj3v0hRuN6lbeZZa3fAdFmDI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:9dc669df-9892-444f-9cf7-d1264891ce95,IP:0,U
-	RL:0,TC:0,Content:0,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-30
-X-CID-META: VersionHash:6dc6a47,CLOUDID:5884be40-8751-41b2-98dd-475503d45150,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
-	L:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,S
-	PR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 40547134822511efb66947d174671e26-20241004
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 680921914; Fri, 04 Oct 2024 15:49:57 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 4 Oct 2024 15:49:55 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 4 Oct 2024 15:49:55 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
-	<amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, "Sen
- Chu" <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH] dt-bindings: power: mediatek: Refine multiple level power domain nodes
-Date: Fri, 4 Oct 2024 15:49:38 +0800
-Message-ID: <20241004074938.6571-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1728028442; c=relaxed/simple;
+	bh=J5dh8/U6klIOJiHQqsa0/Rvfb9Wi7dZw7ideSxoiabU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=qZd54aSXxfHSAFZZifG1A72uxwcZAp4Kewf+FDaTIeowSfB6pa+QLPClq1zYTKpimuDl/BeL4CJbM/O2AgzefpzdFMGZJfLizeBu/nz+Vh09+bzCdogQedA1WDxLh4Q+BNya3hZZvhP1IPBdT7Pv74li+nnw2jEvGZAqm+quWmU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mfUHIsPJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 865EDC4CEC6;
+	Fri,  4 Oct 2024 07:53:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728028441;
+	bh=J5dh8/U6klIOJiHQqsa0/Rvfb9Wi7dZw7ideSxoiabU=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=mfUHIsPJsA+9mGTXsmuZGxG7H4/uEd51CuGw+iYDqccD/Z5JEO+KUIDjtUks3dFA0
+	 gLefPYOwQ/fcQiB8lRpmfPtkSfs0WmWLwYRQ/F25JVcIuKCr+1F8Ykee9VwmhMeFJr
+	 aDP3aXANzPa2gmgRLIFGPiOXHn027ZH2QegsVkVV54frmzM/ImSo40PAfJz+u7OPsF
+	 qkzv/bPTxsdaNDf41TUwdoBP1fpMM9GXk0hUC9T9y6A629PFW0lkCn0XJ9QanZo/OL
+	 XG+Wi64zlSZXBLRnve+SWH2Qvj+KWdX1EXRChP3rOfAMl0L8Bx7xPd5KF7snXTaQc2
+	 UiECHkZoZhcfg==
+Message-ID: <7fc3cf75-bf48-4bcc-8c74-09fb89655a72@kernel.org>
+Date: Fri, 4 Oct 2024 10:53:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--5.217600-8.000000
-X-TMASE-MatchedRID: 56eCqOszUJp+YhdyenZTz5dc7I2df+msLJXjpJzQSNPfc2Xd6VJ+ymja
-	/2LEydj5j6kCfX0Edc5Si65s7OsML1xxDx5qbkR9FEUknJ/kEl7dB/CxWTRRu4as+d5/8j56JJg
-	JbsOusyW/vimt0hT5DclJq5M3pM6Ryj1crLYUwy1Zny+h5/IYMg==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--5.217600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	E97C1C3C5E2E3C760AEEF27B5F22FDC67E88EE9BC45F9462AFD2C36985979F932000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] ARM: dts: omap: omap4-epson-embt2ws: add unknown gpio
+ outputs
+To: Andreas Kemnade <andreas@kemnade.info>, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ khilman@baylibre.com, devicetree@vger.kernel.org, tony@atomide.com,
+ aaro.koskinen@iki.fi, linux-omap@vger.kernel.org
+References: <20240930213008.159647-1-andreas@kemnade.info>
+ <20240930213008.159647-4-andreas@kemnade.info>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240930213008.159647-4-andreas@kemnade.info>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Extract duplicated properties and support more levels of power
-domain nodes.
 
-This change fix following error when do dtbs_check,
-  mt8390-genio-700-evk.dtb:
-    power-controller: power-domain@15:power-domain@16:power-domain@29:power-domain@30:
-    Unevaluated properties are not allowed ('power-domain@31', 'power-domain@32'
-    were unexpected)
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../devicetree/bindings/power/mediatek,power-controller.yaml  | 4 ++++
- 1 file changed, 4 insertions(+)
+On 01/10/2024 00:30, Andreas Kemnade wrote:
+> Set them to the state seen in a running system, initialized
+> by vendor u-boot or kernel. Add line names where they are defined in the
+> vendor kernel.
+> gpio15 resets something in the display, otherwise meaning of the
+> gpios is not known.
+> 
+> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> ---
+>  .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  | 84 +++++++++++++++++++
+>  1 file changed, 84 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> index cc1b6080bf95..c8205ae89840 100644
+> --- a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> +++ b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> @@ -115,6 +115,65 @@ wl12xx_vmmc: wl12xx-vmmc {
+>  	};
+>  };
+>  > +&gpio1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&gpio1_hog_pins &gpio1wk_hog_pins>;
+> +
+> +	lb-reset-hog {
+> +		gpio-hog;
+> +		gpios = <9 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "lb_reset";
+> +	};
 
-diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-index 8985e2df8a56..a7df4041b745 100644
---- a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-+++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
-@@ -54,6 +54,10 @@ patternProperties:
-             patternProperties:
-               "^power-domain@[0-9a-f]+$":
-                 $ref: "#/$defs/power-domain-node"
-+                patternProperties:
-+                  "^power-domain@[0-9a-f]+$":
-+                    $ref: "#/$defs/power-domain-node"
-+                    unevaluatedProperties: false
-                 unevaluatedProperties: false
-             unevaluatedProperties: false
-         unevaluatedProperties: false
+Just curious, what does lb stand for.
+
+> +
+> +	power-en-hog {
+> +		gpio-hog;
+> +		gpios = <10 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "power_en";
+> +	};
+> +
+> +	panel-power-en-hog {
+> +		gpio-hog;
+> +		gpios = <14 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "panel_power_en";
+> +	};
+
+Is panel always enabled? I didn't see a panel driver
+else it could be hooked to panel regulator?
+
+> +
+> +	blc-r-hog {
+> +		gpio-hog;
+> +		gpios = <17 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "blc_r";
+> +	};
+
+this should be modeled as a gpio regulator and paried to backlight left?
+
+> +
+> +	blc-l-hog {
+> +		gpio-hog;
+> +		gpios = <16 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "blc_l";
+> +	};
+
+
+this should be modeled as a gpio regulator and paried to backlight right?
+
+> +
+> +	high-hog {
+> +		gpio-hog;
+> +		gpios = <15 GPIO_ACTIVE_HIGH /* maybe dsi to dpi chip reset? */
+> +			 21 GPIO_ACTIVE_HIGH
+> +			 26 GPIO_ACTIVE_HIGH>;
+> +		output-high;
+> +		line-name = "unknown-high";
+> +	};
+> +
+> +	low-hog {
+> +		gpio-hog;
+> +		gpios = <18 GPIO_ACTIVE_HIGH
+> +			 19 GPIO_ACTIVE_HIGH
+> +			 20 GPIO_ACTIVE_HIGH
+> +			 22 GPIO_ACTIVE_HIGH>;
+> +		output-low;
+> +		line-name = "unknown-low";
+> +	};
+
+These are probably OK as we don't know their actual function.
+
+> +};
+> +
+>  &i2c1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c1_pins>;
+> @@ -406,6 +465,22 @@ OMAP4_IOPAD(0x56, PIN_INPUT_PULLUP | MUX_MODE3) /* gpio35 */
+>  		>;
+>  	};
+>  
+> +	gpio1_hog_pins: pinmux-gpio1-hog-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x1b4, PIN_OUTPUT | MUX_MODE3) /* gpio14 */
+> +			OMAP4_IOPAD(0x1b8, PIN_OUTPUT | MUX_MODE3) /* gpio16 */
+> +			OMAP4_IOPAD(0x1ba, PIN_OUTPUT | MUX_MODE3) /* gpio17 */
+> +
+> +			OMAP4_IOPAD(0x1b6, PIN_OUTPUT | MUX_MODE3) /* gpio15 */
+> +			OMAP4_IOPAD(0x1bc, PIN_OUTPUT | MUX_MODE3) /* gpio18 */
+> +			OMAP4_IOPAD(0x1be, PIN_OUTPUT | MUX_MODE3) /* gpio19 */
+> +			OMAP4_IOPAD(0x1c0, PIN_OUTPUT | MUX_MODE3) /* gpio20 */
+> +			OMAP4_IOPAD(0x1c2, PIN_OUTPUT | MUX_MODE3) /* gpio21 */
+> +			OMAP4_IOPAD(0x1c4, PIN_OUTPUT | MUX_MODE3) /* gpio22 */
+> +			OMAP4_IOPAD(0x1cc, PIN_OUTPUT | MUX_MODE3) /* gpio26 */
+> +		>;
+> +	};
+> +
+>  	i2c1_pins: pinmux-i2c1-pins {
+>  		pinctrl-single,pins = <
+>  			   OMAP4_IOPAD(0x122, PIN_INPUT_PULLUP | MUX_MODE0)	/* i2c1_scl */
+> @@ -527,6 +602,15 @@ OMAP4_IOPAD(0x1c8, PIN_OUTPUT | MUX_MODE3)  /* gpio_24 / WLAN_EN */
+>  	};
+>  };
+>  
+> +&omap4_pmx_wkup {
+> +	gpio1wk_hog_pins: pinmux-gpio1wk-hog-pins {
+> +		pinctrl-single,pins = <
+> +			OMAP4_IOPAD(0x68, PIN_INPUT_PULLDOWN | MUX_MODE3) /* gpio9 */
+> +			OMAP4_IOPAD(0x6a, PIN_INPUT | MUX_MODE3) /* gpio10 */
+> +		>;
+> +	};
+> +};
+> +
+>  &uart2 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart2_pins &bt_pins>;
+
 -- 
-2.45.2
-
+cheers,
+-roger
 
