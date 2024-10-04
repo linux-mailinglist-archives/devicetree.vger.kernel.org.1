@@ -1,222 +1,124 @@
-Return-Path: <devicetree+bounces-107838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9935C990356
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:54:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0965099036E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:04:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DFEE284197
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 12:54:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4FD1DB22273
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:04:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50B9E20FAAD;
-	Fri,  4 Oct 2024 12:54:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CFVhCi9M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDB71165EF2;
+	Fri,  4 Oct 2024 13:04:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DD9D148FF6;
-	Fri,  4 Oct 2024 12:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7CCF157494;
+	Fri,  4 Oct 2024 13:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728046465; cv=none; b=uY8swGAh9jenbXxP2OKP7hGFox5+IS0QDiVMoTnmJ8IbxkNHzkjzTrEa2ZHxU1AOU7ueykncJ+Quky6+rCVTf2faCeLf5lpxh7C+3H/G2V+eGXQB4hbB1uxVdFqEzgSwx65H8eB0qGt86yA2XqEVQWX5Ufw6J0yaucHx6DuImVA=
+	t=1728047089; cv=none; b=GBYcqgZetEBrdJG1LhXTDCYDHg4+h8G/vZ1If37aqH7wyJxKwvcBQYSnNMeFEyawroZjMtHyebRIkBuCJbZnnfksKaKM5hbMay1XCbH6DV2Lcq3/wxPqaD7/vq545Zjki9zALNfmhYN2W5udJieaEjDrJ3hgElgqRZW+Ycmd8x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728046465; c=relaxed/simple;
-	bh=scoEf+kQQ8o70PYJN/CMkKfJxUEnWdjSkGJRV4O1hIM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Ijofhc7iGIz90QtJR/BYZPQOzshwOyMupM/YJEuwKJVv9zDZMUYP0TzcKWKVidVAg2FRy82zgdxjEpLrRJefaclMlsmxzfVSGkrl4oheTQshGI9I80zHF5BV5dddv2lCAZeVEmZpCJVoXDY+9y9nHz1Wa8PvSjYsWQSBHJ7Y8lA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CFVhCi9M; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1728047089; c=relaxed/simple;
+	bh=QdQmrZm7ty9NtOo3apEXaRMY4IeNfNBJqs1EKlHsObM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dNOugKUArHmjqFMwdILEeRIky41SIMwhfEV/hji6BzMesuSEQN5ee+WohHv6IMX2MbpvRSMcL4d0nbil9bihn+dv/bDF8cdPByvKIZDH6sgmwS+oAKZEofdbMNomBSu+qip5gPEzpk7HCw0J7vLf0ZMLLg992yDg9ODk7D01ais=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-37cfa129074so1549985f8f.1;
-        Fri, 04 Oct 2024 05:54:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728046462; x=1728651262; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=OkE24tdFnxW3nZI+5FIcOtn5bLZXY6cj+71W8xLv0ZI=;
-        b=CFVhCi9MZJzG89ZfR243xYdH+HPtH9m+yLSaq5gHrsgFfRexyL2aJusYuWVoyYYKBk
-         S6mSxPFEhDOThi1NL/T5Jp7WINESZXGenzhgVT7+G745hzKZ+TGItnnjGWpSIuzArr5k
-         hvhSxqNr6E18sYVhlcJehEaNhY73NBxJEQ+Voz29BXmXvFjldlRyir0iTAvfN9PdY2Xe
-         l+vBtEIQpDtgEy82tA1C98NodokCUC4NtLiTe6wykn5ED+z4xkye4c3WrIIIczIDS/1c
-         Vq6qxpLBG7bUXMPCTg3jOxv0URBcT4hRmgAAT0v8yqcRynoh8qwOnUpyQBku8BUFV8rV
-         +R2w==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2b9e945b9so15794817b3.0;
+        Fri, 04 Oct 2024 06:04:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728046462; x=1728651262;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OkE24tdFnxW3nZI+5FIcOtn5bLZXY6cj+71W8xLv0ZI=;
-        b=pPJpJDbxU/ISWjU05UDuW0oUM6LC/dbBsYvteiWZ7XmFrwD689tOJJYvBA3wpRntqU
-         doxI0bU1aQLhqGdwZy+ooBazS3scWL0lqKbcAmiGTWhKyX+CjdAjM/O6J9f2uDItYWeC
-         o53LEykzD1L+4h3UqfcH+s51FVoFso6Iu5GfsaYshHBM/xOebq5OGjk1W2g532SMLwEG
-         67WwGKk1i888qWWNhlXGDwFtrbsNRAh3FhwvNm9dQ5/S91UX8sRapnyvWtzAdrY1ms79
-         ezs52puibolPcjMhZH81JXQXlGJe0/+uKmOIh7/WWxsoEvxhCTVG8/+/FQDm0X0TKL3O
-         YFFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUjJA8eMx2lEAMRe4RqY1N0HqKccBNva1g4YBfd+lpcQI9tU79+8Pmf1lHDVh9z8jGX4IbeuiCCqXR6Es/s@vger.kernel.org, AJvYcCWipZ5zixzSmm2PGi4jbi10I2NjnPVnHFIhn+50P/iw404tuAe+02LanuzHQcFkdRnOKxNxIYdMNvFB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxc4/1YyiHufJRNqKjVLCj7dI74PmsDLZ9xTerRdWczX/KAvA/W
-	a93IeX1q9KXH6Y5ycjGyKGd3zhX6F0CeruK161tk9CsOMrJspbyK
-X-Google-Smtp-Source: AGHT+IH2NxZqBSgVBXnK5eFnmjV1tpYIrpENzrIAU1o5rfWqLqywaR28L48fLM5SXVAsGYLIPUALzw==
-X-Received: by 2002:adf:dd8d:0:b0:368:74c0:6721 with SMTP id ffacd0b85a97d-37d0e8de825mr1733676f8f.38.1728046461330;
-        Fri, 04 Oct 2024 05:54:21 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d0822b571sm3226763f8f.40.2024.10.04.05.54.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 05:54:21 -0700 (PDT)
-Message-ID: <451aaf360690cf60704e8a2880e98501156bda73.camel@gmail.com>
-Subject: Re: [PATCH v4 06/11] iio: backend: extend features
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Angelo Dureghello <adureghello@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- Sa <nuno.sa@analog.com>, Jonathan Cameron <jic23@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mihail Chindris <mihail.chindris@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, Jonathan
- Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, 
- dlechner@baylibre.com, Mark Brown <broonie@kernel.org>
-Date: Fri, 04 Oct 2024 14:54:15 +0200
-In-Reply-To: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-6-ceb157487329@baylibre.com>
-References: 
-	<20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-0-ceb157487329@baylibre.com>
-	 <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-6-ceb157487329@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+        d=1e100.net; s=20230601; t=1728047086; x=1728651886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ruv3nAghpejgQO903vPRqxuDL21r+6DHIyGybH2hS5Y=;
+        b=OnHu/emV9lFMvzyXaXf982lhKHZNw1qvkeozTq7rJPW6e/Ro3O9W9i3dc+jN6OAVdI
+         F9rPiYOv+GG8R7QjR8K7+KT0T9axQj3ZUwggGVqGQRD/x/Fyw8ATJX+XlbPm32MeRNif
+         Rnlhe3MAHjtvHmEoKYoR8dB4aes3L3Qzgyj79lJYc1PUwwl9GotYuQJEZzC3qwoczJX+
+         +h+ko/k7oy8GzLDHRYzjsT4Yt0pHsHwcAv49Ih5vGK04Fni4Endw04dqFPspBKQkBVUN
+         p7j/9b3bF4ollAOJTZ7e8SLZb7rHzYyH6N9bZZjsAb5HKzb8is0COB7An3xHzTZfzyYU
+         V3Ow==
+X-Forwarded-Encrypted: i=1; AJvYcCV0rwhg4qtpY3oXiS2h8LmZqdJRZmYMQWTCSfFG99Vd6WvT6mnYfPYRpg3XUKcd9/caGqmmHmIkM3m4kZE6l15/LcI=@vger.kernel.org, AJvYcCVSpXIxxRRqwkPjN2qsZAEqRZL9rGNEjjw+5qqY+2jQXjEabz3BnIzj71tqYyfQC23fBunjt99+bwpZyQ==@vger.kernel.org, AJvYcCWmAZJ4sXN/XZLEhdaMSuGsFcpOaYYLjxoJVlS2YArcFph7CAd99NPtw8lhGysBxsSkw5eUTZ90LRWNylnK@vger.kernel.org, AJvYcCWt6zFUimwSd3h8tfA4YcthYpLUtdb9NlzG5R7xCz5RcIg2aqKiOSWlz04QZXrhSGR7wOOTs+DMU4bx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0gnXD1KdwNqbfbwKRY1zES0G48x2um23RPm8XtSjZYJeJbBYu
+	6bH0Cu3131tj7eVnELpx3ribyG9rXg6Imp2idsPcgUj9cHVWTkKgS44Mdp9u
+X-Google-Smtp-Source: AGHT+IHeBegiMa3kc2BX0hxuJpZdwpgZ3fL2GPCvaRce1CTnp8xJB7w+v5P/xs8IIn43YCO07WIUoA==
+X-Received: by 2002:a05:690c:6610:b0:6e2:a962:d80f with SMTP id 00721157ae682-6e2c6fcb63emr23079957b3.8.1728047085955;
+        Fri, 04 Oct 2024 06:04:45 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2bcfb3683sm6212807b3.126.2024.10.04.06.04.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 06:04:45 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e2772f7df9so17457017b3.2;
+        Fri, 04 Oct 2024 06:04:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCULl1kcEYAmGisXnUyjn9JAy8tMYFepPMFqymIcIutnmlAz1lIGbBvLsj8RvDtjmYptQuvbwhQFj3Pr3w==@vger.kernel.org, AJvYcCUWTXSH+SVMdcUQFcTh5CfQtnLHOsgKviPRavUoIHatzTKIbX8ryl8Qv3vXyutD1ncejJlhSTIZ2oO68MhlSDfW/rw=@vger.kernel.org, AJvYcCVz7EkrM1dOE3/IFBTqUoBBqsr2KrTtTGIadYoOTW34quzKdeke8nIaJPPU7GEyujqUdRlrnjDcZkMFp1kJ@vger.kernel.org, AJvYcCWFdsMg9332B3FQtfGTcWD1TZcGnLbwADjHhAe4n6rfXMKlj+jpaWuXKYvx3hmsvj37sYuYqoJZRZV7@vger.kernel.org
+X-Received: by 2002:a05:690c:2a93:b0:6af:eaaf:2527 with SMTP id
+ 00721157ae682-6e2c7024d93mr17581667b3.18.1728047084814; Fri, 04 Oct 2024
+ 06:04:44 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241004123658.764557-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20241004123658.764557-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20241004123658.764557-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 4 Oct 2024 15:04:32 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdV2MXE3XhRQuSxX1Du0Tu4d2ucigfZopVBJZ7tJL8mcVQ@mail.gmail.com>
+Message-ID: <CAMuHMdV2MXE3XhRQuSxX1Du0Tu4d2ucigfZopVBJZ7tJL8mcVQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Allow
+ schmitt and open drain properties
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, devicetree@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, 2024-10-03 at 19:29 +0200, Angelo Dureghello wrote:
-> From: Angelo Dureghello <adureghello@baylibre.com>
->=20
-> Extend backend features with new calls needed later on this
-> patchset from axi version of ad3552r.
->=20
-> The follwoing calls are added:
->=20
-> iio_backend_ddr_enable
-> 	enable ddr bus transfer
-> iio_backend_ddr_disable
-> 	disable ddr bus transfer
-> iio_backend_buffer_enable
-> 	enable buffer
-> iio_backend_buffer_disable
-> 	disable buffer
-> iio_backend_data_transfer_addr
-> 	define the target register address where the DAC sample
-> 	will be written.
->=20
-> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+On Fri, Oct 4, 2024 at 2:37=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> On the RZ/V2H(P) SoC we can configure the 'input-schmitt-{enable,disable}=
+'
+> , 'drive-open-drain' and 'drive-push-pull' of multiplexed pins. Update th=
+e
+> binding documentation to include these properties.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 > ---
-> =C2=A0drivers/iio/industrialio-backend.c | 79 +++++++++++++++++++++++++++=
-+++++++++++
-> =C2=A0include/linux/iio/backend.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0 | 17 ++++++++
-> =C2=A02 files changed, 96 insertions(+)
->=20
-> diff --git a/drivers/iio/industrialio-backend.c b/drivers/iio/industriali=
-o-
-> backend.c
-> index 20b3b5212da7..d5e0a4da761e 100644
-> --- a/drivers/iio/industrialio-backend.c
-> +++ b/drivers/iio/industrialio-backend.c
-> @@ -718,6 +718,85 @@ static int __devm_iio_backend_get(struct device *dev=
-, struct
-> iio_backend *back)
-> =C2=A0	return 0;
-> =C2=A0}
-> =C2=A0
-> +/**
-> + * iio_backend_ddr_enable - Enable interface DDR (Double Data Rate) mode
-> + * @back: Backend device
-> + *
-> + * Enable DDR, data is generated by the IP at each front (raising and fa=
-lling)
-> + * of the bus clock signal.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ddr_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ddr_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_enable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_ddr_disable - Disable interface DDR (Double Data Rate) mo=
-de
-> + * @back: Backend device
-> + *
-> + * Disable DDR, setting into SDR mode (Single Data Rate).
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_ddr_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, ddr_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_ddr_disable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_dma_stream_enable - Enable iio buffering
-> + * @back: Backend device
-> + *
-> + * Enabling sending the dma data stream over the bus.
-> + * bus interface.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_dma_stream_enable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, dma_stream_enable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_dma_stream_enable, IIO_BACKEND);
-> +
-> +/**
-> + * iio_backend_dma_stream_disable - Disable iio buffering
-> + * @back: Backend device
-> + *
-> + * Disable sending the dma data stream over the bus.
-> + *
-> + * RETURNS:
-> + * 0 on success, negative error number on failure.
-> + */
-> +int iio_backend_dma_stream_disable(struct iio_backend *back)
-> +{
-> +	return iio_backend_op_call(back, dma_stream_disable);
-> +}
-> +EXPORT_SYMBOL_NS_GPL(iio_backend_dma_stream_disable, IIO_BACKEND);
-> +
+> Hi Rob,
+> I have dropped your Ack from v1 as I have updated the commit message and
+> included `drive-push-pull` property in v2.
+>
+> Cheers, Prabhakar
+>
+> v1->v2
+> - Added `drive-push-pull` property
 
-I'm not sure if this is what Jonathan was suggesting... Ate least I don't r=
-eally
-agree with it. I mean, yes, this is about buffering and to start receiving =
-(or
-sending) a stream of data. But AFAICT, it might have nothing to do with DMA=
-. Same as
-.request_buffer() - It's pretty much always a DMA one but we should not tak=
-e that for
-granted.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-pinctrl for v6.13.
 
-So going back to the RFC [1], you can see I was suggesting something like s=
-truct
-iio_buffer_setup_ops. Maybe just add the ones we use for now? So that would
-be.buffer_postenable() and .buffer_predisable(). Like this, it should be ob=
-vious the
-intent of the ops.
+Gr{oetje,eeting}s,
 
-- Nuno S=C3=A1
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
