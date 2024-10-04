@@ -1,65 +1,48 @@
-Return-Path: <devicetree+bounces-107699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D938598FD3B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:20:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59BF998FD4D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:25:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BDDE1F21D45
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:20:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC176B2245F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9F4812E1C2;
-	Fri,  4 Oct 2024 06:20:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B81D85628;
+	Fri,  4 Oct 2024 06:25:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n4o9pnFC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WrIS+4y+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 114F184E14;
-	Fri,  4 Oct 2024 06:20:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28F25A55;
+	Fri,  4 Oct 2024 06:25:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728022810; cv=none; b=KneuobzxfyJRTmLqEC+hydbOA5kd0T9BBC5NJcsCdfc5g6hOrgCl52LQCpoVbrABaDT2xiOAYxWvd8x23qNKGQbB4+ajxU0p0/RSpB3t3EXfGtfL2dYDtnQvP780cDcxQj0szjpKloJUgyCnUpPm27fE56hg9XqVZhaq0fNBNog=
+	t=1728023107; cv=none; b=N5iJTFp1yKIyrE7LRRVTTpzaSEeIq3uhXe9coKOlb7PD8TuybNLoLLQGd4QstXI9bRDiyRq2R4GNroxnbc4UWBNwF57P6TXhcYorbjiP36J0vH7bpj+R42Ucha/nMGW0eKZItfl51O5v3B7n92zVNY+3cwLfJiAI6CkDintBPbI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728022810; c=relaxed/simple;
-	bh=u0ROQGIKvHYwdRfflIP+jEihYIQYG+R7/MJxd3/po+Q=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=NqO6f648D25a9hYA8241bk+KiI6Xb0EYlloCEDkgyqoqLSvbJlbDVhLxqOEkcLBd8hO0sImF4oUxNCvMwI1UvDWXcgRNM14Pk1tasdCT+KYgxLOjnpDbinnZRl5monc6fyAq9O0MfKF1TAzu9+ziccKIXuIllFqbU+FXQ+ub3vU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n4o9pnFC; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728022809; x=1759558809;
-  h=message-id:date:mime-version:subject:from:to:cc:
-   references:in-reply-to:content-transfer-encoding;
-  bh=u0ROQGIKvHYwdRfflIP+jEihYIQYG+R7/MJxd3/po+Q=;
-  b=n4o9pnFCnrYvZ2Jfy/wO2Z4TrxyGquWCfcernkKYG3YqisMpWtXgRNnc
-   kjbSpHTWahuI/ofkZMnCDS7TMJPE+yKedEuAL5F5NfnyZKT7iushPOhNm
-   wHMjaTobmPgiXIutNtNYNaKE3KGAT4vmgU80IFrEhzHlVlWr8CX++sM2v
-   P/s804VhI1Ufen3m714hvkBdE0JVE/r0nRTXdr5Ty05/B2cUX7lVfiDD1
-   D9AIub3K3yAioTbtSrD5n6SrkTf5FS4UNEF+MZJrDoFyTibJYDlacFy/j
-   1L0ocqUTXCbcqpixXxl8cRukBSDw6/mI5hhwqgO0moZr5A1T2dqI4xRZe
-   w==;
-X-CSE-ConnectionGUID: wb8OLJV3QROMeudHtGC6Zw==
-X-CSE-MsgGUID: Hz1/9c9yT6GO378GfHBvXA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11214"; a="26704163"
-X-IronPort-AV: E=Sophos;i="6.11,176,1725346800"; 
-   d="scan'208";a="26704163"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 23:20:08 -0700
-X-CSE-ConnectionGUID: Mg9fEK4RTNy1I03QnObZ2w==
-X-CSE-MsgGUID: v+UZnQapRpKt/A1Lf/CftA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,176,1725346800"; 
-   d="scan'208";a="74860934"
-Received: from kkruthiv-mobl1.gar.corp.intel.com (HELO [10.247.176.17]) ([10.247.176.17])
-  by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Oct 2024 23:20:03 -0700
-Message-ID: <5862746f-d594-4e7e-9b54-c5ea77596ef6@intel.com>
-Date: Fri, 4 Oct 2024 11:49:51 +0530
+	s=arc-20240116; t=1728023107; c=relaxed/simple;
+	bh=QLlbe7kMB+b9u7ZG3irWvRK0uRuPGQO24j2MgfFK5EY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=IY4Ib39wmXAa4BlA0lMni1MWkkVHc/9VO5Di2EZyMV/aeXJqG5x0LzDkL5MXO2+Kt9CE94xXNGDOKuoWMfUbFbgXhHZFswGROwWalX+Zxa669N+f/0ZELSSyAx4fjA0fIVI25+7XERS9FoBAPHINXPmbcykolME1qIRTdhNnYuE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WrIS+4y+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2EC17C4CEC6;
+	Fri,  4 Oct 2024 06:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728023106;
+	bh=QLlbe7kMB+b9u7ZG3irWvRK0uRuPGQO24j2MgfFK5EY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=WrIS+4y+bVQsJZ2N5ELjeQLmRaCNi0iV5mBdewlZ9/HlEVqMEj3x/UxXvgYbq3HBG
+	 OptA/6pJNiyQTaf/ypXbnBhrXjL4wF1TGLPydRUAdTFgl4F3g7p4jFYUUbQ8WWEh0Q
+	 S3EynK4slr4vG3wZizivpclUHqKDSyXTs4dMhiN1F+ejiqYfJ6LDF7hY9W2ycqC+0m
+	 +Bad2Vi2d6YR97s6k4DuYx6hv/r/r6BQ8o3dPTKTPEtNwN6mNLS2k/kno717/0+ahM
+	 /1j4t8hh/rmw1OjW7/SWEJvilCMMyjtlqA8x0RB5JfrLUnsoYxUHy6s3DTQraEBw/s
+	 5tPaKj8sj3odQ==
+Message-ID: <39dcfa4b-1a22-4296-b190-ac39480d034a@kernel.org>
+Date: Fri, 4 Oct 2024 08:24:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,132 +50,131 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Provide data-lines property to
- input endpoint
-From: Aradhya Bhatia <aradhya.bhatia@intel.com>
-To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
-References: <20241003082006.2728617-1-w.egorov@phytec.de>
- <6523649b-9143-42d8-b301-a143088530b9@intel.com>
+Subject: Re: [PATCHv2 5/5] documentation: use nvmem-layout in examples
+To: Rosen Penev <rosenp@gmail.com>, devicetree@vger.kernel.org
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn <andrew@lunn.ch>,
+ Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Christian Marangi <ansuelsmth@gmail.com>,
+ "open list:MEMORY TECHNOLOGY DEVICES (MTD)" <linux-mtd@lists.infradead.org>,
+ open list <linux-kernel@vger.kernel.org>,
+ "open list:NETWORKING DRIVERS" <netdev@vger.kernel.org>,
+ "open list:ARM/QUALCOMM MAILING LIST" <linux-arm-msm@vger.kernel.org>,
+ "moderated list:BROADCOM BCMBCA ARM ARCHITECTURE"
+ <linux-arm-kernel@lists.infradead.org>,
+ "moderated list:ARM/Mediatek SoC support"
+ <linux-mediatek@lists.infradead.org>
+References: <20241004000015.544297-1-rosenp@gmail.com>
+ <20241004000015.544297-6-rosenp@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <6523649b-9143-42d8-b301-a143088530b9@intel.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241004000015.544297-6-rosenp@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 04/10/2024 02:00, Rosen Penev wrote:
+> nvmem-cells are deprecated and replaced with nvmem-layout. For these
+> examples, replace. They're not relevant to the main point of the
+> document anyway.
 
-On 03-10-2024 15:13, Aradhya Bhatia wrote:
-> Hi Wadim,
-> 
-> Thanks for the patch.
-> 
-> Probably a nit, but the dt-binding patch should come before the driver
-> patch.
-> 
-> On 03-10-2024 13:50, Wadim Egorov wrote:
->> Introduce a data-lines property to define the number of parallel RGB
->> input pins connected to the transmitter. The input bus formats are updated
->> accordingly. If the property is not specified, default to 24 data lines.
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
 
-One more thing. This driver also supports the older way of
-encoder-bridge connections - that is, with no
-DRM_BRIDGE_ATTACH_NO_CONNECTOR flag.
 
-In the sii902x_bridge_attach, you will see that the bus_format is being
-statically assigned to MEDIA_BUS_FMT_RGB888_1X24. When the
-ATTACH_NO_CONNECTOR flag is set, it doesn't matter. But when it is not,
-the RGB888 bus format will get trickled back to the encoder even if the
-dt property says differently.
+> 
+> Signed-off-by: Rosen Penev <rosenp@gmail.com>
+> ---
+>  .../mtd/partitions/qcom,smem-part.yaml        | 19 +++++++++++--------
+>  .../bindings/net/marvell,aquantia.yaml        | 13 ++++++++-----
+>  2 files changed, 19 insertions(+), 13 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+> index 1c2b4e780ca9..8ae149534b23 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/qcom,smem-part.yaml
+> @@ -45,17 +45,20 @@ examples:
+>              compatible = "qcom,smem-part";
+>  
+>              partition-art {
+> -                compatible = "nvmem-cells";
+> -                #address-cells = <1>;
+> -                #size-cells = <1>;
+>                  label = "0:art";
+>  
+> -                macaddr_art_0: macaddr@0 {
+> -                    reg = <0x0 0x6>;
+> -                };
+> +                nvmem-layout {
+> +                    compatible = "fixed-layout";
 
->>
->> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
->> ---
->>  drivers/gpu/drm/bridge/sii902x.c | 27 ++++++++++++++++++++++++++-
->>  1 file changed, 26 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
->> index 7f91b0db161e..3565c3533597 100644
->> --- a/drivers/gpu/drm/bridge/sii902x.c
->> +++ b/drivers/gpu/drm/bridge/sii902x.c
->> @@ -180,6 +180,8 @@ struct sii902x {
->>  	struct gpio_desc *reset_gpio;
->>  	struct i2c_mux_core *i2cmux;
->>  	bool sink_is_hdmi;
->> +	u32 pd_lines; /* number of Parallel Port Input Data Lines */
->> +
->>  	/*
->>  	 * Mutex protects audio and video functions from interfering
->>  	 * each other, by keeping their i2c command sequences atomic.
->> @@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->>  						     u32 output_fmt,
->>  						     unsigned int *num_input_fmts)
->>  {
->> +
+This does not look right - the binding still expects nvmem-cells. I
+wonder how does the nvmem-cells.yaml work if the compatible is being
+removed so it is not being selected.
 
-And this is probably a stray.
 
->> +	struct sii902x *sii902x = bridge_to_sii902x(bridge);
->>  	u32 *input_fmts;
->>  
->>  	*num_input_fmts = 0; 
->> @@ -485,7 +489,19 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
->>  	if (!input_fmts)
->>  		return NULL;
->>  
->> -	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
->> +	switch (sii902x->pd_lines) {
->> +	case 16:
->> +		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
->> +		break;
->> +	case 18:
->> +		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
->> +		break;
->> +	default:
-> 
-> For backward compatibility - in cases where the property is absent - you
-> have already defaulted sii902x->pd_lines to 24 below, which I think is
-> the right way.
-> 
-> So, the default case should be kept separately, as an error case -
-> which should then return back NULL / num_input_fmts = 0.
-> 
->> +	case 24:
->> +		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
->> +		break;
->> +	}
->> +
->>  	*num_input_fmts = 1;
->>  
->>  	return input_fmts;
->> @@ -1167,6 +1183,15 @@ static int sii902x_probe(struct i2c_client *client)
->>  		return PTR_ERR(sii902x->reset_gpio);
->>  	}
->>
->> +	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
->> +	if (endpoint) {
->> +		ret = of_property_read_u32(endpoint, "data-lines", &sii902x->pd_lines);
->> +		if (ret) {
->> +			dev_dbg(dev, "Could not get data-lines, fallback to 24 data-lines\n");
->> +			sii902x->pd_lines = 24;
->> +		}
->> +	}
->> +
->>  	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
->>  	if (endpoint) {
->>  		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
-> 
-> --
-> Regards
-> Aradhya
-> 
+Best regards,
+Krzysztof
 
---
-Regards
-Aradhya
 
