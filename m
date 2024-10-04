@@ -1,147 +1,109 @@
-Return-Path: <devicetree+bounces-107885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D4A4990506
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:58:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A946E990510
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:59:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2994C1F24113
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:58:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30DA11F21E05
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 079D82139DA;
-	Fri,  4 Oct 2024 13:56:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PNXeYmN9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EBE215F5F;
+	Fri,  4 Oct 2024 13:57:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52D342139C8;
-	Fri,  4 Oct 2024 13:56:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0DDB2141DC;
+	Fri,  4 Oct 2024 13:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728050198; cv=none; b=peyqoOorz/vqUdPEwRq18elcSumcn6XjRY2JUE5w4SvHg540hPy3CD4yiW5iskyW8nRER5kspmHm03c+ReAuv+9x26zPqdo0qE1sZ7JkOJPygjBaoE5x5V9w40O39L6RQWCMhE6Y0YYVJWKmnUQ/OmcmWj6ttrVskIa0ZygeTu4=
+	t=1728050237; cv=none; b=S26COxbZB05YpaL35/zTvC56Hyg6G0X5zUai/qE4vuQZo+red3bOEoD77Mw8SQkmqlwxbuZxa1xpX7ywIlU9/0XSfGFiH/IPW2w6xusBhNjIzsz/njXF1FJ0++9+KeL0FhJYJf9j4+YZ+1uELGp20oqYTGE2yGC+UMlcWlHk8Hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728050198; c=relaxed/simple;
-	bh=9GdsucXmNkPS2xk5nNF59TPvlbnXFgtmAMV/kmxrn04=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BG4uP1z28o1WLh9DmkhOOJvt6cB1nC1kxbhFirxKLRGCiOE2wfaB5LitbdHPChB0Bbyd9MiiLW7J3fnT/R8Zfu8P+/JGcmeX0hr6aR4sDMp0L6vDlQkhVp9TCirAcBASmr2IP/dabmR1FPdy7WmzjD0vSsYIW0B55QZAZRMzeHI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PNXeYmN9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4940PeTS026484;
-	Fri, 4 Oct 2024 13:56:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=RJd5+YHMSsG88etbwaP6oiR9
-	jvN/NtSoMvvcL3EGNmI=; b=PNXeYmN9ydYx1+DDjygnivWLDYBBQmvVZUHNYAxY
-	D++wGiYt64DfQBOAH3j6pcQtq0HPOt5Bt/nQRdDkL/Z6fkdLXy+GaK4nsRyNpllv
-	UsznuI2HOi9HTS4kTW+sfMbgFoq9LUDxUTOebCQeMuwKqMVCzqlsSo8cgQSGnjAg
-	V5+nLCPRXJ9/IotUAQSkvFRmO6tKaKqpKmricE14s4qQf8iPrCWvblR35CWVxEmc
-	N/zgTgrWyEJmeHWJrnQx//pDLg7cZIpLFgeb0Mx++S9m6GSfH9WzoKalFIZ9BmLq
-	BLp0c+KmFeJW0Z00H7kGe6w0RpBmWOfhG4z/xEVTSCCpcg==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205n28u3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 04 Oct 2024 13:56:32 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 494DuU6b002063
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 4 Oct 2024 13:56:30 GMT
-Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Fri, 4 Oct 2024 06:56:30 -0700
-Date: Fri, 4 Oct 2024 06:56:29 -0700
-From: Bjorn Andersson <quic_bjorande@quicinc.com>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Om Prakash Singh
-	<quic_omprsing@quicinc.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Gaurav Kashyap <quic_gaurkash@quicinc.com>
-Subject: Re: [PATCH v7 0/2] arm64: dts: qcom: extend the register range for
- ICE on sm8[56]50
-Message-ID: <Zv/0DVQNEsJPoyCR@hu-bjorande-lv.qualcomm.com>
-References: <20241001-wrapped-keys-dts-v7-0-a668519b7ffe@linaro.org>
+	s=arc-20240116; t=1728050237; c=relaxed/simple;
+	bh=kzvehQB+L0tO7TxiItTIteZGiHS/2QUiwTEDDjnbKJE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ZMg98fpacP53YY2tQtaRNlzfqqgDpVTSZC3MgVSBYQJV+8gtu5eVnP+N7sFLrP/3DzHp97FvM2AH9i/tOsr62qQfLP6bKEVTSOHeS8hHmMifmAuvpqZiSuyUtw/ZyaJZfnUA0zeuv+pUF+yI965VUHde3EvTvQNH7d+TCw50qwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6e2d36343caso3393927b3.2;
+        Fri, 04 Oct 2024 06:57:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728050234; x=1728655034;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dt+tRMO+kb7ohi6uzJ4m3wlyh86vOBzqwTQQZZxmxyk=;
+        b=MbpGwpqaW9LyLLfQXrQyip8oQwZyL1Xh40DZdNoHEWgYBwsnFBFVkQqEk/7mQxHJ78
+         GPx4+tCZxfSuO48vgQ1rlt1AfiGmIktH1YwixjzuwaCv+rDN5eZ23FyEqK6wWPQjsvpM
+         f4jJ6c2ZCChxnBgB93+MM7j6OyBEBZAIRb0CWbFEKzZTWWNXMxIKPOTBZ2KCmlBgLmcN
+         3wrTrFdjdYROslZQ2yaZ1FIEouzovR/oyWgd1ThYG1HZPNrdrjnHqxumgmkvfGRcQzmo
+         lp6v5fSDlP6e0BM74Pc7KYA8amW2uQpTj/PfipCfRFvf5G1Der9q+Y2GPJQwJYP0+W5j
+         2seg==
+X-Forwarded-Encrypted: i=1; AJvYcCXaJFGH7PdJxI4eT4Gpmc6wX1Z5RD7KNNpQ+rczJ73omCIPV35J5AddEwGGG2Fn2U6qM0/1xbJZiuKp@vger.kernel.org
+X-Gm-Message-State: AOJu0YzPImVB+8lGo1z//xza5BDiv124t5eYrOO1tpokf7xdIBdHHw3+
+	yKWHjsPZLMEjhhllXboF2CVFiPOn8DiGwfZ1vBfBs52udF3a0k4Dy9PpGhKVMc4=
+X-Google-Smtp-Source: AGHT+IEmWeahiyD7O/sL4Sc77bEbOACzT3z7xAmcJTADAEWIgJwdhB1wKEd4NDtgHf9dvziy1Zqpww==
+X-Received: by 2002:a05:690c:d8d:b0:6e2:ac0a:890e with SMTP id 00721157ae682-6e2c6ff5155mr24969857b3.6.1728050234438;
+        Fri, 04 Oct 2024 06:57:14 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2bbead375sm6587637b3.51.2024.10.04.06.57.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 06:57:13 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2326896cbso18280057b3.3;
+        Fri, 04 Oct 2024 06:57:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWdnUvu9GteiO3AcmlNCjoglZG7WXuqZihdFlAnaJ3FdoSl6jYnS4mj+wavVMcmNinZpu9BFLHWLJxN@vger.kernel.org
+X-Received: by 2002:a05:690c:60c1:b0:6e2:1b8c:ad28 with SMTP id
+ 00721157ae682-6e2c72423e7mr27736847b3.24.1728050233336; Fri, 04 Oct 2024
+ 06:57:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241001-wrapped-keys-dts-v7-0-a668519b7ffe@linaro.org>
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: RPTibLljySJ40fCLinWqNBEH9NF5HaQF
-X-Proofpoint-GUID: RPTibLljySJ40fCLinWqNBEH9NF5HaQF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=603 adultscore=0
- clxscore=1011 bulkscore=0 malwarescore=0 phishscore=0 spamscore=0
- suspectscore=0 lowpriorityscore=0 impostorscore=0 mlxscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410040097
+References: <20240926103340.16909-4-wsa+renesas@sang-engineering.com> <20240926103340.16909-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240926103340.16909-6-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 4 Oct 2024 15:57:01 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWNa-5tE7CCEypD-7rN60euGEphGmmBxQeixannP4+HXw@mail.gmail.com>
+Message-ID: <CAMuHMdWNa-5tE7CCEypD-7rN60euGEphGmmBxQeixannP4+HXw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] ARM: dts: renesas: r8a7778: rename 'bsc' to 'lbsc'
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 01, 2024 at 10:35:29AM +0200, Bartosz Golaszewski wrote:
-> The following changes extend the register range for ICE IPs on sm8550
-> and sm8650 in order to cover the registers used for wrapped key support
-> on these platforms.
-> 
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Changes in v7:
-> - bring the ICE register range up to its full size of 0x18000
-> - Link to v6: https://lore.kernel.org/r/20240906-wrapped-keys-dts-v6-0-3f0287cf167e@linaro.org
-> 
-> Changes in v6:
-> - split out the DT changes into a separate series
+On Thu, Sep 26, 2024 at 12:33=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> R-Car Gen1 has an LBSC which has quite a different register set from the
+> former BSC. To match H1 with M1, rename the nodes to LBSC.
 
-Bartosz, this strategy of "let's split things such that the maintainers
-can't see the full picture" is just BS. It needs to stop.
+M1 with H1?
 
-Now you will argue that these patches stands on their own, and that
-might be a valid case, but the argumentation you're making in the commit
-message clearly ties them to the code changes you're making somewhere
-else.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Regards,
-Bjorn
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.13.
 
-> - remove the new DT property from the series
-> - rework commit messages
-> Link to v5: https://lore.kernel.org/lkml/20240617005825.1443206-1-quic_gaurkash@quicinc.com/
-> 
-> ---
-> Bartosz Golaszewski (2):
->       arm64: dts: qcom: sm8650: extend the register range for UFS ICE
->       arm64: dts: qcom: sm8550: extend the register range for UFS ICE
-> 
->  arch/arm64/boot/dts/qcom/sm8550.dtsi | 3 ++-
->  arch/arm64/boot/dts/qcom/sm8650.dtsi | 2 +-
->  2 files changed, 3 insertions(+), 2 deletions(-)
-> ---
-> base-commit: 77df9e4bb2224d8ffbddec04c333a9d7965dad6c
-> change-id: 20240906-wrapped-keys-dts-b733dac51d01
-> 
-> Best regards,
-> -- 
-> Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
