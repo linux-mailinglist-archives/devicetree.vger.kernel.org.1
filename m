@@ -1,136 +1,138 @@
-Return-Path: <devicetree+bounces-107729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16F5D98FE42
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:58:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45DF898FE44
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:59:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9AD941F23A74
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 07:58:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B4911C230A2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 07:59:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8370013B588;
-	Fri,  4 Oct 2024 07:57:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 003C41311B5;
+	Fri,  4 Oct 2024 07:59:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ok/KjEEi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iGM4uBQX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A0142209F;
-	Fri,  4 Oct 2024 07:57:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35D942209F
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 07:59:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728028677; cv=none; b=eeRlgPmjnN73/tVl2BhFci5rQKzoCBkeiD8wYAaOsuGc4R0iSimtYJi902h7s3mVJ6W+zPcgL8efTfYF+MuI7UySCN+gMwn4N4YZA8mYkFlX9itssNiAnA9rzidHcnpLA9y+IWCpA0fr415G2wnmB9SyZp9PtQO8Mf8vHcToIJo=
+	t=1728028767; cv=none; b=gnShTSPAvcCFS1XVmzhqlI1gN4gGE/G9qBjmB579s0cYUrZEnTminH+NeK3uG2bHNubI5j4w7PS9YnRwjrwTFPMNPj/Jm3K8BKI9od1kDsyEccw7hW8yC5yKr0PiQxL6NpiiiTVvZjKGVz3FAFU8AVWlPouwICWREk+8c4Zdobg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728028677; c=relaxed/simple;
-	bh=Gx3ByTHdqH+Z6NrgWs+dOHm2pf1YYYDIrVPK06ZcIsI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=dkEUjvpYP8sAjZsFzgR5HP8oFbsJkQNpXZR9lSYm00bNmNu55WeuVjkxvJH0vx2juINvywKBi5+x40BkaKKqZbSFHUkgfSErRtR0v0XE9zftIDfPveO8QmOj3kW9/8sQSjZBAPLuxisCO0bTJjMpmV42+WxG155CUvv2rQkrkcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ok/KjEEi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 493I03lo021789;
-	Fri, 4 Oct 2024 07:57:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	YXpbF4mHKiP22JJzGGOCfafZjcykIbh3vzNu3zCQFe8=; b=ok/KjEEikM5YwZV2
-	LAk9aO7k3ybCAtQJ7KIm51QbEsePu4QSKBzpl7C+GW95XYz8Z+VXIe8ucJlDMiOy
-	AL15wQKyeMHMOJghslwMP519w39o5OFZSXg56pM32xR6C7FqJZmNzAvOKxZO/240
-	NeBlPsPBI5gzNqP1EJ+j1JIsVBPJevLtb6Bd/QTa4MeKNsGsepkUcBu3fGgIkSQv
-	PnPvrHa8SiT0q014Wy04oK4qzw87NB+K0Htv964pkpBhVlLFcRFQTKaidmvvWQaz
-	ElsEuLcK+yOjFyWNRwrl3BT0HxLOYVBZlcNMESFu4+FkpjGLvnVL+D+PnUdp9cZz
-	fsKc9g==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205p9f0g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 04 Oct 2024 07:57:31 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4947vUMT013051
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 4 Oct 2024 07:57:30 GMT
-Received: from [10.50.18.17] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 4 Oct 2024
- 00:57:22 -0700
-Message-ID: <c7ddb7d3-7046-4e27-8ef7-c88262da6b8a@quicinc.com>
-Date: Fri, 4 Oct 2024 13:27:19 +0530
+	s=arc-20240116; t=1728028767; c=relaxed/simple;
+	bh=wWE7/0UXOpErdggI0e3WCup+fp0WFR4iS0PwL7i/ezE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=M1MibsogpcFlHWw6IskUwt89RWl8suX8Zj2Mzgc3mVS6fgWO4Wu0U6un5VM6643EhIRq/Xs9PVrs9iIzgS4dGHHE2V/Nk0WvraNU5Ce0PCwiz2bOAkBga8WkOvmruQPaxKZdoC8S48AR1j5AZUO7kRUkVUw0lZAZnIcwG2BzVsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iGM4uBQX; arc=none smtp.client-ip=209.85.208.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5c5cf26b95aso2300909a12.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 00:59:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728028764; x=1728633564; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=a9xkSiSTN7Mdiq/lC2t0YKzYi55t18sJaHKpibV+2us=;
+        b=iGM4uBQXDwdMoHQhY4gTEhrEair8eN8SoaOuX4djFM0IJSRMzx0t9x35qIKECeyzRr
+         UXpSqMWPbIr1lEfwMFfAHTT+HckYe7psBlg9OQREM/fe9EQ9eXdfv0r4djhNvihH+3k8
+         /CH7aRoQuAwkS9+N5Gyeq+cwwRRVm+2tXP9csti7wqf+GHy4TIrdHOuz3lwScnIMSCTt
+         14AuUpry0x/6GiSDRfV5/dWpiXPB2dAZfscnh28FoolHt5xvRJsJhkfJvtgDE1C+6EmM
+         OFDiAl7OBJ66c5/UcdpCxy+h2Hlc0NYBSZ+IapSeYYH2wZ3pHzBGR6yZQP57Is0LVj9R
+         HnRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728028764; x=1728633564;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=a9xkSiSTN7Mdiq/lC2t0YKzYi55t18sJaHKpibV+2us=;
+        b=mAUsygV1OhbZwIAArEpn9LnBcZ0AA1K0Ex7bsWEkpIgpIG49rsN7AV2VqK/WLXBQBn
+         cnWv7f9h3w73p+MGjOe2oVCtx0tco89T9t+zDVXnl6JifcrVnONS8tEjeLsZ7bb0OAY6
+         1xMQ3IPstJiluV6XTuxinZNiiiAW5fNALvIo5B+3sDhfIJ2YSUjh1uR50fUYcP6j8hwR
+         42CkiFN9Jt4K9AhcQ1ri8O7Hphxl0Qo4LRUHQfobEDmI5Vqzr4VtPqdwCH+qgmnukP1J
+         afutl65RGrRNfvsDdQcJE4A6TxuMm/F4Y7Ey5jaA+74UNKdlsoCnNS5Rod96xBk4U/AG
+         ZmmA==
+X-Forwarded-Encrypted: i=1; AJvYcCWJYR11r+oK/9HLZLPDx5+RcUJGpYwRKsV3KTzTE9VAKKJj2WR10SxrUKeQ0uV8RlovM7gc2VWXM+x4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxIRuvVY4wpgP44GPd8QRx/DKpiTf9Dnm+ElNA1TzHs0H1kF9h2
+	Iel3Ve/TK/Wo6Mge94TUAFi6zJVWDkms4w8k9lPUmUvNmkn9sCLa3/JRqAZ4QSE=
+X-Google-Smtp-Source: AGHT+IGi65LrEn++tGUxELuE3l6bAxj+Xky6ZrhA7BzvQXLBYHw66QIj/n/EV3yK3W5lT2tyP5WlPA==
+X-Received: by 2002:a17:907:7290:b0:a8d:439d:5c3e with SMTP id a640c23a62f3a-a991bd684abmr147966066b.30.1728028764376;
+        Fri, 04 Oct 2024 00:59:24 -0700 (PDT)
+Received: from lino.lan ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9910286fd8sm187266366b.27.2024.10.04.00.59.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Oct 2024 00:59:23 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH v3 0/4] leds: bcm63138: Add some new bindings and code
+Date: Fri, 04 Oct 2024 09:59:21 +0200
+Message-Id: <20241004-bcm63138-leds-v3-0-ba99a8e464b9@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V5 6/7] arm64: dts: qcom: ipq9574: Add support for nsscc
- node
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Devi Priya
-	<quic_devipriy@quicinc.com>, <andersson@kernel.org>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <p.zabel@pengutronix.de>,
-        <richardcochran@gmail.com>, <geert+renesas@glider.be>,
-        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
-        <arnd@arndb.de>, <m.szyprowski@samsung.com>, <nfraprado@collabora.com>,
-        <u-kumar1@ti.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <netdev@vger.kernel.org>
-References: <20240626143302.810632-1-quic_devipriy@quicinc.com>
- <20240626143302.810632-7-quic_devipriy@quicinc.com>
- <8ffd8a3c-83e6-4753-8bdf-7daa3a3d8306@linaro.org>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <8ffd8a3c-83e6-4753-8bdf-7daa3a3d8306@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: N6PBUiV8ug3rBba6OwewLPJDVEfSfWD4
-X-Proofpoint-ORIG-GUID: N6PBUiV8ug3rBba6OwewLPJDVEfSfWD4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- impostorscore=0 adultscore=0 lowpriorityscore=0 phishscore=0
- malwarescore=0 mlxlogscore=688 priorityscore=1501 bulkscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410040056
+X-B4-Tracking: v=1; b=H4sIAFmg/2YC/3XMSw7CIBSF4a0YxmK4F/rQkfswDihcWpJaDBiia
+ bp3aUdq4vCc5Ptnlih6Suy0m1mk7JMPUxlyv2Nm0FNP3NuyGQpU4oiCd+ZWS5AtH8kmDp2pnAK
+ jGmNZMfdIzj+33uVa9uDTI8TXls+wvv9KGbjgBirRNiBRaXEe/aRjOITYszWV8ZO3vxwLd7XWy
+ ipbk8MvvizLG1ormOPqAAAA
+To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ William Zhang <william.zhang@broadcom.com>, 
+ Anand Gore <anand.gore@broadcom.com>, 
+ Kursad Oney <kursad.oney@broadcom.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.0
 
+This brings over the few know-how items and little things
+I found about the BCMBCA LEDs in my previous duplicate driver.
 
+This was tested on the BCM6846-based Genexis XG6846B.
 
-On 6/29/2024 7:00 PM, Konrad Dybcio wrote:
-> On 26.06.2024 4:33 PM, Devi Priya wrote:
->> Add a node for the nss clock controller found on ipq9574 based devices.
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> ---
-> 
-> Title: s/support for//
-> 
-> You're adding the node, not the support for it.
-> 
-> The nodes look good. Looking at the driver, the interconnect paths that will
-> be sync_state'd away due to no consumers don't seem to be super critical for
-> the system, so I'm assuming this doesn't crash
-> 
-> So, with the title fixed:
-> 
+The main addition is the ability to define the number shifting
+bits in the serial shift register which is necessary if the
+previous boot stages have not set up the hardware properly
+before.
 
-Hi Konrad,
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Changes in v3:
+- Mention in the DT binding that hardware defaults will be used if the
+  property is missing.
+- Link to v2: https://lore.kernel.org/r/20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org
 
-Sorry for the delayed response.
+Changes in v2:
+- Drop the u32 $ref in the schema, -bits is a standard suffix.
+- Fix algorithm for shift register configuration.
+- Fix spelling errors and numbering errors.
+- Link to v1: https://lore.kernel.org/r/20240920-bcm63138-leds-v1-0-c150871324a0@linaro.org
 
-Okay, sure. Will fix the title.
+---
+Linus Walleij (4):
+      dt-bindings: leds: bcm63138: Add shift register bits
+      leds: bcm63138: Use scopes and guards
+      leds: bcm63138: Handle shift register config
+      leds: bcm63138: Add some register defines
 
-Thanks & Regards,
-Manikanta.
+ .../devicetree/bindings/leds/leds-bcm63138.yaml    | 11 +++++++++
+ drivers/leds/blink/leds-bcm63138.c                 | 28 ++++++++++++----------
+ 2 files changed, 27 insertions(+), 12 deletions(-)
+---
+base-commit: 5724faee6be4109d7a3168625357e4127f42b5d2
+change-id: 20240920-bcm63138-leds-1bc5f41c47cd
 
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
 
 
