@@ -1,152 +1,132 @@
-Return-Path: <devicetree+bounces-107811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107820-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 853CA990233
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:40:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48C6C99026A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A66A11C22CB8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:40:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F35D51F22323
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49E0A157487;
-	Fri,  4 Oct 2024 11:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6491715A85A;
+	Fri,  4 Oct 2024 11:47:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cmH/dN+p"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="MnpeEdhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9D30146A63;
-	Fri,  4 Oct 2024 11:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A119615855D;
+	Fri,  4 Oct 2024 11:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728042052; cv=none; b=ssYIGil+n1nN5zB9zrVnze1nRJve5XQoEhC8XkS4XUWgIFU6e7JUAwaUfvreCy5zASTu4oiGVX5lyG7rBQ+eq1qIQDFGjYPHfsAGrhOlnA1PKyRrgAob8GDIJz1tdtVylcjLooKHeWaNOXWHPmJMYA0m0er4+wXE3wpvP2bsgTY=
+	t=1728042422; cv=none; b=u+4b+Yl1C+vM/fIwqNbZVum0nyuHxCoyWTkYOHnwbkLhFb7eksFdDWcju/BYUJMvsvHtbJo+Awz+hR5Nj+p7R7JpTLs7j+IXq2sI3OQJr2TiEm5zmcm0HaVK5B9SQFy6xYf6SSrI+nU1F+2W+D5X0ef4XORWqnACZ5c5MqHDseg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728042052; c=relaxed/simple;
-	bh=otYBiSqYpzQvcEOzrqVXTkSSDkEtAGRqXVxQRVTPTtI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WmNb76MvknDfc7Bg0nis9udN1KCN9/b7xapoyYKfLychas4FIV2C/MIIqLSSn+5NOrs/1LwP7yNDbR+3rKHk8KVyEfirtcg04EnLWyIkGVJLQZaqpwbX+IcgPS6YKNb75Zjzm0nzs1IbVHiSNr7SaoOssLGTyYqbQbGqoVHzn+0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cmH/dN+p; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-50923780607so569869e0c.1;
-        Fri, 04 Oct 2024 04:40:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728042049; x=1728646849; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gKCQdo+p8Gze0vcICMzXMRiWujRcC5yLqN4wtvnwSaI=;
-        b=cmH/dN+pICvFiKF2aGOFg/PmqZLXUPlcRMoKNhSJFkaOUZbl9R1t2Hlppo1wxurK4f
-         zMk5esdcOycvLOk0PN1fhzSHGAbiwpAYVSkkvnC81j95JyYTbxGHkfU7c5FcGEUk99W4
-         Ocnwko9pvkl/PJtN9RkYK69u3ue9x/ZSvvt/h/sQ4FNh9FnB3djLZDNArqO7ZRU6x0VI
-         ha5eauv3Bdh8rmw/56N9hmJBrG9eIBe300hLnThhWCWh9v74J6iZKgz6nmdjSdo9MKH9
-         B6JhEF4hdbJBolU0EWP255xXDJCKu+pQ+9kqo5HFJ6z3z6oHmhxjNdFZaDW1/AN8TV4d
-         Kphg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728042049; x=1728646849;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gKCQdo+p8Gze0vcICMzXMRiWujRcC5yLqN4wtvnwSaI=;
-        b=KFTBvtaeiOgfw/m12v21Q/dfy+UzaWx6ZS2qQfBhXf5iiRbRLP0VJaprV1kVNVelNr
-         3UQoKNhbThbSS3H3nfTkLoQqBjxnghMQYdYzDQT+kWQ9/evpXTx6Paj9FlcVuTRPnvHs
-         9k/nt2x17yVsVNnXrDWHdIneQ1WAuSM3xYfvt0rmIUoK5LcZag63qq7FiQEDQ8neMzEA
-         0eJn5dVuaBpD3yytvmqrTrCu8vWBbUwZ1Q9XRJDedOvzgraK98qW8Aw4XSfP2NOKW5KX
-         wzTl6zgZmIgrtq7d/B4TA3Gamkdfyl9A2t7r/KRCWFEVmbrByCvoR0W/qadm+PzNMiSC
-         NcOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUDQGa3FlMuZKNsOJuMmzpt+bvSRMSNvjJcLUwhFVLNKXVRrCt+dRRo0FqTXD1cDZcYzzKgr2s/L0hi@vger.kernel.org, AJvYcCUEorBTeBK9JNdT6GqZgsS9eaic8aiQxvWsEQJyCErlUwGcqXgkwcQznGX+ljzURewdE8a+9uUKkblD8kV1@vger.kernel.org, AJvYcCWvX8S7spi0ILEUnwBWR7G/iDVUjTda5sk9Ma8hbvhml/CoL9PUl7oHIFcl47S96fsoOeEPVWdX8JPetg==@vger.kernel.org, AJvYcCX0ydIEyVWrhvSb7X3HnM1v9HgW8H7fmcFQjgaehtFG6p7VpIpTKKuAb+U1+0Az2sxJZiyEkg2D89te2QM1pVKqQ+4=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yym+CfpPWbELDQsN3rJm5eULTcLtk/w62eL4Cl3ZlqkPP1Ymvbp
-	MiAhXDRMXymtuUf4JoAKGH9WUV10R3NbuKXIe+VxcMA4tClfis0YZLblI91GOTE00Wr4ebDZzCc
-	Pqc0tXqS6TQFFxUpviRHdDxHJP3w=
-X-Google-Smtp-Source: AGHT+IFC3OyNNIPDOrsFuuPwGn8CfLR42u8mLnHhuVlMaBMOyEKFYgtYXlGu9lM/6h3sqSwjih5kARz8PE6Wwu/A0Fs=
-X-Received: by 2002:a05:6122:180d:b0:4fc:e3c2:2c71 with SMTP id
- 71dfb90a1353d-50c85444ac7mr1617808e0c.2.1728042049555; Fri, 04 Oct 2024
- 04:40:49 -0700 (PDT)
+	s=arc-20240116; t=1728042422; c=relaxed/simple;
+	bh=MSrUt/mGFaTwIV2b751mjmEOT8brtJc/5Xrq29BCg7g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g+68IQWOTP9mmbwfT0m/2+b9mC8FJQZg33zPc2QPikNOsPF1p8bmGvVSes2Cbqc7e4XlyFaMrPORh8ZYZbtLxb4rOtuK316kfuNollz4Mfd0SPv7waBloU51AVWVQOjTj+omQNEo97VwwLOEopo6BjuoDpcswag3dfOk7Q/i7Lg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=MnpeEdhu; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id B91E5889E9;
+	Fri,  4 Oct 2024 13:46:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1728042419;
+	bh=H92uGph6TcS5Bfo2Az9GC/5kRSDeOxI/7YOKCr5ZL6k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=MnpeEdhuRXMRyLDjFxisASYDB8KW3lJWjbC7kCn6x3ThX0lUTa7uYOCKSF7PEbA53
+	 tnba7CSOXEYXgN+3uRmzDFyeDby02K5+Xdhhar2m7jp5Yb34QQLrwPJOenHtrOdX5o
+	 +m2mTIVhP5O5vjDmPeYWc8TeyVpNRtnbkL1Nh9stEFykColKqtVTSU0bkXGUevdZD5
+	 Y3gspxqivB6TgEeYsNxpAGlAIA6mDzL8iNaRYHg0gLuEuNxPtKQtzSOJgX23QveNAT
+	 kmROjcBU50ppWQMygiShjLaal0wO2mWqOF4I9GeMRfgaGLCpWzji/hr4bdZ231Zo3R
+	 wzZDvo4izJJqA==
+Message-ID: <75d92369-e987-4c8c-a7d0-be3e9d5b1157@denx.de>
+Date: Fri, 4 Oct 2024 13:41:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240918120909.284930-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240918120909.284930-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWkHvHh=AhJhOutFRAJMczpCGdUCPvPuqjY_V4aiMvmAg@mail.gmail.com>
-In-Reply-To: <CAMuHMdWkHvHh=AhJhOutFRAJMczpCGdUCPvPuqjY_V4aiMvmAg@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 4 Oct 2024 12:40:22 +0100
-Message-ID: <CA+V-a8v7Y83cS4EHd0K5hvbCLFxE8xrv9zajDMvwT_R0RH59vg@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Allow
- 'input-schmitt-{enable,disable}' and 'drive-open-drain' properties
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 6/7] wifi: wilc1000: Register wiphy after reading out
+ chipid
+To: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>,
+ linux-wireless@vger.kernel.org
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Adham Abozaeid <adham.abozaeid@microchip.com>,
+ Ajay Singh <ajay.kathat@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
+ <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ netdev@vger.kernel.org
+References: <20241003111529.41232-1-marex@denx.de>
+ <20241003111529.41232-6-marex@denx.de>
+ <4912f382-5228-44ee-bf87-201f0ad28bf6@bootlin.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <4912f382-5228-44ee-bf87-201f0ad28bf6@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hi Geert,
+On 10/4/24 10:39 AM, Alexis Lothoré wrote:
+> Hello Marek,
 
-Thank you for the review.
+Hi,
 
-On Fri, Oct 4, 2024 at 8:54=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Fabrizio,
->
-> On Wed, Sep 18, 2024 at 2:09=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail=
-.com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > On the RZ/V2H(P) SoC we can configure the 'input-schmitt-{enable,disabl=
-e}'
-> > and 'drive-open-drain' of multiplexed pins. Update the binding
-> > documentation to include these properties.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.y=
-aml
-> > @@ -119,6 +119,9 @@ additionalProperties:
-> >          bias-disable: true
-> >          bias-pull-down: true
-> >          bias-pull-up: true
-> > +        input-schmitt-enable: true
-> > +        input-schmitt-disable: true
-> > +        drive-open-drain: true
->
-> I think you also need "drive-push-pull", to disable open drain.
->
-Agreed, I will add support for it and send a v2.
-
-Cheers,
-Prabhakar
-
-> >          renesas,output-impedance:
-> >            description:
-> >              Output impedance for pins on the RZ/V2H(P) SoC. The value =
-provided by this
->
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
+> On 10/3/24 13:14, Marek Vasut wrote:
+>> Register wiphy after reading out chipid, so the chipid can be
+>> used to determine chip features and not advertise WPA3/SAE
+>> support to userspace on WILC3000. Note that wilc_netdev_cleanup()
+>> will deregister the wiphy in fail path.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+> 
+> [...]
+> 
+>> diff --git a/drivers/net/wireless/microchip/wilc1000/cfg80211.c b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>> index 11e0f8a473467..30015c5920467 100644
+>> --- a/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>> +++ b/drivers/net/wireless/microchip/wilc1000/cfg80211.c
+>> @@ -1761,7 +1761,6 @@ static struct wilc *wilc_create_wiphy(struct device *dev)
+>>   {
+>>   	struct wiphy *wiphy;
+>>   	struct wilc *wl;
+>> -	int ret;
+>>   
+>>   	wiphy = wiphy_new(&wilc_cfg80211_ops, sizeof(*wl));
+>>   	if (!wiphy)
+>> @@ -1804,14 +1803,8 @@ static struct wilc *wilc_create_wiphy(struct device *dev)
+>>   				BIT(NL80211_IFTYPE_P2P_GO) |
+>>   				BIT(NL80211_IFTYPE_P2P_CLIENT);
+>>   	wiphy->flags |= WIPHY_FLAG_HAS_REMAIN_ON_CHANNEL;
+>> -	wiphy->features |= NL80211_FEATURE_SAE;
+>>   	set_wiphy_dev(wiphy, dev);
+>>   	wl->wiphy = wiphy;
+>> -	ret = wiphy_register(wiphy);
+> 
+> I think you did not address one of my comment in v5 about this change: in
+> wilc_cfg80211_init (wilc_create_wiphy's caller), there is still a
+> wiphy_unregister in the failure path, which does not make sense anymore since
+> this function does not register wiphy anymore.
+> 
+> Once fixed: with this patch iw phy shows correctly on my platform that wilc3000
+> does not support SAE authenticate command while wilc1000 does. And wilc1000
+> still works correctly, even with wpa3.
+> 
+> Tested-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+> Tested-on: WILC1000SD 07 SDIO WILC_WIFI_FW_REL_16_1_2
+> Tested-on: WILC3000 A SDIO WILC_WIFI_FW_REL_16_1_1
+Fixed in V8, thank you.
 
