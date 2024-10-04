@@ -1,164 +1,170 @@
-Return-Path: <devicetree+bounces-107958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107959-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A8C3990935
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:31:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AF48990955
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:35:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74CDF1C2190B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:31:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AD4A8281AB5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:35:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBDF1C82E6;
-	Fri,  4 Oct 2024 16:31:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF081CACD3;
+	Fri,  4 Oct 2024 16:35:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="W38mhcOM";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nZPCzdCd"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="LXMyixRN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.smtpout.orange.fr (smtp-15.smtpout.orange.fr [80.12.242.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7521D1E379F;
-	Fri,  4 Oct 2024 16:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 987121E3788;
+	Fri,  4 Oct 2024 16:35:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728059487; cv=none; b=cuVVmeohwh/CK8jh+SVpDyV4CXnjvbne9hMOo8RFoE2xJK5ICKuZHpo53XnZRNDqxqF4pBkOmFJy2tUpYQwQ0guULpq2BnpH7SCr9VgebFgFFoQUg3PlmMp6rWtkEqdyh7UrCBp9guUZqv5CD5/Yasq5Mz3olx2tpyr+mV1PMNc=
+	t=1728059708; cv=none; b=VnuDkMHpdhEN+tAbEaanecdiMksw5E5fTfuWykUMDOM8iNHyoLGqGDjmNjQkdkAKgLgbdMbBpTIh/xHyZY3g5o1MCARPzek0CT9pmVRzooM5o6AXnCKSQ3MFSQoUc0h3YDEr93QNqa7KAykJILvBVQHlJ4cEZJAYu2fZJGmChA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728059487; c=relaxed/simple;
-	bh=zigsK6WMkgNauDnS+RJ2q8aWx0Ovy3AgMVqbg6Vk3t0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NgjAvfUoMrHy0XSJMMERDpCUaJC5/QbNwBMzeZRtVWzKQoh7UeaJuE/E+ZaKR4wX+AUP9/UbsK71hfjhLgrEoQBgBKYFMWpXFF8yO2wNV18Hu4aV7m4CEskZgWuOigntPnUa/erWVxO2DeWWw5djcrmugdIrwVkQRC4OVujW+MA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=W38mhcOM; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nZPCzdCd; arc=none smtp.client-ip=103.168.172.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id A46FE11400E2;
-	Fri,  4 Oct 2024 12:31:24 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-08.internal (MEProxy); Fri, 04 Oct 2024 12:31:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1728059484;
-	 x=1728145884; bh=ybNFOvCcidYzO3PFvuu9g54ePppL64QE8bp9bWasTtM=; b=
-	W38mhcOMZauELn/TgeLpweH3KrIwiUYmBcWdwGIKx8AFHWhg+Pp2jSoMBcOxFwSG
-	0EqVa6nr0KVQDONNcSDE8kZGW9zo/xk0dawaNoAH7366QGaTpGGvKtViJKZJw5Cj
-	qGCZmDgIIGT0jv/MPuWUKjNAH7FzICEp2xwvXt/sNAnvHsjzESNOoH0TwrEqlsV6
-	lX8Tg5gx1fD98BQI87A/UD1PTPUTAzXuHhBv873ZO6CDvHzhf+R9/ij9y51eARKg
-	11q5oxQnzwnMJoG4epYecw9P8x9wrhhHEOuB/BPT+RESnBoHsmG6QnGQDtUVmL/6
-	E6mPqO0SuYiFIHR4be7BJw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728059484; x=
-	1728145884; bh=ybNFOvCcidYzO3PFvuu9g54ePppL64QE8bp9bWasTtM=; b=n
-	ZPCzdCd+OwHDc9b1sLnxYiKFWOLti+R/AvJJKwkX/mRLW7TaJqSJOfzhWijlsovI
-	0v1bPX0QdX8/pmoHJBO49HN++uhQJ1ybuEmUA4C44MCIZamdfows46juriB+u4EY
-	LNy/fdPKK4hPMLHAqoWS/jXqjTdNOI3lJJB0kiGppekfuZHWBe2rzepQzF239AD8
-	5doUMzCHj651mYhEK7qPksUVudOkr9kkEXe6mbb8xsCv6ldPCqgR5F2GQxgg55YJ
-	lph1PFQVEp5qcKLDb+Cj8mnv01Oqn+Jh/7yzMXRB7Z2nUbMj82zQoFoWC5N/U7NJ
-	uJJlYMRpNupmKz2ytlWJQ==
-X-ME-Sender: <xms:XBgAZ7F0Va3Y-CyjHflLgPR_vTdyAyfRls5fNkKCL-_aZSf02oTRew>
-    <xme:XBgAZ4XRW-12oo2VjDXDQfmCFCn3dcvQ3XeKts14fHUR15BKeWcFdlMAIplIfdKi2
-    5Ty_9VIPuXNocR5hxs>
-X-ME-Received: <xmr:XBgAZ9ILUgLEqHfOss6Zou4bJm8WswFgPAgU90zhgJonv6aCYlKpBdJ_GMWeXMWlV9mpE1Wcb1FKxyovB58XFasznRPe2SlI1w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedguddttdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
-    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
-    guvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveet
-    gedtvddvhfdtkeeghfeffeehteehkeekgeefjeduieduueelgedtheekkeetnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhs
-    ohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepiedpmh
-    houggvpehsmhhtphhouhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhl
-    ihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtoh
-    hmpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhi
-    nhhgrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvg
-    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgv
-    lheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvg
-    htrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:XBgAZ5EgCfpQ6hw0MyLdMy_4zALinRDo7tFSm_wj8bFs09UZIzMdnw>
-    <xmx:XBgAZxXoFKlKo4wQc5nZF_ZcsD2sC_unrKg1HAChUWoDejO5PSsWTg>
-    <xmx:XBgAZ0NLrHDBJOL2xZ_oTyyMdtCXavR_S_8GzTe1kCUrVBttNw1UQA>
-    <xmx:XBgAZw3PW7M40OriL17xwsvSER-SvuoYuFC6y1LXVaaWmL4ze8THtw>
-    <xmx:XBgAZwHHoL4AJDu4x8Je8S2HM8io5ZLJYGIXuREaF2Kz3Gxoi0Y16lYO>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 4 Oct 2024 12:31:23 -0400 (EDT)
-Date: Fri, 4 Oct 2024 18:31:22 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 11/20] arm64: dts: renesas: Use interrupts-extended for
- DisplayPort bridges
-Message-ID: <20241004163122.GB3542504@ragnatech.se>
-References: <cover.1728045620.git.geert+renesas@glider.be>
- <2b217486221d90eb3c127f5e44f9c886161ab8c6.1728045620.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1728059708; c=relaxed/simple;
+	bh=diUUycR6+ooXPRLOO+BIOHZpS588LA7rLTJGJatDnms=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=g18Mf0Aj5t3fh0RRTSvEvz9clw6zqKXKfQBtw5li9x32y/ydUye3B1oZP9FnwsxuVz37d2jk1ghtBPoE4pYovfNr8inqJYcpkQDonvC5aET3+Yz+Ik4HgGknpapk6S9qU6RxJBCgl5QaKMBaM5ttXzVKJzFvnhZgKQz95LBtq0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=LXMyixRN; arc=none smtp.client-ip=80.12.242.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id wlGbsPLnFNgC2wlGbstPZy; Fri, 04 Oct 2024 18:34:58 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1728059698;
+	bh=0M0uxOekSSBYumgofd6cg8jRm/StSafXgAMhA9nh22s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=LXMyixRNqutaKsdCewv4YGQ6iZQOeECWvsey6Xmda2IuyePW2k8ON0Mge6rNwFu6o
+	 V4pZ58jqp8BpUm+6zPmuSlBz3rQ146svxCL8Te2voBLyDqbaYU5+n23TcNRMXcgdwZ
+	 efTnCD8i3/APr2Ee0QVGEoBZ83BkiEt4Y5Z4xvaFm0nSmdzmOwFmWzVBhL57qqIhXa
+	 FOPYl0X5M2V8ypiS5qzLkhZuCIQzq4pxw7KcjfFyj5qVJEaQyk5OFeezleJoGSEjnf
+	 VX81mSnyypCUf2UZHq/v9imAR2ZZ2jzTChLD94VyQrSifbJas5rM+b7WxJmZENw2Qu
+	 caLp1Oai0uPEw==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 04 Oct 2024 18:34:58 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <75884d07-f052-435d-9f1a-44e9e0bb755f@wanadoo.fr>
+Date: Fri, 4 Oct 2024 18:34:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] clk: eyeq: add driver
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20241004-mbly-clk-v4-0-c72c2e348e1f@bootlin.com>
+ <20241004-mbly-clk-v4-4-c72c2e348e1f@bootlin.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20241004-mbly-clk-v4-4-c72c2e348e1f@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <2b217486221d90eb3c127f5e44f9c886161ab8c6.1728045620.git.geert+renesas@glider.be>
 
-On 2024-10-04 14:52:53 +0200, Geert Uytterhoeven wrote:
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
+Le 04/10/2024 à 17:45, Théo Lebrun a écrit :
+> Add Mobileye EyeQ5, EyeQ6L and EyeQ6H clock controller driver. It is
+> both a platform driver and a hook onto of_clk_init() used for clocks
+> required early (GIC timer, UARTs).
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
+> For some compatible, it is both at the same time. eqc_early_init()
+> initialises early PLLs and stores clock array in a static linked list.
+> It marks other clocks as deferred. eqc_probe() retrieves the clock
+> array and adds all remaining clocks.
+> 
+> It exposes read-only PLLs derived from the main crystal on board.
+> It also exposes another type of clocks: divider clocks.
+> They always have even divisors and have one PLL as parent.
+> 
+> This driver also bears the responsability for optional reset and pinctrl
+> auxiliary devices. The match data attached to the devicetree node
+> compatible indicate if such devices should be created. They all get
+> passed a pointer to the start of the OLB region.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi   | 3 +--
->  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 3 +--
->  2 files changed, 2 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> index 99b73e21c82c2b18..e8c8fca48b6963c9 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
-> @@ -208,8 +208,7 @@ bridge@2c {
->  		clocks = <&sn65dsi86_refclk>;
->  		clock-names = "refclk";
->  
-> -		interrupt-parent = <&intc_ex>;
-> -		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupts-extended = <&intc_ex 0 IRQ_TYPE_LEVEL_HIGH>;
->  
->  		vccio-supply = <&reg_1p8v>;
->  		vpll-supply = <&reg_1p8v>;
-> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> index 6dc968352c046129..36f5deb7f24afc2e 100644
-> --- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
-> @@ -246,8 +246,7 @@ bridge@2c {
->  		clocks = <&sn65dsi86_refclk>;
->  		clock-names = "refclk";
->  
-> -		interrupt-parent = <&intc_ex>;
-> -		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupts-extended = <&intc_ex 0 IRQ_TYPE_LEVEL_HIGH>;
->  
->  		enable-gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
->  
-> -- 
-> 2.34.1
-> 
-> 
 
--- 
-Kind Regards,
-Niklas Söderlund
+Hi,
+
+> +static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *priv)
+> +{
+> +	const struct eqc_match_data *data = priv->data;
+> +	unsigned long mult, div, acc;
+> +	const struct eqc_pll *pll;
+> +	struct clk_hw *hw;
+> +	unsigned int i;
+> +	u32 r0, r1;
+> +	u64 val;
+> +	int ret;
+> +
+> +	for (i = 0; i < data->pll_count; i++) {
+> +		pll = &data->plls[i];
+> +
+> +		val = readq(priv->base + pll->reg64);
+> +		r0 = val;
+> +		r1 = val >> 32;
+> +
+> +		ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
+> +		if (ret) {
+> +			dev_warn(dev, "failed parsing state of %s\n", pll->name);
+> +			priv->cells->hws[pll->index] = ERR_PTR(ret);
+> +			continue;
+> +		}
+> +
+> +		hw = clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
+> +				dev->of_node, pll->name, "ref", 0, mult, div, acc);
+
+Should this be freed somewhere or is it auto-magically freed by a 
+put_something()?
+Maybe devm_action_or_reset()?
+
+> +		priv->cells->hws[pll->index] = hw;
+> +		if (IS_ERR(hw))
+> +			dev_warn(dev, "failed registering %s: %pe\n", pll->name, hw);
+> +	}
+> +}
+> +
+> +static void eqc_probe_init_divs(struct platform_device *pdev, struct device *dev,
+> +				struct eqc_priv *priv)
+> +{
+> +	const struct eqc_match_data *data = priv->data;
+> +	const struct eqc_div *div;
+> +	struct clk_hw *parent;
+> +	void __iomem *reg;
+> +	struct clk_hw *hw;
+> +	unsigned int i;
+> +
+> +	for (i = 0; i < data->div_count; i++) {
+> +		div = &data->divs[i];
+> +		reg = priv->base + div->reg;
+> +		parent = priv->cells->hws[div->parent];
+> +
+> +		hw = clk_hw_register_divider_table_parent_hw(dev, div->name,
+> +				parent, 0, reg, div->shift, div->width,
+> +				CLK_DIVIDER_EVEN_INTEGERS, NULL, NULL);
+
+Same.
+
+CJ
+
+> +		priv->cells->hws[div->index] = hw;
+> +		if (IS_ERR(hw))
+> +			dev_warn(dev, "failed registering %s: %pe\n",
+> +				 div->name, hw);
+> +	}
+> +}
 
