@@ -1,153 +1,102 @@
-Return-Path: <devicetree+bounces-107966-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107967-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A00B990A0B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 19:21:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FF61990A2A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 19:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D69B9B20B4E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:21:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A7842B20A7A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C2F915535B;
-	Fri,  4 Oct 2024 17:21:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LLucpN9i"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EE7D50A63;
+	Fri,  4 Oct 2024 17:32:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DFE1E378D;
-	Fri,  4 Oct 2024 17:21:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CA253E49D;
+	Fri,  4 Oct 2024 17:32:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728062485; cv=none; b=QTUtUfWhljRAhutFwUaOQcSkjcn960UHPumKSWpvM1dXQV8CO95z5LwCnHJ+sFOE/Gju9f5rTPCDcpJOE1Lu+HLML/fKc9yUzCs2r/X4yK3U2O/hw+oOs3mlTruoMA1YgyN0IjHk8o9MpdXG3okyQTEi2/xv4yHqEXwJPDPfhr8=
+	t=1728063172; cv=none; b=CQUO5HFuYCvT0Plf4iK29x0Allj9i/jU53Sa7W3+3M2XeIXXN+cptltSRCsux93NloMrf+FoiLjFk5yRC6XstBchrjCp6mWwQpP0VWP3L7QV5oL5CsDwWpCrtSHf5G3eyJPcKmRMmqW3if6AorQeJQK3zeunLSeEyjr71cj1vEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728062485; c=relaxed/simple;
-	bh=FxtugPPjDGBDG/VhYXLkyNRSWT2yuy3cs+P6moYSCgo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=He4i8Zlmaul/AgswSpOSjz7buOKsdgUUC4MROd2mOtO8jnhuQYygDP0WXoGtV0MNTjb+/a8tDF85nX+AGL1AhUKWnLqYQ0b6E54j4FbmH4jjJ1ToNZ8bm0T4jHyaXcvKfI1NYOLac90+p7Wl20Bu/J6ImHVzAwKtJNlOEs0PfNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LLucpN9i; arc=none smtp.client-ip=209.85.218.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8a7b1c2f2bso352837566b.0;
-        Fri, 04 Oct 2024 10:21:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728062482; x=1728667282; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OtEt46o4Ndi2PXXzbxTMO9O790Da1zaXcWeKDybGOss=;
-        b=LLucpN9iN46Ct6er8cjIl3cIFYotR/8ziD9xeoLjaZvBKaja2j5o3ZnmfDsC6kLqTT
-         Bgb8C6fAcHbcm9c8Ww/8XFWa975nRxPM3AenCsii9k0pHf4Cwx7rfpUpqQ4zGh/4rqhR
-         1CHgygKUIwVcKdmvv+s2bTvZokI+OVaqXcI74x6tNJmNk0sF8Ixxk37oGIz19QlVP5Nu
-         dIJH+2AM/D2E8jne2dJl1CL3EQNGaJhRjvGOi7yE0ZfRLxVnGKYjBZr1Nd/SoIgl6GIs
-         a5UI0vEtnoW8rtwc/AIjC6NUx/R/5zMNYQrWlEFsj2s08EATW9NTRPAzQ1b9BjHcsQLR
-         TchQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728062482; x=1728667282;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OtEt46o4Ndi2PXXzbxTMO9O790Da1zaXcWeKDybGOss=;
-        b=azTpCCTGBEQ/vPO7wHXuCDwwWee0fRLXopRmxMQHjLpX7ky9hmS9gyPwQCTBeEVkeJ
-         coBqd9YVX7ftGKh4yS5jVd6ObZsnZEMfhOwUk/clE94uxKbY3f1IpoiuLavRVxYb6rs/
-         lm84rhl1P2zX+Unni2jQKKivYj0ForCSaPdy0uQOixXmTBPR/8Oh4biLgXjfH6K5Xsyk
-         vE2j07dONwgA+BbLPkEnNlNvKV+b3Qf2Cbhv9P/7QKHMithQ8A8wNGzJOmS0ZXmXbVjV
-         lea5Hw/oGGp9XbdnGer4oufO2afLoxZ1UvWA1CvV2UNz4BaKII6QjgrD8AZyyq4VPV9O
-         YfCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV04H6ixZLFzdVIxv/lmP8kuUvLa1C5/gCzDcfSdHo6KRxJDFv+RIzRR4lQNCDGujqLIj7Dt424PR+7@vger.kernel.org, AJvYcCXdDwOKTNg38YVOoUTzeLZZ/OcVNpxbXwOk+Hs6YkukmAlPZSOsi08pTPyYGXNoPAYRWi64SjpFMx0j5A+3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwloW7ZDwA2UJC+7bMBjrwPGw1Sg0A/CvJK8v37VqJLbDQNlfSs
-	xrYgKgeAOk5btBApY7Y4Lk8LF8kPhiiRGi51X7+/SlPdcEvMM/sXptjA8cYjeVoN9EG+LWckHd7
-	ek/km0Ta6DgRNNoI09I7MsASjKhk=
-X-Google-Smtp-Source: AGHT+IEATOErbfMYiCskMnNmX7b8T2OHyXRqo7SzJoDTS8Me5Ghk02w2erYS38AFob2cAnvZM96Hw+yTA62pTHrUPIA=
-X-Received: by 2002:a17:907:e282:b0:a8b:154b:7643 with SMTP id
- a640c23a62f3a-a991bd42f3fmr324694666b.28.1728062481898; Fri, 04 Oct 2024
- 10:21:21 -0700 (PDT)
+	s=arc-20240116; t=1728063172; c=relaxed/simple;
+	bh=Kp07i5SXOKodjMo48XNn2U8zeRawZILe6R6C672UpMc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=H9hKnYukouXaUJurLncXkIb3FgvI/3pANHQP/3iW5GzZwkzW6+U1dXc9MV1ScGKyMj0xV5fcKcGA22Ymu7/I5DPHJT0oXcDCQXU3se+61H7s4Ne0lvMBcFJ2tnoFvqITuGI0xUqQ9DYzlvQzdTXEmaMJQvRMv4KW4OzhPMHrVNs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.11,178,1725289200"; 
+   d="scan'208";a="224808644"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 05 Oct 2024 02:32:42 +0900
+Received: from localhost.localdomain (unknown [10.226.92.178])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 0D1534031864;
+	Sat,  5 Oct 2024 02:32:37 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v5 0/2] Enable serial NOR flash on RZ/G2UL SMARC EVK
+Date: Fri,  4 Oct 2024 18:32:30 +0100
+Message-ID: <20241004173235.74307-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003220820.1345048-1-CFSworks@gmail.com> <20241003220820.1345048-2-CFSworks@gmail.com>
- <3okd7byomwmo5vjsyaaxsorhn6ldw3mp3k6whcklqnw2stx5tm@jpv2e5ydswzw> <80a9ec34-52eb-41fa-b068-3c9552065927@kernel.org>
-In-Reply-To: <80a9ec34-52eb-41fa-b068-3c9552065927@kernel.org>
-From: Sam Edwards <cfsworks@gmail.com>
-Date: Fri, 4 Oct 2024 10:21:09 -0700
-Message-ID: <CAH5Ym4g9hmX3mT5+Eqm=KHKYd+s_PM4qdho2a8FkAZmhMHOV4g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm64: bcmbca: Add Zyxel EX3510-B based
- on BCM4906
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
-	Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 3, 2024 at 11:51=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.or=
-g> wrote:
->
-> On 04/10/2024 08:49, Krzysztof Kozlowski wrote:
-> > On Thu, Oct 03, 2024 at 03:08:19PM -0700, Sam Edwards wrote:
-> >> This is a series (EX3510-B0 and EX3510-B1) of residential gateways bas=
-ed
-> >> on BCM4906, a stripped-down version of the BCM4908 SoC. Although Zyxel=
-'s
-> >> marketing materials call this a "series," the EX3510-B1 appears to be =
-a
-> >> very minor revision of the EX3510-B0, with only changes that are
-> >> transparent to software. As far as Linux is concerned, this "series"
-> >> effectively represents a single model.
-> >>
-> >> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+This patch series aims to enable serial NOR flash on RZ/G2UL SMARC EVK.
 
-Good day Krzysztof,
+Also update partition table for spi-nor flash on RZ{G2L,G2LC,V2L}, so
+that we can flash bootloaders in Linux by executing the below commands:
+flash_erase /dev/mtd0  0 0
+flash_erase /dev/mtd1  0 0
+mtd_debug write /dev/mtd0 0 ${BL2_FILE_SIZE} ${BL2_IMAGE}
+mtd_debug write /dev/mtd1 512 ${FIP_FILE_SIZE} ${FIP_IMAGE}
 
-> >
-> > Can you use the same email as for SoB?
+v4->v5:
+ * Updated bl2 size to avoid 4 KiB gap between bl2 and fip partitions.
+v3->v4:
+ * Dropped patch#1 from the series [1] as it is aceepted.
+ * Merged patch#2 for [1] and patch from [2]
+ * Updated partition table for spi-nor flash.
+ * Removed Rb tag from Geert as there are some changes w.r.to
+   partition table.
+ [1] https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=885350
+ [2] https://patchwork.kernel.org/project/linux-renesas-soc/patch/20230901075932.105822-2-biju.das.jz@bp.renesas.com/
+v2->v3:
+ * Dropped subnodes, as all pins use the same power-source value.
+v1->v2:
+ * Enabled 4-bit tx support
 
-I have sent patches to the LKML from a work email before, but I just
-double-checked that I am using my personal email for everything here:
 
-$ git show ec8e6d96a05f04 | grep -E 'dt-bindings|Author|Signed'
-Author: Sam Edwards <CFSworks@gmail.com>
-    dt-bindings: arm64: bcmbca: Add Zyxel EX3510-B based on BCM4906
-    Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-$ grep -E '^From|^Signed'
-outgoing-ex3510b/0001-dt-bindings-arm64-bcmbca-Add-Zyxel-EX3510-B-based-on.=
-patch
-From ec8e6d96a05f04df00d05dec00df80172d233d8c Mon Sep 17 00:00:00 2001
-From: Sam Edwards <CFSworks@gmail.com>
-Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-$
+Biju Das (2):
+  arm64: dts: renesas: rzg2ul-smarc-som: Enable serial NOR flash
+  arm64: dts: renesas: rz{g2l,g2lc}-smarc-som: Update partition table
+    for spi-nor flash
 
-> I meant, same for patch author and SoB. How is even possible to generate
-> different data? You had to change it manually, which should make you
-> wondering if this is correct.
+ .../boot/dts/renesas/rzg2l-smarc-som.dtsi     | 15 +++++--
+ .../boot/dts/renesas/rzg2lc-smarc-som.dtsi    | 15 +++++--
+ .../boot/dts/renesas/rzg2ul-smarc-som.dtsi    | 45 +++++++++++++++++++
+ .../boot/dts/renesas/rzfive-smarc-som.dtsi    |  4 ++
+ 4 files changed, 71 insertions(+), 8 deletions(-)
 
-Hey, on a meta level: I=E2=80=99d appreciate it if we could try to rule out
-other possibilities before jumping to conclusions. Reading this made
-me feel accused, and I think framing things collaboratively rather
-than assigning blame will make it easier for all of us. How about we
-start with what you=E2=80=99re seeing and work backwards?
+-- 
+2.43.0
 
-Wishing you well,
-Sam
-
->
-> >
-> > Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
-> Best regards,
-> Krzysztof
->
 
