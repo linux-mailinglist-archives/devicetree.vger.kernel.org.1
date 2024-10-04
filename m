@@ -1,78 +1,83 @@
-Return-Path: <devicetree+bounces-107876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2485990478
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:32:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 388A9990493
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:38:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D26F41C22133
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:32:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FCD31F229A5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C09862141DA;
-	Fri,  4 Oct 2024 13:32:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061542101BF;
+	Fri,  4 Oct 2024 13:38:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="l2FhARoH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WV4vQLOO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEF772139D1;
-	Fri,  4 Oct 2024 13:31:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6E215B97E;
+	Fri,  4 Oct 2024 13:38:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728048722; cv=none; b=toEG0Dhv1RAnvPSK2W6NLBYdF1a6ir7aagt9nsQ0A4e+3G46dz3p6w8DDMwVGGXaq0v9B3MCopt98W7znFRaTGZBupIRtRdxocEiBvZOidw1EKiku4sK+PPReGhAQTV6pSOGF2nSgIQ9pv2KIc2lqEk3AzXOZg+4H6yW/2iXfPc=
+	t=1728049086; cv=none; b=bvE1GgZDIwfziq6g9cZM1/FwEzQhDXdD3AS3ASIOEbx9FwLN4SNjB4gMYa5u5U6mC54VhvkDZ0ENVrtejJTtZGkydfsJp2NaE3FGv0txMy1dt8mHAxSZegCFblD/bO77xuQp77RVopSDOBxF9clweegvofg4jVVKg4j9qx3MMyA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728048722; c=relaxed/simple;
-	bh=4ZcG6HApmxFgnmkhEQ0/UXTPCxyU/LuPOCdIeoOi5+c=;
+	s=arc-20240116; t=1728049086; c=relaxed/simple;
+	bh=mVBO5k105eWD0yEN7U6lJL6b+1SCBIusfw11IwgJtPU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LtWYSGx6qYF8IZQl+myJiDd7dc26uTQ6BBw8V9gQ7lTxCEwqpFJwKPj1FFR9vrMoAyocUJG5JVu5ssby2vUwfirqBPUr3e6zRDxkY3Z+TyhvrmI0VEk1DB179WqtLcf9rclbCY3tvkqmtJ37qv9Qwb56xdYGY8Lb9TF7hlFH3Ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=l2FhARoH; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=YEzeoPK+5DMNMwCTBYHijBFYiufFU95QnUnFGGXLTB8=; b=l2FhARoHXz0xzvTYN3Jio9mbZi
-	GZY/sY4heG0arqH2J/2cRaEWJqcMEVuJZ8mV1O6Lbx54b4sac9NLP3c88vqAXb5X979bugvbcdlpA
-	pDkLwBPxkWOwe33GIVRQVl4I/PZU4DlLcFfXWfKoSWnTdOkJ9UQ3+CCgXj9sMrruuhis=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1swiPJ-00931j-QA; Fri, 04 Oct 2024 15:31:45 +0200
-Date: Fri, 4 Oct 2024 15:31:45 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Kiran Kumar C.S.K" <quic_kkumarcs@quicinc.com>
-Cc: netdev@vger.kernel.org, Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vsmuthu@qti.qualcomm.com,
-	arastogi@qti.qualcomm.com, linchen@qti.qualcomm.com,
-	john@phrozen.org, Luo Jie <quic_luoj@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	"Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
-	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
-Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
-Message-ID: <54102e54-59b6-4881-8fbe-23954ea4d297@lunn.ch>
-References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
- <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
- <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
- <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
- <febe6776-53dc-454d-83b0-601540e45f78@lunn.ch>
- <6c0118b9-f883-4fb5-9e69-a9095869d37f@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=uIPnIM7hW77QmCkiyMIVxl6gqphv43vbNVjBPWWsP6XzFB8KI3DQuYeG05HqTpH4l8CGdwRkF8ECSHyg7ofRU7P/pp0dOcsojAvRwbiL/QqFZL9PVZ1HorIm8g9W3iKE1/zzlGoDVwRjwjIQtly3jUCa1JHGkOMeCsMEpZK1RCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WV4vQLOO; arc=none smtp.client-ip=209.85.210.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-71dea49e808so480667b3a.1;
+        Fri, 04 Oct 2024 06:38:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728049085; x=1728653885; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=TVLq22bs+1l9xY9JOZ8imSDy5KmOLVk2kQhCSbpcWNE=;
+        b=WV4vQLOOWUtxnVRWvgQe+/5Mn44GrJebxYIjZhAd4TdM+3ngkhCghXZbF01rxeI0DY
+         orEoJf7ephi2DH7zeiavAcq/rFfETbKHHNTV+qtixEh0VZBpClCtgUwHtT7mcQZgWubk
+         6LARIch/Qbp0Ox4O8IFOswNotjHHYwUZF9NUMwsyhxYWqxwJYmubywIKCp3F814KaVjq
+         zleMSz6K3Dm7SsXh+3AawPCwFSFQR+zrTMXIAzrmMkGcc7z7+wIW4FTHR59VYB5LL5GE
+         2H9alEWEFVGP2btHSF8k4p9mil2S9z4rpieNuwrUmWBxxrNXgKjPgV6BUX3/u2Iqz08q
+         zDIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728049085; x=1728653885;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TVLq22bs+1l9xY9JOZ8imSDy5KmOLVk2kQhCSbpcWNE=;
+        b=J+eRbU/FQlQH8myjPOpKmsU2G774ewA5N7L0UTJC74rda+BClJycrmL+t4Vo/WkDlz
+         8bc+c7IZDfNQanyamLqwMC3D+/y5rhoMDHM3pMYbkRclvxU4nTELr3VlNtbnk7K8L+5U
+         yA/ENawAYqqe9LwDuk0XyLtR89bxjkVKmhqcXCx2671fiLXk8jtXfQoaXRbGlb+xzXd+
+         ca14oStDmQrPrgpBSW4DtXXZwGXxtyG451VPTOGfKDdV4rWp+C7W2AJ88RbjZMA6UGJY
+         oNjgx0coR1RL4/LxT6AnXe3nfpGBr5iCv0hdYJjMvHsdQcatG2w1UYXKNn0vk3wbM8sR
+         q5gA==
+X-Forwarded-Encrypted: i=1; AJvYcCUKORlfR47rSn7fKoQ7dVP/cDy6lYgidfgBfA+DAkjU9klwrmXPqoMLETwqC2gIk2JY6qRtqbq1R9bnKlZnKy+OIsc=@vger.kernel.org, AJvYcCWJ5SS/n1cB03HNWnFNfNQA8snz4MtavwyzKK+EVg42VhdJ9+WtUhK2q2R2m7FzLiQQagl7Yg682oOg@vger.kernel.org, AJvYcCX4vVNTphmVXkFZdmOZk/+xDZ74Q/c+oWD4MkuNZVDtYo5ZuX7LImcwXjRO0JvB7p+LOJLhOoqgQ9c7vvGv@vger.kernel.org, AJvYcCXQniSoFx4uFCJmKeIwTvmSOKFLV07zyM7kptqVJemTo9PtWRiP3vexdvZdCFdnElbZO4z7TZPnf+NMHjY=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywl8eGKrC+n/sX2T8s6j9EtvGbHDbN0nZxPEo8JlLmfUggWYhBp
+	ft3bB772+hLmg8v4hLL221OBjcFYxHQn5v5MJ1l3XBH3usQGipXj
+X-Google-Smtp-Source: AGHT+IGhEdASi+MxAhYr/5O4xJ1vTIjCaytgyNSnCaXtwTaIfB45CRoPQcP/88bkABWIesSJDpwwIg==
+X-Received: by 2002:a05:6a21:9204:b0:1d3:b38:891 with SMTP id adf61e73a8af0-1d6dfa22f7cmr5043217637.6.1728049084632;
+        Fri, 04 Oct 2024 06:38:04 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:1b2:add:2542:c298])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71dd9def6ddsm3181637b3a.154.2024.10.04.06.38.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Oct 2024 06:38:04 -0700 (PDT)
+Date: Fri, 4 Oct 2024 06:38:01 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Arnd Bergmann <arnd@arndb.de>, Mark Brown <broonie@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-input@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 00/14] Remove support for platform data from samsung
+ keypad
+Message-ID: <Zv_vuSrJzpN9IvXV@google.com>
+References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+ <803e3902-cec9-49ed-baff-d26e578a8ab7@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,57 +86,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6c0118b9-f883-4fb5-9e69-a9095869d37f@quicinc.com>
+In-Reply-To: <803e3902-cec9-49ed-baff-d26e578a8ab7@app.fastmail.com>
 
-On Fri, Oct 04, 2024 at 06:36:59PM +0530, Kiran Kumar C.S.K wrote:
+On Mon, Aug 19, 2024 at 11:40:56AM +0200, Arnd Bergmann wrote:
+> On Mon, Aug 19, 2024, at 06:57, Dmitry Torokhov wrote:
+> >
+> > This series attempts to rework samsumg=keypad driver to stop using
+> > platform data and instead rely on generic device properties only.
+> >
+> > The first 8 patches are general cleanup/facelift patches.
+> >
+> > The 9th patch introduces alternative binding that is more compact that
+> > the original one, which makes it more suitable for use in legacy (non
+> > DT) boards with static device properties. Note that the "new" binding is
+> > the standard binding for matrix keypads.
+> >
+> > Patch #10 implements the new binding in the driver, #11 converts the
+> > only user of platform data in the mainline tree to the static device
+> > properties, and #12 drops support for platform data from the driver.
+> >
+> > Patches #13 and #14 are "bonus" converting the rest of crag6410 to use
+> > software nodes/properties to describe GPIO keys, LEDs and other
+> > peripherals. Note that I believe they fix and issue with recent
+> > conversion to GPIO lookup tables - the names of gpiochip structures I
+> > think are "GP<N>" ("GPK", "GPL", etc) and not "GPIO<N>".
 > 
-> 
-> On 10/4/2024 12:12 AM, Andrew Lunn wrote:
-> >> Agree that switchdev is the right model for this device. We were
-> >> planning to enable base Ethernet functionality using regular
-> >> (non-switchdev) netdevice representation for the ports initially,
-> >> without offload support. As the next step, L2/VLAN offload support using
-> >> switchdev will be enabled on top. Hope this phased approach is fine.
-> > 
-> > Since it is not a DSA switch, yes, a phased approach should be O.K.
-> > 
-> 
-> Ok.
-> 
-> >>>> 3) PCS driver patch series:
-> >>>>         Driver for the PCS block in IPQ9574. New IPQ PCS driver will
-> >>>>         be enabled in drivers/net/pcs/
-> >>>> 	Dependent on NSS CC patch series (2).
-> >>>
-> >>> I assume this dependency is pure at runtime? So the code will build
-> >>> without the NSS CC patch series?
-> >>
-> >> The MII Rx/Tx clocks are supplied from the NSS clock controller to the
-> >> PCS's MII channels. To represent this in the DTS, the PCS node in the
-> >> DTS is configured with the MII Rx/Tx clock that it consumes, using
-> >> macros for clocks which are exported from the NSS CC driver in a header
-> >> file. So, there will be a compile-time dependency for the dtbindings/DTS
-> >> on the NSS CC patch series. We will clearly call out this dependency in
-> >> the cover letter of the PCS driver. Hope that this approach is ok.
-> > 
-> > Since there is a compile time dependency, you might want to ask for
-> > the clock patches to be put into a stable branch which can be merged
-> > into netdev.
-> > 
-> 
-> Sure. We will request for such a stable branch merge once the NSS CC
-> patches are accepted by the reviewers. Could the 'net' tree be one such
-> stable branch option to merge the NSS CC driver?
+> I had a (brief) look at the patches, everything looks fine to
+> me, thanks for working on this! Let's see what Mark and 
+> Krzysztof think.
 
-Given Bjorn reply, maybe you should explain in detail why you have a
-build dependency.
+Mark, were you able to give this a spin? Or should I address the DT
+binding comments from Krzysztof and Connor and resent for merge?
 
-A stable branch has some overhead. We should not create it just to
-find out you have your architecture wrong when we start reviewing the
-code, and it is not actually needed when you fix your architecture.
+Thanks.
 
-So, details please.
-
-	Andrew
-
+-- 
+Dmitry
 
