@@ -1,129 +1,160 @@
-Return-Path: <devicetree+bounces-107882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EA659904DE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:52:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 872089904E8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:54:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2328D283594
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:52:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 334001F22C1B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:54:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230AB212EF8;
-	Fri,  4 Oct 2024 13:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C241212EFA;
+	Fri,  4 Oct 2024 13:54:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E45C212F07;
-	Fri,  4 Oct 2024 13:52:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3CEA1BC59;
+	Fri,  4 Oct 2024 13:54:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728049942; cv=none; b=g6FL2/nT9lAVBoPHi7udDkLZb+LeB4q7VEGcX+twCqHzBgJbDpZNpXsuuPGLfI7aiITDCI4OFjt2vfns4o239gFr2cfvQ5Ze3IqRcno5mBDoUt4+zFfoTPufQ5tXtL7VyZNJuU1VmTHHmltl6F5n9Ltnh5n8awMOvuV2L0JmbCM=
+	t=1728050078; cv=none; b=Dp+ow6OIDIupPzD2KqUUaRGCF8U2/nNM6EcbC/K/UNBY8OpotMnQsqftcZb+Q5Qj/Rukbmk0HI1xSFoyAKgwA4mLinY33YUzUKF8u2jRQlI/zZ9cD7rTv1amKolpHlsTREIXVEihDAA83OBZvYkvQd/Dmbi5snpefwQ21QAS1yE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728049942; c=relaxed/simple;
-	bh=/sEtcG59LsHRduDhKH+HjrOwiV6BpM8Dq4LU2sQtLSg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bsy/Pq2ji1o2DgrYVXpt7esHKXgzCx31GV8LutnbWIHmwZPnxdqhKnhKsYbtrXdAuwvJACisaAtSgWJi/D9+XPD+7shU64bJNkYYLnbjYlJYdst/++54ReHQ4LucMqj5SvVXeRzab+EmO1IgSy+o9jWHQF9Kmyc8aI/jYvn0Lyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6dbc9a60480so18694187b3.0;
-        Fri, 04 Oct 2024 06:52:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728049939; x=1728654739;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iqc9eFQ9Q48XFZmzZq6smy9WnpB1yeBfqFshIj1QAo8=;
-        b=dWlo5R+1yu8i6silR7clx7gnSKdw4BKd2jRNSzgV76H6JMvwn7eH6A5QsLrNIUQa+/
-         LI9sPw1u/73B6DxlnYwcvbqdhhUTt85+8yd4KcqoZurBCtD2xc7m735JKVISXBkIZ8UY
-         V9KfJ55UMAQSEC/GlVme9tAyC4vaFboNZlRh/FsY83Q5P3jsHHzG+0ejcRmUanF6WGY+
-         qyA6mX0Cjza3Mh+Gf1R+aiwBBLHhCbemvzXDrLPXEfv81qnp5+jwdUuUABuT9lVhWePR
-         UEEG02PxurUoq7cKRO47lg7d4O117ymOInzWEthY98pZtGSOfLGowXFmYyT2d4ikwhIe
-         lILA==
-X-Forwarded-Encrypted: i=1; AJvYcCW5L7HG+J4UNM3OHajzgQh8TR6Xnwr8uDUbwjbLSmprrgB3DgOiciJjY6T4vK9F2wV2eX6NyAoFGY4e@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMAJFQJDQ1m7ql9NZNuaOLYcvd8sMkcPbNLFsZztExFywqMxiK
-	L7FAf1DzfP156pUtJ2RYzxEeZoKTY2MTDrqJz6JI8jrk2jOrlzH2pF0QOckfrOg=
-X-Google-Smtp-Source: AGHT+IHz+Am18f/SpDDryhzpVt6qwh6azHDq0saQjC6gfyUYCfMbmuQh+cT9nrBvX7NiMldsySwsqg==
-X-Received: by 2002:a05:690c:63c7:b0:6d3:cfaa:edca with SMTP id 00721157ae682-6e2c6ffd491mr29310287b3.15.1728049939244;
-        Fri, 04 Oct 2024 06:52:19 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2bc2d1b4bsm6537327b3.70.2024.10.04.06.52.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Oct 2024 06:52:19 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6dfff346a83so16972427b3.2;
-        Fri, 04 Oct 2024 06:52:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV/0nN5qM5sOh+slmrLRNyMa89aTJgT8w0CsBFVZClpXzy2Th4TIXlQ7O0tUnQpIEionhm5veJ3NyWa@vger.kernel.org
-X-Received: by 2002:a05:690c:6f82:b0:6dc:45ef:d933 with SMTP id
- 00721157ae682-6e2c72b304cmr29181477b3.43.1728049938894; Fri, 04 Oct 2024
- 06:52:18 -0700 (PDT)
+	s=arc-20240116; t=1728050078; c=relaxed/simple;
+	bh=6Zyc5VBb+/KicI9y1i9ewO+fiOtM8228SQyczy9uL9U=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DF98CUxg3emRzShQ2Vduvulz/Q4+ZkjVRG2AYawvIQtsNtgQ4aEcTqoK6jNePhXigwW4y7pCHhtbLOQ3ATyCvtRV5by+vAE7ZyssNalos7mcuA3Co+6TC9mCled5EySCAVz5nnLJkhkZEVIyArBRW8alxbt2h8hD1LveFOMvkYs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XKqm52z9Qz6HJV3;
+	Fri,  4 Oct 2024 21:54:29 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 061481408F9;
+	Fri,  4 Oct 2024 21:54:33 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 4 Oct
+ 2024 15:54:32 +0200
+Date: Fri, 4 Oct 2024 14:54:30 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Alexandru Ardelean <aardelean@baylibre.com>
+CC: Jonathan Cameron <jic23@kernel.org>, David Lechner
+	<dlechner@baylibre.com>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<krzk+dt@kernel.org>, <robh@kernel.org>, <lars@metafoo.de>,
+	<michael.hennerich@analog.com>, <gstols@baylibre.com>
+Subject: Re: [PATCH v7 8/8] iio: adc: ad7606: add support for
+ AD7606C-{16,18} parts
+Message-ID: <20241004145430.000012f4@Huawei.com>
+In-Reply-To: <CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
+References: <20240919130444.2100447-1-aardelean@baylibre.com>
+	<20240919130444.2100447-9-aardelean@baylibre.com>
+	<CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
+	<047034ae-135b-4ce9-a407-9b2a00841324@baylibre.com>
+	<20241001194114.16e0ffa5@jic23-huawei>
+	<CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240928092953.2982-5-wsa+renesas@sang-engineering.com> <20240928092953.2982-6-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20240928092953.2982-6-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 4 Oct 2024 15:52:07 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUwJ+EY2qFZxXJc478W98OEWQ7c7tfmmEj8zVEii=OyvA@mail.gmail.com>
-Message-ID: <CAMuHMdUwJ+EY2qFZxXJc478W98OEWQ7c7tfmmEj8zVEii=OyvA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] ARM: dts: renesas: genmai: enable SDHI0
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Hi Wolfram,
+On Wed, 2 Oct 2024 09:12:09 +0300
+Alexandru Ardelean <aardelean@baylibre.com> wrote:
 
-On Sat, Sep 28, 2024 at 11:30=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> For this to work, User LEDs must be disabled because they share their
-> pins with SD data lines.
->
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> On Tue, Oct 1, 2024 at 9:41=E2=80=AFPM Jonathan Cameron <jic23@kernel.org=
+> wrote:
+> >
+> > On Tue, 1 Oct 2024 08:42:23 -0500
+> > David Lechner <dlechner@baylibre.com> wrote:
+> > =20
+> > > On 10/1/24 3:26 AM, Alexandru Ardelean wrote: =20
+> > > > On Thu, Sep 19, 2024 at 4:05=E2=80=AFPM Alexandru Ardelean
+> > > > <aardelean@baylibre.com> wrote: =20
+> > > >> =20
+> > >
+> > > ...
+> > > =20
+> > > >> @@ -153,7 +349,19 @@ static int ad7606_scan_direct(struct iio_dev =
+*indio_dev, unsigned int ch,
+> > > >>         if (ret)
+> > > >>                 goto error_ret;
+> > > >>
+> > > >> -       *val =3D sign_extend32(st->data[ch], 15);
+> > > >> +       chan =3D &indio_dev->channels[ch + 1];
+> > > >> +       if (chan->scan_type.sign =3D=3D 'u') {
+> > > >> +               if (storagebits > 16)
+> > > >> +                       *val =3D st->data.buf32[ch];
+> > > >> +               else
+> > > >> +                       *val =3D st->data.buf16[ch];
+> > > >> +               return 0; =20
+> > > >
+> > > > Arrggh...
+> > > > I messed up here.
+> > > > Guillaume found a bug here, where this should be "goto error_ret" or
+> > > > do an "if ()  {} else {}"
+> > > > How should we do it here? =20
+> > if / else. Goto an error label when it's not an error would be horrible=
+! =20
+> > > >
+> > > > Do we send a fix-patch or send a new series?
+> > > > =20
+> > >
+> > > Since this patch is already applied, just follow up with another
+> > > patch with a Fixes: tag. =20
+> >
+> > I sometimes tweak these sort of things if I haven't pushed out
+> > as togreg yet (or they are really bad!) but in this case I'm not
+> > 100% sure what the comment is, so I'll just apply a fix on top.
+> >
+> > So David is entirely correct in general but by luck of timing
+> > this time I'll tweak it.
+> >
+> > Please check the result in iio.git/testing
+> > I'll hold off pushing that out as togreg until at least end of
+> > tomorrow.  One more day o =20
+>=20
+> The "return 0" needs to be removed in the driver.
+>=20
+>         if (chan->scan_type.sign =3D=3D 'u') {
+>                 if (storagebits > 16)
+>                         *val =3D st->data.buf32[ch];
+>                 else
+>                         *val =3D st->data.buf16[ch];
+> -                return 0;
+Doh!.   Just goes to show why I shouldn't just edit these things.
+Stupid mistake.  I'll fix when on right machine.
 
-Thanks for your patch!
+Jonathan
 
-> --- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-> +++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
-> @@ -244,6 +257,14 @@ &scif2 {
->         status =3D "okay";
->  };
->
-> +&sdhi0 {
-> +       pinctrl-names =3D "default";
-> +       pinctrl-0 =3D <&sdhi0_pins>;
-> +
-> +       bus-width =3D <4>;
-> +       status =3D "okay";
+>         } else {
+>                 if (storagebits > 16)
+>                         *val =3D sign_extend32(st->data.buf32[ch], 17);
+>                 else
+>                         *val =3D sign_extend32(st->data.buf16[ch], 15);
+>         }
+>=20
+>=20
+>=20
+> >
+> > Jonathan
+> >
+> > =20
+> > >
+> > >
+> > > =20
+> > =20
+>=20
 
-Any specific reason you left out the regulator for SDHI (CVCC1),
-but did add the regulator for MMC (CVCC2) in PATCH 2/3?
-
-> +};
-> +
->  &spi4 {
->         status =3D "okay";
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
