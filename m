@@ -1,107 +1,110 @@
-Return-Path: <devicetree+bounces-107915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E3E49906DA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:57:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE3389906E5
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 452621F2174D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:57:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 869B528C383
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CEB5217902;
-	Fri,  4 Oct 2024 14:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CCF1D9A70;
+	Fri,  4 Oct 2024 14:58:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="y/ZfHfUh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fBxKL3Ds"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD41C2141A2;
-	Fri,  4 Oct 2024 14:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412C91D9A6D;
+	Fri,  4 Oct 2024 14:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728053427; cv=none; b=XW2oz3C05HgIVniV2gz+lAUFThpxYebSjUneguaeZKrABvX0K304NEOXgss5lv2ZFaHl3kRXGz0bUGiHXd/jS06E+qTGwLwqGzmCpVvnld6O7UblmWW/HgY48kGLMNpGKAdJOC4/D76Jd7TSkNdlou3CsYqSEurbsmDrWyYe9Fk=
+	t=1728053900; cv=none; b=HA7f2rmiC0HASJEj5EzUWD35i1tLokB6QsJBqByqbsrLJvwsr4oyWmdKDD+fIPVWEsquT8qFkk2v9MmiXGrAg3kSm7nNmt923ZwApAx6LGkJ0q73R8soSFs+V/35n6V+fIY9yS208QzODMz+1kDGPbqgC73mKHihlnOmoom8sKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728053427; c=relaxed/simple;
-	bh=jrI4QlmUIOZtU2+vT3cnGSIxeka4ceUwjqasJSUfzAA=;
+	s=arc-20240116; t=1728053900; c=relaxed/simple;
+	bh=hdx+Nlnqh49HdIrn5ECqFiAYUAa+WEBCnBFbH03L0U8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZrkgxOETux7vCp2/x164uU1veW/3aBqxmvzwyM0a1dmQoTJBOvNRV+ZXwKXGfidOD1WbYcnzNb3snuXnDmcxeLxswvwy6W6r/sIHg0hTii26sQUAVHuyi0KCsVbSjZUxU4c0mH9egDd3SELOpN3f2stdYXRCk7InySWocVum0HE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=y/ZfHfUh; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=8esOpvwhEAMg9FOrIHhtovLDXASj97AUVvZ8pGi+W44=; b=y/ZfHfUheaDUZgFmYnraZxdIUy
-	FZHLsDhrZcdPaM/JoSKzUjVwd9HMvIgJk53ZuxAux3LxwSCzbY/nkBeJGNwQFXW+UKT05RkhC04yJ
-	NLo7svj22cERP2UkRlgAJ65XaxDrlatTSoJ/+TLqC3HvkMsyp4xSKLHOAQS73GkYypck=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1swjdB-0093gB-CL; Fri, 04 Oct 2024 16:50:09 +0200
-Date: Fri, 4 Oct 2024 16:50:09 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: "Kiran Kumar C.S.K" <quic_kkumarcs@quicinc.com>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, netdev@vger.kernel.org,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Russell King <linux@armlinux.org.uk>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vsmuthu@qti.qualcomm.com,
-	arastogi@qti.qualcomm.com, linchen@qti.qualcomm.com,
-	john@phrozen.org, Luo Jie <quic_luoj@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	"Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
-	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
-Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
-Message-ID: <ac4b5546-366b-437a-a05b-52a53c3bd8a8@lunn.ch>
-References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
- <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
- <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
- <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
- <Zv7ubCFWz2ykztcR@hu-bjorande-lv.qualcomm.com>
- <7f413748-905d-4250-ad57-fc83969aad28@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=mtsndAeGhjRaw3bW/h8hfDdU8/DQRLg3Vp+YHFOVvtFlTH18ez/NyJ2lbiBg2TSA7Ssqi3dbykO9b45Sq6CfX11WX+r7fhJvZanZm+h5ihgulwfl2UZenxGbJlCH2jMKPkHSiAxTYd7CU2rBsBYyBSUt3aFsFACb/xhfUAnR96Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fBxKL3Ds; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FC3C4CEC6;
+	Fri,  4 Oct 2024 14:58:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728053899;
+	bh=hdx+Nlnqh49HdIrn5ECqFiAYUAa+WEBCnBFbH03L0U8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fBxKL3DsUpoP+JinPpudeiel+njsclMIT6jbhTpYmITwoloJRv9FKqNNiD5ph0hnu
+	 5faD0whmMiBTR7Nz/88Ak18WYLsE52Q0uhymh0x7AxkJxDrgD8PCQ3S3QSiigRHpyF
+	 W59ARwSudAfO8NEOcYPGa3y9zAaFpx4nwpjuHCIvSQDLrQJO9x2o+aMJRdbMuh/S09
+	 1fKHViikT4dbYtVAl9zB50rJO6gMV60zYIamcgyGcXBMNEBz1ens/7gegntv9w9Y1V
+	 Ab0tV7vj5FC6h4pWus2y3EcBzwyKUVPfPnck+Bab7BsyVIMAZCRO/XCJwQIMLh7gOP
+	 yIJtfLjjUBOsA==
+Date: Fri, 4 Oct 2024 15:58:15 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
+Subject: Re: [PATCH 00/14] Remove support for platform data from samsung
+ keypad
+Message-ID: <76d98587-3623-4ff2-89eb-a5fe8c535293@sirena.org.uk>
+References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
+ <803e3902-cec9-49ed-baff-d26e578a8ab7@app.fastmail.com>
+ <Zv_vuSrJzpN9IvXV@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2O90PREKokAOuISY"
+Content-Disposition: inline
+In-Reply-To: <Zv_vuSrJzpN9IvXV@google.com>
+X-Cookie: A bachelor is an unaltared male.
+
+
+--2O90PREKokAOuISY
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7f413748-905d-4250-ad57-fc83969aad28@quicinc.com>
+Content-Transfer-Encoding: quoted-printable
 
-> The only compile-time dependency from PCS driver to NSS CC driver is
-> with the example section in PCS driver's dtbindings file. The PCS DTS
-> node example definitions include a header file exported by the NSS CC
-> driver, to access certain macros for referring to the MII Rx/Tx clocks.
+On Fri, Oct 04, 2024 at 06:38:01AM -0700, Dmitry Torokhov wrote:
+> On Mon, Aug 19, 2024 at 11:40:56AM +0200, Arnd Bergmann wrote:
 
-> So, although there is no dependency in the driver code, a successful
-> dtbindings check will require the NSS CC driver to be available.
+> > I had a (brief) look at the patches, everything looks fine to
+> > me, thanks for working on this! Let's see what Mark and=20
+> > Krzysztof think.
 
-You are doing something wrong. A clock is just a phandle. The
-dtbindings check does not care where the phandle points to, just that
-it looks like a phandle. You can hard code the instance to 42 and all
-is good.
+> Mark, were you able to give this a spin? Or should I address the DT
+> binding comments from Krzysztof and Connor and resent for merge?
 
-And this is all just basic getting SoC stuff merged, nothing
-special. So why do you not know this? Have you not been subscribed to
-arm-soc for the last six months and watched other drivers get merged?
-I also really hope you have been on the netdev list for the last few
-months and have watched other pcs and ethernet drivers get merged.
+Sorry, no - I've been some combination of ill, travelling and super busy
+since you posted it (sadly the bootloader for the board only supports
+booting from SD card so until I port u-boot it's not in my board farm
+and I need to specifically set it up on my desk whenver I want to do
+anything with it, especially for this where I need to poke at the
+keypad).  I've got one more week of travel next week and one of the
+major sources of super busy just got better so I'm reasonably hopeful
+I'll get to it week of the 14th but probably worth respinning.
 
-	Andrew
+--2O90PREKokAOuISY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcAAoYACgkQJNaLcl1U
+h9CIyAf/UT+SvU5Yxhj17iZJ3+MFGVgNHn0JN6vrsQBXrossVlgZ1JP7vbl1RobZ
+cw1/99nUqLGDjOHkNBSx/2/GjaZz1gEUDCbDeVaIMifsrGd4BbtoMTfwnclyCsp6
+fvvMKx0WAzcRmvm+FdQ5KGgt6mzZDsT/u3Q15ZOJ5GHunnP+njEkRY8SzaRZZteP
+EgGtc1FFI+tDVsoIQ6DNA23I0DVy2j/HZB23y/mYEOF1JiIspwhM+JjVUKJVgU57
+piRknEy0k2sO3sJ26HhyngwWT30Zg+ud+oSB64uO4RqnGqP9B6coPbCzow4vvENE
+zTfKRFshRCxw25+aDBoBxDxERSyLew==
+=jObm
+-----END PGP SIGNATURE-----
+
+--2O90PREKokAOuISY--
 
