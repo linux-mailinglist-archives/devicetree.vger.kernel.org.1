@@ -1,138 +1,157 @@
-Return-Path: <devicetree+bounces-107987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A19A99110E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:01:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01CBC99113F
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:21:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42E581C22EE5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 21:01:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 700D7B210F7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 21:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BA21AE018;
-	Fri,  4 Oct 2024 21:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 132DD142E77;
+	Fri,  4 Oct 2024 21:21:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ylpCy8/P"
+	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="XiLSxzr7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+Received: from smtp.smtpout.orange.fr (smtp-25.smtpout.orange.fr [80.12.242.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D7D51AE002
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 21:01:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDE7F83CC7;
+	Fri,  4 Oct 2024 21:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728075695; cv=none; b=NezQ53txIfFH8qH+30F4R+9GfxYhusNZrFREKStJ2EHLcVRh8EJgXNkbIv5mGD2ZItl8ZXrZOpvv5qEQDCxN1MJHtheG3SQIHet/WN4ZHhnLZhPsgOYQ48pyFfctXsjVt6WMMyFreDNFUJR3hMlaS4dcpijgEvCvdVP2kQ9WlOg=
+	t=1728076911; cv=none; b=syV92irpCT+dGGJNgVMc01RCJFWRvcuxa8mGxJuAnrHzyspyzTTI9kMNB1x6LemVJS244yZDGJ4s2f+XKjajr5e3ORH2ZFNahg8jLvNjU/PPnHujxB8dX5EoNwfEYhMeBwJSxpvwvlJ9K2uOcxiFB3Or/9MUdPpR31Ayga4GZmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728075695; c=relaxed/simple;
-	bh=ZrU3UBPWJpylAJORtFhQ5c8nnUiqnSULcp2eKF/OetA=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=OGPYm4Tc77pXP8HGsf6EvtniKRfm7U7Iw5EIA1x5xXc3eGSMLTZU3uHWo8RA58gV2ZOqB0iYhYQaQSv7hApvPXjH4YFIyvPSZ67yfDsQ82MfeXUBR9+6Fhq9RTqtqAz0qmANX+UmWF+Dd3zfqr9KKVZpj76UQ4Ffx43dA8+BVD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ylpCy8/P; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-20bb92346caso16685535ad.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 14:01:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728075693; x=1728680493; darn=vger.kernel.org;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=02o52SakPOEEYup05c2CaLqcb8nYoF4Ju3nIc1JSSQY=;
-        b=ylpCy8/PB3qo0C4i2r0CMq84CWt5tBXptFy/ta1FTzLSHFg+6XVJzu6ItuujiDlO+6
-         Y4f8n8Q4wq4bPLOCFuFobu2rNHCH7T58kas6Y+FZR18y1FkKeEhdHUdHfhe2Dz3yNoPN
-         YEca7PNdCrKHDegx5XyQQLTGU5a2YXCpFI5NJWGtwbbya2zVLEMiZQBsRym5uHiKPyii
-         +LFSGg/ZM1YtASm/gKg7UtgOReYB4P+abNKErb1wsLjVXOI7QFGeqPcZ2VMK1rO1wdOi
-         17KfrkLH4D+p3T+ZkBR7ziYtKu9nmsvito5rnNxSljtuE0XXTZcHQzJbGksc4fc5QOnY
-         QJTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728075693; x=1728680493;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=02o52SakPOEEYup05c2CaLqcb8nYoF4Ju3nIc1JSSQY=;
-        b=KrLXij39BzoWh3jd//tlHvak/cAcTBVs0RpCgXNtAKbWtdL4LkQ/h9S7pkpBSsdGp3
-         OTsEKKmRElv5nKarGHJdS6taHaBEr9+6EZhrGfaUqZ+WJGfyZ6Lo+fl8ukilhiKqJWdG
-         mFX2tJGk0XsFl5vtED9YGltAgUBwaxMU6+OfXt4Tc6lv787z1SEFCxjYS7hL8PgsYFFC
-         UXmFgaPu4PD4366FJ72TJcWG/E8PCcaBb6S1DlHIDstvflHY0vJupTHWzd3EV5juGPX7
-         rJS0BBcb72OP0cQ+eS0VrUmOFSCcatEz05NFYZ1fqh/1Ckm4Q9pPkY+1aVNT0gZaoaDi
-         pGGg==
-X-Forwarded-Encrypted: i=1; AJvYcCV63Ao9p6ETlPh8GZVA037tGXKOuwzfFbCVcINLiFy/ssBlP5s0+lVFhe84LqOUWYYL70yys/H3nlBj@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxz8fpL5KbjHu2gr2vxDBrhuUqGnXRl2WB+vbJfp0ZZTBRD1cxy
-	rRCCpD60JAADr+zac0dy93YJp0HMJf9PI4JKy1To6T/45K5fPFm71Fv47aJDcv4=
-X-Google-Smtp-Source: AGHT+IGOrzY7Ll1jPw3NbGDwLof/FW9IZlr1dap2JCDIDG/Ooagd56yXVujIfA03YdIssw8ZNUuurA==
-X-Received: by 2002:a17:902:cec7:b0:20b:db4:d913 with SMTP id d9443c01a7336-20bff494762mr65270885ad.11.1728075693610;
-        Fri, 04 Oct 2024 14:01:33 -0700 (PDT)
-Received: from localhost ([71.212.170.185])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c139311aasm2699195ad.175.2024.10.04.14.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 14:01:33 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Enric Balletbo i Serra
- <eballetbo@gmail.com>, Javier Martinez Canillas <javier@dowhile0.org>
-Cc: Nishanth Menon <nm@ti.com>, srk@ti.com, linux-omap@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@kernel.org>
-Subject: Re: [PATCH 0/3] ARM: dts: ti: omap: fix dtbs_check warnings for
- ti,gpmc-nand and ti,gpmc-onenend
-In-Reply-To: <20240903-gpmc-dtb-v1-0-380952952e34@kernel.org>
-References: <20240903-gpmc-dtb-v1-0-380952952e34@kernel.org>
-Date: Fri, 04 Oct 2024 14:01:32 -0700
-Message-ID: <7ha5fjk2fn.fsf@baylibre.com>
+	s=arc-20240116; t=1728076911; c=relaxed/simple;
+	bh=6GcKyhloN4GANHNYMbyds7oq2HhvQnkSfXd8F0xWXY8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=twbSuI7QYmhsa4Q0OHdD0qmgfgDAmQqQgDBRDUd6JT/KYFUKDY6jslOWsIL3JboTxVhGtrMozZvADsGlHHsGq3fHrAbb7pEpBBU6kMXD7XaAkXbu5/9Jv5KsdNIisyQoEt06dOJ3rxW2lV7Y8CR93WPsBu0VvrojuimHAewXWos=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=XiLSxzr7; arc=none smtp.client-ip=80.12.242.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
+Received: from [192.168.1.37] ([90.11.132.44])
+	by smtp.orange.fr with ESMTPA
+	id wpixsDSdxDZIAwpj0svTBI; Fri, 04 Oct 2024 23:20:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+	s=t20230301; t=1728076835;
+	bh=rXaWLfvU0d1YuQl1F4v9J51EjQC/lsdynJrwZhlFI/A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:From;
+	b=XiLSxzr7/1ktmr/6cZudt/x+6ENoOXOOdQdXe5rMuqEuGCxwLHzqBWdWNZgwXqac2
+	 Wn8IZxQCLltv5LTy0zs0AQx/z12Xk33l9bg+oxEoFTOknudA64BYuk99uuElyq7hYY
+	 83pFo0Vjx6ymhkdwymSBE+1qn824IPS6tMvdQC5CY/yCH+uisSwS1fde2s88j3HUDU
+	 FN1/fI7ym3KPaMS+jf9tTbG94loLJ8zv89NMcw8BudZelk6T/siRFajGQrCUClqfLm
+	 EwU0w8Mz1gB+jg79U4R7mhuQeBwV/HmPrOtYBJFU/qXUzSweKhSKivaEYCgu/Vw5/v
+	 EcpBcGMfgF6+w==
+X-ME-Helo: [192.168.1.37]
+X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
+X-ME-Date: Fri, 04 Oct 2024 23:20:35 +0200
+X-ME-IP: 90.11.132.44
+Message-ID: <8334a319-96e4-4249-9659-132c8698c895@wanadoo.fr>
+Date: Fri, 4 Oct 2024 23:20:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 4/4] clk: eyeq: add driver
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20241004-mbly-clk-v4-0-c72c2e348e1f@bootlin.com>
+ <20241004-mbly-clk-v4-4-c72c2e348e1f@bootlin.com>
+ <75884d07-f052-435d-9f1a-44e9e0bb755f@wanadoo.fr>
+ <D4N6GX6P0ZCH.2PJGDMKEZ6LLQ@bootlin.com>
+Content-Language: en-US, fr-FR
+From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <D4N6GX6P0ZCH.2PJGDMKEZ6LLQ@bootlin.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Roger,
+Le 04/10/2024 à 18:55, Théo Lebrun a écrit :
+> Hello Christophe,
+> 
+> On Fri Oct 4, 2024 at 6:34 PM CEST, Christophe JAILLET wrote:
+>> Le 04/10/2024 à 17:45, Théo Lebrun a écrit :
+>>> +static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *priv)
+>>> +{
+>>> +	const struct eqc_match_data *data = priv->data;
+>>> +	unsigned long mult, div, acc;
+>>> +	const struct eqc_pll *pll;
+>>> +	struct clk_hw *hw;
+>>> +	unsigned int i;
+>>> +	u32 r0, r1;
+>>> +	u64 val;
+>>> +	int ret;
+>>> +
+>>> +	for (i = 0; i < data->pll_count; i++) {
+>>> +		pll = &data->plls[i];
+>>> +
+>>> +		val = readq(priv->base + pll->reg64);
+>>> +		r0 = val;
+>>> +		r1 = val >> 32;
+>>> +
+>>> +		ret = eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
+>>> +		if (ret) {
+>>> +			dev_warn(dev, "failed parsing state of %s\n", pll->name);
+>>> +			priv->cells->hws[pll->index] = ERR_PTR(ret);
+>>> +			continue;
+>>> +		}
+>>> +
+>>> +		hw = clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
+>>> +				dev->of_node, pll->name, "ref", 0, mult, div, acc);
+>>
+>> Should this be freed somewhere or is it auto-magically freed by a
+>> put_something()?
+>> Maybe devm_action_or_reset()?
+> 
+> This driver does not support being removed. It provides essential PLLs
+> and the system has not chance of working without them.
+> 
+> Almost all instances will be instantiated at of_clk_init() stage by the
+> way (ie before platform bus infrastructure init). Devres isn't a
+> solution in those cases.
 
-Roger Quadros <rogerq@kernel.org> writes:
+eqc_probe_init_plls() and eqc_probe_init_divs() are called from 
+eqc_probe(), which has several devm_ function calls.
 
-> This series fixes dtbs_check warnings on OMAP platforms
-> for ti,gpmc-nand and ti,gpmc-onenand.
->
-> The following warnings are fixed
-> - "nand@0,0: Unevaluated properties are not allowed ('linux,mtd-name' was unexpected)"
-> - "nand@0,0: Unevaluated properties are not allowed ('gpmc,device-nand' was unexpected)"
-> - "omap3430-sdp.dtb: onenand@2,0: Unevaluated properties are not allowed ('linux,mtd-name' was unexpected)"
->
-> ---
-> Roger Quadros (3):
->       ARM: dts: ti: drop linux,mtd-name from NAND nodes
->       ARM: dts: ti: omap: am335x-baltos: drop "gpmc,device-nand" from NAND node
->       ARM: dts: ti: omap3434-sdp: drop linux,mtd-name from onenand node
->
->  arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi       | 1 -
->  arch/arm/boot/dts/ti/omap/am3517-som.dtsi          | 1 -
->  arch/arm/boot/dts/ti/omap/dm8148-evm.dts           | 1 -
->  arch/arm/boot/dts/ti/omap/dm8168-evm.dts           | 1 -
->  arch/arm/boot/dts/ti/omap/dra62x-j5eco-evm.dts     | 1 -
->  arch/arm/boot/dts/ti/omap/logicpd-som-lv.dtsi      | 1 -
->  arch/arm/boot/dts/ti/omap/logicpd-torpedo-som.dtsi | 1 -
->  arch/arm/boot/dts/ti/omap/omap3-evm-37xx.dts       | 1 -
->  arch/arm/boot/dts/ti/omap/omap3-evm.dts            | 1 -
->  arch/arm/boot/dts/ti/omap/omap3-igep.dtsi          | 1 -
->  arch/arm/boot/dts/ti/omap/omap3-ldp.dts            | 1 -
->  arch/arm/boot/dts/ti/omap/omap3-overo-base.dtsi    | 1 -
->  arch/arm/boot/dts/ti/omap/omap3430-sdp.dts         | 2 --
->  13 files changed, 14 deletions(-)
-> ---
-> base-commit: 5be63fc19fcaa4c236b307420483578a56986a37
-> change-id: 20240830-gpmc-dtb-de2ce28acfb6
+Would it make sense to remove these devm_ ?
 
-FYI: you seem to have used the same change-id in this series as in a
-previous patch[1], which means when I point b4 at this series, notices
-the same change-id in the other patch, thinks it's a v2 of this series,
-and tries to apply the v2 patch instead.
 
-I was able to "encourage" b4 to apply this series by using -v1, but it
-took me a bit to figure out why I pointed it at a 3 patch series and it
-was applying a single patch from a different thread.
+devm_platform_ioremap_resource(),
+devm_kzalloc(),
+devm_of_clk_add_hw_provider(),
+eqc_auxdev_create() which calls devm_add_action_or_reset().
 
-Kevin
+I sent this patch because of these calls.
 
-[1] https://lore.kernel.org/all/20240903-gpmc-dtb-v2-1-8046c1915b96@kernel.org/
+Either I miss something, either maybe things can be simplified.
+
+CJ
+
+
+> 
+> We are missing suppress_bind_attrs though.
+> I can add that at next revision.
+> 
+> Thanks,
+> 
+> --
+> Théo Lebrun, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+> 
+> 
+> 
+
 
