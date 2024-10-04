@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-107757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A18598FEB8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 10:13:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E9A598FEBA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 10:14:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 253CB283A82
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:13:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAC6E283373
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:14:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9D90146A6C;
-	Fri,  4 Oct 2024 08:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B20BA1482FE;
+	Fri,  4 Oct 2024 08:13:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gB2wdCEC"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Nl2v8GlW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64EE21465AC
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 08:13:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26A3C1474BF
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 08:13:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728029581; cv=none; b=cK17uzEzt/a63zrWVa8xpwR7Egvz8UYSFFiwtGlhcoTkUzYbxhZl9iBAc6RazggtPSsiA6PB6VwAZOvXTJN44M0iP4RfArlb+vOBRDtzgdXm4LaOZT6kVTHOfhoFaOjdMpXG3JRoEoPcCNzNFiWez8W0mzisoQuwSqoA4+eM5so=
+	t=1728029584; cv=none; b=Lh9Z1OKNKJGmnOlamZb2WkQmk1JQGkNlIOz/yvd+yzn/fjeeEYKT/FVOMMQ9r7qVIcruKycf8aLGBRJveG/qTXwFzbdvZMn05TV8QzeRFkwzT+6eUf70R7MpgRTXJVKDurjAbFwx9+PP6zj7j7prHlpkJKFD81EgygU07HKdpF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728029581; c=relaxed/simple;
-	bh=hd5Srt28l3TLt9oVH9HGicSBLdSBZuEY/6ZQ2mt/jqo=;
+	s=arc-20240116; t=1728029584; c=relaxed/simple;
+	bh=gvVSDsvyo1TmaScObCUC5qR6lwDSPViFk48MxY3oFVE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JJpLLj7cdw9fKuaXcB5pxDSpBzubBJNEFGrSnkJNnc2f5mpjdsv8bAened3DeAyKYeWQEd7XXOtJNbIjiacWA+uSkNDMF4d7e1Iz2mvzZyFP6nzbUoYrwFOPsJf6umlCw2yJ+r7uBTRP2UgoRf1l6QWH4TJBiwQckXVB75IoHGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gB2wdCEC; arc=none smtp.client-ip=209.85.214.173
+	 MIME-Version; b=DQn75aqJls66N73xhOaXwplHcoXsKmdUVtjoomExfkHVofKFky3oBrrziZbqbWXSJfwwfIEX3gDuFkxTsS2Xb2nkS7hB4JNCynd1MuuSkWo8l2mVm2yHBzqKY7fPUE/+HKRWRnqD7ccanT3YFhD9rSV78DoUCuxXKR2FIy4w7n4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Nl2v8GlW; arc=none smtp.client-ip=209.85.214.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-20b93887decso15344105ad.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 01:13:00 -0700 (PDT)
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-20b95359440so16238225ad.0
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 01:13:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728029580; x=1728634380; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1728029582; x=1728634382; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=9DhL+yqm4JWemXjqVREhHsRQssA7CSfL5kIS59CVyeA=;
-        b=gB2wdCECJZvG01a31pPw0q8CtsAh6w9Q31JCqSpTT5osrblZbhJ8bTumyoNckpoccQ
-         xW+ywVx/JbNiRKwPxRuAx+gaBDF5t4CR6RZD+drqXukooBRXtsiFjlxWXIzbFiPatovj
-         k3WbOyHSqX0jEKgWISiW735szCkLHCcSk3D+o=
+        bh=k//ttICUIKEcy1fghMc4lQEx1N5cieQ1nYBPymANuBw=;
+        b=Nl2v8GlWdT39McF3R5zZJknU4pEPh6xwRqLVz2/EwVNw0BUDMtgtE9LXuk2qxhFvbl
+         eH5qTig6vcGvDNuBSo2dqSxSLZ2s4PoQzVjPxZmlcVNziRkoLSCEHkGhN6OlL8/MfpqV
+         ltI+7VB1FLxdb2dJ4bZ4mThzLSSSiX8jQmeh0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728029580; x=1728634380;
+        d=1e100.net; s=20230601; t=1728029582; x=1728634382;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=9DhL+yqm4JWemXjqVREhHsRQssA7CSfL5kIS59CVyeA=;
-        b=Di3RHS5GoICFN28SoDLJ797PqZantE3oHyuuNt5S8py7NBxE1bs+cmqcPLfOZlFTiH
-         xM4A9gghp5T0pluqMu6lG/XhBfWq8hCJ//bSfY9klFS1kUzsKdLyzNBDr0FQL1xTPRVs
-         b97ckjWCpcFdS8UOWFgesbGdvva4S8/mnkco06UhzD09N4rRLrcD0NRDL56U7C2HM1bx
-         P2aJekSveeoenwflxE42TPGO79FhlpfJtnLlIhzere+6WPAdJUZ97FKxHo0wy2Yi+tsR
-         Dap92Bmaeb0nTJJvWvVCEQYY07C9QWMA1t1TrddaccR/3Hw8xsbnSlW6WwTMtDlLVENa
-         WqoA==
-X-Forwarded-Encrypted: i=1; AJvYcCUHXcX6jPsECiXvoJQ/9fL78fRn1VnTLGoGwsnWJZ5IKOfGy5UvoWU4g9Jhqty8lMfR50BtTOtGT8aE@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywo5gIcnyjYrPKQl4tpnIit1H9kikpkmXGMGrgt3KUTvJ8rTgX/
-	UH1bHGOibSJJxhin1FDpUztZulgIPWflXS16sAE8uUvjoBqdL8rddHlk1Lrppg==
-X-Google-Smtp-Source: AGHT+IH60gDoSksZRxBPYz8lE7yUsHBmH9SByFQjxJjyREMpraheTARQnyuSg3kqldf9evYR6R5/Lw==
-X-Received: by 2002:a17:903:32cd:b0:20b:af36:ead with SMTP id d9443c01a7336-20bff194fd0mr27908675ad.44.1728029579648;
-        Fri, 04 Oct 2024 01:12:59 -0700 (PDT)
+        bh=k//ttICUIKEcy1fghMc4lQEx1N5cieQ1nYBPymANuBw=;
+        b=Oi6gEhBb9QnGHa9Nkg17htrvVLAlxaEzspZgfd6DpddHC7IPrgmuBa4tfQqqn8/8Ib
+         0UHZ9o4p+S4bsMxwcrsJUjwwHde4Qyy/mMkJqOpzY0TLK2nx3POJJ2L2Qg46/l3Y2nb5
+         JCjQG49xHp8fUYnFc1YE6XCdI4v1vNXm4VwTYeU+4xaE0GUIMvJt+BR+DxBnvXcfXWVj
+         366Xbvoi2cT48cstYFBOClGxIGLl+wfe6MX3/AlYVLSDVjxH0TKO5SC0RYNTuL0xv7Na
+         0UfBfcJZRN+rIDpomdadr7jA2OQrQLsWPiPTzfFAdF9fEVxvWjEVYUDuXD0n/cnojTjv
+         rG2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXV7go88l4z4U8FPaVuoAfVZajrqdryScmKU3zCpEXA6iVXbry2F2us4DP3JI8SRc03lGLge5b9fe88@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPnh0z9DjIUux5EYtldh7q37xvAkP2DSSo17KwvtWmTvh+zvDo
+	JbBo/1XD1AVucfCs87l46YdO03LR5HZz1B06SoO6GHPQTHSMwIAeJRbVxZioaQ==
+X-Google-Smtp-Source: AGHT+IFRHqV6FfLFLe0okyQ++IPPIBtfxC3jtLsdN6L+JoOkwSnY0IC0bdlRq6YlFFz//4dbVriVWw==
+X-Received: by 2002:a17:903:18a:b0:20b:7d09:8c86 with SMTP id d9443c01a7336-20bfe49666fmr31501485ad.38.1728029582533;
+        Fri, 04 Oct 2024 01:13:02 -0700 (PDT)
 Received: from fshao-p620.tpe.corp.google.com ([2401:fa00:1:10:73bb:cecf:e651:2ce6])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20beefad264sm19401305ad.205.2024.10.04.01.12.57
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20beefad264sm19401305ad.205.2024.10.04.01.13.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 01:12:59 -0700 (PDT)
+        Fri, 04 Oct 2024 01:13:01 -0700 (PDT)
 From: Fei Shao <fshao@chromium.org>
 To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
 	Matthias Brugger <matthias.bgg@gmail.com>
@@ -75,9 +75,9 @@ Cc: Fei Shao <fshao@chromium.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 5/9] arm64: dts: mediatek: mt8188: Add JPEG decoder and encoder nodes
-Date: Fri,  4 Oct 2024 16:11:57 +0800
-Message-ID: <20241004081218.55962-6-fshao@chromium.org>
+Subject: [PATCH v3 6/9] arm64: dts: mediatek: mt8188: Add display nodes for vdosys0
+Date: Fri,  4 Oct 2024 16:11:58 +0800
+Message-ID: <20241004081218.55962-7-fshao@chromium.org>
 X-Mailer: git-send-email 2.47.0.rc0.187.ge670bccf7e-goog
 In-Reply-To: <20241004081218.55962-1-fshao@chromium.org>
 References: <20241004081218.55962-1-fshao@chromium.org>
@@ -89,57 +89,127 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add JPEG encoder and decoder nodes for hardware-accelerated JPEG
-decoding and encoding support.
+Add the vdosys0 display nodes to support the internal display pipeline.
 
 Signed-off-by: Fei Shao <fshao@chromium.org>
 ---
 
 (no changes since v1)
 
- arch/arm64/boot/dts/mediatek/mt8188.dtsi | 29 ++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+ arch/arm64/boot/dts/mediatek/mt8188.dtsi | 86 ++++++++++++++++++++++++
+ 1 file changed, 86 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-index bb07d2629e08..a6a5d9cc875b 100644
+index a6a5d9cc875b..dae1cda42a14 100644
 --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
 +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-@@ -2332,6 +2332,35 @@ video_encoder: video-encoder@1a020000 {
- 			mediatek,scp = <&scp>;
+@@ -26,6 +26,7 @@ / {
+ 	aliases {
+ 		gce0 = &gce0;
+ 		gce1 = &gce1;
++		mutex0 = &mutex0;
+ 	};
+ 
+ 	cpus {
+@@ -2361,6 +2362,71 @@ jpeg_decoder: jpeg-decoder@1a040000 {
+ 			power-domains = <&spm MT8188_POWER_DOMAIN_VDEC0>;
  		};
  
-+		jpeg_encoder: jpeg-encoder@1a030000 {
-+			compatible = "mediatek,mt8188-jpgenc", "mediatek,mtk-jpgenc";
-+			reg = <0 0x1a030000 0 0x10000>;
-+			clocks = <&vencsys CLK_VENC1_JPGENC>;
-+			clock-names = "jpgenc";
-+			interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&vdo_iommu M4U_PORT_L19_JPGENC_Y_RDMA>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGENC_C_RDMA>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGENC_Q_TABLE>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGENC_BSDMA>;
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VENC>;
++		ovl0: ovl@1c000000 {
++			compatible = "mediatek,mt8188-disp-ovl", "mediatek,mt8183-disp-ovl";
++			reg = <0 0x1c000000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_OVL0>;
++			interrupts = <GIC_SPI 636 IRQ_TYPE_LEVEL_HIGH 0>;
++			iommus = <&vdo_iommu M4U_PORT_L0_DISP_OVL0_RDMA0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x0000 0x1000>;
 +		};
 +
-+		jpeg_decoder: jpeg-decoder@1a040000 {
-+			compatible = "mediatek,mt8188-jpgdec", "mediatek,mt2701-jpgdec";
-+			reg = <0 0x1a040000 0 0x10000>;
-+			clocks = <&vencsys CLK_VENC1_LARB>,
-+				 <&vencsys CLK_VENC1_JPGDEC>;
-+			clock-names = "jpgdec-smi", "jpgdec";
-+			interrupts = <GIC_SPI 355 IRQ_TYPE_LEVEL_HIGH 0>;
-+			iommus = <&vdo_iommu M4U_PORT_L19_JPGDEC_WDMA_0>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGDEC_BSDMA_0>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGDEC_WDMA_1>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGDEC_BSDMA_1>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGDEC_HUFF_OFFSET_1>,
-+				 <&vdo_iommu M4U_PORT_L19_JPGDEC_HUFF_OFFSET_0>;
-+			power-domains = <&spm MT8188_POWER_DOMAIN_VDEC0>;
++		rdma0: rdma@1c002000 {
++			compatible = "mediatek,mt8188-disp-rdma", "mediatek,mt8195-disp-rdma";
++			reg = <0 0x1c002000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_RDMA0>;
++			interrupts = <GIC_SPI 638 IRQ_TYPE_LEVEL_HIGH 0>;
++			iommus = <&vdo_iommu M4U_PORT_L1_DISP_RDMA0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x2000 0x1000>;
++		};
++
++		color0: color@1c003000 {
++			compatible = "mediatek,mt8188-disp-color", "mediatek,mt8173-disp-color";
++			reg = <0 0x1c003000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_COLOR0>;
++			interrupts = <GIC_SPI 639 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x3000 0x1000>;
++		};
++
++		ccorr0: ccorr@1c004000 {
++			compatible = "mediatek,mt8188-disp-ccorr", "mediatek,mt8192-disp-ccorr";
++			reg = <0 0x1c004000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_CCORR0>;
++			interrupts = <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x4000 0x1000>;
++		};
++
++		aal0: aal@1c005000 {
++			compatible = "mediatek,mt8188-disp-aal", "mediatek,mt8183-disp-aal";
++			reg = <0 0x1c005000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_AAL0>;
++			interrupts = <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x5000 0x1000>;
++		};
++
++		gamma0: gamma@1c006000 {
++			compatible = "mediatek,mt8188-disp-gamma", "mediatek,mt8195-disp-gamma";
++			reg = <0 0x1c006000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_GAMMA0>;
++			interrupts = <GIC_SPI 642 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x6000 0x1000>;
++		};
++
++		dither0: dither@1c007000 {
++			compatible = "mediatek,mt8188-disp-dither", "mediatek,mt8183-disp-dither";
++			reg = <0 0x1c007000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_DITHER0>;
++			interrupts = <GIC_SPI 643 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c00XXXX 0x7000 0x1000>;
 +		};
 +
  		disp_dsi0: dsi@1c008000 {
  			compatible = "mediatek,mt8188-dsi";
  			reg = <0 0x1c008000 0 0x1000>;
+@@ -2391,6 +2457,26 @@ disp_dsi1: dsi@1c012000 {
+ 			status = "disabled";
+ 		};
+ 
++		mutex0: mutex@1c016000 {
++			compatible = "mediatek,mt8188-disp-mutex";
++			reg = <0 0x1c016000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_MUTEX0>;
++			interrupts = <GIC_SPI 658 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c01XXXX 0x6000 0x1000>;
++			mediatek,gce-events = <CMDQ_EVENT_VDO0_DISP_STREAM_DONE_0>;
++		};
++
++		postmask0: postmask@1c01a000 {
++			compatible = "mediatek,mt8188-disp-postmask",
++				     "mediatek,mt8192-disp-postmask";
++			reg = <0 0x1c01a000 0 0x1000>;
++			clocks = <&vdosys0 CLK_VDO0_DISP_POSTMASK0>;
++			interrupts = <GIC_SPI 661 IRQ_TYPE_LEVEL_HIGH 0>;
++			power-domains = <&spm MT8188_POWER_DOMAIN_VDOSYS0>;
++			mediatek,gce-client-reg = <&gce0 SUBSYS_1c01XXXX 0xa000 0x1000>;
++		};
++
+ 		vdosys0: syscon@1c01d000 {
+ 			compatible = "mediatek,mt8188-vdosys0", "syscon";
+ 			reg = <0 0x1c01d000 0 0x1000>;
 -- 
 2.47.0.rc0.187.ge670bccf7e-goog
 
