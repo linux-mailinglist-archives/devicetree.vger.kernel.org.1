@@ -1,180 +1,136 @@
-Return-Path: <devicetree+bounces-107769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9982E98FF42
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:03:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E794498FF2D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:01:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25622B21ACE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:03:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A521B281D77
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBAC7145B11;
-	Fri,  4 Oct 2024 09:03:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67ED813A257;
+	Fri,  4 Oct 2024 09:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="rNAbWE5l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5D914658D
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 09:03:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B141A12D20D;
+	Fri,  4 Oct 2024 09:01:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728032616; cv=none; b=SBjsZuquqmD7vQ1+mQCBj+9N721jAiULqVFQ9oT5UE0z4g8ClfhPibTlmNKs4Is1qR07rTspOgcdTN3GgM1uiu3XS1fkvQHdZjA6bRIXkwebo2PVP3TYZyBJqwYTu7Xu6smswyhdMElrtLVNNalu6LWkZMygEwRWHNXyYDJY+wc=
+	t=1728032479; cv=none; b=ffViNACex9kEpyhpdu4MgJ93H0usn+mhIeHv10n0CV0Qu2ktOeRgO+pZReXikKdJxvzn3Xa5Bmd3G1rHpCNasZNfg/xV+RUSRiyXsH0ANQeVE2RnojQd7rgeLldyC8j/Q1qAYPbyteBME1aRWMsUQ09PXFB8nqJzvAmZfd8azN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728032616; c=relaxed/simple;
-	bh=xmy0hDnSDQiz+JbloXDQtlVjBPu0c317PAOHKTH90lk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ULHN2Q1OIAj0W+nB3p8LVi9dZ2Z+3Ftp8CuaruxEDRFQNgIBTtjVsWml0RRBIWJHW1c3w7QPG+RCMV8wBIOoVDelnwNwxeudqIKQx8sTvwb8fPz0KezoWjG3djjhPdCQO56yl3Q/pAMcr6Gv2RUc8Haj1J7OmGe9Mydyh/SvTbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sweBK-0004Yq-QF; Fri, 04 Oct 2024 11:01:02 +0200
-Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sweBJ-003X8J-62; Fri, 04 Oct 2024 11:01:01 +0200
-Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sweBJ-006wNq-0N;
-	Fri, 04 Oct 2024 11:01:01 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <f.fainelli@gmail.com>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org,
-	Russell King <linux@armlinux.org.uk>,
-	devicetree@vger.kernel.org,
-	Divya.Koppera@microchip.com
-Subject: [PATCH net-next v5 2/2] net: phy: Add support for PHY timing-role configuration via device tree
-Date: Fri,  4 Oct 2024 11:01:00 +0200
-Message-Id: <20241004090100.1654353-3-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20241004090100.1654353-1-o.rempel@pengutronix.de>
-References: <20241004090100.1654353-1-o.rempel@pengutronix.de>
+	s=arc-20240116; t=1728032479; c=relaxed/simple;
+	bh=W4GAHxyNiNKuPlq2+RXiCRq+1TQKeFjvCI65OjVVneE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=E3Jni2Zo2lCWA8MwkBk3AqPIdqkl/Frk1jyZ9ksF0vo538WxWH3hXqzUyVvvb1qEQkrX1Mg1A988MdrJY30pFJDtldOW2aKEGjYjhZBK3sTWN4Jj6+D3DuFO5F4bm8faFv7CVclth/B9R6RHdDrW61NgB+StMLUHH6T8NKLXA2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=rNAbWE5l; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=H+G5CybCC2JMZtP4NDbstG6wlm8WTWPuUqRFjDgdgzI=; b=rNAbWE5lLRTXtQgm9xk9REWd+/
+	bmSrgHqLgzxdXjDzt3g5krIluPhJCbpq+iCV+M/tt9EsL7TmWLr+VVin4i0jjF/WTEx4VpAyrKE61
+	AIY+Vn8sujUTSh2A2Pb4l8kD6KS2Bdg6agTBGZwheibEXSDupiR9y6Hz/oY8gCVeRthUWUCgQSQtO
+	UsJj81S1RJscGGBD/LFxRHMozAb+Gaaohdzmd8FmAKzs8yT7V4lwtrZQp235b0lqNj7WivFgpIwun
+	qDskjoo1CAOPgDmYpZzYKgeEzSCg3C5UPN7HdLTgYMiT+Lw9YpA8AQ3SxqvzAI+tlFqqX/j3Bvmkz
+	c1gCws6Q==;
+Date: Fri, 4 Oct 2024 11:01:10 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, Rob Herring
+ <robh@kernel.org>, khilman@baylibre.com, devicetree@vger.kernel.org,
+ tony@atomide.com, aaro.koskinen@iki.fi, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 2/4] ARM: dts: omap: omap4-epson-embt2ws: wire up
+ regulators
+Message-ID: <20241004110110.163db244@akair>
+In-Reply-To: <79d9aeef-2b38-44c5-a371-f696f6ae1de3@kernel.org>
+References: <20240930213008.159647-1-andreas@kemnade.info>
+	<20240930213008.159647-3-andreas@kemnade.info>
+	<79d9aeef-2b38-44c5-a371-f696f6ae1de3@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Introduce support for configuring the master/slave role of PHYs based on
-the `timing-role` property in the device tree. While this functionality
-is necessary for Single Pair Ethernet (SPE) PHYs (1000/100/10Base-T1)
-where hardware strap pins may be unavailable or incorrectly set, it
-works for any PHY type.
+Am Fri, 4 Oct 2024 10:38:22 +0300
+schrieb Roger Quadros <rogerq@kernel.org>:
 
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
-changes v5:
-- s/force-/forced-/
-- s/prefer-/preferred-/
-changes v4:
-- add "Reviewed-by: Russell King (Oracle) <rmk+kernel@armlinux.org.uk>"
-changes v3:
-- rename master-slave to timing-role
----
- drivers/net/phy/phy-core.c   | 33 +++++++++++++++++++++++++++++++++
- drivers/net/phy/phy_device.c |  3 +++
- include/linux/phy.h          |  1 +
- 3 files changed, 37 insertions(+)
+> On 01/10/2024 00:30, Andreas Kemnade wrote:
+> > Wire up the regulators where usage is plausible. Do not
+> > wire them if purpose/usage is unclear like 5V for
+> > many things requiring lower voltages.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 11 ++++-------
+> >  1 file changed, 4 insertions(+), 7 deletions(-)
+> > 
+> > diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts index
+> > d6b0abba19f6..cc1b6080bf95 100644 ---
+> > a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts +++
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts @@ -20,13
+> > +20,13 @@ memory@80000000 { backlight-left {
+> >  		compatible = "pwm-backlight";
+> >  		pwms = <&twl_pwm 1 7812500>;
+> > -		power-supply = <&unknown_supply>;
+> > +		power-supply = <&lb_v50>;  
+> 
+> This is probably wrong. I noticed this while reviewing patch 3.
+> 
+> you probably want to wire this to blc_l?
+> 
+No idea was blc_l is. I did not find any code handling blc_l.
+looking at the vendor kernel:
 
-diff --git a/drivers/net/phy/phy-core.c b/drivers/net/phy/phy-core.c
-index 1f98b6a96c153..4e8db12d60928 100644
---- a/drivers/net/phy/phy-core.c
-+++ b/drivers/net/phy/phy-core.c
-@@ -412,6 +412,39 @@ void of_set_phy_eee_broken(struct phy_device *phydev)
- 	phydev->eee_broken_modes = broken;
- }
- 
-+/**
-+ * of_set_phy_timing_role - Set the master/slave mode of the PHY
-+ *
-+ * @phydev: The phy_device struct
-+ *
-+ * Set master/slave configuration of the PHY based on the device tree.
-+ */
-+void of_set_phy_timing_role(struct phy_device *phydev)
-+{
-+	struct device_node *node = phydev->mdio.dev.of_node;
-+	const char *master;
-+
-+	if (!IS_ENABLED(CONFIG_OF_MDIO))
-+		return;
-+
-+	if (!node)
-+		return;
-+
-+	if (of_property_read_string(node, "timing-role", &master))
-+		return;
-+
-+	if (strcmp(master, "forced-master") == 0)
-+		phydev->master_slave_set = MASTER_SLAVE_CFG_MASTER_FORCE;
-+	else if (strcmp(master, "forced-slave") == 0)
-+		phydev->master_slave_set = MASTER_SLAVE_CFG_SLAVE_FORCE;
-+	else if (strcmp(master, "preferred-master") == 0)
-+		phydev->master_slave_set = MASTER_SLAVE_CFG_MASTER_PREFERRED;
-+	else if (strcmp(master, "preferred-slave") == 0)
-+		phydev->master_slave_set = MASTER_SLAVE_CFG_SLAVE_PREFERRED;
-+	else
-+		phydev_warn(phydev, "Unknown master-slave mode %s\n", master);
-+}
-+
- /**
-  * phy_resolve_aneg_pause - Determine pause autoneg results
-  *
-diff --git a/drivers/net/phy/phy_device.c b/drivers/net/phy/phy_device.c
-index 560e338b307a4..4ccf504a8b2c2 100644
---- a/drivers/net/phy/phy_device.c
-+++ b/drivers/net/phy/phy_device.c
-@@ -3608,6 +3608,9 @@ static int phy_probe(struct device *dev)
- 	 */
- 	of_set_phy_eee_broken(phydev);
- 
-+	/* Get master/slave strap overrides */
-+	of_set_phy_timing_role(phydev);
-+
- 	/* The Pause Frame bits indicate that the PHY can support passing
- 	 * pause frames. During autonegotiation, the PHYs will determine if
- 	 * they should allow pause frames to pass.  The MAC driver should then
-diff --git a/include/linux/phy.h b/include/linux/phy.h
-index a98bc91a0cde9..ff762a3d8270a 100644
---- a/include/linux/phy.h
-+++ b/include/linux/phy.h
-@@ -1260,6 +1260,7 @@ size_t phy_speeds(unsigned int *speeds, size_t size,
- 		  unsigned long *mask);
- void of_set_phy_supported(struct phy_device *phydev);
- void of_set_phy_eee_broken(struct phy_device *phydev);
-+void of_set_phy_timing_role(struct phy_device *phydev);
- int phy_speed_down_core(struct phy_device *phydev);
- 
- /**
--- 
-2.39.5
+$ grep -R BLC_L_GPIO *
+arch/arm/mach-omap2/board-bt2ws.c:#define BLC_L_GPIO
+16	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ws.c:
+{BLC_L_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_l"   },
+arch/arm/mach-omap2/board-bt2ws.c:	gpio_export(BLC_L_GPIO, 0);
+arch/arm/mach-omap2/board-bt2ts.c:#define BLC_L_GPIO
+16	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ts.c:
+{BLC_L_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_l"   },
+arch/arm/mach-omap2/board-bt2ts.c:	gpio_export(BLC_L_GPIO, 0);
 
+These two gpios are exported. But they seem not to influence
+backlight in any way. I just tested again to make sure. Maybe it is just
+a leftover from earlier board revisions.
+
+> >  	};
+> >  
+> >  	backlight-right {
+> >  		compatible = "pwm-backlight";
+> >  		pwms = <&twl_pwm 0 7812500>;
+> > -		power-supply = <&unknown_supply>;
+> > +		power-supply = <&lb_v50>;  
+> 
+> this one should be wired to blc_r?
+>
+Same as with blc_l.
+$ grep -R BLC_R_GPIO *
+arch/arm/mach-omap2/board-bt2ws.c:#define BLC_R_GPIO
+17	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ws.c:
+{BLC_R_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_r"   },
+arch/arm/mach-omap2/board-bt2ws.c:	gpio_export(BLC_R_GPIO, 0);
+arch/arm/mach-omap2/board-bt2ts.c:#define BLC_R_GPIO
+17	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ts.c:
+{BLC_R_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_r"   },
+arch/arm/mach-omap2/board-bt2ts.c:	gpio_export(BLC_R_GPIO, 0);
+
+Regards,
+Andreas
 
