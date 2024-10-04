@@ -1,177 +1,143 @@
-Return-Path: <devicetree+bounces-107770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3218598FF51
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:06:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C98698FFBA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:28:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFF44282764
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:06:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 98AB31F23D0E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:28:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 954CF140E30;
-	Fri,  4 Oct 2024 09:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6860146D6E;
+	Fri,  4 Oct 2024 09:28:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SzRlZEJu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gnwSq9PA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52DF13B7B3
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 09:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C5C146A83
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 09:28:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728032808; cv=none; b=K4ebbJZLxNKQeO+kGfMTc/i9nFvORNtvyGc8FHHz8Xz2Ik/5KRTurJVYCIxgRep8gXS0Rk1TKmOfxkFBc6bY7YlhpjyX9cUoPlc5CHvj25fC2m89E8+4h3nyhdpIXmnzHKfRCsHOV0pHYAUDJjGiR5QWwc4S0DCPlaxHVysH7R4=
+	t=1728034087; cv=none; b=tm80qeuvUnCJhl8NzQlyRs8/4Mwd7ZBn2sb3Sk9DspNg64Kl16f0U2zML1mSWnllKVZhc7utUo/tRC6UKhf/qszrL/GJI/Es2jzLv5nZsx3WBfhUL+HyZpmrYPSwrpnI0W/8/dzHwst2EzLCDQ7+l54hCJt4xGOjbPhFXmKuwgs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728032808; c=relaxed/simple;
-	bh=YcnxH6pwVZlWuJx4JlhC4U68Nd6Chk51DuZD9AleuV4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=kuiIao3/AzWGvJbnN6XewurmK1mH/AiiidPGAGU6uNsRUp7hU9X8KWYdqNjRWyDRAiEUc+Va7dnTcLM+egB2ekYaOpZfiTp1erdY4pBXZyNXZK3xfRWrws0TxSyCPII8YeNb1C5MwDwHKsgOAuymYP+Fg74dm2lJQfURa6yfw0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SzRlZEJu; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42cb6f3a5bcso23951025e9.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 02:06:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728032805; x=1728637605; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pWXeQyRxHvPX0fhQbX5R25LT6MNkLrfMd1+Y6m5Df6I=;
-        b=SzRlZEJuuNRB5IK+hvYQjT6kK31DeIx73e07FTPoUI7h+a/lWPMS6xvpnlRbYAxXre
-         f2T7yhaSvrtTp9QuhkjCqJY2xKgHg+84txWn0sn0DSRMlMIFMdv/vS0wZ7Mywiv0ybRh
-         dQLpgjZXxWdbG+mdzNfzib4+HCPYKAayprgnEYRGP+f5XBFWWkVDj9Ohnbf6vCLlhT74
-         Z6ykmpJ91emTKkJdebSTh9k5wgjnYn00rwnBT/Sq1P890DiwbyEVzE74YS0DL76LLq7u
-         rnyaljFJOMro6gmcau0g1omu1ReCEY7YRw4Z6ggpDmtD07eA8/bNO481tRzTUO8h+wPU
-         svrg==
+	s=arc-20240116; t=1728034087; c=relaxed/simple;
+	bh=LmDmej7lLDRBKoBJFi8etT0IoHeFSIIdMlBGnLoKvso=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ppKo/NtLpnUf3LTdAncxd1iRCGI/ES+frf4OSCwott7QkEP1o5ywTgxsdYwQwQ1bKqZa4L0waz3M2sQsUMxAD85rfDzykqaFz0JvJxaHYCAuPy+NFbo0Ye710pOZWDKfjSSKqjZ6dAs7aDSKiQlWAjWHPTTrhLEZ9unM/6MPmF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gnwSq9PA; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 493HxYVJ014162
+	for <devicetree@vger.kernel.org>; Fri, 4 Oct 2024 09:28:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Tjpps5uqJ9tr+olzb1+K4+r732DF29dhEskuewte7Pk=; b=gnwSq9PAv5rnk7pD
+	aMw7W9Tu0n2SVy58tRjkZIeB6ggnVl/sN3Ja85OEjd27LKLJLmiGb/4VgVMIwgXz
+	rB911nLDgI6Co+6cxAHOWEgSPrAzN2dp7ZAZI/p53PRwgrhx4o2xD5XZWgy/WhaE
+	sRVCww7L0k1ZjgfOFxVxQXUPCSRNTzfchGg1hD033I9tjiGuH++FThQuOyjV9b/T
+	h1O8mFLxI/zgn95MjHy5Xb0N51NYVDEaTroDlPl8R7rUPmgo6ki89E4b0YNjWELY
+	/x3thad8Uk5UYEUSAcd+n+BPtZ5xUJEWWidSziK2+kyZqgLhC0eczdLisisRSXWJ
+	TTuapg==
+Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205e1ne0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 09:28:05 +0000 (GMT)
+Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a93d13df5c7so28165666b.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 02:28:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728032805; x=1728637605;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pWXeQyRxHvPX0fhQbX5R25LT6MNkLrfMd1+Y6m5Df6I=;
-        b=pozYUCSlmO0uiDAL+M64SLsVefvqbeLORTWCnXMa3hLckdkNsXgrd3pvg1m9yceyQh
-         u/2bKvLBBYsN2tq3va9mS4xeSyWA/fqxlyB+hLlTF/9uqsVXLu7ZZomH9Eh4UocZahcq
-         G8+qkBVRwi5sgxQU5DB3ivICIW/5Bqke070/qZuvVkwTLair/4PGcHneVtuckOa5ZeXx
-         myARg6wjcvtyI+dRPk2U8eV4kO5dEnQ0eRx3W3Do2xRf0KzKifnDsMFiXFKBoYwVFGgu
-         XTaNuzgtIM4tSf1hxPMj22FtETudm8EdbEmjnzkMs8zm1X2dt1C+B6kps8tc4qgICNlt
-         2Umw==
-X-Forwarded-Encrypted: i=1; AJvYcCXdB7ubVpNu5GVllfeSR+oXr56G6g7TEA2HQ/bOtbvbnohDwp0F6lQO19adtK4C+0Y5VfE3p+wtTKIZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJEdjomCDwzqqr9GoOQ0yFMMFFHcewZKUUVE8uiASneFVt3p0l
-	K7eeKCIHg+vmhO06qq/OjzTVwfELgxCnYMv8dYnDAApx7UWfq2mtdktRPykO/b0=
-X-Google-Smtp-Source: AGHT+IGIFRhul/R6B8ZiDxLXa0zGSUWpMYsGl0icdU/9oUu0HqOT/5snNaObw85s33fzHKexS8gHEw==
-X-Received: by 2002:adf:fe8a:0:b0:374:c8b7:63ec with SMTP id ffacd0b85a97d-37d0e73742fmr1815109f8f.21.1728032804886;
-        Fri, 04 Oct 2024 02:06:44 -0700 (PDT)
-Received: from [127.0.1.1] ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d081f7006sm2833945f8f.13.2024.10.04.02.06.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 02:06:44 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Fri, 04 Oct 2024 12:06:33 +0300
-Subject: [PATCH v2] arm64: dts: qcom: x1e80100: Switch PCIe 6a to 4 lanes
- mode
+        d=1e100.net; s=20230601; t=1728034083; x=1728638883;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Tjpps5uqJ9tr+olzb1+K4+r732DF29dhEskuewte7Pk=;
+        b=kD1QgVModP4eGrNsqH7RAehDjyo5XP+4l4yHxugr8kFYSy0wrp2lddKBI26ktOxFE6
+         z1Xnv1itzKe6n1P3ck7KeaIxByXxos84acokvJZg4Cm3UEZvbzyJkPQlWMR6DGjFXb8F
+         yNdi7EozcHxu6HjMOeCS/kHSU1TZjADuA2c0yGGYWUYPRzFmdeZAOuykx5jOzzHkBbYC
+         +qdy14bW46IS3kEGYmIHMlPRClUse5D2gtnLOyDre1VmW0ALZ+Nrq5SLLwIvO+mH7UzO
+         jir08aXjA9BQ/XA5AtKMdTAdIVtd0IdA3I28DrX8WX8nBb4a2EsfL4mydAT97dNaMkL9
+         nlmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5qYIQE1BTMEo/6bij2lg2llrECBWgS4cGgVnUC/JzlqXD5bL2FjoYhIeU7AKFkVveWT4tg1wQh2En@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz+0jTNLkMjMt0hW1ZF6+wX0TLJ4AtXKMWvaR9vz0Vhak2OBU5K
+	nZDzt1cYu+352UmGNF9vDgUkgTzR6g4P//o2gNUmbBbZabI4yhzC0OBdNGDrUpE1oemUz3hty3+
+	bUIvf9EtQIYzaBTYCB85imwOnkOL/r5CH5PJ9dFb6EwcnYv7dfW7UryXipdIV
+X-Received: by 2002:a17:907:7246:b0:a8d:2624:1a85 with SMTP id a640c23a62f3a-a991bfef116mr76594966b.12.1728034083168;
+        Fri, 04 Oct 2024 02:28:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFXt44bQ8wTQRm/YRHvmhXNraUrxIvHMnjvqnxGYQMcJaraaxjku0u8/sUcMcNj5dRE6qGSlg==
+X-Received: by 2002:a17:907:7246:b0:a8d:2624:1a85 with SMTP id a640c23a62f3a-a991bfef116mr76593466b.12.1728034082609;
+        Fri, 04 Oct 2024 02:28:02 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99102a998esm198244466b.94.2024.10.04.02.28.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 02:28:02 -0700 (PDT)
+Message-ID: <02ded4a4-0f0f-4a96-afd9-5a1756215382@oss.qualcomm.com>
+Date: Fri, 4 Oct 2024 11:28:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: Switch PCIe 6a to 4 lanes
+ mode
+To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20241004-x1e80100-dts-fixes-pcie6a-v2-1-3af9ff7a5a71@linaro.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20241004-x1e80100-dts-fixes-pcie6a-v2-1-3af9ff7a5a71@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241004-x1e80100-dts-fixes-pcie6a-v2-1-3af9ff7a5a71@linaro.org>
-X-B4-Tracking: v=1; b=H4sIABiw/2YC/32NwQ6CQAxEf4X0bM12EVFP/ofhsAsFmhiW7BKCI
- fvvVj7A27yZznSHxFE4waPYIfIqScKkYE8FtKObBkbplMEaeyFjStyIb0YVdkvCXjZOOLfCV4f
- +3hPVGneVB+3PkY9c669GeZS0hPg5Xq30c49VU5X0Z3UltEhVXbJvHevZ8y2Ti+Ec4gBNzvkLd
- 9wGRsMAAAA=
-X-Change-ID: 20241003-x1e80100-dts-fixes-pcie6a-b9f1171e8d5b
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2467; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=YcnxH6pwVZlWuJx4JlhC4U68Nd6Chk51DuZD9AleuV4=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBm/7Ad7B1YQMjMCcdawWM4HbT/w5V4iq0mlagDf
- 8brgzkj7v2JAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZv+wHQAKCRAbX0TJAJUV
- VsVxEACIVzceQx5NX2x/r/fIgjQ7uAlpbUlmhCJwHuxBS3CIpVRGlDFb5HyZN+4DUzK5jAkdn6N
- Jma9TNklFqREMaATMET3RWHG+VJulVx/oSrWDTuz4L798OVqhvKUT9Fx0dc1rRQ8UF505y3lIvY
- qSKxjhoqDzSFafb3h9iFyRT38luNxhFojmOw8opexWh5BeHTkH5snazFgTCX8DlNpjKNXnaiUJ6
- y7sfPI5e9zBKVZ8QZtbkVp+SEQ+sFf6j1d9IGqIcO8LWpf1ccqLScVrTURKGyak2p1w4vnIdQHd
- JjoISQAubJc3+70qk3R2iBRHK0TPtBpliSiK4WtMgT0VayNPJlhtRcxr6739DgAISaE7uytgYgd
- 88FeG3hzG7ydlrDnt5M9lzlXoADr6u/ZbVWPBkgV8G9HUI7+1F3X5GyrWetxMBqh/S7pNYUfSPc
- E+95TlZM6TG4cdTUVkiwGp+NlfBcIHxeMOz81nQO+r/Y64/5cCT32N3n0XZjhzqAD/evL4L88zo
- ztEMArIJjYdFBIFCVfx0qDR2A+uaQaC0sgtwMDyelFsn/5ijcq9tJcjI3zi0L7mliXkXpfU/JW2
- xxqu3OAHuWVwC14QGgryKmFDd/klaIPMyPNkuWhxdDROjF4CRU0yvRkmK+3xau7jlw3d09kg2Bp
- ojv4K2gSAqvnblg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-Proofpoint-GUID: _kdzj2p-9KoqJEREZeVw5TCqrsQJ7zo7
+X-Proofpoint-ORIG-GUID: _kdzj2p-9KoqJEREZeVw5TCqrsQJ7zo7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ lowpriorityscore=0 spamscore=0 suspectscore=0 phishscore=0 mlxlogscore=993
+ mlxscore=0 adultscore=0 bulkscore=0 priorityscore=1501 clxscore=1011
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410040068
 
-The PCIe 6a controller and PHY can be configured in 4-lanes mode or
-2-lanes mode. For 4-lanes mode, it fetches the lanes provided by PCIe 6b.
-For 2-lanes mode, PCIe 6a uses 2 lanes and then PCIe 6b uses the other 2
-lanes. Configure it in 4-lane mode and then each board can configure it
-depending on the design. Both the QCP and CRD boards, currently upstream,
-use PCIe 6a for NVMe in 4-lane mode. Mark the controller as 4-lane as
-well. This is the last change needed in order to support NVMe with Gen4
-4-lanes on all existing X Elite boards.
+On 4.10.2024 11:06 AM, Abel Vesa wrote:
+> The PCIe 6a controller and PHY can be configured in 4-lanes mode or
+> 2-lanes mode. For 4-lanes mode, it fetches the lanes provided by PCIe 6b.
+> For 2-lanes mode, PCIe 6a uses 2 lanes and then PCIe 6b uses the other 2
+> lanes. Configure it in 4-lane mode and then each board can configure it
+> depending on the design. Both the QCP and CRD boards, currently upstream,
+> use PCIe 6a for NVMe in 4-lane mode. Mark the controller as 4-lane as
+> well. This is the last change needed in order to support NVMe with Gen4
+> 4-lanes on all existing X Elite boards.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> ---
+> Changes in v2:
+> - Re-worded the commit message according to Johan's suggestions
+> - Dropped the clocks changes.
+> - Dropped the fixes tag as this relies on the Gen4 4-lanes stability
+>   patchset which has been only merged in 6.12, so backporting this patch
+>   would break NVMe support for all platforms.
+> - Link to v1: https://lore.kernel.org/r/20240531-x1e80100-dts-fixes-pcie6a-v1-2-1573ebcae1e8@linaro.org
+> ---
+Depends on
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
-Changes in v2:
-- Re-worded the commit message according to Johan's suggestions
-- Dropped the clocks changes.
-- Dropped the fixes tag as this relies on the Gen4 4-lanes stability
-  patchset which has been only merged in 6.12, so backporting this patch
-  would break NVMe support for all platforms.
-- Link to v1: https://lore.kernel.org/r/20240531-x1e80100-dts-fixes-pcie6a-v1-2-1573ebcae1e8@linaro.org
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+https://lore.kernel.org/linux-arm-msm/20240916082307.29393-3-johan+linaro@kernel.org/
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index a36076e3c56b5b8815eb41ec55e2e1e5bd878201..4ec712cb7a26d8fe434631cf15949524fd22c7d9 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -2931,7 +2931,7 @@ pcie6a: pci@1bf8000 {
- 			dma-coherent;
- 
- 			linux,pci-domain = <6>;
--			num-lanes = <2>;
-+			num-lanes = <4>;
- 
- 			interrupts = <GIC_SPI 773 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 774 IRQ_TYPE_LEVEL_HIGH>,
-@@ -2997,8 +2997,9 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 		};
- 
- 		pcie6a_phy: phy@1bfc000 {
--			compatible = "qcom,x1e80100-qmp-gen4x2-pcie-phy";
--			reg = <0 0x01bfc000 0 0x2000>;
-+			compatible = "qcom,x1e80100-qmp-gen4x4-pcie-phy";
-+			reg = <0 0x01bfc000 0 0x2000>,
-+			      <0 0x01bfe000 0 0x2000>;
- 
- 			clocks = <&gcc GCC_PCIE_6A_PHY_AUX_CLK>,
- 				 <&gcc GCC_PCIE_6A_CFG_AHB_CLK>,
-@@ -3021,6 +3022,8 @@ pcie6a_phy: phy@1bfc000 {
- 
- 			power-domains = <&gcc GCC_PCIE_6_PHY_GDSC>;
- 
-+			qcom,4ln-config-sel = <&tcsr 0x1a000 0>;
-+
- 			#clock-cells = <0>;
- 			clock-output-names = "pcie6a_pipe_clk";
- 
+Otherwise
 
----
-base-commit: c02d24a5af66a9806922391493205a344749f2c4
-change-id: 20241003-x1e80100-dts-fixes-pcie6a-b9f1171e8d5b
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
-
+Konrad
 
