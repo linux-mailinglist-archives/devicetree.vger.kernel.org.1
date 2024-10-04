@@ -1,155 +1,160 @@
-Return-Path: <devicetree+bounces-107947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75D39908B1
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:08:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CAFB9908BC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:11:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 653311F20FB5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:08:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079551F2108B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:11:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6B3E1AA79F;
-	Fri,  4 Oct 2024 16:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7831AA7BD;
+	Fri,  4 Oct 2024 16:11:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="pPcbefJj"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ImUWCEza"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E98F510A24;
-	Fri,  4 Oct 2024 16:08:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8FC15749A
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 16:11:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728058131; cv=none; b=WeDc5LVOtSXGUHuNIQjFFs5tMHk3rObSF2CcRY3uaxC+Z61sZ4pFH2mE3N8k/VssZzZjhfsS4pUEch8MaZWEP2M2WtaUROQ1xRnleh8QyXmdlEw0cTJc5XN4qomy7OGitnqRXE7ZoZTHWYX2lvGeZN37jZEU5mtBiNst+J4Gc6o=
+	t=1728058278; cv=none; b=Ku/7Lndys4XDnsvtdoHdh1qp5BqztG7hVLb5GN2weK5XDUrLpOdgqg+b0dhw8g6rTbRZl+yTYy2qFsWkXP9eX71fLGD4o0go9fOWeDoaf6rkiYOOobSodjI33sY3XcbLN9pdCIOT3bx1ehRZI5LqJ75hOHwwsrRzxgSitVcpz3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728058131; c=relaxed/simple;
-	bh=dGQ7Witn8O6kjYqDrprDqyRKEhDoof7f2lKcqEROOnA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=U+F0Zx2gxZMBRc6lVWMqD8BPPLx4Pc7lm8G85GC1Tp0oOw5t179IdAmHKOEl98TtML64M4LBFaRO8glnE9P4lrJqfzIsO44IKHNLShKM2TXZAlWdFJBl7d/WeFJPzPS+xj2654UTSnAjuzgW+Bjry/hHq5nLtcDuQ6TcbOHhl24=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=pPcbefJj; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 96E6A20B47;
-	Fri,  4 Oct 2024 18:08:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1728058126;
-	bh=/Y0C0EEPQSM8rb7ufcWWlBjaRsWiR64xGnNPRTAiK5I=; h=From:To:Subject;
-	b=pPcbefJjFcEgc5rUML4/Q1lhiX1XETfN8q2VyAwJ3nwPc7Qj9qEW8ECIgW9AO5vKe
-	 EthhDim8IHHqam98EZubvyLxO53zLA24XtC0dFVDMgG9LlckSr2gZu8wHxmJJ34/Ou
-	 GJbUi57GjUas2lT72AAOsUBjzynjs+ojF0zDZqGzJuGiC2rvZiz6Rx2Jvkja2PNN8o
-	 /M0wRgtTwyOe/nEVjwtJzhtPUwHWj6IgJUuy+OHzWqaV7c8b1wS5v85QXX+S9X6Nwe
-	 J0E+BWLYDCrYv11+SSrf3g1KuN1Ovtavg//kEEf/YcPnzK1X3mOV3pYzSoY62xgFX7
-	 H0ll33Ix+Ff3g==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-bindings: arm: fsl: drop usage of Toradex SOMs compatible alone
-Date: Fri,  4 Oct 2024 18:08:42 +0200
-Message-Id: <20241004160842.110079-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.5
+	s=arc-20240116; t=1728058278; c=relaxed/simple;
+	bh=cdbTN3dk9KoQtaZSwUqNJIdnaKT+6V+GIVRcSA/hhaI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=n4dlNlBf7bphcVRKhMn12qZ8UgTFxfSfoI/bBpxb5oCqePqE8/Q8dPlEHvJhxuBzvA3lgGTyrDGFBo382/B0lrYKc629h1I+5KOUOadq5OyyJx0nP3pi+K0vAMaqF2Ku3ID2FOh9Jn8obU1USMWE1cpus3dd2pV4K+6b6KJWzeI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ImUWCEza; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4581f44b9b4so15077361cf.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 09:11:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1728058276; x=1728663076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qv99QOeXcBkbZdfo+87lDU5Rqpsh7c5RFPOmgI+cSL0=;
+        b=ImUWCEzaE4mZkXjbttV11AJlFc4ToFqVuqP93OjIIUbdcwn99G5Z3xvZGKQQXNGz67
+         HmsZ6rpmRzlUBJvi9ZWPZE/sOX4VOjRd+XRkxhcoQnx240vYRm0E01sKVYsKS5495zzl
+         wh8q5D2ZAyq3MYvLVwMLwQ5wmBG/A/l/ew1e4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728058276; x=1728663076;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Qv99QOeXcBkbZdfo+87lDU5Rqpsh7c5RFPOmgI+cSL0=;
+        b=Z99rnJDGdJ8F0JfshdXCTvG1e0nlbiHCE4g9oXjKCpDejXalIKsPD+UmTRqVxzXwFn
+         9yjIMbQZLTnsE6jS+qDoR1OG6VldkudWKJNY0EStr8x1+3l93Sx5B3jNeSfg4tTtF6oh
+         +PfsoTTnOn3Dfnc629GZYSrZSUp/A0x7mbLxUhdDO0rZCNjdU5Nxf6l/vHjgBlgv7ttE
+         Kwto8ljtIWkrTuGwgNr1e+EbUSb77yqDR/v4/f7VWRRo0LwQuybUTIcIdyg7fKy9eoWU
+         QNyah8LyPuEso4EtquO+ZvSzQbE/Twmp5mwZdtWW6rI5nyF0A/PNft2Y1wWqonhPJgg2
+         UfyQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXZB9JVh22F1VD24cLcdUqvQWAv482u4UYRcW8oKev1z97KIZhXC/H0yRz4w6KRAM6ifKkrNNwCqsrQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWKhUVGRMRE2LxUl0ZaVtqBNSdA/1Pl1LuS9nFHF7kLZNqdg6Z
+	yoGWi8vPukNVqVIi7ceKdtZLAJRdcIgT4TbewC54rmkZq6fTGIToSeMB7tLK3w==
+X-Google-Smtp-Source: AGHT+IF9WjuoqxXB7O+btvUqDweLOUwXmnSbTM4nu4YD4ylONS6lfLeSrTfD5T+E6hR6pXbqZE+C+A==
+X-Received: by 2002:a05:622a:11c5:b0:45d:9236:89f2 with SMTP id d75a77b69052e-45d9ba79551mr40913531cf.2.1728058275929;
+        Fri, 04 Oct 2024 09:11:15 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45da75ed6b3sm349691cf.61.2024.10.04.09.11.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 09:11:14 -0700 (PDT)
+Message-ID: <d6cfbefa-7526-4a8b-bb81-66f198de1395@broadcom.com>
+Date: Fri, 4 Oct 2024 09:11:11 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] arm64: dts: broadcom: bcmbca: bcm4908: Add DT for
+ Zyxel EX3510-B
+To: Sam Edwards <cfsworks@gmail.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>, William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241003220820.1345048-1-CFSworks@gmail.com>
+ <20241003220820.1345048-3-CFSworks@gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20241003220820.1345048-3-CFSworks@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
+On 10/3/24 15:08, Sam Edwards wrote:
+> Zyxel EX3510-B is a WiFi 6 capable home gateway (family) based on the
+> BCM4906 SoC, with 512MiB of RAM and 512MiB of NAND flash. WiFi support
+> consists of a BCM6710 and a BCM6715 attached to separate PCIe buses.
+> 
+> Add an initial devicetree for this system, with support for:
+> - Onboard UART (per base dtsi)
+> - USB (2.0 only; superspeed devices are treated as high-speed due to an
+>      unknown cause)
+> - Both buttons (rear reset, front WPS)
+> - Almost all LEDs:
+>    - Power (red/green)
+>    - Internet (red/green)
+>    - WAN (green)
+>    - LAN (green; anode is connected to GPIO 13 so currently
+>        nonfunctioning)
+>    - USB (green)
+>    - WPS button (red/green)
+>    - Absent in DT: There are 2.4GHz/5.0GHz WiFi status LEDs connected to
+>        the WiFi chips instead of the SoC.
+> - NAND flash
+> - Embedded Ethernet switch
+> - Factory-programmed Ethernet MAC address
+> 
+> WiFi cannot be enabled at this time due to Linux lacking drivers for
+> both the PCIe controllers and the PCIe WiFi peripherals.
 
-The Toradex SOMs cannot be used alone without a carrier board, so drop
-the usage of its compatible alone.
-
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 16 ----------------
- 1 file changed, 16 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index b39a7e031177..5f0e8e1cd6fb 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -296,7 +296,6 @@ properties:
-               - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
-               - technologic,imx6q-ts4900
-               - technologic,imx6q-ts7970
--              - toradex,apalis_imx6q      # Apalis iMX6 Modules
-               - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
-               - uniwest,imx6q-evi         # Uniwest Evi
-               - variscite,dt6customboard
-@@ -488,7 +487,6 @@ properties:
-               - technexion,imx6dl-pico-pi      # TechNexion i.MX6DL Pico-Pi
-               - technologic,imx6dl-ts4900
-               - technologic,imx6dl-ts7970
--              - toradex,colibri_imx6dl      # Colibri iMX6 Modules
-               - udoo,imx6dl-udoo          # Udoo i.MX6 Dual-lite Board
-               - vdl,lanmcu                # Van der Laan LANMCU board
-               - wand,imx6dl-wandboard     # Wandboard i.MX6 Dual Lite Board
-@@ -718,9 +716,6 @@ properties:
-               - joz,jozacp                # JOZ Access Point
-               - kontron,sl-imx6ull        # Kontron SL i.MX6ULL SoM
-               - myir,imx6ull-mys-6ulx-eval # MYiR Tech iMX6ULL Evaluation Board
--              - toradex,colibri-imx6ull      # Colibri iMX6ULL Modules
--              - toradex,colibri-imx6ull-emmc # Colibri iMX6ULL 1GB (eMMC) Module
--              - toradex,colibri-imx6ull-wifi # Colibri iMX6ULL Wi-Fi / BT Modules
-               - uni-t,uti260b             # UNI-T UTi260B Thermal Camera
-           - const: fsl,imx6ull
- 
-@@ -879,8 +874,6 @@ properties:
-               - technexion,imx7d-pico-hobbit  # TechNexion i.MX7D Pico-Hobbit
-               - technexion,imx7d-pico-nymph   # TechNexion i.MX7D Pico-Nymph
-               - technexion,imx7d-pico-pi      # TechNexion i.MX7D Pico-Pi
--              - toradex,colibri-imx7d         # Colibri iMX7D Module
--              - toradex,colibri-imx7d-emmc    # Colibri iMX7D 1GB (eMMC) Module
-               - zii,imx7d-rmu2            # ZII RMU2 Board
-               - zii,imx7d-rpu2            # ZII RPU2 Board
-           - const: fsl,imx7d
-@@ -950,9 +943,6 @@ properties:
-               - innocomm,wb15-evk         # i.MX8MM Innocomm EVK board with WB15 SoM
-               - kontron,imx8mm-sl         # i.MX8MM Kontron SL (N801X) SOM
-               - kontron,imx8mm-osm-s      # i.MX8MM Kontron OSM-S (N802X) SOM
--              - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
--              - toradex,verdin-imx8mm-nonwifi  # Verdin iMX8M Mini Modules without Wi-Fi / BT
--              - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi / BT Modules
-               - prt,prt8mm                # i.MX8MM Protonic PRT8MM Board
-           - const: fsl,imx8mm
- 
-@@ -1085,9 +1075,6 @@ properties:
-               - skov,imx8mp-skov-revb-hdmi # SKOV i.MX8MP climate control without panel
-               - skov,imx8mp-skov-revb-lt6 # SKOV i.MX8MP climate control with 7” panel
-               - skov,imx8mp-skov-revb-mi1010ait-1cp1 # SKOV i.MX8MP climate control with 10.1" panel
--              - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
--              - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
--              - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
-           - const: fsl,imx8mp
- 
-       - description: Avnet (MSC Branded) Boards with SM2S i.MX8M Plus Modules
-@@ -1223,8 +1210,6 @@ properties:
-         items:
-           - enum:
-               - fsl,imx8qm-mek           # i.MX8QM MEK Board
--              - toradex,apalis-imx8      # Apalis iMX8 Modules
--              - toradex,apalis-imx8-v1.1 # Apalis iMX8 V1.1 Modules
-           - const: fsl,imx8qm
- 
-       - description: i.MX8QM Boards with Toradex Apalis iMX8 Modules
-@@ -1384,7 +1369,6 @@ properties:
-               - fsl,vf610-twr             # VF610 Tower Board
-               - lwn,bk4                   # Liebherr BK4 controller
-               - phytec,vf610-cosmic       # PHYTEC Cosmic/Cosmic+ Board
--              - toradex,vf610-colibri_vf61 # Colibri VF61 Modules
-           - const: fsl,vf610
- 
-       - description: Toradex Colibri VF61 Module on Colibri Evaluation Board
+On the topic of PCIe, AFAICT Rafal had made an attempt at modifying 
+pcie-brcmstb.c, which is really the same IP, or rather a fork of it. Let 
+me know if you need help in figuring out the programming and we can help 
+with that.
 -- 
-2.39.5
-
+Florian
 
