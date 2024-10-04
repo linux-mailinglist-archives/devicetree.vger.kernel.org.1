@@ -1,211 +1,143 @@
-Return-Path: <devicetree+bounces-107800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5B46990168
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 12:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEE1499019E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 12:53:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9ECB9281133
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 10:34:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7935282937
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 10:53:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECE431553B7;
-	Fri,  4 Oct 2024 10:33:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECB9156F3A;
+	Fri,  4 Oct 2024 10:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="ilu4rJys"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="J8HdUDO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2080.outbound.protection.outlook.com [40.107.93.80])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C5851487E9;
-	Fri,  4 Oct 2024 10:33:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728038021; cv=fail; b=aGAdLqTQ2Sgxqd/IJDxO1cuTqI/4k7qnf5Jr14yJOGn0GSRDYtt61x/tcxOLww/OkwEJDAOMBgTCIpxVP2ai/fjHe/lJNJSWvYtCAop0enG3tTYQJtpb8V/THILLO6rwRHWO8i0xGWGwFF4EAwg9H2P0UMTl1NsUiOmr+mDdE2Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728038021; c=relaxed/simple;
-	bh=c7V7/0vmJoab5MCQDRK9MIUGn+Q5ZX1kpl6VgdfUkpE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=iXg5EMqmWc6efcQWaySd7OoXjRVg27qWlFdGBYA0pCd29rH+uajtHwmGgt4APY2BPC2ldQHuGRsumg6434PyfQj4YA6uJJRWpsnmPUFrD+xkn9/eUVPvQssGT4oi//dlId5Qet+c/S96Raw/t6wPNJkdARVFesN/N1Q3vQ4hxws=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=ilu4rJys; arc=fail smtp.client-ip=40.107.93.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=gaCq3nHDtUz1zFxI+EAiCU1bKaaofUn/XHoFR7yPK9XHVPljeSxHyMtVVgzLg1n6QvmaIfuScipBxQTNeqGLxYKI4X5DJ8Mq5BRRPpO6P3z+4IJqq8heSqRxlIZRUqFnDvKzbj/mGExGS4arhj+geZHLQun0YDIG04cX9jffpeLwMkVy3GqLQKGYKVEObZocXLO4xANKAyQ2cYi5Q5+PKImUj6+KJVq+wwzqXPOSspcd6Gu9kmlOD9KhNrK0cPG1KVCm9M1XvmFVPfpt2qv6Mgu+pwWdkjc6i8LhA1ZFwW5bKM2t+ud9rhMJM1Yq4e+LIZn/wesb68zojGly/agH5w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=c7V7/0vmJoab5MCQDRK9MIUGn+Q5ZX1kpl6VgdfUkpE=;
- b=PdqBLqmICvE1N9qoY2iD2K/NCw+TVR7nKbCwVC5vcal6i1/IHZJ2Mv5a7DEJST2EqGiq4olVVh4sPp8wrw8u7DDK0YFtb9r3/ayAFLjfeacQCbn9QTvh1Mw/YsUBRXQeuf0PMlVYmATMDHXRD5jba0YAUDA5JpGd4YFGYAAKP5HVMQtEhnmPjibbINR9SHKzuFc7kmtF8quyNXsVAUPYnhL8DGSYMqmakYMYltLAWNH1Cu2VYdSLHGsUjHxgNkyQhJXMXLy4u1UTKGpq2SzkjYkKpu52ZlQYoS/K4emZDXFPhsLc0lz22t3s97eNBfr6ytlLkf1EPfExo0DJXgKZNA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=c7V7/0vmJoab5MCQDRK9MIUGn+Q5ZX1kpl6VgdfUkpE=;
- b=ilu4rJysGCvB2moVEwfE8UhwwsXRN+0+EmCcUupwO2XViKUXFW4qfB5vPfR0X1fSla5YYtHQ10aEMeKt/URqYwwuvYxxI2cADd6tTHasfkoocl2ZP9nznzJKPnkshUp5CxyAtGNQTG1pqyZNwesa2ofqKuTujWDMGqRTKXVYJsMZl898KYWbCKQJF1OYwoqiqvQ/2rEFk94L6WbuoFG3VJacWcL6M/whX6gKMDPByYnOTRK5DW37wHy1CZk7+N8Id6YdOWhvLHsV6OdNMwWoAVonkq7gcwCRNofW2em94nZeu/By63Rmu4wQMIRP825HOgOaS9YOW/twIppQLz80TA==
-Received: from CO1PR11MB4771.namprd11.prod.outlook.com (2603:10b6:303:9f::9)
- by SA0PR11MB4734.namprd11.prod.outlook.com (2603:10b6:806:99::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.18; Fri, 4 Oct
- 2024 10:33:36 +0000
-Received: from CO1PR11MB4771.namprd11.prod.outlook.com
- ([fe80::bfb9:8346:56a5:e708]) by CO1PR11MB4771.namprd11.prod.outlook.com
- ([fe80::bfb9:8346:56a5:e708%2]) with mapi id 15.20.8026.016; Fri, 4 Oct 2024
- 10:33:36 +0000
-From: <Divya.Koppera@microchip.com>
-To: <o.rempel@pengutronix.de>, <andrew@lunn.ch>, <hkallweit1@gmail.com>,
-	<davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <f.fainelli@gmail.com>
-CC: <florian.fainelli@broadcom.com>, <kernel@pengutronix.de>,
-	<linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-	<linux@armlinux.org.uk>, <devicetree@vger.kernel.org>
-Subject: RE: [PATCH net-next v5 1/2] dt-bindings: net: ethernet-phy: Add
- timing-role role property for ethernet PHYs
-Thread-Topic: [PATCH net-next v5 1/2] dt-bindings: net: ethernet-phy: Add
- timing-role role property for ethernet PHYs
-Thread-Index: AQHbFjwHeEqE6dnMWkKCx44uMgSVO7J2ZQrw
-Date: Fri, 4 Oct 2024 10:33:36 +0000
-Message-ID:
- <CO1PR11MB4771BFEB270D7F3210744C21E2722@CO1PR11MB4771.namprd11.prod.outlook.com>
-References: <20241004090100.1654353-1-o.rempel@pengutronix.de>
- <20241004090100.1654353-2-o.rempel@pengutronix.de>
-In-Reply-To: <20241004090100.1654353-2-o.rempel@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CO1PR11MB4771:EE_|SA0PR11MB4734:EE_
-x-ms-office365-filtering-correlation-id: 3f853837-5f78-4230-4c6f-08dce460011e
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:CO1PR11MB4771.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(1800799024)(366016)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|376014|7416014|1800799024|366016|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?ZeWXCn8C+DlOZLW8oytkZ+MiU4TKxracOPSW7bP1BPNQje4uyWq+ojP1+vZ3?=
- =?us-ascii?Q?BG1PzuETw3wmyBpVSnRsDsjmakwnY68/o/MRITOYNrqs/cU7m3tRerOuExK2?=
- =?us-ascii?Q?pQUoP4clfqwL8vTwTBgKHBa1kmXbDcb40y6JWBic0dVv0NP6kbxnV+vSvBHN?=
- =?us-ascii?Q?jMEXejhbJZsA6E33vVraonERLpVzf6Tg+gapKG/XipXM9ZovaaTFbOt2c+WU?=
- =?us-ascii?Q?wq7h20au9QLGJBz9mCB5Bmg2gXOleZD4ymNt+uU7jrpmzPNIo3F99hUPAaW5?=
- =?us-ascii?Q?5B0u3z3cAMkRBwgrrnWRi0vYNMNL12+E3c3hztEN+LN7IlQOvIN6Wky96TQS?=
- =?us-ascii?Q?Qu8q6rg8Bug/l39ktaZqGmlhOAYPbdeuoG9TelbbzIa/SkSVhygWtArknmJb?=
- =?us-ascii?Q?PZpb3Kh8iJ6FEKqFRcq8c0CQiv9EeB+Xonh4JN5cwN48ggm9cpm6Vo5EISE0?=
- =?us-ascii?Q?XgFfD9dT6s8U4wq6fgUhOtZVIpSR3L/SkBGW2hzUf+azJgd7tWYcMKLw7Lme?=
- =?us-ascii?Q?Py7oKtwu1c7xRNLFwp+2wjbnmLcPEjsRJkHRi5Do0W4bmRqyH1u3c6oA8zZf?=
- =?us-ascii?Q?t66xPSjY4f7u52Uobw1XViHBmGAW0pHauH6pbQoN8EBycj8ASrpvXSSg/QSA?=
- =?us-ascii?Q?tbdax3zhY61WVpbrzz37XHzZrsLKJEouj0qbVGu9mbLoViuxNlWYxq1Py/Yq?=
- =?us-ascii?Q?SwTHz97ZJymVwrXf2Z1zfsJbUlyfqYbnvTman2oOXHqBodX++UuSrvsLm82e?=
- =?us-ascii?Q?xZB/bsE/JzlLHmMHtOadzXA6UrkwvaqC5Jw68/2aD5yWb0GbyjjU/n25hV+5?=
- =?us-ascii?Q?aG7PXct4HxDEu2jXpi4OBIudFyxHgCxhHz3j3tNID5eCsDChkJISmTtvws1i?=
- =?us-ascii?Q?pB+7lm/gv0H7fuq1OWrAyUGzrw5387DZM+pCKN4/BH9kXQl7zEZ6lf5g2bKR?=
- =?us-ascii?Q?2TJPxfajl8eEx6RBT4jt+2m7likRaZUZbYhhCbFWFz0Q8iMTTYjtt5niIMps?=
- =?us-ascii?Q?6Vv4LGwcMR5hp/Am9MQw8P9WPOmKNoCTvTA6FupgDKd0bU8fobc8HaTwmiBO?=
- =?us-ascii?Q?yNy1ap8vtQ5zXxJmgrbkIecLF//Dm531HhFt+p4k0bsUfXD890XLq8Yvo8yO?=
- =?us-ascii?Q?TC2Yihwlgd32au1WzUVXR0S7PfwI53VgJLjl5x4fp6jL4zSCvZXX7mZAEBDY?=
- =?us-ascii?Q?HUqaV9RWrHEtfj5pra7gifMcpOTP9N1LVR1lBofFNogQ5v1qNk3Aug6nz6J6?=
- =?us-ascii?Q?u3YnbTQ7+slEdgEYirNeskt5H1KeqwVZasQroZ4PcW91mSq/DQapDPrHqBP4?=
- =?us-ascii?Q?PWfu8KaFX7KGaDAfKLwgZzgcNfzbzdNVLqiq79AzaHyNzBrFVka8dmgzpjhV?=
- =?us-ascii?Q?sfOK+6o=3D?=
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?2aVDaBQtmbbGSY4jiKMw7HmLIKT25WSeuObI6IMUM2RA5LywGtMuEXXD3Gec?=
- =?us-ascii?Q?13c+wGOCjYOrCva+xUiKnUHqjPU3JN9IOnYz64ITRyTx2675tKhxXev/aZbG?=
- =?us-ascii?Q?/Y+0u4ZVx6eF/+2J3ESo3r4ffuOBTv6nv6uaGa2v5bl3MRsG6O2Ytl/8E+nq?=
- =?us-ascii?Q?xXSC+jeUFhs/6OI7zHUEV147V8cUrpZ/qWYlFo27QbKHtahgfCIvbinmqY6L?=
- =?us-ascii?Q?hmPEUEoflVi1ZWHMyGcRGFeiaWDzJmewOVzxWZnmhoewPXNLSgFwcky9NLpq?=
- =?us-ascii?Q?ZfTWAH/oFYUM/z6/B04yG3eY+1mtvf7g2KZSPEKec12+5/EZxFlq7GdXnW89?=
- =?us-ascii?Q?g4LUTB9F8+OFynLMHdoAGZQ9p+MaqMnL/BWEHFRdIan4Q+TBIv7jKR+dnpr5?=
- =?us-ascii?Q?uzPyq6d5N8ZVYiZmeY901UlCvBwKm9HL23vbOEvxeZsIxGfvc/U4Y6UDdWx9?=
- =?us-ascii?Q?97v2JSqmmGFFbmd5PYv+2cB7PVHb8RkFIM2V+CUc3dIHP0scJKnlCpcuZ+Jd?=
- =?us-ascii?Q?Z5j2IRax1LWPfHAboSlv+PbtA7iiXGaZFlwkZGTqaeunrH2p3QLPNk7BbOzF?=
- =?us-ascii?Q?MNbaUZtGrjR02xGUVX6CgJiwr1NqH07Rx6mfxaG22Arh0cwSwNnn01nwQfgl?=
- =?us-ascii?Q?JHOiiw/Tn9k7GNrFng9vCi6jW1MI38kQofyYZyLd4XpHHMrs+UvJ6g6iQp5h?=
- =?us-ascii?Q?9BDms6f+CVv9pLEwu8VmtZUaHN08oIAed+PS97XNU9UgQczeZIHUjV0wge4i?=
- =?us-ascii?Q?M1osUfSR3F26Vf3Xmdv4AVj9Wb6w5jTJAtahQhbi5AmpSUCct2YOSieQ/B8D?=
- =?us-ascii?Q?y8F5t+7v+OUxtUfhvwI1xT5dn8oQ64uOAWKs0gpHk3weQ9pJ9v8w70mhHpy9?=
- =?us-ascii?Q?fcs1eKreG/vyTJ6CD8U0NqgtoG9vn4RV7YaRDGtcZHf1EoaOMXf9+YpkCUrR?=
- =?us-ascii?Q?HyhlyUUccNHOGymGdHq8/3xFTMSsWZkNOFv7t7LTdFm0l3tj08mLAC3qXZij?=
- =?us-ascii?Q?KCF9Iqwro1tmONaqKtP/zqHtBSO2a7O08DDnDij9Z8ebfAHZHINt5O4HkyLZ?=
- =?us-ascii?Q?PBeZtnfm3Qev2U6gx0MzXxXlhI5I6N/Hgfsh9xUYcwLnps84E76LLbnvbAa0?=
- =?us-ascii?Q?+lSM/2XDT2hpB5a0e5/6lsnFBKzKJV+hMZfGrq3YaWTqMUJZ5prokJBWYnxy?=
- =?us-ascii?Q?MjQeXFDtuJI1yH1LrjZ5EMxDlHwMyWykb2NT0bEFy25O66vXGEqp74dWUdRr?=
- =?us-ascii?Q?zv6z7tfDgXjTcFz/pq9xw7UjMzcxiCUI1/RAqfPY0csRzctqdOdKLq/DWuFF?=
- =?us-ascii?Q?hNTj8AKlP8TrOCOaQfgfZPPiU4g7GVk98VVeGPtX6WhpDz3VQm0ZpwrXGmoV?=
- =?us-ascii?Q?9ryj1O81m21uyitAb75ZkgUHQLSJrnfxpiGZpNxZqKFW2dOR5YZI81si3L4u?=
- =?us-ascii?Q?Dn9Ghhci3RAxUCUUidHdV1JXIOPPxe5K2/kdXrKz2kzlUGf1TgZ0XFMK9KMg?=
- =?us-ascii?Q?0kGBvfMwgj5HyKWbCSFfieq5SuDC5ZDGVp6qyYjqUd8/JvQFtzRxZOkjakDF?=
- =?us-ascii?Q?4kxW41SAT6CgQ2qOFSkgWh8UbEyix3gGh3azIqRnxC74rWFnTJvhXlK56T03?=
- =?us-ascii?Q?tg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7DA179BB;
+	Fri,  4 Oct 2024 10:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728039175; cv=none; b=XqywJ/DrEE0NWGPEAmAYilYcfq7Dg3qnxVdAcJqGtztFIaOQR6DsWSU4AW2IjMt+g0JykFfxu6vRECffiGeHZGtGwrIOpgTPafjNz4PW1Y9JxK51Zs9RU1ZztHz5wFk4q85JQNtGwgYj3HrysK6jHhX3twXErMgI+cCw3nzX8bk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728039175; c=relaxed/simple;
+	bh=pIzOVuVkhc6kXYknrVsMeJOUS3LdK2O+DEcJWZ9sVxw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=sRF6D9xEmZEhLE21HKpWsncyNuZmmWEI7rd0zAoP9tEy5RKHElOKO54ex33SoHC/NbDGWqJHWZEsFtol/GrJz6FgAWNwC8xt39PyN++OqqERf7TXWCPcAe92n71iYon8+Nt9mPHP3qkGnVsZkT7K9JVlknFuUqIo3IEOV3ko8JU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=J8HdUDO5; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4940ANIJ030783;
+	Fri, 4 Oct 2024 10:52:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=o5StGxFF1dJTjqxaY/vycE
+	WOR0pN7tlMnFVa5OPOTGI=; b=J8HdUDO5QeTbSmF76D8AdWkL5lG1d1KjRmPoKo
+	luyZXQ0ph5Dsd5cYDb2ARP0rw1QEpz2kUzifDzKIRFJmhIw5X7YP30VAwnn7PfZs
+	TFun3T0x1S3sPE6S7YGR9RSdUE+V1CFUaPZ7bgzyPzwH+fBzlBKt49RdmO9jaHCs
+	RbOp7aKy1V8uG89DJvtQ+4PRUjdN/4tc6h9FGwEqqHG0AovRXNUjjVSNA0q96iOp
+	s92QECZNQ9S5ZIb736wwWFC0VsyVPng/g1EChZtUQMpbRquSWmYuiW4/Piro33M+
+	MGGAh9gS4qcscsAM1gPJjGR2ARGgK+lcmY5D5iLWFcQMIpCQ==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42207v1tsk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Oct 2024 10:52:49 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 494Aqm4Y015789
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 4 Oct 2024 10:52:48 GMT
+Received: from [10.213.96.105] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 4 Oct 2024
+ 03:52:45 -0700
+From: Vedang Nagar <quic_vnagar@quicinc.com>
+Date: Fri, 4 Oct 2024 16:22:31 +0530
+Subject: [PATCH] arm64: dts: qcom: sc7280: enable venus node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB4771.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f853837-5f78-4230-4c6f-08dce460011e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Oct 2024 10:33:36.6297
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d/fDCPvkqet1gVRol+TD8r4D7viAzEbgelMjYtgSif3gnxaWijxAOG2h0XWUiw9UM1rTPx22NElbGpNL1uWLNO+fPFEY3eX5BsyRqvCmH9E=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR11MB4734
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAO7I/2YC/0XMQQ6CMBCF4auQWTvJtEUErmKIaesUG7VAK8SEc
+ HerLFz+L3nfComj5wRtsULkxSc/hBziUIC96dAz+mtukCRLQaRw4TCnS7InWRNWpdSVqYV2LCB
+ fxsjOv3/cuds78jRn9bWPf7QtviQ1QuFkn1XZENrHYO9oh+B8n5Ckapwio405touAbts+qnQnK
+ 64AAAA=
+X-Change-ID: 20241003-venus_sc7280-642a6b81afe1
+To: <cros-qcom-dts-watchers@chromium.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Vedang Nagar <quic_vnagar@quicinc.com>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728039165; l=1178;
+ i=quic_vnagar@quicinc.com; s=20240917; h=from:subject:message-id;
+ bh=pIzOVuVkhc6kXYknrVsMeJOUS3LdK2O+DEcJWZ9sVxw=;
+ b=KOHoooR36wnmJL8Y1riiFMamayZK1AvTbW0biugMb1sjHf0GZRig97I6xSop4n9H6i2HbSj7q
+ bvqyOnHmnc0BesOVGBqQOegvk9bfczjI+lEqOST363j4+Zb7jCgD4ic
+X-Developer-Key: i=quic_vnagar@quicinc.com; a=ed25519;
+ pk=GHqLT8NPue4v+CDHbZork8Ps39CBHq345GQKvCZ1glE=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: c6tkVEw-SvAoFOS9x-evQZjBokLytgrM
+X-Proofpoint-ORIG-GUID: c6tkVEw-SvAoFOS9x-evQZjBokLytgrM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=4 mlxscore=4 clxscore=1011
+ bulkscore=0 spamscore=4 adultscore=0 malwarescore=0 priorityscore=1501
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 mlxlogscore=133
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410040078
 
-> This patch introduces a new `timing-role` property in the device tree bin=
-dings
-> for configuring the master/slave role of PHYs. This is essential for scen=
-arios
-> where hardware strap pins are unavailable or incorrectly configured.
->=20
-> The `timing-role` property supports the following values:
-> - `forced-master`: Forces the PHY to operate as a master (clock source).
-> - `forced-slave`: Forces the PHY to operate as a slave (clock receiver).
-> - `preferred-master`: Prefers the PHY to be master but allows negotiation=
-.
-> - `preferred-slave`: Prefers the PHY to be slave but allows negotiation.
->=20
-> The terms "master" and "slave" are retained in this context to align with=
- the
-> IEEE 802.3 standards, where they are used to describe the roles of PHY de=
-vices
-> in managing clock signals for data transmission. In particular, the terms=
- are
-> used in specifications for 1000Base-T and MultiGBASE-T PHYs, among others=
-.
-> Although there is an effort to adopt more inclusive terminology, replacin=
-g
-> these terms could create discrepancies between the Linux kernel and the
-> established standards, documentation, and existing hardware interfaces.
->=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
-> changes v5:
-> - s/force-/forced-(/g
-> - s/prefer-/preferred-/g
-> changes v4:
-> - add "Reviewed-by: Rob Herring (Arm) <robh@kernel.org>"
-> changes v3:
-> - rename "master-slave" to "timing-role"
-> changes v2:
-> - use string property instead of multiple flags
->=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
+Enable the venus node on Qualcomm sc7280. It was made disabled
+earlier to avoid bootup crash, which is fixed now with [1].
 
-Reviewed-by: Divya Koppera <divya.koppera@microchip.com>
+[1]
+https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+
+Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 3d8410683402fd4c03c5c2951721938fff20fc77..59dafbeeab1dfd6e1b021335ba1b04767d6c24e5 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -4288,8 +4288,6 @@ venus: video-codec@aa00000 {
+ 			iommus = <&apps_smmu 0x2180 0x20>;
+ 			memory-region = <&video_mem>;
+ 
+-			status = "disabled";
+-
+ 			video-decoder {
+ 				compatible = "venus-decoder";
+ 			};
+
+---
+base-commit: 81ee62e8d09ee3c7107d11c8bbfd64073ab601ad
+change-id: 20241003-venus_sc7280-642a6b81afe1
+prerequisite-change-id: 20240913-qcm6490-clock-configs-0239f30babb5:v1
+prerequisite-patch-id: faac726ebdf08240ab0913132beb2c620e52a98a
+
+Best regards,
+-- 
+Vedang Nagar <quic_vnagar@quicinc.com>
+
 
