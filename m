@@ -1,151 +1,222 @@
-Return-Path: <devicetree+bounces-107693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 291F198FCB8
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 652DC98FCD7
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:52:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBB5D1F22E24
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 04:23:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8D831F214CF
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 04:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC983FE4A;
-	Fri,  4 Oct 2024 04:23:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2877E4963C;
+	Fri,  4 Oct 2024 04:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="E2dufXz/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jsVVIcCr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2549139E
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 04:23:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FFB19475;
+	Fri,  4 Oct 2024 04:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728015828; cv=none; b=YcCmmow886ADjBESa/61B2k2vB0xiy0iLXt1GdpBum/CQUkLAFADma6kUEel0bmpbF6vt38PkBOasCeJeRBNbsBwv6hL5LhpoxVXuZ8iOyNJWQvZLQ+UZpiugfCzvvcjJoNu/kANuUKE4/aI4BYbEuZ9KdbLQSmv0UwpYOCtRHo=
+	t=1728017535; cv=none; b=KHjw+Bt38wQpUQsbaNAhJHQ9tgaZ+JVYIGE3K4aKdx3hmWJMbzwOQiaYdgTaTZ8+XWzdifXOD5er/94RfCNbkhdZL7ByULwlVfXBhFoh6CN+h469NrICWskg5IfSQpDaRs51hcrPRxuHtbwD5urWMgRFlTnocv4b4vh/heoYqvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728015828; c=relaxed/simple;
-	bh=c07CGN9V7S94OpNYn9IkfSzVCR8++ziq+96vBX0stQo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jDaV7+TZRo+za+PZHSyIzfmGjklfaM6vNml46yhya81vSenEN9gZTRlQ6iG4gIgNvhE1O4VNT+ZIPhZh62t6u4EZ99BBN3bQmAxN2LcHFfighu/sdGfar2qqR41qYP/wlNDVbmIxqrvcWi8sPm7MApMoGuCNr8Ciy+TQA9R/RCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=E2dufXz/; arc=none smtp.client-ip=209.85.221.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-50958a19485so462751e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 21:23:46 -0700 (PDT)
+	s=arc-20240116; t=1728017535; c=relaxed/simple;
+	bh=ejP5C1AYJ38+W4qMlT4oQl7oYkorNke0H7+dJlDwP6s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EdVglQgQSAevMRgK+P6+X8a2w3j0Uj7H6LL92ajvBLRT7JFHE2rSSLRuNpcfoqceIgyHulqHuTbCsvB4a4Xlqlu45huWDKHglqSVFuJIM28GSxRTIHjm9OSI4ltZ41k7MarZchXyxJA8s9Yfm0D9IAtFBqg6ACKSNxRPYA7QmcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jsVVIcCr; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-7cd8803fe0aso1189783a12.0;
+        Thu, 03 Oct 2024 21:52:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728015825; x=1728620625; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KQJli9cYBSHQhmqFSBnQ/Z74/l32FKm9tuU98/RCsm0=;
-        b=E2dufXz/Bds/VILbGiPPj2tS0VZAFCtdaQAAYo0Kk/jtbvwO6EXh0lTrfepZINfhVT
-         2zr+cwAVCxSuznMt0oscGyl4yWLmxxwqs7EmcAdMocvkeqkyLg+TvLoLnM6C1iZ5jkuJ
-         PGBWjz0RVnKfdTMpUZXVAVjy0R4xDr48huCMg=
+        d=gmail.com; s=20230601; t=1728017533; x=1728622333; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Q1IhYiz8eeuWL6vj4hcFX9KVycQYMBC7VkQ15SzUmc=;
+        b=jsVVIcCrgBqEZaTrZYn/0tSw3EW0go88Znwg8lW//W6edIVSj6/MCiZiC8uM8Bt5kd
+         i5K42DI4SqvtG/nIzQoKMFvLPhuUWtMh0WQGmRX5E8y2mYasQfUSNdd37+4z9oMo0xoj
+         cHpLnmWV+i1qlIanJEJXFtetGuZRj6moknjqpvG3sHVxxIL8zmEFDMOlZvlkHTPs+7Wc
+         PCmBukrv8TQxVYJai6otJ9D0MOsXrOrt0J2bRo12KfEiTh9w/0YAx/M08aF4K7XX/k0S
+         qK1b0CtLukUW8ncqEXp44Zi1qqSAq7Mao1M86zmR7g7GrHotODFV2vUpw45vukIZSZ/J
+         obtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728015825; x=1728620625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KQJli9cYBSHQhmqFSBnQ/Z74/l32FKm9tuU98/RCsm0=;
-        b=NfGVSpekHqNr/u6XKIlI+mc+oUqO8XdeW6eMGcYihD2X1C1DYA8D8Di0Es+DOsPtkd
-         p1X/zk9B5t71jxX8TvyeFaLuof04q/w4sqmdTRxJXpAnZem6I5oFDShByzRzIMyJBcE/
-         2QiA9Dmf38XeoGt1cWiNnp25nc+h7gA3XfwLcWCgDizgPHGg0KZDnZCmkaiu5OTg/JqT
-         6jlGJehT27wMCwXd005zLWpk9lQ+u8fFZGi1iYr+BEgHdcZYZvE9aAUQwqzNvqxGGAK2
-         mDnkYz2bocbeYQAA+xDFDPFeQO/PwkNK5E49u/stQSK4SPUSEn8c+Fr7fq8hkTBIKv5R
-         w7Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCUpeBQToqNBSm9N0vFJyUbAF9P1ZUbpUB1CFiZ2/W6/2ldZZ1TzlaLYWfySErjNUH97O/tJCpGRhuP+@vger.kernel.org
-X-Gm-Message-State: AOJu0Yztz1cqyF9vXT+gObD7bRtDGjaXymvsb284ZeefDdXTcWFRzLnJ
-	DpyoULRpr1sZNHkc/uP1aN3qFhDblrk0K+jHvGIogVfWa8DMjtSGKriX9/Dz+9m65VGulgKMDB4
-	IZQ==
-X-Google-Smtp-Source: AGHT+IEGDFl4zUj1OUY7TYLgDNkyZILdtYu+4VxkfpZVZAMM1BV4EC4n/jaYTb8jQrWdh/ht7p35aA==
-X-Received: by 2002:a05:6122:2508:b0:50c:5683:ad8c with SMTP id 71dfb90a1353d-50c8559a156mr1054035e0c.11.1728015825340;
-        Thu, 03 Oct 2024 21:23:45 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-50c72c03b21sm356761e0c.41.2024.10.03.21.23.44
-        for <devicetree@vger.kernel.org>
+        d=1e100.net; s=20230601; t=1728017533; x=1728622333;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Q1IhYiz8eeuWL6vj4hcFX9KVycQYMBC7VkQ15SzUmc=;
+        b=pjtZgrYbN40pK8sAD9f3kRYIPBjKs+49pPrCiEyNfLVcFxWg17kGU74RqGOHqFU8qn
+         OoO6NUhJQkTofEwH8hO400+cphV5t8OlREeodjzEn7sSGwGXCjMWCXSbT0kbCt7DP258
+         0UQNNARVM1X8BxzV1ybp/doPQHS34FFpWSntCDQ99hD4/RWExI30vmTkMZxnjOJy2ow7
+         68Y+PUhQCeKp7Q81U7SSo85VHsTntiwChiPNnnhIdVoY6MZv9+ZTSQt4JjDBbdkYObqo
+         91e9uX0jHeOGMGr176XH50/ONA2c5XHzPY8p9PEfVKbNCVcG7w9CSP2+Q3wHy9yvN1LX
+         XGxw==
+X-Forwarded-Encrypted: i=1; AJvYcCUTxvIMHWPxHcYkoI1U7anp/O/MkejA76tZEaARvV/Yc8NW9jyC0A5h+8GchmIVkXbeWJSkpGHh6H9FNRu4OZL9@vger.kernel.org, AJvYcCUaJnqp1G/NBZWbCVbkYt8usB7EaOVyiXkcPTJv+MmmfQoz7nW93iKpucN3g4WWrP7+oAWKpSNsaCiS@vger.kernel.org, AJvYcCV+B2mfKVrPuadZdcJ5mkffv1EeDSW6CJDzydohORvToNpHVpo5jU6wF70Ru4CkvhnYHd4KHU/iXTa/k+6I@vger.kernel.org, AJvYcCVIxOO0upR4knWLuQMUAw5/VVAzqQs4ZzMeewTD/u6DbAEZGIoaAbGgyYwM3rcSOXZS8DFYG8YPskZF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfidzG1+ZsxoI/T3qtTP/OynPW7rEVReLhGDOG8Sc6aoXIT0Ea
+	4zy9ZowFDQmikVAeGOokenVe+IFTmFQrBVBYq0r99+yai27em037
+X-Google-Smtp-Source: AGHT+IGm4NXB0dLG/zomksnWRf8sdveV8TTKKHWO87H38b6WLnVZwIb3Yj3+5q4BwboQFIMAi1N3mw==
+X-Received: by 2002:a05:6a20:9f8f:b0:1d6:8f33:fb64 with SMTP id adf61e73a8af0-1d6dfa2495emr2264224637.3.1728017532628;
+        Thu, 03 Oct 2024 21:52:12 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71dd9df2bacsm2360585b3a.170.2024.10.03.21.52.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Oct 2024 21:23:44 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-84e808f3c3cso450741241.2
-        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 21:23:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVMr02KgZsHY8fikbTD0HziGmDrtzHrgZtqqltqSOVFXgBdSytXA+GUpeeGOCKj9MVkAEfNTdCncADO@vger.kernel.org
-X-Received: by 2002:a05:6102:3594:b0:4a3:aa99:5ef1 with SMTP id
- ada2fe7eead31-4a4058f7e87mr1271634137.25.1728015823875; Thu, 03 Oct 2024
- 21:23:43 -0700 (PDT)
+        Thu, 03 Oct 2024 21:52:11 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <cb1e0119-6e3e-4fd2-92ea-3fec18f5843d@roeck-us.net>
+Date: Thu, 3 Oct 2024 21:52:09 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003070139.1461472-1-fshao@chromium.org> <20241003070139.1461472-4-fshao@chromium.org>
- <d3052eb4-bfcb-4ee2-9b4b-a4845238c765@collabora.com>
-In-Reply-To: <d3052eb4-bfcb-4ee2-9b4b-a4845238c765@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Fri, 4 Oct 2024 12:23:06 +0800
-X-Gmail-Original-Message-ID: <CAC=S1njNEZvu=ay9+4qXQ0xYN+CQjCbr2oV+1RvAK9q5oRRDjw@mail.gmail.com>
-Message-ID: <CAC=S1njNEZvu=ay9+4qXQ0xYN+CQjCbr2oV+1RvAK9q5oRRDjw@mail.gmail.com>
-Subject: Re: [PATCH v2 3/9] arm64: dts: mediatek: mt8188: Add MIPI DSI nodes
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
+ struct clk_parent_data
+To: Stephen Boyd <sboyd@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ patches@lists.linux.dev, kunit-dev@googlegroups.com,
+ linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow
+ <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J.Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Daniel Latypov
+ <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20240718210513.3801024-1-sboyd@kernel.org>
+ <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net>
+ <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org>
+ <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net>
+ <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
+ <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
+ <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
+ <f5f1c42d-77c0-48c7-ac52-3d4a3b5c2b47@roeck-us.net>
+ <4a8abb5f501279de7907629f4dd6be24.sboyd@kernel.org>
+ <3e1de608-008c-4439-acd2-647a288dcdc0@roeck-us.net>
+ <cd31493888acc2b64a4986954dfa43ae.sboyd@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <cd31493888acc2b64a4986954dfa43ae.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Oct 3, 2024 at 4:36=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 03/10/24 08:59, Fei Shao ha scritto:
-> > Add MIPI DSI and the associated PHY node to support DSI panels.
-> > Individual board device tree should enable the nodes as needed.
-> >
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
-> > ---
-> >
-> > (no changes since v1)
-> >
-> >   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 26 +++++++++++++++++++++++=
-+
-> >   1 file changed, 26 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot=
-/dts/mediatek/mt8188.dtsi
-> > index 23101d316c4e..719d2409a7db 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
-> > @@ -1839,6 +1839,16 @@ pcieport: pcie-phy@0 {
-> >                       };
-> >               };
-> >
-> > +             mipi_tx_phy: dsi-phy@11c80000 {
->
-> There are two DSI PHYs, one at 0x11c80000 and one at 0x11c90000
->
-> > +                     compatible =3D "mediatek,mt8188-mipi-tx", "mediat=
-ek,mt8183-mipi-tx";
-> > +                     reg =3D <0 0x11c80000 0 0x1000>;
-> > +                     clocks =3D <&clk26m>;
-> > +                     clock-output-names =3D "mipi_tx0_pll";
-> > +                     #clock-cells =3D <0>;
-> > +                     #phy-cells =3D <0>;
-> > +                     status =3D "disabled";
-> > +             };
-> > +
-> >               i2c1: i2c@11e00000 {
-> >                       compatible =3D "mediatek,mt8188-i2c";
-> >                       reg =3D <0 0x11e00000 0 0x1000>,
-> > @@ -2224,10 +2234,26 @@ larb19: smi@1a010000 {
-> >                       mediatek,smi =3D <&vdo_smi_common>;
-> >               };
-> >
-> > +             disp_dsi: dsi@1c008000 {
->
-> And there are two DSIs, one at 0x1c008000 and one at 0x1c012000
+On 10/3/24 17:42, Stephen Boyd wrote:
+> Quoting Guenter Roeck (2024-10-03 17:25:37)
+>> On 10/3/24 16:46, Stephen Boyd wrote:
+>> [ ... ]
+>>> That DT test has been there for a few releases. Is this the first time
+>>> those tests have been run on arm64+acpi? I didn't try after sending the
+>>> patches and forgot that the patch was dropped.
+>>>
+>>
+>> Previously I had the affected tests disabled and never tracked down the problem.
+>> Since the problem is now spreading to additional tests, I finally tracked it down,
+>> that is all.
+> 
+> Ok great. Good to know this isn't a new problem. Thanks for tracking it
+> down.
+> 
+>>
+>>> How are you running kunit tests? I installed the qemu-efi-aarch64 debian
+>>> package to get QEMU_EFI.fd but passing that to the kunit.py run command
+>>> with --qemu_args="-bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd" didn't
+>>> get me beyond the point that the EFI stub boots linux. I think the
+>>> serial console must not be working and thus the kunit wrapper waits for
+>>> something to show up but nothing ever does. I haven't dug any further
+>>> though, so maybe you have a working command.
+>>>
+>>
+>> I run all tests during boot, not from the command line. I also use the -bios
+>> command but don't recall any issues with the console. I specify the
+>> console on the qemu command line; depending on the qemu machine it is either
+>> ttyS0 or ttyAMA0. The init script then finds and selects the active console.
+> 
+> Can you please describe how you run the kunit test? And provide the qemu
+> command you run to boot arm64 with acpi?
+> 
 
-Thanks for pointing them out, I'll add them for the second DSI.
+Example command line:
 
-Regards,
-Fei
+qemu-system-aarch64 -M virt -m 512 \
+      -kernel arch/arm64/boot/Image -no-reboot -nographic \
+      -snapshot \
+      -bios /opt/buildbot/rootfs/arm64/../firmware/QEMU_EFI-aarch64.fd \
+      -device virtio-blk-device,drive=d0 \
+      -drive file=rootfs.ext2,if=none,id=d0,format=raw \
+      -cpu cortex-a57 -serial stdio -monitor none -no-reboot \
+      --append "kunit.stats_enabled=2 kunit.filter=speed>slow root=/dev/vda rootwait earlycon=pl011,0x9000000 console=ttyAMA0"
+
+That works fine for me. Configuration is arm64 defconfig plus various
+debug and kunit options. I built the efi image myself from sources.
+The root file system is from buildroot with modified init script.
+kunit tests are all built into the kernel and run during boot.
+
+>>
+>> I'll just keep the affected tests disabled on arm64 for the time being.
+> 
+> We should skip the tests on arm64+acpi, which is similar to disabling
+> but not exactly the same. There will likely be more DT overlay usage in
+> kunit and so that will lead to more test disabling. Skipping properly is
+> the better solution.
+
+Sure, but having those tests fail all the time doesn't help either.
+I'll re-enable the tests if / when they are skipped.
+
+Thanks,
+Guenter
+
 
