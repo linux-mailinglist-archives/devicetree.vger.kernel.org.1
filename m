@@ -1,178 +1,190 @@
-Return-Path: <devicetree+bounces-107873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AAC4990448
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:29:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA3E99045E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:31:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 420E61C211DA
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:28:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FE93B24430
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:31:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB0D210198;
-	Fri,  4 Oct 2024 13:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46BC01D6DB0;
+	Fri,  4 Oct 2024 13:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HmKkVbK1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lb9E1CKk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA2B72101BD
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 13:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82D271D5ACD;
+	Fri,  4 Oct 2024 13:31:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728048387; cv=none; b=Ft2aUDjyeTMMzOSTX3scs46XljdTixf5yqwaDfwn+SoWwpptyApfGHJS9PFPDBYEDYkpTwv8uZaNv/1VyAFY0HnFjrBcSgIFOWtTJjrTjGOeVhyWLmUVTG99OZ/r7fjJHoKJ26OvrtyH9rzCafvtgx9coIs5KRYPO2yUKcm8yP4=
+	t=1728048681; cv=none; b=eKtogSNVOeUgdzIcs6zp2eUT1q9oXNoiA0RJW7L0KGd3cXaDICVu/cfZkHgy+mU96jL+xHu7X4CyIFEwtBepfYInFT614Xu+EDhAzF6YQnreMLR4HeuqZ6XTZZLLChzw0n12G3yVAiKmADFaEZ/vIL4YIXNR/WjpBbyg5OTbJ8A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728048387; c=relaxed/simple;
-	bh=kLpfYpjN7hBTTNjwKDBAnyESdPp55s0Z+2n88W92KlA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ujEYfJZOoMHHNx/av/VXNlhH/S40VBx7orSuz4wWQPYcEyTQAJi+3aGbo6ax1ofJGPq3ypv/y6hSqyiusxESzq3rB4DrXLLNRoEPduV0Tg9Wc9k1Y8c5V8U/NWyJp05ug16m2QTsVJvpMgkXsstmgGmQ7hT3uKzXktNzZ7hfhk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HmKkVbK1; arc=none smtp.client-ip=209.85.167.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3e04b7b3c6dso1128764b6e.2
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 06:26:25 -0700 (PDT)
+	s=arc-20240116; t=1728048681; c=relaxed/simple;
+	bh=Iu1gv/k8F2h1dC66UWRL5I/bhTJBJoJ3l4bcLLGXRwQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ZskJy5gHusHyVoCKAiEp7EWtGfyYEyFyqCk9+DQYtrzq6TW+/qLsFn3wc08uo9RHY7Mvt6NROIyV5Lljcx+GIv5/jgzzRHJzhwPlLCH/g7wmSqx3MOab9cZ64YSop7ZCTtXDeiHeLZkTZJCYLY3+V0EGOlZK5vfwjU9WctKqr38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lb9E1CKk; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a8d446adf6eso335974566b.2;
+        Fri, 04 Oct 2024 06:31:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728048385; x=1728653185; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dor1Hehoddjqsld8OAN62L2MZYDwDDLrJAOii0XS1Fo=;
-        b=HmKkVbK1dFA2DVvGH+MSywMUMlGwwbMVaEuv4cqlxgHiFZ9lowFRG1+qEK0dYkiIKx
-         McGrqJrO1FDp1YuOteurnD6IUZEEycx1pKw6XDPHNAJQVzTUsI5se4ULIZXkHTUt9h7M
-         G9xfm/U6UcZMUOL1Qs2PwVvZsFVN9zyOIJI+NOg2EFc12JtccAd5uioJmQjRW8pvUfOb
-         Rmp3DxsJI+HqT+kUPINiSyGs5+PLNbs//ZQDWYgxyIQAtJQgxpP8lW69L+TVQN1t8342
-         YhHH56wGqB2bCDRPBJfxzF15HASxnkbKpe3ex43V1HOzO2WukwDIEgBUQKNHWJbp7cUd
-         QdZQ==
+        d=gmail.com; s=20230601; t=1728048676; x=1728653476; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=6yETtxhYfKgePwSm8il+6GbuYmopjTBTmbDRGz8idKI=;
+        b=lb9E1CKkzAX2E8rLFBrQaEHam6DTYK3h0khqsRLXepdp9Y6rEGbp9FZH1/WZ57qWlP
+         eiEgYEM6JYq6oCxSDMgZhPMDbRNN0v8qQsWjCgGSns27B3ZMiRZLCHcUZ9eM6nGLkr5C
+         +RItxrXVYkfY38410tAKuraK9gBl0aJYGAMvzm6NLdBsGzze26os85KQTf9rvAU8oUjB
+         3CssObcQtyBOPjXESRiVPU699IY3B0f+Eo/m58iB7crclLLSeKJBwhhGQBfguOHo/AZt
+         v4ndsxO7uXmRv5672jhZDHffeAmlxHGspw5fruQ2J9uq99VMu8reH/q5bn0Tu68oeGoa
+         7Qyw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728048385; x=1728653185;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dor1Hehoddjqsld8OAN62L2MZYDwDDLrJAOii0XS1Fo=;
-        b=XSVflijRCyF2ziS2Nr3xJQazHHlGT9i1Fk0zv1tN4W/WlyxpIrg2pFqmuZC/axFp7d
-         Rf9Rrc/qoMj4VfaFEjjTFDBTb3ZzIcrUBCJ2x48WN34inEE/b/x1zxiUZ5QO0ohtZDni
-         XG76LJMc+MOfS3m21Ff4ZswwhcAQc9liEQEFNnkowfHiqDLOmKwuCnHY4WD+Uruc60z6
-         1DJeD012Kzu80kcUsIZwsErGAmnevjAIglKJ9ibcWrbUVcW/isXbRPjf+OfOr5ztoObI
-         aamiL4ksGqNnX99S39Yu12rkRXEC/vp+vuOS+93Myr+0Vt93cOxzAvZMte7+47UsgE9R
-         5PpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXzJ840aFU97S6RwTEaaCwZkOkM3nrW3jLcEnURi3GEAK6dYPWAEuF1XqNk3BeY050WJFIlrJr4ERLK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyymynYfURRp13fPuyVLnX7CC1Vr1gho4hQqr2Ts6YpB5P8YuV
-	0npbXucRuIh7tR1EA1kCyIRzw0uDY5jqimAQPyNNXczQaf3eTLquG2oPhRrbIJI=
-X-Google-Smtp-Source: AGHT+IH0fXZFdXaTWMBB85h1CntC6ecOa/OyBp/FNnm/vZ+UgPrGG35oP4F4wojgTWASo0zHEH563Q==
-X-Received: by 2002:a05:6808:3022:b0:3e3:97cf:2ecd with SMTP id 5614622812f47-3e3c155921emr1700339b6e.16.1728048384758;
-        Fri, 04 Oct 2024 06:26:24 -0700 (PDT)
-Received: from [192.168.0.142] (ip98-183-112-25.ok.ok.cox.net. [98.183.112.25])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-3e3bc36ef91sm959718b6e.34.2024.10.04.06.26.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Oct 2024 06:26:23 -0700 (PDT)
-Message-ID: <8faf440b-2ea0-45f3-aa87-db303dc8d6fe@baylibre.com>
-Date: Fri, 4 Oct 2024 08:26:21 -0500
+        d=1e100.net; s=20230601; t=1728048676; x=1728653476;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6yETtxhYfKgePwSm8il+6GbuYmopjTBTmbDRGz8idKI=;
+        b=vMDfjJBR2C8e9sCfiss4cbhyBa1y+f7WAbkrDtg98j62L8K48zJOTKUERJ+/SHVewO
+         nLXvRVY5nH7AXXPn9vhCD2CtAcRtGno89eRs1nBv2Ahub4mAD/AQccPFsgtVjR0+Bo6Y
+         OFk09BttTE12uljBfMiOOG4JThlJyrTlbyus5S3YiqbTO7Ijiw537JwYvV1iv+Ypul4A
+         LxNcl6ILP4bc/YF06MrGjJ+A6ki21eoa+zoGHLpfb9XJEdkE57Xl5goFZWvYg0ouL88Z
+         PqNekgYGAaLn5uPzerNTdHfCN5J9qWppG2FlXU2vp3K/Fc+XrgyZ5LcJA02vMuXOXdZB
+         gexA==
+X-Forwarded-Encrypted: i=1; AJvYcCVBEVfp1sCks0Ej+6RwvvE9W93AAS3baF0CnAI/xrEKGSyKYMRTxWps8SlaxhWm8504E74StDcOZjd7hX4=@vger.kernel.org, AJvYcCWXFmiPeJyNRfJru0j3CCFs02e/WzuoxZbyl6BOkZJv4GfARDi8DwZsfwc4A/T7QerzlPT5LYE044VkyysRHKoVBFk=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3VVo3UYmcdWJYq3iOs50nBMN1tVvq+EJWc46MabmPXloI8NAh
+	sSz80ymozVxE4BmuN9gPKljdusfWjUfHFcAFAPqGcJ3SMU0BIKXE
+X-Google-Smtp-Source: AGHT+IFTWB2e+/9sAS1muQWqQEY27QPrKJQFlfd715jG48tdjQfeL/fF/bJhskBq6A6/Ea/Sm1lxkQ==
+X-Received: by 2002:a17:907:70d:b0:a77:c30c:341 with SMTP id a640c23a62f3a-a991bac3142mr274226266b.0.1728048675574;
+        Fri, 04 Oct 2024 06:31:15 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:2595:4364:d152:dff3])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99103b36d0sm228486366b.137.2024.10.04.06.31.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 04 Oct 2024 06:31:15 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: r9a09g057: Add OPP table
+Date: Fri,  4 Oct 2024 14:31:08 +0100
+Message-ID: <20241004133108.779934-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 03/11] dt-bindings: iio: dac: adi-axi-dac: add ad3552r
- axi variant
-To: Angelo Dureghello <adureghello@baylibre.com>,
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Nuno Sa <nuno.sa@analog.com>, Lars-Peter Clausen <lars@metafoo.de>,
- Jonathan Cameron <jic23@kernel.org>,
- Mihail Chindris <mihail.chindris@analog.com>,
- Olivier Moysan <olivier.moysan@foss.st.com>, linux-iio@vger.kernel.org,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org,
- Mark Brown <broonie@kernel.org>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-References: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-0-ceb157487329@baylibre.com>
- <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-3-ceb157487329@baylibre.com>
- <172799847830.1778120.2943655597402379925.robh@kernel.org>
- <744n6dut2ayboh6gilavqy65bgljmu5sz5embvtxcq5v4fhp3f@pfud6d2hiplo>
-Content-Language: en-US
-From: David Lechner <dlechner@baylibre.com>
-In-Reply-To: <744n6dut2ayboh6gilavqy65bgljmu5sz5embvtxcq5v4fhp3f@pfud6d2hiplo>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 10/4/24 2:33 AM, Angelo Dureghello wrote:
-> Hi Rob,
-> 
-> On 03.10.2024 18:34, Rob Herring (Arm) wrote:
->>
->> On Thu, 03 Oct 2024 19:29:00 +0200, Angelo Dureghello wrote:
->>> From: Angelo Dureghello <adureghello@baylibre.com>
->>>
->>> Add a new compatible and related bindigns for the fpga-based
->>> "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
->>>
->>> The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
->>> generic AXI "DAC" IP, intended to control ad3552r and similar chips,
->>> mainly to reach high speed transfer rates using a QSPI DDR
->>> (dobule-data-rate) interface.
->>>
->>> The ad3552r device is defined as a child of the AXI DAC, that in
->>> this case is acting as an SPI controller.
->>>
->>> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
->>> ---
->>>  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 49 +++++++++++++++++++++-
->>>  1 file changed, 48 insertions(+), 1 deletion(-)
->>>
->>
->> My bot found errors running 'make dt_binding_check' on your patch:
->>
->> yamllint warnings/errors:
->>
->> dtschema/dtc warnings/errors:
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.example.dtb: dac@0: spi-max-frequency: 66000000 is greater than the maximum of 30000000
->> 	from schema $id: http://devicetree.org/schemas/iio/dac/adi,ad3552r.yaml#
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I think this error is just due to patch ordering. The patch
-"dt-bindings: iio: dac: ad3552r: fix maximum spi speed"
-should come before this one. (In general, it is always best
-to put fixes first anyway.)
+Add OPP table for RZ/V2H(P) SoC.
 
->> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.example.dtb: dac@0: 'io-backends' does not match any of the regexes: '^channel@([0-1])$', 'pinctrl-[0-9]+'
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+Note, this patch depends on [0] for frequency scaling to work.
 
-I've seen this pinctrl error pop up a few other times.
-I don't really understand it since none of the bindings
-involved reference pinctrl. Maybe an issue in the tooling?
+[0] https://lore.kernel.org/all/20240918135957.290101-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
->> 	from schema $id: http://devicetree.org/schemas/iio/dac/adi,ad3552r.yaml#
->>
->> doc reference errors (make refcheckdocs):
->>
->> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-3-ceb157487329@baylibre.com
->>
->> The base for the series is generally the latest rc1. A different dependency
->> should be noted in *this* patch.
->>
->> If you already ran 'make dt_binding_check' and didn't see the above
->> error(s), then make sure 'yamllint' is installed and dt-schema is up to
->> date:
->>
->> pip3 install dtschema --upgrade
->>
->> Please check and re-submit after running the above command yourself. Note
->> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
->> your schema. However, it must be unset to test all examples with your schema.
->>
-> 
-> before sending the patchset i did
-> 
-> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/iio/dac/adi,ad3552r.yaml
->   CHKDT   Documentation/devicetree/bindings
->   LINT    Documentation/devicetree/bindings
->   DTC [C] Documentation/devicetree/bindings/iio/dac/adi,ad3552r.example.dtb
-> 
-> no issues.
-> How can i detect the issue so ?
-> 
-> Thanks,
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+index 1ad5a1b6917f..396c95bc1b4e 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
++++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+@@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
+ 		clock-frequency = <0>;
+ 	};
+ 
++	/*
++	 * The default cluster table is based on the assumption that the PLLCA55 clock
++	 * frequency is set to 1.7GHz. The PLLCA55 clock frequency can be set to
++	 * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and additionally can be
++	 * clocked to 1.8GHz as well). The table below should be overridden in the board
++	 * DTS based on the PLLCA55 clock frequency.
++	 */
++	cluster0_opp: opp-table-0 {
++		compatible = "operating-points-v2";
++
++		opp-1700000000 {
++			opp-hz = /bits/ 64 <1700000000>;
++			opp-microvolt = <900000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-850000000 {
++			opp-hz = /bits/ 64 <850000000>;
++			opp-microvolt = <900000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-425000000 {
++			opp-hz = /bits/ 64 <425000000>;
++			opp-microvolt = <900000>;
++			clock-latency-ns = <300000>;
++		};
++		opp-212500000 {
++			opp-hz = /bits/ 64 <212500000>;
++			opp-microvolt = <900000>;
++			clock-latency-ns = <300000>;
++			opp-suspend;
++		};
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -30,6 +63,8 @@ cpu0: cpu@0 {
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK0>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		cpu1: cpu@100 {
+@@ -38,6 +73,8 @@ cpu1: cpu@100 {
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK1>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		cpu2: cpu@200 {
+@@ -46,6 +83,8 @@ cpu2: cpu@200 {
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK2>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		cpu3: cpu@300 {
+@@ -54,6 +93,8 @@ cpu3: cpu@300 {
+ 			device_type = "cpu";
+ 			next-level-cache = <&L3_CA55>;
+ 			enable-method = "psci";
++			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK3>;
++			operating-points-v2 = <&cluster0_opp>;
+ 		};
+ 
+ 		L3_CA55: cache-controller-0 {
+-- 
+2.43.0
 
 
