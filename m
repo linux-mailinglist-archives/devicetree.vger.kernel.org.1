@@ -1,314 +1,145 @@
-Return-Path: <devicetree+bounces-107928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107929-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 222E299076B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:27:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E83D9907BE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:41:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 65EABB20549
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:27:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5E681F230F9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FA04148316;
-	Fri,  4 Oct 2024 15:27:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BB04217326;
+	Fri,  4 Oct 2024 15:31:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="fwg+AOSi";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="p+Gt+bJy"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="iD5JhKCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a6-smtp.messagingengine.com (fhigh-a6-smtp.messagingengine.com [103.168.172.157])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A4EC1D9A43;
-	Fri,  4 Oct 2024 15:27:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.157
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637DF1DEC04;
+	Fri,  4 Oct 2024 15:31:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728055629; cv=none; b=kD2g9vb7GM7FSHqdU/9MzeOR5UUFFUxZJFCgNW0aFyooiUpCExxKTNjiykKexl9Gtc4eqIe+74ma1tXaictSwfIp/OB9LXAOGXMRoduDFcI//+rjOlZQObCmeMjVzW70StmvRx29EtmrBNHOr14xIqJdi2zTf0mfXBMVeYJjoIQ=
+	t=1728055867; cv=none; b=FSEVcS9jPoV9ehCuOojIb3TZYK2kk7FKCv+L6AaAYSp4oOd1f2TPt2CwL15KG56shZuQqClpcVAtUnETp83JTtecFUyTVL0Kv+2seLIzZOqWTcDXBfpDFcXTI9CYrIcKRXJpZZNdOmLLKUxmYU4waRE/8OfXQ2paQGOc/tbR9jw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728055629; c=relaxed/simple;
-	bh=nnezLlzRSKZI5ecZ+KHGLC+anXhicF8xvBnRHkpI+d4=;
+	s=arc-20240116; t=1728055867; c=relaxed/simple;
+	bh=hRUT7x36WL1tH8NnlxWOKwKJUK8woiG3Vticu4lEW14=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ouSki3tfdouMo1UAdH4ZQlWGnjpYEFocM90WObwvJeieyi/abeGNHIp+Bs+wULNGy7+CDXVD7BcTBnHlF4+lIz+5xNmHlgRy6TZbhXklgaUTGVw0I8Dr2qjDKsxFPhMQB36mkVQZRU2KdcxMoGL/6VWa8PFilHNAMS7TYrbaYyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=fwg+AOSi; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=p+Gt+bJy; arc=none smtp.client-ip=103.168.172.157
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-01.internal (phl-compute-01.phl.internal [10.202.2.41])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 3053611401C5;
-	Fri,  4 Oct 2024 11:27:06 -0400 (EDT)
-Received: from phl-mailfrontend-01 ([10.202.2.162])
-  by phl-compute-01.internal (MEProxy); Fri, 04 Oct 2024 11:27:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1728055626;
-	 x=1728142026; bh=GG4QI1g3TF4ytuP94yH1yIRt0/O0ibCdehL7DA06G1I=; b=
-	fwg+AOSi4cs2f5z8b9ZSPVzEhEW9jwiMT+K9Yg5AdmlAvjXLtXM2bmtyQjOW7A/e
-	TG+sCYGjJuZ9Tk0G5wTVWzXmqR7HrIFTr0My/jl2avwzFbqtb/P6o7GZmRiI4gpo
-	LMJFmt1jBzNFkQtsuR8OJGDf/klfPR6y4WcHMqiEhaJ1n/3dekC6ZPSza2hCutrw
-	w3fIVmCgsIXx4E7pFhxuGNhn/uDZw3x7cumb0+703bbJ/G2AQ5l7yLjWgVIuOLNS
-	r9nq0uktbtf/7HpnpfUjNg80i5u3/bqM0IYMDe8pmlV19WxaJ3dMJdYeYLaYFY7y
-	q58Q4gVYdv4Iv4Pta0lQRA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728055626; x=
-	1728142026; bh=GG4QI1g3TF4ytuP94yH1yIRt0/O0ibCdehL7DA06G1I=; b=p
-	+Gt+bJyyJRewUEjS0c1Jl7eWwTZVIMUYGFAJ1ry1uQqVJuDv4F1/09jwfeAo1mgw
-	JWrz75ISjS4mUfltc6X4u7kNQ5QUJeQ800Ba7IXOvafVBv5NDmRtobB1NtrPmPkW
-	/Fj5edW1WyQfhQ3FwkuFtz5/662rX56VnN62HYIqEqgP0WJVaWpl51AThfcvD1V8
-	PJq9iGFsOT8kwnkN7ZB79/iNksq9L6e+BmYRpEiZQI0rO85FMCcW/3sB8b6+WScV
-	lT2INB4THcTs/ZpDvIYBa27Gp+CMEL6hjLv562uuT51jUJ7VgcqzmmscJjvooxRN
-	PDZvt0eW7m8mpSn2kHPfg==
-X-ME-Sender: <xms:SQkAZ6zplT5ZeBdWHL3jPl8EY4-t5u78qdLsB8zZUNvHSyFAKN23VA>
-    <xme:SQkAZ2QiSzC2rGbyfOfhUiLqsY52istdk-ij_Aa_TSrKgS4s-YKMhQtrzFs2Cd4g2
-    YsfRoNAmhKyFK3ZIhU>
-X-ME-Received: <xmr:SQkAZ8XUc3SGkYCiIEMB_33lKlGjrgYtA6uZuX221vO70IBiDx23GHwQN0daXiJSsNRRwDAB59xE1tBL5j16ILzK8ZCqwgYlVg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedgkeekucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
-    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
-    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
-    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
-    gvrhhluhhnugesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeevteeg
-    tddvvdfhtdekgefhfeefheetheekkeegfeejudeiudeuleegtdehkeekteenucevlhhush
-    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshho
-    uggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopeeipdhmoh
-    guvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhi
-    uggvrhdrsggvpdhrtghpthhtohepmhgrghhnuhhsrdgurghmmhesghhmrghilhdrtghomh
-    dprhgtphhtthhopeifshgrodhrvghnvghsrghssehsrghnghdqvghnghhinhgvvghrihhn
-    ghdrtghomhdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrh
-    drkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghl
-    sehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvth
-    hrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:SQkAZwgC-ua5HUgj8ILKRxWACXjojbib_dOSOHSVkhVl26vLtGBkDg>
-    <xmx:SgkAZ8DR6QEHSzM5mS5ZZ8m2ImTZushfeTZ40t1GIvxCBqXOsbrkQQ>
-    <xmx:SgkAZxJr50BepeJoTGjCMaZ8e5nJZHZZIdZlaO0P0VEFPS9gthPf4g>
-    <xmx:SgkAZzBU8E_dCDevkkmhU4uHZgvNgYsC-sXvGWbx1wkdk4IDYalKkA>
-    <xmx:SgkAZ-0RQR3Wuy_LK8Ho5-6zbH8CC6uOkZugbiaPILG7c7ohicY_ic2W>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 4 Oct 2024 11:27:05 -0400 (EDT)
-Date: Fri, 4 Oct 2024 17:27:03 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 04/20] ARM: dts: renesas: Use interrupts-extended for
- PMICs
-Message-ID: <20241004152703.GK2071111@ragnatech.se>
-References: <cover.1728045620.git.geert+renesas@glider.be>
- <934b9b9992dacd72dbad0f5433728aac292a3cfc.1728045620.git.geert+renesas@glider.be>
+	 Content-Type:Content-Disposition:In-Reply-To; b=umGxTt1E74B8mu34QBRmJWxRollu4xcQEU8ayTb+1NzJEe5wFyWKriB6SWoC4M22BAYgahuY+Ntqg+a2QH0LWrRCePXaLKb+jXwYMeOVUwVK95SNmzYkKti+4wEZw+uoALsVXdDSFY7z/+Eas29OZxXZ3ScZAy/TD2bSpBxYNRo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=iD5JhKCo; arc=none smtp.client-ip=217.194.8.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
+Received: from gaggiata.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
+	by mail11.truemail.it (Postfix) with ESMTPA id 95F5720B47;
+	Fri,  4 Oct 2024 17:31:04 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
+	s=default; t=1728055864;
+	bh=ccGcztWl7U3odd6O5dl9JTlXWZfdzQE/tBihuERy8RE=;
+	h=Received:From:To:Subject;
+	b=iD5JhKCoqsX41ju9bSHYiWRvUxeinPJ53MZus4UK5Oo9fC2WvLR/J8BK3GCyW9mTJ
+	 8JWa2knjTQ/xd6Fy06CW9kDQIgurEXQw5cpeRKCyfgOQFEkHGNfQ0P37alocBDPGef
+	 0l5CdSG0IBAU7+YwbztYpTi12H6HtQE1kunh1svSG7mcN+vwIJjSfFoY/ya7ELsIsu
+	 egcTR20emIcfx1Ht5NlHk4js4jyIyBcEmgaS/tYbJiCIe+qELO/MYLUdGR4pFl/Ykr
+	 PP7Z0EGXo9ufFfU7Wh4E1eox7DqiB+jAcX8UasLzkBD/cTGAFCntT7Ul+QBpA/4oQJ
+	 fT5gX5HPJNGoA==
+Received: by gaggiata.pivistrello.it (Postfix, from userid 1000)
+	id 389837F96B; Fri,  4 Oct 2024 17:31:04 +0200 (CEST)
+Date: Fri, 4 Oct 2024 17:31:04 +0200
+From: Francesco Dolcini <francesco@dolcini.it>
+To: Conor Dooley <conor@kernel.org>
+Cc: Francesco Dolcini <francesco@dolcini.it>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	Parth Pancholi <parth.pancholi@toradex.com>,
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] dt-bindings: usb: add TUSB73x0 PCIe
+Message-ID: <ZwAKOKQ96sCoxsMN@gaggiata.pivistrello.it>
+References: <20241004124521.53442-1-francesco@dolcini.it>
+ <20241004124521.53442-2-francesco@dolcini.it>
+ <20241004-calzone-sitcom-0f755e244497@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <934b9b9992dacd72dbad0f5433728aac292a3cfc.1728045620.git.geert+renesas@glider.be>
+In-Reply-To: <20241004-calzone-sitcom-0f755e244497@spud>
 
-On 2024-10-04 14:52:46 +0200, Geert Uytterhoeven wrote:
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Hello Conor,
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+On Fri, Oct 04, 2024 at 04:23:18PM +0100, Conor Dooley wrote:
+> On Fri, Oct 04, 2024 at 02:45:20PM +0200, Francesco Dolcini wrote:
+> > From: Parth Pancholi <parth.pancholi@toradex.com>
+> > 
+> > Add device tree bindings for TI's TUSB73x0 PCIe-to-USB 3.0 xHCI
+> > host controller. The controller supports software configuration
+> > through PCIe registers, such as controlling the PWRONx polarity
+> > via the USB control register (E0h).
+> > 
+> > Similar generic PCIe-based bindings can be found as qcom,ath11k-pci.yaml
+> > as an example.
+> > 
+> > Datasheet: https://www.ti.com/lit/ds/symlink/tusb7320.pdf
+> > Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > ---
+> >  .../bindings/usb/ti,tusb73x0-pci.yaml         | 60 +++++++++++++++++++
+> >  1 file changed, 60 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
+> > new file mode 100644
+> > index 000000000000..bcb619b08ad3
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
+> > @@ -0,0 +1,60 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/ti,tusb73x0-pci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: TUSB73x0 USB 3.0 xHCI Host Controller (PCIe)
+> > +
+> > +maintainers:
+> > +  - Francesco Dolcini <francesco.dolcini@toradex.com>
+> > +
+> > +description:
+> > +  TUSB73x0 USB 3.0 xHCI Host Controller via PCIe x1 Gen2 interface.
+> > +  The TUSB7320 supports up to two downstream ports, the TUSB7340 supports up
+> > +  to four downstream ports.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: pci104C,8241
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  ti,tusb7320-pwron-polarity-invert:
+> 
+> To me, "polarity-invert" makes less sense than calling this "active-high"
+> making the property a flag. active-low would then be the case where the
+> property is not provided. Given you don't make the property required,
+> what you've got here is effectively a flag anyway.
 
-> ---
->  arch/arm/boot/dts/renesas/r8a7790-lager.dts   | 6 ++----
->  arch/arm/boot/dts/renesas/r8a7790-stout.dts   | 9 +++------
->  arch/arm/boot/dts/renesas/r8a7791-koelsch.dts | 6 ++----
->  arch/arm/boot/dts/renesas/r8a7791-porter.dts  | 6 ++----
->  arch/arm/boot/dts/renesas/r8a7792-blanche.dts | 3 +--
->  arch/arm/boot/dts/renesas/r8a7793-gose.dts    | 6 ++----
->  arch/arm/boot/dts/renesas/r8a7794-alt.dts     | 3 +--
->  arch/arm/boot/dts/renesas/r8a7794-silk.dts    | 3 +--
->  8 files changed, 14 insertions(+), 28 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/renesas/r8a7790-lager.dts b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-> index 5ef87f8088c4c81c..47ffa278a0dfd79e 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-> @@ -443,8 +443,7 @@ i2cpwr: i2c-mux4 {
->  		pmic@58 {
->  			compatible = "dlg,da9063";
->  			reg = <0x58>;
-> -			interrupt-parent = <&irqc0>;
-> -			interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +			interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  			interrupt-controller;
->  			#interrupt-cells = <2>;
->  
-> @@ -460,8 +459,7 @@ watchdog {
->  		vdd_dvfs: regulator@68 {
->  			compatible = "dlg,da9210";
->  			reg = <0x68>;
-> -			interrupt-parent = <&irqc0>;
-> -			interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +			interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  			regulator-min-microvolt = <1000000>;
->  			regulator-max-microvolt = <1000000>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7790-stout.dts b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-> index 9287724187ef3b69..d7c0a9574ce83144 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-> @@ -342,8 +342,7 @@ &iic3 {
->  	pmic@58 {
->  		compatible = "dlg,da9063";
->  		reg = <0x58>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> @@ -363,8 +362,7 @@ watchdog {
->  	vdd_dvfs: regulator@68 {
->  		compatible = "dlg,da9210";
->  		reg = <0x68>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  		regulator-min-microvolt = <1000000>;
->  		regulator-max-microvolt = <1000000>;
-> @@ -375,8 +373,7 @@ vdd_dvfs: regulator@68 {
->  	vdd: regulator@70 {
->  		compatible = "dlg,da9210";
->  		reg = <0x70>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  		regulator-min-microvolt = <1000000>;
->  		regulator-max-microvolt = <1000000>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-> index bce93db4c9df5e18..1a0d2c6ed0e83ce7 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-> @@ -814,8 +814,7 @@ &i2c6 {
->  	pmic@58 {
->  		compatible = "dlg,da9063";
->  		reg = <0x58>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> @@ -831,8 +830,7 @@ watchdog {
->  	vdd_dvfs: regulator@68 {
->  		compatible = "dlg,da9210";
->  		reg = <0x68>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  		regulator-min-microvolt = <1000000>;
->  		regulator-max-microvolt = <1000000>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7791-porter.dts b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-> index 92b54e043795ba08..08381498350aacde 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-> @@ -408,8 +408,7 @@ &i2c6 {
->  	pmic@5a {
->  		compatible = "dlg,da9063l";
->  		reg = <0x5a>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> @@ -421,8 +420,7 @@ watchdog {
->  	vdd_dvfs: regulator@68 {
->  		compatible = "dlg,da9210";
->  		reg = <0x68>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  		regulator-min-microvolt = <1000000>;
->  		regulator-max-microvolt = <1000000>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-> index 69009535814406fe..a3986076d8e3e993 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-> @@ -376,8 +376,7 @@ pmic@58 {
->  		reg = <0x58>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&pmic_irq_pins>;
-> -		interrupt-parent = <&irqc>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc 2 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> diff --git a/arch/arm/boot/dts/renesas/r8a7793-gose.dts b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-> index 45ef1d1900245a11..5334af25c10111c8 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-> @@ -754,8 +754,7 @@ &i2c6 {
->  	pmic@58 {
->  		compatible = "dlg,da9063";
->  		reg = <0x58>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> @@ -771,8 +770,7 @@ watchdog {
->  	vdd_dvfs: regulator@68 {
->  		compatible = "dlg,da9210";
->  		reg = <0x68>;
-> -		interrupt-parent = <&irqc0>;
-> -		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
->  
->  		regulator-min-microvolt = <1000000>;
->  		regulator-max-microvolt = <1000000>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7794-alt.dts b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-> index 1e04b8630ef3f3ca..882644cd7c1875c1 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-> @@ -449,8 +449,7 @@ &i2c7 {
->  	pmic@58 {
->  		compatible = "dlg,da9063";
->  		reg = <0x58>;
-> -		interrupt-parent = <&gpio3>;
-> -		interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&gpio3 31 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> diff --git a/arch/arm/boot/dts/renesas/r8a7794-silk.dts b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-> index 5ed5b426f9639775..2a0819311a3c4ef3 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-> @@ -434,8 +434,7 @@ &i2c7 {
->  	pmic@58 {
->  		compatible = "dlg,da9063";
->  		reg = <0x58>;
-> -		interrupt-parent = <&gpio3>;
-> -		interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupts-extended = <&gpio3 31 IRQ_TYPE_LEVEL_LOW>;
->  		interrupt-controller;
->  		#interrupt-cells = <2>;
->  
-> -- 
-> 2.34.1
-> 
-> 
+We had the same doubt when deciding which property name to propose, looking
+at the existing bindings it seemed that "polarity-invert" was more common.
 
--- 
-Kind Regards,
-Niklas Söderlund
+FTR the datasheet explicetly name the signals with a # suffix (PWRON1#,
+PWRON2#, ...), they are defined as active-low by default.
+
+With that said, if we prefer to have `ti,tusb7320-pwron-active-high`, I am 100%
+good with it.
+
+Francesco
+
 
