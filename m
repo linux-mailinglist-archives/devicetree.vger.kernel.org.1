@@ -1,107 +1,176 @@
-Return-Path: <devicetree+bounces-107989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46C08991140
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:22:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E1C899114A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:24:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4CCEC1C2369C
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 21:22:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF56D283EB9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 21:24:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 379F2142E9F;
-	Fri,  4 Oct 2024 21:22:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40F271AA7BA;
+	Fri,  4 Oct 2024 21:24:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="u63zFRnF"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="I9GFOTkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26A183CC7
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 21:22:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 841321448C1;
+	Fri,  4 Oct 2024 21:24:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728076946; cv=none; b=OCDhVRdNzVTk2tblJrc2odp45PENKnWMnmx/W72L0xKkArV/mNRNQXaoAZa4e6O9SqcCTTWpECXTpNxPYRe6tixd2jccPDdo/xq1y//nu5Hr3LEHjg73F2v8dfCdKvkrJNsfRdr8nLhrLzcSyBhLWE0GSo54ewXJroKJbKbuSIU=
+	t=1728077062; cv=none; b=DR100NvRXnGDk3Hqnmf8oV7vcv5ij/RKOy6rsHTstqxeRI7lZr6dYvjDObbpcNb4WJEruMbQusAksS1UsYThxL+Y8GLG9ejU0n+x8x4Y1MJhkEOQEWMEwO1Yh51DTyMbZ0CITGMylFoxUL4WzSpcAZZxE4e3j1LNNZKNjmGFVTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728076946; c=relaxed/simple;
-	bh=05vE/t6MeYR8RdZePLMne+XSZDZ74HIiBGiljHrRiH4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=E0D89IX5mR5p18NFG/7a2IwGy3wlE1kktWVpwHggp345qk1BBYBSr/5x15r4YMgWg+XZOkwrQUEdlu464T+V5e7v3rUYzT9VoI7IgD6LnzrV8BSCZmBAVoXwoc6bz51DiOiMkjsp6j6rUeh4l7SVgsE7cVSvIDg3OT8YWeJkC2Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=u63zFRnF; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-71dbdb7afe7so2137216b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 14:22:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728076944; x=1728681744; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=bQeTakrtwH0EL9Wwyif9xs5eWJrpAyWIHCaCI8pJibE=;
-        b=u63zFRnF1zQqgMSTmFvRHrlUKogZq5lr6EDuQVLHLoX7jTdmu5uCn2yz9ipG7zPws9
-         kBMkcnN4qiERU8agVYkVIkJ9P4OfJl1NQ7Gh166WyMa2MfDvusL4QI2LBwTxOrTJwe/Y
-         gEZEesucLIHt5U86CHszwjIxOUKvvQDHLEHCcXf4/275/WIVjLo22LHhJ3pL0E+7xKh3
-         OpCA5o/8srVO1s9Lp945r3bX5K3C9dfDxJGwvpK0abrkfzvoj2q90Dis2JciXovavYao
-         /4+k2romv2IPJkjJnojQ0MdGnhB4HPsuLy0KSkUhoe0DSAgia/D8acwT8AzEjn00XjA0
-         kOaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728076944; x=1728681744;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bQeTakrtwH0EL9Wwyif9xs5eWJrpAyWIHCaCI8pJibE=;
-        b=eByjc4WbgH4+hdYJqJKQCADO2Xa56wEAis9vUIhTn9gdxdtkfWQEvkabUu7M+N/LyP
-         DZcVn5jP9XLa7JT/Y8mvryu0LZ0iEGlG+l36TEJAlxDBuq1e8sdfbrdBUTO+2ZzVhTY2
-         dkPvl8xoGj4J4AgBvNPjjaqcLB1A5862cazCcEMgA9cfBsvc4MkspzgpiKEh7HERhUAk
-         30QRj+6E2Y7p80dY7opjRBROfK1YeMlS0RLLrkrxrtGEZCWSryo2T7nxkuTgSE+pUPTm
-         JYNVQfYOP75fqkl0rKGcFFAELAwfnXdzkJYsc9PyNEavHIsT3eaXMVIkkI+Nu2dUG2xQ
-         lung==
-X-Forwarded-Encrypted: i=1; AJvYcCUnfm+UWPllWkxtIgJshrp5RL2JcdM0keuvLRa9zXlIRwb0ISQVGrNA1G8IbQi0FyWaSNy0RrJeREJo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzpJY+rUegcYtGW5wXgw8ztQ7dy6IOUfj1D6SjG1gZj+Y/yiI1V
-	WtAPJBl7k1reejMSwiseSbbtfIoVsSFPhh/B7ejfq8hgeHupGo1enlrpkBuLris=
-X-Google-Smtp-Source: AGHT+IFvqKcSClFCMk+YLgSqmXo+YU8LqN0pftZdWpGC+2qvSD1DJWoG/2t0W3Ooh0/23Dc6wDRPPQ==
-X-Received: by 2002:a05:6a00:b8a:b0:718:dd1e:de1a with SMTP id d2e1a72fcca58-71de2469f7amr6199017b3a.28.1728076943933;
-        Fri, 04 Oct 2024 14:22:23 -0700 (PDT)
-Received: from localhost ([71.212.170.185])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7e9f6c4aa24sm435850a12.88.2024.10.04.14.22.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 14:22:23 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: Tony Lindgren <tony@atomide.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"Rob Herring (Arm)" <robh@kernel.org>
-Cc: linux-omap@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: ti/omap: Fix at24 EEPROM node names
-Date: Fri,  4 Oct 2024 14:22:12 -0700
-Message-ID: <172807691222.745674.5605904922080924014.b4-ty@baylibre.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20240910215942.824137-1-robh@kernel.org>
-References: <20240910215942.824137-1-robh@kernel.org>
+	s=arc-20240116; t=1728077062; c=relaxed/simple;
+	bh=UPMCm5/nObHAr3O0W/7izltX4pJE/zinQhH+qCjfW2s=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=gXST+FprGsBJRUU6e2Yqac40IV81X3ay9G6Z/8AMlcQ1ctouaApLwSJr2OcIOPtVg48QBcAE7LltL25gCMr2JLpeQsyVLGp49GplkW0pNNyDOlXT/GBjEx9QXba7dFXvO5ARpQpIBL1PnN7F5c/IAThdUpxmb3pJL7dKNy0PAe8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=I9GFOTkn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 494BHOBu029872;
+	Fri, 4 Oct 2024 21:24:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=2VIyCbs4MZo06o5b0xKA14
+	avwyYYm7KQiJNv/fQaSaw=; b=I9GFOTknZyuMsqbBeY4xxYMdw4gbWts8vOnI74
+	pev1YharhkexVj8brT10zU5M0ktQJWBxBQ3sixX/7Fgg9d7RjmrWXPErQX+DlWvu
+	AAZYmY6YiO0ogs9KbqmPqo6Sk2TYp1TRUK8znlSGOEb8wLNVKhurNycGr9z7Rbx1
+	Uosf3jrASv/d/nr8Vuvn72ZLHHwnZgPsH+Z09PodhNTm5KbTX5jmLcRvrBss1g+1
+	9TMO3EvoHxvL/OL9TNQdnuhViy6x1XgrCVSexPvFjom8A08DXN9s0GDzEe7pmMHk
+	V/PDSGKHcG2B5kqpoH5AhHpbBXHdA8f4XX+DP8cQqI6x76oA==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205nk8yp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 04 Oct 2024 21:24:15 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 494LOD8N028159
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 4 Oct 2024 21:24:13 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 4 Oct 2024 14:24:09 -0700
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Mukesh Ojha
+	<quic_mojha@quicinc.com>
+Subject: [PATCH 0/6] Peripheral Image Loader support for Qualcomm SoCs
+Date: Sat, 5 Oct 2024 02:53:53 +0530
+Message-ID: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 77EW0ClZU_1vDkGcOli7ads2nLVa1IT7
+X-Proofpoint-ORIG-GUID: 77EW0ClZU_1vDkGcOli7ads2nLVa1IT7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ malwarescore=0 impostorscore=0 clxscore=1011 phishscore=0 adultscore=0
+ spamscore=0 suspectscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2410040148
 
+Qualcomm is looking to enable remote processors on the SA8775p SoC
+running KVM Linux host and is currently trying to figure out an
+upstream-compatible solution for the IOMMU translation scheme problem it
+is facing when SoCs running with KVM. This issue arises due to
+differences in how IOMMU translation is currently handled on SoCs
+running Qualcomm EL2 hypervisor(QHEE) where IOMMU translation for any
+device is completely owned by it and the other issue is that remote
+processors firmware does not contain resource table where these IOMMU
+configuration setting will be present.
 
-On Tue, 10 Sep 2024 16:59:38 -0500, Rob Herring (Arm) wrote:
-> at24.yaml defines the node name for at24 EEPROMs as 'eeprom'.
-> 
-> 
+Qualcomm SoCs running with the QHEE(EL2) have been utilizing the
+Peripheral Authentication Service (PAS) from its TrustZone (TZ) firmware
+to securely authenticate and reset via a single SMC call
+_auth_and_reset_.  This call first gets trapped to QHEE, which then
+makes a call to TZ for authentication. Once it is done, the call returns
+to QHEE, which sets up the IOMMU translation scheme for these remote
+processors and later brings them out of reset. The design of the
+Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+is not allowed to set up IOMMU translation for remote processors,
+and only a single stage is being configured for them.
 
-Applied, thanks!
+To make the remote processors’ bring-up (PAS) sequence
+hypervisor-independent, the auth_and_reset SMC call is now entirely
+handled by TZ. However, the problem of IOMMU handling still remains with
+the KVM host, which has no knowledge of the remote processors’ IOMMU
+configuration.
 
-[1/1] ARM: dts: ti/omap: Fix at24 EEPROM node names
-      commit: 47048d5bcf05b4529009e4434dd1ece7f0c4f4d1
+We have looked up one approach where SoC remoteproc device tree could
+contain resources like iommus for remoteproc carveout and qcom,devmem
+specific binding for device memory needed for remoteproc and these
+properties are optional and will only be overlaid by the firmware if it
+is running with non-QHEE based hypervisor like KVM.
 
-Best regards,
+- Patch 1/6 adds the iommus and qcom,devmem binding for PAS common yaml.
+- Patch 2/6 and 3/6 add helper function to IOMMU map and unmap carveout
+  and device memory region.
+- Patch 4/6 adds a function to parse individual field of qcom,devmem property.
+- Patch 5/6 add helpers to create/destroy SHM bridge for remoteproc
+  carveout and to get memory from tzmem SHM bridge pool for remoteproc
+  firmware metadata.
+- Patch 6/6 enable all the required support to enable remoteproc for
+  non-QHEE hypervisor based systems like KVM host via parsing the iommus
+  properties and mapping/unmapping carveout and device memory based on
+  it.
+
+Komal Bajaj (1):
+  remoteproc: qcom: Add iommu map_unmap helper function
+
+Mukesh Ojha (2):
+  remoteproc: qcom: Add support of SHM bridge to enable memory
+    protection
+  remoteproc: qcom: Enable map/unmap and SHM bridge support
+
+Shiraz Hashim (3):
+  dt-bindings: remoteproc: qcom,pas-common: Introduce iommus and
+    qcom,devmem property
+  remoteproc: qcom: Add helper function to support IOMMU devmem
+    translation
+  remoteproc: qcom: Add support to parse qcom,devmem property
+
+ .../bindings/remoteproc/qcom,pas-common.yaml  |  42 +++++
+ .../bindings/remoteproc/qcom,sa8775p-pas.yaml |  20 +++
+ drivers/firmware/qcom/qcom_scm.c              |  29 +++-
+ drivers/firmware/qcom/qcom_tzmem.c            |  14 +-
+ drivers/remoteproc/qcom_common.c              | 148 ++++++++++++++++++
+ drivers/remoteproc/qcom_common.h              |  38 +++++
+ drivers/remoteproc/qcom_q6v5_pas.c            | 140 ++++++++++++++++-
+ include/linux/firmware/qcom/qcom_scm.h        |   1 +
+ include/linux/firmware/qcom/qcom_tzmem.h      |  10 ++
+ 9 files changed, 423 insertions(+), 19 deletions(-)
+
 -- 
-Kevin Hilman <khilman@baylibre.com>
+2.34.1
+
 
