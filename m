@@ -1,164 +1,125 @@
-Return-Path: <devicetree+bounces-107848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17BBB990398
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:09:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E5BE99043A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF1741F23224
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:09:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB4CC28156A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:27:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A96D520FABE;
-	Fri,  4 Oct 2024 13:08:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="swTec+dz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8862E215F44;
+	Fri,  4 Oct 2024 13:23:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C611A20FA9E
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 13:08:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5F3B210192;
+	Fri,  4 Oct 2024 13:23:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728047336; cv=none; b=TBwj2uATWwn9LHl9ZORD6s2XTaOD4ftSWSFM6Gl5FgAx17KxJau55Vb99/vPJDH96rZeCqVFDv6b6174I786EI6jTaPKi7H6hwC4owSaWR/qMUAymNru5hLxnrMmUhSkzTa0KHfVLMlyxYB8UPpL1THhnvsfwt0ERd9GS2z14fQ=
+	t=1728048200; cv=none; b=UOmmAH2ZO6HKNM1EWgUT9FARFk85UiVNgLpLFnKmN6QQS3+3YDbV4dNioMRfbIPSr/dxSJrIByEv+OFKY/zrzvPZsX8OEdqJ/zR34StovldeHCZIWCVMkRq77dUsz1Edq4FsXnG+PIdEOlsfoBNmPJTvTPGAWv2zH1uDjYYlaPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728047336; c=relaxed/simple;
-	bh=tF/nPfzcP4R3ACI8M/wyhrpEI3K4Z4ckVMNRUoBu3FA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=PZsPdnihWHjd0mlamjpxgP7qSJ2Jvp/dciH2ZwFJp67xyNu8mI3mgXDkm52X/0/Uc65qb6tOHTeedD7SCe/hIfRit3a18f1cK1N//AEK2lHYjH10EghZ+pCGunFUP1bTdfX/nARrxgkYfQttW3TKStSl1TMxj/mRl87oUpHPvL0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=swTec+dz; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a8a7596b7dfso376762566b.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 06:08:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728047333; x=1728652133; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L4/AYJ0iM81mUlzV+Cv9ihjHBRLe4vDHy6tsndRIor4=;
-        b=swTec+dzqbOKXdDH0yRc/7/GXtrHKjhcwpVfEHRq70oKRrfbwP/u9koyefhvNpwQgL
-         kep7MCft0GIKS+17QNu/j3xvXakLFc64FcBhlbvKRAea7xUITEmtJyxXIKi3BmXjNpJZ
-         ItjB9zGbhxXpAeiNKzKQevHC2JF3dH6t+4sMI+fNaYv5MsvB9xdyhRaMB6uzAmk+1OMT
-         uyLtSBUOGFgEJ400wvojzPLsflNUTaGRzHSfVrzoMg6HjshnKQIQLay/DJhZluJOKPv5
-         GB4XFvmnp3lPE3JPGQ1Hs5KX0ANYRXiBMvuiK0M3YszYCy8wTSZR2FrGtAdXJ3dCwO7J
-         3tjQ==
+	s=arc-20240116; t=1728048200; c=relaxed/simple;
+	bh=VlMMcMWBY+CFC9p1czL4QY7YB8tCBylgl8nevSuEBdQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=paZaouMfr5fcgRdT8TE0zoJaA59NrI0mhUgKn7/p9kdu92vUNTdEFR/Mvq4QngRAdgTm9GsRg2gMXoc6iS5zeJhQqXP/U5psBojKF9G4b7VH5+NmoalrBWFWwDnF7AsO2n/Q4Bihdw0+giGE+lbGGq253WI57U7OrM/aDVOdtkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e2772f7df9so17625407b3.2;
+        Fri, 04 Oct 2024 06:23:18 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728047333; x=1728652133;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=L4/AYJ0iM81mUlzV+Cv9ihjHBRLe4vDHy6tsndRIor4=;
-        b=QJ8g11NZGWL1I1Weij50FQ04b5514YaLDmYj0DixgbOxksK2tM5H7ECBIEOk1H/ft1
-         MWfYsY94k2ul2NQNstEVjzNaQNhLYhm/9uG7sDygw2NfzzIrh6HBrYsZrj8JhO1UzB6P
-         5pA8Ckl7U37UHefFIxoglt3Nl5tLYiRkO3L4xG4Owp7WoZWTfOasOcC6ZJ0qrjnLQA3A
-         1xd1cavuqON11UYmwf3W8FRkPgKeAPlRrpH4bOoHMqt2pZAV3HxDOF2TJtX6MxgbPLHr
-         1gpQH6+G8TNMOhx9SDM7E5nwlyr/8Eitb9GC7Zz2N+wHbnUJoraPcG9V4fqRu0abi6za
-         Gspw==
-X-Forwarded-Encrypted: i=1; AJvYcCWdsVIeRcP3Cu6laRw7U/haFD486U8ZI/0yk3d5tJTS0qGsw4neuGbP7mL3IzJ/QlVYk1Lfly3Addwj@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgIGMbqpoVWk5fSP9F/jN6ikj+iKoIbg6vG1tQ7ls8eHFvLvvI
-	JMSbFcA9kZzM82Uf/s8D25UtMo+w/hmqg3oIanKML731NhHn8wY2ZJsrkgTwF4uJB9TNtxAb/j6
-	fkHq0+A==
-X-Google-Smtp-Source: AGHT+IHiJ3v9CjBWrTt3qRr2xzF/A7zLY9mPcR2zAOy1KSRnmopFSHDNXZvYDIFtDM+HRc42v+GGqA==
-X-Received: by 2002:a17:907:7e82:b0:a8d:4c83:d85d with SMTP id a640c23a62f3a-a990a04e25bmr686995066b.12.1728047332978;
-        Fri, 04 Oct 2024 06:08:52 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99102859casm222477766b.47.2024.10.04.06.08.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 06:08:52 -0700 (PDT)
-From: srinivas.kandagatla@linaro.org
-To: andersson@kernel.org
-Cc: konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	johan+linaro@kernel.org,
-	abel.vesa@linaro.org,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3] arm64: dts: qcom: x1e80100-t14s: add another trackpad support
-Date: Fri,  4 Oct 2024 14:08:49 +0100
-Message-Id: <20241004130849.2944-1-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.39.2
+        d=1e100.net; s=20230601; t=1728048197; x=1728652997;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ibDVe5YLvXt6rhsGA+Avq1cvNfhpTx9TUAZXq8QnDj8=;
+        b=cxfDGcDnC9J2A12NR0vrR8B/9u+/V6RXmGurBzxFuLH2cOyHRrPmCSqkIrXPp0gD/B
+         XVzdB+en2PMw4xAxYI3qlKiSzhaiH58W2uNxcDsCVeFbllhuFJxnrgql/TNSaE/XdsMO
+         XZTou/1+3f0UZe38h+dyjxGI88J2Sbp7o5nIIMTAsw9a4O0j7lVwZNEjQ8mnZ40funUQ
+         bkKWRX/YVRGKvKrdxtcjKNFkNz0AyKQidDwyEFQTRdFVoW2g6yvGrqnPtlB4XHtasi3l
+         6ddHBLfFmBDeZdpCecgSE3dsy98jSd5agk0A71RF/fQ0zNJUu21dUD7fyMkGhn/tQZnr
+         7CGw==
+X-Forwarded-Encrypted: i=1; AJvYcCUM3c5BO3dXL2GVbw2214RzgXLKBtLBWn4S9mhXm1M2UYdPyaUx/nxZwrNq0YcU8fFMvyaDnLLqExZU@vger.kernel.org
+X-Gm-Message-State: AOJu0YywbF3EUcclSRcKnW0swzpZ0nWeJOSxn5/nL3QD7CSy7iBBYXjQ
+	++D2ky4+29q0BK2lxhWPTdgFFBRnaIPjYW/rLEadFvBew6F2ylUpFJmDsSb1
+X-Google-Smtp-Source: AGHT+IEVzNyP13tuo5xsrZlBmqQgBKXItbD/+xyacY0beR4Sc5036mX5k1Y6Xq7y1rhF1n85KdDFjg==
+X-Received: by 2002:a05:690c:3186:b0:6e2:ab93:8c68 with SMTP id 00721157ae682-6e2c7238ef0mr19327457b3.25.1728048197328;
+        Fri, 04 Oct 2024 06:23:17 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2c7c67186sm3285137b3.108.2024.10.04.06.23.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 06:23:17 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e262c652f99so1787210276.0;
+        Fri, 04 Oct 2024 06:23:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWM96c6jqSC+UVyS7Fh9cm6ppJHzDJl9rcwlYEGN8nn/QApdUNRrjyqLy02slX7HRgKMEFlFo7aJR28@vger.kernel.org
+X-Received: by 2002:a05:690c:7209:b0:6e2:83d:dfc9 with SMTP id
+ 00721157ae682-6e2c72b2ccfmr24871017b3.41.1728048196920; Fri, 04 Oct 2024
+ 06:23:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240926102005.15475-5-wsa+renesas@sang-engineering.com> <20240926102005.15475-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240926102005.15475-6-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 4 Oct 2024 15:23:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXjt6raMKqZEms0ZkZcS7O0mgThNVoQnGOrK7_gRoOJkw@mail.gmail.com>
+Message-ID: <CAMuHMdXjt6raMKqZEms0ZkZcS7O0mgThNVoQnGOrK7_gRoOJkw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: renesas: genmai: enable SDHI0
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Hi Wolfram,
 
-Trackpad HID device on T14s could be found on two possible slave addresses
-(hid@15 and hid@2c) on i2c0 instance.
-With the current state of DT boot, there is no way to patch the device
-tree at runtime during boot. This, however results in non-functional
-trackpad on Product Models 21N2ZC5PUS which have trackpad on hid@2c
-slave address.
+On Thu, Sep 26, 2024 at 12:20=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> For this to work, User LEDs must be disabled because they share their
+> pins with SD data lines.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-This patch adds hid@2c device along with hid@15 to get it working on
-both the variants. This should work as i2c-hid driver will stop
-probing the device if there is nothing on the slave address, we can
-actually keep both devices enabled in DT, and i2c-hid driver will
-only probe the existing one.
+Thanks for your patch!
 
-The only problem is that we cannot setup pinctrl in both device nodes,
-as two devices with the same pinctrl will cause pin conflict that makes
-the second device fail to probe.  Let's move the pinctrl state up to
-parent node along with the parent pinctrl to solve this problem.
+> --- a/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+> +++ b/arch/arm/boot/dts/renesas/r7s72100-genmai.dts
+> @@ -76,7 +76,8 @@ key-1 {
+>         };
+>
+>         leds {
+> -               status =3D "okay";
+> +               /* Needs SDHI0 to be disabled */
+> +               status =3D "disabled";
+>                 compatible =3D "gpio-leds";
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
+Pity...
 
-Changes since v2:
-- updated commit log
-- added missing parent pinctrl
+>
+>                 led1 {
 
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts  | 17 +++++++++++++----
- 1 file changed, 13 insertions(+), 4 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.13.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-index 08ec2419f95f..5aa295404800 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-@@ -551,6 +551,9 @@ zap-shader {
- &i2c0 {
- 	clock-frequency = <400000>;
- 
-+	pinctrl-0 = <&qup_i2c0_data_clk>, <&tpad_default>;
-+	pinctrl-names = "default";
-+
- 	status = "okay";
- 
- 	/* ELAN06E2 or ELAN06E3 */
-@@ -561,13 +564,19 @@ touchpad@15 {
- 		hid-descr-addr = <0x1>;
- 		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
- 
--		pinctrl-0 = <&tpad_default>;
--		pinctrl-names = "default";
--
- 		wakeup-source;
- 	};
- 
--	/* TODO: second-sourced SYNA8022 or SYNA8024 touchpad @ 0x2c */
-+	/* SYNA8022 or SYNA8024 */
-+	touchpad@2c {
-+		compatible = "hid-over-i2c";
-+		reg = <0x2c>;
-+
-+		hid-descr-addr = <0x20>;
-+		interrupts-extended = <&tlmm 3 IRQ_TYPE_LEVEL_LOW>;
-+
-+		wakeup-source;
-+	};
- 
- 	/* ELAN06F1 or SYNA06F2 */
- 	keyboard@3a {
--- 
-2.39.2
+Gr{oetje,eeting}s,
 
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
