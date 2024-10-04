@@ -1,230 +1,164 @@
-Return-Path: <devicetree+bounces-107957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92D93990919
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:24:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A8C3990935
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:31:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B3F451C21EB2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:24:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74CDF1C2190B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:31:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6AA01C760B;
-	Fri,  4 Oct 2024 16:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFBDF1C82E6;
+	Fri,  4 Oct 2024 16:31:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sjIny+n6"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="W38mhcOM";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="nZPCzdCd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fhigh-a7-smtp.messagingengine.com (fhigh-a7-smtp.messagingengine.com [103.168.172.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF1001E377D;
-	Fri,  4 Oct 2024 16:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7521D1E379F;
+	Fri,  4 Oct 2024 16:31:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728059077; cv=none; b=P8FB7Sf0so+IfOY3OABkyHfXgmkjY3j95cIe5nsLrUojlkPxJmow8I2tB7p+8TOGSPu86/7MZ2ERuQcLvAIe/ornDSK0vdOeOar7dOpjIaWNWfspjzQUhFjSmi8ux/J3CGhz4AxoLPFSV898I6Lnwd4//+e2BN7sR8+hS78maDw=
+	t=1728059487; cv=none; b=cuVVmeohwh/CK8jh+SVpDyV4CXnjvbne9hMOo8RFoE2xJK5ICKuZHpo53XnZRNDqxqF4pBkOmFJy2tUpYQwQ0guULpq2BnpH7SCr9VgebFgFFoQUg3PlmMp6rWtkEqdyh7UrCBp9guUZqv5CD5/Yasq5Mz3olx2tpyr+mV1PMNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728059077; c=relaxed/simple;
-	bh=xt76oEmoy7/Q/3wsw70SvNl00pHmcycaqeG2jfHADkk=;
+	s=arc-20240116; t=1728059487; c=relaxed/simple;
+	bh=zigsK6WMkgNauDnS+RJ2q8aWx0Ovy3AgMVqbg6Vk3t0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z++AU/HBi0t9ovgxp/cu6nIR7Ec8PThHgF0vAZGiWFEnytox5TI5pQ7CotfZ4iUm/ooT1ResZ1bbo5X/AWP2zTPwUFLGvEUl/6HmSWR/wD0Mu65GLE6WHhissRiOOa6zkBCogFJy9tlqSHpprGTt8Fa1WYohQFqsJo90mOj5AwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sjIny+n6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCA09C4CEC6;
-	Fri,  4 Oct 2024 16:24:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728059077;
-	bh=xt76oEmoy7/Q/3wsw70SvNl00pHmcycaqeG2jfHADkk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sjIny+n6VSXqoNaG4T2WydHqjX+d/Ft0LTYYw0juwfImfQId+VnhoZSsWuS4bv3Er
-	 iM6JJ85U5JcYvSjSFzHlyg+LEn3JWwi3Ar7+oV3+bA3JXWM6EQjDqGY8eMHFAFofMw
-	 btYuKYP4h5eEqb0eabBscDo2Fs6IUBL1cQWXCP/fcmwyXd5egPcPRbhfDFy4ttKM9r
-	 Ah4uPr/uEGNssWsGOG58cCjDBl7GW7qN69lEDh7hrxMBtndA5y4x2ARgk9pO/2Kqf2
-	 YyUVIrtL7xG1epIB1If3oeWnyLhXXwlW3SkmPOFGXMf0dpIE23QtgCt0Xnkmq3KiH/
-	 Uhp88SvxgVCkw==
-Date: Fri, 4 Oct 2024 17:24:33 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1] dt-bindings: arm: fsl: drop usage of Toradex SOMs
- compatible alone
-Message-ID: <20241004-vaporizer-undusted-acd417d1fbb9@spud>
-References: <20241004160842.110079-1-francesco@dolcini.it>
- <20241004-enforcer-absently-e3a056284991@spud>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NgjAvfUoMrHy0XSJMMERDpCUaJC5/QbNwBMzeZRtVWzKQoh7UeaJuE/E+ZaKR4wX+AUP9/UbsK71hfjhLgrEoQBgBKYFMWpXFF8yO2wNV18Hu4aV7m4CEskZgWuOigntPnUa/erWVxO2DeWWw5djcrmugdIrwVkQRC4OVujW+MA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=W38mhcOM; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=nZPCzdCd; arc=none smtp.client-ip=103.168.172.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-08.internal (phl-compute-08.phl.internal [10.202.2.48])
+	by mailfhigh.phl.internal (Postfix) with ESMTP id A46FE11400E2;
+	Fri,  4 Oct 2024 12:31:24 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-08.internal (MEProxy); Fri, 04 Oct 2024 12:31:24 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1728059484;
+	 x=1728145884; bh=ybNFOvCcidYzO3PFvuu9g54ePppL64QE8bp9bWasTtM=; b=
+	W38mhcOMZauELn/TgeLpweH3KrIwiUYmBcWdwGIKx8AFHWhg+Pp2jSoMBcOxFwSG
+	0EqVa6nr0KVQDONNcSDE8kZGW9zo/xk0dawaNoAH7366QGaTpGGvKtViJKZJw5Cj
+	qGCZmDgIIGT0jv/MPuWUKjNAH7FzICEp2xwvXt/sNAnvHsjzESNOoH0TwrEqlsV6
+	lX8Tg5gx1fD98BQI87A/UD1PTPUTAzXuHhBv873ZO6CDvHzhf+R9/ij9y51eARKg
+	11q5oxQnzwnMJoG4epYecw9P8x9wrhhHEOuB/BPT+RESnBoHsmG6QnGQDtUVmL/6
+	E6mPqO0SuYiFIHR4be7BJw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728059484; x=
+	1728145884; bh=ybNFOvCcidYzO3PFvuu9g54ePppL64QE8bp9bWasTtM=; b=n
+	ZPCzdCd+OwHDc9b1sLnxYiKFWOLti+R/AvJJKwkX/mRLW7TaJqSJOfzhWijlsovI
+	0v1bPX0QdX8/pmoHJBO49HN++uhQJ1ybuEmUA4C44MCIZamdfows46juriB+u4EY
+	LNy/fdPKK4hPMLHAqoWS/jXqjTdNOI3lJJB0kiGppekfuZHWBe2rzepQzF239AD8
+	5doUMzCHj651mYhEK7qPksUVudOkr9kkEXe6mbb8xsCv6ldPCqgR5F2GQxgg55YJ
+	lph1PFQVEp5qcKLDb+Cj8mnv01Oqn+Jh/7yzMXRB7Z2nUbMj82zQoFoWC5N/U7NJ
+	uJJlYMRpNupmKz2ytlWJQ==
+X-ME-Sender: <xms:XBgAZ7F0Va3Y-CyjHflLgPR_vTdyAyfRls5fNkKCL-_aZSf02oTRew>
+    <xme:XBgAZ4XRW-12oo2VjDXDQfmCFCn3dcvQ3XeKts14fHUR15BKeWcFdlMAIplIfdKi2
+    5Ty_9VIPuXNocR5hxs>
+X-ME-Received: <xmr:XBgAZ9ILUgLEqHfOss6Zou4bJm8WswFgPAgU90zhgJonv6aCYlKpBdJ_GMWeXMWlV9mpE1Wcb1FKxyovB58XFasznRPe2SlI1w>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedguddttdcutefuodetggdotefrod
+    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
+    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
+    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
+    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
+    guvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveet
+    gedtvddvhfdtkeeghfeffeehteehkeekgeefjeduieduueelgedtheekkeetnecuvehluh
+    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhs
+    ohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepiedpmh
+    houggvpehsmhhtphhouhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhl
+    ihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtoh
+    hmpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhi
+    nhhgrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvg
+    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgv
+    lheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvg
+    htrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
+X-ME-Proxy: <xmx:XBgAZ5EgCfpQ6hw0MyLdMy_4zALinRDo7tFSm_wj8bFs09UZIzMdnw>
+    <xmx:XBgAZxXoFKlKo4wQc5nZF_ZcsD2sC_unrKg1HAChUWoDejO5PSsWTg>
+    <xmx:XBgAZ0NLrHDBJOL2xZ_oTyyMdtCXavR_S_8GzTe1kCUrVBttNw1UQA>
+    <xmx:XBgAZw3PW7M40OriL17xwsvSER-SvuoYuFC6y1LXVaaWmL4ze8THtw>
+    <xmx:XBgAZwHHoL4AJDu4x8Je8S2HM8io5ZLJYGIXuREaF2Kz3Gxoi0Y16lYO>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 4 Oct 2024 12:31:23 -0400 (EDT)
+Date: Fri, 4 Oct 2024 18:31:22 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 11/20] arm64: dts: renesas: Use interrupts-extended for
+ DisplayPort bridges
+Message-ID: <20241004163122.GB3542504@ragnatech.se>
+References: <cover.1728045620.git.geert+renesas@glider.be>
+ <2b217486221d90eb3c127f5e44f9c886161ab8c6.1728045620.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="fVFGOrID9M9ijjQu"
-Content-Disposition: inline
-In-Reply-To: <20241004-enforcer-absently-e3a056284991@spud>
-
-
---fVFGOrID9M9ijjQu
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2b217486221d90eb3c127f5e44f9c886161ab8c6.1728045620.git.geert+renesas@glider.be>
 
-On Fri, Oct 04, 2024 at 05:24:11PM +0100, Conor Dooley wrote:
-> On Fri, Oct 04, 2024 at 06:08:42PM +0200, Francesco Dolcini wrote:
-> > From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> >=20
-> > The Toradex SOMs cannot be used alone without a carrier board, so drop
-> > the usage of its compatible alone.
->=20
-> FYI, alot of what you're removing here appears in the $som.dtsi files.
-> I don't think that matters at all, since the dtsi files need to be
-> included somewhere - but figured I'd point it out in case the platform
-> maintainer for fsl cares.
+On 2024-10-04 14:52:53 +0200, Geert Uytterhoeven wrote:
+> Use the more concise interrupts-extended property to fully describe the
+> interrupts.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Oh, I forgot,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Cheers,
-Conor.
+> ---
+>  arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi   | 3 +--
+>  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi | 3 +--
+>  2 files changed, 2 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> index 99b73e21c82c2b18..e8c8fca48b6963c9 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
+> @@ -208,8 +208,7 @@ bridge@2c {
+>  		clocks = <&sn65dsi86_refclk>;
+>  		clock-names = "refclk";
+>  
+> -		interrupt-parent = <&intc_ex>;
+> -		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupts-extended = <&intc_ex 0 IRQ_TYPE_LEVEL_HIGH>;
+>  
+>  		vccio-supply = <&reg_1p8v>;
+>  		vpll-supply = <&reg_1p8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> index 6dc968352c046129..36f5deb7f24afc2e 100644
+> --- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> @@ -246,8 +246,7 @@ bridge@2c {
+>  		clocks = <&sn65dsi86_refclk>;
+>  		clock-names = "refclk";
+>  
+> -		interrupt-parent = <&intc_ex>;
+> -		interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupts-extended = <&intc_ex 0 IRQ_TYPE_LEVEL_HIGH>;
+>  
+>  		enable-gpios = <&gpio1 26 GPIO_ACTIVE_HIGH>;
+>  
+> -- 
+> 2.34.1
+> 
+> 
 
->=20
-> >=20
-> > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 16 ----------------
-> >  1 file changed, 16 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documenta=
-tion/devicetree/bindings/arm/fsl.yaml
-> > index b39a7e031177..5f0e8e1cd6fb 100644
-> > --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> > @@ -296,7 +296,6 @@ properties:
-> >                - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico=
--Pi
-> >                - technologic,imx6q-ts4900
-> >                - technologic,imx6q-ts7970
-> > -              - toradex,apalis_imx6q      # Apalis iMX6 Modules
->=20
-> This one is in arch/arm/boot/dts/nxp/imx/imx6qdl-apalis.dtsi
->=20
-> >                - udoo,imx6q-udoo           # Udoo i.MX6 Quad Board
-> >                - uniwest,imx6q-evi         # Uniwest Evi
-> >                - variscite,dt6customboard
-> > @@ -488,7 +487,6 @@ properties:
-> >                - technexion,imx6dl-pico-pi      # TechNexion i.MX6DL Pi=
-co-Pi
-> >                - technologic,imx6dl-ts4900
-> >                - technologic,imx6dl-ts7970
-> > -              - toradex,colibri_imx6dl      # Colibri iMX6 Modules
->=20
-> This one appears in arch/arm/boot/dts/nxp/imx/imx6qdl-colibri.dtsi
->=20
-> >                - udoo,imx6dl-udoo          # Udoo i.MX6 Dual-lite Board
-> >                - vdl,lanmcu                # Van der Laan LANMCU board
-> >                - wand,imx6dl-wandboard     # Wandboard i.MX6 Dual Lite =
-Board
-> > @@ -718,9 +716,6 @@ properties:
-> >                - joz,jozacp                # JOZ Access Point
-> >                - kontron,sl-imx6ull        # Kontron SL i.MX6ULL SoM
-> >                - myir,imx6ull-mys-6ulx-eval # MYiR Tech iMX6ULL Evaluat=
-ion Board
-> > -              - toradex,colibri-imx6ull      # Colibri iMX6ULL Modules
-> > -              - toradex,colibri-imx6ull-emmc # Colibri iMX6ULL 1GB (eM=
-MC) Module
-> > -              - toradex,colibri-imx6ull-wifi # Colibri iMX6ULL Wi-Fi /=
- BT Modules
-> >                - uni-t,uti260b             # UNI-T UTi260B Thermal Came=
-ra
-> >            - const: fsl,imx6ull
-> > =20
-> > @@ -879,8 +874,6 @@ properties:
-> >                - technexion,imx7d-pico-hobbit  # TechNexion i.MX7D Pico=
--Hobbit
-> >                - technexion,imx7d-pico-nymph   # TechNexion i.MX7D Pico=
--Nymph
-> >                - technexion,imx7d-pico-pi      # TechNexion i.MX7D Pico=
--Pi
-> > -              - toradex,colibri-imx7d         # Colibri iMX7D Module
-> > -              - toradex,colibri-imx7d-emmc    # Colibri iMX7D 1GB (eMM=
-C) Module
-> >                - zii,imx7d-rmu2            # ZII RMU2 Board
-> >                - zii,imx7d-rpu2            # ZII RPU2 Board
-> >            - const: fsl,imx7d
-> > @@ -950,9 +943,6 @@ properties:
-> >                - innocomm,wb15-evk         # i.MX8MM Innocomm EVK board=
- with WB15 SoM
-> >                - kontron,imx8mm-sl         # i.MX8MM Kontron SL (N801X)=
- SOM
-> >                - kontron,imx8mm-osm-s      # i.MX8MM Kontron OSM-S (N80=
-2X) SOM
-> > -              - toradex,verdin-imx8mm     # Verdin iMX8M Mini Modules
-> > -              - toradex,verdin-imx8mm-nonwifi  # Verdin iMX8M Mini Mod=
-ules without Wi-Fi / BT
-> > -              - toradex,verdin-imx8mm-wifi  # Verdin iMX8M Mini Wi-Fi =
-/ BT Modules
-> >                - prt,prt8mm                # i.MX8MM Protonic PRT8MM Bo=
-ard
-> >            - const: fsl,imx8mm
-> > =20
-> > @@ -1085,9 +1075,6 @@ properties:
-> >                - skov,imx8mp-skov-revb-hdmi # SKOV i.MX8MP climate cont=
-rol without panel
-> >                - skov,imx8mp-skov-revb-lt6 # SKOV i.MX8MP climate contr=
-ol with 7=E2=80=9D panel
-> >                - skov,imx8mp-skov-revb-mi1010ait-1cp1 # SKOV i.MX8MP cl=
-imate control with 10.1" panel
-> > -              - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
-> > -              - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Mod=
-ules without Wi-Fi / BT
-> > -              - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi =
-/ BT Modules
-> >            - const: fsl,imx8mp
-> > =20
-> >        - description: Avnet (MSC Branded) Boards with SM2S i.MX8M Plus =
-Modules
-> > @@ -1223,8 +1210,6 @@ properties:
-> >          items:
-> >            - enum:
-> >                - fsl,imx8qm-mek           # i.MX8QM MEK Board
-> > -              - toradex,apalis-imx8      # Apalis iMX8 Modules
-> > -              - toradex,apalis-imx8-v1.1 # Apalis iMX8 V1.1 Modules
->=20
-> These two appear in arch/arm64/boot/dts/freescale/imx8qm-apalis.dtsi and
-> the v1.1 equivalent.
->=20
-> >            - const: fsl,imx8qm
-> > =20
-> >        - description: i.MX8QM Boards with Toradex Apalis iMX8 Modules
-> > @@ -1384,7 +1369,6 @@ properties:
-> >                - fsl,vf610-twr             # VF610 Tower Board
-> >                - lwn,bk4                   # Liebherr BK4 controller
-> >                - phytec,vf610-cosmic       # PHYTEC Cosmic/Cosmic+ Board
-> > -              - toradex,vf610-colibri_vf61 # Colibri VF61 Modules
->=20
-> And this one is in arch/arm/boot/dts/nxp/vf/vf610-colibri.dtsi.
->=20
-> >            - const: fsl,vf610
-> > =20
-> >        - description: Toradex Colibri VF61 Module on Colibri Evaluation=
- Board
-> > --=20
-> > 2.39.5
-> >=20
-
-
-
---fVFGOrID9M9ijjQu
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwAWwQAKCRB4tDGHoIJi
-0qzdAQC49Yyaf+ZpfmV3FEVFRpqQbhZzibHCzst5cwVPoc2VowEAkXxAsJNxbhcX
-+yyuOo4BpUM2U1/d6tQjcyTe/NdLkwg=
-=OvST
------END PGP SIGNATURE-----
-
---fVFGOrID9M9ijjQu--
+-- 
+Kind Regards,
+Niklas Söderlund
 
