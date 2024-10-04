@@ -1,147 +1,96 @@
-Return-Path: <devicetree+bounces-107684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107685-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEF3C98FBAD
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 02:43:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D65C98FBC4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 02:54:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 03ED21C21295
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 00:43:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEF4B1F2219E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 00:54:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6951317C9;
-	Fri,  4 Oct 2024 00:42:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4B231D5AA7;
+	Fri,  4 Oct 2024 00:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7V3NzlS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqijMftG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3680111CBD;
-	Fri,  4 Oct 2024 00:42:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E871849;
+	Fri,  4 Oct 2024 00:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728002577; cv=none; b=Ov+WZ6EOJI4bXxIiOMvla0OzxeTFbRrW6DZ/Q6LblkqS9nwRgEOLtYwVhh7TTFLeIwkYjPmRcb7V+bPrQ/etI3lqd4LDRsBPwjYcf0w2XcRKyP6rHT+0Q/01gqz7hl8IFawPjQIWexJIjtOC4XLMVy/ai1nyMLHSrQcmKn8TGQ8=
+	t=1728003266; cv=none; b=Lhr+McG0QPShfcts7HtA9rtchemx2PbHadzbnEYBsVh8zn+URb7JK8ocmSPicKGzMO4m5DiJxXL5u6TlhgH0qTRjX72DP/FvN+6bgKStjiUYOHyg4eM3MoWoDBHcGqd4FmfKte0IfokQKmnZsFpALHxvX3AGssuoDJ4Z7FS5RSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728002577; c=relaxed/simple;
-	bh=kMMo9BAc0r9Ly2hSQLr4fnwD0fAa39h+ExMmstruj/Q=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=euABGkFCdrX55Yir6vm2LB/IDmJBssUVbWwALg7NZvaOkcWbkyXXojoEIAduiRf48uG0ZQlS/QBW1fWpm+o4H1+pyuu1mG5V7aZSDHE1QUIPD3mYN2SnnGB00A5hSQXMetJFSZI9dRzx9SzeesQ9gCvF5tDnRVc2AyspgznNbjU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7V3NzlS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 943E4C4CEC7;
-	Fri,  4 Oct 2024 00:42:56 +0000 (UTC)
+	s=arc-20240116; t=1728003266; c=relaxed/simple;
+	bh=EBXwJ0xjvTruyIPFuJ5PaRLLcGzPCXTGfCFIFlv+Wbs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ouQ7wXQXvhbJvFAZ1cCkDHhwsXtvuGOm193UcE15KrsDiyX9VuvKkSOt+2pDJwZgzBvCXHTpUTT9s3xYF7bRcum/YsJpR+1wo5vm/lHUds8dbRKwqnKRY2x7ED6y4A7RVTemUmbHFsa9OQ6RP/eZUF2fu/lDQYNp9zhoQI6ALx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqijMftG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C44C9C4CEC5;
+	Fri,  4 Oct 2024 00:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728002576;
-	bh=kMMo9BAc0r9Ly2hSQLr4fnwD0fAa39h+ExMmstruj/Q=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=e7V3NzlSubY7reZLd5JUnQsOasf7lH26uNnmDfrfJagQCqYL4qr11fwPJVsi7HNpi
-	 QgZOm+6DPsGITx3dheRWzcPgD8niD3La1DnxQSiFeUWxz0cMKfojzlKFzJePWSAKNw
-	 9eFb5q25wS4KmlRqZtuCWDL4CWjJlXUUAlbalZPI6xV+Gpy5cV+aqNQcQ8xAN3ccb4
-	 pGtuMR9+Zjd/8YZoItg0yoiqLQt7Gd9V+lQywlZ523pD1+hnEfp6A7Y9OasEg8mCsY
-	 w0V2XNgp/oGC0YT07gWFxj4lRjzm+S99bXSplJi5fnIp+OsH6qW9gx3K+EtgWJyGBE
-	 btQwmPJSnWLKw==
-Message-ID: <cd31493888acc2b64a4986954dfa43ae.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1728003265;
+	bh=EBXwJ0xjvTruyIPFuJ5PaRLLcGzPCXTGfCFIFlv+Wbs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lqijMftGqB6sdxZEQGPTVuVtXqYq180eVLw4r5UurPeCVauecziD8y0R/0lbjlpKy
+	 ieGFcFVb9e7gsY8avbEOBEpEmWCU4z9RzT+x1l7Y65Wx3nuyd3Ik5BKvxywbUsHJGY
+	 Jpunjdm8iqBwCGZUBq78K5ho4msudNJmbjon+mk9VaLDl2DA8LKB05g/VQeVemy3mL
+	 dIcLJYe57Yuusu8CYhCldcXmQDg36O0J+qsTS3zXkhsZ/BYMRqcZobPjZMnJx8iXrN
+	 Gj8smAsX5f6Pra5W4w2JVWjM4DcGIQPjOh7xJOVGG0aTFwC7rG9ww8uC2anVEblvS2
+	 +IZ/F4OyRO42w==
+Date: Thu, 3 Oct 2024 19:54:25 -0500
+From: Rob Herring <robh@kernel.org>
+To: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: media: renesas,isp: Add Gen4 family
+ fallback
+Message-ID: <20241004005425.GA1954012-robh@kernel.org>
+References: <20241002103318.24289-1-niklas.soderlund+renesas@ragnatech.se>
+ <20241002103318.24289-2-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <3e1de608-008c-4439-acd2-647a288dcdc0@roeck-us.net>
-References: <20240718210513.3801024-1-sboyd@kernel.org> <dcd8894f-1eb6-4b5c-9e6f-f6e584c601d2@roeck-us.net> <6f5a5b5f-71a7-4ed3-8cb3-d930bbce599b@linuxfoundation.org> <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net> <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net> <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org> <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org> <f5f1c42d-77c0-48c7-ac52-3d4a3b5c2b47@roeck-us.net> <4a8abb5f501279de7907629f4dd6be24.sboyd@kernel.org> <3e1de608-008c-4439-acd2-647a288dcdc0@roeck-us.net>
-Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with struct clk_parent_data
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J.Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>, Geert Uytterhoeven <geert+renesas@glider.be>
-To: Guenter Roeck <linux@roeck-us.net>, Shuah Khan <skhan@linuxfoundation.org>
-Date: Thu, 03 Oct 2024 17:42:54 -0700
-User-Agent: alot/0.10
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241002103318.24289-2-niklas.soderlund+renesas@ragnatech.se>
 
-Quoting Guenter Roeck (2024-10-03 17:25:37)
-> On 10/3/24 16:46, Stephen Boyd wrote:
-> [ ... ]
-> > That DT test has been there for a few releases. Is this the first time
-> > those tests have been run on arm64+acpi? I didn't try after sending the
-> > patches and forgot that the patch was dropped.
-> >=20
->=20
-> Previously I had the affected tests disabled and never tracked down the p=
-roblem.
-> Since the problem is now spreading to additional tests, I finally tracked=
- it down,
-> that is all.
+On Wed, Oct 02, 2024 at 12:33:16PM +0200, Niklas Söderlund wrote:
+> The ISP Channel Selector IP is the same for all current Gen4 devices.
+> This was not known when adding support for V3U and V4H and a single SoC
+> specific compatible was used.
+> 
+> Before adding more SoC specific bindings for V4M add a family compatible
+> fallback for Gen4. That way the driver only needs to be updated once for
+> Gen4, and we still have the option to fix any problems in the driver if
+> any testable differences between the SoCs are found.
+> 
+> There are already DTS files using the V3U and V4H compatibles which
+> needs to be updated to not produce a warning for DTS checks. The driver
+> also needs to kept the compatible values to be backward compatible , but
+> for new Gen4 SoCs such as V4M we can avoid this.
+> 
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> * Changes since v1
+> - New in v2.
+> ---
+>  Documentation/devicetree/bindings/media/renesas,isp.yaml | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 
-Ok great. Good to know this isn't a new problem. Thanks for tracking it
-down.
-
->=20
-> > How are you running kunit tests? I installed the qemu-efi-aarch64 debian
-> > package to get QEMU_EFI.fd but passing that to the kunit.py run command
-> > with --qemu_args=3D"-bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd" didn=
-'t
-> > get me beyond the point that the EFI stub boots linux. I think the
-> > serial console must not be working and thus the kunit wrapper waits for
-> > something to show up but nothing ever does. I haven't dug any further
-> > though, so maybe you have a working command.
-> >=20
->=20
-> I run all tests during boot, not from the command line. I also use the -b=
-ios
-> command but don't recall any issues with the console. I specify the
-> console on the qemu command line; depending on the qemu machine it is eit=
-her
-> ttyS0 or ttyAMA0. The init script then finds and selects the active conso=
-le.
-
-Can you please describe how you run the kunit test? And provide the qemu
-command you run to boot arm64 with acpi?
-
->=20
-> > Here's my command that isn't working:
-> >=20
-> > ./tools/testing/kunit/kunit.py run --arch=3Darm64 --kunitconfig=3Ddrive=
-rs/of --qemu_args=3D"-bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd" =20
-> >=20
->=20
-> I can't really see what that command is actually doing ;-).
-
-It eventually runs this qemu command
-
-qemu-system-aarch64 -nodefaults -m 1024 -kernel .kunit/arch/arm64/boot/Imag=
-e.gz -append 'kunit.enable=3D1 console=3DttyAMA0 kunit_shutdown=3Dreboot' -=
-no-reboot -nographic -serial stdio -machine virt -cpu max,pauth-impdef=3Don=
- -bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd
-
-I see that it fails because the architected timer isn't there after I
-add an earlycon=3Dpl011,0x9000000 to the kernel commandline. I suspect
-passing a bios like this is incorrect, but I rarely run qemu manually so
-I don't know what I'm doing wrong.
-
-NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
-rcu: srcu_init: Setting srcu_struct sizes based on contention.
-timer_probe: no matching timers found
-Kernel panic - not syncing: Unable to initialise architected timer.
-CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 6.11.0-rc1-00261-g497f7c30=
-f184 #203
-Call trace:
- dump_backtrace+0x94/0xec
- show_stack+0x18/0x24
- dump_stack_lvl+0x38/0x90
- dump_stack+0x18/0x24
- panic+0x36c/0x380
- early_brk64+0x0/0xa8
- start_kernel+0x27c/0x558
- __primary_switched+0x80/0x88
----[ end Kernel panic - not syncing: Unable to initialise architected timer=
-. ]---
-
->=20
-> I'll just keep the affected tests disabled on arm64 for the time being.
-
-We should skip the tests on arm64+acpi, which is similar to disabling
-but not exactly the same. There will likely be more DT overlay usage in
-kunit and so that will lead to more test disabling. Skipping properly is
-the better solution.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
