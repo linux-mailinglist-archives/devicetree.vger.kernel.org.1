@@ -1,102 +1,113 @@
-Return-Path: <devicetree+bounces-107765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEA0E98FF02
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 10:46:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C700F98FF34
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:02:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4554EB2267A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:46:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0076E1C21406
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CBB013665A;
-	Fri,  4 Oct 2024 08:46:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dDD+pg2o"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24478144D01;
+	Fri,  4 Oct 2024 09:01:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB61179BB;
-	Fri,  4 Oct 2024 08:46:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CAA81482ED
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 09:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728031577; cv=none; b=pkwJgX6KjwZPqIjd9qQ58+6ijrDh20J9H+apWLouPdf7tw2CpmDCJN+d918EwqMSETLGmaZzjfci+Ffr7//mTZ9VD4/cfdOluECR0+JmCJPwSlhSmJq8Y6qV1i4EPUyiKSrlysf8yhhLPYDtKuCEnWFQyXMuNNE5pEeuDB2h/+8=
+	t=1728032490; cv=none; b=cVUxQUpe3COG8zxK/rbI/jEs56SQFluBfv4W9RWYb6DTXW4MrxlgE7iPwfJOF8TqhqBrYwPrZQdm2LWwNQ343AAmemX83b/txbPFZZLK9HWZSN0cyHVglwyOJa/dYMCRDmE9VAAU3XRqgzT3462jC+fuftqhIS1xocadO2aI5KM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728031577; c=relaxed/simple;
-	bh=l8qboFZDS0LmhxPS4qc2TV8dKQUVXozlJ0gMQJt7XuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uVLo5tp39jSdK2g0ARzVdPmICTYLHr+sJzuh5sHR8MmPsSUc/1g9lish+xHOnjugjV34IUXuAPfowMwquaOYEZ8aTZtcSndndFKPfE3Rscw0R8eJZgl5XjPB5ej+8AL7wsJpbjDMY28muSQtEQc7r5FLYS6eJsSAn3mTQ1utUmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dDD+pg2o; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 96DDB240007;
-	Fri,  4 Oct 2024 08:46:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728031572;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=okeEEVX3/VdO47AZCRhOLjrnz4W2UV8STTrINxXWStQ=;
-	b=dDD+pg2oGl+NsWfeGBFkbmVx3GF7NOYzvavZdzngj10Quvaxu0ct96HFznHLTwDIALfzR7
-	Vpmi2S8w2IYZdgbcEtn/rWce12jaoPXwkHGWjpvqtzMft+Qqn8Gbkz4dYgmCob2omc08Wv
-	4VCyujHwPNxC8jKAZYvkaqpVEuq5Ea7D/YUGKaAphaOsX5zJsmgLUltqwyWxQ0FECVozuw
-	slUYWr63fWChS7UD6EuAJK5ZMmn508N5dbuLWhz0V94SZ0DNWRPZfZRuB2BPQo29f6WTLK
-	sfrBzGEDSvlXLNEnoo7hl4FjGpSGqRyhFIEAMpZEbmO2lNhzH6SS94Q1e/sFWA==
-Message-ID: <206e5a5a-25ad-43d1-b8d3-53ecbfecb755@bootlin.com>
-Date: Fri, 4 Oct 2024 10:46:11 +0200
+	s=arc-20240116; t=1728032490; c=relaxed/simple;
+	bh=WJZI5f7afmQeyKcBF75Gok4Nh3/Flinw7pR96fnP/yQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=P+kBz9rWOuabciivD5GdbN98YSOGy29rEK03Aa6HRADB9JpIdvozgtWK8gOFPPTIPpnu3ZOm3fAsUosfwcWgquQF+wWrGZnGyg59kOgK/TpO2XG8p3FXwEHhVWV9ex+9xBerNY126lv/+SY8QBKbl60jJl5E9WJUYyKLQ781n8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sweBK-0004Yo-QF; Fri, 04 Oct 2024 11:01:02 +0200
+Received: from [2a0a:edc0:0:1101:1d::ac] (helo=dude04.red.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sweBJ-003X8H-4B; Fri, 04 Oct 2024 11:01:01 +0200
+Received: from ore by dude04.red.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ore@pengutronix.de>)
+	id 1sweBJ-006wNU-0B;
+	Fri, 04 Oct 2024 11:01:01 +0200
+From: Oleksij Rempel <o.rempel@pengutronix.de>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <f.fainelli@gmail.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	kernel@pengutronix.de,
+	linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org,
+	Russell King <linux@armlinux.org.uk>,
+	devicetree@vger.kernel.org,
+	Divya.Koppera@microchip.com
+Subject: [PATCH net-next v5 0/2] net: phy: Support master-slave config via device tree
+Date: Fri,  4 Oct 2024 11:00:58 +0200
+Message-Id: <20241004090100.1654353-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 7/7] wifi: wilc1000: Add WILC3000 support
-To: Marek Vasut <marex@denx.de>, linux-wireless@vger.kernel.org
-Cc: Ajay Singh <ajay.kathat@microchip.com>,
- "David S. Miller" <davem@davemloft.net>,
- Adham Abozaeid <adham.abozaeid@microchip.com>,
- Claudiu Beznea <claudiu.beznea@tuxon.dev>, Conor Dooley
- <conor+dt@kernel.org>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Kalle Valo <kvalo@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20241003111529.41232-1-marex@denx.de>
- <20241003111529.41232-7-marex@denx.de>
-Content-Language: en-US
-From: =?UTF-8?Q?Alexis_Lothor=C3=A9?= <alexis.lothore@bootlin.com>
-In-Reply-To: <20241003111529.41232-7-marex@denx.de>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: alexis.lothore@bootlin.com
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 10/3/24 13:14, Marek Vasut wrote:
-> From: Ajay Singh <ajay.kathat@microchip.com>
-> 
-> Add support for the WILC3000 chip. The chip is similar to WILC1000,
-> except that the register layout is slightly different and it does
-> not support WPA3/SAE.
-> 
-> Signed-off-by: Ajay Singh <ajay.kathat@microchip.com>
-> Signed-off-by: Marek Vasut <marex@denx.de>
+This patch series adds support for configuring the master/slave role of
+PHYs via the device tree. A new `master-slave` property is introduced in
+the device tree bindings, allowing PHYs to be forced into either master
+or slave mode. This is particularly necessary for Single Pair Ethernet
+(SPE) PHYs (1000/100/10Base-T1), where hardware strap pins may not be
+available or correctly configured, but it is applicable to all PHY
+types.
 
+changes v5:
+- sync DT options with ethtool nameing.
 
-Reviewed-by: Alexis Lothoré <alexis.lothore@bootlin.com>
+changes v4:
+- add Reviewed-by
+- rebase against latest net-next
 
-And for the basic feature set (basic sta scenario, basic ap scenario):
+changes v3:
+- rename  master-slave to timing-role
+- add prefer-master/slave support
 
-Tested-by: Alexis Lothoré <alexis.lothore@bootlin.com>
-Tested-on: WILC1000SD 07 SDIO WILC_WIFI_FW_REL_16_1_2
-Tested-on: WILC1000SD 07 SPI WILC_WIFI_FW_REL_16_1_2
-Tested-on: WILC3000 A SDIO WILC_WIFI_FW_REL_16_1_1
-Tested-on: WILC3000 A SPI WILC_WIFI_FW_REL_16_1_1
+Oleksij Rempel (2):
+  dt-bindings: net: ethernet-phy: Add timing-role role property for
+    ethernet PHYs
+  net: phy: Add support for PHY timing-role configuration via device
+    tree
 
--- 
-Alexis Lothoré, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+ .../devicetree/bindings/net/ethernet-phy.yaml | 21 ++++++++++++
+ drivers/net/phy/phy-core.c                    | 33 +++++++++++++++++++
+ drivers/net/phy/phy_device.c                  |  3 ++
+ include/linux/phy.h                           |  1 +
+ 4 files changed, 58 insertions(+)
+
+--
+2.39.5
+
 
