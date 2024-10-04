@@ -1,169 +1,161 @@
-Return-Path: <devicetree+bounces-107975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26740990A55
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 19:43:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E860E990CEA
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 20:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 950EB1F24632
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:43:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5312B27804
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:54:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD7B51DACA6;
-	Fri,  4 Oct 2024 17:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455D821F409;
+	Fri,  4 Oct 2024 18:23:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="GuJeGZP5";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IXQnpQPA"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SMcLvXm6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a8-smtp.messagingengine.com (fhigh-a8-smtp.messagingengine.com [103.168.172.159])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018DB1E3784;
-	Fri,  4 Oct 2024 17:43:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 682C41FBC97;
+	Fri,  4 Oct 2024 18:23:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728063820; cv=none; b=ZQ3VgMv/m291LKwz/UMnLCGmaTLbqPmJjEQrA5rMgHLEKGgVb3cqsmKmD+K5c9rpBr0KCeJ8qoTlH5WlcYB45kLqQ3BGHj0VARmoE35+v16c3tyPn4KWZggFeudO/nmtwyXQw5aV07YLsseAuFg8KYKdQGEced52IXZbKgn/l50=
+	t=1728066230; cv=none; b=ubKI3Uhv9HbKDgypjIjdCOVc7CtfBUKMTraQ/5olYdi05XsPigkrdfD37mrUoDbs7FL1aoWYZ2/rKmJF8zVUH1iBAiJ1Gx+7N6zHj+AwKXHl7wE473YJk8+m9cmf6msqMkXOE6DBHZCHcj9JfEEKDQEbz4UJkHNYPJFRpgJy1VU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728063820; c=relaxed/simple;
-	bh=SrIcmX5LERTV9UXiF5F0eUpH4un7emPqixCnfdUsWic=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kiutdCKUFcOjUBkOvZurt6oYBLKu/kSP/40+FHxYFcXM0XU/ewhg6JKrEravZppOzsvnhfkxrPI/pL9LbOVl42/BZl0iSGUpggf3g+ltHAQlgNCC8CveD0f0tiZREfqgVqJ3p/mBTzKByp8ZL2fRkPzS1lkF4RX4k+RVbXXcQIY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=GuJeGZP5; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IXQnpQPA; arc=none smtp.client-ip=103.168.172.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: from phl-compute-10.internal (phl-compute-10.phl.internal [10.202.2.50])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 06ED411401C4;
-	Fri,  4 Oct 2024 13:43:38 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-10.internal (MEProxy); Fri, 04 Oct 2024 13:43:38 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
-	cc:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm1; t=1728063818;
-	 x=1728150218; bh=6xywjibh/G02zJk+kwDiDMIM9D5UhTi5w32W2su72dk=; b=
-	GuJeGZP5IMyAZ1KX1XcOKGtmqw9h+fCnRwC32Kk1OqEORGFbaj7CSDoS8+QC8rp1
-	AjT0A7+Tz8+XMqUadqwmNI4sjLQm+B1agZZZh1X9417rgy4aPROnkt2rdQqV3jFA
-	QnEd2KHzwRR54n4DL7K+GgPtJ10Omdjb7Q58wOWbw28HM87q+vxNr4CpwBTG8pK2
-	wqTLD8v+Uwrnf0FseUia/hitCFyukRegHuJlyqoAgcAvroroBezguA3CeDLy+bpZ
-	jwWYNUHLNqTNl5h9mTC3pY/VIe3Wt2kDKaXmo8nqniNqr4GfyoFo2X0nMppzpB/o
-	cfgJYBwxR9Zrm3TBKl6mcg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728063818; x=
-	1728150218; bh=6xywjibh/G02zJk+kwDiDMIM9D5UhTi5w32W2su72dk=; b=I
-	XQnpQPACUxKLpJisr6ecb9+YMlS4pgNxyi2OZ+MlCWAigBnG1pCqAaAC5xNn5k7K
-	2kBu8ntZuWEeiA43RUWSYPQWDhykqRVW9nFSUUEZ3CMpZhhtNesQYi/n4x28rLrG
-	T0NYrNa9jYNMgexCV2YjY0/OX38zNHf9J228SqyfTxfcMmzJfs1ElxJ3sey8r+39
-	dSvsIC12Ce0Xd562kkD/bFBO2TNq9X21up21gRc8A/hFQD4dwR4wBXN/VZA/1E+z
-	3MCdrx5SfSLqUPr5bVFXQBijVLgjyRO7RoICmLomnAnzSGQ/dSRMfnupS+EvcXug
-	tjKrUlQ/+J/4fW9GsrAVA==
-X-ME-Sender: <xms:SSkAZ2yWycBqlZjFkEGqBrHC-zUndloZWUQEA2NBkJPxsyLi9jt1CA>
-    <xme:SSkAZyQwgM49Kx9-aDNxnbsnmB_IHNRRv7UT1l2IpInNXXmvTIDw3xXqRHium6Xdo
-    1lwYRulNnkmYGGf44o>
-X-ME-Received: <xmr:SSkAZ4UvZahzZwgKEf1H1f8YNzSSGsRVSMNL4T9pYn8zFRPAJbkAXNRet3iTPfIhK4oOI480JXtSMSaC7ub0GZ4InQSN7JMIrg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedgudduhecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpggftfghnshhusghstghrihgsvgdp
-    uffrtefokffrpgfnqfghnecuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivg
-    hnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfhfgggtugfgjgesthekredttddt
-    jeenucfhrhhomheppfhikhhlrghsucfunpguvghrlhhunhguuceonhhikhhlrghsrdhsoh
-    guvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgeqnecuggftrfgrthhtvghrnhepveet
-    gedtvddvhfdtkeeghfeffeehteehkeekgeefjeduieduueelgedtheekkeetnecuvehluh
-    hsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepnhhikhhlrghsrdhs
-    ohguvghrlhhunhgusehrrghgnhgrthgvtghhrdhsvgdpnhgspghrtghpthhtohepiedpmh
-    houggvpehsmhhtphhouhhtpdhrtghpthhtohepghgvvghrthdorhgvnhgvshgrshesghhl
-    ihguvghrrdgsvgdprhgtphhtthhopehmrghgnhhushdruggrmhhmsehgmhgrihhlrdgtoh
-    hmpdhrtghpthhtohepfihsrgdorhgvnhgvshgrshesshgrnhhgqdgvnhhgihhnvggvrhhi
-    nhhgrdgtohhmpdhrtghpthhtoheplhhinhhugidqrhgvnhgvshgrshdqshhotgesvhhgvg
-    hrrdhkvghrnhgvlhdrohhrghdprhgtphhtthhopehlihhnuhigqdgrrhhmqdhkvghrnhgv
-    lheslhhishhtshdrihhnfhhrrgguvggrugdrohhrghdprhgtphhtthhopeguvghvihgtvg
-    htrhgvvgesvhhgvghrrdhkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:SSkAZ8glRgUImLMW9VKXj6sfeNdkTecn1Nb1hYNrxNjGXIuuAMapkg>
-    <xmx:SSkAZ4CKc8VPa4kh-tAY3k3gL6J5sIQyvEQhJ1WmJHFf_jvTETFlqw>
-    <xmx:SSkAZ9KUhw8o2lamhhufMnSKKSbpetSklf94BvcHRik2xDKtvaSxnQ>
-    <xmx:SSkAZ_CapCzo6f5UYC0hfB_9IXJNcG-r1WuUjtbqLUIJRolefO1Kkw>
-    <xmx:SSkAZ61uudr4tTTZg-34LUEed1LP0eMSgabhDEPVbcx0mZaGVQ2WzJyJ>
-Feedback-ID: i80c9496c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
- 4 Oct 2024 13:43:37 -0400 (EDT)
-Date: Fri, 4 Oct 2024 19:43:35 +0200
-From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	linux-renesas-soc@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 20/20] arm64: dts: renesas: rzg3s-smarc: Use
- interrupts-extended for gpio-keys
-Message-ID: <20241004174335.GK3542504@ragnatech.se>
-References: <cover.1728045620.git.geert+renesas@glider.be>
- <6214cd8ed068e3fc60a7b972093e4d99cdc0be1a.1728045620.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1728066230; c=relaxed/simple;
+	bh=m5ip9qkR4OCyBx6ujgsy1Y70Ip1OiNgXtt9qUe/hBqw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y1bjEjTCJ9DRLZGQCi5EkiOtTMeJnJeScHgoMpbQnYi0nrlsrB7j3DFa1mUM+F88YdlW0HTP3VvOoh462fG/FGnmzz6w9DDBWFJRg1zARdLdheATvdb2gyJDwxh+Slzxh2k3eRsDKXmsrlcc3KdyrexmKzsXHLclnwSxekiAlCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SMcLvXm6; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a8a7596b7dfso428268366b.0;
+        Fri, 04 Oct 2024 11:23:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728066226; x=1728671026; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=m5ip9qkR4OCyBx6ujgsy1Y70Ip1OiNgXtt9qUe/hBqw=;
+        b=SMcLvXm6bvJB9riHBXWEzXNXKVa90zqrPuQ5TI3XamFAJecnpMPC1Tnnto8Az15pVt
+         Pa+0kTlvz3hUf3B/Eq152oDbf5ilQgUxjv7t0vs1Nht8A4KKl8QngT4PrLeoezVVOyZb
+         dTzfIQYWUWq+V8T0Ph/Kh258XWtBLlsV9pByIuLFGSZBfAQSnRIFv+4DuxQVtOlwDcdf
+         DNdAlSHsC81QB3Wz0taCZSJpBqQ4IxurFoFjsz5bnJwagZTyDn1YRI6EIWYTuSkG6uNg
+         Qi5fnuA8ruaOJF2FAhG1pWTwRMNGjBfmuGV7zgxrTNPqhdnhxyAqKfJjxyUEAFQJsc7S
+         qtPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728066226; x=1728671026;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=m5ip9qkR4OCyBx6ujgsy1Y70Ip1OiNgXtt9qUe/hBqw=;
+        b=k2T3SfQcnwQVIHjSJKr11BoQVmowz0MwRJc+LaVDeRtewsnYEhoa/TshNCI6iOhyaP
+         MhJa5j4PwfLZxVZ1Led8z8lXj3hfGcj70GWjq1e9cpPQn5Tadd7uozE+OFzXnnz1PvA+
+         O0iwVu+eBspkRNPHHcSKgegIL0I9B31yoCtRojMhs5PDO5XOE8uQSGXsroFjVx3Q8xSN
+         bHrvaRcfTb/p4pS/6Vk1wbXu2I2nljKoCGF0RnrViJR2Emdl63mBdZKhCf+31bxV5v1i
+         2OBI0NGoP347tdAh2FvZxESoVfn2AXwI6Ytt0gPo2Hj+fh/uvgN5PqXOBQng0xMviOvW
+         eL+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVUH1Z2XD0SBVhyLlkj46qFSGWwZN3k42d2cKOoYUbL7bZpSIUmKfNsf0vff81Z/yf+XVIzN7rmJ00Y@vger.kernel.org, AJvYcCXiRZ5dDkUN9zKxh5IOj2BnOAMlOqiw+Q9IZtzwngx8TCUsz4BSdy9Kii/uP9OH6w8geJwZcCVDJh33Pb+X@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx95Gaebl0PFdQOi/cktItGqkYG4mPjb7soPZByLPnQXyOFyj8A
+	52Z1SwX1SB0CIRAAra5AytQ5lxS+VrgbvaEQLi8qZogNjMKwxxuNKdYFkuaMcRFiX8VmcGSoz8z
+	bOz1kpCrm4CNg2q2yksqhjTQ+EJC2/oU1Y+0kXw==
+X-Google-Smtp-Source: AGHT+IGsyxIgvwACI1dK1qktkBruDAShcqvJduzumzcF8nTZhjScUkkiD8bGLozSIsi+SlH2V80S+E7QogVP4m7pbAY=
+X-Received: by 2002:a17:906:6a03:b0:a8d:63b5:e795 with SMTP id
+ a640c23a62f3a-a990a034eaemr729068066b.3.1728066225882; Fri, 04 Oct 2024
+ 11:23:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6214cd8ed068e3fc60a7b972093e4d99cdc0be1a.1728045620.git.geert+renesas@glider.be>
+References: <20241003213007.1339811-1-CFSworks@gmail.com> <78f25b22-f35b-4183-baec-7ddc0c5e3fda@broadcom.com>
+In-Reply-To: <78f25b22-f35b-4183-baec-7ddc0c5e3fda@broadcom.com>
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Fri, 4 Oct 2024 11:23:34 -0700
+Message-ID: <CAH5Ym4gUfhh3ZkPY8i8eVNzWOpfk+ibqAgdPuT3i0H0FsF5t8Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE stub area
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-10-04 14:53:02 +0200, Geert Uytterhoeven wrote:
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Thu, Oct 3, 2024 at 3:41=E2=80=AFPM Florian Fainelli
+<florian.fainelli@broadcom.com> wrote:
+>
+> On 10/3/24 14:30, Sam Edwards wrote:
+> > The CFE bootloader places a stub program at 0x0000-0xFFFF to hold the
+> > secondary CPUs until the boot CPU writes the release address. If Linux
+> > overwrites this program before execution reaches smp_prepare_cpus(), th=
+e
+> > secondary CPUs may become inaccessible.
+> >
+> > This is only a problem with CFE, and then only until the secondary CPUs
+> > are brought online. However, since it is such a small amount of memory,
+> > it is easiest to reserve it unconditionally.
+> >
+> > Therefore, add a /reserved-memory node to bcm4908.dtsi to protect this
+> > critical memory region.
+> >
+> > Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+>
+> Not objecting to the solution, but should not this be moved to a
+> per-board DTS given that there are boards using CFE, and some using
+> u-boot + ARM TF that are unlikely to suffer from that problem?
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Hi Florian,
 
-> ---
->  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-> index 7945d44e6ee159f4..4509151344c430de 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-> @@ -20,8 +20,7 @@ keys {
->  		compatible = "gpio-keys";
->  
->  		key-1 {
-> -			interrupts = <RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_FALLING>;
-> -			interrupt-parent = <&pinctrl>;
-> +			interrupts-extended = <&pinctrl RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_FALLING>;
->  			linux,code = <KEY_1>;
->  			label = "USER_SW1";
->  			wakeup-source;
-> @@ -29,8 +28,7 @@ key-1 {
->  		};
->  
->  		key-2 {
-> -			interrupts = <RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FALLING>;
-> -			interrupt-parent = <&pinctrl>;
-> +			interrupts-extended = <&pinctrl RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FALLING>;
->  			linux,code = <KEY_2>;
->  			label = "USER_SW2";
->  			wakeup-source;
-> @@ -38,8 +36,7 @@ key-2 {
->  		};
->  
->  		key-3 {
-> -			interrupts = <RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FALLING>;
-> -			interrupt-parent = <&pinctrl>;
-> +			interrupts-extended = <&pinctrl RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FALLING>;
->  			linux,code = <KEY_3>;
->  			label = "USER_SW3";
->  			wakeup-source;
-> -- 
-> 2.34.1
-> 
-> 
+I think I share your same gut feeling: this is bootloader-reserved
+memory, not something claimed by a driver or belonging to a device. If
+the bootloader is going to leave some code or structures resident in
+memory after handing off control to Linux, it's the responsibility of
+the bootloader to claim that memory by splicing in a reserved-memory
+DT node, and CFE isn't doing that. So I think we're very much in
+"Linux-side workaround for a proprietary-blob bug" territory.
 
--- 
-Kind Regards,
-Niklas Söderlund
+I don't know if it makes much more sense to put this in the
+board-specific .dts files; as I understand it, the architecture of CFE
+is somewhat unique in that CFERAM (containing the actual "bootloader"
+part) is included in the firmware image. That means that whether CFE
+or CFEROM-loaded-U-Boot is the thing kicking off Linux is up to the
+creator of the firmware image, rather than the device manufacturer.
+
+My reasoning for including this in the SoC-level .dtsi is threefold:
+- The .dtsi is specifying enable-method and cpu-release-addr for the
+CPUs, which also concern the Linux-to-bootloader protocol and should
+customarily be synthesized by the bootloader. U-Boot picks "psci,"
+overriding the FDT-specified default: so the .dtsi is already assuming
+CFE.
+- The .dtsi is also picking 0xfff8 as the fixed location to put the
+secondary-core entry point. I've noticed that CFE walks the FDT to
+learn cpu-release-addr (rather than writing the property): so the
+.dtsi is also already assuming that this region of memory is reserved;
+this patch just makes that explicit.
+- 64K of reserved memory is so tiny compared to the hundreds of MBs
+typically available on these boards, so I felt that the unconditional
+memory cost was an acceptable trade-off to save affected users the
+troubleshooting.
+
+If you happen to know of a DT property that tells Linux to unreserve
+the memory once fully booted, I'd gladly use that, but I didn't find
+such a thing when I looked.
+
+Since CFE's stub program appears to be very small, would you be more
+amenable to a patch that moves the address at 0xfff8 to 0xff8 and
+reserves only 4K (one page) instead? I hadn't thought to try it before
+now but it should work.
+
+Best,
+Sam
+
+>
+> --
+> Florian
 
