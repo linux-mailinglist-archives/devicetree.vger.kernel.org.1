@@ -1,85 +1,131 @@
-Return-Path: <devicetree+bounces-107961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1383D9909B0
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:52:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD2679909BC
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:55:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACDA2B23317
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:52:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8442B1F21377
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F4451C82FB;
-	Fri,  4 Oct 2024 16:51:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6209F1CACDD;
+	Fri,  4 Oct 2024 16:55:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SqavDz29"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="j5dAmvSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32F314CDEC;
-	Fri,  4 Oct 2024 16:51:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B80481CE;
+	Fri,  4 Oct 2024 16:55:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728060716; cv=none; b=Shx//A+dw2y1NGjXQvFP2kJu/60ee0fp5RTpy2NOVI3a31p4kCV3spp4jyCSzAUvp4/lGR10O5Cu25Gz+BLFmIVvCDfTP+R4MMPdM2jpGXysTAdxnOp9F9Ekz1LqiWTVf1kT/5TMu+AIJmuN0atgtFngi+aMYv3y8tA6K0X7oqc=
+	t=1728060922; cv=none; b=JxMIIOzszQg1dwpo0f/krem6vRJpPsSIyE8ejOPMHEIGhhZcc101s7FCROxMe4vlCw07+FB2VixOXatgNOz+gZ9hqkPDEfmRW64kUB4kFnPiwqLrJOkG8NeI+7Er7Pa6+lVpSthJK5dmwrTvdj+Egv8WC5e+GoROfykD2TLm8SI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728060716; c=relaxed/simple;
-	bh=hZ6aiS5jq6L8gnApAyyG9Gd6HVmPAmAY+ENAgknHgFU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=n4n4aVRkpufseIJeeD2eHTzHWaqONcDigYUIn7MjqZRaaIdCiPiKsZJBACAiSgumwQQF0TVRYtC/8jXRsn35wJ/IkMAzrdKXfyQkwdX4VBWfhj0flSgnVk86nW3z1SQvrk8htosgFM51hTk+03DC9pRbcN18dUVP8yUXBJaYKkw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SqavDz29; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37292C4CEC6;
-	Fri,  4 Oct 2024 16:51:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728060715;
-	bh=hZ6aiS5jq6L8gnApAyyG9Gd6HVmPAmAY+ENAgknHgFU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=SqavDz29/wOLnp9C5lDcoDREmnMMjradbwKZVLqLnBB0ZUfe0K3YGjEB5dhH2M3fE
-	 BkDUTExePRHvyiIdkFXZa3eAUtHUD/y73pdvcma1gJ00KKPQ9xAn6kHTEHAiaP13Np
-	 A/FoxOiG18g1kgHRwSXvq2LYFTaBlvhE3WKaFNdsIIWZjhs83a8wXUWsqlYpcNM4XF
-	 fy6OZhCEPusPlpjTkYwepgVVyTjSwVDe/GY5SIUCymZbKL29wcVLGNYej8jehNlQ36
-	 LDYEQGXZG6wETRmF3wJytg2wxGlAZ4guDDHF6zP6D+9JNkKqke2lhdbv9gS4D3sxD3
-	 wwnz1+SygSxGw==
-Date: Fri, 4 Oct 2024 09:51:54 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Oleksij Rempel <o.rempel@pengutronix.de>, Divya.Koppera@microchip.com,
- hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, f.fainelli@gmail.com, kernel@pengutronix.de,
- linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
- linux@armlinux.org.uk, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: ethernet-phy: Add
- timing-role role property for ethernet PHYs
-Message-ID: <20241004095154.5810afbf@kernel.org>
-In-Reply-To: <19207165-1708-4717-9883-19d914aea5c3@lunn.ch>
-References: <20241001073704.1389952-1-o.rempel@pengutronix.de>
-	<20241001073704.1389952-2-o.rempel@pengutronix.de>
-	<CO1PR11MB47715E80B4261E5BDF86153BE2712@CO1PR11MB4771.namprd11.prod.outlook.com>
-	<a11860cc-5804-4a15-9603-624406a29dba@lunn.ch>
-	<Zv6XOXveg-dU_t8V@pengutronix.de>
-	<19207165-1708-4717-9883-19d914aea5c3@lunn.ch>
+	s=arc-20240116; t=1728060922; c=relaxed/simple;
+	bh=2N8Az+6adF+E6pdBqPy0YObeupcf83vhXWtkovYhiN4=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:From:Subject:Cc:
+	 References:In-Reply-To; b=qQCmkLP8R6UHmQzvS2iqOY/O+TaVYjXcJo5Dej/lFHqa+Ih33zJvbvn/Xr8BrGdQvd7/Zp/0PKj+WZ0WIYB911OXrgEmX7G+UYmlx2J40fO0zjBexNDLOE6PNJQ6dkDiLuL4RaV/vVhtnj/C5HFQ9aqsSDMc+2itsRBr7TgYrQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=j5dAmvSe; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E2F96240007;
+	Fri,  4 Oct 2024 16:55:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728060916;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=0UaVOGZXc77/9zjUtLUSwZwPDWMsz2YXg6qf1K6eg9E=;
+	b=j5dAmvSertzXppJtGp+wTsEyHhoGVeVB9FlTbh+Xocdih7vUY6x0JPSF67Lxg9JLQEXPJG
+	7IkKvJl5CXtZQzZqU0XALys1xRNRNMqPk82aOo6ZzIHkOI6xC0fZsHwu8j8y5IWW3K/71K
+	FpbvfHVu76IGp2waucfTkcMliMCenah9SO/OWWG3ossV+tHro6lHsAo7JuF56CGZnkvomN
+	hpWruVvE9UQPENX3z09Wuuaos1+/l0tU/ulz2EBJt+XggpifalLQUtvMazQV15g+YM0ZLW
+	EH1EkeUrVTpPotpbprJQvPEVQsIST0rzaxxKOldKs/oabVTWm0XbQk3W+70rlw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 04 Oct 2024 18:55:15 +0200
+Message-Id: <D4N6GX6P0ZCH.2PJGDMKEZ6LLQ@bootlin.com>
+To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>, "Michael
+ Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
+ "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
+ <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v4 4/4] clk: eyeq: add driver
+Cc: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
+ <gregory.clement@bootlin.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241004-mbly-clk-v4-0-c72c2e348e1f@bootlin.com>
+ <20241004-mbly-clk-v4-4-c72c2e348e1f@bootlin.com>
+ <75884d07-f052-435d-9f1a-44e9e0bb755f@wanadoo.fr>
+In-Reply-To: <75884d07-f052-435d-9f1a-44e9e0bb755f@wanadoo.fr>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Thu, 3 Oct 2024 19:05:58 +0200 Andrew Lunn wrote:
-> > 802.3 use "Multiport device" for "preferred master" and "single-port device"
-> > for "preferred slave". We decided to use other wording back in the past
-> > to avoid confusing and align it with forced master/slave configurations.   
-> 
-> ethtool is preferred, so it would be more consistent with preferred
-> 
-> [Shrug]
+Hello Christophe,
 
-IIUC we have two weak preferences for "preferred"?
-LMK if I misunderstood.
--- 
-pw-bot: cr
+On Fri Oct 4, 2024 at 6:34 PM CEST, Christophe JAILLET wrote:
+> Le 04/10/2024 =C3=A0 17:45, Th=C3=A9o Lebrun a =C3=A9crit=C2=A0:
+> > +static void eqc_probe_init_plls(struct device *dev, struct eqc_priv *p=
+riv)
+> > +{
+> > +	const struct eqc_match_data *data =3D priv->data;
+> > +	unsigned long mult, div, acc;
+> > +	const struct eqc_pll *pll;
+> > +	struct clk_hw *hw;
+> > +	unsigned int i;
+> > +	u32 r0, r1;
+> > +	u64 val;
+> > +	int ret;
+> > +
+> > +	for (i =3D 0; i < data->pll_count; i++) {
+> > +		pll =3D &data->plls[i];
+> > +
+> > +		val =3D readq(priv->base + pll->reg64);
+> > +		r0 =3D val;
+> > +		r1 =3D val >> 32;
+> > +
+> > +		ret =3D eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
+> > +		if (ret) {
+> > +			dev_warn(dev, "failed parsing state of %s\n", pll->name);
+> > +			priv->cells->hws[pll->index] =3D ERR_PTR(ret);
+> > +			continue;
+> > +		}
+> > +
+> > +		hw =3D clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
+> > +				dev->of_node, pll->name, "ref", 0, mult, div, acc);
+>
+> Should this be freed somewhere or is it auto-magically freed by a=20
+> put_something()?
+> Maybe devm_action_or_reset()?
+
+This driver does not support being removed. It provides essential PLLs
+and the system has not chance of working without them.
+
+Almost all instances will be instantiated at of_clk_init() stage by the
+way (ie before platform bus infrastructure init). Devres isn't a
+solution in those cases.
+
+We are missing suppress_bind_attrs though.
+I can add that at next revision.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
