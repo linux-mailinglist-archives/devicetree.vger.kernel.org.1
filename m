@@ -1,110 +1,239 @@
-Return-Path: <devicetree+bounces-107916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3389906E5
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:58:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 685D999070E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 17:04:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 869B528C383
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:58:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7F8461C20F5B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 15:04:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72CCF1D9A70;
-	Fri,  4 Oct 2024 14:58:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4234F1AA7BA;
+	Fri,  4 Oct 2024 15:03:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fBxKL3Ds"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="XuHnM9jw";
+	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="Tt/4inet"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fout-a1-smtp.messagingengine.com (fout-a1-smtp.messagingengine.com [103.168.172.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 412C91D9A6D;
-	Fri,  4 Oct 2024 14:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B05331D9A43;
+	Fri,  4 Oct 2024 15:03:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728053900; cv=none; b=HA7f2rmiC0HASJEj5EzUWD35i1tLokB6QsJBqByqbsrLJvwsr4oyWmdKDD+fIPVWEsquT8qFkk2v9MmiXGrAg3kSm7nNmt923ZwApAx6LGkJ0q73R8soSFs+V/35n6V+fIY9yS208QzODMz+1kDGPbqgC73mKHihlnOmoom8sKU=
+	t=1728054193; cv=none; b=NQuKnGJsq0FgQzl3VV34j+/Yqlx0ZJkM7+mrOYieneZoOEj34yyjy/2hfhVDq94JiirmQpuRWFGrnYXVZ1CRX1r16psxCqtdOAP/NnVfqWL1pnDV8IMzwQA/Z6J5eYkwzHBboKvwwtCN7skFSVYz9lyPcsUNp8FWQ8iulJgAq5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728053900; c=relaxed/simple;
-	bh=hdx+Nlnqh49HdIrn5ECqFiAYUAa+WEBCnBFbH03L0U8=;
+	s=arc-20240116; t=1728054193; c=relaxed/simple;
+	bh=wntJ1TpHnBnMq1ItrsdmltCfvN4xWs5lGkhGuRRycKk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mtsndAeGhjRaw3bW/h8hfDdU8/DQRLg3Vp+YHFOVvtFlTH18ez/NyJ2lbiBg2TSA7Ssqi3dbykO9b45Sq6CfX11WX+r7fhJvZanZm+h5ihgulwfl2UZenxGbJlCH2jMKPkHSiAxTYd7CU2rBsBYyBSUt3aFsFACb/xhfUAnR96Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fBxKL3Ds; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FC3C4CEC6;
-	Fri,  4 Oct 2024 14:58:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728053899;
-	bh=hdx+Nlnqh49HdIrn5ECqFiAYUAa+WEBCnBFbH03L0U8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fBxKL3DsUpoP+JinPpudeiel+njsclMIT6jbhTpYmITwoloJRv9FKqNNiD5ph0hnu
-	 5faD0whmMiBTR7Nz/88Ak18WYLsE52Q0uhymh0x7AxkJxDrgD8PCQ3S3QSiigRHpyF
-	 W59ARwSudAfO8NEOcYPGa3y9zAaFpx4nwpjuHCIvSQDLrQJO9x2o+aMJRdbMuh/S09
-	 1fKHViikT4dbYtVAl9zB50rJO6gMV60zYIamcgyGcXBMNEBz1ens/7gegntv9w9Y1V
-	 Ab0tV7vj5FC6h4pWus2y3EcBzwyKUVPfPnck+Bab7BsyVIMAZCRO/XCJwQIMLh7gOP
-	 yIJtfLjjUBOsA==
-Date: Fri, 4 Oct 2024 15:58:15 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, Krzysztof Kozlowski <krzk@kernel.org>,
-	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, patches@opensource.cirrus.com
-Subject: Re: [PATCH 00/14] Remove support for platform data from samsung
- keypad
-Message-ID: <76d98587-3623-4ff2-89eb-a5fe8c535293@sirena.org.uk>
-References: <20240819045813.2154642-1-dmitry.torokhov@gmail.com>
- <803e3902-cec9-49ed-baff-d26e578a8ab7@app.fastmail.com>
- <Zv_vuSrJzpN9IvXV@google.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=j/tlQQ8kApXD1vWdMq76mAxm+ap5fCk/so/oUypw2101DS3Cvahm1Bo1f5U9jc4Y/RAHQSLaFnnobg7VlGokIIEel0WWuMN3YVTpZrvi6WDqx465OQYOE4k5YE22UzEcSKx2exKaSwD5QyOi8QkG+7q0AlZsXOqU7R75Fsj6SHk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=XuHnM9jw; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=Tt/4inet; arc=none smtp.client-ip=103.168.172.144
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: from phl-compute-07.internal (phl-compute-07.phl.internal [10.202.2.47])
+	by mailfout.phl.internal (Postfix) with ESMTP id 7B1781380142;
+	Fri,  4 Oct 2024 11:03:06 -0400 (EDT)
+Received: from phl-mailfrontend-02 ([10.202.2.163])
+  by phl-compute-07.internal (MEProxy); Fri, 04 Oct 2024 11:03:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ragnatech.se; h=
+	cc:cc:content-transfer-encoding:content-type:content-type:date
+	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to; s=fm1; t=1728054186;
+	 x=1728140586; bh=wieA7dN8yTavyw8Wu/8p6/7/at68i6/zGdUFISGUbKg=; b=
+	XuHnM9jwkn0TZg4LT6iBMJwre3YQgLhanq3mqyn+JFO6UPKsBAItennB9TBG82Ax
+	79RGsSjzkK548JwrsYQz1iKKlLXZ6flMCxHPOhMVQzE2m2Jlyv+K+xZr+yKjKxS6
+	U5r3hai9jGyg//0d14xTYYv94hYN+pXiTisngihXNrgyAy4bLNRR/thzU3zNWGD6
+	TNoQJVmI8edc4CLX2pPnfe1yqQBpLW4TzFa6hbI7FAjEq6qjZt4lLErWBZC58556
+	IduBXZ3f55SWqtXWHI0+PhhN6vAApC0r2Vuvuf82sm4XYaUz6cvn7B8ENydjqtb9
+	+pJrs4YrnFvZ3/l7gukdSg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	messagingengine.com; h=cc:cc:content-transfer-encoding
+	:content-type:content-type:date:date:feedback-id:feedback-id
+	:from:from:in-reply-to:in-reply-to:message-id:mime-version
+	:references:reply-to:subject:subject:to:to:x-me-proxy:x-me-proxy
+	:x-me-sender:x-me-sender:x-sasl-enc; s=fm2; t=1728054186; x=
+	1728140586; bh=wieA7dN8yTavyw8Wu/8p6/7/at68i6/zGdUFISGUbKg=; b=T
+	t/4inetYO2LDdeVeXSndPanp6CQBoYyamRQybf/XCiYn8hMjncs5xzULNgCijTRD
+	TsWZGcxtv97iz3AqCY7Z/vpjRcL1aULPUc3r9TkyPEXvQ/JMyQL3gIbGXLZ71kwF
+	3GvqPvL1KNZo4B/jmisixV9D7zK+xXzgHetkVbwaCXi/Ef2yC3KEEdUTVD6Ekw7M
+	o0wiEzqcMydYgzQCgGMTDWzmzXBaOE/R5Hks+MYqv3ItHi4bNv/zoLJfaEBN2Mb1
+	VrpJKjqmsInIf4Sjtj5gmgRyxxJGweHp78SY1LmaSX9d5/i9eoaX7hqotpcKdgBT
+	A1fsF+hOKPSx4mbcNi7eA==
+X-ME-Sender: <xms:qgMAZww7HAK1nYV5BaeBDrVq8SRHEIGBddGK43gnIrey2NblY7tYSQ>
+    <xme:qgMAZ0QIGGLWY5L5t2VUsZpUjia-UG_rnHxWuRJJqH4aY-xDitF65KdMLCd0yQKCI
+    Y7n7v_1OZeDOk-Xvmo>
+X-ME-Received: <xmr:qgMAZyX1uOkwbCQ5oLH0JYIg2w6QC3piqO4wsUQ0QdERJ05R3h0hTmBPib0Gt4NI3R90D22hp95y2me140eh8mt3d-pX1UEjWQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeftddrvddvfedgkeefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdggtfgfnhhsuhgsshgtrhhisggvpdfu
+    rfetoffkrfgpnffqhgenuceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnh
+    htshculddquddttddmnecujfgurhepfffhvfevuffkfhggtggugfgjsehtkeertddttdej
+    necuhfhrohhmpefpihhklhgrshcuufpnuggvrhhluhhnugcuoehnihhklhgrshdrshhoug
+    gvrhhluhhnugesrhgrghhnrghtvggthhdrshgvqeenucggtffrrghtthgvrhhnpeevteeg
+    tddvvdfhtdekgefhfeefheetheekkeegfeejudeiudeuleegtdehkeekteenucevlhhush
+    htvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehnihhklhgrshdrshho
+    uggvrhhluhhnugesrhgrghhnrghtvggthhdrshgvpdhnsggprhgtphhtthhopeeipdhmoh
+    guvgepshhmthhpohhuthdprhgtphhtthhopehgvggvrhhtodhrvghnvghsrghssehglhhi
+    uggvrhdrsggvpdhrtghpthhtohepmhgrghhnuhhsrdgurghmmhesghhmrghilhdrtghomh
+    dprhgtphhtthhopeifshgrodhrvghnvghsrghssehsrghnghdqvghnghhinhgvvghrihhn
+    ghdrtghomhdprhgtphhtthhopehlihhnuhigqdhrvghnvghsrghsqdhsohgtsehvghgvrh
+    drkhgvrhhnvghlrdhorhhgpdhrtghpthhtoheplhhinhhugidqrghrmhdqkhgvrhhnvghl
+    sehlihhsthhsrdhinhhfrhgruggvrggurdhorhhgpdhrtghpthhtohepuggvvhhitggvth
+    hrvggvsehvghgvrhdrkhgvrhhnvghlrdhorhhg
+X-ME-Proxy: <xmx:qgMAZ-gK_wgkLWSnzfimsbBhkCJ4Y98gfUUc1glxuTvsFATNUnGbag>
+    <xmx:qgMAZyDZh3KyxJrenPmGJ_UiBmSp9ptB13rJInhXmkSLLjPC5BVblA>
+    <xmx:qgMAZ_LOUDsDwMbEWO3i7QWapFknSCaWoGCypfIRa9cCE1JLrZT6og>
+    <xmx:qgMAZ5AaC_HsNRCvnhQ-birEiHPheWQeQJlkVs9ekUz3m0R9UOkYdg>
+    <xmx:qgMAZ017fq5XlQbuiCaNk7FGdM_d_2iosrgTwBuYM-KlH1_2VeUfEjIx>
+Feedback-ID: i80c9496c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Fri,
+ 4 Oct 2024 11:03:05 -0400 (EDT)
+Date: Fri, 4 Oct 2024 17:03:02 +0200
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	linux-renesas-soc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/20] ARM: dts: renesas: Use interrupts-extended for
+ Ethernet MACs
+Message-ID: <20241004150302.GH2071111@ragnatech.se>
+References: <cover.1728045620.git.geert+renesas@glider.be>
+ <f51de53cb003f850751e13fdbddea64ad942ee7b.1728045620.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2O90PREKokAOuISY"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zv_vuSrJzpN9IvXV@google.com>
-X-Cookie: A bachelor is an unaltared male.
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <f51de53cb003f850751e13fdbddea64ad942ee7b.1728045620.git.geert+renesas@glider.be>
 
+On 2024-10-04 14:52:43 +0200, Geert Uytterhoeven wrote:
+> Use the more concise interrupts-extended property to fully describe the
+> interrupts.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
---2O90PREKokAOuISY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-On Fri, Oct 04, 2024 at 06:38:01AM -0700, Dmitry Torokhov wrote:
-> On Mon, Aug 19, 2024 at 11:40:56AM +0200, Arnd Bergmann wrote:
+> ---
+>  arch/arm/boot/dts/renesas/emev2-kzm9d.dts     | 3 +--
+>  arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7778-bockw.dts   | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7779-marzen.dts  | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7792-blanche.dts | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7792-wheat.dts   | 3 +--
+>  arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts    | 3 +--
+>  7 files changed, 7 insertions(+), 14 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/renesas/emev2-kzm9d.dts b/arch/arm/boot/dts/renesas/emev2-kzm9d.dts
+> index 89495dd373585e94..c624fd61578b3b72 100644
+> --- a/arch/arm/boot/dts/renesas/emev2-kzm9d.dts
+> +++ b/arch/arm/boot/dts/renesas/emev2-kzm9d.dts
+> @@ -83,8 +83,7 @@ ethernet@20000000 {
+>  		compatible = "smsc,lan9221", "smsc,lan9115";
+>  		reg = <0x20000000 0x10000>;
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&gpio0>;
+> -		interrupts = <1 IRQ_TYPE_EDGE_RISING>;
+> +		interrupts-extended = <&gpio0 1 IRQ_TYPE_EDGE_RISING>;
+>  		reg-io-width = <4>;
+>  		smsc,irq-active-high;
+>  		smsc,irq-push-pull;
+> diff --git a/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts b/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts
+> index ae656ee27124c745..94a39ffc4297b788 100644
+> --- a/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts
+> @@ -207,8 +207,7 @@ partition@80000 {
+>  	ethernet@8000000 {
+>  		compatible = "smsc,lan9220", "smsc,lan9115";
+>  		reg = <0x08000000 0x1000>;
+> -		interrupt-parent = <&irqc1>;
+> -		interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupts-extended = <&irqc1 8 IRQ_TYPE_LEVEL_HIGH>;
+>  		phy-mode = "mii";
+>  		reg-io-width = <4>;
+>  		smsc,irq-active-high;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7778-bockw.dts b/arch/arm/boot/dts/renesas/r8a7778-bockw.dts
+> index a3f9d74e8877b72b..e27d7dd8c869bb2d 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7778-bockw.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7778-bockw.dts
+> @@ -96,8 +96,7 @@ ethernet@18300000 {
+>  		reg = <0x18300000 0x1000>;
+>  
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&irqpin>;
+> -		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupts-extended = <&irqpin 0 IRQ_TYPE_EDGE_FALLING>;
+>  		reg-io-width = <4>;
+>  		vddvario-supply = <&fixedregulator3v3>;
+>  		vdd33a-supply = <&fixedregulator3v3>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7779-marzen.dts b/arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+> index fec08562d12c1813..9793d8781d6e9425 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7779-marzen.dts
+> @@ -261,8 +261,7 @@ ethernet@18000000 {
+>  		pinctrl-names = "default";
+>  
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&irqpin0>;
+> -		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupts-extended = <&irqpin0 1 IRQ_TYPE_EDGE_FALLING>;
+>  		smsc,irq-push-pull;
+>  		reg-io-width = <4>;
+>  		vddvario-supply = <&fixedregulator3v3>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
+> index 540a9ad28f28ac1a..7eefa227d65514a9 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
+> @@ -224,8 +224,7 @@ ethernet@18000000 {
+>  		compatible = "smsc,lan89218", "smsc,lan9115";
+>  		reg = <0x18000000 0x100>;
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&irqc>;
+> -		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupts-extended = <&irqc 0 IRQ_TYPE_EDGE_FALLING>;
+>  		smsc,irq-push-pull;
+>  		reg-io-width = <4>;
+>  		vddvario-supply = <&d3_3v>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7792-wheat.dts b/arch/arm/boot/dts/renesas/r8a7792-wheat.dts
+> index 000f21a2a8630a8e..bfc780f7e396b408 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7792-wheat.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7792-wheat.dts
+> @@ -115,8 +115,7 @@ ethernet@18000000 {
+>  		compatible = "smsc,lan89218", "smsc,lan9115";
+>  		reg = <0x18000000 0x100>;
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&irqc>;
+> -		interrupts = <0 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupts-extended = <&irqc 0 IRQ_TYPE_EDGE_FALLING>;
+>  		smsc,irq-push-pull;
+>  		smsc,save-mac-address;
+>  		reg-io-width = <4>;
+> diff --git a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
+> index 98897f710063a91b..15d89c20618a16b7 100644
+> --- a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
+> +++ b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
+> @@ -172,8 +172,7 @@ ethernet@10000000 {
+>  		compatible = "smsc,lan9221", "smsc,lan9115";
+>  		reg = <0x10000000 0x100>;
+>  		phy-mode = "mii";
+> -		interrupt-parent = <&irqpin0>;
+> -		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupts-extended = <&irqpin0 3 IRQ_TYPE_EDGE_FALLING>;
+>  		reg-io-width = <4>;
+>  		smsc,irq-push-pull;
+>  		smsc,save-mac-address;
+> -- 
+> 2.34.1
+> 
+> 
 
-> > I had a (brief) look at the patches, everything looks fine to
-> > me, thanks for working on this! Let's see what Mark and=20
-> > Krzysztof think.
-
-> Mark, were you able to give this a spin? Or should I address the DT
-> binding comments from Krzysztof and Connor and resent for merge?
-
-Sorry, no - I've been some combination of ill, travelling and super busy
-since you posted it (sadly the bootloader for the board only supports
-booting from SD card so until I port u-boot it's not in my board farm
-and I need to specifically set it up on my desk whenver I want to do
-anything with it, especially for this where I need to poke at the
-keypad).  I've got one more week of travel next week and one of the
-major sources of super busy just got better so I'm reasonably hopeful
-I'll get to it week of the 14th but probably worth respinning.
-
---2O90PREKokAOuISY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcAAoYACgkQJNaLcl1U
-h9CIyAf/UT+SvU5Yxhj17iZJ3+MFGVgNHn0JN6vrsQBXrossVlgZ1JP7vbl1RobZ
-cw1/99nUqLGDjOHkNBSx/2/GjaZz1gEUDCbDeVaIMifsrGd4BbtoMTfwnclyCsp6
-fvvMKx0WAzcRmvm+FdQ5KGgt6mzZDsT/u3Q15ZOJ5GHunnP+njEkRY8SzaRZZteP
-EgGtc1FFI+tDVsoIQ6DNA23I0DVy2j/HZB23y/mYEOF1JiIspwhM+JjVUKJVgU57
-piRknEy0k2sO3sJ26HhyngwWT30Zg+ud+oSB64uO4RqnGqP9B6coPbCzow4vvENE
-zTfKRFshRCxw25+aDBoBxDxERSyLew==
-=jObm
------END PGP SIGNATURE-----
-
---2O90PREKokAOuISY--
+-- 
+Kind Regards,
+Niklas Söderlund
 
