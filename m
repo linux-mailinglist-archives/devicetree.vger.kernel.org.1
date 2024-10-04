@@ -1,217 +1,149 @@
-Return-Path: <devicetree+bounces-107776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93037990023
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:44:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5698599002A
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:45:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 393791F247BC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:44:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8565C1C239DD
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 09:45:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9E4A14AD32;
-	Fri,  4 Oct 2024 09:42:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8472146589;
+	Fri,  4 Oct 2024 09:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PYwJdss8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D35A514AD24;
-	Fri,  4 Oct 2024 09:42:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A7C7140E50;
+	Fri,  4 Oct 2024 09:45:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728034953; cv=none; b=iIrmuvR4hm756fwdI5SONj9zeojqoEuGvemxOJaAiYghBts9u12D7TBqF/CpRTE0HTcSEfVP7RQ8VMj5uimqn7529dDiOO39+8G4XBKEeweL76zObMXYdTsiLZln/ZhvLhQt78uAjOyD3RUk5xxylS706zQsVI07+dpOn/gnEOY=
+	t=1728035113; cv=none; b=erpf4K01UZy8xBcJ8SAzw+JbEwEdJ18qNOBycfFoNLkhH3cFub0y+MGgwQnJN6EHpsSKY05Gu/e/rl8NtDt67e41FCG4rpYdIPtXWvZubUljl0GuN1rNC+fSFoyrHMKu784bxu1bnymESlRcJrADscqsL2lxAD6y8geQmaECpVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728034953; c=relaxed/simple;
-	bh=qBrp9b2JFsXIIwmv/dzgme8ndotyZbizXpIi1iZzvW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sTzh+zwU8DA9rwhbv+1qGv7Pk7V+oSYYeHBWuxWCkyBEZnsJKFHUiv3qX9JgqzIC0ErH0oly5y9Z1Njm7H6r45/cM1K5tH1pIWdHcHevMa218NXeqDlchn8qyWEVIPVAty0ZzoKXw6O9GMVE87ouAkQjzMg6igpIEihs0dzTn0Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AACD3339;
-	Fri,  4 Oct 2024 02:43:00 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 362B63F64C;
-	Fri,  4 Oct 2024 02:42:29 -0700 (PDT)
-Date: Fri, 4 Oct 2024 10:42:26 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Martin Botka <martin.botka@somainline.org>,
- Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH 4/5] mfd: axp20x: Add support for AXP323
-Message-ID: <20241004104226.04534d8c@donnerap.manchester.arm.com>
-In-Reply-To: <CAGb2v64jPk64Y-Aef1YPWkjCfp0eq6EasE2xszu8+WoX+Epv-A@mail.gmail.com>
-References: <20241003111444.543964-1-andre.przywara@arm.com>
-	<20241003111444.543964-5-andre.przywara@arm.com>
-	<CAGb2v64jPk64Y-Aef1YPWkjCfp0eq6EasE2xszu8+WoX+Epv-A@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1728035113; c=relaxed/simple;
+	bh=TaiYoGdpBfdpz0ME0klNH6KoD2sXjnt2vr017uHEmjI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kuGFqJAqicbikffCzKKl6yD0hWY7lyflmcVXJY448EtohkVoo95XPfdaFvBbDR9EsuNDHp105GqgdHjLA0QZzRybWXDVroa0PgoUbZTRmkd/sUpk+eFLbB6ufkt+MfSfLcbbtLCFHnPJf5v+Z4CtcUM+qntQMdcLMtRugMXIJVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PYwJdss8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3977C4CEC6;
+	Fri,  4 Oct 2024 09:45:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728035113;
+	bh=TaiYoGdpBfdpz0ME0klNH6KoD2sXjnt2vr017uHEmjI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PYwJdss8/faK0K7G+0mkAciLFYvSoNJFW3xcLsN0xFcIFXbUZDVYUye8BHBaop8UI
+	 OKlyKiiBd4B+TCAelTd0LPde2Di3+fcyqEOqHRupkZWrEn0YTNPVPjHj7XjnAfissO
+	 rDVPsmKdZChwu6+VMCvYJ+j/Zb/9WPdK4IRqzMl6+sU9hmnmLCyyvnh3RT3og9YxIb
+	 T4jwlQjXjcmATwaPKu4kg4JDRVCBPMINb4Cq1Zzy5a6UkZQbG0h8fIt2MS7JWooefG
+	 V0I78qyU7QC6v+Zu8rLtvv1A95Mhtbq8vYy66h/QrM5UwrmZ9b07i7NzCzoc+C+ERT
+	 n3iNdozHat19w==
+Message-ID: <7f821dc9-299f-4e7e-b6dd-568573358300@kernel.org>
+Date: Fri, 4 Oct 2024 12:45:08 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] ARM: dts: omap: omap4-epson-embt2ws: wire up
+ regulators
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ Rob Herring <robh@kernel.org>, khilman@baylibre.com,
+ devicetree@vger.kernel.org, tony@atomide.com, aaro.koskinen@iki.fi,
+ linux-omap@vger.kernel.org
+References: <20240930213008.159647-1-andreas@kemnade.info>
+ <20240930213008.159647-3-andreas@kemnade.info>
+ <79d9aeef-2b38-44c5-a371-f696f6ae1de3@kernel.org>
+ <20241004110110.163db244@akair>
+Content-Language: en-US
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20241004110110.163db244@akair>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
 
-On Thu, 3 Oct 2024 23:20:58 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
 
-> On Thu, Oct 3, 2024 at 7:15=E2=80=AFPM Andre Przywara <andre.przywara@arm=
-.com> wrote:
-> >
-> > The X-Powers AXP323 is a very close sibling of the AXP313A. The only
-> > difference seems to be the ability to dual-phase the first two DC/DC
-> > converter, which adds another register.
-> >
-> > Add the required boilerplate to introduce a new PMIC to the AXP MFD
-> > driver. Where possible, this just maps into the existing structs defined
-> > for the AXP313A, only deviating where needed.
-> >
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  drivers/mfd/axp20x-i2c.c   |  1 +
-> >  drivers/mfd/axp20x.c       | 26 ++++++++++++++++++++++++++
-> >  include/linux/mfd/axp20x.h |  2 ++
-> >  3 files changed, 29 insertions(+)
-> >
-> > diff --git a/drivers/mfd/axp20x-i2c.c b/drivers/mfd/axp20x-i2c.c
-> > index 791a0b4cb64b..5c93136f977e 100644
-> > --- a/drivers/mfd/axp20x-i2c.c
-> > +++ b/drivers/mfd/axp20x-i2c.c
-> > @@ -65,6 +65,7 @@ static const struct of_device_id axp20x_i2c_of_match[=
-] =3D {
-> >         { .compatible =3D "x-powers,axp221", .data =3D (void *)AXP221_I=
-D },
-> >         { .compatible =3D "x-powers,axp223", .data =3D (void *)AXP223_I=
-D },
-> >         { .compatible =3D "x-powers,axp313a", .data =3D (void *)AXP313A=
-_ID },
-> > +       { .compatible =3D "x-powers,axp323", .data =3D (void *)AXP323_I=
-D },
-> >         { .compatible =3D "x-powers,axp717", .data =3D (void *)AXP717_I=
-D },
-> >         { .compatible =3D "x-powers,axp803", .data =3D (void *)AXP803_I=
-D },
-> >         { .compatible =3D "x-powers,axp806", .data =3D (void *)AXP806_I=
-D },
-> > diff --git a/drivers/mfd/axp20x.c b/drivers/mfd/axp20x.c
-> > index bc08ae433260..8d90962b56d9 100644
-> > --- a/drivers/mfd/axp20x.c
-> > +++ b/drivers/mfd/axp20x.c
-> > @@ -42,6 +42,7 @@ static const char * const axp20x_model_names[] =3D {
-> >         [AXP223_ID] =3D "AXP223",
-> >         [AXP288_ID] =3D "AXP288",
-> >         [AXP313A_ID] =3D "AXP313a",
-> > +       [AXP323_ID] =3D "AXP323",
-> >         [AXP717_ID] =3D "AXP717",
-> >         [AXP803_ID] =3D "AXP803",
-> >         [AXP806_ID] =3D "AXP806",
-> > @@ -193,6 +194,10 @@ static const struct regmap_range axp313a_writeable=
-_ranges[] =3D {
-> >         regmap_reg_range(AXP313A_ON_INDICATE, AXP313A_IRQ_STATE),
-> >  };
-> >
-> > +static const struct regmap_range axp323_writeable_ranges[] =3D {
-> > +       regmap_reg_range(AXP313A_ON_INDICATE, AXP323_DCDC_MODE_CTRL2),
-> > +};
-> > +
-> >  static const struct regmap_range axp313a_volatile_ranges[] =3D {
-> >         regmap_reg_range(AXP313A_SHUTDOWN_CTRL, AXP313A_SHUTDOWN_CTRL),
-> >         regmap_reg_range(AXP313A_IRQ_STATE, AXP313A_IRQ_STATE),
-> > @@ -203,6 +208,11 @@ static const struct regmap_access_table axp313a_wr=
-iteable_table =3D {
-> >         .n_yes_ranges =3D ARRAY_SIZE(axp313a_writeable_ranges),
-> >  };
-> >
-> > +static const struct regmap_access_table axp323_writeable_table =3D {
-> > +       .yes_ranges =3D axp323_writeable_ranges,
-> > +       .n_yes_ranges =3D ARRAY_SIZE(axp323_writeable_ranges),
-> > +};
-> > +
-> >  static const struct regmap_access_table axp313a_volatile_table =3D {
-> >         .yes_ranges =3D axp313a_volatile_ranges,
-> >         .n_yes_ranges =3D ARRAY_SIZE(axp313a_volatile_ranges),
-> > @@ -433,6 +443,15 @@ static const struct regmap_config axp313a_regmap_c=
-onfig =3D {
-> >         .cache_type =3D REGCACHE_MAPLE,
-> >  };
-> >
-> > +static const struct regmap_config axp323_regmap_config =3D {
-> > +       .reg_bits =3D 8,
-> > +       .val_bits =3D 8,
-> > +       .wr_table =3D &axp323_writeable_table,
-> > +       .volatile_table =3D &axp313a_volatile_table,
-> > +       .max_register =3D AXP323_DCDC_MODE_CTRL2,
-> > +       .cache_type =3D REGCACHE_RBTREE, =20
->=20
-> Maple tree instead?
 
-Ah yes, you are right, this was lost over a rebase. Will fix in v2.
+On 04/10/2024 12:01, Andreas Kemnade wrote:
+> Am Fri, 4 Oct 2024 10:38:22 +0300
+> schrieb Roger Quadros <rogerq@kernel.org>:
+> 
+>> On 01/10/2024 00:30, Andreas Kemnade wrote:
+>>> Wire up the regulators where usage is plausible. Do not
+>>> wire them if purpose/usage is unclear like 5V for
+>>> many things requiring lower voltages.
+>>>
+>>> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+>>> ---
+>>>  arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts | 11 ++++-------
+>>>  1 file changed, 4 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+>>> b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts index
+>>> d6b0abba19f6..cc1b6080bf95 100644 ---
+>>> a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts +++
+>>> b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts @@ -20,13
+>>> +20,13 @@ memory@80000000 { backlight-left {
+>>>  		compatible = "pwm-backlight";
+>>>  		pwms = <&twl_pwm 1 7812500>;
+>>> -		power-supply = <&unknown_supply>;
+>>> +		power-supply = <&lb_v50>;  
+>>
+>> This is probably wrong. I noticed this while reviewing patch 3.
+>>
+>> you probably want to wire this to blc_l?
+>>
+> No idea was blc_l is. I did not find any code handling blc_l.
+> looking at the vendor kernel:
+> 
+> $ grep -R BLC_L_GPIO *
+> arch/arm/mach-omap2/board-bt2ws.c:#define BLC_L_GPIO
+> 16	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ws.c:
+> {BLC_L_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_l"   },
+> arch/arm/mach-omap2/board-bt2ws.c:	gpio_export(BLC_L_GPIO, 0);
+> arch/arm/mach-omap2/board-bt2ts.c:#define BLC_L_GPIO
+> 16	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ts.c:
+> {BLC_L_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_l"   },
+> arch/arm/mach-omap2/board-bt2ts.c:	gpio_export(BLC_L_GPIO, 0);
+> 
+> These two gpios are exported. But they seem not to influence
+> backlight in any way. I just tested again to make sure. Maybe it is just
+> a leftover from earlier board revisions.
 
-> The rest looks fine, so once fixed,
->=20
-> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+OK. you could then leave it as it is now.
 
-Thanks!
-Andre
+> 
+>>>  	};
+>>>  
+>>>  	backlight-right {
+>>>  		compatible = "pwm-backlight";
+>>>  		pwms = <&twl_pwm 0 7812500>;
+>>> -		power-supply = <&unknown_supply>;
+>>> +		power-supply = <&lb_v50>;  
+>>
+>> this one should be wired to blc_r?
+>>
+> Same as with blc_l.
+> $ grep -R BLC_R_GPIO *
+> arch/arm/mach-omap2/board-bt2ws.c:#define BLC_R_GPIO
+> 17	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ws.c:
+> {BLC_R_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_r"   },
+> arch/arm/mach-omap2/board-bt2ws.c:	gpio_export(BLC_R_GPIO, 0);
+> arch/arm/mach-omap2/board-bt2ts.c:#define BLC_R_GPIO
+> 17	/* LB LED GPIO */ arch/arm/mach-omap2/board-bt2ts.c:
+> {BLC_R_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_r"   },
+> arch/arm/mach-omap2/board-bt2ts.c:	gpio_export(BLC_R_GPIO, 0);
+> 
+> Regards,
+> Andreas
 
->=20
-> > +};
-> > +
-> >  static const struct regmap_config axp717_regmap_config =3D {
-> >         .reg_bits =3D 8,
-> >         .val_bits =3D 8,
-> > @@ -1221,6 +1240,7 @@ static int axp20x_power_off(struct sys_off_data *=
-data)
-> >         unsigned int shutdown_reg;
-> >
-> >         switch (axp20x->variant) {
-> > +       case AXP323_ID:
-> >         case AXP313A_ID:
-> >                 shutdown_reg =3D AXP313A_SHUTDOWN_CTRL;
-> >                 break;
-> > @@ -1289,6 +1309,12 @@ int axp20x_match_device(struct axp20x_dev *axp20=
-x)
-> >                 axp20x->regmap_cfg =3D &axp313a_regmap_config;
-> >                 axp20x->regmap_irq_chip =3D &axp313a_regmap_irq_chip;
-> >                 break;
-> > +       case AXP323_ID:
-> > +               axp20x->nr_cells =3D ARRAY_SIZE(axp313a_cells);
-> > +               axp20x->cells =3D axp313a_cells;
-> > +               axp20x->regmap_cfg =3D &axp323_regmap_config;
-> > +               axp20x->regmap_irq_chip =3D &axp313a_regmap_irq_chip;
-> > +               break;
-> >         case AXP717_ID:
-> >                 axp20x->nr_cells =3D ARRAY_SIZE(axp717_cells);
-> >                 axp20x->cells =3D axp717_cells;
-> > diff --git a/include/linux/mfd/axp20x.h b/include/linux/mfd/axp20x.h
-> > index 79ecaaaa2070..c3df0e615fbf 100644
-> > --- a/include/linux/mfd/axp20x.h
-> > +++ b/include/linux/mfd/axp20x.h
-> > @@ -19,6 +19,7 @@ enum axp20x_variants {
-> >         AXP223_ID,
-> >         AXP288_ID,
-> >         AXP313A_ID,
-> > +       AXP323_ID,
-> >         AXP717_ID,
-> >         AXP803_ID,
-> >         AXP806_ID,
-> > @@ -113,6 +114,7 @@ enum axp20x_variants {
-> >  #define AXP313A_SHUTDOWN_CTRL          0x1a
-> >  #define AXP313A_IRQ_EN                 0x20
-> >  #define AXP313A_IRQ_STATE              0x21
-> > +#define AXP323_DCDC_MODE_CTRL2         0x22
-> >
-> >  #define AXP717_ON_INDICATE             0x00
-> >  #define AXP717_PMU_STATUS_2            0x01
-> > --
-> > 2.25.1
-> > =20
-
+-- 
+cheers,
+-roger
 
