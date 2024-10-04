@@ -1,184 +1,207 @@
-Return-Path: <devicetree+bounces-108013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2BD3991230
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 00:14:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C341991324
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 01:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 95DAC1C22DDB
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 22:14:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 892901C2060E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79CE11AE000;
-	Fri,  4 Oct 2024 22:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7446615381F;
+	Fri,  4 Oct 2024 23:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b="hs7xmFRU"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BnzLGZ68"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-DM3-obe.outbound.protection.outlook.com (mail-dm3nam02on2123.outbound.protection.outlook.com [40.107.95.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A94714A4C6;
-	Fri,  4 Oct 2024 22:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.95.123
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728080048; cv=fail; b=E1gmq7YbMTmG1aRM6gotegRx7Pv0Bohb3Z91qcOvedVGCbXmPs+KLQnw6zn2Xt7V0DI+uIFbQ/uUCyXW5Mb1zIl5DtKB6ZS5dbg2URY7iefMW/WzXCxIx0DfiH99XEHvAkHg9OjzmmIPRcEHUdr2hxSurqRcxsqy28DKu06bCjA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728080048; c=relaxed/simple;
-	bh=k7ep0iRG2Bg856J6G2frsd8mJf7pL3MIxrsqHO4alF8=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ZkW/NhbqleW/qF3nuZlGM7FVnAJaYPDjzrhlavnTVFQ5XaUxRHXJYD/L0zSGhdUR/jt1C8j4pGrtEX5icQvM3sdMSHNnz19wtvtDKth5He+3e/6U/j+TASvdRxW7FRHIj1hxn8ofsj2y/adpe1G0tqDjw3jFDmvFEv7Y9kBPl9I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com; spf=pass smtp.mailfrom=phytec.com; dkim=pass (1024-bit key) header.d=phytec.com header.i=@phytec.com header.b=hs7xmFRU; arc=fail smtp.client-ip=40.107.95.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=phytec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bIpEmQpAT+mpZoFHeSKcFCZ2l/5kouG9Eh4P+PPYEZqTakarQkVSnYrac3LdiBYSutkVmStiAVgBOWvTg+kmxdzLoHVrcK0Yl3yCs3dLlPcQ3Ohq7wwbjqMBKowZALnCLqRBKVHHhprtMZUjNzuPc806cUFRZRQjiLwGSdha/3jERprVuXdD9S+fj2PsM9ALNYqnso5IiNd0tU9QHPzqL1uZBTFCD2KRiCV0iBXqJnbvKtWpLYM/hhuVUOUCBmn/2BL77FfsVKyyY68OxT2RdDtGpSifwxcAZTaI8veYdolhGoWI4sYz4THLUXfaZdnaW1dihKTEY5jrXNpg9/3Q/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=umVWZy+HIuXXbu/a7grHas7wg8FccBadU+Q8F90lj6w=;
- b=MV68+J6dVmMPz7Ok4yDZ6tpmmPpzjDYUY/Nj7/gsRhjo3FT0Cc4aQ7u16P5h738Y9rMKoYeLlzTVQjz04A95dferxsOF8db3DZbGK5t5ba3gPszaTgYaPDM794pxM1EIVduQe1fEfjbWSvZjmu6+xLMICj/oK0cHXGWlq3UtPE+rZLgaW7UMrf7kGa3PpaVUe7FDn8wt5NY6PXadnlGQBsg25mAApw7FNKq+9k5Vcc0Wer/SwTCo9vKYxyNY79xedRrzhWq7ZFveOG5WkUhOcxhRFc7qC6zYmGcBjNI6iCE+WFMl3PKW5ZKW8JsjOwWDrB2/1r7PsnKai0imcXR7Mg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=phytec.com; dmarc=pass action=none header.from=phytec.com;
- dkim=pass header.d=phytec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=phytec.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=umVWZy+HIuXXbu/a7grHas7wg8FccBadU+Q8F90lj6w=;
- b=hs7xmFRULmuqhGq/MkYkEt0+n4/O4uMelbx3Pgl/zHGQo+qHoA4wKJnHUJZDjXdg4mBTrFbh7zKEn0WvJ77l2jDOXQRB8PWG/0efeWdVEikrY2a6aK6YA/wJFEW3H69zIw+godE8lSm9sYxWE3WEVwygKnBeLV6aK6+r579tE7E=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=phytec.com;
-Received: from LV8PR22MB5389.namprd22.prod.outlook.com (2603:10b6:408:1c2::21)
- by SJ0PR22MB3974.namprd22.prod.outlook.com (2603:10b6:a03:4d4::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.16; Fri, 4 Oct
- 2024 22:14:03 +0000
-Received: from LV8PR22MB5389.namprd22.prod.outlook.com
- ([fe80::e13b:a158:3ff2:8174]) by LV8PR22MB5389.namprd22.prod.outlook.com
- ([fe80::e13b:a158:3ff2:8174%4]) with mapi id 15.20.8026.017; Fri, 4 Oct 2024
- 22:14:03 +0000
-From: Nathan Morrisson <nmorrisson@phytec.com>
-To: nm@ti.com,
-	vigneshr@ti.com,
-	kristo@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	upstream@lists.phytec.de,
-	w.egorov@phytec.de
-Subject: [PATCH] arm64: dts: ti: k3-am62a7-phyboard-lyra-rdk: Update ethernet internal delay
-Date: Fri,  4 Oct 2024 15:10:49 -0700
-Message-Id: <20241004221049.1155022-1-nmorrisson@phytec.com>
-X-Mailer: git-send-email 2.25.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: CH0PR07CA0028.namprd07.prod.outlook.com
- (2603:10b6:610:32::33) To LV8PR22MB5389.namprd22.prod.outlook.com
- (2603:10b6:408:1c2::21)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B9F148826
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 23:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728085010; cv=none; b=Z564erdQH3UWzIzKslI2iUi5OuMrV3K6mdfjBeWLgQxV4FRM7ekVoY1wt3bleYTcVkODTxNi8iy14hTQrUEs7omx4i6b9Wb/s+bn5EuT6fXa3pMiOmNXTgNbGJpv2VZsmTSg+1fcmzvOZ0vZ/G9nIGu01OkmxciMtFf/I70kMIo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728085010; c=relaxed/simple;
+	bh=XvUnocCXbVbuFdtVRuQ3tHCrL6fOe57DjwVWeaC0+ag=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N8/hMyJCXGNBufwRuL5GA9Yv7RJQOx9d+QIWGd9ShH5e/ixKZtRVQh2KI50Een3FshGYY57pUy6WieCTAXpVtdco6UMYB9nVShqV8/jY0gDVQnK1XkxnrJvDhEXbmJgZxzRpBo8XYG5J7WtGtcsOrXYeo3R6iJpJkGknzyEOcEs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BnzLGZ68; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2e137183587so2260420a91.3
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 16:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1728085008; x=1728689808; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=nvv6ZVBdx+WslBs6QiI09CmZL7t21PPn8TYDS1fea1A=;
+        b=BnzLGZ68OslfE1bHR81t9HmLxEL9RV3EUm4k6lEp3nYXnl/XEDcvn4Q+VxjDiwkoYA
+         uhM9xAFS8CD1hsL7IW4L6dj3FpRixuD3JlfuindfRYqlA2qhuT8SzKAyaB5b9X5M3U4S
+         nNEzG86kd4sqgonRRNG7x8pCc/TdMUrSTWjuU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728085008; x=1728689808;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nvv6ZVBdx+WslBs6QiI09CmZL7t21PPn8TYDS1fea1A=;
+        b=SBL+rp455dI681Cdf3GohFsAoAoTyIR8GdawhPXt/6g+NCZ3AEx6VWSHqKE4cSQM3F
+         RR+QPOlRxMsz8yfEsCqYjGu0EM0R2Z3NDsbankRRdx+MPAhd5k5Ul1d8RQM12f3TD/a9
+         U+rbm9hVnqWz8Ji+w+s30JMCLWEWXHvVDuspP6btb7nJoRIq86hLhOFaTNiLwVHE3jLr
+         tJcpJ85OKznRFqygqeLXVIeBEu+6HvUI2rxWFlrcRcNoTNAHyR3XHqd5VjhjnuAvya0l
+         l8acWb2D1LRPiyojc7nH57kvsutFkj8jsEOuTWuNtECwPGdiaEjdNIF4H0NEZQ/HhPXZ
+         qoMw==
+X-Forwarded-Encrypted: i=1; AJvYcCXDoYpD+sY7ZUc0oLZaCheUpyqcOWr2aDcWQsuR85EyubHY1wTuFREVq3hlsuJzvWRjkQKEZfVJOzII@vger.kernel.org
+X-Gm-Message-State: AOJu0YyF1Byy14GwY/spCruStWoHBFP/4nw60slcn0Ey7RgbZHnM7mKT
+	TnBUEVTOlPL9rKHtYsdTHRLsS+28Wm3iKDIlbrtlm5qC/VbuiB6NETHppAwsMA==
+X-Google-Smtp-Source: AGHT+IFEVUF2i0P9TypTVjBU933nKEuDhBbS+ZkLc9YiZhtGH3DObvHfsKEGcZ4pkTacJowDI+ZftA==
+X-Received: by 2002:a17:90a:ad8e:b0:2e0:78a0:55c4 with SMTP id 98e67ed59e1d1-2e1e622723bmr5452427a91.9.1728085008161;
+        Fri, 04 Oct 2024 16:36:48 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e20aeba043sm538894a91.13.2024.10.04.16.36.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 16:36:47 -0700 (PDT)
+Message-ID: <8c49c480-5647-4ecc-85ff-5d61bb873052@broadcom.com>
+Date: Fri, 4 Oct 2024 16:36:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LV8PR22MB5389:EE_|SJ0PR22MB3974:EE_
-X-MS-Office365-Filtering-Correlation-Id: 37f99f1d-7010-4ebd-9d07-08dce4c1dabe
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|366016|52116014|376014|7416014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4YBfRPDLkJdOVaKc/2v2/cH+OuiKOOR4r/s+USCR4SW4v3YB8LquWZBC2GCc?=
- =?us-ascii?Q?0c3+8R6/qJ+HmLyjKxjMveKxQwyIay8hMIM4s+S2zaZ/5m0WAauizZXVwKpD?=
- =?us-ascii?Q?CEBk1EBrE2FdUp8O/cFTXY5xmediSezFwqZYwalHSQDqIBU9OBkU8EEX/UrA?=
- =?us-ascii?Q?6gUuvJBIKTKq8aN0Z63sHv7xBQ521mMwLOhRepE8+Zf+pufAAfcPW2Eh3ZJa?=
- =?us-ascii?Q?bKcWKbi+wkB+X5wiw5BCZiZLfDHCm8LjSlqsTbQD953Mlhi10E+lPwogILPc?=
- =?us-ascii?Q?7XyBJdpO+0n2o2uFUzjD4t/sWgFnWlNe0QDwI/kgyr7TrQE/1wHHxbxARa+Q?=
- =?us-ascii?Q?MJh111hOH+rce4sxxWCNCDni/Q4anTI77HGqhdvK5hkXFcZd8AmYzgplyWzj?=
- =?us-ascii?Q?XD6+CFF39OIsf5HRpwS4DEfjUSg161IKedQZYXGjxCa3mS4fREDF/VKEZNpx?=
- =?us-ascii?Q?sTOQbwvaWsbAILZPf6gDJJ4+DVmxFV8tHIep9i6REMjxoql3nmUK18ymcgpG?=
- =?us-ascii?Q?+3TdqxImFK6dinRvHLzqKjlyS+ru/35ZJTaDsJZnM08Rhre3/nNKvjO6bkQz?=
- =?us-ascii?Q?/38pxhXS/jPfjJmeR1oBZEEEjGmLoXhCLp5HGvypGHXXQDICDI5kXRKgu64b?=
- =?us-ascii?Q?9Hi4cVY0e6UHb7u73fUnwBYF+kwPaslxT4bY560qV/auXdejR9+wGxG0Sxjm?=
- =?us-ascii?Q?+RkiwRibu/G1Ix0ke5cF4iXfHIxM/mfG8I6dysBEBoPKxZ5MNMnyC0reZNCt?=
- =?us-ascii?Q?8Osln++Qcruua3ptDoBoEAJ6xbIiXs694IkXDghZpIh94ud4zH+P1uF0jRmO?=
- =?us-ascii?Q?o+qrWfYUib9rn5ttmnpq63NDz31hs9PLjjsbegvrRi/hTkjdHyl4oOxAtzbD?=
- =?us-ascii?Q?8bBAEF4NgI+VGiDgsTD/jcHNUTTl462bVZx1xyDH5C9HEbY4l53eWuN5U9zP?=
- =?us-ascii?Q?1qFc1p1NPRMgrVLl63aZESDg8IQJQmdT7/HriTvWZWL1AmfQLA4SHdigUh1S?=
- =?us-ascii?Q?Jl+dHYRZ3FryAzmjZUjlUTNsPdg5737EJ9Kdrqq9n1gyBFxvIqVN6NJ3cL0g?=
- =?us-ascii?Q?Bg+s1pLl9dHOGn4QR/opvg0n1Mmf1FTQeHVFeEDozmKvAvMPBLJ6CsEvjBIY?=
- =?us-ascii?Q?TtegOUJ7sTCWaESsNActXPaKviUOEpQkrLxgK0z4PniVGQK0ZTuOUw5ItGKt?=
- =?us-ascii?Q?gckxtTa72qrIxN7YTaoUl+bBKLtlVA5vCyRNxRitkTbSBzFMfascLupTepbe?=
- =?us-ascii?Q?TR0XfPUh1WTmb9VNm017AUahMKLrzk1RjgSPF1B7PxTsfVQK+Uyan421Uh3b?=
- =?us-ascii?Q?F27MgFxEW0YohhqIdRVs/qmMTWw1s44CvTgTwZByzbUkxQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LV8PR22MB5389.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(376014)(7416014)(38350700014);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?sKgQLH/UmfrnokhlB0jM6RuXD7PSEBEUohqFTPfqeX4fxIMcDl8NPWTOa/c1?=
- =?us-ascii?Q?cDTU9qJfzhEz/uByUMBGuiIqgd6/wunu65HLAPGLh/LQ4vQxJWli6SAxRDaj?=
- =?us-ascii?Q?/0QoMRUXpX/D/ekiWGNexrIC3zSQz8zLQWXB2uMQCDl5Gi2hvpU3azZaWqVb?=
- =?us-ascii?Q?6gSsaYkwXlOR5aznbmwHDI1qhhQpm6onEfjKlFQA01Wp4UN5dnbK/xT7NILl?=
- =?us-ascii?Q?Cv4BKn4StaPxEJkveu+Xy1lRbe3sBaGGJQ3CSWVFdrk/mISlNqhZ+OwNdjxM?=
- =?us-ascii?Q?k5aJCZtZJEoKtSf9zjGfSAIRgJc6XTEqlq/9ii29GhoNQFlxFxw1YlDSFJHR?=
- =?us-ascii?Q?PqiNHAmMbe4BT+VJ/gTxTA3893UCVMwMP/bbg6x8Mq+OYnJSCDEi/Fpppl09?=
- =?us-ascii?Q?4M36bm8/xhIW7kBmGf5HYg+La6yR9IbKMErfD4761PHr9qCPdXnIGgPHMVhZ?=
- =?us-ascii?Q?TYe8Ad8vUqTYfVHMJ8Fv/tekNATDnSPAPtlQeNLSZJLkMQgVT3W+mO2jskew?=
- =?us-ascii?Q?fvpbZVKuqH/P5+VjeWfEOHFGprNv1crYbGH/58+v/w56Vqq3D7Y0AsYoUWvR?=
- =?us-ascii?Q?nB63ut/XDDhTMWhgs82nstN70qI/tRc6E+ci1Sa/WQMudNWXcUmqHd/llrPB?=
- =?us-ascii?Q?cl0vx6PR3ABHltJVdOXfck2NtTNIOz4UzhSIE1WuAd1bqSzbxvlEyR0IMtto?=
- =?us-ascii?Q?FBlJAJk5Dtx3uHL0FaxNwe9XAdb7UsgA2n/glLfN3a+rRFNt1CJVZM/ntM6x?=
- =?us-ascii?Q?wHmfhNsYSEToY+J/Vvo/8pPMRCUHx7+/BiYdBC6ASla8YDVwhaDofu8mPN3x?=
- =?us-ascii?Q?81hVgmrQ1ftDzDT+KIklwcummjEA3EFJV+0IbfSKP/vaZFFv+9v9a7pUzip+?=
- =?us-ascii?Q?vLWXeI+twIiDb6uqIbP5PljKXevu6cU1Zk07mPGyZU6I607gGc+zMEEaPy3W?=
- =?us-ascii?Q?bPxBI0zdgx3Ycka5QUZWrlx8C9Mw+ZNyR+jFbZ2W4TeW0F2FyGU2NG1loAi9?=
- =?us-ascii?Q?YYIutHRlYfHX20lynY+d+bMgAvr17/MW9p15zGlUPxUVOJbqMDh3JRpiVXxh?=
- =?us-ascii?Q?0wcGXJE1dCzf72LYQuqH96WjssmIHiW8VfREgD3MunHDo2C0s1g6DMdfCWR4?=
- =?us-ascii?Q?2UV/pXhzT8mTwwJTagFxdmkUvPWdWQST0Bw47O32AC9uJ0NcqIEH5HnSkAw2?=
- =?us-ascii?Q?I2d8ZnSwUlmUzEAhoCu66zZa+FuJvIlytZYhpn2P8u7d3a4P+K606ZEF74WH?=
- =?us-ascii?Q?uBerZlkmUz5Xq6oXFvjJbBS9jhG1fZxDowB/qZyKI75fg6g9yt+NNCgUJrO5?=
- =?us-ascii?Q?3d60hOy3VRpiyW4Z9hcJ48H3z6Vv13B890HCsUqNxlJeuExDggKOlOOE6Ctn?=
- =?us-ascii?Q?yX44BWzw21yfKgwKtq25ME0RCRTLwO7df62+80Hz/mARM/Qjuk6TYwQnaR+5?=
- =?us-ascii?Q?p98LZmBtDMN7frVR6L6knBRhQLaz/lepgaxIAPyeJZYx6c+Q3y25JH5nGcNv?=
- =?us-ascii?Q?fiyoIkqVBVok8dqHAGaULH5YoLwk5E4XSV9FyFFuRnTTXeqrzSUcUNFIKbyJ?=
- =?us-ascii?Q?+x8CPFiC0orQnWhzbqR3XpgIJJAh6uXU/R5BCOYT?=
-X-OriginatorOrg: phytec.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 37f99f1d-7010-4ebd-9d07-08dce4c1dabe
-X-MS-Exchange-CrossTenant-AuthSource: LV8PR22MB5389.namprd22.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Oct 2024 22:14:03.1286
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 67bcab1a-5db0-4ee8-86f4-1533d0b4b5c7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: UVZmwZpCZrZXQq2d1lriuDfp88m7+OzB/no35c5g9tL+ckfUGYVL4ZpkOrPbmS8lbsgWipzV1CrpZz/uPEMIRw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR22MB3974
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE stub
+ area
+To: Sam Edwards <cfsworks@gmail.com>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20241003213007.1339811-1-CFSworks@gmail.com>
+ <78f25b22-f35b-4183-baec-7ddc0c5e3fda@broadcom.com>
+ <CAH5Ym4gUfhh3ZkPY8i8eVNzWOpfk+ibqAgdPuT3i0H0FsF5t8Q@mail.gmail.com>
+Content-Language: en-US
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <CAH5Ym4gUfhh3ZkPY8i8eVNzWOpfk+ibqAgdPuT3i0H0FsF5t8Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Update the RGMII delay to 2.5ns to improve performance. We use an
-additional mapper board for the am62a7 phyBOARD Lyra which makes this
-delay necessary.
+On 10/4/24 11:23, Sam Edwards wrote:
+> On Thu, Oct 3, 2024 at 3:41 PM Florian Fainelli
+> <florian.fainelli@broadcom.com> wrote:
+>>
+>> On 10/3/24 14:30, Sam Edwards wrote:
+>>> The CFE bootloader places a stub program at 0x0000-0xFFFF to hold the
+>>> secondary CPUs until the boot CPU writes the release address. If Linux
+>>> overwrites this program before execution reaches smp_prepare_cpus(), the
+>>> secondary CPUs may become inaccessible.
+>>>
+>>> This is only a problem with CFE, and then only until the secondary CPUs
+>>> are brought online. However, since it is such a small amount of memory,
+>>> it is easiest to reserve it unconditionally.
+>>>
+>>> Therefore, add a /reserved-memory node to bcm4908.dtsi to protect this
+>>> critical memory region.
+>>>
+>>> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+>>
+>> Not objecting to the solution, but should not this be moved to a
+>> per-board DTS given that there are boards using CFE, and some using
+>> u-boot + ARM TF that are unlikely to suffer from that problem?
+> 
+> Hi Florian,
+> 
+> I think I share your same gut feeling: this is bootloader-reserved
+> memory, not something claimed by a driver or belonging to a device. If
+> the bootloader is going to leave some code or structures resident in
+> memory after handing off control to Linux, it's the responsibility of
+> the bootloader to claim that memory by splicing in a reserved-memory
+> DT node, and CFE isn't doing that. So I think we're very much in
+> "Linux-side workaround for a proprietary-blob bug" territory.
+> 
+> I don't know if it makes much more sense to put this in the
+> board-specific .dts files; as I understand it, the architecture of CFE
+> is somewhat unique in that CFERAM (containing the actual "bootloader"
+> part) is included in the firmware image. That means that whether CFE
+> or CFEROM-loaded-U-Boot is the thing kicking off Linux is up to the
+> creator of the firmware image, rather than the device manufacturer.
+> 
+> My reasoning for including this in the SoC-level .dtsi is threefold:
+> - The .dtsi is specifying enable-method and cpu-release-addr for the
+> CPUs, which also concern the Linux-to-bootloader protocol and should
+> customarily be synthesized by the bootloader. U-Boot picks "psci,"
+> overriding the FDT-specified default: so the .dtsi is already assuming
+> CFE.
+> - The .dtsi is also picking 0xfff8 as the fixed location to put the
+> secondary-core entry point. I've noticed that CFE walks the FDT to
+> learn cpu-release-addr (rather than writing the property): so the
+> .dtsi is also already assuming that this region of memory is reserved;
+> this patch just makes that explicit.
+> - 64K of reserved memory is so tiny compared to the hundreds of MBs
+> typically available on these boards, so I felt that the unconditional
+> memory cost was an acceptable trade-off to save affected users the
+> troubleshooting.
+> 
+> If you happen to know of a DT property that tells Linux to unreserve
+> the memory once fully booted, I'd gladly use that, but I didn't find
+> such a thing when I looked.
 
-Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
----
- arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Not aware of such a thing, and I am not questioning the need to reserve 
+memory, that need is quite clear. What I was questioning is making this 
+a SoC specific entry because we do have a variety of boards supported 
+out there, some with CFE, some with u-boot.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
-index 3b93409b23e7..77e5fef618ba 100644
---- a/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
-@@ -16,3 +16,7 @@ / {
- 		     "phytec,am62a-phycore-som", "ti,am62a7";
- 	model = "PHYTEC phyBOARD-Lyra AM62A7";
- };
-+
-+&cpsw3g_phy3 {
-+	ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
-+};
+I suppose it is safer that way however, regardless of the boot loader 
+being used, and therefore I have no problem taking this patch as-is.
+
+> 
+> Since CFE's stub program appears to be very small, would you be more
+> amenable to a patch that moves the address at 0xfff8 to 0xff8 and
+> reserves only 4K (one page) instead? I hadn't thought to try it before
+> now but it should work.
+
+If a smaller reservation works, sure, why not!
 -- 
-2.25.1
-
+Florian
 
