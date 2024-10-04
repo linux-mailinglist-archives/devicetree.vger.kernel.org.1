@@ -1,59 +1,62 @@
-Return-Path: <devicetree+bounces-107701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A94D898FD58
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:31:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F3498FD5E
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 08:32:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6867B283C36
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:31:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A68F1F23264
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:32:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F02AD8175F;
-	Fri,  4 Oct 2024 06:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1997A12D773;
+	Fri,  4 Oct 2024 06:32:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mFRKaiXe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O0+U5XMa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C30DF4437F;
-	Fri,  4 Oct 2024 06:31:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB42D12BF02;
+	Fri,  4 Oct 2024 06:32:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728023465; cv=none; b=jZi3va+tsKePGMAQkY3EHo3JklOLigVoE4SmRvEd0y2zlBdt0S9WhY+gD6mPdE1zWUuLIyzZbbzlb4jZI+kIEWg5LJj5VkVVsI448JueMSH3VfCP1A+isDTHH0n6sur9C8iunl4jXidvo1aoXBHjPcuf/zTxHXl4XfQ53t6Ub9E=
+	t=1728023568; cv=none; b=m+N6xqO54bErY4TTtsAxQeKtlxKXmLRTAOC81eVVqUFYMcf0Ac6ZUgFrJMYcu3uNQjYONct0gmuFKrFsWvzf3/QWMbaahKFosSnkGA1sJVu1dmdb0c2k3E+sDrINYrQ6uzlFGCmeqNShqIioPxpqCCSQEbzueOzM+dD8QPzfx8I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728023465; c=relaxed/simple;
-	bh=EEw+7pUhIXdNBpJ3A/JT4kBhGTn4VJpaixV1VAt1T4s=;
+	s=arc-20240116; t=1728023568; c=relaxed/simple;
+	bh=zsrwiI1wB11X582UAxpW5TtN1oIXesMup+Gsjlys0W4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QNV1XcUja/iyLihmvXa5djzB0Ztbx+PceGU0LRQgiLPzzX4idnWB0wHxfLLewRe0GAWhGiYi+kBSH388Dzt2aAjioiERBMsRnTrVSySzEWP2cXqmC+tMWfHlvUkvFUWq7OwvZZbASiFz6p2RHJLq+DVvxEsg7xKVOCtahif5cnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mFRKaiXe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BCCBC4CEC6;
-	Fri,  4 Oct 2024 06:31:04 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XvW4conWRlAMcTezcDkNoJBdS0ZN/kZ+saCkyz8nsO3cxYG07H5SZjzDHmSkMeYMKGxYtFy0f2BZQyNgBRlGDxl+D0C+iBM19xAuySVGPW+Nu37tHYHE2X6KizFOt9y6gZayiNhJ/Vw7UjUEdDC4xnBDAprNAqZ/CyklSClY9Ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O0+U5XMa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66659C4CEC6;
+	Fri,  4 Oct 2024 06:32:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728023465;
-	bh=EEw+7pUhIXdNBpJ3A/JT4kBhGTn4VJpaixV1VAt1T4s=;
+	s=k20201202; t=1728023568;
+	bh=zsrwiI1wB11X582UAxpW5TtN1oIXesMup+Gsjlys0W4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mFRKaiXeEsDEbezP6MfTfRNsO+Crl+ydWn/5S8QB09wEo9Xpm+pyxiW1wLfUABoN+
-	 l59d5mgcRH6OtZX+g7+ZdAaz0KeU7hAS96Uh2icNLBbV2R73tLf2gK6QMfNGBaY4ov
-	 Gnwm27Yxv/AV3tuZnMT+YEdjN9GRnIfcAZF3sycc6yD/Aal4UpcCZcVgUgFfkX2m/o
-	 znXHn5r8jDuJn0MLvmPWQb6ToTwYJE2+sNmbhk/uRgbbwPUDCeGtL/BlscoPV+SPbL
-	 2mScfgl8RV6Q7bIDVsMwK7DpzqqwSLi6mMy7H0IraudE4pyToCb4f6i+EFoQRSFyc+
-	 Lp0qfiNo36Ulw==
-Date: Fri, 4 Oct 2024 08:31:01 +0200
+	b=O0+U5XMaXCMGz/gMW/5FLHfrZuWojeoeigqTJoxWQ6cUJMcwEB78Yyfr2ivZ/6Q7D
+	 U7532IfwRootOm2BYpvKLk1j7gas6XRIc6HDRpp37J5+R1UzS6+8QLStSvek82QeEV
+	 UOybf1YaNrGDwv43xzznzWjTzfaUyn8Tr7xUfQEbcu5vU3oxv2rz7/oy7fgO76jxHM
+	 pT/XMHkCchzEw7+SJVkkPtwpOWRZeKwk/etz3LRZluyKrakBrS8lMji2BU3+1j1H/G
+	 XAJ2cBOXziIY5MmEaHGQ9/kL7/ROQAjeuyDDEAhwrelDpPclcCtZAmZh+jIyM+1PXt
+	 EId8c8FCauTUQ==
+Date: Fri, 4 Oct 2024 08:32:44 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Jason Chen <jason.z.chen@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Sergey Senozhatsky <senozhatsky@chromium.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/4] media: dt-bindings: Add OmniVision OV08X40
-Message-ID: <gymosm3qtkhpembqomiqpjcb7554cv3ytqgxoffo2ej36rjet6@45co6ybnjlzl>
-References: <20241003-b4-master-24-11-25-ov08x40-v4-0-7ee2c45fdc8c@linaro.org>
- <20241003-b4-master-24-11-25-ov08x40-v4-2-7ee2c45fdc8c@linaro.org>
+To: Angelo Dureghello <adureghello@baylibre.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mihail Chindris <mihail.chindris@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, devicetree@vger.kernel.org, dlechner@baylibre.com, 
+	Mark Brown <broonie@kernel.org>, stable@vger.kernel.org
+Subject: Re: [PATCH v4 04/11] dt-bindings: iio: dac: ad3552r: fix maximum spi
+ speed
+Message-ID: <7go4qwudlt7babgqden6bvvtujcwq5bunnv7bxpswktqhqunkn@ertqtu65uxov>
+References: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-0-ceb157487329@baylibre.com>
+ <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-4-ceb157487329@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +65,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241003-b4-master-24-11-25-ov08x40-v4-2-7ee2c45fdc8c@linaro.org>
+In-Reply-To: <20241003-wip-bl-ad3552r-axi-v0-iio-testing-v4-4-ceb157487329@baylibre.com>
 
-On Thu, Oct 03, 2024 at 04:41:26PM +0100, Bryan O'Donoghue wrote:
-> Add bindings for the already upstream OV08X40 to enable usage of this
-> sensor on DTS based systems.
+On Thu, Oct 03, 2024 at 07:29:01PM +0200, Angelo Dureghello wrote:
+> From: Angelo Dureghello <adureghello@baylibre.com>
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../bindings/media/i2c/ovti,ov08x40.yaml           | 114 +++++++++++++++++++++
->  1 file changed, 114 insertions(+)
+> Fix maximum SPI clock speed, as per datasheet (Rev. B, page 6).
+> 
+> Fixes: b0a96c5f599e ("dt-bindings: iio: dac: Add adi,ad3552r.yaml")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
