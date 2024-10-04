@@ -1,171 +1,105 @@
-Return-Path: <devicetree+bounces-107908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E56F29905F2
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:24:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 832F29905F9
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:25:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1E94A1C21A6D
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:24:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29BFC1F219AE
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 14:25:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 956F4217301;
-	Fri,  4 Oct 2024 14:24:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QetrKEKQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE55219E0;
+	Fri,  4 Oct 2024 14:25:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B945212EEA;
-	Fri,  4 Oct 2024 14:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8E67215F6D;
+	Fri,  4 Oct 2024 14:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728051877; cv=none; b=cmkSpvimQC9fkzUdhHPK4AO6Yo+S1PXdiqV+fTGLBqM4yvZwNv6h4jXKIFW2muaklrPEqT+x0kwJleTSeVsdWMRQSpv2kOZOE2jzPPTg655mBG3/IgN+4jFEMUwwrO0lsYkKszbxYuYJgaEPXef6hLOlWYFeZv4fLeTmylB84L8=
+	t=1728051935; cv=none; b=CTWYZw3p0CDYVmpA+0e2uYA1sTIyZntIkzTh8kwsVNjjOWWDM5kI3tKrWaNSfGHm3reR4knTh5gXk2wss/nHnPqDRGqskfDW3yhYAwiThYGTKP51eKxiN/JVE92yygW9VKwvOfdDVvmIuprTHDP27G4hY7Ff91J/+fpLD1qzvwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728051877; c=relaxed/simple;
-	bh=k2Z8ShT2r7R8KmgI+SKVyfuHijsDXcJj/b/kQ+6RNpE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ME4AiviWUPOYmdfLF/iyIDOvvwtaOC4n/7O3u5cIO++jZ3Z68ZgJLqiJlhYWTwJFn3yKY2TlH9Kw553+rYdB78KF8F/XJtBlRqMRGFMmRpA4Km5HWRYS/o/irZpa1lr+5pUYaxMlY14QVFRDB2bNwgMG3JJXEhfJDIBq1EFH3oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QetrKEKQ; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=C6gDhg5uZqEI92mtooZVl3bYs4A2EKsq3515ZSfhgMM=; b=QetrKEKQfmTAf7eNdumMK32yJT
-	lCznHpHmqOh21Kh9kf2THI1Ed+QeADXiV+OANcknL0D4GE6dwe9hTMuKZ5xvKU4C4PH2UHVkwoEwP
-	62RQl8uR5EEfeIs8Vn37LefY0JhVRfVoRwet6yNckxjg6Tw3t0qtYTiG1BAjAjxcH0OHy5fVLsm6R
-	VtbfoxwYs5CT6PYOPoY55zVfc937tt4inBgi9n0fhDJbxoq1MDwo0tFd5vRwg/ZvZg1pJjXe4h6pD
-	oTuebIVrT4BTAV5s1SBygxaOJHjk6xYCH5Cq3SZ/NbeiLZSOCHkYHAJ83VoYLcD+UrFi0mZlSwFEP
-	jg5IQjUA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:54974)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1swjEM-00026c-0K;
-	Fri, 04 Oct 2024 15:24:29 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1swjEH-0001FE-13;
-	Fri, 04 Oct 2024 15:24:25 +0100
-Date: Fri, 4 Oct 2024 15:24:25 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Kiran Kumar C.S.K" <quic_kkumarcs@quicinc.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Jacob Keller <jacob.e.keller@intel.com>,
-	Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vsmuthu@qti.qualcomm.com,
-	arastogi@qti.qualcomm.com, linchen@qti.qualcomm.com,
-	john@phrozen.org, Luo Jie <quic_luoj@quicinc.com>,
-	Pavithra R <quic_pavir@quicinc.com>,
-	"Suruchi Agarwal (QUIC)" <quic_suruchia@quicinc.com>,
-	"Lei Wei (QUIC)" <quic_leiwei@quicinc.com>
-Subject: Re: RFC: Advice on adding support for Qualcomm IPQ9574 SoC Ethernet
-Message-ID: <Zv_6mf3uYcqtHC2j@shell.armlinux.org.uk>
-References: <f0f0c065-bf7c-4106-b5e2-bfafc6b52101@quicinc.com>
- <d2929bd2-bc9e-4733-a89f-2a187e8bf917@quicinc.com>
- <817a0d2d-e3a6-422c-86d2-4e4216468fe6@lunn.ch>
- <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
+	s=arc-20240116; t=1728051935; c=relaxed/simple;
+	bh=ZRxtgD0xZNzwwUVZdQOvgA9qgSKlSBGpO08yM+LiPOk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p7A0Yg+BISK9DoQo/7L1xja7k3oAfREmEk/iSTDdJiSZNFVpWMLggmT5EJF6hcn+QqgxDlYPimP2x7jrse9SOCXrSZCpxP41MaHK6xCR1gAgS61rH0/Ef/QNu3n7JFH0gJ8wdQ4bfMzroMXkd93t1mOA/QGVEkLg5QTA7R9G+3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6e2772f7df9so18210637b3.2;
+        Fri, 04 Oct 2024 07:25:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728051931; x=1728656731;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mTBmxJzVIGZHt8UKhn9MdR/m/EDycCw6/mAWvf9msk0=;
+        b=WzDMX7V/iYxCJWG5o7f0PQETXF2JXkcLPECBB5qQwx63eiCEAhZyesSRVI5aCMSfvw
+         VqeG3G42NWCscWvoGQc/8oevL2Idb/mknyXfpQ29/nt5K2dmHpK6E+3mQv2OJG3jpzh9
+         mms1XVOXjv+S4fKKMFCJi+AOhQdxzwvVIj4RGlFgt4s6IOk4X2s2m3cF1kLPl0sA1EQ+
+         Mrtv1hi3OEsjlzjQTylUuDz0iBrzjybSfMnToaVfwPKKlL9EAwEttJ4080UgcPxJ9goQ
+         9dpGWcytg+APvqbk3dzwc0xe3NKRiXLy1W2oufSWJ1zhbScy5KMygKHucc/aBqsqrBrU
+         F1TQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVbihxUflaHp3xHCSVNIQYYzp6ky4XSKB3BWFw1sobi9NXhijr5NwXk+mP3wlfqJ54l90p7RqDUrAAW@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNtQMIu2Uw/CclWcihuX8AMRl62T5uXzmWdRWq+0Ldz4gkHUSI
+	ogKnf16kKXxqTQOHMX0FZiyzArcnIVRnbXSwPN8Si4vFiqSFxQ/uWE2pKQwSY94=
+X-Google-Smtp-Source: AGHT+IHjVG4TNQtHpBJmDhgj784SrsZlsOMqQP68WiwdKti0mBidzBn7ludNYYQriOOH7YfROQqy1g==
+X-Received: by 2002:a05:690c:6610:b0:6e2:a962:d80f with SMTP id 00721157ae682-6e2c6fcb63emr26493637b3.8.1728051931359;
+        Fri, 04 Oct 2024 07:25:31 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2bbbb7ae1sm6661407b3.24.2024.10.04.07.25.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Oct 2024 07:25:30 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6dbb24ee2ebso22651457b3.1;
+        Fri, 04 Oct 2024 07:25:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXIIuc5FZBdrbp6JHYWB51f7FCI4Si9pM+EHbNRtD1DpQhuaoVbR4RkCXKgnvzKdy4V+qunHifJYg0e@vger.kernel.org
+X-Received: by 2002:a05:690c:500a:b0:6e2:c3e9:dab5 with SMTP id
+ 00721157ae682-6e2c7036f5cmr24221087b3.23.1728051930493; Fri, 04 Oct 2024
+ 07:25:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c7d8109d-8f88-4f4c-abb7-6ebfa1f1daa3@quicinc.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+References: <20240926110718.20519-5-wsa+renesas@sang-engineering.com> <20240926110718.20519-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20240926110718.20519-6-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 4 Oct 2024 16:25:18 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXYGVAU97a6G4ngvwvS-dFkie3fTrRFohwuZk9drTr+VA@mail.gmail.com>
+Message-ID: <CAMuHMdXYGVAU97a6G4ngvwvS-dFkie3fTrRFohwuZk9drTr+VA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: dts: renesas: lager: use proper node names for keys
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Oct 03, 2024 at 11:20:03PM +0530, Kiran Kumar C.S.K wrote:
-> >>          +---------+
-> >>          |  48MHZ  |
-> >>          +----+----+
-> >>               |(clock)
-> >>               v
-> >>          +----+----+
-> >>   +------| CMN PLL |
-> >>   |      +----+----+
-> >>   |           |(clock)
-> >>   |           v
-> >>   |      +----+----+           +----+----+  clock   +----+----+
-> >>   |  +---|  NSSCC  |           |   GCC   |--------->|   MDIO  |
-> >>   |  |   +----+----+           +----+----+          +----+----+
-> >>   |  |        |(clock & reset)      |(clock & reset)
-> >>   |  |        v                     v
-> >>   |  |   +-----------------------------+----------+----------+---------+
-> >>   |  |   |       +-----+               |EDMA FIFO |          | EIP FIFO|
-> >>   |  |   |       | SCH |               +----------+          +---------+
-> >>   |  |   |       +-----+                      |               |        |
-> >>   |  |   |  +------+   +------+            +-------------------+       |
-> >>   |  |   |  |  BM  |   |  QM  |            | L2/L3 Switch Core |       |
-> >>   |  |   |  +------+   +------+            +-------------------+       |
-> >>   |  |   |                                   |                         |
-> >>   |  |   | +-------+ +-------+ +-------+ +-------+ +-------+ +-------+ |
-> >>   |  |   | |  MAC0 | |  MAC1 | |  MAC2 | |  MAC3 | | XGMAC4| |XGMAC5 | |
-> >>   |  |   | +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ +---+---+ |
-> >>   |  |   |     |         |         |         |         |         |     |
-> >>   |  |   +-----+---------+---------+---------+---------+---------+-----+
-> >>   |  |         |         |         |         |         |         |
-> >>   |  |     +---+---------+---------+---------+---+ +---+---+ +---+---+
-> >>   +--+---->|             PCS0                    | |  PCS1 | | PCS2  |
-> >>   | clock  +---+---------+---------+---------+---+ +---+---+ +---+---+
-> >>   |            |         |         |         |         |         |
-> >>   |        +---+---------+---------+---------+---+ +---+---+ +---+---+
-> >>   | clock  +----------------+                    | |       | |       |
-> >>   +------->|Clock Controller|   4-port Eth PHY   | | PHY4  | | PHY5  |
-> >>            +----------------+--------------------+ +-------+ +-------+
-...
-> >> 3) PCS driver patch series:
-> >>         Driver for the PCS block in IPQ9574. New IPQ PCS driver will
-> >>         be enabled in drivers/net/pcs/
-> >> 	Dependent on NSS CC patch series (2).
-> > 
-> > I assume this dependency is pure at runtime? So the code will build
-> > without the NSS CC patch series?
-> 
-> The MII Rx/Tx clocks are supplied from the NSS clock controller to the
-> PCS's MII channels. To represent this in the DTS, the PCS node in the
-> DTS is configured with the MII Rx/Tx clock that it consumes, using
-> macros for clocks which are exported from the NSS CC driver in a header
-> file. So, there will be a compile-time dependency for the dtbindings/DTS
-> on the NSS CC patch series. We will clearly call out this dependency in
-> the cover letter of the PCS driver. Hope that this approach is ok.
+On Thu, Sep 26, 2024 at 1:07=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Avoids 'keyboard: 'four', 'one', 'three', 'two' do not match any of the
+> regexes: ...
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-Please distinguish between the clocks that are part of the connection
-between the PCS and PHY and additional clocks.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.13.
 
-For example, RGMII has its own clocks that are part of the RGMII
-interface. Despite DT having a way to describe clocks, these clocks
-are fundamental to the RGMII interface and are outside of the scope
-of DT to describe. Their description is implicit in the relationship
-between the PHY and network driver.
+Gr{oetje,eeting}s,
 
-Also, the PCS itself is a subset of the network driver, and we do
-not (as far as I know) ever describe any kind of connection between
-a PCS and PHY. That would be madness when we have situations where
-the PHY can change its serdes mode, causing the MAC to switch
-between several PCS - which PCS would one associate the PHY with in
-DT when the "mux" is embedded in the ethernet driver and may be
-effectively transparent?
+                        Geert
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
