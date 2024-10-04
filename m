@@ -1,174 +1,151 @@
-Return-Path: <devicetree+bounces-107692-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107693-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74E0798FC82
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 05:13:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 291F198FCB8
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 06:23:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE56B283BAE
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 03:12:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBB5D1F22E24
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 04:23:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EE83CF65;
-	Fri,  4 Oct 2024 03:12:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EC983FE4A;
+	Fri,  4 Oct 2024 04:23:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="C7MJCK6s"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="E2dufXz/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com [209.85.221.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E0E0374D1;
-	Fri,  4 Oct 2024 03:12:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2549139E
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 04:23:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728011576; cv=none; b=urswArjtnHCVPtBBTBlY/XgwSOp3RYgePrg8P+rmboy7KCGHpD2b4AMXdRL29YrPa3ANL+OLSjQEU3t4uvJtoe1quEhoxlyF9hN9iwh9M8khCdHrWCQB6K5GcXWzNhtC2LY7/gcKuIRfNRf6mwOqJ8QIWMqvsKTCv+brpl51GfE=
+	t=1728015828; cv=none; b=YcCmmow886ADjBESa/61B2k2vB0xiy0iLXt1GdpBum/CQUkLAFADma6kUEel0bmpbF6vt38PkBOasCeJeRBNbsBwv6hL5LhpoxVXuZ8iOyNJWQvZLQ+UZpiugfCzvvcjJoNu/kANuUKE4/aI4BYbEuZ9KdbLQSmv0UwpYOCtRHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728011576; c=relaxed/simple;
-	bh=rq10KnIXiTtLxcQTehtj+ChVtY9CVoZjtUsBtYyfDqo=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kvkXQFT3jyxDF0fhl8/A5P0pYUIxQQSxw92jpRt4jxuCDzpJDsKkPnwueaqKPsek2f86bcHZpIPPzspj1PNTKygaRbwtz5v5ukF0pSmRJ105kZKGUx8aXrj5QEhto+I/BHMF6r0nY7ZTKgpQ/VLsa/GDSciRiouQD67e0e6aixg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=C7MJCK6s; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 8996db8881fe11efb66947d174671e26-20241004
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=VvjdcvSMzu1NzlXSVqjDNCOu/6ZcirnM6M+SY+eZT3c=;
-	b=C7MJCK6sLGK1cppmofpZcCefOwiPKEJC9Lw/wkBaL/DGoKaWA4crR2F3kVLmDzNsBanPFsNOOVKMKAse3qWIl/Ltq2F1O0xLQMQTgo9rh+MjhEmT4GFhGNPMnvo6OLVCuJMEKFtO4h+a/29bRdEVDPat3IDSXOmYDRtxcyxhSfQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:f159a020-776d-4300-a875-f53b42bc4c73,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:1469ba40-8751-41b2-98dd-475503d45150,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 8996db8881fe11efb66947d174671e26-20241004
-Received: from mtkmbs09n2.mediatek.inc [(172.21.101.94)] by mailgw01.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 818668340; Fri, 04 Oct 2024 11:12:50 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 4 Oct 2024 11:12:47 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 4 Oct 2024 11:12:47 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, David Airlie <airlied@gmail.com>, Simona Vetter
-	<simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, "jason-jh . lin"
-	<jason-jh.lin@mediatek.com>, Macpaul Lin <macpaul.lin@mediatek.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Moudy Ho <moudy.ho@mediatek.com>
-Subject: [PATCH v4] dt-bindings: display: mediatek: split: add subschema property constraints
-Date: Fri, 4 Oct 2024 11:12:45 +0800
-Message-ID: <20241004031245.27514-1-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1728015828; c=relaxed/simple;
+	bh=c07CGN9V7S94OpNYn9IkfSzVCR8++ziq+96vBX0stQo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jDaV7+TZRo+za+PZHSyIzfmGjklfaM6vNml46yhya81vSenEN9gZTRlQ6iG4gIgNvhE1O4VNT+ZIPhZh62t6u4EZ99BBN3bQmAxN2LcHFfighu/sdGfar2qqR41qYP/wlNDVbmIxqrvcWi8sPm7MApMoGuCNr8Ciy+TQA9R/RCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=E2dufXz/; arc=none smtp.client-ip=209.85.221.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-50958a19485so462751e0c.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 21:23:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728015825; x=1728620625; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KQJli9cYBSHQhmqFSBnQ/Z74/l32FKm9tuU98/RCsm0=;
+        b=E2dufXz/Bds/VILbGiPPj2tS0VZAFCtdaQAAYo0Kk/jtbvwO6EXh0lTrfepZINfhVT
+         2zr+cwAVCxSuznMt0oscGyl4yWLmxxwqs7EmcAdMocvkeqkyLg+TvLoLnM6C1iZ5jkuJ
+         PGBWjz0RVnKfdTMpUZXVAVjy0R4xDr48huCMg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728015825; x=1728620625;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=KQJli9cYBSHQhmqFSBnQ/Z74/l32FKm9tuU98/RCsm0=;
+        b=NfGVSpekHqNr/u6XKIlI+mc+oUqO8XdeW6eMGcYihD2X1C1DYA8D8Di0Es+DOsPtkd
+         p1X/zk9B5t71jxX8TvyeFaLuof04q/w4sqmdTRxJXpAnZem6I5oFDShByzRzIMyJBcE/
+         2QiA9Dmf38XeoGt1cWiNnp25nc+h7gA3XfwLcWCgDizgPHGg0KZDnZCmkaiu5OTg/JqT
+         6jlGJehT27wMCwXd005zLWpk9lQ+u8fFZGi1iYr+BEgHdcZYZvE9aAUQwqzNvqxGGAK2
+         mDnkYz2bocbeYQAA+xDFDPFeQO/PwkNK5E49u/stQSK4SPUSEn8c+Fr7fq8hkTBIKv5R
+         w7Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCUpeBQToqNBSm9N0vFJyUbAF9P1ZUbpUB1CFiZ2/W6/2ldZZ1TzlaLYWfySErjNUH97O/tJCpGRhuP+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yztz1cqyF9vXT+gObD7bRtDGjaXymvsb284ZeefDdXTcWFRzLnJ
+	DpyoULRpr1sZNHkc/uP1aN3qFhDblrk0K+jHvGIogVfWa8DMjtSGKriX9/Dz+9m65VGulgKMDB4
+	IZQ==
+X-Google-Smtp-Source: AGHT+IEGDFl4zUj1OUY7TYLgDNkyZILdtYu+4VxkfpZVZAMM1BV4EC4n/jaYTb8jQrWdh/ht7p35aA==
+X-Received: by 2002:a05:6122:2508:b0:50c:5683:ad8c with SMTP id 71dfb90a1353d-50c8559a156mr1054035e0c.11.1728015825340;
+        Thu, 03 Oct 2024 21:23:45 -0700 (PDT)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-50c72c03b21sm356761e0c.41.2024.10.03.21.23.44
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 03 Oct 2024 21:23:44 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-84e808f3c3cso450741241.2
+        for <devicetree@vger.kernel.org>; Thu, 03 Oct 2024 21:23:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVMr02KgZsHY8fikbTD0HziGmDrtzHrgZtqqltqSOVFXgBdSytXA+GUpeeGOCKj9MVkAEfNTdCncADO@vger.kernel.org
+X-Received: by 2002:a05:6102:3594:b0:4a3:aa99:5ef1 with SMTP id
+ ada2fe7eead31-4a4058f7e87mr1271634137.25.1728015823875; Thu, 03 Oct 2024
+ 21:23:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--3.848600-8.000000
-X-TMASE-MatchedRID: ppgmZow9zj872d2F4DOSZIzb2GR6Ttd3MZm0+sEE9mtb6PBUqmq+Utdh
-	dhqLxa0jj6kCfX0Edc5fvtuIsaf1Zbf0EuHoGRzu/IBH0OAL+EeusS9CiBzL8VSkag5D7Fg8O0i
-	2vQl58jgZoBsQWiqLArpjAjMHHtZlHxPMjOKY7A8LbigRnpKlKZvjAepGmdoOaew8IIiXgAvvAG
-	R1wjdU/A80WibzltluWeLosublKiwBfIYXHLfYyidcSTc3nswYRatHJpnW/fwOfN/N+ZGstJSM0
-	+ojvAiRSZrfNhP3sgUBh9AgBSEFrJm+YJspVvj2xkvrHlT8euJ0YHKn7N1oOA==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--3.848600-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: F999A5621F1EC90E4B23B8EC631DC0308D8698A43EF295547A1B5EAC66FD31752000:8
-X-MTK: N
+References: <20241003070139.1461472-1-fshao@chromium.org> <20241003070139.1461472-4-fshao@chromium.org>
+ <d3052eb4-bfcb-4ee2-9b4b-a4845238c765@collabora.com>
+In-Reply-To: <d3052eb4-bfcb-4ee2-9b4b-a4845238c765@collabora.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Fri, 4 Oct 2024 12:23:06 +0800
+X-Gmail-Original-Message-ID: <CAC=S1njNEZvu=ay9+4qXQ0xYN+CQjCbr2oV+1RvAK9q5oRRDjw@mail.gmail.com>
+Message-ID: <CAC=S1njNEZvu=ay9+4qXQ0xYN+CQjCbr2oV+1RvAK9q5oRRDjw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/9] arm64: dts: mediatek: mt8188: Add MIPI DSI nodes
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
-to an excessively long 'clocks' property:
-  display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
-
-To resolve this issue, the constraints for 'clocks' and
-other properties within the subschema will be reinforced.
-
-Fixes: 739058a9c5c3 ("dt-bindings: display: mediatek: split: add compatible for MT8195")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-
---
-This is based on [v2] dt-bindings: display: mediatek: split: add clocks count constraint for MT8195
-
-Changes since v3:
-  - Correct the compatible name for the mt8173 split in the subschema.
-
-Changes since v2:
-  - Revise the commit message.
-  - Enhance the descriptions of 'clocks'.
-  - Strengthen the conditions within the subschema.
-
-Changes since v1:
-  - Adding functional descriptions and quantity restrictions.
----
- .../display/mediatek/mediatek,split.yaml      | 24 +++++++++++++++++++
- 1 file changed, 24 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-index e4affc854f3d..87f8477a7be8 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-@@ -57,6 +57,9 @@ properties:
-   clocks:
-     items:
-       - description: SPLIT Clock
-+      - description: Used for interfacing with the HDMI RX signal source.
-+      - description: Paired with receiving HDMI RX metadata.
-+    minItems: 1
- 
- required:
-   - compatible
-@@ -72,9 +75,30 @@ allOf:
-             const: mediatek,mt8195-mdp3-split
- 
-     then:
-+      properties:
-+        clocks:
-+          maxItems: 3
+On Thu, Oct 3, 2024 at 4:36=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 03/10/24 08:59, Fei Shao ha scritto:
+> > Add MIPI DSI and the associated PHY node to support DSI panels.
+> > Individual board device tree should enable the nodes as needed.
+> >
+> > Signed-off-by: Fei Shao <fshao@chromium.org>
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >   arch/arm64/boot/dts/mediatek/mt8188.dtsi | 26 +++++++++++++++++++++++=
 +
-+        power-domains:
-+          maxItems: 1
-+
-       required:
-         - mediatek,gce-client-reg
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8173-disp-split
-+
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+
-+        power-domains:
-+          maxItems: 1
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+> >   1 file changed, 26 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8188.dtsi b/arch/arm64/boot=
+/dts/mediatek/mt8188.dtsi
+> > index 23101d316c4e..719d2409a7db 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8188.dtsi
+> > @@ -1839,6 +1839,16 @@ pcieport: pcie-phy@0 {
+> >                       };
+> >               };
+> >
+> > +             mipi_tx_phy: dsi-phy@11c80000 {
+>
+> There are two DSI PHYs, one at 0x11c80000 and one at 0x11c90000
+>
+> > +                     compatible =3D "mediatek,mt8188-mipi-tx", "mediat=
+ek,mt8183-mipi-tx";
+> > +                     reg =3D <0 0x11c80000 0 0x1000>;
+> > +                     clocks =3D <&clk26m>;
+> > +                     clock-output-names =3D "mipi_tx0_pll";
+> > +                     #clock-cells =3D <0>;
+> > +                     #phy-cells =3D <0>;
+> > +                     status =3D "disabled";
+> > +             };
+> > +
+> >               i2c1: i2c@11e00000 {
+> >                       compatible =3D "mediatek,mt8188-i2c";
+> >                       reg =3D <0 0x11e00000 0 0x1000>,
+> > @@ -2224,10 +2234,26 @@ larb19: smi@1a010000 {
+> >                       mediatek,smi =3D <&vdo_smi_common>;
+> >               };
+> >
+> > +             disp_dsi: dsi@1c008000 {
+>
+> And there are two DSIs, one at 0x1c008000 and one at 0x1c012000
 
+Thanks for pointing them out, I'll add them for the second DSI.
+
+Regards,
+Fei
 
