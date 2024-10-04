@@ -1,148 +1,186 @@
-Return-Path: <devicetree+bounces-107807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD97990209
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:26:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1240F99021D
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 13:33:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 897A028362A
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:26:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33AA81C221D2
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 11:33:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9719156238;
-	Fri,  4 Oct 2024 11:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12F80157492;
+	Fri,  4 Oct 2024 11:33:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eSBFWzBd"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="bj18ZsoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A84D0137903;
-	Fri,  4 Oct 2024 11:26:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5873113D503;
+	Fri,  4 Oct 2024 11:33:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728041208; cv=none; b=KfJbHQ+Bd6pHnh6eFK5xcDXjJgfSbRlC/qZK91UOfVGALRYgqihRzVXzOXroKu3kfnw3GGuV93ZMOI+YPt0Z0pJqccgrG+4SgO9abqBfHqKl4W7qFHr4g+iUle4yHqIDcaGmoYMfBeWtwV5YQAqkdv3pJoH2/HVNFjkQ3ISWmoA=
+	t=1728041603; cv=none; b=l9P4wQqb34REGIySZcd03Xylcari7OGGuAW0k7ipQbaAqTeAC9hMdjEx7Otkvau6Jt7p/hxYfRMyi379PMnIa5mZ0dXi+7QPTIpe2kQehDp00OlSuMfYCPpxEVMSS+ZGd5jvRdmO3L+gm+x75EiGmWFZH5x58JCGNnm1zm2Xz5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728041208; c=relaxed/simple;
-	bh=/ixClVEw6P8y4JUgO/HEYdgh8vFcnmAPQaFNMxoXLJI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fK/+WtSK9RaTpYiShp+ikg2dpDgnfbBguejxH87Pfh3AaSJoAW5GF+TYr4GrOB+QspkOTFeXVF+LNXazjGTt0Jo9eqXjqxxK0dtzIeGKJx2YhieOwDm7NI3Q+iI0VGPUBtwFA9Z4Mi+WK5j49iQztk2MJmqE5x1fhxCDDBFhF9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eSBFWzBd; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 494BQbJl081014;
-	Fri, 4 Oct 2024 06:26:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1728041197;
-	bh=KPdjKo7hFMxWG9jf55ps3sg0vmoM9vRjCReXoVQKtGE=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=eSBFWzBdgqjFuyy657N7/kJjseTGVRvUu6AnJMaSBVjWME6VyxIwmo/blrtKGyyvW
-	 /4ATWPvP6X90rJijdvDYsPLe72FbCP4TZ66qWD2295sH7z+nzAUWEbQNTCitp6a70/
-	 8px0fXL5QJAkXyZLVD2WUfwEeAJiTaBluSlpIVYo=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 494BQbpu026567
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 4 Oct 2024 06:26:37 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 4
- Oct 2024 06:26:37 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 4 Oct 2024 06:26:37 -0500
-Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 494BQb37065159;
-	Fri, 4 Oct 2024 06:26:37 -0500
-Date: Fri, 4 Oct 2024 06:26:37 -0500
-From: Nishanth Menon <nm@ti.com>
-To: Bryan Brattlof <bb@ti.com>
-CC: Andrew Davis <afd@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v12 2/5] arm64: dts: ti: k3-am625-sk: Add M4F remoteproc
- node
-Message-ID: <20241004112637.nc2qcquiuwdhdrye@thirteen>
-References: <20241003170118.24932-1-afd@ti.com>
- <20241003170118.24932-3-afd@ti.com>
- <20241003210606.2k7wyssklwfziod4@bryanbrattlof.com>
+	s=arc-20240116; t=1728041603; c=relaxed/simple;
+	bh=n2DQGx6sLpxG7m4RhOiPABl3mL/dfUc4rZyw9Plq7Nc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=asE1vBP+U6aR7wCwBB9nz97l4Gu9ARWPwVIuyL3LuHLYYjEmNTfmBRVKTJYZZVZxoa/adXeVsIwWi0OmZxO0k8xGjpXqXoGV9tbJLmiV6w7V9ihYFa9Yu7o7fLJ4wQKDTuVsEVOHxxb6AITHsDUtL1q/FY/V3F5b6NlK8g3QS/8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=bj18ZsoE; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=CR/nAxuulTVBoX6b+47+Ns0Bly6gE/me/kF5jIfzXlQ=; b=bj18ZsoEzyqF24zq8DG6noP1nM
+	faVVaSMpOqZdTAkXo+x0utyqtFPPtG3yK8tD6nuZfBhO934kZvjmW9wuHuBz5rMbSedIHGh0yv9dz
+	bc6sCwSeQtMiSER8psjKaJycR90fqDwLzJHiImqtmnQTpbopquthykF/o3tK0tWfh0+OGrOGNsUaF
+	H+ty8RY63Lg5c3azmy7Zu/v6brH/JRL1L49l4MGa4uLUJripQdMlelcrh90hcYu89qUgDvX1UJJtc
+	RPUZ1MOfAjR2nkAbq1OB/GOwdfB6U5dYpryNRmy4XtqwGjY1p56VLMGl6lRhvMGi2MpyPAa63PMeQ
+	neMxqjIg==;
+Date: Fri, 4 Oct 2024 13:33:11 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, Rob Herring
+ <robh@kernel.org>, khilman@baylibre.com, devicetree@vger.kernel.org,
+ tony@atomide.com, aaro.koskinen@iki.fi, linux-omap@vger.kernel.org
+Subject: Re: [PATCH 3/4] ARM: dts: omap: omap4-epson-embt2ws: add unknown
+ gpio outputs
+Message-ID: <20241004133311.116ee074@akair>
+In-Reply-To: <7fc3cf75-bf48-4bcc-8c74-09fb89655a72@kernel.org>
+References: <20240930213008.159647-1-andreas@kemnade.info>
+	<20240930213008.159647-4-andreas@kemnade.info>
+	<7fc3cf75-bf48-4bcc-8c74-09fb89655a72@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20241003210606.2k7wyssklwfziod4@bryanbrattlof.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On 16:06-20241003, Bryan Brattlof wrote:
-> Hi Andrew!
-> 
-> On October  3, 2024 thus sayeth Andrew Davis:
-> > From: Hari Nagalla <hnagalla@ti.com>
+Am Fri, 4 Oct 2024 10:53:57 +0300
+schrieb Roger Quadros <rogerq@kernel.org>:
+
+> On 01/10/2024 00:30, Andreas Kemnade wrote:
+> > Set them to the state seen in a running system, initialized
+> > by vendor u-boot or kernel. Add line names where they are defined
+> > in the vendor kernel.
+> > gpio15 resets something in the display, otherwise meaning of the
+> > gpios is not known.
 > > 
-> > The AM62x SoCs of the TI K3 family have a Cortex M4F core in the MCU
-> > domain. This core can be used by non safety applications as a remote
-> > processor. When used as a remote processor with virtio/rpmessage IPC,
-> > two carveout reserved memory nodes are needed. The first region is used
-> > as a DMA pool for the rproc device, and the second region will furnish
-> > the static carveout regions for the firmware memory.
-> > 
-> > The current carveout addresses and sizes are defined statically for
-> > each rproc device. The M4F processor does not have an MMU, and as such
-> > requires the exact memory used by the firmware to be set-aside.
-> > 
-> > Signed-off-by: Hari Nagalla <hnagalla@ti.com>
-> > Signed-off-by: Andrew Davis <afd@ti.com>
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
 > > ---
-> >  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 19 +++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
+> >  .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  | 84
+> > +++++++++++++++++++ 1 file changed, 84 insertions(+)
 > > 
-> > diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > index 44ff67b6bf1e4..6957b3e44c82f 100644
-> > --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> > @@ -56,6 +56,18 @@ linux,cma {
-> >  			linux,cma-default;
-> >  		};
-> >  
-> > +		mcu_m4fss_dma_memory_region: m4f-dma-memory@9cb00000 {
-> > +			compatible = "shared-dma-pool";
-> > +			reg = <0x00 0x9cb00000 0x00 0x100000>;
-> > +			no-map;
-> > +		};
+> > diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts index
+> > cc1b6080bf95..c8205ae89840 100644 ---
+> > a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts +++
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts @@ -115,6
+> > +115,65 @@ wl12xx_vmmc: wl12xx-vmmc { };
+> >  };  
+> >  > +&gpio1 {  
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&gpio1_hog_pins &gpio1wk_hog_pins>;
 > > +
-> > +		mcu_m4fss_memory_region: m4f-memory@9cc00000 {
-> > +			compatible = "shared-dma-pool";
-> > +			reg = <0x00 0x9cc00000 0x00 0xe00000>;
-> > +			no-map;
-> > +		};
+> > +	lb-reset-hog {
+> > +		gpio-hog;
+> > +		gpios = <9 GPIO_ACTIVE_HIGH>;
+> > +		output-low;
+> > +		line-name = "lb_reset";
+> > +	};  
+> 
+> Just curious, what does lb stand for.
+> 
+me too. Maybe b is the same as in cb 
+
+static struct gpio bt2ws_lb_gpios[] = {
+        {BLC_L_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_l"   },
+        {BLC_R_GPIO,   GPIOF_OUT_INIT_LOW,  "gpio_blc_r"   },
+        {LB_RESET_GPIO,GPIOF_OUT_INIT_LOW,  "gpio_lb_reset"},
+        {POWER_EN_GPIO,GPIOF_OUT_INIT_HIGH, "gpio_power_en"},
+        {PANEL_POWER_EN_GPIO,GPIOF_OUT_INIT_LOW, "gpio_panel_power_en"},
+};
+
+That is what is in the vendor kernel and matches 
+
 > > +
+> > +	power-en-hog {
+> > +		gpio-hog;
+> > +		gpios = <10 GPIO_ACTIVE_HIGH>;
+> > +		output-high;
+> > +		line-name = "power_en";
+> > +	};
+> > +
+> > +	panel-power-en-hog {
+> > +		gpio-hog;
+> > +		gpios = <14 GPIO_ACTIVE_HIGH>;
+> > +		output-low;
+> > +		line-name = "panel_power_en";
+> > +	};  
 > 
-> The only issue I have here is this takes away memory from people who do 
-> not use these firmware or causes them to work around this patch if they 
-> choose to have different carveouts.
-
-They can define their own overlays.
-
+> Is panel always enabled? I didn't see a panel driver
+> else it could be hooked to panel regulator?
 > 
-> Would an overlay be appropriate for this?
+Panels are behind two dsi to dpi converters.
+I have a driver. At the moment, I boot into vendor
+v3.0 kernel, reprogram boot order, warm reboot into mainline u-boot +
+kernel to get display working. I can read registers via dsi at least
+after blanking the panel for the first time. Blanking/unblanking seems
+to work.
+With a low pulse on gpio15 I can reset something in the display which
+the vendor kernel can recover from but not my mainline driver. Then no
+communication with the display seem to work.
 
-Why is this any different from existing boards? Are you suggesting a
-change for all existing boards as well?
+About gpio 10/14 I know only the name (from the possibly kernel sources
+and matching /sys/kernel/debug/gpio). And that knowledge I want to
+forward into the formal hardware description, the device tree.
 
--- 
+$ grep -R PANEL_POWER_EN *
+arch/arm/mach-omap2/board-bt2ws.c:
+{PANEL_POWER_EN_GPIO,GPIOF_OUT_INIT_LOW, "gpio_panel_power_en"},
+arch/arm/mach-omap2/board-bt2ts.c:
+{PANEL_POWER_EN_GPIO,GPIOF_OUT_INIT_LOW, "gpio_panel_power_en"},
+include/video/omap-panel-bt2.h:#define PANEL_POWER_EN_GPIO 14	// GPIO
+
+But I did not get the supposed vendor kernel to fully boot. I have the verdict
+that I do not have the exact sources of the kernel which is running.
+I also did not notice any change in behaviour when toggling these gpios.
+So either they are a leftover from another board revision or something
+gets supplied by some parasitic ways.
+
+I think the best is to explain the situation more in the comments.
+What is a bit difficult is here is that there is something done in the m3
+processors but apparently nothing vital to having display output (tried
+with an initrd without any m3 firmware), probably
+doing something camera-related, so the kernel sources do not give a full
+picture of the hardware anyways.
+
+BTW: do you know how to best trace gpio changes done by the vendor kernel
+without recompiling it? I managed to write a module deviating the master_xfre
+function for i2c to log things.
+
+> > +
+> > +	blc-r-hog {
+> > +		gpio-hog;
+> > +		gpios = <17 GPIO_ACTIVE_HIGH>;
+> > +		output-low;
+> > +		line-name = "blc_r";
+> > +	};  
+> 
+> this should be modeled as a gpio regulator and paried to backlight
+> left?
+> 
+Discussed in patch 2.
+
 Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Andreas
 
