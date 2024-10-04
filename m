@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-107948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-107949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CAFB9908BC
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB3299908C4
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 18:15:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 079551F2108B
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:11:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 65F781F2112B
+	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 16:15:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC7831AA7BD;
-	Fri,  4 Oct 2024 16:11:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1C2615749A;
+	Fri,  4 Oct 2024 16:15:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ImUWCEza"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="Is8hKbYv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F8FC15749A
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 16:11:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 787F11E376A
+	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 16:15:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728058278; cv=none; b=Ku/7Lndys4XDnsvtdoHdh1qp5BqztG7hVLb5GN2weK5XDUrLpOdgqg+b0dhw8g6rTbRZl+yTYy2qFsWkXP9eX71fLGD4o0go9fOWeDoaf6rkiYOOobSodjI33sY3XcbLN9pdCIOT3bx1ehRZI5LqJ75hOHwwsrRzxgSitVcpz3c=
+	t=1728058541; cv=none; b=pDJfyPxCvRPomGK8Sl5SITYVQIZcwFNX9Yh77GzeIlIFTpf0Zi03dfQpA4TMZ84yVCRcdfpxWPqVkca8yNUyZLJUNdCd9C7DSwNhNl6Zj9dYipMzXdNThA0+2XcTv7XA3wwYPs049W4rpJM9HMT5RUQdpjqO34AuJBY5y2K8lTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728058278; c=relaxed/simple;
-	bh=cdbTN3dk9KoQtaZSwUqNJIdnaKT+6V+GIVRcSA/hhaI=;
+	s=arc-20240116; t=1728058541; c=relaxed/simple;
+	bh=aAhZeHaF+3jTLFYRxlEUkEIZN1lpbKcdY9dTKBa3ywQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=n4dlNlBf7bphcVRKhMn12qZ8UgTFxfSfoI/bBpxb5oCqePqE8/Q8dPlEHvJhxuBzvA3lgGTyrDGFBo382/B0lrYKc629h1I+5KOUOadq5OyyJx0nP3pi+K0vAMaqF2Ku3ID2FOh9Jn8obU1USMWE1cpus3dd2pV4K+6b6KJWzeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ImUWCEza; arc=none smtp.client-ip=209.85.160.170
+	 In-Reply-To:Content-Type; b=c4B4OF4WlB8ot4ON54u4xzAM8QQpFmmeBZWng6RAitblyWhY5FyAY+AGGpAK4AKLozl/z6UCJ+/ofh2g+o2je+g+s0s22+Sv06wMC8Kmqh/5eZ/UcQFuefJBUtf0KkDLI5XrAuCYUZGpF6a2/UxmT5hhRWx8lLe6zfUdftRfWjI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=Is8hKbYv; arc=none smtp.client-ip=209.85.216.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-4581f44b9b4so15077361cf.1
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 09:11:16 -0700 (PDT)
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e0b0142bbfso2449631a91.1
+        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 09:15:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1728058276; x=1728663076; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1728058540; x=1728663340; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qv99QOeXcBkbZdfo+87lDU5Rqpsh7c5RFPOmgI+cSL0=;
-        b=ImUWCEzaE4mZkXjbttV11AJlFc4ToFqVuqP93OjIIUbdcwn99G5Z3xvZGKQQXNGz67
-         HmsZ6rpmRzlUBJvi9ZWPZE/sOX4VOjRd+XRkxhcoQnx240vYRm0E01sKVYsKS5495zzl
-         wh8q5D2ZAyq3MYvLVwMLwQ5wmBG/A/l/ew1e4=
+        bh=E2kYz+RSZOgPBpO7Q02mQQbQkX0efpwZ1a0zriJuRiU=;
+        b=Is8hKbYvgENH7fmvmbL7EF8QMmqsaf7S2M8mUZ0gEO/4desUqtP0tXACjh5Gl3bRZS
+         GiYeLnMH6ZCdjYVQq+5lOsidmb7WWrynfNwAIEsh7yfs06idUvHhAYYV2X1z2oS5U6F/
+         L6qGNORjt4IhPhYUoqZDHu4DN4j/AwUweEHog=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728058276; x=1728663076;
+        d=1e100.net; s=20230601; t=1728058540; x=1728663340;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qv99QOeXcBkbZdfo+87lDU5Rqpsh7c5RFPOmgI+cSL0=;
-        b=Z99rnJDGdJ8F0JfshdXCTvG1e0nlbiHCE4g9oXjKCpDejXalIKsPD+UmTRqVxzXwFn
-         9yjIMbQZLTnsE6jS+qDoR1OG6VldkudWKJNY0EStr8x1+3l93Sx5B3jNeSfg4tTtF6oh
-         +PfsoTTnOn3Dfnc629GZYSrZSUp/A0x7mbLxUhdDO0rZCNjdU5Nxf6l/vHjgBlgv7ttE
-         Kwto8ljtIWkrTuGwgNr1e+EbUSb77yqDR/v4/f7VWRRo0LwQuybUTIcIdyg7fKy9eoWU
-         QNyah8LyPuEso4EtquO+ZvSzQbE/Twmp5mwZdtWW6rI5nyF0A/PNft2Y1wWqonhPJgg2
-         UfyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXZB9JVh22F1VD24cLcdUqvQWAv482u4UYRcW8oKev1z97KIZhXC/H0yRz4w6KRAM6ifKkrNNwCqsrQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWKhUVGRMRE2LxUl0ZaVtqBNSdA/1Pl1LuS9nFHF7kLZNqdg6Z
-	yoGWi8vPukNVqVIi7ceKdtZLAJRdcIgT4TbewC54rmkZq6fTGIToSeMB7tLK3w==
-X-Google-Smtp-Source: AGHT+IF9WjuoqxXB7O+btvUqDweLOUwXmnSbTM4nu4YD4ylONS6lfLeSrTfD5T+E6hR6pXbqZE+C+A==
-X-Received: by 2002:a05:622a:11c5:b0:45d:9236:89f2 with SMTP id d75a77b69052e-45d9ba79551mr40913531cf.2.1728058275929;
-        Fri, 04 Oct 2024 09:11:15 -0700 (PDT)
+        bh=E2kYz+RSZOgPBpO7Q02mQQbQkX0efpwZ1a0zriJuRiU=;
+        b=RttN4SxPjWLxx9KX9eU4TryiaFv7ZQxvXl9IDasgk7ot5qV4RtWPi3UAkAMfmqMFZD
+         3i+Q1Tcolv78m3JySa3vAj2ekqmL2T/FcHnhiwOh2CfAnisiPDTsLM3IZyXwyJ4DBaRE
+         H1CC6XVDuTA5Dxnw9QIn+1PupGroAiL1QZqH8maWG0DXAzUjLgtyo3hlHbGZuOjZGKPq
+         2JWwVfrs0SpJQ9w4PId96+QWLZDOX16+P/BdffVRRr7iGVRaWkaMSggCq+x6FsH2fi2T
+         GI58J30zuFd2CI3cfbFb+t474F/rj2fMhN/vsIiys9nkxy0XMGCuhRlWnvyttMU3MVsA
+         BXWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXdnppLms5mc242q+xd9L/JEIoQOk8lgi9u+IyVL8CgTH/wSdM0o1jKApwNdERR8EB107BdnwjSd7fN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzNwuXKVSVtdzHxkipM7i3W1kDJcCY8kuS37c48UMxl5ISuc3Fl
+	KeX+DDH89jX0O7vjVfhm/TJBmJ1j15Y2E+ER/nPpuDZsSK/I3ODtSkz1wPqIBw==
+X-Google-Smtp-Source: AGHT+IGIvRkq17wbSfo09twEbNm+pWIgDNw6Ws7RTsvMd8+ey7OIDKL/xVRMH501MM2PPo0Ijw5MOw==
+X-Received: by 2002:a17:90b:792:b0:2e0:8518:44fa with SMTP id 98e67ed59e1d1-2e1b389af22mr10506012a91.7.1728058539626;
+        Fri, 04 Oct 2024 09:15:39 -0700 (PDT)
 Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id d75a77b69052e-45da75ed6b3sm349691cf.61.2024.10.04.09.11.12
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e866551csm1814416a91.40.2024.10.04.09.15.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Oct 2024 09:11:14 -0700 (PDT)
-Message-ID: <d6cfbefa-7526-4a8b-bb81-66f198de1395@broadcom.com>
-Date: Fri, 4 Oct 2024 09:11:11 -0700
+        Fri, 04 Oct 2024 09:15:38 -0700 (PDT)
+Message-ID: <919386a4-ef38-48fe-a0cb-400ef0c02306@broadcom.com>
+Date: Fri, 4 Oct 2024 09:15:36 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,18 +74,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] arm64: dts: broadcom: bcmbca: bcm4908: Add DT for
- Zyxel EX3510-B
-To: Sam Edwards <cfsworks@gmail.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>, William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney <kursad.oney@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241003220820.1345048-1-CFSworks@gmail.com>
- <20241003220820.1345048-3-CFSworks@gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: leds: bcm63138: Add shift register
+ bits
+To: Linus Walleij <linus.walleij@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>,
+ Anand Gore <anand.gore@broadcom.com>, Kursad Oney
+ <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
+ <rafal@milecki.pl>,
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241004-bcm63138-leds-v3-0-ba99a8e464b9@linaro.org>
+ <20241004-bcm63138-leds-v3-1-ba99a8e464b9@linaro.org>
 Content-Language: en-US
 From: Florian Fainelli <florian.fainelli@broadcom.com>
 Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
@@ -120,41 +121,19 @@ Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
  MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
  7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
  95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20241003220820.1345048-3-CFSworks@gmail.com>
+In-Reply-To: <20241004-bcm63138-leds-v3-1-ba99a8e464b9@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/3/24 15:08, Sam Edwards wrote:
-> Zyxel EX3510-B is a WiFi 6 capable home gateway (family) based on the
-> BCM4906 SoC, with 512MiB of RAM and 512MiB of NAND flash. WiFi support
-> consists of a BCM6710 and a BCM6715 attached to separate PCIe buses.
+On 10/4/24 00:59, Linus Walleij wrote:
+> The BCM63138 family of serial LED controllers has a register
+> where we can set up bits for the shift registers. These are
+> the number of rounds the bits need to be shifted before all
+> bits have been shifted through the external shift registers.
 > 
-> Add an initial devicetree for this system, with support for:
-> - Onboard UART (per base dtsi)
-> - USB (2.0 only; superspeed devices are treated as high-speed due to an
->      unknown cause)
-> - Both buttons (rear reset, front WPS)
-> - Almost all LEDs:
->    - Power (red/green)
->    - Internet (red/green)
->    - WAN (green)
->    - LAN (green; anode is connected to GPIO 13 so currently
->        nonfunctioning)
->    - USB (green)
->    - WPS button (red/green)
->    - Absent in DT: There are 2.4GHz/5.0GHz WiFi status LEDs connected to
->        the WiFi chips instead of the SoC.
-> - NAND flash
-> - Embedded Ethernet switch
-> - Factory-programmed Ethernet MAC address
-> 
-> WiFi cannot be enabled at this time due to Linux lacking drivers for
-> both the PCIe controllers and the PCIe WiFi peripherals.
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 
-On the topic of PCIe, AFAICT Rafal had made an attempt at modifying 
-pcie-brcmstb.c, which is really the same IP, or rather a fork of it. Let 
-me know if you need help in figuring out the programming and we can help 
-with that.
+Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
 -- 
 Florian
 
