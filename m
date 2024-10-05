@@ -1,378 +1,111 @@
-Return-Path: <devicetree+bounces-108051-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108052-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A58E991600
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 12:32:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D226991662
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 13:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED526283C6E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 10:31:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90C82B2326E
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 11:23:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68591531C3;
-	Sat,  5 Oct 2024 10:31:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88C2F145B1B;
+	Sat,  5 Oct 2024 11:23:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ensFfRQa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cz1HRMCf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C048C14B06E
-	for <devicetree@vger.kernel.org>; Sat,  5 Oct 2024 10:31:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 503A2F9FE;
+	Sat,  5 Oct 2024 11:23:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728124276; cv=none; b=hx7toZmomKtGgVEByBfCPVbDdX5MiEf1Us6//ndFycymXR6dhg+xgqvCyDu+mB+SuF+zS7QsV6dbdouHIi6opDJs8TAnBrSa9Dlr82a9eLU4CPV+oy+DEgJJ7R9IO6uOeqbBjZQN5L10fMd5FPc/rW9pmT9+LgfziXpfAneYOqA=
+	t=1728127389; cv=none; b=Ih0ZryCkg77cshl6Kd+SdShGiGG6TNhiHZO5n8CWWoCPLcyJv0007poFYfYUQvEDz4T7SSdvIm334JYImdpMCW+i0nZNvyt+cHCsmzYWEzXUnN/O7kgM9D3HTsqW0utiPrPc72wVldK7tl4JrwEtwVFdXu6k3v266BHGl6obBiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728124276; c=relaxed/simple;
-	bh=MZdA/sRLAsmvUPZP3TphhP3dJzkLom00eAxDcabblxk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dMH+6Jb0dMemfRROmM5k8isNpYI/0CKXMsMxGCXL2IMGKdIxTGnNPUcpoFwtRgjOPeQ9E7kJXkUo+XSdItWjuuz0+Iflsqyyqq+ArheqmH7Ne4brDd7baqjxKNjELvcB7AsV/3Ws+pGcnFVdxIDiCSMwaSyvE0R8qyIJa8J7oFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ensFfRQa; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a8d24f98215so441132666b.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2024 03:31:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728124273; x=1728729073; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pseR3SnwJF/ltwSCthgN9v3QXyD9/cz3sKkOTqoReDs=;
-        b=ensFfRQa3eqA32dNxca6TT/6FIAnSIpIS9vBe7YwVSFb9Po2PUZ1kYIvkrwCsy3gDu
-         ZSBIv2ky6rSV/fobclDah8S1f82MbND5I8VPxlJpVGt1OqDkx6UWNlgnmAua7OQLJam7
-         6yDiIreYhL57xtE06sOhpplXISQD0OIQg7l/sfGtBCj6ctS5fy3PNYVXzSCaEH9C2of6
-         NSgIqlF9yBXfCum2tvT+YyynVF3J7iRRWAx/wPi1WvaUvohMlodvKsAB4u24UI94pF6F
-         tmbgeUmeRbrLZs8moZHxLQ90SpTpU7XRQeYRFN5Vpg8rFz/DgCeQ4NTCnExbBYeurSFY
-         YE5Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728124273; x=1728729073;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pseR3SnwJF/ltwSCthgN9v3QXyD9/cz3sKkOTqoReDs=;
-        b=RF84m5GGd5N2xMNVOPhCBVd1UPM1gxwuSBl4HAEbdop5LBQ1rgZf5u+h7Mp+gmUtu7
-         KP5mF4u2QNa1e+NAts77hiv4brUzHfaDyl/29AWMAiTPX5Sw3S3H3oUPfgDRLEJhW9x3
-         na1iyaPa9ZyzGyfahNZ4amLCCwNCfifdijj6zbCSRyfokPUqI8RScqCT5yvWeIQPoKKT
-         ubU9qsEYkB0Hgrf7qwgEgo+iLqwRsuo5SxeTmHiKWPc+4Fhk9PTpij6Th+5BdUF1jqbe
-         ThPEeKDk/To51h19wZKvTxH55DFeYHhkDR0fUGAMm6RFFcHzE0iMKZw1uQRUILSbZyN6
-         L0nw==
-X-Forwarded-Encrypted: i=1; AJvYcCWS0hg3jR/FwR1Hpdc3HFx2YZyVOgw1sxDpOTkWZmjOCMLU04Amulg/oOG0YAuUPqFoHiP8q9JEIpFu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yya7lnBYzK1iC+tZRtrgFEtmLasRmcKUy4NXABQZBeQ5PnrIIdN
-	u1dvCje6OmHK2pESe5ZTr8pvIsH7nM3r+v9EcoKzRhY7DPEnqWfPhhL57GdTEMM=
-X-Google-Smtp-Source: AGHT+IGnpJbRkaeEp++fKU34EvopNpr/tyBn+AeOlnfao3/er+hs2WZEx+AXO2rdZ+yVQjSYpLNcaA==
-X-Received: by 2002:a17:907:36c4:b0:a8d:1303:2283 with SMTP id a640c23a62f3a-a991bd7a123mr567894066b.30.1728124273102;
-        Sat, 05 Oct 2024 03:31:13 -0700 (PDT)
-Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a992e7856bfsm116315566b.138.2024.10.05.03.31.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Oct 2024 03:31:12 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Sat, 05 Oct 2024 11:31:06 +0100
-Subject: [PATCH v5 4/4] media: ov08x40: Add OF probe support
+	s=arc-20240116; t=1728127389; c=relaxed/simple;
+	bh=y7Aaf1rQuGE513a/NM0g2Gq6NNV+R4sWwXFnKYDcQNc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=WewVCEAtPSVSZXghW7gEIxctw0QEudRR5shGJs6DX/ED5l+X4H2ZsDA8IZmOEDE056T+zwNrv/z3UGZeou7T3nSPOU/rZXTm3Fm6LzcCUihc3cn0JCh+NPIfeXqv2Hbt/YLsw5r/f30iapL6NfWzNCXIP0RLuEidOEUv/kflsjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cz1HRMCf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CEEAC4CEC2;
+	Sat,  5 Oct 2024 11:23:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728127388;
+	bh=y7Aaf1rQuGE513a/NM0g2Gq6NNV+R4sWwXFnKYDcQNc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=Cz1HRMCfEc/mq3d5pUhgaspoeny3U/5waIHWOicqmTA55sDiC2DcJbnmjG4bjBUN+
+	 08A73unQWs6YyJUVYtLG3bfJPAIzT3o3cuDMHtAJ4tIKUUxjfLP7l+zGt34bBHkQoc
+	 nBpvTo8kgkaNP5Ve6coYyi5Y9QQ6y2kJ0h3BweOqbwUcaGS7EnuLdOmSBlNz+BLEto
+	 NTGN/EfkY+L+7LeRCd5MLz/NA0L79lkE7Xt+xfL3g+FPpcUafK9+GkxkStmZJHxqFX
+	 llvei+E67us7011iU7J1HLjla184pj/FikvtLErZwjGXcbngSFGalFdlTY34SqGZQf
+	 WwG/gXq+z32+Q==
+Date: Sat, 5 Oct 2024 12:22:57 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com, dlechner@baylibre.com, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 01/10] iio: adc: ad7606: Fix typo in the driver name
+Message-ID: <20241005122257.77c2e582@jic23-huawei>
+In-Reply-To: <20241004-ad7606_add_iio_backend_support-v3-1-38757012ce82@baylibre.com>
+References: <20241004-ad7606_add_iio_backend_support-v3-0-38757012ce82@baylibre.com>
+	<20241004-ad7606_add_iio_backend_support-v3-1-38757012ce82@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241005-b4-master-24-11-25-ov08x40-v5-4-5f1eb2e11036@linaro.org>
-References: <20241005-b4-master-24-11-25-ov08x40-v5-0-5f1eb2e11036@linaro.org>
-In-Reply-To: <20241005-b4-master-24-11-25-ov08x40-v5-0-5f1eb2e11036@linaro.org>
-To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Jason Chen <jason.z.chen@intel.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Sergey Senozhatsky <senozhatsky@chromium.org>, 
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7427;
- i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=MZdA/sRLAsmvUPZP3TphhP3dJzkLom00eAxDcabblxk=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBnARVqi35DN6gUi+5keNREXE36RVNzvmSK5VLjs
- 2TziUE2nCOJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCZwEVagAKCRAicTuzoY3I
- OkdrD/4jdS4d6RhXojZ416uinCFqyvFUj5cpzuo4DlDXoY/1Nz6azwXPh95o1T1PkVuFGgoSCOs
- YSQWGGnw9G9o48NdyDr/xzI0h1d4EoSL6LjhxMGtlF6IJv/rabmp/F1xNR3yK1grurvlwLQbmtK
- /jwkYznAN2F7XDmvcPbnsPXxojP5loPJI/mNl9tpJujm+OEimW15qfikNXZD/9JFBJPNBEaHbTG
- goBm7fgleoveZZjkV1Y/3csyg6+rergqZ3Vm96mxnaXMR/Eo/qtalOOm/L/WGtjXqyZNW+FL2q8
- akyJqfada7b0VrAuZjhjVzUQg+4+ENcoLdinozxfTdU1J7CPTPYCaWbRDVNE3Qby/fbD7kYM/j1
- kfDNAS4fRG9WiV/bNFR+y341m2i/pO3M6Dfq1aUo1yYdAdhLESTrERrTQhI4IDa6Usxk5qEvnD/
- eHrDxJHlFeTaNi8sjyDJb3moKNZPMM8P1X/vEUMEYv18q2Rp8L3UnH6MWpQnJHsl+YO/NP7KDta
- phphJ2FP5Hg2xSe0R+hqUhdq2/1KjwvF4UmrflSqa4NW8Fdpodv4pm07lvnI2UkIoELDIi+h3Jk
- YlR+EbZEYxMRrTKqNofm600ZrpyaazuWo6wfaCcgyYxNU8IhUcM6B6LNrKdxg4bypOAHIQAM6oh
- N2899CZzi1+AL/w==
-X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
- fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
-The ACPI version of this driver "just works" on dts based systems with a
-few extensions to facilitate.
+On Fri, 04 Oct 2024 21:48:35 +0000
+Guillaume Stols <gstols@baylibre.com> wrote:
 
-- Add support for DT based probing
-- Add support for taking the part out of reset via a GPIO reset pin
-- Add in regulator bulk on/off logic for the power rails.
+> The parallel driver's name is ad7606_par and not ad7606_parallel.
+> 
+> Fixes: 0046a46a8f93 ("staging/ad7606: Actually build the interface modules")
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+I'm going to nibble away at series where I can today because there
+are more patches under revision than I'd like.
+Merging subsets of series where there are simple ones like this makes
+that a little easier to manage.
 
-Once done this sensor works nicely on a Qualcomm X1E80100 CRD.
+So applied this one to the togreg branch of iio.git and pushed out as
+testing so 0-day can fail to notice it ;)
 
-Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e80100-crd
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/media/i2c/ov08x40.c | 140 +++++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 125 insertions(+), 15 deletions(-)
+Thanks,
 
-diff --git a/drivers/media/i2c/ov08x40.c b/drivers/media/i2c/ov08x40.c
-index 3ab8b51df157af78fcccc1aaef73aedb2ae759c9..ff17e09a1f96175d598c395bcae0cdf01d68a79f 100644
---- a/drivers/media/i2c/ov08x40.c
-+++ b/drivers/media/i2c/ov08x40.c
-@@ -3,10 +3,13 @@
- 
- #include <asm-generic/unaligned.h>
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/i2c.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/module.h>
- #include <linux/delay.h>
- #include <linux/pm_runtime.h>
-+#include <linux/regulator/consumer.h>
- #include <media/v4l2-ctrls.h>
- #include <media/v4l2-device.h>
- #include <media/v4l2-fwnode.h>
-@@ -1279,6 +1282,12 @@ static const struct ov08x40_mode supported_modes[] = {
- 	},
- };
- 
-+static const char * const ov08x40_supply_names[] = {
-+	"dovdd",	/* Digital I/O power */
-+	"avdd",		/* Analog power */
-+	"dvdd",		/* Digital core power */
-+};
-+
- struct ov08x40 {
- 	struct v4l2_subdev sd;
- 	struct media_pad pad;
-@@ -1291,6 +1300,10 @@ struct ov08x40 {
- 	struct v4l2_ctrl *hblank;
- 	struct v4l2_ctrl *exposure;
- 
-+	struct clk		*xvclk;
-+	struct gpio_desc	*reset_gpio;
-+	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08x40_supply_names)];
-+
- 	/* Current mode */
- 	const struct ov08x40_mode *cur_mode;
- 
-@@ -1303,6 +1316,61 @@ struct ov08x40 {
- 
- #define to_ov08x40(_sd)	container_of(_sd, struct ov08x40, sd)
- 
-+static int ov08x40_power_on(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct ov08x40 *ov08x = to_ov08x40(sd);
-+	int ret;
-+
-+	if (is_acpi_node(dev_fwnode(dev)))
-+		return 0;
-+
-+	ret = clk_prepare_enable(ov08x->xvclk);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable xvclk\n");
-+		return ret;
-+	}
-+
-+	if (ov08x->reset_gpio) {
-+		gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+		usleep_range(1000, 2000);
-+	}
-+
-+	ret = regulator_bulk_enable(ARRAY_SIZE(ov08x40_supply_names),
-+				    ov08x->supplies);
-+	if (ret < 0) {
-+		dev_err(dev, "failed to enable regulators\n");
-+		goto disable_clk;
-+	}
-+
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 0);
-+	usleep_range(1500, 1800);
-+
-+	return 0;
-+
-+disable_clk:
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+	clk_disable_unprepare(ov08x->xvclk);
-+
-+	return ret;
-+}
-+
-+static int ov08x40_power_off(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct ov08x40 *ov08x = to_ov08x40(sd);
-+
-+	if (is_acpi_node(dev_fwnode(dev)))
-+		return 0;
-+
-+	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
-+	regulator_bulk_disable(ARRAY_SIZE(ov08x40_supply_names),
-+			       ov08x->supplies);
-+	clk_disable_unprepare(ov08x->xvclk);
-+
-+	return 0;
-+}
-+
- /* Read registers up to 4 at a time */
- static int ov08x40_read_reg(struct ov08x40 *ov08x,
- 			    u16 reg, u32 len, u32 *val)
-@@ -2072,7 +2140,7 @@ static void ov08x40_free_controls(struct ov08x40 *ov08x)
- 	mutex_destroy(&ov08x->mutex);
- }
- 
--static int ov08x40_check_hwcfg(struct device *dev)
-+static int ov08x40_check_hwcfg(struct ov08x40 *ov08x, struct device *dev)
- {
- 	struct v4l2_fwnode_endpoint bus_cfg = {
- 		.bus_type = V4L2_MBUS_CSI2_DPHY
-@@ -2086,11 +2154,36 @@ static int ov08x40_check_hwcfg(struct device *dev)
- 	if (!fwnode)
- 		return -ENXIO;
- 
--	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
--				       &xvclk_rate);
--	if (ret) {
--		dev_err(dev, "can't get clock frequency");
--		return ret;
-+	if (!is_acpi_node(fwnode)) {
-+		ov08x->xvclk = devm_clk_get(dev, NULL);
-+		if (IS_ERR(ov08x->xvclk)) {
-+			dev_err(dev, "could not get xvclk clock (%pe)\n",
-+				ov08x->xvclk);
-+			return PTR_ERR(ov08x->xvclk);
-+		}
-+
-+		xvclk_rate = clk_get_rate(ov08x->xvclk);
-+
-+		ov08x->reset_gpio = devm_gpiod_get_optional(dev, "reset",
-+							    GPIOD_OUT_LOW);
-+		if (IS_ERR(ov08x->reset_gpio))
-+			return PTR_ERR(ov08x->reset_gpio);
-+
-+		for (i = 0; i < ARRAY_SIZE(ov08x40_supply_names); i++)
-+			ov08x->supplies[i].supply = ov08x40_supply_names[i];
-+
-+		ret = devm_regulator_bulk_get(dev,
-+					      ARRAY_SIZE(ov08x40_supply_names),
-+					      ov08x->supplies);
-+		if (ret)
-+			return ret;
-+	} else {
-+		ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
-+					       &xvclk_rate);
-+		if (ret) {
-+			dev_err(dev, "can't get clock frequency");
-+			return ret;
-+		}
- 	}
- 
- 	if (xvclk_rate != OV08X40_XVCLK) {
-@@ -2143,32 +2236,37 @@ static int ov08x40_check_hwcfg(struct device *dev)
- }
- 
- static int ov08x40_probe(struct i2c_client *client)
--{
--	struct ov08x40 *ov08x;
-+{	struct ov08x40 *ov08x;
- 	int ret;
- 	bool full_power;
- 
-+	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
-+	if (!ov08x)
-+		return -ENOMEM;
-+
- 	/* Check HW config */
--	ret = ov08x40_check_hwcfg(&client->dev);
-+	ret = ov08x40_check_hwcfg(ov08x, &client->dev);
- 	if (ret) {
- 		dev_err(&client->dev, "failed to check hwcfg: %d", ret);
- 		return ret;
- 	}
- 
--	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
--	if (!ov08x)
--		return -ENOMEM;
--
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&ov08x->sd, client, &ov08x40_subdev_ops);
- 
- 	full_power = acpi_dev_state_d0(&client->dev);
- 	if (full_power) {
-+		ret = ov08x40_power_on(&client->dev);
-+		if (ret) {
-+			dev_err(&client->dev, "failed to power on\n");
-+			return ret;
-+		}
-+
- 		/* Check module identity */
- 		ret = ov08x40_identify_module(ov08x);
- 		if (ret) {
- 			dev_err(&client->dev, "failed to find sensor: %d\n", ret);
--			return ret;
-+			goto probe_power_off;
- 		}
- 	}
- 
-@@ -2177,7 +2275,7 @@ static int ov08x40_probe(struct i2c_client *client)
- 
- 	ret = ov08x40_init_controls(ov08x);
- 	if (ret)
--		return ret;
-+		goto probe_power_off;
- 
- 	/* Initialize subdev */
- 	ov08x->sd.internal_ops = &ov08x40_internal_ops;
-@@ -2210,6 +2308,9 @@ static int ov08x40_probe(struct i2c_client *client)
- error_handler_free:
- 	ov08x40_free_controls(ov08x);
- 
-+probe_power_off:
-+	ov08x40_power_off(&client->dev);
-+
- 	return ret;
- }
- 
-@@ -2224,6 +2325,8 @@ static void ov08x40_remove(struct i2c_client *client)
- 
- 	pm_runtime_disable(&client->dev);
- 	pm_runtime_set_suspended(&client->dev);
-+
-+	ov08x40_power_off(&client->dev);
- }
- 
- #ifdef CONFIG_ACPI
-@@ -2235,10 +2338,17 @@ static const struct acpi_device_id ov08x40_acpi_ids[] = {
- MODULE_DEVICE_TABLE(acpi, ov08x40_acpi_ids);
- #endif
- 
-+static const struct of_device_id ov08x40_of_match[] = {
-+	{ .compatible = "ovti,ov08x40" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ov08x40_of_match);
-+
- static struct i2c_driver ov08x40_i2c_driver = {
- 	.driver = {
- 		.name = "ov08x40",
- 		.acpi_match_table = ACPI_PTR(ov08x40_acpi_ids),
-+		.of_match_table = ov08x40_of_match,
- 	},
- 	.probe = ov08x40_probe,
- 	.remove = ov08x40_remove,
+Jonathan
 
--- 
-2.46.2
+> ---
+>  drivers/iio/adc/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index 97ece1a4b7e3..4ab1a3092d88 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -229,7 +229,7 @@ config AD7606_IFACE_PARALLEL
+>  	  ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converters (ADC).
+>  
+>  	  To compile this driver as a module, choose M here: the
+> -	  module will be called ad7606_parallel.
+> +	  module will be called ad7606_par.
+>  
+>  config AD7606_IFACE_SPI
+>  	tristate "Analog Devices AD7606 ADC driver with spi interface support"
+> 
 
 
