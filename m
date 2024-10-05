@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-108081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5037B9918FA
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:44:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5993F99190A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:52:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E751F1F2223A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:44:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 156541F23377
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8AC155C87;
-	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D4B158D94;
+	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHfLjNLC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ci6/48ZI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDAED1F61C;
-	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8BA6158851;
+	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728150242; cv=none; b=I4Gpt4vTwSgDlc7rGo5PP42dRj/kjDAffZ934yi/B94knegB65P4hmVqZ/dqN7CITTyFH8q89tchugB9HXFmZOWjxckLLClWlJS547CBH3YmC0oe1O5H2OpXl7+r8/PbQzMQhRfZJCXq4K0qQGLtVj4d3cdwMtEDtfqrs1WWhnI=
+	t=1728150760; cv=none; b=AFouZ76qxOkUZQGlJa2xCVKkTX318A5CykZC0CFBuIMftIEsbcME1lFcTjOf+7ATdOrxRlj6hsmA4604mpyyMnth0YJJtDqv8CTW2c1Ys9ODNBPT+szQqjr57Lnbem6BfaRPukuqG2hnqS0KdGGAnn8gOVDcyTDjIAnveAGwoOU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728150242; c=relaxed/simple;
-	bh=djk9MX/9q9abJv7cF3LUfPXfJX9TOYq3vBr1RWrzieM=;
+	s=arc-20240116; t=1728150760; c=relaxed/simple;
+	bh=NRH8Ou1I4pXNYd/XvsLjH7QogNBos/PfhsW1jQJokGM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ToEUltSKkJYsJJCwE8XgUN1/ThDgCD9lNCKRTxFCRKnTu/XMKKuQSPIUUwi6hQZiplH2MnAIZ0TBXFQVeyce2wz71L+ysPZEUG3V5gYgfaPe9boj7W51Wipij4tq682j6m/25mO9o4QpDM5P3phZE/Fz00hHJxa3oPZWI+0/Xhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHfLjNLC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2207CC4CEC2;
-	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NPXeAR+24qVnIXewc60mQoddMQK+Wn9AaFZHzwv5wN0OeLk9UtuiGd30TvSIAuhhr7TflJPMoD8+dQpoyVC4kbOFx5+DQzMsEb8UgM9iEHQPVCDQ1sUlzBvQVitWCOkw5Ki78Ff+Ckz0OQo28nwCJsiWGIBOqQc4r2JoxJi0j28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ci6/48ZI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15879C4CEC7;
+	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728150242;
-	bh=djk9MX/9q9abJv7cF3LUfPXfJX9TOYq3vBr1RWrzieM=;
+	s=k20201202; t=1728150760;
+	bh=NRH8Ou1I4pXNYd/XvsLjH7QogNBos/PfhsW1jQJokGM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=RHfLjNLCRptfy6ZcsFJ37LpVph/5PRErKNbnaWD/OQHHRV75W1s2mKnS9V7pe5Oph
-	 z2UtCjqDF/Q8ngjubuDlJrmph7kxxuBt0Z+S+vwuK0t33RuDUOoDjEomPGUN1IS70O
-	 fit2wOwkQg5RYg5L8Ig6S1v8NXz3y+EYzQrX6Cqm+tXxRnEiNmZMj+Oy2BPtxaq0Vb
-	 gu6N0gdFX7vPsago9jgvKP29iKlpc7+sfzJ/s3qwTKlFPicqW/r87leOAMZfDEqbON
-	 Winx8lUaLU+Pyok0JSSZbyJV3i3DIIvpaXG/pls09hAZkzeOqhoq7mRgMWoN5oguL8
-	 qrNukWMvDRmKQ==
-Date: Sat, 5 Oct 2024 12:44:01 -0500
+	b=Ci6/48ZINkwNrzvXZUVpG2h6fl2XWyIAhjvOXzPy/gxDndcJa7xit9adjPpb/wdpe
+	 hOQKfXKOe21FcoPbMYUKMrtOEX9b82ES4QNB8/CeCGOziQwmlaraDLhcrudZHqDYoV
+	 ABuEBzMLZWCpeNkRhvhVSbtoJphhFfIbBKN6v+t/JAROhR0qqvBK4X7iTJ/KBUWbGn
+	 K8xKao6kcK8ch5M7DjfHN/ar6lFsVQtnh2mptSsCEcfppZeU5CvTfsxnilmN/LRspj
+	 JC9py23io0s6cCUIsM/0nhRkl5jj2/BOBBIaXRu0CzgY1eF9kgI5sASnveEJBBImyv
+	 Or4lTFgHYmaCQ==
+Date: Sat, 5 Oct 2024 12:52:39 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Robert Foss <rfoss@kernel.org>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
-	Peter Ujfalusi <peter.ujfalusi@ti.com>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	David Airlie <airlied@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: tc358768: switch to
- bus-width
-Message-ID: <172815024006.438324.4885049988134352168.robh@kernel.org>
-References: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 resend 1/7] dt-bindings: fuse: Move
+ renesas,rcar-{efuse,otp} to nvmem
+Message-ID: <172815075836.447282.5004726072565136518.robh@kernel.org>
+References: <cover.1727963347.git.geert+renesas@glider.be>
+ <425648901d724b3db81329f98988d0532257eb89.1727963347.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,18 +64,31 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <425648901d724b3db81329f98988d0532257eb89.1727963347.git.geert+renesas@glider.be>
 
 
-On Thu, 03 Oct 2024 15:39:03 +0200, Krzysztof Kozlowski wrote:
-> "data-lines" property is way too similar to "data-lanes".  It is also
-> duplicating "bus-width" from video-interfaces.yaml schema.  Deprecate
-> "data-lines" and use the common property.
+On Thu, 03 Oct 2024 16:04:25 +0200, Geert Uytterhoeven wrote:
+> The R-Car E-FUSE blocks can be modelled better using the nvmem
+> framework.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
+> the definition of nvmem cells.  While at it, drop unneeded labels from
+> the examples, and fix indentation.
+> 
+> Add an entry to the MAINTAINERS file.
+> 
+> Reported-by: Arnd Bergmann <arnd@arndb.de>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml  | 4 ++++
->  1 file changed, 4 insertions(+)
+> v3:
+>   - New.
+> ---
+>  .../{fuse => nvmem}/renesas,rcar-efuse.yaml   | 35 +++++++++++++------
+>  .../{fuse => nvmem}/renesas,rcar-otp.yaml     | 17 +++++----
+>  MAINTAINERS                                   |  1 +
+>  3 files changed, 36 insertions(+), 17 deletions(-)
+>  rename Documentation/devicetree/bindings/{fuse => nvmem}/renesas,rcar-efuse.yaml (54%)
+>  rename Documentation/devicetree/bindings/{fuse => nvmem}/renesas,rcar-otp.yaml (60%)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
