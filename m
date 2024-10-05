@@ -1,129 +1,88 @@
-Return-Path: <devicetree+bounces-108080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E28239918F1
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:37:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5037B9918FA
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A4D2B219E0
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:37:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E751F1F2223A
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:44:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3B158868;
-	Sat,  5 Oct 2024 17:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA8AC155C87;
+	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FA4Chn6s"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RHfLjNLC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C7011547FF;
-	Sat,  5 Oct 2024 17:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDAED1F61C;
+	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728149863; cv=none; b=pzpm8+chXBSKkxc627+DtUTWsdeKpEoXnC4j+D5zTc5V+vS84YffI4UE1B/Jh6jzDtSBCS+1H9a+QgYTGiUem787pPmmx/jSmxrBYEwvrMXvcplz5+KQdCDywa+Iy3sSrVZeExTRss6xWYl8i4T1ih/OixEa+v7OjDng+IP9I8Q=
+	t=1728150242; cv=none; b=I4Gpt4vTwSgDlc7rGo5PP42dRj/kjDAffZ934yi/B94knegB65P4hmVqZ/dqN7CITTyFH8q89tchugB9HXFmZOWjxckLLClWlJS547CBH3YmC0oe1O5H2OpXl7+r8/PbQzMQhRfZJCXq4K0qQGLtVj4d3cdwMtEDtfqrs1WWhnI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728149863; c=relaxed/simple;
-	bh=vjiiFuJu6wOFYX0q5xESLaDhHDPwUR8bj4MRO3SmJ9U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=r9FGQeQXqJaUjRWiREuTZ7nESFFmV2v3czrN1XppkvbuEoSQGW/ZJh7L2sNhRW4aVLCUxl36xzKUr96GJIhAiBnSQzp9pUst+B2G+er0VUIob1mN52GGqcObNPCfmYoVnVUqhhtEbIpaPsGIjsvn/L3NvYu81fw6iV/qz48aNsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FA4Chn6s; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77A17C4CEC2;
-	Sat,  5 Oct 2024 17:37:12 +0000 (UTC)
+	s=arc-20240116; t=1728150242; c=relaxed/simple;
+	bh=djk9MX/9q9abJv7cF3LUfPXfJX9TOYq3vBr1RWrzieM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ToEUltSKkJYsJJCwE8XgUN1/ThDgCD9lNCKRTxFCRKnTu/XMKKuQSPIUUwi6hQZiplH2MnAIZ0TBXFQVeyce2wz71L+ysPZEUG3V5gYgfaPe9boj7W51Wipij4tq682j6m/25mO9o4QpDM5P3phZE/Fz00hHJxa3oPZWI+0/Xhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RHfLjNLC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2207CC4CEC2;
+	Sat,  5 Oct 2024 17:44:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728149862;
-	bh=vjiiFuJu6wOFYX0q5xESLaDhHDPwUR8bj4MRO3SmJ9U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=FA4Chn6s+XGCtBb9qPaJxNo8pi7AhYc43uWXEJTGFWAVdKUXKo8PWdnxulu2Y6Xi1
-	 0eozqzR8SVaW3SbBERfusJu/HSncS0OwPhEMrDsPNSsxgcJ0bgzA0x940itkdchPjL
-	 93macIIsGQqC9E2HJPTrCzJ4T+CLlLoztTKDkyNYZdWoN6l5t7QNsgXN4YZnfM+1D7
-	 huat2SpRJDWuLLKmHGAii2qiuA12dmzqRvE2crHxwBNpOarpmQ9RAjZ7YTLs6VVHFw
-	 cXi9tYRZ/RpWcVZb1lnubnqb28zcRX5bS8nZAXGVSQTFDva33podlBzOy3CFRk8cfo
-	 VzPqakJCEk+jQ==
-Date: Sat, 5 Oct 2024 18:36:59 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
- <nuno.sa@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, Uwe
- =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Andy Shevchenko
- <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Marcelo Schmitt
- <marcelo.schmitt@analog.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, "Mike Looijmans"
- <mike.looijmans@topic.nl>, Dumitru Ceclan <mitrutzceclan@gmail.com>,
- =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dhbHZlcw==?=
- <joao.goncalves@toradex.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
- Sergiu Cuciurean <sergiu.cuciurean@analog.com>, Dragos Bogdan
- <dragos.bogdan@analog.com>, <linux-iio@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] Documentation: ABI: testing: ad485x: add ABI
- docs
-Message-ID: <20241005183629.6a9cd4da@jic23-huawei>
-In-Reply-To: <20241004140922.233939-7-antoniu.miclaus@analog.com>
-References: <20241004140922.233939-1-antoniu.miclaus@analog.com>
-	<20241004140922.233939-7-antoniu.miclaus@analog.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1728150242;
+	bh=djk9MX/9q9abJv7cF3LUfPXfJX9TOYq3vBr1RWrzieM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=RHfLjNLCRptfy6ZcsFJ37LpVph/5PRErKNbnaWD/OQHHRV75W1s2mKnS9V7pe5Oph
+	 z2UtCjqDF/Q8ngjubuDlJrmph7kxxuBt0Z+S+vwuK0t33RuDUOoDjEomPGUN1IS70O
+	 fit2wOwkQg5RYg5L8Ig6S1v8NXz3y+EYzQrX6Cqm+tXxRnEiNmZMj+Oy2BPtxaq0Vb
+	 gu6N0gdFX7vPsago9jgvKP29iKlpc7+sfzJ/s3qwTKlFPicqW/r87leOAMZfDEqbON
+	 Winx8lUaLU+Pyok0JSSZbyJV3i3DIIvpaXG/pls09hAZkzeOqhoq7mRgMWoN5oguL8
+	 qrNukWMvDRmKQ==
+Date: Sat, 5 Oct 2024 12:44:01 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Maxime Ripard <mripard@kernel.org>,
+	Peter Ujfalusi <peter.ujfalusi@ti.com>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	David Airlie <airlied@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	Andrzej Hajda <andrzej.hajda@intel.com>, devicetree@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 1/2] dt-bindings: display: bridge: tc358768: switch to
+ bus-width
+Message-ID: <172815024006.438324.4885049988134352168.robh@kernel.org>
+References: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241003133904.69244-1-krzysztof.kozlowski@linaro.org>
 
-On Fri, 4 Oct 2024 17:07:56 +0300
-Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
 
-> Add documentation for the packet size.
+On Thu, 03 Oct 2024 15:39:03 +0200, Krzysztof Kozlowski wrote:
+> "data-lines" property is way too similar to "data-lanes".  It is also
+> duplicating "bus-width" from video-interfaces.yaml schema.  Deprecate
+> "data-lines" and use the common property.
 > 
-> Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
-> changes in v2:
->  - improve description for packet_format
->  - add kernel version
->  .../ABI/testing/sysfs-bus-iio-adc-ad485x         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
->  create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
+>  .../devicetree/bindings/display/bridge/toshiba,tc358768.yaml  | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
-> new file mode 100644
-> index 000000000000..5d69a8d30383
-> --- /dev/null
-> +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
-> @@ -0,0 +1,16 @@
-> +What:		/sys/bus/iio/devices/iio:deviceX/packet_format_available
-> +KernelVersion:	6.13
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		Packet sizes on the CMOS or LVDS conversion data output bus.
-> +		Reading this returns the valid values that can be written to the
-> +		packet_format.
-> +
-> +What:		/sys/bus/iio/devices/iio:deviceX/packet_format
-> +KernelVersion:	6.13
-> +Contact:	linux-iio@vger.kernel.org
-> +Description:
-> +		This attribute configures the frame size on conversion data
-> +		output bus. See packet_format_available for available sizes
-> +		based on the device used.
-> +		Reading returns the actual size used.
-This needs to give some guidance to the user on 'why' they might pick a particular
-format.
 
-I'm also inclined to suggest that for now we pick a sensible default dependent
-on the other options enabled (oversampling etc) and don't expose it to the user.
-
-Eventually it looks like we may have to figure out a solution to describe
-metadata packed alongside the channel readings but that may take a while
-and I don't want to stall this driver on that discussion.
-
-Thanks,
-
-Jonathan
-
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
