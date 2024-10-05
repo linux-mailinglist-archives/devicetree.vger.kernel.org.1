@@ -1,162 +1,124 @@
-Return-Path: <devicetree+bounces-108024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01CA199143A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 06:06:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEDF3991463
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 07:04:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9C6FCB2308E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 04:06:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D57EC1C21CE0
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 05:04:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8ED1D20323;
-	Sat,  5 Oct 2024 04:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21EA32E3F7;
+	Sat,  5 Oct 2024 05:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="gtFC646R"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EhTxN1+X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23824748D
-	for <devicetree@vger.kernel.org>; Sat,  5 Oct 2024 04:06:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B79747F6;
+	Sat,  5 Oct 2024 05:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728101163; cv=none; b=nIUNVgqUMpRslhRUHkoT/8g8jc0K2gRbdmeOzFNadLMY6p7/mcH4RDd9LA4jz6JoEKWK5JjOeFpZh/CCgEEIZLv0kZmeYisgBeE4gospS+SAY6frvVzcvdEie3J5tzJYmrcRXahiczOJN2RvHg2bwd8Gl7sb58pT6nMSHodvza0=
+	t=1728104679; cv=none; b=sHxBfBveDuOUZYXtW0HvFsrTfDcKRC7/xeCYyeCU39KLo+JmibI093VvCQ7QpFI7VGet7n3u/WWXzfIN8jKbVa3Qik/S81gyT0HVBBeHXaPRKfDmWWiDqgiFc/FdoDDHmswwqoy9K4tPBZC/xS0keSPDZtMsoWO02OGA88kx1s8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728101163; c=relaxed/simple;
-	bh=yeW+ixq3PNStNZwXjz2ygWlTa7p8zncF/b9m6U5cQZI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Sx4kaC2Z7gKaV6Ui+XKHMZBIc/PFrlzQD3N0CkhTDxx4CWud+IVwYxN1USOzB0DcZ1ZSzsGWx6LxdPuOVmPPkep+g1pu3vgv7zpDT75p6DmmFfNmN7n997elMjo4c40SilpFQFDtu1v9BdA88jXI+GLjWiTYsAo0t/RIOnDbUY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=gtFC646R; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4950v6qa024022
-	for <devicetree@vger.kernel.org>; Sat, 5 Oct 2024 04:06:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=nt8ByGFRJzx+/MAP5/mSPK
-	mnjPolpJ2VP3zTLsA41es=; b=gtFC646R7AFmNUWj63ulTXivRP+L9NRcatdArj
-	p65Eu+p9L51bozFV8ccEEKi2hjCZrMgVSii2EZY4m43beQdmqdn0VqT5d9ePCm54
-	l1I1M4Uwnw9g9qRrCYNYVToJpdjQXwOwo5qa37rK+5HDn36Hz30Qn77XhcAcs6ck
-	W6Ms49ZOnlAvoyXnGXDnH+cdntsj7fGgQRe9DaKizM+XCakQmvikL5IEzs61t9oL
-	wOdB/NEvqxNE/THPLjUwiT0YGhVCf3bIeKyQNFss0dw+bAWJrmwFre1K9UEkNLi1
-	JmW/3ebSrm8m3buSSlhTC/24gDqksUnMXj2Mc66WpvS2JQNQ==
-Received: from mail-oa1-f70.google.com (mail-oa1-f70.google.com [209.85.160.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42205f3t0u-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 05 Oct 2024 04:06:01 +0000 (GMT)
-Received: by mail-oa1-f70.google.com with SMTP id 586e51a60fabf-286efde9783so2465531fac.0
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 21:06:01 -0700 (PDT)
+	s=arc-20240116; t=1728104679; c=relaxed/simple;
+	bh=4UnUIgsbD1n0W2b5XrUNaJ8Sw5WrhqGja7BSVT8mc2s=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BWdofcS4mVhpoAIgbtjjWiWsc4w4PWSL+uAuGM/rcJV1iI3frlz1a22r0E1wlunk3ewElf12PtABuRxWAV7FYVspDWmxIcWBQVzLWieTF3icZkH6nml7qyQUZbIQjJvLHkVRE/KwZiyN3ROS4SRgchbC1/pLaXis/YbAYV0LHn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EhTxN1+X; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-2e09d9f2021so2032939a91.0;
+        Fri, 04 Oct 2024 22:04:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728104677; x=1728709477; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=r8NHiKWRZuu6Ni0mDEJmlzarQeFmoce/A7Zp31QdSHY=;
+        b=EhTxN1+XlL/pp1SY581AlirnEI9oymsjiLvXj6ZLMvhtqXsf+H2Q/6gXpTERURbKYm
+         haluhEX+6IPedxh2lAkf0Su20+A3NmJsIt93rVs6At210BqCBiYEqTYMzaDkzUCQnC0L
+         pwoMj+GE+b6P+LrRpc8OdDMSznexQmRWTUfY+WTm8L9k4lAhP58I0pqDNphE5S7w4JKo
+         aZBopeHxM4rZuDK4sHdKnPmQRaYVCgOP6KLt3NCEB/2BpI9mL1YIuIYmhlkLcJlu0fVT
+         t0UTWne9mow4od7kBveVJ6baqVUseExsQrkeRWAnJ4SPcLWVyryJ2ZCyy9CaVkKxKDam
+         +bBw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728101160; x=1728705960;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1728104677; x=1728709477;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=nt8ByGFRJzx+/MAP5/mSPKmnjPolpJ2VP3zTLsA41es=;
-        b=QQvrBzfDD5RGrcY8bJa+cf3er1Za16JDX3uP6W79V0Gdk/a5q4XXrq6eVJxCzvrxEf
-         0kmJsVdIyhW9suVmrFlAz1herGUiNkpX8pGtWlcnu6FjXcycBP/ksTkJnMdv1Dv3CzZq
-         0L4Ourvz2cwesbGCe/dPSwqoqxN91vBY42RAmSSlJ4TxG5h1bn6WuesTc92ETpXQhyCZ
-         JU3mEe6ty5j7cHViphJ44XL1aWSuw7lm+sR4meI8K4KZEwXLCL/RihC5uyt2LaUMzKm2
-         mqF8x9K0M9eplokeypDolo1KqXCKOHZ4jSTHQeY8ekEwm+TesG6R3qMuvTw8k66SQ2dy
-         evxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoelt1bKvH1Bxn1Ag4tkj/PSyMAwLYb2bKrsq0Qjmz63B4rACUZLKV82hu9o1YPVMBgzUT7CJN7X7P@vger.kernel.org
-X-Gm-Message-State: AOJu0YxgVc3jfNjrvbPfeeWTH9oddyzBII7X4O7KfCiVERPaf/GPlZj3
-	Nnt8HVZWZp5hAt9ZhtiVBHuN7SJ+DKkQZu4eM3W0+wbzXvhmCVBXk7QfWi6+yaBRqHOC0Wxa3Lm
-	X5PNKLEK5yU3WYEWhM4PsYULxVMhz+MezosN9Wusvc+k15QF60Sy2uDHASH5g
-X-Received: by 2002:a05:6871:51e0:b0:287:bfad:b17f with SMTP id 586e51a60fabf-287c1daf9a5mr2869087fac.20.1728101160219;
-        Fri, 04 Oct 2024 21:06:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IED35/McyuIslOGRBzvGHo7SOxcoqplNJK/DgeWpr9rg8+BEq+8ZGipyzHZvjS2TBwlUQMQ1g==
-X-Received: by 2002:a05:6871:51e0:b0:287:bfad:b17f with SMTP id 586e51a60fabf-287c1daf9a5mr2869078fac.20.1728101159914;
-        Fri, 04 Oct 2024 21:05:59 -0700 (PDT)
-Received: from [192.168.86.60] (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id 006d021491bc7-5e7d712081csm384872eaf.2.2024.10.04.21.05.57
+        bh=r8NHiKWRZuu6Ni0mDEJmlzarQeFmoce/A7Zp31QdSHY=;
+        b=vZaKz2A9RjDcQX0kFHLYnptCA3LBUgXRNB2J5NA17P1DaPG4yqvLILpjLrjGR9QXZE
+         mZChGtbWrVvFbHEwF/gkibyR9RR/9JjAvgZkxJuiYXRGKawA380RHlh/9q9LG7tQbiHj
+         er7+jSjm2Ztk5ginDfoO1dzj2dhkMjUAYTlS8qph347rdbQmB+UKT0z0l/iDmNyvI7jy
+         SdC33Q/nXr8A7jzcbZlUwduK6wXdJKZqXNvet1EnOer7K7wH0nHQpMUPeFJuP9TXksC9
+         eBVHHoBkAJ4S9NzoYGWl3To7e8oxG9taj/EK50+q2pNyZ0UJ96UlOd2YCh8xfB3/CR6c
+         6UMA==
+X-Forwarded-Encrypted: i=1; AJvYcCU5xYbP2Nu7/YbQRcUOq2Imhod6VqzFzPXlJVMvsMvrhq2hjyMsuhUtPTP5zkhk9fg8lmVWlJ0npQO5@vger.kernel.org, AJvYcCXTKNIo8Dckjt275c62Ak7jFIYvbZ7Le7LIM9ml1T91inauC2bTQnwqwFf4gtP08j5+1A9n83gLNYibaout@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVkcCXnvNatyvvF5oyNddSkLQT7k2mpLcfG9icCQvRBpxPvIbG
+	AEd0NE1r1Ezy7ats+3U6k6mfPj9IQcNFqJR4GvP3dq3YPlmcXtQn/K4z6xHXfkg=
+X-Google-Smtp-Source: AGHT+IHJH4xcREpvD0HDuNMTuUtxVUEaLiBlPUv8CIIcBjF+dsn53MPqiV3uxRBQCo5S+yuJsLIlRQ==
+X-Received: by 2002:a17:90b:1644:b0:2c9:a3ca:cc98 with SMTP id 98e67ed59e1d1-2e1e620ead0mr5773693a91.7.1728104676850;
+        Fri, 04 Oct 2024 22:04:36 -0700 (PDT)
+Received: from celestia.turtle.lan ([2601:1c2:c184:dc00:ed3:4cda:b368:ce98])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85db34fsm2625744a91.33.2024.10.04.22.04.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 04 Oct 2024 21:05:58 -0700 (PDT)
-From: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-Date: Fri, 04 Oct 2024 21:09:05 -0700
-Subject: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Specify i2c1 clock
- frequency
+        Fri, 04 Oct 2024 22:04:36 -0700 (PDT)
+From: Sam Edwards <cfsworks@gmail.com>
+X-Google-Original-From: Sam Edwards <CFSworks@gmail.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Sam Edwards <CFSworks@gmail.com>
+Subject: [PATCH v2 0/2] bcm4908: Fix secondary CPU initialization
+Date: Fri,  4 Oct 2024 22:01:53 -0700
+Message-ID: <20241005050155.61103-1-CFSworks@gmail.com>
+X-Mailer: git-send-email 2.44.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241004-i2c1-frequency-v1-1-77a359015d54@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAOG7AGcC/x3MQQqAIBRF0a3IHyeoKEZbiQZlr/oTK6Uoor0nD
- c/g3ocyEiNTIx5KODnzGgt0JSgsfZwheSwmo4zVSlnJJmg5JewHYrilHpyHdzWcNVSiLWHi6x+
- 23ft+tXzzZWAAAAA=
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1054;
- i=bjorn.andersson@oss.qualcomm.com; h=from:subject:message-id;
- bh=yeW+ixq3PNStNZwXjz2ygWlTa7p8zncF/b9m6U5cQZI=;
- b=owEBgwJ8/ZANAwAIAQsfOT8Nma3FAcsmYgBnALvi02Eqr2WX30kek41XNwJGxKKDEcFTim1so
- LYj89LCsPaJAkkEAAEIADMWIQQF3gPMXzXqTwlm1SULHzk/DZmtxQUCZwC74hUcYW5kZXJzc29u
- QGtlcm5lbC5vcmcACgkQCx85Pw2ZrcWbcBAAn6uJm93YPyByPkuEz5RZvuQwTdm6YCDytOUtiYW
- esY/tNf5lLxmA+crZNyUOFAGZfAdjmw4WKH1WYiCU2xMbc/p7YzNJRPIXFzZD36Bq5uEOuERUKb
- HOBOSdCvLMcoDo/uKQbjG0mbXPJVZKwbm3xSa8RScEfM7pt1BNNzOSNnVVlVLn91Ax7bzCpKVMV
- aCobqobYR5jtxCOqTsY8H+PCe70rWJ58SmdAShe22JgaLgl7HykW/m5hR8XmihvfgLzS5wT8KEJ
- bJT81UYlQV2f53rJ/J8OgVXOrDF9P4+qA04Jlx97TdJ04DXov41hxzmf5pfisv1wDhdEFhZppUF
- lqIMzArNbPAlo0NlkyuNcMOzCUGz0rLSCrtdSreJ28kS+W43iRBxmH/pkpn/Kdv/Bw3QEtuwfCo
- 101JHr+nB5+8gk3id1ATUeFp4SStDMJNXvEbNF7jrz7FXdahGdIvTyPE7Yt7hnoDPbxXa4Hgyj/
- wB0u0igdDX/ImFnrbeNgmulZyW8DBOGYvmBc92fjP53ynFACLq9vSOMWeX9i9Yr3w4T6AS7IVJb
- 06l8q5mKokaMeWmu/ffAbpYoRfzgd4wVbDSr0DDbpkhUlVicFTp48tI2DfQGA8a7e1rmVQk0eSh
- H7jQhT8NNi0b4UzemlIsML9pXNDoXbtwfrMNmqH+JOZk=
-X-Developer-Key: i=bjorn.andersson@oss.qualcomm.com; a=openpgp;
- fpr=05DE03CC5F35EA4F0966D5250B1F393F0D99ADC5
-X-Proofpoint-GUID: w1paSuqghOmcJNs7_PfzjCrUCPXyOrgZ
-X-Proofpoint-ORIG-GUID: w1paSuqghOmcJNs7_PfzjCrUCPXyOrgZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 suspectscore=0
- mlxlogscore=710 priorityscore=1501 phishscore=0 bulkscore=0
- impostorscore=0 clxscore=1015 lowpriorityscore=0 spamscore=0 mlxscore=0
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410050028
+Content-Transfer-Encoding: 8bit
 
-Per the binding, omitting the clock frequency from a Geni I2C controller
-node defaults the bus to 100Khz. But at least in Linux, a friendly info
-print highlights the lack of explicitly defined frequency in the
-DeviceTree.
+Hello list,
 
-Specify the frequency, to give it an explicit value, and to silence the
-log print in Linux.
+This is v2 of my previous patch [1] for resolving a problem preventing
+secondary CPU(s) from coming up on bcm4908. After some discussion, I decided to
+try dropping the reserved memory region from 64K to only 4K. Looks like it
+works!
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 1 +
- 1 file changed, 1 insertion(+)
+Changes v1->v2:
+- Reduce 64K reserved region to 4K
+- Style change to the `reg` property to use hex instead of decimal
+- Slight rephrasing to the commit message
+- Add a new patch that also moves the `cpu-release-addr` into this reserved
+  memory region
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 0d45662b8028..469a30f138de 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -598,6 +598,7 @@ lt9611_out: endpoint {
- };
- 
- &i2c1 {
-+	clock-frequency = <100000>;
- 	status = "okay";
- 
- 	typec-mux@1c {
+Cheers,
+Sam
 
----
-base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
-change-id: 20241004-i2c1-frequency-1b57e758e542
+[1]: https://lore.kernel.org/lkml/20241003213007.1339811-1-CFSworks@gmail.com/T/
 
-Best regards,
+Sam Edwards (2):
+  arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE stub area
+  arm64: dts: broadcom: bcmbca: bcm4908: Protect cpu-release-addr
+
+ .../boot/dts/broadcom/bcmbca/bcm4908.dtsi      | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
 -- 
-Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>
+2.44.2
 
 
