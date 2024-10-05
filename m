@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-108049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB2B9915FA
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 12:31:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A58E991600
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 12:32:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70B021C21A17
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 10:31:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED526283C6E
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 10:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6169214C5BE;
-	Sat,  5 Oct 2024 10:31:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E68591531C3;
+	Sat,  5 Oct 2024 10:31:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XKnMFfsi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ensFfRQa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AADE51465BD
-	for <devicetree@vger.kernel.org>; Sat,  5 Oct 2024 10:31:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C048C14B06E
+	for <devicetree@vger.kernel.org>; Sat,  5 Oct 2024 10:31:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728124275; cv=none; b=UemRpN6q54mGSDCUaEuiMxPJ98RFzgcJek5W6OGvs2HMeTApB6idfBFpv7z/O4gp65QZrI6iqX5hzPslemPpX7deoL/+Bc6C2nVVBYc/fS7MuQna25nDbySr7zkA+uuYXPzSS3QKj9SBBnCrrzj/eEj4ybqQ0e5cVkUsFN4fFz8=
+	t=1728124276; cv=none; b=hx7toZmomKtGgVEByBfCPVbDdX5MiEf1Us6//ndFycymXR6dhg+xgqvCyDu+mB+SuF+zS7QsV6dbdouHIi6opDJs8TAnBrSa9Dlr82a9eLU4CPV+oy+DEgJJ7R9IO6uOeqbBjZQN5L10fMd5FPc/rW9pmT9+LgfziXpfAneYOqA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728124275; c=relaxed/simple;
-	bh=KuJYhS6BLwFHq2M3BsUApExs70W98G5/TG0tISRMP7Q=;
+	s=arc-20240116; t=1728124276; c=relaxed/simple;
+	bh=MZdA/sRLAsmvUPZP3TphhP3dJzkLom00eAxDcabblxk=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=B/hp5vft+tTlrPPwaz/USdQ3XvkBMuYgw97tmCUdLo4CYlxO0WJAqoEpzHeZyD9zvwsFwHDzBmOQ93tlNd9PdIdHwGSyreF5N/uRBwbl52wUw+nkpM7ItVGTneNROLAqDLwSwuNZpDDJX7MLaCnEDQn/ytXimRI7nq/T5wSlIWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XKnMFfsi; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:To:Cc; b=dMH+6Jb0dMemfRROmM5k8isNpYI/0CKXMsMxGCXL2IMGKdIxTGnNPUcpoFwtRgjOPeQ9E7kJXkUo+XSdItWjuuz0+Iflsqyyqq+ArheqmH7Ne4brDd7baqjxKNjELvcB7AsV/3Ws+pGcnFVdxIDiCSMwaSyvE0R8qyIJa8J7oFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ensFfRQa; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-42f56ad2afaso37189325e9.1
-        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2024 03:31:13 -0700 (PDT)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a8d24f98215so441132666b.1
+        for <devicetree@vger.kernel.org>; Sat, 05 Oct 2024 03:31:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728124272; x=1728729072; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728124273; x=1728729073; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=wDWnOefZjmiIEjMknhotah0eI13dQMdxoD4kz7zvhSU=;
-        b=XKnMFfsiTHJjgIdseT6Kn5dvPFbvqggbHyJftH7ZvxhXGplPDShhe+XHWLjnnyYxyz
-         IZmMwHvssoiJLsrlI5/sviWLLrXUJwUX4FNbAMVxxQcd8Sq35HDqStZ73j2+LelQJDQM
-         LavjZP+vjwimN+JJXvkrQmVMBEcIgNjA75IP1S98azEfdBPtZTYN1BaimRgj6rySbNYW
-         wlo0pH1LyAfndEZkXCpU7AJlwRw0Vlp9rUykGTy6KWBBjuMpMCi9D6rcSonvAs/IkHxD
-         8zGdwjQOU0sMGnsRQq3qWrG/adZsWYXRYzyHeIy3GMRAdPSgPdiURTgZllYZDFGxqSsH
-         QhGA==
+        bh=pseR3SnwJF/ltwSCthgN9v3QXyD9/cz3sKkOTqoReDs=;
+        b=ensFfRQa3eqA32dNxca6TT/6FIAnSIpIS9vBe7YwVSFb9Po2PUZ1kYIvkrwCsy3gDu
+         ZSBIv2ky6rSV/fobclDah8S1f82MbND5I8VPxlJpVGt1OqDkx6UWNlgnmAua7OQLJam7
+         6yDiIreYhL57xtE06sOhpplXISQD0OIQg7l/sfGtBCj6ctS5fy3PNYVXzSCaEH9C2of6
+         NSgIqlF9yBXfCum2tvT+YyynVF3J7iRRWAx/wPi1WvaUvohMlodvKsAB4u24UI94pF6F
+         tmbgeUmeRbrLZs8moZHxLQ90SpTpU7XRQeYRFN5Vpg8rFz/DgCeQ4NTCnExbBYeurSFY
+         YE5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728124272; x=1728729072;
+        d=1e100.net; s=20230601; t=1728124273; x=1728729073;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=wDWnOefZjmiIEjMknhotah0eI13dQMdxoD4kz7zvhSU=;
-        b=W2mWxjImk47VzRwE2ZS+H9emp0/I41CKzEmn4HwUgVCMr4jGW8CxSKTo/GBL075GLW
-         cnWPN4Ihxn+f3f0lEkOmImXdLpo9uIxoTGNwVh2ZF67Y13bafnmCXvBd6cWI+GfVIard
-         O8XPGJCjiieTi/Cj+n5MzoIDxlWiH/aOuM8knV5GoVhDKueJgMHLg0xaD4dQkyPLwV31
-         7TNjTSjQME5d5Uyo5Xsc0EpaPms1eymLPrD/vRG+i7CfSCMbk7dwIHAp6K9gsOka6yFy
-         b3rQAEr/+I3F6D6c9i0hwvJPr6akfwVyGUk7urL1ezoJtgTByqEMBXOdOdP82Xw+5jfr
-         dh/g==
-X-Forwarded-Encrypted: i=1; AJvYcCU0HpTNHqpAZQoXYqTsDMTncO7SOmhFHyyIbQpMFKR2thLEemGwUPGUN4E+CYTZRN5nWKGqEbbOl/Jz@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuiS73tTTDKKAqT89fDgAuxh4fZ4JQ+/bX5YFDFyQyurg0lmuA
-	8j64qvXncNFm7Pl4HZpYrmb1Rg7xjJgx3ekri9K1WUwHxcsvQ5DPXS8c6uRiHLo=
-X-Google-Smtp-Source: AGHT+IFTJaGLuVeiz/URrKiFMl/ObSaOX7rTRCjs+ik5O7L2vVG+w8UUYNMwtTMYka30+t859f4IYw==
-X-Received: by 2002:a05:600c:293:b0:42c:b802:47bc with SMTP id 5b1f17b1804b1-42f8db3e896mr4351935e9.34.1728124272164;
-        Sat, 05 Oct 2024 03:31:12 -0700 (PDT)
+        bh=pseR3SnwJF/ltwSCthgN9v3QXyD9/cz3sKkOTqoReDs=;
+        b=RF84m5GGd5N2xMNVOPhCBVd1UPM1gxwuSBl4HAEbdop5LBQ1rgZf5u+h7Mp+gmUtu7
+         KP5mF4u2QNa1e+NAts77hiv4brUzHfaDyl/29AWMAiTPX5Sw3S3H3oUPfgDRLEJhW9x3
+         na1iyaPa9ZyzGyfahNZ4amLCCwNCfifdijj6zbCSRyfokPUqI8RScqCT5yvWeIQPoKKT
+         ubU9qsEYkB0Hgrf7qwgEgo+iLqwRsuo5SxeTmHiKWPc+4Fhk9PTpij6Th+5BdUF1jqbe
+         ThPEeKDk/To51h19wZKvTxH55DFeYHhkDR0fUGAMm6RFFcHzE0iMKZw1uQRUILSbZyN6
+         L0nw==
+X-Forwarded-Encrypted: i=1; AJvYcCWS0hg3jR/FwR1Hpdc3HFx2YZyVOgw1sxDpOTkWZmjOCMLU04Amulg/oOG0YAuUPqFoHiP8q9JEIpFu@vger.kernel.org
+X-Gm-Message-State: AOJu0Yya7lnBYzK1iC+tZRtrgFEtmLasRmcKUy4NXABQZBeQ5PnrIIdN
+	u1dvCje6OmHK2pESe5ZTr8pvIsH7nM3r+v9EcoKzRhY7DPEnqWfPhhL57GdTEMM=
+X-Google-Smtp-Source: AGHT+IGnpJbRkaeEp++fKU34EvopNpr/tyBn+AeOlnfao3/er+hs2WZEx+AXO2rdZ+yVQjSYpLNcaA==
+X-Received: by 2002:a17:907:36c4:b0:a8d:1303:2283 with SMTP id a640c23a62f3a-a991bd7a123mr567894066b.30.1728124273102;
+        Sat, 05 Oct 2024 03:31:13 -0700 (PDT)
 Received: from [127.0.0.1] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a992e7856bfsm116315566b.138.2024.10.05.03.31.11
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a992e7856bfsm116315566b.138.2024.10.05.03.31.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 05 Oct 2024 03:31:11 -0700 (PDT)
+        Sat, 05 Oct 2024 03:31:12 -0700 (PDT)
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Sat, 05 Oct 2024 11:31:05 +0100
-Subject: [PATCH v5 3/4] media: ov08x40: Rename ext_clk to xvclk
+Date: Sat, 05 Oct 2024 11:31:06 +0100
+Subject: [PATCH v5 4/4] media: ov08x40: Add OF probe support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241005-b4-master-24-11-25-ov08x40-v5-3-5f1eb2e11036@linaro.org>
+Message-Id: <20241005-b4-master-24-11-25-ov08x40-v5-4-5f1eb2e11036@linaro.org>
 References: <20241005-b4-master-24-11-25-ov08x40-v5-0-5f1eb2e11036@linaro.org>
 In-Reply-To: <20241005-b4-master-24-11-25-ov08x40-v5-0-5f1eb2e11036@linaro.org>
 To: Sakari Ailus <sakari.ailus@linux.intel.com>, 
@@ -91,72 +91,286 @@ To: Sakari Ailus <sakari.ailus@linux.intel.com>,
 Cc: linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
  devicetree@vger.kernel.org, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1588;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=7427;
  i=bryan.odonoghue@linaro.org; h=from:subject:message-id;
- bh=KuJYhS6BLwFHq2M3BsUApExs70W98G5/TG0tISRMP7Q=;
- b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBnARVp5Gj1nry9lNTa8Pb3pZfveRm/Y1XwWca4P
- l80hK1hq7+JAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCZwEVaQAKCRAicTuzoY3I
- OhsREACsz83KNPTLwh6GOaVyVHVFSyU+OW6Ws4BItgxBfGhIxAygKNKYlFt3ZakuK90k9s6f82V
- co152IJh6OfHhgGnAxcBA01TU+IrYnC2b4eUkLryXSq+jk/XRZdbWI2xsWTIJBNm2gUcbTjQtiZ
- rjX0a/GfjD0vv+TUZyX/JrnH13oO31GesrqdLtaBSh5dbHl2yudou3//+rqGil1xL8tMbhsMKY5
- 8jpoJI6MmQiGYm98UIn36eBeBE6lBnPF6J80UVfBs0ce96Zrg8ZWmhM1w86XRKKZYJwThgKUXFN
- Khl8ifOzXpBirKsMCrJxNVJS0uh/cKkgjRVF/5uM5+XXV08m07G32apN+xvCxMAK67LAoFCuxSA
- 8W9X394by5pTS0n1Ty82AqI4U+xKHrhp4H0xkaL1LilkPuTulq2WQsz906ziUmoXTA8V4C60Jf2
- cngUSoN3oVDh6tVx7v390/7LYACheVZgV+gx0mMsjVYGf61WLRBPs+tc+/xYo7gqvqRSfzxFzWg
- Ifc0vURWgRuHdtYQP3esDXcobsI1v6qNd5GE+y1MLV0b036exW0TuzvtW3xZkUWkEsX+2n3Uw2n
- PQqQUdMLO5Mh7nSwZxseZI+goV3+KeaP8dGBuzaiYyYxyOOrtzhNM4dlMrLCZiPY1PEg2HiQYOu
- uzotZ/poXcPbEUA==
+ bh=MZdA/sRLAsmvUPZP3TphhP3dJzkLom00eAxDcabblxk=;
+ b=owEBbQKS/ZANAwAIASJxO7Ohjcg6AcsmYgBnARVqi35DN6gUi+5keNREXE36RVNzvmSK5VLjs
+ 2TziUE2nCOJAjMEAAEIAB0WIQTmk/sqq6Nt4Rerb7QicTuzoY3IOgUCZwEVagAKCRAicTuzoY3I
+ OkdrD/4jdS4d6RhXojZ416uinCFqyvFUj5cpzuo4DlDXoY/1Nz6azwXPh95o1T1PkVuFGgoSCOs
+ YSQWGGnw9G9o48NdyDr/xzI0h1d4EoSL6LjhxMGtlF6IJv/rabmp/F1xNR3yK1grurvlwLQbmtK
+ /jwkYznAN2F7XDmvcPbnsPXxojP5loPJI/mNl9tpJujm+OEimW15qfikNXZD/9JFBJPNBEaHbTG
+ goBm7fgleoveZZjkV1Y/3csyg6+rergqZ3Vm96mxnaXMR/Eo/qtalOOm/L/WGtjXqyZNW+FL2q8
+ akyJqfada7b0VrAuZjhjVzUQg+4+ENcoLdinozxfTdU1J7CPTPYCaWbRDVNE3Qby/fbD7kYM/j1
+ kfDNAS4fRG9WiV/bNFR+y341m2i/pO3M6Dfq1aUo1yYdAdhLESTrERrTQhI4IDa6Usxk5qEvnD/
+ eHrDxJHlFeTaNi8sjyDJb3moKNZPMM8P1X/vEUMEYv18q2Rp8L3UnH6MWpQnJHsl+YO/NP7KDta
+ phphJ2FP5Hg2xSe0R+hqUhdq2/1KjwvF4UmrflSqa4NW8Fdpodv4pm07lvnI2UkIoELDIi+h3Jk
+ YlR+EbZEYxMRrTKqNofm600ZrpyaazuWo6wfaCcgyYxNU8IhUcM6B6LNrKdxg4bypOAHIQAM6oh
+ N2899CZzi1+AL/w==
 X-Developer-Key: i=bryan.odonoghue@linaro.org; a=openpgp;
  fpr=E693FB2AABA36DE117AB6FB422713BB3A18DC83A
 
-The data-sheet and documentation for this part uses the name xvclk not
-ext_clk for the input reference clock. Rename the variables and defines in
-this driver to align with the data-sheet name.
+The ACPI version of this driver "just works" on dts based systems with a
+few extensions to facilitate.
 
+- Add support for DT based probing
+- Add support for taking the part out of reset via a GPIO reset pin
+- Add in regulator bulk on/off logic for the power rails.
+
+Once done this sensor works nicely on a Qualcomm X1E80100 CRD.
+
+Tested-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org> # x1e80100-crd
 Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 ---
- drivers/media/i2c/ov08x40.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/media/i2c/ov08x40.c | 140 +++++++++++++++++++++++++++++++++++++++-----
+ 1 file changed, 125 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/media/i2c/ov08x40.c b/drivers/media/i2c/ov08x40.c
-index be25e45175b1322145dca428e845242d8fea2698..3ab8b51df157af78fcccc1aaef73aedb2ae759c9 100644
+index 3ab8b51df157af78fcccc1aaef73aedb2ae759c9..ff17e09a1f96175d598c395bcae0cdf01d68a79f 100644
 --- a/drivers/media/i2c/ov08x40.c
 +++ b/drivers/media/i2c/ov08x40.c
-@@ -1215,7 +1215,7 @@ static const char * const ov08x40_test_pattern_menu[] = {
- /* Configurations for supported link frequencies */
- #define OV08X40_LINK_FREQ_400MHZ	400000000ULL
- #define OV08X40_SCLK_96MHZ		96000000ULL
--#define OV08X40_EXT_CLK			19200000
-+#define OV08X40_XVCLK			19200000
- #define OV08X40_DATA_LANES		4
+@@ -3,10 +3,13 @@
  
- /*
-@@ -2081,21 +2081,21 @@ static int ov08x40_check_hwcfg(struct device *dev)
- 	struct fwnode_handle *fwnode = dev_fwnode(dev);
- 	unsigned int i, j;
- 	int ret;
--	u32 ext_clk;
-+	u32 xvclk_rate;
+ #include <asm-generic/unaligned.h>
+ #include <linux/acpi.h>
++#include <linux/clk.h>
+ #include <linux/i2c.h>
++#include <linux/gpio/consumer.h>
+ #include <linux/module.h>
+ #include <linux/delay.h>
+ #include <linux/pm_runtime.h>
++#include <linux/regulator/consumer.h>
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
+ #include <media/v4l2-fwnode.h>
+@@ -1279,6 +1282,12 @@ static const struct ov08x40_mode supported_modes[] = {
+ 	},
+ };
  
++static const char * const ov08x40_supply_names[] = {
++	"dovdd",	/* Digital I/O power */
++	"avdd",		/* Analog power */
++	"dvdd",		/* Digital core power */
++};
++
+ struct ov08x40 {
+ 	struct v4l2_subdev sd;
+ 	struct media_pad pad;
+@@ -1291,6 +1300,10 @@ struct ov08x40 {
+ 	struct v4l2_ctrl *hblank;
+ 	struct v4l2_ctrl *exposure;
+ 
++	struct clk		*xvclk;
++	struct gpio_desc	*reset_gpio;
++	struct regulator_bulk_data supplies[ARRAY_SIZE(ov08x40_supply_names)];
++
+ 	/* Current mode */
+ 	const struct ov08x40_mode *cur_mode;
+ 
+@@ -1303,6 +1316,61 @@ struct ov08x40 {
+ 
+ #define to_ov08x40(_sd)	container_of(_sd, struct ov08x40, sd)
+ 
++static int ov08x40_power_on(struct device *dev)
++{
++	struct v4l2_subdev *sd = dev_get_drvdata(dev);
++	struct ov08x40 *ov08x = to_ov08x40(sd);
++	int ret;
++
++	if (is_acpi_node(dev_fwnode(dev)))
++		return 0;
++
++	ret = clk_prepare_enable(ov08x->xvclk);
++	if (ret < 0) {
++		dev_err(dev, "failed to enable xvclk\n");
++		return ret;
++	}
++
++	if (ov08x->reset_gpio) {
++		gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
++		usleep_range(1000, 2000);
++	}
++
++	ret = regulator_bulk_enable(ARRAY_SIZE(ov08x40_supply_names),
++				    ov08x->supplies);
++	if (ret < 0) {
++		dev_err(dev, "failed to enable regulators\n");
++		goto disable_clk;
++	}
++
++	gpiod_set_value_cansleep(ov08x->reset_gpio, 0);
++	usleep_range(1500, 1800);
++
++	return 0;
++
++disable_clk:
++	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
++	clk_disable_unprepare(ov08x->xvclk);
++
++	return ret;
++}
++
++static int ov08x40_power_off(struct device *dev)
++{
++	struct v4l2_subdev *sd = dev_get_drvdata(dev);
++	struct ov08x40 *ov08x = to_ov08x40(sd);
++
++	if (is_acpi_node(dev_fwnode(dev)))
++		return 0;
++
++	gpiod_set_value_cansleep(ov08x->reset_gpio, 1);
++	regulator_bulk_disable(ARRAY_SIZE(ov08x40_supply_names),
++			       ov08x->supplies);
++	clk_disable_unprepare(ov08x->xvclk);
++
++	return 0;
++}
++
+ /* Read registers up to 4 at a time */
+ static int ov08x40_read_reg(struct ov08x40 *ov08x,
+ 			    u16 reg, u32 len, u32 *val)
+@@ -2072,7 +2140,7 @@ static void ov08x40_free_controls(struct ov08x40 *ov08x)
+ 	mutex_destroy(&ov08x->mutex);
+ }
+ 
+-static int ov08x40_check_hwcfg(struct device *dev)
++static int ov08x40_check_hwcfg(struct ov08x40 *ov08x, struct device *dev)
+ {
+ 	struct v4l2_fwnode_endpoint bus_cfg = {
+ 		.bus_type = V4L2_MBUS_CSI2_DPHY
+@@ -2086,11 +2154,36 @@ static int ov08x40_check_hwcfg(struct device *dev)
  	if (!fwnode)
  		return -ENXIO;
  
- 	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
--				       &ext_clk);
-+				       &xvclk_rate);
+-	ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
+-				       &xvclk_rate);
+-	if (ret) {
+-		dev_err(dev, "can't get clock frequency");
+-		return ret;
++	if (!is_acpi_node(fwnode)) {
++		ov08x->xvclk = devm_clk_get(dev, NULL);
++		if (IS_ERR(ov08x->xvclk)) {
++			dev_err(dev, "could not get xvclk clock (%pe)\n",
++				ov08x->xvclk);
++			return PTR_ERR(ov08x->xvclk);
++		}
++
++		xvclk_rate = clk_get_rate(ov08x->xvclk);
++
++		ov08x->reset_gpio = devm_gpiod_get_optional(dev, "reset",
++							    GPIOD_OUT_LOW);
++		if (IS_ERR(ov08x->reset_gpio))
++			return PTR_ERR(ov08x->reset_gpio);
++
++		for (i = 0; i < ARRAY_SIZE(ov08x40_supply_names); i++)
++			ov08x->supplies[i].supply = ov08x40_supply_names[i];
++
++		ret = devm_regulator_bulk_get(dev,
++					      ARRAY_SIZE(ov08x40_supply_names),
++					      ov08x->supplies);
++		if (ret)
++			return ret;
++	} else {
++		ret = fwnode_property_read_u32(dev_fwnode(dev), "clock-frequency",
++					       &xvclk_rate);
++		if (ret) {
++			dev_err(dev, "can't get clock frequency");
++			return ret;
++		}
+ 	}
+ 
+ 	if (xvclk_rate != OV08X40_XVCLK) {
+@@ -2143,32 +2236,37 @@ static int ov08x40_check_hwcfg(struct device *dev)
+ }
+ 
+ static int ov08x40_probe(struct i2c_client *client)
+-{
+-	struct ov08x40 *ov08x;
++{	struct ov08x40 *ov08x;
+ 	int ret;
+ 	bool full_power;
+ 
++	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
++	if (!ov08x)
++		return -ENOMEM;
++
+ 	/* Check HW config */
+-	ret = ov08x40_check_hwcfg(&client->dev);
++	ret = ov08x40_check_hwcfg(ov08x, &client->dev);
  	if (ret) {
- 		dev_err(dev, "can't get clock frequency");
+ 		dev_err(&client->dev, "failed to check hwcfg: %d", ret);
  		return ret;
  	}
  
--	if (ext_clk != OV08X40_EXT_CLK) {
-+	if (xvclk_rate != OV08X40_XVCLK) {
- 		dev_err(dev, "external clock %d is not supported",
--			ext_clk);
-+			xvclk_rate);
- 		return -EINVAL;
+-	ov08x = devm_kzalloc(&client->dev, sizeof(*ov08x), GFP_KERNEL);
+-	if (!ov08x)
+-		return -ENOMEM;
+-
+ 	/* Initialize subdev */
+ 	v4l2_i2c_subdev_init(&ov08x->sd, client, &ov08x40_subdev_ops);
+ 
+ 	full_power = acpi_dev_state_d0(&client->dev);
+ 	if (full_power) {
++		ret = ov08x40_power_on(&client->dev);
++		if (ret) {
++			dev_err(&client->dev, "failed to power on\n");
++			return ret;
++		}
++
+ 		/* Check module identity */
+ 		ret = ov08x40_identify_module(ov08x);
+ 		if (ret) {
+ 			dev_err(&client->dev, "failed to find sensor: %d\n", ret);
+-			return ret;
++			goto probe_power_off;
+ 		}
  	}
  
+@@ -2177,7 +2275,7 @@ static int ov08x40_probe(struct i2c_client *client)
+ 
+ 	ret = ov08x40_init_controls(ov08x);
+ 	if (ret)
+-		return ret;
++		goto probe_power_off;
+ 
+ 	/* Initialize subdev */
+ 	ov08x->sd.internal_ops = &ov08x40_internal_ops;
+@@ -2210,6 +2308,9 @@ static int ov08x40_probe(struct i2c_client *client)
+ error_handler_free:
+ 	ov08x40_free_controls(ov08x);
+ 
++probe_power_off:
++	ov08x40_power_off(&client->dev);
++
+ 	return ret;
+ }
+ 
+@@ -2224,6 +2325,8 @@ static void ov08x40_remove(struct i2c_client *client)
+ 
+ 	pm_runtime_disable(&client->dev);
+ 	pm_runtime_set_suspended(&client->dev);
++
++	ov08x40_power_off(&client->dev);
+ }
+ 
+ #ifdef CONFIG_ACPI
+@@ -2235,10 +2338,17 @@ static const struct acpi_device_id ov08x40_acpi_ids[] = {
+ MODULE_DEVICE_TABLE(acpi, ov08x40_acpi_ids);
+ #endif
+ 
++static const struct of_device_id ov08x40_of_match[] = {
++	{ .compatible = "ovti,ov08x40" },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, ov08x40_of_match);
++
+ static struct i2c_driver ov08x40_i2c_driver = {
+ 	.driver = {
+ 		.name = "ov08x40",
+ 		.acpi_match_table = ACPI_PTR(ov08x40_acpi_ids),
++		.of_match_table = ov08x40_of_match,
+ 	},
+ 	.probe = ov08x40_probe,
+ 	.remove = ov08x40_remove,
 
 -- 
 2.46.2
