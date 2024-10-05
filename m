@@ -1,243 +1,101 @@
-Return-Path: <devicetree+bounces-108055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700A999168D
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 13:53:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C89D79916A6
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 14:05:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 89A911C215B4
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 11:53:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05D581C22007
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 12:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915B31494D1;
-	Sat,  5 Oct 2024 11:53:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2C014C5AF;
+	Sat,  5 Oct 2024 12:04:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OkrbqEbu"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OXZu8WbO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 579482B9AA;
-	Sat,  5 Oct 2024 11:53:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADF8314C5AE;
+	Sat,  5 Oct 2024 12:04:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728129208; cv=none; b=oPcLzeJN+17Rytungy3GO9ToWNucn03c2qrWsYPtlcesFO2wITN1UfILv1na8tMmrcc3rQt+mmrKcEKtNI5tqcMGEKsb0H7/ax4PvxamQcntKiQnVGjB52Jebz/LL6d2z2GrsF1nZKXVHQ81lnTMlxTbeiNNEi+XlMag2HiDSts=
+	t=1728129871; cv=none; b=PANDdUWuSCpXlgn4B5mLfqaGvWskCPapiETdVILOPa1YsezW+DIt3y5faABRFKVz9FZs+x87dinZS/6R7ePujJGROmjwhGpmmHqOrPqR0jgiwVREJUhSmcLnSmnCt9X75oNNf6nJFdwVKA4RWV9QDvK745Qm2fPdzhQHUkPTm5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728129208; c=relaxed/simple;
-	bh=VQJQi0+PgB45k7P56kZuRZq1YQ+ri/0leKVpZ642G6w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=tLHUm9FQJnnvUpaPX9rgJft9LD1Rzc+8ITk16u7q4MasVtkZJheTYaDsaWrfGibvCcaCT5OUYP6XTuTQNVq7Vd6t1FkYTONfcfj/gn8CxptTiCp99Qp9aKPGEwjkoIJc3YvhFgH0x/EKLp/hHeR2OxEmaeL8I8HG/iO2tVyVY6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OkrbqEbu; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC1E0C4CEC2;
-	Sat,  5 Oct 2024 11:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728129207;
-	bh=VQJQi0+PgB45k7P56kZuRZq1YQ+ri/0leKVpZ642G6w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=OkrbqEbub+ijJIgwizRMWx42IhCSrHMoDBHVzCJ7tYG07DHN5aQqXHgy23noKHfsJ
-	 Yrug1lgDQ7RbdwMgFBjR29LE2B1/graNyAzH1I49PdvHA3U90Sgh9PLuyvnrMp3PLl
-	 g2jPmVmaE39Mj2SeMT+VedGIjsXMn8C9uJDIlvkCOCulyxI//WPhMKJu+mFfH1vjK7
-	 EHHKMqSpK1PpGtPm5VlIySYvdDkH9Ik2MJDp2jbWEkbWK8HSxG2FwKNcfyycZEQpC0
-	 GV5yAPOHuCAiMXkfi0LPe6EIP68VTBY0rrnX8aNw8D9jfy7+fSC7IZx7Qj8HAz6Y95
-	 CiRUinBBVR0Ng==
-Date: Sat, 5 Oct 2024 12:53:18 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Guillaume Stols <gstols@baylibre.com>
-Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Lars-Peter
- Clausen <lars@metafoo.de>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- aardelean@baylibre.com, dlechner@baylibre.com, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v3 09/10] iio: adc: ad7606: Add iio-backend support
-Message-ID: <20241005125318.0c4a7bc8@jic23-huawei>
-In-Reply-To: <20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
-References: <20241004-ad7606_add_iio_backend_support-v3-0-38757012ce82@baylibre.com>
-	<20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728129871; c=relaxed/simple;
+	bh=2TAaj1YLgz3mxmfQkMCYlqJkYPgfxM99Z1z+9Du73cA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HrchPEuWjSRqq+y0CZTFUrNnMmRab5t4d/PqnUmLsUKQmLauwjx9Ksg6jq5u55saEZkJ5l484erUrAkMTO1YMAfS2gIRycMCjjgAFoWZjrz961WsBSk8rDvuzeq8IR95QFeiF6JuF4vc75O975OF20I/EY4xYtE1+9pirIy6qBY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OXZu8WbO; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42e5e758093so25033055e9.1;
+        Sat, 05 Oct 2024 05:04:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728129868; x=1728734668; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2TAaj1YLgz3mxmfQkMCYlqJkYPgfxM99Z1z+9Du73cA=;
+        b=OXZu8WbOrzQ51QEGBrp6nY3BG4O3KqBTnEui5w8pEL1GqtgZwyDQ9BDVETWz8DwXYF
+         j6tx3xOcV5DQu0YhmftOlZpHBBXtbgRIMj2AQ6DoSaavpk0ALh3Onhl17cFwmlIckfg3
+         egFdHnX++vgKe9Ta4aB+JHjH25LqvSIULRUVTIMiUXKEYbyG6QMpqCS7HDNEupj3bqpi
+         UKCzo7KPrWrx/jCmJNWgbVShzwZp16LjhHJpfjzBP6uRzOTIQOX8w07oPSdKJbzUeLnU
+         w0NdW5Tivf3ZqyH7LV/9VOaeuTRX7BdxmEj38EARIcgznOKlX9PPBQc6gsD62lTo4tHC
+         I6og==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728129868; x=1728734668;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2TAaj1YLgz3mxmfQkMCYlqJkYPgfxM99Z1z+9Du73cA=;
+        b=GAKDObIVY/6cjJhPjYHn7flRreenEVq/XnrRYYwAP2ztoMGqK29or4/N3m1SZ+wqRj
+         csLTazW6q74dawayYEgaomR7lQEWPQFidbCi5DpmDgkWyW5lmgBG/b0lAHSSv86L24as
+         BZAZGI96Oqt0ogva2fttB1z5Q5QSvQZs00BzbWWHYHPETaoSOzHQbJGKEYJn9zTYqJtn
+         F6ifpNiF4o4YWgwoa685yxjFI8TAdhubD2jCP0ihKiFCCi9gnYb0wdEg2LuYBI90O100
+         tWJYQjsFVCSWbI/NP0qjGHeS3jKMbz7H3ZWAYlJpHbCXR+/VBn8z16sV5vkJ1rjMhThx
+         xtWA==
+X-Forwarded-Encrypted: i=1; AJvYcCX+hmcb4nABkkyFTesdpZ8fDkjUTWdeqTFt/KDllppphRRWNxCmDS+/BLZ+XATQAS2mMAnLTy8pUH4gUb4=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz4BzisDN3nFyASf8rxsvznygjb9L6mdNcT3S7Slvp+IusomdXt
+	HJGNI83CMfGRSz2MTjnygKFz9nNhsN4XAouD6tvQKFWVrQSnJ+vX
+X-Google-Smtp-Source: AGHT+IFlbyTm+8NckJvUfF1ruPrA4q2PYxQGobPnRDCKz0h74KHrV91HWZEjbKYMipL4r6CBjrH6Zw==
+X-Received: by 2002:a05:600c:1d2a:b0:42f:7ed4:4c25 with SMTP id 5b1f17b1804b1-42f85ab5db4mr43127545e9.14.1728129867892;
+        Sat, 05 Oct 2024 05:04:27 -0700 (PDT)
+Received: from standask-GA-A55M-S2HP (lu-nat-113-247.ehs.sk. [188.123.113.247])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f89ed9d4bsm20948325e9.42.2024.10.05.05.04.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 05 Oct 2024 05:04:27 -0700 (PDT)
+Date: Sat, 5 Oct 2024 14:04:25 +0200
+From: Stanislav Jakubek <stano.jakubek@gmail.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Orson Zhai <orsonzhai@gmail.com>,
+	Baolin Wang <baolin.wang@linux.alibaba.com>,
+	Baolin Wang <baolin.wang7@gmail.com>,
+	Chunyan Zhang <zhang.lyra@gmail.com>,
+	Yanxin Huang <yanxin.huang@unisoc.com>,
+	huang yanxin <yanxin.huang07@gmail.com>,
+	Wenming Wu <wenming.wu@unisoc.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: nvmem: sprd,sc2731-efuse: convert to
+ YAML
+Message-ID: <ZwErSQIKWLdOjmcc@standask-GA-A55M-S2HP>
+References: <c487bff193db7a06b846976a80c02c37509943ac.1722841057.git.stano.jakubek@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c487bff193db7a06b846976a80c02c37509943ac.1722841057.git.stano.jakubek@gmail.com>
 
-On Fri, 04 Oct 2024 21:48:43 +0000
-Guillaume Stols <gstols@baylibre.com> wrote:
+Gentle reminder about this series.
+It's been sitting on the mailing list for ~2 months.
 
-> - Basic support for iio backend.
-> - Supports IIO_CHAN_INFO_SAMP_FREQ R/W.
-> - Only hardware mode is available, and that IIO_CHAN_INFO_RAW is not
->   supported if iio-backend mode is selected.
-I don't much like the trivial window between this patch and the next
-where the emulated mode is still there but the sleeps aren't adapting with sampling frequency.
-
-Maybe it's worth a dance of leaving the write_raw support
-until after this one so the frequency remains fixed until after
-the fsleep(2) calls are gone?
-
-There is another bit that I'm unsure is technically correct until after
-the next patch.  Maybe I'm reading the diff wrong though!
-
-Thanks,
-
-J
-
-> 
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> ---
->  drivers/iio/adc/Kconfig      |   2 +
->  drivers/iio/adc/ad7606.c     | 124 +++++++++++++++++++++++++++++++++++++------
->  drivers/iio/adc/ad7606.h     |  15 ++++++
->  drivers/iio/adc/ad7606_par.c |  94 +++++++++++++++++++++++++++++++-
->  4 files changed, 219 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index 4ab1a3092d88..9b52d5b2c592 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -224,9 +224,11 @@ config AD7606_IFACE_PARALLEL
->  	tristate "Analog Devices AD7606 ADC driver with parallel interface support"
->  	depends on HAS_IOPORT
->  	select AD7606
-> +	select IIO_BACKEND
->  	help
->  	  Say yes here to build parallel interface support for Analog Devices:
->  	  ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converters (ADC).
-> +	  It also support iio_backended devices for AD7606B.
->  
->  	  To compile this driver as a module, choose M here: the
->  	  module will be called ad7606_par.
-> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> index 3666a58f8a6f..d86eb7c3e4f7 100644
-> --- a/drivers/iio/adc/ad7606.c
-> +++ b/drivers/iio/adc/ad7606.c
-> @@ -21,6 +21,7 @@
-
-> @@ -737,6 +773,10 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
->  			return ret;
->  
->  		return 0;
-> +	case IIO_CHAN_INFO_SAMP_FREQ:
-> +		if (val < 0 && val2 != 0)
-> +			return -EINVAL;
-> +		return ad7606_set_sampling_freq(st, val);
-
-Currently I think  for the !backend + pwm case this can go out of
-range for which that code works (fsleep removed in next patch).
-Perhaps delay adding this until after that patch.
->  	default:
->  		return -EINVAL;
->  	}
-
-> @@ -1108,7 +1186,24 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
->  					       st->cnvst_pwm);
->  		if (ret)
->  			return ret;
-> +	}
-> +
-> +	if (st->bops->iio_backend_config) {
-> +		/*
-> +		 * If there is a backend, the PWM should not overpass the maximum sampling
-> +		 * frequency the chip supports.
-> +		 */
-> +		ret = ad7606_set_sampling_freq(st,
-> +					       chip_info->max_samplerate ? : 2 * KILO);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = st->bops->iio_backend_config(dev, indio_dev);
-> +		if (ret)
-> +			return ret;
-> +		indio_dev->setup_ops = &ad7606_pwm_buffer_ops;
->  	} else {
-> +		init_completion(&st->completion);
->  		st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
->  						  indio_dev->name,
->  						  iio_device_id(indio_dev));
-It's a little hard to unwind the patches, but this was previously in the !pwm case.
-At this point in the series we still allow the pwm case to work with ! backend.
-So is this now running in that case?   Do we need a temporary additional check
-on !pwm
-
-
-> @@ -1126,15 +1221,14 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
->  						      &ad7606_buffer_ops);
->  		if (ret)
->  			return ret;
-> +		ret = devm_request_threaded_irq(dev, irq,
-> +						NULL,
-> +						&ad7606_interrupt,
-> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +						chip_info->name, indio_dev);
-> +		if (ret)
-> +			return ret;
->  	}
-> -	ret = devm_request_threaded_irq(dev, irq,
-> -					NULL,
-> -					&ad7606_interrupt,
-> -					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> -					chip_info->name, indio_dev);
-> -	if (ret)
-> -		return ret;
-> -
->  	return devm_iio_device_register(dev, indio_dev);
->  }
->  EXPORT_SYMBOL_NS_GPL(ad7606_probe, IIO_AD7606);
-
-> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
-> index b87be2f1ca04..6042f6799272 100644
-> --- a/drivers/iio/adc/ad7606_par.c
-> +++ b/drivers/iio/adc/ad7606_par.c
-> @@ -2,7 +2,8 @@
-> +
-> +static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio_dev)
-> +{
-> +	struct ad7606_state *st = iio_priv(indio_dev);
-> +	unsigned int ret, c;
-> +	struct iio_backend_data_fmt data = {
-> +		.sign_extend = true,
-> +		.enable = true,
-> +	};
-> +
-> +	st->back = devm_iio_backend_get(dev, NULL);
-> +	if (IS_ERR(st->back))
-> +		return PTR_ERR(st->back);
-> +
-> +	/* If the device is iio_backend powered the PWM is mandatory */
-> +	if (!st->cnvst_pwm)
-> +		return dev_err_probe(st->dev, -EINVAL,
-> +				     "A PWM is mandatory when using backend.\n");
-> +
-> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_iio_backend_enable(dev, st->back);
-> +	if (ret)
-> +		return ret;
-> +
-> +	for (c = 0; c < indio_dev->num_channels; c++) {
-> +		ret = iio_backend_data_format_set(st->back, c, &data);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	indio_dev->channels = ad7606b_bi_channels;
-
-Ultimately this may want to move into the chip_info structures as more devices are added
-but this is fine for now I suppose.
-
-> +	indio_dev->num_channels = 8;
-> +
-> +	return 0;
-> +}
+Stanislav
 
