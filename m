@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-108061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AEB5991766
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 16:37:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CF1899176B
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 16:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C78B1C21499
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 14:37:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E55211F21D55
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 14:41:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D8515531B;
-	Sat,  5 Oct 2024 14:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0ED081ACA;
+	Sat,  5 Oct 2024 14:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SfaaX8Tq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiEFnaC/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5AB01552E0;
-	Sat,  5 Oct 2024 14:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D7A1547C9;
+	Sat,  5 Oct 2024 14:40:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728139034; cv=none; b=l90Rw9YGR6R5HNnV8blP4axLVAQKdmHSL853/ZmNfewCEvs5exM8kL0eZQiybgpYicbtu6ejuLOPFtc6UlqeWRFRUydqVz+eyTK/JtjF2Qm52A3liWsQB0rKpMoKW/F75Hs5j3UGsqEvgZp3HA0apokVg3gesomaVZ9LBvI1EpA=
+	t=1728139256; cv=none; b=mpgJSp2VtP0ytfUVNv1NeLufY3eIJsH0yhgtz7/TkVjUZZDoBNGRZGk438Tmn7oLsXwp3NViZtOXdX2KP/XSGCKI/nz6h/McaOrmsvWmApemgJZwWJxtW09scvTVQ6XwBQdIQAZ+zXvTcPKSebeVBOjToiOUedWwvFz13RXH41g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728139034; c=relaxed/simple;
-	bh=PZqPw0NfxQ/DbCT3bbqtAszcPV+I/aAYlgSZklIL9gY=;
+	s=arc-20240116; t=1728139256; c=relaxed/simple;
+	bh=IESewRE5dpOceertCQW9BhawHutEpUXflIqNfJ3XaiI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZD3dLZkzl9j6M5ya/1rDIAaIP6sNzf5a4e3eAufKB27Zr1IXI0i8y4OnMC9IztKja6gB14Op1IVGynQc/4r3C1kRkAegY2Qo9bVE40KEzJRtucZDjhXOXb/h2xMskaTLeg3QMjAWYF4T0QB8lrp9pFH7rPECK4P7uZXapZXwJUY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SfaaX8Tq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E5FFC4CEC2;
-	Sat,  5 Oct 2024 14:37:14 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GUItIRL/5RHN45fXVfq4giEzE/10kM2aPHLo/mwyiglRYEe1saPNzv5PwPa2dgr06gQrHk1B02l2RuhbTUpby+jeWwXT1KPQVWfAJ6NKU1AzcoG3BhyV3kfuRPrV9EU3+VEkiHr/dD/T5IQM741eZv9MgIEQnuTYSj54phlHjwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiEFnaC/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7ECC4CEC2;
+	Sat,  5 Oct 2024 14:40:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728139034;
-	bh=PZqPw0NfxQ/DbCT3bbqtAszcPV+I/aAYlgSZklIL9gY=;
+	s=k20201202; t=1728139256;
+	bh=IESewRE5dpOceertCQW9BhawHutEpUXflIqNfJ3XaiI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SfaaX8Tq32kuyA9TYaFh0ULWSZ2hQNXhoKA8I1Pt7it9tSo6426I9FfTko78Lfo1c
-	 uyXsYHmmVxOJeK8qSxVDj4uAsPhEKTOL900cdSH3+6YyGaUo0XfBdrPLUBSUq3UVzJ
-	 NhZSKc3zTSXMzTFLqGw/uW/ej+hugiNyrxt/XYfi40ehCTTU/+5jhefMZtJM1xooM3
-	 MhyEDm1X3b7S7Sa1hE7r/coUNVvRlck+aUExcOcmDgs8DzFnuI5UPzPDslldfLisjZ
-	 JWf3FkdIXykWYYAW0g95UsS5JNkEFsdwclq35RX7XVJdPBFMzgNlQzm1HK+CiDzeio
-	 j9pKgupz9Vv6A==
-Date: Sat, 5 Oct 2024 09:37:13 -0500
+	b=fiEFnaC/R+PzY5GrMTfZz07v2r5v9DyW/CpVVXZD1Ezh4ZkoBFL1JzVJWjGAqZXpz
+	 Mqk/JlCc2TN6zpMCE56C5SkPvVUXPTpZy1mdh1bOo0aCXzlNzeCPzkTEc+Cn6K4fR8
+	 8h4xfrtOvxdv6MTYP7n965dXaA+5r4ofSYRxUQRqBqnsLoHp5Idy0SnlqMC316hwJ7
+	 1BGNSCP2bcR1xWbzsXbLqhrLjKSxOvAL/JpJ4TJzKxO254RgbNa9pRbIQ3fEZAEuZQ
+	 1hV1Jo+1LMIEJXOAeFAQGMd/sbb5pIihGKZ5JpF9Jx+yg6AUuUhUW4r33oVjBLOUT1
+	 rUWOy85FusAPw==
+Date: Sat, 5 Oct 2024 09:40:54 -0500
 From: Rob Herring <robh@kernel.org>
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-Cc: manivannan.sadhasivam@linaro.org, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com,
-	agross@kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_narepall@quicinc.com,
-	quic_nitirawa@quicinc.com
-Subject: Re: [PATCH V1 1/3] dt-bindings: ufs: qcom: Document ice
- configuration table
-Message-ID: <20241005143713.GA148600-robh@kernel.org>
-References: <20241005064307.18972-1-quic_rdwivedi@quicinc.com>
- <20241005064307.18972-2-quic_rdwivedi@quicinc.com>
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-mtd@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH v3 2/2] dt-bindings: mtd: davinci: convert to yaml
+Message-ID: <20241005144054.GA156122-robh@kernel.org>
+References: <20241005-ondie-v3-0-459d9c32225c@gmail.com>
+ <20241005-ondie-v3-2-459d9c32225c@gmail.com>
+ <172813824343.140783.17306442382482143087.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,72 +63,76 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241005064307.18972-2-quic_rdwivedi@quicinc.com>
+In-Reply-To: <172813824343.140783.17306442382482143087.robh@kernel.org>
 
-On Sat, Oct 05, 2024 at 12:13:05PM +0530, Ram Kumar Dwivedi wrote:
-> There are three algorithms supported for inline crypto engine:
-> Floor based, Static and Instantaneous algorithm.
+On Sat, Oct 05, 2024 at 09:24:04AM -0500, Rob Herring (Arm) wrote:
 > 
-> Document the compatible used for the algorithm configurations
-> for inline crypto engine found.
+> On Sat, 05 Oct 2024 10:26:12 +0200, Marcus Folkesson wrote:
+> > Convert the bindings to yaml format.
+> > 
+> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> > ---
+> >  .../devicetree/bindings/mtd/davinci-nand.txt       |  94 -------------------
+> >  .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 102 +++++++++++++++++++++
+> >  2 files changed, 102 insertions(+), 94 deletions(-)
+> > 
 > 
-> Co-developed-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->  .../devicetree/bindings/ufs/qcom,ufs.yaml     | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> My bot found errors running 'make dt_binding_check' on your patch:
+
+I think this is the 2nd version with the same failures. This is not a 
+free testing service. Test you patches before sending.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> index 25a5edeea164..5ac56e164643 100644
-> --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-> @@ -108,6 +108,11 @@ properties:
->      description:
->        GPIO connected to the RESET pin of the UFS memory device.
->  
-> +  ice-config:
-> +    type: object
-> +    description:
-> +      ICE configuration table for Qualcom SOC
-
-What goes in this node?
-
-> +
->  required:
->    - compatible
->    - reg
-> @@ -350,5 +355,24 @@ examples:
->                              <0 0>,
->                              <0 0>;
->              qcom,ice = <&ice>;
-> +
-> +            ice_cfg: ice-config {
-> +                alg1 {
-> +                     alg-name = "alg1";
-> +                     rx-alloc-percent = <60>;
-> +                     status = "disabled";
-
-Examples should be enabled.
-
-> +                };
-> +
-> +                alg2 {
-> +                     alg-name = "alg2";
-> +                     status = "disabled";
-> +                };
-> +
-> +                alg3 {
-> +                     alg-name = "alg3";
-> +                     num-core = <28 28 15 13>;
-> +                     status = "ok";
-> +                };
-> +            };
->          };
->      };
-> -- 
-> 2.46.0
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml: 'oneOf' conditional failed, one must be fixed:
+> 	'unevaluatedProperties' is a required property
+> 	'additionalProperties' is a required property
+> 	hint: Either unevaluatedProperties or additionalProperties must be present
+> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml: properties:ti,davinci-ecc-bits: '$ref' should not be valid under {'const': '$ref'}
+> 	hint: Standard unit suffix properties don't need a type $ref
+> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:32.13-40: Warning (reg_format): /example-0/nand-controller@62000000/partition@180000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:30.28-33.14: Warning (avoid_default_addr_size): /example-0/nand-controller@62000000/partition@180000: Relying on default #address-cells value
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:30.28-33.14: Warning (avoid_default_addr_size): /example-0/nand-controller@62000000/partition@180000: Relying on default #size-cells value
+> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#address-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#size-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: reg: [[1644167168, 526335], [1744830464, 32768]] is too long
+> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: ti,davinci-ecc-bits: 4 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#address-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#size-cells' is a required property
+> 	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: ti,davinci-ecc-bits: 4 is not of type 'array'
+> 	from schema $id: http://devicetree.org/schemas/property-units.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241005-ondie-v3-2-459d9c32225c@gmail.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
 > 
 
