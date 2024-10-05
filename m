@@ -1,129 +1,97 @@
-Return-Path: <devicetree+bounces-108099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F0AA9919A3
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 20:45:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE9EE9919A8
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 20:46:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21C6FB20A4E
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 18:45:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F129F1C211F7
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 18:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33F09166F16;
-	Sat,  5 Oct 2024 18:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26F0D15D5DA;
+	Sat,  5 Oct 2024 18:46:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FRCfVdvD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qazhTj17"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80ACA166308;
-	Sat,  5 Oct 2024 18:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC3ED52F88;
+	Sat,  5 Oct 2024 18:45:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728153898; cv=none; b=QX0YOWcf7NALV2TM3invycJbzCUjM4zgZpGXogo1Btqx7AcNurEs4OOxOKmXb6rmUmJarIaXMlOFB0uDEP2BUm+ccRmihWq97GByUfRIKwUSWOl42tswUz6PqDA7qL95QD5SNhE2n5QXnaK9ztdG/ddKgGNwVePExwc6ITblMLE=
+	t=1728153961; cv=none; b=EXv5ENwb7TE6D45GRBpiPRDOgVHxX0E7yRO6KRsKkkqTwysawI5ki7wZfIpvh+7C4hLEzctgWCC1Z+1mbDiw4y0e7nwFfFx5o81TqJxLw7gohAwQ9cUQKE44yNBh9wDF4fiIne+iD2kYTyVVrWFDmV1GEW8x72+fWaNMlbJrisw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728153898; c=relaxed/simple;
-	bh=6RLhYMi5+WUMBMxyQrcB3l0ygGZ73nNgwKYQMVuya1A=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ncl5IKHgup3/C7VhycxqEoT8GgtjN4WzbgyEc3pP3FQG4Rpl6paK4Ppuvxb7S/1JEAf4v9R/JGbDrx96O8UIIG4hPlm/1lslOu5ItoIASDMckb3hUwqmON2ead5wzt7JNnSx2EfPOK8kxB//E9aLXB336vqEc/fpNtiGtrjE4vY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FRCfVdvD; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42cbc22e1c4so23950825e9.2;
-        Sat, 05 Oct 2024 11:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728153895; x=1728758695; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fRlB78UEFCV0w7cLJIZE7YuESd3mDDwJ36kzdZq9V+U=;
-        b=FRCfVdvDiiPbYo76NSYP3eMsPZYEAPfc39oBd4fwjqzCgRo+rlpl+ch26V2fcmjWJq
-         kHf/HppfUNiuuRq6SYgDf57BcnyuyAsB5XeUySlS5YF0Gleaxj7knAIA3EgzJS2NMlxH
-         tDZGxLxsMDXvl9+WhkLrqvQ6pj4X+i6chBU10hDT6ffoLMgVgkTiVXvjkchsA5cZbft/
-         ko9v+X36BAtrqyOlxSrGNfi9haYlXPLqsPgwaEUNsD7Y+E39wNnPOpfl6V3rsGOcNjgf
-         ApSW0VIu4xMonM5ilgFfNiO6oSHQhMjy77wGRlh1/hDkFAnpy3oGXg91W4zDkmQ2H4Ip
-         m+Sw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728153895; x=1728758695;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fRlB78UEFCV0w7cLJIZE7YuESd3mDDwJ36kzdZq9V+U=;
-        b=pjxEiVNDnRU0xlFPtfVAg4o4NshM0ObG8/3jRCV/IHMKQzQfOzL+94hPTdhcv6p/ur
-         agTBKbgzn1CsKa45rHzPS7fnc5n5zvYfYpDCjkKqlmX9kH9mUJ8jt/kWD/c4IjZIl8Oz
-         bZxsYGI7eow96pFiA8VEz4PoQ90qhMnNEzUGG7CpHpaeg7XtOphd8K4RLhSOcBP9bBC8
-         MqLEhHF7dMpnhBQeBudPAcZaYB7QwTDyzGG/SxyfHQwNsogTJPbs3AZon6Nw83uN720z
-         5xz7vRa/EizbJt7kGNzBeqjHpl7TeiEvIapQJ5xrc+/lMKQF8z+3FU2vQ976cTT6LgRR
-         9MZw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOJ7yCDtQirGD03E95ig2/GjLBPluWhYCrqiSO+43kw7qBQbV+1T9VsySpjWyvB+VlsiVARWqy1Vh2@vger.kernel.org, AJvYcCUe48atRazOwdZB3Eg/AJQZ+ifrbaaS/wUg2lxWkZhfv9yWpxtPIwEpJ7lO/cjbMUYyGdSuAvRO81ZF@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRu5hWnA+BZ2RZYgzLrBCK+iLRlKmtGQ8OosBpct6nuxtj31rl
-	f8hwFLZK4tIpOGIsYXU9xirn3bl0g78+BPnu+Gb8NnT7xHIgrHX7UbVg/NIflYo=
-X-Google-Smtp-Source: AGHT+IGS2SkoNgUtCC33Hu7GEybMTTgetpmYXGracfsFtDR9HtiXXW4uv8UCigJiKGvdOgxL1AhiBA==
-X-Received: by 2002:a05:600c:4ed1:b0:42b:a7c7:5667 with SMTP id 5b1f17b1804b1-42f85aee76amr42496935e9.25.1728153894453;
-        Sat, 05 Oct 2024 11:44:54 -0700 (PDT)
-Received: from [192.168.1.18] (102.242-182-91.adsl-dyn.isp.belgacom.be. [91.182.242.102])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d169203f4sm2230523f8f.53.2024.10.05.11.44.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 05 Oct 2024 11:44:54 -0700 (PDT)
-Message-ID: <bc6673fe-367e-4488-b936-1bce5552f543@gmail.com>
-Date: Sat, 5 Oct 2024 20:44:53 +0200
+	s=arc-20240116; t=1728153961; c=relaxed/simple;
+	bh=yXGJWhJIbS2W6DokaVQR9XbZQBgCt4aNCxyXpH/4rYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SgxPnYC066eWdAIApxFePIjIoLjN6lQgWU/iYoB/674ErmgxWmMjiQxqkWoSIwVj/Oa4PriAE45g9bLU4EdIZSytE0QyMTJsF9x5KWH3HfyyK+igcpVQP4wX9zBX3KzH3YMRtzmEC8It5cPsSVO9hSw9Q0LX7cgwillQSej4spI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qazhTj17; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 638EBC4CEC2;
+	Sat,  5 Oct 2024 18:45:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728153959;
+	bh=yXGJWhJIbS2W6DokaVQR9XbZQBgCt4aNCxyXpH/4rYY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qazhTj178cug128FmSIXJa/pVwHNBGmLk5jyuew0WSKwl4Oz3Z7F8Q+o3ad4StCka
+	 OarImiVGPklnMlTvYrjjLZDOjULeqHwMmyCI7OsPzBO7isUX6xP3OVwEHWJD5yKiJB
+	 K6eLV4Edq9hnmbdcPmWowf7tr5P++EEI7UULo8AvqnTZB1e5rHysuJ6q7cIERVoHQ5
+	 HTjKkih4FP7869+bOODQCCgOiQ1xK6ghTkYS6l8TQZXf4FDZtoQD3O4mH1a7wfn/xc
+	 2JYnz2otus77eKvt7/ACCSQjcTIN/kZ/jrRbEAHInAGx/cJ0temKw8Thl4qVfT7FKi
+	 4neAFKTmQIYVg==
+Date: Sat, 5 Oct 2024 13:45:58 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>, linux-kernel@vger.kernel.org,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: renesas,rzg2l-pinctrl:
+ Allow schmitt and open drain properties
+Message-ID: <172815395809.519434.8305860321156601948.robh@kernel.org>
+References: <20241004123658.764557-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20241004123658.764557-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/6] ASoC: add Allwinner H616 audio codec support
-To: Ryan Walklin <ryan@testtoast.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>
-Cc: linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
- linux-clk@vger.kernel.org
-References: <20240929100750.860329-1-ryan@testtoast.com>
-Content-Language: en-US
-From: Philippe Simons <simons.philippe@gmail.com>
-In-Reply-To: <20240929100750.860329-1-ryan@testtoast.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241004123658.764557-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-tested on 6.12-rc1 with RG35XX-H
 
-Tested-by: Philippe Simons <simons.philippe@gmail.com>
+On Fri, 04 Oct 2024 13:36:56 +0100, Prabhakar wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> On the RZ/V2H(P) SoC we can configure the 'input-schmitt-{enable,disable}'
+> , 'drive-open-drain' and 'drive-push-pull' of multiplexed pins. Update the
+> binding documentation to include these properties.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> ---
+> Hi Rob,
+> I have dropped your Ack from v1 as I have updated the commit message and
+> included `drive-push-pull` property in v2.
+> 
+> Cheers, Prabhakar
+> 
+> v1->v2
+> - Added `drive-push-pull` property
+> ---
+>  .../devicetree/bindings/pinctrl/renesas,rzg2l-pinctrl.yaml    | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-On 29/09/2024 12:06, Ryan Walklin wrote:
-> Hi,
->
-> The Allwinner H616 has a playback-only audio codec, with a single stereo or
-> differential-mono line output.
->
-> This patch adds support for the H616 (and H618/H700/T507) SoC. Based on the
-> Allwinner kernel SDK driver, and tested on the H700.
->
-> Regards,
->
-> Ryan
->
-> Marcus Cooper (2):
->    ASoC: sun4i-codec: Add support for different DAC FIFOC addresses to
->      quirks
->    ASoC: sun4i-codec: Add playback only flag to quirks
->
-> Ryan Walklin (4):
->    clk: sunxi-ng: h616: Add sigma-delta modulation settings for audio PLL
->    dt-bindings: allwinner: add H616 sun4i audio codec binding
->    ASoC: sun4i-codec: support allwinner H616 codec
->    arm64: dts: allwinner: h616: Add audio codec node
->
->   .../sound/allwinner,sun4i-a10-codec.yaml      |  55 +++-
->   .../arm64/boot/dts/allwinner/sun50i-h616.dtsi |  15 +
->   drivers/clk/sunxi-ng/ccu-sun50i-h616.c        |  36 +--
->   sound/soc/sunxi/sun4i-codec.c                 | 297 +++++++++++++++---
->   4 files changed, 337 insertions(+), 66 deletions(-)
->
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
