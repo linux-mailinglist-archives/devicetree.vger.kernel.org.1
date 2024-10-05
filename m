@@ -1,94 +1,182 @@
-Return-Path: <devicetree+bounces-108084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D5C3991944
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 20:09:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8240599194F
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 20:10:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C4A71C2025F
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 18:09:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3457B28352D
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 18:10:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC7C158A30;
-	Sat,  5 Oct 2024 18:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1AFF158D8D;
+	Sat,  5 Oct 2024 18:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="My4Dwevc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l+YZSBMS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6859915854A;
-	Sat,  5 Oct 2024 18:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA75D15854F;
+	Sat,  5 Oct 2024 18:09:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728151689; cv=none; b=ksxaDKa5+iV+U3R/qTN5WMGw8myGxvCg2F+sxsRNsZPS5BXJV5JNMFULZ01mW+/0o0kUU4Qw9kuvQ9CHw7vNXxOco3O746XsKUO9ftTZ9NXRifMZ/WM+IwfmZSSn4MxSox4oxuk0tnT+i9gbj0qzndzPrCrxSBUlDMOSVmIpVUA=
+	t=1728151799; cv=none; b=LAl1UjfmJZPaSUcqdPGphnlddxB/SuoSGwVrU0Y/L1nApYvk2JgnFFp0QJJFxI7AvpHLWec0cWIEsQaYrTX6hSzC/zHnQ0teLyYi798z1sDP28O7G6g4wBdWdGZ+iZw1XanSy9yhy21a1bGXBgJJtFTqQrq3OzbZcrK0HUR2fd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728151689; c=relaxed/simple;
-	bh=49/t/8KBEiiEwXH2mK980zJgf7nK2Z7MQbml2DBMDEo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ppWW36ui1qwKTTPBzk0CLZLz08z05wud+uyE4WmD1SUkYX+RHU1ed0w6FXBMEEaXZqmsFDVlCZ9XrQzl0mONDnFmZmED4qiRh2gFr8ZCaCuVQgAgaqX2hthtQ8Q0jfzBK2aH3V4z4FuNeHWZDbssNLfdla+Ria8/b3Vll+bi4A0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=My4Dwevc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BEEDC4CEC2;
-	Sat,  5 Oct 2024 18:08:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728151689;
-	bh=49/t/8KBEiiEwXH2mK980zJgf7nK2Z7MQbml2DBMDEo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=My4DwevcoNVQat0dc8p8xFYhKgU+15TSQPGjSIWfD7rhWmtBHm3kIXkILR9jBCtJP
-	 a2ggo4E85OQc4Yg31mb2K35P8amQv180kTb1jQr7Gg6HE7kgBDG8erUTRsUFJgtQh9
-	 2eSW+L1S9xTaXa05xP9CQO+X8iV8yXLp3TmpBEc23XLqq4ljOqsqfq+QN9ZcBNOUew
-	 z3mwaRV5gl21bWU6vV3FzXq9Y6ixLJ6Ot9bc89COU4IHxiRP/iz8y6PeTs2+Iq8iXA
-	 cvlmm7rBQh0nV1HIuf/9py5yCxq4bNPeYxUiS8rE0Yk+ZpBEzAhsUxAXVKitB8TofT
-	 51IMsvx0T4Dhg==
-Date: Sat, 5 Oct 2024 13:08:08 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Anand Gore <anand.gore@broadcom.com>, devicetree@vger.kernel.org,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	Kursad Oney <kursad.oney@broadcom.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Lee Jones <lee@kernel.org>,
-	William Zhang <william.zhang@broadcom.com>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH v3 1/4] dt-bindings: leds: bcm63138: Add shift register
- bits
-Message-ID: <172815168655.479624.2716334888825153554.robh@kernel.org>
-References: <20241004-bcm63138-leds-v3-0-ba99a8e464b9@linaro.org>
- <20241004-bcm63138-leds-v3-1-ba99a8e464b9@linaro.org>
+	s=arc-20240116; t=1728151799; c=relaxed/simple;
+	bh=63E7H5TJXuvZI1D/xsmlknc4aHrwSdjyMiEgkTiy9Ao=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ecBk7IKOkwx2Du6EhtFhLWtshH32/OSgQWnHSijgU2QoG915op1OE/HVECGc0DSDJ/j3C24IZB2ptU6uFiN/M2UPuYWKR4pqIGV1CL7fPIYb0EtEnsKO50PnJovHz7mAN92tt44e8tEw4SH+o8OQLXDfFd3WuvQODqAzihzhE0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l+YZSBMS; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5c8952f7f95so3640895a12.0;
+        Sat, 05 Oct 2024 11:09:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728151796; x=1728756596; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pJPPifLxXCwNQWv1ui6NS3//62j4ABwOZN+5UiBq7t8=;
+        b=l+YZSBMSJ5Sye70Obw5Wi1JPISz1r7ragSxzlUn7R2FV0GU8xG4hbKgELMZtA55sK7
+         u0yYb66j2CBG/K5oDZBlYbe+zf00chOTnD/YPLXyzENRCkzDHtoiwoPuiUMHAv6X9Hpg
+         mX+sRrHLpBcgyrcmY5DRbexD0g6NWorelUbsaqZ6N34bJjd3KVblTZGsYTkIOQcIqSoV
+         64FnU5T7e/n/Bvt4A2hUuZ3OFCkrYmfpoWAKvkCvYighUO1SM8WWluS2xlAbZpKQS5BP
+         ipBrGoeNobNmRCT0swU/iwdezXUB6k2VBk5X/e+k2nm8D8+hFACG8ixVm+RPOGcvFcHj
+         JL8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728151796; x=1728756596;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pJPPifLxXCwNQWv1ui6NS3//62j4ABwOZN+5UiBq7t8=;
+        b=gnbpRpOhoDNXKekeA7gxpgAkgDXhjpRNq6ApMlnuBQwatAFdB/bzrCHPqSi8wSpFjV
+         PhTXQNhcDWKjOuLOS8X5bwg83NDqO71S0gvpANqUfaGfcSMc0jkLH2/LSjWbxaKjPYSQ
+         xSoMSiQcAhb6R5VNoUdl7UqFM+/Uj9NVzaUjaBgPw+RLUdmEQ2OYeLhdmoPEPCDJ83O7
+         r85RaI6cgZakvvExiMtnn5ctBfeq64xvVFAVoXo3m7uJhU8bQj7BP1s6bUMPNAB9oTRc
+         3Vy2PMzhJ4WBrej99SN3w9ojMViO9nUlxlZH05rx8ZpMnfJzdSnk06kej0L+yd83XlRT
+         DkMg==
+X-Forwarded-Encrypted: i=1; AJvYcCV07gvKt7Bzctr1IB2HbIGastVRJGpWVCKDYevZN1ExBb5Dj4VTYc41QadJUeMyfhOiur2bSQnlqRrXwSOA@vger.kernel.org, AJvYcCVBxOEPs/IUOgGMOGr5Hc+81UQgJYNWLfBsf960+dASgwcuzMUbL2tva40xcBu/X/NdwbaEuZ+TcJ61@vger.kernel.org
+X-Gm-Message-State: AOJu0YyfVHvwIDJQuiMX1eUSEq+r9xURtwWu/YmM3mUjSTO0ORRRn+wu
+	vOtVLXa52Ju5aB99Y1tBOajK5loWAIukhQqsE8oyW0/r3ZSZfUbve5KAtvx0jeppE9WsvTonqRN
+	QWPTXF1pfK+dwde6QD/Qt8JvE57mX78BbRlpYcQ==
+X-Google-Smtp-Source: AGHT+IH6l7O0Pf48yT862/nBbRwe8hgXk+iNi6Y9z8M5APyWdmFfTPmvJsJLWa4qMjjDA2gXD6q4IBQLadXUF/fIP0Y=
+X-Received: by 2002:a05:6402:51d4:b0:5c8:ba24:462c with SMTP id
+ 4fb4d7f45d1cf-5c8d2e74d8fmr4915897a12.22.1728151795805; Sat, 05 Oct 2024
+ 11:09:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241004-bcm63138-leds-v3-1-ba99a8e464b9@linaro.org>
+References: <20241003220820.1345048-1-CFSworks@gmail.com> <20241003220820.1345048-2-CFSworks@gmail.com>
+ <3okd7byomwmo5vjsyaaxsorhn6ldw3mp3k6whcklqnw2stx5tm@jpv2e5ydswzw>
+ <80a9ec34-52eb-41fa-b068-3c9552065927@kernel.org> <CAH5Ym4g9hmX3mT5+Eqm=KHKYd+s_PM4qdho2a8FkAZmhMHOV4g@mail.gmail.com>
+ <b273cddb-274c-4d88-935e-c94b8d94188e@kernel.org>
+In-Reply-To: <b273cddb-274c-4d88-935e-c94b8d94188e@kernel.org>
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Sat, 5 Oct 2024 11:09:44 -0700
+Message-ID: <CAH5Ym4iY5Rihce7tDrpV3dRE88yvWjPHK7AANpqOXvcPNy95_g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: bcmbca: Add Zyxel EX3510-B based
+ on BCM4906
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Oct 5, 2024 at 1:54=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 04/10/2024 19:21, Sam Edwards wrote:
+> > On Thu, Oct 3, 2024 at 11:51=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
+l.org> wrote:
+> >>
+> >> On 04/10/2024 08:49, Krzysztof Kozlowski wrote:
+> >>> On Thu, Oct 03, 2024 at 03:08:19PM -0700, Sam Edwards wrote:
+> >>>> This is a series (EX3510-B0 and EX3510-B1) of residential gateways b=
+ased
+> >>>> on BCM4906, a stripped-down version of the BCM4908 SoC. Although Zyx=
+el's
+> >>>> marketing materials call this a "series," the EX3510-B1 appears to b=
+e a
+> >>>> very minor revision of the EX3510-B0, with only changes that are
+> >>>> transparent to software. As far as Linux is concerned, this "series"
+> >>>> effectively represents a single model.
+> >>>>
+> >>>> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+> >
+> > Good day Krzysztof,
+> >
+> >>>
+> >>> Can you use the same email as for SoB?
+> >
+> > I have sent patches to the LKML from a work email before, but I just
+>
+> That's not what I asked. You can send them from whatever, I asked that
+> commit identity should match SoB in exact way.
+>
+>
+> > double-checked that I am using my personal email for everything here:
+> >
+> > $ git show ec8e6d96a05f04 | grep -E 'dt-bindings|Author|Signed'
+> > Author: Sam Edwards <CFSworks@gmail.com>
+> >     dt-bindings: arm64: bcmbca: Add Zyxel EX3510-B based on BCM4906
+> >     Signed-off-by: Sam Edwards <CFSworks@gmail.com>
+> > $ grep -E '^From|^Signed'
+> > outgoing-ex3510b/0001-dt-bindings-arm64-bcmbca-Add-Zyxel-EX3510-B-based=
+-on.patch
+> > From ec8e6d96a05f04df00d05dec00df80172d233d8c Mon Sep 17 00:00:00 2001
+> > From: Sam Edwards <CFSworks@gmail.com>
+> > Signed-off-by: Sam Edwards <CFSworks@gmail.com>
 
-On Fri, 04 Oct 2024 09:59:22 +0200, Linus Walleij wrote:
-> The BCM63138 family of serial LED controllers has a register
-> where we can set up bits for the shift registers. These are
-> the number of rounds the bits need to be shifted before all
-> bits have been shifted through the external shift registers.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-> ---
-> ChangeLog v2->v3:
-> - Mention that HW defaults will be used if the shift
->   register property is missing.
-> ChangeLog v1->v2:
-> - Drop the $ref to u32 since the new property is suffixed
->   with "-bits" and thus get standard treatment.
-> ---
->  Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+Greetings Krzysztof,
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+> So apply the patch from the mailing list and you will see:
+>
+> Author: Sam Edwards <cfsworks@gmail.com>
+> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
 
+Looks fine to me, those are both set to my personal (non-work)
+account. The only difference I'm seeing is that the capitalization in
+my email address is being discarded in the author field, but in light
+of the case-insensitive nature of email addresses: these are an exact
+match.
+
+Still, I was interested to see what was affecting the capitalization
+in one field but not the other, so I did some digging. To answer your
+previous question: they can differ because they are transported in
+different ways. Evidently git-am considers a few headers in the email
+envelope significant (e.g. Subject/From/Date) by default. The
+envelope's "From:" is what specifies the patch author, while the
+Signed-off-by tag is just part of the message body. The envelope is
+unfortunately fair game for modification by various MTAs, which would
+explain why my patches aren't arriving with my 'From:' email address
+capitalization intact. When I have time, I'd like to look into what
+specific hop in the mail path is doing that. Hopefully it's something
+I can reconfigure, but it might also be out of my hands.
+
+Is there some other difference you're noticing that's too subtle for
+me to spot? Or is it indeed the capitalization that's the key issue
+here? If the latter, I want to understand why it's important so I can
+see if there=E2=80=99s a way to work around it, or if we need to consider
+other options for getting patches delivered in the preferred format in
+the future.
+
+COMMITTER: In light of the above, could you kindly add this flag to
+git-am to fix the capitalization issue: --author=3D"Sam Edwards
+<CFSworks@gmail.com>"
+
+>
+> Best regards,
+> Krzysztof
+
+Have a relaxing weekend,
+Sam
 
