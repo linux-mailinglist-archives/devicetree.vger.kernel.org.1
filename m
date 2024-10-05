@@ -1,61 +1,59 @@
-Return-Path: <devicetree+bounces-108082-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108083-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5993F99190A
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:52:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D5A99192C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 20:03:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 156541F23377
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:52:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 296FD1C2108C
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 18:03:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D4B158D94;
-	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16274146592;
+	Sat,  5 Oct 2024 18:03:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ci6/48ZI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o11AYQI8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8BA6158851;
-	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DED2540C15;
+	Sat,  5 Oct 2024 18:03:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728150760; cv=none; b=AFouZ76qxOkUZQGlJa2xCVKkTX318A5CykZC0CFBuIMftIEsbcME1lFcTjOf+7ATdOrxRlj6hsmA4604mpyyMnth0YJJtDqv8CTW2c1Ys9ODNBPT+szQqjr57Lnbem6BfaRPukuqG2hnqS0KdGGAnn8gOVDcyTDjIAnveAGwoOU=
+	t=1728151408; cv=none; b=mI0JNE4rBYZWQecRTz9T+/u/mJDitDu45GRSFdJVlgKXi4oWeMVdEF3cEjYVZxIVptsy7EFShR/sIJSbIZRCAyRUSISt2q2VXJ84H6/oazgLSMFhwXQ3A0ia8gYIMO5oIv8c+sqzMKRA6tQdMg049McpT6LQ+SjJ2sSuL+XUrtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728150760; c=relaxed/simple;
-	bh=NRH8Ou1I4pXNYd/XvsLjH7QogNBos/PfhsW1jQJokGM=;
+	s=arc-20240116; t=1728151408; c=relaxed/simple;
+	bh=z4gaMaqg3Qk6lcaCoRlk18X/H4t7OlOiQT6qkqTE8To=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NPXeAR+24qVnIXewc60mQoddMQK+Wn9AaFZHzwv5wN0OeLk9UtuiGd30TvSIAuhhr7TflJPMoD8+dQpoyVC4kbOFx5+DQzMsEb8UgM9iEHQPVCDQ1sUlzBvQVitWCOkw5Ki78Ff+Ckz0OQo28nwCJsiWGIBOqQc4r2JoxJi0j28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ci6/48ZI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15879C4CEC7;
-	Sat,  5 Oct 2024 17:52:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jKQIN2Z0CYmEVYHYkO+nynOBuVWxuqOhe9rpDQSebVR+tdAvBoiHCVqeOnnBJDUrCUkVxz4vcrd3Pm4LAIaAhThhPropxDxatyaIHt1MFugDaBYOV8JZIfNsiPDF1MwsNWo6OYzi7k+c7cIYTyNAYFVAM+RPYBxLrQh1/PFlOfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o11AYQI8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 572FEC4CEC2;
+	Sat,  5 Oct 2024 18:03:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728150760;
-	bh=NRH8Ou1I4pXNYd/XvsLjH7QogNBos/PfhsW1jQJokGM=;
+	s=k20201202; t=1728151407;
+	bh=z4gaMaqg3Qk6lcaCoRlk18X/H4t7OlOiQT6qkqTE8To=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ci6/48ZINkwNrzvXZUVpG2h6fl2XWyIAhjvOXzPy/gxDndcJa7xit9adjPpb/wdpe
-	 hOQKfXKOe21FcoPbMYUKMrtOEX9b82ES4QNB8/CeCGOziQwmlaraDLhcrudZHqDYoV
-	 ABuEBzMLZWCpeNkRhvhVSbtoJphhFfIbBKN6v+t/JAROhR0qqvBK4X7iTJ/KBUWbGn
-	 K8xKao6kcK8ch5M7DjfHN/ar6lFsVQtnh2mptSsCEcfppZeU5CvTfsxnilmN/LRspj
-	 JC9py23io0s6cCUIsM/0nhRkl5jj2/BOBBIaXRu0CzgY1eF9kgI5sASnveEJBBImyv
-	 Or4lTFgHYmaCQ==
-Date: Sat, 5 Oct 2024 12:52:39 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-	Arnd Bergmann <arnd@arndb.de>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v3 resend 1/7] dt-bindings: fuse: Move
- renesas,rcar-{efuse,otp} to nvmem
-Message-ID: <172815075836.447282.5004726072565136518.robh@kernel.org>
-References: <cover.1727963347.git.geert+renesas@glider.be>
- <425648901d724b3db81329f98988d0532257eb89.1727963347.git.geert+renesas@glider.be>
+	b=o11AYQI81PbeHF+tykM9NCsWEN/xq+FfVe+4/J+yoknqfuKkRPzrJZDlRsHq83tw2
+	 1nFJ1m/SKVpFspq2rwVltKLBG3G9rccSHkvnS/0ffcNeqpPFEuRuqMl8JhBZTMlLfi
+	 0VzAr/aOJcZbc0LtFiwXqytYl6C3IlasUH6sbDqXWNgFfyEfLuVNHzXiRseRpxVWa9
+	 JC0sRPmCHwygz4q11fOtnSW/lqpttlsQOa66OOX66PfJLWoCTnNHSnUzvQZgM8vNUT
+	 rU640UyZ/DhYOqe9/guSz1r6yl6SjmZBchrPD3ZhkBTQ11uSZoVaFcjTXMCqSuWC5k
+	 yNYqPugzkINQA==
+Date: Sat, 5 Oct 2024 13:03:26 -0500
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	"open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ workaround wrong interrupt-map number
+Message-ID: <20241005180326.GA447512-robh@kernel.org>
+References: <20241003214315.638668-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,33 +62,79 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <425648901d724b3db81329f98988d0532257eb89.1727963347.git.geert+renesas@glider.be>
+In-Reply-To: <20241003214315.638668-1-Frank.Li@nxp.com>
 
-
-On Thu, 03 Oct 2024 16:04:25 +0200, Geert Uytterhoeven wrote:
-> The R-Car E-FUSE blocks can be modelled better using the nvmem
-> framework.
+On Thu, Oct 03, 2024 at 05:43:15PM -0400, Frank Li wrote:
+> The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
+> function to parser interrupt-map. So it doesn't consider '#address-size'
+> in parent interrupt controller, such as GIC.
 > 
-> Replace the R-Car V3U example by an R-Car S4-8 ES1.2 example, to show
-> the definition of nvmem cells.  While at it, drop unneeded labels from
-> the examples, and fix indentation.
+> When dt-binding verify interrupt-map, item data matrix is spitted at
+> incorrect position. So cause below warning:
 > 
-> Add an entry to the MAINTAINERS file.
+> arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: interrupt-controller@14:
+> interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 0, 1, 4, 2, 0, 1, 0], ...
+> is too short
 > 
-> Reported-by: Arnd Bergmann <arnd@arndb.de>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reduce minItems and maxItems to workaround this warning for
+> 'fsl,ls1088a-extirq', 'fsl,ls2080a-extirq' and fsl,lx2160a-extirq.
+> Other keep the same restriction.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> v3:
->   - New.
+> Change from v1 to v2
+> - remove duplicate function in commit message
+> - only reduce miniItems for after 1088a chips
+> - maxItems change to 9. Otherwise report too long.
 > ---
->  .../{fuse => nvmem}/renesas,rcar-efuse.yaml   | 35 +++++++++++++------
->  .../{fuse => nvmem}/renesas,rcar-otp.yaml     | 17 +++++----
->  MAINTAINERS                                   |  1 +
->  3 files changed, 36 insertions(+), 17 deletions(-)
->  rename Documentation/devicetree/bindings/{fuse => nvmem}/renesas,rcar-efuse.yaml (54%)
->  rename Documentation/devicetree/bindings/{fuse => nvmem}/renesas,rcar-otp.yaml (60%)
+>  .../interrupt-controller/fsl,ls-extirq.yaml   | 27 +++++++++++++++++--
+>  1 file changed, 25 insertions(+), 2 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+> index 199b34fdbefc4..1bfced6ed620c 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
+> @@ -82,14 +82,37 @@ allOf:
+>              enum:
+>                - fsl,ls1043a-extirq
+>                - fsl,ls1046a-extirq
+> +    then:
+> +      properties:
+> +        interrupt-map:
+> +          minItems: 12
+> +          maxItems: 12
+> +        interrupt-map-mask:
+> +          items:
+> +            - const: 0xf
+> +            - const: 0
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+>                - fsl,ls1088a-extirq
+>                - fsl,ls2080a-extirq
+>                - fsl,lx2160a-extirq
+> +# The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
+> +# function function to parser interrupt-map. So it doesn't consider
+> +# '#address-size' in parent interrupt controller, such as GIC.
+> +#
+> +# When dt-binding verify interrupt-map, item data matrix is spitted at
+> +# incorrect position. Reduce minItems and maxItems to workaround this
+> +# problem.
+> +
+>      then:
+>        properties:
+>          interrupt-map:
+> -          minItems: 12
+> -          maxItems: 12
+> +          minItems: 8
+> +          maxItems: 9
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+I think it is probably better to just not put in any constraints. It's 
+never going to be parsed correctly.
+
+Rob
 
 
