@@ -1,72 +1,54 @@
-Return-Path: <devicetree+bounces-108014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C341991324
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 01:37:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C67991390
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 02:42:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 892901C2060E
-	for <lists+devicetree@lfdr.de>; Fri,  4 Oct 2024 23:37:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 02AF11F21CAB
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 00:42:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7446615381F;
-	Fri,  4 Oct 2024 23:36:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9314A3E;
+	Sat,  5 Oct 2024 00:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BnzLGZ68"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="Yl4sbFGH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6B9F148826
-	for <devicetree@vger.kernel.org>; Fri,  4 Oct 2024 23:36:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04797182;
+	Sat,  5 Oct 2024 00:42:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728085010; cv=none; b=Z564erdQH3UWzIzKslI2iUi5OuMrV3K6mdfjBeWLgQxV4FRM7ekVoY1wt3bleYTcVkODTxNi8iy14hTQrUEs7omx4i6b9Wb/s+bn5EuT6fXa3pMiOmNXTgNbGJpv2VZsmTSg+1fcmzvOZ0vZ/G9nIGu01OkmxciMtFf/I70kMIo=
+	t=1728088964; cv=none; b=kwiQsr4XfnDGXDFEpLtfTIyuxypq+xRvphNhNtR7+Hl+KtN7n4q6rBvKyxEHLH0cBIGaMY2k+Hni/HJIQ+rOPefhYI2hgXz+1abevXu0Lt6djcGzZN9UVSeJnKDxx66xf9s8iWqbPa/f3eh7gqGwjwJ6RaSEJRsWfuvlzQcBEHk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728085010; c=relaxed/simple;
-	bh=XvUnocCXbVbuFdtVRuQ3tHCrL6fOe57DjwVWeaC0+ag=;
+	s=arc-20240116; t=1728088964; c=relaxed/simple;
+	bh=Ie/XQKbbsSR4D1iycCkYUWZ0G1cgjLVrrylLn+TcNoA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N8/hMyJCXGNBufwRuL5GA9Yv7RJQOx9d+QIWGd9ShH5e/ixKZtRVQh2KI50Een3FshGYY57pUy6WieCTAXpVtdco6UMYB9nVShqV8/jY0gDVQnK1XkxnrJvDhEXbmJgZxzRpBo8XYG5J7WtGtcsOrXYeo3R6iJpJkGknzyEOcEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BnzLGZ68; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2e137183587so2260420a91.3
-        for <devicetree@vger.kernel.org>; Fri, 04 Oct 2024 16:36:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1728085008; x=1728689808; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=nvv6ZVBdx+WslBs6QiI09CmZL7t21PPn8TYDS1fea1A=;
-        b=BnzLGZ68OslfE1bHR81t9HmLxEL9RV3EUm4k6lEp3nYXnl/XEDcvn4Q+VxjDiwkoYA
-         uhM9xAFS8CD1hsL7IW4L6dj3FpRixuD3JlfuindfRYqlA2qhuT8SzKAyaB5b9X5M3U4S
-         nNEzG86kd4sqgonRRNG7x8pCc/TdMUrSTWjuU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728085008; x=1728689808;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nvv6ZVBdx+WslBs6QiI09CmZL7t21PPn8TYDS1fea1A=;
-        b=SBL+rp455dI681Cdf3GohFsAoAoTyIR8GdawhPXt/6g+NCZ3AEx6VWSHqKE4cSQM3F
-         RR+QPOlRxMsz8yfEsCqYjGu0EM0R2Z3NDsbankRRdx+MPAhd5k5Ul1d8RQM12f3TD/a9
-         U+rbm9hVnqWz8Ji+w+s30JMCLWEWXHvVDuspP6btb7nJoRIq86hLhOFaTNiLwVHE3jLr
-         tJcpJ85OKznRFqygqeLXVIeBEu+6HvUI2rxWFlrcRcNoTNAHyR3XHqd5VjhjnuAvya0l
-         l8acWb2D1LRPiyojc7nH57kvsutFkj8jsEOuTWuNtECwPGdiaEjdNIF4H0NEZQ/HhPXZ
-         qoMw==
-X-Forwarded-Encrypted: i=1; AJvYcCXDoYpD+sY7ZUc0oLZaCheUpyqcOWr2aDcWQsuR85EyubHY1wTuFREVq3hlsuJzvWRjkQKEZfVJOzII@vger.kernel.org
-X-Gm-Message-State: AOJu0YyF1Byy14GwY/spCruStWoHBFP/4nw60slcn0Ey7RgbZHnM7mKT
-	TnBUEVTOlPL9rKHtYsdTHRLsS+28Wm3iKDIlbrtlm5qC/VbuiB6NETHppAwsMA==
-X-Google-Smtp-Source: AGHT+IFEVUF2i0P9TypTVjBU933nKEuDhBbS+ZkLc9YiZhtGH3DObvHfsKEGcZ4pkTacJowDI+ZftA==
-X-Received: by 2002:a17:90a:ad8e:b0:2e0:78a0:55c4 with SMTP id 98e67ed59e1d1-2e1e622723bmr5452427a91.9.1728085008161;
-        Fri, 04 Oct 2024 16:36:48 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e20aeba043sm538894a91.13.2024.10.04.16.36.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 04 Oct 2024 16:36:47 -0700 (PDT)
-Message-ID: <8c49c480-5647-4ecc-85ff-5d61bb873052@broadcom.com>
-Date: Fri, 4 Oct 2024 16:36:45 -0700
+	 In-Reply-To:Content-Type; b=tT5rPKDfJKBG7ysAlbUl054onvBOwf4aJT+tFTYQnf7MXyjbATlv6zU5fH30KfD1d8rF94LnZcsaoDZDig7UYB/+I51kT7kplOsKN0+9hsjSs1fSThIQhYRWLH1UAxC49P2KP0BoCWYilXVGIQ+8gxj1oNftzsH2mIDoMxT4r/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=Yl4sbFGH; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id E99AB886DF;
+	Sat,  5 Oct 2024 02:42:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1728088960;
+	bh=WAlganDHVley7ZzJIIV/eYDB7QCfZKEuedzG4few7pU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Yl4sbFGHy7P6Uvuq8TsiS5SQZx4pBiuGMXIy/ORX5r1NG6KFbr6cMfUJPvV0DpViX
+	 k8SGyAZkhLRKIhg5DcalNvj2PvTQt+X0dwcTbMJdYpjK9U8Px3V8UuYtFzoJ2Lm8Kl
+	 YlQw7mWKdAKFaLqovVZD/yEG4BntIR92Bh3WzZhuKBze6Hvwcw0jKPDCXkNInHmX56
+	 Rdc0EpmMnTt30ZcHbKyzVMNZsIFmfZzbR/IjEUy748cUakqgAhwhc1PyaziWq8aQ3l
+	 BRQODyEfukPWa/fHotGUdMRO69N5jSbSZsOF5wtspYc4yxkI5aHyc3NU3EE90q31sg
+	 wY1Iqo6sVDJ4w==
+Message-ID: <4166d68c-5eca-406a-936f-412dd2ae72fc@denx.de>
+Date: Sat, 5 Oct 2024 02:41:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,134 +56,183 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE stub
- area
-To: Sam Edwards <cfsworks@gmail.com>
-Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
- William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241003213007.1339811-1-CFSworks@gmail.com>
- <78f25b22-f35b-4183-baec-7ddc0c5e3fda@broadcom.com>
- <CAH5Ym4gUfhh3ZkPY8i8eVNzWOpfk+ibqAgdPuT3i0H0FsF5t8Q@mail.gmail.com>
+Subject: Re: [PATCH v7 1/1] pwm: imx27: workaround of the pwm output bug when
+ decrease the duty cycle
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>,
+ Frank Li <Frank.Li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
+ francesco@dolcini.it, imx@lists.linux.dev, jun.li@nxp.com,
+ kernel@pengutronix.de, krzk+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-pwm@vger.kernel.org, p.zabel@pengutronix.de, pratikmanvar09@gmail.com,
+ robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
+ xiaoning.wang@nxp.com
+References: <20241004193531.673488-1-Frank.Li@nxp.com>
+ <5cvzarqkldstuziokdbxxne75i35odexkcykzikyq2gm6ytdyd@5wkm7mhotgej>
 Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <CAH5Ym4gUfhh3ZkPY8i8eVNzWOpfk+ibqAgdPuT3i0H0FsF5t8Q@mail.gmail.com>
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <5cvzarqkldstuziokdbxxne75i35odexkcykzikyq2gm6ytdyd@5wkm7mhotgej>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-On 10/4/24 11:23, Sam Edwards wrote:
-> On Thu, Oct 3, 2024 at 3:41 PM Florian Fainelli
-> <florian.fainelli@broadcom.com> wrote:
->>
->> On 10/3/24 14:30, Sam Edwards wrote:
->>> The CFE bootloader places a stub program at 0x0000-0xFFFF to hold the
->>> secondary CPUs until the boot CPU writes the release address. If Linux
->>> overwrites this program before execution reaches smp_prepare_cpus(), the
->>> secondary CPUs may become inaccessible.
->>>
->>> This is only a problem with CFE, and then only until the secondary CPUs
->>> are brought online. However, since it is such a small amount of memory,
->>> it is easiest to reserve it unconditionally.
->>>
->>> Therefore, add a /reserved-memory node to bcm4908.dtsi to protect this
->>> critical memory region.
->>>
->>> Signed-off-by: Sam Edwards <CFSworks@gmail.com>
->>
->> Not objecting to the solution, but should not this be moved to a
->> per-board DTS given that there are boards using CFE, and some using
->> u-boot + ARM TF that are unlikely to suffer from that problem?
-> 
-> Hi Florian,
-> 
-> I think I share your same gut feeling: this is bootloader-reserved
-> memory, not something claimed by a driver or belonging to a device. If
-> the bootloader is going to leave some code or structures resident in
-> memory after handing off control to Linux, it's the responsibility of
-> the bootloader to claim that memory by splicing in a reserved-memory
-> DT node, and CFE isn't doing that. So I think we're very much in
-> "Linux-side workaround for a proprietary-blob bug" territory.
-> 
-> I don't know if it makes much more sense to put this in the
-> board-specific .dts files; as I understand it, the architecture of CFE
-> is somewhat unique in that CFERAM (containing the actual "bootloader"
-> part) is included in the firmware image. That means that whether CFE
-> or CFEROM-loaded-U-Boot is the thing kicking off Linux is up to the
-> creator of the firmware image, rather than the device manufacturer.
-> 
-> My reasoning for including this in the SoC-level .dtsi is threefold:
-> - The .dtsi is specifying enable-method and cpu-release-addr for the
-> CPUs, which also concern the Linux-to-bootloader protocol and should
-> customarily be synthesized by the bootloader. U-Boot picks "psci,"
-> overriding the FDT-specified default: so the .dtsi is already assuming
-> CFE.
-> - The .dtsi is also picking 0xfff8 as the fixed location to put the
-> secondary-core entry point. I've noticed that CFE walks the FDT to
-> learn cpu-release-addr (rather than writing the property): so the
-> .dtsi is also already assuming that this region of memory is reserved;
-> this patch just makes that explicit.
-> - 64K of reserved memory is so tiny compared to the hundreds of MBs
-> typically available on these boards, so I felt that the unconditional
-> memory cost was an acceptable trade-off to save affected users the
-> troubleshooting.
-> 
-> If you happen to know of a DT property that tells Linux to unreserve
-> the memory once fully booted, I'd gladly use that, but I didn't find
-> such a thing when I looked.
+On 10/4/24 10:58 PM, Uwe Kleine-König wrote:
 
-Not aware of such a thing, and I am not questioning the need to reserve 
-memory, that need is quite clear. What I was questioning is making this 
-a SoC specific entry because we do have a variety of boards supported 
-out there, some with CFE, some with u-boot.
+[...]
 
-I suppose it is safer that way however, regardless of the boot loader 
-being used, and therefore I have no problem taking this patch as-is.
-
+>> @@ -263,7 +266,77 @@ static int pwm_imx27_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>>   		pwm_imx27_sw_reset(chip);
+>>   	}
+>>   
+>> -	writel(duty_cycles, imx->mmio_base + MX3_PWMSAR);
+>> +	/*
+>> +	 * This is a limited workaround. When the SAR FIFO is empty, the new
+>> +	 * write value will be directly applied to SAR even the current period
+>> +	 * is not over.
+>> +	 *
+>> +	 *           ─────────────────────┐
+>> +	 * PWM OUTPUT                     │
+>> +	 *                                └─────────────────────────
+>> +	 *
+>> +	 *           ┌──────────────────────────────────────────────┐
+>> +	 * Counter   │       XXXXXXXXXXXXXX                         │
+>> +	 *           └──────────────────────────────────────────────┘
+>> +	 *                   ▲            ▲
+>> +	 *                   │            │
+>> +	 *                 New SAR      Old SAR
+>> +	 *
+>> +	 *           XXXX  Errata happen window
 > 
-> Since CFE's stub program appears to be very small, would you be more
-> amenable to a patch that moves the address at 0xfff8 to 0xff8 and
-> reserves only 4K (one page) instead? I hadn't thought to try it before
-> now but it should work.
+> Hmm, ok, so SAR is the register value that implements the duty cycle
+> setting. And if a new SAR is written, it is directly applied to the
+> hardware and this way it can happen (if SAR_new < counter < SAR_old)
+> that no falling edge happens in the current period. Right?
 
-If a smaller reservation works, sure, why not!
--- 
-Florian
+Yes
+
+> If so, I think the depicted PWM output is misleading. I'd describe and
+> picture it as follows:
+
+Why not simply duplicate the ERRATA description for iMX8M Nano 
+MX8MN_0N14Y errata sheet ?
+
+"
+ERR051198:
+PWM: PWM output may not function correctly if the FIFO is empty when a 
+new SAR value is programmed
+
+Description:
+When the PWM FIFO is empty, a new value programmed to the PWM Sample 
+register (PWM_PWMSAR) will be directly applied even if the current timer 
+period has not expired.
+
+If the new SAMPLE value programmed in the PWM_PWMSAR register is less 
+than the previous value, and the PWM counter register (PWM_PWMCNR) that 
+contains the current COUNT value is greater than the new programmed 
+SAMPLE value, the current period will not flip the level. This may 
+result in an output pulse with a duty cycle of 100%.
+"
+
+That is very clear to me.
+
+> 	/*
+> 	 * At each clock tick the hardware compares the SAR value with
+> 	 * the current counter. If they are equal the output is changed
+> 	 * to the inactive level.
+
+I would skip this ^ part unless you can surely say the IP works exactly 
+that way because you checked the RTL.
+
+> As a new SAR value is applied
+> 	 * immediately to the currently running period, it can happen
+> 	 * that no falling edge happens in a period and so the output is
+> 	 * active for a whole period. Consider a change from
+>           *     ________
+> 	 *    /        \______/
+>           *    ^      *        ^
+> 	 * to
+>           *     ____
+> 	 *    /    \__________/
+>           *    ^               ^
+> 	 *
+> 	 * where SAR is written at the time marked by *. The counter
+> 	 * didn't reach the old (bigger) value because it was changed
+> 	 * before the counter reached that value and when the new value
+> 	 * becomes active it is already lower than the current counter
+> 	 * and so doesn't trigger either while the counter continues to
+> 	 * grow. So the resulting waveform looks as follows:
+> 	 *
+>           *     ________        ____________________
+> 	 *    /        \______/                    \__________/
+>           *    ^               ^      *        ^               ^
+> 	 *    |<-- old SAR -->|               |<-- new SAR -->|
+> 	 *
+> 	 * that is the output is active for a whole period.
+
+The ascii/infographics is nice and would be good to keep, but regarding 
+the description, frankly, the NXP errata description says the same thing 
+in fewer words :)
+
+> 	 */
+> 
+>> +	 *
+>> +	 * If the new SAR value is less than the old one, and the counter is
+>> +	 * greater than the new SAR value (see above diagram XXXX), the current
+>> +	 * period will not flip the level. This will result in a pulse with a
+>> +	 * duty cycle of 100%.
+>> +	 *
+>> +	 * Check new SAR less than old SAR and current counter is in errata
+>> +	 * windows, write extra old SAR into FIFO and new SAR will effect at
+>> +	 * next period.
+>> +	 *
+>> +	 * Sometime period is quite long, such as over 1 second. If add old SAR
+>> +	 * into FIFO unconditional, new SAR have to wait for next period. It
+>> +	 * may be too long.
+>> +	 *
+>> +	 * Turn off the interrupt to ensure that not IRQ and schedule happen
+>> +	 * during above operations. If any irq and schedule happen, counter
+>> +	 * in PWM will be out of data and take wrong action.
+>> +	 *
+>> +	 * Add a safety margin 1.5us because it needs some time to complete
+>> +	 * IO write.
+>> +	 *
+>> +	 * Use __raw_writel() to minimize the interval between two writes to
+>> +	 * the SAR register to increase the fastest PWM frequency supported.
+>> +	 *
+>> +	 * When the PWM period is longer than 2us(or <500kHz), this workaround
+>> +	 * can solve this problem. No software workaround is available if PWM
+>> +	 * period is shorter than IO write.
+>> +	 */
+>> +	c = clkrate * 1500;
+>> +	do_div(c, NSEC_PER_SEC);
+>> +
+>> +	local_irq_save(flags);
+>> +	val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
+>> +
+>> +	if (duty_cycles < imx->duty_cycle) {
+>> +		if (state->period < 2000) { /* 2000ns = 500 kHz */
+>> +			/* Best effort attempt to fix up >500 kHz case */
+>> +			udelay(6); /* 2us per FIFO entry, 3 FIFO entries written => 6 us */
+> 
+> I don't understand the motivation to wait here. Wouldn't it be better to
+> write the old value 3 - val times and not sleep?
+
+No, because you would overflow the FIFO, see:
+
+137fd45ffec1 ("pwm: imx: Avoid sample FIFO overflow for i.MX PWM version2")
+
+> Or busy loop until
+> MX3_PWMSR_FIFOAV becomes 0?
+
+Do we really want a busy wait here if we can avoid it ?
+
+We can do udelay(3 * state->period / 1000); so faster PWMs would wait 
+shorter.
+
+The delay is here to basically wait until the FIFO is surely empty and 
+has space for 3 consecutive writes (see the commit above wrt. FIFO 
+overflow).
+
+[...]
 
