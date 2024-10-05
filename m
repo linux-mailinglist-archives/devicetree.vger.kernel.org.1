@@ -1,138 +1,139 @@
-Return-Path: <devicetree+bounces-108062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CF1899176B
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 16:41:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7AD59917C1
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 17:26:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E55211F21D55
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 14:41:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04C731C216C8
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 15:26:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0ED081ACA;
-	Sat,  5 Oct 2024 14:40:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01711552E0;
+	Sat,  5 Oct 2024 15:26:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiEFnaC/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kiDLLgQd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76D7A1547C9;
-	Sat,  5 Oct 2024 14:40:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19A25154BE0;
+	Sat,  5 Oct 2024 15:26:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728139256; cv=none; b=mpgJSp2VtP0ytfUVNv1NeLufY3eIJsH0yhgtz7/TkVjUZZDoBNGRZGk438Tmn7oLsXwp3NViZtOXdX2KP/XSGCKI/nz6h/McaOrmsvWmApemgJZwWJxtW09scvTVQ6XwBQdIQAZ+zXvTcPKSebeVBOjToiOUedWwvFz13RXH41g=
+	t=1728141971; cv=none; b=e2qEz06lhpnbf9QKNPoJhC7a/pNd14gS29Q+USSAAjLZBXEECn6Tad3BZpSzQgSSnCbDtjGg0jUvIPuJDCFfQjogOi1eb5jj+XflGJdQ/JE5z+BinkhQiq24pl3h2frMge58dojms68O5zWOvWtpznAGtX76CCFWw+7jeBfY7ig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728139256; c=relaxed/simple;
-	bh=IESewRE5dpOceertCQW9BhawHutEpUXflIqNfJ3XaiI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GUItIRL/5RHN45fXVfq4giEzE/10kM2aPHLo/mwyiglRYEe1saPNzv5PwPa2dgr06gQrHk1B02l2RuhbTUpby+jeWwXT1KPQVWfAJ6NKU1AzcoG3BhyV3kfuRPrV9EU3+VEkiHr/dD/T5IQM741eZv9MgIEQnuTYSj54phlHjwk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiEFnaC/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9D7ECC4CEC2;
-	Sat,  5 Oct 2024 14:40:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728139256;
-	bh=IESewRE5dpOceertCQW9BhawHutEpUXflIqNfJ3XaiI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fiEFnaC/R+PzY5GrMTfZz07v2r5v9DyW/CpVVXZD1Ezh4ZkoBFL1JzVJWjGAqZXpz
-	 Mqk/JlCc2TN6zpMCE56C5SkPvVUXPTpZy1mdh1bOo0aCXzlNzeCPzkTEc+Cn6K4fR8
-	 8h4xfrtOvxdv6MTYP7n965dXaA+5r4ofSYRxUQRqBqnsLoHp5Idy0SnlqMC316hwJ7
-	 1BGNSCP2bcR1xWbzsXbLqhrLjKSxOvAL/JpJ4TJzKxO254RgbNa9pRbIQ3fEZAEuZQ
-	 1hV1Jo+1LMIEJXOAeFAQGMd/sbb5pIihGKZ5JpF9Jx+yg6AUuUhUW4r33oVjBLOUT1
-	 rUWOy85FusAPw==
-Date: Sat, 5 Oct 2024 09:40:54 -0500
-From: Rob Herring <robh@kernel.org>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Vignesh Raghavendra <vigneshr@ti.com>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Richard Weinberger <richard@nod.at>
-Subject: Re: [PATCH v3 2/2] dt-bindings: mtd: davinci: convert to yaml
-Message-ID: <20241005144054.GA156122-robh@kernel.org>
-References: <20241005-ondie-v3-0-459d9c32225c@gmail.com>
- <20241005-ondie-v3-2-459d9c32225c@gmail.com>
- <172813824343.140783.17306442382482143087.robh@kernel.org>
+	s=arc-20240116; t=1728141971; c=relaxed/simple;
+	bh=rTovK59roYa4Df258P/59M0Z2NqDIMAJC86yU/KWqXU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QqK9mEREDn9lJFQhLSl91zgwBlUDBI3Chnxxq40sGOxHbzWGpoLcXDmyhJevndL353W6qbnx1tOM5pRtwXceigW23jzP/wtI1KkJQdXk+yqM/snKeXzmBaSu8YjQAMs0NuVt1XjrCYI5w63J1ojDkyYJhLqcieu3CLUu9IAK07U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kiDLLgQd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 495COXDl014328;
+	Sat, 5 Oct 2024 15:26:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	/0ZK09A8+iNllHsQ5RUQhUKR+sdGbVMTPWawpop5zmk=; b=kiDLLgQdbWGVfFSJ
+	FfiCBaIFO0gfMmCvbAhOJbqWJeX+b4d6J7qp/rXgEiVD363BZ65fRiJjRZShWHGK
+	1IBvXlVw/if1wXG0zJqgH/I15XR9rAqGsAhKLQy9gGHIGLHJ9Q+MK30RC80liCAd
+	sJ7RZWxxSpx1DWBc25t61Jvn8DrnGc19YY1nSTJAyBaPeDTxM/2vYaJiifGdAt+F
+	ArjUPgqr2opiek+BceoccU/bBXGLtL68JfsfdBofRzCB/82Mc+MSVpAF+8keyrLG
+	LmLai9w/oSdsH4ng+IbWauiB36PtSm9Ap1xUULd0f1NOz+x80fMr0nCdnuPqU0Ku
+	XiAL3Q==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv88qgu-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 05 Oct 2024 15:26:00 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 495FPxig031590
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Sat, 5 Oct 2024 15:25:59 GMT
+Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sat, 5 Oct 2024
+ 08:25:55 -0700
+Message-ID: <d07c709e-9040-6b14-634b-f2b62c47e786@quicinc.com>
+Date: Sat, 5 Oct 2024 20:55:52 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <172813824343.140783.17306442382482143087.robh@kernel.org>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom: Add Snapdragon Devkit for
+ Windows
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <krzk+dt@kernel.org>, <robh+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <conor+dt@kernel.org>,
+        <abel.vesa@linaro.org>, <srinivas.kandagatla@linaro.org>
+References: <20240911073337.90577-1-quic_sibis@quicinc.com>
+ <20240911073337.90577-2-quic_sibis@quicinc.com>
+ <6a7b60c4-379c-4251-a158-5d9986f37797@quicinc.com>
+Content-Language: en-US
+From: Sibi Sankar <quic_sibis@quicinc.com>
+In-Reply-To: <6a7b60c4-379c-4251-a158-5d9986f37797@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: oE_kpwqEhaTaNpYcWRujBhYlNmTDaAa8
+X-Proofpoint-GUID: oE_kpwqEhaTaNpYcWRujBhYlNmTDaAa8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
+ impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0
+ spamscore=0 mlxlogscore=999 adultscore=0 clxscore=1011 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410050113
 
-On Sat, Oct 05, 2024 at 09:24:04AM -0500, Rob Herring (Arm) wrote:
-> 
-> On Sat, 05 Oct 2024 10:26:12 +0200, Marcus Folkesson wrote:
-> > Convert the bindings to yaml format.
-> > 
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mtd/davinci-nand.txt       |  94 -------------------
-> >  .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 102 +++++++++++++++++++++
-> >  2 files changed, 102 insertions(+), 94 deletions(-)
-> > 
-> 
-> My bot found errors running 'make dt_binding_check' on your patch:
 
-I think this is the 2nd version with the same failures. This is not a 
-free testing service. Test you patches before sending.
+
+On 9/11/24 21:14, Jeff Johnson wrote:
+> On 9/11/2024 12:33 AM, Sibi Sankar wrote:
+>> X1E001DE is the speed binned variant of X1E80100 that supports turbo
+>> boost up to 4.3 Ghz.
+> 
+> if you respin, s/Ghz/GHz/
+
+Thanks for taking time to review the series.
+
+Will fix it in the next re-spin.
+
+-Sibi
 
 > 
-> yamllint warnings/errors:
-> 
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml: 'oneOf' conditional failed, one must be fixed:
-> 	'unevaluatedProperties' is a required property
-> 	'additionalProperties' is a required property
-> 	hint: Either unevaluatedProperties or additionalProperties must be present
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml: properties:ti,davinci-ecc-bits: '$ref' should not be valid under {'const': '$ref'}
-> 	hint: Standard unit suffix properties don't need a type $ref
-> 	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:32.13-40: Warning (reg_format): /example-0/nand-controller@62000000/partition@180000:reg: property has invalid length (8 bytes) (#address-cells == 2, #size-cells == 1)
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:30.28-33.14: Warning (avoid_default_addr_size): /example-0/nand-controller@62000000/partition@180000: Relying on default #address-cells value
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dts:30.28-33.14: Warning (avoid_default_addr_size): /example-0/nand-controller@62000000/partition@180000: Relying on default #size-cells value
-> Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_default_addr_size'
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#address-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#size-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: reg: [[1644167168, 526335], [1744830464, 32768]] is too long
-> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: ti,davinci-ecc-bits: 4 is not of type 'array'
-> 	from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#address-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: '#size-cells' is a required property
-> 	from schema $id: http://devicetree.org/schemas/mtd/nand-controller.yaml#
-> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mtd/ti,davinci-nand.example.dtb: nand-controller@62000000: ti,davinci-ecc-bits: 4 is not of type 'array'
-> 	from schema $id: http://devicetree.org/schemas/property-units.yaml#
-> 
-> doc reference errors (make refcheckdocs):
-> 
-> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241005-ondie-v3-2-459d9c32225c@gmail.com
-> 
-> The base for the series is generally the latest rc1. A different dependency
-> should be noted in *this* patch.
-> 
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
-> 
-> pip3 install dtschema --upgrade
-> 
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your schema.
+>>
+>> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/arm/qcom.yaml | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> index 5cb54d69af0b..6a8fc031e51f 100644
+>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>> @@ -1049,6 +1049,12 @@ properties:
+>>                 - qcom,sm8650-qrd
+>>             - const: qcom,sm8650
+>>   
+>> +      - items:
+>> +          - enum:
+>> +              - qcom,x1e001de-devkit
+>> +          - const: qcom,x1e001de
+>> +          - const: qcom,x1e80100
+>> +
+>>         - items:
+>>             - enum:
+>>                 - lenovo,thinkpad-t14s
 > 
 
