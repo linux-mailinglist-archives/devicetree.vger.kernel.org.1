@@ -1,186 +1,149 @@
-Return-Path: <devicetree+bounces-108108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E35BE9919F6
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 21:35:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0226F991A01
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 21:41:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 997FF1F226B3
-	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:35:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7941AB22C86
+	for <lists+devicetree@lfdr.de>; Sat,  5 Oct 2024 19:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE911581F4;
-	Sat,  5 Oct 2024 19:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE1A16191B;
+	Sat,  5 Oct 2024 19:41:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b="IB3zN+rw"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="Rcq6fl2p"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.smtpout.orange.fr (smtp-22.smtpout.orange.fr [80.12.242.22])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C376F1552E0;
-	Sat,  5 Oct 2024 19:35:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.12.242.22
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEF061591F0;
+	Sat,  5 Oct 2024 19:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728156923; cv=none; b=o16a3uGU9RM1iUXnppcKfSDGBR6uU7hJu4Tj2XQvnD3n4J5Rp2RdA/8DynfSSWb80AaZFHcEZdFxH8Kr1JVZ+GJXicmg5wRtWtOdbtofPboD/figMI7s4eE5PjohSeq0QjZfbMOmO8f1caICzcMi9GnxyDCyV+tMKVGHndWDzHI=
+	t=1728157293; cv=none; b=AlX/TsYex+Bf38pfo/8KI9k2VZH1VPXcfbE9AjIOH/V36T8+vX1oqLDN1pjZqrxs25yo69/pfeuimIz+ov7og5Txi8KotFjDcqmtt5MudO0h/CcDzmWRlybuQnKHHaEkznr/fKXD3exwxRXb28uE0b42kKhuQRNV7Gl+m60qX5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728156923; c=relaxed/simple;
-	bh=xaOaZUUNu/2cKzFhHEZuppymP75/S+vDU5oM68JbR/o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hkwPTASYSALGiDnNwjtuBoqkTEyyym04Tt7aGc7OTK2NGAv+mD70n8LjXj7KD0axAdlCSYdvPAT+YdQP6nceB/EYja23Qwq/tWx5gWaBXFpJICTUsqz65d8HcAjgnVCDovdPSub88/TgrYWBzjvrxStl5z2l7IEDRLGiKEF0VuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=wanadoo.fr; dkim=pass (2048-bit key) header.d=wanadoo.fr header.i=@wanadoo.fr header.b=IB3zN+rw; arc=none smtp.client-ip=80.12.242.22
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wanadoo.fr
-Received: from [192.168.1.37] ([90.11.132.44])
-	by smtp.orange.fr with ESMTPA
-	id xAXMsi9iVQxq2xAXNs5Dfa; Sat, 05 Oct 2024 21:34:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
-	s=t20230301; t=1728156840;
-	bh=URfpVlk/V/gzKqgL5fzn/g7tj/hCt6Ng6C1qW+DS+mo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:From;
-	b=IB3zN+rw+HLZS2ou1MAi+HKi6PGppbtVR/lXcFQ65WVihhOO92pqBbk4PCrdaDELC
-	 1SgzXam7DZAt+bkr1u3Q0ZmBUc/pJ9kCvflGgInhmiP2VWfCPFGXz8vUd/BIZCdROD
-	 Jt99s4ETXV2UUNMHE1Mxga9dw6jEKMnBtX6qnwo8lf3fHBLx+0+SZTKPpyNuqAxR5G
-	 sPSZZPyqTMInA/T/PhdINsZQsVBC6jUIXoxQdv9TBOG+U/aryTzf4WLrQduuNXdWl9
-	 lUUCHHBHG3kwNBbEl+L6BcjsiiOmYn6MND2uOEO+0aKO/O5ZJDtHhli6WmJjkA+zwM
-	 v1KavJOWELHUg==
-X-ME-Helo: [192.168.1.37]
-X-ME-Auth: bWFyaW9uLmphaWxsZXRAd2FuYWRvby5mcg==
-X-ME-Date: Sat, 05 Oct 2024 21:34:00 +0200
-X-ME-IP: 90.11.132.44
-Message-ID: <517d5373-592a-4a79-8c79-14226ceacbce@wanadoo.fr>
-Date: Sat, 5 Oct 2024 21:33:55 +0200
+	s=arc-20240116; t=1728157293; c=relaxed/simple;
+	bh=5/mlGNpKWGd8P3BfSYQCQt94OxGRd/Z0qeF6JMGaNLA=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=h6iNY1q/csZp7LfggfHZvxrFOLsfGtADejJXTlm1u1HWO+GNwOEyZIlbSwLXrlJLZHNTBAZlg3fEjKpyzPbxj+jfITSVkGtekDbnXfFT+9fg4wKcXsO+OjITJJZwD2r/kkhcZ4qjroFsx2xc/5BTF2BME7pwLmT7tZ8bnXeXhAA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=Rcq6fl2p; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1728157263; x=1728762063; i=frank-w@public-files.de;
+	bh=/S92lqZ+xKzudktcR1TIbH6b3CrdaorM7C9RekZJKKg=;
+	h=X-UI-Sender-Class:Date:From:To:CC:Subject:Reply-to:In-Reply-To:
+	 References:Message-ID:MIME-Version:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=Rcq6fl2pxDHUtCy+uA1Pq9vOrpMZyxG5t9WbycQXnx1KEo59BEjpQ4vjZqcGLp1v
+	 qseU5mOd+rwb4yxwzANLw+1idfg6EQWWkQyhLZjKi0XlC6l4UfqAqSOJo4uepLx+f
+	 KOGsXbbcBBA7f0meuHNz5JS8I5LYDMTXDY5F8u88aREVN1X5dDdhychdxyt4X5Lgv
+	 tPU6qL9mxFSSTQHB7DJNfg0F5E3zGtsZe9KMwlTDpeSXR5jUoXug3Q1n6Fzah+xq/
+	 hh4Qx4Bnim7k97wPymCOR13f8ikjzVNGdfYL7dtIWTulq2PwQPlSbC6AfLlbScH2n
+	 AKVXx7k8iUPycvi8kA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [127.0.0.1] ([157.180.224.66]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1MNbox-1tLheG2EHL-00K4Qk; Sat, 05
+ Oct 2024 21:41:03 +0200
+Date: Sat, 05 Oct 2024 21:41:02 +0200
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Rob Herring <robh@kernel.org>, Frank Wunderlich <linux@fw-web.de>
+CC: Linus Walleij <linus.walleij@linaro.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Sean Wang <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, ansuelsmth@gmail.com,
+ eladwf@gmail.com
+Subject: Re: [PATCH v1 3/4] dt-bindings: pinctrl: add binding for MT7988 SoC
+User-Agent: K-9 Mail for Android
+Reply-to: frank-w@public-files.de
+In-Reply-To: <20241005184449.GA505893-robh@kernel.org>
+References: <20241004123423.34519-1-linux@fw-web.de> <20241004123423.34519-4-linux@fw-web.de> <20241005184449.GA505893-robh@kernel.org>
+Message-ID: <DA1815FE-D2A6-46A3-9219-9216A3C6D61A@public-files.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V1 3/3] scsi: ufs: qcom: Add support for multiple ICE
- algorithms
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
- manivannan.sadhasivam@linaro.org, alim.akhtar@samsung.com,
- avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- konrad.dybcio@linaro.org, James.Bottomley@HansenPartnership.com,
- martin.petersen@oracle.com, agross@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_narepall@quicinc.com, quic_nitirawa@quicinc.com,
- Can Guo <quic_cang@quicinc.com>
-References: <20241005064307.18972-1-quic_rdwivedi@quicinc.com>
- <20241005064307.18972-4-quic_rdwivedi@quicinc.com>
-Content-Language: en-US, fr-FR
-From: Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-In-Reply-To: <20241005064307.18972-4-quic_rdwivedi@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:1udbzqpUdFVIpiIicrJzHxwKDVUEDEWlPS/trJexjGU2JwVQinR
+ jcKUU1vqCkbp2yqhWSERVNkmY49KqrJiW0UesMFJuPin27oMEg6zeb9p7vXzmowGmAmgpb8
+ WVVw3Zi9NFXoDOYUEJaOajBWTovF1v4KPjITrTZnQdcqMVloSz41ONTTyauwJ4rW2ZH5Z10
+ zZiNL2ocf96lwcrRoYhCQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:Lm4FPeXICZQ=;WUM3CLu+SvTk5DI584TEBteumXK
+ yASSxAJ2eu9xXpdntD1g05Ef47LQ+uLEANjrdHrje0gmwJZKHZvpEr9BhHTrlrbMmEpLM6ioE
+ /KHW+QJ8hd5hM1rDZqttNLLpC71quoYe4Hg36F/6PucW4owRP+7TM0HgNl5Z3UatXA1jHNkiJ
+ wBR85l4fEA7lLMk8/CgZ8jF8zSmFHkvkjgBqS5ijhXmM3+od/tY1O7D+cTCJLnhc69l8TAEmy
+ sdFv7ZcmR4fAsMhFGpXusYT+GBK7gIdpWUhofMzKGYGP4aPfddYGDOmy4fNW6I7Lw0YQVkrXW
+ yDkxCYCuYtHGfONiTNcNeHDFhSRsYvP3Lt/u+NkLjEcP1XrNapGGFiS20d1M1kVbGDrmf1osJ
+ ctmSOiijyBBfXj0I+hABK4Jca9zARsuS6RAR/9Z93PKdwfgcEOgllZ8vor385l2FirCcoNvF7
+ OuePPkJdt0m0R9hAuidmEQMZsq851vD/M3iz0BzxdXOxJSJ8sZpGqxmCZJNBe7BeDXYRmdKtx
+ Qh88eeRTQdsqGZFpm3vkyq+55QHp2MqOPg8aQfQG33Bh0SDmMBDQJAGu5seZtjIdZKECOxUqA
+ 9Atsewvv8DB0BixgfrmS6PVUvSy+c82OgXLq8p1pDOTq0B5SfL4WXRkLMKgoPcdYF6XyNAA5B
+ CnT6hdsrz3h471H4jUWx0/QA5VWX8AnUcJgmRqIDBMx2PzRS0w7cvazL8l58RSX46OVRP+UbY
+ tfL3yopolckDaacpQ+0/Fgtch9cGDkVRkSrtP2ge09PDZR62yKXf+l2aCUUv8M3MJXLqGqEWV
+ iNV+xswODDau9gGb1a240gxg==
 
-Le 05/10/2024 à 08:43, Ram Kumar Dwivedi a écrit :
-> Add support for ICE algorithms for Qualcomm UFS V5.0 and above which
-> uses a pool of crypto cores for TX stream (UFS Write – Encryption)
-> and RX stream (UFS Read – Decryption).
-> 
-> Using these algorithms, crypto cores can be dynamically allocated
-> to either RX stream or TX stream based on algorithm selected.
-> Qualcomm UFS controller supports three ICE algorithms:
-> Floor based algorithm, Static Algorithm and Instantaneous algorithm
-> to share crypto cores between TX and RX stream.
-> 
-> Floor Based allocation is selected by default after power On or Reset.
-> 
-> Co-developed-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
-> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
-> Co-developed-by: Can Guo <quic_cang@quicinc.com>
-> Signed-off-by: Can Guo <quic_cang@quicinc.com>
-> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-> ---
->   drivers/ufs/host/ufs-qcom.c | 232 ++++++++++++++++++++++++++++++++++++
->   drivers/ufs/host/ufs-qcom.h |  38 +++++-
->   2 files changed, 269 insertions(+), 1 deletion(-)
+Hi Rob
 
-Hi,
+Thank you for first review
 
-a few nitpicks below.
+Am 5=2E Oktober 2024 20:44:49 MESZ schrieb Rob Herring <robh@kernel=2Eorg>=
+:
+>On Fri, Oct 04, 2024 at 02:34:17PM +0200, Frank Wunderlich wrote:
 
-> 
-> diff --git a/drivers/ufs/host/ufs-qcom.c b/drivers/ufs/host/ufs-qcom.c
-> index 810e637047d0..c0ca835f13f3 100644
-> --- a/drivers/ufs/host/ufs-qcom.c
-> +++ b/drivers/ufs/host/ufs-qcom.c
-> @@ -105,6 +105,217 @@ static struct ufs_qcom_host *rcdev_to_ufs_host(struct reset_controller_dev *rcd)
->   }
->   
->   #ifdef CONFIG_SCSI_UFS_CRYPTO
-> +/*
-> + * Default overrides:
-> + * There're 10 sets of settings for floor-based algorithm
-> + */
-> +static struct ice_alg2_config alg2_config[] = {
+>> +patternProperties:
+>> +  '-pins$':
+>> +    type: object
+>> +    additionalProperties: false
+>> +
+>> +    patternProperties:
+>> +      '^=2E*mux=2E*$':
+>
+>Do you really need 'mux' anywhere in the name?
+>
+>> +        type: object
+>> +        additionalProperties: false
+>> +        description: |
+>> +          pinmux configuration nodes=2E
+=2E=2E=2E
+>> +      '^=2E*conf=2E*$':
+>
+>Really need 'conf' anywhere in the name?=20
+>
+>> +        type: object
+>> +        additionalProperties: false
+>> +        description:
+>> +          pinconf configuration nodes=2E
+>> +        $ref: /schemas/pinctrl/pincfg-node=2Eyaml
 
-I think that this could easily be a const struct.
+mux and conf are used to match subnodes see example for mdio0_pins
 
-> +	{"G0", {5, 12, 0, 0, 32, 0}},
-> +	{"G1", {12, 5, 32, 0, 0, 0}},
-> +	{"G2", {6, 11, 4, 1, 32, 1}},
-> +	{"G3", {6, 11, 7, 1, 32, 1}},
-> +	{"G4", {7, 10, 11, 1, 32, 1}},
-> +	{"G5", {7, 10, 14, 1, 32, 1}},
-> +	{"G6", {8, 9, 18, 1, 32, 1}},
-> +	{"G7", {9, 8, 21, 1, 32, 1}},
-> +	{"G8", {10, 7, 24, 1, 32, 1}},
-> +	{"G9", {10, 7, 32, 1, 32, 1}},
-> +};
-> +
-> +/**
+mdio0_pins: mdio0-pins {
+  mux {
+    function =3D "eth";
+    groups =3D "mdc_mdio0";
+  };
 
-This does nor look like a kernel-doc. Just /* ?
+  conf {
+    pins =3D "SMI_0_MDC", "SMI_0_MDIO";
+    drive-strength =3D <MTK_DRIVE_8mA>;
+  };
+};
 
-> + * Refer struct ice_alg2_config
-> + */
-> +static inline void __get_alg2_grp_params(unsigned int *val, int *c, int *t)
-> +{
-> +	*c = ((val[0] << 8) | val[1] | (1 << 31));
-> +	*t = ((val[2] << 24) | (val[3] << 16) | (val[4] << 8) | val[5]);
-> +}
+This is same as done for previous SoC like mt7986=2E
 
-...
 
-> +/**
-> + * ufs_qcom_ice_config_alg2 - Floor based ICE algorithm
-> + *
-> + * @hba: host controller instance
-> + * Return: zero for success and non-zero in case of a failure.
-> + */
-> +static int ufs_qcom_ice_config_alg2(struct ufs_hba *hba)
-> +{
-> +	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
-> +	unsigned int reg = REG_UFS_MEM_ICE_ALG2_NUM_CORE_0;
-> +	/* 6 values for each group, refer struct ice_alg2_config */
-> +	unsigned int override_val[ICE_ALG2_NUM_PARAMS];
-> +	char name[8] = {0};
-> +	int i, ret;
-> +
-> +	ufshcd_writel(hba, FLOOR_BASED_ALG2, REG_UFS_MEM_ICE_CONFIG);
-> +	for (i = 0; i < ARRAY_SIZE(alg2_config); i++) {
-> +		int core = 0, task = 0;
-> +
-> +		if (host->ice_conf) {
-> +			snprintf(name, sizeof(name), "%s%d", "g", i);
-
-Why not just "g%d"?
-
-> +			ret = of_property_read_variable_u32_array(host->ice_conf,
-> +								  name,
-> +								  override_val,
-> +								  ICE_ALG2_NUM_PARAMS,
-> +								  ICE_ALG2_NUM_PARAMS);
-
-...
-
-CJ
-
+regards Frank
 
