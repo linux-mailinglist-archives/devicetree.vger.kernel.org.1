@@ -1,84 +1,83 @@
-Return-Path: <devicetree+bounces-108225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEFE99210E
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 22:15:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61840992119
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 22:26:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D8450281BB4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:14:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EBC31C20B06
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:26:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5617118B481;
-	Sun,  6 Oct 2024 20:14:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 238D718A95F;
+	Sun,  6 Oct 2024 20:26:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LMrYpC1T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d7hCGmKv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95DEB18A928
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 20:14:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C51E189BB1
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 20:26:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728245692; cv=none; b=WLtpT2s3B8z38iEIm2vePt4BFFhDMKE0CEKceX1S24cnjY2Dm1wiOv9N7kd+8S9aIJpb5cu8OsxnoDiqg+11f3D3k3oJ9ionhXtWASwI0C1ZqW8dhm7HmxhXQrJnrYzddiNrvT2dAnnFbDysb1VSg9sEW7D/06s+eXMcHN03I7E=
+	t=1728246396; cv=none; b=TbAFCC1yjPQLVtVMXwlzdZeiVa7KSWAQ8/KQU24W1FVRbiBEKplY1pXpzOWSFiDqnJhGzszwddW8XhzjmCu4sRacppsKnIBjbMSFWqhPY47C8TGpJDc43nA3VKRdatZuvMiYapMg4JHGC/FOAi6r0XA2PSoF+woWLct9HyXwdGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728245692; c=relaxed/simple;
-	bh=TAOnruZ+UY0G77/aMNG4re8guO/zoiQVSwbD9ShvBKk=;
+	s=arc-20240116; t=1728246396; c=relaxed/simple;
+	bh=i1HSlcfG6Gk/k+UqtSwJNp1NND5qicT3kFk53HYZUe8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tk+UimbcyhhYu3GA5VrJfTA4l62HKqQSm5q/rodWKiAnydLptIdvB0UhqOn1KynFi9Qal2MEgZhFjzoXR45WkHnDtFdcf0tAxdvN0AzxjjGJ0DRmTNGGroL+vHQDce4w9a6H4vdg1oZnTn//z1uMDSjm0VtnKTDAH4nT5Y/q32g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LMrYpC1T; arc=none smtp.client-ip=209.85.208.176
+	 Content-Type:Content-Disposition:In-Reply-To; b=gJpYZ8FOK1hZWOgoDNdk3WSSuF3wsbraNT/kkOxyn4LKCr+iq2Da++gTPehUYCcEzM5qsJvim5ur3b/0dnItB8fqcjVw1FgTTGhhmvIzv6Pnnipu3jYH2AwLp6ft5zS9bAdx0eJVSO7uzQP0df0UlNHdy99h9aXF6aPsyeUkJj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d7hCGmKv; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2facf48166bso42504011fa.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 13:14:50 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-53993564cb1so4039351e87.2
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 13:26:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728245689; x=1728850489; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728246392; x=1728851192; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bbcYT7ADpCO6HhcQ0PCuE8br5sqfMeh1whVSG+rVUPY=;
-        b=LMrYpC1T1SLo3lAIkPZjpOxcyN3lvV8aeALnoPg3jBG2IZCXbm582ff3HinmmG5WJe
-         A68bApvrA1QTgbqZFs8lc/4VxolTb89Dj4Y2d2rm52hMEOC8zVWX2bFkKthch2uW+4J0
-         m1u1w0+x6SZBHK52agdGQGSh/7aPlko+U+DMpmMpHC25djjShF5oMBMe8Dwri6UAkpFM
-         ML5ZTjsx3VFpcldcBrnkFEvjbFVki1nIR0UfrT9kkLmV7jgFhdeic4H/toaLnQ2QFRPB
-         vcAl+f0a+55juaamlfcPZgcox9v6HgR6ObsZ1W/zeLSKjEp8rWvZORQprl3TnwfBj306
-         D3Qg==
+        bh=BBuPk8VD/ExsghxOi7SybSYIm/8sA+XnlePRO8akAWg=;
+        b=d7hCGmKvqcaYbXke9FlfQ9E+9EcrwGRTml1Z2N+3RK6hqeFsFr58iSCDT+qkrX6IIG
+         tnx4AD46SGeTadjAZe+MgAFCxDt1T/qR72R/NQV6ctDiTfqSlXkO94gQHslzt1yPY4De
+         AFOJ267G6c/hVI7C3Bt/Yj/MmITxSktYArh6yFd2JUQ8uvqz+F+vMkM2zARnzwwUNVgC
+         neaBIpuwbNDtonld4K4Tt9GMsJ+aoT4caagv6T5uML1W8meKHxAEpCiNcKKPGpLSnSVV
+         PJDsIahJZ6Sy6D4kJ+4bI9YMGAYAmu2K2ZY1mKF8yQiUoXSoInxPItGovsEE2iXEFQzG
+         zjIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728245689; x=1728850489;
+        d=1e100.net; s=20230601; t=1728246392; x=1728851192;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bbcYT7ADpCO6HhcQ0PCuE8br5sqfMeh1whVSG+rVUPY=;
-        b=gZJrMp++zHw01ep6B8aOqK7KXYnPwkV0QFpXgSDy9zODY9HivAWBa+VZL8t/9SHp3P
-         sIRTXYv9cDzsVfhvX3xE5GCBmjeN0vuOmReM78Y53tEB127WezWXMzELzi2j9x7YzGjq
-         BW0X84vril1C9Lfwsxlt+SZtFr6QW7PnbY+ccMmL5wxGRLvLTxjLINY6SBKpvupE8Sqn
-         rdW6e44AoflhSCueLJ4gLryT1MaqGmmtiTyAUsMZ5x2JmdXv9DI0cJKsyril6tbI2+/C
-         VH9/j0BAFmE93gt3SFTEofvw2nM6iDSmMevd9uh2kdcrv/Hf2wppl6uLNb3Pip559nr3
-         YSDA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvjVXUTNwnlp0dOFwp5lju8nL6DuJEtblNTXpGeZW61DxKJITuWbmwendz0FDXqg9LBLWdEQYwa1DB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxmudgBzRwNzClcQ1hHOzRsyn/cMqxsUOTy3mMkt6Rgtt0Jyqcf
-	9oYTtgAHzQCpYsq3QGQV0QfH7q0/QzZKsLt/o166clVWbZNwnl1bbXybj3lrBN4=
-X-Google-Smtp-Source: AGHT+IF2Oz64RqFM18CQ1gi7geZOLRwqYHJ8HBR+9K0ClV1bZqi4bkDZKnMb99BP0u3VkiM4VwSzGg==
-X-Received: by 2002:a2e:a99d:0:b0:2fa:cf82:a1b2 with SMTP id 38308e7fff4ca-2faf3d70794mr49136781fa.31.1728245688751;
-        Sun, 06 Oct 2024 13:14:48 -0700 (PDT)
+        bh=BBuPk8VD/ExsghxOi7SybSYIm/8sA+XnlePRO8akAWg=;
+        b=S0VYpC7ONZsbxlzBKLI3x72Dg7UlY2sCC+y9idXBf+9+Cech1U/KVCMlJQa1Oyk8Tt
+         2HuVdWmKLmUWAPxaFgI00svfep5EQT1htNYPkdvjApVE/rirVFWP8vQoaDpLJOC1uzm6
+         Zwk+LiO2SUfsmCcNtt+iUSSbTuVB6jnNV4vqerK1gmY21zKfE2b2jRDgtuy+4zz7R0Jy
+         NVaXXLLmuPtXef1EOMxBLPs7Y5cGwW6qJGWocLq+uSwoFmHU1Fq03IW+NXX857QRGG8r
+         Swia8QG5viVdw/zyrsZV1F2Ablqqq3M+/Qfp2Y8EE+A6uIa8sLIz5K2eVKK9I9LGFqAP
+         lebQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU0dYGRk9VNbipvHGWmChN+SiwYE7exUvbEQpUVz1gOmkXE1E5IRAkxXchbV2mEEYR+8jIIfmofJggg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1u9z0cv4wSC60XToDXd2vRJPx0TQgbZizUBqjXfS9f8WWui6t
+	WwWt7aaS6qAseYfqRDMphi9WlKvE7Mqf9UrnC+ylEGlxDJZaUvlXXB/uR6HwaL4=
+X-Google-Smtp-Source: AGHT+IFWMqbwIyqjBvX1et2WcBrUvnbXH6lIH+e+p5RToYoqEH6r+OtkMZyvqhjPIOtHuKw7nRa7mw==
+X-Received: by 2002:a05:6512:3d10:b0:533:4522:7409 with SMTP id 2adb3069b0e04-539ab8c2165mr4593871e87.53.1728246392322;
+        Sun, 06 Oct 2024 13:26:32 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2faf9b3ace7sm6110591fa.132.2024.10.06.13.14.47
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539afec8b66sm602501e87.119.2024.10.06.13.26.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 13:14:48 -0700 (PDT)
-Date: Sun, 6 Oct 2024 23:14:45 +0300
+        Sun, 06 Oct 2024 13:26:31 -0700 (PDT)
+Date: Sun, 6 Oct 2024 23:26:30 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Karl Chan <exxxxkc@getgoogleoff.me>
-Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org, 
-	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, linus.walleij@linaro.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v5 5/5] arm: dts: qcom-ipq5018-linksys-jamaica: Include
- dts from arm64
-Message-ID: <f2eck3tudqoqyylcknfvz77wj52fornxevp6po3y7sov7swikt@asez6wepyl6h>
-References: <20241002232804.3867-1-exxxxkc@getgoogleoff.me>
- <20241002232804.3867-6-exxxxkc@getgoogleoff.me>
+To: Luca Weiss <luca.weiss@fairphone.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add thermistor
+ for UFS/RAM
+Message-ID: <fshhw6lknar4z36rc2sjjcgkiixpp7hak7gq3j373mjvbokax3@7s7kmzlmtjal>
+References: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,51 +86,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241002232804.3867-6-exxxxkc@getgoogleoff.me>
+In-Reply-To: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
 
-On Thu, Oct 03, 2024 at 07:28:04AM GMT, Karl Chan wrote:
-> Build the Linksys EA9350 V3 device trees from the arm64 tree together with the ARM32 include to allow booting this device on ARM32.
-
--ETOOLONG. Please wrap the line at 75 chars per line.
-
-While doing it please also add the reason for the change (32-bit
-firmware on the router).
-
+On Wed, Oct 02, 2024 at 03:01:08PM GMT, Luca Weiss wrote:
+> Configure the ADC and thermal zone for the thermistor next to the
+> UFS+RAM chip which is connected to GPIO_12 of PM7250B. It is used to
+> measure the temperature of that area of the PCB.
 > 
-> The approach to include device tree files from other architectures is
-> inspired from e.g. the Raspberry Pi (bcm2711-rpi-4-b.dts) where this is
-> used to build the device tree for both ARM32 and ARM64.
-> 
-> Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 > ---
->  arch/arm/boot/dts/qcom/Makefile                         | 1 +
->  arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts | 2 ++
->  2 files changed, 3 insertions(+)
->  create mode 100644 arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+>  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 40 ++++++++++++++++++++++
+>  1 file changed, 40 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-> index f06c6d425e91..147dbeb30a6a 100644
-> --- a/arch/arm/boot/dts/qcom/Makefile
-> +++ b/arch/arm/boot/dts/qcom/Makefile
-> @@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
->  	qcom-ipq4019-ap.dk04.1-c3.dtb \
->  	qcom-ipq4019-ap.dk07.1-c1.dtb \
->  	qcom-ipq4019-ap.dk07.1-c2.dtb \
-> +	qcom-ipq5018-linksys-jamaica.dtb \
->  	qcom-ipq8064-ap148.dtb \
->  	qcom-ipq8064-rb3011.dtb \
->  	qcom-msm8226-microsoft-dempsey.dtb \
-> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-> new file mode 100644
-> index 000000000000..9a6ad767ebd7
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-> @@ -0,0 +1,2 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-> +#include <arm64/qcom/ipq5018-linksys-jamaica.dts>
-> -- 
-> 2.46.1
-> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> index 8ab30c01712e0b7c0cc1b403e0fe01650315b9e2..fdc62f1b1c5a398abaa71818fdf2858fdc445d28 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> @@ -207,6 +207,20 @@ active-config0 {
+>  			};
+>  		};
+>  
+> +		mem-thermal {
+> +			polling-delay-passive = <0>;
+> +
+> +			thermal-sensors = <&pm7250b_adc_tm 2>;
+> +
+> +			trips {
+> +				active-config0 {
+> +					temperature = <125000>;
+> +					hysteresis = <1000>;
+> +					type = "passive";
+
+Is it really just "passive"? Especially with no cooling devices it
+sounds more like "critical". LGTM otherwise.
+
+> +				};
+> +			};
+> +		};
+> +
+>  		pm8008-thermal {
+>  			polling-delay-passive = <100>;
+>  			thermal-sensors = <&pm8008>;
 
 -- 
 With best wishes
