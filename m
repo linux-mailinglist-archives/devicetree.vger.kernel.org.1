@@ -1,60 +1,56 @@
-Return-Path: <devicetree+bounces-108123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B57D5991C30
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 04:39:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F10B991C3D
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 05:29:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BF6E281BC4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 02:39:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 696B31C212BB
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 03:29:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2285C15748F;
-	Sun,  6 Oct 2024 02:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22395338D;
+	Sun,  6 Oct 2024 03:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8y6hcZl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QvlS4A0N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC7A5338D;
-	Sun,  6 Oct 2024 02:39:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6090AD55;
+	Sun,  6 Oct 2024 03:29:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728182366; cv=none; b=t9iTcfQsPesZw6f0ZttLLCg7IxoH1kpEGqLP7zKABwa8c2HnwGmAQd8s3gx1Q8k0mOSTqjSlpbHPYl92uTFDH7KUG34/zVxDFCngPcNqlPIrE4DhCNxfCzLpLxgQfUxipZbKyxC2qZ6WBApsVTyivvfH0VRjXTetpUw47ziHEPk=
+	t=1728185345; cv=none; b=NDUSCIKT2Ss28kN2O14kKf+/84q6ABDHKUNMLZZ8Ngp9RZEdXRkNtkrMVmc+nhsxe6Kidp6pZ7Y84PVtkL+8gyrrNplEL0pZk7kqjoKVmdKipiNPwcVl+kiKulLCGeL8xCOsbSLjj5Bq3wgzEUUSa2sm3JhYqqdKqy0r5XXLBYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728182366; c=relaxed/simple;
-	bh=8mQ7NYC63Rd8DM1i7CwPRzGY0R/Ayn2zU8oc90EuhPo=;
+	s=arc-20240116; t=1728185345; c=relaxed/simple;
+	bh=sn+rhuJFS4QcAX7nHTjMNJqUeOzV5xBHQDk6dVxGcFI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lwLfVGIA5P+K4l6/H3/TgaC6qORuzXt33nY7Ze71yKZEQPVMFviPz+J3eY9+95TrXlVWppJrvplh0imm3omMt7Oer/GGR+aqR8oivuwR0jj13SlzHyhiomKTMKW9lInqJQImSbgDq0UThYW5/LtpLSin0l2aLkBoEQR0iZYWV2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8y6hcZl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05830C4CEC2;
-	Sun,  6 Oct 2024 02:39:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ssZpC7buYp7TptimgZ/zTlpFCd7iBoGJSXtMHkZeG/puIztmBAbdn8+lnVoZ+7+sFlNocCOURsHGVKOKyywwh66K/aBOu3sdOF8hqAcauTc7FRpNv17MekyDH1l04BMi9j0jObSG+w/PKCjAhHReGPaf3gKcx3QFaci7XvpwRr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QvlS4A0N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DD55C4CEC7;
+	Sun,  6 Oct 2024 03:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728182365;
-	bh=8mQ7NYC63Rd8DM1i7CwPRzGY0R/Ayn2zU8oc90EuhPo=;
+	s=k20201202; t=1728185345;
+	bh=sn+rhuJFS4QcAX7nHTjMNJqUeOzV5xBHQDk6dVxGcFI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B8y6hcZlRr9yqgs7sGzoq6+YtrZZ8OhFlehh3Yb/8F3HHFEveztjqA4WL3GkqqfoA
-	 BfzMzkHIKCuzKb95GnY2Zz9hdO/s764oHB5SaASzanomx9E3oeMiJVSP5PnpECmq+T
-	 GXSMF36+93gQijvKir/M1m1MPzcFuMKEqpm+LbHzbpkeYD2ngOmL+16mq1yC3yVdWx
-	 M8qjnXHDAV8SIcC04vSRkoL32NLdv52mE1NSlfMyBwjmHHy2VSnJUm594Du6UB7QSK
-	 a+pS1m2NbWH4h9KUsWIg7b5M1R/1akSdyeySRbMYFiCBaHKXmGVMpklDUik7Xw5GKN
-	 BkRHW5Pj/pEVQ==
-Date: Sat, 5 Oct 2024 21:39:21 -0500
+	b=QvlS4A0NP0//x72QRsOWfdhC16oDn8p0xxy1TS2pbVn7BySM0+RvCzHr79SFWIYZ4
+	 4Otz53pJGhB8YFCpiHL+3StUBGkLIXo2NwLlI7JLe+kR+ojPFoNJl7kWBIejQgwPrv
+	 itUAv7lUGBBibBkMqdDjcZDndEg+KZlNax6RoGv1fyW++2yCexdy5uw86xCR6KlFZC
+	 BKePBEqcp/LoKFF9kaobmq6KOmdzvKtIA3MKiwsJPkB74GiMAW85gBOzOxSA7Aq0yJ
+	 hmNZ/0SJ3SbMR8+bacqjmeV2rUQGVclJVhfL518JZuBpHoSXbY0zn1YYt+zhasapB4
+	 PVIKAoH4137sQ==
+Date: Sat, 5 Oct 2024 22:29:02 -0500
 From: Bjorn Andersson <andersson@kernel.org>
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
-	devicetree@vger.kernel.org, Johan Hovold <johan+linaro@kernel.org>
-Subject: Re: [PATCH v2 4/6] arm64: dts: qcom: sc8280xp: Fix interrupt type of
- camss interrupts
-Message-ID: <c27ufmedz2ht7voie5pszvzxnj5qrxw3l3pbu6kujxrvpbpjyb@ooxz26rhf6jc>
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
- <20240923072827.3772504-5-vladimir.zapolskiy@linaro.org>
+To: Rakesh Kota <quic_kotarake@quicinc.com>
+Cc: konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, quic_kamalw@quicinc.com, quic_jprakash@quicinc.com
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490: Allow UFS regulators
+ load/mode setting
+Message-ID: <qwkuuh4yceordfjsvfn4gs6kpj6fkqx77yrsz3fbw5efffjjsx@dnsiz3eqj5cr>
+References: <20241004080110.4150476-1-quic_kotarake@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,83 +59,85 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240923072827.3772504-5-vladimir.zapolskiy@linaro.org>
+In-Reply-To: <20241004080110.4150476-1-quic_kotarake@quicinc.com>
 
-On Mon, Sep 23, 2024 at 10:28:25AM GMT, Vladimir Zapolskiy wrote:
-> The expected type of all CAMSS interrupts is edge rising, fix it in
-> the CAMSS device tree node for sc8280xp platform.
+On Fri, Oct 04, 2024 at 01:31:10PM GMT, Rakesh Kota wrote:
+> The UFS driver expects to be able to set load (and by extension, mode)
+> on its supply regulators. Add the necessary properties to make that
+> possible.
+> 
+> While at it, UFS rails have different voltage requirement for UFS2.x
+> v/s UFS3.x. Bootloader sets the proper voltage based on UFS type.
+> There can be case where the voltage set by bootloader is overridden
+> by HLOS client.
 > 
 
-Why did we get all these interrupts wrong? Why should they be RISING and
-not LEVEL_HIGH?
+It's generally not accepted to do "while at it"-changes, but it happens
+that I accept it. This one however, is controversial. We tend to want to
+properly describe the voltage constraints, so this departure from that
+stance definitely isn't an acceptable "while at it"-change...
 
-Please document the reason why this is changed, so that the next person
-adding a camss node can find your explanation and understand why it
-should look this way.
+> To prevent above issue, add change to remove voltage voting support
+> for dedicated UFS rails.
+
+You state that the bootloader will configure the appropriate voltage, I
+don't see a issue description.
+
+
+Either way, please split this in two.
 
 Regards,
 Bjorn
 
-> Fixes: 5994dd60753e ("arm64: dts: qcom: sc8280xp: camss: Add CAMSS block definition")
-> Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Tested-by: Johan Hovold <johan+linaro@kernel.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 40 +++++++++++++-------------
->  1 file changed, 20 insertions(+), 20 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index 80a57aa22839..aa2678eb3bcd 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -3882,26 +3882,26 @@ camss: camss@ac5a000 {
->  				    "vfe3",
->  				    "csid3";
+> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> index 84c45419cb8d..8a4df9c2a946 100644
+> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> @@ -258,13 +258,15 @@ vreg_l6b_1p2: ldo6 {
+>  			regulator-name = "vreg_l6b_1p2";
+>  			regulator-min-microvolt = <1140000>;
+>  			regulator-max-microvolt = <1260000>;
+> +			regulator-allow-set-load;
+> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
 >  
-> -			interrupts = <GIC_SPI 359 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 360 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 465 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 466 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 467 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 468 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 469 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 477 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 478 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 479 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 640 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 641 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 758 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 759 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 760 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 761 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 762 IRQ_TYPE_LEVEL_HIGH>,
-> -				     <GIC_SPI 764 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupts = <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 640 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 641 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 758 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 759 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 760 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 761 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 762 IRQ_TYPE_EDGE_RISING>,
-> +				     <GIC_SPI 764 IRQ_TYPE_EDGE_RISING>;
->  			interrupt-names = "csid1_lite",
->  					  "vfe_lite1",
->  					  "csiphy3",
+>  		vreg_l7b_2p952: ldo7 {
+>  			regulator-name = "vreg_l7b_2p952";
+> -			regulator-min-microvolt = <2400000>;
+> -			regulator-max-microvolt = <3544000>;
+> +			regulator-allow-set-load;
+> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> @@ -277,8 +279,8 @@ vreg_l8b_0p904: ldo8 {
+>  
+>  		vreg_l9b_1p2: ldo9 {
+>  			regulator-name = "vreg_l9b_1p2";
+> -			regulator-min-microvolt = <1200000>;
+> -			regulator-max-microvolt = <1304000>;
+> +			regulator-allow-set-load;
+> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
+> @@ -467,6 +469,8 @@ vreg_l10c_0p88: ldo10 {
+>  			regulator-name = "vreg_l10c_0p88";
+>  			regulator-min-microvolt = <720000>;
+>  			regulator-max-microvolt = <1050000>;
+> +			regulator-allow-set-load;
+> +			regulator-allowed-modes = <RPMH_REGULATOR_MODE_LPM RPMH_REGULATOR_MODE_HPM>;
+>  			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
+>  		};
+>  
 > -- 
-> 2.45.2
+> 2.34.1
 > 
 
