@@ -1,125 +1,166 @@
-Return-Path: <devicetree+bounces-108199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74B61991FF9
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 19:34:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 838B7992036
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:02:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F2271F2102F
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 17:34:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD57DB220E6
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:02:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BBC5189B81;
-	Sun,  6 Oct 2024 17:34:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D912189F32;
+	Sun,  6 Oct 2024 18:01:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J480MbBj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nqblB2C/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AD1F13A3ED;
-	Sun,  6 Oct 2024 17:34:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04E6189917
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 18:01:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728236088; cv=none; b=dHkpx9F+h9dQjahOE58LSpMYJo1NUZCX0FEP4Snf3AJB41Y/6rxFiukuUVfbSvMkb1PGm9ls0WrC8sv5O7HGjKFBSmBXxuk94TcsSIZmFnL7qrIu0z/n6tj3Bcoff+BHSKfurc6fJobzwCTQ5Q5kSbp6R5LlTb+O7oYQLuGg0Yc=
+	t=1728237714; cv=none; b=ZkGBH0HfLapeOcIB7cbJxv0y4MdB7vNGLB7mmh/K2HjiLJzkkGIZu1uvoyXQ5ieEj9TA0IhkbGzVXbXRdkVmM5KpdU2V8svEowHIrsfd+lP36URl+U5J8m1VhdwVz5G7VPrVHa8DlCLG7DSI+rrCyBXBhoIvEVFD9EmCkhTwiQM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728236088; c=relaxed/simple;
-	bh=PGUd8cKsxuUWECeWxoh99/UCrQ9TF9GaW5lv7JRiw1o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gdQoCul1T9lJUSXpENUKAuBZceuDkycospxTtxxp71CNR9rvCMJjYc0ZHSu1vDQIW4Zm6pGL5rV0DjFFrkNbs4PafkkFBBpBwzf70JhtIh4/4pNRAZJ9fEsQhd2j7tI2v158ovpPkfRdd/PCJwjgR+q/4lZCOeuiS6BDNhUygvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J480MbBj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F126CC4CECD;
-	Sun,  6 Oct 2024 17:34:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728236088;
-	bh=PGUd8cKsxuUWECeWxoh99/UCrQ9TF9GaW5lv7JRiw1o=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=J480MbBjhVUTk/P4vqkDvHCTiOubp1bKGJYKOwjwX72rSRczL5nrZJhx444R49VaU
-	 7zbwNndpAKjtrzffOLZV6F1MNSzjmw5Wxx6TM4XdMLRQ3vnTL96wi1wFX/+1SZv3ER
-	 imCcIq0hztCmrZ131el673j8KxSbCHbDrDlgPGgKHoyQg0udKuFmjhCvJz9Xsn/lYo
-	 wmcX9HqGikXE2y5u8OF13yfzLJaE8ZHca23MC7Tfv1JYCtGDZGWs0Lc8yNgqXD18cN
-	 GLzCJ0oo/SY7i9RwBLGPUMaWlw50Gjd7YUOf5rxsg8g0SnwIqLA6a03E09MiuUf3Gz
-	 B/z9y6bstaFBw==
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so4792108e87.0;
-        Sun, 06 Oct 2024 10:34:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUW2AnG2prJvAU83+LWaKupwZ4icep/k229nSw2J7XrUKyzByVGskohamceq017mnUBC/2XQf6dgeEx@vger.kernel.org, AJvYcCUjQ6gIaE7zStC5cEE0WrUcFtdgnyT1qUj2EyhXles7Ujb/OV9PtDXo/BmSJKJB36M9/J80+Jx2IPXnrGAB@vger.kernel.org, AJvYcCXKcBnjM0cREy78B3hWKmUQupakJ7HctRgXAoYMuMaDursdU+E+QhPL7mZbNqDNrCFW8OILQa0L4toOSFnn@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPzKPnFSyoWxL37fnbnMwVKnD/ZH3YBa8O4J+PhHrstuztD6rL
-	z1ZioxZa4kDC/vFh+5jvkqbbP2vwyZjiTM/MDa272+m8zPMkDhn8sBR7KF0tjvZIaAr+145bBqA
-	ptZCat8j04YFSNhgVYEuQg7b1vkA=
-X-Google-Smtp-Source: AGHT+IHM6IrouUIKVFd1yHOeng/VAl/xZqQqdpvGXpl/Q+/O75CQ8MvW/VWtj05/gkK7JydexnP1ZshLEC8/30mfFkQ=
-X-Received: by 2002:a05:6512:110e:b0:539:8f02:f55e with SMTP id
- 2adb3069b0e04-539ab873373mr4342825e87.33.1728236086679; Sun, 06 Oct 2024
- 10:34:46 -0700 (PDT)
+	s=arc-20240116; t=1728237714; c=relaxed/simple;
+	bh=h/eHBMo75q4g8Vy5Dhgk5ZSSFphKBV3uac7pVYR9Tpg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=t3Wzg8Irrs6Y6+IZdY0Ge2E/s0E224+onz/XbiqIRsa5c9j42YeB71ew96FLk1Q9sh0OdZSKUlptj0kF+Epb6z3B2hbhO71qFiDAbXi7edQXKHMnkv3zViQDIqDfsTailIhoYU5zJmVnOEdZmXlEK4roqpM17bdRdNDenD/moqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nqblB2C/; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71def715ebdso1244175b3a.2
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 11:01:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728237712; x=1728842512; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=SaMUBLoBBR07C/bYoUpjG4R9HZWfImadGC0U2YnHoLI=;
+        b=nqblB2C/WZNS+I6IVKef1///tVEvG2r4YhbFp6j7fM3tHP7wxRku5up/WGks7Qy8EA
+         IyF+QDTB5Fuec8l5Ofu/0fbhxXjcHECVpLZYO7R8v7OEZ99s7RZSmKclUaEHYS9RSb+E
+         tZwywiJacFikcd3Gk4iIcgiiwSxjnDdlDUzvyurm/bhqtOisnVno6WHFyxePJYwLzTIw
+         IPIO2x7KQ2bRwwdFVxQdLQwwVp28/iXcouZxFhPtCA0ShlEYwopH/7uFBDjN7PCx0QFS
+         YAQkxnDKZWzWTQvnQu1wJ22ZFMGZ7N9/5ISVRe9hW+QgKV8A5SN2buReTUGXXQM1igqE
+         ihkw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728237712; x=1728842512;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SaMUBLoBBR07C/bYoUpjG4R9HZWfImadGC0U2YnHoLI=;
+        b=PJJMzhPfojecSVA0E/QXYaZ3HR8PUOz9/5hvfLuMpCEyAYPEISxDn9lKTdXWCXtp3S
+         1PtBH+jINBEgrqMxKOFI6zLRNHmwWG6Czjd9Y9xlN57kwVinIAc1Y3IeZJTR/4tcy0AM
+         qWg/KVqJ57MK0i2TM1WlmREU5TQljBYL97C4RK8QbaLxgdsOfxZF9WHfsDi7SWX9HoLM
+         gvwKefli92w264zltwpwfrOkN7xizmnO8KkSbW7i/eEeC9tbrXICqrmbvedtxsY+WPu0
+         BOC18crqQ8/p0m2iEREyqvRpD5kG2NgAJnQ7rQEr9QaZdrEtLWQCENTC5kLLS3t/Q32A
+         SAXg==
+X-Forwarded-Encrypted: i=1; AJvYcCWDllWT8AmBMCL6/jO6qmKkWFtVXCGmYlCRjW8Xk4nSz6zC/SteaBM+gygKns0Z7OZbvfZsKFsZ2G4K@vger.kernel.org
+X-Gm-Message-State: AOJu0YylbgfwU6oGV81sJv4Qn1FkrCYlnGLQQQvDEalWtX22MINbnb7R
+	QTMCAWNbrsduZGIjNnIhBKikzzQS1YUWh54I7lwAkvRJ9iVC0a6xKSygVUjHeQ==
+X-Google-Smtp-Source: AGHT+IFyQRwLChkdAtgok+XKIQIoLYCmRv24p2cIvqhwFQFSIZbUzdcjHt6G40jahaoV8Hwts212Rg==
+X-Received: by 2002:a05:6a20:438c:b0:1d6:b63c:53c4 with SMTP id adf61e73a8af0-1d6dfa1e5efmr14308957637.2.1728237711884;
+        Sun, 06 Oct 2024 11:01:51 -0700 (PDT)
+Received: from thinkpad ([220.158.156.57])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0d6642dsm3014782b3a.168.2024.10.06.11.01.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2024 11:01:51 -0700 (PDT)
+Date: Sun, 6 Oct 2024 23:31:46 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Sibi Sankar <quic_sibis@quicinc.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org,
+	krzk+dt@kernel.org, robh+dt@kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org,
+	abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for
+ Windows
+Message-ID: <20241006180146.m6xvpwbvkiy7obpx@thinkpad>
+References: <20240911073337.90577-1-quic_sibis@quicinc.com>
+ <20240911073337.90577-3-quic_sibis@quicinc.com>
+ <pt4wtycddqhcvw2iblaojmzsdggmlafft4vu6lg5j2vstbhbqj@acenyi5k3yeq>
+ <eqy4yicgeqlgaytgzybnitvbrdr7jmjjk5k2swmadad6scwk77@ubaf7a2kgmdm>
+ <1BBC34CC-92D9-4F6E-8DFA-1F2DA36D545A@linaro.org>
+ <20241001085105.iglzp3art5ysli2d@thinkpad>
+ <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240925053230.45606-1-xu.yang_2@nxp.com>
-In-Reply-To: <20240925053230.45606-1-xu.yang_2@nxp.com>
-From: Masahiro Yamada <masahiroy@kernel.org>
-Date: Mon, 7 Oct 2024 02:34:09 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARPe-R5xkXRWBPW7aMpsQzc4BCyKLJmJ==aKy+_JDKkUg@mail.gmail.com>
-Message-ID: <CAK7LNARPe-R5xkXRWBPW7aMpsQzc4BCyKLJmJ==aKy+_JDKkUg@mail.gmail.com>
-Subject: Re: [PATCH] kbuild: fix a typo dt_binding_schema -> dt_binding_schemas
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	nathan@kernel.org, nicolas@fjasle.eu, devicetree@vger.kernel.org, 
-	linux-kbuild@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
 
-On Wed, Sep 25, 2024 at 2:31=E2=80=AFPM Xu Yang <xu.yang_2@nxp.com> wrote:
->
-> If we follow "make help" to "make dt_binding_schema", we will see
-> below error:
->
-> $ make dt_binding_schema
-> make[1]: *** No rule to make target 'dt_binding_schema'.  Stop.
-> make: *** [Makefile:224: __sub-make] Error 2
->
-> It should be a typo. So this will fix it.
->
-> Fixes: 604a57ba9781 ("dt-bindings: kbuild: Add separate target/dependency=
- for processed-schema.json")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+On Sun, Oct 06, 2024 at 12:33:21AM +0530, Sibi Sankar wrote:
+> 
+> 
+> On 10/1/24 14:21, Manivannan Sadhasivam wrote:
+> > On Tue, Oct 01, 2024 at 09:56:30AM +0300, Dmitry Baryshkov wrote:
+> > > On October 1, 2024 5:42:35 AM GMT+03:00, Bjorn Andersson <andersson@kernel.org> wrote:
+> > > > On Wed, Sep 11, 2024 at 10:55:05AM GMT, Dmitry Baryshkov wrote:
+> > > > > On Wed, Sep 11, 2024 at 01:03:37PM GMT, Sibi Sankar wrote:
+> > > > [..]
+> > > > > > diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
+> > > > [..]
+> > > > > > +
+> > > > > > +&pcie5 {
+> > > > > > +	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
+> > > > > > +	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
+> > > > > > +
+> > > > > > +	vddpe-3v3-supply = <&vreg_wwan>;
+> > > > > 
+> > > > > Please use pwrseq instead.
+> > > > > 
+> > > > 
+> > > > What benefit is there to wrap a single 3.3V regulator in pwrseq driver?
+> > > 
+> > > First of all, is it really just a 3.3V? Second, is it actually powering up the host controller (as expressed in the device tree? Is it a power supply to the slot (in this case, I think, it should be expressed differently)? Or is it a power supply to the card itself?
+> > > 
+> > 
+> > Yeah, we should get into the details here. We were not paying attention till
+> > now, but with the advent of pwrseq, we should describe the power supply properly
+> > in DT.
+> > 
+> > Here I believe the supply is to the PCIe Mini Card connector where a modem is
+> > connected. In that case, 3.3v supply should be connected to 3.3Vaux of the
+> > connector and we should have a generic pwrseq driver for the mini cards.
+> > 
+> 
+> Hey Mani, Dmitry,
+> 
+> The schematics are identical to that of the X1E CRD with
+> the exception of the pcie daughter card having the rtl8125g
+> on it. Yes, the 3.3V supply is connected to the card as well.
+> 
 
+Is this connected to the 3.3vaux of the card? Please specify the actual rail
+name as the 'PCI Express Mini Card Electromechanical Specification' specifies
+only 3.3Vaux and 1.5v supplies.
 
-Applied to linux-kbuild. Thanks.
+> Doesn't this mean all other x1e boards out there needs to be
+> updated with pwrseq as well? Anway will get that addressed in
+> v3.
+> 
 
-> ---
->  Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/Makefile b/Makefile
-> index 265dd990a9b6..7aa71c70305e 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -1645,7 +1645,7 @@ help:
->                 echo '* dtbs               - Build device tree blobs for =
-enabled boards'; \
->                 echo '  dtbs_install       - Install dtbs to $(INSTALL_DT=
-BS_PATH)'; \
->                 echo '  dt_binding_check   - Validate device tree binding=
- documents and examples'; \
-> -               echo '  dt_binding_schema  - Build processed device tree =
-binding schemas'; \
-> +               echo '  dt_binding_schemas - Build processed device tree =
-binding schemas'; \
->                 echo '  dtbs_check         - Validate device tree source =
-files';\
->                 echo '')
->
-> --
-> 2.34.1
->
+pwrseq is the kernel driver abstraction, nothing to do with DT. But for making
+use of pwrseq, the supplies need to be described in the proper place. In this
+case most likely under a separate node of PCIe bridge. Then you'd need a
+separate pwrseq driver in kernel to parse the supply and take care of it.
 
+I'm currently writing a pwrseq driver for standard slots (x8 for X1E) and should
+be able to post it early next week. So you or someone could use it as a
+reference to add a new driver for m-pcie cards.
 
---=20
-Best Regards
-Masahiro Yamada
+If no one picks it up, I may just do it.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
