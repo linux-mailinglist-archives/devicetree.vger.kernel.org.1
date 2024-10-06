@@ -1,85 +1,87 @@
-Return-Path: <devicetree+bounces-108194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94950991FCB
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 19:07:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 776C0991FD0
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 19:11:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4056B1F215F8
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 17:07:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C6D81F2162B
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 17:11:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF00B189B83;
-	Sun,  6 Oct 2024 17:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A35EB189BB6;
+	Sun,  6 Oct 2024 17:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A+oUvJFg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XJC1H1Yf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCCD0A31
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 17:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C60EA17CA1D
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 17:11:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728234420; cv=none; b=jbeHK9j7kd3zNx0Jy2xtbWOHGkXjwxDBqavhp+xIDreTZDReY+WLVa7oCcXWi2daJGWNeRWWBPSdWVyETcfFvLTnO0dSRmY3WtbFcm8tZH1aVQW1t5I+7RlHdlHkustL8tLQ9getH41zFJ2eMxuw7LQzqSzKo1v6cxziRbRYg5w=
+	t=1728234694; cv=none; b=U5/cDEuJTS06nkg23QJt+2q5JN64LIrNGNfZQXhNzqSPzQNSWz9MHIvTY+yXJaxznOl3W3xaGLyMxQ8aLqzja6cTHQ0HiOHorHKAqAxOEYqcZPO+/18xS+50J6i/Jt+Q2u9UqO34czfbLQseTwjMTsgwLA0uvD/vEBXOqbKTFjU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728234420; c=relaxed/simple;
-	bh=QLZOPV2KCdW4/rWDe98NOGrenAixRMGh/7THynPfEIM=;
+	s=arc-20240116; t=1728234694; c=relaxed/simple;
+	bh=3id98dWfPMqGRosAsonLO3shESXmQU5V73Lu5hbyTVM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GNEqlq3kQgbzJhBIak7tYIgOXXpm4fx/xqhDV6DmyBxTmk3tJYTpK18PzNGTvkbG+ML5oiZdr4JptjFfiONG9WwF5P43fDcI0+8kJcuiYSL/527ahqvnnbIKwTZXf0NQjXgS/tFs6Va7oxEs43fQmSp+plXC/K7ReRwmYwzIz94=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A+oUvJFg; arc=none smtp.client-ip=209.85.208.182
+	 Content-Type:Content-Disposition:In-Reply-To; b=PcrHUWB4wugnqTntNgJRuZKVhr1A6Iu0OTtJwdy5t8aQU3NFv5qVdhNZg9Qr+m7O2sbnCxwghadPQH6mDMN7jsMChGXoLCAWUYcGwwUk+pV2T+eJBh6vO8S6t+2LOG8269TbSCD/vZp8eetOStd/VYrKZ1FR4Dvf3tARH+lnCGs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XJC1H1Yf; arc=none smtp.client-ip=209.85.167.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fad15b3eeeso37809951fa.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 10:06:58 -0700 (PDT)
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5398c1bd0b8so4466018e87.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 10:11:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728234417; x=1728839217; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728234691; x=1728839491; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mgiOfmVMYDxKqStonmB8yqlxiThjQt2okmdO+ALgRlI=;
-        b=A+oUvJFgA5lkI1MqjlHMWHvUrr2Q3NZNBNkEif+GUNciuSuMALcCgyGH0ICBLZy5QX
-         gg2H9GtMcq3zP7GXd3BPZBJEVqmZHqW1EMk8Yicb8jY5ihPg1ytxzxxpeaqNGixz19fC
-         1Ox/CVZfI7GU8q7ooE1oLvAkJkjmq/0k5u9LJrjCiIOfhuI4J9JSjv1XA2wRxIypbZpx
-         zatwDcI3SYOVU8tYTvwt/V0vguRzZkFTJav2P6NoUFSdRj78FnUY4ztpiNSJ+I+s3Z1P
-         4MrcIvw+Jqe1kHqlWOZ/rHlsUJZ/oR84AQWOq9da+LCzn7xGWxEDDhYUie42XPra5Phj
-         i6bQ==
+        bh=HORmwBmgfdl05E9vDg1kc4I3kqXYteqYbjrn/dZeplM=;
+        b=XJC1H1YfSa4X6VM5x+JBWxey1xRnJ+EUbz28qX5WD6krYtuhNu4lX2Tyn3xWcCH67j
+         hv68oZQTaJZPvHjUe9eP/DqrJt4dRaOKUkHToj9n0yVJiUdX96s8wrnGvdrbWFxaMV+c
+         dLtAzywG3KBnTSpCZnm7dflvGy+hUJpV3X0xNQFs7an5y5ZQMoAjJT+IYnqGaXTBkgFC
+         RhrtH4du+nj8XNSeoJWtLIxM0cMC8Qanprp2oAJgeBeR9pCGFCo8sWI/DEzfVImCs8IG
+         gMbHA+rHBZSzegKABjmt+qXpFm3sEysxaVZf9wuPTdh98pzeLxvmhXGyabzSxMmHZqPL
+         WI4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728234417; x=1728839217;
+        d=1e100.net; s=20230601; t=1728234691; x=1728839491;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=mgiOfmVMYDxKqStonmB8yqlxiThjQt2okmdO+ALgRlI=;
-        b=Ya3a8oORdCRVenJc+nPAlNKgEis1ecKS0Dum27PjfiubOAXIETXhOU+BFRc2m5m0Qj
-         DoiS1+kthidyokYHUjt4a5y1nKPj+qJF7dbXWsIItDRA7AS4Gm6UOjGztfgXbnu+1v/3
-         3fiaDv1aVF82/AW1FR8J/VOqSY5hZkv3/W1BzvpBskydkZIKFAB2UMoq8GisuS4iO6T1
-         c7+8NQhRUyX4XsYm2RYapznSl6L5LfHC1X9Fz19MFXm7VDDX18ilvIawNVTcYDyjE5yv
-         Ybb1rC/3KG7RhJ/JuxPCJ6VwIbMR95+VkPFArYwS/XfAXWf/qAr7AGHYhqbPsaYyMr/5
-         VFVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVfOTwPAMoMyfksnGAEFtBa5kPhxdz+IV2ntwVkAsRDGgynAIMYGA1hKwKxgIHXrYeoIJsYw/VQILQU@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQIkR3VwYke7eIVoMLbXBCOzm6tP3LAhKPm+NJI0WvHQs3HfiV
-	kWV2a/+0I71r47QkofriK2Skv7eaEKPtaOUJzFBjPq0h//HukoG2USG+JeFm2WM=
-X-Google-Smtp-Source: AGHT+IHffHfShn8xyefRkGtbG356/CbIEk2NFW/1Jb4Xs0sYFx6K0VNQHn+Ngf0TWbBmbX9M7T1xmQ==
-X-Received: by 2002:a05:6512:398d:b0:539:8847:d7e9 with SMTP id 2adb3069b0e04-539ab8843c9mr4905244e87.35.1728234416966;
-        Sun, 06 Oct 2024 10:06:56 -0700 (PDT)
+        bh=HORmwBmgfdl05E9vDg1kc4I3kqXYteqYbjrn/dZeplM=;
+        b=fPWwvf4SAp2+slyHrh0P5zOjnan4tRuROU3rPmKOk0PUxdkxQcfoLgoxG0CVIjsdR+
+         3BWCu7XLpS40UTCwYbojCcHfwiO24ZeTFdTAH8UiyxZvKM9ttlo67nZ0OmH0sCpOP9JF
+         B/WWayi3orjOj853apgXr7+g/SmG+sCvXdYYODmHQKuiOegW0YkmUv9G8CPDxBqESDuN
+         N/+rtmWcdgq5eNsFkQHsdFEnEME0yXPoW8e/zFa9G7Sx7ldkEUQcpS9TuW8IqhVfoxw5
+         MerMOjmPlGdPtNP6B6qBw1ZIgu8J/VLv9qUJvAlLa5Tx8aAxvFh+6oSU2PXuQ6gjFI4u
+         xlog==
+X-Forwarded-Encrypted: i=1; AJvYcCXHe66sv6AzDt0fUHQm/eYcOXLIiKgAezZ0lnrViTaxyEbiKLGZp33MyfEt+j0V3+6FPiaYuIaQ2fL7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx2/9pP03vxJ3Bo6WNQH8nZcnQ6FOBJVF0mVr0akuGSTEN/YpwA
+	gbHFZtuv8OigHapWdDi47p73VdsmU9JWVYhdy40tJ9O9LRaHDKIb4tg3CFW1gis=
+X-Google-Smtp-Source: AGHT+IGAcVGzz3f7BDb/2j93VyI4nWnEvGMl+6HSIyG3vXGDdmlsXZ0thd5pVAWVdkXAUKAbGwnmHQ==
+X-Received: by 2002:a05:6512:b90:b0:539:93e8:7ed8 with SMTP id 2adb3069b0e04-539a626a412mr4126081e87.15.1728234690926;
+        Sun, 06 Oct 2024 10:11:30 -0700 (PDT)
 Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539afec8297sm559913e87.78.2024.10.06.10.06.55
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff282casm565156e87.273.2024.10.06.10.11.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 10:06:56 -0700 (PDT)
-Date: Sun, 6 Oct 2024 20:06:53 +0300
+        Sun, 06 Oct 2024 10:11:30 -0700 (PDT)
+Date: Sun, 6 Oct 2024 20:11:28 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org, krzk+dt@kernel.org, robh+dt@kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	conor+dt@kernel.org, abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for
- Windows
-Message-ID: <7ilh7yjdesoo3hwwjjlsnwe7dftegtv32mnwvsiczn33diwihy@mi2ukoowdq47>
-References: <eqy4yicgeqlgaytgzybnitvbrdr7jmjjk5k2swmadad6scwk77@ubaf7a2kgmdm>
- <1BBC34CC-92D9-4F6E-8DFA-1F2DA36D545A@linaro.org>
- <20241001085105.iglzp3art5ysli2d@thinkpad>
- <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
+To: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+Cc: Rob Herring <robh@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Jassi Brar <jassisinghbrar@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
+Subject: Re: [PATCH 1/3] dt-bindings: mailbox: qcom,cpucp-mbox: Add sc7280
+ cpucp mailbox instance
+Message-ID: <kzlhhovfffvg227oxbpl3nv6q2lyn53pz2fyqis22brkd4bkkz@vqprudcdfunb>
+References: <20240924050941.1251485-1-quic_kshivnan@quicinc.com>
+ <20240924050941.1251485-2-quic_kshivnan@quicinc.com>
+ <20240924232526.GA563039-robh@kernel.org>
+ <2d4e47fd-0aaf-4533-a96f-95ada853d9a0@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -88,62 +90,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
+In-Reply-To: <2d4e47fd-0aaf-4533-a96f-95ada853d9a0@quicinc.com>
 
-On Sun, Oct 06, 2024 at 12:33:21AM GMT, Sibi Sankar wrote:
+On Thu, Oct 03, 2024 at 11:13:02AM GMT, Shivnandan Kumar wrote:
+> thanks Rob for reviewing this patch.
 > 
 > 
-> On 10/1/24 14:21, Manivannan Sadhasivam wrote:
-> > On Tue, Oct 01, 2024 at 09:56:30AM +0300, Dmitry Baryshkov wrote:
-> > > On October 1, 2024 5:42:35 AM GMT+03:00, Bjorn Andersson <andersson@kernel.org> wrote:
-> > > > On Wed, Sep 11, 2024 at 10:55:05AM GMT, Dmitry Baryshkov wrote:
-> > > > > On Wed, Sep 11, 2024 at 01:03:37PM GMT, Sibi Sankar wrote:
-> > > > [..]
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> > > > [..]
-> > > > > > +
-> > > > > > +&pcie5 {
-> > > > > > +	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-> > > > > > +	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-> > > > > > +
-> > > > > > +	vddpe-3v3-supply = <&vreg_wwan>;
-> > > > > 
-> > > > > Please use pwrseq instead.
-> > > > > 
-> > > > 
-> > > > What benefit is there to wrap a single 3.3V regulator in pwrseq driver?
+> On 9/25/2024 4:55 AM, Rob Herring wrote:
+> > On Tue, Sep 24, 2024 at 10:39:39AM +0530, Shivnandan Kumar wrote:
+> > > sc7280 has a cpucp mailbox. Document them.
+> > 
+> > And is different from the existing device how?
+> 
+> It is different with respect to the register placement.
+
+Register placement in the global map or the internal register structure?
+
+> 
+> Thanks,
+> Shivnandan
+> 
+> > 
 > > > 
-> > > First of all, is it really just a 3.3V? Second, is it actually powering up the host controller (as expressed in the device tree? Is it a power supply to the slot (in this case, I think, it should be expressed differently)? Or is it a power supply to the card itself?
+> > > Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
+> > > ---
+> > >   .../devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml         | 5 +++--
+> > >   1 file changed, 3 insertions(+), 2 deletions(-)
 > > > 
-> > 
-> > Yeah, we should get into the details here. We were not paying attention till
-> > now, but with the advent of pwrseq, we should describe the power supply properly
-> > in DT.
-> > 
-> > Here I believe the supply is to the PCIe Mini Card connector where a modem is
-> > connected. In that case, 3.3v supply should be connected to 3.3Vaux of the
-> > connector and we should have a generic pwrseq driver for the mini cards.
-> > 
-> 
-> Hey Mani, Dmitry,
-> 
-> The schematics are identical to that of the X1E CRD with
-> the exception of the pcie daughter card having the rtl8125g
-> on it. Yes, the 3.3V supply is connected to the card as well.
-> 
-> Doesn't this mean all other x1e boards out there needs to be
-> updated with pwrseq as well? Anway will get that addressed in
-> v3.
-
-Yes please. Check with Bartosz and Johan if they are working on pwrseq
-for this platform by chance.
-
-> 
-> -Sibi
-> 
-> > Sibi, please verify the above in schematics.
-> > 
-> > - Mani
+> > > diff --git a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> > > index f7342d04beec..4a7ea072a3c1 100644
+> > > --- a/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> > > +++ b/Documentation/devicetree/bindings/mailbox/qcom,cpucp-mbox.yaml
+> > > @@ -15,8 +15,9 @@ description:
+> > > 
+> > >   properties:
+> > >     compatible:
+> > > -    items:
+> > > -      - const: qcom,x1e80100-cpucp-mbox
+> > > +    enum:
+> > > +      - qcom,x1e80100-cpucp-mbox
+> > > +      - qcom,sc7280-cpucp-mbox
+> > > 
+> > >     reg:
+> > >       items:
+> > > --
+> > > 2.25.1
+> > > 
 
 -- 
 With best wishes
