@@ -1,168 +1,145 @@
-Return-Path: <devicetree+bounces-108192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD74991FB4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:46:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A941D991FBA
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:48:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA80428143A
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 16:46:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAE1F1C205BC
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 16:48:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7904E189BB1;
-	Sun,  6 Oct 2024 16:46:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA38189B9C;
+	Sun,  6 Oct 2024 16:48:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bWfdxAIu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="G7+8XJTK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DFBA189B85
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 16:46:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECB818872D
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 16:48:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728233211; cv=none; b=V0WFBao4trJ/+Yi3EGOU3Z8AcCWUuaSBueruNoMUNysuw5qN90EcvX5KNq2Gq9Ui9J3+7MN6eIn5aAxrJe8IuUbOv3lZkZYY88qIagPb1kYOolXvIlvsy/7PVJXcpMRIWfaP4TxZgnUAFj/J4X8cRwwsJqWUw+BaiTRfVq6A5ys=
+	t=1728233290; cv=none; b=cstfehrcgX3XvmcPFJMBBaCqmpHLhRd/tpqCszSYLjbKxC8WQ8X9wvQP9D6BL9azeUgJ3/1d/He8YX9VYu2g+fO4ee3EBkc/KLURrxmtxBDe1cAEQJgVm00KvcksZQRX4I7FsdeSG0a/0U7bYrJwH8RkeMTrHVGjTfMkh3C6Ce4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728233211; c=relaxed/simple;
-	bh=uY7HvmO31wS8btb8XYVjlRLPqrYljxar4akr/+JgmGI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BkCMSRt2XUaBT/VLOVE+uw9dn29kqp/i+muKoz6aEju0ASQ7tOpSKFFsllYmOf82H/PG86X9o5KCs7nxEGNaPZza6G6Y+vh3lM1Ua4DLVWyNpkmn8ZUiAKj4/wcognzNQDK4+R3DVo4d7HXm0ftcgIN0MSLQGQh2Gvo17VOmKYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bWfdxAIu; arc=none smtp.client-ip=209.85.167.48
+	s=arc-20240116; t=1728233290; c=relaxed/simple;
+	bh=Gu7LB3UGHKQJrsQedCSEt4sdbmh9d8FC6ZwZTDLlCQ4=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=THgWgeTbREhT/2YhsxHMrZwGI7sQUrlUG5U/7o1p6JjE/cLvArP0lIfOyu71+Pi/UHTZBcjZPLwSc2Kl2oErHtTD59AQqbzOLrgJf2puXzjYobJ3ivgGSuxZmT729KsZE3pL9q/lQ6KBlomfuUoijqON7qfcxhhDizroKgpsb/0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=G7+8XJTK; arc=none smtp.client-ip=209.85.208.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5398f3be400so4155133e87.0
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 09:46:49 -0700 (PDT)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2faccada15bso33634491fa.3
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 09:48:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728233207; x=1728838007; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=akAXIFAX2hq/JQ/5/aAwojcmLWEHNHqXoq1KohLf+CA=;
-        b=bWfdxAIu+MCaXP/n7T4hhFVPVtGgElvdbMB3WCjKWCY2DAgTzwo/uyyqHucPg6bzjv
-         Xaluqq73J67/2MxuVIdXa2Vcp2UwFEfqZcgsLftd+EhPL9/Rh+lSzx9z6bsaHtwtWf6B
-         I42A6/HnoBOTwlejgLJrMiJ+01PEHMSB+JT7+G3SeF28CvcdXLQINzlX6DUC64Jm2mzD
-         lGH4UG0lZFnZQAVa/sa1XnVp0OkCyQ+vKHLqy1JC5XVzFPmT2F8+7pH6pvcjIieZgdYP
-         rnW2piZpJW9gVORlHpFhf/D9LWvFCx0LWpFsw7YU1QI3s/Jr65x5Zsvby9YOEt3yIvpC
-         qfmA==
+        d=linaro.org; s=google; t=1728233287; x=1728838087; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uzAWnvR2f4WrHC35dBgQ63T3duQgeGlf/PEfaPr78MQ=;
+        b=G7+8XJTKtT3emGo7sS6GP87u0iwO7QCw7PCsQLYSkboHO8uEsgIy9PyPrryKljjiHG
+         ApfpR2pkBo782KKxOvaBva9H/74ucchw/wwwJnXdqPk9iW8SuCuZPE3flCNMDzbprOb2
+         q9NUuZhlQ5QbWcVZmtQ10FZgh8gzrnw1j3d2hB/fgAvmzjrT0H25Y1JA7YHgMpxxZ1YV
+         SRI8oMgaW2+uxT64cbOl2iOR3XK9dEV9EIOJYgnzLVjsLf7C67HbHYYNk5CDUYVBP1Jw
+         Q2kxBZZ4KH99KQ5DQzIeJFaTjHuo3cg7r4Mq5fsxSNI93fA0CogBH8U69o6O0baMgDPX
+         GX/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728233207; x=1728838007;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=akAXIFAX2hq/JQ/5/aAwojcmLWEHNHqXoq1KohLf+CA=;
-        b=BLUrkjRKUJNF8oLgNA8f9QcXl9YNzQ2qKhXQFLXU5zCE/jriPU+UilX8Hbi2MFErVv
-         staHL1DbLo2zPJXZOe1Q4ly4QAyUOZ2vYxQj4/JJRuiPiV/aSltaxKSf3oUBITw5GPs1
-         pM+XBjCVgWS1Gc0uAHTDEifi3cyFiWXIkHY+HDt3X/4siWHnoNPN84cV8A/Cwd9+3C86
-         +N6Np/0sunP3omBgmvgmBRfwd7jPVPHQmXt9L1ghfLM05A2HZCoVQ3Bz28y+/vL7RuMo
-         ihP697lb6DdtBcoWXkAPSLGzUwgEpOgzCy0t3miLrajpjxH2U2aN4Ai/4q9b3L0cE+kA
-         LeXg==
-X-Forwarded-Encrypted: i=1; AJvYcCXaVwFp050+dkTK4iKIYVgh0bqDhsTR+ODvS4qTgnAaVuGP50wbVyqLcVRHLMAPKzM/iAuHJytOkYjg@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQ55c4YmyMkynxUbXERYJRgOEJKzVO/mLb6U9+uOXZ9nQ/Bqns
-	Mw63BvfGkFYfl5NyTPS4NUy6z96SfiHeG/ugZCKUkvdd9UJo9M+Nbd8Yvq3mFaYrwY+NgdeTXPn
-	ZHOQYk7UE
-X-Google-Smtp-Source: AGHT+IFPBkuzzGcWuEx0VbwpLEzF0XozY9XwwEwQyKHqc3jL8Hkus+AG7GZGZ6DPG2BFb8+QYH9saA==
-X-Received: by 2002:a05:6512:10d3:b0:52e:e3c3:643f with SMTP id 2adb3069b0e04-539ab859ee0mr3506576e87.2.1728233207434;
-        Sun, 06 Oct 2024 09:46:47 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff28034sm567156e87.250.2024.10.06.09.46.45
+        d=1e100.net; s=20230601; t=1728233287; x=1728838087;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uzAWnvR2f4WrHC35dBgQ63T3duQgeGlf/PEfaPr78MQ=;
+        b=F89xPzpAHyNp6X/BF37P+N4YdGZP+iUabbV3PRizYmsvnKO5Xan9wg75OBlZi6xV3g
+         KOZ19nPoulX/OtstqLXCoNtTHGVcafp+2TRgaqX5Sa3ZCpY3gAX+Qtq67c+vmUO+FjiK
+         V7opPZLcxV3H0XThfn9dfJVSnak0Y8EW3BeNrzSby0zCq08nJtYFTGDeyOEpVR2/kyPQ
+         sJByyWitBsa0cFn1ZR/O0RvQ6gobQDYn1Xh9JwLWZ1qhtwFJ2OZd7qHFsN/z7EvcjeVD
+         HQ8d+YF+uunxSN8dlAHryC/LmG5RyoBVqSQZqyo8l2UnKtcmT8eygjunFJglRztHdfTh
+         TFRA==
+X-Forwarded-Encrypted: i=1; AJvYcCX3WwLBCm7T48xqw9f9y2wEuh5zhF7O8wle7zs6a8Cl0/hP5oz+zU8NpEMFs992ArjDrIPPGF7Vu4Qx@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQv1SoufhAxoojkdTP1beXQIY2eajTA1dF2PbZTrdTOr7Kuuol
+	tBYFY+LhZ1MorWFxqXQ2UIx+ex3TVfGaCAqlqZTFNKk9EWdXfyb2F0BbQ4JHtus=
+X-Google-Smtp-Source: AGHT+IHs2SKU88jdrP9Tji3UkTA9/VSEgjFHjoDQRGkq5tRTQB41kleo8afr82s49QRRoa0qKJURew==
+X-Received: by 2002:a05:6512:2803:b0:539:9fb4:802f with SMTP id 2adb3069b0e04-539ab858c13mr4697488e87.22.1728233287431;
+        Sun, 06 Oct 2024 09:48:07 -0700 (PDT)
+Received: from umbar.lan ([192.130.178.90])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff1d0e9sm570759e87.181.2024.10.06.09.48.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 09:46:45 -0700 (PDT)
-Date: Sun, 6 Oct 2024 19:46:44 +0300
+        Sun, 06 Oct 2024 09:48:06 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Vedang Nagar <quic_vnagar@quicinc.com>
-Cc: quic_dikshita@quicinc.com, Vikash Garodia <quic_vgarodia@quicinc.com>, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 16/29] media: iris: implement iris v4l2_ctrl_ops and
- prepare capabilities
-Message-ID: <jk4n5upp5vw4s5yl5vw7iyri3wfxpsl35isxxggysd52eqecpk@tlmf5w2ncagz>
-References: <20240827-iris_v3-v3-0-c5fdbbe65e70@quicinc.com>
- <20240827-iris_v3-v3-16-c5fdbbe65e70@quicinc.com>
- <gehwgofhviqcnopaughxfcpsqmbbiaayid2scgat4xnd5ngwmo@ylawfiup2tqc>
- <15703542-1b70-4042-86b9-7b3f3a675e3e@quicinc.com>
+Date: Sun, 06 Oct 2024 19:47:56 +0300
+Subject: [PATCH] arm64: dts: qcom: sm8450 fix PIPE clock specification for
+ pcie1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <15703542-1b70-4042-86b9-7b3f3a675e3e@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241006-fix-sm8450-pcie1-v1-1-4f227c9082ed@linaro.org>
+X-B4-Tracking: v=1; b=H4sIADu/AmcC/x2MQQqAIBAAvxJ7bkFNRfpKdMhaaw+ZKEQQ/j3pO
+ DAzLxTKTAXG7oVMNxe+YgPZd7AeS9wJeWsMSigthbAY+MFyOm0EppVJovakBnI+SGOhZSlTc/7
+ lNNf6AaxyKONiAAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1531;
+ i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
+ bh=Gu7LB3UGHKQJrsQedCSEt4sdbmh9d8FC6ZwZTDLlCQ4=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnAr9EijfXLHgWl6HDcvQREsHqimYB0cXLp1elN
+ 6zZLjjjlVyJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZwK/RAAKCRCLPIo+Aiko
+ 1at+B/9m2SCcQOVg4KJHbS3n7DiLGeETatz8q6D9PUMzY4p9qWkqwBhI7HBF67a6X4dZ+5rQznh
+ JnO7Smr4VilAJ0aio24UohY+svOficAoHlX4l4QYQSKpEuMgZElxywZ1HotvDRLfTy/6l1mmsro
+ yR0BKQVbMM8bRdc2IxyZsjPFUrOuEMC0ljESDXIGbImDTjdxIypd+RbuwaaXGADpR6biEE9E98J
+ TWJZK8Uck/vsksloB2QJOVqHdXjpjwuQDi94pG4X8w5xS7Kbxv87n7iwbRvFtFtYPPTfSyFkURf
+ DlCwDQetvfeTZXF8n6+gddiJvfNwAPy8VJ+iU69vcJO9p4ew
+X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
+ fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-On Tue, Oct 01, 2024 at 06:31:16PM GMT, Vedang Nagar wrote:
-> Hi Dmitry,
-> 
-> On 8/29/2024 3:03 PM, Dmitry Baryshkov wrote:
-> > On Tue, Aug 27, 2024 at 03:35:41PM GMT, Dikshita Agarwal via B4 Relay wrote:
-> >> From: Vedang Nagar <quic_vnagar@quicinc.com>
-> >>
-> >> Implement s_ctrl and g_volatile_ctrl ctrl ops.
-> >> Introduce platform specific driver and firmware capabilities.
-> >> Capabilities are set of video specifications
-> >> and features supported by a specific platform (SOC).
-> >> Each capability is defined with min, max, range, default
-> >> value and corresponding HFI.
-> >>
-> >> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
-> >> Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> >> ---
-> >>  drivers/media/platform/qcom/iris/Makefile          |   1 +
-> >>  drivers/media/platform/qcom/iris/iris_buffer.c     |   3 +-
-> >>  drivers/media/platform/qcom/iris/iris_core.h       |   2 +
-> >>  drivers/media/platform/qcom/iris/iris_ctrls.c      | 194 +++++++++++++++++++++
-> >>  drivers/media/platform/qcom/iris/iris_ctrls.h      |  15 ++
-> >>  .../platform/qcom/iris/iris_hfi_gen1_defines.h     |   4 +
-> >>  .../platform/qcom/iris/iris_hfi_gen2_command.c     |   1 +
-> >>  .../platform/qcom/iris/iris_hfi_gen2_defines.h     |   9 +
-> >>  drivers/media/platform/qcom/iris/iris_instance.h   |   6 +
-> >>  .../platform/qcom/iris/iris_platform_common.h      |  71 ++++++++
-> >>  .../platform/qcom/iris/iris_platform_sm8250.c      |  56 ++++++
-> >>  .../platform/qcom/iris/iris_platform_sm8550.c      | 138 +++++++++++++++
-> >>  drivers/media/platform/qcom/iris/iris_probe.c      |   7 +
-> >>  drivers/media/platform/qcom/iris/iris_vdec.c       |  24 ++-
-> >>  drivers/media/platform/qcom/iris/iris_vdec.h       |   2 +-
-> >>  drivers/media/platform/qcom/iris/iris_vidc.c       |  16 +-
-> >>  16 files changed, 536 insertions(+), 13 deletions(-)
-> 
-> [Skipped]
-> 
-> >> diff --git a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> >> index a74114b0761a..6ad2ca7be0f0 100644
-> >> --- a/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> >> +++ b/drivers/media/platform/qcom/iris/iris_hfi_gen2_command.c
-> >> @@ -108,6 +108,7 @@ static int iris_hfi_gen2_session_set_default_header(struct iris_inst *inst)
-> >>  	struct iris_inst_hfi_gen2 *inst_hfi_gen2 = to_iris_inst_hfi_gen2(inst);
-> >>  	u32 default_header = false;
-> >>  
-> >> +	default_header = inst->fw_cap[DEFAULT_HEADER].value;
-> > 
-> > This isn't related to the s_ctrl and g_volatile_ctrl. Please split this
-> > commit into the chunk that is actually related to that API and the rest
-> > of the changes.
-> Could you please help to provide more details on how are you expecting the
-> split of the patches?
-> 
-> Do you expect to split V4L2 ctrls_init/s_ctrl/g_ctrl in one patch and the
-> introduction of all the capabilities into another patch? We are not finding
-> it feasible to split the patch that way as in ctrl_init we read the
-> capability from platform data to initialize the respective control.
+For historical reasons on SM8450 the second PCIe host (pcie1) also keeps
+a reference to the PIPE clock coming from the PHY. Commit e76862840660
+("arm64: dts: qcom: sm8450: correct pcie1 phy clocks inputs to gcc") has
+updated the PHY to use #clock-cells = <1>, making just <&pcie1_phy>
+clock specification invalid. Update corresponding clock entry in the
+PCIe1 host node.
 
-Please split all caps and all the structs that are not related to the
-V4L2 ctrls implementation. In this patch please keep only those defines,
-structs and fields that are required to implement V4L2 ctrl API.
+ /soc@0/pcie@1c08000: Failed to get clk index: 2 ret: -22
+ qcom-pcie 1c08000.pcie: Failed to get clocks
+ qcom-pcie 1c08000.pcie: probe with driver qcom-pcie failed with error -22
 
-> > 
-> >>  	iris_hfi_gen2_packet_session_property(inst,
-> >>  					      HFI_PROP_DEC_DEFAULT_HEADER,
-> >>  					      HFI_HOST_FLAGS_NONE,
-> > 
-> > 
+Fixes: e76862840660 ("arm64: dts: qcom: sm8450: correct pcie1 phy clocks inputs to gcc")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 9bafb3b350ff..38cb524cc568 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -1973,7 +1973,7 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+ 
+ 			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
+ 				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
+-				 <&pcie1_phy>,
++				 <&pcie1_phy QMP_PCIE_PIPE_CLK>,
+ 				 <&rpmhcc RPMH_CXO_CLK>,
+ 				 <&gcc GCC_PCIE_1_AUX_CLK>,
+ 				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
+
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20241006-fix-sm8450-pcie1-4be23e8bf156
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
 
