@@ -1,118 +1,130 @@
-Return-Path: <devicetree+bounces-108127-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108128-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D284991C92
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 06:39:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66EF9991CA9
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 07:32:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249041F21D60
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 04:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0C2211F21D4F
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 05:32:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA1FA156243;
-	Sun,  6 Oct 2024 04:39:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08C5A158A31;
+	Sun,  6 Oct 2024 05:31:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="o4/xUZQ/"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="UMMeRGF5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.208])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83DA57F6;
-	Sun,  6 Oct 2024 04:39:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.208
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2C434120B;
+	Sun,  6 Oct 2024 05:31:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728189547; cv=none; b=M2FYka1uNSNt+1/vT2g3CklsOm7Lt3/8Ldx3wS5/JSeNKRlmJLe/GwGDZIcd09shVVf2tJmUOdXFe2Hadel8FHh80dv6WvuzHjnSZ66OE/74sC4G+Mt3NoOHC17ut6P+krrjuhp18nFKDhmvOyQde4UDMw8GbI7ex2DMO5upFBY=
+	t=1728192714; cv=none; b=roGiY0QorPZVR9xKbZqpvTvFwj34dE0j/g4vdbh5OjG3G/f/x4dYHwP4oNdoSyiQ6TRLY0K3/UVYPv4zq2OkztkseHNGW1fSyK3APvlp0M9FcSihWtr7xQg6GbF1UCEE+Cn8dXLkpcQpJaAZdqdwWFB0J7sHYWJM/Li6vdXvPkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728189547; c=relaxed/simple;
-	bh=OgWcY174jMlqIgoQJR+RJ1sBLdOV/0eU2EwSmfEVl78=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IlUXcSocrx30L53+i+amBe2SkVQFCuZBUmiMZMtqPUlr+r1NoE7WB/2f0Z8XPI/yeRQ9G0GOkT807sgbGX3Dte2NzSet67JbvwsxCR6GVSMOJgdZa9M9x7r0l7rFiOyfhsPXjHmE0E0Fuy3ib47ujTRlHZDrCFfGY+P/nvI6ZeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=o4/xUZQ/; arc=none smtp.client-ip=192.19.144.208
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 6C13FC0003E0;
-	Sat,  5 Oct 2024 21:33:20 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 6C13FC0003E0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1728189200;
-	bh=OgWcY174jMlqIgoQJR+RJ1sBLdOV/0eU2EwSmfEVl78=;
-	h=From:To:Cc:Subject:Date:From;
-	b=o4/xUZQ/Ta5j3XqdyES9BBXAg2/4PPJY5+GjJ+mwDDoW9jO+JQg4oURrIOZvA39ZP
-	 A/zHT4BGTaWILF6v5qKS3fjCu/q6rTFEKlpnlv6HIHfjWwt7pmYCBRg3sAOTUWW68q
-	 v6SQVf6R3PNLonPS9PFOztyFl4xwvE5316Z64ccY=
-Received: from stbirv-lnx-1.igp.broadcom.net (stbirv-lnx-1.igp.broadcom.net [10.67.48.32])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 056FC18041CAC6;
-	Sat,  5 Oct 2024 21:33:20 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: linux-arm-kernel@lists.infread.org
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1728192714; c=relaxed/simple;
+	bh=NaeIIqZcYdXezy4Xv5IAocLm2iT8QvpFiFoXkNZMNDQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JJYmm+A9bVOYsak8qbrDyFRhUolBIt5FLZfdCSeyLPEb5RSo8obrQ4YJY/aQKqHplSJbWmAHyvh+FJEzmbkcfXw42yrb5LNsH2jA1SEWAunhR+jk0sXwRK97747fUzS561q7bDddq7lR0mYdQagijvRU4snjS9r4TjDk2yXJAWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=UMMeRGF5; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728192712; x=1759728712;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NaeIIqZcYdXezy4Xv5IAocLm2iT8QvpFiFoXkNZMNDQ=;
+  b=UMMeRGF5oLMWMOMB6dhPxq5RD05esWgS8d+eB/fsZf4WwN9RVFMFD1XT
+   HYsEcXVHQ6JQO2hrkEh0uYmZ8tLQffNdhvJ/sX5tk3tSvXkde50WhSvru
+   vzTWNihj6z3YYYXEcaXHyQDoquLf3uS5LQ/SJ7RT87xUekRx7OQeM6Un1
+   rCoPNEoaAjXf8x6jdEWR5NETBETnvMMl+Pw4cl/Dbrc9Mym9KvQga6bFV
+   7kv4EUcC0X5jH+vKW37HegedjQ7XfC2Afy2Pds2nxdY2UxZ3queGaDDDw
+   CtFq4J+vfOZaYgNSxwhMKfIzAeiX+LQEJtp30R7bM+I/Jzk9cufy1QX5N
+   Q==;
+X-CSE-ConnectionGUID: 5GDZbhbrQkeDENfCaCY0yA==
+X-CSE-MsgGUID: icSPb2gXQrW09bOlFRgeBQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11216"; a="38756202"
+X-IronPort-AV: E=Sophos;i="6.11,181,1725346800"; 
+   d="scan'208";a="38756202"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2024 22:31:52 -0700
+X-CSE-ConnectionGUID: iR1C34s6RkqZ1GwlHbd0Sw==
+X-CSE-MsgGUID: sUvdpoPwSd6hvwAfgSUNFQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,181,1725346800"; 
+   d="scan'208";a="75365820"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa006.jf.intel.com with ESMTP; 05 Oct 2024 22:31:47 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sxJrs-0003dU-34;
+	Sun, 06 Oct 2024 05:31:44 +0000
+Date: Sun, 6 Oct 2024 13:31:36 +0800
+From: kernel test robot <lkp@intel.com>
+To: Guillaume Stols <gstols@baylibre.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list),
-	arm-scmi@vger.kernel.org (open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
-	linux-arm-kernel@lists.infradead.org (moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
-	justin.chen@broadcom.com,
-	opendmb@gmail.com,
-	kapil.hali@broadcom.com,
-	bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: [PATCH] firmware: arm_scmi: Give SMC transport precedence over mailbox
-Date: Sat,  5 Oct 2024 21:33:17 -0700
-Message-Id: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.34.1
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, aardelean@baylibre.com,
+	dlechner@baylibre.com, Guillaume Stols <gstols@baylibre.com>
+Subject: Re: [PATCH v3 09/10] iio: adc: ad7606: Add iio-backend support
+Message-ID: <202410061307.IHo3Eizh-lkp@intel.com>
+References: <20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
 
-Broadcom STB platforms have for historical reasons included both
-"arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
-string.
+Hi Guillaume,
 
-After the commit cited in the Fixes tag and with a kernel
-configuration that enables both the SCMI and the Mailbox transports, we
-would probe the mailbox transport, but fail to complete since we would
-not have a mailbox driver available.
+kernel test robot noticed the following build warnings:
 
-By keeping the SMC transport objects linked first, we can let the
-platform driver, match the compatible string and probe successfully with
-no adverse effects on platforms using the mailbox transport.
+[auto build test WARNING on 35307f34d6fef8f9d41a1e8f4f532e4b0a7ee422]
 
-Fixes: b53515fa177c ("firmware: arm_scmi: Make MBOX transport a standalone driver")
-Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Change-Id: I8e348e3e0deabdc5c1d596929d7f9134793f346e
----
- drivers/firmware/arm_scmi/transports/Makefile | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Guillaume-Stols/iio-adc-ad7606-Fix-typo-in-the-driver-name/20241005-055256
+base:   35307f34d6fef8f9d41a1e8f4f532e4b0a7ee422
+patch link:    https://lore.kernel.org/r/20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82%40baylibre.com
+patch subject: [PATCH v3 09/10] iio: adc: ad7606: Add iio-backend support
+config: x86_64-randconfig-123-20241006 (https://download.01.org/0day-ci/archive/20241006/202410061307.IHo3Eizh-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241006/202410061307.IHo3Eizh-lkp@intel.com/reproduce)
 
-diff --git a/drivers/firmware/arm_scmi/transports/Makefile b/drivers/firmware/arm_scmi/transports/Makefile
-index 362a406f08e6..3ba3d3bee151 100644
---- a/drivers/firmware/arm_scmi/transports/Makefile
-+++ b/drivers/firmware/arm_scmi/transports/Makefile
-@@ -1,8 +1,10 @@
- # SPDX-License-Identifier: GPL-2.0-only
--scmi_transport_mailbox-objs := mailbox.o
--obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) += scmi_transport_mailbox.o
-+# Keep before scmi_transport_mailbox.o to allow precedence
-+# while matching the compatible.
- scmi_transport_smc-objs := smc.o
- obj-$(CONFIG_ARM_SCMI_TRANSPORT_SMC) += scmi_transport_smc.o
-+scmi_transport_mailbox-objs := mailbox.o
-+obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) += scmi_transport_mailbox.o
- scmi_transport_optee-objs := optee.o
- obj-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += scmi_transport_optee.o
- scmi_transport_virtio-objs := virtio.o
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410061307.IHo3Eizh-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/ad7606_par.c:89:29: sparse: sparse: symbol 'ad7606_bi_bops' was not declared. Should it be static?
+
+vim +/ad7606_bi_bops +89 drivers/iio/adc/ad7606_par.c
+
+    88	
+  > 89	const struct ad7606_bus_ops ad7606_bi_bops = {
+    90		.iio_backend_config = ad7606_bi_setup_iio_backend,
+    91		.update_scan_mode = ad7606_bi_update_scan_mode,
+    92	};
+    93	EXPORT_SYMBOL_NS_GPL(ad7606_bi_bops, IIO_AD7606);
+    94	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
