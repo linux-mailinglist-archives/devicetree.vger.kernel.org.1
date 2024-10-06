@@ -1,152 +1,134 @@
-Return-Path: <devicetree+bounces-108189-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108190-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1999991F91
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:11:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B771D991F95
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:16:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 57DC31F2166D
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 16:11:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5851EB2101D
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 16:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85AFC189B84;
-	Sun,  6 Oct 2024 16:11:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R584vS9y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 961ED1552E0;
+	Sun,  6 Oct 2024 16:16:14 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADD3187554;
-	Sun,  6 Oct 2024 16:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC30D1A716;
+	Sun,  6 Oct 2024 16:16:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728231114; cv=none; b=IWl3AF+NUJKoUtgDZM0QLfAWao4nblKQsyQO11tFxTb+K9TcjToG4o1vHRTQYyvv6Mzb9tXc2YV97Cye2mqP+1A8DJsD01HLmNgFoZQJKCnfZheq6qQ3N7Dn5IGDKclLxvgQEK+UxaQj93j3/HKWewfRpFtLAhVgs76hy835bMg=
+	t=1728231374; cv=none; b=tOg7b27e6aA0YGKmvFNDlzTO/FSbWDZZuMb/dhXhcZO9kT5xpcePdFOxMfnOiZ9uMEDWFDU7ssRDFIaP4zS7SOFE2CufoGB2FFarUus0IBGFItIhUhz2zLLl5F1Xh+29iC7+ZGZZcrs1+OkPN1QA5oNgKe8LLLiMV4SpY8V7WAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728231114; c=relaxed/simple;
-	bh=tDJ5s5zYFjkOd0VeumbJCL2tSq/9mRwCV6dnYOXYKzI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TRkZdaoli+hNwYOIHB39fyRUua6nFRW5ZaJhmp0dkTcqnFw67BDZnF4/goo/jM+lELZxIjdtDZKZDJpLf+TDH5GQBKLwhc55WtWNriEs4dH6Aj604p8Bn2VK16FrDRyA2q06pL5W4bBEWU0S4VdgZLcP2EbejDQY8Gr2A22u6vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R584vS9y; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e28ad6b7f1fso713444276.1;
-        Sun, 06 Oct 2024 09:11:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728231111; x=1728835911; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=MAYqCIiSv61sSYgvtWT29++OHzmZnVI7JlxP4WixgGE=;
-        b=R584vS9yiMsA2yooXYgto+mQ05K6NsPXv59ALMRi4AIDvt5yQ4eshKg04yTpOK3ofg
-         m9RLM/0+YBV/oI20f/lCgA7xM09DKtFbCwfPQUHFt+619vOfzoRStEuBrsyRIhufFnL9
-         mKzmrLcp2lX/LVZuuM2L6mGkm7TakhM1e50HlJrGygIw+QX7V+I921K095B0kIwxyUQ9
-         z0j6V2B4Cu5zsr+dxDlz+4EXc4bjSyRbzf3UmENjKY+HVLHoHDoUa1z2Cpwz6Htx50M/
-         qyXn8JnSST71ecBKOebv3hFWPssZ29qgmhcGmkIUprQl2yWoWsSeNcLFaIZ9Anjm7xc2
-         LKpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728231111; x=1728835911;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=MAYqCIiSv61sSYgvtWT29++OHzmZnVI7JlxP4WixgGE=;
-        b=WRBpRcrZj2YFUUvEo/xprdRa7HVv2acSljPzsRp9KCV8u6w8OUUp/XMomKlqeB2nn6
-         hsO4v9jt5MSXcUjnv5918v4HYV08BQIMOuzKNGmRrLdCmKvGzkwACtHvsS8cu0Dkoob4
-         wUKqtBTNgAT0DRO5Uz97l9exWfJCr39tFs+jnxoU9eVHivDbH610eQgLy6q5BcZ6saS5
-         dv9mZQLR1e+Zp8LopF1eSKNYaEzUsUAjDQaw9XAN3qQtoEOqycZJ18kbjWmNH+zYsati
-         4xXloBfLOpXPv7VqWPa8+VasfCoDKB68/SjN1Oec/HNjo6igq0JYbloZUxsni3YuDBlR
-         v/9g==
-X-Forwarded-Encrypted: i=1; AJvYcCUOnIC3x2QJDraxPfV9UpawZJWwg63Ltfyc/tAOTkSIZzrlf+uMzcvsBZP7K5znw/abxuvo1m+CT37assCOTdP+@vger.kernel.org, AJvYcCVtvxdcni7Xt/PN7ZY6UvD1gF/TIeDvKgr4DKMk0VmtQsVn1G07It50pYmYK5D8KAES5Kk2jpusZ+JRZwjC@vger.kernel.org, AJvYcCWhL7eMA+i02m9KPxVYXWL7jnIqPgRejOISBfEUXxGdsqtcWPh261CIwnH4dkq3eIaGHez/nSO7SQu1@vger.kernel.org, AJvYcCXuxsiYp2Qvib1J5P7jePwMqNgRNmta/PQEESSU78/6ulf8Bybhk8SfIqubMulP+NqHqKoICEWiFqRK@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFLrOhHrlUHGqPupe31kl/3LCWbTQwgxuc4kyDv8Ol3L2evYKv
-	OZGpgrdwlSEdRG6soATkn2Jfgv2iIV3nOiAG+C92fSTiXG3CI0QHw/5NEGq+p3goAL7QtrjIGCk
-	ryDvntaTlClDHhwUEVeHyW0ff5uY=
-X-Google-Smtp-Source: AGHT+IFqMHlb0b8SgKw7RwjBG7Z/IYs0/8p3F6LoeYW5kR2rfijp2j/qGjYCoWovPSzlMmk0//HTDX0lUYq3PNC/rQA=
-X-Received: by 2002:a05:6902:2b8f:b0:e20:16b9:ad68 with SMTP id
- 3f1490d57ef6-e2893951b87mr6248949276.45.1728231110621; Sun, 06 Oct 2024
- 09:11:50 -0700 (PDT)
+	s=arc-20240116; t=1728231374; c=relaxed/simple;
+	bh=EWSaAX9p9y8xz8bTqbnZbyO/TzqHqojOs5Qs6ahAuDI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GmZ5PlrU7+AuVihdTM3d9bDKj0iIwUZyZa1F57ZtAGzweZg74uuZnq0p89o/R9Zqc6aYJLWX3QErQbIBvS3z4jtvF5ptseOe+4OcYroENJibRTWyeF11MITKwBaIMW/ixA1xaXiw9jfzGKC2quPCAtwojmbYBjpcbB4R0DXB16A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1sxTvM-000000007X7-1hLS;
+	Sun, 06 Oct 2024 16:16:00 +0000
+Date: Sun, 6 Oct 2024 17:15:51 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Tobias Waldekranz <tobias@waldekranz.com>
+Cc: "Russell King (Oracle)" <linux@armlinux.org.uk>,
+	Marek =?iso-8859-1?Q?Beh=FAn?= <kabel@kernel.org>,
+	davem@davemloft.net, kuba@kernel.org, andrew@lunn.ch,
+	hkallweit1@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] net: phy: marvell10g: Support firmware
+ loading on 88X3310
+Message-ID: <ZwK3t_uEErLXlaQy@makrotopia.org>
+References: <20231214201442.660447-1-tobias@waldekranz.com>
+ <20231214201442.660447-2-tobias@waldekranz.com>
+ <20231219102200.2d07ff2f@dellmb>
+ <87sf3y7b1u.fsf@waldekranz.com>
+ <ZZPhiuyvEepIcbKm@shell.armlinux.org.uk>
+ <87mstn7ugr.fsf@waldekranz.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com> <20240911-xtheadvector-v10-7-8d3930091246@rivosinc.com>
-In-Reply-To: <20240911-xtheadvector-v10-7-8d3930091246@rivosinc.com>
-From: Andy Chiu <andybnac@gmail.com>
-Date: Mon, 7 Oct 2024 00:11:39 +0800
-Message-ID: <CAFTtA3O-sD-cJsHL2LgwryXwEnuEKvnP6QrTn7GMFYZmP=A3iA@mail.gmail.com>
-Subject: Re: [PATCH v10 07/14] riscv: csr: Add CSR encodings for CSR_VXRM/CSR_VXSAT
-To: Charlie Jenkins <charlie@rivosinc.com>
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	Samuel Holland <samuel.holland@sifive.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, 
-	Andy Chiu <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>, 
-	Andrew Jones <ajones@ventanamicro.com>, linux-riscv@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87mstn7ugr.fsf@waldekranz.com>
 
-Hi Charlie,
+Hi Tobias,
 
-Charlie Jenkins <charlie@rivosinc.com> =E6=96=BC 2024=E5=B9=B49=E6=9C=8812=
-=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=881:57=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> The VXRM vector csr for xtheadvector has an encoding of 0xa and VXSAT
-> has an encoding of 0x9.
->
-> Co-developed-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
-> ---
->  arch/riscv/include/asm/csr.h | 11 ++++++++---
->  1 file changed, 8 insertions(+), 3 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
-> index 3eeb07d73065..c0a60c4ed911 100644
-> --- a/arch/riscv/include/asm/csr.h
-> +++ b/arch/riscv/include/asm/csr.h
-> @@ -300,9 +300,14 @@
->  #define CSR_STIMECMP           0x14D
->  #define CSR_STIMECMPH          0x15D
->
-> -#define VCSR_VXRM_MASK                 3
-> -#define VCSR_VXRM_SHIFT                        1
-> -#define VCSR_VXSAT_MASK                        1
-> +/* xtheadvector symbolic CSR names */
-> +#define CSR_VXSAT              0x9
-> +#define CSR_VXRM               0xa
-> +
-> +/* xtheadvector CSR masks */
-> +#define CSR_VXRM_MASK          3
-> +#define CSR_VXRM_SHIFT         1
-> +#define CSR_VXSAT_MASK         1
+On Tue, Jan 02, 2024 at 02:09:24PM +0100, Tobias Waldekranz wrote:
+> On tis, jan 02, 2024 at 10:12, "Russell King (Oracle)" <linux@armlinux.org.uk> wrote:
+> > On Tue, Dec 19, 2023 at 11:15:41AM +0100, Tobias Waldekranz wrote:
+> >> On tis, dec 19, 2023 at 10:22, Marek Behún <kabel@kernel.org> wrote:
+> >> > On Thu, 14 Dec 2023 21:14:39 +0100
+> >> > Tobias Waldekranz <tobias@waldekranz.com> wrote:
+> >> >
+> >> >> +MODULE_FIRMWARE("mrvl/x3310fw.hdr");
+> >> >
+> >> > And do you have permission to publish this firmware into linux-firmware?
+> >> 
+> >> No, I do not.
+> >> 
+> >> > Because when we tried this with Marvell, their lawyer guy said we can't
+> >> > do that...
+> >> 
+> >> I don't even have good enough access to ask the question, much less get
+> >> rejected by Marvell :) I just used that path so that it would line up
+> >> with linux-firmware if Marvell was to publish it in the future.
+> >> 
+> >> Should MODULE_FIRMWARE be avoided for things that are not in
+> >> linux-firmware?
+> >
+> > Without the firmware being published, what use is having this code in
+> > mainline kernels?
+> 
+> Personally, I primarily want this merged so that future contributions to
+> the driver are easier to develop, since I'll be able test them on top of
+> a clean net-next base.
 
-nit: use VCSR_VX* instead of CSR_VX*, if you need to send the next
-revision. I believe these masks are for CSR_VCSR but not CSR_VX*. If
-you think CSR_VX* is a better naming then the previous patch should
-introduce it as CSR_VX* but not VCSR_VX*.
+I've been pointed to your series by Krzysztof Kozlowski who had reviewed
+the DT part of it. Are you still working on that or going to eventually
+re-submit it?
 
->
->  /* Supervisor-Level Window to Indirectly Accessed Registers (AIA) */
->  #define CSR_SISELECT           0x150
->
-> --
-> 2.45.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+I understand that the suggested LED support pre-dates commit
 
-Thanks,
-Andy
+7ae215ee7bb8 net: phy: add support for PHY LEDs polarity modes
+
+which would allow using generic properties 'active-low' and
+'inactive-high-impedance'. I assume that would be applicable to the LED
+patch which was part of this series as well?
+
+In that case, we would no longer need a vendor-specific property for that
+purpose. If the LEDs are active-low by default (or early boot firmware
+setting) and you would need a property for setting them to 'active-high'
+instead, I just suggested that in
+
+https://patchwork.kernel.org/project/netdevbpf/patch/e91ca84ac836fc40c94c52733f8fc607bcbed64c.1728145095.git.daniel@makrotopia.org/
+
+which is why I'm now contacting you, as I was a bit confused by Krzysztof's
+suggestion to take a look at marvell,marvell10g.yaml which would have been
+introduced by your series.
+
+Imho it would be better to use the (now existing) generic properties than
+resorting to a vendor-specific one.
+
+In every case, if you have a minute to look at commit 7ae215ee7bb8 and let
+us know whether that structure, with or without my suggested addition,
+would be suitable for your case as well, that would be nice.
+
+
+Thank you for your time and support!
+
+
+Daniel
 
