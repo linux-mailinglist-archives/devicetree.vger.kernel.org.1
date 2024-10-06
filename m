@@ -1,166 +1,139 @@
-Return-Path: <devicetree+bounces-108200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838B7992036
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:02:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDB46992059
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DD57DB220E6
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:02:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D2421C20D90
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 18:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D912189F32;
-	Sun,  6 Oct 2024 18:01:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F756155C8C;
+	Sun,  6 Oct 2024 18:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nqblB2C/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ev6zwM4x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C04E6189917
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 18:01:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E42320B;
+	Sun,  6 Oct 2024 18:21:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728237714; cv=none; b=ZkGBH0HfLapeOcIB7cbJxv0y4MdB7vNGLB7mmh/K2HjiLJzkkGIZu1uvoyXQ5ieEj9TA0IhkbGzVXbXRdkVmM5KpdU2V8svEowHIrsfd+lP36URl+U5J8m1VhdwVz5G7VPrVHa8DlCLG7DSI+rrCyBXBhoIvEVFD9EmCkhTwiQM=
+	t=1728238867; cv=none; b=mCUUvcDq6bbTqGBMgv+8xEt2bFZbZIh9gcfObXPjyzSmirJVFHX1fqIJTj8DL3TmNiphPT2KfVvb1NTTy0+hZ8oiJaWN0Gy3SdpmtIXNpMmuaEzJga8OIGd+9SBTc2qq/6TpySrhKS9sZESH/vPSLym0GBluPGAM+BmDe+1V4LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728237714; c=relaxed/simple;
-	bh=h/eHBMo75q4g8Vy5Dhgk5ZSSFphKBV3uac7pVYR9Tpg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t3Wzg8Irrs6Y6+IZdY0Ge2E/s0E224+onz/XbiqIRsa5c9j42YeB71ew96FLk1Q9sh0OdZSKUlptj0kF+Epb6z3B2hbhO71qFiDAbXi7edQXKHMnkv3zViQDIqDfsTailIhoYU5zJmVnOEdZmXlEK4roqpM17bdRdNDenD/moqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nqblB2C/; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71def715ebdso1244175b3a.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 11:01:52 -0700 (PDT)
+	s=arc-20240116; t=1728238867; c=relaxed/simple;
+	bh=vECLD/CXQIREz3jN3PkpOzpo7UsKkPVEAIX/Y6pK4QE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=HDWrWUzX5QL/eYLNvJr0Huw1tNANEZkKy+QhPAkWYolMMygHEj7lZbokVECu6j48nK5xi+F3dkn3v7n95uBqQnyeVSDHyx5naiAusuZJROP9tkCkkIOgnGrHFMyvVDou0qG6bWN4Rq+Tda8kGyu/2lxG3CsGOcRFECf0VshTvmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ev6zwM4x; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a993f6916daso163143366b.1;
+        Sun, 06 Oct 2024 11:21:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728237712; x=1728842512; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SaMUBLoBBR07C/bYoUpjG4R9HZWfImadGC0U2YnHoLI=;
-        b=nqblB2C/WZNS+I6IVKef1///tVEvG2r4YhbFp6j7fM3tHP7wxRku5up/WGks7Qy8EA
-         IyF+QDTB5Fuec8l5Ofu/0fbhxXjcHECVpLZYO7R8v7OEZ99s7RZSmKclUaEHYS9RSb+E
-         tZwywiJacFikcd3Gk4iIcgiiwSxjnDdlDUzvyurm/bhqtOisnVno6WHFyxePJYwLzTIw
-         IPIO2x7KQ2bRwwdFVxQdLQwwVp28/iXcouZxFhPtCA0ShlEYwopH/7uFBDjN7PCx0QFS
-         YAQkxnDKZWzWTQvnQu1wJ22ZFMGZ7N9/5ISVRe9hW+QgKV8A5SN2buReTUGXXQM1igqE
-         ihkw==
+        d=gmail.com; s=20230601; t=1728238864; x=1728843664; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PS4ett3l2EHxVZaMcuE7ULJZXssUAZ9snL0a9gceBMw=;
+        b=ev6zwM4xTOPKSdM/Xw219RxoRclkw4sNtiOX/dX1vcez25DlVW1OyFj5vOdB/UfVhP
+         6+6iJAe0//YWiKgvzEfbo/HTBNZecqhC94Lg8Vpz2dm33ZV5Y2Di7DMtTfFqRDl5FyU2
+         nn2xUBX9j9WALN6QD3GZquENtqelVYjNKHoEhsmE1k77jl/e9d/hZEgqi1FUvKXh3kgL
+         KG9IjjMUaH7qJRcwwNs2oIiTN6hPJ8Kt1eTCxhUhuJ6lobyL2mtOjskxgGeiA2oqT+UY
+         +wRGS1tq7RXjAev6gKwh6U5qtQdJjN8CJgUARrsVc4fLNfB9WQDdnumNctJtT+d62Lh+
+         N2ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728237712; x=1728842512;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SaMUBLoBBR07C/bYoUpjG4R9HZWfImadGC0U2YnHoLI=;
-        b=PJJMzhPfojecSVA0E/QXYaZ3HR8PUOz9/5hvfLuMpCEyAYPEISxDn9lKTdXWCXtp3S
-         1PtBH+jINBEgrqMxKOFI6zLRNHmwWG6Czjd9Y9xlN57kwVinIAc1Y3IeZJTR/4tcy0AM
-         qWg/KVqJ57MK0i2TM1WlmREU5TQljBYL97C4RK8QbaLxgdsOfxZF9WHfsDi7SWX9HoLM
-         gvwKefli92w264zltwpwfrOkN7xizmnO8KkSbW7i/eEeC9tbrXICqrmbvedtxsY+WPu0
-         BOC18crqQ8/p0m2iEREyqvRpD5kG2NgAJnQ7rQEr9QaZdrEtLWQCENTC5kLLS3t/Q32A
-         SAXg==
-X-Forwarded-Encrypted: i=1; AJvYcCWDllWT8AmBMCL6/jO6qmKkWFtVXCGmYlCRjW8Xk4nSz6zC/SteaBM+gygKns0Z7OZbvfZsKFsZ2G4K@vger.kernel.org
-X-Gm-Message-State: AOJu0YylbgfwU6oGV81sJv4Qn1FkrCYlnGLQQQvDEalWtX22MINbnb7R
-	QTMCAWNbrsduZGIjNnIhBKikzzQS1YUWh54I7lwAkvRJ9iVC0a6xKSygVUjHeQ==
-X-Google-Smtp-Source: AGHT+IFyQRwLChkdAtgok+XKIQIoLYCmRv24p2cIvqhwFQFSIZbUzdcjHt6G40jahaoV8Hwts212Rg==
-X-Received: by 2002:a05:6a20:438c:b0:1d6:b63c:53c4 with SMTP id adf61e73a8af0-1d6dfa1e5efmr14308957637.2.1728237711884;
-        Sun, 06 Oct 2024 11:01:51 -0700 (PDT)
-Received: from thinkpad ([220.158.156.57])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0d6642dsm3014782b3a.168.2024.10.06.11.01.48
+        d=1e100.net; s=20230601; t=1728238864; x=1728843664;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PS4ett3l2EHxVZaMcuE7ULJZXssUAZ9snL0a9gceBMw=;
+        b=v2wnWHfqkJxC/qPA+3wwufo4pxs7NHnOtq8y1VOjhPJwrWWPEIP050UBtzlC5zuMiH
+         uK2InlS7362aZFvJM58eh7/+aj8IGpdSwqLLjTNDsgBtP5nssYQO1mQTLrnr6AncyXD5
+         BqnrOxAZRtQu40osqpLto2opmZX9YVPt1NVjb7f1TmK78NxjaH5701DoSUjKmODE+igR
+         ltTeANadJKi/KMtWCHhKgENFZFQY/4Tyhc6vn3d2KDUKtnO08s7L3t8sfPPaj1aD4Kx0
+         fIKbP8nszwD5AEftVdob8ptxiaiyE6Vz1cO9o1Xe6jZ0XD6V2VzQ1fGT1aUVD34W9spm
+         /BjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU616YhJnuSlyCIw0pv7p0QyXOUB9YKpMNujbA6T8MVHLzGK5ZjaZMWBVLpUWTyMgF3IKjUR0g534rC@vger.kernel.org, AJvYcCXIeGF5lm8wh4oL2jP9wVezHqEDAUW3smntjAJZ8opoX3SkxRTaHgzTu/nMQZgy5p0ipLWDbZdyF50XdUJU@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/GBJZnIBCII4OFgV4wgubR6YmPsFnQkXGoMiy06aT2Hn4SFMu
+	VoZVOjEFsmYIPq4tRvrLwXSnMwmkb+tHQNh4XKnUTOBseUkY6tbp
+X-Google-Smtp-Source: AGHT+IGuSjKg3/X6gdYt9rPMCtuV/cAyywZeJU0HycE+dAIVBfs5TEzseaBOxUam0JjHnaS6J1WYEg==
+X-Received: by 2002:a17:907:3f89:b0:a99:4879:ec2d with SMTP id a640c23a62f3a-a994879ed0dmr326507866b.5.1728238863442;
+        Sun, 06 Oct 2024 11:21:03 -0700 (PDT)
+Received: from [127.0.1.1] ([109.126.148.51])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a992e5ba407sm294080866b.14.2024.10.06.11.20.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 11:01:51 -0700 (PDT)
-Date: Sun, 6 Oct 2024 23:31:46 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>, konradybcio@kernel.org,
-	krzk+dt@kernel.org, robh+dt@kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, conor+dt@kernel.org,
-	abel.vesa@linaro.org, srinivas.kandagatla@linaro.org
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for
- Windows
-Message-ID: <20241006180146.m6xvpwbvkiy7obpx@thinkpad>
-References: <20240911073337.90577-1-quic_sibis@quicinc.com>
- <20240911073337.90577-3-quic_sibis@quicinc.com>
- <pt4wtycddqhcvw2iblaojmzsdggmlafft4vu6lg5j2vstbhbqj@acenyi5k3yeq>
- <eqy4yicgeqlgaytgzybnitvbrdr7jmjjk5k2swmadad6scwk77@ubaf7a2kgmdm>
- <1BBC34CC-92D9-4F6E-8DFA-1F2DA36D545A@linaro.org>
- <20241001085105.iglzp3art5ysli2d@thinkpad>
- <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
+        Sun, 06 Oct 2024 11:21:02 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v6 0/3] Add Samsung S6E3HA8 panel driver
+Date: Sun, 06 Oct 2024 21:18:18 +0300
+Message-Id: <20241006-starqltechn_integration_upstream-v6-0-8336b9cd6c34@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b1d982c1-f800-97eb-1be3-e77e04a8e81d@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGvUAmcC/43O0QrCIBQG4FcJrzOcTre66j0iQt1xEzZXaqOIv
+ XunIIpu6vL/4Xz/uZEE0UMim8WNRJh88mPAoJYLYjsdWqC+wUw44yVTRUVT1vHUZ7BdOPiQoY0
+ 6483hfEw5gh6osbWqJTPcgSDIGJ2AmqiD7RAK577H8hjB+ctzd7fH3PmUx3h9vjGJR/tarH8vT
+ oIyCsIppTgrKm237aB9v7LjQB74VL7BdSH+AEsEecPBNdLKuqq+QfkBcvUHKBEsrGFQClBcuE9
+ wnuc72QlAbIcBAAA=
+To: Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>, 
+ Conor Dooley <conor.dooley@microchip.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728238859; l=1598;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=vECLD/CXQIREz3jN3PkpOzpo7UsKkPVEAIX/Y6pK4QE=;
+ b=v3siVd7HJ2mwX/KJp7hwJYmu8D3x2Q16Qtb0S+zlGwj+Wg5De9/4+V8oCWKSlYZcrnbMYvjOl
+ TIR38Ex7UrEARufeSN9SKYnXRUs4A5LwLtLzOUYyEn5Sut5/jPJ0Spp
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-On Sun, Oct 06, 2024 at 12:33:21AM +0530, Sibi Sankar wrote:
-> 
-> 
-> On 10/1/24 14:21, Manivannan Sadhasivam wrote:
-> > On Tue, Oct 01, 2024 at 09:56:30AM +0300, Dmitry Baryshkov wrote:
-> > > On October 1, 2024 5:42:35 AM GMT+03:00, Bjorn Andersson <andersson@kernel.org> wrote:
-> > > > On Wed, Sep 11, 2024 at 10:55:05AM GMT, Dmitry Baryshkov wrote:
-> > > > > On Wed, Sep 11, 2024 at 01:03:37PM GMT, Sibi Sankar wrote:
-> > > > [..]
-> > > > > > diff --git a/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts b/arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> > > > [..]
-> > > > > > +
-> > > > > > +&pcie5 {
-> > > > > > +	perst-gpios = <&tlmm 149 GPIO_ACTIVE_LOW>;
-> > > > > > +	wake-gpios = <&tlmm 151 GPIO_ACTIVE_LOW>;
-> > > > > > +
-> > > > > > +	vddpe-3v3-supply = <&vreg_wwan>;
-> > > > > 
-> > > > > Please use pwrseq instead.
-> > > > > 
-> > > > 
-> > > > What benefit is there to wrap a single 3.3V regulator in pwrseq driver?
-> > > 
-> > > First of all, is it really just a 3.3V? Second, is it actually powering up the host controller (as expressed in the device tree? Is it a power supply to the slot (in this case, I think, it should be expressed differently)? Or is it a power supply to the card itself?
-> > > 
-> > 
-> > Yeah, we should get into the details here. We were not paying attention till
-> > now, but with the advent of pwrseq, we should describe the power supply properly
-> > in DT.
-> > 
-> > Here I believe the supply is to the PCIe Mini Card connector where a modem is
-> > connected. In that case, 3.3v supply should be connected to 3.3Vaux of the
-> > connector and we should have a generic pwrseq driver for the mini cards.
-> > 
-> 
-> Hey Mani, Dmitry,
-> 
-> The schematics are identical to that of the X1E CRD with
-> the exception of the pcie daughter card having the rtl8125g
-> on it. Yes, the 3.3V supply is connected to the card as well.
-> 
+The s6e3ha8 is a 1440x2960 DPI AMOLED display panel from Samsung Mobile
+  Displays (SMD)
 
-Is this connected to the 3.3vaux of the card? Please specify the actual rail
-name as the 'PCI Express Mini Card Electromechanical Specification' specifies
-only 3.3Vaux and 1.5v supplies.
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+Changes in v6:
+- add new patch with mipi_dsi_compression_mode_multi function
+- Link to v5: https://lore.kernel.org/r/20240926-starqltechn_integration_upstream-v5-0-1cb0e43e623f@gmail.com
 
-> Doesn't this mean all other x1e boards out there needs to be
-> updated with pwrseq as well? Anway will get that addressed in
-> v3.
-> 
+Changes in v5:
+- Split patchset per subsystem
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
 
-pwrseq is the kernel driver abstraction, nothing to do with DT. But for making
-use of pwrseq, the supplies need to be described in the proper place. In this
-case most likely under a separate node of PCIe bridge. Then you'd need a
-separate pwrseq driver in kernel to parse the supply and take care of it.
+---
+Dzmitry Sankouski (3):
+      drm/mipi-dsi: add mipi_dsi_compression_mode_multi
+      dt-bindings: panel: add Samsung s6e3ha8
+      drm/panel: Add support for S6E3HA8 panel driver
 
-I'm currently writing a pwrseq driver for standard slots (x8 for X1E) and should
-be able to post it early next week. So you or someone could use it as a
-reference to add a new driver for m-pcie cards.
+ Documentation/devicetree/bindings/display/panel/samsung,s6e3ha8.yaml |  75 +++++++++++++++++++++
+ MAINTAINERS                                                          |   6 ++
+ drivers/gpu/drm/drm_mipi_dsi.c                                       |  16 +++++
+ drivers/gpu/drm/panel/Kconfig                                        |   7 ++
+ drivers/gpu/drm/panel/Makefile                                       |   1 +
+ drivers/gpu/drm/panel/panel-samsung-s6e3ha8.c                        | 342 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/drm/drm_mipi_dsi.h                                           |   2 +
+ 7 files changed, 449 insertions(+)
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
 
-If no one picks it up, I may just do it.
-
-- Mani
-
+Best regards,
 -- 
-மணிவண்ணன் சதாசிவம்
+Dzmitry Sankouski <dsankouski@gmail.com>
+
 
