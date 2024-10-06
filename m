@@ -1,60 +1,79 @@
-Return-Path: <devicetree+bounces-108115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 286F5991BD1
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 03:55:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF7BE991BE5
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 03:56:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EDBA1C21068
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 01:55:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 819BA283306
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 01:56:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912A1166F34;
-	Sun,  6 Oct 2024 01:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE22916190C;
+	Sun,  6 Oct 2024 01:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2b6zzNa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ANAu7fCF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66751166F07;
-	Sun,  6 Oct 2024 01:55:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A40DC171E7C;
+	Sun,  6 Oct 2024 01:55:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728179742; cv=none; b=F5NZJmqMhJQWd4Mk0IqQIZXBuSPpG9tOHYAI2Mu6dkFpRF6xY4QWxFlIqAVJfV7tVA5TcpPjEQDvpdbwAaZZ5qbrAD/Ty5CMtHN61f/anKKCPnle8rZCNW6ubthjPBz2rzbhjjrKx9qQ8/6dXQK3co+sqoJFhupTVqZRV78IWd8=
+	t=1728179748; cv=none; b=S4PHFAEefz0hTPKlWRH5F7sJAfsaeic4LuYhmw/bGxNdZkBdZ2o7w0xs0ElLZ0qi1zdgY2ZupyJztVSPKml8T5Ae3Y/sErC9pgTpGAN5ea5ULV3Mw5lYKy1y3xus9Q7kYDFGyjNuNah73hrxK4JgYnuUZiqfKwonP9ZnL7GipiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728179742; c=relaxed/simple;
-	bh=xwEAWlpJQ06UpjFLOHC5wx5+kqHkh2FvRb+0O28gq7E=;
+	s=arc-20240116; t=1728179748; c=relaxed/simple;
+	bh=rC+M5Q4mJ52FdeEm7n0DqxEJm1JtZU9xFaRkElGY0cc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jukch7Qyc43Rxo/E9y8+bXPE8wYR57EKLVYFCtJ+/xjcW8Ji59Oi2HpNkSUOfvVJWWo+HD6Lu+2trO7VXKrjcl/EXQS9sM1ZATtYUDbUavyT+7PJJr/h/lwR31b4U9tf1Rj2w5GT9y6KqT8+yE4HzpK9n3XnHc6lkasQjaBVi0o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2b6zzNa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56402C4CED3;
-	Sun,  6 Oct 2024 01:55:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=mHRG2b31dyvYGEHMjel1bH+kVQQm15GBq+Pjg+rzKIqD/VlcCCfyNCtMvRItm8/9ZjDiOYvei0DQOCONzaUqxzC6M8xFRLeuZf6S1LwCw2zSoufPutphwaDkjp/5dN5n+9zl+uQ3xxK5a8ZxqYL3pe5KjSu9smWinOn6HFKQrC0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ANAu7fCF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C38EC4CEC2;
+	Sun,  6 Oct 2024 01:55:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728179742;
-	bh=xwEAWlpJQ06UpjFLOHC5wx5+kqHkh2FvRb+0O28gq7E=;
+	s=k20201202; t=1728179748;
+	bh=rC+M5Q4mJ52FdeEm7n0DqxEJm1JtZU9xFaRkElGY0cc=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=h2b6zzNaJNuQVeaajKWxHee4F7nWe+ZBtklJPav/qfryJho0X1XkHF12eJZ3YfNDv
-	 F1CgooSnm6jf0YDiQep2VhTFW0h5xfjZ/AjW05De6jj5oR9jrUGG8b4df3MFN2JSkC
-	 QBb4VBXt6rFHd3YTXWMInzPCdLS1GiWcc+f1DRiGPCmGBzg0BaE3A1em+Alw2pDhpN
-	 dy/7quEyFFvkDYbbBgqockwEHWD7YVrGGHG+8EQOKmU4BNcqQRF7ACuF+JE35p4tnq
-	 f/xbmaKKvW+S60nzN1qOCc5lFV7JfWyqlONC5N/EbZv0MTN4CTuHroXcnPEM813KSc
-	 iEnwOvA8uUUvg==
+	b=ANAu7fCFnOLld8npK91JMiF0SSNILGzX7Zxq3t17I20gMXHlfLIAhNINRBVvQ+MFh
+	 wLrNy6x7BrJNiI0rDjIRCpBXFGLNJ+ZGLkE5gEKh7CSZd7NjXbkUOk4z34uP+DH4hR
+	 aIKX0fAbD2476S++uZJvu/P3+YutJuBIqWYihXM+tsAjjdBjNqc31cvaas2hZ8cY5l
+	 yMH+ywiAd5e6YRLZUDWyQf8MQX40fK3D9IvPcdpVlPMej83wmuQT/V3ayrRZWmyzoo
+	 T/xp1m3R6zLBTXdN+5tk8kvKHVzjHjoRMNFoY/P/dfJu72jb5EVvVmnWWhSgrxfSXo
+	 N759TeFLHt1pA==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Simon Horman <horms@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+To: Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] MAINTAINERS: Qualcomm SoC: Match reserved-memory bindings
-Date: Sat,  5 Oct 2024 20:55:34 -0500
-Message-ID: <172817973312.398361.10890974412973602658.b4-ty@kernel.org>
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Rob Clark <robdclark@gmail.com>,
+	Abhinav Kumar <quic_abhinavk@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Sean Paul <sean@poorly.run>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Simona Vetter <simona.vetter@ffwll.ch>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: linux-arm-msm@vger.kernel.org,
+	linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	Arnaud Vrac <avrac@freebox.fr>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Jeffrey Hugo <quic_jhugo@quicinc.com>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: (subset) [PATCH v7 0/6] HDMI TX support in msm8998
+Date: Sat,  5 Oct 2024 20:55:37 -0500
+Message-ID: <172817973327.398361.7245928166448591196.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240908-qcom-glob-v1-1-94a390f36744@kernel.org>
-References: <20240908-qcom-glob-v1-1-94a390f36744@kernel.org>
+In-Reply-To: <20240724-hdmi-tx-v7-0-e44a20553464@freebox.fr>
+References: <20240724-hdmi-tx-v7-0-e44a20553464@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,21 +84,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sun, 08 Sep 2024 21:14:14 +0100, Simon Horman wrote:
-> commit 8b90269ee6d7 ("MAINTAINERS: Split Qualcomm SoC and linux-arm-msm
-> entries") included an entry for .../bindings/reserved-memory/qcom.
-> However, it appears that this should have been a glob as although
-> there are files that start with that path, no file matches that exact
-> path.
+On Wed, 24 Jul 2024 17:01:33 +0200, Marc Gonzalez wrote:
+> DT bits required for HDMI TX support in qcom APQ8098 (MSM8998 cousin)
 > 
-> Address this by making the entry a glob.
-> 
-> [...]
 
 Applied, thanks!
 
-[1/1] MAINTAINERS: Qualcomm SoC: Match reserved-memory bindings
-      commit: 274e58cc226c54c849760d9a6ec7be23b221cb12
+[5/6] arm64: dts: qcom: msm8998: add HDMI GPIOs
+      commit: 1b97f00d1b11ed6e349816ba7e60fa76e477fcbb
+[6/6] arm64: dts: qcom: add HDMI nodes for msm8998
+      commit: 2150c87db80cf7eed3939f32cbb18393055c58ce
 
 Best regards,
 -- 
