@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-108114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97B23991BC7
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 03:55:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 286F5991BD1
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 03:55:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86A291C20E68
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 01:55:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EDBA1C21068
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 01:55:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5085912FB1B;
-	Sun,  6 Oct 2024 01:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912A1166F34;
+	Sun,  6 Oct 2024 01:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UGKu6XAW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h2b6zzNa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A31A31;
-	Sun,  6 Oct 2024 01:55:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66751166F07;
+	Sun,  6 Oct 2024 01:55:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728179741; cv=none; b=szASVu3MxpiJjukzLtzP5rQeL6VbSNVzd1+9TUEZhQst0Sl4XjZENQwBNFJGCcmL2/ScvxjMuAxxHrU6/K2DW1o1DpBwWGxw2f0KXqMGcDkcC1wz+NdSw8xib3BouyO7sbQ+A4f2ECEC2ZqEaK/H2VTKk7NrBjn5WSQ5YwxFxzo=
+	t=1728179742; cv=none; b=F5NZJmqMhJQWd4Mk0IqQIZXBuSPpG9tOHYAI2Mu6dkFpRF6xY4QWxFlIqAVJfV7tVA5TcpPjEQDvpdbwAaZZ5qbrAD/Ty5CMtHN61f/anKKCPnle8rZCNW6ubthjPBz2rzbhjjrKx9qQ8/6dXQK3co+sqoJFhupTVqZRV78IWd8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728179741; c=relaxed/simple;
-	bh=RWOCv59/jmqYqMEm9L4v3SqGjoHGtg6ZPwB9geWYaR0=;
+	s=arc-20240116; t=1728179742; c=relaxed/simple;
+	bh=xwEAWlpJQ06UpjFLOHC5wx5+kqHkh2FvRb+0O28gq7E=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kkPSeP+E0GseQZXkBgSCTkIRVtOdK2zn98ihNFPtmPvmOrb8NnJZnWC0gAgQk7i4RT1/zq9IQETa9YzKxY45M4YGzMzt+r8k4eUyJKMnM6lrPaRdj8wrNa7W3BvTJmkFTQ3ElJsKQFTL3Z8X4csKN7tu8mU4hV9NmGos/qgup+4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UGKu6XAW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7561BC4CEC2;
-	Sun,  6 Oct 2024 01:55:39 +0000 (UTC)
+	 MIME-Version:Content-Type; b=jukch7Qyc43Rxo/E9y8+bXPE8wYR57EKLVYFCtJ+/xjcW8Ji59Oi2HpNkSUOfvVJWWo+HD6Lu+2trO7VXKrjcl/EXQS9sM1ZATtYUDbUavyT+7PJJr/h/lwR31b4U9tf1Rj2w5GT9y6KqT8+yE4HzpK9n3XnHc6lkasQjaBVi0o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h2b6zzNa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56402C4CED3;
+	Sun,  6 Oct 2024 01:55:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728179740;
-	bh=RWOCv59/jmqYqMEm9L4v3SqGjoHGtg6ZPwB9geWYaR0=;
+	s=k20201202; t=1728179742;
+	bh=xwEAWlpJQ06UpjFLOHC5wx5+kqHkh2FvRb+0O28gq7E=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=UGKu6XAWHUyGDq9rdnKgYGfw4NFbGg+riDbD1agxOqhvW3grSwkIZLdDEGapsUY/j
-	 MIWb/hxVp9Hy0KiKSMufyJ0Fs1MFSPfIWZE9xUq1yi2DshBKVIB/kNQtqG7K1xlCck
-	 Ax1O/VyAYqmnyy0dOeehIGRf3+yZg/dr9hcAU1hpEOn2mwIMMx7pMeXXVswXaZZeGp
-	 A79jqZ53UfFFrJGVIbpoywbol1+AvU5RcNcYWy5qLjERiro8mSRrzTgKFoaKj8aZiA
-	 zkVqtA9pBYCu7yZMv1uMFr+A+97nW0NS4KZgISDHJHva7X7d1svpBk2jwVXNWwFkCu
-	 wFALGV3t1vTKA==
+	b=h2b6zzNaJNuQVeaajKWxHee4F7nWe+ZBtklJPav/qfryJho0X1XkHF12eJZ3YfNDv
+	 F1CgooSnm6jf0YDiQep2VhTFW0h5xfjZ/AjW05De6jj5oR9jrUGG8b4df3MFN2JSkC
+	 QBb4VBXt6rFHd3YTXWMInzPCdLS1GiWcc+f1DRiGPCmGBzg0BaE3A1em+Alw2pDhpN
+	 dy/7quEyFFvkDYbbBgqockwEHWD7YVrGGHG+8EQOKmU4BNcqQRF7ACuF+JE35p4tnq
+	 f/xbmaKKvW+S60nzN1qOCc5lFV7JfWyqlONC5N/EbZv0MTN4CTuHroXcnPEM813KSc
+	 iEnwOvA8uUUvg==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	Simon Horman <horms@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Komal Bajaj <quic_kbajaj@quicinc.com>,
-	cros-qcom-dts-watchers@chromium.org,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	ath11k@lists.infradead.org,
-	Kalle Valo <kvalo@kernel.org>
-Subject: Re: [PATCH 0/4] arm64: dts: qcom: qcs6490-rb3gen2: several small fixes
-Date: Sat,  5 Oct 2024 20:55:32 -0500
-Message-ID: <172817973328.398361.98827973777969222.b4-ty@kernel.org>
+	Rob Herring <robh@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH] MAINTAINERS: Qualcomm SoC: Match reserved-memory bindings
+Date: Sat,  5 Oct 2024 20:55:34 -0500
+Message-ID: <172817973312.398361.10890974412973602658.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
-References: <20240907-rb3g2-fixes-v1-0-eb9da98e9f80@linaro.org>
+In-Reply-To: <20240908-qcom-glob-v1-1-94a390f36744@kernel.org>
+References: <20240908-qcom-glob-v1-1-94a390f36744@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,24 +65,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Sat, 07 Sep 2024 15:51:23 +0300, Dmitry Baryshkov wrote:
-> - use modem.mbn instead of modem.mdt
-> - make GPU disabled by default
-> - specifiy ZAP blobs
-> - enable WiFi devices
+On Sun, 08 Sep 2024 21:14:14 +0100, Simon Horman wrote:
+> commit 8b90269ee6d7 ("MAINTAINERS: Split Qualcomm SoC and linux-arm-msm
+> entries") included an entry for .../bindings/reserved-memory/qcom.
+> However, it appears that this should have been a glob as although
+> there are files that start with that path, no file matches that exact
+> path.
 > 
+> Address this by making the entry a glob.
 > 
+> [...]
 
 Applied, thanks!
 
-[1/4] arm64: dts: qcom: qcs6390-rb3gen2: use modem.mbn for modem DSP
-      commit: 6317aad0e1525f3e3609d9a0fea762a37799943a
-[2/4] arm64: dts: qcom: sc7280: don't enable GPU on unsupported devices
-      commit: 94d5ffab9d5ebc9caeab310f9d2eb36a65d7d3a9
-[3/4] arm64: dts: qcom: qcm6490-idp: enable WiFi
-      commit: afa11181fa506709857ebbdd17b4d76f2587e802
-[4/4] arm64: dts: qcom: qcm6490-rb3gen2: enable WiFi
-      commit: 0f6c6ae2e9d1cfafe62fed9ca0a07d241d3d8b79
+[1/1] MAINTAINERS: Qualcomm SoC: Match reserved-memory bindings
+      commit: 274e58cc226c54c849760d9a6ec7be23b221cb12
 
 Best regards,
 -- 
