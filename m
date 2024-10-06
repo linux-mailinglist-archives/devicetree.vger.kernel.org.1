@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-108131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C82E6991D33
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 10:26:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E8B3991D41
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 10:31:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D47A1F21CAF
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 08:26:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 197D61F211D0
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 08:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5764D16FF5F;
-	Sun,  6 Oct 2024 08:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E28E16C451;
+	Sun,  6 Oct 2024 08:31:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AYuhNXmV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KIj4x5lK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FEF7166F32;
-	Sun,  6 Oct 2024 08:26:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF02023CB;
+	Sun,  6 Oct 2024 08:31:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728203190; cv=none; b=ovZn9b3fbDa3Pk84Z3VLbGWSz2EBo9CIXXxtACsKfPzBk50nit3hn1xMZUIKbEI6cxiKo082QKp8MksTN736ixkSWb0Gb2N9nlsnjDa+0GtoDZwqocuHi1ViyUlkgIx1cQCDlyGAfp7Ld/PpssAAJqERMT4NR8PTfoADbpxJFt4=
+	t=1728203492; cv=none; b=n1ZkWV1459d7HO6ue3Sh3eGEDbiIGJXMDOO4bL+OG8NUyS0TAuBbSuOQnbeEzCXfJM7GPL4mvZkGCaJFu6wdvRSoGRVL1V8RHBIMZud1vpsajR6r3/fnCjnyGlKXGQBsubCVnl8oSsU7uV5YULF44HIBWzcohgHcWgzxYapJFkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728203190; c=relaxed/simple;
-	bh=aW/wJuA+/hauwZDeSSXHf1c1ElWArOuA2ymihrjTdiM=;
+	s=arc-20240116; t=1728203492; c=relaxed/simple;
+	bh=ky4Cl0NYnrtNL83WodG+Q3JnUTShTWIMLDk1RoxZrhw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F6BDJ6OKLF8f0mHWAi6GcAi0KSojBkO9EGyM28dom550eEjZOCiZ7OSdORUrst4IVaGN7A5a68yLgeNp2JKuGruk7ohTEvNr0+tc3eDiLQBMoee5XdIN55FfY1SNEzTPsQaD/jyIbdzQfffbXoVUxr42s1hnlMEadocwoO84ZYE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AYuhNXmV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 24DDAC4CEC5;
-	Sun,  6 Oct 2024 08:26:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=SY7ksdTlKx6wgq7TF0E9TGOpNGmE2muoBUncKqFFi91JD8hFvvj09/MRuTijyH2asYSsqAN5BnQ9PPIHJ1yNzhTQKihZUZoNlARg6TZXZY3i1Avjy/YnzAe7YhHOy7KImqoh5t8A1UFzveIDm9AzYA2K0zhtML578SNfz0TU7j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KIj4x5lK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE895C4CEC5;
+	Sun,  6 Oct 2024 08:31:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728203189;
-	bh=aW/wJuA+/hauwZDeSSXHf1c1ElWArOuA2ymihrjTdiM=;
+	s=k20201202; t=1728203491;
+	bh=ky4Cl0NYnrtNL83WodG+Q3JnUTShTWIMLDk1RoxZrhw=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=AYuhNXmV35YWesmWLyEvoLaTZcJakohN2auElEDXVFxXfYfHiZY0xbQtYrOP4/e0x
-	 uAPIYo5Pt6/0k04dFubK5wlgWM4vYxEQUynzMJaqrm3YVAFa9r4214Fzxl/knDpeBo
-	 KUzV0olkXncEE59x6xCBhPT3XYlsdWIkuTaG+atBoJGF2sukgZv6qthCYX5IJxderE
-	 lDeSwId/oBXM7xwGMjDd5ytmUA9+DI1gnec2lRLRpTd1+Wg61W3pvz6N2Kz0/r1sn1
-	 GGQLox3+OOESCAc1HILU2+9dPFzF0klNDgTzPjhMKPZ3i8FKqv28wjLUXC2faUJVOY
-	 Q934erBb6Ymag==
-Message-ID: <d971e22d-8695-4739-8810-ea32c42bedbf@kernel.org>
-Date: Sun, 6 Oct 2024 10:26:24 +0200
+	b=KIj4x5lK6ihzkFctDXYiewps4lCsjAhMTGQ+NJ2E7+Pc0cFpP1eXEfeCHaxdXmWe5
+	 BAh9GXhuwH13eNOcb4r5ckOl9dCqcLwRGjk0ytRBBFsZ/vvdwBWeioJAVsODWVTJLl
+	 0hSZwMfya+XK4fyFea1HhOgy6KTBbJecfJI8ZBHcl8IRBSk4W/qx63AbCiMNmpbUr2
+	 SeLwRNWqSIUMCnr4pWd0l0Ry15uMDDGAaU3KOEQ4uDZ7nhCVAyKgQkWuljNiYj+GAy
+	 a3ZNPWpCFzVBkXxEBzPbAkQA387+tUA9Uf0JQ+lHgeePRkgtXwPV8q71dKU7MPb4Kc
+	 LItksIjPL0xRQ==
+Message-ID: <834100a0-ffc3-4206-9fc1-50f1dbd2d57f@kernel.org>
+Date: Sun, 6 Oct 2024 10:31:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sc7280: enable venus node
-To: Vedang Nagar <quic_vnagar@quicinc.com>,
- cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+Subject: Re: [PATCH V1 1/3] dt-bindings: ufs: qcom: Document ice configuration
+ table
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>,
+ manivannan.sadhasivam@linaro.org, alim.akhtar@samsung.com,
+ avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, James.Bottomley@HansenPartnership.com,
+ martin.petersen@oracle.com, agross@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ quic_narepall@quicinc.com, quic_nitirawa@quicinc.com
+References: <20241005064307.18972-1-quic_rdwivedi@quicinc.com>
+ <20241005064307.18972-2-quic_rdwivedi@quicinc.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,38 +108,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241004-venus_sc7280-v1-1-4d7d8fd7e95b@quicinc.com>
+In-Reply-To: <20241005064307.18972-2-quic_rdwivedi@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/10/2024 12:52, Vedang Nagar wrote:
-> Enable the venus node on Qualcomm sc7280. It was made disabled
-> earlier to avoid bootup crash, which is fixed now with [1].
+On 05/10/2024 08:43, Ram Kumar Dwivedi wrote:
+> There are three algorithms supported for inline crypto engine:
+> Floor based, Static and Instantaneous algorithm.
 > 
-> [1]
-> https://lore.kernel.org/linux-media/20231201-sc7280-venus-pas-v3-2-bc132dc5fc30@fairphone.com/
+> Document the compatible used for the algorithm configurations
+> for inline crypto engine found.
 > 
-> Signed-off-by: Vedang Nagar <quic_vnagar@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 2 --
->  1 file changed, 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> index 3d8410683402fd4c03c5c2951721938fff20fc77..59dafbeeab1dfd6e1b021335ba1b04767d6c24e5 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
-> @@ -4288,8 +4288,6 @@ venus: video-codec@aa00000 {
->  			iommus = <&apps_smmu 0x2180 0x20>;
->  			memory-region = <&video_mem>;
->  
-> -			status = "disabled";
+> Co-developed-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+> Signed-off-by: Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>
+> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
 
-That's just wrong. It's already enabled in other places which makes them
-redundant, so patch is incomplete.
+Three people developed the code, but none of them cared to test it? Or
+make it even slightly correct?
 
-But what is more important: this is just not correct, IMO. The node
-looks incomplete. You cannot enable incomplete nodes. Please carefully
-read how DTS files are being constructed/used.
+Sorry, this code is not ready for upstream. Please work internally on
+doing meaningful review and basic tests BEFORE posting.
 
 Best regards,
 Krzysztof
