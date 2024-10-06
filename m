@@ -1,254 +1,180 @@
-Return-Path: <devicetree+bounces-108149-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2C7991E0E
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 13:20:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA76991E21
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 13:33:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36337282425
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 11:20:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B51001F21A49
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 11:33:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D113C175D2C;
-	Sun,  6 Oct 2024 11:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF04F16D4E5;
+	Sun,  6 Oct 2024 11:33:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="KMPf2RQ2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B1HDQKCE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f66.google.com (mail-ed1-f66.google.com [209.85.208.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B69A29
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 11:20:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CFD1749A;
+	Sun,  6 Oct 2024 11:33:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728213639; cv=none; b=HitVNlrjeI24Mm5nkIPIvIZAOHoXZxjatGm8wL6QE2czebbSutA4ierupIf7YjeyLZX/RKyc5mDCczSd9kkh+XdAIvhDkMUEH0KAFO61TdJNSC7S3ObLUzKYpRY52OVN/uQaDzkpSiA7xMRaPwrkoKgs4raR0127Ij5a9kbomck=
+	t=1728214389; cv=none; b=BpU4BLjYFesQZb39agYM6TBxwpR4PIUXTtsvAe4QAu4EXiCS6OGm6SXwVDyVntjR2igbLBvRgfiyilg2jMzbYNxANSh5CzxL7ta7H8sasuqnfVE1rgNqqV07M6eGsiyqh9Jm5iEurB0qGpA4DsFKnrFlNuU55qjc+qyDnzu8HlQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728213639; c=relaxed/simple;
-	bh=xwtqRkymQbWLyrHFQs3l8k1xM6HJQbYROF9P9jVE/4Q=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dOqsvua/I9K4kPMtiufduxj2pny5jJJYBmX0d+gp3vvDaKi4+lz0hoWP7qsxcxtjMqWDUCOIrJozlWm2xbBG76aV+AcZT/zlyXcljTiQMU0DXEQyhB8zz5EDajgmyqWjz6a3NMMLmJFwFy+yBQTq/LxDLZuZ1K7YMlyv54lhGqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=KMPf2RQ2; arc=none smtp.client-ip=209.85.208.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f66.google.com with SMTP id 4fb4d7f45d1cf-5c42f406e29so4641164a12.2
-        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 04:20:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1728213636; x=1728818436; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=rPsiLERRYU7D4j4sUXncuZrtdOCgoc8Hb9DOFm6I+ts=;
-        b=KMPf2RQ2S80PWikuJAszy5ChAGaZ3wfgUaxRHVPphN2a4+mzYYDhJyskVxY63NEli+
-         fKc+45p+rrDk3Uj2IVirwYWG3HB0VYaB5ez10VsEfKW0CH/D9FqenB63qpYmHPC9p7X8
-         q7S+Ok+nPWKcklc+PRAmch99W4iIskS/24qg4OIDxK9+7A0zH8lnTLH/mDf62amT/5bm
-         nxQnC3xStf3uZwvd2urCAGgWZGNSSOfu1RzOOaZ1jNVCRvhhsFIOKfzdQNEq4K2syw7R
-         zKQ8WuSpdgSRSwdwkgtDDp37upC4bsrdSNh9m4niu/+3j6Yyc3oqRP8ZgEOcDTrDiWd7
-         WExw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728213636; x=1728818436;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rPsiLERRYU7D4j4sUXncuZrtdOCgoc8Hb9DOFm6I+ts=;
-        b=COrGVHfdyncCdztvPPfT+7hV14ugRvdT3tfRAqpHvbXIpCP2N6/U94lPbW1eJizScp
-         JAvb5g7JvyZHbUmugkIE9Dm13tauSMyMRdr7b73iV61V7G0aq/NxjDLJ0QaNo8HI9Yoy
-         R1Jkm5m8od+2+8xQtIhHqVd4pZJ6CK24kjEgpqE0pPXkepMWuyjq7RHC/kIhVfrhrYUB
-         1H9zF5i/zYhnALi0OOxDYz04Bkep2wQ00sEj/Y3sc7odh82L+Jen3enzrrFQ8vMZsU+l
-         CLFl0oNYB6d+cOvQ2Mx+opJAkeyVtwpG1MzAlAlSpyLo4HTeL6u2KOb4XODLfGLUUZ/q
-         Uq+g==
-X-Forwarded-Encrypted: i=1; AJvYcCVb//dhfoLiODmwXaqQyJ2w44v65UjC2qHv7FlLRpfP+sRPfYH5EiNt2OG5uYCXvBFf7jzKlYHZbbqk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGg/F1ecAPG0q/90sjhGQsvSX5U9xMR+kn8KEl2XTHuZDQhUKE
-	K7U/xHfauBXdUpd01EsAMbrZuN0wnvIaQpzYo4mPyM7R+EQN+O3UGuFDMQo66wc=
-X-Google-Smtp-Source: AGHT+IG48id+lRY4xtL1ujqx4VpcR8QxySGV9q44wlS56hapCTBDQPNEacp1RsUNT7MPHUN2ohWifQ==
-X-Received: by 2002:a17:907:7f89:b0:a99:435c:89f2 with SMTP id a640c23a62f3a-a99435c8ce0mr357354766b.63.1728213635990;
-        Sun, 06 Oct 2024 04:20:35 -0700 (PDT)
-Received: from localhost (host-79-32-222-228.retail.telecomitalia.it. [79.32.222.228])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a993d92ed5dsm185689766b.63.2024.10.06.04.20.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 04:20:35 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Sun, 6 Oct 2024 13:20:51 +0200
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org, netdev@vger.kernel.org,
-	linux-pci@vger.kernel.org, linux-arch@vger.kernel.org,
-	Lee Jones <lee@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Stefan Wahren <wahrenst@gmx.net>, Lizhi Hou <lizhi.hou@amd.com>
-Subject: Re: [PATCH 03/11] PCI: of_property: Sanitize 32 bit PCI address
- parsed from DT
-Message-ID: <ZwJyk9XouLfd24VG@apocalypse>
-References: <ZvZVPA6ov5XgScpz@apocalypse>
- <20240928201717.GA99402@bhelgaas>
+	s=arc-20240116; t=1728214389; c=relaxed/simple;
+	bh=ZICSkUBYeMZu29N/modjDAZ4GFu4V0bbMg9/g8AetzM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lk8ZrXHT25wGKC0em66RoIJXe+Q0tHuy1u9uR2Av6cC6j6hbkQe/fntgJQKATGuP/9ndzfoUN3DrBLyYBQJfOnHeVJdCB26IXkWlPa7id70rV42/+nrOPHv8kjxPU0tunrD9B9qAkPWALawA/yTSoyY5DTWeE3vqf/CzlBeWHgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B1HDQKCE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61DFDC4CEC5;
+	Sun,  6 Oct 2024 11:33:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728214389;
+	bh=ZICSkUBYeMZu29N/modjDAZ4GFu4V0bbMg9/g8AetzM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=B1HDQKCEYBdm1jb77/l6hRmJwxRrVwpL0njdi9h07MiW02Utrlqf0lwtBM4iEZ8cA
+	 tikEeoE03+PUxo6l/QqNxLqhrvQelaPo9G2YqQSqwJCFjAQNDLus6RiGHdFUB3dByL
+	 F+LOwKyidNxzAZjo8v3gmGRekYp9FSat7gK5zb0uLXgiEpwLYhvV+ozHg7CM6MoJOw
+	 DL0Ib4GCSX1x+3mKHp/3pjra3s1zUdB0ziLUDSUu/UkTIbMPuZTE2LGGCwtHD5ELMW
+	 3QLRvyVr9q5aoYLvG3HB+b8SAeeYYqYf/WLzy9hdA1eGiMnefeLWxHde//Ik81hWvo
+	 IEZyNxYeNq9DA==
+Message-ID: <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+Date: Sun, 6 Oct 2024 13:33:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240928201717.GA99402@bhelgaas>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+To: Sherry Sun <sherry.sun@nxp.com>,
+ Catalin Popescu <catalin.popescu@leica-geosystems.com>,
+ Amitkumar Karwar <amitkumar.karwar@nxp.com>,
+ Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+ "marcel@holtmann.org" <marcel@holtmann.org>,
+ "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+ "bsp-development.geo@leica-geosystems.com"
+ <bsp-development.geo@leica-geosystems.com>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Bjorn,
-
-On 15:17 Sat 28 Sep     , Bjorn Helgaas wrote:
-...
-> From your earlier email
-> (https://lore.kernel.org/r/Zszcps6bnCcdFa54@apocalypse):
+On 06/10/2024 10:49, Sherry Sun wrote:
 > 
-> > Without this patch the range translation chain is broken, like this:
 > 
-> > pcie@120000: <0x2000000 0x00 0x00    0x1f 0x00                0x00 0xfffffffc>;
-> > ~~~ chain breaks here ~~~
-> > pci@0      : <0x82000000 0x1f 0x00   0x82000000 0x1f 0x00     0x00 0x600000>;
-> > dev@0,0    : <0x01 0x00 0x00         0x82010000 0x1f 0x00     0x00 0x400000>;
-> > rp1@0      : <0xc0 0x40000000        0x01 0x00 0x00           0x00 0x400000>;
+>> -----Original Message-----
+>> From: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+>> Sent: Friday, October 4, 2024 7:36 PM
+>> To: Amitkumar Karwar <amitkumar.karwar@nxp.com>; Neeraj Sanjay Kale
+>> <neeraj.sanjaykale@nxp.com>; marcel@holtmann.org;
+>> luiz.dentz@gmail.com; robh@kernel.org; krzk+dt@kernel.org;
+>> conor+dt@kernel.org; p.zabel@pengutronix.de
+>> Cc: linux-bluetooth@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; m.felsch@pengutronix.de; bsp-
+>> development.geo@leica-geosystems.com; Catalin Popescu
+>> <catalin.popescu@leica-geosystems.com>
+>> Subject: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for supply
+>> and reset
+>>
+>> Add support for chip power supply and chip reset/powerdown.
+>>
+>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+>> ---
+>>  .../bindings/net/bluetooth/nxp,88w8987-bt.yaml        | 11 +++++++++++
+>>  1 file changed, 11 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-
+>> bt.yaml b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-
+>> bt.yaml
+>> index 37a65badb448..8520b3812bd2 100644
+>> --- a/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-
+>> bt.yaml
+>> +++ b/Documentation/devicetree/bindings/net/bluetooth/nxp,88w8987-
+>> bt.yaml
+>> @@ -34,6 +34,14 @@ properties:
+>>    firmware-name:
+>>      maxItems: 1
+>>
+>> +  vcc-supply:
+>> +    description:
+>> +      phandle of the regulator that provides the supply voltage.
+>> +
+>> +  reset-gpios:
+>> +    description:
+>> +      Chip powerdown/reset signal (PDn).
+>> +
 > 
-> The cover letter said "RP1 is an MFD chipset that acts as a
-> south-bridge PCIe endpoint .. the RP1 as an endpoint itself is
-> discoverable via usual PCI enumeration".
+> Hi Catalin,
 > 
-> I assume pcie@120000 is the PCI host bridge and is already in the
-> original DT describing the platform.  I assume pci@0 is a Root Port
-> and dev@0,0 is the RP1 Endpoint, and the existing code already adds
-> them as they are enumerated when pci_bus_add_device() calls
-> of_pci_make_dev_node(), and I think this series adds the rp1@0
-> description.
+> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means that both wifi and BT controller will be powered on and off at the same time.
+> Taking the M.2 NXP WIFI/BT module as an example, pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+> It is not clear to me what exactly pins for vcc-supply and reset-gpios you describing here. Can you help understand the corresponding pins on M.2 interface as an example? Thanks.
 
-Correct.
+Please wrap your replies.
 
-> 
-> And the "ranges" properties are built when of_pci_make_dev_node()
-> eventually calls of_pci_prop_ranges().  With reference to sec 2.2.1.1
-> of https://www.devicetree.org/open-firmware/bindings/pci/pci2_1.pdf
-> and
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#ranges,
-> I *think* your example says:
-> 
-> pcie@120000 has:
->   child phys.hi	      0x02000000    n=0 p=0 t=0 ss=10b
->   child phys.mid,lo   0x00000000_00000000
->   parent phys.hi,lo   0x0000001f_00000000
->   length hi,lo        0x00000000_fffffffc
-> 
-> which would make it a bridge where the child (PCI) address space is
-> relocatable non-prefetchable 32-bit memory space at
-> 0x00000000-0xfffffffc, and the corresponding parent address space is
-> 0x1f_00000000-0x1f_fffffffc.  That means the host bridge applies an
-> address translation of "child_addr = parent_addr - 0x1f_00000000".
-> 
-> pci@0 has:
->   child phys.hi	      0x82000000    n=1 p=0 t=0 ss=10b
->   child phys.mid,lo   0x0000001f_00000000
->   parent phys.hi      0x82000000    n=1 p=0 t=0 ss=10b
->   parent phys.mid,lo  0x0000001f_00000000
->   length hi,lo        0x00000000_00600000
-> 
-> which would make it a PCI-to-PCI bridge (I assume a PCIe Root Port),
-> where the child (secondary bus) address space is the non-relocatable
-> non-prefetchable 32-bit memory space 0x1f_00000000-0x1f_005fffff and
-> the parent (primary bus) address space is also non-relocatable
-> non-prefetchable 32-bit memory space at 0x1f_00000000-0x1f_005fffff.
-> 
-> This looks wrong to me because the pci@0 parent address space
-> (0x1f_00000000-0x1f_005fffff) should be inside the pcie@120000 child
-> address space (0x00000000-0xfffffffc), but it's not.
+It seems you need power sequencing just like Bartosz did for Qualcomm WCN.
 
-Exactly, that example refers to the 'uncorrected' case, i.e. without the
-patch applied.
 
-> 
-> IIUC, this patch clears the upper 32 bits in the pci@0 parent address
-> space.  That would make things work correctly in this case because
-> that happens to be the exact translation of pcie@120000, so it results
-> in pci@0 parent address space of 0x00000000-0x005fffff.
+Best regards,
+Krzysztof
 
-Right. I think we sould split it into two issues:
-
-[1] RP1 acknowledges a 32 bit BAR address from its config space while the
-device must be accessed using a 64 bit address (that is cpu address
-0x1f_00000000), which sounds strange to me but I guess that is how
-the hw interconnect has been designed, so we need to cope with it.
-
-[2] I still think that the of_pci_set_address() function should be amended
-to avoid generating invalid 64 address when 32 bit flag is set.
-
-As you noted, fixing [2] will incidentally also let [1] work: I think
-we can try to solve [1] the proper way and maybe defer [2] for a separate
-patch.
-To solve [1] I've dropped this patch and tried to solve it from devicetree,
-modifying the following mapping:
-
-pcie@120000: <0x3000000 0x1f 0x00    0x1f 0x00                0x00 0xfffffffc>;
-
-so we now have a 1:1 64 bit mapping from 0x1f_00000000 to 0x1f_00000000.
-I thought it would result in something like this:
-
-pcie@120000: <0x3000000 0x1f 0x00    0x1f 0x00                0x00 0xfffffffc>;
-pci@0      : <0x82000000 0x1f 0x00   0x82000000 0x1f 0x00     0x00 0x600000>;
-dev@0,0    : <0x01 0x00 0x00         0x82010000 0x1f 0x00     0x00 0x400000>;
-rp1@0      : <0xc0 0x40000000        0x01 0x00 0x00           0x00 0x400000>;
-
-but it fails instead (err: "can't assign; no space") in pci_assign_resource()
-function trying to match the size using pci_clip_resource_to_region(). It turned
-out that the clipping is done against 32 bit memory region 'pci_32_bit',and
-this is failing because the original region addresses to be clipped wxxiereas 64
-bit wide. The 'culprit' seems to be the function devm_of_pci_get_host_bridge_resources()
-dropping IORESOURCE_MEM_64 on any memory resource, which seems to be a change
-somewhat specific to a RK3399 case (see commit 3bd6b8271ee66), but I'm not sure
-whether it can be considered generic.
-
-So, I'm actually at an empasse here.
-
-Also, while taking a look at the resulting devicetree, I'm a bit confused by the
-fact that the parent address generated by of_pci_prop_ranges() for the pci@0,0
-bridge seems to be taken from the parent address of the pcie@120000 node. Shouldn't
-it be taken from the child address of pcie@120000, instead?
-
-> 
-> But I don't think it works in general because there's no requirement
-> that the host bridge address translation be that simple.  For example,
-> if we have two host bridges, and we want each to have 2GB of 32-bit
-> PCI address space starting at 0x0, it might look like this:
-> 
->   0x00000002_00000000 -> PCI 0x00000000 (subtract 0x00000002_00000000)
->   0x00000002_80000000 -> PCI 0x00000000 (subtract 0x00000002_80000000)
-> 
-> In this case simply ignoring the high 32 bits of the CPU address isn't
-> the correct translation for the second host bridge.  I think we should
-> look at each host bridge's "ranges", find the difference between its
-> parent and child addresses, and apply the same difference to
-> everything below that bridge.
-
-Not sure I've got this scenario straight: can you please provide the topology
-and the bit setting (32/64 bit) for those ranges? Also, is this scenario coming
-from a real use case or is it hypothetical?
-
-Many thanks,
-Andrea
-
-...
 
