@@ -1,251 +1,154 @@
-Return-Path: <devicetree+bounces-108219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D449920E9
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 21:50:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8606C9920F6
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 21:52:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD873B20A30
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 19:50:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0633C1F21713
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 19:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAFD218A937;
-	Sun,  6 Oct 2024 19:50:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91EB218BBAB;
+	Sun,  6 Oct 2024 19:51:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="U5JbwyWP";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="8Pp7Br4c"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jGQlmBjy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3C3218A6A9;
-	Sun,  6 Oct 2024 19:50:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A673F18A6C1
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 19:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728244244; cv=none; b=hTGbM2Th02TQnADmORdVS5h/ZXewoOkvP33U8hbTbfjIk5AwM4IvC/xg9gW0e4tdN0v9yexpoafbgMuxZRsCN+uk/Cb60dJQY6lVdOs1cwNdGaMsnJwQX1EHKoglvs/y3FfsaHPwwR0ah+5s9zwpM5yrqDH8aq8QGCPt0KJUT6I=
+	t=1728244313; cv=none; b=DnuCehg1u7Zj7pDbFh3Vm9/ViijgMbHdGAFA0bS9O3MptzlQpkmYRV6uwsYhPkG5p74uBTo/ic+RIlk6KWkbDzbS5vO9L/ipt5cZoIH70ug7pTFMaYu3rXSy3ceugpje9xlGaHf/L3Se5GoH19Gpej7qJG0eNlvxzXIXUwbT00I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728244244; c=relaxed/simple;
-	bh=uy7X34Ztrc+dmUdMVDxVXnaBQo3HkOdL4XMvahW+JcI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=eQsvvHau+gHn+e09ERRHUHefjiC7tJ1GebOFbCGxnHMvwUXhWdvII0IAgnrNM0Qph4N6VYpLqRAJ9/qn9Dl5WzHlbLmjTjnI/Wk5jDk2uePcBGPqo4y964YpLlWrNnl/qIOTDXX2gZmimo5jB8U97Wl3R5CDkLGOC65LuTC5Ldc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=U5JbwyWP; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=8Pp7Br4c; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1728244239;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Nc/JbJH2I7A6byNnWnWc+/cvpnXUco5JrWvK2DyOxAM=;
-	b=U5JbwyWPpHNhe0OrPl+S8xv3KngZeKkol+Rjb46t2GP6SNe1lhfVv9iEEoSsLfBCpMktP3
-	iPXyIgtklCji08tXYWqSOr2tvpP8rZkCLjZ1yw3hjhKnk09X2LwnLqpt81Na1H4xwX3COb
-	JJEfHTfOcYye6b39irxgjwCkfVMH0KKS2WhkW8cOeAy29OMCE9Pz7gljemKOhK+yQY1trt
-	mMuoTpdlIhe9jIYyjQcEOMyT8aFQ6UjrRl7wHp8zlrBgmPR56pg9hjBmN+4yumbt2b4M1x
-	z/OBysomx69XjtNf+slmHBTbRcydjBQOdPdHtr/S8T9XJFOiXh3d3ErpN2yccw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1728244239;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Nc/JbJH2I7A6byNnWnWc+/cvpnXUco5JrWvK2DyOxAM=;
-	b=8Pp7Br4c+zF6PO/aPXwo1ag1XXNlz+hY8H5FUiFi8ej6AB1gFrnOCxrga7xdjCAm7jyWts
-	LGbDbycVRcYdj8Dg==
-To: Inochi Amaoto <inochiama@gmail.com>, Chen Wang
- <unicorn_wang@outlook.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Paul
- Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>, Peter Zijlstra <peterz@infradead.org>,
- Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>, Lad
- Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Hal Feng
- <hal.feng@starfivetech.com>, Heikki Krogerus
- <heikki.krogerus@linux.intel.com>, Geert Uytterhoeven
- <geert+renesas@glider.be>
-Cc: Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@gmail.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-In-Reply-To: <20241004080557.2262872-3-inochiama@gmail.com>
-References: <20241004080557.2262872-1-inochiama@gmail.com>
- <20241004080557.2262872-3-inochiama@gmail.com>
-Date: Sun, 06 Oct 2024 21:50:39 +0200
-Message-ID: <87jzelui28.ffs@tglx>
+	s=arc-20240116; t=1728244313; c=relaxed/simple;
+	bh=9lt1no/KUIGnHTDCEfU0YumPhaO03NFlOojFAlgorYg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cAaiR/YniOY+24rBq55sjas/sGXP3OC4Qna1o+RhJy0sE1c5kBc5c0FWRnrvkQl8qh8fiiZHLrRdrK+oKj1Cced9rSu09sLapvgNmchivQ1ivCFQ1u4KHcM1hO+r54Iwv1UBxVrRKuZTZw5407nt2fRbYZTQYXvi1UpACQc3CaY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jGQlmBjy; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fac5eb10ceso34125991fa.1
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 12:51:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728244309; x=1728849109; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=HLQ0qGbobuBRSeV4tlw8iWIHrFfzRjusLkYkkaznzmM=;
+        b=jGQlmBjyO5RKptN4wC0u3UlLJoZJjv6qEHiAI3X/2cjtfmlfHwlMX8OehMolMT2Ugr
+         u5Ni3zqWbRxguR5oNb+DcJhlMikRNGKu7rnx5cyG3O6kAlHqwLbM+M1ivLYIQoZDO08N
+         NJW53HxBbbT2AJxaVf1+AtOnYWUecgmGW/OR4Zi4d6bSMOPtE7aiU6wIsepk4L6JZDxX
+         lib3sGxjRqR1CRXMnp8TCEw08p1xsXHCO8upmtzfJLeIOvGhaEIrQqNkjcyUB6CMifaE
+         d2qqhxS7gYu+OkN5UNCRpkFS0HavP228pqdfv5VfoIGB3SbMyLJwj9HVlc/KTQhQaCZV
+         gs8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728244309; x=1728849109;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HLQ0qGbobuBRSeV4tlw8iWIHrFfzRjusLkYkkaznzmM=;
+        b=wKwYus5YJpC0ljmFDWRz7X3PcGe7rxFDfGmySdK5V/EKQ8CJmQMz2nCr+ul61JIfgF
+         PrAUm1VNjF6Erc3QWVGyl0yY3jWs8fDk+t407rb8ky9WHvVCChexq9rHX1ipiSR4DbAK
+         1jqJcC2M12nClOdJGSLJmhwV5/kT+NoCnmTQyazRg+hqCIgmwuTeL6zfIDOsGix2SuZK
+         NGWjhNwcFtOoHro9RBihQA+MKr1b9L9ucYjHIEF5jJ7FPmfJU/Unh/Lw7hIf/p1I072l
+         vIs0p7X+8d/zttOPaPYj/V4bkb/ToIgFKYXyAqQ2OlSVIuV0muD/Ko4fVZA+rI69cVeW
+         o1QQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVicDsRd2ZzN9osjtjN72CbzLz5E1hXZ+X11N16KsQS6cxzvW9myfs5fPDL9q81e0gnS+4+oUA2HQet@vger.kernel.org
+X-Gm-Message-State: AOJu0YyibcyaWQuzHMBnQylYA8h8AwBFDlfiZGaZhQep4wEFnE81tA7x
+	CNElRmHtl0otArn6T882G0Vhb8Ojs4TQ573HtL8e0wnbSaDsXC1GQJ/yZtRMPzU=
+X-Google-Smtp-Source: AGHT+IGRatu8NXdtFSTYD4sGTrAK8KQ3y0hxb5hgGzJcApZ29zymfe86p3XYxT0wL94dtWg73UlkWQ==
+X-Received: by 2002:a05:651c:b2c:b0:2ef:2c40:dd67 with SMTP id 38308e7fff4ca-2faf3914675mr32011581fa.3.1728244308751;
+        Sun, 06 Oct 2024 12:51:48 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2faf9b329dbsm5920091fa.105.2024.10.06.12.51.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2024 12:51:47 -0700 (PDT)
+Date: Sun, 6 Oct 2024 22:51:44 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, konradybcio@kernel.org, 
+	andersson@kernel.org, simona@ffwll.ch, abel.vesa@linaro.org, robdclark@gmail.com, 
+	quic_abhinavk@quicinc.com, sean@poorly.run, marijn.suijten@somainline.org, 
+	airlied@gmail.com, daniel@ffwll.ch, maarten.lankhorst@linux.intel.com, 
+	mripard@kernel.org, tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, quic_khsieh@quicinc.com, konrad.dybcio@linaro.org, 
+	quic_parellan@quicinc.com, quic_bjorande@quicinc.com, linux-arm-msm@vger.kernel.org, 
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	freedreno@lists.freedesktop.org, devicetree@vger.kernel.org, quic_riteshk@quicinc.com, 
+	quic_vproddut@quicinc.com
+Subject: Re: [PATCH v4 5/5] drm/msm/dp: Add DisplayPort controller for SA8775P
+Message-ID: <wdslr77zwyyyesf47qmem3wmextrjfh5do4ckrk6vvzeqwi5gu@x3sxgiusspqp>
+References: <20241004103046.22209-1-quic_mukhopad@quicinc.com>
+ <20241004103046.22209-6-quic_mukhopad@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241004103046.22209-6-quic_mukhopad@quicinc.com>
 
-On Fri, Oct 04 2024 at 16:05, Inochi Amaoto wrote:
+On Fri, Oct 04, 2024 at 04:00:46PM GMT, Soutrik Mukhopadhyay wrote:
+> The Qualcomm SA8775P platform comes with 2 DisplayPort controllers
+> for each mdss, having different base offsets than the previous
+> SoCs. The support for all 4 DPTX have been added here, and
+> validation of only MDSS0 DPTX0 and DPTX1 have been conducted.
+> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+> ---
+> v2: No change
+> 
+> v3: Fixed review comments from Konrad and Bjorn
+> 	-Added all the necessary DPTX controllers for this platform.
+> 
+> v4: Updated commit message
+> 
+> ---
+>  drivers/gpu/drm/msm/dp/dp_display.c | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index e1228fb093ee..2195779584dc 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -118,6 +118,14 @@ struct msm_dp_desc {
+>  	bool wide_bus_supported;
+>  };
+>  
+> +static const struct msm_dp_desc sa8775p_dp_descs[] = {
+> +	{ .io_start = 0xaf54000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+> +	{ .io_start = 0xaf5c000, .id = MSM_DP_CONTROLLER_1, .wide_bus_supported = true },
+> +	{ .io_start = 0x22154000, .id = MSM_DP_CONTROLLER_2, .wide_bus_supported = true },
+> +	{ .io_start = 0x2215c000, .id = MSM_DP_CONTROLLER_3, .wide_bus_supported = true },
 
-> +#define pr_fmt(fmt) "thead-c900-aclint-sswi: " fmt
-> +#include <linux/acpi.h>
+Please take a look at other device descriptions in the file, note the
+difference and fix your DP description accordingly.
 
-What is this header used for?
-
-> +static void thead_aclint_sswi_ipi_clear(void)
-> +{
-> +	unsigned int cpu = smp_processor_id();
-> +	struct aclint_sswi_cpu_config *config = per_cpu_ptr(&sswi_cpus, cpu);
-
-That's an unnecessary indirection.
-
-       *config = __this_cpu_ptr(&sswi_cpus);
-
-is what you want here.
-
-> +	writel_relaxed(0x0, config->reg + config->offset);
-> +}
-
-...
-
-> +static int aclint_sswi_parse_irq(struct fwnode_handle *fwnode,
-> +				 void __iomem *reg)
-
-Please avoid line breaks and use up to 100 characters per line.
-
-> +{
-> +	struct of_phandle_args parent;
-> +	unsigned long hartid;
-> +	u32 contexts, i;
-> +	int rc, cpu;
-> +	struct aclint_sswi_cpu_config *config;
-
-https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#variable-declarations
-
+> +	{}
+> +};
 > +
-> +	contexts = of_irq_count(to_of_node(fwnode));
-> +	if (WARN_ON(!(contexts))) {
+>  static const struct msm_dp_desc sc7180_dp_descs[] = {
+>  	{ .io_start = 0x0ae90000, .id = MSM_DP_CONTROLLER_0, .wide_bus_supported = true },
+>  	{}
+> @@ -162,6 +170,7 @@ static const struct msm_dp_desc x1e80100_dp_descs[] = {
+>  };
+>  
+>  static const struct of_device_id dp_dt_match[] = {
+> +	{ .compatible = "qcom,sa8775p-dp", .data = &sa8775p_dp_descs },
+>  	{ .compatible = "qcom,sc7180-dp", .data = &sc7180_dp_descs },
+>  	{ .compatible = "qcom,sc7280-dp", .data = &sc7280_dp_descs },
+>  	{ .compatible = "qcom,sc7280-edp", .data = &sc7280_dp_descs },
+> -- 
+> 2.17.1
+> 
 
-That WARN_ON() is pointless. The call chain is known and the pr_err() is
-sufficient.
-
-> +		pr_err("%pfwP: no ACLINT SSWI context available\n", fwnode);
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < contexts; i++) {
-> +		rc = of_irq_parse_one(to_of_node(fwnode), i, &parent);
-> +		if (rc)
-> +			return rc;
-> +
-> +		rc = riscv_of_parent_hartid(parent.np, &hartid);
-> +		if (rc)
-> +			return rc;
-> +
-> +		if (parent.args[0] != RV_IRQ_SOFT)
-> +			return -ENOTSUPP;
-> +
-> +		cpu = riscv_hartid_to_cpuid(hartid);
-> +		config = per_cpu_ptr(&sswi_cpus, cpu);
-> +
-> +		config->offset = i * ACLINT_xSWI_REGISTER_SIZE;
-> +		config->reg = reg;
-
-Why do you need config->reg and config->offset? All call sites access
-the register via:
-
-    config->reg + config->offset
-
-So you can spare the exercise of adding the offset in the hotpath by
-adding it at setup time, no?
-
-
-> +	}
-> +
-> +	pr_info("%pfwP: register %u CPU\n", fwnode, contexts);
-
-  ...CPU%s\n", fwnode, contexts, str_plural(contexts));
-
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init aclint_sswi_probe(struct fwnode_handle *fwnode)
-> +{
-> +	void __iomem *reg;
-> +	struct irq_domain *domain;
-> +	int virq, rc;
-
-See above.
-
-> +	if (!is_of_node(fwnode))
-> +		return -EINVAL;
-> +
-> +	reg = of_iomap(to_of_node(fwnode), 0);
-> +	if (!reg)
-> +		return -ENOMEM;
-> +
-> +	/* Parse SSWI setting */
-> +	rc = aclint_sswi_parse_irq(fwnode, reg);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	/* If mulitple SSWI devices are present, do not register irq again */
-> +	if (sswi_ipi_virq)
-> +		return 0;
-> +
-> +	/* Find and create irq domain */
-
-Which domain is created here?
-
-> +	domain = irq_find_matching_fwnode(riscv_get_intc_hwnode(), DOMAIN_BUS_ANY);
-> +	if (!domain) {
-> +		pr_err("%pfwP: Failed to find INTC domain\n", fwnode);
-> +		return -ENOENT;
-> +	}
-> +
-> +	sswi_ipi_virq = irq_create_mapping(domain, RV_IRQ_SOFT);
-> +	if (!sswi_ipi_virq) {
-> +		pr_err("unable to create ACLINT SSWI IRQ mapping\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	/* Register SSWI irq and handler */
-> +	virq = ipi_mux_create(BITS_PER_BYTE, thead_aclint_sswi_ipi_send);
-> +	if (virq <= 0) {
-> +		pr_err("unable to create muxed IPIs\n");
-> +		irq_dispose_mapping(sswi_ipi_virq);
-> +		return virq < 0 ? virq : -ENOMEM;
-> +	}
-> +
-> +	irq_set_chained_handler(sswi_ipi_virq, thead_aclint_sswi_ipi_handle);
-> +
-> +	cpuhp_setup_state(CPUHP_AP_IRQ_THEAD_ACLINT_SSWI_STARTING,
-> +			  "irqchip/thead-aclint-sswi:starting",
-> +			  aclint_sswi_ipi_starting_cpu, NULL);
-
-The startup callback enables the per CPU interrupt. When a CPU is
-offlined then the per CPU interrupt stays enabled because the teardown
-callback is NULL. I'm not convinced that this is a good idea.
-
-> +
-> +	riscv_ipi_set_virq_range(virq, BITS_PER_BYTE);
-> +
-> +	/* Announce that SSWI is providing IPIs */
-> +	pr_info("providing IPIs using THEAD ACLINT SSWI\n");
-> +
-> +	return 0;
-> +}
-> +
-> +static int __init aclint_sswi_early_probe(struct device_node *node,
-> +					  struct device_node *parent)
-> +{
-> +	return aclint_sswi_probe(&node->fwnode);
-> +}
-
-What's the point of this indirection?
-
-> +
-
-Pointless newline.
-
-> +IRQCHIP_DECLARE(thead_aclint_sswi, "thead,c900-aclint-sswi", aclint_sswi_early_probe);
-
-Thanks,
-
-        tglx
+-- 
+With best wishes
+Dmitry
 
