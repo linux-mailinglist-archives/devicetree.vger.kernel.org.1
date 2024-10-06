@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-108234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB30992143
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 22:43:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D541A992146
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 22:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A761F21036
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:43:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 04E5E1C20A6F
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 20:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D113B18BB91;
-	Sun,  6 Oct 2024 20:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F44C18B473;
+	Sun,  6 Oct 2024 20:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=me.com header.i=@me.com header.b="wxJ9gfMK"
+	dkim=pass (2048-bit key) header.d=me.com header.i=@me.com header.b="J1tEoALs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from st43p00im-ztdg10063201.me.com (st43p00im-ztdg10063201.me.com [17.58.63.182])
+Received: from st43p00im-ztbu10073701.me.com (st43p00im-ztbu10073701.me.com [17.58.63.183])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E21C18BB8F
-	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 20:43:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.63.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC49D18A6C3
+	for <devicetree@vger.kernel.org>; Sun,  6 Oct 2024 20:43:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=17.58.63.183
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728247405; cv=none; b=IitIXEgSuKBHasEedo2eO2s6Gpc8jX2CiJqIDqUwRXW+S0zAjyuC3L87AhnhG/iuxKCSmvP751waW3WRE9yW98BQnabyai5LuSCImwGVMCT/9h+VJ7bB32CfcPVD/rupCctIGaTCckop0d1k6bR8q06Z78FgJpL+gzmgdQE2PJ4=
+	t=1728247413; cv=none; b=pAP8RlE/a/C5OXrARR4wQOrlSD/BT23E+vl/vr89je58W6mCWw6Uxc9d5vpIPENVwiC/tpPQ/iNNAOqIWYxwuW5QTV/NyKgqA2CsL21gHEulKSbpQ751cEMeakOze3dCrGC92YAotn72vxpwBXmbfBfHT42zgVJgmiQI+/6Mnls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728247405; c=relaxed/simple;
-	bh=2TdK4+ZA8bL15614fvrfm3sRznxUHiTTHVB2TQD4tiE=;
+	s=arc-20240116; t=1728247413; c=relaxed/simple;
+	bh=EI/3UdI8IR/fXqZ1OHE2zTuzdpyENKebHFscrx4Uqmo=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=moWau1sWfvamqkJgSbiffZUgwd17zBhhVloZzUezZICaZRhXEY3KcuRB6CAkP5EhsDwJiBrTkUWLIIH3nwJROWiUlI3YI1C/5CSniKlLcRQ02/+Z6F6dI/6736f12ARepq8SPon9FrdN+wNA/hbdjfp+rvYiRPhAWtE09d09Aeo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=me.com; spf=pass smtp.mailfrom=me.com; dkim=pass (2048-bit key) header.d=me.com header.i=@me.com header.b=wxJ9gfMK; arc=none smtp.client-ip=17.58.63.182
+	 In-Reply-To:To:Cc; b=AnOxl/Q+MxWUw6bTj0M7y0z7s+RBzsHgAH7jjXuNEFRpaAVKR1EHyC/pyg1+gKnSuXGDfmhtbk8ZiM/5kmb23ACcgKEu1KV1jgE9tzARoupjLweU56iUFw/vChQH//aheni/X8XH8BETHxK5vgkUaJGLzcjyc8oKwTaV7dhJgPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=me.com; spf=pass smtp.mailfrom=me.com; dkim=pass (2048-bit key) header.d=me.com header.i=@me.com header.b=J1tEoALs; arc=none smtp.client-ip=17.58.63.183
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=me.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=me.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=me.com; s=1a1hai;
-	t=1728247403; bh=osjS0aKc7wwnlQfLLzTAWdC8plQ2BpZU14HisP5sgHw=;
+	t=1728247410; bh=xvq7xi7e69Ri9g5ozfmwagjAfSogeiQRw985VAu4la8=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To;
-	b=wxJ9gfMK1ApLOxEaGNiMe6M5v4BxcBsGt1H8n2mA0/3rTILo/WlrF7n0qwhGm445X
-	 UTIFWUTaJkY4p5oqJE/2dKorqsTRZBxLpIHoSj+snpPGM2mprRvTLKKqRgDh1oABCg
-	 V97uT4cyUa9sJFnAodamv023QDKkayBqE8qzPEXkN+rBVPyOzUeVq4ZN7zranZOM1n
-	 g8ZBl3jyN/ilRR4wNfR1T43mfkuRrTSy4IdXo8P5p+aTaI/uv8NhBEkHrIEhN1P3r3
-	 KROUG/OXF0iF2U1XEWCSA11JkOdWBpD7fBS3KHN2gXEyp1G551IwqbpgSs6gXtlIh3
-	 1aw3gWUGDFj5w==
+	b=J1tEoALshDlqIHnbuzklg7BNWt/GurAKESHaED9kpND6j1W+u24PcpuTNnsa64C+8
+	 KADL0cFQBiZoFM+ZHMQKNqkn+49M03WPgbfMBxNYt/CLdagT2cAfXw0VevRRtHEK5F
+	 moudiHk4nhEti6nR+Y0A8qM8KhBHhhYzgQrmpUqYmgdqP2rJ+5AHfRltz0Z+WwGIhD
+	 P/yAEg0uVZQMUdkQgJtKOaTm3IX3MeL2Vt+M/+7O9DCQmT0RpxuuC36YL4XSMU+dYc
+	 e9cN9ZSYWWJypikzsg48kKQZvzeYeJCSsLdoo4hN1sqODAN7FasN1cOGBaRWQxd6b5
+	 1fA/Vwy9Wg5dQ==
 Received: from localhost (st43p00im-dlb-asmtp-mailmevip.me.com [17.42.251.41])
-	by st43p00im-ztdg10063201.me.com (Postfix) with ESMTPSA id CEE4B98013C;
-	Sun,  6 Oct 2024 20:43:21 +0000 (UTC)
+	by st43p00im-ztbu10073701.me.com (Postfix) with ESMTPSA id 6D4541C021F;
+	Sun,  6 Oct 2024 20:43:27 +0000 (UTC)
 From: Alain Volmat <avolmat@me.com>
-Date: Sun, 06 Oct 2024 20:42:49 +0000
-Subject: [PATCH v2 1/3] dt-bindings: gpu: mali-utgard: Add st,stih410-mali
- compatible
+Date: Sun, 06 Oct 2024 20:42:50 +0000
+Subject: [PATCH v2 2/3] ARM: dts: st: add node for the MALI gpu on
+ stih410.dtsi
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -55,7 +55,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241006-sti-gpu-v2-1-c6bb408d6903@me.com>
+Message-Id: <20241006-sti-gpu-v2-2-c6bb408d6903@me.com>
 References: <20241006-sti-gpu-v2-0-c6bb408d6903@me.com>
 In-Reply-To: <20241006-sti-gpu-v2-0-c6bb408d6903@me.com>
 To: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
@@ -68,36 +68,68 @@ Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
  Alain Volmat <avolmat@me.com>
 X-Mailer: b4 0.14.2
-X-Proofpoint-ORIG-GUID: zF7jydl3KZFwRplK61WTEFAS_J9CCllf
-X-Proofpoint-GUID: zF7jydl3KZFwRplK61WTEFAS_J9CCllf
+X-Proofpoint-GUID: McR6wj_dioSVIM3FiabDJEyMI6kGf5og
+X-Proofpoint-ORIG-GUID: McR6wj_dioSVIM3FiabDJEyMI6kGf5og
 X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
+ engine=ICAP:2.0.293,Aquarius:18.0.1051,Hydra:6.0.680,FMLib:17.12.62.30
  definitions=2024-10-06_19,2024-10-04_01,2024-09-30_01
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 mlxscore=0 clxscore=1015
- malwarescore=0 phishscore=0 suspectscore=0 mlxlogscore=716 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 bulkscore=0 mlxscore=0 spamscore=0
+ suspectscore=0 malwarescore=0 phishscore=0 clxscore=1015 adultscore=0
+ mlxlogscore=588 classifier=spam adjust=0 reason=mlx scancount=1
  engine=8.19.0-2308100000 definitions=main-2410060149
 X-Apple-Remote-Links: v=1;h=KCk=;charset=UTF-8
 
-ST STiH410 SoC has a Mali400. Add a compatible for it.
+Add the entry for the GPU (Mali400) on the stih410.dtsi
 
 Signed-off-by: Alain Volmat <avolmat@me.com>
 ---
- Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm/boot/dts/st/stih410.dtsi | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-index abd4aa335fbcebafc9164bd4963f9db60f0450c4..9318817ea1357d4d66db951513d9bc033b222190 100644
---- a/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml
-@@ -33,6 +33,7 @@ properties:
-               - rockchip,rk3188-mali
-               - rockchip,rk3228-mali
-               - samsung,exynos4210-mali
-+              - st,stih410-mali
-               - stericsson,db8500-mali
-               - xlnx,zynqmp-mali
-           - const: arm,mali-400
+diff --git a/arch/arm/boot/dts/st/stih410.dtsi b/arch/arm/boot/dts/st/stih410.dtsi
+index a69231854f783b1b9fd685ba2822eb406e0ffdf5..d56343f44fda4e9e1de2e5efc86e2d984bad14b4 100644
+--- a/arch/arm/boot/dts/st/stih410.dtsi
++++ b/arch/arm/boot/dts/st/stih410.dtsi
+@@ -285,5 +285,39 @@ cec@94a087c {
+ 			resets = <&softreset STIH407_LPM_SOFTRESET>;
+ 			hdmi-phandle = <&sti_hdmi>;
+ 		};
++
++		gpu: gpu@9f00000 {
++			compatible = "st,stih410-mali", "arm,mali-400";
++			reg = <0x9f00000 0x10000>;
++			/* LIMA driver needs 2 clocks, use the same for both */
++			clocks = <&clk_s_c0_flexgen CLK_ICN_GPU>,
++				 <&clk_s_c0_flexgen CLK_ICN_GPU>;
++			clock-names = "bus", "core";
++			assigned-clocks = <&clk_s_c0_flexgen CLK_ICN_GPU>;
++			assigned-clock-rates = <400000000>;
++			resets = <&softreset STIH407_GPU_SOFTRESET>;
++			interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 45 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "gp",
++					  "gpmmu",
++					  "pp0",
++					  "ppmmu0",
++					  "pp1",
++					  "ppmmu1",
++					  "pp2",
++					  "ppmmu2",
++					  "pp3",
++					  "ppmmu3";
++
++			status = "disabled";
++		};
+ 	};
+ };
 
 -- 
 2.43.0
