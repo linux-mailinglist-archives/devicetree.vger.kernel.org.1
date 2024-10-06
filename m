@@ -1,105 +1,168 @@
-Return-Path: <devicetree+bounces-108145-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108146-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09F09991DCA
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 12:27:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 309EA991DFC
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 12:56:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9629AB21227
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 10:27:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE9291F21B4E
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 10:56:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B68FD172BD8;
-	Sun,  6 Oct 2024 10:27:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CD11741D0;
+	Sun,  6 Oct 2024 10:56:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="RJalEN65"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LLzspN92"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mxout2.routing.net (mxout2.routing.net [134.0.28.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02765172BA8;
-	Sun,  6 Oct 2024 10:27:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAF62158543;
+	Sun,  6 Oct 2024 10:56:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728210468; cv=none; b=hfbpj46+SBk11Q7mqtLUwmTEGR7VPfn/PxC0BX24HPUjXVIkDvSwBEljrMreSxkO5u2/qGHPm6wyPkxahL/J48ka8CCpcg4pwIINuJEHfQT7p3FazHLWLjp3wPRsPCNV8qSZ/v/0cxEMrLeQqXSW78jvJRc9Rzezc4Ehdu+XYro=
+	t=1728212212; cv=none; b=uGQl5FUmTdoW1vPQiDCA33UkLyfGA1diKY5Y+IM2ERisFwh/+e3IzeqBCLCZO6/oxllkeTbXkZLr1E2feqYmjySs6+AJtlc9GChg/159iIHpgj8wffSO3m+msHRnOTH4Uj/M0p8Xuua526hM6EaGNe3gydtUl+p6tE+iHtrvAd4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728210468; c=relaxed/simple;
-	bh=eQFpN46gknokSvXJCeeAKjHyK2HGsUQ4DriLMaIawxg=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WxDVhtM5y8TBpgsSXqk/Id41IaycuxduDLsBVpllA/JEJ0Je+EK/BeAMcOBO9zc+mhCi8H7zOzqd8HPAdi50ovpH2mRq7Dfjxys638kBbu5bjY4fmEE08L4KdzEz04Hna3CFEGOqGOc1ZnmhkOBrCaOt0Rw8w+NG7yT1+0hP6mE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=RJalEN65; arc=none smtp.client-ip=134.0.28.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
-Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
-	by mxout2.routing.net (Postfix) with ESMTP id 0C2F65FAA5;
-	Sun,  6 Oct 2024 10:27:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
-	s=20200217; t=1728210465;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=0ZFTz9Uswka8q9Gcum+i2AIGps8wlGwvgIKYo93JZBg=;
-	b=RJalEN65+aEx8kvgpCDLrjaQWtGIQz4xyAlqf2XJ2JO0J3tBZWF2HQMIovPJKyG7gEQ+Yc
-	R2aaqnCKCv+10VpXUgfrF5nA9kSNLNUL0ECHe9cwfjvmKJdr9MyGH2wELA+3uKiYp8iqIL
-	TIdxc7yaHCXe6TrCGjnLf029t/Fdbgw=
-Received: from frank-u24.. (fttx-pool-217.61.153.101.bambit.de [217.61.153.101])
-	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 084E5804DD;
-	Sun,  6 Oct 2024 10:27:43 +0000 (UTC)
-From: Frank Wunderlich <linux@fw-web.de>
-To: Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <frank-w@public-files.de>,
-	Leilk Liu <leilk.liu@mediatek.com>,
-	linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	daniel@makrotopia.org,
-	john@phrozen.org,
-	eladwf@gmail.com,
-	ansuelsmth@gmail.com
-Subject: [PATCH v1] dt-bindings: spi: add compatibles for mt7988
-Date: Sun,  6 Oct 2024 12:27:39 +0200
-Message-ID: <20241006102740.17948-1-linux@fw-web.de>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1728212212; c=relaxed/simple;
+	bh=qeqQuDTxp73Ysl2hFvb6xtPdBPTnnrBOZ9KMn8cAfhw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=aWyE3C5yNtNWokWxu43rPbwXdpEo8tWXK0ZIzHieEPJTsL/D94iPkBzIOkc27Bg2wrqFH3avzsYclTlIB0fHUWxqpXPYDcbdslAv6EpOQU2OD/L0IK6wB79CrWL6JRinGKKJA/QAmIORtesZaytO4W+d5MaFhx9TP7Ep44HvyXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LLzspN92; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0452AC4CEC5;
+	Sun,  6 Oct 2024 10:56:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728212212;
+	bh=qeqQuDTxp73Ysl2hFvb6xtPdBPTnnrBOZ9KMn8cAfhw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=LLzspN92YYcTUYoa3GJVaw6f9ucQadl7ooCycfHTwNMbotb+SZhA15E12nVp9QnHi
+	 o1sNVRisetiryqFlMK1EkeVADN9vXOd440B+LaKJ6sTa8SpV3vpFuV/8SkKFKNTCqN
+	 woa9L8GIZAPRouh5NJBbYfr1Hg6oF8eebE6wUQpn5pNGc1s5cNDeMiHchr7WIULaYL
+	 BHEyUPolNweC8PDqeqKZMDLV03QlbvKT3x1CEKESXkgJkwFObXwGyqYHjAYa6trNaX
+	 m3LK3wO2pPu18FgbeCJMgR7N2wzhLurKgVWRrlTeZe3ZTQ50OEGGGUY8VOPBWyieao
+	 3ZdcM3AwsLRGA==
+Date: Sun, 6 Oct 2024 11:56:43 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc: Alexandru Ardelean <aardelean@baylibre.com>, David Lechner
+ <dlechner@baylibre.com>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <krzk+dt@kernel.org>, <robh@kernel.org>, <lars@metafoo.de>,
+ <michael.hennerich@analog.com>, <gstols@baylibre.com>
+Subject: Re: [PATCH v7 8/8] iio: adc: ad7606: add support for
+ AD7606C-{16,18} parts
+Message-ID: <20241006115643.7b1fd461@jic23-huawei>
+In-Reply-To: <20241004145430.000012f4@Huawei.com>
+References: <20240919130444.2100447-1-aardelean@baylibre.com>
+	<20240919130444.2100447-9-aardelean@baylibre.com>
+	<CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
+	<047034ae-135b-4ce9-a407-9b2a00841324@baylibre.com>
+	<20241001194114.16e0ffa5@jic23-huawei>
+	<CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
+	<20241004145430.000012f4@Huawei.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mail-ID: facdb081-b535-49ee-8242-ea660d354237
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-From: Frank Wunderlich <frank-w@public-files.de>
+On Fri, 4 Oct 2024 14:54:30 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-MT7988 has 2 different spi controllers. Add mediatek,ipm-spi-single
-and mediatek,ipm-spi-quad compatibles.
+> On Wed, 2 Oct 2024 09:12:09 +0300
+> Alexandru Ardelean <aardelean@baylibre.com> wrote:
+>=20
+> > On Tue, Oct 1, 2024 at 9:41=E2=80=AFPM Jonathan Cameron <jic23@kernel.o=
+rg> wrote: =20
+> > >
+> > > On Tue, 1 Oct 2024 08:42:23 -0500
+> > > David Lechner <dlechner@baylibre.com> wrote:
+> > >   =20
+> > > > On 10/1/24 3:26 AM, Alexandru Ardelean wrote:   =20
+> > > > > On Thu, Sep 19, 2024 at 4:05=E2=80=AFPM Alexandru Ardelean
+> > > > > <aardelean@baylibre.com> wrote:   =20
+> > > > >>   =20
+> > > >
+> > > > ...
+> > > >   =20
+> > > > >> @@ -153,7 +349,19 @@ static int ad7606_scan_direct(struct iio_de=
+v *indio_dev, unsigned int ch,
+> > > > >>         if (ret)
+> > > > >>                 goto error_ret;
+> > > > >>
+> > > > >> -       *val =3D sign_extend32(st->data[ch], 15);
+> > > > >> +       chan =3D &indio_dev->channels[ch + 1];
+> > > > >> +       if (chan->scan_type.sign =3D=3D 'u') {
+> > > > >> +               if (storagebits > 16)
+> > > > >> +                       *val =3D st->data.buf32[ch];
+> > > > >> +               else
+> > > > >> +                       *val =3D st->data.buf16[ch];
+> > > > >> +               return 0;   =20
+> > > > >
+> > > > > Arrggh...
+> > > > > I messed up here.
+> > > > > Guillaume found a bug here, where this should be "goto error_ret"=
+ or
+> > > > > do an "if ()  {} else {}"
+> > > > > How should we do it here?   =20
+> > > if / else. Goto an error label when it's not an error would be horrib=
+le!   =20
+> > > > >
+> > > > > Do we send a fix-patch or send a new series?
+> > > > >   =20
+> > > >
+> > > > Since this patch is already applied, just follow up with another
+> > > > patch with a Fixes: tag.   =20
+> > >
+> > > I sometimes tweak these sort of things if I haven't pushed out
+> > > as togreg yet (or they are really bad!) but in this case I'm not
+> > > 100% sure what the comment is, so I'll just apply a fix on top.
+> > >
+> > > So David is entirely correct in general but by luck of timing
+> > > this time I'll tweak it.
+> > >
+> > > Please check the result in iio.git/testing
+> > > I'll hold off pushing that out as togreg until at least end of
+> > > tomorrow.  One more day o   =20
+> >=20
+> > The "return 0" needs to be removed in the driver.
+> >=20
+> >         if (chan->scan_type.sign =3D=3D 'u') {
+> >                 if (storagebits > 16)
+> >                         *val =3D st->data.buf32[ch];
+> >                 else
+> >                         *val =3D st->data.buf16[ch];
+> > -                return 0; =20
+> Doh!.   Just goes to show why I shouldn't just edit these things.
+> Stupid mistake.  I'll fix when on right machine.
+hopefully now done
 
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
- Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-index e1f5bfa4433c..3c707e5de5fb 100644
---- a/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-+++ b/Documentation/devicetree/bindings/spi/mediatek,spi-mt65xx.yaml
-@@ -33,6 +33,8 @@ properties:
-           - const: mediatek,mt6765-spi
-       - items:
-           - enum:
-+              - mediatek,ipm-spi-quad
-+              - mediatek,ipm-spi-single
-               - mediatek,mt7981-spi-ipm
-               - mediatek,mt7986-spi-ipm
-               - mediatek,mt8188-spi-ipm
--- 
-2.43.0
+J
+>=20
+> Jonathan
+>=20
+> >         } else {
+> >                 if (storagebits > 16)
+> >                         *val =3D sign_extend32(st->data.buf32[ch], 17);
+> >                 else
+> >                         *val =3D sign_extend32(st->data.buf16[ch], 15);
+> >         }
+> >=20
+> >=20
+> >  =20
+> > >
+> > > Jonathan
+> > >
+> > >   =20
+> > > >
+> > > >
+> > > >   =20
+> > >   =20
+> >  =20
+>=20
 
 
