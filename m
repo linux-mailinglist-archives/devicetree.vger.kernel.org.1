@@ -1,342 +1,195 @@
-Return-Path: <devicetree+bounces-108161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2D2F991E65
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 15:06:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE0F4991E6C
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 15:14:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 980AD1F21BE4
-	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 13:06:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6BAF01F21C51
+	for <lists+devicetree@lfdr.de>; Sun,  6 Oct 2024 13:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED0A17A595;
-	Sun,  6 Oct 2024 13:06:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 016251779BC;
+	Sun,  6 Oct 2024 13:13:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="O15OCU0S"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U6J41iP4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1E2170A3F;
-	Sun,  6 Oct 2024 13:06:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C06E4177982;
+	Sun,  6 Oct 2024 13:13:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728219975; cv=none; b=eKKl5o4Vc0byyAofBin5uo6amXzEQTj/3PZeOSQ1+o6kz7WqKbNHAlnqfT+lwDHLGBLUdoGAPIXtmNZ1/mRArAQ3Ous73zI+49SiZOqS+mYLIv+CQAj+R/vykyTcCtkG7MvRX8mtd3EEvQM2bFjobKMSBZ9RDEp3hFf9hKoBhnk=
+	t=1728220432; cv=none; b=MzLvYQRWDHjBdY4gGLQrc8K5aAMOAzLv05Lr26MhIT8V5l9uu87eHMwWooaEV4VZ5t2kcArlZY6vq/WH+8pd+ng56H/gWWCizAt1/4ERgInXFRgEXZDOsF9Vl7fFmcS8m+0ZZ9zmELu8ooMbdLb4sn2ZeoVJ1AC9ERjyl27XDrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728219975; c=relaxed/simple;
-	bh=V+SIaep7bWzHTvD8pybyr/9k++8fOylDO9+jqQn/TC4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=cMajkKcS0nZk8zQB9cG16tQG+li8isqqVSSs2sxXt0pcXcmgOigQB40jkjwK/A9SMjyBJs94lCLtBFgZBjJgWEJFzHK4Mp1iKikuxEGUpexIZRWrwlV0UZNHyt/ZVt2Ri6GoU8V3c0KaG1f0dfwL+TalR1d6QodKgdlODXc/9zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=O15OCU0S; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5389e24a4d1so4269473e87.3;
-        Sun, 06 Oct 2024 06:06:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728219972; x=1728824772; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=z4ull0/o4n6FDTwu/Kzs9/7Z+1yfWkdZ5F6ZbcuSSNA=;
-        b=O15OCU0Stqj0LpelfTI+doJ6fHiaUNpe1hY6sKQGQW876gEtwYEstxaTtmij0hzmh/
-         c+/wgsRpUMcB0swSfDkPhaa8Su+9z5dtFzu9DFuIDCCtyAyMQDwGDsg40q1265Ys0F6H
-         vfT2niFMSdjrKfEGestoUAcvH7gF0I763RIvDFIq8LdfMCggKQ4+lV/8/HzcHQ+1lu9a
-         cUjlLL5ampOXTKyLPXhccvjCZJtrgwYsRkSMohItgkJPHFbwXjIAuwgAA4xcdL6g6a7Y
-         n052IKdR9ey5wwXg6C6ZKIEqeJWeGPYlDQwhUYoBjvZ75UY14wrZT4Owup0TDVhPXIk2
-         tJ7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728219972; x=1728824772;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=z4ull0/o4n6FDTwu/Kzs9/7Z+1yfWkdZ5F6ZbcuSSNA=;
-        b=oQeCTY3o1jQt6lLUbikkoOJjS8jWmYEc6EKoVqIzdPr3YU0NgaU3q7kFh/XdTIKFak
-         DIhMIa8cN4u+UeBI0U6xC8fiy7udA4KVDYpzRIloykBn59fjCNiddtEeTTVQXWe0CCpV
-         1LclG124ah+//HrBFljLkZNmVg18kcYnw15xHVJqbMdAJ3XinFCRY0VD1LupsLRNRs4N
-         3ezXIcBFteNUSWVKPPMaabCyjsVvF83tkaIq/WBJOzU1+vf5oggaBNNvpihvYMZyyge9
-         anRmBEDgNMAiDvOr6V1V2eEMzvxLHoStX5Y5IiIKd2Hrn8iGW3Liz2AQ3/7DFMRzkb8E
-         CxkA==
-X-Forwarded-Encrypted: i=1; AJvYcCUvvfMYPQuYqB3TcrhyE1x55++f3QPtzfs0KklBfmMmbAXqb15Awv+ftzm8XG49yvWGrn3bxPYKZ7+R2QNr@vger.kernel.org, AJvYcCVO/4wU8nldDtz+z1NzDPhH5JQcFQDPprxmtX8/9jKtiEY0WuwTcMrE7V1XYR5qEyMqtFd7N6QLnL+/@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAxZobTIp1miQugl0ZMH8NgCVRDrniufh3uMCm8rJTwOuRTz9R
-	CM5pp3ALMoOzIfZQ7jWRo+KYbethlsblWX7HvNRf6cuWwrJgDnHW
-X-Google-Smtp-Source: AGHT+IHa95SrnM4qpTU+LSmo4EIPiIHdxMOpzZDCmW5C4T0GQoERsc3vhQrLHiqojRFzijlHlKgzDQ==
-X-Received: by 2002:a05:6512:3351:b0:539:9490:7257 with SMTP id 2adb3069b0e04-539ab873352mr3109464e87.30.1728219971457;
-        Sun, 06 Oct 2024 06:06:11 -0700 (PDT)
-Received: from [192.168.1.11] (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff2904csm512749e87.304.2024.10.06.06.06.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 06 Oct 2024 06:06:09 -0700 (PDT)
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-Date: Sun, 06 Oct 2024 15:05:47 +0200
-Subject: [PATCH v4 2/2] dt-bindings: mtd: davinci: convert to yaml
+	s=arc-20240116; t=1728220432; c=relaxed/simple;
+	bh=khsVM2k1ZTcKI00Tfb38pPI+E8XA6tqg9PgEMpsgDOw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qix6Uu+WnG7LBzzu8SeUidkx9NuuldX9IkA8x0hBJXocaHKBth72leO6Wws9DssEaQMaBhJS1JnZMMGVdIW1XpMRn7JF4f+LTmaLfh+N5AH+X9RyW998moy64BSsashCK2Bjz5/YJVzehVgtXYySt+7st/5SBGFWgf14Mb/y37Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U6J41iP4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61FAAC4CEC5;
+	Sun,  6 Oct 2024 13:13:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728220432;
+	bh=khsVM2k1ZTcKI00Tfb38pPI+E8XA6tqg9PgEMpsgDOw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U6J41iP4cBmcBH/lySmBjh7RYoj0h1+7+JyNjKXcNXuwwpOsBnaFUsYhStBWx5m2k
+	 6bLJOGK4fgJEMJet/1JWtSm1cgkNTluuH+idKN8VZxgtudSsODDFZ2Sbib97nGkZP5
+	 9MBRANZk53w8RrMXMnCKsInEkh5eYecC/tMhJtys9mboc4raJZyVFyEv9w73b+qMhX
+	 aT6tgmIC0kRpM7YSUblAoqn5xF7LArt2fJ7qYaA/lk6JzTSICwuGnurZBfnr2LDglc
+	 Ny5VRcrg2tBNTrey/H1pGi9jcTI/67zaleczFqspjBzIriklyIpgptNqzTbXwBGuIx
+	 v9+2UVsqsfT6A==
+Message-ID: <b847ccb1-1eb8-4119-8612-212804cb50d8@kernel.org>
+Date: Sun, 6 Oct 2024 15:13:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
+ spectrum clocking
+To: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com,
+ Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Shawn Guo <shawnguo@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ devicetree@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
+ <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
+ <566859c1-a397-4465-987e-0682b07a703e@kernel.org>
+ <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
+ <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org>
+ <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
+ <82db5037-bbd3-4005-bde9-02df1bf4c475@kernel.org>
+ <CABGWkvqXZ+YAvo-AtUy+Ftdu0xxXKuhOwcSTwO5Fv6D3yzttNg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <CABGWkvqXZ+YAvo-AtUy+Ftdu0xxXKuhOwcSTwO5Fv6D3yzttNg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241006-ondie-v4-2-ff9b9fd9a81d@gmail.com>
-References: <20241006-ondie-v4-0-ff9b9fd9a81d@gmail.com>
-In-Reply-To: <20241006-ondie-v4-0-ff9b9fd9a81d@gmail.com>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Marcus Folkesson <marcus.folkesson@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7116;
- i=marcus.folkesson@gmail.com; h=from:subject:message-id;
- bh=V+SIaep7bWzHTvD8pybyr/9k++8fOylDO9+jqQn/TC4=;
- b=owEBbQKS/ZANAwAIAYiATm9ZXVIyAcsmYgBnAos1iTHHu0HTEqDSxrmkEVg6UTaOPiHTVyOtf
- 3SfZEcCp9GJAjMEAAEIAB0WIQQFUaLotmy1TWTBLGWIgE5vWV1SMgUCZwKLNQAKCRCIgE5vWV1S
- MhxvEADZ35FNlqa18epP/Vsrk+Tw1OtMkE/ULdjMKGOsfPztVohmtUE5mkr2+uHZmcx3UXQBGnx
- q9d2rH14GOcHdEbnhxuSnq5ml6FDFXVnXuEw+Zn/b4ML2AfP7LNcQUY4n0qKJVC2ooPc9aK9ccJ
- tbwFqxQdKDM6N1tZ8OOJMphMCRHYLXXrqzuKnnPEu9aWeX10ufzO8iVpES67KE/4AidU+gk3akd
- kz1QgEpcm6OzUOaiG6mZaEmDQMR5HITCnAgPaZmCPhuKP0TF9HvvTH0ad9u3Um/xAXjwsXx8NtH
- LzIok79lGKnmoJAvlmcSZeGjuDl2qhYhNGRP+xEY82Y/YZaB+h9WJ0pEivvfMvr7Y/gvCIA2k1S
- uWnEfWnidMEbv7BkjewJkMOEXWRHryWVsz50t/YNzqZSg8F3gZ3Fs6iibAtbLzcPtEjlbarie4X
- 7umRKv8ekH/QR4eierfn3+UKm6KbA8WpmzkhlSXWZBbEqay4FjS6XhOOhk3KK76HlB1UjZWDId+
- 6ZWfRpt5tg2IzLeNOcwPk8qEs1JZkpn2wAnN5Y//cUl6SyaLKYMpH1tJL4T/7UV0Ih4K33XOFS/
- lXuqyeyux+sdG++Sm/eFb2J5BGggxfuKDo/yn68WbrymacUgm719ZXP8+5Lzvk0vieEUwOmXGwr
- 7zhy4cIqOWr1Pqg==
-X-Developer-Key: i=marcus.folkesson@gmail.com; a=openpgp;
- fpr=AB91D46C7E0F6E6FB2AB640EC0FE25D598F6C127
 
-Convert the bindings to yaml format.
+On 05/10/2024 10:57, Dario Binacchi wrote:
+> On Thu, Oct 3, 2024 at 12:46 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>
+>> On 01/10/2024 08:29, Dario Binacchi wrote:
+>>> On Mon, Sep 30, 2024 at 8:45 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>>
+>>>> On 29/09/2024 22:00, Dario Binacchi wrote:
+>>>>>>
+>>>>>>
+>>>>>>> +  properties:
+>>>>>>> +    compatible:
+>>>>>>> +      contains:
+>>>>>>> +        enum:
+>>>>>>> +          - fsl,imx8mm-anatop
+>>>>>>> +
+>>>>>>> +then:
+>>>>>>> +  properties:
+>>>>>>> +    fsl,ssc-clocks:
+>>>>>>
+>>>>>> Nope. Properties must be defined in top-level.
+>>>>>>
+>>>>>>> +      $ref: /schemas/types.yaml#/definitions/phandle-array
+>>>>>>> +      description:
+>>>>>>> +        The phandles to the PLLs with spread spectrum clock generation
+>>>>>>> +        hardware capability.
+>>>>>>
+>>>>>> These should be clocks.
+>>>>>
+>>>>> Sorry, but I can't understand what you're asking me.
+>>>>> Could you kindly explain it to me in more detail?
+>>>>
+>>>> You added new property instead of using existing one for this purpose:
+>>>> 'clocks'.
+>>>
+>>>>
+>>>>
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>>
+>>>
+>>> I added this new property specifically for managing spread-spectrum.
+>>> Indeed, not all clocks/PLLs
+>>> managed by the node/peripheral support spread-spectrum, and the added
+>>> properties specify
+>>> parameters for enabling and tuning SSC for each individual PLL based
+>>> on the index of each list.
+>>> If I were to use the 'clocks' property and add a clock to this list
+>>> that does not support SSC, IMHO
+>>> the pairings would be less clear.
+>>
+>> You duplicate property with argument "pairings shall match". Well, I am
+>> not happy with the duplication. Clocks have specific order, thus it is
+>> explicit which one needs tuning. Your other properties can match them as
+>> well, just index from clocks is offset...
+> 
+> Just to check if I understood correctly what you are suggesting before
+> submitting version 3 of the patch.
+> Something, for example, like:
+> 
+> clocks = <&clk, IMX8MP_AUDIO_PLL1>,  <&clk, IMX8MP_AUDIO_PLL2>, <&clk
+> IMX8MP_VIDEO_PLL1>;
+> fsl,ssc-modfreq-hz = <0, 3517>, <2, 6818>;
 
-Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
----
- .../devicetree/bindings/mtd/davinci-nand.txt       |  94 -----------------
- .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 115 +++++++++++++++++++++
- 2 files changed, 115 insertions(+), 94 deletions(-)
+Hm, what is 0? If clock index, then no, it's redundant. The first item
+in cannot point to other clock.
 
-diff --git a/Documentation/devicetree/bindings/mtd/davinci-nand.txt b/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-deleted file mode 100644
-index eb8e2ff4dbd2901b3c396f2e66c1f590a32dcf67..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/mtd/davinci-nand.txt
-+++ /dev/null
-@@ -1,94 +0,0 @@
--Device tree bindings for Texas instruments Davinci/Keystone NAND controller
--
--This file provides information, what the device node for the davinci/keystone
--NAND interface contains.
--
--Documentation:
--Davinci DM646x - https://www.ti.com/lit/ug/sprueq7c/sprueq7c.pdf
--Kestone - https://www.ti.com/lit/ug/sprugz3a/sprugz3a.pdf
--
--Required properties:
--
--- compatible:			"ti,davinci-nand"
--				"ti,keystone-nand"
--
--- reg:				Contains 2 offset/length values:
--				- offset and length for the access window.
--				- offset and length for accessing the AEMIF
--				control registers.
--
--- ti,davinci-chipselect:	number of chipselect. Indicates on the
--				davinci_nand driver which chipselect is used
--				for accessing the nand.
--				Can be in the range [0-3].
--
--Recommended properties :
--
--- ti,davinci-mask-ale:		mask for ALE. Needed for executing address
--				phase. These offset will be added to the base
--				address for the chip select space the NAND Flash
--				device is connected to.
--				If not set equal to 0x08.
--
--- ti,davinci-mask-cle:		mask for CLE. Needed for executing command
--				phase. These offset will be added to the base
--				address for the chip select space the NAND Flash
--				device is connected to.
--				If not set equal to 0x10.
--
--- ti,davinci-mask-chipsel:	mask for chipselect address. Needed to mask
--				addresses for given chipselect.
--
--- nand-ecc-mode:		operation mode of the NAND ecc mode. ECC mode
--				valid values for davinci driver:
--				- "none"
--				- "soft"
--				- "hw"
--
--- ti,davinci-ecc-bits:		used ECC bits, currently supported 1 or 4.
--
--- nand-bus-width:		buswidth 8 or 16. If not present 8.
--
--- nand-on-flash-bbt:		use flash based bad block table support. OOB
--				identifier is saved in OOB area. If not present
--				false.
--
--Deprecated properties:
--
--- ti,davinci-ecc-mode:		operation mode of the NAND ecc mode. ECC mode
--				valid values for davinci driver:
--				- "none"
--				- "soft"
--				- "hw"
--
--- ti,davinci-nand-buswidth:	buswidth 8 or 16. If not present 8.
--
--- ti,davinci-nand-use-bbt:	use flash based bad block table support. OOB
--				identifier is saved in OOB area. If not present
--				false.
--
--Nand device bindings may contain additional sub-nodes describing partitions of
--the address space. See mtd.yaml for more detail. The NAND Flash timing
--values must be programmed in the chip select’s node of AEMIF
--memory-controller (see Documentation/devicetree/bindings/memory-controllers/
--davinci-aemif.txt).
--
--Example(da850 EVM ):
--
--nand_cs3@62000000 {
--	compatible = "ti,davinci-nand";
--	reg = <0x62000000 0x807ff
--	       0x68000000 0x8000>;
--	ti,davinci-chipselect = <1>;
--	ti,davinci-mask-ale = <0>;
--	ti,davinci-mask-cle = <0>;
--	ti,davinci-mask-chipsel = <0>;
--	nand-ecc-mode = "hw";
--	ti,davinci-ecc-bits = <4>;
--	nand-on-flash-bbt;
--
--	partition@180000 {
--		label = "ubifs";
--		reg = <0x180000 0x7e80000>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..d87fe7136d64ab15fcd7fc824f7888d6643f1b91
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-@@ -0,0 +1,115 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: TI DaVinci NAND controller
-+
-+maintainers:
-+  - Marcus Folkesson <marcus.folkesson@gmail.com>
-+
-+allOf:
-+  - $ref: nand-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,davinci-nand
-+      - ti,keystone-nand
-+
-+  reg:
-+    maxItems: 1
-+
-+  partitions:
-+    $ref: /schemas/mtd/partitions/partitions.yaml
-+
-+  ti,davinci-chipselect:
-+    description:
-+      Number of chipselect. Indicate on the davinci_nand driver which
-+      chipselect is used for accessing the nand.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [0, 1, 2, 3]
-+
-+  ti,davinci-mask-ale:
-+    description:
-+      Mask for ALE. Needed for executing address phase. These offset will be
-+      added to the base address for the chip select space the NAND Flash
-+      device is connected to.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0x08
-+
-+  ti,davinci-mask-cle:
-+    description:
-+      Mask for CLE. Needed for executing command phase. These offset will be
-+      added to the base address for the chip select space the NAND Flash device
-+      is connected to.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0x10
-+
-+  ti,davinci-mask-chipsel:
-+    description:
-+      Mask for chipselect address. Needed to mask addresses for given
-+      chipselect.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 0
-+
-+  ti,davinci-ecc-bits:
-+    description: Used ECC bits.
-+    enum: [1, 4]
-+
-+  ti,davinci-ecc-mode:
-+    description: Operation mode of the NAND ECC mode.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [none, soft, hw, on-die]
-+    deprecated: true
-+
-+  ti,davinci-nand-buswidth:
-+    description: Bus width to the NAND chip
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [8, 16]
-+    default: 8
-+    deprecated: true
-+
-+  ti,davinci-nand-use-bbt:
-+    type: boolean
-+    description:
-+      Use flash based bad block table support. OOB identifier is saved in OOB
-+      area.
-+    deprecated: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - ti,davinci-chipselect
-+
-+additionalProperties: true
-+
-+examples:
-+  - |
-+    nand-controller@2000000 {
-+      compatible = "ti,davinci-nand";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      reg = <0 0x02000000>;
-+      ti,davinci-chipselect = <1>;
-+      ti,davinci-mask-ale = <0>;
-+      ti,davinci-mask-cle = <0>;
-+      ti,davinci-mask-chipsel = <0>;
-+      ti,davinci-nand-buswidth = <16>;
-+      ti,davinci-ecc-mode = "hw";
-+      ti,davinci-ecc-bits = <4>;
-+      ti,davinci-nand-use-bbt;
-+
-+      partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@0 {
-+          label = "u-boot env";
-+          reg = <0 0x020000>;
-+        };
-+      };
-+    };
+Also, what exactly are you setting here and why assigned-clock-rates are
+not working?
 
--- 
-2.46.0
+Best regards,
+Krzysztof
 
 
