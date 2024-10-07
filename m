@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-108694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB102993678
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:44:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38FFB99367A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:44:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91DB11F233C8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:44:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F34F228492C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:44:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289091DE2D0;
-	Mon,  7 Oct 2024 18:44:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DE591DE3AA;
+	Mon,  7 Oct 2024 18:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WePkZ1N1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOzIYEZ8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA0A1DE2C9;
-	Mon,  7 Oct 2024 18:44:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F061DE3A5;
+	Mon,  7 Oct 2024 18:44:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728326677; cv=none; b=qBe/Ecwzk3XANSMA0sAAeqkz9gKNCQ4B8cRIK0/pKB/1H/kF9nalfb+qYkS0HoiVdxYojDlxcj4uDsXQKlzLP5N+iaCKtSwU806bB0561AdMCAcNsini38jwThQlglsMu/8FHdikZMnfNJFwRsFRWMAbPnIc5qH3lJUewpHC83I=
+	t=1728326678; cv=none; b=oq9Kl1CWX1oKqCrSp2Y1/AJkghWsB6Yq7vPbUXPzJf21J8j3Dez9pAJgIGzaYYaSOMX3OKVDOUYNB6Z3yNsa0FDws/78xAHZzZdAE7V+DN+/En48q0fTBYBdtrkQPGdFHJitYK4KP6z9qZB2vYCUgi0R3G/bJF3VrzeJQ5lG5zU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728326677; c=relaxed/simple;
-	bh=CS9oGBmTHkaXaGYru+300UwHGHTlTNW1/uBaaO9MDv0=;
+	s=arc-20240116; t=1728326678; c=relaxed/simple;
+	bh=TcLq86HfQp6OVk5c65NcK0ozHUSmDFRywdIQzX3Glvo=;
 	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Yc2wxLoddsAwK+ZlYMrs48R6CVtm/KH4ozGqc1AfhCIUQ02JtLHWeeWHm74DUi+98SUUHrTsJjGjFL04B1Sia818pfwi0XG+KC2vOIkPAIPAkUBQfkmPZivXWsVHOp7nLH6x9PoTASPR1cxKoR5mqorrqpv89tyTaezn/bs6Jf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WePkZ1N1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78BD7C4CEC6;
-	Mon,  7 Oct 2024 18:44:36 +0000 (UTC)
+	 Message-Id:Subject; b=bKCgT+4sBnWoMOK7PJF1cVXF4eVVaWAPQobaKJU/FlNbNaXKJSPm6ShfxYLh0iXDOok2A82dNaQBvvkmL2D8uS9EVNZxlcC0CxQLlbbdeYYie5+gueY2bcYgqZq6hFXLke96wkQ+pvqg1JiuxPrzheIqmJfbI0ZK4Hsp8bCiKzY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOzIYEZ8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49FB3C4CECF;
+	Mon,  7 Oct 2024 18:44:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728326676;
-	bh=CS9oGBmTHkaXaGYru+300UwHGHTlTNW1/uBaaO9MDv0=;
+	s=k20201202; t=1728326677;
+	bh=TcLq86HfQp6OVk5c65NcK0ozHUSmDFRywdIQzX3Glvo=;
 	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=WePkZ1N1g++dfrgJoBiGAxFc2WyRCQzeFVFXRO5IFE/UuEsDqIVeJ3yxYSOJ4nbQ2
-	 66gf77asow/u7BY4cCNHsp8ZR/5TewFDygfx95LZ7dk2SpPIzCx3TWvYbXwGKafMKy
-	 +uMV055hNGtmoboDBY8qFaV85+qixgxHUG5aJhJuZ6BAgy+BVQ+p3DBp780G1MK6Oz
-	 5xOxKj1yGrMl95nPCq2Pm7ydxWtb6lKbxIWqpillSSut5X5TvxBYivwCEgZXpblKJO
-	 HiiPEbciyE4HnaheOLVN6KpT+RonxfMgDuGMbeqFfBnLvLA3CkTkjc9RiuoLBTMalT
-	 EciMKjau/QmNQ==
-Date: Mon, 07 Oct 2024 13:44:35 -0500
+	b=FOzIYEZ8AGF0vIWApCeiMj3cfB0wCBt3iVN0F+H1/laJ/9zNhA4Q9mshN/IXmBcAR
+	 CYyCAuOr0u2m26nwQCgwlHCDo6xHyPezUT3aK5RUNKCBUfvtgoYM6QgVkTTCThbms9
+	 dntaINgQb1XHaYMEm49Kl/iQBiOSTph7SkXH/zC6WTho7UWaZevOfq7K/XM4d4w1Cn
+	 3XiPn8qaNvWYlo2VP2y8/pvTQlt5gG2be1O7bybSBcFjjEhTkCv1mYUif8NsRyQ0/O
+	 Ao+Kb8KU8hRUQYW9N410etNpefTDjR14UNjpfU/XL2hWwfPlJOzFJgxrmkUBQMtGnN
+	 Lw9/3trvSSHDw==
+Date: Mon, 07 Oct 2024 13:44:36 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,52 +51,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- srinivas.kandagatla@linaro.org, konradybcio@kernel.org, 
- dmitry.baryshkov@linaro.org, linux-kernel@vger.kernel.org, 
- abel.vesa@linaro.org, quic_jjohnson@quicinc.com, devicetree@vger.kernel.org, 
- andersson@kernel.org, robh+dt@kernel.org
-In-Reply-To: <20241005182250.788272-1-quic_sibis@quicinc.com>
-References: <20241005182250.788272-1-quic_sibis@quicinc.com>
-Message-Id: <172832632763.2106966.932778941338368937.robh@kernel.org>
-Subject: Re: [PATCH V2 0/2] X1E001DE Snapdragon Devkit for Windows
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, Sen Chu <sen.chu@mediatek.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Macpaul Lin <macpaul@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ Pablo Sun <pablo.sun@mediatek.com>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Bear Wang <bear.wang@mediatek.com>, 
+ devicetree@vger.kernel.org, 
+ MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, linux-kernel@vger.kernel.org, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ linux-mediatek@lists.infradead.org
+In-Reply-To: <20241007090244.1731-1-macpaul.lin@mediatek.com>
+References: <20241007090244.1731-1-macpaul.lin@mediatek.com>
+Message-Id: <172832632818.2107048.871461442982598898.robh@kernel.org>
+Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: mt8390-genio-700-evk:
+ update regulator names
 
 
-On Sat, 05 Oct 2024 23:52:48 +0530, Sibi Sankar wrote:
-> Add initial support for X1E001DE Snapdragon Devkit for Windows. X1E001DE
-> is the speed binned variant of X1E80100 that supports turbo boost up to
-> 4.3 Ghz. The initial support includes the following:
+On Mon, 07 Oct 2024 17:02:43 +0800, Macpaul Lin wrote:
+> Update regulator names to match schematics, replacing generic terms.
+> 1. Add system wide 'reg_vsys' node for 4.2V power rail.
+> 2. Add 'reg_vsys' node as 'vin-supply' for the following nodes
+>  - common_fixed_5v, edp_panel_fixed_3v3, gpio_fixed_3v3, sdio_fixed_3v3,
+>    touch0_fixed_3v3, usb_hub_fixed_3v3, usb_p0_vbus, and usb_p1_vbus.
+> 3. Update regulator names according to the stable output name on
+>    schematics.
+>  - vdd_5v, vedp_3v3, ext_3v3, vio18_conn, wifi_3v3, vio33_tp1, vhub_3v3,
+>    vbus_p0, vbus_p1.
+>  - vcn18_pmu, vcn33_2_pmu, dvdd_proc_l, dvdd_core, vpa_pmu, dvdd_adsp,
+>    va12_abb2_pmu, vsim1_pmu, vufs18_pmu.
+> 4. Remove usb_hub_reset_1v8. Use 'hub' node to probe USB HUB
+>    in subsequent patches.
 > 
-> -DSPs
-> -Ethernet (RTL8125BG) over the pcie 5 instance.
-> -NVme
-> -Wifi
-> -USB-C ports
+> Suggested-by: Chen-Yu Tsai <wenst@chromium.org>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
+>  .../dts/mediatek/mt8390-genio-700-evk.dts     | 65 ++++++++++++-------
+>  1 file changed, 42 insertions(+), 23 deletions(-)
 > 
-> V2:
-> * Fix Ghz -> GHz  [Jeff]
-> * Pick up Ab tag from Rob.
-> * Use Vendor in ADSP/CDSP firmware path [Dmitry]
-> * Fix reserved gpios [Dmitry]
-> * Only port0 supports DRD update the dt accordingly [Dmitry]
-> 
-> Link: https://www.qualcomm.com/news/releases/2024/05/qualcomm-accelerates-development-for-copilot--pcs-with-snapdrago
-> 
-> Sibi Sankar (2):
->   dt-bindings: arm: qcom: Add Snapdragon Devkit for Windows
->   arm64: dts: qcom: Add X1E001DE Snapdragon Devkit for Windows
-> 
->  .../devicetree/bindings/arm/qcom.yaml         |   6 +
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  arch/arm64/boot/dts/qcom/x1e001de-devkit.dts  | 811 ++++++++++++++++++
->  3 files changed, 818 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/x1e001de-devkit.dts
-> 
-> --
-> 2.34.1
-> 
-> 
+> Changes for v2:
+>  - Add Suggested-by: tag.
+>  - Rebase on mediatek/dts64 branch (v6.12-rc1)
 > 
 
 
@@ -114,14 +112,9 @@ make sure dt-schema is up to date:
   pip3 install dtschema --upgrade
 
 
-New warnings running 'make CHECK_DTBS=y qcom/x1e001de-devkit.dtb' for 20241005182250.788272-1-quic_sibis@quicinc.com:
+New warnings running 'make CHECK_DTBS=y mediatek/mt8390-genio-700-evk.dtb' for 20241007090244.1731-1-macpaul.lin@mediatek.com:
 
-arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb: domain-idle-states: cluster-sleep-0: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb: domain-idle-states: cluster-sleep-1: 'idle-state-name' does not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/power/domain-idle-state.yaml#
-arch/arm64/boot/dts/qcom/x1e001de-devkit.dtb: usb@a2f8800: interrupt-names: ['pwr_event', 'dp_hs_phy_irq', 'dm_hs_phy_irq'] is too short
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dtb: /soc/pwrap@10024000/pmic/keys: failed to match any schema with compatible: ['mediatek,mt6359-keys']
 
 
 
