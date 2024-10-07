@@ -1,174 +1,241 @@
-Return-Path: <devicetree+bounces-108378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D252D992734
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04534992742
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:41:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CB801F21015
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:39:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7DCEA1F22EAF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02A5318D655;
-	Mon,  7 Oct 2024 08:38:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC93218C334;
+	Mon,  7 Oct 2024 08:39:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="s7E/YDfi"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="SQwuWTGG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 774CD18C920;
-	Mon,  7 Oct 2024 08:38:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 351F818BB82
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728290288; cv=none; b=nlPYZfIclRGbx4ZmJmeN+iQn+v7pbfKc0WO+6tJqOdEPQzAYryKraPJVcbiBcxsvRrS3dCnJjcCvehtZQsl0VzFfi5BEXQeUCKP6qThye+U8z7+VvZsv71srBEF06PSqLBp06x8yMxJDLdOvcAtTAPnAmhcC+FA5ArghYvXj8cU=
+	t=1728290371; cv=none; b=Inv1vOGxKeHVGKEUwxtRblA1+GfFVr2ghin0AsAaNMcGxi77TIoGo5HN/Xato1xnQtV8LxdkdFiU7Wm7zkhcR0VHYnrjgp9eeHIL0F2sI9avd04RqJcB/nR9r8WGNFniKH/noQDK08ScpEomdB3NGU9L2/FHhLvmqmpt9UkbGc0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728290288; c=relaxed/simple;
-	bh=hQ8AoXwUvegxDlaiAn+sm9ptwD601U0SAG4PTocO1tY=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=ts8bmdhjXyYId0TPb1TvKC5u8+arFsbIbU1DXbsSTGa6U/PQPOtdPEgz1K/4uqnjZ+Aea+Bx0mguWYu1ojpbiGB+jgKFVsEYVvyKO5VGwKu53D/G99skVCWQgxz1ieYzt0UDNSzVCBMriP5xVIR8pqjSeD35LYFcXt2hB21ESi8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=s7E/YDfi; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1728290266; x=1728895066; i=frank-w@public-files.de;
-	bh=UtqXSW0/Q2zac9n3oW8JsHdhJ8qh8TUEmTMJ6DzB6wI=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=s7E/YDfiw0ikUvrnidHc9ZKgpRom3d4iGHarFK00g2jnkVVc2foxUCPF7MkRnQCo
-	 LgDCrQZX8avKIR1+WxP771Jc/0zUM6whgoLTb10smRgTZJLOyUzOJa771wMG9pZUq
-	 rvtQfRWqNv8VlkF7MIUaW+DVAls5Zttk8s8slXGXoweOuQ7GhXoHeJ9aIEjUjpOAY
-	 7zQ4zyJzJJYefMJxBfHl62EZ0R64sSzbASA4vw5hicshqpGUYiFI9lWwuX7D/AYvg
-	 Ji66ifxX/R2272+xOiqgRFkO+aB98ROpJCpAF2ayn6KbUAYUVDj2wZDdSCpyCjvvJ
-	 EyXJkN/YYz9YxNJKqA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.153.101] ([217.61.153.101]) by web-mail.gmx.net
- (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Mon, 7 Oct 2024
- 10:37:46 +0200
+	s=arc-20240116; t=1728290371; c=relaxed/simple;
+	bh=WCOdrGDsLGIiqFFiuT+0u8EblzmcKgUGhQiRtsMrLa4=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=PaSQR1QccFQhmBaqxKJI6hjQodiiDFPcsWkFKVrXBk7XFtx1FzzojHV+pXvF31KYwM1RlPF41HHChZFUnB4AOiVxpi74UMyhsacAI79JPMBIRGHMw5PyC5jYzsyioKPFlmFVaowvz8OKZAQnLShBspaRFxh42I5BOiealY4IHMU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=SQwuWTGG; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241007083927epoutp022a56f64d3c9023bba6e7f0fa0888b247~8Hu6ijYM40973609736epoutp02e
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:39:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241007083927epoutp022a56f64d3c9023bba6e7f0fa0888b247~8Hu6ijYM40973609736epoutp02e
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1728290367;
+	bh=oJyTeOI31xg01zEi71YOR5TyTZkLUxjzCK7LhUkgqms=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=SQwuWTGGVv7DC9XndyqSZNM4zhokiYFoCkJ4UunsFKPCrElwLHNOBLFJA5rQ4rogA
+	 DMzqXKjqWdAZ8IQ3oH4cufwDu3Rw2VU93CXGpjOiF86QUmbeBE65tYhs74dhxZdZNa
+	 xY42Nuo/bY6Y/q8eyE74g1pFEONjNAdJX7VBPU08=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTP id
+	20241007083926epcas2p3801cce95e30a538f23c82ab1310a1a8c~8Hu6EjrTR1601116011epcas2p3g;
+	Mon,  7 Oct 2024 08:39:26 +0000 (GMT)
+Received: from epsmges2p1.samsung.com (unknown [182.195.36.99]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4XMXdB3Bgwz4x9Pt; Mon,  7 Oct
+	2024 08:39:26 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	69.FD.09396.E3E93076; Mon,  7 Oct 2024 17:39:26 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20241007083925epcas2p10d85918059a49c8b97d0d0a1b4786035~8Hu4w4Hye2828728287epcas2p1X;
+	Mon,  7 Oct 2024 08:39:25 +0000 (GMT)
+Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
+	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+	20241007083925epsmtrp24966c152dbd0f5e832a196b01aff179c~8Hu4v5ER11447714477epsmtrp2m;
+	Mon,  7 Oct 2024 08:39:25 +0000 (GMT)
+X-AuditID: b6c32a45-6c5b7700000024b4-45-67039e3eaf00
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	12.F3.08229.D3E93076; Mon,  7 Oct 2024 17:39:25 +0900 (KST)
+Received: from KORCO118965 (unknown [10.229.18.201]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241007083925epsmtip22b2b3a3506648b9ab32d2c4347223715~8Hu4e4eTF0223502235epsmtip2K;
+	Mon,  7 Oct 2024 08:39:25 +0000 (GMT)
+From: "sunyeal.hong" <sunyeal.hong@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Krzysztof Kozlowski'"
+	<krzk+dt@kernel.org>, "'Rob Herring'" <robh@kernel.org>, "'Conor Dooley'"
+	<conor+dt@kernel.org>, "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+	"'Sylwester	Nawrocki'" <s.nawrocki@samsung.com>, "'Chanwoo Choi'"
+	<cw00.choi@samsung.com>, "'Michael Turquette'" <mturquette@baylibre.com>,
+	"'Stephen Boyd'" <sboyd@kernel.org>
+Cc: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-clk@vger.kernel.org>
+In-Reply-To: <06fd4e7e-d401-49bb-81f1-47fcea2dbbee@kernel.org>
+Subject: RE: [PATCH 2/3] clk: samsung: exynosautov920: add peric1, misc and
+ hsi0/1 clock support
+Date: Mon, 7 Oct 2024 17:39:24 +0900
+Message-ID: <00a601db1894$6a074790$3e15d6b0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-2ac8c3fe-ad19-424b-ab4f-da84c42c4ae1-1728290266613@3c-app-gmx-bap03>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>, Chaotian Jing
- <chaotian.jing@mediatek.com>, Ulf Hansson <ulf.hansson@linaro.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
- ansuelsmth@gmail.com
-Subject: Aw: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for mt7988
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 7 Oct 2024 10:37:46 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <89e54baa-0f05-47d7-8d81-68862f822c59@collabora.com>
-References: <20241006153447.41377-1-linux@fw-web.de>
- <20241006153447.41377-3-linux@fw-web.de>
- <89e54baa-0f05-47d7-8d81-68862f822c59@collabora.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:z4a5J2wLlWmjRI+/xOzyHBo8m7kd7rV/6DvFgeVonFs3TVL+zjoT3vEXNnJSjA1rRT0Sw
- +YC5u5d46gqNRMH/lBLtPV5bXJDuov14lACGuhU6imck/2+rJxgCoAj6wHDukpsmPXM/wSElyoWP
- qiCL7AlihMPsnGk449JOJVtw2GWsKc++ZfG71miseO0XWalAb0Ixe9yjBL2QCiwEohB09yNbW4YH
- YiSbwpAr0N2LfV6vT0DD1xJrNyKBm/XiXHand3daPhrb3onkyd6I1Lp5n64GLOpwMMFU9nSEHg9+
- 1k=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:PBivFzyeUiM=;ItkuaBFr4/dqKmnih8O3plOgMr1
- RVebIRCT01GBGX6cqg/AIGULfwOfsA8hu4ysnw2NEL7DifcgKlj0Mlfx4eQdmnuJk2nbPSgi2
- mA9YFpW6K46kl2wh6HMJ46YU6/E4C1CCI6OPStjzm1+O6hS9pY8SvHNFxYfXqd8KDiUWITDrL
- sWZO/kplCHPidteWR/dueSuI8jG5I7JoMg1S21lX8xH6I8v1WCd2A6N2R6Ejz0gw7OXfytc4N
- kuisbsdcHQNrjab9b6lfELD0T5R/BgeI+1bvCYtR7RsBduRozl4zHKxZ3Ywvk1DXp8bAGYga9
- /i8cLC7zYlK4Rc/dxkMqa5N7ZppclUcxFhX0sIpWMde67s6vpmC/Tk1/6MAtFXyksqIJ4lrmC
- yhqjWTJfL7MoVl5jQEDCFupSMd3ZwQx7R0pQY0NdbIh700dvPglY/i/YCIzrASWhyfYxxzFD0
- xKHp9DxEIdMMfKsW9pmzQif71zGwZKEpfHGp6QvfxOIFinRJOwkWqICzdariBXvj74nhrsR1S
- A8PU/wfZf+bsIJZFNslTe0TuALmcrmURstmyml3Fp0KteEsrLlX4NP0no1LosIN1C5b0qaHxV
- HQNtKw1+bGVXb8DfjBOsXkmEcBU4IJoZt5fBSQ9yUBP+IZXdxm9EeV6/uWPK9oClLsRYukRPt
- Z4ExU3g6Myt8tt8v2gED9xVRD2v4z79wdmtoXJLxZg==
 Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFSCxBMLhmUc00YvRpkCeNGXSX0HwHNkDzvAdUnffwB72SclgF+0mDoAm3WOaGzQRhyYA==
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrOJsWRmVeSWpSXmKPExsWy7bCmma7dPOZ0g3f7RS0ezNvGZrFm7zkm
+	i+tfnrNazD9yjtXi5ax7bBbnz29gt9j0+Bqrxceee6wWl3fNYbOYcX4fk8XFU64W//fsYLc4
+	/Kad1eLftY0sDnwe72+0sntsWtXJ5rF5Sb1H35ZVjB6fN8kFsEZl22SkJqakFimk5iXnp2Tm
+	pdsqeQfHO8ebmhkY6hpaWpgrKeQl5qbaKrn4BOi6ZeYA3amkUJaYUwoUCkgsLlbSt7Mpyi8t
+	SVXIyC8usVVKLUjJKTAv0CtOzC0uzUvXy0stsTI0MDAyBSpMyM44eOsHc8EK6YqV3dPYGxif
+	inUxcnBICJhIvJvN1MXIxSEksINRYubreYwQzidGiUUXprNDON8YJabdnsLcxcgJ1vH48zRW
+	EFtIYC+jRPdle4iil4wSb/ob2UASbAL6Equ7b7OBJEQEepgleuZOYAFxmAXWMUrs+rOFHaSK
+	U8BOYsWOvWCjhAWSJHZOW8ECchSLgIrEnhv5IGFeAUuJ7l3X2CBsQYmTM5+wgNjMAtoSyxa+
+	hrpIQeLn02WsIK0iAmESf097QJSISMzubGMGWSshcIZD4uTyl6wQ9S4S3T9vskPYwhKvjm+B
+	sqUkPr/bywZh50tMvv6WCaK5gVHi2r9uqGX2EovO/GQHWcYsoCmxfpc+JByVJY7cgjqNT6Lj
+	8F92iDCvREebEESjmsSnK5ehhshIHDvxjHkCo9IsJI/NQvLYLCQfzELYtYCRZRWjWGpBcW56
+	arFRgSE8rpPzczcxglOwlusOxslvP+gdYmTiYDzEKMHBrCTCG7GGMV2INyWxsiq1KD++qDQn
+	tfgQoykwpCcyS4km5wOzQF5JvKGJpYGJmZmhuZGpgbmSOO+91rkpQgLpiSWp2ampBalFMH1M
+	HJxSDUyHJMOd3T4yqTcylParK2h63Zj076uA9Xm3esa2LV6HU7zrPyisV0nwlZDcwyYmecP0
+	i9k3fqWbcybvnrrMJa3L/uFzBh23Kay7bPrsH6/pKPBokJ0wiZXT9fjvuanycQeUeGbP2+2g
+	qLz4xHMTpukNYj6Zvit1VjMkSfvxVP+rerXSIZdtXUSVvNE5o+3fv9udCF+xdU5l+9mMhTkP
+	32tppnLfZX2bF+1qdKQoNfibhPv0f9biv9zTz19cG/VK/v0PuZ/zvr+W4XqQNC+kNk5pu+b8
+	LVOj3ZkqyzXWhF7w/Dr1AdP9Eret7Xm8MjklgXaBKTXscpYRmziXTjzCf7l+x44Sq1OK7Y08
+	rmzPlFiKMxINtZiLihMBYdWTNkoEAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrKIsWRmVeSWpSXmKPExsWy7bCSvK7tPOZ0gw3NfBYP5m1js1iz9xyT
+	xfUvz1kt5h85x2rxctY9Novz5zewW2x6fI3V4mPPPVaLy7vmsFnMOL+PyeLiKVeL/3t2sFsc
+	ftPOavHv2kYWBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4Mj4f
+	6GQsWCZVsX3zK6YGxseiXYycHBICJhKPP09j7WLk4hAS2M0osfPKKkaIhIzExob/7BC2sMT9
+	liNQRc8ZJVYfa2AGSbAJ6Eus7r7NBpIQEZjELDHlxR0WEIdZYBOjxJaGl8wQLdeZJE5v+wI2
+	i1PATmLFjr2sILawQILE7uZ9TF2MHBwsAioSe27kg4R5BSwlunddY4OwBSVOznzCAmIzC2hL
+	9D5sZYSxly18zQxxnoLEz6fLWEHGiAiESfw97QFRIiIxu7ONeQKj8Cwkk2YhmTQLyaRZSFoW
+	MLKsYpRMLSjOTc8tNiwwzEst1ytOzC0uzUvXS87P3cQIjkktzR2M21d90DvEyMTBeIhRgoNZ
+	SYQ3Yg1juhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXFe8Re9KUIC6YklqdmpqQWpRTBZJg5OqQam
+	vCMNXjVpkx08/rHWfjqzhCN1qZHOw0+Wd+wmHSmMjNT8utkrfhmfmE9Sydlij1cnd2g7/v9u
+	lzD7SLnb8eMMZbeyFqpNjfd6G6nZwdZVKD31jnJAR/E2d2ef+1ffcOlZzGbiS910Y5VlmdvC
+	HmbOLZ2yhQGnWowaV+zvlp3XpZFYm2Lon1/fe+yCiND1qPTKE6L2+m8X3zp9x1rl63+pLxOT
+	/zst6QpNaylsfm6jPLXzw2uN/jiVWTmOCbNTRTav6Ci7+2957/yZX3qVNaSd1W8cun9Basra
+	yDu5Pbf2MD5Z0Lv18W8X/WvWXLFXjqY4129qqJTefbHrz0kjh8kW2hPXrUsxtE/7ucnjYJES
+	S3FGoqEWc1FxIgBSSRHdOAMAAA==
+X-CMS-MailID: 20241007083925epcas2p10d85918059a49c8b97d0d0a1b4786035
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240912103903epcas2p4fb9aaeafb223b63c57c2f0cac7f37c3d
+References: <20240912103856.3330631-1-sunyeal.hong@samsung.com>
+	<CGME20240912103903epcas2p4fb9aaeafb223b63c57c2f0cac7f37c3d@epcas2p4.samsung.com>
+	<20240912103856.3330631-3-sunyeal.hong@samsung.com>
+	<db9dc2ef-2c24-4f1b-82c8-316c347daf60@kernel.org>
+	<00a501db188f$8a7142b0$9f53c810$@samsung.com>
+	<06fd4e7e-d401-49bb-81f1-47fcea2dbbee@kernel.org>
 
-Hi
+Hello Krzysztof,
 
-> Gesendet: Montag, 07. Oktober 2024 um 09:58 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
-om>
-> Betreff: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for mt7988
->
-> Il 06/10/24 17:34, Frank Wunderlich ha scritto:
-> > From: Frank Wunderlich <frank-w@public-files.de>
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: Monday, October 7, 2024 5:07 PM
+> To: sunyeal.hong <sunyeal.hong=40samsung.com>; 'Krzysztof Kozlowski'
+> <krzk+dt=40kernel.org>; 'Rob Herring' <robh=40kernel.org>; 'Conor Dooley'
+> <conor+dt=40kernel.org>; 'Alim Akhtar' <alim.akhtar=40samsung.com>; 'Sylw=
+ester
+> Nawrocki' <s.nawrocki=40samsung.com>; 'Chanwoo Choi' <cw00.choi=40samsung=
+.com>;
+> 'Michael Turquette' <mturquette=40baylibre.com>; 'Stephen Boyd'
+> <sboyd=40kernel.org>
+> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> linux-samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org; linu=
+x-
+> clk=40vger.kernel.org
+> Subject: Re: =5BPATCH 2/3=5D clk: samsung: exynosautov920: add peric1, mi=
+sc
+> and hsi0/1 clock support
+>=20
+> On 07/10/2024 10:04, sunyeal.hong wrote:
+> > Hello Krzysztof,
 > >
-> > Add support for mmc on MT7988 SoC.
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
->
-> There's no need to add yet one more duplicate mtk_mmc_compatible platfor=
-m
-> data, nor one more compatible string to this driver, as this is exactly
-> the same as mt7986.
->
-> Please reuse the MT7986 compatible; in DT you'll have:
->
-> compatible =3D "mediatek,mt7988-mmc", "mediatek,mt7986-mmc";
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> >> Sent: Monday, September 30, 2024 8:36 PM
+> >> To: Sunyeal Hong <sunyeal.hong=40samsung.com>; Krzysztof Kozlowski
+> >> <krzk+dt=40kernel.org>; Rob Herring <robh=40kernel.org>; Conor Dooley
+> >> <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>;
+> >> Sylwester Nawrocki <s.nawrocki=40samsung.com>; Chanwoo Choi
+> >> <cw00.choi=40samsung.com>; Michael Turquette <mturquette=40baylibre.co=
+m>;
+> >> Stephen Boyd <sboyd=40kernel.org>
+> >> Cc: devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.o=
+rg;
+> >> linux-samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org;
+> >> linux- clk=40vger.kernel.org
+> >> Subject: Re: =5BPATCH 2/3=5D clk: samsung: exynosautov920: add peric1,
+> >> misc and hsi0/1 clock support
+> >>
+> >> On 12/09/2024 12:38, Sunyeal Hong wrote:
+> >>> Like CMU_PERIC1, this provides clocks for USI09 =7E USI17, USI_I2C an=
+d
+> >> USI_I3C.
+> >>> Like CMU_MISC, this provides clocks for MISC, GIC and OTP.
+> >>> Like CMU_HSI0, this provides clocks for PCIE.
+> >>> Like CMU_HSI1, this provides clocks for USB and MMC.
+> >>>
+> >>> Signed-off-by: Sunyeal Hong <sunyeal.hong=40samsung.com>
+> >>> ---
+> >>
+> >> ...
+> >>
+> >>> +
+> >>>  static int __init exynosautov920_cmu_probe(struct platform_device
+> >>> *pdev)  =7B
+> >>>  	const struct samsung_cmu_info *info; =40=40 -1154,6 +1431,19 =40=40=
+ static
+> >>> const struct of_device_id exynosautov920_cmu_of_match=5B=5D =3D =7B
+> >>>  	=7B
+> >>>  		.compatible =3D =22samsung,exynosautov920-cmu-peric0=22,
+> >>>  		.data =3D &peric0_cmu_info,
+> >>> +	=7D, =7B
+> >>> +		 .compatible =3D =22samsung,exynosautov920-cmu-peric1=22,
+> >>> +		 .data =3D &peric1_cmu_info,
+> >>> +	=7D, =7B
+> >>> +		 .compatible =3D =22samsung,exynosautov920-cmu-misc=22,
+> >>> +		 .data =3D &misc_cmu_info,
+> >>> +	=7D, =7B
+> >>> +		.compatible =3D =22samsung,exynosautov920-cmu-hsi0=22,
+> >>> +		.data =3D &hsi0_cmu_info,
+> >>> +	=7D, =7B
+> >>> +		.compatible =3D =22samsung,exynosautov920-cmu-hsi1=22,
+> >>> +		.data =3D &hsi1_cmu_info,
+> >>> +	=7D, =7B
+> >>
+> >> This is unrelated change. Please rebase.
+> >>
+> > Could you please explain in more detail the comment mentioned above?
+>=20
+> You were growing this list, didn't you? Then adding sentinel is unrelated=
+.
+>=20
 
-as explained in binding, the clock config is completely different (except =
-first 2 also required by driver - 3-7 are optional there). mt7988 uses axi=
- and ahb clocks.
+I have confirmed that the sentinel is being applied duplicately. I will sen=
+d you a patch after fixing it.
 
-but i could of course use the mt7988 compatible with mt7986 compat data...=
-but looked dirty to me so just copied the block (to allow later changes if=
- needed).
+Best Regards,
+sunyeal
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-> Cheers,
-> Angelo
->
-> > ---
-> >   drivers/mmc/host/mtk-sd.c | 14 ++++++++++++++
-> >   1 file changed, 14 insertions(+)
-> >
-> > diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> > index 89018b6c97b9..6d5afe51a61d 100644
-> > --- a/drivers/mmc/host/mtk-sd.c
-> > +++ b/drivers/mmc/host/mtk-sd.c
-> > @@ -571,6 +571,19 @@ static const struct mtk_mmc_compatible mt7986_com=
-pat =3D {
-> >   	.support_64g =3D true,
-> >   };
-> >
-> > +static const struct mtk_mmc_compatible mt7988_compat =3D {
-> > +	.clk_div_bits =3D 12,
-> > +	.recheck_sdio_irq =3D true,
-> > +	.hs400_tune =3D false,
-> > +	.pad_tune_reg =3D MSDC_PAD_TUNE0,
-> > +	.async_fifo =3D true,
-> > +	.data_tune =3D true,
-> > +	.busy_check =3D true,
-> > +	.stop_clk_fix =3D true,
-> > +	.enhance_rx =3D true,
-> > +	.support_64g =3D true,
-> > +};
-> > +
-> >   static const struct mtk_mmc_compatible mt8135_compat =3D {
-> >   	.clk_div_bits =3D 8,
-> >   	.recheck_sdio_irq =3D true,
-> > @@ -629,6 +642,7 @@ static const struct of_device_id msdc_of_ids[] =3D=
- {
-> >   	{ .compatible =3D "mediatek,mt7620-mmc", .data =3D &mt7620_compat},
-> >   	{ .compatible =3D "mediatek,mt7622-mmc", .data =3D &mt7622_compat},
-> >   	{ .compatible =3D "mediatek,mt7986-mmc", .data =3D &mt7986_compat},
-> > +	{ .compatible =3D "mediatek,mt7988-mmc", .data =3D &mt7988_compat},
-> >   	{ .compatible =3D "mediatek,mt8135-mmc", .data =3D &mt8135_compat},
-> >   	{ .compatible =3D "mediatek,mt8173-mmc", .data =3D &mt8173_compat},
-> >   	{ .compatible =3D "mediatek,mt8183-mmc", .data =3D &mt8183_compat},
->
->
+
 
