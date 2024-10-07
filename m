@@ -1,170 +1,146 @@
-Return-Path: <devicetree+bounces-108524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108525-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBC6992E04
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:57:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13226992E2E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:03:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DAB8B23575
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:57:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1115D1F23F1F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:03:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F2E1D47D9;
-	Mon,  7 Oct 2024 13:57:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A5081D47C8;
+	Mon,  7 Oct 2024 14:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="lgJdqFNP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C6GUEqu5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta34.uswest2.a.cloudfilter.net (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383501D5AAD
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 13:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C691D2F6D
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 14:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728309437; cv=none; b=XpTmKgeem23QQyPnbfBQWDTUVxFUAGFXEBCJypr9KLziETFMnYBSovDOrJmsnDjnrw4r8BdPtJGZmqAthBnYnLLzFZVqCG4hDob3eHFBHWOwGdLksXJyDb3DkTNJPNZThesCTo42CsR6P9XagWSsNsR0jaeHxtIhqRsOxIcpA3c=
+	t=1728309824; cv=none; b=kZU8uDZnK3UTz8d2eDjEIsDi89Au9KnzIVnX1pRMLdfE66f0k+NxXc5AAnw4iHy9DaETRROqCwuhMJUs2GYor0GdhEs007JNNXLV5kv1cyEKhKKSJYEBTcpIK+7NInqdQ8Il1ARyruYIBE9P6O5EDFKo8kO74vmfdLgtL2IRlU4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728309437; c=relaxed/simple;
-	bh=HOEKULFkE6M5CuqjOFFK1AS4/LojYVdTc6S43XpVQX0=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=eQLIDwa53C0iqdf8deD8xrU3yt++pt/9LGTSNq2hEi5R5fXp8ZEld2cSIpzO//EB6LqVju9hJdhbuHtYeDhV5NWh42nrMYVnorkQVFChaUZuvdZ2wT/bwUsunnss3NlXF1vTjoEi0RKBuR+LqzRXXVSbSbr1zgSYdzTN18RJtQc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=lgJdqFNP; arc=none smtp.client-ip=35.89.44.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
-	by cmsmtp with ESMTPS
-	id xmeIsS2vOVpzpxoEXswzFC; Mon, 07 Oct 2024 13:57:09 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id xoETskrcV0HwOxoEUsU7dQ; Mon, 07 Oct 2024 13:57:07 +0000
-X-Authority-Analysis: v=2.4 cv=HtNwGVTS c=1 sm=1 tr=0 ts=6703e8b3
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8
- a=KpWdpyGzixcpRlYuMWcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
-	Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=Off8ca3Q8QoJ3XNFUGaDvWVL6Usji4QPjLFIyyxfzWQ=; b=lgJdqFNPc5I3BQUntvm/jLl8CC
-	LEM1XeCTXgDIcoW0wm/IhAE6kVF4k0HW0Ez4oG80HvZsNCQvdJfrlBNXzEYRRCPCUfwRRagCZV6hJ
-	YzO4AY/jYqeoI8J3eu8HrxwmqviF1OuxbLazzZ1CLUD+PGztUC4lUWaX+ECIuHwGv1kTsYmFf/4V4
-	Q6I3mjQM1v2/zZmsQeEaNhxKT1W6l7V47RYOoKgV8O2w5A9v/N1TvNGcOvykt5hKCj6F+kN6i7OCe
-	d6Y2mG2rd8/GLpP6vJXl1fp9mIUTQ1dGdDToGf/OZJaYjIYE0woskmqXabCEuo1JUEekzhwKPdsK5
-	sXmoxyVQ==;
-Received: from [122.165.245.213] (port=56716 helo=[192.168.1.106])
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <karthikeyan@linumiz.com>)
-	id 1sxoER-003Hi5-01;
-	Mon, 07 Oct 2024 19:27:03 +0530
-Message-ID: <37e26b46-2f6a-4db4-b003-59088ef1dcc1@linumiz.com>
-Date: Mon, 7 Oct 2024 19:26:58 +0530
+	s=arc-20240116; t=1728309824; c=relaxed/simple;
+	bh=I8UIXlkyqy4Mwtxfe+Lk97YCZk/oHsm/QktDgn6rVqI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=VRK8moNwsnbeC28BJ4Ry5bGzA/0OnY7CNMNs9oe0BbI7Jnc6KpRC2AJjkgn4imppdtC/eKsqR/z3mdTSu75U4IdMfFEA7gOYBOUnRr/+xFhs29mx3NdEPdWbwsX6jH3fi/tKpjcI40AkmvPsqp8JfTXv9TZnLcukUVhvBmekxCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C6GUEqu5; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-37cd8a5aac9so2391225f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 07:03:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728309821; x=1728914621; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JSLxNDuYdWpagdzEer92KL4yq/BpaLG5xeJAnFgYcHM=;
+        b=C6GUEqu5XDbfKfTGvf4bhUYawrjSlqdFWR451loDAUOF6m33y9XZ5gmbH8CvOpTCoJ
+         i33iaFK5l/CK/3us+4AXArHw4zx3MVQaFtglnSDfrpklAH1pNE0292U17AdY3NgZR95v
+         t8KuTSGlnMIrIiJ8Waof3F9iUgTt283KBUNYNVohHsujvsP/3HdkCqQahtQ1D5svHSiE
+         zb50qfPAivgak7hXoveIYZuIxQ2ItTGrMVcFtBxA2Ukb3ZNgMvwtTjIQhlpOQjIKV0ON
+         hD82qJE/uUvCr4tkfGn8KE03IX/iBmnrwawFm85lZ8KXbh0L1/r9ZmUD9Kdbg8mrJsWs
+         /prw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728309821; x=1728914621;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JSLxNDuYdWpagdzEer92KL4yq/BpaLG5xeJAnFgYcHM=;
+        b=TIqj8N2UpV7b1nvOA8emHWDoeN/jeB4XnZA7xDWQhNkMDFXVVNt4EhALmwX8avs/Qh
+         o/3usSaeOZbiB9x/H4RlCeABEVHz7fOqVc3NTL4kGlTOQy9tCANbQoq9lzn0IQ5KFoeR
+         oy2g9Ln+zpxfbrV8VNAtYvbBtK3/tXPDl0SDeg2fAqOy4ywHAaYPw3omhpwWKtJ/Zl+2
+         2xxMsMlCq2I3nrbubjsaZbTzcWg58YXwRVPb9xz6ElxCMhQ/wTXecPinCfalkFuvKd7M
+         dVbBdcG9+QItKvvhGs472LJRmwmW6OrSOrOuIkZl1gt2vuocGYx+drzWudfwTXYCyZW5
+         qfmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVuwh18Am/oriGcHwJn0hNoNTRfaZNXdblCa3NI0c/gAr/S0FYR97Tk2PnibLWamEIS+nbcXjZEbuXe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzoikEV5dQcDwgQ0ZkP4uMSEceuOeu9k4xog0KV2iH3AtMdxGO7
+	1At6N9EvHZKAejbtpZXdYywduEkdHEI2IP+L01tl4NV2BgJ+9MUykAjsyyGUwwU=
+X-Google-Smtp-Source: AGHT+IEvaY76Nbh6y2EgunS5NO4YnfqBAs/pRm2aYkZb2LWol2ctokQ924n5nzY5hSHUuWzsXLPd9w==
+X-Received: by 2002:a5d:63d2:0:b0:37c:cd38:c51f with SMTP id ffacd0b85a97d-37d0e6bcc41mr6226690f8f.10.1728309820972;
+        Mon, 07 Oct 2024 07:03:40 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1688a486sm5857022f8f.0.2024.10.07.07.03.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 07:03:40 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v3 0/3] dt-bindings: mmc: document mmc-slot and convert
+ amlogic,meson-mx-sdio.txt to dtschema
+Date: Mon, 07 Oct 2024 16:03:36 +0200
+Message-Id: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v3-0-ad4eb22c2a8d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/6] dt-bindings: watchdog: rockchip: Add
- rockchip,rv1126-wdt string
-From: karthikeyan <karthikeyan@linumiz.com>
-To: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, alexandre.belloni@bootlin.com, wim@linux-watchdog.org,
- linux@roeck-us.net
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org
-References: <20240912142451.2952633-1-karthikeyan@linumiz.com>
- <20240912142451.2952633-2-karthikeyan@linumiz.com> <2206048.Mh6RI2rZIc@phil>
- <ddca4051-0e83-4d39-8654-12210ffa5685@linumiz.com>
-Content-Language: en-US
-In-Reply-To: <ddca4051-0e83-4d39-8654-12210ffa5685@linumiz.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1sxoER-003Hi5-01
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.1.106]) [122.165.245.213]:56716
-X-Source-Auth: karthikeyan@linumiz.com
-X-Email-Count: 6
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfEb8ZEwQqp4qCE31WqhAETL0HaHH7Rr7W5C16uvzTzgnXFBvbVlbtWO0iaG8x1Xxv8tmxQc0cssF13UEDTWn6KSkXl5Lf+AkkbU+zBIkZRGWGxmmBEJL
- LsLgTOa77dGJ6DpZuR+3CPq1nsnzwcmQrQs7G2OBFLyfFp1j2UQZ4AjEUccZqeuOforVd7bA0vhx38UiLf/J4MGgqP9W29OkJmc=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADjqA2cC/63OwW7CMAyA4VdBOc9TEqB0O+09Jg5O6xRLJK6cL
+ gKhvvtSTtudk/Vblj4/TCFlKuZz9zBKlQtLbrF/25nhgnki4LG18dYf7IdzsMjMA2C6yrRNTXs
+ PP3NZlDBB4DxyngpEvlGBQXIlXSBRkQzpBmVkgS7iyR4PHYXQm+bMSs/zxnyfW1+4LKL350vVb
+ dtX6tWBg3AKEanvO+/c15UzqryLTmbjq/9DevsK0oOFI2IfxkjWYfxHruv6CwT7ycuGAQAA
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1603;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=I8UIXlkyqy4Mwtxfe+Lk97YCZk/oHsm/QktDgn6rVqI=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBnA+o6HBbW7RjCo+cyD/An3Cd3RF6bmB9Gj7SZUyyW
+ rYH6HbuJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZwPqOgAKCRB33NvayMhJ0ToDD/
+ 4tn0/fx8ukJ5zSvvWZSIZcyUsUnVIywgPK3SNYCw8Jov6H9n6Engg/jfkH2UR9NZ/kE5xrKc37jsid
+ 7VMNKqU749yPjO/YQQWkU+/a/UxvCzJAM/sR/ljYF7LgggpvRtySMB/dRg1IIUjZwMK9YGjpG0hlpS
+ 7QvlpaDjAg1grVn0dfBEpNIYfx3NtgCww/r1Hc3XcekUDMRovo9IdMfAK5E+kR2T80uC7uQMsy3LS0
+ uL0hNhJJfgc9ZYd3UQAkeN2ZefcXvLNTOVuF/XYx1DRBdrMLKQj8KWwre0Y1zAtga1gUZjwJaDEG+I
+ X499SgBjmWBsReJc4l9OvD59JoEFn6xJSVD4QeCC5ZZpG6vA+K/eSIBluzi+WbYf9I3qgz8TSOelwn
+ sQ265Ln3+S2P2EVIS9HSDOYS/ps13a5S5ApyN93N7FQ9wFC2ZXKQ9EsuPzWK1Lh2nHJt6FaD3D940H
+ tyJS2leQ+WRofTTTHd/o5cL8+3T1T54ewroxegNkNuanOZUPwzS8QPKK1kC+nKyOubtPI4Pa2l43W9
+ y67MtW7uQOQ8bOqrwOWd6A4mtNQpDlFQoCJ6a6BxUE9/rr6vRMSFzXbr/bs6dvpAp4Vc5EtiM6gBjC
+ 4/vAURZ9Qhynb/hLSBpEc2Y4swml6jFwEMRlQrF7Qw1lN0hiMbck/k2cvVJQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
+Document mmc-slot because used by amlogic,meson-mx-sdio.txt and
+cavium-mmc.txt, so make it common.
 
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v3:
+- Revert and insteads move common properties between slot and controller into mmc-controller-common.yaml
+- Fix other comments on patch 2 & 3
+- Link to v2: https://lore.kernel.org/r/20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org
 
-On 9/18/24 12:59, karthikeyan wrote:
-> 
-> 
-> On 9/18/24 04:46, Heiko Stuebner wrote:
->> Hey,
->>
->> Am Donnerstag, 12. September 2024, 16:24:46 CEST schrieb Karthikeyan 
->> Krishnasamy:
->>> Add rockchip,rv1126-wdt compatible string.
->>>
->>> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
->>
->> I think this patch misses some recipients because neither
->> the watchdog maintainers nor the watchdog list is included.
->>
->> We'll need for them to at least Ack this patch, so they'll
->> need to be included. Please check your scripts/get_maintainer.pl
->> call
->>
->>
->> Thanks
->> Heiko
->>
-> Apologies for missing them. Adding them in this reply mail.
->>> ---
->>>
->>> Notes:
->>>      v3:
->>>      - add watchdog compatible string
->>>
->>>   Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
->>>   1 file changed, 1 insertion(+)
->>>
->>> diff --git 
->>> a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml 
->>> b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
->>> index c7aab0418a32..bccd27a1e470 100644
->>> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
->>> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
->>> @@ -31,6 +31,7 @@ properties:
->>>                 - rockchip,rk3568-wdt
->>>                 - rockchip,rk3588-wdt
->>>                 - rockchip,rv1108-wdt
->>> +              - rockchip,rv1126-wdt
->>>             - const: snps,dw-wdt
->>>     reg:
->>>
->>
->>
->>
->>
-> 
-> Best Regards,
-> Karthikeyan
+Changes in v2:
+- Fixed description, limited to 3 slots
+- Moved out mmc-slot in a separate common schema
+- Link to v1: https://lore.kernel.org/r/20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v1-1-b7bfae886211@linaro.org
 
-Gentle remainder.
+---
+Neil Armstrong (3):
+      dt-bindings: mmc: controller: move properties common with slot out to mmc-controller-common
+      dt-bindings: mmc: document mmc-slot
+      dt-bindings: mmc: convert amlogic,meson-mx-sdio.txt to dtschema
 
-Best Regards,
-Karthikeyan
+ .../bindings/mmc/amlogic,meson-mx-sdio.txt         |  54 ----
+ .../bindings/mmc/amlogic,meson-mx-sdio.yaml        |  94 ++++++
+ .../bindings/mmc/mmc-controller-common.yaml        | 357 +++++++++++++++++++++
+ .../devicetree/bindings/mmc/mmc-controller.yaml    | 344 +-------------------
+ .../devicetree/bindings/mmc/mmc-slot.yaml          |  49 +++
+ 5 files changed, 503 insertions(+), 395 deletions(-)
+---
+base-commit: 47ac09b91befbb6a235ab620c32af719f8208399
+change-id: 20240911-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-6fa70546ebb8
+
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
+
 
