@@ -1,91 +1,84 @@
-Return-Path: <devicetree+bounces-108503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108494-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6439F992D66
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:34:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A342992D46
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F06A5B257D0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:34:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97F4E1C22707
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:31:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393F51D45E2;
-	Mon,  7 Oct 2024 13:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21521D1E6A;
+	Mon,  7 Oct 2024 13:31:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="zUfwjcCQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ar7W39FZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C90114AD17;
-	Mon,  7 Oct 2024 13:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F61914AD17;
+	Mon,  7 Oct 2024 13:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728307971; cv=none; b=pnT2NZcTLFESsfxD/XQo806ku1Kwwap0pRHYIrupI6FODfTa2yQiYgrQlDKLsw8yLU9LJbGvW4h/paxlafdc2YGBZzAXvGm8ci15Hc1ow6aXI5ODfeI3U0/xQbNjWqMZ7/ihWrbumgyPHMYgFLarXM8puO6c2JK7x0/K0OR9ZXA=
+	t=1728307881; cv=none; b=SM1KLW7H3wOFH1N7UWKDflm07IgvHyXb1yNuag+TlrHDvJVdXI+OPJXAqafH2+Fg6Avi3i04uN+mhYBBqTwgynodrxKytMIbnmuwPeBgrxw2HxBD1OrA/mL4E+tTaCg6F0/kQimpgSlmgyPlL6Ssth9P9KH+zVgCGBHtWqiBhq4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728307971; c=relaxed/simple;
-	bh=PFx9f1Tnm7BVK8PDs+lrbmOWcpFk+mbvlLZOtY/CyQI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UrRRIpgbeCFFiwEN6nfAkHN2690SpF3ryeX3VjzwbT5gI173SOazHkZf7f5twbHGkCS/QfpdUv1XaG+dNZ8nJQ49LWTuaA5WWTNrURhOCGlPoSpWXiLy7bYM6lGE9PcbixEwufe6OafIhKTbZrLEuZf36JK25jt6NWUKANvdQto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=zUfwjcCQ; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497Agrgm006897;
-	Mon, 7 Oct 2024 15:32:15 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	xKQ8+KejSv5zCIILbnJcVY8vIedW2kPb2Uj4ri0BLZw=; b=zUfwjcCQPqf3zzuR
-	MCzRCe5YqHcqJx4NgSCSNpHDULO/w5wPZqhHAkuGJOV1zIgjA0PKdqlW6+nIM/XT
-	Fb4ECgIP9HSU/NHWOHS8ZzQp5SvoTQpH9vmiIaxbbIlbNQYR7RlpMVhhFLieR+aF
-	d7oPYeqzJV8/Rmo2DX6HMN2Ra1O7G2NQWXYtndS7x8ABbseJnWtAeLfmOLTcL29e
-	Ena9I5Lsz6z1wncncHelgc59dXQiiRRrEEegAXxD/mVyeEElCvkv+5HcXfczJ3N8
-	vp6hYV8otfTyr43sGZSEjbX+I1eAt5ROh0HVoqGIFGiX8uoXJD4IKbCKgKALjvKK
-	fRKV1g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 422xv714xp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 15:32:15 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 7D9E24004F;
-	Mon,  7 Oct 2024 15:30:40 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 78F7527E2A2;
-	Mon,  7 Oct 2024 15:28:58 +0200 (CEST)
-Received: from localhost (10.48.86.225) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 7 Oct
- 2024 15:28:58 +0200
-From: Gatien Chevallier <gatien.chevallier@foss.st.com>
-To: Olivia Mackall <olivia@selenic.com>,
-        Herbert Xu
-	<herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>,
-        Marek Vasut <marex@denx.de>
-CC: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Yang
- Yingliang <yangyingliang@huawei.com>,
-        Gatien Chevallier
-	<gatien.chevallier@foss.st.com>
-Subject: [PATCH 4/4] arm64: dts: st: add RNG node on stm32mp251
-Date: Mon, 7 Oct 2024 15:27:21 +0200
-Message-ID: <20241007132721.168428-5-gatien.chevallier@foss.st.com>
+	s=arc-20240116; t=1728307881; c=relaxed/simple;
+	bh=mZdrK52vjGJlAOrobvMFcJDnf7fhtrCuyp4RyTQmPs0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hudsUbX3JqNmDFJNG9GE5U7IwA4jXQzHIHlCi5hq5bgY1UYSrBGbs/pzR5sPf0Bw9/sqU9YNp1SiteoOj09sOCJey1LxrJzimdcUtmnChswJODuiN9DhBCDjfpzx+Q+2WOq4DPnVZ4x2Yr0wNPdxrH3V4Bqxb/nqzLfavM/qaLY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ar7W39FZ; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5c8ae795307so678436a12.1;
+        Mon, 07 Oct 2024 06:31:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728307878; x=1728912678; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7PPIYhr7ULF+XKPkr4SAuQ/UzK9Q+69FWIG9HwKdE2E=;
+        b=Ar7W39FZY0U/0fCM9FaFsHuZ4GIvPAn/txNSyGg1jQ+RI7n4JOEYAF9mJeqvTzf/9A
+         DISADxq6LVCMeIujbJFVG8fU27t3dxHhXBnMWfptpwudmheaS1ZIkbi5mNnjpaydx9vi
+         KwPpJTk183W7SFLGSzGC6K8vIAK9iFuM5veyQusP79hGMyTtjFvp8KWoO3w3AZcge+Ml
+         Ga1VjHhr3YRULdZlrkvD/pOSpDhs0+f23vQ1G/GXeNszRmugQ8lHu41bMfmbEEBq7vfD
+         LxWjslnjpSmn2jqnr/R+G7HIBHvb/A57Yg+nW33AGVPR4PRwo2fHiXD92l14r5H2dZgx
+         zkUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728307878; x=1728912678;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7PPIYhr7ULF+XKPkr4SAuQ/UzK9Q+69FWIG9HwKdE2E=;
+        b=o58UjmWuG6zVnYOCKGTxZN+NakmxN2KVbq6RfUDiEli8SywZumkOSfiEeHCQbx1CBo
+         t0pnavLMXI9Cqfbl0DFEXOSsAZjSmuzZ3ZbU9NCuX01Dp6YzQ3Lq16AeDNU9TbSbuacr
+         B8jZ50Kwp9Nb1mDzUGTyN3UwjokZkwsM2I4eSI1jlSiZDk+Rc8WXzeEIZy1XT3cIDzwi
+         XjiZg2FpxRklOPxXVl5Y2Vr7ETeh2j8COwWEXHWsTRNvnREkcrkF1HFX+914KjY2CFdE
+         +/CP1Tawynkr/oY6jEz9UgS1+mNDB3v5H+XCec3rgv7IvUFkYtwd8dQmbnbQ9MruJ+r+
+         VFOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVszIc27e3eNqi0F/bKW6vV+kB/4/WOFHjjL5loYnDhVQNNsmYESb/6gqOdF9HUB1+2rn0H/vUWD9XL@vger.kernel.org, AJvYcCXXL2P3vbtf8TAOklCzw09BBx8gvUBrI3C9w4YehHQkz1a9uNSN5PuBmk+6Fw1oV5tF/ULyh071DsHR2U8a@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMsmySFiGPAKQhRTrl8szDQI0fKW7aMWjp1UjGvNrih4h21ikR
+	CXmy4xxbCcGHU7ER9DIKiS2uoq6iQ2nsO58AI6K9XfhGfOLyo/Om
+X-Google-Smtp-Source: AGHT+IH3p63RZ2D6LnmTx82bBIIfaHHOgdX2FVv4sc0/cuFfUb1PB4K/OWjVoKBF2anpytgJ+I+1fA==
+X-Received: by 2002:a05:6402:5251:b0:5c5:b7fd:16bd with SMTP id 4fb4d7f45d1cf-5c8d2e71b53mr4301939a12.5.1728307878068;
+        Mon, 07 Oct 2024 06:31:18 -0700 (PDT)
+Received: from e8ff02ae9b18.v.cablecom.net (84-72-156-211.dclient.hispeed.ch. [84.72.156.211])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05eb34csm3193089a12.59.2024.10.07.06.31.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 06:31:17 -0700 (PDT)
+From: Lothar Rubusch <l.rubusch@gmail.com>
+To: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	dinguyen@kernel.org,
+	marex@denx.de,
+	s.trumtrar@pengutronix.de
+Cc: l.rubusch@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] Add Enclustra Arria10 and Cyclone5 SoMs
+Date: Mon,  7 Oct 2024 13:31:07 +0000
+Message-Id: <20241007133115.1482619-1-l.rubusch@gmail.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
-References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -93,42 +86,119 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Update the device-tree stm32mp251.dtsi by adding the Random Number
-Generator(RNG) node.
+Add device-tree support for the following SoMs:
 
-Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+- Mercury SA1 (cyclone5)
+- Mercury+ SA2 (cyclone5)
+- Mercury+ AA1 (arria10)
+
+Further add device-tree support for the corresponding carrier boards:
+
+- Mercury+ PE1
+- Mercury+ PE3
+- Mercury+ ST1
+
+Finally, provide generic support for combinations of the above with
+one of the boot-modes
+- SD
+- eMMC
+- QSPI
+
+Almost all of the above can be freely combined. Combinations are
+covered by the provided .dts files. This makes an already existing
+.dts file obsolete. Further minor fixes of the dtbs_checks are
+added separtely.
+
+The current approach shall be partly useful also for corresponding
+bootloader integration using dts/upstream. That's also one of the
+reasons for the .dtsi split.
+
 ---
- arch/arm64/boot/dts/st/stm32mp251.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-index 1167cf63d7e8..40b96353a803 100644
---- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
-+++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
-@@ -493,6 +493,16 @@ uart8: serial@40380000 {
- 				status = "disabled";
- 			};
- 
-+			rng: rng@42020000 {
-+				compatible = "st,stm32mp25-rng";
-+				reg = <0x42020000 0x400>;
-+				clocks = <&clk_rcbsec>, <&rcc CK_BUS_RNG>;
-+				clock-names = "rng_clk", "rng_hclk";
-+				resets = <&rcc RNG_R>;
-+				access-controllers = <&rifsc 92>;
-+				status = "disabled";
-+			};
-+
- 			spi8: spi@46020000 {
- 				#address-cells = <1>;
- 				#size-cells = <0>;
+Lothar Rubusch (8):
+  ARM: dts: socfpga: fix dtschema issues
+  ARM: dts: socfpga: add Enclustra boot-mode dtsi
+  ARM: dts: socfpga: add Enclustra base-board dtsi
+  ARM: dts: socfpga: add Enclustra Mercury SA1
+  ARM: dts: socfpga: add Enclustra Mercury+ SA2
+  ARM: dts: socfpga: update Enclustra Mercury+ AA1
+  ARM: dts: socfpga: remove of generic PE1 dts
+  ARM: dts: socfpga: add Enclustra SoM dts files
+
+ .../devicetree/bindings/arm/altera.yaml       |  24 ++-
+ arch/arm/boot/dts/intel/socfpga/Makefile      |  25 ++-
+ arch/arm/boot/dts/intel/socfpga/socfpga.dtsi  |   6 +-
+ .../dts/intel/socfpga/socfpga_arria10.dtsi    |  10 +-
+ .../socfpga/socfpga_arria10_mercury_aa1.dtsi  | 141 ++++++++++++++---
+ .../socfpga_arria10_mercury_aa1_pe1_emmc.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_pe1_qspi.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_pe1_sdmmc.dts |  16 ++
+ .../socfpga_arria10_mercury_aa1_pe3_emmc.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_pe3_qspi.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_pe3_sdmmc.dts |  16 ++
+ .../socfpga_arria10_mercury_aa1_st1_emmc.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_st1_qspi.dts  |  16 ++
+ .../socfpga_arria10_mercury_aa1_st1_sdmmc.dts |  16 ++
+ .../socfpga/socfpga_arria10_mercury_pe1.dts   |  55 -------
+ .../socfpga/socfpga_cyclone5_mercury_sa1.dtsi | 143 +++++++++++++++++
+ .../socfpga_cyclone5_mercury_sa1_pe1_emmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa1_pe1_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa1_pe1_sdmmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa1_pe3_emmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa1_pe3_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa1_pe3_sdmmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa1_st1_emmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa1_st1_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa1_st1_sdmmc.dts |  16 ++
+ .../socfpga/socfpga_cyclone5_mercury_sa2.dtsi | 146 ++++++++++++++++++
+ .../socfpga_cyclone5_mercury_sa2_pe1_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa2_pe1_sdmmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa2_pe3_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa2_pe3_sdmmc.dts |  16 ++
+ .../socfpga_cyclone5_mercury_sa2_st1_qspi.dts |  16 ++
+ ...socfpga_cyclone5_mercury_sa2_st1_sdmmc.dts |  16 ++
+ ...cfpga_enclustra_mercury_bootmode_emmc.dtsi |  12 ++
+ ...cfpga_enclustra_mercury_bootmode_qspi.dtsi |   8 +
+ ...fpga_enclustra_mercury_bootmode_sdmmc.dtsi |   8 +
+ .../socfpga_enclustra_mercury_pe1.dtsi        |  33 ++++
+ .../socfpga_enclustra_mercury_pe3.dtsi        |  55 +++++++
+ .../socfpga_enclustra_mercury_st1.dtsi        |  15 ++
+ 38 files changed, 980 insertions(+), 85 deletions(-)
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe1_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe1_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe3_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe3_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_pe3_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_st1_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_st1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_aa1_st1_sdmmc.dts
+ delete mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_arria10_mercury_pe1.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe1_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe1_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe3_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe3_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_pe3_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_st1_emmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_st1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1_st1_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_pe1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_pe1_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_pe3_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_pe3_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_st1_qspi.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa2_st1_sdmmc.dts
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_emmc.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_qspi.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_bootmode_sdmmc.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe1.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_pe3.dtsi
+ create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_enclustra_mercury_st1.dtsi
+
 -- 
 2.25.1
 
