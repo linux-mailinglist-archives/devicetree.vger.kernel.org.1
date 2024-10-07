@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-108435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A74A4992A22
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:21:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D750E992A38
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:30:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3591B1F22719
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:21:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14BA81C22942
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:30:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D86C199948;
-	Mon,  7 Oct 2024 11:21:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4B7B1D175F;
+	Mon,  7 Oct 2024 11:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nJWyXhgT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f+VYGleb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0437C2AD05;
-	Mon,  7 Oct 2024 11:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 950E2101C4;
+	Mon,  7 Oct 2024 11:30:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728300071; cv=none; b=A4w7whvDejq5SrLxx+WlsSNBC+ZPgD2vDqOkP3oJSlIBZSNY9/ul3kJpJJ8HsAQlof7etAYT9XDqUkBbcGcEyXcV99y2i1HPpQIgztHeKVES9DLUzragOThNoOgpf33+FmSK6j5m+6WP65AJ8iNdxDn2K6PjjqXXTczopOunbvo=
+	t=1728300615; cv=none; b=Wb/Qm5uk9b7i00J6zSkVe1lAvSt2H06eUNaRJBHKZt1qSgIhXRUDpQfEW54hXGOFhwZHHxE6jMHat081UgveBzxOgTk3fbwarYjEXvwq9VDHgf69rvyOdhOBIp5+49DgApAyuHVRSVai1QOPvtJeHAKqf/sIJFZro6xJxlFIH/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728300071; c=relaxed/simple;
-	bh=AZ3y3WY/Ut/fXbhJ00IA0h+oVk/0xqW5HzRE9HId71I=;
+	s=arc-20240116; t=1728300615; c=relaxed/simple;
+	bh=Rz4+xwYlnejseHEd/Mnd7CZL6xZvLaDMPzooI0qTgmY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SQcH1w1+eJ2rearEWdqXUYHn8WUaUjDz/NxsEkIE7glSs40AtQNu1ylRn8bykbJDDEssRS2aXBTMzEVgKctM171PbZouC+2/ZlKfhVbG3offTR4K697YsrePsST/tbbeWC/zSYGWyxzI0Q3bDsH0p4f7CeOTLOsOy236GKY99xQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nJWyXhgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B28C4CEC6;
-	Mon,  7 Oct 2024 11:21:04 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=o892fXTdrPLrIZAoof5y1edjVkTzV+OTiBHchDRiaRlbmHc2Rh+wI8F7YUYrs6ictShqsnKSNN0Df9egpS8k9RtziNZmyMZ2X4gFn0bpOsutKbegoFeP9YM5DH8xLRu8oy2if6j6cCDcd0PInBexVBLQ90NVkrfdjlL0N6OLEqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f+VYGleb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D307C4CEC6;
+	Mon,  7 Oct 2024 11:30:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728300070;
-	bh=AZ3y3WY/Ut/fXbhJ00IA0h+oVk/0xqW5HzRE9HId71I=;
+	s=k20201202; t=1728300615;
+	bh=Rz4+xwYlnejseHEd/Mnd7CZL6xZvLaDMPzooI0qTgmY=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nJWyXhgT4yEM6bx93lshwU8ITuCdLDnD5v/Tt3+XFuP90lWgd171cxSUYNKu47YDq
-	 yagNF57Px/12TToqShFO45Z/gx5u65Nahh+uT2gvLEwZcusx5a/DJyiFLNMhZbhGA8
-	 knFBezVVo43QBfdfs5yQ0Y1QBgJGHTQjcAr0cP9fc1V9ydLrcnMMX3VyvpGVRfrCbz
-	 7TblurOS+R+OThCO9aO43i7FCk06ILiAAq1+NEWZg1kjKzgMc6YWGIfYe4R7uTpwnr
-	 Sf76RPilgNrTGjE5/894c/xkMNVVzdZe3VCs9O+SmLH9k+M4hBv6uuL6FgqKbMtO7z
-	 7Y2gRI65U7R9A==
-Message-ID: <f41d3eb3-a7b5-478d-93b7-671e1662e952@kernel.org>
-Date: Mon, 7 Oct 2024 13:21:01 +0200
+	b=f+VYGlebZh0izT4/wpS/jAuaUTaxn4XJzdQWFUUUjyyAoKYN8Dqalm10RaSmeJZWW
+	 7DgfSR9zCvSx+tgGzWfO15tA7COUMo5s2dhPCPnZ+7BAlMsH5btJN6OasQpA9PXa1M
+	 ET+aqUEQWR8+5UolWB756Aw1oEPrN1Mn1YdEE+XkaEq8yhbPELGohjioLJvbfyQtBI
+	 iTed0U7xAlSpvAM7Z/yAaxa+xdRdQOmV22GNyDerGFbbNfMxSXDH4Y9Wh2khSoKUIQ
+	 Zd2fuQBRZ66QaavW8BYx10oBSI5cKQI0c4CjbyfJE7vCDiA8QqZWG1i38FYcGQsjdO
+	 WQIptI9bu5MsA==
+Message-ID: <e6709979-e69e-4b55-be9f-c1353dd8ffc7@kernel.org>
+Date: Mon, 7 Oct 2024 13:30:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,18 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: display: bridge: sil,sii9022: Add
- bus-width
-To: Wadim Egorov <w.egorov@phytec.de>, andrzej.hajda@intel.com,
- neil.armstrong@linaro.org, rfoss@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, bbrezillon@kernel.org, conor+dt@kernel.org,
- krzk+dt@kernel.org, robh@kernel.org, upstream@lists.phytec.de
-References: <20241007085213.2918982-1-w.egorov@phytec.de>
- <20241007085213.2918982-2-w.egorov@phytec.de>
+Subject: Re: Aw: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for mt7988
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-3-linux@fw-web.de>
+ <89e54baa-0f05-47d7-8d81-68862f822c59@collabora.com>
+ <trinity-2ac8c3fe-ad19-424b-ab4f-da84c42c4ae1-1728290266613@3c-app-gmx-bap03>
+ <272309da-24ff-49cd-9e4b-287054218cbc@collabora.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -107,20 +113,49 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241007085213.2918982-2-w.egorov@phytec.de>
+In-Reply-To: <272309da-24ff-49cd-9e4b-287054218cbc@collabora.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/10/2024 10:52, Wadim Egorov wrote:
-> The SI9022 HDMI transmitter can be configured with a bus-width of 16,
-> 18, or 24 bits. Introduce a bus-width property to the input endpoint,
-> specifying the number of parallel RGB input bits connected to the
-> transmitter.
+On 07/10/2024 12:14, AngeloGioacchino Del Regno wrote:
+> Il 07/10/24 10:37, Frank Wunderlich ha scritto:
+>> Hi
+>>
+>>> Gesendet: Montag, 07. Oktober 2024 um 09:58 Uhr
+>>> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+>>> Betreff: Re: [PATCH v2 2/2] mmc: mtk-sd: add support for mt7988
+>>>
+>>> Il 06/10/24 17:34, Frank Wunderlich ha scritto:
+>>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>>
+>>>> Add support for mmc on MT7988 SoC.
+>>>>
+>>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> There's no need to add yet one more duplicate mtk_mmc_compatible platform
+>>> data, nor one more compatible string to this driver, as this is exactly
+>>> the same as mt7986.
+>>>
+>>> Please reuse the MT7986 compatible; in DT you'll have:
+>>>
+>>> compatible = "mediatek,mt7988-mmc", "mediatek,mt7986-mmc";
+>>
+>> as explained in binding, the clock config is completely different (except first 2 also required by driver - 3-7 are optional there). mt7988 uses axi and ahb clocks.
+>>
+>> but i could of course use the mt7988 compatible with mt7986 compat data...but looked dirty to me so just copied the block (to allow later changes if needed).
+>>
 > 
-> Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
-> ---
+> In case there will be any changes required *later*, you can always add new platform
+> data for the MT7988 compatible, as it's just only a code change and nothing else.
+> 
+> For now, since they're the same, just reuse mt7986_compat.
+> 
+> Reusing is way better than duplicating - here and everywhere else - especially when
+> this implies a 100% duplication.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+If you use same match data, then entire change should be dropped because
+it is redundant. Instead express compatibility in the bindings and use
+fallback.
 
 Best regards,
 Krzysztof
