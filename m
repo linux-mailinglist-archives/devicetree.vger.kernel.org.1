@@ -1,60 +1,57 @@
-Return-Path: <devicetree+bounces-108723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85DCC9937F2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:07:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B61A9937F6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:09:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2927B211E5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:07:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1DA951F21CA2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EC81DE4C5;
-	Mon,  7 Oct 2024 20:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 299E51DE4C5;
+	Mon,  7 Oct 2024 20:09:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NM+xKt86"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hgAVRmHO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEE21DE3C5;
-	Mon,  7 Oct 2024 20:07:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C861865FC;
+	Mon,  7 Oct 2024 20:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728331662; cv=none; b=d5VebbWgFj+k0JurTl5/Z03Afgrf7ixCaIpfM0YbjE67Zt8ZmKLJzxUKfNLKNK7hCqnr9fCz2ugnPP5PiI+VDm7uA3ZoTfZNPUE6HFK2eQlLWabEPrfE3GcsnAkxxdMDVTx29UVtflwSAvqPnYh+Y0loeUk9b8i5fYeaK0rMk1M=
+	t=1728331755; cv=none; b=AkWLqs1sXp3WSVzqBd4Srf+Q050E8003aXuZRitJYmwyFT7c5FipQXlvOEE/Ef0mD3Y9ZxIVIl1CoJo702UGr2PnOovWKGwbi65ZlskDgwgj7qAH+p9WAslYwqbRfd8ghjWSmpNrKB1HTNPYvmxUVUTIVNiXLNPRpqA346oAT7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728331662; c=relaxed/simple;
-	bh=BxLDkE25VPOwCrsCvshNOC404xDqaWO7nzcWZR1O3so=;
+	s=arc-20240116; t=1728331755; c=relaxed/simple;
+	bh=AZgOXjS5qYlwsu6tp81KFVorld8zA1+s4cgFUkR1EJw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U+1gysEP1XlM4mKOEHUxdP8DV6GVuKJyvCd/vH/fnoYzyhqLLoWmjAPZyowHXh7EVyQaaI4u9jEYpUfIXbLOrIzp7opJ1QsAf7+iraeS7bh6x6QAicZ8g9DPDUsR5cMRLHhpJxExfB4YcXgpbDoQFfYTkY4T3kWzsyKe4KjKmrw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NM+xKt86; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09855C4CEC6;
-	Mon,  7 Oct 2024 20:07:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PxbQKKD1lpkJtom7NbqRfBJAZBMd75kZvtC+0gcZiXA9OiJsiZ9H19PhyUAs/dageG9KW43zm/ZSqeqlKgRLsA5Nh7ZDnL6HN6pvYcHk+KwpdRnSgDidInXzZpmAn1OjQnvA/l29IcmSp2BjrZ20arIJIMAP7AuPKUUaDI4Ie4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hgAVRmHO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D24BC4CEC6;
+	Mon,  7 Oct 2024 20:09:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728331662;
-	bh=BxLDkE25VPOwCrsCvshNOC404xDqaWO7nzcWZR1O3so=;
+	s=k20201202; t=1728331754;
+	bh=AZgOXjS5qYlwsu6tp81KFVorld8zA1+s4cgFUkR1EJw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NM+xKt86wT/VjQBK3wc0ZgaUUaALWTVCDkajoZh7vpelgFeLiqb5iFhcbFuIy9NUa
-	 QrPhih3W/hxBpQttV8eu/XAEOD83Lx9vhxWn0/C6Qbbbi4ahVCXuCN6q0pPW8XCeRC
-	 RGaxW2c3fKYVWPIUyiWI7aDI9OXSCMmpdKhFKqnYM7/Hi0Ygl+EFqryaTmLtrkUP+N
-	 CSb08v1l3OaoW95IyEp76YMb8FyogpJVEFmyFxXrYFcJo4qvMZfIwDnpJcm5WTei8n
-	 Au7r962G4kpcFc6h7Ji/lRkifYzRoehZoPx859ZRHHI5IcFC6RtI88C3WJhCN0DZm3
-	 LVlF9LIid1PMw==
-Date: Mon, 7 Oct 2024 15:07:41 -0500
+	b=hgAVRmHOxcDWny0Hnv2w5a+yWOr7jlxL23RtpwRZd7uJHjrTidbkGxnZScfDCUnNQ
+	 g+4cONt4TSs4+o6Ulmn/BFjnB8W2Bjigf56P7iWrlHjuEnB74SH2tjCosZERvCq59a
+	 /noT1zSYOWbCU9VFjtm9gfUrPpZ0Z+BIR7drPi2Hd3nOJXjwM8PeJpM3oghF4k+eiz
+	 aWi8uDLo88VI/f6ICZ8nP4SSMeUCvTDm4PSwZfj0vmQQvsi+xZ4WUFqmzGy5HlQ3ei
+	 Xt3jjVKTdIqCxRLeZCTAW2LAShCO/o0k4NCx9sik/Bg7iwF1OyvsZ8XME0dtq5J8Nn
+	 mGViFB/brrMlQ==
+Date: Mon, 7 Oct 2024 15:09:13 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dzmitry Sankouski <dsankouski@gmail.com>
-Cc: Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
-	Krzysztof Kozlowski <krzk@kernel.org>, linux-leds@vger.kernel.org,
-	Chanwoo Choi <cw00.choi@samsung.com>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-	linux-pm@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH v6 2/7] dt-bindings: mfd: add maxim,max77705
-Message-ID: <172833166069.2315774.14681195967266298858.robh@kernel.org>
-References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
- <20241007-starqltechn_integration_upstream-v6-2-0d38b5090c57@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+	imx@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl,ls-extirq:
+ workaround wrong interrupt-map number
+Message-ID: <172833174920.2317928.5857318488649665401.robh@kernel.org>
+References: <20241007161823.811021-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,39 +60,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241007-starqltechn_integration_upstream-v6-2-0d38b5090c57@gmail.com>
+In-Reply-To: <20241007161823.811021-1-Frank.Li@nxp.com>
 
 
-On Mon, 07 Oct 2024 18:55:50 +0300, Dzmitry Sankouski wrote:
-> Add maxim,max77705 core binding part.
+On Mon, 07 Oct 2024 12:18:23 -0400, Frank Li wrote:
+> The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
+> function to parser interrupt-map. So it doesn't consider '#address-size'
+> in parent interrupt controller, such as GIC.
 > 
-> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> When dt-binding verify interrupt-map, item data matrix is spitted at
+> incorrect position. So cause below warning:
 > 
+> arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: interrupt-controller@14:
+> interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 0, 1, 4, 2, 0, 1, 0], ...
+> is too short
+> 
+> Remove interrupt-map restriction to workaround this warning for
+> 'fsl,ls1088a-extirq', 'fsl,ls2080a-extirq' and fsl,lx2160a-extirq.
+> Other keep the same restriction.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
-> Changes in v6:
-> - unevaluatedProperties must be false
-> - drop excessive sentence from description,
->   just describe the device
-> 
-> Changes in v5:
-> - formatting changes
-> - add unevaluatedProperties: false for nodes referencing
->   common schemas
-> - remove additionalProperties on nodes with
->   unevaluatedProperties: false
-> - add min and max to led index
-> Changes in v4:
-> - change dts example intendation from tabs
->  to spaces
-> - remove interrupt-names property
-> - remove obvious reg description
-> - split long(>80) lines
+> Change from v2 to v3
+> - remove interrupt-map restriction according rob's suggestion.
+> Change from v1 to v2
+> - remove duplicate function in commit message
+> - only reduce miniItems for after 1088a chips
+> - maxItems change to 9. Otherwise report too long.
 > ---
->  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 174 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
->  MAINTAINERS                                               |   1 +
->  2 files changed, 175 insertions(+)
+>  .../interrupt-controller/fsl,ls-extirq.yaml   | 26 ++++++++++++++++---
+>  1 file changed, 23 insertions(+), 3 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Applied, thanks!
 
 
