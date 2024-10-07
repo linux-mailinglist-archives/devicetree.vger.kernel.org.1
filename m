@@ -1,243 +1,134 @@
-Return-Path: <devicetree+bounces-108573-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFEB5992FE8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:50:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7223B992FDB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8D351C23225
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:50:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DCD93B2276A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:50:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647321D88D3;
-	Mon,  7 Oct 2024 14:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3F391D79B3;
+	Mon,  7 Oct 2024 14:50:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j/ck+pfl"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="yEQmbG4C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 797D41D7E3D;
-	Mon,  7 Oct 2024 14:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056D61D79B4
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 14:50:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728312614; cv=none; b=BAKZXn9tJZE7EWdQmnUlSt/TnJ5OlhLRjKH9ijzvs2hhrANqYLBazDI82lCPJKzp2YqzKXnUbPWtdm3xkqqmJ8HQvyUeteP1wzsER/0tGPLPSYAy1faWcZTm4/ajzFIPp+zKiTM4mEsSYt6zH+HrWOoPfO2D1B/KR9IAejonqgE=
+	t=1728312604; cv=none; b=sBKLJSey3U6F9x38agdGSY75CO4cqjDp1fIngLYdO8Te9ZqsFboCyO9lKhBEdqego6qUaj1EHPeWfwJjKuXGDCxE3dZMPU5x+5Z4nXLdB761Udq4dW9xOI/v72gLb9x5PhnEnTipX5EDOkaUlAJLflJ7nlfD9JOvngkIK8gCesM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728312614; c=relaxed/simple;
-	bh=xaOvS2+nFbFXgLVWGRgfJSXilelrhfer00Wh/eYX/Zw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=L2gK0hrNAK/+Wf3N3U/Nx0L0KpLp5eB6U4oBexElvC6FOzVR60wsNqFgvCibXYbblMLb/9iJPYIwp2Oj5mgs/ORTgWB3umSGvlXw9eAr9Rm+Vh/O0uBzUy7W5qcsJaFDaY35vm2rCX8VQxb4uz8qMUnUvQ/dLl+EARqzCYcFspU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j/ck+pfl; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fac49b17ebso34417231fa.0;
-        Mon, 07 Oct 2024 07:50:12 -0700 (PDT)
+	s=arc-20240116; t=1728312604; c=relaxed/simple;
+	bh=qkGG/OKn4iUpw5Z2371kFS/L/UqvVa71JTiyYLX+/tI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HRI+T52HjRX/B3CLdtdUpV4JiYxxWegJtMrxZlkVdEPicAWTbT/Rxsy6l6yr8n3RiPDBjGf3Qj8BEGlJcX7FRNeXWT8lSSJdUjpfej6t6DYL6PrWvlVXSRRZkJzXDWdNuyeIms2ylOvd/vezshXZ6zVEzZUXEn8guovFaRldZsM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=yEQmbG4C; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-42cb806623eso41547985e9.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 07:50:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728312610; x=1728917410; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bKqa5VofnGcmBjBaWkd+jJmfVqq2+bq+aGP5sPNNSbg=;
-        b=j/ck+pflRsMcXI8GS+wTgkp4zsY8GNt/K0Ibx2XOMu7rpDBsEbmQWIxRiiQ1DLdwgv
-         hXFhGh1lXHKMItOxEuYakSkZAz5tIfGDQwD0MFU4PG5qQLgNDC0jZqwnrfM/WLTjG+d9
-         0/E4mK2j+baMFqGVVLoEjUOxL6RAh4xxPE4N0uh/MC5qFo5xxK6yyJ0XS5MeDPN4l/0P
-         J0ZHlKb8lBIiQmmFH9esdkidhIfCY/9zHflIVEiHUxhhtknjCyVpyDP7B/loOq+Z5ea+
-         AFCcDvJApHZrJKYIL2Eq3I0MZYkI6dpRIStUuKlNZ1anjQDdqzsHvlJ3WtVdTmJo0jlv
-         sohQ==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1728312601; x=1728917401; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1NyQRssNX2H+PouQCuQZFpVJ+OYp8Hk88kmYRkHCtA4=;
+        b=yEQmbG4CmuvxsI+p8xxHdh3YBzJ4rM915A0hxd+av9HZkCEaPQM/TWZuYFG8rrlcPI
+         8sbTZo88+SDFgPLfXPqRfyhGG7eVPfj+f/VbBRcvN5FHRJ6RF7VXBBWa/bbZpVO8WSUU
+         rnaW8V60RaK4MaW+8np1mFCA4Sn/pxvRROOW/rukjXog5qOwkd6eLG5QT4L/mqiRkiKZ
+         vdBpE2cIKl2+v9GVaR/2xIlLzLSTxn55qKQdRIWcydoeWLoDfrebJXG/QpH8PhjgIkTf
+         WMUAAWY8qzb6PnVD7oEQ247yL0ZvWarXFnmiKsbzMtyCVz361FBkR9kXtyd/rI+1qPYO
+         0eSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728312610; x=1728917410;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bKqa5VofnGcmBjBaWkd+jJmfVqq2+bq+aGP5sPNNSbg=;
-        b=RMm6ktB0IqYZyv3NTS15IzpAWPp+KPm+Q7wRuilg3QDWlUx00JicTiAptUfSynKIsm
-         sVVFfS4pv012JPkzLEjs9CcgA59ZkAlP0fTgHp7YuhOq3kmyP2rUPYeYT+7m1s1R9Jk3
-         rRbez5rK5zsY4ijdiQNujd2SITF42jV8DQAsffWvrpvemsQZ3RIGkM8I62JYPW40AhIT
-         ZyOVAnCaeGoDtqOR6MYpnuzOgi5dZa0S8iv75xi1JXtVP1gYCankGMqzzLbLPKmQI1vR
-         dBfFbTJIQRUGUiYMkLQ3k6W6Do+KFhmlY/bWj/nshV4XDhyneL92FWPpfWqhFjkTZpYy
-         PspA==
-X-Forwarded-Encrypted: i=1; AJvYcCVX2Fe72RdSWMNYQ0q+XSqImy4I3mCl2pHjKmj+oNt5YH5DyeuF5V7Ig86Fd8rXyLemJvbna1hOHaQsqROsRIMEOi8=@vger.kernel.org, AJvYcCVqR6j2v+whsoDbbCDg3j/zb7S/olo2UPfiK4Vl+Fe5lkN6cWEt9lVuJUs3fTzkQ5mnB8+vZ65APvv9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXRbRY9tWea94LqqVcJQGit/Biv/K7T6bfk7WOGtzyxhGacbiL
-	7mvkjc+Vkpl2Z4twxM6+HFAF9t+Ng4NQXDGJs4dehcVgnCni/38o
-X-Google-Smtp-Source: AGHT+IFJ9n5L/hLCUECObP7MCrTMBXkI/9LWg/yjwQjx4XP4KcNdnAxkRYHDYTXN+wbc+8aKrGlzyQ==
-X-Received: by 2002:a2e:bc1a:0:b0:2fa:e4d0:eb61 with SMTP id 38308e7fff4ca-2faf3d74dbcmr63548711fa.32.1728312610316;
-        Mon, 07 Oct 2024 07:50:10 -0700 (PDT)
-Received: from [127.0.1.1] (nat6-minsk-pool-46-53-210-75.telecom.by. [46.53.210.75])
-        by smtp.googlemail.com with ESMTPSA id 38308e7fff4ca-2faf9ac43efsm8253791fa.45.2024.10.07.07.50.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 07:50:09 -0700 (PDT)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Mon, 07 Oct 2024 17:49:59 +0300
-Subject: [PATCH v6 1/3] dt-bindings: mfd: add samsung,s2dos05
+        d=1e100.net; s=20230601; t=1728312601; x=1728917401;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1NyQRssNX2H+PouQCuQZFpVJ+OYp8Hk88kmYRkHCtA4=;
+        b=tOEbVMJ0I2zG+4yr4sLcF+l5YbMz+10CYU3uzmtQEsr5c5+J16BDMroCFYobvYFL2G
+         hg3f4xpOxOEsLwdM5JconuvkaCUvHxR5pp8aSzSmryfsDi09ARXeL7iihSijG4XBhel0
+         mqrd4+WU/Cs3d6Ha3xj/0Q5ak/KDMKI6tDQedOMYBQbHLhna5iw0KsZN4CZXjA0JUm5E
+         0ah1FHNFMo5nIasCvdNbpK5SfC+HWNcGs/kVxoYvvP0Knansv26x9pqeKmRWyDMfw2P8
+         fJPpPn7ouLBzYhPfL5vHShwp0hC+//N6IOSANjEpkzprZNEQ4OZp7KOPtHT3cLpb2t2C
+         j/Lw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/RZ8Y7KoIs1dnZuLtDDRQsccPstO1R2jjSRWUUfmUqa7DfAmvu6ZBsbpenGRC0dpVC6kgPuRHm5G/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYNiKVfglFte6ozucJa2HbrVrU6jrbRFw0p8EGRNxwxxhLASkT
+	h4YyTExzzXG3zFvvyKR4oRZZfMO3ywKM8pKNeusoneiw09Au8EZuGjtTEngjxJc=
+X-Google-Smtp-Source: AGHT+IEME010xJ6NSIv9wR7Z/93/BFWW/x3u0WJ5DnL0ywdklukEZv0FJeErGQxlLa2wTRRInxBsmA==
+X-Received: by 2002:a05:600c:3107:b0:426:6710:223c with SMTP id 5b1f17b1804b1-42f85ab64b4mr98834965e9.9.1728312601201;
+        Mon, 07 Oct 2024 07:50:01 -0700 (PDT)
+Received: from [192.168.108.50] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1698e885sm5877536f8f.114.2024.10.07.07.50.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 07:50:01 -0700 (PDT)
+Message-ID: <c48b54d2-6903-490e-a80f-ce3e04354470@freebox.fr>
+Date: Mon, 7 Oct 2024 16:50:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/2] Basic support for TI TDP158
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Robert Foss <rfoss@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ Arnaud Vrac <avrac@freebox.fr>, Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Konrad Dybcio <konradybcio@kernel.org>
+References: <20240812-tdp158-v5-0-78684a84ec23@freebox.fr>
+ <172536721812.2552069.2889737892670833119.b4-ty@kernel.org>
+ <40ffacc2-fa04-4e6d-b817-c547aa75a21c@freebox.fr>
+ <CAA8EJpqYp8uBNVdNSAmSbeev=itxNKS_scb2xAwe63aS5bdhkg@mail.gmail.com>
+Content-Language: en-US
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <CAA8EJpqYp8uBNVdNSAmSbeev=itxNKS_scb2xAwe63aS5bdhkg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241007-starqltechn_integration_upstream-v6-1-264309aa66de@gmail.com>
-References: <20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com>
-In-Reply-To: <20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728312606; l=4538;
- i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=xaOvS2+nFbFXgLVWGRgfJSXilelrhfer00Wh/eYX/Zw=;
- b=OPPE07j0Vdd6AbbC7QwIPKaGBRLk1axz4cCK3c8k4QMlytP4sSCb2hZs2AbsWVfygyMM7H1Nj
- zvJiLcp/DqtA9DePD6RfvjAp71yDfNBa5VGxOwklpUlL4gCVT4UJE9d
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-Add samsung,s2dos05 MFD module binding.
+On 07/10/2024 16:42, Dmitry Baryshkov wrote:
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
----
-Changes in v4:
-- split long(>80) lines
-- fix indentation
-- merge with regulators binding
-- drop pmic suffix
-- drop unused labels in example
-- correct description
+> On Mon, 7 Oct 2024 at 16:33, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
+>>
+>> On 03/09/2024 14:40, Robert Foss wrote:
+>>
+>>> On Mon, 12 Aug 2024 16:51:00 +0200, Marc Gonzalez wrote:
+>>>
+>>>> TDP158 is an AC-coupled DVI / HDMI to TMDS level shifting Redriver.
+>>>>
+>>>> Like the TFP410, the TDP158 can be set up in 2 different ways:
+>>>> 1) hard-coding its configuration settings using pin-strapping resistors
+>>>> 2) placing it on an I2C bus, and defer set-up until run-time
+>>>>
+>>>> The mode is selected by pin 8 = I2C_EN
+>>>> I2C_EN = 1 ==> I2C Control Mode
+>>>> I2C_EN = 0 ==> Pin Strap Mode
+>>>>
+>>>> [...]
+>>>
+>>> Applied, thanks!
+>>>
+>>> [1/2] dt-bindings: display: bridge: add TI TDP158
+>>>       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/887665792b99
+>>> [2/2] drm/bridge: add support for TI TDP158
+>>>       https://gitlab.freedesktop.org/drm/misc/kernel/-/commit/a15710027afb
+>>
+>> Hello Robert,
+>>
+>> I expected this series to be included in v6.12-rc1, since you applied it
+>> before the v6.12 merge window opened. Did I misunderstand the process?
+> 
+> drm-misc-next stops propagating new changes to drm-next one or two
+> weeks before the release.
 
-Changes in v5:
-- simplify regulator-name in examples
-- remove index from single buck regulator
-- fix example indentation
-- replace example hex numbers to decimal
----
- Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml | 99 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- MAINTAINERS                                                |  2 +-
- 2 files changed, 100 insertions(+), 1 deletion(-)
+Oh right, the "stop at rc6" rule of thumb that Krzysztof mentioned.
 
-diff --git a/Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml b/Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml
-new file mode 100644
-index 000000000000..b85285720c16
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mfd/samsung,s2dos05.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Samsung S2DOS05 Power Management IC
-+
-+maintainers:
-+  - Dzmitry Sankouski <dsankouski@gmail.com>
-+
-+description:
-+  This is a device tree bindings for S2DOS family of Power Management IC (PMIC).
-+
-+  The S2DOS05 is a companion power management IC for the panel and touchscreen
-+  in smart phones. Provides voltage regulators and
-+  ADC for power/current measurements.
-+
-+  Regulator section has 4 LDO and 1 BUCK regulators and also
-+  provides ELVDD, ELVSS, AVDD lines.
-+
-+properties:
-+  compatible:
-+    const: samsung,s2dos05
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    patternProperties:
-+      "^buck|ldo[1-4]$":
-+        type: object
-+        $ref: /schemas/regulator/regulator.yaml#
-+        unevaluatedProperties: false
-+
-+        required:
-+          - regulator-name
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        pmic@60 {
-+            compatible = "samsung,s2dos05";
-+            reg = <0x60>;
-+
-+            regulators {
-+                ldo1 {
-+                    regulator-active-discharge = <1>;
-+                    regulator-min-microvolt = <1500000>;
-+                    regulator-max-microvolt = <2000000>;
-+                    regulator-name = "ldo1";
-+                };
-+
-+                ldo2 {
-+                    regulator-active-discharge = <1>;
-+                    regulator-boot-on;
-+                    regulator-min-microvolt = <1800000>;
-+                    regulator-max-microvolt = <1800000>;
-+                    regulator-name = "ldo2";
-+                };
-+
-+                ldo3 {
-+                    regulator-active-discharge = <1>;
-+                    regulator-boot-on;
-+                    regulator-min-microvolt = <3000000>;
-+                    regulator-max-microvolt = <3000000>;
-+                    regulator-name = "ldo3";
-+                };
-+
-+                ldo4 {
-+                    regulator-active-discharge = <1>;
-+                    regulator-min-microvolt = <2700000>;
-+                    regulator-max-microvolt = <3775000>;
-+                    regulator-name = "ldo4";
-+                };
-+
-+                buck {
-+                    regulator-active-discharge = <1>;
-+                    regulator-min-microvolt = <850000>;
-+                    regulator-max-microvolt = <2100000>;
-+                    regulator-name = "buck";
-+                };
-+            };
-+        };
-+    };
-+
-+...
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 84086d47db69..ae6564d98caa 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -20475,7 +20475,7 @@ L:	linux-samsung-soc@vger.kernel.org
- S:	Maintained
- B:	mailto:linux-samsung-soc@vger.kernel.org
- F:	Documentation/devicetree/bindings/clock/samsung,s2mps11.yaml
--F:	Documentation/devicetree/bindings/mfd/samsung,s2m*.yaml
-+F:	Documentation/devicetree/bindings/mfd/samsung,s2*.yaml
- F:	Documentation/devicetree/bindings/mfd/samsung,s5m*.yaml
- F:	Documentation/devicetree/bindings/regulator/samsung,s2m*.yaml
- F:	Documentation/devicetree/bindings/regulator/samsung,s5m*.yaml
-
--- 
-2.39.2
+Regards
 
 
