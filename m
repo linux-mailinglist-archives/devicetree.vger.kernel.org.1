@@ -1,103 +1,159 @@
-Return-Path: <devicetree+bounces-108561-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108562-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B128992F5D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:31:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45CA9992F64
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:31:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A966FB2540C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:31:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 784141C22AE1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:31:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 534F41DC1B3;
-	Mon,  7 Oct 2024 14:26:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B84D21D61A3;
+	Mon,  7 Oct 2024 14:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OqgYQh3Z"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="ykDfl/CQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-187.mta0.migadu.com (out-187.mta0.migadu.com [91.218.175.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C8C01D4353;
-	Mon,  7 Oct 2024 14:26:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D69941D61A5
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 14:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728311196; cv=none; b=pqNb+Icov+Hy83zfWFX9tDdFukH0zMlrw4j70sjOTnwlbl0CRnNqjNrcbW9x64RO+JZdT6l4JR8a+IqNOp3OOXRDapXCE7QdvtiCcnxa3QwmmQkSu0p4K3O04n+l3UibGxHJD8xDX13+P3cFHHhwC+x0HJqj36zzBT7IstTA3oE=
+	t=1728311293; cv=none; b=kBnlFaJjtDPXjj03asHMJVnRkoIPWSxm5uOVHfAo3QkZnHpfPN64hYv7nHZxKc65HGAYzfjUT+m1K1yOnvlO05dtbihLfqTQbeBGpqTzJgxU002x33kTiy2E+p/bGHqOm13iDKK4ca5HEkkEUb1D+d687v3UsiB0392cdmX/7Hc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728311196; c=relaxed/simple;
-	bh=+HHUcKdy8SK2RxsBmAhtrVwMxI1z+vhoZuC6xS1zbXY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hPRqvIefzk8lKqkl59HlTJwGU4Pdrc1yXZI0H4xr6F4ckRgiJE3ZFe3BX3jX3MRqu7wqpbQLbByUhDY+na2FR2R3kZVXr0wffJ3vKrhgiiZWS2us+16E2WnmQWzR3g8P6/cJmdycItEdYIBGzAUKF5ThZLBTkT46sVMORng54yo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OqgYQh3Z; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E541C4CED1;
-	Mon,  7 Oct 2024 14:26:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728311195;
-	bh=+HHUcKdy8SK2RxsBmAhtrVwMxI1z+vhoZuC6xS1zbXY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=OqgYQh3ZqTKQSld8p6ZuNXhihFdvK33oie+U9Irg+gOiIYNXSAV1edk8X4NNtd+tl
-	 y/Z5Vz+Jq5DoopTW7u+gK4McJCEAK+jg/RwjtiYWl6lNeVzoPvUEcRBm1zRrMbKRz3
-	 Zcx4KyMWb2dQvp1PpPrwBRDoQPsjv9HGC9jhfh0qllqjfnq3LLNlSFHnml7x+nYaLP
-	 1hoMNDGdBiOUadHdwlr6UZA73Z8H1dKhfeHonQjEsYULumAxPDXD0rLeG8p3gJHs7r
-	 NUCfGVcbsZNoSLRfjhqxqi3lJs2NDJJAnrdXFwWEjy0IDQuLI0nf1qX/PwiUHbuERd
-	 ILpOvg0jS9NGw==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/9] arm64: dts: qcom: enable dispcc controllers by default
-Date: Mon,  7 Oct 2024 09:26:08 -0500
-Message-ID: <172831116158.468342.7119970387947528210.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240924100602.3813725-1-vladimir.zapolskiy@linaro.org>
-References: <20240924100602.3813725-1-vladimir.zapolskiy@linaro.org>
+	s=arc-20240116; t=1728311293; c=relaxed/simple;
+	bh=n5hZzCJwspYA3Tn8kasI3971g8e/sruaIzeSn0j5T8I=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=V7o8VivDJp5oHwTNWFcdcHRRMpSzWzsi0KTC+kGNyYBSccwazlwZ4lt5cGvSGeiyeAtmtLtiw0/MbBzM94VAe+34CzXM/tUMjIIiNaum/Q62W4MG+Yu8W2ymubfl55LsSwjIHerccYPvKnBabd2yh1sHdU0W0VDJHraGCYfkIa4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=ykDfl/CQ; arc=none smtp.client-ip=91.218.175.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1728311289;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zsGKgHfqizmTBsBA0G5SHeGmEvGU4wB4XCYFeRqbgFY=;
+	b=ykDfl/CQW53CP31cPAE9ksORAybUo4OcmpLeR9I7FI9spMbeuSysr6uH0mgHBwgHQ8O2pF
+	F6FHbgo9plUDm+TitrB+HjHBSmbnPqhAhWDc1Xzm9JowJan28UvP79BrkPOBfEfRS9iDh+
+	PA6Grv+cTywDmeBw83xmRj3lVxKshpYbDWBK74BucPrUPjYaG1Q7p3cdTOsuNLdCrjsfN0
+	K9u9SJ2DFQBFMBHeSLdTDyG1ZawIB14amW5HbniqfZCKkVqJCMF7EiPWV/kXcfgUGRolW0
+	aJArIvdrZKZaAuQETC4pWnI3pPjaLxrITLnqS7kAFMslytqEc3dSz5we6NPdzQ==
+Content-Type: multipart/signed;
+ boundary=8fee40a3652e3dfc8b43c5412c165b14d35256cdef3a53e3f0d083829ec2;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 07 Oct 2024 16:28:07 +0200
+Message-Id: <D4PN7WCK7XHH.1BMR5J23UJH58@cknow.org>
+Cc: "Dragan Simic" <dsimic@manjaro.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 4/4] arm64: dts: rockchip: Fix reset-gpios prop on brcm
+ BT nodes
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+References: <20241007105657.6203-2-didi.debian@cknow.org>
+ <20241007105657.6203-6-didi.debian@cknow.org> <12534438.O9o76ZdvQC@diego>
+In-Reply-To: <12534438.O9o76ZdvQC@diego>
+X-Migadu-Flow: FLOW_OUT
+
+--8fee40a3652e3dfc8b43c5412c165b14d35256cdef3a53e3f0d083829ec2
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Hello :)
+
+On Mon Oct 7, 2024 at 4:04 PM CEST, Heiko St=C3=BCbner wrote:
+> Am Montag, 7. Oktober 2024, 12:28:19 CEST schrieb Diederik de Haas:
+> > Except for some compatibles, the "brcm,bluetooth.yaml" binding doesn't
+> > allow the 'reset-gpios' property, so replace the invalid ones with the
+> > 'shutdown-gpios' property.
+>
+> this probably needs more explanation in the commit message, because
+> by name I'd expect reset and shutdown being different functionalities.
+>
+> But for these cases, things should be good, simply because when looking
+> at the bt_enable_h pinctrl, that pin really provides the shutdown
+> functionality.
+
+I guess I forgot to add the reference to page 12 of the
+AzureWave-CM256SM datasheet (v1.9):
+
+Pin 34 'BT_REG_ON': =20
+Used by PMU to power up or power down the internal
+regulators used by the Bluetooth section. Also, when
+deasserted, this pin holds the Bluetooth section in reset. This
+pin has an internal 200k ohm pull down resistor that is
+enabled by default. It can be disabled through programming.
+
+So my research was more extensive then I actually put in the commit
+message ... will fix that in v2.
+
+Cheers,
+  Diederik
+
+> > Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi  | 2 +-
+> >  arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/a=
+rm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > index 7381bb751852..100a2774bbb5 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > @@ -686,9 +686,9 @@ bluetooth {
+> >  		clock-names =3D "lpo";
+> >  		device-wakeup-gpios =3D <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
+> >  		host-wakeup-gpios =3D <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> > -		reset-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+> >  		pinctrl-0 =3D <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
+> >  		pinctrl-names =3D "default";
+> > +		shutdown-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+> >  		vbat-supply =3D <&vcc_wl>;
+> >  		vddio-supply =3D <&vcca_1v8_pmu>;
+> >  	};
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi b/arch/=
+arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
+> > index d09e6542e236..3e0cbfff96d8 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
+> > @@ -402,9 +402,9 @@ bluetooth {
+> >  		clock-names =3D "lpo";
+> >  		device-wakeup-gpios =3D <&gpio2 RK_PB2 GPIO_ACTIVE_HIGH>;
+> >  		host-wakeup-gpios =3D <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
+> > -		reset-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
+> >  		pinctrl-names =3D "default";
+> >  		pinctrl-0 =3D <&bt_host_wake_h &bt_reg_on_h &bt_wake_host_h>;
+> > +		shutdown-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
+> >  		vbat-supply =3D <&vcc_3v3>;
+> >  		vddio-supply =3D <&vcc_1v8>;
+> >  	};
+> >=20
 
 
-On Tue, 24 Sep 2024 13:05:53 +0300, Vladimir Zapolskiy wrote:
-> The changeset is based on a discussion about necessity of enabling clock
-> controllers, which is found here:
-> 
->   https://lore.kernel.org/all/9ac4117c-755e-4e49-b3a2-661e7195a7ed@linaro.org/
-> 
-> Still on a few boards display clock controllers are kept as disabled
-> to follow the intention of having a non-function changeset.
-> 
-> [...]
+--8fee40a3652e3dfc8b43c5412c165b14d35256cdef3a53e3f0d083829ec2
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Applied, thanks!
+-----BEGIN PGP SIGNATURE-----
 
-[1/9] arm64: dts: qcom: sm8350-hdk: remove a blank overwrite of dispcc node status
-      commit: 4bd9b84e093d0cf221a5f2f55f5895fa58a5156e
-[2/9] arm64: dts: qcom: sm8450-qrd: explicitly disable dispcc on the board
-      commit: 23be31bdf0aa8b8a9960c109377f90b1384ddc59
-[3/9] arm64: dts: qcom: sm8450-sony-xperia-nagara: disable dispcc on derived boards
-      commit: 30326d120ac855490b0580eaad290bc7eff2d9c1
-[4/9] arm64: dts: qcom: sm8450: don't disable dispcc by default
-      commit: c014190967dbc731b138e99800debabebf06058f
-[5/9] arm64: dts: qcom: sm8450-hdk: remove status property from dispcc device tree node
-      commit: c9c87512a5ddd6f1a4d5e5541feda9ac74b5dfde
-[6/9] arm64: dts: qcom: sm8650: don't disable dispcc by default
-      commit: 959176141ee6a2ff25b801bdd42a1333ea7bd70d
-[7/9] arm64: dts: qcom: sm8650-hdk: remove status property from dispcc device tree node
-      commit: 5a93da04248f2359bf54752e0a3283c637c653ea
-[8/9] arm64: dts: qcom: sm8650-mtp: remove status property from dispcc device tree node
-      commit: 615ce95458a322b7bb16cba5cafaf10df80e3d6f
-[9/9] arm64: dts: qcom: sm8650-qrd: remove status property from dispcc device tree node
-      commit: 7bce7fa2777a5dd73db203df7f063fad1e315f85
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwPv+QAKCRDXblvOeH7b
+bjpAAPoDRG8CqEprwWSNF9T4Nmif/RnR5L2vAeBIJR/7Ev1U8AD9FU2ONvofOvPX
+qfDTpG14ILZTJRxkOMSPpttdMIjmMQ4=
+=90So
+-----END PGP SIGNATURE-----
 
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+--8fee40a3652e3dfc8b43c5412c165b14d35256cdef3a53e3f0d083829ec2--
 
