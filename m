@@ -1,118 +1,128 @@
-Return-Path: <devicetree+bounces-108629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A860A99327B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 70EF69931BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:44:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 397E5B22CB1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:06:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48AF9B249D1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:44:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BAEB1D54D7;
-	Mon,  7 Oct 2024 16:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CE91D958F;
+	Mon,  7 Oct 2024 15:44:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="gSMDu+29"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kWiZpewI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A822F1D9582;
-	Mon,  7 Oct 2024 16:06:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9661D47AC;
+	Mon,  7 Oct 2024 15:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728317194; cv=none; b=G7hGSVG9uXxM5tuB8V8o6hgZX/9KRAyJXkUiUORhxOW05/ggy8WmHTr99LYKkhlGdskHA6bukzZ/grRMcvg6uZtSEvv/bqGi6sMtkTq/fjY376yOzx7Iav3Mu6rjjZyA4Xy1sCgZIvpfSPumBeeuG8uhS2CxiS4EA/qGJTEPntg=
+	t=1728315888; cv=none; b=LHOAmAvkexE/UKOSGU9K9ph2h5hPXksgQH5ZnV5Bnx+L8w+rE7bk/7bLX8M//rHghUrsKlTKTUDpIfWhRT6G1gvUfulk1o3vcyBFE5aBkPYn9FsTwzMhHPCmQzuNVRCiL0wc3S7N6nwnmVvhd6LJ8Rns0RJ02V6t1Lsi36HcCKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728317194; c=relaxed/simple;
-	bh=ZB7dJsypTuR1cUU9qPEOx0uhoQUFPI2vkMQHPzvOWaA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iZDeJc0uUJsblLyN4FjvcnKewdSMZZY789+AVol5LxTr0+3Z/yH70SYIe5FHJekyWI1AC0q06xeP3OZjzBriKyq7CD7LqRmF6XLBnJE3hSb6Zwdb3RxfqWyMGIW5DFD5wh7rGNO7UJrli0OQY+5XExVSfUqH1ZTTT54UycJXE1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=gSMDu+29; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 94C2788365;
-	Mon,  7 Oct 2024 18:06:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1728317187;
-	bh=bBYRA6NEh1wZmuhBNUB2eKeJd8Vp9PBvM/JZVxPF1OA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=gSMDu+291Aga5QM8YL6kApKlCmxHXLu87h6qft6qEZp+A13AW4MogX5DmmdmCbQdy
-	 rVqdKXHwY2WZh2fmJpMzaMxOQ2emWpl5WjZ4TrOXXGVFOAHJIj5PXENRMxlRVuuYLa
-	 MhSAKrBS6SMdBjejjWtCp5WMkvavtRECwbT6fdr0bSsEqYvXK6xQOT9Ivo0AOkOmK7
-	 uHhij0+CH4bA7UbrDe0zrBAiKlPhsHcWu2sB8Yym4WZQaEud0mcLKq5QN8bDIa4cWA
-	 NpzPlWJ43mj2fcfaYEZ998C9iuOwnx3Tidbr8hMiQfzjkE7xHjOux7n9lH95UHZwGd
-	 swbrM8lFZTvCA==
-Message-ID: <7adc1fb2-8dec-454c-a6e7-edd00c759c70@denx.de>
-Date: Mon, 7 Oct 2024 17:42:02 +0200
+	s=arc-20240116; t=1728315888; c=relaxed/simple;
+	bh=Q4/OzFB1Schq/trl8k59y62zvrR/CXceziUC8gYKx3A=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jJMHQRuKwHW1kCSI1n1OiuhWu2+w3NPPx/6VHotHa3Q1dbaEVHT6NT0lz7cRRHX7kvkLVmKvr7VcjArRDvO4pVqACTVL4OpTpv1iWqiYpn+Os53SvyweIA+IiD3rS+FEhMc+Cm+tWsy+enziibRzC21nbRNI1I5AtnQkIrN1VTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kWiZpewI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8405BC4CEC6;
+	Mon,  7 Oct 2024 15:44:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728315887;
+	bh=Q4/OzFB1Schq/trl8k59y62zvrR/CXceziUC8gYKx3A=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kWiZpewIM1LFfoihgb292QAqCYBjGj1BYB4SZo2SLEvFIBn7qYDGBgyMPhIgAP/ec
+	 Ssj9wSXfiJrIzxDAlZH9AAU6xgPYD7R/Dlpi1oFrb5XyLYfYb9dFvl2IbHwiOcaVNn
+	 tW/mekuOSC2XeJoVNYeKaWmgPQBfroauSuBoA1fvNSfSNNc1SqRJcClfJiHcVNa+sU
+	 /i9V+wBCr+7QFP/rdo/225fSr0GwvOQdFKiwPGMBE8yEk/Z/F2TADL80W2AeR+MemW
+	 wGBTLK8/T2/AA/K8QILzdrArMt7TEl8kuPv1uzBmwaRnMshau6AWJYejV0lVH0CbM8
+	 Wjv0x2tzJmLOg==
+Date: Mon, 7 Oct 2024 10:44:46 -0500
+From: Rob Herring <robh@kernel.org>
+To: Francesco Dolcini <francesco@dolcini.it>
+Cc: linux-kernel@vger.kernel.org,
+	Parth Pancholi <parth.pancholi@toradex.com>,
+	Mathias Nyman <mathias.nyman@intel.com>,
+	Francesco Dolcini <francesco.dolcini@toradex.com>,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-usb@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: usb: add TUSB73x0 PCIe
+Message-ID: <20241007154446.GA726246-robh@kernel.org>
+References: <20241007093205.27130-1-francesco@dolcini.it>
+ <20241007093205.27130-2-francesco@dolcini.it>
+ <172831060758.15259.15265542019562102842.robh@kernel.org>
+ <20241007142920.GA60623@francesco-nb>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/4] arm64: dts: st: add RNG node on stm32mp251
-To: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
- Olivia Mackall <olivia@selenic.com>, Herbert Xu
- <herbert@gondor.apana.org.au>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Lionel Debieve <lionel.debieve@foss.st.com>, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Yang Yingliang <yangyingliang@huawei.com>
-References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
- <20241007132721.168428-5-gatien.chevallier@foss.st.com>
- <869fe073-c20f-4611-ae84-8268a890a12c@denx.de>
- <d4bfc454-5a20-4cee-85f6-118323c46eca@foss.st.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <d4bfc454-5a20-4cee-85f6-118323c46eca@foss.st.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007142920.GA60623@francesco-nb>
 
-On 10/7/24 4:59 PM, Gatien CHEVALLIER wrote:
+On Mon, Oct 07, 2024 at 04:29:20PM +0200, Francesco Dolcini wrote:
+> Hello,
 > 
+> On Mon, Oct 07, 2024 at 09:16:48AM -0500, Rob Herring (Arm) wrote:
+> > On Mon, 07 Oct 2024 11:32:04 +0200, Francesco Dolcini wrote:
+> > > From: Parth Pancholi <parth.pancholi@toradex.com>
+> > > 
+> > > Add device tree bindings for TI's TUSB73x0 PCIe-to-USB 3.0 xHCI
+> > > host controller. The controller supports software configuration
+> > > through PCIe registers, such as controlling the PWRONx polarity
+> > > via the USB control register (E0h).
+> > > 
+> > > Similar generic PCIe-based bindings can be found as qcom,ath11k-pci.yaml
+> > > as an example.
+> > > 
+> > > Datasheet: https://www.ti.com/lit/ds/symlink/tusb7320.pdf
+> > > Signed-off-by: Parth Pancholi <parth.pancholi@toradex.com>
+> > > Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> > > ---
+> > > v2: rename property to ti,tusb7320-pwron-active-high and change type to flag
+> > > ---
+> > >  .../bindings/usb/ti,tusb73x0-pci.yaml         | 60 +++++++++++++++++++
+> > >  1 file changed, 60 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.yaml
+> > > 
+> > 
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> > 
+> > yamllint warnings/errors:
+> > 
+> > dtschema/dtc warnings/errors:
+> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/usb/ti,tusb73x0-pci.example.dtb: pcie@0: usb@0:compatible: ['pci104C,8241'] does not contain items matching the given schema
+> > 	from schema $id: http://devicetree.org/schemas/pci/pci-bus-common.yaml#
+> > 
+> > doc reference errors (make refcheckdocs):
+> > 
+> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007093205.27130-2-francesco@dolcini.it
+> > 
+> > The base for the series is generally the latest rc1. A different dependency
+> > should be noted in *this* patch.
+> > 
+> > If you already ran 'make dt_binding_check' and didn't see the above
+> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> > date:
+> > 
+> > pip3 install dtschema --upgrade
 > 
-> On 10/7/24 15:55, Marek Vasut wrote:
->> On 10/7/24 3:27 PM, Gatien Chevallier wrote:
->>> Update the device-tree stm32mp251.dtsi by adding the Random Number
->>> Generator(RNG) node.
->>>
->>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>> ---
->>>   arch/arm64/boot/dts/st/stm32mp251.dtsi | 10 ++++++++++
->>>   1 file changed, 10 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/ 
->>> boot/dts/st/stm32mp251.dtsi
->>> index 1167cf63d7e8..40b96353a803 100644
->>> --- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
->>> +++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
->>> @@ -493,6 +493,16 @@ uart8: serial@40380000 {
->>>                   status = "disabled";
->>>               };
->>> +            rng: rng@42020000 {
->>> +                compatible = "st,stm32mp25-rng";
->>> +                reg = <0x42020000 0x400>;
->>> +                clocks = <&clk_rcbsec>, <&rcc CK_BUS_RNG>;
->>> +                clock-names = "rng_clk", "rng_hclk";
->>> +                resets = <&rcc RNG_R>;
->>> +                access-controllers = <&rifsc 92>;
->> It would be good if someone finally sorted the access-controllers 
->> property in all the MP2 nodes alphabetically ; that's separate patch/ 
->> series though.
+> I do not have this error locally, and I am not sure I see the issue in
+> the yaml file ...
 > 
-> I'll pin your comment to take a look into that in the near future.
-Thank you !
+> $ make dt_binding_check W=1 DT_SCHEMA_FILES=ti,tusb73x0-pci.yaml
+
+DT_SCHEMA_FILES limits what is tested.
+
+The issue is your compatible string should be lowercase hex.
+
+Rob
 
