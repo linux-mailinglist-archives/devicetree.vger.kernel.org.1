@@ -1,169 +1,112 @@
-Return-Path: <devicetree+bounces-108263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D83B39922C0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:28:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B33A69922D2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:57:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6095B21C5B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 02:28:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53ADD1F22673
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 02:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E09FC0E;
-	Mon,  7 Oct 2024 02:28:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42A33125B9;
+	Mon,  7 Oct 2024 02:57:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="R8vJSV7H"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jYfNWiiz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5EE13AF9;
-	Mon,  7 Oct 2024 02:28:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB041E574;
+	Mon,  7 Oct 2024 02:57:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728268131; cv=none; b=IWaGNynrvG6PkHiqvSXpjJjh9jPoGQqDcNSpTNcwr+u87InZ/rKtTRI5apbB85JKRrkhwOinORLml/gpwZTVL2d8Mz78HkrolSqYeiBSjjpcaBCN1P+LYXPEjTFoquv2DGrfUwxVGRmK+E/67tOes1MVRgg0T3RR08ZQG6pE76w=
+	t=1728269823; cv=none; b=T9JIBBdAD5Y5liSyU7Qy6LDlw0noGjxwe4sU/s8j2nPX9u7sUx2z9wHdSe1d8P9qv7LJTyhU6wmuKskqwE89pqN+d26Glxvzp2BjT5I7QBA4cG9Ps397ipmyiZb7ufWKkMGIfmEcjg8ZIRhuPFHmN8N5imxnxn83EsM3Fn8evGQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728268131; c=relaxed/simple;
-	bh=aOK4bkzvCwrFeDWFtt3875lnjeobQDJNTcWPA/fn9ak=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B9odr3Nqnuhzt0Kac6M6w8McPVQ+gRknrXK1mG9gv6vzTPDaFvj8Ny5Qsj/vxjNL72LyXMGI+8E46rRebIY6mj5b4GGh6bbSu4n4RYhskoXn4m7EJB5s6efzjoIo1ZjeVqgLfVqp/77Ex3aWGDq+37K+ru5T4roLgpO+i8mdNRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=R8vJSV7H; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: db545a8e845311ef8b96093e013ec31c-20241007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=KzPUQbEjOiXpx6ijP6tPbRsMDmZ7MKDhzyzVeLNXZBc=;
-	b=R8vJSV7HAJvmLOFyOreH9N6qz7iNpCVEnyBs6tG1cQcKA0Ryj6AKu+lgie/FKyFRBYFzDlhU4+r216qP4MEFm+MXT2LLvbMQvKnOwPdY8oOulIo9Z3gvRxR4X+xZNAPwshZ8J0JHyXxJKvxfAfnVFrguv4jqCKxzJTiU61L2Iak=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:67219dd3-9de8-4ad2-9678-7f5e511fe5f2,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:d3566126-5902-4533-af4f-d0904aa89b3c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: db545a8e845311ef8b96093e013ec31c-20241007
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
-	(envelope-from <moudy.ho@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1273646072; Mon, 07 Oct 2024 10:28:36 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 7 Oct 2024 10:28:35 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 7 Oct 2024 10:28:35 +0800
-From: Moudy Ho <moudy.ho@mediatek.com>
-To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
-	<p.zabel@pengutronix.de>, Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
- Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>
-CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, Moudy Ho <moudy.ho@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>
-Subject: [PATCH v5] dt-bindings: display: mediatek: split: add subschema property constraints
-Date: Mon, 7 Oct 2024 10:28:34 +0800
-Message-ID: <20241007022834.4609-1-moudy.ho@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1728269823; c=relaxed/simple;
+	bh=fCvIs1nwp96x+JVT//3xLsH7McgWe0ybdKYlG2H/j9E=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tM2DsDaGCpyUrMEYG2zR9aVRy8lfSHlTd9Kjm/7JQSz4HND3/+knz/s/KIBb3O7/yAmsMpcQAx5/KxV/UbBdZgOJsoGHHxowiF7SiZef6MURIAM1/3xFFgu6l4yMqSLrrX/HFXnBUkSpPmTe1TIRj9p2OnAIkxKUjd4UYuO8tJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jYfNWiiz; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-71dfc250001so682698b3a.2;
+        Sun, 06 Oct 2024 19:57:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728269821; x=1728874621; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Bo8yVY2LwYLpMiHODLXo99yxSx6R1pGfgpw5S+JeFJQ=;
+        b=jYfNWiizuOXHKm/caQGC/VkxR3ZOLUgGsVjKyHjguAwh1e5NrtPIk/kureN+ZyfN45
+         tWl41Ktw7IRFv6gay5naK1RtKNJTNbCnZX/Rybok5EIT9raOKG7WPxyTF/2PrCkRGNlL
+         UL9rvN3kOtBQwnYm0iHyYTBTRXcnjgV6tW+E18K0E/zM0p+sbwfvQu9OjUA06Ar1ApF5
+         oxT3Pepprgi4y8y1Udb6X8vvIoxmK9ps9AMSc4r79m8Hg5kfqE3o31SVdNmTpJRd7lop
+         kpgq3TCe11I+fwRTRBRRk6EayAHFAY6L7/xOsRoRPfXBhHPbslu9q1TQ0vXvs1ubU02X
+         b3/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728269821; x=1728874621;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bo8yVY2LwYLpMiHODLXo99yxSx6R1pGfgpw5S+JeFJQ=;
+        b=coKrFUco5QfD7H/gr/klh7XCkoUgLnXsAAJBJM73Vmz168qMTBxU+EPhZXAvtSe0XG
+         b5J1GKBOBRLORIip1B6y2MI4lslObJZq9fXzrKEZ94kS/Fdmq+0KDedjgilTdY+aIHff
+         fRmwiaVgt16pI+2IEeff9Y8gwYoGCUJLsEapVyGU4qFHcv3vLyPf9KkjwAEpV2cPt0ek
+         sR8+hBwaJRqSdJUpWa451YWFEQu6cS/DfOrz5X/aAm+VQM12cRm66qj6zeu8TYqtf8uy
+         +H8zv6tdJqzInOn+jtbbiLNez7cvq09JBE+ZKteNtnh3arKyYnl8WiTjuKjjnyb5Gsm8
+         RKJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUXn9Do66WbWzM617tkJW3R2mYOEFAhaeHjSlpUEz2Uml3LNjC2/pvt/hxJmlQQok1nSpWS5DGGIYCL@vger.kernel.org, AJvYcCUhNPpovc4aZjbqftki+La3M78jGNfX7CUvQz29g61zBSuKfynP1DLGJtRrC+fOlLNm+nv0pMLs6BdMn0QGcw==@vger.kernel.org, AJvYcCVs/ESIuhdtFo9zztO/+B4S1B06ucH+Nsa8x+Ik0ZqWUyK7ji0kFAL+67zxftmYvhKfExE9IXxLVC1qx8wI@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywdrrmt9dndxUYe9JMyFx2VfRTMvrk5IzoiA5TKxUir65X3kVWz
+	hN2gAKUBUDMokU3vwW2zFUp5w5+gwuaKimGqOpgGortm8h/cpSQb
+X-Google-Smtp-Source: AGHT+IGW9oMmDOsTCVG026ZXmF6CK6Q7T6eNTgbZHZYoi1OLJqrQ9a+OxM7yJ6iEqCkYoq0mfmBxXA==
+X-Received: by 2002:a05:6a00:2302:b0:719:8f48:ff00 with SMTP id d2e1a72fcca58-71de23e8f6fmr15928243b3a.15.1728269820924;
+        Sun, 06 Oct 2024 19:57:00 -0700 (PDT)
+Received: from localhost.localdomain ([103.149.249.231])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0cbccffsm3408998b3a.32.2024.10.06.19.56.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2024 19:57:00 -0700 (PDT)
+Date: Mon, 7 Oct 2024 10:57:17 +0800
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/3]  arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi node
+Message-ID: <ZwNODSqKNJmkY-l2@localhost.localdomain>
+References: <20240929112908.99612-1-lujianhua000@gmail.com>
+ <20240929112908.99612-2-lujianhua000@gmail.com>
+ <p75ivby5ajlmnvebqkn3mq7t5xh6awewjwkwpa5rjiqv2ijijl@aqemqgxveu55>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <p75ivby5ajlmnvebqkn3mq7t5xh6awewjwkwpa5rjiqv2ijijl@aqemqgxveu55>
 
-The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
-to an excessively long 'clocks' property:
-  display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
+On Mon, Oct 07, 2024 at 12:02:34AM +0300, Dmitry Baryshkov wrote:
+> On Sun, Sep 29, 2024 at 07:29:07PM GMT, Jianhua Lu wrote:
+> > Add wifi node and this wifi module is connected to pice port.
+> 
+> Could you please add ath11k probe messages to the log? We might need to
+> add an additional node with the calibration variant.
+> 
+Hi, Dmitry. Do you mean that I should add ath11k probe message to the commit message?
+The following is ath11k probe message:
+[   10.285469] ath11k_pci 0000:01:00.0: Adding to iommu group 12
+[   10.285637] ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+[   10.285699] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+[   10.286003] ath11k_pci 0000:01:00.0: MSI vectors: 32
+[   10.286023] ath11k_pci 0000:01:00.0: qca6390 hw2.0
+[   10.652407] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+[   10.652429] ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
 
-To resolve this issue, the constraints for 'clocks' and
-other properties within the subschemas will be reinforced.
-
-Fixes: 739058a9c5c3 ("dt-bindings: display: mediatek: split: add compatible for MT8195")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
-Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
-
---
-This is based on [v2] dt-bindings: display: mediatek: split: add clocks count constraint for MT8195
-
-Changes since v4:
-  - Eliminate the possibility of varying quantities in the 'clocks'
-    property of mt8195.
-  - Move the constraint for 'power-domains' to the top-level.
-
-Changes since v3:
-  - Correct the compatible name for the mt8173 split in the subschema.
-
-Changes since v2:
-  - Revise the commit message.
-  - Enhance the descriptions of 'clocks'.
-  - Strengthen the conditions within the subschema.
-
-Changes since v1:
-  - Adding functional descriptions and quantity restrictions.
----
- .../display/mediatek/mediatek,split.yaml      | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-index e4affc854f3d..4b6ff546757e 100644
---- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-+++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
-@@ -38,6 +38,7 @@ properties:
-     description: A phandle and PM domain specifier as defined by bindings of
-       the power controller specified by phandle. See
-       Documentation/devicetree/bindings/power/power-domain.yaml for details.
-+    maxItems: 1
- 
-   mediatek,gce-client-reg:
-     description:
-@@ -57,6 +58,9 @@ properties:
-   clocks:
-     items:
-       - description: SPLIT Clock
-+      - description: Used for interfacing with the HDMI RX signal source.
-+      - description: Paired with receiving HDMI RX metadata.
-+    minItems: 1
- 
- required:
-   - compatible
-@@ -72,9 +76,24 @@ allOf:
-             const: mediatek,mt8195-mdp3-split
- 
-     then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+
-       required:
-         - mediatek,gce-client-reg
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: mediatek,mt8173-disp-split
-+
-+    then:
-+      properties:
-+        clocks:
-+          maxItems: 1
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
-
+I'm not sure if it's necessary to add calibration variant because wifi
+works normally on this board without adding calibration variant.
 
