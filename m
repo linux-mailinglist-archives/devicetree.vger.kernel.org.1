@@ -1,120 +1,158 @@
-Return-Path: <devicetree+bounces-108361-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A583E992622
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:34:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C679A992631
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:41:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D77141C223E7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:34:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA8FE1C20AAB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:40:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F23C817D378;
-	Mon,  7 Oct 2024 07:34:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3AA17C7D4;
+	Mon,  7 Oct 2024 07:40:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="eHg+ndZC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
+Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5569E1474D3;
-	Mon,  7 Oct 2024 07:34:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DECD116132E
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:40:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728286463; cv=none; b=mGcNaRtNZ4QAVaLIeIjNFxPRO40F+C3EW12iw2gI/cAdI1qP9MgzuLk05qS2TIq0VD3Ur/vEsBuFZU2eJ90X76ZGuuoDoURYytTcoWVoX2RkwPoPBJJ2zyEAQfRSw3fiWR2xGLYmLa30WLd7WyUNCl6sPLbe/azb4A1457Bs1w4=
+	t=1728286856; cv=none; b=Weo6HFO4qAVUz8M9LDPqTzNhBASyJ4h/qYbKvdAgjBIn1dBaHfljmPGMN1uBYurdEF539wulXxFnuWa5AmcxISdesJ+EP50jPyKWCjkTYo9aD9DFbUCSo/qvGtM50h2LxWBobu1gHQdtkTcXFYnX89G03XpJpmgfQO7ljq1kovc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728286463; c=relaxed/simple;
-	bh=ings//53iSPok57627iEVA5z/RnFfqIespIGuRGEl74=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Jzr8J6r/tEFQWlZ6wsEZAtGFE4+2ioRqxWs+BWMdo3u51/NHTzk317QGBXDliKrhGURUWACEMw7MjWzsZRFJiGAwza+/4xbDVTKumGm/h7/0GIx6JgarBQbQgBxSlb+bT6iwg7Swsw3K3w+DhoD9ZrxY+PrLWX6NlNAuqLkibAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6e2d2447181so16453247b3.1;
-        Mon, 07 Oct 2024 00:34:22 -0700 (PDT)
+	s=arc-20240116; t=1728286856; c=relaxed/simple;
+	bh=ipEZArsJZcihaFEO48QVP9y4kH66dpAf9QgRnY+Q46g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mm9x4PGTjrdAev1tGAtTeC4+Zynua0lWwNptIHTLOpZ6HyHkqnYL06Q6L2C1qXOYwVa6vhk7h4Q/k2j85ypeYt3ll89RfWUW5NYkrWofpi4dsJwrpte3zDI8p7Zb1dLtNHlY77GcdHTOH7bwgZxnnsjDXlK3gTQL9ASuw5Qu15Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=eHg+ndZC; arc=none smtp.client-ip=209.85.208.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-5c40aea5c40so8002322a12.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 00:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728286853; x=1728891653; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=KWJKfNtCPiadgKKpV44m6e67/qtZJV5vu299cJKq5tw=;
+        b=eHg+ndZCHbpYrUtbpAQLi8su6JG3iqtEds0V63pP4Ha+z2HzNxHGfyZ95jggmoPt+w
+         Tu76QVMTL+T5QWWEKr1oMSnWfEE8mKp/tH3pSsms2xd1vB5zi5C123dGeR8vJzcWA10p
+         +SDzrW9aI06tac+pFYSf8N1FB31twL8D2TPTOpiUQ3kkRfSpn0cPFjl+0lWDm71MxXBo
+         pOpQhf2L/GlMbgBiLabWgelX8CV6yHkXolC8z51dDQV+KydNMk9jUEz266q4xPUkheyo
+         851vK0c9q77e6x7tg+UVp3vu8faQBF9n9DRzU7WOFSlIV7Z6S3FInbxtiBcqhoJ/07qa
+         cZXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728286461; x=1728891261;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FOF4rJdnfIcVDZg9EVo9p2L3jHN7dhzA7HQIUAeLxSs=;
-        b=pmckgXzyAN2lnH+0rzjSGinJ9jgyH1G20V08rXLL7lzm3G+HDLsg5jQXkLfA1N87w1
-         bHsl7AOxpuzID34kRhCt1VZ/IYYdINnCWKZ2LDI7oziYWPbtZ5p/oWhkiQ1d5+Twgdwg
-         BgWFYuZZjgp3pDItNUM3+No+Cv7t7quN5Hyk1reUzpD7iR8EvSJrQ69EYDM5HT9oe24c
-         6BSYXdQvluqPaWpRGDiZkQg1GJ9kE2/CnT/Ja7B2G0T9v0K1GPDpEac+9KYRXodigOw5
-         8Gp1bttcLWyWet6a5r6nFh4oC2uYppd1AW1zaun4YAXbss2opFNhLiZLPymj3DXJlGM6
-         59Qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVkemC/kegPrMZLPDa67Z/pCz55R6oPtvvldHb4zvlueaqCcY6zep0tNg+3Ts5A/bPhJYjoBTN1uwQlvh/rrhvs5UU=@vger.kernel.org, AJvYcCWtFGV1uX80TKF5woQ6r6e2RJ5H595/FynSD6doCXkoDyaMersdAqOrRJHGWD5a4EdJMifMUB0qJjrB@vger.kernel.org, AJvYcCXcYFvaTPUKtMAh1xespQuUkYdJHd/OmGiOVRKZgS4Ewr70UTsC+rJrGK+TPEmb+tsUj5aY9Gy+hEFw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx9DR8lxu1RulD7v50GY7fjX/8tJ0hq6X9ZKBO8wCiuNrD7jhI9
-	NpuaXBJF69TlEFRknA/8XGfr3OFjMaLV+sMT1Em3HjsdfEsx2ohLP1g5dXyA
-X-Google-Smtp-Source: AGHT+IFfcMRngHYlBWJZge/qaYPmaABNqjdPxv8UYsSG7/sEfmE78uZkwV/Ny8kbvVFdccSUczAzqA==
-X-Received: by 2002:a05:690c:60c7:b0:6de:1e2:d66a with SMTP id 00721157ae682-6e2c6fc803cmr83813817b3.2.1728286460646;
-        Mon, 07 Oct 2024 00:34:20 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d9280254sm9492147b3.46.2024.10.07.00.34.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 00:34:20 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-6e2e508bd28so8345887b3.2;
-        Mon, 07 Oct 2024 00:34:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWuHWGJKj0L5yoXEH7bDJKn34ABhu2QsVvGmIjudPxooIBpxWoT0zgSAnTkU+oH8tssLzXlMSVPGmaa@vger.kernel.org, AJvYcCXY1n6vmn8sJ+PuGXT4cXcnXajwlUyonW8I1gwxjsK21LX5nKlT2il75OcDZsrh6xiEKTTu+86hffau@vger.kernel.org, AJvYcCXqHaqCxN/bODIeEEnYxoMQlI4Awmf4PzRcCbsWnR1UoMB2vGjdKq4IHC+Mo5duKBnlv3oICUb/n99ifFNGqJVFNlo=@vger.kernel.org
-X-Received: by 2002:a05:690c:60c7:b0:6de:1e2:d66a with SMTP id
- 00721157ae682-6e2c6fc803cmr83813567b3.2.1728286459996; Mon, 07 Oct 2024
- 00:34:19 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728286853; x=1728891653;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KWJKfNtCPiadgKKpV44m6e67/qtZJV5vu299cJKq5tw=;
+        b=IEIUa0yDu1w8W1+Vn1fzviDKaPlNbMf+2VfjsZuJ2Fg1fjl86rLCY9Yt7SQNrEIb0q
+         E1UP23mePF8VAD8vSy9dIOOXTMC47JHbJwDkaeub47jYICFewY9a+Mc/KxqGTuWgrD10
+         6yfh/soXx9c/m+bXTQV7jN1vSiYQoyTJy6YEXUb7qOcqGwJN7M8jinhpYdNhW6vZFjoW
+         2n9KdXi4Oi9gAU2YMzIPwxUUZ0uKMvi/wmdu0CX2X84XxRcP7A+qg3fDzN2G5Bk739ll
+         xouMyAo/n7k6jxHoVSuXn3YZXUI3lMJvpPbH886sqjG0C2D3NJ5C3CJ3zobWv+bYO9Vl
+         pvBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVePmwG4fxIzCtg4iR/QAhLwL2KJTae4FL1AW7pFksXknwDTV+S3jZDKsTmTvZW/KSwkrJ9v7caafr8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzECjdDQrWgvIswaoUzYINXVUBXFWlPuYW3qdq9dRLWm2Jj+U9k
+	OOivYZa+rgtSQIuqwl5FxLgx3pidw/VLcmpJOzKDQh8AGwPNIrVl11GGTma9+bo=
+X-Google-Smtp-Source: AGHT+IF//KDeerBcPYweQBWGXHGNK7a6K40VAoRzC9NTXizIxqpvNDX3VoTgSZDIg96mO42u95txWA==
+X-Received: by 2002:a05:6402:510d:b0:5c8:81a6:f14c with SMTP id 4fb4d7f45d1cf-5c8d2f3b9f3mr13100141a12.9.1728286853116;
+        Mon, 07 Oct 2024 00:40:53 -0700 (PDT)
+Received: from localhost (p5dc68d3d.dip0.t-ipconnect.de. [93.198.141.61])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05ac2casm2877129a12.34.2024.10.07.00.40.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 00:40:52 -0700 (PDT)
+Date: Mon, 7 Oct 2024 09:40:51 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Alex Lanzano <lanzano.alex@gmail.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Mehdi Djait <mehdi.djait@bootlin.com>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	skhan@linuxfoundation.org, linux-kernel-mentees@lists.linuxfoundation.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v9 2/2] drm/tiny: Add driver for Sharp Memory LCD
+Message-ID: <62sidvqna6q6s2dqzs6s7ftxwfyootptda6n4fww6tyjdwyhuh@ylifsc3f5ff6>
+References: <20241007013036.3104877-1-lanzano.alex@gmail.com>
+ <20241007013036.3104877-3-lanzano.alex@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241001124310.2336-1-wsa+renesas@sang-engineering.com>
- <20241001124310.2336-3-wsa+renesas@sang-engineering.com> <qifp4hpndfhe6jlmzjmngr7uolfzvj663donhjg5x7kmeb4ey3@a2a66w5l35zf>
- <ZvzqPkUPmurHf-fu@ninjato> <CAMuHMdXzCYBn+MPz-tdcP7wJRkdQspU0ZmszMv4Uj7VWpTYR4A@mail.gmail.com>
- <ZwBIk0DZ6on8eEIm@shikoro> <CAMuHMdXOtJrnbytGp65+kxB1Wf_rjA=dzGXHXREO3Xfd8igvtw@mail.gmail.com>
-In-Reply-To: <CAMuHMdXOtJrnbytGp65+kxB1Wf_rjA=dzGXHXREO3Xfd8igvtw@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 7 Oct 2024 09:34:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUQpHCpM7fYL6t9vgm4HYd0aaNCJwm5rt1LMft78m223A@mail.gmail.com>
-Message-ID: <CAMuHMdUQpHCpM7fYL6t9vgm4HYd0aaNCJwm5rt1LMft78m223A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	Biju Das <biju.das.jz@bp.renesas.com>, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bkeu5bpplnv4ln4m"
+Content-Disposition: inline
+In-Reply-To: <20241007013036.3104877-3-lanzano.alex@gmail.com>
 
-Hi Wolfram,
 
-On Mon, Oct 7, 2024 at 9:30=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
-> On Fri, Oct 4, 2024 at 9:57=E2=80=AFPM Wolfram Sang
-> <wsa+renesas@sang-engineering.com> wrote:
-> > > According to the documentation, there is no bit in a Standby Control
-> > > Register to control the DMAC clock.  The driver doesn't care about th=
-e
-> > > clock or its rate, so you can use P0 if you want.
-> >
-> > Would you prefer using 'p0' or leaving this patch as is?
->
-> Leaving the patch as-is is fine for me.
+--bkeu5bpplnv4ln4m
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Upon second thought: the clock would only be used by the PM Domain
-code.  So without a clocks property, "power-domains =3D <&cpg_clocks>"
-would not make any sense, and the power-domains property should be
-made optional.  The pinctrl and irqc also don't have it.
+Helo Alex,
 
-Gr{oetje,eeting}s,
+On Sun, Oct 06, 2024 at 09:30:06PM -0400, Alex Lanzano wrote:
+> +static int sharp_memory_init_pwm_vcom_signal(struct sharp_memory_device *smd)
+> +{
+> +	struct pwm_state pwm_state;
+> +	struct device *dev = &smd->spi->dev;
+> +
+> +	smd->pwm_vcom_signal = devm_pwm_get(dev, NULL);
+> +	if (IS_ERR(smd->pwm_vcom_signal))
+> +		return dev_err_probe(dev, -EINVAL, "Could not get pwm device\n");
 
-                        Geert
+s/-EINVAL/PTR_ERR(smd->pwm_vcom_signal)/
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> +	pwm_init_state(smd->pwm_vcom_signal, &pwm_state);
+> +	pwm_set_relative_duty_cycle(&pwm_state, 1, 10);
+> +	pwm_state.enabled = true;
+> +	pwm_apply_might_sleep(smd->pwm_vcom_signal, &pwm_state);
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Error checking for pwm_apply_might_sleep() please.
+
+> +	return 0;
+> +}
+> [...]
+> +	} else if (!strcmp("pwm", vcom_mode_str)) {
+> +		smd->vcom_mode = SHARP_MEMORY_PWM_VCOM;
+> +		ret = sharp_memory_init_pwm_vcom_signal(smd);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to initialize external COM signal\n");
+
+sharp_memory_init_pwm_vcom_signal() already emits an error message, so you
+have two here. One should be enough.
+
+> +	} else {
+> +		return dev_err_probe(dev, -EINVAL, "Invalid value set for vcom-mode\n");
+> +	}
+> [...]
+
+Best regards
+Uwe
+
+--bkeu5bpplnv4ln4m
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcDkIAACgkQj4D7WH0S
+/k7h2gf/eEHlwAqR7oTCVvouxztY4+TYaE0xRY3n+Kwl1dNP692bNGSB5xz8llDm
+fCpOvHstEF3v44e78Kk5+2E8ROCtMxYteMl+GvncKCFIjKyM4ECrPJOgudMqbCsy
++47UVwwNIVFfvCqc06oFOtHPwur4WTlaLM8OuAoblvtEZkPkzrWJM7vzRHv0Mmq0
+l3Lg1qF5ham2OM1pJZCNE/IgFT+aIQW2K5Rp/XfiLjIGShVc8x4KtGhb8Dozk01Z
+yzD4+rGlHSawPpJaKq7HYj+P9odCkgVo5oR1fd0RHWFPjgy4fB+V3Id04uava27X
+0UFlrJ2BVl1u0cUjR/RZCDp7adKpxw==
+=8rmd
+-----END PGP SIGNATURE-----
+
+--bkeu5bpplnv4ln4m--
 
