@@ -1,251 +1,148 @@
-Return-Path: <devicetree+bounces-108591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108592-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BFE993075
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:04:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B725599308F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 13D351C22DCE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:04:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317881F20D3A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:06:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5BCD1D9323;
-	Mon,  7 Oct 2024 15:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9191D932F;
+	Mon,  7 Oct 2024 15:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b="H9N73oNT"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iM8HrNUf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC121D90D1
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 15:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC0B1EB25;
+	Mon,  7 Oct 2024 15:05:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728313371; cv=none; b=aATsbwG1tJJAVaSCiQMDnhaHa/LY1FshBGiY5FJcav5PNkBIImEmE72BHWOMy4oFr6PcHFvEwcWTPzZZxraL9iZFeZqQ/GHZtknce72PnJmAiPDA8rT7pVGVvk7Dc/BRIXUiwnmpjDyOBfJIl4LVd8iwqVlb/hSkLMUivSNj/ho=
+	t=1728313518; cv=none; b=XQb15nt5R5+7xIVlnNsUWLc5m04orSxvpljW9wu7XDBKJUBys/Etv1MThDiH/tSah2LsAU+c+cNQ3d75wGNcvnsTpDvfUJqZ/VogB3SthfNvIGC6vCD8llbWTqbxiDd1O9Eicx1yCkVL6zaHrOXkX0A+SHedm3IMWvpyS/B4FmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728313371; c=relaxed/simple;
-	bh=YFgBzb5t13jGsblwPz4zuJTL9xNOUthC3CzWh+2YRRI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TvTDLljQjn9WVL6KCFdTTZ7a6SVeL/oj5Sd9Ug+YX55gS6OhVZlBKX9rRRriXM2Kn809VTrLXXKHdQBxWXXUsFpDy+7oz+aXDEaLSSoR7+SVGyFoAJ28f2Gjgrcbz4h1IMsL9QQ6pgWug/Lqd+v6MqmrpPl+v+09/VyvwCqHDsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com; spf=pass smtp.mailfrom=amarulasolutions.com; dkim=pass (1024-bit key) header.d=amarulasolutions.com header.i=@amarulasolutions.com header.b=H9N73oNT; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amarulasolutions.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amarulasolutions.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6d6891012d5so36728917b3.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 08:02:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google; t=1728313369; x=1728918169; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lRXc+qYMpiIpv9iclqrXM3fuvSnpa1ayC+j4HSUgcBA=;
-        b=H9N73oNTNPU06BDaJnnsNshXrwH+uyEuXIlUEnv35yoggdhGgmClD5zYQh5i1nkjE/
-         BUgvR3w8e6Ldwq+/M2T4AJTezzJJcWHYkb/vomQwGPNw60ulw5YUABsQVEedZMGk7GgS
-         lUgFwjg7e1s4kNceEWNmU8iV+3oQW8DOqRVqk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728313369; x=1728918169;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lRXc+qYMpiIpv9iclqrXM3fuvSnpa1ayC+j4HSUgcBA=;
-        b=UQQs+nRZ8pjKh7pEqJ1wbTaUYVNqBKmhXd3Qq+SMJygpiPCkjPZn4W53MGZaww0Jgx
-         hq7Qour4AafUfGp4XGGlxmBq6VE8RulR1XnInSnPU8RCjtOxvnmsa2H0lAgWcY+Jp9/L
-         Odyzosv8PtGwCCQBbt+Q4lCOn/3VARvGmi7T6120OihfEjT+oonBowvKFmv4aS95cApc
-         xn7TrTCpxh6iCsDY2BzwpFNJIWrMyF3AsfSlqaXqpmEa/JTBQb4Z6pwAB1xKmW5sZCCm
-         JQpnnKxSGYFjxyJZOeAKNlvTIg3NVWMx0j4481azpbGVxoBKsIhYkspuuMDUjitzt2TP
-         FDpg==
-X-Forwarded-Encrypted: i=1; AJvYcCXXBzoT60Z6e7WFtr6D6ZFka9pYIUmRAc3M6uNbGRmFFObbaiUUNA9XHN6uwPwFlFRPHJxHMsVVVgit@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1nUB5KYsjOXwDqtZZLR5GaBMdMqi+QG1uONmeio/drRoX5nDy
-	RfFciK+Yc4BGFBbJaoYZ+tDwGBWlg2NAHhJ0ZCB+ADUKPoC9r2F0ZiiN/pvXgCTwQL7Mp/p3JsU
-	LBBOFjKu8PuD1yHvSZVekSHRFASiLi19JQMTdZw==
-X-Google-Smtp-Source: AGHT+IFnJ2aAEnjxDoEAR+k68meuDnN2C3jBt7oao/8Qh8myzaggBhO3fqphRnV4wGyuGqlBgzoWmwVTMtQEKqFZHbA=
-X-Received: by 2002:a05:690c:660b:b0:6e2:b263:1052 with SMTP id
- 00721157ae682-6e2c6fdd536mr92120257b3.6.1728313368916; Mon, 07 Oct 2024
- 08:02:48 -0700 (PDT)
+	s=arc-20240116; t=1728313518; c=relaxed/simple;
+	bh=JRtx5eRJkXG38uPw/npJdWEVbk79L2ljNlxvw5Jbrto=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lNfkd2jMq8jLxzyZTjcJGXh8WIVrURkrTOoI4N2nzFKW3Qi8R7jTARsASJZvxwIDdbqGSIErf3/srgjsDzLY3F+tF1vapSM2GlHGVE/QszAgCU33rUzDWCnJ5nB8c7SvGRqR90Ey5D/0BUj5+/vzB+usTpbS/kk3jngjGbD/mdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iM8HrNUf; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728313518; x=1759849518;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JRtx5eRJkXG38uPw/npJdWEVbk79L2ljNlxvw5Jbrto=;
+  b=iM8HrNUfzAJTiZic/iFr5CQvhsroNwn99OLTP+w5qiWnXyTvgyvpGTwL
+   NWyAwACVR5JmgLOO6h4YidCO6xxOkOhV6dfB2hfA7MOZQWOvwhEdyowrP
+   +UHsLQmKVMcizl2RTFzlbUsvjL8w8hOpK7RTlEismFB2OjES6W+c/ySxv
+   r8YTOZRRmO5KjKychlMBFPzQJbieUTYzethtxtt8VEZbvFCqtX9xtA1UN
+   MibNOmlJ493/jr9vG/tZi3gU/ZKFYSDeoWDBvSbj41D8t0bOoflWIupb4
+   xZVNuy3SL2AdClnulpJa9fVNnGWKtOX+x17sr4G6tazo5x9BNhFOgMq1K
+   g==;
+X-CSE-ConnectionGUID: eqUbaYReQ2mMary9kcK1fQ==
+X-CSE-MsgGUID: h25eV7fGSNSwC0vrEyx4ew==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="50001316"
+X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; 
+   d="scan'208";a="50001316"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2024 08:05:16 -0700
+X-CSE-ConnectionGUID: ZAw+Mk0YRgq2jIUgeYmqbA==
+X-CSE-MsgGUID: IoaAwrPFTbq17UYMK81ItQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; 
+   d="scan'208";a="98822607"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa002.fm.intel.com with ESMTP; 07 Oct 2024 08:04:57 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sxpI6-00058i-2w;
+	Mon, 07 Oct 2024 15:04:54 +0000
+Date: Mon, 7 Oct 2024 23:04:20 +0800
+From: kernel test robot <lkp@intel.com>
+To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	rickard.andersson@axis.com, kernel@axis.com,
+	Per-Daniel Olsson <perdaniel.olsson@axis.com>
+Subject: Re: [PATCH v2 2/2] iio: light: Add support for TI OPT4060 color
+ sensor
+Message-ID: <202410072240.s3wGb17S-lkp@intel.com>
+References: <20241005165119.3549472-3-perdaniel.olsson@axis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240928083804.1073942-1-dario.binacchi@amarulasolutions.com>
- <20240928083804.1073942-2-dario.binacchi@amarulasolutions.com>
- <566859c1-a397-4465-987e-0682b07a703e@kernel.org> <CABGWkvqqg-PGAZTCz=MMLRx5F93jaN_=z8zJt1sDd3PHXd80PQ@mail.gmail.com>
- <6c3e6071-822f-4230-b76b-276330de07ef@kernel.org> <CABGWkvrU507BHoP94Y7fEyFr=chuuy3o=oBHtuWRvwTw3GnxXw@mail.gmail.com>
- <82db5037-bbd3-4005-bde9-02df1bf4c475@kernel.org> <CABGWkvqXZ+YAvo-AtUy+Ftdu0xxXKuhOwcSTwO5Fv6D3yzttNg@mail.gmail.com>
- <b847ccb1-1eb8-4119-8612-212804cb50d8@kernel.org>
-In-Reply-To: <b847ccb1-1eb8-4119-8612-212804cb50d8@kernel.org>
-From: Dario Binacchi <dario.binacchi@amarulasolutions.com>
-Date: Mon, 7 Oct 2024 17:02:37 +0200
-Message-ID: <CABGWkvqkmo9O-O1taR651W4xo=yqar=p71e0LKqRte2CGZ2Z8w@mail.gmail.com>
-Subject: Re: [PATCH 1/6] dt-bindings: clock: imx8m-anatop: support spread
- spectrum clocking
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-amarula@amarulasolutions.com, 
-	Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Peng Fan <peng.fan@nxp.com>, Pengutronix Kernel Team <kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>, 
-	Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241005165119.3549472-3-perdaniel.olsson@axis.com>
 
-On Sun, Oct 6, 2024 at 3:13=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On 05/10/2024 10:57, Dario Binacchi wrote:
-> > On Thu, Oct 3, 2024 at 12:46=E2=80=AFPM Krzysztof Kozlowski <krzk@kerne=
-l.org> wrote:
-> >>
-> >> On 01/10/2024 08:29, Dario Binacchi wrote:
-> >>> On Mon, Sep 30, 2024 at 8:45=E2=80=AFAM Krzysztof Kozlowski <krzk@ker=
-nel.org> wrote:
-> >>>>
-> >>>> On 29/09/2024 22:00, Dario Binacchi wrote:
-> >>>>>>
-> >>>>>>
-> >>>>>>> +  properties:
-> >>>>>>> +    compatible:
-> >>>>>>> +      contains:
-> >>>>>>> +        enum:
-> >>>>>>> +          - fsl,imx8mm-anatop
-> >>>>>>> +
-> >>>>>>> +then:
-> >>>>>>> +  properties:
-> >>>>>>> +    fsl,ssc-clocks:
-> >>>>>>
-> >>>>>> Nope. Properties must be defined in top-level.
-> >>>>>>
-> >>>>>>> +      $ref: /schemas/types.yaml#/definitions/phandle-array
-> >>>>>>> +      description:
-> >>>>>>> +        The phandles to the PLLs with spread spectrum clock gene=
-ration
-> >>>>>>> +        hardware capability.
-> >>>>>>
-> >>>>>> These should be clocks.
-> >>>>>
-> >>>>> Sorry, but I can't understand what you're asking me.
-> >>>>> Could you kindly explain it to me in more detail?
-> >>>>
-> >>>> You added new property instead of using existing one for this purpos=
-e:
-> >>>> 'clocks'.
-> >>>
-> >>>>
-> >>>>
-> >>>>
-> >>>> Best regards,
-> >>>> Krzysztof
-> >>>>
-> >>>
-> >>> I added this new property specifically for managing spread-spectrum.
-> >>> Indeed, not all clocks/PLLs
-> >>> managed by the node/peripheral support spread-spectrum, and the added
-> >>> properties specify
-> >>> parameters for enabling and tuning SSC for each individual PLL based
-> >>> on the index of each list.
-> >>> If I were to use the 'clocks' property and add a clock to this list
-> >>> that does not support SSC, IMHO
-> >>> the pairings would be less clear.
-> >>
-> >> You duplicate property with argument "pairings shall match". Well, I a=
-m
-> >> not happy with the duplication. Clocks have specific order, thus it is
-> >> explicit which one needs tuning. Your other properties can match them =
-as
-> >> well, just index from clocks is offset...
-> >
-> > Just to check if I understood correctly what you are suggesting before
-> > submitting version 3 of the patch.
-> > Something, for example, like:
-> >
-> > clocks =3D <&clk, IMX8MP_AUDIO_PLL1>,  <&clk, IMX8MP_AUDIO_PLL2>, <&clk
-> > IMX8MP_VIDEO_PLL1>;
-> > fsl,ssc-modfreq-hz =3D <0, 3517>, <2, 6818>;
->
-> Hm, what is 0? If clock index, then no, it's redundant. The first item
-> in cannot point to other clock.
->
-> Also, what exactly are you setting here
+Hi Per-Daniel,
 
-I am enabling and configuring the spread spectrum.
+kernel test robot noticed the following build warnings:
 
-Normal clock: Without spread spectrum, the clock signal has a fixed and
-repetitive frequency (e.g., 100 MHz). This frequency generates an
-electromagnetic
-signal concentrated on a single frequency, and if strong enough, it can dis=
-turb
-other devices.
+[auto build test WARNING on 0c559323bbaabee7346c12e74b497e283aaafef5]
 
-Spread spectrum:  With spread spectrum, the clock frequency is
-slightly "modulated,"
-meaning it oscillates around a central value. For example, if the base
-frequency is 100 MHz,
-the clock might vary between 99.5 MHz and 100.5 MHz in a cyclic manner. Thi=
-s
-small variation spreads the energy over a wider range of frequencies
-(from 99.5 to 100.5 MHz),
-reducing the intensity of the signal at any one frequency.
+url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241006-005244
+base:   0c559323bbaabee7346c12e74b497e283aaafef5
+patch link:    https://lore.kernel.org/r/20241005165119.3549472-3-perdaniel.olsson%40axis.com
+patch subject: [PATCH v2 2/2] iio: light: Add support for TI OPT4060 color sensor
+config: csky-randconfig-r122-20241007 (https://download.01.org/0day-ci/archive/20241007/202410072240.s3wGb17S-lkp@intel.com/config)
+compiler: csky-linux-gcc (GCC) 14.1.0
+reproduce: (https://download.01.org/0day-ci/archive/20241007/202410072240.s3wGb17S-lkp@intel.com/reproduce)
 
-> and why assigned-clock-rates are
-> not working?
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410072240.s3wGb17S-lkp@intel.com/
 
-The traditional clock properties, such as clocks,
-assigned-clocks-rates, etc retain their usual
-meaning even when spread spectrum is applied. However, to implement
-the spread spectrum
-mechanism in a circuit with a PLL (Phase-Locked Loop), additional
-specific parameters are
-introduced to properly configure the frequency modulation:
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
+>> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
+>> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
 
- - Modulation frequency: i. e. fsl,ssc-modfreq-hz
- - Modulation rate: i.e.  fsl,ssc-modrate-percent
- - Modulation type:  i. e. fsl,ssc-modmethod (center-spread, down-spread)
+vim +963 drivers/iio/light/opt4060.c
 
-Additionally, it should be noted that not all anatop PLLs are equipped
-with circuitry for spread
-spectrum, but only a small subset of them. This is the reason why I
-introduced the property
-"fsl, ssc-clocks".
+   951	
+   952	static irqreturn_t opt4060_trigger_handler(int irq, void *p)
+   953	{
+   954		struct iio_poll_func *pf = p;
+   955		struct iio_dev *idev = pf->indio_dev;
+   956		struct opt4060_chip *chip = iio_priv(idev);
+   957		struct opt4060_buffer raw;
+   958		int ret, chan;
+   959		int i = 0;
+   960	
+   961		memset(&raw, 0, sizeof(raw));
+   962	
+ > 963		for_each_set_bit(chan, idev->active_scan_mask, idev->masklength) {
+   964			ret = opt4060_read_raw_value(chip,
+   965						     opt4060_channels[chan].address,
+   966						     &raw.chan[i++]);
+   967			if (ret) {
+   968				dev_err(chip->dev, "Reading raw channel data failed\n");
+   969				goto err_read;
+   970			}
+   971		}
+   972	
+   973		iio_push_to_buffers_with_timestamp(idev, &raw, pf->timestamp);
+   974	err_read:
+   975		iio_trigger_notify_done(idev->trig);
+   976		return IRQ_HANDLED;
+   977	}
+   978	
 
-This is another commit [1] on enabling spread spectrum that I
-implemented some time ago for
-the am335x. The most evident difference is that in that case the node
-was a clock node and not
-a clock controller, as in the case of anatop. The parameters are also
-not exactly the same, but
-that depends on the platform.
-
-[1] 4a8bc2644ef0cbf8e ("dt-bindings: ti: dpll: add spread spectrum support"=
-)
-
-Thanks and regards,
-Dario
-
->
-> Best regards,
-> Krzysztof
->
-
-
---=20
-
-Dario Binacchi
-
-Senior Embedded Linux Developer
-
-dario.binacchi@amarulasolutions.com
-
-__________________________________
-
-
-Amarula Solutions SRL
-
-Via Le Canevare 30, 31100 Treviso, Veneto, IT
-
-T. +39 042 243 5310
-info@amarulasolutions.com
-
-www.amarulasolutions.com
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
