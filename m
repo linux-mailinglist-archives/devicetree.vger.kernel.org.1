@@ -1,402 +1,178 @@
-Return-Path: <devicetree+bounces-108375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A3D09926CC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:18:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B34C59926C8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:18:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15F0C1F22BFA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:18:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6CEE1C221A8
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:18:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5274018BBB4;
-	Mon,  7 Oct 2024 08:18:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D24F18A6DC;
+	Mon,  7 Oct 2024 08:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="XSGIF6M2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IQyenx5k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77F1A18A6A0
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99CC9189B99
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:17:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728289082; cv=none; b=LV12tG0vatLhYk8qGhc0WfCLA93r9VbiBAKxg7UQfXMgxEWNvIA9MNsQcNSjNkHbNoy1HsXtvPikY7seitNOSYwOd3eiv0pMVygP8HflEBziOQBlT37jJ5zw3c1MFdKC7+bMBvazszVoYsmuGMok5/DaktLDam0WD0ImEPndK2c=
+	t=1728289080; cv=none; b=Bt/ruU11r5ydUKT6n3fxRcdD/uQFKlnM9L1IbXS8k0wAHl8Hda8xc3w8PgFCQg/u4FHHJdd3JMHe9uuSOSfspgZeAzMlq/U6XP+ZtzlOz6zDVG8pheAJmPuJE5x6AalFAmwb5dzP38r4XW7XFjJeJQsVn4DZ8HFkvR9MxyiFfcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728289082; c=relaxed/simple;
-	bh=Nmph6WDs9Xq7iTOfvd0cLrjjvG2iMe2g5y57xwNvOkQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iovHP+lf9wxFfX23/2P7zxFhX1o7Ml7HUdK4v2stAnWeaDsRJob5I1L3ysdiaSAYOVEDsZ23ZmYLyRbAz3i9L49QpeMXqMI7GRlkeVBHWEyU186P1zHxHPg1EZJVVHTQX3GWqG3P0+RFkglR+PqNSDyH1Z8UtQYeo8IQNL07x1I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=XSGIF6M2; arc=none smtp.client-ip=209.85.166.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-82aa7c3b3dbso165465539f.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 01:17:59 -0700 (PDT)
+	s=arc-20240116; t=1728289080; c=relaxed/simple;
+	bh=g5NzqMMFjAKW0zBo/XWskR6SOG72Xb+YtC1uP0EdJr4=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=h9S0Kq512f+1SnHPljn2A6tgZ6ftOYPmG+M8NQB11bCn4uHJmZx1088uuR5Hnbz5KPFJxA+T6WLG4R3TCkAeDUzQhYuPZ95Lp3uOk+g3xWdOxEn9+p+n64+soZL3aGzCJYn07ZQFsrKn6ix3nnsLEHsFbXE+K7zIJpVzSHQRziA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IQyenx5k; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37ce8458ae3so3845916f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 01:17:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1728289078; x=1728893878; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vV5iKTZRSVTQUCoJBZzYZK+9ejJVraol8LawWsL5uGA=;
-        b=XSGIF6M25Lbz0GpQpKB5rNdxaLqJ+91BffQhZawZ8hJ9WodEiehgVlQXcPY6vDjDNQ
-         MaSj2qxb5wHrX6+Mj5hjS8e8uyp9uxDMZD8t5sUKfTc3wEHAgj7V4eqLfbYQI2HpNLTJ
-         DgP3n27FA34JxTz0cOjNAnuUhLi4zMsBxejCPkqPxxgpVmE4FMeNb8rAGVRyHxSxkccQ
-         N+Rafv+NKwXl0/lQPFPCz9ZhNznlCIsBqokEpvGnzlsO/WUeOTqQryd3X3r/Ad04er+4
-         c4R3XI15030EUJYbCHsX9sD2uQKpy5RHDfxRmo5mKyeO4UrSOHg3I+oDm+ZFFuLEp6hz
-         Ax3A==
+        d=linaro.org; s=google; t=1728289077; x=1728893877; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O1edDQaZrOkr576aznoG41NUZzv1eU7bE/W4vr93KFU=;
+        b=IQyenx5kIeAr6M6NgYelGR+BfrRJImrtKC7AHo17yjxjwuXssEuHib0ozAz9bobd2M
+         fuh2v/5jOOk3TBy+x+WnSt25o8NN5oWRhTJWqi/ixgz7ERWMugxareDSXmN1TkBPeI6o
+         jAJSt0DxvfjU2NofPYBDU7VhxQ3igAvR4b1E1PRAShii67lJexgl2H0QTEvrKzUTUCO1
+         aJrMk0IvP6tzMtv9OdiK9N2YHhvbbp3GZbLD9fH4mSsFkJxBtGU6cOMaPBCheKTQTF5i
+         bRu6JEmkazzUSE3rELPpWL1FkY9EhEJ0EwuJaTjA38M2yhY1SH7paJkJ45ndnIrh2Q1j
+         AqSA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728289078; x=1728893878;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vV5iKTZRSVTQUCoJBZzYZK+9ejJVraol8LawWsL5uGA=;
-        b=sPkW1HNEOlU/hKEp84UdgWEIHcKdIFLsNFPShDtaMbFtZQVLVj37pd2lQOwZS/29wa
-         6Pfu42MVtL8JHapUqFLAW6qUNLmrFQp+vyenJetEkW3E9U1g/ES2+viZAVNHspoMOKpQ
-         p4XtFEoQXnlpBUrIPK7l2McIqk+Ct42OjCQCrB5yQFCUUwaaV30V4L4acvR+W6AZkbXs
-         yl6H3KI0E5oxqF6VMWc9OYekseNFRR+FZ6StUeI4Ck8kZwfrNeh8h3Wf4YKuYW9RMw78
-         Y7CDCXMFhNYCAjaKuhOHN8t7IUuKSGaHHpa5FCwIKC1cCA3gjE0ltgtEYqEFKuesuAZB
-         LQyA==
-X-Forwarded-Encrypted: i=1; AJvYcCXPsfyys/FuS+hjOGx1XUIITbB38lf93kPdzCR63ZF3GU5r1UXcti5v8pGKVGhsBwC5xvxyS2bmQj/4@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx51aI8tuY635Rsq9ebOmNdfgahErge30sOHb1J0epGZr5yPMZq
-	h5FgKGaqkiZr5CjxHG3ZyN5cP+VFsp0LITCVTMC6jMNU5ToS08YuGwvgkd4PUBVja2qmevFiPkD
-	x+3SrlgOhu2KzNkVC1v2d4REM1gUdeFOP0NVtew==
-X-Google-Smtp-Source: AGHT+IGbrFX2fkGwh4/hSUi/bswFsAwHoZTucK0BPSJDYS8wpDCXqS1WF3XKaDolR3S9yJug1dqVltHjNKSJeho3ET0=
-X-Received: by 2002:a05:6602:14c1:b0:806:31ee:132 with SMTP id
- ca18e2360f4ac-834f7ca6040mr1014345639f.4.1728289078482; Mon, 07 Oct 2024
- 01:17:58 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728289077; x=1728893877;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=O1edDQaZrOkr576aznoG41NUZzv1eU7bE/W4vr93KFU=;
+        b=pnisHWVmCdDQpS3tKxrkFHB8xuu6iffNEBPnXR5mwLhqLGsAxuTYB4beAlz833eoQk
+         VhdKvL4xpEF+IfdnL8nbEvAAhLkllzgWCvyqQGyMcAobLJPVHNoYmbgdC8K8IqB1V9cv
+         Eofm8CEL3oHfZFhhimE+U6XvIlqyjm0N3wcj8mloHAKH4HHVk8R2zyWJpWrKwAEDZ1RK
+         DozR7flb/vdAmz//40OJjiJKfEfG0MPZ0USbW1m2jfUIuc0QSwStZ3LmXYexzQ1f2yKO
+         TFPPE+u2AhZH88V8+c8BYZOQeTNJC9u9GHKs3zMIhL6w1OSW/Eu+J9rQsgsqBCB8/YcB
+         q8fg==
+X-Forwarded-Encrypted: i=1; AJvYcCVvj0btZGrPJtlIa28Q4BEtwQxh933wWbwroFyhVbXBz6dBrutXnYxhk+Li3AupMq5GGM3QrNG9I1WX@vger.kernel.org
+X-Gm-Message-State: AOJu0YzF+ysWVBSoiag31Wg95mj+03VDXWZKTNLGMifSvb7ulH/Q23D3
+	Vqqk6znuklmUFNugEdokLFfDzKzizhtdKYiihODFNo1JyQxs8VoMmIqpWtSbkyo=
+X-Google-Smtp-Source: AGHT+IG9XJst6wsrAQL6BA85JuUkMdJMS7rThtpc/T8etcJuu3WuC0kKVQ3Uxb4DcOCO9c5BpMzHxw==
+X-Received: by 2002:adf:ab15:0:b0:374:c7f8:3d50 with SMTP id ffacd0b85a97d-37d0eaea9a4mr8942994f8f.58.1728289076954;
+        Mon, 07 Oct 2024 01:17:56 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d16972fe9sm5142480f8f.108.2024.10.07.01.17.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 01:17:56 -0700 (PDT)
+Message-ID: <8320f7d4-cbf4-45d2-9cad-a71eb16d5924@linaro.org>
+Date: Mon, 7 Oct 2024 10:17:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com> <20241001-v5_user_cfi_series-v1-16-3ba65b6e550f@rivosinc.com>
-In-Reply-To: <20241001-v5_user_cfi_series-v1-16-3ba65b6e550f@rivosinc.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Mon, 7 Oct 2024 16:17:47 +0800
-Message-ID: <CANXhq0rpwQkZ9+mZLGVUq=r4WiA8BbZ-eeTDogf3fzeEPqeeqA@mail.gmail.com>
-Subject: Re: [PATCH 16/33] riscv/shstk: If needed allocate a new shadow stack
- on clone
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
-	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
-	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
-	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 1/3] drm/mipi-dsi: add mipi_dsi_compression_mode_multi
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241006-starqltechn_integration_upstream-v6-0-8336b9cd6c34@gmail.com>
+ <20241006-starqltechn_integration_upstream-v6-1-8336b9cd6c34@gmail.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241006-starqltechn_integration_upstream-v6-1-8336b9cd6c34@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Oct 2, 2024 at 12:20=E2=80=AFAM Deepak Gupta <debug@rivosinc.com> w=
-rote:
->
-> Userspace specifies CLONE_VM to share address space and spawn new thread.
-> `clone` allow userspace to specify a new stack for new thread. However
-> there is no way to specify new shadow stack base address without changing
-> API. This patch allocates a new shadow stack whenever CLONE_VM is given.
->
-> In case of CLONE_VFORK, parent is suspended until child finishes and thus
-> can child use parent shadow stack. In case of !CLONE_VM, COW kicks in
-> because entire address space is copied from parent to child.
->
-> `clone3` is extensible and can provide mechanisms using which shadow stac=
-k
-> as an input parameter can be provided. This is not settled yet and being
-> extensively discussed on mailing list. Once that's settled, this commit
-> will adapt to that.
->
-> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+On 06/10/2024 20:18, Dzmitry Sankouski wrote:
+> mipi_dsi_compression_mode_multi can help with
+> error handling.
+> 
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 > ---
->  arch/riscv/include/asm/usercfi.h |  25 ++++++++
->  arch/riscv/kernel/process.c      |  11 +++-
->  arch/riscv/kernel/usercfi.c      | 121 +++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 156 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/riscv/include/asm/usercfi.h b/arch/riscv/include/asm/us=
-ercfi.h
-> index 4fa201b4fc4e..719e28e043c8 100644
-> --- a/arch/riscv/include/asm/usercfi.h
-> +++ b/arch/riscv/include/asm/usercfi.h
-> @@ -8,6 +8,9 @@
->  #ifndef __ASSEMBLY__
->  #include <linux/types.h>
->
-> +struct task_struct;
-> +struct kernel_clone_args;
-> +
->  #ifdef CONFIG_RISCV_USER_CFI
->  struct cfi_status {
->         unsigned long ubcfi_en : 1; /* Enable for backward cfi. */
-> @@ -17,6 +20,28 @@ struct cfi_status {
->         unsigned long shdw_stk_size; /* size of shadow stack */
->  };
->
-> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
-> +                                                       const struct kern=
-el_clone_args *args);
-> +void shstk_release(struct task_struct *tsk);
-> +void set_shstk_base(struct task_struct *task, unsigned long shstk_addr, =
-unsigned long size);
-> +unsigned long get_shstk_base(struct task_struct *task, unsigned long *si=
-ze);
-> +void set_active_shstk(struct task_struct *task, unsigned long shstk_addr=
-);
-> +bool is_shstk_enabled(struct task_struct *task);
-> +
-> +#else
-> +
-> +#define shstk_alloc_thread_stack(tsk, args) 0
-> +
-> +#define shstk_release(tsk)
-> +
-> +#define get_shstk_base(task, size) 0
-> +
-> +#define set_shstk_base(task, shstk_addr, size)
-> +
-> +#define set_active_shstk(task, shstk_addr)
-> +
-> +#define is_shstk_enabled(task) false
-> +
->  #endif /* CONFIG_RISCV_USER_CFI */
->
->  #endif /* __ASSEMBLY__ */
-> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-> index 1f2574fb2edb..f6f58b1ed905 100644
-> --- a/arch/riscv/kernel/process.c
-> +++ b/arch/riscv/kernel/process.c
-> @@ -28,6 +28,7 @@
->  #include <asm/vector.h>
->  #include <asm/cpufeature.h>
->  #include <asm/exec.h>
-> +#include <asm/usercfi.h>
->
->  #if defined(CONFIG_STACKPROTECTOR) && !defined(CONFIG_STACKPROTECTOR_PER=
-_TASK)
->  #include <linux/stackprotector.h>
-> @@ -203,7 +204,7 @@ int arch_dup_task_struct(struct task_struct *dst, str=
-uct task_struct *src)
->
->  void exit_thread(struct task_struct *tsk)
->  {
-> -
-> +       shstk_release(tsk);
->  }
->
->  int copy_thread(struct task_struct *p, const struct kernel_clone_args *a=
-rgs)
-> @@ -211,6 +212,7 @@ int copy_thread(struct task_struct *p, const struct k=
-ernel_clone_args *args)
->         unsigned long clone_flags =3D args->flags;
->         unsigned long usp =3D args->stack;
->         unsigned long tls =3D args->tls;
-> +       unsigned long ssp =3D 0;
->         struct pt_regs *childregs =3D task_pt_regs(p);
->
->         memset(&p->thread.s, 0, sizeof(p->thread.s));
-> @@ -225,11 +227,18 @@ int copy_thread(struct task_struct *p, const struct=
- kernel_clone_args *args)
->                 p->thread.s[0] =3D (unsigned long)args->fn;
->                 p->thread.s[1] =3D (unsigned long)args->fn_arg;
->         } else {
-> +               /* allocate new shadow stack if needed. In case of CLONE_=
-VM we have to */
-> +               ssp =3D shstk_alloc_thread_stack(p, args);
-> +               if (IS_ERR_VALUE(ssp))
-> +                       return PTR_ERR((void *)ssp);
-> +
->                 *childregs =3D *(current_pt_regs());
->                 /* Turn off status.VS */
->                 riscv_v_vstate_off(childregs);
->                 if (usp) /* User fork */
->                         childregs->sp =3D usp;
-> +               /* if needed, set new ssp */
-> +               ssp ? set_active_shstk(p, ssp) : 0;
->                 if (clone_flags & CLONE_SETTLS)
->                         childregs->tp =3D tls;
->                 childregs->a0 =3D 0; /* Return value of fork() */
-> diff --git a/arch/riscv/kernel/usercfi.c b/arch/riscv/kernel/usercfi.c
-> index ce002eabbdc1..7a7f0b57b2d4 100644
-> --- a/arch/riscv/kernel/usercfi.c
-> +++ b/arch/riscv/kernel/usercfi.c
-> @@ -19,6 +19,41 @@
->
->  #define SHSTK_ENTRY_SIZE sizeof(void *)
->
-> +bool is_shstk_enabled(struct task_struct *task)
-> +{
-> +       return task->thread_info.user_cfi_state.ubcfi_en ? true : false;
-> +}
-> +
-> +void set_shstk_base(struct task_struct *task, unsigned long shstk_addr, =
-unsigned long size)
-> +{
-> +       task->thread_info.user_cfi_state.shdw_stk_base =3D shstk_addr;
-> +       task->thread_info.user_cfi_state.shdw_stk_size =3D size;
-> +}
-> +
-> +unsigned long get_shstk_base(struct task_struct *task, unsigned long *si=
-ze)
-> +{
-> +       if (size)
-> +               *size =3D task->thread_info.user_cfi_state.shdw_stk_size;
-> +       return task->thread_info.user_cfi_state.shdw_stk_base;
-> +}
-> +
-> +void set_active_shstk(struct task_struct *task, unsigned long shstk_addr=
-)
-> +{
-> +       task->thread_info.user_cfi_state.user_shdw_stk =3D shstk_addr;
-> +}
-> +
-> +/*
-> + * If size is 0, then to be compatible with regular stack we want it to =
-be as big as
-> + * regular stack. Else PAGE_ALIGN it and return back
+>   drivers/gpu/drm/drm_mipi_dsi.c | 16 ++++++++++++++++
+>   include/drm/drm_mipi_dsi.h     |  2 ++
+>   2 files changed, 18 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/drm_mipi_dsi.c b/drivers/gpu/drm/drm_mipi_dsi.c
+> index 2bc3973d35a1..d8ee74701f1e 100644
+> --- a/drivers/gpu/drm/drm_mipi_dsi.c
+> +++ b/drivers/gpu/drm/drm_mipi_dsi.c
+> @@ -1520,6 +1520,22 @@ void mipi_dsi_compression_mode_ext_multi(struct mipi_dsi_multi_context *ctx,
+>   }
+>   EXPORT_SYMBOL(mipi_dsi_compression_mode_ext_multi);
+>   
+> +/**
+> + * mipi_dsi_compression_mode_multi() - enable/disable DSC on the peripheral
+> + * @dsi: DSI peripheral device
+> + * @enable: Whether to enable or disable the DSC
+> + *
+> + * Enable or disable Display Stream Compression on the peripheral using the
+> + * default Picture Parameter Set and VESA DSC 1.1 algorithm.
 > + */
-> +static unsigned long calc_shstk_size(unsigned long size)
+> +void mipi_dsi_compression_mode_multi(struct mipi_dsi_multi_context *ctx,
+> +				     bool enable)
 > +{
-> +       if (size)
-> +               return PAGE_ALIGN(size);
-> +
-> +       return PAGE_ALIGN(min_t(unsigned long long, rlimit(RLIMIT_STACK),=
- SZ_4G));
+> +	return mipi_dsi_compression_mode_ext_multi(ctx, enable,
+> +						   MIPI_DSI_COMPRESSION_DSC, 0);
 > +}
+> +EXPORT_SYMBOL(mipi_dsi_compression_mode_multi);
 > +
->  /*
->   * Writes on shadow stack can either be `sspush` or `ssamoswap`. `sspush=
-` can happen
->   * implicitly on current shadow stack pointed to by CSR_SSP. `ssamoswap`=
- takes pointer to
-> @@ -143,3 +178,89 @@ SYSCALL_DEFINE3(map_shadow_stack, unsigned long, add=
-r, unsigned long, size, unsi
->
->         return allocate_shadow_stack(addr, aligned_size, size, set_tok);
->  }
-> +
-> +/*
-> + * This gets called during clone/clone3/fork. And is needed to allocate =
-a shadow stack for
-> + * cases where CLONE_VM is specified and thus a different stack is speci=
-fied by user. We
-> + * thus need a separate shadow stack too. How does separate shadow stack=
- is specified by
-> + * user is still being debated. Once that's settled, remove this part of=
- the comment.
-> + * This function simply returns 0 if shadow stack are not supported or i=
-f separate shadow
-> + * stack allocation is not needed (like in case of !CLONE_VM)
-> + */
-> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
-> +                                          const struct kernel_clone_args=
- *args)
-> +{
-> +       unsigned long addr, size;
-> +
-> +       /* If shadow stack is not supported, return 0 */
-> +       if (!cpu_supports_shadow_stack())
-> +               return 0;
-> +
-> +       /*
-> +        * If shadow stack is not enabled on the new thread, skip any
-> +        * switch to a new shadow stack.
-> +        */
-> +       if (is_shstk_enabled(tsk))
+>   /**
+>    * mipi_dsi_dcs_nop_multi() - send DCS NOP packet
+>    * @ctx: Context for multiple DSI transactions
+> diff --git a/include/drm/drm_mipi_dsi.h b/include/drm/drm_mipi_dsi.h
+> index f725f8654611..94400a78031f 100644
+> --- a/include/drm/drm_mipi_dsi.h
+> +++ b/include/drm/drm_mipi_dsi.h
+> @@ -280,6 +280,8 @@ void mipi_dsi_compression_mode_ext_multi(struct mipi_dsi_multi_context *ctx,
+>   					 bool enable,
+>   					 enum mipi_dsi_compression_algo algo,
+>   					 unsigned int pps_selector);
+> +void mipi_dsi_compression_mode_multi(struct mipi_dsi_multi_context *ctx,
+> +				     bool enable);
+>   void mipi_dsi_picture_parameter_set_multi(struct mipi_dsi_multi_context *ctx,
+>   					  const struct drm_dsc_picture_parameter_set *pps);
+>   
+> 
 
-Hi Deepak,
-Should it be '!' is_shstk_enabled(tsk)?
-
-> +               return 0;
-> +
-> +       /*
-> +        * For CLONE_VFORK the child will share the parents shadow stack.
-> +        * Set base =3D 0 and size =3D 0, this is special means to track =
-this state
-> +        * so the freeing logic run for child knows to leave it alone.
-> +        */
-> +       if (args->flags & CLONE_VFORK) {
-> +               set_shstk_base(tsk, 0, 0);
-> +               return 0;
-> +       }
-> +
-> +       /*
-> +        * For !CLONE_VM the child will use a copy of the parents shadow
-> +        * stack.
-> +        */
-> +       if (!(args->flags & CLONE_VM))
-> +               return 0;
-> +
-> +       /*
-> +        * reaching here means, CLONE_VM was specified and thus a separat=
-e shadow
-> +        * stack is needed for new cloned thread. Note: below allocation =
-is happening
-> +        * using current mm.
-> +        */
-> +       size =3D calc_shstk_size(args->stack_size);
-> +       addr =3D allocate_shadow_stack(0, size, 0, false);
-> +       if (IS_ERR_VALUE(addr))
-> +               return addr;
-> +
-> +       set_shstk_base(tsk, addr, size);
-> +
-> +       return addr + size;
-> +}
-> +
-> +void shstk_release(struct task_struct *tsk)
-> +{
-> +       unsigned long base =3D 0, size =3D 0;
-> +       /* If shadow stack is not supported or not enabled, nothing to re=
-lease */
-> +       if (!cpu_supports_shadow_stack() ||
-> +               !is_shstk_enabled(tsk))
-> +               return;
-> +
-> +       /*
-> +        * When fork() with CLONE_VM fails, the child (tsk) already has a
-> +        * shadow stack allocated, and exit_thread() calls this function =
-to
-> +        * free it.  In this case the parent (current) and the child shar=
-e
-> +        * the same mm struct. Move forward only when they're same.
-> +        */
-> +       if (!tsk->mm || tsk->mm !=3D current->mm)
-> +               return;
-> +
-> +       /*
-> +        * We know shadow stack is enabled but if base is NULL, then
-> +        * this task is not managing its own shadow stack (CLONE_VFORK). =
-So
-> +        * skip freeing it.
-> +        */
-> +       base =3D get_shstk_base(tsk, &size);
-> +       if (!base)
-> +               return;
-> +
-> +       vm_munmap(base, size);
-> +       set_shstk_base(tsk, 0, 0);
-> +}
->
-> --
-> 2.45.0
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
