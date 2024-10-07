@@ -1,60 +1,60 @@
-Return-Path: <devicetree+bounces-108722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC9A19937E0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:04:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 85DCC9937F2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:07:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 082381C2363C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:04:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2927B211E5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:07:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E231DE3CE;
-	Mon,  7 Oct 2024 20:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2EC81DE4C5;
+	Mon,  7 Oct 2024 20:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vJc/qEe8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NM+xKt86"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EA5E1865FC;
-	Mon,  7 Oct 2024 20:04:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CEE21DE3C5;
+	Mon,  7 Oct 2024 20:07:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728331463; cv=none; b=llsBoIG2LYYR+Jt7WyJAusMjRbsx0qXX+aD0GCOkTXOPZz3yfr/VjtJ8B42oR6bZSxQMyRqsxQMDXmIqz+h7x7VyStKLGY1TvfM7HG6Lg7TcxRirNBUoGd/rwOo3nPas/xhkJ6CPdx3XdG/un3YhYaESMQ6s8rFfINBTJuUyK9c=
+	t=1728331662; cv=none; b=d5VebbWgFj+k0JurTl5/Z03Afgrf7ixCaIpfM0YbjE67Zt8ZmKLJzxUKfNLKNK7hCqnr9fCz2ugnPP5PiI+VDm7uA3ZoTfZNPUE6HFK2eQlLWabEPrfE3GcsnAkxxdMDVTx29UVtflwSAvqPnYh+Y0loeUk9b8i5fYeaK0rMk1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728331463; c=relaxed/simple;
-	bh=zMuEK/+LlzrBce+U/LzRTcJ//VPj1HV7lbrBSEf7RLo=;
+	s=arc-20240116; t=1728331662; c=relaxed/simple;
+	bh=BxLDkE25VPOwCrsCvshNOC404xDqaWO7nzcWZR1O3so=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jRLX3Cf+hIrfresIxMp0RfVI58jm+ntlB1/uW1lTB2u1rVdZlUhHyMl/kFYuyGq0DW3qr9cOxhkIe1cVVLK6oh7pIxr96+CGT24JsqLludgKNcqS41G+8yOTx4TBzUiVpcFl52qPbJ4uEi0Pey1sUX1C08qXdCTlHNp8WerKUgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vJc/qEe8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB09EC4CEC6;
-	Mon,  7 Oct 2024 20:04:22 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=U+1gysEP1XlM4mKOEHUxdP8DV6GVuKJyvCd/vH/fnoYzyhqLLoWmjAPZyowHXh7EVyQaaI4u9jEYpUfIXbLOrIzp7opJ1QsAf7+iraeS7bh6x6QAicZ8g9DPDUsR5cMRLHhpJxExfB4YcXgpbDoQFfYTkY4T3kWzsyKe4KjKmrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NM+xKt86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09855C4CEC6;
+	Mon,  7 Oct 2024 20:07:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728331463;
-	bh=zMuEK/+LlzrBce+U/LzRTcJ//VPj1HV7lbrBSEf7RLo=;
+	s=k20201202; t=1728331662;
+	bh=BxLDkE25VPOwCrsCvshNOC404xDqaWO7nzcWZR1O3so=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=vJc/qEe8QWUHpTJAB/2vMtKcCCPLDPKqhGujEcnsY+syGQPYh6seMeeJ8vpd1IVeH
-	 FIqAvFz6u7NXEUmDp1jbGaRuaElNQht2OPpe6rrSHtXS4hzFixxSjVoi2pT4fP++/j
-	 ulkuL/w+gTB1TNIw1uuWrlMY3HJ+v1Ykx+6XNu0D9geydwdjo5uTIDlFyVrzHbCHMh
-	 SncLV2kQ9DLngGCdbiqfxjwI1VDL/aN9AKhUub5xfE6djnT9tH3i+e88cKnvBIK8Wz
-	 Fj10FVHJIZRE7n+ar+4yt3OpiVlHi7zbT/KDzzYHui1XkH247fArCb53hqn1kgTlJI
-	 N1T1hFOlYerRw==
-Date: Mon, 7 Oct 2024 15:04:22 -0500
+	b=NM+xKt86wT/VjQBK3wc0ZgaUUaALWTVCDkajoZh7vpelgFeLiqb5iFhcbFuIy9NUa
+	 QrPhih3W/hxBpQttV8eu/XAEOD83Lx9vhxWn0/C6Qbbbi4ahVCXuCN6q0pPW8XCeRC
+	 RGaxW2c3fKYVWPIUyiWI7aDI9OXSCMmpdKhFKqnYM7/Hi0Ygl+EFqryaTmLtrkUP+N
+	 CSb08v1l3OaoW95IyEp76YMb8FyogpJVEFmyFxXrYFcJo4qvMZfIwDnpJcm5WTei8n
+	 Au7r962G4kpcFc6h7Ji/lRkifYzRoehZoPx859ZRHHI5IcFC6RtI88C3WJhCN0DZm3
+	 LVlF9LIid1PMw==
+Date: Mon, 7 Oct 2024 15:07:41 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	linux-amlogic@lists.infradead.org,
-	Kevin Hilman <khilman@baylibre.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: soc: amlogic,meson-gx-hhi-sysctrl: Document
- the System Control registers found on early Meson SoC
-Message-ID: <172833146176.2311218.15217658645332069046.robh@kernel.org>
-References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-hhi-sysctrl-meson8-v1-1-896b24e6c3c8@linaro.org>
+To: Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-input@vger.kernel.org,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-leds@vger.kernel.org,
+	Chanwoo Choi <cw00.choi@samsung.com>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+	linux-pm@vger.kernel.org,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Subject: Re: [PATCH v6 2/7] dt-bindings: mfd: add maxim,max77705
+Message-ID: <172833166069.2315774.14681195967266298858.robh@kernel.org>
+References: <20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com>
+ <20241007-starqltechn_integration_upstream-v6-2-0d38b5090c57@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,18 +63,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-hhi-sysctrl-meson8-v1-1-896b24e6c3c8@linaro.org>
+In-Reply-To: <20241007-starqltechn_integration_upstream-v6-2-0d38b5090c57@gmail.com>
 
 
-On Mon, 07 Oct 2024 16:09:38 +0200, Neil Armstrong wrote:
-> The early Amlogic SoCs also has a System Control registers register set,
-> document it in the amlogic,meson-gx-hhi-sysctrl now the clock controller
-> has been converted to yaml dt-schema.
+On Mon, 07 Oct 2024 18:55:50 +0300, Dzmitry Sankouski wrote:
+> Add maxim,max77705 core binding part.
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> 
 > ---
->  .../bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> Changes in v6:
+> - unevaluatedProperties must be false
+> - drop excessive sentence from description,
+>   just describe the device
+> 
+> Changes in v5:
+> - formatting changes
+> - add unevaluatedProperties: false for nodes referencing
+>   common schemas
+> - remove additionalProperties on nodes with
+>   unevaluatedProperties: false
+> - add min and max to led index
+> Changes in v4:
+> - change dts example intendation from tabs
+>  to spaces
+> - remove interrupt-names property
+> - remove obvious reg description
+> - split long(>80) lines
+> ---
+>  Documentation/devicetree/bindings/mfd/maxim,max77705.yaml | 174 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+>  MAINTAINERS                                               |   1 +
+>  2 files changed, 175 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
