@@ -1,197 +1,176 @@
-Return-Path: <devicetree+bounces-108576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108577-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57255993016
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:54:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2875D993020
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:55:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0F361F23EA2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:54:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0579289C05
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:55:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 809141D86E1;
-	Mon,  7 Oct 2024 14:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 051E81D7E52;
+	Mon,  7 Oct 2024 14:54:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jbMOo6xN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OX8L2U6u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 779AC1D86DF;
-	Mon,  7 Oct 2024 14:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC2BD1D7E35;
+	Mon,  7 Oct 2024 14:54:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728312775; cv=none; b=J4wmYjn14bImZqvBcFaPoJ0SHFBzTA/IehSbk9NLIFIp9luZIqcmzzqQz6xVtIl0KkQuUU4DhW5zGtS5VJShYxlHIg0fRwyUayesENtztdVr4OmHyS768xw8g475yx+j2W0+HXWuAxdmLoQDvHN9Lmvis1NQwOnXqfSDEvV14uI=
+	t=1728312874; cv=none; b=ZcLvrUnuPHbzIuUsJQrMAsJqUqJaIJpe5Wq6FnXNBUxsRLt6qUO4Iy1Nnd6K6ZvQyfRid2IziyarEKT2Vtvl4lRCivV4rM3lwbiaU4M8lJgWAYi1W0Fu85o4MLD1Wd4QCO1umiV+ottoKcPVD6Xk1J6OT/W5qAm3chyJX4Q9cCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728312775; c=relaxed/simple;
-	bh=9hKpqziJxa4+VFx9y7LlHv123VXPkisB4w9bgqeMg3M=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JHAg/qsSvla9/HxF/ANPeH6QjVsouMcTyJxDOnguOvs2QI5HJkmBNJkZ3tmmJXAuzFtvmCUi3qU0cmaDyM5DH/ir7/z1xIgyaCwuLZx3ySTNDfoIAEWrnBc8NNwpdoeu6eSQL9aB1ebdhZzCjxWc/sjhCCy8u3bW3UQbZErVw6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jbMOo6xN; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497ESDev003776;
-	Mon, 7 Oct 2024 14:52:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=w3RCWRUtIw9sk36ygunIIsCE
-	4n8HIqRfSejgHw5bmik=; b=jbMOo6xN5JyHlRNN2E9f41MD0bry9G6ZSR2LpM4C
-	N0DHKBmxW4W6ac0Wy5M505mGHJE0JZwT0AVh6tXHNCILVWHFkf+QNUQLpv6bujec
-	raETbPNiM/yEeLsVI+32FFfFAbWLeOn06J+z3OuFRpM1yU8HrtMF0dyKBBqUJq1C
-	JkAtu2HiCmVonWOhdr1HLUaNWmHd6VpEdJ0H6HskgdxFvEGObpzyqYS8Bokmhgi4
-	3ohoquymZc4y57gZR8ba3vrH8pornN6sOo3Hm5Ws3efdYVsdpyLtbd3m3K0wb1TR
-	APfcgB1Uz+hflhO5k4rAwl2CtM2Xf4GF5HrEUbYgSSNorA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv6vg5c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 14:52:48 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497EqlGB022016
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 7 Oct 2024 14:52:47 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 7 Oct 2024 07:52:43 -0700
-Date: Mon, 7 Oct 2024 20:22:39 +0530
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: <neil.armstrong@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Konrad
- Dybcio <konradybcio@kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 6/6] remoteproc: qcom: Enable map/unmap and SHM bridge
- support
-Message-ID: <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-7-quic_mojha@quicinc.com>
- <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
+	s=arc-20240116; t=1728312874; c=relaxed/simple;
+	bh=Fup7vjsNqIh2m2hxZl/CK4OuqCaLmi5YTomMTM3g1sc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NZJ7R7RoJ7bk49atTxsnstv/cquvh5eOIuMTjT4J3SSwzjB0EdkwP2cqCWR2cQmRWv8GxZlf5L378mqaD1Uil8jW9cU20MVhekuaqTzWvpnqIqmnqCBHJ0zWZETqmsLVlFBchRnrwL5/lKQAkPEamin0/VbKd8W3OfPwxROcLVI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OX8L2U6u; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA3ACC4CECC;
+	Mon,  7 Oct 2024 14:54:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728312874;
+	bh=Fup7vjsNqIh2m2hxZl/CK4OuqCaLmi5YTomMTM3g1sc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=OX8L2U6upEy2WgySjpgzRlGk02al/1x34rxf71D2gVL+XkxTgOnB9KRnYdLtDaot8
+	 CDoUjsEKpxABVqea5ivebJE38OVw4CKhyryqJbdK7Rz168lXYC6E3Rqr9Qz35EiTBe
+	 PzecnEj8eJivzohHIVz+tkgkkR/j4ZBCVtgGJA139DOQbYpSbFwhPR4YRI7/yjdIbq
+	 rCLqRQVawnCg7M1tEhmDKQ/aVVMJl1PkKOJSTMA8nuAY8unfgLTKPvOJwn9AMUyO0e
+	 7OMsc+fi2F+r1Bioc2uO2LbmxxizgjtUKpJy9wOK2f4q9IBzDTbAEMmSl0swjIhG/B
+	 Y+8R9zYF9eRvQ==
+Message-ID: <0d460226-4ea7-4a9b-a119-468343727996@kernel.org>
+Date: Mon, 7 Oct 2024 16:54:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: kUnJDXfb6e4K6UzRSZRfCSUHeGXLGqoY
-X-Proofpoint-GUID: kUnJDXfb6e4K6UzRSZRfCSUHeGXLGqoY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 impostorscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=999 mlxscore=0 bulkscore=0 phishscore=0 malwarescore=0
- spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410070105
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: bluetooth: nxp: add support for
+ supply and reset
+To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+ Sherry Sun <sherry.sun@nxp.com>, Amitkumar Karwar
+ <amitkumar.karwar@nxp.com>, Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>,
+ "marcel@holtmann.org" <marcel@holtmann.org>,
+ "luiz.dentz@gmail.com" <luiz.dentz@gmail.com>,
+ "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+ <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc: "linux-bluetooth@vger.kernel.org" <linux-bluetooth@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
+ GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
+References: <20241004113557.2851060-1-catalin.popescu@leica-geosystems.com>
+ <DB9PR04MB8429B4535422D3AE07D8EE79927C2@DB9PR04MB8429.eurprd04.prod.outlook.com>
+ <3fa35cd2-e52c-4873-8a7f-db459b016a97@kernel.org>
+ <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <2b7f61a8-e91a-4b32-be1d-753a19e4d81f@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 07, 2024 at 10:05:08AM +0200, neil.armstrong@linaro.org wrote:
-> On 04/10/2024 23:23, Mukesh Ojha wrote:
-> > For Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
-> > translation for remote processors is managed by QHEE and if the same SoC
-> > run under KVM, remoteproc carveout and devmem region should be IOMMU
-> > mapped from Linux PAS driver before remoteproc is brought up and
-> > unmapped once it is tear down and apart from this, SHM bridge also need
-> > to set up to enable memory protection on both remoteproc meta data
-> > memory as well as for the carveout region.
-> > 
-> > Enable the support required to run Qualcomm remoteprocs on non-QHEE
-> > hypervisors.
-> > 
-> > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > ---
-> >   drivers/remoteproc/qcom_q6v5_pas.c | 41 +++++++++++++++++++++++++++++-
-> >   1 file changed, 40 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> > index ac339145e072..13bd13f1b989 100644
-> > --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
-> > @@ -122,6 +122,7 @@ struct qcom_adsp {
-> >   	struct qcom_devmem_table *devmem;
-> >   	struct qcom_tzmem_area *tzmem;
-> > +	unsigned long sid;
-> >   };
-> >   static void adsp_segment_dump(struct rproc *rproc, struct rproc_dump_segment *segment,
-> > @@ -310,9 +311,21 @@ static int adsp_start(struct rproc *rproc)
-> >   	if (ret)
-> >   		return ret;
-> > +	ret = qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, true, true, adsp->sid);
-> > +	if (ret) {
-> > +		dev_err(adsp->dev, "iommu mapping failed, ret: %d\n", ret);
-> > +		goto disable_irqs;
-> > +	}
-> > +
-> > +	ret = qcom_map_devmem(rproc, adsp->devmem, true, adsp->sid);
-> > +	if (ret) {
-> > +		dev_err(adsp->dev, "devmem iommu mapping failed, ret: %d\n", ret);
-> > +		goto unmap_carveout;
-> > +	}
-> > +
-> >   	ret = adsp_pds_enable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
-> >   	if (ret < 0)
-> > -		goto disable_irqs;
-> > +		goto unmap_devmem;
-> >   	ret = clk_prepare_enable(adsp->xo);
-> >   	if (ret)
-> > @@ -400,6 +413,10 @@ static int adsp_start(struct rproc *rproc)
-> >   	clk_disable_unprepare(adsp->xo);
-> >   disable_proxy_pds:
-> >   	adsp_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
-> > +unmap_devmem:
-> > +	qcom_unmap_devmem(rproc, adsp->devmem, adsp->sid);
-> > +unmap_carveout:
-> > +	qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, false, true, adsp->sid);
-> >   disable_irqs:
-> >   	qcom_q6v5_unprepare(&adsp->q6v5);
-> > @@ -445,6 +462,9 @@ static int adsp_stop(struct rproc *rproc)
-> >   			dev_err(adsp->dev, "failed to shutdown dtb: %d\n", ret);
-> >   	}
-> > +	qcom_unmap_devmem(rproc, adsp->devmem, adsp->sid);
-> > +	qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, false, true, adsp->sid);
-> > +
-> >   	handover = qcom_q6v5_unprepare(&adsp->q6v5);
-> >   	if (handover)
-> >   		qcom_pas_handover(&adsp->q6v5);
-> > @@ -844,6 +864,25 @@ static int adsp_probe(struct platform_device *pdev)
-> >   	}
-> >   	platform_set_drvdata(pdev, adsp);
-> > +	if (of_property_present(pdev->dev.of_node, "iommus")) {
-> > +		struct of_phandle_args args;
-> > +
-> > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus", "#iommu-cells", 0, &args);
-> > +		if (ret < 0)
-> > +			return ret;
-> > +
-> > +		rproc->has_iommu = true;
-> > +		adsp->sid = args.args[0];
-> > +		of_node_put(args.np);
-> > +		ret = adsp_devmem_init(adsp);
-> > +		if (ret)
-> > +			return ret;
+On 07/10/2024 14:58, POPESCU Catalin wrote:
+>>>>
+>>>> +  vcc-supply:
+>>>> +    description:
+>>>> +      phandle of the regulator that provides the supply voltage.
+>>>> +
+>>>> +  reset-gpios:
+>>>> +    description:
+>>>> +      Chip powerdown/reset signal (PDn).
+>>>> +
+>>> Hi Catalin,
+>>>
+>>> For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means that both wifi and BT controller will be powered on and off at the same time.
+>>> Taking the M.2 NXP WIFI/BT module as an example, pin56(W_DISABLE1) is connected to the WIFI/BT chip PDn pin, we has already controlled this pin in the corresponding PCIe/SDIO controller dts nodes.
+>>> It is not clear to me what exactly pins for vcc-supply and reset-gpios you describing here. Can you help understand the corresponding pins on M.2 interface as an example? Thanks.
 > 
-> Why don't you get this table from the firmware like presumably QHEE does ?
+> Hi Sherry,
+> 
+> Regulators and reset controls being refcounted, we can then implement 
+> powerup sequence in both bluetooth/wlan drivers and have the drivers 
+> operate independently. This way bluetooth driver would has no dependance 
+> on the wlan driver for :
+> 
+> - its power supply
+> 
+> - its reset pin (PDn)
+> 
+> - its firmware (being downloaded as part of the combo firmware)
+> 
+> For the wlan driver we use mmc power sequence to drive the chip reset 
+> pin and there's another patchset that adds support for reset control 
+> into the mmc pwrseq simple driver.
+> 
+>> Please wrap your replies.
+>>
+>> It seems you need power sequencing just like Bartosz did for Qualcomm WCN.
+> 
+> Hi Krzysztof,
+> 
+> I'm not familiar with power sequencing, but looks like way more 
+> complicated than reset controls. So, why power sequencing is recommended 
+> here ? Is it b/c a supply is involved ?
 
-Well, AFAIK, QHEE(EL2) has this information statically present and does
-not get it from anywhere., but will confirm this twice..
+Based on earlier message:
 
--Mukesh
+"For NXP WIFI/BT chip, WIFI and BT share the one PDn pin, which means
+that both wifi and BT controller will be powered on and off at the same
+time."
+
+but maybe that's not needed. No clue, I don't know the hardware. But be
+carefully what you write in the bindings, because then it will be ABI.
+
+Best regards,
+Krzysztof
+
 
