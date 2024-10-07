@@ -1,152 +1,170 @@
-Return-Path: <devicetree+bounces-108523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4110992DF9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:56:57 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBC6992E04
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E56641C2250A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:56:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DAB8B23575
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:57:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06EDD1D460B;
-	Mon,  7 Oct 2024 13:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6F2E1D47D9;
+	Mon,  7 Oct 2024 13:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="JkSYhg2Q"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="lgJdqFNP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from omta34.uswest2.a.cloudfilter.net (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0F5F1D4618;
-	Mon,  7 Oct 2024 13:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383501D5AAD
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 13:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728309378; cv=none; b=dkYU6o5jQ0usLV+7E5JsPTmEUEfnYJrs7B8v/A3GXAM4N9PTmhlcz6oeUnobf51a6XmoHWaF7RsM2Dsf25msGY6o+2WjenG0XFje4X+Rfeof0/77cgp1JL6CVFSH6Vl48nLi4ycDFuATCJWZycPkQKYYLiay9KAssY7TmUxo3iw=
+	t=1728309437; cv=none; b=XpTmKgeem23QQyPnbfBQWDTUVxFUAGFXEBCJypr9KLziETFMnYBSovDOrJmsnDjnrw4r8BdPtJGZmqAthBnYnLLzFZVqCG4hDob3eHFBHWOwGdLksXJyDb3DkTNJPNZThesCTo42CsR6P9XagWSsNsR0jaeHxtIhqRsOxIcpA3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728309378; c=relaxed/simple;
-	bh=3DWa82qDFPSleOr4UGlJjFaPWyy2oBAJIzcdCVQzIwg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=JeMSjsITMFffuBJBqJFXmHT0r5+ee7Oj3XUj8ZshbWxqrs0wzEcf23GMLld/ksAezp5Q0FSQ7txBGnQxvTKsWFOA9wdzmNRZJLDVllpGX1IuyXMM7PAQeo98Dps85QBwbTPLXzguj1U9kAFAkSK1eqJHuux9KiY1xBTmljlNaPI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=JkSYhg2Q; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C34B41C0003;
-	Mon,  7 Oct 2024 13:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728309375;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=lTBCMTyNc51WfzJG+muqvC+lkyLv4Qj65h0etwEqxXY=;
-	b=JkSYhg2QWctq84CBBKk9V5tAc9GlPlmUfysTRacIpJZ0u98rmp67RIt55bPKNJqMDzG1Uk
-	oEDnN1XEFVoRb+MsXtpyoMvk3b7esn1NVBoM+UXXUJ3udkj54TNyNRMNAVTwLrDwurDLFO
-	w6fOvsbRCE4wkHK4RJPyP/TIsUwqmAJYmz9foMopa81nZxfCBmVjDcUI2JXJ5TL4D7SNob
-	eGFSCEFyVu8WsLZoUsR9u3fwZew0mJOiTP/Kf9RN8AfdeOCHHUsWg/YKCt5jb75jrxkmCd
-	6fb9DzNKTgYlo030rnHlQaOOSlU28yw46wgfvhJdoOZOkVP/53KBPxFhDONFPg==
+	s=arc-20240116; t=1728309437; c=relaxed/simple;
+	bh=HOEKULFkE6M5CuqjOFFK1AS4/LojYVdTc6S43XpVQX0=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=eQLIDwa53C0iqdf8deD8xrU3yt++pt/9LGTSNq2hEi5R5fXp8ZEld2cSIpzO//EB6LqVju9hJdhbuHtYeDhV5NWh42nrMYVnorkQVFChaUZuvdZ2wT/bwUsunnss3NlXF1vTjoEi0RKBuR+LqzRXXVSbSbr1zgSYdzTN18RJtQc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=lgJdqFNP; arc=none smtp.client-ip=35.89.44.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
+Received: from eig-obgw-6007a.ext.cloudfilter.net ([10.0.30.247])
+	by cmsmtp with ESMTPS
+	id xmeIsS2vOVpzpxoEXswzFC; Mon, 07 Oct 2024 13:57:09 +0000
+Received: from md-in-79.webhostbox.net ([43.225.55.182])
+	by cmsmtp with ESMTPS
+	id xoETskrcV0HwOxoEUsU7dQ; Mon, 07 Oct 2024 13:57:07 +0000
+X-Authority-Analysis: v=2.4 cv=HtNwGVTS c=1 sm=1 tr=0 ts=6703e8b3
+ a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
+ a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=-pn6D5nKLtMA:10 a=vU9dKmh3AAAA:8
+ a=KpWdpyGzixcpRlYuMWcA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=rsP06fVo5MYu2ilr0aT5:22 a=ZCPYImcxYIQFgLOT52_G:22
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
+	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:References:
+	Cc:To:From:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=Off8ca3Q8QoJ3XNFUGaDvWVL6Usji4QPjLFIyyxfzWQ=; b=lgJdqFNPc5I3BQUntvm/jLl8CC
+	LEM1XeCTXgDIcoW0wm/IhAE6kVF4k0HW0Ez4oG80HvZsNCQvdJfrlBNXzEYRRCPCUfwRRagCZV6hJ
+	YzO4AY/jYqeoI8J3eu8HrxwmqviF1OuxbLazzZ1CLUD+PGztUC4lUWaX+ECIuHwGv1kTsYmFf/4V4
+	Q6I3mjQM1v2/zZmsQeEaNhxKT1W6l7V47RYOoKgV8O2w5A9v/N1TvNGcOvykt5hKCj6F+kN6i7OCe
+	d6Y2mG2rd8/GLpP6vJXl1fp9mIUTQ1dGdDToGf/OZJaYjIYE0woskmqXabCEuo1JUEekzhwKPdsK5
+	sXmoxyVQ==;
+Received: from [122.165.245.213] (port=56716 helo=[192.168.1.106])
+	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96.2)
+	(envelope-from <karthikeyan@linumiz.com>)
+	id 1sxoER-003Hi5-01;
+	Mon, 07 Oct 2024 19:27:03 +0530
+Message-ID: <37e26b46-2f6a-4db4-b003-59088ef1dcc1@linumiz.com>
+Date: Mon, 7 Oct 2024 19:26:58 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 07 Oct 2024 15:56:14 +0200
-Message-Id: <D4PMJHMDRCCJ.HPOLK6JF49DO@bootlin.com>
-Subject: Re: [PATCH v4 4/4] clk: eyeq: add driver
-Cc: <devicetree@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Christophe JAILLET" <christophe.jaillet@wanadoo.fr>, "Michael
- Turquette" <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241004-mbly-clk-v4-0-c72c2e348e1f@bootlin.com>
- <20241004-mbly-clk-v4-4-c72c2e348e1f@bootlin.com>
- <75884d07-f052-435d-9f1a-44e9e0bb755f@wanadoo.fr>
- <D4N6GX6P0ZCH.2PJGDMKEZ6LLQ@bootlin.com>
- <8334a319-96e4-4249-9659-132c8698c895@wanadoo.fr>
-In-Reply-To: <8334a319-96e4-4249-9659-132c8698c895@wanadoo.fr>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/6] dt-bindings: watchdog: rockchip: Add
+ rockchip,rv1126-wdt string
+From: karthikeyan <karthikeyan@linumiz.com>
+To: Heiko Stuebner <heiko@sntech.de>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, alexandre.belloni@bootlin.com, wim@linux-watchdog.org,
+ linux@roeck-us.net
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org
+References: <20240912142451.2952633-1-karthikeyan@linumiz.com>
+ <20240912142451.2952633-2-karthikeyan@linumiz.com> <2206048.Mh6RI2rZIc@phil>
+ <ddca4051-0e83-4d39-8654-12210ffa5685@linumiz.com>
+Content-Language: en-US
+In-Reply-To: <ddca4051-0e83-4d39-8654-12210ffa5685@linumiz.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - linumiz.com
+X-BWhitelist: no
+X-Source-IP: 122.165.245.213
+X-Source-L: No
+X-Exim-ID: 1sxoER-003Hi5-01
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
+X-Source-Sender: ([192.168.1.106]) [122.165.245.213]:56716
+X-Source-Auth: karthikeyan@linumiz.com
+X-Email-Count: 6
+X-Org: HG=dishared_whb_net_legacy;ORG=directi;
+X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
+X-Local-Domain: yes
+X-CMAE-Envelope: MS4xfEb8ZEwQqp4qCE31WqhAETL0HaHH7Rr7W5C16uvzTzgnXFBvbVlbtWO0iaG8x1Xxv8tmxQc0cssF13UEDTWn6KSkXl5Lf+AkkbU+zBIkZRGWGxmmBEJL
+ LsLgTOa77dGJ6DpZuR+3CPq1nsnzwcmQrQs7G2OBFLyfFp1j2UQZ4AjEUccZqeuOforVd7bA0vhx38UiLf/J4MGgqP9W29OkJmc=
 
-On Fri Oct 4, 2024 at 11:20 PM CEST, Christophe JAILLET wrote:
-> Le 04/10/2024 =C3=A0 18:55, Th=C3=A9o Lebrun a =C3=A9crit=C2=A0:
-> > On Fri Oct 4, 2024 at 6:34 PM CEST, Christophe JAILLET wrote:
-> >> Le 04/10/2024 =C3=A0 17:45, Th=C3=A9o Lebrun a =C3=A9crit=C2=A0:
-> >>> +static void eqc_probe_init_plls(struct device *dev, struct eqc_priv =
-*priv)
-> >>> +{
-> >>> +	const struct eqc_match_data *data =3D priv->data;
-> >>> +	unsigned long mult, div, acc;
-> >>> +	const struct eqc_pll *pll;
-> >>> +	struct clk_hw *hw;
-> >>> +	unsigned int i;
-> >>> +	u32 r0, r1;
-> >>> +	u64 val;
-> >>> +	int ret;
-> >>> +
-> >>> +	for (i =3D 0; i < data->pll_count; i++) {
-> >>> +		pll =3D &data->plls[i];
-> >>> +
-> >>> +		val =3D readq(priv->base + pll->reg64);
-> >>> +		r0 =3D val;
-> >>> +		r1 =3D val >> 32;
-> >>> +
-> >>> +		ret =3D eqc_pll_parse_registers(r0, r1, &mult, &div, &acc);
-> >>> +		if (ret) {
-> >>> +			dev_warn(dev, "failed parsing state of %s\n", pll->name);
-> >>> +			priv->cells->hws[pll->index] =3D ERR_PTR(ret);
-> >>> +			continue;
-> >>> +		}
-> >>> +
-> >>> +		hw =3D clk_hw_register_fixed_factor_with_accuracy_fwname(dev,
-> >>> +				dev->of_node, pll->name, "ref", 0, mult, div, acc);
-> >>
-> >> Should this be freed somewhere or is it auto-magically freed by a
-> >> put_something()?
-> >> Maybe devm_action_or_reset()?
-> >=20
-> > This driver does not support being removed. It provides essential PLLs
-> > and the system has not chance of working without them.
-> >=20
-> > Almost all instances will be instantiated at of_clk_init() stage by the
-> > way (ie before platform bus infrastructure init). Devres isn't a
-> > solution in those cases.
->
-> eqc_probe_init_plls() and eqc_probe_init_divs() are called from=20
-> eqc_probe(), which has several devm_ function calls.
->
-> Would it make sense to remove these devm_ ?
->
->
-> devm_platform_ioremap_resource(),
-> devm_kzalloc(),
-> devm_of_clk_add_hw_provider(),
-> eqc_auxdev_create() which calls devm_add_action_or_reset().
->
-> I sent this patch because of these calls.
->
-> Either I miss something, either maybe things can be simplified.
 
-You are right, mixing devres and non-devres handled resources was a
-mistake. Things have been simplified in revision v5 [0]. It sets
-suppress_bind_attrs to true and switches to 100% non-devres calls.
 
-[0]: https://lore.kernel.org/lkml/20241007-mbly-clk-v5-0-e9d8994269cb@bootl=
-in.com/
+On 9/18/24 12:59, karthikeyan wrote:
+> 
+> 
+> On 9/18/24 04:46, Heiko Stuebner wrote:
+>> Hey,
+>>
+>> Am Donnerstag, 12. September 2024, 16:24:46 CEST schrieb Karthikeyan 
+>> Krishnasamy:
+>>> Add rockchip,rv1126-wdt compatible string.
+>>>
+>>> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
+>>
+>> I think this patch misses some recipients because neither
+>> the watchdog maintainers nor the watchdog list is included.
+>>
+>> We'll need for them to at least Ack this patch, so they'll
+>> need to be included. Please check your scripts/get_maintainer.pl
+>> call
+>>
+>>
+>> Thanks
+>> Heiko
+>>
+> Apologies for missing them. Adding them in this reply mail.
+>>> ---
+>>>
+>>> Notes:
+>>>      v3:
+>>>      - add watchdog compatible string
+>>>
+>>>   Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
+>>>   1 file changed, 1 insertion(+)
+>>>
+>>> diff --git 
+>>> a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml 
+>>> b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+>>> index c7aab0418a32..bccd27a1e470 100644
+>>> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+>>> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
+>>> @@ -31,6 +31,7 @@ properties:
+>>>                 - rockchip,rk3568-wdt
+>>>                 - rockchip,rk3588-wdt
+>>>                 - rockchip,rv1108-wdt
+>>> +              - rockchip,rv1126-wdt
+>>>             - const: snps,dw-wdt
+>>>     reg:
+>>>
+>>
+>>
+>>
+>>
+> 
+> Best Regards,
+> Karthikeyan
 
-Thanks,
+Gentle remainder.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Best Regards,
+Karthikeyan
 
