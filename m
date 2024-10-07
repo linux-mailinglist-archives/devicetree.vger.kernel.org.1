@@ -1,248 +1,225 @@
-Return-Path: <devicetree+bounces-108635-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 797B8993321
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:26:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D71A299331B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 999281C228EC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:26:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 574CE1F237D6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC391DA2E5;
-	Mon,  7 Oct 2024 16:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DC5D1DACB8;
+	Mon,  7 Oct 2024 16:25:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ygzSG/wY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wtLm1Dpj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3551D2711;
-	Mon,  7 Oct 2024 16:26:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17B81DA2E5
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 16:25:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728318390; cv=none; b=RoPmetevjkDV5ayvnlzYH/njJdx0VZJzR0GuEhJg4fRWAqEzjCBMBkiS8ozAseMol5RjExVYglue1a0Cox6WpGlXdKdVLWl0cph0/F5yooLtvtvDYDB+KwJSaAbnZuuCo3JGvq5o6glU2voNCkEvCd6bIYX1pzVJXTJfFs/6xIg=
+	t=1728318316; cv=none; b=sZ/lrpvSpP7nha4rKNHppikGAIdVb/mRiG9sDuTkzhAmWCPa/kYuYMX2c63GM1IQW9Mlk2GdpiQvHFR1NFf2geuUDBctth2D9eYyPOAEzgsXVHFIH+nG5sxLpC0vAnfI0bTx58M1nDcRhLpvt4lGpue83YzHdiqw7PsmEA2HFVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728318390; c=relaxed/simple;
-	bh=+eKgMrdaPBOYQkRIkAx9UUWLoKcyyWqbe+bmsbTse/E=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=STvJExvEecqjBlZNOtCLaJOJSoVrkptUNXce6x7KDbFHm4J7qbqSQmeHubMLS4MtHkBVb+gbZTrQNMG9vcpWV8B7I6/91whrwQ577mvuSV4HK8zQ0ll45krai5EVihub4gSzZlpyoYW7cb5WEP+Cvhs1UohwojUZ9uGKKUpIbZ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ygzSG/wY; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497D1ZBM032450;
-	Mon, 7 Oct 2024 18:25:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	LRtzkv5xMyDZ1ZZLcrbVYBvEEe9KziXBz/FhHNmAcJM=; b=ygzSG/wY3z2iznBM
-	/mexUEQ3YUW+I4IlY2806Bbs4giEc1T9HOLXuY3Ww96cTzKinNfKcXo1uql0OkkR
-	a1jtGmhUyQ7vzH1kUb+7n89CnnhlZEDppookgTtf2M9l6+FXgJt+KqpphRDZxHiq
-	lcHTzxiwDySPTEozz3SmP+i2bzgU7YEDzpodtTvgYMGc0Y52EKhxLpLdqTLmjftS
-	CvQgJ3FXIFEP1535dnZYIE/KzXDhh3+bdwXCcsux+bdyU4MS+iv2ErvYMMuBg7qL
-	y1mXfM0pNa+DsexGxChb9boSvflwE5y0VxF7bBqLWKD5UiV5WhURxYfwyqNwqBoe
-	nwapog==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 422xtq1k7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 18:25:50 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1066040048;
-	Mon,  7 Oct 2024 18:23:58 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 010AE238C4F;
-	Mon,  7 Oct 2024 18:22:58 +0200 (CEST)
-Received: from [10.48.86.225] (10.48.86.225) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 7 Oct
- 2024 18:22:56 +0200
-Message-ID: <c425507f-5e78-408e-8a8d-fe02412a76e7@foss.st.com>
-Date: Mon, 7 Oct 2024 18:22:56 +0200
+	s=arc-20240116; t=1728318316; c=relaxed/simple;
+	bh=ztgOmLTBp+aKdjTsSSsdeQWqF1Gb2Vp+FAgfWTJeSGA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p+TkJz9M+LpGri2KTrZRG+Y9NHCp2ckNWDJ0FnjD4RhmN79wjO352vIaDK8RiDuY295JGF3Zn+8TIHNHosc7dOvqhlTbvh1ytj7I9MWx4i5cTleqDzade69sUeBqTZxAtGmGo1nb3KHIT0fO/84wkpEGt1R5NJ3wx4hGhzKx2t0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wtLm1Dpj; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e2e424ab49so14641767b3.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 09:25:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728318313; x=1728923113; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4ij6m8Bk1SL0pSLcGOK58/xYqt64VC0Wd1t/6D+nVQI=;
+        b=wtLm1Dpj1cxn8GMU9X3EJwYjuq7H1tQih1VNG3lMcCEjlXx9/zWOhXlIB3T2pWVm+3
+         V0BC5gTxaA2ETbPqVOOUmt09bX7QuUZ3AZUsBLgZxF+OGjBfyXo/L7I4k8kaKcD4xIcM
+         1xh8OgYUBRYAokg2up9jCnc+MbcUbfNJjSKiA3YUqiJNLxmk1i7SukJZvnEurBcaMMok
+         MGoVZus64m792WiFwuLIGXdroZ3b/R3uT/Y4/uYp+JXfK1aTA1KPLXa5/WJndor0z7ZM
+         XG6UlzH4PKDUpYCmvXrNgf7SgztB8bMVc/Ebbh2ME1xGih/f5tLsMAeDgF3eZwinPeVI
+         cBww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728318313; x=1728923113;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4ij6m8Bk1SL0pSLcGOK58/xYqt64VC0Wd1t/6D+nVQI=;
+        b=vU4d6cqqOHR1hvVBg7b/RfgOux0ZC6rjx/9LhexhtF2maGw4+T5Wm0c+A1F1WLVUiY
+         ASJ04zugvU02H2r4s/fdJxA0TsoX9CSeIghHK1y7fsV28gFIu6b3nqafDquCbQ92qQSy
+         h6A0a/a5rJwnhVj7edsdkdsZJDxh0nh28iCBNMrLOFL1lifDQ5v/UvjrbaKHJR2zoj2c
+         rQ8fF7lmCW4et09zXpADkVXH5j0yX27rY4USTIVM95bQpAol3IePFcpBHUtn6ALB+X43
+         DNc+juJEnB3rD+IT7rf16Kqaar5hJyPMLI8KHga3Ub8K/ozZfMFVLB8ba3HaS+naqPN0
+         nmzw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJIkmUJjcKk/ywK4PHvuRbHWUXXImiXHokKQ7yM4RWizYNbKmEVnsVUQRHd8qOMSJDWQHSG3BvD36R@vger.kernel.org
+X-Gm-Message-State: AOJu0YyC06QTKOIXfry4AUSr60Zr8nBisgTZGI7XutsfJrliLSGnHO3r
+	g+fw4MeBtfVwRQ+EI7/AB6iy2xaG+ulW1EfowUMM/LMy2nBKyMytAoN8VpUvil1YhNu9uOhJpz0
+	/F+t2iaAYURoliZsrNLmTDTnPtxUr2DZg5N5sXA==
+X-Google-Smtp-Source: AGHT+IEWXaI5JMnHwVXLtqDixS2grY1KW8zAkygxRWI6l8yi3FXTCl6aQoI8wQY+X5MjkN8m9qEJL4uqytMKz4F9PUI=
+X-Received: by 2002:a05:690c:dc3:b0:6e2:1334:a944 with SMTP id
+ 00721157ae682-6e2c6fc7e3cmr98008117b3.9.1728318312864; Mon, 07 Oct 2024
+ 09:25:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: rng: add st,stm32mp25-rng support
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Olivia Mackall
-	<olivia@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue
-	<alexandre.torgue@foss.st.com>,
-        Marek Vasut <marex@denx.de>
-CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lionel
- Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Yang
- Yingliang <yangyingliang@huawei.com>
-References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
- <20241007132721.168428-2-gatien.chevallier@foss.st.com>
- <ec3cda71-57d0-4ec1-b9d8-62381667f7d6@linaro.org>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <ec3cda71-57d0-4ec1-b9d8-62381667f7d6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-2-quic_mojha@quicinc.com> <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
+ <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
+In-Reply-To: <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 7 Oct 2024 18:25:01 +0200
+Message-ID: <CAA8EJpqay7Nryb5HwwHE1+iiMXKUvqi-djmCsYN8fxigt-s-tQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
+ iommus and qcom,devmem property
+To: Mukesh Ojha <quic_mojha@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, 
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, linux-arm-msm@vger.kernel.org, 
+	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Shiraz Hashim <quic_shashim@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, 7 Oct 2024 at 17:35, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+>
+> On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
+> > On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
+> > > From: Shiraz Hashim <quic_shashim@quicinc.com>
+> > >
+> > > Qualcomm=E2=80=99s PAS implementation for remote processors only supp=
+orts a
+> > > single stage of IOMMU translation and is presently managed by the
+> > > Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QH=
+EE,
+> > > such as with a KVM hypervisor, IOMMU translations need to be set up b=
+y
+> > > the KVM host. Remoteproc needs carveout memory region and its resourc=
+e
+> > > (device memory) permissions to be set before it comes up, and this
+> > > information is presently available statically with QHEE.
+> > >
+> > > In the absence of QHEE, the boot firmware needs to overlay this
+> > > information based on SoCs running with either QHEE or a KVM hyperviso=
+r
+> > > (CPUs booted in EL2).
+> > >
+> > > The qcom,devmem property provides IOMMU devmem translation informatio=
+n
+> > > intended for non-QHEE based systems.
+> > >
+> > > Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
+> > > Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > ---
+> > >  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++=
+++
+> > >  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
+> > >  2 files changed, 62 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-co=
+mmon.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.ya=
+ml
+> > > index 63a82e7a8bf8..068e177ad934 100644
+> > > --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.ya=
+ml
+> > > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.ya=
+ml
+> > > @@ -52,6 +52,48 @@ properties:
+> > >      minItems: 1
+> > >      maxItems: 3
+> > >
+> > > +  iommus:
+> > > +    maxItems: 1
+> > > +
+> > > +  qcom,devmem:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > > +    description:
+> > > +      Qualcomm=E2=80=99s PAS implementation for remote processors on=
+ly supports a
+> > > +      single stage of IOMMU translation and is presently managed by =
+the
+> > > +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absenc=
+e of QHEE,
+> > > +      such as with a KVM hypervisor, IOMMU translations need to be s=
+et up by
+> > > +      the KVM host. Remoteproc might need some device resources and =
+related
+> > > +      access permissions to be set before it comes up, and this info=
+rmation is
+> > > +      presently available statically with QHEE.
+> > > +
+> > > +      In the absence of QHEE, the boot firmware needs to overlay thi=
+s
+> > > +      information based on SoCs running with either QHEE or a KVM hy=
+pervisor
+> > > +      (CPUs booted in EL2).
+> > > +
+> > > +      The qcom,devmem property provides IOMMU devmem translation inf=
+ormation
+> > > +      intended for non-QHEE based systems. It is an array of u32 val=
+ues
+> > > +      describing the device memory regions for which IOMMU translati=
+ons need to
+> > > +      be set up before bringing up Remoteproc. This array consists o=
+f 4-tuples
+> > > +      defining the device address, physical address, size, and attri=
+bute flags
+> > > +      with which it has to be mapped.
+> >
+> > I'd expect that this kind of information is hardware-dependent. As such
+> > it can go to the driver itself, rather than the device tree. The driver
+> > can use compatible string to select the correct table.
+> >
+>
+> IIUC, are you saying that to move this into driver file and override the
+> compatible string via overlay ?
+
+Ideally we should live without compat overrides. On the other hand,
+sc7180 and sc7280 provide an example of doing exactly that.
+
+>
+> > > +
+> > > +      remoteproc@3000000 {
+> > > +          ...
+> > > +
+> > > +          qcom,devmem =3D <0x82000 0x82000 0x2000 0x3>,
+> > > +                        <0x92000 0x92000 0x1000 0x1>;
+> > > +      }
+> > > +
+> > > +    items:
+> > > +      items:
+> > > +        - description: device address
+> > > +        - description: physical address
+> > > +        - description: size of mapping
+> > > +        - description: |
+> > > +            iommu attributes - IOMMU_READ, IOMMU_WRITE, IOMMU_CACHE,=
+ IOMMU_NOEXEC, IOMMU_MMIO
+> > > +          enum: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,=
+ 16, 17, 18, 19, 20, 21, 22, 23, 24,
+> > > +                  25, 26, 27, 28, 29, 30, 31 ]
+> >
+> > Attributes should definitely be defined and then the DT should use
+> > defines rather than the raw values.
+> >
+>
+> Ack.
+>
+> -Mukesh
+>
 
 
-
-On 10/7/24 17:00, Krzysztof Kozlowski wrote:
-> On 07/10/2024 15:27, Gatien Chevallier wrote:
->> Add RNG STM32MP25x platforms compatible. Update the clock
->> properties management to support all versions.
->>
->> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> 
-> You CC-ed an address, which suggests you do not work on mainline kernel
-> or you do not use get_maintainers.pl/b4/patman. Regardless of the
-> reason, process needs improvement: please CC correct address.
-> 
-
-Hi,
-
-I'm using get_maintainers.pl so I'll check why I have an issue.
-
->> ---
->>   .../devicetree/bindings/rng/st,stm32-rng.yaml | 41 +++++++++++++++++--
->>   1 file changed, 38 insertions(+), 3 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> index 340d01d481d1..c92ce92b6ac9 100644
->> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
->> @@ -18,12 +18,19 @@ properties:
->>       enum:
->>         - st,stm32-rng
->>         - st,stm32mp13-rng
->> +      - st,stm32mp25-rng
->>   
->>     reg:
->>       maxItems: 1
->>   
->>     clocks:
->> -    maxItems: 1
->> +    minItems: 1
->> +    maxItems: 2
->> +
->> +  clock-names:
-> 
-> Missing minItems
-> 
-
-Ok, will add in V2
-
->> +    items:
->> +      - const: rng_clk
->> +      - const: rng_hclk
-> 
-> Drop _clk and come with some reasonable names, e.g. "core" and "bus"?
-> 
-
-Sure, makes sense. Will change in V2.
-
->>   
->>     resets:
->>       maxItems: 1
->> @@ -57,15 +64,43 @@ allOf:
->>         properties:
->>           st,rng-lock-conf: false
->>   
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - st,stm32mp25-rng
->> +    then:
->> +      properties:
->> +        clocks:
->> +          description: >
->> +            RNG bus clock must be named "rng_hclk". The RNG kernel clock
->> +            must be named "rng_clk".
-> 
-> Drop description, useless.
-> 
-> Missing minItems
-> 
-
-Ok, will update in V2
-
->> +          maxItems: 2
->> +      required:
->> +        - clock-names
->> +    else:
->> +      properties:
->> +        clocks:
->> +          maxItems: 1
-> 
-> Missing constrain for clock-names.
-> 
->> +
->>   additionalProperties: false
->>   
->>   examples:
->>     - |
->> -    #include <dt-bindings/clock/stm32mp1-clks.h>
-> 
-> Why?
-> 
->>       rng@54003000 {
->>         compatible = "st,stm32-rng";
->>         reg = <0x54003000 0x400>;
->> -      clocks = <&rcc RNG1_K>;
->> +      clocks = <&rcc 124>;
-> 
-> Why?
-> 
-> 
-
-I have an issue with the generated st,stm32-rng.example.dts example.
-Because there are 2 binding files included, I have a collision with
-clock bindings names between the "dt-bindings/clock/stm32mp1-clks.h"
-and the "dt-bindings/clock/st,stm32mp25-rcc.h" files. For example:
-CK_MCO1 or CK_SCMI_HSE. I replaced the bindings with numbers
-to avoid this conflict.
-
-If you think this binding update does not need the addition of an
-example, I'll completely drop it and we won't have the issue.
-
-Best regards,
-Gatien
-
->>       };
->>   
->> +  - |
->> +    rng: rng@42020000 {
->> +      compatible = "st,stm32mp25-rng";
->> +      reg = <0x42020000 0x400>;
->> +      clocks = <&clk_rcbsec>, <&rcc 110>;
->> +      clock-names = "rng_clk", "rng_hclk";
->> +      resets = <&rcc 97>;
->> +      access-controllers = <&rifsc 92>;
-> 
-> 
-> Difference in one property should not need new example, usually.
-> 
-> Best regards,
-> Krzysztof
-> 
+--=20
+With best wishes
+Dmitry
 
