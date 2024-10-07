@@ -1,199 +1,163 @@
-Return-Path: <devicetree+bounces-108314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF3899253D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84FD0992543
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCCD6B21491
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:00:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B71F81C221ED
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:00:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950E8165EE8;
-	Mon,  7 Oct 2024 07:00:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B307717622F;
+	Mon,  7 Oct 2024 07:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zolx/uh4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="am2GE/Gr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D8946FC5
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:00:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88440139CF2;
+	Mon,  7 Oct 2024 07:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728284417; cv=none; b=RqeDxmG3kZmx6XsWc35uh2jmG3GX6sgYUfF+5ba8hKzz5Ic5Fa4fWKNcBWUsxjrtyvYBjcf3AFGxqlwngnSGIemLdJlkqbcW3WIbCZhWWRYgLAyLfJuCeVk4Cri9y92bh9wlu6Fg0JPYsUM1QhKMO/Q2mOw52c8uleGmZf8HN2s=
+	t=1728284432; cv=none; b=B895RbTWHwi7TtOsUCfFnQRKaJGXuam+43X+PJ2Wc3fvfvk0yjPI8XaEcioTiagSwFj+bdHmuwo3m/9JTdLQ/Otdm7vlBGwz/a3Frw8x8gxk647ZoTCQMPu87gxophAGhMKxRBr/QGjJ9oz14yr0eGl1KViPIModJvRSvmxZg6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728284417; c=relaxed/simple;
-	bh=zATgE7lGXDAfHPAXx2wVXLiJYbpqKrNzx/5xyMndI9Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jyEu34+pAP3zfi0ZnHhF8R5xlgKtmH+ZOSOlC3awE/YYGj+8+W23tTAaAQkLIdN+k0tB8Ta8W5+Rcg3aa2nQlID+KdQPB2smSieTVp7bAwCNR/ymdYdEnoEdWanQPYydpnbSWFhisKQtuoknD/SCA9iw9AW0Ny6Yl68abDURE8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zolx/uh4; arc=none smtp.client-ip=209.85.222.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-84e9893c457so1253055241.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 00:00:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728284414; x=1728889214; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SCLqDqcDPlkIv6TQ0OP2914TguL03CqjRYbcPbKcDc0=;
-        b=zolx/uh4sLXaKuJgpnOpjOY/E6w9w/Fo3BaJWkc9NKbl1T6N01iswf6BiP/PY9GwCU
-         WfsN7Z+cCyJ5JBeffsEPFTJS+kD5d7XecYpHsvqNONpEISFCV2Cxq90S9bBK7LHYr6z5
-         OTsLsZpyIb3zoPhILtlfLFrVrBXhDLfrIZThH65R37RyOGTiSlZYjrSyi3Fptp3JKQ4A
-         ONnE06dgyY2/OS5xnu3a8alIB9ziigEdEpGEeldZ33Vg2PSfj5prUWBo79auSLN3mc6O
-         IfrQemRKHy4ay3daRNoaxR+oFhmLr5l7edXucGmo1MDfjGYUm/dCThVqPQ8F/TZVZmG8
-         hI0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728284414; x=1728889214;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SCLqDqcDPlkIv6TQ0OP2914TguL03CqjRYbcPbKcDc0=;
-        b=CgliFzjQ0SXb5AYVqCUwKYWkx1MzQ7lnFpTRkuSaz4AiUsGSY7CXr+X2gobESwu51t
-         PTZt3a5ZWPyzuf3Ot5ib0D2tdQvJqA0vFSpb7OTNvVqfG7yCIuQt+3xS9pptiW2aNuN9
-         HBx8NlyJV2Awq+4c1AblhU1zmFKDg+evNBTQPuTDF+3snIX3IbipRZzoTeexDOF1Di2b
-         hCvHk05kKgX+ek4ILuEALPXr732AQm5XGGPvDIqHSwPGVAooAOYLx7TziROepyLPHj17
-         fx8oyj4TKqu1KAAgbsqrW/jxqvThBYG8FeuEpEww/qlgJrqa6H7slXWGXUbhHNrQpBnv
-         JfHw==
-X-Forwarded-Encrypted: i=1; AJvYcCUh3mRLTdQZdsAEMCOMPQwUf3Bjjymk+OIj3pT99NYy/7cNX91SiVxizDjjDOKlBimYTe9FPMFE7tZe@vger.kernel.org
-X-Gm-Message-State: AOJu0YxXaMftOE934EDwYZIW545JicO0limO2uqVJy6raXruk2lVfBqv
-	FC4CASj3Jbnk0HtBtW4PFeoa3MmK/yXCpHopYxdB5Lz6LKkMVufjrSHiw1Rethav9zQERpUUxG7
-	kY5evU12Ba/gWmh/ywYbN5hemZub5MBjwxfeu3Q==
-X-Google-Smtp-Source: AGHT+IE94jRfwflznC7KODv2WkD1x23XTJ3wMsge83I47cZId79v2Pt+RgapF1ABmVYunsRuAp+VH6dyXb4vh/y7M30=
-X-Received: by 2002:a05:6102:441b:b0:4a3:cc5b:448f with SMTP id
- ada2fe7eead31-4a405748ddbmr5781557137.4.1728284414377; Mon, 07 Oct 2024
- 00:00:14 -0700 (PDT)
+	s=arc-20240116; t=1728284432; c=relaxed/simple;
+	bh=bYVNL3ibXGxTuYA25i2O1TiLm8V1skVl4K/zOebL+ts=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SU25Y+4yX2gAMZi3A8cuscao7inEW3B66xZA0eyq4FZF5d629Z7379fbhknaH+R6dTsg111B2pEwOzO5fv5gRRn/SAvsqR7+qxIuzTq2eVqu2rzEg+YSNVSZ7GJNCzP6+JzbnawdQ+tIpnCMfbTiAnjPG/tgM8b/KQsGFiz058A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=am2GE/Gr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92211C4CEC6;
+	Mon,  7 Oct 2024 07:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728284431;
+	bh=bYVNL3ibXGxTuYA25i2O1TiLm8V1skVl4K/zOebL+ts=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=am2GE/GrdIZVMeyS3KOsxh8zxU24TO1YommDiAZPTi0V/YRZLzqqdFTg21dpDjW4x
+	 7DPXnvihFlx7dW62u2M8Sh6926JtaTK6dOMBQd3xOQxUT2IoAgwWTVLX2tYVqCXkSX
+	 Upg9shPPYsQIgXjx7BpWnE2DbyBVi/uea/31EijhD6QNNYcQpvxm9cCS/qb7DCD0Ve
+	 zaIh4/22XFbHWiAgx2x+5XP9TcIwI10zqv+Yi8x2ri0kOF5tK2yMw3OlaccArVwFiO
+	 8f3Kq7FP2QKo1kbG9qbB27meO6nyiWgeRdIcv40vC35sgcJZDJpC+mySZQtKgvufIJ
+	 8aZc5M6bV47ag==
+Message-ID: <e1e2c852-ff59-4450-9236-d954d7dc86f3@kernel.org>
+Date: Mon, 7 Oct 2024 09:00:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240919130444.2100447-1-aardelean@baylibre.com>
- <20240919130444.2100447-9-aardelean@baylibre.com> <CA+GgBR_kKYOgPUHM5-LUAZboy6nab1tLvC4TFtzpqkjP+5A8wg@mail.gmail.com>
- <047034ae-135b-4ce9-a407-9b2a00841324@baylibre.com> <20241001194114.16e0ffa5@jic23-huawei>
- <CA+GgBR_HTwNT6WKdweuuTZ_t+ZmMXrMkYNK+b3pp4f2MmTWzGw@mail.gmail.com>
- <20241004145430.000012f4@Huawei.com> <20241006115643.7b1fd461@jic23-huawei>
-In-Reply-To: <20241006115643.7b1fd461@jic23-huawei>
-From: Alexandru Ardelean <aardelean@baylibre.com>
-Date: Mon, 7 Oct 2024 10:00:03 +0300
-Message-ID: <CA+GgBR9qGfZ2z8+t6kZEfZQOT_Qf7yFrtzNqztGPJt1wsM-eZw@mail.gmail.com>
-Subject: Re: [PATCH v7 8/8] iio: adc: ad7606: add support for AD7606C-{16,18} parts
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, David Lechner <dlechner@baylibre.com>, 
-	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, krzk+dt@kernel.org, robh@kernel.org, 
-	lars@metafoo.de, michael.hennerich@analog.com, gstols@baylibre.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 11/12] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
+ ep-gpios property
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-12-dlemoal@kernel.org>
+ <o42ki5dwipmldcpnthpfoaltpmu7ffheq627ersrvjj73xkm6x@vkqjomiznstg>
+ <179ed297-1d06-480d-8095-7212cbde2ab1@kernel.org>
+ <64421c0c-1d48-421d-8841-859695b5046d@kernel.org>
+ <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, Oct 6, 2024 at 1:56=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
-wrote:
->
-> On Fri, 4 Oct 2024 14:54:30 +0100
-> Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
->
-> > On Wed, 2 Oct 2024 09:12:09 +0300
-> > Alexandru Ardelean <aardelean@baylibre.com> wrote:
-> >
-> > > On Tue, Oct 1, 2024 at 9:41=E2=80=AFPM Jonathan Cameron <jic23@kernel=
-.org> wrote:
-> > > >
-> > > > On Tue, 1 Oct 2024 08:42:23 -0500
-> > > > David Lechner <dlechner@baylibre.com> wrote:
-> > > >
-> > > > > On 10/1/24 3:26 AM, Alexandru Ardelean wrote:
-> > > > > > On Thu, Sep 19, 2024 at 4:05=E2=80=AFPM Alexandru Ardelean
-> > > > > > <aardelean@baylibre.com> wrote:
-> > > > > >>
-> > > > >
-> > > > > ...
-> > > > >
-> > > > > >> @@ -153,7 +349,19 @@ static int ad7606_scan_direct(struct iio_=
-dev *indio_dev, unsigned int ch,
-> > > > > >>         if (ret)
-> > > > > >>                 goto error_ret;
-> > > > > >>
-> > > > > >> -       *val =3D sign_extend32(st->data[ch], 15);
-> > > > > >> +       chan =3D &indio_dev->channels[ch + 1];
-> > > > > >> +       if (chan->scan_type.sign =3D=3D 'u') {
-> > > > > >> +               if (storagebits > 16)
-> > > > > >> +                       *val =3D st->data.buf32[ch];
-> > > > > >> +               else
-> > > > > >> +                       *val =3D st->data.buf16[ch];
-> > > > > >> +               return 0;
-> > > > > >
-> > > > > > Arrggh...
-> > > > > > I messed up here.
-> > > > > > Guillaume found a bug here, where this should be "goto error_re=
-t" or
-> > > > > > do an "if ()  {} else {}"
-> > > > > > How should we do it here?
-> > > > if / else. Goto an error label when it's not an error would be horr=
-ible!
-> > > > > >
-> > > > > > Do we send a fix-patch or send a new series?
-> > > > > >
-> > > > >
-> > > > > Since this patch is already applied, just follow up with another
-> > > > > patch with a Fixes: tag.
-> > > >
-> > > > I sometimes tweak these sort of things if I haven't pushed out
-> > > > as togreg yet (or they are really bad!) but in this case I'm not
-> > > > 100% sure what the comment is, so I'll just apply a fix on top.
-> > > >
-> > > > So David is entirely correct in general but by luck of timing
-> > > > this time I'll tweak it.
-> > > >
-> > > > Please check the result in iio.git/testing
-> > > > I'll hold off pushing that out as togreg until at least end of
-> > > > tomorrow.  One more day o
-> > >
-> > > The "return 0" needs to be removed in the driver.
-> > >
-> > >         if (chan->scan_type.sign =3D=3D 'u') {
-> > >                 if (storagebits > 16)
-> > >                         *val =3D st->data.buf32[ch];
-> > >                 else
-> > >                         *val =3D st->data.buf16[ch];
-> > > -                return 0;
-> > Doh!.   Just goes to show why I shouldn't just edit these things.
-> > Stupid mistake.  I'll fix when on right machine.
-> hopefully now done
+On 07/10/2024 08:58, Damien Le Moal wrote:
+> On 10/7/24 15:54, Krzysztof Kozlowski wrote:
+>> On 07/10/2024 08:50, Damien Le Moal wrote:
+>>> On 10/7/24 15:12, Krzysztof Kozlowski wrote:
+>>>> On Mon, Oct 07, 2024 at 01:12:17PM +0900, Damien Le Moal wrote:
+>>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+>>>>>
+>>>>> Describe the `ep-gpios` property which is used to map the PERST# input
+>>>>> signal for endpoint mode.
+>>>>
+>>>> Why "ep" for PERST signal? Looks totally unrelated name. There is
+>>>> already reset-gpios exactly for PERST, so you are duplicating it. Why?
+>>>
+>>> Because the host side controller already has the same "ep-gpios" property.
+>>>
+>>> Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie.yaml
+>>
+>> If host has it, then it is a common property so goes to common schema
+>> for these devices.
+> 
+> Ah. OK. I will move it to
+> Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-common.yaml then.
+> 
+>>> So naming that property the same allows common code to initialize that gpio in
+>>> rockchip_pcie_parse_dt().
+>>>
+>>> Also, I do not see reset-gpios being defined/used by this driver (host and ep
+>>> sides).
+>>
+>> I am talking about bindings, not driver.
+> 
+> I do not see reset-gpios being defined in the bindings (common, host and ep).
+> resets and reset-names are defined though but these have nothing to do with
+> #PERST control.
 
-Looks good now.
-Apologies for the slow reply.
+Bindings for all PCI devices. See pci-bus-common.yaml
 
-Thanks
-Alex
+Best regards,
+Krzysztof
 
->
-> J
-> >
-> > Jonathan
-> >
-> > >         } else {
-> > >                 if (storagebits > 16)
-> > >                         *val =3D sign_extend32(st->data.buf32[ch], 17=
-);
-> > >                 else
-> > >                         *val =3D sign_extend32(st->data.buf16[ch], 15=
-);
-> > >         }
-> > >
-> > >
-> > >
-> > > >
-> > > > Jonathan
-> > > >
-> > > >
-> > > > >
-> > > > >
-> > > > >
-> > > >
-> > >
-> >
->
 
