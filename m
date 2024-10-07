@@ -1,119 +1,161 @@
-Return-Path: <devicetree+bounces-108450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 421C0992B46
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:14:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A51D992B69
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:18:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6AEF31C22B81
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:14:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 366F3285137
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D5B41D271F;
-	Mon,  7 Oct 2024 12:14:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F20F51D278C;
+	Mon,  7 Oct 2024 12:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lhl0lRpz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 914C618BB90;
-	Mon,  7 Oct 2024 12:14:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B1691D1F76
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 12:18:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728303263; cv=none; b=GceRUBfLV/eMqdjNUThUG7qDAi3a3xIDb0hX/BIEijZDWAzRXphAmVOlaRcKsy6bZxiDTXosY83E++Kc1IXwpx/ueU5wx1s1Hxx6u+n1rM49xz1TcHBvWYqzy3FSycAXUc62mU/mINgHE2VAZSVt/eHpc1ueknOMt3Ac4yA5lQ0=
+	t=1728303493; cv=none; b=UddPQpwDHP37b0doAgXMPYk9V+pqGtBHp99DJLSZe1N1+5a9QwTqiydJ3CkM0Q8se4zDKF4k6I7HurUvQJGLSPVVmeVabZufaPOqoj6vUyL7+SHtwvYY2Xl7Jfvz2L0dbcIerPSD9vZ4twavcQ3jdod2ZS+vMb5zmAp5B/DrT70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728303263; c=relaxed/simple;
-	bh=4sSGCDLwPN+U28F73sNGg2q+CYzTc0YM7kzHzcUXXoI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ppr2RZ+Lo0uGpzYNAjoTfVo6RNNsfuMU70KMi3pQUTB1uvrt7aarnW1jhbGe7Csqoci4sE1gVSe/sPf5cOKD63/qSzNpQwQVTnjV7Bd+bnHkbwLuPIGXibJy/RkBGcVMVRLxbNVkyt6WVCdVhlZ4rHi6/wjIBj1FmsS2UGu1IV0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-e25ccd64be9so3538035276.2;
-        Mon, 07 Oct 2024 05:14:21 -0700 (PDT)
+	s=arc-20240116; t=1728303493; c=relaxed/simple;
+	bh=GigVtFfk/2fgkZeSPc6JpOrI1qWQxJvVJJEpj1HnNYg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=uBRfcls+psN4OunML2Z4uyXhqA0ZtuHw2EPdc+zm2dQl0ftymINwRjYUjo8evMVm9NG07NpYlo/hJTba3OjsNPLNc0UoZ0ubasd1P8DJ2Oqi/Y9XD9vWyGn7faWXit3rXa6tGO3qZ2BCgzD9+AYVKWJsOTnNAn1IpFGarTtvZC8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lhl0lRpz; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-37ccd81de57so2864691f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 05:18:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728303489; x=1728908289; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SQMY55kgpoJcK6EPBzBisyh8vDa6LNf5m/LH5NecMRg=;
+        b=Lhl0lRpzPLF4ftfl1tpE9LCmUuC0rX/wfjHFaEgL99Y6NU0SYt2zJ4uvd5Wj8bauvp
+         BNz95tess7Cj07gZ8uuF00o3aoypMGucTgSH1y9RoGHmHOppcIzSquXv6XGsX2IVP8em
+         FL2NUkPFHxyDSw20ZPIPSgBbwgzkl580W8Q0/qU3bzWYCWFmd+Sb7MnXDSFuh+hmoRMm
+         z+g2v4b/fzyNAlnK/IH+2m36ouUO2kg6ngzZ3glGv86TjlkEit5XbB1hLibLymOerN7g
+         CmpwDQlir8jTzq9+lUlkNSmmNDYI3NufcMv8N7AkqzyarMW63/j03TIaCxiFP+tjH86L
+         mvSw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728303260; x=1728908060;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WKQcG8eoz1Evv9veuEw/hAwUv0fb5yj/EVJEw7Llhj0=;
-        b=d94GXzz0fEBefksVSsURNzNH7TIJm5z5K30qfwztE1yGU07zM7aXHUOgbwPE1L1Hf+
-         ZCcksGYrYs61MBBaIxgwM6vQVsstq4rmSW4/1lMlO+wLMp5dbWYEaxR/YryMI7SqVg26
-         EZRaCR+Ro6fLOZE+jcZ7nUcl944tYNwIp4sOKf8pl1uKDxbEzFdOgoBinQlz+jpSMHAc
-         TRxZT0xxwJe5tnl89a5cOMtDsUvpg7iiRkgFZv5xGSZ2ELwcwXIcR4uZFYWnCIUQM7lY
-         LHPGyJW/CFKw9lBuHZ1i6XTo0D+ogyFaj5Epkhz4ONt5Qr32qftgNLHV3+elBmWupBc4
-         4/5Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUBvxm+SiYNziqdX9dsByrTeKffckkIL9TeuX87VlQJw+amzdWWJrmxNOIvQquXQk5YI4Poi5uPp1j6l5Q2+BCSZXU=@vger.kernel.org, AJvYcCVwuSi4UyBMSgbCtOW/CPQjTaqfpYvsvwuT0q8VWfdlcw4/iKLXu5nmAhJWjvmoqflA9g/YV/4/dnICBYoz@vger.kernel.org, AJvYcCXx9/m28z+/xEt1+2EqT7N/UqJd/5ZiyTaAsqp22m+BXhPu0ai8biGVGhUGI2VOhSdw7GeGo8aCOoue@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/6OEUfPBJm3KykYK1SMIb4KjXfBp03IU/GzOPyqc7kQnsV2gc
-	ZavMFCgkQB35wwBAU9xva/Z+gmSvgBk+Rg0yC7gmyTOqO+668l6W1Cr3BQKE
-X-Google-Smtp-Source: AGHT+IEmIBSiws4+5cqA702Q8rxIz2DwWandOymZmHXr/dAWruTydWeBSFBXUQv1mWH1v1OT9mMAUg==
-X-Received: by 2002:a05:6902:2608:b0:e26:60f:301f with SMTP id 3f1490d57ef6-e28936dcb78mr7783721276.24.1728303260183;
-        Mon, 07 Oct 2024 05:14:20 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e28a5c37b74sm949319276.16.2024.10.07.05.14.19
+        d=1e100.net; s=20230601; t=1728303489; x=1728908289;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=SQMY55kgpoJcK6EPBzBisyh8vDa6LNf5m/LH5NecMRg=;
+        b=VLWv382E89fFaRVOoBOHmL5hTpzkKueO/UbehY2zE9MjHy7hbBtMzhljKiRyYuAKbV
+         6Od5/Z+UZ/9Wf6F4+YAwcZVtusj7r+RN89qHFrjfNqgK3Sf2YPwtMk2NlOYPdYpFOHNB
+         FFmhNK6yWOoID+d8M5WIBfSLU5LxDO65JKN8FEO7XmeCp/sa+dwzKSqbMRHU1jyyp0rk
+         x7wuV6+NZcmaxxLYymw4PcuutcLhdExBApTwkiEUWIPNJUNVCT9j6Ppmxryjx3jw21CM
+         7ofQyji1Ry7DvV+bMCykO43eJek9jFqSQMHyZg+rw9s/GI94uWXVSGZGWhZdplvXMzo6
+         bJKQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV7E0xgkots0JiX/2SyrfqbiLcZq4fhC3WvsLW81k79JpdGFwSob7MN8zDxAiZF1j2MoLd519tNSyde@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw6ncMtdCWMxmRpX4CrQ07zeBTGP0K1TPrAG/eGwTRbIXx9ueZG
+	zfnbhtRRBhLfshju7Ou34HPwx1jMaGL0bG9A0F1NToGvrxrSzCEJEr+3JZl0Zdk=
+X-Google-Smtp-Source: AGHT+IEX3nb/Sk0bgeAI3WN1XsuDP4LlrGoUtTQAqatI700kLa0PbxydgUWnVzuZhq5beUoqBnd1gg==
+X-Received: by 2002:a05:6000:1884:b0:37c:cce8:4acc with SMTP id ffacd0b85a97d-37d049ea723mr11723832f8f.13.1728303489356;
+        Mon, 07 Oct 2024 05:18:09 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1690f0bdsm5594131f8f.15.2024.10.07.05.18.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 05:14:19 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6e20a8141c7so36235027b3.0;
-        Mon, 07 Oct 2024 05:14:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUEzUFtdgj45ab/AKvym72Ou0QGXEyFLoRe/3bnA3tw5OoWEa2Qaq4epZAt1xHx4PW8KP5pyQJ3HnOm@vger.kernel.org, AJvYcCVzyAyOuQIQ8zNjO/RGUZElQvOGmTTaQCxxwNBymUEeRXWYYFObbDNZOcePx8rMnl6MMfs+Md0dhX0jELlK@vger.kernel.org, AJvYcCXol5DO9xxHfqaiRm5xkcya+yDbZ/ZB06RCc4bTKRPSgXX6TpA1rMundsNmwQsPP5+/HAEfbI6cDFg23SQ5ij8STA8=@vger.kernel.org
-X-Received: by 2002:a05:690c:2e8d:b0:6ae:e4b8:6a46 with SMTP id
- 00721157ae682-6e2c732c4bemr67291277b3.44.1728303259816; Mon, 07 Oct 2024
- 05:14:19 -0700 (PDT)
+        Mon, 07 Oct 2024 05:18:09 -0700 (PDT)
+Message-ID: <61207002-2c4f-4070-b233-01b92ba16400@linaro.org>
+Date: Mon, 7 Oct 2024 14:18:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240926180903.479895-1-sean.anderson@linux.dev>
- <20240926180903.479895-3-sean.anderson@linux.dev> <CAMuHMdVB74QEko-bNbLvdWF05eAYQhpRS1u2PV9b8MrSxQyPjg@mail.gmail.com>
-In-Reply-To: <CAMuHMdVB74QEko-bNbLvdWF05eAYQhpRS1u2PV9b8MrSxQyPjg@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 7 Oct 2024 14:14:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdX4jyb9fGPKSGPxyXvFrOYWGqFxV-N4jWNrWo6JL25erQ@mail.gmail.com>
-Message-ID: <CAMuHMdX4jyb9fGPKSGPxyXvFrOYWGqFxV-N4jWNrWo6JL25erQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: ulcb: Add SD/OE pin properties
-To: Sean Anderson <sean.anderson@linux.dev>
-Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, linux-arm-kernel@lists.infradead.org, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, linux-renesas-soc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450 fix PIPE clock specification for
+ pcie1
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241006-fix-sm8450-pcie1-v1-1-4f227c9082ed@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20241006-fix-sm8450-pcie1-v1-1-4f227c9082ed@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 27, 2024 at 12:34=E2=80=AFPM Geert Uytterhoeven
-<geert@linux-m68k.org> wrote:
-> On Thu, Sep 26, 2024 at 8:09=E2=80=AFPM Sean Anderson <sean.anderson@linu=
-x.dev> wrote:
-> > Add SD/OE pin properties to the devicetree so that Linux can configure
-> > the pin without relying on the OTP. This configuration is based on
-> > inspection of the schematic (which shows the SD/OE pin permanently tied
-> > high).
-> >
-> > Signed-off-by: Sean Anderson <sean.anderson@linux.dev>
->
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
->
-> There is no change in the output of
->
->     grep 10: /sys/kernel/debug/regmap/*-006a/registers
->
-> before/after this patch, so
-> Tested-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On 06/10/2024 18:47, Dmitry Baryshkov wrote:
+> For historical reasons on SM8450 the second PCIe host (pcie1) also keeps
+> a reference to the PIPE clock coming from the PHY. Commit e76862840660
+> ("arm64: dts: qcom: sm8450: correct pcie1 phy clocks inputs to gcc") has
+> updated the PHY to use #clock-cells = <1>, making just <&pcie1_phy>
+> clock specification invalid. Update corresponding clock entry in the
+> PCIe1 host node.
+> 
+>   /soc@0/pcie@1c08000: Failed to get clk index: 2 ret: -22
+>   qcom-pcie 1c08000.pcie: Failed to get clocks
+>   qcom-pcie 1c08000.pcie: probe with driver qcom-pcie failed with error -22
+> 
+> Fixes: e76862840660 ("arm64: dts: qcom: sm8450: correct pcie1 phy clocks inputs to gcc")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index 9bafb3b350ff..38cb524cc568 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -1973,7 +1973,7 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
+>   
+>   			clocks = <&gcc GCC_PCIE_1_PIPE_CLK>,
+>   				 <&gcc GCC_PCIE_1_PIPE_CLK_SRC>,
+> -				 <&pcie1_phy>,
+> +				 <&pcie1_phy QMP_PCIE_PIPE_CLK>,
+>   				 <&rpmhcc RPMH_CXO_CLK>,
+>   				 <&gcc GCC_PCIE_1_AUX_CLK>,
+>   				 <&gcc GCC_PCIE_1_CFG_AHB_CLK>,
+> 
+> ---
+> base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+> change-id: 20241006-fix-sm8450-pcie1-4be23e8bf156
+> 
+> Best regards,
 
-Thanks, will queue in renesas-devel for v6.13.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
 
