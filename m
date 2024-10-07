@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-108432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D04A5992A0C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:10:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D0DD992A12
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:13:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F1F1B20921
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:10:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B6D528298F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 820DF1D1E60;
-	Mon,  7 Oct 2024 11:10:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9457818BB91;
+	Mon,  7 Oct 2024 11:13:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wdq3JO2Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P+SotpmY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A81B62AD05;
-	Mon,  7 Oct 2024 11:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 629A12AD05;
+	Mon,  7 Oct 2024 11:13:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728299451; cv=none; b=lkxrl435PYadM6Drs4Cn0baFbf9wflo3ZWvGTlqwsk5ykaoQHxfk40c0osDczTbxjLnbpG9NeYHLRYM4xFan+hUE89PqzmOwSjJIVA2phqfweNUvqPbU6G+lLlGdjD4Z2T9iyfa9AV97FedSTfx4hA4AuwqcBKZO4a5l8fp1nT0=
+	t=1728299602; cv=none; b=UfHd0Of623SbpJBlnwEqaWzzAGHzezIImwzIp0mi1/5McQEjPYhetmAaKoJ47Z0+ZUBsn6P5aATiP/Ospmp0WhxByE08A3jO9vd6OOuHOqqM/gI+gB81TVZHxjGaz4CE5il+Av92Hnnmut3JuErCusTd8QVrbfu/3+rJyJTg7oA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728299451; c=relaxed/simple;
-	bh=DPw/i0fQU/HCtCgevxtbq1DqCidN2VAZSI9MfLpetCo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=PyzAUMyTFUxTtMJ39i6hd8FXBb6hRVQNUo41ylZnyqx7cIFolKV9yDKtxcqDeI4zsySNgqBzAvaz3TDKesXtswfhFg5Cs9XbP45VgIG3CFpUGQyr0/CbFrmCzP2fdpUuAHUPn69Qt1c4VLC2D18WdpmQNsOfoM+CNBRrtBmpRmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wdq3JO2Y; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4974U2YH001579;
-	Mon, 7 Oct 2024 11:10:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	B4sc+jBbySbohD4ebG15LOw3R2QgYKqut6vBxb4LWBA=; b=Wdq3JO2YvFGz0yai
-	J8KZmW+sVFe3KXHyEwZDwCN/ziVfoebj91x2yjkQMvQJAMhRSBpYUNb8i2u2wVsr
-	v6APP78fB82nVYUeuBYmDrqJC6smRWw7/jxzNBHS/wLr09Kz5Y2/PMYl59rAnlMT
-	LD3dQ2e5Q+2dr3C/Mol5+H36NHsBZas+UKd2Pm0ARqIxMh7sbL5ltJht1A02HrVs
-	+DOtRB0xVxRFqYNz1APdyXMG9iQsR3FqrkkHLzPCRY4UYbYvjIfHEsi8Od0y7Fq/
-	pZM75UGh3VtRFUUE0pI3/20G0d9L99qWbVpqscElR6jYvysk4EoT0QVQW+/S3rMP
-	P37AmA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv8btcn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 11:10:44 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497BAhFX010705
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 7 Oct 2024 11:10:43 GMT
-Received: from [10.204.67.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 7 Oct 2024
- 04:10:39 -0700
-Message-ID: <d5919434-3ee6-4b79-8912-7749119e69c0@quicinc.com>
-Date: Mon, 7 Oct 2024 16:40:36 +0530
+	s=arc-20240116; t=1728299602; c=relaxed/simple;
+	bh=lqYKdMgL/af+hqxZMZr0dRdWMk1wm+DIhNwXIm0/hnA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=njOSVTvphP8t/3S48NpXnryhYAk4GKrqIjW1ZyVGNvpNA3ABje0GpkeWDsohjIWFDLCr5js1NRaH30XQKKhvAJLJuqIE5mDO0S1lhZS+uZFtbi2rALDe/wAfDTjKCCwOAzu1E+9vNhVBXSRKYgy7hgBQEsEV45SoTgcCYoq4wk8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P+SotpmY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C4457C4CEC6;
+	Mon,  7 Oct 2024 11:13:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728299602;
+	bh=lqYKdMgL/af+hqxZMZr0dRdWMk1wm+DIhNwXIm0/hnA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=P+SotpmY/5NmrHLUDYcjkuEZrdK1V5uqxA+bOVR/Y8JpapNCwkKHacHPbyP0DZpIo
+	 /JWzTYj9Vin+SlFHpgS9YuRZyXMs00/FTmjKToAdZBbDDyym/RrKgDgU0nBMNo4b0N
+	 QyNSe3YmLJSx9A8aaWSB55MWhRkMnsKGbb2Y2HNPTZJAd6ssr9HOWey5HfQVrXrike
+	 i6d1D3oa2TVnutA8+mKzyOpwlWj7u+ykcxkjL4TQK3Ja3mMKXYa/152RxK90aSUV20
+	 Xjthd0N7ULO4BJKUSwAKf2DpApBrCh215vPtMJX2DwUjC+JofMoaGkTzhP7WaCvchE
+	 t60SxkDN77h7Q==
+Message-ID: <52790e95-5cb8-41a3-8184-dbde917ed15d@kernel.org>
+Date: Mon, 7 Oct 2024 13:13:14 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,286 +50,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add DisplayPort device node
+Subject: Re: Aw: Re: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988
+ SoC
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
+ <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
+ <trinity-57600902-afb6-42f3-8cf5-54a07710f979-1728284364104@3c-app-gmx-bap03>
+ <486a85cb-8e09-493b-93f8-6610855b5f7e@kernel.org>
+ <trinity-c35964a7-f0d4-435a-ac76-586e90c666ed-1728287815279@3c-app-gmx-bap03>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-To: Bjorn Andersson <andersson@kernel.org>
-CC: <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_riteshk@quicinc.com>, <quic_vproddut@quicinc.com>,
-        <quic_abhinavk@quicinc.com>
-References: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
- <cofwijgk2dgg5i5xhvhq3exug4o77mttmozw5amtc3myn4zzq5@m5x44hswwsmt>
-From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-In-Reply-To: <cofwijgk2dgg5i5xhvhq3exug4o77mttmozw5amtc3myn4zzq5@m5x44hswwsmt>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <trinity-c35964a7-f0d4-435a-ac76-586e90c666ed-1728287815279@3c-app-gmx-bap03>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: smLrojDkRxyeb6VG8YSKG-CTmJfEbyzy
-X-Proofpoint-GUID: smLrojDkRxyeb6VG8YSKG-CTmJfEbyzy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- impostorscore=0 phishscore=0 malwarescore=0 suspectscore=0 bulkscore=0
- spamscore=0 mlxlogscore=999 adultscore=0 clxscore=1015 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
- definitions=main-2410070079
 
-
-On 9/17/2024 12:59 PM, Bjorn Andersson wrote:
-> On Mon, Sep 16, 2024 at 02:43:44PM GMT, Soutrik Mukhopadhyay wrote:
->> Add device tree node for the DisplayPort controller
->> and eDP PHY found on the Qualcomm SA8775P SoC.
+On 07/10/2024 09:56, Frank Wunderlich wrote:
+> Hi
+>> Gesendet: Montag, 07. Oktober 2024 um 09:04 Uhr
+>> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
+>> Betreff: Re: Aw: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
 >>
-> Please split this in a change for the platform (.dtsi) which defines
-> _all_ the DPTX and DP PHYs, and then a ride dts change which enables all
-> the ports available on the Ride.
->
-> If there are platform ports that are not accessible on any hardware,
-> state in the commit message which ones you tested and which ones you
-> didn't test.
-
-
-Sure, we will be splitting the change for platform, consisting of all 
-the DPTX and DP PHY
-
-definitions and a ride dts, for enabling the ports available, in two 
-different patches with updated
-
-commit messages, in the next version.
-
-
->
->> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
->> ---
->> This patch depends on following series:
->> https://lore.kernel.org/all/20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com/
->> https://lore.kernel.org/all/20240912071437.1708969-1-quic_mahap@quicinc.com/
->> https://lore.kernel.org/all/20240913103755.7290-1-quic_mukhopad@quicinc.com/
-> Please hold off resubmitting this series until there's conclusion on
-> these dependencies.
->
->>   
->> ---
->>   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  23 +++++
->>   arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 114 ++++++++++++++++++++-
->>   2 files changed, 136 insertions(+), 1 deletion(-)
+>> On 07/10/2024 08:59, Frank Wunderlich wrote:
+>>>> Gesendet: Montag, 07. Oktober 2024 um 07:55 Uhr
+>>>> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
+>>>> An: "Frank Wunderlich" <linux@fw-web.de>
+>>>> Betreff: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+>>>>
+>>>> On Sun, Oct 06, 2024 at 05:34:45PM +0200, Frank Wunderlich wrote:
+>>>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>>>
+>>>>> Add binding definitions for mmc on MT7988 SoC.
+>>>>>
+>>>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>>>> ---
+>>>>> v2:
+>>>>> - fixed minItems to 4
+>>>>> ---
+>>>>>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
+>>>>>  1 file changed, 24 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>>>> index c532ec92d2d9..7380f72ea189 100644
+>>>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>>>> @@ -21,6 +21,7 @@ properties:
+>>>>>            - mediatek,mt7620-mmc
+>>>>>            - mediatek,mt7622-mmc
+>>>>>            - mediatek,mt7986-mmc
+>>>>> +          - mediatek,mt7988-mmc
+>>>>>            - mediatek,mt8135-mmc
+>>>>>            - mediatek,mt8173-mmc
+>>>>>            - mediatek,mt8183-mmc
+>>>>> @@ -263,6 +264,29 @@ allOf:
+>>>>>              - const: bus_clk
+>>>>>              - const: sys_cg
+>>>>>
+>>>>> +  - if:
+>>>>> +      properties:
+>>>>> +        compatible:
+>>>>> +          contains:
+>>>>> +            enum:
+>>>>> +              - mediatek,mt7988-mmc
+>>>>> +    then:
+>>>>> +      properties:
+>>>>> +        clocks:
+>>>>> +          minItems: 4
+>>>>
+>>>> Drop
 >>
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> index 0c1b21def4b6..728b4cda8353 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
->> @@ -421,6 +421,23 @@
->>   	status = "okay";
->>   };
->>   
->> +&mdss0 {
->> +	status = "okay";
->> +};
->> +
->> +&mdss0_dp0 {
->> +	status = "okay";
->> +};
->> +
->> +&mdss0_dp0_out {
->> +	data-lanes = <0 1 2 3>;
->> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
->> +};
->> +
->> +&mdss0_edp_phy0 {
->> +	status = "okay";
->> +};
->> +
->>   &pmm8654au_0_gpios {
->>   	gpio-line-names = "DS_EN",
->>   			  "POFF_COMPLETE",
->> @@ -527,6 +544,12 @@
->>   };
->>   
->>   &tlmm {
->> +	dp_hot_plug_det: dp-hot-plug-det-state {
->> +		pins = "gpio101";
->> +		function = "edp0_hot";
->> +		bias-disable;
->> +	};
->> +
->>   	ethernet0_default: ethernet0-default-state {
->>   		ethernet0_mdc: ethernet0-mdc-pins {
->>   			pins = "gpio8";
->> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> index 7747965e7e46..a04150c29565 100644
->> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
->> @@ -3339,6 +3339,18 @@
->>   				interrupt-parent = <&mdss0>;
->>   				interrupts = <0>;
->>   
->> +				ports {
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					port@0 {
->> +						reg = <0>;
->> +						dpu_intf0_out: endpoint {
->> +							remote-endpoint = <&mdss0_dp0_in>;
->> +						};
->> +					};
->> +				};
->> +
->>   				mdss0_mdp_opp_table: opp-table {
->>   					compatible = "operating-points-v2";
->>   
->> @@ -3363,6 +3375,106 @@
->>   					};
->>   				};
->>   			};
->> +
->> +			mdss0_edp_phy0: phy@aec2a00 {
->> +				compatible = "qcom,sa8775p-edp-phy";
-> Is this really a eDP PHY, not a DP/eDP combo phy?
->
-> I would prefer that we keep the label prefix "mdssM_dpN" on the DP TX
-> and DP PHY nodes, to keep them neatly sorted in the dts. (If you name
-> half mdssM_edp_phyN and half mdssM_dp_phyN we're going to have a mess)
-
-
-Can we use the following naming conventions for clarity :
-
-mdssM_dpN_phy to refer to any DP PHY nodes and mdssM_dpN to refer to DP 
-TX nodes.
-
-For example, the phy being used by dp0 on mdss0 can be referred by 
-mdss0_dp0_phy,
-
-whereas the phy being used by dp1 on mdss0 can be referred by 
-mdss0_dp1_phy.
-
-
->
->> +
->> +				reg = <0x0 0xaec2a00 0x0 0x200>,
->> +					<0x0 0xaec2200 0x0 0xd0>,
->> +					<0x0 0xaec2600 0x0 0xd0>,
->> +					<0x0 0xaec2000 0x0 0x1c8>;
->> +
->> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
->> +				clock-names = "aux",
->> +					      "cfg_ahb";
->> +
->> +				vdda-phy-supply = <&vreg_l1c>;
->> +				vdda-pll-supply = <&vreg_l4a>;
->> +				#clock-cells = <1>;
->> +				#phy-cells = <0>;
->> +
->> +				status = "disabled";
->> +			};
->> +
->> +			mdss0_dp0: displayport-controller@af54000 {
->> +				compatible = "qcom,sa8775p-dp";
->> +
->> +				pinctrl-0 = <&dp_hot_plug_det>;
-> Don't make references from .dtsi to labels defined in .dts.
->
-> Regards,
-> Bjorn
-
-
-Sure, we will make the necessary changes in the next version.
-
-
->
->> +				pinctrl-names = "default";
->> +
->> +				reg = <0x0 0xaf54000 0x0 0x104>,
->> +					<0x0 0xaf54200 0x0 0x0c0>,
->> +					<0x0 0xaf55000 0x0 0x770>,
->> +					<0x0 0xaf56000 0x0 0x09c>;
->> +
->> +				interrupt-parent = <&mdss0>;
->> +				interrupts = <12>;
->> +
->> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
->> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
->> +				clock-names = "core_iface",
->> +						"core_aux",
->> +						"ctrl_link",
->> +						"ctrl_link_iface",
->> +						"stream_pixel";
->> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
->> +						  <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
->> +				assigned-clock-parents = <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>;
->> +				phys = <&mdss0_edp_phy0>;
->> +				phy-names = "dp";
->> +
->> +				operating-points-v2 = <&dp_opp_table>;
->> +				power-domains = <&rpmhpd SA8775P_MMCX>;
->> +
->> +				#sound-dai-cells = <0>;
->> +
->> +				status = "disabled";
->> +
->> +				ports {
->> +					#address-cells = <1>;
->> +					#size-cells = <0>;
->> +
->> +					port@0 {
->> +						reg = <0>;
->> +						mdss0_dp0_in: endpoint {
->> +							remote-endpoint = <&dpu_intf0_out>;
->> +						};
->> +					};
->> +
->> +					port@1 {
->> +						reg = <1>;
->> +						mdss0_dp0_out: endpoint { };
->> +					};
->> +				};
->> +
->> +				dp_opp_table: opp-table {
->> +					compatible = "operating-points-v2";
->> +
->> +					opp-160000000 {
->> +						opp-hz = /bits/ 64 <160000000>;
->> +						required-opps = <&rpmhpd_opp_low_svs>;
->> +					};
->> +
->> +					opp-270000000 {
->> +						opp-hz = /bits/ 64 <270000000>;
->> +						required-opps = <&rpmhpd_opp_svs>;
->> +					};
->> +
->> +					opp-540000000 {
->> +						opp-hz = /bits/ 64 <540000000>;
->> +						required-opps = <&rpmhpd_opp_svs_l1>;
->> +					};
->> +
->> +					opp-810000000 {
->> +						opp-hz = /bits/ 64 <810000000>;
->> +						required-opps = <&rpmhpd_opp_nom>;
->> +					};
->> +				};
->> +			};
->>   		};
->>   
->>   		dispcc0: clock-controller@af00000 {
->> @@ -3372,7 +3484,7 @@
->>   				 <&rpmhcc RPMH_CXO_CLK>,
->>   				 <&rpmhcc RPMH_CXO_CLK_A>,
->>   				 <&sleep_clk>,
->> -				 <0>, <0>, <0>, <0>,
->> +				 <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>, <0>, <0>,
->>   				 <0>, <0>, <0>, <0>;
->>   			power-domains = <&rpmhpd SA8775P_MMCX>;
->>   			#clock-cells = <1>;
->> -- 
->> 2.17.1
+>> Drop this line.
 >>
+>>>>
+>>>>> +          items:
+>>>>> +            - description: source clock
+>>>>> +            - description: HCLK which used for host
+>>>>> +            - description: Advanced eXtensible Interface
+>>>>> +            - description: Advanced High-performance Bus clock
+>>>>> +        clock-names:
+>>>>> +          minItems: 3
+>>>>
+>>>> This is still wrong... anyway, drop.
+>>>
+>>> arg, sorry again...i should triple-check all before resending.
+>>
+>> Drop this line.
+>>
+>>>
+>>> but dropping means the global 2 is used (making axi+ahb optional), or am i wrong? afaik "minItems: 4" is right here
+>>
+>> How minItems:4 is right here?
+> 
+> mt7988 needs all 4 clocks, tested with only first 2 (based on global minitems) and got this (similar with first 3 clocks):
+> 
+> [   10.826271] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd/data/mrq
+> [   10.833485] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting mrq=(____ptrval____) cmd=18
+> [   10.842006] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd=23
+> [   10.848704] mtk-msdc 11230000.mmc: msdc_track_cmd_data: cmd=18 arg=00036402; host->error=0x00000002
+> [   15.866269] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd/data/mrq
+> [   15.873480] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting mrq=(____ptrval____) cmd=13
+> [   15.881998] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd=13
+> [   15.888694] mtk-msdc 11230000.mmc: msdc_track_cmd_data: cmd=13 arg=00010000; host->error=0x00000002
+> 
+> so minItems:4 is imho right here
+
+So the list has 5 items? Then your binding is incomplete.
+
+Best regards,
+Krzysztof
+
 
