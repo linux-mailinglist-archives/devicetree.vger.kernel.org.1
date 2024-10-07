@@ -1,115 +1,180 @@
-Return-Path: <devicetree+bounces-108376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D801992701
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:31:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E558E99270A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47F811F23052
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:31:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16F401C22328
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:33:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EC9C187342;
-	Mon,  7 Oct 2024 08:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C971618BC2A;
+	Mon,  7 Oct 2024 08:33:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="pXM8LD5c"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="ZNWgu8Dr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3AA033FE;
-	Mon,  7 Oct 2024 08:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7173B189BAA;
+	Mon,  7 Oct 2024 08:33:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728289886; cv=none; b=I5EIqekmhSPsCSXd9FS/As8BPScIHLvhN0yFTCdrsfXmXPHOjrLlFVYSnIHvQ6EfhzRdzTIPL6CHknR94nfo3uVmYbGV5L5qTOuSZdM1tDPArxzOK0UO72ATxSGeHkqyXwZMYS3cmNuWU1/uYM789HKky7tPMnEjQhCfJ75vpoU=
+	t=1728290018; cv=none; b=rNeP58LjuRi3/Eb8IRrycYtKgq0RFYReao7C7FqOuSEQmcC7KdFVpCa3sTQdwRF2nOJ1NH7bHMyf2xvtEbW4swx/by4JLnN9vV59lIqAeRTu4VUbgXGpJVEKqH2EFITax72N4YlCCLolb4acA+H3RD973IFgxuaE8mycnpmJsKk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728289886; c=relaxed/simple;
-	bh=u9xn5NKrPvn154tL338s4FqczjJox5o62NGI+xcQ0FY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dTUBgfuUq1B1pdI6X0BucFui06/9CH2tqaEhLVIu6Oa4SUDNdoc/8hiLEvYrzDYBtfkfm9WuuOiJQ7vNBf4kGcNC+PGViWXnyNEfCUw1knGbhDzREQ1FrGkgih9WXQLI+/raj9bdB7rCU8ZvrOkYNAC7HHRugSNraVeHt1izB8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=pXM8LD5c; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D0B75C0005;
-	Mon,  7 Oct 2024 08:31:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728289876;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4rb0qAok+4nN5Eq9733pEqebLsnhZLk/VLDHYW7fziQ=;
-	b=pXM8LD5c8H8QrgcQFgWuGAYamfTYSxpx9XiiylWBubTJHJUwAwR20s8mt/z1bc1JF5EzM5
-	uR6wBGGMd7TSNPCj0tZqBak9clIj7VtJH/1YITcLVYuse0S5EJCZnUeKGdGfTizl01jh/y
-	cfGR6Rq6+bN0scEzcsP8IMeruuNUQHwiO4LzV2MQAmbzHqx3kNgDgG9yxnwdh6SACJ3ZkQ
-	b52yTTfKCb5E5+plVm8utctGG7arqN7EnTzXh/4zsyTvfo0+OGqH1L5fqn7iWUbCqkpmk7
-	GFuDit5+EuJltoNgT5ty/1fEA50Mxtp/v1ldkbUFTlTPGk2Mm7m8myrOHwIj2Q==
-Date: Mon, 7 Oct 2024 10:31:14 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Richard Weinberger
- <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: davinci: convert to yaml
-Message-ID: <20241007103114.1a63e3e2@xps-13>
-In-Reply-To: <ZwN_2LsLep_mXUgy@gmail.com>
-References: <20241006-ondie-v4-0-ff9b9fd9a81d@gmail.com>
-	<20241006-ondie-v4-2-ff9b9fd9a81d@gmail.com>
-	<deeflg5wd756tkfr6zdta4imuc7ijwl56yclfwiqexlqdq6jsk@5za5g6i7wj6k>
-	<ZwN_2LsLep_mXUgy@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728290018; c=relaxed/simple;
+	bh=LLYlGS766hCR/P7B0kmypyyrTWhsQVvkYC1p9s86LCM=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=ucLr4pSX2guXp/5/6w6pOnBx+v9q8yrmSu9ucNuQlz3azdp6CRZPHplrfOWjNxA1eWCRwBqbP8W70ntETQRxg5qCLVigB66h1BCSbTiBuHbeZau38e+H+CfTe/xEt5kp0817xIXzRRdfXjTgWp5BET7RYCf+mFavTLWl1tCywrw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=ZNWgu8Dr; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1728289985; x=1728894785; i=frank-w@public-files.de;
+	bh=A2fZLF7avs5DMWOiIq0KHN70cPnOtcv4SASIDsj8Bss=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=ZNWgu8DrAe/eKpJcC/I90IMyOuylpe8velQNLGn6gPt7kHRWfqimqZF2nWRmMhht
+	 cers30UCLltSbGOKHcL/ohELzk1jrrSnq12CSbeZTiRVtV1kGQcPpDqyIAmQknu55
+	 MwnM9ZUL4h5KjXp3wiEHEWMIg1cwuDwP+ogKuYuJrGQmg4FoO6DNcuiUmvtoES5i1
+	 0FhYlribWvfLqEOn5Rmh7VgaNVauwtRVpEqxiWi0CGIGKlVFQXzmpr39G5RTl4bVD
+	 +WwvMZ/BjW8RuTntoP8MIRC0YkDdWvuDeyYnAhO3FtkquPZPkcsPmSdX/qUphuRKx
+	 W3UBnLS/vdPum/7m1w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.153.101] ([217.61.153.101]) by web-mail.gmx.net
+ (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Mon, 7 Oct 2024
+ 10:33:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Message-ID: <trinity-6fcf3e00-393c-48ee-9aae-26057be08645-1728289985089@3c-app-gmx-bap03>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Frank Wunderlich <linux@fw-web.de>, Chaotian Jing
+ <chaotian.jing@mediatek.com>, Ulf Hansson <ulf.hansson@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+Subject: Aw: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
 Content-Type: text/plain; charset=UTF-8
+Date: Mon, 7 Oct 2024 10:33:05 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <b41c51c4-775c-49ca-84fd-1137b61f42d5@collabora.com>
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
+ <b41c51c4-775c-49ca-84fd-1137b61f42d5@collabora.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:Ngq4NbOlruE7F2nvSl8B/hBNQ0cqZUCijyM1oY0+exKRh5yziWcQFPujSTI76d8tuiNlN
+ ePhetGWdhfwlPwuroZR+LeQ52I6zrO+BaFlRauwM/LGrHf97qDEYvi1vbIsbDCtHoz4y+GEbJ96y
+ NdAf1bdyUr2PA4xUWNua7cFJA77ZCXImJ3vBuVzOyHgVvGvPX9ElX1FmANCS+1CjuH3oo7LdJTuy
+ Aa4kyqqTVb/FFJJ5DVKmSJVoHHfGqUXJbNSS0qMvEi6jaTmKYLUyzcFziPhevpHOdRBJu0fpb76K
+ 3c=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:ReyKzSXbLaU=;4XGj64i7glxekjhy0Bn5tOpJD2m
+ W5QpJJfhz+SgNilocL4rJDFuPMmtYrkXEhlgHsqy6f49qbDSzDOY/uO0LY0wTeH/zDKf9YtB4
+ eBntgQuH0TIQD5QiYd5DMLNX1fPD4b4Df//xF3XPNjT9+kt/k51Do2C+QrFAeIxZDnj/iN8VT
+ X3Yy/gTwT+2LDU6I98Oi8YJLitliJOtsxsWVvsedCk6fEEc28Rn5VELQ4gMiBsc/N8ofBndBo
+ t7x2duAYQyY+IPIpyV75Mx1r0pCLuE9i0bmlwyW2l+dZjF8hoLfbUY4tqwRfn0sJIL5Mx5QCb
+ fibzPsaWP1ZvN/B83gI7La/50xAYxtngVW3HhvXr51ucmJDxAponFrPJPHN5iFE5a812kjH3T
+ 3c3tgxbaBis70rTnhCb7MoPv+uwB+VxVuHiSnHk4rVdzvogY0/aIpx5Gttp5Vv/b82bmj6Ile
+ qzhQRAZjdNfReL+xe4rArgEyCC239pKINT9WhkUqX2YeKBoiKFEwTkOU1XcAW1LLn8cndTo26
+ N8BsGp8sGRaE5tDIMra1hUQ8qC/nHSfAd9oW7ZMgEUuAGs87uKTYiXUH/pgQf3owtdLFYy491
+ ucThy4yU8vYfWZTpJ48v5hl2Ephh5tJ+1EWkVIWF4k8CcVRCAyoKP8IModnEUpjwWqHffDmIk
+ V4/KzGXLsyap2j3YY16lFV9TzG1nZz9h85/uLfNy5A==
 Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hi Marcus,
+Hi
 
-marcus.folkesson@gmail.com wrote on Mon, 7 Oct 2024 08:29:44 +0200:
+> Gesendet: Montag, 07. Oktober 2024 um 10:00 Uhr
+> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
+om>
+> Betreff: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+>
+> Il 06/10/24 17:34, Frank Wunderlich ha scritto:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > Add binding definitions for mmc on MT7988 SoC.
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > ---
+> > v2:
+> > - fixed minItems to 4
+> > ---
+> >   .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++=
+++
+> >   1 file changed, 24 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Docum=
+entation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index c532ec92d2d9..7380f72ea189 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -21,6 +21,7 @@ properties:
+> >             - mediatek,mt7620-mmc
+> >             - mediatek,mt7622-mmc
+> >             - mediatek,mt7986-mmc
+> > +          - mediatek,mt7988-mmc
+> >             - mediatek,mt8135-mmc
+> >             - mediatek,mt8173-mmc
+> >             - mediatek,mt8183-mmc
+> > @@ -263,6 +264,29 @@ allOf:
+> >               - const: bus_clk
+> >               - const: sys_cg
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt7988-mmc
+>
+> Are you really sure that you can't reuse the MT7986 compatible?
 
-> On Mon, Oct 07, 2024 at 08:07:27AM +0200, Krzysztof Kozlowski wrote:
-> > On Sun, Oct 06, 2024 at 03:05:47PM +0200, Marcus Folkesson wrote: =20
-> > > +  ti,davinci-nand-use-bbt:
-> > > +    type: boolean
-> > > +    description:
-> > > +      Use flash based bad block table support. OOB identifier is sav=
-ed in OOB
-> > > +      area.
-> > > +    deprecated: true
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - ti,davinci-chipselect
-> > > +
-> > > +additionalProperties: true =20
-> >=20
-> > That's a final device schema, this cannot be true. Why you are doing
-> > this entirely different than all other bindings? =20
->=20
-> From my understanding, additionalProperties is to indicate that the
-> schema could contain properties that were not explicit listed here but
-> inherited from e.g. nand-controller.yaml.
+have not found a way to reuse mt7986 binding because clock-config is diffe=
+rent...
+from driver view we can use the mt7986 compatible, but from binding view i=
+t is different.
 
-additionalProperties: true means there is no control over the
-properties allowed, so we generally don't want that (unless you're
-writing specific "generic" bindings, which is not the case here).
+regards Frank
 
-You are describing a controller so here you should reference to
-nand-controller.yaml, but then prevent any property not defined in
-nand-controller.yaml from being used. In this case you probably want to
-try unevaluatedProperties: false, which means that any property not
-listed here or in the referenced schemas will be prohibited.
-
-Thanks,
-Miqu=C3=A8l
+> Cheers,
+> Angelo
+>
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 4
+> > +          items:
+> > +            - description: source clock
+> > +            - description: HCLK which used for host
+> > +            - description: Advanced eXtensible Interface
+> > +            - description: Advanced High-performance Bus clock
+> > +        clock-names:
+> > +          minItems: 3
+> > +          items:
+> > +            - const: source
+> > +            - const: hclk
+> > +            - const: axi_cg
+> > +            - const: ahb_cg
+> > +
+> >     - if:
+> >         properties:
+> >           compatible:
+>
+>
+>
 
