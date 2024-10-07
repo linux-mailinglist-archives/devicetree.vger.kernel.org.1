@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-108285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D93992408
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:55:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D04CA992415
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:03:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AA691F22CBC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 05:55:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 385FEB21CAF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:03:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F109136672;
-	Mon,  7 Oct 2024 05:55:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1859B136354;
+	Mon,  7 Oct 2024 06:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DY3f0qxj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="baWekIS/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011324317E;
-	Mon,  7 Oct 2024 05:55:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E17655473C;
+	Mon,  7 Oct 2024 06:03:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728280535; cv=none; b=b/KxS7ny4YRKoP9RBYV25T1TxXDdnPoi97qw9BuF8ym0SDSCJlWnVfT8ypv3wFUavqcHQfjMrbVL708x1tTaCgZtp3h+Ne5bPNUlABAN9zjthS1BM2v5qK99xd32IpTW/sAg1tUNEStvI1NA89LCIfIVBMEMDrvRKG4FI5PTco8=
+	t=1728280995; cv=none; b=LoV3ihw00t0V6d8jsIoBJYDORiMxwVJIuW6K7yXtGWoODPshuPC+fOTHSPXNNfAPxKJKYyCa+U7qd2uROMyi7xZ5HyfnQ3rsWN/GkFPIr6X7F7XYnItmu10sMMzaY9q2p8i46SEKWmCKgce1TzZJCoh7piGO8vi8EXsp46p/EsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728280535; c=relaxed/simple;
-	bh=J9urfxcnqXo+r0zVu4pjopmJJlcc42dMLRF/ElIUMkg=;
+	s=arc-20240116; t=1728280995; c=relaxed/simple;
+	bh=T1bREH4yDLWyE4xjZyozN2Zb3J6IlRSP3pWJSlbvkmc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z3IoVKItbl3CskKtKuin6Zi5vma2nBoS+BOy75Y9nF3/m1eRW1wTqYtCDAaiVuWnHq32upt3H5OlPZ5snjhe+UmOx8NVzchlSVpeMXqUi8bTuhphAb0eFyj3V12jEanWdjzMB/J1yBzdy9bKeLzoGqYQEpLQXqluepW+1NZL5qw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DY3f0qxj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F46C4CEC6;
-	Mon,  7 Oct 2024 05:55:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=IPJ3F1uaFX7kWvecWmGt5db5QIoAOQ47e2bdHytU4x+lMhZ9rKYBnvLgtp4IXy8wyVm7E2bpV7YvEGzNkHQwLygxkhM/D//KeZWqferElkHjwU7/cI2xMqUuFd234ww2LdFRU+M1qA7+/OZ+hWFUM2GinU2MH3WWXGBCblhDLOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=baWekIS/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E4C2C4CEC6;
+	Mon,  7 Oct 2024 06:03:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728280534;
-	bh=J9urfxcnqXo+r0zVu4pjopmJJlcc42dMLRF/ElIUMkg=;
+	s=k20201202; t=1728280994;
+	bh=T1bREH4yDLWyE4xjZyozN2Zb3J6IlRSP3pWJSlbvkmc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DY3f0qxjV4sArWNZ9Uh4gBWFawn2qn7GxWNq+6iDQHf6HBaFRq5fL51AQ/jU/kUEB
-	 Li/7P9CwZXcjAgJesInKE0mRUrHEvH8juB657T1Br3QDOVNFiyoTHbtYwm3H23SMfm
-	 UjPYzSO2ZOgLMya0Jt1OUuG2wvKwOuDkz9SAQvCKxOb7ioF1nVo05IVauxLq4DS/tf
-	 77bJ+51qOjlI+n1DqUxWSGcPbddXWZoIfQPM1crASG5mx2hJd2yDB4Di/rxjSjwK2V
-	 FdQgRt4NeiGFypEtkjKkcYObzrkngGS9VTCR/TSoLRI5wMZhRua9o2vAcqIGDVWv2E
-	 3eJaBfnk+fV1A==
-Date: Mon, 7 Oct 2024 07:55:30 +0200
+	b=baWekIS/fyExGpr5aHbhxTGF7PnGZ2UrnXL6xio6nsLVb4Pr8ZsUVp8+LJHs1Dq1A
+	 APcM1gKdbC0uiusVWSbPslE5gXxACFZBtaSwuSnG1seal/2LF6VmvcyhcEy4kGSInV
+	 OfN4aXoZom5qMAdb0LuKpuWjg2Kq9WrZp7k34JSu6Pb7L9j674xFMBLr+uOSQI0Az3
+	 P2yqPDlcZIHejz3If046VBcIBZalID12cfyVOgglAuK60dgUUFpJLQtFgv+XMrXdws
+	 IsFSkWaUQZsX3TvTt+76kNFQ/BTCCedLBfACfVxi5mmGYKosQKcPt4NufFHWToNJkz
+	 OlyxgPwrfpaDg==
+Date: Mon, 7 Oct 2024 08:03:10 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: Chaotian Jing <chaotian.jing@mediatek.com>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+To: Moudy Ho <moudy.ho@mediatek.com>
+Cc: Chun-Kuang Hu <chunkuang.hu@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
 	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wenbin Mei <wenbin.mei@mediatek.com>, 
-	Frank Wunderlich <frank-w@public-files.de>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com, 
-	ansuelsmth@gmail.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
-Message-ID: <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
-References: <20241006153447.41377-1-linux@fw-web.de>
- <20241006153447.41377-2-linux@fw-web.de>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, dri-devel@lists.freedesktop.org, 
+	linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Macpaul Lin <macpaul.lin@mediatek.com>
+Subject: Re: [PATCH v5] dt-bindings: display: mediatek: split: add subschema
+ property constraints
+Message-ID: <tiduxmxji7nmlatceor2cmjy4xh7e36bvt6c6hygkkzots3kgm@ibwqoxij37g3>
+References: <20241007022834.4609-1-moudy.ho@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,59 +65,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241006153447.41377-2-linux@fw-web.de>
+In-Reply-To: <20241007022834.4609-1-moudy.ho@mediatek.com>
 
-On Sun, Oct 06, 2024 at 05:34:45PM +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Mon, Oct 07, 2024 at 10:28:34AM +0800, Moudy Ho wrote:
+> The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
+> to an excessively long 'clocks' property:
+>   display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
 > 
-> Add binding definitions for mmc on MT7988 SoC.
+> To resolve this issue, the constraints for 'clocks' and
+> other properties within the subschemas will be reinforced.
 > 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v2:
-> - fixed minItems to 4
-> ---
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
+> Fixes: 739058a9c5c3 ("dt-bindings: display: mediatek: split: add compatible for MT8195")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> index c532ec92d2d9..7380f72ea189 100644
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -21,6 +21,7 @@ properties:
->            - mediatek,mt7620-mmc
->            - mediatek,mt7622-mmc
->            - mediatek,mt7986-mmc
-> +          - mediatek,mt7988-mmc
->            - mediatek,mt8135-mmc
->            - mediatek,mt8173-mmc
->            - mediatek,mt8183-mmc
-> @@ -263,6 +264,29 @@ allOf:
->              - const: bus_clk
->              - const: sys_cg
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - mediatek,mt7988-mmc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          minItems: 4
+> --
+> This is based on [v2] dt-bindings: display: mediatek: split: add clocks count constraint for MT8195
 
-Drop
-
-> +          items:
-> +            - description: source clock
-> +            - description: HCLK which used for host
-> +            - description: Advanced eXtensible Interface
-> +            - description: Advanced High-performance Bus clock
-> +        clock-names:
-> +          minItems: 3
-
-This is still wrong... anyway, drop.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
