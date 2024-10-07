@@ -1,234 +1,188 @@
-Return-Path: <devicetree+bounces-108744-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108745-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE848993915
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 23:24:59 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0653D99398F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 23:52:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F6FF283F6B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 21:24:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93A65B20CFB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 21:52:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F4421DE88C;
-	Mon,  7 Oct 2024 21:24:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C43A218C32A;
+	Mon,  7 Oct 2024 21:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="aQJ0lqDs"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="M2eYu2uZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2041.outbound.protection.outlook.com [40.107.22.41])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFDEF1DE3D4;
-	Mon,  7 Oct 2024 21:24:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.41
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728336295; cv=fail; b=F/x0+HtFwvbWBbIUfeRfMAcG7+3Zu+J3HcnrvluYEz09bt5FUas5Vo/rFsCFihVrB+IYa5ZUsVHrHsh6+RU6yt7jhMqI72iJarIl51mhTRL7lo/QV93vXi2WvquBW50MtgvhrBjC7Vvw4XrAvjF9nAWGb4Ht0jpVwFUIT3Gp3N0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728336295; c=relaxed/simple;
-	bh=JlRnnnVLdMiP3eKg3ymz9zpkVVRCaIVAvhldkFKLgZA=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=GJwE35aI7WtGiGcSTS2DRUyd8KAwJMM/2Qgb4SLlpzoxEeRO2J4zY39PzLoxP3sBAChDHK/HTUt+Dw/K0AvcnSVrcFJflBOgeNUL/X3BIvJ1Br8rUqr87FUFwvpeWkN30WHUFSfxoInw0FWGxwSkA9DbDMMPlyCVRqKlPZVe3Yo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=aQJ0lqDs; arc=fail smtp.client-ip=40.107.22.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hT9s8scqDTC+IisuPKrZji0zQQaOajTVhpjBLG4Vtai0WhYxoGzcPzhpdxqFsnr8OlJmlDkfV007muAGBY7MmlPtv265pGkQe2AwCP04QJig4px9edBMs/ore/jaxg+ourmgztr2r2BS1C7ArBFAgXFD6gOwcEMMct+oKvfnBjtld2J0oVCT6oBX1nzvCS4fc/EAcZ+oQG1BIB8V6ylvK6i5HWrS3dh2WNwjIwhPIv3CV0fvBt6E4n3kWgWcjh43Ydue0UTBfLkzvpMeOsfndNIWxe9tqnDzT6UZqdh8p7gpFrZHlVUiHCJrh6yq4NJjyUcJJVhEsGqfZcdzRMc2xA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vda5Pqpj/fgvR932jI+3YgmY6sAzls2no5+SZM/wP/s=;
- b=f6w5Pc3WOlw68YN1Ra/e0y0vMr2TxitflAcm2GN1W/dlpCZ0rhPHfnUIle76CWYOvdF1QyRpYC3nKfT+N4b+zwBwUjNQLHHk7o7X0Bhj4AuvNT6vjLmC96DOWdwZKPLjir+zEOokyAw0AuUwnT26KwW5Uqg9O94cKTJ7aW+pPk4woQVaj4lOTL1ITIq2Ppp3iq1hxNEDa2wI+07zuKMbdv/+65vhfA1oVwsa5lmlsOKeheel4DDaDgh07piapMa6y78uQp7OmGmVJxHkqZi10JUDUJLFN4PfZgjmxkGOD3uLGEOvjhxW4nTILAFNvD8wt4yRP/lj2ajimvFhU++0Aw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vda5Pqpj/fgvR932jI+3YgmY6sAzls2no5+SZM/wP/s=;
- b=aQJ0lqDs/ZC5zv3Ny+hIXZKfIrLcnIdhTog44ctv0s8oMNJU4Xmcu17W0MIboVzoMKMARd/PL+Y1CHDiN2FOx37CIyp/X4shRrkk7TKODjBCnwWzjxrSmv/V4NTPOx7KN53dYhmOqHldhu5eV02Xg1AvNNnbJxbY7ZCXbPxyahDBV/2EifgNx7ALDvDgzR1Gy4h/eOR98JHWhDvuy0s3cTgM2GI4afYAXEpqRwY8HuWcItQK8MUH+w6uVH/cklHkQuQjeEN1bXcQISYOVPFIqh659EZTQnvYtpYGqtWj8MRTvJpVYttefqj1AA37etD7s8Oj3K1EaeVrZbFHCZK+RA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI1PR04MB6976.eurprd04.prod.outlook.com (2603:10a6:803:130::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.22; Mon, 7 Oct
- 2024 21:24:50 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8026.019; Mon, 7 Oct 2024
- 21:24:50 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	linux-watchdog@vger.kernel.org (open list:WATCHDOG DEVICE DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	imx@lists.linux.dev (open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v2 1/1] dt-bindings: watchdog: fsl-imx-wdt: Add missing 'big-endian' property
-Date: Mon,  7 Oct 2024 17:24:33 -0400
-Message-Id: <20241007212434.895521-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY5PR17CA0015.namprd17.prod.outlook.com
- (2603:10b6:a03:1b8::28) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3365D18A6D3
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 21:52:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728337938; cv=none; b=oZMjLdP9yMqEpiiy0YBsKVdwViEmhJWwSNu0pAKRla1ONZA6415yrasry7/mHnT3nhpolDKA/EPTCzi7hkDP2JmTcV1WXGmY9jI3z6xfEPP2JRWwc+VTw52cALP5QyEANuEBVP4p6GSS8iPqkZOD88fIOajNEtFVrENsZXShVR4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728337938; c=relaxed/simple;
+	bh=V0IYxckZax0MHCL+pk0Wse+pSfLhhZ2PLyVEvlYWrJc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xy4ic/wizTV1Bvhjfj6fKmKG8wWIAcSz0EiPkGFvpsvToxOrXGT686zv57NHwVh/TkO81i7jQnosjYimGvVXYGYHLhdU6YnaCqeoPzA9So4ETvBvc/AVO+xl31+WqbZiI8wOiK0T+TTve8S8RsSbM/2Us3tSTtTb+j4lHg6u78U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com; spf=fail smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=M2eYu2uZ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497Eiu1B026942
+	for <devicetree@vger.kernel.org>; Mon, 7 Oct 2024 21:52:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5WldPX1HElD7MkR5uLdSM6teFmc3O8Siba0UndRRQH4=; b=M2eYu2uZ8WotBVP9
+	tRHLsARM5MgpgdNUoIfHajRX5wEoxIIQQIindG+57RpPglrwb52K8T0VuuiJi47n
+	6vLHe9henKGAwI2Gp6W3ZKHi5zq1EfDlX6Z1bXpoHkzYS4/ZhKCEwe4OZ6QRxLDk
+	Ol0bg9lKg6BztvGs02+1QUY8XbbFy1txFSHcUaFc4azH/+3Nlq3UUDTo7P1+LmZ9
+	Hlo+OFJ0r30XhZJwfKugGrI/D5XRfai6aXeDTNwWT74Vu1N029DNODVuqH+SRgEd
+	0Yv6TyOv/t5KeMGS5xfl4yjCJ6ezCR3gk/oYEcU2iqxA7MCMetRGpmdEwuillTZz
+	UEa1MQ==
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com [209.85.128.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xtb5emh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 21:52:15 +0000 (GMT)
+Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-42cb9300ed9so8005425e9.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 14:52:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728337934; x=1728942734;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5WldPX1HElD7MkR5uLdSM6teFmc3O8Siba0UndRRQH4=;
+        b=JnMaVs5Df/CxypnE/8wVx+3WGthd7ZuC30waOtXNeMvMbEod4GZE8grcM9HkO/NVY5
+         gAgyzvdnZwbAMCAFZwFKQAOoAVoK5d8dD39h5fEZOX3apm3PUVKFP6a+9dH1ctDFq9vO
+         Kyg5RRLBUeki/dqfpCtYDOv0TnN1NPPKJ4D8mMEB8L6n4pwOQJWZNjihKF5zJoceDGOr
+         EqCeXSDRBhwtGBbvU/90w32FAImj2tlOZ1E/PYtYEJVtUtUkFB26bMG0T8C9TkohfMqx
+         0P+uH0XKrsQmVmaOgXYem27CYtp1IqvQwAvJ2W8xPhl2RgimI9Am+TG9FsOOfDceNurJ
+         6XLg==
+X-Forwarded-Encrypted: i=1; AJvYcCXBlW0o6CAWonj+5KYV+Uk0s4jDTKhSOlSbigeauOVYIBZmaIDtMdN25Nm+AQ2awK+jxgdfZrWMnHB2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyIDY3ZmudnlGgZnAd/0f6dYZnLGYX6ZF4EL0QuO41n02TNWIqE
+	osuh056cFHn3T6vFoVy2F+mCu8mQFZAJTjHFG5Nuk9nrEXqBIq8G2Uqz4pqzAVkka94wXEpvLew
+	TNsXOdqYuAcvvXFdI9drfT18sEcm4kFPJJrqjZSYEben+oReXMESdST/I3DjX
+X-Received: by 2002:a05:6000:1acc:b0:378:c6f5:9e54 with SMTP id ffacd0b85a97d-37d0e7af459mr3493136f8f.5.1728337934204;
+        Mon, 07 Oct 2024 14:52:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFaMbyT7dDMapB076G7LQwkZU0xFaEj25mSmt+D0+BLMUp3fAakSFZUwmy/E7gSJp44UTpC1w==
+X-Received: by 2002:a05:6000:1acc:b0:378:c6f5:9e54 with SMTP id ffacd0b85a97d-37d0e7af459mr3493115f8f.5.1728337933604;
+        Mon, 07 Oct 2024 14:52:13 -0700 (PDT)
+Received: from [192.168.212.120] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a995253abfasm204148166b.185.2024.10.07.14.52.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 14:52:13 -0700 (PDT)
+Message-ID: <374339b4-3875-4680-a0b6-e0d3e69f4935@oss.qualcomm.com>
+Date: Mon, 7 Oct 2024 23:52:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6976:EE_
-X-MS-Office365-Filtering-Correlation-Id: 983c7a48-00f7-4051-efe8-08dce71679f0
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|52116014|7416014|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?exzWDdzlFickdKR0YOD+XxilprggGjR+FBUf8hRL6g1HEu+FKawGr0OzZ0nb?=
- =?us-ascii?Q?x2jQSHv3nQYzCrImgMUUoTjxTD12C8HmMAIiwz+J5uUxD21WLbILR9tzKQHQ?=
- =?us-ascii?Q?1p/5nnz4O0euxg+i9Kj08JAhgcR3fVWe+8bAOYobiGcyRZjH16Lll7gNoCYd?=
- =?us-ascii?Q?3ZsWhQ9i0lJz3fAgnFbyzVIb2SmQTV0tnVHQlUV6IMNKn0kjmyTWv86gLwAs?=
- =?us-ascii?Q?GSxIIEqedP8iM43PRdQ/bYosms4pn78OhnwlMv44Jo12yr/fMDYFtX7Qbsc6?=
- =?us-ascii?Q?ImIx6o84/siyYrAC5OHYi3v4upd7XsukVYxRXH/u56ftTPPDaoMpe8OKgyGf?=
- =?us-ascii?Q?xS+EgsC0keOCDoGsXQYnrzhdl54tW1trn+Zi+R287kLamvrBvIpA/fcMCjCI?=
- =?us-ascii?Q?tiFEHJ3pA3FG79VydoylXvFpHmJzeGguEjIBRrbeZlacCLyg1U/sfY2OM/nM?=
- =?us-ascii?Q?O/PbKUiGLhAzJcHD/iuP30m+i1jTux7Si+2yXsEiRzoHdw7/gb9lzV8M0sKF?=
- =?us-ascii?Q?AHVlWE6Y6ypjcxFuZd40sGSKhngm8YxPw2Y3KZFI56NuUVqTlv2MhN5rUJC9?=
- =?us-ascii?Q?L6p8s4ovR1RQ8gPopNLJfv+G33OwnKRpvx6xNkCIk50M1zx1818WMyHISO+e?=
- =?us-ascii?Q?b0668/QzvewLcZOdKYn6uJ5U8MvCfX86NfTKwQWnoOuAlQ3UL8GmKZQAtPuN?=
- =?us-ascii?Q?/Fe1yk6BvvB9tquKmvalptTJc4pjS7Yi0xVYZTiCtIt15IssL3o+pci8+m7M?=
- =?us-ascii?Q?dFCJVdJD7W4FgruRaK2Tma+ILhdKVW0EXhl6Ia71kL23QlSHB0vSiuzWz4SV?=
- =?us-ascii?Q?1/8jCeSZye7Bfrzz2jdTAqRV3CuNqqo8Tq9SMhBAaqQ2umVp3WCa/ASiyh4h?=
- =?us-ascii?Q?nUzSI7udj09AI6X93H2mLSNlGkNPoOjnr6Dn6BxEinJbBMLgt53p2UHu6NDY?=
- =?us-ascii?Q?7oHyHFdGfoRQqAIBhiYPLET7NYEfZYQWde/y8sjGlcEgSFJ4xO7SDKk9VYb0?=
- =?us-ascii?Q?JAkUjZlnoVoDBDQWetGGgli51yt8rYqvJAgppVWWfldKcmtAdp/DRk+wixA4?=
- =?us-ascii?Q?3eSVgQsGr/tK9guxh4hlyRekUj0eZNUNX0HFhIgRCUGVwlmzu7kV1fefVIKG?=
- =?us-ascii?Q?9096dwQvy7oLa2aWJ1Cp1NXR+gU41De94Un4LKEgVw2yGudiClMk57nyRZOs?=
- =?us-ascii?Q?UXj5PDsznqpzSIeualtsxeLuwRPJXzsMyf01P22HCajLu4XWJEL3ci8KBKgH?=
- =?us-ascii?Q?7igtdwlnbzi25GsSTwMtgcexlA52bAW3Jl66wSMvZ7PeEu0j4xBTIWX9uJie?=
- =?us-ascii?Q?aBLA3oD1wNrcqM0O4pHZdqB5bdXzOofZjiTJ0zuGWDToJbzFkmv7G4CRU0SP?=
- =?us-ascii?Q?9zTX4Qw=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(52116014)(7416014)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?xdg5pF8o3w4G/aYHBc12913hW4NJtaIkPqJQ6hDsN2aIr7QrPQqeb1xCWZuP?=
- =?us-ascii?Q?D38GEWyM4m09xdYo/ntjwF1STMrsjVFHq2lGHm1alJnyesvD3xzgw+DqpGNi?=
- =?us-ascii?Q?hyRVxoRGycpwdsZtvl1KXlautnFWGyU2N6JyZBJIDxu5f6e7s8Ai7yu/4u+w?=
- =?us-ascii?Q?Oakb2WdTYxUJbVktQQfzBI3ehiWZg82Dd42OVuIb/a+0kWCjxMv96uZqp6MH?=
- =?us-ascii?Q?VghER4eDVibcOms/C1HnT+whWE39VO2H+SNTaw1OtdqTFONJQpVg8tWy6KgP?=
- =?us-ascii?Q?W1KXBR/XrnhlEilWjWkf3aKACbnKdoE0OEYkvcPrjzxt3CSdt98poLeLPokj?=
- =?us-ascii?Q?KLjMCatsDWtG5TfHwlelRmZV1DhTx+bWaYTuBKAjquYbto7xQDkhMb4i9soI?=
- =?us-ascii?Q?vayFoOha/SfLVPC/68aXAW0MIs2bKw42ODtB+Xm6Lh8rMuuJv3DhTEkQYqJg?=
- =?us-ascii?Q?SoKxKaxGZmsGtShWtlEU7gNUT3TzM3fzTHPSfB8agBLg5oV99JhNHE+kCGVk?=
- =?us-ascii?Q?2rQzttQTXu/eo9UpQS47rN/yL1essBl/zarsT97BQ4Xk2Hg7JkyyLLEfwa+v?=
- =?us-ascii?Q?BC/tYYoh7j2Hr3JpV1SosBmiDKvwgI8z0x402rFSrwM2f85Y9CjEPkpCpYn7?=
- =?us-ascii?Q?CloD9RXAa3QKputDAwl+dZxZXXJCLenkRt0Vk3gfeQGZMEPHoWlsqsSthU4Y?=
- =?us-ascii?Q?EpEo4OngwEA6/l8rY3m2jkMIH7JghcbNjq5d7SWxZrt9LRcflKhTzAOGhPHa?=
- =?us-ascii?Q?iUTM8Kb5TKLjL8eY88rW1pld3gokBeAmXZb+JqF+rMWMv1rs/Q4jg5nOXt1w?=
- =?us-ascii?Q?wleoRv9uZB5pv5khS87KQ1U4LJhU6VHBAA+qUmQ/ZZ9Apl/nNQxKEbRehJ2s?=
- =?us-ascii?Q?Th0aAIJCGNcu7Gb81P1X/BeFHlq8PzdHLav4R6zyeoAznFzOUd30PKIWB6dC?=
- =?us-ascii?Q?CVhkZmk6HUEad4zkilWAqJM6p4npxnFbQZC6l3MmtKnDMJOvdhYrNkMz8PH4?=
- =?us-ascii?Q?x3+NiayWvcfy7uoTAWKb+bKbdsgkLiAInbUrOsppCXwqJB0uzcNWt1xIJ+TX?=
- =?us-ascii?Q?XcEH1OmyfMu/LRrnaxE38pSM3lWacqNoq6qlo3oPFJ2pc6kB/kpf8Nx4VdE8?=
- =?us-ascii?Q?CMKE7Ih03U/Skby+I9MS+C/MVzxmE0lbMRBx4fD4cu/Q4gYHBDzVDrON7AoS?=
- =?us-ascii?Q?RwVy5rMGs9vnSwmZ7zNWdy3NzgskDCNaOipzAtcTpalCgWncEJdypZZdrtSC?=
- =?us-ascii?Q?sfEnVGLP+xKmKA/2pEeV/pBGaPiRc4FZjm/02vnuQ2Zjrbvn/F8K47RnVSKp?=
- =?us-ascii?Q?m0p+SUZgn8HOndwgjXDT9jI9IFZ2tsMzogrfwy9YwOqRb8pALYTfvZEDWpli?=
- =?us-ascii?Q?PxrqsudfEzrwzRuTIwaD/sM3Vi+J4hlEaBgDNpBNx9NONruaZ0nePfWdNdsZ?=
- =?us-ascii?Q?K5RC55ogUGb7blfsO1FBvuszv7X3hiOkOwaLc5vNNj0EcyM7vYXGTujtGzMA?=
- =?us-ascii?Q?oYGXDxj/Iee1GMtb1ffmhzTavfLkSjM3+XHVmY7BDlgRQ0wIRHJMr1PAEP3e?=
- =?us-ascii?Q?LcMBC2e/tMS2nh1bvPKEhFk+9KPgZJ08E1FvlhWY?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 983c7a48-00f7-4051-efe8-08dce71679f0
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2024 21:24:50.2423
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ZmwzZtHnnR4ab0NzKf/EwogXBI/yIlJa7uFqfCsQKjDi6tUepXnGZLgq18BBH2t6GGlcWiMc5W6Z6spPecBaMw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6976
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3
+ (linksys-jamaica)
+To: Linus Walleij <linus.walleij@linaro.org>,
+        Karl Chan <exxxxkc@getgoogleoff.me>, Arnd Bergmann <arnd@arndb.de>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+References: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
+ <CACRpkdbj8fkQf38n0t-==cFZj55TPgoTGM-dzESWgeRGfPHofQ@mail.gmail.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <CACRpkdbj8fkQf38n0t-==cFZj55TPgoTGM-dzESWgeRGfPHofQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-ORIG-GUID: eSL5b5n9ptWs0vMXz121-OFDJYycsJwa
+X-Proofpoint-GUID: eSL5b5n9ptWs0vMXz121-OFDJYycsJwa
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ mlxscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410070150
 
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
+On 7.10.2024 10:23 PM, Linus Walleij wrote:
+> On Mon, Oct 7, 2024 at 6:35 PM Karl Chan <exxxxkc@getgoogleoff.me> wrote:
+> 
+>> Also The original firmware from Linksys can only boot ARM32 kernels.
+>>
+>> As of now There seems to be no way to boot ARM64 kernels on those device.
+> 
+> So this is a Cortex-A53 Aarch64 system running in ARM32 mode.
+> 
+> So I got this interactive U-boot log from Karl showing how the attempt
+> to boot an Aarch64 kernel manifests:
+> 
+> CBT U-Boot ver: 3.2.08  ([IPQ5018].[SPF11.3].[CSU2])
+> 
+> ## Loading kernel from FIT Image at 44000000 ...
+>    Using 'standard' configuration
+>    Trying 'kernel' kernel subimage
+>      Description:  Kernel
+>      Type:         Kernel Image
+>      Compression:  uncompressed
+>      Data Start:   0x440000a8
+>      Data Size:    8249289 Bytes = 7.9 MiB
+>      Architecture: AArch64
+>      OS:           Linux
+>      Load Address: 0x41208000
+>      Entry Point:  0x41208000
+>    Verifying Hash Integrity ... OK
+> (...)
+> ## Loading ramdisk from FIT Image at 44000000 ...
+> (...)
+> ## Loading fdt from FIT Image at 44000000 ...
+> (...)
+> fdt_fixup_qpic: QPIC: unable to find node '/soc/qpic-nand@79b0000'
+> Could not find PCI in device tree
+> Using machid 0x8040001 from environment
+> 
+> Starting kernel ...
+> 
+> undefined instruction
+> pc : [<41208004>]          lr : [<4a921f8f>]
+> reloc pc : [<41208004>]    lr : [<4a921f8f>]
+> sp : 4a822838  ip : 00000001     fp : 00000000
+> r10: 4a83b914  r9 : 4a822ea0     r8 : 00000000
+> r7 : 00000000  r6 : 41208000     r5 : 4a97d848  r4 : 00000000
+> r3 : 644d5241  r2 : 4a0ae000     r1 : 08040001  r0 : 00000000
+> Flags: nzCV  IRQs off  FIQs off  Mode SVC_32
+> Resetting CPU ...
+> 
+> resetting ...
+> 
+> So perhaps someone knows how we can get around this.
+> 
+> It seems to me the U-Boot is in 32bit mode and tries to just
+> execute an Aarch64 binary and that doesn't work.
+> 
+> What we need is a 32bit mode preamble that can switch
+> the machine to Aarch64 and continue.
+> 
+> I don't know *how* to do that, but I would *guess* a botched
+> return from exception where you provide your own stack
+> with the Aarch64 state hardcoded on it should do the job?
+> 
+> The Aarch64 maintainers will know what to do.
+> 
+> Surely it should be possible to add a little code snippet
+> to do this somewhere in memory, and that in turn jumps
+> to execute the actual Aarch64 kernel in Aarch64 mode?
 
-Add missing big-endian property in watchdog/fsl-imx-wdt.yaml schema. Only
-allow big-endian property for ls1012a and ls1043a.
+Not sure about this one, but older (10+yo) qcom socs had a
+secure call to switch to 64bit..
 
-Fix dtbs_check errors.
-arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dtb: watchdog@2ad0000:
-    Unevaluated properties are not allowed ('big-endian' was unexpected)
-
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-
-Change from v1 to v2:
-  only allow big endian for layerscape platform.
-
-previous post at:
-https://lore.kernel.org/imx/20240806103819.10890-1-animeshagarwal28@gmail.com/
-
-check spec, and dump watch dog reset value
-at ls1043a platform.
-
-0x02A80000:  00 30 00 00 00 10 00 04 00 01 00 00 00 00 00 0
-
-It is big-endian. imx2_wdt.c use regmap which call regmap_get_val_endian()
-to handle endian.
-
-So this change is corret.
-
-big-endian for wdt is necessary
----
- .../devicetree/bindings/watchdog/fsl-imx-wdt.yaml  | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-index 36b836d0620c9..0da953cb71272 100644
---- a/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/fsl-imx-wdt.yaml
-@@ -48,6 +48,8 @@ properties:
-   clocks:
-     maxItems: 1
- 
-+  big-endian: true
-+
-   fsl,ext-reset-output:
-     $ref: /schemas/types.yaml#/definitions/flag
-     description: |
-@@ -93,6 +95,18 @@ allOf:
-       properties:
-         fsl,suspend-in-wait: false
- 
-+  - if:
-+      not:
-+        properties:
-+          compatible:
-+            contains:
-+              enum:
-+                - fsl,ls1012a-wdt
-+                - fsl,ls1043a-wdt
-+    then:
-+      properties:
-+        big-endian: false
-+
- unevaluatedProperties: false
- 
- examples:
--- 
-2.34.1
-
+Konrad
 
