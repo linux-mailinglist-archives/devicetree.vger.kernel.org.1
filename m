@@ -1,149 +1,208 @@
-Return-Path: <devicetree+bounces-108698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98AD993680
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:45:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21A459936E5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:55:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21751B23833
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:45:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B28AB23E83
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:54:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5581F1DE4D6;
-	Mon,  7 Oct 2024 18:44:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C3F1DCB2B;
+	Mon,  7 Oct 2024 18:54:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kMH/HDop"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="b66dAsxT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1A91DE4CD;
-	Mon,  7 Oct 2024 18:44:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A679E1DDA18
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 18:54:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728326680; cv=none; b=uh7p03OESagHpNdHSNHHgvOdQ4I7BWtjbmq0nJK+nqtxHHKlP/n86O7ixVHkqhx87m/3tJu+1xqZSwb+jCVfZBdpWr3VxWGWnCRW2TTH3YK8k0tmYwAJQBJD4zTbeJFca/B4oto68c+8Sh3Cezh5U9aLCAiWZiVL7Z6qXXEkKxQ=
+	t=1728327247; cv=none; b=Iu2vJVpsGWOA3QTyMaWlNn5cr8gR+tiunZO2P/Q87ddZP6cljLF2IhDJFYr3rY/WF+R5x4TwAt31zbw8VvPDdLBKCvskg+toK6ul8hc51IHdfXGq4VKOuh2Oc3tc2VUypyLz0HltYw8z7JHVLnHRRbObhK48SqjLZ1gKtOM7xA4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728326680; c=relaxed/simple;
-	bh=jwWsg3YU4v0xlSLimuaOjcdP919QDUDeP73jZC/1+V0=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=MLny5UFTQNuJIDuYm9SefQqX9x60J3I1uFHoEew0k6/N7n/0GwN9+Aq1Umsc6vTJkMQglsvDQ++jPy/WOXnUB+ubDvq2h1CKloOFknKvLn3s/TqNf5fRf8SeA+k/YRKHhJvRYstDYRGgm5/ZWBz3Nr2GdaBBU1Om3RvItllBsY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kMH/HDop; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE6C6C4CED5;
-	Mon,  7 Oct 2024 18:44:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728326680;
-	bh=jwWsg3YU4v0xlSLimuaOjcdP919QDUDeP73jZC/1+V0=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=kMH/HDopUzwSiX1HmTuk4WTVp0/56i7J1In+bBrrLMywdizCyaNbdcawlNjaFEwUt
-	 xRlEX5NV5ozNcL1VaEygLqpOP88Q6yj0CojQ7PbiCRrv46ainzzUn27mo0XWNjBzaX
-	 tYfu0vKs5xB84jfM57HD3BUA5BrlFkSD0jAmX4EaHxNgTn45CTCze37GXqZgbYxB3c
-	 kMwp82C/zK0xcxMd8Nj8u2Z3Ne8y1smJOT0zxxVsFHLNiD/LnPSseahmwhE8lAGRDG
-	 9ZleFxMG76Vr9LcHJ19P4qrSXwyK0KNMAWY5TQGD8z3LQCBuLTjzeAAQviR52XWjC3
-	 JdBJbbPZIkhfw==
-Date: Mon, 07 Oct 2024 13:44:39 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1728327247; c=relaxed/simple;
+	bh=hnTBwamPDAsTLDF+Js1D5YUZ3/8QsfQbBw6PXRBHvlw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mi8zUiDln0hGFFW/DFEA0wrdQso4x/FGPYfHjvcUMDd3ti0TfeJLGTDI/mSDAgbnmiwDxpaBdiCqBlO0ns1EVSbQrIQtYK9H/cd11/SXWe15k4ehYTfiKp73/6Sjxgd2ZweRqAJpDOZpKKA7QFEjzFkptyow+S8HUrT5ccX21lE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=b66dAsxT; arc=none smtp.client-ip=170.10.133.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1728327244;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=TXl/fSOrjemj+ajnFjFM4CSMF/fXgBTJBQOb6whFU1E=;
+	b=b66dAsxTTZQYW6SCSUHKilVUrLSbRtFCt7TYcuc+BcbKccz7u8wk65fzxX9Rgq3wncpkCK
+	ygLnlkydYaYELag6+M6RG8bjMNyvu8kZshvdal4Keu7CNlEkpxsUm/Xf7Yw/LNcHZ70U4J
+	nWBixa2FHUfigboTdVSvISsnnkeP8UU=
+Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
+ [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-694-z2sO6qJUO2-jMAyhqdISBA-1; Mon, 07 Oct 2024 14:54:03 -0400
+X-MC-Unique: z2sO6qJUO2-jMAyhqdISBA-1
+Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-5c8824bb351so4139433a12.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 11:54:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728327242; x=1728932042;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TXl/fSOrjemj+ajnFjFM4CSMF/fXgBTJBQOb6whFU1E=;
+        b=PT4tqtgWx3jEocJGP89SPtVVjoIotnylAx50LjBOZTYbXdfkXV1tAZDSNqPGif279j
+         MX2DKloSJIw68eNE6lP8446Dt4OfsiUZPy1Ubzn5zyhtrw4RXeaoujJ34PGONWhTFlDa
+         7WftWMMMIkXEQtHHQhynI1/aZaV6Z1C4KWusvhw+RbIVnxkZh+FBVLV1UNw5ZrfsCLUU
+         Uucv/IdW+tnognZKKMlhNz2cVsJyWUD5VrGoBYMDojGp9U/6ef8itkBmumHquV+Hw9fD
+         oWbBwMzlCZseuxXViADzsJidlMpexvUH6ELD63d6UoqGY1CGv7fajIkV/nmYk+GDhZYd
+         6oYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXHJi8jYSZ6EB0nSqA21Y8o88zIgQDbkIQ7yoK/HicgxUQfDR1HQUvKvf0/M8qQvoO0MjS+ItffHQF6@vger.kernel.org
+X-Gm-Message-State: AOJu0YwOb4jhmXbIdYqNs5txmJ+IfqzveS42KE9BatcWonEOrVvVLGHP
+	iCdJ6mZnXTE5U59HSHgcLWbqCe1nhxxYMSBeNnJOSGO4ev3sLZjktuMbgwdQ/3xHbzRoAVZDP80
+	4a1E7mAOhk/vuFH4Odi1lYOfOvzoeCBVfTowI7yKYxg0mnpTtOM3nGfaaymM=
+X-Received: by 2002:a05:6402:35d1:b0:5c9:3f2:e69c with SMTP id 4fb4d7f45d1cf-5c903f2ea42mr1122640a12.9.1728327242261;
+        Mon, 07 Oct 2024 11:54:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGtc/wASbpmCC3oX4yHn0opV5qAfwjsWz7nSRdYzab2WVqdaotFQbRwUdiaixLyJyahsBAPsA==
+X-Received: by 2002:a05:6402:35d1:b0:5c9:3f2:e69c with SMTP id 4fb4d7f45d1cf-5c903f2ea42mr1122594a12.9.1728327241693;
+        Mon, 07 Oct 2024 11:54:01 -0700 (PDT)
+Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05ecda3sm3473540a12.73.2024.10.07.11.53.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 11:54:00 -0700 (PDT)
+Message-ID: <8370d062-b3d2-46f5-9e7b-8e16edde8480@redhat.com>
+Date: Mon, 7 Oct 2024 20:53:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Johan Jonker <jbx6244@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de
-In-Reply-To: <cfc3cfe1-086b-48f1-9b89-f17c9391d3cc@gmail.com>
-References: <cfc3cfe1-086b-48f1-9b89-f17c9391d3cc@gmail.com>
-Message-Id: <172832633132.2107701.18114963160370409205.robh@kernel.org>
-Subject: Re: [PATCH v1 1/2] ARM: dts: rockchip: fix nodename regulators
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] platform/surface: aggregator_registry: Add Surface
+ Pro 9 5G
+To: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
+ Maximilian Luz <luzmaximilian@gmail.com>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
+References: <20240908223505.21011-1-jerome.debretagne@gmail.com>
+ <20240908223505.21011-4-jerome.debretagne@gmail.com>
+ <f9cbd1c3-eb05-4262-bdc6-6d37e83179e5@gmail.com>
+ <CA+kEDGEdd_s+DGKsVNY6Jy870B72eHuaj2EgEnwP8J46ZGbxpQ@mail.gmail.com>
+Content-Language: en-US, nl
+From: Hans de Goede <hdegoede@redhat.com>
+In-Reply-To: <CA+kEDGEdd_s+DGKsVNY6Jy870B72eHuaj2EgEnwP8J46ZGbxpQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Hi Jérôme,
 
-On Sat, 05 Oct 2024 22:39:05 +0200, Johan Jonker wrote:
-> The nodename for fixed-regulators has changed to
-> pattern: '^regulator(-[0-9]+v[0-9]+|-[0-9a-z-]+)?$'
+On 7-Oct-24 8:44 PM, Jérôme de Bretagne wrote:
+> Hi,
 > 
-> Fix all Rockchip DT regulator nodenames.
+> I'm replying with Hans and Ilpo, who I initially forgot for this
+> patch, sorry about that.
+
+No worries thank you for forwarding Maximilian's review.
+
+> Le mar. 10 sept. 2024 à 23:29, Maximilian Luz
+> <luzmaximilian@gmail.com> a écrit :
+>>
+>> Looks good. Two very small nit-picks below, if this goes for a v3:
 > 
-> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
-> ---
+> Atm I'm not planning for a v3 as Bjorn has applied the other v2
+> patches earlier today.
+> Feel free to include the 2 small suggestions when applying this patch maybe?
 > 
-> regulator: dt-bindings: fixed-regulator: Add a preferred node name
-> https://lore.kernel.org/r/20240426215147.3138211-1-robh@kernel.org
+>> On 9/9/24 12:35 AM, Jérôme de Bretagne wrote:
+>>> Add SAM client device nodes for the Surface Pro 9 5G, with the usual
+>>> battery/AC and HID nodes for keyboard and touchpad support.
+>>>
+>>> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
+>>> ---
+>>>   .../surface/surface_aggregator_registry.c       | 17 +++++++++++++++++
+>>>   1 file changed, 17 insertions(+)
+>>>
+>>> diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/drivers/platform/surface/surface_aggregator_registry.c
+>>> index 25c8aa2131d6..8b34d7e465c2 100644
+>>> --- a/drivers/platform/surface/surface_aggregator_registry.c
+>>> +++ b/drivers/platform/surface/surface_aggregator_registry.c
+>>> @@ -390,6 +390,21 @@ static const struct software_node *ssam_node_group_sp9[] = {
+>>>       NULL,
+>>>   };
+>>>
+>>> +/* Devices for Surface Pro 9 5G. */
+>>
+>> Would be nice if you could change the comment on the SP9 node group to
+>> "Surface Pro 9 (Intel/x86)" and the comment here to "Surface Pro 9 5G
+>> (ARM/QCOM)" or something along those lines to make things a bit more
+>> clear.
+>>
+>>> +static const struct software_node *ssam_node_group_sp9_5G[] = {
+>>
+>> (This is really just me being a bit obsessive:) It would be nice to have
+>> all-lowercase variable names (regarding the 5G).
 > 
-> Some rk3288-veyron regulators are skipped for now.
-> ---
->  arch/arm/boot/dts/rockchip/rk3036-kylin.dts   |  2 +-
->  .../boot/dts/rockchip/rk3066a-bqcurie2.dts    |  4 +--
->  .../boot/dts/rockchip/rk3066a-marsboard.dts   |  6 ++--
->  arch/arm/boot/dts/rockchip/rk3066a-mk808.dts  | 12 ++++----
->  .../boot/dts/rockchip/rk3066a-rayeager.dts    | 16 +++++------
->  arch/arm/boot/dts/rockchip/rk3128-evb.dts     |  4 +--
->  .../arm/boot/dts/rockchip/rk3128-xpi-3128.dts | 28 +++++++++----------
->  .../boot/dts/rockchip/rk3188-bqedison2qc.dts  | 14 +++++-----
->  arch/arm/boot/dts/rockchip/rk3188-px3-evb.dts |  2 +-
->  .../boot/dts/rockchip/rk3188-radxarock.dts    |  8 +++---
->  arch/arm/boot/dts/rockchip/rk3228-evb.dts     |  2 +-
->  arch/arm/boot/dts/rockchip/rk3229-evb.dts     | 16 +++++------
->  arch/arm/boot/dts/rockchip/rk3229-xms6.dts    | 16 +++++------
->  .../boot/dts/rockchip/rk3288-evb-act8846.dts  |  4 +--
->  arch/arm/boot/dts/rockchip/rk3288-evb.dtsi    |  8 +++---
->  .../rockchip/rk3288-firefly-reload-core.dtsi  |  2 +-
->  .../dts/rockchip/rk3288-firefly-reload.dts    | 18 ++++++------
->  .../arm/boot/dts/rockchip/rk3288-firefly.dtsi | 16 +++++------
->  arch/arm/boot/dts/rockchip/rk3288-miqi.dts    |  8 +++---
->  .../boot/dts/rockchip/rk3288-phycore-rdk.dts  |  6 ++--
->  .../boot/dts/rockchip/rk3288-phycore-som.dtsi |  6 ++--
->  .../arm/boot/dts/rockchip/rk3288-popmetal.dts | 10 +++----
->  arch/arm/boot/dts/rockchip/rk3288-r89.dts     |  8 +++---
->  .../boot/dts/rockchip/rk3288-rock2-som.dtsi   |  4 +--
->  .../boot/dts/rockchip/rk3288-rock2-square.dts |  6 ++--
->  arch/arm/boot/dts/rockchip/rk3288-tinker.dtsi |  4 +--
->  .../boot/dts/rockchip/rk3288-veyron-brain.dts |  6 ++--
->  .../rockchip/rk3288-veyron-chromebook.dtsi    | 10 +++----
->  .../dts/rockchip/rk3288-veyron-fievel.dts     | 10 +++----
->  .../dts/rockchip/rk3288-veyron-mickey.dts     |  4 +--
->  arch/arm/boot/dts/rockchip/rk3288-veyron.dtsi |  8 +++---
->  .../boot/dts/rockchip/rk3288-vmarc-som.dtsi   |  2 +-
->  arch/arm/boot/dts/rockchip/rk3288-vyasa.dts   | 18 ++++++------
->  .../rockchip-radxa-dalang-carrier.dtsi        |  8 +++---
->  .../arm/boot/dts/rockchip/rv1108-elgin-r1.dts |  2 +-
->  arch/arm/boot/dts/rockchip/rv1108-evb.dts     |  2 +-
->  .../dts/rockchip/rv1126-edgeble-neu2-io.dts   |  6 ++--
->  .../dts/rockchip/rv1126-edgeble-neu2.dtsi     |  2 +-
->  38 files changed, 154 insertions(+), 154 deletions(-)
+> :)
 > 
+>>> +     &ssam_node_root,
+>>> +     &ssam_node_hub_kip,
+>>> +     &ssam_node_bat_ac,
+>>> +     &ssam_node_bat_main,
+>>> +     &ssam_node_tmp_sensors,
+>>> +     &ssam_node_hid_kip_keyboard,
+>>> +     &ssam_node_hid_kip_penstash,
+>>> +     &ssam_node_hid_kip_touchpad,
+>>> +     &ssam_node_hid_kip_fwupd,
+>>> +     &ssam_node_hid_sam_sensors,
+>>> +     &ssam_node_kip_tablet_switch,
+>>> +     NULL,
+>>> +};
+>>>
+>>>   /* -- SSAM platform/meta-hub driver. ---------------------------------------- */
+>>>
+>>> @@ -462,6 +477,8 @@ static const struct acpi_device_id ssam_platform_hub_acpi_match[] = {
+>>>   MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_match);
+>>>
+>>>   static const struct of_device_id ssam_platform_hub_of_match[] __maybe_unused = {
+>>> +     /* Surface Pro 9 5G */
+>>> +     { .compatible = "microsoft,arcata", (void *)ssam_node_group_sp9_5G },
+>>>       /* Surface Laptop 7 */
+>>>       { .compatible = "microsoft,romulus13", (void *)ssam_node_group_sl7 },
+>>>       { .compatible = "microsoft,romulus15", (void *)ssam_node_group_sl7 },
+>>
+>> Thanks!
+>>
+>> Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
+> 
+> Thanks for your review and all the work about SSAM for Surface owners!
 
+FWIW I agree with Maximilian's remarks and I would really like to
+see these applied to clearly differentiate the x86 and ARM versions.
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+Normally I would pick up a patch like this which just adds hw-ids as
+a fix for 6.12-rc# and squash in the suggested changes.
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+But looking at the test of the series this is more 6.13 material
+since the rest is landing in 6.13, right ?
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
+Patches for linux-next / 6.13 are managed by Ilpo this cycle.
 
-  pip3 install dtschema --upgrade
+So I'll leave it up to Ilpo if he will squash in the suggested changes
+or if he wants a new version (of just this patch, no need for a v3
+of the already applied patches).
 
+Regards,
 
-New warnings running 'make CHECK_DTBS=y rockchip/rk3036-kylin.dtb rockchip/rk3066a-bqcurie2.dtb rockchip/rk3066a-marsboard.dtb rockchip/rk3066a-mk808.dtb rockchip/rk3066a-rayeager.dtb rockchip/rk3128-evb.dtb rockchip/rk3128-xpi-3128.dtb rockchip/rk3188-bqedison2qc.dtb rockchip/rk3188-px3-evb.dtb rockchip/rk3188-radxarock.dtb rockchip/rk3228-evb.dtb rockchip/rk3229-evb.dtb rockchip/rk3229-xms6.dtb rockchip/rk3288-evb-act8846.dtb rockchip/rk3288-firefly-reload.dtb rockchip/rk3288-miqi.dtb rockchip/rk3288-phycore-rdk.dtb rockchip/rk3288-popmetal.dtb rockchip/rk3288-r89.dtb rockchip/rk3288-rock2-square.dtb rockchip/rk3288-veyron-brain.dtb rockchip/rk3288-veyron-fievel.dtb rockchip/rk3288-veyron-mickey.dtb rockchip/rk3288-vyasa.dtb rockchip/rv1108-elgin-r1.dtb rockchip/rv1108-evb.dtb rockchip/rv1126-edgeble-neu2-io.dtb rockchip/px30-evb.dtb rockchip/px30-firefly-jd4-core-mb.dtb rockchip/px30-ringneck-haikou.dtb rockchip/rk3308-evb.dtb rockchip/rk3308-roc-cc.dtb rockchip/rk3308-rock-pi-s.d
- tb rockchip/rk3318-a95x-z2.dtb rockchip/rk3326-gameforce-chi.dtb rockchip/rk3328-a1.dtb rockchip/rk3328-evb.dtb rockchip/rk3328-nanopi-r2s.dtb rockchip/rk3328-orangepi-r1-plus.dtb rockchip/rk3328-roc-cc.dtb rockchip/rk3328-rock-pi-e.dtb rockchip/rk3328-rock64.dtb rockchip/rk3368-geekbox.dtb rockchip/rk3368-lba3368.dtb rockchip/rk3368-lion-haikou.dtb rockchip/rk3368-orion-r68-meta.dtb rockchip/rk3368-px5-evb.dtb rockchip/rk3368-r88.dtb rockchip/rk3399-eaidk-610.dtb rockchip/rk3399-evb.dtb rockchip/rk3399-firefly.dtb rockchip/rk3399-gru-kevin.dtb rockchip/rk3399-hugsun-x99.dtb rockchip/rk3399-kobol-helios64.dtb rockchip/rk3399-leez-p710.dtb rockchip/rk3399-nanopc-t4.dtb rockchip/rk3399-nanopi-m4.dtb rockchip/rk3399-nanopi-neo4.dtb rockchip/rk3399-nanopi-r4s.dtb rockchip/rk3399-orangepi.dtb rockchip/rk3399-pinebook-pro.dtb rockchip/rk3399-pinephone-pro.dtb rockchip/rk3399-puma-haikou.dtb rockchip/rk3399-roc-pc-mezzanine.dtb rockchip/rk3399-roc-pc-plus.dtb rockchip/rk3399-rock-4c-plus.d
- tb rockchip/rk3566-lubancat-1.dtb rockchip/rk3566-quartz64-a.dtb rockchip/rk3566-quartz64-b.dtb rockchip/rk3566-radxa-cm3-io.dtb rockchip/rk3566-roc-pc.dtb rockchip/rk3566-rock-3c.dtb rockchip/rk3566-soquartz-blade.dtb rockchip/rk3566-soquartz-cm4.dtb rockchip/rk3566-soquartz-model-a.dtb rockchip/rk3568-bpi-r2-pro.dtb rockchip/rk3568-evb1-v10.dtb rockchip/rk3568-lubancat-2.dtb rockchip/rk3568-odroid-m1.dtb rockchip/rk3568-radxa-e25.dtb rockchip/rk3568-roc-pc.dtb rockchip/rk3568-rock-3a.dtb rockchip/rk3568-wolfvision-pf5.dtb rockchip/rk3588-armsom-sige7.dtb rockchip/rk3588-armsom-w3.dtb rockchip/rk3588-coolpi-cm5-evb.dtb rockchip/rk3588-coolpi-cm5-genbook.dtb rockchip/rk3588-evb1-v10.dtb rockchip/rk3588-jaguar.dtb rockchip/rk3588-nanopc-t6-lts.dtb rockchip/rk3588-nanopc-t6.dtb rockchip/rk3588-ok3588-c.dtb rockchip/rk3588-orangepi-5-plus.dtb rockchip/rk3588-quartzpro64.dtb rockchip/rk3588-rock-5b.dtb rockchip/rk3588-tiger-haikou.dtb rockchip/rk3588-toybrick-x0.dtb rockchip/rk3588s-coo
- lpi-4b.dtb rockchip/rk3588s-gameforce-ace.dtb rockchip/rk3588s-indiedroid-nova.dtb rockchip/rk3588s-khadas-edge2.dtb rockchip/rk3588s-nanopi-r6s.dtb rockchip/rk3588s-orangepi-5.dtb rockchip/rk3588s-rock-5a.dtb' for cfc3cfe1-086b-48f1-9b89-f17c9391d3cc@gmail.com:
-
-arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dtb: regulator-vcc1v8-lcd: 'pinctrl-0' is a dependency of 'pinctrl-names'
-	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dtb: regulator-vcc2v8-lcd: 'pinctrl-0' is a dependency of 'pinctrl-names'
-	from schema $id: http://devicetree.org/schemas/pinctrl/pinctrl-consumer.yaml#
-arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtb: regulator-vcc-3v3-sd-s0: Unevaluated properties are not allowed ('enable-active-low' was unexpected)
-	from schema $id: http://devicetree.org/schemas/regulator/fixed-regulator.yaml#
-
-
+Hans
 
 
 
