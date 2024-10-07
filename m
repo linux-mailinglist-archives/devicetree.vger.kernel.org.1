@@ -1,421 +1,473 @@
-Return-Path: <devicetree+bounces-108389-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108390-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE3A99927D7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:09:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AEF9927DD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:14:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7584028297A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:09:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E26DC2832BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:14:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4549918CC0C;
-	Mon,  7 Oct 2024 09:08:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 992AF18D62A;
+	Mon,  7 Oct 2024 09:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TpV6g2tT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kKV4biAQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3FC618CBF4;
-	Mon,  7 Oct 2024 09:08:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8ED18CC16;
+	Mon,  7 Oct 2024 09:14:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728292138; cv=none; b=oTgMBT7iwcm7yO5Jd0JWNLPkEYNFxMRsl4ECIoBEmemy7lsJgc0562oHY6kAdPK9DM1sg2LQphZY/2KBloU8w7bUad+bDr4be47uOuU09elZLH5YVGXTJIXGWPFpYS5oKw4gR3t/Y+8Vah7eA196N2sqlGAKAwxN1UVsV/WJ2qg=
+	t=1728292462; cv=none; b=h/p2H7j4dBvKhWIeEdfM/7yXtKBEtU1gQWbV9VFYc3zx0Xq7aqJU3j8C7OF+Hh2jKRNCvo+KuHrwFvOGs3NPg9U7G3ooglJTK8sitnqMD9e5NulSU3zKmxmmBIhEpQZ4A+CC5czj6d1nRg+9uQ2CAPs5iVAF4MhXMKlfgpxwfvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728292138; c=relaxed/simple;
-	bh=IIry1dEYTifF6DEPd31BX5nVO/lm731GurpTFpXJErI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C2meX06pYRjyjdUcutNpEzBL3xhY74zLgeDQi5aFZ/kwd2BLUofGT119qqaoKhThPnQO6x9ojlOcGDc/7bRCrNHwatrfc98JUvR9MmRhqDyKvuzR8c3w+TYR/qiKg8cecWpoSUEHJqCx37m0owC1ypL6erY69S9DO9Bw9O41i6U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TpV6g2tT; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728292133;
-	bh=IIry1dEYTifF6DEPd31BX5nVO/lm731GurpTFpXJErI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=TpV6g2tTzqJSEfvFXUsJr+805MendttYBqk7k5qFBc78STg3QgoyOHMj/tfTp2kAR
-	 tFn0pLf4NrU6kjGtIMmu+jyrfcbKX7a4jOXaoCjNc3ABwwAaVjrZKHJXo8Dgzlghf8
-	 /Nijpl3eVUSXaCb/JzYDnxERsKMZpUICzoCJ9gsPmjTbJYqOFYWk88QQlrp2nwXl8I
-	 abIgY2hF2vC2q1MxdRbLLl552O/9/26akUWC2q7ST4WAXPjXIUX6H2kRDCYR5QsclR
-	 adQBHhqzUZ6YxZvbMRPAZecf2w4hfwNzKt8DCiFWsbsQndiwX/5QKOOaZeaissIbP4
-	 QwuCjP56dagTw==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id C956517E10D6;
-	Mon,  7 Oct 2024 11:08:52 +0200 (CEST)
-Message-ID: <9bda89e0-d236-40e2-a109-0de5fb4bd228@collabora.com>
-Date: Mon, 7 Oct 2024 11:08:52 +0200
+	s=arc-20240116; t=1728292462; c=relaxed/simple;
+	bh=oE/kBr8rWeOIO22wYtkEcRmGz9/X2NKTXII6iyTMsuw=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=OIuwoY6K5FTP5cK2lT99ULtOimozA2xdGZ6yDtRRdL0Wb5IHoEbf1eBBTsy/ybrhYy02E01gWmN1tRbcs4tzUNvV0sjR9V/dJ9D3U8pQ5A7iYGHmot/YMjUIVw6aT2NMtcuEp862FVCukt20FkaB21bzQ0Osqbq1x5Cg+xTRAlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kKV4biAQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4974TTRS025830;
+	Mon, 7 Oct 2024 09:14:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:date:from:message-id:subject:to; s=qcppdkim1; bh=pWykGUchrl8M
+	wJ0QD/JLsppVOSbfApjfmBT/1cLRGlw=; b=kKV4biAQ2vAIY2wyHrpouku1H1ji
+	eTjTQRzlV+1Rl/IbNZCkLSXNlevBHHHWfFjbc5yqYsjKwYxXB4tU84TK+nL78yZ1
+	coqNrkH8b8UGSktNheUQLJnvLiHGli7RqlFAEH2THIHDnm264U+/rOEvMWZCWt/F
+	Z4HEYB7bQ1kn5VIF6PGwBe6JgipL27aVphyDA3rHfCbVhuFSxjfLNfoF1/VvQhf0
+	D4P/9+vzbx7kGcM+0I3TUsFDJ6ua1I1UKkdPA8Uin+0T8iPJFwmW+iTG5m2rWoiN
+	AVkzKcKQvM7vRZz5uKiidL+fgeq4iJIGuryhmizE7GL9CTH+4Y0hMP4mMA==
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xtb3k1d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 09:14:14 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 4979EAEQ028317;
+	Mon, 7 Oct 2024 09:14:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 422xhksqup-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+	Mon, 07 Oct 2024 09:14:10 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4979E94Y028303;
+	Mon, 7 Oct 2024 09:14:09 GMT
+Received: from hu-maiyas-hyd.qualcomm.com (hu-vdadhani-hyd.qualcomm.com [10.213.106.28])
+	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 4979E9l4028291;
+	Mon, 07 Oct 2024 09:14:09 +0000
+Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 4047106)
+	id D86C5500C56; Mon,  7 Oct 2024 14:44:08 +0530 (+0530)
+From: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dmitry.baryshkov@linaro.org
+Cc: quic_msavaliy@quicinc.com, quic_anupkulk@quicinc.com,
+        Viken Dadhaniya <quic_vdadhani@quicinc.com>
+Subject: [PATCH v3] arm64: dts: qcom: sa8775p: Populate additional UART DT nodes
+Date: Mon,  7 Oct 2024 14:44:07 +0530
+Message-Id: <20241007091407.13798-1-quic_vdadhani@quicinc.com>
+X-Mailer: git-send-email 2.17.1
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 6tRD8x6tiQ0Hp24SUtg4-TesQmUxGdjA
+X-Proofpoint-GUID: 6tRD8x6tiQ0Hp24SUtg4-TesQmUxGdjA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 spamscore=0
+ malwarescore=0 bulkscore=0 priorityscore=1501 clxscore=1015 phishscore=0
+ mlxscore=0 mlxlogscore=999 adultscore=0 lowpriorityscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410070064
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 3/3] drm/mediatek: Implement OF graphs support for
- display paths
-To: =?UTF-8?B?Q0sgSHUgKOiDoeS/iuWFiSk=?= <ck.hu@mediatek.com>,
- "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "sui.jingfeng@linux.dev" <sui.jingfeng@linux.dev>,
- "wenst@chromium.org" <wenst@chromium.org>,
- Sjoerd Simons <sjoerd@collabora.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "tzimmermann@suse.de" <tzimmermann@suse.de>,
- =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= <Shawn.Sung@mediatek.com>,
- "mripard@kernel.org" <mripard@kernel.org>,
- =?UTF-8?B?Sml0YW8gU2hpICjnn7PorrDmtpsp?= <jitao.shi@mediatek.com>,
- "michael@walle.cc" <michael@walle.cc>, "daniel@ffwll.ch" <daniel@ffwll.ch>,
- "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
- "robh@kernel.org" <robh@kernel.org>,
- "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
- "airlied@gmail.com" <airlied@gmail.com>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "kernel@collabora.com" <kernel@collabora.com>,
- "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
- =?UTF-8?B?WXUtY2hhbmcgTGVlICjmnY7nprnnkosp?= <Yu-chang.Lee@mediatek.com>,
- "mwalle@kernel.org" <mwalle@kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- Alexandre Mergnat <amergnat@baylibre.com>
-References: <20240910105054.125005-1-angelogioacchino.delregno@collabora.com>
- <01020191db8f22cd-0f5d733b-420e-453c-8607-a3e9f70f32d6-000000@eu-west-1.amazonses.com>
- <e3953947f5cf05e8e6a2ec3448cf0c08a8c39c1c.camel@mediatek.com>
- <56c4e87c-6774-4542-8ae7-dab89750081c@collabora.com>
- <58ee09aeb5a224dbc8faee236ed1a77ce3fbd011.camel@mediatek.com>
- <d704a5b0-d503-4e6b-b6ef-32909a9aea77@collabora.com>
- <04f1506b23b41c775e0735b5b3189b4118500715.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <04f1506b23b41c775e0735b5b3189b4118500715.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
 
-Il 07/10/24 08:57, CK Hu (胡俊光) ha scritto:
-> Hi, Angelo:
-> 
-> On Fri, 2024-10-04 at 12:22 +0200, AngeloGioacchino Del Regno wrote:
->> Il 04/10/24 08:03, CK Hu (胡俊光) ha scritto:
->>> Hi, Angelo:
->>>
->>> On Tue, 2024-10-01 at 13:33 +0200, AngeloGioacchino Del Regno wrote:
->>>> Il 01/10/24 12:07, CK Hu (胡俊光) ha scritto:
->>>>> Hi, Angelo:
->>>>>
->>>>> On Tue, 2024-09-10 at 10:51 +0000, AngeloGioacchino Del Regno wrote:
->>>>>> It is impossible to add each and every possible DDP path combination
->>>>>> for each and every possible combination of SoC and board: right now,
->>>>>> this driver hardcodes configuration for 10 SoCs and this is going to
->>>>>> grow larger and larger, and with new hacks like the introduction of
->>>>>> mtk_drm_route which is anyway not enough for all final routes as the
->>>>>> DSI cannot be connected to MERGE if it's not a dual-DSI, or enabling
->>>>>> DSC preventively doesn't work if the display doesn't support it, or
->>>>>> others.
->>>>>>
->>>>>> Since practically all display IPs in MediaTek SoCs support being
->>>>>> interconnected with different instances of other, or the same, IPs
->>>>>> or with different IPs and in different combinations, the final DDP
->>>>>> pipeline is effectively a board specific configuration.
->>>>>>
->>>>>> Implement OF graphs support to the mediatek-drm drivers, allowing to
->>>>>> stop hardcoding the paths, and preventing this driver to get a huge
->>>>>> amount of arrays for each board and SoC combination, also paving the
->>>>>> way to share the same mtk_mmsys_driver_data between multiple SoCs,
->>>>>> making it more straightforward to add support for new chips.
->>>>>>
->>>>>> Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>>>> Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
->>>>>> Acked-by: Sui Jingfeng <sui.jingfeng@linux.dev>
->>>>>> Tested-by: Michael Walle <mwalle@kernel.org> # on kontron-sbc-i1200
->>>>>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->>>>>> ---
->>>>>
->>>>> [snip]
->>>>>
->>>>>> +
->>>>>> +bool mtk_ovl_adaptor_is_comp_present(struct device_node *node)
->>>>>> +{
->>>>>> +	enum mtk_ovl_adaptor_comp_type type;
->>>>>> +	int ret;
->>>>>> +
->>>>>> +	ret = ovl_adaptor_of_get_ddp_comp_type(node, &type);
->>>>>> +	if (ret)
->>>>>> +		return false;
->>>>>> +
->>>>>> +	if (type >= OVL_ADAPTOR_TYPE_NUM)
->>>>>> +		return false;
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * ETHDR and Padding are used exclusively in OVL Adaptor: if this
->>>>>> +	 * component is not one of those, it's likely not an OVL Adaptor path.
->>>>>> +	 */
->>>>>
->>>>> I don't know your logic here.
->>>>> The OVL Adaptor pipeline is:
->>>>>
->>>>> mdp_rdma -> padding ---+      +-------+
->>>>>                         Merge -> |       |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                                  |       |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                         Merge -> |       |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                                  | ETHDR |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                         Merge -> |       |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                                  |       |
->>>>> mdp_rdma -> padding ---+      |       |
->>>>>                         Merge -> |       |
->>>>> mdp_rdma -> padding ---+      +-------+
->>>>>
->>>>> So mdp_rdma and merge is not OVL Adaptor?
->>>>>
->>>>
->>>> Yes, and in device tree, you express that exactly like you just pictured.
->>>>
->>>> OVL Adaptor is treated like a software component internally, and manages
->>>> its own merge pipes exactly like before this commit.
->>>>
->>>> In case there will be any need to express OVL Adaptor as hardware component,
->>>> it will be possible to do so with no modification to the bindings.
->>>>
->>>>>
->>>>>> +	return type == OVL_ADAPTOR_TYPE_ETHDR || type == OVL_ADAPTOR_TYPE_PADDING;
->>>>>> +}
->>>>>> +
->>>>>>     
->>>>>
->>>>> [snip]
->>>>>
->>>>>> +
->>>>>> +/**
->>>>>> + * mtk_drm_of_ddp_path_build_one - Build a Display HW Pipeline for a CRTC Path
->>>>>> + * @dev:          The mediatek-drm device
->>>>>> + * @cpath:        CRTC Path relative to a VDO or MMSYS
->>>>>> + * @out_path:     Pointer to an array that will contain the new pipeline
->>>>>> + * @out_path_len: Number of entries in the pipeline array
->>>>>> + *
->>>>>> + * MediaTek SoCs can use different DDP hardware pipelines (or paths) depending
->>>>>> + * on the board-specific desired display configuration; this function walks
->>>>>> + * through all of the output endpoints starting from a VDO or MMSYS hardware
->>>>>> + * instance and builds the right pipeline as specified in device trees.
->>>>>> + *
->>>>>> + * Return:
->>>>>> + * * %0       - Display HW Pipeline successfully built and validated
->>>>>> + * * %-ENOENT - Display pipeline was not specified in device tree
->>>>>> + * * %-EINVAL - Display pipeline built but validation failed
->>>>>> + * * %-ENOMEM - Failure to allocate pipeline array to pass to the caller
->>>>>> + */
->>>>>> +static int mtk_drm_of_ddp_path_build_one(struct device *dev, enum mtk_crtc_path cpath,
->>>>>> +					 const unsigned int **out_path,
->>>>>> +					 unsigned int *out_path_len)
->>>>>> +{
->>>>>> +	struct device_node *next, *prev, *vdo = dev->parent->of_node;
->>>>>> +	unsigned int temp_path[DDP_COMPONENT_DRM_ID_MAX] = { 0 };
->>>>>> +	unsigned int *final_ddp_path;
->>>>>> +	unsigned short int idx = 0;
->>>>>> +	bool ovl_adaptor_comp_added = false;
->>>>>> +	int ret;
->>>>>> +
->>>>>> +	/* Get the first entry for the temp_path array */
->>>>>> +	ret = mtk_drm_of_get_ddp_ep_cid(vdo, 0, cpath, &next, &temp_path[idx]);
->>>>>> +	if (ret) {
->>>>>> +		if (next && temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->>>>>
->>>>> mdp_rdma would not be DDP_COMPONENT_DRM_OVL_ADAPTOR.
->>>>
->>>> This piece of code just avoids adding OVL_ADAPTOR more than once to the pipeline.
->>>>
->>>>>
->>>>>> +			dev_dbg(dev, "Adding OVL Adaptor for %pOF\n", next);
->>>>>> +			ovl_adaptor_comp_added = true;
->>>>>> +		} else {
->>>>>> +			if (next)
->>>>>> +				dev_err(dev, "Invalid component %pOF\n", next);
->>>>>> +			else
->>>>>> +				dev_err(dev, "Cannot find first endpoint for path %d\n", cpath);
->>>>>> +
->>>>>> +			return ret;
->>>>>> +		}
->>>>>> +	}
->>>>>> +	idx++;
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * Walk through port outputs until we reach the last valid mediatek-drm component.
->>>>>> +	 * To be valid, this must end with an "invalid" component that is a display node.
->>>>>> +	 */
->>>>>> +	do {
->>>>>> +		prev = next;
->>>>>> +		ret = mtk_drm_of_get_ddp_ep_cid(next, 1, cpath, &next, &temp_path[idx]);
->>>>>> +		of_node_put(prev);
->>>>>> +		if (ret) {
->>>>>> +			of_node_put(next);
->>>>>> +			break;
->>>>>> +		}
->>>>>> +
->>>>>> +		/*
->>>>>> +		 * If this is an OVL adaptor exclusive component and one of those
->>>>>> +		 * was already added, don't add another instance of the generic
->>>>>> +		 * DDP_COMPONENT_OVL_ADAPTOR, as this is used only to decide whether
->>>>>> +		 * to probe that component master driver of which only one instance
->>>>>> +		 * is needed and possible.
->>>>>> +		 */
->>>>>> +		if (temp_path[idx] == DDP_COMPONENT_DRM_OVL_ADAPTOR) {
->>>>>
->>>>> merge would not be DDP_COMPONENT_DRM_OVL_ADAPTOR.
->>>>> Finally, the path would be:
->>>>>
->>>>> mdp_rdma -> ovl adaptor (padding) -> merge -> (ethdr is skipped here) ...
->>>>>
->>>>
->>>> Again, the path in the OF graph is expressed exactly like you said.
->>>
->>> I know the OF graph is expressed like I said.
->>> But I care about the path in driver should like this:
->>
->> Ok, now I understand your concern.
->>
->>>
->>> static const unsigned int mt8195_mtk_ddp_ext[] = {
->>>           DDP_COMPONENT_DRM_OVL_ADAPTOR,
->>>           DDP_COMPONENT_MERGE5,
->>>           DDP_COMPONENT_DP_INTF1,
->>> };
->>>
->>> In OF graph, the first component is mdp_rdma and mtk_ovl_adaptor_is_comp_present() would return false for mdp_rdma.
->>> So I think this would make mtk_drm_of_ddp_path_build_one() return error and the path is not created.
->>> If I'm wrong, please explain how this code would result in the path like mt8195_mtk_ddp_ext[].
->>>
->>
->> The MDP_RDMA usage in mtk_disp_ovl_adaptor is hardcoded: in function
->> mtk_ovl_adaptor_layer_config(), the rdma_l/r are always OVL_ADAPTOR_MDP_RDMAx,
->> then function mtk_ovl_adaptor_dma_dev_get(), always returns the MDP_RDMA0
->> component, same for mtk_ovl_adaptor_get_{num_formats,formats}() which always
->> call mtk_mdp_rdma_get_formats() for OVL_ADAPTOR_MDP_RDMA0.
->>
->> I have just rechecked how I expressed the path for MT8195 Tomato, where the
->> external display works with OF Graphs, and it was missing MDP_RDMA entirely.
->>
->> The path was ethdr -> merge -> dp_intf1 ... and it should be mdp_rdma -> (etc).
->>
->> Effectively, that is indeed wrong, as all of the steps must be expressed
->> inside of the graph.
->>
->> Since the OVL Adaptor's RDMA instances' compatible strings do *not* collide
->> with the others, as OVL Adaptor uses compatible mediatek,mt8195-vdo1-rdma,
->> and the regular one uses compatible mediatek,mt8195-disp-rdma, we can resolve
->> this issue by changing function mtk_ovl_adaptor_is_comp_present()
->>
->> from
->>
->> return type == OVL_ADAPTOR_TYPE_ETHDR || type == OVL_ADAPTOR_TYPE_PADDING;
->>
->> to
->>
->> return type == OVL_ADAPTOR_TYPE_ETHDR || type == OVL_ADAPTOR_TYPE_PADDING ||
->>          type == OVL_ADAPTOR_TYPE_MDP_RDMA;
->>
->> is that okay for you?
-> 
-> I just want the path to be like mt8195_mtk_ddp_ext[]. If so, I'm ok.
-> 
+Currently, UART configuration is populated for only a few SEs
+(Serial Engines) in the sa8775p DTSI file. Since every SE can
+support the UART protocol, usecase or client should have the flexibility
+to enable required SE for UART depending on the specific board version.
 
-Yes, that makes the path that you described to be exactly like
-mt8195_mtk_ddp_ext[].
+Hence, populate UART configurations for the remaining SEs in the
+sa8775p SoC.
 
-I will send a v11 later today.
+Co-developed-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Signed-off-by: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>
+Signed-off-by: Viken Dadhaniya <quic_vdadhani@quicinc.com>
+---
+v2 -> v3:
 
-Cheers,
-Angelo
+- Modifed commit log as requested by Dmitry.
 
-> Regards,
-> CK
-> 
->>
->>> If you does not test this with mt8195 external display path, maybe we could just drop the code about OVL adaptor with a TODO comment.
->>>
->>
->> And yes, as I said, external display paths were tested on 8195, actually both
->> on Kontron i1200 by Michael Walle and on MT8195 Tomato by myself.
->>
->> Thanks again,
->> Angelo
->>
->>> Regards,
->>> CK
->>>
->>>>
->>>> Regards,
->>>> Angelo
->>>>
->>>>> Regards,
->>>>> CK
->>>>>
->>>>>> +			if (!ovl_adaptor_comp_added)
->>>>>> +				ovl_adaptor_comp_added = true;
->>>>>> +			else
->>>>>> +				idx--;
->>>>>> +		}
->>>>>> +	} while (++idx < DDP_COMPONENT_DRM_ID_MAX);
->>>>>> +
->>>>>> +	/*
->>>>>> +	 * The device component might not be enabled: in that case, don't
->>>>>> +	 * check the last entry and just report that the device is missing.
->>>>>> +	 */
->>>>>> +	if (ret == -ENODEV)
->>>>>> +		return ret;
->>>>>> +
->>>>>> +	/* If the last entry is not a final display output, the configuration is wrong */
->>>>>> +	switch (temp_path[idx - 1]) {
->>>>>> +	case DDP_COMPONENT_DP_INTF0:
->>>>>> +	case DDP_COMPONENT_DP_INTF1:
->>>>>> +	case DDP_COMPONENT_DPI0:
->>>>>> +	case DDP_COMPONENT_DPI1:
->>>>>> +	case DDP_COMPONENT_DSI0:
->>>>>> +	case DDP_COMPONENT_DSI1:
->>>>>> +	case DDP_COMPONENT_DSI2:
->>>>>> +	case DDP_COMPONENT_DSI3:
->>>>>> +		break;
->>>>>> +	default:
->>>>>> +		dev_err(dev, "Invalid display hw pipeline. Last component: %d (ret=%d)\n",
->>>>>> +			temp_path[idx - 1], ret);
->>>>>> +		return -EINVAL;
->>>>>> +	}
->>>>>> +
->>>>>> +	final_ddp_path = devm_kmemdup(dev, temp_path, idx * sizeof(temp_path[0]), GFP_KERNEL);
->>>>>> +	if (!final_ddp_path)
->>>>>> +		return -ENOMEM;
->>>>>> +
->>>>>> +	dev_dbg(dev, "Display HW Pipeline built with %d components.\n", idx);
->>>>>> +
->>>>>> +	/* Pipeline built! */
->>>>>> +	*out_path = final_ddp_path;
->>>>>> +	*out_path_len = idx;
->>>>>> +
->>>>>> +	return 0;
->>>>>> +}
->>>>>> +
->>>>
->>>>
->>>>
->>
->>
+v2 Link: https://lore.kernel.org/lkml/20240911151447.27544-1-quic_vdadhani@quicinc.com/
 
+v1 -> v2:
+
+- Modifed commit log as requested by Krzysztof.
+- Added co-developed-by tag.
+
+v1 Link: https://lore.kernel.org/linux-arm-msm/98e7dc28-4413-4247-bad1-98b529f6d62d@kernel.org/T/
+---
+---
+ arch/arm64/boot/dts/qcom/sa8775p.dtsi | 231 ++++++++++++++++++++++++++
+ 1 file changed, 231 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+index e8dbc8d820a6..0c95a23aecec 100644
+--- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
++++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+@@ -1,6 +1,7 @@
+ // SPDX-License-Identifier: BSD-3-Clause
+ /*
+  * Copyright (c) 2023, Linaro Limited
++ * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+  */
+ 
+ #include <dt-bindings/interconnect/qcom,icc.h>
+@@ -905,6 +906,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart14: serial@880000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00880000 0x0 0x4000>;
++				interrupts = <GIC_SPI 373 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S0_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c15: i2c@884000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x884000 0x0 0x4000>;
+@@ -947,6 +963,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart15: serial@884000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00884000 0x0 0x4000>;
++				interrupts = <GIC_SPI 583 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S1_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c16: i2c@888000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x888000 0x0 0x4000>;
+@@ -989,6 +1020,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart16: serial@888000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00888000 0x0 0x4000>;
++				interrupts = <GIC_SPI 584 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S2_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c17: i2c@88c000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x88c000 0x0 0x4000>;
+@@ -1088,6 +1134,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart18: serial@890000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00890000 0x0 0x4000>;
++				interrupts = <GIC_SPI 586 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S4_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c19: i2c@894000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x894000 0x0 0x4000>;
+@@ -1130,6 +1191,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart19: serial@894000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00894000 0x0 0x4000>;
++				interrupts = <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S5_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c20: i2c@898000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x898000 0x0 0x4000>;
+@@ -1171,6 +1247,22 @@
+ 				power-domains = <&rpmhpd SA8775P_CX>;
+ 				status = "disabled";
+ 			};
++
++			uart20: serial@898000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00898000 0x0 0x4000>;
++				interrupts = <GIC_SPI 834 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP2_S6_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_2 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_2 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 		};
+ 
+ 		qupv3_id_0: geniqup@9c0000 {
+@@ -1227,6 +1319,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart0: serial@980000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x980000 0x0 0x4000>;
++				interrupts = <GIC_SPI 550 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c1: i2c@984000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x984000 0x0 0x4000>;
+@@ -1269,6 +1376,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart1: serial@984000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x984000 0x0 0x4000>;
++				interrupts = <GIC_SPI 551 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c2: i2c@988000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x988000 0x0 0x4000>;
+@@ -1311,6 +1433,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart2: serial@988000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x988000 0x0 0x4000>;
++				interrupts = <GIC_SPI 529 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S2_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c3: i2c@98c000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x98c000 0x0 0x4000>;
+@@ -1353,6 +1490,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart3: serial@98c000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x98c000 0x0 0x4000>;
++				interrupts = <GIC_SPI 530 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c4: i2c@990000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x990000 0x0 0x4000>;
+@@ -1395,6 +1547,21 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart4: serial@990000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x990000 0x0 0x4000>;
++				interrupts = <GIC_SPI 531 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&gcc GCC_QUPV3_WRAP0_S4_CLK>;
++				clock-names = "se";
++				interconnects = <&clk_virt MASTER_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_0 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_0 QCOM_ICC_TAG_ALWAYS>;
++				interconnect-names = "qup-core", "qup-config";
++				power-domains = <&rpmhpd SA8775P_CX>;
++				status = "disabled";
++			};
++
+ 			i2c5: i2c@994000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0x994000 0x0 0x4000>;
+@@ -1507,6 +1674,22 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart7: serial@a80000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00a80000 0x0 0x4000>;
++				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
++				interconnect-names = "qup-core", "qup-config";
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
++				power-domains = <&rpmhpd SA8775P_CX>;
++				operating-points-v2 = <&qup_opp_table_100mhz>;
++				status = "disabled";
++			};
++
+ 			i2c8: i2c@a84000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0xa84000 0x0 0x4000>;
+@@ -1549,6 +1732,22 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart8: serial@a84000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00a84000 0x0 0x4000>;
++				interrupts = <GIC_SPI 354 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP1_S1_CLK>;
++				interconnect-names = "qup-core", "qup-config";
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
++				power-domains = <&rpmhpd SA8775P_CX>;
++				operating-points-v2 = <&qup_opp_table_100mhz>;
++				status = "disabled";
++			};
++
+ 			i2c9: i2c@a88000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0xa88000 0x0 0x4000>;
+@@ -1706,6 +1905,22 @@
+ 				status = "disabled";
+ 			};
+ 
++			uart11: serial@a90000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00a90000 0x0 0x4000>;
++				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
++				interconnect-names = "qup-core", "qup-config";
++				interconnects = <&clk_virt MASTER_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_1 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_1 QCOM_ICC_TAG_ALWAYS>;
++				power-domains = <&rpmhpd SA8775P_CX>;
++				operating-points-v2 = <&qup_opp_table_100mhz>;
++				status = "disabled";
++			};
++
+ 			i2c12: i2c@a94000 {
+ 				compatible = "qcom,geni-i2c";
+ 				reg = <0x0 0xa94000 0x0 0x4000>;
+@@ -1838,6 +2053,22 @@
+ 				power-domains = <&rpmhpd SA8775P_CX>;
+ 				status = "disabled";
+ 			};
++
++			uart21: serial@b80000 {
++				compatible = "qcom,geni-uart";
++				reg = <0x0 0x00b80000 0x0 0x4000>;
++				interrupts = <GIC_SPI 831 IRQ_TYPE_LEVEL_HIGH>;
++				clock-names = "se";
++				clocks = <&gcc GCC_QUPV3_WRAP3_S0_CLK>;
++				interconnect-names = "qup-core", "qup-config";
++				interconnects = <&clk_virt MASTER_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS
++						 &clk_virt SLAVE_QUP_CORE_3 QCOM_ICC_TAG_ALWAYS>,
++						<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
++						 &config_noc SLAVE_QUP_3 QCOM_ICC_TAG_ALWAYS>;
++				power-domains = <&rpmhpd SA8775P_CX>;
++				operating-points-v2 = <&qup_opp_table_100mhz>;
++				status = "disabled";
++			};
+ 		};
+ 
+ 		rng: rng@10d2000 {
 -- 
-AngeloGioacchino Del Regno
-Senior Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
+2.17.1
 
 
