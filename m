@@ -1,123 +1,99 @@
-Return-Path: <devicetree+bounces-108628-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 768C7993272
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:05:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F4D3993287
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:08:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EAA31C22F25
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:05:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 024B31F23AC0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:08:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ECD11DA116;
-	Mon,  7 Oct 2024 16:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B10A1DA0ED;
+	Mon,  7 Oct 2024 16:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m8z1sEit"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="ocSfg4kR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6121D4159
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 16:05:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54F4A1D61B9;
+	Mon,  7 Oct 2024 16:08:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728317106; cv=none; b=elCS71mzwysJVJnmfPfh8YQ7IjrfA3IVYA5/8ESIjeEpZ0EJoDse0ctQ0W1LsHgmK2oNGYYsKVQ0tcSMh1gVsNBDkWMe3KD70/cGNsgK908kaW9O/USw3XteTVPv/Zh8njXavoSpn0I/kR6WJZpGjS5yXEhPho0udXH79eGY/vE=
+	t=1728317290; cv=none; b=GdnIix/kTm4S1Dyz/p7Z6dPbOcuK6J7AepzPIZ3Q4u/BwE2+YFK+snOPiQETCHb9YFAamEgQWEqxYvGsf+Ds3NtljPmVBS4CxfxEb6JKVOzf9RESRkuaLXMuIKfAoKWRJetvxBmRByqZRunOBKp7LdETz+58bbC0cucupeH6c9I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728317106; c=relaxed/simple;
-	bh=axWwsZUnKNXMYzhRnWv8sbE1iG0zwqg5BN1W6d4VOOE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=AeOw0ghAK6GmBKU6HRHMlqFOrA6rns/tFC0odZzZ7t5UJx+6mnM+IjUpDzNvxpIR+BmPvazRdMPf9Z8I/s6PqHz5VA0iVL1Jr8eiE5kw4K+om9DxNt/CmIJr26B4mFJ8rQBvIE03pldpuplbj5c8y+yklv3wrRoDxCS2CmG0rrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m8z1sEit; arc=none smtp.client-ip=185.11.138.130
+	s=arc-20240116; t=1728317290; c=relaxed/simple;
+	bh=uqkRqVlfW6WWbHVuSuWc5OtFYX+n1sshI00wPz1tgmY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YfPZASXcenTGFjRWNvx2SltPrg3Hfvubs5GVMcdr+QcgVPHFESDBCcyjExS/sT/lLLq+GrKCCpBLNfLuyJhoSrY0ESIKji7tJNPjiiUpwivlsAKGb3rmK/e5zSfDLa/QrZ0jF6lAyYtI7S7Z7EZ8Q172c2UcClUnKP7vWX1QzM4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=ocSfg4kR; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=a7fx3r4X0Bn5vVtLSFf9bGiuTv0w4FDi3+Uh57xb7q8=; b=m8z1sEitUmLKiuN6py9waIeldx
-	e2GW+PBbulKxwu9bR8qWGg9AOuOSB7JEliz58I7NtG+PAuwM61xyPdBO7lgJvXpdQ1i1oQl6mD890
-	4PKUXAN+gGVCpm1rdmYKN243a0uvoBaKmwny/ZMwny51z/5nqs6jxjFHkVXtA8C4yIKnSWRxF3wlt
-	Ekc91xRC41tJuNDo8mGI1W2qPM0cwfOFYaj7qlm3gONO4iYzAkXCLqBfhedn/w4rIpce2mdOTpLQF
-	QMW3aiUKl0GScRor6swJLwBNUDHAkTXTDj8ltrwF/gzx8cqgBmX0/te4gBWPJ7GXngbkB2IQL8O9+
-	CXijg/hw==;
-Received: from i5e860d18.versanet.de ([94.134.13.24] helo=diego.localnet)
+	bh=TcfkwV3f9baV8MY6zp7V4iWPZ2iF38+wYPeAUgAVClw=; b=ocSfg4kRHsOgJaXyKMewNo8FXX
+	5v0oto4RYzXvY5jykwI+viOFUVrF87yOBFHEqV+zHKZc+ieUIPE/F1nv+BZG8aUl1gc2JXRaZWPro
+	mssbta0k4hspSkGEGbNH1lyawZuie6EjCvbsZW2O/yc7o0rFIttYT8aL7sWfGOqiQlpPlqTl0q53I
+	AmjH1F9svmbc+uOu5kKv92hSjsfjHJ/YgRTapdUv4Rs4+TDrD6lXSIeVnliG9xxck0wMVruPZrkR8
+	YOBQVrPtgUOorkcq09OsCk0uUvQl6iMJZj/KoMRASvRx7/L3zWLE8luIkiwIydEGQOU3aSa2kSZUe
+	hGNE9BFQ==;
+Received: from i5e860d18.versanet.de ([94.134.13.24] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sxqEF-0002YC-S6; Mon, 07 Oct 2024 18:04:59 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org,
- Diederik de Haas <didi.debian@cknow.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Andy Yan <andyshrk@163.com>, Diederik de Haas <didi.debian@cknow.org>
-Subject:
- Re: [PATCH 5/8] arm64: dts: rockchip: Fix bluetooth properties on rk3566 box
- demo
-Date: Mon, 07 Oct 2024 18:04:59 +0200
-Message-ID: <4607042.LvFx2qVVIh@diego>
-In-Reply-To: <D4POH599C91R.OQUBX190GASQ@cknow.org>
-References:
- <20240930210112.1993625-1-heiko@sntech.de>
- <20240930210112.1993625-6-heiko@sntech.de>
- <D4POH599C91R.OQUBX190GASQ@cknow.org>
+	id 1sxqHG-0002af-Ba; Mon, 07 Oct 2024 18:08:06 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: lee@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	heiko@sntech.de
+Subject: [PATCH] dt-bindings: leds: Document "rc-feedback" trigger
+Date: Mon,  7 Oct 2024 18:08:04 +0200
+Message-ID: <20241007160804.2447947-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8bit
 
-Hi Diederik,
+Document the "rc-feedback" trigger which is used to control LEDs by
+remote control device activity. This is an existing trigger used in
+existing DTs, document it so validation of those DTs would pass.
 
-Am Montag, 7. Oktober 2024, 17:27:12 CEST schrieb Diederik de Haas:
-> On Mon Sep 30, 2024 at 11:01 PM CEST, Heiko Stuebner wrote:
-> > The expected clock-name is different (ext_clock -> extclk) and the wakeup
-> 
-> According to "brcm,bluetooth.yaml", 'extclk' is deprecated in favor of
-> 'txco', so it seems better to use that?
-> Same would be true for Rock960 boards (patch 6 of this series).
+It was originally introduced into the Linux kernel in 2013 with
+commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypresses")
 
-thanks for that catch. I mainly stumbled upon the "_" underscore, found the
-clockname without but didn't take into account that there was a deprecated
-flag set in the binding :-)
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-
-> > gpio properties are named differently when changing from vendor-tree to
-> > mainline. So fix those to match the binding.
-> >
-> > Fixes: 2e0537b16b25 ("arm64: dts: rockchip: Add dts for rockchip rk3566 box demo board")
-> > Cc: Andy Yan <andyshrk@163.com>
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts | 6 +++---
-> >  1 file changed, 3 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > index 0c18406e4c59..dd6fe964d618 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > @@ -449,9 +449,9 @@ &uart1 {
-> >  	bluetooth {
-> >  		compatible = "brcm,bcm43438-bt";
-> >  		clocks = <&pmucru CLK_RTC_32K>;
-> > -		clock-names = "ext_clock";
-> > -		device-wake-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> > -		host-wake-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> > +		clock-names = "extclk";
-> > +		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> > +		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> >  		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-> >  		pinctrl-names = "default";
-> >  		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-> 
-> 
-
-
-
+diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+index bf9a101e4d42..32f9116e03a2 100644
+--- a/Documentation/devicetree/bindings/leds/common.yaml
++++ b/Documentation/devicetree/bindings/leds/common.yaml
+@@ -119,6 +119,8 @@ properties:
+             # if trigger is absent
+           - none
+             # LED indicates camera torch state
++          - rc-feedback
++            # LED indicates remote control feedback
+           - torch
+             # LED indicates USB gadget activity
+           - usb-gadget
+-- 
+2.43.0
 
 
