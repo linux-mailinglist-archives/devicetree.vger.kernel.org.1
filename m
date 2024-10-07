@@ -1,126 +1,169 @@
-Return-Path: <devicetree+bounces-108262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72659922B5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:05:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D83B39922C0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:28:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7E9BB21C59
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 02:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6095B21C5B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 02:28:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C35FC19;
-	Mon,  7 Oct 2024 02:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19E09FC0E;
+	Mon,  7 Oct 2024 02:28:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZYrik45r"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="R8vJSV7H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AFE5231C8F;
-	Mon,  7 Oct 2024 02:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF5EE13AF9;
+	Mon,  7 Oct 2024 02:28:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728266736; cv=none; b=jwsZLNPWGOCQcMEzodPbHvmCKpugiFdpcuol2cc1PsTciINguMQ7hju6OUDoV2ePVMfGlxqeZiwCq8d6pQqPFckfuBzEN5ss9X+Aal3GyKQpAJx1hXJKtkHowdcbkEHGT0cbAMIKDKUWT/+pPkXLYwJF2P0ZYyL5R7sbp0N0KRc=
+	t=1728268131; cv=none; b=IWaGNynrvG6PkHiqvSXpjJjh9jPoGQqDcNSpTNcwr+u87InZ/rKtTRI5apbB85JKRrkhwOinORLml/gpwZTVL2d8Mz78HkrolSqYeiBSjjpcaBCN1P+LYXPEjTFoquv2DGrfUwxVGRmK+E/67tOes1MVRgg0T3RR08ZQG6pE76w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728266736; c=relaxed/simple;
-	bh=vSS0mNwLd9L+a8nwXnNp0Jjzmc3ypK3JiuMBpd0vKxc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FMbxoaB50tbNW/0Vx7CVO5usoMOG8vUGRWNRrsJdGyDYyI4mgDzmAkQfP7n2kXqcmdcmCz5raDpyYbkmq5GvWsBkMa8/dz/7yW03bskfk0WamCsilAC3RKBduZebqcPOFm5j/LNG3NdaZ9HO7wVwOD1wIctlVbMEGpqiSyMZVE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZYrik45r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFAA8C4CEC5;
-	Mon,  7 Oct 2024 02:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728266735;
-	bh=vSS0mNwLd9L+a8nwXnNp0Jjzmc3ypK3JiuMBpd0vKxc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZYrik45rt6Iey0b4ietxizbHV+OiHLzD6XF7gs6+Niyrn9PXSCCvPFcEbHBMMSv9H
-	 jx1e08ninm99nBdELwQCJZoaNx77pSpxhvyJXML6LHgyoskP9RDJrla0jK0rpOovK1
-	 9KrVpgQmKZe1Q4Ve5BwCgOWk/mFIlWQ9cG7a51Gvv0ssDv4CSvvl1r2r6BRTnWExUq
-	 Od9zrMzaZvlI2qshpfndGjptbbry/+oysQU3UmCIrrg6WagjosGo26JS/GIbQd8Jcj
-	 9GvG3XGGqBiQA2dAx3oDYhrOQcFA7C2XgwuZzwtjjELEaSehjhJr7xbbFHsoAgBke5
-	 NDgcT2tTBMmAw==
-Date: Sun, 6 Oct 2024 21:05:32 -0500
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Bjorn Andersson <quic_bjorande@quicinc.com>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Om Prakash Singh <quic_omprsing@quicinc.com>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Gaurav Kashyap <quic_gaurkash@quicinc.com>
-Subject: Re: [PATCH v7 0/2] arm64: dts: qcom: extend the register range for
- ICE on sm8[56]50
-Message-ID: <2rnw2kge5iigcf3p356rsw3wtg2a7ztufygjkdxr7vguafymnc@gz6pky5rd5qg>
-References: <20241001-wrapped-keys-dts-v7-0-a668519b7ffe@linaro.org>
- <Zv/0DVQNEsJPoyCR@hu-bjorande-lv.qualcomm.com>
- <CAMRc=Mc__SzjxA_XoYcco=zLUvtbSCyWmdhx=NOXt5CGLWGK1w@mail.gmail.com>
+	s=arc-20240116; t=1728268131; c=relaxed/simple;
+	bh=aOK4bkzvCwrFeDWFtt3875lnjeobQDJNTcWPA/fn9ak=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B9odr3Nqnuhzt0Kac6M6w8McPVQ+gRknrXK1mG9gv6vzTPDaFvj8Ny5Qsj/vxjNL72LyXMGI+8E46rRebIY6mj5b4GGh6bbSu4n4RYhskoXn4m7EJB5s6efzjoIo1ZjeVqgLfVqp/77Ex3aWGDq+37K+ru5T4roLgpO+i8mdNRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=R8vJSV7H; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: db545a8e845311ef8b96093e013ec31c-20241007
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=KzPUQbEjOiXpx6ijP6tPbRsMDmZ7MKDhzyzVeLNXZBc=;
+	b=R8vJSV7HAJvmLOFyOreH9N6qz7iNpCVEnyBs6tG1cQcKA0Ryj6AKu+lgie/FKyFRBYFzDlhU4+r216qP4MEFm+MXT2LLvbMQvKnOwPdY8oOulIo9Z3gvRxR4X+xZNAPwshZ8J0JHyXxJKvxfAfnVFrguv4jqCKxzJTiU61L2Iak=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:67219dd3-9de8-4ad2-9678-7f5e511fe5f2,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:d3566126-5902-4533-af4f-d0904aa89b3c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: db545a8e845311ef8b96093e013ec31c-20241007
+Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw02.mediatek.com
+	(envelope-from <moudy.ho@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1273646072; Mon, 07 Oct 2024 10:28:36 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 7 Oct 2024 10:28:35 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 7 Oct 2024 10:28:35 +0800
+From: Moudy Ho <moudy.ho@mediatek.com>
+To: Chun-Kuang Hu <chunkuang.hu@kernel.org>, Philipp Zabel
+	<p.zabel@pengutronix.de>, Maarten Lankhorst
+	<maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>
+CC: <dri-devel@lists.freedesktop.org>, <linux-mediatek@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, Moudy Ho <moudy.ho@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>
+Subject: [PATCH v5] dt-bindings: display: mediatek: split: add subschema property constraints
+Date: Mon, 7 Oct 2024 10:28:34 +0800
+Message-ID: <20241007022834.4609-1-moudy.ho@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMRc=Mc__SzjxA_XoYcco=zLUvtbSCyWmdhx=NOXt5CGLWGK1w@mail.gmail.com>
+Content-Type: text/plain
+X-MTK: N
 
-On Fri, Oct 04, 2024 at 04:13:15PM GMT, Bartosz Golaszewski wrote:
-> On Fri, Oct 4, 2024 at 3:56 PM Bjorn Andersson
-> <quic_bjorande@quicinc.com> wrote:
-> >
-> > On Tue, Oct 01, 2024 at 10:35:29AM +0200, Bartosz Golaszewski wrote:
-> > > The following changes extend the register range for ICE IPs on sm8550
-> > > and sm8650 in order to cover the registers used for wrapped key support
-> > > on these platforms.
-> > >
-> > > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > >
-> > > Changes in v7:
-> > > - bring the ICE register range up to its full size of 0x18000
-> > > - Link to v6: https://lore.kernel.org/r/20240906-wrapped-keys-dts-v6-0-3f0287cf167e@linaro.org
-> > >
-> > > Changes in v6:
-> > > - split out the DT changes into a separate series
-> >
-> > Bartosz, this strategy of "let's split things such that the maintainers
-> > can't see the full picture" is just BS. It needs to stop.
-> >
-> 
-> You're exaggerating, I'm not doing anything like this. You're still
-> Cc'ed on the single big series containing the code changes for wrapped
-> keys. The full picture is over there.
-> 
-> > Now you will argue that these patches stands on their own, and that
-> 
-> Yes, that's precisely what I'm going to say, because it's true.
+The display node in mt8195.dtsi was triggering a CHECK_DTBS error due
+to an excessively long 'clocks' property:
+  display@14f06000: clocks: [[31, 14], [31, 43], [31, 44]] is too long
 
-Good, I fully agree with you here.
+To resolve this issue, the constraints for 'clocks' and
+other properties within the subschemas will be reinforced.
 
-> 0x18000 is the true register size (as per QCom docs) for ICE on
-> sm8[56]50 and sa8775p too and that alone warrants this change. If we
-> can get the DTS changes out of the way of wrapped keys, then that's
-> just a bonus.
-> 
-> > might be a valid case, but the argumentation you're making in the commit
-> > message clearly ties them to the code changes you're making somewhere
-> > else.
-> >
-> 
-> Are you referring to "(...) registers used for wrapped key support on
-> these platforms"? I could argue that it just says what the additional
-> registers are used for but I can drop the mention of this from the
-> message and just say "0x18000 is the true register range for ICE on
-> sm8650" if that works for you.
-> 
+Fixes: 739058a9c5c3 ("dt-bindings: display: mediatek: split: add compatible for MT8195")
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+Signed-off-by: Moudy Ho <moudy.ho@mediatek.com>
 
-Please update the commit messages of the two patches to not say that
-they are enabling HWKM on the platforms, but that you're expanding the
-mmio region to cover the whole IP-block. I think it makes sense to
-mention that this will allow us to enable HWKM.
+--
+This is based on [v2] dt-bindings: display: mediatek: split: add clocks count constraint for MT8195
 
-Thanks,
-Bjorn
+Changes since v4:
+  - Eliminate the possibility of varying quantities in the 'clocks'
+    property of mt8195.
+  - Move the constraint for 'power-domains' to the top-level.
+
+Changes since v3:
+  - Correct the compatible name for the mt8173 split in the subschema.
+
+Changes since v2:
+  - Revise the commit message.
+  - Enhance the descriptions of 'clocks'.
+  - Strengthen the conditions within the subschema.
+
+Changes since v1:
+  - Adding functional descriptions and quantity restrictions.
+---
+ .../display/mediatek/mediatek,split.yaml      | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+index e4affc854f3d..4b6ff546757e 100644
+--- a/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
++++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,split.yaml
+@@ -38,6 +38,7 @@ properties:
+     description: A phandle and PM domain specifier as defined by bindings of
+       the power controller specified by phandle. See
+       Documentation/devicetree/bindings/power/power-domain.yaml for details.
++    maxItems: 1
+ 
+   mediatek,gce-client-reg:
+     description:
+@@ -57,6 +58,9 @@ properties:
+   clocks:
+     items:
+       - description: SPLIT Clock
++      - description: Used for interfacing with the HDMI RX signal source.
++      - description: Paired with receiving HDMI RX metadata.
++    minItems: 1
+ 
+ required:
+   - compatible
+@@ -72,9 +76,24 @@ allOf:
+             const: mediatek,mt8195-mdp3-split
+ 
+     then:
++      properties:
++        clocks:
++          minItems: 3
++
+       required:
+         - mediatek,gce-client-reg
+ 
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mediatek,mt8173-disp-split
++
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.34.1
+
 
