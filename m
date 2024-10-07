@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-108700-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108701-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21A459936E5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:55:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48A9399374F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 21:26:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8B28AB23E83
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:54:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 96BB3B20DD0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C3F1DCB2B;
-	Mon,  7 Oct 2024 18:54:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6F51DDA09;
+	Mon,  7 Oct 2024 19:26:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="b66dAsxT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lqFdxo2G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A679E1DDA18
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 18:54:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8DF013B797
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 19:26:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728327247; cv=none; b=Iu2vJVpsGWOA3QTyMaWlNn5cr8gR+tiunZO2P/Q87ddZP6cljLF2IhDJFYr3rY/WF+R5x4TwAt31zbw8VvPDdLBKCvskg+toK6ul8hc51IHdfXGq4VKOuh2Oc3tc2VUypyLz0HltYw8z7JHVLnHRRbObhK48SqjLZ1gKtOM7xA4=
+	t=1728329187; cv=none; b=hzcWiJWcKv9E5wVvuykZMsASxsIusnw00oAHZ1sScolRzt+ooTikWjrWQOJdH/Kz8kaJjAXBPKqGXOY5OtDzp8trKN3nfB9gbXFenQlftTasmlQUNzfmswTFHgzN40PJNFjDN5jtvYCr6ZFvUlGFcXr2XFBnObzoqb+4OUI3dtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728327247; c=relaxed/simple;
-	bh=hnTBwamPDAsTLDF+Js1D5YUZ3/8QsfQbBw6PXRBHvlw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mi8zUiDln0hGFFW/DFEA0wrdQso4x/FGPYfHjvcUMDd3ti0TfeJLGTDI/mSDAgbnmiwDxpaBdiCqBlO0ns1EVSbQrIQtYK9H/cd11/SXWe15k4ehYTfiKp73/6Sjxgd2ZweRqAJpDOZpKKA7QFEjzFkptyow+S8HUrT5ccX21lE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=b66dAsxT; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1728327244;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=TXl/fSOrjemj+ajnFjFM4CSMF/fXgBTJBQOb6whFU1E=;
-	b=b66dAsxTTZQYW6SCSUHKilVUrLSbRtFCt7TYcuc+BcbKccz7u8wk65fzxX9Rgq3wncpkCK
-	ygLnlkydYaYELag6+M6RG8bjMNyvu8kZshvdal4Keu7CNlEkpxsUm/Xf7Yw/LNcHZ70U4J
-	nWBixa2FHUfigboTdVSvISsnnkeP8UU=
-Received: from mail-ed1-f69.google.com (mail-ed1-f69.google.com
- [209.85.208.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-694-z2sO6qJUO2-jMAyhqdISBA-1; Mon, 07 Oct 2024 14:54:03 -0400
-X-MC-Unique: z2sO6qJUO2-jMAyhqdISBA-1
-Received: by mail-ed1-f69.google.com with SMTP id 4fb4d7f45d1cf-5c8824bb351so4139433a12.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 11:54:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728327242; x=1728932042;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TXl/fSOrjemj+ajnFjFM4CSMF/fXgBTJBQOb6whFU1E=;
-        b=PT4tqtgWx3jEocJGP89SPtVVjoIotnylAx50LjBOZTYbXdfkXV1tAZDSNqPGif279j
-         MX2DKloSJIw68eNE6lP8446Dt4OfsiUZPy1Ubzn5zyhtrw4RXeaoujJ34PGONWhTFlDa
-         7WftWMMMIkXEQtHHQhynI1/aZaV6Z1C4KWusvhw+RbIVnxkZh+FBVLV1UNw5ZrfsCLUU
-         Uucv/IdW+tnognZKKMlhNz2cVsJyWUD5VrGoBYMDojGp9U/6ef8itkBmumHquV+Hw9fD
-         oWbBwMzlCZseuxXViADzsJidlMpexvUH6ELD63d6UoqGY1CGv7fajIkV/nmYk+GDhZYd
-         6oYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXHJi8jYSZ6EB0nSqA21Y8o88zIgQDbkIQ7yoK/HicgxUQfDR1HQUvKvf0/M8qQvoO0MjS+ItffHQF6@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOb4jhmXbIdYqNs5txmJ+IfqzveS42KE9BatcWonEOrVvVLGHP
-	iCdJ6mZnXTE5U59HSHgcLWbqCe1nhxxYMSBeNnJOSGO4ev3sLZjktuMbgwdQ/3xHbzRoAVZDP80
-	4a1E7mAOhk/vuFH4Odi1lYOfOvzoeCBVfTowI7yKYxg0mnpTtOM3nGfaaymM=
-X-Received: by 2002:a05:6402:35d1:b0:5c9:3f2:e69c with SMTP id 4fb4d7f45d1cf-5c903f2ea42mr1122640a12.9.1728327242261;
-        Mon, 07 Oct 2024 11:54:02 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGtc/wASbpmCC3oX4yHn0opV5qAfwjsWz7nSRdYzab2WVqdaotFQbRwUdiaixLyJyahsBAPsA==
-X-Received: by 2002:a05:6402:35d1:b0:5c9:3f2:e69c with SMTP id 4fb4d7f45d1cf-5c903f2ea42mr1122594a12.9.1728327241693;
-        Mon, 07 Oct 2024 11:54:01 -0700 (PDT)
-Received: from ?IPV6:2001:1c00:c32:7800:5bfa:a036:83f0:f9ec? (2001-1c00-0c32-7800-5bfa-a036-83f0-f9ec.cable.dynamic.v6.ziggo.nl. [2001:1c00:c32:7800:5bfa:a036:83f0:f9ec])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05ecda3sm3473540a12.73.2024.10.07.11.53.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 11:54:00 -0700 (PDT)
-Message-ID: <8370d062-b3d2-46f5-9e7b-8e16edde8480@redhat.com>
-Date: Mon, 7 Oct 2024 20:53:59 +0200
+	s=arc-20240116; t=1728329187; c=relaxed/simple;
+	bh=DxB6tP/1/54tXDZO+i+KzpSZ9NCOJyhjjOB+P87GCe4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=Ie1PQ93/Qt4T4QQyZG7xLyQ7w9DMPG9+OVHfUkTrI8d7wYW6B8V4yPxJuvv/aiDTWjYzdCB0k248JGjg3uZ6HgAE0ZdSCOHvvpTLkk3qqvUMlNsucHjZh64vry9lcABeQyi6c/DWnpBAYsKgD2oWSIGU2jCo2lCLr8AVdGAXlnw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lqFdxo2G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92AF9C4CEC6;
+	Mon,  7 Oct 2024 19:26:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728329186;
+	bh=DxB6tP/1/54tXDZO+i+KzpSZ9NCOJyhjjOB+P87GCe4=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=lqFdxo2GJC9Zy9zGz9oUo+j00CHiUZ8Mz9N+8Id7VmOFcGg8aFkXQRKBryeKGa7gI
+	 GZDI7cDFlf2k76IgoEUdLqZms8U2YTN/LH7uryUY3sfIFG9xFpdgBTNORM6zIB6rtN
+	 Z8EJiLGmS7KL+UQS/joLNRp2nwZ+pIS11uN5b/n91LUpw854UlrlJkRXMYSb/rWcfy
+	 RVblXPuhOh4hipnFY3Xt5qiae+w+lGok7+94aGBIkchU+8EGJpJwEthIFgvvnBnc8I
+	 7OJzNXWiqHwAunpisr53OAi48SAchWrtlR6D+JvjiDLXhesquz8WfEdLyGzVdoebHM
+	 WCy/nL3XCtipQ==
+Message-ID: <e0355f2b-9d77-4792-9405-14b0bf79ac32@kernel.org>
+Date: Mon, 7 Oct 2024 21:26:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,128 +50,192 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/5] platform/surface: aggregator_registry: Add Surface
- Pro 9 5G
-To: =?UTF-8?Q?J=C3=A9r=C3=B4me_de_Bretagne?= <jerome.debretagne@gmail.com>,
- Maximilian Luz <luzmaximilian@gmail.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Johan Hovold <johan+linaro@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20240908223505.21011-1-jerome.debretagne@gmail.com>
- <20240908223505.21011-4-jerome.debretagne@gmail.com>
- <f9cbd1c3-eb05-4262-bdc6-6d37e83179e5@gmail.com>
- <CA+kEDGEdd_s+DGKsVNY6Jy870B72eHuaj2EgEnwP8J46ZGbxpQ@mail.gmail.com>
-Content-Language: en-US, nl
-From: Hans de Goede <hdegoede@redhat.com>
-In-Reply-To: <CA+kEDGEdd_s+DGKsVNY6Jy870B72eHuaj2EgEnwP8J46ZGbxpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes PHY
+ binding
+To: Markus Stockhausen <markus.stockhausen@gmx.de>,
+ linux-phy@lists.infradead.org, chris.packham@alliedtelesis.co.nz,
+ devicetree@vger.kernel.org
+References: <20241007163623.3274510-1-markus.stockhausen@gmx.de>
+ <20241007163623.3274510-2-markus.stockhausen@gmx.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241007163623.3274510-2-markus.stockhausen@gmx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-Hi Jérôme,
-
-On 7-Oct-24 8:44 PM, Jérôme de Bretagne wrote:
-> Hi,
+On 07/10/2024 18:36, Markus Stockhausen wrote:
+> Add bindings for the SerDes of the Realtek Otto platform. These are
+> network Switch SoCs with up to 52 ports divided into four different
+> model lines.
 > 
-> I'm replying with Hans and Ilpo, who I initially forgot for this
-> patch, sorry about that.
+> Changes in v2:
+> - new subject
+> - removed patch command sequences
+> - renamed parameter controlled-ports to realtek,controlled-ports
 
-No worries thank you for forwarding Maximilian's review.
+Changelog goes under ---.
 
-> Le mar. 10 sept. 2024 à 23:29, Maximilian Luz
-> <luzmaximilian@gmail.com> a écrit :
->>
->> Looks good. Two very small nit-picks below, if this goes for a v3:
+
 > 
-> Atm I'm not planning for a v3 as Bjorn has applied the other v2
-> patches earlier today.
-> Feel free to include the 2 small suggestions when applying this patch maybe?
+> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+> ---
+>  .../bindings/phy/realtek,otto-serdes.yaml     | 95 +++++++++++++++++++
+>  1 file changed, 95 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/realtek,otto-serdes.yaml
 > 
->> On 9/9/24 12:35 AM, Jérôme de Bretagne wrote:
->>> Add SAM client device nodes for the Surface Pro 9 5G, with the usual
->>> battery/AC and HID nodes for keyboard and touchpad support.
->>>
->>> Signed-off-by: Jérôme de Bretagne <jerome.debretagne@gmail.com>
->>> ---
->>>   .../surface/surface_aggregator_registry.c       | 17 +++++++++++++++++
->>>   1 file changed, 17 insertions(+)
->>>
->>> diff --git a/drivers/platform/surface/surface_aggregator_registry.c b/drivers/platform/surface/surface_aggregator_registry.c
->>> index 25c8aa2131d6..8b34d7e465c2 100644
->>> --- a/drivers/platform/surface/surface_aggregator_registry.c
->>> +++ b/drivers/platform/surface/surface_aggregator_registry.c
->>> @@ -390,6 +390,21 @@ static const struct software_node *ssam_node_group_sp9[] = {
->>>       NULL,
->>>   };
->>>
->>> +/* Devices for Surface Pro 9 5G. */
->>
->> Would be nice if you could change the comment on the SP9 node group to
->> "Surface Pro 9 (Intel/x86)" and the comment here to "Surface Pro 9 5G
->> (ARM/QCOM)" or something along those lines to make things a bit more
->> clear.
->>
->>> +static const struct software_node *ssam_node_group_sp9_5G[] = {
->>
->> (This is really just me being a bit obsessive:) It would be nice to have
->> all-lowercase variable names (regarding the 5G).
-> 
-> :)
-> 
->>> +     &ssam_node_root,
->>> +     &ssam_node_hub_kip,
->>> +     &ssam_node_bat_ac,
->>> +     &ssam_node_bat_main,
->>> +     &ssam_node_tmp_sensors,
->>> +     &ssam_node_hid_kip_keyboard,
->>> +     &ssam_node_hid_kip_penstash,
->>> +     &ssam_node_hid_kip_touchpad,
->>> +     &ssam_node_hid_kip_fwupd,
->>> +     &ssam_node_hid_sam_sensors,
->>> +     &ssam_node_kip_tablet_switch,
->>> +     NULL,
->>> +};
->>>
->>>   /* -- SSAM platform/meta-hub driver. ---------------------------------------- */
->>>
->>> @@ -462,6 +477,8 @@ static const struct acpi_device_id ssam_platform_hub_acpi_match[] = {
->>>   MODULE_DEVICE_TABLE(acpi, ssam_platform_hub_acpi_match);
->>>
->>>   static const struct of_device_id ssam_platform_hub_of_match[] __maybe_unused = {
->>> +     /* Surface Pro 9 5G */
->>> +     { .compatible = "microsoft,arcata", (void *)ssam_node_group_sp9_5G },
->>>       /* Surface Laptop 7 */
->>>       { .compatible = "microsoft,romulus13", (void *)ssam_node_group_sl7 },
->>>       { .compatible = "microsoft,romulus15", (void *)ssam_node_group_sl7 },
->>
->> Thanks!
->>
->> Reviewed-by: Maximilian Luz <luzmaximilian@gmail.com>
-> 
-> Thanks for your review and all the work about SSAM for Surface owners!
+> diff --git a/Documentation/devicetree/bindings/phy/realtek,otto-serdes.yaml b/Documentation/devicetree/bindings/phy/realtek,otto-serdes.yaml
+> new file mode 100644
+> index 000000000000..a72ac206b35f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/realtek,otto-serdes.yaml
 
-FWIW I agree with Maximilian's remarks and I would really like to
-see these applied to clearly differentiate the x86 and ARM versions.
+Nothing improved.
 
-Normally I would pick up a patch like this which just adds hw-ids as
-a fix for 6.12-rc# and squash in the suggested changes.
+> @@ -0,0 +1,95 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/realtek,otto-serdes.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek Otto SerDes controller
+> +
+> +maintainers:
+> +  - Markus Stockhausen <markus.stockhausen@gmx.de>
+> +
+> +description:
+> +  The MIPS based Realtek Switch SoCs of the Realtek RTL838x, RTL839x, RTL930x and RTL931x series
+> +  have multiple SerDes built in. They are linked to single, quad or octa PHYs like the RTL8218B,
+> +  RTL8218D or RTL8214FC and are one of the integral part of the up-to-52-port switch architecture.
+> +
+> +  Although these SerDes controllers have common basics they behave differently on the SoC families
+> +  and rely on heavy register magic. To keep the driver clean it can load patch sequences from
+> +  devictree and execute them during the controller actions like phy_init(), ...
+> +
+> +  The driver exposes the SerDes registers different from the hardware but instead gives a
+> +  consistent view and programming interface. So the RTL838x series has 6 ports and 4 pages, the
+> +  RTL839x has 14 ports and 12 pages, the RTL930x has 12 ports and 64 pages and the RTL931x has
+> +  14 ports and 192 pages.
 
-But looking at the test of the series this is more 6.13 material
-since the rest is landing in 6.13, right ?
+Totally messed wrapping. Please wrap your code as Linux coding style.
 
-Patches for linux-next / 6.13 are managed by Ilpo this cycle.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^serdes@[0-9a-f]+$"
+> +
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - realtek,rtl8380-serdes
+> +          - realtek,rtl8390-serdes
+> +          - realtek,rtl9300-serdes
+> +          - realtek,rtl9310-serdes
+> +
+> +  reg:
+> +    items:
+> +      description:
+> +        The primary SerDes paged register memory location. Other SerDes control and management
+> +        registers are distributed all over the I/O memory space and are identified by the driver.
 
-So I'll leave it up to Ilpo if he will squash in the suggested changes
-or if he wants a new version (of just this patch, no need for a v3
-of the already applied patches).
+What happened here? I asked only about |. Why are you adding unrelated
+changes?
 
-Regards,
+Anyway, still not tested and still does not look any other binding.
 
-Hans
+> +
+> +  "#phy-cells":
+> +    const: 4
+> +    description:
+> +      The first number defines the SerDes to use. The second number a linked SerDes. E.g. if a octa
+> +      1G PHY is attached to two QSGMII SerDes. The third number is the first switch port this
+> +      SerDes is working for, the fourth number is the last switch port the SerDes is working for.
+> +
+> +  realtek,controlled-ports:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      A bit mask defining the ports that are actively controlled by the driver. In case a bit is
+
+Driver? Bindings are not about drivers. Drop.
+
+I don't think you implemented my feedback.
+
+> +      not set the driver will only process read operations on the SerDes. This is just in case the
+> +      SerDes has been setup by U-Boot correctly and the driver malfunctions. If not set the driver
+> +      will control all SerDes.
 
 
+
+> +
+> +reguired:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +
+> +additionalProperties:
+> +  false
+
+Please open any existing binding and do it like there. Or start from
+scratch from example-schema.
+
+> +
+> +examples:
+> +  - |
+> +    serdes: serdes@1b00e780 {
+> +      compatible = "realtek,rtl8380-serdes", "realtek,otto-serdes";
+> +      reg = <0x1b00e780 0x1200>;
+> +      controlled-ports = <0x003f>;
+> +      #phy-cells = <4>;
+> +    };
+
+One example is enough.
+
+... and still not tested. Sending untested code is waste of our time.
+
+Best regards,
+Krzysztof
 
 
