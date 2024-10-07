@@ -1,170 +1,321 @@
-Return-Path: <devicetree+bounces-108386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108387-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 517969927B7
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:00:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 287269927BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:03:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 760F91C20918
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2A01C222E5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E897518BBA1;
-	Mon,  7 Oct 2024 09:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65AE6184549;
+	Mon,  7 Oct 2024 09:02:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V2cpENvt"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="cnDeJr9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35F1928EA
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 09:00:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F41228EA;
+	Mon,  7 Oct 2024 09:02:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728291624; cv=none; b=JNhmPlAKbnhKMnThbuJuteRZidWW52gvqazWKQfMytA8GmrInO/dS/mOLiVddHXy2IlbiMluTUgO5Zdr8R95OlbgCYJNONITyNreiVXB0hJwnwp1lDUxi7x7d2qWKjMmItv7otaXEJd3gYKvkMIkAsJ1m/z/GOny4IKpMcFdq84=
+	t=1728291778; cv=none; b=mndizpUMUFBe4TINOYvBitZva3AKtflXFeUfzVWWQG2S6Z4HDciHgcrup2E/CyaCDyHxdQh/cx0EkkqdiBIkEDsFGfmJvTxB/bcjx2RSrNGhQrqnQmXlmd48XlaOP/6uH0xd4ZCffCea7t6RAT67xr77/V1ivs/itRYmRWRt8Iw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728291624; c=relaxed/simple;
-	bh=Tvcs9sYQHOdju1uSjxDitPtHC+c46V2B5i6PDIRp4y4=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uBF6eoYyGsTfIhpsNeyFU5ZeWdKy/ZZZmwTLuERdDJmZkNxAjAoDH62OmD6tlPd+5xLcVnZYeKQuR0ftkSQpTNmZpuFjPiPsoHgFkQ33ehpa3GDFzASWIClWRtYEuwbjj8IdsQ3d6syjZLzo5tHRajb40HAQXHaUi4p9pe/fNn8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V2cpENvt; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-37ccdc0d7f6so2677244f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 02:00:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728291621; x=1728896421; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EpuhbLasEadVeMuVqG8sosX+rym3WCHEJ89sUQ5d+fI=;
-        b=V2cpENvtr2QHsJnU/E8rvYZ9nDUMAAcP6j5F7w+LBBWXCbwtxnuz4fw9KL1QfO0z8e
-         WIxMdMJnVf7/XXxbAg6h9vjKifma57E8AZvPVdsRHalon+o4OhuJA0I9cm4ifqGin74C
-         OyMXgnERk8RlOcROFMea8C2RCyjK2SSxoFzPrQUsn9j9lCJn43bgH8qRr/MW/xrvHwE0
-         NP94PLMO5x+VLu4+qKwY8hhRVQWX2jyWMrcYki18Q5Mn8L7qJnLhjj4vL9pl8WqI4Ax/
-         DDbbNa8JDlvORwSyTf5pkt57SJZ+SQuUijTmC7sITA5agmPvAiCzmRtnlo+GAJjhwQ/I
-         PG1g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728291621; x=1728896421;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=EpuhbLasEadVeMuVqG8sosX+rym3WCHEJ89sUQ5d+fI=;
-        b=Rttv94R40pjIioq4tYEfYyu6FxX0qo/2y3lykmbqPJFQBSJEFWIdRQ9KVR5kn9Bo28
-         rD9dDVOEhNNWH4KN6FvfmXGJncnQH+8I/D09AriH1lztexAimZYngnbm0Ys8TArLz/BT
-         DNaUnep7Hjlh3aSfuDqZPXshj8JKa/osuy/eue76/HwD2CrTL1QQgnnUwB3GCPRlXZ1y
-         X4puxzO5bv6tpYLjAxxx/PhadgZco9H60xaKWpCj0iQmAeRxCnPiJOXYK76Ku8B2JP2E
-         Rlw0DXan6iX5hZ8vmFKdadT4WbNVkLtbd08yvzOn3c9B+GABc6JR/At9GilY0vCH19nq
-         W+Sg==
-X-Forwarded-Encrypted: i=1; AJvYcCUWlZLZJxcvebzciy5wiB9E8TpwOahMsUyjT0XTax7YXfZ0kE+AxW6gUS4+tzCCvwdktJP4G5jCNjlN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDa/RJps3+Ext2bSlIgcMtp94FVwss+5z10Jh9QZH5gG+R1Iw1
-	oeDpC/1N+JfgCOkzFPPru1Rzaec9Bv2lkjfrslEjP/ma4CZ9b055ucoaRJ6GJe8=
-X-Google-Smtp-Source: AGHT+IHjPdkrn1WCWqVQPWn/3AXhMdcCGbb+rmueJ3DkfERdPUW77sBkwqH9tc7v+VJ0Q+jVuYVwxg==
-X-Received: by 2002:a5d:4eca:0:b0:37c:cc67:8b1f with SMTP id ffacd0b85a97d-37d0e8de221mr6087900f8f.48.1728291609655;
-        Mon, 07 Oct 2024 02:00:09 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691a4eesm5210437f8f.31.2024.10.07.02.00.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 02:00:08 -0700 (PDT)
-Message-ID: <818f287d-4ea5-4899-b4a9-98accc1be049@linaro.org>
-Date: Mon, 7 Oct 2024 11:00:08 +0200
+	s=arc-20240116; t=1728291778; c=relaxed/simple;
+	bh=4MqTx/paSn9vadT8O1mObZh0ibwgYiEuZZuzgoRsbrE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jIbRna93eEbdhQWdnMnsmW0TOyP3WSglTb2ARMEdVWqOw39llh1VKkOL+0t0c2g5eHwKQxBCT+Q2wuPV5iF9kTWeSf4+yESlpIcCgE23yZjYJj1ZuehVYOLaREbo6DRw+Grl4kXdb1K8bYgJcMqM+1BH7hCGJKPFmNywOWEq+TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=cnDeJr9h; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ecd57dba848a11efb66947d174671e26-20241007
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=tLD59Qal+yNHH79nNHu2/GDRtEORj0I1HW1oIFM8IC8=;
+	b=cnDeJr9hGnPP0LEUn0ZN41DAHIIWnPTHRulhTIZUuaqlJiLOr1/eq9iYZnlYvKBH6oc/YMu9tL8HCGH5NNIwvcfEFfvgj6MrL2SG8zNpTB4Y2HUrXKm0B74vnYma3EI/pNIbxe9Y3E8OG+6No2uxjvNEeQQQKEYY+/OjLKfycB8=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:2e6c0400-efc8-490c-92b7-7de8b5edcfd4,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:a3926726-5902-4533-af4f-d0904aa89b3c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: ecd57dba848a11efb66947d174671e26-20241007
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1624306198; Mon, 07 Oct 2024 17:02:48 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ MTKMBS09N2.mediatek.inc (172.21.101.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 7 Oct 2024 02:02:47 -0700
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 7 Oct 2024 17:02:47 +0800
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, Alexandre Mergnat
+	<amergnat@baylibre.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
+ Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
+	MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+Subject: [PATCH v2 1/2] arm64: dts: mediatek: mt8390-genio-700-evk: update regulator names
+Date: Mon, 7 Oct 2024 17:02:43 +0800
+Message-ID: <20241007090244.1731-1-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mmc: controller: allow node name to
- be named slot@*
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
- <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-1-5aa8bdfe01af@linaro.org>
- <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <qt3ivwsa3uaidcgkzbd2ewohbyd6zbzseraihftdhxpziuhnpq@xsne3f4wdfua>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi Rob, Krzysztof,
+Update regulator names to match schematics, replacing generic terms.
+1. Add system wide 'reg_vsys' node for 4.2V power rail.
+2. Add 'reg_vsys' node as 'vin-supply' for the following nodes
+ - common_fixed_5v, edp_panel_fixed_3v3, gpio_fixed_3v3, sdio_fixed_3v3,
+   touch0_fixed_3v3, usb_hub_fixed_3v3, usb_p0_vbus, and usb_p1_vbus.
+3. Update regulator names according to the stable output name on
+   schematics.
+ - vdd_5v, vedp_3v3, ext_3v3, vio18_conn, wifi_3v3, vio33_tp1, vhub_3v3,
+   vbus_p0, vbus_p1.
+ - vcn18_pmu, vcn33_2_pmu, dvdd_proc_l, dvdd_core, vpa_pmu, dvdd_adsp,
+   va12_abb2_pmu, vsim1_pmu, vufs18_pmu.
+4. Remove usb_hub_reset_1v8. Use 'hub' node to probe USB HUB
+   in subsequent patches.
 
+Suggested-by: Chen-Yu Tsai <wenst@chromium.org>
+Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+---
+ .../dts/mediatek/mt8390-genio-700-evk.dts     | 65 ++++++++++++-------
+ 1 file changed, 42 insertions(+), 23 deletions(-)
 
-On 24/09/2024 11:12, Krzysztof Kozlowski wrote:
-> On Fri, Sep 20, 2024 at 10:38:03AM +0200, Neil Armstrong wrote:
->> In preparation of supporting the mmc-slot subnode, allow
->> the nodename to be either mmc@ or mmc-slot@
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/mmc/mmc-controller.yaml | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
->> index 58ae298cd2fc..f797c32ea688 100644
->> --- a/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
->> +++ b/Documentation/devicetree/bindings/mmc/mmc-controller.yaml
->> @@ -20,7 +20,9 @@ description: |
->>   
->>   properties:
->>     $nodename:
->> -    pattern: "^mmc(@.*)?$"
->> +    oneOf:
->> +      - pattern: "^mmc(@.*)?$"
->> +      - pattern: "^slot(@.*)?$"
-> 
-> I don't think mmc-slot is allowed by this.
-> 
-> This should be squashed with mmc-slot child patch. It does not make
-> sense to allow mmc-slots if there are no mmc-slots.
+Changes for v2:
+ - Add Suggested-by: tag.
+ - Rebase on mediatek/dts64 branch (v6.12-rc1)
 
-Right, I don't like this oneOf/pattern, slot@(@.*)? should really only be for slots,
-by I do not see how this can be achieved because we can't override properties: pattern.
-
-Do you have any suggestions ?
-
-Neil
-
-> 
-> Best regards,
-> Krzysztof
-> 
+diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+index 0a6c9871b41e..96b272567cb1 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+@@ -87,103 +87,113 @@ vpu_mem: memory@57000000 {
+ 
+ 	common_fixed_5v: regulator-0 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "5v_en";
++		regulator-name = "vdd_5v";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 10 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	edp_panel_fixed_3v3: regulator-1 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "edp_panel_3v3";
++		regulator-name = "vedp_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		enable-active-high;
+ 		gpio = <&pio 15 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&edp_panel_3v3_en_pins>;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	gpio_fixed_3v3: regulator-2 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "gpio_3v3_en";
++		regulator-name = "ext_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 9 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
++	/* system wide 4.2V power rail from charger */
++	reg_vsys: regulator-vsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vsys";
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	/* used by mmc2 */
+ 	sdio_fixed_1v8: regulator-3 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "sdio_io";
++		regulator-name = "vio18_conn";
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 		enable-active-high;
+ 		regulator-always-on;
+ 	};
+ 
++	/* used by mmc2 */
+ 	sdio_fixed_3v3: regulator-4 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "sdio_card";
++		regulator-name = "wifi_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 74 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
+ 		regulator-always-on;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	touch0_fixed_3v3: regulator-5 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "touch_3v3";
++		regulator-name = "vio33_tp1";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 119 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+ 	usb_hub_fixed_3v3: regulator-6 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_hub_3v3";
++		regulator-name = "vhub_3v3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
+ 		gpio = <&pio 112 GPIO_ACTIVE_HIGH>; /* HUB_3V3_EN */
+ 		startup-delay-us = <10000>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_hub_reset_1v8: regulator-7 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "usb_hub_reset";
+-		regulator-min-microvolt = <1800000>;
+-		regulator-max-microvolt = <1800000>;
+-		gpio = <&pio 7 GPIO_ACTIVE_HIGH>; /* HUB_RESET */
+-		vin-supply = <&usb_hub_fixed_3v3>;
+-	};
+-
+-	usb_p0_vbus: regulator-8 {
++	usb_p0_vbus: regulator-7 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p0_vbus";
++		regulator-name = "vbus_p0";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 84 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_p1_vbus: regulator-9 {
++	usb_p1_vbus: regulator-8 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p1_vbus";
++		regulator-name = "vbus_p1";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		gpio = <&pio 87 GPIO_ACTIVE_HIGH>;
+ 		enable-active-high;
++		vin-supply = <&reg_vsys>;
+ 	};
+ 
+-	usb_p2_vbus: regulator-10 {
++	/* used by ssusb2 */
++	usb_p2_vbus: regulator-9 {
+ 		compatible = "regulator-fixed";
+-		regulator-name = "usb_p2_vbus";
++		regulator-name = "wifi_3v3";
+ 		regulator-min-microvolt = <5000000>;
+ 		regulator-max-microvolt = <5000000>;
+ 		enable-active-high;
+@@ -308,22 +318,27 @@ &mt6359_vbbck_ldo_reg {
+ };
+ 
+ &mt6359_vcn18_ldo_reg {
++	regulator-name = "vcn18_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vcn33_2_bt_ldo_reg {
++	regulator-name = "vcn33_2_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vcore_buck_reg {
++	regulator-name = "dvdd_proc_l";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vgpu11_buck_reg {
++	regulator-name = "dvdd_core";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vpa_buck_reg {
++	regulator-name = "vpa_pmu";
+ 	regulator-max-microvolt = <3100000>;
+ };
+ 
+@@ -337,14 +352,17 @@ &mt6359_vproc2_buck_reg {
+ };
+ 
+ &mt6359_vpu_buck_reg {
++	regulator-name = "dvdd_adsp";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vrf12_ldo_reg {
++	regulator-name = "va12_abb2_pmu";
+ 	regulator-always-on;
+ };
+ 
+ &mt6359_vsim1_ldo_reg {
++	regulator-name = "vsim1_pmu";
+ 	regulator-enable-ramp-delay = <480>;
+ };
+ 
+@@ -358,6 +376,7 @@ &mt6359_vsram_others_ldo_reg {
+ };
+ 
+ &mt6359_vufs_ldo_reg {
++	regulator-name = "vufs18_pmu";
+ 	regulator-always-on;
+ };
+ 
+@@ -902,10 +921,10 @@ &xhci0 {
+ &xhci1 {
+ 	status = "okay";
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
+-	vbus-supply = <&usb_hub_reset_1v8>;
+ };
+ 
+ &xhci2 {
+ 	status = "okay";
+ 	vusb33-supply = <&mt6359_vusb_ldo_reg>;
++	vbus-supply = <&sdio_fixed_3v3>; /* wifi_3v3 */
+ };
+-- 
+2.45.2
 
 
