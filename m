@@ -1,67 +1,62 @@
-Return-Path: <devicetree+bounces-108284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A45F9923D8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:16:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8D93992408
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:55:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8C89E1C2212D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 05:16:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AA691F22CBC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 05:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F383715E;
-	Mon,  7 Oct 2024 05:15:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F109136672;
+	Mon,  7 Oct 2024 05:55:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DY3f0qxj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4E69101C4
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 05:15:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 011324317E;
+	Mon,  7 Oct 2024 05:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728278157; cv=none; b=Uj3i1xUss1oXTT07OWdQFhZeMakS+x5fIrg5YeTl06coe1V+VJeSf1YZF1tlvNy1mbZIrus4trO6pLXQE/r9BSZbrXnKTCYixAdjsKy++39QicuF1ytPoRkdxJW92XjEiDtUwbupLIyJPVF72afk4WSODiHgSHOB5dz1BhDRs2c=
+	t=1728280535; cv=none; b=b/KxS7ny4YRKoP9RBYV25T1TxXDdnPoi97qw9BuF8ym0SDSCJlWnVfT8ypv3wFUavqcHQfjMrbVL708x1tTaCgZtp3h+Ne5bPNUlABAN9zjthS1BM2v5qK99xd32IpTW/sAg1tUNEStvI1NA89LCIfIVBMEMDrvRKG4FI5PTco8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728278157; c=relaxed/simple;
-	bh=9so6lN5/t0+Y9t0klCmPZB2QfktB7FCjnuGZfNWmkZQ=;
+	s=arc-20240116; t=1728280535; c=relaxed/simple;
+	bh=J9urfxcnqXo+r0zVu4pjopmJJlcc42dMLRF/ElIUMkg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TuHGb3EH/yGR2Ychhd2JIttPBeQc8CKdOnKPiT+8ubBuYV1O/blYi1OQoomtnsH+9rxfv/tR9xdDs+luFRzOKNHjT7q93/JBoytng1I6Z7cxOto2RdeOjGHgnp6zx7ScfA0v8X38wllXNjbvH4f5qKhVHDY6pylNIIDtRUzOUY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sxg5V-0006HC-Sr; Mon, 07 Oct 2024 07:15:17 +0200
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sxg5T-0003KR-UZ; Mon, 07 Oct 2024 07:15:15 +0200
-Received: from ore by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ore@pengutronix.de>)
-	id 1sxg5T-00G32z-2i;
-	Mon, 07 Oct 2024 07:15:15 +0200
-Date: Mon, 7 Oct 2024 07:15:15 +0200
-From: Oleksij Rempel <o.rempel@pengutronix.de>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Divya.Koppera@microchip.com,
-	hkallweit1@gmail.com, davem@davemloft.net, edumazet@google.com,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, f.fainelli@gmail.com, kernel@pengutronix.de,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	linux@armlinux.org.uk, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next v4 1/2] dt-bindings: net: ethernet-phy: Add
- timing-role role property for ethernet PHYs
-Message-ID: <ZwNuY02MNN5LDI_F@pengutronix.de>
-References: <20241001073704.1389952-1-o.rempel@pengutronix.de>
- <20241001073704.1389952-2-o.rempel@pengutronix.de>
- <CO1PR11MB47715E80B4261E5BDF86153BE2712@CO1PR11MB4771.namprd11.prod.outlook.com>
- <a11860cc-5804-4a15-9603-624406a29dba@lunn.ch>
- <Zv6XOXveg-dU_t8V@pengutronix.de>
- <19207165-1708-4717-9883-19d914aea5c3@lunn.ch>
- <20241004095154.5810afbf@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z3IoVKItbl3CskKtKuin6Zi5vma2nBoS+BOy75Y9nF3/m1eRW1wTqYtCDAaiVuWnHq32upt3H5OlPZ5snjhe+UmOx8NVzchlSVpeMXqUi8bTuhphAb0eFyj3V12jEanWdjzMB/J1yBzdy9bKeLzoGqYQEpLQXqluepW+1NZL5qw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DY3f0qxj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F46C4CEC6;
+	Mon,  7 Oct 2024 05:55:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728280534;
+	bh=J9urfxcnqXo+r0zVu4pjopmJJlcc42dMLRF/ElIUMkg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DY3f0qxjV4sArWNZ9Uh4gBWFawn2qn7GxWNq+6iDQHf6HBaFRq5fL51AQ/jU/kUEB
+	 Li/7P9CwZXcjAgJesInKE0mRUrHEvH8juB657T1Br3QDOVNFiyoTHbtYwm3H23SMfm
+	 UjPYzSO2ZOgLMya0Jt1OUuG2wvKwOuDkz9SAQvCKxOb7ioF1nVo05IVauxLq4DS/tf
+	 77bJ+51qOjlI+n1DqUxWSGcPbddXWZoIfQPM1crASG5mx2hJd2yDB4Di/rxjSjwK2V
+	 FdQgRt4NeiGFypEtkjKkcYObzrkngGS9VTCR/TSoLRI5wMZhRua9o2vAcqIGDVWv2E
+	 3eJaBfnk+fV1A==
+Date: Mon, 7 Oct 2024 07:55:30 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: Chaotian Jing <chaotian.jing@mediatek.com>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wenbin Mei <wenbin.mei@mediatek.com>, 
+	Frank Wunderlich <frank-w@public-files.de>, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com, 
+	ansuelsmth@gmail.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+Message-ID: <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,34 +65,61 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241004095154.5810afbf@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20241006153447.41377-2-linux@fw-web.de>
 
-On Fri, Oct 04, 2024 at 09:51:54AM -0700, Jakub Kicinski wrote:
-> On Thu, 3 Oct 2024 19:05:58 +0200 Andrew Lunn wrote:
-> > > 802.3 use "Multiport device" for "preferred master" and "single-port device"
-> > > for "preferred slave". We decided to use other wording back in the past
-> > > to avoid confusing and align it with forced master/slave configurations.   
-> > 
-> > ethtool is preferred, so it would be more consistent with preferred
-> > 
-> > [Shrug]
+On Sun, Oct 06, 2024 at 05:34:45PM +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> IIUC we have two weak preferences for "preferred"?
-> LMK if I misunderstood.
+> Add binding definitions for mmc on MT7988 SoC.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> ---
+> v2:
+> - fixed minItems to 4
+> ---
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> index c532ec92d2d9..7380f72ea189 100644
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -21,6 +21,7 @@ properties:
+>            - mediatek,mt7620-mmc
+>            - mediatek,mt7622-mmc
+>            - mediatek,mt7986-mmc
+> +          - mediatek,mt7988-mmc
+>            - mediatek,mt8135-mmc
+>            - mediatek,mt8173-mmc
+>            - mediatek,mt8183-mmc
+> @@ -263,6 +264,29 @@ allOf:
+>              - const: bus_clk
+>              - const: sys_cg
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - mediatek,mt7988-mmc
+> +    then:
+> +      properties:
+> +        clocks:
+> +          minItems: 4
 
-Ahm... yes :)
+Drop
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+> +          items:
+> +            - description: source clock
+> +            - description: HCLK which used for host
+> +            - description: Advanced eXtensible Interface
+> +            - description: Advanced High-performance Bus clock
+> +        clock-names:
+> +          minItems: 3
+
+This is still wrong... anyway, drop.
+
+Best regards,
+Krzysztof
+
 
