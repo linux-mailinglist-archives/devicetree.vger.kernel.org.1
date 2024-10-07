@@ -1,117 +1,170 @@
-Return-Path: <devicetree+bounces-108311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63821992530
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:58:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4B7B99253A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21CDF281AE3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:58:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D1731F21455
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:00:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6255015B97D;
-	Mon,  7 Oct 2024 06:58:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CF41741C9;
+	Mon,  7 Oct 2024 06:59:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CGc8wvZk"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="a504at3T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A57B1531CC;
-	Mon,  7 Oct 2024 06:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A215F1714CB;
+	Mon,  7 Oct 2024 06:59:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728284313; cv=none; b=jpCFTFmcn92lmLwaQwGOAASl1k6SBr4IZEKA66ae9V2BD0HUBdx4Rnf15xfvxalaq8Cryr+K0zLLLaXwEx8XqGlMy27VnkalkHuiOMtNa4O7QeyrDzl4+4JEpreZXwirJoZvNgFhZSuq99PEIaYxeeU4agGyFYbfokDfn/vdoAE=
+	t=1728284392; cv=none; b=kVkynzt+PZ0x+ZNFv0I7+kchFZnjVOsmmrS9OMnzPs1qkAlEAzV3nTGn8V3vaDVcrFRwDCT+C+s32wLU5jgJH0u2cj7Z9ZcSD6EzQDxuBi5WHZyHUfJCDouyuPDZbFxjM70rivxL2JfklVRv+strauXFUseXr/4HMCnvYz2is5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728284313; c=relaxed/simple;
-	bh=NH3P73rjlFT8QcjybEaXWlE7Olev3U86b+yiuYZctFE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DXY+NUGGIDuypyXsr+KlddAKWW5ups/eTLu8hk3BfReioYc77GqChkZj4W5MyLnL2BwbvmqbL8KFefdK2m7M9RI5Mjeqat1wEfFhLlsOuR8K9KswfIoffCA8Z7X6oQfQ7vxrw1m8EaPVj5opk+BL1JYX6e48LgPn4QdQfANEH8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CGc8wvZk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8F94C4CEC6;
-	Mon,  7 Oct 2024 06:58:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728284312;
-	bh=NH3P73rjlFT8QcjybEaXWlE7Olev3U86b+yiuYZctFE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CGc8wvZkwdBBic/nMnCro8IFmP8y3Ys3xGkfBlj3FfTr8gp9mI3klDSsD00z7toYw
-	 zxyd9VknaL9p8bc1+Y8NCorWRGfXujh09PsA6Pa0tuGixa9+gSqsJ4llT/HGAA3ySu
-	 9YQoMcd6/umgr36zS75qFlinfbFuIUiXyLsjLmgYXqVnMe2wOEKaZN9cBXOyaiE/vo
-	 dxz9EDk7LwgF9isKQW2u3z4F/eKSvclx9ImagKPBuQmOdS0UaEKQ0knfn/bzEbZMVy
-	 2vj/cxsDVTLB/qQAdT0rYiC4BLPN9IjMZVqSwfELAARz6hxLmwuCJfHOzpO6udXdc/
-	 9QyVs/DgBhcIg==
-Message-ID: <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
-Date: Mon, 7 Oct 2024 15:58:29 +0900
+	s=arc-20240116; t=1728284392; c=relaxed/simple;
+	bh=gqiufrWug7lbmYvdLgLnFpex4w5a+2itgAUwMlOrmt0=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=UyfWW8bYrxlaFWZyLB46Y6wFLKm0mMLzsHdjUvCztvsYeCKq1zKT5CrME/qGIkCWP+V+moTrj9jxRWMhc5otRFLKdb5ykcQsw4ZxokmwlOXfj6iYzJQvyFhpMJsdj6aMv7nu/NirPqoa21meXkqn3p5ulyunfA89Dj/8gHTN6/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=a504at3T; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1728284364; x=1728889164; i=frank-w@public-files.de;
+	bh=R0AGuj5yIrzDKc34jGDi7Sop1ytF0WoQFQCgEomR2do=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=a504at3T4RFK9vS1K5OsHuRPpDQ3D09FXnEbT2tAP8XH8Hzm+O8ljIuQUaltyRFz
+	 GxXIbwB9AJFWK2ehw86IQBlXi0XHwIbKl+E5cJQGsjC5qWgtg99Hv8mrjpZ/et6/Z
+	 qq+aGAwkACQ+5lwX6bJSr84aIAJW7+Q1GOpjciEY6nho8y8c8Nt5VEaCGtabLg/k7
+	 OBLj9bHjVhL1gg8UD31We4jvPacu9x53m+XUB2aOaoc2FCVe2T4Pzfq40+RlpZRLh
+	 1psQ8Eul0d35DS3B14bwoE6Ue3xfytpk3PSV7scZMpttyDkWmq1afZCGB8xCnITir
+	 jAOF62e5bLO1lzw6lg==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.153.101] ([217.61.153.101]) by web-mail.gmx.net
+ (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Mon, 7 Oct 2024
+ 08:59:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/12] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
+Message-ID: <trinity-57600902-afb6-42f3-8cf5-54a07710f979-1728284364104@3c-app-gmx-bap03>
+From: Frank Wunderlich <frank-w@public-files.de>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-12-dlemoal@kernel.org>
- <o42ki5dwipmldcpnthpfoaltpmu7ffheq627ersrvjj73xkm6x@vkqjomiznstg>
- <179ed297-1d06-480d-8095-7212cbde2ab1@kernel.org>
- <64421c0c-1d48-421d-8841-859695b5046d@kernel.org>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <64421c0c-1d48-421d-8841-859695b5046d@kernel.org>
+Cc: Frank Wunderlich <linux@fw-web.de>, Chaotian Jing
+ <chaotian.jing@mediatek.com>, Ulf Hansson <ulf.hansson@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+Subject: Aw: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Mon, 7 Oct 2024 08:59:24 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
+ <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:NJAHfrORCcCOW2WN7H4bEoinSF2FWIRros/25USaRXG8LWD+9GYkr8WuevawXQ3d+J4U3
+ Vr2C+PSULryIEv5iClhfCZN+53sAfZc+AL/mrTFcusc+1juiHHrgXf2vX3X1CkuSpBvSzTFgIfsQ
+ BH6/dRvkxdPuW3Dypod9GtfKpOfdWR78bsu2Diu/HBwsJB2tYb+QrkMaNpDk25uddO8CdSxfiZhg
+ ccbiMYchPo4zoNk5bTkMjuQ/IUOgbRVoxpTqDYF/zZORH4XmZkMDww7yaqVWTX3Uy70TxR1ljSE3
+ /w=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:zD0Pvuez3Bs=;Po0PEr/OdsOQdAkD0FLE28bTugq
+ Xpu/NvntrZGibvMH6upFmsHmHqwxchB/+RSy4RD9dA5LiJOi5OzvTPMMlrhgx47eLAnqk+/M/
+ 3sMDLKZUY5MI5Ab5VGZSUZZ1oEqo2Iu5opMvGCyuLjhxBtYIRui3iZoiEN/9q8/UTnC58vuPj
+ /9Jrligsv6r2F0cNWWomgpaErws9JutZjvhLpIdir7nP3ORYlMqCVnYnvSVBWkNQusLrfoT6G
+ DZ3zUafDXhbLV9sIj4N4cxmOQJmtKM5GEXXkJx5hIU80HG3RDmm//oARnkwnzwgbDaUvWCASf
+ kKSgx4xPZyg+xKw4cg4BQkDIoJQ5r3fBQY5LH+In1t/5s5npWmrdraZXvrT9xEV/aGe6Jl7VQ
+ rWIK7UCSfsIHYwIx4LkDLLpSD4NXRXJF8w1uYKvcJ2/zuk5xmBstMYbG9+C3KDloGb5uDYm/S
+ ggLg+OfKtdf6jlJJUUCAXjDvd2vq1dPJ++Pck695F01WtTXyToUJ8d7FuKaieqIxPFs46C822
+ pvUo7sAFUP0gTaPhBl8t1Apz1EY5bx/Tk2KIe8OaM8Fby+oCF73s5eXr7SV0oWdg7nj+O+lph
+ v5sX98c9muDq6kPRg8q5pTMUKTvGdnck1hLp6cE2WNvNNcbYBlxKz8jfQUb34A2MxG9i3pva/
+ EAdpp5xRoGP2U7rnqqwEZZTyQsB/xSzSRv/XdbB2oQ==
+Content-Transfer-Encoding: quoted-printable
 
-On 10/7/24 15:54, Krzysztof Kozlowski wrote:
-> On 07/10/2024 08:50, Damien Le Moal wrote:
->> On 10/7/24 15:12, Krzysztof Kozlowski wrote:
->>> On Mon, Oct 07, 2024 at 01:12:17PM +0900, Damien Le Moal wrote:
->>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>
->>>> Describe the `ep-gpios` property which is used to map the PERST# input
->>>> signal for endpoint mode.
->>>
->>> Why "ep" for PERST signal? Looks totally unrelated name. There is
->>> already reset-gpios exactly for PERST, so you are duplicating it. Why?
->>
->> Because the host side controller already has the same "ep-gpios" property.
->>
->> Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie.yaml
-> 
-> If host has it, then it is a common property so goes to common schema
-> for these devices.
+> Gesendet: Montag, 07. Oktober 2024 um 07:55 Uhr
+> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
+> An: "Frank Wunderlich" <linux@fw-web.de>
+> Betreff: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+>
+> On Sun, Oct 06, 2024 at 05:34:45PM +0200, Frank Wunderlich wrote:
+> > From: Frank Wunderlich <frank-w@public-files.de>
+> >
+> > Add binding definitions for mmc on MT7988 SoC.
+> >
+> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> > ---
+> > v2:
+> > - fixed minItems to 4
+> > ---
+> >  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 ++++++++++++++++++=
++
+> >  1 file changed, 24 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Docum=
+entation/devicetree/bindings/mmc/mtk-sd.yaml
+> > index c532ec92d2d9..7380f72ea189 100644
+> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> > @@ -21,6 +21,7 @@ properties:
+> >            - mediatek,mt7620-mmc
+> >            - mediatek,mt7622-mmc
+> >            - mediatek,mt7986-mmc
+> > +          - mediatek,mt7988-mmc
+> >            - mediatek,mt8135-mmc
+> >            - mediatek,mt8173-mmc
+> >            - mediatek,mt8183-mmc
+> > @@ -263,6 +264,29 @@ allOf:
+> >              - const: bus_clk
+> >              - const: sys_cg
+> >
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            enum:
+> > +              - mediatek,mt7988-mmc
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          minItems: 4
+>
+> Drop
+>
+> > +          items:
+> > +            - description: source clock
+> > +            - description: HCLK which used for host
+> > +            - description: Advanced eXtensible Interface
+> > +            - description: Advanced High-performance Bus clock
+> > +        clock-names:
+> > +          minItems: 3
+>
+> This is still wrong... anyway, drop.
 
-Ah. OK. I will move it to
-Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-common.yaml then.
+arg, sorry again...i should triple-check all before resending.
 
->> So naming that property the same allows common code to initialize that gpio in
->> rockchip_pcie_parse_dt().
->>
->> Also, I do not see reset-gpios being defined/used by this driver (host and ep
->> sides).
-> 
-> I am talking about bindings, not driver.
+but dropping means the global 2 is used (making axi+ahb optional), or am i=
+ wrong? afaik "minItems: 4" is right here
 
-I do not see reset-gpios being defined in the bindings (common, host and ep).
-resets and reset-names are defined though but these have nothing to do with
-#PERST control.
+> Best regards,
+> Krzysztof
+>
 
--- 
-Damien Le Moal
-Western Digital Research
+regards Frank
 
