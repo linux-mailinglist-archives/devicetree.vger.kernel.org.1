@@ -1,106 +1,102 @@
-Return-Path: <devicetree+bounces-108439-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108440-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8363992A9B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:48:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C4EE992AD2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:52:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5CBF1C22283
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:48:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA88228279F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:52:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7F5199FD3;
-	Mon,  7 Oct 2024 11:48:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2EB11D1F7B;
+	Mon,  7 Oct 2024 11:52:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B760D18A6AD;
-	Mon,  7 Oct 2024 11:48:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49CD418A6AD;
+	Mon,  7 Oct 2024 11:52:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728301696; cv=none; b=tDwB7kx3r9K1ChnZdQ2QPlQPEBMUdkNqpXL7lTShu51DUfZEihfabQH3p4NURo6HS3oqgPRR7E6dY4wprv9yMm0oPnzm8lq1rksHiV1CSMFiKFJ4OuuQbD8pnxEAXF0l3GFcPejGHXBuaBdOzIGwMicgHOB59qrBFfz/7o1+jBE=
+	t=1728301970; cv=none; b=ajPZYmupGyNvaH4CyJsJNysF4Qz4cRmo6afKK/G33YnDQdUDBZFtBnYsm0EDV3DuceLHRwbBEnv7WAWX1wzKC44y0imG86pAb1+TzngFh7yLsYVj7KDtzqf/wt4u5XtEcUgbJgG/p3ACE+TT8kPGf2437zh2shCIizhNAOW8Ij4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728301696; c=relaxed/simple;
-	bh=Q5wtA7ec4Qou26xJgtEWx/rXBB99xnqHPn3CTW1ILUw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=I0NYvarf+4uTyYbBxiueo6FPUKHnfWl/yUCWgxn4gaMvpBXp3gUGk0pKZs6kaVsnTJp4VYVj/mWXkGl5VuU+8aI1ssmLWmWxjPYCRrHvJyC043L0LWqUgYWc1xWs2oO45cE5XuthfAbYpsKm7qRkTXrux/3LArHYwrZUj7HBKcw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6dde476d3dfso32605457b3.3;
-        Mon, 07 Oct 2024 04:48:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728301693; x=1728906493;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+MTg99+DmaALnsyDNIw+mp2qSvQvNPEyHLZzUnFVk4E=;
-        b=SlabyXBOnB6++JBdAGAIYYOGZM5Z1kgZQiR34Ab4finnAXE5sWDDPkvZNB/QtWWWRI
-         phOu58ZTpka+FF5hhWTAFZseIVcoqqa9WOQzOMrCWL75t+RE5mrfM1Kkswge7WJk7cRz
-         rTZEZaRvKskQOqFtPrbvZ50EIJm5BokAED989GK5tbhj7fRZmWe+0ZcrOQfeeynpnudG
-         pCVAl2itbGEja1SVGWhstJiTn1dkMjitPY8qry5mjUlC7NnyI4wVrIKTk4od1x/ZIMef
-         KDpj5T1f7VxhJTGxTcbiDYfczhMStmSoe1BvHRfhzlMUwNn2WNvQD+xBuOEadTT+L1u5
-         kI1w==
-X-Forwarded-Encrypted: i=1; AJvYcCVPWBZlMdmUBr0qTxn0/H2GtcuSoiLm9zRIelQH65ePQWyYLfkOzMOMEWJ1THEQiLTsJktgAQbpF74p@vger.kernel.org, AJvYcCXix5QKbHjvGI+UcOtkz1tgKG0fTyPgI2IUyN5tULHGhYj6Dkon/dSWlGKaEHzWKr5p7ICit/M2v9w+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxWgW0++esxpXA8x6uJ6GpFxpw9JHX3AX8U1DLYfWD8/nDr0RT+
-	D9VcdNmRFgYo9mvQnx/IZNa+MCV0mv8U2S46+tmDWC+nJnBHAqTaddRtbxc0
-X-Google-Smtp-Source: AGHT+IE+EDE2i/4idaANL3mw7H5NNTuQ0gQPrkSKMlL/pehOj8fhKjpkOnF9t65Tx9aGr0d9Erx3/A==
-X-Received: by 2002:a05:690c:6f90:b0:6dd:ce4c:2f4c with SMTP id 00721157ae682-6e2c700084amr97961467b3.16.1728301692902;
-        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d927f3c8sm10062197b3.38.2024.10.07.04.48.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2b9e945b9so34280547b3.0;
-        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCURjuQYrdzXDppkY6sYzXTgxBiMMkOjPknkwpkhjQZtfFyMgJAXiwWbrqwqclmvAjqxMGBntB+Npghx@vger.kernel.org, AJvYcCXcXYrpyPJGgTAVZl6unobHonuheuNxocsg8+jh6WZg/va0ankBoMlDyasjKsOvp3Xx3hcycbA4i5Fa@vger.kernel.org
-X-Received: by 2002:a05:690c:388:b0:6e2:71b:150 with SMTP id
- 00721157ae682-6e2c72968admr99151907b3.29.1728301692479; Mon, 07 Oct 2024
- 04:48:12 -0700 (PDT)
+	s=arc-20240116; t=1728301970; c=relaxed/simple;
+	bh=AAXY8T10Y18po9ZtgYdQspsWDx7aM51t75JyZ9VnPfo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mpm+nTld6JT4llKDuoMzr0lxplXzbjBTCAFDKP6hyC2CRyk3a2DbQfUvm+ObDFO7msQLJfa/Hnp/K01QupnZgi0eInQVTymeVaoQJS+AhuE4QqJJcp5IJtosj/sDqTsEpkSqQLMwlNlVdJBTMGvPvtYeBpbireX9LsB6PBcx0NA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E7F0EFEC;
+	Mon,  7 Oct 2024 04:53:16 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6B2C43F640;
+	Mon,  7 Oct 2024 04:52:45 -0700 (PDT)
+Date: Mon, 7 Oct 2024 12:52:33 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
+	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
+ mailbox
+Message-ID: <ZwPLgcGeUcFPvjcz@pluto>
+References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241007110200.43166-5-wsa+renesas@sang-engineering.com> <20241007110200.43166-7-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20241007110200.43166-7-wsa+renesas@sang-engineering.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 7 Oct 2024 13:48:00 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdUL2GyG_HUPEVaYqXK_SaksiaJSjDPFQ11ma5iB6yE9ag@mail.gmail.com>
-Message-ID: <CAMuHMdUL2GyG_HUPEVaYqXK_SaksiaJSjDPFQ11ma5iB6yE9ag@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
 
-On Mon, Oct 7, 2024 at 1:02=E2=80=AFPM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> Document the Renesas RZ/A1H DMAC block. This one does not have clocks,
-> resets and power domains. Update the bindings accordingly. Introduce a
-> generic name in the header to make future additions easier.
+On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
+> Broadcom STB platforms have for historical reasons included both
+> "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
+> string.
+
+Hi Florian,
+
+did not know this..
+
+> 
+> After the commit cited in the Fixes tag and with a kernel
+> configuration that enables both the SCMI and the Mailbox transports, we
+> would probe the mailbox transport, but fail to complete since we would
+> not have a mailbox driver available.
 >
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Not sure to have understood this...
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
+into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
+DT, BUT your platform does NOT physically have a mbox/shmem transport
+and as a consequence, when MBOX probes (at first), you see an error from
+the core like:
 
-Gr{oetje,eeting}s,
+    "arm-scmi: unable to communicate with SCMI"
 
-                        Geert
+since it gets no reply from the SCMI server (being not connnected via
+mbox) and it bails out .... am I right ?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+If this is the case, without this patch, after this error and the mbox probe
+failing, the SMC transport, instead, DO probe successfully at the end, right ?
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+IOW, what is the impact without this patch, an error and a delay in the
+probe sequence till it gets to the SMC transport probe 9as second
+attempt) or worse ? (trying to understand here...)
+
+Thanks,
+Cristian
 
