@@ -1,223 +1,213 @@
-Return-Path: <devicetree+bounces-108652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3190B993462
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:05:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A15993470
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:07:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 621C41C23483
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:05:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE3771C235BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:07:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 028251DC1AB;
-	Mon,  7 Oct 2024 17:05:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5940F1DC74B;
+	Mon,  7 Oct 2024 17:07:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FSgYwj5a"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="iG+/w1Pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E7B01D9691;
-	Mon,  7 Oct 2024 17:05:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79FC1DC73E
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 17:07:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728320743; cv=none; b=coNiETBSxgr6tv8FUj1FSO1DmKAgbGnW5PI+uLoTuAtKUO/w8AZto66oUIN4W7uV4j5/nIIpJt7/OtqY4+/GMdiuUScnHBNivY3odIIICVmFTmenqxjLdoc4u3GDOGQ19ONZ5z9LqhIee4qG3EgF2whpjL/sqER8jcxDsKs5rHo=
+	t=1728320871; cv=none; b=fkxdAGRcwEh+CQ7hpVEkO/F7NjyaxSEqp9sBkqXNrvKpa3DV6F3ze7Y1rN1DM5jza/Hsi89ko3G9K+akKeq1zOb4P1xvQ1AKaqtR84/0vyLmWcgdKMz+ED1aMf3iOxoRmJmhXDip63kgGJzF1pSheluPl1v/QgbbaZtt5gJyV9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728320743; c=relaxed/simple;
-	bh=b75tF/sPphEK/zpg06RywlUOnVKTAmeu5F/2mvJMWD8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T4lhjVZyFYNAn+OLgyyn24417GWlzsoiGIMiItIFB1mUIpZ5h6nev//qinJrWw1ZtAyLBrwYh+EgRyBlOF4op9d0syhV7YwGGSjCFDu+InbZi+pDpz3bJhzjA91nbAArlJCspjFCm4fxxo9pyEy0nwxNkyBfBrtmaXWGN2lVENc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FSgYwj5a; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-710f0415ac8so2184480a34.1;
-        Mon, 07 Oct 2024 10:05:42 -0700 (PDT)
+	s=arc-20240116; t=1728320871; c=relaxed/simple;
+	bh=OOMuuH5IlYxEWqct0FimV+HnzWKOtW4Vj1nW5sw4X98=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=PxlO1O5XnwUVgnwwIaezktsKMUq9SQl79eRSxq2eMZk/Xcr1xMXQGUMKR6zY/uVyBliVNjwmECu6t7QYEhvvnGtsHljcPExSzc5cHg8EMOuaHqv7p2J0SrxSDL3ttf7StxVa4lGuXJHpyQYzgCRK1Wj8EO3ODsTe5ft5G2nWyGo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=iG+/w1Pd; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7ea12e0dc7aso681820a12.3
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 10:07:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728320741; x=1728925541; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=fo5VaJYp/8ouRC39yR7JLozJj6c3krO2R/Jl4vYSUfI=;
-        b=FSgYwj5ajuGFtJGIlr849QFeGPks+F7pdKGqwc9MpcP/mmrB8FhFkXdh8XW+p4wOfY
-         bA/D+AYH+3JZnI7SVP9pzR4k3ieo2g+mhiQBCxruRS/v5QeazxyC9ZQYwJNhXnn23wln
-         gfcsQIV2FPvdt9RmxuSmYofWT7QiehFvbmeKCJHXGwNvjxtg+jd1GMUfpChXdu5VTBRK
-         5l3h3023j6KqopbhdYSAsjPjyuWn4i87kOEaLjRLQI9MAZmNAHARxOiVof+VJIO4CZtV
-         CQBzGbGd8wmUC27E5EHaMehixPtturP+/xkXETshBo1d63bG8kRRvejcXFUy6Se/pZrw
-         75HA==
+        d=broadcom.com; s=google; t=1728320869; x=1728925669; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:subject:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=1Xsz1cKkpJKzKS5NgU8P9HM5AvWEcAQxgUYBZ/hb0Eo=;
+        b=iG+/w1PdgxjyZNcJcG8GH98ZJj/iTyRWQf3/sX2v/D+WL9/RqNZnR1ktbNCqwUBsi0
+         Rh9T2xZcWfrnwr4Rah4bOTACwuus37rU2D5JBZkd0jHBoIlUiSxZKIeHUuwekxWxnBtY
+         BkCund25RwKOlBbcIdrJ8LawlpvJVdTUM8QM4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728320741; x=1728925541;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=fo5VaJYp/8ouRC39yR7JLozJj6c3krO2R/Jl4vYSUfI=;
-        b=Tf+2u+V3FU5dmWhXriVfVkitiQ+nOjsR7qh8OJE5Y8/64AToWnPsT7LpJjilg2IFas
-         1EYzKv7nYm/grICSis9aSym4hgGi5KZZV5lT7F9rXD+91d7qhZBwtXM+sObsDsmeEXnH
-         /skJpOOhrDu9K5RDvnFu9jx2Z9sawKSf+5VEl+lwAm+LiL+rfRmElu8LxG3l/gOSbv1Y
-         VHiceK50BlEzncuWyM8FUGeHyAzwxZOkCaghWOYG4HsjWi2c8x5rbYJXndZaxb8ZeE0l
-         6hJmTAA5dIQf1GICJo3dctth2U2wxr/HqjX3OyVMWbPl8GTqY76U2emFYk9WUdyI1BYC
-         YcKg==
-X-Forwarded-Encrypted: i=1; AJvYcCUv+eLuGsJCHzRfzjqlWooiChYPqpCHsJ9+OAiaJAvumizxBvKqFQaML22MtIazM5HE4rQez63D1NKOG3rDCYjOa6o=@vger.kernel.org, AJvYcCVkd8RP09NMVXtlwhTgiyQlxFTsQ89Q9qLEWeYZ9M3y47uvIEA+BpBUjD+0t829DIHjx2vI2JKL1gPC@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfRunhir0RfgsMkXk8bvcehO6deGVnkvs0YxRPa+MPCuex73b0
-	R4sT4yd5xH71YoOx8u8Y0MgARZnnenwS/+uQF5Qgi/M6/ubQ6VUux+MrklDgTx8ZN3pNxkci4h1
-	dqkWy8MEz3KyzdYz3nKgZYL1pTFc=
-X-Google-Smtp-Source: AGHT+IETU0ZxwiebjeN3vsC82cDLDyg4zBlTpnnWDXRcrq10Q18NDcb5TFin6KLrQGgFJD2JFa7X1pBSgk1pUT599fA=
-X-Received: by 2002:a05:6358:7e06:b0:1bc:d1b9:90e6 with SMTP id
- e5c5f4694b2df-1c2b83af4f0mr442316055d.28.1728320741244; Mon, 07 Oct 2024
- 10:05:41 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728320869; x=1728925669;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:subject:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1Xsz1cKkpJKzKS5NgU8P9HM5AvWEcAQxgUYBZ/hb0Eo=;
+        b=o3rfvHpIfaKoUOK51VTfMcRo3GPyHpBxXCQ39yPLXtFhNBayjicXk+7ITkUpBng4JC
+         Unpqv3o75yvIV4rIzaHukv1BOFLeiD5pgo6oCxpyY4/nY/hkWdJ99BneVYh+Usv0062K
+         daOzeTTTotrUDxa2j4ibEQpMQ5RCczh1t79QiIWFAyiWyank9drrxrgwxGQjwg04mlWa
+         CqJv9R8jyo0eEcrro1Y5vWGfkYbDz2ZhH1OFp53+4bhGFcWIWymIDKeYP8PjLmY+3Q2U
+         mZ/Z8VkmONyOtEmaE7ZejbxTFUBe+Q2M1/amZNL7ogC1vD1WzKDw/BpWSzxW+YZo+42k
+         6gIA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+81D46Y+1PFnQ9QG67IURuhEhWkq0YMcLX6XVvObjOVZ0PEPiKPIR0z8R0yjTm9SZuVR1fIAL/Kcu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwQaWWVgAWSsqHQPA6V/ThPNUOyoQBNEo6RcoQNRMRt9VQHgLf+
+	BAO1u13b5ElAG1dCTaTP3l9mMqIhqMJxDfB8yncXQtuhhkCRrfvKNcyeK2dLEQ==
+X-Google-Smtp-Source: AGHT+IGafgSzyj7H334JaowYq/bSl0luswUi03Ck5xtcg5AC+8GL0Qp4QvzU6hyPq89Q2aXo/BBkdg==
+X-Received: by 2002:a17:90a:ce87:b0:2c9:649c:5e08 with SMTP id 98e67ed59e1d1-2e1e6226d7bmr13956400a91.15.1728320869018;
+        Mon, 07 Oct 2024 10:07:49 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85d96bfsm7420819a91.27.2024.10.07.10.07.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 10:07:48 -0700 (PDT)
+Message-ID: <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
+Date: Mon, 7 Oct 2024 10:07:46 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728045620.git.geert+renesas@glider.be> <f51de53cb003f850751e13fdbddea64ad942ee7b.1728045620.git.geert+renesas@glider.be>
-In-Reply-To: <f51de53cb003f850751e13fdbddea64ad942ee7b.1728045620.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 7 Oct 2024 18:05:15 +0100
-Message-ID: <CA+V-a8uwtN9gortwYHWs_PJ6BjGzLTU4jy_Wt-WbKmHeh1Kyvw@mail.gmail.com>
-Subject: Re: [PATCH 01/20] ARM: dts: renesas: Use interrupts-extended for
- Ethernet MACs
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
+ mailbox
+To: Cristian Marussi <cristian.marussi@arm.com>
+Cc: linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
+ <arm-scmi@vger.kernel.org>,
+ "moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
+ <linux-arm-kernel@lists.infradead.org>, justin.chen@broadcom.com,
+ opendmb@gmail.com, kapil.hali@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com, Arnd Bergmann <arnd@arndb.de>
+References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
+ <ZwPLgcGeUcFPvjcz@pluto>
+Content-Language: en-US
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <ZwPLgcGeUcFPvjcz@pluto>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 4, 2024 at 2:30=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  arch/arm/boot/dts/renesas/emev2-kzm9d.dts     | 3 +--
->  arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts | 3 +--
->  arch/arm/boot/dts/renesas/r8a7778-bockw.dts   | 3 +--
->  arch/arm/boot/dts/renesas/r8a7779-marzen.dts  | 3 +--
->  arch/arm/boot/dts/renesas/r8a7792-blanche.dts | 3 +--
->  arch/arm/boot/dts/renesas/r8a7792-wheat.dts   | 3 +--
->  arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts    | 3 +--
->  7 files changed, 7 insertions(+), 14 deletions(-)
->
+Hi Cristian,
 
-Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On October 7, 2024 4:52:33 AM PDT, Cristian Marussi 
+<cristian.marussi@arm.com> wrote:
+>On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
+>> Broadcom STB platforms have for historical reasons included both
+>> "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
+>> string.
+>
+>Hi Florian,
+>
+>did not know this..
 
-Cheers,
-Prabhakar
+It stems from us starting with a mailbox driver that did the SMC call, 
+and later transitioning to the "smc" transport proper. Our boot loader 
+provides the Device Tree blob to the kernel and we maintain 
+backward/forward compatibility as much as possible.
 
-> diff --git a/arch/arm/boot/dts/renesas/emev2-kzm9d.dts b/arch/arm/boot/dt=
-s/renesas/emev2-kzm9d.dts
-> index 89495dd373585e94..c624fd61578b3b72 100644
-> --- a/arch/arm/boot/dts/renesas/emev2-kzm9d.dts
-> +++ b/arch/arm/boot/dts/renesas/emev2-kzm9d.dts
-> @@ -83,8 +83,7 @@ ethernet@20000000 {
->                 compatible =3D "smsc,lan9221", "smsc,lan9115";
->                 reg =3D <0x20000000 0x10000>;
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&gpio0>;
-> -               interrupts =3D <1 IRQ_TYPE_EDGE_RISING>;
-> +               interrupts-extended =3D <&gpio0 1 IRQ_TYPE_EDGE_RISING>;
->                 reg-io-width =3D <4>;
->                 smsc,irq-active-high;
->                 smsc,irq-push-pull;
-> diff --git a/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts b/arch/arm/boo=
-t/dts/renesas/r8a73a4-ape6evm.dts
-> index ae656ee27124c745..94a39ffc4297b788 100644
-> --- a/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a73a4-ape6evm.dts
-> @@ -207,8 +207,7 @@ partition@80000 {
->         ethernet@8000000 {
->                 compatible =3D "smsc,lan9220", "smsc,lan9115";
->                 reg =3D <0x08000000 0x1000>;
-> -               interrupt-parent =3D <&irqc1>;
-> -               interrupts =3D <8 IRQ_TYPE_LEVEL_HIGH>;
-> +               interrupts-extended =3D <&irqc1 8 IRQ_TYPE_LEVEL_HIGH>;
->                 phy-mode =3D "mii";
->                 reg-io-width =3D <4>;
->                 smsc,irq-active-high;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7778-bockw.dts b/arch/arm/boot/=
-dts/renesas/r8a7778-bockw.dts
-> index a3f9d74e8877b72b..e27d7dd8c869bb2d 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7778-bockw.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7778-bockw.dts
-> @@ -96,8 +96,7 @@ ethernet@18300000 {
->                 reg =3D <0x18300000 0x1000>;
 >
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&irqpin>;
-> -               interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqpin 0 IRQ_TYPE_EDGE_FALLING>=
-;
->                 reg-io-width =3D <4>;
->                 vddvario-supply =3D <&fixedregulator3v3>;
->                 vdd33a-supply =3D <&fixedregulator3v3>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7779-marzen.dts b/arch/arm/boot=
-/dts/renesas/r8a7779-marzen.dts
-> index fec08562d12c1813..9793d8781d6e9425 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7779-marzen.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7779-marzen.dts
-> @@ -261,8 +261,7 @@ ethernet@18000000 {
->                 pinctrl-names =3D "default";
+>> 
+>> After the commit cited in the Fixes tag and with a kernel
+>> configuration that enables both the SCMI and the Mailbox transports, we
+>> would probe the mailbox transport, but fail to complete since we would
+>> not have a mailbox driver available.
+>>
+>Not sure to have understood this...
 >
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&irqpin0>;
-> -               interrupts =3D <1 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqpin0 1 IRQ_TYPE_EDGE_FALLING=
->;
->                 smsc,irq-push-pull;
->                 reg-io-width =3D <4>;
->                 vddvario-supply =3D <&fixedregulator3v3>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts b/arch/arm/boo=
-t/dts/renesas/r8a7792-blanche.dts
-> index 540a9ad28f28ac1a..7eefa227d65514a9 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-> @@ -224,8 +224,7 @@ ethernet@18000000 {
->                 compatible =3D "smsc,lan89218", "smsc,lan9115";
->                 reg =3D <0x18000000 0x100>;
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&irqc>;
-> -               interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqc 0 IRQ_TYPE_EDGE_FALLING>;
->                 smsc,irq-push-pull;
->                 reg-io-width =3D <4>;
->                 vddvario-supply =3D <&d3_3v>;
-> diff --git a/arch/arm/boot/dts/renesas/r8a7792-wheat.dts b/arch/arm/boot/=
-dts/renesas/r8a7792-wheat.dts
-> index 000f21a2a8630a8e..bfc780f7e396b408 100644
-> --- a/arch/arm/boot/dts/renesas/r8a7792-wheat.dts
-> +++ b/arch/arm/boot/dts/renesas/r8a7792-wheat.dts
-> @@ -115,8 +115,7 @@ ethernet@18000000 {
->                 compatible =3D "smsc,lan89218", "smsc,lan9115";
->                 reg =3D <0x18000000 0x100>;
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&irqc>;
-> -               interrupts =3D <0 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqc 0 IRQ_TYPE_EDGE_FALLING>;
->                 smsc,irq-push-pull;
->                 smsc,save-mac-address;
->                 reg-io-width =3D <4>;
-> diff --git a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts b/arch/arm/boot/d=
-ts/renesas/sh73a0-kzm9g.dts
-> index 98897f710063a91b..15d89c20618a16b7 100644
-> --- a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-> +++ b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-> @@ -172,8 +172,7 @@ ethernet@10000000 {
->                 compatible =3D "smsc,lan9221", "smsc,lan9115";
->                 reg =3D <0x10000000 0x100>;
->                 phy-mode =3D "mii";
-> -               interrupt-parent =3D <&irqpin0>;
-> -               interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqpin0 3 IRQ_TYPE_EDGE_FALLING=
->;
->                 reg-io-width =3D <4>;
->                 smsc,irq-push-pull;
->                 smsc,save-mac-address;
-> --
-> 2.34.1
+>...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
+>into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
+>DT, BUT your platform does NOT physically have a mbox/shmem transport
+>and as a consequence, when MBOX probes (at first), you see an error from
+>the core like:
 >
+>    "arm-scmi: unable to communicate with SCMI"
 >
+>since it gets no reply from the SCMI server (being not connnected via
+>mbox) and it bails out .... am I right ?
+
+In an unmodified kernel where both the "mailbox" and "smc" transports 
+are enabled, we get the "mailbox" driver to probe first since it matched 
+the "arm,scmi" part of the compatible string and it is linked first into 
+the kernel. Down the road though we will fail the initialization with:
+
+[    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
+[    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
+[    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for 
+protocol:0x10
+[    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup 
+channels
+[    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi 
+failed with error -22
+
+Because the platform device is now bound, and there is no mechanism to 
+return -ENODEV, we won't try another transport driver that would attempt 
+to match the other compatibility strings. That makes sense because in 
+general you specify the Device Tree precisely, and you also have a 
+tailored kernel configuration. Right now this is only an issue using 
+arm's multi_v7_defconfig and arm64's defconfig both of which that we 
+intend to keep on using for CI purposes.
+
+
+>
+>If this is the case, without this patch, after this error and the mbox probe
+>failing, the SMC transport, instead, DO probe successfully at the end, right ?
+
+With my patch we probe the "smc" transport first and foremost and we 
+successfully initialize it, therefore we do not even try the "mailbox" 
+transport at all, which is intended.
+
+>
+>IOW, what is the impact without this patch, an error and a delay in the
+>probe sequence till it gets to the SMC transport probe 9as second
+>attempt) or worse ? (trying to understand here...)
+
+There is no recovery without the patch, we are not giving up the 
+arm_scmi platform device because there is no mechanism to return -ENODEV 
+and allow any of the subsequent transport drivers enabled to attempt to 
+take over the platform device and probe it again.
+
+Thanks!
+--
+Florian
 
