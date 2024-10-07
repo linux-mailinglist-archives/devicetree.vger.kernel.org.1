@@ -1,177 +1,157 @@
-Return-Path: <devicetree+bounces-108339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D5C9925B6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:14:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8F149925C5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C30AF1F22EA0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:14:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF9FEB23846
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8AE817B4E1;
-	Mon,  7 Oct 2024 07:11:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C302C172777;
+	Mon,  7 Oct 2024 07:13:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zmjgo/Cd"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="I47RHCMW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACF6C176251
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:11:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F5A170854
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:13:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728285074; cv=none; b=YE4aP2MpcPUhdgiwHA23WSwejdEbNqqvzIjusLeVTZjiTSqwSewuPMfmu8TLwjOOTjIfVgWL4kmFQYp//Rs6n+2RPUZyfxVfGTg3imyn9b/MUP3hkrTvZxqZ9T5mg090sbFGBjxO/rWBMNK8ojtN7JsXKqDylPLevNaXaXvMIXE=
+	t=1728285224; cv=none; b=ISRp7J4LuQ7FP75xpHS/SMQ6HnVfrRnEU7yQz00OUilrfJoT3FXxMtlgoNXHA/l99gHVZ9vjXgW/nfpGMDcX2kbLUkLGlUemUjcnYsCZfb6PAbGi9dM3ZQo6tPaQyf95+v9Vf0iT8ZxsOEQATAM0wMUjzGrywJlTOQiq4DNo45Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728285074; c=relaxed/simple;
-	bh=ku8uJDr+QRwsk1lGUGa0hS1U3Qj5p+wR3CQr8UpBG40=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ItXE7SkH1+WdJBTKMEVRjVWsbLBZBBOomM0RIKZIi1pnKcrlHndw52Qe+qHhOFlkjBddJlnEEdsofT8o3Sc/FKCv9kE/ktSe1yE+Vi/PxL5uZoi7lXbgTnWanupkU7hkPzGfVh7grWC7CKR6vi7ekQku+BRsZm50zjmqnFxr5oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zmjgo/Cd; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-42cbface8d6so54186505e9.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 00:11:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728285071; x=1728889871; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=t2OtAupPj912oaWTk70eSxGnJNSBiZ0taXrAiEBAlYM=;
-        b=zmjgo/Cd5qyDJiihweMlq6YX68L0uc7hZ0FMXfkUEwVIzc3G4gAGpI3P3Tbfp9CqVV
-         Pd2jYLNSj3QOzVkzrimEwKypXNGTFAATCQ0hMbu2KaXxhsb2Mwe0xZm6tPfdV54IPyBL
-         pQAAKgXsLN7g++j25MiM+aZ66J3fWtEcxEoDlz4HLVdHGbgIZ4ugYFWt1+VW3E03IlVQ
-         hCPlZrRBOwCfBJ1AhhPcOVN7aoB2bd3jV8UZr5mR/Uwax+TWd0ea8yzwitX7TT1VNPg+
-         wsVprinntIp59SDb8bpaQmF07PqASQyPJQRM+f0o1ING9VdQQuYRNiuhdrra7kl/2T1n
-         7hCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728285071; x=1728889871;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=t2OtAupPj912oaWTk70eSxGnJNSBiZ0taXrAiEBAlYM=;
-        b=gf7ksDdEp5b5yLFi8Eslw0IhNNNa/+vr6YuDqv5SwdFpoBg9GEVBs2LOgDJKvBWHyp
-         pBwKnCW5C6tBeEqGxqVnZuEbwSxT9x+Ug7pbTVToeGiT5f+qgJ3vFUa2rZFgNoMoLODt
-         U35zRzwSyocEC6iT077CABHRd+7MH1NLQcTD8OaoMGIWse9q6nhufRb22raAGhTo6d/l
-         SsqyIQ3KpbcpR7TlmTtVVDy8XRY56THwelYvgMQwLPynZ06P37nlp3wGPvMq6Gf6ocYN
-         ZE263GSHTx7EvhVAarG6t9rGckUr1TVS1ak+O+nQHTg1yVRtZaq7KeQy9vUz3XSzxW75
-         NWKA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpPeX2IzrODhnUF7n/QKC7z7bSEqQpCqye5q88Sc5XQOFfZTuD4KMswvAm3p1UJCNuftVPHVlOqXyT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyN62DXfzTZAoBzUWuwpTeA1PWyQ/MDHyZR1UnaInNfPxGzSpi
-	EWANcj4tAc5AvUXQHj4yYm6uYsurMrh5qGV5SP7Ne96Lz9YwMDODIjfEC3k8Vrw=
-X-Google-Smtp-Source: AGHT+IFVFxaRMFfUaEbq3HUpjZ/b1H2g6WoDRhYYqt96M3soQzVRwr1DKsgQB9gASFRhW0F++A16dA==
-X-Received: by 2002:a05:600c:3ba9:b0:42c:ba83:3f00 with SMTP id 5b1f17b1804b1-42f85a6e0c0mr122280805e9.1.1728285071045;
-        Mon, 07 Oct 2024 00:11:11 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1698c188sm4988483f8f.112.2024.10.07.00.11.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 00:11:10 -0700 (PDT)
-Message-ID: <e44d7132-72ac-49aa-b44e-c6f9ac237ccc@linaro.org>
-Date: Mon, 7 Oct 2024 09:11:10 +0200
+	s=arc-20240116; t=1728285224; c=relaxed/simple;
+	bh=zmrMt3XYyv2Uj4lLMTmDOs3aG1zFJbJCuPA0W9VUiYU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=jeRwb/A6E8TTRVGT8MGMBE8OYn/NeISAPqwm79BQoYqIE5eAENBbs/hwLMR4KlkXbktOiaQ2ELV0PYzmaCty99Vq9C6tNlSCUWI7otMFUfKE1juYKvIyzgjYvtHKMD7RkJMajC780/7mIVoCbBFwWnFMvi7dSTFPz+NwCpn+Dyc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=I47RHCMW; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20241007071339epoutp03eec7c937a3af21a250daf6decbe181ab~8GkAck5Zv2088320883epoutp03R
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:13:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20241007071339epoutp03eec7c937a3af21a250daf6decbe181ab~8GkAck5Zv2088320883epoutp03R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1728285219;
+	bh=CFW3gUil44XBVe30jBZdUdrPggHOfezLZgTYNix0LA0=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=I47RHCMWCp/xPpgvEz0UdhVh2thl7quL63wQsuTq1gj/oYJbPzDwNIvw7mB6hC1yN
+	 267O2ZNdfJG8im9l9Vpz06EsRSSqfQeRxk7kT7Q8v6Xe8GSpH1C9g1F4H1NfSAUJq5
+	 N/WVGQJYWwMK5T69oaaN1c7LMzdCNGQOeeQXFfJ0=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241007071339epcas2p1e03d382f7c40c99d2f7ef4b25b083c9c~8Gj-9-0JR0691506915epcas2p1W;
+	Mon,  7 Oct 2024 07:13:39 +0000 (GMT)
+Received: from epsmges2p4.samsung.com (unknown [182.195.36.98]) by
+	epsnrtp2.localdomain (Postfix) with ESMTP id 4XMVkB5W1Gz4x9Px; Mon,  7 Oct
+	2024 07:13:38 +0000 (GMT)
+Received: from epcas2p2.samsung.com ( [182.195.41.54]) by
+	epsmges2p4.samsung.com (Symantec Messaging Gateway) with SMTP id
+	71.E4.09811.22A83076; Mon,  7 Oct 2024 16:13:38 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241007071338epcas2p240e751a9d59f1cfa11515c90e2d8e991~8Gj-JRGQ61941819418epcas2p2w;
+	Mon,  7 Oct 2024 07:13:38 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241007071338epsmtrp1ebb1e9d2aeef5e37e9437ca066e1a20b~8Gj-IYK8q1386213862epsmtrp1I;
+	Mon,  7 Oct 2024 07:13:38 +0000 (GMT)
+X-AuditID: b6c32a48-0869ea8000002653-68-67038a22066b
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	FB.18.08227.22A83076; Mon,  7 Oct 2024 16:13:38 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.60]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20241007071337epsmtip222e3299ac0a90584dab9abc60fd44f3e~8Gj_5Q_t71371013710epsmtip2_;
+	Mon,  7 Oct 2024 07:13:37 +0000 (GMT)
+From: Sunyeal Hong <sunyeal.hong@samsung.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
+	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
+	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
+	<conor+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, Sunyeal Hong <sunyeal.hong@samsung.com>
+Subject: [PATCH v1 0/3] add clocks support for exynosauto v920 SoC
+Date: Mon,  7 Oct 2024 16:13:30 +0900
+Message-ID: <20241007071333.3011125-1-sunyeal.hong@samsung.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v7 1/2] arm64: dts: qcom: sm8650: extend the register
- range for UFS ICE
-To: Bartosz Golaszewski <brgl@bgdev.pl>,
- Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Om Prakash Singh <quic_omprsing@quicinc.com>,
- Gaurav Kashyap <quic_gaurkash@quicinc.com>
-References: <20241001-wrapped-keys-dts-v7-0-a668519b7ffe@linaro.org>
- <20241001-wrapped-keys-dts-v7-1-a668519b7ffe@linaro.org>
- <Zv/2Xgs9o78HkXne@hu-bjorande-lv.qualcomm.com>
- <CAMRc=MdC2yRMK0Sw+5nJvBsTtxtVW=XbJ=3RixsKp7mQibMTww@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CAMRc=MdC2yRMK0Sw+5nJvBsTtxtVW=XbJ=3RixsKp7mQibMTww@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprPJsWRmVeSWpSXmKPExsWy7bCmma5SF3O6wYVtGhYP5m1js1iz9xyT
+	xfUvz1kt5h85x2px/vwGdotNj6+xWnzsucdqcXnXHDaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
+	XdvIYtG0bD2TA5/H+xut7B6bVnWyeWxeUu/Rt2UVo8fnTXIBrFHZNhmpiSmpRQqpecn5KZl5
+	6bZK3sHxzvGmZgaGuoaWFuZKCnmJuam2Si4+AbpumTlAdyoplCXmlAKFAhKLi5X07WyK8ktL
+	UhUy8otLbJVSC1JyCswL9IoTc4tL89L18lJLrAwNDIxMgQoTsjOOXisu2Mhasei7ZQPjHJYu
+	Rk4OCQETib6+p2xdjFwcQgI7GCUOvZrFDuF8YpSYu/87C4TzjVGir2kNXMunSf+ZIBJ7GSXO
+	tX6C6v/IKHH42w3mLkYODjYBXYk//xxA4iICe5gktpxfAtbBLHCWUeLunAXsIKOEBZwkpj5c
+	xghiswioSqx+OpUFpJlXwF7ienMKxDZ5ieuPjzKB2LwCghInZz4Bu4IZKN68dTYzyEwJgVYO
+	if+bnjJBNLhIPDpziBnCFpZ4dXwLO4QtJfGyvw3KzpeYfP0tE0RzA6PEtX/dUA32EovO/GQH
+	OYJZQFNi/S59EFNCQFniyC2ovXwSHYf/skOEeSU62oQgGtUkPl25DDVERuLYiWdQtodE88Lb
+	YB8KCcRKPH15hWUCo/wsJN/MQvLNLIS9CxiZVzGKpRYU56anFhsVmMDjNDk/dxMjOKVqeexg
+	nP32g94hRiYOxkOMEhzMSiK8EWsY04V4UxIrq1KL8uOLSnNSiw8xmgKDdyKzlGhyPjCp55XE
+	G5pYGpiYmRmaG5kamCuJ895rnZsiJJCeWJKanZpakFoE08fEwSnVwDT78qcrzK6ty2M9Xc6a
+	x3GofU6sWnxh+03LrGdG51NvxC0JNtULd1xy5c+iV5EL2i59u8RUkHFhAiuDff8WlSq73LC4
+	lcv6u55XbW+/eylvzVt7Z13riLq2uof8tpfy068wlT2Z0TQ906J38q3HNiqrWQ/xzkg7u/PG
+	58yTUZ1e7LmGVz+f2TbtmMOEpVJfPl9ZJK3dMplt09xfrWwyH3KWGWWusw1w5Hiq21Q2a/Ls
+	/O4eprtHjxpW/4vfW77qToCm/h4eo7drdrxcd5s1Y+8E7Q138rVTDmlNsuhZxVDj1Ta5uDCP
+	UcqhYLfN65N755XFmfW8Epgi0Pplq3nBtr1R8bneBx487ytpuhLqt12JpTgj0VCLuag4EQDS
+	1ZmnMgQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHLMWRmVeSWpSXmKPExsWy7bCSvK5SF3O6wbNXXBYP5m1js1iz9xyT
+	xfUvz1kt5h85x2px/vwGdotNj6+xWnzsucdqcXnXHDaLGef3MVlcPOVq8X/PDnaLw2/aWS3+
+	XdvIYtG0bD2TA5/H+xut7B6bVnWyeWxeUu/Rt2UVo8fnTXIBrFFcNimpOZllqUX6dglcGUev
+	FRdsZK1Y9N2ygXEOSxcjJ4eEgInEp0n/mboYuTiEBHYzSjzas5INIiEjsbHhPzuELSxxv+UI
+	K0TRe0aJHS9PM3cxcnCwCehK/PnnABIXETjEJDHx81MWEIdZ4DKjxLG7k5lBuoUFnCSmPlzG
+	CGKzCKhKrH46lQWkmVfAXuJ6cwrEAnmJ64+PMoHYvAKCEidnPgG7jhko3rx1NvMERr5ZSFKz
+	kKQWMDKtYpRMLSjOTc8tNiwwykst1ytOzC0uzUvXS87P3cQIDnItrR2Me1Z90DvEyMTBeIhR
+	goNZSYQ3Yg1juhBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeb697U4QE0hNLUrNTUwtSi2CyTByc
+	Ug1M5947503wOPZYbX+f1O151+uMN4YE1DLX376wueXCl4rPt24bLf4/9fORDJ6LPxSeZawo
+	jn3xodDC8fFn/onpb42VznDmOIf4PH/r5VefWlxd5f9m0cT0iVsSxLb8/28Zwqf3POZqgccV
+	wYVvbecZNG6tnXNW1Ewx8VyER0GRw8Q/h6YwftyXZi+Y/oWX5dnzL6e7ub63p8ZoSBl/u8Za
+	OYm3a+tV99kLnR3VTm5p7l6++PTXSY/O/9wrcuEK94dzLBfTfbXafyy3urgi4NlD+bx3isxa
+	GVcZj2pyJRtd5jgbH/Nvlvtjdgaj3Duerc/5dXSrt+StPiZVtsJ77ZysSNFnqmkbEtQvPqrT
+	fGK7TImlOCPRUIu5qDgRAHM2PM3hAgAA
+X-CMS-MailID: 20241007071338epcas2p240e751a9d59f1cfa11515c90e2d8e991
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241007071338epcas2p240e751a9d59f1cfa11515c90e2d8e991
+References: <CGME20241007071338epcas2p240e751a9d59f1cfa11515c90e2d8e991@epcas2p2.samsung.com>
 
-On 04/10/2024 16:15, Bartosz Golaszewski wrote:
-> On Fri, Oct 4, 2024 at 4:06 PM Bjorn Andersson
-> <quic_bjorande@quicinc.com> wrote:
->>
->> On Tue, Oct 01, 2024 at 10:35:30AM +0200, Bartosz Golaszewski wrote:
->>> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>
->>> The Inline Crypto Engine (ICE) for UFS/EMMC supports the Hardware Key
->>> Manager (HWKM) to securely manage storage keys. Enable using this
->>> hardware on sm8650.
->>>
->>> This requires us to increase the register range: HWKM is an additional
->>> piece of hardware sitting alongside ICE, and extends the old ICE's
->>> register space.
->>>
->>
->> This commit message doesn't follow what Neil requested in v5:
->>
->> https://lore.kernel.org/lkml/109b1e46-f46f-4636-87d5-66266e04ccff@linaro.org/
->>
-> 
-> Because we have dropped the new property two versions ago as per this
-> series' cover letter.
+This patchset adds the CMU block below to support exynosauto v920 SoC.
+- CMU_PERIC1
+- CMU_MISC
+- CMU_HSI0/1
 
-The patch now is fine for me, the comment was applicable to v5
+Changes in v1:
+ - Rebase the patch to reflect the latest fixes
 
-> 
->>> Reviewed-by: Om Prakash Singh <quic_omprsing@quicinc.com>
->>> Tested-by: Neil Armstrong <neil.armstrong@linaro.org>
->>
->> I unfortunately can't find where Neil provided this.
->>
->> Is this tag referring to this patch having been tested together with the
->> driver changes, so he's saying that HWKM works fine. Or is he saying
->> that the old feature set still works after the growth of the register
->> region (i.e. what he requested in v5)?
->>
-> 
-> I think Neil tested the full functionality of HWKM on sm8650 as per
-> Gaurav's instructions. I did the same as well.
+Sunyeal Hong (3):
+  dt-bindings: clock: exynosautov920: add peric1, misc and hsi0/1 clock
+    definitions
+  clk: samsung: exynosautov920: add peric1, misc and hsi0/1 clock
+    support
+  arm64: dts: exynosautov920: add peric1, misc and hsi0/1 clock DT nodes
 
-Exact, I can re-test if necessary, but I trust Bartosz here.
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi |  50 +++
+ drivers/clk/samsung/clk-exynosautov920.c      | 290 ++++++++++++++++++
+ .../clock/samsung,exynosautov920.h            |  47 +++
+ 3 files changed, 387 insertions(+)
 
-Neil
-
-> 
-> Bart
+-- 
+2.46.0
 
 
