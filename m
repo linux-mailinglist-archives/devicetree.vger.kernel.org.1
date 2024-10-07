@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-108555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 438ED992F35
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:28:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6246992F44
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3C151F248D6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:28:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F38CF1C225CB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:29:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F9F1DA0FE;
-	Mon,  7 Oct 2024 14:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03DAA1DB526;
+	Mon,  7 Oct 2024 14:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aRuaXuYa"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X8Mr8POY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4903C1DA0E1;
-	Mon,  7 Oct 2024 14:26:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84E01DB377;
+	Mon,  7 Oct 2024 14:26:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728311185; cv=none; b=uy9B44V8wm+39uzPfHfsC+prliP6gc3L/QL6VLbrclAViCq5aqqo6ukW5sjn9DNum0V327muiM/ymTMEntb2MxUGbq3OxvZ+bAtdONbGrIrmjth+gJYBJr2khlDX96XZPfk2y2dmNbtA+gi3VASD8N/HpocZSVqTfnXHYX5aG/k=
+	t=1728311188; cv=none; b=hFK71YWnabbWR5x1x7LZ2QsNsPPynOdfaEls/dKB35zfM1kje8idaDbn63lfdQTZ3cYgQYdIdzxeTsiAI5wxken+9+L510Qf0M/SC8gPiEnOVOhIPI0sHAT8qwXkks10DyINtDxVcYD8KF8KuJaIbcTfBuQmdAqCJrYHLIRNoHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728311185; c=relaxed/simple;
-	bh=tqug78zWaXgGAPBmUk1qR09Gx4eh42mL3Y3IUdcQR2Y=;
+	s=arc-20240116; t=1728311188; c=relaxed/simple;
+	bh=WMe/wekRo2YCjEB+Jtat8Vf5Y2YPk4ruFNqa3YNyghE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uhfCWkuYrwMPxMS1GTrj8kJjpdS3BTJtoVZbp3MBlY4hwp46yO7BQhpY7fC4WK/+TVSfZD58gHi9JTcmWelrWkfyRKK7eTHZEfeCb/ZIfk9BUTRkVn54ReGLiIMEnfzbfFHi9jcTesyZs3gAZU4TqgqcA5UxYL8NyxwQq1V0afg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aRuaXuYa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 427F4C4CECC;
-	Mon,  7 Oct 2024 14:26:24 +0000 (UTC)
+	 MIME-Version:Content-Type; b=iRO1sZjH23HkPRwGySm8GMnedKVrLPfBqp8xJ/iQnFp3aA3D194pIkB8hbrA30zV1YdCoFCwZ/31XQJ8jEw+kXNwQAgK38TTS15VmND/ymSP0lxeZsXv0kH/R9s/yZk//AsV8muJOlV51W6XzkboefsJ4MCAjnMGr6Rpd08UX2A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X8Mr8POY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA693C4CED0;
+	Mon,  7 Oct 2024 14:26:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728311185;
-	bh=tqug78zWaXgGAPBmUk1qR09Gx4eh42mL3Y3IUdcQR2Y=;
+	s=k20201202; t=1728311188;
+	bh=WMe/wekRo2YCjEB+Jtat8Vf5Y2YPk4ruFNqa3YNyghE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=aRuaXuYac4vkuind0U3v3T32RWfYijik3rsVkQ2xjX6I/NtsdKxd82298ynIGIZXy
-	 Tma1JhRvKelLbym6My2nKFpmc6SJyw8f90iDi3Cz2cwQUNHZUxywZ+3+cx904lprCb
-	 MU6R15c5B7LsLlc9+QNAflYYLjGt/7C/fOMMzWhAntuSw0X5Mw2JkQChZHpl+yRP2/
-	 1bcquZhrq/dFQ2itUpALS2cmEMV85fPglNb6envemiXTBjuYJHPgNw3AAHinNjmtWz
-	 ZAnD0I9EBR07Kj1yhUSRZt3Zg2ilaZjQwrXPlNKtpqRuGfkbEvFBSMnNnsR64W20mK
-	 ebHEIQjtaYbbQ==
+	b=X8Mr8POYlS7KwbcXfrEd1uaQtPiTssPxNjNPAPzjxmx/L9cSpYnSSESv5zJDxsgef
+	 c+nfdIBr4D2dhnI1erZqsAxOOX05y/Oal9soVbSr3++fO045gjKaocQap7NJOybdIF
+	 GZ6ql7fjclRdAX0D4B6o/ZPVX53wvJHY90KVal5uMtRj6JGhKlEQxzjMYthu8HTAX1
+	 4ly/ui7ftlO0efpE4dWifywSmvsod6MX4Xuldq1Iq32/nqFf05xacJ16T8//XkcTx6
+	 9U5A/NY75wDMCWD8LFU/9Y3N9yCuzD1tH4xsRWkrOYC16i3Uq0E+4cnOh6lXCutXe6
+	 v4it2N0ZWkdpA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Luca Weiss <luca.weiss@fairphone.com>
+Cc: ~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 0/4] arm64/ARM: dts: qcom: minor cleanups
-Date: Mon,  7 Oct 2024 09:25:57 -0500
-Message-ID: <172831116174.468342.1356342875981284880.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add thermistor for UFS/RAM
+Date: Mon,  7 Oct 2024 09:26:01 -0500
+Message-ID: <172831116179.468342.218023456132949403.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240905-dts-cleanup-v1-0-f4c5f7b2c8c2@linaro.org>
-References: <20240905-dts-cleanup-v1-0-f4c5f7b2c8c2@linaro.org>
+In-Reply-To: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
+References: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,20 +68,17 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 05 Sep 2024 17:46:52 +0200, Krzysztof Kozlowski wrote:
-> No functional change expected, verified with fdtdump
-> and/or dtx_diff.
+On Wed, 02 Oct 2024 15:01:08 +0200, Luca Weiss wrote:
+> Configure the ADC and thermal zone for the thermistor next to the
+> UFS+RAM chip which is connected to GPIO_12 of PM7250B. It is used to
+> measure the temperature of that area of the PCB.
 > 
-> Best regards,
-> Krzysztof
 > 
 
 Applied, thanks!
 
-[3/4] arm64: dts: qcom: drop underscore in node names
-      commit: 504689317667a96f52ef85d6be7cec7dfad3c3a2
-[4/4] arm64: dts: qcom: minor whitespace cleanup
-      commit: 8a77bb1e1480ad969e6b1d9b23be000991eecebc
+[1/1] arm64: dts: qcom: qcm6490-fairphone-fp5: Add thermistor for UFS/RAM
+      commit: 73f9c18c341cdab3b5dfcad143787bdc2a003c2a
 
 Best regards,
 -- 
