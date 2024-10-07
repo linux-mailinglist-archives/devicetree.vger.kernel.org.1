@@ -1,198 +1,354 @@
-Return-Path: <devicetree+bounces-108416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE7E699295A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:38:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC01992975
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B6701C2039B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:38:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EB72AB238A5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:46:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538A61C6F47;
-	Mon,  7 Oct 2024 10:38:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8CAD1D1752;
+	Mon,  7 Oct 2024 10:46:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="k9Wg0OXq"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AGPCYMh7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DF1B18C013
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 10:38:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E1B189F45;
+	Mon,  7 Oct 2024 10:46:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728297527; cv=none; b=DsNvgcVE9yM2JvAWC5yQBjI2PJNErvpnF/wrgoYpORvtqL0pmn92FvvOPEJ2/ZZRDaz5tMdho4mdrG+Y60ykfwr5f3YG5kTnVgKS1VJY0EqcoDqeJuT+Jr6+mtJz2A9IrYNCxlf1gB899IXX7pfJCmDwQQ05pfHm728DYoIRpw8=
+	t=1728297979; cv=none; b=MU+rZGIhSmOJx0eoIfgckU9nPh4cRwhMTViDHchDx3wXedPpZG6p69wZz6+jt0PFMZe03zdQJ51ac0AiuocNT0ReqR2KLsXbtUG021ndRhPDDHNtLUV8RcEnI7tPjZVrTZ5fTr10/rUs2Xt2yMWFBoXZAlkM+m/mW9dtO/rWj04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728297527; c=relaxed/simple;
-	bh=GNU+vrwJgJNb1iZtPYojM0bx3LyUZWj4S4Y7c6YgARs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=pRFs79Hucu+GdPHRuFz0X9POCoRL26XTYsjhmr8s4Zg8mPqTwLZLOPYZzGn6dgOToB5WeatTB/LlRmAj8KNJADL6ouqifdJ0XJUIeCzrwUB99KRRQnrQbBlrPDe/WvGgW56Un6eechl74yvIeBt4mMJhaJfqkyNXTfNGDjhiMng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=k9Wg0OXq; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas1p3.samsung.com (unknown [182.195.41.47])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20241007103842epoutp03f115cdc0b70d79a8877af9237b52d468~8JXC0T0S32745827458epoutp03a
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 10:38:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20241007103842epoutp03f115cdc0b70d79a8877af9237b52d468~8JXC0T0S32745827458epoutp03a
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1728297523;
-	bh=v4/6u8K6sBjv48Tz30keWOypL8e77IpeF76bvG6qJhw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=k9Wg0OXqCP3sVRAOSwx74caTaKUmDFvyMi1+NTl+vsfdVbRZCnfnwYYsN5OrdIHgc
-	 XupN795ziRabCiin7kcq/dTsbqwb9A925ww/r/ONJs2jd2oTP2SWXRLbwOxr8pZLOe
-	 6cMEfwLhQGyHG+pcJuR2R0CzPnLB6k+VvdQBhtJg=
-Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
-	epcas1p1.samsung.com (KnoxPortal) with ESMTP id
-	20241007103841epcas1p192eba855b1fdf30ac5dd56839d95dee0~8JXB0mbjK2252022520epcas1p1A;
-	Mon,  7 Oct 2024 10:38:41 +0000 (GMT)
-Received: from epsmges1p1.samsung.com (unknown [182.195.36.136]) by
-	epsnrtp2.localdomain (Postfix) with ESMTP id 4XMbGm4QcHz4x9Px; Mon,  7 Oct
-	2024 10:38:40 +0000 (GMT)
-Received: from epcas1p2.samsung.com ( [182.195.41.46]) by
-	epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	14.55.09406.03AB3076; Mon,  7 Oct 2024 19:38:40 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241007103839epcas1p2aa0d26f8948bf8aba33d8f11e6c8f4e6~8JW-7A5MQ2238222382epcas1p2P;
-	Mon,  7 Oct 2024 10:38:39 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241007103839epsmtrp11dbf16769e7621ea484f409e8216e997~8JW-6O-400549005490epsmtrp1K;
-	Mon,  7 Oct 2024 10:38:39 +0000 (GMT)
-X-AuditID: b6c32a35-83fff700000024be-79-6703ba309025
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	6C.90.18937.F2AB3076; Mon,  7 Oct 2024 19:38:39 +0900 (KST)
-Received: from inkidae001 (unknown [10.113.221.213]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20241007103839epsmtip15d1d23795062623ef1c5a345df50be94~8JW-nso660375003750epsmtip1Q;
-	Mon,  7 Oct 2024 10:38:39 +0000 (GMT)
-From: =?utf-8?B?64yA7J246riwL1RpemVuIFBsYXRmb3JtIExhYihTUikv7IK87ISx7KCE7J6Q?=
-	<inki.dae@samsung.com>
-To: "'Kaustabh Chakraborty'" <kauschluss@disroot.org>, "'Seung-Woo Kim'"
-	<sw0312.kim@samsung.com>, "'Kyungmin Park'" <kyungmin.park@samsung.com>,
-	"'David Airlie'" <airlied@gmail.com>, "'Simona Vetter'" <simona@ffwll.ch>,
-	"'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>, "'Maarten Lankhorst'"
-	<maarten.lankhorst@linux.intel.com>, "'Maxime Ripard'" <mripard@kernel.org>,
-	"'Thomas Zimmermann'" <tzimmermann@suse.de>, "'Rob Herring'"
-	<robh@kernel.org>, "'Conor Dooley'" <conor@kernel.org>
-Cc: <dri-devel@lists.freedesktop.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-In-Reply-To: <20240919-exynosdrm-decon-v1-3-6c5861c1cb04@disroot.org>
-Subject: RE: [PATCH 3/6] drm/exynos: exynos7_drm_decon: fix ideal_clk by
- converting it to Hz
-Date: Mon, 7 Oct 2024 19:38:39 +0900
-Message-ID: <000001db18a5$125e9320$371bb960$@samsung.com>
+	s=arc-20240116; t=1728297979; c=relaxed/simple;
+	bh=TYsEkfepbCZdErIu2NfT2dISmUS7pXdEvW/rZUxqYiA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LU9tVCutrNzH6vlHuZN3MJ6PZq1EwTQLh6jGKJaw+VGQl4Ft+qeSyZYxgm550CgOwUyBZpo3yBieJfdOjP4tEh0kuYVyJLYRRlu/sfnOmnkM4vgsLo4h1hM5d9QiepiP8ja/OWPr308buF1VQHqzprpH5+CQThxvkrGdROOfRgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AGPCYMh7; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4974U2WI027767;
+	Mon, 7 Oct 2024 10:46:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YbYJ8+FuVIgRJiyjUwsy1Afi5089OjBmCHmQ/ieEfBE=; b=AGPCYMh7QZvoarro
+	Ziskqllws3jj6255WOvheUbymxIs6FuQLKidiruJzviNXY7A+1QgpeondV5Umn6Y
+	tBuQvDO+kzAbrvzUbRT7cjgtb9WuizFgTIQ+DP+kfRptIGUi11kdN8j8uHsUyCGF
+	EGgqy/FHiNa+t0KV7rZEEdi8d1hHYRfot2/6EIWUDqQ6ON6pKszeJYwT79a5qKc3
+	GGenseFVOC1XeNXIRajr5qzcs0Ggvp97n0vUauv1IIVB3YWjorBDObG6bX/dwbYo
+	S91psZd+lMJvr78jv4cPY8Mcn3oyCZczwJm1oU9+nyniMWTF4ReNzFQSeCk32KDj
+	oeKicw==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xs83sa4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 10:46:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497AkCI4007868
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 7 Oct 2024 10:46:12 GMT
+Received: from [10.204.67.70] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 7 Oct 2024
+ 03:46:08 -0700
+Message-ID: <0311a312-11fe-48a5-86b5-bf3af21e5b7a@quicinc.com>
+Date: Mon, 7 Oct 2024 16:16:05 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sa8775p: add DisplayPort device node
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_riteshk@quicinc.com>,
+        <quic_vproddut@quicinc.com>, <quic_abhinavk@quicinc.com>
+References: <20240916091344.27607-1-quic_mukhopad@quicinc.com>
+ <ivbohyezb57mcqgfnjot3j2olgj4kvyoq2fjstgugscagsmlg7@vav3cbokzg7q>
+From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+In-Reply-To: <ivbohyezb57mcqgfnjot3j2olgj4kvyoq2fjstgugscagsmlg7@vav3cbokzg7q>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFhWZRKEoYF0bFiO1qJqvKMjjKGhgJZvOb/AnBb7xizSEWWUA==
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Ta1AbZRT1y242CxrZBMRvGC24RWdgCmQbSBcHkKkVt9oqiJXqD+kO7IRn
-	ErMBaTvSBwxTUg1S6pQCpaGlgNFBCjQ8BGqhQhGB0gfBTqtBxRGbtGiKw0PFhMXKv3PuPXfO
-	Pd8DR+R2LADP1Bg4vYbNITFv1DoQEh6m6EbUCsfXT9FXbGdEtL3WitGffmLB6NOXx8T0jfn7
-	GP3XP+MYPT7eIqFHDzskdOtPk2L6encNRleO94nout8voHRJaYOYXunplNDV9y5K6MqKWYxu
-	d5SL42XMcHObiOn904wyXVV3JEyrpRRjaoeTmB+ODomYtvoDjKndApi2kf2Mq3VDovc72TEZ
-	HJvO6YM4TZo2PVOjjiVfTU59MTVKpaDCqGh6CxmkYXO5WHLbjsSwhMwcdxwyKJ/NyXOXElme
-	JyPiYvTaPAMXlKHlDbEkp0vP0UXpwnk2l8/TqMM1nOF5SqHYHOUW7snOmPh+BugGfAp6RrIP
-	gkqpEXjhkIiE1ppjIiPwxuVEJ4AnyiaBQP4A8P7ygughMV72yISRFodrrdEF4LRVaMiJWQBH
-	zcEejBFqOGu8jnpEfsQJFD4YGUI8BCHaAbzzox3zqLyIl6C92Ip4sC/xLjy6Mi3xYJQIhi3O
-	YtSDpUQ0nLw2JRGwDA6f/Hm1jhCBsMNZgwgrBcHFmQaxEeBut62wr1csSPxgdWnJqi8kVnD4
-	5TnHWoRtcLB7RixgX/jbULtEwAFwtqxEIgxUAHjb1oQKpBLAgUUbEFRKePFchcjjhhAh8Ivu
-	CMHtcXhv/sPVJSAhhUdK5IKahIMTU2uTEF6tL8cECQNN9oSPwTNV65JVrUtWtS5C1f9eZoBa
-	gD+n43PVHE/pqIe3nabNbQWrTz00qhOUO+fC+4EIB/0A4gjpJ939OVDLpens3n2cXpuqz8vh
-	+H4Q5T7rciTgiTSt+69oDKlUZLQiUrVZGUlTKop8UvrtjXxOTqhZA5fNcTpO/9+cCPcKOChS
-	XZufq2haWpqjSm+az+9d1PT+nXJIeguGnupQbV/u8Qk5fang/UHLo5fqX5kmZ+7KXb6umK1l
-	jrv4vg+6Gvb0+IxWDrxXtKnbFXEmc+N25Gnl1cDcX276J5omzm/Z/cLJ+NuumMHJvre5QGp0
-	yXug+ILC+ZoR9ztuarXcMkxYawOdPh8RR4qCZUkbXXFfYb+2kFmNhc1ioulYb51pOcHEwsVC
-	NHL/6/l1Y43HxzYl22ZevvJcyqlgWapMXadMMmPBb20o6+yT1T6YQBbGk7I65qsP+D/m4ufe
-	nM0q+qZop5/yLB839dnhCNuuN+KbDy2eLbV/t/xs466VpIWORwrFKQXJJMpnsFQooufZfwGz
-	VFBMcwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrCIsWRmVeSWpSXmKPExsWy7bCSnK7+LuZ0g9en9C1OXF/EZPFg3jY2
-	i5VTV7FZzD9yjtXiytf3bBZ//p1nszh/fgO7xdmmN+wWmx5fY7W4vGsOm8WM8/uYLBZ+3Mpi
-	0da5jNXi/54d7Baz3+1nt5gx+SWbxZY3E1kdBD1OrtvM5LH32wIWj52z7rJ7bFrVyeYx72Sg
-	x/3u40wem5fUe/RtWcXosfl0tcfnTXIBXFFcNimpOZllqUX6dglcGRfvPWUsOMxfsed0dgPj
-	DN4uRk4OCQETiQ1vPjN1MXJxCAlsZ5RoabnJ3sXIAZSQkNiylQPCFJY4fLgYpFxI4DmjxKlu
-	ZZAwm0CqxOvVdSCdIgLzWSSeTtrGBuIwC+xglDjatJUZYuZ5Rok9Dz4yg3RzCrhKPGjZBmYL
-	C8RI/L06HcxmEVCR2PC2hQXE5hWwlLh26QY7hC0ocXLmE7A4s4C2xNObT6FseYntb+cwQzyg
-	IPHz6TJWkItEBJwk9u1lhSgRkZjd2cY8gVF4FpJJs5BMmoVk0iwkLQsYWVYxiqYWFOem5yYX
-	GOoVJ+YWl+al6yXn525iBEe0VtAOxmXr/+odYmTiYDzEKMHBrCTCG7GGMV2INyWxsiq1KD++
-	qDQntfgQozQHi5I4r3JOZ4qQQHpiSWp2ampBahFMlomDU6qByTlYikfm+0wX4wtxfn69E/JW
-	/TZdVsEWOPO+6dvbPf0e5a2HWUQPVOi45Lw7HGrQc4Ol2thKiev6yrvpN2qkDi56urow+MD9
-	H5Wytj1JLzxm+l08fsmE08UocberAK9O+MK++eyCrvc7dB+dWmsxy+PUyYM7HUJXLhV6xnYu
-	QjW8L0jz2/ldwue8Ajf5fJ+bfb71hbnw1FZPNasP+V+TDp+aqdkmYlwV9ebviRfB7R0Nf2Yx
-	L/t2SF9q4/+1jQv3vE3Ldprlr2lt9aE2Lntaje9pvhOTqr5xPQwTv6+u4nKnevulcjanPxtu
-	3E/PnV/fUqIuVpPtfslJWtfzckfx12Vbn6YturQoydlBJOSzEktxRqKhFnNRcSIADIPioVcD
-	AAA=
-X-CMS-MailID: 20241007103839epcas1p2aa0d26f8948bf8aba33d8f11e6c8f4e6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240919151145epcas1p3b3a76512b87498e976db249906a4f5bc
-References: <20240919-exynosdrm-decon-v1-0-6c5861c1cb04@disroot.org>
-	<CGME20240919151145epcas1p3b3a76512b87498e976db249906a4f5bc@epcas1p3.samsung.com>
-	<20240919-exynosdrm-decon-v1-3-6c5861c1cb04@disroot.org>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: V_kdbg6MwQO4ih3cc7m5yHoBueDDb5FE
+X-Proofpoint-ORIG-GUID: V_kdbg6MwQO4ih3cc7m5yHoBueDDb5FE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 spamscore=0
+ priorityscore=1501 phishscore=0 mlxlogscore=999 clxscore=1015
+ impostorscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410070076
 
 
-
-> -----Original Message-----
-> From: Kaustabh Chakraborty <kauschluss@disroot.org>
-> Sent: Friday, September 20, 2024 12:11 AM
-> To: Inki Dae <inki.dae@samsung.com>; Seung-Woo Kim
-> <sw0312.kim@samsung.com>; Kyungmin Park <kyungmin.park@samsung.com>; David
-> Airlie <airlied@gmail.com>; Simona Vetter <simona@ffwll.ch>; Krzysztof
-> Kozlowski <krzk@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>;
-> Maarten Lankhorst <maarten.lankhorst@linux.intel.com>; Maxime Ripard
-> <mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.de>; Rob Herring
-> <robh@kernel.org>; Conor Dooley <conor@kernel.org>
-> Cc: dri-devel@lists.freedesktop.org; linux-arm-kernel@lists.infradead.org;
-> linux-samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
-> devicetree@vger.kernel.org; Kaustabh Chakraborty <kauschluss@disroot.org>
-> Subject: [PATCH 3/6] drm/exynos: exynos7_drm_decon: fix ideal_clk by
-> converting it to Hz
-> 
-> The clkdiv values are incorrect as ideal_clk is in kHz and the clock
-> rate of vclk is in Hz. Multiply 1000 to ideal_clk to bring it to Hz.
-> 
-> Signed-off-by: Kaustabh Chakraborty <kauschluss@disroot.org>
-> ---
->  drivers/gpu/drm/exynos/exynos7_drm_decon.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> index 2c4ee87ae6ec..4e4ced50ff15 100644
-> --- a/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> +++ b/drivers/gpu/drm/exynos/exynos7_drm_decon.c
-> @@ -137,7 +137,7 @@ static void decon_ctx_remove(struct decon_context *ctx)
->  static u32 decon_calc_clkdiv(struct decon_context *ctx,
->  		const struct drm_display_mode *mode)
->  {
-> -	unsigned long ideal_clk = mode->clock;
-> +	unsigned long ideal_clk = mode->clock * 1000;
-
-Right. ideal_clk should be fixed with Hz.
-
-Thanks,
-Inki Dae
-
->  	u32 clkdiv;
-> 
->  	/* Find the clock divider value that gets us closest to ideal_clk
-> */
-> 
-> --
-> 2.46.1
+On 9/16/2024 7:31 PM, Dmitry Baryshkov wrote:
+> On Mon, Sep 16, 2024 at 02:43:44PM GMT, Soutrik Mukhopadhyay wrote:
+>> Add device tree node for the DisplayPort controller
+>> and eDP PHY found on the Qualcomm SA8775P SoC.
+> Not quite. You are also enabling it for the RIDE platforms, not just the
+> SA8775p SoC.
 
 
+Sure , we will update this accordingly in the next version.
+
+
+>
+>> Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
+>> ---
+>> This patch depends on following series:
+>> https://lore.kernel.org/all/20240816-sa8775p-mm-v3-v1-0-77d53c3c0cef@quicinc.com/
+>> https://lore.kernel.org/all/20240912071437.1708969-1-quic_mahap@quicinc.com/
+>> https://lore.kernel.org/all/20240913103755.7290-1-quic_mukhopad@quicinc.com/
+> Also please provide mdss_dp1 device nodes, you have documented them in
+> the patch "drm/msm/dp: Add DisplayPort controller for SA8775P"
+
+
+Sure, we will include both the mdss_dp0 and mdss_dp1 device nodes, as 
+per the
+
+documentation, in the next version.
+
+
+>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi |  23 +++++
+>>   arch/arm64/boot/dts/qcom/sa8775p.dtsi      | 114 ++++++++++++++++++++-
+>>   2 files changed, 136 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> index 0c1b21def4b6..728b4cda8353 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+>> @@ -421,6 +421,23 @@
+>>   	status = "okay";
+>>   };
+>>   
+>> +&mdss0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss0_dp0 {
+>> +	status = "okay";
+>> +};
+>> +
+>> +&mdss0_dp0_out {
+>> +	data-lanes = <0 1 2 3>;
+>> +	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+>> +};
+>> +
+>> +&mdss0_edp_phy0 {
+>> +	status = "okay";
+>> +};
+>> +
+>>   &pmm8654au_0_gpios {
+>>   	gpio-line-names = "DS_EN",
+>>   			  "POFF_COMPLETE",
+>> @@ -527,6 +544,12 @@
+>>   };
+>>   
+>>   &tlmm {
+>> +	dp_hot_plug_det: dp-hot-plug-det-state {
+>> +		pins = "gpio101";
+>> +		function = "edp0_hot";
+>> +		bias-disable;
+>> +	};
+>> +
+>>   	ethernet0_default: ethernet0-default-state {
+>>   		ethernet0_mdc: ethernet0-mdc-pins {
+>>   			pins = "gpio8";
+>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> index 7747965e7e46..a04150c29565 100644
+>> --- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
+>> @@ -3339,6 +3339,18 @@
+>>   				interrupt-parent = <&mdss0>;
+>>   				interrupts = <0>;
+>>   
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					port@0 {
+>> +						reg = <0>;
+>> +						dpu_intf0_out: endpoint {
+>> +							remote-endpoint = <&mdss0_dp0_in>;
+>> +						};
+>> +					};
+>> +				};
+>> +
+>>   				mdss0_mdp_opp_table: opp-table {
+>>   					compatible = "operating-points-v2";
+>>   
+>> @@ -3363,6 +3375,106 @@
+>>   					};
+>>   				};
+>>   			};
+>> +
+>> +			mdss0_edp_phy0: phy@aec2a00 {
+>> +				compatible = "qcom,sa8775p-edp-phy";
+>> +
+>> +				reg = <0x0 0xaec2a00 0x0 0x200>,
+>> +					<0x0 0xaec2200 0x0 0xd0>,
+>> +					<0x0 0xaec2600 0x0 0xd0>,
+>> +					<0x0 0xaec2000 0x0 0x1c8>;
+> Please ident on the angle bracket.
+
+
+Sure, we will update this in the next version.
+
+
+>
+>> +
+>> +				clocks = <&rpmhcc RPMH_CXO_CLK>,
+> It it really CXO?
+
+
+Sure, we will address the necessary clock changes for both "aux" and 
+"cfg_ahb"
+
+in the next version.
+
+
+>
+>> +					 <&gcc GCC_EDP_REF_CLKREF_EN>;
+> And this isn't cfg_ahb.
+>
+>> +				clock-names = "aux",
+>> +					      "cfg_ahb";
+>> +
+>> +				vdda-phy-supply = <&vreg_l1c>;
+>> +				vdda-pll-supply = <&vreg_l4a>;
+> regulators are not a part of the SoC
+
+
+Sure, we will move the regulators to a different file where all the 
+board specific changes
+
+are a part of, in the next version.
+
+
+>
+>> +				#clock-cells = <1>;
+>> +				#phy-cells = <0>;
+>> +
+>> +				status = "disabled";
+>> +			};
+>> +
+>> +			mdss0_dp0: displayport-controller@af54000 {
+>> +				compatible = "qcom,sa8775p-dp";
+>> +
+>> +				pinctrl-0 = <&dp_hot_plug_det>;
+>> +				pinctrl-names = "default";
+>> +
+>> +				reg = <0x0 0xaf54000 0x0 0x104>,
+>> +					<0x0 0xaf54200 0x0 0x0c0>,
+>> +					<0x0 0xaf55000 0x0 0x770>,
+>> +					<0x0 0xaf56000 0x0 0x09c>;
+> Wrong indentation.
+
+
+Sure, we will update with the correct indentation at all places in the 
+next version.
+
+
+>
+>> +
+>> +				interrupt-parent = <&mdss0>;
+>> +				interrupts = <12>;
+>> +
+>> +				clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
+>> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_AUX_CLK>,
+>> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK>,
+>> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_INTF_CLK>,
+>> +					 <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK>;
+>> +				clock-names = "core_iface",
+>> +						"core_aux",
+>> +						"ctrl_link",
+>> +						"ctrl_link_iface",
+>> +						"stream_pixel";
+> And here.
+>
+>> +				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_LINK_CLK_SRC>,
+>> +						  <&dispcc0 MDSS_DISP_CC_MDSS_DPTX0_PIXEL0_CLK_SRC>;
+>> +				assigned-clock-parents = <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>;
+>> +				phys = <&mdss0_edp_phy0>;
+>> +				phy-names = "dp";
+>> +
+>> +				operating-points-v2 = <&dp_opp_table>;
+>> +				power-domains = <&rpmhpd SA8775P_MMCX>;
+>> +
+>> +				#sound-dai-cells = <0>;
+>> +
+>> +				status = "disabled";
+>> +
+>> +				ports {
+>> +					#address-cells = <1>;
+>> +					#size-cells = <0>;
+>> +
+>> +					port@0 {
+>> +						reg = <0>;
+>> +						mdss0_dp0_in: endpoint {
+>> +							remote-endpoint = <&dpu_intf0_out>;
+>> +						};
+>> +					};
+>> +
+>> +					port@1 {
+>> +						reg = <1>;
+>> +						mdss0_dp0_out: endpoint { };
+>> +					};
+>> +				};
+>> +
+>> +				dp_opp_table: opp-table {
+>> +					compatible = "operating-points-v2";
+>> +
+>> +					opp-160000000 {
+>> +						opp-hz = /bits/ 64 <160000000>;
+>> +						required-opps = <&rpmhpd_opp_low_svs>;
+>> +					};
+>> +
+>> +					opp-270000000 {
+>> +						opp-hz = /bits/ 64 <270000000>;
+>> +						required-opps = <&rpmhpd_opp_svs>;
+>> +					};
+>> +
+>> +					opp-540000000 {
+>> +						opp-hz = /bits/ 64 <540000000>;
+>> +						required-opps = <&rpmhpd_opp_svs_l1>;
+>> +					};
+>> +
+>> +					opp-810000000 {
+>> +						opp-hz = /bits/ 64 <810000000>;
+>> +						required-opps = <&rpmhpd_opp_nom>;
+>> +					};
+>> +				};
+>> +			};
+>>   		};
+>>   
+>>   		dispcc0: clock-controller@af00000 {
+>> @@ -3372,7 +3484,7 @@
+>>   				 <&rpmhcc RPMH_CXO_CLK>,
+>>   				 <&rpmhcc RPMH_CXO_CLK_A>,
+>>   				 <&sleep_clk>,
+>> -				 <0>, <0>, <0>, <0>,
+>> +				 <&mdss0_edp_phy0 0>, <&mdss0_edp_phy0 1>, <0>, <0>,
+>>   				 <0>, <0>, <0>, <0>;
+>>   			power-domains = <&rpmhpd SA8775P_MMCX>;
+>>   			#clock-cells = <1>;
+>> -- 
+>> 2.17.1
+>>
 
