@@ -1,219 +1,112 @@
-Return-Path: <devicetree+bounces-108356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A147D99260C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:30:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 968D1992611
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:30:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 213A61F22C34
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:30:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B45E1F23786
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17325157A41;
-	Mon,  7 Oct 2024 07:30:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GmWzylDZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1EA0157A41;
+	Mon,  7 Oct 2024 07:30:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72736849C;
-	Mon,  7 Oct 2024 07:30:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8F7184522;
+	Mon,  7 Oct 2024 07:30:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728286219; cv=none; b=GnNHinTYYUQHdymTZ1umDvJA9lyHk90T3LFxY/vpA8Tt9wPTTHR8/OgOLmQ/1Z5Do0cQUXD3pHJs7PkGf86PIib1+h7K5rP1z4DC+zgsgMTAAtQnljqUQI+UfbbQ/eSDSYia1aHeyJ1bnm/z/CNAaq2yGg3vDqkQ3KnpE5+NG0c=
+	t=1728286236; cv=none; b=helLB6d2LapofAp0w4N0/qHc+HPkI+fo3JanKnI/BZ+gvW3YNAUhAK2KdTFupsrqIw4zwVU/OFdW28N9wr3p/S1qHy8kQX5LY1Y1jWcVMdSAQsyX7lpK7Hx+JDZgEmONqJQBeJusnP25DiRx6ZeUFOgGPIRlu9APUfGCKGx9nuQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728286219; c=relaxed/simple;
-	bh=aLoMZdxh3uOEpqG7Uu0zzP8VAX/KYgDgxjPn8P77cjI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VN+AAPPzTEn3grPuoOBPLRwfBgMW+nOytyIfOXKuQc9sJCu5iNxLGr/ogsb8BtKvvtMdDHKuek4npoz38/J9Wp5BNo0jUc+4EKeb7zp0rI/6K8jKbSiC5frV0Myrh+3CPwhNy8fKhKO/t8BZcDHpX7GnKAJEvcdJ93Llld2RH/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GmWzylDZ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4974TBk0019257;
-	Mon, 7 Oct 2024 07:29:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	7hQjau/0hro0QRYXRVJnoranDlNsLogdZXe0NM9u0PY=; b=GmWzylDZx0TxzyKw
-	6AwnoejTM3r3b51gtPbVgVhouxAR0OnRbdl9GwLoNhjrcbnBtzC6puLfWKRiXIMk
-	JE3065NTAkmvdTaJnljzCnUc2h786yzMSJZ42CYJrNlyn0LulDCeKWkbQkbfCj1R
-	ivEhauNDXyhkSDEjBe5Gk0fzwTXyRASSyvMvHfEVZuKv9VE9m3YE8I+rWbyOaJ1u
-	UQ5pRHikeMhUIDF+tGy12bIo+gVvUDCDg1Uy15zK18BRipT6u9mt5QIys2xTJmww
-	bGVFshAJOa9tWTj7w+dzyhMa205s46alLDY8EhUixIAwDFy8T1bHdckNXlyJpS4K
-	ujGN9w==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xsn3bpr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 07:29:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4977TsmY010821
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 7 Oct 2024 07:29:54 GMT
-Received: from [10.131.33.37] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Mon, 7 Oct 2024
- 00:29:49 -0700
-Message-ID: <489b3828-521a-712e-3976-9496ee4e4f9b@quicinc.com>
-Date: Mon, 7 Oct 2024 12:59:47 +0530
+	s=arc-20240116; t=1728286236; c=relaxed/simple;
+	bh=QYJ4Pk74JBvLeTt1g7Zq8N+WhO8Svs4yuqzbIbWPwoY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nrfQIUt5aARwNayZXZ6wBlPuhq3bXn+LSu885w4Nt2Cz9CDD4stY7w/y05inugZBqxbEO5JI7OXg/t4yi9Gh9e3FZaxVhTC+PgCuSms5gjludlPk0xTSIx142658//QjDVJgx0UGpidDgzl1coclZXAnl/RFrJSbN9/Gt9A9l1Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e03caab48a2so3116016276.1;
+        Mon, 07 Oct 2024 00:30:34 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728286233; x=1728891033;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MXt5YyE/H8U5pS85ePoCsy9Z/yFe0vEQxA6JHvHG1Zc=;
+        b=YcoyDlVvbnMXB5zRVqYJ6SwBJFgWNs60g6DIW2Cr9Pdup1K84t7g9bK2/JI7JZf2fe
+         3I5zsq6yHJIg3BsiEwMqE4o0fH0dBrnZrnjjVQkweYUwARSHod6PrWxyY40mmvYkg15t
+         cny6QBFE4ZyJLNK8Fpbransl6LgAhiO3LB9dVSt/MQpH2zW4Ma/p0jp1kbTYsUa1znMb
+         JSzGYS+Imjwt0w9UxhIjmG01aZNrOTVfC6TzfP8we0lUWAoqZKd66+5TBCyHLcOnFh5x
+         36b2XsINSvfjI8OG+9+tImByUGGTM7jEiLxn24xJMAIaMex6BOKnNZMRU6cHMCLXqlaD
+         bBqg==
+X-Forwarded-Encrypted: i=1; AJvYcCVHk37R5pdc4jVnbjqSh423HkvPX/Nsmd5zkTJhgQjGokakSXiKNcOfEm/ZxnCAySBUNMH9ya2FqOWn@vger.kernel.org, AJvYcCVcTtzAbwJIVjUzJKSxyyyAeKjkfAeoaRcYT3KMTGfaMojeQ24oxtBVyoqzfgRm9yV+RqJy4fSs49Ax@vger.kernel.org, AJvYcCW7IcoE4Cbdlus3gZvUTpFg6r73nfMxBvbMLjvS9bHK9a5mwo/g04rWJoVZzBDS6amWDn2A1XL3zSb0zjOrbL3yswc=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2EYBJoP1uJI8cAHwmkzvDUSfrHpsM1Iqm13FSXgWZYrQFQBVU
+	WzOyXS/c96iSMcrBaY76ExQ7JF7W/nAcK+4f06H5WAE8IJuOO+2v4R5tqiFE
+X-Google-Smtp-Source: AGHT+IFSfvcwF2fJeOIQ8F3CwI2r3OX6nv7FRNfpcZWEGGuhokf/PPhFDqwl3EkRnLfQC3M6iSZGIw==
+X-Received: by 2002:a05:6902:18d1:b0:e1d:318c:74e8 with SMTP id 3f1490d57ef6-e2892fd9a69mr7416927276.2.1728286233622;
+        Mon, 07 Oct 2024 00:30:33 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e28a5c4f923sm882235276.27.2024.10.07.00.30.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 00:30:33 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6e235a61bcbso33131647b3.1;
+        Mon, 07 Oct 2024 00:30:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVbSi3MAYHlTvOtn+80YVDwa2NQE/EKypHSYW7AF3S2qZXvyEag87W4jKmSNFrpj5xby6T4k3tyh2z2@vger.kernel.org, AJvYcCWM+ihSJqd+kcKDHheFpbfb2vlijms3I7q1aSSuGyFJDEUiStSWEw2iwMc1MA+jgZGGv5uHKg01JzKo@vger.kernel.org, AJvYcCXau4x44lZvUgmaAGTzi7eXBKeXa258EbrWs2WmQybcC/KrVBRMfE6dAXwbfTknjtgz5sOBra1mqiK3NsISSJgQDrc=@vger.kernel.org
+X-Received: by 2002:a05:690c:60ca:b0:6e3:1e6:d9c0 with SMTP id
+ 00721157ae682-6e301e6dd5cmr5249917b3.6.1728286232750; Mon, 07 Oct 2024
+ 00:30:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [RFC V3 2/4] firmware: arm_scmi: vendors: Add ARM SCMI QCOM
- vendor protocol v1.0
-Content-Language: en-US
-To: Cristian Marussi <cristian.marussi@arm.com>
-CC: <sudeep.holla@arm.com>, <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <quic_rgottimu@quicinc.com>, <quic_kshivnan@quicinc.com>,
-        <conor+dt@kernel.org>, Amir Vajid
-	<avajid@quicinc.com>
-References: <20240702191440.2161623-1-quic_sibis@quicinc.com>
- <20240702191440.2161623-3-quic_sibis@quicinc.com> <Zo14-rQ1Jaxh5Idi@pluto>
-From: Sibi Sankar <quic_sibis@quicinc.com>
-In-Reply-To: <Zo14-rQ1Jaxh5Idi@pluto>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: EZzSVUvzsiA3KBDQvOmyGo_ygzqMdgRj
-X-Proofpoint-GUID: EZzSVUvzsiA3KBDQvOmyGo_ygzqMdgRj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=999
- malwarescore=0 spamscore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 clxscore=1015
- priorityscore=1501 phishscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410070052
+References: <20241001124310.2336-1-wsa+renesas@sang-engineering.com>
+ <20241001124310.2336-3-wsa+renesas@sang-engineering.com> <qifp4hpndfhe6jlmzjmngr7uolfzvj663donhjg5x7kmeb4ey3@a2a66w5l35zf>
+ <ZvzqPkUPmurHf-fu@ninjato> <CAMuHMdXzCYBn+MPz-tdcP7wJRkdQspU0ZmszMv4Uj7VWpTYR4A@mail.gmail.com>
+ <ZwBIk0DZ6on8eEIm@shikoro>
+In-Reply-To: <ZwBIk0DZ6on8eEIm@shikoro>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 7 Oct 2024 09:30:20 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXOtJrnbytGp65+kxB1Wf_rjA=dzGXHXREO3Xfd8igvtw@mail.gmail.com>
+Message-ID: <CAMuHMdXOtJrnbytGp65+kxB1Wf_rjA=dzGXHXREO3Xfd8igvtw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, Vinod Koul <vkoul@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Wolfram,
 
+On Fri, Oct 4, 2024 at 9:57=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> > According to the documentation, there is no bit in a Standby Control
+> > Register to control the DMAC clock.  The driver doesn't care about the
+> > clock or its rate, so you can use P0 if you want.
+>
+> Would you prefer using 'p0' or leaving this patch as is?
 
-On 7/9/24 23:22, Cristian Marussi wrote:
-> On Wed, Jul 03, 2024 at 12:44:38AM +0530, Sibi Sankar wrote:
->> The ARM SCMI QCOM vendor protocol provides a generic way of exposing a
->> number of Qualcomm SoC specific features (like memory bus scaling) through
->> a mixture of pre-determined algorithm strings and param_id pairs hosted on
->> the SCMI controller.
->>
-> 
-> Hi Sibi,
-> 
->> Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
->> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
->> Co-developed-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Amir Vajid <avajid@quicinc.com>
->> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
->> ---
->>   drivers/firmware/arm_scmi/vendors/Kconfig     |  12 ++
->>   drivers/firmware/arm_scmi/vendors/Makefile    |   2 +-
->>   .../arm_scmi/vendors/qcom_scmi_vendor.c       | 184 ++++++++++++++++++
->>   include/linux/qcom_scmi_vendor.h              |  39 ++++
->>   4 files changed, 236 insertions(+), 1 deletion(-)
->>   create mode 100644 drivers/firmware/arm_scmi/vendors/qcom_scmi_vendor.c
->>   create mode 100644 include/linux/qcom_scmi_vendor.h
->>
->> diff --git a/drivers/firmware/arm_scmi/vendors/Kconfig b/drivers/firmware/arm_scmi/vendors/Kconfig
->> index 7c1ca7a12603..6bff4550fa25 100644
->> --- a/drivers/firmware/arm_scmi/vendors/Kconfig
->> +++ b/drivers/firmware/arm_scmi/vendors/Kconfig
->> @@ -1,4 +1,16 @@
->>   # SPDX-License-Identifier: GPL-2.0-only
->>   menu "ARM SCMI Vendor Protocols"
->>   
->> +config ARM_SCMI_PROTOCOL_VENDOR_QCOM
->> +	tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
->> +	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
->> +	help
->> +	  The SCMI QCOM vendor protocol provides a generic way of exposing a
->> +	  number of Qualcomm SoC specific features (like memory bus scaling)
->> +	  through a mixture of pre-determined algorithm strings and param_id
->> +	  pairs hosted on the SCMI controller.
->> +
->> +	  This driver defines/documents the message ID's used for this
->> +	  communication and also exposes the ops used by the clients.
-> 
-> operations
-> 
->> +
->>   endmenu
->> diff --git a/drivers/firmware/arm_scmi/vendors/Makefile b/drivers/firmware/arm_scmi/vendors/Makefile
->> index c6c214158dd8..c1d6a355f579 100644
->> --- a/drivers/firmware/arm_scmi/vendors/Makefile
-[...]
->> +++ b/drivers/firmware/arm_scmi/vendors/Makefile
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	ph->xops->xfer_put(ph, t);
->> +
->> +	return ret;
->> +}
->> +
->> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, u64 algo_str,
->> +			       u32 param_id, size_t tx_size, size_t rx_size)
->> +{
-> 
-> Similarly...and looking at my past ramblings...this rx_size is the expected RX
-> size AND also the size of the provided *buf too, right ?
-> 
->> +	struct scmi_xfer *t;
->> +	struct qcom_scmi_msg *msg;
->> +	int ret;
->> +
->> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_GET_PARAM, tx_size + sizeof(*msg), rx_size, &t);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msg = t->tx.buf;
->> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
->> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
->> +	msg->param_id = cpu_to_le32(param_id);
->> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
->> +
->> +	ret = ph->xops->do_xfer(ph, t);
->> +	memcpy(buf, t->rx.buf, t->rx.len);
-> 
-> ...so that this memcpy is safe since rx.len is equal to rx_size by construction
-> (if I read correctly my past review/mublings...)
-> 
-> ...in that case maybe, for better clarity you could re-name the rx_size
-> param as buf_len and have it following *buf in the param list...
-> 
-> 
-> ...sorry for not having spotted this naming/order niptick earlier ...
+Leaving the patch as-is is fine for me.
 
-the only caveat being rx_size can be lower than the tx_size
-and we dont't want to copy more that what we expect. Addressed
-all your other comments from the series in V4. Sry it took a
-while due to its dependency with scmi perf changes. Thanks
-again.
+Gr{oetje,eeting}s,
 
--Sibi
+                        Geert
 
-[...]
-> 
-> Thanks,
-> Cristian
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
