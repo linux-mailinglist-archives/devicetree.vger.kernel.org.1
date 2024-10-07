@@ -1,115 +1,209 @@
-Return-Path: <devicetree+bounces-108364-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108365-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEB1992661
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:52:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96D1499267F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:57:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C1E81C227E0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:52:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C8D2A1C225D1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:57:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FF5F18787D;
-	Mon,  7 Oct 2024 07:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94CB317C203;
+	Mon,  7 Oct 2024 07:57:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GK8EWprj"
+	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="cJ2vT8TM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FAFB1534E9;
-	Mon,  7 Oct 2024 07:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B88114C5B5;
+	Mon,  7 Oct 2024 07:57:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.22
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728287445; cv=none; b=RivKZH2QRxRmOe497rtdFj5lO1QIfDC8JDUwb4PDvjv5tNaRLbHkoT7VUI/ZQcJqGwfcW+AgQ4UUjApxyGhu6ZVJCkrqscRBUZ2DfNN6Q+MYI8b/cTwH9kNNbUlr5Nl50FgjcKbwVb6P2D5gvXeeBpLzmXhaXHirlYGxAsOPhEs=
+	t=1728287839; cv=none; b=qLpLsKKshXCnmBLZJ/HzA761zrY6sCrDYPCAyQqAxLWPS4ZWLY012EAXEOgbZQ1cs1IWO3BdMbo48686rBT5EYZW96UFjXXP0lTX3yPVrLciL0uBpfuA5RIdWytj8aY/Y41hRTQyxVtRSadGqO+1VCNcUwsu1JBXSyfC0j67w0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728287445; c=relaxed/simple;
-	bh=LZwLhPcihpVwhqUd44bHekSn+fvPmdtdSBIxwelAqgU=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=qAAYwWiFCDpi6Q5WbGcuQYI1xqxhdvRk95W29Z9aaV+jMIOszyt9d7ChKLokfpMBMAJgf4Curf06MHV51aGpr/aCVhhn5khdLmMlREYvOVruHflKHcaIsUN8LpoPXHYX6fBIyfTcM/BGenMPePmZ66ZBji4QPhx7+hVKr+J2LFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GK8EWprj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 557DBC4CEC6;
-	Mon,  7 Oct 2024 07:50:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728287443;
-	bh=LZwLhPcihpVwhqUd44bHekSn+fvPmdtdSBIxwelAqgU=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=GK8EWprjujC9Tfvzj6WVPbnrV2bF6TKHAk2EAEqU41FrNmpVkNiQZ4sJBWYAqDWEF
-	 0KB9XVHtxTc7/rv21PlOB0YBw46iOu9cX+WnSX79m0cVdJgDQ84i4HRjL0c6vmxOuX
-	 DQr5O05dm1qtHgasFGHJk5B/52rCgL68ohQme0HRkOBqeYUwn7zHI6BReTf+NX3FI+
-	 vbcHvcuquWjy1orykoi97YVXsCVD3t/5RvJ65AYRqu8YmjgwryBldzdRVQg4aT1fP7
-	 n0VxLzbNachbfkfInMr9jW5/2OIYYy3d+CZRgu0U/hVziwX9tbzzCHckyPYWvm1K7w
-	 1/CDpp+F5UmLA==
-Content-Type: multipart/signed;
- boundary=4f89559e3e3addf49573992635c3f51e2eb8df6bf427dc56eda58fc4e794;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 07 Oct 2024 09:50:39 +0200
-Message-Id: <D4PERKZ4GL6B.1WKA1I3MYSQVL@kernel.org>
-Subject: Re: [PATCH v2 2/3] mtd: spi-nor: support vcc-supply regulator
-Cc: "Rob Herring" <robh@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Fabio Estevam" <festevam@gmail.com>, "Vignesh Raghavendra"
- <vigneshr@ti.com>, <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
- "Richard Weinberger" <richard@nod.at>, "Sascha Hauer"
- <s.hauer@pengutronix.de>, "Marco Felsch" <m.felsch@pengutronix.de>,
- <linux-kernel@vger.kernel.org>, "Tudor Ambarus" <tudor.ambarus@linaro.org>,
- <linux-mtd@lists.infradead.org>, <linux-arm-kernel@lists.infradead.org>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>, "Miquel Raynal"
- <miquel.raynal@bootlin.com>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Shawn Guo" <shawnguo@kernel.org>, "Peng Fan" <peng.fan@nxp.com>, "Pratyush
- Yadav" <pratyush@kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Marc Kleine-Budde" <mkl@pengutronix.de>, "Peng Fan (OSS)"
- <peng.fan@oss.nxp.com>
-X-Mailer: aerc 0.16.0
-References: <20240930-spi-v2-0-ed7f6bcbe0df@nxp.com>
- <20240930-spi-v2-2-ed7f6bcbe0df@nxp.com>
- <20240930-wonderful-wealthy-aardwolf-b455d6-mkl@pengutronix.de>
- <20240930-amaranth-stallion-of-fantasy-67701d-mkl@pengutronix.de>
-In-Reply-To: <20240930-amaranth-stallion-of-fantasy-67701d-mkl@pengutronix.de>
+	s=arc-20240116; t=1728287839; c=relaxed/simple;
+	bh=Lf9Lj82NnhZjINNCF4N7l5gB/HthW6d439XtJDOaA80=;
+	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
+	 In-Reply-To:References; b=X5IQC7QNT487k/pAUMnSmRHj543m9w/mhd30YYRGZgQLaLyjy4Z/Ctbiwhc8ib5T2mw5hboq4TZSaf27gzMzOtwMxWWXqp7Vctmdp5YODPhfSgNdYkwCjZPde5LHO3BQiK3oVWVyVRsa2/xFYJRckZXcL/d9y/7JGCHA/kyw8XI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=cJ2vT8TM; arc=none smtp.client-ip=212.227.17.22
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
+	s=s31663417; t=1728287815; x=1728892615; i=frank-w@public-files.de;
+	bh=aWRckGpPlClWXWLlLN+tiFUkn8w9XI5KUDE1QFwaEQk=;
+	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
+	 Content-Type:Date:In-Reply-To:References:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=cJ2vT8TMTcoIe4ueB8NAz1JOX6UVll0T81S7D+vyvypx+R6VJee98Du7kwwrXNe1
+	 BV47plGQVUGfNdl0HCTFaFBagsT5nCTJNDBvVfRb17xMW5qyB8FAmR2B0D09nbGjq
+	 M5PeLb996gaxQy6iuYDEbmB0VNk5heXKEHw830ds316MXchi1Q68P0r1ca0GcjRN0
+	 TfHzwpxUzbIMhn+7AsLXGQC2im2OXJZyPkGyNmq6Q1OQJm3hlOyxE72fPJ2Q+fjXo
+	 QhWz8JrbbkdpwGTDsvo2aOZoznwfdc02uC4FwhelaPu1iPDQO2U1ff30o5DjXw/Tf
+	 MPeMLR55s0vAcek7nA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.153.101] ([217.61.153.101]) by web-mail.gmx.net
+ (3c-app-gmx-bap03.server.lan [172.19.172.73]) (via HTTP); Mon, 7 Oct 2024
+ 09:56:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-
---4f89559e3e3addf49573992635c3f51e2eb8df6bf427dc56eda58fc4e794
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+Message-ID: <trinity-c35964a7-f0d4-435a-ac76-586e90c666ed-1728287815279@3c-app-gmx-bap03>
+From: Frank Wunderlich <frank-w@public-files.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Frank Wunderlich <linux@fw-web.de>, Chaotian Jing
+ <chaotian.jing@mediatek.com>, Ulf Hansson <ulf.hansson@linaro.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+Subject: Aw: Re:  Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988
+ SoC
 Content-Type: text/plain; charset=UTF-8
+Date: Mon, 7 Oct 2024 09:56:55 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <486a85cb-8e09-493b-93f8-6610855b5f7e@kernel.org>
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
+ <p7lqqhet6ahmvieh5xaws6ugsnasmuw6k4oajkmfcctuhrs4dn@quvrkmyof5ss>
+ <trinity-57600902-afb6-42f3-8cf5-54a07710f979-1728284364104@3c-app-gmx-bap03>
+ <486a85cb-8e09-493b-93f8-6610855b5f7e@kernel.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:n6jvowWeY9OPnSLi7BVINuNe/LC0IYJRWMIhKNkJshpxKZMv4cJiUbGEOrFJmMTBiwg21
+ PyYiAz8aH+rVqwlLL65Anr6la9n0pFwTBn+qcVXMe0Vrx3ayKWuW728U07tyBbHVMvZXcLw7l4mx
+ hGX01rUlL6vujA90vYjD20gUllv1n0IrYVagmHhWbgrB3P4d2bGdjRl7THwtXP0gaCGLGbnBdwmd
+ OJ+zbmPX/VnlZbY5Wp38ZCw6kJf65gg8bVu2oMtuqZ+5Zy5KJJFsWsSYMbazCvrICwUSZKaoYCCm
+ dU=
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:UoCxcf+vtco=;NOMDgFbtuMli4t8K+pGge72+Bzc
+ pVbp3Gi1YbvPknFZOQv1tv+9kkSDOtyL3KXvvl6AUGD7hpZF3BtVKdctB3Zb5LYqU/J1aGpBj
+ iUFY76Z80zhu3Etfgc581TngWEsgociT9T3HiZNSEcKSonQpn8+IX/ZbOGYfxrfAnMU2F1950
+ cz7kZz7GCzF6DuQnfLzmxY+9kE5EA72k1wMo0TgzDTIVClxr7tB/kTaq4qnTxJstxphBkURIi
+ ZirUZGDdfIWoDSVY6VSOw0cwTUfEpCJom785oMr9hqso4JvPvlaD50yuwc4njSYBhVcad6GmU
+ mp9+AV9JQvSf/bXsLHvs9k23Yfx8q5ImMa0oULDwqxbeqdKvwiiVrgnpC6IoeOxpuvDhdvOTF
+ EgMPVZBTebvcbf4QSs0OkiinbNZTzWIA/+YcBQEsFrpVZ33ZC6rTGRtf7FNpuGSWbvVRcAXoO
+ YfmEBF76QlWgdHsDieTSJsQZIr84uCH18FyANadm1vTKwCTGwf+BvZU0zk04XmyPEXM7//8eV
+ 8Zxgum6gmM9xyTEUnjel9QxjZf6yyGmYp/Ia2N7iM4WlEl6OxpxaQbanQJSZT/kCBO8wj3D9k
+ o5C7AVVoEyItVVynqGg7klMhPI+eV1VLDPMB/ckVVVQVwABP63kxo6GmphlqwTPgNGwtq42bU
+ ABgxyXqhgfbWm8EY7rK5b+U3XgR0s6TYjyghygoNYg==
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-> > > +	ret =3D devm_regulator_get_enable(dev, "vcc");
-> > > +	if (ret)
-> > > +		return ret;
-> > > +
-> >=20
-> > What happens if the SPI-NOR doesn't have a "vcc" regulator?
+Hi
+> Gesendet: Montag, 07. Oktober 2024 um 09:04 Uhr
+> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
+> Betreff: Re: Aw: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988=
+ SoC
 >
-> ...the SPI-NOR will use the dummy regulator.
+> On 07/10/2024 08:59, Frank Wunderlich wrote:
+> >> Gesendet: Montag, 07. Oktober 2024 um 07:55 Uhr
+> >> Von: "Krzysztof Kozlowski" <krzk@kernel.org>
+> >> An: "Frank Wunderlich" <linux@fw-web.de>
+> >> Betreff: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+> >>
+> >> On Sun, Oct 06, 2024 at 05:34:45PM +0200, Frank Wunderlich wrote:
+> >>> From: Frank Wunderlich <frank-w@public-files.de>
+> >>>
+> >>> Add binding definitions for mmc on MT7988 SoC.
+> >>>
+> >>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> >>> ---
+> >>> v2:
+> >>> - fixed minItems to 4
+> >>> ---
+> >>>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 ++++++++++++++++=
++++
+> >>>  1 file changed, 24 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Doc=
+umentation/devicetree/bindings/mmc/mtk-sd.yaml
+> >>> index c532ec92d2d9..7380f72ea189 100644
+> >>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> >>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> >>> @@ -21,6 +21,7 @@ properties:
+> >>>            - mediatek,mt7620-mmc
+> >>>            - mediatek,mt7622-mmc
+> >>>            - mediatek,mt7986-mmc
+> >>> +          - mediatek,mt7988-mmc
+> >>>            - mediatek,mt8135-mmc
+> >>>            - mediatek,mt8173-mmc
+> >>>            - mediatek,mt8183-mmc
+> >>> @@ -263,6 +264,29 @@ allOf:
+> >>>              - const: bus_clk
+> >>>              - const: sys_cg
+> >>>
+> >>> +  - if:
+> >>> +      properties:
+> >>> +        compatible:
+> >>> +          contains:
+> >>> +            enum:
+> >>> +              - mediatek,mt7988-mmc
+> >>> +    then:
+> >>> +      properties:
+> >>> +        clocks:
+> >>> +          minItems: 4
+> >>
+> >> Drop
+>
+> Drop this line.
+>
+> >>
+> >>> +          items:
+> >>> +            - description: source clock
+> >>> +            - description: HCLK which used for host
+> >>> +            - description: Advanced eXtensible Interface
+> >>> +            - description: Advanced High-performance Bus clock
+> >>> +        clock-names:
+> >>> +          minItems: 3
+> >>
+> >> This is still wrong... anyway, drop.
+> >
+> > arg, sorry again...i should triple-check all before resending.
+>
+> Drop this line.
+>
+> >
+> > but dropping means the global 2 is used (making axi+ahb optional), or =
+am i wrong? afaik "minItems: 4" is right here
+>
+> How minItems:4 is right here?
 
-Which then prints a warning "using dummy regulator". Is that the
-usual way to go?
-I mean the regulator is actually mandatory because it is the main
-voltage rail for the flash. To get rid of the warning one can add a
-fixed-regulator (which is correct anyway). But OTOH, the device tree
-lists it as optional (marking it as required isn't an option either
-because virtually all device trees won't have that property).
+mt7988 needs all 4 clocks, tested with only first 2 (based on global minit=
+ems) and got this (similar with first 3 clocks):
 
--michael
+[   10.826271] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd/d=
+ata/mrq
+[   10.833485] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting mrq=
+=3D(____ptrval____) cmd=3D18
+[   10.842006] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd=
+=3D23
+[   10.848704] mtk-msdc 11230000.mmc: msdc_track_cmd_data: cmd=3D18 arg=3D=
+00036402; host->error=3D0x00000002
+[   15.866269] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd/d=
+ata/mrq
+[   15.873480] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting mrq=
+=3D(____ptrval____) cmd=3D13
+[   15.881998] mtk-msdc 11230000.mmc: msdc_request_timeout: aborting cmd=
+=3D13
+[   15.888694] mtk-msdc 11230000.mmc: msdc_track_cmd_data: cmd=3D13 arg=3D=
+00010000; host->error=3D0x00000002
 
---4f89559e3e3addf49573992635c3f51e2eb8df6bf427dc56eda58fc4e794
-Content-Type: application/pgp-signature; name="signature.asc"
+so minItems:4 is imho right here
 
------BEGIN PGP SIGNATURE-----
-
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCZwOS0BIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/itIQGAlVlJTTCQIXmqzui5WhdsuBn8I74X+Pl7
-YIOZ5srEjl+s75tdMuZ79ixoF50nGGX2AXwJv/geIp9+ua4N3snMvPChaw43SAbu
-nfe1itE/wQHdobQbIS5fXEZsl0asg29UJfg=
-=bBef
------END PGP SIGNATURE-----
-
---4f89559e3e3addf49573992635c3f51e2eb8df6bf427dc56eda58fc4e794--
+> Best regards,
+> Krzysztof
+>
+>
 
