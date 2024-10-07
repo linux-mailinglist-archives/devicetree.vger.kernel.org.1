@@ -1,101 +1,152 @@
-Return-Path: <devicetree+bounces-108352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8BE9925FC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:22:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BE0992601
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CFD121C21D1C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:22:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C3251F21908
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FD6013698F;
-	Mon,  7 Oct 2024 07:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A301017A597;
+	Mon,  7 Oct 2024 07:22:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YiX8jzr8"
+	dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b="4PaxJ7qN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54378433BE;
-	Mon,  7 Oct 2024 07:22:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF4C1662E4
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 07:22:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728285741; cv=none; b=Hj7VH2HynPFZXde4n0gzlSLajN71JAWm4DzWn4+5bjReHl3KF6qEE8fYyh8fW640d5a4VI4QzPAwmaecju+pQFy3yNUNmUTfyTPNCA73iPljsPGTCufV1Gi0a60n4qDNQCP/ipiZH7sAVXp7Q2Tb/w/TYNPchsb82+Z7udqUelI=
+	t=1728285763; cv=none; b=TLG0DGeAPigx27noklEzUt8fd1VLtcsXUYOSPPKb0cZo7bDHUEhKj2UiQW7L1WNzXHkJVCzDsZ4nryT4UoHrOMv1mzkT3REeIgafjVmPwb/tOEG+P1oktd4G6uJxsV70q5B1fylIIagd0DU/UowzOKn+SNwYvqLPNhd4/boji14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728285741; c=relaxed/simple;
-	bh=iVxdQvEmWNL3nXloUOyOwrqXBICnS72BJpw+hrB3JJU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QfzUUbd8BjIo3sUuHNeiohPJiQJjc1G2gmrVyZWidbMg41JUrJeghRWWhoPuKoqT3abOvh8c9fPz9gRZ/8EWPm5SZjJQXjrAMpFfiGSlmGsqkY7d9w2duW6rrkV+tdboSIiJmIRKGdRrC+2UKlDxaA2ZjmCDACr+xsyeNxGRGsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YiX8jzr8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8F19C4CEC6;
-	Mon,  7 Oct 2024 07:22:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728285740;
-	bh=iVxdQvEmWNL3nXloUOyOwrqXBICnS72BJpw+hrB3JJU=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=YiX8jzr8MJKDsuWAVgwInPjqnUUPgBil/VOpc0wGNhFNmpn5LF71Q0XiB22Hcxoih
-	 VuiBdDCOqE0/qhogG/bbIWJOlqfF1LXFO8TPmbxw//kJZpAoBLPFWJav7N/2Gyjuyk
-	 u5esNr78tLea5DHP7TzZe+GTrknkshn1e5FjIoLtJ41yW2pGkgnE3Yu1NSTGFxJF4C
-	 MwbkBoa6eaAfYoml2I3jIhCW3UMU/MET/f18nSqY1DeaVrGdEOk/UfuPAt8EXQaiJ2
-	 r7WxKi6y9l8qjT2aAb3Ze1WiEZ9rb/vy34l8GmZfR9fQWnDnp7tFVJAhC6rNGi+gX2
-	 IBOWxTDgmcZXw==
-Message-ID: <1e85bd5c-a733-40e7-9606-b655c4ff3b6e@kernel.org>
-Date: Mon, 7 Oct 2024 16:22:17 +0900
+	s=arc-20240116; t=1728285763; c=relaxed/simple;
+	bh=VRhCSxB82zRgJ5Jc9R6APsaMUcT5xYkusYPJb3Kj6Rw=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=iNddWEGRBVRIZK3LYzvQCkWjgvQcd2Pr/gnq5Yy+1sk3FSszTZpwyZx43O2zEgXBuM5DCDT21hXX+s7j2gOpa+GNN3w1J/+zsZ13/mKrxWaAfDZr2j7Ez7qSRf0qERpY3IpjdHpsUVmxWMKX6VQPPccJPsXefYA23ZBtDSvdXLw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com; spf=pass smtp.mailfrom=fairphone.com; dkim=pass (2048-bit key) header.d=fairphone.com header.i=@fairphone.com header.b=4PaxJ7qN; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=fairphone.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fairphone.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5399041167cso6066571e87.0
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 00:22:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1728285759; x=1728890559; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KGDFou5w81V8vNIthRLYUbvVA2UvQAoXivmHVJDlqts=;
+        b=4PaxJ7qNacuej9raqAA0S7PyFRfBaJ/xW61+H1s9lgDiBdtgq9EVirupFCjyFssR7f
+         PYUP4YqsL3iP87ryq4Q/hqZfBAjm3sg7GhymT/J+AicWBHtzSSMur89GP48CtYJgweYu
+         cMTYoPnd9EEBn3MiCoF4Sst1Vgj6D6O9ZcPduOH94dpFgCgNDsgEa4SWp9F7rVVfEaK8
+         SqN1e7VdVJ2MYoDBwVVaz9nXShDXtIpxbx0agty+MUiVxYuuD+E+8/ALBlowkVq4dhgK
+         t4sSACz+76HdR7S8TfgeVzGJWMHOqCLQqFg1G0k3XU3W2Rtvoc3e0PFzhHff7USiwCaJ
+         mBCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728285759; x=1728890559;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KGDFou5w81V8vNIthRLYUbvVA2UvQAoXivmHVJDlqts=;
+        b=gV0RCuMbnqee42sTOq67MXsGsqDwfdF4Hro2vJzcVfQio6XPn3JkYc1J8OeQJnzrBz
+         uFMIJCVchsAsv4vSwMTBqM24u6lzGkLZo1gjsLYg0/ZCyeEIZBc9R/FmbAao/vYY7ugc
+         cA0iTNfPah/uyDR8Bc/O751ycikVAfWLxDxPkyVq8SZC+HlZ0AOYVtLJdDoGBbd4SFss
+         SSkaA48O9O5k4QyGIVS+JY3YuXn3FxfgqcRWoGrlERNJyfMSWuiRiGY5AzER6TaalWY5
+         tbtaoDlhjg2sWm7gYruTwZG44wxqjDhXZyWbm9IU7escOW61OdQ2kwgY7XMV3ficpdd/
+         izYg==
+X-Forwarded-Encrypted: i=1; AJvYcCXSYBUoBqSWI1AiC2jyGBGLR8doP6/4v3+NQIYjEDyXkqCrrJEoGL4L//UJkWlRBqm7ZjcDVHd/vAfQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxI40PCKro0K9Oz0mIiUbulPwa9LvrVVcpCNoXJKh71avee+q2y
+	q5cpYcWi7hlZvO9xdzNW7s5JdtZMil0YW8gzj9NYLmdA19LTLcj46Jedjd5M35g=
+X-Google-Smtp-Source: AGHT+IETrWp2FMBMqSx4kT/r8D9xrjJKO5+QKNg0Ixl/LPKyO0lrb0nqZ9TfnKHQkNi8T+L+jiq05A==
+X-Received: by 2002:a05:6512:1094:b0:539:9720:99dc with SMTP id 2adb3069b0e04-539ab9cf404mr6204001e87.46.1728285758987;
+        Mon, 07 Oct 2024 00:22:38 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994cea5a6fsm173493866b.224.2024.10.07.00.22.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 00:22:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/12] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-12-dlemoal@kernel.org>
- <o42ki5dwipmldcpnthpfoaltpmu7ffheq627ersrvjj73xkm6x@vkqjomiznstg>
- <179ed297-1d06-480d-8095-7212cbde2ab1@kernel.org>
- <64421c0c-1d48-421d-8841-859695b5046d@kernel.org>
- <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
- <e1e2c852-ff59-4450-9236-d954d7dc86f3@kernel.org>
-From: Damien Le Moal <dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <e1e2c852-ff59-4450-9236-d954d7dc86f3@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Date: Mon, 07 Oct 2024 09:22:38 +0200
+Message-Id: <D4PE64JTYDCL.3MC81CYK49TI0@fairphone.com>
+Cc: "Bjorn Andersson" <andersson@kernel.org>, "Konrad Dybcio"
+ <konradybcio@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>,
+ <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add thermistor
+ for UFS/RAM
+From: "Luca Weiss" <luca.weiss@fairphone.com>
+To: "Dmitry Baryshkov" <dmitry.baryshkov@linaro.org>
+X-Mailer: aerc 0.18.2-0-ge037c095a049
+References: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
+ <fshhw6lknar4z36rc2sjjcgkiixpp7hak7gq3j373mjvbokax3@7s7kmzlmtjal>
+In-Reply-To: <fshhw6lknar4z36rc2sjjcgkiixpp7hak7gq3j373mjvbokax3@7s7kmzlmtjal>
 
-On 10/7/24 16:00, Krzysztof Kozlowski wrote:
->> I do not see reset-gpios being defined in the bindings (common, host and ep).
->> resets and reset-names are defined though but these have nothing to do with
->> #PERST control.
-> 
-> Bindings for all PCI devices. See pci-bus-common.yaml
+On Sun Oct 6, 2024 at 10:26 PM CEST, Dmitry Baryshkov wrote:
+> On Wed, Oct 02, 2024 at 03:01:08PM GMT, Luca Weiss wrote:
+> > Configure the ADC and thermal zone for the thermistor next to the
+> > UFS+RAM chip which is connected to GPIO_12 of PM7250B. It is used to
+> > measure the temperature of that area of the PCB.
+> >=20
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 40 ++++++++++++++=
+++++++++
+> >  1 file changed, 40 insertions(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/=
+arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> > index 8ab30c01712e0b7c0cc1b403e0fe01650315b9e2..fdc62f1b1c5a398abaa7181=
+8fdf2858fdc445d28 100644
+> > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
+> > @@ -207,6 +207,20 @@ active-config0 {
+> >  			};
+> >  		};
+> > =20
+> > +		mem-thermal {
+> > +			polling-delay-passive =3D <0>;
+> > +
+> > +			thermal-sensors =3D <&pm7250b_adc_tm 2>;
+> > +
+> > +			trips {
+> > +				active-config0 {
+> > +					temperature =3D <125000>;
+> > +					hysteresis =3D <1000>;
+> > +					type =3D "passive";
+>
+> Is it really just "passive"? Especially with no cooling devices it
+> sounds more like "critical". LGTM otherwise.
 
-Got it. But in this case, since ep-gpios is already defined for the RC host mode
-controller, isn't it simpler to simply move that property to
-rockchip,rk3399-pcie-common.yaml ?
+Hi Dmitry,
 
-I can of course instead re-use the reset-gpios property for the endpoint mode,
-but that will need a bit more code in the driver.
+To be clear, I'm adding the thermal zones now as a first step so that
+that they are declared and that they show up in /sys.
 
-Which way do you recommend ?
+This is for sure not the complete thermal configuration. Most other
+thermal zones in this dts also currently have 125 degC "passive" trip
+point, which I'd hope the device would never ever reach.
 
--- 
-Damien Le Moal
-Western Digital Research
+Regards
+Luca
+
+>
+> > +				};
+> > +			};
+> > +		};
+> > +
+> >  		pm8008-thermal {
+> >  			polling-delay-passive =3D <100>;
+> >  			thermal-sensors =3D <&pm8008>;
+
 
