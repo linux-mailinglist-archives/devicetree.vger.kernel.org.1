@@ -1,191 +1,106 @@
-Return-Path: <devicetree+bounces-108648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15589933CA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:48:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 395A799344D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA4571C23C2F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:48:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89E1AB2A31B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:00:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B541DC1A9;
-	Mon,  7 Oct 2024 16:47:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADEF51DBB3E;
+	Mon,  7 Oct 2024 16:58:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="XQQU2T1O"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HutyFkMO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f54.google.com (mail-qv1-f54.google.com [209.85.219.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74E691DC1A6
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 16:47:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F5911DB546;
+	Mon,  7 Oct 2024 16:58:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728319633; cv=none; b=WoI6L7rfF1JIWdz770YHEsGjh6y8mEU99agEYZolQ2aDcJvjZukPuGIJi27ql8/sR7FaiImkNvcgg9HcmNCzNF02F5NkYEUSxxFzQeCMUXS/yCVFk+xNR0HGPRWhPzdv+ShDsOHY5OiYxveaPvVzLL8aVTM1b70VhJP/PpZrPEk=
+	t=1728320327; cv=none; b=rmPFIlnvfvGFbaoKGB+a8baEIl/IvMQthLHBMKIsFTV1FsXfCquvgfwaxgXxz2itAS150tAFdDJ75oD6cRwBARa2pTCIdKYoFR+NSXIp2LKOCiYtTWPVvfp0vbxITegMxsbWwj3ypTW4b1AjVNBtk8noutUuJQS5TAttcbyZOnc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728319633; c=relaxed/simple;
-	bh=2JvOXnCE8q45yOzYM4/Se7vLDg7oF4TeQX5icNd5G/Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QeSP873GfaQXdSap6XwLneBN6T+SmHRKX5FG1c0DSD7SIRq7/xFfcPzxc+k54StUT309Etv5yqLH85pWqwC9UQoXXBmGxkQ4zOlcU/Bh0a836NERYHj5CYmo5eQcZIfDDlYJG7e6DgE+bXlOAmvXj6N5W5Wsy0S+sXBLJlqYVVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=XQQU2T1O; arc=none smtp.client-ip=209.85.219.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qv1-f54.google.com with SMTP id 6a1803df08f44-6cb2aaf4a73so48587336d6.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 09:47:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1728319630; x=1728924430; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=S9CjsSMRTcKaZhkjpOoFNmBuBgqEpMntZNfMT8VgpNk=;
-        b=XQQU2T1OZjwquxK9ZOtH5oCvZMfEgWIWHByMH41G4SK0LSrH34snMtWjyZHQuxQgu8
-         LUp+capu++xnxrhs6XvNOHxjwE0hlpVHS4MtaOx86UGYhpKmbGtY9ysKL1zfbAJPQJ/6
-         nrsblxPeUwlal26/pyIZlgRhmnv7FDRARMT5Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728319630; x=1728924430;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=S9CjsSMRTcKaZhkjpOoFNmBuBgqEpMntZNfMT8VgpNk=;
-        b=ZVzEY8l6dGiS23QsPu53DHFShlML2iUol/hCihDqiht+dBvQUJwW9krZ78bfun+1FB
-         jTYcmexWE72l//uo8l6Ws90ti8XKrEjOHuPZp9aDbHDpJS3MoAxYFhH+jEfql+NHwImK
-         //X37oljyqGRXRhvxAblbIFhyja5L2rlBGD4CudRHWRJt2swVHHChi6jOTwBX5do6V/D
-         zBLNsgj/knTli5RDERDa1kQ9qqXgpdwaYNU83enOFlSM9o+mRoj1oz9pFrDfb4KmaQGo
-         6PPlPp2AiSV6wZrJP1dE2ak3A4plLWEBfj9oPfGPru+SjhX82zKm1DkaZTMu/EuvBQab
-         7TDw==
-X-Forwarded-Encrypted: i=1; AJvYcCUS/8TPO5UFrXqEj0X6aqiYmHvqBhG99ps8wVP7BibiE3J1Y5Pl15oyKcasmLCFEaBv13d/0MfUIv+2@vger.kernel.org
-X-Gm-Message-State: AOJu0YylYdyJ42+WwZygLCv260lBOJWm+cBZOlU8SJzD2uxuy99NirdR
-	ucRocizixufthRN34Xq3Ai1ktVYS5FhCKF7q6xpru7fWj6u835RWssRTleVZ5Q==
-X-Google-Smtp-Source: AGHT+IGkzDBDte/43eYOd/aigjOKOeHrGPpTVqz8vfZIpAXJNx38FHSgFi1MXbXtmwfxAGzq41Ah1A==
-X-Received: by 2002:a05:6214:4a87:b0:6cb:b7ea:2072 with SMTP id 6a1803df08f44-6cbb7ea20a2mr28174736d6.1.1728319630398;
-        Mon, 07 Oct 2024 09:47:10 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cba475142dsm26725486d6.102.2024.10.07.09.47.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 09:47:09 -0700 (PDT)
-Message-ID: <17593cd5-e188-4146-8e4b-c87ce48e1140@broadcom.com>
-Date: Mon, 7 Oct 2024 09:47:06 -0700
+	s=arc-20240116; t=1728320327; c=relaxed/simple;
+	bh=MwCJN8f82bRgwtW/Er53kULMJxngyXKsZIzsJrwKFNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VFCqhcvM1Z93ZYT9XPofP9v/2g1TzRd0+lhGGPueFzrg4psPpbucZravi+BTbRW08i3MrSVoTI1eyV2cUEWagE6N3azHyWy+84mGS2ugmJpiwr6QyHb6xXW1XEPeydBZO2XWhV5VhD1QwCc74ospfP0Jjt6iRbjHLlc7aUHyEYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HutyFkMO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E6CC4CEC6;
+	Mon,  7 Oct 2024 16:58:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728320327;
+	bh=MwCJN8f82bRgwtW/Er53kULMJxngyXKsZIzsJrwKFNo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HutyFkMOG0vIUu4OWwqShtP6v5sAs91rK5u4WheKlD71RJLwfa3IwKelC8rdFkw9F
+	 oen2NbakPOICFT3/3kcr7iE4XjAdUg1AANyjAD8JFt+oCKJzG3nLIGQjOela8Cmh5x
+	 ViGZuhP4Mo41e3YSnpCS3yX8B9dhilieO33DibDzqFpSB7amHG6UnX4OZROzhhiZQ+
+	 hfvATIm9wO2GSBNIVm+TwnzB2JPzBBgXgx2MAqMDhIum5pN4N0CyUFINDvz4vPOYo4
+	 a7i+sKsZZ0H3aWjAe8WGAszvcGtzVk/1v1S8GaVHIE7kzeetOeXK3RF/zAt1ZFoKyu
+	 TI3U2VfyEISkw==
+Date: Mon, 7 Oct 2024 17:58:42 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	git@amd.com, Abin Joseph <abin.joseph@amd.com>
+Subject: Re: [PATCH net-next v2 1/3] dt-bindings: net: emaclite: Add clock
+ support
+Message-ID: <20241007-thinness-thaw-04e1f6f12615@spud>
+References: <1728313563-722267-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <1728313563-722267-2-git-send-email-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Cristian Marussi <cristian.marussi@arm.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
- <arm-scmi@vger.kernel.org>,
- "moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
- <linux-arm-kernel@lists.infradead.org>, justin.chen@broadcom.com,
- opendmb@gmail.com, kapil.hali@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com, Arnd Bergmann <arnd@arndb.de>
-References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
- <ZwPeiUwT7OAgxXFl@bogus>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <ZwPeiUwT7OAgxXFl@bogus>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="e0x8G5gUTJoubChr"
+Content-Disposition: inline
+In-Reply-To: <1728313563-722267-2-git-send-email-radhey.shyam.pandey@amd.com>
 
-On 10/7/24 06:13, Sudeep Holla wrote:
-> On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
->> Broadcom STB platforms have for historical reasons included both
->> "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
->> string.
->>
-> 
-> I assume in the same order.
 
-That is correct, in that exact order indeed.
+--e0x8G5gUTJoubChr
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->> After the commit cited in the Fixes tag and with a kernel
->> configuration that enables both the SCMI and the Mailbox transports, we
-> 
-> ^^^^^ s/SCMI/SMC ?
+On Mon, Oct 07, 2024 at 08:36:01PM +0530, Radhey Shyam Pandey wrote:
+> From: Abin Joseph <abin.joseph@amd.com>
+>=20
+> Add s_axi_aclk AXI4 clock support. Traditionally this IP was used on
+> microblaze platforms which had fixed clocks enabled all the time. But
+> since its a PL IP, it can also be used on SoC platforms like Zynq
+> UltraScale+ MPSoC which combines processing system (PS) and user
+> programmable logic (PL) into the same device. On these platforms instead
+> of fixed enabled clocks it is mandatory to explicitly enable IP clocks
+> for proper functionality.
+>=20
+> So make clock a required property and also define max supported clock
+> constraints.
+>=20
+> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
 
-Yes, this should read "SMC" here.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> 
->> would probe the mailbox transport, but fail to complete since we would
->> not have a mailbox driver available.
->>
-> 
-> I always assumed the node compatible match happens from the more specific
-> compatible(on the left) to the more generic ones(on the right) from the
-> compatible property list. Looks like that was a wrong assumption then ?
+--e0x8G5gUTJoubChr
+Content-Type: application/pgp-signature; name="signature.asc"
 
-This is the correct assumption, and this worked very well, and we were 
-utilizing that as long as all of the transports where "sub" entities 
-within the common and single arm_scmi platform device.
+-----BEGIN PGP SIGNATURE-----
 
-When breaking up the transports into individual platform drivers, now 
-each one is responsible for matching, and if they are all built-into the 
-kernel, they are matching in the order in which they have been linked 
-into the kernel.
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwQTQQAKCRB4tDGHoIJi
+0gBkAP4/9MGm9XwqeSe1JVLR1ePRaPhpfv2zfML3vcLrZWLKIwD+PC4VAJaGqFnG
+NnG/IbPSBY0aYqryr2lIfQacaqxq6gY=
+=xGdt
+-----END PGP SIGNATURE-----
 
-> 
->> By keeping the SMC transport objects linked first, we can let the
->> platform driver, match the compatible string and probe successfully with
->> no adverse effects on platforms using the mailbox transport.
->>
-> 
-> I don't have strong objection to the patch itself, happy to get it merged.
-> Just curious if my understanding of the issue is correct. I think Cristian
-> has more detailed query, so just responding to that will suffice.
-
-Sounds good, thanks.
-
-> 
->> Fixes: b53515fa177c ("firmware: arm_scmi: Make MBOX transport a standalone driver")
->> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
->> Change-Id: I8e348e3e0deabdc5c1d596929d7f9134793f346e
-> 
-> Spurious from internal gerrit repo ?
-
-Indeed, will post v2 with the typo you highlighted and that remove, and 
-any additional explanation Cristian deems necessary to add, thanks!
--- 
-Florian
+--e0x8G5gUTJoubChr--
 
