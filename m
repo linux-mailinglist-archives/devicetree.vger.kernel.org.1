@@ -1,109 +1,106 @@
-Return-Path: <devicetree+bounces-108438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409C0992A4C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:36:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8363992A9B
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:48:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05C112838BA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:36:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5CBF1C22283
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:48:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BFB01D2229;
-	Mon,  7 Oct 2024 11:36:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF7F5199FD3;
+	Mon,  7 Oct 2024 11:48:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AABA31D1F40;
-	Mon,  7 Oct 2024 11:36:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B760D18A6AD;
+	Mon,  7 Oct 2024 11:48:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728300979; cv=none; b=vCQL7mvMgnpedHAVVamKZmdXnki/U0ltKTEzRXlp6FVNfZ9Y5IDCuKFls7NzkrsbfxwJZinCX7yvj3T+IQ+gGtg7TgjGrCZAW+hu2UewIJpsMUC9AVNNlb/CDSXqVS7ArUfTlmV5B/+CKs1xyTYy4TSEtCeR0SoH4gjiYhxrDaA=
+	t=1728301696; cv=none; b=tDwB7kx3r9K1ChnZdQ2QPlQPEBMUdkNqpXL7lTShu51DUfZEihfabQH3p4NURo6HS3oqgPRR7E6dY4wprv9yMm0oPnzm8lq1rksHiV1CSMFiKFJ4OuuQbD8pnxEAXF0l3GFcPejGHXBuaBdOzIGwMicgHOB59qrBFfz/7o1+jBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728300979; c=relaxed/simple;
-	bh=fJESMTPs+fQRs6bk8iVWf9SUl6L+IiJU7ufzITmJIQI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BnLGugwAHFMKENwUUWwQHIm+nWmg5M6fRpmytaG8qR8rDfILmuWxgz4AuzlEu8Dg5eh/LIl4j4aAMkxM/Fxb5JpaehcumMvtZlYRY15BCdwyukc2wuJm3YLNwbADhDGefnfWUhWLwBN2Qg5wX6dDKLDR5CZk1qyqEJs7IBctStg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.98)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1sxm26-000000002Mf-2WkX;
-	Mon, 07 Oct 2024 11:36:10 +0000
-Date: Mon, 7 Oct 2024 12:36:07 +0100
-From: Daniel Golle <daniel@makrotopia.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>,
-	Chaotian Jing <chaotian.jing@mediatek.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	Wenbin Mei <wenbin.mei@mediatek.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, john@phrozen.org,
-	eladwf@gmail.com, ansuelsmth@gmail.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
-Message-ID: <ZwPHp9l3Fx7f2lI4@makrotopia.org>
-References: <20241006153447.41377-1-linux@fw-web.de>
- <20241006153447.41377-2-linux@fw-web.de>
- <b41c51c4-775c-49ca-84fd-1137b61f42d5@collabora.com>
+	s=arc-20240116; t=1728301696; c=relaxed/simple;
+	bh=Q5wtA7ec4Qou26xJgtEWx/rXBB99xnqHPn3CTW1ILUw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=I0NYvarf+4uTyYbBxiueo6FPUKHnfWl/yUCWgxn4gaMvpBXp3gUGk0pKZs6kaVsnTJp4VYVj/mWXkGl5VuU+8aI1ssmLWmWxjPYCRrHvJyC043L0LWqUgYWc1xWs2oO45cE5XuthfAbYpsKm7qRkTXrux/3LArHYwrZUj7HBKcw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6dde476d3dfso32605457b3.3;
+        Mon, 07 Oct 2024 04:48:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728301693; x=1728906493;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+MTg99+DmaALnsyDNIw+mp2qSvQvNPEyHLZzUnFVk4E=;
+        b=SlabyXBOnB6++JBdAGAIYYOGZM5Z1kgZQiR34Ab4finnAXE5sWDDPkvZNB/QtWWWRI
+         phOu58ZTpka+FF5hhWTAFZseIVcoqqa9WOQzOMrCWL75t+RE5mrfM1Kkswge7WJk7cRz
+         rTZEZaRvKskQOqFtPrbvZ50EIJm5BokAED989GK5tbhj7fRZmWe+0ZcrOQfeeynpnudG
+         pCVAl2itbGEja1SVGWhstJiTn1dkMjitPY8qry5mjUlC7NnyI4wVrIKTk4od1x/ZIMef
+         KDpj5T1f7VxhJTGxTcbiDYfczhMStmSoe1BvHRfhzlMUwNn2WNvQD+xBuOEadTT+L1u5
+         kI1w==
+X-Forwarded-Encrypted: i=1; AJvYcCVPWBZlMdmUBr0qTxn0/H2GtcuSoiLm9zRIelQH65ePQWyYLfkOzMOMEWJ1THEQiLTsJktgAQbpF74p@vger.kernel.org, AJvYcCXix5QKbHjvGI+UcOtkz1tgKG0fTyPgI2IUyN5tULHGhYj6Dkon/dSWlGKaEHzWKr5p7ICit/M2v9w+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxWgW0++esxpXA8x6uJ6GpFxpw9JHX3AX8U1DLYfWD8/nDr0RT+
+	D9VcdNmRFgYo9mvQnx/IZNa+MCV0mv8U2S46+tmDWC+nJnBHAqTaddRtbxc0
+X-Google-Smtp-Source: AGHT+IE+EDE2i/4idaANL3mw7H5NNTuQ0gQPrkSKMlL/pehOj8fhKjpkOnF9t65Tx9aGr0d9Erx3/A==
+X-Received: by 2002:a05:690c:6f90:b0:6dd:ce4c:2f4c with SMTP id 00721157ae682-6e2c700084amr97961467b3.16.1728301692902;
+        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d927f3c8sm10062197b3.38.2024.10.07.04.48.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2b9e945b9so34280547b3.0;
+        Mon, 07 Oct 2024 04:48:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCURjuQYrdzXDppkY6sYzXTgxBiMMkOjPknkwpkhjQZtfFyMgJAXiwWbrqwqclmvAjqxMGBntB+Npghx@vger.kernel.org, AJvYcCXcXYrpyPJGgTAVZl6unobHonuheuNxocsg8+jh6WZg/va0ankBoMlDyasjKsOvp3Xx3hcycbA4i5Fa@vger.kernel.org
+X-Received: by 2002:a05:690c:388:b0:6e2:71b:150 with SMTP id
+ 00721157ae682-6e2c72968admr99151907b3.29.1728301692479; Mon, 07 Oct 2024
+ 04:48:12 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b41c51c4-775c-49ca-84fd-1137b61f42d5@collabora.com>
+References: <20241007110200.43166-5-wsa+renesas@sang-engineering.com> <20241007110200.43166-7-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20241007110200.43166-7-wsa+renesas@sang-engineering.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 7 Oct 2024 13:48:00 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUL2GyG_HUPEVaYqXK_SaksiaJSjDPFQ11ma5iB6yE9ag@mail.gmail.com>
+Message-ID: <CAMuHMdUL2GyG_HUPEVaYqXK_SaksiaJSjDPFQ11ma5iB6yE9ag@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	dmaengine@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 07, 2024 at 10:00:49AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 06/10/24 17:34, Frank Wunderlich ha scritto:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> > 
-> > Add binding definitions for mmc on MT7988 SoC.
-> > 
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> > ---
-> > v2:
-> > - fixed minItems to 4
-> > ---
-> >   .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
-> >   1 file changed, 24 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > index c532ec92d2d9..7380f72ea189 100644
-> > --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> > @@ -21,6 +21,7 @@ properties:
-> >             - mediatek,mt7620-mmc
-> >             - mediatek,mt7622-mmc
-> >             - mediatek,mt7986-mmc
-> > +          - mediatek,mt7988-mmc
-> >             - mediatek,mt8135-mmc
-> >             - mediatek,mt8173-mmc
-> >             - mediatek,mt8183-mmc
-> > @@ -263,6 +264,29 @@ allOf:
-> >               - const: bus_clk
-> >               - const: sys_cg
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            enum:
-> > +              - mediatek,mt7988-mmc
-> 
-> Are you really sure that you can't reuse the MT7986 compatible?
+On Mon, Oct 7, 2024 at 1:02=E2=80=AFPM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> Document the Renesas RZ/A1H DMAC block. This one does not have clocks,
+> resets and power domains. Update the bindings accordingly. Introduce a
+> generic name in the header to make future additions easier.
+>
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
-In OpenWrt we are doing exactly that. The MMC controller of
-MT7988 (and MT7981) seems 100% the same as in MT7986 and hence
-works just fine with the mediatek,mt7986-mmc compatible.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
