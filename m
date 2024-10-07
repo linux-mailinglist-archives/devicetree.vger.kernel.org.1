@@ -1,68 +1,70 @@
-Return-Path: <devicetree+bounces-108636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB7BA99332F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:27:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1D9993363
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:36:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FD162828BF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:27:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C7C61C232A0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:36:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AC0D1DA2EB;
-	Mon,  7 Oct 2024 16:27:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 987401DBB04;
+	Mon,  7 Oct 2024 16:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Zovv+n4p"
+	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="jGvYOe5A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EABCC1D2711;
-	Mon,  7 Oct 2024 16:27:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA841DA0F1;
+	Mon,  7 Oct 2024 16:35:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728318463; cv=none; b=YOPC0+UBFpChXyhvUsSS/hHrBwBbn5Ih9+9TlEVb8rpF3tkQDafyJYQN+EPRaAi/BmHO2Mkl0NIh/aETdP0s62WIoh9QWMskZtwWhWuXfHijzkaaKHCQqaD/tp1tGRds08QfIXnR5X3Nt/YyDFxU/ZrMMvAXSr4m7eXFlxkEepg=
+	t=1728318961; cv=none; b=SDi4VIW1Cqm1HC1JtIgqzUQTRZ4PIK+AehIHnFiFlNN/LQx6HlwhKYGX/mTXV4j9Q8hAMoH9d9v9LnYHxWVjRIJfreMy8Ym0zyLu7+mZwCxnxjqUCPxafFTsarJPAieGNtCgmNlCPu5LWcokfBHsrzZLsNDDeF43nX93TVCsRaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728318463; c=relaxed/simple;
-	bh=dhIS2qxuYzrKEcHaGnAPlnJJBqZxP20zD84DYVAN73A=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=snvwEejUfCVNuQjsunzyPAfucn193CjcOFgsa7ztbM6E9FNLgUuUYvdZr0tnWCYWv5zAwRPy6Fg5++dvUmR4ifqtU2EFdvDKNo5pB14Mk+aW7p9TGdvUeP+BJqw7Yl7Vnyml4GaoXpoFTSlri592R+D4HBptiKkjBYqiZ90SSs4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Zovv+n4p; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
-	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=qy8O/TmsmzDYewUZ3qCB4nBDlcLj83mGmeo1Cj46QWA=; b=Zovv+n4pff8MEXXuktE+AXOoNe
-	6lNCbcBspcLrCRQWmyeMy4K3rmclXxRqpwFlmVLIoSotLC4PGQBdsp7hz+VuhHkpXTM6akvS10Coq
-	ld9QjxDwWYoxJcxwPsRt+NeMea6RaUHQxkna15fTsSdDVtj/wdHA1ghkFd6IjSTW+O7GTk4ZnIRKA
-	OGbZalQ/+jYzJ3PFn0gpTq4DFT9tJsV/W0UJibhPOC2G+NUBSKEpC58m03GA4krv85oAXrU/6798o
-	EK+5lKSzSKNpRVZOF9kV1du0znoXJpuMdPnT32NqLSdWzzmN9B+scOtficsXXR+pqOjLpuOs+1RuA
-	HPhEYKUw==;
-Received: from i5e860d18.versanet.de ([94.134.13.24] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sxqa9-0002o8-4T; Mon, 07 Oct 2024 18:27:37 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: vkoul@kernel.org,
-	kishon@kernel.org
-Cc: robh@kernel.org,
+	s=arc-20240116; t=1728318961; c=relaxed/simple;
+	bh=H4EtT+HCyJJiH5ULRPWfwetZm4DNjajIw7ek0MxBUrY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=hBnCSSppE1wLjUQsOp3reCYvvPORq2W1Svap3p947jYzuQJC9ZMQ6MGft8CNFrqZ0AfsLfPw/Svpu6ZufKNvJLxgTWLuFCIL4mY0glAdxEaxGnUKvKs5Jv8UZdCUE31M588M9kVxJUvfg+mE+8MESi1rvDeWwH7IZgMAKUnDS3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=jGvYOe5A; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 0CF8A23F5B;
+	Mon,  7 Oct 2024 18:35:55 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id DXfyCf6pQ-gt; Mon,  7 Oct 2024 18:35:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
+	s=mail; t=1728318954;
+	bh=H4EtT+HCyJJiH5ULRPWfwetZm4DNjajIw7ek0MxBUrY=;
+	h=From:To:Cc:Subject:Date;
+	b=jGvYOe5AIGKUenYzh6OpG101lN82Ob9Hyq+CQYcF1OffCz81+/f0qmzpKyaZoNURV
+	 dPwVXIjRNl+Zxl4U973xkspHqDZIKRtQwSFONMuszYpXj41TYkVqqvIXCNCAiVMUMh
+	 qZexMmor5b2QpeY8+6W2RpmjVqgjEyKOfypaiG4qIdlRvqe6zXaTkU5d04RC64l98f
+	 M/6GRWs6CQM9ok1SkzysNUe+DvPo/rHpumr0bDnyFzo6QFPA3i9VcPKnktb9PAdtuv
+	 jH+lxf7AwkoY+MclN8IugLpfJmhpjl8micjIhwbpqU6oULd1d0mJnQPHitcNuVWxEg
+	 LcsSXGc3Sg0rg==
+From: Karl Chan <exxxxkc@getgoogleoff.me>
+To: linux-arm-msm@vger.kernel.org
+Cc: andersson@kernel.org,
+	konradybcio@kernel.org,
+	robh@kernel.org,
 	krzk+dt@kernel.org,
 	conor+dt@kernel.org,
-	heiko@sntech.de,
-	linux-phy@lists.infradead.org,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	linus.walleij@linaro.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: phy: rk3228-hdmi-phy: convert to yaml
-Date: Mon,  7 Oct 2024 18:27:32 +0200
-Message-ID: <20241007162732.2450168-1-heiko@sntech.de>
-X-Mailer: git-send-email 2.43.0
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	Karl Chan <exxxxkc@getgoogleoff.me>
+Subject: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
+Date: Tue,  8 Oct 2024 00:34:09 +0800
+Message-ID: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,170 +73,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Convert the binding to yaml and rename it according to its first
-compatible instead of the unspecific rockchip-inno-hdmi naming.
+Add device tree source for Linksys EA9350 V3 which is a WiFi router based on the IPQ5018 SoC.
 
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+As of now , only the UART,USB,USB LED,buttons is working.The front PWM LED require the IPQ PWM driver.Therefore the PWM LED isn't configed in the tree.
+
+Also The original firmware from Linksys can only boot ARM32 kernels.
+
+As of now There seems to be no way to boot ARM64 kernels on those device.
+
+However, it is possible to use this device tree by compiling an ARM32 kernel instead.
+
+Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
 ---
- .../bindings/phy/phy-rockchip-inno-hdmi.txt   | 43 --------
- .../phy/rockchip,rk3228-hdmi-phy.yaml         | 97 +++++++++++++++++++
- 2 files changed, 97 insertions(+), 43 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-rockchip-inno-hdmi.txt
- create mode 100644 Documentation/devicetree/bindings/phy/rockchip,rk3228-hdmi-phy.yaml
+Changes in v6:
+  - Fix the subject in the cover letter (I messed that up in v5)
+  - Fix line wrap issue as Dmitry Baryshkov pointed out
+  - Mention the 64-bit variant in the commit message and the comment
+Changes in v5:
+  - drop all fake tags as Krzysztof Kozlowski pointed out
+  - (It was my bad i thought i dropped all the tag but i missed one that
+    in the cover letter)
+  - Link to v4:
+    https://lore.kernel.org/linux-arm-msm/20241002162812.31606-2-exxxxkc@getgoogleoff.me/T/#t
+Changes in v4:
+  - drop all fake tags as Krzysztof Kozlowski pointed out
+  - Link to v3: https://lore.kernel.org/linux-arm-msm/20241002152419.30364-1-exxxxkc@getgoogleoff.me/T/#t
+Changes in v3:
+  - Add 2 commit that I forgot to send in v1/2.
+  - Link to v2: https://lore.kernel.org/linux-arm-msm/20241002132302.31608-1-exxxxkc@getgoogleoff.me/T/#t
+Changes in v2:
+  - reorder the properties in the tree to follow the
+    usual order pointed out by Krzysztof Kozlowski
+  - Add the missing word to the cover letter
+  - Link to v1: https://lore.kernel.org/linux-arm-msm/20241002120804.25068-1-exxxxkc@getgoogleoff.me/T/#t
+---
+Karl Chan (5):
+  dt-bindings: arm: qcom: add Linksys EA9350 V3
+  arm64: dts: qcom: add Linksys EA9350 V3
+  clk: qcom: ipq5018: allow it to be bulid on arm32
+  pinctrl: qcom: ipq5018: allow it to be bulid on arm32
+  arm: dts: qcom-ipq5018-linksys-jamaica: Include dts from arm64
 
-diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-hdmi.txt b/Documentation/devicetree/bindings/phy/phy-rockchip-inno-hdmi.txt
-deleted file mode 100644
-index 710cccd5ee56..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-rockchip-inno-hdmi.txt
-+++ /dev/null
-@@ -1,43 +0,0 @@
--ROCKCHIP HDMI PHY WITH INNO IP BLOCK
--
--Required properties:
-- - compatible : should be one of the listed compatibles:
--	* "rockchip,rk3228-hdmi-phy",
--	* "rockchip,rk3328-hdmi-phy";
-- - reg : Address and length of the hdmi phy control register set
-- - clocks : phandle + clock specifier for the phy clocks
-- - clock-names : string, clock name, must contain "sysclk" for system
--	  control and register configuration, "refoclk" for crystal-
--	  oscillator reference PLL clock input and "refpclk" for pclk-
--	  based refeference PLL clock input.
-- - #clock-cells: should be 0.
-- - clock-output-names : shall be the name for the output clock.
-- - interrupts : phandle + interrupt specified for the hdmiphy interrupt
-- - #phy-cells : must be 0. See ./phy-bindings.txt for details.
--
--Optional properties for rk3328-hdmi-phy:
-- - nvmem-cells = phandle + nvmem specifier for the cpu-version efuse
-- - nvmem-cell-names : "cpu-version" to read the chip version, required
--	  for adjustment to some frequency settings
--
--Example:
--	hdmi_phy: hdmi-phy@12030000 {
--		compatible = "rockchip,rk3228-hdmi-phy";
--		reg = <0x12030000 0x10000>;
--		#phy-cells = <0>;
--		clocks = <&cru PCLK_HDMI_PHY>, <&xin24m>, <&cru DCLK_HDMIPHY>;
--		clock-names = "sysclk", "refoclk", "refpclk";
--		#clock-cells = <0>;
--		clock-output-names = "hdmi_phy";
--		status = "disabled";
--	};
--
--Then the PHY can be used in other nodes such as:
--
--	hdmi: hdmi@200a0000 {
--		compatible = "rockchip,rk3228-dw-hdmi";
--		...
--		phys = <&hdmi_phy>;
--		phy-names = "hdmi";
--		...
--	};
-diff --git a/Documentation/devicetree/bindings/phy/rockchip,rk3228-hdmi-phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,rk3228-hdmi-phy.yaml
-new file mode 100644
-index 000000000000..ac15bf857ef9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/rockchip,rk3228-hdmi-phy.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/rockchip,rk3228-hdmi-phy.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip HDMI PHY with Innosilicon IP block
-+
-+maintainers:
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - rockchip,rk3228-hdmi-phy
-+      - rockchip,rk3328-hdmi-phy
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 3
-+
-+  clock-names:
-+    items:
-+      - const: sysclk
-+      - const: refoclk
-+      - const: refpclk
-+
-+  clock-output-names:
-+    description:
-+      The hdmiphy output clock name, that gets fed back to the CRU.
-+
-+  "#clock-cells":
-+    const: 0
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  nvmem-cells:
-+    maxItems: 1
-+    description: A phandle + nvmem specifier for the cpu-version efuse
-+      for adjustment to some frequency settings, depending on cpu-version
-+
-+  nvmem-cell-names:
-+    items:
-+      - const: cpu-version
-+
-+  '#phy-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - clock-output-names
-+  - '#clock-cells'
-+  - '#phy-cells'
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3228-hdmi-phy
-+
-+    then:
-+      properties:
-+        interrupts: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3328-hdmi-phy
-+
-+    then:
-+      required:
-+        - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/clock/rk3228-cru.h>
-+    hdmi_phy: phy@12030000 {
-+      compatible = "rockchip,rk3228-hdmi-phy";
-+      reg = <0x12030000 0x10000>;
-+      #phy-cells = <0>;
-+      clocks = <&cru PCLK_HDMI_PHY>, <&xin24m>, <&cru DCLK_HDMI_PHY>;
-+      clock-names = "sysclk", "refoclk", "refpclk";
-+      #clock-cells = <0>;
-+
-+      clock-output-names = "hdmi_phy";
-+    };
+ .../devicetree/bindings/arm/qcom.yaml         |   1 +
+ arch/arm/boot/dts/qcom/Makefile               |   1 +
+ .../dts/qcom/qcom-ipq5018-linksys-jamaica.dts |   2 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ .../boot/dts/qcom/ipq5018-linksys-jamaica.dts | 109 ++++++++++++++++++
+ drivers/clk/qcom/Kconfig                      |   2 +-
+ drivers/pinctrl/qcom/Kconfig.msm              |   2 +-
+ 7 files changed, 116 insertions(+), 2 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-linksys-jamaica.dts
+
 -- 
-2.43.0
+2.46.2
 
 
