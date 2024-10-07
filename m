@@ -1,124 +1,109 @@
-Return-Path: <devicetree+bounces-108666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C0AE993595
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:01:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22973993597
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BA8D280FF5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:01:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C28951F237FD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:01:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA2931DDA3A;
-	Mon,  7 Oct 2024 18:01:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C516C1DD553;
+	Mon,  7 Oct 2024 18:01:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nmP45Lii"
+	dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b="kukd/hRp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from jabberwock.ucw.cz (jabberwock.ucw.cz [46.255.230.98])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49C761D6DB9;
-	Mon,  7 Oct 2024 18:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB91F13B294;
+	Mon,  7 Oct 2024 18:01:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.255.230.98
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728324063; cv=none; b=qJ1hjDU1Nuc+pRjHYrsf4nLEWY93bdiXmDaTjLx5eDbAJjpx8Uy2jcG0/gRmoFCexC9SoL3JBB3NyRNIiXOT7f8QHGKM7Z58M5ffGm11OWCLJSbMrbcWaxUDpRSf/qOh882DbBa9ptt5BDEFMWIgZLzPM4EUKjXWNyf3lXF0Dj8=
+	t=1728324099; cv=none; b=XcNyFapPbx/7mandlXgEwoPRz1yTnnciQF42Zi3nopubLb9YycSvmH7XOkJoSfoHCHkY5pJUpJlwFDBqYJ+VQkMjrhrfKT3aaE7L0hewtOcCtrVKEeKFU0bv8f3EELKvCUdP/dDD/cgxqEut1punWSPTmy8CpIlE5mHIMHtI8mo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728324063; c=relaxed/simple;
-	bh=tLkiG/XBIym5GjYxkGW9oL9OcWwkmUXgOkUNLG18mgc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=c/9rBFppU3a74pzXEQNKGEhY3hxnv+tgFbAm36BsckOZL+7Q7QL8OuHq6LjH500SK8lZmzMyue2OPotHtoqcMFuEBaIRitTwmWZiYSgYVZe5TH6YIuHs6FHCvnYD/ZTuT+MUo4KCMRnFu9/HYgObs3qeyf9JU6D7d3btkEVkFgE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nmP45Lii; arc=none smtp.client-ip=209.85.221.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-50ab703b9d6so1218354e0c.2;
-        Mon, 07 Oct 2024 11:01:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728324061; x=1728928861; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=U1mH+EY62gSsP1YwKGWFF+/b8DP8ywdtLBtB9Mop/ts=;
-        b=nmP45LiiE+6pkYXd8WnfIjpzbH0fMn7V1/qZz+7lg/jVSZ2QsArcrJQNI1Zew8NZN8
-         qpkINXTbZFs1fvl2QzZvnd69SgzG2EWTKuFz5xmUnSxSd93wgbny1ExaxSEybnRMoVv9
-         Qz+kBFaCUsj8L9BLrRUtU2Z8zwRIiUKv7GbH5aOm2bFxSGrTRLN8Tqc7NMTrm9R1Dt93
-         whJEROOvrMbll5heFzs6e6tqiEwAiXNihFhDnQTIj/y0NYlUfAX8Fd5VLpOll/nvflgW
-         CNMwiTaMP8kdvB7Uz/k0IdEiRjQa08bWhO4jXFvHS1E0ugn0EMxNKeR/ONyu0iGTGn8L
-         +ZHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728324061; x=1728928861;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=U1mH+EY62gSsP1YwKGWFF+/b8DP8ywdtLBtB9Mop/ts=;
-        b=l1+MMpZOuAjyUBsav2a1SfJAFEv1lSsKLGPzmjIxR93LK2kyBjTKBjFzyOZJeGklU0
-         r3W96FhhHlxcoo0ntTjBNBpNY2IF+ndsEgBnxFEtJ7/sZhUcxYcVApO88Soi45Vpxxfm
-         hLbGg0Be2NHwE13l5vI0i6h856BvO76pJ0et/gs7s6PhmIjbe4znttviJfDw2rp6rZ7f
-         7ZYFOai8eECehi+IKKFoE7ipSuL1FFk3gQwHy3i1MgaQQeG/zJ7lm5PP9CBCYMdkoOrQ
-         /vdgwRaPKcMpGT1YymVI/ZWKDnkyR10akmsotOUJyggKeyoZLGaT30wEKIDQl91PebMN
-         /zbw==
-X-Forwarded-Encrypted: i=1; AJvYcCV7EPQDzhrbsRUtGLpj8Hx/Llb88pP+PHSL1/JGVjwPXuKic3Qd/aCrcHBBjLQ2TgFbhb77jnriwV6FCvihKDd8XqE=@vger.kernel.org, AJvYcCWau1i4ThLPWcbr6/QCoqWkw1Mm4DyXagYdMe8ry7aYfC7YQF1UJQq9O8VjJSLZrypMTT4+XKREt7Yk@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoQn1hgAhC8sJmD3dB1RkhyAWh4v+hfQoEk5n2XBsd8ne3B6AK
-	8b8rsKVPXiG5VZ8ZNN+1p/zUGz2MSCuLLpDmAguKEka++JXcwX0GuFxcuxOze36PeAc02/X2fmb
-	KZtD6YZlf4Y9vfoyeHsPKTcLuV1A=
-X-Google-Smtp-Source: AGHT+IF+16ULVkflIfqruC9tts8CC18jxN+29aNUkNTEIel7XkWQ78rLl09hY4bYHiqqtN+Ab9+Dzqw/28Hp0pJcLtI=
-X-Received: by 2002:a05:6122:218e:b0:4ec:f7d0:e71c with SMTP id
- 71dfb90a1353d-50c85479ccdmr8345595e0c.4.1728324061132; Mon, 07 Oct 2024
- 11:01:01 -0700 (PDT)
+	s=arc-20240116; t=1728324099; c=relaxed/simple;
+	bh=tSxOSj9xeLPsNXwq4MaFou/UBhYu4c1HN0GkaaU3Wwo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=glIYxNS8Kr7c68MyCq7YHkULGTnhjFoplloGy6tSJ1IuaNMguPfZ63femDltgk21YhXTKSKlBOzGoIbRA2U+Qk+8OAOaW3WQ4qCLwtlcMq4hcAu8yxJaCHabKp/uR5Gmg22R0/v/luJARDF9IbsHcSQM91IvNAE+DGt5wIYmFr0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz; spf=pass smtp.mailfrom=ucw.cz; dkim=pass (1024-bit key) header.d=ucw.cz header.i=@ucw.cz header.b=kukd/hRp; arc=none smtp.client-ip=46.255.230.98
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ucw.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ucw.cz
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+	id 58FC81C0082; Mon,  7 Oct 2024 20:01:28 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ucw.cz; s=gen1;
+	t=1728324088;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=W3mOuSpcn4Jd+P9mFpSsD2UWkIjeGYperc8QMBIDESQ=;
+	b=kukd/hRpPKsvcr2JMaAqXYlPvQanr5z7Um9QiRHiw1UVIJmDUSVwIbCnLvrx+JWNpUqxCk
+	FP+QeBnBsD4Dltsch/iqzpNVcfsDyqr9rk7A5QFXc4G5hzRTDKMFH73I4UP5dR/P6FUXTC
+	gWQ3CvhO+OCHPR0qGGqnX+p0w2CBBpk=
+Date: Mon, 7 Oct 2024 20:01:27 +0200
+From: Pavel Machek <pavel@ucw.cz>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: Document "rc-feedback" trigger
+Message-ID: <ZwQh99TjfKhoP6UK@duo.ucw.cz>
+References: <20241007160804.2447947-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728045620.git.geert+renesas@glider.be> <c77ffcd01d6e9e90cd1e5578c2af98c9ec6030c9.1728045620.git.geert+renesas@glider.be>
-In-Reply-To: <c77ffcd01d6e9e90cd1e5578c2af98c9ec6030c9.1728045620.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 7 Oct 2024 19:00:34 +0100
-Message-ID: <CA+V-a8v4MaMrmrd77+ynvPXxbbmwnLjpkGQWFjuLmT+oUYwmaw@mail.gmail.com>
-Subject: Re: [PATCH 09/20] ARM: dts: renesas: kzm9g: Use interrupts-extended
- for I/O expander
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+	protocol="application/pgp-signature"; boundary="SoKU/aEhMC5BLwbp"
+Content-Disposition: inline
+In-Reply-To: <20241007160804.2447947-1-heiko@sntech.de>
+
+
+--SoKU/aEhMC5BLwbp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Oct 4, 2024 at 2:27=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Use the more concise interrupts-extended property to fully describe the
-> interrupt.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts | 3 +--
->  1 file changed, 1 insertion(+), 2 deletions(-)
->
-Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Mon 2024-10-07 18:08:04, Heiko Stuebner wrote:
+> Document the "rc-feedback" trigger which is used to control LEDs by
+> remote control device activity. This is an existing trigger used in
+> existing DTs, document it so validation of those DTs would pass.
+>=20
+> It was originally introduced into the Linux kernel in 2013 with
+> commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypres=
+ses")
 
-Cheers,
-Prabhakar
+> index bf9a101e4d42..32f9116e03a2 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -119,6 +119,8 @@ properties:
+>              # if trigger is absent
+>            - none
+>              # LED indicates camera torch state
+> +          - rc-feedback
+> +            # LED indicates remote control feedback
+>            - torch
+>              # LED indicates USB gadget activity
+>            - usb-gadget
 
-> diff --git a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts b/arch/arm/boot/d=
-ts/renesas/sh73a0-kzm9g.dts
-> index fe96ea07628779c6..ae7e68a44f493e1b 100644
-> --- a/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-> +++ b/arch/arm/boot/dts/renesas/sh73a0-kzm9g.dts
-> @@ -308,8 +308,7 @@ &i2c3 {
->         pcf8575: gpio@20 {
->                 compatible =3D "nxp,pcf8575";
->                 reg =3D <0x20>;
-> -               interrupt-parent =3D <&irqpin2>;
-> -               interrupts =3D <3 IRQ_TYPE_EDGE_FALLING>;
-> +               interrupts-extended =3D <&irqpin2 3 IRQ_TYPE_EDGE_FALLING=
->;
->                 gpio-controller;
->                 #gpio-cells =3D <2>;
->                 interrupt-controller;
-> --
-> 2.34.1
->
->
+NAK. Wrongly placed comment.
+							Pavel
+--=20
+People of Russia, stop Putin before his war on Ukraine escalates.
+
+--SoKU/aEhMC5BLwbp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCZwQh9wAKCRAw5/Bqldv6
+8j/LAJ4iVDjFXY+b9G86eJ8EmlPHV/cHnwCePHPHd5BMJWGjFpnKlUYoAHN7wEU=
+=B+/t
+-----END PGP SIGNATURE-----
+
+--SoKU/aEhMC5BLwbp--
 
