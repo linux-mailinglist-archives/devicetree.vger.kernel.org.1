@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-108529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F732992E41
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:05:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BC71992E49
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:06:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 608551C23244
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:05:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C97C1C2319E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCCCE1D79A7;
-	Mon,  7 Oct 2024 14:04:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5841D2F6D;
+	Mon,  7 Oct 2024 14:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="h+7LboR+"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="WSHbpCP2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 610161D6DDA;
-	Mon,  7 Oct 2024 14:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A63FB1D47C1;
+	Mon,  7 Oct 2024 14:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728309885; cv=none; b=WSC6PP+oXQ4i5XDwzJXwkxaG8IKtYnw3zwM8s9vJ2t+5eNAldAmbhv04e3EKkWSjbf/Cf5RQ/fqZvSaRFis9pwHu+rtJ2xNPGQmaOVgxJ/aaeWff2+1tlq9TTeJ4A3UBlTHGgkDG/8adgcJORgBTlFvbmdSpSxpOaDAEGW87oms=
+	t=1728309991; cv=none; b=hYVCqlFyZSLLrzHFpmqG3UXGlWfSbD0xdahVVaAKxLMpt+SMVoqJgmSgzGeFl9wL4fF4F/dhoj38evv6fctzGAGqkg9Rwwrf6W64NWkPpWh22Yk5SsmmIs3zNrDmwAlP/vKCxKifGJ+0o5yfnlswIQhWyzvdw9/4NKVxYg85Rbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728309885; c=relaxed/simple;
-	bh=T1P99bugCBcO2okWQtwTvyA2FgpgJplLYyHmUJfl0zs=;
+	s=arc-20240116; t=1728309991; c=relaxed/simple;
+	bh=s9SMvvrdQ4RrVH3QJPWvbPISUmvmagNskALBqzL2N3Y=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=nvmcTST5Zx3ort/el1vcW0uhgBIAE3Ppp4Mzm6M4eHiLl3YC0nYrLI7VigS2UCYKVXu+QIunICFjBkQGXB2gkM5U3VqYMdm6Qn18yYFVeMX8xXmIDUrX1KcaG3mflwSA4WC96f1GRKI7X5Xac+SD+CkCxtHFeP6T/KBapOEqioE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=h+7LboR+; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=u8RdJ02zCB3TqYhJ94tFXG5UE3RNhJ1+4n7RdtlHl9C4sPnYIRejCqLwAQDIYmUzFgqVu5bXWjfFCz6J1ctJ/INC8whChwz6pPMiDmF99n5RRDgVp+jKMwewYquWHppn5SgM++/usNL96vA5+y9wtLthTw/UU0BpkL7BZkuKKnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=WSHbpCP2; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,17 +37,17 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=DzguuGqpgpDEWTK10Pwmg4Td55x7gkXzdoaaK8vp4B0=; b=h+7LboR+xFiMm7PhXGimd0RLed
-	d9KeCZHCCsGJLq3O0N5MZ9OnGbU/97ZuaCcd0lmNjw6mzbzpQjj6C+Dor8o5yEuG/eyV2LI/WFlkH
-	jvhDnBz13sD+DbtD3wSuzj6ErfBWg7HrypsglrgcSiyRhWV+ylydeIOAoipMDIYhtnmpb/1ZAY/H3
-	0gFVuUS/DzbfOmqJqLWaRZeEoLe8N49gdwDuA5LQ+Vj389/M9obU7XOGp8GoAf2JGCZigp96X4bI5
-	S5iz/jNFcgzEuhtXZ+O/uzlUNx6B6YNAJ2u13QWTyHZbk7Wor7rPJJnqkN1X2pKRyhcDy7oOSQYeW
-	jV3Wznhw==;
+	bh=HiOsDH8bD3eEMDvsRSDIBuRwHXY1ZAV2zq7VMShOysU=; b=WSHbpCP2/o0YiUGRkFUWljcjVx
+	cuexaRT32ZS63jq+m68dq42nDZgPZtBHQrproiGuESz+FdyNyDyQtTDIJoZ4XXhNxvAqcvcIG4JNB
+	UkyX3yNcmhCR4dZswfAF0Bef4hRh1xyevfj210Fx9ON9BxRFoCvD21BT3H9kwilPDWzjJ9oIDB+ck
+	dBMUt5sM/VrnxT0HFkjp2v8XJTrd0ZRAETfRUaJ/YB4CAZfViQf3GMBR2IcaF7a0UZhKyW59XfgyL
+	l6C9kc0mnLXgGeiTH5OPdAwj4gUa8pubvb8Tk7rfJIvCaAAWvgyvpuVXCkU/Lu1t7ecNQKtchanT2
+	2AWZhxIA==;
 Received: from i5e860d18.versanet.de ([94.134.13.24] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1sxoLe-0000sG-Gr; Mon, 07 Oct 2024 16:04:30 +0200
+	id 1sxoNU-0000tA-SA; Mon, 07 Oct 2024 16:06:24 +0200
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>, Diederik de Haas <didi.debian@cknow.org>
@@ -56,13 +56,13 @@ Cc: Diederik de Haas <didi.debian@cknow.org>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
 Subject:
- Re: [PATCH 4/4] arm64: dts: rockchip: Fix reset-gpios prop on brcm BT nodes
-Date: Mon, 07 Oct 2024 16:04:29 +0200
-Message-ID: <12534438.O9o76ZdvQC@diego>
-In-Reply-To: <20241007105657.6203-6-didi.debian@cknow.org>
+ Re: [PATCH 3/4] arm64: dts: rockchip: Fix wakeup prop names on brcm BT nodes
+Date: Mon, 07 Oct 2024 16:06:24 +0200
+Message-ID: <6096052.lOV4Wx5bFT@diego>
+In-Reply-To: <20241007105657.6203-5-didi.debian@cknow.org>
 References:
  <20241007105657.6203-2-didi.debian@cknow.org>
- <20241007105657.6203-6-didi.debian@cknow.org>
+ <20241007105657.6203-5-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,60 +72,56 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hey :-) ,
-
-Am Montag, 7. Oktober 2024, 12:28:19 CEST schrieb Diederik de Haas:
-> Except for some compatibles, the "brcm,bluetooth.yaml" binding doesn't
-> allow the 'reset-gpios' property, so replace the invalid ones with the
-> 'shutdown-gpios' property.
-
-this probably needs more explanation in the commit message, because
-by name I'd expect reset and shutdown being different functionalities.
-
-But for these cases, things should be good, simply because when looking
-at the bt_enable_h pinctrl, that pin really provides the shutdown
-functionality.
-
-
-Heiko
-
-
-> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi  | 2 +-
->  arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+Am Montag, 7. Oktober 2024, 12:28:18 CEST schrieb Diederik de Haas:
+> The "brcm,bluetooth.yaml" binding has 'device-wakeup-gpios' and
+> 'host-wakeup-gpios' property names.
+> Fix the ones where '*-wake-gpios' was used.
 > 
+> Note that the "realtek,bluetooth.yaml" binding does use the
+> '*-wake-gpios' property names.
+> 
+> Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+
+parts of the commit conflict with a previous one from me ;-) [0]
+
+
+[0] https://lore.kernel.org/linux-arm-kernel/20240930210112.1993625-7-heiko@sntech.de/T/#m59bdb72d6c22f85fe79716761fedaea2a2e1c73e
+
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts  | 4 ++--
+>  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> index 0c18406e4c59..16fd98698db3 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> @@ -450,8 +450,8 @@ bluetooth {
+>  		compatible = "brcm,bcm43438-bt";
+>  		clocks = <&pmucru CLK_RTC_32K>;
+>  		clock-names = "ext_clock";
+> -		device-wake-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> -		host-wake-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> +		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+>  		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
 > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-> index 7381bb751852..100a2774bbb5 100644
+> index de4c082dce07..7381bb751852 100644
 > --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
 > +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
-> @@ -686,9 +686,9 @@ bluetooth {
+> @@ -684,8 +684,8 @@ bluetooth {
+>  		compatible = "brcm,bcm43438-bt";
+>  		clocks = <&rk817 1>;
 >  		clock-names = "lpo";
->  		device-wakeup-gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
->  		host-wakeup-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
-> -		reset-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+> -		device-wake-gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
+> -		host-wake-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> +		device-wakeup-gpios = <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
+> +		host-wakeup-gpios = <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+>  		reset-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
 >  		pinctrl-0 = <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
 >  		pinctrl-names = "default";
-> +		shutdown-gpios = <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
->  		vbat-supply = <&vcc_wl>;
->  		vddio-supply = <&vcca_1v8_pmu>;
->  	};
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-> index d09e6542e236..3e0cbfff96d8 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-cm3.dtsi
-> @@ -402,9 +402,9 @@ bluetooth {
->  		clock-names = "lpo";
->  		device-wakeup-gpios = <&gpio2 RK_PB2 GPIO_ACTIVE_HIGH>;
->  		host-wakeup-gpios = <&gpio2 RK_PB1 GPIO_ACTIVE_HIGH>;
-> -		reset-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&bt_host_wake_h &bt_reg_on_h &bt_wake_host_h>;
-> +		shutdown-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
->  		vbat-supply = <&vcc_3v3>;
->  		vddio-supply = <&vcc_1v8>;
->  	};
 > 
 
 
