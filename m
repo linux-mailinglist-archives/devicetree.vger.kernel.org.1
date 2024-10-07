@@ -1,77 +1,272 @@
-Return-Path: <devicetree+bounces-108676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108678-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D10D89935EA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:19:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 530809935F3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:21:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 79744B20BB9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:19:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F13432869E9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:21:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A9A51DDC25;
-	Mon,  7 Oct 2024 18:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 068961DC1AF;
+	Mon,  7 Oct 2024 18:21:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F56kTJpb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PLfVoCnX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BB031DDC19;
-	Mon,  7 Oct 2024 18:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E15F1369A8;
+	Mon,  7 Oct 2024 18:21:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728325151; cv=none; b=G0y2AoBpqdvzjOwzlyZZmshS3onSFkWqGJT8F8EBia1OUP1mIgjqLW7crwYu8hAkhBsMXS1Xrw7OcJK0AJUaSgB8tTLfI1hXH8StV671fXaKd2P/7UfBGMWG0rTZuuo+y0aegixVd5/9p3fwAwGfmgd+NoLs9ESW2HB4kCl37Ko=
+	t=1728325280; cv=none; b=WZmR6SbWkb5jfMAyX5RL+0pzx9j/tmZ8B2RHpo84eiZOcvBIi1pgyt0OhUBBMqJRteH8TXVDz5Pp7wov2dSfhZXIMJpRU/JJrJsaETlQAgE22g6Vsp7KbxR9X2x1y+ccbN1FrqxNpWBSwI0j8mfKf51TiseiBJZ4NK6G8/6Z5QA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728325151; c=relaxed/simple;
-	bh=qQA6uGhJh0navPHbWVU0cNsT9ZnnibRhRSL94S8Rsis=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=piJRAsvxNl65K45JNRqngzU2aIQABsVm/sAziq45Un60LeToBLAk0T21hpJO2BMuJkz7enECkzrcPGJON13IwN7JJzzVS5NsvL87R1VzL5j/y5qeW6Wg84YCngfGtO+Tzey4rEqXMcpA+G/hpGTp9UwIm44MTj1n2d82oe+xNy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F56kTJpb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8647C4CEC6;
-	Mon,  7 Oct 2024 18:19:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728325150;
-	bh=qQA6uGhJh0navPHbWVU0cNsT9ZnnibRhRSL94S8Rsis=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F56kTJpbnmyKekS9/Im+8fmvusGyGDEqQ/TYdP2R+XyA/4XoYgQkhuOkXZWCq0TQL
-	 t5tL6c0yVIzL890mfU+0zUNZowmhmIiq977rkuMBu45cRnhUtrYevaZNos5Qg4Mzvs
-	 2S6dQaFCBTElYDHVaa1vhfAk5zCMjl6D+kcp3WfuXutNzu403A9S0OtqHkrX9hxwa5
-	 wpZMblPJ5rA5uJ/mnMbyEy0F+/zFCKIp2Uy3cAODGqDCuhToYc8OoOaaa6X7N6v3NU
-	 NNUd8OdqvzSWjFTIL3p2anAfJ3a1Tafk6AtmLpncGO75irltnJ9j2Ev4Eyp4YOPpzz
-	 O39FhEcB4SmRA==
-Date: Mon, 7 Oct 2024 13:19:10 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Allegro
- MicroSystems, Inc
-Message-ID: <172832514942.1898067.3097467627060908054.robh@kernel.org>
-References: <20241007-topic-input-upstream-als31300-v1-0-2c240ea5cb77@linaro.org>
- <20241007-topic-input-upstream-als31300-v1-1-2c240ea5cb77@linaro.org>
+	s=arc-20240116; t=1728325280; c=relaxed/simple;
+	bh=1aHoOLF7K/c4cxBWxEZJoj9WWqYUgd0CIInHwSx5CS8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=e3BoUOcZPpifsV/BNj/z7k85o3wT2fDJJdGL6mlwfuYLeR9oEuf49gIlc9a2xhEqjFCnA5nGVArmkYMKyKaJajYIdHcOzV0GZdCnmATdbjpCaQli5Wa5YnonVWz2/C37sZ7fziMNOO9z/X8v2D9xo96P2Qg1yhzNqUhCJTdwP2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PLfVoCnX; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-50c582d8009so1322727e0c.0;
+        Mon, 07 Oct 2024 11:21:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728325278; x=1728930078; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=G5fHDQcIFWyYjoK42e2GqKx9JgP6ByqJ0aneTh9KwSI=;
+        b=PLfVoCnXXeuX4zUCnI/I+TQyDe48eqIA2wCV+Qglw/PoLXOeo3ECeqfyqJjfI0DDTH
+         Igbc5AaIFmZxpQTElfqPBJQ5osrYQP17bZPF1dqc5WgQhPk3w9NJrDP4BdQr+BqVuyWp
+         OA8uAECan26ZM3yBMEmkAPxN3e7OdLl+glJUiR4dyFfsvbjrspcmL0/kK5YuXba7oxao
+         FeJNoAJW1kWN8m+hZsE6p8MyVt+GQ7pjpWPR8nmkc4/mEk9isAKRx718LgG992TtXePr
+         z4D0VVoI21N1baS29VPYv+18d7EuirQYGuA3bPbpqcwcj+/bN585bhTToopDBEO84oAV
+         HmYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728325278; x=1728930078;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G5fHDQcIFWyYjoK42e2GqKx9JgP6ByqJ0aneTh9KwSI=;
+        b=WY4N26cFu3zLLJPdnBLcy1t7MT9loQTCA5zCf1xwoCwE6LkD2UBypKbWvYeWs6TjXd
+         rxE2aDemj2qzDMfKBl6y6a29SRz/L69HdwG+qSRc8GK3t3a3zWOmLWVdmTRugQJ42JJM
+         Boy1UVKvgOZH2dUINVr4M/g/SoQ1E9MaVmT/D12hbsVr5xQce2kl+7LxuVmxd0iPfbsM
+         KhxZWQo30DDX2ys7IWlmSsl7OLXQ6OIXKcyYFDfe042AgLcJBEYDluLY+0BvcYczl65F
+         qAlIGHl+Eg/sZ+lVPrzkUTLjGlfa0nmNjXTdWIWby6Ffmz2ZbZQ9w1IIDIkCEne3rJbX
+         f9gA==
+X-Forwarded-Encrypted: i=1; AJvYcCWv1SchZ3tZ74AQxW/DXMGSJsNTiFdH23/nDenvJdeqVFTAfHAt9ohj40yOwkRbeAvFTATFKBGfebPx@vger.kernel.org, AJvYcCWwN2dd8yU/TLOVww+F2ww2/jvKhMOcs6yyBXpYI39nPfFvteBw2tbPXG96oauJmCAiJqzLoCd7Te/NnRsHKcFMBSw=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwVENOqgf5sXh9BXMrSLJCCe6239/6r/ZD8Zxn2O1+vhjNRGUTi
+	wDePa/GEmTTtDDSI8+yoAV6ESNICkl4Ugm0Q3xW4oNThyA/41Km6KBx/R7B0fItXqF0s0k2Hu29
+	0oOFWxL+UVSDfEoyNBMM3uMAYdv8=
+X-Google-Smtp-Source: AGHT+IGBNA8KljjPEkPIe4fbzSG6yIe8+fSzcGmwMgTK+eL1CIIncYR03zfkRLtEkQuMtXNCFaKYcR9H9l2Q4Bc92+E=
+X-Received: by 2002:a05:6122:218e:b0:4ec:f7d0:e71c with SMTP id
+ 71dfb90a1353d-50c85479ccdmr8429017e0c.4.1728325278153; Mon, 07 Oct 2024
+ 11:21:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007-topic-input-upstream-als31300-v1-1-2c240ea5cb77@linaro.org>
+References: <cover.1728045620.git.geert+renesas@glider.be> <7aabc9085f9206a9824d52f306df870e7f3eed3c.1728045620.git.geert+renesas@glider.be>
+In-Reply-To: <7aabc9085f9206a9824d52f306df870e7f3eed3c.1728045620.git.geert+renesas@glider.be>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 7 Oct 2024 19:20:52 +0100
+Message-ID: <CA+V-a8sfnwqE0gTyWXqK3XCoTDh_BzgZ8T-SzuHYyRiLuX6+aQ@mail.gmail.com>
+Subject: Re: [PATCH 13/20] arm64: dts: renesas: Use interrupts-extended for
+ HDMI bridges
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Mon, 07 Oct 2024 15:14:38 +0200, Neil Armstrong wrote:
-> Link: https://www.allegromicro.com/en/about-allegro
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+On Fri, Oct 4, 2024 at 2:27=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Use the more concise interrupts-extended property to fully describe the
+> interrupts.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+>  arch/arm64/boot/dts/renesas/condor-common.dtsi  | 3 +--
+>  arch/arm64/boot/dts/renesas/draak.dtsi          | 3 +--
+>  arch/arm64/boot/dts/renesas/ebisu.dtsi          | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77970-eagle.dts  | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts  | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts  | 3 +--
+>  arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi    | 3 +--
+>  arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi   | 3 +--
+>  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi        | 3 +--
+>  10 files changed, 10 insertions(+), 20 deletions(-)
+>
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> # On G2L
 
+Cheers,
+Prabhakar
+
+> diff --git a/arch/arm64/boot/dts/renesas/condor-common.dtsi b/arch/arm64/=
+boot/dts/renesas/condor-common.dtsi
+> index b2d99dfaa0cdf19d..375a56b20f267bf0 100644
+> --- a/arch/arm64/boot/dts/renesas/condor-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/condor-common.dtsi
+> @@ -195,8 +195,7 @@ io_expander1: gpio@21 {
+>         hdmi@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 reg =3D <0x39>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <20 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+>                 avdd-supply =3D <&d1_8v>;
+>                 dvdd-supply =3D <&d1_8v>;
+>                 pvdd-supply =3D <&d1_8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts=
+/renesas/draak.dtsi
+> index 402112a37d75a8c5..05712cd96d28bbdf 100644
+> --- a/arch/arm64/boot/dts/renesas/draak.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/draak.dtsi
+> @@ -367,8 +367,7 @@ hdmi-encoder@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 reg =3D <0x39>, <0x3f>, <0x3c>, <0x38>;
+>                 reg-names =3D "main", "edid", "cec", "packet";
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <28 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 28 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 avdd-supply =3D <&reg_1p8v>;
+>                 dvdd-supply =3D <&reg_1p8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts=
+/renesas/ebisu.dtsi
+> index 1aedd093fb41bf44..4d16b8f0eae5474b 100644
+> --- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
+> @@ -399,8 +399,7 @@ io_expander: gpio@20 {
+>         hdmi-encoder@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 reg =3D <0x39>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <1 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 1 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 avdd-supply =3D <&reg_1p8v>;
+>                 dvdd-supply =3D <&reg_1p8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts b/arch/arm64=
+/boot/dts/renesas/r8a774c0-cat874.dts
+> index d42e24d9c09b9162..486688b789b8cd58 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
+> @@ -232,8 +232,7 @@ hd3ss3220_out_ep: endpoint {
+>         tda19988: tda19988@70 {
+>                 compatible =3D "nxp,tda998x";
+>                 reg =3D <0x70>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <1 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 1 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 video-ports =3D <0x234501>;
+>
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts b/arch/arm64/=
+boot/dts/renesas/r8a77970-eagle.dts
+> index 7dd9e13cf0074442..32f07aa2731678a5 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
+> @@ -171,8 +171,7 @@ io_expander: gpio@20 {
+>         hdmi@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 reg =3D <0x39>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <20 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 avdd-supply =3D <&d1p8>;
+>                 dvdd-supply =3D <&d1p8>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts b/arch/arm64/=
+boot/dts/renesas/r8a77970-v3msk.dts
+> index 0a103f93b14d71ad..118e77f4477e389c 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+> @@ -148,8 +148,7 @@ hdmi@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 #sound-dai-cells =3D <0>;
+>                 reg =3D <0x39>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <20 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+>                 avdd-supply =3D <&vcc_d1_8v>;
+>                 dvdd-supply =3D <&vcc_d1_8v>;
+>                 pvdd-supply =3D <&vcc_d1_8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts b/arch/arm64/=
+boot/dts/renesas/r8a77980-v3hsk.dts
+> index a8a20c748ffcd1ed..b409a8d1737e629c 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+> @@ -140,8 +140,7 @@ hdmi@39 {
+>                 compatible =3D "adi,adv7511w";
+>                 #sound-dai-cells =3D <0>;
+>                 reg =3D <0x39>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <20 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 20 IRQ_TYPE_LEVEL_LOW>;
+>                 avdd-supply =3D <&vcc1v8_d4>;
+>                 dvdd-supply =3D <&vcc1v8_d4>;
+>                 pvdd-supply =3D <&vcc1v8_d4>;
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/bo=
+ot/dts/renesas/rzg2l-smarc.dtsi
+> index ee3d96fdb6168b56..789f7b0b5ebcadc7 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+> @@ -64,8 +64,7 @@ adv7535: hdmi@3d {
+>                 compatible =3D "adi,adv7535";
+>                 reg =3D <0x3d>;
+>
+> -               interrupt-parent =3D <&pinctrl>;
+> -               interrupts =3D <RZG2L_GPIO(2, 1) IRQ_TYPE_EDGE_FALLING>;
+> +               interrupts-extended =3D <&pinctrl RZG2L_GPIO(2, 1) IRQ_TY=
+PE_EDGE_FALLING>;
+>                 clocks =3D <&osc1>;
+>                 clock-names =3D "cec";
+>                 avdd-supply =3D <&reg_1p8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/b=
+oot/dts/renesas/rzg2lc-smarc.dtsi
+> index 377849cbb462eae9..345b779e4f6015da 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+> @@ -86,8 +86,7 @@ adv7535: hdmi@3d {
+>                 compatible =3D "adi,adv7535";
+>                 reg =3D <0x3d>;
+>
+> -               interrupt-parent =3D <&pinctrl>;
+> -               interrupts =3D <RZG2L_GPIO(43, 1) IRQ_TYPE_EDGE_FALLING>;
+> +               interrupts-extended =3D <&pinctrl RZG2L_GPIO(43, 1) IRQ_T=
+YPE_EDGE_FALLING>;
+>                 clocks =3D <&osc1>;
+>                 clock-names =3D "cec";
+>                 avdd-supply =3D <&reg_1p8v>;
+> diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/d=
+ts/renesas/ulcb-kf.dtsi
+> index 431b37bf566192d2..5a5dd5ecb75e0e7c 100644
+> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> @@ -150,8 +150,7 @@ hdmi@3d {
+>                                 pinctrl-0 =3D <&hdmi1_pins>;
+>                                 pinctrl-names =3D "default";
+>
+> -                               interrupt-parent =3D <&gpio2>;
+> -                               interrupts =3D <14 IRQ_TYPE_LEVEL_LOW>;
+> +                               interrupts-extended =3D <&gpio2 14 IRQ_TY=
+PE_LEVEL_LOW>;
+>
+>                                 clocks =3D <&cs2000>;
+>                                 clock-names =3D "cec";
+> --
+> 2.34.1
+>
+>
 
