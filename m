@@ -1,62 +1,61 @@
-Return-Path: <devicetree+bounces-108295-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108296-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B076A992452
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:13:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE65992454
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:15:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A6B7B22E74
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:13:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9076B20D14
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:15:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC4313C807;
-	Mon,  7 Oct 2024 06:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A793D13E898;
+	Mon,  7 Oct 2024 06:15:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dDwpo/2r"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Kmxc/Vrt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E73524B4;
-	Mon,  7 Oct 2024 06:12:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AA9861FD8;
+	Mon,  7 Oct 2024 06:15:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728281548; cv=none; b=T14qoO5ElDDpU7g+TZkVzIblDj0WvUUlirVuILrP9haigm20Xj8h6gHqxLcT9Ty9F3h5nOcW9W9Z9n31i2uqCBaR251ZU+VENE9RQDUwbG2RHPqEYVnoTAwdOLqbzWO+5ku9bu+WWCYXOjfD6xZa75109/F6vFKNMcGa0bHTHBo=
+	t=1728281732; cv=none; b=IhEdoGQmed3ZPfeyh4HYG1DA+YMpzswm25sM5/Zv/WUs1WnI6DmyRb9FwigOimmYoE9rjaj8kN8cIvleplXtdjhcGx1oP/7lHdX/e+IpaY6gOyZ7AuUB1uaIPD+V2v/mtHSmi43kjfMAT9eYsiZCPdPVNdnlP7buNxZIexbr+w4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728281548; c=relaxed/simple;
-	bh=xRjPy8I/3kx4TadUZ1+xA+A0H7dMZA3eQSNLYv1Lvxs=;
+	s=arc-20240116; t=1728281732; c=relaxed/simple;
+	bh=PAlO2/0oeLaCiTChrJrxR82FAuJV1p5u9yp6LU0cKC4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Hk4CeyZVeOTFUgzvWrnyki8BoA9vWlbeTTCZhZQwXCrCKquPUrSkh3V92dAL3Ud2JYcLX4a58UnD4SiOZFZ3Cd866e1SviztRzPsFy/MGRhclH58eK0Ftylq5fxCvedsDEoe9hMzAZ9cc+K3KMNOzDxGR17fG0Z048RzVPJyjc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dDwpo/2r; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A45CC4CEC6;
-	Mon,  7 Oct 2024 06:12:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=HuEhJZCycz7Z13FluV3kSs/2z0oe1iKo+bJni14R/Ey8+mU0lHXMe1ykTAcwadiVyRG/xYAFCThMoN2gKnG6H9Azr2BIP1zjyST44yzpEkJk6UPCBDf3Z5kpliBb3rGRgv0wMQT+tMvm1ZlVNoFquSai3ESaFXfREiHUVg3tvhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Kmxc/Vrt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 172F7C4CEC6;
+	Mon,  7 Oct 2024 06:15:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728281548;
-	bh=xRjPy8I/3kx4TadUZ1+xA+A0H7dMZA3eQSNLYv1Lvxs=;
+	s=k20201202; t=1728281731;
+	bh=PAlO2/0oeLaCiTChrJrxR82FAuJV1p5u9yp6LU0cKC4=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dDwpo/2rr98M4mzBcVTcplW9KUbfN1xgEd81hblZ6Fb7hcnUqMzCKw6rvgqfyUmjT
-	 +sHfTwAcHot7H24gOn6MVEPSSXOtfKdXptf6KQ4yDFcbxGRgwVaaw6RcbDgCBnYMyg
-	 +uuROkzQ8uUWEFmT8tRo8mZ15ROs4D5vr4ZzulnugNlbHAHe76CChd/GpYECoDoExz
-	 Ov2v7CgPmCUBvd4pOasG7H7l5xbGdO/TdOxw9YAeMFGaX2v6c2FP8hyP5DCLNIoauk
-	 QKkPHOSf4aH7QN8p6sAmNbFg9C9P6JxFTtJlUur5oOb38EU6BUCrnWOdYPVmMv9u89
-	 nEbkv6g7p8waQ==
-Date: Mon, 7 Oct 2024 08:12:24 +0200
+	b=Kmxc/Vrtptz7VB4T+5Eg4MLf6j3QjE9Z/JOfhNWQOaCA72RmnLUnD8iZIzukLLS11
+	 wEJoPUy5Sh+5g+KuLZCCkNLCIr7+N1zMJpfpwk1S0BD0bY3mDstUPzP0NnBYlC0FIa
+	 FYfbtoingUoR/IY39+45k8uwwowH/6aqIdHN8Fz2mSJFe6HwSuYiKksnyfC6xKG9b1
+	 kXsbM3e9gTp2bviCkY7GmgxFNdzm7QuBNmkjlq4i97aMu8sOpPamVN3N0aZXkt1SqZ
+	 MpEDQbcU3uOEikP6JM70ljtSwhhc+RLHVB+e7TYwTfaTYrSV8uW0Hz1dFecOAQPybh
+	 MZhhcuIh8s5Uw==
+Date: Mon, 7 Oct 2024 08:15:27 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
-	Shawn Lin <shawn.lin@rock-chips.com>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>, Wilfred Mallawa <wilfred.mallawa@wdc.com>, 
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v3 11/12] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-Message-ID: <o42ki5dwipmldcpnthpfoaltpmu7ffheq627ersrvjj73xkm6x@vkqjomiznstg>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-12-dlemoal@kernel.org>
+To: Alain Volmat <avolmat@me.com>
+Cc: David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Patrice Chotard <patrice.chotard@foss.st.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: gpu: mali-utgard: Add
+ st,stih410-mali compatible
+Message-ID: <w4gdi2vhp7pq62xmdmvspqnwf2szirif5xe4cnok5vpeisqeb4@qfws4d4pufna>
+References: <20241006-sti-gpu-v2-0-c6bb408d6903@me.com>
+ <20241006-sti-gpu-v2-1-c6bb408d6903@me.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,16 +64,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241007041218.157516-12-dlemoal@kernel.org>
+In-Reply-To: <20241006-sti-gpu-v2-1-c6bb408d6903@me.com>
 
-On Mon, Oct 07, 2024 at 01:12:17PM +0900, Damien Le Moal wrote:
-> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
+On Sun, Oct 06, 2024 at 08:42:49PM +0000, Alain Volmat wrote:
+> ST STiH410 SoC has a Mali400. Add a compatible for it.
 > 
-> Describe the `ep-gpios` property which is used to map the PERST# input
-> signal for endpoint mode.
+> Signed-off-by: Alain Volmat <avolmat@me.com>
+> ---
+>  Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Why "ep" for PERST signal? Looks totally unrelated name. There is
-already reset-gpios exactly for PERST, so you are duplicating it. Why?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
