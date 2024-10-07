@@ -1,140 +1,170 @@
-Return-Path: <devicetree+bounces-108470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108471-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA949992C57
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE26992C64
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8199A1F23C34
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:48:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C04321F22EE0
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82C711CC159;
-	Mon,  7 Oct 2024 12:47:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39ED21D2709;
+	Mon,  7 Oct 2024 12:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dl443a54"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Vtw9P60G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBC61D2F76
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 12:47:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9DB1C173C
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 12:51:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728305234; cv=none; b=V33+fvvfxn1mfvbHdEhuXM5IkTWifOv0AhPMXrQiFF7ixZBPcP3rPe40bPsJZk2goNxitm7q3UqAeY01vwl3ZMLPfVeHr3knFFN1MB/920axzPtQ3xzljP1u0SseOfIojvaqo9nM8XIP9D9vlKWPZo9mh9KUOh4zMtxjA6Y6RTI=
+	t=1728305501; cv=none; b=npP2Itoo7QnPKynrWXXbg0zboQf6M786lpMUIAPUOV8X0SNvbcJ2D+jDfmhPOmJOykPVklYO/MRSJ9dbpuVC6UQC1MHIgEHLdglvz2v7EfkXMr0oU6gDz3W76cub3bpFCXCW9cx16XrLoB8kkS3uPSD8kvJKxj08WNx0MOyIjFk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728305234; c=relaxed/simple;
-	bh=jo6zA17WYEVKD4kAqrD5bI/uK/hqU/C2jgKYXrjvDXw=;
+	s=arc-20240116; t=1728305501; c=relaxed/simple;
+	bh=ZY+AJobU3VtP9in1HQBCcNFt78s3OC/b6dpOI+pPkOI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H0cWO8VIi3iV/e60HWDwL8JogcRJ/YSLFvv/YTZFiWKG4z3TeLLMmAg2RG0UZ3Goyng5UanGYqooV4Rc4GclS4PG6VbRfLtOXb67u+eZ3XxPW9Aa8BpFApgv8KNj1ogh5m/iGAOEKUwuWd55fIp6fmeh2ZrGIS8ZEVVwVLrL1B4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dl443a54; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6dbb24ee34dso35334927b3.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 05:47:12 -0700 (PDT)
+	 To:Cc:Content-Type; b=m4zhJePtVINwvbp9qMAlANM50PW/egid1rnw9VyjafcbPJ/p6qOaapCnlotB9zS9mz9OigVgGqf3DbMIvUHWkYkvpexPr+NpDrl2p2I/Fwu5zWmFxqc2faztj53FW+C7+WMrVvvJv8kiPj4MW9cDfFGlJ5qOnw7DI23IB4sKtF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Vtw9P60G; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-53994aadb66so3868380e87.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 05:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728305231; x=1728910031; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OCFd3AswX/UvsHDjGk8fmcWJKuiqqQyLNfZu18RpBKc=;
-        b=dl443a54a0VaC4qwaIDne7ufYge0BK6G6DjDTACR6ZyR40oJpVBnQk0FVnC05L9qkB
-         lpGH8K1T92tCZ1mnQmfFPlIybdYCQOM+RGg+9pyiqL51qBUDxOJ64H196UVcA2YxgknA
-         TybBNuK3rD3KUD5ltU6pItFrBxi1eHVL/SNgMuveGP3w1i3XM4Z8oCcSQn8KE6HYc2tz
-         UsmGb+difN4H6wAvvW/DoO3BcUmrw7vqFDJzhQ3nOmr/WQZwnpLkBMkIh6w+VdRqvWiJ
-         zlMVrf7E1kjXcWUXweGAh3uYZDr47J+xIcz2WIt5Yylkwmzt6/bOzPtC+huJCEOHYjt1
-         rVqA==
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1728305497; x=1728910297; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CJZZqjDavpDNqoX3Dnp0JT4YOd4jBjyk18gDUm32hk8=;
+        b=Vtw9P60Gsgv3KcNOVhtMZ4Qn28kREb+RxkFmejjQVmd12dRRQENJjySaT2BqEQHdIN
+         FshiLxz1Vzqes4l5hbOXzD4wgH8d5bs7iAwgcDeEQf6+7OThsbfN3+vd+wZZPjnyW35O
+         4mxUOcXtLRLdd87si+yBmgbvhMRbAl6NILVITo9q3CNMcSrcow/5IWqdqZoVsFe0+gik
+         3B4mCzgcwoW9jekg7QffS2JytEJC23dIeaIxOH52TOqA/l+N2sD4VUoc3tAq4YQBptkV
+         FejQgrtGpfK724fKpTTjTBJmeJ4z4GEbzxAXRWWzt62aLXzz3thF7qxobuXw6WdxM1ce
+         TOQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728305231; x=1728910031;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OCFd3AswX/UvsHDjGk8fmcWJKuiqqQyLNfZu18RpBKc=;
-        b=GT/E7GeqO0ZjE/PAAoL+iA5m0E1jKjDZwBmL3pB0srKoQ6iFV4pkYln5mllHfvk8dK
-         Gg9CDJJ8QJ7JekOq5diUGf3XeDH6qCVdoPWL0yIUVITZL3dM/Rp8wfePMSjcEYTxEIET
-         9PexZ6wxPLjlBDHkUQOU4Scqu9tDj4AB3XAFt2mRzjswwEECLfviHDV0+v0WzExfio1v
-         umnDndngeBTH0qGI2jO6yb6aKT7TG07US2xwiio9HIIr0MWqH1dY8rdoWPhxqMGjtHVo
-         l1SltoLBl4ZhhDSzREyEE8XrBwsSLmXeM7AqLJm8rUdxXLaC+V8m6gPr72gv9HhWYptb
-         3nCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVLNfZbzkEbxpmMpbTPJof6tvESprMqU5km4BY69bdB1EYs1gjYFbLyBfmZyppD7h7eZ6hNyEU4dy0T@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeVo6ItQXsw3TQhYb0sQ3ZX5bGVx4R2UFMqUjFfuTzGUd0TAKO
-	Rdkc7fDHHy+NlB0FmdWjvQeLONAzcGZi83GFcXGiw57lv0gKE7Bu0gJq6F0cfTPCQAeHErw0EpC
-	sUU4j0jTTdOiTcKz4U1+yd5ziy6Rc6bkhJ2pdrg==
-X-Google-Smtp-Source: AGHT+IHcN86fNTn9NJS9sEdYsHveChw5c5a4u8Q17Bg6k1OV8AmiweKXXUKwE6aCQZaVkcm5WHu+zP0RnPEZbICAVoo=
-X-Received: by 2002:a05:690c:6609:b0:6d1:41:5b35 with SMTP id
- 00721157ae682-6e2c6ff649amr82400577b3.13.1728305230862; Mon, 07 Oct 2024
- 05:47:10 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728305497; x=1728910297;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CJZZqjDavpDNqoX3Dnp0JT4YOd4jBjyk18gDUm32hk8=;
+        b=VmhRHx7hxx9akLplkXa5NIbrlYPH8gHw590ONHkRQE31+rffo5GVcHgA/M3+d1GkH0
+         /wMjuqS5IqJMqGefCYqbYC/x5v3fyyuk4ob9wbOuOTi3m0jjHCz0smBLqb1jfN1i9Dug
+         UL0SaMU2CCn+a/x3DCvfkovciqzB4cMtYUyTlVIsHQ6fqBUK4S1pJKQ5SRDB4pDEaFrL
+         6OvaDqIE4TVh0WUrkprMuyPnY0PjHFFMjCfmf1/9MUAfvupQgYin6UcE609+2JSYAjbc
+         gXH8jpRYn8BLs1dBitEcoX0t+CGMty+YAON3l3kVNsMOtaOf0NIo+/xX3EzSpBglW83Q
+         C4lA==
+X-Forwarded-Encrypted: i=1; AJvYcCWINI2X/n/GvPPZzFpL/Rh/Ka3VGmJcQ2o3uTOK0JXj6PWTvJltfZRP0TJGq6MkYTRANlSEWUtH3OYD@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywucl4ujk7zUpAfiL3s9ld8fLlV0hx7xGfk3dphYeCFv6oPEOI9
+	tNXKPyw2sGNApoBNDZexm8w8Rnl5aZ/DCdMKVg72LCOtQ6zteyfmtaRR5goJ8pxHLCeXrWfnjxc
+	VKp6H2rGm/Le8ZjmsqBSkms1lDrOsIV0NLNm+ew==
+X-Google-Smtp-Source: AGHT+IH7G05Oq1wAPLX81gHtA6qQkBSJyJ5ZrwLIgA5etwfjuE+nckfvQey36fZR1usFS8D2Bkq3YweS9u4X4KFlv6g=
+X-Received: by 2002:a05:6512:3088:b0:52f:368:5018 with SMTP id
+ 2adb3069b0e04-539ab8adce3mr5552359e87.43.1728305497097; Mon, 07 Oct 2024
+ 05:51:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241002-fp5-ufs-therm-v1-1-1d2d8c1f08b5@fairphone.com>
- <fshhw6lknar4z36rc2sjjcgkiixpp7hak7gq3j373mjvbokax3@7s7kmzlmtjal> <D4PE64JTYDCL.3MC81CYK49TI0@fairphone.com>
-In-Reply-To: <D4PE64JTYDCL.3MC81CYK49TI0@fairphone.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 7 Oct 2024 14:46:59 +0200
-Message-ID: <CAA8EJpoYpiuVkD3ohoVhd9VXvCxpHPPfXfY0YqrQhABUc3WPdw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: qcm6490-fairphone-fp5: Add thermistor
- for UFS/RAM
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+References: <cover.1728300189.git.andrea.porta@suse.com> <c9a7d48fefd310941330a4c9892f7218b235e0c5.1728300189.git.andrea.porta@suse.com>
+In-Reply-To: <c9a7d48fefd310941330a4c9892f7218b235e0c5.1728300189.git.andrea.porta@suse.com>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Mon, 7 Oct 2024 14:51:25 +0200
+Message-ID: <CAMRc=MePbYdanhMH4FfHN4PRXT2HAcVyCgKndfthi0hJiSxo8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 07/14] gpiolib: Export symbol gpiochip_set_names()
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
 	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, 7 Oct 2024 at 09:22, Luca Weiss <luca.weiss@fairphone.com> wrote:
+On Mon, Oct 7, 2024 at 2:39=E2=80=AFPM Andrea della Porta <andrea.porta@sus=
+e.com> wrote:
 >
-> On Sun Oct 6, 2024 at 10:26 PM CEST, Dmitry Baryshkov wrote:
-> > On Wed, Oct 02, 2024 at 03:01:08PM GMT, Luca Weiss wrote:
-> > > Configure the ADC and thermal zone for the thermistor next to the
-> > > UFS+RAM chip which is connected to GPIO_12 of PM7250B. It is used to
-> > > measure the temperature of that area of the PCB.
-> > >
-> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts | 40 ++++++++++++++++++++++
-> > >  1 file changed, 40 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > > index 8ab30c01712e0b7c0cc1b403e0fe01650315b9e2..fdc62f1b1c5a398abaa71818fdf2858fdc445d28 100644
-> > > --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > > +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> > > @@ -207,6 +207,20 @@ active-config0 {
-> > >                     };
-> > >             };
-> > >
-> > > +           mem-thermal {
-> > > +                   polling-delay-passive = <0>;
-> > > +
-> > > +                   thermal-sensors = <&pm7250b_adc_tm 2>;
-> > > +
-> > > +                   trips {
-> > > +                           active-config0 {
-> > > +                                   temperature = <125000>;
-> > > +                                   hysteresis = <1000>;
-> > > +                                   type = "passive";
-> >
-> > Is it really just "passive"? Especially with no cooling devices it
-> > sounds more like "critical". LGTM otherwise.
+> Being able to assign gpio line names dynamically is a feature
+> that could be used by drivers that do not have the exact naming
+> (e.g. through the DTB/DTBO) at probing time.
+> An example of this is the RP1 driver that populates the DT
+> at late time through a DT overlay. In this case a custom overlay
+> can be loaded from userspace with the gpio line names.
 >
-> Hi Dmitry,
+> Export gpiochip_set_names() to allow refreshing the gpio line
+> names from the driver module.
 >
-> To be clear, I'm adding the thermal zones now as a first step so that
-> that they are declared and that they show up in /sys.
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  drivers/gpio/gpiolib.c      | 3 ++-
+>  include/linux/gpio/driver.h | 3 +++
+>  2 files changed, 5 insertions(+), 1 deletion(-)
 >
-> This is for sure not the complete thermal configuration. Most other
-> thermal zones in this dts also currently have 125 degC "passive" trip
-> point, which I'd hope the device would never ever reach.
+> diff --git a/drivers/gpio/gpiolib.c b/drivers/gpio/gpiolib.c
+> index c6afbf434366..a2aa3560094a 100644
+> --- a/drivers/gpio/gpiolib.c
+> +++ b/drivers/gpio/gpiolib.c
+> @@ -522,7 +522,7 @@ static void gpiochip_set_desc_names(struct gpio_chip =
+*gc)
+>   * names belong to the underlying firmware node and should not be releas=
+ed
+>   * by the caller.
+>   */
+> -static int gpiochip_set_names(struct gpio_chip *chip)
+> +int gpiochip_set_names(struct gpio_chip *chip)
+>  {
+>         struct gpio_device *gdev =3D chip->gpiodev;
+>         struct device *dev =3D &gdev->dev;
+> @@ -589,6 +589,7 @@ static int gpiochip_set_names(struct gpio_chip *chip)
+>
+>         return 0;
+>  }
+> +EXPORT_SYMBOL(gpiochip_set_names);
+>
+>  static unsigned long *gpiochip_allocate_mask(struct gpio_chip *gc)
+>  {
+> diff --git a/include/linux/gpio/driver.h b/include/linux/gpio/driver.h
+> index 2dd7cb9cc270..6e4cd7b7e47e 100644
+> --- a/include/linux/gpio/driver.h
+> +++ b/include/linux/gpio/driver.h
+> @@ -679,6 +679,9 @@ bool gpiochip_line_is_open_source(struct gpio_chip *g=
+c, unsigned int offset);
+>  bool gpiochip_line_is_persistent(struct gpio_chip *gc, unsigned int offs=
+et);
+>  bool gpiochip_line_is_valid(const struct gpio_chip *gc, unsigned int off=
+set);
+>
+> +/* Assign gpio line names from device property */
+> +int gpiochip_set_names(struct gpio_chip *chip);
+> +
+>  /* get driver data */
+>  void *gpiochip_get_data(struct gpio_chip *gc);
+>
+> --
+> 2.35.3
+>
 
-Sounds sane.
+gpiochip_set_names() is definitely not ready to be used after a GPIO
+chip has been registered. Please take a look at how we handle
+synchronization of struct gpio_device and struct gpio_desc. You'd
+probably need to rework that first.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-
--- 
-With best wishes
-Dmitry
+Bartosz
 
