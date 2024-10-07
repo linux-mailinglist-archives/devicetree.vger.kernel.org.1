@@ -1,308 +1,180 @@
-Return-Path: <devicetree+bounces-108738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC338993860
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:37:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97E0D993887
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:50:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9877628532C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:37:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 533DC286A01
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C931DE8B1;
-	Mon,  7 Oct 2024 20:37:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39EF1DE3A6;
+	Mon,  7 Oct 2024 20:49:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gV/yCC2M"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="l7EQmoWY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63C0E1DE4F6;
-	Mon,  7 Oct 2024 20:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE59D17624D
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 20:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728333427; cv=none; b=OUckjvTtpDlT9ER0hIy6xZCV4WodBleLNgsntbuSCpNIOso6ojQWBa7wJiVTl6zM4RgdPLyIlGxuQZJn0WonHUUQuHh4SHouhdR/vet16fbFCDGRk33svwFsxzEXULKR9IG2XfRdx+5m7ZDVrVqUfHHqIx4JpyQGWsrbqcibHX4=
+	t=1728334194; cv=none; b=K9wuOWILbbiPvNJVMrguRA5Ign3qe9ly90ueD40y4gV63DNgTFzDXHwxZcssqoX90snB8DnvleGpyHEJPHNgG54ubX+sU8nMiVX6Kse9HzHdv8p18nLu98wcbmPm+IgYJWdDcuXa3Vd2oU04T4IfdlabzVyXRfzSekcf8jqkD70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728333427; c=relaxed/simple;
-	bh=ffBqKTIzKKORtDAQTnF0ixHeiBBU1WJxjkoh95cX3hQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=SxPMXYP+UTIecb+0S5VdWzYtnCP+JNzk21OLDMLWc2cqvqx4CTk1uaG80a4C8qjscFs8X2wy8GljKAsHw07dRnPgD8Z20B3LlKWUAYQc1sEQ8HksKAGtbnaKymttGIOHJ78quL5rR2746Jcb1V9M+KFEwOUa/fMhi1EgYq6+xgg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gV/yCC2M; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-37cd8a5aac9so2619369f8f.2;
-        Mon, 07 Oct 2024 13:37:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728333424; x=1728938224; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=R0B/ACvOpGHW6u8EpRZ7oeA/qI9QuVr63Qwli6fHJpg=;
-        b=gV/yCC2MdfGYzqT2FnYyouQJlzI+VmF1ZaPqG5AmiQLqZyUXgt9cBcpGv4lO4dh3yw
-         546VUDdhLs7UsBNEfxioQioiHjydhF91rmjJBRiH8NWxm5ZaG7uDLzEuh2BCgoBzNpBn
-         iHh0NS2dcUFgvA7CpwOAnEy9dcRFX96HDgzxcDSyL7xUWPpV/MtAdhEI2hsif03pMMug
-         3eQywi5C0BBla8GvPO5lykiosVVn/0XJPgivi2NmzoHpZVbW2gw7oQ6LwCJFNTbOiJmY
-         dk/RKpvNhYdeil18hB36jbTzLV5ggQFbiewFrdWacFORe3muAbo7sO6gWelSvnlUf0NC
-         PIbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728333424; x=1728938224;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=R0B/ACvOpGHW6u8EpRZ7oeA/qI9QuVr63Qwli6fHJpg=;
-        b=wW4wijwwiCSJ58W7fndxPJ2+EtIHWt5e7Rk3RWG8+VPZN058FOAmCy1qNU3UKNoy+Z
-         N5U39vxTph+V3ges99F2CNIS3B8t534/N/7bOG2Cdmgc1JylK53hxIP86dbZRRKXulYn
-         5A/APCCIetR7uffG76s4VOmQ+fYXqrKGyZwmCP+q81YnHM7t5ughIwU5W5OjL8L/R9mr
-         wh1Sgbyvy8m4cMI/U1vdgcdEMFZnBm9kngGc0oy4soXswXwLp95pAkzB2O5KTIuXO1H5
-         UlraDCBUcowvCPLYZIx/UbC2dK9pRqgosdqspb1GVpNUh0QUPa5uI4oV/xdErEClg0g0
-         +ItQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWN8Rd9LSxzcec3a90Xp27FXq4wdVNfhh0lTiE/19IU4H72M0wpt8lPblae/qMEkOJjw7yvO5uGiUyx@vger.kernel.org, AJvYcCWfnw4Rp9OmLx0mc2hoERqCL5IHgKO5Zqk95EBLCkBhXDRAGJF16c//wO1UGigHUPHhhya6ScedxX/o@vger.kernel.org, AJvYcCWsQhICjFUlaxqAp4GaPpMeIdSQRBmFE1J5WnVZTxUtmivM42u0ICohCMRUhpYzJJ9n+my8RqjCZmjicabn@vger.kernel.org
-X-Gm-Message-State: AOJu0YycOwV8WWTbg5vqyutxiN5nN8TbdMQY+c07ye+WEc8qERwSuihc
-	GgE6/1UrqBJfpceLn6G5PC6gO5vV82UTPlqwHDokWCXj9Wu+F/C5
-X-Google-Smtp-Source: AGHT+IElWGF/J3lYVMjLRCX4hUFrco/Kpvzbw/A8jguDUfW3hbZhHKJxw50QPrU3kkSMpcxaaADIdw==
-X-Received: by 2002:adf:e502:0:b0:37c:d2d2:7f67 with SMTP id ffacd0b85a97d-37d0e74b62cmr6056692f8f.30.1728333418972;
-        Mon, 07 Oct 2024 13:36:58 -0700 (PDT)
-Received: from [127.0.1.1] (2a02-8389-41cf-e200-26cc-001d-7ed0-e346.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:26cc:1d:7ed0:e346])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1690f75bsm6464315f8f.23.2024.10.07.13.36.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 13:36:58 -0700 (PDT)
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Date: Mon, 07 Oct 2024 22:36:38 +0200
-Subject: [PATCH 3/3] iio: light: veml6030: add support for veml7700
+	s=arc-20240116; t=1728334194; c=relaxed/simple;
+	bh=IZfOo8coClihvsH2TTkHO+abz2SwMDB31rZRYwzXsq8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=cc2iNyDnzO5a51UDQKnGRF/G1LcVg08vFIVePBbAmlqWrVnt/TesNtlFfeqxBScjQgSjobHIqgS4Ectug0JGw3XvlwRyumzE1IEHFjVwx+arl3glq7cM7o3ThAlST19ziK43c6uo/c2Ll8MBGao5wRwLvhX1zgMYdS+wenCQctU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=l7EQmoWY; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B62B62C0E1E;
+	Tue,  8 Oct 2024 09:49:49 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1728334189;
+	bh=IZfOo8coClihvsH2TTkHO+abz2SwMDB31rZRYwzXsq8=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=l7EQmoWYFchn6IYfDYl6OtgKhJj5tWPV+xHT0INkY/w3wIAHTccg76MfedH9yhJiU
+	 EBL1JVgxK/0abQ86bx/Be3GpNVxI9W5pkrA14h1L/EKqB0mXOq8Km6Fr8qQiMZjrZK
+	 Dt5Tm9helwC7PF1UdKsnQ6tSS/AkRrvzE9dIA/CSkKtby0ycHXMobUIvMOZJFFsSFy
+	 2+Cms/8oI1IUhiJsTU9mKOr9THtZ5BdpOGv7cIKz7Jb5/ckF9D/TVRVOv8Al+DVH2p
+	 vl0aO/A6xEpDTOTD94HZW8fNgVBQWOlux5j5iFhYHYRzUGBnu4IUB6mQ0vdaeT8izy
+	 N3Cj1TtUCVmQA==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B6704496d0000>; Tue, 08 Oct 2024 09:49:49 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 8A2C313ED7B;
+	Tue,  8 Oct 2024 09:49:49 +1300 (NZDT)
+Message-ID: <8bf08456-0780-4dfe-9153-37ef5d01285b@alliedtelesis.co.nz>
+Date: Tue, 8 Oct 2024 09:49:49 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241007-veml7700-v1-3-fb85dd839d63@gmail.com>
-References: <20241007-veml7700-v1-0-fb85dd839d63@gmail.com>
-In-Reply-To: <20241007-veml7700-v1-0-fb85dd839d63@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>, 
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Rishi Gupta <gupt21@gmail.com>
-Cc: Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, 
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-X-Mailer: b4 0.14-dev
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728333411; l=6748;
- i=javier.carrasco.cruz@gmail.com; s=20240312; h=from:subject:message-id;
- bh=ffBqKTIzKKORtDAQTnF0ixHeiBBU1WJxjkoh95cX3hQ=;
- b=Ichfa+n/zTkvi8u7AEtV619VW+zwZUglXdVjgVqUfx5q0Uyv8ESG4JbNPlSN+AW+ibjzpWokV
- 6COuh21LbkRDjH80iDjXhNx4NsBeedR1hVBKoGpWTBdGpxN+viyZJlH
-X-Developer-Key: i=javier.carrasco.cruz@gmail.com; a=ed25519;
- pk=lzSIvIzMz0JhJrzLXI0HAdPwsNPSSmEn6RbS+PTS9aQ=
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add realtek,rtl9300-snand
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20241006233347.333586-1-chris.packham@alliedtelesis.co.nz>
+ <20241006233347.333586-2-chris.packham@alliedtelesis.co.nz>
+ <3tu6x2644lxvvbk74nv5qva7qupsvgxyxkwc5g5n7n4bh3mbwi@457wbps4kpns>
+ <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
+Content-Language: en-US
+In-Reply-To: <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=6704496d a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=gEfo2CItAAAA:8 a=X0WHbVYDd5x4bSxCIEEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-The veml7700 contains the same sensor as the veml6030 in a different
-package with no interrupt line and no pin to select the I2C address.
 
-To handle the lack of the interrupt line and profit from the existing
-support for the veml6030, add a specific iio_chan_spec with no
-(num_)event_spec(s), and register the device's info from the
-veml6030_info_no_irq struct.
+On 8/10/24 08:58, Chris Packham wrote:
+>
+> On 7/10/24 19:40, Krzysztof Kozlowski wrote:
+>> On Mon, Oct 07, 2024 at 12:33:45PM +1300, Chris Packham wrote:
+>>> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
+>>> controller supports
+>>> =C2=A0 * Serial/Dual/Quad data with
+>>> =C2=A0 * PIO and DMA data read/write operation
+>>> =C2=A0 * Configurable flash access timing
+>>>
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> ---
+>>> =C2=A0 .../bindings/spi/realtek,rtl9300-snand.yaml=C2=A0=C2=A0 | 58=20
+>>> +++++++++++++++++++
+>>> =C2=A0 1 file changed, 58 insertions(+)
+>>> =C2=A0 create mode 100644=20
+>>> Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
+>>>
+>>> diff --git=20
+>>> a/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml=20
+>>> b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
+>>> new file mode 100644
+>>> index 000000000000..c66aea24cb35
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yam=
+l
+>>> @@ -0,0 +1,58 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/spi/realtek,rtl9300-snand.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
+>>> +
+>>> +maintainers:
+>>> +=C2=A0 - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> +
+>>> +description:
+>>> +=C2=A0 The Realtek RTL9300 SoCs have a built in SPI-NAND controller.=
+ It=20
+>>> supports
+>>> +=C2=A0 typical SPI-NAND page cache operations in single, dual or qua=
+d IO=20
+>>> mode.
+>>> +
+>>> +properties:
+>>> +=C2=A0 compatible:
+>>> +=C2=A0=C2=A0=C2=A0 items:
+>> Why 9300 cannot be alone? What does 9300 mean even? Wildcards and fami=
+ly
+>> models are not allowed in general.
+>
+> The main thing about the RTL9300 is that that is what all the Realtek=20
+> documents use to refer to these chips and the specific numbers are=20
+> akin to the manufacturing part number that you'd actually order (maybe=20
+> that's a bit of a stretch).
+>
+> The SoC/CPU block probably does exist as a separate silicon die that=20
+> they connect to the different switch blocks in the chips that they=20
+> sell but I don't think you can get "just" the SoC. There is every=20
+> chance that we'll see that same SoC/CPU block pop up in new chips (I=20
+> see references to a RTL9302D in some documents). I'd like to be able=20
+> to support these chips using "rtl9300" but if that's violating the=20
+> wildcard rule I can drop it.
+>
+Maybe it's helpful to think of the RTL9300 as the IP block that is=20
+integrated into the RTL9301, RTL9302B, etc.
 
-Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
----
- drivers/iio/light/veml6030.c | 108 ++++++++++++++++++++++++++++++++++++-------
- 1 file changed, 91 insertions(+), 17 deletions(-)
-
-diff --git a/drivers/iio/light/veml6030.c b/drivers/iio/light/veml6030.c
-index ca0379945b1c..173c85a05a8d 100644
---- a/drivers/iio/light/veml6030.c
-+++ b/drivers/iio/light/veml6030.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * VEML6030 and VMEL6035 Ambient Light Sensors
-+ * VEML6030, VMEL6035 and VEML7700 Ambient Light Sensors
-  *
-  * Copyright (c) 2019, Rishi Gupta <gupt21@gmail.com>
-  *
-@@ -11,6 +11,10 @@
-  * VEML6035:
-  * Datasheet: https://www.vishay.com/docs/84889/veml6035.pdf
-  * Appnote-84944: https://www.vishay.com/docs/84944/designingveml6035.pdf
-+ *
-+ * VEML7700:
-+ * Datasheet: https://www.vishay.com/docs/84286/veml7700.pdf
-+ * Appnote-84323: https://www.vishay.com/docs/84323/designingveml7700.pdf
-  */
- 
- #include <linux/bitfield.h>
-@@ -56,7 +60,10 @@ struct veml603x_chip {
- 	const char *name;
- 	const int(*scale_vals)[][2];
- 	const int num_scale_vals;
-+	const struct iio_chan_spec *channels;
-+	const int num_channels;
- 	int (*hw_init)(struct iio_dev *indio_dev, struct device *dev);
-+	int (*set_info)(struct iio_dev *indio_dev);
- 	int (*set_als_gain)(struct iio_dev *indio_dev, int val, int val2);
- 	int (*get_als_gain)(struct iio_dev *indio_dev, int *val, int *val2);
- };
-@@ -250,6 +257,30 @@ static const struct iio_chan_spec veml6030_channels[] = {
- 	},
- };
- 
-+static const struct iio_chan_spec veml7700_channels[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.channel = CH_ALS,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				BIT(IIO_CHAN_INFO_PROCESSED) |
-+				BIT(IIO_CHAN_INFO_INT_TIME) |
-+				BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-+						     BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+	{
-+		.type = IIO_INTENSITY,
-+		.channel = CH_WHITE,
-+		.modified = 1,
-+		.channel2 = IIO_MOD_LIGHT_BOTH,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-+				BIT(IIO_CHAN_INFO_INT_TIME) |
-+				BIT(IIO_CHAN_INFO_SCALE),
-+		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-+						     BIT(IIO_CHAN_INFO_SCALE),
-+	},
-+};
-+
- static const struct regmap_config veml6030_regmap_config = {
- 	.name = "veml6030_regmap",
- 	.reg_bits = 8,
-@@ -862,6 +893,37 @@ static irqreturn_t veml6030_event_handler(int irq, void *private)
- 	return IRQ_HANDLED;
- }
- 
-+static int veml6030_set_info(struct iio_dev *indio_dev)
-+{
-+	struct veml6030_data *data = iio_priv(indio_dev);
-+	struct i2c_client *client = data->client;
-+	int ret;
-+
-+	if (client->irq) {
-+		ret = devm_request_threaded_irq(&client->dev, client->irq,
-+						NULL, veml6030_event_handler,
-+						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
-+						indio_dev->name, indio_dev);
-+		if (ret < 0)
-+			return dev_err_probe(&client->dev, ret,
-+					     "irq %d request failed\n",
-+					     client->irq);
-+
-+		indio_dev->info = &veml6030_info;
-+	} else {
-+		indio_dev->info = &veml6030_info_no_irq;
-+	}
-+
-+	return 0;
-+}
-+
-+static int veml7700_set_info(struct iio_dev *indio_dev)
-+{
-+	indio_dev->info = &veml6030_info_no_irq;
-+
-+	return 0;
-+}
-+
- /*
-  * Set ALS gain to 1/8, integration time to 100 ms, PSM to mode 2,
-  * persistence to 1 x integration time and the threshold
-@@ -1007,24 +1069,13 @@ static int veml6030_probe(struct i2c_client *client)
- 		return -EINVAL;
- 
- 	indio_dev->name = data->chip->name;
--	indio_dev->channels = veml6030_channels;
--	indio_dev->num_channels = ARRAY_SIZE(veml6030_channels);
-+	indio_dev->channels = data->chip->channels;
-+	indio_dev->num_channels = data->chip->num_channels;
- 	indio_dev->modes = INDIO_DIRECT_MODE;
- 
--	if (client->irq) {
--		ret = devm_request_threaded_irq(&client->dev, client->irq,
--						NULL, veml6030_event_handler,
--						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
--						indio_dev->name, indio_dev);
--		if (ret < 0)
--			return dev_err_probe(&client->dev, ret,
--					     "irq %d request failed\n",
--					     client->irq);
--
--		indio_dev->info = &veml6030_info;
--	} else {
--		indio_dev->info = &veml6030_info_no_irq;
--	}
-+	ret = data->chip->set_info(indio_dev);
-+	if (ret < 0)
-+		return ret;
- 
- 	ret = data->chip->hw_init(indio_dev, &client->dev);
- 	if (ret < 0)
-@@ -1066,7 +1117,10 @@ static const struct veml603x_chip veml6030_chip = {
- 	.name = "veml6030",
- 	.scale_vals = &veml6030_scale_vals,
- 	.num_scale_vals = ARRAY_SIZE(veml6030_scale_vals),
-+	.channels = veml6030_channels,
-+	.num_channels = ARRAY_SIZE(veml6030_channels),
- 	.hw_init = veml6030_hw_init,
-+	.set_info = veml6030_set_info,
- 	.set_als_gain = veml6030_set_als_gain,
- 	.get_als_gain = veml6030_get_als_gain,
- };
-@@ -1075,11 +1129,26 @@ static const struct veml603x_chip veml6035_chip = {
- 	.name = "veml6035",
- 	.scale_vals = &veml6035_scale_vals,
- 	.num_scale_vals = ARRAY_SIZE(veml6035_scale_vals),
-+	.channels = veml6030_channels,
-+	.num_channels = ARRAY_SIZE(veml6030_channels),
- 	.hw_init = veml6035_hw_init,
-+	.set_info = veml6030_set_info,
- 	.set_als_gain = veml6035_set_als_gain,
- 	.get_als_gain = veml6035_get_als_gain,
- };
- 
-+static const struct veml603x_chip veml7700_chip = {
-+	.name = "veml7700",
-+	.scale_vals = &veml6030_scale_vals,
-+	.num_scale_vals = ARRAY_SIZE(veml6030_scale_vals),
-+	.channels = veml7700_channels,
-+	.num_channels = ARRAY_SIZE(veml7700_channels),
-+	.hw_init = veml6030_hw_init,
-+	.set_info = veml7700_set_info,
-+	.set_als_gain = veml6030_set_als_gain,
-+	.get_als_gain = veml6030_get_als_gain,
-+};
-+
- static const struct of_device_id veml6030_of_match[] = {
- 	{
- 		.compatible = "vishay,veml6030",
-@@ -1089,6 +1158,10 @@ static const struct of_device_id veml6030_of_match[] = {
- 		.compatible = "vishay,veml6035",
- 		.data = &veml6035_chip,
- 	},
-+	{
-+		.compatible = "vishay,veml7700",
-+		.data = &veml7700_chip,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, veml6030_of_match);
-@@ -1096,6 +1169,7 @@ MODULE_DEVICE_TABLE(of, veml6030_of_match);
- static const struct i2c_device_id veml6030_id[] = {
- 	{ "veml6030", (kernel_ulong_t)&veml6030_chip},
- 	{ "veml6035", (kernel_ulong_t)&veml6035_chip},
-+	{ "veml7700", (kernel_ulong_t)&veml7700_chip},
- 	{ }
- };
- MODULE_DEVICE_TABLE(i2c, veml6030_id);
-
--- 
-2.43.0
-
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
+9301-snand
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
+9302b-snand
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
+9302c-snand
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
+9303-snand
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: realtek,rtl9300-snand
+>>> +
+>>> +=C2=A0 reg:
+>>> +=C2=A0=C2=A0=C2=A0 items:
+>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: SPI NAND controller re=
+gisters address and size
+>> Also: why no clocks? Binding is supposed to be complete. If it cannot,
+>> you should explain it in the commit msg.
+>
+> I didn't add it because I had no need for it in my driver. But as=20
+> you've said previously the binding shouldn't care what the driver does.
+>
+> I do have the clocking info from the datasheets. I'll add it in v2.
+>
+>> Best regards,
+>> Krzysztof
+>>
+>>
 
