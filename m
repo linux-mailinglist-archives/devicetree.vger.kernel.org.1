@@ -1,133 +1,130 @@
-Return-Path: <devicetree+bounces-108282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C04419923B3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:45:21 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EB8C9923BE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 06:55:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B0081F2136C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:45:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEEDAB219AB
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 04:55:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDABB2AD05;
-	Mon,  7 Oct 2024 04:45:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 43AB8132105;
+	Mon,  7 Oct 2024 04:55:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WwNvKDhH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VJLWc1hf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6DE53C0D;
-	Mon,  7 Oct 2024 04:45:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64ADC1292CE
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 04:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728276316; cv=none; b=OS6ypbvPmwT7MSg5wc79EC4aLky8cUQ7I3N9T5RgkO7QvS2h239qgoDB5raMiuL22oO8km8996b6EGEcnshhkijmj/+F4o+qCvzFLUgzPJJ71Q3dd4GCDDjHXVqsm8I1kfmv3w81PzgqyqkcBpN+WJ7ONjSy5zr4GpBlslEW00w=
+	t=1728276934; cv=none; b=CjpWQDiuZbFYA5nUqZtL020PBor9ei+klc2RaR49sOGsGARCpNPDTLyB8lcXdeGPOX/yE/rHBjaxyff+aSrjj9H+S9/Bm2UEIjEh1ipVs+wRPOCOeLcdLhMQLCQG2s4+K+pLuayTu4dXNuQZPKFjMVEgu9qKmVdjng7+6m1QebY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728276316; c=relaxed/simple;
-	bh=k04oc/fWDIrIeMBDIrXtt1NeFQpylQYkdcFR85dDJVc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=P48JxsywrGV6g3nL4G1HrUXqvsC7WGaTRAgBlQFrN8MAJWNBsvkNGO4z30pMuaSlC1VfUvdJdkYT0m5aEe9EBUu+Kg1tN0jUIV/K+Ge6QsZ5fNy2Zv3wvBq37SvnJ7lKIneBL/+BWediCOjTbxUOB+8PZoIpnUyTfe5Fyw4AsNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WwNvKDhH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD0BC4CEC6;
-	Mon,  7 Oct 2024 04:45:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728276316;
-	bh=k04oc/fWDIrIeMBDIrXtt1NeFQpylQYkdcFR85dDJVc=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=WwNvKDhHG4XPUO4b11u+QhSWcbCwfrNSuMCBkSxja3Bibqz5WbFlLsz7AVOgOH35b
-	 NtKFd5aWObzPEOmzm9abv3fqfjBxAVJCY6G1qe3e6HdBaRzRVLD4saYjBjnVCq8bj9
-	 n4t8/5w1CGSSnWVlZEs+aYypPSYmIBgj848lF1Zocg9wTzvk1BtJ7DcrHyfrxCdUrv
-	 N9tnSwX52gVzXjOamw7+Qz8TCCOKaCvAI0ulzLkNNkNgKt76T9O9ZgCzQUHSu2ojlN
-	 VdNS+eRZaXI2nu+Lhf9/og2ZEM/cWKaVJu7vy2R5Nnp8H2/eoV5kGFkMPIhwL07+BI
-	 GbJq3MmL36EyA==
-Message-ID: <6b3ee603-a745-4b24-ab6d-ecb63a746917@kernel.org>
-Date: Mon, 7 Oct 2024 13:45:13 +0900
+	s=arc-20240116; t=1728276934; c=relaxed/simple;
+	bh=Y2bda3mGfiwGlrzgQPpEpMIie5Ls/ev+55m5OE+yNF4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LcQmk+z9DwPBweYqiqnYE8xETqrfYeyNz+f4EMOW5v25IMNiVDYO98QHq3qcXd6OI7t2HH3GqAkKlQ3vea66T5THVHjdC3OTtMN+uBuc8Zaa4V/xb9gZ+BqctpQH/IBXshIXDtf3XsjuV/JtCJUvJNo2d7i5ha3rGxiR79ldo0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VJLWc1hf; arc=none smtp.client-ip=209.85.167.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5398e58ceebso3514085e87.0
+        for <devicetree@vger.kernel.org>; Sun, 06 Oct 2024 21:55:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728276929; x=1728881729; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=/6xcwrBoXuHmz7DbARIgYbfXwaKZHrTi0jMKEdF4o40=;
+        b=VJLWc1hfsmjBxsO0V14wicVv3UxLtIZNwxetwIBLFIZcb4HS5HzzZPFuhd4nqF2OHY
+         Ctk/8ERi0/diPo4Br1S5cNbStpEXPfPQyKspW3FRGe86acHAirPwxYz6X8DWeKVePkoi
+         OGOm/r2JCFbPW43XeJUC8OP6F7TJ5l1PjBYodpAQGrYNdhUPBO3X+qoygTiUaiTk3l9j
+         we1dpRQqb/ZduyeZ87nwfQhmyid2+9ZSvbWq9x/cTRV0TDbZaGuvHkROSmDuw6J0C5eL
+         6vwN6eG8IYmBIC6TZUFnOpl3uf69BXqphLhaJ5NW1BKVQvt9v0UuF+HuhHFmN6VofHPr
+         Cdmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728276929; x=1728881729;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=/6xcwrBoXuHmz7DbARIgYbfXwaKZHrTi0jMKEdF4o40=;
+        b=JuURXQHmRdV5k+m4Hnuk+uFR72t/ZDDxv9p4JQCF9xu1OqH0cpbuEEsKYLxf5Fjt9g
+         ZRH/sI9XrFPAZRtaVYen6tdjl4riZ5TQEYBZw6+MyZP5/yASc7HYNEF85sE202j6w5pb
+         ANc/4cfCmJweN2IirCCgbU2O1DTZTbt0riEjWIt4sZFXXq15/FXn/LIdPi5wCp8BasoI
+         Vb4twylgeSS6m42BrZ3uWDCotT43/qa1MtMg/qD7cqAhEBXSYdYDv5lQUnhcFHDAqef2
+         5luXA0U+WO15l1qWDD0kCSKbJpxAh9yyRLzQvrXaaVQbz4AGkFgB7RmbqnPvO4GzAoZs
+         Rbaw==
+X-Forwarded-Encrypted: i=1; AJvYcCWo45Suhr7ddHmf88gc3IPBijtdUDPDYKCGb6M1HogoE+9vR9YR3s1SOPmtBz8E0FdGXKTrOLgICisf@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHJB9JldsCDO+mlzRLpQcbm2ibesP5BzCFwmNdCFB1tePq9cIa
+	pffv/U/wOzDbmV5btbwvyBJAg02z/CJOny0t4GgaHLroQ0CrM9qVCm4s/ISD5gX8VMGgpXS94KI
+	tF/8nQLBO
+X-Google-Smtp-Source: AGHT+IGXMAuGqMtBvrWsmOq7ynzzo7ewDWrA4vrd6ryejLcyARqvVHqB/yG3diLj17MPbt7U0IKkfA==
+X-Received: by 2002:a05:6512:b90:b0:539:93e8:7ed8 with SMTP id 2adb3069b0e04-539a626a412mr4461045e87.15.1728276929284;
+        Sun, 06 Oct 2024 21:55:29 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539aff1d168sm705946e87.142.2024.10.06.21.55.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 06 Oct 2024 21:55:28 -0700 (PDT)
+Date: Mon, 7 Oct 2024 07:55:27 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jianhua Lu <lujianhua000@gmail.com>, Kalle Valo <kvalo@kernel.org>, 
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	ath11k@lists.infradead.org
+Subject: Re: [PATCH 2/3]  arm64: dts: qcom: sm8250-xiaomi-elish: Add wifi node
+Message-ID: <nxkw7osy3cpd2ts7jeidknd6mgt4wfjaf5pzabzy54aiza5mij@dpbznolilbnf>
+References: <20240929112908.99612-1-lujianhua000@gmail.com>
+ <20240929112908.99612-2-lujianhua000@gmail.com>
+ <p75ivby5ajlmnvebqkn3mq7t5xh6awewjwkwpa5rjiqv2ijijl@aqemqgxveu55>
+ <ZwNODSqKNJmkY-l2@localhost.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 00/12]
-From: Damien Le Moal <dlemoal@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20241007041218.157516-1-dlemoal@kernel.org>
-Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241007041218.157516-1-dlemoal@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZwNODSqKNJmkY-l2@localhost.localdomain>
 
-On 10/7/24 13:12, Damien Le Moal wrote:
-> This patch series is the second part of the former version 2 of the
-> patch series "Improve PCI memory mapping API". This second part is split
-> out as it deals solely with the rockchip/rk3399 PCI endpoint controller
-> driver.
+On Mon, Oct 07, 2024 at 10:57:17AM GMT, Jianhua Lu wrote:
+> On Mon, Oct 07, 2024 at 12:02:34AM +0300, Dmitry Baryshkov wrote:
+> > On Sun, Sep 29, 2024 at 07:29:07PM GMT, Jianhua Lu wrote:
+> > > Add wifi node and this wifi module is connected to pice port.
+> > 
+> > Could you please add ath11k probe messages to the log? We might need to
+> > add an additional node with the calibration variant.
+> > 
+> Hi, Dmitry. Do you mean that I should add ath11k probe message to the commit message?
+> The following is ath11k probe message:
+> [   10.285469] ath11k_pci 0000:01:00.0: Adding to iommu group 12
+> [   10.285637] ath11k_pci 0000:01:00.0: BAR 0 [mem 0x60400000-0x604fffff 64bit]: assigned
+> [   10.285699] ath11k_pci 0000:01:00.0: enabling device (0000 -> 0002)
+> [   10.286003] ath11k_pci 0000:01:00.0: MSI vectors: 32
+> [   10.286023] ath11k_pci 0000:01:00.0: qca6390 hw2.0
+> [   10.652407] ath11k_pci 0000:01:00.0: chip_id 0x0 chip_family 0xb board_id 0xff soc_id 0xffffffff
+> [   10.652429] ath11k_pci 0000:01:00.0: fw_version 0x10121492 fw_build_timestamp 2021-11-04 11:23 fw_build_id
+> 
+> I'm not sure if it's necessary to add calibration variant because wifi
+> works normally on this board without adding calibration variant.
 
-Missing series title. It should be "Improve rk3399 PCI endpoint controller driver"
+Added ath11k ML and corresponding maintainers to cc. Please cc them in
+future revisions of this patchset. If you were to send the next
+iteration of the series, please include the quoted log into the commit
+message.
 
-Sorry about that.
+The board_id 0xff most likely requires calibration variant. Please
+consider adding one and submitting board.elf following the process
+specified at [1].
 
-> 
-> This series is organized as follows:
->  - Patch 1 fixes the rockchip ATU programming
->  - Patch 2, 3 and 4 introduce small code improvments
->  - Patch 5 implements the .map_align() operation to make the rk3399
->    endpoint controller driver fully functional
->  - Patch 6, 7 and 8 refactor the driver code to make it more readable
->  - Patch 9 introduces the .stop() endpoint controller operation to
->    correctly disable the endpopint controller after use
->  - Patch 10 improves link training
->  - Patch 11 and 12 implement handling of the #PERST signal
-> 
-> Changes from v2:
->  - Split the patch series
->  - Corrected patch 11 to add the missing "maxItem"
-> 
-> Changes from v1:
->  - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
->    1.
->  - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
->    (former patch 2 of v1)
->  - Various typos cleanups all over. Also fixed some blank space
->    indentation.
->  - Added review tags
-> 
-> Damien Le Moal (11):
->   PCI: rockchip-ep: Fix address translation unit programming
->   PCI: rockchip-ep: Use a macro to define EP controller .align feature
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
->   PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
->   PCI: rockchip-ep: Implement the .map_align() controller operation
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
->   PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
->   PCI: rockchip-ep: Refactor endpoint link training enable
->   PCI: rockship-ep: Introduce rockchip_pcie_ep_stop()
->   PCI: rockchip-ep: Improve link training
->   PCI: rockchip-ep: Handle PERST# signal in endpoint mode
-> 
-> Wilfred Mallawa (1):
->   dt-bindings: pci: rockchip,rk3399-pcie-ep: Add ep-gpios property
-> 
->  .../bindings/pci/rockchip,rk3399-pcie-ep.yaml |   4 +
->  drivers/pci/controller/pcie-rockchip-ep.c     | 392 +++++++++++++++---
->  drivers/pci/controller/pcie-rockchip.c        |  17 +-
->  drivers/pci/controller/pcie-rockchip.h        |  22 +
->  4 files changed, 358 insertions(+), 77 deletions(-)
-> 
-
+[1] https://wireless.wiki.kernel.org/en/users/drivers/ath10k/boardfiles
 
 -- 
-Damien Le Moal
-Western Digital Research
+With best wishes
+Dmitry
 
