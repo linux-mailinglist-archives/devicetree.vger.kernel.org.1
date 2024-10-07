@@ -1,203 +1,435 @@
-Return-Path: <devicetree+bounces-108603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D6E799315C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:35:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 333C39931A1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11842283FB6
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:35:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BED4E1F22915
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA8125B9;
-	Mon,  7 Oct 2024 15:35:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686B41D9334;
+	Mon,  7 Oct 2024 15:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gxYaGbRV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="FdYJ4plE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CC018BBB2;
-	Mon,  7 Oct 2024 15:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99AF01D4159;
+	Mon,  7 Oct 2024 15:41:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728315330; cv=none; b=K+3Vc8oj4yqllYMPGhHDfv3+kpNSZyaG+qdRWZlhI9TufmKXCyn4/yaOaSizD2KSHtf6zNGW5Yne94Ix8tjhRijv/Sxr+32zl+5PF/zTPXj2quCfmFOpOV/WzMQSGbEUUCu4vMfgg23oX1gq/0PEBnjr9NagKEhdjHntENhZdQ8=
+	t=1728315698; cv=none; b=qjqzOSX7300R4Dqv5S/AsDhsDgwbV/3jKGqlRdXsC1c5CwxigpRYimQHAAW2pIPpCg7SLD9KzC6fsBEDewYaxNa+ceXlOhgpVRBB4VeSUxJki6gS0QosbUe9LMh65VHzEtefxEV9fWncxZE6w+uUwDPsme8Gbm751vKlNgA99qs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728315330; c=relaxed/simple;
-	bh=vmDcUWR28r4GCm7mjHQRvGrAOByN1ZiGI13saHCCk4E=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BN6yf5lZ3e05PIYYoEKyLa2p3r30hoSo0A6QgrmV/tdcvUrYGpjCH3eqIjhYNV9D0k6MqRlmjvXeD2D4rqTAykvsDCGnL6vyAzeWKYt5L+ixx0+McvODi2wCvdDvJ4jZ6ah600ToR3Z4e/OXBdkdz8RNGvgENfyvOtr17693+XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gxYaGbRV; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497F6f9t003930;
-	Mon, 7 Oct 2024 15:35:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	T8D5E2ZeSNmgSSEISntkVqY99/wGIdZ25++9fHbZMf4=; b=gxYaGbRVPGhIgP4C
-	mDcAw4e98KHBNTSC/sD807WG+v4Iy1YHGjYW9bCijZcQP7ehjB2T9uShgn79YIvq
-	/eOwuRxReArKf9AwZBEtt2MN0ac84w6zxtgibC5Eiua2sOGqVnRE0+STWrNJPb25
-	WgpTqTRrEoJ+BOnRww6PdZYApYi/nsk3ivSYSQpoaKYgJILQHjf+opVausS71FQe
-	9GhIr/8LqgdjY2G9B1nDrkjENoBtMQnwcz5Hc9OTaxkLeHRrJpSEH1FoErgAIXrY
-	CipCpo4Cs5mU277nfXIGd3zwULKJohyPCBN5COYoPrO8RSFKuHYgvoveZ+SZwZus
-	kmcavQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv6vn66-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 07 Oct 2024 15:35:24 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497FZO07024422
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 7 Oct 2024 15:35:24 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Mon, 7 Oct 2024 08:35:20 -0700
-Date: Mon, 7 Oct 2024 21:05:16 +0530
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier
-	<mathieu.poirier@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Konrad
- Dybcio" <konradybcio@kernel.org>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Shiraz Hashim <quic_shashim@quicinc.com>
-Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
- iommus and qcom,devmem property
-Message-ID: <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-2-quic_mojha@quicinc.com>
- <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
+	s=arc-20240116; t=1728315698; c=relaxed/simple;
+	bh=ozlvYvYtb3Smkb2uOSxYcIYogVyb8QL+bmCfwoJcF0I=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XQdhgA8SaAyjjn5yEpfDGV4CLl2Q5zAgVd887jTu/vs8OdXkN2Vr0gzyy93OvtV4KORGGIwz4nqMOt3M2oHRWDcYJJkzxTjXbF+KlnZ/aiVUDtxyY/yuHrAqRR5UdkZ1JXuIRoOqYApSdWQ8kKHWYkrTPutkjx1R8TrUDfULgw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=FdYJ4plE; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A4B031BF207;
+	Mon,  7 Oct 2024 15:41:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728315692;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IZF6FY4sY8mH9ywI29ygU3fSzmrv/V9LpdqsVUZkmWA=;
+	b=FdYJ4plEYVLKyAOTLmJppB02x7nb1gY+Enuw38m0c/DmME/1m073z1GMfUtHb5DJUqCNCn
+	gCpiJUCo27W2j2K0/vq/ASncteHFzqriZg4mYNOF8lwErIEbiQQdhFsBCgL+3RMiGOh8hw
+	S+fn4VbfX8LCmVfQsGHvwABtds2zlp6Ne+mU2lfGGZ26fCPs2ZPfy0SM87kaem7dmV34H7
+	m+dpQKX26skeTGMv0EDG9hr+JPwSgBUEU1ZgH14w7zTliksRh5NJqh3jgMZ0wCQyp2hTy3
+	OweyPrtKN0qMBh6jG37Ni4qJs4N3359QkWvCBnli+l+QbM2QqtnK+hCAN4mePg==
+Date: Mon, 7 Oct 2024 17:41:27 +0200
+From: Herve Codina <herve.codina@bootlin.com>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
+ <florian.fainelli@broadcom.com>, Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi
+ <lpieralisi@kernel.org>, Krzysztof =?UTF-8?B?V2lsY3p5xYRza2k=?=
+ <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij
+ <linus.walleij@linaro.org>, Catalin Marinas <catalin.marinas@arm.com>, Will
+ Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, Derek
+ Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>,
+ Arnd Bergmann <arnd@arndb.de>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, Stefan
+ Wahren <wahrenst@gmx.net>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Lunn
+ <andrew@lunn.ch>
+Subject: Re: [PATCH v2 11/14] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <20241007174127.13a901cd@bootlin.com>
+In-Reply-To: <c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta@suse.com>
+References: <cover.1728300189.git.andrea.porta@suse.com>
+ <c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta@suse.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: XsO2qa38GjycV4QpXfsqKnxdo7dq3tT4
-X-Proofpoint-GUID: XsO2qa38GjycV4QpXfsqKnxdo7dq3tT4
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
- priorityscore=1501 impostorscore=0 adultscore=0 lowpriorityscore=0
- mlxlogscore=504 mlxscore=0 bulkscore=0 phishscore=0 malwarescore=0
- spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410070110
+X-GND-Sasl: herve.codina@bootlin.com
 
-On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
-> On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
-> > From: Shiraz Hashim <quic_shashim@quicinc.com>
-> > 
-> > Qualcomm’s PAS implementation for remote processors only supports a
-> > single stage of IOMMU translation and is presently managed by the
-> > Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
-> > such as with a KVM hypervisor, IOMMU translations need to be set up by
-> > the KVM host. Remoteproc needs carveout memory region and its resource
-> > (device memory) permissions to be set before it comes up, and this
-> > information is presently available statically with QHEE.
-> > 
-> > In the absence of QHEE, the boot firmware needs to overlay this
-> > information based on SoCs running with either QHEE or a KVM hypervisor
-> > (CPUs booted in EL2).
-> > 
-> > The qcom,devmem property provides IOMMU devmem translation information
-> > intended for non-QHEE based systems.
-> > 
-> > Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
-> > Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > ---
-> >  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++++
-> >  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
-> >  2 files changed, 62 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > index 63a82e7a8bf8..068e177ad934 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > @@ -52,6 +52,48 @@ properties:
-> >      minItems: 1
-> >      maxItems: 3
-> >  
-> > +  iommus:
-> > +    maxItems: 1
-> > +
-> > +  qcom,devmem:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +    description:
-> > +      Qualcomm’s PAS implementation for remote processors only supports a
-> > +      single stage of IOMMU translation and is presently managed by the
-> > +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
-> > +      such as with a KVM hypervisor, IOMMU translations need to be set up by
-> > +      the KVM host. Remoteproc might need some device resources and related
-> > +      access permissions to be set before it comes up, and this information is
-> > +      presently available statically with QHEE.
-> > +
-> > +      In the absence of QHEE, the boot firmware needs to overlay this
-> > +      information based on SoCs running with either QHEE or a KVM hypervisor
-> > +      (CPUs booted in EL2).
-> > +
-> > +      The qcom,devmem property provides IOMMU devmem translation information
-> > +      intended for non-QHEE based systems. It is an array of u32 values
-> > +      describing the device memory regions for which IOMMU translations need to
-> > +      be set up before bringing up Remoteproc. This array consists of 4-tuples
-> > +      defining the device address, physical address, size, and attribute flags
-> > +      with which it has to be mapped.
+Hi Andrea,
+
+Nice to see that other PCI drivers will use the DT overlay over PCI feature!
+
+On Mon,  7 Oct 2024 14:39:54 +0200
+Andrea della Porta <andrea.porta@suse.com> wrote:
+
+> The RaspberryPi RP1 is a PCI multi function device containing
+> peripherals ranging from Ethernet to USB controller, I2C, SPI
+> and others.
 > 
-> I'd expect that this kind of information is hardware-dependent. As such
-> it can go to the driver itself, rather than the device tree. The driver
-> can use compatible string to select the correct table.
+> Implement a bare minimum driver to operate the RP1, leveraging
+> actual OF based driver implementations for the on-board peripherals
+> by loading a devicetree overlay during driver probe.
 > 
-
-IIUC, are you saying that to move this into driver file and override the
-compatible string via overlay ?
-
-> > +
-> > +      remoteproc@3000000 {
-> > +          ...
-> > +
-> > +          qcom,devmem = <0x82000 0x82000 0x2000 0x3>,
-> > +                        <0x92000 0x92000 0x1000 0x1>;
-> > +      }
-> > +
-> > +    items:
-> > +      items:
-> > +        - description: device address
-> > +        - description: physical address
-> > +        - description: size of mapping
-> > +        - description: |
-> > +            iommu attributes - IOMMU_READ, IOMMU_WRITE, IOMMU_CACHE, IOMMU_NOEXEC, IOMMU_MMIO
-> > +          enum: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-> > +                  25, 26, 27, 28, 29, 30, 31 ]
+> The peripherals are accessed by mapping MMIO registers starting
+> from PCI BAR1 region.
 > 
-> Attributes should definitely be defined and then the DT should use
-> defines rather than the raw values.
->
+> With the overlay approach we can achieve more generic and agnostic
+> approach to managing this chipset, being that it is a PCI endpoint
+> and could possibly be reused in other hw implementations. The
+> presented approach is also used by Bootlin's Microchip LAN966x
+> patchset (see link) as well, for a similar chipset.
+> 
+> Since the gpio line names should be provided by the user, there
+> is an interface through configfs that allows the userspace to
+> load a DT overlay that will provide gpio-line-names property.
+> The interface can be invoked like this:
+> 
+> cat rpi-rp1-gpios-5-b.dtbo > /sys/kernel/config/rp1-cfg/gpio_set_names
+> 
+> and is designed to be similar to what users are already used to
+> from distro with downstream kernel.
+> 
+> For reasons why this driver is contained in drivers/misc, please
+> check the links.
+> 
+> This driver is heavily based on downstream code from RaspberryPi
+> Foundation, and the original author is Phil Elwell.
+> 
+> Link: https://datasheets.raspberrypi.com/rp1/rp1-peripherals.pdf
+> Link: https://lore.kernel.org/all/20240612140208.GC1504919@google.com/
+> Link: https://lore.kernel.org/all/83f7fa09-d0e6-4f36-a27d-cee08979be2a@app.fastmail.com/
+> Link: https://lore.kernel.org/all/2024081356-mutable-everyday-6f9d@gregkh/
+> Link: https://lore.kernel.org/all/20240808154658.247873-1-herve.codina@bootlin.com/
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-Ack.
+...
+> --- /dev/null
+> +++ b/drivers/misc/rp1/Makefile
+> @@ -0,0 +1,5 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_MISC_RP1)		+= rp1-pci.o
+> +rp1-pci-objs			:= rp1_pci.o rp1-pci.dtbo.o
+> +
+> +DTC_FLAGS_rp1-pci += -@
+Why do you need to add the symbol table (-@ option) in your dtbo ?
 
--Mukesh
+...
+> diff --git a/drivers/misc/rp1/rp1_pci.c b/drivers/misc/rp1/rp1_pci.c
+> new file mode 100644
+> index 000000000000..a1f7bf1804c0
+> --- /dev/null
+> +++ b/drivers/misc/rp1/rp1_pci.c
+> @@ -0,0 +1,365 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2018-24 Raspberry Pi Ltd.
+> + * All rights reserved.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clkdev.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/err.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/irq.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/module.h>
+> +#include <linux/msi.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/reset.h>
+> +
+> +#include "rp1_pci.h"
+> +
+> +#define RP1_DRIVER_NAME		"rp1"
+> +
+> +#define RP1_HW_IRQ_MASK		GENMASK(5, 0)
+> +
+> +#define REG_SET			0x800
+> +#define REG_CLR			0xc00
+> +
+> +/* MSI-X CFG registers start at 0x8 */
+> +#define MSIX_CFG(x) (0x8 + (4 * (x)))
+> +
+> +#define MSIX_CFG_IACK_EN        BIT(3)
+> +#define MSIX_CFG_IACK           BIT(2)
+> +#define MSIX_CFG_ENABLE         BIT(0)
+> +
+> +/* Address map */
+> +#define RP1_PCIE_APBS_BASE	0x108000
+> +
+> +/* Interrupts */
+> +#define RP1_INT_IO_BANK0	0
+> +#define RP1_INT_IO_BANK1	1
+> +#define RP1_INT_IO_BANK2	2
+> +#define RP1_INT_AUDIO_IN	3
+> +#define RP1_INT_AUDIO_OUT	4
+> +#define RP1_INT_PWM0		5
+> +#define RP1_INT_ETH		6
+> +#define RP1_INT_I2C0		7
+> +#define RP1_INT_I2C1		8
+> +#define RP1_INT_I2C2		9
+> +#define RP1_INT_I2C3		10
+> +#define RP1_INT_I2C4		11
+> +#define RP1_INT_I2C5		12
+> +#define RP1_INT_I2C6		13
+> +#define RP1_INT_I2S0		14
+> +#define RP1_INT_I2S1		15
+> +#define RP1_INT_I2S2		16
+> +#define RP1_INT_SDIO0		17
+> +#define RP1_INT_SDIO1		18
+> +#define RP1_INT_SPI0		19
+> +#define RP1_INT_SPI1		20
+> +#define RP1_INT_SPI2		21
+> +#define RP1_INT_SPI3		22
+> +#define RP1_INT_SPI4		23
+> +#define RP1_INT_SPI5		24
+> +#define RP1_INT_UART0		25
+> +#define RP1_INT_TIMER_0		26
+> +#define RP1_INT_TIMER_1		27
+> +#define RP1_INT_TIMER_2		28
+> +#define RP1_INT_TIMER_3		29
+> +#define RP1_INT_USBHOST0	30
+> +#define RP1_INT_USBHOST0_0	31
+> +#define RP1_INT_USBHOST0_1	32
+> +#define RP1_INT_USBHOST0_2	33
+> +#define RP1_INT_USBHOST0_3	34
+> +#define RP1_INT_USBHOST1	35
+> +#define RP1_INT_USBHOST1_0	36
+> +#define RP1_INT_USBHOST1_1	37
+> +#define RP1_INT_USBHOST1_2	38
+> +#define RP1_INT_USBHOST1_3	39
+> +#define RP1_INT_DMA		40
+> +#define RP1_INT_PWM1		41
+> +#define RP1_INT_UART1		42
+> +#define RP1_INT_UART2		43
+> +#define RP1_INT_UART3		44
+> +#define RP1_INT_UART4		45
+> +#define RP1_INT_UART5		46
+> +#define RP1_INT_MIPI0		47
+> +#define RP1_INT_MIPI1		48
+> +#define RP1_INT_VIDEO_OUT	49
+> +#define RP1_INT_PIO_0		50
+> +#define RP1_INT_PIO_1		51
+> +#define RP1_INT_ADC_FIFO	52
+> +#define RP1_INT_PCIE_OUT	53
+> +#define RP1_INT_SPI6		54
+> +#define RP1_INT_SPI7		55
+> +#define RP1_INT_SPI8		56
+> +#define RP1_INT_SYSCFG		58
+> +#define RP1_INT_CLOCKS_DEFAULT	59
+> +#define RP1_INT_VBUSCTRL	60
+> +#define RP1_INT_PROC_MISC	57
+> +#define RP1_INT_END		61
+> +
+> +struct rp1_dev {
+> +	struct pci_dev *pdev;
+> +	struct device *dev;
+> +	struct clk *sys_clk;
+> +	struct irq_domain *domain;
+> +	struct irq_data *pcie_irqds[64];
+> +	void __iomem *bar1;
+> +	int ovcs_id;
+> +	bool level_triggered_irq[RP1_INT_END];
+> +};
+> +
+> +static void dump_bar(struct pci_dev *pdev, unsigned int bar)
+> +{
+> +	dev_info(&pdev->dev,
+> +		 "bar%d %pR\n",
+> +		 bar,
+> +		 pci_resource_n(pdev, bar));
+> +}
 
+Is this dump_bar() really needed ?
+
+...
+> +static int rp1_probe(struct pci_dev *pdev, const struct pci_device_id *id)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *rp1_node;
+> +	struct reset_control *reset;
+> +	struct rp1_dev *rp1;
+> +	int err  = 0;
+> +	int i;
+> +
+> +	rp1_node = dev_of_node(dev);
+> +	if (!rp1_node) {
+> +		dev_err(dev, "Missing of_node for device\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	rp1 = devm_kzalloc(&pdev->dev, sizeof(*rp1), GFP_KERNEL);
+> +	if (!rp1)
+> +		return -ENOMEM;
+> +
+> +	rp1->pdev = pdev;
+> +	rp1->dev = &pdev->dev;
+> +
+> +	reset = devm_reset_control_get_optional_exclusive(&pdev->dev, NULL);
+> +	if (IS_ERR(reset))
+> +		return PTR_ERR(reset);
+> +	reset_control_reset(reset);
+
+This device is a PCI device.
+Seems strange to get the reset control line for a PCI device.
+
+> +
+> +	dump_bar(pdev, 0);
+> +	dump_bar(pdev, 1);
+No sure those 2 dump_bar() calls are really needed.
+> +
+> +	if (pci_resource_len(pdev, 1) <= 0x10000) {
+> +		dev_err(&pdev->dev,
+> +			"Not initialised - is the firmware running?\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	err = pcim_enable_device(pdev);
+> +	if (err < 0) {
+> +		dev_err(&pdev->dev, "Enabling PCI device has failed: %d",
+> +			err);
+> +		return err;
+> +	}
+> +
+> +	rp1->bar1 = pcim_iomap(pdev, 1, 0);
+> +	if (!rp1->bar1) {
+> +		dev_err(&pdev->dev, "Cannot map PCI BAR\n");
+> +		return -EIO;
+> +	}
+> +
+> +	u32 dtbo_size = __dtbo_rp1_pci_end - __dtbo_rp1_pci_begin;
+> +	void *dtbo_start = __dtbo_rp1_pci_begin;
+
+Those declarations should be move at the beginning of the function.
+
+> +
+> +	err = of_overlay_fdt_apply(dtbo_start, dtbo_size, &rp1->ovcs_id, rp1_node);
+> +	if (err)
+> +		return err;
+> +
+
+Maybe applying the overlay should be done after the interrupt controller
+is ready.
+
+> +	pci_set_master(pdev);
+> +
+> +	err = pci_alloc_irq_vectors(pdev, RP1_INT_END, RP1_INT_END,
+> +				    PCI_IRQ_MSIX);
+> +	if (err != RP1_INT_END) {
+> +		dev_err(&pdev->dev, "pci_alloc_irq_vectors failed - %d\n", err);
+> +		goto err_unload_overlay;
+> +	}
+> +
+> +	pci_set_drvdata(pdev, rp1);
+> +	rp1->domain = irq_domain_add_linear(of_find_node_by_name(NULL, "pci-ep-bus"), RP1_INT_END,
+> +					    &rp1_domain_ops, rp1);
+> +
+> +	for (i = 0; i < RP1_INT_END; i++) {
+> +		int irq = irq_create_mapping(rp1->domain, i);
+> +
+> +		if (irq < 0) {
+> +			dev_err(&pdev->dev, "failed to create irq mapping\n");
+> +			err = irq;
+> +			goto err_unload_overlay;
+> +		}
+> +		irq_set_chip_and_handler(irq, &rp1_irq_chip, handle_level_irq);
+> +		irq_set_probe(irq);
+> +		irq_set_chained_handler_and_data(pci_irq_vector(pdev, i),
+> +						 rp1_chained_handle_irq, rp1);
+> +	}
+> +
+> +	err = of_platform_default_populate(rp1_node, NULL, dev);
+> +	if (err)
+> +		goto err_unload_overlay;
+> +
+> +	return 0;
+> +
+> +err_unload_overlay:
+> +	of_overlay_remove(&rp1->ovcs_id);
+> +
+> +	return err;
+> +}
+> +
+> +static void rp1_remove(struct pci_dev *pdev)
+> +{
+> +	struct rp1_dev *rp1 = pci_get_drvdata(pdev);
+> +	struct device *dev = &pdev->dev;
+> +
+> +	of_platform_depopulate(dev);
+> +	of_overlay_remove(&rp1->ovcs_id);
+> +
+> +	clk_unregister(rp1->sys_clk);
+
+Unless I missed something, rp1->sys_clk is never set in probe().
+If this is correct, clk_unregister() should be removed and also
+the related clk header files.
+
+The interrupt controller created at probe() should be destroyed at remove().
+
+> +}
+> +
+
+...
+> diff --git a/drivers/misc/rp1/rp1_pci.h b/drivers/misc/rp1/rp1_pci.h
+> new file mode 100644
+> index 000000000000..7982f13bad9b
+> --- /dev/null
+> +++ b/drivers/misc/rp1/rp1_pci.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +
+> +/*
+> + * Copyright (c) 2018-24 Raspberry Pi Ltd.
+> + * All rights reserved.
+> + */
+> +
+> +#ifndef _RP1_EXTERN_H_
+> +#define _RP1_EXTERN_H_
+> +
+> +extern char __dtbo_rp1_pci_begin[];
+> +extern char __dtbo_rp1_pci_end[];
+> +
+> +#endif
+
+These two symbols are only used by the rp1_pci.c file.
+Not sure that the rp1_pci.h is needed.
+Simply declare the symbols in the rp1_pci.c file.
+
+
+Best regards,
+Hervé
 
