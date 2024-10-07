@@ -1,115 +1,159 @@
-Return-Path: <devicetree+bounces-108570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E8F6992FB8
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:47:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 736B6992FDC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:50:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 56E2A286F47
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:47:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97EC21C22D87
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:50:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3CED18F2C3;
-	Mon,  7 Oct 2024 14:46:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53DAB1D6DB7;
+	Mon,  7 Oct 2024 14:50:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="icynPHoe"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OHItSyYN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B96741DA26;
-	Mon,  7 Oct 2024 14:46:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 863B915D5A1;
+	Mon,  7 Oct 2024 14:50:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728312418; cv=none; b=f/3tEmDHhcS67/i/fvWU3NMctHtR1BGQcy4lNEFDWYOjcKsxh4rhz7wjhr2RprU8Ug5aPnYJzV+FjhzD+rAtBf5eYO/GWNQNfFbVfd7iuXbGd9GT6VQ1ngEkpc3XmM5cNJ3kNc1psT5n4e9r2gj+w/1yHbDuWjENoA53Tofq7kg=
+	t=1728312611; cv=none; b=rkwde8hKbbs42l/301PuOpGmBDn4Ohdr2BuPY2k80LFIckNQ0lCxioefdvXZ8rCcuqcPqdWnudyqJgoXxGXeswvlVJcMzDYzxCFf3qNYro3x7dsNCyz2opr6nffb9vDJhk2M0TK1wyjD3R1L6zzk0DOnJcVNOoeu8L/6/8CxISY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728312418; c=relaxed/simple;
-	bh=te6hFLTS05zT0eZ8ILkDO4EXBOueM9RV2TUahtuJf9o=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=spq3JK1GsdxU4vpxCPJu7Da5WHZ1o/B/pa4cn4REFrn9yaVRPZvJyzNNA9VQkIqWh+FFV8fTC9u9FMRRyHnIaVuUoc3sMhpUo1S00f5/zeKjqbar4kcg9UxXfBD11OKKtMDw3V/zyI7l4aOpGf2jdJ8NJyNVXhI07YteEHvHsEM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=icynPHoe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E147C4CEC6;
-	Mon,  7 Oct 2024 14:46:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728312418;
-	bh=te6hFLTS05zT0eZ8ILkDO4EXBOueM9RV2TUahtuJf9o=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=icynPHoe+ataw4/EtSYkg8Rr3EeRIECkZBpd52KKVVEbaFQgVeub+csTqpJOR7OXD
-	 9CX28srKgi4AdFU54B+vdVjbi6PasbTmUzc/F86g0WltdZILn+5jZIm734DISUffg7
-	 T3v67zfVte3oI6lmiruv/H7wJyKelmtkLqttG8mYPit5mE9Nbj8B581bd4Tq4a+UhS
-	 /j4S1ByFOcjqcJgFyrJj/PaHn5QPE+B9bmXKv2ljSO3i6NtZhYsVwOnjBwC5gapz3k
-	 TCLTC1hopD0YDDbcDUIt6HX17SJEYtLxw/Epehbv8HJZZ8//9mrevQhT4w07DR3D+4
-	 Z8uT2sVNAQm4Q==
-Date: Mon, 07 Oct 2024 09:46:57 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1728312611; c=relaxed/simple;
+	bh=VoNufGpRjlApyn8L8TeohgzkctZ1bM3y9rdgxn4V/NQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=MPTW90qrsw7QhbmkjGzHdCTfeu9oXUPHGfeYl62gFny+Xc/SMNKzP1IlQJjVh+mKz8W/c0BMpsK4+uRGcQc6cmk0g/g50RVBpZp+LWSW4V6GL28cz314Y+6EgXAJHaxoWB94qsH+ADs6DobfzjGmQ7caxl89DStzh1jDtZr2lEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OHItSyYN; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2fad100dd9eso44077951fa.3;
+        Mon, 07 Oct 2024 07:50:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728312608; x=1728917408; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FhMgyPiKtDfgc8NuEwrv29x0qScgu60O2NxPnzTca6s=;
+        b=OHItSyYNgY653oa8tXIfvxWMRpd+2Yeex9vv2sBSeYHRIRsOTI5DyTtWrbF43S/NhS
+         ge1kvh6oViLgFttYL1YJpABptSdQ032x3BTKGIbojbPwGdtwkb/026zmHNx/olv+klZS
+         YZ9UL1u/TZenL0ytxfI2lq3hV9Rz/kEaiyPuVCsqX6hFrvTFiVpo0pATs9LWQGccpicj
+         xLd4KArw/FfIjp1eUu241f0QDhol+mB3dRWpts/JYX0JW5Sl46afTAyd9/nbLfdvq8T3
+         MbXp+ucfsg3QnEquFLBr/EnVvQHaLBjtoPUHa7jVTnDql57ImvC60Sv8dHZvpIH66jxr
+         vMfQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728312608; x=1728917408;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FhMgyPiKtDfgc8NuEwrv29x0qScgu60O2NxPnzTca6s=;
+        b=o/P9F9LQ8yKCuRY8myBlw4rntP/JnirP1u0uictTY9Rmtk/Jwqyd8fdAkq0KKwgPnd
+         FZkUYKyW4yVwivSHq/S59EuI0IaQ+sQXZV9B1r7cWFhlphigQAv1bAf1hGby2yWSSrQe
+         GTTJaHvl9R7/Flt+y6xcoblMuP9a2mMm0WaOtyEexdXBQPhZgkUakLCjo2ViPXIJrYoD
+         HPglEueQ/GkP+H962at+zlzsVV5wxWN60jU4eF9YPXq5u3dnlsXIhmbAoxuyy0dGRlO6
+         e21wHsryT4feP3gt0kLOfIJAbrdh0tXP1Q7frxYfxZ1nGhG+4NncItdFAY3Me9AVZalC
+         C/ig==
+X-Forwarded-Encrypted: i=1; AJvYcCVDIkyLdmihDYXXe1mLQGUj8ICNNuu54oEQwywCzcOV1u2Bnvlt+gijUGcWlEtfTf+fpe9TJG7aKKPMsrDs5j1Zr9A=@vger.kernel.org, AJvYcCVG1BFb4n6y3M62MpxmCkc0TjGHuHVAOn6g2h00BtPJVGB98MJCDOoVJ60aIY/wcI0uwQFqptUqV9R5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9wbZKtxtc3CCzSQimjgUf4O70/fSKNq6ZflcE4maPaWobPaZx
+	/0rY9oznCYwz4jbIiHQgvqNHKy5ywyzg8gHvm3/6xncxzUqbbDgpy8xk9w==
+X-Google-Smtp-Source: AGHT+IFfTX/SFIKhCzC1snEFv9AIMWFpChqc/yNAQ/Aapc8+skMUPDcPs9YBqE4tfXY1tEuDM/BtEQ==
+X-Received: by 2002:a2e:851:0:b0:2fa:d0ec:4572 with SMTP id 38308e7fff4ca-2faf3c50c1cmr47965481fa.7.1728312607282;
+        Mon, 07 Oct 2024 07:50:07 -0700 (PDT)
+Received: from [127.0.1.1] (nat6-minsk-pool-46-53-210-75.telecom.by. [46.53.210.75])
+        by smtp.googlemail.com with ESMTPSA id 38308e7fff4ca-2faf9ac43efsm8253791fa.45.2024.10.07.07.50.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 07:50:06 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v6 0/3] Add Samsung s2dos05 pmic support
+Date: Mon, 07 Oct 2024 17:49:58 +0300
+Message-Id: <20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: linux-kernel@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, 
- linux-iio@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20241007-topic-input-upstream-als31300-v1-2-2c240ea5cb77@linaro.org>
-References: <20241007-topic-input-upstream-als31300-v1-0-2c240ea5cb77@linaro.org>
- <20241007-topic-input-upstream-als31300-v1-2-2c240ea5cb77@linaro.org>
-Message-Id: <172831241751.297559.15638330476708022279.robh@kernel.org>
-Subject: Re: [PATCH 2/3] dt-bindings: iio: magnetometer: document the
- Allegro MicroSystems ALS31300 3-D Linear Hall Effect Sensor
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABb1A2cC/43QzYrDIBQF4FcprsfiTzRJV/MeQylXc5MIiWnVS
+ oeSdx9TKFNmM12eC37n4J1EDA4jOezuJGB20S2+BP2xI3YEPyB1XclEMFExzWsaE4TLlNCO/uR
+ 8wiFAKm9O13NMAWGmxja6UcyIHiUpjIGI1ATwdiyQv05TOZ4D9u726P06ljy6mJbw/ZiR5XZ9N
+ jb/N2ZJGUXZa60F4zXYz2EGN+3tMpMNz9Uv2HL5BlgVUHQC+05Z1dT1X1C9LnzjT7LaFgLnrGW
+ iNaBewXVdfwCqCUxDhwEAAA==
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728312605; l=2515;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=VoNufGpRjlApyn8L8TeohgzkctZ1bM3y9rdgxn4V/NQ=;
+ b=eFEiaI82o1Z4NeXvz2/oATe+NzWgY3VOJ18GYrIR/nJdMGdRIM/5gmtpmBJUDHR4IPIe2anGU
+ eZP6gdtJuvEAJyujedk3Xt1g68n2Za8lAETUnwL59VcH7UgR79Yw5bV
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
+The S2DOS05 is a companion power management IC for the panel and touchscreen
+in smart phones. Provides voltage regulators and
+ADC for power/current measurements.
 
-On Mon, 07 Oct 2024 15:14:39 +0200, Neil Armstrong wrote:
-> Document the bindings for the Allegro MicroSystems ALS31300 3-D Linear Hall
-> Effect Sensor controller by an I2C interface, mainly used in 3D head-on
-> motion sensing applications.
-> 
-> The device can be configured with different sensitivities in factory,
-> but the sensitivity value used to calculate value into the Gauss
-> unit is not available from registers, thus the sensitivity is
-> provided by the compatible/device-id string which is based
-> on the part number as described in the datasheet page 2.
-> 
-> The datasheet is available on the product website at [1].
-> 
-> [1] https://www.allegromicro.com/en/products/sense/linear-and-angular-position/linear-position-sensor-ics/als31300
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../iio/magnetometer/allegro,als31300.yaml         | 43 ++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+---
+Changes in v6:
+- fix uninitialized ret variable
+- Link to v5: https://lore.kernel.org/r/20240617-starqltechn_integration_upstream-v5-0-ea1109029ba5@gmail.com
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Changes in v5:
+- Split patchset per subsystem
+- Rewrite cover letter
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
 
-yamllint warnings/errors:
+Changes in v4:
+- Rewrite max77705, max77705_charger, max77705_fuel_gauge from scratch
+- Reorder patches:
+  - squash max77705 subdevice bindings in core file because
+    no resources there
+  - split device tree changes
+- Use _ as space for filenames in power/supply like the majority
+- Replace gcc-845 freq_tbl frequencies patch with new approach,
+  based on automatic m/n/pre_div value generation
+- Link to v3: https://lore.kernel.org/r/20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/allegro,als31300.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
- 	 $id: http://devicetree.org/schemas/iio/magnetometer/allegromicro,als31300.yaml
- 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/magnetometer/allegro,als31300.yaml
-Documentation/devicetree/bindings/iio/magnetometer/allegro,als31300.example.dtb: /example-0/i2c/sensor@61: failed to match any schema with compatible: ['allegromicro,als31300']
+Changes in version 3:
+- s2dos05 driver converted to MFD
 
-doc reference errors (make refcheckdocs):
+Changes in version 2:
+- s2dos05 regulator:
+  - hex to decimal in regulator values
+  - fix compatible value
+  - remove interrupt specific code, because it's
+    empty in vendor kernel, and I cannot test it on
+    available hardware anyway.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007-topic-input-upstream-als31300-v1-2-2c240ea5cb77@linaro.org
+---
+Dzmitry Sankouski (3):
+      dt-bindings: mfd: add samsung,s2dos05
+      mfd: sec-core: add s2dos05 support
+      regulator: add s2dos05 regulator support
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+ Documentation/devicetree/bindings/mfd/samsung,s2dos05.yaml |  99 +++++++++++++++++++++++++++++++++++++++++
+ MAINTAINERS                                                |   4 +-
+ drivers/mfd/sec-core.c                                     |  11 +++++
+ drivers/regulator/Kconfig                                  |   8 ++++
+ drivers/regulator/Makefile                                 |   1 +
+ drivers/regulator/s2dos05-regulator.c                      | 176 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ include/linux/mfd/samsung/core.h                           |   1 +
+ include/linux/regulator/s2dos05.h                          |  73 ++++++++++++++++++++++++++++++
+ 8 files changed, 371 insertions(+), 2 deletions(-)
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Dzmitry Sankouski <dsankouski@gmail.com>
 
 
