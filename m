@@ -1,442 +1,558 @@
-Return-Path: <devicetree+bounces-108673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 352FD9935CE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:14:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9361B9935E2
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:18:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9E4E3B21EDC
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:14:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACF871C23895
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:18:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15CD91DDC18;
-	Mon,  7 Oct 2024 18:13:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA51E1DDA3B;
+	Mon,  7 Oct 2024 18:17:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k9qGV273"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="h99Ls9c6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
+Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21181DDC10
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 18:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89AC51C173C;
+	Mon,  7 Oct 2024 18:17:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728324828; cv=none; b=K8dEc258GEDFpV8FWSgUs1QVmw/ICVUU+NdhKG1sRu237fCIeyJugMQf3pQYAnuFOwDJroHHmDxTM2b//yyTnuj9GBAG9Nj++c3qX5CvLKm/r9KLYeIdCRONOu++NWEpqI3o/tuaU51QBcrahu5uwSyTao9t4QfY+CB40kTpLMk=
+	t=1728325077; cv=none; b=bbpotZVE4CEyC4oSrZSeITsWyFLmMKbpS1eq1nnrTs3fvM1Uljq1ZP4gV3o2Veu/PItFZ2at/4ZEzI4DfKfvnwcHCj1NnQbdVrT/8AA/nIylVX57aQBJw4rRc8btbYOqKZBMkh+AUx89nn3F0mrobw0MB0WPUkCJJmHMB9MgxpQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728324828; c=relaxed/simple;
-	bh=J/nyTgKflK4raUrDZf+X4S1ynQVn4K+srV+rfsHXMvI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LAn7w9+6iiG7gZ7n93G8fY2VuATNtNZ8yoRoKvhqCVWGzzbMcAu4fXp3kPDiG1oxZYGgQfbTZIajWceJX6iwED1RY+C60xqjQhFx5h4olrUsjD3r2IxIKB41tw1vmIAMcMwuS8HX2m/pnd4OAr5vgMKdy1VG2KO6MisDAxHBxI8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k9qGV273; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2fac275471dso46846651fa.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 11:13:45 -0700 (PDT)
+	s=arc-20240116; t=1728325077; c=relaxed/simple;
+	bh=W7MsFP52SYudjwIHbNJ9uL6JkA7QEjPPMLkrYVK1Dxo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IhHf49zXYZGOh3vS9TxdlHV2WFaWfaSaANSshv2zURAmpTtDFatTBWP5WtokZ+BQCnHXbZLiTdVGOKqK74tYctwrGsDyE8YdKNtE/kJF17FAZLMw4cD3KsrK0/7Q2gp3V9zZMNHYNoSCC0sdtKSDwyxiCa2CgOm6BZYILLanwCs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=h99Ls9c6; arc=none smtp.client-ip=209.85.221.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-50c8330c69fso2044221e0c.0;
+        Mon, 07 Oct 2024 11:17:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728324824; x=1728929624; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=dWs/TQeQC1aW6jUxqPeU72e5mPSnP2I+Ma5FEsYLe7U=;
-        b=k9qGV273AyWq7t8R0DYADHzfRxR1j5R8d08H7uInXF0SnSfFJN3x521FNZhwXYQMQt
-         K3JcmJF1B/ukzrT6OmEZQbVYyQ+/a+g+krv2fk78J6fwQcz/+cc0Cc+Ga4OSlgAs+JnX
-         stacBS41azuaIdh2llMKQq/EYoNZPl/+nebMgLCCcUxvgYH0hgXikq6kfDTzUryVUZwD
-         WNXDs61l+ABeAnCfKB+Oivf25m0nFDBTlcOiKyMa2SwRhS6NTOcr1PspCv557b5lD9RX
-         sl8x//ZcIQOauW4gTVdQ6/Ywy+Sbzf+gAVjx8OmPbEFdo1b0JGkn5lYe5wbLakOMirT2
-         ZYbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728324824; x=1728929624;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1728325074; x=1728929874; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dWs/TQeQC1aW6jUxqPeU72e5mPSnP2I+Ma5FEsYLe7U=;
-        b=bPhT/DDD8ykHZWyQFGGnvubSYecjaN9q/YzyBYdaAu6eWKJKf7K6wz4Sgg/BvXbaUU
-         ki71DYZAshx7LETXnSP0kxnRzOOLUmGH8UwvDV1Lw95ZtMF8WQeLDhbDp8q9OFMEJg0o
-         PZjU3KppQVAz3CpRgQMULWgWGFEIHRxJIN0HxYNNf01LR8/CAJapphW1Ipg65SsF/nys
-         IaZNcI6VMHWf/P1VVAr56hQKtnJgosroFYlOzgJ1cgtgxio5otyEj/pm/Z2p2j2QBnUF
-         U7/+7juOU1oUAKsjvbhSk3rvGQeAiAEFCntXaF1RS7K+G2ZdRTo+vgtGARa0llukRAXG
-         P3ZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYH+o3s8z8XIHKMoNMG570/k04IV4a9qW6coVg/SYHb0s1uDRASfgwgKtutSvmV16K3cz43NGax29Z@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5HV+gpS4j+55LjtApr0QY+bt5h8amTftdHeeE5PaSwnnktEL7
-	HJt6q3M0FGaKKjFucEpjBRYmcavIUXn03WLDHxiRt4UjXRMpz3c+dKher0nYPco=
-X-Google-Smtp-Source: AGHT+IHWwkBF0ANmesECcb6qoQD4LYdB7aqOHaOOzj8+NnSzPePY1ubSt/D+0ye45Q005g94rAeFXA==
-X-Received: by 2002:a05:651c:199f:b0:2fa:c685:404a with SMTP id 38308e7fff4ca-2fb0de776c7mr1717501fa.4.1728324823886;
-        Mon, 07 Oct 2024 11:13:43 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00-89ea-67f6-92cd-b49.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:89ea:67f6:92cd:b49])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2faf9ac450bsm9175271fa.49.2024.10.07.11.13.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 11:13:42 -0700 (PDT)
-Date: Mon, 7 Oct 2024 21:13:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Sibi Sankar <quic_sibis@quicinc.com>
-Cc: sudeep.holla@arm.com, cristian.marussi@arm.com, andersson@kernel.org, 
-	konrad.dybcio@linaro.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, quic_rgottimu@quicinc.com, quic_kshivnan@quicinc.com, 
-	conor+dt@kernel.org, arm-scmi@vger.kernel.org, Amir Vajid <avajid@quicinc.com>
-Subject: Re: [PATCH V4 3/5] firmware: arm_scmi: vendors: Add QCOM SCMI
- Generic Extensions
-Message-ID: <3vj55wm7j6fz32q2pynzqikl4yysno5zdlpt6zz6xylcv237ak@bwejn7zn5o3o>
-References: <20241007061023.1978380-1-quic_sibis@quicinc.com>
- <20241007061023.1978380-4-quic_sibis@quicinc.com>
+        bh=0Mwbm1YLlOMLHbIU8mojlBkZ0PSQEH2kJZX+92MdmP4=;
+        b=h99Ls9c6FNZ7JmSqO+VrO5CIpufYz8zUK5JXUxJTcSo39YEqSREzQBAqDVSBE1VKW8
+         ScKyJMw+O6JBbcynLOnmI8HgfLByZBG+JR+BDkmmBwYTQZ6AQNW3oYf+hOow6pfi11AW
+         6SueXGuhnBtbgGWADyMtFFtaHvvTGB8DoqIAU04ivrhmTH1cguPgE+ijuUcp7W3W2UEw
+         lb9XWMQc4yqaKbkHY92k58Q6b3htfQaAPRJlPCCGbOAykDiFhzPV/0gbtxr1U0BBYec6
+         Hk73YpcKMKqvITlqsu8ZAInBTQSe0smgZjN+3Jhlp+mIrMXmjmfrtnRpUg74F/c/68lK
+         ExmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728325074; x=1728929874;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0Mwbm1YLlOMLHbIU8mojlBkZ0PSQEH2kJZX+92MdmP4=;
+        b=Wttk0Lfz4Vfdqkckx55hyYjqB42LxpsKyv/xy83NNYzLnAKvK3++nOXO662a1E3Qb1
+         PIuqYX+aFdsUVouhH+HZ3ogoMXboJ61xuhw/KC0+RZu8CSIYBknNnvLT5czu7FEDDkD6
+         sPDMBhUXY41uWxO8cllD1cNoWwjLSOwmAXN5xJ9fEnPPY9zAhLGhi46WhMRSKT7/lgBL
+         8cBg/3xbMpNlI1naUkBbUlo1jXca0DGl6RAlNKD/vmAcF+nXrWtsfy7dNFepmpQ5g0rT
+         /o0bAKywuzkxqA3drNs/fcPgWYFlQmSYMAMniA3/lGtr5KTxCo8xgL+f8woj3THVypKz
+         V8Hg==
+X-Forwarded-Encrypted: i=1; AJvYcCUyEYg+lYFJg7FhONcpWW6Xeoi+79o2AQ7p1NTIXdgzGAiGeUDBeB+1qIxewqFQPOw/T+vi8p97zaPw@vger.kernel.org, AJvYcCWY/vEcMGA0Q2WNwjEa1uXRMLTLlPEbsOzeqv1iNK7lkOdbd/h9jMXagPahHwHZpY/3PCux2L0iS3WeboJn+zy8eJo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwMFBZLA8wgzlk1poWqtsbwsyCkWKbS0ssj3BOpS2MlyUZYefPr
+	Kj0FJGAXBX/282laEYmlv4D7I0MP+OaJ3/sbj0Mt1py+7Wh3WnaCl+PDeZGLFU6K3UQPC2FiUGL
+	JNhjmEjKU25fe9kj25ET0/1Jb7M4=
+X-Google-Smtp-Source: AGHT+IFWtPsPdhc/uO2wgEkRb9dWEd3oQq3w8L/YXpRWnGErsvqqqV0H3TcLcE4Mhz/Cmo/hjQf7C0QpfimvBDiIN7E=
+X-Received: by 2002:a05:6122:3b02:b0:50c:8c43:8743 with SMTP id
+ 71dfb90a1353d-50cd823e82dmr630072e0c.7.1728325074109; Mon, 07 Oct 2024
+ 11:17:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007061023.1978380-4-quic_sibis@quicinc.com>
+References: <cover.1728045620.git.geert+renesas@glider.be> <e9db8758d275ec63b0d6ce086ac3d0ea62966865.1728045620.git.geert+renesas@glider.be>
+In-Reply-To: <e9db8758d275ec63b0d6ce086ac3d0ea62966865.1728045620.git.geert+renesas@glider.be>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 7 Oct 2024 19:17:28 +0100
+Message-ID: <CA+V-a8tEQg7WNCYvYRz4_ypf_UrAeM2CJQnk5EWHG=sch7Y3Kg@mail.gmail.com>
+Subject: Re: [PATCH 12/20] arm64: dts: renesas: Use interrupts-extended for
+ Ethernet PHYs
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Oct 07, 2024 at 11:40:21AM GMT, Sibi Sankar wrote:
-> The QCOM SCMI Generic Extensions Protocol provides a generic way of
-> exposing a number of Qualcomm SoC specific features (like memory bus
-> scaling) through a mixture of pre-determined algorithm strings and
-> param_id pairs hosted on the SCMI controller.
-> 
-> Co-developed-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> Signed-off-by: Shivnandan Kumar <quic_kshivnan@quicinc.com>
-> Co-developed-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> Signed-off-by: Ramakrishna Gottimukkula <quic_rgottimu@quicinc.com>
-> Co-developed-by: Amir Vajid <avajid@quicinc.com>
-> Signed-off-by: Amir Vajid <avajid@quicinc.com>
-> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
-> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
+On Fri, Oct 4, 2024 at 2:27=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> Use the more concise interrupts-extended property to fully describe the
+> interrupts.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
-> 
-> v3:
-> * Pick up Rb tag and fixup/re-order elements of the vendor ops [Christian]
-> * Follow naming convention and folder structure used by IMX
-> * Add missing enum in the vendor protocol and fix documentation [Konrad]
-> 
->  drivers/firmware/arm_scmi/Kconfig             |   1 +
->  drivers/firmware/arm_scmi/Makefile            |   1 +
->  .../firmware/arm_scmi/vendors/qcom/Kconfig    |  15 ++
->  .../firmware/arm_scmi/vendors/qcom/Makefile   |   2 +
->  .../arm_scmi/vendors/qcom/qcom-generic-ext.c  | 184 ++++++++++++++++++
->  include/linux/scmi_qcom_protocol.h            |  39 ++++
->  6 files changed, 242 insertions(+)
->  create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/Kconfig
->  create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/Makefile
->  create mode 100644 drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
->  create mode 100644 include/linux/scmi_qcom_protocol.h
-> 
-> diff --git a/drivers/firmware/arm_scmi/Kconfig b/drivers/firmware/arm_scmi/Kconfig
-> index dabd874641d0..73128442d97b 100644
-> --- a/drivers/firmware/arm_scmi/Kconfig
-> +++ b/drivers/firmware/arm_scmi/Kconfig
-> @@ -71,6 +71,7 @@ config ARM_SCMI_DEBUG_COUNTERS
->  
->  source "drivers/firmware/arm_scmi/transports/Kconfig"
->  source "drivers/firmware/arm_scmi/vendors/imx/Kconfig"
-> +source "drivers/firmware/arm_scmi/vendors/qcom/Kconfig"
->  
->  endif #ARM_SCMI_PROTOCOL
->  
-> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
-> index 9ac81adff567..58cf4d656cbb 100644
-> --- a/drivers/firmware/arm_scmi/Makefile
-> +++ b/drivers/firmware/arm_scmi/Makefile
-> @@ -12,6 +12,7 @@ scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += transports/
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/imx/
-> +obj-$(CONFIG_ARM_SCMI_PROTOCOL) += vendors/qcom/
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-module.o
-> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/Kconfig b/drivers/firmware/arm_scmi/vendors/qcom/Kconfig
-> new file mode 100644
-> index 000000000000..5dd9e8a6b75f
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/vendors/qcom/Kconfig
-> @@ -0,0 +1,15 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +menu "ARM SCMI QCOM Vendor Protocols"
-> +
-> +config QCOM_SCMI_GENERIC_EXT
-> +	tristate "Qualcomm Technologies, Inc. Qcom SCMI vendor Protocol"
-> +	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
-> +	help
-> +	  The QCOM SCMI vendor protocol provides a generic way of exposing
-> +	  a number of Qualcomm SoC specific features (like memory bus scaling)
-> +	  through a mixture of pre-determined algorithm strings and param_id
-> +	  pairs hosted on the SCMI controller.
-> +
-> +	  This driver defines/documents the message ID's used for this
-> +	  communication and also exposes the operations used by the clients.
-> +endmenu
-> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/Makefile b/drivers/firmware/arm_scmi/vendors/qcom/Makefile
-> new file mode 100644
-> index 000000000000..6b98fabbebb8
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/vendors/qcom/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +obj-$(CONFIG_QCOM_SCMI_GENERIC_EXT) += qcom-generic-ext.o
-> diff --git a/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c b/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
-> new file mode 100644
-> index 000000000000..f7cd949161df
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/vendors/qcom/qcom-generic-ext.c
-> @@ -0,0 +1,184 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#include <linux/scmi_qcom_protocol.h>
-> +
-> +#include "../../common.h"
-> +
-> +/**
-> + * enum qcom_generic_ext_protocol_cmd - vendor specific commands supported by SCMI Qualcomm
-> + *                                      generic vendor protocol.
-> + *
-> + * This protocol is intended as a generic way of exposing a number of Qualcomm SoC
-> + * specific features through a mixture of pre-determined algorithm string and param_id
-> + * pairs hosted on the SCMI controller.
-> + *
-> + * The QCOM SCMI Vendor Protocol has the protocol id as 0x80 and vendor id set to
-> + * Qualcomm and the implementation version set to 0x20000. The PROTOCOL_VERSION command
-> + * returns version 1.0.
-> + *
-> + * @QCOM_SCMI_SET_PARAM: message_id: 0x10 is used to set the parameter of a specific algo_str
-> + *                       hosted on QCOM SCMI Vendor Protocol. The tx len depends on the
-> + *                       algo_str used.
-> + * @QCOM_SCMI_GET_PARAM: message_id: 0x11 is used to get parameter information of a specific
-> + *                       algo_str hosted on QCOM SCMI Vendor Protocol. The tx and rx len
-> + *                       depends on the algo_str used.
-> + * @QCOM_SCMI_START_ACTIVITY: message_id: 0x12 is used to start the activity performed by
-> + *                            the algo_str.
-> + * @QCOM_SCMI_STOP_ACTIVITY: message_id: 0x13 is used to stop a pre-existing activity
-> + *                           performed by the algo_str.
+>  arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi      | 3 +--
+>  arch/arm64/boot/dts/renesas/cat875.dtsi                  | 3 +--
+>  arch/arm64/boot/dts/renesas/condor-common.dtsi           | 3 +--
+>  arch/arm64/boot/dts/renesas/draak.dtsi                   | 3 +--
+>  arch/arm64/boot/dts/renesas/ebisu.dtsi                   | 3 +--
+>  arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi          | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77970-eagle.dts           | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts           | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts           | 3 +--
+>  arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts          | 3 +--
+>  .../arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi | 9 +++------
+>  arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts            | 6 ++----
+>  .../boot/dts/renesas/r8a779g2-white-hawk-single.dts      | 3 +--
+>  .../arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts | 3 +--
+>  arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi         | 6 ++----
+>  arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi        | 3 +--
+>  arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi        | 6 ++----
+>  arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi         | 6 ++----
+>  arch/arm64/boot/dts/renesas/salvator-common.dtsi         | 3 +--
+>  arch/arm64/boot/dts/renesas/ulcb.dtsi                    | 3 +--
+>  arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi   | 3 +--
+>  arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi     | 6 ++----
+>  22 files changed, 29 insertions(+), 58 deletions(-)
+>
 
-Drop message_id's from the definitions. They duplicate enum values.
+Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com> #
+G2L family and G3S
 
-> + */
-> +enum qcom_generic_ext_protocol_cmd {
-> +	QCOM_SCMI_SET_PARAM = 0x10,
-> +	QCOM_SCMI_GET_PARAM = 0x11,
-> +	QCOM_SCMI_START_ACTIVITY = 0x12,
-> +	QCOM_SCMI_STOP_ACTIVITY = 0x13,
-> +};
-> +
-> +/**
-> + * struct qcom_scmi_msg - represents the various parameters to be populated
-> + *                        for using the QCOM SCMI Vendor Protocol
-> + *
-> + * @ext_id: reserved, must be zero
-> + * @algo_low: lower 32 bits of the algo_str
-> + * @algo_high: upper 32 bits of the algo_str
-> + * @param_id: serves as token message id to the specific algo_str
-> + * @buf: serves as the payload to the specified param_id and algo_str pair
-> + */
-> +struct qcom_scmi_msg {
-> +	__le32 ext_id;
-> +	__le32 algo_low;
-> +	__le32 algo_high;
-> +	__le32 param_id;
-> +	__le32 buf[];
-> +};
-> +
-> +static int qcom_scmi_set_param(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			       u64 algo_str, u32 param_id)
-> +{
-> +	struct scmi_xfer *t;
-> +	struct qcom_scmi_msg *msg;
-> +	int ret;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_SET_PARAM, buf_len + sizeof(*msg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	msg = t->tx.buf;
-> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
-> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
-> +	msg->param_id = cpu_to_le32(param_id);
-> +
-> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int qcom_scmi_get_param(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			       u64 algo_str, u32 param_id, size_t rx_size)
-> +{
-> +	struct scmi_xfer *t;
-> +	struct qcom_scmi_msg *msg;
-> +	int ret;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_GET_PARAM, buf_len + sizeof(*msg), rx_size, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	msg = t->tx.buf;
-> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
-> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
-> +	msg->param_id = cpu_to_le32(param_id);
-> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
+Cheers,
+Prabhakar
 
-Isn't it buf_len?
-
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	memcpy(buf, t->rx.buf, t->rx.len);
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int qcom_scmi_start_activity(const struct scmi_protocol_handle *ph, void *buf,
-> +				    size_t buf_len, u64 algo_str, u32 param_id)
-> +{
-> +	struct scmi_xfer *t;
-> +	struct qcom_scmi_msg *msg;
-> +	int ret;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_START_ACTIVITY, buf_len + sizeof(*msg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	msg = t->tx.buf;
-> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
-> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
-> +	msg->param_id = cpu_to_le32(param_id);
-> +
-> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-
-Isn't it buf_len?
-
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	ph->xops->xfer_put(ph, t);
-> +
-> +	return ret;
-> +}
-> +
-> +static int qcom_scmi_stop_activity(const struct scmi_protocol_handle *ph, void *buf,
-> +				   size_t buf_len, u64 algo_str, u32 param_id)
-> +{
-> +	struct scmi_xfer *t;
-> +	struct qcom_scmi_msg *msg;
-> +	int ret;
-> +
-> +	ret = ph->xops->xfer_get_init(ph, QCOM_SCMI_STOP_ACTIVITY, buf_len + sizeof(*msg), 0, &t);
-> +	if (ret)
-> +		return ret;
-> +
-> +	msg = t->tx.buf;
-> +	msg->algo_low = cpu_to_le32(lower_32_bits(algo_str));
-> +	msg->algo_high = cpu_to_le32(upper_32_bits(algo_str));
-> +	msg->param_id = cpu_to_le32(param_id);
-> +
-> +	memcpy(msg->buf, buf, t->tx.len - sizeof(*msg));
-
-Isn't it buf_len?
-
-> +
-> +	ret = ph->xops->do_xfer(ph, t);
-> +	ph->xops->xfer_put(ph, t);
-
-Could you please extract a common helper that handles xfer for you?
-Seeing the same code 4 times is 3 times too much in my opinion.
-
-> +
-> +	return ret;
-> +}
-> +
-> +static struct qcom_generic_ext_ops qcom_proto_ops = {
-> +	.set_param = qcom_scmi_set_param,
-> +	.get_param = qcom_scmi_get_param,
-> +	.start_activity = qcom_scmi_start_activity,
-> +	.stop_activity = qcom_scmi_stop_activity,
-> +};
-> +
-> +static int qcom_generic_ext_protocol_init(const struct scmi_protocol_handle *ph)
-> +{
-> +	u32 version;
-> +
-> +	ph->xops->version_get(ph, &version);
-> +
-> +	dev_info(ph->dev, "QCOM Generic Vendor Version %d.%d\n",
-> +		 PROTOCOL_REV_MAJOR(version), PROTOCOL_REV_MINOR(version));
-
-dev_dbg, please.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct scmi_protocol qcom_generic_ext = {
-> +	.id = SCMI_PROTOCOL_QCOM_GENERIC,
-> +	.owner = THIS_MODULE,
-> +	.instance_init = &qcom_generic_ext_protocol_init,
-> +	.ops = &qcom_proto_ops,
-> +	.vendor_id = "Qualcomm",
-> +	.impl_ver = 0x20000,
-> +};
-> +module_scmi_protocol(qcom_generic_ext);
-> +
-> +MODULE_DESCRIPTION("QCOM SCMI Generic Vendor protocol");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/scmi_qcom_protocol.h b/include/linux/scmi_qcom_protocol.h
-> new file mode 100644
-> index 000000000000..8f82c42e566d
-> --- /dev/null
-> +++ b/include/linux/scmi_qcom_protocol.h
-> @@ -0,0 +1,39 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
-> +/*
-> + * SCMI Message Protocol driver QCOM extension header
-> + *
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +#ifndef _LINUX_SCMI_QCOM_PROTOCOL_H
-> +#define _LINUX_SCMI_QCOM_PROTOCOL_H
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/device.h>
-
-It doesn't look like you need those two headers.
-
-> +#include <linux/types.h>
-> +
-> +#define SCMI_PROTOCOL_QCOM_GENERIC    0x80
-> +
-> +struct scmi_protocol_handle;
-> +
-> +/**
-> + * struct qcom_generic_ext_ops - represents the various operations provided
-> + *				 by QCOM Generic Vendor Protocol
-> + *
-> + * @set_param: set parameter specified by param_id and algo_str pair.
-> + * @get_param: retrieve parameter specified by param_id and algo_str pair.
-> + * @start_activity: initiate a specific activity defined by algo_str.
-> + * @stop_activity: halt previously initiated activity defined by algo_str.
-> + */
-> +struct qcom_generic_ext_ops {
-> +	int (*set_param)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			 u64 algo_str, u32 param_id);
-> +	int (*get_param)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			 u64 algo_str, u32 param_id, size_t rx_size);
-> +	int (*start_activity)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			      u64 algo_str, u32 param_id);
-> +	int (*stop_activity)(const struct scmi_protocol_handle *ph, void *buf, size_t buf_len,
-> +			     u64 algo_str, u32 param_id);
-> +};
-> +
-> +#endif /* _LINUX_SCMI_QCOM_PROTOCOL_H */
-> -- 
+> diff --git a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi b/arch/a=
+rm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> index 68b04e56ae56232e..5a15a956702a6be8 100644
+> --- a/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/beacon-renesom-som.dtsi
+> @@ -62,8 +62,7 @@ phy0: ethernet-phy@0 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio2 10 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/cat875.dtsi b/arch/arm64/boot/dt=
+s/renesas/cat875.dtsi
+> index 8c9da8b4bd60bf32..191b051ecfd458ef 100644
+> --- a/arch/arm64/boot/dts/renesas/cat875.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/cat875.dtsi
+> @@ -25,8 +25,7 @@ phy0: ethernet-phy@0 {
+>                 compatible =3D "ethernet-phy-id001c.c915",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 21 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio1 20 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/condor-common.dtsi b/arch/arm64/=
+boot/dts/renesas/condor-common.dtsi
+> index 8b7c0c34eadce5cb..b2d99dfaa0cdf19d 100644
+> --- a/arch/arm64/boot/dts/renesas/condor-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/condor-common.dtsi
+> @@ -166,8 +166,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio4>;
+> -               interrupts =3D <23 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio4 23 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio4 22 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/draak.dtsi b/arch/arm64/boot/dts=
+/renesas/draak.dtsi
+> index 6f133f54ded54efb..402112a37d75a8c5 100644
+> --- a/arch/arm64/boot/dts/renesas/draak.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/draak.dtsi
+> @@ -247,8 +247,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio5>;
+> -               interrupts =3D <19 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio5 19 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio5 18 GPIO_ACTIVE_LOW>;
+>                 /*
+>                  * TX clock internal delay mode is required for reliable
+> diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts=
+/renesas/ebisu.dtsi
+> index cba2fde9dd3688b3..1aedd093fb41bf44 100644
+> --- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
+> @@ -314,8 +314,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <21 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 21 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio1 20 GPIO_ACTIVE_LOW>;
+>                 /*
+>                  * TX clock internal delay mode is required for reliable
+> diff --git a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi b/arch/arm64=
+/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> index ad898c6db4e62df6..4113710d55226d6d 100644
+> --- a/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-rzg2-ex.dtsi
+> @@ -27,8 +27,7 @@ phy0: ethernet-phy@0 {
+>                 compatible =3D "ethernet-phy-id001c.c915",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio2 10 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts b/arch/arm64/=
+boot/dts/renesas/r8a77970-eagle.dts
+> index 0608dce92e405935..7dd9e13cf0074442 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle.dts
+> @@ -111,8 +111,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 17 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio1 16 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts b/arch/arm64/=
+boot/dts/renesas/r8a77970-v3msk.dts
+> index e36999e91af53326..0a103f93b14d71ad 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77970-v3msk.dts
+> @@ -117,8 +117,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio1>;
+> -               interrupts =3D <17 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio1 17 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio1 16 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts b/arch/arm64/=
+boot/dts/renesas/r8a77980-v3hsk.dts
+> index 77d22df25fffac6d..a8a20c748ffcd1ed 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77980-v3hsk.dts
+> @@ -124,8 +124,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio4>;
+> -               interrupts =3D <23 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio4 23 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio4 22 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts b/arch/arm64=
+/boot/dts/renesas/r8a779a0-falcon.dts
+> index 63db822e5f4662b6..6bd580737f25d3cc 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> @@ -31,8 +31,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio4>;
+> -               interrupts =3D <16 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio4 16 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio4 15 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi b/=
+arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> index 33c1015e9ab38e97..5d38669ed1ec3440 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f0-spider-ethernet.dtsi
+> @@ -60,8 +60,7 @@ mdio {
+>                                 u101: ethernet-phy@1 {
+>                                         reg =3D <1>;
+>                                         compatible =3D "ethernet-phy-ieee=
+802.3-c45";
+> -                                       interrupt-parent =3D <&gpio3>;
+> -                                       interrupts =3D <10 IRQ_TYPE_LEVEL=
+_LOW>;
+> +                                       interrupts-extended =3D <&gpio3 1=
+0 IRQ_TYPE_LEVEL_LOW>;
+>                                 };
+>                         };
+>                 };
+> @@ -78,8 +77,7 @@ mdio {
+>                                 u201: ethernet-phy@2 {
+>                                         reg =3D <2>;
+>                                         compatible =3D "ethernet-phy-ieee=
+802.3-c45";
+> -                                       interrupt-parent =3D <&gpio3>;
+> -                                       interrupts =3D <11 IRQ_TYPE_LEVEL=
+_LOW>;
+> +                                       interrupts-extended =3D <&gpio3 1=
+1 IRQ_TYPE_LEVEL_LOW>;
+>                                 };
+>                         };
+>                 };
+> @@ -96,8 +94,7 @@ mdio {
+>                                 u301: ethernet-phy@3 {
+>                                         reg =3D <3>;
+>                                         compatible =3D "ethernet-phy-ieee=
+802.3-c45";
+> -                                       interrupt-parent =3D <&gpio3>;
+> -                                       interrupts =3D <9 IRQ_TYPE_LEVEL_=
+LOW>;
+> +                                       interrupts-extended =3D <&gpio3 9=
+ IRQ_TYPE_LEVEL_LOW>;
+>                                 };
+>                         };
+>                 };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts b/arch/arm64/b=
+oot/dts/renesas/r8a779f4-s4sk.dts
+> index fa910b85859e99df..5d71d52f9c654783 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779f4-s4sk.dts
+> @@ -197,8 +197,7 @@ mdio {
+>                                 ic99: ethernet-phy@1 {
+>                                         reg =3D <1>;
+>                                         compatible =3D "ethernet-phy-ieee=
+802.3-c45";
+> -                                       interrupt-parent =3D <&gpio3>;
+> -                                       interrupts =3D <10 IRQ_TYPE_LEVEL=
+_LOW>;
+> +                                       interrupts-extended =3D <&gpio3 1=
+0 IRQ_TYPE_LEVEL_LOW>;
+>                                 };
+>                         };
+>                 };
+> @@ -216,8 +215,7 @@ mdio {
+>                                 ic102: ethernet-phy@2 {
+>                                         reg =3D <2>;
+>                                         compatible =3D "ethernet-phy-ieee=
+802.3-c45";
+> -                                       interrupt-parent =3D <&gpio3>;
+> -                                       interrupts =3D <11 IRQ_TYPE_LEVEL=
+_LOW>;
+> +                                       interrupts-extended =3D <&gpio3 1=
+1 IRQ_TYPE_LEVEL_LOW>;
+>                                 };
+>                         };
+>                 };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts b=
+/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+> index 50a428572d9bd933..0062362b0ba06885 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g2-white-hawk-single.dts
+> @@ -70,8 +70,7 @@ phy3: ethernet-phy@0 {
+>                         compatible =3D "ethernet-phy-id002b.0980",
+>                                      "ethernet-phy-ieee802.3-c22";
+>                         reg =3D <0>;
+> -                       interrupt-parent =3D <&gpio4>;
+> -                       interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&gpio4 3 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 };
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts b/=
+arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+> index 72e1ffe98585447f..b1d035ca4d97a51a 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a779h0-gray-hawk-single.dts
+> @@ -181,8 +181,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio7>;
+> -               interrupts =3D <5 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio7 5 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio7 10 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi b/arch/arm6=
+4/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> index 83f5642d0d35c244..502d9f17bf16d017 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-som.dtsi
+> @@ -102,8 +102,7 @@ phy0: ethernet-phy@7 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc RZG2L_IRQ2 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 rxc-skew-psec =3D <2400>;
+>                 txc-skew-psec =3D <2400>;
+>                 rxdv-skew-psec =3D <0>;
+> @@ -130,8 +129,7 @@ phy1: ethernet-phy@7 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <RZG2L_IRQ3 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc RZG2L_IRQ3 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 rxc-skew-psec =3D <2400>;
+>                 txc-skew-psec =3D <2400>;
+>                 rxdv-skew-psec =3D <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi b/arch/arm=
+64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
+> index b4ef5ea8a9e3457a..de39311a77dc2a5a 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-som.dtsi
+> @@ -82,8 +82,7 @@ phy0: ethernet-phy@7 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <RZG2L_IRQ0 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc RZG2L_IRQ0 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 rxc-skew-psec =3D <2400>;
+>                 txc-skew-psec =3D <2400>;
+>                 rxdv-skew-psec =3D <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi b/arch/arm=
+64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> index 79443fb3f5810304..1a6fd58bd3682a56 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg2ul-smarc-som.dtsi
+> @@ -78,8 +78,7 @@ phy0: ethernet-phy@7 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <RZG2L_IRQ2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc RZG2L_IRQ2 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 rxc-skew-psec =3D <2400>;
+>                 txc-skew-psec =3D <2400>;
+>                 rxdv-skew-psec =3D <0>;
+> @@ -107,8 +106,7 @@ phy1: ethernet-phy@7 {
+>                 compatible =3D "ethernet-phy-id0022.1640",
+>                              "ethernet-phy-ieee802.3-c22";
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <RZG2L_IRQ7 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc RZG2L_IRQ7 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 rxc-skew-psec =3D <2400>;
+>                 txc-skew-psec =3D <2400>;
+>                 rxdv-skew-psec =3D <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi b/arch/arm6=
+4/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> index 21bfa4e03972ffe2..71424e69939ee56b 100644
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc-som.dtsi
+> @@ -103,8 +103,7 @@ &eth0 {
+>
+>         phy0: ethernet-phy@7 {
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&pinctrl>;
+> -               interrupts =3D <RZG2L_GPIO(12, 0) IRQ_TYPE_EDGE_FALLING>;
+> +               interrupts-extended =3D <&pinctrl RZG2L_GPIO(12, 0) IRQ_T=
+YPE_EDGE_FALLING>;
+>                 rxc-skew-psec =3D <0>;
+>                 txc-skew-psec =3D <0>;
+>                 rxdv-skew-psec =3D <0>;
+> @@ -129,8 +128,7 @@ &eth1 {
+>
+>         phy1: ethernet-phy@7 {
+>                 reg =3D <7>;
+> -               interrupt-parent =3D <&pinctrl>;
+> -               interrupts =3D <RZG2L_GPIO(12, 1) IRQ_TYPE_EDGE_FALLING>;
+> +               interrupts-extended =3D <&pinctrl RZG2L_GPIO(12, 1) IRQ_T=
+YPE_EDGE_FALLING>;
+>                 rxc-skew-psec =3D <0>;
+>                 txc-skew-psec =3D <0>;
+>                 rxdv-skew-psec =3D <0>;
+> diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm6=
+4/boot/dts/renesas/salvator-common.dtsi
+> index 3f8ce62488213bbe..ca0b5c070ae57dce 100644
+> --- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
+> @@ -367,8 +367,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio2 10 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/ulcb.dtsi b/arch/arm64/boot/dts/=
+renesas/ulcb.dtsi
+> index a2f66f916048496e..4cf141a701c0625a 100644
+> --- a/arch/arm64/boot/dts/renesas/ulcb.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb.dtsi
+> @@ -150,8 +150,7 @@ phy0: ethernet-phy@0 {
+>                              "ethernet-phy-ieee802.3-c22";
+>                 rxc-skew-ps =3D <1500>;
+>                 reg =3D <0>;
+> -               interrupt-parent =3D <&gpio2>;
+> -               interrupts =3D <11 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio2 11 IRQ_TYPE_LEVEL_LOW>;
+>                 reset-gpios =3D <&gpio2 10 GPIO_ACTIVE_LOW>;
+>         };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi b/arc=
+h/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> index 36f5deb7f24afc2e..209cba75adec6d6c 100644
+> --- a/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/white-hawk-cpu-common.dtsi
+> @@ -167,8 +167,7 @@ avb0_phy: ethernet-phy@0 {
+>                                      "ethernet-phy-ieee802.3-c22";
+>                         rxc-skew-ps =3D <1500>;
+>                         reg =3D <0>;
+> -                       interrupt-parent =3D <&gpio7>;
+> -                       interrupts =3D <5 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&gpio7 5 IRQ_TYPE_LEVEL_=
+LOW>;
+>                         reset-gpios =3D <&gpio7 10 GPIO_ACTIVE_LOW>;
+>                 };
+>         };
+> diff --git a/arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi b/arch/=
+arm64/boot/dts/renesas/white-hawk-ethernet.dtsi
+> index 595ec4ff4cdd0190..ad94bf3f5e6c426f 100644
+> --- a/arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/white-hawk-ethernet.dtsi
+> @@ -29,8 +29,7 @@ mdio {
+>                 avb1_phy: ethernet-phy@0 {
+>                         compatible =3D "ethernet-phy-ieee802.3-c45";
+>                         reg =3D <0>;
+> -                       interrupt-parent =3D <&gpio6>;
+> -                       interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&gpio6 3 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 };
+>         };
+>  };
+> @@ -51,8 +50,7 @@ mdio {
+>                 avb2_phy: ethernet-phy@0 {
+>                         compatible =3D "ethernet-phy-ieee802.3-c45";
+>                         reg =3D <0>;
+> -                       interrupt-parent =3D <&gpio5>;
+> -                       interrupts =3D <4 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&gpio5 4 IRQ_TYPE_LEVEL_=
+LOW>;
+>                 };
+>         };
+>  };
+> --
 > 2.34.1
-> 
-
--- 
-With best wishes
-Dmitry
+>
+>
 
