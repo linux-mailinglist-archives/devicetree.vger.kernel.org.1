@@ -1,149 +1,129 @@
-Return-Path: <devicetree+bounces-108752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D714993B4C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 01:37:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 878B6993B8D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 02:04:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 251A21F24683
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 23:37:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2180CB23A4B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 00:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEF3197549;
-	Mon,  7 Oct 2024 23:37:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3174A17C;
+	Tue,  8 Oct 2024 00:03:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QQwh/ook"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="H/5b0+dH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.209])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2103E19308E
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 23:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F13B101C8;
+	Tue,  8 Oct 2024 00:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.209
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728344234; cv=none; b=hipjzwnBxtECpC8HYC01HdtL6O5IUQHXM5z2FfU7Z7/J57VQ2qtIIWzvBafMn6YruVLLeS44fJDrOhwRew14+7U5fPs8sU/lrYp3vM+q/F6CsWOdwrhvf40gnvlGpOkEgORjzcv9FxGOM7uplyEfjKNv7K29DIQIhT+RtDnRRiY=
+	t=1728345826; cv=none; b=s/xO66CsI5nR6786FE29ICr0uMxVf2JYqVSaUyaglwwHhM2Pk6LygwMhERQPzYQPG+fRH3mRH3cxfSzGtJuFu4fLcwWG4yk21Vy+iVTlCBXCTxe0Q4xa5EBtQJDzmR/jGmE1fAdgjqeGnPTVVdc1d1cBwMo1OYB0xU6aI8tPc6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728344234; c=relaxed/simple;
-	bh=znBSTsvoia8jtv0vOla1luWvWrIdThhCQ3A7+DTU46M=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oCyCZqfzz2CPbYbLULmVHEHeFztoi7VOD9j0s7xFBX8a5kr6lqG/txlei0GUdJbnvLiWXUGQljZAVFCE/gcaKxfIwGQcqfgH463DVbh8Vsz7IkXuCriw1F2R+kL3R0e1cJtLia+84p9toOdbEFExS1nxUeGE8V4l2WqJ+hcgRiU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QQwh/ook; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5398f3be400so5648739e87.0
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 16:37:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728344231; x=1728949031; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tXGWJXNTWFyBHQiOjJ39OoJK5jFoxYtKruKryESO2Ts=;
-        b=QQwh/ookSzrN2JWieKZKMgwx5n+6VbVZMslERL3U5lhWXR011dwB4pf8gabMyMBSn5
-         gfUounsKUTYsw0h25X0y1uLep86ZCHgBQhun68OWDrAfKxwv1lsS6e5YkSFQaVBWgfYp
-         fKk15azQMKIA30/h9lQid6UeNhT2ULjTL+bSXrA1sVGNhi4apgxwaJXKSysIuNNOeqQA
-         FTq7Iz1GluACSutQwrhtJwHbCt+et5vxW1s9LulUvUYQhatbTGOey8NO7s1jwJk5T7nD
-         JaWqjpUI/kGXUanpKB3okSX4IbJcCYnU9/OrQWk/ZY4pp0myRyeIBLAjrjlG0Y1ZMGDo
-         pDew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728344231; x=1728949031;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tXGWJXNTWFyBHQiOjJ39OoJK5jFoxYtKruKryESO2Ts=;
-        b=Yv57lzPENMDbZ60PCEa9nG/1jPkjtexgQkncPddPqk09LV6LGlcCl+suLWBB++Qsaz
-         hhmBBbAx3pBaVLAUVT31lXgRmuZEy0/yQhENwif5jmdmXsgmUkuP4Ms6Juh55uMgmdPC
-         yu29ug9l7mjb7rZ3Ty/qPVE55n8q3BZWkC7rlvKRNkhJuBAQzs7dyvA6UbjO0LwtGknt
-         rdzOoUENrrEb1Q2J8F8YheTmy0UltIaAaNSW9nMRFmYXJJtiEvAe7UDZqMjA7G5MXjhH
-         TlS4ecfgBA2TR2/4EUhA6ibXQVlgVanAZFSQqjYeynV3y+f6hHOlilqSalNGWoyDL7z8
-         v0zw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7JzDeBA1war3mAZXIXUZ5kwlCupnxDkoDL5GbVRrYhFLSPG9Y4m7DDB3i/MAPQ5Pva9DPVjf6dKST@vger.kernel.org
-X-Gm-Message-State: AOJu0YyAM7HC6FjJ+eocsLJXM2o+fBzYb9hVmuYDPvQox+Mm+A1DUgqN
-	dhcjlO8CkrggtECEVIGnt+r7HDT2m1LbEW3AioGgkbiuUKZiZlwj0U8Y8NTZU7g=
-X-Google-Smtp-Source: AGHT+IE+4VzcRhbm1VFqYCLGq2Nrkh1v+z8RzQxhbXAwdRI0uxpOV12A3qgzgle5GzStCLctDb2jwA==
-X-Received: by 2002:a05:6512:b14:b0:536:53f0:2f8e with SMTP id 2adb3069b0e04-539ab9dd5f6mr6662392e87.37.1728344231168;
-        Mon, 07 Oct 2024 16:37:11 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.90])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539afec1300sm1002256e87.17.2024.10.07.16.37.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 16:37:09 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 08 Oct 2024 02:37:00 +0300
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8650: correct MDSS interconnects
+	s=arc-20240116; t=1728345826; c=relaxed/simple;
+	bh=gkroZQ+37GTyJM/uyjWAwX/F+a6aQH4+nH6JOA8RU4c=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kU+7GPEO5QJ0cvV62n+zl4Y91f8QYvYwdmzTOUHibOpeLOeMjtCgqi1HB+q6rkawKRkL9S/eovF0Kpn+eOYwq5vnQn/yZibwmxFmRUMi+cnDQHsSV/lFzGQApojeZgHoaLlgrnQPcVgY/Z2NBMkX5fyIQ8Ji2YpRl9gTJ2Z7BRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=H/5b0+dH; arc=none smtp.client-ip=192.19.144.209
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: from mail-lvn-it-01.lvn.broadcom.net (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
+	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 994ADC0000D4;
+	Mon,  7 Oct 2024 16:54:14 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 994ADC0000D4
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
+	s=dkimrelay; t=1728345254;
+	bh=gkroZQ+37GTyJM/uyjWAwX/F+a6aQH4+nH6JOA8RU4c=;
+	h=From:To:Cc:Subject:Date:From;
+	b=H/5b0+dHo8+ZbyETrM30BF6y2TFEAQtaeoRhyKRYfAtOCSeF2WLhloEy8aDO3mMYl
+	 Z0a+pUSJEnFAPaBUKHPfDLrx4NDax5r5u9UGy7AkdtNA6Tjxy8JcYCYrrUP6K2PWhI
+	 CPH1EDgHdvMFxGsn9wugIuVYTGThp5jy5rGuCfCI=
+Received: from stbirv-lnx-1.igp.broadcom.net (stbirv-lnx-1.igp.broadcom.net [10.67.48.32])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mail-lvn-it-01.lvn.broadcom.net (Postfix) with ESMTPSA id 38B0318041CAC6;
+	Mon,  7 Oct 2024 16:54:14 -0700 (PDT)
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+To: linux-arm-kernel@lists.infreadead.org
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Cristian Marussi <cristian.marussi@arm.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list),
+	arm-scmi@vger.kernel.org (open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
+	linux-arm-kernel@lists.infradead.org (moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE),
+	justin.chen@broadcom.com,
+	opendmb@gmail.com,
+	kapil.hali@broadcom.com,
+	bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: [PATCH v2] firmware: arm_scmi: Give SMC transport precedence over mailbox
+Date: Mon,  7 Oct 2024 16:54:13 -0700
+Message-Id: <20241007235413.507860-1-florian.fainelli@broadcom.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241008-fix-sm8x50-mdp-icc-v1-2-77ffd361b8de@linaro.org>
-References: <20241008-fix-sm8x50-mdp-icc-v1-0-77ffd361b8de@linaro.org>
-In-Reply-To: <20241008-fix-sm8x50-mdp-icc-v1-0-77ffd361b8de@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Abhinav Kumar <quic_abhinavk@quicinc.com>, 
- Rob Clark <robdclark@gmail.com>, 
- Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, freedreno@lists.freedesktop.org, 
- stable@kernel.org
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1619;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=znBSTsvoia8jtv0vOla1luWvWrIdThhCQ3A7+DTU46M=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBnBHCeZFq3YI77GP+xE8vYq8jrRhjgLpkER4n3s
- EJe/us/uoCJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZwRwngAKCRCLPIo+Aiko
- 1S+ZCACjueCogk9kziFFtp2pQBwNgoEJIQOWFaoFCx6WssaAdkVv7aXZZB9N9+b8VXHEpE2XPfd
- bmvT9i3GzdC+IxJDCl6EjWpnP6MRhvvu+eZaBaIZtkr+MrW+o2BsXiHFt+rcwGzu6qiU4Q1iWYT
- N0jvH556UF45CesUsd/Pjr8oeL8E0ASt2e3/V8NTiujHTAoBUdEsOKvknFW5k3ZPWEA4LgpFYPS
- vXUn6zzsTVsuz3YXzGsuiQEtvrvSpfvENMd2JTix0FNJqLIN9iFuXd7mqWkzCBNel66CHeBgsqk
- W6kyjEqsoVwA/oQxEnmlq1+uggMQ14WFVo+gCL0TaqKxBKWS
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+Content-Transfer-Encoding: 8bit
 
-SM8650 lists two interconnects for the display subsystem, mdp0-mem
-(between MDP and LLCC) and mdp1-mem (between LLCC and EBI, memory).
-The second interconnect is a misuse. mdpN-mem paths should be used for
-several outboud MDP interconnects rather than the path between LLCC and
-memory. This kind of misuse can result in bandwidth underflows, possibly
-degradating picture quality as the required memory bandwidth is divided
-between all mdpN-mem paths (and LLCC-EBI should not be a part of such
-division).
+Broadcom STB platforms have for historical reasons included both
+"arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
+string, in that order.
 
-Drop the second path and use direct MDP-EBI path for mdp0-mem until we
-support separate MDP-LLCC and LLCC-EBI paths.
+After the commit cited in the Fixes tag and with a kernel configuration
+that enables both the SMC and the Mailbox transports, we would probe
+the mailbox transport, but fail to complete since we would not have a
+mailbox driver available. With each SCMI transport being a platform
+driver with its own set of compatible strings to match, rather than an
+unique platform driver entry point, we no longer match from most
+specific to least specific. There is also no simple way for the mailbox
+driver to return -ENODEV and let another platform driver attempt
+probing. This leads to a platform with no SCMI provider, therefore all
+drivers depending upon SCMI resources are put on deferred probe forever.
 
-Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
-Cc: stable@kernel.org
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+By keeping the SMC transport objects linked first, we can let the
+platform driver match the compatible string and probe successfully with
+no adverse effects on platforms using the mailbox transport.
+
+Fixes: b53515fa177c ("firmware: arm_scmi: Make MBOX transport a standalone driver")
+Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
 ---
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 5 +----
- 1 file changed, 1 insertion(+), 4 deletions(-)
+Changes in v2:
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index 01ac3769ffa6..455774516b08 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -3455,11 +3455,8 @@ mdss: display-subsystem@ae00000 {
- 			resets = <&dispcc DISP_CC_MDSS_CORE_BCR>;
- 
- 			interconnects = <&mmss_noc MASTER_MDP QCOM_ICC_TAG_ALWAYS
--					 &gem_noc SLAVE_LLCC QCOM_ICC_TAG_ALWAYS>,
--					<&mc_virt MASTER_LLCC QCOM_ICC_TAG_ALWAYS
- 					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
--			interconnect-names = "mdp0-mem",
--					     "mdp1-mem";
-+			interconnect-names = "mdp0-mem";
- 
- 			power-domains = <&dispcc MDSS_GDSC>;
- 
+- removed downstream Change-Id
+- s/SCMI/SMC in the second paragraph
+- added details about what changed and how that affects the probing
 
+ drivers/firmware/arm_scmi/transports/Makefile | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/firmware/arm_scmi/transports/Makefile b/drivers/firmware/arm_scmi/transports/Makefile
+index 362a406f08e6..3ba3d3bee151 100644
+--- a/drivers/firmware/arm_scmi/transports/Makefile
++++ b/drivers/firmware/arm_scmi/transports/Makefile
+@@ -1,8 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+-scmi_transport_mailbox-objs := mailbox.o
+-obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) += scmi_transport_mailbox.o
++# Keep before scmi_transport_mailbox.o to allow precedence
++# while matching the compatible.
+ scmi_transport_smc-objs := smc.o
+ obj-$(CONFIG_ARM_SCMI_TRANSPORT_SMC) += scmi_transport_smc.o
++scmi_transport_mailbox-objs := mailbox.o
++obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) += scmi_transport_mailbox.o
+ scmi_transport_optee-objs := optee.o
+ obj-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += scmi_transport_optee.o
+ scmi_transport_virtio-objs := virtio.o
 -- 
-2.39.5
+2.34.1
 
 
