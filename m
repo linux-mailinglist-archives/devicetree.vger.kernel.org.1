@@ -1,142 +1,160 @@
-Return-Path: <devicetree+bounces-108728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F7C99381F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:22:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC8799382A
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:24:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CAE6C284A9E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:22:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C976A1F223FD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:24:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B9F1DE4EE;
-	Mon,  7 Oct 2024 20:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 27CC21DE4E9;
+	Mon,  7 Oct 2024 20:24:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b="L6KryEch"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ojFeN/iT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
+Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 965521DE4D3
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 20:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DCF41DDC1B
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 20:24:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728332557; cv=none; b=Hu82lZNiB/PUuesyxiWq6YKmiDHi+fy7QdVf0S7RqlpD+n03chYRiPbKHoSey4Q0ryDKOHQqWVvr9e+uEfi9PtGsuq188BWFhNFKB6S8Ktsyc+pj5YmbDKnhQBrEW9Eicdu1tpHAc4aU7CrjkhH2zdKTOtf6c6V47JHV46eW9ig=
+	t=1728332648; cv=none; b=kQ7oRnIyeA/0Q4dM0dpuDDJiEPbxiN8SPVj109noKp2McbcK2yab8g4qYfUJUa2hUiSg4bbZ/ZzwlrtmW0qS2AasMBZF2yyRnSaEME6qYWmRxqmHs2qgdM9wRRM1tQxH6pj3rwlCfReRJ6SQMS0ahjkvwtRPJOkCMb27oqqn21U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728332557; c=relaxed/simple;
-	bh=+JurRkojZY4EtF+xRmXEH88+oNqlfaBMDd8Nb4X/7hQ=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=c3oej/vBneuY3KsVdzjHcmEJTvUhofu0Yvl9RmbEes4jXCkgtBb70Od/YBtXS4hyJULaXaDCk8HUXmESzi261CGmIjXOl7Z8DQj+RORw6+tPVWRsmJEyub2SiBBOLN78dPR6hyimj972WAOzQsoyYINBxkv5pHRFofeZ5GaQeJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk; spf=pass smtp.mailfrom=kernel.dk; dkim=pass (2048-bit key) header.d=kernel-dk.20230601.gappssmtp.com header.i=@kernel-dk.20230601.gappssmtp.com header.b=L6KryEch; arc=none smtp.client-ip=209.85.166.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kernel.dk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kernel.dk
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-834d3363a10so185915339f.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 13:22:35 -0700 (PDT)
+	s=arc-20240116; t=1728332648; c=relaxed/simple;
+	bh=rm2osUWB4IgyVq8ykVYBpG6R1/gpKjI5PBwVzeViHPk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=eNy6NXwccqatNbWSCNdvdd/NpYoxPuk37yK1QIEpLq4JN0WnRGNwH1SQAbXyH3jTwbQ2H5VZ2pVtgWAH0e4PbjRO/Ja2booF1k0xDjb4WSSv31ldfHeBKSp1Kg2kgetSC5jS6qZKm2sutIwTq+QKlwOpnUowylCzr29lvLh7dEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ojFeN/iT; arc=none smtp.client-ip=209.85.208.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2fad784e304so59142521fa.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 13:24:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kernel-dk.20230601.gappssmtp.com; s=20230601; t=1728332554; x=1728937354; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QefVMDm8hBjPT+1JwbSaVFa7IKUqqLaGgXLC/P+/zW0=;
-        b=L6KryEchvj6hS292mMNLvBuKS6scDoEQpsWzujALkWKGRh4Qnqj2JKhFbvAQWWl/mw
-         VCmsc1KUaHgn/gZq3oLsq348QdMAfMB969zABGRZqI+ZBIJZkdVXCLY3yfLmghf+FTdq
-         YWgjgikwcXddrprcM/P3vvQzaMqwENYgCJvtmz2Um48+TrrPurslUjW3ldWrOp/LFt9W
-         nrhYzaTMQIl9Ft5LZykTnZjJ2FLLY82v/Q4b1r4PIL0TXsr0IYvvw2Zjej8i1TUUyXC2
-         DtZsiZqAaiLEYgj/DvMDrhaTxjfteH9XHRZS1X1KFTFQrg9/aRHVqMxRJ129IadhXVyt
-         bBZg==
+        d=linaro.org; s=google; t=1728332645; x=1728937445; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lFvl/yEangr8owxbos5zhVtsni37SUgFVrliUsmDQcc=;
+        b=ojFeN/iTC1jCx4gLp6rdSa3WwRnYoY6JGDPsmb0XVmO9vhqMqTdoG5bCVvDiGzw0Yo
+         2Ai+5GRaduOC4hj9K5uevZt9n6/mCf8vWDNl7LqhVihYNBELGC/DvjemtptS99F7ZU+Z
+         g72vgDJcZ7GVqD71IjO00dSyERDWsi4XFnSDIefX41UvQTVMMVm4TVgtm6xyJD8KeGjS
+         lh4xC6eN/gEF6PUBfrDA0LHsLB0ktaBjD6cVcjp81pOCk39EuD5Vd5e+fzvz7z5pLgkF
+         pjfIOq8kzpgxFl9e+iQcdYcBsrRlme2FBh5bkbei/CcU7NmfooqyrJ7iT4djH+CieiJM
+         q22g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728332554; x=1728937354;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1728332645; x=1728937445;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QefVMDm8hBjPT+1JwbSaVFa7IKUqqLaGgXLC/P+/zW0=;
-        b=mQd1PM4j7YUanbBY5l2odRCacy6MY09UNlyp5yXy5byOo1fKnS9xzvxnnb/nJQR44N
-         BKyf8gwLQPjDwPfIws3l8gF/pusrMHRe6UzzkaetVMWrqb9hmZHo5Ko+4DejOEczyF9Z
-         FGrFLGF2P6O5swZGYUHOY+NeBCjreEslQyuKEVicnBmDE+5P/K0vDsZkn4jodx47fR/x
-         alXWyPiTCLCR0w3AKGvs5ntNvyWQtGFtsSoe7Xt9R4oCpENCnmB9rmj60tGdNSCFm2bW
-         T4I8gn8XkC2ZMrj9ASWk28S4a5Eh8LMHrddDlMNbNtpS2jqczwTfXQtjYkQ1AxQQ88uM
-         Mizw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtyS4RtWgFEPmO5evm/0rHhxlempIgLjsUPnd9C0lImN4/Sp7RP0WEU5vz2OUj2SwW1KLzOwPPbQZN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz8JqykvZg5hw73uo5P3IpbGFaGn/ZN5c7qhle8+8KEgve0A0y/
-	0WDkIJp+WZbr74kjyx91FuFtYm3/TxzkVhmf2WbV+mg/rBMg5IqquUDa/TTsUYU=
-X-Google-Smtp-Source: AGHT+IF2W3KnYL3GA1TILGogvaha8pYup4+NHEwZvTPOaV7yC6EWbx9hu3M/fgNeyIQEycR1C6cK/Q==
-X-Received: by 2002:a05:6e02:1fc8:b0:3a3:44b2:acb2 with SMTP id e9e14a558f8ab-3a375be2a9dmr113900705ab.25.1728332554520;
-        Mon, 07 Oct 2024 13:22:34 -0700 (PDT)
-Received: from [127.0.0.1] ([96.43.243.2])
-        by smtp.gmail.com with ESMTPSA id 8926c6da1cb9f-4db86e86898sm605463173.61.2024.10.07.13.22.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 13:22:33 -0700 (PDT)
-From: Jens Axboe <axboe@kernel.dk>
-To: Jonathan Corbet <corbet@lwn.net>, Ulf Hansson <ulf.hansson@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Daniel Golle <daniel@makrotopia.org>, 
- INAGAKI Hiroshi <musashino.open@gmail.com>, 
- Christian Brauner <brauner@kernel.org>, Al Viro <viro@zeniv.linux.org.uk>, 
- Ming Lei <ming.lei@redhat.com>, Li Lingfeng <lilingfeng3@huawei.com>, 
- Christian Heusel <christian@heusel.eu>, Avri Altman <avri.altman@wdc.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Adrian Hunter <adrian.hunter@intel.com>, 
- Riyan Dhiman <riyandhiman14@gmail.com>, 
- Mikko Rapeli <mikko.rapeli@linaro.org>, 
- Jorge Ramirez-Ortiz <jorge@foundries.io>, 
- Li Zhijian <lizhijian@fujitsu.com>, 
- Dominique Martinet <dominique.martinet@atmark-techno.com>, 
- Jens Wiklander <jens.wiklander@linaro.org>, 
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
- linux-block@vger.kernel.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, Lorenzo Bianconi <lorenzo@kernel.org>, 
- Miquel Raynal <miquel.raynal@bootlin.com>, upstream@airoha.com, 
- Christoph Hellwig <hch@infradead.org>, 
- Christian Marangi <ansuelsmth@gmail.com>
-In-Reply-To: <20241002221306.4403-1-ansuelsmth@gmail.com>
-References: <20241002221306.4403-1-ansuelsmth@gmail.com>
-Subject: Re: [PATCH v6 0/6] block: partition table OF support
-Message-Id: <172833255295.162249.16483920948700467749.b4-ty@kernel.dk>
-Date: Mon, 07 Oct 2024 14:22:32 -0600
+        bh=lFvl/yEangr8owxbos5zhVtsni37SUgFVrliUsmDQcc=;
+        b=TCJl/w6lJkSAYjxShBiPWdOu8EvxCNr9P96nRZZ1Rbq8+DwftE6i3tUtck5LQzg1hx
+         FyUaKUQClS+mioPQgUN9mcMiuIAPAmlTbdB0n+m++iscHvbYs6Vi07s/VH0VJXPDRyxj
+         gg4Skq0ILNSriJmePAFREDs/TTsqwcRy9ZfAx/PG13sl/+fuBpAe6hdwFdcnX6t9uqXu
+         0tVpgL3MzE7kkRsbDPPloEOYk/AbydoZVPiFYbFY0xdYTdh1gLvk4lGBqSEwQVm9vY+1
+         Qzp0HCyOsLlmo12uG435cVj1hbuzw5yR8jfNTPalE7MMovmc3lo/jh3gUa+XyZdxaFEx
+         cxkw==
+X-Forwarded-Encrypted: i=1; AJvYcCU/gCqePh6tSGe4td/zzvGZJU08FiD095kA0jz5jLGZrW9et0g7DL5ulFXitfwL5t7zsSCtXTQI7Aoc@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYacz85GmXuTCmKChr5oHMXqZFikmgolgnPXFJycBtvoEuF9IU
+	tAVARXhKEZLTV5bUFjDznCrnu2+yhKMR5gkMEyiSSMohveZgn8XelreZHMPSj9l/EVT3cKJiz0a
+	Pd0FncDTG1/N7anJbDCOCLnZljPU0IN865CnK/w==
+X-Google-Smtp-Source: AGHT+IF2J2KtODAOg6E0IGOtSHekx3v4Zat7hWdd2giyI0z5Dhlv+dq60y4SCVzsX3JaLj0NPvweMQR6zXmaZGoQZbk=
+X-Received: by 2002:a2e:a545:0:b0:2fa:c913:936 with SMTP id
+ 38308e7fff4ca-2faf3c0184emr72904611fa.1.1728332644356; Mon, 07 Oct 2024
+ 13:24:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+References: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
+In-Reply-To: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 7 Oct 2024 22:23:52 +0200
+Message-ID: <CACRpkdbj8fkQf38n0t-==cFZj55TPgoTGM-dzESWgeRGfPHofQ@mail.gmail.com>
+Subject: Re: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
+To: Karl Chan <exxxxkc@getgoogleoff.me>, Arnd Bergmann <arnd@arndb.de>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, andersson@kernel.org, 
+	konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Oct 7, 2024 at 6:35=E2=80=AFPM Karl Chan <exxxxkc@getgoogleoff.me> =
+wrote:
 
-On Thu, 03 Oct 2024 00:11:40 +0200, Christian Marangi wrote:
-> this is an initial proposal to complete support for manually defining
-> partition table.
-> 
-> Some background on this. Many OEM on embedded device (modem, router...)
-> are starting to migrate from NOR/NAND flash to eMMC. The reason for this
-> is that OEM are starting to require more and more space for the firmware
-> and price difference is becoming so little that using eMMC is only benefits
-> and no cons.
-> 
-> [...]
+> Also The original firmware from Linksys can only boot ARM32 kernels.
+>
+> As of now There seems to be no way to boot ARM64 kernels on those device.
 
-Applied, thanks!
+So this is a Cortex-A53 Aarch64 system running in ARM32 mode.
 
-[1/6] block: add support for defining read-only partitions
-      commit: 03cb793b26834ddca170ba87057c8f883772dd45
-[2/6] docs: block: Document support for read-only partition in cmdline part
-      commit: 62adb971e515d1bb0e9e555f3dd1d5dc948cf6a1
-[3/6] block: introduce add_disk_fwnode()
-      commit: e5f587242b6072ffab4f4a084a459a59f3035873
-[4/6] mmc: block: attach partitions fwnode if found in mmc-card
-      commit: 45ff6c340ddfc2dade74d5b7a8962c778ab7042c
-[5/6] block: add support for partition table defined in OF
-      commit: 884555b557e5e6d41c866e2cd8d7b32f50ec974b
-[6/6] dt-bindings: mmc: Document support for partition table in mmc-card
-      commit: 06f39701d0666d89dd3c86ff0b163c7139b7ba2d
+So I got this interactive U-boot log from Karl showing how the attempt
+to boot an Aarch64 kernel manifests:
 
-Best regards,
--- 
-Jens Axboe
+CBT U-Boot ver: 3.2.08  ([IPQ5018].[SPF11.3].[CSU2])
 
+## Loading kernel from FIT Image at 44000000 ...
+   Using 'standard' configuration
+   Trying 'kernel' kernel subimage
+     Description:  Kernel
+     Type:         Kernel Image
+     Compression:  uncompressed
+     Data Start:   0x440000a8
+     Data Size:    8249289 Bytes =3D 7.9 MiB
+     Architecture: AArch64
+     OS:           Linux
+     Load Address: 0x41208000
+     Entry Point:  0x41208000
+   Verifying Hash Integrity ... OK
+(...)
+## Loading ramdisk from FIT Image at 44000000 ...
+(...)
+## Loading fdt from FIT Image at 44000000 ...
+(...)
+fdt_fixup_qpic: QPIC: unable to find node '/soc/qpic-nand@79b0000'
+Could not find PCI in device tree
+Using machid 0x8040001 from environment
 
+Starting kernel ...
 
+undefined instruction
+pc : [<41208004>]          lr : [<4a921f8f>]
+reloc pc : [<41208004>]    lr : [<4a921f8f>]
+sp : 4a822838  ip : 00000001     fp : 00000000
+r10: 4a83b914  r9 : 4a822ea0     r8 : 00000000
+r7 : 00000000  r6 : 41208000     r5 : 4a97d848  r4 : 00000000
+r3 : 644d5241  r2 : 4a0ae000     r1 : 08040001  r0 : 00000000
+Flags: nzCV  IRQs off  FIQs off  Mode SVC_32
+Resetting CPU ...
+
+resetting ...
+
+So perhaps someone knows how we can get around this.
+
+It seems to me the U-Boot is in 32bit mode and tries to just
+execute an Aarch64 binary and that doesn't work.
+
+What we need is a 32bit mode preamble that can switch
+the machine to Aarch64 and continue.
+
+I don't know *how* to do that, but I would *guess* a botched
+return from exception where you provide your own stack
+with the Aarch64 state hardcoded on it should do the job?
+
+The Aarch64 maintainers will know what to do.
+
+Surely it should be possible to add a little code snippet
+to do this somewhere in memory, and that in turn jumps
+to execute the actual Aarch64 kernel in Aarch64 mode?
+
+Yours,
+Linus Walleij
 
