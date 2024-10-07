@@ -1,134 +1,183 @@
-Return-Path: <devicetree+bounces-108644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4D78993392
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:38:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D20AD9933AF
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:46:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C6F41F230EA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:38:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D6BD9285738
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:46:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 943621DD522;
-	Mon,  7 Oct 2024 16:37:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72DA51DC061;
+	Mon,  7 Oct 2024 16:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="ApLZm8qD"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="SuVpfxXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2704C1DC18E
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 16:37:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55E4A1DBB03;
+	Mon,  7 Oct 2024 16:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728319025; cv=none; b=ipuuO4se2QinwzCwDyQHPSBlqLJU9b+StmJQSnLc7lWDzkUTKuOO5EiVfbkuPOIkQEplBJwVCyH5/ZeaCZQPFb1iLA41lZQzDWcW3U7BL547fA9a2f96s7TFXaKTI+agSNY8noYhYZtLQ39rF+C5gEFJFyze3LQUsaNwkSiXrCA=
+	t=1728319551; cv=none; b=lA4k9/1479JSPaDOBrr5mSXcipGdDxBY6UHzm0bFE+1LjGzf99oyrDFQnkMwN9vXwpfgayCNN10ZiIw/sxaF84gUUJC0QjeQZKbJKUuPEmKuDVQ0U5RhOIsH9hYNHlohY5lkFRSGckZWYBHOifk+Nw8tG8cTJ9TCpsHVWU+uBFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728319025; c=relaxed/simple;
-	bh=a5oX2HiIIPVmSPTbdeG4n36APZbjAHJU4csJAKrEmYM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AIKoRhg97JlO2tjh20+/WqTXxn0Ld+dPEgokP9ncWojEdhvXvftLMp+1YYLCTzHggLTpwfMyOBuI8wVgFaB5MLSJa+yVnP4SJTWTVoMMGIz3VIujRHtbbDGiWal5zVkSJMaJkHavVlUkZvT5Rq4jncqYz946AzJQEDiqwjbTNxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=ApLZm8qD; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1728318987; x=1728923787;
-	i=markus.stockhausen@gmx.de;
-	bh=bgSn0O6BXShULsVEObQzCSZRW0/xCAvRAFQsab1tNH8=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
-	 References:MIME-Version:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=ApLZm8qDQk9NeYvPuO7F7NfguLFP/wxWs+jBrYuEdUijkf7mBCkdyoC4l50vuFSI
-	 4klfMTRzdc5YyShOQnUkW84WY2Os0F7/2xAsE3UStjUSG34GmXsiVIADZuDOGmfTf
-	 Y1L1OZP2dIaX3pDrkpSOBQeF4AI9M8E12khgcQyLrYSRZeCsk5P06i0kSRBCDlP8n
-	 7jizxWwN7YJYIbatO+cYyCD6J6zFMTUp/brvnuR00GPOKj7PyloV+9mmYIzogLdpf
-	 BIaRZbrdK6vs9pTc1aXu2X3kLrmmN2axytuxU9T6JLO0ddKC1mTPrW9+Cm6VUFNxx
-	 eCcHDCwg40ni9lVwTw==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from openwrt ([94.31.70.45]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MacSe-1tZvMH2zdq-00fq1Y; Mon, 07
- Oct 2024 18:36:27 +0200
-From: Markus Stockhausen <markus.stockhausen@gmx.de>
-To: linux-phy@lists.infradead.org,
-	chris.packham@alliedtelesis.co.nz,
+	s=arc-20240116; t=1728319551; c=relaxed/simple;
+	bh=yFB+QWN/l8F6U9qeO8dL+RgHadwGnwUIxUq7V7LW/E4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QS7Uu6KVYkpazJuoFfQ6kbuC0iAuTb2pEZzlyDQyj2QhChnuiMpq4cJNNG9obx35FGd8BebtfiUuAPm5fCNQWZFVqPmW8jtKNGWcOshldhGYdAqQN9j5wdLXAZBBYe78SgS/zQtpgdKJODnriljeYj0wy3/BYpCR8n4aZOiPMdk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=SuVpfxXt; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:
+	Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=r0AuEeSC4qr1idtraZXrY2GOnVpY73RCyu2a/wbcIbI=; b=SuVpfxXtsafoPg8bbWoiWO3eO1
+	2Bq3cXcIxdWa2fUpg7lP+rSGHOgrW1XaXbDM/MeRuzVNUjrmMQe6AvyKmmpPl/ae3uM/uQdvyy40Y
+	FOGa9f3v7XcXngFhKrGwLUNUQ4sZ72my2nLnwzJZir/CA8WQGAXex5FhDNXyFdFqAjH0mBYSkmlKu
+	MDGZKcd2rt7P/+CfqyXhe6j6+aSrQck816ZafL/0CJ3F4GCNyTr+SRwOCENb0Wz/+rjK5eE9kwLPT
+	pp4UZ2ro/QvgYW/7gHb70zqEhZOTSaHiHfV7jOeXOBldnKTHlecOg1+IXySR26799McjzFn2hE/ks
+	31FrMMtQ==;
+Received: from i5e860d18.versanet.de ([94.134.13.24] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sxqrg-00035s-Fu; Mon, 07 Oct 2024 18:45:44 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: lgirdwood@gmail.com,
+	broonie@kernel.org
+Cc: robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	krzk@kernel.org
-Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH v2 3/3] phy: Integrate Realtek Otto SerDes driver into build system
-Date: Mon,  7 Oct 2024 12:36:23 -0400
-Message-ID: <20241007163623.3274510-4-markus.stockhausen@gmx.de>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241007163623.3274510-1-markus.stockhausen@gmx.de>
-References: <20241007163623.3274510-1-markus.stockhausen@gmx.de>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] ASoC: dt-bindings: rockchip,rk3036-codec: convert to yaml
+Date: Mon,  7 Oct 2024 18:45:42 +0200
+Message-ID: <20241007164542.2452315-1-heiko@sntech.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:OJUu2MnLIGziuljRNM7vToeXOrPjoHlcXWxwTjDl5vXwmTFVpHk
- OjCReMHYukIi5xahzUpPDPyZ77rblXRZt/vTRy0WeIdKpSU134luDZutwrRKwmtVUsFFFFl
- paS+JGZkJkxc5OUUT/xvdFayj+0jQd7WgdNkBFAh/XCta20XEewXynk8/rbaDG10sOCzSc3
- FqkV0n/GvM9JgZk+gW5lw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:yIPAjd0kYkY=;UX+OkX8JhcyQgHNMEymxOIsSBb8
- nQ+XPKKis09YkQDJuyznCCLQ3+ju+ZtqhfnZkiCQdqoI9B4KsGI9RRBvSfE8bJyDDOul+yeu5
- KqTgO6/HVk+HUaENAsTmh5j6+ZwW2889VMhcD9qzMCPIhma1L/NVKWUnlp7oQ7iGWtUxA5TuJ
- Zg8oFYehGK/pvl3o8XeVvJuiXc6Ozos4lvpAK8i0IxuvrjufR5ILUMCisdghofZlIppyatLw6
- lC0QnUGufEuzPXWGLC7Z90sWHkzoyZWc6I7m6AyOKs3StFZ9COfKgZaZXplwtV7z87HsBBDEh
- JLs8SHZBmny2N1V3roNOjfFKSD15xI/08ioZH2lD236OIYQWDvP/C71FKHTxbG6fKHni8x67a
- MZdFERcoH7b75mPwm3ZQt+56L8lhy0MW6QswdO3A+zMCjlAmOUskSWMXE6214cH8+HzJxjWWe
- nlb7Z6yMfWWerOU06/GnONtZo/r/Z0mXQOENXr671TfbfEa/hG5HC3V64dZGxEjcBeoXtbLbS
- rc7mJGdKWR2JwvcWJ4p7xI6+bkeLDn8Y1y+baoWLx/tWKjOzbXlvDXGstoSvdt54UHFB25tU6
- wf+II5A5cDAVJ9bMziL3St3+J1maXXkgQSM35TtsXrB5ck3LoQgoKzt5p+HDkyYRHSKPDSAeg
- 2co4TiTCrrqjhRc50aBkanM1QiqXeKz/e/4zX71WaXpP300/RrKDjazfeuL0kF0a1VP+kaEoe
- y2IYEXetRb8OIimLqIQuM3gqWZ3zKFrVOnzNt1tBVOicrEnJpmEdWvvv9wvwXMxlcfNA3IqMV
- r+YAoE7BCMrybMBby+zaytfQ==
+Content-Transfer-Encoding: 8bit
 
-Add the driver to the build system. The Otto platform currently has
-only some drivers upstream and is missing a lot of platform bits.
-Use only the bare minimum of dependencies.
+Convert the binding to yaml.
 
-Changes in v2:
-- Change naming convention
-- Add more help text
+The codec seems to be from Innosilicon, but the compatible has ever only
+been rockchip-based, as they sythesized the codec for the rk3036.
 
-Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-=2D--
- drivers/phy/realtek/Kconfig  | 10 ++++++++++
- drivers/phy/realtek/Makefile |  1 +
- 2 files changed, 11 insertions(+)
+So the yaml file gets a name matching that compatible.
+The only other notable change is the addition of the #sound-dai-cells
+property, that is always required.
 
-diff --git a/drivers/phy/realtek/Kconfig b/drivers/phy/realtek/Kconfig
-index 75ac7e7c31ae..021b4c4e700a 100644
-=2D-- a/drivers/phy/realtek/Kconfig
-+++ b/drivers/phy/realtek/Kconfig
-@@ -30,3 +30,13 @@ config PHY_RTK_RTD_USB3PHY
- 	  of the parameters.
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+---
+ .../devicetree/bindings/sound/inno-rk3036.txt | 20 -------
+ .../bindings/sound/rockchip,rk3036-codec.yaml | 57 +++++++++++++++++++
+ 2 files changed, 57 insertions(+), 20 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/inno-rk3036.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/rockchip,rk3036-codec.yaml
 
- endif # ARCH_REALTEK || COMPILE_TEST
+diff --git a/Documentation/devicetree/bindings/sound/inno-rk3036.txt b/Documentation/devicetree/bindings/sound/inno-rk3036.txt
+deleted file mode 100644
+index 758de8e27561..000000000000
+--- a/Documentation/devicetree/bindings/sound/inno-rk3036.txt
++++ /dev/null
+@@ -1,20 +0,0 @@
+-Inno audio codec for RK3036
+-
+-Inno audio codec is integrated inside RK3036 SoC.
+-
+-Required properties:
+-- compatible : Should be "rockchip,rk3036-codec".
+-- reg : The registers of codec.
+-- clock-names : Should be "acodec_pclk".
+-- clocks : The clock of codec.
+-- rockchip,grf : The phandle of grf device node.
+-
+-Example:
+-
+-	acodec: acodec-ana@20030000 {
+-		compatible = "rk3036-codec";
+-		reg = <0x20030000 0x4000>;
+-		rockchip,grf = <&grf>;
+-		clock-names = "acodec_pclk";
+-		clocks = <&cru ACLK_VCODEC>;
+-	};
+diff --git a/Documentation/devicetree/bindings/sound/rockchip,rk3036-codec.yaml b/Documentation/devicetree/bindings/sound/rockchip,rk3036-codec.yaml
+new file mode 100644
+index 000000000000..786b1ec41999
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/rockchip,rk3036-codec.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/rockchip,rk3036-codec.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+config PHY_RTK_OTTO_SERDES
-+	tristate "SerDes driver for the Realtek Otto platform"
-+	depends on OF
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support Realtek SerDes in the RTL83xx and
-+	  RTL93xx network SoCs. These are based on MIPS32 architecture
-+	  and the SerDes connect to one to octa transceivers to build
-+	  up switches with up to 52 ports.
-diff --git a/drivers/phy/realtek/Makefile b/drivers/phy/realtek/Makefile
-index ed7b47ff8a26..34e607f33961 100644
-=2D-- a/drivers/phy/realtek/Makefile
-+++ b/drivers/phy/realtek/Makefile
-@@ -1,3 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0
- obj-$(CONFIG_PHY_RTK_RTD_USB2PHY)	+=3D phy-rtk-usb2.o
- obj-$(CONFIG_PHY_RTK_RTD_USB3PHY)	+=3D phy-rtk-usb3.o
-+obj-$(CONFIG_PHY_RTK_OTTO_SERDES)	+=3D phy-rtk-otto-serdes.o
-=2D-
-2.46.2
++title: Rockchip RK3036 internal codec
++
++maintainers:
++  - Heiko Stuebner <heiko@sntech.de>
++allOf:
++  - $ref: dai-common.yaml#
++
++properties:
++  compatible:
++    const: rockchip,rk3036-codec
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: clock for audio codec
++
++  clock-names:
++    items:
++      - const: acodec_pclk
++
++  rockchip,grf:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description:
++      The phandle of the syscon node for the GRF register.
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - rockchip,grf
++  - "#sound-dai-cells"
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/rk3036-cru.h>
++    acodec: audio-codec@20030000 {
++      compatible = "rockchip,rk3036-codec";
++      reg = <0x20030000 0x4000>;
++      rockchip,grf = <&grf>;
++      clock-names = "acodec_pclk";
++      clocks = <&cru ACLK_VCODEC>;
++      #sound-dai-cells = <0>;
++    };
+-- 
+2.43.0
 
 
