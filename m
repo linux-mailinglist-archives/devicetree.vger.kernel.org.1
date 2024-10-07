@@ -1,168 +1,194 @@
-Return-Path: <devicetree+bounces-108382-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108383-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE60B99278E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:52:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3A809927AE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9316A1F233E2
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:52:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C34281ABD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9432818C32F;
-	Mon,  7 Oct 2024 08:52:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C404118BC3B;
+	Mon,  7 Oct 2024 08:57:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="JcBNGQ4E"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SAc+TxDs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB02318C004
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:52:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D300B18B462
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728291156; cv=none; b=BCH8ou6A0oxSUo5k9j7zX6xCgfGVAoixlXbnTjuaCT3OCNlVXmv4Xgvqh9/uBolZRrWA3UQGTkAYnc7j3AE+3pQNt/tVQqho6UnTyaoAJtMCntBXw3ylbyM764/X9OL+l3cF6EiOUHyizE+/c2pl5B7ZN9SPZmf8kNtvpJkRVJs=
+	t=1728291477; cv=none; b=fXLbfHosopiqTdF8s8uWz85Sag+Gp/qJRbzCdAS2d68NM9xYcMkeZQUR4pCANBu1ZJthDuq/590MXS3PitIGgmzkZUDwdxMnKkrXsWVfJwYIKAFn/GG5AJu8isbL0kAgJytxrOXSpanR3yeXrMekQdHTwk814V4KoPcOAj7y7Lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728291156; c=relaxed/simple;
-	bh=qfX2mnxYzZwssLTi9cs/IUEE0ltOc7Ron8lKo7nhlE4=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b9KrdAxfwwRvsyajGaF3mhXGIpwEh0df2tC5r63I12PsQEj+eiIC4AbWeOR0QusZBU8rE3Q6y69ih9bLyyzbLDAHcr6E06iVEI5GzLPlGXMF0nWovqtPAr+PaBmkDDClWVcesObGJS5q9zWZwoXAgLQPdkLtC4hJXxweRkxSg18=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=JcBNGQ4E; arc=none smtp.client-ip=91.26.50.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
-	q=dns/txt; i=@phytec.de; t=1728291142; x=1730883142;
-	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=qfX2mnxYzZwssLTi9cs/IUEE0ltOc7Ron8lKo7nhlE4=;
-	b=JcBNGQ4Ewp1MmoWvHDphoeP69//P0Nl21U2IAuWKiG6ktloufWjCahD4UhxLv4XJ
-	/fjPnXRS8sgVpusL82O8/LhBy1UTaG8zY4cqVt70Y9u0qN+vCuwNVHv+Gx6/YqMJ
-	UPa7x0mzUKR13tVEuGIsXGeGErdqTQqqt+RvS7W9rSw=;
-X-AuditID: ac14000a-4577e70000004e2a-f7-6703a14655d5
-Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
-	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(Client did not present a certificate)
-	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 84.A0.20010.641A3076; Mon,  7 Oct 2024 10:52:22 +0200 (CEST)
-Received: from augenblix2.phytec.de (172.25.0.11) by Berlix.phytec.de
- (172.25.0.12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 7 Oct 2024
- 10:52:22 +0200
-From: Wadim Egorov <w.egorov@phytec.de>
-To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>
-CC: <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-	<jernej.skrabec@gmail.com>, <maarten.lankhorst@linux.intel.com>,
-	<mripard@kernel.org>, <tzimmermann@suse.de>, <airlied@gmail.com>,
-	<simona@ffwll.ch>, <dri-devel@lists.freedesktop.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<bbrezillon@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-	<robh@kernel.org>, <upstream@lists.phytec.de>
-Subject: [PATCH v2 2/2] drm/bridge: sii902x: Set input bus format based on bus-width
-Date: Mon, 7 Oct 2024 10:52:13 +0200
-Message-ID: <20241007085213.2918982-3-w.egorov@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241007085213.2918982-1-w.egorov@phytec.de>
-References: <20241007085213.2918982-1-w.egorov@phytec.de>
+	s=arc-20240116; t=1728291477; c=relaxed/simple;
+	bh=o6axreySiLiy8tZaDub/QM2xsjgpMHcq9uLIaP5eleo=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=AaFgXL6QaLp05EqsxWuYjNODlMOnV4p1DDpNv1tIe4z4ep5G9Ea0lnPqwF8rGwYOiUVsmidUSEQDOClJSqKfyahJhoWS1Ai6FEJfsCd1QSrA77Bn3nOYrLeS2xoLy8mxWzWz3BLdY93lXvRFK1nRhUy4m0SONhYY31jKy/eB18g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SAc+TxDs; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cd46f3a26so35341875e9.2
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 01:57:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728291473; x=1728896273; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TGBBMU8rFx26oRjbd1HxpI/xco3E3mGApwngB2hx0UA=;
+        b=SAc+TxDsNzFyGot0PfbWfmi7bonOOMeRG1X/EmKs7a/ycBoENToS9kkShgXgW6hQig
+         swKmfasdkoR4Y/dNIHZUcdR5P9/ovo33iX5OWBRKYwRWN5oejMt6ClgKBWUnfW8emxc8
+         tv6ZMX1Pbet0Mwhf6jvBi3ZsdjIid1h3zjyG3WBdocKFx06PShmW6BkS9Vz9LSpJKrmi
+         frwcIUa3v0HmxHUeAJv9osvRBds+BTx+vBA2VgryxWZydOxH9wAPIPGkYUblemmW16ZF
+         g4Bm3V52qfBNVM7tN4icd8fmk7lmpmHXUzIWs4UOdCTO3mefbSsur5uF33eGXhtRGVYE
+         e41g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728291473; x=1728896273;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=TGBBMU8rFx26oRjbd1HxpI/xco3E3mGApwngB2hx0UA=;
+        b=w8vEIu2nDJ9eEkALdWdbQQW5U3jKDH/hNroyY/4EvdEVAG+hOGRgMciHLJw1kllHmr
+         xkKHMrxnkB7g48vT8djLx74Vplq+4wWn6sk3j1Jouj5Ck+q2/TuBZUmfysq77i7c3uuR
+         X9tR2tieGilKHbQtYexLsgMw2aXUmgN/Oz0aUEsXiAz45OPu2wx+gGpk4nKQ289oYE0m
+         HQicS3Gui5UPrhP1Sos0i5XscQwA+DGZDAy3QPHMOs14gqHGEUwtUM+y31bWauAP7s7q
+         YOB9/T3YTHVo5ikL4Q4T3EVjplOuLDwlRBfki0yhpBaxH5Hjes0PjZxS3OdW+8eb8//F
+         wHhw==
+X-Forwarded-Encrypted: i=1; AJvYcCWKqQ0v0+MW3mE20kd3xf+SsVX3J0aPLhExJyD7x+JIqanLiJtty7shZd4KkNMBJ4K/wdY6MZXzXR1m@vger.kernel.org
+X-Gm-Message-State: AOJu0YwjdgKmSAklAxctykLFFBQcjULr9DO2dyDw4scKJ1aBrn2YdnBU
+	kgCHnxT5Wy1xkSEdKBiqshwteSnibg1OZjzOxPp1SqRcOvz0u1U8W8UHTcANoek=
+X-Google-Smtp-Source: AGHT+IHb6K+lD/kBzplnC0Ubjz9+HYTIZIIEg6E9T40OzxD0plJXKDgFKpCxd+La0sGXCiOa+xkq+g==
+X-Received: by 2002:a05:6000:4008:b0:371:8688:1660 with SMTP id ffacd0b85a97d-37d0e8f730fmr7003939f8f.51.1728291473181;
+        Mon, 07 Oct 2024 01:57:53 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691a55csm5206567f8f.37.2024.10.07.01.57.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 01:57:52 -0700 (PDT)
+Message-ID: <f2db1521-0fc4-4cc7-b195-498e2a900191@linaro.org>
+Date: Mon, 7 Oct 2024 10:57:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: Florix.phytec.de (172.25.0.13) To Berlix.phytec.de
- (172.25.0.12)
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrLIsWRmVeSWpSXmKPExsWyRpKBR9dtIXO6wZYPEhYnri9isri/+DOL
-	xeqW6YwWa/aeY7KYf+Qcq8WVr+/ZLJ7PX8docfLNVRaLl7PusVl0TlzCbnF51xw2i4Uft7JY
-	tHUuY7V4v/MWo8WkeTdZLf7v2cFuMfvdfnaLLW8mslp0v1N3EPbY+20Bi8fOWXfZPWZ3zGT1
-	WLznJZPHplWdbB4nJlxi8rhzbQ+bx7yTgR73u48zefR3t7B6bD5d7fF5k1wATxSXTUpqTmZZ
-	apG+XQJXRs/HR8wF74Uqnu6xaGDcwN/FyMkhIWAi8eXkfRYQW0hgCZPEjb2RXYxcQPYjRon2
-	J0+ZQRJsAuoSdzZ8YwWxRQT8JG592ccOUsQssIlZ4vPr3WAJYYEQicU/TgHZHBwsAioSJ7ea
-	goR5BSwlTnU8ZYJYJi8x89J3dhCbU8BKYvr9KcwQiy0lvp/dxgRRLyhxcuYTsIOYgeqbt85m
-	hrAlJA6+eAFVLy/x4tJyFpiZ0869ZoawQyWObFrNNIFRaBaSUbOQjJqFZNQCRuZVjEK5mcnZ
-	qUWZ2XoFGZUlqcl6KambGEFRLMLAtYOxb47HIUYmDsZDjBIczEoivBFrGNOFeFMSK6tSi/Lj
-	i0pzUosPMUpzsCiJ867uCE4VEkhPLEnNTk0tSC2CyTJxcEo1MPpX2C/cvDGoW2fW6vqsb1Wa
-	905P3fPIr6u8++6Cyp99PCFSb90+fRA+tPuF0PrvU6t//l0TnFrI85V3vmX2i42vXr9ffu7n
-	wm1tqbNKi7SYTHUdJ+5ee8HKcMsV7a0bHJ38lzxJVoiR7q+z7bj74oVHk2HLzovecxe7c86Q
-	O/pprulZk8aDQtuVWIozEg21mIuKEwFdqLjL0AIAAA==
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: mmc: document mmc-slot
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-0-5aa8bdfe01af@linaro.org>
+ <20240920-topic-amlogic-arm32-upstream-bindings-fixes-convert-meson-mx-sdio-v2-2-5aa8bdfe01af@linaro.org>
+ <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <5o2q5kmchnr3e4opmtp2xq3xqlzkq2hudecd5fszamoav4twhb@o3kcftkoxwzg>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Introduce a bus-width property to define the number of parallel RGB
-input pins connected to the transmitter. The input bus formats are updated
-accordingly. If the property is not specified, default to 24-bit bus-width.
+Hi,
 
-Signed-off-by: Wadim Egorov <w.egorov@phytec.de>
----
-v2:
-  - Use bus-width instead of data-lines as suggested by Krzysztof
-  - Handle default case separately as an error case
----
- drivers/gpu/drm/bridge/sii902x.c | 28 +++++++++++++++++++++++++++-
- 1 file changed, 27 insertions(+), 1 deletion(-)
+On 24/09/2024 11:15, Krzysztof Kozlowski wrote:
+> On Fri, Sep 20, 2024 at 10:38:04AM +0200, Neil Armstrong wrote:
+>> Document the mmc-slot, which is a subnode of a multi-slot
+>> MMC controlle, each slot is represented as a full MMC controller,
+> 
+> typo: controller
+> 
+>> the top node handling all the shared resources and slot mux.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../devicetree/bindings/mmc/mmc-slot.yaml          | 40 ++++++++++++++++++++++
+>>   1 file changed, 40 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mmc/mmc-slot.yaml b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+>> new file mode 100644
+>> index 000000000000..c30eda4fd2a6
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mmc/mmc-slot.yaml
+>> @@ -0,0 +1,40 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mmc/mmc-slot.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MMC/SD/SDIO slot of a multi-slot controller
+>> +
+>> +maintainers:
+>> +  - Ulf Hansson <ulf.hansson@linaro.org>
+>> +
+> 
+> description here saying what is the MMC slot, e.g. what you wrote in
+> commit msg.
 
-diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-index 7f91b0db161e..3b9e4e1dec45 100644
---- a/drivers/gpu/drm/bridge/sii902x.c
-+++ b/drivers/gpu/drm/bridge/sii902x.c
-@@ -180,6 +180,8 @@ struct sii902x {
- 	struct gpio_desc *reset_gpio;
- 	struct i2c_mux_core *i2cmux;
- 	bool sink_is_hdmi;
-+	u32 bus_width;
-+
- 	/*
- 	 * Mutex protects audio and video functions from interfering
- 	 * each other, by keeping their i2c command sequences atomic.
-@@ -477,6 +479,8 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
- 						     u32 output_fmt,
- 						     unsigned int *num_input_fmts)
- {
-+
-+	struct sii902x *sii902x = bridge_to_sii902x(bridge);
- 	u32 *input_fmts;
- 
- 	*num_input_fmts = 0;
-@@ -485,7 +489,20 @@ static u32 *sii902x_bridge_atomic_get_input_bus_fmts(struct drm_bridge *bridge,
- 	if (!input_fmts)
- 		return NULL;
- 
--	input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+	switch (sii902x->bus_width) {
-+	case 16:
-+		input_fmts[0] = MEDIA_BUS_FMT_RGB565_1X16;
-+		break;
-+	case 18:
-+		input_fmts[0] = MEDIA_BUS_FMT_RGB666_1X18;
-+		break;
-+	case 24:
-+		input_fmts[0] = MEDIA_BUS_FMT_RGB888_1X24;
-+		break;
-+	default:
-+		return NULL;
-+	}
-+
- 	*num_input_fmts = 1;
- 
- 	return input_fmts;
-@@ -1167,6 +1184,15 @@ static int sii902x_probe(struct i2c_client *client)
- 		return PTR_ERR(sii902x->reset_gpio);
- 	}
- 
-+	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);
-+	if (endpoint) {
-+		ret = of_property_read_u32(endpoint, "bus-width", &sii902x->bus_width);
-+		if (ret) {
-+			dev_dbg(dev, "Could not get bus-width, defaulting to 24-bit bus-width\n");
-+			sii902x->bus_width = 24;
-+		}
-+	}
-+
- 	endpoint = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);
- 	if (endpoint) {
- 		struct device_node *remote = of_graph_get_remote_port_parent(endpoint);
--- 
-2.34.1
+Right will fix the description, bad copy paste
+
+> 
+>> +allOf:
+>> +  - $ref: mmc-controller.yaml
+>> +
+> 
+> Just to be sure - the slots do not have dedicated resources like clocks,
+> resets, power supplies, right? IOW, it is indeed one device which
+> exposes multiple controllers?
+
+Yes exact, resources are common to the slots
+
+> 
+>> +properties:
+>> +  compatible:
+>> +    const: mmc-slot
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
