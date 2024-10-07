@@ -1,110 +1,106 @@
-Return-Path: <devicetree+bounces-108568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFB4D992FA5
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:43:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A33C9992FA9
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:43:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F21401C22E3D
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:43:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64737285E87
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:43:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C072E1D47AC;
-	Mon,  7 Oct 2024 14:43:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898921D5CD1;
+	Mon,  7 Oct 2024 14:43:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QPB8vjqe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PBZtBemW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 232B11D5ADE;
-	Mon,  7 Oct 2024 14:43:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59EC3F50F;
+	Mon,  7 Oct 2024 14:43:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728312184; cv=none; b=mj4fyQcbN83WhAWM9COCVAidvccz7oK4s1sIDGPF8DnWUq1sZybLUaEriBWB0LPRLNrjR9A9aQsbmxI4iBayDd2NT7S+QI7VCZIgKMEgg4AwEG18VSHmsZ4mrGhc3gZruhM+KmlmF9lh4FvPBi9yZHZZKpNjtQJQ3szc+Qf85Lk=
+	t=1728312190; cv=none; b=GBNm9yZgcWTTfxE+MDB6zGgalZjVZCb7tIKGQpAR/zVRWHSBLOoPZgK/xNu/LpEH8viKy/InJMxPfQOl0om4Cxo/vy8UOByPCmrmChnl/E2+tA7G3BYnX7p6skLLb9ZYqOnL8wqMHfequzGowYJ7V3/9fWebPIXg0YBqJYBvcGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728312184; c=relaxed/simple;
-	bh=a/IJHLJ+hchV/llL//h9WaQEnM9IRTMP078FELUxRZI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Y8nZdf3zWiKAvGp701ehgtxZv58VfOHdMAGykeJIoubPVJHx9EsEmdCGY8l4iFFrLcxkWNqE3cdQ/+pGRlHEr8d6UfhYUp0skYw7LcF5mzfUF9JuEhshkV6rZENu9zbcnru7kO/1Vn2oy0aUSDBE7WrEh2Ts9w/r61lVqVzqjnU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QPB8vjqe; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a995ec65c35so114830866b.1;
-        Mon, 07 Oct 2024 07:43:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728312181; x=1728916981; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tUKAf7JLnIEU+UjWXwhqjGWzJ4eBeyCwQGJ+qRQW9mU=;
-        b=QPB8vjqetFIikelHwVy+Dt1DqmIFrjzYKGNyWyNC81fxQ7eUOEdBiHeNu6XO3lbj2E
-         z02vcubXpDVoYggzJmyRnRx9R5CqK39Z2tIuk5VUm/okXgOlSdKIeDfNWNijnasnjWYO
-         YY6tQ7shsV2CbQSpxXHRG8zWrt/ZltvAkLeErR9x2zcD2dK/r+LDbtTqVvAYSAD4Rkyl
-         TvAA81Y1MkTDf5o/KJlGomedwgyJUJsfbJ7dkHIvKoHnQO+A6/YF7bnvMBEepqKeZc+q
-         0HPHzTDZomduyOl1bNe1c3aUvbOw7y6XBfMScDo9kA5OxajLo7yq+5cg+pV+LQTLotkr
-         XK5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728312181; x=1728916981;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tUKAf7JLnIEU+UjWXwhqjGWzJ4eBeyCwQGJ+qRQW9mU=;
-        b=WiE1iQNQpcRailXzN88GggorOJsKz4uI3FpsUh6iY99SpEtlrKt0F5iF/P+cBsVsSI
-         zi0WJKhmWiP+fKJ6o+MJ/e6qh7b7fAJVm+S0CsNAz+2WvGZiMEV+m+j5wi5th2hdeWGT
-         OY0PV+nEZh9VsK2C435Ha/g+7KKEdB/csTpNQIfSJHyurUzVlORCb4seFFdtOL9qIl/p
-         38wI91rCKTIoZm57EaXZ1a24YxXdhr3VxUYkizKcDl6h+CA9s9UOxNvdiLQnrUNct7cq
-         z1sl7zKmpXDodlYlVvaibrLR6JhrTh6UU2LQ5Nrb2Y0RzP8V3WIzwEGYNnM4zYtcPbEy
-         Tg9A==
-X-Forwarded-Encrypted: i=1; AJvYcCU5qNXuz4HVjuBBYcW+VZGXbIe3pti+kfcJemM+1JZhnAw93MnI1Z4EDZKvlko0Bs+9+XNIlrue8Z58WnK4PQ==@vger.kernel.org, AJvYcCVNy+iobGoDQkC5m1UJNLQry0h0vV/rf4DyBWXOfgYtj/UHwdDr4wSlX7nGaOYicI79TjICcvxxHmaW@vger.kernel.org, AJvYcCWLHDP9xty6aOheNtqjKXzjxOepqjQ7g09oAG2LT8kw1zvFL6yJ5r7CmUoSVxFwW3+f2I5JPI97F3HANDSG@vger.kernel.org
-X-Gm-Message-State: AOJu0YwOhgS5aoySH7x3rFBksvL0njy0Kx2Gh0mNWYdiSl78sSe5E1ZO
-	8NO5UKASP21JzbpTWkADas1k+E9vHmhfW6r3XMP9duYXAwrd5mCc/xQskd/J7J+/T6No5S4giBf
-	mSUjr3FFKX5/I0t7ZSWwsnj2wMGpw
-X-Google-Smtp-Source: AGHT+IED9irAlpfFRDYJ81a270PHC1nGll9+NQaqxWW9EV/wDBQUDL+M6E6/1ekYFVVwvgURR6U/+XurcSNL/ndUiZ0=
-X-Received: by 2002:a17:907:86a2:b0:a99:52c3:e5f8 with SMTP id
- a640c23a62f3a-a9952c42ee4mr496058666b.11.1728312181184; Mon, 07 Oct 2024
- 07:43:01 -0700 (PDT)
+	s=arc-20240116; t=1728312190; c=relaxed/simple;
+	bh=eJcPBzPOo94qozRNulmiiqa57Jsp9yA4mklXXVuzvDs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jm4GAqqjIQjlz91+A4ZlTbyMlaTkmPDnbZEvdt/L+nFUFZUL3w+bgKLoX9n9Onc56lKa2zr7XtzIMk2JbjMHKeB7QPx4hpjU8oqvtJuuURsZ64tsSrHGaseFlK+Cv6YqC4E+cxJp1h3pCwjJh43DWEK3BGyO2shDB2U4JT/yC2w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PBZtBemW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62370C4CEC6;
+	Mon,  7 Oct 2024 14:43:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728312189;
+	bh=eJcPBzPOo94qozRNulmiiqa57Jsp9yA4mklXXVuzvDs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=PBZtBemW8bI3a2O7I1dI0KMmYVCAWWCsfhu+4bUsvyu5eYvrD48xVPnlFxcy8O0xs
+	 w5OELJCHnrwwkH20SIQWayKuIa9659om4Gj9HQC/zwipdvU5PeRfqKtRCccrWBImiY
+	 EwKZEXEU+XQfALxq9i3ijAsLx4LNvGVm/hoCwgNQi0NtBpxCUrdIQZYf617PtbowXW
+	 8ZnJ+hgyGAN7yukpbDfdubQ1q759MIRYUXQpGZPWpyOiYQRhxEJgN47K53LWoz30T5
+	 CCp9UAE4l2CDP0EJ6CddgVtHM4jG+iBwESd4FH75I0WFga7vqIEvqK/0Z5Yn/t78o/
+	 kbS7CBY1DWBDA==
+Date: Mon, 7 Oct 2024 15:42:50 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org
+Subject: Re: [PATCH 3/3] spi: spi-mem: Add Realtek SPI-NAND controller
+Message-ID: <ZwPzav6dFQdXSnjx@finisterre.sirena.org.uk>
+References: <20241006233347.333586-1-chris.packham@alliedtelesis.co.nz>
+ <20241006233347.333586-4-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240908223505.21011-1-jerome.debretagne@gmail.com> <172831116175.468342.4376919481343564567.b4-ty@kernel.org>
-In-Reply-To: <172831116175.468342.4376919481343564567.b4-ty@kernel.org>
-From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
-Date: Mon, 7 Oct 2024 16:42:24 +0200
-Message-ID: <CA+kEDGFUX1Ra=nhbfrJMdO7qG4SbfTQVAX9Gk5_p7jEZKb=8=g@mail.gmail.com>
-Subject: Re: (subset) [PATCH v2 0/5] Microsoft Surface Pro 9 5G support
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Maximilian Luz <luzmaximilian@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="EQSz8Y55RytcW1nf"
+Content-Disposition: inline
+In-Reply-To: <20241006233347.333586-4-chris.packham@alliedtelesis.co.nz>
+X-Cookie: Editing is a rewording activity.
 
-On Mon, 07 Oct 2024 16:26, Bjorn Andersson <andersson@kernel.org> wrote:
->
-> On Mon, 09 Sep 2024 00:35:00 +0200, J=C3=A9r=C3=B4me de Bretagne wrote:
-> > This series brings support for the SC8280XP-based Microsoft Surface
-> > Pro 9 5G.
-> >
->
-> Applied, thanks!
 
-Thanks, Bjorn!
+--EQSz8Y55RytcW1nf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> [1/5] dt-bindings: arm: qcom: Document Microsoft Surface Pro 9 5G
->       commit: e221af165910b8967f7c2788c34826f332f2cc7e
-> [4/5] arm64: dts: qcom: sc8280xp: Add uart18
->       commit: 1e70551123d014b3a1c4b85da54d247243750e7c
-> [5/5] arm64: dts: qcom: sc8280xp: Add Microsoft Surface Pro 9 5G
->       commit: f6231a2eefd430b8b8798911f023891ea51d1d09
->
-> Best regards,
-> --
-> Bjorn Andersson <andersson@kernel.org>
+On Mon, Oct 07, 2024 at 12:33:47PM +1300, Chris Packham wrote:
+
+> +REALTEK SPI-NAND
+> +M:	Chris Pacham <chris.packham@alliedtelesis.co.nz>
+
+Pacham?
+
+> +static int rtl_snand_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+> +{
+> +	return 0;
+> +}
+> +
+
+If the framework doesn't already support this callback being missing we
+should probably make it so.
+
+Otherwise this looks good.
+
+--EQSz8Y55RytcW1nf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcD82oACgkQJNaLcl1U
+h9B8vQf/f+utPoBaQipGj9uZ9LhmVUzoDgoFI2BI9OjypVnf2Dbvytwow5MGzxjw
+UPWx6WsalMR6f2vXz5D/vjXkZfHtRtEZ2kSiihcOVQLuamSDMJBRd4HxZ716ytKv
+MK3KE9efa6zssJDrY31blYzcGOucrLxXHG/2Y6KfDWhnsTFH9yQFmEL8OF55xC5o
+bPVS0FTzrH0Kplrs2tD5g3p48ngm0tPxO9LzuY5SMrx0Z6P0YyxzCx63ZjHgkYMz
+DONDFxLORmYr9DGleHsbVOXY8vtmgLhUJRxWKTx45Ene6VwdEqxyNK44NY4E1p2l
+GElS7IvtAXqDRzAhubNdh8ToPrNqHA==
+=9dFi
+-----END PGP SIGNATURE-----
+
+--EQSz8Y55RytcW1nf--
 
