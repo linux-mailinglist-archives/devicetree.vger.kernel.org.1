@@ -1,230 +1,248 @@
-Return-Path: <devicetree+bounces-108633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B079932EF
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:18:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 797B8993321
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:26:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF8601F21445
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:18:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 999281C228EC
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:26:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B14F41D95AE;
-	Mon,  7 Oct 2024 16:18:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECC391DA2E5;
+	Mon,  7 Oct 2024 16:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DXgvcaJV"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="ygzSG/wY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2061.outbound.protection.outlook.com [40.107.21.61])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56BF1D4152;
-	Mon,  7 Oct 2024 16:18:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728317924; cv=fail; b=EK9MnrbBliHl3qQHU8rJ6/aGraKH48L1EK3Vu6lgza/dK/sFOa37fXVptoxlt0633WTiA+DL1D8FGqmMqWj0/xkCPJ3jXPFAEClwM3lZHnOczIMVtgFMwUTWLL+bRBrZvTgbYRr1Oa3roZoMmCcsPQc6Gi8lRiA7SnSU316+JIU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728317924; c=relaxed/simple;
-	bh=Su7/lpVX5WLPwhGPv3ctAuwWYIn0aT0Nm8tcPmq80uE=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=DMDih6auP9lo7roxJl3FX1i+LRMBo85mnCX1C1aVxc4I7DXi+sG4vZB0n2oJNzqNAYHUHbC7Tr6qyM0HhsWp4hd5T/E7V4yxHlizOSPVLulr0Qo77thROrBfAkvjZLncQPuLRChL+YElODCJC1UfhQkMtdGd+irQ9O9Xx4wQD2E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DXgvcaJV; arc=fail smtp.client-ip=40.107.21.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZVz9D5TO+83DkQJxtuKQ0N+TGonXz0DrtqNtCIzZ8Jq8ht0THwAsvKa+2j49cd8K9nUWu3uZivFeaWGGSnonqP8ykl1XDQXq18hRBQSrOKyOmIhrNq+ba+axMz4Bz+yzciEl60gAee7c4956/gXFezKjy66uQXhLaApHyFGKNA8FufidPtIjMcEQmlNP5NORW7K52F1nJ0kV+3NOrBMjmMkCkc+3QO9M5r7977KSKa0zC0ZsjAyn2ShtZc2ZcjRgWVhI1Jgk/TIpxC+NKtIEGNHgHJb0kooitkNvDsZGlY/UpHRkbjr5R8t3zs9BSDbC/dJajzp2Hr1zotigregzZw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=G1BlkR5H7VbR69PcwYeXfwIXkxTWOPOYmcA6C4j54Eg=;
- b=MK+zQpQVPp58NwYtOC3bdMqqAEBUqnA7i7/AB84HbEsmHuDwCObYX7wFFCv76OCOQ9uA1DTRrtb+EV+S6F7lvl8asLpK2EyEw+9t+wowIyMUyBm2uFq3yQmbt4LHKayib65q6qXWS/Bhfj3uBxzCznPJAPHUECyJgOKNGa8y8+1bmnP5alFqva4Vmh3J5mEm6zVLI8d3UD6qYjlfyxxx6NPRbLoPmWWql6PSjFkd0uNvZyyIEly9a8Qsdw+PY9F+tyU35MVSWi6MesxiM86B+vJWdxNBOpnIh0BkehrjHb7BiEXMezdG7Z8KHpge6zOh+AXw9bOo8KTr2d7bDlOXCA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=G1BlkR5H7VbR69PcwYeXfwIXkxTWOPOYmcA6C4j54Eg=;
- b=DXgvcaJVpOGohyY0B6BqRHKNDzB2Nbg4u+bC+T1rpTHMikhdLsgyrlMvW/fsrgO9t7nhCfvL4q7qbvvx96FqhzpDR7quAVChsSiE7o/KZ7EhZuihEqpsXq4NOm0Oi7qavgEZLPFe956RJYqKoFUgTiNY+P1dgqZBdF5yuroVw6FH/LON1hmwwURngkZgr0nek3sy2vRqamjwrYk5veYu1MW8ns57/3HEMuge8mvUyHz3wO74zWNhhTAAGDsjKzuxpi6UiSRGRQ1YJ7JMh88zH/YySZEeRiNPijOZxTw/+M5QmFHtAFJ4Eg3wByY15IJ2w3tuoV+F7v5J0To8RQkz6Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by VI0PR04MB10254.eurprd04.prod.outlook.com (2603:10a6:800:240::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.20; Mon, 7 Oct
- 2024 16:18:39 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8026.019; Mon, 7 Oct 2024
- 16:18:39 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	linux-kernel@vger.kernel.org (open list:IRQCHIP DRIVERS),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS)
-Cc: imx@lists.linux.dev
-Subject: [PATCH v3 1/1] dt-bindings: interrupt-controller: fsl,ls-extirq: workaround wrong interrupt-map number
-Date: Mon,  7 Oct 2024 12:18:23 -0400
-Message-Id: <20241007161823.811021-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BY3PR10CA0019.namprd10.prod.outlook.com
- (2603:10b6:a03:255::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B3551D2711;
+	Mon,  7 Oct 2024 16:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728318390; cv=none; b=RoPmetevjkDV5ayvnlzYH/njJdx0VZJzR0GuEhJg4fRWAqEzjCBMBkiS8ozAseMol5RjExVYglue1a0Cox6WpGlXdKdVLWl0cph0/F5yooLtvtvDYDB+KwJSaAbnZuuCo3JGvq5o6glU2voNCkEvCd6bIYX1pzVJXTJfFs/6xIg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728318390; c=relaxed/simple;
+	bh=+eKgMrdaPBOYQkRIkAx9UUWLoKcyyWqbe+bmsbTse/E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=STvJExvEecqjBlZNOtCLaJOJSoVrkptUNXce6x7KDbFHm4J7qbqSQmeHubMLS4MtHkBVb+gbZTrQNMG9vcpWV8B7I6/91whrwQ577mvuSV4HK8zQ0ll45krai5EVihub4gSzZlpyoYW7cb5WEP+Cvhs1UohwojUZ9uGKKUpIbZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=ygzSG/wY; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497D1ZBM032450;
+	Mon, 7 Oct 2024 18:25:50 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	LRtzkv5xMyDZ1ZZLcrbVYBvEEe9KziXBz/FhHNmAcJM=; b=ygzSG/wY3z2iznBM
+	/mexUEQ3YUW+I4IlY2806Bbs4giEc1T9HOLXuY3Ww96cTzKinNfKcXo1uql0OkkR
+	a1jtGmhUyQ7vzH1kUb+7n89CnnhlZEDppookgTtf2M9l6+FXgJt+KqpphRDZxHiq
+	lcHTzxiwDySPTEozz3SmP+i2bzgU7YEDzpodtTvgYMGc0Y52EKhxLpLdqTLmjftS
+	CvQgJ3FXIFEP1535dnZYIE/KzXDhh3+bdwXCcsux+bdyU4MS+iv2ErvYMMuBg7qL
+	y1mXfM0pNa+DsexGxChb9boSvflwE5y0VxF7bBqLWKD5UiV5WhURxYfwyqNwqBoe
+	nwapog==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 422xtq1k7j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 18:25:50 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 1066040048;
+	Mon,  7 Oct 2024 18:23:58 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 010AE238C4F;
+	Mon,  7 Oct 2024 18:22:58 +0200 (CEST)
+Received: from [10.48.86.225] (10.48.86.225) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 7 Oct
+ 2024 18:22:56 +0200
+Message-ID: <c425507f-5e78-408e-8a8d-fe02412a76e7@foss.st.com>
+Date: Mon, 7 Oct 2024 18:22:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI0PR04MB10254:EE_
-X-MS-Office365-Filtering-Correlation-Id: b932883a-18fd-4271-56db-08dce6ebb41b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|52116014|1800799024|366016|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?QIppfB6H2wF87lUdUj0sR7azE2YUsxQsilRNChLiqe1/jyRCTsfIiM4XS9PV?=
- =?us-ascii?Q?RrqAlLSvm14gYh0oxQYcsH5XssBlr0wNvn4kjZEvKvirLkOcudwIZEfpL654?=
- =?us-ascii?Q?vg6O6MWHtT1gCWS2g2jSrCt5ZieMWVWJNX97bfLvUIVpEDqPF3I5Uu8B0RNW?=
- =?us-ascii?Q?5/nUNO/0F0MmNI/rnxwFJFkm5S6BT77jRm5ZZE5SeUFyz6tTZ1NL4aOU+7Pr?=
- =?us-ascii?Q?UbcrqQvumlpUdm0ggxcWZsgT1L7n7sDOAlLaTafbMWzUj2b8a/5GIxOIBNE2?=
- =?us-ascii?Q?dwgptJ78OWctofTN57YpkVBRxTtGwWozXWkGt5tthc1h14auapyPgFUrqnsj?=
- =?us-ascii?Q?9Pu81JG22E9sRTlMqoz1msBzgTUP4EtG2OTVpna044Fqexh3ZQiMuLpQrdiB?=
- =?us-ascii?Q?b6f/TpD6soilAYlm676/YiynbVmiVcq+huwlcVLVhd/w56sampThibNTVQi3?=
- =?us-ascii?Q?sc1bxASn6K7f/gV63qDCKFf/A0Ms/CuxFB3NYtkixImpAvEQa5CvJzW5COCn?=
- =?us-ascii?Q?Bf6pYzzBXJbxfpP3PY+WmlGZ2NtK8cYmq3t1tTxIXYiMhwmnUk5qj0k0WJ01?=
- =?us-ascii?Q?6UQUhK9Sj1TQk/gFaaXW1rtb9V+F5b3aPJkGSepY7yDcjwieG06lcoYQFotS?=
- =?us-ascii?Q?yKHhNzzmldaeQr5lwNr3HcLMaz7blO0XAc20ptCJ9pBDdbIzUwqBKffEDD7X?=
- =?us-ascii?Q?4+eZb/fLzVnLWTrCcnp8VGKArgT0uDkum8xi/sRPYrGn7KyBXykNlQzh99UZ?=
- =?us-ascii?Q?CnO2As/WYnBHz+GNAM7cMQ7nYsfAoRZpH0HBMl8JZjvUXDlWZKC7PdratJX3?=
- =?us-ascii?Q?fvmWCBM8hqt7toGMhr26IyKvTfCQMzSCwACP7GtW9kxExASIk5Vans0tNo0I?=
- =?us-ascii?Q?xUrfBJ+N5hoSJ5aHD3JxrXMlmyTH6d28aP2eziz7da/RHO/bazM8HUZUDvOv?=
- =?us-ascii?Q?ASJmjtnFlc0Nt+EhnnBh8eR5I5cQin8hryrxrfFSiZST3VWwYvofZ9A/tO9l?=
- =?us-ascii?Q?C6ysEsCe6Wagh6itgk0K5lbMYH6E1w4BEJMgLbVZJhWiFQB5g181O4a7KpQn?=
- =?us-ascii?Q?hljwxwohQVS2/jTKFb/kg4kBXW/zZZO8spwajT9qezcI3RPBqdxJq1V6Hh8Y?=
- =?us-ascii?Q?iUeQ48R4+hmF9BC1wvYExWa7YnwBEBunOchlHsLBUML2gyX9GYs9hEjWsQsY?=
- =?us-ascii?Q?oG2Clj1Cfqtc7AHFdmQ1/zkICxg5VZcqfkpmAVy1oiTNHkpE8zBg8EZz0jPV?=
- =?us-ascii?Q?WHE54/nLb4u3GiP3VBPRNPd0vnp3vDzg2rKSgqHIUXVaEz8av7WYDp6+GIWA?=
- =?us-ascii?Q?fWjs7YTzfFpu8f1SXd28txq+PYfrCQ3xbFD/f8l0WG0Mjw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?639X42lGv9iNwaMh2z6k6xIW5RP+Jl+ulFZSjD+V9N1ocQeDO5/SfI7dO3BP?=
- =?us-ascii?Q?yyRjRCw2oC1XZ6WVURFFVCa/5ROC6cGUyfJ3mHL6Kne9aU7Q37qOYEs5G/3J?=
- =?us-ascii?Q?MZwH0X0TXKpx6f7fWotaF1NBEpAXdQN4MyLhxgPoDoc27B6PywfhhL2jKI29?=
- =?us-ascii?Q?Hz6Nae1CIowm2k+wSlVLDSHaSmnfH4vipgWUqchfle03lzI3Y6VYVjn9J9B8?=
- =?us-ascii?Q?Ysj1Jm/XvetCllxMxTCXU7O8BUltSaBl2cIwi/2xl10bzxabRuKkkMTjwCmq?=
- =?us-ascii?Q?nAKl2SOmgLbHeB1Ko8DXeVHtwco90tfLApJ0XaFZ/Wl8A8EvkdHP5QUoxe3l?=
- =?us-ascii?Q?HUCBJKCm0weGmx7NCdj1Y5xwwayeEwzPGTINbzVCSpgC0+N3Ee52Z1fjxq7H?=
- =?us-ascii?Q?6bCc4cge4vuaHUbQu/VoPzDVJN0m5GtMjHjFZYYOl+/q4zoHdStQWlUd3uah?=
- =?us-ascii?Q?Hm+qBY+6CmfMRy9hLFk5HPRGcU9FsZ73wTou910Hl1qcfDbghiLOEWFHBdZQ?=
- =?us-ascii?Q?S7h1eWJE23SvWxW2Cc34d46QRZrsix0O0PP7QFSyIRjfQh0Wlag5f5HTV27y?=
- =?us-ascii?Q?vVKW1Gwpdbot8N6L6JL2TfmHagqi0EcX0QQBGFBY2zAw2koleIFKpdwQYMqd?=
- =?us-ascii?Q?AzlcbfREIfYh7tstgODV+4abWLj65sSAC2dCFbAVDrkZ+FVKIQihky+xb67Y?=
- =?us-ascii?Q?h/6dJ4O6OFCKDDkreUeeIyGh+8U1Oz7AJBmrVM6pTEWSsmyVJiKBhID7MshU?=
- =?us-ascii?Q?c4HJzYh5Q0uTSJkrV7q07p26tb7G/QHq81bPNEeBht4nNr+Om1xetp37ECSL?=
- =?us-ascii?Q?l2ty5f6QWf5aw//7VRIH31REPKOuwx1AS/v6ACJPNVxgvLobxT1m01Xk6P+Y?=
- =?us-ascii?Q?UiP3RpWBBQ76GUq0hFYdyMrqIMI6Cd+Dp6t0WoS3atXKbR2k7xGJC67IoG9e?=
- =?us-ascii?Q?OtIg4Pkathz/BrG+REPzS9vAF1PBtFHOWN0f9YyGFIJCzAOG9/QCcr/xW/UB?=
- =?us-ascii?Q?6f4FlVURUEDoSMgnLKpqJZa175yBW4dz7O3zhoNuo8spRxCMfXkzKvtsATl+?=
- =?us-ascii?Q?QzAtzx9Dh0mKMlSImTDcxN4hXHNx9mw/kkdHxcVumocJh/4yzrXbFcsNNyNm?=
- =?us-ascii?Q?bIvzVpSDhYh8+xpTJXBKqchQRXeXLfyqRiT+DA9CTTHV2DM4q9suQVQ8lKlj?=
- =?us-ascii?Q?qg3t+SMWZViGNvRrecUNGsLE2KqIRr60iSJiRfp7fqlRIiSu0rK7HDKPxYat?=
- =?us-ascii?Q?5S5R7pucZrsUO3Sffdyz+k+9hp3AnyymG0A5Xtt60Nc4HyKMSybPrqxMlyqx?=
- =?us-ascii?Q?hxmOOsQjcwCKOT4/0CwhmBnTVRl4IEPeQ97RBq0GcgUiU1/XKQ5djrraZbk8?=
- =?us-ascii?Q?EJ3RBIkUSd406k9lf1jTXPhWntvyJM/4RyxkPzIcTXrVzLAEcw+sseYAV5n7?=
- =?us-ascii?Q?+s3/WFgZk8lB5Gw5nnQYzpmSfzbCcyBA9qgaugqgIxErOj5jQo3M1jRzMFGB?=
- =?us-ascii?Q?Lb36W1dFf7wmzVC6I10asXKxsKBL0Dnv/zBK0sKslKrNDcUyqVmhDzcmteHK?=
- =?us-ascii?Q?SFd/fcA2IsV03dEcU2U=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b932883a-18fd-4271-56db-08dce6ebb41b
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2024 16:18:39.4715
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a9PCrTs8yLp2T7ZcYb6H00KrXM9aVSw/JV7AEjXBbsHy8+tvqwcfN9v4w/zjTjPlV8FcKvqUgujmE4jFrsN8QQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI0PR04MB10254
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/4] dt-bindings: rng: add st,stm32mp25-rng support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Olivia Mackall
+	<olivia@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Marek Vasut <marex@denx.de>
+CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lionel
+ Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Yang
+ Yingliang <yangyingliang@huawei.com>
+References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
+ <20241007132721.168428-2-gatien.chevallier@foss.st.com>
+ <ec3cda71-57d0-4ec1-b9d8-62381667f7d6@linaro.org>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <ec3cda71-57d0-4ec1-b9d8-62381667f7d6@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
-function to parser interrupt-map. So it doesn't consider '#address-size'
-in parent interrupt controller, such as GIC.
 
-When dt-binding verify interrupt-map, item data matrix is spitted at
-incorrect position. So cause below warning:
 
-arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb: interrupt-controller@14:
-interrupt-map: [[0, 0, 1, 0, 0, 4, 1, 0], [1, 0, 1, 4, 2, 0, 1, 0], ...
-is too short
+On 10/7/24 17:00, Krzysztof Kozlowski wrote:
+> On 07/10/2024 15:27, Gatien Chevallier wrote:
+>> Add RNG STM32MP25x platforms compatible. Update the clock
+>> properties management to support all versions.
+>>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> 
+> You CC-ed an address, which suggests you do not work on mainline kernel
+> or you do not use get_maintainers.pl/b4/patman. Regardless of the
+> reason, process needs improvement: please CC correct address.
+> 
 
-Remove interrupt-map restriction to workaround this warning for
-'fsl,ls1088a-extirq', 'fsl,ls2080a-extirq' and fsl,lx2160a-extirq.
-Other keep the same restriction.
+Hi,
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
-Change from v2 to v3
-- remove interrupt-map restriction according rob's suggestion.
-Change from v1 to v2
-- remove duplicate function in commit message
-- only reduce miniItems for after 1088a chips
-- maxItems change to 9. Otherwise report too long.
----
- .../interrupt-controller/fsl,ls-extirq.yaml   | 26 ++++++++++++++++---
- 1 file changed, 23 insertions(+), 3 deletions(-)
+I'm using get_maintainers.pl so I'll check why I have an issue.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
-index 199b34fdbefc4..7ff4efc4758ab 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,ls-extirq.yaml
-@@ -82,9 +82,6 @@ allOf:
-             enum:
-               - fsl,ls1043a-extirq
-               - fsl,ls1046a-extirq
--              - fsl,ls1088a-extirq
--              - fsl,ls2080a-extirq
--              - fsl,lx2160a-extirq
-     then:
-       properties:
-         interrupt-map:
-@@ -95,6 +92,29 @@ allOf:
-             - const: 0xf
-             - const: 0
- 
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,ls1088a-extirq
-+              - fsl,ls2080a-extirq
-+              - fsl,lx2160a-extirq
-+# The driver(drivers/irqchip/irq-ls-extirq.c) have not use standard DT
-+# function to parser interrupt-map. So it doesn't consider '#address-size'
-+# in parent interrupt controller, such as GIC.
-+#
-+# When dt-binding verify interrupt-map, item data matrix is spitted at
-+# incorrect position. Remove interrupt-map restriction because it always
-+# wrong.
-+
-+    then:
-+      properties:
-+        interrupt-map-mask:
-+          items:
-+            - const: 0xf
-+            - const: 0
-+
- additionalProperties: false
- 
- examples:
--- 
-2.34.1
+>> ---
+>>   .../devicetree/bindings/rng/st,stm32-rng.yaml | 41 +++++++++++++++++--
+>>   1 file changed, 38 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>> index 340d01d481d1..c92ce92b6ac9 100644
+>> --- a/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>> +++ b/Documentation/devicetree/bindings/rng/st,stm32-rng.yaml
+>> @@ -18,12 +18,19 @@ properties:
+>>       enum:
+>>         - st,stm32-rng
+>>         - st,stm32mp13-rng
+>> +      - st,stm32mp25-rng
+>>   
+>>     reg:
+>>       maxItems: 1
+>>   
+>>     clocks:
+>> -    maxItems: 1
+>> +    minItems: 1
+>> +    maxItems: 2
+>> +
+>> +  clock-names:
+> 
+> Missing minItems
+> 
 
+Ok, will add in V2
+
+>> +    items:
+>> +      - const: rng_clk
+>> +      - const: rng_hclk
+> 
+> Drop _clk and come with some reasonable names, e.g. "core" and "bus"?
+> 
+
+Sure, makes sense. Will change in V2.
+
+>>   
+>>     resets:
+>>       maxItems: 1
+>> @@ -57,15 +64,43 @@ allOf:
+>>         properties:
+>>           st,rng-lock-conf: false
+>>   
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - st,stm32mp25-rng
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          description: >
+>> +            RNG bus clock must be named "rng_hclk". The RNG kernel clock
+>> +            must be named "rng_clk".
+> 
+> Drop description, useless.
+> 
+> Missing minItems
+> 
+
+Ok, will update in V2
+
+>> +          maxItems: 2
+>> +      required:
+>> +        - clock-names
+>> +    else:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 1
+> 
+> Missing constrain for clock-names.
+> 
+>> +
+>>   additionalProperties: false
+>>   
+>>   examples:
+>>     - |
+>> -    #include <dt-bindings/clock/stm32mp1-clks.h>
+> 
+> Why?
+> 
+>>       rng@54003000 {
+>>         compatible = "st,stm32-rng";
+>>         reg = <0x54003000 0x400>;
+>> -      clocks = <&rcc RNG1_K>;
+>> +      clocks = <&rcc 124>;
+> 
+> Why?
+> 
+> 
+
+I have an issue with the generated st,stm32-rng.example.dts example.
+Because there are 2 binding files included, I have a collision with
+clock bindings names between the "dt-bindings/clock/stm32mp1-clks.h"
+and the "dt-bindings/clock/st,stm32mp25-rcc.h" files. For example:
+CK_MCO1 or CK_SCMI_HSE. I replaced the bindings with numbers
+to avoid this conflict.
+
+If you think this binding update does not need the addition of an
+example, I'll completely drop it and we won't have the issue.
+
+Best regards,
+Gatien
+
+>>       };
+>>   
+>> +  - |
+>> +    rng: rng@42020000 {
+>> +      compatible = "st,stm32mp25-rng";
+>> +      reg = <0x42020000 0x400>;
+>> +      clocks = <&clk_rcbsec>, <&rcc 110>;
+>> +      clock-names = "rng_clk", "rng_hclk";
+>> +      resets = <&rcc 97>;
+>> +      access-controllers = <&rifsc 92>;
+> 
+> 
+> Difference in one property should not need new example, usually.
+> 
+> Best regards,
+> Krzysztof
+> 
 
