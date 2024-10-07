@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-108315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84FD0992543
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52815992551
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:03:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B71F81C221ED
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:00:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEF8B1F22C69
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 07:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B307717622F;
-	Mon,  7 Oct 2024 07:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5652139CF2;
+	Mon,  7 Oct 2024 07:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="am2GE/Gr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gctuq3im"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88440139CF2;
-	Mon,  7 Oct 2024 07:00:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABFB86FC5;
+	Mon,  7 Oct 2024 07:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728284432; cv=none; b=B895RbTWHwi7TtOsUCfFnQRKaJGXuam+43X+PJ2Wc3fvfvk0yjPI8XaEcioTiagSwFj+bdHmuwo3m/9JTdLQ/Otdm7vlBGwz/a3Frw8x8gxk647ZoTCQMPu87gxophAGhMKxRBr/QGjJ9oz14yr0eGl1KViPIModJvRSvmxZg6Q=
+	t=1728284613; cv=none; b=eChL5+xfBgD2RLptFVCl4WEN3GJOqtu2kTAt6sBdxLvq1axdLaep0u1HYVAzPNqy3pPkfwAxH5Nj0YUFleN4tChCIc3JUkOL+R/623Tsp4z/2HrGM2ZAwXY8QbsFI8CXpk41FTckmvWnWsrQYsGig51+AgH5JTJQM13WnV+VdgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728284432; c=relaxed/simple;
-	bh=bYVNL3ibXGxTuYA25i2O1TiLm8V1skVl4K/zOebL+ts=;
+	s=arc-20240116; t=1728284613; c=relaxed/simple;
+	bh=yin3X0p6KndC3LjC8KR6JekjL9QgLk0AL3Q16Hmhr0s=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SU25Y+4yX2gAMZi3A8cuscao7inEW3B66xZA0eyq4FZF5d629Z7379fbhknaH+R6dTsg111B2pEwOzO5fv5gRRn/SAvsqR7+qxIuzTq2eVqu2rzEg+YSNVSZ7GJNCzP6+JzbnawdQ+tIpnCMfbTiAnjPG/tgM8b/KQsGFiz058A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=am2GE/Gr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 92211C4CEC6;
-	Mon,  7 Oct 2024 07:00:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=gDYGz8a7SjLZCeXiYyLELDaEVR+2zo4p1fky2+Q3jmDDzVE/cCVUvbVVaMKflm+gi838YRwLVGRGIckakXZD0bBwvSj8gSzqVcDhz96woh/tIipLzdjkCSeI90dvoriugXJTTnfl8HKcmXqqJl93s5fVSfUpRUdW4uI/pHK/Dh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gctuq3im; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9431CC4CEC6;
+	Mon,  7 Oct 2024 07:03:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728284431;
-	bh=bYVNL3ibXGxTuYA25i2O1TiLm8V1skVl4K/zOebL+ts=;
+	s=k20201202; t=1728284613;
+	bh=yin3X0p6KndC3LjC8KR6JekjL9QgLk0AL3Q16Hmhr0s=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=am2GE/GrdIZVMeyS3KOsxh8zxU24TO1YommDiAZPTi0V/YRZLzqqdFTg21dpDjW4x
-	 7DPXnvihFlx7dW62u2M8Sh6926JtaTK6dOMBQd3xOQxUT2IoAgwWTVLX2tYVqCXkSX
-	 Upg9shPPYsQIgXjx7BpWnE2DbyBVi/uea/31EijhD6QNNYcQpvxm9cCS/qb7DCD0Ve
-	 zaIh4/22XFbHWiAgx2x+5XP9TcIwI10zqv+Yi8x2ri0kOF5tK2yMw3OlaccArVwFiO
-	 8f3Kq7FP2QKo1kbG9qbB27meO6nyiWgeRdIcv40vC35sgcJZDJpC+mySZQtKgvufIJ
-	 8aZc5M6bV47ag==
-Message-ID: <e1e2c852-ff59-4450-9236-d954d7dc86f3@kernel.org>
-Date: Mon, 7 Oct 2024 09:00:21 +0200
+	b=Gctuq3imdLEkUCABrzaDk0vdQmJ1kVqVZJeKRSLm+/vyliBjAVZ8Tkt/PrJFGj3An
+	 VNrSc7VqNO1HJ4hs08VqZcHQN5B1BqUOuMD6++1tRcK3si0SAotr3IGlzsXIVpuWim
+	 QMP1W0q3pTHwa/DWFQd2+d28iNlL5hubUt7HQe2DCi0wvj4RJKLGVXoPxOLzgufPQx
+	 F9WQk2HOczkl+dOFCznoOA6oIGS5PE6UdO75mZfHYg2tXX/47Pl0tZm198AA0YqBNK
+	 QaRDAqBYXlyrvE3+Moc4dLFEbhaPrYT046DoGkvtUC3UMoBYGkaWTZTLA64WLMJNxK
+	 exvn6AOm+906Q==
+Message-ID: <e1aaf325-2bdc-4b3b-a955-35a313b44255@kernel.org>
+Date: Mon, 7 Oct 2024 09:03:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 11/12] dt-bindings: pci: rockchip,rk3399-pcie-ep: Add
- ep-gpios property
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-12-dlemoal@kernel.org>
- <o42ki5dwipmldcpnthpfoaltpmu7ffheq627ersrvjj73xkm6x@vkqjomiznstg>
- <179ed297-1d06-480d-8095-7212cbde2ab1@kernel.org>
- <64421c0c-1d48-421d-8841-859695b5046d@kernel.org>
- <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
+Subject: Re: [PATCH v4 2/2] dt-bindings: mtd: davinci: convert to yaml
+To: Marcus Folkesson <marcus.folkesson@gmail.com>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20241006-ondie-v4-0-ff9b9fd9a81d@gmail.com>
+ <20241006-ondie-v4-2-ff9b9fd9a81d@gmail.com>
+ <deeflg5wd756tkfr6zdta4imuc7ijwl56yclfwiqexlqdq6jsk@5za5g6i7wj6k>
+ <ZwN_2LsLep_mXUgy@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,46 +106,41 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <ec728ac4-ef63-47a2-9058-5c038003418e@kernel.org>
+In-Reply-To: <ZwN_2LsLep_mXUgy@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/10/2024 08:58, Damien Le Moal wrote:
-> On 10/7/24 15:54, Krzysztof Kozlowski wrote:
->> On 07/10/2024 08:50, Damien Le Moal wrote:
->>> On 10/7/24 15:12, Krzysztof Kozlowski wrote:
->>>> On Mon, Oct 07, 2024 at 01:12:17PM +0900, Damien Le Moal wrote:
->>>>> From: Wilfred Mallawa <wilfred.mallawa@wdc.com>
->>>>>
->>>>> Describe the `ep-gpios` property which is used to map the PERST# input
->>>>> signal for endpoint mode.
->>>>
->>>> Why "ep" for PERST signal? Looks totally unrelated name. There is
->>>> already reset-gpios exactly for PERST, so you are duplicating it. Why?
->>>
->>> Because the host side controller already has the same "ep-gpios" property.
->>>
->>> Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie.yaml
+On 07/10/2024 08:29, Marcus Folkesson wrote:
+> On Mon, Oct 07, 2024 at 08:07:27AM +0200, Krzysztof Kozlowski wrote:
+>> On Sun, Oct 06, 2024 at 03:05:47PM +0200, Marcus Folkesson wrote:
+>>> +  ti,davinci-nand-use-bbt:
+>>> +    type: boolean
+>>> +    description:
+>>> +      Use flash based bad block table support. OOB identifier is saved in OOB
+>>> +      area.
+>>> +    deprecated: true
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - ti,davinci-chipselect
+>>> +
+>>> +additionalProperties: true
 >>
->> If host has it, then it is a common property so goes to common schema
->> for these devices.
+>> That's a final device schema, this cannot be true. Why you are doing
+>> this entirely different than all other bindings?
 > 
-> Ah. OK. I will move it to
-> Documentation/devicetree/bindings/pci/rockchip,rk3399-pcie-common.yaml then.
+> From my understanding, additionalProperties is to indicate that the
+> schema could contain properties that were not explicit listed here but
+> inherited from e.g. nand-controller.yaml.
 > 
->>> So naming that property the same allows common code to initialize that gpio in
->>> rockchip_pcie_parse_dt().
->>>
->>> Also, I do not see reset-gpios being defined/used by this driver (host and ep
->>> sides).
->>
->> I am talking about bindings, not driver.
-> 
-> I do not see reset-gpios being defined in the bindings (common, host and ep).
-> resets and reset-names are defined though but these have nothing to do with
-> #PERST control.
+> Obviously that is not the case.
+> Could you please give me some guidance?
 
-Bindings for all PCI devices. See pci-bus-common.yaml
+I suggested - open any other binding. What is there? What was the exact
+error automation reported to you *twice*?
+
+
 
 Best regards,
 Krzysztof
