@@ -1,122 +1,118 @@
-Return-Path: <devicetree+bounces-108384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EAE89927B1
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:59:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5744D9927B5
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:00:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B6610B23CBA
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:59:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0F07E1F23286
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 09:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A5A518BBA1;
-	Mon,  7 Oct 2024 08:59:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1EEBC18C32F;
+	Mon,  7 Oct 2024 09:00:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FY0NUkdW"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b="ckhZh34E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C806418B462
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:59:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4209118C32A
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 09:00:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.26.50.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728291552; cv=none; b=kdG9MwZEFO5j+d4zku3neQaMavnNMwl8Aqopt+NOZARwLZlUl6qymcdIuShUSvQSYVJq545bQYDyDT9Y2kuTua7iCELC/gLqv/MWw9u8tz9JrmxEP+8RSgHHXVD7YhlaF0o0weqdPfxtqxW80PuzsMsAwcWFumKC+wyYdGnJC6w=
+	t=1728291611; cv=none; b=kaZ21B4oIu3o4caCdkm6obD/eFENq2hZyU6mDEMVzOOf3CbZGmcG2QLl2WrX9zUX2X5GSH5r0JO/6lQRwi4vT6lx2/Sxs8ZHYUhyD53xF7JghF47s5MXQhxrnvCD1ljQrFUcYxCxjuwF8mpPxD2mf2xt0WWG6VqxNVhkMQeFspQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728291552; c=relaxed/simple;
-	bh=vhhuZVVwnO9dfXwZL4BPPOq+7WM0qmen7HXYMzh80ho=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=e2zjuy99cELq+f4Oum7NCaI+KUAs0n7FZmrx7tqITHIvFAPerDN1blWe6qHWrRITthnvJvEELGMTEVSiTi8/RNt3sQahYQ/B/CM2uQjwGrp04CDjove9l/tjGMrga8QAuLL2czSnzbzQm1UHa7LQEuCP2HaxUQvcNLz9PcvthX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FY0NUkdW; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5c88e45f467so6794014a12.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 01:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728291549; x=1728896349; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IEo25s673HAsL8MUxp/tEnXdM7P0s/y6pLj2SqPSQGU=;
-        b=FY0NUkdW9VsHnx0Tuzc3AaS01od3tHucAsfABmrWbC1O4tMBInkaTdLyYnckyowz0h
-         trOM1jDSipimBbaNmGqoD983WUMfY2Yp6WF6tNBZ0uHg0mC2UwnJP22cycNVNPmihmep
-         yxswevz8hbyC1+X6ZMjlvxuDWzC39rMRE+qc/Do2m9J+FQFfLEDXPoywO6nirI7Ik4HN
-         eBpSyVLN+rEMj1PF4pgsaW3LMiEKi/j0kbbjxLXXJSw0eJ2v/d0Sma/N4x+GhM5MxriI
-         aoabbrFN/7bJY59qVaPq6o1E9eRbr7mnLaa+UG8i1449OT/ALrRTWaxOJN/Vaye8DsWM
-         GXrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728291549; x=1728896349;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IEo25s673HAsL8MUxp/tEnXdM7P0s/y6pLj2SqPSQGU=;
-        b=D/rW8NJN8Td93soEC7cTn3gdqyfQBZxnNQISCWL+neU3m9VeUWVPPkEA5g5RU3uIoI
-         PDiaAbSi1gmyO3z+YAOunHK1/Wf/mHQwreNaajiPVQnkxQZX5EXixi29GnhqpxvG/Z50
-         KXUKF69IfCLRTlqOwR8RHyS5c6irK0KR55yGQRolPBARYbTMk7K+7mbl9dbtRRkHoX4j
-         IkbzQh3qFrlvXu87Vagg0rJyz+4JqrR3X8cTr/iB4nS3wSgYXIOA8OaRP3hNhmqoBRaX
-         C577ndjL1teaGaUt8LFVSWZ8NyAMvvoW1e4DrtYZhwE9DrRYaVVXaLgptCVcwgo+my76
-         JJcQ==
-X-Gm-Message-State: AOJu0YxQdTgNMor2rFAe1inOBgOsg1F5+Gw/lM63mjbWaveIv9PZgALP
-	bBBahy2zW7k1xy6Xpo3nWzphltgP8cBSBUw1AkECBY5ZPkoIbeXn+sipI+SnXfTHo64Pwkoh8eY
-	Uxii5lg==
-X-Google-Smtp-Source: AGHT+IFU35Uj2Uq4VSqbgLsUfMd1Mq0DfRI0CmQV3Jy3ET9jvkDSaLfTKu2e8F8U7CjKUALIfZjH3Q==
-X-Received: by 2002:a50:cbc7:0:b0:5c8:d9b8:9325 with SMTP id 4fb4d7f45d1cf-5c8d9b89425mr8000657a12.5.1728291549092;
-        Mon, 07 Oct 2024 01:59:09 -0700 (PDT)
-Received: from [192.168.68.111] ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05945c3sm2947257a12.18.2024.10.07.01.59.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 01:59:08 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, 
- Arnd Bergmann <arnd@arndb.de>, Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <cover.1727963347.git.geert+renesas@glider.be>
-References: <cover.1727963347.git.geert+renesas@glider.be>
-Subject: Re: (subset) [PATCH v3 resend 0/7] Add Renesas R-Car Gen4 E-FUSE
- support
-Message-Id: <172829154816.179131.15672013040030058967.b4-ty@linaro.org>
-Date: Mon, 07 Oct 2024 09:59:08 +0100
+	s=arc-20240116; t=1728291611; c=relaxed/simple;
+	bh=7t8za9SU76UnKziAfRSqjBWaKM3Dyv0vsO0xzXUIxn8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Jcbi5w5zwq30dczfHdn9Qbf4IgSTeccT3GROB+d22n1NDUd7X0Kx7SaavNst7KTx3ftrCTkTD3G3v+i29L0hAqW7IKTcU82RhKZvYCLVuBfYzRYfXbLiwYlzzIAIx3s/IAfVl6IPlfgVEYBy6zVv9x0gT+cnI42s1xCHrJPJehU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de; spf=pass smtp.mailfrom=phytec.de; dkim=pass (1024-bit key) header.d=phytec.de header.i=@phytec.de header.b=ckhZh34E; arc=none smtp.client-ip=91.26.50.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=phytec.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=phytec.de
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a4; c=relaxed/simple;
+	q=dns/txt; i=@phytec.de; t=1728291607; x=1730883607;
+	h=From:Sender:Reply-To:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Type:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+	Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=7t8za9SU76UnKziAfRSqjBWaKM3Dyv0vsO0xzXUIxn8=;
+	b=ckhZh34EXdAd/78n4qWqWQyM798deh1BqL67tDWCvReA+eHVKl0TxOrhW+p9cA5W
+	5Nv2ShIxZ3h8eZ3zUK1c/YCT9qhlaCEGl17VDBR6eOBdUC+xo6yTYd4maTkuFhnm
+	1LNCZaq9vRie1aMeTT2N2BML4og3b7cxqWRMIwGoqv4=;
+X-AuditID: ac14000a-4637f70000004e2a-6d-6703a317fe0b
+Received: from berlix.phytec.de (Unknown_Domain [172.25.0.12])
+	(using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(Client did not present a certificate)
+	by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id B5.B0.20010.713A3076; Mon,  7 Oct 2024 11:00:07 +0200 (CEST)
+Received: from [172.25.39.28] (172.25.0.11) by Berlix.phytec.de (172.25.0.12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 7 Oct 2024
+ 11:00:06 +0200
+Message-ID: <92066fdd-9e2f-4132-add0-9c296a119f3b@phytec.de>
+Date: Mon, 7 Oct 2024 11:00:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62a7-phyboard-lyra-rdk: Update
+ ethernet internal delay
+To: Nathan Morrisson <nmorrisson@phytec.com>, <nm@ti.com>, <vigneshr@ti.com>,
+	<kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>
+CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <upstream@lists.phytec.de>
+References: <20241004221049.1155022-1-nmorrisson@phytec.com>
+Content-Language: en-US
+From: Wadim Egorov <w.egorov@phytec.de>
+In-Reply-To: <20241004221049.1155022-1-nmorrisson@phytec.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.12.2
+X-ClientProxiedBy: Berlix.phytec.de (172.25.0.12) To Berlix.phytec.de
+ (172.25.0.12)
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprCIsWRmVeSWpSXmKPExsWyRpKBR1d8MXO6Qf8uLos1e88xWcw/co7V
+	Yvnn2ewWL2fdY7PY9Pgaq8XlXXPYLN78OMtk8aFxM5vF/z072C2636lb/D/7gd2B22PTqk42
+	j81L6j36u1tYPf5cfMfqcfzGdiaPz5vkAtiiuGxSUnMyy1KL9O0SuDIeHnrDXHCIvaL1xDrG
+	BsaVbF2MnBwSAiYS2/YeYOli5OIQEljCJPF8+WZmCOcOo8SXz99YQap4BWwknnx6xgxiswio
+	SKyZNp8NIi4ocXLmExYQW1RAXuL+rRnsILawQJJEz8p7rCCDRASWMko8XrWDCcRhFmhjlHjy
+	8ADYJCGgqQ/vTwabxCwgLnHryXwmEJtNQF3izgaIzZwCthJvW3+yQtRYSCx+c5AdwpaX2P52
+	DtQceYkXl5azQPwjLzHt3GtmCDtUYuuX7UwTGIVnITl2FpJ1s5CMnYVk7AJGllWMQrmZydmp
+	RZnZegUZlSWpyXopqZsYQTEnwsC1g7FvjschRiYOxkOMEhzMSiK8EWsY04V4UxIrq1KL8uOL
+	SnNSiw8xSnOwKInzru4IThUSSE8sSc1OTS1ILYLJMnFwSjUwdhk+/rKTMdo7e9na9tjHm1uq
+	b8zR0lx88pxT3+6Lt6W5a06cTOnUCXZuyeb0+CyWvHjLfpE2519fDj/QiPv/cunnyXbnFzUz
+	3m+Ywm21Pve54Hu3uIKkXY9kdFsD+X8/KfaT67RhXcKVFHSa+fiEKxV+V1bbyKW5pzi2s/Yb
+	37yyMNZmQWiBEktxRqKhFnNRcSIAG8SeaqcCAAA=
 
 
-On Thu, 03 Oct 2024 16:04:24 +0200, Geert Uytterhoeven wrote:
-> 	Hi all,
+
+Am 05.10.24 um 00:10 schrieb Nathan Morrisson:
+> Update the RGMII delay to 2.5ns to improve performance. We use an
+> additional mapper board for the am62a7 phyBOARD Lyra which makes this
+> delay necessary.
 > 
-> (another rc1, so time for a resend)
+> Signed-off-by: Nathan Morrisson <nmorrisson@phytec.com>
+
+Reviewed-by: Wadim Egorov <w.egorov@phytec.de>
+
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts | 4 ++++
+>   1 file changed, 4 insertions(+)
 > 
-> R-Car Gen3/Gen4 SoCs contain fuses indicating hardware support or
-> hardware parameters.  Unfortunately the various SoCs require different
-> mechanisms to read the state of the fuses:
->   - On R-Car Gen3, the fuse monitor registers are in the middle of the
->     Pin Function Controller (PFC) register block,
->   - On R-Car V3U and S4-8, the E-FUSE non-volatile memory is accessible
->     through a separate register block in the PFC,
->   - On R-Car V4H and V4M, the E-FUSE non-volatile memory is accessible
->     through the second register block of OTP_MEM.
-> 
-> [...]
-
-Applied, thanks!
-
-[1/7] dt-bindings: fuse: Move renesas,rcar-{efuse,otp} to nvmem
-      commit: 149e83f1b385661cae3a60cf27271e6ee53ea6e3
-[2/7] nvmem: Add R-Car E-FUSE driver
-      commit: 5ac5933d4e06647b83f6b971b18bc894903a83f2
-
-Best regards,
--- 
-Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts b/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
+> index 3b93409b23e7..77e5fef618ba 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
+> +++ b/arch/arm64/boot/dts/ti/k3-am62a7-phyboard-lyra-rdk.dts
+> @@ -16,3 +16,7 @@ / {
+>   		     "phytec,am62a-phycore-som", "ti,am62a7";
+>   	model = "PHYTEC phyBOARD-Lyra AM62A7";
+>   };
+> +
+> +&cpsw3g_phy3 {
+> +	ti,rx-internal-delay = <DP83867_RGMIIDCTL_2_50_NS>;
+> +};
 
 
