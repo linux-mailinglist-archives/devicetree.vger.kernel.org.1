@@ -1,73 +1,63 @@
-Return-Path: <devicetree+bounces-108642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108646-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42E3D993380
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:37:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B13993395
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:39:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 742481C21043
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:37:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75A8B286B18
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:39:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A7161DC74C;
-	Mon,  7 Oct 2024 16:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169861DC1A6;
+	Mon,  7 Oct 2024 16:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="UK1er1sL"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="OANC80TN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C821DC73A;
-	Mon,  7 Oct 2024 16:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF93E1DB937
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 16:37:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728318973; cv=none; b=Zbi90ZgPiunNXlatFGEtLMwU4xe0lxzCuXEyYhAK5ZuJcgFVbkn5+cyPOX1cBypJZLFXvtYn1Q953koBBGYuN6GLqSIw735aYYMTsRYPNNd/Q20GBIjJotb2o5D/wDHrnuSoUq5v7qB2DwqnTlc/mDSmT0+HSVUk37YAOqF6ha4=
+	t=1728319032; cv=none; b=DmRiTLwjMsrt2kksubwnnu1AU9Kqhr05wOD6qPlG/HMwTkHVtL8uQoUIqztyDpjEKvMN1T+zMRoiiVBW11TxaFDSezE0Z8y0cnwIura4z3/hlSJy0V7tS6Mwwssw3OlyWyfLOeDC1P0DZkBflnz98UrzVCtkruq8OO0CiGSK8lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728318973; c=relaxed/simple;
-	bh=qgs6djftKMsHaoIbJPCzIEn9PiUmxfooSvy4LW9HDeE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ZhAQEWNZlnwz5/kXQgSxx0wly7U9HCxaJTipj3GjGbwchgg05Wv1MK33N4UO3+30HUKNTQQjXKLLI2TiVgW3D2RzXCUzPjmDGYgrgx9ubjX7cACr+75HSPcEKcO4xLyH2PB+/ralnPVMQ510k+RQ5x5UL93jchTSJ3MbhENdr30=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=UK1er1sL; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 0C9B023F20;
-	Mon,  7 Oct 2024 18:36:10 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id BWkq9wvynVqm; Mon,  7 Oct 2024 18:36:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
-	s=mail; t=1728318969;
-	bh=qgs6djftKMsHaoIbJPCzIEn9PiUmxfooSvy4LW9HDeE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=UK1er1sLrFZL6z2v8psaTd7elv1uOAjOY5KF+Q13ynWGZCILbtIkFjC8JoRbKY7vx
-	 ux2lMsS145kQogdpABgARonVYoFCPwLS6kNPfMdDT4UTNLDPtJ1z1mmL78GXxx8JLt
-	 NHI7SrswHcw++B4ToPWjb+6kLGsmyojFCJE5kxM08IjwLnse6acZunh4MdDAVavLX6
-	 apBwMFLGEnP8Ngqj89GxvnbZAiWc0eDMe1RhmXboNbgfa+vYcpxRfiXowDx57HwgFr
-	 xyYCKPjhb2k+TEmBMFRkPPcgBl2phasyYBZe6p/dEHHcoGQQhpSlrOpE3O962Z7E2A
-	 Af0Qxx57sgTdQ==
-From: Karl Chan <exxxxkc@getgoogleoff.me>
-To: linux-arm-msm@vger.kernel.org
-Cc: andersson@kernel.org,
-	konradybcio@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	mturquette@baylibre.com,
-	sboyd@kernel.org,
-	linus.walleij@linaro.org,
+	s=arc-20240116; t=1728319032; c=relaxed/simple;
+	bh=6r1iyAW+MPhFfGdFNuxCvPOa/U2sdSRL3vxx58PITug=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HQLmARzz2g06Augl3DzJ8KejfuPMcCS20clvPLuTVngDelAjNPxzk5VoZpd6Iyauq9vFrAUfrF05dgBQyZlgzgAocSmqAJhIdTnvQImBStGW+7ZUpUHK8KkeZW883rJSjR715gE3UtrBah5D9T+8n48B18mijoOF4I3WQjz3Aog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=OANC80TN; arc=none smtp.client-ip=212.227.15.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1728318987; x=1728923787;
+	i=markus.stockhausen@gmx.de;
+	bh=6r1iyAW+MPhFfGdFNuxCvPOa/U2sdSRL3vxx58PITug=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
+	 MIME-Version:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=OANC80TN9GwFdZx8Y0bx/4HkErCdLp9BUUtVlyKIaWAiV1XqqCpxh6mlukkOoPYB
+	 d7zSo4JUSe7QEphINGDPP8WkHOqzzM8LOnNXkRMtTDQ2iK7ck81hWG6TEHSO5E6nZ
+	 y0Hsx1+74XkrE6iOoNKy+OEWuqBdkHBH177+7ZJXTynh+0zncETf5XA1GapG1wU4E
+	 4T2qdZoKX1EgeEXuRfAKf4x1rglTPkeyNSzm4z0xIy9Hq6OujzNBPipk4xQGW5x8m
+	 vdRCTBhQ5sjwFtJ/SQewC/TOaIF+9FT2m4ly/4SW78zkzSMih5rUc5y7n12/utCbr
+	 4AuthbJl+6eokMBZ0w==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from openwrt ([94.31.70.45]) by mail.gmx.net (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MryT9-1tjbkU0TDR-00jwt5; Mon, 07
+ Oct 2024 18:36:27 +0200
+From: Markus Stockhausen <markus.stockhausen@gmx.de>
+To: linux-phy@lists.infradead.org,
+	chris.packham@alliedtelesis.co.nz,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	Karl Chan <exxxxkc@getgoogleoff.me>
-Subject: [PATCH v6 5/5] arm: dts: qcom-ipq5018-linksys-jamaica: Include dts from arm64
-Date: Tue,  8 Oct 2024 00:34:14 +0800
-Message-ID: <20241007163414.32458-6-exxxxkc@getgoogleoff.me>
-In-Reply-To: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
-References: <20241007163414.32458-1-exxxxkc@getgoogleoff.me>
+	krzk@kernel.org
+Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
+Subject: [PATCH v2 0/3] phy: Realtek Otto SerDes: add new driver
+Date: Mon,  7 Oct 2024 12:36:20 -0400
+Message-ID: <20241007163623.3274510-1-markus.stockhausen@gmx.de>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,47 +65,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:E4SpbU9iI15qAgU3v7RQJepCA+KdFwRIFl9nTBXezQhJGOuVZ8A
+ MEXBrP3W0HmM4d2QXdDAY/5oUmXZDGlt6fTdaJGro2zL3pxsGqaqSmYNM2sVb6tTx2io/mf
+ cMQDVrUW7C2TAqJpnQ/v71O1j7DHvSdjW0FBi241wX72rbvsKTis9kWzH+tBZ1Z/jRKm5mR
+ drU6WKgXWiT3uTNWi6/4A==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:EDNWHl46oZE=;va7eUL8/jdUBp1M+ANuo8nulHHr
+ S8b/oCuM8HdkEyqU/UXaDQ3PXqq+CeYj4sFdZORl6SooNkAwLLEeURRpl3hYv8jLU196J8plI
+ 0g0ATCelwpt35FHibVAOxnbjA3AwsEVbaO1VG2fVAZJoZfIW1plfkDvnZfC4pimMc5s2UK4QH
+ AqxCBZytQFfeezJgXLFx9atkYlOSl7drl+O/K/MHboGtA1kfyuCKlEKM/Jiu7+wOJxqBWCBQU
+ toSDjT8AJc3ePqP+5xBbvlhYlqQFlklyOpeDlQjadfjlho+MP+CmmOxAtumc+2irYZw1bW9uk
+ cAMqJ6Xf5v9Agj8PSN5kWONA7a7B3XCqRs2V/LJq1woDXmNsa5iGt2PtWo8s4w1l8Ihdsl5ID
+ s4+duZL+dZ5SDEGH6Beu9k8Ky8P5Jfh8uJ2c/TCZ3aFRzvNNyKMCepScyVr5wqAxMJeR2eW5D
+ LrlzsV2Z2EWmGHTSbqMzWkPCcL76lhZauSQ3mYymDWmTjF6Ag+5z2zJkSxDk/PLUGRKryfKuI
+ gbR8egRy0aQouPfyEf6FZooduco8TyWVMp+YzE3j6CPZ3QaeuhYgoFHipjeDs5pJlNx6678tG
+ 2ihYIM5xDwUrCGXiuubLy4kvnUwhtjzzeNRaKAoPvX1zk/85xgLKRqDPet9bDCg1Dg8vywq3y
+ LFGlvYKVUu439FfK8aTjwiIi5Xhb+HBnNYVpEcCo4bDmbFBtFgY+c0I5l8yGPfN21fBMFi/Nj
+ yfNnQPcTtaGi2CMHOpxahGAAHu+bpnYfv2tBmRV8b7Ka+aBfv05pCminxUer65DHetVNGhIi4
+ WxtgLq4EsKZMoIQf4kNgk12Q==
 
-The original firmware of EA9350V3 from Linksys can only boot ARM32 kernels
-and there are seems to be no way to boot ARM64 kernels on EA9350.
-It is possible to use this device tree by compiling an ARM32 kernel
-for getting the kernel to boot on EA9350 V3 firmware however.
+This patch series adds support for the SerDes in the Realtek Otto platform.
+These are 8-52 port switch SoCs of the RTL83xx and RTL93xx series with MIPS
+cores. The ports are based on 1-8 port PHYs (e.g. RTL8218D) that are connected
+via multiple SerDes.
 
-Building the Linksys EA9350 V3 device trees from the arm64 tree together
-with the ARM32 include to allow booting this device on ARM32.
+The driver is based on the GPL source drops from the different switch vendors.
+It supports all 4 SoC series and was developed and tested on the following
+devices:
 
-The approach to include device tree files from other architectures is
-inspired from e.g. the Raspberry Pi (bcm2711-rpi-4-b.dts) where this is
-used to build the device tree for both ARM32 and ARM64.
+RTL838x - codename maple - Linksys LGS310C
+RTL839x - codename cypress - Zyxel GS1920-24
+RTL930x - codename langon - Zyxel XGS1210-10
+RTL931x - codename mango - Linksys LGS352C
 
-Signed-off-by: Karl Chan <exxxxkc@getgoogleoff.me>
----
- arch/arm/boot/dts/qcom/Makefile                         | 1 +
- arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts | 2 ++
- 2 files changed, 3 insertions(+)
- create mode 100644 arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
+Due to very little information and fundamentally different I/O handling and
+port ranges of the devices the driver assumes and translates some handling
+to provide a common consistent interface.
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index f06c6d425e91..147dbeb30a6a 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -23,6 +23,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-ipq4019-ap.dk04.1-c3.dtb \
- 	qcom-ipq4019-ap.dk07.1-c1.dtb \
- 	qcom-ipq4019-ap.dk07.1-c2.dtb \
-+	qcom-ipq5018-linksys-jamaica.dtb \
- 	qcom-ipq8064-ap148.dtb \
- 	qcom-ipq8064-rb3011.dtb \
- 	qcom-msm8226-microsoft-dempsey.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-new file mode 100644
-index 000000000000..9a6ad767ebd7
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq5018-linksys-jamaica.dts
-@@ -0,0 +1,2 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR BSD-3-Clause
-+#include <arm64/qcom/ipq5018-linksys-jamaica.dts>
--- 
-2.46.2
+Currently only provide the most basic operations for mode set and device
+reset as well as some debugging information if enabled. The strength lies in
+the fact that the driver can run patch sequences for the SerDes registers at
+certain events, e.g. during setup. This allows to run configuration
+operations to get the SerDes up and running. For now provide setup sequences
+for RTL838x and RTL839x devices.
+
+For more information see:
+
+https://svanheule.net/switches/gpl_source_drops
+https://svanheule.net/realtek/
 
 
