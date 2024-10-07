@@ -1,130 +1,154 @@
-Return-Path: <devicetree+bounces-108545-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB677992EBE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:17:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A3AC992EF3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:22:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 833E11F244C3
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:17:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4107E282FD1
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:22:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0F1E1D89FE;
-	Mon,  7 Oct 2024 14:16:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BF891D61A5;
+	Mon,  7 Oct 2024 14:22:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dhRyqdFm"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="dvdygJV4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD7891D6DA5;
-	Mon,  7 Oct 2024 14:16:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D641D619D
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 14:22:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728310610; cv=none; b=rwfu6fHK1jvRAYAlD6Oukol3LPMII4USlqc8eszDWQQdhJd2iKCGwSll4NFhCOtG3TIpzaxH7y48KwBwyIyfwiEhs4CbOuWydXCk3mLISMx52MgTo0B5+uYRsBuoSZaI+Nwz15CSOBg2mhd0lbbYqGIwDeo3zDKn2QCccYO5T+k=
+	t=1728310968; cv=none; b=baIyl6Ho0HeQWvGxhSbdhRCiQcji7acA3WB/7q6PN7p891hYoErsYBUd+3JsX2ant8N2fWMrZDLlR81no9qnUdYF66kOGcLmrnbsKvhohF6bPmunGzprzdPrJGPzbRIuxrE+PVcqGbbySinb9amx1WljEiqFlubu+1aUf7ptEt8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728310610; c=relaxed/simple;
-	bh=I7q9lk59AZpbFzZMPAN1WPpVBY6l66csCEEr9J5+l44=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=Tz/iNHsU46OgKMsAwH/OLnVq0NRP+zZi8yskN8UplkR9EgC6vU0zCBc8cFql0yDF2MbAq8NJcoiUtK8JGlcWCMKZLC368QUxmWH2px/UIIP+Riy7wu3d81Od4/saN3r9JmcWL7e7ut5BYX30QfODA2WOAtQev7H/3UQ6Xxl6RAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dhRyqdFm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 279FBC4CEC6;
-	Mon,  7 Oct 2024 14:16:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728310610;
-	bh=I7q9lk59AZpbFzZMPAN1WPpVBY6l66csCEEr9J5+l44=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=dhRyqdFmMPCSBlCgYzTLbKCgp9Tzmu0mWsCJOU1bwyYXaj0nlMgmihoSPlr9aa9Y/
-	 Ta2m0oI7ek8OivzU7TaabaIdVT8EHSCO8AAxV09mkD3F3aXuwycggEwZ3X7sy0/yql
-	 wnGu/RX2fLIKdgomfuSLg6zDqg2juGphQegmrhyWSPKryOSGGqhOiU4/dIb81Y/doH
-	 7vBdYOOrWBuT61vEf+6lKZw1hjYAl7KtdJbyWE/DbBcTrGZbWY9sv9Ntsllb2rPr0Q
-	 OJZ65GfEB5EYoGUhsKmAhvaeC4XS891sQn8ZIv44aVljXpagE8UnSGkGBXOIcB3nym
-	 498GXkHQSIITQ==
-Date: Mon, 07 Oct 2024 09:16:49 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1728310968; c=relaxed/simple;
+	bh=ZepIFIYOT5MYbLRNei1KddhAuU1eTVAmQSB/Udp0DSk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=gPYIS6EHQ+w0VwrZf01ALxgmYnvWSeQ5TD5nyrOCpkQk5qHGlpZkBCH+d+528AURcwQQBQzMCJOLag+JurqqKIspxVdw5xpnYJyFCP7Cx7oaAeV5RhFTQGF0KSooAYR1kxUCBl/bni/4CXNK0Kci9c+bW/ybiV38svocTs1YHdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=dvdygJV4; arc=none smtp.client-ip=91.218.175.185
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: Arnd Bergmann <arnd@arndb.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- Saravana Kannan <saravanak@google.com>, 
- Catalin Marinas <catalin.marinas@arm.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Derek Kiernan <derek.kiernan@amd.com>, linux-rpi-kernel@lists.infradead.org, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-kernel@vger.kernel.org, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Dragan Cvetic <dragan.cvetic@amd.com>, linux-clk@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Stefan Wahren <wahrenst@gmx.net>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Linus Walleij <linus.walleij@linaro.org>, Will Deacon <will@kernel.org>, 
- Herve Codina <herve.codina@bootlin.com>, Stephen Boyd <sboyd@kernel.org>, 
- linux-gpio@vger.kernel.org, linux-pci@vger.kernel.org, 
- Bjorn Helgaas <bhelgaas@google.com>, 
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Andrew Lunn <andrew@lunn.ch>, Masahiro Yamada <masahiroy@kernel.org>, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>
-In-Reply-To: <e1d6c72d9f41218e755b615b9a985db075ce9c28.1728300189.git.andrea.porta@suse.com>
-References: <cover.1728300189.git.andrea.porta@suse.com>
- <e1d6c72d9f41218e755b615b9a985db075ce9c28.1728300189.git.andrea.porta@suse.com>
-Message-Id: <172831060870.15438.14111281615196403810.robh@kernel.org>
-Subject: Re: [PATCH v2 03/14] dt-bindings: pci: Add common schema for
- devices accessible through PCI BARs
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1728310963;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=APN3Rf1CHc5QKBHwClsLIHA5EOjpyOHZWT2nCBIU7ZI=;
+	b=dvdygJV4R8u3j7v2JrQ3vQApLXeDKapTyGuAv+buKi9WSph4x6JkFTQ1nJo9N6+oRwCI4n
+	ait7Y4J96tHR8j63wl8+kx5TcN9OzQnL0i+Uv67Vyb2X2+6mx2VDn/o1ges9nilHiA7F/o
+	i9OF0nQCHF8aBy+QH3Bnsjhxcy3Bw6kDOFsFvOciVFwAXWmIitilXsn7+pZwK+ObsgtcMp
+	A5Pqs/LRVcZucKCWffwPssZ6Q8pIZRk48I1CbiYpP2gaFz7TNvzS0350KS+qLHpQywmyhf
+	R0ZEZS2uJUzFqV1yr+omsLgfKvo5UoOTfx1gQGW4xEIZ+nxSxWRGtKW5SKJB0w==
+Content-Type: multipart/signed;
+ boundary=51cba31023c492486e1820f7b7082cd7fad1f9f03d93a5c097c580e3c009;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Mon, 07 Oct 2024 16:22:32 +0200
+Message-Id: <D4PN3MEAFIFU.1BAJ732GCUCTR@cknow.org>
+Cc: "Dragan Simic" <dsimic@manjaro.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Fix wakeup prop names on brcm
+ BT nodes
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>
+References: <20241007105657.6203-2-didi.debian@cknow.org>
+ <20241007105657.6203-5-didi.debian@cknow.org> <6096052.lOV4Wx5bFT@diego>
+In-Reply-To: <6096052.lOV4Wx5bFT@diego>
+X-Migadu-Flow: FLOW_OUT
+
+--51cba31023c492486e1820f7b7082cd7fad1f9f03d93a5c097c580e3c009
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+
+Hi,
+
+On Mon Oct 7, 2024 at 4:06 PM CEST, Heiko St=C3=BCbner wrote:
+> Am Montag, 7. Oktober 2024, 12:28:18 CEST schrieb Diederik de Haas:
+> > The "brcm,bluetooth.yaml" binding has 'device-wakeup-gpios' and
+> > 'host-wakeup-gpios' property names.
+> > Fix the ones where '*-wake-gpios' was used.
+> >=20
+> > Note that the "realtek,bluetooth.yaml" binding does use the
+> > '*-wake-gpios' property names.
+> >=20
+> > Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+>
+> parts of the commit conflict with a previous one from me ;-) [0]
+>
+>
+> [0] https://lore.kernel.org/linux-arm-kernel/20240930210112.1993625-7-hei=
+ko@sntech.de/T/#m59bdb72d6c22f85fe79716761fedaea2a2e1c73e
+
+Haha, I actually did base my changes on one of your patch submissions
+("rk3328 cru dt-binding conversion"), but that's the 'wrong' one ;-)
+
+Will drop the rk3566-box-demo.dts one in v2.
+
+Cheers,
+  Diederik
+
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts  | 4 ++--
+> >  arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi | 4 ++--
+> >  2 files changed, 4 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3566-box-demo.dts
+> > index 0c18406e4c59..16fd98698db3 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
+> > @@ -450,8 +450,8 @@ bluetooth {
+> >  		compatible =3D "brcm,bcm43438-bt";
+> >  		clocks =3D <&pmucru CLK_RTC_32K>;
+> >  		clock-names =3D "ext_clock";
+> > -		device-wake-gpios =3D <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> > -		host-wake-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> > +		device-wakeup-gpios =3D <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
+> > +		host-wakeup-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
+> >  		shutdown-gpios =3D <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
+> >  		pinctrl-names =3D "default";
+> >  		pinctrl-0 =3D <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi b/arch/a=
+rm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > index de4c082dce07..7381bb751852 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3566-pinenote.dtsi
+> > @@ -684,8 +684,8 @@ bluetooth {
+> >  		compatible =3D "brcm,bcm43438-bt";
+> >  		clocks =3D <&rk817 1>;
+> >  		clock-names =3D "lpo";
+> > -		device-wake-gpios =3D <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
+> > -		host-wake-gpios =3D <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> > +		device-wakeup-gpios =3D <&gpio0 RK_PC2 GPIO_ACTIVE_HIGH>;
+> > +		host-wakeup-gpios =3D <&gpio0 RK_PC3 GPIO_ACTIVE_HIGH>;
+> >  		reset-gpios =3D <&gpio0 RK_PC4 GPIO_ACTIVE_LOW>;
+> >  		pinctrl-0 =3D <&bt_enable_h>, <&bt_host_wake_l>, <&bt_wake_h>;
+> >  		pinctrl-names =3D "default";
+> >=20
 
 
-On Mon, 07 Oct 2024 14:39:46 +0200, Andrea della Porta wrote:
-> Common YAML schema for devices that exports internal peripherals through
-> PCI BARs. The BARs are exposed as simple-buses through which the
-> peripherals can be accessed.
-> 
-> This is not intended to be used as a standalone binding, but should be
-> included by device specific bindings.
-> 
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> ---
->  .../devicetree/bindings/pci/pci-ep-bus.yaml   | 69 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 70 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/pci-ep-bus.yaml
-> 
+--51cba31023c492486e1820f7b7082cd7fad1f9f03d93a5c097c580e3c009
+Content-Type: application/pgp-signature; name="signature.asc"
 
-My bot found errors running 'make dt_binding_check' on your patch:
+-----BEGIN PGP SIGNATURE-----
 
-yamllint warnings/errors:
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwPurAAKCRDXblvOeH7b
+bixPAQCfSDhz9tB5IlL/XoL37u8HLNi6YjiJx+tRTf4u0PzktwD/W+7lNx2K9Jr2
+LYR4hUu5xwelo4J1/sYXCF9EbsR8JQY=
+=Nmgp
+-----END PGP SIGNATURE-----
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pci/pci-ep-bus.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/e1d6c72d9f41218e755b615b9a985db075ce9c28.1728300189.git.andrea.porta@suse.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--51cba31023c492486e1820f7b7082cd7fad1f9f03d93a5c097c580e3c009--
 
