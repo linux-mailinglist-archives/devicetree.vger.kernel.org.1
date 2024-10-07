@@ -1,115 +1,102 @@
-Return-Path: <devicetree+bounces-108424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95F3C99299A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:58:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DF529929CE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 13:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C49B31C22810
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:58:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E93C9282C5C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 11:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B651F1D223A;
-	Mon,  7 Oct 2024 10:58:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B951D14FA;
+	Mon,  7 Oct 2024 11:02:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="oqqaHRHa"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="SBIROjjj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.20])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6DF41D1E87;
-	Mon,  7 Oct 2024 10:58:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB3291BB69E
+	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 11:02:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728298698; cv=none; b=kWfj8RkMcaY/SR393y6C9rWLuBDFwxsyxgzJEBiVbdf3f1CY3cg9BrirJ7yqMKVGYf+PvR2JjfGDqv5+sxEpBzksqTuToeSwHKkyGv7B3ueSMgTof8AYhxsZbDNtROUXXzWcKIgtXAg5WK5dKOunRGUAsijzKBJskgYzqK3L7Bg=
+	t=1728298943; cv=none; b=vB7Td2cSRHcwwRZhqkRCwZla6Lb7aTJtc+6lt6WKWvg4JerRtW7NR8yrzJGI4kyzQuy/ai9TXpS2JXNd22jWJoKAGScLCi23vjoJCYW6f0MoMshAHyNFXYHpwZEZqCUg1j6wJKLVkrn+OFuE92mVCyzZ0OHjf1+/wAs91j7sJC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728298698; c=relaxed/simple;
-	bh=4r+N6qSVsA8WQm58Kp3o1ulMUJ2PX5j5gHrNe4rL/Fg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DWBGqoQ6PnWD/cMNU0VY67C9LkILhoSnTQhdwTHGKB7RY+nnlZFTdrVsRtDlVsSQI2+6vEZorQrXD7R7Z3jYehCN4brJ6dMX2bm61vuuXoqnTc5CKRqLrRsVoPpBpnVjUWjIMlx61L+NP1QlXARP1gA9CFFNaz8l5WH85097sOY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=oqqaHRHa; arc=none smtp.client-ip=212.227.17.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.net;
-	s=s31663417; t=1728298678; x=1728903478; i=wahrenst@gmx.net;
-	bh=4r+N6qSVsA8WQm58Kp3o1ulMUJ2PX5j5gHrNe4rL/Fg=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=oqqaHRHabYKh+o+F8S9a3oeQ1NnXIX0nkElZmUvNqd6y5mWGzS/GustFKRstBddn
-	 1NiUxfN36ZqMbmzdKpYgIZjnyN9udUZTEpOlKfCkay6BjR7OiCr6VXZnZBMTHbuj+
-	 DY9uJEsBKRO9PDJlmXyrgGVbyCbyuCH+zft2lojdw59Ny8TCd8N24OZPCqheyfdlj
-	 9V8nkMOX4CScvJG1m43l8XxT7fWwRN9dpWep53XkMe7u9w4dmLww80/gc5DpsGSCR
-	 A+/vlm/URkRizyqBkTi3cbhEKaZyg/IAqLivgAal9QFN++zxhT5PBDpr07A0WXH71
-	 zh06xUKCbmgZ456EAQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.104] ([37.4.248.43]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MfHAB-1tcZUz2VPX-00cj2q; Mon, 07
- Oct 2024 12:57:58 +0200
-Message-ID: <752dfca1-327e-48b9-8065-3aca7a4b4420@gmx.net>
-Date: Mon, 7 Oct 2024 12:57:57 +0200
+	s=arc-20240116; t=1728298943; c=relaxed/simple;
+	bh=1Gr8CNUfBPkKnUcdj+3Pl/LpjisREwim33BZIWVvmcY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=alvO5UDvMoUpndnWdezQHnVPAbXErE/DDSYqYSNSs+RIOjfRgvGU2VUqM7TABcFENDBIIF02OSJb0848MmOqy17map2X/ahb+OMgDAy6Yi1RDJTpP8lovbyPufhWZzpg/Q6++HdP1JvZkqFhrSMuZYvSYtsv8RkBUA+OdMA9SlU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=SBIROjjj; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=from:to:cc:subject:date:message-id
+	:mime-version:content-transfer-encoding; s=k1; bh=6eImMP0EEM92b6
+	pNacEsrxltX+lRpawqIlUaa+mvNEE=; b=SBIROjjj3y+/2kAN29srAhBHtJunVl
+	t77C27vZrGuZACKqgHHQKtnEDXySAqPa4V2KJ+/irx9VOyT2v//C7xEwyVHm+o8C
+	hjVu1Vi8UBZSyiiQ0W7jIz5C566Roby9qui70VDW7LdIFEXsE0KEOlN0/rK8Y/VV
+	N+Ylm5wGfeha+euAvDFbsV2kFSwlFs7nUuS/irOXF3RmDxkus9W+Fu+piorYxvDf
+	awMyI3hgtIkqS4oU9lRLTp9nn5NigtHm+Co1msJ9aHki/zesaNOTLGOX+UNls+Ts
+	fJusyWaruCdeOuaE6ywfeEb+RO/YglAzOi8rYvHK5ErsSLQ7p9OOs1kw==
+Received: (qmail 100731 invoked from network); 7 Oct 2024 13:02:15 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 7 Oct 2024 13:02:15 +0200
+X-UD-Smtp-Session: l3s3148p1@+A8g9OAjqo0gAwDPXxi/APzxl2QXB/xr
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: linux-renesas-soc@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v3 0/3] dmaengine: sh: rz-dmac: add r7s72100 support
+Date: Mon,  7 Oct 2024 13:02:00 +0200
+Message-ID: <20241007110200.43166-5-wsa+renesas@sang-engineering.com>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 2/2] ARM: dts: mxs: Add descriptions for imx287 based
- btt3-[012] devices
-To: Lukasz Majewski <lukma@denx.de>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org
-References: <20240925143129.4081815-1-lukma@denx.de>
- <20240925143129.4081815-2-lukma@denx.de> <20241007115336.393f0696@wsk>
-Content-Language: en-US
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <20241007115336.393f0696@wsk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Provags-ID: V03:K1:vGWgOgMnbHciDEb0p3VWS4Q9eswrMzSPr/7sdET3Oxvn0+3yYS7
- xHyf91Xyog3pBNdBJMrt1XLsui6tWj1P/V4nfmsZp/hjH3yQBDEK8MtcHuvUTqpD6Pdfa/+
- Cbm2CHyUapRHGsUF7P5xvM2uXUyicukWUCD8crOJCnjE1vlx3OpWogMmFrJMGOnxyjbW9Q8
- 4K+goWx23brAbLQw8Xmkw==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:gRl0CRQ6PkY=;0I+HnMO5xuCFCGwCWe1CrZj0HrJ
- sh8mP1wgfzej5gdUNXToBEwQedc4u1nsFt2mJpV2Gm/+eH/8koDtVyXrE1ZneoKTAMjQudFfY
- nrwdF4kBXyDfcl8m+TBGBVOWOYdc4+1wTIOKMzE24fRpjqa3MIYpS7zFTogZVjC1k3LI6yN6/
- pkQpUqWzxfIF0a81+A/OwnpRqeF7JugLJ+x7jL2FIz5q4zAZQGvsGCTKi0Z6QiSQm+T/QS18b
- SPnkvJwYFoEh61mAVPgp8MyZBwy9qTt2RigzNMvbwkA4AplvraHkBFQJWI6dj6lbLq7/Wsxm3
- wXEzqrDusBlevGuCArXzFSCD5tSKEneTScVdMaoDX7AkhoRcfpnrPqY4m36pQoyiMsXIYsJmO
- ktbJfPARWIJIA+5FgoTQp4xerQwZaauDvWDL5hSOSO5IVr/PaEVlllje2iRqwE9Rrk38HWm9d
- XbZerPh42lM+kikI8RcBPfcZRsUHMWjuHjxf+T74/1Ao8WGDuge/f1SK1KQTDYbBuL5xZp5ih
- Dhvz7VQPnfyxuOAHG9us4wl5Dht3fPFtrapFb9Shu1yW0Pw5DbPbcyClQylsBb6zZxOWucEA7
- g29344T5OdCWfpTygrR4+UzGc6mmzaEYZdbkUuBQXttAJc9ZtK8mMikIuZzQN+M1SDlYxX9ZT
- pJFKSartXdCfcI80J6Q0u49YsUeh+v8nSRNx+YPnlbZi5v+nXU9Z1V1hiHvdrGGbwmk1O6Gn2
- UrMlUtNzvjR8DLHN1kYJgVazGX5m32jkVA/v9lAmxoJqKCI+5A0XoMLAl8utIZTsZUB9TGZx+
- A+aqcyAtX7ybsPEP4mjXB5gw==
+Content-Transfer-Encoding: 8bit
 
-Hi Lukasz,
+Changes since v2:
+* added tags to patches 1 and 3
+* reword commit message 2 to make clear 'clocks' are not needed
+* 'power-domains' is also not required for RZA1
 
-Am 07.10.24 um 11:53 schrieb Lukasz Majewski:
-> Dear Community,
->
->> The btt3 device' HW revisions from 0 to 2 use imx287 SoC and are to
->> some extend similar to already upstreamed XEA devices, hence are
->> using common imx28-lwe.dtsi file.
->>
->> New, imx28-btt3.dtsi has been added to embrace common DTS
->> properties for different HW revisions for this device.
->>
->> As a result - changes introduced in imx28-btt3-[012].dts are
->> minimal.
-> Gentle ping on this patch series...
-unfortunately most of my comments in V6 were silently ignored :(
+Thanks to Geert for the tags and for the input!
 
-Regards
+Trimmed down initial cover-letter:
+
+When activating good old Genmai board for regression testing, I found
+out that not much is needed to activate the DMA controller for A1H.
+
+Patch 1 is a generic fix. The other patches are the actual enablement.
+A branch with DTS additions for MMCIF can be found here:
+
+git://git.kernel.org/pub/scm/linux/kernel/git/wsa/linux.git renesas/genmai-upstreaming
+
+These will be upstreamed once the driver parts are in next.
+
+Wolfram Sang (3):
+  dmaengine: sh: rz-dmac: handle configs where one address is zero
+  dt-bindings: dma: rz-dmac: Document RZ/A1H SoC
+  dmaengine: sh: rz-dmac: add r7s72100 support
+
+ .../bindings/dma/renesas,rz-dmac.yaml         | 29 +++++++++++++------
+ drivers/dma/sh/Kconfig                        |  8 ++---
+ drivers/dma/sh/rz-dmac.c                      | 27 +++++++++--------
+ 3 files changed, 39 insertions(+), 25 deletions(-)
+
+-- 
+2.45.2
+
 
