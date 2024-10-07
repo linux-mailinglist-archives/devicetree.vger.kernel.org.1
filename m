@@ -1,61 +1,69 @@
-Return-Path: <devicetree+bounces-108558-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108559-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ECED992F4E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:30:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49DFF992F56
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:30:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFA0D283979
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:30:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0CE0D281D59
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:30:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F385D1DBB2E;
-	Mon,  7 Oct 2024 14:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A38801DC187;
+	Mon,  7 Oct 2024 14:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YUU0OpdZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QkUlxp/V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C73251DBB23;
-	Mon,  7 Oct 2024 14:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79D801DC07F;
+	Mon,  7 Oct 2024 14:26:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728311191; cv=none; b=mjgztbEDEHDua7lCBsIla/NNOpKddDQb+ABzBNaD6txAf8RQBOqcVAxNA0SJA3nHV/kocAndgEbA0HlGmR72nlOYARAtpbbpbcpJT+kebUch1tVcTsKdqQpc7fudF95mC7yA0pWsuAAoOGI0lQOr/LzY/lQ0LGbhZBe8XWh2bLM=
+	t=1728311194; cv=none; b=MS3xVAIhH2tlcjUVPuN1u9j5mrKpl/5X+RI6PosBkES5yHRviVA01OFbUWEPZAl+TKo+QJFFOCtp39hpkF7YMOL/hB7vJPCYfIAh8fsOXIhA+biRUh/FqxdVrupSyAWDVJ2a+2lWyAc/IYJbwCJw7lGzMuds/KR0CzC8kRaZu9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728311191; c=relaxed/simple;
-	bh=JiyJNJ6z6VV1zDgaDb7xw9UjcuLirOtPlIUa8P4j1r8=;
+	s=arc-20240116; t=1728311194; c=relaxed/simple;
+	bh=OyaAMERiTuuaLc4QPHcYCVuR8aGYbBexkajhlpocQmk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nyiq46ryvGuxsF/1LYyG1Dgzk+ZnyAxEhvLzVh4YfsRajrMnXhj7xjwk/ssKIphuEtSRsV3u/8vGaeCUM7iqhnqVxydZawcTywFBE6zEwfc5pRJqiROASmxDXjEGjrx0s87xsBemYzUlnbBbdTxyxiFHZeHAmVsH1w7Q4xoeiPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YUU0OpdZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E798BC4CECC;
-	Mon,  7 Oct 2024 14:26:29 +0000 (UTC)
+	 MIME-Version:Content-Type; b=Nvt384ICWa594NurARn2ObhwH4xOu/6XlfMDCPS2ozRSdMuY2t4ljHzsdMA3xhNxHDkAGhWt7GIL7/KkK12KNFny6Xkyc+a7HCRzpm3vVpAIEo7uPqeEt7Rox/KoJXYr+8K4Dhkx6qI2a35871fvrpahqpumVsIXtWMJnhU+10E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QkUlxp/V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA853C4CECC;
+	Mon,  7 Oct 2024 14:26:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728311190;
-	bh=JiyJNJ6z6VV1zDgaDb7xw9UjcuLirOtPlIUa8P4j1r8=;
+	s=k20201202; t=1728311194;
+	bh=OyaAMERiTuuaLc4QPHcYCVuR8aGYbBexkajhlpocQmk=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=YUU0OpdZNXhaJUOXW7vnMfL7B2SvqKIGjvKIVK9pukj1X82PJTKoCX7FddTHXRIOQ
-	 YuUk2O2BZ7bMJivhzHdTqi3lPVC3Mj0RiZlKXUjhmTfQFcH1RUq9+wAFYJ+cHFHjNG
-	 N/JGbh0yDemsnaTdV1wRKxol/RTgY4nM+U5GMWMY0sKc48oHYrw+ljbf+iSUPFYWb9
-	 AU6luHqfMkvoqAKRaqoqk19m+CZ7cAjDAXCTnNKciusUQ1w5YXJbdXyiDjkN+4OSzF
-	 0t6C94He/ERXcscHjmdeWv4jTOmPXQ1DmuTyjff+/t8nGKoeA+39U3L0Xi0jNlOQvG
-	 AHHiu7dGlrhUw==
+	b=QkUlxp/VMIF2KDVNl5mwkASSS6Ip1A72Q1ivQpCOkgpNilMAW2x57CkLWwFj9wm0a
+	 BFbcDTkXGde304XVYiciBWNMzhHb0CO+c54H54UUO2XzRvFDgBJpRyYSFzf+xoepoS
+	 sfNzWZx209kr8ZpmZ3V5Ld5ZZDogKO//tF9IzK83WjDu7ANCG6P66kO7DUtXbnbIU9
+	 7BVjW6hGxHZYOE4yUY0nO7UrVLdl95JAmmRWXsKoHPjyKKVEcGp8VPaGCyKasIHPZm
+	 PRGURIIUqFQ7rcF9huuC2ywmuxWe5gpdFeZRZL9dcaBRAxNvL2a4RHiN2bMP8H58Ny
+	 G5eP8gsBJBHRw==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maya Matuszczyk <maccraft123mc@gmail.com>
+	Sachin Gupta <quic_sachgupt@quicinc.com>
 Cc: linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Add debug uart to Lenovo Yoga Slim 7x
-Date: Mon,  7 Oct 2024 09:26:03 -0500
-Message-ID: <172831116168.468342.6154439833410297797.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org,
+	quic_cang@quicinc.com,
+	quic_nguyenb@quicinc.com,
+	quic_bhaskarv@quicinc.com,
+	quic_mapa@quicinc.com,
+	quic_narepall@quicinc.com,
+	quic_nitirawa@quicinc.com,
+	quic_rampraka@quicinc.com,
+	quic_sartgarg@quicinc.com
+Subject: Re: [PATCH V3] arm64: dts: qcom: qcs6490-rb3gen2: Add SD Card node
+Date: Mon,  7 Oct 2024 09:26:06 -0500
+Message-ID: <172831116161.468342.14405549447127047255.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241004192436.16195-2-maccraft123mc@gmail.com>
-References: <20241004192436.16195-2-maccraft123mc@gmail.com>
+In-Reply-To: <20240919084826.1117-1-quic_sachgupt@quicinc.com>
+References: <20240919084826.1117-1-quic_sachgupt@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,15 +74,15 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 04 Oct 2024 21:24:36 +0200, Maya Matuszczyk wrote:
-> This commit enables the debug UART found on the motherboard under the SSD
+On Thu, 19 Sep 2024 14:18:26 +0530, Sachin Gupta wrote:
+> Add SD Card node for Qualcomm qcs6490-rb3gen2 Board.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] arm64: dts: qcom: x1e80100: Add debug uart to Lenovo Yoga Slim 7x
-      commit: 4c3d9c134892c4158867075c840b81a5ed28af1f
+[1/1] arm64: dts: qcom: qcs6490-rb3gen2: Add SD Card node
+      commit: c17818a429affa1bc7c755e67e236c628c4099aa
 
 Best regards,
 -- 
