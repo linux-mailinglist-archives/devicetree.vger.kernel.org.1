@@ -1,313 +1,126 @@
-Return-Path: <devicetree+bounces-108372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D5179926B0
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:08:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DBF7E9926BD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:14:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6C8D280F8C
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:08:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D2112836AD
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7E9B189B99;
-	Mon,  7 Oct 2024 08:08:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0502E188708;
+	Mon,  7 Oct 2024 08:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oNlPFNBp"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Zxag0pHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE50D187332
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 08:08:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6CE188003;
+	Mon,  7 Oct 2024 08:14:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728288502; cv=none; b=gI2DjKgZtDr6wC1eDO2HD3KudFj3ynm3IH8iB+HiMsU6SzM1ValT1AYmkIAqQEkU3nSwGN9FzjZIqzI61r66quIfvFjm8wEY5tvv75eAUkmyB77qLLOw8H+HeEHeuDKh+gE1dV/YRcugkrjLKt6RASo8rZfvUE3EGuJhz9aGj4A=
+	t=1728288851; cv=none; b=Vo8jagWtDR4nSKhid91HtxDRvnsIM2k+Nc0gEAnlA1M7QEw+akKexpagp0AMMoX0A9C7ECC8peEIe459nJa3884xojst9G1RidATjpW9AGmJfWYOoixPY8AsMY1KTxqzXlEAZ9bfpJo1hQAx+GqdOE2JkhuyP+JAsumXVDdG8zg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728288502; c=relaxed/simple;
-	bh=IxYWj9Xorz1AZbfO/tpFcZsn5IGSnomV6GTPPSeCQFM=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=drYbf+8fB9fLjB/LP09gszyi5vwoniZ2uBU2mxXjf/LaoZ6EtMd5KxlDvSfADj2FN3pSVo9N2M0pOXl1b9iIhFLwp+7kmF8vYpOhXNcIbdvl4T5nG2H3aX+/cr0II/NvIZoITqqlHS6ZUZWsA7FNO5dSG4p1czcCNUZUWrg0VbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oNlPFNBp; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-42cb6f3a5bcso54881265e9.2
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 01:08:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728288498; x=1728893298; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GNnagbUk9E0Ml9V+Nduq7EQawbw5vOZA0KfAKQ2AxhM=;
-        b=oNlPFNBpU7wcHyjxOMVgi3HVLtLFfibcFDCJbZEbJH4pJXdlTEBcpfORbLKUun9Wbp
-         fIqQFW4gbAPc5N86DiAHrPc0Mj8Ium/0yZVBalfsz2aOCtpCT1uZ3d0B2NlOuOhK2OsB
-         KeefxvXxzacWgFrnoxqMFUqesGsB1LLhgyYyd7gOp9D7P21+EVWZ4lRTBC+fGkuatgfF
-         uJqNMB2rnBr8lap79xHe5ejav7tPzajM+mLdMHne+mEdBOBj633qUwLBJP9j4DhOCEVu
-         c1umLY8u7N1DOv9hwQFntOpe/DICe+ywgZHK/LoVht720tDVzxdbFn6R1Zr3RCvql8Rs
-         3DxQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728288498; x=1728893298;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=GNnagbUk9E0Ml9V+Nduq7EQawbw5vOZA0KfAKQ2AxhM=;
-        b=oYaymUnx+GeU9KzQsbs7JgJND1dHSjKzfEtQMzk4QwkVA2xOhal/bz5znkYrEQN1lN
-         viAoJFxnSwe/J1qX3D3cKRiqlL0kj8eP/RvXWkZflwcScp4L6oJlMkCziG3CX5qbt73t
-         2ZrsfO+PYkI1iipTk7Ui0JUnQNWwdANMOxU0nw8Ij1DlyhdluEbsqEzBOmDe3JbSO0Ym
-         3vJFfn6unH25eta7hulq6eelgJPJpJId0bko9vkKO33zE5SmB/FoT6gW/QF9SDRQ+8VT
-         vvxeXXQ6CC1F8PzpIoB7+bFOeRyC7O+g6Vhpr3fmEeSzw8jxw14gFlb8bVCiSkvjKS3X
-         yEPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWTtFXMPcqjh9ORYJIMtgcufUbQxTw68P4FCXvC8BQZHvQ9XUhe5KNiZjDn23aaH6bX/9FmJZfV1PNZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMogF6U+ls7/xATVwSonw+GLez4AQlYXOA/NgxyQ8WTji6qHVj
-	J3fNr72bTBtqb1uEKxclILQZr+d8YGdGwHjZqvWGh0slUaoTel7hQdxbhtBVvrE=
-X-Google-Smtp-Source: AGHT+IFPwZCQpnEAqjX6GbBQ235vE41Kh0cdPVs7FsU1Ni6P07LOC9oc6/ORmYHV6fNNeUFYp6SLvg==
-X-Received: by 2002:a05:600c:35cf:b0:42c:b62c:9f0d with SMTP id 5b1f17b1804b1-42f85ab87cdmr124709045e9.17.1728288498096;
-        Mon, 07 Oct 2024 01:08:18 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7? ([2a01:e0a:982:cbb0:a99f:3c24:fa3b:1e7])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1695e8b6sm5143596f8f.71.2024.10.07.01.08.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 01:08:17 -0700 (PDT)
-Message-ID: <83e23090-0390-4c2e-91e3-e222baaa889a@linaro.org>
-Date: Mon, 7 Oct 2024 10:08:16 +0200
+	s=arc-20240116; t=1728288851; c=relaxed/simple;
+	bh=CyHYryxsLiYwOZoKOj+rqyE3zGxA4hYzsgEc7oms1nM=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jP2Bw20LY6/jNzZrBVtiR48fle+uMR7Qho/GGN8NM6Qmr+dnYPYM/cEZy54NL8lKJHFtCc8A61D4n9NbteTf98+jSr+Ac0DESjHtlKKL8g9Sakqs97YQQ1CbaxtqEdNBZzE9CIFkGG35pfXaOgpF7Hn06OG3rD3kIyjWBC1bkdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Zxag0pHO; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 84F16E0004;
+	Mon,  7 Oct 2024 08:13:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728288841;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=428uZN4OXNwScrUiihgmWynciO1ldGPtkCDcUGjhV00=;
+	b=Zxag0pHOQQ5ssx9daaBMo2XiivlMnFlA+W2w7NgVsUAnw/0VdPmFBc5nLvi8u5c/5tVOPS
+	qj8RJSo3TyChHoiPMIchpGXkGdhx07S2+ocaHWKo+HTuRnulDVnFXZn43IUVokR9mMnF4Q
+	yXkHPbvi8ZrCIMBB9R29cQGxKhhMyQO2B3qUCvsYx4WlRnNzRR/8rA8fh6mHI7zhxuTp6D
+	av6eGb18IyZso5uZ2f2G7lZI5TMWlDmv8yadHVI9DQy9D8DM4I5L70zak3G8b0xeCzEvjQ
+	NewMlP7DOZA+I6xmgF5rquONVdXa1x/kIN7AjPKo+Hvz+b4Y0DRJ1YpaTzOtIA==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Josua Mayer <josua@solid-run.com>, Arnd Bergman <arnd.bergmann@linaro.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
+ <sebastian.hesselbarth@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+Subject: Re: [PATCH v2] arm64: dts: marvell: cn9130-sr-som: fix cp0 mdio pin
+ numbers
+In-Reply-To: <20241002-cn9130-som-mdio-v2-1-ec798e4a83ff@solid-run.com>
+References: <20241002-cn9130-som-mdio-v2-1-ec798e4a83ff@solid-run.com>
+Date: Mon, 07 Oct 2024 10:13:59 +0200
+Message-ID: <874j5oe3eg.fsf@BLaptop.bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 3/6] remoteproc: qcom: Add helper function to support
- IOMMU devmem translation
-To: Mukesh Ojha <quic_mojha@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Shiraz Hashim <quic_shashim@quicinc.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-4-quic_mojha@quicinc.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241004212359.2263502-4-quic_mojha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On 04/10/2024 23:23, Mukesh Ojha wrote:
-> From: Shiraz Hashim <quic_shashim@quicinc.com>
-> 
-> Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
-> translation set up for remote processors is managed by QHEE itself
-> however, for a case when these remote processors has to run under KVM
+Hi Josua and Arnd,
 
-This is not true, KVM is a Linux hypervisor, remote processors have
-nothing to do with KVM, please rephrase.
+> SolidRun CN9130 SoM actually uses CP_MPP[0:1] for mdio. CP_MPP[40]
+> provides reference clock for dsa switch and ethernet phy on Clearfog
+> Pro, wheras MPP[41] controls efuse programming voltage "VHV".
+>
+> Update the cp0 mdio pinctrl node to specify mpp0, mpp1.
 
-> hypervisor, IOMMU translation need to setup from Linux remoteproc driver
-> before it is brought up.
-> 
-> Add qcom_devmem_info and qcom_devmem_table data structure and make a
-> common helper functions which caller can call if these translation need
-> to be taken care by the driver to enable iommu devmem access for
-> remoteproc processors.
-> 
-> Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
-> Co-developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+
+Applied on mvebu/fixes
+
+Thanks,
+
+Arnd,
+
+I've applied it on an mvebu branch and I'll create a PR for it this
+week. However, since we don't have many fixes, you might prefer to apply
+this patch directly to your trees?
+
+Gregory
+
+>
+> Fixes: 1c510c7d82e5 ("arm64: dts: add description for solidrun cn9130 som and clearfog boards")
+> Cc: stable@vger.kernel.org # 6.11.x
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
->   drivers/remoteproc/qcom_common.c | 96 ++++++++++++++++++++++++++++++++
->   drivers/remoteproc/qcom_common.h | 35 ++++++++++++
->   2 files changed, 131 insertions(+)
-> 
-> diff --git a/drivers/remoteproc/qcom_common.c b/drivers/remoteproc/qcom_common.c
-> index 1c7887dc65b4..644920972b58 100644
-> --- a/drivers/remoteproc/qcom_common.c
-> +++ b/drivers/remoteproc/qcom_common.c
-> @@ -658,5 +658,101 @@ int qcom_map_unmap_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t me
->   }
->   EXPORT_SYMBOL_GPL(qcom_map_unmap_carveout);
->   
-> +/**
-> + * qcom_map_devmem() - Map the device memories needed by Remoteproc using IOMMU
-> + *
-> + * When Qualcomm EL2 hypervisor(QHEE) present, device memories needed for remoteproc
-> + * processors is managed by it and Linux remoteproc drivers should not call
-> + * this and its respective unmap function in such scenario. This function
-> + * should only be called if remoteproc IOMMU translation need to be managed
-> + * from Linux side.
-> + *
-> + * @rproc: rproc handle
-> + * @devmem_table: list of devmem regions to map
-> + * @use_sid: decision to append sid to iova
-> + * @sid: SID value
-> + */
-> +int qcom_map_devmem(struct rproc *rproc, struct qcom_devmem_table *devmem_table,
-> +		    bool use_sid, unsigned long sid)
-> +{
-> +	struct qcom_devmem_info *info;
-> +	unsigned long sid_def_val;
-> +	int ret;
-> +	int i;
-> +
-> +	if (!rproc->has_iommu)
-> +		return 0;
-> +
-> +	if (!rproc->domain)
-> +		return -EINVAL;
-> +
-> +	/* remoteproc may not have devmem data */
-> +	if (!devmem_table)
-> +		return 0;
-> +
-> +	if (use_sid && sid)
-> +		sid_def_val = sid & SID_MASK_DEFAULT;
-> +
-> +	info = &devmem_table->entries[0];
-> +	for (i = 0; i < devmem_table->num_entries; i++, info++) {
-> +		/*
-> +		 * Remote processor like ADSP supports upto 36 bit device
-> +		 * address space and some of its clients like fastrpc uses
-> +		 * upper 32-35 bits to keep lower 4 bits of its SID to use
-> +		 * larger address space. To keep this consistent across other
-> +		 * use cases add remoteproc SID configuration for firmware
-> +		 * to IOMMU for carveouts.
-> +		 */
-> +		if (use_sid)
-> +			info->da |= (sid_def_val << 32);
-> +
-> +		ret = iommu_map(rproc->domain, info->da, info->pa, info->len, info->flags, GFP_KERNEL);
-> +		if (ret) {
-> +			dev_err(&rproc->dev, "Unable to map devmem, ret: %d\n", ret);
-> +			if (use_sid)
-> +				info->da &= ~(SID_MASK_DEFAULT << 32);
-> +			goto undo_mapping;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +
-> +undo_mapping:
-> +	for (i = i - 1; i >= 0; i--, info--) {
-> +		iommu_unmap(rproc->domain, info->da, info->len);
-> +		if (use_sid)
-> +			info->da &= ~(SID_MASK_DEFAULT << 32);
-> +	}
-> +
-> +	return ret;
-> +}
-> +EXPORT_SYMBOL_GPL(qcom_map_devmem);
-> +
-> +/**
-> + * qcom_unmap_devmem() -  unmap the device memories needed by Remoteproc using IOMMU
-> + *
-> + * @rproc:		rproc handle
-> + * @devmem_table:	list of devmem regions to unmap
-> + * @use_sid:		decision to append sid to iova
-> + */
-> +void qcom_unmap_devmem(struct rproc *rproc, struct qcom_devmem_table *devmem_table, bool use_sid)
-> +{
-> +	struct qcom_devmem_info *info;
-> +	int i;
-> +
-> +	if (!rproc->has_iommu || !rproc->domain || !devmem_table)
-> +		return;
-> +
-> +	info = &devmem_table->entries[0];
-> +	for (i = 0; i < devmem_table->num_entries; i++, info++) {
-> +		iommu_unmap(rproc->domain, info->da, info->len);
-> +		if (use_sid)
-> +			info->da &= ~(SID_MASK_DEFAULT << 32);
-> +	}
-> +
-> +	return;
-> +}
-> +EXPORT_SYMBOL_GPL(qcom_unmap_devmem);
-> +
->   MODULE_DESCRIPTION("Qualcomm Remoteproc helper driver");
->   MODULE_LICENSE("GPL v2");
-> diff --git a/drivers/remoteproc/qcom_common.h b/drivers/remoteproc/qcom_common.h
-> index bbc41054e1ea..bbc684e1df01 100644
-> --- a/drivers/remoteproc/qcom_common.h
-> +++ b/drivers/remoteproc/qcom_common.h
-> @@ -41,6 +41,36 @@ struct qcom_rproc_pdm {
->   	struct auxiliary_device *adev;
->   };
->   
-> +/**
-> + * struct qcom_devmem_info - iommu devmem region
-> + * @da: device address
-> + * @pa: physical address
-> + * @len: length (in bytes)
-> + * @flags: iommu protection flags
-> + *
-> + * The resource entry carries the device address to which a physical address is
-> + * to be mapped with required permissions in flag. The pa, len is expected to
-> + * be a physically contiguous memory region.
-> + */
-> +struct qcom_devmem_info {
-> +	u64 da;
-> +	u64 pa;
-> +	u32 len;
-> +	u32 flags;
-> +};
-> +
-> +/**
-> + * struct qcom_devmem_table - iommu devmem entries
-> + * @num_entries: number of devmem entries
-> + * @entries: devmem entries
-> + *
-> + * The table that carries each devmem resource entry.
-> + */
-> +struct qcom_devmem_table {
-> +	int num_entries;
-> +	struct qcom_devmem_info entries[0];
-> +};
-> +
->   void qcom_minidump(struct rproc *rproc, unsigned int minidump_id,
->   			void (*rproc_dumpfn_t)(struct rproc *rproc,
->   				struct rproc_dump_segment *segment, void *dest, size_t offset,
-> @@ -65,6 +95,11 @@ int qcom_map_unmap_carveout(struct rproc *rproc, phys_addr_t mem_phys, size_t me
->   void qcom_add_pdm_subdev(struct rproc *rproc, struct qcom_rproc_pdm *pdm);
->   void qcom_remove_pdm_subdev(struct rproc *rproc, struct qcom_rproc_pdm *pdm);
->   
-> +int qcom_map_devmem(struct rproc *rproc, struct qcom_devmem_table *table,
-> +		    bool use_sid, unsigned long sid);
-> +void qcom_unmap_devmem(struct rproc *rproc, struct qcom_devmem_table *table,
-> +		       bool use_sid);
-> +
->   #if IS_ENABLED(CONFIG_QCOM_SYSMON)
->   struct qcom_sysmon *qcom_add_sysmon_subdev(struct rproc *rproc,
->   					   const char *name,
-
+> Changes in v2:
+> - corrected Cc: stable list address
+> - removed duplicate "mdio" from commit message
+> - added Fixes: tag
+> - Link to v1: https://lore.kernel.org/r/20241002-cn9130-som-mdio-v1-1-0942be4dc550@solid-run.com
+> ---
+>  arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi b/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
+> index 4676e3488f54d53041696d877b510b8d51dcd984..cb8d54895a77753c760b58b8b5103149e21e2094 100644
+> --- a/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/cn9130-sr-som.dtsi
+> @@ -136,7 +136,7 @@ cp0_i2c0_pins: cp0-i2c0-pins {
+>  		};
+>  
+>  		cp0_mdio_pins: cp0-mdio-pins {
+> -			marvell,pins = "mpp40", "mpp41";
+> +			marvell,pins = "mpp0", "mpp1";
+>  			marvell,function = "ge";
+>  		};
+>  
+>
+> ---
+> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+> change-id: 20241002-cn9130-som-mdio-4a519e6dc7df
+>
+> Best regards,
+> -- 
+> Josua Mayer <josua@solid-run.com>
 
