@@ -1,177 +1,100 @@
-Return-Path: <devicetree+bounces-108686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B0F8993622
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:25:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3DC993625
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:26:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B91D6B20E74
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AF631C23B3D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:26:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 949371DDC2F;
-	Mon,  7 Oct 2024 18:25:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C12DC1DDC0A;
+	Mon,  7 Oct 2024 18:26:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XCyyi/UW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pL9+HteB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f170.google.com (mail-vk1-f170.google.com [209.85.221.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE8C1DDC0C;
-	Mon,  7 Oct 2024 18:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99AAF1D958F;
+	Mon,  7 Oct 2024 18:26:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728325508; cv=none; b=azp4sSUPmMSBj5xlU06EA0lCmK3JyVhDlmLp5RY5r77NJwhAX7pgkx/zBF8xAnreSwuUZWZVev+enyxGhNJ+H8WCSngvJ0aQlmfe1zE07jgjXPLhXQVqj/93VWh4ES7efINiK4DO6Ap4bR0wePOEqqmi6y9lptsZ/EzJv9S69XU=
+	t=1728325566; cv=none; b=RRtGBTPphQF1z2O4QIoCaCl23lZxue9lrffu5unp0NUJAF0vQsiWNkNxmQ2R/7C6UXjiwsOv+Mg9EfuLHy+Azg9IOCjliMuUhiKpIVxNR/xrwzpY4zxnBhFfvVUGuq224cncgRpAoVlH07vxzJy3zdBVYEhPL7PLW7nm+C+75hs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728325508; c=relaxed/simple;
-	bh=I1laxIx6uj2eMvTU6YxrqrxVj8tbVyjB/oXOOYwD9kM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H/PooK9X4yQVdPc7H4OJyYguszvIDeGUe2Ng1BRlWPCoEeYRMHL2DHOZJup9FjSTos8oKmW2U7yLTPWTF6Y16x8aiwKPapVq3nRuWdluZS5z6/zGjoUXWmcJ3G8lRWzSfYzzMf7pXf2iaTkTW62oyEGvKdCyFT8Pfta0MEVqnRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XCyyi/UW; arc=none smtp.client-ip=209.85.221.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f170.google.com with SMTP id 71dfb90a1353d-50792ed3ad9so1342186e0c.3;
-        Mon, 07 Oct 2024 11:25:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728325506; x=1728930306; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b+i+MfgMNbb6REMbZ9LEKkQ4cTCE2FPAazrxAKZ/Ogk=;
-        b=XCyyi/UWqf8uygrVzy/xnJz4sXr9xCSZYSDTz7fuRhHmoBENSaxZuA1I2iaLPiF76S
-         aPb5zXuVwubbYQJWIp6iOQqT7ytQt2B222N6Gkv0MqEBDgDQjw43gOu6+4O6kFcYlIdQ
-         7TAbYWRZ+4YN4eDh9VhkOHJH+oQFkU669Ov8WrLNUAaFxm7yWX46P8lInvVjxNxcP/+Z
-         LDTDrtd6VsryaY+vGlZjISgg9iIO/U25tyvDX+qQtoIduiD8vG7vv41K3psxU/gE7P0/
-         icUKkTVkTr6Z7fP87LClOcWSuLJ1s7/VoQyhw7PY5HGhnGT7dKcjNO3O8tGw7v5SFHHx
-         ICfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728325506; x=1728930306;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b+i+MfgMNbb6REMbZ9LEKkQ4cTCE2FPAazrxAKZ/Ogk=;
-        b=gAWRIiv95mPfIF2xfRoLkkaZ5j7sL/kGv3JAn4bBiYaHwL7k5SN6Be/HLjiQWk23wA
-         +bHSsRvT7hYIFcVwMfNeZ5UdaOeqM2custjpV5RiAyMKlL9vF5P3MqfXzWHe0TmJmbAp
-         DZFyKp4cQv/erHY8btrQ/PFhoF+irR2v+042HJGsxvxCmyMSvRkmSkBtoJlP+hvNEPk9
-         y8/1dvBY8qpp9VKxmq/geDByN8AOYLd7k0x+HaPaNTf0WxyTIXCmfhqzg4JDwLrkLERh
-         zqyN5DgvNeu7UJ0jjzk5qUBxjO2PO5dkTyiQ9eaPgAp7fEYKNZchaj1+mCUbmlbAzXKZ
-         DAkw==
-X-Forwarded-Encrypted: i=1; AJvYcCWX1q5K1Z2AS/gPHCeeis1mFtVrU+VzY0QdcQ3sv9kw1UXZeBnJH9OMarVUEQef8WZ4tn66f1H4F9Bw@vger.kernel.org, AJvYcCWy2GuotWSfbGURLnT3JTOn3mlf7+Fvch0h5asDuqU0kQhonNNHfswTBfTOughs86qDwVOfuVywG6j1SQGzodVkpp8=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIHyYhW2B55NtMIWrtVqcoefWZtJOAiUxH2ZObOl9Md2UvfuGc
-	QrA94iHBy3H/5lrvPgZzlToz7JM+OTJ7bCRi8z7NKAbldI+O7gwXwtY4kYhLmkIVd7RN3bmszFb
-	WzWtiJbwp2ko7R+Se0k2PVj4nb0M=
-X-Google-Smtp-Source: AGHT+IHZFB+sY5pDHcjuevdTp0+pB+9v3eTbcqOZ7GOuIwMO8dOBjpFyTrQxrDe7UT2luQSZnElAHn+Nbf275OjZxK4=
-X-Received: by 2002:a05:6122:1822:b0:509:197b:3e2 with SMTP id
- 71dfb90a1353d-50c85594bbemr8691164e0c.11.1728325505854; Mon, 07 Oct 2024
- 11:25:05 -0700 (PDT)
+	s=arc-20240116; t=1728325566; c=relaxed/simple;
+	bh=YEnynhxrrE/6PuEr8w5deE0PsZc3kVpk08z+7Q9NWGU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rvQSnf4OhMez400Wb+KvHvYA0H8PntqikwkHyzcO+7HR1gnb0eOeWi/zVWQiclpNf31R6RIhhaY4AQFu+WnraFuKKG7fp0bq8zITqhn6DzrsBmtaBRD1jj6j0VsRDyUUfsFr487CrJ/8sDRn2RGK0SfXEWPOwhb9zjB71x8t4oY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pL9+HteB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F9AC4CEC6;
+	Mon,  7 Oct 2024 18:26:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728325566;
+	bh=YEnynhxrrE/6PuEr8w5deE0PsZc3kVpk08z+7Q9NWGU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pL9+HteBPgzPc37Qtd/TLMiHmEDjHO44Fb12d6hYP+gdF6a011Zas93xrSQqBPuo3
+	 6qlKxpgfS/4low1VNm//KQzTDIs/sHa793HsRqr1Kqa5NQrLEqxLp0bbx7/pCv71k4
+	 wapVho8z8T7C1kHzlS5oB2hxj7M4DhudEU3CcvOlDuZZl42E7OZ+05KZDLjklr3WOi
+	 62B6ZxqQm7e46/h7IEmXTrz+ZLsITgAUvmpdkf6zhsiXGmg00nqzXz+Dl+F3SOiIjl
+	 PLSW0p9vy+93x0OWN7NrZM+sH6ucOlapvnqjNiPmByE+Xc9iiu4s/EgcYPFs8EpcSM
+	 tDTuqmnNCyk9w==
+Date: Mon, 7 Oct 2024 13:26:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Lothar Rubusch <l.rubusch@gmail.com>
+Cc: krzk+dt@kernel.org, conor+dt@kernel.org, dinguyen@kernel.org,
+	marex@denx.de, s.trumtrar@pengutronix.de,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] ARM: dts: socfpga: add Enclustra Mercury SA1
+Message-ID: <20241007182605.GA1915276-robh@kernel.org>
+References: <20241007133115.1482619-1-l.rubusch@gmail.com>
+ <20241007133115.1482619-5-l.rubusch@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728045620.git.geert+renesas@glider.be> <4ee2e3e1e0e174782bd4d2af44bb6150d24af551.1728045620.git.geert+renesas@glider.be>
-In-Reply-To: <4ee2e3e1e0e174782bd4d2af44bb6150d24af551.1728045620.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 7 Oct 2024 19:24:39 +0100
-Message-ID: <CA+V-a8tFwER5yEnDPqi1Uv3yHJtqQkb7DQEwYAXjRHzEiMwC6Q@mail.gmail.com>
-Subject: Re: [PATCH 17/20] arm64: dts: renesas: Use interrupts-extended for
- video decoders
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007133115.1482619-5-l.rubusch@gmail.com>
 
-On Fri, Oct 4, 2024 at 2:27=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
->
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Mon, Oct 07, 2024 at 01:31:11PM +0000, Lothar Rubusch wrote:
+> Introduce support for Enclustra's Mercury SA1 SoM based on Intel Cyclone5
+> technology as a .dtsi file.
+> 
+> Signed-off-by: Andreas Buerkler <andreas.buerkler@enclustra.com>
+> Signed-off-by: Lothar Rubusch <l.rubusch@gmail.com>
 > ---
->  arch/arm64/boot/dts/renesas/ebisu.dtsi                     | 5 ++---
->  .../dts/renesas/r8a77970-eagle-function-expansion.dtso     | 7 +++----
->  arch/arm64/boot/dts/renesas/salvator-common.dtsi           | 5 ++---
->  3 files changed, 7 insertions(+), 10 deletions(-)
->
-Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>  .../devicetree/bindings/arm/altera.yaml       |  10 ++
 
-Cheers,
-Prabhakar
+Bindings should be a separate patch.
 
-> diff --git a/arch/arm64/boot/dts/renesas/ebisu.dtsi b/arch/arm64/boot/dts=
-/renesas/ebisu.dtsi
-> index b4e0347d3617a83e..ab8283656660059a 100644
-> --- a/arch/arm64/boot/dts/renesas/ebisu.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ebisu.dtsi
-> @@ -434,10 +434,9 @@ video-receiver@70 {
->                 compatible =3D "adi,adv7482";
->                 reg =3D <0x70>;
->
-> -               interrupt-parent =3D <&gpio0>;
-> +               interrupts-extended =3D <&gpio0 7 IRQ_TYPE_LEVEL_LOW>,
-> +                                     <&gpio0 17 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-names =3D "intrq1", "intrq2";
-> -               interrupts =3D <7 IRQ_TYPE_LEVEL_LOW>,
-> -                            <17 IRQ_TYPE_LEVEL_LOW>;
->
->                 ports {
->                         #address-cells =3D <1>;
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansio=
-n.dtso b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
-> index 3aa243c5f04c8022..9450d8ac94cbe977 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
-> +++ b/arch/arm64/boot/dts/renesas/r8a77970-eagle-function-expansion.dtso
-> @@ -82,8 +82,7 @@ hdmi-decoder@4c {
->                 compatible =3D "adi,adv7612";
->                 reg =3D <0x4c>, <0x50>, <0x52>, <0x54>, <0x56>, <0x58>;
->                 reg-names =3D "main", "afe", "rep", "edid", "hdmi", "cp";
-> -               interrupt-parent =3D <&gpio3>;
-> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
-> +               interrupts-extended =3D <&gpio3 2 IRQ_TYPE_LEVEL_LOW>;
->                 default-input =3D <0>;
->
->                 ports {
-> @@ -114,8 +113,8 @@ video-receiver@70 {
->                        0x60 0x61 0x62 0x63 0x64 0x65>;
->                 reg-names =3D "main", "dpll", "cp", "hdmi", "edid", "repe=
-ater",
->                             "infoframe", "cbus", "cec", "sdp", "txa", "tx=
-b" ;
-> -               interrupt-parent =3D <&gpio3>;
-> -               interrupts =3D <03 IRQ_TYPE_LEVEL_LOW>, <04 IRQ_TYPE_LEVE=
-L_LOW>;
-> +               interrupts-extended =3D <&gpio3 3 IRQ_TYPE_LEVEL_LOW>,
-> +                                     <&gpio3 4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-names =3D "intrq1", "intrq2";
->
->                 ports {
-> diff --git a/arch/arm64/boot/dts/renesas/salvator-common.dtsi b/arch/arm6=
-4/boot/dts/renesas/salvator-common.dtsi
-> index 08f4e35c414ebbcf..269cda6fae21de70 100644
-> --- a/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/salvator-common.dtsi
-> @@ -544,10 +544,9 @@ video-receiver@70 {
->                 reg-names =3D "main", "dpll", "cp", "hdmi", "edid", "repe=
-ater",
->                             "infoframe", "cbus", "cec", "sdp", "txa", "tx=
-b" ;
->
-> -               interrupt-parent =3D <&gpio6>;
-> +               interrupts-extended =3D <&gpio6 30 IRQ_TYPE_LEVEL_LOW>,
-> +                                     <&gpio6 31 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-names =3D "intrq1", "intrq2";
-> -               interrupts =3D <30 IRQ_TYPE_LEVEL_LOW>,
-> -                            <31 IRQ_TYPE_LEVEL_LOW>;
->
->                 ports {
->                         #address-cells =3D <1>;
-> --
-> 2.34.1
->
->
+>  .../socfpga/socfpga_cyclone5_mercury_sa1.dtsi | 143 ++++++++++++++++++
+>  2 files changed, 153 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_mercury_sa1.dtsi
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
+> index 8c7575455..87a22d2a4 100644
+> --- a/Documentation/devicetree/bindings/arm/altera.yaml
+> +++ b/Documentation/devicetree/bindings/arm/altera.yaml
+> @@ -51,6 +51,16 @@ properties:
+>            - const: altr,socfpga-cyclone5
+>            - const: altr,socfpga
+>  
+> +      - description: Mercury SA1 boards
+> +        items:
+> +          - enum:
+> +              - enclustra,mercury-sa1-pe1
+> +              - enclustra,mercury-sa1-pe3
+> +              - enclustra,mercury-sa1-st1
+> +          - const: enclustra,mercury-sa1
+> +          - const: altr,socfpga-cyclone5
+> +          - const: altr,socfpga
+> +
+>        - description: Stratix 10 boards
+>          items:
+>            - enum:
 
