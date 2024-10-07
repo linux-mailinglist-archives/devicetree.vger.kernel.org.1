@@ -1,109 +1,108 @@
-Return-Path: <devicetree+bounces-108625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C766699324F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:00:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 350F1993262
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:02:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 281CB1F24848
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:00:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6395C1C2178E
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:02:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00DA91D9A59;
-	Mon,  7 Oct 2024 15:59:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5411C1D9323;
+	Mon,  7 Oct 2024 16:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUsH9KoJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgDlgFVt"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA27A1D8E07;
-	Mon,  7 Oct 2024 15:59:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2925C1E520;
+	Mon,  7 Oct 2024 16:02:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728316780; cv=none; b=JcYLaM2L4i51Gq3hYV9jCsvTroGoaEzcEmnDutXjS24fNhJ9yaA93qB5pPNW5x4YDPG0lG/I8EUMKdZcDcGF+beiBDRrLzf500sGnsstLPca2oBpRN/nUDHlHqaSkJNB4oDPvzyA85VlXfbhYGN1QRPiBtQM12W4ieF+9t1UoZ8=
+	t=1728316944; cv=none; b=l7RmWXhqaB7HH0E0zAkkhljyOweLazDpzvnD34rGM5O1ltI/x1vEt6hkfYYSvMXt4iFDCmjjaTUIuZWjhgQwl/83AvLVYJaIWQyIRNrxRHiKg/RqrnSJY7g9OZDYpzhmjw0wcSzy7NWGA7tWELftdE6i/rEx2wmU05E8U+lz3sY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728316780; c=relaxed/simple;
-	bh=fhPtbJcYuo2EIiYOBX9N2FPoMgTuRpLRKCd9jzg6Vt0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SDt0b1nfS40+Q/qIQyBzJBj7q3zKiy8RjwFUJwI7ixT1kgtyIZoE+Bbi4iOBtstNANudxeaGSqxRGj+wNs6a9Tw2YlctRXsWlvJN7ZvNv3RK/lPYV6tb6HYXSHybAQ5roAMhhTDy8gW8p30JyY9Gz39mFy3+9ewC7j+G84X/hPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUsH9KoJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30748C4CEC6;
-	Mon,  7 Oct 2024 15:59:40 +0000 (UTC)
+	s=arc-20240116; t=1728316944; c=relaxed/simple;
+	bh=806jNc2mizzwBfHn3ArzLEx2D5C2yoYYUNpl5mYv32c=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=qJoy1awPGdzk2McrF0bYC+j0TH5v9DkZuSxTUeBEEVCjl7abxx3QK+7I4l4KYQBCRHUVKlvpbLi3O3deGOZKpFzHMplqUjkFZ67x6gxW5mIky2vyYhXPnBCanxd7SwFSUoaduXyPGEjTyC50eJw5hR56ZS4uL8iy3pUEAJ6CYK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgDlgFVt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DCA85C4CEC6;
+	Mon,  7 Oct 2024 16:02:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728316780;
-	bh=fhPtbJcYuo2EIiYOBX9N2FPoMgTuRpLRKCd9jzg6Vt0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kUsH9KoJ/pcRJzTf0yiA76pFtXQToF3xoqGGBMSO/255O9nNZJx396sPE1Qn1deZc
-	 VbEIMzU76zibDubgGE9FYQOsPiKXrpR6mOEM0/z8ZrDnRI7xE1ad+UZMcc67dii7Yf
-	 fu+Ti3BrJasdXWC9/KH/aWR8juwbZy0PietEoRxpUJHCxDSxx5i8kWv24prO34EePT
-	 rQMOx5pNzv553+BV2nKmuoONMyk81DN7HbL+OWsDwSQ32WNjrdCfar/3lysObkE7Ng
-	 V7kVxHq76AYgAlJyIV4Cm01BV3+1UDRYwq3DGXY3lDRablkJqXEUIRDscEcOMIlmOH
-	 Kn5FCb6rlGxjA==
-Date: Mon, 7 Oct 2024 10:59:39 -0500
-From: Rob Herring <robh@kernel.org>
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>
-Cc: "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"m.felsch@pengutronix.de" <m.felsch@pengutronix.de>,
-	GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: mmc-pwrseq-simple: add support for
- reset control
-Message-ID: <20241007155939.GA849826-robh@kernel.org>
-References: <20241004120740.2887776-1-catalin.popescu@leica-geosystems.com>
- <20241005182632.GA496820-robh@kernel.org>
- <92a27d06-cd37-42ff-ac48-687981d24d41@leica-geosystems.com>
+	s=k20201202; t=1728316944;
+	bh=806jNc2mizzwBfHn3ArzLEx2D5C2yoYYUNpl5mYv32c=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=YgDlgFVtTQHHg6zNLABaPqJoFAFjy5vCsh4MroD1s28BtDc62nqXeVFEzeEvNolqK
+	 x47/P9+MQZAtq5TTiGXWO91a7+8raFCETtLc35MAHaVqNHVpS0ReKIbCupN8260g2Y
+	 YRDk0g3ZERDesTgSVZBfHs6hf1YY0RsiE750sfEcuYmEu8NSCzpW/6xIklp5tNJ1d1
+	 I+DS+syfrQjJHBbai+3QkR4/QdQgPNs1zYeQpivqIHqQj8ZHmDsq8BZxEdTEuMRANf
+	 8x6d26ytwi1FjPCelYvxWCiZ1uxCGJ959JVEXF057/T3US6YwkCeBwHrgR8HjRvVPl
+	 2B8EXGt39SVWA==
+Date: Mon, 07 Oct 2024 11:02:23 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <92a27d06-cd37-42ff-ac48-687981d24d41@leica-geosystems.com>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, 
+ Jerome Brunet <jbrunet@baylibre.com>, linux-amlogic@lists.infradead.org, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Kevin Hilman <khilman@baylibre.com>, 
+ linux-gpio@vger.kernel.org, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+In-Reply-To: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
+References: <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-0-d3d838540033@linaro.org>
+ <20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org>
+Message-Id: <172831694232.937294.6889037408108312834.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl:
+ amlogic,meson8-pinctrl-aobus: add reg for aobus pinctrl nodes
 
-On Mon, Oct 07, 2024 at 03:32:42PM +0000, POPESCU Catalin wrote:
-> On 05/10/2024 20:26, Rob Herring wrote:
-> > [Some people who received this message don't often get email from robh@kernel.org. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> >
-> > This email is not from Hexagon’s Office 365 instance. Please be careful while clicking links, opening attachments, or replying to this email.
-> >
-> >
-> > On Fri, Oct 04, 2024 at 02:07:39PM +0200, Catalin Popescu wrote:
-> >> Add compatible value "mmc-pwrseq-simple-reset" to support reset control
-> >> instead of gpios. Reset controls being refcounted, they allow to use
-> >> shared resets or gpios across drivers. Support of reset control is
-> >> limited to one single reset control.
-> > Can't you do this without a binding change? Just use reset controls when
-> > there is only 1 GPIO.
+
+On Mon, 07 Oct 2024 16:16:25 +0200, Neil Armstrong wrote:
+> While converting the Amlogic Meson pinctrl binding to dt-schema, the mandatory
+> reg property for Meson8/b aobus pinctrl node was ommited, fix this to finally
+> pass all bindings checks.
 > 
-> That's a good question. The idea was to keep in place the gpio support 
-> w/o impacting any platform using pwrseq-simple.
-
-Why would it matter? If not shared, then the behavior should be the 
-same. If shared, we want to maintain the broken behavior?
-
+> Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../pinctrl/amlogic,meson8-pinctrl-aobus.yaml      | 22 +++++++++++++++++++---
+>  1 file changed, 19 insertions(+), 3 deletions(-)
 > 
-> Also, later on when support for a list of reset gpios will be added to 
-> the reset framework, this would not work anymore...
 
-Why not?
+My bot found errors running 'make dt_binding_check' on your patch:
 
-How an OS handles reset-gpios is up to the OS. It can evolve. The 
-binding can't evolve because it is an ABI.
+yamllint warnings/errors:
 
-Also, a list is kind of broken to begin with for a "generic" binding. 
-What's the order the lines should be asserted/deasserted? What about 
-timing requirements? You don't know because every device is different. 
-This binding would not be accepted now, so extending it is questionable.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.example.dtb: pinctrl: 'reg' is a required property
+	from schema $id: http://devicetree.org/schemas/pinctrl/amlogic,meson8-pinctrl-aobus.yaml#
 
-Rob
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241007-topic-amlogic-arm32-upstream-bindings-fixes-meson8-pinctrl-v1-1-d3d838540033@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
