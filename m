@@ -1,213 +1,297 @@
-Return-Path: <devicetree+bounces-108653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8A15993470
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:07:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F5E993472
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 19:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE3771C235BD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:07:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA0171C23317
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5940F1DC74B;
-	Mon,  7 Oct 2024 17:07:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 906591DC75F;
+	Mon,  7 Oct 2024 17:08:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="iG+/w1Pd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ym2/dKnC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A79FC1DC73E
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 17:07:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C95751D9661;
+	Mon,  7 Oct 2024 17:08:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728320871; cv=none; b=fkxdAGRcwEh+CQ7hpVEkO/F7NjyaxSEqp9sBkqXNrvKpa3DV6F3ze7Y1rN1DM5jza/Hsi89ko3G9K+akKeq1zOb4P1xvQ1AKaqtR84/0vyLmWcgdKMz+ED1aMf3iOxoRmJmhXDip63kgGJzF1pSheluPl1v/QgbbaZtt5gJyV9E=
+	t=1728320931; cv=none; b=Vy/V35iw9OSuHptR8zE72wHf2jo9h1yCk0JhbgYbVC/TnvncMKmGUQi9nGDMubt7OcOYO9jnLqubrQ/Kqp/pQZTOi03uVWyEsEzTGIU3j5O9PQjc4TpPx1s/XcfNNwq6AqJBQEBGCc/ixr3CBF7CdY7ViD3NUQ0KtO2OrttcRR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728320871; c=relaxed/simple;
-	bh=OOMuuH5IlYxEWqct0FimV+HnzWKOtW4Vj1nW5sw4X98=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=PxlO1O5XnwUVgnwwIaezktsKMUq9SQl79eRSxq2eMZk/Xcr1xMXQGUMKR6zY/uVyBliVNjwmECu6t7QYEhvvnGtsHljcPExSzc5cHg8EMOuaHqv7p2J0SrxSDL3ttf7StxVa4lGuXJHpyQYzgCRK1Wj8EO3ODsTe5ft5G2nWyGo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=iG+/w1Pd; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-7ea12e0dc7aso681820a12.3
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 10:07:49 -0700 (PDT)
+	s=arc-20240116; t=1728320931; c=relaxed/simple;
+	bh=WPFB0BclOC8+PoWBq+niIaY/H18Tt//G3VWNYaahDAA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rNFTicOquMbyj0Dhvs5iSgrEugEs14tbOEf2LTB76U/w2nMJMIodpkuArw207q6DwZAO7od7YRhJzZVXTPFV3ZRqJRUNRHlVXpJ5Ws6jyNgtIrvyK0k2PYhFYS/rLMUmBWyRbQ2gSC0qUc56pjxPjrhfc5Bx+bk1D0ux/Q2TlJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ym2/dKnC; arc=none smtp.client-ip=209.85.222.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-84ea36b65cfso957245241.0;
+        Mon, 07 Oct 2024 10:08:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1728320869; x=1728925669; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=1Xsz1cKkpJKzKS5NgU8P9HM5AvWEcAQxgUYBZ/hb0Eo=;
-        b=iG+/w1PdgxjyZNcJcG8GH98ZJj/iTyRWQf3/sX2v/D+WL9/RqNZnR1ktbNCqwUBsi0
-         Rh9T2xZcWfrnwr4Rah4bOTACwuus37rU2D5JBZkd0jHBoIlUiSxZKIeHUuwekxWxnBtY
-         BkCund25RwKOlBbcIdrJ8LawlpvJVdTUM8QM4=
+        d=gmail.com; s=20230601; t=1728320929; x=1728925729; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rwbps6RsUG2AAMnqoCxgAxF4PbCn55xedoPWXypL4bQ=;
+        b=Ym2/dKnCx41dkFeye9d+z3VxQ9sYAA6m3vrcnq1Y/zeF3I4RfhYFspL9Wh1TFCHT8F
+         ti+4np9D43R0Bd/ZUJfuEkzD4PHcPmvsTk1We4HjwJMgX3AlKAipaXrgix1DWbF4kYdi
+         gdiKpCe1ajXQBNoCGQzhtPI/FGvRO+P3SuGVUZ9j3Y6GfZ70TM2dV5W9JJwPnfx/dKaH
+         t8lmvGS6VsUiZB0U0TKKDfeGvUnAaNNpAuHWdJtIbg2sij47mcfM1ZT/cwobTAGJR74w
+         43ckZkoJNXIsAlwzPI1UiKK7C158TYnf8TpBVDpw4OvRLJSozSJMpmKsYYtB8iP8jZhh
+         vc7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728320869; x=1728925669;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1Xsz1cKkpJKzKS5NgU8P9HM5AvWEcAQxgUYBZ/hb0Eo=;
-        b=o3rfvHpIfaKoUOK51VTfMcRo3GPyHpBxXCQ39yPLXtFhNBayjicXk+7ITkUpBng4JC
-         Unpqv3o75yvIV4rIzaHukv1BOFLeiD5pgo6oCxpyY4/nY/hkWdJ99BneVYh+Usv0062K
-         daOzeTTTotrUDxa2j4ibEQpMQ5RCczh1t79QiIWFAyiWyank9drrxrgwxGQjwg04mlWa
-         CqJv9R8jyo0eEcrro1Y5vWGfkYbDz2ZhH1OFp53+4bhGFcWIWymIDKeYP8PjLmY+3Q2U
-         mZ/Z8VkmONyOtEmaE7ZejbxTFUBe+Q2M1/amZNL7ogC1vD1WzKDw/BpWSzxW+YZo+42k
-         6gIA==
-X-Forwarded-Encrypted: i=1; AJvYcCW+81D46Y+1PFnQ9QG67IURuhEhWkq0YMcLX6XVvObjOVZ0PEPiKPIR0z8R0yjTm9SZuVR1fIAL/Kcu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQaWWVgAWSsqHQPA6V/ThPNUOyoQBNEo6RcoQNRMRt9VQHgLf+
-	BAO1u13b5ElAG1dCTaTP3l9mMqIhqMJxDfB8yncXQtuhhkCRrfvKNcyeK2dLEQ==
-X-Google-Smtp-Source: AGHT+IGafgSzyj7H334JaowYq/bSl0luswUi03Ck5xtcg5AC+8GL0Qp4QvzU6hyPq89Q2aXo/BBkdg==
-X-Received: by 2002:a17:90a:ce87:b0:2c9:649c:5e08 with SMTP id 98e67ed59e1d1-2e1e6226d7bmr13956400a91.15.1728320869018;
-        Mon, 07 Oct 2024 10:07:49 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e1e85d96bfsm7420819a91.27.2024.10.07.10.07.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 10:07:48 -0700 (PDT)
-Message-ID: <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
-Date: Mon, 7 Oct 2024 10:07:46 -0700
+        d=1e100.net; s=20230601; t=1728320929; x=1728925729;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rwbps6RsUG2AAMnqoCxgAxF4PbCn55xedoPWXypL4bQ=;
+        b=iJG6HMWLydpJThyZjfSUIWpEzGhg1UcVMIrbMPN1467WgGucGDWQfeMAcDrmTJSVRE
+         //YsmZThutuzqmjo3+HhCUBHS589i7ytqPmPCgznBusu30O2XM2J4WN1XeRpIYYec1Bw
+         ID7k9VW6OoMH1FeH2B/o/9i8T6x2ESjg4AWWQwukcDms5o3BUfWo5kZ1t8dTOq5exU5F
+         XAMH7Ff8/RMTbXb1KorJBaLuAB0VDstm2atdYrPeE7Q8qrKaZAWoTZIMbC5ENt2a8ANd
+         uZL5wxZ1dDFeRlwrOxAKg0zm39mRbtYGS0rdqQQoJZWyluFxrI+xlZjVvZpdb41neduI
+         Caew==
+X-Forwarded-Encrypted: i=1; AJvYcCUMaK/BJudakCqWD6mMbl5mcjAGFuK2aycjtVu8dpunLQTkeKpZYo+IcoGIA90B1AGXeQx+IYKsqYvim2aUCrbDUSM=@vger.kernel.org, AJvYcCVnKpM2LvL/gFwqJuqyKLkd4i5A1sAflt6igzbiCl63D5YFj8FAnuWPAOgAOsI+oNO+H3is+IF15Omd@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzw08YdWXUwpIzBJwUQjrhfCTGeLqdhaO8bZWsLIgqgTwiR+HcQ
+	KmWvTDoZNsK+OlPLJWynNwhFn2sdmvT99REQD07qmscqYwU8Bzi8sH6zkpMokL6u2twdGjU1qZj
+	ynUdDRasxgICHRbj6SL2J806MmiAkt4RE
+X-Google-Smtp-Source: AGHT+IFmVJstvr2S91RPGjOnI4XdwsSNv29uPUaqGyRWQGgIjCrgJSNs7CkcYL1dDuq9udWyFVEcrRUg5pswIBcgIi8=
+X-Received: by 2002:a05:6122:2007:b0:50a:b728:5199 with SMTP id
+ 71dfb90a1353d-50c854bdfbemr6933669e0c.7.1728320928575; Mon, 07 Oct 2024
+ 10:08:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-To: Cristian Marussi <cristian.marussi@arm.com>
-Cc: linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- "open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
- <arm-scmi@vger.kernel.org>,
- "moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE"
- <linux-arm-kernel@lists.infradead.org>, justin.chen@broadcom.com,
- opendmb@gmail.com, kapil.hali@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com, Arnd Bergmann <arnd@arndb.de>
-References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
- <ZwPLgcGeUcFPvjcz@pluto>
-Content-Language: en-US
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <ZwPLgcGeUcFPvjcz@pluto>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <cover.1728045620.git.geert+renesas@glider.be> <934b9b9992dacd72dbad0f5433728aac292a3cfc.1728045620.git.geert+renesas@glider.be>
+In-Reply-To: <934b9b9992dacd72dbad0f5433728aac292a3cfc.1728045620.git.geert+renesas@glider.be>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Mon, 7 Oct 2024 18:08:22 +0100
+Message-ID: <CA+V-a8u=qpR17Pyhw_Z=8zjjbia2fX7XBJSowp1NwMVkX9yjtA@mail.gmail.com>
+Subject: Re: [PATCH 04/20] ARM: dts: renesas: Use interrupts-extended for PMICs
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Cristian,
-
-On October 7, 2024 4:52:33 AM PDT, Cristian Marussi 
-<cristian.marussi@arm.com> wrote:
->On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
->> Broadcom STB platforms have for historical reasons included both
->> "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
->> string.
+On Fri, Oct 4, 2024 at 2:30=E2=80=AFPM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
 >
->Hi Florian,
+> Use the more concise interrupts-extended property to fully describe the
+> interrupts.
 >
->did not know this..
-
-It stems from us starting with a mailbox driver that did the SMC call, 
-and later transitioning to the "smc" transport proper. Our boot loader 
-provides the Device Tree blob to the kernel and we maintain 
-backward/forward compatibility as much as possible.
-
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  arch/arm/boot/dts/renesas/r8a7790-lager.dts   | 6 ++----
+>  arch/arm/boot/dts/renesas/r8a7790-stout.dts   | 9 +++------
+>  arch/arm/boot/dts/renesas/r8a7791-koelsch.dts | 6 ++----
+>  arch/arm/boot/dts/renesas/r8a7791-porter.dts  | 6 ++----
+>  arch/arm/boot/dts/renesas/r8a7792-blanche.dts | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7793-gose.dts    | 6 ++----
+>  arch/arm/boot/dts/renesas/r8a7794-alt.dts     | 3 +--
+>  arch/arm/boot/dts/renesas/r8a7794-silk.dts    | 3 +--
+>  8 files changed, 14 insertions(+), 28 deletions(-)
 >
->> 
->> After the commit cited in the Fixes tag and with a kernel
->> configuration that enables both the SCMI and the Mailbox transports, we
->> would probe the mailbox transport, but fail to complete since we would
->> not have a mailbox driver available.
->>
->Not sure to have understood this...
+
+Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Cheers,
+Prabhakar
+
+> diff --git a/arch/arm/boot/dts/renesas/r8a7790-lager.dts b/arch/arm/boot/=
+dts/renesas/r8a7790-lager.dts
+> index 5ef87f8088c4c81c..47ffa278a0dfd79e 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7790-lager.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
+> @@ -443,8 +443,7 @@ i2cpwr: i2c-mux4 {
+>                 pmic@58 {
+>                         compatible =3D "dlg,da9063";
+>                         reg =3D <0x58>;
+> -                       interrupt-parent =3D <&irqc0>;
+> -                       interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_=
+LOW>;
+>                         interrupt-controller;
+>                         #interrupt-cells =3D <2>;
 >
->...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
->into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
->DT, BUT your platform does NOT physically have a mbox/shmem transport
->and as a consequence, when MBOX probes (at first), you see an error from
->the core like:
+> @@ -460,8 +459,7 @@ watchdog {
+>                 vdd_dvfs: regulator@68 {
+>                         compatible =3D "dlg,da9210";
+>                         reg =3D <0x68>;
+> -                       interrupt-parent =3D <&irqc0>;
+> -                       interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +                       interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_=
+LOW>;
 >
->    "arm-scmi: unable to communicate with SCMI"
+>                         regulator-min-microvolt =3D <1000000>;
+>                         regulator-max-microvolt =3D <1000000>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7790-stout.dts b/arch/arm/boot/=
+dts/renesas/r8a7790-stout.dts
+> index 9287724187ef3b69..d7c0a9574ce83144 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7790-stout.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
+> @@ -342,8 +342,7 @@ &iic3 {
+>         pmic@58 {
+>                 compatible =3D "dlg,da9063";
+>                 reg =3D <0x58>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
 >
->since it gets no reply from the SCMI server (being not connnected via
->mbox) and it bails out .... am I right ?
-
-In an unmodified kernel where both the "mailbox" and "smc" transports 
-are enabled, we get the "mailbox" driver to probe first since it matched 
-the "arm,scmi" part of the compatible string and it is linked first into 
-the kernel. Down the road though we will fail the initialization with:
-
-[    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
-[    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
-[    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for 
-protocol:0x10
-[    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup 
-channels
-[    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi 
-failed with error -22
-
-Because the platform device is now bound, and there is no mechanism to 
-return -ENODEV, we won't try another transport driver that would attempt 
-to match the other compatibility strings. That makes sense because in 
-general you specify the Device Tree precisely, and you also have a 
-tailored kernel configuration. Right now this is only an issue using 
-arm's multi_v7_defconfig and arm64's defconfig both of which that we 
-intend to keep on using for CI purposes.
-
-
+> @@ -363,8 +362,7 @@ watchdog {
+>         vdd_dvfs: regulator@68 {
+>                 compatible =3D "dlg,da9210";
+>                 reg =3D <0x68>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
 >
->If this is the case, without this patch, after this error and the mbox probe
->failing, the SMC transport, instead, DO probe successfully at the end, right ?
-
-With my patch we probe the "smc" transport first and foremost and we 
-successfully initialize it, therefore we do not even try the "mailbox" 
-transport at all, which is intended.
-
+>                 regulator-min-microvolt =3D <1000000>;
+>                 regulator-max-microvolt =3D <1000000>;
+> @@ -375,8 +373,7 @@ vdd_dvfs: regulator@68 {
+>         vdd: regulator@70 {
+>                 compatible =3D "dlg,da9210";
+>                 reg =3D <0x70>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
 >
->IOW, what is the impact without this patch, an error and a delay in the
->probe sequence till it gets to the SMC transport probe 9as second
->attempt) or worse ? (trying to understand here...)
-
-There is no recovery without the patch, we are not giving up the 
-arm_scmi platform device because there is no mechanism to return -ENODEV 
-and allow any of the subsequent transport drivers enabled to attempt to 
-take over the platform device and probe it again.
-
-Thanks!
---
-Florian
+>                 regulator-min-microvolt =3D <1000000>;
+>                 regulator-max-microvolt =3D <1000000>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts b/arch/arm/boo=
+t/dts/renesas/r8a7791-koelsch.dts
+> index bce93db4c9df5e18..1a0d2c6ed0e83ce7 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
+> @@ -814,8 +814,7 @@ &i2c6 {
+>         pmic@58 {
+>                 compatible =3D "dlg,da9063";
+>                 reg =3D <0x58>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> @@ -831,8 +830,7 @@ watchdog {
+>         vdd_dvfs: regulator@68 {
+>                 compatible =3D "dlg,da9210";
+>                 reg =3D <0x68>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 regulator-min-microvolt =3D <1000000>;
+>                 regulator-max-microvolt =3D <1000000>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7791-porter.dts b/arch/arm/boot=
+/dts/renesas/r8a7791-porter.dts
+> index 92b54e043795ba08..08381498350aacde 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7791-porter.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
+> @@ -408,8 +408,7 @@ &i2c6 {
+>         pmic@5a {
+>                 compatible =3D "dlg,da9063l";
+>                 reg =3D <0x5a>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> @@ -421,8 +420,7 @@ watchdog {
+>         vdd_dvfs: regulator@68 {
+>                 compatible =3D "dlg,da9210";
+>                 reg =3D <0x68>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 regulator-min-microvolt =3D <1000000>;
+>                 regulator-max-microvolt =3D <1000000>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts b/arch/arm/boo=
+t/dts/renesas/r8a7792-blanche.dts
+> index 69009535814406fe..a3986076d8e3e993 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
+> @@ -376,8 +376,7 @@ pmic@58 {
+>                 reg =3D <0x58>;
+>                 pinctrl-names =3D "default";
+>                 pinctrl-0 =3D <&pmic_irq_pins>;
+> -               interrupt-parent =3D <&irqc>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc 2 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> diff --git a/arch/arm/boot/dts/renesas/r8a7793-gose.dts b/arch/arm/boot/d=
+ts/renesas/r8a7793-gose.dts
+> index 45ef1d1900245a11..5334af25c10111c8 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7793-gose.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
+> @@ -754,8 +754,7 @@ &i2c6 {
+>         pmic@58 {
+>                 compatible =3D "dlg,da9063";
+>                 reg =3D <0x58>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> @@ -771,8 +770,7 @@ watchdog {
+>         vdd_dvfs: regulator@68 {
+>                 compatible =3D "dlg,da9210";
+>                 reg =3D <0x68>;
+> -               interrupt-parent =3D <&irqc0>;
+> -               interrupts =3D <2 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&irqc0 2 IRQ_TYPE_LEVEL_LOW>;
+>
+>                 regulator-min-microvolt =3D <1000000>;
+>                 regulator-max-microvolt =3D <1000000>;
+> diff --git a/arch/arm/boot/dts/renesas/r8a7794-alt.dts b/arch/arm/boot/dt=
+s/renesas/r8a7794-alt.dts
+> index 1e04b8630ef3f3ca..882644cd7c1875c1 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7794-alt.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
+> @@ -449,8 +449,7 @@ &i2c7 {
+>         pmic@58 {
+>                 compatible =3D "dlg,da9063";
+>                 reg =3D <0x58>;
+> -               interrupt-parent =3D <&gpio3>;
+> -               interrupts =3D <31 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio3 31 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> diff --git a/arch/arm/boot/dts/renesas/r8a7794-silk.dts b/arch/arm/boot/d=
+ts/renesas/r8a7794-silk.dts
+> index 5ed5b426f9639775..2a0819311a3c4ef3 100644
+> --- a/arch/arm/boot/dts/renesas/r8a7794-silk.dts
+> +++ b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
+> @@ -434,8 +434,7 @@ &i2c7 {
+>         pmic@58 {
+>                 compatible =3D "dlg,da9063";
+>                 reg =3D <0x58>;
+> -               interrupt-parent =3D <&gpio3>;
+> -               interrupts =3D <31 IRQ_TYPE_LEVEL_LOW>;
+> +               interrupts-extended =3D <&gpio3 31 IRQ_TYPE_LEVEL_LOW>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>
+> --
+> 2.34.1
+>
+>
 
