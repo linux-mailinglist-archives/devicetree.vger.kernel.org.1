@@ -1,124 +1,181 @@
-Return-Path: <devicetree+bounces-108370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7D4B992698
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:06:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FF4E9926A3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:07:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1F4F8B231EE
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:06:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33F7D1C227AE
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 08:07:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10840187346;
-	Mon,  7 Oct 2024 08:05:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A5E1187879;
+	Mon,  7 Oct 2024 08:06:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="G/k1s40U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U0vbDj8M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C04849C;
-	Mon,  7 Oct 2024 08:05:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E0C18732B;
+	Mon,  7 Oct 2024 08:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728288358; cv=none; b=lNPJWLCBUFYZKKhEWOrRelLFI+pGbwh7a8cwMBOywrxjBcXoCKNyMlURhuO2VKjNc0lsBOqqcT8SU0jYflJ7TPQmzldKLXcBxRxc6IiOk6S+dCWKHKpu3WbScAuEV2G5MO7pbA/Zs6lAPFxn0F10Vr75ocPF8YJd7O2tLgTMu/o=
+	t=1728288418; cv=none; b=LCDx9nAwFx1isVpiePlglc/RKHcMcD2N18isa/2hMJAIcgKomItX36mGBpp/2ZJXujIsOq09287NfZXJNH0Htr/T4iGgkWe6p0xCv+thaesYWgGLB42t8VxYkcoeZg3GAK71DBnPCMAvwylQ9rTWVcAEIE5K+BFL1BNrqGFOqEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728288358; c=relaxed/simple;
-	bh=waUV4a7mutxzrLnl05aUF1spDLiYo3LFIffRAYq+buw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LpzGJoqBdIAPSHDR5DcEVwCADHgXiitG3yZ/fBrW0V3X0PS9Kt9AqURzDkf85gibLSE49KpboL/SA59QnT2tUTBQ5RRjZZDLeDL4t/L+eD+eiMxDL22gGoE+yL6+B3zI9g3gf1NUSSBOGzDU1RyeRg8+WmCOs/zjN3CWoUsp0tI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=G/k1s40U; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=ZkOxRoRypHAVQgVjyqb7heF/q9DLPK8SmPxFVAuphQI=; b=G/k1s40Ulb10wWe2CvPP9H8zku
-	QyoRAgzReOYMUcvY1lT5FklGPJb9trwS8HWM5iKC2m2ws7E5TBIouShElZ6rUqd7aL1NY7tFFpVKE
-	wqInKhrzG35pjz7jHf4OdIyFp3xZtpyrQXwDcYsiY6x/GxEZc2Jw5mZA5rcEBBcKbM2WHNg1Fdfs2
-	kNbk1NVQV/19IsFaacmsHaoCamjIA1H2jsOPU65USw0roLxH03+ZCKnQBXaVtJ7nLQr2BB8WSp9q/
-	pK0Qc7UupO3XNZW14pv9HT2V5bQRXcSXjTwLYdsqnGept/bPGsRtLZYkPMGkRaEsXJw7YIF5kf8hC
-	Rg1jWntw==;
-Received: from i5e860d18.versanet.de ([94.134.13.24] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sxik7-0004Pv-F9; Mon, 07 Oct 2024 10:05:23 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Shengjiu Wang <shengjiu.wang@gmail.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Xiubo Li <Xiubo.Lee@gmail.com>,
-	Adrien Grassein <adrien.grassein@gmail.com>,
-	Lubomir Rintel <lkundrak@v3.sk>,
-	Masami Hiramatsu <mhiramat@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Nicolin Chen <nicoleotsuka@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Paul Cercueil <paul@crapouillou.net>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-sound@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	imx@lists.linux.dev,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linuxppc-dev@lists.ozlabs.org
-Subject: Re: (subset) [PATCH treewide 00/11] ASoC: Clean up {hp,mic}-det-gpio handling
-Date: Mon,  7 Oct 2024 10:05:20 +0200
-Message-ID: <172814935870.2376693.17979672250689687487.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1727438777.git.geert+renesas@glider.be>
-References: <cover.1727438777.git.geert+renesas@glider.be>
+	s=arc-20240116; t=1728288418; c=relaxed/simple;
+	bh=BpejRmLyKdAMAzWqH63+BEQhESgQZp8DekKdmmrkFcw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=raUdyxdTVA7UzNcQNL4P2aXN92rZTBP5E8y4JvYhy4tEJTC6ms/UiKWnwwZa6YiNNYkisgaOGwiyyG7ERGHHTHTCplT3RSxuAhr8ZkICGUjeUbtR9ZVKh73CIdX2ihH+oc2Cv0M/n0yqS801OqAr6MLLuo2UYvJha+WC53yKvgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U0vbDj8M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44B66C4CEC6;
+	Mon,  7 Oct 2024 08:06:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728288417;
+	bh=BpejRmLyKdAMAzWqH63+BEQhESgQZp8DekKdmmrkFcw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=U0vbDj8MjzuPnSyDD5h7jo8rckO9Q3LQf+nUwR++yCx9YhzoZuM33efYwOToLjRl8
+	 RqIFR6TcEdfUtkKzaBxQQfVV+pOpZP9uL4Wz1qDo1suhJVbcuaRGghVge+bDjsvAsb
+	 xztosqDvNvodHcvRxZgY5psMfWwlW9caYETvk75c9UP6p9MPBf8U8DKfqaudUR5ciM
+	 Mp7mIduylmwdxYl4c/x+fYtGqkh7GMeB9Z8tD+3sizgxXYlEBjf5wK7PM6MfT4Jb6R
+	 NHSO2LR0G6Kf+6RGa8cgRQjmBi79XoBRGGtkTEWjXxlu2dcTvxPpBbUPP27ncl3g36
+	 ywCOrPODzFmHA==
+Message-ID: <06fd4e7e-d401-49bb-81f1-47fcea2dbbee@kernel.org>
+Date: Mon, 7 Oct 2024 10:06:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] clk: samsung: exynosautov920: add peric1, misc and
+ hsi0/1 clock support
+To: "sunyeal.hong" <sunyeal.hong@samsung.com>,
+ 'Krzysztof Kozlowski' <krzk+dt@kernel.org>, 'Rob Herring' <robh@kernel.org>,
+ 'Conor Dooley' <conor+dt@kernel.org>, 'Alim Akhtar'
+ <alim.akhtar@samsung.com>, 'Sylwester Nawrocki' <s.nawrocki@samsung.com>,
+ 'Chanwoo Choi' <cw00.choi@samsung.com>,
+ 'Michael Turquette' <mturquette@baylibre.com>,
+ 'Stephen Boyd' <sboyd@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240912103856.3330631-1-sunyeal.hong@samsung.com>
+ <CGME20240912103903epcas2p4fb9aaeafb223b63c57c2f0cac7f37c3d@epcas2p4.samsung.com>
+ <20240912103856.3330631-3-sunyeal.hong@samsung.com>
+ <db9dc2ef-2c24-4f1b-82c8-316c347daf60@kernel.org>
+ <00a501db188f$8a7142b0$9f53c810$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <00a501db188f$8a7142b0$9f53c810$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 27 Sep 2024 14:42:15 +0200, Geert Uytterhoeven wrote:
-> 	Hi all,
+On 07/10/2024 10:04, sunyeal.hong wrote:
+> Hello Krzysztof,
 > 
-> The "gpio" suffix for GPIO consumers was deprecated a while ago, in
-> favor of the "gpios" suffix.  However, there are still several users of
-> the "hp-det-gpio" and "mic-det-gpio" properties, in DT bindings,
-> drivers, and DT source files.
-> 
-> [...]
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: Monday, September 30, 2024 8:36 PM
+>> To: Sunyeal Hong <sunyeal.hong@samsung.com>; Krzysztof Kozlowski
+>> <krzk+dt@kernel.org>; Rob Herring <robh@kernel.org>; Conor Dooley
+>> <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>; Sylwester
+>> Nawrocki <s.nawrocki@samsung.com>; Chanwoo Choi <cw00.choi@samsung.com>;
+>> Michael Turquette <mturquette@baylibre.com>; Stephen Boyd
+>> <sboyd@kernel.org>
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> linux-samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+>> clk@vger.kernel.org
+>> Subject: Re: [PATCH 2/3] clk: samsung: exynosautov920: add peric1, misc
+>> and hsi0/1 clock support
+>>
+>> On 12/09/2024 12:38, Sunyeal Hong wrote:
+>>> Like CMU_PERIC1, this provides clocks for USI09 ~ USI17, USI_I2C and
+>> USI_I3C.
+>>> Like CMU_MISC, this provides clocks for MISC, GIC and OTP.
+>>> Like CMU_HSI0, this provides clocks for PCIE.
+>>> Like CMU_HSI1, this provides clocks for USB and MMC.
+>>>
+>>> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
+>>> ---
+>>
+>> ...
+>>
+>>> +
+>>>  static int __init exynosautov920_cmu_probe(struct platform_device
+>>> *pdev)  {
+>>>  	const struct samsung_cmu_info *info; @@ -1154,6 +1431,19 @@ static
+>>> const struct of_device_id exynosautov920_cmu_of_match[] = {
+>>>  	{
+>>>  		.compatible = "samsung,exynosautov920-cmu-peric0",
+>>>  		.data = &peric0_cmu_info,
+>>> +	}, {
+>>> +		 .compatible = "samsung,exynosautov920-cmu-peric1",
+>>> +		 .data = &peric1_cmu_info,
+>>> +	}, {
+>>> +		 .compatible = "samsung,exynosautov920-cmu-misc",
+>>> +		 .data = &misc_cmu_info,
+>>> +	}, {
+>>> +		.compatible = "samsung,exynosautov920-cmu-hsi0",
+>>> +		.data = &hsi0_cmu_info,
+>>> +	}, {
+>>> +		.compatible = "samsung,exynosautov920-cmu-hsi1",
+>>> +		.data = &hsi1_cmu_info,
+>>> +	}, {
+>>
+>> This is unrelated change. Please rebase.
+>>
+> Could you please explain in more detail the comment mentioned above?
 
-Applied, thanks!
+You were growing this list, didn't you? Then adding sentinel is unrelated.
 
-[06/11] arm64: dts: rockchip: Switch to simple-audio-card,hp-det-gpios
-        commit: 7ac5c0a592f73fdc52393f6469ce8211ff3e771f
-[07/11] arm64: dts: rockchip: Switch to hp-det-gpios
-        commit: 3ca743f8a5b568dc5e5d5f1bab0298a4a43c2360
-
-after the binding change from patch 02 got merged into the sound tree
 
 Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+Krzysztof
+
 
