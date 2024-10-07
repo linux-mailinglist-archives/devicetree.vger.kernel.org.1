@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-108532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5BA992E50
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:07:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AA4992E67
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 16:09:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F02A2812C9
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:07:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71FC11C23232
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 14:09:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18DE41D47C1;
-	Mon,  7 Oct 2024 14:07:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC8F1D5AA2;
+	Mon,  7 Oct 2024 14:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g19HgLP7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y1bUVINr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52DAF1D54FA
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 14:06:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB7B1D47D2;
+	Mon,  7 Oct 2024 14:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728310020; cv=none; b=anj+7VYOV6fMEjZhAebMGYfb8rfHTFwSpUcEsOnpkAzy3MKOBuRdeRo8rYUYt+BP2WhOQowvmM1jfE2tvCd/0qVgcLAjNSL2h+YTv7RBuws7+HO0K/wKBO/UH8tKfGobREz731iDQXNm/WTCPbXxu2SYm0RPUl/G86cE83rK1k4=
+	t=1728310135; cv=none; b=de+Dbu6UCnMxzzFQPRvfy5LOXuU33bkJb1XqcRfnKqfrdcjZjMmLvVSpP/Nxmx29BzD/arfc/y62WdlMuUBrWzzawpcEgJaPVaH6X0ZduH+FQ6ROL/ZDGeJJ6+A2li1Nyxy4XWsY6/zr4Oc81hN92L9AryKCDyV8WYi90/7TP0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728310020; c=relaxed/simple;
-	bh=oFiGAabka7Woqz+pFzlrMOHt874p/brOV+/VlSXd8dI=;
+	s=arc-20240116; t=1728310135; c=relaxed/simple;
+	bh=iyEzktarnEVzM9L/cb1zUL3YqxpPP5Ks9GXLDzEY/xg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K/+aEZeJ1GyTTRRwAQKq+Wnzbfol407kMsJi8ThIh10Y0sbv+VyQN/CSFyohFDRXZmiXJChnMFz2D2fsYWSmiarLafSiJGSDT936IZJfDEMKF8PLRC3rPpztIZPs/RB6xHxbDKKFhlHX9i9Ko4+bWHlvVLbBz3W1JRRRct374AY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g19HgLP7; arc=none smtp.client-ip=209.85.221.41
+	 In-Reply-To:Content-Type; b=hota2MXoTo+ZAp5XLSuwtN4UENVWWG8RiebqlreqWGuqUqPYTj87BeCGpA73oHG4Tbl8piFDr4oeI4133rlRRY1Py61U4WdEWmoo0McRHj8G30/jTeJq1BH3CQRzqcMVw/56M4+Rja8AffhE14PJ/cTG2A0bDP2Vt26/q+7x+68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y1bUVINr; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-37cdbcb139cso3526079f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 07:06:58 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-539885dd4bcso5474996e87.0;
+        Mon, 07 Oct 2024 07:08:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728310017; x=1728914817; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1728310132; x=1728914932; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=8hWKSlLN+vsj3tUUn13M+s2s4IGGCFQ0f1niVzL4iyE=;
-        b=g19HgLP7kN9FLLDWzhHRIONEA5nqDHSIgMaLwbxQ7agCYeoWZdmpIseh20FtT+09w/
-         i9ZorztFrFv2OmGZ2WX99iovrdd1BCeJ34wZz5UeHvQNH1MFNA8Npk9t7l+qLTpOVr1J
-         gLFxQuN7EmOLhejGxciRvJIoFVP71/fFSZLUnO6JqoVdSgSHYFDyhJ1yHtmA+TCwhIZ1
-         CPv4GGV9JaHzNN9Ede2xl0Fx1afQTuPDWi1z+AaedQqbsJufq0AcEsfAmD8AIfaJAmuA
-         uzPwodUC8nLvkBPD+zyXBDlIbUBOMyWigEfgw5QQe6Q86Buq8V/zLYWBsUf8wOTXQR/8
-         XFNA==
+        bh=Zb7wAIefetmyULqsThbIXGhjEAFrVWLHkT3y0uI9AEM=;
+        b=Y1bUVINrbm4z34j+2HqWcm3HI1hq1IIJ1HbG7NgkcEEIZDtWFcR7/RJyDE7l13zXBc
+         rb9UTo7XosfVjNSDXSRF+OuVwMJlvtfKOeNySbBe7CP5WmIaffVG9WRnEhcLN7pGNSnh
+         SUHDvAYU8PoWyESwYUGDwyAaXwsrcHeaxdzZovBdZTYZdEO7Up2oekWI9Tg51SriTWwz
+         XTWyWjc0phC36ElTEf00dnt6s0sIlCoVCs/iySbCgoXa7Ee3FRWX0yuy7uMdjngfXUzG
+         B9LEFeyIRZSZVVRBngBLzxEq2GQ74dQPP8PzCXZ112l9v2Yl7KIXNxlo+zPVawl07k2P
+         HmzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728310017; x=1728914817;
+        d=1e100.net; s=20230601; t=1728310132; x=1728914932;
         h=content-transfer-encoding:in-reply-to:autocrypt:from
          :content-language:references:cc:to:subject:user-agent:mime-version
          :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8hWKSlLN+vsj3tUUn13M+s2s4IGGCFQ0f1niVzL4iyE=;
-        b=cQ9jOurSejNX5p6Fcvs6X3+tgW2gIR6JaaMOgp0iK2rTjeFoFnjhjNYT/rINFNY2NX
-         MbkPdIn8ON0EpDGYZZgf4ANfPbdRV7BTW3rmPyLBiK8tKdqN//ToPjLH+Qk3rrZhBZ5M
-         Q7/tIXmEPohD46Ck1RgfKwwRmUug6lPUtannKi3P+chZdFWE+04m6nzyfqMm28JvE/2B
-         PROm/cCQ6McguxUxtCyawGVZRB3q+ejyX0tX5z9raCEAjEkkO5aEZMhoN0HBZcrvCmg9
-         24eesVwd3v9dP8Mpl1UWjwijXqmcHFGh/bBVIVrQXctjcamtqTS2Xy7HFXmMpTgSeDmH
-         lkxA==
-X-Forwarded-Encrypted: i=1; AJvYcCVD3ZELqtyVwHsZ/RwaDm8sm9TiP1qB15V5mlS8EpAfXzdrnfbAVXAU75exmcJ5Gv4i7ArowRxs1pJl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLoN5vzNRtSnSppTHCHDI6/LpL5wWZwH9nKGYRjLeIuUnajJp/
-	3H8LgNHzxCITX4fIMEmxKyk/xJJy0+/Oi1JWPmN+1Pviwrx2TQ7b
-X-Google-Smtp-Source: AGHT+IG58jm7bgwH+mDspVRG9n3ZFKjtVsLB8evH6+znZi6hMLtB2++cSjr+HfWHycvINCijQghuYw==
-X-Received: by 2002:a05:6000:dc6:b0:368:445e:91cc with SMTP id ffacd0b85a97d-37d0e74c802mr7260686f8f.21.1728310016473;
-        Mon, 07 Oct 2024 07:06:56 -0700 (PDT)
+        bh=Zb7wAIefetmyULqsThbIXGhjEAFrVWLHkT3y0uI9AEM=;
+        b=YDvH2QOE9aId60vaiWC8R+K/XDqhdlycMG3xTGtsJ7Z/jug3gE2oOFVChAmAosaiLa
+         IUGwyO7SVU+UffA8HwQ4fglgxJkyZuC1XR6IxNuSdwOOsysxA1diTEoBCoKf/hx/2Yg3
+         6Ow+y63zpDUCJmkIF79+sLftRxwdUDWsvBcDGYQjRjAs30PgSQBsUpv8T8ryqoA3CxhG
+         LA0oyjcTDxekvyaLudbPtL8EDp09XY0meNrJtP+ebIThyrUDeyLQFsjJER8PVJsexgr6
+         P1HDcVBfKLImAvxS6QNzhQIH4aPq10GlDcZXhA7Riy44a81rEidY6bhcXCfZVFpZn7c2
+         Q1/w==
+X-Forwarded-Encrypted: i=1; AJvYcCU4bpY6Bj1d1h+fSeYHUh/XEn5rJI/PDpS6ry/NxMUB4tDHGMOdxA5V4FjPRw51Sum7v7Pln8a51teJNMy9@vger.kernel.org, AJvYcCVpR6GXkZD1OEbrWD7Kgty6TbbTbNTOmN0wsi+GteKFap0cPjPSX/z0l3+k6JcSw2ux1O0gpnnzT2P0@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywo7uL6ygKkFmLPZ4kDBA+tfAPGp4jUikySuxWqBodz7TFVDLif
+	8Sz5wzCvtr9rnEtd7q5ke4+iEI9lOeE2saCovgd5cNQ3ORTf5pNf
+X-Google-Smtp-Source: AGHT+IHaCEe4z3YIDSbWblPPM6gMGIDCD//Oy46/0gPja7JeJVxRCUO3xT6psfC7QbYmDi2s6H5LYw==
+X-Received: by 2002:ac2:4c49:0:b0:539:947e:18a9 with SMTP id 2adb3069b0e04-539ab9e175bmr5803485e87.43.1728310131924;
+        Mon, 07 Oct 2024 07:08:51 -0700 (PDT)
 Received: from [192.168.2.177] ([207.188.162.240])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691a48asm5780497f8f.32.2024.10.07.07.06.54
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1696f921sm5825596f8f.91.2024.10.07.07.08.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 07:06:55 -0700 (PDT)
-Message-ID: <d9565233-090b-4931-9e9f-89725db605e3@gmail.com>
-Date: Mon, 7 Oct 2024 16:06:53 +0200
+        Mon, 07 Oct 2024 07:08:50 -0700 (PDT)
+Message-ID: <27719ca0-7794-44db-b8dd-9a31c726ee6d@gmail.com>
+Date: Mon, 7 Oct 2024 16:08:48 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] ARM: dts: mediatek: mt7623: fix efuse fallback
- compatible
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-700-evk: enable pcie
+To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>,
  AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-References: <20240617094634.23173-1-zajec5@gmail.com>
- <20240617094634.23173-2-zajec5@gmail.com>
+ Jieyy Yang <jieyy.yang@mediatek.com>, Jian Yang <jian.yang@mediatek.com>,
+ Jianguo Zhang <jianguo.zhang@mediatek.com>,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20241007100749.6657-1-macpaul.lin@mediatek.com>
 Content-Language: en-US, ca-ES, es-ES
 From: Matthias Brugger <matthias.bgg@gmail.com>
 Autocrypt: addr=matthias.bgg@gmail.com; keydata=
@@ -133,50 +139,63 @@ Autocrypt: addr=matthias.bgg@gmail.com; keydata=
  +zFJv9fVUpo/bjePOL4PMP1y+PYrp4PmPmRwoklBpy1ep8m8XURv46fGUHUEIsTwPWs2Q87k
  7vjYyrcyAOarX2X5pvMQvpAMADGf2Z3wrCsDdG25w2HztweUNd9QEprtJG8GNNzMOD4cQ82T
  a7eGvPWPeXauWJDLVR9jHtWT9Ot3BQgmApLxACvwvD1a69jaFKov28SPHxUCQ9Y1Y/Ct
-In-Reply-To: <20240617094634.23173-2-zajec5@gmail.com>
+In-Reply-To: <20241007100749.6657-1-macpaul.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
 
-On 17/06/2024 11:46, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On 07/10/2024 12:07, Macpaul Lin wrote:
+> Enable PCIE, PCIEPHY and related Pinctrls for mt8390-genio-700-evk
+> board.
 > 
-> Fix following validation error:
-> arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: compatible: 'oneOf' conditional failed, one must be fixed:
->          ['mediatek,mt7623-efuse', 'mediatek,mt8173-efuse'] is too long
->          'mediatek,mt8173-efuse' was expected
->          'mediatek,efuse' was expected
->          from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-> arch/arm/boot/dts/mediatek/mt7623a-rfb-emmc.dtb: efuse@10206000: Unevaluated properties are not allowed ('compatible' was unexpected)
->          from schema $id: http://devicetree.org/schemas/nvmem/mediatek,efuse.yaml#
-> 
-> Fixes: 43c7a91b4b3a ("arm: dts: mt7623: add efuse nodes to the mt7623.dtsi file")
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+
 > ---
->   arch/arm/boot/dts/mediatek/mt7623.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>   .../dts/mediatek/mt8390-genio-700-evk.dts     | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
 > 
-> diff --git a/arch/arm/boot/dts/mediatek/mt7623.dtsi b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-> index 9c5a52ce9351..748f9b366897 100644
-> --- a/arch/arm/boot/dts/mediatek/mt7623.dtsi
-> +++ b/arch/arm/boot/dts/mediatek/mt7623.dtsi
-> @@ -328,7 +328,7 @@ sysirq: interrupt-controller@10200100 {
+> Changes for v1:
+>   - This patch depends on the pcie patch of mt8188.dtsi
+>     [1] https://lore.kernel.org/all/20241004081218.55962-3-fshao@chromium.org/
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> index 3e77f59f2c74..bb68665f0b2d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
+> @@ -393,6 +393,16 @@ &mt6359codec {
+>   	mediatek,mic-type-1 = <3>; /* DCC */
+>   };
 >   
->   	efuse: efuse@10206000 {
->   		compatible = "mediatek,mt7623-efuse",
-> -			     "mediatek,mt8173-efuse";
-> +			     "mediatek,efuse";
-
-Angelo stated that we should move away from generic fallbacks. Although the 
-binding states explicitly to use "mediatek,efuse" and deprecates the standalone 
-"mediate,mt8173-efuse", which could the default fallback. Angelo, what do you 
-think, take it or re-doing the binding first?
-
-Regards,
-Matthias
-
->   		reg = <0 0x10206000 0 0x1000>;
->   		#address-cells = <1>;
->   		#size-cells = <1>;
+> +&pcie {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pcie_pins_default>;
+> +	status = "okay";
+> +};
+> +
+> +&pciephy {
+> +	status = "okay";
+> +};
+> +
+>   &pio {
+>   	audio_default_pins: audio-default-pins {
+>   		pins-cmd-dat {
+> @@ -758,6 +768,15 @@ pins-rst {
+>   		};
+>   	};
+>   
+> +	pcie_pins_default: pcie-default {
+> +		mux {
+> +			pinmux = <PINMUX_GPIO47__FUNC_I1_WAKEN>,
+> +				 <PINMUX_GPIO48__FUNC_O_PERSTN>,
+> +				 <PINMUX_GPIO49__FUNC_B1_CLKREQN>;
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+>   	rt1715_int_pins: rt1715-int-pins {
+>   		pins_cmd0_dat {
+>   			pinmux = <PINMUX_GPIO12__FUNC_B_GPIO12>;
 
