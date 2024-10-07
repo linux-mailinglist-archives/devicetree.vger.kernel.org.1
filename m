@@ -1,126 +1,203 @@
-Return-Path: <devicetree+bounces-108623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108603-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A285C99323E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:58:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6E799315C
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:35:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4992E1F23662
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:58:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11842283FB6
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:35:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 704EF1D9323;
-	Mon,  7 Oct 2024 15:56:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89AA8125B9;
+	Mon,  7 Oct 2024 15:35:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b="lS//OwmS"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gxYaGbRV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx2.securetransport.de (mx2.securetransport.de [188.68.39.254])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9AAC1DB340
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 15:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.68.39.254
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CC018BBB2;
+	Mon,  7 Oct 2024 15:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728316598; cv=none; b=LaIIcT7Ek8Ml+hjyqNy0u6Yllv9+LrUtGe77WEC1HLbVrHrEXaMV1U5T2CPr+YP62B3ZoggZki57Z1EqT/oyihzKGkvjCfKF5mKamuVNAPmxrN0+crCpVN59VkfkdcucxeiuxP8nRFEIwsULsnhLc6Q5NPQmrVKwiLTP2wYvhrQ=
+	t=1728315330; cv=none; b=K+3Vc8oj4yqllYMPGhHDfv3+kpNSZyaG+qdRWZlhI9TufmKXCyn4/yaOaSizD2KSHtf6zNGW5Yne94Ix8tjhRijv/Sxr+32zl+5PF/zTPXj2quCfmFOpOV/WzMQSGbEUUCu4vMfgg23oX1gq/0PEBnjr9NagKEhdjHntENhZdQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728316598; c=relaxed/simple;
-	bh=6vWo/MQth2mZuBYTIpvrvVLTZuXMkh4qjqUf6cBMcZQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=uGP4spFQ+sTfIJeUA09h6VhFpJsVEYlve9M/P2H9RJGKdifu5HpZoPrdJAnAIbMDRIM26HxpTYYcv216440vYjBkeYvZxLkbpz3u5p0eIrC+/U4/MKs1SoI6TjOMUyIEg/E0CxvZefJXaqFOGFWDklTu8WnVy2S7ZoB+x/3L1ug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com; spf=pass smtp.mailfrom=dh-electronics.com; dkim=pass (2048-bit key) header.d=dh-electronics.com header.i=@dh-electronics.com header.b=lS//OwmS; arc=none smtp.client-ip=188.68.39.254
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=dh-electronics.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dh-electronics.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dh-electronics.com;
-	s=dhelectronicscom; t=1728315272;
-	bh=6vWo/MQth2mZuBYTIpvrvVLTZuXMkh4qjqUf6cBMcZQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=lS//OwmSs++MhLUA7JEqmBOlIKnPrW1zFbhjThPb2jMfjiqyyXd1xwvJDaDxt947Y
-	 ljy3qMZPiUYBGKo6mD28Ldqr3YRHIrC5fnEYZyk9sxwJ8FNBSPaZ1L9+8CnUu3j9/M
-	 HykKZpx9sDVsIw1p2h0jvuvzpoBa5AyfF4Op7jha7nRM83hgyapBqDPzZWyGRzRf8v
-	 9da7vRGt/pnLeQ6Hn/z9dEXJAwvhxetIFzvyOAD3lTjUMd0Kl9mXa6azxkJXV/ER7K
-	 ql5m58Sr/k1GQOGxhnNzNbtUvCPYsSWpwuW6RCHMKNWMzAvdHUOyuOLALc0E6Xmbqs
-	 eEK6M2z8yo8vw==
-X-secureTransport-forwarded: yes
-From: Christoph Niedermaier <cniedermaier@dh-electronics.com>
-Complaints-To: abuse@cubewerk.de
-To: Marek Vasut <marex@denx.de>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>
-CC: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>, kernel
-	<kernel@dh-electronics.com>
-Subject: RE: [PATCH] ARM: dts: imx6qdl-dhcom: Fix model typo for i.MX6 DHSOM
-Thread-Topic: [PATCH] ARM: dts: imx6qdl-dhcom: Fix model typo for i.MX6 DHSOM
-Thread-Index: AQHbGL/rOI8LNNQHi02wF8XxMS3Xh7J7amhw
-Date: Mon, 7 Oct 2024 15:34:24 +0000
-Message-ID: <a5abf828a25b48cf91577aa324813c8f@dh-electronics.com>
-References: <20241007135030.30559-1-marex@denx.de>
-In-Reply-To: <20241007135030.30559-1-marex@denx.de>
-Accept-Language: de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1728315330; c=relaxed/simple;
+	bh=vmDcUWR28r4GCm7mjHQRvGrAOByN1ZiGI13saHCCk4E=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BN6yf5lZ3e05PIYYoEKyLa2p3r30hoSo0A6QgrmV/tdcvUrYGpjCH3eqIjhYNV9D0k6MqRlmjvXeD2D4rqTAykvsDCGnL6vyAzeWKYt5L+ixx0+McvODi2wCvdDvJ4jZ6ah600ToR3Z4e/OXBdkdz8RNGvgENfyvOtr17693+XE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gxYaGbRV; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497F6f9t003930;
+	Mon, 7 Oct 2024 15:35:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	T8D5E2ZeSNmgSSEISntkVqY99/wGIdZ25++9fHbZMf4=; b=gxYaGbRVPGhIgP4C
+	mDcAw4e98KHBNTSC/sD807WG+v4Iy1YHGjYW9bCijZcQP7ehjB2T9uShgn79YIvq
+	/eOwuRxReArKf9AwZBEtt2MN0ac84w6zxtgibC5Eiua2sOGqVnRE0+STWrNJPb25
+	WgpTqTRrEoJ+BOnRww6PdZYApYi/nsk3ivSYSQpoaKYgJILQHjf+opVausS71FQe
+	9GhIr/8LqgdjY2G9B1nDrkjENoBtMQnwcz5Hc9OTaxkLeHRrJpSEH1FoErgAIXrY
+	CipCpo4Cs5mU277nfXIGd3zwULKJohyPCBN5COYoPrO8RSFKuHYgvoveZ+SZwZus
+	kmcavQ==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv6vn66-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 15:35:24 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497FZO07024422
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 7 Oct 2024 15:35:24 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 7 Oct 2024 08:35:20 -0700
+Date: Mon, 7 Oct 2024 21:05:16 +0530
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Shiraz Hashim <quic_shashim@quicinc.com>
+Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
+ iommus and qcom,devmem property
+Message-ID: <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-2-quic_mojha@quicinc.com>
+ <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: XsO2qa38GjycV4QpXfsqKnxdo7dq3tT4
+X-Proofpoint-GUID: XsO2qa38GjycV4QpXfsqKnxdo7dq3tT4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=504 mlxscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410070110
 
-RnJvbTogTWFyZWsgVmFzdXQgPG1hcmV4QGRlbnguZGU+DQpTZW50OiBNb25kYXksIE9jdG9iZXIg
-NywgMjAyNCAzOjUwIFBNDQo+IEVhY2ggREhTT00gdXNlcyB0aHJlZSBkaWdpdHMgaW4gdGhlIENu
-bm4gcGFydCwgZHJvcCB0aGUgdHJhaWxpbmcgemVyby4NCj4gVGhpcyBpcyBhIGNoYW5nZSBpbiBj
-b21tZW50LCBubyBmdW5jdGlvbmFsIGNoYW5nZS4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE1hcmVr
-IFZhc3V0IDxtYXJleEBkZW54LmRlPg0KPiAtLS0NCj4gQ2M6IENocmlzdG9waCBOaWVkZXJtYWll
-ciA8Y25pZWRlcm1haWVyQGRoLWVsZWN0cm9uaWNzLmNvbT4NCj4gQ2M6IENvbm9yIERvb2xleSA8
-Y29ub3IrZHRAa2VybmVsLm9yZz4NCj4gQ2M6IEZhYmlvIEVzdGV2YW0gPGZlc3RldmFtQGdtYWls
-LmNvbT4NCj4gQ2M6IEtyenlzenRvZiBLb3psb3dza2kgPGtyemsrZHRAa2VybmVsLm9yZz4NCj4g
-Q2M6IFBlbmd1dHJvbml4IEtlcm5lbCBUZWFtIDxrZXJuZWxAcGVuZ3V0cm9uaXguZGU+DQo+IENj
-OiBSb2IgSGVycmluZyA8cm9iaEBrZXJuZWwub3JnPg0KPiBDYzogU2FzY2hhIEhhdWVyIDxzLmhh
-dWVyQHBlbmd1dHJvbml4LmRlPg0KPiBDYzogU2hhd24gR3VvIDxzaGF3bmd1b0BrZXJuZWwub3Jn
-Pg0KPiBDYzogZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmcNCj4gQ2M6IGlteEBsaXN0cy5saW51
-eC5kZXYNCj4gQ2M6IGtlcm5lbEBkaC1lbGVjdHJvbmljcy5jb20NCj4gQ2M6IGxpbnV4LWFybS1r
-ZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZw0KPiAtLS0NCj4gIGFyY2gvYXJtL2Jvb3QvZHRzL254
-cC9pbXgvaW14NmRsLWRoY29tLXBpY29pdHguZHRzIHwgMiArLQ0KPiAgYXJjaC9hcm0vYm9vdC9k
-dHMvbnhwL2lteC9pbXg2cS1kaGNvbS1wZGsyLmR0cyAgICAgfCAyICstDQo+ICBhcmNoL2FybS9i
-b290L2R0cy9ueHAvaW14L2lteDZzLWRoY29tLWRyYzAyLmR0cyAgICB8IDIgKy0NCj4gIDMgZmls
-ZXMgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiANCj4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NmRsLWRoY29tLXBpY29pdHguZHRz
-DQo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2ZGwtZGhjb20tcGljb2l0eC5kdHMN
-Cj4gaW5kZXggMDM4YmIwMDI1NTU2Ny4uNzc1Y2FmODIwOGM1YiAxMDA2NDQNCj4gLS0tIGEvYXJj
-aC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2ZGwtZGhjb20tcGljb2l0eC5kdHMNCj4gKysrIGIv
-YXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2ZGwtZGhjb20tcGljb2l0eC5kdHMNCj4gQEAg
-LTMsNyArMyw3IEBADQo+ICAgKiBDb3B5cmlnaHQgKEMpIDIwMjEgREggZWxlY3Ryb25pY3MgR21i
-SA0KPiAgICoNCj4gICAqIERIQ09NIGlNWDYgdmFyaWFudDoNCj4gLSAqIERIQ00taU1YNkRMLUMw
-ODAwLVIxMDItRjA4MTktRS1TRC1SVEMtVC1IUy1JLTAxRDINCj4gKyAqIERIQ00taU1YNkRMLUMw
-ODAtUjEwMi1GMDgxOS1FLVNELVJUQy1ULUhTLUktMDFEMg0KPiAgICogREhDT00gUENCIG51bWJl
-cjogNDkzLTMwMCBvciBuZXdlcg0KPiAgICogUGljb0lUWCBQQ0IgbnVtYmVyOiA0ODctNjAwIG9y
-IG5ld2VyDQo+ICAgKi8NCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgv
-aW14NnEtZGhjb20tcGRrMi5kdHMNCj4gYi9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZx
-LWRoY29tLXBkazIuZHRzDQo+IGluZGV4IGQ0ZDU3MzcwNjE1ZDguLjZlZmQ3ZTlmYzFiMTggMTAw
-NjQ0DQo+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL254cC9pbXgvaW14NnEtZGhjb20tcGRrMi5k
-dHMNCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvbnhwL2lteC9pbXg2cS1kaGNvbS1wZGsyLmR0
-cw0KPiBAQCAtNCw3ICs0LDcgQEANCj4gICAqIENvcHlyaWdodCAoQykgMjAxOCBNYXJlayBWYXN1
-dCA8bWFyZXhAZGVueC5kZT4NCj4gICAqDQo+ICAgKiBESENPTSBpTVg2IHZhcmlhbnQ6DQo+IC0g
-KiBESENNLWlNWDZRLUMwODAwLVIxMDItRjA4MTktRS1TRC1SVEMtVC1IUy1JLTAxRDINCj4gKyAq
-IERIQ00taU1YNlEtQzA4MC1SMTAyLUYwODE5LUUtU0QtUlRDLVQtSFMtSS0wMUQyDQo+ICAgKiBE
-SENPTSBQQ0IgbnVtYmVyOiA0OTMtMzAwIG9yIG5ld2VyDQo+ICAgKiBQREsyIFBDQiBudW1iZXI6
-IDUxNi00MDAgb3IgbmV3ZXINCj4gICAqLw0KPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9k
-dHMvbnhwL2lteC9pbXg2cy1kaGNvbS1kcmMwMi5kdHMNCj4gYi9hcmNoL2FybS9ib290L2R0cy9u
-eHAvaW14L2lteDZzLWRoY29tLWRyYzAyLmR0cw0KPiBpbmRleCA0MDc3YjYwN2MyOWVhLi5lNDJj
-Mjc0YTkwMTRlIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZz
-LWRoY29tLWRyYzAyLmR0cw0KPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9ueHAvaW14L2lteDZz
-LWRoY29tLWRyYzAyLmR0cw0KPiBAQCAtMyw3ICszLDcgQEANCj4gICAqIENvcHlyaWdodCAoQykg
-MjAyMSBESCBlbGVjdHJvbmljcyBHbWJIDQo+ICAgKg0KPiAgICogREhDT00gaU1YNiB2YXJpYW50
-Og0KPiAtICogREhDTS1pTVg2Uy1DMDgwMC1SMTAyLUYwNDA5LUUtQ0FOMi1SVEMtSS0wMUQyDQo+
-ICsgKiBESENNLWlNWDZTLUMwODAtUjEwMi1GMDQwOS1FLUNBTjItUlRDLUktMDFEMg0KPiAgICog
-REhDT00gUENCIG51bWJlcjogNDkzLTQwMCBvciBuZXdlcg0KPiAgICogRFJDMDIgUENCIG51bWJl
-cjogNTY4LTEwMCBvciBuZXdlcg0KPiAgICovDQoNClJldmlld2VkLWJ5OiBDaHJpc3RvcGggTmll
-ZGVybWFpZXIgPGNuaWVkZXJtYWllckBkaC1lbGVjdHJvbmljcy5jb20+DQo=
+On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
+> On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
+> > From: Shiraz Hashim <quic_shashim@quicinc.com>
+> > 
+> > Qualcomm’s PAS implementation for remote processors only supports a
+> > single stage of IOMMU translation and is presently managed by the
+> > Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
+> > such as with a KVM hypervisor, IOMMU translations need to be set up by
+> > the KVM host. Remoteproc needs carveout memory region and its resource
+> > (device memory) permissions to be set before it comes up, and this
+> > information is presently available statically with QHEE.
+> > 
+> > In the absence of QHEE, the boot firmware needs to overlay this
+> > information based on SoCs running with either QHEE or a KVM hypervisor
+> > (CPUs booted in EL2).
+> > 
+> > The qcom,devmem property provides IOMMU devmem translation information
+> > intended for non-QHEE based systems.
+> > 
+> > Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
+> > Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > ---
+> >  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++++
+> >  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
+> >  2 files changed, 62 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> > index 63a82e7a8bf8..068e177ad934 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+> > @@ -52,6 +52,48 @@ properties:
+> >      minItems: 1
+> >      maxItems: 3
+> >  
+> > +  iommus:
+> > +    maxItems: 1
+> > +
+> > +  qcom,devmem:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +    description:
+> > +      Qualcomm’s PAS implementation for remote processors only supports a
+> > +      single stage of IOMMU translation and is presently managed by the
+> > +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
+> > +      such as with a KVM hypervisor, IOMMU translations need to be set up by
+> > +      the KVM host. Remoteproc might need some device resources and related
+> > +      access permissions to be set before it comes up, and this information is
+> > +      presently available statically with QHEE.
+> > +
+> > +      In the absence of QHEE, the boot firmware needs to overlay this
+> > +      information based on SoCs running with either QHEE or a KVM hypervisor
+> > +      (CPUs booted in EL2).
+> > +
+> > +      The qcom,devmem property provides IOMMU devmem translation information
+> > +      intended for non-QHEE based systems. It is an array of u32 values
+> > +      describing the device memory regions for which IOMMU translations need to
+> > +      be set up before bringing up Remoteproc. This array consists of 4-tuples
+> > +      defining the device address, physical address, size, and attribute flags
+> > +      with which it has to be mapped.
+> 
+> I'd expect that this kind of information is hardware-dependent. As such
+> it can go to the driver itself, rather than the device tree. The driver
+> can use compatible string to select the correct table.
+> 
+
+IIUC, are you saying that to move this into driver file and override the
+compatible string via overlay ?
+
+> > +
+> > +      remoteproc@3000000 {
+> > +          ...
+> > +
+> > +          qcom,devmem = <0x82000 0x82000 0x2000 0x3>,
+> > +                        <0x92000 0x92000 0x1000 0x1>;
+> > +      }
+> > +
+> > +    items:
+> > +      items:
+> > +        - description: device address
+> > +        - description: physical address
+> > +        - description: size of mapping
+> > +        - description: |
+> > +            iommu attributes - IOMMU_READ, IOMMU_WRITE, IOMMU_CACHE, IOMMU_NOEXEC, IOMMU_MMIO
+> > +          enum: [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+> > +                  25, 26, 27, 28, 29, 30, 31 ]
+> 
+> Attributes should definitely be defined and then the DT should use
+> defines rather than the raw values.
+>
+
+Ack.
+
+-Mukesh
+
 
