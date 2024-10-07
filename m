@@ -1,180 +1,102 @@
-Return-Path: <devicetree+bounces-108739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97E0D993887
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:50:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B85F99388D
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 22:53:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 533DC286A01
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:50:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1577B284FB4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:53:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C39EF1DE3A6;
-	Mon,  7 Oct 2024 20:49:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5167917624D;
+	Mon,  7 Oct 2024 20:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="l7EQmoWY"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="WQRt6cc1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE59D17624D
-	for <devicetree@vger.kernel.org>; Mon,  7 Oct 2024 20:49:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D03EA41C7F;
+	Mon,  7 Oct 2024 20:53:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728334194; cv=none; b=K9wuOWILbbiPvNJVMrguRA5Ign3qe9ly90ueD40y4gV63DNgTFzDXHwxZcssqoX90snB8DnvleGpyHEJPHNgG54ubX+sU8nMiVX6Kse9HzHdv8p18nLu98wcbmPm+IgYJWdDcuXa3Vd2oU04T4IfdlabzVyXRfzSekcf8jqkD70=
+	t=1728334387; cv=none; b=rB4tSO4z5HC2mKnT8HaAHk+hLIjVE1AqVyaxVq/qR/4aaVTNlArgmXWslskkxolfETCxISQRx/EHS3nPXoKKM812HzR7W5UKhZQiyRm7D0dm6ZVVOCK6Gr8DX24KKprKMOmn9WUqS7UQq1NMIoxvXXZ6p10Xh40q8FopZ6jPkb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728334194; c=relaxed/simple;
-	bh=IZfOo8coClihvsH2TTkHO+abz2SwMDB31rZRYwzXsq8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=cc2iNyDnzO5a51UDQKnGRF/G1LcVg08vFIVePBbAmlqWrVnt/TesNtlFfeqxBScjQgSjobHIqgS4Ectug0JGw3XvlwRyumzE1IEHFjVwx+arl3glq7cM7o3ThAlST19ziK43c6uo/c2Ll8MBGao5wRwLvhX1zgMYdS+wenCQctU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=l7EQmoWY; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id B62B62C0E1E;
-	Tue,  8 Oct 2024 09:49:49 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1728334189;
-	bh=IZfOo8coClihvsH2TTkHO+abz2SwMDB31rZRYwzXsq8=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=l7EQmoWYFchn6IYfDYl6OtgKhJj5tWPV+xHT0INkY/w3wIAHTccg76MfedH9yhJiU
-	 EBL1JVgxK/0abQ86bx/Be3GpNVxI9W5pkrA14h1L/EKqB0mXOq8Km6Fr8qQiMZjrZK
-	 Dt5Tm9helwC7PF1UdKsnQ6tSS/AkRrvzE9dIA/CSkKtby0ycHXMobUIvMOZJFFsSFy
-	 2+Cms/8oI1IUhiJsTU9mKOr9THtZ5BdpOGv7cIKz7Jb5/ckF9D/TVRVOv8Al+DVH2p
-	 vl0aO/A6xEpDTOTD94HZW8fNgVBQWOlux5j5iFhYHYRzUGBnu4IUB6mQ0vdaeT8izy
-	 N3Cj1TtUCVmQA==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B6704496d0000>; Tue, 08 Oct 2024 09:49:49 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 8A2C313ED7B;
-	Tue,  8 Oct 2024 09:49:49 +1300 (NZDT)
-Message-ID: <8bf08456-0780-4dfe-9153-37ef5d01285b@alliedtelesis.co.nz>
-Date: Tue, 8 Oct 2024 09:49:49 +1300
+	s=arc-20240116; t=1728334387; c=relaxed/simple;
+	bh=6ogw3sZvXB5dWJWJYCgI2TS+lYZhQtKrkp0miIwCkMg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=mYlWkXLuRQdrD0Tjdw7Ko/NNvI+e9b8DdvKNXuV4MTOda5hCeoYHF9klxLu9p3X2AhIiMnbI2Yi5OaQGZtMV2OfB+hlHkTI58fCceR0q461Q3wxf29HfrL+gWMFD+QRiGupGPUFVzk5AJpuRifQ3EPQ4Hw0bvOCYqbxGlwlK/7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=WQRt6cc1; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=kH67In2vOx5AviMTppuriiT6BzmoKGXayNjsYGVnNA4=; b=WQRt6cc1/5/JzDQCMwbcFDZhhf
+	0Xhfp7K29vsJs7LBQhCOxT4SHpOQMZftkoU6RWKc1QDTbwvsA9dsCnjIZdzu1NQpE9AOkfDsyZ9Ew
+	HW8jmNxXsjtvgR/XsVuEg+DgFLZxyDhynaUpBEH0lCwSkH47XzdU1eNxyAHX5HMJi2XmUKGwM16rY
+	bZcCVZyJpt9Fbc3iPzmCZbd9kXxPP5DMXUUZg5FkVgNs6Mfk/sO43LKMZKsKUs5s9qPgBYoFmHtS5
+	EyliszWAqUgOGZAAAicP0zbPXPyFPx3I6QnqbC4AGYRYnLp4DoPVx+sqjfeYtVhuhOyFflYp+rmdC
+	zm4PX8dw==;
+Received: from i5e860d18.versanet.de ([94.134.13.24] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1sxuiu-0006DK-0p; Mon, 07 Oct 2024 22:52:56 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Pavel Machek <pavel@ucw.cz>
+Cc: lee@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: Document "rc-feedback" trigger
+Date: Mon, 07 Oct 2024 22:52:55 +0200
+Message-ID: <4934483.GXAFRqVoOG@diego>
+In-Reply-To: <ZwQh99TjfKhoP6UK@duo.ucw.cz>
+References:
+ <20241007160804.2447947-1-heiko@sntech.de> <ZwQh99TjfKhoP6UK@duo.ucw.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 1/3] dt-bindings: spi: Add realtek,rtl9300-snand
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org
-References: <20241006233347.333586-1-chris.packham@alliedtelesis.co.nz>
- <20241006233347.333586-2-chris.packham@alliedtelesis.co.nz>
- <3tu6x2644lxvvbk74nv5qva7qupsvgxyxkwc5g5n7n4bh3mbwi@457wbps4kpns>
- <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
-Content-Language: en-US
-In-Reply-To: <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Id0kWnqa c=1 sm=1 tr=0 ts=6704496d a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=gEfo2CItAAAA:8 a=X0WHbVYDd5x4bSxCIEEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Montag, 7. Oktober 2024, 20:01:27 CEST schrieb Pavel Machek:
+> On Mon 2024-10-07 18:08:04, Heiko Stuebner wrote:
+> > Document the "rc-feedback" trigger which is used to control LEDs by
+> > remote control device activity. This is an existing trigger used in
+> > existing DTs, document it so validation of those DTs would pass.
+> > 
+> > It was originally introduced into the Linux kernel in 2013 with
+> > commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypresses")
+> 
+> > index bf9a101e4d42..32f9116e03a2 100644
+> > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > @@ -119,6 +119,8 @@ properties:
+> >              # if trigger is absent
+> >            - none
+> >              # LED indicates camera torch state
+> > +          - rc-feedback
+> > +            # LED indicates remote control feedback
+> >            - torch
+> >              # LED indicates USB gadget activity
+> >            - usb-gadget
+> 
+> NAK. Wrongly placed comment.
+
+you're right, and it even messed up the torch comment + entry
+Will send a v2
+
+Heiko
 
 
-On 8/10/24 08:58, Chris Packham wrote:
->
-> On 7/10/24 19:40, Krzysztof Kozlowski wrote:
->> On Mon, Oct 07, 2024 at 12:33:45PM +1300, Chris Packham wrote:
->>> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
->>> controller supports
->>> =C2=A0 * Serial/Dual/Quad data with
->>> =C2=A0 * PIO and DMA data read/write operation
->>> =C2=A0 * Configurable flash access timing
->>>
->>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> ---
->>> =C2=A0 .../bindings/spi/realtek,rtl9300-snand.yaml=C2=A0=C2=A0 | 58=20
->>> +++++++++++++++++++
->>> =C2=A0 1 file changed, 58 insertions(+)
->>> =C2=A0 create mode 100644=20
->>> Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
->>>
->>> diff --git=20
->>> a/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml=20
->>> b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
->>> new file mode 100644
->>> index 000000000000..c66aea24cb35
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yam=
-l
->>> @@ -0,0 +1,58 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/spi/realtek,rtl9300-snand.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
->>> +
->>> +maintainers:
->>> +=C2=A0 - Chris Packham <chris.packham@alliedtelesis.co.nz>
->>> +
->>> +description:
->>> +=C2=A0 The Realtek RTL9300 SoCs have a built in SPI-NAND controller.=
- It=20
->>> supports
->>> +=C2=A0 typical SPI-NAND page cache operations in single, dual or qua=
-d IO=20
->>> mode.
->>> +
->>> +properties:
->>> +=C2=A0 compatible:
->>> +=C2=A0=C2=A0=C2=A0 items:
->> Why 9300 cannot be alone? What does 9300 mean even? Wildcards and fami=
-ly
->> models are not allowed in general.
->
-> The main thing about the RTL9300 is that that is what all the Realtek=20
-> documents use to refer to these chips and the specific numbers are=20
-> akin to the manufacturing part number that you'd actually order (maybe=20
-> that's a bit of a stretch).
->
-> The SoC/CPU block probably does exist as a separate silicon die that=20
-> they connect to the different switch blocks in the chips that they=20
-> sell but I don't think you can get "just" the SoC. There is every=20
-> chance that we'll see that same SoC/CPU block pop up in new chips (I=20
-> see references to a RTL9302D in some documents). I'd like to be able=20
-> to support these chips using "rtl9300" but if that's violating the=20
-> wildcard rule I can drop it.
->
-Maybe it's helpful to think of the RTL9300 as the IP block that is=20
-integrated into the RTL9301, RTL9302B, etc.
 
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - enum:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
-9301-snand
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
-9302b-snand
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
-9302c-snand
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl=
-9303-snand
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: realtek,rtl9300-snand
->>> +
->>> +=C2=A0 reg:
->>> +=C2=A0=C2=A0=C2=A0 items:
->>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - description: SPI NAND controller re=
-gisters address and size
->> Also: why no clocks? Binding is supposed to be complete. If it cannot,
->> you should explain it in the commit msg.
->
-> I didn't add it because I had no need for it in my driver. But as=20
-> you've said previously the binding shouldn't care what the driver does.
->
-> I do have the clocking info from the datasheets. I'll add it in v2.
->
->> Best regards,
->> Krzysztof
->>
->>
 
