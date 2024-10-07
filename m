@@ -1,150 +1,204 @@
-Return-Path: <devicetree+bounces-108690-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44F81993660
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:39:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 607F9993663
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 20:39:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3C081F2438B
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:39:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CFF7F1F24498
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 18:39:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690751DDC3B;
-	Mon,  7 Oct 2024 18:38:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE4011DE2AB;
+	Mon,  7 Oct 2024 18:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFIL+8Sj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c5Q+K2x5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C40C91DD549;
-	Mon,  7 Oct 2024 18:38:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5102E1D968B;
+	Mon,  7 Oct 2024 18:39:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728326336; cv=none; b=QsaUwcwtkaB1dzdAKciKgM6T6vvxNCVWJpXPfh22/3khMMAPPkn7e5+qPCuR50glYoFh4O3x3KUfZa7vmOOvaWPFEaLX1kYA/OjzfDN7Jy3UgvybVixMqty3WnBjWCWraT4lq3Ep2GQpWqrMkaa2HsD5eFZqweBJQtiJJf/c1uA=
+	t=1728326359; cv=none; b=lciE6iDcIJ8P7nM2NEivngHn+Nslmyo7W2s/rA9gn0ErkuD3l3streCGHphlW+HBwBafMXYXvg9Yc3lyWaP+8h+8ekB9qq4LQdnBS53tpOdAWzoXDvJXeWMZiuuurKk21B6PFxP2ssmTbKNwOk7MtgfgwpD8cCpUI7NZrRaT3Wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728326336; c=relaxed/simple;
-	bh=WIRBrxbsoQ5r2D/903oeAriBOoYLj0hfWzhR3klC5UY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CF3gDyu/j+w4D354Xt6PELy4EHTV8DKxLKWBZ3ycpVAzR38BJ0DXUv7eB9+ZC3iOhGTnzHQf4JkSi0mbhUbADhh4yNJqBjxw7VxZWyInQdgZ/ec/Sj87t+B+pFEn3tA4Qj2rtlXvsuseHuxYjj8FjGuu2JlmDN1Dwg5JgLPun4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFIL+8Sj; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-50792ed3b0bso1389780e0c.1;
-        Mon, 07 Oct 2024 11:38:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728326334; x=1728931134; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y3UVdzXWA8Tey/If7hJVlHOn/BvVYJ6mjPuuKEJYy8s=;
-        b=MFIL+8SjXbFVfNEEZ9+RiN/PeGUMwVQvuMds43GDPAvPRv8tBF4kxoZH8E8CGKo9zd
-         uDBvL48t9t1honAkB3MQZLEs/uATGD+ce6dKOjekc8QWUF+PPvPyxL01uo851/9n+3X2
-         iFpuumTCTdNOo409qcZiuBoIAZMV6tK5wIuz0QzHmG2TIRKAaafROLzbud6wxa5ijM/5
-         kPof6hPnacGZgMzB/tt5qy3q7gau9O8aloNdYxgaEgjyL5//Az8JuS6cCorz+nQ//uOp
-         kXTg1VVC63lOlKsuc6do0B7xZ8NqP7dAFdAsaTjmrXwR15TXoULICYSSj11Pa51J643w
-         U/sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728326334; x=1728931134;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=y3UVdzXWA8Tey/If7hJVlHOn/BvVYJ6mjPuuKEJYy8s=;
-        b=AV2XEPNnClwYVdHVGYw5zyZhm9qZ9CNpb2savnfPVMhxmGKHEoONSAPk0Ya/AinQXv
-         mR958mKZBd+XC0FDJFD8NGjpSSEoSQ95MeDUz9kEd4LxcRDJ9XSrGW5J/E+N3l8Mc/9j
-         cpuKbsl02rs4L/peGUHaxbl36Fx/bTv2Fq19Llvqm3hEwwgn/2qf1XTmpz+nee2oMFHp
-         X0FxRKWkiiRJIHd1xvg80ZcjM1qW4S5us/tSMxe845tVvxRcUTCm3bn3R9bEMUlLX/8S
-         d7BvGmvKEv9l5+lNAtOd4XEjNzNsFbR+G+W4FgQMxet/hkJBRA+pLznb7eUHo/hG/9QK
-         YM7g==
-X-Forwarded-Encrypted: i=1; AJvYcCX0UVwd9BJvBYyz0TU+em1ZmHpeJMk3GY2PZeFzJ4T59QUArwbiCWz7JIU0GNrJsfngtXItgcvMQWTYYe9PzQOTmO8=@vger.kernel.org, AJvYcCXu5lUwaJfb6s1el1+FwdurYzSg5Wra5oRvIMtCrvXO2imSTtKqVWcD1LEsCR2+ILmBBmYBcW3b3OEQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP1AEzZ6VMxrrvQTnPrt58jc+tOr3A23ciuCeS1Uuq1NYmiAYq
-	fSqryxQZ+xHWcRWXTwCpV1MM3GPUQhx0pbgrAg+GR2/hvy5Ty955MdhTEJQCksCvhnEutkvvIlF
-	00/qfGnjq6H+r6APd35XC8p0h2Jw=
-X-Google-Smtp-Source: AGHT+IEkXmQx2cAmrXa3gjtHSBRA5SbtJxWCEmCX1K4S478mzK9IXJbAJ1zb/WJmjG1j0Q+RRJHig+DDTMP2RAbKQDg=
-X-Received: by 2002:a05:6122:489a:b0:50c:9834:57b3 with SMTP id
- 71dfb90a1353d-50c98345856mr6565153e0c.4.1728326333637; Mon, 07 Oct 2024
- 11:38:53 -0700 (PDT)
+	s=arc-20240116; t=1728326359; c=relaxed/simple;
+	bh=am3VSi952K0W4OlmfLrbiTkB5lXhyVslENYXyrOGRA4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dQPl1Br6wRj9l6QmLkGtczqsHpFqYxCdo8oZwce++iOZwbrRme+jeW6quuz1T0CLUmZNURT452uW7YPZFBJpQ61XXnBrpT12boYD5K0DlwPskAWE7MoFJttY0WKb06L1YVtSn3civxmZ6hZxWqCOlR5Wcz8SjcWidexxcDQDIQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c5Q+K2x5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497EKiiN008866;
+	Mon, 7 Oct 2024 18:39:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	0blahXk/11FV3rkhZYHSPHao4ouylR0pzU6GjiRxdE0=; b=c5Q+K2x514Mc9fnR
+	qBCurnCBRyF0u66m597nIRX72cu/9JSXJELc/11NQYxp14ySXM0qukBUUJQ7KXYr
+	7FeF/FuMXIAFHXYc28db2XTzddwon14API0CpdK9rJN6T7gJ+nAjs5wR7E6k/ifJ
+	5St2rdlxFIKVh/bEV+jobhK7vyKG/Cv+9BSMjnuzvX58qhg6TLMmaeL4L6SZR0rS
+	er2ufBWyoDZ1uHbNnF8c7sUJNpazw6/t5VWuQFcMR6aO79U/NihJWeWXA7xLhS/T
+	6GI4mGc/Xe+Qdj93teChKtR2Q9yoapJmYbmSl1yuPlIRKNVmtHtZCcYFVF4K+ONL
+	43M/OA==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xv6w3g0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 07 Oct 2024 18:39:14 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 497IdD0K021057
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 7 Oct 2024 18:39:13 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 7 Oct 2024 11:39:09 -0700
+Date: Tue, 8 Oct 2024 00:09:05 +0530
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad
+ Dybcio <konradybcio@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 0/6] Peripheral Image Loader support for Qualcomm SoCs
+Message-ID: <ZwQqyYNVLR2OU8jh@hu-mojha-hyd.qualcomm.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <r4zkfioctmlatxkb4lqmfc7vk7cdenenihoicq2k37wvxeihss@gtkzxr26p6ei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1728045620.git.geert+renesas@glider.be> <6214cd8ed068e3fc60a7b972093e4d99cdc0be1a.1728045620.git.geert+renesas@glider.be>
-In-Reply-To: <6214cd8ed068e3fc60a7b972093e4d99cdc0be1a.1728045620.git.geert+renesas@glider.be>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Mon, 7 Oct 2024 19:38:27 +0100
-Message-ID: <CA+V-a8vbWo+28e+rj4ocbJtK29YT-g_dcKTN-5e_U3YxL4_E8w@mail.gmail.com>
-Subject: Re: [PATCH 20/20] arm64: dts: renesas: rzg3s-smarc: Use
- interrupts-extended for gpio-keys
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <r4zkfioctmlatxkb4lqmfc7vk7cdenenihoicq2k37wvxeihss@gtkzxr26p6ei>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: hvkRFojiKz7RZvLToOHNcF9q5afeeT0G
+X-Proofpoint-GUID: hvkRFojiKz7RZvLToOHNcF9q5afeeT0G
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015
+ priorityscore=1501 impostorscore=0 adultscore=0 lowpriorityscore=0
+ mlxlogscore=999 mlxscore=0 bulkscore=0 phishscore=0 malwarescore=0
+ spamscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410070129
 
-On Fri, Oct 4, 2024 at 2:30=E2=80=AFPM Geert Uytterhoeven
-<geert+renesas@glider.be> wrote:
+On Sun, Oct 06, 2024 at 10:34:19PM +0300, Dmitry Baryshkov wrote:
+> On Sat, Oct 05, 2024 at 02:53:53AM GMT, Mukesh Ojha wrote:
+> > Qualcomm is looking to enable remote processors on the SA8775p SoC
+> > running KVM Linux host and is currently trying to figure out an
+> > upstream-compatible solution for the IOMMU translation scheme problem it
+> > is facing when SoCs running with KVM. This issue arises due to
+> > differences in how IOMMU translation is currently handled on SoCs
+> > running Qualcomm EL2 hypervisor(QHEE) where IOMMU translation for any
+> > device is completely owned by it and the other issue is that remote
+> > processors firmware does not contain resource table where these IOMMU
+> > configuration setting will be present.
+> > 
+> > Qualcomm SoCs running with the QHEE(EL2) have been utilizing the
+> > Peripheral Authentication Service (PAS) from its TrustZone (TZ) firmware
+> > to securely authenticate and reset via a single SMC call
+> > _auth_and_reset_.  This call first gets trapped to QHEE, which then
+> > makes a call to TZ for authentication. Once it is done, the call returns
+> > to QHEE, which sets up the IOMMU translation scheme for these remote
+> > processors and later brings them out of reset. The design of the
+> > Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
+> > is not allowed to set up IOMMU translation for remote processors,
+> > and only a single stage is being configured for them.
+> > 
+> > To make the remote processors’ bring-up (PAS) sequence
+> > hypervisor-independent, the auth_and_reset SMC call is now entirely
+> > handled by TZ. However, the problem of IOMMU handling still remains with
+> > the KVM host, which has no knowledge of the remote processors’ IOMMU
+> > configuration.
+> > 
+> > We have looked up one approach where SoC remoteproc device tree could
+> > contain resources like iommus for remoteproc carveout and qcom,devmem
+> > specific binding for device memory needed for remoteproc and these
+> > properties are optional and will only be overlaid by the firmware if it
+> > is running with non-QHEE based hypervisor like KVM.
+> 
+> Can you follow the approach that has been implemented for existing
+> systems (ChromeOS) not using QHEE? See drivers/remoteproc/qcom_q6v5_adsp.c
+> If this approach can not be used, please describe why.
 >
-> Use the more concise interrupts-extended property to fully describe the
-> interrupts.
->
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi | 9 +++------
->  1 file changed, 3 insertions(+), 6 deletions(-)
->
-Reviewed-by:  Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Tested-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Cheers,
-Prabhakar
+I believe, drivers/remoteproc/qcom_q6v5_adsp.c does not follow TZ's PAS
+method (Secure) of handling remoteproc that may be the reason it has
+been kept separately from drivers/remoteproc/qcom_q6v5_pas.c . If we
+keep this implementation align with current PAS driver we would acheive
+more code reusability with less code change.
 
-> diff --git a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi b/arch/arm64/bo=
-ot/dts/renesas/rzg3s-smarc.dtsi
-> index 7945d44e6ee159f4..4509151344c430de 100644
-> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
-> @@ -20,8 +20,7 @@ keys {
->                 compatible =3D "gpio-keys";
->
->                 key-1 {
-> -                       interrupts =3D <RZG2L_GPIO(18, 0) IRQ_TYPE_EDGE_F=
-ALLING>;
-> -                       interrupt-parent =3D <&pinctrl>;
-> +                       interrupts-extended =3D <&pinctrl RZG2L_GPIO(18, =
-0) IRQ_TYPE_EDGE_FALLING>;
->                         linux,code =3D <KEY_1>;
->                         label =3D "USER_SW1";
->                         wakeup-source;
-> @@ -29,8 +28,7 @@ key-1 {
->                 };
->
->                 key-2 {
-> -                       interrupts =3D <RZG2L_GPIO(0, 1) IRQ_TYPE_EDGE_FA=
-LLING>;
-> -                       interrupt-parent =3D <&pinctrl>;
-> +                       interrupts-extended =3D <&pinctrl RZG2L_GPIO(0, 1=
-) IRQ_TYPE_EDGE_FALLING>;
->                         linux,code =3D <KEY_2>;
->                         label =3D "USER_SW2";
->                         wakeup-source;
-> @@ -38,8 +36,7 @@ key-2 {
->                 };
->
->                 key-3 {
-> -                       interrupts =3D <RZG2L_GPIO(0, 3) IRQ_TYPE_EDGE_FA=
-LLING>;
-> -                       interrupt-parent =3D <&pinctrl>;
-> +                       interrupts-extended =3D <&pinctrl RZG2L_GPIO(0, 3=
-) IRQ_TYPE_EDGE_FALLING>;
->                         linux,code =3D <KEY_3>;
->                         label =3D "USER_SW3";
->                         wakeup-source;
-> --
-> 2.34.1
->
->
+However, I am not against, if we want to keep this as separate driver
+with qcom_q6v5_pas_common.c shared between the current pas driver
+with QHEE vs this implementation with non-QHEE.
+
+-Mukesh
+
+> > 
+> > - Patch 1/6 adds the iommus and qcom,devmem binding for PAS common yaml.
+> > - Patch 2/6 and 3/6 add helper function to IOMMU map and unmap carveout
+> >   and device memory region.
+> > - Patch 4/6 adds a function to parse individual field of qcom,devmem property.
+> > - Patch 5/6 add helpers to create/destroy SHM bridge for remoteproc
+> >   carveout and to get memory from tzmem SHM bridge pool for remoteproc
+> >   firmware metadata.
+> > - Patch 6/6 enable all the required support to enable remoteproc for
+> >   non-QHEE hypervisor based systems like KVM host via parsing the iommus
+> >   properties and mapping/unmapping carveout and device memory based on
+> >   it.
+> > 
+> > Komal Bajaj (1):
+> >   remoteproc: qcom: Add iommu map_unmap helper function
+> > 
+> > Mukesh Ojha (2):
+> >   remoteproc: qcom: Add support of SHM bridge to enable memory
+> >     protection
+> >   remoteproc: qcom: Enable map/unmap and SHM bridge support
+> > 
+> > Shiraz Hashim (3):
+> >   dt-bindings: remoteproc: qcom,pas-common: Introduce iommus and
+> >     qcom,devmem property
+> >   remoteproc: qcom: Add helper function to support IOMMU devmem
+> >     translation
+> >   remoteproc: qcom: Add support to parse qcom,devmem property
+> > 
+> >  .../bindings/remoteproc/qcom,pas-common.yaml  |  42 +++++
+> >  .../bindings/remoteproc/qcom,sa8775p-pas.yaml |  20 +++
+> >  drivers/firmware/qcom/qcom_scm.c              |  29 +++-
+> >  drivers/firmware/qcom/qcom_tzmem.c            |  14 +-
+> >  drivers/remoteproc/qcom_common.c              | 148 ++++++++++++++++++
+> >  drivers/remoteproc/qcom_common.h              |  38 +++++
+> >  drivers/remoteproc/qcom_q6v5_pas.c            | 140 ++++++++++++++++-
+> >  include/linux/firmware/qcom/qcom_scm.h        |   1 +
+> >  include/linux/firmware/qcom/qcom_tzmem.h      |  10 ++
+> >  9 files changed, 423 insertions(+), 19 deletions(-)
+> > 
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> With best wishes
+> Dmitry
 
