@@ -1,141 +1,163 @@
-Return-Path: <devicetree+bounces-108409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71E319928CD
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:08:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB739928E4
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 12:13:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F7E21C2030E
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:08:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AB97FB225DA
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 10:13:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C90C189BA5;
-	Mon,  7 Oct 2024 10:08:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F47F1B7905;
+	Mon,  7 Oct 2024 10:12:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="jSn/UOxA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PxAJhh/N"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C45FA231CA9;
-	Mon,  7 Oct 2024 10:08:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F8491B5EDE;
+	Mon,  7 Oct 2024 10:12:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728295690; cv=none; b=BiM8TuptTwH+1CnaBs2OvCNwlom1fKWdMbrfkX2VKv3xOP7ejKLXU+89PWeNeay3Giz1BM5iLFY/IT7fs9hgb6Y9JW6RS2VRBmbfMzYsap+r30gVprYLBlbshgP8A2H9ZBI6tiMixFtMrMR1WDuW+WqixMWsqU7dVyHf49RjqO0=
+	t=1728295978; cv=none; b=cE2uEkW//xm/I0QPbcebg74rD7wTZZfePxinm3hlyLcaluNa1k1/qjkpPpMfDVUn0KsyC4mn0i/41gDTwbiUf18PzEWr0ThE5RhC5unr4U/ZNaKWd/tnPf/Wtag/7e01eY+u9hsuj9B90vomXFicboBJGKmuZw4m1PYZm/NqIuc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728295690; c=relaxed/simple;
-	bh=Nvv2QIrQSR6i2kMgLqXqzNmD2D7ghA1/2S+65g2qM64=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=kJ6cauozLQPDCwq+6GAQGMRC1IKeVNqH2Qu1Tr6s9VKNOdmS3nTzoRBxRc8EQQzEcPh9RMfF0DSsaC2DPOlSvqRqIVl2fftKb1ehZWb4vZDL5WnG0sh0ByE+AH8JXp69dfFd/Yyk9a9OWBc8B2gzjwXT+P47VpDAPdHmC892gEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=jSn/UOxA; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 092d0a24849411ef8b96093e013ec31c-20241007
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=xRF+WqijDSYeiE+tIaQ004Lnw2TEBFE2Gfpl2FGIHNs=;
-	b=jSn/UOxAXl5jZDKgPrOkOR3ZlvXw3+fdqrOTsctLfqcXm7fzKdbtJwZ73e8hCYKc6WqlxJ8A5B02iSvC2T3JLrmFyvGcOvBahe5DtybLb9e7621mIp0/a8bqoxSvtSuShzI+9eZvkdBBB/HSRFsOUHNqS0PemFVE/1jAKjltghY=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:15f711da-35f7-4db5-b29a-d2b1cc0819d7,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:916cdf40-8751-41b2-98dd-475503d45150,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-UUID: 092d0a24849411ef8b96093e013ec31c-20241007
-Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1443292378; Mon, 07 Oct 2024 18:08:01 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Mon, 7 Oct 2024 18:08:00 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Mon, 7 Oct 2024 18:08:00 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Jieyy Yang <jieyy.yang@mediatek.com>,
-	Jian Yang <jian.yang@mediatek.com>, Jianguo Zhang
-	<jianguo.zhang@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
- Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH] arm64: dts: mediatek: mt8390-genio-700-evk: enable pcie
-Date: Mon, 7 Oct 2024 18:07:49 +0800
-Message-ID: <20241007100749.6657-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	s=arc-20240116; t=1728295978; c=relaxed/simple;
+	bh=uX9MuZyTAsy4ZwdDWDKwMwzG+/9sWZbBeG99JoLQaCQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=s8106wWKIT1cGoJO8Xz29iNvtZ7UkQA/+41IYWrCqqe6p2wDfijjZH9pSoAVd5SE2aSWaAgt5nF/6o5n/p1YuYqIExPy3dfE0t1cvjQUCP5tkitzdLwooRw4X2t04kzIRQsgL/6N2bQzOLPIfRVSaoVAwIdsxtETHDmoHPDBHW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PxAJhh/N; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728295974;
+	bh=uX9MuZyTAsy4ZwdDWDKwMwzG+/9sWZbBeG99JoLQaCQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PxAJhh/NsDp5f2eWZN0zCO0G8kricMgKpRZOIklpJ5n71qrx8yvRD2KddLkcu78WN
+	 lN+f0ps82+wUHSyox5r+ms7fwCSFodTdUXT+PXdMXw19DbSqp4GciIbAbBkVNcR/jg
+	 Bk6Keb0jmXClqKx1vECROVLKPzbHu+ZaA79oyNj0ln/qseZA0e1ThQEQrR1fmpKUPY
+	 xXUDltk6Xv/ViASdbCfTrpUYvnaUKNWpQQkTJo2xpzaZ8ZKNNODjy0NGhs81+D2fcS
+	 AiIBGudyOzGzbMGwvFp7Eft9QMgOaWPsxZpSu7ehtTTJokdmrjg6pKP4DLb40zFFJd
+	 nK2hnthAAH9sQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 089E817E120E;
+	Mon,  7 Oct 2024 12:12:53 +0200 (CEST)
+Message-ID: <f072a20b-abc1-4da9-b03c-fb384601bc52@collabora.com>
+Date: Mon, 7 Oct 2024 12:12:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: Aw: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+To: Frank Wunderlich <frank-w@public-files.de>
+Cc: Frank Wunderlich <linux@fw-web.de>,
+ Chaotian Jing <chaotian.jing@mediatek.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Wenbin Mei <wenbin.mei@mediatek.com>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ daniel@makrotopia.org, john@phrozen.org, eladwf@gmail.com,
+ ansuelsmth@gmail.com
+References: <20241006153447.41377-1-linux@fw-web.de>
+ <20241006153447.41377-2-linux@fw-web.de>
+ <b41c51c4-775c-49ca-84fd-1137b61f42d5@collabora.com>
+ <trinity-6fcf3e00-393c-48ee-9aae-26057be08645-1728289985089@3c-app-gmx-bap03>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <trinity-6fcf3e00-393c-48ee-9aae-26057be08645-1728289985089@3c-app-gmx-bap03>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Enable PCIE, PCIEPHY and related Pinctrls for mt8390-genio-700-evk
-board.
+Il 07/10/24 10:33, Frank Wunderlich ha scritto:
+> Hi
+> 
+>> Gesendet: Montag, 07. Oktober 2024 um 10:00 Uhr
+>> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
+>> Betreff: Re: [PATCH v2 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+>>
+>> Il 06/10/24 17:34, Frank Wunderlich ha scritto:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> Add binding definitions for mmc on MT7988 SoC.
+>>>
+>>> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+>>> ---
+>>> v2:
+>>> - fixed minItems to 4
+>>> ---
+>>>    .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
+>>>    1 file changed, 24 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> index c532ec92d2d9..7380f72ea189 100644
+>>> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>>> @@ -21,6 +21,7 @@ properties:
+>>>              - mediatek,mt7620-mmc
+>>>              - mediatek,mt7622-mmc
+>>>              - mediatek,mt7986-mmc
+>>> +          - mediatek,mt7988-mmc
+>>>              - mediatek,mt8135-mmc
+>>>              - mediatek,mt8173-mmc
+>>>              - mediatek,mt8183-mmc
+>>> @@ -263,6 +264,29 @@ allOf:
+>>>                - const: bus_clk
+>>>                - const: sys_cg
+>>>
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - mediatek,mt7988-mmc
+>>
+>> Are you really sure that you can't reuse the MT7986 compatible?
+> 
+> have not found a way to reuse mt7986 binding because clock-config is different...
+> from driver view we can use the mt7986 compatible, but from binding view it is different.
+> 
 
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- .../dts/mediatek/mt8390-genio-700-evk.dts     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+Okay, that's fair.
 
-Changes for v1:
- - This patch depends on the pcie patch of mt8188.dtsi
-   [1] https://lore.kernel.org/all/20241004081218.55962-3-fshao@chromium.org/
+> regards Frank
+> 
+>> Cheers,
+>> Angelo
+>>
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 4
+>>> +          items:
+>>> +            - description: source clock
+>>> +            - description: HCLK which used for host
+>>> +            - description: Advanced eXtensible Interface
+>>> +            - description: Advanced High-performance Bus clock
+>>> +        clock-names:
+>>> +          minItems: 3
+>>> +          items:
+>>> +            - const: source
+>>> +            - const: hclk
+>>> +            - const: axi_cg
+>>> +            - const: ahb_cg
+>>> +
+>>>      - if:
+>>>          properties:
+>>>            compatible:
+>>
+>>
+>>
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-index 3e77f59f2c74..bb68665f0b2d 100644
---- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
-@@ -393,6 +393,16 @@ &mt6359codec {
- 	mediatek,mic-type-1 = <3>; /* DCC */
- };
- 
-+&pcie {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pcie_pins_default>;
-+	status = "okay";
-+};
-+
-+&pciephy {
-+	status = "okay";
-+};
-+
- &pio {
- 	audio_default_pins: audio-default-pins {
- 		pins-cmd-dat {
-@@ -758,6 +768,15 @@ pins-rst {
- 		};
- 	};
- 
-+	pcie_pins_default: pcie-default {
-+		mux {
-+			pinmux = <PINMUX_GPIO47__FUNC_I1_WAKEN>,
-+				 <PINMUX_GPIO48__FUNC_O_PERSTN>,
-+				 <PINMUX_GPIO49__FUNC_B1_CLKREQN>;
-+			bias-pull-up;
-+		};
-+	};
-+
- 	rt1715_int_pins: rt1715-int-pins {
- 		pins_cmd0_dat {
- 			pinmux = <PINMUX_GPIO12__FUNC_B_GPIO12>;
--- 
-2.45.2
 
 
