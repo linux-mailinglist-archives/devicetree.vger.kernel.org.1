@@ -1,148 +1,164 @@
-Return-Path: <devicetree+bounces-108592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B725599308F
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:06:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46A959930A3
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 17:07:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 317881F20D3A
-	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:06:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3FD41F2358F
+	for <lists+devicetree@lfdr.de>; Mon,  7 Oct 2024 15:07:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9191D932F;
-	Mon,  7 Oct 2024 15:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3123F1D8E0F;
+	Mon,  7 Oct 2024 15:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iM8HrNUf"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="U05b0bqV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2078.outbound.protection.outlook.com [40.107.243.78])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BC0B1EB25;
-	Mon,  7 Oct 2024 15:05:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728313518; cv=none; b=XQb15nt5R5+7xIVlnNsUWLc5m04orSxvpljW9wu7XDBKJUBys/Etv1MThDiH/tSah2LsAU+c+cNQ3d75wGNcvnsTpDvfUJqZ/VogB3SthfNvIGC6vCD8llbWTqbxiDd1O9Eicx1yCkVL6zaHrOXkX0A+SHedm3IMWvpyS/B4FmU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728313518; c=relaxed/simple;
-	bh=JRtx5eRJkXG38uPw/npJdWEVbk79L2ljNlxvw5Jbrto=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lNfkd2jMq8jLxzyZTjcJGXh8WIVrURkrTOoI4N2nzFKW3Qi8R7jTARsASJZvxwIDdbqGSIErf3/srgjsDzLY3F+tF1vapSM2GlHGVE/QszAgCU33rUzDWCnJ5nB8c7SvGRqR90Ey5D/0BUj5+/vzB+usTpbS/kk3jngjGbD/mdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iM8HrNUf; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728313518; x=1759849518;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=JRtx5eRJkXG38uPw/npJdWEVbk79L2ljNlxvw5Jbrto=;
-  b=iM8HrNUfzAJTiZic/iFr5CQvhsroNwn99OLTP+w5qiWnXyTvgyvpGTwL
-   NWyAwACVR5JmgLOO6h4YidCO6xxOkOhV6dfB2hfA7MOZQWOvwhEdyowrP
-   +UHsLQmKVMcizl2RTFzlbUsvjL8w8hOpK7RTlEismFB2OjES6W+c/ySxv
-   r8YTOZRRmO5KjKychlMBFPzQJbieUTYzethtxtt8VEZbvFCqtX9xtA1UN
-   MibNOmlJ493/jr9vG/tZi3gU/ZKFYSDeoWDBvSbj41D8t0bOoflWIupb4
-   xZVNuy3SL2AdClnulpJa9fVNnGWKtOX+x17sr4G6tazo5x9BNhFOgMq1K
-   g==;
-X-CSE-ConnectionGUID: eqUbaYReQ2mMary9kcK1fQ==
-X-CSE-MsgGUID: h25eV7fGSNSwC0vrEyx4ew==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="50001316"
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; 
-   d="scan'208";a="50001316"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 07 Oct 2024 08:05:16 -0700
-X-CSE-ConnectionGUID: ZAw+Mk0YRgq2jIUgeYmqbA==
-X-CSE-MsgGUID: IoaAwrPFTbq17UYMK81ItQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,184,1725346800"; 
-   d="scan'208";a="98822607"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa002.fm.intel.com with ESMTP; 07 Oct 2024 08:04:57 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sxpI6-00058i-2w;
-	Mon, 07 Oct 2024 15:04:54 +0000
-Date: Mon, 7 Oct 2024 23:04:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Per-Daniel Olsson <perdaniel.olsson@axis.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	rickard.andersson@axis.com, kernel@axis.com,
-	Per-Daniel Olsson <perdaniel.olsson@axis.com>
-Subject: Re: [PATCH v2 2/2] iio: light: Add support for TI OPT4060 color
- sensor
-Message-ID: <202410072240.s3wGb17S-lkp@intel.com>
-References: <20241005165119.3549472-3-perdaniel.olsson@axis.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8DB6A1D8A06;
+	Mon,  7 Oct 2024 15:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728313591; cv=fail; b=X5TXesxnzAhWKfXMDP47KvwDYUXxYb5V224Vx+aMg/C7YlD6hC84xlrIK1N/vbhDRK1Te+Egvt1fzjqNAJPAZidWb8DOEsBqA/kAT3doDSDd+rU8R923ANrQMM4JoHp8e+5Sk9OLbxVMWDL6LAaMe7CFV3w/lHD0hwhLpN7kOQY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728313591; c=relaxed/simple;
+	bh=0wedgcbvDNzSv6/UguL1supzKNnz/okCj6qpElhr2oM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cSgVvO2BdNCz0C6MNrQeOT/vP7MS/0RzXDY9fi+QSXm2U7IfIatttYXZcUHm3ZRyysIjIEXE6/A21QRhcz66762s1zVmKPAsqPM2ed9+QQG1SIqU/8dgl7MCVNKrdrl0wvPZR5rXfzJ3r2vxtBBdgnGN1k5LhER2onjdbrqFkNU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=U05b0bqV; arc=fail smtp.client-ip=40.107.243.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=IET5aVBijV9qB2NRmA4h+kPjXnh8ykta087p2FnooabM9bZinj/snSSDHlZMI22shj1nkwflOm9BelajsasuKPLtqldCup/FERrEQVeYxy/0FE0i+YACPR6UOnKDdyzkpU+66S9k4YxJGFx8lXkGLLOzqRwG8y5KeVl3SP5+uzNJh2pOe04AeYATS7PFcundkr53Tqf2Nl368ejz8FhO99Jfvq427A+xZWopSI7pXD7GlAErBvXtUWq1kVse8DKSIkFq36Jui4CBPqvF2gRShKcyNNa5QjZU4jMH24fFRIvYuikzzKXQJzaQVQFGMum2Nip9hf1sgG9h9vLovmzgDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=rQdORdduLhnZfjT1P0pddrNbfBct02jEvbe5kkfFYg4=;
+ b=hVPIyUrcmz+x0tL/Ry80DAyCzejlvyODT8QUxukwGV4HACdu3C5T9JQyyzOfMWexFYhtef95Ra7jrpd6UHzm4p+8RJCEcYkf7dYEvi3dpFp2+Bn5AUAZG56dzDLKz5H2T43hxTBlGZa06P3EGENakUwcTpIK5kiyVejx/N4ywhZ3Vn47EPq5Y5IT4k1a2gh31h7W7bXsdrJg+qZ/u6ZF8I8MDaCXT72DLDAt+2+1Hc3c2LgGTHBKA0inAvHpO9xX1pINUgrDhhKUxiBvFyVu7IOzQ21UBoslxbmo26QsBUoElZvhv3Pscd0gmz7RPIL7CgxwZctdYJqL2U4IXaSs1Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=rQdORdduLhnZfjT1P0pddrNbfBct02jEvbe5kkfFYg4=;
+ b=U05b0bqVNDCcO1u7pYET/1NobyDfBi+PGalvezZqzWs9YW6HXwIwJquSLSD4h/QwYg0bMojJWsD4EKpKpFaMaprvVE8r4OqC7bvKoEG+gRW46I61qwOlWOSX+JZOVm1L1zB7B0vuVH6Wq5MDOWIRvHnjH4irdhrzKoyMzO0qUfs=
+Received: from SN7P220CA0021.NAMP220.PROD.OUTLOOK.COM (2603:10b6:806:123::26)
+ by LV2PR12MB5750.namprd12.prod.outlook.com (2603:10b6:408:17e::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.22; Mon, 7 Oct
+ 2024 15:06:23 +0000
+Received: from SN1PEPF0002636B.namprd02.prod.outlook.com
+ (2603:10b6:806:123:cafe::2a) by SN7P220CA0021.outlook.office365.com
+ (2603:10b6:806:123::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23 via Frontend
+ Transport; Mon, 7 Oct 2024 15:06:23 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ SN1PEPF0002636B.mail.protection.outlook.com (10.167.241.136) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.8048.13 via Frontend Transport; Mon, 7 Oct 2024 15:06:22 +0000
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Mon, 7 Oct
+ 2024 10:06:19 -0500
+Received: from xhdradheys41.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.39 via Frontend
+ Transport; Mon, 7 Oct 2024 10:06:15 -0500
+From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+To: <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+	<pabeni@redhat.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>, <harini.katakam@amd.com>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<git@amd.com>, Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Subject: [PATCH net-next v2 0/3] net: xilinx: emaclite: Adopt clock support
+Date: Mon, 7 Oct 2024 20:36:00 +0530
+Message-ID: <1728313563-722267-1-git-send-email-radhey.shyam.pandey@amd.com>
+X-Mailer: git-send-email 2.1.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241005165119.3549472-3-perdaniel.olsson@axis.com>
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB03.amd.com: radhey.shyam.pandey@amd.com does not
+ designate permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN1PEPF0002636B:EE_|LV2PR12MB5750:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7d9168e0-8056-4f07-5610-08dce6e19b3c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|82310400026|1800799024|36860700013|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?rShp2/54Oh+gwbSI0sVtWfS0dCgeG83l1U4WyhDHDtVC70TAR2bEs0aceiNR?=
+ =?us-ascii?Q?ItuPwisODzHu1zichkpQZpMF9QhL+3wU22dv5UCIUaix7ontfMBqupnywTFw?=
+ =?us-ascii?Q?l/YaVrwg4aKxFTr2KhodrKzTLtkdsnKDShqNNHEElR4vXmEmCzH3wGAllQzF?=
+ =?us-ascii?Q?zS1sI9YpaazzMg+1YG+SnXkwoDQTbCAsUCjNiAHV6wKDSfI6m3CHnRK8r66+?=
+ =?us-ascii?Q?jig5DfdON01J0sReV8lgjEv+03hALoCayYspqxZVGhLIh6nNeo83oOoD/8AT?=
+ =?us-ascii?Q?TBk26DZgDG8wm+PtM/B3spuegZdIVBGhy3oHwfm6CcmZBnqp7s5Fnbao7C6h?=
+ =?us-ascii?Q?093FUZ/NwMmjzxCKC7OtAKZjoElix1ftsFJIZVSnA6eMMAhwu9Fgjhes516Z?=
+ =?us-ascii?Q?BgLta3TK0LLfu+veBDIzLnkXJzV+YVdGxsY7SZTih7LcoApcLTCyStLFItVm?=
+ =?us-ascii?Q?freY3E8WgfIjCZtaiTOCe0cZZASB9AyFiT+2wcXW6r8hb1feI6iTw5txuTY1?=
+ =?us-ascii?Q?XUoxIE4b0V3UHrR6Ul6XaEVTpYWl5ggGOtSyPuCimE/4yVQ/z+lrvORPCHNs?=
+ =?us-ascii?Q?7ZW1Vh89HGxsBVSxfg4BMsaT2w4Ik4P2qaJXvo9SqNUg7HxBR+TohXqSKhOE?=
+ =?us-ascii?Q?ZDiHHu9OoNWo30E93ndGA6TjmA+zcKhVEOhpDlk9ur9gSWy/aexY06lBuveu?=
+ =?us-ascii?Q?zkZ8/OoWKEic5vd+DWcG+8L+A7okMBaciNtfyv1HVXfWAB/yAtH3ScWkJKTe?=
+ =?us-ascii?Q?TmyFa6rzUMMOkQuIhQFFxBm/3IzTLPmImG9HAZxAcj2pBzXH8+vl3YIBRFSU?=
+ =?us-ascii?Q?NwOEQYLCbxPNkBqqD6MufbcsaJt5xMZV7kb+9MXHR3XwmwgCkPqAPZy9Qdzv?=
+ =?us-ascii?Q?ShBvvmWmfEVE2lTW6Nk8TdWloSREIkffS2inmdjnQq78F7jrfVXnTVrB0+xX?=
+ =?us-ascii?Q?45+MwpbawXjwnskuTpoWaxvJIaF2kI/5aVpDDqhXtsnQMuDpYjs9+u6Hxsu7?=
+ =?us-ascii?Q?n4Fy7FVDmL3jZWslTBb2ay0A5mbSdkBeUKkKqxv7tr47Hs6ZkunWf2o7hlpO?=
+ =?us-ascii?Q?PGQ1je93UZ34I/I7Q/++vJSkET/JYvZOlqH3GlJACy2Mac5SPM+hyMZXufpU?=
+ =?us-ascii?Q?NsFV9wkluWBGgqSoSnFdKfSWbfjQEEMEaqaQp1q+Jwk0UJznvbOPYZTsGbt6?=
+ =?us-ascii?Q?tmtSnAaF9O32WIizIzMNozUEqLflup823+uXLUaZZt//aWku6l6tGaonqa/c?=
+ =?us-ascii?Q?9RScBs+tCY7qa5tD4r+rbnOIVEUAC1Ar2AgOztUatgb1DoRCY9nXhQRsU7Dw?=
+ =?us-ascii?Q?Sk4dmP6zCUVE812zKcj3UeNcJvM9eyAFLM5+7aiinmqV/hXLES2xpcG9XYCI?=
+ =?us-ascii?Q?77Jni5+qPmaYarMgfu9r1djIGcp9?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(82310400026)(1800799024)(36860700013)(7416014)(376014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Oct 2024 15:06:22.5283
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7d9168e0-8056-4f07-5610-08dce6e19b3c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	SN1PEPF0002636B.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5750
 
-Hi Per-Daniel,
+This patchset adds emaclite clock support. AXI Ethernet Lite IP can also
+be used on SoC platforms like Zynq UltraScale+ MPSoC which combines
+powerful processing system (PS) and user-programmable logic (PL) into
+the same device. On these platforms it is mandatory to explicitly enable
+IP clocks for proper functionality.
 
-kernel test robot noticed the following build warnings:
+Changes for v2:
+- Make clocks as required property.
 
-[auto build test WARNING on 0c559323bbaabee7346c12e74b497e283aaafef5]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Per-Daniel-Olsson/dt-bindings-iio-light-Document-TI-OPT4060-RGBW-sensor/20241006-005244
-base:   0c559323bbaabee7346c12e74b497e283aaafef5
-patch link:    https://lore.kernel.org/r/20241005165119.3549472-3-perdaniel.olsson%40axis.com
-patch subject: [PATCH v2 2/2] iio: light: Add support for TI OPT4060 color sensor
-config: csky-randconfig-r122-20241007 (https://download.01.org/0day-ci/archive/20241007/202410072240.s3wGb17S-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20241007/202410072240.s3wGb17S-lkp@intel.com/reproduce)
+Abin Joseph (3):
+  dt-bindings: net: emaclite: Add clock support
+  net: emaclite: Replace alloc_etherdev() with devm_alloc_etherdev()
+  net: emaclite: Adopt clock support
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410072240.s3wGb17S-lkp@intel.com/
-
-sparse warnings: (new ones prefixed by >>)
->> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
->> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
->> drivers/iio/light/opt4060.c:963:9: sparse: sparse: dereference of noderef expression
-
-vim +963 drivers/iio/light/opt4060.c
-
-   951	
-   952	static irqreturn_t opt4060_trigger_handler(int irq, void *p)
-   953	{
-   954		struct iio_poll_func *pf = p;
-   955		struct iio_dev *idev = pf->indio_dev;
-   956		struct opt4060_chip *chip = iio_priv(idev);
-   957		struct opt4060_buffer raw;
-   958		int ret, chan;
-   959		int i = 0;
-   960	
-   961		memset(&raw, 0, sizeof(raw));
-   962	
- > 963		for_each_set_bit(chan, idev->active_scan_mask, idev->masklength) {
-   964			ret = opt4060_read_raw_value(chip,
-   965						     opt4060_channels[chan].address,
-   966						     &raw.chan[i++]);
-   967			if (ret) {
-   968				dev_err(chip->dev, "Reading raw channel data failed\n");
-   969				goto err_read;
-   970			}
-   971		}
-   972	
-   973		iio_push_to_buffers_with_timestamp(idev, &raw, pf->timestamp);
-   974	err_read:
-   975		iio_trigger_notify_done(idev->trig);
-   976		return IRQ_HANDLED;
-   977	}
-   978	
+ .../bindings/net/xlnx,emaclite.yaml           |  5 +++++
+ drivers/net/ethernet/xilinx/xilinx_emaclite.c | 22 ++++++++++---------
+ 2 files changed, 17 insertions(+), 10 deletions(-)
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.34.1
+
 
