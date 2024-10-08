@@ -1,106 +1,117 @@
-Return-Path: <devicetree+bounces-108905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 665839943F9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:18:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B7D9943E7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:16:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8579FB29143
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:14:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA26C1C248E9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:16:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6E9917B4EC;
-	Tue,  8 Oct 2024 09:12:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hl9pAJpY"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52FF192B9C;
+	Tue,  8 Oct 2024 09:14:38 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+Received: from baptiste.telenet-ops.be (baptiste.telenet-ops.be [195.130.132.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05AED178CE4
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 09:12:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBAB9191F9A
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 09:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.132.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728378734; cv=none; b=uDFSGMeZ+HH9WwBvgQT49VbJ8VWEfm2D256FFFt+0oT4sjssrUzL7PPynEW4HYtSVIJ+WeMfgcHro/SceWR+o8lUfOAx5yfg10Flqr7prPPC3LSurp9FBwtQFz5b42fPzgysHyz9ZxqZTtT+S4PbUA9qeg90LCpTpsaMl5r/n9I=
+	t=1728378878; cv=none; b=Za14RTBAZ8CzJQWrwa/kgq/xTTkcsM2VMCdvtbbbnMASY7baHMIiJkZtppO9V5t84jRZjAMOF+IQQRRjz1HiHZmltH8P+y7MGpvaCQPTtMoZhX2bXLDGC+utduFlf/IYLhV8+kx9PFcZZoWdFvtPp2GeSBqPI8cgBKrw1VK/sUA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728378734; c=relaxed/simple;
-	bh=8R5mNUaqgWhw+SjU51bMScNSOuHChqgNVLLs9a/h8UA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BWFBH3V6QfP4VBZD11jKeHUarrpEUum4Z1PN/ixRXRNyLIbdC4p3Q0b24eK3fvXo5v8o2VpqpLnk4rAdqQKTDB+qsGQAY8sTXrSW+IXL9oZWwHMm7JGCFF36yxf8MGv5ii28P9mfcbtm7lD3QZzdxKP1dnc19qfNY5cAceXfcYs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hl9pAJpY; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fad100dd9fso74728631fa.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 02:12:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728378731; x=1728983531; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8R5mNUaqgWhw+SjU51bMScNSOuHChqgNVLLs9a/h8UA=;
-        b=hl9pAJpY0OMPoMPkT7x5fnU2Hc8B6zbOcLs6m5ueHzuUebAtQgCHTXN7vtw7UEVw04
-         fwqtRafXO0gImfVeJTFL918TVIgUE65xoMc0LOG/LNbteAM2RgFRObJpozJejnKpOIDv
-         bOBrcm+HDcvri/38HG/xIgCt6bZyDQA2Wx1RthPkECVA3crNg5JW2enQpFOY2/ZhhT+i
-         xa08LO1PhKbUa4YdV2kez3P3ZFMWsUBwM/p2grz1j+NqQyKNfML90eM8UN16aR0ipjA8
-         cprRIdRjfBqwaCDE6rE4iMjzZ4rdRrh/AEzHVAEoddEimYEnv8fksD1JZcSvrTm5biju
-         rzdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728378731; x=1728983531;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8R5mNUaqgWhw+SjU51bMScNSOuHChqgNVLLs9a/h8UA=;
-        b=R/Uz7vkCHX4yjW5KTqU0Thg4kNVEtN0PJ3V7toXW+fDRJr5irrkkn398l1tkjXWKHF
-         qlqExIuG8RS07Py7NCUbfIcYHHRAf2cblTS+hBQCicoYXWulPoDfGxld3yhxj3R8pz5C
-         sGRB1VP+PtgA3dPJfH0ooBCGp7q0wdBeuXmc9IwslMFWDarqkqA4JmoCdJi2OjL4rSpD
-         KRVaah18t2ChJ73dUjpr/hrs1ACHK7KcG6vTrDg9KlbE/KXD6b6XjEPTWUhS6TAhwLRU
-         OQxGxapJ96+/XYwAnvuHkpB/t6FnALHdMkW9UhhVoW44kfKAkyzDUWCnQAB/ZkFEc0PF
-         eu+g==
-X-Forwarded-Encrypted: i=1; AJvYcCWzqQkpSkw7g+6TjpOiLlnZZRBcu7isXB4JinL7NyUMKjIIJThGPS/VHmNXI6+5zFGWtLsA0N/qi9BG@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzhf4p8W7+IapVttEfhJySnj2D7G0Cjir+F0ZRsOjYx02CroTyH
-	dYHiLQq0MQLVTg9M+ONf648fdIjaiFpS+JLiS22qSOkN31qc/Gt5aEpZN1t3gUupGWd9Bc4Y6aO
-	3WO5rM+ob4vTsrVcozEtJOB+HzymLC4XIo5u6pA==
-X-Google-Smtp-Source: AGHT+IHcBA2jTE1QM6JyuIGCT7tc+Sb9Dr7eXCmaROonw0Ss9mIeMA8MiXWox+luFXYNnTEtJ3oq3bBdjFrsUAeO2LQ=
-X-Received: by 2002:a2e:e01:0:b0:2fa:cdac:8732 with SMTP id
- 38308e7fff4ca-2faf3d70720mr73174491fa.30.1728378730928; Tue, 08 Oct 2024
- 02:12:10 -0700 (PDT)
+	s=arc-20240116; t=1728378878; c=relaxed/simple;
+	bh=aZ7a6do1I9lRvki6g0ztNEBHyJ+s91TElHWBfDtQ2h4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=gEZKeWB9dR24r3QhNI2HNTgpTUpCVPNqkzbl7u76FoZBgjVrmfKQMEaGDG3ORFQHjnALKYdRSL0GeMpE1j0y8ecObjHh+TTLY4Sk2emRt+yA0+PShk4hsSo9YE++LDBUT1D/v2kBr/mfekbKTQ/tF9U+x0lM5vWjQ6eioBvdGxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.132.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
+Received: from ramsan.of.borg ([IPv6:2a02:1810:ac12:ed80:af78:ce2e:2b4b:9f2a])
+	by baptiste.telenet-ops.be with cmsmtp
+	id MlET2D00H0Eqs9l01lET5l; Tue, 08 Oct 2024 11:14:28 +0200
+Received: from rox.of.borg ([192.168.97.57])
+	by ramsan.of.borg with esmtp (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sy6IL-003RYK-1y;
+	Tue, 08 Oct 2024 11:14:27 +0200
+Received: from geert by rox.of.borg with local (Exim 4.95)
+	(envelope-from <geert@linux-m68k.org>)
+	id 1sy6IV-00D2DB-GN;
+	Tue, 08 Oct 2024 11:14:27 +0200
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: Lukasz Luba <lukasz.luba@arm.com>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	linux-pm@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH/RFC 0/2] arm64: dts: renesas: Re-add voltages to OPP tables
+Date: Tue,  8 Oct 2024 11:14:19 +0200
+Message-Id: <cover.1728377971.git.geert+renesas@glider.be>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ad82005d-729d-4165-afa5-61ca82382bc5@app.fastmail.com> <20241008084744.30819-1-exxxxkc@getgoogleoff.me>
-In-Reply-To: <20241008084744.30819-1-exxxxkc@getgoogleoff.me>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Tue, 8 Oct 2024 11:11:59 +0200
-Message-ID: <CACRpkdaPBH1CE0YXGMKUDQWyJQTZvkYgnW=UTO2uxWmBvecu9g@mail.gmail.com>
-Subject: Re: Re: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
-To: Karl Chan <exxxxkc@getgoogleoff.me>
-Cc: arnd@arndb.de, andersson@kernel.org, catalin.marinas@arm.com, 
-	conor+dt@kernel.org, devicetree@vger.kernel.org, konradybcio@kernel.org, 
-	krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	mturquette@baylibre.com, robh@kernel.org, sboyd@kernel.org, will@kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 8, 2024 at 10:49=E2=80=AFAM Karl Chan <exxxxkc@getgoogleoff.me>=
- wrote:
+	Hi all,
 
-> Also Other linksys ipq5018 based rotuer is capable of booting arm64.maybe=
- i could rip the
-> uboot from those rotuer and flash it to ea9350 v3 but i dont have another=
- linksys ipq5018
-> based rotuer.
+When CONFIG_ENERGY_MODEL=y, an error is printed on RZ/G2E and R-Car E3:
 
-It's maybe scary to reflash U-Boot.
+    cpu cpu0: EM: invalid perf. state: -22
 
-But you can boot a "new" U-Boot from U-Boot, so if you can compile a
-U-Boot with the proper hardware support and the RMR quirk, you should
-be able to boot that, and then use that to boot Linux into 64bit mode.
+This happens because the Operating Points Parameters tables do not list
+voltages, as they are all identical.  Previously, it was assumed they
+were optional, and unused, when none of the CPU nodes is tied to a
+regulator using the "cpu-supply" property.  This assumption turned out
+to be incorrect, causing the reported error message.
 
-Yours,
-Linus Walleij
+This RFC patch series fixes this by adding the missing voltages.
+
+Note that the Energy Model calculates energy efficiency by dividing the
+(estimated) CPU power consumption by CPU core clock frequency.  When all
+voltages have the same value, the former is proportional to clock
+frequency, and energy efficiency becomes a constant.  Hence all
+operating points are considered to have the same efficiency, and the
+Energy Model always picks the one with the highest clock rate (see also
+[1]).
+
+Alternatively, the Energy Model could be changed to silently ignore OPP
+tables with missing frequencies.  IMHO this is not an unusual case.
+
+Which approach should be taken?
+Thanks for your comments!
+
+[1] "PM: EM: Question Potential Issue with EM and OPP Table in cpufreq
+     ondemand Governor"
+    https://lore.kernel.org/all/a2ca883e-122e-43a1-b377-c43956b5b3be@arm.com
+
+Geert Uytterhoeven (2):
+  arm64: dts: renesas: r8a774c0: Re-add voltages to OPP table
+  arm64: dts: renesas: r8a77990: Re-add voltages to OPP table
+
+ arch/arm64/boot/dts/renesas/r8a774c0.dtsi | 3 +++
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi | 3 +++
+ 2 files changed, 6 insertions(+)
+
+-- 
+2.34.1
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
 
