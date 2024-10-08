@@ -1,164 +1,171 @@
-Return-Path: <devicetree+bounces-109159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 546F2995686
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 20:28:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D88B995741
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 20:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 186D2281182
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:28:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C470E287136
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:56:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBE1621265E;
-	Tue,  8 Oct 2024 18:28:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7C7213ED0;
+	Tue,  8 Oct 2024 18:55:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fUrVBYF/"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="By/cPCEb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2441212644;
-	Tue,  8 Oct 2024 18:28:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51129213EC2
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 18:55:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728412088; cv=none; b=tORR9As0GAndcLb9kW+2L+qfB/VdrmjGQv06Xb9K79c882YgfgDWMcwPb7PxkDgxHY5J5g1FXGVxs6HKH0401bfzTzkGJCZzjVNPXzp+aPDlv01bO8tlid84G+fv8SORGJdXFRScXfBk9rPlD+7ierN9E11ML2ehFFzLD3N1Wu4=
+	t=1728413750; cv=none; b=a5RrRUZE+KiyLlGvqorGkVCqRM0M4RE29N59xNEhPHgpPdEdTY8daiZPnpY1iynkUm2bAl8Wsfn+pH62gVQm9+kWvIE8eiYFL17jgXdEM4Y3eGNjlG5U16lfUHKJ+fR5A8jloqvJulk/MsbTdSNXqK+oVaevFvZi2Af2oCUAahg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728412088; c=relaxed/simple;
-	bh=xlYFgGi0wb7POCCV6CbKHjLYkCkFi7yoTDhc9WV7/JI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P7zI6mKLArOpOdAf4StsxLBBDBCkvYPISdEw0JaH0YJydyTJqZtRU5tzLO8fTrmSFu9I3FtCC8QOdgtCVSwnbh9Nc27dliwbjA/ZCpjA2iH1rhq4XvAv8OSVM6vSPVwIKTk8hzYeW7gVow3IkNmpaXUD4+mV/GxTqWfOkviF24A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fUrVBYF/; arc=none smtp.client-ip=192.198.163.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728412087; x=1759948087;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=xlYFgGi0wb7POCCV6CbKHjLYkCkFi7yoTDhc9WV7/JI=;
-  b=fUrVBYF/jEZeH+ngh7hW3m6gvsGXPzjngQheC10YNzTrQGIBKMTNahfo
-   5tlh50CKfQadxpYsVhx2zJkq5B0Psx4OFYA6XYRuL2nzUod6Z+yTRwf4t
-   MOudCYQ6YU2Wg29ArIciSxggy/0llM3Z2Q6PE/HlTp6YX5o+5Dja3uZ73
-   xVn1iKRPG1ZQXolsw1BsydlHGh+nFpLCIAdkiR6rhX1jtLguAdk+9spr4
-   JSCmA90pT+quOaXryYDJYODQajOEFe1xMtSObOrOAMdGycbYvudWYZGPw
-   KVQqBy278qap9IX8Vm1+rve5u3lwEDK+W4Fa3qHyKTWy5RV08TQG4b1hT
-   w==;
-X-CSE-ConnectionGUID: KrQ5cjgZSweqyOSRFQDRYw==
-X-CSE-MsgGUID: vx4+EKWlTkeIbljfjzKNbw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="38233042"
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; 
-   d="scan'208";a="38233042"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 11:28:06 -0700
-X-CSE-ConnectionGUID: niWdaALuTIqI+ypDhf6wHA==
-X-CSE-MsgGUID: mKZwdRX2QBCUtwJ+k70tYQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,187,1725346800"; 
-   d="scan'208";a="76194737"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa006.jf.intel.com with ESMTP; 08 Oct 2024 11:28:03 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1syEwC-0008FI-2N;
-	Tue, 08 Oct 2024 18:28:00 +0000
-Date: Wed, 9 Oct 2024 02:27:51 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: Re: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA
- to load the firmware
-Message-ID: <202410090225.d3bZaaqk-lkp@intel.com>
-References: <20241007131620.2090104-8-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1728413750; c=relaxed/simple;
+	bh=6pIwymGOgGwBExwNMf7+e5M3D1A73/fqXlHGBi/x4R8=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
+	 References:In-Reply-To; b=bqSxhNfphcERFXf5EuxbezJEWwAgv/ZBJiVWku6WE+Z0B4foSrv6nssDcQYnXp3oizHou05IZULpgotE7glZtibWNUuyD9LiJBDwnuQYgxXb6yrlIBie78Bizj6AKYHyeS/hTLyPWQAg/cxmNBEW9LedqVEyMn1N6yTuUyWAFRs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=By/cPCEb; arc=none smtp.client-ip=91.218.175.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007131620.2090104-8-arnaud.pouliquen@foss.st.com>
+Mime-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
+	t=1728413746;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JDuErN1Auxr6ysu/+eLU20CGd8PRtkQZVoMuxVC2HnU=;
+	b=By/cPCEbi14X259+giAyG1muNCXQuu/bN4P640/FesFGvqDGXyyNqFyUMzXmsCbzP9GRw0
+	of7uW+mJALcUd7XrpCHYk3VaC1Y/eL/+36CslzVJYNXq3Dhk+TPOYdF9Y60yKYz9QGXU06
+	l/6GCj7jdKUIQARQSUHdLxP8167kKWKMZp4qFoADE8SGCG1NbzV+BIJtGHomD2CFpTeQa0
+	zNnJKsufxzo40D276oaUKPEYS7HwHEIp1wUjumpX/ER3PHHmfNmz7x0LRjuA8BgKRSV73Q
+	6G/D51UfCJTb9s7lIv+5OjDYoZRvTHinp836YJmV0y8e+H586WFlVEj2aysBLA==
+Content-Type: multipart/signed;
+ boundary=739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be;
+ micalg=pgp-sha256; protocol="application/pgp-signature"
+Date: Tue, 08 Oct 2024 20:55:34 +0200
+Message-Id: <D4QNJ85V43NU.YD01E8AB4116@cknow.org>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
+To: "Michael Riesch" <michael.riesch@wolfvision.net>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
+Cc: "Dragan Simic" <dsimic@manjaro.org>, "Samuel Holland"
+ <samuel@sholland.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+ "Diederik de Haas" <didi.debian@cknow.org>
+Subject: Re: [PATCH v2 1/4] arm64: dts: rockchip: Add PD to csi dphy node on
+ rk356x
+References: <20241008113344.23957-1-didi.debian@cknow.org>
+ <20241008113344.23957-2-didi.debian@cknow.org>
+ <e07990da-8ac6-43ae-8e21-14988ee5fcbe@wolfvision.net>
+In-Reply-To: <e07990da-8ac6-43ae-8e21-14988ee5fcbe@wolfvision.net>
+X-Migadu-Flow: FLOW_OUT
 
-Hi Arnaud,
+--739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-kernel test robot noticed the following build errors:
+Hi Michael,
 
-[auto build test ERROR on 9852d85ec9d492ebef56dc5f229416c925758edc]
+On Tue Oct 8, 2024 at 2:32 PM CEST, Michael Riesch wrote:
+> On 10/8/24 13:15, Diederik de Haas wrote:
+> > The "rockchip-inno-csi-dphy.yaml" binding requires the power-domains
+> > property. According to RK3568 TRM Part 1 section 7.3 (page 475) the
+> > CSIHOST is placed in the PD_VI power domain.
+> > So set the csi_dphy node power-domains property accordingly.
+>
+> Thanks for the patch. However, I am not sure about this one.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241007-212358
-base:   9852d85ec9d492ebef56dc5f229416c925758edc
-patch link:    https://lore.kernel.org/r/20241007131620.2090104-8-arnaud.pouliquen%40foss.st.com
-patch subject: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-config: arm-randconfig-r054-20241008 (https://download.01.org/0day-ci/archive/20241009/202410090225.d3bZaaqk-lkp@intel.com/config)
-compiler: clang version 20.0.0git (https://github.com/llvm/llvm-project fef3566a25ff0e34fb87339ba5e13eca17cec00f)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241009/202410090225.d3bZaaqk-lkp@intel.com/reproduce)
+Thanks for your reply.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410090225.d3bZaaqk-lkp@intel.com/
+> The CSI host sure is in this power domain, but we are talking about the
+> CSI PHY here, right? According to the table CSIPHY is part of the power
+> domain "ALIVE", which leads me to believe that the power domain is not
+> necessary here. However, I guess you could put "RK3568_PD_LOGIC_ALIVE" he=
+re.
+>
+> It should be noted, though, that I still haven't figured out what the
+> role of this CSI host actually is. I know that the RK3568 ISP has its
+> own MIPI CSI host controller within its register space. But I can only
+> guess right now that this CSI host is somehow linked to the RK3568
+> VICAP, which is also capable of receiving MIPI CSI. Maybe we can leave
+> this up to however brings up the RK3568 VICAP MIPI CSI feature :-)
 
-All errors (new ones prefixed by >>):
+It indeed isn't as clear cut as I want(ed) it to be.
 
->> ld.lld: error: undefined symbol: tee_client_invoke_func
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_release_fw) in archive vmlinux.a
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_load_fw) in archive vmlinux.a
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_parse_fw) in archive vmlinux.a
-   >>> referenced 3 more times
---
->> ld.lld: error: undefined symbol: tee_shm_register_kernel_buf
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_load_fw) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_shm_free
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_load_fw) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_client_open_session
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_register) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_client_close_session
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_unregister) in archive vmlinux.a
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_remove) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_client_open_context
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_probe) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_client_close_context
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_probe) in archive vmlinux.a
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_remove) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: tee_bus_type
-   >>> referenced by remoteproc_tee.c
-   >>>               drivers/remoteproc/remoteproc_tee.o:(tee_rproc_fw_driver) in archive vmlinux.a
+Given that you're also the author of commit 29c99fb085ad ("phy:
+rockchip: add support for the rk356x variant to rockchip-inno-csidphy"),
+which added support to the driver part, your opinion should have more
+weight then mine (IMO).
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for REMOTEPROC_TEE
-   Depends on [n]: REMOTEPROC [=y] && OPTEE [=n]
-   Selected by [y]:
-   - STM32_RPROC [=y] && (ARCH_STM32 [=n] || COMPILE_TEST [=y]) && REMOTEPROC [=y]
+Nonetheless, I collected some extra data points:
+- The TRM part 1 makes several mentions of 'dphy' in a block describing
+  'GRF_VI_CON1' (page 381 & 382). The above mentioned commit only added
+  'PHY_REG' for 'CON0', which I assume was deliberate given your
+  response above. But 'GRF_VI_CON1' does have 'VI' in its name
+- In rk356x.dtsi there are 'dsi_dphy0' and 'dsi_dphy1' which have
+  'RK3568_PD_VO' in their 'power-domains' property. Page 475 has
+  'DSIHOST' in 'PD_VO', while 'DSIPHY' is (also) in the 'ALIVE' power
+  domain. So to be consistent it seems to me that 'csi_dphy' should be
+  in 'PD_VI' or the 'dsi_dphy' nodes should be placed/moved to
+  'RK3568_PD_LOGIC_ALIVE'.
+- Of all the compatibles from the binding, I only found
+  'rockchip,px30-csi-dphy' referenced in DT files (next to
+  'rockchip,rk3568-csi-dphy' in rk356x.dtsi) and in px30.dtsi the
+  'csi_dphy' node has 'PX30_PD_VI' as value for its 'power-domains'
+  property.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+But this is all 'circumstantial'; it would be nice to have a clear
+answer (from Rockchip?).
+
+Cheers,
+  Diederik
+
+> > Fixes: b6c228401b25 ("arm64: dts: rockchip: add csi dphy node to rk356x=
+")
+> > Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
+> > ---
+> > changes in v2:
+> > - No change
+> >=20
+> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
+> >  1 file changed, 1 insertion(+)
+> >=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot=
+/dts/rockchip/rk356x.dtsi
+> > index 0ee0ada6f0ab..d581170914f9 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+> > @@ -1790,6 +1790,7 @@ csi_dphy: phy@fe870000 {
+> >  		clocks =3D <&cru PCLK_MIPICSIPHY>;
+> >  		clock-names =3D "pclk";
+> >  		#phy-cells =3D <0>;
+> > +		power-domains =3D <&power RK3568_PD_VI>;
+> >  		resets =3D <&cru SRST_P_MIPICSIPHY>;
+> >  		reset-names =3D "apb";
+> >  		rockchip,grf =3D <&grf>;
+
+
+--739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwWAKgAKCRDXblvOeH7b
+bmodAQCBcwCIgvd9UHVv/WX9kntNibQ3vLI0rpAX+9rBhgzvQAEAr3TExg+y9mrl
+hf4D6cRD9gWX+/OHYN/FLDk/SoNEfQk=
+=PxK6
+-----END PGP SIGNATURE-----
+
+--739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be--
 
