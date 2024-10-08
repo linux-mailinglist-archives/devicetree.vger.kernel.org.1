@@ -1,166 +1,128 @@
-Return-Path: <devicetree+bounces-109016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97DEA9949DF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:28:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 316F09949FB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:29:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBC751C2107B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:28:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 638B21C249BD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7685D1DE4D7;
-	Tue,  8 Oct 2024 12:27:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3B1B81CC;
+	Tue,  8 Oct 2024 12:27:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="OG00Gvxx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CD8EEC8;
-	Tue,  8 Oct 2024 12:26:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BAF4C97
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 12:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728390420; cv=none; b=n8dGd2F4D6ewbI/Hf2ytyf5Lic/C5q8cwW15g6Cdfafym/Ro92vHcnhh1x33cXSH2acsoCZU81RX1o9fWVZPQuaNJmIZIsZLfWb9rwXnMmKwJUrJSk2NDpk+reQCq65aK3KujCuEwR0w4vR3NgLLuczvsFzSTrcyN3B2jIwWnKM=
+	t=1728390478; cv=none; b=TmgnpQX5crGSmuUVZb1Sk2n089jp4+zPW+A7piP9lDKFveuBL9iCWsP36hSw10zY+/4CfWXE/bHycw3M9iB4cbC6GfWFo+hzxmYfCPHRQsHbTyTv3W7iEdQN5/sdZL4cnI63oWhAJr/pMOUi9ePcn+UdnWApGmw8HNDVjxuC5AU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728390420; c=relaxed/simple;
-	bh=5Nl+OeJMY5uGxZFls6uVPJ503vuF3Ttr1J15r5Ex7IM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RNvqy+PnShiLKpZGR8bG629YH0u0Xwuo/Z1Fq0QQo8bLg1q8FoW2/uZ1MhldjIaJB7dKTqeeCSWeYE3SUI6xYSdFRejb6l6+PJ9LfCx12JQWX4lfkQARYLKl2g+JQuvihVR8dlFO0voIUcTa8kDFuKjdTFSNq70QHy4oIjjiKNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF169DA7;
-	Tue,  8 Oct 2024 05:27:27 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47DC43F73F;
-	Tue,  8 Oct 2024 05:26:56 -0700 (PDT)
-Date: Tue, 8 Oct 2024 13:26:53 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
-	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
-	justin.chen@broadcom.com, opendmb@gmail.com,
-	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-Message-ID: <ZwUlDT_YupBSZjMJ@pluto>
-References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
- <ZwPLgcGeUcFPvjcz@pluto>
- <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
+	s=arc-20240116; t=1728390478; c=relaxed/simple;
+	bh=E0wdjmnHspC2Mrn22hKj7qrpLO+zMv0egQLIivyJecc=;
+	h=From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:
+	 MIME-Version:Content-Type; b=BBngDq5MH82wBQv6BBVElPXjU45yfnnu3gEiNyL41RJ8qVPAomw4j5IYBexfHIhcZciCtgWdqbw1Tw7sQD0MBf9Fu4f0asJx7nLWxSWqk12zFKmS7zIorVcN7bLzLW4OMBQ0eXrOcn6JqajeMjCUud3JPiTqYNxl03tnkkNPPJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=OG00Gvxx; arc=none smtp.client-ip=212.227.17.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
+	s=s31663417; t=1728390441; x=1728995241;
+	i=markus.stockhausen@gmx.de;
+	bh=1eE7bBm9hVIVa8mkUL7DOWfcwttFz7lKkwYrwCdnzMU=;
+	h=X-UI-Sender-Class:From:To:Cc:References:In-Reply-To:Subject:Date:
+	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
+	 content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=OG00GvxxMRfbyT52dFmFWmMiq+aLbkZQDZvxWMqCeXdC8ofze2zSzg6qoDN30OLr
+	 FZld8ozgLRePfSKNG3fn5yRSt3ZD4Ul4d97anXQMq/PJW8p2oGpC98Junxftvjtsd
+	 pHoRpWwFGfaknuDLCW6VxCSYNctAOzsMdQtrJZYeG47fX9xfVzhg3P8PJxNxmY4pM
+	 3aUJLEChmra0WxtWuuF0NuT81/M4u+Opw6zQUqUQYI4btIwI5+g2dmd7KNJzX3kGt
+	 ZUPU5Nv/92HvJRebL1XXa2B5YciA4ccBRkcjdHsANt69DU2l6UAg3II/NXhVNGN0W
+	 HDM+Bl3N2UiQe0z+SQ==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from colnote55 ([94.31.70.45]) by mail.gmx.net (mrgmx105
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1N9Mtg-1u1ELt1k9M-010cpd; Tue, 08
+ Oct 2024 14:27:21 +0200
+From: <markus.stockhausen@gmx.de>
+To: "'Rob Herring'" <robh@kernel.org>
+Cc: <linux-phy@lists.infradead.org>,
+	<chris.packham@alliedtelesis.co.nz>,
+	<devicetree@vger.kernel.org>,
+	<krzk@kernel.org>
+References: <20241007163623.3274510-1-markus.stockhausen@gmx.de> <20241007163623.3274510-2-markus.stockhausen@gmx.de> <20241007193044.GA2255474-robh@kernel.org>
+In-Reply-To: <20241007193044.GA2255474-robh@kernel.org>
+Subject: AW: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes PHY binding
+Date: Tue, 8 Oct 2024 14:27:18 +0200
+Message-ID: <001f01db197d$6c842e90$458c8bb0$@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: de
+Thread-Index: AQFmt424TDky7oOEBHAYnHfWLjuWPwFdE8X8AiR5ApazSXrHYA==
+X-Provags-ID: V03:K1:cR82ijsXV3rl3PO4cQlu69T5MLLvQgL62YJdCwh05i5IBTEdXE8
+ jt55/NnLgptUVBzq1CWO045G8SHtoRlPRyhNCyNgGrMAhLZpPLYI4Hg0NgNBZ+5LmCWUcHP
+ MBjaOW6uGDedX/6OLWcCXoGN554JwE7GYFHEJGtnEWI3w+ca7kON/bjbNtEYSRCl0LwSsCn
+ 0xmnnhUdF6vsSIbzegtbg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:lxAtLcTVHek=;qLacDJsKEGTvwRF+UOXxrnQjhU6
+ bAPp1a6N5q+6ptU/oWWVcVPQgBFEzRei/9r7R0O2U2ATlYJkkmhry+4sEvrUMo1Mjq2OPbfGB
+ wWmmX3u+4CzjnqJfOf+4C9kSW6ihpvIa+WKmEGe7psEcU8LVzKC/mGdZiC36CTZXhGJ9LFvK/
+ 6fFJUl4qLQ+StP4Cp4kRsF9r5OM/BxCKkTeHSdYmKkteNtPwOZ9b+JPPb+OuNutOaRc7VZ8nX
+ E2a61ptgKh/OqtlaTzfbxiqPomdNbdIon+OSvuggnu6xbj4eaP7oq2jwnzeLWPDA+2YFTA1tL
+ JExgD1r6JOMWEY0bkLPIudP8k+NfYnKc2hnb7V1auOB6AxnD8ydytM9S3kGIUDHw4UuFUjeCU
+ 1nSUxmQ1TUdfG57xlaZmBtbz3tvFf5PkYV5/EwCE+fJi3NLJ4GKR/5Q/I8dakIoWL6trDQoN1
+ JX3XiS3BXcQm0+PSH94/UYuOhAadDmepsXstZXwRvF2062A6AJ+0ySlIntMA0wFzdndEpES4V
+ KdqxgXK0Y4Ik5WSVWhiPYxyTPu0X1j3j/+CLTvvlgWiPizr+eRuiDHH+3A3gP0DdRkUmjNjgF
+ C/YmC9FoLhIYrIq2HzqUjVsidIV6OHLPxiLdnIFaCiaC2fXHTYgDNEP7msbt0OdTlEYMt8faQ
+ CezkQSNGZE5jIFNTS/A78ZAfR10CwTbtL6yRvR687dsMrOq88HC+Y6si3SpvOUVVp/i2mZtjZ
+ rmahNJhu6Izw1PTF54qaltKPy9+mgwsFauHKFmBGY9HECaDSt9wodMKIKBZfXD4jC8rhuov/m
+ fWjnLBrUNBst/JLTHyptrSDw==
 
-On Mon, Oct 07, 2024 at 10:07:46AM -0700, Florian Fainelli wrote:
-> Hi Cristian,
-> 
-> On October 7, 2024 4:52:33 AM PDT, Cristian Marussi
-> <cristian.marussi@arm.com> wrote:
-> > On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
-> > > Broadcom STB platforms have for historical reasons included both
-> > > "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
-> > > string.
-> > 
-> > Hi Florian,
-> > 
-> > did not know this..
-> 
-> It stems from us starting with a mailbox driver that did the SMC call, and
-> later transitioning to the "smc" transport proper. Our boot loader provides
-> the Device Tree blob to the kernel and we maintain backward/forward
-> compatibility as much as possible.
-> 
-
-OK.
-
-> > 
-> > > 
-> > > After the commit cited in the Fixes tag and with a kernel
-> > > configuration that enables both the SCMI and the Mailbox transports, we
-> > > would probe the mailbox transport, but fail to complete since we would
-> > > not have a mailbox driver available.
-> > > 
-> > Not sure to have understood this...
-> > 
-> > ...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
-> > into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
-> > DT, BUT your platform does NOT physically have a mbox/shmem transport
-> > and as a consequence, when MBOX probes (at first), you see an error from
-> > the core like:
-> > 
-> >    "arm-scmi: unable to communicate with SCMI"
-> > 
-> > since it gets no reply from the SCMI server (being not connnected via
-> > mbox) and it bails out .... am I right ?
-> 
-> In an unmodified kernel where both the "mailbox" and "smc" transports are
-> enabled, we get the "mailbox" driver to probe first since it matched the
-> "arm,scmi" part of the compatible string and it is linked first into the
-> kernel. Down the road though we will fail the initialization with:
-> 
-> [    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
-> [    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
-> [    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for
-> protocol:0x10
-> [    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup
-> channels
-> [    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi failed
-> with error -22
-> 
-> Because the platform device is now bound, and there is no mechanism to
-> return -ENODEV, we won't try another transport driver that would attempt to
-> match the other compatibility strings. That makes sense because in general
-> you specify the Device Tree precisely, and you also have a tailored kernel
-> configuration. Right now this is only an issue using arm's
-> multi_v7_defconfig and arm64's defconfig both of which that we intend to
-> keep on using for CI purposes.
+> -----Urspr=FCngliche Nachricht-----
+> Von: Rob Herring <robh@kernel.org>=20
+> Gesendet: Montag, 7. Oktober 2024 21:31
+> An: Markus Stockhausen <markus.stockhausen@gmx.de>
+> Cc: linux-phy@lists.infradead.org; chris.packham@alliedtelesis.co.nz;
+devicetree@vger.kernel.org; krzk@kernel.org
+> Betreff: Re: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes =
+PHY
+binding
+> ...
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    pattern: "^serdes@[0-9a-f]+$"
 >
+> The node name for phy providers is 'phy'.
 
-Ah ok so the issue derives from the fact that you have a single
-compatible line with 2 not compatbles that are not really "compatible"
-from the SCMI core point of view...
+Hi Rob,
 
-...also I suppose that if we "somehow" would trigger a
-device_release_drievr(), what will happen is that it will match probably
-again in the same order at the next attempt (beside being an ugly thing)
+I found different configs in other files. E.g.
 
-> 
-> > 
-> > If this is the case, without this patch, after this error and the mbox probe
-> > failing, the SMC transport, instead, DO probe successfully at the end, right ?
-> 
-> With my patch we probe the "smc" transport first and foremost and we
-> successfully initialize it, therefore we do not even try the "mailbox"
-> transport at all, which is intended.
-> 
-> > 
-> > IOW, what is the impact without this patch, an error and a delay in the
-> > probe sequence till it gets to the SMC transport probe 9as second
-> > attempt) or worse ? (trying to understand here...)
-> 
-> There is no recovery without the patch, we are not giving up the arm_scmi
-> platform device because there is no mechanism to return -ENODEV and allow
-> any of the subsequent transport drivers enabled to attempt to take over the
-> platform device and probe it again.
-> 
+- torrent-phy@f0fb500000
+- serdes: serdes@e2004010
+- serdes_phy: phy@8901000
 
-Ok...so it is a workaround hack indeed....but it seems NOT to have bad
-side effects and there is definitely no cleaner way to make it bind
-properly...beside fixing your DTs for the future...
+Do I understand correctly that I should go with "serdes: phy@1b00e780"?=20
+If yes, adapt the $nodename pattern accordingly or drop it as in most =
+other
+files?
 
-Thanks,
-Cristian
+Best regards.
+
+Markus
+
 
