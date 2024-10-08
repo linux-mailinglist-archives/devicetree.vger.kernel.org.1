@@ -1,159 +1,146 @@
-Return-Path: <devicetree+bounces-109012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76C44994927
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:21:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF407994912
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:19:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A87471C212E8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:21:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E15131C226C7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:19:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0DCE91DE8A0;
-	Tue,  8 Oct 2024 12:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 019681DE8A9;
+	Tue,  8 Oct 2024 12:19:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="pwUIxftX"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gz1O5NFx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060431D12EA;
-	Tue,  8 Oct 2024 12:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B5933981;
+	Tue,  8 Oct 2024 12:19:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728390000; cv=none; b=Yo8v49aqsvkjsAYoxp+QWY0GkXWEsPgyOdhQw7ezK0qsGlTrmHRErUaAdJztUEdwamusQrY2RevcV1UlBwPoxIWVojz5du+fVxyACY3M+6hvCh4e+hBTHaagn20QuTuKD5TC8oFv4k7/hwhXnkyQz3FSibvzDFA0DsHpdACZTog=
+	t=1728389967; cv=none; b=alVkiB8Z+beSY4tbH89eMWLEYnPbFcBeQhdQjGZ2s+VciQLwJlS5SqKtijsqF0OLaQ6P9/2t1RWKoZLhZ3VvGLYgaB9jlYV/KbzHC8nyM5/l0t9szxFfrySiAF2VtAxkgOraHVsxt6RpZqNh9yKVg5Rp+mS+7nHRzybmDe4Fnwc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728390000; c=relaxed/simple;
-	bh=c4BHYJvWUQYE6LoO0flq5esmA5WZr5DYIqfhtUFQetw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=glyL4FDNfOJy42jS/MqVcZELZIJGi8l5MlS54xnJVHDC932CNMycMmb+HX9LwqVngY4+P+XTeGfzY7+/LN4n/8U0EACX6NVeg+RqcwFiw2srvP6vUxzymAuWyApmSB4VUitpsE87h2Sa9UMZU5y2gIFMiYrm4ekoMlRu2UQRtTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=pwUIxftX; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id DB6DC23E90;
-	Tue,  8 Oct 2024 14:19:54 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id gQSHw2jR1W4o; Tue,  8 Oct 2024 14:19:54 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
-	s=mail; t=1728389994;
-	bh=c4BHYJvWUQYE6LoO0flq5esmA5WZr5DYIqfhtUFQetw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=pwUIxftXm7MWh9BUVzD7w3V5AZssvvyCB/LCjMXmhQpoFxbpC1fqzXsSY3LOobAaJ
-	 TtvMVdXwWNhusrnF8Nw20h0RrDQJgEN0twlzzf2rT6Vkr98vKBhfGwTersI5Ecqlj3
-	 ggcS7NcEtE+KiBRN9+62To5Uuw8CjKmiPbGqmY/WcFjKxKLMs6eoH48m+PDGbOhmXe
-	 4IXrO7bJ3kWcSuHSAKkpJfPQ/LfxpJ0jkaoRGNBy5oFUp/iSJ2TuLkFFy/udYu6S66
-	 fjt9/P0srikA2DZJkNqX3pcw4hjwRGPtQ3AN4X2/2flFDPQctlEC2z1M11CLHxvvVp
-	 CrXGeplWmJn9Q==
-From: Karl Chan <exxxxkc@getgoogleoff.me>
-To: linus.walleij@linaro.org
-Cc: andersson@kernel.org,
-	arnd@arndb.de,
-	catalin.marinas@arm.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	exxxxkc@getgoogleoff.me,
-	konradybcio@kernel.org,
-	krzk+dt@kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	linux-clk@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	mturquette@baylibre.com,
-	robh@kernel.org,
-	sboyd@kernel.org,
-	will@kernel.org
-Subject: Re: Re: Re: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
-Date: Tue,  8 Oct 2024 20:18:19 +0800
-Message-ID: <20241008121819.16242-1-exxxxkc@getgoogleoff.me>
-In-Reply-To: <CACRpkdaPBH1CE0YXGMKUDQWyJQTZvkYgnW=UTO2uxWmBvecu9g@mail.gmail.com>
-References: <CACRpkdaPBH1CE0YXGMKUDQWyJQTZvkYgnW=UTO2uxWmBvecu9g@mail.gmail.com>
+	s=arc-20240116; t=1728389967; c=relaxed/simple;
+	bh=FIAeavQ/gVeAtbxi6uncuBjEWr1Dz+YMFROEKKHm5PE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gqcfssyLrELLyecIks/g4F7MzyzMGLIuDVf/w7vKk4J2epm/ANFs4svqYZz3rw3LlrWtvkUiYXxQmBXA+sF/Bl3kOBOA2XKinvjPNS8Dv1FPuVnLIa9md0MPhIM/vzjcMMKKuPzC9r/at/BVPKbRCXLvh1Uiv4wygmCW4HtL3bw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gz1O5NFx; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-7093997dffdso1606074a34.2;
+        Tue, 08 Oct 2024 05:19:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728389965; x=1728994765; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=quf//++Xbqy/yfLg/X0DJkUdlM0deuvR/WSCLaISByI=;
+        b=Gz1O5NFxwnf5cxhc/trEHH4quok4LDWA7Am2ggfn/MvUjeGZ5xUdZXb0Ts6LZ/uYEg
+         xh/tg3F6tEvKDKQWW7E9CIWZyFivAV9r4XF0XnaLQTgu5IQSyl34c6+BybHw2T8JNsp7
+         EkeqmtsqZwZJe3pg8g3zJFjZQ6GGLE2c/E0vVdpAdN509aldIpmSM/XfMvOXGqWXSNNO
+         ozWIkNK/tmejm8TLNE+H93s9/k5puLd2g9ZrSLeJ6vbq4pfl769DV/J1WSrn71c25ZOK
+         JtkwjG2vZ1De1r8YMLZxuSUANgkFWL7eFjiNCb/Cd0cM0tntW7gwg9VIA1z2bNFz9Fen
+         6tLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728389965; x=1728994765;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=quf//++Xbqy/yfLg/X0DJkUdlM0deuvR/WSCLaISByI=;
+        b=G+6EeVa3jxhCobgKUzbiVuZuapWnRsu2XlhPVruJtfdRLOn+Yr+hTCOTZUGKNJqWmc
+         hwdOu/teSVvtEJi20UqRewt6gyHfWEVR2K1XuKeKsCi2s7mIPpy1PcJwhHIVWxNHjdzo
+         EEDc/pbcx9EZa2lwsZJizJ+8dxRpOs9Tr2fKZ+lUCjiDM/XZMXt47gul1HRb6SiMgiFx
+         6QBLPQdb+WygOu+XNvP+FROVKb3GabbP5IwL+rXLc3q+XEfmTz63nv0mkGFBix37idFP
+         sacidx2DWUt6SR0MD9DJgI/i0MOtgsJUJZwd7zE8+XG4Y2LIn/FYgVXGzWvbfrp++Ic7
+         Gy/g==
+X-Forwarded-Encrypted: i=1; AJvYcCUgCd56/rF1H9lClWLuCgMuHD2fDxTz7byAoxO/lzc/VE6KDCQSaCk+jk+eLaUll5oBNikT8QnKC+sk9JfK@vger.kernel.org, AJvYcCV5bZ9d8aKydpkH2iSQJk3Ci6o5qgrIcFRpjXaP2UF5xyJ1jxTfv/qYa/CX62Cc5VWEWAomhPo5E1QL6u/Yx9Z7Z80=@vger.kernel.org, AJvYcCX3MVNYKeERr3vETonpxQsn7e0f4pm4Tdtiz9gYNm7AosGKMP0vK6erNhjHkisHVZBWaLYrp0p+U6Zx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyZv+i4GcpwkxOUG+lDZ4xD0lj1DoGY26rFqXvDyBdExwQzQOys
+	rZaSGFwMFAaY7usdNE8bKV8xdTZS/OQvH9X2W1MpsobOdI5j4g/EDaB7mIk/ikwHahliQDq27wI
+	ZTR9pn1ATX6wLKDEjw0uFIFQ+ZM0=
+X-Google-Smtp-Source: AGHT+IGxSirj+Hv+ZX4ScQi8rvrb31b1FnfoPkqWHaPpBvs2xeJM5KPyQKlnaYPkgKJt01azZdoy5o2nnwnCPHvLHHQ=
+X-Received: by 2002:a05:6358:9d98:b0:1c2:fab0:a2e with SMTP id
+ e5c5f4694b2df-1c2fab00c80mr18386155d.21.1728389965343; Tue, 08 Oct 2024
+ 05:19:25 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241004133108.779934-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdXDc55KO-d0i0_ag0udh7sGCjFfJ78aw8o1-9zaHS15+A@mail.gmail.com>
+In-Reply-To: <CAMuHMdXDc55KO-d0i0_ag0udh7sGCjFfJ78aw8o1-9zaHS15+A@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 8 Oct 2024 13:18:59 +0100
+Message-ID: <CA+V-a8smckrsxxauwJHPJ7zG0qfxemdm6oz6TTbMcN2TAwCu5g@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a09g057: Add OPP table
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-=0D
-=0D
-I found a uboot for ipq5018 qcom reference boards https://git.codelinaro.or=
-g/clo/qsdk/oss/boot/u-boot-2016 .Considering my router is quite similar to =
-one of those boards so the uboot should workon EA9350 i think?=0D
-=0D
-Let me compile and try to chainload it from the stock uboot.(Btw I have nev=
-er tried chainloading on qcom platform but i did try that on amlogic platfo=
-rm.)=0D
-=0D
-=0D
-U-Boot 2016.01 (Dec 06 2021 - 10:08:47 +0800)=0D
-=0D
-CBT U-Boot ver: 3.2.08  ([IPQ5018].[SPF11.3].[CSU2])=0D
-=0D
-DRAM:  smem ram ptable found: ver: 1 len: 4=0D
-512 MiB=0D
-NAND:  QPIC controller support serial NAND=0D
-ID =3D 22c822c8=0D
-Vendor =3D c8=0D
-Device =3D 22=0D
-Serial Nand Device Found With ID : 0xc8 0x22=0D
-Serial NAND device Manufacturer:GD5F2GQ5REYIH=0D
-Device Size:256 MiB, Page size:2048, Spare Size:64, ECC:4-bit=0D
-SF: Unsupported flash IDs: manuf 00, jedec 0000, ext_jedec 0000=0D
-ipq_spi: SPI Flash not found (bus/cs/speed/mode) =3D (0/0/48000000/0)=0D
-256 MiB=0D
-MMC:   sdhci: Node Not found, skipping initialization=0D
-=0D
-PCI Link Intialized=0D
-PCI1 is not defined in the device tree=0D
-In:    serial@78AF000=0D
-Out:   serial@78AF000=0D
-Err:   serial@78AF000=0D
-machid: 8040001=0D
-eth0 MAC Address from ART is not valid=0D
-eth1 MAC Address from ART is not valid=0D
-=0D
-Updating boot_count ... done=0D
-=0D
-Hit any key to stop autoboot:  3 =08=08=08 0 =0D
-=0D
-Net:   cmbblk is stable 5=0D
-MAC1 addr:0:11:22:33:44:55=0D
-athrs17_reg_init: complete=0D
-S17c init  done=0D
-eth0=0D
-Warning: eth0 MAC addresses don't match:=0D
-Address in SROM is         00:11:22:33:44:55=0D
-Address in environment is  00:03:7f:ba:db:ad=0D
-=0D
-IPQ5018# =0D=0D
-IPQ5018# =0D=0D
-IPQ5018# usb start=0D=0D
-starting USB...=0D
-USB0:   Register 2000140 NbrPorts 2=0D
-Starting the controller=0D
-USB XHCI 1.10=0D
-scanning bus 0 for devices... 2 USB Device(s) found=0D
-IPQ5018# fatload usb 0 ${loadaddr} u-boot.bin=0D=0D
-reading u-boot.bin=0D
-419816 bytes read in 261 ms (1.5 MiB/s)=0D
-IPQ5018# go ${loadaddr}=0D=0D
-## Starting application at 0x44000000 ...=0D
-prefetch abort=0D
-pc : [<44000004>]	   lr : [<4a92891b>]=0D
-reloc pc : [<44000004>]	   lr : [<4a92891b>]=0D
-sp : 4a822840  ip : 0000001c	 fp : 00000002=0D
-r10: 00000000  r9 : 4a822ea0	 r8 : 4a97d300=0D
-r7 : 4a9288f1  r6 : 00000002	 r5 : 44000000  r4 : 4a828b74=0D
-r3 : 44000000  r2 : 4a828b74	 r1 : 4a828b74  r0 : 00000001=0D
-Flags: nzCv  IRQs off  FIQs off  Mode SVC_32=0D
-Resetting CPU ...=0D
-=0D
-resetting ...=0D
-=0D
-=0D
+Hi Geert,
+
+Thank you for the review.
+
+On Tue, Oct 8, 2024 at 11:08=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Oct 4, 2024 at 3:31=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
+com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add OPP table for RZ/V2H(P) SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > @@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
+> >                 clock-frequency =3D <0>;
+> >         };
+> >
+> > +       /*
+> > +        * The default cluster table is based on the assumption that th=
+e PLLCA55 clock
+> > +        * frequency is set to 1.7GHz. The PLLCA55 clock frequency can =
+be set to
+> > +        * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and add=
+itionally can be
+> > +        * clocked to 1.8GHz as well). The table below should be overri=
+dden in the board
+> > +        * DTS based on the PLLCA55 clock frequency.
+> > +        */
+> > +       cluster0_opp: opp-table-0 {
+> > +               compatible =3D "operating-points-v2";
+> > +
+> > +               opp-1700000000 {
+> > +                       opp-hz =3D /bits/ 64 <1700000000>;
+> > +                       opp-microvolt =3D <900000>;
+> > +                       clock-latency-ns =3D <300000>;
+> > +               };
+> > +               opp-850000000 {
+> > +                       opp-hz =3D /bits/ 64 <850000000>;
+> > +                       opp-microvolt =3D <900000>;
+>
+> According to Table 10.1-2 ("Recommended Operating Range"), this should
+> be 800000 for this and all operating points below.
+>
+Agreed, I had missed that. I added the voltage level based on the
+schematic VDD09_CA55
+
+Cheers,
+Prabhakar
 
