@@ -1,240 +1,145 @@
-Return-Path: <devicetree+bounces-109054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D92BC9950A2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:50:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84B4E9950C3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:55:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 174FF1C2083C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:50:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA36FB26FA9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:55:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D72621DF25D;
-	Tue,  8 Oct 2024 13:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MrXuKXHh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E43F81DF974;
+	Tue,  8 Oct 2024 13:54:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BD01DF274
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 13:50:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02A911DF74E;
+	Tue,  8 Oct 2024 13:54:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728395413; cv=none; b=LbvOQZDDmApuHfht9XcCxtWEA+lAbGvbz3xfcjwtUVkFg+KIQKCR7Uwr64ckdoYFourBaNnzc5i4XE/HdCYW814zt3k3vozkes7nA+9vmNv/tmCmK9n8T6GHvpf9w0nVi2o2Gjsjlf5j3qOW8YVLTtEKy2G1USGr9ZRwGhkjkT0=
+	t=1728395689; cv=none; b=kt50DEBEwPGgQDLEEA2sVr9AtY9ybeSk//ol6k93d/0yWsA8vaHVL8nsjFCsTu+Iix6IwQFvu7V2sLPbgPu+Kdxb0Ykv1mAMoHqp73mV5Xbn5VYILKiv3J45vE5L6gfLG7WIV7WfZiofBfObH1PFRtq4mHgJn9zuFgx3bxIPO9g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728395413; c=relaxed/simple;
-	bh=VlikFOOadkZ0FXGNOiqEJI3JCeW2l+bF3hf/oo4lAtQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=lDsZFYj73l6KnGBvRnpq88uAimQuHTqyC6xRqzyNcz8ed9C7uhDSMvLIeFhjG2CPEYe+pLtVKVI5SqlfQgR2tg9srouHuLDKCwQr60VRFKfFcEXvg5+36DbtqVPftHMem7OMehaTvNdQJLUzuH0qH1MBTisLNGrPJQ8I1t19TQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MrXuKXHh; arc=none smtp.client-ip=209.85.167.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5398bc32bd9so627274e87.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 06:50:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728395410; x=1729000210; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WpfdK0DkSLSW2fAjRxdwV8F/aWadlnjGjQ8QBOWzH/4=;
-        b=MrXuKXHh3mN/uRnW4sDK9jQT8B4hXgwY1k3dKUFxViPw4wFXmsBaIA7zLxp5UsN+nd
-         wZzZhFlMglTx9/ge2Lj4bs7suP+eoZYXA7Eif6e0Rt7Yz5uqePfOJjrHPqjhBCAL33Lt
-         QWvVU1ftBg3dMyWCiMCyGJLQMJc10KUid2EuJbELJeqEEHAve+qJVKqozwTQzlhaLCQR
-         jIkAYfHpkwvHYrmHILKVCM2QKoThKQhQ9CidZ2HxOXluPN4nS5hTIn3G+bcl+Yv6klA+
-         Je312ZEojkify6kwzS0Zu1aFVCRKkjrvZioMY7U4B61ojE7YIikPcNb00qQWVfurfqpy
-         eSUA==
+	s=arc-20240116; t=1728395689; c=relaxed/simple;
+	bh=LO8a+sxjyviC62YLXvVJ3sekmoTsrJ17qcMmxdMKoGQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rjdVKurlN+8rIjcSJ/pOYIHh5XAhvYTovoiMmAvEHHfg3JhqL/QCNWB5kiWKnzPapf2dp6KwSf/MJPazH4NnioD5VC/zaZOU2vc+MboKJr6SLF/vL3s/swZhq6nRiyXz/QgPDce/z1DnSbYbBDITH4Uno5/UoKlR3FxhvRCksbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6e25f3748e0so57073367b3.0;
+        Tue, 08 Oct 2024 06:54:47 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728395410; x=1729000210;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WpfdK0DkSLSW2fAjRxdwV8F/aWadlnjGjQ8QBOWzH/4=;
-        b=iPSQcK1t1jNDKpWUZyXsf/W73cx0g/gbcvqKPUIG95OK31Lp4jSWd0cHMKjZHLYy5a
-         wWuE7d36IZErDobpz1+QP+mldNupRNIbgHqDUCKSQ+gbOc4BGqMjPbz/++okJ6W6Pa2n
-         qkDLSenPEFZHHfUhWW1j6nmYxkfwO0GTDxFvbsfwu+kHHgh4HXQhuj+xgVMfHTg7dYl5
-         z09MJbq7jrGVfslpgbNlLX6iwt0DeIPSf7olXoUrZFIXAxa8lAvNQ98oCLOWkkqghu4E
-         jOrHRm9Pi3TKBACTF8PQCpEHWQR7ZAP9GvPMk83levxuF8p2HsdmrVP3c8XiK8vV/gM1
-         L83A==
-X-Forwarded-Encrypted: i=1; AJvYcCUNJ7WAE51FCJjxT4acdU0pYr0f2Z+cWKAO4syI9MRrku9d0VK3+8GtiBCAFxBKxIqg5GDelh3GqtNa@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5fkswtml/Gx5pb1+8vsjlGKEvKgyG9CZnxgvNMvZgZT2okZta
-	TvqAz1aGg619op+1fts/kv1ccqpFHmlU+6rjyiTpQ52NV6p65dEVKL/3cnKFM+o=
-X-Google-Smtp-Source: AGHT+IGGDDy/C3JNq8sdXqLgFX4dPMMWga1oSVN0B8s30L1lSj5q2xVN4nsf1rKLRKkvbZcCirzniA==
-X-Received: by 2002:a05:6512:158e:b0:536:7c0d:e54c with SMTP id 2adb3069b0e04-539ab9ec64cmr2040832e87.9.1728395409820;
-        Tue, 08 Oct 2024 06:50:09 -0700 (PDT)
-Received: from [192.168.1.4] (88-112-131-206.elisa-laajakaista.fi. [88.112.131.206])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539afec84f7sm1219959e87.92.2024.10.08.06.50.08
+        d=1e100.net; s=20230601; t=1728395686; x=1729000486;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L3uCZskBH2tXjyYuhmNFj34NCuiW42SvvJ2N3l6bLtk=;
+        b=dhsCwCrXWFhQe5q72vZTUVYdVTTC4m/LIpg98PL1c+B/458IzGVMF5ghJsgbwnYc/l
+         /lkx4ppZ8U9T11I1P261RLXrKl7BM8iSEbynD0Tiq6P9LwsUIkoR7CXKGYUaIhS5/yqu
+         gNg0i/3Mkyidy7j+57WPhHSEVDwKokrodkgBvQ45aqj92DxDOMbPSpMqTTizwXNm5lCm
+         nTe1iELkxtKjo/4LJtqId+/n6ckQ6F2SsVBjo4bm+kQriFur7z++N7JkC8XhrtiXwG9J
+         iZwj2QAZ+3JqG300F938PsBx2iZKete5GyYHFlwXlktq4ivK2X/d2J9ELXbMUjzvEMpd
+         Sr1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUmtC63cvYYW9ULbFy8Vbg97pQzCjr0iaFGAJuqfmuV347ee23TAscIO9cm73WT1U+glMMHBqPUfjk=@vger.kernel.org, AJvYcCVV1y/li12E9yXlftnPCXIORwREOZ4/40cWNPSo7iJt0NYmyKflHm3NZtKfLp8sFNCvh78NTwG2NHvb@vger.kernel.org, AJvYcCWK+a4ZOTc8WkXjzOJB9ikfKdKZH5ie39Ln33pWNh2kl3JkzGo+03JxaRL+BsvzhOc2pjmxARAM9ryu8iwVFI1wdCc=@vger.kernel.org, AJvYcCWZkVsUE7aJcuMJ/A2bxom8o89p1Xea12PFU8sveQWEYHZvppUrUeY/yLaJofHp1ZCxSSe2HfDAqA+X@vger.kernel.org, AJvYcCWn4gFLkWXZUq0EyCOyd5vuwwZToZ0tefo8Hu1aeESWC7KPsPi72nsvbZ4upQfhsmul0C2D6qQsOfFbFh96@vger.kernel.org, AJvYcCX+luNUrVoFUAUgbTldFLgs95jAyI+Y7SboqRuvMTrzGficVGtX5Ii0k4wKHo12m5zuI+ViYMwsMKw+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOgPPDHFnzBpwwqykHZ+5+Jy4+tyRRMeFB35rH/YmXjaCM8Wz5
+	3d/u/dJhu3onBlSrMZDVRsQO2pQduiVPU6W89n7jqRO5WfK2Z4OkTQ/yMkrU
+X-Google-Smtp-Source: AGHT+IE3dMwOza+AVSqH1LE/rEHn4F9GIOTC8H1byRwwn11XsFIJT227xStdSmI67pYeyiuzj8Cr9g==
+X-Received: by 2002:a05:690c:700a:b0:6b1:2825:a3cd with SMTP id 00721157ae682-6e2c728aa03mr120194077b3.35.1728395686643;
+        Tue, 08 Oct 2024 06:54:46 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d937c4d9sm14337007b3.56.2024.10.08.06.54.45
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 06:50:09 -0700 (PDT)
-Message-ID: <2b5f4043-1e23-446a-aba4-96e40fb8d197@linaro.org>
-Date: Tue, 8 Oct 2024 16:50:08 +0300
+        Tue, 08 Oct 2024 06:54:46 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e2e424ab49so23420847b3.3;
+        Tue, 08 Oct 2024 06:54:45 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCURNkZhtyAHS52ACMW77Q6JjbJ2VhIJbZ/ipS1srnisTmEnEppfi+mfuH7rr2GOJl4jce2zcConKNvc@vger.kernel.org, AJvYcCUW5c8rXd5UQDeC1cbvMN/sm1OOi+g7Ffg90C4xF/sUes7n1FMrTTbbRDBHaNs5/VGEoz3BDIClNpuky/5L@vger.kernel.org, AJvYcCUgJOZsrl+gAZrOy02V6O8GOG6nfvjDrTaHeVkdk5uwQZouUnzMcF4gEgp3pN7UfHiryZ4G18Ve4boW@vger.kernel.org, AJvYcCUpKOf4yHncJwcVMOXCtL+YIH621e1/qIUM0zHQn4Lyk2WQtyucf8khqg4WztWQGD7sXMs+q2m0QpGYy3x/TE4z9cQ=@vger.kernel.org, AJvYcCVp2acOyRMm45Hycpv8bXaMU4iwilb6Mqgo6UqyjZ+D/xUDrMKQPlToiSW7frGOalYIxYhoswlMjQjV@vger.kernel.org, AJvYcCVpoOEzYcyugh1nrHUCcEcdqlnEVwHGbFn7nh4TLl7/PtGSr4WUmqaRI/zF3IzmM/PJ85Kjv3EwrRI=@vger.kernel.org
+X-Received: by 2002:a05:690c:6ac8:b0:6de:a3:a7ca with SMTP id
+ 00721157ae682-6e2c728a25fmr119511907b3.32.1728395685683; Tue, 08 Oct 2024
+ 06:54:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
- binding
-Content-Language: en-US
-To: Depeng Shao <quic_depengs@quicinc.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, krzk+dt@kernel.org,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>, mchehab@kernel.org,
- robh@kernel.org, todor.too@gmail.com, rfoss@kernel.org, conor+dt@kernel.org
-References: <20240812144131.369378-1-quic_depengs@quicinc.com>
- <20240812144131.369378-8-quic_depengs@quicinc.com>
- <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
- <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
- <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
- <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
- <6eadc285-f413-4bf0-8795-59ff19c734da@linaro.org>
- <6562a958-47e9-4a49-b235-fe8deba3c051@linaro.org>
- <cab95caa-9ffb-446a-858b-342939e80811@mleia.com>
- <4e94106d-5ca9-485b-8c51-c18dcd4e64b0@linaro.org>
- <b779182f-a963-400a-8fc1-2468710082d2@linaro.org>
- <a0f66292-fb97-40ae-9fb1-d79160e70bb3@quicinc.com>
- <53d2b30d-6480-41eb-8dc8-7b3970ad82ef@quicinc.com>
-From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-In-Reply-To: <53d2b30d-6480-41eb-8dc8-7b3970ad82ef@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240822152801.602318-5-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdVQsHx0nC3xwQWVRWyWMnbXd1=RokNn8rkJv3bfG_0p-A@mail.gmail.com> <23531a70-cf50-4b32-a9fd-81e6cfcbcf9d@tuxon.dev>
+In-Reply-To: <23531a70-cf50-4b32-a9fd-81e6cfcbcf9d@tuxon.dev>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 8 Oct 2024 15:54:33 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWakggcbrBetKht+JHB5F+fxoi9U-oJMMq=ythUOqtYkA@mail.gmail.com>
+Message-ID: <CAMuHMdWakggcbrBetKht+JHB5F+fxoi9U-oJMMq=ythUOqtYkA@mail.gmail.com>
+Subject: Re: [PATCH 04/16] soc: renesas: Add SYSC driver for Renesas RZ/G3S
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, gregkh@linuxfoundation.org, mturquette@baylibre.com, 
+	sboyd@kernel.org, yoshihiro.shimoda.uh@renesas.com, 
+	biju.das.jz@bp.renesas.com, ulf.hansson@linaro.org, 
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	linux-usb@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-clk@vger.kernel.org, linux-pm@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Depeng.
+Hi Claudiu,
 
-On 9/30/24 12:26, Depeng Shao wrote:
-> Hi Bryan,
-> 
-> On 9/25/2024 11:40 PM, Depeng Shao wrote:
->> Hi Vladimir, Bryan,
->>
->> On 9/18/2024 7:16 AM, Vladimir Zapolskiy wrote:
->>> Hi Bryan,
->>>
->>> On 9/18/24 01:40, Bryan O'Donoghue wrote:
->>>> On 13/09/2024 06:06, Vladimir Zapolskiy wrote:
->>>>> On 9/13/24 01:41, Bryan O'Donoghue wrote:
->>>>>> On 12/09/2024 21:57, Vladimir Zapolskiy wrote:
->>>>>>>> 3. Required not optional in the yaml
->>>>>>>>
->>>>>>>>         => You can't use the PHY without its regulators
->>>>>>>
->>>>>>> No, the supplies shall be optional, since it's absolutely possible to
->>>>>>> have
->>>>>>> such a board, where supplies are merely not connected to the SoC.
->>>>>>
->>>>>> For any _used_ PHY both supplies are certainly required.
->>>>>>
->>>>>> That's what the yaml/dts check for this should achieve.
->>>>>
->>>>> I believe it is technically possible by writing an enormously complex
->>>>> scheme, when all possible "port" cases and combinations are listed.
->>>>>
->>>>> Do you see any simpler way? Do you insist that it is utterly needed?
->>>>
->>>> I asked Krzysztof about this offline.
->>>>
->>>> He said something like
->>>>
->>>> Quote:
->>>> This is possible, but I think not between child nodes.
->>>> https://elixir.bootlin.com/linux/v6.11-rc7/source/Documentation/
->>>> devicetree/bindings/example-schema.yaml#L194
->>>>
->>>> You could require something in children, but not in parent node. For
->>>> children something around:
->>>> https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/
->>>> devicetree/bindings/net/qcom,ipa.yaml#L174
->>>>
->>>> allOf:
->>>>      - if:
->>>>          required:
->>>>            - something-in-parent
->>>>        then:
->>>>          properties:
->>>>            child-node:
->>>>              required:
->>>>                - something-in-child
->>>>
->>>> I will see if I can turn that into a workable proposal/patch.
->>>>
->>>
->>> thank you for pushing my review request forward.
->>>
->>> Overall I believe making supply properties as optional ones is
->>> sufficient,
->>> technically straightforward and merely good enough, thus please let me
->>> ask you to ponder on this particular variant one more time.
->>>
->>
->> So, we are discussing two things.
->>
->> 1# Use separate supplies for each CSI block, looks like there is no
->> doubt about it anymore. So, I will update it just like based on suggestion.
->>
->> csiphyX-vdda-phy-supply
->> csiphyX-vdda-pll-supply
->>
->> Then I will need below items in the required list if they are required.
->> required:
->>     - csiphy0-vdda-phy-supply
->>     - csiphy0-vdda-pll-supply
->>     - csiphy1-vdda-phy-supply
->>     - csiphy1-vdda-pll-supply
->> ...
->>     - csiphy7-vdda-phy-supply
->>     - csiphy7-vdda-pll-supply
->>
->> 2# Regarding the CSI supplies, if they need to be making as optional?
->> Looks like there is no conclusion now.
->>
->> @Bryan, do you agree with this?
->>
-> 
-> I'm preparing the new version patches, and will send out for reviewing
-> in few days. I will follow Vladimir's comments if you have no response,
-> it means making supply properties as optional one, so they won't be
-> added to the required list.
-> 
+On Wed, Sep 25, 2024 at 9:50=E2=80=AFAM claudiu beznea <claudiu.beznea@tuxo=
+n.dev> wrote:
+> On 24.09.2024 14:32, Geert Uytterhoeven wrote:
+> > On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
+ev> wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> The RZ/G3S SYS Controller has 2 registers (one for PCIE one for USB) t=
+hat
+> >> need to be configured before/after powering off/on the PCI or USB
+> >> ares. The bits in these registers control signals to PCIE and USB that
+> >> need to be de-asserted/asserted after/before power on/off event. For t=
+his
+> >> add SYSC controller driver that registers a reset controller driver on
+> >> auxiliary bus which allows USB, PCIE drivers to control these signals.
+> >>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >
+> > Thanks for your patch!
+> >
+> >> --- /dev/null
+> >> +++ b/drivers/reset/reset-rzg3s-sysc.c
+> >> @@ -0,0 +1,140 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * Renesas RZ/G3S SYSC reset driver
+> >> + *
+> >> + * Copyright (C) 2024 Renesas Electronics Corp.
+> >> + */
+> >> +
+> >> +#include <linux/auxiliary_bus.h>
+> >
+> > Using the Auxiliary Bus requires selecting AUXILIARY_BUS.
+>
+> Thank you for pointing it. I'll adjust it in the next version, if it will
+> be one.
 
-Recently I published the change, which moves regulator supplies from CSID
-to CSIPHY, I believe it makes sense to base the SM8550 change and regulators
-under discussion on top of the series:
+Thanks, the rest LGTM.
 
-https://lore.kernel.org/all/20240926211957.4108692-1-vladimir.zapolskiy@linaro.org/
+Gr{oetje,eeting}s,
 
-Note, that SM8250 regulators are not changed, however their names are wrong,
-the correction shall be a separate change later on...
+                        Geert
 
-Next, I developed my opinion regarding the supply regulator property names:
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-1) voltage supply regulator property names match the pattern "*v*-supply",
-    and the most common name is "vdd*-supply", the match to the pattern shall
-    be preserved,
-2) also it would be much better and it will exclude any confusion, if SoC pin
-    names are put into the name, like it is done in a multitude of similar
-    cases.
-
-So, in my opinion for SM8550 CAMSS a proposed set of voltage supply regulator
-names should be this one:
-
-- vdda-csi01-0p9-supply
-- vdda-csi01-1p2-supply
-- vdda-csi23-0p9-supply
-- vdda-csi23-1p2-supply
-- vdda-csi46-0p9-supply
-- vdda-csi46-1p2-supply
-- vdda-csi57-0p9-supply
-- vdda-csi57-1p2-supply
-
-Comments, corrections and objections are always welcome.
-
---
-Best wishes,
-Vladimir
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
