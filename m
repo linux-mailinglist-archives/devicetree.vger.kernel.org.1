@@ -1,117 +1,101 @@
-Return-Path: <devicetree+bounces-109164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109166-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BDF995792
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 21:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44C2699579E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 21:29:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B9291C250F5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:26:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 76B591C2591F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:29:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E512212F1D;
-	Tue,  8 Oct 2024 19:26:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E4C212EE0;
+	Tue,  8 Oct 2024 19:29:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Y7poJ758"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="cZ1f3rj6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D7851E0DCC;
-	Tue,  8 Oct 2024 19:26:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061B01E0E1F;
+	Tue,  8 Oct 2024 19:29:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728415595; cv=none; b=g+siMHSmM/P65BZtDmLzq9TFDydnvcA6DwJkJOykH8v9y47Pa+OcGrWaZBlwJB9gEOlpC1B+joNLtoPAciNMSAmVFaBAJ5MKbiwg+xou2Eo4tui+9XDtRmUgF9VzpPy92CNAO/LIhoY0FxEj4PSYRmSCPWqsg/FygtDY+UCE+KU=
+	t=1728415754; cv=none; b=E7ordF+wgTPQNuQoFj+DDgn6h10OadBdNyXnPRq1J9K2DrQ3CRCGZy6rx70OMVhS2fjYzFhyQIW4eL5t+9Oh9zTKykZkqGF8/Bb1UZE+64d94tAMk+KN9gLCp1drkBHOKYKIUqBpFWJN7v/eM/vWIk7fwsLP5ojTF0vsYNGFKME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728415595; c=relaxed/simple;
-	bh=UN60g7ok2txVfjib6VFzxF/hYlvmRSU7ESVjdEIV/FI=;
+	s=arc-20240116; t=1728415754; c=relaxed/simple;
+	bh=LrSotCG1unYOPTZ2QurWOTfNeB/6GwOJpyfHuvaxIt0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rIqIS/kFiXNJZBMlwMg88lZMSsdDm+gvIrIygIqEnVozj9pZB2R4B+EpT35CeW63Xc9QRBkj/WlJtJhskwChg0bbMqyG+4s5ZPLtQgHKqw+hF3swgQbeo4KwF56UT8YED0tpwaqZy6KhaYT71bDkDWiD9zTcMigKf27Mufzqf10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Y7poJ758; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=POXVOHBUWqWB8cnmgdBISal0WVbfBOx94PAzO1r0JLu/erL5XG0d8oPtimnLLVDAn8KTKnVP8PWqKSExkBuGFi6XVMKpKFc882VcNX39jcwcvl8EQx8I6jGXEr3maKQReIf0a6B7nd4h2uZe89kZ9i7iFtHqSP84ixOUI7ZNc6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=cZ1f3rj6; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=FhQkehwGj9tY7Cfu+3fe0KEsL4p9cA3gfskuGZndKuQ=; b=Y7poJ7581kZPvGWRfvLw6odq0I
-	oanEKm52hlcmfBdwCH7A7AGCcZQyVN+YeDXa4nMGgWOxWGs3+d9b8XHFgEgdZ4laRXfVpgKTizsIi
-	DCk8WCL3QtSoNiA2daFRIuG9N5K0GxOGRBz3bAHU+MrNc/HBVDAeIdB5H1u+kixyLO7xbntHzo6n7
-	KT7o1xj07cOfaQBTe3/On3T16SDifk4jA0ZYCjzzJ3Z8fePjVkeyZR/ikKYV3omW2pEbKfIyyxNnB
-	TwyCn7CuZ4SLgsBMC59d0W21NuY19UDRZaVZ35lx12fO/LVZtJwRI2VOQK4hfm9XhWITt+SXdV37p
-	yYIqLWpg==;
-Received: from i53875ad9.versanet.de ([83.135.90.217] helo=diego.localnet)
+	bh=vp+mxQr1K9SZ25DVot0Ui/tUkTJldDL067EXZplCYD4=; b=cZ1f3rj6eDRY5M2QYGSimczWkM
+	EZfUZAHX2N87TzTp/L05sTqVd3Cqmw9SB+nEtu5CeykrehJe9+a5a6axBXfAr7CkgMGeN65SX4aJj
+	4paTYUcx5nqNMtP5K1awWFkMAPYfk84iREtyo4ex5SGgQ7H/pqsad9A8c/ibp5LS3FoLpTgWIsbri
+	ABnUfXTmNclaxfD5ozhN2lSa4HWcGPchnTqpAE7PqB+U6cNKK/XPMzVR4Yk6yq1Ns3hURl91ViQI4
+	yG7TcuUyl7zsOih9g8mzFMpJEznKr6MiNJkLoBY52B8OVHld5khs3oW3XsYSExiMNy/JuQxs1ZzlH
+	TVCBneYQ==;
+Received: from i53875ad9.versanet.de ([83.135.90.217] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1syFqV-0006zK-1L; Tue, 08 Oct 2024 21:26:11 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- alexandre.belloni@bootlin.com, wim@linux-watchdog.org, linux@roeck-us.net,
- karthikeyan <karthikeyan@linumiz.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-watchdog@vger.kernel.org
-Subject:
- Re: [PATCH v3 1/6] dt-bindings: watchdog: rockchip: Add rockchip,rv1126-wdt
- string
-Date: Tue, 08 Oct 2024 21:26:10 +0200
-Message-ID: <1988046.PYKUYFuaPT@diego>
-In-Reply-To: <37e26b46-2f6a-4db4-b003-59088ef1dcc1@linumiz.com>
-References:
- <20240912142451.2952633-1-karthikeyan@linumiz.com>
- <ddca4051-0e83-4d39-8654-12210ffa5685@linumiz.com>
- <37e26b46-2f6a-4db4-b003-59088ef1dcc1@linumiz.com>
+	id 1syFtG-00072O-Lb; Tue, 08 Oct 2024 21:29:02 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Diederik de Haas <didi.debian@cknow.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org,
+	Samuel Holland <samuel@sholland.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 0/4] rockchip: Fix several DT validation errors
+Date: Tue,  8 Oct 2024 21:28:59 +0200
+Message-ID: <172841572989.2562611.18254512768409976284.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20241008113344.23957-1-didi.debian@cknow.org>
+References: <20241008113344.23957-1-didi.debian@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi,
-
-Am Montag, 7. Oktober 2024, 15:56:58 CEST schrieb karthikeyan:
+On Tue, 8 Oct 2024 13:15:35 +0200, Diederik de Haas wrote:
+> This is a set of 4 small device-tree validation fixes.
 > 
-> On 9/18/24 12:59, karthikeyan wrote:
-> > 
-> > 
-> > On 9/18/24 04:46, Heiko Stuebner wrote:
-> >> Hey,
-> >>
-> >> Am Donnerstag, 12. September 2024, 16:24:46 CEST schrieb Karthikeyan 
-> >> Krishnasamy:
-> >>> Add rockchip,rv1126-wdt compatible string.
-> >>>
-> >>> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-> >>
-> >> I think this patch misses some recipients because neither
-> >> the watchdog maintainers nor the watchdog list is included.
-> >>
-> >> We'll need for them to at least Ack this patch, so they'll
-> >> need to be included. Please check your scripts/get_maintainer.pl
-> >> call
-> >>
-> >>
-> >> Thanks
-> >> Heiko
-> >>
-> > Apologies for missing them. Adding them in this reply mail.
+> Patch 1 adds the power-domains property to the csi dphy node on rk356x.
+> Patch 2 removes the 2nd interrupt from the hdmi node on rk3328.
+> Patch 3 replaces 'wake' with 'wakeup' on PineNote BT node.
+> Patch 4 replaces 'reset-gpios' with 'shutdown-gpios' on brcm BT nodes.
+> 
+> [...]
 
-I don't think that will have worked.
+Applied, thanks!
 
-Ideally can you include Conor's Ack and resend only the watchdog binding
-patch to the watchdog maintainers (and lists and me too please) .
+[2/4] arm64: dts: rockchip: Remove hdmi's 2nd interrupt on rk3328
+      commit: de50a7e3681771c6b990238af82bf1dea9b11b21
+[3/4] arm64: dts: rockchip: Fix wakeup prop names on PineNote BT node
+      commit: 87299d6ee95a37d2d576dd8077ea6860f77ad8e2
+[4/4] arm64: dts: rockchip: Fix reset-gpios property on brcm BT nodes
+      commit: 2b6a3f857550e52b1cd4872ebb13cb3e3cf12f5f
 
-Because just adding more people to a reply probably won't tell them
-that some action is expected.
-
-Heiko
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
