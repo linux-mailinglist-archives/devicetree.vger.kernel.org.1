@@ -1,238 +1,151 @@
-Return-Path: <devicetree+bounces-109080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109082-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D936995222
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:43:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B0A3995275
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:53:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F37C283C25
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:43:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 46C75B26F5E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:46:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6EC41DFDB5;
-	Tue,  8 Oct 2024 14:43:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="nCM2aK4G"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 804291DFE00;
+	Tue,  8 Oct 2024 14:46:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A6F1DF730;
-	Tue,  8 Oct 2024 14:43:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720E71DF755;
+	Tue,  8 Oct 2024 14:46:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728398605; cv=none; b=JS+fZPx/sKzYb7I2gKJkmQ5KnNFxTeK7Xe56lr8uW4mJY8iY21rLYQQYLfhX8hHamfd5KZV6RRGeh5RncECj8ZLYaGKqOXhLvLrjm4BCMxMhjtb87qaSBLoitqQ3nm4+B6WXigeipkJ+vCc7lEblN3dYcD/K5NPDMS94BsalABc=
+	t=1728398795; cv=none; b=J92tGnHQdSSUm1Pf3hHqNU8QevpQCyA/l4O6+SJc3qIiHFYeolhLDWGQh3/Kw4dn/MwyZZ/MOPxK0ZSfKqhVuV24wAA29/rMnKp5doZFh8PWm++yIgArij/7gJEHLNncOlFvjr2LcBXv0B3RhBUBKXxU71qWlupD/UJNgyP+gMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728398605; c=relaxed/simple;
-	bh=YTAF6QXU43/H1NucUPap1RM8bKotRWI14KyyhF3ievo=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=EDR+7xU4eyLmGn8zv9kHr1omlBOldvyrfnlAFGuB22ec3D2CZpzpyB6h+OagQQSmsM0VOm4ND35qFxBGFoz2npWksaqfzzyYW3dwCsHPfC7QBwz/NfpU+ua3mTodJtYS4kcfzgmMARNHskWW/slY/03xIqqlyRD0t3Uf4fSib9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=nCM2aK4G; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6306FFF802;
-	Tue,  8 Oct 2024 14:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728398601;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=o1ZfW+l/q+cUZrpMcLspT8DrOEscOap+ktfFc2SQPnU=;
-	b=nCM2aK4Gc1XPmsXVEP96VKilIHajWRxmGOXP3ZY9lanOkhE2jQ5tLxXLgHsTaPcsjC1UXP
-	uUEFiR7E7vPIl4pka8Htl6cfERdf1j93C4sTN3rn6+VHi6hP/5tzZZFY9pvCtB2Hgda8x7
-	bnV9+/s1SSCNEcomcbw21PtTrSwTw0NW3dXsPN2eFgD5nEgE3orUWY5wua71htCTGd7MNP
-	spfqgNaghgIrQ5OiFvNwyGgcfhjYgAzSN8n4NV3xLXfC+mwp4eXYXwdqULais03/0FR/pY
-	cl6C8YIhS6f92PJ0xAEaH3to5Hwu2cq/bx2Mar2B6xfkuEB9cRtbJAuuuj+S5Q==
+	s=arc-20240116; t=1728398795; c=relaxed/simple;
+	bh=+YHYRfvrLz+RiZCTwLN1AsCVFXqMRucWwDPVG+8cAnA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iiBH2BwG9EWM48VOG/2ktxc0w17+qyOhwxVbOicKiOmJ5yGpoldWGHI4/ul1kWTAWQhiSB73pyGYviYEOHOlxAQQQMuu95irn34rOrTmYv4941pBulYbwNlw6AW6dEwwvq4XLykimWcOJKtEotpXYPZCsEexvAbUfvhDKbDWt2s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-e28ee55190aso659225276.0;
+        Tue, 08 Oct 2024 07:46:33 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728398792; x=1729003592;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XWmvaZP2QPicvk7Uow1+SNZ9QzFB05BEabMFglqaI/E=;
+        b=N0JLm64uArOvn5KhDW2+DhOGgLvazgBoF6syjxOAfmQpRz2OuDcwY6dmd0rtu366NT
+         Q4DICL/FmiMNJQPEVNTgm0b7GzUuAp6kAQ4Yv8ru11jvq4UMBnmAMO2C24SdrzfbZnH3
+         fnNnHt3Uddj2TVqBMn2/23keWpE1ewAMw4tcShVEPXf7bLsZWROk7zEF+lAr0hPzKe2l
+         Zku0NYv2qh8pUOnemCv38Uulq9qS4GfoVGkSMlySWxAvFQaMSns6kGolIQjGjQrxG7dk
+         ftmYKs/mFtxLTqJ5CPNJU8g5ph6tMax4puPUJhNbhfKS90MUp5OeYWHKZyrv4qs+Yxxq
+         Gw7A==
+X-Forwarded-Encrypted: i=1; AJvYcCUzRZ1WXs/IGJgoxGKmXXBmsaZzGwUEyMgmDi407LsABqDKhXVvViJjoLCDGjNyc9upfv0XhKmwUivkzsnf@vger.kernel.org, AJvYcCVCnxOqsAmMJTHN2nhuuhKBN/yQ3drnzUjzPcl2eqBMGZDaG5JhZ6k0I75ZrTLJQaYxjih/QGUN3Y9k@vger.kernel.org, AJvYcCVdw5DXxSu6wu5qjteH2zWDvaDBzhCXrmmgFFqeFxhFO+7nBa9BeGXlZAEJqomRhg+7Y/eAvWrhOPgb@vger.kernel.org, AJvYcCVr3BYgOkg6ntvZN2V7A8X9jqMt7M79BqWCwmXbbdwt3nkNwTX1MxAYWNmKmTef3jMs7Pv9teI0gaw=@vger.kernel.org, AJvYcCW/PFpo9x2GoDCxq6HthQtCbm33CrWSssZeyuMRfKQuORA5tl0d8vFL5BEBL25hMVySkyUTkN/o3LlbL0kyAxLElNo=@vger.kernel.org, AJvYcCWLLXClqkbSVi+W+MfgVAXY3A/kXA2ovXRbFeVJtTjTrANuLeo/A3I3RlF3WF4n8mjj5MQhZ1McTTLx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyaqh7SqLGZA/+vCMv3A2fWjh9mjeIWf364Qbf/Hkiu0H4+KNME
+	T9cJa6vB5k7/PIcw9mOngSgdTlX8mGaeciwBl0hB3Vn4PxDbYlj2DalBC7TK
+X-Google-Smtp-Source: AGHT+IGLiihXBfD8aRWSsX1cqUnfQEuRpP2b5rtAk0YMgquG23cJHnDszfgYZ5GG0EoO7DWRDTGU5A==
+X-Received: by 2002:a05:6902:114c:b0:e1d:33f1:cb91 with SMTP id 3f1490d57ef6-e289392adf6mr9695269276.39.1728398792210;
+        Tue, 08 Oct 2024 07:46:32 -0700 (PDT)
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e28a593b134sm1282547276.3.2024.10.08.07.46.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 07:46:30 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6e2e424ab49so24037337b3.3;
+        Tue, 08 Oct 2024 07:46:30 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU/v0/RyQF2hJiRs2DStS5WLe4bnbsguoEcvt/urryOGDsfInJ9K1HINPKSotfAgapqsd2ZsKv4lBb3SOPO@vger.kernel.org, AJvYcCUhCSASmIs85EZ6II0fC7b1G3rGthCR1pGWz7FUBi9cQn9sD3euamOOnIcdSznBMrfKyn4UruEIXaM=@vger.kernel.org, AJvYcCUiWXic9OUcO6JhPfdFhABr7pNSYBqQaZ6aRUxAceKadxx6BgelYq7ILegNyQdF2Gtl8sR/fHVfvIJi@vger.kernel.org, AJvYcCUnUGFhRQGXdZgJaJsMT3f1eX4s7wpZ3tNtUjeIWnFYNgJj2TjOgNfmK6d+wTOpkQhhrtJHlLS1P3cC@vger.kernel.org, AJvYcCUzHHcnL3Qtg+UKmZDTQRVIGkZWs8j1mBc1ffnMwGgt8J8/Bt1fO7yMDJgxaA+rzFb99oxUO63Saaxg@vger.kernel.org, AJvYcCVYuSqUq39Ei6NBbWX/kI5Vus/PPbol8ptpcfp9YUMl332j7rbgQTAYTjVP6fagZBrHBghP4zDTBEDznTTSVDTjepg=@vger.kernel.org
+X-Received: by 2002:a05:690c:5889:b0:6e3:10e7:b418 with SMTP id
+ 00721157ae682-6e310e7bd0amr12032047b3.46.1728398790349; Tue, 08 Oct 2024
+ 07:46:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com> <20240822152801.602318-7-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240822152801.602318-7-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 8 Oct 2024 16:46:17 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWAX66bRKApsN3kLpp6Cezjx7AjgDt_q2_Lt6Qg3BaQfQ@mail.gmail.com>
+Message-ID: <CAMuHMdWAX66bRKApsN3kLpp6Cezjx7AjgDt_q2_Lt6Qg3BaQfQ@mail.gmail.com>
+Subject: Re: [PATCH 06/16] dt-bindings: reset: renesas,rzg2l-usbphy-ctrl:
+ Document RZ/G3S SoC
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
+	ulf.hansson@linaro.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Tue, 08 Oct 2024 16:43:19 +0200
-Message-Id: <D4QI63B6YQU5.3UPKA7G75J445@bootlin.com>
-Subject: Re: [PATCH 2/4] i2c: nomadik: support Mobileye EyeQ6H I2C
- controller
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
- <andi.shyti@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com>
- <20241008-mbly-i2c-v1-2-a06c1317a2f7@bootlin.com>
- <oxcxs6n7y4bw33yfgaacd2cayf7otfochvlaofva2kabzjim6h@d6pam3gciepl>
-In-Reply-To: <oxcxs6n7y4bw33yfgaacd2cayf7otfochvlaofva2kabzjim6h@d6pam3gciepl>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello Krzysztof,
+Hi Claudiu,
 
-On Tue Oct 8, 2024 at 3:39 PM CEST, Krzysztof Kozlowski wrote:
-> On Tue, Oct 08, 2024 at 12:29:41PM +0200, Th=C3=A9o Lebrun wrote:
-> > Add EyeQ6H support to the nmk-i2c AMBA driver. It shares the same quirk
-> > as EyeQ5: the memory bus only supports 32-bit accesses. Avoid writeb()
-> > and readb() by reusing the same `priv->has_32b_bus` flag.
-> >=20
-> > It does NOT need to write speed-mode specific value into a register;
-> > therefore it does not depend on the mobileye,olb DT property.
-> >=20
-> > Refactoring is done using is_eyeq5 and is_eyeq6h boolean local
-> > variables. Sort variables in reverse christmas tree to try and
-> > introduce some logic into the ordering.
-> >=20
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> > ---
-> >  drivers/i2c/busses/i2c-nomadik.c | 22 +++++++++++-----------
-> >  1 file changed, 11 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-=
-nomadik.c
-> > index ad0f02acdb1215a1c04729f97bb14a4d93f88456..ea511d3a58073eaedb63850=
-026e05b59427a69c6 100644
-> > --- a/drivers/i2c/busses/i2c-nomadik.c
-> > +++ b/drivers/i2c/busses/i2c-nomadik.c
-> > @@ -6,10 +6,10 @@
-> >   * I2C master mode controller driver, used in Nomadik 8815
-> >   * and Ux500 platforms.
-> >   *
-> > - * The Mobileye EyeQ5 platform is also supported; it uses
-> > + * The Mobileye EyeQ5 and EyeQ6H platforms are also supported; they us=
-e
-> >   * the same Ux500/DB8500 IP block with two quirks:
-> >   *  - The memory bus only supports 32-bit accesses.
-> > - *  - A register must be configured for the I2C speed mode;
-> > + *  - (only EyeQ5) A register must be configured for the I2C speed mod=
-e;
-> >   *    it is located in a shared register region called OLB.
-> >   *
-> >   * Author: Srinidhi Kasagar <srinidhi.kasagar@stericsson.com>
-> > @@ -1046,8 +1046,6 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev=
- *priv)
-> >  	struct regmap *olb;
-> >  	unsigned int id;
-> > =20
-> > -	priv->has_32b_bus =3D true;
-> > -
-> >  	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &=
-id);
-> >  	if (IS_ERR(olb))
-> >  		return PTR_ERR(olb);
-> > @@ -1070,13 +1068,15 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_d=
-ev *priv)
-> > =20
-> >  static int nmk_i2c_probe(struct amba_device *adev, const struct amba_i=
-d *id)
-> >  {
-> > -	int ret =3D 0;
-> > -	struct nmk_i2c_dev *priv;
-> > -	struct device_node *np =3D adev->dev.of_node;
-> > -	struct device *dev =3D &adev->dev;
-> > -	struct i2c_adapter *adap;
-> >  	struct i2c_vendor_data *vendor =3D id->data;
-> > +	struct device_node *np =3D adev->dev.of_node;
-> > +	bool is_eyeq6h =3D of_device_is_compatible(np, "mobileye,eyeq6h-i2c")=
-;
-> > +	bool is_eyeq5 =3D of_device_is_compatible(np, "mobileye,eyeq5-i2c");
+On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >
-> You should use match data, not add compatibles in the middle of code.
-> That's preferred, scallable pattern. What you added here last time does
-> not scale and above change is a proof for that.
+> Document the Renesas RZ/G3S USB PHY Control IP. This is similar with the
+> one found on the RZ/G2L SoC the exception being that the SYSC USB specifi=
+c
+> signal need to be configured before accessing the USB area. This is
+> done though a reset signal.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-I would have used match data if the driver struct had a .of_match_table
-field. `struct amba_driver` does not. Are you recommending the approach
-below?
+Thanks for your patch!
 
-I don't see how it brings much to the driver but I do get the scaling
-issue as the number of support compatibles increases. This is a fear
-based on what *could* happen in the future though.
+> --- a/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.y=
+aml
+> +++ b/Documentation/devicetree/bindings/reset/renesas,rzg2l-usbphy-ctrl.y=
+aml
+> @@ -15,12 +15,15 @@ description:
+>
+>  properties:
+>    compatible:
+> -    items:
+> -      - enum:
+> -          - renesas,r9a07g043-usbphy-ctrl # RZ/G2UL and RZ/Five
+> -          - renesas,r9a07g044-usbphy-ctrl # RZ/G2{L,LC}
+> -          - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
+> -      - const: renesas,rzg2l-usbphy-ctrl
+> +    oneOf:
+> +      - const: renesas,r9a08g045-usbphy-ctrl # RZ/G3S
+> +
 
-------------------------------------------------------------------------
+Unneeded blank line.
 
-diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-noma=
-dik.c
-index 82571983bbca..98fc40dfcbfc 100644
---- a/drivers/i2c/busses/i2c-nomadik.c
-+++ b/drivers/i2c/busses/i2c-nomadik.c
-@@ -26,6 +26,7 @@
- #include <linux/mfd/syscon.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_device.h>
- #include <linux/pinctrl/consumer.h>
- #include <linux/pm_runtime.h>
- #include <linux/regmap.h>
-@@ -1061,28 +1062,46 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *=
-priv)
- 	return 0;
- }
+> +      - items:
+> +          - enum:
+> +              - renesas,r9a07g043-usbphy-ctrl # RZ/G2UL and RZ/Five
+> +              - renesas,r9a07g044-usbphy-ctrl # RZ/G2{L,LC}
+> +              - renesas,r9a07g054-usbphy-ctrl # RZ/V2L
+> +          - const: renesas,rzg2l-usbphy-ctrl
 
-+#define NMK_I2C_EYEQ_FLAG_32B_BUS	BIT(0)
-+#define NMK_I2C_EYEQ_FLAG_IS_EYEQ5	BIT(1)
-+
-+static const struct of_device_id nmk_i2c_eyeq_match_table[] =3D {
-+	{
-+		.compatible =3D "mobileye,eyeq5-i2c",
-+		.data =3D (void*)(NMK_I2C_EYEQ_FLAG_32B_BUS | NMK_I2C_EYEQ_FLAG_IS_EYEQ5=
-),
-+	},
-+	{
-+		.compatible =3D "mobileye,eyeq6h-i2c",
-+		.data =3D (void*)(NMK_I2C_EYEQ_FLAG_32B_BUS),
-+	},
-+};
-+
- static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *i=
-d)
- {
- 	struct i2c_vendor_data *vendor =3D id->data;
- 	struct device_node *np =3D adev->dev.of_node;
--	bool is_eyeq6h =3D of_device_is_compatible(np, "mobileye,eyeq6h-i2c");
--	bool is_eyeq5 =3D of_device_is_compatible(np, "mobileye,eyeq5-i2c");
- 	u32 max_fifo_threshold =3D (vendor->fifodepth / 2) - 1;
-+	const struct of_device_id *match;
- 	struct device *dev =3D &adev->dev;
-+	unsigned long match_flags =3D 0;
- 	struct nmk_i2c_dev *priv;
- 	struct i2c_adapter *adap;
- 	int ret =3D 0;
+Nit: usually these are sorted by part number, so the RZ/G3S section
+should be last.
 
-+	match =3D of_match_device(nmk_i2c_eyeq_match_table, dev);
-+	if (match)
-+		match_flags =3D (unsigned long)match->data;
-+
- 	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
- 	if (!priv)
- 		return -ENOMEM;
+For the contents:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
- 	priv->vendor =3D vendor;
- 	priv->adev =3D adev;
--	priv->has_32b_bus =3D is_eyeq5 || is_eyeq6h;
-+	priv->has_32b_bus =3D match_flags & NMK_I2C_EYEQ_FLAG_32B_BUS;
- 	nmk_i2c_of_probe(np, priv);
+Gr{oetje,eeting}s,
 
--	if (is_eyeq5) {
-+	if (match_flags & NMK_I2C_EYEQ_FLAG_IS_EYEQ5) {
- 		ret =3D nmk_i2c_eyeq5_probe(priv);
- 		if (ret)
- 			return dev_err_probe(dev, ret, "failed OLB lookup\n");
+                        Geert
 
-------------------------------------------------------------------------
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-Thanks Krzysztof,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
