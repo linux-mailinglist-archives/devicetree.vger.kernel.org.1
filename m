@@ -1,129 +1,87 @@
-Return-Path: <devicetree+bounces-108887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47CC39942DD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:54:50 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCEA994307
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:58:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 11978B203B7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:54:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E99D52872F0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 922C01E22F0;
-	Tue,  8 Oct 2024 08:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71AEB1C2302;
+	Tue,  8 Oct 2024 08:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="WhE/G/Db"
+	dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b="StnbA0xL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5F241E2013
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 08:34:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B883E23A0;
+	Tue,  8 Oct 2024 08:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728376495; cv=none; b=BZy2Zi38clC0JqKl7cwW0kkRfTXkxYA9/dzBLj7DxarfdRwXHz8KouhUkb3ob9TC5zUFoggouILy6im20ehU4MdT0NhYkzvIN25iq1494UugEQkPJPESUkrcwOmf3TEsMc4rxeF16hiob0FeO1QBWILRrAvWUyYlSkhep8uIF7s=
+	t=1728377366; cv=none; b=oDwKuxuDqTKjPz2I9FrDQEsym9aDO8k4Ne8oUTwy+BI4VdS1KIJUe21OwcFoxxgGIb0OhU3tg7SxPL5nnF21gXVgiu1IcNsEvjcx+/q1ntZc8KR9EX+TvaW9S2EeQF3XBts4DXQ4jMR8Nce7G2trD2R3aIqhsW5/wVu9xV2l+iE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728376495; c=relaxed/simple;
-	bh=yi4Ed56vIcvtnLM7JqyGr/ImxZkDc5h+XhLmAzx4MIw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EJIg5zjd931vezWjVLxcmryD3cCODmygvGQHXdULZqDelErIg2khJjWy1+VItTHtiSWJ27P03RPQ6V166MsS33u0ANZLtlL0cJGDdS9s8nJ0e6PgFCBm9q0mQ3rO1SbkGDrj0YXfDoEJzIxwiDEblGGZwS/bzWJI9a+Q5WWkZAc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=WhE/G/Db; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=yi4E
-	d56vIcvtnLM7JqyGr/ImxZkDc5h+XhLmAzx4MIw=; b=WhE/G/DbgeUftYkCEnQi
-	TKiNmL4O8mJXVZGvVaiuxr2/Uuf+VnqQxjkFrl83lLwFQxOgpMaPVihqQQP9EnjQ
-	dIvEhlY3XzytQGlC7HUjB+rJPNUUaVNqNEAFMmu3RCbIHBGS/aJikbNqKuoYncTa
-	HWKmjBS7QXILHji8waVqo4Gfameve/bjUR8OZjfJ61xt5qQilme9R9mntWnpmVE6
-	vI/DbcOiNyMYzTxRGso7HQtTPALxrXPSxb0LKFjJIGSMhdCJ3OEBcf6SjBEfzx0q
-	xleKrYav5uunbP1dwomEPHueCWbUnYk2Hq3ZkmDA5X/S0ZeqJIqe1B8hi3Maegtt
-	FQ==
-Received: (qmail 402745 invoked from network); 8 Oct 2024 10:34:50 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Oct 2024 10:34:50 +0200
-X-UD-Smtp-Session: l3s3148p1@1sW4AvMjXyttKPHJ
-Date: Tue, 8 Oct 2024 10:34:49 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH v8 3/8] i2c: core: Remove extra space in Makefile
-Message-ID: <ZwTuqX301BqAltze@shikoro>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Chen-Yu Tsai <wenst@chromium.org>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	linux-i2c@vger.kernel.org, Andi Shyti <andi.shyti@kernel.org>
-References: <20241008073430.3992087-1-wenst@chromium.org>
- <20241008073430.3992087-4-wenst@chromium.org>
+	s=arc-20240116; t=1728377366; c=relaxed/simple;
+	bh=/l/VCM8P/tqLz/LGzZ0KAl22YoEU/fXM+/C2NF7cqFg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=uGk2U8fV3eZVaY75bP4bB5SJT/ayWbcRg+aKymLF/pV3gy00Ljggxmky8Y68rUAXGuTmngtWZ/ruS9WTeGcVqmhjrGqyg+AuZcbj2XT5eWt9TzYcJlAtFqCMIA1XxlcnUR9UBMDMQrt7CvVIGVHyuZaYiErXR5pAleWqp/9xiAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me; spf=pass smtp.mailfrom=getgoogleoff.me; dkim=pass (2048-bit key) header.d=getgoogleoff.me header.i=@getgoogleoff.me header.b=StnbA0xL; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=getgoogleoff.me
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=getgoogleoff.me
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 9339623FD3;
+	Tue,  8 Oct 2024 10:49:20 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id TVFrPVHNPkMC; Tue,  8 Oct 2024 10:49:19 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=getgoogleoff.me;
+	s=mail; t=1728377359;
+	bh=/l/VCM8P/tqLz/LGzZ0KAl22YoEU/fXM+/C2NF7cqFg=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=StnbA0xLmBFhMjaBJ4+1l+FeBZrffSvndACehw8BWVKdccuNoR13CjxsHtJbQpH4W
+	 o/VjlSMP3dh7TNc4J8D679gGXAYYDhNFm0D/3ZBiyE5//gkcFnVFiYyG5OyUPGrtex
+	 9pzuKx/Z4WTyZTgqVS5/uGFVy11HeYGFBWQSkij+XglBaXfwm8ih8PPaDa/3pkTV11
+	 YJLO+q+j4jS/oyphBNRHZSjkBHI1sr1GPN6IOUzGyT87+XQNw5S1b0l03QwJP2KYH2
+	 DUrKGTpHbjdO5RlhpK5sYA7r1zK2tLXqaDaPEtE5EhU4JH4qetgPmr+RlD61JujUXa
+	 bGTh59MWWAZgg==
+From: Karl Chan <exxxxkc@getgoogleoff.me>
+To: arnd@arndb.de
+Cc: andersson@kernel.org,
+	catalin.marinas@arm.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	exxxxkc@getgoogleoff.me,
+	konradybcio@kernel.org,
+	krzk+dt@kernel.org,
+	linus.walleij@linaro.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	mturquette@baylibre.com,
+	robh@kernel.org,
+	sboyd@kernel.org,
+	will@kernel.org
+Subject: Re: Re: [PATCH v6 0/5] Initial Support for Linksys EA9350 V3 (linksys-jamaica)
+Date: Tue,  8 Oct 2024 16:47:44 +0800
+Message-ID: <20241008084744.30819-1-exxxxkc@getgoogleoff.me>
+In-Reply-To: <ad82005d-729d-4165-afa5-61ca82382bc5@app.fastmail.com>
+References: <ad82005d-729d-4165-afa5-61ca82382bc5@app.fastmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gFj6OJQYOOPFj8BE"
-Content-Disposition: inline
-In-Reply-To: <20241008073430.3992087-4-wenst@chromium.org>
+Content-Transfer-Encoding: 8bit
+
+I dont have the uboot sauce.Also i did ask for the gpl code via their form and they putted that in the site that u sanded.I tried ask for the uboot sauce via the live support chat but i got nothing back.Maybe i should use the form again?(linksys dont have the uboot sauce in the gpl tarball of other rotuer as well. i guess it is the time for fsf to suit linksys twice? (See https://en.wikipedia.org/wiki/Free_Software_Foundation%2C_Inc._v._Cisco_Systems%2C_Inc.) )
+
+Also Other linksys ipq5018 based rotuer is capable of booting arm64.maybe i could rip the uboot from those rotuer and flash it to ea9350 v3 but i dont have another linksys ipq5018 based rotuer.
 
 
---gFj6OJQYOOPFj8BE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Oct 08, 2024 at 03:34:22PM +0800, Chen-Yu Tsai wrote:
-> Some lines in the Makefile have a space before tabs. Remove those.
->=20
-> Reported-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Closes: https://lore.kernel.org/all/ZsdE0PxKnGRjzChl@smile.fi.intel.com/
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-
-Applied to for-next, so you don't need to carry this patch anymore.
-Thanks!
-
-
---gFj6OJQYOOPFj8BE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmcE7qkACgkQFA3kzBSg
-KbYVTBAAnj3lYy0aHno8B+L4r4eegNvIoB88vkx4UB6TEssgEW4AB2kf+uAlTXfW
-2cFXhFaPicKEc/DDqmhTTW430UIG27jxpQD6BC1tyapPQ6dChS9t6gCcElhWNTvb
-sjCDblb1zor2vGYN+2f+BJPlaFDO20ZnMi9sbP5mlkkEEsTgJIwr2+DFmpWuMY5w
-NCUbXbtEkPUBn5u49YJH0RgVsBW1hsiezALs1AxEQ26G7/cXVm6u6IvH7zbgnWE9
-0DZKs3DdDxO9mV+ilW43Rm/Lx3s9n5Yy1aOZnkWVX0ddLfZZMR4iKbU5By4w+2uM
-5i5uGSIialjycmGSthXpTNawcJfB89rClHpaKYsZCuursUxf5EQtc2MYDOud/bZN
-rDz47+boX/yUhMV4FnlVsh+rfJaq5WmcbEd33ICh6CT/fc7T8uKIHF+vIsToTg+s
-nx4IqNZ4VJc/6B/er9RLADWJKL2BrKYluECw6jlX1yZHWEka+UvVPlSQmcRxPt7N
-fla7gKTB1jZj6vhS1GW5mtSJbQByt+AUbt1dtu9rWFvpsR/gda2MEqbzp62nAV8b
-gy4teVjjlJAqKZ5zeQs7MDDszKlCXgv3k1YxsKBSOj6R7/WytM1TpO46BKUCXSZv
-//MT9B3Mt7LFR+wFkv+5F4mazO1jkhGdS7wjUz9nk0QGqetl7HM=
-=Xawz
------END PGP SIGNATURE-----
-
---gFj6OJQYOOPFj8BE--
 
