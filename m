@@ -1,123 +1,163 @@
-Return-Path: <devicetree+bounces-108801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8FD993F15
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:58:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6851C993F25
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:10:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 255A6B20D4B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 06:58:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D92E91F21DFE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:10:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 866CA1D3565;
-	Tue,  8 Oct 2024 06:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A1A51DE4DC;
+	Tue,  8 Oct 2024 06:26:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iwPpTKR0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hqpvB27S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23B231684A4;
-	Tue,  8 Oct 2024 06:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C911DE4D9;
+	Tue,  8 Oct 2024 06:26:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728368707; cv=none; b=WNslDjMSiR+s+eXDWDHaW0l8ojnDLBYrSF7V4q89z6kvHxVkCIHgjwIGQmT7Z3dPb4+mk7KCcbvf6SP9cQWWCpGpeVLJVtvU388Fik4pLta162FSRmL8xkbmX/4jRgAKxWAr27spJj01MUxa75lRU5J3bHKpSR9RGsDX8PHyx74=
+	t=1728368789; cv=none; b=XzlEBC9XbmFSWf9d7Bhr8p77Vsx2dGocFFlB01gm6rM0XErBqWGY1F32ZJVtRKnQA09Dzgi08XT0NGo6DY2h8h76jZSPA7CxFc3rBoWyLgKO0gBscbHXEyOBv8F06Yb4ERio6XoS+jJuasv+dixJev2cqeKC95gnx6m0coLuxRM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728368707; c=relaxed/simple;
-	bh=uFy2vpul7G/GLwNv9E36WWSZkQ1MiEtCDpcx7+WMWh0=;
+	s=arc-20240116; t=1728368789; c=relaxed/simple;
+	bh=T45AqMpwASiBl0/I50N2dY606S5QKSd7yQWdyfR9JdQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pCJeTlP3/iu7BEgSpuodwmmEiwOwWnZzUAslbPYfHOB+zMTPBGJox6W29sfA6wKpak4HuLVinY9GxbznVSm9h2zQsmoU6GhKwQ7RLBOQQBWdRAR07tkA8qUojBzj4GlTgewJMRttZ9q0CDsjOF5gFPvEhrKGRehtHCBFCGsSRxg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iwPpTKR0; arc=none smtp.client-ip=209.85.214.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20b7eb9e81eso62574075ad.2;
-        Mon, 07 Oct 2024 23:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728368705; x=1728973505; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=KcO0kclRnti3T2Fe8Q/2qn3o4aRc8CbVApVxuVxO7eE=;
-        b=iwPpTKR0Q7z3dvxJ4hJHXZ8Iv4UPgZxG6RMPRN8d0pVfTcE4BKxQQOj+eeFqz+stKd
-         jDAwgz8qBlzgnrtFLjVAjEIiYs1S+p8+MyG9XSSPIWYzTjWjZkfgvMksK2UUqI8J7DQO
-         p3ILzJTlhwnOI+M1wHIiCR1IZbW1hMoY57xoUKRQACaV5uzL6oVtf8qTwr1LtsWbBxX5
-         YV9QNmnedyp1E8sl2YEAUL0voB2h918jGXi+nvDdD3hNB/h3U4JGAxj/aNV7QymYZsRz
-         fU6/quSDOhbyrLoBehbPdOq1FuF7o7NEhG+tD25SX9I7QT6f3KJPSYAMha5iMsju0Xgn
-         FC2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728368705; x=1728973505;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KcO0kclRnti3T2Fe8Q/2qn3o4aRc8CbVApVxuVxO7eE=;
-        b=DKXY+KO2jMuVjtwQM363oYOr79y3cbhoXvJ1Y1+H3hsc7Q7x5PglVNDgBDwOYcIyH9
-         OTyKH2RO0YlBJItSPCxHdFFnKmu6qoss/PatBPNOF0sb1d0qho/3YHkezDqbtTGt+Mkj
-         qTwPBbobQT+SSNFxW0utdNFPsLqB5me5qn13H/vDS1sk6qKHpCoXi9w3stL5d9aeJHzX
-         BaDKyVxPtymHl7gpr3qaHqJr0QjcwpCtqaYHahPM1573G24o2cetxj/aZ1JTqK6ZZIgq
-         kcP/Yecz/BmUcCpm4xcoBR+bvydZEmIz6jbQMy6gOOiT1DAUEWyl+l10CBqtLUVDNxLG
-         XbhA==
-X-Forwarded-Encrypted: i=1; AJvYcCUrOUkQGNzb9Fz9RlWPCFd2VC67NNz6Avl410gkyzajWMU2gX07DsvrOhVW6PPuHkrbQWGpjmoxfo4FLPcB@vger.kernel.org, AJvYcCWj/r8YHNzrvl/PAfU/RwbC+lolSNjeg9qOtImtqs+zi7XCp2+dxggvwh/FsbFjnGpbPyex1WPwkptz@vger.kernel.org
-X-Gm-Message-State: AOJu0YxBWAstpyohIn3URnsCYAuXxtxXqy+cW3i37c/NoTgWXg6Q4XgR
-	5sOfPRWedfvWFF40s06F+VfeEefZRZsmdrDmDpWR2DmTAlIZKQda
-X-Google-Smtp-Source: AGHT+IFd5xP48KgBsGIGdoRms/LeQ5/eyjLYz0VcwFnYcHyE9Ih7SovMGkiTJt7oGRMISjZ/fOOfzg==
-X-Received: by 2002:a05:6a20:438c:b0:1d6:2378:58ea with SMTP id adf61e73a8af0-1d6df73047emr22040511637.0.1728368705335;
-        Mon, 07 Oct 2024 23:25:05 -0700 (PDT)
-Received: from inochi.infowork ([2001:da8:7001:11::cb])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c13971c85sm49367145ad.239.2024.10.07.23.25.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 23:25:05 -0700 (PDT)
-Date: Tue, 8 Oct 2024 14:24:56 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicornxw@gmail.com>, aou@eecs.berkeley.edu, 
-	unicorn_wang@outlook.com, conor+dt@kernel.org, guoren@kernel.org, inochiama@outlook.com, 
-	krzk+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com, robh@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	chao.wei@sophgo.com, haijiao.liu@sophgo.com, xiaoguang.xing@sophgo.com, 
-	chunzhi.lin@sophgo.com
-Cc: Inochi Amaoto <inochiama@gmail.com>
-Subject: Re: [PATCH 0/1] Add power key for pioneer box
-Message-ID: <kmmnhqatth6uhr54jcuiuy5shhzdq25msyp6muiih5gchfytky@dd37ut4uv5xy>
-References: <cover.1728350655.git.unicorn_wang@outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BpM/pnJfyP/L0y/IS2rcIqhJJh1TIIxbPaB5T2of59AZL1gIS/lBYfl8lK3wlndg4friLvtvYKJvolRHQxqW/7udgfSx9yTaKyvxIrcxJMO1G0S+UacdoZTcXlypMchw6IWYCQ3InGHRFL/CQVpiOZmp46FdKQEpzFWsLYy6qPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hqpvB27S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2527DC4CECC;
+	Tue,  8 Oct 2024 06:26:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728368788;
+	bh=T45AqMpwASiBl0/I50N2dY606S5QKSd7yQWdyfR9JdQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hqpvB27S6vyJAseVV7a2ekE1MW8fK51W7M2o5OXx9n0djgMeF1DhKsAxpMVtcNqWH
+	 D3f2AUxaMr9vNiyhZqZF4PSoXJTlFpEZXZS3sS8Z+8/+y9j8gz4E+9J9wwiiplZrrA
+	 FxMAvuyThwsIkCfuG7hctoTgaFG95309AoBvQ0IU92ObWRf7SfuB+Z3eJD1TDlLPJA
+	 SpUS0ugQPwjSEIj81uKzhXJj2k17WCSGacw62j9KGwcQiDny0djKWIfj8PxttApF0h
+	 VHDsCEZzW/z/nd1YRVsWRoiLhllvp/xdDxSGhB0NcgdKavv7LC5i8RYvc7Wklw8JtZ
+	 cfPjwDO1ZGgig==
+Date: Tue, 8 Oct 2024 08:26:25 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v2 04/14] dt-bindings: misc: Add device specific bindings
+ for RaspberryPi RP1
+Message-ID: <zequ4ps7h6ynr2y5yrcqm3tpvvmmrgc6auupfy435rpysiyypf@7cd2zbwhk3ya>
+References: <cover.1728300189.git.andrea.porta@suse.com>
+ <3141e3e7898c1538ea658487923d3446b3d7fd0c.1728300189.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1728350655.git.unicorn_wang@outlook.com>
+In-Reply-To: <3141e3e7898c1538ea658487923d3446b3d7fd0c.1728300189.git.andrea.porta@suse.com>
 
-On Tue, Oct 08, 2024 at 09:43:32AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+On Mon, Oct 07, 2024 at 02:39:47PM +0200, Andrea della Porta wrote:
+> The RP1 is a MFD that exposes its peripherals through PCI BARs. This
+> schema is intended as minimal support for the clock generator and
+> gpio controller peripherals which are accessible through BAR1.
 > 
-> Add power key for pioneer box.
-> 
-> Thanks,
-> Chen
-> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 > ---
+>  .../devicetree/bindings/misc/pci1de4,1.yaml   | 110 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 111 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/pci1de4,1.yaml
 > 
-> Changes in v1:
->   The patch is based on v6.12-rc1.
-> 
-> ---
-> 
-> Chen Wang (1):
->   riscv: sophgo: dts: add power key for pioneer box
-> 
->  .../boot/dts/sophgo/sg2042-milkv-pioneer.dts      | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> 
-> base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
-> -- 
-> 2.34.1
-> 
+> diff --git a/Documentation/devicetree/bindings/misc/pci1de4,1.yaml b/Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+> new file mode 100644
+> index 000000000000..3f099b16e672
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/pci1de4,1.yaml
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/pci1de4,1.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RaspberryPi RP1 MFD PCI device
+> +
+> +maintainers:
+> +  - Andrea della Porta <andrea.porta@suse.com>
+> +
+> +description:
+> +  The RaspberryPi RP1 is a PCI multi function device containing
+> +  peripherals ranging from Ethernet to USB controller, I2C, SPI
+> +  and others.
+> +  The peripherals are accessed by addressing the PCI BAR1 region.
+> +
+> +allOf:
+> +  - $ref: /schemas/pci/pci-ep-bus.yaml
+> +
+> +properties:
+> +  compatible:
+> +    additionalItems: true
 
-If the cover has no meaningful information, you can send the patch
-directly and put the changelog in the patch under the first "---".
+Why is this true? This is final schema, not a "common" part.
 
-Regards,
-Inochi
+> +    maxItems: 3
+> +    items:
+> +      - const: pci1de4,1
+> +
+> +patternProperties:
+> +  "^pci-ep-bus@[0-2]$":
+> +    $ref: '#/$defs/bar-bus'
+> +    description:
+> +      The bus on which the peripherals are attached, which is addressable
+> +      through the BAR.
+> +
+> +unevaluatedProperties: false
+> +
+> +$defs:
+> +  bar-bus:
+> +    $ref: /schemas/pci/pci-ep-bus.yaml#/$defs/pci-ep-bus
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      "#interrupt-cells":
+> +        const: 2
+> +        description:
+> +          Specifies respectively the interrupt number and flags as defined
+> +          in include/dt-bindings/interrupt-controller/irq.h.
+> +
+> +      interrupt-controller: true
+> +
+> +      interrupt-parent:
+> +        description:
+> +          Must be the phandle of this 'pci-ep-bus' node. It will trigger
+> +          PCI interrupts on behalf of peripheral generated interrupts.
+> +
+> +    patternProperties:
+> +      "^clocks(@[0-9a-f]+)?$":
+
+Why @ is optional? Your device is fixed, not flexible.
+
+Best regards,
+Krzysztof
+
 
