@@ -1,126 +1,236 @@
-Return-Path: <devicetree+bounces-109076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109075-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2E749951FE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:38:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41E189951FA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:38:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CB9291C24748
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:38:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BDE5286323
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED63B1E0DEA;
-	Tue,  8 Oct 2024 14:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB4AA1E009B;
+	Tue,  8 Oct 2024 14:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JnA2a081"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EmxSa4+b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1D891E0DBB
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900361E0088;
+	Tue,  8 Oct 2024 14:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728398219; cv=none; b=TLsCUYhKk/xCYN7nnHli6JMQluL2V18QLl6xoUfIJegc5eDbLDTdXf811exGAl5KrScgcHIFI6ho9fH5MRqB6P/itX40kD7nyh7bOwkG6oNr/T9/oBjlhoeX7KvmAfDWlfb7q9ngxFjpvcXPJLBtcczrVBgLPOGAkKdTPEiaYV8=
+	t=1728398216; cv=none; b=PvB+KG07dcb+vS0XHk6T3Ih4gML31ag99hc4fosfh2dapqF8vOgw0557K3rOig7JXW5KkElL0Mwcjnvasg+7MohEvgUz6TuDSNBnbykgXmAYrLSPFhgCXNAylFnrgjf9PjG2XRWGPVRNhqN2WNgJHYZMLXt8ljysQV7WjGrQW0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728398219; c=relaxed/simple;
-	bh=Ez1a1h8Ms+1O98dJlfS1HG3cTnUbVG7/3+aSOkVZLW8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E1iP/pyX/XtgIjQObK8FSFKCkZYLk5w6mb0mIkKLk5SdkoEDFISBPcsha7hkE3mG+advqYxlmzmv/D0DEl9quObjVIwWwl104Gof5j7m6QjQbo/3TnvtD2HYmOYL9k1dsmbae2wAQEWszJnG+pcZAkLYw400w0IPqWA7tun6fRE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JnA2a081; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e25ccd64be9so4954583276.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:36:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728398217; x=1729003017; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=l0854fPv0lxGwhhEzPUBFcu+X9bL4gK6hC6tSqeFnVo=;
-        b=JnA2a081KOkXDdPKkwHp/I0d0SpNvJcVPgNpQuLwmUclzZvYqOWhtocDcLJe5TYZWa
-         aQroEBpRZyVCuI88ZzODdleKbuJDArEGz7LjO53mrnSiQ2anpN3TSRUFXTNcPqqjbs7O
-         AWxpRFirw5Kyzc4S1tfXVDmbnbPevQdOaRoOvXzO9Om4wSJrnI4BfVR5GrfX9w4O3W+E
-         MJ3ultnGwsqTaqP8Xn84k8QUYANxmTGMWV8k8vPBhzJFBk3GlqSeH+XFavHlNRvIJdG4
-         IBYOEVzcmHJ0d5XAPQa2lgSa0DG4PkaQ5RJDGG3sKrQofUgPrTyhtMQrJMcx53LjxKLF
-         1l9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728398217; x=1729003017;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l0854fPv0lxGwhhEzPUBFcu+X9bL4gK6hC6tSqeFnVo=;
-        b=Hj/VTx5+CWDEQnOc/EeY0UQBDwGAZ4L9uOfo7w+xZjwJojJaylWpq2wXri90TNgPYo
-         4BZrqBR1tDBezVgxsdMABfktpRSUCnwaoH3S6PCFgIi0cc7o5ZTnABtMQ0Nox8PojAg2
-         R/b4RkkBGTsfsp/6iYl3/vyr52wIUFXoLGM7fPTU3km03xLEpEmfWr0mUE4RUqXTWjkr
-         YevHySMPF0Ua8iNAeCtV5NNsQWvYXNrNhnqHJszSXXlNTMxz6fZ2W2v5qiYm+/PSa/5q
-         OqQwMYvskvY73jnpTsansF3q0BPHCNygAAAUKv/MJnQp/NlaGwFlhs7jTkD2syI7LFYQ
-         h3gQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX9fkM78bibwI+xcR8Ofj1XvfOZQ8siAdWxXV6/IEAeWPea3sgabxD07H3MpQngjLIJxgc/m3U0T7BX@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzzgIF65+3LXzMCnLxdfVxcGJZ2cwY3VmBgB8Uun7DlIHs8Hyd
-	MH1ZJj/OFx9oie548puhNsQudYktUhw7iRo2ZKAmxPbWJADeZkdfxK5+AeFDN7N118+ktonQTpQ
-	E+1jQYc1reLmIuRpvE7sMCaktAAAUBb5cfGh+fQ==
-X-Google-Smtp-Source: AGHT+IEpdZ58qdVQo5cCccRj1bt7ZYLuIPFt7p/LlY0sT9qZJ20yILj6veCoP8QqMxVxSPJujYJBI+RkTcFSBtzbu/I=
-X-Received: by 2002:a05:6902:2209:b0:e25:b49f:c8b7 with SMTP id
- 3f1490d57ef6-e28939555d3mr10923158276.50.1728398217034; Tue, 08 Oct 2024
- 07:36:57 -0700 (PDT)
+	s=arc-20240116; t=1728398216; c=relaxed/simple;
+	bh=oYAO6+RnfqjPS2tYqJIFO8e6XQXrhYZz+XrfGjL0Ufc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cw1gcLPUpmWI8K7kbEDAn9KK8EFAaiEHOZoSvhcIUnMHTpBlkWYjtxvIJyb5NL5Kc5dSGP4fzANrhSNnf0jpG44q0MihomBmzLzwDYpistaOrA+521fuuP0UCIaEQmTiMhdLpUVCv43PUhzliWdXz0bobGK/K9yGOms9k3Gwew0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EmxSa4+b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1F88C4CEC7;
+	Tue,  8 Oct 2024 14:36:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728398216;
+	bh=oYAO6+RnfqjPS2tYqJIFO8e6XQXrhYZz+XrfGjL0Ufc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=EmxSa4+byuIFypF0CQ4LUE2nJ4QP+VhgDuYtB2KguvnZjhi5nEODDMa+ZWt+LqzwU
+	 jL8AoUBr3kyOMzjDzTj5sPXahJJKFawG9HqplnI2SIpN72E2A+/kiium2dbKoWyIB3
+	 tf7rV0I+xH7QRIg/Lf4ee3TCHkFTziDgAnw9Z3oxy5gd1zb+YW6cRJ7Jzc+jxsx9Ui
+	 khA5rzwKiHNtWx3eD7BwlYkwogY+4PRoTcrILH7ALP5gYdQvRgeqKQeWMNegVKgumx
+	 syOUqioLSNd9y+NwOfAkDQkco1/wxdRFB9nXE0bWTj1EdkH6vTBi2JOWYGkX/ftZqH
+	 hzSLLXbMmV7bg==
+Message-ID: <3a45f6c8-bf2f-4227-b03a-4cf07a43b8a3@kernel.org>
+Date: Tue, 8 Oct 2024 16:36:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241004102342.2414317-1-quic_srichara@quicinc.com> <20241004102342.2414317-4-quic_srichara@quicinc.com>
-In-Reply-To: <20241004102342.2414317-4-quic_srichara@quicinc.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 8 Oct 2024 16:36:15 +0200
-Message-ID: <CAPDyKFo-x5RDPwh1XxsCqzofMvspux7qt-mrxWXF7c9Sp3D8ew@mail.gmail.com>
-Subject: Re: [PATCH V3 3/7] dt-bindings: mmc: sdhci-msm: add IPQ5424 compatible
-To: Sricharan R <quic_srichara@quicinc.com>
-Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, mturquette@baylibre.com, 
-	sboyd@kernel.org, linus.walleij@linaro.org, catalin.marinas@arm.com, 
-	p.zabel@pengutronix.de, geert+renesas@glider.be, dmitry.baryshkov@linaro.org, 
-	neil.armstrong@linaro.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	quic_varada@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/3] dt-bindings: phy: rockchip,inno-usb2phy: add
+ rk3576
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ william.wu@rock-chips.com, tim.chen@rock-chips.com, frank.wang@rock-chips.com
+References: <20240929061025.3704-1-frawang.cn@gmail.com>
+ <20240929061025.3704-2-frawang.cn@gmail.com>
+ <4czjtesext2ulsmcym2cpjavni7zuve2sdgyiqxkjkaxrl2gpf@7nqylzgd5f55>
+ <b3046637-7a35-49ef-a2b4-2f44355980a7@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <b3046637-7a35-49ef-a2b4-2f44355980a7@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, 4 Oct 2024 at 12:24, Sricharan R <quic_srichara@quicinc.com> wrote:
->
-> From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
->
-> The IPQ5424 supports eMMC with an SDHCI controller. Add the appropriate
-> compatible to the documentation.
->
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+On 08/10/2024 05:04, Frank Wang wrote:
+> Hi Krzysztof,
+> 
+> On 2024/9/30 3:36, Krzysztof Kozlowski wrote:
+>> On Sun, Sep 29, 2024 at 02:10:24PM +0800, Frank Wang wrote:
+>>> From: Frank Wang <frank.wang@rock-chips.com>
+>>>
+>>> Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+>>>
+>>> This change also refactor the clocks list as there are new clocks
+>>> adding used for the USB MMU in RK3576 SoC.
+>>>
+>>> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
+>>> ---
+>>> Changelog:
+>>> v4:
+>>>   - refactor the clocks list used if:then:
+>>>
+>>> v3:
+>>>   - narrowed rk3576 clocks by compatible property.
+>>>
+>>> v2:
+>>>   - Categorize clock names by oneOf keyword.
+>>>
+>>> v1:
+>>>   - https://patchwork.kernel.org/project/linux-phy/patch/20240923025326.10467-1-frank.wang@rock-chips.com/
+>>>
+>>>   .../bindings/phy/rockchip,inno-usb2phy.yaml   | 46 ++++++++++++++++++-
+>>>   1 file changed, 44 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> index 5254413137c6..fc2c03d01a20 100644
+>>> --- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+>>> @@ -20,6 +20,7 @@ properties:
+>>>         - rockchip,rk3366-usb2phy
+>>>         - rockchip,rk3399-usb2phy
+>>>         - rockchip,rk3568-usb2phy
+>>> +      - rockchip,rk3576-usb2phy
+>>>         - rockchip,rk3588-usb2phy
+>>>         - rockchip,rv1108-usb2phy
+>>>   
+>>> @@ -34,10 +35,12 @@ properties:
+>>>       const: 0
+>>>   
+>>>     clocks:
+>>> -    maxItems: 1
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>>>   
+>>>     clock-names:
+>>> -    const: phyclk
+>>> +    minItems: 1
+>>> +    maxItems: 3
+>>>   
+>>>     assigned-clocks:
+>>>       description:
+>>> @@ -172,6 +175,45 @@ allOf:
+>>>               - interrupts
+>>>               - interrupt-names
+>>>   
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - rockchip,px30-usb2phy
+>>> +              - rockchip,rk3128-usb2phy
+>>> +              - rockchip,rk3228-usb2phy
+>>> +              - rockchip,rk3308-usb2phy
+>>> +              - rockchip,rk3328-usb2phy
+>>> +              - rockchip,rk3366-usb2phy
+>>> +              - rockchip,rk3399-usb2phy
+>>> +              - rockchip,rk3568-usb2phy
+>>> +              - rockchip,rk3588-usb2phy
+>>> +              - rockchip,rv1108-usb2phy
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          maxItems: 1
+>>> +        clock-names:
+>>> +          const: phyclk
+>> maxItems: 1 instead
+> 
+> Sorry for late reply.
+> 
+> Do you mean use "maxItems: 1" instead of "const: phyclk" ?
+> 
+> 
+>>> +
+>>> +  - if:
+>>> +      properties:
+>>> +        compatible:
+>>> +          contains:
+>>> +            enum:
+>>> +              - rockchip,rk3576-usb2phy
+>>> +    then:
+>>> +      properties:
+>>> +        clocks:
+>>> +          minItems: 3
+>>> +          maxItems: 3
+>>> +        clock-names:
+>>> +          items:
+>>> +            - const: phyclk
+>>> +            - const: aclk
+>>> +            - const: aclk_slv
+>> This list goes to the top property with minItems: 1. Here you have only
+>> minItems: 3.
+>>
+>> This way you have only one definition of entire list with same order of
+>> items between variants.
+> 
+> For rockchip,rk3576-usb2phy, three clocks are all required, and the 
+> driver does not care about the order of the clocks.
+> 
+> So is the above definition correct?
 
-Applied for next, thanks!
+Of course not. What I wrote is correct.
 
-Kind regards
-Uffe
+Best regards,
+Krzysztof
 
-
-> ---
->  Documentation/devicetree/bindings/mmc/sdhci-msm.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> index 11979b026d21..2b66c0f3129e 100644
-> --- a/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-msm.yaml
-> @@ -38,6 +38,7 @@ properties:
->            - enum:
->                - qcom,ipq5018-sdhci
->                - qcom,ipq5332-sdhci
-> +              - qcom,ipq5424-sdhci
->                - qcom,ipq6018-sdhci
->                - qcom,ipq9574-sdhci
->                - qcom,qcm2290-sdhci
-> --
-> 2.34.1
->
 
