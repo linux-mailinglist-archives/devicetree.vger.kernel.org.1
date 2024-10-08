@@ -1,193 +1,194 @@
-Return-Path: <devicetree+bounces-108816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C0A6993F85
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:35:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55DA1993F91
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:35:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8C6A71F21595
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:35:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D80941F239B8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28181CFEB9;
-	Tue,  8 Oct 2024 06:56:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 632F51D4141;
+	Tue,  8 Oct 2024 06:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="QvH+gI52"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEWhfBR7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F60718FDB7
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 06:56:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AD601D07A7;
+	Tue,  8 Oct 2024 06:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728370617; cv=none; b=JJ6K/57tduQLxDY8hb5JCvM9T1JLV3gdVHs0VBUgMHC+qyzLFLE8RvVnGmGweh7JTjKmNrl9D6wTvGHQs2X/9yMOerVBpXwG4jfZR9EEaQtCVHsrsQv1rO+bFpnEh2anaYZj2cLc7MwDisv2gS2jVpDJBgVU1K0FTL8oDNPMI8E=
+	t=1728370775; cv=none; b=BOamg4Ofry63in7wQwKC2c0Vx+HxvRMBxC065cq9t2fg9A6qQY7Q4Ce9Y9QhZo17U3cMEFxVPEh7BEY6poIsoigcuk9deGt8S1ySq+H5yE8XqQ46U+XecpQRgxZ9f4xgtBj4Z1k1NfsABNm0M7ikKFDCxMSQ3V3meLQMvW9Ipvo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728370617; c=relaxed/simple;
-	bh=BdnwrYMQ8q458IvbO/00srYuvUdkTsJq5XLIp4S+PzI=;
-	h=From:To:References:In-Reply-To:Subject:Date:Message-ID:
-	 MIME-Version:Content-Type; b=VyOHgGm0SeWDhnaHIDG/K1j5Tp6rWhF51H26BS1KTviLcmUsYptSMPX6KSaQVXoAVKPqA+nObEEgYtAnJ8e3dc+WYC0SbLzPiEQaYB6aCTK/T8mUeRrUshiyG9S+TMYCH4enAVioGq8LwYLMsI/T6SIAlWOiPiDbAukr/nq9rik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=QvH+gI52; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1728370578; x=1728975378;
-	i=markus.stockhausen@gmx.de;
-	bh=BdnwrYMQ8q458IvbO/00srYuvUdkTsJq5XLIp4S+PzI=;
-	h=X-UI-Sender-Class:From:To:References:In-Reply-To:Subject:Date:
-	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=QvH+gI52YS3b51PSOOjubuYDRTqKbVWeWndVp8tIzFS29+aUzu3/QMBWOylt54pA
-	 E/9Ebdo4cTYdnZoTM9RSotT5lbYoEH989jnXztc4KXiCz/V7Fz8ap2dqdEKHvsxZe
-	 /0lYgMA9SIV80tst1eQbDv0JVEghYnsGcsSwLRpxvUM7VRQSFKZF5NJB8ZRaB722e
-	 3Zp/66vjPvjs1tgZx/qwexVg97mG1VniFUzjFWWM11w1Ld3wefbbttGFOdl2HK2eg
-	 PmJ+K1lIBN6G1d+0t6QjvqhkHk3vWSRdBY+DHnknqCkju5pdtfII3mzkPFPIqYKr4
-	 nF+yHJy770IBHsV9Wg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from colnote55 ([94.31.70.45]) by mail.gmx.net (mrgmx104
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1M9Wuq-1t1LOQ068C-00283K; Tue, 08
- Oct 2024 08:56:18 +0200
-From: <markus.stockhausen@gmx.de>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>,
-	<linux-phy@lists.infradead.org>,
-	<chris.packham@alliedtelesis.co.nz>,
-	<devicetree@vger.kernel.org>
-References: <20241007163623.3274510-1-markus.stockhausen@gmx.de> <20241007163623.3274510-2-markus.stockhausen@gmx.de> <e0355f2b-9d77-4792-9405-14b0bf79ac32@kernel.org> <000b01db1944$5bd444b0$137cce10$@gmx.de> <d23ba989-2ada-4033-a890-928bf4e746b3@kernel.org>
-In-Reply-To: <d23ba989-2ada-4033-a890-928bf4e746b3@kernel.org>
-Subject: AW: AW: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes PHY binding
-Date: Tue, 8 Oct 2024 08:56:17 +0200
-Message-ID: <000f01db194f$2d140880$873c1980$@gmx.de>
+	s=arc-20240116; t=1728370775; c=relaxed/simple;
+	bh=3EjSg2M80/xDjlaUevbOdcI4u2KQJpeWMcajk/8Q8mo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Xr66AJ8OzIijXeGZydNJ1NPIkNGmFiXm24ZU87mCInGdX+NZiTwXQntpCuvELG7bnKphGohKiUG5WodbxvNWgcD41bwDboEtQRsEiWeAVz0BPZroUwQ3vvg2JZ4jirlnHjsFkV1hZ4tsJXxGfOfSSWvkjURTmeMu2ChmitKZbPU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEWhfBR7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1FA1C4CEC7;
+	Tue,  8 Oct 2024 06:59:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728370773;
+	bh=3EjSg2M80/xDjlaUevbOdcI4u2KQJpeWMcajk/8Q8mo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=DEWhfBR7KTBvdjyt6ZBIcZBD9RSBRlYvxkPF1ew7kI4kDi29kxvaS0GMaxi1Oprsy
+	 sImGvN/ehABnnu/HDTEOyEBx1IiT5nHv3np47R11boSXB0OztPLWUTndpXvWbLZmCY
+	 aV4Aw1kTSoLB495IZkZd+us1ZCHbapTyx1xNSFBogLeGFUN/7rvM5oqf4JPTZFc2LK
+	 7IBjhSCT4BBNtlQRSXiQOmwNa5juDaTk3hZ6R5KOUhXmoqMfK3YW8k5RFJIGOGtmlL
+	 AFSO1fiY05f/mjgLhm2CuoWlJsz4QT1QCcU/ojWnpsGZplGvFM717nWfmwXNMx/4fq
+	 GJi3M5SADgciQ==
+Message-ID: <93c4dfe6-8ddf-425d-bf9c-245e94c4290e@kernel.org>
+Date: Tue, 8 Oct 2024 08:59:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
-	charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: de
-Thread-Index: AQFmt424TDky7oOEBHAYnHfWLjuWPwFdE8X8Ac4j3w8Bo7K4gQFrn2WmszNTdnA=
-X-Provags-ID: V03:K1:kx5QxXM+bnda0qZUBDVjwGEJCajFlRP/tha8QxLEIUkn87t7Yjl
- PWQ43ROQ3D/zPJIic2Y3rgb1fGq6Ht1ddO9rEVl80HrzneGUQGoYGFVCbsvJVkqq6InS5S8
- //F7TsmuihPVbBM1SOvvYG6oKhmvHhI+wHgyb7cQFFNl7f9skJ1VkTVU3e78xYwdt4UJOek
- yT48ZVxEwxBBfRwYG80pA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:QB9Evo4yD6M=;nbyYBQOdvnArSwe/rJprbQqv3uf
- Hkw4XeBiBj3VcdehbUj0RaGA4Dz9NAESHoRFbtx+5VRbDmQ3QHNUPmilb9ILP3GJwdi7aEkFh
- 6ZXMNAUbsCXyjR5KdYgGzAwXrhJoJEiPoyH0oKoe7MBH7VPNICqOLbFjZ/QPy0HRKndHrJ1D4
- T/QL4toWcb8hEHAPSD5XnKsa6XQePL8erSc7F+7f2nV27Puu9EipqihQ8121bo/YzkFYgtNIe
- IZf+CGQxn6Rp1d6pvhM9iM4ZGsTX5CkZa5IPsWNjhaGIzfbEhnSucDaovhyGO7JvoaMUDttSp
- XIQlWM+hjPEYg1LvC1LmwdUGzaWDf2ok2mfipRM7aP5671QfSaHnEulxUwPtyDA92PlX9KF6m
- x65rq/s1HRyxPN4g7Lk2PbiHTB25Qg66ebE8j4bm8LUppfQSa89mQegGP1eUGgqB7jkQDBT8B
- t0pCYQJDYQg1tnQmo8gjcSEXVhbdJdUOA1AeJFYs7rALXT/hTACsDsgBX9jbrGxFpFLPL9921
- 8S4zdrziY8dM30GKJdn1vjMAgtsYmAcysvev3wCvwkqbUtGPYm4tIs4VjlrW6gj6V0Rsz1mIY
- G8gY+mAIj5AHs4cdH3AJWmE0JQQmdhXVPnIAc2jmK0e0zstX2ZDPcR7T/73stXicDS/xJj3qE
- /YVlUSFE9tV05ItP0KrCPeEqwfVqLx2izaSGQH+N1CduCHEm0/O36bpuMQ7po4q7EanADfF+z
- YvtZxwRHW5TjOvIHA0rxrVDxs1sfBWUUaAAm4Kit/IEzI9ZXYHT5RE5lHexu+nJmLG7JGVkzC
- snpcPaY9wakgpsRVkpK5myBw==
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: spi: Add realtek,rtl9300-snand
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20241006233347.333586-1-chris.packham@alliedtelesis.co.nz>
+ <20241006233347.333586-2-chris.packham@alliedtelesis.co.nz>
+ <3tu6x2644lxvvbk74nv5qva7qupsvgxyxkwc5g5n7n4bh3mbwi@457wbps4kpns>
+ <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> -----Urspr=C3=BCngliche Nachricht-----
-> Von: Krzysztof Kozlowski <krzk@kernel.org>=20
-> Gesendet: Dienstag, 8. Oktober 2024 08:17
-> An: markus.stockhausen@gmx.de; linux-phy@lists.infradead.org; =
-chris.packham@alliedtelesis.co.nz; devicetree@vger.kernel.org
-> Betreff: Re: AW: [PATCH v2 1/3] dt-bindings: phy: add =
-realtek,otto-serdes PHY binding
->
-> On 08/10/2024 07:38, markus.stockhausen@gmx.de wrote:
-> >> -----Urspr=C3=BCngliche Nachricht-----
-> >> Von: Krzysztof Kozlowski <krzk@kernel.org>
-> >> Gesendet: Montag, 7. Oktober 2024 21:26
-> >> An: Markus Stockhausen <markus.stockhausen@gmx.de>;=20
-> >> linux-phy@lists.infradead.org; chris.packham@alliedtelesis.co.nz;=20
-> >> devicetree@vger.kernel.org
-> >> Betreff: Re: [PATCH v2 1/3] dt-bindings: phy: add =
-realtek,otto-serdes=20
-> >> PHY binding
-> >>
-> >> ... and still not tested. Sending untested code is waste of our =
-time.
-> >=20
-> > Hi Krzysztof,
-> >=20
-> > appreciate your feedback and I do not want to waste your time. My=20
-> > fixes where a mix of your feedback and some half-baked "make=20
-> > dt_binding_check" feedbacks (because packages where missing). My =
-fault and sorry fort he noise.
-> >=20
-> > To get next version in better shape two questions regarding your =
-feedback:
-> >=20
-> > 1. "Messed wrapping": According to checkpatch 100 chars/line are =
-accepted.=20
-> > So I designed the comments in the driver. Does devicetree differ =
-from that?
->
-> checkpatch is not a coding style. I asked to follow coding style, =
-please read entire document in Documentation/process.
+On 07/10/2024 21:58, Chris Packham wrote:
+> 
+> On 7/10/24 19:40, Krzysztof Kozlowski wrote:
+>> On Mon, Oct 07, 2024 at 12:33:45PM +1300, Chris Packham wrote:
+>>> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
+>>> controller supports
+>>>   * Serial/Dual/Quad data with
+>>>   * PIO and DMA data read/write operation
+>>>   * Configurable flash access timing
+>>>
+>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> ---
+>>>   .../bindings/spi/realtek,rtl9300-snand.yaml   | 58 +++++++++++++++++++
+>>>   1 file changed, 58 insertions(+)
+>>>   create mode 100644 Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
+>>> new file mode 100644
+>>> index 000000000000..c66aea24cb35
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
+>>> @@ -0,0 +1,58 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/spi/realtek,rtl9300-snand.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
+>>> +
+>>> +maintainers:
+>>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>>> +
+>>> +description:
+>>> +  The Realtek RTL9300 SoCs have a built in SPI-NAND controller. It supports
+>>> +  typical SPI-NAND page cache operations in single, dual or quad IO mode.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>> Why 9300 cannot be alone? What does 9300 mean even? Wildcards and family
+>> models are not allowed in general.
+> 
+> The main thing about the RTL9300 is that that is what all the Realtek 
+> documents use to refer to these chips and the specific numbers are akin 
+> to the manufacturing part number that you'd actually order (maybe that's 
+> a bit of a stretch).
+> 
+> The SoC/CPU block probably does exist as a separate silicon die that 
+> they connect to the different switch blocks in the chips that they sell 
+> but I don't think you can get "just" the SoC. There is every chance that 
+> we'll see that same SoC/CPU block pop up in new chips (I see references 
+> to a RTL9302D in some documents). I'd like to be able to support these 
+> chips using "rtl9300" but if that's violating the wildcard rule I can 
+> drop it.
 
-Understood.
+Yeah, that's violating the wildcard rule. You cannot even guarantee that
+9300 will match future designs.
 
-> >=20
-> > 2 "Bindings vs drivers". The idea about controlled ports came from =
-other bindings.
->
-> Entire property description speaks about driver, not bindings.
->
-> > =
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tre
-> > =
-e/Documentation/devicetree/bindings/interrupt-controller/st,stih407-ir
-> > q-syscfg.yaml?h=3Dv6.12-rc2
->
-> stih is rather poor example to use. The property was added in 2015 (!) =
-without review (!!!).
->
->
-> > E.g. st,invert-ext. Something like this will be needed in the future =
-
-> > because the SerDes allow to swap polarity which must be changed=20
-> > depending on the switch design. How to do this?
->
-> I do not understand the hardware aspect discussed in the property =
-description... probably because there is no hardware description at all, =
-but instead you speak about driver.
->
-> I do not understand how polarity has anything to do with U-Boot =
-configuring serdes.
-
-Maybe my lack of knowledge in platform driver programming or the naming
-conventions leads to confusion. I'm searching for knobs to control the =
-behaviour=20
-of the SerDes depending on the hardware. Two examples are (more may =
-come):
-
-- "ignore SerDes X": because the provided patch sequence confuses the =
-SerDes
-and overwrites registers with wrong values that vendor patched U-Boot =
-has setup
-correctly before.=20
-
-- "reverse polarity of SerDes X": same goes here. Some boards need =
-inverted
-signalling on some of the SerDes to work properly. This must be =
-configurable
-somehow.
-
-Looking at some more modern implementation/documentation I need =
-soemthing=20
-like in realtek,usb2phy.yaml - e.g. realtek,driving-level-compensate.
-
-Should I just leave "driver" out of the description?
-
-Best regards.
-
-Markus
+> 
+>>> +      - enum:
+>>> +          - realtek,rtl9301-snand
+>>> +          - realtek,rtl9302b-snand
+>>> +          - realtek,rtl9302c-snand
+>>> +          - realtek,rtl9303-snand
+>>> +      - const: realtek,rtl9300-snand
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: SPI NAND controller registers address and size
+>> Also: why no clocks? Binding is supposed to be complete. If it cannot,
+>> you should explain it in the commit msg.
+> 
+> I didn't add it because I had no need for it in my driver. But as you've 
+> said previously the binding shouldn't care what the driver does.
+> 
+> I do have the clocking info from the datasheets. I'll add it in v2.
 
 
+Best regards,
+Krzysztof
 
 
