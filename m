@@ -1,167 +1,126 @@
-Return-Path: <devicetree+bounces-108940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3E8994557
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:27:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C91D099456D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:30:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D278C1F25F4F
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:27:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EBC81F2190E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EB51BAEE4;
-	Tue,  8 Oct 2024 10:26:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FC891991D5;
+	Tue,  8 Oct 2024 10:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ROf3bMgx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fTrCiN9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E50193082;
-	Tue,  8 Oct 2024 10:26:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B6421C1AAD;
+	Tue,  8 Oct 2024 10:29:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728383207; cv=none; b=QTcHf5AF9Ln7UviK8Dwx+qkxvP26JjVV5ge51jdKepZe4RrVNmRwFKq1cB1TT+EUgJ7h48cxdaXmYj3hMg8XmtVoFONlGXmKwwaDb1SVpLgHqSQJe1n70gvCnRYS4sudKcAYI0yidZxHE9b9NN+xYaLxwVylaINOIX8GgtiFUhc=
+	t=1728383393; cv=none; b=sqUIl6Dam1EPTZTfLRGaLxrTN4q800EYHaPJvXYr1w3zwpF/FJe2yDhzVhGZua4CGx+OrhybbWsoW/unMpiuWFeombCmP+kO8Rj0FaxW6CvQ+xaKC4kHi0l/oNsA1yy89PGH0MM0VD8ACxi1Mc/p+1mKfvTqIhcyWawc3lmNFvg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728383207; c=relaxed/simple;
-	bh=e5I3Kqug+3tmd5xjuXN2W835x7u9rvw42f65vGULb4Y=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fEp5pDABo2nxY1F50qKKrWQ855ueGgmqSMzpa7AyjX+b2zUbJYRYVkx5NaIf/zJH6HeHHhz4f0ltJBVX3SuXXHyYPqJZ6+eejKSsWScWNoxAfCzQMRMuCvRd0zv4lThj3f2HdDrGLrpW7pazB0TyVZszRnGIeipd1an3rtC+6Js=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ROf3bMgx; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728383204;
-	bh=e5I3Kqug+3tmd5xjuXN2W835x7u9rvw42f65vGULb4Y=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ROf3bMgxZGjBvRU8HoNDrWwT5IpHBF1/Su7mYNjdxyyT9QTFLPdG2Boz0f/OrH7av
-	 k5jI3s0U8SgDVIujSNnnxM2H4HpKQ2HwgjwrSA/8SL7aeY8aKVUwMscJcPTORR7xa9
-	 ktdJlE0Qi2K+wZZx5zr8WMvZ4xrJLHqjM5RYX7KiP5aHkZ136xrjELtpUd/YVNORAl
-	 LQDW8nuXhmyDsXdjxP3A+yNK370h3bX62gfq+kdspXRMlO9IiohK/Wkhkx+gUR2QTK
-	 ffszIgk9OTGgFMYNFuRqPYb59iHTdGYzwDrA6Ou40FozODUJ2Ny6bt5n4wrYtntzPl
-	 6IZJcKZDsmzJA==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id F16EA17E1131;
-	Tue,  8 Oct 2024 12:26:43 +0200 (CEST)
-Message-ID: <75fb08e1-2d47-4376-9ac0-c812c956bdab@collabora.com>
-Date: Tue, 8 Oct 2024 12:26:43 +0200
+	s=arc-20240116; t=1728383393; c=relaxed/simple;
+	bh=l7tS8eWROa3MwcAh1tj1sjbMaiNYkKpHNBzM7AHJTh0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=n1kMFI/le0jqYz2Y5deXInb4nBOHFLQPIXaMpuBlVKyIZzZ1TBBwDKbLhKjwR0oRHpAvNZj/PZmz9gGpRi3mh2qT4gi380lfoh1ziR3KsoQhXKeAvfLY7Unedke5tKYUPQU6f4Srt4GBeY1sx7xfbJRZ+eLTIwQyf9LQIac+jq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fTrCiN9C; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 33384E000B;
+	Tue,  8 Oct 2024 10:29:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728383382;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=4UBiSkAGEqIlk6OGBJi+SQVIzbv8Yq+NGeKs31Ac9wc=;
+	b=fTrCiN9C+ENCif56EMf+WWlzWHIjkQ5yIq5T5mlg2OYzryTwD0X0Q0qfQLDPL2Z7ZGxp1m
+	dM8svdZn7t/7JMIgzriua+lwzJka4q7OWDbfQ/fMviTpjU5nkxe9aay64aBGcgj1lXvrEi
+	QKUiTg3KL7pQ+Xq9wvtDV9UgmFEywTqJ6geIY82+R6ubynKFbsk6h7jS9MA4LXREze5xFf
+	1dQUyVvwOTE0xWpYbqn2dDF/FBqV/xy05R0fgq7aM/2L4onbi0pP1Mhn2gMCMyEsX3dWe9
+	JhkyT+pGfoiPylw6EhesSD9rQgGwuW5zxPqcOAK+SZ9ULhem+4etDpVRBApA3Q==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH 0/4] i2c: nomadik: support >=1MHz & Mobileye EyeQ6H
+ platform
+Date: Tue, 08 Oct 2024 12:29:39 +0200
+Message-Id: <20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola-voltorb: Merge
- speaker codec nodes
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20241008082200.4002798-1-wenst@chromium.org>
- <7caa85fa-7186-4f8f-8195-19325ebf06bd@collabora.com>
- <CAGXv+5FgPOh4kNdrG1uN-NOWEpC5rXvsr0egTsgOw+v_E3vdRg@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAGXv+5FgPOh4kNdrG1uN-NOWEpC5rXvsr0egTsgOw+v_E3vdRg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJMJBWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDAwNz3dyknErdTKNkXSMz82TLFBMLoyRLAyWg8oKi1LTMCrBR0bG1tQA
+ WVGuPWgAAAA==
+X-Change-ID: 20241007-mbly-i2c-267c9d482b90
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Il 08/10/24 12:14, Chen-Yu Tsai ha scritto:
-> On Tue, Oct 8, 2024 at 4:51 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Il 08/10/24 10:21, Chen-Yu Tsai ha scritto:
->>> The Voltorb device uses a speaker codec different from the original
->>> Corsola device. When the Voltorb device tree was first added, the new
->>> codec was added as a separate node when it should have just replaced the
->>> existing one.
->>>
->>> Merge the two nodes. The only differences are the compatible string and
->>> the GPIO line property name. This keeps the device node path for the
->>> speaker codec the same across the MT8186 Chromebook line.
->>
->> Ok, I agree...
->>
->> But, at this point, can we rename `rt1019p` to `speaker_codec` instead?
->>
->> Imo, that makes a bit more sense as a phandle, as it reads generic and it's not
->> screaming "I'm RT1019P" on dts(i) files where it's actually not.
-> 
-> Works for me.
-> 
->>>
->>> Fixes: 321ad586e607 ("arm64: dts: mediatek: Add MT8186 Voltorb Chromebooks")
->>   > Cc: <stable@vger.kernel.org>
->>
->> Well, that's not a fix - it's an improvement, so we can avoid this Fixes tag :-)
-> 
-> I'd like to see it backported though, so we minimize the different DTS files.
-> Guess I'll add Cc stable instead? Not sure if that works without a Fixes tag.
-> 
+Hi,
 
-Well, try to send it to the stable mailing list as well...
-I fully understand your concern but backporting is for fixes and *not* for
-improvements, so I doubt that you'll get that backported.
+First two patches are about adding Mobileye EyeQ6H support to the
+Nomadik I2C controller driver, in the same vein as was done a few
+months ago for EyeQ5.
+ - dt-bindings wise, it is only a new compatible. EyeQ6H does NOT
+   require the same mobileye,olb custom prop as EyeQ5.
+ - driver wise, we are again on a 32bit memory bus, so reuse
+   the .has_32b_bus flag.
 
-It's Sasha's call then, anyway.
+Next two patches are about supporting higher speeds (fast-plus and
+high-speed).
+ - Fix computation of the bus rate clock divider (BRCR). It picks the
+   smallest divider that gives a bus rate above target. Switch to
+   picking the largest divider that gives a bus rate below target.
+ - Then support high SM (speed-mode) values. This is not much work.
 
-> ChenYu
-> 
->> Cheers,
->> Angelo
->>
->>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
->>> ---
->>>    .../dts/mediatek/mt8186-corsola-voltorb.dtsi  | 19 ++++---------------
->>>    1 file changed, 4 insertions(+), 15 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
->>> index 52ec58128d56..fbcd97069df9 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
->>> @@ -10,12 +10,6 @@
->>>
->>>    / {
->>>        chassis-type = "laptop";
->>> -
->>> -     max98360a: max98360a {
->>> -             compatible = "maxim,max98360a";
->>> -             sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
->>> -             #sound-dai-cells = <0>;
->>> -     };
->>>    };
->>>
->>>    &cpu6 {
->>> @@ -59,19 +53,14 @@ &cluster1_opp_15 {
->>>        opp-hz = /bits/ 64 <2200000000>;
->>>    };
->>>
->>> -&rt1019p{
->>> -     status = "disabled";
->>> +&rt1019p {
->>> +     compatible = "maxim,max98360a";
->>> +     sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
->>> +     /delete-property/ sdb-gpios;
->>>    };
->>>
->>>    &sound {
->>>        compatible = "mediatek,mt8186-mt6366-rt5682s-max98360-sound";
->>> -     status = "okay";
->>> -
->>> -     spk-hdmi-playback-dai-link {
->>> -             codec {
->>> -                     sound-dai = <&it6505dptx>, <&max98360a>;
->>> -             };
->>> -     };
->>>    };
->>>
->>>    &spmi {
->>
+It works on EyeQ6H HW just fine. 1MHz has been tested but not 3.4MHz
+because HW doesn't support it. The theory is there, and BRCR
+computation has been checked to be valid with 3.4MHz clocks.
+
+DTS patches are not provided because they depend on the platform's clock
+series [0]. Lore being down at the moment, see Patchwork [1].
+
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com/
+[1]: https://patchwork.kernel.org/project/linux-clk/cover/20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Théo Lebrun (4):
+      dt-bindings: i2c: nomadik: add mobileye,eyeq6h-i2c bindings
+      i2c: nomadik: support Mobileye EyeQ6H I2C controller
+      i2c: nomadik: fix BRCR computation
+      i2c: nomadik: support >=1MHz speed modes
+
+ .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    |  6 +-
+ drivers/i2c/busses/i2c-nomadik.c                   | 65 ++++++++++------------
+ 2 files changed, 35 insertions(+), 36 deletions(-)
+---
+base-commit: 6f1cfa7816af8b3286140f1b0476200d5e914eb9
+change-id: 20241007-mbly-i2c-267c9d482b90
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
 
 
