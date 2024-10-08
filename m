@@ -1,173 +1,126 @@
-Return-Path: <devicetree+bounces-109081-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44228995233
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:46:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6FF995249
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:48:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 736A01C2550E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:46:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54D14287D8B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4695A1DF973;
-	Tue,  8 Oct 2024 14:46:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DHX7Gz28"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26C81DFE27;
+	Tue,  8 Oct 2024 14:47:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 148FB17578;
-	Tue,  8 Oct 2024 14:46:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F7C81DF755;
+	Tue,  8 Oct 2024 14:47:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728398786; cv=none; b=dMVn4g2wrmMMcwPyMuxwUvCVdE0pcBZgabvYbl1nyJUI3slFwljC8RGLv/fllZuWDjSabFSAv8yE3Jwqq1YRhYZiFDuJn6Z6lxqDpXET92096gGMUOjNmMn7ElPYR1VzWZZBE4nT8uBBxi3EKdNKQg6eqgANa8wX2dOtPYucdPE=
+	t=1728398827; cv=none; b=ntEKgEdQ75MMAsPdrxQBBbrCft1+SwRNkv8f0UT5LM2ksFKjF1/LjDZ6p5rqZED75ti8CdyFMidwxqdJwvslrqoG8II1mW5TwD78tSm7hwNSJ6p8Bacj/CrW5+3n04GTY11YB4OqZM84IKQ/w+PeZxrvGR0yZ0IDmia9YN04BlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728398786; c=relaxed/simple;
-	bh=34eqIgIEnAmFyyXITKqyE+kOFUPFQy1pHLd7ZIEbyRo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mJlZ8NI2MtVD7dbF+M+PLumgfwXzhDh6rUi4eRQzebBJMvAM/OeXwjcr6qNC2OORAHRa1LWJA977wTEtaQwN1P+/inITn76CYinzNwcx+QfdVjNWkpA/htsIc6ByMMcwYI+exXSR9T5ldbXxuqYiDlDu5TLb/3oxsDjo6/fZsHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DHX7Gz28; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A8ACC4CEC7;
-	Tue,  8 Oct 2024 14:46:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728398785;
-	bh=34eqIgIEnAmFyyXITKqyE+kOFUPFQy1pHLd7ZIEbyRo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DHX7Gz28VlZTtH8hoqdyWY5BbrD5MRLwvmxo6OHs8nXaqO0BEbGxdCFFQAacPFn/L
-	 9ciAsNJSm7F5b5UadxRwssoWv3fg57Xk6PPkuL5mcfB6kTBKpGIwm8IoufsQjrUZvE
-	 fBOr5B4Mp6mkGTzQh/GTy+50oC62fgeB5uk3J9SS1gh0lgPeMf7ticTMWww3J1kiDf
-	 +R1aprCRA05SpweeE06vDIIj0MKaMDKSxeaRCpM5RaedD6sotIgIdYd23yLC42BahE
-	 5NYuch1XbvY6+DRNxbCRsUHV4NYMN1r2lE1zdAeiaR5D8Pj2R5wvYBT8FA1S+TFsNB
-	 71dBTfnbPCGdw==
-Date: Tue, 8 Oct 2024 09:46:24 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: broonie@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mips@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: spi: Add realtek,rtl9300-snand
-Message-ID: <20241008144624.GA1284425-robh@kernel.org>
-References: <20241008002308.1149983-1-chris.packham@alliedtelesis.co.nz>
- <20241008002308.1149983-2-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1728398827; c=relaxed/simple;
+	bh=Y+zb33rVNjC2YbQs4WVewPjUBmIgniiq3rKNIeCtAQg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=a+mlLkA0n0z598C6fkjjyncJ2s9es9irCfuQr5r0obeCP8lbMK2XrP4sYNtYppgAqAh4Q4/ngtgDMBLSCRRGYbXLQQrlQOTSxpLPMqZ3JucvIKUnJDlo0VgSrXes1ckHtjnMlkVwUxVO06W+uh2CjF2Q5YKSPvk3wIdVyc6CEbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e28e4451e0bso1479174276.0;
+        Tue, 08 Oct 2024 07:47:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728398823; x=1729003623;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=T5tpkiwx88FstrMnILDOBEQgP7OPo4qJyWyTH6XGvRU=;
+        b=iHOrF0+MjPxqBtLrQWQwV12f3ZLd1d69YbkPMTiJquEVprARh4M4/CSLZJT0lnC5iT
+         7DtZcebT5YbI1cuqHBosOqKOGvakuX0ALEAAlfYUyrw0OZNOMUhErgust/W7X20IOhBR
+         Z6BMwHg3U7Vc6FwFxgJ6twjGD9RtSPeKC9Axea/DVWhnp6QCHhpzlTidW4EEOCwkuka6
+         Px/+C4WaJQnl4El3rtrE7a10BYWu/KC5VgJGlp9HXGfSuLtc6QLY+DeYDdnryr5yKuNZ
+         k+GLO5qxUS7fS+tOXVm++dJFyZenGvDxUlEaUMQPjKNpT03WJXLkPkEiHwElkeAclbo8
+         TgRg==
+X-Forwarded-Encrypted: i=1; AJvYcCVMv5l4K6+4pZdN30z/hwZ/Qo+Tp8pbvJcclie2RgP55F21xBrCt1KvR5VYo7YEyQycZjQHOfzhIytH@vger.kernel.org, AJvYcCVT4ZyhCql4BA39NaM7FaXm37nvlcDDFdn37CBR8x9LBag9C6uSGOw4PGKo7p7R4td7MI2vOxeYsh6x@vger.kernel.org, AJvYcCWH3zzwo/7ROcDacGklkRqco5iC308CblmwL4BT9g2UU0aknkZ+qzsJri9nA7po/KyCZVxhAS1qabEpyPkVVMtjwSs=@vger.kernel.org, AJvYcCWpBbUhW4a9hHRyL54xf6kitb/7Cfxs3GlEyN2kqqiT/MhqDCi9/uzCt0+nARnqSxgKKalXdy1H16M=@vger.kernel.org, AJvYcCXlJRVjWvnd3H79BQrFm967SzjksjKMnwQP7Wezd3QjaIJ4OxdWO0TX7U7qIlRTn8a2VLMXeqN/2fJT@vger.kernel.org, AJvYcCXwyebo0+QwS843ex+ksJwkeV3WFauxREmdJ/7nzko2XyjCiEnN8MkCQSECNJ9VvYcqoyCTLLMQVjcVcPpO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzd5YPrQqh2MetPZmHjhjGp2yLG71d+P2Mpzk6PKDhJuerSQ2cR
+	UJzXB8enjcmOZ6GpOHvcPr/DrAc3hu4B7XBCBNZAd27FhOIK7zURwA+70iAU
+X-Google-Smtp-Source: AGHT+IFlFWCicYCbRCtgun2HTOedWzJ/rIDScEBfLYhC3O+ChUgJABpyQ+DpaCSgOEirqxGjfq0pWw==
+X-Received: by 2002:a05:6902:1b06:b0:e25:e358:cb4c with SMTP id 3f1490d57ef6-e289393eb3dmr11578229276.40.1728398823173;
+        Tue, 08 Oct 2024 07:47:03 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e28a593b359sm1369503276.1.2024.10.08.07.47.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 07:47:01 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e20a8141c7so48085387b3.0;
+        Tue, 08 Oct 2024 07:47:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUctkYi9VK4uCrc3fvujAdJYbxfO/cQvSAS1JsM7UYXI2oqwWQPhcL40LLu9FScdtB7hMd6rNz1Uch3/vBcjlAQJWQ=@vger.kernel.org, AJvYcCUs2u48/B7FQX7K/EFLHIGykBIcLg+dsUZ5yvGmIEF7A1dDUMU2lwOkDmQHP+7GPjq7IrUa8ImXop4=@vger.kernel.org, AJvYcCUznzZj31bFfZ7osiuz4m1eYFRo5tFY00t+VSj0lHs/IhUNJWf1QhJGkvnMLfHF7UofNLxR55Ww1sBZ@vger.kernel.org, AJvYcCVDPC2wyqHL9/7M3LDDP/SJoRe9U2jZL7Y3vip02IPI9n8u8DvLqrCCtZqOdbkXFotRWf5rZHznnHcf@vger.kernel.org, AJvYcCWImSDe+FCKgui4y+oU5o1B2jbA+NYjzCCxxUSP/C70XEpLBIoUala90nocvkJLSM9fuv4L9k4lgD7c@vger.kernel.org, AJvYcCXMJv2J48znTfgPCOJIDcGoQvC5cseAfzv/bHo5HaLanrMnseSLopqqwkAWSrPcni7wO9Hdnruwbg9wBElU@vger.kernel.org
+X-Received: by 2002:a05:690c:fd1:b0:6e2:f32:bd2c with SMTP id
+ 00721157ae682-6e2c72f6ac7mr126767947b3.29.1728398821134; Tue, 08 Oct 2024
+ 07:47:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241008002308.1149983-2-chris.packham@alliedtelesis.co.nz>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com> <20240822152801.602318-8-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240822152801.602318-8-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 8 Oct 2024 16:46:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWcCGMf0At7=DN_PydZyriiOcpR=YQAqw-xsARSVF6Wyg@mail.gmail.com>
+Message-ID: <CAMuHMdWcCGMf0At7=DN_PydZyriiOcpR=YQAqw-xsARSVF6Wyg@mail.gmail.com>
+Subject: Re: [PATCH 07/16] reset: rzg2l-usbphy-ctrl: Get reset control array
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
+	ulf.hansson@linaro.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 08, 2024 at 01:23:05PM +1300, Chris Packham wrote:
-> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
-> controller supports
->  * Serial/Dual/Quad data with
->  * PIO and DMA data read/write operation
->  * Configurable flash access timing
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v2:
->     - Add clocks
->     - For now I've kept realtek,rtl9300-snand to identify the IP block used
->       in the various rtl930x chips. If the consensus is to drop this I can
->       send a v3 with an updated driver to add the chip specific complatibles.
-> 
->  .../bindings/spi/realtek,rtl9300-snand.yaml   | 69 +++++++++++++++++++
->  1 file changed, 69 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
-> new file mode 100644
-> index 000000000000..2d01464e85e5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
-> @@ -0,0 +1,69 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/realtek,rtl9300-snand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
-> +
-> +maintainers:
-> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +description:
-> +  The Realtek RTL9300 SoCs have a built in SPI-NAND controller. It supports
-> +  typical SPI-NAND page cache operations in single, dual or quad IO mode.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - realtek,rtl9301-snand
-> +          - realtek,rtl9302b-snand
-> +          - realtek,rtl9302c-snand
-> +          - realtek,rtl9303-snand
-> +      - const: realtek,rtl9300-snand
-> +
-> +  reg:
-> +    items:
-> +      - description: SPI NAND controller registers address and size
+On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Before accessing the USB area of the RZ/G3S SoC the PWRRDY bit of the
+> SYS_USB_PWRRDY register need to be cleared. When USB area is not used the
+> PWRRDY bit of the SYS_USB_PWRRDY register need to be set. This register i=
+s
+> in the SYSC controller address space and the assert/de-assert of the
+> signal handled by SYSC_USB_PWRRDY was implemented as a reset signal.
+>
+> The USB modules available on the RZ/G3S SoC that need this bit set are:
+> - USB ch0 (supporting host and peripheral mode)
+> - USB ch2 (supporting host mode)
+> - USBPHY control
+>
+> As the USBPHY control is the root device for all the other USB channels
+> (USB ch0, USB ch1) add support to set the PWRRDY for the USB area when
+> initializing the USBPHY control. As this is done though reset signals
+> get the reset array in the USBPHY control driver.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Just 'maxItems: 1'. The description is fairly obvious.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> +
-> +  interrupts:
-> +    items:
-> +      - description: SPI NAND controller interrupt
+Gr{oetje,eeting}s,
 
-Same here.
+                        Geert
 
-> +
-> +  clocks:
-> +    items:
-> +      - description: SPI NAND controller reference clock
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-And here.
-
-> +
-> +  clock-names:
-> +    items:
-> +      - const: spi
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-controller.yaml#
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    spi@1a400 {
-> +      compatible = "realtek,rtl9302c-snand", "realtek,rtl9300-snand";
-> +      reg = <0x1a400 0x44>;
-> +      interrupt-parent = <&intc>;
-> +      interrupts = <19>;
-> +      clocks = <&lx_clk>;
-> +      clock-names = "spi";
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      flash@0 {
-> +        compatible = "spi-nand";
-> +        reg = <0>;
-> +      };
-> +    };
-> -- 
-> 2.46.2
-> 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
