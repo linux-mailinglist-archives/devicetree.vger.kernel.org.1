@@ -1,128 +1,116 @@
-Return-Path: <devicetree+bounces-109017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 316F09949FB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:29:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC190994A59
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:32:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 638B21C249BD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:29:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91ABD1F224D3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:32:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD3B1B81CC;
-	Tue,  8 Oct 2024 12:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="OG00Gvxx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E0721D0BAA;
+	Tue,  8 Oct 2024 12:32:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.17.21])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3BAF4C97
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 12:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.17.21
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FFCE1E493;
+	Tue,  8 Oct 2024 12:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728390478; cv=none; b=TmgnpQX5crGSmuUVZb1Sk2n089jp4+zPW+A7piP9lDKFveuBL9iCWsP36hSw10zY+/4CfWXE/bHycw3M9iB4cbC6GfWFo+hzxmYfCPHRQsHbTyTv3W7iEdQN5/sdZL4cnI63oWhAJr/pMOUi9ePcn+UdnWApGmw8HNDVjxuC5AU=
+	t=1728390731; cv=none; b=o0wE9ohzB5L12osBD3bsYK+8ANIfkbxV+hdhk3bW/E+RJ04e+bu5qEA3JZpVZzo+MR3b5ck2yHrfQoqsg77cysKt0W+fv16GY83tl65B8Ct+3DwWYFTZAoEclrn4bluzONVUW0jy4tPQ8ftK8Uq+bkL+fz90n1iDFjyxOfHH1mI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728390478; c=relaxed/simple;
-	bh=E0wdjmnHspC2Mrn22hKj7qrpLO+zMv0egQLIivyJecc=;
-	h=From:To:Cc:References:In-Reply-To:Subject:Date:Message-ID:
-	 MIME-Version:Content-Type; b=BBngDq5MH82wBQv6BBVElPXjU45yfnnu3gEiNyL41RJ8qVPAomw4j5IYBexfHIhcZciCtgWdqbw1Tw7sQD0MBf9Fu4f0asJx7nLWxSWqk12zFKmS7zIorVcN7bLzLW4OMBQ0eXrOcn6JqajeMjCUud3JPiTqYNxl03tnkkNPPJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=OG00Gvxx; arc=none smtp.client-ip=212.227.17.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
-	s=s31663417; t=1728390441; x=1728995241;
-	i=markus.stockhausen@gmx.de;
-	bh=1eE7bBm9hVIVa8mkUL7DOWfcwttFz7lKkwYrwCdnzMU=;
-	h=X-UI-Sender-Class:From:To:Cc:References:In-Reply-To:Subject:Date:
-	 Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:cc:
-	 content-transfer-encoding:content-type:date:from:message-id:
-	 mime-version:reply-to:subject:to;
-	b=OG00GvxxMRfbyT52dFmFWmMiq+aLbkZQDZvxWMqCeXdC8ofze2zSzg6qoDN30OLr
-	 FZld8ozgLRePfSKNG3fn5yRSt3ZD4Ul4d97anXQMq/PJW8p2oGpC98Junxftvjtsd
-	 pHoRpWwFGfaknuDLCW6VxCSYNctAOzsMdQtrJZYeG47fX9xfVzhg3P8PJxNxmY4pM
-	 3aUJLEChmra0WxtWuuF0NuT81/M4u+Opw6zQUqUQYI4btIwI5+g2dmd7KNJzX3kGt
-	 ZUPU5Nv/92HvJRebL1XXa2B5YciA4ccBRkcjdHsANt69DU2l6UAg3II/NXhVNGN0W
-	 HDM+Bl3N2UiQe0z+SQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from colnote55 ([94.31.70.45]) by mail.gmx.net (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1N9Mtg-1u1ELt1k9M-010cpd; Tue, 08
- Oct 2024 14:27:21 +0200
-From: <markus.stockhausen@gmx.de>
-To: "'Rob Herring'" <robh@kernel.org>
-Cc: <linux-phy@lists.infradead.org>,
-	<chris.packham@alliedtelesis.co.nz>,
-	<devicetree@vger.kernel.org>,
-	<krzk@kernel.org>
-References: <20241007163623.3274510-1-markus.stockhausen@gmx.de> <20241007163623.3274510-2-markus.stockhausen@gmx.de> <20241007193044.GA2255474-robh@kernel.org>
-In-Reply-To: <20241007193044.GA2255474-robh@kernel.org>
-Subject: AW: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes PHY binding
-Date: Tue, 8 Oct 2024 14:27:18 +0200
-Message-ID: <001f01db197d$6c842e90$458c8bb0$@gmx.de>
+	s=arc-20240116; t=1728390731; c=relaxed/simple;
+	bh=boKgprdVHWc+66TWJ3kzgy/Y45mAsLRyTN0mo3JmbiQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=S7vL05TytOEiGed+fNOIs2dN17u12YhXtBdSsMVwTrO8W7EcLq9ilGA4kWRjiso0b5hBcoJ1O1tFz+4QsFpF3kRld6J1ULaDCCpNayTquJNE2aTvuzblYeVOmBGJC0ubonEk5UzW0I8aia66sATBofYF5Qvibvcr7OSTcweUNpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7C0EADA7;
+	Tue,  8 Oct 2024 05:32:39 -0700 (PDT)
+Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 73B733F73F;
+	Tue,  8 Oct 2024 05:32:07 -0700 (PDT)
+Date: Tue, 8 Oct 2024 13:32:04 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Ryan Walklin <ryan@testtoast.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu
+ Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
+ Holland <samuel@sholland.org>, linux-sound@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Marcus Cooper
+ <codekipper@gmail.com>
+Subject: Re: [PATCH 2/6] ASoC: sun4i-codec: Add playback only flag to quirks
+Message-ID: <20241008133204.3ea38338@donnerap.manchester.arm.com>
+In-Reply-To: <20240929100750.860329-3-ryan@testtoast.com>
+References: <20240929100750.860329-1-ryan@testtoast.com>
+	<20240929100750.860329-3-ryan@testtoast.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain;
-	charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: de
-Thread-Index: AQFmt424TDky7oOEBHAYnHfWLjuWPwFdE8X8AiR5ApazSXrHYA==
-X-Provags-ID: V03:K1:cR82ijsXV3rl3PO4cQlu69T5MLLvQgL62YJdCwh05i5IBTEdXE8
- jt55/NnLgptUVBzq1CWO045G8SHtoRlPRyhNCyNgGrMAhLZpPLYI4Hg0NgNBZ+5LmCWUcHP
- MBjaOW6uGDedX/6OLWcCXoGN554JwE7GYFHEJGtnEWI3w+ca7kON/bjbNtEYSRCl0LwSsCn
- 0xmnnhUdF6vsSIbzegtbg==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:lxAtLcTVHek=;qLacDJsKEGTvwRF+UOXxrnQjhU6
- bAPp1a6N5q+6ptU/oWWVcVPQgBFEzRei/9r7R0O2U2ATlYJkkmhry+4sEvrUMo1Mjq2OPbfGB
- wWmmX3u+4CzjnqJfOf+4C9kSW6ihpvIa+WKmEGe7psEcU8LVzKC/mGdZiC36CTZXhGJ9LFvK/
- 6fFJUl4qLQ+StP4Cp4kRsF9r5OM/BxCKkTeHSdYmKkteNtPwOZ9b+JPPb+OuNutOaRc7VZ8nX
- E2a61ptgKh/OqtlaTzfbxiqPomdNbdIon+OSvuggnu6xbj4eaP7oq2jwnzeLWPDA+2YFTA1tL
- JExgD1r6JOMWEY0bkLPIudP8k+NfYnKc2hnb7V1auOB6AxnD8ydytM9S3kGIUDHw4UuFUjeCU
- 1nSUxmQ1TUdfG57xlaZmBtbz3tvFf5PkYV5/EwCE+fJi3NLJ4GKR/5Q/I8dakIoWL6trDQoN1
- JX3XiS3BXcQm0+PSH94/UYuOhAadDmepsXstZXwRvF2062A6AJ+0ySlIntMA0wFzdndEpES4V
- KdqxgXK0Y4Ik5WSVWhiPYxyTPu0X1j3j/+CLTvvlgWiPizr+eRuiDHH+3A3gP0DdRkUmjNjgF
- C/YmC9FoLhIYrIq2HzqUjVsidIV6OHLPxiLdnIFaCiaC2fXHTYgDNEP7msbt0OdTlEYMt8faQ
- CezkQSNGZE5jIFNTS/A78ZAfR10CwTbtL6yRvR687dsMrOq88HC+Y6si3SpvOUVVp/i2mZtjZ
- rmahNJhu6Izw1PTF54qaltKPy9+mgwsFauHKFmBGY9HECaDSt9wodMKIKBZfXD4jC8rhuov/m
- fWjnLBrUNBst/JLTHyptrSDw==
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-> -----Urspr=FCngliche Nachricht-----
-> Von: Rob Herring <robh@kernel.org>=20
-> Gesendet: Montag, 7. Oktober 2024 21:31
-> An: Markus Stockhausen <markus.stockhausen@gmx.de>
-> Cc: linux-phy@lists.infradead.org; chris.packham@alliedtelesis.co.nz;
-devicetree@vger.kernel.org; krzk@kernel.org
-> Betreff: Re: [PATCH v2 1/3] dt-bindings: phy: add realtek,otto-serdes =
-PHY
-binding
-> ...
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    pattern: "^serdes@[0-9a-f]+$"
->
-> The node name for phy providers is 'phy'.
+On Sun, 29 Sep 2024 23:06:03 +1300
+Ryan Walklin <ryan@testtoast.com> wrote:
 
-Hi Rob,
+> From: Marcus Cooper <codekipper@gmail.com>
+> 
+> Some devices only have the playback side of the codec implemented
+> so add a quirk to check for this.
 
-I found different configs in other files. E.g.
+That's odd, is this really the only place where we need to 
+consider the lack of sampling functionality? I mean it just prevents the
+fields to be populated in our internal struct, how does the rest of the
+kernel know that there is no capture? Is that magically achieved by those
+fields being zero now?
 
-- torrent-phy@f0fb500000
-- serdes: serdes@e2004010
-- serdes_phy: phy@8901000
+Cheers,
+Andre
 
-Do I understand correctly that I should go with "serdes: phy@1b00e780"?=20
-If yes, adapt the $nodename pattern accordingly or drop it as in most =
-other
-files?
-
-Best regards.
-
-Markus
+> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
+> ---
+>  sound/soc/sunxi/sun4i-codec.c | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
+> diff --git a/sound/soc/sunxi/sun4i-codec.c b/sound/soc/sunxi/sun4i-codec.c
+> index 37f5678b55291..312d2655c3f4e 100644
+> --- a/sound/soc/sunxi/sun4i-codec.c
+> +++ b/sound/soc/sunxi/sun4i-codec.c
+> @@ -1571,6 +1571,7 @@ struct sun4i_codec_quirks {
+>  	unsigned int reg_dac_txdata;	/* TX FIFO offset for DMA config */
+>  	unsigned int reg_adc_rxdata;	/* RX FIFO offset for DMA config */
+>  	bool has_reset;
+> +	bool playback_only;
+>  };
+>  
+>  static const struct sun4i_codec_quirks sun4i_codec_quirks = {
+> @@ -1779,10 +1780,13 @@ static int sun4i_codec_probe(struct platform_device *pdev)
+>  	scodec->playback_dma_data.maxburst = 8;
+>  	scodec->playback_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+>  
+> -	/* DMA configuration for RX FIFO */
+> -	scodec->capture_dma_data.addr = res->start + quirks->reg_adc_rxdata;
+> -	scodec->capture_dma_data.maxburst = 8;
+> -	scodec->capture_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> +	if (!quirks->playback_only) {
+> +		/* DMA configuration for RX FIFO */
+> +		scodec->capture_dma_data.addr = res->start +
+> +						quirks->reg_adc_rxdata;
+> +		scodec->capture_dma_data.maxburst = 8;
+> +		scodec->capture_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
+> +	}
+>  
+>  	ret = devm_snd_soc_register_component(&pdev->dev, quirks->codec,
+>  				     &sun4i_codec_dai, 1);
 
 
