@@ -1,211 +1,217 @@
-Return-Path: <devicetree+bounces-109250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F270995B75
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:17:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CAC89995BA0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:27:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C4E12842DA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 23:17:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84ED7285B0B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 23:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AADCB2178EA;
-	Tue,  8 Oct 2024 23:17:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB0B7217917;
+	Tue,  8 Oct 2024 23:27:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="fWo+Fr9m"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i1eLQbNq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+Received: from mail-pj1-f48.google.com (mail-pj1-f48.google.com [209.85.216.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 396DB21500E
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 23:17:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBFE12178FE;
+	Tue,  8 Oct 2024 23:27:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728429473; cv=none; b=XjmUPU6X1QB3FLxguWDMNG+BNxXofp6ZQwXTvKXt9IXoNUvi7TZM/9OuI6KWim/PACleSrCsSuoKgbfa9V6XJP4yZeFwQ1vFZQm1pWqQy69eCN2YNRjoqsXGgGKRWXkU6MZWfioJnqyUCvzVCwtLUF0ZdsaKI3UhnO8tQcBUal4=
+	t=1728430063; cv=none; b=ZW/toIRWuWRDPkC7LE8AiUtgxDzUCub/yU51hORs8KTA2Lxr4S6cSDuSZYwk68bMzCJK5kMB9R3EQsw/ygtzrC6ilikpde8kHnmgHVRnHkuFi1PqII9Z8qgRjD1XR2htOq46FFcXHeX2JaVPfx937+pb/Bcm5nTWjcF2GQOXHNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728429473; c=relaxed/simple;
-	bh=CzD38ZoFkgG9d1H2++XkkVz+Mfbolc0I0BV6YX0ZnoY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iFtpmp03KQi9+0AdwNH3YnaPxlZJeYAqSErZABN6nPIqpnFPc1FJMapPnY0zK15ohYShyq43x/NuMKPULfwB5PLjP0HH9fRb3Ro6kAqm/+drVY5LLmHisy9NdIOI7rb2dSoW/dVvhi0lxP+y4nLNtA8VR7BXr4SwqQm+hjmh1VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=fWo+Fr9m; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2a9733f00so4669a91.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 16:17:51 -0700 (PDT)
+	s=arc-20240116; t=1728430063; c=relaxed/simple;
+	bh=vdtEsmXJT3wve2O6pQuPZ14Hb482hs87xR59pTW8i5g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AEhLRhDbpL8EFE888ZwzPL5gWv8sMWxEHsVA/Yrc7sQzyTPjUglDfh7DQsrdYNt2MgzHwQficOrsS3eRlRPZ4Q6ePP6NzdAaWJR6dp+7yFCStCZxcYhkG/m2TNDgsJRm3u7v9GN1uGxvFAKimAv9v3o7k4+wX538m19scw7gwt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i1eLQbNq; arc=none smtp.client-ip=209.85.216.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f48.google.com with SMTP id 98e67ed59e1d1-2e29522f0f1so672633a91.0;
+        Tue, 08 Oct 2024 16:27:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1728429471; x=1729034271; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=84oqUYHHA4jnRjNWhrPRTTubksgbEji8zyCvQWhxvkk=;
-        b=fWo+Fr9mdBUeTJIbpXTTPPaL0wwvNmyvBm/204yPl2OuSoYkPhksT13m6iW7XoI3CV
-         xTFvHgqwy3UP5RsdcBwjM0+GWAg6pFKzEOFNwWcYaX1CIbeZvno3g0R4z7C1pf0yhwAi
-         dG9guae+6n74xhaw8tuTqokoWnFLlPdQLqc3MnMxc3Ir/DfSfnZ2pvF9fqPJoQ1C7mLY
-         bJCjU9i1cp4Gj3YvMD85Hxa3GayE2igy1e5uEtKKdcFX/zKzmzHp3Kz5V6hB6/iEYtJO
-         PYC93kDv9N8pXMgKslIiYiHqRmScaWHrhLpjxHcgMi+yZjXJqV/fN9nNMhznHyA5cJhI
-         eZcQ==
+        d=gmail.com; s=20230601; t=1728430061; x=1729034861; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=WPAgXuOBQUvSa+7Ar+VJpB36qiWIAixSpKmgUg69p94=;
+        b=i1eLQbNq3mrQhu0Bq3QlWXSaNNObPhGJwWYpqREyrficHj3HSUEavfiWEx1Crkf91O
+         s/YYt0axy/mWd1f05cgUife3757vvXcLhgfxnt1xuzh3gcNIUu01+E/uyvDHuFTZJu3a
+         dDWWwSWlf8Y8c9d3M6Ob1ED9wf+WcN4aROqoNu8RGWy4SZEh4Hc74mwNhEo6BTGRSdXr
+         9BPYgw+OsVPChjzsa3Lcsh7/3WcpCNP5u4lIVniAF/doGZM5pvw70fEXDgKSE2bq9YGz
+         Ds0eYrHG6Er+zNM2/kcnSLybf+BMeZGHQHeuFQJr+4/A2j3L4hoqRXlWJbxkDiSNefzi
+         K9rw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728429471; x=1729034271;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=84oqUYHHA4jnRjNWhrPRTTubksgbEji8zyCvQWhxvkk=;
-        b=rfywgyy64vtVA2LCqggmtrY3rqV3irtUKymgO6DJxtXObMb9Kc+Pe02iXthSLH1y+y
-         L3P1bp58LUvYJfnxlzhXHGYMabWDoqCRu9pmWei+55cdRGZBf5VepDst7b/mVYCGDQuG
-         jBwBOkd6t0sAX1D9ipGbeP8+m6e4fFCUoQG4B0t7WKvHkc8lq8KLgIJX9gButn7QiD1h
-         nptxiGiKcOhkF13uKRe3+3oZCERa2oCq2S6gnSW/Yd51oEAY6cFcJbXWq1WrmSVV7Ymn
-         trMHvkXxsKfbYsbO98rrZxLbeB9gdhKzMSfC5aFPyr+0rBFhPfqTiy6OOkUTg2Dl0yAL
-         lE3Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWb+CRDRduk6biaG4sBkEP/ooAjiTxrmY8uNzT/jrKGZXwOpHHRQFrfu4xeE5gxbA8XCvDiZKuHlWtA@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzaj9fAHvoh8TIVoQUDj6u2wdc10kYKGFJT0t5i0AgsjWuu3kBn
-	c45QQsPHhoHOUPInDbWvsF2vfmexNWH9rsWKMCw8R0QXhJxas18hxO+gIuk9FCU=
-X-Google-Smtp-Source: AGHT+IGxbclCqX1bt/+XMXoEabpsMwXOYl+1J5QNTxY9IdVlmLlwPn5SdI2aGJZaqusXEkmXDVEomQ==
-X-Received: by 2002:a17:90a:d384:b0:2e2:7f8f:3ad5 with SMTP id 98e67ed59e1d1-2e27f8f3c85mr7490705a91.2.1728429470996;
-        Tue, 08 Oct 2024 16:17:50 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2a5caa753sm140231a91.54.2024.10.08.16.17.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 16:17:50 -0700 (PDT)
-Date: Tue, 8 Oct 2024 16:17:47 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
-Cc: "corbet@lwn.net" <corbet@lwn.net>, "robh@kernel.org" <robh@kernel.org>,
-	"lorenzo.stoakes@oracle.com" <lorenzo.stoakes@oracle.com>,
-	"dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
-	"vbabka@suse.cz" <vbabka@suse.cz>,
-	"brauner@kernel.org" <brauner@kernel.org>,
-	"akpm@linux-foundation.org" <akpm@linux-foundation.org>,
-	"palmer@dabbelt.com" <palmer@dabbelt.com>,
-	"mingo@redhat.com" <mingo@redhat.com>,
-	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
-	"Liam.Howlett@oracle.com" <Liam.Howlett@oracle.com>,
-	"tglx@linutronix.de" <tglx@linutronix.de>,
-	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-	"oleg@redhat.com" <oleg@redhat.com>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor@kernel.org" <conor@kernel.org>,
-	"ebiederm@xmission.com" <ebiederm@xmission.com>,
-	"hpa@zytor.com" <hpa@zytor.com>,
-	"peterz@infradead.org" <peterz@infradead.org>,
-	"arnd@arndb.de" <arnd@arndb.de>, "bp@alien8.de" <bp@alien8.de>,
-	"kees@kernel.org" <kees@kernel.org>,
-	"x86@kernel.org" <x86@kernel.org>,
-	"shuah@kernel.org" <shuah@kernel.org>,
-	"broonie@kernel.org" <broonie@kernel.org>,
-	"jim.shu@sifive.com" <jim.shu@sifive.com>,
-	"alistair.francis@wdc.com" <alistair.francis@wdc.com>,
-	"cleger@rivosinc.com" <cleger@rivosinc.com>,
-	"kito.cheng@sifive.com" <kito.cheng@sifive.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"samitolvanen@google.com" <samitolvanen@google.com>,
-	"evan@rivosinc.com" <evan@rivosinc.com>,
-	"linux-mm@kvack.org" <linux-mm@kvack.org>,
-	"linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
-	"atishp@rivosinc.com" <atishp@rivosinc.com>,
-	"andybnac@gmail.com" <andybnac@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"charlie@rivosinc.com" <charlie@rivosinc.com>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-	"linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
-	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
-	"richard.henderson@linaro.org" <richard.henderson@linaro.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"alexghiti@rivosinc.com" <alexghiti@rivosinc.com>
-Subject: Re: [PATCH v6 16/33] riscv/shstk: If needed allocate a new shadow
- stack on clone
-Message-ID: <ZwW9m6pqcTFBovuG@debug.ba.rivosinc.com>
-References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
- <20241008-v5_user_cfi_series-v6-16-60d9fe073f37@rivosinc.com>
- <aa75cbd142c51b996423f18769d8b8d7ecc39081.camel@intel.com>
+        d=1e100.net; s=20230601; t=1728430061; x=1729034861;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WPAgXuOBQUvSa+7Ar+VJpB36qiWIAixSpKmgUg69p94=;
+        b=hyRTZmJ49tEaq30GtRPzV7G2HyBWghzpiYctlRGsVhtXcmTGaamPy2DnU/v2Oi6HoP
+         C3RqXF5HnVAuRt+IY+uLbg+YLLeKR91YFBzLahD4uKjd4b7iLRD6m8bWSPUCgRcXQ9qu
+         Wq255SqpfluBxDf+2MDi4SjJVleNi0K1uBUapS9bGKMSS6PG3x6eX2HFYVc6e+eAsiWz
+         IncjJymk4Y/5NTf+JOhsHuyVopJ0wBnEgPyeeQXy1jDBob04HsMRGV11JRq8CELf/ZRv
+         Azq+rQbW6Ngkp5Zpe04Yv+ojkUctCwCQBUlMbDxzu27PUpTZTm6TBwNyAWWnIxpoWAqu
+         B6Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCU44mDTWOLAmDPnuixx+MceV34L43RpqBcUyIUXtpiEkKIukxCh1v/eBUJRvXhElcDNBuM+ObMc0Paduhl3UGvX@vger.kernel.org, AJvYcCUSk0cwTAEuEV/q8Vm8xgk49gSHVMlABO6A5ONCUj/zwIV7gXv2i3i6hrZCVHCOdZX2Zct/J4UGZxKo@vger.kernel.org, AJvYcCUbvoKGrh5WyFvYWDQhximrlr8x4RnEer78ZF7GP5JqzX1GWcmOMiO6J5FDH0S8EdStvCzCDors5Lye53hB@vger.kernel.org, AJvYcCUdSjQq7a/+HsaxdoS2yy5vVXZxbof3MWZrMtnJ0rxOmKh1yv9OyEtq14XYQbjyGL+Di8fyhUZ5jq4x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxR5PnU4hPd3s+3HvXEXEqGMXCpNnZflq0EgAo4s3siYeWfRd5H
+	a0Sjdt2GkaFrBD8tzzfQxRZ0AaIld5a3YHEPe5a9LHsNUwb0v6B8
+X-Google-Smtp-Source: AGHT+IE7vJl5NwmkITb5nr7A6xWeqUgwaHStS4JpHCRMULaY96hgbBwFCRXGZ6E/b/2vgw5IdT0SVw==
+X-Received: by 2002:a17:90a:68c7:b0:2e1:92bb:54a9 with SMTP id 98e67ed59e1d1-2e2a23343b7mr689757a91.12.1728430061030;
+        Tue, 08 Oct 2024 16:27:41 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2a5965e9csm151387a91.41.2024.10.08.16.27.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 16:27:39 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <594e8e50-8322-480e-ae34-3f8e14f3fe18@roeck-us.net>
+Date: Tue, 8 Oct 2024 16:27:37 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa75cbd142c51b996423f18769d8b8d7ecc39081.camel@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with
+ struct clk_parent_data
+To: Stephen Boyd <sboyd@kernel.org>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ patches@lists.linux.dev, kunit-dev@googlegroups.com,
+ linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
+ Brendan Higgins <brendan.higgins@linux.dev>, David Gow
+ <davidgow@google.com>, Rae Moar <rmoar@google.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J.Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>,
+ Saravana Kannan <saravanak@google.com>, Daniel Latypov
+ <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>,
+ Geert Uytterhoeven <geert+renesas@glider.be>
+References: <20240718210513.3801024-1-sboyd@kernel.org>
+ <ba88a29c-f05e-4ca3-82d1-0a634613caee@roeck-us.net>
+ <4216b852-11a2-41ae-bb01-5f9b578ee41b@roeck-us.net>
+ <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org>
+ <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org>
+ <f5f1c42d-77c0-48c7-ac52-3d4a3b5c2b47@roeck-us.net>
+ <4a8abb5f501279de7907629f4dd6be24.sboyd@kernel.org>
+ <3e1de608-008c-4439-acd2-647a288dcdc0@roeck-us.net>
+ <cd31493888acc2b64a4986954dfa43ae.sboyd@kernel.org>
+ <cb1e0119-6e3e-4fd2-92ea-3fec18f5843d@roeck-us.net>
+ <ccd372f2754e80d6c01e38a9596bed34.sboyd@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <ccd372f2754e80d6c01e38a9596bed34.sboyd@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Oct 08, 2024 at 10:55:29PM +0000, Edgecombe, Rick P wrote:
->On Tue, 2024-10-08 at 15:36 -0700, Deepak Gupta wrote:
->> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
->> +					   const struct kernel_clone_args *args)
->> +{
->> +	unsigned long addr, size;
->> +
->> +	/* If shadow stack is not supported, return 0 */
->> +	if (!cpu_supports_shadow_stack())
->> +		return 0;
->> +
->> +	/*
->> +	 * If shadow stack is not enabled on the new thread, skip any
->> +	 * switch to a new shadow stack.
->> +	 */
->> +	if (!is_shstk_enabled(tsk))
->> +		return 0;
->> +
->> +	/*
->> +	 * For CLONE_VFORK the child will share the parents shadow stack.
->> +	 * Set base = 0 and size = 0, this is special means to track this state
->> +	 * so the freeing logic run for child knows to leave it alone.
->> +	 */
->> +	if (args->flags & CLONE_VFORK) {
->> +		set_shstk_base(tsk, 0, 0);
->> +		return 0;
->> +	}
->> +
->> +	/*
->> +	 * For !CLONE_VM the child will use a copy of the parents shadow
->> +	 * stack.
->> +	 */
->> +	if (!(args->flags & CLONE_VM))
->> +		return 0;
->> +
->> +	/*
->> +	 * reaching here means, CLONE_VM was specified and thus a separate shadow
->> +	 * stack is needed for new cloned thread. Note: below allocation is happening
->> +	 * using current mm.
->> +	 */
->> +	size = calc_shstk_size(args->stack_size);
->> +	addr = allocate_shadow_stack(0, size, 0, false);
->> +	if (IS_ERR_VALUE(addr))
->> +		return addr;
->> +
->> +	set_shstk_base(tsk, addr, size);
->> +
->> +	return addr + size;
->> +}
->
->A lot of this patch and the previous one is similar to x86's and arm's. It great
->that we can have consistency around this behavior.
->
->There might be enough consistency to refactor some of the arch code into a
->kernel/shstk.c.
->
->Should we try?
+On 10/8/24 16:12, Stephen Boyd wrote:
+> Quoting Guenter Roeck (2024-10-03 21:52:09)
+>> On 10/3/24 17:42, Stephen Boyd wrote:
+>>>
+>>> Can you please describe how you run the kunit test? And provide the qemu
+>>> command you run to boot arm64 with acpi?
+>>>
+>>
+>> Example command line:
+>>
+>> qemu-system-aarch64 -M virt -m 512 \
+>>        -kernel arch/arm64/boot/Image -no-reboot -nographic \
+>>        -snapshot \
+>>        -bios /opt/buildbot/rootfs/arm64/../firmware/QEMU_EFI-aarch64.fd \
+>>        -device virtio-blk-device,drive=d0 \
+>>        -drive file=rootfs.ext2,if=none,id=d0,format=raw \
+>>        -cpu cortex-a57 -serial stdio -monitor none -no-reboot \
+>>        --append "kunit.stats_enabled=2 kunit.filter=speed>slow root=/dev/vda rootwait earlycon=pl011,0x9000000 console=ttyAMA0"
+>>
+>> That works fine for me. Configuration is arm64 defconfig plus various
+>> debug and kunit options. I built the efi image myself from sources.
+>> The root file system is from buildroot with modified init script.
+>> kunit tests are all built into the kernel and run during boot.
+> 
+> Thanks. I figured out that I was missing enabling CONFIG_ACPI. Here's my
+> commandline
+> 
+> ./tools/testing/kunit/kunit.py run --arch=arm64 \
+> 	--kunitconfig=drivers/of \
+> 	--qemu_args="-bios /usr/share/qemu-efi-aarch64/QEMU_EFI.fd -smp 2" \
+> 	--kconfig_add="CONFIG_ACPI=y" \
+> 	--kernel_args="earlycon=pl011,0x9000000"
+> 
+> Now I can boot and reproduce the failure, but there's another problem.
+> ACPI disables itself when it fails to find tables.
+> 
+>   ACPI: Unable to load the System Description Tables
+> 
+> This calls disable_acpi() which sets acpi_disabled to 1. This happens
+> before the unit test runs, meaning we can't reliably use 'acpi_disabled'
+> as a method to skip.
+> 
+> The best I can come up with then is to test for a NULL of_root when
+> CONFIG_ARM64 and CONFIG_ACPI are enabled, because the tests
+> intentionally don't work when both those configs are enabled and the
+> 'of_root' isn't populated. In all other cases the 'of_root' missing is a
+> bug. I'll probably make this into some sort of kunit helper function in
+> of_private.h and send it to DT maintainers.
 
-Yeah you're right. Honestly, I've been shameless in adapting most of the flows
-from x86 `shstk.c` for risc-v. So thank you for that.
+Sounds good. Thanks a lot for tracking this down.
 
-Now that we've `ARCH_HAS_USER_SHADOW_STACK` part of multiple patch series (riscv
-shadowstack, clone3 and I think arm64 gcs series as well). It's probably the
-appropriate time to find common grounds.
+That makes me wonder though why only arm64 has that restriction. Both
+riscv and loongarch have ACPI enabled in their defconfig files but call
+unflatten_device_tree() unconditionally.
 
-This is what I suggest
+Oh well ...
 
-- move most of the common/arch agnostic shadow stack stuff in kernel/shstk.c
-   This gets part of compile if `ARCH_HAS_USER_SHADOW_STACK` is enabled/selected.
-
-- allow arch specific branch out guard checks for "if cpu supports", "is shadow stack
-   enabled on the task_struct" (I expect each arch layout of task_struct will be
-   different, no point finding common ground there), etc.
-
-I think it's worth a try. 
-If you already don't have patches, I'll spend some time to see what it takes to
-converge in my next version. If I end up into some roadblock, will use this thread
-for further discussion.
+Thanks,
+Guenter
 
 
