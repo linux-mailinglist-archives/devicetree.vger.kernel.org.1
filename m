@@ -1,241 +1,276 @@
-Return-Path: <devicetree+bounces-108807-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72F67993F3D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:29:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2E4D993F43
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:31:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E206EB21483
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:29:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34E3B1F23AC0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD3B1DEFF4;
-	Tue,  8 Oct 2024 06:27:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCA9D15EFA1;
+	Tue,  8 Oct 2024 06:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="XTIHt7n8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JlO8WeqG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C281DEFE3
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 06:27:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F49813D52B;
+	Tue,  8 Oct 2024 06:29:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728368876; cv=none; b=BntEPCjJZi9rkDLdXgPjM9gbAtRnVv1i//i8aNybtFcYUH2AP3+DRiern+CQO0Z4dMG8IEyVEvsbA6oENY7ZUWdmoCBN1cB1Jqwidu+3i2RSTh1hBt+kBkb2x9n9DAJWA3Et9MN8EPbFdJShLMHBOx0UWhDGKGtnk/UFX5EorAk=
+	t=1728368994; cv=none; b=YI5ooiijF5B3jLNarYwaewErkrusq090syWBJK98spiUSsV2JnVOFTROu/MJ1rDa93GEhOKY1Zbq4mKQLMwn5imfNedJiSYXYlrpjpRmVbTq3qr6149NBjfUCVz/sUqTjnvPYBFc6KA4aqoyNpKhwUiyxMnRhs+b3nk2FJB5vCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728368876; c=relaxed/simple;
-	bh=sRrs971ywU2XBHAio/v+KH3KPEi6b2tpjaOK3Y8GDYY=;
+	s=arc-20240116; t=1728368994; c=relaxed/simple;
+	bh=lLRq9apn5NED+qAIBew+fsy0dmv5IoCjdUu8Kffvc+Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jTB2bMsHOw9xdJ/7w8XsteP3mgYDQGaE9e1OFyFbvLbBYBOgdHDILOQ4p4PA9s7pO1CJfA3LSSAfqGWdxr3+50KPNcurOvq/mBeELL76rOJ8D5xhTOnJA7kMirzdKhVvJl+2ecZBrv2MR1c99GuDp6dzz6ftS+1RHR/1epqCgj8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=XTIHt7n8; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e28bd0bd13so106220a91.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 23:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1728368873; x=1728973673; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=yD1uY1GFMUYlwE1Gpa3bWH24Ki4C8p8PksybGuIxKXE=;
-        b=XTIHt7n8eFdZ98U/iFWue/AxK+I9gGtVd1ksnkBACkNE4Ir/TPvhqYx+tkzy8Sl5J5
-         Swmen6YabiMoYR83mUXPFuus/OrvInPq/eOgEJjayw11BERkTFwsaDqhqR8TEnNdadX2
-         HSjfp0VtceYiCRaLbHfQ1dlUm01Y+B+4/hIvll01ntHwoKENIJ5+LxiF9Ek2G2TaLjJI
-         kyQOrkZSTZ1/WGp6V+i5slBo/mqB39+TwKTPE9YGXfyY2ffObMucn5Q6jg3XMnjAHtjA
-         Q+34YskpP/mU99fti72DpH+Ol4kOXEWdvmkEy1ffzlCW4BcziiNvJrrIUm2NZgiGUvsJ
-         hdVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728368873; x=1728973673;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yD1uY1GFMUYlwE1Gpa3bWH24Ki4C8p8PksybGuIxKXE=;
-        b=vzIlnQEG+CAsKHb9bVfbmgxZzzk5jjFMSXSxvUcEFeBmDElDn38Fo1jLaJSfbNKj5G
-         mASGSU2LnLpvzIqv73foytKOExmlaWRL5LevhOf5wzsWu5qQK6vi4YfT4z/VaqwGnbaN
-         3Pshhem1vwGRLXWaku4Yd/XRGFrkxbpdUNxeCHR/u3stuIg3wYHp+L6SuMKPtdohUebn
-         +CQn2rZOn8M4IuUSmXezPTw7NOcHg6I6i7aj9JpakyfccmS1g3O/K5p1Co6TvixzAFxA
-         A3scUvj07gPhEiI+J/KBExwH94QCYK/YERJ1AGi6cmPZZGLvud1vEp7IBlE+2aZnpJQj
-         B5uA==
-X-Forwarded-Encrypted: i=1; AJvYcCWE7iPpe0FKGiLrFvOuO7tLRNcxcLdOh/qevu0d0NjpLN/iOQR6s9MRF03dW+Wu9XYkQ47Bz0qFmGyL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwPRLe5OsLX16E9Ysk32hDan4/EhL4KagFjiV8i1IanbnH21gJM
-	vhvnWbipvebnvc2y3ewNhNzcJ2WyqZJUsvQjgayv5qOwP+K4QL//C/hcezDYuJ4=
-X-Google-Smtp-Source: AGHT+IF/ZQHlU6tp9Sg21rBMwoL6ZDWlzQEcykMAFPhKfSpu/YJnzOfJudFoJo575FCLm+0FY5JUkg==
-X-Received: by 2002:a17:90b:1b05:b0:2d3:cd5c:15bb with SMTP id 98e67ed59e1d1-2e1e63698a6mr17009604a91.25.1728368873537;
-        Mon, 07 Oct 2024 23:27:53 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e28b773a77sm464805a91.11.2024.10.07.23.27.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 07 Oct 2024 23:27:53 -0700 (PDT)
-Date: Mon, 7 Oct 2024 23:27:49 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Zong Li <zong.li@sifive.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, broonie@kernel.org,
-	rick.p.edgecombe@intel.com
-Subject: Re: [PATCH 16/33] riscv/shstk: If needed allocate a new shadow stack
- on clone
-Message-ID: <ZwTQ5c+YOQFHa4YC@debug.ba.rivosinc.com>
-References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
- <20241001-v5_user_cfi_series-v1-16-3ba65b6e550f@rivosinc.com>
- <CANXhq0rpwQkZ9+mZLGVUq=r4WiA8BbZ-eeTDogf3fzeEPqeeqA@mail.gmail.com>
- <ZwRvAEwFbrpq3zZq@debug.ba.rivosinc.com>
- <CANXhq0qaokjDC9hb75_dpGuyOd_ex8+q7YNe8pAg7dbTcxuLSg@mail.gmail.com>
- <ZwTDonkiATv999sS@debug.ba.rivosinc.com>
- <CANXhq0r611Hi7pohDGRXhvi2E_uOFjwLRDrqZcL2WdLHcs+oHA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=W5LKXapLFV73aIHQXuL9LH3FDAy+kjQkLxnzYxOuhZWGVRRiW67faZmesCBb9VrbYRPx+biqt1a1fSNh0OAg9ybOSGZ7JlSSqnt8fdoXMqy4iSgjtJwrml2Tc7zLg4FF7hNANQ2mfcECk7awJzI3LVK552tz775IgSeWswv+gPI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JlO8WeqG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D667C4CEC7;
+	Tue,  8 Oct 2024 06:29:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728368994;
+	bh=lLRq9apn5NED+qAIBew+fsy0dmv5IoCjdUu8Kffvc+Y=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=JlO8WeqGY8C9lyhIjrN6exrYc8/oYCgmT2ul1B17ltTjI/nskT2PcRaZ7dG0cU9vc
+	 4t9UqdUUov8PlWQWSQ6NvKVuOwFEHZsnGij8kdKLFwIDFb1hwUIUNDuYmZO4ChkQ3T
+	 nPZnjUep9oT0odlqu7JCdW0soVUDJaxituNDYSIqtpAFAVFknur5o36oYFcExWuLkr
+	 kbHR6dI1fBeKsrdAchAqbey1R+U9fanegMPKnlx6B6wpc7E7DY25Qtz0RRfXvP6ibb
+	 WgOmMKHsXtMGna7H3NK9XHpR7N1AebLsC3CvH1lk+4N1eAE2EfujBfMPFMizHo5Xib
+	 O9Aq2Mu+lt3mw==
+Date: Tue, 8 Oct 2024 08:29:50 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Helgaas <bhelgaas@google.com>, Linus Walleij <linus.walleij@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Subject: Re: [PATCH v2 02/14] dt-bindings: pinctrl: Add RaspberryPi RP1
+ gpio/pinctrl/pinmux bindings
+Message-ID: <csj452uzkug7nz6yygers6curpo2toj3pwmsa5ka2222hlfspf@jqumtwecvrdq>
+References: <cover.1728300189.git.andrea.porta@suse.com>
+ <0589448fa41bf7f3e951a75b70226a9873db554f.1728300189.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANXhq0r611Hi7pohDGRXhvi2E_uOFjwLRDrqZcL2WdLHcs+oHA@mail.gmail.com>
+In-Reply-To: <0589448fa41bf7f3e951a75b70226a9873db554f.1728300189.git.andrea.porta@suse.com>
 
-On Tue, Oct 08, 2024 at 02:18:58PM +0800, Zong Li wrote:
->On Tue, Oct 8, 2024 at 1:31 PM Deepak Gupta <debug@rivosinc.com> wrote:
->>
->> On Tue, Oct 08, 2024 at 01:16:17PM +0800, Zong Li wrote:
->> >On Tue, Oct 8, 2024 at 7:30 AM Deepak Gupta <debug@rivosinc.com> wrote:
->> >>
->> >> On Mon, Oct 07, 2024 at 04:17:47PM +0800, Zong Li wrote:
->> >> >On Wed, Oct 2, 2024 at 12:20 AM Deepak Gupta <debug@rivosinc.com> wrote:
->> >> >>
->> >> >> Userspace specifies CLONE_VM to share address space and spawn new thread.
->> >> >> `clone` allow userspace to specify a new stack for new thread. However
->> >> >> there is no way to specify new shadow stack base address without changing
->> >> >> API. This patch allocates a new shadow stack whenever CLONE_VM is given.
->> >> >>
->> >> >> In case of CLONE_VFORK, parent is suspended until child finishes and thus
->> >> >> can child use parent shadow stack. In case of !CLONE_VM, COW kicks in
->> >> >> because entire address space is copied from parent to child.
->> >> >>
->> >> >> `clone3` is extensible and can provide mechanisms using which shadow stack
->> >> >> as an input parameter can be provided. This is not settled yet and being
->> >> >> extensively discussed on mailing list. Once that's settled, this commit
->> >> >> will adapt to that.
->> >> >>
->> >> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
->> >> >> ---
->> >> >>  arch/riscv/include/asm/usercfi.h |  25 ++++++++
->> >>
->> >> ... snipped...
->> >>
->> >> >> +
->> >> >> +/*
->> >> >> + * This gets called during clone/clone3/fork. And is needed to allocate a shadow stack for
->> >> >> + * cases where CLONE_VM is specified and thus a different stack is specified by user. We
->> >> >> + * thus need a separate shadow stack too. How does separate shadow stack is specified by
->> >> >> + * user is still being debated. Once that's settled, remove this part of the comment.
->> >> >> + * This function simply returns 0 if shadow stack are not supported or if separate shadow
->> >> >> + * stack allocation is not needed (like in case of !CLONE_VM)
->> >> >> + */
->> >> >> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
->> >> >> +                                          const struct kernel_clone_args *args)
->> >> >> +{
->> >> >> +       unsigned long addr, size;
->> >> >> +
->> >> >> +       /* If shadow stack is not supported, return 0 */
->> >> >> +       if (!cpu_supports_shadow_stack())
->> >> >> +               return 0;
->> >> >> +
->> >> >> +       /*
->> >> >> +        * If shadow stack is not enabled on the new thread, skip any
->> >> >> +        * switch to a new shadow stack.
->> >> >> +        */
->> >> >> +       if (is_shstk_enabled(tsk))
->> >> >
->> >> >Hi Deepak,
->> >> >Should it be '!' is_shstk_enabled(tsk)?
->> >>
->> >> Yes it is a bug. It seems like fork without CLONE_VM or with CLONE_VFORK, it was returning
->> >> 0 anyways. And in the case of CLONE_VM (used by pthread), it was not doing the right thing.
->> >
->> >Hi Deepak,
->> >I'd like to know if I understand correctly. Could I know whether there
->> >might also be a risk when the user program doesn't enable the CFI and
->> >the kernel doesn't activate CFI. Because this flow will still try to
->> >allocate the shadow stack and execute the ssamowap command. Thanks
->>
->> `shstk_alloc_thread_stack` is only called from `copy_thread` and  allocates and
->> returns non-zero (positive value) for ssp only if `CLONE_VM` is specified.
->> `CLONE_VM` means that address space is shared and userspace has allocated
->> separate stack. This flow is ensuring that newly created thread with separate
->> data stack gets a separate shadow stack as well.
->>
->> Retruning zero value from `shstk_alloc_thread_stack` means that, no need to
->> allocate a shadow stack. If you look at `copy_thread` function, it simply sets
->> the returned ssp in newly created task's task_struct (if it was non-zero).
->> If returned ssp was zero, `copy_thread` doesn't do anything. Thus whatever is
->> current task settings are that will be copied over to new forked/cloned task.
->> If current task had shadow stack enabled, new task will also get it enabled at
->> same address (to be COWed later).
->>
->> Any task get shadow stack enabled for first time using new prctls (see prctl
->> patches).
->>
->> So only time `ssamoswap` will be exercised will be are
->> - User issues enabling `prctl` (it'll be issued from loader)
->> - fork/clone happens
->>
->> In both cases, it is guarded against checks of whether cpu supports it and task
->> has shadow stack enabled.
->>
->> Let me know if you think I missed any flow.
->
->Thanks a lot for the detail, it is very helpful for me. But sorry for
->the confusion, my question is actually on the situation with this bug
->(i.e., before the fix)
+On Mon, Oct 07, 2024 at 02:39:45PM +0200, Andrea della Porta wrote:
+> Add device tree bindings for the gpio/pin/mux controller that is part of
+> the RP1 multi function device, and relative entries in MAINTAINERS file.
+> 
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> ---
+>  .../pinctrl/raspberrypi,rp1-gpio.yaml         | 169 ++++++++++++++++++
+>  MAINTAINERS                                   |   2 +
+>  2 files changed, 171 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> new file mode 100644
+> index 000000000000..46e071ec6251
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pinctrl/raspberrypi,rp1-gpio.yaml
+> @@ -0,0 +1,169 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pinctrl/raspberrypi,rp1-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: RaspberryPi RP1 GPIO/Pinconf/Pinmux Controller submodule
+> +
+> +maintainers:
+> +  - Andrea della Porta <andrea.porta@suse.com>
+> +
+> +description:
+> +  The RP1 chipset is a Multi Function Device containing, among other sub-peripherals,
+> +  a gpio/pinconf/mux controller whose 54 pins are grouped into 3 banks. It works also
+> +  as an interrupt controller for those gpios.
+> +
+> +  Each pin configuration node lists the pin(s) to which it applies, and one or
+> +  more of the mux function to select on those pin(s), and their configuration.
+> +  The pin configuration and multiplexing supports the generic bindings.
+> +  For details on each properties (including the meaning of "pin configuration node"),
+> +  you can refer to ./pinctrl-bindings.txt.
 
+Drop the sentence. pinctrl.yaml defines this already.
 
-Yeah with the bug (i.e. before the fix), this function would still return 0
-for `fork` or `clone` with `!CLONE_VM`. And if existing (current) thread had
-shadow stack enabled, that will become shadow stack for new thread (COWed later)
+> +
+> +properties:
+> +  compatible:
+> +    const: raspberrypi,rp1-gpio
+> +
+> +  reg:
+> +    maxItems: 3
+> +    description: One reg specifier for each one of the 3 pin banks.
+> +
+> +  '#gpio-cells':
+> +    description: The first cell is the pin number and the second cell is used
+> +      to specify the flags (see include/dt-bindings/gpio/gpio.h).
+> +    const: 2
+> +
+> +  gpio-controller: true
+> +
+> +  gpio-ranges:
+> +    maxItems: 1
+> +
+> +  gpio-line-names:
+> +    maxItems: 54
+> +
+> +  interrupts:
+> +    maxItems: 3
+> +    description: One interrupt specifier for each one of the 3 pin banks.
+> +
+> +  '#interrupt-cells':
+> +    description:
+> +      Specifies the Bank number [0, 1, 2] and Flags as defined in
+> +      include/dt-bindings/interrupt-controller/irq.h.
+> +    const: 2
+> +
+> +  interrupt-controller: true
+> +
+> +additionalProperties:
+> +  anyOf:
 
-The bug would surface only when `clone` is called with `CLONE_VM` and in that case
-instead of allocating a new shadow stack, it would be re-using same shadow stack
-for both `pthreads`.
+Uh, no, I think you got comments on this. You should be specific which
+nodes you expect, e.g. pins or groups. See other recent bindings for
+example.
 
-In anycase, thanks again for noticing and bringing it up.
+> +    - type: object
+> +      additionalProperties: false
+> +      allOf:
+> +        - $ref: pincfg-node.yaml#
+> +        - $ref: pinmux-node.yaml#
+> +
+> +      description:
+> +        Pin controller client devices use pin configuration subnodes (children
+> +        and grandchildren) for desired pin configuration.
+> +        Client device subnodes use below standard properties.
+> +
+> +      properties:
+> +        pins:
+> +          description:
+> +            A string (or list of strings) adhering to the pattern "gpio[0-5][0-9]"
+> +        function: true
+> +        bias-disable: true
+> +        bias-pull-down: true
+> +        bias-pull-up: true
+> +        slew-rate:
+> +          description: 0 is slow slew rate, 1 is fast slew rate
+> +          enum: [ 0, 1 ]
+> +        drive-strength:
+> +          enum: [ 2, 4, 8, 12 ]
+> +
+> +    - type: object
+> +      additionalProperties:
+> +        $ref: "#/additionalProperties/anyOf/0"
 
->
->>
->> >
->> >> Most of the testing has been with busybox build (independent binaries0 driven via buildroot
->> >> setup. Wondering why it wasn't caught.
->> >>
->> >> Anyways, will fix it. Thanks for catching it.
->> >>
->> >> >
->> >> >> +               return 0;
->> >> >> +
->> >> >> +       /*
+I don't quite get what you wanted to achieve here.
+
+> +
+> +allOf:
+> +  - $ref: pinctrl.yaml#
+> +
+> +required:
+> +  - reg
+> +  - compatible
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +  - interrupts
+> +  - "#interrupt-cells"
+> +  - interrupt-controller
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    rp1 {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        rp1_gpio: pinctrl@c0400d0000 {
+> +            reg = <0xc0 0x400d0000  0x0 0xc000>,
+> +                  <0xc0 0x400e0000  0x0 0xc000>,
+> +                  <0xc0 0x400f0000  0x0 0xc000>;
+> +            compatible = "raspberrypi,rp1-gpio";
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <1 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <2 IRQ_TYPE_LEVEL_HIGH>;
+> +            gpio-line-names =
+> +                   "ID_SDA", // GPIO0
+> +                   "ID_SCL", // GPIO1
+> +                   "GPIO2", "GPIO3", "GPIO4", "GPIO5", "GPIO6",
+> +                   "GPIO7", "GPIO8", "GPIO9", "GPIO10", "GPIO11",
+> +                   "GPIO12", "GPIO13", "GPIO14", "GPIO15", "GPIO16",
+> +                   "GPIO17", "GPIO18", "GPIO19", "GPIO20", "GPIO21",
+> +                   "GPIO22", "GPIO23", "GPIO24", "GPIO25", "GPIO26",
+> +                   "GPIO27",
+> +                   "PCIE_RP1_WAKE", // GPIO28
+> +                   "FAN_TACH", // GPIO29
+> +                   "HOST_SDA", // GPIO30
+> +                   "HOST_SCL", // GPIO31
+> +                   "ETH_RST_N", // GPIO32
+> +                   "", // GPIO33
+> +                   "CD0_IO0_MICCLK", // GPIO34
+> +                   "CD0_IO0_MICDAT0", // GPIO35
+> +                   "RP1_PCIE_CLKREQ_N", // GPIO36
+> +                   "", // GPIO37
+> +                   "CD0_SDA", // GPIO38
+> +                   "CD0_SCL", // GPIO39
+> +                   "CD1_SDA", // GPIO40
+> +                   "CD1_SCL", // GPIO41
+> +                   "USB_VBUS_EN", // GPIO42
+> +                   "USB_OC_N", // GPIO43
+> +                   "RP1_STAT_LED", // GPIO44
+> +                   "FAN_PWM", // GPIO45
+> +                   "CD1_IO0_MICCLK", // GPIO46
+> +                   "2712_WAKE", // GPIO47
+> +                   "CD1_IO1_MICDAT1", // GPIO48
+> +                   "EN_MAX_USB_CUR", // GPIO49
+> +                   "", // GPIO50
+> +                   "", // GPIO51
+> +                   "", // GPIO52
+> +                   ""; // GPIO53
+> +
+> +            rp1_uart0_14_15: rp1_uart0_14_15 {
+
+Underscores are not allowed in node names. Please read DTS coding style.
+
+Drop unused labels.
+
+> +                pin_txd {
+> +                    function = "uart0";
+> +                    pins = "gpio14";
+> +                    bias-disable;
+> +                };
+
+Best regards,
+Krzysztof
+
 
