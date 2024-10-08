@@ -1,209 +1,142 @@
-Return-Path: <devicetree+bounces-109066-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073D4995122
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:10:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DAC4995167
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:23:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 074E81C21901
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:10:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 005E7B284A6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:06:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F83D1DF971;
-	Tue,  8 Oct 2024 14:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523F41DF971;
+	Tue,  8 Oct 2024 14:06:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NX1bIrDF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9621E498;
-	Tue,  8 Oct 2024 14:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51471DF72E
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:06:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728396626; cv=none; b=bXy5hG5yo3UQ1mjXYvcI9TiS0u3gthxPnqg4TdRQb/V9fHRJCsm7WMg65Re1faxEmRTp7pEZwXcA5qSqIUXbldDGpL+NCnKjBhactXW31BmXRxPd9qJjTTXD42TnNWDPeOey6Wx75FmITINQZp72GUSINQaZ5hP8Xke9RFnFMgY=
+	t=1728396384; cv=none; b=ligaTtfUDvkydpL78L7WcH8ZCoEYMf03I0wqJjLGPDJyPQm7Tld8/ZNGUmM3fPqrKcrm5bgZanAvpZ+Z21Vm74pFmeLsG7Rm+9rZCrebgGOAEoBik2ITR8VM8AzhmA4BBKuKU10qd8+cbOGATzf0td8cYNkLUjzCA43Ow7h1lac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728396626; c=relaxed/simple;
-	bh=X9lin3b7HbeitALc5ioC0RccoJqey9uuak2xuuhFkQ8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DDstu9onNFpG5Et9N4HLE2dH+Gkmq3QJnQZxEaGha33F8V4vxzRT6nzZ9HY8+Jg6ZE89UbBxXl/HzHON621RAhZ5RE9KfZkgccOrISDstPn9m+9HJFKGs5ON8fiMuQys2EqhKdt/Lz5JKB4nbXeR6wj7tMnIH6by2CmxtWLCJQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 78ED0DA7;
-	Tue,  8 Oct 2024 07:10:53 -0700 (PDT)
-Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id EA68E3F64C;
-	Tue,  8 Oct 2024 07:10:21 -0700 (PDT)
-Date: Tue, 8 Oct 2024 15:10:19 +0100
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>,
-	Cristian Marussi <cristian.marussi@arm.com>,
-	linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
-	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
-	justin.chen@broadcom.com, opendmb@gmail.com,
-	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-Message-ID: <ZwU9S2I8oT5sGku-@pluto>
-References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
- <ZwPLgcGeUcFPvjcz@pluto>
- <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
- <ZwUuSTYkWrZYIcBM@bogus>
+	s=arc-20240116; t=1728396384; c=relaxed/simple;
+	bh=dzHbg8mQzajlPzqNpsMYJhkbjdTL5GhbgGOkl/GTjNQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IKYHtnQwBFY97UTqXRkyFrQtIOjJQBJEwPdM6LSsizPusVs5DAQy5YHeaMYeM5GxSgX/TzUy+WTE6sjbtALGP/Jlr+EIHu61Y6KLFpktDt+syYw1fx63qDkRkvXeqt5jRAPMGYQUTU5E8UDrGOjQE5y/nm03/DKC5oRnA2/1ts8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NX1bIrDF; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a99415adecaso500827666b.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:06:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728396381; x=1729001181; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HV2x/n3wTPRpS1liNMjGaZ2HjQYk+BlLQLz2BBKy5tU=;
+        b=NX1bIrDFjAi3qWVJws0//dwql9R7yfh/r5VhLV6U+qeAQGHHaAA50zMyh2zsrFCBbI
+         nECrtz5trRocaOFb+ivMOaSfrPzaRGWLD+HQnAn1PZEjPsTuK+dyPS6tWNcCr/9MPjKI
+         lnFtF7pRCbZOzqzFX5Fq2spFGFBvl/pBLABAbo/yhRH0qrKxj2IjbzWBg+xknsPvSpRc
+         vJCZbSkZKsKca2a3BQlbUhte3i7hpN1CmFUpfQHBfZRKDwfox7L6Z/0WJds2lSSJgya3
+         XvkDhngSJiXGTh1+nMsB3PkotIcqOJ+4yU6me3UAsB+Irrk2slt0Th6xNRpvJJHbm4BZ
+         S6XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728396381; x=1729001181;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HV2x/n3wTPRpS1liNMjGaZ2HjQYk+BlLQLz2BBKy5tU=;
+        b=v2YPJghhOuIkELwX+pRpAYGO0FAGjZqJ8WqV0wV0wnPf+SZnZMSdnYPwPf3BnbUzKU
+         vn1Hyv8KxR/6EenCyXQXoVYl8ONFyYsb/JudlHdOjbIrsAyIWGETWgKOgQZFkkfuG4Pz
+         rprOSsNZZbXjZKDqDvRiOwxFY52IfkPmV4NrsaZ9QwhqFAZzbj+K9NZt43hQRoLYb8mO
+         vtCrT4Hd9pVJ+9VwEX7vVsX7jY1YKC9W0wrMNm9I6fY0KjjP8oZYulRHtOMI+TDOSusj
+         q4fUDzILM9tUtYs/CdbXhZI6HOljF9ta23ILQRbyZHEpUwo9dpWa7KvAWdeOiiljAuCt
+         15lQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU/N8X2n7pv/8vQxspvIM1okPFmvGxyUqO890fIKVhPyfhZpXv7Ehau8QmHgz1KwmmrifmZ05fidBqD@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4BPnAuY2dPRWgFj0+HYloX9RCTtc9MHc701f4AZ1kWA71CrFW
+	AnE6Hvm+afUosGzyQ1ypR9tNgTUvTvPWXjgpCg6mulRN6tSoFuEPvzGU/dsj2ik=
+X-Google-Smtp-Source: AGHT+IELq6WtsaklrDf6XvrNeb7DsO6WLI086Qs9v5jzBmcQymK1gLJT2PXlfmnYaBCDvw1PEJ1RSA==
+X-Received: by 2002:a17:907:7da9:b0:a8d:3fb6:33df with SMTP id a640c23a62f3a-a9984690abbmr27747866b.8.1728396380872;
+        Tue, 08 Oct 2024 07:06:20 -0700 (PDT)
+Received: from [127.0.1.1] ([82.77.84.93])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994f50fcd4sm320714266b.171.2024.10.08.07.06.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2024 07:06:20 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/4] arm64: dts: qcom: x1e80100: Describe SDCs and enable
+ support on QCP
+Date: Tue, 08 Oct 2024 17:05:54 +0300
+Message-Id: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZwUuSTYkWrZYIcBM@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEI8BWcC/x2MQQqAIBAAvxJ7bsGVyuor0UF0y72YKUQQ/T3pN
+ nOYeaBwFi4wNw9kvqTIEatQ24ALNu6M4quDVrojpQzexKOqhKdLWHxwSL0zNHjrp26A2qXMm9z
+ /c1nf9wORSLHlYwAAAA==
+X-Change-ID: 20241007-x1e80100-qcp-sdhc-15c716dad946
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-mmc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1203; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=dzHbg8mQzajlPzqNpsMYJhkbjdTL5GhbgGOkl/GTjNQ=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnBTxNVUWmO5if8I07UMBjpaiOw33nYHslR9o96
+ nAL6sPYWnSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZwU8TQAKCRAbX0TJAJUV
+ Vt2sD/wNYt3qcSvZ03x8dCHoYmCncbvQpQM0xcpn7FxYRIUFIbBDI/NWz87F8JIt8PivnQVs8oK
+ 4MIVBZoZXPwjp56RSqcBgGLD0zsiYZOvniryWWUdcoyWqgY055+4DCiMaoQ6MrRMVD0EC3wB7MX
+ sDysuTiz9c9EbZ1SQPfritsGBJMCbJMuoXLngSD8CXbrl9h2thIdBS2AtrmroMkMIhdPpcSSNGU
+ djtjtgCislPrY0dFiz8r+O1GTkgREA9PB3reVTrQiDByl8ExUeHcbwM34AePdL7iFGqXUs8uXqp
+ xvQSW3pRSmyMyMgUaRJ6DPTmIJz4gNX7Fz+4MTmCYP40keDZMJmt03RDbzyRoAX2e5Hctt20CxT
+ p+XadkzH0NmlKgDDNqSbFiJvsG7gZ1OCLI0sNOvkbgCf3WsW3zZocLLyUOu4Xqk6Gw/1KCO8h4W
+ LR5m0WH8dTUknmzwcyVekdvTBl9l4xGSrEuo1UCvPCY/IGCSxjifa/Sb7deeQZiCud91PtbePWC
+ t5VJctRCwGTglDu+P/cV5G+eHI2Y5C/Mma22MybNTQox1lFcHD5/8r/aQlmOTwPINhWIZeT5/PL
+ r9l4EK676oJ9Y6E7/dBu1/QKXBAIwl1OTUe7xnBP1KnnDAm/kRAIqnH7VAFXkSpY+lKIC7hjcZi
+ bdseGDF92kaK6XQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-On Tue, Oct 08, 2024 at 02:06:17PM +0100, Sudeep Holla wrote:
-> Hi Florian,
-> 
-> Thanks for the detailed explanation.
-> 
-> On Mon, Oct 07, 2024 at 10:07:46AM -0700, Florian Fainelli wrote:
-> > Hi Cristian,
-> >
-> > On October 7, 2024 4:52:33 AM PDT, Cristian Marussi
-> > <cristian.marussi@arm.com> wrote:
-> > > On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
-> > > > Broadcom STB platforms have for historical reasons included both
-> > > > "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
-> > > > string.
-> > >
-> > > Hi Florian,
-> > >
-> > > did not know this..
-> >
-> > It stems from us starting with a mailbox driver that did the SMC call, and
-> > later transitioning to the "smc" transport proper. Our boot loader provides
-> > the Device Tree blob to the kernel and we maintain backward/forward
-> > compatibility as much as possible.
-> >
-> 
-> IIUC, you need to support old kernel with SMC mailbox driver and new SMC
-> transport within the SCMI. Is that right understanding ?
-> 
-> > >
-> > > >
-> > > > After the commit cited in the Fixes tag and with a kernel
-> > > > configuration that enables both the SCMI and the Mailbox transports, we
-> > > > would probe the mailbox transport, but fail to complete since we would
-> > > > not have a mailbox driver available.
-> > > >
-> > > Not sure to have understood this...
-> > >
-> > > ...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
-> > > into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
-> > > DT, BUT your platform does NOT physically have a mbox/shmem transport
-> > > and as a consequence, when MBOX probes (at first), you see an error from
-> > > the core like:
-> > >
-> > >    "arm-scmi: unable to communicate with SCMI"
-> > >
-> > > since it gets no reply from the SCMI server (being not connnected via
-> > > mbox) and it bails out .... am I right ?
-> >
-> > In an unmodified kernel where both the "mailbox" and "smc" transports are
-> > enabled, we get the "mailbox" driver to probe first since it matched the
-> > "arm,scmi" part of the compatible string and it is linked first into the
-> > kernel. Down the road though we will fail the initialization with:
-> >
-> > [    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
-> > [    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
-> > [    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for
-> > protocol:0x10
-> 
-> IIUC, the DTB has mailbox nodes that are available but fail only in the setup
-> stage ? Or is it marked unavailable and we are missing some checks either
-> in SCMI or mailbox ?
-> 
-> IOW, have you already explored that this -EINVAL is correct return value
-> here and can't be changed to -ENODEV ? I might be not following the failure
-> path correctly here, but I assume it is
-> 	scmi_chan_setup()
-> 	info->desc->ops->chan_setup()
-> 	mailbox_chan_setup()
-> 	mbox_request_channel()
-> 
-> > [    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup
-> > channels
-> > [    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi failed
-> > with error -22
-> >
-> > Because the platform device is now bound, and there is no mechanism to
-> > return -ENODEV, we won't try another transport driver that would attempt to
-> > match the other compatibility strings. That makes sense because in general
-> > you specify the Device Tree precisely, and you also have a tailored kernel
-> > configuration. Right now this is only an issue using arm's
-> > multi_v7_defconfig and arm64's defconfig both of which that we intend to
-> > keep on using for CI purposes.
-> >
-> >
-> > >
-> > > If this is the case, without this patch, after this error and the mbox probe
-> > > failing, the SMC transport, instead, DO probe successfully at the end, right ?
-> >
-> > With my patch we probe the "smc" transport first and foremost and we
-> > successfully initialize it, therefore we do not even try the "mailbox"
-> > transport at all, which is intended.
-> >
-> > >
-> > > IOW, what is the impact without this patch, an error and a delay in the
-> > > probe sequence till it gets to the SMC transport probe 9as second
-> > > attempt) or worse ? (trying to understand here...)
-> >
-> > There is no recovery without the patch, we are not giving up the arm_scmi
-> > platform device because there is no mechanism to return -ENODEV and allow
-> > any of the subsequent transport drivers enabled to attempt to take over the
-> > platform device and probe it again.
-> >
-> 
-> OK this sounds like you have already explored returning -ENODEV is not
-> an option ? It is fair enough, but just want to understand correctly.
-> I still think I am missing something.
+The X1E80100 has two SDHC controllers (called SDC2 and SDC4).
+Describe both of them and enable the SDC2 on QCP. This brings
+SD card support for the microSD port on QCP.
 
-Having a quick look at dd.c it seems to me that the probe error from
-the first matched driver->probe is propagated back to the callchain
-(and the driver that fails the probe in any way is NOT bound at that
-point) till driver_probe_device() 
+The SDC4 is described but there is no device outthere yet that makes
+use of it, AFAIK.
 
-THEN, on one side, in  __driver_attach() then the retval is ignored:
+Didn't include the SDC4 pins yet because there are some bindings
+errors that need to be addressed, and since there is no HW that
+actually uses it, we can describe them at a later stage.
 
-dd.c::__driver_attach()
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+---
+Abel Vesa (4):
+      dt-bindings: mmc: sdhci-msm: Document the X1E80100 SDHCI Controller
+      arm64: dts: qcom: x1e80100: Describe the SDHC controllers
+      arm64: dts: qcom: x1e80100: Describe TLMM pins for SDC2
+      arm64: dts: qcom: x1e80100-qcp: Enable SD card support
 
- /*                                                                                                                                                     
-  * Lock device and try to bind to it. We drop the error
-  * here and always return 0, because we need to keep trying
-  * to bind to devices and some drivers will return an error                                                                                            
-  * simply if it didn't support the device.
-  *
-  * driver_probe_device() will spit a warning if there
-  * is an error.
+ .../devicetree/bindings/mmc/sdhci-msm.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/x1e80100-qcp.dts          |  20 +++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 148 +++++++++++++++++++++
+ 3 files changed, 169 insertions(+)
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20241007-x1e80100-qcp-sdhc-15c716dad946
 
+Best regards,
+-- 
+Abel Vesa <abel.vesa@linaro.org>
 
-...while, on the other side, looking at __device_attach_driver() it DOES
-report the error from driver_probe_device() BUT the __device_attach_driver()
-routine is called by bus_for_eachdrv() inside __device_attach() and DOES
-cause such loop (bus_for_each_drv() to bail out with an error...BUT, again,
-no more driver match/probe is attempted and I suppose that if you restart
-somehow such sequence you will endup again failing at the same point on the
-same first-match driver...
-
-So seems a sort of structural issue...also because indeed you have something
-that is somehow a malformed DT so the device_match succeeds for good reasons...
-
-I may have miss a lot more, though :D
-
-Thanks,
-Cristian
 
