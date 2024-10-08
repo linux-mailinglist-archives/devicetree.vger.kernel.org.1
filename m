@@ -1,124 +1,175 @@
-Return-Path: <devicetree+bounces-108955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FEE2994641
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:11:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A618F99464B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:12:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 203D3B25D72
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:11:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64AC22830CC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5370D1D3582;
-	Tue,  8 Oct 2024 11:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C151CFEBE;
+	Tue,  8 Oct 2024 11:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ZnAL35op"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DeqEEctK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E46718BC3B;
-	Tue,  8 Oct 2024 11:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA91C16FF2A;
+	Tue,  8 Oct 2024 11:12:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728385697; cv=none; b=KGRzfaLGo6Oq0WyU0wFz5I1Lq5VASrm8U/TESrg6ftmFOaUHjLMuO8PcfmPxlbPNTOh7/eoU/JDA1YKB6u4PSNSzxxKFlfE/K3FxtzeGY0HfxR6m+aLVN87SX5Bz9MJlYyw20FtSEd1/YP9cadbNk/rqdSuvjpoCfIupLe3uNTg=
+	t=1728385947; cv=none; b=qd6td5D197lBcI+pv7lG9x5/BAlpwUYQpNuQg92+4R/1RGGSVNLHL8iu1XKZYv9OYTA/uZotaLW+keogLfKFzzzqmcpA5Q6kx1a0GVbLKTpktFFo4GUrw0t0YPCOfP09NCfvqW0vdI9o656ksCUMAX7E26haTYrw5pbTFREW0xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728385697; c=relaxed/simple;
-	bh=0ctU/+14S8CDrzijH8uO02zNos9uf++LoeJ+64lPr9A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G4lGfs43UX8Q5QKEg9KzeA5w2A+wvVw/inmVuF1iOBTDEB/2DkE9qPQ0u3bLh6q49GIP7XNOmY18fAmO6wlpyy1kirtnodvGP74IHpMMqvKMvw3QQIabEO2VaRTzkLN8pkBGcovPdFd15TSvWEdwMgIFaebDB+BEWkFkm+O94vI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ZnAL35op; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728385696; x=1759921696;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=0ctU/+14S8CDrzijH8uO02zNos9uf++LoeJ+64lPr9A=;
-  b=ZnAL35opxbrCOJkJmdgcjtyZy7bPzbarraC8T+aYBciisroZe6zhgWN8
-   MZhpzWPEXuxiGyJRVDVn8mQeQ2siOrh4/x8Y999lRCgYDxmLXypo9b0hK
-   oWAf6iuMaHXxSPCZCwVla4imzgLcazByGD2VDlEmygumsPF0NQ4Ii4ETV
-   gyGebRFVS3VVlDHFwLkbbFJcUb2F2Jx3wraE0PLA0z1Wh6fUzC1NZdouG
-   wvhdF/LuVCtg81bvdjNjzNqMNuxtx1PsaiEUbZfdcXVhyF6EkbtL47nVX
-   BaNcYn+iKrQoBG7bRMFFmRqzXcWEpxg1//GBZyLyjOuMpHurKJjbfmqQ8
-   A==;
-X-CSE-ConnectionGUID: PR0cWwj+Rn+7KpcJ+cMtIQ==
-X-CSE-MsgGUID: OYYXAPkaR/a33sOmR+FMwA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="45036661"
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="45036661"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 04:07:55 -0700
-X-CSE-ConnectionGUID: K5QEvV6/TSqPAEBrw6T91A==
-X-CSE-MsgGUID: reBnuTEBQL+O6BgutpnMBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="76173153"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa010.fm.intel.com with ESMTP; 08 Oct 2024 04:07:51 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sy84D-0006HV-0W;
-	Tue, 08 Oct 2024 11:07:49 +0000
-Date: Tue, 8 Oct 2024 19:07:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Jens Wiklander <jens.wiklander@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Paul Gazzillo <paul@pgazz.com>,
-	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
-	oe-kbuild-all@lists.linux.dev,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org,
-	Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
-Subject: Re: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA
- to load the firmware
-Message-ID: <202410081902.TwQcmWjk-lkp@intel.com>
-References: <20241007131620.2090104-8-arnaud.pouliquen@foss.st.com>
+	s=arc-20240116; t=1728385947; c=relaxed/simple;
+	bh=3T5gumFYtWt9UscSLgj+TkRypVkU2q5vWbwQZBEgr7Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=OI2ZJK5lamHPR0ith2/rpBAuVjnbRC7F2rtVnYyl7kq0UaIzXNHI3e0s9JTanFAhbhKkO7Xca9XboJUC7kpHd/oRZWfCeeJVy6SUZYKlgVz72U+bxT9ozJK2y4axOpw12cAhs5d8UrXR9V67XOQBRQp+JepB1tStRSlKXWr+Ka8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DeqEEctK; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 498BC6FE108699;
+	Tue, 8 Oct 2024 06:12:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1728385926;
+	bh=VDFWXMl2aCJutFVdh13RSnu4NjcswFFV8lBqiNDhU1o=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=DeqEEctKrZTGQOCWeCO4ZGnOUKJATRLG1shIW3oIH3h/OAZCX2jxo7izCj1Qzp3iO
+	 EWdNeTccKKth/ElSsTtvYPmtGTCS4j5GsyfVkEqGoaZZngx7S2CUtC2NrIzlUH2afP
+	 I/a8USFK85cSWKbSIWmWA+087xNURdhnTiB8NS5o=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 498BC6UQ026906
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 8 Oct 2024 06:12:06 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Oct 2024 06:12:06 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Oct 2024 06:12:05 -0500
+Received: from [10.249.128.176] ([10.249.128.176])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 498BC2tE082826;
+	Tue, 8 Oct 2024 06:12:03 -0500
+Message-ID: <b8598c92-b511-4e83-ac21-717ffc915d31@ti.com>
+Date: Tue, 8 Oct 2024 16:42:01 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007131620.2090104-8-arnaud.pouliquen@foss.st.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-am62-main: Update otap/itap values
+To: Judith Mendez <jm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Nishanth
+ Menon <nm@ti.com>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+References: <20240924195335.546900-1-jm@ti.com>
+Content-Language: en-US
+From: Bhavya Kapoor <b-kapoor@ti.com>
+In-Reply-To: <20240924195335.546900-1-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Arnaud,
+Looks good to me !
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on 9852d85ec9d492ebef56dc5f229416c925758edc]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241007-212358
-base:   9852d85ec9d492ebef56dc5f229416c925758edc
-patch link:    https://lore.kernel.org/r/20241007131620.2090104-8-arnaud.pouliquen%40foss.st.com
-patch subject: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
-config: alpha-kismet-CONFIG_REMOTEPROC_TEE-CONFIG_STM32_RPROC-0-0 (https://download.01.org/0day-ci/archive/20241008/202410081902.TwQcmWjk-lkp@intel.com/config)
-reproduce: (https://download.01.org/0day-ci/archive/20241008/202410081902.TwQcmWjk-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410081902.TwQcmWjk-lkp@intel.com/
-
-kismet warnings: (new ones prefixed by >>)
->> kismet: WARNING: unmet direct dependencies detected for REMOTEPROC_TEE when selected by STM32_RPROC
-   WARNING: unmet direct dependencies detected for REMOTEPROC_TEE
-     Depends on [n]: REMOTEPROC [=y] && OPTEE [=n]
-     Selected by [y]:
-     - STM32_RPROC [=y] && (ARCH_STM32 || COMPILE_TEST [=y]) && REMOTEPROC [=y]
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+On 25/09/24 01:23, Judith Mendez wrote:
+> Update itap/itap values according to device datasheet [0].
+>
+> Now that we have fixed timing issues for am62x [1], lets
+> change the otap/itap values back according to the device
+> datasheet.
+>
+> [0] https://www.ti.com/lit/ds/symlink/am625.pdf
+> [1] https://lore.kernel.org/linux-mmc/20240913185403.1339115-1-jm@ti.com/
+>
+> Signed-off-by: Judith Mendez <jm@ti.com>
+Reviewed-by: Bhavya Kapoor<b-kapoor@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 47 ++++++++++++------------
+>   1 file changed, 23 insertions(+), 24 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> index 5b92aef5b284..7194603fd3bc 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
+> @@ -561,10 +561,9 @@ sdhci0: mmc@fa10000 {
+>   		ti,clkbuf-sel = <0x7>;
+>   		ti,otap-del-sel-legacy = <0x0>;
+>   		ti,otap-del-sel-mmc-hs = <0x0>;
+> -		ti,otap-del-sel-ddr52 = <0x5>;
+> -		ti,otap-del-sel-hs200 = <0x5>;
+> -		ti,itap-del-sel-legacy = <0xa>;
+> -		ti,itap-del-sel-mmc-hs = <0x1>;
+> +		ti,otap-del-sel-hs200 = <0x6>;
+> +		ti,itap-del-sel-legacy = <0x0>;
+> +		ti,itap-del-sel-mmc-hs = <0x0>;
+>   		status = "disabled";
+>   	};
+>   
+> @@ -577,17 +576,17 @@ sdhci1: mmc@fa00000 {
+>   		clock-names = "clk_ahb", "clk_xin";
+>   		bus-width = <4>;
+>   		ti,clkbuf-sel = <0x7>;
+> -		ti,otap-del-sel-legacy = <0x8>;
+> +		ti,otap-del-sel-legacy = <0x0>;
+>   		ti,otap-del-sel-sd-hs = <0x0>;
+> -		ti,otap-del-sel-sdr12 = <0x0>;
+> -		ti,otap-del-sel-sdr25 = <0x0>;
+> -		ti,otap-del-sel-sdr50 = <0x8>;
+> -		ti,otap-del-sel-sdr104 = <0x7>;
+> -		ti,otap-del-sel-ddr50 = <0x4>;
+> -		ti,itap-del-sel-legacy = <0xa>;
+> -		ti,itap-del-sel-sd-hs = <0x1>;
+> -		ti,itap-del-sel-sdr12 = <0xa>;
+> -		ti,itap-del-sel-sdr25 = <0x1>;
+> +		ti,otap-del-sel-sdr12 = <0xf>;
+> +		ti,otap-del-sel-sdr25 = <0xf>;
+> +		ti,otap-del-sel-sdr50 = <0xc>;
+> +		ti,otap-del-sel-sdr104 = <0x6>;
+> +		ti,otap-del-sel-ddr50 = <0x9>;
+> +		ti,itap-del-sel-legacy = <0x0>;
+> +		ti,itap-del-sel-sd-hs = <0x0>;
+> +		ti,itap-del-sel-sdr12 = <0x0>;
+> +		ti,itap-del-sel-sdr25 = <0x0>;
+>   		status = "disabled";
+>   	};
+>   
+> @@ -600,17 +599,17 @@ sdhci2: mmc@fa20000 {
+>   		clock-names = "clk_ahb", "clk_xin";
+>   		bus-width = <4>;
+>   		ti,clkbuf-sel = <0x7>;
+> -		ti,otap-del-sel-legacy = <0x8>;
+> +		ti,otap-del-sel-legacy = <0x0>;
+>   		ti,otap-del-sel-sd-hs = <0x0>;
+> -		ti,otap-del-sel-sdr12 = <0x0>;
+> -		ti,otap-del-sel-sdr25 = <0x0>;
+> -		ti,otap-del-sel-sdr50 = <0x8>;
+> -		ti,otap-del-sel-sdr104 = <0x7>;
+> -		ti,otap-del-sel-ddr50 = <0x8>;
+> -		ti,itap-del-sel-legacy = <0xa>;
+> -		ti,itap-del-sel-sd-hs = <0xa>;
+> -		ti,itap-del-sel-sdr12 = <0xa>;
+> -		ti,itap-del-sel-sdr25 = <0x1>;
+> +		ti,otap-del-sel-sdr12 = <0xf>;
+> +		ti,otap-del-sel-sdr25 = <0xf>;
+> +		ti,otap-del-sel-sdr50 = <0xc>;
+> +		ti,otap-del-sel-sdr104 = <0x6>;
+> +		ti,otap-del-sel-ddr50 = <0x9>;
+> +		ti,itap-del-sel-legacy = <0x0>;
+> +		ti,itap-del-sel-sd-hs = <0x0>;
+> +		ti,itap-del-sel-sdr12 = <0x0>;
+> +		ti,itap-del-sel-sdr25 = <0x0>;
+>   		status = "disabled";
+>   	};
+>   
 
