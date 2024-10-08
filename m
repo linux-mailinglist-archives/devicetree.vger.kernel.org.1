@@ -1,305 +1,241 @@
-Return-Path: <devicetree+bounces-108805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F91993F33
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:21:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F67993F3D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:29:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4EB021C21871
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:21:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E206EB21483
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:29:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 246DF1DED58;
-	Tue,  8 Oct 2024 06:26:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CD3B1DEFF4;
+	Tue,  8 Oct 2024 06:27:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="BZEFciZP"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="XTIHt7n8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2060.outbound.protection.outlook.com [40.107.20.60])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3505A1DE4D9;
-	Tue,  8 Oct 2024 06:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728368814; cv=fail; b=nyQAECZavXZrWa90NUJrVI6n0WViwqnKidirtpgbCDIs2eaD5YUnL7RWGSk7pbxSffNeqZ3hNRJzd1xy5v34Ldsttg0FDNiQxWhiWLs2nINQV1DlYwhCL87ymyIJKIKhbL0bmwD2bi9vZcSeX6qLNZBur4jusr2WBR7M8TM61Vo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728368814; c=relaxed/simple;
-	bh=J3ys/6zHGL8eOgN7FrqJ6tgJiaTMxqlx8vXRzYTL7J4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OEK0HlwCKeBeaNsxCZLRFFZRMGnUCI8PhdGDne6OibHY43VE6OwJoJC5fN++F5WWz+O+++0YHerunkS/53dB18G4WdFO6A9M17BG8Ho2jSeucE90SMVPiQqh/LvS/6kt4zAooLvnhYI2ou6kFvCnOpLKaLLSnFlorIEP9+iMB7U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=BZEFciZP; arc=fail smtp.client-ip=40.107.20.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=eLK03X5FG4HR9Ej+8BuYqeRTjFfkDlgmTmHr6YeYwJWu6wfqzaNSXO5YteWT69MQcB3Laqqw4nvXU/zXt8MZ22cjJ6hpo1zEvDfl7Gchml+XNhJcxa1o4efXO0Kwqka41icd81rndwDCEXvF9EEEM+KdU+bGnyupKYjGJUN5Kt/kwHex5AQ1zyCVjBvOnEOoMzmySfc5zj1fBmbCrqSTzHINbSADsujcgBWHrtnBazn6iLrv9QV33jJB/xQ/pNvH4VZ2cnu8Eyk1UjiJaT5uRgi1LbNXQHwGn/IE2+S3ppXuB13JWbw5g3Xh/qPMW8otwSbSfdE7PVrNj+j5AZcyBA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SpG+FR6cAZZtrk30AGNerX2AGPuu7+hXCxPZ1QpoLlU=;
- b=rnZpUa6fq3KGwSa5I5ouRGudA4SR6JRcgm6roRajv7Fym6hvMaCBOaT8CN5+uASkUcuWr2MTAkt+7Vumc7npyeppVNFSzqqs7EZi4zfV+UkCnj1QmfJwZmknSyWTCnmBhhnR5X2xAPAXnyn8X7J052FT1wkffVptH0wjLyj39rRIX6Hnvx0EJIbQBZNApUYSUiN2cSKNwjwkVPV5IOAk9ZQVcsZUfz9jv+gNaL2RQGN14MdXpzLtFhkY85AItzaY/Rt0RSt9hbQOXH/96jcf7SbCrvB1wOhS+kOUXLmce16g4DdyqL1urisxLbWyrxc9tsvYrPxedknTcq+hkMs61Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=SpG+FR6cAZZtrk30AGNerX2AGPuu7+hXCxPZ1QpoLlU=;
- b=BZEFciZP/ySj/9L4b8fSERmGIa5tHv96hb9qttl6zaElK4K1I6FlpQkDV0Vm2pnnO+kH9a3BPBFShAwesI7RxGCd62d0WrmiqYzXZXKINmzRcat5DFljxpExVfmxjYB/jAk+PrUHtnvgj5eIIRB4Kqix9UFMOFfwX2lJfxURFSpUpnLeAMq6GXh2npIDcemQFrXOVnJL4Q7qXXBo9kPJJkdPcaz8uKqIHXzy38jlPHReed1+ePYXF9RxH0W2PIN6M0X1+dI7pTJ9ZWk15GuHlUFNLOtsOsQ+rZ4Mr+RDkrSJieIxNZ96meGUo3ourrVJP5E7WErlmNIrPCEElh951A==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by DB8PR04MB6956.eurprd04.prod.outlook.com (2603:10a6:10:11b::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.24; Tue, 8 Oct
- 2024 06:26:48 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::4e24:c2c7:bd58:c5c7%4]) with mapi id 15.20.8026.020; Tue, 8 Oct 2024
- 06:26:48 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: vkoul@kernel.org,
-	kishon@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	gregkh@linuxfoundation.org,
-	peter.chen@kernel.org,
-	herve.codina@bootlin.com
-Cc: linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: [PATCH v6 3/3] arm64: dts: imx95-19x19-evk: add typec nodes and enable usb3 node
-Date: Tue,  8 Oct 2024 14:27:44 +0800
-Message-Id: <20241008062744.2211539-3-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241008062744.2211539-1-xu.yang_2@nxp.com>
-References: <20241008062744.2211539-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SGBP274CA0017.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::29)
- To DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C281DEFE3
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 06:27:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728368876; cv=none; b=BntEPCjJZi9rkDLdXgPjM9gbAtRnVv1i//i8aNybtFcYUH2AP3+DRiern+CQO0Z4dMG8IEyVEvsbA6oENY7ZUWdmoCBN1cB1Jqwidu+3i2RSTh1hBt+kBkb2x9n9DAJWA3Et9MN8EPbFdJShLMHBOx0UWhDGKGtnk/UFX5EorAk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728368876; c=relaxed/simple;
+	bh=sRrs971ywU2XBHAio/v+KH3KPEi6b2tpjaOK3Y8GDYY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jTB2bMsHOw9xdJ/7w8XsteP3mgYDQGaE9e1OFyFbvLbBYBOgdHDILOQ4p4PA9s7pO1CJfA3LSSAfqGWdxr3+50KPNcurOvq/mBeELL76rOJ8D5xhTOnJA7kMirzdKhVvJl+2ecZBrv2MR1c99GuDp6dzz6ftS+1RHR/1epqCgj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=XTIHt7n8; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e28bd0bd13so106220a91.1
+        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 23:27:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1728368873; x=1728973673; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yD1uY1GFMUYlwE1Gpa3bWH24Ki4C8p8PksybGuIxKXE=;
+        b=XTIHt7n8eFdZ98U/iFWue/AxK+I9gGtVd1ksnkBACkNE4Ir/TPvhqYx+tkzy8Sl5J5
+         Swmen6YabiMoYR83mUXPFuus/OrvInPq/eOgEJjayw11BERkTFwsaDqhqR8TEnNdadX2
+         HSjfp0VtceYiCRaLbHfQ1dlUm01Y+B+4/hIvll01ntHwoKENIJ5+LxiF9Ek2G2TaLjJI
+         kyQOrkZSTZ1/WGp6V+i5slBo/mqB39+TwKTPE9YGXfyY2ffObMucn5Q6jg3XMnjAHtjA
+         Q+34YskpP/mU99fti72DpH+Ol4kOXEWdvmkEy1ffzlCW4BcziiNvJrrIUm2NZgiGUvsJ
+         hdVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728368873; x=1728973673;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yD1uY1GFMUYlwE1Gpa3bWH24Ki4C8p8PksybGuIxKXE=;
+        b=vzIlnQEG+CAsKHb9bVfbmgxZzzk5jjFMSXSxvUcEFeBmDElDn38Fo1jLaJSfbNKj5G
+         mASGSU2LnLpvzIqv73foytKOExmlaWRL5LevhOf5wzsWu5qQK6vi4YfT4z/VaqwGnbaN
+         3Pshhem1vwGRLXWaku4Yd/XRGFrkxbpdUNxeCHR/u3stuIg3wYHp+L6SuMKPtdohUebn
+         +CQn2rZOn8M4IuUSmXezPTw7NOcHg6I6i7aj9JpakyfccmS1g3O/K5p1Co6TvixzAFxA
+         A3scUvj07gPhEiI+J/KBExwH94QCYK/YERJ1AGi6cmPZZGLvud1vEp7IBlE+2aZnpJQj
+         B5uA==
+X-Forwarded-Encrypted: i=1; AJvYcCWE7iPpe0FKGiLrFvOuO7tLRNcxcLdOh/qevu0d0NjpLN/iOQR6s9MRF03dW+Wu9XYkQ47Bz0qFmGyL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPRLe5OsLX16E9Ysk32hDan4/EhL4KagFjiV8i1IanbnH21gJM
+	vhvnWbipvebnvc2y3ewNhNzcJ2WyqZJUsvQjgayv5qOwP+K4QL//C/hcezDYuJ4=
+X-Google-Smtp-Source: AGHT+IF/ZQHlU6tp9Sg21rBMwoL6ZDWlzQEcykMAFPhKfSpu/YJnzOfJudFoJo575FCLm+0FY5JUkg==
+X-Received: by 2002:a17:90b:1b05:b0:2d3:cd5c:15bb with SMTP id 98e67ed59e1d1-2e1e63698a6mr17009604a91.25.1728368873537;
+        Mon, 07 Oct 2024 23:27:53 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e28b773a77sm464805a91.11.2024.10.07.23.27.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 07 Oct 2024 23:27:53 -0700 (PDT)
+Date: Mon, 7 Oct 2024 23:27:49 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Zong Li <zong.li@sifive.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, broonie@kernel.org,
+	rick.p.edgecombe@intel.com
+Subject: Re: [PATCH 16/33] riscv/shstk: If needed allocate a new shadow stack
+ on clone
+Message-ID: <ZwTQ5c+YOQFHa4YC@debug.ba.rivosinc.com>
+References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
+ <20241001-v5_user_cfi_series-v1-16-3ba65b6e550f@rivosinc.com>
+ <CANXhq0rpwQkZ9+mZLGVUq=r4WiA8BbZ-eeTDogf3fzeEPqeeqA@mail.gmail.com>
+ <ZwRvAEwFbrpq3zZq@debug.ba.rivosinc.com>
+ <CANXhq0qaokjDC9hb75_dpGuyOd_ex8+q7YNe8pAg7dbTcxuLSg@mail.gmail.com>
+ <ZwTDonkiATv999sS@debug.ba.rivosinc.com>
+ <CANXhq0r611Hi7pohDGRXhvi2E_uOFjwLRDrqZcL2WdLHcs+oHA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|DB8PR04MB6956:EE_
-X-MS-Office365-Filtering-Correlation-Id: 71f50331-9edf-42e3-45f6-08dce762306d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|7416014|52116014|366016|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VRHaMEGBZa2s74Kk61Ap6JV4gr8MOgkGCKYgBwKDPa7WjXyrVBzFDjbmUL+1?=
- =?us-ascii?Q?5hFREbMs+7SmQpgDP1t7zRs9yKhsSPwSZhSdZUksTWpbtnQpsHs5YLJtLJ8A?=
- =?us-ascii?Q?93rWO5Yzj8mNcZzdQBHJjqsFSjYG6SXpcqqh8uEA3k5KaKwsY3R4Mgdexe3R?=
- =?us-ascii?Q?EoppBJWBcRtgz3L3mNXuhX0zNtWxy4Dhn23djJgoHCGaA8WLqlHuWRYSUFP8?=
- =?us-ascii?Q?uo8tcmRc7yFtDiANOIYIcibKWILFUvAufQhqGbxssw1s1GMn/VlQN7Zj+UpI?=
- =?us-ascii?Q?EOPcAymlDBi/tQxaazVoULHRj9QBE12+QuwMv3wU6U9lL9BHZP1sL7cCqzdu?=
- =?us-ascii?Q?RlNPWfJ1Zjhy1qi0Ku+6z7/L5X0yOZm9K0YfSekGFDXQhSiPYBCSdjQBTh7P?=
- =?us-ascii?Q?d4kU/kmscjLJOcaK/IkdS7fXIXkBDTkwlgoT1Yb7OVce220MsgOAroleX54r?=
- =?us-ascii?Q?xg5hxz+eoDHoy7nuwDgAG/rusSuQ5RxqLB5e+/mgOlv1W+uY5l4i0zBiBsBK?=
- =?us-ascii?Q?QNBaCf/xabx4mRy9Ecu+HyzkzxkW/xIkGSHc8kv9X6xQbTMvBszh5mMqr/9l?=
- =?us-ascii?Q?m+XS/CdruYRNKalsSyPMxPQg1SMPGF1HkjEC8fqKrvwgkcFMgXB+O7WCI/oj?=
- =?us-ascii?Q?ka/rEZ1qpzgNFk7uuYb+g3+DgDr8WUAvp5ZAR7F2rc4Ug/ph6GVnEmT7qxMQ?=
- =?us-ascii?Q?GZ5qUl7CKz5Z0zVJZ6kjFCaF7gI0iDGPsFOE0mATYcQl5LhrSU2pS62bXBvf?=
- =?us-ascii?Q?lKJ1j9uxtGFUSuvhA62FAotY+y5Xv7LslmGQ1QkglA61wzCc7dnOURmPV1rG?=
- =?us-ascii?Q?b1ontcxfpYirE4bkBZwiCKNzkENx51JT3bdp+O0Gyvp0s3xxdcNzpTUOhw2M?=
- =?us-ascii?Q?Dcum1iA7p9NAcG6dlz1PIiwvTJKqUsAwbLogDoY6lJcfNHZeOpyuT36ifbzk?=
- =?us-ascii?Q?bdx0/hSf6qVTNNrnG0V1orZbvXRdA5Zm1hORQOU+zU1suy0kpihQfajNX6Nq?=
- =?us-ascii?Q?YHQBQlU07JOs+VFRkgT5NSHW1ienTlsyl2H7y7PBjccjcm08NS/9JUkxt5WV?=
- =?us-ascii?Q?j9y7HGGoI4ZfQjipT++GQcG+1hMQPQFrHm/M4ARobj6zBUdxPBvNxxly2/tD?=
- =?us-ascii?Q?ZPYJajfHhP3Mr/XxZJIeEGBowS/y0H0FmXD/g0ofAQtg+nO3TIAYLChxKExC?=
- =?us-ascii?Q?BeOteHAtXNGDCV9SbwlK44CPhYJl1SiJkosgBiaTIFFYUapMS5q/xCzxs+ks?=
- =?us-ascii?Q?kOASOnCKNjHNQWDu4YsKb3R4cZmXxhhSDRAKyDZpx0B0ilrdqhNBDjW7Dfv4?=
- =?us-ascii?Q?pmaQJ1NSBabRplh/MuaiOKTfB4V2UUCaQt7ehA4mlAv/MlCpe1Vn0SQyCD/I?=
- =?us-ascii?Q?WGmWwTQ=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(52116014)(366016)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JKNB+NNbTWQpwLnPo0OCSx+MYn5RF2n/RyA5hrH/HPJ7ELoFTbi0Rf49oYOd?=
- =?us-ascii?Q?GIO8z8YWGutTOoDEdHac505T31OmEMsSdkUwmgbGfsa06As2fLoFGJfhPXfI?=
- =?us-ascii?Q?zLE+nKJ8GyyAoT81IsE38sYYPCkHqyNCuOBZqQRV7eZovSXhhEbUbsWJVE4a?=
- =?us-ascii?Q?OkC3/9raMM5Ruy4ZKdO+mAJnM44VbLgU3U03Hoeig47AgsjIAUWRQlYzw4YI?=
- =?us-ascii?Q?HWyIEaWqHVwo11clkaKN8+n/PqHxGgUkybyQZp2SBPcZb65ROYxu7vg/v+N5?=
- =?us-ascii?Q?qzKwWsqdITbizOOjOPebZpUhFRY+Re/vBCaRVRYFyml0+UZErGqkH2KEg4fp?=
- =?us-ascii?Q?ohxAwrtiP9Ds4bamPRDPoEMM1LY01l1RV//9u7VIDOyeC02l75nhBtD/jRV2?=
- =?us-ascii?Q?Y3f6JANQrYlhUpcnxbI2VngxVynkFfc/WPBR1lVDMXqlJBMUw5TdZQlqHXhW?=
- =?us-ascii?Q?ucsSejSh+RYfFU23fDDNAqY/6+gb8ZVu12zDfAchgTFWbtut3TvNeMtePgKx?=
- =?us-ascii?Q?3BIJNnjziuiLjnJ8T7HsruQg/+MLLG0Zz64Dz+L7/Y8H7qs3aWtzFac++Qi9?=
- =?us-ascii?Q?afzlZpCdBxgqleYJa5Dn5vAjhUEo+X6baGaumH7J/q5/zKiGoB0YIDw/BI8s?=
- =?us-ascii?Q?rvQtHF+QgLxT7rL5FgA0DGCzHm1DxZ125PCh9qYMxbVM6alvvVnd8EVmHI1L?=
- =?us-ascii?Q?rSXQoHaYWBa3QKHaFdlq9MBV7WuQD41Q9zM5/AaJBfumP/VpH2R73QcutAZ4?=
- =?us-ascii?Q?E9shc4hUhHRkNFSWOTDDIQ34lYDhoncvaH3McaKIgVzchZcq20cETRHBGELd?=
- =?us-ascii?Q?88yTwSqO06SNc92E2TnYFH/fcl2h9xBv6GB4PrbUD0p/y3HmoQioPq+gn9Qa?=
- =?us-ascii?Q?pKmJNIR0aQS+T+l4CdsnDIo171Plc1fJ1lMaqP6HCm4CKuyig1xYAR9ZC0nx?=
- =?us-ascii?Q?+IaHaWHZ/qaOr5fht4pwy7cqk3/UTeB9cgJdCPAF+ZDZYFgDb0DtPgXtXfjp?=
- =?us-ascii?Q?MD2BdI+sTLhsjudros7LSOAOHv3aW6a6aMbKP0Xp6FmkwdxSqVr477kZeCi7?=
- =?us-ascii?Q?gji9Uj//L10na4ma5M2dPG3bB0o3ctEHMOPzrwbYm/NHYG/MO087iSfvkXBy?=
- =?us-ascii?Q?B64+7rjUwHZIvo6V0vCKcI1D3eIyFjyQisO86G+ugc1S9aAYLTVsht6R1kEA?=
- =?us-ascii?Q?jiwRJ5W3F4oukZldnzOdQbxaoW4WQMsGXvWmLmb4vSIXodrKq9LQZybsc2mU?=
- =?us-ascii?Q?If3eQmySJX+vTbEeM2aTyGb1SRGlHp3mn0WGmJZZEw/0rAZqXQ0pg1OWbFGa?=
- =?us-ascii?Q?n/urC0dxPpd2rJrH5svoQe1PGS4e9n9uJ7HtEDzXxR1E9htDYnu++PQBM2Sp?=
- =?us-ascii?Q?6zqSd5EbNvZ3vErQ1dK1ab/M9KND3IHUhUTaK1Qy6H89W57hKyMbi57ij5Jd?=
- =?us-ascii?Q?Esr8pg0qTgb+PfXeFXWQv0NGlbMsDvVZcx6huaj5LLx+45VekVQpxvRPsnuH?=
- =?us-ascii?Q?6iSFMB3yWmQe8m2RvQjECGjOSxWycQAt4UBiXjV+yFT48Dnec90sLnPM1xAa?=
- =?us-ascii?Q?FtLmFWYVcGO+kYNOvKwHKp/Us6VWxSv2Qw43scmd?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 71f50331-9edf-42e3-45f6-08dce762306d
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 06:26:48.6823
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YCeLENzbdAzfQpCbpNQ8jX0e3izF/dvFVxrzjfSZ3n2IcbrNsjfnoNRcTrxvDaeC4d7txXHUc9UFRIQQHqw49g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB6956
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANXhq0r611Hi7pohDGRXhvi2E_uOFjwLRDrqZcL2WdLHcs+oHA@mail.gmail.com>
 
-This board has one Type-C port which has USB3 capability. This will
-add typec nodes and enable usb3 node.
+On Tue, Oct 08, 2024 at 02:18:58PM +0800, Zong Li wrote:
+>On Tue, Oct 8, 2024 at 1:31 PM Deepak Gupta <debug@rivosinc.com> wrote:
+>>
+>> On Tue, Oct 08, 2024 at 01:16:17PM +0800, Zong Li wrote:
+>> >On Tue, Oct 8, 2024 at 7:30 AM Deepak Gupta <debug@rivosinc.com> wrote:
+>> >>
+>> >> On Mon, Oct 07, 2024 at 04:17:47PM +0800, Zong Li wrote:
+>> >> >On Wed, Oct 2, 2024 at 12:20 AM Deepak Gupta <debug@rivosinc.com> wrote:
+>> >> >>
+>> >> >> Userspace specifies CLONE_VM to share address space and spawn new thread.
+>> >> >> `clone` allow userspace to specify a new stack for new thread. However
+>> >> >> there is no way to specify new shadow stack base address without changing
+>> >> >> API. This patch allocates a new shadow stack whenever CLONE_VM is given.
+>> >> >>
+>> >> >> In case of CLONE_VFORK, parent is suspended until child finishes and thus
+>> >> >> can child use parent shadow stack. In case of !CLONE_VM, COW kicks in
+>> >> >> because entire address space is copied from parent to child.
+>> >> >>
+>> >> >> `clone3` is extensible and can provide mechanisms using which shadow stack
+>> >> >> as an input parameter can be provided. This is not settled yet and being
+>> >> >> extensively discussed on mailing list. Once that's settled, this commit
+>> >> >> will adapt to that.
+>> >> >>
+>> >> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+>> >> >> ---
+>> >> >>  arch/riscv/include/asm/usercfi.h |  25 ++++++++
+>> >>
+>> >> ... snipped...
+>> >>
+>> >> >> +
+>> >> >> +/*
+>> >> >> + * This gets called during clone/clone3/fork. And is needed to allocate a shadow stack for
+>> >> >> + * cases where CLONE_VM is specified and thus a different stack is specified by user. We
+>> >> >> + * thus need a separate shadow stack too. How does separate shadow stack is specified by
+>> >> >> + * user is still being debated. Once that's settled, remove this part of the comment.
+>> >> >> + * This function simply returns 0 if shadow stack are not supported or if separate shadow
+>> >> >> + * stack allocation is not needed (like in case of !CLONE_VM)
+>> >> >> + */
+>> >> >> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
+>> >> >> +                                          const struct kernel_clone_args *args)
+>> >> >> +{
+>> >> >> +       unsigned long addr, size;
+>> >> >> +
+>> >> >> +       /* If shadow stack is not supported, return 0 */
+>> >> >> +       if (!cpu_supports_shadow_stack())
+>> >> >> +               return 0;
+>> >> >> +
+>> >> >> +       /*
+>> >> >> +        * If shadow stack is not enabled on the new thread, skip any
+>> >> >> +        * switch to a new shadow stack.
+>> >> >> +        */
+>> >> >> +       if (is_shstk_enabled(tsk))
+>> >> >
+>> >> >Hi Deepak,
+>> >> >Should it be '!' is_shstk_enabled(tsk)?
+>> >>
+>> >> Yes it is a bug. It seems like fork without CLONE_VM or with CLONE_VFORK, it was returning
+>> >> 0 anyways. And in the case of CLONE_VM (used by pthread), it was not doing the right thing.
+>> >
+>> >Hi Deepak,
+>> >I'd like to know if I understand correctly. Could I know whether there
+>> >might also be a risk when the user program doesn't enable the CFI and
+>> >the kernel doesn't activate CFI. Because this flow will still try to
+>> >allocate the shadow stack and execute the ssamowap command. Thanks
+>>
+>> `shstk_alloc_thread_stack` is only called from `copy_thread` and  allocates and
+>> returns non-zero (positive value) for ssp only if `CLONE_VM` is specified.
+>> `CLONE_VM` means that address space is shared and userspace has allocated
+>> separate stack. This flow is ensuring that newly created thread with separate
+>> data stack gets a separate shadow stack as well.
+>>
+>> Retruning zero value from `shstk_alloc_thread_stack` means that, no need to
+>> allocate a shadow stack. If you look at `copy_thread` function, it simply sets
+>> the returned ssp in newly created task's task_struct (if it was non-zero).
+>> If returned ssp was zero, `copy_thread` doesn't do anything. Thus whatever is
+>> current task settings are that will be copied over to new forked/cloned task.
+>> If current task had shadow stack enabled, new task will also get it enabled at
+>> same address (to be COWed later).
+>>
+>> Any task get shadow stack enabled for first time using new prctls (see prctl
+>> patches).
+>>
+>> So only time `ssamoswap` will be exercised will be are
+>> - User issues enabling `prctl` (it'll be issued from loader)
+>> - fork/clone happens
+>>
+>> In both cases, it is guarded against checks of whether cpu supports it and task
+>> has shadow stack enabled.
+>>
+>> Let me know if you think I missed any flow.
+>
+>Thanks a lot for the detail, it is very helpful for me. But sorry for
+>the confusion, my question is actually on the situation with this bug
+>(i.e., before the fix)
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
----
-Changes in v2:
- - no changes
-Changes in v3:
- - no changes
-Changes in v4:
- - no changes
-Changes in v5:
- - correct nodes order
-Changes in v6:
- - rebase to latest
----
- .../boot/dts/freescale/imx95-19x19-evk.dts    | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
+Yeah with the bug (i.e. before the fix), this function would still return 0
+for `fork` or `clone` with `!CLONE_VM`. And if existing (current) thread had
+shadow stack enabled, that will become shadow stack for new thread (COWed later)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-index 37a1d4ca1b20..41a4ee4751ed 100644
---- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include <dt-bindings/pwm/pwm.h>
-+#include <dt-bindings/usb/pd.h>
- #include "imx95.dtsi"
- 
- / {
-@@ -250,6 +251,48 @@ i2c7_pcal6524: i2c7-gpio@22 {
- 		interrupt-parent = <&gpio5>;
- 		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
- 	};
-+
-+	ptn5110: tcpc@50 {
-+		compatible = "nxp,ptn5110", "tcpci";
-+		reg = <0x50>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_typec>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <14 IRQ_TYPE_LEVEL_LOW>;
-+
-+		typec_con: connector {
-+			compatible = "usb-c-connector";
-+			label = "USB-C";
-+			power-role = "dual";
-+			data-role = "dual";
-+			try-power-role = "sink";
-+			source-pdos = <PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
-+			sink-pdos = <PDO_FIXED(5000, 0, PDO_FIXED_USB_COMM)>;
-+			op-sink-microwatt = <0>;
-+			self-powered;
-+
-+			ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					typec_con_hs: endpoint {
-+						remote-endpoint = <&usb3_data_hs>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					typec_con_ss: endpoint {
-+						remote-endpoint = <&usb3_data_ss>;
-+					};
-+				};
-+			};
-+		};
-+	};
- };
- 
- &lpuart1 {
-@@ -332,6 +375,38 @@ &sai3 {
- 	status = "okay";
- };
- 
-+&usb3 {
-+	status = "okay";
-+};
-+
-+&usb3_dwc3 {
-+	dr_mode = "otg";
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	usb-role-switch;
-+	role-switch-default-mode = "peripheral";
-+	snps,dis-u1-entry-quirk;
-+	snps,dis-u2-entry-quirk;
-+	status = "okay";
-+
-+	port {
-+		usb3_data_hs: endpoint {
-+			remote-endpoint = <&typec_con_hs>;
-+		};
-+	};
-+};
-+
-+&usb3_phy {
-+	status = "okay";
-+
-+	port {
-+		usb3_data_ss: endpoint {
-+			remote-endpoint = <&typec_con_ss>;
-+		};
-+	};
-+};
-+
- &usdhc1 {
- 	pinctrl-names = "default", "state_100mhz", "state_200mhz", "sleep";
- 	pinctrl-0 = <&pinctrl_usdhc1>;
-@@ -538,6 +613,12 @@ IMX95_PAD_SD2_RESET_B__GPIO3_IO_BIT7		0x31e
- 		>;
- 	};
- 
-+	pinctrl_typec: typecgrp {
-+		fsl,pins = <
-+			IMX95_PAD_GPIO_IO34__GPIO5_IO_BIT14			0x31e
-+		>;
-+	};
-+
- 	pinctrl_usdhc2_gpio: usdhc2gpiogrp {
- 		fsl,pins = <
- 			IMX95_PAD_SD2_CD_B__GPIO3_IO_BIT0		0x31e
--- 
-2.34.1
+The bug would surface only when `clone` is called with `CLONE_VM` and in that case
+instead of allocating a new shadow stack, it would be re-using same shadow stack
+for both `pthreads`.
 
+In anycase, thanks again for noticing and bringing it up.
+
+>
+>>
+>> >
+>> >> Most of the testing has been with busybox build (independent binaries0 driven via buildroot
+>> >> setup. Wondering why it wasn't caught.
+>> >>
+>> >> Anyways, will fix it. Thanks for catching it.
+>> >>
+>> >> >
+>> >> >> +               return 0;
+>> >> >> +
+>> >> >> +       /*
 
