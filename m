@@ -1,1290 +1,403 @@
-Return-Path: <devicetree+bounces-108785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 205DB993D6C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 05:20:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF6F8993D9B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 05:41:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6CB971F234B8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 03:20:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D35A71C21863
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 03:41:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52A0634CF5;
-	Tue,  8 Oct 2024 03:20:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A60D040858;
+	Tue,  8 Oct 2024 03:41:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ju8mYfbI"
+	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="g8Shx8Zx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11021142.outbound.protection.outlook.com [52.101.129.142])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A084826AF3;
-	Tue,  8 Oct 2024 03:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728357605; cv=none; b=C4VcOKyct/uhqRtCPtIgxJ2awGWk1ZEi1T1229DYYq8YyFG6waMA9V9AWDCazSe0B+D3nM2VVU4kEuahh3p2el/owGS+3AjzgIdTJbXZPR/OQ1E0SeH2QqM8YRl+4iDzXPyb55cdFGRcTwCAl8dQvpeAKo5Y6zyJZUDq7xIcHag=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728357605; c=relaxed/simple;
-	bh=GYSlgQLsRtVsKMkQapuOANsdn2sqq3WWkFm7TY+aaFc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jMTUMNbEUzGogUnwxWvm2lXNQzTg2KFuzm1yFSo58Ct+NuSctSRc/HorhvDKHjva636KRY6yVzSSrLJzej6ySs6lrwdCGEYcQ3h5HhLMcZztfnqYZlmVvHQ2qFnpPPSfwmG0uIZKm46426K6XHFpHKRE7lvWVuNKnYrikqZkd78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ju8mYfbI; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-2e077a4b8c0so3635861a91.1;
-        Mon, 07 Oct 2024 20:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728357602; x=1728962402; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vFntR5p2J86VuDGwgkOeGjdKlfKqRgMieCplvZuIyzg=;
-        b=ju8mYfbIis3eRCQrhb2l5Xidh/o0O/hAn+ieWorvVzlOcYL4iYP2PrLMdZh0JOR/vX
-         jA5Mj8DTLsSHVEKZay6XZPJqRwgQRq0Ot2z7ZjweKUtCVDso420P8iBAS9Mp9Pjh0JXI
-         /FIdgb5yosZlvYT2sE/ehMtwEB/ztq/CDw7yHxwipI6NjnAJusyWu/QadYwm9Ei70xPB
-         VTJ0SNAlKUOSzI5/TzfMLN1gwf0tQa/2qV6jWCQbCw5BsrPIH5lo/HFGGuVwqZ+gsH2e
-         LZ38TbbTrEKO+CYTaGktJB1t2gmDiA9N+TVyTSrbGLNh5No93mKzRlBvc8JB/61KWkC6
-         MV1A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728357602; x=1728962402;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vFntR5p2J86VuDGwgkOeGjdKlfKqRgMieCplvZuIyzg=;
-        b=Cp5MtxYOdKT0kjzrpJGYJkpzaWU9w2YTEN5oVhebI36Jn2W5DTNF+sSo5TldpNvoAZ
-         mPnqWXw3zNN4tfAEfLCax/5KZn/L2R4e0oVDBQFkIL3q9YTpDqFht8/k1KRqSFitJzF0
-         c5pGkkn3SEVv1edFKlZndvpZ8UJVyNVKmkeK3CRYbT2Fjg0aSFOVte72KiDKP176NQiz
-         0MXCXMml6nNxpuJ/ZOa3EiAzze/Up3a88Z75mXu6jJRiWAGCRPLoamT/WHmEhCswWWrc
-         kZasMWqA9lf0vFFjtjA47e9cA/ob+QwI7uxHxmZBbJdzE7EqNoi3nG9jPlQacUskbOBF
-         h4Lw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1NEbNQgDouUb1a4g4hRo9ijQAZcZv3X3vWLnMYYzs4cZI5whXjwvaIWaXX4GsjtKdeG7/GMFjSGDaBpPx@vger.kernel.org, AJvYcCXYndeGu7Fc+keVNQUTssGjTH0xQPzIPHMuAuaIJU6wWcuL9zGgbGVv4bFz/k10CsceHmLFaHGFjkSG@vger.kernel.org
-X-Gm-Message-State: AOJu0YyXqVoUBgX1fh/BmyM8rmMTvS/gRksV+HdTH0VFf7/cG4hHAQON
-	8Or6z2SGrj+ednREDGfwDx9kokVw1Khm5TfQTVfzEHWUllPzu6yg
-X-Google-Smtp-Source: AGHT+IGruia56J8OL3/MX7UQ1hDdtBG35QP76rfwJ6CEuU6FQcQq/RFSak5t59vmXzj8dhRXoqzLOw==
-X-Received: by 2002:a17:90a:6884:b0:2e2:18ac:afad with SMTP id 98e67ed59e1d1-2e27ded0213mr2873514a91.15.1728357601406;
-        Mon, 07 Oct 2024 20:20:01 -0700 (PDT)
-Received: from [172.19.1.53] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2848d28f4sm333855a91.24.2024.10.07.20.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 07 Oct 2024 20:20:01 -0700 (PDT)
-Message-ID: <8d5e7755-17fd-4860-bcb0-8c1de04bf0c5@gmail.com>
-Date: Tue, 8 Oct 2024 11:19:57 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6838A1DFE8;
+	Tue,  8 Oct 2024 03:41:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.129.142
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728358897; cv=fail; b=DomeVxa7FvWOFIiqfMN4zaBuSX54rdTmAs5pjsPoNS17y7fn1ty57LbbtPU+FT/n9dSCnjQq+OG1O9/dLkA7TIyRlaE9RTmSX2C7u/U3VbbepgJ7kmk4jxw2WRDIDZWwMz7ZTkvkWKAgKLU6RqBAQVMMDL/hetnzo9rivOpvYsQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728358897; c=relaxed/simple;
+	bh=8ySA0677eXOYj8HDSkt9C42q5z8T1GECGqcq3LF1pbo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=bapnYAWMqUa0JzoDZcXxS4H5l3z2qlBsMt8yw05ahqvIt/BPhqx2l4HarqiBybUCQHxFR7eBFD6zdzI51lAjGb817bHi0P3ZGzALWHDPQJPi+2b/BIUfiLXtHvzuqXbmCioBK8yj2JZPqG8mYTVciwJTNoCJmDSRE9kdGuVCoqM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=g8Shx8Zx; arc=fail smtp.client-ip=52.101.129.142
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ZADXkjmIdjJNyRpS2Yogi7QSr8dIclwNUX9y/M+pj+vV40rd12TOSXVQp0LL1AxAKtwY2u4lgwBNLUJB9gv4bW3RDXK5HoK780a6JV56RAAfiPOp0Gc2PZzejCXukkz/rLkNmsZhvNrBeGZ/zSvysutBL+Z24QgOF9Vv9DYBtBf8ni9Qs4RyxC6P/n97uXzj5k9Kg6Fwh9xY2p5/KRZVvXc5hh0yEH+cXDNKKpHH5dBbtI39SFsZmT1knv1Det9QzC4CgsNc0xF/o2NiJ+kW56Julu2mqjrlU8XZwY50Hg0u3kBS0AOVJ9UJEUfuh5hw4pIgp20PLhCmbwVVwVmg/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8ySA0677eXOYj8HDSkt9C42q5z8T1GECGqcq3LF1pbo=;
+ b=gWIO60MoDPrF6vSW1GZ2+E5eOg5L5pXjdhc10+k2slNJSK44mmTZCRV0tn24cstGaNGpz/6NDv/r7OBLPmkvneHRCOzqPMahBrggSf0Pkp/wRzMSyor8TMB9NfKLjqG0tdMAZSLtZ8j+4JY5CZM781A+fbRj6Pm1MfPJC6Gnrq2dcfHDFQeN5nwsy6rdhGUJGUXx8s/ZgAg7aKW+UB7byoTAZQs0Ouc/Wna3adsBf+dK+27dt+1PvVpzoMxzRMr2TRV/yBpYBft+i0Bw685xUEqOdZMe6502q8xgbqrNJTYLbDi6mc/jum01+T6KkIqC8fcA3MqrzXZrrQDFE9PN0Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8ySA0677eXOYj8HDSkt9C42q5z8T1GECGqcq3LF1pbo=;
+ b=g8Shx8ZxPSSzG5GrRyGc76gtM78ZAsDDngjS4KNmhLYWCfDecAU0hCn+O1dityzsmwehiJwCK7RgrRJ8P/DutgdeVK/krv4SY8FF6q3tnT0aeetyt7UsawGLruu218BbQvetErT6L3/5jO/zUaGCOiFYOk/ALA2JHQq0SHUSsjl0zlCjTRDb8NBxLsn7uMuuVe5yJi3Bhew5NfIB914PeBec68WqENM+j5DQGj5/0Zkq7xC9ExDCzgAlfNoC/adIdwjTpSVk2/jlwDHiooPTdirpDvoNqIKxkKD3qpTPtHs6RcUrvhFTxGXcf5qGfPgcH/ulffcYsUrIZtGmRrvqOA==
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
+ by SG2PR06MB5383.apcprd06.prod.outlook.com (2603:1096:4:1d7::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Tue, 8 Oct
+ 2024 03:41:30 +0000
+Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
+ ([fe80::9f51:f68d:b2db:da11%4]) with mapi id 15.20.8048.013; Tue, 8 Oct 2024
+ 03:41:30 +0000
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: Kevin Chen <kevin_chen@aspeedtech.com>, Dmitry Baryshkov
+	<dmitry.baryshkov@linaro.org>
+CC: "robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
+	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"joel@jms.id.au" <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+	<andrew@codeconstruct.com.au>, "lee@kernel.org" <lee@kernel.org>,
+	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org"
+	<will@kernel.org>, "arnd@arndb.de" <arnd@arndb.de>, "olof@lixom.net"
+	<olof@lixom.net>, "soc@kernel.org" <soc@kernel.org>,
+	"mturquette@baylibre.com" <mturquette@baylibre.com>, "sboyd@kernel.org"
+	<sboyd@kernel.org>, "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "neil.armstrong@linaro.org"
+	<neil.armstrong@linaro.org>, "m.szyprowski@samsung.com"
+	<m.szyprowski@samsung.com>, "nfraprado@collabora.com"
+	<nfraprado@collabora.com>, "u-kumar1@ti.com" <u-kumar1@ti.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
+	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-clk@vger.kernel.org"
+	<linux-clk@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>
+Subject: RE: [PATCH v2 4/9] clk: ast2700: add clock controller
+Thread-Topic: [PATCH v2 4/9] clk: ast2700: add clock controller
+Thread-Index: AQHa8pS4ENZUSrsoHku4BV7J+cflurJ8egmAgAAFhpA=
+Date: Tue, 8 Oct 2024 03:41:30 +0000
+Message-ID:
+ <OS8PR06MB754179E193E4D9B9E579D0E8F27E2@OS8PR06MB7541.apcprd06.prod.outlook.com>
+References: <20240802090544.2741206-1-kevin_chen@aspeedtech.com>
+ <20240802090544.2741206-6-kevin_chen@aspeedtech.com>
+ <CAA8EJprhpv2i9Y=8FAW+fDi_TMJYLw8KO+GtbA4oPHuK+Kgq_A@mail.gmail.com>
+ <PSAPR06MB494955CE22685AC0F21A3A98897E2@PSAPR06MB4949.apcprd06.prod.outlook.com>
+In-Reply-To:
+ <PSAPR06MB494955CE22685AC0F21A3A98897E2@PSAPR06MB4949.apcprd06.prod.outlook.com>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|SG2PR06MB5383:EE_
+x-ms-office365-filtering-correlation-id: d13abd33-8dc5-4260-1c74-08dce74b18d8
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?TkNPSTRvUkpaaVFBeURyOGVVV0V0SW5GN1hvb21udjhSWjNSMVdQcU9zWWVv?=
+ =?utf-8?B?Sy8xMTFXZThxaGpta0M0UTQvcTJHaUk1RXhCTWRVTnFjSDZFRzZZVCtsV3NN?=
+ =?utf-8?B?bnYrNGNlQW5LeUU3b2gxbElZTWJpVHFmQlQ1ZVlDcHA3S0N4Z09xV3Mxc1dw?=
+ =?utf-8?B?VTM5T1VLYjUyTDBLRTFTR0lmWExlL0NKZVhpd0Z5ZGRiTUg0R1pVZENVZDhD?=
+ =?utf-8?B?b0FwendhcGI1TXZ1ZlRVYTFGZi8wcXV1cjNjbHFYUjFNcVV1ZjRTaVNuWjVY?=
+ =?utf-8?B?SkJXNTUwellFZWlOY2pUWjc3bW9RQ2tzVGpkV3ZGSndhYkplZDIvV2l1Zjlo?=
+ =?utf-8?B?bHVqLzdLUnBDSGFETkpHZks1MURtMjFuWGVGU28vVWlENWc4NFV3a3V0cjJC?=
+ =?utf-8?B?WUpNQUR4YjlCd1dlRC9McWtvRHFqbzNLUkJ5WFREYUwvUWJHUUgyaHFIOUM5?=
+ =?utf-8?B?TWdHTFVQMXVta3IvVkxJY3JEazFoRHNjQ1g3S2lleFlpNWlHVWlaZkRLUytM?=
+ =?utf-8?B?MEIySDlrSTV5amhiMjBjQlB3VUR0NlBucmhiM2xKbm1FbEJGcytodW1ZaldB?=
+ =?utf-8?B?K0ViT0Y2S0JCT25xUlNsb1RqazVnT1A2Z1JuVFZWTHdGNFd6eGwvLzdRdGFW?=
+ =?utf-8?B?NmZ2VmcwM201Nkh6WXorTW1UTGY5U0dDa2VvTGtwWkI3VGo1V3g3RTZ1dlZj?=
+ =?utf-8?B?dTE2TTVpVkJIbjBmNWxEd0tHc1JUNGZpRG44eGJYNWYxMVJicVR6ajNyZTFz?=
+ =?utf-8?B?WEFKTGtVZXhad3B1ejRYdW9pYVN2YVZXYUt1VUd6Y1JwSjVkTllOcmhWQ015?=
+ =?utf-8?B?emN4V3FJR1RTMU50ZWhoVmo5b1R0RFFSYXZmMjFteFA4Qmg2YkN1S1VFY2xn?=
+ =?utf-8?B?WkJlMzdiT2JvVXhDK3pyQWgwcjJDbldpK1VFbld4QnV5c0g5bWFaMnpMR1V0?=
+ =?utf-8?B?d1QwS3lMbTVnUHpjemx1SDNPazJHb09pQzUxTlNsUG1weE1nVFNjT0VFZy82?=
+ =?utf-8?B?RE9rSFEwbzM3WUcxNmZ1QkpUOEV6S0dPN3VENkZHU3NJUDRSczF3bDRaTVFE?=
+ =?utf-8?B?MXFTUXhheUhjZXZvOTVpWWJNWmZYRlFwY05DdmVsMDBMMk1uRnhyQWIvSkdZ?=
+ =?utf-8?B?SzJybW9DZkxMelF2WDZkN0kwUlhVdUZsbE1XUklQbUVYVUhZb0tJQU9TUDN4?=
+ =?utf-8?B?aGcrd21wRGtkbHRJbkhiaDd5OTUyeHNGaENWY2RWbzU2V3MyazgwNWdnOHFP?=
+ =?utf-8?B?SlNjRU1VUTM4aDdrby8wbGpPVG9kbmRVUElCWE5hT203SWJ0WkVINytpUVZ1?=
+ =?utf-8?B?UGg0djRUOFRybmU5eXVvUE5nWHh0VC9Ba0c3ZlZ5cTBjTjN5NmF6eFB1U0sz?=
+ =?utf-8?B?T2dSNUZaZlFadUlYbmhiT2RtbTZKMmJvbjRDbWhVYjB5Q2grZnUvdWpMS01G?=
+ =?utf-8?B?cm94RnJTSUpZR1hxeGtCdkN4S3Z3aS9Edmo3MU9mVU1yTmtOWUhUSzRnMk5t?=
+ =?utf-8?B?VFhhR0tqYTFkaDhNdkluazlzNWpNV3pQKzhaR2k0bThMK3NZVXJjOFZjWHJE?=
+ =?utf-8?B?dFpjWmk3cWI3NzM3VGQvMUsvVjNnYlhpSWxGNzJrTjNXa0tDeDNQYjdRT2tw?=
+ =?utf-8?B?M1FsbUlYTndMNWo1QzNFcTZKb3JLUUdnWWl0ZUlIY1JjcWJhVXBaVWVEaEJp?=
+ =?utf-8?B?NSsyV0FuQVZSK3E5RWlsN2pLN09BcFNldGpoQ2hRa3RJZGJFZlJhMSsybkdH?=
+ =?utf-8?B?eHE0Z3RSR3hPclBoY2RNSWhtTXlSWFM3UUxPeEN2cHd3aFNzVG01OS82aEdq?=
+ =?utf-8?B?cWp5UTcyalFJZU1mQlowdz09?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?SUFvazJSanJXWUR1QWEwS3BIMXdXdTkybm1sUjF1eHVzL1RlNGQ0MXFFSzRD?=
+ =?utf-8?B?NzQyMFJYK2lSVDFwM1htdjhrdFdicExET0UxcnRLMXVwQ1Q3VVJONkVuenNZ?=
+ =?utf-8?B?VCtNNU1QdmdlRnpjWkZIK2dQV3FZYzkxVkFQeE01ZThYK2lHYzNEU1AwcGoz?=
+ =?utf-8?B?N1ZWbU92TDlLcXJrMmFtT3VZNE4ySmFLeDFkUFBMWmVEV0ZzcmRYaDR2SVVx?=
+ =?utf-8?B?VHlxT3M4aS9QRStNdnJSRmxmTUtnNU8wanlaZVhLNVdTU0w3YkNrNk5DazRC?=
+ =?utf-8?B?TkxLaGpGbEtvN2xoOHczdnNFWHlBMndxZVllVXdoZVpKMEVkSFNkZzY4bXA0?=
+ =?utf-8?B?bVZ4WURtRlEyNE5LVHJRR01UcmZTVmpCQ2lBbkdMZFIzdjlDTkFwaWFObVo1?=
+ =?utf-8?B?S0JkVnUzSVVoZGt2WGxyTnEvemVhbjhSVjdBQ1ZsckgxNzJFcGM1WG0xUkNt?=
+ =?utf-8?B?U2l5OVMvcmVNWjBUaGlzNzZuS0dHSjBwMzN3Sm5WTVJJcXJabkVTWThtSE9O?=
+ =?utf-8?B?dmhNN3VKN25BOFJkcjRlVEV5VlY4VHdIN1orOUtOVUl5UE9WamJiV2JuQzVW?=
+ =?utf-8?B?VS80UjEyZ2tOR3ErcmQ3djF4Wno1NFJnTVZMY1kzVENVQ2NPNE02Q1V5Znc4?=
+ =?utf-8?B?YXdDR2tmb3VRK3A3L2FheW9LL2RMWGhpZFRMUENTeDNKS0RzTnZYSVY1Ri9C?=
+ =?utf-8?B?Q0V6b0xNa0RyK2ZtOVBHOXN4V0V5bjRPMk1VbzI2amkvMmtqY0J5bVVrU0lr?=
+ =?utf-8?B?SzBNcnJYTzltNU85UDhLYjBGUDFaTlZpSkN5ZlNJbkl6eDU5WFUyNUxQSGY4?=
+ =?utf-8?B?azhWZDRFaTFQMkNuNkt6MkNPZDJGWDlVN2Nxbkg2ZklyaVlGNkdQVnllQmlz?=
+ =?utf-8?B?aXF0T0ltemFNUTA3WlpsenhLelRwNis0SWhocmNCT2QrcnU5Z0VKMUNiakdQ?=
+ =?utf-8?B?TEFySlZYYU51UmJZNHJjeHBkZFI0eG9BOFVWbWNiKzdnWDI1RXUrQTFkT25p?=
+ =?utf-8?B?Wlo2OEhlQmFjSVFUU2FiTWRDZHRaS3ZaR3NBci9ERVhOTi9IUExSZm9hYlR3?=
+ =?utf-8?B?YWZBM3Vpam1ENnpEelVHblBPd0kyUmU0QWNpTVJqUTBXUUY2ZWcwNGtNcndp?=
+ =?utf-8?B?dk5zQmgrSTlNLzVqckhtZDFRbms3MktCYnJORlpCZW10bGZIRk1CemZIRWNJ?=
+ =?utf-8?B?bGZ4amMxeFZkUnFMa2xleFZHcHlRb3FxT2hNUE5aYTg3N0JKaUdndGl6V1pQ?=
+ =?utf-8?B?dm1Ed2h5WGNXVnpVbjNGa0VDZDZFNGkrUUZXUVIwRmg2bW84dVNBS096cVN5?=
+ =?utf-8?B?UmVNVkhhMFBuM1E4eVMzVDc0bDlJc25iazl0NEw1N1BoNTRaTW9ZNGhYNmpo?=
+ =?utf-8?B?d0RIWmhxZG5ZbUpGektxK2dpblBYTG8zNGZnMmNFSUdxd1FCU0hUNXRlYkZq?=
+ =?utf-8?B?cWc4Q0xRUS8xRG1XU1JIbXBITVVUTkM3K05uT2p1bGkrU0lrYmQ4UjJ4NU5B?=
+ =?utf-8?B?WnZoY1V0MjFTR0h3T3JrVUFsZ29abSthSFIvMHpVZzlHSERIM2lHSjZycnky?=
+ =?utf-8?B?bEhUaHV2bDBKUEwxL2doTkt1dmxQTUQ0eUF5UFpERDZPMXMxMzFkdjVEczBt?=
+ =?utf-8?B?YmpSY3g4Ylc4YWIwV0FBT3c1MUd4eEgvd3VlWEhDZ0psdlQ4L2xtQTE3K2Qx?=
+ =?utf-8?B?VGQ1WHBmMXQ0NkFsb2tyM0xtNkh0RG5pMjhTMEV1NS9zSytyQUFreFlNTXB4?=
+ =?utf-8?B?UnlmVkZ6QmtHelJJZEhpTDFINTlua0tnR0dxMXBreU96VnJQMkNuL1VMSTZ0?=
+ =?utf-8?B?NjF5aFZsa0R3dE9EdmFDUXhOK01oUWZLalhKZ2trOHlQd2xDb1RNYXdKVkp4?=
+ =?utf-8?B?NUFkVGhUenpUR1ZzdGp5YXNqRUlxZTRDT0JwVTNremlzRWtLMGw5K0lnd0l5?=
+ =?utf-8?B?Sk1BM1E4R2ZvM1dLSEtZNUxlOFF0QXpWWkVaMjZIU2duSllGS2JSTlF0V0Rs?=
+ =?utf-8?B?Zk5KOUx1aFdJVCtIbjVtK3YzbTJzbTRzZExOMjJTWVFHblBucFNvaWwwdXpo?=
+ =?utf-8?B?akVVbWxiSEEvWkg3cEpkOHk4SEdyYUs4UzlWM0VBcmM2ejlvZFVESDF2UCtn?=
+ =?utf-8?Q?ZkIhmEvqnEA8P9Qo+8vRm9jDX?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/2] mtd: rawnand: nuvoton: add new driver for the
- Nuvoton MA35 SoC
-To: Miquel Raynal <miquel.raynal@bootlin.com>
-Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nikita.shubin@maquefel.me, arnd@arndb.de,
- vkoul@kernel.org, esben@geanix.com, linux-arm-kernel@lists.infradead.org,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240927020749.46791-1-hpchen0nvt@gmail.com>
- <20240927020749.46791-3-hpchen0nvt@gmail.com>
- <20241001215755.5c2f8465@xps-13>
-Content-Language: en-US
-From: Hui-Ping Chen <hpchen0nvt@gmail.com>
-In-Reply-To: <20241001215755.5c2f8465@xps-13>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-
-Dear Miquel,
-
-
-Thank you for your reply.
-
-
-
-On 2024/10/2 上午 03:57, Miquel Raynal wrote:
-> Hi Hui-Ping,
->
-> hpchen0nvt@gmail.com wrote on Fri, 27 Sep 2024 02:07:49 +0000:
->
->> Nuvoton MA35 SoCs NAND Flash Interface Controller
->> supports 2kiB, 4kiB and 8kiB page size, and up to
->> 8-bit, 12-bit, and 24-bit hardware ECC calculation
->> circuit to protect data.
->>
->> Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
->> ---
->>   drivers/mtd/nand/raw/Kconfig               |   8 +
->>   drivers/mtd/nand/raw/Makefile              |   1 +
->>   drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c | 862 +++++++++++++++++++++
->>   3 files changed, 871 insertions(+)
->>   create mode 100644 drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c
->>
->> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
->> index d0aaccf72d78..e3677bcaf035 100644
->> --- a/drivers/mtd/nand/raw/Kconfig
->> +++ b/drivers/mtd/nand/raw/Kconfig
->> @@ -454,6 +454,14 @@ config MTD_NAND_TS72XX
->>   	help
->>   	  Enables support for NAND controller on ts72xx SBCs.
->>   
->> +config MTD_NAND_NUVOTON_MA35
->> +	tristate "Nuvoton MA35 SoC NAND controller"
->> +	depends on ARCH_MA35 || COMPILE_TEST
->> +	depends on OF
->> +	help
->> +	  Enables support for the NAND controller found on
->> +	  the Nuvoton MA35 series SoCs.
->> +
->>   comment "Misc"
->>   
->>   config MTD_SM_COMMON
->> diff --git a/drivers/mtd/nand/raw/Makefile b/drivers/mtd/nand/raw/Makefile
->> index d0b0e6b83568..cc24955627f8 100644
->> --- a/drivers/mtd/nand/raw/Makefile
->> +++ b/drivers/mtd/nand/raw/Makefile
->> @@ -58,6 +58,7 @@ obj-$(CONFIG_MTD_NAND_INTEL_LGM)	+= intel-nand-controller.o
->>   obj-$(CONFIG_MTD_NAND_ROCKCHIP)		+= rockchip-nand-controller.o
->>   obj-$(CONFIG_MTD_NAND_PL35X)		+= pl35x-nand-controller.o
->>   obj-$(CONFIG_MTD_NAND_RENESAS)		+= renesas-nand-controller.o
->> +obj-$(CONFIG_MTD_NAND_NUVOTON_MA35)	+= nuvoton_ma35d1_nand.o
->>   
->>   nand-objs := nand_base.o nand_legacy.o nand_bbt.o nand_timings.o nand_ids.o
->>   nand-objs += nand_onfi.o
->> diff --git a/drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c b/drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c
->> new file mode 100644
->> index 000000000000..efd60493f22a
->> --- /dev/null
->> +++ b/drivers/mtd/nand/raw/nuvoton_ma35d1_nand.c
->> @@ -0,0 +1,862 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2024 Nuvoton Technology Corp.
->> + */
->> +#include <linux/clk.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/err.h>
->> +#include <linux/init.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/io.h>
->> +#include <linux/iopoll.h>
->> +#include <linux/module.h>
->> +#include <linux/mtd/mtd.h>
->> +#include <linux/mtd/partitions.h>
->> +#include <linux/mtd/rawnand.h>
->> +#include <linux/of.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/slab.h>
->> +
->> +/* NFI Registers */
->> +#define MA35_NFI_REG_DMACTL		0x400
->> +#define   DMA_EN				BIT(0)
->> +#define   DMA_RST				BIT(1)
->> +#define   DMA_BUSY				BIT(9)
->> +
->> +#define MA35_NFI_REG_DMASA		0x408
->> +#define MA35_NFI_REG_GCTL		0x800
->> +#define   NAND_EN				BIT(3)
->> +
->> +#define MA35_NFI_REG_NANDCTL		0x8A0
->> +#define   SWRST				BIT(0)
->> +#define   DMA_R_EN				BIT(1)
->> +#define   DMA_W_EN				BIT(2)
->> +#define   ECC_CHK				BIT(7)
->> +#define   PROT3BEN				BIT(8)
->> +#define   PSIZE_2K				BIT(16)
->> +#define   PSIZE_4K				BIT(17)
->> +#define   PSIZE_8K				GENMASK(17, 16)
->> +#define   PSIZE_MASK				GENMASK(17, 16)
->> +#define   BCH_T24				BIT(18)
->> +#define   BCH_T8				BIT(20)
->> +#define   BCH_T12				BIT(21)
->> +#define   BCH_NONE				(0x0)
->> +#define   BCH_MASK				GENMASK(22, 18)
->> +#define   ECC_EN				BIT(23)
->> +#define   DISABLE_CS0				BIT(25)
->> +
->> +#define MA35_NFI_REG_NANDINTEN	0x8A8
->> +#define MA35_NFI_REG_NANDINTSTS	0x8AC
->> +#define   INT_DMA				BIT(0)
->> +#define   INT_ECC				BIT(2)
->> +#define   INT_RB0				BIT(10)
->> +#define   INT_RB0_STS				BIT(18)
->> +
->> +#define MA35_NFI_REG_NANDCMD		0x8B0
->> +#define MA35_NFI_REG_NANDADDR		0x8B4
->> +#define   ENDADDR				BIT(31)
->> +
->> +#define MA35_NFI_REG_NANDDATA		0x8B8
->> +#define MA35_NFI_REG_NANDRACTL	0x8BC
->> +#define MA35_NFI_REG_NANDECTL		0x8C0
->> +#define   ENABLE_WP				0x0
->> +#define   DISABLE_WP				BIT(0)
->> +
->> +#define MA35_NFI_REG_NANDECCES0	0x8D0
->> +#define   ECC_STATUS_MASK			GENMASK(1, 0)
->> +#define   ECC_ERR_CNT_MASK			GENMASK(4, 0)
->> +
->> +#define MA35_NFI_REG_NANDECCEA0	0x900
->> +#define MA35_NFI_REG_NANDECCED0	0x960
->> +#define MA35_NFI_REG_NANDRA0		0xA00
->> +
->> +/* Define for the BCH hardware ECC engine */
->> +/* define the total padding bytes for 512/1024 data segment */
->> +#define MA35_BCH_PADDING_512	32
->> +#define MA35_BCH_PADDING_1024	64
->> +/* define the BCH parity code length for 512 bytes data pattern */
->> +#define MA35_PARITY_BCH8	15
->> +#define MA35_PARITY_BCH12	23
->> +/* define the BCH parity code length for 1024 bytes data pattern */
->> +#define MA35_PARITY_BCH24	45
->> +
->> +struct ma35_nand_info {
->> +	struct nand_controller controller;
->> +	struct nand_chip chip;
->> +	struct device *dev;
->> +	void __iomem *regs;
->> +	int irq;
->> +	struct clk *clk;
->> +	struct completion complete;
->> +	u32 bch;
->> +	u32 bitflips;
->> +	u8 *ecc_buf;
->> +};
->> +
->> +static int ma35_ooblayout_ecc(struct mtd_info *mtd, int section,
->> +			      struct mtd_oob_region *oobregion)
->> +{
->> +	struct nand_chip *chip = mtd_to_nand(mtd);
->> +
->> +	if (section)
->> +		return -ERANGE;
->> +
->> +	oobregion->length = chip->ecc.total;
->> +	oobregion->offset = mtd->oobsize - oobregion->length;
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35_ooblayout_free(struct mtd_info *mtd, int section,
->> +			       struct mtd_oob_region *oobregion)
->> +{
->> +	struct nand_chip *chip = mtd_to_nand(mtd);
->> +
->> +	if (section)
->> +		return -ERANGE;
->> +
->> +	oobregion->length = mtd->oobsize - chip->ecc.total - 2;
->> +	oobregion->offset = 2;
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct mtd_ooblayout_ops ma35_ooblayout_ops = {
->> +	.free = ma35_ooblayout_free,
->> +	.ecc = ma35_ooblayout_ecc,
->> +};
->> +
->> +static inline void ma35_clear_spare(struct nand_chip *chip, int size)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	int i;
->> +
->> +	for (i = 0; i < size/4; i++)
-> Spacing                    ^
-
-I will check and fix it.
-
-
->> +		writel(0xff, nand->regs + MA35_NFI_REG_NANDRA0);
->> +}
->> +
->> +static inline void read_remaining_bytes(struct ma35_nand_info *nand, u32 *buf,
->> +					u32 offset, int size)
->> +{
->> +	u32 value = readl(nand->regs + MA35_NFI_REG_NANDRA0 + offset);
->> +	u8 *ptr = (u8 *)buf;
->> +	int i;
->> +
->> +	for (i = 0; i < size; i++)
->> +		ptr[i] = (value >> (i * 8)) & 0xff;
->> +}
->> +
->> +static inline void ma35_read_spare(struct nand_chip *chip, int size, u32 *buf, u32 offset)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	int i, j;
->> +
->> +	if ((offset % 4) == 0) {
->> +		for (i = 0, j = 0; i < size / 4; i++, j += 4)
->> +			*buf++ = readl(nand->regs + MA35_NFI_REG_NANDRA0 + offset + j);
->> +
->> +		read_remaining_bytes(nand, buf, offset + j, size % 4);
->> +	} else {
->> +		read_remaining_bytes(nand, buf, offset, 4 - (offset % 4));
->> +		offset += 4;
->> +		size -= (4 - (offset % 4));
->> +
->> +		for (i = 0, j = 0; i < size / 4; i++, j += 4)
->> +			*buf++ = readl(nand->regs + MA35_NFI_REG_NANDRA0 + offset + j);
->> +
->> +		read_remaining_bytes(nand, buf, offset + j, size % 4);
->> +	}
->> +}
->> +
->> +static inline void ma35_write_spare(struct nand_chip *chip, int size, u32 *buf)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	u32 value;
->> +	int i, j;
->> +	u8 *ptr;
->> +
->> +	for (i = 0, j = 0; i < size / 4; i++, j += 4)
->> +		writel(*buf++, nand->regs + MA35_NFI_REG_NANDRA0 + j);
->> +
->> +	ptr = (u8 *)buf;
->> +	switch (size % 4) {
->> +	case 1:
->> +		writel(*ptr, nand->regs + MA35_NFI_REG_NANDRA0 + j);
->> +		break;
->> +	case 2:
->> +		value = *ptr | (*(ptr+1) << 8);
->> +		writel(value, nand->regs + MA35_NFI_REG_NANDRA0 + j);
->> +		break;
->> +	case 3:
->> +		value = *ptr | (*(ptr+1) << 8) | (*(ptr+2) << 16);
->> +		writel(value, nand->regs + MA35_NFI_REG_NANDRA0 + j);
->> +		break;
->> +	default:
->> +		break;
->> +	}
->> +}
->> +
->> +static inline void ma35_nand_target_enable(struct ma35_nand_info *nand)
->> +{
->> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~DISABLE_CS0),
->> +		nand->regs+MA35_NFI_REG_NANDCTL);
->> +}
->> +
->> +static inline void ma35_nand_target_disable(struct ma35_nand_info *nand)
->> +{
->> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | DISABLE_CS0,
->> +		nand->regs + MA35_NFI_REG_NANDCTL);
->> +}
->> +
->> +static void ma35_nand_hwecc_init(struct ma35_nand_info *nand)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(&nand->chip);
->> +	u32 reg;
->> +
->> +	/* resets the internal state machine and counters
-> Please check the style in all you comments.
->
-> 	/*
-> 	 * Reset the
-
-I will check and fix all.
-
-
->> +	 * This bit will be auto cleared after a few clock cycles.
->> +	 */
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDCTL);
->> +	reg |= SWRST;
->> +	writel(reg, nand->regs + MA35_NFI_REG_NANDCTL);
-> This has a way wider impact than just configuring the hw ECC engine,
-> no? Are you sure you want to do this now? I believe it should be in its
-> own helper, and you want to do it earlier than that, like before the
-> discovery step (and also in the resume path).
-
-I carefully examined our NAND controller and found that this action is 
-unnecessary.
-
-I will remove it.
-
-
->> +	while (readl(nand->regs + MA35_NFI_REG_NANDCTL) & SWRST)
->> +		;
-> cpu_relax()
-
-I will remove this while-loop, so this API will not be added.
-
-
->> +
->> +	/* Redundant area size */
->> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
->> +
->> +	/* Protect redundant 3 bytes */
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDCTL);
->> +	reg |= (PROT3BEN | ECC_CHK);
->> +	writel(reg, nand->regs + MA35_NFI_REG_NANDCTL);
->> +
->> +	if (nand->bch == BCH_NONE) {
-> Please use the definitions/constants from the core.
-
-Will use ecc.strength instead.
-
-
->> +		/* Disable H/W ECC, ECC parity check enable bit during read page */
->> +		writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~ECC_EN),
->> +			nand->regs + MA35_NFI_REG_NANDCTL);
-> Move the readl before the if and save it in the reg variable.
->
-> In general please do not overload the lines like that when it's not
-> needed.
-
-It will be changed to:
-
-reg = readl();
-
-writel(...);
-
-
->> +	} else {
->> +		/* Set BCH algorithm */
->> +		writel((readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~BCH_MASK)) |
-> Parenthesis are not needed                                         ^
-
-I will remove the parentheses.
-
-
->> +			nand->bch, nand->regs + MA35_NFI_REG_NANDCTL);
->> +
->> +		/* Enable H/W ECC, ECC parity check enable bit during read page */
->> +		writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | ECC_EN,
->> +			nand->regs + MA35_NFI_REG_NANDCTL);
->> +	}
->> +}
->> +
->> +/* Correct data by BCH alrogithm */
->> +static void ma35_nfi_correct(struct ma35_nand_info *nand, u8 index,
->> +				 u8 err_cnt, u8 *addr)
->> +{
->> +	u32 temp_data[24], temp_addr[24];
->> +	u32 padding_len, parity_len;
->> +	u32 value, offset, remain;
->> +	u32 err_data[6];
->> +	u8  i, j;
->> +
->> +	/* configurations */
->> +	switch (nand->bch) {
->> +	case BCH_T24:
->> +		parity_len = MA35_PARITY_BCH24;
->> +		padding_len = MA35_BCH_PADDING_1024;
->> +		break;
->> +	case BCH_T12:
->> +		parity_len = MA35_PARITY_BCH12;
->> +		padding_len = MA35_BCH_PADDING_512;
->> +		break;
->> +	case BCH_T8:
->> +		parity_len = MA35_PARITY_BCH8;
->> +		padding_len = MA35_BCH_PADDING_512;
->> +		break;
->> +	default:
->> +		dev_warn(nand->dev, "NAND ERROR: invalid SMCR_BCH_TSEL = 0x%08X\n",
->> +			(u32)(readl(nand->regs + MA35_NFI_REG_NANDCTL) & BCH_MASK));
->> +		return;
->> +	}
->> +
->> +	/* got valid BCH_ECC_DATAx and parse them to temp_data[]
->> +	 * got the valid register number of BCH_ECC_DATAx since
->> +	 * one register include 4 error bytes
->> +	 */
->> +	j = (err_cnt + 3) / 4;
->> +	j = (j > 6) ? 6 : j;
->> +	for (i = 0; i < j; i++)
->> +		err_data[i] = readl(nand->regs + MA35_NFI_REG_NANDECCED0 + i * 4);
->> +
->> +	for (i = 0; i < j; i++) {
->> +		temp_data[i*4+0] = err_data[i] & 0xff;
->> +		temp_data[i*4+1] = (err_data[i] >> 8) & 0xff;
->> +		temp_data[i*4+2] = (err_data[i] >> 16) & 0xff;
->> +		temp_data[i*4+3] = (err_data[i] >> 24) & 0xff;
->> +	}
->> +
->> +	/* got valid REG_BCH_ECC_ADDRx and parse them to temp_addr[]
->> +	 * got the valid register number of REG_BCH_ECC_ADDRx since
->> +	 * one register include 2 error addresses
->> +	 */
->> +	j = (err_cnt + 1) / 2;
->> +	j = (j > 12) ? 12 : j;
->> +	for (i = 0; i < j; i++) {
->> +		temp_addr[i*2+0] = readl(nand->regs + MA35_NFI_REG_NANDECCEA0 + i * 4)
->> +					& 0x07ff;
->> +		temp_addr[i*2+1] = (readl(nand->regs + MA35_NFI_REG_NANDECCEA0 + i * 4)
->> +					>> 16) & 0x07ff;
->> +	}
->> +
->> +	/* pointer to begin address of field that with data error */
->> +	addr += index * nand->chip.ecc.steps;
->> +
->> +	/* correct each error bytes */
->> +	for (i = 0; i < err_cnt; i++) {
->> +		u32 corrected_index = temp_addr[i];
->> +
->> +		/* for wrong data in field */
->> +		if (corrected_index < nand->chip.ecc.steps)
->> +			*(addr + corrected_index) ^= temp_data[i];
->> +
->> +		/* for wrong first-3-bytes in redundancy area */
->> +		else if (corrected_index < (nand->chip.ecc.steps + 3)) {
->> +			corrected_index -= nand->chip.ecc.steps;
->> +			temp_addr[i] += (parity_len * index);	/* field offset */
->> +
->> +			value = readl(nand->regs + MA35_NFI_REG_NANDRA0);
->> +			value ^= temp_data[i] << (8 * corrected_index);
->> +			writel(value, nand->regs + MA35_NFI_REG_NANDRA0);
->> +		}
->> +		/* for wrong parity code in redundancy area
->> +		 * BCH_ERR_ADDRx = [data in field] + [3 bytes] + [xx] + [parity code]
->> +		 *                                   |<--     padding bytes      -->|
->> +		 * The BCH_ERR_ADDRx for last parity code always = field size + padding size.
->> +		 * So, the first parity code = field size + padding size - parity code length.
->> +		 * For example, for BCH T12, the first parity code = 512 + 32 - 23 = 521.
->> +		 * That is, error byte address offset within field is
->> +		 */
->> +		else {
->> +			corrected_index -= (nand->chip.ecc.steps + padding_len - parity_len);
->> +
->> +			/* final address = first parity code of first field +
->> +			 *                 offset of fields +
->> +			 *                 offset within field
->> +			 */
->> +			offset = (readl(nand->regs + MA35_NFI_REG_NANDRACTL) & 0x1ff) -
->> +				(parity_len * nand->chip.ecc.steps) +
->> +				(parity_len * index) + corrected_index;
->> +
->> +			remain = offset % 4;
->> +			value = readl(nand->regs + MA35_NFI_REG_NANDRA0 + offset - remain);
->> +			value ^= temp_data[i] << (8 * remain);
->> +			writel(value, nand->regs + MA35_NFI_REG_NANDRA0 + offset - remain);
->> +		}
->> +	}
->> +}
->> +
->> +static int ma35_nfi_ecc_check(struct nand_chip *chip, u8 *addr)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	int i, j, nchunks = 0;
->> +	int report_err = 0;
->> +	int err_cnt = 0;
->> +	u32 status;
->> +
->> +	nchunks = mtd->writesize / chip->ecc.steps;
->> +	if (nchunks < 4)
->> +		nchunks = 1;
->> +	else
->> +		nchunks /= 4;
->> +
->> +	for (j = 0; j < nchunks; j++) {
->> +		status = readl(nand->regs + MA35_NFI_REG_NANDECCES0 + j * 4);
->> +		if (!status)
->> +			continue;
->> +
->> +		for (i = 0; i < 4; i++) {
->> +			if (!(status & ECC_STATUS_MASK)) {
->> +				/* No error */
->> +				status >>= 8;
->> +				continue;
-> Remove this block, it will do the same and be more clear.
-
-Indeed, this is unnecessary. I will remove it.
-
-
->> +			} else if ((status & ECC_STATUS_MASK) == 0x01) {
->> +				/* Correctable error */
->> +				err_cnt = (status >> 2) & ECC_ERR_CNT_MASK;
->> +				ma35_nfi_correct(nand, j*4+i, err_cnt, addr);
-> Spacing                                               ^^^^^^
-
-I will check and fix it.
-
-
->> +				report_err += err_cnt;
->> +			} else {
->> +				/* uncorrectable error */
->> +				dev_warn(nand->dev, "uncorrectable error! 0x%4x\n", status);
->> +				return -1;
-> Not a valid error code
-
-I will change it to return -EBADMSG;
-
-
->> +			}
->> +			status >>= 8;
->> +		}
->> +	}
->> +	return report_err;
->> +}
->> +
->> +static void ma35_nand_dmac_init(struct ma35_nand_info *nand)
->> +{
->> +	/* DMAC reset and enable */
->> +	writel(DMA_RST | DMA_EN, nand->regs + MA35_NFI_REG_DMACTL);
->> +	writel(DMA_EN, nand->regs + MA35_NFI_REG_DMACTL);
->> +
->> +	/* Clear DMA finished flag */
->> +	writel(INT_DMA | INT_ECC, nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +
->> +	init_completion(&nand->complete);
-> You're gonna call init_completion more than once during suspend/resume
-> cycles, this is unsafe.
-
-I will move init_completion to probe, and then add reinit_completion in 
-the read/write page.
-
-
->> +}
->> +
->> +static int ma35_nand_do_write(struct nand_chip *chip, const u8 *addr, u32 len)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	dma_addr_t dma_addr;
->> +	int ret = 0, i;
->> +	u32 reg;
->> +
->> +	if (len != mtd->writesize) {
->> +		for (i = 0; i < len; i++)
->> +			writel(addr[i], nand->regs + MA35_NFI_REG_NANDDATA);
->> +		return 0;
->> +	}
->> +
->> +	ma35_nand_dmac_init(nand);
->> +
->> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
->> +
->> +	writel(INT_DMA, nand->regs + MA35_NFI_REG_NANDINTEN);
->> +	/* To mark this page as dirty. */
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDRA0);
->> +	if (reg & 0xffff0000)
->> +		writel(reg & 0xffff, nand->regs + MA35_NFI_REG_NANDRA0);
->> +
->> +	dma_addr = dma_map_single(nand->dev, (void *)addr, len, DMA_TO_DEVICE);
->> +	ret = dma_mapping_error(nand->dev, dma_addr);
->> +	if (ret) {
->> +		dev_err(nand->dev, "dma mapping error\n");
->> +		return -EINVAL;
->> +	}
->> +	dma_sync_single_for_device(nand->dev, dma_addr, len, DMA_TO_DEVICE);
->> +
->> +	writel((unsigned long)dma_addr, nand->regs + MA35_NFI_REG_DMASA);
->> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | DMA_W_EN,
->> +		nand->regs + MA35_NFI_REG_NANDCTL);
->> +	ret = wait_for_completion_timeout(&nand->complete, msecs_to_jiffies(1000));
->> +	if (!ret) {
->> +		dev_err(nand->dev, "write timeout\n");
->> +		ret = -ETIMEDOUT;
->> +	}
->> +
->> +	dma_unmap_single(nand->dev, dma_addr, len, DMA_TO_DEVICE);
->> +
->> +	return ret;
->> +}
->> +
->> +static int ma35_nand_do_read(struct nand_chip *chip, u8 *addr, u32 len)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	int ret = 0, cnt = 0, i;
->> +	dma_addr_t dma_addr;
->> +	u32 reg;
->> +
->> +	if (len != mtd->writesize) {
->> +		for (i = 0; i < len; i++)
->> +			*(addr+i) = (u8)readl(nand->regs + MA35_NFI_REG_NANDDATA);
-> Mmh, that line is strange. Please don't do that.
->
-> 			addr[i] = readb() ?
-
-It will be fixed to readb().
-
-
->> +		return 0;
->> +	}
->> +
->> +	ma35_nand_dmac_init(nand);
->> +
->> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
->> +
->> +	/* setup and start DMA using dma_addr */
->> +	dma_addr = dma_map_single(nand->dev, (void *)addr, len, DMA_FROM_DEVICE);
->> +	ret = dma_mapping_error(nand->dev, dma_addr);
->> +	if (ret) {
->> +		dev_err(nand->dev, "dma mapping error\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	writel((unsigned long)dma_addr, nand->regs + MA35_NFI_REG_DMASA);
-> Please enforce a dma mask of 32 (even though it might be the fault).
-
-I will change it to dma_addr & 0xffffffff.
-
-
->> +	writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | DMA_R_EN,
->> +		nand->regs + MA35_NFI_REG_NANDCTL);
->> +	ret = wait_for_completion_timeout(&nand->complete, msecs_to_jiffies(1000));
->> +	if (!ret) {
->> +		dev_err(nand->dev, "read timeout\n");
->> +		ret = -ETIMEDOUT;
->> +	}
->> +
->> +	dma_unmap_single(nand->dev, dma_addr, len, DMA_FROM_DEVICE);
->> +
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +	if (reg & INT_ECC) {
->> +		cnt = ma35_nfi_ecc_check(&nand->chip, addr);
->> +		if (cnt < 0) {
->> +			mtd->ecc_stats.failed++;
->> +			writel(DMA_RST | DMA_EN, nand->regs + MA35_NFI_REG_DMACTL);
->> +			writel(readl(nand->regs + MA35_NFI_REG_NANDCTL) | SWRST,
->> +				nand->regs + MA35_NFI_REG_NANDCTL);
->> +		} else {
->> +			mtd->ecc_stats.corrected += cnt;
->> +			nand->bitflips = cnt;
->> +		}
->> +		writel(INT_ECC, nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static int ma35_nand_write_page_hwecc(struct nand_chip *chip, const u8 *buf,
->> +				      int oob_required, int page)
->> +{
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	void *ecc_calc = chip->ecc.calc_buf;
->> +
->> +	ma35_clear_spare(chip, mtd->oobsize);
->> +	ma35_write_spare(chip, mtd->oobsize - chip->ecc.total,
->> +			(u32 *)chip->oob_poi);
->> +
->> +	nand_prog_page_begin_op(chip, page, 0, buf, mtd->writesize);
->> +	nand_prog_page_end_op(chip);
->> +
->> +	/* Copy parity code in NANDRA to calc */
->> +	ma35_read_spare(chip, chip->ecc.total, (u32 *)ecc_calc,
->> +			mtd->oobsize - chip->ecc.total);
->> +
->> +	/* Copy parity code in calc to oob_poi */
->> +	memcpy(chip->oob_poi + (mtd->oobsize - chip->ecc.total),
->> +		ecc_calc, chip->ecc.total);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35_nand_read_page_hwecc(struct nand_chip *chip, u8 *buf,
->> +					int oob_required, int page)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	u32 reg;
->> +
->> +	/* read the OOB area  */
->> +	nand_read_oob_op(chip, page, 0, chip->oob_poi, mtd->oobsize);
->> +	nand->bitflips = 0;
-> Why storing this value in your structure?
-
-Because ecc.read_page needs to return bit flips, it is necessary to log 
-them.
-
-
->> +
->> +	/* copy OOB data to NANDRA for page read */
->> +	ma35_write_spare(chip, mtd->oobsize, (u32 *)chip->oob_poi);
->> +
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDRA0);
->> +	if (reg & 0xffff0000) {
->> +		memset((void *)buf, 0xff, mtd->writesize);
->> +	} else {
->> +		/* read data from nand */
->> +		nand_read_page_op(chip, page, 0, buf, mtd->writesize);
-> ret =
-> if (ret)
-> 	...
-
-I will add a return value here.
-
-
->> +
->> +		/* restore OOB data from SMRA */
->> +		ma35_read_spare(chip, mtd->oobsize, (u32 *)chip->oob_poi, 0);
->
-> same
-
-ma35_read_spare() is declared as void, with no return value.
-
-SMRA will be changed to NANDRA registers.
-
-
->> +	}
->> +
->> +	return nand->bitflips;
->> +}
->> +
->> +static int ma35_nand_read_oob_hwecc(struct nand_chip *chip, int page)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	u32 reg;
->> +
->> +	nand_read_oob_op(chip, page, 0, chip->oob_poi, mtd->oobsize);
->> +
->> +	/* copy OOB data to NANDRA for page read */
-> What is NANDRA? does not mean anything to me.
-
-NANDRA is the Redundant Area Word of the MA35 NAND controller.
-
-The controller reads ECC parity from this area for calculations or uses 
-the information for check.
-
-I will change NANDRA to NANDRA registers.
-
-
->> +	ma35_write_spare(chip, mtd->oobsize, (u32 *)chip->oob_poi);
->> +
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDRA0);
->> +	if (reg & 0xffff0000)
->> +		memset((void *)chip->oob_poi, 0xff, mtd->oobsize);
-> What does this mean?
-
-MA35 NAND controller checks oob bytes 2 and 3.
-
-If this page has been written, oob bytes 2 and 3 will be set to 0.
-
-Therefore, if bytes 2 and 3 are not 0, it indicates an empty page, and 
-it will return 0xff.
-
-
->> +
->> +	return 0;
->> +}
->> +
->> +static irqreturn_t ma35_nand_irq(int irq, void *id)
->> +{
->> +	struct ma35_nand_info *nand = (struct ma35_nand_info *)id;
->> +	u32 isr;
->> +
->> +	isr = readl(nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +	if (isr & INT_DMA) {
->> +		writel(INT_DMA, nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +		complete(&nand->complete);
->> +	}
-> I guess a more future proof implementation would always writel(isr); to
-> silence the interrupt. Otherwise of course you must call complete()
-> only upon isr & INT_DMA.
-
-This part can remove the if(), but writel(isr) is not feasible.
-
-The isr may contain the ECC flag, and clearing it could cause a miss in 
-ECC handling.
-
-I will change it to:
-
-     writel(INT_DMA, nand->regs + MA35_NFI_REG_NANDINTSTS);
-     complete(&nand->complete);
-
-
->> +
->> +	return IRQ_HANDLED;
->> +}
->> +
->> +static int ma35_nand_attach_chip(struct nand_chip *chip)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	struct mtd_info *mtd = nand_to_mtd(chip);
->> +	unsigned int reg;
->> +
->> +	if (chip->options & NAND_BUSWIDTH_16) {
->> +		dev_err(nand->dev, "16 bits bus width not supported");
->> +		return -EINVAL;
->> +	}
->> +
->> +	/* support only ecc hw mode */
-> Why ? Please don't.
-
-I will add handling for other cases.
-
-
->> +	if (chip->ecc.engine_type != NAND_ECC_ENGINE_TYPE_ON_HOST) {
->> +		dev_err(nand->dev, "ecc.engine_type not supported\n");
->> +		return -EINVAL;
->> +	}
->> +
->> +	nand->ecc_buf = devm_kzalloc(nand->dev, mtd->writesize + mtd->oobsize,
->> +					GFP_KERNEL);
->> +	if (!nand->ecc_buf)
->> +		return  -ENOMEM;
->> +	chip->ecc.calc_buf = nand->ecc_buf;
-> Are you sure you need this? I don't see the point.
-
-This is unnecessary; I will remove it.
-
-
->> +
->> +	/* Set PSize */
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDCTL) & (~PSIZE_MASK);
->> +	if (mtd->writesize == 2048)
->> +		writel(reg | PSIZE_2K, nand->regs + MA35_NFI_REG_NANDCTL);
->> +	else if (mtd->writesize == 4096)
->> +		writel(reg | PSIZE_4K, nand->regs + MA35_NFI_REG_NANDCTL);
->> +	else if (mtd->writesize == 8192)
->> +		writel(reg | PSIZE_8K, nand->regs + MA35_NFI_REG_NANDCTL);
->> +
->> +	chip->ecc.steps = mtd->writesize / chip->ecc.size;
->> +	if (chip->ecc.strength == 0) {
->> +		nand->bch = BCH_NONE; /* No ECC */
->> +		chip->ecc.total = 0;
->> +	} else if (chip->ecc.strength <= 8) {
->> +		nand->bch = BCH_T8; /* T8 */
-> bch is probably a bad name, and in general I don't see the point of
-> saving this value. Just check the ECC strength in the above switch
-> cases and don't use this intermediate variable.
-
-I will change it to directly use ecc.strength for the check.
-
-
->> +		chip->ecc.total = chip->ecc.steps * MA35_PARITY_BCH8;
->> +	} else if (chip->ecc.strength <= 12) {
->> +		nand->bch = BCH_T12; /* T12 */
->> +		chip->ecc.total = chip->ecc.steps * MA35_PARITY_BCH12;
->> +	} else if (chip->ecc.strength <= 24) {
->> +		nand->bch = BCH_T24; /* T24 */
->> +		chip->ecc.total = chip->ecc.steps * MA35_PARITY_BCH24;
->> +	} else {
->> +		dev_warn(nand->dev, "NAND Controller is not support this flash. (%d, %d)\n",
->> +			mtd->writesize, mtd->oobsize);
-> This must be a dev_err() and return an error immediately.
->
-> Also the string is not correct.
-
-I will change it to:
-
-         dev_err(nand->dev, "ECC strength error\n");
-         return -EINVAL;
-
-
->> +	}
->> +
->> +	chip->ecc.bytes = chip->ecc.total / chip->ecc.steps;
->> +	mtd_set_ooblayout(mtd, &ma35_ooblayout_ops);
->> +
->> +	/* add mtd-id. The string should same as uboot definition */
->> +	mtd->name = "nand0";
-> No! There are DT labels for that and mtd->name will automatically be
-> set when calling nand_set_flash_node().
-
-I will remove it.
-
-
->> +
->> +	ma35_nand_hwecc_init(nand);
->> +
->> +	writel(DISABLE_WP, nand->regs + MA35_NFI_REG_NANDECTL);
->> +
->> +	return 0;
->> +}
->> +
->> +static int ma35_nfc_exec_instr(struct nand_chip *chip,
->> +			      const struct nand_op_instr *instr)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	unsigned int i;
->> +	u32 status;
->> +
->> +	switch (instr->type) {
->> +	case NAND_OP_CMD_INSTR:
->> +		writel(instr->ctx.cmd.opcode, nand->regs + MA35_NFI_REG_NANDCMD);
->> +		return 0;
->> +	case NAND_OP_ADDR_INSTR:
->> +		for (i = 0; i < instr->ctx.addr.naddrs; i++) {
->> +			if (i == (instr->ctx.addr.naddrs - 1))
->> +				writel(instr->ctx.addr.addrs[i] | ENDADDR,
->> +					nand->regs + MA35_NFI_REG_NANDADDR);
->> +			else
->> +				writel(instr->ctx.addr.addrs[i],
->> +					nand->regs + MA35_NFI_REG_NANDADDR);
->> +		}
->> +		return 0;
->> +	case NAND_OP_DATA_IN_INSTR:
->> +		ma35_nand_do_read(chip, instr->ctx.data.buf.in, instr->ctx.data.len);
->> +		return 0;
->> +	case NAND_OP_DATA_OUT_INSTR:
->> +		ma35_nand_do_write(chip, instr->ctx.data.buf.out, instr->ctx.data.len);
->> +		return 0;
->> +	case NAND_OP_WAITRDY_INSTR:
->> +		return readl_poll_timeout(nand->regs + MA35_NFI_REG_NANDINTSTS, status,
->> +					  status & INT_RB0, 20,
->> +					  instr->ctx.waitrdy.timeout_ms * 1000);
-> MSEC_PER_SEC
-
-I will change it to instr->ctx.waitrdy.timeout_ms * MSEC_PER_SEC.
-
-
->> +	default:
->> +		break;
->> +	}
->> +
->> +	return -EINVAL;
->> +}
-> This is much better than the legacy hooks!
-
-Thanks.
-
-
->> +
->> +static int ma35_nfc_exec_op(struct nand_chip *chip,
->> +			  const struct nand_operation *op,
->> +			  bool check_only)
->> +{
->> +	struct ma35_nand_info *nand = nand_get_controller_data(chip);
->> +	int ret = 0;
->> +	u32 i, reg;
->> +
->> +	if (check_only)
->> +		return 0;
->> +
->> +	ma35_nand_target_enable(nand);
->> +
->> +	reg = readl(nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +	reg |= INT_RB0;
-> This RB pin looks like something hardcoded, whereas it should not :-)
->
-> If you have several RB, it means you have several CS as well!
-
-The MA35 NAND controller is indeed expected to support two sets of CS 
-and RB.
-
-However, currently, the MA35 series only supports one set, so this name 
-will be changed to RB.
-
-
->> +	writel(reg, nand->regs + MA35_NFI_REG_NANDINTSTS);
->> +
->> +	for (i = 0; i < op->ninstrs; i++) {
->> +		ret = ma35_nfc_exec_instr(chip, &op->instrs[i]);
->> +		if (ret)
->> +			break;
->> +	}
->> +
->> +	ma35_nand_target_disable(nand);
->> +
->> +	return ret;
->> +}
->> +
->> +static const struct nand_controller_ops ma35_nfc_ops = {
->> +	.attach_chip = ma35_nand_attach_chip,
->> +	.exec_op = ma35_nfc_exec_op,
->> +};
->> +
->> +static int ma35_nand_probe(struct platform_device *pdev)
->> +{
->> +	struct ma35_nand_info *nand;
->> +	struct nand_chip *chip;
->> +	struct mtd_info *mtd;
->> +	int ret = 0;
->> +
->> +	nand = devm_kzalloc(&pdev->dev, sizeof(*nand), GFP_KERNEL);
->> +	if (!nand)
->> +		return -ENOMEM;
->> +
->> +	nand_controller_init(&nand->controller);
->> +	nand->controller.ops = &ma35_nfc_ops;
->> +
->> +	nand->regs = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(nand->regs))
->> +		return PTR_ERR(nand->regs);
->> +
->> +	nand->dev = &pdev->dev;
->> +	chip = &nand->chip;
->> +	nand_set_controller_data(chip, nand);
->> +	nand_set_flash_node(chip, pdev->dev.of_node);
->> +
->> +	nand->clk = devm_clk_get_enabled(&pdev->dev, "nand_gate");
->> +	if (IS_ERR(nand->clk))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(nand->clk),
->> +				     "failed to find nand clock\n");
-> NAND
-
-I will fix it.
-
-
->> +
->> +	nand->irq = platform_get_irq(pdev, 0);
->> +	if (nand->irq < 0)
->> +		return dev_err_probe(&pdev->dev, nand->irq,
->> +				     "failed to get platform irq\n");
->> +
->> +	ret = devm_request_irq(&pdev->dev, nand->irq, ma35_nand_irq,
->> +				  IRQF_TRIGGER_HIGH, "ma35d1-nand", nand);
->> +	if (ret) {
->> +		dev_err(&pdev->dev, "failed to request NAND irq\n");
->> +		return -ENXIO;
->> +	}
->> +
->> +	nand->chip.controller = &nand->controller;
->> +	platform_set_drvdata(pdev, nand);
->> +
->> +	chip->options |= NAND_NO_SUBPAGE_WRITE | NAND_USES_DMA;
->> +
->> +	chip->ecc.engine_type = NAND_ECC_ENGINE_TYPE_ON_HOST;
->> +	chip->ecc.write_page = ma35_nand_write_page_hwecc;
->> +	chip->ecc.read_page  = ma35_nand_read_page_hwecc;
->> +	chip->ecc.read_oob   = ma35_nand_read_oob_hwecc;
-> You support to disable the ECC engine, so you must support software
-> corrections as well. Please don't force hw ECC use. Please look at
-> other implementations, there is usually a helper with a switch case
-> which supports various ECC configurations.
-
-I will refer to other implementations and will add handling for other cases.
-
-
->> +
->> +	mtd = nand_to_mtd(chip);
->> +	mtd->priv = chip;
->> +	mtd->owner = THIS_MODULE;
->> +	mtd->dev.parent = &pdev->dev;
->> +
->> +	writel(NAND_EN, nand->regs + MA35_NFI_REG_GCTL);
-> I would expect your reset bit to be set before this writel.
-
-Are you referring to SWRST? I will call the reset engine before enabling it.
-
-
->> +
->> +	ret = nand_scan(chip, 1);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = mtd_device_register(mtd, NULL, 0);
->> +	if (ret) {
->> +		nand_cleanup(chip);
->> +		return ret;
->> +	}
->> +
->> +	return ret;
-> return 0; then
-
-I will change it to return 0;
-
-
->> +}
->> +
->> +static void ma35_nand_remove(struct platform_device *pdev)
->> +{
->> +	struct ma35_nand_info *nand = platform_get_drvdata(pdev);
->> +	int ret;
->> +
->> +	ret = mtd_device_unregister(nand_to_mtd(&nand->chip));
->> +	WARN_ON(ret);
->> +	nand_cleanup(&nand->chip);
->> +}
->> +
->> +/* PM Support */
->> +#ifdef CONFIG_PM
->> +static int ma35_nand_suspend(struct platform_device *pdev, pm_message_t pm)
->> +{
->> +	struct ma35_nand_info *nand = platform_get_drvdata(pdev);
->> +	int ret = 0;
->> +	u32 val;
->> +
->> +	/* wait DMAC to ready */
-> 			be
-
-I will fix it.
-
-
->> +	ret = readl_poll_timeout(nand->regs + MA35_NFI_REG_DMACTL, val,
->> +				 !(val & DMA_BUSY), 50, HZ/2);
->> +	if (ret)
->> +		dev_warn(&pdev->dev, "dma busy\n");
-> 					DMA
->
-> And please make a sentence.
-
-I will fix it.
-
-
->> +
->> +	clk_disable(nand->clk);
-> If you decide to return ret != 0, shall you really disable this clock ?
-
-I will change it to:
-
-     /* wait DMAC to be ready */
-     ret = readl_poll_timeout(nand->regs + MA35_NFI_REG_DMACTL, val,
-                  !(val & DMA_BUSY), 50, HZ/2);
-     if (ret) {
-         dev_warn(&pdev->dev, "wait DMA done timeout.\n");
-         return ret;
-     }
-
-     clk_disable(nand->clk);
-
-     return 0;
-
-
->> +
->> +	return ret;
->> +}
->> +
->> +static int ma35_nand_resume(struct platform_device *pdev)
->> +{
->> +	struct ma35_nand_info *nand = platform_get_drvdata(pdev);
->> +
->> +	clk_enable(nand->clk);
->> +	ma35_nand_hwecc_init(nand);
-> The naming is wrong. This init is not just the hw ECC controller.
-
-This will be changed to handle the initialization of the NAND controller 
-and ECC controller.
-
-It will also call nand_reset().
-
-
->> +	ma35_nand_dmac_init(nand);
->> +
->> +	return 0;
->> +}
->> +
->> +#else
->> +#define ma35_nand_suspend NULL
->> +#define ma35_nand_resume NULL
->> +#endif
->> +
->> +static const struct of_device_id ma35_nfi_of_match[] = {
-> ma35_nfi or ma35_nand, take one and please stick to it.
-
-Will be unified into ma35_nand.
-
-
->> +	{ .compatible = "nuvoton,ma35d1-nand" },
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, ma35_nfi_of_match);
->> +
->> +static struct platform_driver ma35_nand_driver = {
->> +	.driver = {
->> +		.name = "ma35d1-nand",
->> +		.of_match_table = ma35_nfi_of_match,
->> +	},
->> +	.probe = ma35_nand_probe,
->> +	.remove = ma35_nand_remove,
->> +	.suspend = ma35_nand_suspend,
->> +	.resume = ma35_nand_resume,
->> +};
->> +
->> +module_platform_driver(ma35_nand_driver);
->> +
->> +MODULE_DESCRIPTION("Nuvoton ma35 NAND driver");
->> +MODULE_AUTHOR("Hui-Ping Chen <hpchen0nvt@gmail.com>");
->> +MODULE_LICENSE("GPL");
->
-> Thanks,
-> Miquèl
-
-
-Best regards,
-
-Hui-Ping Chen
-
-
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d13abd33-8dc5-4260-1c74-08dce74b18d8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2024 03:41:30.5026
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tH56KcjcMXW+NgYgEXRuiaCOmVXYuWfghGQGg6/27RpFRPvjUMrLPmmGvh691iJLlmou+lCeGjHcD737Sq+Z6t7TMXGWZJSMSSgm3/7Hp7Q=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SG2PR06MB5383
+
+SGVsbG8gRG1pdHJ5LA0KCVRoYW5rcywgeW91ciByZXZpZXcuDQoJSSB3aWxsIHVwZGF0ZSBpbiBt
+eSBuZXh0IGNsayBwYXRjaC4NCglBbmQgaW5jbHVkZSB5b3UgaW4gcmV2aWV3IGVtYWlsLg0KDQo+
+IFN1YmplY3Q6IFJFOiBbUEFUQ0ggdjIgNC85XSBjbGs6IGFzdDI3MDA6IGFkZCBjbG9jayBjb250
+cm9sbGVyDQo+IA0KPiA+ID4NCj4gPiA+IEFkZCBzdXBwb3J0IGZvciBhc3QyNzAwIGNsb2NrIGNv
+bnRyb2xsZXIuDQo+ID4gPg0KPiA+ID4gU2lnbmVkLW9mZi1ieTogS2V2aW4gQ2hlbiA8a2V2aW5f
+Y2hlbkBhc3BlZWR0ZWNoLmNvbT4NCj4gPiA+IC0tLQ0KPiA+ID4gIGRyaXZlcnMvY2xrL01ha2Vm
+aWxlICAgICAgfCAgICAxICsNCj4gPiA+ICBkcml2ZXJzL2Nsay9jbGstYXN0MjcwMC5jIHwgMTE3
+Mw0KPiA+ID4gKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ID4gIDIg
+ZmlsZXMgY2hhbmdlZCwgMTE3NCBpbnNlcnRpb25zKCspICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4g
+PiA+IGRyaXZlcnMvY2xrL2Nsay1hc3QyNzAwLmMNCj4gPiA+DQo+ID4gPiBkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9jbGsvTWFrZWZpbGUgYi9kcml2ZXJzL2Nsay9NYWtlZmlsZSBpbmRleA0KPiA+ID4g
+Zjc5M2ExNmNhZDQwLi4wZDU5OTJlYTBmYTQgMTAwNjQ0DQo+ID4gPiAtLS0gYS9kcml2ZXJzL2Ns
+ay9NYWtlZmlsZQ0KPiA+ID4gKysrIGIvZHJpdmVycy9jbGsvTWFrZWZpbGUNCj4gPiA+IEBAIC0z
+OCw2ICszOCw3IEBAIG9iai0kKENPTkZJR19DT01NT05fQ0xLX0ZTTF9TQUkpICAgICAgKz0NCj4g
+PiBjbGstZnNsLXNhaS5vDQo+ID4gPiAgb2JqLSQoQ09ORklHX0NPTU1PTl9DTEtfR0VNSU5JKSAg
+ICAgICAgICAgICAgICArPQ0KPiBjbGstZ2VtaW5pLm8NCj4gPiA+ICBvYmotJChDT05GSUdfQ09N
+TU9OX0NMS19BU1BFRUQpICAgICAgICAgICAgICAgICs9DQo+IGNsay1hc3BlZWQubw0KPiA+ID4g
+IG9iai0kKENPTkZJR19NQUNIX0FTUEVFRF9HNikgICAgICAgICAgICs9IGNsay1hc3QyNjAwLm8N
+Cj4gPiA+ICtvYmotJChDT05GSUdfTUFDSF9BU1BFRURfRzcpICAgICAgICAgICArPSBjbGstYXN0
+MjcwMC5vDQo+ID4gPiAgb2JqLSQoQ09ORklHX0FSQ0hfSElHSEJBTkspICAgICAgICAgICAgKz0g
+Y2xrLWhpZ2hiYW5rLm8NCj4gPiA+ICBvYmotJChDT05GSUdfQ0xLX0hTREspICAgICAgICAgICAg
+ICAgICArPSBjbGstaHNkay1wbGwubw0KPiA+ID4gIG9iai0kKENPTkZJR19DT01NT05fQ0xLX0sy
+MTApICAgICAgICAgICs9IGNsay1rMjEwLm8NCj4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2Ns
+ay9jbGstYXN0MjcwMC5jIGIvZHJpdmVycy9jbGsvY2xrLWFzdDI3MDAuYw0KPiA+ID4gbmV3IGZp
+bGUgbW9kZSAxMDA2NDQgaW5kZXggMDAwMDAwMDAwMDAwLi5lZWM4ZTBjYjgzZDkNCj4gPiA+IC0t
+LSAvZGV2L251bGwNCj4gPiA+ICsrKyBiL2RyaXZlcnMvY2xrL2Nsay1hc3QyNzAwLmMNCj4gPiA+
+IEBAIC0wLDAgKzEsMTE3MyBAQA0KPiA+ID4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBH
+UEwtMi4wLW9yLWxhdGVyIC8vIENvcHlyaWdodCBBU1BFRUQNCj4gPiA+ICtUZWNobm9sb2d5DQo+
+ID4gPiArDQo+ID4gPiArI2luY2x1ZGUgPGxpbnV4L2Nsay1wcm92aWRlci5oPg0KPiA+ID4gKyNp
+bmNsdWRlIDxsaW51eC9vZl9hZGRyZXNzLmg+DQo+ID4gPiArI2luY2x1ZGUgPGxpbnV4L29mX2Rl
+dmljZS5oPg0KPiA+ID4gKyNpbmNsdWRlIDxsaW51eC9yZXNldC1jb250cm9sbGVyLmg+DQo+ID4g
+PiArDQo+ID4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL2Nsb2NrL2FzcGVlZCxhc3QyNzAwLWNs
+ay5oPg0KPiA+ID4gKyNpbmNsdWRlIDxkdC1iaW5kaW5ncy9yZXNldC9hc3BlZWQsYXN0MjcwMC1y
+ZXNldC5oPg0KPiA+ID4gKw0KPiA+ID4gKyNkZWZpbmUgU0NVX0NMS18yNE1IWiAyNDAwMDAwMA0K
+PiA+DQo+ID4gQXJlIEFzcGVlZCdzIDI0IE1IeiBzb21laG93IGRpZmZlcmVudCBmcm9tIDI0IE1I
+eiBvbiBvdGhlciBwbGF0Zm9ybXM/DQo+ID4gUGxlYXNlIHVzZSA8bGludXgvdW5pdHMuaD4gYW5k
+IHJlZnJhaW4gZnJvbSBkZWZpbmluZyBqdXN0IHJhbmRvbQ0KPiA+IHZhbHVlcy4gSWYgaXQgaGFz
+IHNvbWUgc3BlY2lhbCBtZWFuaW5nIChsaWtlIFhPIGNsb2NrIG9yIHNvbWUgb3RoZXINCj4gPiBm
+aXhlZCBmdW5jaW9uKSwgcGxlYXNlIHVzZSBsb2dpY2FsIG5hbWVzLg0KPiBBbHJlYWR5IHNwbGl0
+IGNsb2NrIGFuZCByZXNldCB0byBSeWFuJ3MgY29tbWl0Lg0KPiBodHRwczovL3BhdGNod29yay5r
+ZXJuZWwub3JnL3Byb2plY3QvbGludXgtY2xrL2xpc3QvP3Nlcmllcz04OTIwMjANCj4gUGxlYXNl
+IGNoZWNrIHRoZSBzZXJpZXMgb2YgIiBBZGQgc3VwcG9ydCBmb3IgQVNUMjcwMCBjbGsgZHJpdmVy
+Ii4NCj4gDQo+ID4NCj4gPiA+ICsjZGVmaW5lIFNDVV9DTEtfMjVNSFogMjUwMDAwMDANCj4gPiA+
+ICsjZGVmaW5lIFNDVV9DTEtfMTkyTUhaIDE5MjAwMDAwMA0KPiA+ID4gKy8qIFNPQzAgVVNCMiBQ
+SFkgQ0xLKi8NCj4gPiA+ICsjZGVmaW5lIFNDVV9DTEtfMTJNSFogMTIwMDAwMDANCj4gPg0KPiA+
+IFNvLCB0aGlzIGNhbiBiZSAjZGVmaW5lIEFTUEVFRF9TT0MwX1VTQjJfUEhZX1JBVEUgKDEyICog
+SFpfUEVSX01IWikNCj4gQWxyZWFkeSBzcGxpdCBjbG9jayBhbmQgcmVzZXQgdG8gUnlhbidzIGNv
+bW1pdC4NCj4gaHR0cHM6Ly9wYXRjaHdvcmsua2VybmVsLm9yZy9wcm9qZWN0L2xpbnV4LWNsay9s
+aXN0Lz9zZXJpZXM9ODkyMDIwDQo+IFBsZWFzZSBjaGVjayB0aGUgc2VyaWVzIG9mICIgQWRkIHN1
+cHBvcnQgZm9yIEFTVDI3MDAgY2xrIGRyaXZlciIuDQo+IA0KPiA+DQo+ID4gPiArLyogU09DMCAq
+Lw0KPiA+ID4gKyNkZWZpbmUgU0NVMF9IV1NUUkFQMSAweDAxMA0KPiA+ID4gKyNkZWZpbmUgU0NV
+MF9DTEtfU1RPUCAweDI0MA0KPiA+ID4gKyNkZWZpbmUgU0NVMF9DTEtfU0VMMSAweDI4MA0KPiA+
+ID4gKyNkZWZpbmUgU0NVMF9DTEtfU0VMMiAweDI4NA0KPiA+ID4gKyNkZWZpbmUgR0VUX1VTQl9S
+RUZDTEtfRElWKHgpICgoR0VOTUFTSygyMywgMjApICYgKHgpKSA+PiAyMCkNCj4gPiA+ICsjZGVm
+aW5lIFVBUlRfRElWMTNfRU4gQklUKDMwKSAjZGVmaW5lIFNDVTBfSFBMTF9QQVJBTSAweDMwMA0K
+PiAjZGVmaW5lDQo+ID4gPiArU0NVMF9EUExMX1BBUkFNIDB4MzA4ICNkZWZpbmUgU0NVMF9NUExM
+X1BBUkFNIDB4MzEwICNkZWZpbmUNCj4gPiA+ICtTQ1UwX0QxQ0xLX1BBUkFNIDB4MzIwICNkZWZp
+bmUgU0NVMF9EMkNMS19QQVJBTSAweDMzMCAjZGVmaW5lDQo+ID4gPiArU0NVMF9DUlQxQ0xLX1BB
+UkFNIDB4MzQwICNkZWZpbmUgU0NVMF9DUlQyQ0xLX1BBUkFNIDB4MzUwDQo+ID4gI2RlZmluZQ0K
+PiA+ID4gK1NDVTBfTVBIWUNMS19QQVJBTSAweDM2MA0KPiA+ID4gKw0KPiA+ID4gKy8qIFNPQzEg
+Ki8NCj4gPiA+ICsjZGVmaW5lIFNDVTFfQ0xLX1NUT1AgMHgyNDANCj4gPiA+ICsjZGVmaW5lIFND
+VTFfQ0xLX1NUT1AyIDB4MjYwDQo+ID4gPiArI2RlZmluZSBTQ1UxX0NMS19TRUwxIDB4MjgwDQo+
+ID4gPiArI2RlZmluZSBTQ1UxX0NMS19TRUwyIDB4Mjg0DQo+ID4gPiArI2RlZmluZSBVWENMS19N
+QVNLIEdFTk1BU0soMSwgMCkNCj4gPiA+ICsjZGVmaW5lIEhVWENMS19NQVNLIEdFTk1BU0soNCwg
+MykNCj4gPiA+ICsjZGVmaW5lIFNDVTFfSFBMTF9QQVJBTSAweDMwMA0KPiA+ID4gKyNkZWZpbmUg
+U0NVMV9BUExMX1BBUkFNIDB4MzEwDQo+ID4gPiArI2RlZmluZSBTQ1UxX0RQTExfUEFSQU0gMHgz
+MjANCj4gPiA+ICsjZGVmaW5lIFNDVTFfVVhDTEtfQ1RSTCAweDMzMA0KPiA+ID4gKyNkZWZpbmUg
+U0NVMV9IVVhDTEtfQ1RSTCAweDMzNA0KPiA+ID4gKyNkZWZpbmUgU0NVMV9NQUMxMl9DTEtfRExZ
+IDB4MzkwDQo+ID4gPiArI2RlZmluZSBTQ1UxX01BQzEyX0NMS19ETFlfMTAwTSAweDM5NCAjZGVm
+aW5lDQo+ID4gU0NVMV9NQUMxMl9DTEtfRExZXzEwTQ0KPiA+ID4gKzB4Mzk4DQo+ID4gPiArDQo+
+ID4gPiArLyoNCj4gPiA+ICsgKiBNQUMgQ2xvY2sgRGVsYXkgc2V0dGluZ3MNCj4gPiA+ICsgKi8N
+Cj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUk1JSTFfNTBNX1JDTEtfT19DVFJMICAgICAgICAgIEJJ
+VCgzMCkNCj4gPiA+ICsjZGVmaW5lICAgTUFDX0NMS19STUlJMV81ME1fUkNMS19PX0RJUyAgICAg
+ICAgIDANCj4gPiA+ICsjZGVmaW5lICAgTUFDX0NMS19STUlJMV81ME1fUkNMS19PX0VOICAgICAg
+ICAgIDENCj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUk1JSTBfNTBNX1JDTEtfT19DVFJMICAgICAg
+ICAgIEJJVCgyOSkNCj4gPiA+ICsjZGVmaW5lICAgTUFDX0NMS19STUlJMF81TV9SQ0xLX09fRElT
+ICAgICAgICAgIDANCj4gPiA+ICsjZGVmaW5lICAgTUFDX0NMS19STUlJMF81TV9SQ0xLX09fRU4g
+ICAgICAgICAgIDENCj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUk1JSV9UWERfRkFMTElOR18yICAg
+ICAgICAgICAgIEJJVCgyNykNCj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUk1JSV9UWERfRkFMTElO
+R18xICAgICAgICAgICAgIEJJVCgyNikNCj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUlhDTEtfSU5W
+XzIgICAgICAgICAgICAgICAgICAgIEJJVCgyNSkNCj4gPiA+ICsjZGVmaW5lIE1BQ19DTEtfUlhD
+TEtfSU5WXzEgICAgICAgICAgICAgICAgICAgIEJJVCgyNCkNCj4gPiA+ICsjZGVmaW5lIE1BQ19D
+TEtfMUdfSU5QVVRfREVMQVlfMiAgICAgICAgICAgICAgIEdFTk1BU0soMjMsDQo+IDE4KQ0KPiA+
+ID4gKyNkZWZpbmUgTUFDX0NMS18xR19JTlBVVF9ERUxBWV8xICAgICAgICAgICAgICAgR0VOTUFT
+SygxNywNCj4gMTIpDQo+ID4gPiArI2RlZmluZSBNQUNfQ0xLXzFHX09VVFBVVF9ERUxBWV8yICAg
+ICAgICAgICAgICBHRU5NQVNLKDExLA0KPiA2KQ0KPiA+ID4gKyNkZWZpbmUgTUFDX0NMS18xR19P
+VVRQVVRfREVMQVlfMSAgICAgICAgICAgICAgR0VOTUFTSyg1LA0KPiAwKQ0KPiA+ID4gKw0KPiA+
+ID4gKyNkZWZpbmUgTUFDX0NMS18xMDBNXzEwTV9SRVNFUlZFRA0KPiBHRU5NQVNLKDMxLA0KPiA+
+IDI2KQ0KPiA+ID4gKyNkZWZpbmUgTUFDX0NMS18xMDBNXzEwTV9SWENMS19JTlZfMiAgICAgICAg
+ICAgQklUKDI1KQ0KPiA+ID4gKyNkZWZpbmUgTUFDX0NMS18xMDBNXzEwTV9SWENMS19JTlZfMSAg
+ICAgICAgICAgQklUKDI0KQ0KPiA+ID4gKyNkZWZpbmUgTUFDX0NMS18xMDBNXzEwTV9JTlBVVF9E
+RUxBWV8yDQo+IEdFTk1BU0soMjMsDQo+ID4gMTgpDQo+ID4gPiArI2RlZmluZSBNQUNfQ0xLXzEw
+ME1fMTBNX0lOUFVUX0RFTEFZXzENCj4gR0VOTUFTSygxNywNCj4gPiAxMikNCj4gPiA+ICsjZGVm
+aW5lIE1BQ19DTEtfMTAwTV8xME1fT1VUUFVUX0RFTEFZXzINCj4gPiBHRU5NQVNLKDExLCA2KQ0K
+PiA+ID4gKyNkZWZpbmUgTUFDX0NMS18xMDBNXzEwTV9PVVRQVVRfREVMQVlfMQ0KPiA+IEdFTk1B
+U0soNSwgMCkNCj4gPiA+ICsNCj4gPiA+ICsjZGVmaW5lIEFTVDI3MDBfREVGX01BQzEyX0RFTEFZ
+XzFHICAgICAweDAwQ0Y0RDc1DQo+ID4NCj4gPiBsb3djYXNlIGhleCwgcGxlYXNlLg0KPiBBbHJl
+YWR5IHNwbGl0IGNsb2NrIGFuZCByZXNldCB0byBSeWFuJ3MgY29tbWl0Lg0KPiBodHRwczovL3Bh
+dGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtY2xrL2xpc3QvP3Nlcmllcz04OTIwMjAN
+Cj4gUGxlYXNlIGNoZWNrIHRoZSBzZXJpZXMgb2YgIiBBZGQgc3VwcG9ydCBmb3IgQVNUMjcwMCBj
+bGsgZHJpdmVyIi4NCj4gDQo+ID4NCj4gPiA+ICsjZGVmaW5lIEFTVDI3MDBfREVGX01BQzEyX0RF
+TEFZXzEwME0gICAweDAwNDEwNDEwDQo+ID4gPiArI2RlZmluZSBBU1QyNzAwX0RFRl9NQUMxMl9E
+RUxBWV8xME0gICAgMHgwMDQxMDQxMA0KPiA+ID4gKw0KPiA+ID4gK3N0cnVjdCBtYWNfZGVsYXlf
+Y29uZmlnIHsNCj4gPiA+ICsgICAgICAgdTMyIHR4X2RlbGF5XzEwMDA7DQo+ID4gPiArICAgICAg
+IHUzMiByeF9kZWxheV8xMDAwOw0KPiA+ID4gKyAgICAgICB1MzIgdHhfZGVsYXlfMTAwOw0KPiA+
+ID4gKyAgICAgICB1MzIgcnhfZGVsYXlfMTAwOw0KPiA+ID4gKyAgICAgICB1MzIgdHhfZGVsYXlf
+MTA7DQo+ID4gPiArICAgICAgIHUzMiByeF9kZWxheV8xMDsNCj4gPiA+ICt9Ow0KPiA+ID4gKw0K
+PiA+ID4gKy8qIEdsb2JhbGx5IHZpc2libGUgY2xvY2tzICovDQo+ID4gPiArc3RhdGljIERFRklO
+RV9TUElOTE9DSyhhc3QyNzAwX2Nsa19sb2NrKTsNCj4gPiA+ICsNCj4gPiA+ICsvKiBEaXZpc2lv
+biBvZiBSR01JSSBDbG9jayAqLw0KPiA+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY2xrX2Rpdl90
+YWJsZSBhc3QyNzAwX3JnbWlpX2Rpdl90YWJsZVtdID0gew0KPiA+ID4gKyAgICAgICB7IDB4MCwg
+NCB9LA0KPiA+ID4gKyAgICAgICB7IDB4MSwgNCB9LA0KPiA+ID4gKyAgICAgICB7IDB4MiwgNiB9
+LA0KPiA+ID4gKyAgICAgICB7IDB4MywgOCB9LA0KPiA+ID4gKyAgICAgICB7IDB4NCwgMTAgfSwN
+Cj4gPiA+ICsgICAgICAgeyAweDUsIDEyIH0sDQo+ID4gPiArICAgICAgIHsgMHg2LCAxNCB9LA0K
+PiA+ID4gKyAgICAgICB7IDB4NywgMTYgfSwNCj4gPiA+ICsgICAgICAgeyAwIH0NCj4gPiA+ICt9
+Ow0KPiA+ID4gKw0KPiA+ID4gKy8qIERpdmlzaW9uIG9mIFJNSUkgQ2xvY2sgKi8NCj4gPiA+ICtz
+dGF0aWMgY29uc3Qgc3RydWN0IGNsa19kaXZfdGFibGUgYXN0MjcwMF9ybWlpX2Rpdl90YWJsZVtd
+ID0gew0KPiA+ID4gKyAgICAgICB7IDB4MCwgOCB9LA0KPiA+ID4gKyAgICAgICB7IDB4MSwgOCB9
+LA0KPiA+ID4gKyAgICAgICB7IDB4MiwgMTIgfSwNCj4gPiA+ICsgICAgICAgeyAweDMsIDE2IH0s
+DQo+ID4gPiArICAgICAgIHsgMHg0LCAyMCB9LA0KPiA+ID4gKyAgICAgICB7IDB4NSwgMjQgfSwN
+Cj4gPiA+ICsgICAgICAgeyAweDYsIDI4IH0sDQo+ID4gPiArICAgICAgIHsgMHg3LCAzMiB9LA0K
+PiA+ID4gKyAgICAgICB7IDAgfQ0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiArLyogRGl2aXNp
+b24gb2YgSENMSy9TRElPL01BQy9hcGxsX2Rpdm4gQ0xLICovIHN0YXRpYyBjb25zdCBzdHJ1Y3QN
+Cj4gPiA+ICtjbGtfZGl2X3RhYmxlIGFzdDI3MDBfY2xrX2Rpdl90YWJsZVtdID0gew0KPiA+ID4g
+KyAgICAgICB7IDB4MCwgMiB9LA0KPiA+ID4gKyAgICAgICB7IDB4MSwgMiB9LA0KPiA+ID4gKyAg
+ICAgICB7IDB4MiwgMyB9LA0KPiA+ID4gKyAgICAgICB7IDB4MywgNCB9LA0KPiA+ID4gKyAgICAg
+ICB7IDB4NCwgNSB9LA0KPiA+ID4gKyAgICAgICB7IDB4NSwgNiB9LA0KPiA+ID4gKyAgICAgICB7
+IDB4NiwgNyB9LA0KPiA+ID4gKyAgICAgICB7IDB4NywgOCB9LA0KPiA+ID4gKyAgICAgICB7IDAg
+fQ0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4gPiArLyogRGl2aXNpb24gb2YgUENMSy9FTU1DIENM
+SyAqLw0KPiA+ID4gK3N0YXRpYyBjb25zdCBzdHJ1Y3QgY2xrX2Rpdl90YWJsZSBhc3QyNzAwX2Ns
+a19kaXZfdGFibGUyW10gPSB7DQo+ID4gPiArICAgICAgIHsgMHgwLCAyIH0sDQo+ID4gPiArICAg
+ICAgIHsgMHgxLCA0IH0sDQo+ID4gPiArICAgICAgIHsgMHgyLCA2IH0sDQo+ID4gPiArICAgICAg
+IHsgMHgzLCA4IH0sDQo+ID4gPiArICAgICAgIHsgMHg0LCAxMCB9LA0KPiA+ID4gKyAgICAgICB7
+IDB4NSwgMTIgfSwNCj4gPiA+ICsgICAgICAgeyAweDYsIDE0IH0sDQo+ID4gPiArICAgICAgIHsg
+MHg3LCAxNiB9LA0KPiA+ID4gKyAgICAgICB7IDAgfQ0KPiA+ID4gK307DQo+ID4gPiArDQo+ID4g
+PiArLyogSFBMTC9EUExMOiAyMDAwTWh6KGRlZmF1bHQpICovDQo+ID4gPiArc3RhdGljIHN0cnVj
+dCBjbGtfaHcgKmFzdDI3MDBfc29jMF9od19wbGwoY29uc3QgY2hhciAqbmFtZSwgY29uc3QNCj4g
+PiA+ICtjaGFyICpwYXJlbnRfbmFtZSwgdTMyIHZhbCkNCj4gPg0KPiA+IFBsZWFzZSBtaWdyYXRl
+IGZyb20gdXNpbmcgcGFyZW50X25hbWVzIHRvIGVpdGhlciB1c2luZyBwYXJlbnRfaHcgb3INCj4g
+PiB1c2luZyBmd25hbWUgdG8gc3BlY2lmeSB0aGUgcGFyZW50IGNsb2NrLg0KPiBBbHJlYWR5IHNw
+bGl0IGNsb2NrIGFuZCByZXNldCB0byBSeWFuJ3MgY29tbWl0Lg0KPiBodHRwczovL3BhdGNod29y
+ay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtY2xrL2xpc3QvP3Nlcmllcz04OTIwMjANCj4gUGxl
+YXNlIGNoZWNrIHRoZSBzZXJpZXMgb2YgIiBBZGQgc3VwcG9ydCBmb3IgQVNUMjcwMCBjbGsgZHJp
+dmVyIi4NCj4gDQo+ID4NCj4gPiA+ICt7DQo+ID4gPiArICAgICAgIHVuc2lnbmVkIGludCBtdWx0
+LCBkaXY7DQo+ID4gPiArDQo+ID4gPiArICAgICAgIGlmICh2YWwgJiBCSVQoMjQpKSB7DQo+ID4g
+PiArICAgICAgICAgICAgICAgLyogUGFzcyB0aHJvdWdoIG1vZGUgKi8NCj4gPiA+ICsgICAgICAg
+ICAgICAgICBtdWx0ID0gMTsNCj4gPiA+ICsgICAgICAgICAgICAgICBkaXYgPSAxOw0KPiA+ID4g
+KyAgICAgICB9IGVsc2Ugew0KPiA+ID4gKyAgICAgICAgICAgICAgIC8qIEYgPSBDTEtJTigyNU1I
+eikgKiBbKE0rMSkgLyAyKE4rMSldIC8gKFArMSkgKi8NCj4gPiA+ICsgICAgICAgICAgICAgICB1
+MzIgbSA9IHZhbCAmIDB4MWZmZjsNCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIgbiA9ICh2YWwg
+Pj4gMTMpICYgMHgzZjsNCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIgcCA9ICh2YWwgPj4gMTkp
+ICYgMHhmOw0KPiA+ID4gKw0KPiA+ID4gKyAgICAgICAgICAgICAgIG11bHQgPSAobSArIDEpIC8g
+KDIgKiAobiArIDEpKTsNCj4gPiA+ICsgICAgICAgICAgICAgICBkaXYgPSAocCArIDEpOw0KPiA+
+ID4gKyAgICAgICB9DQo+ID4gPiArDQo+ID4gPiArICAgICAgIHJldHVybiBjbGtfaHdfcmVnaXN0
+ZXJfZml4ZWRfZmFjdG9yKE5VTEwsIG5hbWUsIHBhcmVudF9uYW1lLA0KPiA+ID4gKzAsIG11bHQs
+IGRpdik7IH07DQo+ID4gPiArDQo+ID4gPiArLyogTVBMTCAxNjAwTWh6KGRlZmF1bHQpICovDQo+
+ID4gPiArc3RhdGljIHN0cnVjdCBjbGtfaHcgKmFzdDI3MDBfY2FsY19tcGxsKGNvbnN0IGNoYXIg
+Km5hbWUsIGNvbnN0DQo+ID4gPiArY2hhciAqcGFyZW50X25hbWUsIHUzMiB2YWwpIHsNCj4gPiA+
+ICsgICAgICAgdW5zaWduZWQgaW50IG11bHQsIGRpdjsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAg
+aWYgKHZhbCAmIEJJVCgyNCkpIHsNCj4gPiA+ICsgICAgICAgICAgICAgICAvKiBQYXNzIHRocm91
+Z2ggbW9kZSAqLw0KPiA+ID4gKyAgICAgICAgICAgICAgIGRpdiA9IDE7DQo+ID4gPiArICAgICAg
+ICAgICAgICAgbXVsdCA9IGRpdjsNCj4gPiA+ICsgICAgICAgfSBlbHNlIHsNCj4gPiA+ICsgICAg
+ICAgICAgICAgICAvKiBGID0gQ0xLSU4oMjVNSHopICogW0NMS0YvKENMS1IrMSldIC8oQ0xLT0Qr
+MSkgKi8NCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIgbSA9IHZhbCAmIDB4MWZmZjsNCj4gPiA+
+ICsgICAgICAgICAgICAgICB1MzIgbiA9ICh2YWwgPj4gMTMpICYgMHgzZjsNCj4gPiA+ICsgICAg
+ICAgICAgICAgICB1MzIgcCA9ICh2YWwgPj4gMTkpICYgMHhmOw0KPiA+ID4gKw0KPiA+ID4gKyAg
+ICAgICAgICAgICAgIG11bHQgPSBtIC8gKG4gKyAxKTsNCj4gPiA+ICsgICAgICAgICAgICAgICBk
+aXYgPSAocCArIDEpOw0KPiA+ID4gKyAgICAgICB9DQo+ID4gPiArICAgICAgIHJldHVybiBjbGtf
+aHdfcmVnaXN0ZXJfZml4ZWRfZmFjdG9yKE5VTEwsIG5hbWUsIHBhcmVudF9uYW1lLA0KPiA+ID4g
+KzAsIG11bHQsIGRpdik7IH07DQo+ID4gPiArDQo+ID4gPiArc3RhdGljIHN0cnVjdCBjbGtfaHcg
+KmFzdDI3MDBfY2FsY191Y2xrKGNvbnN0IGNoYXIgKm5hbWUsIHUzMiB2YWwpIHsNCj4gPiA+ICsg
+ICAgICAgdW5zaWduZWQgaW50IG11bHQsIGRpdjsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAgLyog
+VUFSVENMSyA9IFVYQ0xLICogUiAvIChOICogMikgKi8NCj4gPiA+ICsgICAgICAgdTMyIHIgPSB2
+YWwgJiAweGZmOw0KPiA+ID4gKyAgICAgICB1MzIgbiA9ICh2YWwgPj4gOCkgJiAweDNmZjsNCj4g
+PiA+ICsNCj4gPiA+ICsgICAgICAgbXVsdCA9IHI7DQo+ID4gPiArICAgICAgIGRpdiA9IG4gKiAy
+Ow0KPiA+ID4gKw0KPiA+ID4gKyAgICAgICByZXR1cm4gY2xrX2h3X3JlZ2lzdGVyX2ZpeGVkX2Zh
+Y3RvcihOVUxMLCBuYW1lLCAidXhjbGsiLCAwLA0KPiA+ID4gK211bHQsIGRpdik7IH07DQo+ID4g
+PiArDQo+ID4gPiArc3RhdGljIHN0cnVjdCBjbGtfaHcgKmFzdDI3MDBfY2FsY19odWNsayhjb25z
+dCBjaGFyICpuYW1lLCB1MzIgdmFsKSB7DQo+ID4gPiArICAgICAgIHVuc2lnbmVkIGludCBtdWx0
+LCBkaXY7DQo+ID4gPiArDQo+ID4gPiArICAgICAgIC8qIFVBUlRDTEsgPSBVWENMSyAqIFIgLyAo
+TiAqIDIpICovDQo+ID4gPiArICAgICAgIHUzMiByID0gdmFsICYgMHhmZjsNCj4gPiA+ICsgICAg
+ICAgdTMyIG4gPSAodmFsID4+IDgpICYgMHgzZmY7DQo+ID4gPiArDQo+ID4gPiArICAgICAgIG11
+bHQgPSByOw0KPiA+ID4gKyAgICAgICBkaXYgPSBuICogMjsNCj4gPiA+ICsNCj4gPiA+ICsgICAg
+ICAgcmV0dXJuIGNsa19od19yZWdpc3Rlcl9maXhlZF9mYWN0b3IoTlVMTCwgbmFtZSwgImh1eGNs
+ayIsIDAsDQo+ID4gPiArbXVsdCwgZGl2KTsgfTsNCj4gPiA+ICsNCj4gPiA+ICtzdGF0aWMgc3Ry
+dWN0IGNsa19odyAqYXN0MjcwMF9jYWxjX3NvYzFfcGxsKGNvbnN0IGNoYXIgKm5hbWUsIGNvbnN0
+DQo+ID4gPiArY2hhciAqcGFyZW50X25hbWUsIHUzMiB2YWwpDQo+ID4NCj4gPiBIb3cgaXMgdGhp
+cyBkaWZmZXJlbnQgZnJvbSBhc3QyNzAwX3NvYzBfaHdfcGxsKCkgPw0KPiBBbHJlYWR5IHNwbGl0
+IGNsb2NrIGFuZCByZXNldCB0byBSeWFuJ3MgY29tbWl0Lg0KPiBodHRwczovL3BhdGNod29yay5r
+ZXJuZWwub3JnL3Byb2plY3QvbGludXgtY2xrL2xpc3QvP3Nlcmllcz04OTIwMjANCj4gUGxlYXNl
+IGNoZWNrIHRoZSBzZXJpZXMgb2YgIiBBZGQgc3VwcG9ydCBmb3IgQVNUMjcwMCBjbGsgZHJpdmVy
+Ii4NCj4gDQo+ID4NCj4gPiA+ICt7DQo+ID4gPiArICAgICAgIHVuc2lnbmVkIGludCBtdWx0LCBk
+aXY7DQo+ID4gPiArDQo+ID4gPiArICAgICAgIGlmICh2YWwgJiBCSVQoMjQpKSB7DQo+ID4gPiAr
+ICAgICAgICAgICAgICAgLyogUGFzcyB0aHJvdWdoIG1vZGUgKi8NCj4gPiA+ICsgICAgICAgICAg
+ICAgICBkaXYgPSAxOw0KPiA+ID4gKyAgICAgICAgICAgICAgIG11bHQgPSBkaXY7DQo+ID4gPiAr
+ICAgICAgIH0gZWxzZSB7DQo+ID4gPiArICAgICAgICAgICAgICAgLyogRiA9IDI1TWh6ICogWyhN
+ICsgMSkgLyAobiArIDEpXSAvIChwICsgMSkgKi8NCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIg
+bSA9IHZhbCAmIDB4MWZmZjsNCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIgbiA9ICh2YWwgPj4g
+MTMpICYgMHgzZjsNCj4gPiA+ICsgICAgICAgICAgICAgICB1MzIgcCA9ICh2YWwgPj4gMTkpICYg
+MHhmOw0KPiA+ID4gKw0KPiA+ID4gKyAgICAgICAgICAgICAgIG11bHQgPSAobSArIDEpIC8gKG4g
+KyAxKTsNCj4gPiA+ICsgICAgICAgICAgICAgICBkaXYgPSAocCArIDEpOw0KPiA+ID4gKyAgICAg
+ICB9DQo+ID4gPiArICAgICAgIHJldHVybiBjbGtfaHdfcmVnaXN0ZXJfZml4ZWRfZmFjdG9yKE5V
+TEwsIG5hbWUsIHBhcmVudF9uYW1lLA0KPiA+ID4gKzAsIG11bHQsIGRpdik7IH07DQo+ID4gPiAr
+DQo+ID4NCj4gPg0KPiA+IC0tDQo+ID4gV2l0aCBiZXN0IHdpc2hlcw0KPiA+IERtaXRyeQ0K
 
