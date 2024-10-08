@@ -1,246 +1,206 @@
-Return-Path: <devicetree+bounces-108798-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108799-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DCD6993EBA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42F63993EDB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE4DB1F210A8
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 06:33:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7C01F259DA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 06:48:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1766517E006;
-	Tue,  8 Oct 2024 06:19:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5CA41C233C;
+	Tue,  8 Oct 2024 06:22:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="cmFj8rpX"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Wlm/JxEY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6942E17CA1A
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 06:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8FCF190463;
+	Tue,  8 Oct 2024 06:22:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728368353; cv=none; b=TiMYKiHcIdfVINhOpg06X00tX+/+K0nCEn/To5hEgar4ikQakwU7PaTeEkiJUgeh3DSPtHZrHofdbSej+fnuyOoBN7908DJgSWjGxePNnHiClhv6tLoRK9KeUt4YeFM/bCObHM0wpj8CqfBAP1UZAmUG+5KyjBfKdZSXmhjwaLs=
+	t=1728368562; cv=none; b=AyfkUsh03jn1Vl58OONpT0Xamd+kj4HREbbjxjZI8Pf1X119cK70k+qVFE5xnxSGB+t6LMo0uJMTFd6b7ugf9vJoGcI+TJ2AZALyjUePZxVz8li9GwqM2sOyi34cQnBnXUZlGk/r9MFcMp6cyjoKautAbb7TRjbFTY3+tz9mb/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728368353; c=relaxed/simple;
-	bh=99T99fkhxyl05NOCSdwgSHdnxbr2uaqIW2y8IKVz1Ok=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jOhheZttvbNImOQvFS1XiA7ZllmFqLx0jeXqyHvRHhJ+VDhUChzYLCcjp/HpO+v+vwMb/0gEv7f+a8QYKJXMmE8fsCLr6J4giygPHnaXbbfKmqq6gqi9HE638oftnnLulaCfmv2ekgfwpxkr7n/saom2HTMBa+WxM90a2bwGfeE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=cmFj8rpX; arc=none smtp.client-ip=209.85.166.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-83493f2dda4so201515439f.1
-        for <devicetree@vger.kernel.org>; Mon, 07 Oct 2024 23:19:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1728368349; x=1728973149; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XRr5KbJ5pCun9Ui+yXUQXX9sN3Sf5UKx3OLBX37YeoY=;
-        b=cmFj8rpX2U7Pk7sWVT2QvCzFW7jiDGmJMRyhDw4U/5oSgrO1suZrnX1Qaw5wxuZLvM
-         pRmaO1VwVqRCMdIDWOOXdAcIlepbfiVf97sbLOQcpSSsAexgMJMIlDBqJcglE0XlR1BU
-         vBjxB8hMBSsgQBHYxbJCO76mHtMovYr88RBPpZ1YBm7N90Al8z7ICJ8/g2fIDqwlsuEh
-         kuBoTkG2dS3WNCGd9piy//T9OhVypoqbpZK43vXrW1jtYYGOVkW4dyxcc+JNKJAdnKyl
-         1V/aczokanFGQdaHltxFvOebjQKp+07/ECLEnXpEbJFu/MCcfN4OG+CxiofaITUV+K6h
-         bMJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728368349; x=1728973149;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XRr5KbJ5pCun9Ui+yXUQXX9sN3Sf5UKx3OLBX37YeoY=;
-        b=lLiJ0YxVqy/VsIFGD3p2C5yg718zYNEXt2zCWFsBwRw4Ous4N0ZfsZGc9V7XrF7j/5
-         6e+7CyQW/iWntUlXm5zGeai9IjBo7cgjQdAKGdrEXZ17D3LtM6FUHvJUzdvYl2FRsBs0
-         QFKuj/0UETT2YBbWPiCAx6Lp35BjYzxuRQIOEY7dikiI1rKSKb0SYToLigia7y+RWcyB
-         C7W54lnO+EpKewHmgwL/6PYEXW96bBG5gEzvMG8nI2+oYqnL6t501CqAL+TS+oF4IBzB
-         59z1xTRQmPOdUQL03mCjykaajmwjmRQulT/cDKcUPElUxddqOvJUHya2HjuLVbVPa3lG
-         jSfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXe6ifbyTIRLWkct1JSCo8yjuU0VIksoevRntIyyJtJczyMMoq+Z14XuFp1QwhFf9FQnCm1qk5G//8n@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5I0OezJxj2fsdxzqwsHuyg+zAYvAYupzq0mxd0wxElkAB2rY6
-	UrgAh1nPwxo+OqSO1RTjyH4h1oobRPv2i2O4SAvP6eAG2FCMQWSceI2IcU0lKTXBOAxUFlEqg3k
-	HvWtRQfCesP1to3/rUbd11Et+5difivZmsxiX3Q==
-X-Google-Smtp-Source: AGHT+IEEV1iKS64xo2W8tSXTVgZ9wK0tVm8MaNOWH+N+f0lrse/SrQLSt9EsGck2HE3GwEbRPJ5ayCLs8lBdAbKu4jQ=
-X-Received: by 2002:a05:6e02:1a2c:b0:3a0:abd0:122 with SMTP id
- e9e14a558f8ab-3a38af6a526mr16553285ab.8.1728368349400; Mon, 07 Oct 2024
- 23:19:09 -0700 (PDT)
+	s=arc-20240116; t=1728368562; c=relaxed/simple;
+	bh=SVYof9aY9xTJDK3KwZvp+rugri1ytEmahNQ0cFbUZow=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mqw+3fIhZVT46iHqLLauEiPDg013VHKJMgnbgPL9S94nEFVg0VFCh554DbFaLzQmi+6DbCNrtdK2DKEZKOTb1MfI5UfhRF6ayC8LtYL4dLGsP+boPGt2wg2XCb37cbOH03z0OW5auvwxKKsURunbmT1EIGRawj45pJ4EbEzp0FQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Wlm/JxEY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 497J0n4v005200;
+	Tue, 8 Oct 2024 06:22:24 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=sF52L5mXGtB6UiRr/3lh/Bsm
+	cEnzkJAfB6CtnjlOadI=; b=Wlm/JxEY2g900/Wdw+EJe+RQ1JyStCA94jgP1CiC
+	yOgKm0UvqCEYcdeqp4kFaykrDXmQTlaliqyrQpOIn/ZUDsD41yLwqG4WYdsA8mRw
+	altYZETbfS+Tvrw18ZAHi99DMwqZvUtzY+OthBrIVJOnQiw/bGxUci88JLuomBSF
+	RViND/Vb5g2qyzE3uFoAFF86avCF4w6zEYseme45tZ0Ovz9ZDVFCfkuv+mkEJur5
+	P2IMjOVhCk8VbMpYBc7s8f8Btzy83IOIUt2EyfBLRxryvL3f+7UPjeyz5P9PGfeW
+	MpY4MK6+kyddxEXCn3ZpGbee3qh+98PXLpxkx27O5Rn/qQ==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndy97ww-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Oct 2024 06:22:23 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4986M77r014437
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 8 Oct 2024 06:22:07 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Mon, 7 Oct 2024 23:22:03 -0700
+Date: Tue, 8 Oct 2024 11:51:54 +0530
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <neil.armstrong@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Konrad
+ Dybcio <konradybcio@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] remoteproc: qcom: Enable map/unmap and SHM bridge
+ support
+Message-ID: <ZwTPghV36CSIpkE4@hu-mojha-hyd.qualcomm.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-7-quic_mojha@quicinc.com>
+ <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
+ <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241001-v5_user_cfi_series-v1-0-3ba65b6e550f@rivosinc.com>
- <20241001-v5_user_cfi_series-v1-16-3ba65b6e550f@rivosinc.com>
- <CANXhq0rpwQkZ9+mZLGVUq=r4WiA8BbZ-eeTDogf3fzeEPqeeqA@mail.gmail.com>
- <ZwRvAEwFbrpq3zZq@debug.ba.rivosinc.com> <CANXhq0qaokjDC9hb75_dpGuyOd_ex8+q7YNe8pAg7dbTcxuLSg@mail.gmail.com>
- <ZwTDonkiATv999sS@debug.ba.rivosinc.com>
-In-Reply-To: <ZwTDonkiATv999sS@debug.ba.rivosinc.com>
-From: Zong Li <zong.li@sifive.com>
-Date: Tue, 8 Oct 2024 14:18:58 +0800
-Message-ID: <CANXhq0r611Hi7pohDGRXhvi2E_uOFjwLRDrqZcL2WdLHcs+oHA@mail.gmail.com>
-Subject: Re: [PATCH 16/33] riscv/shstk: If needed allocate a new shadow stack
- on clone
-To: Deepak Gupta <debug@rivosinc.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org, 
-	"H. Peter Anvin" <hpa@zytor.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, 
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
-	Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Christian Brauner <brauner@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
-	Oleg Nesterov <oleg@redhat.com>, Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>, 
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arch@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kselftest@vger.kernel.org, alistair.francis@wdc.com, 
-	richard.henderson@linaro.org, jim.shu@sifive.com, andybnac@gmail.com, 
-	kito.cheng@sifive.com, charlie@rivosinc.com, atishp@rivosinc.com, 
-	evan@rivosinc.com, cleger@rivosinc.com, alexghiti@rivosinc.com, 
-	samitolvanen@google.com, broonie@kernel.org, rick.p.edgecombe@intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wHphFz5b20QGW6tqJl3-WYnEpXdCfPm7
+X-Proofpoint-ORIG-GUID: wHphFz5b20QGW6tqJl3-WYnEpXdCfPm7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=999 spamscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410080040
 
-On Tue, Oct 8, 2024 at 1:31=E2=80=AFPM Deepak Gupta <debug@rivosinc.com> wr=
-ote:
->
-> On Tue, Oct 08, 2024 at 01:16:17PM +0800, Zong Li wrote:
-> >On Tue, Oct 8, 2024 at 7:30=E2=80=AFAM Deepak Gupta <debug@rivosinc.com>=
- wrote:
-> >>
-> >> On Mon, Oct 07, 2024 at 04:17:47PM +0800, Zong Li wrote:
-> >> >On Wed, Oct 2, 2024 at 12:20=E2=80=AFAM Deepak Gupta <debug@rivosinc.=
-com> wrote:
-> >> >>
-> >> >> Userspace specifies CLONE_VM to share address space and spawn new t=
-hread.
-> >> >> `clone` allow userspace to specify a new stack for new thread. Howe=
-ver
-> >> >> there is no way to specify new shadow stack base address without ch=
-anging
-> >> >> API. This patch allocates a new shadow stack whenever CLONE_VM is g=
-iven.
-> >> >>
-> >> >> In case of CLONE_VFORK, parent is suspended until child finishes an=
-d thus
-> >> >> can child use parent shadow stack. In case of !CLONE_VM, COW kicks =
-in
-> >> >> because entire address space is copied from parent to child.
-> >> >>
-> >> >> `clone3` is extensible and can provide mechanisms using which shado=
-w stack
-> >> >> as an input parameter can be provided. This is not settled yet and =
-being
-> >> >> extensively discussed on mailing list. Once that's settled, this co=
-mmit
-> >> >> will adapt to that.
-> >> >>
-> >> >> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
-> >> >> ---
-> >> >>  arch/riscv/include/asm/usercfi.h |  25 ++++++++
-> >>
-> >> ... snipped...
-> >>
-> >> >> +
-> >> >> +/*
-> >> >> + * This gets called during clone/clone3/fork. And is needed to all=
-ocate a shadow stack for
-> >> >> + * cases where CLONE_VM is specified and thus a different stack is=
- specified by user. We
-> >> >> + * thus need a separate shadow stack too. How does separate shadow=
- stack is specified by
-> >> >> + * user is still being debated. Once that's settled, remove this p=
-art of the comment.
-> >> >> + * This function simply returns 0 if shadow stack are not supporte=
-d or if separate shadow
-> >> >> + * stack allocation is not needed (like in case of !CLONE_VM)
-> >> >> + */
-> >> >> +unsigned long shstk_alloc_thread_stack(struct task_struct *tsk,
-> >> >> +                                          const struct kernel_clon=
-e_args *args)
-> >> >> +{
-> >> >> +       unsigned long addr, size;
-> >> >> +
-> >> >> +       /* If shadow stack is not supported, return 0 */
-> >> >> +       if (!cpu_supports_shadow_stack())
-> >> >> +               return 0;
-> >> >> +
-> >> >> +       /*
-> >> >> +        * If shadow stack is not enabled on the new thread, skip a=
-ny
-> >> >> +        * switch to a new shadow stack.
-> >> >> +        */
-> >> >> +       if (is_shstk_enabled(tsk))
-> >> >
-> >> >Hi Deepak,
-> >> >Should it be '!' is_shstk_enabled(tsk)?
-> >>
-> >> Yes it is a bug. It seems like fork without CLONE_VM or with CLONE_VFO=
-RK, it was returning
-> >> 0 anyways. And in the case of CLONE_VM (used by pthread), it was not d=
-oing the right thing.
-> >
-> >Hi Deepak,
-> >I'd like to know if I understand correctly. Could I know whether there
-> >might also be a risk when the user program doesn't enable the CFI and
-> >the kernel doesn't activate CFI. Because this flow will still try to
-> >allocate the shadow stack and execute the ssamowap command. Thanks
->
-> `shstk_alloc_thread_stack` is only called from `copy_thread` and  allocat=
-es and
-> returns non-zero (positive value) for ssp only if `CLONE_VM` is specified=
-.
-> `CLONE_VM` means that address space is shared and userspace has allocated
-> separate stack. This flow is ensuring that newly created thread with sepa=
-rate
-> data stack gets a separate shadow stack as well.
->
-> Retruning zero value from `shstk_alloc_thread_stack` means that, no need =
-to
-> allocate a shadow stack. If you look at `copy_thread` function, it simply=
- sets
-> the returned ssp in newly created task's task_struct (if it was non-zero)=
-.
-> If returned ssp was zero, `copy_thread` doesn't do anything. Thus whateve=
-r is
-> current task settings are that will be copied over to new forked/cloned t=
-ask.
-> If current task had shadow stack enabled, new task will also get it enabl=
-ed at
-> same address (to be COWed later).
->
-> Any task get shadow stack enabled for first time using new prctls (see pr=
-ctl
-> patches).
->
-> So only time `ssamoswap` will be exercised will be are
-> - User issues enabling `prctl` (it'll be issued from loader)
-> - fork/clone happens
->
-> In both cases, it is guarded against checks of whether cpu supports it an=
-d task
-> has shadow stack enabled.
->
-> Let me know if you think I missed any flow.
+On Mon, Oct 07, 2024 at 08:22:39PM +0530, Mukesh Ojha wrote:
+> On Mon, Oct 07, 2024 at 10:05:08AM +0200, neil.armstrong@linaro.org wrote:
+> > On 04/10/2024 23:23, Mukesh Ojha wrote:
+> > > For Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
+> > > translation for remote processors is managed by QHEE and if the same SoC
+> > > run under KVM, remoteproc carveout and devmem region should be IOMMU
+> > > mapped from Linux PAS driver before remoteproc is brought up and
+> > > unmapped once it is tear down and apart from this, SHM bridge also need
+> > > to set up to enable memory protection on both remoteproc meta data
+> > > memory as well as for the carveout region.
+> > > 
+> > > Enable the support required to run Qualcomm remoteprocs on non-QHEE
+> > > hypervisors.
+> > > 
+> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > ---
+> > >   drivers/remoteproc/qcom_q6v5_pas.c | 41 +++++++++++++++++++++++++++++-
+> > >   1 file changed, 40 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> > > index ac339145e072..13bd13f1b989 100644
+> > > --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> > > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> > > @@ -122,6 +122,7 @@ struct qcom_adsp {
+> > >   	struct qcom_devmem_table *devmem;
+> > >   	struct qcom_tzmem_area *tzmem;
+> > > +	unsigned long sid;
+> > >   };
+> > >   static void adsp_segment_dump(struct rproc *rproc, struct rproc_dump_segment *segment,
+> > > @@ -310,9 +311,21 @@ static int adsp_start(struct rproc *rproc)
+> > >   	if (ret)
+> > >   		return ret;
+> > > +	ret = qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, true, true, adsp->sid);
+> > > +	if (ret) {
+> > > +		dev_err(adsp->dev, "iommu mapping failed, ret: %d\n", ret);
+> > > +		goto disable_irqs;
+> > > +	}
+> > > +
+> > > +	ret = qcom_map_devmem(rproc, adsp->devmem, true, adsp->sid);
+> > > +	if (ret) {
+> > > +		dev_err(adsp->dev, "devmem iommu mapping failed, ret: %d\n", ret);
+> > > +		goto unmap_carveout;
+> > > +	}
+> > > +
+> > >   	ret = adsp_pds_enable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
+> > >   	if (ret < 0)
+> > > -		goto disable_irqs;
+> > > +		goto unmap_devmem;
+> > >   	ret = clk_prepare_enable(adsp->xo);
+> > >   	if (ret)
+> > > @@ -400,6 +413,10 @@ static int adsp_start(struct rproc *rproc)
+> > >   	clk_disable_unprepare(adsp->xo);
+> > >   disable_proxy_pds:
+> > >   	adsp_pds_disable(adsp, adsp->proxy_pds, adsp->proxy_pd_count);
+> > > +unmap_devmem:
+> > > +	qcom_unmap_devmem(rproc, adsp->devmem, adsp->sid);
+> > > +unmap_carveout:
+> > > +	qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, false, true, adsp->sid);
+> > >   disable_irqs:
+> > >   	qcom_q6v5_unprepare(&adsp->q6v5);
+> > > @@ -445,6 +462,9 @@ static int adsp_stop(struct rproc *rproc)
+> > >   			dev_err(adsp->dev, "failed to shutdown dtb: %d\n", ret);
+> > >   	}
+> > > +	qcom_unmap_devmem(rproc, adsp->devmem, adsp->sid);
+> > > +	qcom_map_unmap_carveout(rproc, adsp->mem_phys, adsp->mem_size, false, true, adsp->sid);
+> > > +
+> > >   	handover = qcom_q6v5_unprepare(&adsp->q6v5);
+> > >   	if (handover)
+> > >   		qcom_pas_handover(&adsp->q6v5);
+> > > @@ -844,6 +864,25 @@ static int adsp_probe(struct platform_device *pdev)
+> > >   	}
+> > >   	platform_set_drvdata(pdev, adsp);
+> > > +	if (of_property_present(pdev->dev.of_node, "iommus")) {
+> > > +		struct of_phandle_args args;
+> > > +
+> > > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus", "#iommu-cells", 0, &args);
+> > > +		if (ret < 0)
+> > > +			return ret;
+> > > +
+> > > +		rproc->has_iommu = true;
+> > > +		adsp->sid = args.args[0];
+> > > +		of_node_put(args.np);
+> > > +		ret = adsp_devmem_init(adsp);
+> > > +		if (ret)
+> > > +			return ret;
+> > 
+> > Why don't you get this table from the firmware like presumably QHEE does ?
+> 
+> Well, AFAIK, QHEE(EL2) has this information statically present and does
+> not get it from anywhere., but will confirm this twice..
 
-Thanks a lot for the detail, it is very helpful for me. But sorry for
-the confusion, my question is actually on the situation with this bug
-(i.e., before the fix)
+Double confirmed, device memory region required by remoteproc is
+statically present with QHEE.
 
->
-> >
-> >> Most of the testing has been with busybox build (independent binaries0=
- driven via buildroot
-> >> setup. Wondering why it wasn't caught.
-> >>
-> >> Anyways, will fix it. Thanks for catching it.
-> >>
-> >> >
-> >> >> +               return 0;
-> >> >> +
-> >> >> +       /*
+-Mukesh
+
+> 
+> -Mukesh
+> 
 
