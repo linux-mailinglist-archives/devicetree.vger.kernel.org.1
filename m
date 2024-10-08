@@ -1,119 +1,198 @@
-Return-Path: <devicetree+bounces-109123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25BE59953EA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:59:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19F4B9953FB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:03:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E5651C24D5D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:59:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5597F1F230DF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48E031E0B70;
-	Tue,  8 Oct 2024 15:59:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD14584A35;
+	Tue,  8 Oct 2024 16:03:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gTC8A38+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BfKbZvJM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 982021DFE00;
-	Tue,  8 Oct 2024 15:59:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEEB9224F0;
+	Tue,  8 Oct 2024 16:03:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728403166; cv=none; b=IC4ceXM13DB/et5zL8sKQSZCgjohqintKbLSeugOZnetXq8DYZ3o3jzMR/HC/saZxEkAlczjp+ZcZ8WAS2Omh2dH8LjSggApDLVxoO+nYx3IPgiO39F3hmiu54ofkIPvBt20f85WpVFhVRoAggs8um8MY6aAtiaTSekj85cosMo=
+	t=1728403424; cv=none; b=PQWi+ALYvnaD4NC6tOjnX5/0xbcelJJEXWNkGk8s4M5uKGfk6H3z3VyJJuggDdv88VlaNxunoMNVNwom5R7SqfSg8YvL4xh9bRhRU5itokyH7wi23m0blZT0gUyx4gTPFEuOmDx0zVwD1+IfDeQcinAOmyqveypSNd0vrQDYHjk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728403166; c=relaxed/simple;
-	bh=6DJwM/LnvjD9C2bnMM/ha1h2dbvHNieWsmvJMPgzlV4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PfTIz424MG8aTEc7Z8QHHlXhSjNrPziNcOL4zwAhPVHG7dDcBISjnrtO0BF2b4rl1a5fyR6A48ATUeIidyyOpTeAjouSCcnIgcGJ7DLI23h0J24A0s1N4lo1bJP31+AAlH8Dv6rNkTmC672QbPtjI3R9UEVqTBkp1FXQGIv8WBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gTC8A38+; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-53997328633so7718819e87.3;
-        Tue, 08 Oct 2024 08:59:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728403163; x=1729007963; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yzYpjetz4XROYOG9r48tBi9Okr5Oaql6hR8lKZwZDY8=;
-        b=gTC8A38+wp92mBFXJJDJikLZuVn26mlARz7xEDnS3WZvuvaNI/7JeG5X2CVoT2xzR9
-         tdee8BEMd578YxbXfblTpFXiZ6K9HMoVEYYA+k9m1THzZ3cpcioUCdY5Qil7gqZQvZ2W
-         9H9+Z6gOBOmGKrJiURlRHb5FQZ9vYlJw8oOjpVjuPWcX1fZcMcOxd08FqVFwaMz7+BSB
-         pLFwIN3jrJGXHQmhySORoGmhOS8WaxVb3Kkb3/S4GPH11nTJ8mTyfhU77/h0vb5XnAMS
-         4ZRVX9GejE76OF6Nsm59Lqh3fntVBqDHZnwNaVLURsRWYRyzKrQK9BP8wNWLkLlsa1nu
-         PGiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728403163; x=1729007963;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yzYpjetz4XROYOG9r48tBi9Okr5Oaql6hR8lKZwZDY8=;
-        b=l2s6OXPFeE7bfKS7VlWB4kImg/6o2AbfhZQQdWJSZZTTctXOOoXwpJaBivGi0LUPxt
-         JCZFKrl5m5eANpCrvD5sFsQPmcebTqs3739pjucsmIuDWBdqJT29a3eoNGDB5HMYSeLe
-         eRy8p9cDE9IWKRi+wuAq3KdtiETdAQKI90m9bKEq/sFxWyFzDQ6Aazp+4dwoEolqOYho
-         Ns6bWGioEnw47cZZVjzSufPm5fu0cxgO+wCVKHPWxc0exdNe0fd3C/scJ7Nd7wK0iMWB
-         q2HVn3kgZJG9V+dxU1PYDI1FwKCs1NYxCB9dBCIq6eawr0ffD5cstgCPmqrKXUZZ2LJa
-         8Ubg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdBc2xoJT6C97cQawPpb3EwjhuK0ivUFcuRe02NMMA5h0lp47UKjv7bqgmbR4huTyQ2E79ERHmgDVm@vger.kernel.org, AJvYcCV/X7d9q3hnqW9fPVH6yx+UfinGqQ5l2p+Ts57FwRfc5FOwnwb9wb9wd0rJ4nMj5N8OOlc5j2v+Ff5h@vger.kernel.org, AJvYcCVJFQTpc3x63NYVkmL5bzFEojv21bY4H1R+rfnIEMnG0gC4bR1gy4yWT42rXdQ2U7HgwgRHqMgavSno@vger.kernel.org, AJvYcCWSJ9jn/im1gyBKjyUYDIim752r9qwQB637KJ/IWqmRVGXQcLGamSSdkSdgbKpNwYa7bafU4CcbrjTTeOxY@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuwQFsNIkbQ7NZLasY0H4f5DG+RFH7fZ1ejSUOmVWrJWBQXQt5
-	Cbt5nk5QX/cEZeueZz1Q0h57AZ+EB1IQRSUzoXXb0cO+jw7UnWUo7MkIa6dKvecSzMJ3Nqbg/hd
-	BOJo72SGsF9s9G+sGG/ldaWBrtBU=
-X-Google-Smtp-Source: AGHT+IF8PajqB+hvsPzsTQ4JpQY64kIdB3uepGNXxpTbt6Zi8IofIi4esCHWPwV/vDgQcbEfUK5ajoGDuZ4pNFghfp8=
-X-Received: by 2002:a05:6512:b29:b0:530:ab68:25c5 with SMTP id
- 2adb3069b0e04-539ab84e022mr10495835e87.2.1728403162256; Tue, 08 Oct 2024
- 08:59:22 -0700 (PDT)
+	s=arc-20240116; t=1728403424; c=relaxed/simple;
+	bh=eHRLnuNFNnHx6cpCghjA5SPciicevOMZ7FhMNyIl5sI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K3I0nz3u5/t96ewnhjTgXuRb3LajkvSSK/9DsGRZ8ENHoDI1HboWSSB4loUl/aFb32nFyBEcQqBwhSYi2Y1qq8FE74D56d8ODYvsACLZ4KKjpBiI7awkdED1P2vjO5M//C5Q4lkqpbEIKxd9ul/Do3mI1WogBCizdk6MuRPDdr8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BfKbZvJM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8B907C4CEC7;
+	Tue,  8 Oct 2024 16:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728403424;
+	bh=eHRLnuNFNnHx6cpCghjA5SPciicevOMZ7FhMNyIl5sI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=BfKbZvJMcOs5B5kSc8RKqyHkp0S1j46iq5NBNTC9Fg9mfS0B5QFJ9cql+NI/w9FFd
+	 aABcV4NwA8wLKfnVwN4HUNII1k2mu249fJxJDGorzhGH2DwtQI0g8WbtXP3A0ikpwH
+	 N+eLg5KEHoPZscD2S0v9qSnUvCygyxnSXgP8c/UourRLt3XEWZXZuR78lS+awDVPK2
+	 kE2esUoq0xl/vF1pnLx6WvcQNzleHIn5e0+U63aZz2i0tPj6OqPdxH0U+ByhwParQK
+	 GvSfU4MQWcp6skazfzHitEaNW9hMisJn5xP9zIaAHkKR1hfgdPE3+GIPKgV8mrgxpb
+	 7kRWTeg8sV+AQ==
+Message-ID: <fc17ef3d-7895-4ee8-bfa0-d31dd45f2f2c@kernel.org>
+Date: Tue, 8 Oct 2024 18:03:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241004140922.233939-1-antoniu.miclaus@analog.com>
- <20241004140922.233939-6-antoniu.miclaus@analog.com> <CAHp75VeaYBGTA7sN7SefsyMj09kaJLBoMz4=hf0GpxiXtF65+Q@mail.gmail.com>
- <CY4PR03MB3399684E3021A1261DC5195B9B7E2@CY4PR03MB3399.namprd03.prod.outlook.com>
-In-Reply-To: <CY4PR03MB3399684E3021A1261DC5195B9B7E2@CY4PR03MB3399.namprd03.prod.outlook.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Tue, 8 Oct 2024 18:58:46 +0300
-Message-ID: <CAHp75Ve1SgiY3dRuET=9icvy7W6kmZukbNcG1B0Le6+qKaB0JQ@mail.gmail.com>
-Subject: Re: [PATCH v2 6/7] iio: adc: ad485x: add ad485x driver
-To: "Miclaus, Antoniu" <Antoniu.Miclaus@analog.com>
-Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
-	"Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"Sa, Nuno" <Nuno.Sa@analog.com>, Olivier Moysan <olivier.moysan@foss.st.com>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	Andy Shevchenko <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, 
-	"Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>, Mike Looijmans <mike.looijmans@topic.nl>, 
-	Marius Cristea <marius.cristea@microchip.com>, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Alisa-Dariana Roman <alisadariana@gmail.com>, Ivan Mikhaylov <fr0st61te@gmail.com>, 
-	"Cuciurean, Sergiu" <Sergiu.Cuciurean@analog.com>, "Bogdan, Dragos" <Dragos.Bogdan@analog.com>, 
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] i2c: nomadik: support Mobileye EyeQ6H I2C controller
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com>
+ <20241008-mbly-i2c-v1-2-a06c1317a2f7@bootlin.com>
+ <oxcxs6n7y4bw33yfgaacd2cayf7otfochvlaofva2kabzjim6h@d6pam3gciepl>
+ <D4QI63B6YQU5.3UPKA7G75J445@bootlin.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <D4QI63B6YQU5.3UPKA7G75J445@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Tue, Oct 8, 2024 at 2:37=E2=80=AFPM Miclaus, Antoniu
-<Antoniu.Miclaus@analog.com> wrote:
+On 08/10/2024 16:43, Théo Lebrun wrote:
+> Hello Krzysztof,
+> 
+> On Tue Oct 8, 2024 at 3:39 PM CEST, Krzysztof Kozlowski wrote:
+>> On Tue, Oct 08, 2024 at 12:29:41PM +0200, Théo Lebrun wrote:
+>>> Add EyeQ6H support to the nmk-i2c AMBA driver. It shares the same quirk
+>>> as EyeQ5: the memory bus only supports 32-bit accesses. Avoid writeb()
+>>> and readb() by reusing the same `priv->has_32b_bus` flag.
+>>>
+>>> It does NOT need to write speed-mode specific value into a register;
+>>> therefore it does not depend on the mobileye,olb DT property.
+>>>
+>>> Refactoring is done using is_eyeq5 and is_eyeq6h boolean local
+>>> variables. Sort variables in reverse christmas tree to try and
+>>> introduce some logic into the ordering.
+>>>
+>>> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+>>> ---
+>>>  drivers/i2c/busses/i2c-nomadik.c | 22 +++++++++++-----------
+>>>  1 file changed, 11 insertions(+), 11 deletions(-)
+>>>
+>>> diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-nomadik.c
+>>> index ad0f02acdb1215a1c04729f97bb14a4d93f88456..ea511d3a58073eaedb63850026e05b59427a69c6 100644
+>>> --- a/drivers/i2c/busses/i2c-nomadik.c
+>>> +++ b/drivers/i2c/busses/i2c-nomadik.c
+>>> @@ -6,10 +6,10 @@
+>>>   * I2C master mode controller driver, used in Nomadik 8815
+>>>   * and Ux500 platforms.
+>>>   *
+>>> - * The Mobileye EyeQ5 platform is also supported; it uses
+>>> + * The Mobileye EyeQ5 and EyeQ6H platforms are also supported; they use
+>>>   * the same Ux500/DB8500 IP block with two quirks:
+>>>   *  - The memory bus only supports 32-bit accesses.
+>>> - *  - A register must be configured for the I2C speed mode;
+>>> + *  - (only EyeQ5) A register must be configured for the I2C speed mode;
+>>>   *    it is located in a shared register region called OLB.
+>>>   *
+>>>   * Author: Srinidhi Kasagar <srinidhi.kasagar@stericsson.com>
+>>> @@ -1046,8 +1046,6 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
+>>>  	struct regmap *olb;
+>>>  	unsigned int id;
+>>>  
+>>> -	priv->has_32b_bus = true;
+>>> -
+>>>  	olb = syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id);
+>>>  	if (IS_ERR(olb))
+>>>  		return PTR_ERR(olb);
+>>> @@ -1070,13 +1068,15 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
+>>>  
+>>>  static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *id)
+>>>  {
+>>> -	int ret = 0;
+>>> -	struct nmk_i2c_dev *priv;
+>>> -	struct device_node *np = adev->dev.of_node;
+>>> -	struct device *dev = &adev->dev;
+>>> -	struct i2c_adapter *adap;
+>>>  	struct i2c_vendor_data *vendor = id->data;
+>>> +	struct device_node *np = adev->dev.of_node;
+>>> +	bool is_eyeq6h = of_device_is_compatible(np, "mobileye,eyeq6h-i2c");
+>>> +	bool is_eyeq5 = of_device_is_compatible(np, "mobileye,eyeq5-i2c");
+>>
+>> You should use match data, not add compatibles in the middle of code.
+>> That's preferred, scallable pattern. What you added here last time does
+>> not scale and above change is a proof for that.
+> 
+> I would have used match data if the driver struct had a .of_match_table
+> field. `struct amba_driver` does not. Are you recommending the approach
+> below?
+> 
+> I don't see how it brings much to the driver but I do get the scaling
+> issue as the number of support compatibles increases. This is a fear
+> based on what *could* happen in the future though.
 
-...
+You still have adev->dev.of_node, which you can use for matching in
+probe. See for example of_match_device() (and add a note so people will
+not convert it to device_get_match_data() blindly).
 
-> > > +       bool pn_status[AD485X_MAX_LANES][AD485X_MAX_IODELAY];
-> >
-> > Why bool and not bitmap? I think I already asked this, but I don't
-> > remember what you answered.
->
-> Both ` iio_backend_chan_status` and `ad4851_find_opt` require bool as
-> input parameter.
+Best regards,
+Krzysztof
 
-test_bit() and family returns bool. So, what's the issue with that?
-
---=20
-With Best Regards,
-Andy Shevchenko
 
