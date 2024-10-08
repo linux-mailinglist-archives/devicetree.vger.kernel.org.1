@@ -1,177 +1,127 @@
-Return-Path: <devicetree+bounces-109038-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109039-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78EE3994F44
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:26:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3AD994F5D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:27:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 625C3285B97
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:26:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B9B61C22C49
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:27:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18A201E0DC8;
-	Tue,  8 Oct 2024 13:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169011DFDAD;
+	Tue,  8 Oct 2024 13:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LBeopE5t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCA181E0DCC;
-	Tue,  8 Oct 2024 13:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 529311DF966
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 13:24:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728393827; cv=none; b=jLHB3ZO+wr5+LMw+dQX6Ig/4Pif3bu2mdQYacSIKj2OqzsqhaWbKax2GiOb3gDBXGbyaN/g4kr26qQrYaTwhse6j9ZpHXxlt3zao1fs7NHW5IWLeIOLWKVjipmpOlbdHKx65WoBd4M6mcrMwui68AvD8a2vqdoBsPHwJIaIExNY=
+	t=1728393875; cv=none; b=sz9/prwB1HDoTR9eMoxvqiYH+ZrBbSYCq7hNaMXDTzitkYSl3zkAI6tG5qF7th2Cr1WIWn6b84DEWhHgsAg/pHV2U6rEwx+9pHu7xtMMKMrVc0R3QpFJOxBPt7I3OMVTKfofEq0WRGXnp/saawWNU6FJkPcWJ4z/BTIQS9CJRho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728393827; c=relaxed/simple;
-	bh=6OT1XfjuaTyy8T43dxZOB3hKvdIL46jtJEZ9BIPIx3g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s5Mvxhv34we/u8zsg4MEqbfbue71PpFyQ8I23j9d+/hFHWLYVHkGbzSHKBm6bTgaw9jiiPhpwxq7m8fk9mHW0ncDha9yMKh9cXjIV3hswL2e3V0cMhK47m50DRggiZPEhwD3QN7phmDyBdeJ0KFuLhpCCq+xL0IgWwRMm4gGUuc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2772f7df9so44484607b3.2;
-        Tue, 08 Oct 2024 06:23:44 -0700 (PDT)
+	s=arc-20240116; t=1728393875; c=relaxed/simple;
+	bh=y1H4tFAZHXilginmSUS70vvO9bbl+xN0spDfhc8WWaw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HDtYx2X5FQRmuCYe+MZjFwPQElzrVsl5w1iuxjlzrogGOqN2RTxrUj2rUHkCAjl9cH3zNeiFrLhP3cjQebEH4TqSGQx4uZDU/aE3m03h1XltMRbw9JB3HdukScSQFFAFK1N+8kFjVv5TY7/bdd3zT+/1sSqs+ikPceffk6DTQYU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LBeopE5t; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-5c896b9b4e0so8285358a12.3
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 06:24:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728393871; x=1728998671; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jhVJPgejSr18zw9jTwWHWbDuUXIWkeFlgvOaW5vk+Ro=;
+        b=LBeopE5tpNMl3ZZ/CmE3dBJ+SLbbHtArnIvY+JtEoBNGtw/zb4WeL2ehaTWPrsH72V
+         1mvPU+Js9hdrezoN8q5QLIqJ5w2vEayKdIpEQPNR3uu6Ul3gjHpFqs7KP0px3fsOdR36
+         7oW/siBtCW4S7brBq7VDdG00evqDfu6CRAOgl5MRn/UX6WPubHRKN/T+TM1neM0Htdxs
+         R9tuBD/qe2zuAG3zjDkMht2JTHN0zSC+5Hip1K6c1XH4hg59z6l6A733KTRbSDQVWmQp
+         OlUcrZY0GVlILpnGI0KZmScoQlTSCRAkcG8Jgr37uQE9DNVU10IvSYboFKyjbL/2EzWV
+         OZYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728393822; x=1728998622;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nCY3NIx/eYd1xSXTQBGOOuko+7cH0vhvxDiWRgqK6Zw=;
-        b=kwuoWMoz3kmf5t9es67h8pKIUnY4N+UxQCj9IMNCnOFIRDroLfNfQowlCp8Pe4ItrK
-         1vzDhG0FahnwbAw8C6AWnKhccGf6HK72WwRLu8vxrc/bn08KeJo0pLw1OcYe810eqGIR
-         x1nbVpuTFJ29fEqpnKl8ZHSjCEqRaLKUjMQU9M+gY062HOtrHPAijiP04mZwdqj62sgA
-         BXzznyHqpBwsBpXbIqM/1yz0hHyY2xkefEMrAYMC9mXBKxY+yXGEJKWoFQPZlg+BLRUZ
-         v/mX13LSbeOm7xhyR4y8X1dlsAMrYmCk6nJDzm3JWsy279nC85xFkVKRPpYujblwcPt1
-         papw==
-X-Forwarded-Encrypted: i=1; AJvYcCU4tVXB4qs1L90tAF9/XfDq0gBlk7Wc7cfBtPMnpNp3iPq1Z9a51/4GRTQ+KNMS0eIHvhEDM//UGXdR@vger.kernel.org, AJvYcCVIR3fm7XmJPUwShnhMH1U1H9NdeMS7hSl1jrqP/eTxfDE7NHaBmDD31BzqIljhuGLzvXP2psyi5c9ugdsoUJsHqL0=@vger.kernel.org, AJvYcCVT07qWShDnqiKeN7j5kA7ujMrCRNOCp9cDSgQR+TtdudhvvsokwZtbPuGKuWZELVq2DVulXI1OpFUP@vger.kernel.org, AJvYcCVd9hnf+jkTSS2WfMv+bt8GaYUtbNJRX8wuDLLUQix8GnEweJRZFXLrt+Oz1GRXk2SmsEbeOOvpboZT@vger.kernel.org, AJvYcCW5tiAHIRJGbVBWZD1RP9RpRkmbLYesZ3daboDQIWjOM30ABimvcxwoFbYgzieOAgxCXB7vgyrucINiWiRx@vger.kernel.org, AJvYcCW7mSOGxncShBgLXIAym4DoUowgagEkGo0qwUkqCkEecmC8LhzpedD81o5GXA0ccwFdmzCEGqXhWtA=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxvsvd9xn1lzCsqkTrmTjOQpyp3baME0OimBDE6FZpNJXGreECa
-	8iEGBTeCGpia7rdb+ucT9+5dKzZrWq8x0XZREbxFq5wYmtGQtml4IUQdlVaQ
-X-Google-Smtp-Source: AGHT+IG9lW3ss6lvHQzkqBRDQWf2Spp+0t7ZgvbHru6AqYI2VcjL0BvfVU2pFedGmTNyKCwJrhXoeQ==
-X-Received: by 2002:a05:690c:3010:b0:6db:d7c9:c97b with SMTP id 00721157ae682-6e2c72b2c50mr100116867b3.40.1728393822212;
-        Tue, 08 Oct 2024 06:23:42 -0700 (PDT)
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d93f7d31sm14189067b3.135.2024.10.08.06.23.40
+        d=1e100.net; s=20230601; t=1728393871; x=1728998671;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jhVJPgejSr18zw9jTwWHWbDuUXIWkeFlgvOaW5vk+Ro=;
+        b=ruK0rREVvejhKUvOo/LScOAZwuqMQFjyzHB0zgXrAGhmqCHxK7qjdaeHeZE4Oflafy
+         iyEoVVleM/W16n+0vv7L+lM8kd9PeRw5v/fzxHz9LAyEFbquWcdOfGYZ1603Q5WfRLTg
+         9wdIvuLFTQKIoaA7m1qd6sGVXYtXueQW36BxWrfpOwrUkEd2zUGHL++RUrK4Ijo1Zpi2
+         EGJT8/veW7+0GuK/yD6UiIow4jxH4zJ24WBKJZtqi9KwWwgH39GJGb/HDrPV2l8FOlLm
+         bX9iVccPyFjwdhh2v5oC/OQL2FFBxtJ2OA4yriTu/WV+r9DbtihGd9prEW+l+B6eRKy2
+         SEVg==
+X-Forwarded-Encrypted: i=1; AJvYcCUl1S1UsRKHuOehJ12cbfTghhDrCxl/QB1nJxMaBkqxQMY1hlyXtze2HjzcgUFQhz9RxDqdsmVdfwRe@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9mgspaZBVsXhD9xuBT8CxuURPHRJlc5lwVUtuDv1M1UMEgyNZ
+	UD+RbIQq9FdWWW7y8SOvI6ToACWngJ9esVYF7BGu5PvwRh7gghpkGLBcI0Tc8Ic=
+X-Google-Smtp-Source: AGHT+IHebkivZhrf6qbuAzEVcNiLs2OZJfPKKnHfW2X4gCMsFW3tO1DlQoGICsbXkwZ5EyF+Brot7g==
+X-Received: by 2002:a05:6402:3717:b0:5c8:8610:98b0 with SMTP id 4fb4d7f45d1cf-5c8d2e71a2bmr15714624a12.27.1728393871511;
+        Tue, 08 Oct 2024 06:24:31 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e0598abdsm4327357a12.3.2024.10.08.06.24.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 06:23:40 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6dde476d3dfso44521347b3.3;
-        Tue, 08 Oct 2024 06:23:40 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU+ISYAIBhuY0g8rE9c8T93ziHCl6aI76ouUTyfgRgHuNI/fgX+ZFedU9ByRlxqdJl4qb0Z0W4dtRs2@vger.kernel.org, AJvYcCUF1LhhaKBvVaHpkjMMbNq9fP2bK68iFLpKHeg8hNoyw9l1VlyniCwLd6CNgytoCH1G+3Qz3GA58kc=@vger.kernel.org, AJvYcCULMidi62rLg1Ft1WgrxSvPid2Kz3EbMWFzz8a9qd7yAXm5yW2IXdDIjTzddbU7Eyr42cHA7svj8Xyk@vger.kernel.org, AJvYcCWICvtZdLkyDvJj/OntEyhNXA+zXg1fhqGWJJtTtSjveehBeJQ7qUi8vpmprQJZ5IZ1IEP4O0+Hsjh72JPX@vger.kernel.org, AJvYcCWwGF9qYeLNNNO7aC9pULxGUXDquM8O+BdN32SrgPJbzmMxQP6hwrK6Woz+efe38HibgvYkJ/kzaK5TkXsWdh7gCgI=@vger.kernel.org, AJvYcCXybXbIoAec9rn4061dvYucXnbh+D49ldnga1Pl9KmdT8zaxwbYGqSXPrj3hXfdoaJ7RZ3jC09gHtJ6@vger.kernel.org
-X-Received: by 2002:a05:690c:fc2:b0:6e2:1090:af31 with SMTP id
- 00721157ae682-6e2c6fc7e31mr116307267b3.3.1728393819734; Tue, 08 Oct 2024
- 06:23:39 -0700 (PDT)
+        Tue, 08 Oct 2024 06:24:31 -0700 (PDT)
+Message-ID: <bb138ed9-2abe-43ec-80af-2d77b7349b37@linaro.org>
+Date: Tue, 8 Oct 2024 14:24:29 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com> <20240822152801.602318-6-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240822152801.602318-6-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 8 Oct 2024 15:23:26 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdU_kyPb9VAosStrwmQg9vOMgyogQu==u1XQEBWFQLbSdQ@mail.gmail.com>
-Message-ID: <CAMuHMdU_kyPb9VAosStrwmQg9vOMgyogQu==u1XQEBWFQLbSdQ@mail.gmail.com>
-Subject: Re: [PATCH 05/16] soc: renesas: sysc: Move RZ/G3S SoC detection on
- SYSC driver
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
-	ulf.hansson@linaro.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/6] dt-bindings: media: qcom,sc8280xp-camss: Fix
+ interrupt types
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>
+Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
+ <20240923072827.3772504-2-vladimir.zapolskiy@linaro.org>
+ <datahu33nmsser2p4fb2hyncsujtkwaca377ivwmpc6yj2naut@2sjsbebfm3gf>
+ <3f87e855-8779-4df3-8f26-e3d2b611d3e9@linaro.org>
+ <313667a6-afcd-44cb-a6f6-0d550e8f68a0@linaro.org>
+ <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
+ <27f39cda-932c-4b79-84d4-be78d266ebdf@linaro.org>
+ <c18a92f0-5824-417c-94b2-ed10f4580cfd@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <c18a92f0-5824-417c-94b2-ed10f4580cfd@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Claudiu,
+On 08/10/2024 13:00, Vladimir Zapolskiy wrote:
+>> Rising or High can both be justified, its really down to how your
+>> interrupt controller latches the state change. However I personally am
+>> fine with the change you've provided because I trust it fixes an error
+>> for you.
+> 
+> Please share the change to the driver, which you've used to test
+> high level type of interrupts, shall it be send for upstream inclusion?
+> 
+> Such a change has never been a subject of discussion.
 
-On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Now that we have a driver for SYSC driver for RZ/G3S move the SoC detecti=
-on
-> for RZ/G3S in SYSC driver.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+I tried running libcamera "cam" application to capture a data stream 
+before and after your change - from memory at least on the sc8280xp and 
+I think on 8250 too.
 
-Thanks for your patch!
+What I haven't tested is unloading and reloading the kernel module. My 
+understanding of your bug report is your change fixes an error on reload.
 
-> --- a/drivers/soc/renesas/rzg3s-sysc.c
-> +++ b/drivers/soc/renesas/rzg3s-sysc.c
-> @@ -85,6 +97,39 @@ static int rzg3s_sysc_probe(struct platform_device *pd=
-ev)
->         sysc->dev =3D dev;
->         spin_lock_init(&sysc->lock);
->
-> +       compatible =3D of_get_property(dev->of_node, "compatible", NULL);
-> +       if (!compatible)
-> +               return -ENODEV;
+?
 
-Please use of_match_device() and of_device_id.compatible instead.
-
-> +
-> +       soc_id_start =3D strchr(compatible, ',') + 1;
-> +       soc_id_end =3D strchr(compatible, '-');
-> +       size =3D soc_id_end - soc_id_start;
-> +       if (size > 32)
-> +               size =3D 32;
-> +       strscpy(soc_id, soc_id_start, size);
-> +
-> +       soc_dev_attr =3D devm_kzalloc(dev, sizeof(*soc_dev_attr), GFP_KER=
-NEL);
-> +       if (!soc_dev_attr)
-> +               return -ENOMEM;
-> +
-> +       soc_dev_attr->family =3D "RZ/G3S";
-> +       soc_dev_attr->soc_id =3D devm_kstrdup(dev, soc_id, GFP_KERNEL);
-> +       if (!soc_dev_attr->soc_id)
-> +               return -ENOMEM;
-> +
-> +       devid =3D readl(sysc->base + RZG3S_SYS_LSI_DEVID);
-> +       revision =3D FIELD_GET(RZG3S_SYS_LSI_DEVID_REV, devid);
-> +       soc_dev_attr->revision =3D devm_kasprintf(dev, GFP_KERNEL, "%u", =
-revision);
-> +       if (!soc_dev_attr->revision)
-> +               return -ENOMEM;
-> +
-> +       dev_info(dev, "Detected Renesas %s %s Rev %s\n", soc_dev_attr->fa=
-mily,
-> +                soc_dev_attr->soc_id, soc_dev_attr->revision);
-> +
-> +       soc_dev =3D soc_device_register(soc_dev_attr);
-> +       if (IS_ERR(soc_dev))
-> +               return PTR_ERR(soc_dev);
-> +
->         return rzg3s_sysc_reset_probe(sysc, "reset", 0);
->  }
-
-My first thought was "oh no, now this is handled/duplicated in two
-places", but if you later migrate the chip identification support for
-the rest of RZ/G2L devices to here, it may start to look better ;-)
-
-One caveat is that soc_device_match() can be called quite early in
-the boot process, hence renesas_soc_init() is an early_initcall().
-So registering the soc_device from a platform_driver might be too late,
-especially since fw_devlinks won't help you in this particular case.
-However, I think all real early calls to soc_device_match() are gone
-since the removal of the support for R-Car H3 ES1.x, and all remaining
-calls impact only R-Car and RZ/Gx (not G2L) SoCs.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+---
+bod
 
