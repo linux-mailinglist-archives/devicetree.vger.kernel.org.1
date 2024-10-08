@@ -1,62 +1,58 @@
-Return-Path: <devicetree+bounces-109046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FD21995033
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:35:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5830D995046
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:36:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 473A0280FA1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:35:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 12F461C2048F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 038B81DED48;
-	Tue,  8 Oct 2024 13:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EC5B1DF726;
+	Tue,  8 Oct 2024 13:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TgwsCPhD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j4dNWT9K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B7D1D9A43;
-	Tue,  8 Oct 2024 13:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E6A1D9A43;
+	Tue,  8 Oct 2024 13:36:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728394496; cv=none; b=p8J91YmoBxPVAsXrGnFSqUT/ekJ1bDJqMuIT/WVwbqzWY/GpCqPlMwW8IETn1m5S48PB+3Gl2/btbwwwknmtyR/fwZDf2oHN90pils7OU71bI4aBYqSc8FwrOsY107477/LoE8EAfZM7kHSw0w4zPJ5aJObESKJZgNMEIwSW9oI=
+	t=1728394599; cv=none; b=D7P8UsGDDm46N98qGDAoucLL3oak2OjvWcSzT9jUXxNG5N7f5+tZ86nQlZPymOBfiT49A8vZ25TNxp4bRsOlPgg/MIFMUjN1PwaZGdFYrRdNEEcIq69wxQK5C3wRNpAYrBRzWvihlFPyqrXpBXq7itavoDdxCGex0AISbJRB9JE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728394496; c=relaxed/simple;
-	bh=AsYoCsU044vrxM77ATJ+bBtvZ6wwx4g48fpwc54K/Eg=;
+	s=arc-20240116; t=1728394599; c=relaxed/simple;
+	bh=0+QZzej0Vv4WLSTqV2G2UR2upZ4oeTD+DIr6PW9bQGk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RmsGPJmUrK8wvum26SluhNnMvHQ6EU35rwoC1osj0FW1u13wgK0CKobvpbTuFqaqJs4rA95TuoCgqXcxGohOIcGvw/aZdgZEpFBYzOyPB422hg8ibH7/gwqE0ruJhDTYen5rYgVF51Qq1k3K3JOxM3zHjITAaLHZv/Vbg/9DHkk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TgwsCPhD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDD4AC4CEC7;
-	Tue,  8 Oct 2024 13:34:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XMeH9muWyGGb4mPixWSj6cN7ddkl4Hh+zY7IngENUPZQwM6IUSuODamobkTaLbb8LKhSR92bsgwfGjlTprKd5/dl7G0tE36gV1LcQdwq9xjKd58DdFhz3kXD88zYtVEMSp9gojOekHySf4NhbcHZzbkUv7qe+7+whRmuvo8ZUlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j4dNWT9K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 66202C4CECF;
+	Tue,  8 Oct 2024 13:36:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728394496;
-	bh=AsYoCsU044vrxM77ATJ+bBtvZ6wwx4g48fpwc54K/Eg=;
+	s=k20201202; t=1728394599;
+	bh=0+QZzej0Vv4WLSTqV2G2UR2upZ4oeTD+DIr6PW9bQGk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TgwsCPhDlQ59rdZyDIYS5VIg3On0g4zCf9UEEx8G3scMnBBRssmSpCPt5lj/Auo8D
-	 N3jaGSR0Alps4nZlsy2uMCOwdu0LI9mzk0eYgpBYArncC5LW5wUHiKP2m0EFcjoR30
-	 WIzErCGlJpBSS9id34mH/WvPag05INkV0w9QEx6BLV12YoaIiSPM1L5hMbOPpfpVm7
-	 vXcs70W7lWOgKvDYPcAP3rCH5QPP3SbftG9sZXI0X3fqhS4NjGeINMSiCpej6TktaJ
-	 KS7Y9jiR/DAVnxoPj63xm4Q4mh2CICdPitxuKuhSP/cevugGKLTeT4ffUaGmjZGyXV
-	 3CThlwfvW4n3g==
-Date: Tue, 8 Oct 2024 15:34:54 +0200
+	b=j4dNWT9KZiMQoeYFy9MoOPiss1Celn1pEqjzF39bx+jaY1qcQTnpvXgCrN77+gTZA
+	 QQVc2//c8vmbixJM8ULrw27HYitryFOIP1iST4dt51Zd4eMm1tYGiG538V2S+L0XxQ
+	 K7V6yGkeaJukiDgh3I8rKU1w1wmFE3ggS5cHBw7Y6agd+uuZprY5q1Zw4dX4o4Nnc6
+	 bD2/E6V1uOfKjrJkH5Qiywso5ohISmUFoyCI96ucAMamkVPO+YmFepNnBhhbadRqqZ
+	 602ewlmAPZvwnSJL0Tmgy52rcST3NWK5aH8rpNlcwKRcYMmxLrk5elQ5IjJC//SM2q
+	 f9/3BC7GdMJWg==
+Date: Tue, 8 Oct 2024 15:36:36 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Wim Van Sebroeck <wim@linux-watchdog.org>, 
-	Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	"open list:WATCHDOG DEVICE DRIVERS" <linux-watchdog@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
-	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>, 
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/1] dt-bindings: watchdog: fsl-imx-wdt: Add missing
- 'big-endian' property
-Message-ID: <h2ynhrnuhiwixxkoeiyu5kpkpssvlscwbyxgsfdg2j22kwyfz4@urzf32egddcg>
-References: <20241007212434.895521-1-Frank.Li@nxp.com>
+	Rishi Gupta <gupt21@gmail.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: iio: light: veml6030: add veml7700
+Message-ID: <yebcvcybwpi4t7as24pc65lrdviwaajael34t6mr23lor7abvs@encmur7gb65i>
+References: <20241007-veml7700-v1-0-fb85dd839d63@gmail.com>
+ <20241007-veml7700-v1-2-fb85dd839d63@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,22 +61,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241007212434.895521-1-Frank.Li@nxp.com>
+In-Reply-To: <20241007-veml7700-v1-2-fb85dd839d63@gmail.com>
 
-On Mon, Oct 07, 2024 at 05:24:33PM -0400, Frank Li wrote:
-> From: Animesh Agarwal <animeshagarwal28@gmail.com>
+On Mon, Oct 07, 2024 at 10:36:37PM +0200, Javier Carrasco wrote:
+> The veml7700 contains the same chip as the veml6030 in a different
+> package with no interrupt line and no pin to select the I2C address,
+> which makes it suitable to be supported by the same bindings.
 > 
-> Add missing big-endian property in watchdog/fsl-imx-wdt.yaml schema. Only
-> allow big-endian property for ls1012a and ls1043a.
-> 
-> Fix dtbs_check errors.
-> arch/arm64/boot/dts/freescale/fsl-ls1012a-frwy.dtb: watchdog@2ad0000:
->     Unevaluated properties are not allowed ('big-endian' was unexpected)
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 > ---
+>  .../devicetree/bindings/iio/light/vishay,veml6030.yaml   | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
