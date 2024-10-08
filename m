@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-108823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 321CC993F98
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:36:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FE42993F65
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:33:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAAAA1F21F16
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:36:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22B7A1C23FB9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:33:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2751B58222;
-	Tue,  8 Oct 2024 07:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C151C242D;
+	Tue,  8 Oct 2024 07:06:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hYTxxcyW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MnijEbAf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 015681C242D
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 07:04:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE7A13A88A
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 07:06:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728371045; cv=none; b=ieesbxXqcjCjNPiIklJdYArBcfendPC2kuyMYZHOwH937V9wzO9YKtFbvlich1mGfVCVWWYVl7mrTaW4bvi5OoJ5pEHLsIOBWk6RwRy5VbmSccLzNu4ZxF0Y2/AAwlzch4yS5A4YWsCWavpPukUuPIHulokvRGHkhW1fIZUUJpQ=
+	t=1728371166; cv=none; b=Yl/aDHQ4hzvUXfPfDFGUoQb+tQtcGTiPyHlKQT4HpKjxFzP3nkB7W6A7K8+yz28vt6L8pWMrtbatO1LtFzqDdo8AGpX5Wwzg+L7aJ64QrzZCYlSNTTF2eQGGI7l8CKHI44aodGir+1NKxHmmJpZsWT9aMP8pitWI+Cj3W7dNsNo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728371045; c=relaxed/simple;
-	bh=T1EkaNAmjXginEIHQ5Bufiw3/ttibaSxwHXb18Ubk3g=;
+	s=arc-20240116; t=1728371166; c=relaxed/simple;
+	bh=Mi74GsNR9ToTBakjvvZ/aB15liBiIJezVR+0aM3tInc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=dCmTPih3Y49lae+Tv2vqSC7KmfARnGN5WyzCBXbGS9IE4VxQniVGZbgGBuJU+nzvT7OzpOyKOxunu8wbDCKqcw/4b5eOjJwSQtmj4dp9pbdAqHhPgS7Hglh1oT8fFTIbhsZA9QgoVFf3YUC+zsPP7+1iHTz7apCFiuw7SxDJdno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hYTxxcyW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E830C4CEC7;
-	Tue,  8 Oct 2024 07:04:02 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=p+7/TVrmzSHDNXb+PZDa7ErsoOTRlqAZAN3SldLZL6VrJk/KrXu/RprRlxmimodT1UUFSk2QHGO/t4eKR7hMiYUCtQ35UnajnZ1opzlSE3O9eMk1XpRPnh6ZFdTD1UWMy/JbPKppUFb5GjOe4VArYkotoqI5+bsBloTK4Jb+XBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MnijEbAf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E918AC4CEC7;
+	Tue,  8 Oct 2024 07:06:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728371044;
-	bh=T1EkaNAmjXginEIHQ5Bufiw3/ttibaSxwHXb18Ubk3g=;
+	s=k20201202; t=1728371165;
+	bh=Mi74GsNR9ToTBakjvvZ/aB15liBiIJezVR+0aM3tInc=;
 	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=hYTxxcyWlL0vh++YQvfOs+36j4B+nJHFgBIgiE0tz/8xX0v80uI1rXr0C4nnXeSS7
-	 E0FTaXFH6VA2zylHzok6Wa5GZHa12crLy+H7DWfCbJO3k3EN4vIChZ6Ypsdz01nZbu
-	 T127L0OHN3duLxCHo5J6tt9Lkh1UzgbfwhYfnQKiFbKR2OxK81MbbGQpsV2gXBNKPG
-	 byHmmjNpE5lQHonM56DhyVRbS0UoMllHLV9xCzdKQbo6SqOrsVq+np3k15TWuwVz1R
-	 BxOEr+TuWrjKD76T39kOfi8Pf1zq2Y4MWG1MOCvSS5u0d0+LFZZB04t9I5ESjW6E72
-	 KKVEXEVfBW9kw==
-Message-ID: <8046eca4-8100-45f8-8c94-679a563d8a24@kernel.org>
-Date: Tue, 8 Oct 2024 09:04:00 +0200
+	b=MnijEbAfTBidXuCn0Dh/8aaI1TptgcUfO6tatl49aYTbeHj+xpb9ID9d/8xv93DwD
+	 7MWUWuXHW1T4k8SAbBh3GjH/bu+yS/DGg9CnS64JdFht/0W2ZAGTMi6xM3KDfszm4A
+	 hH3Qg2ou48jDTRLZj0tZkove/aS2ZYeAlopWu9eUtVsOHkpxwSpNTny5JMKdKTTY1q
+	 Ns15zOjwnpdIh1zLmoFxGAm+UzSsmzsIavNuzXKAEfyxWzwWOxaSxs+gYPUh2LAYUQ
+	 3tc0DjongHJZM9KsVqJLtaGth5AiHUGZIKJafU02Lsp3Ey9jLQIBddrLTH0f/Pq8N6
+	 xB/PTcYkrImJQ==
+Message-ID: <1ff119eb-bb89-407f-bd08-986a84ff7a0d@kernel.org>
+Date: Tue, 8 Oct 2024 09:06:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -107,34 +107,16 @@ Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 07/10/2024 18:36, Markus Stockhausen wrote:
-> Add bindings for the SerDes of the Realtek Otto platform. These are
-> network Switch SoCs with up to 52 ports divided into four different
-> model lines.
-> 
-> Changes in v2:
-> - new subject
-> - removed patch command sequences
-> - renamed parameter controlled-ports to realtek,controlled-ports
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - realtek,rtl8380-serdes
+> +          - realtek,rtl8390-serdes
+> +          - realtek,rtl9300-serdes
 
-<form letter>
-Please use scripts/get_maintainers.pl to get a list of necessary people
-and lists to CC (and consider --no-git-fallback argument, so you will
-not CC people just because they made one commit years ago). It might
-happen, that command when run on an older kernel, gives you outdated
-entries. Therefore please be sure you base your patches on recent Linux
-kernel.
-
-Tools like b4 or scripts/get_maintainer.pl provide you proper list of
-people, so fix your workflow. Tools might also fail if you work on some
-ancient tree (don't, instead use mainline) or work on fork of kernel
-(don't, instead use mainline). Just use b4 and everything should be
-fine, although remember about `b4 prep --auto-to-cc` if you added new
-patches to the patchset.
-</form letter>
-
-I already commented on this. The Cc list is still wrong. Please start
-using tools which do it automatically and you do not have to perform any
-choice of addresses.
+It turns out there is no chip like 9300. Align with Chris Packham,
+because it is not a superposition-SoC (exists and does not exist the
+same time, unless you check in given binding).
 
 Best regards,
 Krzysztof
