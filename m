@@ -1,126 +1,79 @@
-Return-Path: <devicetree+bounces-108889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 258439942FB
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:57:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AB80994316
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:59:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E40482897F5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:57:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 337F01C25420
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:59:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B114317E00F;
-	Tue,  8 Oct 2024 08:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3DEB1DDA1B;
+	Tue,  8 Oct 2024 08:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KI1ReXvH"
+	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="OpwYvbnr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 785FB13D601;
-	Tue,  8 Oct 2024 08:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B06C19340A;
+	Tue,  8 Oct 2024 08:51:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728377279; cv=none; b=AoTNsE3hn/pfJKwOt6V+RzJOhlWRoJ9bM+JkQAMHwV01hrvoi/B4qQihaFfl1eJZiPVzdZkocRamrSKMs/v26J1jFeM+QAciIZR5XeGJIk6KKygEd2z0FjpNRo309hh8NcpfX3WVy6b1GYUjTX1+ce+9PHxJQsnM5GEpazuggMM=
+	t=1728377474; cv=none; b=aOqD3GACPSJjFvBh3PaUvp1zilK0nCVqDLppUABw1lKnmuuN/NVeh9jvrhrlhfXdQPmrTVQW7xA991ulY7a+lLDaplcp1cc/PY610iyArDI5086foRkYMAHsJO9kZHfMGvGDfw7cmXMiJoPhSxpAG36fx2AAVoj3rW7ffXip7KY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728377279; c=relaxed/simple;
-	bh=7Y8lQEQ1hSkPSRcmmUUSa8wB76A6Q0NBQmCBMiUD9aE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZlzftTTBRW4IsxalyEvWyboyGzV0F5cSJ7NXFQpTWoMHhy/IrcsSz+AqEsivo6VV3rNC2qfA0Odk2H5pQPHnikoCUeYBaOSXrw9C3l96nGSy4E4ctCyWQnS3+uXPvbKTMhKJcMoIzGHEOPHzyXQ2f0Gzv1wj+8J+8REVF5Bc27o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KI1ReXvH; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728377270;
-	bh=7Y8lQEQ1hSkPSRcmmUUSa8wB76A6Q0NBQmCBMiUD9aE=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=KI1ReXvHXQ2poIhkcjZbkB7URqsfRYMuA9xMaic7FNi3sX+rZxp+mb/AJkzU4ZM1T
-	 3+ytaIocV4KgBXsbqX59laXLsR016dAAp0Kz2pgkRPvQ9CVp+pePbWNEJHLReurHe4
-	 l3OgU6HK1SAw6f72Gpljejv+iJUbuUhCfbZzcCRmEmRTM2yFQOeoqjMVLO2N6cYg0P
-	 9aQE+P2BP+cV8RfMm5iudmY3fWdvUnw0ILp3mxexBL4/weEA4dZwAYGbYLgoze+fp9
-	 3i6apt0HIxayZnS31vXWloCznUhEb/Ga7sl8ze/aaICSnLI0uREJYeN0b0SayRKUTM
-	 vxog6+d/C3XxQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 2F5FC17E10AF;
-	Tue,  8 Oct 2024 10:47:50 +0200 (CEST)
-Message-ID: <eab4ef1e-f63f-4561-b429-6dc3d7485871@collabora.com>
-Date: Tue, 8 Oct 2024 10:47:49 +0200
+	s=arc-20240116; t=1728377474; c=relaxed/simple;
+	bh=5EYqTaH65chTt/LnuwJZgF8ia3vSrrdnjA7snFEHGqM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=duAWVfjJkDRXABRup8g+bhsDBtzlllHJM64cszRqXjWB3Ncz+WXdvQUrijFTyA9jTkLyRVrMluPFeqRtHpbkbdOcgno1jFE21VkBIpodfZHqtXMxoSNHk1XRCNkMIEAVe+LAuumvk2HswhgY8ge3L7SUsTajF5W7XH2xn0HyoXM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=OpwYvbnr; arc=none smtp.client-ip=220.197.32.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
+	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
+	Content-Type; bh=PJZdc22OCR844nkMs2ao6cs66z7059vtXIHCyFffkPk=;
+	b=OpwYvbnrgpjlqKX5BnUpeI3nMk3cUj6Xfs7mEVUIQD6IwhgjOfyo1ayZvAC1mh
+	MAonW5dn/A+cQLzU8rFn+BI2rb3ZVaIRJrjZl4rMBf0H/cpGV44/etOSUx8Nh2Y9
+	12DsQZH3pn0fOKo+RTLQRsin7/LPVpK7xWFqMsYHGbdZo=
+Received: from dragon (unknown [])
+	by gzsmtp3 (Coremail) with SMTP id M88vCgDnlx5O8gRnBRXTAQ--.54852S3;
+	Tue, 08 Oct 2024 16:50:23 +0800 (CST)
+Date: Tue, 8 Oct 2024 16:50:21 +0800
+From: Shawn Guo <shawnguo2@yeah.net>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux@ew.tq-group.com,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] ARM: dts: imx6qdl: Add reserved memory area for CMA
+ memory
+Message-ID: <ZwTyTZH4+CS8lm0Q@dragon>
+References: <20240827142458.265558-1-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm-hana: Add vdd-supply to
- second source trackpad
-To: Chen-Yu Tsai <wenst@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241008082051.4002438-1-wenst@chromium.org>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <20241008082051.4002438-1-wenst@chromium.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240827142458.265558-1-alexander.stein@ew.tq-group.com>
+X-CM-TRANSID:M88vCgDnlx5O8gRnBRXTAQ--.54852S3
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUVxR6UUUUU
+X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCR9yZWcEqhjkVQAAsh
 
-Il 08/10/24 10:20, Chen-Yu Tsai ha scritto:
-> The Hana device has a second source option trackpad, but it is missing
-> its regulator supply. It only works because the regulator is marked as
-> always-on.
+On Tue, Aug 27, 2024 at 04:24:58PM +0200, Alexander Stein wrote:
+> Default CMA size is too small for HDMI output and VPU usage. Increase the
+> default size by providing a CMA memory area.
 > 
-> Add the regulator supply, and the required post-power-on delay.
-> 
-> Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
-> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> index 8d1cbc92bce3..e03474702cad 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-> @@ -49,6 +49,12 @@ trackpad2: trackpad@2c {
->   		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
->   		reg = <0x2c>;
->   		hid-descr-addr = <0x0020>;
-> +		/*
-> +		 * The supply is always on. Adding the delay here
-> +		 * needlessly delays the readiness of the trackpad.
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 
-I'd say, let's be nice in this comment and let's explain the whole situation:
+Changed subject prefix to "ARM: dts: imx6qdl-mba6: "
 
-The trackpad needs a post power on delay of 100ms but, at the time
-of writing, the power supply for it on this board is set as always-on,
-so we don't add that to avoid useless delays in the readiness of this device.
-
-
-...or....
-
-The trackpad needs a post power on delay of 100ms but the power supply for
-it on this board is always-on (and will always be), so we don't add delays
-to avoid impacting on the time required for readiness of this device.
-
-> +		 */
-> +		/* post-power-on-delay-ms = <100>; */
-
-Then you can remove this commented out property ;-)
-
-P.S.: Just to be clear, what I dislike is to see a property that is commented out.
-
-Cheers,
-Angelo
-
-> +		vdd-supply = <&mt6397_vgp6_reg>;
->   		wakeup-source;
->   	};
->   };
+Applied, thanks!
 
 
