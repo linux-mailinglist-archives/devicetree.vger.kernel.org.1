@@ -1,131 +1,137 @@
-Return-Path: <devicetree+bounces-109090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB304995273
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:53:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED9BE99528C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A45FBB29949
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:52:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BE9B1C25610
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E199B1E0480;
-	Tue,  8 Oct 2024 14:51:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 281F21DACBE;
+	Tue,  8 Oct 2024 14:56:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aUocO6mV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27B601E008A;
-	Tue,  8 Oct 2024 14:51:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEE43DDDC;
+	Tue,  8 Oct 2024 14:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728399115; cv=none; b=PScWq7rPbJnW/WYRNcG991wLBxQNeJwx5+Mgn1o3y3gX1fDodhyQXPIQa84nZmu7tU5xBhFCqP268ELSLtuoPuw20RvCPvYZSXhsC1bH9VdyOCzHV7+nb+k5uhqSsujMmnaBVP/csXfXU+4AIvgSu3faLtm7aCBYWosDDId4Ic4=
+	t=1728399402; cv=none; b=DwzXk9U8SNzrH31swhGO6IryVi7GHP6hpId4hKzno96sXrGJTKaOKFu7AwJIShhGlji+i2aDd/FWboMgBGOKYFxHOkjSw0BRC5ZvQQUTsldc0t3R0/2w4K7/XONuL2t3UfSQuxJVukCrQk10Oz/HGOBZi8GSPWObdBjNcphppkc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728399115; c=relaxed/simple;
-	bh=jm+z9KCPI7wrTyNKF9MSZ+w+52JgfCvFUp9CLB7xotE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pOMAO/3jMD224bKxVCnNfR+T1VsHLHsnYvir6kvx0QMtaUl9mD8sG/NA4JTYR4KXgdqPCAtL65W1LOOr8HBl3ShVl3PBXXaqxnHn7Na4Dr/3DMB+oAp+QjIoQPIGjsAhNCm04QEgkyBFfKmxleIVlWkkHrAYp4mPTw2ZPtfp1wQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-6e2e508bd28so22550877b3.2;
-        Tue, 08 Oct 2024 07:51:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728399112; x=1729003912;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LiAdTqgkCeMAY5igeCqnTzclkAkkQ30H915zKiiXQ2s=;
-        b=deLSIaBE6iVekgR/gY58S6t35HYLc1OjmrQw+hNyX9E89DF6NDKX2v1FfQJBGJUEcQ
-         ri0WJI1B1pK99IJTYRKTWcMcRG4yxZQgdaTOGm7ghJwgXew5AYf1c7A5+u8sIAbAjVpi
-         qhDiDZEItytrD4n595WwzjmRKg6pJR8zrBcDQDu6KyEoIF2QD/hfyiB1zo+nlj2kiLjf
-         luqPc8EAbc9qGReeRHO8TXh1fJbj1PPmQKHzhnpdM1pF2RrSjOYQ3sri8wbNLzJlbyja
-         AKeJO9dYZvZgPIKX7N3nN8PYLcZMby8y8Wn2OEaHj3W6y8dWhYcBbJW7DyurBDxtdsfk
-         QuXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVA+K9e2WWbF8JZfgUDBB/UgnVfsdCKVWDx6vQ3oMehnyomMIgPFnpFwUrv1XbbIPRzExeVqihZ5Ho=@vger.kernel.org, AJvYcCVCtX5QBgh+ifu8OHALoDCWvj6MVw3mj/7ww8MLeMmpu4oO2/BUAQYLNoIXOwBiRjpZStK0RWt0tDDZ@vger.kernel.org, AJvYcCVXyFWCv23qWC9Y4FLeL6Y1VkXPHzfTaiiZNSm1q6dEeL/ILI9VbeCGBNHeeLUIX/UfqT8b+rT4nkUVTjgg@vger.kernel.org, AJvYcCWJr3ngbgG3kiJw1UkaRnjOc9rML0xzvAgAHJO5/QbECaWQypzt/MpwEUvCTMyqdwXt9motOPkhFEPq@vger.kernel.org, AJvYcCWif+0QHhtOPPpAB5ad38j+hc6mIXtw+01KUv0NbkhY235OFLLZArKfmCa1JFa7JWTN/Z/5ugomVwe6PheWsoSgTm0=@vger.kernel.org, AJvYcCX1FloHxGks4cbAbpxxrFPAZeYPQuU2UCHcxte24DaHZYDnpLxOW5QNAjxTHQngTS6O5FL6gHfuWwX/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxvpkHmVSrcb+3QAWaAOiTxM10p5mRwf6XCsWwmRl7m9qno7gCE
-	Pha7IZvJ70AVXRAQuYjQDYi+Zw1Oju2D8GeKDRrfwax8v1gtSdYL4JR+xQBJ
-X-Google-Smtp-Source: AGHT+IH8zAzhol++0FR866n1PtVpAZlxqymCVQSr+NiUYlaD97TM2WsQA44YQkv3YkrfNy5e/ljmTQ==
-X-Received: by 2002:a05:690c:d91:b0:6e2:3f8c:8fe2 with SMTP id 00721157ae682-6e2c6fc77a8mr146012617b3.4.1728399111940;
-        Tue, 08 Oct 2024 07:51:51 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e2d93e97d6sm14428387b3.132.2024.10.08.07.51.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 07:51:49 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e2e508bd28so22550267b3.2;
-        Tue, 08 Oct 2024 07:51:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUzDWSCntH4Ewa0ess0UuIQKEVn82XuM1oG6TvDJpYqJoacqGAuUGCP0AdyFY+gWZS21lhReKVCM51PpmD+wy9aZNg=@vger.kernel.org, AJvYcCV5VnvJ4ky52hTz3cF2TNT9HWug+Q9Hn8b2m/ssHGcnOHG/IdXuGjEGSngQ0bsq6VjZkIHp3JW8Iu4J@vger.kernel.org, AJvYcCV6K9LaiT5ql63tin6XIi22Zx1wcE+ai+ruYgNCeiWImUMcwJX2sCNquL01z96u/d4PGLhASu4Gcb3n0TIw@vger.kernel.org, AJvYcCVx4VRZJPAQlHq8ZH8vV4YGRtSE6fc28mf3TpA3mGEqrmTkf/bTeMttIRyz1/K2AvxzHy+7ds8X9ZY3@vger.kernel.org, AJvYcCWo8BxxDhMRNHVJ4oy3yYYcRT+8iMJzboHkyXfeExzB9KUV73lgtb8npZsGMgTqdCjyfqrmumG8oP2P@vger.kernel.org, AJvYcCXO6Kee6DmQkPFjbMzGPObhB+odcLqauFKcFE3gkED/yylCTMibTUNCI3GCRcESs6rl5eZuqMatDKE=@vger.kernel.org
-X-Received: by 2002:a05:690c:2f05:b0:6db:db51:1a6f with SMTP id
- 00721157ae682-6e2c703c243mr96576937b3.26.1728399109490; Tue, 08 Oct 2024
- 07:51:49 -0700 (PDT)
+	s=arc-20240116; t=1728399402; c=relaxed/simple;
+	bh=+EkY6DUNT8H79bDO5aaiph8TCjPO2G7TwhacZE1943Q=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=O/tWJqk8syL9JwvAZjFI0+YaTWycj+3SHnS+aVjdTGTDm3youB4lNrzB1Wh+wj5FaoId+T6ktnTB+5iFUf7BZrpNPHPoPSTLiOL8Eg0OxQFz6LkJddBHnkt4DQnWod8Qo6ZiuX7wBVWDCcoittYwPqqCKHEVGLMm/yFZ/GjOiUg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aUocO6mV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F3AC4CECD;
+	Tue,  8 Oct 2024 14:56:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728399401;
+	bh=+EkY6DUNT8H79bDO5aaiph8TCjPO2G7TwhacZE1943Q=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=aUocO6mV9Ua1/s9Zxo9oxNI63BejhSut9TGaDJqEr91T3es3e2UWi+eFbdm7ntFQH
+	 QhZoX8tXrmyNkbO1Su5mRPYdWvH8uEK7X3MawWOybZTGJ8CCI4dN8YlsFUY9XFrnTb
+	 sfzRpEkIx3U8z+w+flRQm4PWuHxS9IEOqPlUSorOzR9ng4/bUJiCUIIEVZhBxkQWbP
+	 8hsKOs6XfKf0dcLfMJhTc3PuHzeBhOyWX/EIaQT8Z195n6EuJSXYpUFz3O26MzHCv2
+	 6Uv6hj6C+Z4hAeNw/QQANYErR1KWYWgz3RJWpxPGJipZ8coiL7Xi4+X8RHyLIdwXXh
+	 hpCqM3dCfutGw==
+Date: Tue, 08 Oct 2024 09:56:40 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com> <20240822152801.602318-10-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240822152801.602318-10-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 8 Oct 2024 16:51:37 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdW5asr8ppnfxKT2zXq-9ScK1zZUJ9Fw1fZZeU22jbTuWw@mail.gmail.com>
-Message-ID: <CAMuHMdW5asr8ppnfxKT2zXq-9ScK1zZUJ9Fw1fZZeU22jbTuWw@mail.gmail.com>
-Subject: Re: [PATCH 09/16] dt-bindings: usb: renesas,usbhs: Document RZ/G3S SoC
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
-	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
-	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
-	ulf.hansson@linaro.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Joel Selvaraj <foss@joelselvaraj.com>
+Cc: linux-arm-msm@vger.kernel.org, Konrad Dybcio <konradybcio@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Joel Selvaraj <jo@jsfamily.in>, linux-kernel@vger.kernel.org, 
+ Joel Selvaraj <joelselvaraj.oss@gmail.com>
+In-Reply-To: <20241007-pocof1-touchscreen-support-v1-0-db31b21818c5@joelselvaraj.com>
+References: <20241007-pocof1-touchscreen-support-v1-0-db31b21818c5@joelselvaraj.com>
+Message-Id: <172839929004.1375659.17484732521935836404.robh@kernel.org>
+Subject: Re: [PATCH 0/3] Add Xiaomi Poco F1 touchscreen support
 
-Hi Claudiu,
 
-On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The USBHS IP block on RZ/G3S SoC is identitcal to the one found on the
-> RZ/G2L device. Document the RZ/G3S USBHS IP block.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+On Mon, 07 Oct 2024 21:59:25 -0500, Joel Selvaraj wrote:
+> In the first patch, I have enabled the  qupv3_id_1 and gpi_dma1 as they
+> are required for configuring touchscreen. Also added the pinctrl configurations.
+> These are common for both the Poco F1 Tianma and EBBG panel variant.
+> 
+> In the subsequent patches, I have enabled support for the Novatek NT36672a
+> touchscreen and FocalTech FT8719 touchscreen that are used in the Poco F1
+> Tianma and EBBG panel variant respectively.
+> 
+> Signed-off-by: Joel Selvaraj <foss@joelselvaraj.com>
+> ---
+> Joel Selvaraj (3):
+>       arm64: dts: qcom: sdm845-xiaomi-beryllium-common: add touchscreen related nodes
+>       arm64: dts: qcom: sdm845-xiaomi-beryllium-tianma: introduce touchscreen support
+>       arm64: dts: qcom: sdm845-xiaomi-beryllium-ebbg: introduce touchscreen support
+> 
+>  .../dts/qcom/sdm845-xiaomi-beryllium-common.dtsi   | 39 ++++++++++++++++++++++
+>  .../boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dts | 23 +++++++++++++
+>  .../dts/qcom/sdm845-xiaomi-beryllium-tianma.dts    | 23 +++++++++++++
+>  3 files changed, 85 insertions(+)
+> ---
+> base-commit: d435d1e92be5fd26cd383fbddb596942ddc52b9f
+> change-id: 20241007-pocof1-touchscreen-support-c752a162cdc2
+> 
+> Best regards,
+> --
+> Joel Selvaraj <foss@joelselvaraj.com>
+> 
+> 
+> 
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-> --- a/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> +++ b/Documentation/devicetree/bindings/usb/renesas,usbhs.yaml
-> @@ -26,6 +26,7 @@ properties:
->                - renesas,usbhs-r9a07g043 # RZ/G2UL and RZ/Five
->                - renesas,usbhs-r9a07g044 # RZ/G2{L,LC}
->                - renesas,usbhs-r9a07g054 # RZ/V2L
-> +              - renesas,usbhs-r9a08g045 # RZ/G3S
->            - const: renesas,rzg2l-usbhs
->
->        - items:
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-So we do have new users of the HS-USB block!
-If you do have a need for renesas,enable-gpios, it may be a good idea
-to proceed as per the discussion in "[PATCH 1/2] dt-bindings: usb:
-renesas,usbhs: Deprecate renesas,enable-gpio"
-(https://lore.kernel.org/all/20241002213652.GA1330004-robh@kernel.org/).
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Gr{oetje,eeting}s,
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-                        Geert
+  pip3 install dtschema --upgrade
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+New warnings running 'make CHECK_DTBS=y qcom/sdm845-xiaomi-beryllium-ebbg.dtb qcom/sdm845-xiaomi-beryllium-tianma.dtb' for 20241007-pocof1-touchscreen-support-v1-0-db31b21818c5@joelselvaraj.com:
+
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb: touchscreen@38: 'panel' does not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/input/touchscreen/edt-ft5x06.yaml#
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dtb: pinctrl@3400000: ts-int-default-state: 'oneOf' conditional failed, one must be fixed:
+	'bias-pull-down', 'drive-strength', 'function', 'input-enable', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	False schema does not allow True
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sdm845-pinctrl.yaml#
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-tianma.dtb: pinctrl@3400000: ts-int-sleep-state: 'oneOf' conditional failed, one must be fixed:
+	'bias-pull-down', 'drive-strength', 'function', 'input-enable', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	False schema does not allow True
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sdm845-pinctrl.yaml#
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb: pinctrl@3400000: ts-int-default-state: 'oneOf' conditional failed, one must be fixed:
+	'bias-pull-down', 'drive-strength', 'function', 'input-enable', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	False schema does not allow True
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sdm845-pinctrl.yaml#
+arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-ebbg.dtb: pinctrl@3400000: ts-int-sleep-state: 'oneOf' conditional failed, one must be fixed:
+	'bias-pull-down', 'drive-strength', 'function', 'input-enable', 'pins' do not match any of the regexes: '-pins$', 'pinctrl-[0-9]+'
+	False schema does not allow True
+	from schema $id: http://devicetree.org/schemas/pinctrl/qcom,sdm845-pinctrl.yaml#
+
+
+
+
+
 
