@@ -1,301 +1,749 @@
-Return-Path: <devicetree+bounces-109151-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109152-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDAC79955B5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:34:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB6669955C4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:35:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D24E1C20CEF
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:34:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EE1E01C24F94
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F6D220A5DD;
-	Tue,  8 Oct 2024 17:34:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D9F20ADDB;
+	Tue,  8 Oct 2024 17:35:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="P0BWbHy3"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZ2hOhC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010014.outbound.protection.outlook.com [52.101.228.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144621E0B84;
-	Tue,  8 Oct 2024 17:33:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.14
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728408842; cv=fail; b=EvptGz5ldkgYGdHLVFJEISnVsntqyI2G2qX5rRdGO8Z3JGR1AYGblgD4P+xWjOtVb2YQM3ZWbO6fsUbH+0Xw4fKwVb2mk5NBH9vcFXrnkVg5FrNlQoW2JsDE4WMb8iRu+puv64TX4U6XV6KjRiqtxu1aOa6YAQhwTTiZ8UpUhcI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728408842; c=relaxed/simple;
-	bh=n11tfYvYz4xTMuM5j6M6S0kXOvt1Ix7+NbIMhkIBHjs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=HapacnjHFCirPof9iN2upQzo6J6r1lbDhCl/pvHD3m6YjUOopQoRsEY4D0Q+wDZWo1I65haF+Pkiqd/RfBQ0Wqke7LS9pd7nN27OUBjyytLcoiaX2OI8QSqm2J2W90epDbosMXlazKiGQFjsJWog2c+PhKih0bbMSOxns0EtekM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=P0BWbHy3; arc=fail smtp.client-ip=52.101.228.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=af+j0IUVQJf29gl5OthGvZrC9eztJADoLrjOJ6mC7SuRVw5FL8S4rQA214pdzihJo09vvHZ9DJn4Ud4sYYy09V519SYu3mIX1dgxc3FTxoUX9XpaLT1snRwASaFB/Iwc+SxPojlhWDGfgpAq7Q7GhuBWj3xE02bJHmnHQhXX3P/20IW6/bKD/MjDKLEHOag3vDpR3x0rWMaWinaGnrejGWZ00RzZ16g2qXZm2ni+o767pJO+StRQGabF5iXSllTBhymdIlFMuGu45owir86mrGPVCBRvV1kCQScj8aalAhk2svshNoKqUGoHHFukeFXX2NS1j57KBG9C++wRlyHDPQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IR5WQwjp2beAK2UhSqUYh0j+iZCQjXMQ3ngbPfeFay4=;
- b=W4tC5G0/x52O0AlW3b9sbPAHAAv6xhqhb7+SK+p0e9LlMkot4BdiJu8OF+xxkhQIb9mn+ITuDtOyuPNQJ5MbOtY2f4uEsabOEuzBEYPYR7nxS5YvlFYIMwjuvSCBVn6Dh2CcP0NaxVNmM1iQDPHtQ0vYrZIuYyvdUd3Y9i7yvKDFRnRo9QhNYUAJVdQR17xOmJUT1Ake5q2uja5nhbv2nYeh0Oc3qpMqI8WXwCvWYeSiY0T58S81OB241ZhqC2Vg1VL8MJRY+GK82JHYNPEh2FWRDMkQtRmxRhEiEgkgs5MIydbX/rwV/rI7I00xsgTvyvmKiA6k6C8akseRRMEz2Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IR5WQwjp2beAK2UhSqUYh0j+iZCQjXMQ3ngbPfeFay4=;
- b=P0BWbHy35lH1PW6xiTvhcz0Yqaha+IOhNDGF5Qq00yCgVkeAz6CB5Sx/OlqPI7bl6w31Cdqe7HR/WJaKJXvGIXhQmRX8M5t0aa7p+9dNdA2R3sdJxrlRVjDrOOF1SgnTuLh5TBfg6ug88eKJJ7qOQXYAbb1BlcjNR7afVfQZl9c=
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
- by TYCPR01MB10763.jpnprd01.prod.outlook.com (2603:1096:400:297::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Tue, 8 Oct
- 2024 17:33:56 +0000
-Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
- ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.8026.020; Tue, 8 Oct 2024
- 17:33:56 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Prabhakar
-	<prabhakar.csengg@gmail.com>, Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: RE: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
-Thread-Topic: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
-Thread-Index: AQHbGaIZmx0KhA/2XUiyPZAzZz+L/7J9FRWwgAAGadA=
-Date: Tue, 8 Oct 2024 17:33:56 +0000
-Message-ID:
- <TY3PR01MB113469ABB6393E0A6451034A4867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-References: <20241008164935.335043-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <TY3PR01MB11346A1726BCE1687C6AFF519867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-In-Reply-To:
- <TY3PR01MB11346A1726BCE1687C6AFF519867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB10763:EE_
-x-ms-office365-filtering-correlation-id: 40fb2af0-3916-4169-deae-08dce7bf62be
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;ARA:13230040|366016|376014|1800799024|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?SBGW6zpWg6bY4zt1pUcfnhLt9Qv+pnyrhzzW7rLUjGn9nEV3ZiRVsTKk0/bJ?=
- =?us-ascii?Q?Xc539YjNQI3DeU0H3b+npHJ8trqw2GbzgZsgiJUS+AdaN7FejFtjJ2QztQSp?=
- =?us-ascii?Q?JZc0VnDd/2z5U7ReJB0QY5t7740zdSeaFeOy7brdv6UK5I5/Jmduk25TOzXO?=
- =?us-ascii?Q?B2IDce/DmwWO8MyXb1IUElhfQz/ybSRrUvu57cbpwZeRHAEdc/8ZJ6PMLH8w?=
- =?us-ascii?Q?0f85qrx90QFzQ2zSrQQLBqZwidh+GKc2lksusBAJ5eS8g5IkkK2Q7bNx55Gj?=
- =?us-ascii?Q?iPmN7JR9nz3xjUDGi2o0zTtuvR7yQzcd6z8J6mbowpbL7BY8Y3JYh1IKcis3?=
- =?us-ascii?Q?zFjDAg+oyI0L5lsOgajojuDn1ZS01wxzyyAZAUjI3DJ/fJpFtKkBYCtZ+mkH?=
- =?us-ascii?Q?hbdOJzOgkv/Aaq+RiJFwiXdiF6g1HbZCBgfXLajYpOSx3C9+cc+5ljUiwpqv?=
- =?us-ascii?Q?P1H+IdtsfjelGpdHb3NM/XWN2Qf2zo68MPcQie6dKnt3UOhniO/XydNenYCm?=
- =?us-ascii?Q?eeSkV1rGrVeiBzOH56iwzzqCfk6UaqchiVPI62vaNJkMz5tgiaXD6l8m0oWX?=
- =?us-ascii?Q?ibCDvCnb2jvPGkDljIiX8/81pgrvPbAauBT8r9D4RzgIrxJ8Xf9deFfIRIbh?=
- =?us-ascii?Q?lzStziITlfgOd76pEqNnfmt+q7OX8vIoDC8EZC0UVhv00HU1dKSt22MpqtjG?=
- =?us-ascii?Q?DzEaFR7SYzEtdEdxaxV2JWFbI7wDWmu5zDfZ51U8POLGyOrPBASCSWNU0qeU?=
- =?us-ascii?Q?P6SF+YrqGaJeohexqFaHosE+9wJkAohkY8hqWQ4QHyvF2lwg+CeEnKSqkW6n?=
- =?us-ascii?Q?GrRAJxxVANRp1b8+AdJ3Xz/H/6DePUB6IlOTX52caDhMKAifjJahNnhBwoVn?=
- =?us-ascii?Q?9exG6Mky1OTkTZ1OIL72EcQOuEQu4iaiLCKP2eAEHnUDmq+C6iPDAz7IVkGA?=
- =?us-ascii?Q?zVHyaWHaUiIAaVXZRLUvL7h3Py3hpc/FsnkOLE1rYogOofh5Sh7ZgFU6ZAtf?=
- =?us-ascii?Q?ERJNY7VETAMtuYVhjBHqrZ5e1/mzW9p/mpbML55bF65VTCRpd3dYZzo4/kZ3?=
- =?us-ascii?Q?CJDNTGng5dckMejqQl43iunuqh2vASYPVaoybf3oavCwRnnHWNpgzhqnBpaN?=
- =?us-ascii?Q?pqD45XD7+QgXDledS4hEVXqXiY1hUDElZgSzS2CafKz7TUVRtzN2cPIoi6OK?=
- =?us-ascii?Q?W8z7/pWBNJgraSZHhzP+sxpvCcHhTraKNAAcNvSRcqwle1T1xc485XVx3w6g?=
- =?us-ascii?Q?FX3i94MWKrRISThDghvJdUVlXehWcnGxNhxRYjs2L2TJgJzAWHe0taZiDJZZ?=
- =?us-ascii?Q?jBfSBXdz2GfQdS0gJlGIGh6Ac8K9Mq2YFJOhGnecbw75EQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?mKsYMUYQGSHJBHoEzXtIhha7gA04KC4qPzdbLk3hBH0JzSElhEFD8d1Py/Wi?=
- =?us-ascii?Q?MqErwfqbdvQC7mWfaORnmH5HEPUiX6T+N6DGuLCM3dAIVlotSJ6KxGIptBox?=
- =?us-ascii?Q?ze4/iN0s1YgGvVSNY3z7ZUzx2wRypEDCl5QJxsCoQvZAIfzv+uwYmhs01EWj?=
- =?us-ascii?Q?M6kIdMCykmEKtC2yQRDSR8Rne0CeZsCcQGB6p3Iah2+OTa+DGvCBdh5sRhXx?=
- =?us-ascii?Q?ALURdlsPM6rbFtp3Or94SB3u/aVr+S7KWVLeyViZ7rNcwhnn4gE24pa8z9tn?=
- =?us-ascii?Q?sk5omO/mNBMCmoNArMcPQnsxlAB2yH4YOT/L0xHGpkmg/yoS1JR27g4GTsBn?=
- =?us-ascii?Q?WelyLe6jaPAVawh7BIEZQqbAOoatjH9T1gPkL0KA5nxZ2JuJHLyqYPCYuaF7?=
- =?us-ascii?Q?13FIXdS6N1XIP8KfEZ1b/ceBVjk4TPoppe/SWa2fxTZQX+GV3xUy3ivIMv/y?=
- =?us-ascii?Q?+m5dLz7WIfDaIFUaBzw+B26LRUb9zM00Saxca9ykXVOfxaxYkOHmS/w3R172?=
- =?us-ascii?Q?yuOdT2r5w0In1vmvz+81Vpsw8nAkGK45Tp9F6igzDEIopEtD5GSt5v37w41I?=
- =?us-ascii?Q?lcySn0kre0ySMc4DkEcB48+TN5FjjpFzaMBGKE8aEZ6iRsPQyMBdeNivTV/P?=
- =?us-ascii?Q?xXyAQ51y4mgQjGdth3AP4zC7dzCmfhwOZQQy+WMyKQhSZrBwN5oO6I6cFrX+?=
- =?us-ascii?Q?OkkaY2ttUPGvaP9qTcBlRM7MY+naHMh/rbFGLcuy1SQxChnJT5sxmfSJhWRC?=
- =?us-ascii?Q?ahykDmQLrNeLJlUXPOA5zGo/6TkjQLMT1cxzemjZiSruZbtK7yVuKIxouwhX?=
- =?us-ascii?Q?qG/UrP0+ewHTwfF3Eql3xv5j1Ejtuair2wBlp7TjIkouYZpjgQ9Cmm/qeqXy?=
- =?us-ascii?Q?LVpethC2SEupt1s/T4XU6OXHhh54KUN4y/IHektfRxNkCwgWsLj7jWI/5ynU?=
- =?us-ascii?Q?jsQGUxavVob8zwYr/ZZEfqChbt2zz951RUMeqoc5etD21lnubKGiOdmGsDl4?=
- =?us-ascii?Q?eO5neGLQTsUp0Yj4PrPmqxj4svGCMm2pSt7dfYUbYGMLroRDKoCSKIvUyirU?=
- =?us-ascii?Q?emVfI/gdiqT0PJxfCT3C7XjomNesORG5RbHRK20DNyxjjo7K313nC1DXJmxw?=
- =?us-ascii?Q?93S+2Etmg75r25PEcHEhR0vfQLSuCpFoEagmfeHjSyyVRJEQUM6qD1zqrl8H?=
- =?us-ascii?Q?A1vMq9qb8cYsyiaD9jVzU3CkJi/luaPnHgMqbmYmCld8qk5kQBkts27wxAUO?=
- =?us-ascii?Q?TgZ1pTjXt6vI41LaBaRzqMh+PAD7r1Nwgn+4Ki7m/YEF3cJmLh4p7NzOeAZC?=
- =?us-ascii?Q?eRxRK5U6EHSENYPSBjr3obcUMPJZVn91uXgvmy6lZMouTXkpSMSmwszwl52v?=
- =?us-ascii?Q?iVApRnCkz0Axch3YCkwyQTMqphaQQ3n9JtBGJK9YhUFNtoDK41mWiMg6tPZH?=
- =?us-ascii?Q?XcM5ihFPD5VY3h+cWmTlHUI/bUMnKVhLqidFWuAEpYZh7dyTJB3wtg/6g6ym?=
- =?us-ascii?Q?lybEPSIt/9WFIhKJSZQOnUvAfXmwjU9OX4xMzNFjDgJuY8QUaxKcg/MbXMeW?=
- =?us-ascii?Q?LpLHSMW5RtRYKSulIbhu5pd7OLFe4BAgN2J3fFBJJqaXCZXBY1pVlUrSQqSd?=
- =?us-ascii?Q?QA=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCA4420ADC1;
+	Tue,  8 Oct 2024 17:35:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728408905; cv=none; b=XaDb5WM/waoe+dckdvMSmrHJcg2tRTc+tf+IClH/FZB4xRPaPuWe8Z8X6Odcpkf8boNmV2KPilwYxsBbEZMy1a1VYaRZolQY34tdlCmuyRGktukFZvm1lSdtVJTmCQiKhaO32nctQtlAoL7gWzNjvt0GXaNmXLkRAo/pWfi4zzY=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728408905; c=relaxed/simple;
+	bh=C0RGFrBZLycC0Vkl/8oPoU2BH9v7ZVuEArGIZId8opU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=N2DpvZELTmccMnwxQvqSUKi64HPuZ5Ws9/a3KYOXTPltP3cb6y8uqPcsWZvCzTzsBBe/bmB94ScMNoEf0LhBUiXo+Y2SqLq4hiVtGnevynsbOpmJm3805q9SHw/WaqOwgiFBJQ7ol37Jh8pcV8FN5MhZwW8N++Pq0Vv+W86mbKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZ2hOhC1; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6de14e0f050so46040967b3.0;
+        Tue, 08 Oct 2024 10:35:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728408902; x=1729013702; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bl1FGmjaQlO0RghiZxostY/Ro9bNqr7H5RQN/T58C3U=;
+        b=TZ2hOhC1QbSv++LmQhp4HjIRyjCY7ziX73Les2vGOAbU8oCX5FdigNKOvIiUBCAjLQ
+         rKIzEgCAxZz1Q3CfdpfjbnGRSK8J9Yrv4j1SbloPsMD9P/sI1olJPybb5ZWE60JowHCi
+         /Dbj9h2exOUk2E8+QeP1LtIO3y9YsAqod4Pqa3RrXBEVCV1vbcK8DqbNlh+7MFEVXNmM
+         Me63W4i+I4BxWx4IhnQ6HCqjohXPnh+ZjMSAL4Qqmy8bOzRjT4ArVHdFGmLKebs4Vakg
+         EqHRV1DNPVq5Q1lbOUvEeDH8g3M0xXAmbFJPZETw0sf2qqhvDe6Iu93jBRnC+V8LEvwx
+         LD0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728408902; x=1729013702;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Bl1FGmjaQlO0RghiZxostY/Ro9bNqr7H5RQN/T58C3U=;
+        b=kkBpOgjxOLe2awnzLo2cHS4QSdcxsxqdeZbsHmPsHsNkdC41GDAQu6pJ85qFl6Nl1U
+         XaoiixnXZmjjTzM8HTFsjdTceBTcaZHOCyW5ACRa/Y63JUjqTO2ifb1IZWQ9n/MTHYeZ
+         rK8rrW+7mWCRdS3Lz7rVFErqVnkYscBRHWh/mkEFZCDEEWtyTwl1e+YJVFV6ZLQXbFRD
+         sKdE8pOGw/EabGBYqJ6AXXBPKGAOTyTG3rbXDyHnpwjVOHLd2xKu460x3+oxxyq3Swyo
+         9P1ZejP2HkSDczziPMHYLt2vfBei5h1XY0t5R0jpiA0KBdW7nY9XQzqVPCLGlMDWyoem
+         y56g==
+X-Forwarded-Encrypted: i=1; AJvYcCVY0AJu8O6XxO5dI9H/zQZ1fm6cYLBlRWrRcoUeDAzf5bC31xlOzFIXnG082GjSgj0qVOriL9c72yGh7geV@vger.kernel.org, AJvYcCVzQXr+/zy8/B8emlsYAIn2joJHX9E02uexeiREhf8/p2QbEJg2fmB5BmoZTgvKpHRcnCO+B9rWvlyq@vger.kernel.org, AJvYcCWb7F8Xa0Ji52Z9dVrdm5WrFqfM43TYXRc79QuPb/nS+ArSSL0RXEb2GcCsi/45Vjto0ck06oYqCSkU@vger.kernel.org, AJvYcCXBIKqSfgPPN+xT3napAensfaE8HqArTGsfjuB478oCPHtU41a41nf54wui7ftXZedfgKWRRrMcPVbdPdKu8wJc@vger.kernel.org
+X-Gm-Message-State: AOJu0YxTdJX0YiA+GycMYfKoLMcQTEDdltwraHJsZ2JwryJ5L6372gGF
+	r1/ZLPqLPqlq1y79Ld+3znynWor07DCWjbZZ9H3PTr/wdYIlxCP5VHYNrWyviiaweF9GQ8hc6gh
+	V0LoK/3r+w6Sm3/K8kau1Oq8AFmY=
+X-Google-Smtp-Source: AGHT+IEaydwyQCvkW5SfAVWHUAvlqVH7s6r0MAbgSuA4mMKIyfeH7uNF9mBDYdWRYCRUsIQOKFgodQTGbf8wnPENJUU=
+X-Received: by 2002:a05:690c:fcf:b0:6dd:d2c5:b2c with SMTP id
+ 00721157ae682-6e2c6ff685cmr156212107b3.4.1728408901622; Tue, 08 Oct 2024
+ 10:35:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40fb2af0-3916-4169-deae-08dce7bf62be
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2024 17:33:56.0941
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: a6XzGG6pqqg1WS3Svv9WUwek1WJ0SD9IMOyUbhlhbcBhZTXldqhEhf1AMsxnsk4DzRbLJeHGv96qvGkfzNLDjeWTx01KmFndjisDER8f758=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB10763
+References: <20240911-xtheadvector-v10-0-8d3930091246@rivosinc.com> <20240911-xtheadvector-v10-9-8d3930091246@rivosinc.com>
+In-Reply-To: <20240911-xtheadvector-v10-9-8d3930091246@rivosinc.com>
+From: Andy Chiu <andybnac@gmail.com>
+Date: Wed, 9 Oct 2024 01:34:50 +0800
+Message-ID: <CAFTtA3P0UMbg957MR4qni=gEX52haaNcZc-pTJrmu0_4zWrZmw@mail.gmail.com>
+Subject: Re: [PATCH v10 09/14] riscv: vector: Support xtheadvector save/restore
+To: Charlie Jenkins <charlie@rivosinc.com>
+Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+	Jisheng Zhang <jszhang@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Samuel Holland <samuel.holland@sifive.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Shuah Khan <shuah@kernel.org>, Guo Ren <guoren@kernel.org>, Evan Green <evan@rivosinc.com>, 
+	Andy Chiu <andy.chiu@sifive.com>, Jessica Clarke <jrtc27@jrtc27.com>, 
+	Andrew Jones <ajones@ventanamicro.com>, linux-riscv@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-sunxi@lists.linux.dev, linux-doc@vger.kernel.org, 
+	linux-kselftest@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Charlie,
 
+Charlie Jenkins <charlie@rivosinc.com> =E6=96=BC 2024=E5=B9=B49=E6=9C=8812=
+=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=881:57=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Use alternatives to add support for xtheadvector vector save/restore
+> routines.
+>
+> Signed-off-by: Charlie Jenkins <charlie@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+>  arch/riscv/include/asm/csr.h           |   6 +
+>  arch/riscv/include/asm/switch_to.h     |   2 +-
+>  arch/riscv/include/asm/vector.h        | 225 +++++++++++++++++++++++++--=
+------
+>  arch/riscv/kernel/cpufeature.c         |   6 +-
+>  arch/riscv/kernel/kernel_mode_vector.c |   8 +-
+>  arch/riscv/kernel/process.c            |   4 +-
+>  arch/riscv/kernel/signal.c             |   6 +-
+>  arch/riscv/kernel/vector.c             |  12 +-
+>  8 files changed, 200 insertions(+), 69 deletions(-)
+>
+> diff --git a/arch/riscv/include/asm/csr.h b/arch/riscv/include/asm/csr.h
+> index c0a60c4ed911..b4b3fcb1d142 100644
+> --- a/arch/riscv/include/asm/csr.h
+> +++ b/arch/riscv/include/asm/csr.h
+> @@ -30,6 +30,12 @@
+>  #define SR_VS_CLEAN    _AC(0x00000400, UL)
+>  #define SR_VS_DIRTY    _AC(0x00000600, UL)
+>
+> +#define SR_VS_THEAD            _AC(0x01800000, UL) /* xtheadvector Statu=
+s */
+> +#define SR_VS_OFF_THEAD                _AC(0x00000000, UL)
+> +#define SR_VS_INITIAL_THEAD    _AC(0x00800000, UL)
+> +#define SR_VS_CLEAN_THEAD      _AC(0x01000000, UL)
+> +#define SR_VS_DIRTY_THEAD      _AC(0x01800000, UL)
+> +
+>  #define SR_XS          _AC(0x00018000, UL) /* Extension Status */
+>  #define SR_XS_OFF      _AC(0x00000000, UL)
+>  #define SR_XS_INITIAL  _AC(0x00008000, UL)
+> diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/=
+switch_to.h
+> index 7594df37cc9f..f9cbebe372b8 100644
+> --- a/arch/riscv/include/asm/switch_to.h
+> +++ b/arch/riscv/include/asm/switch_to.h
+> @@ -99,7 +99,7 @@ do {                                                  \
+>         __set_prev_cpu(__prev->thread);                 \
+>         if (has_fpu())                                  \
+>                 __switch_to_fpu(__prev, __next);        \
+> -       if (has_vector())                                       \
+> +       if (has_vector() || has_xtheadvector())         \
+>                 __switch_to_vector(__prev, __next);     \
+>         if (switch_to_should_flush_icache(__next))      \
+>                 local_flush_icache_all();               \
+> diff --git a/arch/riscv/include/asm/vector.h b/arch/riscv/include/asm/vec=
+tor.h
+> index be7d309cca8a..6fd05efc6837 100644
+> --- a/arch/riscv/include/asm/vector.h
+> +++ b/arch/riscv/include/asm/vector.h
+> @@ -18,6 +18,27 @@
+>  #include <asm/cpufeature.h>
+>  #include <asm/csr.h>
+>  #include <asm/asm.h>
+> +#include <asm/vendorid_list.h>
+> +#include <asm/vendor_extensions.h>
+> +#include <asm/vendor_extensions/thead.h>
+> +
+> +#define __riscv_v_vstate_or(_val, TYPE) ({                             \
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: Tuesday, October 8, 2024 6:19 PM
-> Subject: RE: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
->=20
-> Hi Prabhakar,
->=20
-> > -----Original Message-----
-> > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: Tuesday, October 8, 2024 5:50 PM
-> > Subject: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
-> >
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Add OPP table for RZ/V2H(P) SoC.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > ---
-> > v1->v2
-> > - Set opp-microvolt to 800000 for frequencies below 1.1GHz
-> > ---
-> >  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 41 ++++++++++++++++++++++
-> >  1 file changed, 41 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/bo=
-ot/dts/renesas/r9a09g057.dtsi
-> > index 1ad5a1b6917f..4bbe75b81f54 100644
-> > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> > @@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
-> >  		clock-frequency =3D <0>;
-> >  	};
-> >
-> > +	/*
-> > +	 * The default cluster table is based on the assumption that the PLLC=
-A55 clock
-> > +	 * frequency is set to 1.7GHz. The PLLCA55 clock frequency can be set=
- to
-> > +	 * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and additiona=
-lly can be
-> > +	 * clocked to 1.8GHz as well). The table below should be overridden i=
-n the board
-> > +	 * DTS based on the PLLCA55 clock frequency.
-> > +	 */
-> > +	cluster0_opp: opp-table-0 {
-> > +		compatible =3D "operating-points-v2";
-> > +
-> > +		opp-1700000000 {
-> > +			opp-hz =3D /bits/ 64 <1700000000>;
-> > +			opp-microvolt =3D <900000>;
->=20
-> Not sure CA-55 can change voltage from 800mV to 900mV??
-> Based on Power Domain Control, it needs to be in AWO mode for changing th=
-e PD_CA55 voltage.
->=20
-> The manual says OD voltage is 0.9V and ND voltage is 0.8V.
->=20
-> Is 1.7GHZ is ND or OD?
+Rather than __riscv_v_vstate_or, shouldn't  __riscv_v_vstate_set() or
+__riscv_v_vstate_assign better suit the semantic below?
 
-{1.7,1.6,1.5 GHz} is enabled when VDD09_CA55 is at 0.9 V
-and for 1.1 GHz it is 0.8V.
+> +       typeof(_val) _res =3D _val;                                      =
+ \
+> +       if (has_xtheadvector()) \
+> +               _res =3D (_res & ~SR_VS_THEAD) | SR_VS_##TYPE##_THEAD;   =
+ \
+> +       else                                                            \
+> +               _res =3D (_res & ~SR_VS) | SR_VS_##TYPE;                 =
+ \
+> +       _res;                                                           \
+> +})
+> +
+> +#define __riscv_v_vstate_check(_val, TYPE) ({                          \
+> +       bool _res;                                                      \
+> +       if (has_xtheadvector()) \
+> +               _res =3D ((_val) & SR_VS_THEAD) =3D=3D SR_VS_##TYPE##_THE=
+AD;  \
+> +       else                                                            \
+> +               _res =3D ((_val) & SR_VS) =3D=3D SR_VS_##TYPE;           =
+     \
+> +       _res;                                                           \
+> +})
+>
+>  extern unsigned long riscv_v_vsize;
+>  int riscv_v_setup_vsize(void);
+> @@ -40,39 +61,62 @@ static __always_inline bool has_vector(void)
+>         return riscv_has_extension_unlikely(RISCV_ISA_EXT_ZVE32X);
+>  }
+>
+> +static __always_inline bool has_xtheadvector_no_alternatives(void)
+> +{
+> +       if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR))
+> +               return riscv_isa_vendor_extension_available(THEAD_VENDOR_=
+ID, XTHEADVECTOR);
+> +       else
+> +               return false;
+> +}
+> +
+> +static __always_inline bool has_xtheadvector(void)
+> +{
+> +       if (IS_ENABLED(CONFIG_RISCV_ISA_XTHEADVECTOR))
+> +               return riscv_has_vendor_extension_unlikely(THEAD_VENDOR_I=
+D,
+> +                                                          RISCV_ISA_VEND=
+OR_EXT_XTHEADVECTOR);
+> +       else
+> +               return false;
+> +}
+> +
+>  static inline void __riscv_v_vstate_clean(struct pt_regs *regs)
+>  {
+> -       regs->status =3D (regs->status & ~SR_VS) | SR_VS_CLEAN;
+> +       regs->status =3D __riscv_v_vstate_or(regs->status, CLEAN);
+>  }
+>
+>  static inline void __riscv_v_vstate_dirty(struct pt_regs *regs)
+>  {
+> -       regs->status =3D (regs->status & ~SR_VS) | SR_VS_DIRTY;
+> +       regs->status =3D __riscv_v_vstate_or(regs->status, DIRTY);
+>  }
+>
+>  static inline void riscv_v_vstate_off(struct pt_regs *regs)
+>  {
+> -       regs->status =3D (regs->status & ~SR_VS) | SR_VS_OFF;
+> +       regs->status =3D __riscv_v_vstate_or(regs->status, OFF);
+>  }
+>
+>  static inline void riscv_v_vstate_on(struct pt_regs *regs)
+>  {
+> -       regs->status =3D (regs->status & ~SR_VS) | SR_VS_INITIAL;
+> +       regs->status =3D __riscv_v_vstate_or(regs->status, INITIAL);
+>  }
+>
+>  static inline bool riscv_v_vstate_query(struct pt_regs *regs)
+>  {
+> -       return (regs->status & SR_VS) !=3D 0;
+> +       return !__riscv_v_vstate_check(regs->status, OFF);
+>  }
+>
+>  static __always_inline void riscv_v_enable(void)
+>  {
+> -       csr_set(CSR_SSTATUS, SR_VS);
+> +       if (has_xtheadvector())
+> +               csr_set(CSR_SSTATUS, SR_VS_THEAD);
+> +       else
+> +               csr_set(CSR_SSTATUS, SR_VS);
+>  }
+>
+>  static __always_inline void riscv_v_disable(void)
+>  {
+> -       csr_clear(CSR_SSTATUS, SR_VS);
+> +       if (has_xtheadvector())
+> +               csr_clear(CSR_SSTATUS, SR_VS_THEAD);
+> +       else
+> +               csr_clear(CSR_SSTATUS, SR_VS);
+>  }
+>
+>  static __always_inline void __vstate_csr_save(struct __riscv_v_ext_state=
+ *dest)
+> @@ -81,10 +125,36 @@ static __always_inline void __vstate_csr_save(struct=
+ __riscv_v_ext_state *dest)
+>                 "csrr   %0, " __stringify(CSR_VSTART) "\n\t"
+>                 "csrr   %1, " __stringify(CSR_VTYPE) "\n\t"
+>                 "csrr   %2, " __stringify(CSR_VL) "\n\t"
+> -               "csrr   %3, " __stringify(CSR_VCSR) "\n\t"
+> -               "csrr   %4, " __stringify(CSR_VLENB) "\n\t"
+>                 : "=3Dr" (dest->vstart), "=3Dr" (dest->vtype), "=3Dr" (de=
+st->vl),
+> -                 "=3Dr" (dest->vcsr), "=3Dr" (dest->vlenb) : :);
+> +               "=3Dr" (dest->vcsr) : :);
+> +
+> +       if (has_xtheadvector()) {
+> +               unsigned long status;
+> +
+> +               /*
+> +                * CSR_VCSR is defined as
+> +                * [2:1] - vxrm[1:0]
+> +                * [0] - vxsat
+> +                * The earlier vector spec implemented by T-Head uses sep=
+arate
+> +                * registers for the same bit-elements, so just combine t=
+hose
+> +                * into the existing output field.
+> +                *
+> +                * Additionally T-Head cores need FS to be enabled when a=
+ccessing
+> +                * the VXRM and VXSAT CSRs, otherwise ending in illegal i=
+nstructions.
+> +                * Though the cores do not implement the VXRM and VXSAT f=
+ields in the
+> +                * FCSR CSR that vector-0.7.1 specifies.
+> +                */
+> +               status =3D csr_read_set(CSR_STATUS, SR_FS_DIRTY);
+> +               dest->vcsr =3D csr_read(CSR_VXSAT) | csr_read(CSR_VXRM) <=
+< CSR_VXRM_SHIFT;
+> +
+> +               dest->vlenb =3D riscv_v_vsize / 32;
+> +
+> +               if ((status & SR_FS) !=3D SR_FS_DIRTY)
+> +                       csr_write(CSR_STATUS, status);
+> +       } else {
+> +               dest->vcsr =3D csr_read(CSR_VCSR);
+> +               dest->vlenb =3D csr_read(CSR_VLENB);
+> +       }
+>  }
+>
+>  static __always_inline void __vstate_csr_restore(struct __riscv_v_ext_st=
+ate *src)
+> @@ -95,9 +165,25 @@ static __always_inline void __vstate_csr_restore(stru=
+ct __riscv_v_ext_state *src
+>                 "vsetvl  x0, %2, %1\n\t"
+>                 ".option pop\n\t"
+>                 "csrw   " __stringify(CSR_VSTART) ", %0\n\t"
+> -               "csrw   " __stringify(CSR_VCSR) ", %3\n\t"
+> -               : : "r" (src->vstart), "r" (src->vtype), "r" (src->vl),
+> -                   "r" (src->vcsr) :);
+> +               : : "r" (src->vstart), "r" (src->vtype), "r" (src->vl));
+> +
+> +       if (has_xtheadvector()) {
+> +               unsigned long status =3D csr_read(CSR_SSTATUS);
+> +
+> +               /*
+> +                * Similar to __vstate_csr_save above, restore values for=
+ the
+> +                * separate VXRM and VXSAT CSRs from the vcsr variable.
+> +                */
+> +               status =3D csr_read_set(CSR_STATUS, SR_FS_DIRTY);
+> +
+> +               csr_write(CSR_VXRM, (src->vcsr >> CSR_VXRM_SHIFT) & CSR_V=
+XRM_MASK);
+> +               csr_write(CSR_VXSAT, src->vcsr & CSR_VXSAT_MASK);
+> +
+> +               if ((status & SR_FS) !=3D SR_FS_DIRTY)
+> +                       csr_write(CSR_STATUS, status);
+> +       } else {
+> +               csr_write(CSR_VCSR, src->vcsr);
+> +       }
+>  }
+>
+>  static inline void __riscv_v_vstate_save(struct __riscv_v_ext_state *sav=
+e_to,
+> @@ -107,19 +193,33 @@ static inline void __riscv_v_vstate_save(struct __r=
+iscv_v_ext_state *save_to,
+>
+>         riscv_v_enable();
+>         __vstate_csr_save(save_to);
+> -       asm volatile (
+> -               ".option push\n\t"
+> -               ".option arch, +zve32x\n\t"
+> -               "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
+> -               "vse8.v         v0, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vse8.v         v8, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vse8.v         v16, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vse8.v         v24, (%1)\n\t"
+> -               ".option pop\n\t"
+> -               : "=3D&r" (vl) : "r" (datap) : "memory");
+> +       if (has_xtheadvector()) {
+> +               asm volatile (
+> +                       "mv t0, %0\n\t"
+> +                       THEAD_VSETVLI_T4X0E8M8D1
+> +                       THEAD_VSB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VSB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VSB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VSB_V_V0T0
+> +                       : : "r" (datap) : "memory", "t0", "t4");
+> +       } else {
+> +               asm volatile (
+> +                       ".option push\n\t"
+> +                       ".option arch, +zve32x\n\t"
+> +                       "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
+> +                       "vse8.v         v0, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vse8.v         v8, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vse8.v         v16, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vse8.v         v24, (%1)\n\t"
+> +                       ".option pop\n\t"
+> +                       : "=3D&r" (vl) : "r" (datap) : "memory");
+> +       }
+>         riscv_v_disable();
+>  }
+>
+> @@ -129,28 +229,51 @@ static inline void __riscv_v_vstate_restore(struct =
+__riscv_v_ext_state *restore_
+>         unsigned long vl;
+>
+>         riscv_v_enable();
+> -       asm volatile (
+> -               ".option push\n\t"
+> -               ".option arch, +zve32x\n\t"
+> -               "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
+> -               "vle8.v         v0, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vle8.v         v8, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vle8.v         v16, (%1)\n\t"
+> -               "add            %1, %1, %0\n\t"
+> -               "vle8.v         v24, (%1)\n\t"
+> -               ".option pop\n\t"
+> -               : "=3D&r" (vl) : "r" (datap) : "memory");
+> +       if (has_xtheadvector()) {
+> +               asm volatile (
+> +                       "mv t0, %0\n\t"
+> +                       THEAD_VSETVLI_T4X0E8M8D1
+> +                       THEAD_VLB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VLB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VLB_V_V0T0
+> +                       "add            t0, t0, t4\n\t"
+> +                       THEAD_VLB_V_V0T0
+> +                       : : "r" (datap) : "memory", "t0", "t4");
+> +       } else {
+> +               asm volatile (
+> +                       ".option push\n\t"
+> +                       ".option arch, +zve32x\n\t"
+> +                       "vsetvli        %0, x0, e8, m8, ta, ma\n\t"
+> +                       "vle8.v         v0, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vle8.v         v8, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vle8.v         v16, (%1)\n\t"
+> +                       "add            %1, %1, %0\n\t"
+> +                       "vle8.v         v24, (%1)\n\t"
+> +                       ".option pop\n\t"
+> +                       : "=3D&r" (vl) : "r" (datap) : "memory");
+> +       }
+>         __vstate_csr_restore(restore_from);
+>         riscv_v_disable();
+>  }
+>
+>  static inline void __riscv_v_vstate_discard(void)
+>  {
+> -       unsigned long vl, vtype_inval =3D 1UL << (BITS_PER_LONG - 1);
+> +       unsigned long vtype_inval =3D 1UL << (BITS_PER_LONG - 1);
+>
+>         riscv_v_enable();
+> +       if (has_xtheadvector())
+> +               asm volatile (THEAD_VSETVLI_X0X0E8M8D1);
+> +       else
+> +               asm volatile (
+> +                       ".option push\n\t"
+> +                       ".option arch, +v\n\t"
+> +                       "vsetvli        x0, x0, e8, m8, ta, ma\n\t"
+> +                       ".option pop\n\t");
+> +
+>         asm volatile (
+>                 ".option push\n\t"
+>                 ".option arch, +zve32x\n\t"
+> @@ -159,25 +282,25 @@ static inline void __riscv_v_vstate_discard(void)
+>                 "vmv.v.i        v8, -1\n\t"
+>                 "vmv.v.i        v16, -1\n\t"
+>                 "vmv.v.i        v24, -1\n\t"
+> -               "vsetvl         %0, x0, %1\n\t"
+> +               "vsetvl         x0, x0, %0\n\t"
+>                 ".option pop\n\t"
+> -               : "=3D&r" (vl) : "r" (vtype_inval) : "memory");
+> +               : : "r" (vtype_inval));
+> +
+>         riscv_v_disable();
+>  }
+>
+>  static inline void riscv_v_vstate_discard(struct pt_regs *regs)
+>  {
+> -       if ((regs->status & SR_VS) =3D=3D SR_VS_OFF)
+> -               return;
+> -
+> -       __riscv_v_vstate_discard();
+> -       __riscv_v_vstate_dirty(regs);
+> +       if (riscv_v_vstate_query(regs)) {
+> +               __riscv_v_vstate_discard();
+> +               __riscv_v_vstate_dirty(regs);
+> +       }
+>  }
+>
+>  static inline void riscv_v_vstate_save(struct __riscv_v_ext_state *vstat=
+e,
+>                                        struct pt_regs *regs)
+>  {
+> -       if ((regs->status & SR_VS) =3D=3D SR_VS_DIRTY) {
+> +       if (__riscv_v_vstate_check(regs->status, DIRTY)) {
+>                 __riscv_v_vstate_save(vstate, vstate->datap);
+>                 __riscv_v_vstate_clean(regs);
+>         }
+> @@ -186,7 +309,7 @@ static inline void riscv_v_vstate_save(struct __riscv=
+_v_ext_state *vstate,
+>  static inline void riscv_v_vstate_restore(struct __riscv_v_ext_state *vs=
+tate,
+>                                           struct pt_regs *regs)
+>  {
+> -       if ((regs->status & SR_VS) !=3D SR_VS_OFF) {
+> +       if (riscv_v_vstate_query(regs)) {
+>                 __riscv_v_vstate_restore(vstate, vstate->datap);
+>                 __riscv_v_vstate_clean(regs);
+>         }
+> @@ -195,7 +318,7 @@ static inline void riscv_v_vstate_restore(struct __ri=
+scv_v_ext_state *vstate,
+>  static inline void riscv_v_vstate_set_restore(struct task_struct *task,
+>                                               struct pt_regs *regs)
+>  {
+> -       if ((regs->status & SR_VS) !=3D SR_VS_OFF) {
+> +       if (riscv_v_vstate_query(regs)) {
+>                 set_tsk_thread_flag(task, TIF_RISCV_V_DEFER_RESTORE);
+>                 riscv_v_vstate_on(regs);
+>         }
+> @@ -268,6 +391,8 @@ struct pt_regs;
+>
+>  static inline int riscv_v_setup_vsize(void) { return -EOPNOTSUPP; }
+>  static __always_inline bool has_vector(void) { return false; }
+> +static __always_inline bool has_xtheadvector_no_alternatives(void) { ret=
+urn false; }
+> +static __always_inline bool has_xtheadvector(void) { return false; }
+>  static inline bool riscv_v_first_use_handler(struct pt_regs *regs) { ret=
+urn false; }
+>  static inline bool riscv_v_vstate_query(struct pt_regs *regs) { return f=
+alse; }
+>  static inline bool riscv_v_vstate_ctrl_user_allowed(void) { return false=
+; }
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeatur=
+e.c
+> index 9340efd79af9..56b5054b8f86 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -867,8 +867,7 @@ static int __init riscv_fill_hwcap_from_ext_list(unsi=
+gned long *isa2hwcap)
+>                 riscv_fill_vendor_ext_list(cpu);
+>         }
+>
+> -       if (riscv_isa_vendor_extension_available(THEAD_VENDOR_ID, XTHEADV=
+ECTOR) &&
+> -           has_thead_homogeneous_vlenb() < 0) {
+> +       if (has_xtheadvector_no_alternatives() && has_thead_homogeneous_v=
+lenb() < 0) {
+>                 pr_warn("Unsupported heterogeneous vlenb detected, vector=
+ extension disabled.\n");
+>                 disable_xtheadvector();
+>         }
+> @@ -925,7 +924,8 @@ void __init riscv_fill_hwcap(void)
+>                 elf_hwcap &=3D ~COMPAT_HWCAP_ISA_F;
+>         }
+>
+> -       if (__riscv_isa_extension_available(NULL, RISCV_ISA_EXT_ZVE32X)) =
+{
+> +       if (__riscv_isa_extension_available(NULL, RISCV_ISA_EXT_ZVE32X) |=
+|
+> +           has_xtheadvector_no_alternatives()) {
+>                 /*
+>                  * This cannot fail when called on the boot hart
+>                  */
+> diff --git a/arch/riscv/kernel/kernel_mode_vector.c b/arch/riscv/kernel/k=
+ernel_mode_vector.c
+> index 6afe80c7f03a..99972a48e86b 100644
+> --- a/arch/riscv/kernel/kernel_mode_vector.c
+> +++ b/arch/riscv/kernel/kernel_mode_vector.c
+> @@ -143,7 +143,7 @@ static int riscv_v_start_kernel_context(bool *is_nest=
+ed)
+>
+>         /* Transfer the ownership of V from user to kernel, then save */
+>         riscv_v_start(RISCV_PREEMPT_V | RISCV_PREEMPT_V_DIRTY);
+> -       if ((task_pt_regs(current)->status & SR_VS) =3D=3D SR_VS_DIRTY) {
+> +       if (__riscv_v_vstate_check(task_pt_regs(current)->status, DIRTY))=
+ {
+>                 uvstate =3D &current->thread.vstate;
+>                 __riscv_v_vstate_save(uvstate, uvstate->datap);
+>         }
+> @@ -160,7 +160,7 @@ asmlinkage void riscv_v_context_nesting_start(struct =
+pt_regs *regs)
+>                 return;
+>
+>         depth =3D riscv_v_ctx_get_depth();
+> -       if (depth =3D=3D 0 && (regs->status & SR_VS) =3D=3D SR_VS_DIRTY)
+> +       if (depth =3D=3D 0 && __riscv_v_vstate_check(regs->status, DIRTY)=
+)
+>                 riscv_preempt_v_set_dirty();
+>
+>         riscv_v_ctx_depth_inc();
+> @@ -208,7 +208,7 @@ void kernel_vector_begin(void)
+>  {
+>         bool nested =3D false;
+>
+> -       if (WARN_ON(!has_vector()))
+> +       if (WARN_ON(!(has_vector() || has_xtheadvector())))
+>                 return;
+>
+>         BUG_ON(!may_use_simd());
+> @@ -236,7 +236,7 @@ EXPORT_SYMBOL_GPL(kernel_vector_begin);
+>   */
+>  void kernel_vector_end(void)
+>  {
+> -       if (WARN_ON(!has_vector()))
+> +       if (WARN_ON(!(has_vector() || has_xtheadvector())))
+>                 return;
+>
+>         riscv_v_disable();
+> diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+> index e4bc61c4e58a..191023decd16 100644
+> --- a/arch/riscv/kernel/process.c
+> +++ b/arch/riscv/kernel/process.c
+> @@ -176,7 +176,7 @@ void flush_thread(void)
+>  void arch_release_task_struct(struct task_struct *tsk)
+>  {
+>         /* Free the vector context of datap. */
+> -       if (has_vector())
+> +       if (has_vector() || has_xtheadvector())
+>                 riscv_v_thread_free(tsk);
+>  }
+>
+> @@ -222,7 +222,7 @@ int copy_thread(struct task_struct *p, const struct k=
+ernel_clone_args *args)
+>                 p->thread.s[0] =3D 0;
+>         }
+>         p->thread.riscv_v_flags =3D 0;
+> -       if (has_vector())
+> +       if (has_vector() || has_xtheadvector())
+>                 riscv_v_thread_alloc(p);
+>         p->thread.ra =3D (unsigned long)ret_from_fork;
+>         p->thread.sp =3D (unsigned long)childregs; /* kernel sp */
+> diff --git a/arch/riscv/kernel/signal.c b/arch/riscv/kernel/signal.c
+> index dcd282419456..94e905eea1de 100644
+> --- a/arch/riscv/kernel/signal.c
+> +++ b/arch/riscv/kernel/signal.c
+> @@ -189,7 +189,7 @@ static long restore_sigcontext(struct pt_regs *regs,
+>
+>                         return 0;
+>                 case RISCV_V_MAGIC:
+> -                       if (!has_vector() || !riscv_v_vstate_query(regs) =
+||
+> +                       if (!(has_vector() || has_xtheadvector()) || !ris=
+cv_v_vstate_query(regs) ||
+>                             size !=3D riscv_v_sc_size)
+>                                 return -EINVAL;
+>
+> @@ -211,7 +211,7 @@ static size_t get_rt_frame_size(bool cal_all)
+>
+>         frame_size =3D sizeof(*frame);
+>
+> -       if (has_vector()) {
+> +       if (has_vector() || has_xtheadvector()) {
+>                 if (cal_all || riscv_v_vstate_query(task_pt_regs(current)=
+))
+>                         total_context_size +=3D riscv_v_sc_size;
+>         }
+> @@ -284,7 +284,7 @@ static long setup_sigcontext(struct rt_sigframe __use=
+r *frame,
+>         if (has_fpu())
+>                 err |=3D save_fp_state(regs, &sc->sc_fpregs);
+>         /* Save the vector state. */
+> -       if (has_vector() && riscv_v_vstate_query(regs))
+> +       if ((has_vector() || has_xtheadvector()) && riscv_v_vstate_query(=
+regs))
+>                 err |=3D save_v_state(regs, (void __user **)&sc_ext_ptr);
+>         /* Write zero to fp-reserved space and check it on restore_sigcon=
+text */
+>         err |=3D __put_user(0, &sc->sc_extdesc.reserved);
+> diff --git a/arch/riscv/kernel/vector.c b/arch/riscv/kernel/vector.c
+> index 9775d6a9c8ee..f3e1de574050 100644
+> --- a/arch/riscv/kernel/vector.c
+> +++ b/arch/riscv/kernel/vector.c
+> @@ -63,7 +63,7 @@ int riscv_v_setup_vsize(void)
+>
+>  void __init riscv_v_setup_ctx_cache(void)
+>  {
+> -       if (!has_vector())
+> +       if (!(has_vector() || has_xtheadvector()))
+>                 return;
+>
+>         riscv_v_user_cachep =3D kmem_cache_create_usercopy("riscv_vector_=
+ctx",
+> @@ -183,7 +183,7 @@ bool riscv_v_first_use_handler(struct pt_regs *regs)
+>         u32 __user *epc =3D (u32 __user *)regs->epc;
+>         u32 insn =3D (u32)regs->badaddr;
+>
+> -       if (!has_vector())
+> +       if (!(has_vector() || has_xtheadvector()))
+>                 return false;
+>
+>         /* Do not handle if V is not supported, or disabled */
+> @@ -226,7 +226,7 @@ void riscv_v_vstate_ctrl_init(struct task_struct *tsk=
+)
+>         bool inherit;
+>         int cur, next;
+>
+> -       if (!has_vector())
+> +       if (!(has_vector() || has_xtheadvector()))
+>                 return;
+>
+>         next =3D riscv_v_ctrl_get_next(tsk);
+> @@ -248,7 +248,7 @@ void riscv_v_vstate_ctrl_init(struct task_struct *tsk=
+)
+>
+>  long riscv_v_vstate_ctrl_get_current(void)
+>  {
+> -       if (!has_vector())
+> +       if (!(has_vector() || has_xtheadvector()))
+>                 return -EINVAL;
+>
+>         return current->thread.vstate_ctrl & PR_RISCV_V_VSTATE_CTRL_MASK;
+> @@ -259,7 +259,7 @@ long riscv_v_vstate_ctrl_set_current(unsigned long ar=
+g)
+>         bool inherit;
+>         int cur, next;
+>
+> -       if (!has_vector())
+> +       if (!(has_vector() || has_xtheadvector()))
+>                 return -EINVAL;
+>
+>         if (arg & ~PR_RISCV_V_VSTATE_CTRL_MASK)
+> @@ -309,7 +309,7 @@ static struct ctl_table riscv_v_default_vstate_table[=
+] =3D {
+>
+>  static int __init riscv_v_sysctl_init(void)
+>  {
+> -       if (has_vector())
+> +       if (has_vector() || has_xtheadvector())
+>                 if (!register_sysctl("abi", riscv_v_default_vstate_table)=
+)
+>                         return -EINVAL;
+>         return 0;
+>
+> --
+> 2.45.0
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
-Maybe when you do /2, /4, /8 using dividers, the voltage may be still
-the same??
+For the rest of this patch:
 
-Cheers,
-Biju
+Reviewed-by: Andy Chiu <andybnac@gmail.com>
 
->=20
->=20
-> > +			clock-latency-ns =3D <300000>;
-> > +		};
-> > +		opp-850000000 {
-> > +			opp-hz =3D /bits/ 64 <850000000>;
-> > +			opp-microvolt =3D <800000>;
-> > +			clock-latency-ns =3D <300000>;
-> > +		};
-> > +		opp-425000000 {
-> > +			opp-hz =3D /bits/ 64 <425000000>;
-> > +			opp-microvolt =3D <800000>;
-> > +			clock-latency-ns =3D <300000>;
-> > +		};
-> > +		opp-212500000 {
-> > +			opp-hz =3D /bits/ 64 <212500000>;
-> > +			opp-microvolt =3D <800000>;
-> > +			clock-latency-ns =3D <300000>;
-> > +			opp-suspend;
-> > +		};
-> > +	};
-> > +
-> >  	cpus {
-> >  		#address-cells =3D <1>;
-> >  		#size-cells =3D <0>;
-> > @@ -30,6 +63,8 @@ cpu0: cpu@0 {
-> >  			device_type =3D "cpu";
-> >  			next-level-cache =3D <&L3_CA55>;
-> >  			enable-method =3D "psci";
-> > +			clocks =3D <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK0>;
-> > +			operating-points-v2 =3D <&cluster0_opp>;
-> >  		};
-> >
-> >  		cpu1: cpu@100 {
-> > @@ -38,6 +73,8 @@ cpu1: cpu@100 {
-> >  			device_type =3D "cpu";
-> >  			next-level-cache =3D <&L3_CA55>;
-> >  			enable-method =3D "psci";
-> > +			clocks =3D <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK1>;
-> > +			operating-points-v2 =3D <&cluster0_opp>;
-> >  		};
-> >
-> >  		cpu2: cpu@200 {
-> > @@ -46,6 +83,8 @@ cpu2: cpu@200 {
-> >  			device_type =3D "cpu";
-> >  			next-level-cache =3D <&L3_CA55>;
-> >  			enable-method =3D "psci";
-> > +			clocks =3D <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK2>;
-> > +			operating-points-v2 =3D <&cluster0_opp>;
-> >  		};
-> >
-> >  		cpu3: cpu@300 {
-> > @@ -54,6 +93,8 @@ cpu3: cpu@300 {
-> >  			device_type =3D "cpu";
-> >  			next-level-cache =3D <&L3_CA55>;
-> >  			enable-method =3D "psci";
-> > +			clocks =3D <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK3>;
-> > +			operating-points-v2 =3D <&cluster0_opp>;
-> >  		};
-> >
-> >  		L3_CA55: cache-controller-0 {
-> > --
-> > 2.43.0
->=20
-
+Thanks,
+Andy
 
