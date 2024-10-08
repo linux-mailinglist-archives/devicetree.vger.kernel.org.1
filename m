@@ -1,58 +1,63 @@
-Return-Path: <devicetree+bounces-109044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77698994FD0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:30:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 228DA995023
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:33:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F4601C23DEE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:30:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7941F25A76
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:33:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D5221DFE3B;
-	Tue,  8 Oct 2024 13:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1281DF25B;
+	Tue,  8 Oct 2024 13:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="neveWu31"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n3ffvz4M"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44A001DFE34;
-	Tue,  8 Oct 2024 13:28:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB081DF24B;
+	Tue,  8 Oct 2024 13:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728394117; cv=none; b=HxKcafwSCt4lujQN1exmgu45R1CQaII3QbsSPFxBPW81q5saKtiGAhrOgc20qGz51lUUi/Uc1oxp5RNBtNJDElHjrLZYKZ6TuhdI5icTQLDv6V+xkepDkbOvlcbsAOHhpN8Bnfe36RX+6hZLSMXthTZhtRFxktkVIrjo/6DsPDY=
+	t=1728394337; cv=none; b=skEAmqL0sARiXI86jTbYX6MLWQKFBgBsSCeEoh4Ix/MKkOo+tbDw3z6wVe7mmi3TaKbOitTZAvHax4pQAkXAzDe0TfMxRY6LkONZrvv69k6sQsfckC2SygGJzEy0jvYbxY2jDxxE1YhQaAcKThAv0NWFQyOHYmr2nGuYSqC+jus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728394117; c=relaxed/simple;
-	bh=14qGYeM0ii/htuwDgyw45Jd41C1hUPbWSgeByF8tYkw=;
+	s=arc-20240116; t=1728394337; c=relaxed/simple;
+	bh=m3Dqaue9iMHe36I/93iGbTtg5g0XsNP1DjGguFYsNxE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DIg3pXJWorH8U30Jo9vzEtZ009LHNmscFWe0HeWboej2ghPugW245TnENcPwGwNNokboSc3YM8x4ntQ34s2uG37MRo0xO1bSkD5VOZYs+jeOb27IfV0K4K18wo4SN4KLWL1bTAAxZuwWnNS7OtJISesqeciucqcYRnu7oqL0rGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=neveWu31; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D8CDC4CECD;
-	Tue,  8 Oct 2024 13:28:35 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pTXGE8l/m7z+hjo1jPHVcvcnwRZ4K89LQBSkbDKqOAPclQGen4lxYsXdE/Axzz+f2O3v2z1lZYlBW39Ggj1sb4vp88NyUBpo+FTmieVyzO6St2tn4CHEIDW94lqxlA8iJ22jOyf9EBTYlWz/w6qZmiWuBknacFRlDPXjDq/NO7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n3ffvz4M; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65D6CC4CEC7;
+	Tue,  8 Oct 2024 13:32:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728394117;
-	bh=14qGYeM0ii/htuwDgyw45Jd41C1hUPbWSgeByF8tYkw=;
+	s=k20201202; t=1728394337;
+	bh=m3Dqaue9iMHe36I/93iGbTtg5g0XsNP1DjGguFYsNxE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=neveWu31FituKGuru4HxDagfnPHNfLpq0n+EN/+IFoMajVnymRa0UDighXjUSRmOn
-	 utWBLcm1c8YPSLTPdmKpOT/qT5BjFR1Ht0kKigkiFU9LlObh7kmx/jjOAHu5P+wcPf
-	 Dhr8ofyX2xaHAlZc0bNcy+W0shER2yYn4tIyWZY/Rpsbzb0dCFlwJz1BFkvJlK3Xe2
-	 Widt+XTS/Zq5z6V1AxOXKr+7j6K+pGjpmBekwWHvUo1tJhF1cAnKbfre5HVAvIBTVS
-	 7uLZMmPgbzne7nmUcDfJWWRmmbVhQl0afFCdm6jIAovcFuYMuGVU+NRJVGfd1hVtGV
-	 MRmjgYi37eYgQ==
-Date: Tue, 8 Oct 2024 15:28:33 +0200
+	b=n3ffvz4MdASGCADyFqcOUDV3RAoKJ0UC0IMNe+xmXbpkLs55+uR3st3mH2w+0QqAC
+	 hUHLQrtNj2qlRYMakBl95BmzI+lL6m2y40hXK8ucPYmaJzgyaA1Yc/mpIFWZKBjp20
+	 WyqPeVRSvEDKZkyu2TskwsveLVsVNmo0VqrB0cNRngMIFX0fKMp7p0k16vCWzLNWor
+	 /PuXmwHHSDUdUGzMKvUJnEfA2BGYLvCbHn9ksdJ/dWY0C/0ZQskX39pusYBGtrIXzl
+	 cLegrKJm+fmX/OVgHwztKx+d7ukPh+ZLN8NomG57k10SZcEm74PevVZVu8UXc1k+eF
+	 iQRzPmLKmuNsg==
+Date: Tue, 8 Oct 2024 15:32:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Marcus Folkesson <marcus.folkesson@gmail.com>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] dt-bindings: mtd: davinci: convert to yaml
-Message-ID: <4u5iv24enpz46funfvbo2aggx6yiqxy7beaa3ldt5ai5wf65kl@bnlm4eyuwkui>
-References: <20241008-ondie-v5-0-041ca4ccc5ee@gmail.com>
- <20241008-ondie-v5-2-041ca4ccc5ee@gmail.com>
+To: Shawn Lin <shawn.lin@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, "Martin K . Petersen" <martin.petersen@oracle.com>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ulf Hansson <ulf.hansson@linaro.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
+	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] dt-bindings: ufs: Document Rockchip UFS host
+ controller
+Message-ID: <pthhldiu7mus3ehk2yndro5npyqaqdenru53daz34gx7vrizlp@ub7lgvoyiq6a>
+References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com>
+ <1728368130-37213-3-git-send-email-shawn.lin@rock-chips.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,134 +66,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241008-ondie-v5-2-041ca4ccc5ee@gmail.com>
+In-Reply-To: <1728368130-37213-3-git-send-email-shawn.lin@rock-chips.com>
 
-On Tue, Oct 08, 2024 at 09:02:45AM +0200, Marcus Folkesson wrote:
-> Convert the bindings to yaml format.
+On Tue, Oct 08, 2024 at 02:15:27PM +0800, Shawn Lin wrote:
+> Document Rockchip UFS host controller for RK3576 SoC.
 > 
-> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
+> Signed-off-by: Shawn Lin <shawn.lin@rock-chips.com>
+> 
 > ---
->  .../devicetree/bindings/mtd/davinci-nand.txt       |  94 -----------------
->  .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 115 +++++++++++++++++++++
->  2 files changed, 115 insertions(+), 94 deletions(-)
 > 
+> Changes in v3:
+> - rename the file to rockchip,rk3576-ufshc.yaml
+> - add description for reset-gpios
+> - use rockchip,rk3576-ufshc as compatible
 
+... 
 
-> diff --git a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..1263616593532e8483d556b4242b004a16620ddf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: TI DaVinci NAND controller
-> +
-> +maintainers:
-> +  - Marcus Folkesson <marcus.folkesson@gmail.com>
-> +
-> +allOf:
-> +  - $ref: nand-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - ti,davinci-nand
-> +      - ti,keystone-nand
-> +
-> +  reg:
+> +  power-domains:
 > +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 4
+> +
+> +  reset-names:
+> +    items:
+> +      - const: biu
+> +      - const: sys
+> +      - const: ufs
+> +      - const: grf
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: |
+> +      GPIO specifiers for host to reset the device.
 
-This was different in original binding and commit msg does not explain
-changes.  Be sure any change from pure conversion is explained in the
-commit msg.
+Redundant description. I don't get why did you add it.... maybe we were
+confused by duplicating resets and GPIO, but then say here something
+useful not what the property name is already saying.
 
-> +
-> +  partitions:
-> +    $ref: /schemas/mtd/partitions/partitions.yaml
-> +
-> +  ti,davinci-chipselect:
-> +    description:
-> +      Number of chipselect. Indicate on the davinci_nand driver which
-> +      chipselect is used for accessing the nand.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1, 2, 3]
-> +
-> +  ti,davinci-mask-ale:
-> +    description:
-> +      Mask for ALE. Needed for executing address phase. These offset will be
-> +      added to the base address for the chip select space the NAND Flash
-> +      device is connected to.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0x08
-> +
-> +  ti,davinci-mask-cle:
-> +    description:
-> +      Mask for CLE. Needed for executing command phase. These offset will be
-> +      added to the base address for the chip select space the NAND Flash device
-> +      is connected to.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0x10
-> +
-> +  ti,davinci-mask-chipsel:
-> +    description:
-> +      Mask for chipselect address. Needed to mask addresses for given
-> +      chipselect.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +
-> +  ti,davinci-ecc-bits:
-> +    description: Used ECC bits.
-> +    enum: [1, 4]
-> +
-> +  ti,davinci-ecc-mode:
-> +    description: Operation mode of the NAND ECC mode.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [none, soft, hw, on-die]
-> +    deprecated: true
-> +
-> +  ti,davinci-nand-buswidth:
-> +    description: Bus width to the NAND chip
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [8, 16]
-> +    default: 8
-> +    deprecated: true
-> +
-> +  ti,davinci-nand-use-bbt:
-> +    type: boolean
-> +    description:
-> +      Use flash based bad block table support. OOB identifier is saved in OOB
-> +      area.
-> +    deprecated: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ti,davinci-chipselect
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    nand-controller@2000000 {
-> +      compatible = "ti,davinci-nand";
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
+E.g. Which pin is this? Active low/high? Resets which device - phy?
+memory?
 
-I did not notice it last time.... but what is this? How could you have
-no sizes?
+With proper description:
 
-> +
-> +      reg = <0 0x02000000>;
-
-This is odd. Address is not 0... and size should be 0.
-
-I don't get how it even works. For sure it is not correct.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
+
 
