@@ -1,161 +1,135 @@
-Return-Path: <devicetree+bounces-109099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 845709952FE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:10:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D18299531B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:17:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65C41C246E7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:10:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3C67A2811A8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:17:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1965A1DFDB1;
-	Tue,  8 Oct 2024 15:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aTNT7ZgZ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA3E51DFD8E;
+	Tue,  8 Oct 2024 15:17:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96C5EDF71;
-	Tue,  8 Oct 2024 15:10:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49224144D21;
+	Tue,  8 Oct 2024 15:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728400218; cv=none; b=u8Emzr4/QMSAH/ntxLiqJVrVdGOV1IlJE84FxSF8cO4FSVh2gAC8Coj/Huj2nLBYaUb4IyMC2NKFgEWkCSsMfHBbke5s1/9kSxcoElQ1NTiO3sUB5zSZWG8iEwC5oE2umywgZjN/Pjc/t3WGbixZpRlY75zLzmSU7IRt+x1b6tw=
+	t=1728400621; cv=none; b=mjltXAtUDRsfV8qt52THV395fjn47l48jxmpZzgKk5FI+VeA+tnZ/hgrrpIsH7eAhNCG4VDis5x3xLE9v204u1deXaXb3D6ywzBYWnBqKZvc5luH+0xUds/6wksfE+qWFvTViBamwpTus9UD9LTnjxuZKXIdOzl05svMvVkYbOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728400218; c=relaxed/simple;
-	bh=xo0C4U4wBPUyH7JhzEAeKIblQrARa9L8u8Zjshvxzx4=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tAFJ0dyGAfaB+fz4Yt/ptGZ8kBft7L/p5/rv/7GN157n9GpHtbl3TCKcaXVSlvoq9GtOhpsYoV5R+t/Vrs/fg13+lsCFskThpom3bE7kf7jnrGzMmhtoz+QLxbK9S6+iDSY6ip7WdPxf0mPS8W2zOwEzoB3qwnnDP0faPhFPpGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aTNT7ZgZ; arc=none smtp.client-ip=209.85.210.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1728400621; c=relaxed/simple;
+	bh=x0v6wKBxloqxd6ftXN0Rhhzo7IbMzrRL3YhX/jccxGo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=h+iLcyAsNrcGaaVs5w0ySkjqRr3sVUw5bsbUcjXYhRonHT7UydtXNDIleQyXmBwJ8SVRKyT1MZBuqjm8e03HXP3XtnTXaHLpG39OvhkyAXci3mfCnyColF/GzjBT8AohprRJtIOXs/Uy9GF99eFH45dprA0BnavzLxF9P9f0MnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-710e1a47b40so1728783a34.2;
-        Tue, 08 Oct 2024 08:10:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728400216; x=1729005016; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=h8FVjFSOCkqIf/0pMIi/pzRKFL8gLTJryJEfNVlsG7Y=;
-        b=aTNT7ZgZUGAkz2J5gxDkM/pnwxYkY0wcRZ7nR4YSpop9kR7fu0it4F4IUHn5vud2s3
-         +K+EmW8DQ7e5RoocgeDB/VuHIqKQqhlmK3TNejfF4uDq8pur7xMZX8Fv279wxPehu4yP
-         4qxjWDFLhOSZeWRqyIe9xT2vVE0DAQKHZI4yT35sHknHmEkCIgT5rvhbtEJEOe+OH83z
-         O6EJ6nj3mHQHdsu2mkLnn6Ku4E3GxIJjRo6Pk6IvKepL6Bqj6kPpGkTJ02TxQtSYf9wN
-         3rnfrz+kPaOFZ/lpXa2Y4Otk/gAfHWanTF8pxhB4Ov+sxcJsUpSyjDZXjHY8bxvef7xN
-         erGA==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6db20e22c85so45577897b3.0;
+        Tue, 08 Oct 2024 08:17:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728400216; x=1729005016;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h8FVjFSOCkqIf/0pMIi/pzRKFL8gLTJryJEfNVlsG7Y=;
-        b=XZWmvxi2TxM1UxCHrb2Uo5q0gS4X8IpkS3P8Bw+f0Huhnybny/Ak9dL0Duy8kVciWM
-         q8cUkP/aK94BYtkI3NgtvwlMiU+02617ZsCWiBs5scJzBEmn9xS2GLS0bAhXa6PyFGXx
-         cZX9SqySyN0/bq6BjqGzSRTNLVVyXczZkw5WcM8HdT3xOLD6nMkiQeI+CnfK5ZZuy6Gl
-         8didV4BpvkimM10pbbN21vJB6vPPl0iNe4rrKm/OqBEPkXYtH4MpIrpbpDk0K4uOOw/k
-         ZJBEg7UbIZiz+dCsI+lyHDbmA/v2yicvnEzcFkCwLOLXEJaUJ9xCdGp9MLrII64wLhsf
-         J1MA==
-X-Forwarded-Encrypted: i=1; AJvYcCW42A+ZN5nYSxx8dic4wNxmYChqfk/Foba8Wp5YoN/CChyQou73hwnlARJr1CcWb4YPALuSqB38InR/@vger.kernel.org, AJvYcCXXETICo/ud72AM9Vgw5sEOPY+53TGPgx4GWKXycLI1q1u7OlqbLJgI87McCU0eLwUYIyx9WSM7Z2Hh@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuujGM9f5vpt1jqGKDk3Y5ZDR6zx7mi+HA9S3fcd12mUAqIggf
-	3P4Eb4JIAwrB28MhRzITxU5j4ouBhsQb1QJwlKKnRXzHVDergkFH
-X-Google-Smtp-Source: AGHT+IFYYXW7//lDk6FPokDWD1gM7PjS/UNrxS+imBsA3RrlBJLTTdO5nz6L4rCJS5C+eBsXjG/Ufw==
-X-Received: by 2002:a05:6830:6384:b0:710:dae5:df1d with SMTP id 46e09a7af769-7154e98fca3mr10733642a34.31.1728400215490;
-        Tue, 08 Oct 2024 08:10:15 -0700 (PDT)
-Received: from neuromancer. ([2600:1700:fb0:1bcf::54])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7155686c95bsm1884579a34.73.2024.10.08.08.10.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 08:10:15 -0700 (PDT)
-Message-ID: <67054b57.9d0a0220.359bfc.6183@mx.google.com>
-X-Google-Original-Message-ID: <ZwVLVb5L08dVG0ds@neuromancer.>
-Date: Tue, 8 Oct 2024 10:10:13 -0500
-From: Chris Morgan <macroalpha82@gmail.com>
-To: Aleksandr Shubin <privatesub2@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	John Watts <contact@jookia.org>,
-	Marc Kleine-Budde <mkl@pengutronix.de>,
-	Maksim Kiselev <bigunclemax@gmail.com>,
-	Cheo Fusi <fusibrandon13@gmail.com>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v9 0/3] Add support for Allwinner PWM on D1/T113s/R329
- SoCs
-References: <20240520184227.120956-1-privatesub2@gmail.com>
+        d=1e100.net; s=20230601; t=1728400619; x=1729005419;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xNkp0597olvl4BH+GQsjOjO3dePD7p4cBzVhPvQBAu0=;
+        b=WIKseKYYNHfk1nGaFWDUdJYhQbSsfcUR/ZGSUglFKA3NiOTkLUFg8/LL3sKj9xYu30
+         0ARtcALzrjTCCUZ1C2e/7cpTwyPDlGsYn2Rxbp1mHHmu4W/e5540h/Ell/oC8R4p+fOO
+         73UUTz7GF/9ObJLMQv3Q8fSOhNjO14rCy3qm1wvxSwSCt/556DJWr6u6lnMN12RtpAsU
+         p3Hf3cX8CzIi08DVxdQQY3sIlbd41YechTE6UnnLerK8MX+4Qm870a1OkC7of1HwAg+K
+         5+5/t5kS+fCqrqmKOLVNDDWOMTS90VELTTQhfNTRmRL7J1PRQ3HoC6WACM+B3I/BYqYF
+         HK5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUZxsnTEp7eX4f4i/Fy2GQLnqAledGCydbwvua89w/Ht/u7rPYTRYI1Lh56mOy17YmwYN7ekMdbYZER@vger.kernel.org, AJvYcCV+b+yYkJ2g38tuRye3ERI2AJQvqHB9X6mCCC7uBlJ8n5WhPykPUCDWxhWfjnsvDBM//NOJtEU+mH9ly9q9@vger.kernel.org, AJvYcCVeYtxUOLLTtFRBzVk21YQ2tPaUZK7jHJsOQbDLHvZIrngqp5pIk4ovjusEi2ZbNEh67Wz0xY4isGFx@vger.kernel.org, AJvYcCVusz5u8dWyqZnoSRf3R2fyL1Yt3iDErXKH3dkjZSrutYApMpspFASULxA6ntYv7r5U3Ti5GkgOitQD@vger.kernel.org, AJvYcCVwci6IK2rrcgzUoslFFHmlguNGy1NtfU8IVv+xJeLYekGvZD21twK87LPqAM2/+zuOG9C1IfIshI8=@vger.kernel.org, AJvYcCWciWM5nv7qFX+DQTbsBx0RPViyi4SDAHEKUB5U9kP0zpwzkmGWAvHqvpV6WT6gE3rF39baxKhvNnmxywBKCtTSh3I=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxh+serDkK7WtJPcqrpt6HtzAqVFqmT+4ejmU2JGY+xz7NqyTmo
+	2SwXWg2bRwLyyyG4lFG9kCG4XiW6NvdKuLhi3AhfBkqmk0Y80nB3Yjzfpn//
+X-Google-Smtp-Source: AGHT+IEmwzQ4S21ySvIXl6lnzyeEe5/Tmdjn9/vqEVzOfpRH8NvZm0XibBuRYOEO0Uy0dRT2nJmMOg==
+X-Received: by 2002:a05:690c:6a86:b0:6dd:fe5e:8828 with SMTP id 00721157ae682-6e2c72b2c16mr146723657b3.42.1728400615300;
+        Tue, 08 Oct 2024 08:16:55 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e30e745d7esm3695727b3.74.2024.10.08.08.16.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 08:16:54 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-6d6891012d5so47861267b3.2;
+        Tue, 08 Oct 2024 08:16:53 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUF6Ko1eAfISunr5S7d2Yjd4Fd/x57pGQfwgXkKNc7e7HRu5bhUjVXVh2An2Z55Bviuu+0kAR0gIp40Iv5B@vger.kernel.org, AJvYcCV09BBm8FNLG10sCg9pF9njqXJwc4IjqrDNTIXboGvYd2Xq0tuZi1I0jiTfYFFmEmVOr7Z+qhcLEinD@vger.kernel.org, AJvYcCVLiH+I5QcKlBg5Vo4/f4cJbXD9/BJnqPQtDmuodr+Bk55ETA+SP3wMR6SjxUtbHSO9kDfwEfGdHZ8t@vger.kernel.org, AJvYcCVWjNnu7RDx1ZZMV2mkS8D3M89Awj27SDhX4BsCEYWXy/KhJeLAaR35Ir/r63f4lz/52PUcSTsWzwqT@vger.kernel.org, AJvYcCVsR4jc0UeCphLYY4QlE19OtC1F80fZIAqdbj5G20uREiWV36/7z9+abIon3xVqBWge8Ad0ukW+sUA=@vger.kernel.org, AJvYcCXmXP+9+bInS6s9nld1Plb7b0lkJTiT/zfq0M1L5dnn1W5GdTdMzNa7unmSpI2jDjl+2PivrQ6m2vKpFAoIqbvu5dk=@vger.kernel.org
+X-Received: by 2002:a05:690c:f88:b0:6e2:3e17:1849 with SMTP id
+ 00721157ae682-6e2ecb69a8amr76258537b3.2.1728400613366; Tue, 08 Oct 2024
+ 08:16:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240520184227.120956-1-privatesub2@gmail.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com> <20240822152801.602318-16-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240822152801.602318-16-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 8 Oct 2024 17:16:41 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXbNRO--0ZGO4owi3At5n1dTMMWo4PTaubyNWEkVnPFFA@mail.gmail.com>
+Message-ID: <CAMuHMdXbNRO--0ZGO4owi3At5n1dTMMWo4PTaubyNWEkVnPFFA@mail.gmail.com>
+Subject: Re: [PATCH 15/16] arm64: dts: renesas: rzg3s-smarc: Enable USB support
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com, 
+	gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org, 
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com, 
+	ulf.hansson@linaro.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, May 20, 2024 at 09:42:18PM +0300, Aleksandr Shubin wrote:
-> 
-> v2:
->  - fix dt-bindings
->  - fix a remark in the driver
-> 
-> v3:
->  - fix dt-bindings
->  - fix sunxi-d1s-t113.dtsi
-> 
-> v4:
->  - fix a remark in the driver
-> 
-> v5:
->  - dropped unused varibale in the driver
->  - fix dt-bindings
-> 
-> v6:
->  - add apb0 clock
-> 
-> v7:
->  - fix a remark in the driver
->  - add maintainer
-> 
-> v8:
->  - fix compile driver for 6.8-rc
-> 
-> v9:
->  - fix a remark in the driver
->  - fix dt-bindings
->  - rename apb0 -> apb
-> 
-> Aleksandr Shubin (3):
->   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
->     controller
->   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
->   riscv: dts: allwinner: d1: Add pwm node
-> 
->  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  84 ++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  12 +
->  drivers/pwm/Kconfig                           |  10 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-sun20i.c                      | 387 ++++++++++++++++++
->  5 files changed, 494 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
->  create mode 100644 drivers/pwm/pwm-sun20i.c
-> 
-> -- 
-> 2.25.1
-> 
+Hi Claudiu,
 
-Has there been any futher updates on this? It looks like v9 was last
-updated in May. I only ask because I think future patches adding
-support for the H700 require this as a pre-requisite.
+On Thu, Aug 22, 2024 at 5:28=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Enable USB support (host, device, USB PHYs and sysc).
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Thank you,
-Chris
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+> @@ -144,3 +188,20 @@ &sdhi1 {
+>         max-frequency =3D <125000000>;
+>         status =3D "okay";
+>  };
+> +
+> +&sysc {
+> +       status =3D "okay";
+> +};
+> +
+
+To avoid regressions (/sys/devices/soc0/ disappearing), enabling sysc
+is a dependency for "[PATCH 05/16] soc: renesas: sysc: Move RZ/G3S
+SoC detection on SYSC driver", so I think it makes sense to change
+its status to "okay" in r9a08g045.dtsi instead, and spin that off into
+its own patch.  I am not super-worried, so doing the driver and DTS
+changes in separate patches should be fine, as long as they meet each
+other in next or upstream.
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
