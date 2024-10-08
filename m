@@ -1,143 +1,120 @@
-Return-Path: <devicetree+bounces-109071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109073-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EBD09951D3
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B2239951F3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B116E1C22653
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:35:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD0511C2472D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:38:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5D81DF26A;
-	Tue,  8 Oct 2024 14:35:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA8D21E0B75;
+	Tue,  8 Oct 2024 14:36:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cjoqLLZA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O7pvYWal"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43F2638DC0;
-	Tue,  8 Oct 2024 14:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15A791DFE2A
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:36:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728398149; cv=none; b=fnGjdI3xgRaCCnLxmdzI9Qgtfjptvk901cOubUSjLmQSKzd3+4y52G3So7kWJYT8NPmnkH+Ku07Uet5RHMl0IPlCnDZKL+xK7e+hKIzudxc9pMUkzgtPTKIwBNcbVjNKj4woCxc3+9F8NUoF83zQ1XqH28wJhAJip4t4DbYGsSE=
+	t=1728398205; cv=none; b=X8Q4mos6avFmDpu7rw1seFPpCzJaRExU/pnNBwXo7zdFvCGabVuSx3y8EJu+7an+qs7mlgiiyjwdYxHUZy5nOL4Tec8Bejdt1jJTupbMxXuhGOYEt3tiuYddNJ8d6UTe2AFv1nHde9cUmERGmoZEaVLtnHrJOpMiooTOKeJveSA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728398149; c=relaxed/simple;
-	bh=E8aQ7XP7lX0uP0s2JmMYAriOaJM5DEMtkoyIV8YYi6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X8oC1LCis4X27hst7uXALcc4qd0W1WIiFV8rWGzE/OBw8cy7ql7st+ZD9qJSZ1bh77laV8PjjxnxfWKQxsZkIWdyC/J1g4jwOViP5lxOc2uD92DelPLdwn52V00TY23SI73R1kxBy+Ii4+YpYzGNaYVo9Fyz2YYkZDWgZJqrNTM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cjoqLLZA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 054BDC4CEC7;
-	Tue,  8 Oct 2024 14:35:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728398148;
-	bh=E8aQ7XP7lX0uP0s2JmMYAriOaJM5DEMtkoyIV8YYi6c=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=cjoqLLZALH7JUrczHor2AWKyZSbbBgkEFdl3eSi/H8telKedlo6surnRusqq6QOw5
-	 QXW4R3Cxf/lmw86luko13UEy9MD//y9t7slSfUdPkYHx7irUaRO1W5etkwHwHq8q9P
-	 U/V142GHNNra2SR6lGBhepimD0uZ0NAEMqVtajflxz7pT6pIsZ+ngXx6pgMzqVfeCb
-	 Gxzl3RiaAkxynxGO2ztrQbZL06WFkdL3Q/+cvnD5/lr5t4kv8CN3TND+QfXTEeFJsC
-	 GHdStxiMgKVwg/KEx5f3cACtlqJ8AMYsrTmhD8NXGhowQe4Rkk2zBwKGDYdw3arG09
-	 vxd8AkAyp1lQA==
-Message-ID: <ac325385-cb3e-4002-b100-de73eb5a9ac7@kernel.org>
-Date: Tue, 8 Oct 2024 16:35:40 +0200
+	s=arc-20240116; t=1728398205; c=relaxed/simple;
+	bh=eiBVahTw3pcHmt4RBSpt/Ftosqh8bsjEAx9y76i535g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JCHo4cmGt+9vDKu5EmoUIY2QsR0XQD/2z2qb0vRFbZgZpAYpoKs3kyy+CDmdSpXMsjL7Nh0OUMvnljqTkG337Qx+9o5iqppsXVH3pTqBgsNXaT1O7GzD51579cGR7WjBd+y+ZJ3BV3aMkalwzeNCuYKPTrcjrQ685PrVq7wyBgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O7pvYWal; arc=none smtp.client-ip=209.85.219.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e28f1491eb6so595198276.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:36:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728398203; x=1729003003; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WNZzKdQArnf8YLwkRp6tlekOryWYH/w6bCKp6uUyEzA=;
+        b=O7pvYWal1CQuQPyMAlI9M5wjRm5JpV8qaGz/lzrwimGIvOjOqNbURh/flZ1I2Gnur+
+         nCF7RtdhvxgZWXeBsv79k8vax4TvhJaPkjVMFkChzamdn1aoEcis74x3RnXALYYMbPMD
+         zJ8FQZDApzgfoLB2zmowj23o6gSu6zg7KwwlSWpk6w/P0E0rhUIFIlg+wcwJehk33Dxt
+         VwBs8kKOQ8vfcelQl/BKdCJ8nGrGBVv1AeEBJs/nrf6c4eUUQh/zq78Gi2n7M8LJvIA4
+         7uUOCn5+o5pY2u4DNFjLcfBTW7WgnjSGp1qZxqBXMdf7BdbKFVDp+x1xQVQdTVuWjKBx
+         ahjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728398203; x=1729003003;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WNZzKdQArnf8YLwkRp6tlekOryWYH/w6bCKp6uUyEzA=;
+        b=TtUT0ssTSGxAAviRaVyULzEh3M1U2dEDrL/pH9wxyFGN1Euvrch8svKI7cJUfRpokL
+         4KWQ1Gi7Zd6Jo4VY9fw1D+fvoXM0Jt0r3hDNTC8zsDg0TWNScSs+FkiYHlB3zdyMxFVk
+         KB/2o5ERkoDBDL48ljjmmchRG7QewDVY37U/l7rqllzLPJoDt/vPx2KII8hQTUSlC2Hx
+         aDO6TMSRzfb7VMKMsx/BC7Qn/Xni7qZl6nMMgphmL4q4PqVB99LcvPCn2sj87MrG0Oyu
+         5BOtMGQKyhbdX1iczecE6vIREr06so7ebQJXrMay3FAOPBxsmFaZETF4Vf56p6KMxJxI
+         Fqtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqMshg+n72blmU0kU6OFqaiiKloj1s98KcOYpPd9LAsqcHt0w9Mnm6KvvstqrOMWPLPC7qxRqpgrCC@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3AZok3qOXc33C3+85qV38Ive8eLkAHQpcYlR5OPLcveqY2sPu
+	IJjppBn7zg/yXI3lvIfO8IbE0azYguO4zldcgIAQvB9YuhLjDKiDScBbiNWp+fKBMsenWiqCeRl
+	bbChWH3zl/v/6hDZ3K2hx7PKIKFA6/y9ntgWOxw==
+X-Google-Smtp-Source: AGHT+IGpk0fkikZLIUB8Xv1LRK1/jbL/DWVujOUGdacoTm8NQ+nTWOMi8y8fhtWL/4PN4fQZf2hYlGAC3o0z4YwCACg=
+X-Received: by 2002:a05:6902:a86:b0:e28:eee6:1cf with SMTP id
+ 3f1490d57ef6-e28eee60288mr1785573276.48.1728398203049; Tue, 08 Oct 2024
+ 07:36:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/3] phy: rockchip: inno-usb2: convert clock management
- to bulk
-To: Frank Wang <frawang.cn@gmail.com>
-Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, heiko@sntech.de, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
- william.wu@rock-chips.com, tim.chen@rock-chips.com, frank.wang@rock-chips.com
-References: <20240929061025.3704-1-frawang.cn@gmail.com>
- <jx55slsincpzq6mugfsyc6qpbku2555azj7lithwggo733ggnb@rkqsxpsyoaw7>
- <13fe91e1-2471-4a59-9581-628ce7773fdc@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
- QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
- gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
- /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
- iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
- VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
- 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
- xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
- eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
- AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
- MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
- Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
- ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
- vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
- oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
- lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
- t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
- uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
- 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
- 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <13fe91e1-2471-4a59-9581-628ce7773fdc@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240930095449.1813195-1-pierre-henry.moussay@microchip.com> <20240930095449.1813195-12-pierre-henry.moussay@microchip.com>
+In-Reply-To: <20240930095449.1813195-12-pierre-henry.moussay@microchip.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 8 Oct 2024 16:36:00 +0200
+Message-ID: <CAPDyKFquF3nj3BxRqc418xC9_fFasHipDePdXsSBFLJwrO-UKQ@mail.gmail.com>
+Subject: Re: [linux][PATCH v2 11/20] dt-bindings: mmc: cdns: document
+ Microchip PIC64GX MMC/SDHCI controller
+To: pierre-henry.moussay@microchip.com
+Cc: Linux4Microchip@microchip.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Masahiro Yamada <yamada.masahiro@socionext.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/10/2024 05:07, Frank Wang wrote:
->>> +	}
->>> +
->>> +	if (!IS_ERR(refclk)) {
->>> +		clk_name = __clk_get_name(refclk);
->>>   		init.parent_names = &clk_name;
->>>   		init.num_parents = 1;
->>>   	} else {
->>> @@ -1406,18 +1424,29 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
->>>   	if (IS_ERR(rphy->phy_reset))
->>>   		return PTR_ERR(rphy->phy_reset);
->>>   
->>> -	rphy->clk = devm_clk_get_optional_enabled(dev, "phyclk");
->>> -	if (IS_ERR(rphy->clk)) {
->>> -		return dev_err_probe(&pdev->dev, PTR_ERR(rphy->clk),
->>> +	ret = devm_clk_bulk_get_all(dev, &rphy->clks);
->>> +	if (ret == -EPROBE_DEFER) {
->> This does not make much sense. Why would you proceed on other critical
->> errors?
->>
->> You want to use optional variant, I guess?
-> 
-> Yes, the clock properties are optional.
+On Mon, 30 Sept 2024 at 11:55, <pierre-henry.moussay@microchip.com> wrote:
+>
+> From: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
+>
+> PIC64GX is compatible with cdns,sd4hc without any additional feature
+>
+> Signed-off-by: Pierre-Henry Moussay <pierre-henry.moussay@microchip.com>
 
-And? So are you going to use optional variant of clk get or not? Is it
-appropriate? Are you going to improve it?
+Applied for next, thanks!
 
-Best regards,
-Krzysztof
+Kind regards
+Uffe
 
+
+> ---
+>  Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> index 6c40611405a0..ee3a838f7f06 100644
+> --- a/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/cdns,sdhci.yaml
+> @@ -15,6 +15,7 @@ properties:
+>        - enum:
+>            - amd,pensando-elba-sd4hc
+>            - microchip,mpfs-sd4hc
+> +          - microchip,pic64gx-sd4hc
+>            - socionext,uniphier-sd4hc
+>        - const: cdns,sd4hc
+>
+> --
+> 2.30.2
+>
 
