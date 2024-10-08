@@ -1,118 +1,200 @@
-Return-Path: <devicetree+bounces-108878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F777994296
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:48:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B0659942A0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:49:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04F1E1F2236B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:48:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB45D1F214DE
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 852051DE8BB;
-	Tue,  8 Oct 2024 08:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6368B1D223C;
+	Tue,  8 Oct 2024 08:21:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="i23fUmGP"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="MPE78sLv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 136247DA76
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 08:20:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5621DEFE0
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 08:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728375657; cv=none; b=rJP4pBjVj8cG3LORCKXiYtlxb2MGB+EpJR8cVfdsrRxBPM36acG9REQuqffMK/hoG6lMiEwzuFnrYyM0B/m1IjocEEO+JjDMPTACoANSXWSpCou/J/gEVT2FARZ3iCMxGQ5H8zoTBToR+GbMTbOQxV/lSRVhBkpZgYuRAT+1QVI=
+	t=1728375707; cv=none; b=e8gJSit7X0MpTQNFXCtmaJanCFYuB5qKNp/l3Qn8Fd4Q5fuThymshfb0luRGYswLr5zkzLoFr7hBmg+jCPq6+uTBHmYpbjF2T0AQG+V5sFFBcd+SdPzWSU84XFUEJVzfAPGog4SGlsVV0nGDv5ZXXU0NtawTQsx3eOiOYDOFL4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728375657; c=relaxed/simple;
-	bh=wfiE7qRSuZ7XkWPlS2rY8eBbtt9KomC4BJ9a9D0fvjo=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VZNflK/AcZvE12Bbj97zpTy9DZw9KivKVQFzJXmb6PHfYbxKgetzim+b00jNWq7PVVAuYBpwNmjDovCsJlUZ5m/Z7mR0Nj20lOl+1G726N0Z8QiPAwJHsjEUhzQOO+yqdp1sYjhURa3mKokA86oTsxTOcxWjJSzaAQ4/KzHmvF8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=i23fUmGP; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-718e9c8bd83so4002384b3a.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 01:20:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728375655; x=1728980455; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Wxe7XEN1LHMGd0Oyi47FAyf7OZba3eA58SL3i+FereE=;
-        b=i23fUmGPWhmAABiuydxSfk3WCjj6BRHsjVBs8UZQ/aEC+1fPpRnENcxHUYCO34PBHX
-         k6NvOfnLTwdrZtY+DaRg+xTp8MByIKwOOpXtHE2dP4te0BZj/YtO/MYi24EGmNrXTLvN
-         Lp7+SiyyvwGjr59ZJRaEyLoXTQe9uwM5G3nbk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728375655; x=1728980455;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Wxe7XEN1LHMGd0Oyi47FAyf7OZba3eA58SL3i+FereE=;
-        b=DQdq1gT5lr2pFCJX+FlWFLv7iALjUEc5r9gKfmpuSWAHmvLaK288l45DIm03oEMqme
-         7rSJo4aTVNdMghZ+iuLLHJqylWbMvgVMrWClcujeLaJko5/DmleWJrxKPUyWq9FhiQcF
-         vtiG5cwULun3jMEt9w5SDYXi0Ggq9ADEDSZ3b/9yhPl9CAVRmgDqtkjJXU+xl9JZD7sf
-         FURVl5mjqaWH2ENWOKahI6MSpFouybp6yQh98k3OktuH6gUzHHeDXXRnnu/rN7E7zz1S
-         exM04xy0DnnAg42s81eXRIPcpPSQnFCsBfHfA2nyTj5xsXK/yg22c94hSKchB1QHJKQ9
-         3Z2A==
-X-Forwarded-Encrypted: i=1; AJvYcCVny6hbnJS+SGCJtEAVmK0Hr0b5YM/Qu3qDIzcPVlfhlQ7znWbsWuMdBymS7Ie2WeDdIvusNG7ytp16@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz50C/+TwzEqMXf+CtMi9G/Mt6X9oZcQwgpHZz6mlkhOetwrATg
-	Y6EWGPtkD8DwLTy8jiDgOyGZ0Sh0kxpk0euTmDr6A6BafTSYrqN9n6qhRVAAibw1/pbrrSOk+x8
-	=
-X-Google-Smtp-Source: AGHT+IFJm0IcwI0CWnxra5LbX1O3mroQEd3t+K9JaisETjqWwQD9tUxGolk9e7WrRGrqYhb2Ata5Fw==
-X-Received: by 2002:a05:6a20:258a:b0:1d4:fb97:41b9 with SMTP id adf61e73a8af0-1d707459d68mr3493318637.22.1728375655445;
-        Tue, 08 Oct 2024 01:20:55 -0700 (PDT)
-Received: from wenstp920.tpe.corp.google.com ([2401:fa00:1:10:10df:d27e:8d4b:6740])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0cd0ad2sm5672184b3a.63.2024.10.08.01.20.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 01:20:55 -0700 (PDT)
-From: Chen-Yu Tsai <wenst@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Chen-Yu Tsai <wenst@chromium.org>,
-	devicetree@vger.kernel.org,
-	linux-mediatek@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: mediatek: mt8173-elm-hana: Add vdd-supply to second source trackpad
-Date: Tue,  8 Oct 2024 16:20:49 +0800
-Message-ID: <20241008082051.4002438-1-wenst@chromium.org>
-X-Mailer: git-send-email 2.47.0.rc0.187.ge670bccf7e-goog
+	s=arc-20240116; t=1728375707; c=relaxed/simple;
+	bh=VDpf9/wkNVw6+eD/6ygGxcYnIzmLwJk/4ULDXyGGR80=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XQO3Tirwb99mthKqmULykfUCtGUn1cRMfGZ7l6JJ3ydJMPso1719jYvAtDqbayLLxqjwzbDTD/5Qf5B93yrNctzTA377myFf+uXyMTCGWmdcQhfYerGmt9LWMq8+nURJ+bT7pjABIF0jV9HrjFpUQfWajWUqIl+DfnqV4GxNrPw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=MPE78sLv; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728375706; x=1759911706;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=VDpf9/wkNVw6+eD/6ygGxcYnIzmLwJk/4ULDXyGGR80=;
+  b=MPE78sLvSyNJKa4L8eGbfo1fw4RetNdi5rUbarg2yX9djR6wjj8Y4azq
+   P49PhjEn3dIzAH1ObNHbiB6T7a5arUlDfAHbib64xqeDEnVmCWYkj5QCP
+   QzvAl2d5AJ6dkym/WhXHSROXdsMDhiOm87pduxVPEOuJ87Vmn2BcqMpC/
+   i2+/wXv0VoqTho+mxvxc4NJgYtlDa4JQGksbgZUoZPZ2RtRcRpuv3KYU/
+   2we8+MDUdApRgUXrmqqA+BJqPF74OCZnGDVwcEAufYMYqEFzfs8TtKVzY
+   80KarGAFyETyFUzl94avG6F1bSGH04/YQsANKfqk3DjGQLZIDICHPxdLJ
+   g==;
+X-CSE-ConnectionGUID: +KKGXUayQ7iV3iWeGJJV5Q==
+X-CSE-MsgGUID: GvddIWs0Sf6NxVKZo7rTIQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="38118281"
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
+   d="scan'208";a="38118281"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 01:21:45 -0700
+X-CSE-ConnectionGUID: 7Oez9WmLSUuIu35SHXCIhw==
+X-CSE-MsgGUID: 3dZ7tbTCRUqnAvtDqZvINg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
+   d="scan'208";a="113216392"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa001.jf.intel.com with ESMTP; 08 Oct 2024 01:21:43 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sy5TQ-00065U-1a;
+	Tue, 08 Oct 2024 08:21:40 +0000
+Date: Tue, 8 Oct 2024 16:21:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Markus Stockhausen <markus.stockhausen@gmx.de>,
+	linux-phy@lists.infradead.org, chris.packham@alliedtelesis.co.nz,
+	devicetree@vger.kernel.org, krzk@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Markus Stockhausen <markus.stockhausen@gmx.de>
+Subject: Re: [PATCH v2 3/3] phy: Integrate Realtek Otto SerDes driver into
+ build system
+Message-ID: <202410081607.EKE62jfx-lkp@intel.com>
+References: <20241007163623.3274510-4-markus.stockhausen@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007163623.3274510-4-markus.stockhausen@gmx.de>
 
-The Hana device has a second source option trackpad, but it is missing
-its regulator supply. It only works because the regulator is marked as
-always-on.
+Hi Markus,
 
-Add the regulator supply, and the required post-power-on delay.
+kernel test robot noticed the following build errors:
 
-Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana board")
-Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
----
- arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on krzk-dt/for-next linus/master v6.12-rc2 next-20241004]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-index 8d1cbc92bce3..e03474702cad 100644
---- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
-@@ -49,6 +49,12 @@ trackpad2: trackpad@2c {
- 		interrupts-extended = <&pio 117 IRQ_TYPE_LEVEL_LOW>;
- 		reg = <0x2c>;
- 		hid-descr-addr = <0x0020>;
-+		/*
-+		 * The supply is always on. Adding the delay here
-+		 * needlessly delays the readiness of the trackpad.
-+		 */
-+		/* post-power-on-delay-ms = <100>; */
-+		vdd-supply = <&mt6397_vgp6_reg>;
- 		wakeup-source;
- 	};
- };
+url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Stockhausen/dt-bindings-phy-add-realtek-otto-serdes-PHY-binding/20241008-003929
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20241007163623.3274510-4-markus.stockhausen%40gmx.de
+patch subject: [PATCH v2 3/3] phy: Integrate Realtek Otto SerDes driver into build system
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241008/202410081607.EKE62jfx-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241008/202410081607.EKE62jfx-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410081607.EKE62jfx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:490:15: warning: overlapping comparisons always evaluate to true [-Wtautological-overlap-compare]
+     490 |         if (sid >= 2 || sid <= 9)
+         |             ~~~~~~~~~^~~~~~~~~~~
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:509:15: warning: overlapping comparisons always evaluate to true [-Wtautological-overlap-compare]
+     509 |         if (sid >= 2 || sid <= 9)
+         |             ~~~~~~~~~^~~~~~~~~~~
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:686:6: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     686 |         if (ret)
+         |             ^~~
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:677:9: note: initialize the variable 'ret' to silence this warning
+     677 |         int ret;
+         |                ^
+         |                 = 0
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:706:6: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     706 |         if (ret)
+         |             ^~~
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:697:9: note: initialize the variable 'ret' to silence this warning
+     697 |         int ret;
+         |                ^
+         |                 = 0
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:723:7: warning: variable 'ret' is uninitialized when used here [-Wuninitialized]
+     723 |         if (!ret)
+         |              ^~~
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:717:9: note: initialize the variable 'ret' to silence this warning
+     717 |         int ret;
+         |                ^
+         |                 = 0
+>> drivers/phy/realtek/phy-rtk-otto-serdes.c:868:1: error: incompatible function pointer types passing 'ssize_t (struct seq_file *, void *)' (aka 'long (struct seq_file *, void *)') to parameter of type 'int (*)(struct seq_file *, void *)' [-Wincompatible-function-pointer-types]
+     868 | DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_mode);
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/seq_file.h:223:27: note: expanded from macro 'DEFINE_SHOW_STORE_ATTRIBUTE'
+     223 |         return single_open(file, __name ## _show, inode->i_private);    \
+         |                                  ^~~~~~~~~~~~~~~
+   <scratch space>:49:1: note: expanded from here
+      49 | rtsds_dbg_mode_show
+         | ^~~~~~~~~~~~~~~~~~~
+   include/linux/seq_file.h:176:38: note: passing argument to parameter here
+     176 | int single_open(struct file *, int (*)(struct seq_file *, void *), void *);
+         |                                      ^
+   drivers/phy/realtek/phy-rtk-otto-serdes.c:891:1: error: incompatible function pointer types passing 'ssize_t (struct seq_file *, void *)' (aka 'long (struct seq_file *, void *)') to parameter of type 'int (*)(struct seq_file *, void *)' [-Wincompatible-function-pointer-types]
+     891 | DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_reset);
+         | ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/seq_file.h:223:27: note: expanded from macro 'DEFINE_SHOW_STORE_ATTRIBUTE'
+     223 |         return single_open(file, __name ## _show, inode->i_private);    \
+         |                                  ^~~~~~~~~~~~~~~
+   <scratch space>:54:1: note: expanded from here
+      54 | rtsds_dbg_reset_show
+         | ^~~~~~~~~~~~~~~~~~~~
+   include/linux/seq_file.h:176:38: note: passing argument to parameter here
+     176 | int single_open(struct file *, int (*)(struct seq_file *, void *), void *);
+         |                                      ^
+   5 warnings and 2 errors generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+
+
+vim +868 drivers/phy/realtek/phy-rtk-otto-serdes.c
+
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  847  
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  848  static ssize_t rtsds_dbg_mode_write(struct file *file, const char __user *userbuf,
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  849  				size_t count, loff_t *ppos)
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  850  {
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  851  	struct seq_file *seqf = file->private_data;
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  852  	struct rtsds_macro *macro = dev_get_drvdata(seqf->private);
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  853  	struct rtsds_ctrl *ctrl = macro->ctrl;
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  854  	int ret, hwmode, phymode, sid = macro->sid;
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  855  
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  856  	ret = kstrtou32_from_user(userbuf, count, 16, &hwmode);
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  857  	if (ret)
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  858  		return ret;
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  859  	/*
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  860  	 * Allow to set arbitrary modes into the SerDes to improve error analysis. Accept that
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  861  	 * this might confuse the internal state tracking.
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  862  	 */
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  863  	phymode = rtsds_hwmode_to_phymode(ctrl, hwmode);
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  864  	rtsds_phy_set_mode_int(ctrl, sid, phymode, hwmode);
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  865  
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  866  	return count;
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  867  }
+40f1aea80b53b8 Markus Stockhausen 2024-10-07 @868  DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_mode);
+40f1aea80b53b8 Markus Stockhausen 2024-10-07  869  
+
 -- 
-2.47.0.rc0.187.ge670bccf7e-goog
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
