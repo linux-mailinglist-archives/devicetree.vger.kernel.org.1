@@ -1,76 +1,123 @@
-Return-Path: <devicetree+bounces-108897-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCDDC9943AE
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:09:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE7999441E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:22:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EABE81C23EB1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:09:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E4D8B2C53D
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:10:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3298013B2A5;
-	Tue,  8 Oct 2024 09:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F358317E44A;
+	Tue,  8 Oct 2024 09:09:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="RYCe2fbM"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jseM6zZJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.18])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0B65125A9
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 09:07:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.18
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 057FEDF58;
+	Tue,  8 Oct 2024 09:09:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728378469; cv=none; b=E+3kkkRgYWbUp5OEDo0MVzxjlWparWjJWZDRW9sUj5D+Qx0SyQP+D3JqcQV6qDDj9xKpHv/eMR77xVK890BwGObBG+LuBl8Iwu0xMVb0IYjHp+XRy83J22O4cqSE2Z+kzBat0wFUPsuZj43yssiJil1IM2+TNE6bwO53AnBJvos=
+	t=1728378553; cv=none; b=cl7h1GeQYh4pWc5eWEcqprcBT+wG1gc7VU3o1wvV3bsY/r5mJYX6sqNCJ4V9un/GmvK2B5u2io4GgQOyqjqaX8+rTYUsby3sA5xrRF7fC8GCQ22aoHBahGo0+Mo9fgMnBCOGdEzch0aELD0rrrK9jSVD5/sf2Uu+jcoF3TSo3AI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728378469; c=relaxed/simple;
-	bh=roM5Af65H0RYv3ctzvjyHxoNbhxadVnU6Iq940/CKWQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PdU8IqZT1Vg/kCZQjKRs6DIIzOVqVQkPUL1+gGH3tZ7r/X5Y9om/5vVDMTg2T5PKBqzwDAl5rFpIdNHdW9ydvQG3O0oANtX/7Wk0zo6fAeWguoDjr6cb0MyZKB4RWSF9Onug+8fNCAijW1tgxjjS9niMIR0CevTPZcYzPMg4+KE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=RYCe2fbM; arc=none smtp.client-ip=220.197.32.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=uJfk3LVPlc5ov4QEFcX6dPTBEBJ7Jo4YQ7EGx2bmAEg=;
-	b=RYCe2fbM3WpW4h8W4soJPxKIMfk15+RbU/lKuHdGFmOmqGBATV7tfts0r0XEWq
-	wIn/L00YgXzZO3TiX+imGTKnvBLxREqkWMgrJemJcSm5bqJaFZjRmQgE2a61zlw6
-	VLsLtKIuSZ+OhvfYnhUcxLZdHoXroSzcV/qlBTZc8suL0=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgCnxONL9gRnX0PTAQ--.34075S3;
-	Tue, 08 Oct 2024 17:07:25 +0800 (CST)
-Date: Tue, 8 Oct 2024 17:07:23 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: shawnguo@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@denx.de>
-Subject: Re: [PATCH] ARM: dts: imx28-apx4devkit: Fix the rtc compatible
-Message-ID: <ZwT2Sx7rlmh6MPq3@dragon>
-References: <20240828200254.3196260-1-festevam@gmail.com>
+	s=arc-20240116; t=1728378553; c=relaxed/simple;
+	bh=VcBPpKEVgFfMDZkzhrWAutVnb7BL+fVfq11Zhn0EkLo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Sz8xNvXPULXpnRY/l5o/NQnrb9MEh/w444E9vKiELALxTcuLXy9Q7q9gFh26KrZ47vXPxVgzWHjVEdoJfw+IVmyN6A1XEZFXuK8TorO5W35msEGoQKB2PaNl/VtxIzLxEckDVm/sE2nUt6cjsmPdibiZ+7jwfJ5i+S7vDLmLDdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jseM6zZJ; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728378550;
+	bh=VcBPpKEVgFfMDZkzhrWAutVnb7BL+fVfq11Zhn0EkLo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jseM6zZJf+5n4xsFf6SROfF6nJz4IQhcqrTZdT0+iFaMJ3uEqlSmNv9xXeCOpseF+
+	 U6Wm84NxLx+glkd5ts+2k5hamnalBeS6K/SbSBe9k3W0qOMyyXu35ZH8L10RTwQxaG
+	 5eMk3skUSKkfEkd7Tz3y74gUy5Q9M1zKuG0LyLzxZb7ui23uFje5PcLw5S35A/J67T
+	 C/o/qn4qUePWiwE682hhg9MpPjYPEZq6Y2rCKpxxdurFTolHoA9Z6hgPaaGDWY6o1X
+	 +PnCRM8mUsfmIW3KsuqY8g2jKs96J/HKRgaB96hL8b7UqQNlc0OHm/mX5ZkbvtwHb/
+	 zw/3rkgrXFFQQ==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4B3B117E10D3;
+	Tue,  8 Oct 2024 11:09:09 +0200 (CEST)
+Message-ID: <e9277edf-d372-4a8e-881c-49a907f0a883@collabora.com>
+Date: Tue, 8 Oct 2024 11:09:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240828200254.3196260-1-festevam@gmail.com>
-X-CM-TRANSID:M88vCgCnxONL9gRnX0PTAQ--.34075S3
-X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
-	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUx4EEUUUUU
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCRlyZWcEqhjw4wAAsF
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8195: Fix dtbs_check error for
+ tphy
+To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ Seiya Wang <seiya.wang@mediatek.com>,
+ Tinghan Shen <tinghan.shen@mediatek.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>,
+ Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
+ Chris-qj chen <chris-qj.chen@mediatek.com>,
+ MediaTek Chromebook Upstream
+ <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+ Chen-Yu Tsai <wenst@chromium.org>
+References: <20241008071540.32607-1-macpaul.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20241008071540.32607-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Aug 28, 2024 at 05:02:54PM -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+Il 08/10/24 09:15, Macpaul Lin ha scritto:
+> The u3phy1 node in mt8195.dtsi was triggering a dtbs_check error.
+> The error message was:
+>    t-phy@11e30000: 'power-domains' does not match any of the regexes:
+>      '^(usb|pcie|sata)-phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> Fix this issue by dropping 'power-domains' of u3phy1 node.
 > 
-> "phg,pcf8563" is not a valid compatible string.
+> This is because MediaTek tphy dose not need to add mtcmos.  It is not
+> necessary to add 'power-domains'. If the power of the tphy is turned off,
+> it will affect other functions. From the current USB hardware design
+> perspective, even if mtcmos is added to the phy, it is always on.
 > 
-> Use the documented ""nxp,pcf8563" instead.
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
 
-Applied, thanks!
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+> ---
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 -
+>   1 file changed, 1 deletion(-)
+> 
+> Changes for v2:
+>   - Add detail description of the tphy design for explaining the reason
+>     of this change.
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index ade685ed2190..1c6f08dde31c 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -1920,7 +1920,6 @@ u3phy1: t-phy@11e30000 {
+>   			#address-cells = <1>;
+>   			#size-cells = <1>;
+>   			ranges = <0 0 0x11e30000 0xe00>;
+> -			power-domains = <&spm MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
+>   			status = "disabled";
+>   
+>   			u2port1: usb-phy@0 {
+
 
 
