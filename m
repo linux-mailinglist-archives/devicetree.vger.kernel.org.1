@@ -1,98 +1,155 @@
-Return-Path: <devicetree+bounces-109031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 380F6994E94
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:18:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F8B994F24
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:25:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D70D41F217A2
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:18:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A98161F264CB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ABBE1DEFED;
-	Tue,  8 Oct 2024 13:18:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A83DC1E0480;
+	Tue,  8 Oct 2024 13:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iNI15Fnm"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Hxf4swEa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E251DDA36;
-	Tue,  8 Oct 2024 13:18:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF99C1DF727;
+	Tue,  8 Oct 2024 13:23:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728393517; cv=none; b=Y1qAP0UAAZXULPjJflls0ooTm+kg+ie94tLLXGuLyU9n6CW4oUZ5aRE1VhtScSLnO5gfFF+rzC1eew/zVAp7MXW7OC8VMKwpiHM79A5BtegZQ8SjGlt1tUWnsu30vX4vNMUeJYiyz2Ls22lCQgGV0AlpkzNakkbLmpHGvgmgdX4=
+	t=1728393815; cv=none; b=fMY0hiiZfALJyWP/E1n+pUAbNYj0aS1a0IEGswlRs5Q2HOLeeXq15Y4U1IydZwVdscfgJJIJdr6sUPaOdmR2Kn/ue4X2VeaU6YQhwses0EJQwTZJ0Um1/Ofo6AqiG6fh7AQYyf3RL+qcib856D7ZnfiQPAt8tanzB6nezUWPEss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728393517; c=relaxed/simple;
-	bh=KRJOQCpZwQ2KBAaUleuRsxQ55xjbD5SiqcjwdInXYzg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=V5T2IXyVJyQc8RVDCP18BxrTaSj0JSHv6ZLeH/gaTQA8n6bss3xnv/5VOsa3SRITi+dZYgK1uTCdQch8tAWOMEmcZ4u+PVcPHctFrAbT9Ew7N3+OAIylh2IC1gOUJ+BXP2Q8S98IppWIY8a/h0iM1TLtBml/yB4AxJ8btPwGPzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iNI15Fnm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDF99C4CEC7;
-	Tue,  8 Oct 2024 13:18:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728393517;
-	bh=KRJOQCpZwQ2KBAaUleuRsxQ55xjbD5SiqcjwdInXYzg=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=iNI15FnmDSNyxJsMrBRlvC4ApmF4JACIYKUrV1Po8O5dmjK0Wl6CyCceVZrKXmPqM
-	 qyz5yGlaAaes7CadRzSfEjGuW0pkTx7VIJZmYafErb+mvFDtsNaK3b4+wEMi+8q2KA
-	 ExZJ6YNYbVw8lwhQ12nm7aW2unTAF1a3wRnizBgzSgPzrvJncJjqhHpomFVLDTPJjU
-	 dNk5mZMB4R1uLYmliGDxmgfSfAXAafAP1f/5q7hxQW8gn+C474xRHkF5O0wjMKZj/B
-	 JD5Ij+zzaJDdzriPcRvUBBnCk+9pj4MUmi7K6i1HBkjvkKrOfqu8omePzqhj3v9ZEC
-	 RMMPGobPJqshQ==
-From: Mark Brown <broonie@kernel.org>
-To: lgirdwood@gmail.com, Heiko Stuebner <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <20240930210424.1994047-1-heiko@sntech.de>
-References: <20240930210424.1994047-1-heiko@sntech.de>
-Subject: Re: [PATCH] dt-bindings: regulator: vctrl-regulator: convert to
- YAML
-Message-Id: <172839351446.2616938.17294930287167278852.b4-ty@kernel.org>
-Date: Tue, 08 Oct 2024 14:18:34 +0100
+	s=arc-20240116; t=1728393815; c=relaxed/simple;
+	bh=gZI4zFHa2e3Jdn+kJosnAimGicEmqHUGxYA00Iu9Bwg=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PiF40lzLV4zgVupb+zsteuuDruEA8zLbUAJt0nAd7Pvu3xxYt1LDTcMyH6JVwmQtpkh3OzmdJnvSOGA7yuG38BIdkZjVhhMbtnRH/YhfYr9zo98mDdkHLxUAq18LdulueSJCe0neSvbv7Cex0SPk0Iga6elv9PKA6ls34G5p8fY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Hxf4swEa; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 498DNCoK089883;
+	Tue, 8 Oct 2024 08:23:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1728393792;
+	bh=eOUyiXZrWUlgS0aqjqNzddLEJrGYEGZYP5a/M8Xpl08=;
+	h=From:To:CC:Subject:Date;
+	b=Hxf4swEaaKX4z+w5N1I/CHucF28eg/Mo8KdALbCCJigp/SqMBP56Bzk6CjazCJNi+
+	 yge5IfaN1pTsP9b7ZuRUaH416mJYSENKGsjGih7KHFWuDomUfsRSxICEhmGyIpIMKY
+	 E3WvPqsQpERzpepnV/HsD11DwXux+ZSmvnfdWfj8=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 498DNCMh097903
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 8 Oct 2024 08:23:12 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 8
+ Oct 2024 08:23:12 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 8 Oct 2024 08:23:12 -0500
+Received: from lcpd911.dhcp.ti.com (lcpd911.dhcp.ti.com [172.24.227.226])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 498DN82C098273;
+	Tue, 8 Oct 2024 08:23:09 -0500
+From: Dhruva Gole <d-gole@ti.com>
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>
+CC: <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        Dhruva Gole <d-gole@ti.com>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Bryan Brattlof <bb@ti.com>
+Subject: [PATCH V8 0/4] arm64: dts: ti: k3-am62{a,p}x-sk: add opp frequencies
+Date: Tue, 8 Oct 2024 18:50:49 +0530
+Message-ID: <20241008132052.407994-1-d-gole@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-99b12
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, 30 Sep 2024 23:04:24 +0200, Heiko Stuebner wrote:
-> Convert the vctrl-regulator bindings to DT schema.
-> This resolves a dtbs check warning for the rk3399-gru devices.
-> 
-> 
+Hello everyone
 
-Applied to
+This series adds in the OPPs for the Cortex-A53s on the AM62Ax and 
+AM62Px SoC families along with the defining the 
+WKUP_MMR0_WKUP0_CTRL_MMR0_JTAG_USER_ID which we can use to to properly 
+limit the OPPs available for that variant.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Signed-off-by: Bryan Brattlof <bb@ti.com>
+Signed-off-by: Dhruva Gole <d-gole@ti.com>
 
-Thanks!
+Changelog:
+---
 
-[1/1] dt-bindings: regulator: vctrl-regulator: convert to YAML
-      commit: 4e9a2c91bff44336157eefd8d80b8ceb27918737
+Changes in v8:
+- Split the driver fixes out and sent a separate series for that.
+- This series is now the same as it was in v3. Just rebased on 6.12-rc1
+- Link to v7: https://lore.kernel.org/all/20240926-ti-cpufreq-fixes-v5-v7-0-3c94c398fe8f@ti.com/
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+Changes in v7:
+- Based on Andrew's comments, re-worded the comment in the driver and also
+  used a different approach for finding old DT, this way it's less error prone
+  than how things were done in v6.
+- Added a warning print when using old DT:
+https://gist.github.com/DhruvaG2000/63f5e28636d52787488f776e5bf39498#file-am62x-cpufreq-test-log-old-dt-txt-L220
+- Link to v6: https://lore.kernel.org/r/20240925-ti-cpufreq-fixes-v5-v6-0-46f41a903e01@ti.com
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Changes in v6:
+- Ensure backward compaibility for AM625 DT, by handling the old DT in a special
+way inside the cpufreq driver itself. This is based on feedback from Nishanth
+where we are not okay to break the old DT working with new kernels.
+- Link to v5: https://lore.kernel.org/r/20240924-ti-cpufreq-fixes-v5-v5-0-cbe16b9ddb1b@ti.com
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+Changes in v5:
+- Based on Andrew's review on v4 of "arm64: dts: ti: k3-am62: use opp_efuse_table for opp-table syscon",
+	- s/syscon@43000000/bus@43000000/
+	- Drop the "reg = <>;" line
+- Link to v4: https://lore.kernel.org/all/20240919082809.174589-1-d-gole@ti.com/
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+Changes in v4:
+- Add 2 more patches to this series:
+	- Driver cleanup as described above.
+	- AM625 DT fixups (Link to v1 of that patch: https://lore.kernel.org/all/20240902093222.2828345-2-d-gole@ti.com/)
+- Link to v3: https://lore.kernel.org/all/20240826-opp-v3-0-0934f8309e13@ti.com/
 
-Thanks,
-Mark
+Changes in v3:
+- Miscellaneous spelling fixes in commit body
+- Link to v2: https://lore.kernel.org/r/20240823-opp-v2-0-e2f67b37c299@ti.com
+
+Changes in v2:
+- Expanded on commit descriptions
+- Split board file and SoC fdt changes into different patches
+- Link to v1: https://lore.kernel.org/r/20240809-opp-v1-0-fea8efeaf963@ti.com
+
+---
+
+Bryan Brattlof (4):
+  arm64: dts: ti: k3-am62a: add opp frequencies
+  arm64: dts: ti: k3-am62a7-sk: add 1.4ghz opp entry
+  arm64: dts: ti: k3-am62p: add opp frequencies
+  arm64: dts: ti: k3-am62p5-sk: add 1.4ghz opp entry
+
+ arch/arm64/boot/dts/ti/k3-am62a-wakeup.dtsi   |  5 ++
+ arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       |  9 ++++
+ arch/arm64/boot/dts/ti/k3-am62a7.dtsi         | 51 +++++++++++++++++++
+ .../dts/ti/k3-am62p-j722s-common-wakeup.dtsi  |  5 ++
+ arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  9 ++++
+ arch/arm64/boot/dts/ti/k3-am62p5.dtsi         | 47 +++++++++++++++++
+ 6 files changed, 126 insertions(+)
+
+
+base-commit: 33ce24234fca4c083e6685a18b460a18ebb5d5c1
+-- 
+2.34.1
 
 
