@@ -1,161 +1,124 @@
-Return-Path: <devicetree+bounces-108825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15FBA994075
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:05:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EEB99408E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:07:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87B201F265C9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:05:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D59F287EC5
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264B1FBCA4;
-	Tue,  8 Oct 2024 07:10:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 235C3201264;
+	Tue,  8 Oct 2024 07:17:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FhO+x6Jq"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="U/rMMB0P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D9391D6DD4;
-	Tue,  8 Oct 2024 07:10:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D91CC201245
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 07:17:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728371446; cv=none; b=Rpa8OjKms3lgQb4ZMwEiOwY84rnAveho6vEfk4SzD+kL7ADzXoitC0JxIFd4VgvxRv1udwpJ9zpPqSd6kQfzpzb91Zp49A0/bJz+kcoxZgjTbBg7bQ6+JbXPRd/OHdgqsUHofEXibLKWQI88znt+nlwdwS9ROvlZd2FDdc5sDRs=
+	t=1728371854; cv=none; b=BsmqJzTOY0FEntV/W007rHDuq3oJmocCwAOvlx6BzdmGtBS96NvtPvoL7K1phOdMNX0NERvyo5BzfcI4j7HWF/q7pEBs247Gk2rY492xzYb82lq82jLX/u36XbVOKDuIjtoh6UsUiXZ2bjeJnpsIWRjqQKxP98nL1wek92C2/yI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728371446; c=relaxed/simple;
-	bh=N5Ma5mFoM2e9QcVwT94+5B2d9Fv3qCQ9H2VljSoG55g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cHX+Ol8m1LfvcvolDjXw9bI7iifW3rTu72ahpKqj0kvVTrs7apO61WW8MvJYJboUne1CGf6Iwi2R+Ywekth/SDgOa73hhDrIk02dPQJ7w3p/qYutpLgjKd60IpzYrojHmUU77R6yUzKL5MA+jUU08HDuONL/SJCHDmlQd6GxEOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FhO+x6Jq; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728371444; x=1759907444;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=N5Ma5mFoM2e9QcVwT94+5B2d9Fv3qCQ9H2VljSoG55g=;
-  b=FhO+x6Jq/54/q0wrozT27ZkUQ7Sysq0uZVwLf2mAjaBb6cjphgYQyX6x
-   HaYAUA9wYTikXi3a5vcORn9NV3UmkbdS3Mg4AIY+azyI8cxr1hFP554O2
-   MGhzDzqW/3sNk82d5umOYgrfsCrz4R7slWA2PR0rQ1p1TGAOeKnLRXTga
-   /A4VUyoyNnmOeqKcjpw9GY6a1M6AAorKueyR4zDUdXwlRujHzvvly7bBG
-   s1HkChZ2s1CHo729jXC+sjmQrqG6lYZEdvWviSkCxSBdecvghQOFDkcIA
-   1FL9Pnkq+Ath4iJJ1PAzlACQscUDje6Y0x+Ejt+5BfjJ18Gv0gdd7CQDe
-   g==;
-X-CSE-ConnectionGUID: x43tFkUHRcKo3pTY5d1KhA==
-X-CSE-MsgGUID: hVzmUCsSRhCP9yM62k3NXQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="38202688"
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="38202688"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 00:10:44 -0700
-X-CSE-ConnectionGUID: b30XN+4gTou+oeMaKERnsg==
-X-CSE-MsgGUID: vSbX6Ko7TDSG1AkTAjPIUA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="75418054"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa007.fm.intel.com with ESMTP; 08 Oct 2024 00:10:40 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sy4Mf-00061A-2h;
-	Tue, 08 Oct 2024 07:10:37 +0000
-Date: Tue, 8 Oct 2024 15:09:40 +0800
-From: kernel test robot <lkp@intel.com>
-To: Neeraj Sanjay Kale <neeraj.sanjaykale@nxp.com>, marcel@holtmann.org,
-	luiz.dentz@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, amitkumar.karwar@nxp.com,
-	rohit.fule@nxp.com, neeraj.sanjaykale@nxp.com, sherry.sun@nxp.com,
-	ziniu.wang_1@nxp.com, haibo.chen@nxp.com, LnxRevLi@nxp.com
-Subject: Re: [PATCH v4 2/2] Bluetooth: btnxpuart: Add GPIO support to power
- save feature
-Message-ID: <202410081424.BaGORAHw-lkp@intel.com>
-References: <20241007131316.626690-3-neeraj.sanjaykale@nxp.com>
+	s=arc-20240116; t=1728371854; c=relaxed/simple;
+	bh=BPDeWWSp9i5LlUOnDAuUUB2xgqqYj8TgywJmLv174B8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FaWfYvCpqQW56sBsdTxtBBmhNCM6Nq4p2mPvWplO13rpHr6oXm4eIMG1iBSc3Ayc5hATiQqTAhBBCwxb+YoqxXn6OXMz3/bNuC19fELta3/iXEbmKjjToRoma+uCi++zFVOGpl8H8CgJ63tRHa/i8O388kjJsdFDp2FMCjPc8QM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=U/rMMB0P; arc=none smtp.client-ip=209.85.222.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f173.google.com with SMTP id af79cd13be357-7a9a30a045cso452076385a.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 00:17:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728371850; x=1728976650; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mi3QRDDwcLms1UvC8yNmkM/qLj9SFeO3lw18C6Sbfk8=;
+        b=U/rMMB0PnycJiyhG1vHkW5jAdwmB6NztxGM7xujjuYQUwuHxdBQ9QNWece6oB4J/fj
+         9zXSo2zdbVV2JXPg6sb+d3h6hzXNVfxiFw+lWmhpRNm1yjLHokUfQIvAYVl3iJoD6Sl9
+         778zLQ27Vay1kXTT7c/5lnZ9F/uuvue3LhCbo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728371850; x=1728976650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mi3QRDDwcLms1UvC8yNmkM/qLj9SFeO3lw18C6Sbfk8=;
+        b=vWca+8POg1OluNpv0cFe2MmW02b7EfhBMAZblOMwcZgGjHokSYkoca06aWxhnnkqZk
+         qaO0j1gi689zuYPiiRN+Xgdr1O5ZdnV7gXpD4s7Ab+mnOthdb0gama0vJuDcwzjASgwT
+         NiQPP2gzsie+PTXQqQ18BaTBAbeYipWwN17az2geom1b0KCdUAAJIXz+8933uy9Rq1Fi
+         zu7qIcxR8Cmh1aPcOgzTIXWEheLpyeHUhg1r7wVwdK4JqyZWkdODdDsnxuw5ipFcyZfd
+         ilFRJTUjFoakoI3eCu7mSFd9OimO2O7bxiFywPiVlASHYXTFZB50V0Qknpm3FiJMpany
+         M2Eg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8TGSej+tz9Lnpu+PHDjp7Yrv6cUnxLM25igBLJwyvcZL/0jdiXeqoihTQahFYHLpl5DHfOn6zYc7n@vger.kernel.org
+X-Gm-Message-State: AOJu0YzcDHSKpLbWz5E8niWRLXQHgdRJlpPQ0frkerluEBLXrcXsi/V6
+	25lo75mgCugrYeYDxPoXpF8yeQUxQzq7+b0/xH9/3oeLieDKmpRraTTMeuH7CEZ1tNnR2na4gYE
+	=
+X-Google-Smtp-Source: AGHT+IHK0RPb2pCtM4j5AjWu3X4HbEwV9pLkI7r0WmyOPbG1m8U8j9OBbWNl9vABN94QFpudmgotRw==
+X-Received: by 2002:a05:620a:40d4:b0:7af:cdec:dc16 with SMTP id af79cd13be357-7afcdecdfedmr2487485a.26.1728371849689;
+        Tue, 08 Oct 2024 00:17:29 -0700 (PDT)
+Received: from mail-qv1-f41.google.com (mail-qv1-f41.google.com. [209.85.219.41])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7ae756200basm331531085a.1.2024.10.08.00.17.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 00:17:29 -0700 (PDT)
+Received: by mail-qv1-f41.google.com with SMTP id 6a1803df08f44-6cbc28f8e1bso1227456d6.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 00:17:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVIJNCSo3UvyMXqUWPkF4NZedqDLWkUr8vA4I2rzAgpqg83KtYkw09mf0XDThx6b5DvrR5EYLQTXKVL@vger.kernel.org
+X-Received: by 2002:a05:6102:1613:b0:49c:8d2:8ec with SMTP id
+ ada2fe7eead31-4a405745478mr7873579137.3.1728371439139; Tue, 08 Oct 2024
+ 00:10:39 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007131316.626690-3-neeraj.sanjaykale@nxp.com>
+References: <20241008053514.6800-1-macpaul.lin@mediatek.com>
+In-Reply-To: <20241008053514.6800-1-macpaul.lin@mediatek.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Tue, 8 Oct 2024 15:10:02 +0800
+X-Gmail-Original-Message-ID: <CAC=S1ngrsDxQ1Fe9xB_EevGbGB5nDoCB_n2oGb2VTLiv1vSsGA@mail.gmail.com>
+Message-ID: <CAC=S1ngrsDxQ1Fe9xB_EevGbGB5nDoCB_n2oGb2VTLiv1vSsGA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix dtbs_check error for tphy
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Seiya Wang <seiya.wang@mediatek.com>, 
+	Tinghan Shen <tinghan.shen@mediatek.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>, 
+	Alexandre Mergnat <amergnat@baylibre.com>, Bear Wang <bear.wang@mediatek.com>, 
+	Pablo Sun <pablo.sun@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, 
+	Sen Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>, 
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Neeraj,
+On Tue, Oct 8, 2024 at 1:36=E2=80=AFPM Macpaul Lin <macpaul.lin@mediatek.co=
+m> wrote:
+>
+> The u3phy1 node in mt8195.dtsi was triggering a dtbs_check error.
+> The error message was:
+>   t-phy@11e30000: 'power-domains' does not match any of the regexes:
+>     '^(usb|pcie|sata)-phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> Fix this issue by dropping 'power-domains' of u3phy1 node.
+>
+> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation =
+board")
+> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> ---
 
-kernel test robot noticed the following build errors:
+Apart from this, can you or Chunfeng confirm if we should make a
+similar change for MT8188[1]?
 
-[auto build test ERROR on bluetooth/master]
-[also build test ERROR on bluetooth-next/master robh/for-next linus/master v6.12-rc2 next-20241004]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[1]: https://lore.kernel.org/all/20241004081218.55962-3-fshao@chromium.org/
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Neeraj-Sanjay-Kale/dt-bindings-net-bluetooth-nxp-Add-support-for-power-save-feature-using-GPIO/20241007-211315
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git master
-patch link:    https://lore.kernel.org/r/20241007131316.626690-3-neeraj.sanjaykale%40nxp.com
-patch subject: [PATCH v4 2/2] Bluetooth: btnxpuart: Add GPIO support to power save feature
-config: x86_64-buildonly-randconfig-003-20241008 (https://download.01.org/0day-ci/archive/20241008/202410081424.BaGORAHw-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241008/202410081424.BaGORAHw-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410081424.BaGORAHw-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/bluetooth/btnxpuart.c:445:7: error: expected ')'
-     445 |                            PTR_ERR(psdata->h2c_ps_gpio));
-         |                            ^
-   drivers/bluetooth/btnxpuart.c:444:3: note: to match this '('
-     444 |                 bt_dev_err(hdev, "Error fetching device-wakeup-gpios: %ld"
-         |                 ^
-   include/net/bluetooth/bluetooth.h:278:2: note: expanded from macro 'bt_dev_err'
-     278 |         BT_ERR("%s: " fmt, bt_dev_name(hdev), ##__VA_ARGS__)
-         |         ^
-   include/net/bluetooth/bluetooth.h:263:32: note: expanded from macro 'BT_ERR'
-     263 | #define BT_ERR(fmt, ...)        bt_err(fmt "\n", ##__VA_ARGS__)
-         |                                       ^
-   1 error generated.
-
-
-vim +445 drivers/bluetooth/btnxpuart.c
-
-   434	
-   435	static int ps_setup(struct hci_dev *hdev)
-   436	{
-   437		struct btnxpuart_dev *nxpdev = hci_get_drvdata(hdev);
-   438		struct serdev_device *serdev = nxpdev->serdev;
-   439		struct ps_data *psdata = &nxpdev->psdata;
-   440	
-   441		psdata->h2c_ps_gpio = devm_gpiod_get_optional(&serdev->dev, "device-wakeup",
-   442							      GPIOD_OUT_LOW);
-   443		if (IS_ERR(psdata->h2c_ps_gpio)) {
-   444			bt_dev_err(hdev, "Error fetching device-wakeup-gpios: %ld"
- > 445				   PTR_ERR(psdata->h2c_ps_gpio));
-   446			return PTR_ERR(psdata->h2c_ps_gpio);
-   447		}
-   448	
-   449		if (!psdata->h2c_ps_gpio)
-   450			psdata->h2c_wakeup_gpio = 0xff;
-   451	
-   452		psdata->hdev = hdev;
-   453		INIT_WORK(&psdata->work, ps_work_func);
-   454		mutex_init(&psdata->ps_lock);
-   455		timer_setup(&psdata->ps_timer, ps_timeout_func, 0);
-   456	
-   457		return 0;
-   458	}
-   459	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Fei
 
