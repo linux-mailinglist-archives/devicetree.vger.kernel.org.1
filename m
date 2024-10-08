@@ -1,58 +1,59 @@
-Return-Path: <devicetree+bounces-109028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0899E994D1E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:01:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D005994D89
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:06:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A99CA2840D1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:01:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40409287BE3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:06:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEAB018F2FA;
-	Tue,  8 Oct 2024 13:01:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="aPDWWmu0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA8AB1C5793;
+	Tue,  8 Oct 2024 13:06:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.16])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FD81DFD1;
-	Tue,  8 Oct 2024 13:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.16
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A2301C9B99;
+	Tue,  8 Oct 2024 13:06:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728392511; cv=none; b=g/8BgyKOsuLKrYl6gKWQJXQFd21ZFVZoZ588NjQLWLtZ/7leOpQ+ftI9+GbdcYrZ3v3Q+XTXti8rMUdHVsfVLO0KHCDgmZ7a9s5E8rwahfwmdawuGyNfv6bEUGrTUIwRHS/NaS8ErgBvawShg2N7UALN6QFaykC1hL/tPX6k6qo=
+	t=1728392785; cv=none; b=E88ED1hqv7HOKsH4bGikS7FVShjV454xsNUeeFiDMVtqmq1nUGltAPJKRqkTwTjxZ0jXuoZlz/JQl8PyU/mmOKD7L76f01nIs3H8RTOYMWHYzGQqpZtp664f6xtKOhcELI1E58JZkgyGnUrTScjPuwAWDyHdidQKsKHSvy5APiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728392511; c=relaxed/simple;
-	bh=PjYUW86T74UXwM2Ugm9utYyrO2lI7z5siDAlwllsukI=;
+	s=arc-20240116; t=1728392785; c=relaxed/simple;
+	bh=uLHvykvkchfdJn5jUpmEGCdPqI5Vu3BisOWgUgCdUog=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B3yekXogDIhT/vALhvz/yVfEF3AE53L1NfCdDPiyF+rob9YtiCX6sd54c3xKS10Kgb79IDMaFr6Lp6yBhCRy6yLwXsBCnrFf2unmkxFin489CxX1rbxOQbUqRnSFs15kBg4BBfx9+aySmjsNA6h03zOn1k366xHse+XuB8PZl08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=aPDWWmu0; arc=none smtp.client-ip=220.197.32.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=z/wk1Uvs/XAIDFdJXIhXEljo1iiUXtvIJAYJotUPatU=;
-	b=aPDWWmu0SDTLkn6GRQBPuxBihtWmoNiSMiipCpRcZOQZAxCVxtkefUTRuP+mrv
-	IU+O1Dgz0qE0MDyUdcOB6aI4LDD8erniMjMXiVYPI1Epk0dllJBmMnW921SjhDCP
-	w+xW5/PEmUq5BFrKy3esCgEsRvK/o+CcHp7kYY+Tosyds=
-Received: from dragon (unknown [])
-	by gzsmtp3 (Coremail) with SMTP id M88vCgA3zvQVLQVnr4zVAQ--.29073S3;
-	Tue, 08 Oct 2024 21:01:10 +0800 (CST)
-Date: Tue, 8 Oct 2024 21:01:08 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v2 6/7] arm64: dts: freescale: imx95-19x19-evk: add
- nxp,ctrl-ids property
-Message-ID: <ZwUtFKhB3R2geN1D@dragon>
-References: <20240903-imx95-dts-new-v2-0-8ed795d61358@nxp.com>
- <20240903-imx95-dts-new-v2-6-8ed795d61358@nxp.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NBbS+fkY6pXexkLGYW8S2f4Eoz32l25t2QcQphGb2iIDjmTn9WKjEwPetU4/nGmHOZTbMBsxD6K/nVJi0LsMfll+A8MD8E7VNy02w0l65fz4CxbYQW89IG5YfEaGMDa+fzBZxKxrqdfzCGTOTptzOY//habfBOBtHyQZXfDsz38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 611CADA7;
+	Tue,  8 Oct 2024 06:06:52 -0700 (PDT)
+Received: from bogus (e133711.arm.com [10.1.196.77])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 85DC33F640;
+	Tue,  8 Oct 2024 06:06:20 -0700 (PDT)
+Date: Tue, 8 Oct 2024 14:06:17 +0100
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
+	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
+ mailbox
+Message-ID: <ZwUuSTYkWrZYIcBM@bogus>
+References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
+ <ZwPLgcGeUcFPvjcz@pluto>
+ <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,71 +62,120 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240903-imx95-dts-new-v2-6-8ed795d61358@nxp.com>
-X-CM-TRANSID:M88vCgA3zvQVLQVnr4zVAQ--.29073S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7CFW5uF1fKw17tryxtFyDtrb_yoW8WFyfpF
-	15CFWDGw48WF4fGr9Iga4rtwn3Aw4ruF48ur1UZanrtr4jvw1xJr40gFn3Wr4UXw4kCa1r
-	uFnFyr18WFy2y3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jYnQUUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCxhyZWcFFVE1PAAAsr
+In-Reply-To: <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
 
-On Tue, Sep 03, 2024 at 03:17:51PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> Add 'nxp,ctrl-ids' for SCMI firmware to confirm the board ctrls as
+Hi Florian,
 
-s/confirm/configure?
+Thanks for the detailed explanation.
 
-> wakeup sources.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> index 37a1d4ca1b20..5101cd171e09 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> @@ -8,6 +8,15 @@
->  #include <dt-bindings/pwm/pwm.h>
->  #include "imx95.dtsi"
->  
-> +#define FALLING_EDGE			1
-> +#define RISING_EDGE			2
-> +
-> +#define BRD_SM_CTRL_SD3_WAKE		0x8000	/* PCAL6408A-0 */
-> +#define BRD_SM_CTRL_PCIE1_WAKE		0x8001	/* PCAL6408A-4 */
-> +#define BRD_SM_CTRL_BT_WAKE		0x8002	/* PCAL6408A-5 */
-> +#define BRD_SM_CTRL_PCIE2_WAKE		0x8003	/* PCAL6408A-6 */
-> +#define BRD_SM_CTRL_BUTTON		0x8004	/* PCAL6408A-7 */
+On Mon, Oct 07, 2024 at 10:07:46AM -0700, Florian Fainelli wrote:
+> Hi Cristian,
+>
+> On October 7, 2024 4:52:33 AM PDT, Cristian Marussi
+> <cristian.marussi@arm.com> wrote:
+> > On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
+> > > Broadcom STB platforms have for historical reasons included both
+> > > "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
+> > > string.
+> >
+> > Hi Florian,
+> >
+> > did not know this..
+>
+> It stems from us starting with a mailbox driver that did the SMC call, and
+> later transitioning to the "smc" transport proper. Our boot loader provides
+> the Device Tree blob to the kernel and we maintain backward/forward
+> compatibility as much as possible.
+>
 
-Are these defines board specific?
+IIUC, you need to support old kernel with SMC mailbox driver and new SMC
+transport within the SCMI. Is that right understanding ?
 
-Shawn
+> >
+> > >
+> > > After the commit cited in the Fixes tag and with a kernel
+> > > configuration that enables both the SCMI and the Mailbox transports, we
+> > > would probe the mailbox transport, but fail to complete since we would
+> > > not have a mailbox driver available.
+> > >
+> > Not sure to have understood this...
+> >
+> > ...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
+> > into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
+> > DT, BUT your platform does NOT physically have a mbox/shmem transport
+> > and as a consequence, when MBOX probes (at first), you see an error from
+> > the core like:
+> >
+> >    "arm-scmi: unable to communicate with SCMI"
+> >
+> > since it gets no reply from the SCMI server (being not connnected via
+> > mbox) and it bails out .... am I right ?
+>
+> In an unmodified kernel where both the "mailbox" and "smc" transports are
+> enabled, we get the "mailbox" driver to probe first since it matched the
+> "arm,scmi" part of the compatible string and it is linked first into the
+> kernel. Down the road though we will fail the initialization with:
+>
+> [    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
+> [    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
+> [    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for
+> protocol:0x10
 
-> +
->  / {
->  	model = "NXP i.MX95 19X19 board";
->  	compatible = "fsl,imx95-19x19-evk", "fsl,imx95";
-> @@ -357,6 +366,14 @@ &usdhc2 {
->  	status = "okay";
->  };
->  
-> +&scmi_misc {
-> +	nxp,ctrl-ids = <BRD_SM_CTRL_SD3_WAKE	FALLING_EDGE
-> +			BRD_SM_CTRL_PCIE1_WAKE	FALLING_EDGE
-> +			BRD_SM_CTRL_BT_WAKE	FALLING_EDGE
-> +			BRD_SM_CTRL_PCIE2_WAKE	FALLING_EDGE
-> +			BRD_SM_CTRL_BUTTON	FALLING_EDGE>;
-> +};
-> +
->  &wdog3 {
->  	fsl,ext-reset-output;
->  	status = "okay";
-> 
-> -- 
-> 2.37.1
-> 
+IIUC, the DTB has mailbox nodes that are available but fail only in the setup
+stage ? Or is it marked unavailable and we are missing some checks either
+in SCMI or mailbox ?
 
+IOW, have you already explored that this -EINVAL is correct return value
+here and can't be changed to -ENODEV ? I might be not following the failure
+path correctly here, but I assume it is
+	scmi_chan_setup()
+	info->desc->ops->chan_setup()
+	mailbox_chan_setup()
+	mbox_request_channel()
+
+> [    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup
+> channels
+> [    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi failed
+> with error -22
+>
+> Because the platform device is now bound, and there is no mechanism to
+> return -ENODEV, we won't try another transport driver that would attempt to
+> match the other compatibility strings. That makes sense because in general
+> you specify the Device Tree precisely, and you also have a tailored kernel
+> configuration. Right now this is only an issue using arm's
+> multi_v7_defconfig and arm64's defconfig both of which that we intend to
+> keep on using for CI purposes.
+>
+>
+> >
+> > If this is the case, without this patch, after this error and the mbox probe
+> > failing, the SMC transport, instead, DO probe successfully at the end, right ?
+>
+> With my patch we probe the "smc" transport first and foremost and we
+> successfully initialize it, therefore we do not even try the "mailbox"
+> transport at all, which is intended.
+>
+> >
+> > IOW, what is the impact without this patch, an error and a delay in the
+> > probe sequence till it gets to the SMC transport probe 9as second
+> > attempt) or worse ? (trying to understand here...)
+>
+> There is no recovery without the patch, we are not giving up the arm_scmi
+> platform device because there is no mechanism to return -ENODEV and allow
+> any of the subsequent transport drivers enabled to attempt to take over the
+> platform device and probe it again.
+>
+
+OK this sounds like you have already explored returning -ENODEV is not
+an option ? It is fair enough, but just want to understand correctly.
+I still think I am missing something.
+
+I understand the bootloader maintaining backward compatibility, but
+just want to understand better. I also wonder if the old SMC mailbox driver
+returns -EINVAL instead of -ENODEV ? Again it is based on my assumption
+about your backward compatibility usecase.
+
+--
+Regards,
+Sudeep
 
