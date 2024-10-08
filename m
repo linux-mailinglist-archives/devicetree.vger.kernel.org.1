@@ -1,60 +1,62 @@
-Return-Path: <devicetree+bounces-109050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DE8899505D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:40:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBD5995074
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 15:42:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C92601F211F7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:40:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2A181B21BFC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:42:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A41881DF75C;
-	Tue,  8 Oct 2024 13:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07D521DED7D;
+	Tue,  8 Oct 2024 13:42:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PckD2QJ8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B8BWrc0H"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7800F1DF745;
-	Tue,  8 Oct 2024 13:40:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFDD31D362B;
+	Tue,  8 Oct 2024 13:42:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728394802; cv=none; b=uyxCsFtD0wbEro6HquHl7W8lO6u3trfqsmako5iphsxrzWbtfhKjxhY8SWixJ0Q4UjprYbRLnLQ+OhHqvzixmKON+G7J9tF87iGWaM/0YS7rwgrvs/1zcqoovYorU5E4sUHIu85ci9hPXgUwyZXnNMlFVBXeJgwls39NiWZq5RU=
+	t=1728394922; cv=none; b=gSDVz4IIZxlmE5MGQ5Y2QvNdkr/yrKQlCZ6dclcszCNzuhu8y5oGzl5oxNdj5uG6m1k505P1GwCfenV+00qxI6rjCBbXbwh9H0Sc3FG4bF0Vp6p9I2Cy+hw7pMfJTBZFBaVw8AmH/CTpvTxpD9etU8P6T1zYq13xc/RTJMJd3E4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728394802; c=relaxed/simple;
-	bh=+Pn2LCQcgWM7VPBtdDVQGvXG7mqRqcOY7mWUeNaGsRA=;
+	s=arc-20240116; t=1728394922; c=relaxed/simple;
+	bh=PLTW4wEi44inD24SGOxcygZQ8NsHLs+KSu6NJQ0Niyo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GFoAbeQkUTErCGOGKKVdOHj29InXVmNuduTQyD4GK2l8vAIufcd2J6hCFO0qHzVjM1OD7WPHvm8IkYOkgmmoSfAAHM8oidL3sj6b5Q89cMt0WQ1hB9IM21Icc4jMDHR2vmPpVUyOUj5hBcE1ITh9DRkoorVua5uX/TboDYP6Hps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PckD2QJ8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD992C4CED3;
-	Tue,  8 Oct 2024 13:40:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Bv8u3WT7HcNvOCxTHAnaM1ZoHPBtKpYDfMYSVB3fJOF6RLEPTHtQoMjUHkqTqlRTb07EzBkREStU5FZBFQSySqeNiI4bHp1xM9HmvZV+ba/ioTJYf7G2ejJ9Q2RN6tx4K3Om+QkOq6DXqKctvMCbO13FFCP1GoW756GskHVGXAw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B8BWrc0H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B46B5C4CEC7;
+	Tue,  8 Oct 2024 13:42:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728394802;
-	bh=+Pn2LCQcgWM7VPBtdDVQGvXG7mqRqcOY7mWUeNaGsRA=;
+	s=k20201202; t=1728394922;
+	bh=PLTW4wEi44inD24SGOxcygZQ8NsHLs+KSu6NJQ0Niyo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PckD2QJ8hwXMdRrnfzbjrtzjdeTXqOYz9x7mpFwWY1RdzEKa5uFfG5sGXJmPgPoJ5
-	 TGskjHa/2Drao3Ut1FkxtY9YvBh8iMDyIGanhHs3fmRNp2JCa5JnFyxyYXhSo0YszJ
-	 jpztaUnHJBdIxoyBBo28R6Q5v8c++2LTl4iE2RX9SajJrzW91xyQkyiJZzyRXUtEeq
-	 WsZUBMAwRnJNIIWGf1J1EPBR2V2dTAp1QwUIl8a2sq+qgXzDeqF3coWJeLDK8pDDPT
-	 mHG58pWeGf2DrauPB1vT0MAfET6RAH1kSALZZLs833WQFQ+6c4XzywuUrwF4FAYVDE
-	 ZYIdk8N+o0nqw==
-Date: Tue, 8 Oct 2024 15:39:59 +0200
+	b=B8BWrc0HIy0mUEVmvruHx9Wg4rdjAjooMw9gKa0BsYGeyQPy5nVG/mJO19OAeqUTr
+	 RZvlalK+CCdOUrzeF2LVsqGJPps2pF7umzScMSogqyAoM0EPgrgRCbLooKirBI9dA+
+	 WUp/WqunEg2rmMr+l96oVjppKcokvacmlF5oGdm97YycsNq9uW5JZ2ji6VDRoEOmgl
+	 Gr6mo9tJmksNFGKD3Ip4xD9gEeuOuhJPa+WOlsKgC6pR+o2tXGw5UMSz+wW9TkNqgQ
+	 eb67xO/bt1HeuBx3rqMtsbVhVw+3yWpZxs2qGW0Z9ZctlAjM3oFjWTv898DG7Ha0f/
+	 YAbv5AFYnQ29g==
+Date: Tue, 8 Oct 2024 15:41:59 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+To: Alain Volmat <alain.volmat@foss.st.com>
+Cc: Hugues Fruchet <hugues.fruchet@foss.st.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+	Alexandre Torgue <alexandre.torgue@foss.st.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
+	Sakari Ailus <sakari.ailus@linux.intel.com>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	=?utf-8?Q?Gr=C3=A9gory?= Clement <gregory.clement@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH 2/4] i2c: nomadik: support Mobileye EyeQ6H I2C controller
-Message-ID: <oxcxs6n7y4bw33yfgaacd2cayf7otfochvlaofva2kabzjim6h@d6pam3gciepl>
-References: <20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com>
- <20241008-mbly-i2c-v1-2-a06c1317a2f7@bootlin.com>
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 12/15] dt-bindings: media: addition of stm32mp25
+ compatible of DCMIPP
+Message-ID: <lu252oltrh6bftg2e4hpthazd4r3lwbd75mboezhz7f4bbfdip@w5k4jx6oyyzx>
+References: <20241008-csi_dcmipp_mp25-v1-0-e3fd0ed54b31@foss.st.com>
+ <20241008-csi_dcmipp_mp25-v1-12-e3fd0ed54b31@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,75 +65,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20241008-mbly-i2c-v1-2-a06c1317a2f7@bootlin.com>
+In-Reply-To: <20241008-csi_dcmipp_mp25-v1-12-e3fd0ed54b31@foss.st.com>
 
-On Tue, Oct 08, 2024 at 12:29:41PM +0200, Th=C3=A9o Lebrun wrote:
-> Add EyeQ6H support to the nmk-i2c AMBA driver. It shares the same quirk
-> as EyeQ5: the memory bus only supports 32-bit accesses. Avoid writeb()
-> and readb() by reusing the same `priv->has_32b_bus` flag.
->=20
-> It does NOT need to write speed-mode specific value into a register;
-> therefore it does not depend on the mobileye,olb DT property.
->=20
-> Refactoring is done using is_eyeq5 and is_eyeq6h boolean local
-> variables. Sort variables in reverse christmas tree to try and
-> introduce some logic into the ordering.
->=20
-> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+On Tue, Oct 08, 2024 at 01:18:14PM +0200, Alain Volmat wrote:
+> Addition of the stm32mp25 compatible for the DCMIPP.
+
+"Add"
+See submitting patches.
+
+> The stm32mp25 distinguish with the stm32mp13 by the fact that:
+>  - supports also csi inputs in addition to parallel inputs
+>  - requires an addition csi clock to be present
+> 
+> The commit also adds access-controllers, an optional property that
+
+"Add", see submitting patches.
+
+> allows a peripheral to refer to one or more domain access controller(s).
+> 
+> Signed-off-by: Alain Volmat <alain.volmat@foss.st.com>
 > ---
->  drivers/i2c/busses/i2c-nomadik.c | 22 +++++++++++-----------
->  1 file changed, 11 insertions(+), 11 deletions(-)
->=20
-> diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-no=
-madik.c
-> index ad0f02acdb1215a1c04729f97bb14a4d93f88456..ea511d3a58073eaedb6385002=
-6e05b59427a69c6 100644
-> --- a/drivers/i2c/busses/i2c-nomadik.c
-> +++ b/drivers/i2c/busses/i2c-nomadik.c
-> @@ -6,10 +6,10 @@
->   * I2C master mode controller driver, used in Nomadik 8815
->   * and Ux500 platforms.
->   *
-> - * The Mobileye EyeQ5 platform is also supported; it uses
-> + * The Mobileye EyeQ5 and EyeQ6H platforms are also supported; they use
->   * the same Ux500/DB8500 IP block with two quirks:
->   *  - The memory bus only supports 32-bit accesses.
-> - *  - A register must be configured for the I2C speed mode;
-> + *  - (only EyeQ5) A register must be configured for the I2C speed mode;
->   *    it is located in a shared register region called OLB.
->   *
->   * Author: Srinidhi Kasagar <srinidhi.kasagar@stericsson.com>
-> @@ -1046,8 +1046,6 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *=
-priv)
->  	struct regmap *olb;
->  	unsigned int id;
-> =20
-> -	priv->has_32b_bus =3D true;
-> -
->  	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id=
-);
->  	if (IS_ERR(olb))
->  		return PTR_ERR(olb);
-> @@ -1070,13 +1068,15 @@ static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev=
- *priv)
-> =20
->  static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id =
-*id)
->  {
-> -	int ret =3D 0;
-> -	struct nmk_i2c_dev *priv;
-> -	struct device_node *np =3D adev->dev.of_node;
-> -	struct device *dev =3D &adev->dev;
-> -	struct i2c_adapter *adap;
->  	struct i2c_vendor_data *vendor =3D id->data;
-> +	struct device_node *np =3D adev->dev.of_node;
-> +	bool is_eyeq6h =3D of_device_is_compatible(np, "mobileye,eyeq6h-i2c");
-> +	bool is_eyeq5 =3D of_device_is_compatible(np, "mobileye,eyeq5-i2c");
+>  .../devicetree/bindings/media/st,stm32-dcmipp.yaml | 53 +++++++++++++++++++---
+>  1 file changed, 47 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+> index 87731f3ce7bd..bda28fef0b78 100644
+> --- a/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+> +++ b/Documentation/devicetree/bindings/media/st,stm32-dcmipp.yaml
+> @@ -10,9 +10,40 @@ maintainers:
+>    - Hugues Fruchet <hugues.fruchet@foss.st.com>
+>    - Alain Volmat <alain.volmat@foss.st.com>
+>  
+> +allOf:
 
-You should use match data, not add compatibles in the middle of code.
-That's preferred, scallable pattern. What you added here last time does
-not scale and above change is a proof for that.
+Please put allOf: like in example schema, so after required:.
+
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
 
 Best regards,
 Krzysztof
