@@ -1,169 +1,240 @@
-Return-Path: <devicetree+bounces-108830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97DFC993FA4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CBD6993FA2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C1841F2528C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:36:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF3721F224A7
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:36:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 690C81DDA24;
-	Tue,  8 Oct 2024 07:20:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A37BF1DE886;
+	Tue,  8 Oct 2024 07:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IqVO7kvk"
+	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="Fl+btY4w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2095.outbound.protection.outlook.com [40.107.249.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9BFF4779D
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 07:20:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728372044; cv=none; b=Wcuw4sPcnBfmP0J+/2SnPxjPnIWdko8MZ6kQ/eQefvEP0937ywwyTjlub4QRNGNwMypgMgXX3ViWYz23SxgsVFsXaAYdq+6wjij7S1W4w0U9UAS/a2FORZn26ZQHJwaE934BcES1rR2BJN5QSt24TnuBMsOh8pCMBPzaH2pbLR4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728372044; c=relaxed/simple;
-	bh=Rn1tdMF4LSwkuLbf4jm6VgwMbmYg+6fAZnOTNc7Z68U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j29zSPaTzO21psu7wWgy3JXhl93YXrPMhmjZMCb6KVhQUjnghYsxQ+Hk1f9TwrLYi5x8CEPsw2qoZbUxMl2hc/xgwH0/GUeudtk50o4v+sfJU61TUCiFOTiaD3BOLCsntKdVt1B7ubfJQ5ojFihyLBjSVZCxzxHDLW3NVDhL9wc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IqVO7kvk; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728372042; x=1759908042;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Rn1tdMF4LSwkuLbf4jm6VgwMbmYg+6fAZnOTNc7Z68U=;
-  b=IqVO7kvk4YbyUUJunYFPo2CMY/FSQTiuUMtu2woGq6MZ/IPzeDQjORTT
-   yfw4+ysj4DMh2F+ZvCr7yl3BG/7sFvNFqQcyhEgqSy8EKbMT5LyfJ29Uy
-   biUJ+gBWjEjSWMNfxnZ+WQrWzz6mCaQxuGSpwSOQD8nbayDX0sx1zEvGR
-   phFNbi/0/cRgQPYLpi+145WWOkUdEBI490N+Vc7Y0N0BkvzdUo2ORVJu2
-   Q3DmNPMc38novbEkZJwHsILm3rjCge1gNbZCiv83vGa8RiyVxML1uN0CM
-   XB2m6hZRxFGKAC6RpxeiFAnKdAh5rO7oPFSBxIgByn0U117QflV7A5MY+
-   Q==;
-X-CSE-ConnectionGUID: GduToc/NTneWPo0GnUiAvg==
-X-CSE-MsgGUID: 3IxZ8Ud6TbSLAuVldasiaw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11218"; a="27714323"
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="27714323"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Oct 2024 00:20:42 -0700
-X-CSE-ConnectionGUID: 2kh+tj+rSnqnTCl+hUh0XQ==
-X-CSE-MsgGUID: aTJGazz7SLGMJjOmbvdKaQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,186,1725346800"; 
-   d="scan'208";a="75301280"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 08 Oct 2024 00:20:40 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sy4WM-00062C-1A;
-	Tue, 08 Oct 2024 07:20:38 +0000
-Date: Tue, 8 Oct 2024 15:20:02 +0800
-From: kernel test robot <lkp@intel.com>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>,
-	linux-phy@lists.infradead.org, chris.packham@alliedtelesis.co.nz,
-	devicetree@vger.kernel.org, krzk@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev,
-	Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: Re: [PATCH v2 3/3] phy: Integrate Realtek Otto SerDes driver into
- build system
-Message-ID: <202410081449.rLWpQtUj-lkp@intel.com>
-References: <20241007163623.3274510-4-markus.stockhausen@gmx.de>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9564642AB1;
+	Tue,  8 Oct 2024 07:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.95
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728372075; cv=fail; b=lme9oOaf6Q+vaOD9efJYL3uI1QPbvhGqEiu0QBw956kFI7s1q1Awv4umkc0ogUF9LUzI5+CLi66b8al1yN6pIgxPpPO7nZq4l0/wmiJKL0hcR375io2nOKBxJ8HnDSSv+W5suBqackBJgCAIWg0KS3KXw8kW4jEAhA4zp1z3SVs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728372075; c=relaxed/simple;
+	bh=Dnp4f44RB0E83Fn1svPtyezgroNvNr3vHdCMOg+GC+o=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=LuQcF8Uu97IRW2WgrgSWof/Bv5/dFwm6d37CDk9A4owCY07h7RidE0Ym0xbYpAVhmoJFnYPlCSP+LbbA+vHKVz7EUwLv1tr4nCIDBzGHkrIHVb7wOPUPPmAU7D4ZKyPLtMsiSCL/ng6cgXcihdkoRYl7874tO8vaYqA+AEi7aRY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=Fl+btY4w; arc=fail smtp.client-ip=40.107.249.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=jQ2cYmSG7q/fc0QwpqBMUIS7SI56jBZukNdUc7Kqm8uyYG/ytZaGYvV/+X4/0VdR+TA5+02eSNaTWTUun4eUsfT78g217H8QSCgpkIdMlYxY6nrfldaXOHPKEmPmgX4vfF6EHGUwHIXlnvwJFCmoxYa/HbwActlulpEydVC4ypEmQttRgVitgbxzQ+FF4TrU8WcaHeCul33cG5WhnJUJAS/TXmKe8bloSEUgjImagB8VC4Joio/NjfszN4JRgY8Co2QIVTOwjSUvVihfdAba/etx/EucWKcW+rWnVH6TZY/jydBj8/4rQYVroeTU82VU/O47duucjNCZ0FrvEtJppQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Jv6BfYCzGqjS5M6JwXTqXEk50D2P+p/cOSn9Sa4se+A=;
+ b=ip4fDMCFwtRzs/J+J1/UwkPKKHhDZVSv94ATXGebjIqJJ927Fk8ciPCRGowkZ2IUDbJ9hv10fXzKC+aqYoF7iORyMd41ksUaMg6RAxVPPw1mbmk0X2Bj6ajgHLFBGanUVjR3ua+2uxEofhFwScttyxgulVuGAA2yRc53PJJI93/TV9GEkton5ZE9j4OnA0tZHz8qE9+SM/LbrcLwVMCkYashSQoRd8FMTfjjGThWoH0VCoJv39zOvWlRcUlIIUV4v0hRJYQOhh6ACxnqU9AHgcNblrf5WU4mQioAUMuPP2jeUmQ6Bd7jGtWottSXOG6i/n9QK9pYNwuJKgDqVWSV6A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Jv6BfYCzGqjS5M6JwXTqXEk50D2P+p/cOSn9Sa4se+A=;
+ b=Fl+btY4wvfcJXdgWKHWR4xuVq8bVMK6JpZef6Tklz+c52QigTXetPve7lhwtJnVaUqQ1KHVfel2yUZ0seuO834iYu3fDOIFl7d+4qLN2KcaxjnGpW2OyeQfcp4Qr3eyXrZjHHUv5N/G/f0suvN0162p71bEpOQha985sFgdHVgM=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
+ by AM9PR10MB4037.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:20b:1fe::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Tue, 8 Oct
+ 2024 07:21:07 +0000
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b854:7611:1533:2a19%4]) with mapi id 15.20.8048.013; Tue, 8 Oct 2024
+ 07:21:07 +0000
+Message-ID: <3280f47c-f1e4-4e12-8b48-4e5f68b7a606@kontron.de>
+Date: Tue, 8 Oct 2024 09:21:05 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/4] arm64: dts: imx8mm-kontron: Add HDMI and LVDS
+ display support
+To: Frieder Schrempf <frieder@fris.de>, Conor Dooley <conor+dt@kernel.org>,
+ Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Shawn Guo <shawnguo@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Conor Dooley <conor.dooley@microchip.com>, Fabio Estevam
+ <festevam@gmail.com>, Francesco Dolcini <francesco.dolcini@toradex.com>,
+ Gregor Herburger <gregor.herburger@ew.tq-group.com>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Joao Paulo Goncalves <joao.goncalves@toradex.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Parthiban Nallathambi <parthiban@linumiz.com>, Peng Fan <peng.fan@nxp.com>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+References: <20240828074753.25401-1-frieder@fris.de>
+Content-Language: en-US, de-DE
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <20240828074753.25401-1-frieder@fris.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: FR3P281CA0071.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:4b::7) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:102:263::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007163623.3274510-4-markus.stockhausen@gmx.de>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|AM9PR10MB4037:EE_
+X-MS-Office365-Filtering-Correlation-Id: 325ef7cc-759f-468d-fdb8-08dce769c6dd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|7416014|366016|376014|1800799024|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Z1JOcjE4WjZlSjMzbHZqS1JFTm10RHIxeXJlTHFCY0JpS2RlNXY4anlCTk1s?=
+ =?utf-8?B?NFNkRGhJR1BjVnNpZmZtT01tRFZWYktZSm1Uckk3UDRrc0poaUkwVEhTdnFx?=
+ =?utf-8?B?VzNZY1ArdGl5WC9TT1p0cDdtQzhnNnU2bjh5bWxVenVCK0J1VGNrR2dTcDY3?=
+ =?utf-8?B?ZytSY1FvUEFvR3RUb1ppK1RhakxveUJCMVZmK1VZdWR1K1VveHdLdktzblhJ?=
+ =?utf-8?B?YStrOHRYM290djVIVUxyeXNyT1FKd25TdVBpMTdtdSt3T3VMQUhlZHdNNjFV?=
+ =?utf-8?B?UHNzMGV2YlJpanJobjdHM0JVck5wRVJuNE1zdnVpQmphblkzZExSdmJFdWNO?=
+ =?utf-8?B?OWhpaStBMnhBbUMxUVpYaHk4aXRmMGFXdUhWY0x2cHdlT29NS0NmVktaTUt5?=
+ =?utf-8?B?MlpLcktZY2h4cnlCWVh6N2hjVis2VC9FYjhHanVJNnJUaExVUktZdVdRRWs3?=
+ =?utf-8?B?elRwa0wveFNpQlBXajVxTjhIWWJ3QVEzenY5eXNZWHMxdFFOWkVuZkMzcm1T?=
+ =?utf-8?B?ZThzaDR1ZEZsUUJCa2wxenlzcGN5NGJVeTkyT2d0VDdhRjJtWkVNMUxhdTdG?=
+ =?utf-8?B?RmVTb2J1YVZLNW9hTFcwMDMzU1ZVWlJaZ1IyVU5TeTdMNXN2ODQ3RmVVWWd1?=
+ =?utf-8?B?WTU5ZFZiTVRaV0xHdU9KdGlvYVZlSkpCRWtQM0xZVVhLWVZSVEFJYXdVTFdm?=
+ =?utf-8?B?ckRWWTJ4aWpVR2Z6dUx0OUZJQUNLWGhMV1pGbnZIbmNsQktKeUdibmY1am12?=
+ =?utf-8?B?ZXY4M0IvSEhYZmlydWZsVnhUYTFjbDVaWU9PWXJtYVdmdWN4VExUOTMxVFJw?=
+ =?utf-8?B?Rk5uMjMzeGtkZWgxc2szUHlXMGxzMUNJRysyd2l1bVk4ZU4vTTR6RS81ajV6?=
+ =?utf-8?B?Unhwbjg3S094Zi9rRzc4Sy9xN0dUcElUVkNHQU5Qb2FkRGhEc0dnY0lNNVNy?=
+ =?utf-8?B?R1hDaFRWcjd4ZkNHeXVpcXpXeko2aTVYVFNKT2lMUnpzTnFNdEVqV2U2Nldr?=
+ =?utf-8?B?VjVYZ3Noa0xKRHl2Y0ZRd054RlFqUmpiZjEyRktKaG1kc2IzejdjNUE2UzBv?=
+ =?utf-8?B?Nm5rZDRkdkRJU0dDT0RjdE9sRUg4cUtkMGRveU9SOFdaWW5jRGpPZTYzOW1H?=
+ =?utf-8?B?ZkRzMi9JNkZBaSt0Z1dud3czbDh1MVhpN1lXakxpbkFiRzBQV3pmRkxjdE5T?=
+ =?utf-8?B?OWtJajZNbU1PSWNvK3ZUcHFkSUdGQ0xtOXNGd28yRkE0ZFpVaTE0WHlJbGFQ?=
+ =?utf-8?B?a1JGSjA5NmNKOFFWQ1U1Tk5jR21yOXNOUnpDcC9EcFN5MVVVMUJqYjR3L1Ur?=
+ =?utf-8?B?RnhRVFhpbzZWWmt2eHFIMkFyaVhhTE1pcit5SUhQNllNc1NtWjRxcVR3YTB1?=
+ =?utf-8?B?aUpXSG5qZlRXRk12eUhMbnpJczM4bURLMUxZK0V1NmxxUjF4UFhZRjVnQ09l?=
+ =?utf-8?B?bVpoQ3JRTjIydHNZS2ZQMWlPN2tQdzNETFE3VFZCOGh2dVdQNTNwM2FTMk1O?=
+ =?utf-8?B?N00ydmNmaTRiT3R0SmdFS2FBS3M3Q2VTRW9pTzN4clZZbis1eFBwSUhVb2hT?=
+ =?utf-8?B?UTI5ZHk3K085Q3A4WXhTd3RrVHE5cVJFMXVSU1VDZk5lRWFLVVRnblBmVGxJ?=
+ =?utf-8?B?VHpZRjkrVU1HeEFXNExEdWMzcnRHTjJveFdlTU9OUnZOVzJ2U3hFdGdSRXpL?=
+ =?utf-8?B?bU5PSEIwbU04V2VYb2JwZWxzektVM1JpNDZDUzBNK2ZDbEJORFo1WlBVLzVY?=
+ =?utf-8?Q?F1Barjs+k5g66CiAMyinaS3ESIBrcmaoLUNDeai?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(366016)(376014)(1800799024)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?amFtNkxHa21kSks0SmlYTDJjVWN3VTlwdVpJTDFjdmZGMlJKeEQvN1FrYlRq?=
+ =?utf-8?B?dWhRb3hUd2pQOHRDaDZmckRVOTdLaWpmalprOEtQTmZJT0tDaUtlSmNnSFJ4?=
+ =?utf-8?B?OHl5L1N0Y0s4VStqcGU2ZnpDWHJsc1VrNEdwcUZRNzY5dDdnYm1kbUtkU0xW?=
+ =?utf-8?B?NmtJU0wwN2xVUDdsTFlVa0ltSFpEWjNvY09HMWN3R1FmRVV5YXZVK1UrTFZF?=
+ =?utf-8?B?L0pmMXZrMW5wMHZCWkI3MHNjOUVQUW5jR0tGaERoT3BXSFVMcGZBLytaZU1X?=
+ =?utf-8?B?MXduTGJKOXVkZnRpQ2xMQkNkNXY4TVQvbVRndGsxVElFdUdvcWxXSXdEM0VH?=
+ =?utf-8?B?cDR3SGdNbDJhTjhOU1lQN2RPcWJsN0RIVHN4TXRPSytORWJRWHhLMXNjWXVU?=
+ =?utf-8?B?WTlubitoOEZ5NUF3UjMzNU5XTUNXS05aRDNoUHVjcTYvRTlsbHVqR0dWaWZJ?=
+ =?utf-8?B?bkJZb3FkTjI2OERDVFh0Y1RQM3hpUkVzVk04U05ZZE5MekFtY3c3TEN1UmIz?=
+ =?utf-8?B?U0dXZVYrTjFJaGkxK3RTbzVkQXI1cnRVS1BscGpEY1NaQzZLdXFvVy9Nb1E5?=
+ =?utf-8?B?djVEdkFWSHBRcUpKclhOenRlZElZcldKOWRiZVpiVDhZQndLWWhJQTFidWpB?=
+ =?utf-8?B?ZFZucm1LLzFPdWpnYjFIY242aFdyYnlCallmK3J0dkxZRjJKZmVZYWNQQ1BO?=
+ =?utf-8?B?cytLQUdTK3k0TGRmYkxPWXRxRG5uOG4yZEFod0l2RXMxSy9NTHQ5TW5VTW94?=
+ =?utf-8?B?RTROTTFBcGVHL3FTU21BZEI2TDVaZnhqU0l0YVhXL2Q2THd2d0ZyRVJmMHJP?=
+ =?utf-8?B?NlZRY1AyY21za1pidzRUdzc5N3FWM3UvTXVIUEJ3bWVQaTJ3ZXN2MnNRdGQ2?=
+ =?utf-8?B?RzRMa1IzVW5NN3RERXdQTW5QNUF4VDcvckNycS9SaGFobmIwR2hNZ0gvNytL?=
+ =?utf-8?B?eEY0NW5MS0ROYVZ2a3dTWG9pN3FaTVZrc3JrODdTSDBGcTZPa1QyODA0dGFX?=
+ =?utf-8?B?Q0MvZ21Zc0grcHl1OFBMblVjTURCRzZqeUhidk1FUFNTRGNHN09IOFpMTmxN?=
+ =?utf-8?B?YjhoVXRCMkViS09tb3FFVVA2UVRzeUtwZU9wOGhhc2hPR0dGc1B5blJlcEdr?=
+ =?utf-8?B?NFNySXJ4RXVDSGVRR3VHdUNzT2VSV0JIZlZzaEREdVEzTHBRZ2UrUWlxT0xQ?=
+ =?utf-8?B?K0tZNXBpTngyQ2ZObmIzdzE4MDNzODlxOVBwZ3JkYVZRYlJOUkJqM0p2WmJq?=
+ =?utf-8?B?TGxGUDhFd09Cb2RZR2ZXU0VjMjlGR0RUVTlhMUJ6bVlsUXB3bWdUcXcxRUtZ?=
+ =?utf-8?B?ZXRyODJ4WHJXRzNQSjZubmFWcWdRWEl2WXZRZmh4STVuNkZMcGlnZC9zcWZy?=
+ =?utf-8?B?MkJ5UWk0S1ZoVmRrZGhjRWI5VkZFbVQzM2prZGZaN2RPMnZhQ0JHTmFKcjFq?=
+ =?utf-8?B?dE5RSXFXSmlrbGpKSW5PUkFDRUQ2b0ZuQklPRitKbGhTZ1RidEhGcTNhVFpx?=
+ =?utf-8?B?Yy9zR2hrcFlubXFBdUFpMTZCWUxxa3cxWlBlZi9Ed08rZHpqZXJPdTY0NlZ0?=
+ =?utf-8?B?T29tTHQ1WFg2ZDJVK2FzSkw1Mk9YNHFlSEJObWZObU9iL3RTMmt3VTFoa3pr?=
+ =?utf-8?B?bXBwcy9ocHpWQzJ2N3QzdmpQSXlSSDNiNzIzeWZHVDhsaUUyRk9xUUNZVDgr?=
+ =?utf-8?B?R1R2M0NFVHN4bFIrdVFUdEtiZnh2a0tQUm1Tek5xY3B0TGxOakI5VmdoeFox?=
+ =?utf-8?B?L0hsKzVKVndpd1FrUVA4UHpTVEIzN2NpMHlVWUxzNUhuNzZsSWZsVzQ2cVFQ?=
+ =?utf-8?B?KzBoNUV1aDZXNlZTK3h2NWhEVm1jM1BhOGIzTVRuSDVFSGU3UXIrU3Vlc1A2?=
+ =?utf-8?B?djBROGlLZFdiMHRodVBRdzZLdy9HdDlBbVRaQ0g4MHQ3TXptQkdLMCtPUDNU?=
+ =?utf-8?B?dWJENXUyTitxQ0Q3dWhqNWxkT3B6eFpvSFN6b3JibVNUQmo5Tk9nUEFqaDRs?=
+ =?utf-8?B?UHdjb2lXc1RTV3NWRUxYRUVsV3dhVDdXeVdkT0VNOXRuTW0wRnBNWTZFYS9F?=
+ =?utf-8?B?RmM4TjZ0YndCck5JR0pXallnQkk4TE9sUjlZWXd1L1VneFcxNDNpemVudUpH?=
+ =?utf-8?B?Vk00elpRQnA2Uno2THdvL2xvam5kRXR3RnVrdTJ5dDd0MExaNmw5OU1SV29t?=
+ =?utf-8?B?RlE9PQ==?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: 325ef7cc-759f-468d-fdb8-08dce769c6dd
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 07:21:07.4855
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ygfDkl+odFfTVPKZ96BKvI31MhpM3DwyvRTz2V13nXhG7OlnkwJBELygntwU3WZ/FHu9/zYMFtbe18w4dxNBc44RfuYlopi7ZT3rp7kxRmI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR10MB4037
 
-Hi Markus,
+On 28.08.24 9:46 AM, Frieder Schrempf wrote:
+> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+> 
+> This add support for the display bridges (DSI->LVDS and DSI->HDMI)
+> on the BL i.MX8MM and the 7" LVDS panel in a separate overlay.
+> 
+> Only one of the interfaces (HDMI or LVDS) is supported at the same
+> time. Enabling the LVDS overlay will disable the HDMI interface.
+> 
+> * Patch 1 and 2: Add the necessary binding changes
+> * Patch 3: Extend the BL devicetree
+> * Patch 4: Add the LVDS panel overlay
+> 
+> Changes for v2:
+> * Patch 1: Add link to commit message
+> * Patch 2: Add Conors A-b tag
+> * Patch 3: Remove blank lines from hdmi node
+> * Patch 3: Fix order of lvds and hdmi nodes within i2c
+> * Patch 3: Remove the unneeded deletion of samsung,pll-clock-frequency
+> * Patch 3: Use the existing MIPI DSI output port from imx8mm.dtsi
+> * Patch 4: Update copyright year
+> * Patch 4: Use exisitng MIPI DSI output port from imx8mm.dtsi
+> * Patch 4: Fix pinctrl for GPIO hogs
+> * Patch 4: Fix property order in i2c2 node
+> * Patch 4: Use generic node name for touchscreen
+> 
+> Frieder Schrempf (4):
+>   dt-bindings: vendor-prefixes: Add Jenson Display
+>   dt-bindings: display: panel-lvds: Add compatible for Jenson
+>     BL-JT60050-01A
+>   arm64: dts: imx8mm-kontron: Add support for display bridges on BL
+>     i.MX8MM
+>   arm64: dts: imx8mm-kontron: Add DL (Display-Line) overlay with LVDS
+>     support
 
-kernel test robot noticed the following build errors:
+Gentle ping for this series. Neil proposed to apply path 1 and 2 to
+drm-misc-next. Shawn, can you review/apply patch 3 and 4, please?
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on krzk-dt/for-next linus/master v6.12-rc2 next-20241004]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Thanks
+Frieder
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Stockhausen/dt-bindings-phy-add-realtek-otto-serdes-PHY-binding/20241008-003929
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241007163623.3274510-4-markus.stockhausen%40gmx.de
-patch subject: [PATCH v2 3/3] phy: Integrate Realtek Otto SerDes driver into build system
-config: alpha-allyesconfig (https://download.01.org/0day-ci/archive/20241008/202410081449.rLWpQtUj-lkp@intel.com/config)
-compiler: alpha-linux-gcc (GCC) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241008/202410081449.rLWpQtUj-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410081449.rLWpQtUj-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/linux/debugfs.h:16,
-                    from drivers/phy/realtek/phy-rtk-otto-serdes.c:7:
-   drivers/phy/realtek/phy-rtk-otto-serdes.c: In function 'rtsds_dbg_mode_open':
->> drivers/phy/realtek/phy-rtk-otto-serdes.c:868:29: error: passing argument 2 of 'single_open' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     868 | DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_mode);
-         |                             ^~~~~~~~~~~~~~
-         |                             |
-         |                             ssize_t (*)(struct seq_file *, void *) {aka long int (*)(struct seq_file *, void *)}
-   include/linux/seq_file.h:223:34: note: in definition of macro 'DEFINE_SHOW_STORE_ATTRIBUTE'
-     223 |         return single_open(file, __name ## _show, inode->i_private);    \
-         |                                  ^~~~~~
-   include/linux/seq_file.h:176:32: note: expected 'int (*)(struct seq_file *, void *)' but argument is of type 'ssize_t (*)(struct seq_file *, void *)' {aka 'long int (*)(struct seq_file *, void *)'}
-     176 | int single_open(struct file *, int (*)(struct seq_file *, void *), void *);
-         |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/phy/realtek/phy-rtk-otto-serdes.c: In function 'rtsds_dbg_reset_open':
-   drivers/phy/realtek/phy-rtk-otto-serdes.c:891:29: error: passing argument 2 of 'single_open' from incompatible pointer type [-Werror=incompatible-pointer-types]
-     891 | DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_reset);
-         |                             ^~~~~~~~~~~~~~~
-         |                             |
-         |                             ssize_t (*)(struct seq_file *, void *) {aka long int (*)(struct seq_file *, void *)}
-   include/linux/seq_file.h:223:34: note: in definition of macro 'DEFINE_SHOW_STORE_ATTRIBUTE'
-     223 |         return single_open(file, __name ## _show, inode->i_private);    \
-         |                                  ^~~~~~
-   include/linux/seq_file.h:176:32: note: expected 'int (*)(struct seq_file *, void *)' but argument is of type 'ssize_t (*)(struct seq_file *, void *)' {aka 'long int (*)(struct seq_file *, void *)'}
-     176 | int single_open(struct file *, int (*)(struct seq_file *, void *), void *);
-         |                                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   cc1: some warnings being treated as errors
-
-
-vim +/single_open +868 drivers/phy/realtek/phy-rtk-otto-serdes.c
-
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  847  
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  848  static ssize_t rtsds_dbg_mode_write(struct file *file, const char __user *userbuf,
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  849  				size_t count, loff_t *ppos)
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  850  {
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  851  	struct seq_file *seqf = file->private_data;
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  852  	struct rtsds_macro *macro = dev_get_drvdata(seqf->private);
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  853  	struct rtsds_ctrl *ctrl = macro->ctrl;
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  854  	int ret, hwmode, phymode, sid = macro->sid;
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  855  
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  856  	ret = kstrtou32_from_user(userbuf, count, 16, &hwmode);
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  857  	if (ret)
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  858  		return ret;
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  859  	/*
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  860  	 * Allow to set arbitrary modes into the SerDes to improve error analysis. Accept that
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  861  	 * this might confuse the internal state tracking.
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  862  	 */
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  863  	phymode = rtsds_hwmode_to_phymode(ctrl, hwmode);
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  864  	rtsds_phy_set_mode_int(ctrl, sid, phymode, hwmode);
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  865  
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  866  	return count;
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  867  }
-40f1aea80b53b8 Markus Stockhausen 2024-10-07 @868  DEFINE_SHOW_STORE_ATTRIBUTE(rtsds_dbg_mode);
-40f1aea80b53b8 Markus Stockhausen 2024-10-07  869  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
 
