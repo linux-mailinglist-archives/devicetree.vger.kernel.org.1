@@ -1,171 +1,101 @@
-Return-Path: <devicetree+bounces-109161-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109162-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D88B995741
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 20:56:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70237995770
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 21:13:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C470E287136
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:56:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 370B9286870
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:13:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7C7213ED0;
-	Tue,  8 Oct 2024 18:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 47D05212EF2;
+	Tue,  8 Oct 2024 19:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="By/cPCEb"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="qLdXnwme"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51129213EC2
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 18:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 854C91E0DFB;
+	Tue,  8 Oct 2024 19:13:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728413750; cv=none; b=a5RrRUZE+KiyLlGvqorGkVCqRM0M4RE29N59xNEhPHgpPdEdTY8daiZPnpY1iynkUm2bAl8Wsfn+pH62gVQm9+kWvIE8eiYFL17jgXdEM4Y3eGNjlG5U16lfUHKJ+fR5A8jloqvJulk/MsbTdSNXqK+oVaevFvZi2Af2oCUAahg=
+	t=1728414791; cv=none; b=Q/LhEFxyJmZFgpA/O6Rx0yJStMIfX9fUhHlALzinCHtQFjDR0W47cspt7ppKDOe05uaORJC22UwMJumHVtBKQ7CQxSMsmiWqFsRy5U3SxBkxNrGMw0P1lkdXmxig6NuWyrjMp+KrX6sX/zO35uzQW0GBo1LFW8VI1wFpg2jzGvI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728413750; c=relaxed/simple;
-	bh=6pIwymGOgGwBExwNMf7+e5M3D1A73/fqXlHGBi/x4R8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:To:Cc:Subject:
-	 References:In-Reply-To; b=bqSxhNfphcERFXf5EuxbezJEWwAgv/ZBJiVWku6WE+Z0B4foSrv6nssDcQYnXp3oizHou05IZULpgotE7glZtibWNUuyD9LiJBDwnuQYgxXb6yrlIBie78Bizj6AKYHyeS/hTLyPWQAg/cxmNBEW9LedqVEyMn1N6yTuUyWAFRs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=By/cPCEb; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1728414791; c=relaxed/simple;
+	bh=kdhDIQr6x2S5P5866h6FlTn+jW0YicIiTTjLvHlc1+U=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bJjsRnajfpDk/Ysok19mLtYSeZTqz+1ZR2Gj4hw8hz5bKyfxDl23IWhEwZpzuD1/bk1h2EUw+QEQ+p3DkZA57Jjs7fweg2ga/cCHRcj92XIYZ2c2+BaQmAJe0BdY8tU9YunAEKcXIo1iG0yzJwYEp28sN3REaVC2k28QxzKPzIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=qLdXnwme; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=Pfemj97Szu5rqGkLgAB+jA3DEc9X/IUNSyYuIAE3eMs=; b=qLdXnwmeMYsXBHBHqAkQeyPNEz
+	UyzGtTaZkUy/Dlkz0BmXHiCvsVM+zF22z4IyeOncv4uB9IZI+LEC7Eiv7FK608fqjHOT5RonpjCsW
+	crXvPFx1JVvrBOcENkXDeOF2y4TOxItA1jfa+oAlkhKOpjDeq9EKGk5atI5bHK07ceN9nKTxudVoj
+	cF4eCuWro2ojKPlFkbz8HyRjFvSAsvpReJpWhlhuRsEo1cMJVUPOMUw9SwFtQ2ckPbm5si53Q33ky
+	5ETNbTJnyzA+91xDTM3eMlbT9Y+id+V8CuIVUP2Pl9KAFZfy8/yuQac3bif7PkF8A4e93FjLuDr3f
+	mdmopz/g==;
+Received: from i53875ad9.versanet.de ([83.135.90.217] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1syFdk-0006jR-9B; Tue, 08 Oct 2024 21:13:00 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	linux-clk@vger.kernel.org,
+	jbx6244@gmail.com,
+	sboyd@kernel.org,
+	mturquette@baylibre.com,
+	linux-rockchip@lists.infradead.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: Re: [PATCH v2 0/3] rk3328 cru dt-binding conversion
+Date: Tue,  8 Oct 2024 21:12:57 +0200
+Message-ID: <172841476778.2559610.12687245532264895912.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240930215001.1999212-1-heiko@sntech.de>
+References: <20240930215001.1999212-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1728413746;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=JDuErN1Auxr6ysu/+eLU20CGd8PRtkQZVoMuxVC2HnU=;
-	b=By/cPCEbi14X259+giAyG1muNCXQuu/bN4P640/FesFGvqDGXyyNqFyUMzXmsCbzP9GRw0
-	of7uW+mJALcUd7XrpCHYk3VaC1Y/eL/+36CslzVJYNXq3Dhk+TPOYdF9Y60yKYz9QGXU06
-	l/6GCj7jdKUIQARQSUHdLxP8167kKWKMZp4qFoADE8SGCG1NbzV+BIJtGHomD2CFpTeQa0
-	zNnJKsufxzo40D276oaUKPEYS7HwHEIp1wUjumpX/ER3PHHmfNmz7x0LRjuA8BgKRSV73Q
-	6G/D51UfCJTb9s7lIv+5OjDYoZRvTHinp836YJmV0y8e+H586WFlVEj2aysBLA==
-Content-Type: multipart/signed;
- boundary=739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Tue, 08 Oct 2024 20:55:34 +0200
-Message-Id: <D4QNJ85V43NU.YD01E8AB4116@cknow.org>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: "Michael Riesch" <michael.riesch@wolfvision.net>, "Rob Herring"
- <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, "Heiko Stuebner" <heiko@sntech.de>
-Cc: "Dragan Simic" <dsimic@manjaro.org>, "Samuel Holland"
- <samuel@sholland.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>,
- <linux-rockchip@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
- "Diederik de Haas" <didi.debian@cknow.org>
-Subject: Re: [PATCH v2 1/4] arm64: dts: rockchip: Add PD to csi dphy node on
- rk356x
-References: <20241008113344.23957-1-didi.debian@cknow.org>
- <20241008113344.23957-2-didi.debian@cknow.org>
- <e07990da-8ac6-43ae-8e21-14988ee5fcbe@wolfvision.net>
-In-Reply-To: <e07990da-8ac6-43ae-8e21-14988ee5fcbe@wolfvision.net>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
---739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Mon, 30 Sep 2024 23:49:58 +0200, Heiko Stuebner wrote:
+> Johan already did the heavy lifting of converting the binding in [0].
+> The binding conversion itself already got a Reviewed-by from dt-people
+> only dropping the superfluous compatibles needed a bit more investigation.
+> 
+> So I did go through the mainline kernel and also the vendor kernel,
+> looking for any obscure usage.
+> 
+> [...]
 
-Hi Michael,
+Applied, thanks!
 
-On Tue Oct 8, 2024 at 2:32 PM CEST, Michael Riesch wrote:
-> On 10/8/24 13:15, Diederik de Haas wrote:
-> > The "rockchip-inno-csi-dphy.yaml" binding requires the power-domains
-> > property. According to RK3568 TRM Part 1 section 7.3 (page 475) the
-> > CSIHOST is placed in the PD_VI power domain.
-> > So set the csi_dphy node power-domains property accordingly.
->
-> Thanks for the patch. However, I am not sure about this one.
+[1/3] dt-bindings: clock: convert rockchip,rk3328-cru.txt to YAML
+      commit: 5011cc7ad9aeea98029385f8a0e81a0ebfc45bed
+[2/3] arm64: dts: rockchip: fix compatible string rk3328 cru node
+      commit: 17a50042b9f63f7c5e9d7f1d1a285387e2b2d955
+[3/3] arm64: rockchip: add clocks property to cru node rk3328
+      commit: bc639b0ff7a8121bd72954bf8354a81f074dbf42
 
-Thanks for your reply.
-
-> The CSI host sure is in this power domain, but we are talking about the
-> CSI PHY here, right? According to the table CSIPHY is part of the power
-> domain "ALIVE", which leads me to believe that the power domain is not
-> necessary here. However, I guess you could put "RK3568_PD_LOGIC_ALIVE" he=
-re.
->
-> It should be noted, though, that I still haven't figured out what the
-> role of this CSI host actually is. I know that the RK3568 ISP has its
-> own MIPI CSI host controller within its register space. But I can only
-> guess right now that this CSI host is somehow linked to the RK3568
-> VICAP, which is also capable of receiving MIPI CSI. Maybe we can leave
-> this up to however brings up the RK3568 VICAP MIPI CSI feature :-)
-
-It indeed isn't as clear cut as I want(ed) it to be.
-
-Given that you're also the author of commit 29c99fb085ad ("phy:
-rockchip: add support for the rk356x variant to rockchip-inno-csidphy"),
-which added support to the driver part, your opinion should have more
-weight then mine (IMO).
-
-Nonetheless, I collected some extra data points:
-- The TRM part 1 makes several mentions of 'dphy' in a block describing
-  'GRF_VI_CON1' (page 381 & 382). The above mentioned commit only added
-  'PHY_REG' for 'CON0', which I assume was deliberate given your
-  response above. But 'GRF_VI_CON1' does have 'VI' in its name
-- In rk356x.dtsi there are 'dsi_dphy0' and 'dsi_dphy1' which have
-  'RK3568_PD_VO' in their 'power-domains' property. Page 475 has
-  'DSIHOST' in 'PD_VO', while 'DSIPHY' is (also) in the 'ALIVE' power
-  domain. So to be consistent it seems to me that 'csi_dphy' should be
-  in 'PD_VI' or the 'dsi_dphy' nodes should be placed/moved to
-  'RK3568_PD_LOGIC_ALIVE'.
-- Of all the compatibles from the binding, I only found
-  'rockchip,px30-csi-dphy' referenced in DT files (next to
-  'rockchip,rk3568-csi-dphy' in rk356x.dtsi) and in px30.dtsi the
-  'csi_dphy' node has 'PX30_PD_VI' as value for its 'power-domains'
-  property.
-
-But this is all 'circumstantial'; it would be nice to have a clear
-answer (from Rockchip?).
-
-Cheers,
-  Diederik
-
-> > Fixes: b6c228401b25 ("arm64: dts: rockchip: add csi dphy node to rk356x=
-")
-> > Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
-> > ---
-> > changes in v2:
-> > - No change
-> >=20
-> >  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot=
-/dts/rockchip/rk356x.dtsi
-> > index 0ee0ada6f0ab..d581170914f9 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> > @@ -1790,6 +1790,7 @@ csi_dphy: phy@fe870000 {
-> >  		clocks =3D <&cru PCLK_MIPICSIPHY>;
-> >  		clock-names =3D "pclk";
-> >  		#phy-cells =3D <0>;
-> > +		power-domains =3D <&power RK3568_PD_VI>;
-> >  		resets =3D <&cru SRST_P_MIPICSIPHY>;
-> >  		reset-names =3D "apb";
-> >  		rockchip,grf =3D <&grf>;
-
-
---739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwWAKgAKCRDXblvOeH7b
-bmodAQCBcwCIgvd9UHVv/WX9kntNibQ3vLI0rpAX+9rBhgzvQAEAr3TExg+y9mrl
-hf4D6cRD9gWX+/OHYN/FLDk/SoNEfQk=
-=PxK6
------END PGP SIGNATURE-----
-
---739a0fdf5b1fcc13df7ae7eaf2f2533e1b5977cf4b7fc59b27bf68bef8be--
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
