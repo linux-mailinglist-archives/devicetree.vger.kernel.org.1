@@ -1,263 +1,167 @@
-Return-Path: <devicetree+bounces-108939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E847994552
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:26:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C3E8994557
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:27:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C57D72819A6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:26:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D278C1F25F4F
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:27:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7165C1C2443;
-	Tue,  8 Oct 2024 10:26:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EB51BAEE4;
+	Tue,  8 Oct 2024 10:26:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="2XtFOQgd"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="ROf3bMgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD7C11BC060
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 10:26:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07E50193082;
+	Tue,  8 Oct 2024 10:26:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728383162; cv=none; b=rf36VB9FUIWHor+JFMmRvdycRdBAInJ/jtrqv4lHdI0zkIjZ3lVIYZ2If33bByp8ZzzxA2qW2jqkBH0d2nRwd/m/Y6lKGF+yT+OOGD4qyCvZCLrslBQCGhsLOgaeOUSNAJJKjJ1mExoCjv4mVRNFyQRps3w2UPd2P7TTXDA2PcA=
+	t=1728383207; cv=none; b=QTcHf5AF9Ln7UviK8Dwx+qkxvP26JjVV5ge51jdKepZe4RrVNmRwFKq1cB1TT+EUgJ7h48cxdaXmYj3hMg8XmtVoFONlGXmKwwaDb1SVpLgHqSQJe1n70gvCnRYS4sudKcAYI0yidZxHE9b9NN+xYaLxwVylaINOIX8GgtiFUhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728383162; c=relaxed/simple;
-	bh=lDqIh3H/vWELixQK7kH36Vf7D/HlGgVTg57Mysl6ug4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=me1G8WY1rEBPKjakfyNh0+ooGunNJEfXUrmD1QI11VcP5wiw7t8nJrUk+NzefEmj/KTeMgznUDwva40kxs4NAjEb2Fryu8MJj2EDXvYhx43bbQOFpJaursFZoBojrgzNV1DSAxVj1EB8p9xWxfjTQ5WKDkJkq7ILFXqAtwWO33s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=2XtFOQgd; arc=none smtp.client-ip=209.85.128.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-42e5e1e6d37so56028115e9.3
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 03:26:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1728383159; x=1728987959; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NiFzJljIZK6K18VBx2o+5L+9T8qGzII0DZ/h6IKErVs=;
-        b=2XtFOQgddsaAoevgbrlHxMe6psGEjLjkB20fbMUMFKkWw2guFS28KeuQLSXYaLsH0s
-         odq4/a/lY3smCpcr7hInG2bTnJBVXLnikTpEdSCb0yAob5r212P3a3Op/4cPYQULbOKE
-         RcBJ0Wxk+8hrzAGkcVPpmjUNzeV+N+vF5VZVOqe0pdCpXIFdWCvGx/PU572CkDtraBqv
-         0b1lAOFAWVONbHwKb9K2vUfz3RVkhvTY3SkQIPs/RYkarMf14RY1901AIeRgzhmzjnhq
-         bPCIK+7L26a8rDplwvnIXPCYk2+zoR/EEshIxuDjloQMsJPdAhWSX/htWLjj+lLI+jcp
-         pRtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728383159; x=1728987959;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NiFzJljIZK6K18VBx2o+5L+9T8qGzII0DZ/h6IKErVs=;
-        b=W2df22mofHQw4oRf0epUYkhbQK5DMwGn9mOGiSkDs9UqgcTYoaJ2d+y7Wh/dbaiEh+
-         Eeps6ZP/jQ6fRqK9fF3iqNa1H664yEzYDP7VK+FR/BmOd5kn4YKpJwR03gWBaZVDxGn4
-         eNhf5TlcqcHWxzX4bjOosw/3OAz3CQXlodMmKG+3fIdg7DZVtENCld8HdXum0voBUrag
-         /6f8X/J0trdg6BQ5zWodKL/5fwSWTHHGbXAa/zhrjN56BYVqogo0q4quME8pbmvk2WnJ
-         gUyNZVj/h8XYIK9/K0m6RkD+zPKV7NQZTIdYmWf4HeJo99v+xZe3Tqtv2OkIDljrnM7d
-         gNdw==
-X-Forwarded-Encrypted: i=1; AJvYcCXlrLSBW2etR0tw61xxWYLZAq5CJ+VCF7XwwU+GtQeJDJQrrXRvM35HXywTvrA6RH/Visy5aNZE1vNk@vger.kernel.org
-X-Gm-Message-State: AOJu0YzC448MZf2PSgtd0hK8r7rhei/AslumpfblbGbA96OnjUxr/up3
-	xuDAjnfF2HKMNunYhjoMWchTw4cFFUQwnyPEl/3KmnqxZMlHibQI4x/+xLXusYs=
-X-Google-Smtp-Source: AGHT+IEGcrxEhyJl+MXEaIJ+7wi+2eFIF0HFIrWSMUS9U40XllI18QLKQiArpLJr4U/01gV7YwnE6A==
-X-Received: by 2002:a05:600c:1c8a:b0:42b:af52:2525 with SMTP id 5b1f17b1804b1-42f85ab7cd9mr119677385e9.16.1728383158933;
-        Tue, 08 Oct 2024 03:25:58 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:738a:20da:f541:94ff])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1691b505sm7766800f8f.43.2024.10.08.03.25.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 03:25:58 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Kalle Valo <kvalo@kernel.org>,
-	Stephan Gerhold <stephan.gerhold@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Steev Klimaszewski <steev@kali.org>
-Subject: [PATCH v5 3/3] arm64: dts: qcom: sc8280xp-x13s: model the PMU of the on-board wcn6855
-Date: Tue,  8 Oct 2024 12:25:44 +0200
-Message-ID: <20241008102545.40003-4-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241008102545.40003-1-brgl@bgdev.pl>
-References: <20241008102545.40003-1-brgl@bgdev.pl>
+	s=arc-20240116; t=1728383207; c=relaxed/simple;
+	bh=e5I3Kqug+3tmd5xjuXN2W835x7u9rvw42f65vGULb4Y=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fEp5pDABo2nxY1F50qKKrWQ855ueGgmqSMzpa7AyjX+b2zUbJYRYVkx5NaIf/zJH6HeHHhz4f0ltJBVX3SuXXHyYPqJZ6+eejKSsWScWNoxAfCzQMRMuCvRd0zv4lThj3f2HdDrGLrpW7pazB0TyVZszRnGIeipd1an3rtC+6Js=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=ROf3bMgx; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728383204;
+	bh=e5I3Kqug+3tmd5xjuXN2W835x7u9rvw42f65vGULb4Y=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ROf3bMgxZGjBvRU8HoNDrWwT5IpHBF1/Su7mYNjdxyyT9QTFLPdG2Boz0f/OrH7av
+	 k5jI3s0U8SgDVIujSNnnxM2H4HpKQ2HwgjwrSA/8SL7aeY8aKVUwMscJcPTORR7xa9
+	 ktdJlE0Qi2K+wZZx5zr8WMvZ4xrJLHqjM5RYX7KiP5aHkZ136xrjELtpUd/YVNORAl
+	 LQDW8nuXhmyDsXdjxP3A+yNK370h3bX62gfq+kdspXRMlO9IiohK/Wkhkx+gUR2QTK
+	 ffszIgk9OTGgFMYNFuRqPYb59iHTdGYzwDrA6Ou40FozODUJ2Ny6bt5n4wrYtntzPl
+	 6IZJcKZDsmzJA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id F16EA17E1131;
+	Tue,  8 Oct 2024 12:26:43 +0200 (CEST)
+Message-ID: <75fb08e1-2d47-4376-9ac0-c812c956bdab@collabora.com>
+Date: Tue, 8 Oct 2024 12:26:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8186-corsola-voltorb: Merge
+ speaker codec nodes
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+References: <20241008082200.4002798-1-wenst@chromium.org>
+ <7caa85fa-7186-4f8f-8195-19325ebf06bd@collabora.com>
+ <CAGXv+5FgPOh4kNdrG1uN-NOWEpC5rXvsr0egTsgOw+v_E3vdRg@mail.gmail.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <CAGXv+5FgPOh4kNdrG1uN-NOWEpC5rXvsr0egTsgOw+v_E3vdRg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Il 08/10/24 12:14, Chen-Yu Tsai ha scritto:
+> On Tue, Oct 8, 2024 at 4:51 PM AngeloGioacchino Del Regno
+> <angelogioacchino.delregno@collabora.com> wrote:
+>>
+>> Il 08/10/24 10:21, Chen-Yu Tsai ha scritto:
+>>> The Voltorb device uses a speaker codec different from the original
+>>> Corsola device. When the Voltorb device tree was first added, the new
+>>> codec was added as a separate node when it should have just replaced the
+>>> existing one.
+>>>
+>>> Merge the two nodes. The only differences are the compatible string and
+>>> the GPIO line property name. This keeps the device node path for the
+>>> speaker codec the same across the MT8186 Chromebook line.
+>>
+>> Ok, I agree...
+>>
+>> But, at this point, can we rename `rt1019p` to `speaker_codec` instead?
+>>
+>> Imo, that makes a bit more sense as a phandle, as it reads generic and it's not
+>> screaming "I'm RT1019P" on dts(i) files where it's actually not.
+> 
+> Works for me.
+> 
+>>>
+>>> Fixes: 321ad586e607 ("arm64: dts: mediatek: Add MT8186 Voltorb Chromebooks")
+>>   > Cc: <stable@vger.kernel.org>
+>>
+>> Well, that's not a fix - it's an improvement, so we can avoid this Fixes tag :-)
+> 
+> I'd like to see it backported though, so we minimize the different DTS files.
+> Guess I'll add Cc stable instead? Not sure if that works without a Fixes tag.
+> 
 
-Add a node for the PMU of the WCN6855 and rework the inputs of the wifi
-and bluetooth nodes to consume the PMU's outputs.
+Well, try to send it to the stable mailing list as well...
+I fully understand your concern but backporting is for fixes and *not* for
+improvements, so I doubt that you'll get that backported.
 
-With this we can drop the regulator-always-on properties from vreg_s11b
-and vreg_s12b as they will now be enabled by the power sequencing
-driver.
+It's Sasha's call then, anyway.
 
-Tested-by: Steev Klimaszewski <steev@kali.org> # Thinkpad X13s
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
----
- .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    | 101 +++++++++++++++---
- 1 file changed, 87 insertions(+), 14 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 6a28cab97189..863412842102 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -400,6 +400,68 @@ usb1_sbu_mux: endpoint {
- 			};
- 		};
- 	};
-+
-+	wcn6855-pmu {
-+		compatible = "qcom,wcn6855-pmu";
-+
-+		pinctrl-0 = <&bt_default>, <&wlan_en>;
-+		pinctrl-names = "default";
-+
-+		wlan-enable-gpios = <&tlmm 134 GPIO_ACTIVE_HIGH>;
-+		bt-enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
-+
-+		vddio-supply = <&vreg_s10b>;
-+		vddaon-supply = <&vreg_s12b>;
-+		vddpmu-supply = <&vreg_s12b>;
-+		vddrfa0p95-supply = <&vreg_s12b>;
-+		vddrfa1p3-supply = <&vreg_s11b>;
-+		vddrfa1p9-supply = <&vreg_s1c>;
-+		vddpcie1p3-supply = <&vreg_s11b>;
-+		vddpcie1p9-supply = <&vreg_s1c>;
-+
-+		regulators {
-+			vreg_pmu_rfa_cmn_0p8: ldo0 {
-+				regulator-name = "vreg_pmu_rfa_cmn_0p8";
-+			};
-+
-+			vreg_pmu_aon_0p8: ldo1 {
-+				regulator-name = "vreg_pmu_aon_0p8";
-+			};
-+
-+			vreg_pmu_wlcx_0p8: ldo2 {
-+				regulator-name = "vreg_pmu_wlcx_0p8";
-+			};
-+
-+			vreg_pmu_wlmx_0p8: ldo3 {
-+				regulator-name = "vreg_pmu_wlmx_0p8";
-+			};
-+
-+			vreg_pmu_btcmx_0p8: ldo4 {
-+				regulator-name = "vreg_pmu_btcmx_0p8";
-+			};
-+
-+			vreg_pmu_pcie_1p8: ldo5 {
-+				regulator-name = "vreg_pmu_pcie_1p8";
-+			};
-+
-+			vreg_pmu_pcie_0p9: ldo6 {
-+				regulator-name = "vreg_pmu_pcie_0p9";
-+			};
-+
-+			vreg_pmu_rfa_0p8: ldo7 {
-+				regulator-name = "vreg_pmu_rfa_0p8";
-+			};
-+
-+			vreg_pmu_rfa_1p2: ldo8 {
-+				regulator-name = "vreg_pmu_rfa_1p2";
-+			};
-+
-+			vreg_pmu_rfa_1p7: ldo9 {
-+				regulator-name = "vreg_pmu_rfa_1p7";
-+			};
-+		};
-+	};
- };
- 
- &apps_rsc {
-@@ -426,7 +488,6 @@ vreg_s11b: smps11 {
- 			regulator-min-microvolt = <1272000>;
- 			regulator-max-microvolt = <1272000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--			regulator-always-on;
- 		};
- 
- 		vreg_s12b: smps12 {
-@@ -434,7 +495,6 @@ vreg_s12b: smps12 {
- 			regulator-min-microvolt = <984000>;
- 			regulator-max-microvolt = <984000>;
- 			regulator-initial-mode = <RPMH_REGULATOR_MODE_HPM>;
--			regulator-always-on;
- 		};
- 
- 		vreg_l1b: ldo1 {
-@@ -927,6 +987,16 @@ wifi@0 {
- 		compatible = "pci17cb,1103";
- 		reg = <0x10000 0x0 0x0 0x0 0x0>;
- 
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddpcie1p8-supply = <&vreg_pmu_pcie_1p8>;
-+		vddpcie0p9-supply = <&vreg_pmu_pcie_0p9>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
-+
- 		qcom,ath11k-calibration-variant = "LE_X13S";
- 	};
- };
-@@ -1258,20 +1328,16 @@ &uart2 {
- 	bluetooth {
- 		compatible = "qcom,wcn6855-bt";
- 
--		vddio-supply = <&vreg_s10b>;
--		vddbtcxmx-supply = <&vreg_s12b>;
--		vddrfacmn-supply = <&vreg_s12b>;
--		vddrfa0p8-supply = <&vreg_s12b>;
--		vddrfa1p2-supply = <&vreg_s11b>;
--		vddrfa1p7-supply = <&vreg_s1c>;
-+		vddrfacmn-supply = <&vreg_pmu_rfa_cmn_0p8>;
-+		vddaon-supply = <&vreg_pmu_aon_0p8>;
-+		vddwlcx-supply = <&vreg_pmu_wlcx_0p8>;
-+		vddwlmx-supply = <&vreg_pmu_wlmx_0p8>;
-+		vddbtcmx-supply = <&vreg_pmu_btcmx_0p8>;
-+		vddrfa0p8-supply = <&vreg_pmu_rfa_0p8>;
-+		vddrfa1p2-supply = <&vreg_pmu_rfa_1p2>;
-+		vddrfa1p8-supply = <&vreg_pmu_rfa_1p7>;
- 
- 		max-speed = <3200000>;
--
--		enable-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
--		swctrl-gpios = <&tlmm 132 GPIO_ACTIVE_HIGH>;
--
--		pinctrl-0 = <&bt_default>;
--		pinctrl-names = "default";
- 	};
- };
- 
-@@ -1761,4 +1827,11 @@ reset-pins {
- 			bias-disable;
- 		};
- 	};
-+
-+	wlan_en: wlan-en-state {
-+		pins = "gpio134";
-+		function = "gpio";
-+		drive-strength = <8>;
-+		bias-pull-down;
-+	};
- };
--- 
-2.30.2
+> ChenYu
+> 
+>> Cheers,
+>> Angelo
+>>
+>>> Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+>>> ---
+>>>    .../dts/mediatek/mt8186-corsola-voltorb.dtsi  | 19 ++++---------------
+>>>    1 file changed, 4 insertions(+), 15 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
+>>> index 52ec58128d56..fbcd97069df9 100644
+>>> --- a/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
+>>> +++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola-voltorb.dtsi
+>>> @@ -10,12 +10,6 @@
+>>>
+>>>    / {
+>>>        chassis-type = "laptop";
+>>> -
+>>> -     max98360a: max98360a {
+>>> -             compatible = "maxim,max98360a";
+>>> -             sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
+>>> -             #sound-dai-cells = <0>;
+>>> -     };
+>>>    };
+>>>
+>>>    &cpu6 {
+>>> @@ -59,19 +53,14 @@ &cluster1_opp_15 {
+>>>        opp-hz = /bits/ 64 <2200000000>;
+>>>    };
+>>>
+>>> -&rt1019p{
+>>> -     status = "disabled";
+>>> +&rt1019p {
+>>> +     compatible = "maxim,max98360a";
+>>> +     sdmode-gpios = <&pio 150 GPIO_ACTIVE_HIGH>;
+>>> +     /delete-property/ sdb-gpios;
+>>>    };
+>>>
+>>>    &sound {
+>>>        compatible = "mediatek,mt8186-mt6366-rt5682s-max98360-sound";
+>>> -     status = "okay";
+>>> -
+>>> -     spk-hdmi-playback-dai-link {
+>>> -             codec {
+>>> -                     sound-dai = <&it6505dptx>, <&max98360a>;
+>>> -             };
+>>> -     };
+>>>    };
+>>>
+>>>    &spmi {
+>>
 
 
