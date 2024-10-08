@@ -1,133 +1,143 @@
-Return-Path: <devicetree+bounces-108933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA31994533
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:18:56 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178B4994538
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:19:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D14F01C23CC0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:18:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35CEEB2390E
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7B81AFB3E;
-	Tue,  8 Oct 2024 10:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A77518C93D;
+	Tue,  8 Oct 2024 10:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c3lregHn"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KTKGWKIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF7B11AD401;
-	Tue,  8 Oct 2024 10:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8224716EB76
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 10:19:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728382725; cv=none; b=JmEI5y6ycNt7QfdysmSDraoQqPfuh5AyUoENS5Q5i6qa3jJTHdlpZJfK7/E9uuvIuWnlUQKhQypaJz9LNECRbrzd+PCbPSfTnrJFTElNS4Kp/1WxfreqJWZLitKsgeYEeMxg93lqjjjYDIM7RtvEarw1ahDzMiaAGhedhJZ0b54=
+	t=1728382773; cv=none; b=ZdPulfyepufzMipctml282w2yAGjb2ae3Cb4HuEAIIuSoDOcCh2369Er1jAZrNflSEnP6tg/25Wye6Jch955c2nlb1U3ONr0aPl4pwbC4W9aAFvmsWTbPI98qcwpiEBROHaLuWnuPs9YqZld29Llr+MTaO0hBdW6ai0nyXgAa9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728382725; c=relaxed/simple;
-	bh=u8xPnDu0qAYu6LejKWYoWWMdvK8gJRvYrhiJGpOdTLg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=USFZyqxg1F6EZa77haswD1NOVwk/7SuUDGa7v6kbWJS3ftJTVnZILotFexI+v6uSCGmCddeS5iJuuaJBY4jZnSqUV4A4U13MDerhWbGWcv8/F9t9KtjR8gJTleCO6lfWAqtnHTUJjnil4yWE7wwwdJQ9yDHVO+5s7O78Hux6HYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c3lregHn; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49896gcp004100;
-	Tue, 8 Oct 2024 10:18:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	sqpFdTY+6jzDWQR097kkAMWTTO8iAiSE8pceKsB4sbM=; b=c3lregHnCu6sgvl0
-	IlAwZ2V8iFuSl5HXydolufxefzYRLOfjIfHvl1Y8ayfsOci9k8Uhxumg/Ka+D3Ec
-	IARenIIyvDYbyAKcQUATpms1qh7bU1nLbmkwGDX/pKxa9VNbE0QHrq+xh7S28aaU
-	hYh8utWbhkjaF3hZfRHC5XhXnulwaDbLTJxwGLXBEV9VGxzTsvB9GOUkRh5DG0sE
-	QE3CNZCpwzjLKRmGmF3ef3IkPkmKVeHKgGbWvSLybR+zSheqe9ELwrk8T2cawejk
-	LdAJvWdM697LCAUWcNN77d8KHBh5YMiTyvGfwx7j3rPaZf8AhGnY8MVk2vmx8hWB
-	OoB8aQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndy9vd5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Oct 2024 10:18:21 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 498AIK0o006896
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 8 Oct 2024 10:18:20 GMT
-Received: from [10.50.47.90] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Oct 2024
- 03:18:13 -0700
-Message-ID: <5e8bac8a-8e6b-423c-8e13-b73db9a226fd@quicinc.com>
-Date: Tue, 8 Oct 2024 15:48:10 +0530
+	s=arc-20240116; t=1728382773; c=relaxed/simple;
+	bh=nAGZCflAMOzWY87QAmy+gjHCt6xgY2BaH9VKbulh8/o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=n/q28QQftAxX7/FnnDFWDUpRHdbvNHQamhXHL0ion2zG/leYVaxcIGUkcHieBI7tNXKll8l3CFGwDJbZjRQ7Sc0V/WaRkwHbZdlf08KME5+ARNLAFYKVcPPLY/HlNsZIlQtu0uCI/rJ5kYNDxr1b9Zrvp8JQoupqnbKlggge4Ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KTKGWKIt; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5398ec2f3c3so6820547e87.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 03:19:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728382770; x=1728987570; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TKvX1hYx9ajM3nXc0rIUifJtaNFZ8Y/Ptkap6z3Rx6k=;
+        b=KTKGWKIti/4EJUyRnU+nAFL2uVWTcbaFdRde4X1jXZ+smcSYY6CdCj19LUTml3S/UK
+         J3O6cd0SJAhAVyj6rAmx+tTnZr5VHq4zMPbEqAcshBgKrtvJsfdixCsDUc53Mhiai0mS
+         uT9+nxx0I/e5cV/lNRoHmr5deL639MA/OU5FI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728382770; x=1728987570;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TKvX1hYx9ajM3nXc0rIUifJtaNFZ8Y/Ptkap6z3Rx6k=;
+        b=T3EQiFZ63XAL/UObZcZiGvrjNqSGSFDY44K06KWZPuYHiiFOGfznqvOyBGjPJ9+Kiu
+         BwUyZvM65V1poma3Z5bJDypbp9JzbxUG5V5GBg8/59V2hBvpXGpE3Fwox7aR+xbNfopQ
+         y53v8tPTuGGneyACMy84So7XVVeeoPwHfYg5UcksgNRMbm8HvnH3/nxepnUmRCy1fYIb
+         UqH0R/9Cb2koS+DUzh/zIezMTh/oRu0pzIYEZG0xF3AQylkppJUeyFlgKObe3zs99F42
+         d3419DdsILAKw4PlS6n0CeaNDPzOhrEgvXqe449ZO+PTuFlUFmfi7Zfh2op9Ewb/Aum3
+         tmcw==
+X-Forwarded-Encrypted: i=1; AJvYcCUiJnlmGPS1Zv+4lNTNNk/ZvI+JLTmDF/PRjQC6zI5HhojSoVnHfAYDkL6DDwGjz1pANf3Z2S4SfKhe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrgzRQi9Ua0fEsgxolIkv/tB8zNTQUiv7FGig1njBBSvGaN7rQ
+	Ufu2WwwLYIC3r5IPoLUvRkkwVB7u3GZq0bTfX65EXqx/t4aTrO/PvfdTGDlVJrKjC3q5NYBXwBE
+	n8cweOsTlogWyD8vn2reRKJhylS+kiNF6Dszg
+X-Google-Smtp-Source: AGHT+IFJoapQyWXTBDWi7i6BA55pCB5dNb51Vflj21gDcWvKovhXowTlQiGaddCXCS59Hji0UirIv7xWQ1Sxn4CKUcU=
+X-Received: by 2002:a05:6512:1193:b0:536:a68e:86f0 with SMTP id
+ 2adb3069b0e04-539ab88c48dmr7579835e87.27.1728382769452; Tue, 08 Oct 2024
+ 03:19:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/7] clk: qcom: add Global Clock controller (GCC)
- driver for IPQ5424 SoC
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
-        <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <ulf.hansson@linaro.org>,
-        <linus.walleij@linaro.org>, <catalin.marinas@arm.com>,
-        <p.zabel@pengutronix.de>, <geert+renesas@glider.be>,
-        <dmitry.baryshkov@linaro.org>, <neil.armstrong@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC: <quic_varada@quicinc.com>
-References: <20241004102342.2414317-1-quic_srichara@quicinc.com>
- <20241004102342.2414317-5-quic_srichara@quicinc.com>
- <1ac5e0e5-06c1-4930-8c03-f465d6e07848@quicinc.com>
-Content-Language: en-US
-From: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-In-Reply-To: <1ac5e0e5-06c1-4930-8c03-f465d6e07848@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: R4sxhw8CqABc2bubWh1F1geSuX3Npj5I
-X-Proofpoint-ORIG-GUID: R4sxhw8CqABc2bubWh1F1geSuX3Npj5I
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=999 spamscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410080067
+References: <20241008082051.4002438-1-wenst@chromium.org> <eab4ef1e-f63f-4561-b429-6dc3d7485871@collabora.com>
+In-Reply-To: <eab4ef1e-f63f-4561-b429-6dc3d7485871@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Tue, 8 Oct 2024 18:19:18 +0800
+Message-ID: <CAGXv+5Emb5b5m8i3MCJXS3fRND04B89v9s1x7JNk4aNj6U7yoA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8173-elm-hana: Add vdd-supply to
+ second source trackpad
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+	linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Oct 8, 2024 at 4:47=E2=80=AFPM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 08/10/24 10:20, Chen-Yu Tsai ha scritto:
+> > The Hana device has a second source option trackpad, but it is missing
+> > its regulator supply. It only works because the regulator is marked as
+> > always-on.
+> >
+> > Add the regulator supply, and the required post-power-on delay.
+> >
+> > Fixes: 689b937bedde ("arm64: dts: mediatek: add mt8173 elm and hana boa=
+rd")
+> > Signed-off-by: Chen-Yu Tsai <wenst@chromium.org>
+> > ---
+> >   arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi | 6 ++++++
+> >   1 file changed, 6 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi b/arch/a=
+rm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> > index 8d1cbc92bce3..e03474702cad 100644
+> > --- a/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> > +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm-hana.dtsi
+> > @@ -49,6 +49,12 @@ trackpad2: trackpad@2c {
+> >               interrupts-extended =3D <&pio 117 IRQ_TYPE_LEVEL_LOW>;
+> >               reg =3D <0x2c>;
+> >               hid-descr-addr =3D <0x0020>;
+> > +             /*
+> > +              * The supply is always on. Adding the delay here
+> > +              * needlessly delays the readiness of the trackpad.
+>
+> I'd say, let's be nice in this comment and let's explain the whole situat=
+ion:
+>
+> The trackpad needs a post power on delay of 100ms but, at the time
+> of writing, the power supply for it on this board is set as always-on,
+> so we don't add that to avoid useless delays in the readiness of this dev=
+ice.
+>
+>
+> ...or....
+>
+> The trackpad needs a post power on delay of 100ms but the power supply fo=
+r
+> it on this board is always-on (and will always be), so we don't add delay=
+s
+> to avoid impacting on the time required for readiness of this device.
+>
+> > +              */
+> > +             /* post-power-on-delay-ms =3D <100>; */
+>
+> Then you can remove this commented out property ;-)
+>
+> P.S.: Just to be clear, what I dislike is to see a property that is comme=
+nted out.
 
-> 
-> <snip>
-> 
->> +
->> +static const struct freq_tbl ftbl_gcc_qupv3_uart0_clk_src[] = {
->> +    F(960000, P_XO, 10, 2, 5),
->> +    F(4800000, P_XO, 5, 0, 0),
->> +    F(9600000, P_XO, 2, 4, 5),
->> +    F(16000000, P_GPLL0_OUT_MAIN, 10, 1, 5),
->> +    F(24000000, P_XO, 1, 0, 0),
->> +    F(25000000, P_GPLL0_OUT_MAIN, 16, 1, 2),
->> +    F(50000000, P_GPLL0_OUT_MAIN, 16, 0, 0),
->> +    F(64000000, P_GPLL0_OUT_MAIN, 12.5, 0, 0),
->> +    { }
->> +};
->> +
-> 
-> There are few more frequencies got added to this table. Can we 
-> incorporate that as well?
-> 
+Got it. Will rewrite. :D
 
-ok, yeah, since these patches are already reviewed, will send the
-additional updates here and also for dts etc in a separate series.
-
-Regards,
-  Sricharan
-
+ChenYu
 
