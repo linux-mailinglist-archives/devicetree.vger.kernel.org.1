@@ -1,113 +1,86 @@
-Return-Path: <devicetree+bounces-108855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A60949941A1
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:29:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D559941F2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:33:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4233328240C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:29:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE3041F2B506
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:33:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75461E32B8;
-	Tue,  8 Oct 2024 07:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AF16210182;
+	Tue,  8 Oct 2024 07:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="V1Q0lJ7L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GPUkkBDt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 027DBB676;
-	Tue,  8 Oct 2024 07:54:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1363D1E47CD;
+	Tue,  8 Oct 2024 07:56:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728374096; cv=none; b=cqYXvTu3Bws5FFrrineWmOFvVjbKbSnpTIEJZwwJqWOy4nKF4z8V10yMfvg+RYdQfafaQ8NgQAjvkEwY0KVYmOU3L8Tex1vspyZXWg3prIFa7AFZiouECbJT2QOxD403453ervpU8UhpYwanwqHsQyF4gXDlrBJkOZbtTmJRSlA=
+	t=1728374189; cv=none; b=ftcKs4hww8KrzKh+ksHWzyBwl99AeAx4ZoVMX0DTuW2QXTfxWf1iucSFg5kc+Ob/6F/il6GIuTtjR4PdzUOLsLx2Wh3DL+yImDme6qSokHMwuoFGH0hhyM4oh4IAggl1YrzxRQ+7Osetj6r9gu3tSI8y6QGevNDf04Wfk61S2TA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728374096; c=relaxed/simple;
-	bh=VrF1q7zWvOdIrui1K846OMV4YcYqHE1YinVSqUMGPw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=MxAGti2d8QR+iniUJgWdK9+OLd4sjCTXXWBe7nIZQS3eFo9THhS1B70wO/Dt8Gno29DisEfO1PUMo+03IuIqmV1N9Kq7kAFZBqSgxNqhPk7+15g0ZXPXiez54YFiUncf0DXI2VHWsKDq5J7e4zttCTrrxK/na2e7pEFzihAbnYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=V1Q0lJ7L; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 966554bc854a11ef8b96093e013ec31c-20241008
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=VsFPi8az/OyA/IN+aGhSiXgEaCG9NxZV5cOQ19PcFbA=;
-	b=V1Q0lJ7Lbf7xdTkBN5EccHZnIjKIGksvmEO+szXZI7xE51kPyPXQvZYdwHFQiUSl4jdip1L2pGGxnRdMI7LKBzy/DOIvcci6RZIXRDueM6cSh2lZx5kKlBZ8mFvVYSFX6gYWUnPwAQXso5MKvSlJvH4M/ZDZow6KnBWgjQijruo=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:dc5fc39d-c217-4f5a-819a-2c9ef00fe150,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:3c58ed40-8751-41b2-98dd-475503d45150,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 966554bc854a11ef8b96093e013ec31c-20241008
-Received: from mtkmbs13n1.mediatek.inc [(172.21.101.193)] by mailgw02.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1997441089; Tue, 08 Oct 2024 15:54:46 +0800
-Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
- mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 8 Oct 2024 15:54:45 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs11n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Tue, 8 Oct 2024 15:54:45 +0800
-Message-ID: <b1e37466-bfe8-cf26-fafa-e8556c15788b@mediatek.com>
-Date: Tue, 8 Oct 2024 15:54:43 +0800
+	s=arc-20240116; t=1728374189; c=relaxed/simple;
+	bh=I+2mFG8Sou6VEBJV1ddZb3liFfbpSk2sOJl65r7dYjM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rHsgqvot9klnEZHW42ZMSZoNA2HmoUKEQ2lXfgip2qZeLhwTNMzR7n0q9zo8ophudAZsgwSah2bCYlOuKo5N9CHf51VjRnbzPwN2mpEm5/Ada9JsEfpFtJMC2JFXXLGPu5UNcCeBH+kCQAGu5Zs1ZzSMrtWPrwRqZZRcJW3SPM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GPUkkBDt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE3BFC4CECF;
+	Tue,  8 Oct 2024 07:56:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728374188;
+	bh=I+2mFG8Sou6VEBJV1ddZb3liFfbpSk2sOJl65r7dYjM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GPUkkBDtq66j8K5qIsubT+MBM+4C/F8qzb6JlsbwVuuIDThyPr7l/HJGFSrGXKqp4
+	 Q/Mw2yxlrcLTyJ5ZlGEYn9Pido0TxQTAycNDuycfMTvEYyRWVJcpOi/7Kr4uhRhHpP
+	 rGkQbmiZqMiycgnTBZv2YIdAbBiq/18C6PLI8meV7I19NzEBBciY+3VaoaBHrmVZ2R
+	 mF05V7B9NVPa/4inQRZVh839hGqHFAVur72VRqz1Z5Xj36/8OB/u10zTok7WAVxLBy
+	 NjHcHangqXCR0XCSt7HAdJ3zzOv14kqW6KKinrC5Iw7P9OzjZ+OU3WgA7whPlzD4JV
+	 mxgcrOJyuqB0g==
+Date: Tue, 8 Oct 2024 09:56:24 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+	Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rishi Gupta <gupt21@gmail.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] dt-bindings: iio: light: veml6030: add veml7700
+Message-ID: <4w7vnp56jvo67crvpxufb5nifjlobyohxgpg4kkpzzj553s5rb@z25g7rwcn3av>
+References: <20241007-veml7700-v1-0-fb85dd839d63@gmail.com>
+ <20241007-veml7700-v1-2-fb85dd839d63@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH] dt-bindings: input: mediatek,pmic-keys: Add compatible
- for MT6359 keys
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	<dmitry.torokhov@gmail.com>, Sen Chu <sen.chu@mediatek.com>
-CC: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<matthias.bgg@gmail.com>, <chen.zhong@mediatek.com>,
-	<linux-input@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <kernel@collabora.com>, Pablo Sun
-	<pablo.sun@mediatek.com>, Bear Wang <bear.wang@mediatek.com>
-References: <20241008074137.20269-1-angelogioacchino.delregno@collabora.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <20241008074137.20269-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241007-veml7700-v1-2-fb85dd839d63@gmail.com>
 
-On 10/8/24 15:41, AngeloGioacchino Del Regno wrote:
-> Add a compatible for the keys found on the MT6359 PMIC.
+On Mon, Oct 07, 2024 at 10:36:37PM +0200, Javier Carrasco wrote:
+> The veml7700 contains the same chip as the veml6030 in a different
+> package with no interrupt line and no pin to select the I2C address,
+> which makes it suitable to be supported by the same bindings.
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
 > ---
->   Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml | 1 +
->   1 file changed, 1 insertion(+)
+>  .../devicetree/bindings/iio/light/vishay,veml6030.yaml   | 16 +++++++++++++++-
+>  1 file changed, 15 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-> index 70567d92c746..bba55a81e6cc 100644
-> --- a/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-> +++ b/Documentation/devicetree/bindings/input/mediatek,pmic-keys.yaml
-> @@ -28,6 +28,7 @@ properties:
->         - mediatek,mt6331-keys
->         - mediatek,mt6357-keys
->         - mediatek,mt6358-keys
-> +      - mediatek,mt6359-keys
->         - mediatek,mt6397-keys
->   
->     power-off-time-sec: true
+> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml b/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
+> index 6218273b0e86..53b55575efd3 100644
+> --- a/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/vishay,veml6030.yaml
 
-Reviewed-by: Macpaul Lin <macpaul.lin@mediatek.com>
+There is no such file in next.
 
-Thanks!
-Macpaul Lin
+Best regards,
+Krzysztof
+
 
