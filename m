@@ -1,102 +1,214 @@
-Return-Path: <devicetree+bounces-108946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108947-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19CD994595
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:40:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 229D69945C3
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:47:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0E428317E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:40:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A6A791F25325
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20F31C2302;
-	Tue,  8 Oct 2024 10:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F30411CCB35;
+	Tue,  8 Oct 2024 10:47:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4oSGpxX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DqiSeIi5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 991B91779B1;
-	Tue,  8 Oct 2024 10:40:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC9951C3F27
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 10:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728384032; cv=none; b=oGJrajKvnA6Ho2JyD41yAAOn909bA37Li0cc0Za0Cs397C/lPJrbsPWjFb/hq3pJ7Ys/z/wkv7BtrY6o1gtSpCln9KPVoBU95Yt0ALdVEPzQq8C+52EH7fpmSvJVGmlqF+sGcGPLZK0wzelkwSUizTj5BT3RQQbTBgzHL9+U+G4=
+	t=1728384425; cv=none; b=uAXwc07hQadxM0nlmeR1NpThnehweHfeVRmrAYBDuSalQqoJX34uwODXgziasop8kaxPO7uNkFf4nMOGbcaD5jmQ5Hrj+wisbnYR8bzGR9SRWUuUtZ8QE5kgHilO0POjze2GAvPkDgrVXI2Lz6YoDy5VKkcWkD0xj6KQCZeZKgM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728384032; c=relaxed/simple;
-	bh=A0YhKsiXP2Xt18H5UHnW7+vMopAENwLVs835p9iWjjE=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=NPSa9u9DeMNqaGNJnCNsUVUzP9eVPjDuIAih8sV5O/Dbyr3ZNJExRnOowMJqbPGDrI28ozC1cGuDJgVmZEuYOJorLtNf3/6nGwlb72Z69t3clWq4LojxdEevVlNks4YZ2U2/3wlGZq4CUIYLPDYfan5xr2ZOttDWmqMiUA4wGCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4oSGpxX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21D6AC4CEC7;
-	Tue,  8 Oct 2024 10:40:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728384032;
-	bh=A0YhKsiXP2Xt18H5UHnW7+vMopAENwLVs835p9iWjjE=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=R4oSGpxXrm4k8oHsZEaPcGJ6huOlT3dJbsCtUHoIXhqTjr51iovBmkHz18fcmFBjJ
-	 5OvMzRAmRDz8a4WCZTfeqYKnrSevIB1DpgV80YkTY4v5W6LyDyu272OqC7m3G/nZ5z
-	 TxLPAi1HKTR9a2GhAXk+mdIcrDIFx0uMKr4YGAWYtaw38gYkFIOHo8/7c2qvaSyFwY
-	 UglkBV1lYd5u83fTEItQ8K+U70pMJFl+8+x4NRZuNwnPEglOoHmrtB2maHtd9rC5UL
-	 b5WD/ihkrLqHiKL+gGWBhpEeYdJenVAnh/7NshRPvaC42Dqvwb1Hd+E4q0Q6WoaaCN
-	 KhNqDvE9dE8gA==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id 728F83810938;
-	Tue,  8 Oct 2024 10:40:37 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1728384425; c=relaxed/simple;
+	bh=BTK1twW5R9PAw75WIcXBsshF/UQ2BRp7G3EWibEwO6E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dt6bu2P478yryf/NV6e7DjJPW6gSSWHN7zFy+zwSp1HidSl7PpvCuSMoP2qGuzVCXXo7do4Ww+2ZgExg83ABlWH3laQe2TD6TN+PNhmzuWL0njN6bmK0wkm3pRnd8I6EEsgO7A/NIZun1ymWr0oOjQB0+5M5g2MZM5Pwugvd2dA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DqiSeIi5; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6e2d2447181so28474857b3.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 03:47:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728384422; x=1728989222; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TD+ghPU2ZLooa9x0HWTILmd0XsXwmDoPDULmRLdUyoc=;
+        b=DqiSeIi5Qkc7IQ0IH8U4uyl5Bcry9anKZmcRthCIYHp4n8uWVW8qrR3XGnrTW+Ktwu
+         uyNhWunn4TEwu9Mo6ybFqQCX5x04fv8ZozckFrAT1X9YhBGbdHxv/FYyYDInEzZ/5gF4
+         w5mQH+nZ+ggPexLKlO3gcQ0+Kd7ZJ4wL5KeDvhaP10VDF1FKQ3sJq0/kREQatlrZXpk0
+         2dYdWKKgnPrjJK0DTJ54dJw9RQvx3693gtZGYyhBs+m9GfCuL5LGmLQJ8YkEVm6SaCHp
+         xvu1Atp8IHgU/BiYKFh1MVj0ioLsPqB9rXtq64sQ5BlsR3LTAcoJqLgHVHF931V6HvgF
+         64fw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728384422; x=1728989222;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TD+ghPU2ZLooa9x0HWTILmd0XsXwmDoPDULmRLdUyoc=;
+        b=ujriOxsgqkXJFtzIPQyAGBClUKQRJj5lS2YrVWCQESWtosoMR1kqFy4vafMUi3hEOx
+         8VInKiumKs/yfXzacQf1CwBDMjA85+gCalSDmRcOKaNvyYnOxKMXNZ7djhMsPmO1fudR
+         imJ16yDZK+jNtPxPEP5uNFTJz9gqLEArslGX0iaHCDiAsFdFJyHQsldRX17N2pqRNMiw
+         JvP5tW85DgNO7WL0AWX4hwys9CtKa2BRR5d1nyJ6UhsBClx5TvoZqBlcBrVTcMcGUdpZ
+         7WaTVvjCtpFeKg4mqwgwgZLL27rgmlZWyLhrsuc1g8h+seGmEphfvK6ClUUqXz00qqww
+         Lb8w==
+X-Forwarded-Encrypted: i=1; AJvYcCUS0US88NjKGKDpSsd0l15eam+bV9pFtAOEG90QdLze+DqISzWclqYfS/Ivjh0PzGQyNS5z/iAo/7BU@vger.kernel.org
+X-Gm-Message-State: AOJu0YwpWKX+xn9M6071g/Jt5e+q8gTyhKPakrEuIEbxsEbpW5TRpFt7
+	4f7S98Z/xO7cpfD35ApjS4nNRT5cJ7jsdVoLxxRNx3VMnk3X/6+/OmX8DyVyKgcU+xDRhF4O6uP
+	pguRjJWzOfMoMNJIqG39uQoWFe5jNK91u1ow9QA==
+X-Google-Smtp-Source: AGHT+IECP10UjEJdYbc48ykgN+rdUK38iSJ8CKS1U/S3BZgrH0DuUNb4uJosYAr3Ei6C8lCvYX9wCfuCS4n0ARKeuYQ=
+X-Received: by 2002:a05:690c:ec1:b0:686:1240:621a with SMTP id
+ 00721157ae682-6e2c728a26emr122806547b3.31.1728384421737; Tue, 08 Oct 2024
+ 03:47:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v4 0/3] net: fec: add PPS channel configuration
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <172838403627.487135.12470699672942876836.git-patchwork-notify@kernel.org>
-Date: Tue, 08 Oct 2024 10:40:36 +0000
-References: <20241004152419.79465-1-francesco@dolcini.it>
-In-Reply-To: <20241004152419.79465-1-francesco@dolcini.it>
-To: Francesco Dolcini <francesco@dolcini.it>
-Cc: wei.fang@nxp.com, shenwei.wang@nxp.com, xiaoning.wang@nxp.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, richardcochran@gmail.com, linux-imx@nxp.com,
- francesco.dolcini@toradex.com, imx@lists.linux.dev, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
+References: <20241004080110.4150476-1-quic_kotarake@quicinc.com>
+ <jid5coqe4tpsafbi2haem6ye4vrpwyymkepduxkporfxzdi6cx@bfbodoxoq67l> <b900d558-8ab0-436f-87bd-7a3d83e3dea0@quicinc.com>
+In-Reply-To: <b900d558-8ab0-436f-87bd-7a3d83e3dea0@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Tue, 8 Oct 2024 13:46:44 +0300
+Message-ID: <CAA8EJpr9pOc4i983ZoiwffTVNyJzH=6ka=m-k=BAT92d3K-OXA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcm6490: Allow UFS regulators load/mode setting
+To: Rakesh Kota <quic_kotarake@quicinc.com>
+Cc: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	quic_kamalw@quicinc.com, quic_jprakash@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello:
+On Tue, 8 Oct 2024 at 12:39, Rakesh Kota <quic_kotarake@quicinc.com> wrote:
+>
+>
+>
+> On 10/7/2024 1:37 AM, Dmitry Baryshkov wrote:
+> > On Fri, Oct 04, 2024 at 01:31:10PM GMT, Rakesh Kota wrote:
+> >> The UFS driver expects to be able to set load (and by extension, mode)
+> >> on its supply regulators. Add the necessary properties to make that
+> >> possible.
+> >>
+> >> While at it, UFS rails have different voltage requirement for UFS2.x
+> >> v/s UFS3.x. Bootloader sets the proper voltage based on UFS type.
+> >> There can be case where the voltage set by bootloader is overridden
+> >> by HLOS client.
+> >>
+> >> To prevent above issue, add change to remove voltage voting support
+> >> for dedicated UFS rails.
+> >
+> > add change to remove smth doesn't sound correct to me.
+> > Please don't depend on the bootloader and describe hardware > configura=
+tion. If there can be two types of IDP boards and you can not
+> > identify the voltage via other means, please create something like
+> > qcm6490-idp-ufs3.dts. Please add proper Fixes tags.
+> > Last, but not least, as Bjorn wrote, please split into two patches.
+> >
+> sure, i will split the change into two.
+>
+> Since we can=E2=80=99t differentiate IDP boards based on UFS versions whi=
+le
+> loading the DT and we have only single board ID for the IDP's, it=E2=80=
+=99s not
+> possible to create separate UFS-based DT files like qcm6490-idp-ufs3.dts
+> and ufs2.dtsi... etc.
 
-This series was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
+It is definitely possible to create a second DT file. And upstream
+doesn't have board IDs (not to mention that nothing stops you from
+using another board ID for IDP with a different UFS revision. Qualcomm
+owns the board ID registry.)
 
-On Fri,  4 Oct 2024 17:24:16 +0200 you wrote:
-> From: Francesco Dolcini <francesco.dolcini@toradex.com>
-> 
-> Make the FEC Ethernet PPS channel configurable from device tree.
-> 
-> v3: https://lore.kernel.org/all/20240809094804.391441-1-francesco@dolcini.it/
-> v2: https://lore.kernel.org/all/20240809091844.387824-1-francesco@dolcini.it/
-> v1: https://lore.kernel.org/all/20240807144349.297342-1-francesco@dolcini.it/
-> 
-> [...]
+>
+> And also UFS driver does not vote for voltage on UFS rails & they just
+> vote on load only.
+> Hence to support both UFS 2.x and 3.x, we need to remove the voltage
+> min/max voting. if add the min and max voltages in DT, then those
+> initial voltage set by bootloader is overridden by regulator
+> framework with min voltage specified in DT.
 
-Here is the summary with links:
-  - [net-next,v4,1/3] dt-bindings: net: fec: add pps channel property
-    https://git.kernel.org/netdev/net-next/c/1aa772be0444
-  - [net-next,v4,2/3] net: fec: refactor PPS channel configuration
-    https://git.kernel.org/netdev/net-next/c/bf8ca67e2167
-  - [net-next,v4,3/3] net: fec: make PPS channel configurable
-    https://git.kernel.org/netdev/net-next/c/566c2d83887f
+Yes, this is correct. Regulator framework should know min and max
+voltages. Once the voltage is in the specified range, the UFS driver
+doesn't have to cast a particular vote on it.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+So, dropping the regulator min/max is still NAKed.
+
+>
+> Note: Bootloader have capability to detect the UFS version (where as
+> HLOS does not have that capability)
+>
+> Thank you for quick review!!
+> >>
+> >> Signed-off-by: Rakesh Kota <quic_kotarake@quicinc.com>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 12 ++++++++----
+> >>   1 file changed, 8 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boo=
+t/dts/qcom/qcm6490-idp.dts
+> >> index 84c45419cb8d..8a4df9c2a946 100644
+> >> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+> >> @@ -258,13 +258,15 @@ vreg_l6b_1p2: ldo6 {
+> >>                      regulator-name =3D "vreg_l6b_1p2";
+> >>                      regulator-min-microvolt =3D <1140000>;
+> >>                      regulator-max-microvolt =3D <1260000>;
+> >> +                    regulator-allow-set-load;
+> >> +                    regulator-allowed-modes =3D <RPMH_REGULATOR_MODE_=
+LPM RPMH_REGULATOR_MODE_HPM>;
+> >>                      regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
+PM>;
+> >>              };
+> >>
+> >>              vreg_l7b_2p952: ldo7 {
+> >>                      regulator-name =3D "vreg_l7b_2p952";
+> >> -                    regulator-min-microvolt =3D <2400000>;
+> >> -                    regulator-max-microvolt =3D <3544000>;
+> >> +                    regulator-allow-set-load;
+> >> +                    regulator-allowed-modes =3D <RPMH_REGULATOR_MODE_=
+LPM RPMH_REGULATOR_MODE_HPM>;
+> >>                      regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
+PM>;
+> >>              };
+> >>
+> >> @@ -277,8 +279,8 @@ vreg_l8b_0p904: ldo8 {
+> >>
+> >>              vreg_l9b_1p2: ldo9 {
+> >>                      regulator-name =3D "vreg_l9b_1p2";
+> >> -                    regulator-min-microvolt =3D <1200000>;
+> >> -                    regulator-max-microvolt =3D <1304000>;
+> >> +                    regulator-allow-set-load;
+> >> +                    regulator-allowed-modes =3D <RPMH_REGULATOR_MODE_=
+LPM RPMH_REGULATOR_MODE_HPM>;
+> >>                      regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
+PM>;
+> >>              };
+> >>
+> >> @@ -467,6 +469,8 @@ vreg_l10c_0p88: ldo10 {
+> >>                      regulator-name =3D "vreg_l10c_0p88";
+> >>                      regulator-min-microvolt =3D <720000>;
+> >>                      regulator-max-microvolt =3D <1050000>;
+> >> +                    regulator-allow-set-load;
+> >> +                    regulator-allowed-modes =3D <RPMH_REGULATOR_MODE_=
+LPM RPMH_REGULATOR_MODE_HPM>;
+> >>                      regulator-initial-mode =3D <RPMH_REGULATOR_MODE_H=
+PM>;
+> >>              };
+> >>
+> >> --
+> >> 2.34.1
+> >>
+> >
 
 
+
+--=20
+With best wishes
+Dmitry
 
