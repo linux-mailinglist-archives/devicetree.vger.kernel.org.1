@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-108995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35AAC994790
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:46:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC6DD9947BC
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3B57285688
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:45:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC0262830C0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 793A51D2B28;
-	Tue,  8 Oct 2024 11:45:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00A81DE2D9;
+	Tue,  8 Oct 2024 11:50:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i06OnlFX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtjM9NNi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98A7B1C2DCB
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 11:45:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D891DC730
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 11:50:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728387953; cv=none; b=h1c8VaVauQe/MxI2d1kZto+agWIGGYTJmkqU5C6uG0Fx1lbYvlEZCGqIkiVCOaYvgoeGLsPJVsBymywk0Wamqlj5QOXMPkMFULMl4CY+oA8qfYudKRX02XL+/5codfhagTat56jqR29J8XhsaqnMSOS9YVXml1NAsIh0WazdodU=
+	t=1728388232; cv=none; b=JoCQC+UewS5xRddwz1vfopMhShdqAsRc/bdrZbPM4EcYu5DFw8oLLVoTVWVax+HWn3/yTCtihGX2KlICpt5QmreMipRg+Td4/93Q1KRPI3u+PtiX3ruo/rrklh4g5+pnAKyIevuN8BJCx4XO5+aBeu+U10WvA7OZ7V0OyKUcbh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728387953; c=relaxed/simple;
-	bh=8ZVnT2OtTeMMxV0QGDXs/7XsZVZZtrtfOABGbww2SzY=;
+	s=arc-20240116; t=1728388232; c=relaxed/simple;
+	bh=AvIf/cAXb7gv7K7QltyPmNlWcZlQEGDKitfw4yfs74I=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U8pyRXfzPKf9F4uzXwkKWfro+wrZW5NwIYhXBa5ain82lQazHFHwLfMjLhbz5Sf3uxNR44ErVbT6fD9ZxuuhzONkMvSv+eoV34Qoa5pmmB2Du7S8k7q4omgueYftRsxz/9/s9mgw4gIeLWyjjJKA9qDKnTBqpDE5k0GbG9GShZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i06OnlFX; arc=none smtp.client-ip=209.85.128.53
+	 In-Reply-To:Content-Type; b=QJ9McPiYHzaVDZYvCNFWYVMxp3fjuL5kCAUx7tEgDc3uemLri4EffmK3PaB6pPARDWyi5LYm/H/FkY1mTyQNL/07lHNYlQTPKS8RLvQvA74eUH4m0jfkbBtlb7ph2rvpRfpMt5QzzPea77dnms8oo7nPuPbDaViMErWs8jM6RGc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JtjM9NNi; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-42ee66c2c49so8847235e9.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 04:45:51 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5398ec2f3c3so6942150e87.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 04:50:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728387950; x=1728992750; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=sCj4i8C7iMTOvXgnuLFLg4vM6jQkCpieVVidXSxulNA=;
-        b=i06OnlFX9zjOhWhdaZoHJ2hHXiJ7XUmoFDAQMHzp1dz4cfg0FFCK55HHo8ep5iBzS3
-         cJhQWy4/7njQVMVTwGIRYLBx27/ECzslaQUmicn9K6modmsj7keBEY2kxSo+pcv7dQK4
-         NgKWiEo+aVg9yKj93jXQnWMpNRn+zcZjuPhxpTK7Qhk3p9OHXCq9qhTFiqXcRm/3NyzT
-         ctVe/z55cU9sfJ3bgJpKmzjfv+vqlzCymG8iLQKfIbgNjx/1RU/t44koN05vhKhVYzwZ
-         vk2zfAZOdLdeRZ0eQkbLoByaW/BMPX9a95axtcX2FyJxGJ7GX+FMM4xh6ZS2YDWvNIJl
-         jZ2w==
+        d=linaro.org; s=google; t=1728388229; x=1728993029; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=orTo5qvkhHaghQfSFG2C3pKNVKQQ230FuuT1v/qSo3k=;
+        b=JtjM9NNiYxQkGzA/S/xxuo9t6Q+yGrwzd6y85xpZ94kL5jqFzp240qcIFjiAU0J+u8
+         SGd5OFo2LaxJQVdTauGk1PPRNMvxy7623p7snz2/hMKB2T45DRZ8QasQmd4xveQpx6u1
+         7JaN5I3yDlJBr1+aY6xT+4wcrgDQAYpOYAGjOzaGj6HzRnCkLn+cso2eOpGhmOrkH1wW
+         Ag4h1j2fuJNlF7fgmWnNZfrnFuN/GyRYj0OCNeSqHHaXLbpidXH4vgxatBbKrfvCEaKd
+         Xg0G7shLWDyCzTRaKMwXq1QiTaljPHnLVCQsWfC0RYiI9TXRJG5Yny2cqd9QhZ1K9B4A
+         6JEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728387950; x=1728992750;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sCj4i8C7iMTOvXgnuLFLg4vM6jQkCpieVVidXSxulNA=;
-        b=BF4EKPPBUlGhQbVGwfPvrcPyMpHwivtsyF+Ye4s/lmXV1iMiGVnQuLBpGB6QGMsv5H
-         M+63QmJb2GXy8B2TC+iM2vmlcRtUI1hPeUmm/bArY+WsSpSEwXm0I6qXh4/YCPhvTVlH
-         1MJ8q7wr02XyHZWUjedvgjWcrQ1r9sKpBobRwfXWahpaUeJyYXaeUmo4pXHnEPJNPP62
-         i75HfjUI4vOcRa3kirYsqAKBoG341TgSr06MJDn37zdiZ5nPkKQHfcq2B4iFLpxvpXgz
-         4LYJZ8GaCR1E+SC8yLU0KwgwBF+rLQEHjfJUUnUiP8XeZ/2lWZHLnrkdJIXZNO6MrNuy
-         s5PQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUk7XjvVPGXLOiT5YLJJXL+se0yhMnGM5p/dKQIZ/DuePvlDeTkr5NpZHhAcbhNmh30aRLJyOh7D0C2@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywfa5Aah33CxFkPoeaOHlNs+sw9CkGIAfYON2/10vhKnu5dH+UM
-	jiRySiYxfHjhHEYTCbO0hggtQbnCmy8FumzmB4S8mtrlS0PYnh/Fl6trINjt5D8=
-X-Google-Smtp-Source: AGHT+IFMnayJdfokunrqKjegiRIm6QbX4he6fWvJUr1QOewr3vPc4S1Y794Rn2J2gKLHpdPM8B35QA==
-X-Received: by 2002:a5d:64e7:0:b0:37a:3a34:a680 with SMTP id ffacd0b85a97d-37d0e4e8623mr4334784f8f.0.1728387949791;
-        Tue, 08 Oct 2024 04:45:49 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1695e8b6sm7997580f8f.71.2024.10.08.04.45.48
+        d=1e100.net; s=20230601; t=1728388229; x=1728993029;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=orTo5qvkhHaghQfSFG2C3pKNVKQQ230FuuT1v/qSo3k=;
+        b=JTBedQ+Nl/TNaNrR2RGyk3ZzzhwpjnmKobnF3avdyv427cKeIzKLwRDv8vPLGCw+8L
+         C/iL1Sl+DQK+zggPktAx35NXHLeGhIUEOfeZhEMIrJ/a/2E6+R/7Hjbf5SjGC2Y/L2GW
+         7iWetA30zdsyKun0xyEdxK55aBhZYiMXRH/6+Ddl24Rx7xmHZ+yf+VSvxYGD+qjp2giQ
+         /NHNKH6FVcCOPvW5moSG3ONRlyigkbjfS8I9O0McPLb/R8Zk/TjGkf2PW1F53q6Z5eIB
+         Fkh2tM6YkhnVWTXVQN6D3lrv21c6DkU0WQ6eRYoyTJyobua2IhdsDRiHe8Mlk+0y+9lu
+         1xsg==
+X-Forwarded-Encrypted: i=1; AJvYcCXNI/9QB6Zp/whmEVuyEVZyFcCAl9Ow9pDpgpscceV9M8ssWOefE0hxRqRFhpg+UIUy+zMbJHIjqJ+6@vger.kernel.org
+X-Gm-Message-State: AOJu0YzVSrQOvNpwQAvIf8+8+B4Kixc/yYqsSzrbvROFTX70Yoxxq3cS
+	95X1MJ/Vd4f9+wACwyZOntCv7SxYOWGqnGjlQ6Dc7sKiJ5nlTT4DnHvjgjs7gHk=
+X-Google-Smtp-Source: AGHT+IFmYoMJxA79DffYEVCVfEsjDHlDmeVIQITg9i1+ZFlfwyf0+DWMFtDh0XjYziiaQGCHLlLUvw==
+X-Received: by 2002:a05:6512:2810:b0:533:43e2:6ac4 with SMTP id 2adb3069b0e04-539ab9f0ccdmr6848774e87.49.1728388229117;
+        Tue, 08 Oct 2024 04:50:29 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9937615e85sm476763566b.175.2024.10.08.04.50.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 04:45:49 -0700 (PDT)
-Message-ID: <5ea36051-1e1b-44ca-b5ef-d6305079201b@linaro.org>
-Date: Tue, 8 Oct 2024 13:45:47 +0200
+        Tue, 08 Oct 2024 04:50:28 -0700 (PDT)
+Message-ID: <27f39cda-932c-4b79-84d4-be78d266ebdf@linaro.org>
+Date: Tue, 8 Oct 2024 12:50:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -80,9 +79,9 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 1/6] dt-bindings: media: qcom,sc8280xp-camss: Fix
  interrupt types
 To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
  Bjorn Andersson <andersson@kernel.org>
 Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
  Konrad Dybcio <konrad.dybcio@linaro.org>,
  Mauro Carvalho Chehab <mchehab@kernel.org>,
  Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
@@ -95,169 +94,32 @@ References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
  <3f87e855-8779-4df3-8f26-e3d2b611d3e9@linaro.org>
  <313667a6-afcd-44cb-a6f6-0d550e8f68a0@linaro.org>
  <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 In-Reply-To: <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 08/10/2024 13:37, Vladimir Zapolskiy wrote:
-> Hi Krzysztof.
-> 
-> On 10/8/24 14:15, Krzysztof Kozlowski wrote:
->> On 08/10/2024 12:02, Vladimir Zapolskiy wrote:
->>> Hi Bjorn,
->>>
->>> On 10/6/24 05:36, Bjorn Andersson wrote:
->>>> On Mon, Sep 23, 2024 at 10:28:22AM GMT, Vladimir Zapolskiy wrote:
->>>>> The expected type of all CAMSS interrupts is edge rising, fix it in
->>>>> the documented example from CAMSS device tree bindings for sc8280xp.
->>>>>
->>>>
->>>> Who/what expects them to be RISING?
->>>
->>> I've checked CAMSS device tree bindings in a number of downstream kernels,
->>> all of them describe interrupt types as edge rising.
->>>
->>> $ grep -Hn IRQF_TRIGGER drivers/media/platform/qcom/camss/*
->>> drivers/media/platform/qcom/camss/camss-csid.c:619:			       IRQF_TRIGGER_RISING | IRQF_NO_AUTOEN,
->>> drivers/media/platform/qcom/camss/camss-csiphy.c:605:			       IRQF_TRIGGER_RISING | IRQF_NO_AUTOEN,
->>> drivers/media/platform/qcom/camss/camss-ispif.c:1164:			       IRQF_TRIGGER_RISING, ispif->irq_name, ispif);
->>> drivers/media/platform/qcom/camss/camss-ispif.c:1168:			       IRQF_TRIGGER_RISING, ispif->irq_name, ispif);
->>> drivers/media/platform/qcom/camss/camss-vfe.c:1327:			       IRQF_TRIGGER_RISING, vfe->irq_name, vfe);
->>
->> Downstream has a lot of bad code, so I am not sure how good argument
->> this is.
->>
->> I acked the patch because I assumed you *checked in hardware*.
->>
->>>
->>>   From runtime point of view it's more important to get re-probed camss
->>> driver, see an absolutely similar and previously discussed case (in the
->>> cover letter):
->>>
->>> https://lore.kernel.org/lkml/20220530080842.37024-4-manivannan.sadhasivam@linaro.org/
->>>
->>> Now in runtime I get this error, it's easy to check by unbinding/binding any
->>> camss device:
->>>
->>> irq: type mismatch, failed to map hwirq-509 for interrupt-controller@17a00000!
->>>
->>> Basically camss devices can not be bound on the second time on the
->>> number of platforms touched by this changeset.
->>
->> This is solveable different way and I do not understand this rationale.
->> The driver should not request trigger type but use what DTS is
->> providing, unless of course only one valid trigger is possible.
-> 
-> Right at the moment the driver uses rising edge type of interrupts, and
-> it works properly.
-> 
->> But so
->> far you did not provide any arguments for this. Downstream crappy code?
-> 
-> Downstream code works, that's the argument to support the change.
-
-That is not acceptable argument. If downstream has a bug, but somehow
-works, you will implement the same bug upstream?
-
-Downstream is well known of shortcuts, incomplete solutions and crappy
-code, which passes some tests but might not be really correct.
-
-I understand that downstream can be a supportive case, but not for level
-of interrupts! People, not only downstream but it's even worse there, do
-not see the difference between level and edge, between GPIO ACTIVE_HIGH
-and ACTIVE_LOW.
-
-> 
->> Nope. Existing driver? Same.
-> 
-> The existing driver works, that's the argument to support the change.
-
-We are not going to get into such discussions. Code might be incorrect,
-but mostly works because race issues are very tricky to spot, yet you
-use that code as argument to say hardware is like that.
-
-No. Hardware is not because driver is written that way.
-
-
-> 
->> Was anything here actually checked with datasheets/hardware?
-> 
-> The initially open question is unanswered, why sc8280xp CAMSS does
-
-This is about all CAMSS, not only sc8280xp.
-
-> specify interrupts as level high type, was it actually checked with
-> datasheets/hardware, as you say it? It has never been tested by anyone
-> and anywhere, downstream or upstream wise, only rising edge interrupts
-> were tested, and they do work.
-
-I did not ask about testing. I ask how the manual, hardware engineers
-designed it.
-
+On 08/10/2024 12:37, Vladimir Zapolskiy wrote:
 > 
 > I don't have access to datasheets or hardware of sc8280xp powered board,
-> someone may either verify, if CAMSS level high type interrupts are> supported/working at all or not (obviously its current presence in dts is
+> someone may either verify, if CAMSS level high type interrupts are
+> supported/working at all or not (obviously its current presence in dts is
 > insufficient), or check the SoC datasheet.
-> 
-> To sum up, the intention of this change:
-> 1) fix the unpleasant runtime issue with no regressions (it's been tested),
 
-Did you test races and all the tricky issues arising when you use
-incorrectly edged interrupts? Or you just checked that "interrupt works"?
+I've tested both as was submitted and your change.
 
-> 2) align CAMSS device description in firmware with known to work well
-> IP hardware configuration.
+I _always_ test my patches. I'm not sure there's a datasheet which 
+spells this out to be honest.
 
-Where is this description in firmware? Where is this IP hardware
-configuration? You just said it is purely on downstream driver.
+Rising or High can both be justified, its really down to how your 
+interrupt controller latches the state change. However I personally am 
+fine with the change you've provided because I trust it fixes an error 
+for you.
 
-Best regards,
-Krzysztof
+I didn't try loading and unloading that module but, since you did I'm 
+happy to Ack the change and trust your work.
 
+---
+bod
 
