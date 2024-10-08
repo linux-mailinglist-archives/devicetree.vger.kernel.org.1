@@ -1,125 +1,225 @@
-Return-Path: <devicetree+bounces-108827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7949D994087
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:06:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1BFC993FA1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 09:36:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 181A6287570
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 08:06:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A406828673C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 07:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9294A200113;
-	Tue,  8 Oct 2024 07:15:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C0CD201269;
+	Tue,  8 Oct 2024 07:17:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="VRL022xj"
+	dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b="nOhw9rxa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2113.outbound.protection.outlook.com [40.107.20.113])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FA431FF7D5;
-	Tue,  8 Oct 2024 07:15:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728371756; cv=none; b=YrKeRWrlQLB1ULeVZm2DuTWDcrj8K4JktRW52E27X7FYErza8bQIDVWVQJcgI7DUdr2GtuDjOY0eOMjKgyIlzKE4tfW863uIaLHHwvq8iRGJN3ATDNFKvY3TGoohyBakUxQCs0DYinzYmnppZ2yM4w4uuchjJpARSJeeNRhncs4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728371756; c=relaxed/simple;
-	bh=wB+CnyJMHS+Nlxfeo611NP8PCYTpzaH6o0xPYIkualc=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YfonqcWa9eef9R9735etLr1NJwW/VMhfl/B16Pxn24kAclFEq5SLY5kwPB1MYmYQr1NabMpYG5kyQCoW3N0t+caal855PnIU7NsYM1VfR6BafRzWRWct1LnJlxcykiJ6/tUYK8WkEMPYQAY4RFPYy2Xbuw+Q6su1xm6baynC/5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=VRL022xj; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 24c8e594854511ef88ecadb115cee93b-20241008
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=uoyI+nVkYzrj6lLhx8WQAuejk7KwoCBnxwU+9IsqgPw=;
-	b=VRL022xjvG2XR5m947070JkYnaGEfD5J+9Q9hOJAX73kd20ylvJR7xx2fYAF+FDSORNsiHf1/n6sKi2KcIByCUuGw2RaPEKerUAtRCxgx2B33ccrvLNAvvdzXcLb1if9F0rU3PIkkmB3B+NY8QnGrjBPjGtkOS0+ckYtUVEwslw=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:ad63e665-a456-42fc-b842-33c99c749aa2,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:33cc7526-5902-4533-af4f-d0904aa89b3c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 24c8e594854511ef88ecadb115cee93b-20241008
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 504953561; Tue, 08 Oct 2024 15:15:48 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 8 Oct 2024 15:15:47 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 8 Oct 2024 15:15:47 +0800
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
-	<matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, Seiya Wang <seiya.wang@mediatek.com>,
-	Tinghan Shen <tinghan.shen@mediatek.com>, Chunfeng Yun
-	<chunfeng.yun@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul.lin@mediatek.com>, Macpaul Lin <macpaul@gmail.com>, Sen
- Chu <sen.chu@mediatek.com>, Chris-qj chen <chris-qj.chen@mediatek.com>,
-	MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-Subject: [PATCH v2] arm64: dts: mediatek: mt8195: Fix dtbs_check error for tphy
-Date: Tue, 8 Oct 2024 15:15:40 +0800
-Message-ID: <20241008071540.32607-1-macpaul.lin@mediatek.com>
-X-Mailer: git-send-email 2.18.0
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 040CC1DACBE;
+	Tue,  8 Oct 2024 07:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.113
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728371863; cv=fail; b=DVFGxzmoaN3UGkUpOM75wzqQ5l1PLCWIFJRnG+AWNDorpK3pq7mi+HZ+QFQPFGtYYdKAIbaBfxXwB+kkDKRv7QQzOIO5lYYDti8y0/3d1QpZhmirSROdKNGCYLsJqvbVciNjjRU5E34ZCIsRXr3dFqt5kQqzAvls1NCAM2z6i3c=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728371863; c=relaxed/simple;
+	bh=IrgKXdZt5REp7whs74cYxmzAbE0c19Gd6K/zKa6aX9Y=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=lx6WqFSXBLV5d8l4rp3TO69O5Bweus0Y0zGaJ2AnJknroEKXZWjq5VBCyuu7qXfZjqGCHKpRnq88HPnwIjRJU83Q+10+Fyb29IwNjIKuTokV1P1h75hviFZxHYhHfZ+LkXLZJUs7plRdc69ZyRKnpXQrSpGzlmUfTgbAQKI7l+c=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de; spf=pass smtp.mailfrom=kontron.de; dkim=pass (1024-bit key) header.d=mysnt.onmicrosoft.com header.i=@mysnt.onmicrosoft.com header.b=nOhw9rxa; arc=fail smtp.client-ip=40.107.20.113
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=kontron.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kontron.de
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=at8yv1jWoyEDYCLqpfPx1A08MS8n2W+7j93SF5+BhDGrpxUHYH74mDa7VHE2PKJgwYk/cXFXw47LA5KuYc5Xh5dHfaixW8Ksx3YUs2qua2h1YK/uYSTAuqHmmn68TqlaZomdgfZ3bqcSE5JrPlxfsb95lw7CWgqabPcZ9p25v4CYpo/6VKEfr+sPtHO42mdOk9S9mSZzDvJeqU5MrgBZiihWq/fMegynvjPJ0/HSsrgbNWLZ94PHmqClIipeh54d2yrf2dqG1T+XAYRn09kwqebRQLWEAv8EnRUxjRjdpgz0MjbdoTga8AjEZ0GI1zlUjuYU6IbbxK4vRPUA16Qzqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nUruL5k9+OK7riKsS6YoZjbz87Ux8/uIwhX1x6uFdzI=;
+ b=TyTFr8/fTMP045RYqAG0IRedeaqAI2FsUWZiVbqUIlAyCmGv0ua6rsRbXbBk6jppFMJxd7SgNdW9VKSC3It6dXvHQM6x6zOn/aJDdnyhWJPGQAtVMMxWYR21vUBwkobehB3/c4jglLyPsJBNEpOVmuLhM7MXFqvaTtiKSpLi09O+ZqpYV+tR0b0MID78GE9xaA69qjZdtbKoZfDx0eyS1nipZozqfKkbYWrVA8u96KeyhCuSDldyDXCQc518Me8MruccmbRmCGpfwPIwXIc2PLDfJvp4l9KTIgcUfl+R4boL+8bvKM5kDe1iw127TPogYx0RlVNP4TP+0+FWeKxXhw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nUruL5k9+OK7riKsS6YoZjbz87Ux8/uIwhX1x6uFdzI=;
+ b=nOhw9rxaLWoKxlS23evzpkvtbRwXyjLl2dkbf132HUnRH4juKbJeN6qYWtws/8iU1uLRIvR5SJVXxHcyQZqzaE6yhytAtdnbcTdMXycoZ3x4y0pIQvfVSExt7gQIgn1Q96KPIDFs4UQB4aKsNw6CiM2Cdrd0DHKEy9VwYF3o/ko=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=kontron.de;
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:263::10)
+ by PAWPR10MB7294.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:2e0::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Tue, 8 Oct
+ 2024 07:17:37 +0000
+Received: from PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b854:7611:1533:2a19]) by PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::b854:7611:1533:2a19%4]) with mapi id 15.20.8048.013; Tue, 8 Oct 2024
+ 07:17:37 +0000
+Message-ID: <97ee0863-b68a-4f58-a193-1342f7eff359@kontron.de>
+Date: Tue, 8 Oct 2024 09:17:34 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] dt-bindings: display: panel-lvds: Add compatible
+ for Jenson BL-JT60050-01A
+To: neil.armstrong@linaro.org, Frieder Schrempf <frieder@fris.de>,
+ Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+ David Airlie <airlied@gmail.com>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-kernel@vger.kernel.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thierry Reding <thierry.reding@gmail.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+ Heiko Stuebner <heiko.stuebner@cherry.de>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+References: <20240828074753.25401-1-frieder@fris.de>
+ <20240828074753.25401-3-frieder@fris.de>
+ <813cfef8-6464-4927-be2d-55fef1104416@linaro.org>
+Content-Language: en-US, de-DE
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
+In-Reply-To: <813cfef8-6464-4927-be2d-55fef1104416@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: FR0P281CA0131.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:97::16) To PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:102:263::10)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-MTK: N
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PA4PR10MB5681:EE_|PAWPR10MB7294:EE_
+X-MS-Office365-Filtering-Correlation-Id: b0e550dc-318f-4e4e-4d21-08dce769493f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|376014|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?bW5XVUFkOU5OUUNtRUhCMXRJd2p5dDZBSkJlMm1mWHM0V1ZSVUpnMjFRTTIz?=
+ =?utf-8?B?VmVTSzY1SS8wVHFMWFMwSVIzTUV6OUNtZDNpcmJLSTltUVRLQmRvT01SUnc3?=
+ =?utf-8?B?WWdTOWxUYW9JemxwWU01VWlhbE5IV2lvdTduMlpYU3pWNXRIYU9xWnRlTUVa?=
+ =?utf-8?B?ZVVIaC93ZW4zUVdReUY5NkdkVmhncDhzaXpnVEZkRGZYMC9TVTFHelJCRzNi?=
+ =?utf-8?B?V2UremxKZXJPQ2tlN0IxaFdudG5Sb2UxYyt1SjNJM0d2NWxoTllQR05mMG9C?=
+ =?utf-8?B?U3NjaXRNQk9SQVVQZ2tpa3R1a1EzRDJ5OEdseU5JUWM3Z0kxZ05OMzBPajMv?=
+ =?utf-8?B?TmdPb0tTNXpFZm9xVWFtY0Y2NWVKNkkzaVZDa0Jmc0tQY1lXQmRkeDRhQXlr?=
+ =?utf-8?B?VzQ5WWl2Rm9TbXpJVmdRSWFCRGd1N3dYR0I3aUtsUy8xRkoxQVliNklXa3Vy?=
+ =?utf-8?B?RisxNUdRNzdmclNnbktRU2dONU53ZXZUTUU2N3lGTVB3eVFoTHVLTUY1L2pJ?=
+ =?utf-8?B?eTVZMDA5ZHJjN0JCb1lqWXVocXpXK01XVitSTkE2YllWV3pvVkQ1empLNldF?=
+ =?utf-8?B?d0thOCs5eXZ4YmJJK3c3WTB3eXJuSjlNaGdHeG5vd01XL1VVZ0llaHNaNFhi?=
+ =?utf-8?B?Q2ZRNEpjbUZvUk5wTlhQQ0IxMnl4azFvRnR0ZGYrWFV1QWZSWFpqM0V2NVF0?=
+ =?utf-8?B?d1htUlRwYmtEY0g1UVdNMGxxd3IvLzlxZFVSNUxmRGduOGtqSFBsUVRmZmU1?=
+ =?utf-8?B?NGF4R29ua1FhUG53QjVXcmxzRFRzdGlYb3R2ajFibFdjYzZsV0w0ZCs0SDdo?=
+ =?utf-8?B?MVJ3L25LaFVuOS9nWW1nbUJiVC9yK09SVnl4OU82cGVzQnU2TlNzckttbVR3?=
+ =?utf-8?B?YkdDMWxZczVFRGloQmxSQjdqVEpOQUpsKy9VTFRsd2JBVHU3ZURiSDE1enJS?=
+ =?utf-8?B?NlpHN0htWGp0a3BlR0xrSHFidmZLTEF3VGk4WUVaUzZmdkNyOVNIZ3FQb2FO?=
+ =?utf-8?B?a3R3eTFEMUI0WWlabW5PZUNwY2RSSjdXa3ZDaGJFVnVRSzkzMW5Gc0dGWjJN?=
+ =?utf-8?B?NG9jckJ5NzRXNk11UGxwcEFGd09zc1BWcE4zeEpZSmk1TmhYWDlrSmdadUYv?=
+ =?utf-8?B?M3prOUF6cExEUzZ1blFXY1RRRnZUVlo0Nm0zcS9CZVQ1K0s0NmhxSnpOVmdF?=
+ =?utf-8?B?QmE0VDA5bDQxSkpNV0ZkWEUvcXM1SW03bUMvTlQweFlwMlJCRS9vOTVJN0xu?=
+ =?utf-8?B?aGJZUVphbGlQMjRoRk5MTUVVV0dic09jemJwUnBseGdvUUhKUCtGcXZSLzhR?=
+ =?utf-8?B?eW5oQ0cyQSswN0J2S3ZjZ0JIUjg1aTMySXhDenBxWU10d3A1VW1MNDZqYlVT?=
+ =?utf-8?B?MjlDNmJMUHkxMVRsMUgrSFFUbjdvZ2krQ0xSL0JOTk1SQnN4REFQOWlYNlVh?=
+ =?utf-8?B?ZkwxcEJYM0E5N2FkN2RzNVQwUlhvOXJjV05lVFJVK3NpdWJUNnUzWEpJbmxk?=
+ =?utf-8?B?VEVNLzdNU2NNVzdHUTJqdU5HYzVQZWliVGd5ZEVBenEwSDEwZ3kyNHlGejFh?=
+ =?utf-8?B?akkxdS9DMnVSWHNoSkJqMkRKY0FKSXVlK0NJSnVQcERGV0NMejNzUXhwbGdJ?=
+ =?utf-8?B?WnVrb2hGSEFNbk96OXduSEEvbnNuRE1zZEZqb0FlbHozUkljcVdWRXVsMFQy?=
+ =?utf-8?B?MnE3MFU5Wk8rVFhPVEpGZDFuaWJteGJvdVhWOVY2UXc2NzhSWlpDTUxNN2ho?=
+ =?utf-8?Q?doHzI6BAulHDSpCFP3XYdKpulE57Kv/BeqaZ4YT?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UVhXOHROdnlGTjN2T1ZPS2tSb1lhUmFNcCtrK3V0NURkQlZYeXFZZklBbzBQ?=
+ =?utf-8?B?OW5wVC9KdHBVK0lSUXRhU2VHRGJZeS9reXdpVjl0MEwzVHlkbVlzNDN2T1JK?=
+ =?utf-8?B?ZmRiaGR2ZGRIMTF1TW02eFpHM0hPMkM5Wkwwdk5EYVQ5QVI0TDJiL1ZmTHFh?=
+ =?utf-8?B?R09Ga21zeDRzNWRQUmV2NitraTR3dmdJU1NZUFB2RldDUTFKeFdYRzJXL29r?=
+ =?utf-8?B?YjVsSXk3Z1VQdGFRQTlkZHdmWCtDT3pnbGtPWHBUMzBucmpUNWluQmMzT001?=
+ =?utf-8?B?MTAzUFpOaE9wQ3YwZjRxaS9CWDRTZDVkeUptMlcxM1ZPd0pxM2NJQUgzRGZN?=
+ =?utf-8?B?cU9SQmVmRmdhOHVEYTVIcEQwL0F6TXNxUzhoSWp4M3QvcUFiMFU4QVQ3VkM5?=
+ =?utf-8?B?N2dNWStqRSszK0s4QjJiYVRzK2xFbHZoRzVnMWRvU29BekFHK2dncGVlL3Z1?=
+ =?utf-8?B?UURnVWVsay93aU9mRzdpVVJCd1EwbWd0QnZHWWNiRUpRLzlhN3dPeWJNdEZT?=
+ =?utf-8?B?aEhZRTl2ZGptNDhBOFBjaXVBQy9VUEhaNVIwYmgrUncrOGJSOGtOMVhkeDJI?=
+ =?utf-8?B?QnRNMWJjNFNMVXBqaWNMWlZCM2oxV2FNMlA2YUpCWGsxbWNKQmwvaVEzNDZC?=
+ =?utf-8?B?U0lqczUyRzI4MjQ5c0x2dXVYTU85OHhXTEtPWXg2K0g4eGhJbEt5dGdqd2g1?=
+ =?utf-8?B?cTlQc3g4eFNQbFhQem1FSUw2ZitodXI5a3FqUXFvRzM3QUJDdXpRc3d1R0ZJ?=
+ =?utf-8?B?Y1FqRjVHVWMyL3VQdTZVelRlY051RVZnb21mYVpFd1VEaVM1VXdqbnN0Z3Bv?=
+ =?utf-8?B?Q3dNMmhVbWdMTG1ZSnlRVGxQMWNBTzFGNGNCdFpmaXVqQkphVzczK0F2M2pn?=
+ =?utf-8?B?UGNJWUk4UkZRMFVLVG5jalJkQ290VVYrK0lLdW5aaHNWa1ZTSkp2YXpqWTdL?=
+ =?utf-8?B?Yk9xd1h3b3ZpbFJ0aktTYWQ5WUdLSmdBaE9KaVZKY0xDMGVPNlY2Zzl1OE1B?=
+ =?utf-8?B?Q2hQOW94YW02elNOdllmQjhxejREMmIyZFFBMzUrN2E1NHNYajM5cDFmS3Qy?=
+ =?utf-8?B?VmNhTFBpeGxUUi8xTm02ZHpQc05iUEpnWGpFdWZDRzM0TGJCbTlMRmFFZ1hq?=
+ =?utf-8?B?dkM1NU5NT3VMTTcxeGNGYWJ0UVRkK3NJeCtCYmplNjVyNnpvZFRyemdtQVRu?=
+ =?utf-8?B?Z09BcTJvR2srSTZMUkNTcEkzQ2FZM25XNktUM1ZUUnh5SjZRZCtVZForUmVi?=
+ =?utf-8?B?dmVPTUN5WjRkckxWZ0t1WkdNWW1PSmVuM0Q1M2FHcFEweXpKNjZ6WlFIazFP?=
+ =?utf-8?B?aXlaY1BpZ3BJeWFabEZNbnhWaDFYSGFkdVdmYXplREFQYnFaakhyZ3NxZkNn?=
+ =?utf-8?B?emFVZzI4R0E1eXB5RlpnM3RDZmFkRy9qNTVFQms0dm5rWjcrNTdWRmhERzVt?=
+ =?utf-8?B?V0JKekw4WjZFZkx5RnoyWW9nMXVYWm1URUJ5WnA3S2k2b292R1lsRVRYa2Mw?=
+ =?utf-8?B?ekg1NFFHdGhCZkdwQ3BERnNmUGU5QjAwcUE3Rmloemh3b2tvMHNvU0I0QnFL?=
+ =?utf-8?B?YmN4dXl4TmZlb2xtUkk1Z2trazIrVVQ2dFR3MnkwUEU3WTRCQkxMUWJ0SnRm?=
+ =?utf-8?B?OG5hdDVYVW5uWU9hSkxtdGVwL0JQU0JaQ2diUE80RWlYSVl3QkVGR3IxNEN5?=
+ =?utf-8?B?NUVwY1RUeEU4ZCtDZDllUkh5T0Y3MnNJMnNFY3ZDc3g4bmRaMGduVm01cHRD?=
+ =?utf-8?B?Mkl5T3p4bEltVVFqajE2WFJjaGh1dW5Ba3M4aTU2Uks5bVltTGJMVU9nYnJi?=
+ =?utf-8?B?MTlmNWlhb21hWi9KY0pqekZ0V3RrV2l3T1Y5U2hJSTZZNm5MbmJQUEphQklv?=
+ =?utf-8?B?RmVhZmRSOGlYZndIejNTQ3ZxUzdRV1phc09LdWc0NWk5aGZMcms5THVKelll?=
+ =?utf-8?B?TTlZcTdHejlKZmZab1RhQm5SUCsvU25UUlZlMEhtdlQ0KzVac1pzdzNxbmlq?=
+ =?utf-8?B?QUNFNStHY0NWWHM2aW1EZzM1MEVzT2FPY2FHV0hibGJwTjV6RGNjb2txblFj?=
+ =?utf-8?B?QlBaYUNUT2hkdlk3ZlRvV2VXTEx1TFVMQ1R1Ymp1bFYyb3NicjdOcjJuQ2xX?=
+ =?utf-8?B?cVhCZm1TQVdjQVR0VHpjclZJWmJIRFl5RG9BTXg1VlFkWUplbmwxQVJpeEtT?=
+ =?utf-8?B?eVE9PQ==?=
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: b0e550dc-318f-4e4e-4d21-08dce769493f
+X-MS-Exchange-CrossTenant-AuthSource: PA4PR10MB5681.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Oct 2024 07:17:36.9780
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: F1RhZqbcBLx7ih+9YytWbkaLuuEInwZ0ViwwoNR2lMi2cBJSgC1LhupCDfM2Qfog5kyfkGo/TYVDa0A6DL23TuZJjL+N0in/MjLLYGwICJA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR10MB7294
 
-The u3phy1 node in mt8195.dtsi was triggering a dtbs_check error.
-The error message was:
-  t-phy@11e30000: 'power-domains' does not match any of the regexes:
-    '^(usb|pcie|sata)-phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
-Fix this issue by dropping 'power-domains' of u3phy1 node.
+On 13.09.24 11:18 AM, Neil Armstrong wrote:
+> Hi,
+> 
+> On 28/08/2024 09:46, Frieder Schrempf wrote:
+>> From: Frieder Schrempf <frieder.schrempf@kontron.de>
+>>
+>> The Jenson BL-JT60050-01A is a 7" 1024x600 LVDS display.
+>>
+>> Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>> Changes for v2:
+>> * Add tag from Conor (thanks!)
+>> ---
+>>   Documentation/devicetree/bindings/display/panel/panel-lvds.yaml | 2 ++
+>>   1 file changed, 2 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/panel/panel-
+>> lvds.yaml b/Documentation/devicetree/bindings/display/panel/panel-
+>> lvds.yaml
+>> index 155d8ffa8f6ef..5af2d69300751 100644
+>> --- a/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+>> +++ b/Documentation/devicetree/bindings/display/panel/panel-lvds.yaml
+>> @@ -50,6 +50,8 @@ properties:
+>>             - hannstar,hsd101pww2
+>>             # Hydis Technologies 7" WXGA (800x1280) TFT LCD LVDS panel
+>>             - hydis,hv070wx2-1e0
+>> +          # Jenson Display BL-JT60050-01A 7" WSVGA (1024x600) color
+>> TFT LCD LVDS panel
+>> +          - jenson,bl-jt60050-01a
+>>             - tbs,a711-panel
+>>           - const: panel-lvds
+> 
+> How do you want to deal with that, I can apply both patches 1 & 2 to
+> drm-misc-next, is that ok ?
 
-This is because MediaTek tphy dose not need to add mtcmos.  It is not
-necessary to add 'power-domains'. If the power of the tphy is turned off,
-it will affect other functions. From the current USB hardware design
-perspective, even if mtcmos is added to the phy, it is always on.
-
-Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluation board")
-Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-Changes for v2:
- - Add detail description of the tphy design for explaining the reason
-   of this change.
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index ade685ed2190..1c6f08dde31c 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -1920,7 +1920,6 @@ u3phy1: t-phy@11e30000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
- 			ranges = <0 0 0x11e30000 0xe00>;
--			power-domains = <&spm MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
- 			status = "disabled";
- 
- 			u2port1: usb-phy@0 {
--- 
-2.45.2
-
+I'm not sure who you are asking, but to me that's fine.
 
