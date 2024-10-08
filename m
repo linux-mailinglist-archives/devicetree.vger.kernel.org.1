@@ -1,113 +1,114 @@
-Return-Path: <devicetree+bounces-109200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AF3D9958FA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 23:13:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 30E289958FB
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 23:14:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67D081C20F7E
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 21:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E43321F25751
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 21:14:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53069213ED6;
-	Tue,  8 Oct 2024 21:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B92215F53;
+	Tue,  8 Oct 2024 21:14:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="tAtgChPP"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="eBNO0PQh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6161DF99B
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 21:13:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BD121DF99B;
+	Tue,  8 Oct 2024 21:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728422024; cv=none; b=uCa8mAbrY7Y0r6PXbIwbLk1fLaCRCJO64RKf8mtthh8ZLb+MQXzADHvUosDk6yh5uKNeTM24rXUeGkKTcc7xdG9HdfcfMCAyj2xhbYMnugLmpwRFyD91kEybY6NK10FJjMX53p+Q9pEg+d2Q6vQzGIu53p4xFbPBF0CpSvBHfA8=
+	t=1728422056; cv=none; b=d8IrkF1hBYvRztp3Yr3YuIruKfBeAdi9jdVgxg7w89BGaB8DmqesSM4ke2snQ0PNMVp0VNy8n1z/xZSj9kub++WEvcoXbFapFuIM1D8mPnuDNlRxVJY/YgeotQJywfrt6hNcklufnZxWNBEjPjvIrwy2FyKbXW8geyaocbBShqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728422024; c=relaxed/simple;
-	bh=I/nA3vIet0HF7qJ9O4+8FZwx3ArbQluNObgQpEx003E=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=uqPiHtBChF25QyusykLwMz8K+v0rf1TUEzD2dqovbMvK/07EBusN0eVYNMGUyq3R0PeSqU1vHp/R1SfcarUTWxm4pD2QOE4OmoZ9aYgGc+P3AIVVcTMneg5LAeNrU6x+bMWX3L+fBb6m0SwSoJzRI/mBU9w3N6FWJmNe0ZguYPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=tAtgChPP; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1728422056; c=relaxed/simple;
+	bh=/dliGEewKRZribczQoNeiV6X+4qsNadUl7k0K75up9k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pIIMf5uFo5yaryukwc25CelnmxBpRmhnlHpXrZZ1A1juCfSCor0i9jdIST6UlPfJ7v1c79X7HoUcZ/tkyQi9xfrTlU7P7hGkrrcHjMhX/mMCqcc3dvak6qY8Fz3vaXorLK30Te/nI8ENaaXaFKeaFfwNmFhRTrMkO8FMhTFprbQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=eBNO0PQh; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fXa2rjQqSmEEprIVSsvVh1O3dTW7jIaPiGYIOj8vgEM=; b=eBNO0PQh9wrStrPWtR3+RdCmzS
+	sZ3xchEC5hgUFjuibTqsvYiII76/6KkDsPUZjeWacGXigWFVqbEn1dsHjSmqHzbmuHjlIvS2BpWfO
+	2jqiOak5ArKMU/IccXFpcGH9JmtJnLigHycizAvV+mnXyhmfwPRRJkop5A+E/vlvkJ+4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1syHWn-009Pka-Jq; Tue, 08 Oct 2024 23:13:57 +0200
+Date: Tue, 8 Oct 2024 23:13:57 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Robert Marko <robimarko@gmail.com>,
+	=?utf-8?B?UGF3ZcWC?= Owoc <frut3k7@gmail.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 2/2] net: phy: aquantia: allow forcing order
+ of MDI pairs
+Message-ID: <c5339983-d768-4a1c-a951-dbc99ae16b21@lunn.ch>
+References: <7ccf25d6d7859f1ce9983c81a2051cfdfb0e0a99.1728058550.git.daniel@makrotopia.org>
+ <9ed760ff87d5fc456f31e407ead548bbb754497d.1728058550.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1728422019;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7d0nybW1X+KciqYLdainH4mq7ma/xpQb0IcAN4MDxxo=;
-	b=tAtgChPP70XUm1r3gDGjhzfBRg5UcvLMnw7hdhnnflvvYuza3drRZO2EXoI8Z3877nYAye
-	JhSNnaGhxXHx/SuZeIdVf9VaeKD0f90QoSLpItBdl6AFgb8w7aRkRy2Bi6/cvVkEDdDesd
-	sDcDhFl2UU1VMo00p+2XmEiyWo910LRsV7p3bSRZv4ICYfAcNw/EoyRlDufLb3XFl9Ijb2
-	a+05pbGVDrbji+FPkwP3uwkgNmYQtRVvCdLA+DqhBcTOvxdtv1j8CWEnf4Ky3SjWWgdbN7
-	Xdso1eL6FCEXMaV3KNxl/w0WJ1Fu5qcOe3V7GyFaIWbRyALzfdX6XqzjN6MZKw==
-Date: Tue, 08 Oct 2024 23:13:39 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Andy Yan
- <andyshrk@163.com>
-Subject: Re: [PATCH v2 03/14] arm64: dts: rockchip: Fix bluetooth properties
- on rk3566 box demo
-In-Reply-To: <20241008203940.2573684-4-heiko@sntech.de>
-References: <20241008203940.2573684-1-heiko@sntech.de>
- <20241008203940.2573684-4-heiko@sntech.de>
-Message-ID: <5ac9929d1d00183619606e38be5ec64a@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <9ed760ff87d5fc456f31e407ead548bbb754497d.1728058550.git.daniel@makrotopia.org>
 
-Hello Heiko,
-
-On 2024-10-08 22:39, Heiko Stuebner wrote:
-> The expected clock-name is different, and extclk also is deprecated
-> in favor of txco for clocks that are not crystals.
+On Fri, Oct 04, 2024 at 05:18:16PM +0100, Daniel Golle wrote:
+> Despite supporting Auto MDI-X, it looks like Aquantia only supports
+> swapping pair (1,2) with pair (3,6) like it used to be for MDI-X on
+> 100MBit/s networks.
 > 
-> The wakeup gpio properties are named differently too, when changing
-> from vendor-tree to mainline. So fix those to match the binding.
+> When all 4 pairs are in use (for 1000MBit/s or faster) the link does not
+> come up with pair order is not configured correctly, either using
+> MDI_CFG pin or using the "PMA Receive Reserved Vendor Provisioning 1"
+> register.
 > 
-> Fixes: 2e0537b16b25 ("arm64: dts: rockchip: Add dts for rockchip
-> rk3566 box demo board")
-> Cc: Andy Yan <andyshrk@163.com>
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-
-Looking good to me, thanks for the patch.  I've got these changes
-cross-referenced to what's expected in drivers/bluetooth/hci_bcm.c,
-and it's all fine.
-
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
-> ---
->  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> Normally, the order of MDI pairs being either ABCD or DCBA is configured
+> by pulling the MDI_CFG pin.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> index 0c18406e4c59..7d4680933823 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> @@ -449,9 +449,9 @@ &uart1 {
->  	bluetooth {
->  		compatible = "brcm,bcm43438-bt";
->  		clocks = <&pmucru CLK_RTC_32K>;
-> -		clock-names = "ext_clock";
-> -		device-wake-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> -		host-wake-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> +		clock-names = "txco";
-> +		device-wakeup-gpios = <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> +		host-wakeup-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
->  		shutdown-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
+> However, some hardware designs require overriding the value configured
+> by that bootstrap pin. The PHY allows doing that by setting a bit in
+> "PMA Receive Reserved Vendor Provisioning 1" register which allows
+> ignoring the state of the MDI_CFG pin and another bit configuring
+> whether the order of MDI pairs should be normal (ABCD) or reverse
+> (DCBA). Pair polarity is not affected and remains identical in both
+> settings.
+> 
+> Introduce property "marvell,mdi-cfg-order" which allows forcing either
+> normal or reverse order of the MDI pairs from DT.
+> 
+> If the property isn't present, the behavior is unchanged and MDI pair
+> order configuration is untouched (ie. either the result of MDI_CFG pin
+> pull-up/pull-down, or pair order override already configured by the
+> bootloader before Linux is started).
+> 
+> Forcing normal pair order is required on the Adtran SDG-8733A Wi-Fi 7
+> residential gateway.
+> 
+> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
 
