@@ -1,70 +1,91 @@
-Return-Path: <devicetree+bounces-109068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 842AD99514C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:18:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F383D99516B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D98C1F214E9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:18:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9C6A1F25AE1
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1F581DF998;
-	Tue,  8 Oct 2024 14:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0C241DE3AE;
+	Tue,  8 Oct 2024 14:23:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mEtIdfI7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QT01KvKG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99EAE1DF96B;
-	Tue,  8 Oct 2024 14:18:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257E21DF96B
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:23:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728397115; cv=none; b=f6o5b/A+Kpkvl/AtYhiWFq/lvK8eiU2bYcSA/u90+Z/1En7JRIGAzIYMtAr5UZsm3idC70bA710WzcQhzIvTJvF9lbkLD/OGHnlkUBdQlFqlF2Wt8kGd90FRcTaF9EderoF2vc8io1A81i46Ek09fmbwrU91eofTOVAIzsZM0h0=
+	t=1728397396; cv=none; b=HZuAuf0BbJMBhJbU/LzYbCcTolAhjHE5hudPsCq5+hZdttA+D2zjX/+Vb35OlTbTAS2WIavst7amrFkDJXJYTad70H175PYdGEutxqE8YuRDTgJVXzyPAxIa7Ueyz0t8K8ckLOWagUGgYx25Yn4FPEsXSdkZAtp01H+PwOtKTy0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728397115; c=relaxed/simple;
-	bh=hKT3uBzYhOP99Yta4PjZvjRY3LiXCkom9Bm+7Of9+gI=;
+	s=arc-20240116; t=1728397396; c=relaxed/simple;
+	bh=oovhDjQ+h+tGiTzVPs+Bd3Ctyp+vKbNtabnaRMLZ0MM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oEifIWUAUHC/fRqL1ufrGt/+cBnMkVuuxDxeqz/zzc8WvXO91x6epIHFbgoc6zjeYWxaPtamJ2P1KeEw7wn4LgxktW5EpCBS5au8+3WGHzkqMbKiLxM70U62nZgyimSvtP7m+6ppd2ResAZ/ZKJ9awhfI7CIb9XN/EFJufPr2LQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mEtIdfI7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05F90C4CEC7;
-	Tue,  8 Oct 2024 14:18:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728397115;
-	bh=hKT3uBzYhOP99Yta4PjZvjRY3LiXCkom9Bm+7Of9+gI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mEtIdfI7JAqwO+FUf1BWd1bU1y9Sk2P/3tLe9klSmsW0GiR3kbwP/+4U9bbkeuAd3
-	 20zEX1w/6yjKtYay5o3uOe85GcP/dH+NVfCpW768ADFq0ZgzLi3t+kq6BOowGrqAOw
-	 BI875t7uwCXrZnfyQSSvBb/z7ANUoKkMLZnNXYylHa7kHpfX3W97m9jSAuL8KaMwip
-	 ucZR2qizcc/rV/8uesKV4O7e7MH6ohIR+dd37r3REUSDazekYgBhRgvNdxYdDSw8vK
-	 Ppet5P3dV/5Ula183x5vYrScCsi7/Nw6Yai8mQlughcajgZhqdI16bNCvBwx+6fZVC
-	 IFpKVV/xQdcfA==
-Date: Tue, 8 Oct 2024 09:18:34 -0500
-From: Rob Herring <robh@kernel.org>
-To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
-	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Mark Brown <broonie@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Maxime Ripard <mripard@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Takashi Iwai <tiwai@suse.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
-	linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
-Subject: Re: [PATCH v6 1/9] of: property: add of_graph_get_next_port()
-Message-ID: <20241008141834.GA1254664-robh@kernel.org>
-References: <877caz9tdw.wl-kuninori.morimoto.gx@renesas.com>
- <875xqj9tdf.wl-kuninori.morimoto.gx@renesas.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=fKnanusOW7F7uLYrB/+akl2x4coitH2zhpnyCMGvZ9wgOQYYAShTy4ySljxmzl3w51M9SsxBEe2ZecPSpy7MJwo6qsZvPToKLd4jU8IEtbeONOvrYJsWE46AyQedHNJMjaH/cBfzU4uAgHhG2PA91e9X8MimoOe1tIQopgBrIR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QT01KvKG; arc=none smtp.client-ip=209.85.215.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-7d916b6a73aso3482281a12.1
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:23:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728397394; x=1729002194; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=3s0y0U4U/zNTntZ4JNtG+dOk0GuXy1+AAJizNLWCVpk=;
+        b=QT01KvKG2prqrjJs4f+XFzFhxsReuJ3NlXP0O4SB0RxgfjaQu7tAWSWGVcBMfxFiFi
+         HxrMjmW7lMZzmGl9QGIRNh3stx6SqFQv9z/nm6poARNynL3LhAZZC1w4m6kJoLdUdOkX
+         4wY7rlnyFu5k28z2OG354pwZ/mDyt79FQUPgCOot69YR5NF8sZ+7mYuNjkp3EQ+eYG1P
+         +hOTerq12mXrBYLHCbVQzzqUE5LiBJyY5aBfdvdXjgwQrAzRyOY7E0b8WM2UXULPPGya
+         9XlDKvb9Z4Wq4jN0JMOFcY1ke5kPmPL/R4IWjy5zlxsKlM5a60wGR3Toj9+rbjoLd2IN
+         xVLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728397394; x=1729002194;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3s0y0U4U/zNTntZ4JNtG+dOk0GuXy1+AAJizNLWCVpk=;
+        b=FJmkBAdU35nbr6GtITSrdKYS16b8J53qBRXPOWFXL9niNfUXNL2hsRjLnY+ibkVgWN
+         pU+ez2aKD4LtzsML4qwN/Bk9eSEMNjdmQe/RQqQYPxuzi1F6QIP5EtivdUSOpM4RcZP3
+         ttLMQvCPJitM7+rhO5Vx+BuMAO9HmModk2U8rUUj3fjBJ/gjPOIDly/ay5xQK/gHHdEB
+         Ctf0pdKkkLnK7b2E7jl6zXaJi3iSeJG4lX4r1uxzPsOm16658oeUwsJks5EPnsyYYgXe
+         QFFjev7diTN4z/kSOskb9UYxqGt7XqqluJe/tldIxVMxWbTcPkc+1lj+P40FTX1VfVYU
+         EBvw==
+X-Forwarded-Encrypted: i=1; AJvYcCVK/cCZF/8VAWCgPMfFDjDcjrouj3LWqBPgiFou5x50keKRlo7Ldeh0ajRW/RWfOAEmt59eGDY97wIz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxRVBqqOGLg9k2q+twf0a6zsEbPq45y7JUbD6YBF0dY5OOX50Ti
+	qLVgLwhNwDqLIps1SDUdFyY9U/lJjGyqZo9HY+0/xQt5h95T1JQ3c6n3zRKdbl4=
+X-Google-Smtp-Source: AGHT+IET4qjoJB1wWodF/QyFu2wMpdITwsro6eNAfvM/IE1PiYckOL2Jg39NTknxUkJQohIJiVZU3w==
+X-Received: by 2002:a05:6a20:d50b:b0:1d7:1040:8519 with SMTP id adf61e73a8af0-1d710408630mr2986112637.42.1728397394539;
+        Tue, 08 Oct 2024 07:23:14 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:e3a0:1c0:95c8:8b16])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71df0cd2a1bsm6168882b3a.85.2024.10.08.07.23.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 08 Oct 2024 07:23:14 -0700 (PDT)
+Date: Tue, 8 Oct 2024 08:23:10 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: kernel test robot <lkp@intel.com>
+Cc: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Jens Wiklander <jens.wiklander@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-remoteproc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	op-tee@lists.trustedfirmware.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA
+ to load the firmware
+Message-ID: <ZwVATlRbo0OdRLbj@p14s>
+References: <20241007131620.2090104-8-arnaud.pouliquen@foss.st.com>
+ <202410081902.TwQcmWjk-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,70 +94,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <875xqj9tdf.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <202410081902.TwQcmWjk-lkp@intel.com>
 
-On Thu, Sep 26, 2024 at 12:00:12AM +0000, Kuninori Morimoto wrote:
-> We have endpoint base functions
-> 	- of_graph_get_next_device_endpoint()
-> 	- of_graph_get_device_endpoint_count()
-> 	- for_each_of_graph_device_endpoint()
-> 
-> Here, for_each_of_graph_device_endpoint() loop finds each endpoints
-> 
-> 	ports {
-> 		port@0 {
-> (1)			endpoint {...};
-> 		};
-> 		port@1 {
-> (2)			endpoint {...};
-> 		};
-> 		...
-> 	};
-> 
-> In above case, it finds endpoint as (1) -> (2) -> ...
-> 
-> Basically, user/driver knows which port is used for what, but not in
-> all cases. For example on flexible/generic driver case, how many ports
-> are used is not fixed.
-> 
-> For example Sound Generic Card driver which is used from many venders
-> can't know how many ports are used. Because the driver is very
-> flexible/generic, it is impossible to know how many ports are used,
-> it depends on each vender SoC and/or its used board.
-> 
-> And more, the port can have multi endpoints. For example Generic Sound
-> Card case, it supports many type of connection between CPU / Codec, and
-> some of them uses multi endpoint in one port.
-> Then, Generic Sound Card want to handle each connection via "port"
-> instead of "endpoint".
-> But, it is very difficult to handle each "port" via existing
-> for_each_of_graph_device_endpoint(). Getting "port" via of_get_parent()
-> from "endpoint" doesn't work. see below.
-> 
-> 	ports {
-> 		port@0 {
-> (1)			endpoint@0 {...};
-> (2)			endpoint@1 {...};
-> 		};
-> 		port@1 {
-> (3)			endpoint {...};
-> 		};
-> 		...
-> 	};
-> 
-> In other case, we want to handle "ports" same as "port" for some reasons.
-> 
-> 	node {
-> =>		ports@0 {
-> 			port@0 { ... };
-> 			port@1 { ... };
-> 			...
-> 		};
-> =>		ports@1 {
+From hereon and starting with this version, I will not review patchets that
+don't pass the compilation bots.
 
-As I said before. No where is this documented. We're not going to add 
-common helpers for something undocumented and non-standard. Plus, this 
-patch is doing a lot more than $subject says.
+Mathieu
 
-Rob
+On Tue, Oct 08, 2024 at 07:07:40PM +0800, kernel test robot wrote:
+> Hi Arnaud,
+> 
+> kernel test robot noticed the following build warnings:
+> 
+> [auto build test WARNING on 9852d85ec9d492ebef56dc5f229416c925758edc]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Arnaud-Pouliquen/remoteproc-core-Introduce-rproc_pa_to_va-helper/20241007-212358
+> base:   9852d85ec9d492ebef56dc5f229416c925758edc
+> patch link:    https://lore.kernel.org/r/20241007131620.2090104-8-arnaud.pouliquen%40foss.st.com
+> patch subject: [PATCH v10 7/7] remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
+> config: alpha-kismet-CONFIG_REMOTEPROC_TEE-CONFIG_STM32_RPROC-0-0 (https://download.01.org/0day-ci/archive/20241008/202410081902.TwQcmWjk-lkp@intel.com/config)
+> reproduce: (https://download.01.org/0day-ci/archive/20241008/202410081902.TwQcmWjk-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202410081902.TwQcmWjk-lkp@intel.com/
+> 
+> kismet warnings: (new ones prefixed by >>)
+> >> kismet: WARNING: unmet direct dependencies detected for REMOTEPROC_TEE when selected by STM32_RPROC
+>    WARNING: unmet direct dependencies detected for REMOTEPROC_TEE
+>      Depends on [n]: REMOTEPROC [=y] && OPTEE [=n]
+>      Selected by [y]:
+>      - STM32_RPROC [=y] && (ARCH_STM32 || COMPILE_TEST [=y]) && REMOTEPROC [=y]
+> 
+> -- 
+> 0-DAY CI Kernel Test Service
+> https://github.com/intel/lkp-tests/wiki
 
