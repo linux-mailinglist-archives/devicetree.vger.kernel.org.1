@@ -1,161 +1,257 @@
-Return-Path: <devicetree+bounces-109063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C65F995112
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:07:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B5042995125
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:11:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF3A2282D17
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:07:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5036FB2B0E9
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2521DF977;
-	Tue,  8 Oct 2024 14:06:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D0C1E04A1;
+	Tue,  8 Oct 2024 14:06:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L2UEhF5V"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hhXUDw8q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-lj1-f180.google.com (mail-lj1-f180.google.com [209.85.208.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA6301DFE18
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:06:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5FB1E00A7
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:06:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728396390; cv=none; b=PyT83HpQAKG+V5tQEG057MwUYiCrv22d9VQaVvtAB2GykSpVMrVpTM/4IPtvAKYX0AoTdBpFn3ws2uh2gNgTgayKXkl8cngfW78ORneBO/uKDX9ilZCyz8Rg5F9gTg58DdHkLRxS9LrjccC+Bro8n+nOCSRfnCCQ5PAVRLrnW4Y=
+	t=1728396392; cv=none; b=AfogbuRorYokKH9W8lM8NJH1eMajNcNa31L+GG/3KhSHTlod6mDBP7h5RrdJot6A0ODpS26Sf3L77k3MfWJrlZ+nlPi5XQ5KXQwjQ5bccwGdVtV558p4J+17L9rUT4bG/hMnUhNrX3L9u6EiKfGO/+Ey/+Auq4PGHOIm+KKayWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728396390; c=relaxed/simple;
-	bh=HnTSSieNZnln6w8Vcr1MEzPJufKQo6Dj8CE0MlH5veg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=HVGJAHWi48vzab7b0+jgBbnhHsYAHoNsw020Avji/sIOYsnBdIo3UAOsenh818O+cvKLj1q5iqCSEzGw+jh2cOMjqtKiYl+wORbmqFztVtIchQ6eYlO6ZEzTDotbBhBrUQm3sbqaHfCQuD12bkNiQRSmWOEABSdgn8ISOGhOzgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L2UEhF5V; arc=none smtp.client-ip=209.85.218.48
+	s=arc-20240116; t=1728396392; c=relaxed/simple;
+	bh=BXOGQA6mvWgbyjnw+Dpeyg4FhDykouyx7I2lmxPK/Ew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Vh+k9iT4N8VDM7ZdoQY4Z6LpGa9kgLnXls8/A2aoHiQ0ADt3Jg6XiT8UGgV1kW4cHZHkFqT4coJVlilBiTwT5dt7D3lDiCU8FimcpbQwKbPYXox80x8aY8KFvdKR2WV8lDRIYyLjQH78rPhQS4lIo1GAeP1pcLMngA3UvJtwupY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hhXUDw8q; arc=none smtp.client-ip=209.85.208.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a9968114422so124447366b.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:06:28 -0700 (PDT)
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2fad6de2590so85466961fa.0
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:06:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728396387; x=1729001187; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zW3qGb3ZL5G/B18IQmAOlU1aRnTk8u0KXdkSlfqu380=;
-        b=L2UEhF5VUs9R12tbWFCoX8Et9NTFKu8WyrjwUfTgaebieVH5Glf7udVwKSKR+x+RCc
-         WTIDomeuXolsobBkJ3dXg5s4H6ZehFj2JzXO08l2YyZtAQ7g7LhL9Be+HjyHHutnM83i
-         +SI/ow9Kt6xzOd9Tjj74Xj1F4zkO3Ha2VMjUK2v4pod5yz7EwMzEJiNoEzp2peoim7Jy
-         WcVb46oN2thPvMdddlLEJbA6tJgstDO0tsEh6W8eG6RDvM83ZztyRkMZ7aZD5YRhSUlP
-         3ejnL608nG5OBSyI6Dju/CZFnQMD1sMpuuUcnhSIJUqmtUKZN4foUCVdqdA7T1hjRDkH
-         w0zQ==
+        d=linaro.org; s=google; t=1728396389; x=1729001189; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=L4YJLWqBXYOC24Bw1ONw1fQX4wAbzBRC8sG3hZFWAGE=;
+        b=hhXUDw8q+LurIQb/aMpbB4bQG3TczdP5UW2OjmCLSmRbnfetN1Ic2XGU06YJ/Kuj0L
+         eP6el9zIYqeSM8Xt5t8qyDI9/lfbUh2lyVsNnsHP9+5I2Td8kpGIwxOYHwtWMnST1nDc
+         cds+vTD/YXivX3Vn1InTfL6sbGsEMpRQ8bj60nvq1V2zkE9rxUlOrWKKZxatqdA6EXg+
+         EYKl/Sk/zU5f/gA+rLbfFj1CzONtMol7f1RsQK2IuuJPUj2nYcohe4UEh7O3X42i5R9k
+         /jEh1W7y3qMyYSDu06aPGuFPdvTREvpHgrFYUr5+XOZZIbgyU6aVuh+ToFJypSF2pAEt
+         b4wg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728396387; x=1729001187;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zW3qGb3ZL5G/B18IQmAOlU1aRnTk8u0KXdkSlfqu380=;
-        b=XGEaDeklvTg1hIQaqb6i4lvw+ggOXy26T5JoHrEL7r8z+Zf91N0SO6d4+prMcZbYwY
-         Vo87GmNVPHNHIMUpb3LNoWDBBIWPaXoVB8ZZ4VT2fY+7dFCLYCQOg99Ha6UoM4fFKk8j
-         UoexXpYS3w47rsWvFv0o7ThCuG7KbE7tePv8Yx4RmCZc0w6NkmvxexMwf3iSn3R+Kdyb
-         cr30tg2rOuus/nGy5Ir8jnH1KUkWpcuts765Oozc7tyfm8xSikqjt/yN9i2/XmRm/BXJ
-         dbE9GzGyeTSozXacultAtYuzj800zpW0UNQ+dihKwu2Wm5uG/dxIRnYEHvxrnNs1MMLF
-         50og==
-X-Forwarded-Encrypted: i=1; AJvYcCUF/W5Hk8gEuQ4M8tumWiwOgj2G8fQaVKsTBOPjoDBPh5Lx6d/R5kSTJoi5TR1btlMiNHkI7thoHXlh@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy+GbVoQFMS2IRn8fmUlAOt18CPDh9wExze9f2bhidrkp5ocsmz
-	Fawpg0z1I3Dz8JYxrKOKjdppTsxphkg4gvnybdqy87g9feNnfHnvODFwLfgRzoA=
-X-Google-Smtp-Source: AGHT+IGAPJkU/2BX77pEu6SdzFy5D21IvcpFCtEIlOIooAmaIEi6IbF3ADl1oZs59SG5qUVOIXYKVg==
-X-Received: by 2002:a17:907:f767:b0:a99:4acc:3a0c with SMTP id a640c23a62f3a-a994acc3ab6mr795246066b.53.1728396387114;
-        Tue, 08 Oct 2024 07:06:27 -0700 (PDT)
-Received: from [127.0.1.1] ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994f50fcd4sm320714266b.171.2024.10.08.07.06.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 07:06:26 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Tue, 08 Oct 2024 17:05:58 +0300
-Subject: [PATCH 4/4] arm64: dts: qcom: x1e80100-qcp: Enable SD card support
+        d=1e100.net; s=20230601; t=1728396389; x=1729001189;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L4YJLWqBXYOC24Bw1ONw1fQX4wAbzBRC8sG3hZFWAGE=;
+        b=Jv6Y75TCNeW9bVGV+ynuZp/fNLrxXl8DKciDovqD312NwpHW3mOTJztJFH+sHLxy01
+         Lvu8XfPZJmIIGGON1A/jRAEjuWZXqkVG3TNucH+OsJDqVuxmpHp1b+jcxB4QNDAhWGIE
+         jKWF7pQhuuLocVu7zxlXBUWV+Ic5dY1M9iqGNzf8/ZT5m1lZyjG+JdjRWzBmZGQHvIhB
+         0lErgdr5Ug/YRw5LV96clzhJmbRza22OeXEiciOPXkxguigkO8jExVU3yvV7PHvIPuV2
+         RzDuv/FxDeT06edTckZ8q1SxQ1oArxdmKje91hw30hfPamsukjEOF41L1ZLdu+HHv/FD
+         2zqw==
+X-Forwarded-Encrypted: i=1; AJvYcCWZhXD2UfsZGKdaySC2DaA0haFGKZ2fyBtKPfpL4W7MHGzm9l7iznlS91EBrE4GI5p8Uk85NbMFD4x8@vger.kernel.org
+X-Gm-Message-State: AOJu0YxUztMC7aYK2/pS1p9jQ7Os/0Ul96Q/PPO+NayF/q0Ec8SMlMRr
+	jxlai2G52UFC938Dsd0uX7fnc2hGqHZYIRB0Gz82grEtBRg11oDyLwSBPX0okvA=
+X-Google-Smtp-Source: AGHT+IEtXKRVvXCTBO+Hn+2lXi+dDepJNjwT3ZoxXz/aKFuaRDewqMiBd/3inniqYPigQyAxPcFhvw==
+X-Received: by 2002:a05:651c:1545:b0:2f7:712d:d08 with SMTP id 38308e7fff4ca-2faf3c2978amr107548661fa.23.1728396388703;
+        Tue, 08 Oct 2024 07:06:28 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994787fa61sm377678766b.169.2024.10.08.07.06.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 07:06:28 -0700 (PDT)
+Message-ID: <7dd6132f-52c2-4f0a-8eec-26791f250111@linaro.org>
+Date: Tue, 8 Oct 2024 15:06:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241008-x1e80100-qcp-sdhc-v1-4-dfef4c92ae31@linaro.org>
-References: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
-In-Reply-To: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1388; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=HnTSSieNZnln6w8Vcr1MEzPJufKQo6Dj8CE0MlH5veg=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnBTxZ5pw5/X59abM1PzRowDFyBM4dfWvQvCZKC
- 68ku9qUTSiJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZwU8WQAKCRAbX0TJAJUV
- VsDpD/47F+PiwUrg4V1wuq9sTBq0KrtQ4LmgaCq02mRN7AU7b/+bCIEpW9nYZw7XIs0WhZZp3xP
- DdVQeHV5HUcPZr4CA0ZghAO1InQYeiwD6sciR0tuN02VYftouZx+Eu9LD2zamJslkzZiaFcbCQ5
- gXzgh4S0lyOXM/d6Rsdn3H27D+z5BVRgBXCBEUzRGxFxPCJnCMjCyjl3KTqPBwTBxi5EHGgue2n
- MHo1wohwNVZ8K6Y5gEha9m6c0RZub5OMgVls5z3I4UQY7DSHcAc3kOHP2bgiTfDBHJK/CMqevP1
- oW3emd8H3KMhEqW9HwgW4bzTkiIUgIkSw0CS/os5GK6bEv8A3jRS50wizmaKSij/DJmqnkxTJwy
- yauuZs0Sd2HxFITFWNv5IxPL9blpOhtgQaZviOcFmBn3KGY0mbnIn6cuaXbACC8H2b74lQXQRAD
- Xm30RKgAFAZRx5WVPFozoMsZx6JFiCNgHl/X83uU1UlxOobqgrf6HVpf+l6P+PTIX0M2mBREkZ/
- aMHzq8jxS+d/PYnOzU1wDj9CQ0IJ2NXlFMMp1byiG7ccklfWVJG0WU5SLHjorLK76IjtktFfL1T
- U+k6IBktWgDNVdBDhRSgRTn5aq1VgDSZhkvu9UsjadAF0FX3xnFO//J5dx3px54cc8vrrjV+iDO
- +mI/ECC0kKtrJeA==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 07/13] dt-bindings: media: camss: Add qcom,sm8550-camss
+ binding
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Depeng Shao <quic_depengs@quicinc.com>, krzk+dt@kernel.org,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ kernel@quicinc.com, Yongsheng Li <quic_yon@quicinc.com>, mchehab@kernel.org,
+ robh@kernel.org, todor.too@gmail.com, rfoss@kernel.org, conor+dt@kernel.org
+References: <20240812144131.369378-1-quic_depengs@quicinc.com>
+ <20240812144131.369378-8-quic_depengs@quicinc.com>
+ <b1b4a866-fa64-4844-a49b-dfdcfca536df@linaro.org>
+ <82dd61ab-83c0-4f9c-a2ee-e00473f4ff23@linaro.org>
+ <da60cf71-13a4-465d-a0ee-ca2ad3775262@linaro.org>
+ <97e4f888-1ed7-4d82-b972-3e0b95610198@linaro.org>
+ <6eadc285-f413-4bf0-8795-59ff19c734da@linaro.org>
+ <6562a958-47e9-4a49-b235-fe8deba3c051@linaro.org>
+ <cab95caa-9ffb-446a-858b-342939e80811@mleia.com>
+ <4e94106d-5ca9-485b-8c51-c18dcd4e64b0@linaro.org>
+ <b779182f-a963-400a-8fc1-2468710082d2@linaro.org>
+ <a0f66292-fb97-40ae-9fb1-d79160e70bb3@quicinc.com>
+ <53d2b30d-6480-41eb-8dc8-7b3970ad82ef@quicinc.com>
+ <2b5f4043-1e23-446a-aba4-96e40fb8d197@linaro.org>
+Content-Language: en-US
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <2b5f4043-1e23-446a-aba4-96e40fb8d197@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-One of the SD card slots found on the X Elite QCP board is
-controlled by the SDC2. Enable it and describe the board
-specific resources.
+On 08/10/2024 14:50, Vladimir Zapolskiy wrote:
+> Hi Depeng.
+> 
+> On 9/30/24 12:26, Depeng Shao wrote:
+>> Hi Bryan,
+>>
+>> On 9/25/2024 11:40 PM, Depeng Shao wrote:
+>>> Hi Vladimir, Bryan,
+>>>
+>>> On 9/18/2024 7:16 AM, Vladimir Zapolskiy wrote:
+>>>> Hi Bryan,
+>>>>
+>>>> On 9/18/24 01:40, Bryan O'Donoghue wrote:
+>>>>> On 13/09/2024 06:06, Vladimir Zapolskiy wrote:
+>>>>>> On 9/13/24 01:41, Bryan O'Donoghue wrote:
+>>>>>>> On 12/09/2024 21:57, Vladimir Zapolskiy wrote:
+>>>>>>>>> 3. Required not optional in the yaml
+>>>>>>>>>
+>>>>>>>>>         => You can't use the PHY without its regulators
+>>>>>>>>
+>>>>>>>> No, the supplies shall be optional, since it's absolutely 
+>>>>>>>> possible to
+>>>>>>>> have
+>>>>>>>> such a board, where supplies are merely not connected to the SoC.
+>>>>>>>
+>>>>>>> For any _used_ PHY both supplies are certainly required.
+>>>>>>>
+>>>>>>> That's what the yaml/dts check for this should achieve.
+>>>>>>
+>>>>>> I believe it is technically possible by writing an enormously complex
+>>>>>> scheme, when all possible "port" cases and combinations are listed.
+>>>>>>
+>>>>>> Do you see any simpler way? Do you insist that it is utterly needed?
+>>>>>
+>>>>> I asked Krzysztof about this offline.
+>>>>>
+>>>>> He said something like
+>>>>>
+>>>>> Quote:
+>>>>> This is possible, but I think not between child nodes.
+>>>>> https://elixir.bootlin.com/linux/v6.11-rc7/source/Documentation/
+>>>>> devicetree/bindings/example-schema.yaml#L194
+>>>>>
+>>>>> You could require something in children, but not in parent node. For
+>>>>> children something around:
+>>>>> https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/
+>>>>> devicetree/bindings/net/qcom,ipa.yaml#L174
+>>>>>
+>>>>> allOf:
+>>>>>      - if:
+>>>>>          required:
+>>>>>            - something-in-parent
+>>>>>        then:
+>>>>>          properties:
+>>>>>            child-node:
+>>>>>              required:
+>>>>>                - something-in-child
+>>>>>
+>>>>> I will see if I can turn that into a workable proposal/patch.
+>>>>>
+>>>>
+>>>> thank you for pushing my review request forward.
+>>>>
+>>>> Overall I believe making supply properties as optional ones is
+>>>> sufficient,
+>>>> technically straightforward and merely good enough, thus please let me
+>>>> ask you to ponder on this particular variant one more time.
+>>>>
+>>>
+>>> So, we are discussing two things.
+>>>
+>>> 1# Use separate supplies for each CSI block, looks like there is no
+>>> doubt about it anymore. So, I will update it just like based on 
+>>> suggestion.
+>>>
+>>> csiphyX-vdda-phy-supply
+>>> csiphyX-vdda-pll-supply
+>>>
+>>> Then I will need below items in the required list if they are required.
+>>> required:
+>>>     - csiphy0-vdda-phy-supply
+>>>     - csiphy0-vdda-pll-supply
+>>>     - csiphy1-vdda-phy-supply
+>>>     - csiphy1-vdda-pll-supply
+>>> ...
+>>>     - csiphy7-vdda-phy-supply
+>>>     - csiphy7-vdda-pll-supply
+>>>
+>>> 2# Regarding the CSI supplies, if they need to be making as optional?
+>>> Looks like there is no conclusion now.
+>>>
+>>> @Bryan, do you agree with this?
+>>>
+>>
+>> I'm preparing the new version patches, and will send out for reviewing
+>> in few days. I will follow Vladimir's comments if you have no response,
+>> it means making supply properties as optional one, so they won't be
+>> added to the required list.
+>>
+> 
+> Recently I published the change, which moves regulator supplies from CSID
+> to CSIPHY, I believe it makes sense to base the SM8550 change and 
+> regulators
+> under discussion on top of the series:
+> 
+> https://lore.kernel.org/all/20240926211957.4108692-1- 
+> vladimir.zapolskiy@linaro.org/
+> 
+> Note, that SM8250 regulators are not changed, however their names are 
+> wrong,
+> the correction shall be a separate change later on...
+> 
+> Next, I developed my opinion regarding the supply regulator property names:
+> 
+> 1) voltage supply regulator property names match the pattern "*v*-supply",
+>     and the most common name is "vdd*-supply", the match to the pattern 
+> shall
+>     be preserved,
+> 2) also it would be much better and it will exclude any confusion, if 
+> SoC pin
+>     names are put into the name, like it is done in a multitude of similar
+>     cases.
+> 
+> So, in my opinion for SM8550 CAMSS a proposed set of voltage supply 
+> regulator
+> names should be this one:
+> 
+> - vdda-csi01-0p9-supply
+> - vdda-csi01-1p2-supply
+> - vdda-csi23-0p9-supply
+> - vdda-csi23-1p2-supply
+> - vdda-csi46-0p9-supply
+> - vdda-csi46-1p2-supply
+> - vdda-csi57-0p9-supply
+> - vdda-csi57-1p2-supply
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+So I communicated to Depeng to take the patch for the regulators but, I 
+still don't think the above is the right way to do this.
+
+I will take a pass at constructing something in the schema to capture 
+the case where a regulator is required if and only if it is instantiated.
+
+May not be possible with our current syntax/tools but is 100% how the 
+hardware works so IMO is the right thing to try to do.
+
 ---
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts | 20 ++++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-index 1c3a6a7b3ed628e9e05002cf4b4505d9f4fb1a63..a82fabaaac9010ce3b8d6718b3425e84d8864171 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-qcp.dts
-@@ -729,6 +729,19 @@ &remoteproc_cdsp {
- 	status = "okay";
- };
- 
-+&sdhc_2 {
-+	cd-gpios = <&tlmm 71 GPIO_ACTIVE_LOW>;
-+	pinctrl-0 = <&sdc2_default &sdc2_card_det_n>;
-+	pinctrl-1 = <&sdc2_sleep &sdc2_card_det_n>;
-+	pinctrl-names = "default", "sleep";
-+	vmmc-supply = <&vreg_l9b_2p9>;
-+	vqmmc-supply = <&vreg_l6b_1p8>;
-+	bus-width = <4>;
-+	no-sdio;
-+	no-mmc;
-+	status = "okay";
-+};
-+
- &smb2360_0_eusb2_repeater {
- 	vdd18-supply = <&vreg_l3d_1p8>;
- 	vdd3-supply = <&vreg_l2b_3p0>;
-@@ -870,6 +883,13 @@ wake-n-pins {
- 		};
- 	};
- 
-+	sdc2_card_det_n: sdc2-card-det-state {
-+		pins = "gpio71";
-+		function = "gpio";
-+		drive-strength = <2>;
-+		bias-pull-up;
-+	};
-+
- 	wcd_default: wcd-reset-n-active-state {
- 		pins = "gpio191";
- 		function = "gpio";
-
--- 
-2.34.1
+bod
 
 
