@@ -1,189 +1,190 @@
-Return-Path: <devicetree+bounces-109133-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109134-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235449954D9
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:49:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256E79954E6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:52:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DFECF2827C5
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:49:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9B5C1F222AA
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 487021E0B71;
-	Tue,  8 Oct 2024 16:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6161E0B71;
+	Tue,  8 Oct 2024 16:51:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FABUU35l"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HJN+u7Rq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BED71DED6B;
-	Tue,  8 Oct 2024 16:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F53F136327;
+	Tue,  8 Oct 2024 16:51:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728406186; cv=none; b=Bg1OybOfWKlUKsaSQ56fzw9d1yRCBw2EhsfiY4lIOS2mpPVpHNX5bTo/yaxpcKN0Yo/DSGNlFg+xeJvzoL7rj/RhYshboAfSl+ZeD8/aWg8pqxmlStqIGaEErrTDNqj8JYp5owSEkctfpyc8g5OU/A0kmFh+LwuEJcKi+CMD0RY=
+	t=1728406316; cv=none; b=pDoP+EjvEurh5O2oyVOO3SK0t8+B+lyROW6dPKmFAi/Vy4Co/9XcOMCKfZwvXMzgPzPbbI+kKOCBgL8KarXk4AzmpwliBh1tzDnP0E1I/o0fLN94FzfHrbv4/ETwMs3SI/5ahJTOzhRHBIRZX+260oH/6xj/cLcPKqH/GjLZ8Rk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728406186; c=relaxed/simple;
-	bh=SdYsBBlzVtPWxLQQOeoLNGvXi8mxinz03kJGmXthS7Q=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jmLDFuLxHuqr12q/WKLdFBCecW1XRcLegHiHox0bNnvB1FQGtWfkp7rM9WeuC0T3OWfOt85pUG2ekFYyOsgezyNmtOcrHbs5sGzjH6BOhLIHpPL/jDuifpIC2yir4baJ+8w8CM5utAulOKAQ27a9pPvs8ljaDgxi8IIrozbMG0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FABUU35l; arc=none smtp.client-ip=209.85.128.45
+	s=arc-20240116; t=1728406316; c=relaxed/simple;
+	bh=CaQmhslInAxZaAv6IpH8jspi+xvU0AgNmeg3g7Xi0Bg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f49ZStliX/W15zmXjCvssauhYji5k8iHIicBy0kJeg/9e0hp0qUjgRBvGriJoQmj6qkPLRzVnbYastiiL9nbLXY8aqld87XNa2gjvceGgxWZPR1YR3Tx/TwRBiC7bPCHf3M5kA5Z3UqAhJlq2dHJ5G4xZIAcHid4Kdy3XLGpSLE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HJN+u7Rq; arc=none smtp.client-ip=209.85.167.47
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-42cb6f3a5bcso78892145e9.2;
-        Tue, 08 Oct 2024 09:49:44 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5398939d29eso7268877e87.0;
+        Tue, 08 Oct 2024 09:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728406183; x=1729010983; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QkzcMsDPInhdOquOwf9plSEFkolG1PbmZhDJwMq+MCQ=;
-        b=FABUU35lBtIhRpYqlwFudnMKqR4JK4zk0gFDE4t2PH+TcL7KOnwB1bPI4y3gV08ppe
-         lRzxVorzjuVW44KRwNx7j5KxEAbfzPyq/5dQ+jdyZ4Gnc5xOVZjFh5a7dcqPhTarGRI/
-         Xnr0096vMjaXP39gGmBfDxWy0Gl/8fSpxXbYIlnscHcEinHVoo6t25yPip2emOw3j0Ci
-         RuWLQrO9MXTBom3lsqCWnr3tbimEKuDO/q7csado27+wNrOYUk26hJgWi7Vq5IyX2MHC
-         7ELp3AZD3grumSdHn+EcEyjOcN3ICqcKlQ+Ao6llfx8xdeq+5t5Bci2u9kcyCq+IvnBO
-         zJPA==
+        d=gmail.com; s=20230601; t=1728406313; x=1729011113; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=WUTzgSb9fw2gpJhB0MuECRZH/DxBrNbNjk7Y1YbaGPg=;
+        b=HJN+u7RqbLGTGbrukSsRFMvwQIgHBUeApHnRJrHzXTQdwzDG9AS3U58Api6BsQbwxM
+         b8CGyWj+Jl5ihqvvU4boZXhfiGF3zzk8LtHYmVDcKWicWbpLGyv7fx3TnIJoKU7yi4Lf
+         urqtKdnnfk13ZCLlAldD1DJp1RGyryhEL1S5KuHTjKn2db3FwLkyUMnpbygVoOseThOl
+         gnHHQZ6J46Cq9viZKDhvQKIuaAyu67gfLDq36/aYhh8ZAzlq02X5moxHiFfSKzWikGXu
+         W872yZDRj+8e+AiPDYhBeQKrimRTPp0Ewx1eIen1DfJagaviCXzL3EGAiXHgANi5DwQC
+         m5ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728406183; x=1729010983;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1728406313; x=1729011113;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=QkzcMsDPInhdOquOwf9plSEFkolG1PbmZhDJwMq+MCQ=;
-        b=IgxJ2Wwwgz2tJleujB7mfhQr3VPepmwQ/xs6/FKkqe4tcUWnYu82MIT7tNv1/QhLiI
-         8OqvJgtUeYioDIlR+znrcfIV6XH77jXA16H2I4MyO7gEethpPEXUaoeAcgIgQ1s74jv0
-         gc8VdkR81dnI3TbV3tFuJoVUVG0IT5rI3O7z5FJuxkp2Gj98qF+UzkMz3o9ahTOdlHbJ
-         fsYE/VLBSmFJryvSqZwvL19ARmo2wDZ37usWvqSJ7StmFeuLWH2O+UGN7hDZkQUEqCsO
-         GnwJRjNNi3uNw25Y5if16NDNWbY4sWQdSIBpwhyw2rRjbKdEo3R1xx/r3euKS0ddCGF0
-         ephg==
-X-Forwarded-Encrypted: i=1; AJvYcCU0Gxz0SX9XRihX4aJqWxEvNVsuSvF9Cxt5vDkrJKnls948ZZ6sXcjNFMg+6wvyj+oPnJauEN79dMpwlB4=@vger.kernel.org, AJvYcCU7nc0FzDpbhjoW4gfWMTK5lBmCGISbq+iGY8pNlrUVWIJEDMdfC/x2d0Feekfshw/y82IiXGs3Y2BA6SK3XOaQBVs=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy4rryMrhL/zZ6keinUUCxUIzi3GkuxJoXPumt2/rfTesX8tZA+
-	LMzyUehG9zTdR6U+XGIsjXPAL54S1PEnXBy6PDTBxPAMWZTeNSYg
-X-Google-Smtp-Source: AGHT+IFTyZrH3dHY8mvvuNjcBojY+diOX2awf9w9x/hrWOQZiA1FMBLE46Vj4RJpyBLwove4w3qJqw==
-X-Received: by 2002:a05:600c:4f13:b0:42c:b995:20db with SMTP id 5b1f17b1804b1-42f85a6e12cmr183436855e9.5.1728406182360;
-        Tue, 08 Oct 2024 09:49:42 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:a061:f1f8:b40:acac])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f86b44374sm131985415e9.30.2024.10.08.09.49.40
+        bh=WUTzgSb9fw2gpJhB0MuECRZH/DxBrNbNjk7Y1YbaGPg=;
+        b=NegdqVkgQxCYpar4f3Dvgba5zkj/5uObCYRq9wLRDoD3XfwARXD3OHSsl8nJKZsxdL
+         q1I7+kU3s82fdNgYB+4R2Wh7tmavai7dsV27siQrfVnTTPErXtd2ZrIyOGbuQe5arXO6
+         8G2BiVvtNHeSgdqEdo/ZnAZJ0cxNJtw6B0405kF+LQzc5GOQ4LAmjAoCAe2wNP7124Gk
+         6MDdt+NEjr62fVahaH5QhashPTgy8pkH7SySmQnyYArs27O8d8S4B5hA0XHQ3x0AXn9M
+         0Cre8HNaafCEMcmnuE/h+9L/liJxYJwlCoodiXLlNTHfIs5cGwxIFUSKcD3gbr+DVsWA
+         MX5w==
+X-Forwarded-Encrypted: i=1; AJvYcCVf4YoMvCSZokYw9zWuvcDVj/ElvOLiXiRkwVJyNKhpIfimosa9Rg3Fthu2VtnOKP4tRnLYIXnmRKnzz4Ox@vger.kernel.org, AJvYcCWzNRpTaMSiJxewbpWSGrTT+Cj6867LfY/VgpGEmpPsdF7AKeSYgtqhpunK4yC8gFbQixTQUCGEniAB@vger.kernel.org
+X-Gm-Message-State: AOJu0YylBdpxYNGIM4vOHs5JyZYAxzFho+sgpYAPa3qbHeh4JcLPOr43
+	mYX/nPYjNIseIDS1kUh1AF6xCmN7Oo7mgpRJ6mEvuCsIdNcgo8HE
+X-Google-Smtp-Source: AGHT+IFTHoePhKyCb4eyN6p0ZYzDWk45doesWg+T//rwb+TDTPclqZG4+4Dqc88Cs6XzrKdgGsnS8A==
+X-Received: by 2002:a05:6512:68d:b0:539:9064:9d04 with SMTP id 2adb3069b0e04-539ab873f77mr8102236e87.33.1728406312932;
+        Tue, 08 Oct 2024 09:51:52 -0700 (PDT)
+Received: from [127.0.1.1] (nat6-minsk-pool-46-53-210-75.telecom.by. [46.53.210.75])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-539aff23e5fsm1260736e87.235.2024.10.08.09.51.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 09:49:41 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
-Date: Tue,  8 Oct 2024 17:49:35 +0100
-Message-ID: <20241008164935.335043-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
+        Tue, 08 Oct 2024 09:51:51 -0700 (PDT)
+From: Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: [PATCH v6 00/12] This is continued work on Samsung S9(SM-9600)
+ starqltechn
+Date: Tue, 08 Oct 2024 19:51:37 +0300
+Message-Id: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIABljBWcC/43QQW7DIBAF0KtErEuFBwNuV71HVUUYDzaSjRPAV
+ qLId+8kbdWom2b5R+J99C8sYwqY2evuwhKuIYc5UtBPO+YGG3vkoaPMQEAtdGV4LjYdx4JuiPs
+ QC/bJFnqzXw65JLQTb12jGyVa8CgZMa3NyNtkoxsIiss40vGQ0IfTrff9g/IQcpnT+faNVV6vP
+ 43N/42r5IKj9FprEJWx7q2fbBif3TyxK77Wv+BLJR8AawKhA/Sdcqox5i+o7kDQD4CKwA5EU2s
+ D3oO/B7evPRIeF5q/fI+ybZ8TWmsmnAEAAA==
+To: cros-qcom-dts-watchers@chromium.org, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728406308; l=4072;
+ i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
+ bh=CaQmhslInAxZaAv6IpH8jspi+xvU0AgNmeg3g7Xi0Bg=;
+ b=86KyutTPFd8ZMcsHq1K31d59vO9EARp3sh3lVRZfjw1LJoaOFyTxCLMDWlNOzh/oPaHzbB0bN
+ 4qRQjsYTUypCV2uxUykflRmxDlWYMTHJo0Q++N3Nx1Vkqei0pKtL58Z
+X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
+ pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Contains starqltechn device tree changes.
+Add support for new features:
+- sound (headphones and mics only)
+- gpu
+- panel
+- buttons
+- MAX77705 MFD:
+  - charger
+  - fuelgauge
+  - haptic
+  - led
 
-Add OPP table for RZ/V2H(P) SoC.
+Binding Dependencies:
+- s2dos05: https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com
+- max77705: https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-0-0d38b5090c57@gmail.com
+- s6e3ha8 panel: https://lore.kernel.org/r/20241006-starqltechn_integration_upstream-v6-0-8336b9cd6c34@gmail.com
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Runtime Dependencies:
+- gcc845 gp clock: https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-0-dd75c06c708d@gmail.com
+
+Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
 ---
-v1->v2
-- Set opp-microvolt to 800000 for frequencies below 1.1GHz
----
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 41 ++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Changes in v6:
+- refactor: no space between tags in commit message
+- rename starqltechn to sdm845-starqltechn in commit summaries
+- Link to v5: https://lore.kernel.org/r/20240926-starqltechn_integration_upstream-v5-0-d2084672ff2f@gmail.com
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 1ad5a1b6917f..4bbe75b81f54 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
- 		clock-frequency = <0>;
- 	};
- 
-+	/*
-+	 * The default cluster table is based on the assumption that the PLLCA55 clock
-+	 * frequency is set to 1.7GHz. The PLLCA55 clock frequency can be set to
-+	 * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and additionally can be
-+	 * clocked to 1.8GHz as well). The table below should be overridden in the board
-+	 * DTS based on the PLLCA55 clock frequency.
-+	 */
-+	cluster0_opp: opp-table-0 {
-+		compatible = "operating-points-v2";
-+
-+		opp-1700000000 {
-+			opp-hz = /bits/ 64 <1700000000>;
-+			opp-microvolt = <900000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-850000000 {
-+			opp-hz = /bits/ 64 <850000000>;
-+			opp-microvolt = <800000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-425000000 {
-+			opp-hz = /bits/ 64 <425000000>;
-+			opp-microvolt = <800000>;
-+			clock-latency-ns = <300000>;
-+		};
-+		opp-212500000 {
-+			opp-hz = /bits/ 64 <212500000>;
-+			opp-microvolt = <800000>;
-+			clock-latency-ns = <300000>;
-+			opp-suspend;
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -30,6 +63,8 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK0>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu1: cpu@100 {
-@@ -38,6 +73,8 @@ cpu1: cpu@100 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK1>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu2: cpu@200 {
-@@ -46,6 +83,8 @@ cpu2: cpu@200 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK2>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		cpu3: cpu@300 {
-@@ -54,6 +93,8 @@ cpu3: cpu@300 {
- 			device_type = "cpu";
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
-+			clocks = <&cpg CPG_CORE R9A09G057_CA55_0_CORE_CLK3>;
-+			operating-points-v2 = <&cluster0_opp>;
- 		};
- 
- 		L3_CA55: cache-controller-0 {
+Changes in v5:
+- Split patchset per subsystem
+- Add links to subsystem patchsets in description
+- Link to v4: https://lore.kernel.org/r/20240913-starqltechn_integration_upstream-v4-0-2d2efd5c5877@gmail.com
+
+Changes in v4:
+- Rewrite max77705, max77705_charger, max77705_fuel_gauge from scratch
+- Reorder patches:
+  - squash max77705 subdevice bindings in core file because
+    no resources there
+  - split device tree changes
+- Use _ as space for filenames in power/supply like the majority
+- Replace gcc-845 freq_tbl frequencies patch with new approach,
+  based on automatic m/n/pre_div value generation
+- Link to v3: https://lore.kernel.org/r/20240618-starqltechn_integration_upstream-v3-0-e3f6662017ac@gmail.com
+
+Changes in version 3:
+- disable crypto patch removed(disabled on distro level)
+- dts framebuffer node along with related patches removed,
+because panel driver added
+- fix 'make O=.output_arm64 CHECK_DTBS=y qcom/sdm845-samsung-starqltechn.dtb'
+errors, but it still complains on 'monitored-battery' and
+'power-supplies' though I have 'power-supply.yaml' link in charger
+and fuel gauge bindings.
+
+---
+Dzmitry Sankouski (12):
+      arm64: dts: qcom: sdm845: enable gmu
+      arm64: dts: qcom: sdm845-starqltechn: remove wifi
+      arm64: dts: qcom: sdm845-starqltechn: fix usb regulator mistake
+      arm64: dts: qcom: sdm845-starqltechn: refactor node order
+      arm64: dts: qcom: sdm845-starqltechn: remove excess reserved gpios
+      arm64: dts: qcom: sdm845-starqltechn: add gpio keys
+      arm64: dts: qcom: sdm845-starqltechn: add max77705 PMIC
+      arm64: dts: qcom: sdm845-starqltechn: add display PMIC
+      arm64: dts: qcom: sdm845-starqltechn: add touchscreen support
+      arm64: dts: qcom: sdm845-starqltechn: add initial sound support
+      arm64: dts: qcom: sdm845-starqltechn: add graphics support
+      arm64: dts: qcom: sdm845-starqltechn: add modem support
+
+ arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi                   |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-db845c.dts                   |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-mtp.dts                      |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-oneplus-common.dtsi          |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts      | 573 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts            |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-sony-xperia-tama.dtsi        |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-beryllium-common.dtsi |   4 -
+ arch/arm64/boot/dts/qcom/sdm845-xiaomi-polaris.dts           |   4 -
+ arch/arm64/boot/dts/qcom/sdm845.dtsi                         |   2 -
+ arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts         |   4 -
+ 11 files changed, 564 insertions(+), 47 deletions(-)
+---
+base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
+change-id: 20240617-starqltechn_integration_upstream-bc86850b2fe3
+
+Best regards,
 -- 
-2.43.0
+Dzmitry Sankouski <dsankouski@gmail.com>
 
 
