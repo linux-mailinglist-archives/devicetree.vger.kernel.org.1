@@ -1,125 +1,111 @@
-Return-Path: <devicetree+bounces-108996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108997-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC6DD9947BC
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:52:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CC119947C4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:53:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC0262830C0
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:52:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 354B81C24E86
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:53:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E00A81DE2D9;
-	Tue,  8 Oct 2024 11:50:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926871D9591;
+	Tue,  8 Oct 2024 11:52:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JtjM9NNi"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="oPopWbj/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18D891DC730
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 11:50:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934AE1D799E;
+	Tue,  8 Oct 2024 11:52:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728388232; cv=none; b=JoCQC+UewS5xRddwz1vfopMhShdqAsRc/bdrZbPM4EcYu5DFw8oLLVoTVWVax+HWn3/yTCtihGX2KlICpt5QmreMipRg+Td4/93Q1KRPI3u+PtiX3ruo/rrklh4g5+pnAKyIevuN8BJCx4XO5+aBeu+U10WvA7OZ7V0OyKUcbh8=
+	t=1728388346; cv=none; b=WIESQUy67eKdZJrQ34KsX5dmvPNYwOPKLPzeMLUDD4PgTJQVgyIEyc8Gx5jikEY4vmg0pSWbelWSDNuW7r68IdW8oe3LSQZ2b1xBUC5CMaAziRzuDEA76evKo/ADUcjYdt5UY47TU8Lkog2zLdW4E779iAfx2mZjLXJlFKRgc+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728388232; c=relaxed/simple;
-	bh=AvIf/cAXb7gv7K7QltyPmNlWcZlQEGDKitfw4yfs74I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QJ9McPiYHzaVDZYvCNFWYVMxp3fjuL5kCAUx7tEgDc3uemLri4EffmK3PaB6pPARDWyi5LYm/H/FkY1mTyQNL/07lHNYlQTPKS8RLvQvA74eUH4m0jfkbBtlb7ph2rvpRfpMt5QzzPea77dnms8oo7nPuPbDaViMErWs8jM6RGc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JtjM9NNi; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5398ec2f3c3so6942150e87.1
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 04:50:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728388229; x=1728993029; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=orTo5qvkhHaghQfSFG2C3pKNVKQQ230FuuT1v/qSo3k=;
-        b=JtjM9NNiYxQkGzA/S/xxuo9t6Q+yGrwzd6y85xpZ94kL5jqFzp240qcIFjiAU0J+u8
-         SGd5OFo2LaxJQVdTauGk1PPRNMvxy7623p7snz2/hMKB2T45DRZ8QasQmd4xveQpx6u1
-         7JaN5I3yDlJBr1+aY6xT+4wcrgDQAYpOYAGjOzaGj6HzRnCkLn+cso2eOpGhmOrkH1wW
-         Ag4h1j2fuJNlF7fgmWnNZfrnFuN/GyRYj0OCNeSqHHaXLbpidXH4vgxatBbKrfvCEaKd
-         Xg0G7shLWDyCzTRaKMwXq1QiTaljPHnLVCQsWfC0RYiI9TXRJG5Yny2cqd9QhZ1K9B4A
-         6JEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728388229; x=1728993029;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=orTo5qvkhHaghQfSFG2C3pKNVKQQ230FuuT1v/qSo3k=;
-        b=JTBedQ+Nl/TNaNrR2RGyk3ZzzhwpjnmKobnF3avdyv427cKeIzKLwRDv8vPLGCw+8L
-         C/iL1Sl+DQK+zggPktAx35NXHLeGhIUEOfeZhEMIrJ/a/2E6+R/7Hjbf5SjGC2Y/L2GW
-         7iWetA30zdsyKun0xyEdxK55aBhZYiMXRH/6+Ddl24Rx7xmHZ+yf+VSvxYGD+qjp2giQ
-         /NHNKH6FVcCOPvW5moSG3ONRlyigkbjfS8I9O0McPLb/R8Zk/TjGkf2PW1F53q6Z5eIB
-         Fkh2tM6YkhnVWTXVQN6D3lrv21c6DkU0WQ6eRYoyTJyobua2IhdsDRiHe8Mlk+0y+9lu
-         1xsg==
-X-Forwarded-Encrypted: i=1; AJvYcCXNI/9QB6Zp/whmEVuyEVZyFcCAl9Ow9pDpgpscceV9M8ssWOefE0hxRqRFhpg+UIUy+zMbJHIjqJ+6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzVSrQOvNpwQAvIf8+8+B4Kixc/yYqsSzrbvROFTX70Yoxxq3cS
-	95X1MJ/Vd4f9+wACwyZOntCv7SxYOWGqnGjlQ6Dc7sKiJ5nlTT4DnHvjgjs7gHk=
-X-Google-Smtp-Source: AGHT+IFmYoMJxA79DffYEVCVfEsjDHlDmeVIQITg9i1+ZFlfwyf0+DWMFtDh0XjYziiaQGCHLlLUvw==
-X-Received: by 2002:a05:6512:2810:b0:533:43e2:6ac4 with SMTP id 2adb3069b0e04-539ab9f0ccdmr6848774e87.49.1728388229117;
-        Tue, 08 Oct 2024 04:50:29 -0700 (PDT)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9937615e85sm476763566b.175.2024.10.08.04.50.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 04:50:28 -0700 (PDT)
-Message-ID: <27f39cda-932c-4b79-84d4-be78d266ebdf@linaro.org>
-Date: Tue, 8 Oct 2024 12:50:27 +0100
+	s=arc-20240116; t=1728388346; c=relaxed/simple;
+	bh=yoZPUcstHvfFyrc/Sujr2G0j7hScF0BV7LuYHeSOp6A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=lG0uysPGt+kuSZ7Dd7ICIiGpV20IDtNwLvETJeKI7UrLo3w59eCvGBWe5QOhFQRX8r0zzr8OqJg97eEUUoo3D9yH3kvJWMZfoolCKCLAPSKKf0B9wYYqZAxFRiNyDfsOFUGf0obqevzY0zQZHfzap1iz2otDcj2+9Po622xW3aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=oPopWbj/; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728388342;
+	bh=yoZPUcstHvfFyrc/Sujr2G0j7hScF0BV7LuYHeSOp6A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=oPopWbj/MEK+6doEOmxxm5ZH2UaKXZQ7ffhrBoy/ujN1GBoyCmxpLmwKQesvSuanT
+	 vMLQYyOM05bREuDMBJdpq58OaWtHXHdUt87rtTjA5lOpda+qm/g+8WhLFtzcBHpkvg
+	 ECxwU4GB0mWAQv0VGcoRdAJaXgjwL4ZQVyg4h30DPeQwrJbvRHsPtk4BCkoX8xjouC
+	 OLECTWKKuNOrEaIkvqAuiD3dPLnR/nAon1mqAbuK9oSLnfTWiuOvpXy6xZABE4qvsg
+	 /Lm1OOOfe1ehIdgjVKmitwD+prMe/O4yo5+UovYFCUmkmbjsPdKDZpOkFos4a/8W9y
+	 yMd2CkiQhybgw==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4126417E13A2;
+	Tue,  8 Oct 2024 13:52:22 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Fei Shao <fshao@chromium.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20241004081218.55962-1-fshao@chromium.org>
+References: <20241004081218.55962-1-fshao@chromium.org>
+Subject: Re: [PATCH v3 0/9] Add platform supports to MediaTek MT8188 SoC
+ (part 2)
+Message-Id: <172838834220.62767.15083532214738517740.b4-ty@collabora.com>
+Date: Tue, 08 Oct 2024 13:52:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: media: qcom,sc8280xp-camss: Fix
- interrupt types
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
- <20240923072827.3772504-2-vladimir.zapolskiy@linaro.org>
- <datahu33nmsser2p4fb2hyncsujtkwaca377ivwmpc6yj2naut@2sjsbebfm3gf>
- <3f87e855-8779-4df3-8f26-e3d2b611d3e9@linaro.org>
- <313667a6-afcd-44cb-a6f6-0d550e8f68a0@linaro.org>
- <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On 08/10/2024 12:37, Vladimir Zapolskiy wrote:
+On Fri, 04 Oct 2024 16:11:52 +0800, Fei Shao wrote:
+> This series is based on top of my previous "Add platform supports to
+> MediaTek MT8188 SoC" v3 series[*].
 > 
-> I don't have access to datasheets or hardware of sc8280xp powered board,
-> someone may either verify, if CAMSS level high type interrupts are
-> supported/working at all or not (obviously its current presence in dts is
-> insufficient), or check the SoC datasheet.
+> There's nothing to change or address in that series at the point of
+> writing, so I decided not to resend it and start this new "part 2"
+> series instead.
+> (if I need to update both series next time I might consider merging them
+> into one)
+> 
+> [...]
 
-I've tested both as was submitted and your change.
+Applied to v6.12-next/dts64, thanks!
 
-I _always_ test my patches. I'm not sure there's a datasheet which 
-spells this out to be honest.
+[1/9] arm64: dts: mediatek: mt8188: Assign GCE aliases
+      https://git.kernel.org/mediatek/c/3192a83f
+[2/9] arm64: dts: mediatek: mt8188: Add PCIe nodes
+      https://git.kernel.org/mediatek/c/ad5c0159
+[3/9] arm64: dts: mediatek: mt8188: Add MIPI DSI nodes
+      https://git.kernel.org/mediatek/c/08a838d6
+[4/9] arm64: dts: mediatek: mt8188: Add video decoder and encoder nodes
+      https://git.kernel.org/mediatek/c/b04407fb
+[5/9] arm64: dts: mediatek: mt8188: Add JPEG decoder and encoder nodes
+      https://git.kernel.org/mediatek/c/9e85e3cc
+[6/9] arm64: dts: mediatek: mt8188: Add display nodes for vdosys0
+      https://git.kernel.org/mediatek/c/26170e14
+[7/9] arm64: dts: mediatek: mt8188: Add display nodes for vdosys1
+      https://git.kernel.org/mediatek/c/0a3bd16e
+[8/9] arm64: dts: mediatek: mt8188: Add DP-INTF nodes
+      https://git.kernel.org/mediatek/c/5a206e43
+[9/9] arm64: dts: mediatek: mt8188: Add eDP and DP TX nodes
+      https://git.kernel.org/mediatek/c/8f8d13c8
 
-Rising or High can both be justified, its really down to how your 
-interrupt controller latches the state change. However I personally am 
-fine with the change you've provided because I trust it fixes an error 
-for you.
+Cheers,
+Angelo
 
-I didn't try loading and unloading that module but, since you did I'm 
-happy to Ack the change and trust your work.
 
----
-bod
 
