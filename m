@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-108950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 894079945D7
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:55:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 273219945D8
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:55:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DC7C1F23C5D
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:55:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CBFA32836D2
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 10:55:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 762541C3034;
-	Tue,  8 Oct 2024 10:55:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2799D1C3F27;
+	Tue,  8 Oct 2024 10:55:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="PON5GUzg"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="dDhTfl6N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out-184.mta1.migadu.com (out-184.mta1.migadu.com [95.215.58.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 365E92CA8
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 10:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CAF2CA8
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 10:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728384924; cv=none; b=XO55YX5A+vd2om0iAuNOVBrz9wZbM55jymgdIeIlOh1J3lk95NuhibnKnNspCiMveag7CgbIBBZC2jfHs3ptawrUrrDIuZiEKEJ6SfVC0xKcLbtiKK6dsHRLbj+r//hX+L5Sdu4kgSVh7XXOWV+zktWUcQW6Fma7l9fVYI7lpKE=
+	t=1728384932; cv=none; b=VljRgPROWv//JtYmELKovgDPt4+F2NX7EeWenvj5jkvUOjZQLaqydbFjkUwJklSkxCOcexo12P553rBgAJLtSByVRkTZiZOD2PNrWAlZEYsA+4nDkDG/AnoYynMsVXvncb/bIl9SpVdRaegYbSnPmVZpVvQed1dTjKB+IOoGjBI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728384924; c=relaxed/simple;
-	bh=IqsXL+0JaGlAI/uuonW5vlQlawJ3boipDLoZTfWoY3M=;
+	s=arc-20240116; t=1728384932; c=relaxed/simple;
+	bh=sjhrmUWj8gg6oOtrpR0aVWl49bQO3T87USNcmAb/Itc=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=oqfplE4eSAHB3mHfuJ/VkMFU4YzrS02V+150qE2yzGbyUPzRj/6KRNz4OlfKob8wnogzHHPIOHkQhkOYFX4mLXglaPzsYAf//dl9hx/lAc7uYXUWf//fZEjlbB7wUiaNFLlKxqCaSusy6YQI+XADj4HEJsvprgGLJajpFblNbYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=PON5GUzg; arc=none smtp.client-ip=95.215.58.184
+	 MIME-Version; b=gOnTmZy46qMGeNgqvWIrqUfcyMGejuGxLuEowHwfegYMiEOoQG4bpTNXM9RiN9B4mZ/Rb+f8nRUrF8ejJctrwTf8AWshFLAprmxcMHUGbJeR/d8jlJNKu+NLBFGumElY7kEZpHrnv7G12bx7rfld5WJYSlCb7jF2Leo8NXx6jFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=dDhTfl6N; arc=none smtp.client-ip=95.215.58.184
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1728384920;
+	t=1728384927;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=+wda6s2SX3Nfa5Js6GhD0skPHd5Xmoghi2oJllqU5Jo=;
-	b=PON5GUzg7wRNjnLUExw7RDKnToadHLqPfgbjT7fV9yvNH7iwLRArF7QkrGZVwikDvObWuZ
-	3Ldf41RUg7D7JJKdremPLW7H/r8ZQ+EPaShr6PDfZuM7+Fxvxvf70M3TtUeGTtlCGb6zFo
-	sj5QzLgGliPL9b4KdLkvCG/szD4ZV+EAykqjf67CpSv7Vakcroxiu28fpPuNiUlxiAG4bb
-	3lNdcO7QzmPPEWwGSkRjPoGD/sAM1utq3P2NSAVX4/NgPC6pT/yaE/44ic9YCRrD4aLSff
-	WdBujM4dd6x8UC8CgKuBHroXDQpZvcSbXMgIEaG8JJ+JsTi2oUv3allYFV7uQQ==
+	bh=Izk1kex6rdi1oe0DGM8ymhOLBnmdYEcObzx83Bve9Lc=;
+	b=dDhTfl6NWXwmXrIRxOhcK/8FzHiDGHknDiPgvDCN94QoMH/ZvTd6fJHzr1bgamn+sQ+LKp
+	6xRuxHFc7mjxLAbieWRC+k7H3/Tt4xWBIS9WIK0qM8aqYWKqzCh3yt6Pm3UZhDZhU/886M
+	ZcWIXOt4a0uTRlUjqaTsX7ng1b6KpTgJ74/yuyxLWgi0/HFeAwaclDYYIKUqVcBW93sA9i
+	ZqbvQVKBZ15sQNRB6cJ3weYd0LHJm/1L5/UKvYSmHMry/+cQMw6bDG54dNPjJF8G/GxX8y
+	QxkHOkgC3xC/qmNYojV+3EozxBu/yY4ohO2Em064dpJFR+i+SolSyxrCFfxZ9w==
 From: Diederik de Haas <didi.debian@cknow.org>
 To: Heiko Stuebner <heiko@sntech.de>,
 	linux-rockchip@lists.infradead.org
@@ -54,9 +54,9 @@ Cc: linux-arm-kernel@lists.infradead.org,
 	Conor Dooley <conor+dt@kernel.org>,
 	Dragan Simic <dsimic@manjaro.org>,
 	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v2 1/5] arm64: dts: rockchip: px30: Drop rockchip prefix from s-p-c PMIC property
-Date: Tue,  8 Oct 2024 12:48:01 +0200
-Message-ID: <20241008105450.20648-2-didi.debian@cknow.org>
+Subject: [PATCH v2 2/5] arm64: dts: rockchip: rk3328: Drop rockchip prefix from s-p-c PMIC property
+Date: Tue,  8 Oct 2024 12:48:02 +0200
+Message-ID: <20241008105450.20648-3-didi.debian@cknow.org>
 In-Reply-To: <20241008105450.20648-1-didi.debian@cknow.org>
 References: <20241008105450.20648-1-didi.debian@cknow.org>
 Precedence: bulk
@@ -74,71 +74,113 @@ Property 'rockchip,system-power-controller' was deprecated in commit
 in the "rockchip,rk{805,808,809,817,818}.yaml" mtd bindings and its
 replacement is (just) 'system-power-controller'.
 
-Update the px30 DT files which still used the deprecated variant.
+Update the rk3328 DT files which still used the deprecated variant.
 
 Signed-off-by: Diederik de Haas <didi.debian@cknow.org>
 ---
 changes in v2:
 - rephrased commit message a bit
 
- arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi | 2 +-
- arch/arm64/boot/dts/rockchip/px30-evb.dts                | 2 +-
- arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi  | 2 +-
- arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi          | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3328-a1.dts               | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-evb.dts              | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts       | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts           | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts        | 2 +-
+ arch/arm64/boot/dts/rockchip/rk3328-rock64.dts           | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi b/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-index 5eecbefa8a33..dd715d22d4d2 100644
---- a/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-engicam-px30-core.dtsi
-@@ -50,7 +50,7 @@ rk809: pmic@20 {
- 		interrupts = <RK_PA7 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+index 824183e515da..9406a887652d 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-a1.dts
+@@ -159,7 +159,7 @@ pmic@18 {
+ 		interrupts = <RK_PA6 IRQ_TYPE_LEVEL_LOW>;
  		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int>;
--		rockchip,system-power-controller;
-+		system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <1>;
- 		clock-output-names = "rk808-clkout1", "rk808-clkout2";
-diff --git a/arch/arm64/boot/dts/rockchip/px30-evb.dts b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-index 0a90a88fc664..c9d7b32da997 100644
---- a/arch/arm64/boot/dts/rockchip/px30-evb.dts
-+++ b/arch/arm64/boot/dts/rockchip/px30-evb.dts
-@@ -189,7 +189,7 @@ rk809: pmic@20 {
- 		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int>;
+ 		pinctrl-0 = <&pmic_int_l>;
 -		rockchip,system-power-controller;
 +		system-power-controller;
  		wakeup-source;
  		#clock-cells = <0>;
- 		clock-output-names = "xin32k";
-diff --git a/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi b/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi
-index f18d7eb9a9c7..d22ea65b364c 100644
---- a/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-firefly-jd4-core.dtsi
-@@ -70,7 +70,7 @@ rk809: pmic@20 {
- 		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
+ 
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-evb.dts b/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
+index 1eef5504445f..12a4e421ec95 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-evb.dts
+@@ -121,7 +121,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
  		pinctrl-names = "default";
- 		pinctrl-0 = <&pmic_int>;
--		rockchip,system-power-controller;
-+		system-power-controller;
- 		wakeup-source;
- 		#clock-cells = <0>;
- 		clock-output-names = "xin32k";
-diff --git a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-index bb1aea82e666..eb0bb78cff7d 100644
---- a/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30-ringneck.dtsi
-@@ -127,7 +127,7 @@ rk809: pmic@20 {
- 		pinctrl-names = "default";
- 		#clock-cells = <0>;
- 		clock-output-names = "xin32k";
+ 		pinctrl-0 = <&pmic_int_l>;
 -		rockchip,system-power-controller;
 +		system-power-controller;
  		wakeup-source;
  
- 		vcc1-supply = <&vcc5v0_sys>;
+ 		vcc1-supply = <&vcc_sys>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+index a4399da7d8b1..a10847509bfe 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+@@ -181,7 +181,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
+ 		pinctrl-0 = <&pmic_int_l>;
+ 		pinctrl-names = "default";
+-		rockchip,system-power-controller;
++		system-power-controller;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vdd_5v>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+index f20662929c77..99499a0bab19 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-orangepi-r1-plus.dts
+@@ -152,7 +152,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
+ 		pinctrl-0 = <&pmic_int_l>;
+ 		pinctrl-names = "default";
+-		rockchip,system-power-controller;
++		system-power-controller;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vcc_sys>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+index 414897a57e75..88bb95075b6f 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-cc.dts
+@@ -191,7 +191,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_int_l>;
+-		rockchip,system-power-controller;
++		system-power-controller;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vcc_sys>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+index 3e08e2fd0a78..905ef4b94095 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock-pi-e.dts
+@@ -249,7 +249,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_int_l>;
+-		rockchip,system-power-controller;
++		system-power-controller;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vcc_sys>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+index 90fef766f3ae..7d179aae8d24 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
+@@ -181,7 +181,7 @@ rk805: pmic@18 {
+ 		#gpio-cells = <2>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pmic_int_l>;
+-		rockchip,system-power-controller;
++		system-power-controller;
+ 		wakeup-source;
+ 
+ 		vcc1-supply = <&vcc_sys>;
 -- 
 2.45.2
 
