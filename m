@@ -1,209 +1,166 @@
-Return-Path: <devicetree+bounces-109015-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109016-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541E89949BD
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:26:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97DEA9949DF
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:28:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D10632815B4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:26:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBC751C2107B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:28:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE2C1DF24C;
-	Tue,  8 Oct 2024 12:25:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PKbzeZZt"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7685D1DE4D7;
+	Tue,  8 Oct 2024 12:27:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EEB4C97;
-	Tue,  8 Oct 2024 12:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1CD8EEC8;
+	Tue,  8 Oct 2024 12:26:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728390338; cv=none; b=anBu8h8+ZHPOCNGg+M8RWU/nnU3hii6UmokTPf64RKV9WPj8TaFvf0GzAJY5CiJ40+wcX4zmdURmVFC/26STXjEhrzynHKir0Jtp8w2P7kQPSLHaMCG4rLYOUtLJZCWgBAWl1iqkLYxc8aNLgBQteH1VVwxLTzIoQRwSPg3bjv8=
+	t=1728390420; cv=none; b=n8dGd2F4D6ewbI/Hf2ytyf5Lic/C5q8cwW15g6Cdfafym/Ro92vHcnhh1x33cXSH2acsoCZU81RX1o9fWVZPQuaNJmIZIsZLfWb9rwXnMmKwJUrJSk2NDpk+reQCq65aK3KujCuEwR0w4vR3NgLLuczvsFzSTrcyN3B2jIwWnKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728390338; c=relaxed/simple;
-	bh=YfIu97ocnJkzq+weij9l4JKl/8R6QAvuCB0Apc/BR9s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mf/s49lRSO7FJ6tiggZ/clv9HXx26eh1Y2KEWK423wssXQV+wdhfWPnRBO1F8Gy00hbMjVvYsxY80XV1mfIY+mNP2Wqla3dxiLUHISeRdp3HK/jjlgx5fiY+FCfNEDegP8lq7seaYb2jG9/2g4QddKnXA3yke4CleMtf3TnUEb0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PKbzeZZt; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4984ScNg008706;
-	Tue, 8 Oct 2024 12:25:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	4jxF7w+K3McN6/KIutBaKbsS8CYGYF4IWYgmCMS+nDg=; b=PKbzeZZtnhjW85Dl
-	818lm96L67daXTHEiAz7gYyYjVuNixUoxyFxRNW6JaIbS365TUYiuISvpLcN4fkV
-	XwZbarzepa5sl4UjtWOl7XaslUwL058meOgo7uepFtUlB7IJpdwX7ioIfOASmeud
-	t7JIKyMTsryEXlMFbSSVNolvHuCkRyEnTEV+yJP8elKwJzIWUMEz9hu1Jt/kre//
-	b09akcqvsbKyrMDEL1Lzmo/3u/d0RKTto5GdxE7Kwwc2Bn50OlNX1FbY3lnxkXHu
-	4zy+5IgBgx9yKmn2N2BJLdJ1XViSRglhEypPJAt2/cIlv4wd4sPi4H6mjIkp7nTc
-	drfBhQ==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424wrc17h5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Oct 2024 12:25:34 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 498CPXQM014990
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 8 Oct 2024 12:25:33 GMT
-Received: from [10.217.218.111] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Oct 2024
- 05:25:30 -0700
-Message-ID: <70c2e4c0-aa5a-4d61-9b12-ee7cc5106ead@quicinc.com>
-Date: Tue, 8 Oct 2024 17:55:27 +0530
+	s=arc-20240116; t=1728390420; c=relaxed/simple;
+	bh=5Nl+OeJMY5uGxZFls6uVPJ503vuF3Ttr1J15r5Ex7IM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RNvqy+PnShiLKpZGR8bG629YH0u0Xwuo/Z1Fq0QQo8bLg1q8FoW2/uZ1MhldjIaJB7dKTqeeCSWeYE3SUI6xYSdFRejb6l6+PJ9LfCx12JQWX4lfkQARYLKl2g+JQuvihVR8dlFO0voIUcTa8kDFuKjdTFSNq70QHy4oIjjiKNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CF169DA7;
+	Tue,  8 Oct 2024 05:27:27 -0700 (PDT)
+Received: from pluto (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 47DC43F73F;
+	Tue,  8 Oct 2024 05:26:56 -0700 (PDT)
+Date: Tue, 8 Oct 2024 13:26:53 +0100
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>,
+	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
+	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
+	justin.chen@broadcom.com, opendmb@gmail.com,
+	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+	Arnd Bergmann <arnd@arndb.de>
+Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
+ mailbox
+Message-ID: <ZwUlDT_YupBSZjMJ@pluto>
+References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
+ <ZwPLgcGeUcFPvjcz@pluto>
+ <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Update iommu-map entry
-To: <andersson@kernel.org>, <krzk+dt@kernel.org>
-CC: <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        "open list:ARM/QUALCOMM SUPPORT"
-	<linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED
- DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-        open list
-	<linux-kernel@vger.kernel.org>
-References: <20241008121755.1174730-1-quic_skananth@quicinc.com>
-Content-Language: en-US
-From: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
-In-Reply-To: <20241008121755.1174730-1-quic_skananth@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: XU7-8HFb-IgBIPylIobZS4N0LMiX-mSA
-X-Proofpoint-ORIG-GUID: XU7-8HFb-IgBIPylIobZS4N0LMiX-mSA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
- impostorscore=0 suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0
- adultscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410080078
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
 
+On Mon, Oct 07, 2024 at 10:07:46AM -0700, Florian Fainelli wrote:
+> Hi Cristian,
+> 
+> On October 7, 2024 4:52:33 AM PDT, Cristian Marussi
+> <cristian.marussi@arm.com> wrote:
+> > On Sat, Oct 05, 2024 at 09:33:17PM -0700, Florian Fainelli wrote:
+> > > Broadcom STB platforms have for historical reasons included both
+> > > "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node compatible
+> > > string.
+> > 
+> > Hi Florian,
+> > 
+> > did not know this..
+> 
+> It stems from us starting with a mailbox driver that did the SMC call, and
+> later transitioning to the "smc" transport proper. Our boot loader provides
+> the Device Tree blob to the kernel and we maintain backward/forward
+> compatibility as much as possible.
+> 
 
-On 10/8/2024 5:47 PM, Subramanian Ananthanarayanan wrote:
-> SA8775P has only support for SMMU v2, due to this PCIe has limited
-> SID entries to enable dynamic IOMMU mapping in the driver, hence
-> we are updating static entries.
+OK.
+
+> > 
+> > > 
+> > > After the commit cited in the Fixes tag and with a kernel
+> > > configuration that enables both the SCMI and the Mailbox transports, we
+> > > would probe the mailbox transport, but fail to complete since we would
+> > > not have a mailbox driver available.
+> > > 
+> > Not sure to have understood this...
+> > 
+> > ...you mean you DO have the SMC/Mailbox SCMI transport drivers compiled
+> > into the Kconfig AND you have BOTH the SMC AND Mailbox compatibles in
+> > DT, BUT your platform does NOT physically have a mbox/shmem transport
+> > and as a consequence, when MBOX probes (at first), you see an error from
+> > the core like:
+> > 
+> >    "arm-scmi: unable to communicate with SCMI"
+> > 
+> > since it gets no reply from the SCMI server (being not connnected via
+> > mbox) and it bails out .... am I right ?
+> 
+> In an unmodified kernel where both the "mailbox" and "smc" transports are
+> enabled, we get the "mailbox" driver to probe first since it matched the
+> "arm,scmi" part of the compatible string and it is linked first into the
+> kernel. Down the road though we will fail the initialization with:
+> 
+> [    1.135363] arm-scmi arm-scmi.1.auto: Using scmi_mailbox_transport
+> [    1.141901] arm-scmi arm-scmi.1.auto: SCMI max-rx-timeout: 30ms
+> [    1.148113] arm-scmi arm-scmi.1.auto: failed to setup channel for
+> protocol:0x10
+> [    1.155828] arm-scmi arm-scmi.1.auto: error -EINVAL: failed to setup
+> channels
+> [    1.163379] arm-scmi arm-scmi.1.auto: probe with driver arm-scmi failed
+> with error -22
+> 
+> Because the platform device is now bound, and there is no mechanism to
+> return -ENODEV, we won't try another transport driver that would attempt to
+> match the other compatibility strings. That makes sense because in general
+> you specify the Device Tree precisely, and you also have a tailored kernel
+> configuration. Right now this is only an issue using arm's
+> multi_v7_defconfig and arm64's defconfig both of which that we intend to
+> keep on using for CI purposes.
 >
-> iommu-map entries are added to support more PCIe device like switch
-> attach, SRIOV capable devices. These entries are specific to this
-> board as topology of PCIe devices can vary based on the end usecase
-> connected via PCIe. For other board files, these entries may
-> not be directly applicable.
->
-> Signed-off-by: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
-> ---
-> Changes in V2:
-> 	- Updated commit message.
 
-forgot to add link to v1 : 
-https://lore.kernel.org/lkml/20241001114601.1097618-1-quic_skananth@quicinc.com/
+Ah ok so the issue derives from the fact that you have a single
+compatible line with 2 not compatbles that are not really "compatible"
+from the SCMI core point of view...
 
--Subramanian
+...also I suppose that if we "somehow" would trigger a
+device_release_drievr(), what will happen is that it will match probably
+again in the same order at the next attempt (beside being an ugly thing)
 
-> ---
-> ---
->   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 62 ++++++++++++++++++++++
->   1 file changed, 62 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> index 0c1b21def4b6..05c9f572ae42 100644
-> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-> @@ -675,6 +675,37 @@ &pcie0 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pcie0_default_state>;
->   
-> +	iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
-> +		    <0x100 &pcie_smmu 0x0001 0x1>,
-> +		    <0x101 &pcie_smmu 0x0002 0x1>,
-> +		    <0x208 &pcie_smmu 0x0003 0x1>,
-> +		    <0x210 &pcie_smmu 0x0004 0x1>,
-> +		    <0x218 &pcie_smmu 0x0005 0x1>,
-> +		    <0x280 &pcie_smmu 0x0006 0x1>,
-> +		    <0x281 &pcie_smmu 0x0007 0x1>,
-> +		    <0x282 &pcie_smmu 0x0008 0x1>,
-> +		    <0x283 &pcie_smmu 0x0009 0x1>,
-> +		    <0x284 &pcie_smmu 0x000a 0x1>,
-> +		    <0x285 &pcie_smmu 0x000b 0x1>,
-> +		    <0x286 &pcie_smmu 0x000c 0x1>,
-> +		    <0x287 &pcie_smmu 0x000d 0x1>,
-> +		    <0x288 &pcie_smmu 0x000e 0x1>,
-> +		    <0x289 &pcie_smmu 0x000f 0x1>,
-> +		    <0x28a &pcie_smmu 0x0010 0x1>,
-> +		    <0x28b &pcie_smmu 0x0011 0x1>,
-> +		    <0x28c &pcie_smmu 0x0012 0x1>,
-> +		    <0x28d &pcie_smmu 0x0013 0x1>,
-> +		    <0x28e &pcie_smmu 0x0014 0x1>,
-> +		    <0x28f &pcie_smmu 0x0015 0x1>,
-> +		    <0x290 &pcie_smmu 0x0016 0x1>,
-> +		    <0x291 &pcie_smmu 0x0017 0x1>,
-> +		    <0x292 &pcie_smmu 0x0018 0x1>,
-> +		    <0x293 &pcie_smmu 0x0019 0x1>,
-> +		    <0x300 &pcie_smmu 0x001a 0x1>,
-> +		    <0x400 &pcie_smmu 0x001b 0x1>,
-> +		    <0x500 &pcie_smmu 0x001c 0x1>,
-> +		    <0x501 &pcie_smmu 0x001d 0x1>;
-> +
->   	status = "okay";
->   };
->   
-> @@ -685,6 +716,37 @@ &pcie1 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pcie1_default_state>;
->   
-> +	iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
-> +		    <0x100 &pcie_smmu 0x0081 0x1>,
-> +		    <0x101 &pcie_smmu 0x0082 0x1>,
-> +		    <0x208 &pcie_smmu 0x0083 0x1>,
-> +		    <0x210 &pcie_smmu 0x0084 0x1>,
-> +		    <0x218 &pcie_smmu 0x0085 0x1>,
-> +		    <0x280 &pcie_smmu 0x0086 0x1>,
-> +		    <0x281 &pcie_smmu 0x0087 0x1>,
-> +		    <0x282 &pcie_smmu 0x0088 0x1>,
-> +		    <0x283 &pcie_smmu 0x0089 0x1>,
-> +		    <0x284 &pcie_smmu 0x008a 0x1>,
-> +		    <0x285 &pcie_smmu 0x008b 0x1>,
-> +		    <0x286 &pcie_smmu 0x008c 0x1>,
-> +		    <0x287 &pcie_smmu 0x008d 0x1>,
-> +		    <0x288 &pcie_smmu 0x008e 0x1>,
-> +		    <0x289 &pcie_smmu 0x008f 0x1>,
-> +		    <0x28a &pcie_smmu 0x0090 0x1>,
-> +		    <0x28b &pcie_smmu 0x0091 0x1>,
-> +		    <0x28c &pcie_smmu 0x0092 0x1>,
-> +		    <0x28d &pcie_smmu 0x0093 0x1>,
-> +		    <0x28e &pcie_smmu 0x0094 0x1>,
-> +		    <0x28f &pcie_smmu 0x0095 0x1>,
-> +		    <0x290 &pcie_smmu 0x0096 0x1>,
-> +		    <0x291 &pcie_smmu 0x0097 0x1>,
-> +		    <0x292 &pcie_smmu 0x0098 0x1>,
-> +		    <0x29d &pcie_smmu 0x0099 0x1>,
-> +		    <0x300 &pcie_smmu 0x009a 0x1>,
-> +		    <0x400 &pcie_smmu 0x009b 0x1>,
-> +		    <0x500 &pcie_smmu 0x009c 0x1>,
-> +		    <0x501 &pcie_smmu 0x009d 0x1>;
-> +
->   	status = "okay";
->   };
->   
+> 
+> > 
+> > If this is the case, without this patch, after this error and the mbox probe
+> > failing, the SMC transport, instead, DO probe successfully at the end, right ?
+> 
+> With my patch we probe the "smc" transport first and foremost and we
+> successfully initialize it, therefore we do not even try the "mailbox"
+> transport at all, which is intended.
+> 
+> > 
+> > IOW, what is the impact without this patch, an error and a delay in the
+> > probe sequence till it gets to the SMC transport probe 9as second
+> > attempt) or worse ? (trying to understand here...)
+> 
+> There is no recovery without the patch, we are not giving up the arm_scmi
+> platform device because there is no mechanism to return -ENODEV and allow
+> any of the subsequent transport drivers enabled to attempt to take over the
+> platform device and probe it again.
+> 
+
+Ok...so it is a workaround hack indeed....but it seems NOT to have bad
+side effects and there is definitely no cleaner way to make it bind
+properly...beside fixing your DTs for the future...
+
+Thanks,
+Cristian
 
