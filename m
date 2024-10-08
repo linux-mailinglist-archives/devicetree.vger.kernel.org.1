@@ -1,142 +1,280 @@
-Return-Path: <devicetree+bounces-109059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109067-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DAC4995167
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:23:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B0CB99513A
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:15:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 005E7B284A6
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:06:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B65C11C235D6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:15:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 523F41DF971;
-	Tue,  8 Oct 2024 14:06:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53FB31DF98E;
+	Tue,  8 Oct 2024 14:15:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NX1bIrDF"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="gR3/uvqX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A51471DF72E
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:06:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C32C1DF25E
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 14:15:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728396384; cv=none; b=ligaTtfUDvkydpL78L7WcH8ZCoEYMf03I0wqJjLGPDJyPQm7Tld8/ZNGUmM3fPqrKcrm5bgZanAvpZ+Z21Vm74pFmeLsG7Rm+9rZCrebgGOAEoBik2ITR8VM8AzhmA4BBKuKU10qd8+cbOGATzf0td8cYNkLUjzCA43Ow7h1lac=
+	t=1728396926; cv=none; b=sFRzImMZAUOeaR0BZkDqr8Fh9jonDwsbUdVF4YcKBJGdDgJjp53uWlvpD3DDcOHtgNXlbJdPOfwmX4oo8+QlY1QF4EqvWHU0V43vVPi51xk79c8cmnpugp37NvT5VaORyEihHotS90VIgMM9v7M/uKT2Cd2LjBeyRQ+kqAj7ZpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728396384; c=relaxed/simple;
-	bh=dzHbg8mQzajlPzqNpsMYJhkbjdTL5GhbgGOkl/GTjNQ=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=IKYHtnQwBFY97UTqXRkyFrQtIOjJQBJEwPdM6LSsizPusVs5DAQy5YHeaMYeM5GxSgX/TzUy+WTE6sjbtALGP/Jlr+EIHu61Y6KLFpktDt+syYw1fx63qDkRkvXeqt5jRAPMGYQUTU5E8UDrGOjQE5y/nm03/DKC5oRnA2/1ts8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NX1bIrDF; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a99415adecaso500827666b.0
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:06:22 -0700 (PDT)
+	s=arc-20240116; t=1728396926; c=relaxed/simple;
+	bh=CqreoEFhCQFdVZYvfxwSzFz7kcPrc8UoGAIbyX317wU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fAFhvvA+levajA2NO5cbyHQk4+f4O9P2xMZPTgWcDFUL0tKSfHA561jMZubCm2hKe1/mAR4kTaDnxXsmqDjqWNrZ506s64SnMHtbfVWaZTArKq9BtdAO19KE9JjwQtkNCcK69Zr3n+7o8S+ReNqdfxmNd/cidC7ezxu3BuhPOTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=gR3/uvqX; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4305413aec9so6031475e9.2
+        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 07:15:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728396381; x=1729001181; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HV2x/n3wTPRpS1liNMjGaZ2HjQYk+BlLQLz2BBKy5tU=;
-        b=NX1bIrDFjAi3qWVJws0//dwql9R7yfh/r5VhLV6U+qeAQGHHaAA50zMyh2zsrFCBbI
-         nECrtz5trRocaOFb+ivMOaSfrPzaRGWLD+HQnAn1PZEjPsTuK+dyPS6tWNcCr/9MPjKI
-         lnFtF7pRCbZOzqzFX5Fq2spFGFBvl/pBLABAbo/yhRH0qrKxj2IjbzWBg+xknsPvSpRc
-         vJCZbSkZKsKca2a3BQlbUhte3i7hpN1CmFUpfQHBfZRKDwfox7L6Z/0WJds2lSSJgya3
-         XvkDhngSJiXGTh1+nMsB3PkotIcqOJ+4yU6me3UAsB+Irrk2slt0Th6xNRpvJJHbm4BZ
-         S6XQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728396922; x=1729001722; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YbHZZTOAhsp8JBOuMrZ0YxXm19FoPjC7YvWjJGqNBfs=;
+        b=gR3/uvqXZie4pTVIqfxySbbtK6FOWWc/p3GNkJFD+4nmiCDD1VU2NH5wr/TMr8ZfHE
+         fsR/dAbLrnURXQejXr1k2BNzP409L7y84mWLLoaBZlgatNcgN0X1PKdE03uHruaFKg7P
+         341ODkzxhSqd+BDUOLgUxoS1risk8dWRWXLPbGCsdIwWXuQwoGswrjhlrI81+iVT5EG0
+         F3BLYjdsGz/J40YM2kAI1boHeD2GY8ZHO5ukioRvRYI6ZrxVcHqT9fhN7PDWNugvyYxm
+         KSSUubHJ3Su7I8mz2SnXNd27zGlzDXR2yDbnWJCx7pNOJEHMtIhXLtxyh2cB8nrroGot
+         w9CQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728396381; x=1729001181;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HV2x/n3wTPRpS1liNMjGaZ2HjQYk+BlLQLz2BBKy5tU=;
-        b=v2YPJghhOuIkELwX+pRpAYGO0FAGjZqJ8WqV0wV0wnPf+SZnZMSdnYPwPf3BnbUzKU
-         vn1Hyv8KxR/6EenCyXQXoVYl8ONFyYsb/JudlHdOjbIrsAyIWGETWgKOgQZFkkfuG4Pz
-         rprOSsNZZbXjZKDqDvRiOwxFY52IfkPmV4NrsaZ9QwhqFAZzbj+K9NZt43hQRoLYb8mO
-         vtCrT4Hd9pVJ+9VwEX7vVsX7jY1YKC9W0wrMNm9I6fY0KjjP8oZYulRHtOMI+TDOSusj
-         q4fUDzILM9tUtYs/CdbXhZI6HOljF9ta23ILQRbyZHEpUwo9dpWa7KvAWdeOiiljAuCt
-         15lQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU/N8X2n7pv/8vQxspvIM1okPFmvGxyUqO890fIKVhPyfhZpXv7Ehau8QmHgz1KwmmrifmZ05fidBqD@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4BPnAuY2dPRWgFj0+HYloX9RCTtc9MHc701f4AZ1kWA71CrFW
-	AnE6Hvm+afUosGzyQ1ypR9tNgTUvTvPWXjgpCg6mulRN6tSoFuEPvzGU/dsj2ik=
-X-Google-Smtp-Source: AGHT+IELq6WtsaklrDf6XvrNeb7DsO6WLI086Qs9v5jzBmcQymK1gLJT2PXlfmnYaBCDvw1PEJ1RSA==
-X-Received: by 2002:a17:907:7da9:b0:a8d:3fb6:33df with SMTP id a640c23a62f3a-a9984690abbmr27747866b.8.1728396380872;
-        Tue, 08 Oct 2024 07:06:20 -0700 (PDT)
-Received: from [127.0.1.1] ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994f50fcd4sm320714266b.171.2024.10.08.07.06.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 07:06:20 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Subject: [PATCH 0/4] arm64: dts: qcom: x1e80100: Describe SDCs and enable
- support on QCP
-Date: Tue, 08 Oct 2024 17:05:54 +0300
-Message-Id: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
+        d=1e100.net; s=20230601; t=1728396922; x=1729001722;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YbHZZTOAhsp8JBOuMrZ0YxXm19FoPjC7YvWjJGqNBfs=;
+        b=KwtDJrFmELvK0hNLnkffVIp00CoPM4i3lBri8ZdkN/LBBWYRvBQmvxbwgLrGPvXBWF
+         wAY+i6cJZM7BXDJm41URZjMY+DIZ8AI23ErOFpjzY00RUdnAK8DT6zXQ/+3xqpcfr5Vs
+         Cmuqfz85I0rv+VwE3sdKpqH5OdHPflG8akxx7Gd+hYtHGvkEogalFBjjNHVAiioXnP/D
+         GVKwBX3lTjRzLM8xHESFQ5VEJ4gJMeQCqez/Dfbbu1oG4ValjhFuwYwTDgey4lAR/2sM
+         9ciuCy8bYx6n20udeyICRguJkwwMFDBNURcCm+adTNuW677coyQyZ15JNCgGcuH1gXbK
+         0sWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVTTS7N8H0TeLwRttcjPBmSpk+y0QBasZlYM7NSpMBjNXH57NApvwEpiAShcby5cSJa7/wZBJtVL1zg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzAmJUnq/VxMM9GWRgEVI4tS4J1Niy9/6+e3bFONI4HmyX27xZk
+	tAH8cBkk6S5r87eTEAtIfuIJudd6suaBGFfy8bkvEsEPZ5Zubbyp2Aew/qKmKeI=
+X-Google-Smtp-Source: AGHT+IEoQhbVmmbQMTTmc9qQqvTZ3+3Kk0Hi9yFcuaSu4B+QxOUVAbfHqw2zbJ89+CJkgxBFZGPM1A==
+X-Received: by 2002:a05:600c:450f:b0:42f:7ed4:4c26 with SMTP id 5b1f17b1804b1-42f8818577amr96674785e9.12.1728396921317;
+        Tue, 08 Oct 2024 07:15:21 -0700 (PDT)
+Received: from ?IPV6:2a04:cec2:a:a540:2f11:ef35:cca2:1960? ([2a04:cec2:a:a540:2f11:ef35:cca2:1960])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-42f8d133b73sm97911835e9.9.2024.10.08.07.15.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 07:15:20 -0700 (PDT)
+Message-ID: <ac765343-7804-4bd5-8057-d67fec2f17b1@baylibre.com>
+Date: Tue, 8 Oct 2024 16:15:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAEI8BWcC/x2MQQqAIBAAvxJ7bsGVyuor0UF0y72YKUQQ/T3pN
- nOYeaBwFi4wNw9kvqTIEatQ24ALNu6M4quDVrojpQzexKOqhKdLWHxwSL0zNHjrp26A2qXMm9z
- /c1nf9wORSLHlYwAAAA==
-X-Change-ID: 20241007-x1e80100-qcp-sdhc-15c716dad946
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-mmc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1203; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=dzHbg8mQzajlPzqNpsMYJhkbjdTL5GhbgGOkl/GTjNQ=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnBTxNVUWmO5if8I07UMBjpaiOw33nYHslR9o96
- nAL6sPYWnSJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZwU8TQAKCRAbX0TJAJUV
- Vt2sD/wNYt3qcSvZ03x8dCHoYmCncbvQpQM0xcpn7FxYRIUFIbBDI/NWz87F8JIt8PivnQVs8oK
- 4MIVBZoZXPwjp56RSqcBgGLD0zsiYZOvniryWWUdcoyWqgY055+4DCiMaoQ6MrRMVD0EC3wB7MX
- sDysuTiz9c9EbZ1SQPfritsGBJMCbJMuoXLngSD8CXbrl9h2thIdBS2AtrmroMkMIhdPpcSSNGU
- djtjtgCislPrY0dFiz8r+O1GTkgREA9PB3reVTrQiDByl8ExUeHcbwM34AePdL7iFGqXUs8uXqp
- xvQSW3pRSmyMyMgUaRJ6DPTmIJz4gNX7Fz+4MTmCYP40keDZMJmt03RDbzyRoAX2e5Hctt20CxT
- p+XadkzH0NmlKgDDNqSbFiJvsG7gZ1OCLI0sNOvkbgCf3WsW3zZocLLyUOu4Xqk6Gw/1KCO8h4W
- LR5m0WH8dTUknmzwcyVekdvTBl9l4xGSrEuo1UCvPCY/IGCSxjifa/Sb7deeQZiCud91PtbePWC
- t5VJctRCwGTglDu+P/cV5G+eHI2Y5C/Mma22MybNTQox1lFcHD5/8r/aQlmOTwPINhWIZeT5/PL
- r9l4EK676oJ9Y6E7/dBu1/QKXBAIwl1OTUe7xnBP1KnnDAm/kRAIqnH7VAFXkSpY+lKIC7hjcZi
- bdseGDF92kaK6XQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 09/10] iio: adc: ad7606: Add iio-backend support
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com, dlechner@baylibre.com,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+References: <20241004-ad7606_add_iio_backend_support-v3-0-38757012ce82@baylibre.com>
+ <20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
+ <20241005125318.0c4a7bc8@jic23-huawei>
+Content-Language: en-US
+From: Guillaume Stols <gstols@baylibre.com>
+In-Reply-To: <20241005125318.0c4a7bc8@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-The X1E80100 has two SDHC controllers (called SDC2 and SDC4).
-Describe both of them and enable the SDC2 on QCP. This brings
-SD card support for the microSD port on QCP.
 
-The SDC4 is described but there is no device outthere yet that makes
-use of it, AFAIK.
+On 10/5/24 13:53, Jonathan Cameron wrote:
+> On Fri, 04 Oct 2024 21:48:43 +0000
+> Guillaume Stols <gstols@baylibre.com> wrote:
+>
+>> - Basic support for iio backend.
+>> - Supports IIO_CHAN_INFO_SAMP_FREQ R/W.
+>> - Only hardware mode is available, and that IIO_CHAN_INFO_RAW is not
+>>    supported if iio-backend mode is selected.
+> I don't much like the trivial window between this patch and the next
+> where the emulated mode is still there but the sleeps aren't adapting with sampling frequency.
+>
+> Maybe it's worth a dance of leaving the write_raw support
+> until after this one so the frequency remains fixed until after
+> the fsleep(2) calls are gone?
+>
+> There is another bit that I'm unsure is technically correct until after
+> the next patch.  Maybe I'm reading the diff wrong though!
+>
+> Thanks,
+>
+> J
+>
+>> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+>> ---
+>>   drivers/iio/adc/Kconfig      |   2 +
+>>   drivers/iio/adc/ad7606.c     | 124 +++++++++++++++++++++++++++++++++++++------
+>>   drivers/iio/adc/ad7606.h     |  15 ++++++
+>>   drivers/iio/adc/ad7606_par.c |  94 +++++++++++++++++++++++++++++++-
+>>   4 files changed, 219 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+>> index 4ab1a3092d88..9b52d5b2c592 100644
+>> --- a/drivers/iio/adc/Kconfig
+>> +++ b/drivers/iio/adc/Kconfig
+>> @@ -224,9 +224,11 @@ config AD7606_IFACE_PARALLEL
+>>   	tristate "Analog Devices AD7606 ADC driver with parallel interface support"
+>>   	depends on HAS_IOPORT
+>>   	select AD7606
+>> +	select IIO_BACKEND
+>>   	help
+>>   	  Say yes here to build parallel interface support for Analog Devices:
+>>   	  ad7605-4, ad7606, ad7606-6, ad7606-4 analog to digital converters (ADC).
+>> +	  It also support iio_backended devices for AD7606B.
+>>   
+>>   	  To compile this driver as a module, choose M here: the
+>>   	  module will be called ad7606_par.
+>> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+>> index 3666a58f8a6f..d86eb7c3e4f7 100644
+>> --- a/drivers/iio/adc/ad7606.c
+>> +++ b/drivers/iio/adc/ad7606.c
+>> @@ -21,6 +21,7 @@
+>> @@ -737,6 +773,10 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
+>>   			return ret;
+>>   
+>>   		return 0;
+>> +	case IIO_CHAN_INFO_SAMP_FREQ:
+>> +		if (val < 0 && val2 != 0)
+>> +			return -EINVAL;
+>> +		return ad7606_set_sampling_freq(st, val);
+> Currently I think  for the !backend + pwm case this can go out of
+> range for which that code works (fsleep removed in next patch).
+> Perhaps delay adding this until after that patch.
 
-Didn't include the SDC4 pins yet because there are some bindings
-errors that need to be addressed, and since there is no HW that
-actually uses it, we can describe them at a later stage.
+Hi Jonathan,
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
-Abel Vesa (4):
-      dt-bindings: mmc: sdhci-msm: Document the X1E80100 SDHCI Controller
-      arm64: dts: qcom: x1e80100: Describe the SDHC controllers
-      arm64: dts: qcom: x1e80100: Describe TLMM pins for SDC2
-      arm64: dts: qcom: x1e80100-qcp: Enable SD card support
+The sampling frequency can be adjusted only for the backend version, 
+otherwise (including pwm+interrupt), there is no sysfs access to the 
+sampling frequency (only available for AD7606_BI_CHANNEL).
 
- .../devicetree/bindings/mmc/sdhci-msm.yaml         |   1 +
- arch/arm64/boot/dts/qcom/x1e80100-qcp.dts          |  20 +++
- arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 148 +++++++++++++++++++++
- 3 files changed, 169 insertions(+)
----
-base-commit: 58ca61c1a866bfdaa5e19fb19a2416764f847d75
-change-id: 20241007-x1e80100-qcp-sdhc-15c716dad946
+>>   	default:
+>>   		return -EINVAL;
+>>   	}
+>> @@ -1108,7 +1186,24 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+>>   					       st->cnvst_pwm);
+>>   		if (ret)
+>>   			return ret;
+>> +	}
+>> +
+>> +	if (st->bops->iio_backend_config) {
+>> +		/*
+>> +		 * If there is a backend, the PWM should not overpass the maximum sampling
+>> +		 * frequency the chip supports.
+>> +		 */
+>> +		ret = ad7606_set_sampling_freq(st,
+>> +					       chip_info->max_samplerate ? : 2 * KILO);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		ret = st->bops->iio_backend_config(dev, indio_dev);
+>> +		if (ret)
+>> +			return ret;
+>> +		indio_dev->setup_ops = &ad7606_pwm_buffer_ops;
+>>   	} else {
+>> +		init_completion(&st->completion);
+>>   		st->trig = devm_iio_trigger_alloc(dev, "%s-dev%d",
+>>   						  indio_dev->name,
+>>   						  iio_device_id(indio_dev));
+> It's a little hard to unwind the patches, but this was previously in the !pwm case.
+> At this point in the series we still allow the pwm case to work with ! backend.
+> So is this now running in that case?   Do we need a temporary additional check
+> on !pwm
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+mmm actually this should not be in a condition in the PWM  patch. Will 
+fix this directly there.
 
+>
+>
+>> @@ -1126,15 +1221,14 @@ int ad7606_probe(struct device *dev, int irq, void __iomem *base_address,
+>>   						      &ad7606_buffer_ops);
+>>   		if (ret)
+>>   			return ret;
+>> +		ret = devm_request_threaded_irq(dev, irq,
+>> +						NULL,
+>> +						&ad7606_interrupt,
+>> +						IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+>> +						chip_info->name, indio_dev);
+>> +		if (ret)
+>> +			return ret;
+>>   	}
+>> -	ret = devm_request_threaded_irq(dev, irq,
+>> -					NULL,
+>> -					&ad7606_interrupt,
+>> -					IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
+>> -					chip_info->name, indio_dev);
+>> -	if (ret)
+>> -		return ret;
+>> -
+>>   	return devm_iio_device_register(dev, indio_dev);
+>>   }
+>>   EXPORT_SYMBOL_NS_GPL(ad7606_probe, IIO_AD7606);
+>> diff --git a/drivers/iio/adc/ad7606_par.c b/drivers/iio/adc/ad7606_par.c
+>> index b87be2f1ca04..6042f6799272 100644
+>> --- a/drivers/iio/adc/ad7606_par.c
+>> +++ b/drivers/iio/adc/ad7606_par.c
+>> @@ -2,7 +2,8 @@
+>> +
+>> +static int ad7606_bi_setup_iio_backend(struct device *dev, struct iio_dev *indio_dev)
+>> +{
+>> +	struct ad7606_state *st = iio_priv(indio_dev);
+>> +	unsigned int ret, c;
+>> +	struct iio_backend_data_fmt data = {
+>> +		.sign_extend = true,
+>> +		.enable = true,
+>> +	};
+>> +
+>> +	st->back = devm_iio_backend_get(dev, NULL);
+>> +	if (IS_ERR(st->back))
+>> +		return PTR_ERR(st->back);
+>> +
+>> +	/* If the device is iio_backend powered the PWM is mandatory */
+>> +	if (!st->cnvst_pwm)
+>> +		return dev_err_probe(st->dev, -EINVAL,
+>> +				     "A PWM is mandatory when using backend.\n");
+>> +
+>> +	ret = devm_iio_backend_request_buffer(dev, st->back, indio_dev);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	ret = devm_iio_backend_enable(dev, st->back);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (c = 0; c < indio_dev->num_channels; c++) {
+>> +		ret = iio_backend_data_format_set(st->back, c, &data);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	indio_dev->channels = ad7606b_bi_channels;
+> Ultimately this may want to move into the chip_info structures as more devices are added
+> but this is fine for now I suppose.
+Will do this in a next series where support is added for the other chips.
+>
+>> +	indio_dev->num_channels = 8;
+>> +
+>> +	return 0;
+>> +}
 
