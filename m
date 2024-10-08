@@ -1,75 +1,48 @@
-Return-Path: <devicetree+bounces-109003-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109004-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 634D3994808
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:06:47 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35B4099483B
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:10:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7D921F2487C
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:06:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A05A1C20BC0
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:10:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8DFB1DD9AD;
-	Tue,  8 Oct 2024 12:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C21751DDA1E;
+	Tue,  8 Oct 2024 12:10:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="giwKSVby"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jZEHm+Ca"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0567D18CC12
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 12:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93CA61D3634;
+	Tue,  8 Oct 2024 12:10:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728389201; cv=none; b=pa0T515DnZRNAaf8loMRVQbMWElZnCe0/YuQ9/WPetRPahNQOQYlJ62AEz7QvQs3OPa2gqoTc2kSpSy2Piw9CZ9/oHJNOi3LUyvY5hsHQMiG5JlDi06BBcAEn/IxxjvJ6Lrno7UTntqbYgbwmJk8Uz1iXTXaONchxJJQzIR+RdE=
+	t=1728389415; cv=none; b=sG/2uR6LQYG0rR1IGbePHAZoT7NHx4Y1l6xyudBi1lNJwP7kVdJ1kO5hKCYpN2oGL8ytfbQu7pVLciWpRIJSbcVzroEQVK9S3WSgSqNxdGSotFlm6yaQFy9CMF8TTG0509oQ+H0Scb1h4t3kop4w1tHzQvCt0Z0l8FxRuUBpKhM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728389201; c=relaxed/simple;
-	bh=C9cDbrrxtx4ZmBKHBu4HVjd7F8cAetIH8uHWjTs36Dg=;
+	s=arc-20240116; t=1728389415; c=relaxed/simple;
+	bh=mo127ua1cWhz/w9BxafIyoNPyY7spY1wZpdZB5iAqjU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HX+55YOmI66FfSOs9diAmyQg6Aq4pikIPb4QCuGPU62fvsetHxhUPMJHdChUL9t6OJAzMPUXX01EmZIj3KiukaHjdkCAIIpMd4BHWm5/Po3FIGEspBlSw0/69q4j+FqkpMaS7LhuQWP3UEE2XvztIKyQpvbHnU/teIJ7oLGWxk8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=giwKSVby; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-37d375f1237so13091f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 08 Oct 2024 05:06:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728389198; x=1728993998; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=iGf+BR0KrrmgaGAuaJbmSqaodYMEl3pXPdxzjA7otv0=;
-        b=giwKSVbyk9H6VTjwCtHv0CGAU+7xZYnVIOW5F26lcPJdq622yHrkFHsNdibwgfW4LW
-         Nx0d3vh8ZYX7SqhxkyZ9nm67KV0iy41bk7jWYnmRD4mnq/UeK9Wz3rgT/LftBXMzbSgB
-         T3lUCds5/fFOX7+9IZwaPNiYnuaIcD9o0/5tGMoeIdj5AQoWGV+0MD7NQh8qAOIdIkFI
-         92e3oXtuYRq8VcfotVkIDLHbQQ7moPUP5FGuZP9mFQn76debE294SmWbjWGmDj8uT4XL
-         nn232khdYpbaAH+L8wk2HGBo9Qj1mSlks+OjI9xCm2naLAs35cE/B86hDx8yEaIAgFAV
-         MbDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728389198; x=1728993998;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iGf+BR0KrrmgaGAuaJbmSqaodYMEl3pXPdxzjA7otv0=;
-        b=C+Qrf0JNDDIGKNjGk6MjGvaeb2OE7QHRI9JF+0boyWzut0P7ST93pty+UaKFbVVtji
-         AshEBEFKM765ls+YJERTIu6bUptIqIPYJbC+RQkUWQiAVz1MhU29DzuosPSNqqPE+2nB
-         77znxZ9SLDjHtlEZR9Dxc6bxJt6xxiQDKhlUPqRFbMy8yZufA53/Dr5t+tw5LLhMB3jh
-         b542To+i8s3p3febewPQRzoG71PZdQ9iOzaPug4mUN0Pgwv6Ymn870FpwuJTP4XC5/HI
-         Ue0Q2dJIHPVAaTB+DjIBl2ejaySbYZ+OReA9TVPVtSYE4p8xXRhYvLGSwt/oYbSkLkwb
-         UE1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUJOM56g/s6z3CgYav2d+Ohe0hdT5zRgTHYetQrBaAtT3gsAcDYV55j8//dTfMjkCrP7UEozubOabVu@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuviMWmPLADRW0J9y1h0ctgIS1K/X/A4ll0glWsSP9lPuRmTiv
-	u4QRmR7bNNuBxXmduxgHkI+qttahI24mlP0BXwFlSLZm0pIV+a1nXh8AzT9BNn0=
-X-Google-Smtp-Source: AGHT+IETx4zJQG9Gtv9tJl5KEt3s5Nj6WvOe8z1JDWgXuG3lKhsMf0Q8IFdD+xxXTnMptWM+cE+r7g==
-X-Received: by 2002:a5d:5850:0:b0:37c:ffdd:6d57 with SMTP id ffacd0b85a97d-37d0e6cc8f2mr4354911f8f.1.1728389198183;
-        Tue, 08 Oct 2024 05:06:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.211.167])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d1695ec1esm8013990f8f.74.2024.10.08.05.06.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 08 Oct 2024 05:06:36 -0700 (PDT)
-Message-ID: <268d0dd0-a65f-4eaa-a317-fe9fcc06e718@linaro.org>
-Date: Tue, 8 Oct 2024 14:06:35 +0200
+	 In-Reply-To:Content-Type; b=WIMZGCvF1fBy6Mi+qIpz6IUHMxj1yrJtYGbeMR0lw+ckvHtjs1hi+y3l7sCldn0Q4g5oJUt9HMdyST5BdcN871spRWBOpM7BeazSJohRqYa3vWQa681+Vc/tJaIMDXZ4PFqH057r4/PMHDP8AgL4bY5ipvpdaqCALccRzDHUMOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jZEHm+Ca; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58C91C4CEC7;
+	Tue,  8 Oct 2024 12:10:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728389415;
+	bh=mo127ua1cWhz/w9BxafIyoNPyY7spY1wZpdZB5iAqjU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jZEHm+Ca/C0XNISp++O+GnWrj2DzE8tXVP56xeGmAy6R+LomA2QJXXxqRho2aXD4u
+	 r5qEbufH9czvbEV+w0bBwQ/bA55L4uOk4ODSjA8elXNxXTEIm4SubB6FiZh7PPLUy9
+	 +OlW0b4XmoEcCIxwU1xE4FxvBJOFVdZ++fXBLucZPIvvpjM8LNtOoJ25UyTFtdY67z
+	 QnkhQrzqIMqoolc57OUO6NUisJVc6G0bZhPtn41RtFywPWD4xRDmTJie7ot0F2kav9
+	 U5Es7FGNQ59Iy3tn7CHevvE/MkE3OjO/edplp/eYEqorbZJR6+Ec17BdMPRqX5q18o
+	 NHdW19J0M2sjQ==
+Message-ID: <502d7a1f-0bac-496f-8fbe-b8924cd0ce31@kernel.org>
+Date: Tue, 8 Oct 2024 14:10:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,29 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: media: qcom,sc8280xp-camss: Fix
- interrupt types
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
- <20240923072827.3772504-2-vladimir.zapolskiy@linaro.org>
- <datahu33nmsser2p4fb2hyncsujtkwaca377ivwmpc6yj2naut@2sjsbebfm3gf>
- <3f87e855-8779-4df3-8f26-e3d2b611d3e9@linaro.org>
- <313667a6-afcd-44cb-a6f6-0d550e8f68a0@linaro.org>
- <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
- <5ea36051-1e1b-44ca-b5ef-d6305079201b@linaro.org>
- <80744e19-71f8-4ae7-b2e8-1dc14e55385c@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3: Add binding for USB Gen2
+ de-emphasis
+To: Joy Chakraborty <joychakr@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen
+ <Thinh.Nguyen@synopsys.com>, Felipe Balbi <balbi@kernel.org>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241007135508.3143756-1-joychakr@google.com>
+ <20241007135508.3143756-2-joychakr@google.com>
+ <c98ece5f-c105-41ca-af1a-bddc61893071@kernel.org>
+ <CAOSNQF148N5meoFZkbGKoMXMZ62kf=JOV+1r0GCsep3DPP_Lrw@mail.gmail.com>
+ <1bc2c476-9d7b-4c87-924b-ecaed0f721de@kernel.org>
+ <CAOSNQF0b--3o5bseU05Eu3a2zDiTTYfbnQNONFo3imw3HnaONA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
  JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
@@ -109,175 +77,69 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  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
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <80744e19-71f8-4ae7-b2e8-1dc14e55385c@linaro.org>
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <CAOSNQF0b--3o5bseU05Eu3a2zDiTTYfbnQNONFo3imw3HnaONA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/10/2024 14:03, Vladimir Zapolskiy wrote:
+On 08/10/2024 13:59, Joy Chakraborty wrote:
+>>>
+>>>>
+>>>>> +    description: When set core will set Tx de-emphasis for USB Gen2
+>>>>
+>>>> And why it cannot be implied by compatible?
+>>>
+>>> As per my understanding these are tuning coefficients for de-emphasis
+>>> particular to a platform and not the dwc3 controller, hence should not
+>>> be a controller compatible.
+>>
+>> Platforms must have specific compatible, so this should be implied by
+>> compatible.
 > 
-> 
-> On 10/8/24 14:45, Krzysztof Kozlowski wrote:
->> On 08/10/2024 13:37, Vladimir Zapolskiy wrote:
->>> Hi Krzysztof.
->>>
->>> On 10/8/24 14:15, Krzysztof Kozlowski wrote:
->>>> On 08/10/2024 12:02, Vladimir Zapolskiy wrote:
->>>>> Hi Bjorn,
->>>>>
->>>>> On 10/6/24 05:36, Bjorn Andersson wrote:
->>>>>> On Mon, Sep 23, 2024 at 10:28:22AM GMT, Vladimir Zapolskiy wrote:
->>>>>>> The expected type of all CAMSS interrupts is edge rising, fix it in
->>>>>>> the documented example from CAMSS device tree bindings for sc8280xp.
->>>>>>>
->>>>>>
->>>>>> Who/what expects them to be RISING?
->>>>>
->>>>> I've checked CAMSS device tree bindings in a number of downstream kernels,
->>>>> all of them describe interrupt types as edge rising.
->>>>>
->>>>> $ grep -Hn IRQF_TRIGGER drivers/media/platform/qcom/camss/*
->>>>> drivers/media/platform/qcom/camss/camss-csid.c:619:			       IRQF_TRIGGER_RISING | IRQF_NO_AUTOEN,
->>>>> drivers/media/platform/qcom/camss/camss-csiphy.c:605:			       IRQF_TRIGGER_RISING | IRQF_NO_AUTOEN,
->>>>> drivers/media/platform/qcom/camss/camss-ispif.c:1164:			       IRQF_TRIGGER_RISING, ispif->irq_name, ispif);
->>>>> drivers/media/platform/qcom/camss/camss-ispif.c:1168:			       IRQF_TRIGGER_RISING, ispif->irq_name, ispif);
->>>>> drivers/media/platform/qcom/camss/camss-vfe.c:1327:			       IRQF_TRIGGER_RISING, vfe->irq_name, vfe);
->>>>
->>>> Downstream has a lot of bad code, so I am not sure how good argument
->>>> this is.
->>>>
->>>> I acked the patch because I assumed you *checked in hardware*.
->>>>
->>>>>
->>>>>    From runtime point of view it's more important to get re-probed camss
->>>>> driver, see an absolutely similar and previously discussed case (in the
->>>>> cover letter):
->>>>>
->>>>> https://lore.kernel.org/lkml/20220530080842.37024-4-manivannan.sadhasivam@linaro.org/
->>>>>
->>>>> Now in runtime I get this error, it's easy to check by unbinding/binding any
->>>>> camss device:
->>>>>
->>>>> irq: type mismatch, failed to map hwirq-509 for interrupt-controller@17a00000!
->>>>>
->>>>> Basically camss devices can not be bound on the second time on the
->>>>> number of platforms touched by this changeset.
->>>>
->>>> This is solveable different way and I do not understand this rationale.
->>>> The driver should not request trigger type but use what DTS is
->>>> providing, unless of course only one valid trigger is possible.
->>>
->>> Right at the moment the driver uses rising edge type of interrupts, and
->>> it works properly.
->>>
->>>> But so
->>>> far you did not provide any arguments for this. Downstream crappy code?
->>>
->>> Downstream code works, that's the argument to support the change.
->>
->> That is not acceptable argument. If downstream has a bug, but somehow
->> works, you will implement the same bug upstream?
->>
->> Downstream is well known of shortcuts, incomplete solutions and crappy
->> code, which passes some tests but might not be really correct.
->>
->> I understand that downstream can be a supportive case, but not for level
->> of interrupts! People, not only downstream but it's even worse there, do
->> not see the difference between level and edge, between GPIO ACTIVE_HIGH
->> and ACTIVE_LOW.
->>
->>>
->>>> Nope. Existing driver? Same.
->>>
->>> The existing driver works, that's the argument to support the change.
->>
->> We are not going to get into such discussions. Code might be incorrect,
->> but mostly works because race issues are very tricky to spot, yet you
->> use that code as argument to say hardware is like that.
->>
->> No. Hardware is not because driver is written that way.
->>
->>
->>>
->>>> Was anything here actually checked with datasheets/hardware?
->>>
->>> The initially open question is unanswered, why sc8280xp CAMSS does
->>
->> This is about all CAMSS, not only sc8280xp.
->>
->>> specify interrupts as level high type, was it actually checked with
->>> datasheets/hardware, as you say it? It has never been tested by anyone
->>> and anywhere, downstream or upstream wise, only rising edge interrupts
->>> were tested, and they do work.
->>
->> I did not ask about testing. I ask how the manual, hardware engineers
->> designed it.
->>
->>>
->>> I don't have access to datasheets or hardware of sc8280xp powered board,
->>> someone may either verify, if CAMSS level high type interrupts are> supported/working at all or not (obviously its current presence in dts is
->>> insufficient), or check the SoC datasheet.
->>>
->>> To sum up, the intention of this change:
->>> 1) fix the unpleasant runtime issue with no regressions (it's been tested),
->>
->> Did you test races and all the tricky issues arising when you use
->> incorrectly edged interrupts? Or you just checked that "interrupt works"?
-> 
-> Right from the beginning and any other day CAMSS interrupts are tested as
-> rising edge interrupts. So, I don't undestand your point here, please
-> elaborate.
+> Maybe I am using the word "platform" incorrectly here, what I
+> understand is that the same controller(in a chip) when used on 2
+> different physical form factors might need different deemphasis
 
-So you did not test whether these are correct interrupt types. What to
-elaborate more? You have very tricky race condition, for example, so you
-test that it is not possible.
+You mean boards? This is board-level property?
 
+> coefficient values to be passed to its Phy. Someone could correct me
+> from the USB link stand point if I am mistaken here.
 > 
->>> 2) align CAMSS device description in firmware with known to work well
->>> IP hardware configuration.
->>
->> Where is this description in firmware? Where is this IP hardware
->> configuration? You just said it is purely on downstream driver.
-> 
-> CAMSS IP configuration, in particular interrupt type, is done by the
-> upstream driver, note that the fixes in this changeset is also sent
-> against the upstream driver, tested on the upstream driver etc.
 
-What does it even mean? You said "device description in firmware" and
-"IP hardware configuration", but now speak about drivers.
+Then please point me to the upstream DTS boards using these properties.
+Lore link is enough, if board or DTS change is being upstreamed.
 
 Best regards,
 Krzysztof
