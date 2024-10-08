@@ -1,305 +1,209 @@
-Return-Path: <devicetree+bounces-109014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D5E0994971
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:24:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 541E89949BD
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 14:26:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4606328442B
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:24:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D10632815B4
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 12:26:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B6C71DEFE6;
-	Tue,  8 Oct 2024 12:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE2C1DF24C;
+	Tue,  8 Oct 2024 12:25:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PKbzeZZt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4586C1DE8BE;
-	Tue,  8 Oct 2024 12:22:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EEB4C97;
+	Tue,  8 Oct 2024 12:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728390155; cv=none; b=cT0dTBpb+YP6FMbnSpjE4mZn4EDH9XxtoavolrJcaCrLG/dg/JoBW1buXzkxqGsOWRVEkOf1bIXtc4xPMASvrijroVgYfDmqsUuKkxj810c9pA2oQFNqAgEM7KvVFtSgGdGIO1zyIJHDBvHtCP/oMJ8sVIwvC70x2wdJFFU38xU=
+	t=1728390338; cv=none; b=anBu8h8+ZHPOCNGg+M8RWU/nnU3hii6UmokTPf64RKV9WPj8TaFvf0GzAJY5CiJ40+wcX4zmdURmVFC/26STXjEhrzynHKir0Jtp8w2P7kQPSLHaMCG4rLYOUtLJZCWgBAWl1iqkLYxc8aNLgBQteH1VVwxLTzIoQRwSPg3bjv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728390155; c=relaxed/simple;
-	bh=IdSK4QKU/vFUWkenb4duA57O6N9eYQEIiXViL0X4QS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z9fLPlKcvwf1QyYiGFsWjPobKCQCRCVj4cMQ4HakaM96f4WiFOSJbRF5yxdKN1hJimx1o8DCfiIhiuPffF+X9hBHmYIWwSgyoc49vJsvPM44Jv5sqjabinml0fCnsNKrKlR6x9+JtpY/rqBxegIvK2hJDR48DRapalOQTpJ4PdE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1737DDA7;
-	Tue,  8 Oct 2024 05:23:02 -0700 (PDT)
-Received: from donnerap.manchester.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5B8E83F73F;
-	Tue,  8 Oct 2024 05:22:30 -0700 (PDT)
-Date: Tue, 8 Oct 2024 13:22:21 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Ryan Walklin <ryan@testtoast.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Chen-Yu
- Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel
- Holland <samuel@sholland.org>, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- devicetree@vger.kernel.org, linux-clk@vger.kernel.org, Marcus Cooper
- <codekipper@gmail.com>
-Subject: Re: [PATCH 1/6] ASoC: sun4i-codec: Add support for different DAC
- FIFOC addresses to quirks
-Message-ID: <20241008132221.4c365a9f@donnerap.manchester.arm.com>
-In-Reply-To: <20240929100750.860329-2-ryan@testtoast.com>
-References: <20240929100750.860329-1-ryan@testtoast.com>
-	<20240929100750.860329-2-ryan@testtoast.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1728390338; c=relaxed/simple;
+	bh=YfIu97ocnJkzq+weij9l4JKl/8R6QAvuCB0Apc/BR9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mf/s49lRSO7FJ6tiggZ/clv9HXx26eh1Y2KEWK423wssXQV+wdhfWPnRBO1F8Gy00hbMjVvYsxY80XV1mfIY+mNP2Wqla3dxiLUHISeRdp3HK/jjlgx5fiY+FCfNEDegP8lq7seaYb2jG9/2g4QddKnXA3yke4CleMtf3TnUEb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PKbzeZZt; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4984ScNg008706;
+	Tue, 8 Oct 2024 12:25:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	4jxF7w+K3McN6/KIutBaKbsS8CYGYF4IWYgmCMS+nDg=; b=PKbzeZZtnhjW85Dl
+	818lm96L67daXTHEiAz7gYyYjVuNixUoxyFxRNW6JaIbS365TUYiuISvpLcN4fkV
+	XwZbarzepa5sl4UjtWOl7XaslUwL058meOgo7uepFtUlB7IJpdwX7ioIfOASmeud
+	t7JIKyMTsryEXlMFbSSVNolvHuCkRyEnTEV+yJP8elKwJzIWUMEz9hu1Jt/kre//
+	b09akcqvsbKyrMDEL1Lzmo/3u/d0RKTto5GdxE7Kwwc2Bn50OlNX1FbY3lnxkXHu
+	4zy+5IgBgx9yKmn2N2BJLdJ1XViSRglhEypPJAt2/cIlv4wd4sPi4H6mjIkp7nTc
+	drfBhQ==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424wrc17h5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 08 Oct 2024 12:25:34 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 498CPXQM014990
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 8 Oct 2024 12:25:33 GMT
+Received: from [10.217.218.111] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Tue, 8 Oct 2024
+ 05:25:30 -0700
+Message-ID: <70c2e4c0-aa5a-4d61-9b12-ee7cc5106ead@quicinc.com>
+Date: Tue, 8 Oct 2024 17:55:27 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: qcom: sa8775p: Update iommu-map entry
+To: <andersson@kernel.org>, <krzk+dt@kernel.org>
+CC: <quic_krichai@quicinc.com>, <quic_vbadigan@quicinc.com>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "open list:ARM/QUALCOMM SUPPORT"
+	<linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED
+ DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+        open list
+	<linux-kernel@vger.kernel.org>
+References: <20241008121755.1174730-1-quic_skananth@quicinc.com>
+Content-Language: en-US
+From: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
+In-Reply-To: <20241008121755.1174730-1-quic_skananth@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: XU7-8HFb-IgBIPylIobZS4N0LMiX-mSA
+X-Proofpoint-ORIG-GUID: XU7-8HFb-IgBIPylIobZS4N0LMiX-mSA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 bulkscore=0
+ impostorscore=0 suspectscore=0 mlxscore=0 clxscore=1015 spamscore=0
+ adultscore=0 priorityscore=1501 phishscore=0 lowpriorityscore=0
+ mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410080078
 
-On Sun, 29 Sep 2024 23:06:02 +1300
-Ryan Walklin <ryan@testtoast.com> wrote:
 
-Hi,
+On 10/8/2024 5:47 PM, Subramanian Ananthanarayanan wrote:
+> SA8775P has only support for SMMU v2, due to this PCIe has limited
+> SID entries to enable dynamic IOMMU mapping in the driver, hence
+> we are updating static entries.
+>
+> iommu-map entries are added to support more PCIe device like switch
+> attach, SRIOV capable devices. These entries are specific to this
+> board as topology of PCIe devices can vary based on the end usecase
+> connected via PCIe. For other board files, these entries may
+> not be directly applicable.
+>
+> Signed-off-by: Subramanian Ananthanarayanan <quic_skananth@quicinc.com>
+> ---
+> Changes in V2:
+> 	- Updated commit message.
 
-> From: Marcus Cooper <codekipper@gmail.com>
-> 
-> The Allwinner H616 SoC uses a different register address to control the
-> output FIFO.
-> 
-> Allow this to be specified separately from the ADC FIFO control
-> register.
+forgot to add link to v1 : 
+https://lore.kernel.org/lkml/20241001114601.1097618-1-quic_skananth@quicinc.com/
 
-That looks good to me, it follows the existing regmap_field pattern for the
-input FIFO, and I can confirm it changes every user of the DAC register.
-
-> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> Signed-off-by: Ryan Walklin <ryan@testtoast.com>
-
-Reviewed-by: Andre Przywara <andre.przywara@arm.com>
-
-Cheers,
-Andre
+-Subramanian
 
 > ---
->  sound/soc/sunxi/sun4i-codec.c | 83 +++++++++++++++++++++--------------
->  1 file changed, 51 insertions(+), 32 deletions(-)
-> 
-> diff --git a/sound/soc/sunxi/sun4i-codec.c b/sound/soc/sunxi/sun4i-codec.c
-> index 330bc0c09f56b..37f5678b55291 100644
-> --- a/sound/soc/sunxi/sun4i-codec.c
-> +++ b/sound/soc/sunxi/sun4i-codec.c
-> @@ -238,6 +238,8 @@ struct sun4i_codec {
->  
->  	/* ADC_FIFOC register is at different offset on different SoCs */
->  	struct regmap_field *reg_adc_fifoc;
-> +	/* DAC_FIFOC register is at different offset on different SoCs */
-> +	struct regmap_field *reg_dac_fifoc;
->  
->  	struct snd_dmaengine_dai_dma_data	capture_dma_data;
->  	struct snd_dmaengine_dai_dma_data	playback_dma_data;
-> @@ -246,19 +248,19 @@ struct sun4i_codec {
->  static void sun4i_codec_start_playback(struct sun4i_codec *scodec)
->  {
->  	/* Flush TX FIFO */
-> -	regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			BIT(SUN4I_CODEC_DAC_FIFOC_FIFO_FLUSH));
-> +	regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +			      BIT(SUN4I_CODEC_DAC_FIFOC_FIFO_FLUSH));
->  
->  	/* Enable DAC DRQ */
-> -	regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			BIT(SUN4I_CODEC_DAC_FIFOC_DAC_DRQ_EN));
-> +	regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +			      BIT(SUN4I_CODEC_DAC_FIFOC_DAC_DRQ_EN));
->  }
->  
->  static void sun4i_codec_stop_playback(struct sun4i_codec *scodec)
->  {
->  	/* Disable DAC DRQ */
-> -	regmap_clear_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			  BIT(SUN4I_CODEC_DAC_FIFOC_DAC_DRQ_EN));
-> +	regmap_field_clear_bits(scodec->reg_dac_fifoc,
-> +				BIT(SUN4I_CODEC_DAC_FIFOC_DAC_DRQ_EN));
->  }
->  
->  static void sun4i_codec_start_capture(struct sun4i_codec *scodec)
-> @@ -356,13 +358,13 @@ static int sun4i_codec_prepare_playback(struct snd_pcm_substream *substream,
->  	u32 val;
->  
->  	/* Flush the TX FIFO */
-> -	regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   BIT(SUN4I_CODEC_DAC_FIFOC_FIFO_FLUSH));
-> +	regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +			      BIT(SUN4I_CODEC_DAC_FIFOC_FIFO_FLUSH));
->  
->  	/* Set TX FIFO Empty Trigger Level */
-> -	regmap_update_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   0x3f << SUN4I_CODEC_DAC_FIFOC_TX_TRIG_LEVEL,
-> -			   0xf << SUN4I_CODEC_DAC_FIFOC_TX_TRIG_LEVEL);
-> +	regmap_field_update_bits(scodec->reg_dac_fifoc,
-> +				 0x3f << SUN4I_CODEC_DAC_FIFOC_TX_TRIG_LEVEL,
-> +				 0xf << SUN4I_CODEC_DAC_FIFOC_TX_TRIG_LEVEL);
->  
->  	if (substream->runtime->rate > 32000)
->  		/* Use 64 bits FIR filter */
-> @@ -371,13 +373,13 @@ static int sun4i_codec_prepare_playback(struct snd_pcm_substream *substream,
->  		/* Use 32 bits FIR filter */
->  		val = BIT(SUN4I_CODEC_DAC_FIFOC_FIR_VERSION);
->  
-> -	regmap_update_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   BIT(SUN4I_CODEC_DAC_FIFOC_FIR_VERSION),
-> -			   val);
-> +	regmap_field_update_bits(scodec->reg_dac_fifoc,
-> +				 BIT(SUN4I_CODEC_DAC_FIFOC_FIR_VERSION),
-> +				 val);
->  
->  	/* Send zeros when we have an underrun */
-> -	regmap_clear_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   BIT(SUN4I_CODEC_DAC_FIFOC_SEND_LASAT));
-> +	regmap_field_clear_bits(scodec->reg_dac_fifoc,
-> +				BIT(SUN4I_CODEC_DAC_FIFOC_SEND_LASAT));
->  
->  	return 0;
->  };
-> @@ -510,9 +512,9 @@ static int sun4i_codec_hw_params_playback(struct sun4i_codec *scodec,
->  	u32 val;
->  
->  	/* Set DAC sample rate */
-> -	regmap_update_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   7 << SUN4I_CODEC_DAC_FIFOC_DAC_FS,
-> -			   hwrate << SUN4I_CODEC_DAC_FIFOC_DAC_FS);
-> +	regmap_field_update_bits(scodec->reg_dac_fifoc,
-> +				 7 << SUN4I_CODEC_DAC_FIFOC_DAC_FS,
-> +				 hwrate << SUN4I_CODEC_DAC_FIFOC_DAC_FS);
->  
->  	/* Set the number of channels we want to use */
->  	if (params_channels(params) == 1)
-> @@ -520,27 +522,27 @@ static int sun4i_codec_hw_params_playback(struct sun4i_codec *scodec,
->  	else
->  		val = 0;
->  
-> -	regmap_update_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   BIT(SUN4I_CODEC_DAC_FIFOC_MONO_EN),
-> -			   val);
-> +	regmap_field_update_bits(scodec->reg_dac_fifoc,
-> +				 BIT(SUN4I_CODEC_DAC_FIFOC_MONO_EN),
-> +				 val);
->  
->  	/* Set the number of sample bits to either 16 or 24 bits */
->  	if (hw_param_interval(params, SNDRV_PCM_HW_PARAM_SAMPLE_BITS)->min == 32) {
-> -		regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -				   BIT(SUN4I_CODEC_DAC_FIFOC_TX_SAMPLE_BITS));
-> +		regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +				      BIT(SUN4I_CODEC_DAC_FIFOC_TX_SAMPLE_BITS));
->  
->  		/* Set TX FIFO mode to padding the LSBs with 0 */
-> -		regmap_clear_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -				   BIT(SUN4I_CODEC_DAC_FIFOC_TX_FIFO_MODE));
-> +		regmap_field_clear_bits(scodec->reg_dac_fifoc,
-> +					BIT(SUN4I_CODEC_DAC_FIFOC_TX_FIFO_MODE));
->  
->  		scodec->playback_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_4_BYTES;
->  	} else {
-> -		regmap_clear_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -				   BIT(SUN4I_CODEC_DAC_FIFOC_TX_SAMPLE_BITS));
-> +		regmap_field_clear_bits(scodec->reg_dac_fifoc,
-> +					BIT(SUN4I_CODEC_DAC_FIFOC_TX_SAMPLE_BITS));
->  
->  		/* Set TX FIFO mode to repeat the MSB */
-> -		regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -				   BIT(SUN4I_CODEC_DAC_FIFOC_TX_FIFO_MODE));
-> +		regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +				      BIT(SUN4I_CODEC_DAC_FIFOC_TX_FIFO_MODE));
->  
->  		scodec->playback_dma_data.addr_width = DMA_SLAVE_BUSWIDTH_2_BYTES;
->  	}
-> @@ -587,8 +589,8 @@ static int sun4i_codec_startup(struct snd_pcm_substream *substream,
->  	 * Stop issuing DRQ when we have room for less than 16 samples
->  	 * in our TX FIFO
->  	 */
-> -	regmap_set_bits(scodec->regmap, SUN4I_CODEC_DAC_FIFOC,
-> -			   3 << SUN4I_CODEC_DAC_FIFOC_DRQ_CLR_CNT);
-> +	regmap_field_set_bits(scodec->reg_dac_fifoc,
-> +			      3 << SUN4I_CODEC_DAC_FIFOC_DRQ_CLR_CNT);
->  
->  	return clk_prepare_enable(scodec->clk_module);
->  }
-> @@ -1565,6 +1567,7 @@ struct sun4i_codec_quirks {
->  	const struct snd_soc_component_driver *codec;
->  	struct snd_soc_card * (*create_card)(struct device *dev);
->  	struct reg_field reg_adc_fifoc;	/* used for regmap_field */
-> +	struct reg_field reg_dac_fifoc;	/* used for regmap_field */
->  	unsigned int reg_dac_txdata;	/* TX FIFO offset for DMA config */
->  	unsigned int reg_adc_rxdata;	/* RX FIFO offset for DMA config */
->  	bool has_reset;
-> @@ -1575,6 +1578,7 @@ static const struct sun4i_codec_quirks sun4i_codec_quirks = {
->  	.codec		= &sun4i_codec_codec,
->  	.create_card	= sun4i_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN4I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN4I_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN4I_CODEC_ADC_RXDATA,
->  };
-> @@ -1584,6 +1588,7 @@ static const struct sun4i_codec_quirks sun6i_a31_codec_quirks = {
->  	.codec		= &sun6i_codec_codec,
->  	.create_card	= sun6i_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN6I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN4I_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN6I_CODEC_ADC_RXDATA,
->  	.has_reset	= true,
-> @@ -1594,6 +1599,7 @@ static const struct sun4i_codec_quirks sun7i_codec_quirks = {
->  	.codec		= &sun7i_codec_codec,
->  	.create_card	= sun4i_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN4I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN4I_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN4I_CODEC_ADC_RXDATA,
->  };
-> @@ -1603,6 +1609,7 @@ static const struct sun4i_codec_quirks sun8i_a23_codec_quirks = {
->  	.codec		= &sun8i_a23_codec_codec,
->  	.create_card	= sun8i_a23_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN6I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN4I_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN6I_CODEC_ADC_RXDATA,
->  	.has_reset	= true,
-> @@ -1618,6 +1625,7 @@ static const struct sun4i_codec_quirks sun8i_h3_codec_quirks = {
->  	.codec		= &sun8i_a23_codec_codec,
->  	.create_card	= sun8i_h3_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN6I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN8I_H3_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN6I_CODEC_ADC_RXDATA,
->  	.has_reset	= true,
-> @@ -1632,6 +1640,7 @@ static const struct sun4i_codec_quirks sun8i_v3s_codec_quirks = {
->  	.codec		= &sun8i_a23_codec_codec,
->  	.create_card	= sun8i_v3s_codec_create_card,
->  	.reg_adc_fifoc	= REG_FIELD(SUN6I_CODEC_ADC_FIFOC, 0, 31),
-> +	.reg_dac_fifoc	= REG_FIELD(SUN4I_CODEC_DAC_FIFOC, 0, 31),
->  	.reg_dac_txdata	= SUN8I_H3_CODEC_DAC_TXDATA,
->  	.reg_adc_rxdata	= SUN6I_CODEC_ADC_RXDATA,
->  	.has_reset	= true,
-> @@ -1739,6 +1748,16 @@ static int sun4i_codec_probe(struct platform_device *pdev)
->  		return ret;
->  	}
->  
-> +	scodec->reg_dac_fifoc = devm_regmap_field_alloc(&pdev->dev,
-> +							scodec->regmap,
-> +							quirks->reg_dac_fifoc);
-> +	if (IS_ERR(scodec->reg_dac_fifoc)) {
-> +		ret = PTR_ERR(scodec->reg_dac_fifoc);
-> +		dev_err(&pdev->dev, "Failed to create regmap fields: %d\n",
-> +			ret);
-> +		return ret;
-> +	}
+> ---
+>   arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 62 ++++++++++++++++++++++
+>   1 file changed, 62 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> index 0c1b21def4b6..05c9f572ae42 100644
+> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
+> @@ -675,6 +675,37 @@ &pcie0 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pcie0_default_state>;
+>   
+> +	iommu-map = <0x0 &pcie_smmu 0x0000 0x1>,
+> +		    <0x100 &pcie_smmu 0x0001 0x1>,
+> +		    <0x101 &pcie_smmu 0x0002 0x1>,
+> +		    <0x208 &pcie_smmu 0x0003 0x1>,
+> +		    <0x210 &pcie_smmu 0x0004 0x1>,
+> +		    <0x218 &pcie_smmu 0x0005 0x1>,
+> +		    <0x280 &pcie_smmu 0x0006 0x1>,
+> +		    <0x281 &pcie_smmu 0x0007 0x1>,
+> +		    <0x282 &pcie_smmu 0x0008 0x1>,
+> +		    <0x283 &pcie_smmu 0x0009 0x1>,
+> +		    <0x284 &pcie_smmu 0x000a 0x1>,
+> +		    <0x285 &pcie_smmu 0x000b 0x1>,
+> +		    <0x286 &pcie_smmu 0x000c 0x1>,
+> +		    <0x287 &pcie_smmu 0x000d 0x1>,
+> +		    <0x288 &pcie_smmu 0x000e 0x1>,
+> +		    <0x289 &pcie_smmu 0x000f 0x1>,
+> +		    <0x28a &pcie_smmu 0x0010 0x1>,
+> +		    <0x28b &pcie_smmu 0x0011 0x1>,
+> +		    <0x28c &pcie_smmu 0x0012 0x1>,
+> +		    <0x28d &pcie_smmu 0x0013 0x1>,
+> +		    <0x28e &pcie_smmu 0x0014 0x1>,
+> +		    <0x28f &pcie_smmu 0x0015 0x1>,
+> +		    <0x290 &pcie_smmu 0x0016 0x1>,
+> +		    <0x291 &pcie_smmu 0x0017 0x1>,
+> +		    <0x292 &pcie_smmu 0x0018 0x1>,
+> +		    <0x293 &pcie_smmu 0x0019 0x1>,
+> +		    <0x300 &pcie_smmu 0x001a 0x1>,
+> +		    <0x400 &pcie_smmu 0x001b 0x1>,
+> +		    <0x500 &pcie_smmu 0x001c 0x1>,
+> +		    <0x501 &pcie_smmu 0x001d 0x1>;
 > +
->  	/* Enable the bus clock */
->  	if (clk_prepare_enable(scodec->clk_apb)) {
->  		dev_err(&pdev->dev, "Failed to enable the APB clock\n");
-
+>   	status = "okay";
+>   };
+>   
+> @@ -685,6 +716,37 @@ &pcie1 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pcie1_default_state>;
+>   
+> +	iommu-map = <0x0 &pcie_smmu 0x0080 0x1>,
+> +		    <0x100 &pcie_smmu 0x0081 0x1>,
+> +		    <0x101 &pcie_smmu 0x0082 0x1>,
+> +		    <0x208 &pcie_smmu 0x0083 0x1>,
+> +		    <0x210 &pcie_smmu 0x0084 0x1>,
+> +		    <0x218 &pcie_smmu 0x0085 0x1>,
+> +		    <0x280 &pcie_smmu 0x0086 0x1>,
+> +		    <0x281 &pcie_smmu 0x0087 0x1>,
+> +		    <0x282 &pcie_smmu 0x0088 0x1>,
+> +		    <0x283 &pcie_smmu 0x0089 0x1>,
+> +		    <0x284 &pcie_smmu 0x008a 0x1>,
+> +		    <0x285 &pcie_smmu 0x008b 0x1>,
+> +		    <0x286 &pcie_smmu 0x008c 0x1>,
+> +		    <0x287 &pcie_smmu 0x008d 0x1>,
+> +		    <0x288 &pcie_smmu 0x008e 0x1>,
+> +		    <0x289 &pcie_smmu 0x008f 0x1>,
+> +		    <0x28a &pcie_smmu 0x0090 0x1>,
+> +		    <0x28b &pcie_smmu 0x0091 0x1>,
+> +		    <0x28c &pcie_smmu 0x0092 0x1>,
+> +		    <0x28d &pcie_smmu 0x0093 0x1>,
+> +		    <0x28e &pcie_smmu 0x0094 0x1>,
+> +		    <0x28f &pcie_smmu 0x0095 0x1>,
+> +		    <0x290 &pcie_smmu 0x0096 0x1>,
+> +		    <0x291 &pcie_smmu 0x0097 0x1>,
+> +		    <0x292 &pcie_smmu 0x0098 0x1>,
+> +		    <0x29d &pcie_smmu 0x0099 0x1>,
+> +		    <0x300 &pcie_smmu 0x009a 0x1>,
+> +		    <0x400 &pcie_smmu 0x009b 0x1>,
+> +		    <0x500 &pcie_smmu 0x009c 0x1>,
+> +		    <0x501 &pcie_smmu 0x009d 0x1>;
+> +
+>   	status = "okay";
+>   };
+>   
 
