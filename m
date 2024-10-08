@@ -1,241 +1,233 @@
-Return-Path: <devicetree+bounces-108765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7791B993CBA
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 04:14:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3D62993CD6
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 04:30:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B74F1C22A81
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 02:14:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 265171F22B74
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 02:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DACD814A91;
-	Tue,  8 Oct 2024 02:14:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C97C1F94D;
+	Tue,  8 Oct 2024 02:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="NkhOyYQQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DxlAfhmL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2089.outbound.protection.outlook.com [40.107.21.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9347E2AE72;
-	Tue,  8 Oct 2024 02:14:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.89
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728353664; cv=fail; b=cjAxwVkjODdR7eHcJQjFlmToo+jhU9rcq9zqS4Y6ToWnGyYtdsIsKUkQaHt3rDeCCwl3Xe5bCBAeyNlv/di3ygyOtAIWTdrWRWMqw47XUxyjZVNdibZTdWEirOzGSaNGjYaJKuN+XACjN/w57BnFboHoJK2CEpc1VHJnohwn4xo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728353664; c=relaxed/simple;
-	bh=cQ7YI9yygp2se5+9UFLXsRmydJFR06xQB/VWK4c3GAY=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=pfQOmjcA3M+dEM3qkcu9vDZifTGOn9m1GC5I+I7t3heUhB8T7mT+3ZYRb+Ic3jyTn4bzhkXyJLOkNVqIJaDPTVf0kwJoUZhYrm5tXNjHArwxiFFpCUS6RddVeOPo9NxtBH4iEhL5jXgGMG2O3KBZG3MuYs2TA4i8tInLxfMm/KU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=NkhOyYQQ; arc=fail smtp.client-ip=40.107.21.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=sG7K0RlqrCpDdhFy9k1F5t+RNV9MYGCkQvcwGocrF7P2tyxwoDU01blYGYPDle+aOhyVeJEKv63cSMTAQocOwaC8/7PSeSHF+teJJBKjhRawQPpaaSAI//5eNqIHVoiLee1m1MTgpShGXR81pqV/C+hR28XeRugfahYPI1uwCl1dg0zTK3PS0MB2xqrsnAbGL3jrtVH+Oj7/uWbIZyZVjL8+Eq4RjOW2drBgCZup3nbstRMFjoSuV9vtmhi/DdT3zhxt+dZXaf4tNa9pMdDWE+gSYD/blrv8z7TiBQ5DRIZlE2ZGy5DcRYB1Y9NRzuWS8GfyfwMcnAdcWL3Rjo/Lrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bivROXw36sa4GUeiF1zftjhCDnG/Gt1m7SYUnQjOCWc=;
- b=KaXKiw1IpGGif/ptU60vDT0Q3sLefkjaHxvP2vDaPdxaipsC64miraWYnu0xHy9HNpE1orEJckOo5CQ49U7lUOrYlS50QnIWkHGAnM4rAi7381Mdj5f7wp6iHSWM8FkE/PKrJtcdRKkvZmKwfsxQZtibEr/eHuBDnvxRdBfJZDx7FrnigHGQY21LBaMoQcp5limioJCcnY4dD/VoFr2Kxsx9Ub/enxiCxfgHrYbB/lTkxx9zDDw4UnlNDkUWcrQJi6M7AvkQn4UpghPl9AyYLSpC5bbsDJ5JUBafgliKMQycRm8dNkgiAE9AIM2qqyRc1ctMs9JYIXYug6NHSdIeOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bivROXw36sa4GUeiF1zftjhCDnG/Gt1m7SYUnQjOCWc=;
- b=NkhOyYQQ9H680TWN55MSbeYbWA+7pKViDjboIjFBlrrImJyj0Eg+F2gx29sMPWxl6SuKtzhXXSLTFEjEEFnnpmKoIvgR9pxN7zG2BoBk5VGWAIJB0SDm4++vFPRBKjfG+2/RXwJZ5MpxT5l/mHOpxoeX8WsCAK5hO0M2qrwMyOWA9LLvvzmWTmPFjPGD60u+L98+jOfD2pDpy4YtxnFFe9oMFDItPgs+J1R30vHUVBAFUNuhCzhekjv/aAxn1WnAuxxmQ+i0aw+OmCv59n15w99as9pE+0Nn3c+6wyesFL3G6GJhbP0DzhR8ulBMaKD0jat/1ruD1p4+xPzT0tHPNw==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DU2PR04MB8599.eurprd04.prod.outlook.com (2603:10a6:10:2da::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Tue, 8 Oct
- 2024 02:14:19 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%6]) with mapi id 15.20.8026.020; Tue, 8 Oct 2024
- 02:14:18 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>,
-	"linux-arm-kernel@lists.infreadead.org"
-	<linux-arm-kernel@lists.infreadead.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Sudeep Holla <sudeep.holla@arm.com>,
-	Cristian Marussi <cristian.marussi@arm.com>, "open list:OPEN FIRMWARE AND
- FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list
-	<linux-kernel@vger.kernel.org>, "open list:SYSTEM CONTROL & POWER/MANAGEMENT
- INTERFACE" <arm-scmi@vger.kernel.org>, "moderated list:SYSTEM CONTROL &
- POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
-	"justin.chen@broadcom.com" <justin.chen@broadcom.com>, "opendmb@gmail.com"
-	<opendmb@gmail.com>, "kapil.hali@broadcom.com" <kapil.hali@broadcom.com>,
-	"bcm-kernel-feedback-list@broadcom.com"
-	<bcm-kernel-feedback-list@broadcom.com>, Arnd Bergmann <arnd@arndb.de>
-Subject: RE: [PATCH v2] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-Thread-Topic: [PATCH v2] firmware: arm_scmi: Give SMC transport precedence
- over mailbox
-Thread-Index: AQHbGRWO+sCmOcvWQE215V76FhqXAbJ8HKKQ
-Date: Tue, 8 Oct 2024 02:14:18 +0000
-Message-ID:
- <PAXPR04MB845905073FFB3B0967C7263F887E2@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20241007235413.507860-1-florian.fainelli@broadcom.com>
-In-Reply-To: <20241007235413.507860-1-florian.fainelli@broadcom.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DU2PR04MB8599:EE_
-x-ms-office365-filtering-correlation-id: 65753735-95f2-424c-db9b-08dce73eea84
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?8mCLTagvAcDZ4tF03Eh0nyunI9MaDZ3ONK+giA+wd7Fu7+svhpmGDz8o+kmM?=
- =?us-ascii?Q?evJx+EkDJjpdNmNg3+zGHNp9mK1wRqMZitJi0IpK5VVIRz5iLVky+joueUBJ?=
- =?us-ascii?Q?noGvcMlqEa7QvH1I5DC/VEFChe4P+MPFjcUZ7XYRiNT5r/vwG4k0jgU73wOJ?=
- =?us-ascii?Q?bNSRWF0DZIBqkpFaNgx89wYweRWw9im4A8ghFFRZgZyfQabQxLSau5AbVtYR?=
- =?us-ascii?Q?O/10RuhEwUP5J2Vn2MR3/diUoFm641LX5L0ph7VWSaAg8FwEh3tENxtXj4kb?=
- =?us-ascii?Q?gulJus8L64VRHHOs0LYkQvCLNnNGvTuc2CVyLXbnalua6rvpEX0xinNLA6se?=
- =?us-ascii?Q?lf/2MEzd7yUKxp30LDZwk3nDzDKnq+ZE/+UNgsAsPPNBrPht86aSelXeaxKP?=
- =?us-ascii?Q?W19tSiBU6I46zyrmin9nqkRSwqiO+p2ljYpt0zQFPuwl2xUjz/NqpbrLm6tn?=
- =?us-ascii?Q?khLy25pUF3Xk4SX1rfGnUa1TMRDsUPoRj01qGipwIHpChBtGNqvdyjS9gMEc?=
- =?us-ascii?Q?llt99k1RB9zzOHYF++HliweHYrdegMN2HFNw6wCRe2xBUoH+hp4fL86RAroC?=
- =?us-ascii?Q?RzQFdYRiwWBsOvRzr50CFxPhoagoEpIVQv2ZAzW9/cCz5+oUmo9LDAyHj9qp?=
- =?us-ascii?Q?vSYUw71ClNuJiL8FKFusH4Bq+zzbGj187vV9EVTC725qNooT2fE+Gv0OUKBO?=
- =?us-ascii?Q?nUGcfNy6IweD7O2TAVwtbdNjP+QAKcbbcCxXmwqlc0Z6zaC4UGDCE4FyP6gQ?=
- =?us-ascii?Q?RSvMPd2kdNG+2z1QBxbR+2W7HmYJCe9p/PB2Pt6FOivNMfDDDr2DRfkMhGuH?=
- =?us-ascii?Q?YPwpIFMIOoE+jsEAL3t0McIsXk+4OP7DoMTIGRRcHptNT+iZGvo/iw4kTt3H?=
- =?us-ascii?Q?JzfCzrAyuijWlsefRM/I+czMFaZnvxu4hu0mencU+KHDT26FoeM/2V+uy8mF?=
- =?us-ascii?Q?gBaDk3ThN+qhkYCKhL6BoV/vpZcIXI32oZUSY5lUgP0c0mXkpQ/SKxxurYrH?=
- =?us-ascii?Q?NoKjAnB9mSr3UbhvDwtFv7cvELVqaBXTVyhEDPjzu2wdWsuEAFohW/QorYZE?=
- =?us-ascii?Q?FJ3m2pLwbgSv4aYVSzz6DdNrK+5Rgor2NNXlb6uxuEcaXDAnoBHOkF9rNqeO?=
- =?us-ascii?Q?RA/PKfjHrRt662IsxWNWj4ZN9pIHePWpyspnulk51on0sXk9AccicfFW46Ri?=
- =?us-ascii?Q?ZfrG7cHqlg3bZc/SybxjZi66YRUxvxCSIvhK2/YcWrRUiH1sbT2wRkEMIY6T?=
- =?us-ascii?Q?W/gWcatUanF5MBZXFhEeGS7ZhTz+G3eOxoDCMMuB2bpzIwey9pW16hfxIRju?=
- =?us-ascii?Q?WnnISHfgh7aI7VgOymc61zSz2uphEUPXOU3NnsV9k1GjgA=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?RPwURD5CH4+8JS3Hbq/NMgFAkwA9/yHUvPyrPkZKsG2lr87ZJyXGjcCiWd4C?=
- =?us-ascii?Q?x8tF6J6PkTVYn8blj8EQNgNaOjihEdNFv83BWwGI53T8OrppB4tprVBYQ6eU?=
- =?us-ascii?Q?waSLextPcqNk5ffEvonT74AMVxvTEX0QJQCjIhV3i9aoIE9ntoZovAn30Uvp?=
- =?us-ascii?Q?QLTArWXcmWv9ENi6nOTnHwerH289rTgvwl7SJ8OMFscqiBbXBG0cNqkzfuwo?=
- =?us-ascii?Q?mfyvynut1TqHZlf/tZpN47xKRsWjiWeKozs4lY3QVA0YVYDhpnO2hTmObFow?=
- =?us-ascii?Q?ol8wtOZWAdBZfuinHP5SKY9OsIqoiWKbQ0707y8fQmXEo7huy680cq5yfrtL?=
- =?us-ascii?Q?LJ6hMM2ly69UP+SAwqa2+0BZMuzghntMhrQAi++OeWbO63O27DnsEG6F69bO?=
- =?us-ascii?Q?gOamVQEqzFBtYdc3vpzReJkQp+RukS5R5rKkGeN0drS+K/kGImIufUuyWjMW?=
- =?us-ascii?Q?dxaLtynVZ1ugX1E3HIBcTIOJG2aQMzrUNCLLvhLZ8bRmc+zoZvOA/VcXeE/a?=
- =?us-ascii?Q?dOg2V7OB1Zs3xWMlIhS/b23z1faXQy8Bv82yqvDzdLM4bIQYspWM+AkFs+6W?=
- =?us-ascii?Q?M/JeK8XPxqzlAx2v6jS359K7WZFkrQXHgiutDWYgdclIG6OCrpQWrdldLclT?=
- =?us-ascii?Q?nfLxAvvZy/eZsPL0rbqyTlfLDgIHqaWlTNHKo3xB4c7/PlaYK2kpuOBkw3tW?=
- =?us-ascii?Q?yHCdCNUyRW2f9vzq09cxi89O3Md4sM4adtTahi/tBpc1HcP2Je0Mq2LwIOyS?=
- =?us-ascii?Q?KYQw0Noel9WHRKQHLisavK3yFb0+smPsGgKOIjyKPNe6H97XG6WJlKkw8lm0?=
- =?us-ascii?Q?8iMBURy2nTS+DXhgJNNBmE1gthw0lfkyXK+QTXdMinO4dOHnYwqhWAPWRSED?=
- =?us-ascii?Q?92bG7BjUtHqooObfkxhnrGstr+98gMLQuH34tNr1+GslRrMFvgfx7579qk9A?=
- =?us-ascii?Q?NaEfJzCy7qWC192uy4FxIJggrWh8uIRs4Unb63Y0XbUhIV7xsRj397jrNdc/?=
- =?us-ascii?Q?OHoIUTrOX97fWAxoOMPbQIwzkT9cjhq0f/v2d94LjKtrIqzOXicA2eQ3z6AV?=
- =?us-ascii?Q?oPF0Tm2IJwA/ZGyxbrOT+cG6kb94w6Tvtzl4x213iAHL+jhSWEWPcK8NDifQ?=
- =?us-ascii?Q?LL8JkMoB80lWHl8MTRdv61FP9npHtC5elL148Rtwu/560BdsalwSVWyGltLx?=
- =?us-ascii?Q?DDdFzgmL5GuDd3CCWLRmnpRyYVVmZAigCVi8/Jz0kjKLVWMpJo59EEEhsHKC?=
- =?us-ascii?Q?Tn3vALax8kUkCwVLr+L0d+F7iw6R5kmXhiGCndZIz0jbZ7omGNCcVEXQrR29?=
- =?us-ascii?Q?8SDro8f8FM+uR0aRpvcngo/jOZn0UZ4NjkFEtbBQ8aknJUSy2M3s8ynyG0rH?=
- =?us-ascii?Q?QMJwv/iWYmFW7X/DQs49vJEMPTsSZcjWBb8gRtHwMASgf9E7J5p5z1KuQM14?=
- =?us-ascii?Q?wQpY5fL7Qhg4smsyLJC0Ea2NKC8pXvpvHlwtnLe/A0nojhpTdGQzrEpc1FdT?=
- =?us-ascii?Q?K158YN66O0cwd3kkAAGhOGJ/d4OjlCGfwfr1VqogBUMevI62+MsPnH8Sera8?=
- =?us-ascii?Q?xpM5w4rtIpRIduHfxIY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE25E13AC1;
+	Tue,  8 Oct 2024 02:30:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728354613; cv=none; b=OMazWu1Q8G1+qawWNGgsqcoBvGNHIIkDNvepr3J62VhazrbSbcUzNgOqFJ/W4sW1MB3IVYxFE416WyEMMQTWTQpNPkNLEPjuC/QuMJnyOZgUK5EqXiBuaRHlrqoDMRHpjcTw6m13q78DPjiJ69nyLMi0xsnXQURQdCcuw2KsW+I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728354613; c=relaxed/simple;
+	bh=zwL9TcioXpUGhWLd1sDdthGSco4S5bRFfmVlR7J4P28=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jp5ZYD1EGl0kgTUrfK2+1uO9J1HzprYmwGPe3oiRfTC8hnv1g7IvCINbHFY6oe0OU3oAGsQvxFgwEY9Gzi3q79URv1PKW7eXENxD3nSg9384w41z7sWrVYin2dQA95yCyxW7dG1+cqhGRMNe1m+vMMnBHyh9W0E7t0jFZyOHOsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DxlAfhmL; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20b49ee353cso47901305ad.2;
+        Mon, 07 Oct 2024 19:30:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728354611; x=1728959411; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JLu2GkrJyIH/iXx8pdbjQNyQU8u3ariQBugLwkrciVs=;
+        b=DxlAfhmLeHHUj1rN5e7JuAFnsf3uYPSsWheKVK4B3U6QhkUy81cCTc2h+H+KPli0S1
+         /WcoGSlGUX0rJrRKWv53bT77qn4sTIuajDyTf7VwPYWbhDn+LS8flrjr5bUpNm53MfpD
+         O0bQD832MlPhO9T4bmMC92O7zGtIAePrcoPuksF0yqSBRz7f7HOcYEHS3MjsBJweAz4g
+         TRMIVshxB0pCLhGIIAvyBEAsswKzr0A6MybFLh5zU1yj23bRI1PwTKNJ7wO0B/yJkb5w
+         ufXAuCY6AZ2gE5VPYI1tEPXqc5w6EHLoq+rHAC20Ubzkcx8DRAqoDEC8xA0dqM9RK6tF
+         I/vQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728354611; x=1728959411;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JLu2GkrJyIH/iXx8pdbjQNyQU8u3ariQBugLwkrciVs=;
+        b=Ka2kmJ8/3qXuKOBL272XcuV2kdGKnzgAIoAjTlcFqOw/bcR6wQ4Bnys2uhRAuZtIVl
+         A31LQEyA1JKDnTZhEbFT0yJPBX7aw3/BHptPntRuPndSVohs37nS+crD4FhIDhfclqgP
+         0HXZmTnS0un2ClXQ+wCowuwp/PTAOWX2E7VG5FtbH/LrOrKoWkpVwewOf+60Lc5fz42T
+         R9cokt6UCnm0opZ1vu04qppRujjMaAImf2tOqlyJddLwJVchvOXKzFCytuNYXIaWxo95
+         t2u7dy9FFtlcekzGQHYCUmL+XHsFawoIqeODJH2kAesH0MnMzBJALQ7B3TUpJV5ro9fh
+         P+EA==
+X-Forwarded-Encrypted: i=1; AJvYcCU/0CLV2XyGC8HLedAfeDkyF6lrn4XcDq+mhpqqhVL4y7R7D4fDs+R4fXBlnmUxNBiWElIVSrnfCGtiGLSQ@vger.kernel.org, AJvYcCUS8FpErTcNZSaKiv0OytaFj2zEZcKtyLjq8vBA2Qo9iYS/O+L8dWfyrHgrFB7loXl/+qDDWD5+lpzL@vger.kernel.org
+X-Gm-Message-State: AOJu0YylGF/QBNsL3rmD3c3z42XvooNUc8Y3MqCrYSdHQ0PfTD9xsASZ
+	kVzinCp01Kjnw8Mgk1IN1t1rJtgD7kt/4rhkbuhsi05xc4KWNiAQqiL5JQ==
+X-Google-Smtp-Source: AGHT+IGeQEqLzuvHuWusEN4nVLoxNffXjEIhVExhavgblUpbYb87p1OahnMRUqzEYA2b6qstnKCPfA==
+X-Received: by 2002:a05:6a21:1788:b0:1ce:d08c:2c10 with SMTP id adf61e73a8af0-1d6dfa55709mr20715014637.28.1728354610971;
+        Mon, 07 Oct 2024 19:30:10 -0700 (PDT)
+Received: from [172.19.1.53] (60-250-196-139.hinet-ip.hinet.net. [60.250.196.139])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e28213ce28sm386873a91.40.2024.10.07.19.30.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 19:30:10 -0700 (PDT)
+Message-ID: <eec602ce-e74a-4b37-880d-32b49a55adf8@gmail.com>
+Date: Tue, 8 Oct 2024 10:30:07 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 65753735-95f2-424c-db9b-08dce73eea84
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Oct 2024 02:14:18.7802
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8pHdaST8c8+sHcJgu44N4VyThqinuFWSMcke1U/x+tuytPb5uNyuMvnSmWRF0ySXzUERKPq8i21B+pso5qVFew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8599
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v6 1/2] dt-bindings: mtd: nuvoton,ma35d1-nand: add new
+ bindings
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, nikita.shubin@maquefel.me, arnd@arndb.de,
+ vkoul@kernel.org, esben@geanix.com, linux-arm-kernel@lists.infradead.org,
+ linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20240927020749.46791-1-hpchen0nvt@gmail.com>
+ <20240927020749.46791-2-hpchen0nvt@gmail.com>
+ <20241001121902.658d3977@xps-13>
+Content-Language: en-US
+From: Hui-Ping Chen <hpchen0nvt@gmail.com>
+In-Reply-To: <20241001121902.658d3977@xps-13>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-> Subject: [PATCH v2] firmware: arm_scmi: Give SMC transport
-> precedence over mailbox
->=20
-> Broadcom STB platforms have for historical reasons included both
-> "arm,scmi-smc" and "arm,scmi" in their SCMI Device Tree node
-> compatible string, in that order.
+Dear Miquel,
 
-If compatible =3D "arm,scmi-smc", "arm,scmi", smc driver should be used.
-or I missed something?
+Thank you for your reply.
 
->=20
-> After the commit cited in the Fixes tag and with a kernel configuration
-> that enables both the SMC and the Mailbox transports, we would
-> probe the mailbox transport, but fail to complete since we would not
-> have a mailbox driver available. With each SCMI transport being a
-> platform driver with its own set of compatible strings to match, rather
-> than an unique platform driver entry point, we no longer match from
-> most specific to least specific. There is also no simple way for the
-> mailbox driver to return -ENODEV and let another platform driver
-> attempt probing. This leads to a platform with no SCMI provider,
-> therefore all drivers depending upon SCMI resources are put on
-> deferred probe forever.
->=20
-> By keeping the SMC transport objects linked first, we can let the
-> platform driver match the compatible string and probe successfully
-> with no adverse effects on platforms using the mailbox transport.
->=20
-> Fixes: b53515fa177c ("firmware: arm_scmi: Make MBOX transport a
-> standalone driver")
-> Signed-off-by: Florian Fainelli <florian.fainelli@broadcom.com>
-> ---
-> Changes in v2:
->=20
-> - removed downstream Change-Id
-> - s/SCMI/SMC in the second paragraph
-> - added details about what changed and how that affects the probing
->=20
->  drivers/firmware/arm_scmi/transports/Makefile | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/firmware/arm_scmi/transports/Makefile
-> b/drivers/firmware/arm_scmi/transports/Makefile
-> index 362a406f08e6..3ba3d3bee151 100644
-> --- a/drivers/firmware/arm_scmi/transports/Makefile
-> +++ b/drivers/firmware/arm_scmi/transports/Makefile
-> @@ -1,8 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0-only -scmi_transport_mailbox-
-> objs :=3D mailbox.o
-> -obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) +=3D
-> scmi_transport_mailbox.o
-> +# Keep before scmi_transport_mailbox.o to allow precedence # while
-> +matching the compatible.
->  scmi_transport_smc-objs :=3D smc.o
->  obj-$(CONFIG_ARM_SCMI_TRANSPORT_SMC) +=3D
-> scmi_transport_smc.o
-> +scmi_transport_mailbox-objs :=3D mailbox.o
-> +obj-$(CONFIG_ARM_SCMI_TRANSPORT_MAILBOX) +=3D
 
-This seems more like a hack.
 
-Regards,
-Peng.
+On 2024/10/1 下午 06:19, Miquel Raynal wrote:
+> Hi Hui-Ping,
+>
+> hpchen0nvt@gmail.com wrote on Fri, 27 Sep 2024 02:07:48 +0000:
+>
+>> Add dt-bindings for the Nuvoton MA35 SoC NAND Controller.
+>>
+>> Signed-off-by: Hui-Ping Chen <hpchen0nvt@gmail.com>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   .../bindings/mtd/nuvoton,ma35d1-nand.yaml     | 93 +++++++++++++++++++
+>>   1 file changed, 93 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml b/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+>> new file mode 100644
+>> index 000000000000..a8a549644c98
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/mtd/nuvoton,ma35d1-nand.yaml
+>> @@ -0,0 +1,93 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/mtd/nuvoton,ma35d1-nand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Nuvoton MA35D1 NAND Flash Interface (NFI) Controller
+>> +
+>> +maintainers:
+>> +  - Hui-Ping Chen <hpchen0nvt@gmail.com>
+>> +
+>> +allOf:
+>> +  - $ref: nand-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nuvoton,ma35d1-nand-controller
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^nand@[a-f0-9]$":
+>> +    type: object
+>> +    $ref: raw-nand-chip.yaml
+>> +    properties:
+>> +      nand-ecc-step-size:
+>> +        enum: [512, 1024]
+>> +
+>> +      nand-ecc-strength:
+>> +        enum: [8, 12, 24]
+>> +
+>> +    required:
+>> +      - nand-ecc-step-size
+>> +      - nand-ecc-strength
+> No, they should not be required, unless there is a good reason to do
+> so. Optimal strength is discoverable, stop forcing it by default.
 
-> scmi_transport_mailbox.o
->  scmi_transport_optee-objs :=3D optee.o
->  obj-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) +=3D
-> scmi_transport_optee.o  scmi_transport_virtio-objs :=3D virtio.o
-> --
-> 2.34.1
->=20
+
+I will remove this required.
+
+
+>> +
+>> +    unevaluatedProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/clock/nuvoton,ma35d1-clk.h>
+>> +
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        nand-controller@401A0000 {
+>> +            compatible = "nuvoton,ma35d1-nand-controller";
+>> +            reg = <0x0 0x401A0000 0x0 0x1000>;
+>> +            interrupts = <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH>;
+>> +            clocks = <&clk NAND_GATE>;
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            nand@0 {
+>> +                reg = <0>;
+>> +
+>> +                nand-on-flash-bbt;
+>> +                nand-ecc-step-size = <512>;
+>> +                nand-ecc-strength = <8>;
+>> +
+>> +                partitions {
+>> +                    compatible = "fixed-partitions";
+>> +                    #address-cells = <1>;
+>> +                    #size-cells = <1>;
+>> +
+>> +                    uboot@0 {
+>> +                        label = "nand-uboot";
+>> +                        read-only;
+>> +                        reg = <0x0 0x300000>;
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +    };
+>> +
+>> +...
+>
+> Thanks,
+> Miquèl
+
+
+Best regards,
+
+Hui-Ping Chen
+
 
 
