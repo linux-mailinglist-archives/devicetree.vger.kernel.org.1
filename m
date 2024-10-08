@@ -1,180 +1,146 @@
-Return-Path: <devicetree+bounces-108978-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-108981-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EF1E9946C4
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:26:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A7FB99470C
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 13:33:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AEAAB1F22B24
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:25:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49B36B27497
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 11:33:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578B11D31BB;
-	Tue,  8 Oct 2024 11:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1704018C910;
+	Tue,  8 Oct 2024 11:33:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="hwZxa57B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4tEDTD4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B55B71D31A0;
-	Tue,  8 Oct 2024 11:25:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC2423A1CD;
+	Tue,  8 Oct 2024 11:33:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728386729; cv=none; b=sM1GB5vgGGiyRxTImQ6krQmv9dP1wkoqh7fqrFrf5r4FUtmaBmFfbDIhOqrPuHOpepX1JTywEvEj3MFpBRj4hocEqswfX73VCMI7k7CMdVIxxBrXZ4mb2Mp1LS/nI8ho4m+76w9KxwV1JcLxo+sNVGlkk5bvFCE/nImQRqUIknM=
+	t=1728387181; cv=none; b=DvIpxS4PB4uL28HFxN97QlFZXl3o5nvK3xtcla/HhHrX/trsAfg0/FzLf6QVa2V9yFYIxJTXdAQGlqzD0mc0F1umQBbhUCysT0pkmGWvDjDXCD5kGL+tUjqv3BkO5qHALEWyc2KkDMi4/dmhTfHKVazBr78OiFpu/2kvpqRAuZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728386729; c=relaxed/simple;
-	bh=vEAl+PpOQOadmH8Pt/uaHxVfxcHtjS2Jka45bu27hM0=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=ggtIGk6gdQmd8FMR/XDjb2uHa1ckm7qczOo+RqL+rfR7diXGRZYdjX26WnMoFG7mi1Y9shaUJuaYuvpZ6j5aVncQApY7ppy/pxhHO0d7n7jMdy3MxjuRoh8+Ao/6OfiAqXfAct/vccPqTwNDLETb9fZx248888zcFZ8iW5bKauc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=hwZxa57B; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49851XP4010523;
-	Tue, 8 Oct 2024 11:25:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:date:from:in-reply-to:message-id:references:subject:to; s=
-	qcppdkim1; bh=M05PoCJ7G6QQdzAdOyYipY2hI1ZDu3EKrPzcSNwTgkY=; b=hw
-	Zxa57BPQxvGFjQ9m5dQS8lyqIBQq4PECtLir82g7iOk+6cgevYmvKAaFZX2P+NBf
-	azXPIrqEUbDuh/Mmxoho0n/YRGjNbhczMGfc1zk5S0vzcO0F5VtwJYklXkDH1y7X
-	NHEGt45qZdEG6q46M4Lb2u636oE/nTSc5wsen4h6ZNeV9bdwDPnf4KQJaoQx9Jsm
-	UN6RpEpCJ2yvinA7SJkLk1wUlgUJv0zZenXx2cFPRKGCWpIKV02RwPGNxt60zL+I
-	gZ2/HOf0kofUofacOUTecvH0+keVNEEhn+5RP2X2gTeLtkzqkIwNGQxWi3UWMXVT
-	XzO06QAGL35Zx3tblZzw==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424x7rryun-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 08 Oct 2024 11:25:24 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 498BPKDD004168;
-	Tue, 8 Oct 2024 11:25:20 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 422xhm2vad-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-	Tue, 08 Oct 2024 11:25:20 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 498BPJ2n004153;
-	Tue, 8 Oct 2024 11:25:19 GMT
-Received: from hu-maiyas-hyd.qualcomm.com (hu-mukhopad-hyd.qualcomm.com [10.147.244.250])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 498BPJVK004149;
-	Tue, 08 Oct 2024 11:25:19 +0000
-Received: by hu-maiyas-hyd.qualcomm.com (Postfix, from userid 3978529)
-	id DF8545000B0; Tue,  8 Oct 2024 16:55:18 +0530 (+0530)
-From: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_riteshk@quicinc.com,
-        quic_vproddut@quicinc.com, quic_abhinavk@quicinc.com
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sa8775p-ride: Enable Display Port
-Date: Tue,  8 Oct 2024 16:55:16 +0530
-Message-Id: <20241008112516.17702-3-quic_mukhopad@quicinc.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20241008112516.17702-1-quic_mukhopad@quicinc.com>
-References: <20241008112516.17702-1-quic_mukhopad@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: mu1uvWpxBDLz28Z5773HCGnk1nUAI7eY
-X-Proofpoint-ORIG-GUID: mu1uvWpxBDLz28Z5773HCGnk1nUAI7eY
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- phishscore=0 mlxlogscore=946 spamscore=0 clxscore=1015 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410080071
+	s=arc-20240116; t=1728387181; c=relaxed/simple;
+	bh=QzyaUahYbY7wgx3pHji+WA9wzaFsyYJmaWXKvJka74o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Rzx6UcBp578vznt2UtTltVf1vuibYfOqnt+tVkZWPVoZksGt9QUgyVv0egViQRmKb7RpScIUYGrxWBLRLTKCIJryiKWHVcYqWnCsB/qWVniQMizEJVgJCQBiCxijWCJc16OXCBoIy56EDh9chc9pkJWlkWF9M0LSbtBaleX4Q0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4tEDTD4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 45F97C4CEC7;
+	Tue,  8 Oct 2024 11:32:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728387180;
+	bh=QzyaUahYbY7wgx3pHji+WA9wzaFsyYJmaWXKvJka74o=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=W4tEDTD4S7PxWQYOWoI4C3QJ6w3DDsC4Z5yAkieKAxdrDICDJkhZlFYq7S0zZUjZS
+	 wi7d270VytCxELG+5pJ/e9iRnO7UyzrNWdZLRyGM7DJj0gDrCUDHVkXh8nvnp9KHBY
+	 ZUDulr/JHBW3GaBuoo18PouxslEKxzf6kkPCEV04J/D+iPZZlP425yxiUzABCyjGC6
+	 4q7KmYbvS2x/B26gQMWknrH+6DsLGNyVswCf5TtGuF4EwLfJWyuUPxZSJ1tuQDHW7/
+	 QmGHGKjnkPRlacCBbkXjaGfKQAoTSQaNce7TNhMCglg97utINNRT29errGn3J5bSgo
+	 oLdnQ2dqmeoCg==
+Message-ID: <4e2ba7ae-b1e6-40ea-b2d3-7d8950cb367c@kernel.org>
+Date: Tue, 8 Oct 2024 13:32:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/3] arm64: dts: rockchip: fix compatible string rk3328
+ cru node
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, jbx6244@gmail.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20240930215001.1999212-1-heiko@sntech.de>
+ <20240930215001.1999212-3-heiko@sntech.de>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20240930215001.1999212-3-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Enable DPTX0 and DPTX1 along with their corresponding PHYs for
-sa8775p-ride platform.
+On 30/09/2024 23:50, Heiko Stuebner wrote:
+> From: Johan Jonker <jbx6244@gmail.com>
+> 
+> The cru node references undocumented compatibles of "rockchip,cru" and also
+> marks it as syscon.
+> 
+> A general rockchip,cru is way too generic to ever be used anywhere, so
+> needs to go away, similarly the cru should not be written to from other
+> places, instead regular clock routines should be used.
+> 
+> Both mainline Linux as well as the vendor-kernel up to their 6.1 branch
+> only reference the cru via the normal assigned-clocks, clocks and resets
+> properties and do not get a syscon from the node.
+> 
+> Similarly, there is no syscon access by compatible both in mainline
+> nor the vendor-kernel up to their 6.1 branch, through either the
+> rockchip,rk3328-cru nor rockchip,cru compatibles.
+> 
+> So these two really are unused in all publically visible places.
+> 
+> Sidenote: the vendor-kernel does pretty crazy stuff in the camera interface
+> and tdm driver, where they map the cru separately and set clock muxes and
+> gates directly. This should of course never reach mainline anyway.
+> 
+> Signed-off-by: Johan Jonker <jbx6244@gmail.com>
+> [update commit message, to explain the unused compatibles]
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> ---
 
-Signed-off-by: Soutrik Mukhopadhyay <quic_mukhopad@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi | 54 ++++++++++++++++++++++
- 1 file changed, 54 insertions(+)
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-index adb71aeff339..5a38de918024 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dtsi
-@@ -421,6 +421,48 @@
- 	status = "okay";
- };
- 
-+&mdss0 {
-+	status = "okay";
-+};
-+
-+&mdss0_dp0 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&dp0_hot_plug_det>;
-+	pinctrl-names = "default";
-+};
-+
-+&mdss0_dp0_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+};
-+
-+&mdss0_dp0_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+};
-+
-+&mdss0_dp1 {
-+	status = "okay";
-+
-+	pinctrl-0 = <&dp1_hot_plug_det>;
-+	pinctrl-names = "default";
-+};
-+
-+&mdss0_dp1_out {
-+	data-lanes = <0 1 2 3>;
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+};
-+
-+&mdss0_dp1_phy {
-+	status = "okay";
-+
-+	vdda-phy-supply = <&vreg_l1c>;
-+	vdda-pll-supply = <&vreg_l4a>;
-+};
-+
- &pmm8654au_0_gpios {
- 	gpio-line-names = "DS_EN",
- 			  "POFF_COMPLETE",
-@@ -527,6 +569,18 @@
- };
- 
- &tlmm {
-+	dp0_hot_plug_det: dp0-hot-plug-det-state {
-+		pins = "gpio101";
-+		function = "edp0_hot";
-+		bias-disable;
-+	};
-+
-+	dp1_hot_plug_det: dp1-hot-plug-det-state {
-+		pins = "gpio102";
-+		function = "edp1_hot";
-+		bias-disable;
-+	};
-+
- 	ethernet0_default: ethernet0-default-state {
- 		ethernet0_mdc: ethernet0-mdc-pins {
- 			pins = "gpio8";
--- 
-2.17.1
+Best regards,
+Krzysztof
 
 
