@@ -1,190 +1,152 @@
-Return-Path: <devicetree+bounces-109177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94039995874
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 22:31:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03F3E995876
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 22:31:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C558A1C20A0A
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 20:31:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C8F11F24744
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 20:31:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EF33215F63;
-	Tue,  8 Oct 2024 20:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 936EB215014;
+	Tue,  8 Oct 2024 20:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="sIsgd1sj"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="dKVfBIy0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03230215F5A
-	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 20:27:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3B5A212D23
+	for <devicetree@vger.kernel.org>; Tue,  8 Oct 2024 20:27:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728419231; cv=none; b=VpXXEnnqPttjBsZQp0InVTT5kh5OGyObSUUDaQNuyCNivx7OpDG3RZIQkocl2sLLx3zDhGQXEZAaK0FZb6D5wbJ1Kzm5tGfPScfddxQMutXkqiIwKJpUI4qJuv87q4iC78YZ7qgiQ1cNTAZhMzAe6DnTXqVHyVBJ96P+ohax06I=
+	t=1728419270; cv=none; b=B5VfqZRILUfLZKUNAPpYUhkBOjCL4TlsiNUznhz+4In3ahI+YIuXemFyo2MXyEi3WVoaxgde2tERaxKVS76L4ZiUzEHm7+/DGad/ztCN/HnYoWfo3HPBqlD6dVkA2LBOwy7XDkQe+53vkNWxT1QIUQe217umcm40U6+Z7PZqMZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728419231; c=relaxed/simple;
-	bh=JwgUJCofLta2QKx6MgXqAx9NDWeifCc9gmbF5x/8Chk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=jN4Ma+Se9+PZrZOqZRv+17xaS3ewiNyK40Ri/nv/aBH/4CwsLPYJ8Bvdfcdnp7ExVYppTP3y9uOeEOK4LUZVRLQBZLG9pKzEXVyR9y6IrWdUv77cMvbFCKAQuymBygiYOA/Uvhz5HaFUacGAGCYQM8agWTwPguqbZk9GOnmZ5SU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=sIsgd1sj; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1728419270; c=relaxed/simple;
+	bh=V3iEYlTtL6t+n1v+7kOoDEA7tOfEMPVBA3ANsGxc5BQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=tE2f3AJP+NBLx62UMk7eL87h8LWeDL3UFI+uJMO6JEDLy+0hf89RpP1RQvW9epFVM7MtzlEAQ4+D6wNhjIIyNc+8RcWtlbSVv0zYPmnG2GaS2s/vQweVOjineP5eHhRbIwzO2kVbPFOfOHOaExMexzRottk4Vp+pHa1Dq3sRUtM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=dKVfBIy0; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=M4NnTSMddp+YfBMRH/oiahTSO5eeHY8eZ2vPTCt4xpY=; b=dKVfBIy0kcHcUqF+wwR4r75oIj
+	DIXVhaf5W7W6pbOdxaRoYRwGMkfQ+kmsoPXA17zxtObjePruV3DuhaNN9+c08YkveVYyvOVJIxrGG
+	YSej1zoR2KRp3bJl8waWyASdqF9FmDHtOzEwdD+kWBF8om8h+ROG03kGZIYcnI/T8L8gfoF1CK009
+	pptLBF3HnQc/vExmt7TSvBKy6zvk83nsSYaVVc2ETnkr8mEOT8p2lKe6tlLHaAwkjm819lJqM0JJ1
+	qZsQL4LFWBHjaFJemM3AjV9u444Ve4gabF/lD05jmBtoLfhzC6zlNjiW+GNW/Ut4l2xgvLuuLH+jJ
+	t1S2NeUg==;
+Received: from i53875ad9.versanet.de ([83.135.90.217] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1syGo4-0007gx-1C; Tue, 08 Oct 2024 22:27:44 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, Furkan Kardame <f.kardame@manjaro.org>
+Subject:
+ Re: [PATCH 3/8] arm64: dts: rockchip: Drop regulator-init-microvolt from
+ rk3568-roc-pc
+Date: Tue, 08 Oct 2024 22:27:43 +0200
+Message-ID: <1812768.VLH7GnMWUR@diego>
+In-Reply-To: <605c8024-ada7-4f2e-b18e-8d5c3f1bf612@kwiboo.se>
+References:
+ <20240930210112.1993625-1-heiko@sntech.de>
+ <20240930210112.1993625-4-heiko@sntech.de>
+ <605c8024-ada7-4f2e-b18e-8d5c3f1bf612@kwiboo.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1728419225;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=CLnKoUkAXXgz6phE+IIQuIRe649FqmYeaZ92g9c27QQ=;
-	b=sIsgd1sj3CT7rC/WgQXwo6fOmj9CNdum1pwopMfRgATD2UEGQj/wWw075FoBDWw7bNYG1t
-	Y75bHcvDRTLV48vk8BHkGaaqHarXDEMr+0TMyynXMxWjFwXng2hW7iw7Vc3YXB/75Q5jlJ
-	BrRNHDUBq6gaExYv/SnQEZjqzmis02VTY3uDnw9CRsEx4pTfRijWzE2M/36Logo4HHKCIN
-	P0DVdKbEqJi1Oaa4g4ML8p1AKo1EfcQJhGQD4cfpxeYaYrqTFts2stq2U1AwtOev9hUt9W
-	lYXJQHupE0kJcq6M7qRdWIOd2o0/TnjlmCzekuPT/6yI0ovzyZnk3kFtkVJe+g==
-Content-Type: multipart/signed;
- boundary=f01c82960899fefa03cdc785db30994e81e3f61a35aabc7eb4e49d766e5d;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Tue, 08 Oct 2024 22:26:50 +0200
-Message-Id: <D4QPH3M5DQC0.66J2EUEZAW8R@cknow.org>
-Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
- "Andy Yan" <andyshrk@163.com>
-Subject: Re: [PATCH 5/8] arm64: dts: rockchip: Fix bluetooth properties on
- rk3566 box demo
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
- <linux-rockchip@lists.infradead.org>
-References: <20240930210112.1993625-1-heiko@sntech.de>
- <4607042.LvFx2qVVIh@diego> <D4PTPHH4ELA3.34KQLVNGTP15E@cknow.org>
- <9353258.CDJkKcVGEf@diego>
-In-Reply-To: <9353258.CDJkKcVGEf@diego>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
---f01c82960899fefa03cdc785db30994e81e3f61a35aabc7eb4e49d766e5d
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+Hi Jonas,
 
-On Tue Oct 8, 2024 at 10:20 PM CEST, Heiko St=C3=BCbner wrote:
-> Am Montag, 7. Oktober 2024, 21:33:11 CEST schrieb Diederik de Haas:
-> > On Mon Oct 7, 2024 at 6:04 PM CEST, Heiko St=C3=BCbner wrote:
-> > > Am Montag, 7. Oktober 2024, 17:27:12 CEST schrieb Diederik de Haas:
-> > > > On Mon Sep 30, 2024 at 11:01 PM CEST, Heiko Stuebner wrote:
-> > > > > The expected clock-name is different (ext_clock -> extclk) and th=
-e wakeup
-> > > >=20
-> > > > According to "brcm,bluetooth.yaml", 'extclk' is deprecated in favor=
- of
-> > > > 'txco', so it seems better to use that?
-> > > > Same would be true for Rock960 boards (patch 6 of this series).
-> > >
-> > > thanks for that catch. I mainly stumbled upon the "_" underscore, fou=
-nd the
-> > > clockname without but didn't take into account that there was a depre=
-cated
-> > > flag set in the binding :-)
-> >=20
-> > Doing research for another improvement, I stumbled upon this commit:
-> >=20
-> > ebceec271e55 ("arm64: dts: rockchip: Fix Wifi/Bluetooth on ROCK Pi 4 bo=
-ards")
-> >=20
-> > with the following diff:
-> >=20
-> > ```
-> >  	sdio_pwrseq: sdio-pwrseq {
-> >  		compatible =3D "mmc-pwrseq-simple";
-> >  		clocks =3D <&rk808 1>;
-> > -		clock-names =3D "ext_clock";
-> > +		clock-names =3D "lpo";
-> >  		pinctrl-names =3D "default";
-> >  		pinctrl-0 =3D <&wifi_enable_h>;
-> >  		reset-gpios =3D <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-> > ```
-> >=20
->
-> The brcm,bluetooth binding is pretty clear, it's
-> txco - for an "external reference clock, not a crystal"
-> lpo - for a low power 32.768 kHz clock.
->
-> The rk808 and also the pmucru are both "not crystals", so I'll just go
-> with the "txco".
->
-> The hci_bcm driver also handles txco and extclk the same, so there won't
-> be a behaviour change with existing code.
+Am Dienstag, 1. Oktober 2024, 00:55:42 CEST schrieb Jonas Karlman:
+> Hi Heiko,
+> 
+> On 2024-09-30 23:01, Heiko Stuebner wrote:
+> > regulator-init-microvolt is not part of any regulator binding and is
+> > only used in the Rockchip vendor kernel. So drop it.
+> 
+> Mainline U-Boot is also a user of the regulator-init-microvolt prop,
+> and use it to help configure an initial voltage on regulators during
+> boot.
+> 
+> Mostly useful for regulators that has different min / max voltage and
+> is not enabled by default or set to an unexpected voltage on boot, e.g.
+> the typical npu regulator on rk356x defaults to 0.5v, yet needs to be
+> around 0.9v during npu probe.
+> 
+> Maybe a better option would be to try add the init property to the Linux
+> dt-bindning?
 
-Excellent. Thanks for verifying :-)
+Looks like that topic comes up regularly, last time in
 
-Cheers,
-  Diederik
+https://lore.kernel.org/linux-arm-kernel/4519023.cEBGB3zze1@phil/
 
-> > But do read the full git commit message.
-> >=20
-> > The corresponding bluetooth node had 'lpo' as new value for
-> > 'clock-names' though ... from "ext_clock", but it also changed
-> > its compatible, so it's not the same. For details, see commit
-> > f471b1b2db08 ("arm64: dts: rockchip: Fix Bluetooth on ROCK Pi 4 boards"=
-)
-> >=20
-> > So it's possible the change needs to be more extensive.
-> > And a Tested-by tag from someone with the board is probably a good idea=
-.
-> >=20
-> > Regards,
-> >   Diederik
-> >=20
-> > > > > gpio properties are named differently when changing from vendor-t=
-ree to
-> > > > > mainline. So fix those to match the binding.
-> > > > >
-> > > > > Fixes: 2e0537b16b25 ("arm64: dts: rockchip: Add dts for rockchip =
-rk3566 box demo board")
-> > > > > Cc: Andy Yan <andyshrk@163.com>
-> > > > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts | 6 +++---
-> > > > >  1 file changed, 3 insertions(+), 3 deletions(-)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/a=
-rch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > > > > index 0c18406e4c59..dd6fe964d618 100644
-> > > > > --- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > > > > +++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-> > > > > @@ -449,9 +449,9 @@ &uart1 {
-> > > > >  	bluetooth {
-> > > > >  		compatible =3D "brcm,bcm43438-bt";
-> > > > >  		clocks =3D <&pmucru CLK_RTC_32K>;
-> > > > > -		clock-names =3D "ext_clock";
-> > > > > -		device-wake-gpios =3D <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> > > > > -		host-wake-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> > > > > +		clock-names =3D "extclk";
-> > > > > +		device-wakeup-gpios =3D <&gpio2 RK_PC1 GPIO_ACTIVE_HIGH>;
-> > > > > +		host-wakeup-gpios =3D <&gpio2 RK_PC0 GPIO_ACTIVE_HIGH>;
-> > > > >  		shutdown-gpios =3D <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-> > > > >  		pinctrl-names =3D "default";
-> > > > >  		pinctrl-0 =3D <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-> > > >=20
-> > > >=20
-> >=20
-> >=20
+and that still is true. DT is not a configuration-space, and if needed those
+properties should be in the -uboot.dtsi
+
+Heiko
 
 
---f01c82960899fefa03cdc785db30994e81e3f61a35aabc7eb4e49d766e5d
-Content-Type: application/pgp-signature; name="signature.asc"
+> https://source.denx.de/u-boot/u-boot/-/blob/master/doc/device-tree-bindings/regulator/regulator.txt#L40
+> 
+> Regards,
+> Jonas
+> 
+> > 
+> > Fixes: 007b4bb47f44 ("arm64: dts: rockchip: add dts for Firefly Station P2 aka rk3568-roc-pc")
+> > Cc: Furkan Kardame <f.kardame@manjaro.org>
+> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > ---
+> >  arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts | 3 ---
+> >  1 file changed, 3 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts
+> > index e333449ead04..2fa89a0eeafc 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts
+> > @@ -272,7 +272,6 @@ vdd_logic: DCDC_REG1 {
+> >  				regulator-name = "vdd_logic";
+> >  				regulator-always-on;
+> >  				regulator-boot-on;
+> > -				regulator-init-microvolt = <900000>;
+> >  				regulator-initial-mode = <0x2>;
+> >  				regulator-min-microvolt = <500000>;
+> >  				regulator-max-microvolt = <1350000>;
+> > @@ -285,7 +284,6 @@ regulator-state-mem {
+> >  
+> >  			vdd_gpu: DCDC_REG2 {
+> >  				regulator-name = "vdd_gpu";
+> > -				regulator-init-microvolt = <900000>;
+> >  				regulator-initial-mode = <0x2>;
+> >  				regulator-min-microvolt = <500000>;
+> >  				regulator-max-microvolt = <1350000>;
+> > @@ -309,7 +307,6 @@ regulator-state-mem {
+> >  
+> >  			vdd_npu: DCDC_REG4 {
+> >  				regulator-name = "vdd_npu";
+> > -				regulator-init-microvolt = <900000>;
+> >  				regulator-initial-mode = <0x2>;
+> >  				regulator-min-microvolt = <500000>;
+> >  				regulator-max-microvolt = <1350000>;
+> 
+> 
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwWVjwAKCRDXblvOeH7b
-bvJCAP9ctue54qTFYKYkDawObOJ/AmZdg+nNzQb2TrWYiK3O8AEAtZOVdlJP/yGt
-yjzCvHkhoP+FiHMJaOsnfPEaAxTX7gg=
-=fvyt
------END PGP SIGNATURE-----
 
---f01c82960899fefa03cdc785db30994e81e3f61a35aabc7eb4e49d766e5d--
+
 
