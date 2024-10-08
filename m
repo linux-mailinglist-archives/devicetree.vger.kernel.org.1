@@ -1,190 +1,230 @@
-Return-Path: <devicetree+bounces-109146-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15CD4995510
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 18:54:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F0B995560
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 19:14:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39AFE1C24B74
-	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 16:54:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45B111F23419
+	for <lists+devicetree@lfdr.de>; Tue,  8 Oct 2024 17:14:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2AC31E283F;
-	Tue,  8 Oct 2024 16:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZkmIOS6d"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F75C1E1035;
+	Tue,  8 Oct 2024 17:12:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C620A1E2833;
-	Tue,  8 Oct 2024 16:52:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 322D037708;
+	Tue,  8 Oct 2024 17:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728406349; cv=none; b=rw0kgHm15QhzquHnscKorsqvIgceh4jcjb0OgKgzhkkpp8fzUM4XLalXDy1qnima+rgNqeSsKdvZigstC9otX4LCc+63/CEzn7uDmCD/22J2bdOzdtloZlX5HEuDQGSJc+akuDQOVFxvMYqhqKSvkewyIEs80hTv3JDkLabVvHw=
+	t=1728407526; cv=none; b=WggxSEdJ/aguMR1A28tFTYpB/IzwaGGIzMegDklyjvqJMSbOxMHvGCis5qta2LnG7h5Ul9vx+ixDqP4B/2B1VsAjPfkaDjKTf8AKtjRw4HEYvxHLti7W+IlUAZPg9tf9M5l6EiUFrAro5bX0UaJ76uBCzAZIXKOsBFNs+dKio8Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728406349; c=relaxed/simple;
-	bh=/BvAmVblOpHYb2aTkXowqFQ02GBnGaeeHMCyDt71li8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=A7WKQw6//hySZTjrt2PxXgQm0+ea1IpX1nivAgLNOdiZVcblWJRH3kzRBQw+oMoskkM0pDD2cCYuBx+XHUl4vSVw9u8GS4hkIbeS0ihFJ3GJZpyBjsJNDwuKTrX1MzUGuRDB/rljqyj7GR+iXh7O6MQBsDNqGtaCo2uI+a+ON7Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZkmIOS6d; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5398f3be400so6718815e87.0;
-        Tue, 08 Oct 2024 09:52:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728406346; x=1729011146; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=A8t9qQVUsbWkU5n6pD1arXLdocmReAsGppwKB5aKWDk=;
-        b=ZkmIOS6dULfe4jEYmLi11VHtyXjlJ1sO1YC6Mw7z5OXTVqadZfg1C58DwfO0m6DbH5
-         ZSoMkSZyVEjxLGF0y4YrgQfI4pCdm3KpnUewCYgUgn41Y9OdGIperTGSBD6xDcOFzZq0
-         aYtpMdCRbxg3VNeAf4njLW3OhKpi2VbzlqZC7o06uFRhmnf3Gdym7mQsT12VT1tK/AiA
-         5RJc3KbO04G9tdMe4aoxe1FmAuHr5uPTI3cvJ6AGKZenQ47PBYdgvOwvYjV19hDW9oXu
-         ScgqhWJDm6BperFXdLnEko84P5r19VrZUWz9BWopwLnfG+6pAwvf5p6ObR2ze9DeA/uc
-         ZqYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728406346; x=1729011146;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A8t9qQVUsbWkU5n6pD1arXLdocmReAsGppwKB5aKWDk=;
-        b=D6KnWRgT4KsxA3KavbFPpV4hLiOuW5+/+yA7gZt2Yonzop1k5Wov07054mjLeYkyco
-         TbU4wMi7gjthUq/OhKYi6mwc/irCpvtVmzXviChjLh03+ws/Qn6mGcj4odQSNxQTvJMp
-         A2sGa18mmuaAOv80jEDJNSZeyMDicdHcSJqTFQXXbFP5O3ljq+S8tg8/Uc5bGuPmrpCH
-         0tTxjYGPs8qDw3nVqNYy3D6QoEOosyyZHA/nMGlZ8QFyf42QxgijRKxmYQhLCg3dYc8y
-         dGwxMs/ur9P1vLlh32R7In9KIviLaru8w33Slklo3P/MDmBtwSt8J2vIi9aOZkC23EGD
-         7lZQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUFTGqoFkPEDdtJzDjnahww5ALM7lteJ4FMjI1cl+ip5X37pRfwllK7PL247OhnwQ8dfTLTkzxSWeYo@vger.kernel.org, AJvYcCXLTd0BFv9GA3y634KXAym1kT5g37b6+QFZ76Sc0UeWn69YCP637ucddp4n2gUKeuVU7clPSkgdeM97sPQp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw7kcTFVUgyaw/fOPEa7051MsiTq3dgUPuEDjqkKpENlxRfqvJC
-	/cx4iZqFUdKyoDoQWVEKfQyH379xJad+Z7OIxntHxL4li13NFITbkbksXg==
-X-Google-Smtp-Source: AGHT+IGjzzpu8k00Hfaw9O7YXOPKIhMEqW7WUnyfgw3rmv/lvEBNO4fIGak31k8vlWm1/kmwjnXooQ==
-X-Received: by 2002:a05:6512:68d:b0:535:63a9:9d8c with SMTP id 2adb3069b0e04-539ab87482emr7480170e87.17.1728406345622;
-        Tue, 08 Oct 2024 09:52:25 -0700 (PDT)
-Received: from [127.0.1.1] (nat6-minsk-pool-46-53-210-75.telecom.by. [46.53.210.75])
-        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-539aff23e5fsm1260736e87.235.2024.10.08.09.52.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Oct 2024 09:52:24 -0700 (PDT)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Tue, 08 Oct 2024 19:51:49 +0300
-Subject: [PATCH v6 12/12] arm64: dts: qcom: sdm845-starqltechn: add modem
- support
+	s=arc-20240116; t=1728407526; c=relaxed/simple;
+	bh=59yKlXYBlxc/pMmSiYavJGAYttcgFjbWpTJG/QF2Z3o=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bg1u7iigEncWt38z/qPdEZgLykZEcWj+84cdY3DXp5bfBp4T8lyRfq5nORTS7LN7+j8eK7uWdtNPSVB+Lsr6l1KcWLCo9Arx0mH1qwPQMzvqdWd5eccCkNJwCJ7xJuvRs8ap/TlASNEYIH+fA9hOdT3LkMBdneGdLXb1sjl1+iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.216])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4XNMs506mSz6L784;
+	Wed,  9 Oct 2024 01:07:37 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 1CADE140C98;
+	Wed,  9 Oct 2024 01:11:55 +0800 (CST)
+Received: from localhost (10.203.177.66) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Tue, 8 Oct
+ 2024 19:11:54 +0200
+Date: Tue, 8 Oct 2024 18:11:51 +0100
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To: Per-Daniel Olsson <perdaniel.olsson@axis.com>
+CC: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, <linux-iio@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<rickard.andersson@axis.com>, <kernel@axis.com>
+Subject: Re: [PATCH v2 0/2] Support for Texas Instruments OPT4060 RGBW Color
+ sensor.
+Message-ID: <20241008181151.00006abd@Huawei.com>
+In-Reply-To: <3ee27b01-ca9a-4f5c-b48a-c5613139895d@axis.com>
+References: <20241005165119.3549472-1-perdaniel.olsson@axis.com>
+	<20241006162446.51a93744@jic23-huawei>
+	<3ee27b01-ca9a-4f5c-b48a-c5613139895d@axis.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset="US-ASCII"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241008-starqltechn_integration_upstream-v6-12-5445365d3052@gmail.com>
-References: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
-In-Reply-To: <20241008-starqltechn_integration_upstream-v6-0-5445365d3052@gmail.com>
-To: cros-qcom-dts-watchers@chromium.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728406308; l=2133;
- i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=/BvAmVblOpHYb2aTkXowqFQ02GBnGaeeHMCyDt71li8=;
- b=Uxo1drgaL78ZNLUbhb3s96yVBQJIYn2/0Mt1T6HyYPqkj9oWs7+7xbUIATLTNqEFt2B2Z22WQ
- Xd391M3pqetA4gzlyQuLXkJJQBURowCT3n7w+RuFwDNRupSCHLFd41O
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
+X-ClientProxiedBy: lhrpeml500003.china.huawei.com (7.191.162.67) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-Add support for modem and ipa(IP Accelerator).
-Add spss reserved memory node.
+On Mon, 7 Oct 2024 15:37:07 +0200
+Per-Daniel Olsson <perdaniel.olsson@axis.com> wrote:
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
+> On 10/6/24 17:24, Jonathan Cameron wrote:
+> > On Sat, 5 Oct 2024 18:51:17 +0200
+> > Per-Daniel Olsson <perdaniel.olsson@axis.com> wrote:
+> >   
+> >> This patch series adds support for Texas Instruments OPT4060 RGBW Color sensor
+> >> using the i2c interface.
+> >>
+> >> The driver exposes both raw adc values and calculated lux values though sysfs.
+> >> Integration time can be configured though sysfs as well.  
+> > 
+> > Lux is a unit with a particular light curve.  It has no defined meaning for
+> > color channels.  As a result we usually only have colors as intensity channels
+> > (unit free).  If it is possible to compute an estimate of the illuminance then
+> > that can be a separate IIO_LIGHT channel.  
+> 
+> The thing with lux is not actually something I know much about,
 
----
-Changes in v6:
-- refactor: s/starqltechn/sdm845-starqltechn in subject.
----
- arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 39 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+https://en.wikipedia.org/wiki/Illuminance is a decent description
+(though I haven't reread it today!)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-index 043ae14c4fa9..a10db080e483 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-@@ -17,6 +17,8 @@
- #include "pm8998.dtsi"
- #include "sdm845-wcd9340.dtsi"
- 
-+/delete-node/ &rmtfs_mem;
-+/delete-node/ &spss_mem;
- /delete-node/ &adsp_mem;
- /delete-node/ &slpi_mem;
- 
-@@ -91,15 +93,39 @@ memory@a1300000 {
- 			pmsg-size = <0x40000>;
- 		};
- 
-+		/*
-+		 * It seems like reserving the old rmtfs_mem region is also needed to prevent
-+		 * random crashes which are most likely modem related, more testing needed.
-+		 */
-+		removed_region: removed-region@88f00000 {
-+			reg = <0 0x88f00000 0 0x1c00000>;
-+			no-map;
-+		};
-+
- 		slpi_mem: slpi@96700000 {
- 			reg = <0 0x96700000 0 0xf00000>;
- 			no-map;
- 		};
- 
-+		spss_mem: spss@97700000 {
-+			reg = <0 0x97700000 0 0x100000>;
-+			no-map;
-+		};
-+
- 		adsp_mem: memory@97800000 {
- 			reg = <0 0x97800000 0 0x2000000>;
- 			no-map;
- 		};
-+
-+		rmtfs_mem: rmtfs-mem@fde00000 {
-+			compatible = "qcom,rmtfs-mem";
-+			reg = <0 0xfde00000 0 0x202000>;
-+			qcom,use-guard-pages;
-+			no-map;
-+
-+			qcom,client-id = <1>;
-+			qcom,vmid = <QCOM_SCM_VMID_MSS_MSA>;
-+		};
- 	};
- 
- 	gpio_keys {
-@@ -837,6 +863,19 @@ dai@5 {
- 	};
- };
- 
-+&mss_pil {
-+	firmware-name = "qcom/sdm845/starqltechn/mba.mbn",
-+			"qcom/sdm845/starqltechn/modem.mbn";
-+	status = "okay";
-+};
-+
-+&ipa {
-+	qcom,gsi-loader = "self";
-+	memory-region = <&ipa_fw_mem>;
-+	firmware-name = "qcom/sdm845/starqltechn/ipa_fws.mbn";
-+	status = "okay";
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
+Key thing is a brightness measure adjusted to take into account an
+approximation of the human eye sensitivity to various wavelengths.
 
--- 
-2.39.2
+> I just read the
+> data sheet (https://www.ti.com/lit/gpn/opt4060). According to chapter 8.4.5.2
+> (page 17), lux can be calculated this way:
+> 
+> lux = GREEN_ADC_RAW * 2.15e-3
+ouch.  
+> 
+> It is also stated that R=G=B for a D65 standard white light source if red is
+> multiplied by 2.4 and blue is multiplied with 1.3. I interpreted this as if
+> IIO_LIGHT was the best fit and that's why I didn't use IIO_INTENSITY. Should I
+> change to IIO_INTENSITY?
+
+Yes.  Light isn't typically a d65 light unfortunately (reference lights
+are expensive!)
+
+Mind you I guess if was, we'd live in a blank and white world as there
+would be no colors, just shades of gray...
+
+
+> 
+> >   
+> >> The OPT4060 sensor
+> >> supports both rising and falling threshold interrupts. These interrupts are
+> >> exposed as IIO events. The driver also implements an IIO triggered buffer with
+> >> two triggers, one trigger for conversion ready interrupts and one trigger for
+> >> threshold interrupts. The typical use case for this is to define a threshold and
+> >> listen for the events, and at the same time enable the triggered buffer with the
+> >> threshold trigger. Once the application gets the threshold event, the values
+> >> from the time of the event will be available in the triggered buffer. This
+> >> limits the number of interrupts between sensor and host and also the the usage
+> >> of sysfs for reading values after events.  
+> > 
+> > We have had various discussions of threshold triggers in the past, but I don't
+> > think we ever merged any (maybe there is one somewhere?) The reasons for that are:
+> > 1) They are hard for generic userspace to understand.
+> > 2) For light sensors the input tends to be slow moving - grabbing one reading
+> >    on a threshold interrupt is rarely that informative (or are you grabbing them
+> >    on dataready once the threshold is breached?)  
+> 
+> When the sensor triggers an interrupt for a threshold, it will also have the bit for
+> dataready set. So the values available at that point in time are the values that
+> triggered the threshold interrupt.
+> 
+> > 3) If we want to do threshold triggers we should really add generic infrastructure
+> >    for them based on adding an in kernel events consumer path and a way to
+> >    instantiate a trigger based on any event.  Doing it in a single driver creates
+> >    an ABI we won't want to retain long term.
+> > 
+> > So how important is this feature to you and why?  Maybe it is time to finally
+> > take a close look at option 3.  
+> 
+> Our userspace application needs the values after getting the threshold event. Before
+> I implemented the threshold trigger and the triggered buffer, the application would
+> read the values from sysfs right after the event. In that case the values will not be
+> the ones that actually triggered the event. When the light condition is close to the
+> threshold, the value from sysfs might even be on the wrong side of the threshold which
+> can be confusing for the state machine in userspace. I would say that this feature is
+> fairly important to us, this is the way our userspace is using the sensor.
+
+Brutal answer is fix your state machine to drop that assumption. I'd try to clamp
+the nearest to threshold to the threshold value in your userspace app. Any error
+that introduces should be lost in the noise.
+
+> 
+> If I understand you correctly, the problem you see with threshold triggers is that
+> it creates an implicit dependency between events and triggers. For the trigger to
+> function, userspace will first have to enable the event and set the threshold. I can
+> understand this issue, I think. Your suggestion with a way to instantiate triggers
+> from events sounds like a potential way forward. Do you have any more thoughts on how
+> that could be implemented? How can we proceed? How can I help?
+
+Step one would be to add a general in kernel interface to get hold of events.
+That would have to look a little like the in kernel access to buffers (see inkern.c)
+We might be able to get away with different consumers just having to accept
+they may get events they didn't ask for.  So make the consumers filter them
+and the interface would just allow requesting 'more' events from a device.
+That device could say no if it doesn't support the requested events in addition
+to what it already has. 
+
+That interface has a bunch of other uses such as trip points for thermal etc.
+
+After that was done we'd also need a way to instantiate a trigger on a particular
+devices' event stream + filter.  Maybe we could do it for all devices, though that is
+going to be a little ugly as a lot of new triggers would turn up as in theory
+we should register one for every possible event each device can create.
+(imagine we want a trigger on a rising threshold and a different one to capture
+something else on the falling threshold).
+
+Alternative would be to use configfs to provide a creation path for such triggers.
+
+So not a small job, but not really breaking any new ground, just filling in
+a couple of long known to be missing features.
+
+We might need some example tooling + a bunch of docs on how to use this as well.
+
+Jonathan
+
+> 
+> Thank you for you comments so far, looking forward to hearing your thoughts on a way
+> forward.
+> 
+> / P-D
+> 
+> > 
+> > Jonathan
+> >   
+> >>
+> >> Changes in v2:
+> >> - dt-bindings: Removed incorrect allOf.
+> >> - dt-bindings: Changed to generic node name.
+> >> - Correction in opt4060_trigger_one_shot(...) for continuous mode.
+> >> - Correction in opt4060_power_down(...), wrong register was read.
+> >> - Corrected usage of active_scan_mask in opt4060_trigger_handler(...).
+> >> - Clean-up of various comments.
+> >> - Link to V1: https://lore.kernel.org/lkml/20241003164932.1162049-1-perdaniel.olsson@axis.com/
+> >>
+> >> Per-Daniel Olsson (2):
+> >>   dt-bindings: iio: light: Document TI OPT4060 RGBW sensor
+> >>   iio: light: Add support for TI OPT4060 color sensor
+> >>
+> >>  .../bindings/iio/light/ti,opt4060.yaml        |   51 +
+> >>  drivers/iio/light/Kconfig                     |   13 +
+> >>  drivers/iio/light/Makefile                    |    1 +
+> >>  drivers/iio/light/opt4060.c                   | 1216 +++++++++++++++++
+> >>  4 files changed, 1281 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/iio/light/ti,opt4060.yaml
+> >>  create mode 100644 drivers/iio/light/opt4060.c
+> >>
+> >>
+> >> base-commit: 0c559323bbaabee7346c12e74b497e283aaafef5  
+> >   
+> 
+> 
 
 
