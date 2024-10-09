@@ -1,159 +1,126 @@
-Return-Path: <devicetree+bounces-109465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD0519967D1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:56:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 352429967E0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:59:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80AF6283B12
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:56:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E085A1F2455D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26150190667;
-	Wed,  9 Oct 2024 10:56:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E866190667;
+	Wed,  9 Oct 2024 10:59:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eE3Tiall"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BdGsIKZ9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E699019048F;
-	Wed,  9 Oct 2024 10:56:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F15D19049B;
+	Wed,  9 Oct 2024 10:59:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728471363; cv=none; b=kX1zZOYCAFjU333DJAyu/tDkvJ8C6jrBxElSrDFEBw8P+NMSZR1tQE7BvmW0G4Y/Z5HU3qg6hv4ufZ4wlKhqOLsUfwbnnUafNqC7YeO/sCV1lvpjSXTkO0o30IqTTyDvgo/c9ZztmGga8xu2Kk7PWksiLIsHtmidRPPTf2fNnQA=
+	t=1728471548; cv=none; b=V/o5HhZUfuX4wOu3UbJ4F/MrP5fl5G8g1DN4WyKMnaY0p1fETlnZI4wdgIuSRuD0gEadaPx4PTGy0dJbNsnHHxcr7cRyzqwoE20ufupFzWbSDTMw5LzDWupbws3+ogOWI1/Ws5Rt1WWnvc1h2CIyYt8BRCkrjdiB/TUp736Kwp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728471363; c=relaxed/simple;
-	bh=iTfwPek46U0n5ya6D6iZcyM9CFuS7Bf6w/iiLN1DXJg=;
+	s=arc-20240116; t=1728471548; c=relaxed/simple;
+	bh=xeAjzDULJnF+69KjJwTqAoX43npj68BsDBynQYrVTjM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bgU3ysXGFS+9XJTwjaJdmg1VLgGRIx/qpyW2ubBlo+02xkZwTIieQofk19CIYbTutNHhpff47oBtGm9WLe5ax8cUbmasyUzomKudVkv9n23EYFRRDGqrXK3TzMsgUOgKsPhJ5HdzWKMxhv6K+0ac3kxJqxAuj2IKml4o6NmBlVo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eE3Tiall; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C48AEC4CECC;
-	Wed,  9 Oct 2024 10:55:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=miZ2PcTAkbdt/VHQKOTfFJ+5VA2RLxC1qcWPzydEZ/yd8h/pf8rM93c++3uFmnrDyrUVg85J5ZiBFDxVbRmuKVj8NQQdgYgE1wkTUEmYnPIFw44ZDrqaIVVcQ6RNQZ3vlm8FkuHfszPW8jVruPDr6HbRCCQF6NnFXnXhKNonoFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BdGsIKZ9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 988FBC4CEC5;
+	Wed,  9 Oct 2024 10:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728471362;
-	bh=iTfwPek46U0n5ya6D6iZcyM9CFuS7Bf6w/iiLN1DXJg=;
+	s=k20201202; t=1728471547;
+	bh=xeAjzDULJnF+69KjJwTqAoX43npj68BsDBynQYrVTjM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eE3Tiall50C2INIwqukLY+x5A5aZ/znduHmY737eecjqO6cncLv5VmqkafjZD+T9t
-	 BbPL5x9tpgujQBaTx1ra5XRWU/6W9iiqleguDncwQIoRrZi2Vo4Pk+JFErOtGA2A/u
-	 5ulpLLbiBYa2O1XH/meRlDvuCMz53qAQItX1zGx9MX97wI2JZ4FgqjUwPpwbTD4J9y
-	 65SmjcHRa2V+dFnDeXSB6kHcPRnXO5BzvmOZqHH2zWUA4iIbqzsd61a3Qoq/WaX2qB
-	 iaSP86dvVMnTmuh21Hi+CrKZvnHdkladZoCWQV2anUy9RFmHxg+ZEGZjh/vsaLItko
-	 juH2VjnPnzrZg==
-Date: Wed, 9 Oct 2024 11:55:50 +0100
-From: Lee Jones <lee@kernel.org>
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	b=BdGsIKZ9BeXI3qHoiOHlRfowyKiZj8WdV74MVwV3oawwnSt85m5qcg3zMUBkV0w19
+	 SPK/bufEcKbJSMsSOrU1EMS3CnTxKE4KIcT6f8KOJwV8g4ebzU4pAz3yYlyvudCNvI
+	 v5aLm6/aUs0o/pmIUZQKsmzoWXIyUcM4oRpqXQGVuW4VfWzINDBj62gdvLRajOu79h
+	 YoIae6J1tiV0CJ2eUAXjUf5C/EDm6jt0NBWXEtUIeyJ3cw3kk4ZlfruFsQ+5EKkeOX
+	 pLTHC9+SYPu6oVFfx5TnDMAjnrlhVJrkX10k/QRgDbhh9ATu9KGnjFtwEwPrTZggzB
+	 ufoZ3F9MJW+bQ==
+Date: Wed, 9 Oct 2024 11:58:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Steen Hegelund <steen.hegelund@microchip.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Andy Shevchenko <andy.shevchenko@gmail.com>,
+	Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Lars Povlsen <lars.povlsen@microchip.com>,
+	Daniel Machon <daniel.machon@microchip.com>,
+	UNGLinuxDriver@microchip.com, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	ansuelsmth@gmail.com, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] mfd: airoha: Add support for Airoha EN7581 MFD
-Message-ID: <20241009105550.GG276481@google.com>
-References: <20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org>
- <20241001-en7581-pinctrl-v5-3-dc1ce542b6c6@kernel.org>
- <20241002132518.GD7504@google.com>
- <ZwWscWk5axQI9H1t@lore-desk>
- <20241009104821.GF276481@google.com>
+	Saravana Kannan <saravanak@google.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Andrew Lunn <andrew@lunn.ch>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v7 3/6] reset: mchp: sparx5: Map cpu-syscon locally in
+ case of LAN966x
+Message-ID: <20241009-walnut-unending-aed5b687454c@spud>
+References: <20241003081647.642468-1-herve.codina@bootlin.com>
+ <20241003081647.642468-4-herve.codina@bootlin.com>
+ <71fb65a929e5d5be86f95ab76591beb77e641c14.camel@microchip.com>
+ <CAMuHMdVR8UfZyGUS1c3nZqvPYBNs7oSe5p1GjCA3BYwrz8-bdQ@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="cndNbLBuvwOtOy9M"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdVR8UfZyGUS1c3nZqvPYBNs7oSe5p1GjCA3BYwrz8-bdQ@mail.gmail.com>
+
+
+--cndNbLBuvwOtOy9M
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241009104821.GF276481@google.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 09 Oct 2024, Lee Jones wrote:
+On Wed, Oct 09, 2024 at 12:20:32PM +0200, Geert Uytterhoeven wrote:
+> Hi Steve,
+>=20
+> On Wed, Oct 9, 2024 at 9:30=E2=80=AFAM Steen Hegelund
+> <steen.hegelund@microchip.com> wrote:
+> > On Thu, 2024-10-03 at 10:16 +0200, Herve Codina wrote:
+> > > EXTERNAL EMAIL: Do not click links or open attachments unless you
+> > > know the content is safe
+>=20
+> Hmm, the email I received directly from Herv=C3=A9 did not have the part
+> you are quoting, so it looks like you are subject to a MiTM-attack ;-)
 
-> On Wed, 09 Oct 2024, Lorenzo Bianconi wrote:
-> 
-> > On Oct 02, Lee Jones wrote:
-> > > On Tue, 01 Oct 2024, Lorenzo Bianconi wrote:
-> > > 
-> > > > From: Christian Marangi <ansuelsmth@gmail.com>
-> > > > 
-> > > > Support for Airoha EN7581 Multi Function Device that
-> > > > expose PINCTRL functionality and PWM functionality.
-> > > 
-> > > The device is a jumble of pinctrl registers, some of which can oscillate.
-> > > 
-> > > This is *still* not an MFD.
-> > > 
-> > > If you wish to spread this functionality over 2 drivers, use syscon to
-> > > obtain the registers and simple-mfd to automatically probe the drivers.
-> > 
-> > Hi Lee,
-> > 
-> > IIUC you are suggesting two possible approaches here:
-> > 
-> > 1- have a single driver implementing both pinctrl and pwm functionalities.
-> >    This approach will not let us reuse the code for future devices that
-> >    have just one of them in common, like pwm (but we can live with that).
-> 
-> If you can have one without the other, then they are separate devices.
-> 
-> > 2- use a device node like the one below (something similar to [0])
-> > 
-> > system-controller@1fbf0200 {
-> > 	compatible = "syscon", "simple-mfd";
-> > 	reg = <0x0 0x1fbf0200 0x0 0xc0>;
-> > 
-> > 	interrupt-parent = <&gic>;
-> > 	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> > 
-> > 	gpio-controller;
-> > 	#gpio-cells = <2>;
-> > 
-> > 	interrupt-controller;
-> > 	#interrupt-cells = <2>;
-> > 
-> > 	pio: pinctrl {
-> > 		compatible = "airoha,en7581-pinctrl";
-> > 
-> > 		[ some pinctrl properties here ]
-> > 	};
-> > 
-> > 	#pwm-cells = <3>;
-> > 
-> > 	pwm {
-> > 		compatible = "airoha,en7581-pwm";
-> > 	};
-> > };
-> > 
-> > Please correct me if I am wrong, but using syscon/simple-mfd as compatible
-> > string for the 'parent' device, will require to introduce the compatible strings
-> > even for the child devices in order to probe them, correct? 
-> > If so, as pointed out by Christian, this is something nacked by Rob/Krzysztof/Conor
-> > (this is the main reason why we introduced a full mfd driver here).
-> > 
-> > @Rob, Krzysztof, Conor: am I right?
-> 
-> I don't see why separate functionality shouldn't have separate
-> compatible strings, even if the registers are together.  Register layout
-> and functionality separation are not related.
+Yeah, unfortunately we are subjected to that. This one at least just
+adds some text, there's another "MiTM attacker" we have that sometimes
+crops up and has a side effect of tab-to-space conversion. The joys of
+corporate IT.
 
-We've been happy to support both pinctrl and pwm devices before:
+--cndNbLBuvwOtOy9M
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  git grep "\-pinctrl\|\-pwm" -- drivers/mfd
-  git grep "\-pinctrl\|\-pwm" -- arch/*/boot/dts
+-----BEGIN PGP SIGNATURE-----
 
-  git grep "\-pinctrl" -- arch/*/boot/dts | wc -l
-  602
-  git grep "\-pwm" -- arch/*/boot/dts | wc -l
-  856
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwZh8wAKCRB4tDGHoIJi
+0lfaAQDEiHS7Rxt7GPKHgI4elepFbJpqoYoimbiJmOxyO003UgD/UVz8BnS0gXHT
+d4vnv47DPKzMLjGYw5WnRL1P8t+NmQs=
+=nI7S
+-----END PGP SIGNATURE-----
 
-What makes this particular device different to all of the others?
-
--- 
-Lee Jones [李琼斯]
+--cndNbLBuvwOtOy9M--
 
