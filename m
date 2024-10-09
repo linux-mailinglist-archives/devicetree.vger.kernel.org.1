@@ -1,143 +1,143 @@
-Return-Path: <devicetree+bounces-109540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7ABE996BE2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:31:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 471B3996C13
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:33:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 90C161F21613
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:31:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F72F28179C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:33:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D9C117E019;
-	Wed,  9 Oct 2024 13:31:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fStKmwy/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0627193417;
+	Wed,  9 Oct 2024 13:33:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F637462;
-	Wed,  9 Oct 2024 13:31:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6C5822EEF;
+	Wed,  9 Oct 2024 13:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728480686; cv=none; b=e4xxX1IXT6IZET4himAfj8lFKK+VBXuHEtXcoJpVH741mb4H7yvD8v/mjJQkwbUYgJxezlqM5LA/dPdTZ4MSA9HUH30b40fKXlwwS9rhNivUe3ZEec2A++43JxebOKzMKFAcNSofxmCd/xNJOHqKfnS7GEBFDmgrUc2IlYoudk0=
+	t=1728480788; cv=none; b=hKYKRL+B0YqZ0viJcDpvPjUMCfOTYa5zvNO6yCpXubrsCPW+Opn5BtDmqufkIvlps0lZbfegnXep+/tdtw0+jxjcm4nE7sPDrT2J7AmaWRMSMFE9ZT3TG7hvf1aMEp5CKpdHqWpRpsTC4qPcag9kd/IZHzIP0DDdw5nt+TrdSEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728480686; c=relaxed/simple;
-	bh=giV52/vmcYWViMZfBPIzXa2HgtORI8AVA0AJ4iUjPB4=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=QpP6N6gxj32UyhtbCYcsEIuOcjGgVsu9uQ8XwuFpqtvLzh23mUut9fsrJ7pAWkOaCpz4QxdQwUV3OgAeCWopm8PpwOvhuvQpmoh/hmL+UNTBJzp1bpizxoKmuHJBYYDblVaX5boifxWHGSBaSMHMm/eScR7N/hpO9Pay4p+mM5g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fStKmwy/; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D4E5FF807;
-	Wed,  9 Oct 2024 13:31:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728480681;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=bmB3TVTLAYoejXpiOXxmeOtUKDtgamIRXEwjeFLgEBk=;
-	b=fStKmwy/a24cNXVfFv6HOUgx+VRqdHvokCfSDoeKcmZlfI0GqbtJ28FJ9zrNBeaHj7GEw+
-	fIZ+67ymxDtcBZ+TNboySyb1WBuu5p0YRdx5g5tZAl6/qhnTnjtQorle0NkVYsOw5W9uNg
-	lZmarUQQCIjCip+Btj+2b8xmshPg7rxw68036EQ39F1+eITNH6v4I+hY+aS+vO92c1jUQu
-	QRhqUDGLBnpCuH/WReRH/nVMQJiiOLQ6Dnw9DjQvEfjkHtkyjJfdJ8NhIkXhWFuf5IpptN
-	L1PNEXUI38bsO6NMETaOhCrmx03cPoLPmNUyvDdwbUFHj5u4k0MrEZTMB1z/fw==
+	s=arc-20240116; t=1728480788; c=relaxed/simple;
+	bh=IFohZxECtwwdtC2YdM15WtXADKYoFT74BVnT0QxITvk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uBSOa9VKMpGjg4VMM4Aoc5Rfp6ZAWwLX1SGbVKrs2mfaiJc5Qao9+v3Fi4CZXJY3uYxCWDUgezunfMMh75wlb4agJcuaWUlEqZzLq3n/ewPwJ7ThGZZoj25iIU4zA+F+lEKKtOMueadDFSlhkZar8ASAASddGYD0ocXyaPwLxM8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.98)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1syWo7-000000006kL-2RHT;
+	Wed, 09 Oct 2024 13:32:51 +0000
+Date: Wed, 9 Oct 2024 14:32:45 +0100
+From: Daniel Golle <daniel@makrotopia.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Xu Liang <lxu@maxlinear.com>,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Robert Marko <robimarko@gmail.com>,
+	Russell King <rmk+kernel@armlinux.org.uk>,
+	Abhishek Chauhan <quic_abchauha@quicinc.com>,
+	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: leds: add 'active-high'
+ property
+Message-ID: <ZwaF_VNG3TE33rfb@makrotopia.org>
+References: <e91ca84ac836fc40c94c52733f8fc607bcbed64c.1728145095.git.daniel@makrotopia.org>
+ <4qk3lpdx47b27ru47avpiygijtu5kkax44t3o4wb2wv5m5djoz@uziseiklyq3d>
+ <ZwKK4xMlqq3TyDyt@makrotopia.org>
+ <6d3hvesqhslk7jaszo44orbaqabl7go6duzpu4beye44sa6lpn@b3c56bp6x3ce>
+ <ZwPGbUWImzlbEqb-@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 09 Oct 2024 15:31:20 +0200
-Message-Id: <D4RB9IS3O0L1.2G9E2688BL4PZ@bootlin.com>
-Subject: Re: [PATCH v2 5/6] i2c: nomadik: fix BRCR computation
-Cc: "Andi Shyti" <andi.shyti@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, =?utf-8?q?Gr=C3=A9gory_Clement?=
- <gregory.clement@bootlin.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Linus Walleij" <linus.walleij@linaro.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com>
- <20241009-mbly-i2c-v2-5-ac9230a8dac5@bootlin.com>
- <CACRpkdZyyFR1niN+w_t43uE0XASKMzkUHGHuHWdj_VXCKLTR-g@mail.gmail.com>
-In-Reply-To: <CACRpkdZyyFR1niN+w_t43uE0XASKMzkUHGHuHWdj_VXCKLTR-g@mail.gmail.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZwPGbUWImzlbEqb-@makrotopia.org>
 
-Hello Linus,
+On Mon, Oct 07, 2024 at 12:30:53PM +0100, Daniel Golle wrote:
+> On Mon, Oct 07, 2024 at 08:38:27AM +0200, Krzysztof Kozlowski wrote:
+> > On Sun, Oct 06, 2024 at 02:04:35PM +0100, Daniel Golle wrote:
+> > > On Sun, Oct 06, 2024 at 02:44:44PM +0200, Krzysztof Kozlowski wrote:
+> > > > I think this should be just string enum, see marvell,marvell10g.yaml
+> > > 
+> > > I found the vendor-specific 'marvell,polarity' property in
+> > > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20231214201442.660447-5-tobias@waldekranz.com/
+> > > 
+> > > However, I can't find that file in any Linux tree.
+> > > 
+> > > Looking at the suggested patch on patchwork, I got a few questions on
+> > > how to deal with the situation as of today:
+> > > 
+> > > So should the existing support for the 'active-low' and
+> > > 'inactive-high-impedance' properties be replaced by that string enum?
+> > > Or should the string property be interpreted in addition to the
+> > > bools defined in leds/common.yaml?
+> > > 
+> > > Should the string property be defined for each PHY or should we move
+> > > it into a common file?
+> > > 
+> > > If so, should that common file also be leds/common.yaml or should we
+> > > create a new file only for PHY LEDs instead?
+> > > 
+> > > Sorry for being confused, I don't mind going down what ever path to have
+> > > LED polarity configurable properly in DT.
+> > 
+> > Let's ignore my idea.
+> > 
+> > However I still wonder whether your choice for lack of properties is
+> > appropriate. Lack of properties as "bootloader default" means it can
+> > change. Why would anyone prefer to keep bootloader default? The wiring
+> > is fixed - it's never "we design PCB based on bootloader, so with new
+> > bootloader we will change PCB"?
+> > 
+> > And if you meant bootstrapping through some hardwired configuration,
+> > then again it is known and defined.
+> 
+> I agree, and my original intention was to just always apply polarity
+> settings and force people to correctly declare them in DT.
+> However, that would break DT compatibility on devices not making use
+> of those properties and relying only on strapping or bootloader
+> defaults. See also RFC discussed here:
+> 
+> https://patchwork.kernel.org/project/netdevbpf/patch/473d62f268f2a317fd81d0f38f15d2f2f98e2451.1728056697.git.daniel@makrotopia.org/
+> 
 
-On Wed Oct 9, 2024 at 1:34 PM CEST, Linus Walleij wrote:
-> On Wed, Oct 9, 2024 at 12:23=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@boo=
-tlin.com> wrote:
-> > --- a/drivers/i2c/busses/i2c-nomadik.c
-> > +++ b/drivers/i2c/busses/i2c-nomadik.c
-> > @@ -454,9 +454,12 @@ static void setup_i2c_controller(struct nmk_i2c_de=
-v *priv)
-> >          * operation, and the other is for std, fast mode, fast mode
-> >          * plus operation. Currently we do not supprt high speed mode
-> >          * so set brcr1 to 0.
-> > +        *
-> > +        * BRCR is a clock divider amount. Pick highest value that
-> > +        * leads to rate strictly below target.
-> >          */
->
-> You could push in some more details from the commit message here so it's =
-not
-> so terse.
+I see that the series was marked as "Not Applicable" in patchwork.
+What is the reason for that? To me it looks like it can be applied on
+today's net-next cleanly:
 
-Most of the details from the commit message come from behavior changes:
-what was done previously versus what is the new behavior we implement.
+[daniel@box linux.git]$ git fetch https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+From https://git.kernel.org/pub/scm/linux/kernel/git/netdev/net-next
+ * branch                      HEAD       -> FETCH_HEAD
+[daniel@box linux.git]$ git checkout FETCH_HEAD
+HEAD is now at 6607c17c6c5e net: mana: Enable debugfs files for MANA device
+[daniel@box linux.git]$ wget -q -O - https://patchwork.kernel.org/series/895863/mbox/ | git am
+Applying: dt-bindings: leds: add 'active-high' property
+Applying: net: phy: support 'active-high' property for PHY LEDs
+Applying: net: phy: aquantia: correctly describe LED polarity override
+Applying: net: phy: mxl-gpy: correctly describe LED polarity
+[daniel@box linux.git]$ 
 
-Having a clock divider picking the bus rate that is below the target
-speed rather than above sounds rather intuitive. Eg when you ask for
-400kHz you want <=3D400kHz, not >=3D400kHz.
-
-I'll add that last sentence "Eg when you ask for 400kHz you want a bus
-rate <=3D400kHz (and not >=3D400kHz)". It is straight forward and easy to
-understand.
-
-> >         brcr1 =3D FIELD_PREP(I2C_BRCR_BRCNT1, 0);
-> > -       brcr2 =3D FIELD_PREP(I2C_BRCR_BRCNT2, i2c_clk / (priv->clk_freq=
- * div));
-> > +       brcr2 =3D FIELD_PREP(I2C_BRCR_BRCNT2, i2c_clk / (priv->clk_freq=
- * div) + 1);
->
-> Doesn't the last part correspond to something like
-> #include <linux/math.h>
-> u64 scaler =3D DIV_ROUND_DOWN_ULL(i2c_clk, (priv->clk_freq * div));
-> brcr2 =3D FIELD_PREP(I2C_BRCR_BRCNT2, (u32)scaler);
->
-> Certianly one of the in-kernel division helpers like DIV_ROUND_DOWN
-> round_up() etc are better to use IMO, but I might not be understanding th=
-e
-> fine details of the math here.
-
-Indeed what we want is:
-	DIV_ROUND_DOWN(i2c_clk, priv->clk_freq * div)
-
-I see no reason to use DIV_ROUND_DOWN_ULL(). It would be useful if
-	i2c_clk + (priv->clk_freq * div)
-had a chance to overflow.
-
-Worst case is:
-	3_400_000 + (48_000_000 * 3) =3D 147_400_000
-
-Will send v3 straight away as this is a significant change,
-thanks Linus!
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Or did I misunderstand the meaning of "Not Applicable"? If so, please
+clarify.
 
