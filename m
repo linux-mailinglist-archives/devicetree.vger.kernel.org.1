@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-109525-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB04C996B21
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:59:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 510D3996B2B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:00:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4CD8B288AE8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:59:48 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA638B295A4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:00:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C6EC198A39;
-	Wed,  9 Oct 2024 12:56:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95087197A97;
+	Wed,  9 Oct 2024 12:57:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S1L3Gnu9"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="lEaGy5bf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D100194C6B
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 12:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3DB218E038;
+	Wed,  9 Oct 2024 12:57:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728478589; cv=none; b=RREyK4IE06zFBBrgPb2LxMKnA1LJinVy49hDLfoLm3ROAIlLYlvNF/aN34iUtg5Uqzhia9a1ScZv4YjZWLVeJu/nIZdhpTVciBIuq+BqbnTtbzHp54B/hJwAUYrD9HWtkWBOkLVRMUWPDu2yGcrE60PXbf9318LUvhLRk05N/Ko=
+	t=1728478633; cv=none; b=JHUvJ/KTOs/feMopWQ6wGmuptPRDkC4PHRGfG5BiSIWEpifMe2Ll0f6knJwMxksXvgxLwYWcmEPAEwtKKO3zJvplEy82/mkysEixnoW3qbm8bhKLZaGty+U2T/21uVyPczOTUiUnOVsvhkECOeDJByG96y+01w97hIMzRMMZQUY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728478589; c=relaxed/simple;
-	bh=BzHwO0HVNSCPTkdW4sOH9m7n3if2cT36x84Oh1WxYgc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uOSZYAU+/3dw6FzhCygzfDi7nEYL460SzPtL9uLqRvdTd1gbLArp2akaItFLKmQIj9ELysw2Efm5MI3+8XteRdmPrXiXD1ipFRjSPaD8wRpIyPkWs7eRYX0HjeYDjMFo7ZR0X9CJWXVAq0c3oC67Yn8PTvB++g8bnHkt/CRKP9U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S1L3Gnu9; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a9982159d98so203722966b.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 05:56:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728478586; x=1729083386; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=we52H+PqGl2UFcNZ0zDRjS0MhFKCrVxp/mcpe6Lruw8=;
-        b=S1L3Gnu9JbqdAt9dawU0RB8AihflJ80sMtARYob0tHOGFva91L+OXQ5lzmM5wbu7CD
-         ebjMN33XAmvnY8CDYJwxKg1ZUJ22VsAI8eng0DmiLWPKra4UiU4bJYyM51Mga6sXReZ4
-         n18uWfVBUQlibkEu1xwI0BV3I9GdoQP2XiDui5a1FrPyBZ0UzkBR7ZG+GEAv8kws3DKL
-         dF6qlGrnP5QVnygBPNCGs9tcyp0R6hMWYtW7rLPf3ahJlRUFQrzKl6dul4MQXNovIHfR
-         9JTAZHWZTZTilQK5zzBSEsl1tTeRGCBG/dFKD+HSg7FZgEvIs6xV3dIoaGtIStUA7l9C
-         3xMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728478586; x=1729083386;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=we52H+PqGl2UFcNZ0zDRjS0MhFKCrVxp/mcpe6Lruw8=;
-        b=EeA8Q+dU5LiUozcG4ZbeL+DYfHIMBH6AvaWvUx0TLSZAyN1yhp3tTiD8NdwocZDG6w
-         wg+2ZHFz/fiZGD+QyYXre76p2++bfjac++YOksRwYjNhjKj66Dt+0tUo/mTTCfKMhMaB
-         AEEgZWvieU4O9HKiZHnCjVeqN2i3WB346VRrXWYYaSOSloziUVPAdVApo4tyNcB2XwyX
-         4Cfq/LiHQTASu2FMojjRJ2jENGh6TlbfwZH8/SHMRWfVgMRU6rYAlF9UMM7cifMS7kWb
-         KoeXzlTGIDEfnKPq8V/Ru7QJw/0F1Eg6JMvL+hb71hhqKplmaOXDZl7suSaF3aHy/9/k
-         eD2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXZYXRORhtEKQdcsOT5dnHof3s1Gl6yyJz2871R60kwuHZ/oziTOE6Llu6bpiGbhiQWTNirL7YCML9R@vger.kernel.org
-X-Gm-Message-State: AOJu0YwRanIdN8/wyCent2lfyMLEUNlgWlUSLzrSUFTFsbFT8fVKD8pD
-	WjJehb3MkR/JYWcFdsLuWixa3ExG09coZhsZYkJzK//4qAYxkd9TTuoPryPiqd8=
-X-Google-Smtp-Source: AGHT+IG7o+zK+7s0k4UZSLCZlAlz1wKI2/tOk3cA+62NZoCODJY6Oisrg6uIHkxnZNnCDq2az7uFrw==
-X-Received: by 2002:a17:907:d2c9:b0:a99:50e2:7cee with SMTP id a640c23a62f3a-a998d20766fmr244628166b.31.1728478585810;
-        Wed, 09 Oct 2024 05:56:25 -0700 (PDT)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a995ae4d0d4sm359363966b.75.2024.10.09.05.56.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Oct 2024 05:56:25 -0700 (PDT)
-Message-ID: <a5c836c8-5c72-4da0-8f62-e9c69ec3e59c@linaro.org>
-Date: Wed, 9 Oct 2024 13:56:24 +0100
+	s=arc-20240116; t=1728478633; c=relaxed/simple;
+	bh=dfSsJmvi1riRuCTm0iyJOozKRQ+2udiRucQ+l0nnSuE=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=OIBjqJi4huzw2TfRA/mZ0yAYM0Fww7FwDP5y46GQzxy2JL2xZQsL6tSNQfIsBO9n73xANzId7byyLGdl5xrgT9sI3OunkeQHTX6TIqgzu3LLrVjedI2y+SmvCkuxHQ8i7zMlQ8lafGa7Cys6446dGRNzdJs/HnVNks1PYjxkC8o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=lEaGy5bf; arc=none smtp.client-ip=212.227.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1728478589; x=1729083389; i=markus.elfring@web.de;
+	bh=12KnPFDUcHIAcww2+I8DcbudLGNI7zh4KnfAgouCgWo=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=lEaGy5bfWxQswVAdhsDpDFkkTIqJmEzFyphANNLMR99hGQtrGL/+rEGlQd/7Qbzw
+	 fNEilCw/jJrohMNMY/HHRNDoObod6goOPC8iCuQpEWv0cSOYAKPU5UHI1GWNLReOb
+	 O9PfaeRWKbDMVK+rHpmXexd6QSVkbe/qazG46GBpFfI+OPhsAZQJJf4pyxQrVELV+
+	 pGgLriBBvn7lyAewdfkYl7pkVCVJdwRzMfJ0j5PvrwZCd0oQbjsWJ9vf/mhWvQhB5
+	 BzQ+1fjT2wJJGPsoldWR5xZwCEjz8Qj45kOOZy9+LyposQn+ZiIO1uHaFLTjGJlVE
+	 C+rY2F5q4bdoMT77ZA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.81.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N2jWK-1tzEjB1B3E-012VnT; Wed, 09
+ Oct 2024 14:56:29 +0200
+Message-ID: <f972f6bf-fd76-45c7-9812-3adfb49264a0@web.de>
+Date: Wed, 9 Oct 2024 14:56:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,43 +57,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/6] dt-bindings: media: qcom,sc8280xp-camss: Fix
- interrupt types
-To: Depeng Shao <quic_depengs@quicinc.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240923072827.3772504-1-vladimir.zapolskiy@linaro.org>
- <20240923072827.3772504-2-vladimir.zapolskiy@linaro.org>
- <datahu33nmsser2p4fb2hyncsujtkwaca377ivwmpc6yj2naut@2sjsbebfm3gf>
- <3f87e855-8779-4df3-8f26-e3d2b611d3e9@linaro.org>
- <313667a6-afcd-44cb-a6f6-0d550e8f68a0@linaro.org>
- <4bf490cb-228d-4f01-a956-cacbafa94e2a@linaro.org>
- <27f39cda-932c-4b79-84d4-be78d266ebdf@linaro.org>
- <c18a92f0-5824-417c-94b2-ed10f4580cfd@linaro.org>
- <bb138ed9-2abe-43ec-80af-2d77b7349b37@linaro.org>
- <86d95099-4053-4c3f-a36c-cfb4b63e627d@linaro.org>
- <cdeec240-5a13-472f-b144-fc0012facc6e@linaro.org>
- <82a302ee-f0e6-4b65-8c4d-12f79701aa57@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <82a302ee-f0e6-4b65-8c4d-12f79701aa57@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+To: Kevin Chen <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: LKML <linux-kernel@vger.kernel.org>
+References: <20241009115813.2908803-2-kevin_chen@aspeedtech.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: interrupt-controller: Add support for
+ ASPEED AST27XX INTC
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20241009115813.2908803-2-kevin_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:QPSId2FJjr8d/zGGwvi81dsHFZUVZrokECT2AEGipMXrJZRxCIP
+ bh3fhkQnkfTo042vGl7scsgu4wmtzSpeMZTTvFZhdT2a3fY4Z0LXQILqu+YjcZ+vyhEwB4E
+ NyZvcpSOs4PrkbI+7V7jHrmCKsEQc4AIPB+vld+JUCtC3m8u25GlaNbeiI+B6vH6UmnroGw
+ qjP3A2mTy4yHv/i/8XmJw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:MlHg9LH74c4=;p7TF+U+OKTfvFWA5a7gk23ZDyeR
+ 2+1U3vUasDEAR3q/+qpuNYUbHl5LhBayl3vU/15fV6c7ysSWWOxOyN9vlqcB/4Ojw/W+ccf9O
+ 0RecdolgzKkbpmJgCWl8OyStzBkWV5MAIS901CIHgIYQzeTnonVXxVJjrVzb2vQysqW1TIy9a
+ q7pO4lOxW5JJ0FiihNrfWPTECEPbLQdTlCuKAv6281QxJxsC82X06sJ1ABWEncBujjF9pRIxw
+ LR4tQcGMdV72pQKluwc1MJ0jselMonPN+7+G/z3l5gw4q4wdRcFsN3ZRldGWwOvKu90ciPuvN
+ WTAMY6sXIZTHz3FLFBDoSG34xrzj08xP/ft9WpHyKcm88FL1HStldSyPUSOuntbC2kMEkcMkt
+ P+xYkKX470kVJJUpLwcwzVRULuBQy/e5JFYWLKC3GBZmWWVHYS3IOcYWy1Be40Qsnq7sDPkfU
+ 48jzvfeScAd88Hyb11t6h16Dtm8B39tkKs51M/SrGbQnOWgL7JR+ZKJ3NoZ283tLLuE6uj9+u
+ cojdxFYEgdSDYO/taVjovqF3nhqNSmf5Jz7uZtGp/Dw1zitm+JjQ1dag+8URqKr3nXSLmKTac
+ sLq20YRbaJsdo7nKiAVox27kwG1/0C8EM2PMlP/a3+B6Be4/60yO2G7mgqZyjALSd4EurARbh
+ bCqt7VM0vI/4//uCfyhhrK4vm3xOpj3p/vATYkey320ZprrV8u89zSCxWbZvI+rlIPRdyVOwE
+ NFUUDyx7HLejwMEA460uT5BC1GIo4lUQnJndHSyJpRC7pRoWf/GcPHGf5KDcFdWmnFeYO4vwk
+ OxFXE12YxJWviBvqijPEf4iw==
 
-On 08/10/2024 17:24, Depeng Shao wrote:
-> I have checked this, the trigger type of camera interrupt is _Edge_ what 
-> is listed in Qualcomm ipcatalog website.
+> The ASPEED AST27XX interrupt controller(INTC) contain second level and
+=E2=80=A6
+                                                contains?
 
-Nice thanks for confirming.
+=E2=80=A6
+in INTC1 asserted. There are 6 GIC interrupt number(#192~#197) used in
+=E2=80=A6
+                                             numbers?
 
----
-bod
+
+Regards,
+Markus
 
