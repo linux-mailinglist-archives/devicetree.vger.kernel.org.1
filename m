@@ -1,334 +1,107 @@
-Return-Path: <devicetree+bounces-109479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109486-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6408499683D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:16:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90E83996882
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:21:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E97AB1F22FD8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:16:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A9441F222EB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:21:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CF85192B60;
-	Wed,  9 Oct 2024 11:16:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7B681922E4;
+	Wed,  9 Oct 2024 11:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="bujwaarj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YqeShJgj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EBD61922EB;
-	Wed,  9 Oct 2024 11:16:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 712BD1922D3
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 11:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728472580; cv=none; b=MJEBxPPebJLVRMUiLz87DwlARkJhRCnpk+gIWBglGZK+cOD/t5u0/DTUJmMYpQPEJRUQWuEazdUAczhaIWIqB+nnTuaWbgaFHWUR1axNOilzgCd4otb82qi8btTWmLu6UFZCUfBDlFPwg1wCmLN82wrJMKMLzWoF4BAEfdUpkVU=
+	t=1728472849; cv=none; b=rZPyB5hJ17A0OHSt6lBV27GAvIQhdtHqrEGckBgsUoziiF0SFXnENMt1imd2OvA/t/46J9cxUjhndY9jfDRnVCpouiAToRVLMbllgJHIzR8yYdlkGE9GsWZ2V7KnuFSoY7UbfdieRnLEGfB4CBdd/B5deqdfXdismZ29aC39U/w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728472580; c=relaxed/simple;
-	bh=yhnMW+qhWHwpeRaQ0EsklrX2WawMGJdNxhX0TgZpd/Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iAeuZI9xtaXLfmj3aLeM1fuzgUgwQy31KtsuZu1jBtLnERtHtFf4tmF55GLPVrb+lk0Swr3KSSE2Fzw9Dep3/+pbtl265CmqBFlDBL/gi2PIOiduL0aWVfe3yzmJRBQPx5mlr2cYcCaWUOpiLAkkHqwtE6sie/fBV6ZpOdq1580=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=bujwaarj; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: e32539a8862f11ef8b96093e013ec31c-20241009
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=4XpWAyEynjzZc1Gg5Q2UscCHSaUGQb/UYCjpqT1xx6Q=;
-	b=bujwaarj1Xec+lJ6l9kCqiJIw+dRyYyLT+DxMVoXWZumGxaMa0Be8cYr//HXojMZE00/6gL7DBUrQ1jTW+0C6PEfmouJB1t92WgM+EmVllofk/lZVhB1sHig8V6y02B1z9sQVGrIO4f7X0Xquzp/WtQCYY/OOQOKKlXqEb3fle8=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:89a91dbc-4804-48c0-be4c-77f7b9113be5,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:218a0041-8751-41b2-98dd-475503d45150,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0,NGT
-X-CID-BAS: 0,NGT,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: e32539a8862f11ef8b96093e013ec31c-20241009
-Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
-	(envelope-from <shu-hsiang.yang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 619177271; Wed, 09 Oct 2024 19:16:10 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 9 Oct 2024 19:16:09 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 9 Oct 2024 19:16:09 +0800
-From: Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Sumit Semwal
-	<sumit.semwal@linaro.org>, Christian Konig <christian.koenig@amd.com>
-CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-mediatek@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
-	<linaro-mm-sig@lists.linaro.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	<yaya.chang@mediatek.com>, <teddy.chen@mediatek.com>,
-	<hidenorik@chromium.org>, <yunkec@chromium.org>, <shun-yi.wang@mediatek.com>,
-	Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
-Subject: [PATCH v1 10/10] uapi: linux: add mediatek isp_7x camsys user api
-Date: Wed, 9 Oct 2024 19:15:51 +0800
-Message-ID: <20241009111551.27052-11-Shu-hsiang.Yang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
-References: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
+	s=arc-20240116; t=1728472849; c=relaxed/simple;
+	bh=pa78TRizjjVdE0dxmdhb8BTfKSCsoXg+Ebuf5qNTjkM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mLn/dXU/COpOKvQ6Im/rKfexxd1Da6e+ysBggxxchNz6T7waqUHFn47++aD1Gv9UYLQZyYyKujS8PseqM36c11FeUNA/kiVqLT23ed/loy7yPkpl++lA5d6M0HbCNjLp+fnPwvzF3C1vU+EYpsabIi86+xOExQMDYV02O7YHanM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YqeShJgj; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2fac275471dso7536921fa.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 04:20:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728472845; x=1729077645; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pa78TRizjjVdE0dxmdhb8BTfKSCsoXg+Ebuf5qNTjkM=;
+        b=YqeShJgjUs7chd6glvyFek/9PLvFGG9cRJF0zzHAqIZYSBMdEegrpjXNJ719auOC2X
+         nWyN09JhA5GWoh3RokdLFrQOXxD3LUD72gOQcwJotnVOx7ZMXUQ9lkqNdqOz7S8Z8z4a
+         cccHLI+L6aTQMIHtrukZCc6xQQ9I2TzrMtvR9L/hp4+ZORZ8/BqmMYvfDr4ZPZ2Whwck
+         MAyStnVzqexV54WAg0XnJgnBuODMAe/3y+lnL4eg5EkCypK3GuqlqYiuT3M1Ox87Jl/R
+         bM7BFZ7HZ3JysmO3PXyLWeC+N7f85XH0pblSPODf1g6Rs7ljRritjuMVK2atW7RVnVbZ
+         y2kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728472845; x=1729077645;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pa78TRizjjVdE0dxmdhb8BTfKSCsoXg+Ebuf5qNTjkM=;
+        b=ODXw1vmAzG7LIUvy48yX8LE7SbtWIPCWVj6wOTCHagnccBNk1xsb4154d7/aP2yUBV
+         t48ExaJulZuQblkTacO4cZzi7ycWHvvnFS3DWQfyFsu+FrhH5ymuyz1zA93Cgowa49VS
+         c5RPOdIArmwZ2ZCEMkhsUqBqB9EUT5mfTUWxlzYvLLBD9sRdudfGNhv80GBti8Qqa2ki
+         OLkYtLGQ1v26h8o3N0+fLjtx92GcxCT7T7JJtivzvHakeIdagCP2QJsfVkPpob51ksoA
+         LFZQqtJyM+dSDicX3URyqtYjHt8cZP858pcpKW5utl7zyyO8bZeUyVM+LeztVMRXNdKN
+         aIiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVhwBvi9U/V2Aw5DLz4s7ugQ1vAuL98Z8SgNri9EaqwyGPKMztsT34eOWIDp09wU3fpigyC18Bp4qhk@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjtEzbE8H2CwMVUFobbANXSTHj+vrvtnHc4GgDM41rFfEqg6ko
+	YGR3nVApQUbWDqm90hsdbKmpida//BVfwLj/Fim7DHCc0p0s8GefZGHO/eTo/wnVLNFylapgmbi
+	oTL04FBEDdnmXxPSxW+7tO28A6v2QMOie/oAloQ==
+X-Google-Smtp-Source: AGHT+IElCoNgHPYdEDIW8DaGG4e/y5QuMTEaASb3YR4mU1fiWgN1TxZ+dX+MF7ei6SiMh7r1qC+FAYvY2X4n0SFzpcI=
+X-Received: by 2002:a2e:bc13:0:b0:2f7:5900:1a37 with SMTP id
+ 38308e7fff4ca-2fb0def33c2mr21404571fa.17.1728472845396; Wed, 09 Oct 2024
+ 04:20:45 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com> <20241009-mbly-i2c-v2-1-ac9230a8dac5@bootlin.com>
+In-Reply-To: <20241009-mbly-i2c-v2-1-ac9230a8dac5@bootlin.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Wed, 9 Oct 2024 13:20:33 +0200
+Message-ID: <CACRpkdbCwrh4GD8BpP0DV+9=T_i+5nXmtwz6K7KDz_jwuxBp+Q@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: i2c: nomadik: add mobileye,eyeq6h-i2c bindings
+To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	=?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add UAPI for MediaTek ISP platform, providing user-space
-interfaces for the new camsys driver.
+On Wed, Oct 9, 2024 at 12:23=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@bootl=
+in.com> wrote:
 
-Signed-off-by: Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
----
- include/uapi/linux/mtkisp_camsys.h | 227 +++++++++++++++++++++++++++++
- 1 file changed, 227 insertions(+)
- create mode 100644 include/uapi/linux/mtkisp_camsys.h
+> After EyeQ5, it is time for Mobileye EyeQ6H to reuse the Nomadik I2C
+> controller. Add a specific compatible because its HW integration is
+> slightly different from EyeQ5.
+>
+> Do NOT add an example as it looks like EyeQ5 from a DT standpoint
+> (without the mobileye,olb property).
+>
+> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
 
-diff --git a/include/uapi/linux/mtkisp_camsys.h b/include/uapi/linux/mtkisp_camsys.h
-new file mode 100644
-index 000000000000..9c43f0799dbf
---- /dev/null
-+++ b/include/uapi/linux/mtkisp_camsys.h
-@@ -0,0 +1,227 @@
-+/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
-+/*
-+ * MediaTek ISP camsys User space API
-+ *
-+ * Copyright (c) 2024 MediaTek Inc.
-+ */
-+
-+#ifndef _MTKISP_CAMSYS_USER_H
-+#define _MTKISP_CAMSYS_USER_H
-+
-+#include <linux/videodev2.h>
-+#include <linux/v4l2-controls.h>
-+
-+#define V4L2_BUF_FLAG_TIMESTAMP_COPY		0x00004000
-+#define V4L2_BUF_FLAG_TIMESTAMP_BOOTIME		0x00008000
-+
-+/* MTK ISP camsys events */
-+#define V4L2_EVENT_REQUEST_DRAINED              (V4L2_EVENT_PRIVATE_START + 1)
-+#define V4L2_EVENT_REQUEST_DUMPED               (V4L2_EVENT_PRIVATE_START + 2)
-+
-+/* The base for the mediatek camsys driver controls */
-+/* We reserve 48 controls for this driver. */
-+#define V4L2_CID_USER_MTK_CAM_BASE		(V4L2_CID_USER_BASE + 0x10d0)
-+
-+/* MTK ISP camsys controls */
-+#define V4L2_CID_MTK_CAM_USED_ENGINE_LIMIT	(V4L2_CID_USER_MTK_CAM_BASE + 1)
-+#define V4L2_CID_MTK_CAM_BIN_LIMIT		(V4L2_CID_USER_MTK_CAM_BASE + 2)
-+#define V4L2_CID_MTK_CAM_FRZ_LIMIT		(V4L2_CID_USER_MTK_CAM_BASE + 3)
-+#define V4L2_CID_MTK_CAM_RESOURCE_PLAN_POLICY	(V4L2_CID_USER_MTK_CAM_BASE + 4)
-+#define V4L2_CID_MTK_CAM_USED_ENGINE		(V4L2_CID_USER_MTK_CAM_BASE + 5)
-+#define V4L2_CID_MTK_CAM_BIN			(V4L2_CID_USER_MTK_CAM_BASE + 6)
-+#define V4L2_CID_MTK_CAM_FRZ			(V4L2_CID_USER_MTK_CAM_BASE + 7)
-+#define V4L2_CID_MTK_CAM_USED_ENGINE_TRY	(V4L2_CID_USER_MTK_CAM_BASE + 8)
-+#define V4L2_CID_MTK_CAM_BIN_TRY		(V4L2_CID_USER_MTK_CAM_BASE + 9)
-+#define V4L2_CID_MTK_CAM_FRZ_TRY		(V4L2_CID_USER_MTK_CAM_BASE + 10)
-+#define V4L2_CID_MTK_CAM_PIXEL_RATE		(V4L2_CID_USER_MTK_CAM_BASE + 11)
-+#define V4L2_CID_MTK_CAM_FEATURE		(V4L2_CID_USER_MTK_CAM_BASE + 12)
-+#define V4L2_CID_MTK_CAM_SYNC_ID		(V4L2_CID_USER_MTK_CAM_BASE + 13)
-+#define V4L2_CID_MTK_CAM_RAW_PATH_SELECT	(V4L2_CID_USER_MTK_CAM_BASE + 14)
-+#define V4L2_CID_MTK_CAM_HSF_EN			(V4L2_CID_USER_MTK_CAM_BASE + 15)
-+#define V4L2_CID_MTK_CAM_PDE_INFO		(V4L2_CID_USER_MTK_CAM_BASE + 16)
-+#define V4L2_CID_MTK_CAM_MSTREAM_EXPOSURE	(V4L2_CID_USER_MTK_CAM_BASE + 17)
-+#define V4L2_CID_MTK_CAM_RAW_RESOURCE_CALC	(V4L2_CID_USER_MTK_CAM_BASE + 18)
-+#define V4L2_CID_MTK_CAM_TG_FLASH_CFG		(V4L2_CID_USER_MTK_CAM_BASE + 19)
-+#define V4L2_CID_MTK_CAM_RAW_RESOURCE_UPDATE	(V4L2_CID_USER_MTK_CAM_BASE + 20)
-+#define V4L2_CID_MTK_CAM_CAMSYS_HW_MODE		(V4L2_CID_USER_MTK_CAM_BASE + 21)
-+
-+/* Luminance+Chrominance formats */
-+#define V4L2_PIX_FMT_YUYV10  v4l2_fourcc('Y', 'U', 'Y', 'A') /* 16  YUV 4:2:2 10-bit */
-+#define V4L2_PIX_FMT_YVYU10  v4l2_fourcc('Y', 'V', 'Y', 'A') /* 16  YUV 4:2:2 10-bit */
-+#define V4L2_PIX_FMT_UYVY10  v4l2_fourcc('U', 'Y', 'V', 'A') /* 16  YUV 4:2:2 10-bit */
-+#define V4L2_PIX_FMT_VYUY10  v4l2_fourcc('V', 'Y', 'U', 'A') /* 16  YUV 4:2:2 10-bit */
-+#define V4L2_PIX_FMT_YUYV12  v4l2_fourcc('Y', 'U', 'Y', 'C') /* 16  YUV 4:2:2 12-bit */
-+#define V4L2_PIX_FMT_YVYU12  v4l2_fourcc('Y', 'V', 'Y', 'C') /* 16  YUV 4:2:2 12-bit */
-+#define V4L2_PIX_FMT_UYVY12  v4l2_fourcc('U', 'Y', 'V', 'C') /* 16  YUV 4:2:2 12-bit */
-+#define V4L2_PIX_FMT_VYUY12  v4l2_fourcc('V', 'Y', 'U', 'C') /* 16  YUV 4:2:2 12-bit */
-+
-+/* two planes -- one Y, one Cr + Cb interleaved  */
-+#define V4L2_PIX_FMT_NV12_10 v4l2_fourcc('1', '2', 'A', 'U') /* 12  Y/CbCr 4:2:0 10 bits un-packed */
-+#define V4L2_PIX_FMT_NV21_10 v4l2_fourcc('2', '1', 'A', 'U') /* 12  Y/CrCb 4:2:0 10 bits un-packed */
-+#define V4L2_PIX_FMT_NV16_10 v4l2_fourcc('1', '6', 'A', 'U') /* 16  Y/CbCr 4:2:2 10 bits un-packed */
-+#define V4L2_PIX_FMT_NV61_10 v4l2_fourcc('6', '1', 'A', 'U') /* 16  Y/CrCb 4:2:2 10 bits un-packed */
-+#define V4L2_PIX_FMT_NV12_12 v4l2_fourcc('1', '2', 'C', 'U') /* 12  Y/CbCr 4:2:0 12 bits un-packed */
-+#define V4L2_PIX_FMT_NV21_12 v4l2_fourcc('2', '1', 'C', 'U') /* 12  Y/CrCb 4:2:0 12 bits un-packed */
-+#define V4L2_PIX_FMT_NV16_12 v4l2_fourcc('1', '6', 'C', 'U') /* 16  Y/CbCr 4:2:2 12 bits un-packed */
-+#define V4L2_PIX_FMT_NV61_12 v4l2_fourcc('6', '1', 'C', 'U') /* 16  Y/CrCb 4:2:2 12 bits un-packed */
-+
-+/* Vendor specific - MediaTek ISP bayer formats */
-+#define V4L2_PIX_FMT_MTISP_SBGGR8   v4l2_fourcc('M', 'B', 'B', '8') /*  Packed  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG8   v4l2_fourcc('M', 'B', 'G', '8') /*  Packed  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG8   v4l2_fourcc('M', 'B', 'g', '8') /*  Packed  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB8   v4l2_fourcc('M', 'B', 'R', '8') /*  Packed  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR10  v4l2_fourcc('M', 'B', 'B', 'A') /*  Packed 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG10  v4l2_fourcc('M', 'B', 'G', 'A') /*  Packed 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG10  v4l2_fourcc('M', 'B', 'g', 'A') /*  Packed 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB10  v4l2_fourcc('M', 'B', 'R', 'A') /*  Packed 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR12  v4l2_fourcc('M', 'B', 'B', 'C') /*  Packed 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG12  v4l2_fourcc('M', 'B', 'G', 'C') /*  Packed 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG12  v4l2_fourcc('M', 'B', 'g', 'C') /*  Packed 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB12  v4l2_fourcc('M', 'B', 'R', 'C') /*  Packed 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR14  v4l2_fourcc('M', 'B', 'B', 'E') /*  Packed 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG14  v4l2_fourcc('M', 'B', 'G', 'E') /*  Packed 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG14  v4l2_fourcc('M', 'B', 'g', 'E') /*  Packed 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB14  v4l2_fourcc('M', 'B', 'R', 'E') /*  Packed 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR8F  v4l2_fourcc('M', 'F', 'B', '8') /*  Full-G  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG8F  v4l2_fourcc('M', 'F', 'G', '8') /*  Full-G  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG8F  v4l2_fourcc('M', 'F', 'g', '8') /*  Full-G  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB8F  v4l2_fourcc('M', 'F', 'R', '8') /*  Full-G  8-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR10F  v4l2_fourcc('M', 'F', 'B', 'A') /*  Full-G 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG10F  v4l2_fourcc('M', 'F', 'G', 'A') /*  Full-G 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG10F  v4l2_fourcc('M', 'F', 'g', 'A') /*  Full-G 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB10F  v4l2_fourcc('M', 'F', 'R', 'A') /*  Full-G 10-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR12F  v4l2_fourcc('M', 'F', 'B', 'C') /*  Full-G 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG12F  v4l2_fourcc('M', 'F', 'G', 'C') /*  Full-G 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG12F  v4l2_fourcc('M', 'F', 'g', 'C') /*  Full-G 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB12F  v4l2_fourcc('M', 'F', 'R', 'C') /*  Full-G 12-bit  */
-+#define V4L2_PIX_FMT_MTISP_SBGGR14F  v4l2_fourcc('M', 'F', 'B', 'E') /*  Full-G 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGBRG14F  v4l2_fourcc('M', 'F', 'G', 'E') /*  Full-G 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRBG14F  v4l2_fourcc('M', 'F', 'g', 'E') /*  Full-G 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SRGGB14F  v4l2_fourcc('M', 'F', 'R', 'E') /*  Full-G 14-bit  */
-+#define V4L2_PIX_FMT_MTISP_SGRB8F  v4l2_fourcc('M', 'F', '8', 'P') /* three planes Full-G 8-bit */
-+#define V4L2_PIX_FMT_MTISP_SGRB10F  v4l2_fourcc('M', 'F', 'A', 'P') /* three planes Full-G 10-bit */
-+#define V4L2_PIX_FMT_MTISP_SGRB12F  v4l2_fourcc('M', 'F', 'C', 'P') /* three planes Full-G 12-bit */
-+
-+/* Vendor specific - MediaTek Luminance+Chrominance formats */
-+#define V4L2_PIX_FMT_MTISP_YUYV10P v4l2_fourcc('Y', 'U', 'A', 'P') /* YUV 4:2:2 10-bit packed */
-+#define V4L2_PIX_FMT_MTISP_YVYU10P v4l2_fourcc('Y', 'V', 'A', 'P') /* YUV 4:2:2 10-bit packed */
-+#define V4L2_PIX_FMT_MTISP_UYVY10P v4l2_fourcc('U', 'Y', 'A', 'P') /* YUV 4:2:2 10-bit packed */
-+#define V4L2_PIX_FMT_MTISP_VYUY10P v4l2_fourcc('V', 'Y', 'A', 'P') /* YUV 4:2:2 10-bit packed */
-+#define V4L2_PIX_FMT_MTISP_NV12_10P v4l2_fourcc('1', '2', 'A', 'P') /* Y/CbCr 4:2:0 10 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV21_10P v4l2_fourcc('2', '1', 'A', 'P') /* Y/CrCb 4:2:0 10 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV16_10P v4l2_fourcc('1', '6', 'A', 'P') /* Y/CbCr 4:2:2 10 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV61_10P v4l2_fourcc('6', '1', 'A', 'P') /* Y/CrCb 4:2:2 10 bits packed */
-+#define V4L2_PIX_FMT_MTISP_YUYV12P v4l2_fourcc('Y', 'U', 'C', 'P') /* YUV 4:2:2 12-bit packed */
-+#define V4L2_PIX_FMT_MTISP_YVYU12P v4l2_fourcc('Y', 'V', 'C', 'P') /* YUV 4:2:2 12-bit packed */
-+#define V4L2_PIX_FMT_MTISP_UYVY12P v4l2_fourcc('U', 'Y', 'C', 'P') /* YUV 4:2:2 12-bit packed */
-+#define V4L2_PIX_FMT_MTISP_VYUY12P v4l2_fourcc('V', 'Y', 'C', 'P') /* YUV 4:2:2 12-bit packed */
-+#define V4L2_PIX_FMT_MTISP_NV12_12P v4l2_fourcc('1', '2', 'C', 'P') /* Y/CbCr 4:2:0 12 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV21_12P v4l2_fourcc('2', '1', 'C', 'P') /* Y/CrCb 4:2:0 12 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV16_12P v4l2_fourcc('1', '6', 'C', 'P') /* Y/CbCr 4:2:2 12 bits packed */
-+#define V4L2_PIX_FMT_MTISP_NV61_12P v4l2_fourcc('6', '1', 'C', 'P') /* Y/CrCb 4:2:2 12 bits packed */
-+
-+/* Vendor specific - MediaTek specified compressed format */
-+#define V4L2_PIX_FMT_MTISP_NV12_UFBC v4l2_fourcc('1', '2', '8', 'F') /* Y/CbCr 4:2:0 8 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_NV21_UFBC v4l2_fourcc('2', '1', '8', 'F') /* Y/CrCb 4:2:0 8 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_NV12_10_UFBC v4l2_fourcc('1', '2', 'A', 'F') /* Y/CbCr 4:2:0 10 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_NV21_10_UFBC v4l2_fourcc('2', '1', 'A', 'F') /* Y/CrCb 4:2:0 10 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_NV12_12_UFBC v4l2_fourcc('1', '2', 'C', 'F') /* Y/CbCr 4:2:0 12 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_NV21_12_UFBC v4l2_fourcc('2', '1', 'C', 'F') /* Y/CrCb 4:2:0 12 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_BAYER8_UFBC v4l2_fourcc('M', 'B', '8', 'U') /* Raw 8 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_BAYER10_UFBC v4l2_fourcc('M', 'B', 'A', 'U') /* Raw 10 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_BAYER12_UFBC v4l2_fourcc('M', 'B', 'C', 'U') /* Raw 12 bits compressed */
-+#define V4L2_PIX_FMT_MTISP_BAYER14_UFBC v4l2_fourcc('M', 'B', 'E', 'U') /* Raw 14 bits compressed */
-+
-+/* Vendor specific - MediaTek ISP parameters for firmware */
-+#define V4L2_META_FMT_MTISP_3A    v4l2_fourcc('M', 'T', 'f', 'a') /* AE/AWB histogram */
-+#define V4L2_META_FMT_MTISP_AF    v4l2_fourcc('M', 'T', 'f', 'f') /* AF histogram */
-+#define V4L2_META_FMT_MTISP_LCS   v4l2_fourcc('M', 'T', 'f', 'c') /* Local contrast enhanced statistics */
-+#define V4L2_META_FMT_MTISP_LMV   v4l2_fourcc('M', 'T', 'f', 'm') /* Local motion vector histogram */
-+#define V4L2_META_FMT_MTISP_PARAMS v4l2_fourcc('M', 'T', 'f', 'p') /* ISP tuning parameters */
-+
-+/*
-+ * struct mtk_cam_resource_sensor - sensor resoruces for format negotiation
-+ *
-+ */
-+struct mtk_cam_resource_sensor {
-+	struct v4l2_fract interval;
-+	__u32 hblank;
-+	__u32 vblank;
-+	__u64 pixel_rate;
-+	__u64 cust_pixel_rate;
-+};
-+
-+/*
-+ * struct mtk_cam_resource_raw - MTK camsys raw resoruces for format negotiation
-+ *
-+ * @feature: value of V4L2_CID_MTK_CAM_FEATURE the user want to check the
-+ *		  resource with. If it is used in set CTRL, we will apply the value
-+ *		  to V4L2_CID_MTK_CAM_FEATURE ctrl directly.
-+ * @strategy: indicate the order of multiple raws, binning or DVFS to be selected
-+ *	      when doing format negotiation of raw's source pads (output pads).
-+ *	      Please pass MTK_CAM_RESOURCE_DEFAULT if you want camsys driver to
-+ *	      determine it.
-+ * @raw_max: indicate the max number of raw to be used for the raw pipeline.
-+ *	     Please pass MTK_CAM_RESOURCE_DEFAULT if you want camsys driver to
-+ *	     determine it.
-+ * @raw_min: indicate the max number of raw to be used for the raw pipeline.
-+ *	     Please pass MTK_CAM_RESOURCE_DEFAULT if you want camsys driver to
-+ *	     determine it.
-+ * @raw_used: The number of raw used. The used don't need to writ this failed,
-+ *	      the driver always updates the field.
-+ * @bin: indicate if the driver should enable the bining or not. The driver
-+ *	 update the field depanding the hardware supporting status. Please pass
-+ *	 MTK_CAM_RESOURCE_DEFAULT if you want camsys driver to determine it.
-+ * @path_sel: indicate the user selected raw path. The driver
-+ *	      update the field depanding the hardware supporting status. Please
-+ *	      pass MTK_CAM_RESOURCE_DEFAULT if you want camsys driver to
-+ *	      determine it.
-+ * @pixel_mode: the pixel mode driver used in the raw pipeline. It is written by
-+ *		driver only.
-+ * @throughput: the throughput be used in the raw pipeline. It is written by
-+ *		driver only.
-+ *
-+ */
-+struct mtk_cam_resource_raw {
-+	__s64	feature;
-+	__u16	strategy;
-+	__u8	raw_max;
-+	__u8	raw_min;
-+	__u8	raw_used;
-+	__u8	bin;
-+	__u8	path_sel;
-+	__u8	pixel_mode;
-+	__u64	throughput;
-+};
-+
-+/*
-+ * struct mtk_cam_resource - MTK camsys resoruces for format negotiation
-+ *
-+ * @sink_fmt: sink_fmt pad's format, it must be return by g_fmt or s_fmt
-+ *		from driver.
-+ * @sensor_res: senor information to calculate the required resource, it is
-+ *		read-only and camsys driver will not change it.
-+ * @raw_res: user hint and resource negotiation result.
-+ * @status: resource negotiation status.
-+ *
-+ */
-+struct mtk_cam_resource {
-+	__u64 sink_fmt;
-+	struct mtk_cam_resource_sensor sensor_res;
-+	struct mtk_cam_resource_raw raw_res;
-+	__u8 status;
-+};
-+
-+/**
-+ * struct mtk_cam_pde_info - PDE module information for raw
-+ *
-+ * @pdo_max_size: the max pdo size of pde sensor.
-+ * @pdi_max_size: the max pdi size of pde sensor or max pd table size.
-+ * @pd_table_offset: the offest of meta config for pd table content.
-+ */
-+struct mtk_cam_pde_info {
-+	__u32 pdo_max_size;
-+	__u32 pdi_max_size;
-+	__u32 pd_table_offset;
-+};
-+#endif /* _MTKISP_CAMSYS_USER_H */
--- 
-2.18.0
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
+Yours,
+Linus Walleij
 
