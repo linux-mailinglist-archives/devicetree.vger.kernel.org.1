@@ -1,131 +1,115 @@
-Return-Path: <devicetree+bounces-109334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109332-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21CCA996141
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:44:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1BDA996138
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:43:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CACAFB2555E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:44:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D951E1C22466
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32AA11898FB;
-	Wed,  9 Oct 2024 07:42:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDB841865E6;
+	Wed,  9 Oct 2024 07:42:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="IEgiuGd2"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="iXPR7tY8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF7DC18952C;
-	Wed,  9 Oct 2024 07:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210DE185B78
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 07:42:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728459773; cv=none; b=cpvfZNOlfGfdCmu6+5qkO3M/uuoMSfxkxkS2dlIvOjyOX4zDhExMaNYKNYUcuHbUU1Y9zRQrvZNMXyWXvHwYgArXVnyZp9pwe497huifCj+aPpmfD38n6xGGVmtC4W/Jj69qPgiQBqGqPvzrWwqPQoMqylhlkgSg9GVVXG/qsT8=
+	t=1728459756; cv=none; b=hmvrFFzOEkb6H/FlvvUnMY0WG+RWCYMRIIeMCLuXxzdgAFAunxIAok7tZJIpKRU1cvFK5m6JZNjtR++SVweoh4hbdV952XlQIRROC25Fef4a5kNoV7bgpdJ9s7R+4zXFP6v4gLKrxgoMGHkEbFm0AaZ3QhyBbbwk3xK9u7gEWYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728459773; c=relaxed/simple;
-	bh=LFNxH82iYAVOBHknU67wEDKrfnlu0dWmlOBNv9DWLXI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qiPW0wrO0m99S+k8Ek/f6mBZDxFNPKsSaLqEwgsQgI+LWaBsPf9W56wTlZLzsU4LVThnQFs+0nKBCVR3kT2drWO/H4gNa/QtYbaAW3ra6p46/4+8islczuVT6GGDRZTXHfiR6IUJdNGOkv0482qhVF0I4G3ay+ctZVWFkhGcsno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=IEgiuGd2; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49978gMY029429;
-	Wed, 9 Oct 2024 07:42:37 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	f3nItm0Gdi3bI3Zw4m/5gUFjMKwVbzs+35pMUn26fQ0=; b=IEgiuGd2MpqKHUaN
-	/aJQRp0VMcAHSzW2YFe3vWEdCzpB+RkDtK9yeB6i+AAyjczuAABoqWqbv1iHZwxz
-	Mlo1kJO5rNliM+4DSnfEGcDCce3qehFGH92FJJ5Xlo2fYh3go3bv9YXeKtpOYdOV
-	GdOMaGfHR9mTiQlw32SuUmk99RzZCG/5KTHYCuzoPiOs8fyI9pZCHGx7x/V2VYSq
-	ZRdVQvtLV1kosQgWU9CN1bXGKgi7ts8AzogMhBzbLo/cZh1pBNK1M1W3R+mJjqTF
-	eogHcARI6tt2h/HaFB7I3Jf3Bc6kuHGY8Yb7YQhwJ+wU57yfuc4pa+DkEG0cJiIK
-	rRu1pA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424yj03qv5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 07:42:36 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4997gZ4Z008602
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 07:42:35 GMT
-Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 00:42:28 -0700
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-To: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <dmitry.baryshkov@linaro.org>,
-        <neil.armstrong@linaro.org>, <arnd@arndb.de>,
-        <nfraprado@collabora.com>, <quic_anusha@quicinc.com>,
-        <quic_mmanikan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <netdev@vger.kernel.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH v7 6/6] arm64: defconfig: Build NSS Clock Controller driver for IPQ9574
-Date: Wed, 9 Oct 2024 13:11:25 +0530
-Message-ID: <20241009074125.794997-7-quic_mmanikan@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241009074125.794997-1-quic_mmanikan@quicinc.com>
-References: <20241009074125.794997-1-quic_mmanikan@quicinc.com>
+	s=arc-20240116; t=1728459756; c=relaxed/simple;
+	bh=pFW/nT0EjaQY7XVATE4I66z1A1PPzTrNH6tWieaGPEM=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=CHI9XDrCpiQI7vXBZdskE2lomQf6jfW0rBsy6IJQSmMLzfHrwgiPffS1y0R+2M5ALvRE6ZtdfmlKyxcjzq/mU6aSLI7ZHy7R7AzLoMoRWzx1ufNkKPhv4rgrCaDqvQmYDsWVC9vqkpi541gU0Q5t9sRlsS/8qS/TP1fTsoLcHp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=iXPR7tY8; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: x5qNSVyNVt6WX_GW175Ln7MOojH9ZaWZ
-X-Proofpoint-ORIG-GUID: x5qNSVyNVt6WX_GW175Ln7MOojH9ZaWZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- bulkscore=0 mlxlogscore=946 mlxscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090050
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728459753;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=iZkPBbRSepvAA/AJkm6TNe9b3MmJazsErRm3wcrYPlA=;
+	b=iXPR7tY8UXX+GJ2VbkU4ERkSe/+4svjnd3dqAd/4GbfIi7VBCiR0jTjsNXtMtSnr/8FQuN
+	SVFATgW9R5O/sSTAPaimvLh63TIz+0gOLfMCV+bssLkOHs1Iz5juRg4cfpxcQ7IfVJ1QYl
+	tIG0/7G/oiGr6NcpoZ4iHY+MMHCRooCLrB1BGJWzs0IZ3dCtMeBzmAxmcY6AdA0TLyzBxn
+	gbY+WRJjrr+5RnPCQz7hWTtQQ6Rkk6ZpAGRwoen3xYqfo70GXLNdJphX87bNi9YKdxQHx3
+	BnBWKMc6kWVbekkYXzpeqiJSaWxw3+N75Kradm3tqIIpisH505hud61+FEgWhw==
+Date: Wed, 09 Oct 2024 09:42:32 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Caesar
+ Wang <wxt@rock-chips.com>
+Subject: Re: [PATCH v2 13/14] ARM: dts: rockchip: Fix the spi controller on
+ rk3036
+In-Reply-To: <20241008203940.2573684-14-heiko@sntech.de>
+References: <20241008203940.2573684-1-heiko@sntech.de>
+ <20241008203940.2573684-14-heiko@sntech.de>
+Message-ID: <fd4b7e8678e59a3911442227300879da@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-From: Devi Priya <quic_devipriy@quicinc.com>
+Hello Heiko,
 
-NSSCC driver is needed to enable the ethernet interfaces present
-in RDP433 based on IPQ9574. Since this is not necessary for bootup
-enabling it as a module.
+On 2024-10-08 22:39, Heiko Stuebner wrote:
+> Compatible and clock names did not match the existing binding.
+> So set the correct values and re-order+rename the clocks.
+> 
+> It looks like no rk3036 board did use the spi controller so far,
+> so this was never detected on a running device yet.
 
-Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
-Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
----
-Changes in V7:
-	- Updated commit message
+Wow, that's quite surprising.
 
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> Fixes: f629fcfab2cd ("ARM: dts: rockchip: support the spi for rk3036")
+> Cc: Caesar Wang <wxt@rock-chips.com>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 5fdbfea7a5b2..3727155b67b3 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -1313,6 +1313,7 @@ CONFIG_IPQ_GCC_5332=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_IPQ_GCC_8074=y
- CONFIG_IPQ_GCC_9574=y
-+CONFIG_IPQ_NSSCC_9574=m
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_MMCC_8994=m
- CONFIG_MSM_GCC_8994=y
--- 
-2.34.1
+Looking good to me, thanks for the patch.  It all matches with
+what drivers/spi/spi-rockchip.c actually expects.
 
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+> ---
+>  arch/arm/boot/dts/rockchip/rk3036.dtsi | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> index 09371f07d7b4..63b9912be06a 100644
+> --- a/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> +++ b/arch/arm/boot/dts/rockchip/rk3036.dtsi
+> @@ -553,11 +553,11 @@ i2c0: i2c@20072000 {
+>  	};
+> 
+>  	spi: spi@20074000 {
+> -		compatible = "rockchip,rockchip-spi";
+> +		compatible = "rockchip,rk3036-spi";
+>  		reg = <0x20074000 0x1000>;
+>  		interrupts = <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
+> -		clocks = <&cru PCLK_SPI>, <&cru SCLK_SPI>;
+> -		clock-names = "apb-pclk","spi_pclk";
+> +		clocks = <&cru SCLK_SPI>, <&cru PCLK_SPI>;
+> +		clock-names = "spiclk", "apb_pclk";
+>  		dmas = <&pdma 8>, <&pdma 9>;
+>  		dma-names = "tx", "rx";
+>  		pinctrl-names = "default";
 
