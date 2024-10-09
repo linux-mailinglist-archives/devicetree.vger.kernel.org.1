@@ -1,83 +1,53 @@
-Return-Path: <devicetree+bounces-109544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109546-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E5FF996CAE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:50:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8146E996CFC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:01:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE9AD1C21964
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:50:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 389621F24131
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:01:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0AD6D1991D6;
-	Wed,  9 Oct 2024 13:50:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D34E199FA7;
+	Wed,  9 Oct 2024 14:01:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eLJWPUsl"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cSmlJlHI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 326F3192D6E;
-	Wed,  9 Oct 2024 13:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3A018BBAE;
+	Wed,  9 Oct 2024 14:01:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728481853; cv=none; b=rbzwkVmVPe6hmm7fwWMOfwHJuCWS+ar3P4i3Fi4AIhyOih8Rdv7/fMMnPbXnyBU3JmJ24wJ70rp4fRbDt3pBZVEu7/gvVG9OwmG46uBtE0ySwCjkvylox4O9f9h5IN9WDWPTCP7zTNa7sB+5VBZP4bNpp5TIoB0lzijRMRyDFhM=
+	t=1728482472; cv=none; b=pU0hIwRJReqVvjdtBdo2E578pnWornDSBlsQmyxjG0V+NYmYguV9D5k/asxgg0f+wBIAB4b808k4q+D/+066xGYiUWp5I9I3r/Wnl2gI8ZFjWbbxrYVlHZros+LILjjjFfn1J3RDcZVreofYQNxVXZj/ckCKjl0G/X4SAEnQ8uo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728481853; c=relaxed/simple;
-	bh=X4TnJTxurWziK3v3Zy4Trv0kJnJ555qg9MbV8sv+F3k=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jt+D/uDpKm2zqaDiJXYJfo4HhXe99GqnRohcN8wsR2Wavwte23cm4JYOQn5/xz+zRTadoyw5sv/Vlq86EHzqLV3lEezEkiR4pfF4DR0CSPPLrTta/Nan+LW2hgGPIdLYf6djtp+3KGihYt/gYP4rqZmzZznlVr8rJ1IP4jcCE5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eLJWPUsl; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4999eghH018007;
-	Wed, 9 Oct 2024 13:50:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ID8IcFr7c2RC5aq4yF6GSz9+xbNb2bvDWiborrw7cI8=; b=eLJWPUslPRQX0alg
-	2A6AYfHcjIaeUM8mhB2yZHA83Dk7yeZC22TrHXxO72m6j/HE+zipxkncNKN4o8Vd
-	UFG429Uvqimn/7LLx2g2EZP7BDcVAEBvbZ/exKgV8+HMRnoKVFFlIkuOjQC89mS+
-	yM1QnFu6awSlU5i0WJCYvmv3znP/TC8pUcVL5GZIPmHP2cFJwU3AWS8TJfWQbyNY
-	nRuHtuapNqzIO5+NxiklJPRPl6pRmRR9QAUQSqomq8txJFoNGsFWgdEixztRVX/R
-	ZDXtMTr2qlbdd12Rg4Disa2+qFm4OnCCIMtG5jYxe/WqiKfDQla+38FqCGB7ZBH+
-	+ZdFGA==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 425c8qtgsg-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 13:50:47 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499Doj18004436
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 13:50:45 GMT
-Received: from hu-shashim-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 06:50:41 -0700
-Date: Wed, 9 Oct 2024 19:20:37 +0530
-From: Shiraz Hashim <quic_shashim@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Mukesh Ojha <quic_mojha@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 0/6] Peripheral Image Loader support for Qualcomm SoCs
-Message-ID: <20241009135037.GG1421305@hu-shashim-hyd.qualcomm.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <r4zkfioctmlatxkb4lqmfc7vk7cdenenihoicq2k37wvxeihss@gtkzxr26p6ei>
+	s=arc-20240116; t=1728482472; c=relaxed/simple;
+	bh=sgqYjYWWrUjFuJvmE74MP0NEEMmc6GWxYEJNsz+2ICQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=FncVZYte+sthxP2o0YZH14gXUwTYEiCApgsWf/AEFRokH+s4E9YUdM3FGXRTc1cqCL+N5RywRJX+teQdqhVnfpXUIegg+wP8zMrKaSkzzqqzlrKgpWiCBSs3NKn16Mpqn7BBP5jryW7iRj3Ay0BGgNTOFfgtBOrrDf345hUIAAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cSmlJlHI; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5D7D71BF20A;
+	Wed,  9 Oct 2024 14:01:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728482467;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=meMdgwASJTSVQgcqYdIohoxaA+Loney7M/QLmYnOhZs=;
+	b=cSmlJlHILjk/s2eeKZUUNwUfWBXw1ZL0a6VKOIxXTRh3Bw5nBRk7D4K+cqQjBj6AeIirK+
+	LZQtEc0QnZdmFLdgimtgY7+PoC//8GBays7Czyq4NeoAeYSIzWrDo9RJDY+mQ1cN/8oiti
+	bjbfxZEi9LPblK11/kUe5Pz3d2bt3etFtCyqB9IIt2G5Ol/sJqXSzg2CSutkOwDnnXkF7q
+	LPFIWBNQVVJTgPB9M8KKvHf9RdYpCUWKptPWXp8sKbAWScIVEUa5WgaVaRJFWMO8rGEQL8
+	vyyBEuKPQNFEOliZ3wGSWFT0+n/PFVxevlBpxGwKL6TNPQJKf8trtJeJiF7t1w==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v3 0/6] i2c: nomadik: support >=1MHz & Mobileye EyeQ6H
+ platform
+Date: Wed, 09 Oct 2024 16:01:06 +0200
+Message-Id: <20241009-mbly-i2c-v3-0-e7fd13bcf1c4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,69 +55,99 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <r4zkfioctmlatxkb4lqmfc7vk7cdenenihoicq2k37wvxeihss@gtkzxr26p6ei>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ehSCrUS4Kdc-uj4lTyzCEbgCBpqjt1a3
-X-Proofpoint-ORIG-GUID: ehSCrUS4Kdc-uj4lTyzCEbgCBpqjt1a3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0
- lowpriorityscore=0 mlxlogscore=999 malwarescore=0 suspectscore=0
- priorityscore=1501 mlxscore=0 spamscore=0 phishscore=0 clxscore=1011
- bulkscore=0 impostorscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410090086
+X-B4-Tracking: v=1; b=H4sIAKKMBmcC/1WMwQ6CMBAFf4X0bM12QUo9+R/GQylFNgFqWtJIC
+ P9uITHicV7ezMKC9WQDu2YL8zZSIDcmyE8ZM50en5ZTk5ghYCEAJB/qfuaEhmMpjWqKCmsFLN1
+ f3rb03lP3R+KOwuT8vJej2NZvpPpFouDANZRG5EJqbOWtdm7qaTwbN7AtE/GoqoOKm2oU5qCrR
+ pvLv7qu6wfMVucp3QAAAA==
+X-Change-ID: 20241007-mbly-i2c-267c9d482b90
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Sun, Oct 06, 2024 at 10:34:19PM +0300, Dmitry Baryshkov wrote:
-> On Sat, Oct 05, 2024 at 02:53:53AM GMT, Mukesh Ojha wrote:
-> > Qualcomm is looking to enable remote processors on the SA8775p SoC
-> > running KVM Linux host and is currently trying to figure out an
-> > upstream-compatible solution for the IOMMU translation scheme problem it
-> > is facing when SoCs running with KVM. This issue arises due to
-> > differences in how IOMMU translation is currently handled on SoCs
-> > running Qualcomm EL2 hypervisor(QHEE) where IOMMU translation for any
-> > device is completely owned by it and the other issue is that remote
-> > processors firmware does not contain resource table where these IOMMU
-> > configuration setting will be present.
-> > 
-> > Qualcomm SoCs running with the QHEE(EL2) have been utilizing the
-> > Peripheral Authentication Service (PAS) from its TrustZone (TZ) firmware
-> > to securely authenticate and reset via a single SMC call
-> > _auth_and_reset_.  This call first gets trapped to QHEE, which then
-> > makes a call to TZ for authentication. Once it is done, the call returns
-> > to QHEE, which sets up the IOMMU translation scheme for these remote
-> > processors and later brings them out of reset. The design of the
-> > Qualcomm EL2 hypervisor dictates that the Linux host OS running at EL1
-> > is not allowed to set up IOMMU translation for remote processors,
-> > and only a single stage is being configured for them.
-> > 
-> > To make the remote processors’ bring-up (PAS) sequence
-> > hypervisor-independent, the auth_and_reset SMC call is now entirely
-> > handled by TZ. However, the problem of IOMMU handling still remains with
-> > the KVM host, which has no knowledge of the remote processors’ IOMMU
-> > configuration.
-> > 
-> > We have looked up one approach where SoC remoteproc device tree could
-> > contain resources like iommus for remoteproc carveout and qcom,devmem
-> > specific binding for device memory needed for remoteproc and these
-> > properties are optional and will only be overlaid by the firmware if it
-> > is running with non-QHEE based hypervisor like KVM.
-> 
-> Can you follow the approach that has been implemented for existing
-> systems (ChromeOS) not using QHEE? See drivers/remoteproc/qcom_q6v5_adsp.c
-> If this approach can not be used, please describe why.
-> 
+Hi,
 
-The intent is to reuse same PAS based remoteproc implementation
-assisted by TZ with or without QHEE while qcom_q6v5_adsp.c caters to
-independent control at Linux.
-So it better suites to support it from qcom_q6v5_pas.c .
+Three patches are about adding Mobileye EyeQ6H support to the Nomadik
+I2C controller driver, in the same vein as was done a few months ago
+for EyeQ5.
+ - dt-bindings:
+    - [PATCH 1/6]: add new compatible.
+ - driver:
+    - [PATCH 3/6]: we switch from using a match table, before adding the
+      new EyeQ6H compatible.
+    - [PATCH 4/6]: adding EyeQ6H is only about creating a new match
+      table entry thanks to the previous patch; we reuse
+      the .has_32b_bus flag created for EyeQ5.
 
-regards
-Shiraz
+Three patches are about supporting higher speeds (fast-plus and
+high-speed).
+ - dt-bindings:
+    - [PATCH 2/6]: fix them, they indicated only a max of 400kHz.
+ - driver:
+    - [PATCH 5/6]: fix computation of the bus rate clock divider (BRCR).
+      For a bus rate of 400kHz, it would pick >400kHz. Now pick <400kHz.
+    - [PATCH 6/6]: support high SM (speed-mode) values.
+      This is not much work.
+
+It works on EyeQ6H HW just fine. 1MHz has been tested but not 3.4MHz
+because HW doesn't support it. The theory is there, and BRCR
+computation has been checked to be valid with 3.4MHz clocks.
+
+DTS patches targeting EyeQ5 & EyeQ6H devicetrees are not provided
+because they depend on the platform's clock series [0].
+
+Have a nice day,
+Théo
+
+[0]: https://lore.kernel.org/lkml/20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com/
+
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v3:
+- [PATCH 5/6] "i2c: nomadik: fix BRCR computation":
+  - Use DIV_ROUND_UP() for BRCR calculation.
+  - Improve code comment.
+  - Add small note in commit message about DIV_ROUND_UP() usage.
+- For all patches but [PATCH 5/6], apply Reviewed-by: Linus Walleij.
+- Link to v2: https://lore.kernel.org/r/20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com
+
+Changes in v2:
+- dt-bindings: change `clock-frequency: maximum` from 400kHz to 3.4MHz
+  in a separate patch.
+- dt-bindings: use enum to list compatibles.
+- Switch away from of_device_is_compatible() in probe. Use a match table
+  with flags inside .data, using of_match_device() from probe.
+  This is done as a separate commit before adding EyeQ6H support.
+- Link to v1: https://lore.kernel.org/r/20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com
+
+---
+Théo Lebrun (6):
+      dt-bindings: i2c: nomadik: add mobileye,eyeq6h-i2c bindings
+      dt-bindings: i2c: nomadik: support 400kHz < clock-frequency <= 3.4MHz
+      i2c: nomadik: switch from of_device_is_compatible() to of_match_device()
+      i2c: nomadik: support Mobileye EyeQ6H I2C controller
+      i2c: nomadik: fix BRCR computation
+      i2c: nomadik: support >=1MHz speed modes
+
+ .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 13 ++--
+ drivers/i2c/busses/i2c-nomadik.c                   | 89 +++++++++++++---------
+ 2 files changed, 61 insertions(+), 41 deletions(-)
+---
+base-commit: 6f1cfa7816af8b3286140f1b0476200d5e914eb9
+change-id: 20241007-mbly-i2c-267c9d482b90
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
