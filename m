@@ -1,162 +1,140 @@
-Return-Path: <devicetree+bounces-109520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D59DD996A2D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:37:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A5BC996AA2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:49:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 820561F24799
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:37:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C2B428A2BA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:49:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9A7C194C6C;
-	Wed,  9 Oct 2024 12:37:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CBB71991B6;
+	Wed,  9 Oct 2024 12:44:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOg7lJQK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90F501E4AE;
-	Wed,  9 Oct 2024 12:37:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4E20194C9E;
+	Wed,  9 Oct 2024 12:44:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728477467; cv=none; b=FhUHJ5OZpo0/bqTCzyOQVp+TtLbA0PSXKb2gxWKPa3pbjujv7CRlhM3JBqdcFHpUSNlLBdugNNAgSManGz/vPua77P7RS6XTSapgXcFXvjAvXNZMpyxXGVh2SwAOJ4IBo7IHUI8J8zz+lRO2t4NaMVoag5vvIMDOt+PAXWsmfG0=
+	t=1728477895; cv=none; b=nNkcYQG1dtVotYjyx09ErrTNIZBWuCz/OSXkl8VQmLv4eZyZUal3JkHtEZ8Rx9MzVCzdfjv1wxVxQrfOxRwDQVeNjcbQHQ8DHyBxpMk1XQkpPv78rBogrdTIS82aGKG+uwXpPMB0nEqFezSr4aKcvQa8xWyxYfGhQ9zmSk98aaE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728477467; c=relaxed/simple;
-	bh=QlJ0EzVyTCLvsGQ2C6oOHepjFhpSg9ykXkd/E+cRTnM=;
+	s=arc-20240116; t=1728477895; c=relaxed/simple;
+	bh=H8kdm68yh4PjNaTTQSqiK9xUlJdE5SEZL8vV5HEB7bo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PUtlALIKUPAVtf8qDpUX5ar/K2bdk4cKTfZNL4aRBXi8A7UwOa0WWv1SoEFJ4txCghP+ef8ioCR8CQY5ThCAN1IqOAdkx1BZJlYDznSGcYrAXKGDnwpJcYAx7hVKCD8GGvEg8CEmWAxkia0vQAWK2uQ7fRvvgwcZiWy/kuU1cHk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1C684FEC;
-	Wed,  9 Oct 2024 05:38:13 -0700 (PDT)
-Received: from bogus (e133711.arm.com [10.1.196.77])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3E49A3F58B;
-	Wed,  9 Oct 2024 05:37:41 -0700 (PDT)
-Date: Wed, 9 Oct 2024 13:37:38 +0100
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Cristian Marussi <cristian.marussi@arm.com>,
-	linux-arm-kernel@lists.infread.org, Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=fMOAL8HzCuB6x8ApoS6ojN3s5W0MqXhpnNJ8UBsN8Xp11XpnWQIUTfUDatu/UCxzUy3zBH8vL6ZNJM4fy3xh5DeoTp4abZUptg2nJv+SkgyDnCvU1936iHrz/2grZSL6KnzeFi+JfoY2eMcSWxLPrqlV3XjM1daTltuspgvPH4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pOg7lJQK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD9FAC4CECD;
+	Wed,  9 Oct 2024 12:44:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728477894;
+	bh=H8kdm68yh4PjNaTTQSqiK9xUlJdE5SEZL8vV5HEB7bo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pOg7lJQKEW40/bEO415zN2BipiNrVKXBJ2+6AJ0LyDe1eEgZUcOfEVv8Br6oOMYsX
+	 3B/6JS62G0rWlabeOtrYgBLyQbAdzzeEOBiuK92mZAiorw66/nD+XcXkfn9qtL4FT+
+	 KN0EnsQrEhwTOt9UoPhpqWnbGNLYj1QMABF3CPXuSJy4xY/xYkCx1aoW2MlmTqMaKC
+	 hVufeF9v+RTk+47TEFUKqwVFGedBDVag41dYHoysZp6OUcLYY/N10Lq2B53dlDEIVI
+	 nuqkKlzn+w4X44DP8K+IiEw/iYAhfJKl18vtVF42xEUqCB6nuBqh4+H2S/YV8MRfv0
+	 vn0qtNlJb8Vsg==
+Date: Wed, 9 Oct 2024 13:44:51 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	"open list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <arm-scmi@vger.kernel.org>,
-	"moderated list:SYSTEM CONTROL & POWER/MANAGEMENT INTERFACE" <linux-arm-kernel@lists.infradead.org>,
-	justin.chen@broadcom.com, opendmb@gmail.com,
-	kapil.hali@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
-	Arnd Bergmann <arnd@arndb.de>
-Subject: Re: [PATCH] firmware: arm_scmi: Give SMC transport precedence over
- mailbox
-Message-ID: <ZwZ5EinIhUsXT83d@bogus>
-References: <20241006043317.3867421-1-florian.fainelli@broadcom.com>
- <ZwPLgcGeUcFPvjcz@pluto>
- <a4f403e8-44eb-4fb4-8696-ca8ad7962a00@broadcom.com>
- <ZwUuSTYkWrZYIcBM@bogus>
- <ecc29852-37f4-404e-b22c-817cb7cb0cfb@broadcom.com>
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v6 19/33] riscv: Implements arch agnostic shadow stack
+ prctls
+Message-ID: <ZwZ6w1Fu5zt2beRZ@finisterre.sirena.org.uk>
+References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
+ <20241008-v5_user_cfi_series-v6-19-60d9fe073f37@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5KnydFV4ujRpm3UO"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ecc29852-37f4-404e-b22c-817cb7cb0cfb@broadcom.com>
+In-Reply-To: <20241008-v5_user_cfi_series-v6-19-60d9fe073f37@rivosinc.com>
+X-Cookie: Editing is a rewording activity.
 
-On Tue, Oct 08, 2024 at 10:49:01AM -0700, Florian Fainelli wrote:
-> On 10/8/24 06:06, Sudeep Holla wrote:
 
-[...]
+--5KnydFV4ujRpm3UO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> > IIUC, you need to support old kernel with SMC mailbox driver and new SMC
-> > transport within the SCMI. Is that right understanding ?
-> 
-> That is correct.
-> 
+On Tue, Oct 08, 2024 at 03:37:01PM -0700, Deepak Gupta wrote:
 
-Thanks.
+> +int arch_lock_shadow_stack_status(struct task_struct *task,
+> +				unsigned long arg)
+> +{
+> +	/* If shtstk not supported or not enabled on task, nothing to lock here */
+> +	if (!cpu_supports_shadow_stack() ||
+> +		!is_shstk_enabled(task))
+> +		return -EINVAL;
+> +
+> +	set_shstk_lock(task);
+> +
+> +	return 0;
+> +}
 
-> > IIUC, the DTB has mailbox nodes that are available but fail only in the setup
-> > stage ? Or is it marked unavailable and we are missing some checks either
-> > in SCMI or mailbox ?
-> 
-> We fail at scmi_chan_setup -> idr_find() returning -EINVAL.
+This will lock the shadow stack settings regardless of the value of arg.
+On arm64 the argument is a mask of bits to block changes to.  While for
+RISC-V you only support enables so there's only one bit that'll actually
+do anything portable code could in theory try to do something like
+masking writes or pushes only and get surprised that disabling shadow
+stack gets blocked.  For arm64 the implementaion accepts any possible
+mask value, allowing for userspace to block enabling of any future
+options that get added.  In theory someone might end up calling with a
+value of 0 (eg, if there's a config option for the bitmask to lock and
+they don't bother optimising out the syscall if the value is 0) which
+would definitely break.
 
-IIRC, the original intention of code under if(!info->desc->ops->chan_available()
-in scmi_chan_setup(), is to just handle Rx case and valid Tx missing case for
-non BASE protocols. I wonder if we can add additional check at the start of
-this if block:
-	if (tx && prot_id == SCMI_PROTOCOL_BASE)
-		return -ENODEV or -ENOENT;
+--5KnydFV4ujRpm3UO
+Content-Type: application/pgp-signature; name="signature.asc"
 
-just to better handle your scenario. But IIUC it may not fix your issue as
-we still return success from the platform_device probing with the new
-restructuring. It is only the probe of the device we create from this one
-can be made to fail. I think I know understand the issue much better than
-before.
+-----BEGIN PGP SIGNATURE-----
 
-> I did check that
-> returning -ENODEV, which arguably might be a somewhat more accurate return
-> code (-ENOENT being one, too) does not help us here. Cristian suggested
-> device_release_driver() which sounded like a good idea, but will deadlock.
->
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcGesIACgkQJNaLcl1U
+h9CoSgf/QkpoT9Wv9XJugV4VDvwAhLMHLTE4q1599RvHVraBUMB4Sk2kckdamajU
+gf1rLq5KWESxQNXgMiArCIXUaWaZ95G3TfZYo+2tmZcnyNoQVOc8BqiwgRevA58E
+goARRqmt+Dt97Ifxm175SDCvb+va0e6s6t1mM0dwrxEjOB2o8Mk98qp70JhLz5qG
+CYOO5V9/8s0xc3D6MHLW+SIg/4x1RdRfvmxZ+xborNttlnZolTTlWkHhuYpYeHFz
+GRgGDVYycuo6Nw6IjmBsA1CU68ICHNna9PgvngHCmSJ2oK3NrzZodyEtOmc0wQ0y
+gCYvJSj/oECnl39N1bJTiArvCF/HAg==
+=Ri8u
+-----END PGP SIGNATURE-----
 
-Cristian mentioned in private he will explore other options just in case
-we need solid alternative to address your issue.
-
-> The reason why we fail there is because mailbox_chan_available() returns
-> false. With fw_devlink=on Linux will parse the Device Tree, find the
-> 'mboxes' property pointing to the brcm_scmi_mailbox Device Tree node and
-> puts it on a list of providers that it is waiting for.
-> 
-> Because we are using the ARM SMC transport however, the brcm_scmi_mailbox
-> node is never backed by any driver in Linux and this causes the system to
-> fail booting since we do not have any SCMI provider. At the time, because we
-> were under pressure to get a GKI kernel we decided to "break" our older
-> downstream kernels by doing this property rename and put in a patch in those
-> kernel to treat "brcm,mboxes" the same as "mboxes" where relevant, which was
-> mostly in SCMI.
-> 
-> Now, assuming that we revert that DT property rename, that still does not
-> really solve anything anyway, the channel is not available regardless of how
-> we shake it.
->
-
-Understood. Thanks for detailed explanation and time.
-
-> > 
-> > IOW, have you already explored that this -EINVAL is correct return value
-> > here and can't be changed to -ENODEV ? I might be not following the failure
-> > path correctly here, but I assume it is
-> > 	scmi_chan_setup()
-> > 	info->desc->ops->chan_setup()
-> > 	mailbox_chan_setup()
-> > 	mbox_request_channel()
-
-[...]
-
-> > OK this sounds like you have already explored returning -ENODEV is not
-> > an option ? It is fair enough, but just want to understand correctly.
-> > I still think I am missing something.
-> 
-> Yes, that was my first start.
->
-
-Now I know why that won't work or its not so trivial as we have some kind
-of redirection to address various transport dependencies and the mechanism we
-have implemented to avoid probe deferral with additional platform devices
-and associated probing make it difficult to propagate the error of DD model.
-We need that to handle the dependency better than relying on probe deferral
-which comes with its problems(like initcall level adjustments when using
-some transports like OPTEE/FFA/virtio/...). Your issue is not an issue
-in normal case 😄. Anyways, I will queue this as it is not affecting anyone
-else. Hopefully no one has any objections.
-
--- 
-Regards,
-Sudeep
+--5KnydFV4ujRpm3UO--
 
