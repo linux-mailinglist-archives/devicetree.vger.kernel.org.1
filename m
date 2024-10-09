@@ -1,132 +1,191 @@
-Return-Path: <devicetree+bounces-109356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46F2D9961A4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:59:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A439961BC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:04:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F177B1F21F0D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:59:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 97B6EB2335F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:04:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CDB3187FE3;
-	Wed,  9 Oct 2024 07:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77C61187870;
+	Wed,  9 Oct 2024 08:03:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IDPPCijk"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="kFCuLbeM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47D68186E4A
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 07:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0EAA1714AF;
+	Wed,  9 Oct 2024 08:03:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728460732; cv=none; b=SWZKoYvupd4CLovHwXUrBmRcEzACPSU1VpNiH5G1E3nAyM4NaA7wFqwfIjiUP6WvKz13N3wUqK7rNLDFqIyko7Z1gZI2AFu0QKbl0e230t1b6PvbRhc9NyLAuGYAldOauCSjjiQsJPdDgc6bf+Uf77eyQ91zeTS4Ff0gdgnKBJE=
+	t=1728461036; cv=none; b=AbmPD6H54qcjy97zQ4pLojTwv8lY8LXG1mhHL2HLZL4AWq1Dc55QYIhwBiKNH02Vhbi7d8UswqBiX3/01ITnvOmvFT6u04xFqQq1kJyF3NEqtKrUSGU/PEL9AyEUDLjgMFR/bq+K5IR9bsbT8n4jBGtTf9AjmUh/F+/svjXMjwE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728460732; c=relaxed/simple;
-	bh=g8O0kpK9MpWWGfSwkN2fZwYo7lbfsttN4HuU//J2yCY=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=rVCVylSDeCuWICpP1NHpRlnRq52ejlUfh+kGTLkCw5HH5O1KUbTPg0UhBT8cmzmhh/jV50lrGvIiEj5kdRHwzLOnFok8k6HdmpV296gRKLIm6Il7Ql3R9IamdNouR9bVRhbxxpWuCJ6bOnY0tPYJRHe5JvUMml+giF/6r22WYqU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IDPPCijk; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-37d325beee2so767981f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 00:58:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728460728; x=1729065528; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OjzblqqkUrGrcgPZNRxLPE0DkoF25DAjXSyZMk0r9GM=;
-        b=IDPPCijkhfcmpmL5TaKgLrbhZcAfwsdPM8XDWEReTWzbbWIsEqnnFfffcmHOrtxblL
-         evEsPoMud0skznqwF56iDdMeM3JYUEsM62LsBQfsY2E13DzcX/yN/1ehpVZbCV51OG/e
-         nEuVf3YJp8c9H5onIGT7I8DoohsI4LmeuLec5ruiTS83JlS2XWCyaGD2xF1RkHB+OnoN
-         nRgF1iMxmAWYn6Lqy6GQ6LDYH4SN1PvyoSVyFfPUG17HnKm84i0BQVJ2dtxhy7BuH7zC
-         d9NYLatN7sFDLAFoF2yzbVDDeLivOaVcNXdiT3hJJ1tGU0bXlAZMNer855dL64zib19C
-         sIkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728460728; x=1729065528;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OjzblqqkUrGrcgPZNRxLPE0DkoF25DAjXSyZMk0r9GM=;
-        b=Zp5pYeX/XgHtsEyxKkzJR6HOEOaX8Vj3xrFd2l5glAJDzEgCUFbgvZkdkNySGQKhE0
-         pB2ekXDdWIeHELK4cNQdDfF7wGhEb46DA32PVObC0phECVnydtwbqpWOOTNP+3X0iTP9
-         bKJZG1VOk2sRGdBayeXjkhygWPeS1L+GSb3FypFo/ef3AebSIu1hFWwJWX20sVSdBmQV
-         PAViZJf2Y9MztadQoEXT01j4ZI4rVtXND2P5bySnb4h9xeKxZQuiilgTNEswKIQw2m/W
-         RBda7FQHwJGe/fHIStcAFkE2OuBe39xwSLEPvuEImET3sZqq6W6XnL+TxYEmPHO7zg12
-         Xupg==
-X-Forwarded-Encrypted: i=1; AJvYcCXYzHRWgiS86ZDUfbAboUYPkRuRhwqHR/ReCCdEly3ioKKemDLAh6d57cSsQYW6bFwLivyA5jabG4u0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzte83usxDFNeqcrRYVU9jvSrhOZITBXWlsgM0UVm1dVVcdvRum
-	x/BNAb063yyk/bkaVy5KcESMGTWJZIImH0Q5gWGeql2SBSAeHcKPwLuQ1LpjrDg=
-X-Google-Smtp-Source: AGHT+IGkZyd5nOvtOQMkfiXw6MplVM65s68N7024BeRJ7gwwQuAN7MTfkYoNCh3XuzltFnAl7/W9Dg==
-X-Received: by 2002:a5d:6dac:0:b0:374:c847:85c with SMTP id ffacd0b85a97d-37d3aa54328mr871144f8f.24.1728460727644;
-        Wed, 09 Oct 2024 00:58:47 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d3a14bce4sm1157704f8f.92.2024.10.09.00.58.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2024 00:58:47 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Kelvin Zhang <kelvin.zhang@amlogic.com>
-Cc: linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20240914-c3-pwm-v2-0-ac1f34c68ac2@amlogic.com>
-References: <20240914-c3-pwm-v2-0-ac1f34c68ac2@amlogic.com>
-Subject: Re: (subset) [PATCH v2 0/2] Add support for Amlogic C3 PWM
-Message-Id: <172846072651.3041625.14039974148857351568.b4-ty@linaro.org>
-Date: Wed, 09 Oct 2024 09:58:46 +0200
+	s=arc-20240116; t=1728461036; c=relaxed/simple;
+	bh=F/74OTVvaoAvQgdtSaWAf+fol44XumgT8YWgYSZoUcM=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=EIYGTz/pkcwC2njVpyFEzeUDgIEEWwuhQzyUMW6wLmWBZbZ1aeMlsu59OtRG0CpotEjmQ5H08rtnnJ3Eo+k5pIxea40r//ISY5m6cqRHr2SXJPxMFQGCExZxrqxfUyK5mYXTyKZrXICW/MrDt8fYHpfoeJHXE9qWpavrT5CMh5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=kFCuLbeM; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4995evbS025759;
+	Wed, 9 Oct 2024 10:03:22 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=3uAma6b5+gPHWZkUYZOQ9v
+	vdFnpqFDmgkFuZHup+H1A=; b=kFCuLbeMQikeFjKHo/ij9xJHkFI4qBDfZjqSrA
+	qUJ7OloheciVW2Q6OTY5K2RWw8PR/RxASfrMEgkWCOaOvxwYOqszcJJorih29An3
+	NIEfXkd4qAAqzcu05wDBZ15H644nYs1SlNKAqffHQvBtQMueRmv6ugOcvGyamnHK
+	jhfKbLzhw7GYLIvXjVZ6JzggAdOK0HNKgdU+8MF+x1PxcZvUcYcUtvtNfcgW5b4F
+	yKC+LESp+LAVE7D2vkLmu74SdEtgi4QQwaeXRQXH+DabFGghOYnAtToYvzR4w3sB
+	1gu7DyK9RY+L1/8afkgnk6OQpxzJbN15W3UXsYkYVEBO/ucQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 423f10yrdr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Oct 2024 10:03:22 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 870EA40050;
+	Wed,  9 Oct 2024 10:02:12 +0200 (CEST)
+Received: from Webmail-eu.st.com (eqndag1node5.st.com [10.75.129.134])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C3404219BAB;
+	Wed,  9 Oct 2024 10:01:23 +0200 (CEST)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE5.st.com
+ (10.75.129.134) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 9 Oct
+ 2024 10:01:23 +0200
+Received: from localhost (10.48.86.121) by SAFDAG1NODE1.st.com (10.75.90.17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Wed, 9 Oct
+ 2024 10:01:23 +0200
+From: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Jens Wiklander <jens.wiklander@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>,
+        Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+Subject: [PATCH v11 0/7] Introduction of a remoteproc tee to load signed firmware
+Date: Wed, 9 Oct 2024 10:01:01 +0200
+Message-ID: <20241009080108.4170320-1-arnaud.pouliquen@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SAFCAS1NODE1.st.com (10.75.90.11) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Hi,
 
-On Sat, 14 Sep 2024 13:48:57 +0800, Kelvin Zhang wrote:
-> Add support for Amlogic C3 PWM, including the DT binding document and DTS.
-> 
-> 
 
-Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.13/arm64-dt)
+Main updates from version V10[1]:
+- remove "select REMOTEPROC_TEE" in STM32_RPROC config to fix kernel robot
 
-[2/2] arm64: dts: amlogic: Add Amlogic C3 PWM
-      https://git.kernel.org/amlogic/c/be90cd4bd422e8ae235f534a2fa46d40dae0816b
+To keep history of the updates I have kept in each patches the description
+of the updates versus the V9[2] revision.
 
-These changes has been applied on the intermediate git tree [1].
+Main updates from version V9[2]:
 
-The v6.13/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
-for inclusion in their intermediate git branches in order to be sent to Linus during
-the next merge window, or sooner if it's a set of fixes.
+- Introduce release_fw remoteproc ops to avoid direct call of
+  tee_rproc_release_fw() in remoteproc_core.c:
+  - allow to remove link between remoteproc and remoteproc_tee
+  - allow to build the remoteproc_tee as a module
 
-In the cases of fixes, those will be merged in the current release candidate
-kernel and as soon they appear on the Linux master branch they will be
-backported to the previous Stable and Long-Stable kernels [2].
+[1] https://lore.kernel.org/linux-arm-kernel/ZwVATlRbo0OdRLbj@p14s/T/
+[2] https://lore.kernel.org/linux-arm-kernel/ZuMIEp4cVrp1hWa7@p14s/T/
 
-The intermediate git branches are merged daily in the linux-next tree [3],
-people are encouraged testing these pre-release kernels and report issues on the
-relevant mailing-lists.
+Tested-on: commit 9852d85ec9d4 ("Linux 6.12-rc1")
 
-If problems are discovered on those changes, please submit a signed-off-by revert
-patch followed by a corrective changeset.
+Description of the feature:
+--------------------------
+This series proposes the implementation of a remoteproc tee driver to
+communicate with a TEE trusted application responsible for authenticating
+and loading the remoteproc firmware image in an Arm secure context.
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
-[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
-[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+1) Principle:
 
+The remoteproc tee driver provides services to communicate with the OP-TEE
+trusted application running on the Trusted Execution Context (TEE).
+The trusted application in TEE manages the remote processor lifecycle:
+
+- authenticating and loading firmware images,
+- isolating and securing the remote processor memories,
+- supporting multi-firmware (e.g., TF-M + Zephyr on a Cortex-M33),
+- managing the start and stop of the firmware by the TEE.
+
+2) Format of the signed image:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/src/remoteproc_core.c#L18-L57
+
+3) OP-TEE trusted application API:
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/ta/remoteproc/include/ta_remoteproc.h
+
+4) OP-TEE signature script
+
+Refer to:
+https://github.com/OP-TEE/optee_os/blob/master/scripts/sign_rproc_fw.py
+
+Example of usage:
+sign_rproc_fw.py --in <fw1.elf> --in <fw2.elf> --out <signed_fw.sign> --key ${OP-TEE_PATH}/keys/default.pem
+
+
+5) Impact on User space Application
+
+No sysfs impact. The user only needs to provide the signed firmware image
+instead of the ELF image.
+
+
+For more information about the implementation, a presentation is available here
+(note that the format of the signed image has evolved between the presentation
+and the integration in OP-TEE).
+
+https://resources.linaro.org/en/resource/6c5bGvZwUAjX56fvxthxds
+
+Arnaud Pouliquen (7):
+  remoteproc: core: Introduce rproc_pa_to_va helper
+  remoteproc: Add TEE support
+  remoteproc: core: Refactor resource table cleanup into
+    rproc_release_fw
+  remoteproc: Introduce release_fw optional operation
+  dt-bindings: remoteproc: Add compatibility for TEE support
+  remoteproc: stm32: Create sub-functions to request shutdown and
+    release
+  remoteproc: stm32: Add support of an OP-TEE TA to load the firmware
+
+ .../bindings/remoteproc/st,stm32-rproc.yaml   |  58 +-
+ drivers/remoteproc/Kconfig                    |  10 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/remoteproc_core.c          |  72 ++-
+ drivers/remoteproc/remoteproc_tee.c           | 506 ++++++++++++++++++
+ drivers/remoteproc/stm32_rproc.c              | 145 +++--
+ include/linux/remoteproc.h                    |   8 +
+ include/linux/remoteproc_tee.h                | 107 ++++
+ 8 files changed, 852 insertions(+), 55 deletions(-)
+ create mode 100644 drivers/remoteproc/remoteproc_tee.c
+ create mode 100644 include/linux/remoteproc_tee.h
+
+
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
 -- 
-Neil
+2.25.1
 
 
