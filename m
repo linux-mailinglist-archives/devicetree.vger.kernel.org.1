@@ -1,152 +1,188 @@
-Return-Path: <devicetree+bounces-109407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 237E2996548
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:26:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F8B996550
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:28:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CEE221F26C5E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:26:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EF531C209DD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:28:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A27918A92C;
-	Wed,  9 Oct 2024 09:25:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="j0Px2J4s"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8347218A92C;
+	Wed,  9 Oct 2024 09:28:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5A76188906;
-	Wed,  9 Oct 2024 09:25:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42937189B9D;
+	Wed,  9 Oct 2024 09:28:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728465945; cv=none; b=ZlQ/6iapJt9A3IzNuPJzURH3sBbFTpgSWmrPboeFwid7A3r1aARp/vqZJb1MGl25kYkys0TgZ9m6g3E9n5j/kKKwzBH/QqVj4AHIvPTptdUKXT8RqbU2GNH+P97T1dK2MUVVTMFBZbfruj+StBzLME52F7vtxsyl7VUA4UgjJGA=
+	t=1728466102; cv=none; b=ZZdOr/Iq/NcenjkClGjjH8FRmYtD3r63uV2aUvW/A8yNX2vzHq8tSmfmWkqTai8rcyLG+BtrJNrM0a/CGquNOH0fpcqI4CtQMP905YoQWBUYLZD3Pj6AXHBbl2Y5MUkSsyvSSKkon/j3y0TRlTfzfUCv/pVUm6jKM/5wPV6STzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728465945; c=relaxed/simple;
-	bh=8Rm3CqIaUH04nch4KNzaX9ksWJukZum7GopzBindC+I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GidQOTwEctSLipBG3b2e1u/Ph5gag7ngS1xRY7QT5uX3Kti3g2fNsXGyluD1Ao2yKEUCFJy3Tk6YY+/BAP+fNpn9EIdx59+TElxVi/9cfiTjS0ca3z0GoStI1/u4f/xLNFNkx2h/bbufNFut6Q2Od5YGPYuxW/NrFDa1mlMNyE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=j0Px2J4s; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 4996OLCc029436;
-	Wed, 9 Oct 2024 09:25:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	LD7A2pwBFdoyVPG2zETKNHHhWYtem0o4ej8s3AoD1fw=; b=j0Px2J4s0VOf4+Mq
-	hn0FlXUn1lvFQarYpMBwPwik6AJYnXjUjQF8TYA8QSXMPar/iZYLLyKtr6GehDfh
-	inoT8+7HtZItxUEGKtk1t+lXpuFSfH8sXKpRtGlnQ4eqGJf+dc4qgk2D8QPcNw6R
-	HJ4SupAZJfn/eRwiNHH7U5/TVc0lBoNcNPbn6BFvewW+SVAbhrc72Op5tOEUHyPz
-	EfsfBEBQKOp85Ob6rKZUDPe6iO3S26vHB/5r95EDrTknSuUgob6tU6+xccb6x/D8
-	NzSlXxSEx6jNg/6wnIMicXkk0RAbNYUH4i6LihNO+MUjm3gsagHtbUWcoV05EG6Q
-	vqvmFQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424yj041pm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 09:25:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4999PTN4025307
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 09:25:29 GMT
-Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
- 02:25:25 -0700
-Message-ID: <bbeccf0d-b98b-41f7-b910-b3ec07d1e069@quicinc.com>
-Date: Wed, 9 Oct 2024 17:25:22 +0800
+	s=arc-20240116; t=1728466102; c=relaxed/simple;
+	bh=3uH0VHQ5FbfEU6U+DIwCrLir1cI06f1Nwd6HjQO06xc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VWb+d93DL7KPfsnat6A9MDzoy9eyV/7OZeG2zdljBUFWoSfJtrEEL1C3a7QK0EQKQni0xkqnOOX7k1LUkOWSxyOtdj96S6R03qm1yGGZTpK7V5f7HhhkJEnaucLDNy+1vcvG7afdB80MvATerALetNZVYfB2wxZl8LFOtg2sr38=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6dde476d3dfso53403027b3.3;
+        Wed, 09 Oct 2024 02:28:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728466098; x=1729070898;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=K2aKKIBJN+fcgMd4SG9SyuTgYPFz3/hZQ2vaXaYBN9Y=;
+        b=AusfVUV6i4vaAArcHqJsYBY3mvtB+2+3x+P8zLNVT8TilslC4xS5cC0n2XBV+SFQ2T
+         EdYgD+gSUqtSuZxpG6Kx8SLCK9RLmJ7knezp/iruZNY3D8QBGoEm0MbZGE0hMB9izT1e
+         Hgfa+bEDXnckbPMQiW6VvUsny1GJPwKqWxK8j0e7EWPVsWCkYMBH5FggGUml/d4ltbPm
+         Kpmmo/ISo1ChiH6XtJSBViQxtY0A2DRslX31BxuYebTIB1eah5k9fc6f6pbKp/MvSbKN
+         WRyzIGzcB433lUlx8SLgzyteHb0GpkN5SjXjnMOBktU2FPhBmqWMlAYxljFwEhNoB/wE
+         r2JA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3IMA5JzjA+DnK7XTv46blvBWOzmdBRrqd1MmPUA3F2pxtI9ug+9ByjeVs7NnINi6Adf7tyTcRgp7l@vger.kernel.org, AJvYcCVY3A8M+zI5tVEO/2PQxT3VkdCJDaAPCuEDyLI7uHzz2CUIHC/C4wic3KUpBdkh8JbqCD582TlD17KUXImLcUyeXVM=@vger.kernel.org, AJvYcCXlfMRQHl+aRqnPZiK9TIL+UsXACrycCebOKmXMs9jCVA7lnal/J4cnoO9T84ObVR5dolg99e6IfpQlLCR5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4jkyblgKuTSwsAZlm0oXRAeWXUWyxH7dF+KLCUFrCjXDkPoJx
+	GKp/Pn0m+vqcLj9hqijCrSGXAzCT9msmjexjaFcCG4KleGbulk2XJ1YDfUHm
+X-Google-Smtp-Source: AGHT+IGwIN0KgjdXBRIUnow8+1heDS02mBfKjHKUuLUK/UOv5Zme7olUq6bkJ0wI+qmPgqskmxft5A==
+X-Received: by 2002:a05:690c:399:b0:6e2:71b:150 with SMTP id 00721157ae682-6e3221a1695mr15829927b3.29.1728466098234;
+        Wed, 09 Oct 2024 02:28:18 -0700 (PDT)
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e32b55ad9dsm266297b3.98.2024.10.09.02.28.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Oct 2024 02:28:17 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6dde476d3dfso53402747b3.3;
+        Wed, 09 Oct 2024 02:28:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWTRq62LQzK82rHDL3z7M7ZXZ5sbLU+KYURtqU0Evh+iOJAu6Dooxjq6r5fcCVI7PrpHYXoLCGVkGOkZY/Va0ely2M=@vger.kernel.org, AJvYcCWoYhm7IbHwSkTrjwuOWb1kHO9LzeJFCxpeRQWMUbbTD2kfGUWTvupQizKHHbaeCS65SIlVV/thZ1m5Ip0e@vger.kernel.org, AJvYcCWs24KcHeMCk2LHo2vr/th014Vbsktt++vlekDwUS+US3QFyiFF6T6Htl42otzu4kD1rlW4KqBM+XVt@vger.kernel.org
+X-Received: by 2002:a05:690c:f06:b0:6e3:1f02:4069 with SMTP id
+ 00721157ae682-6e322133df8mr20738077b3.7.1728466097482; Wed, 09 Oct 2024
+ 02:28:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 0/3] coresight: Add static trace id support
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Alexander Shishkin
-	<alexander.shishkin@linux.intel.com>
-CC: <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>
-References: <20240910100127.8948-1-quic_jinlmao@quicinc.com>
-Content-Language: en-US
-From: Jinlong Mao <quic_jinlmao@quicinc.com>
-In-Reply-To: <20240910100127.8948-1-quic_jinlmao@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: AKMSlgSoWUfbAhzhaxD5D6vrjZYcJO2d
-X-Proofpoint-ORIG-GUID: AKMSlgSoWUfbAhzhaxD5D6vrjZYcJO2d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- bulkscore=0 mlxlogscore=999 mlxscore=0 adultscore=0 clxscore=1011
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090062
+References: <20241008164935.335043-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <TY3PR01MB11346A1726BCE1687C6AFF519867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <TY3PR01MB113469ABB6393E0A6451034A4867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <CA+V-a8vWpUmq9esgcnjWVcPb-jUaLuKvhJF2VwiWrCx5_nOtww@mail.gmail.com>
+In-Reply-To: <CA+V-a8vWpUmq9esgcnjWVcPb-jUaLuKvhJF2VwiWrCx5_nOtww@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 9 Oct 2024 11:28:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdULuCWd1V0Az=NWHhSb7voDKbTo9rp3Excntp7qvTbbuQ@mail.gmail.com>
+Message-ID: <CAMuHMdULuCWd1V0Az=NWHhSb7voDKbTo9rp3Excntp7qvTbbuQ@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Prabhakar,
 
+On Tue, Oct 8, 2024 at 10:10=E2=80=AFPM Lad, Prabhakar
+<prabhakar.csengg@gmail.com> wrote:
+> On Tue, Oct 8, 2024 at 6:33=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.c=
+om> wrote:
+> > > From: Biju Das <biju.das.jz@bp.renesas.com>
+> > > > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > >
+> > > > Add OPP table for RZ/V2H(P) SoC.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
+om>
+> > > > ---
+> > > > v1->v2
+> > > > - Set opp-microvolt to 800000 for frequencies below 1.1GHz
+> > > > ---
+> > > >  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 41 ++++++++++++++++++=
+++++
+> > > >  1 file changed, 41 insertions(+)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm6=
+4/boot/dts/renesas/r9a09g057.dtsi
+> > > > index 1ad5a1b6917f..4bbe75b81f54 100644
+> > > > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > > > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
+> > > > @@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
+> > > >             clock-frequency =3D <0>;
+> > > >     };
+> > > >
+> > > > +   /*
+> > > > +    * The default cluster table is based on the assumption that th=
+e PLLCA55 clock
+> > > > +    * frequency is set to 1.7GHz. The PLLCA55 clock frequency can =
+be set to
+> > > > +    * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and add=
+itionally can be
+> > > > +    * clocked to 1.8GHz as well). The table below should be overri=
+dden in the board
+> > > > +    * DTS based on the PLLCA55 clock frequency.
+> > > > +    */
+> > > > +   cluster0_opp: opp-table-0 {
+> > > > +           compatible =3D "operating-points-v2";
+> > > > +
+> > > > +           opp-1700000000 {
+> > > > +                   opp-hz =3D /bits/ 64 <1700000000>;
+> > > > +                   opp-microvolt =3D <900000>;
+> > >
+> > > Not sure CA-55 can change voltage from 800mV to 900mV??
+> > > Based on Power Domain Control, it needs to be in AWO mode for changin=
+g the PD_CA55 voltage.
+> > >
+> > > The manual says OD voltage is 0.9V and ND voltage is 0.8V.
+> > >
+> > > Is 1.7GHZ is ND or OD?
+> >
+> > {1.7,1.6,1.5 GHz} is enabled when VDD09_CA55 is at 0.9 V
+> > and for 1.1 GHz it is 0.8V.
+> >
+> > Maybe when you do /2, /4, /8 using dividers, the voltage may be still
+> > the same??
+> >
+> I think you are right when BOOTPLLCA[1:0] pins are set to 1.7GHz the
+> VDD09_CA55 is at 0.9 V, further dividing the clock shouldnt affect the
+> voltage levels at the PMIC output.
+>
+> Geert, please let me know if my understanding is incorrect.
 
-On 2024/9/10 18:01, Mao Jinlong wrote:
-> Some HW has static trace id which cannot be changed via
-> software programming. For this case, configure the trace id
-> in device tree with "arm,static-trace-id = <xxx>", and
-> call coresight_trace_id_get_static_system_id with the trace id value
-> in device probe function. The id will be reserved for the HW
-> all the time if the device is probed.
-> 
-> Changes since V3:
-> 1. Adda new API function
-> int coresight_trace_id_get_system_static_id(int trace_id).
-> 2. Use the term "static trace id" for these devices where
-> the hardware sets a non-programmable trace ID.
-> 
-> Changes since V2:
-> 1. Change "trace-id" to "arm,trace-id".
-> 2. Add trace id flag for getting preferred id or ODD id.
-> 
-> Changes since V1:
-> 1. Add argument to coresight_trace_id_get_system_id for preferred id
-> instead of adding new function coresight_trace_id_reserve_system_id.
-> 2. Add constraint to trace-id in dt-binding file.
-> 
-> Mao Jinlong (3):
->    dt-bindings: arm: Add arm,trace-id for coresight dummy source
->    coresight: Add support to get static id for system trace sources
->    coresight: dummy: Add static trace id support for dummy source
-> 
->   .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
->   .../arm/arm,coresight-dummy-source.yaml       |  6 ++
->   drivers/hwtracing/coresight/coresight-dummy.c | 59 +++++++++++++++++--
->   .../hwtracing/coresight/coresight-platform.c  | 26 ++++++++
->   .../hwtracing/coresight/coresight-trace-id.c  | 38 ++++++++----
->   .../hwtracing/coresight/coresight-trace-id.h  |  9 +++
->   include/linux/coresight.h                     |  1 +
->   7 files changed, 140 insertions(+), 14 deletions(-)
->   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+The actual VDD09_CA55 voltage is controlled by the external PMIC
+(RAA215300).  It is the responsibility of the system designer to make
+sure VDD09_CA55 is at 0.9V when BOOTPLLCA[1:0] is strapped for OD,
+as CPU core clock rates higher than 1.1 GHz need a higher core voltage.
+I don't think it hurts to supply the higher core voltage while
+running the CPU core at low core frequencies, except for extra power
+consumption.
 
-Hi Reviewers,
+To control VDD09_CA55 dynamically, the CPU cores should have cpu-supply
+properties pointing to the regulator controlling it (raa215300).
+I haven't checked how Linux behaves when no cpu-supply property is
+present, or when it points to a fixed regulator.
 
-Gentle remainder for the review.
+I am also wondering if other opps (1.1/1.5/1.6/1.8 GHz) should be
+added, too?  And probably any opp above 1.1GHz opp should be tagged with
+"turbo-mode"?
 
-Thanks
-Jinlong Mao
+Gr{oetje,eeting}s,
 
-> 
+                        Geert
 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
