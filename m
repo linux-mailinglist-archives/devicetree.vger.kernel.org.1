@@ -1,269 +1,148 @@
-Return-Path: <devicetree+bounces-109371-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109372-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8EDD996388
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:47:34 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF3A4996391
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:48:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC9071C2134A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:47:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F172B262A9
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:48:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A746F18A948;
-	Wed,  9 Oct 2024 08:39:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01B118BB97;
+	Wed,  9 Oct 2024 08:42:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="t5W20TBR"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="N3MsA3xX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCFFD18A6A3;
-	Wed,  9 Oct 2024 08:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A316D1891A8
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 08:42:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728463177; cv=none; b=ooRnmEfzmG7ug4YzL4JicP9TwQiewUT1OPgTJQK6vfp6VI7mRDiPZPTp/r8y0zPAMG37hcTnOuR55JeWzKmagY3q++9aG96a/3Bc90z7SlUCv9v23g2cXzfm7I2leSl73D4lJDtLLcUJz0MkJnA9OqebahRvBVp7NCVOQp6R5lk=
+	t=1728463366; cv=none; b=asAskxRovnFKbpPOGw99aOJ6Ye5uE+NhcUnHgOtotfxNwjYsx4YM6UYxo1N4FsGUD/5z6u+sGg3doxFxYCoWMr6+2BehaD794Ekvqbh/XBqlGesRdJRlzyY1hogpfmI1Nx59vdm+8gbWcbyn1lkFKVIvaHLlCSUes+HfH3yNcbM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728463177; c=relaxed/simple;
-	bh=dSbta17hSoAG7yd4UayGUHCC1Bkg/IBUtpzJ5u/8oBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XurXd396yd59H1rNKq7cIkwvhuUxeH3nc1TYC48M55/N2llEiKdQqV1F8fjWb6MFXl5qV2Moju/CwxyA58V8Npag48ofmQuzvSaOOMPD64Rssj6n5rBaO9H/pbjGvkKkWykUG0jKDJPhC9DYh/a96UPHc/1pz8loPKPELl14/QM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=t5W20TBR; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 001a3916861a11ef88ecadb115cee93b-20241009
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=vn8tEkGuRtMHF0tlfEZ8QyLNGegxpb21cpoM4gTfZRI=;
-	b=t5W20TBR4Bs0NOmarixuKBTt5N/bD/VpG0DQjOfOmawGgL5SSOtF7Dxv2CpLC8fuDAGc21fdbCuKBnQJ0YKIUO9AlTrtc+YpLa0TD6p+q4EuHDg8MNki9jese+uIjILEQBkEBOuhRda0fQ6uXGso6pb3RsEINW26QObtW3qkseg=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.41,REQID:8e41a18c-e275-4304-b881-602f6cd4a15d,IP:0,U
-	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:0
-X-CID-META: VersionHash:6dc6a47,CLOUDID:b1688726-5902-4533-af4f-d0904aa89b3c,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
-	l,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 001a3916861a11ef88ecadb115cee93b-20241009
-Received: from mtkmbs09n1.mediatek.inc [(172.21.101.35)] by mailgw01.mediatek.com
-	(envelope-from <macpaul.lin@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1674189266; Wed, 09 Oct 2024 16:39:30 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 9 Oct 2024 16:39:28 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n2.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
- Transport; Wed, 9 Oct 2024 16:39:28 +0800
-Message-ID: <95e29964-8932-19cb-f812-db516e90b889@mediatek.com>
-Date: Wed, 9 Oct 2024 16:39:24 +0800
+	s=arc-20240116; t=1728463366; c=relaxed/simple;
+	bh=XhJiHPGo1+eCnZwKrwKtZoj+qGtS2ActqBF7GqOTjZQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tXk385DgHv+9qn43EnJ/TP4STrIUbtJSf8OOU2Qs/jQe+4nDzZGRFLnwc3TpyvJy7cQeK/SHeqANdaQABkHF68eVWw0IXKjiSrbLQrDOKCiTTx1qCoUzaKs4wBxIdPj19e09eNLREkA9D8BdmACcLTh75npxSdVYJcaqgLSVg3g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=N3MsA3xX; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9943897c07so555145566b.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 01:42:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=tuxon.dev; s=google; t=1728463363; x=1729068163; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=NCo1GlPGMO9qRjYk6NqblAPH+ivDBMcmdikYhCEoAX0=;
+        b=N3MsA3xXYhA8BGicfckJzTKfIILQJylZFKBHAuYRpUMZCEwA/MGo1xlfMjbYrppwMZ
+         1ABbNIaLsfWy+n8Jmcp8wGFMp3p0uj+e1t3wYhI4qL9QNlpICl5LZX23lNnVkMmbaHBv
+         DEp/Ve+HON0bMnYDM8TZ1DjHpQ9m3QPEuyubq4S6VFwJ1cWDVuFZc2s02I1dWMgjGU0D
+         i6gu7v4tWYpiAjOym8BXENecX5/8vPT46O4acX3v8gMjc51e0O2rc5avmUq9JgCtisGp
+         lrggl7V+vqye8HtVY5xMd67EFvelC/sNNaMhrfo/TW+jzqv8cJhyNmH606Mqlv595Z+q
+         xSGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728463363; x=1729068163;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=NCo1GlPGMO9qRjYk6NqblAPH+ivDBMcmdikYhCEoAX0=;
+        b=Kfwfwjp2sGqQrXPdMFXDO64sxARZK53lyadZEwNIGb6hi3B0emBGm4y6cedmchGEIx
+         8ejxXNULAPUqRmshCkA4/YStz8Ndcevsob1AgZoKSUXH8PBocwDKN2WKlZ0I7rhMOxSr
+         +zoS4VTfpNerVRH594SzaFZdH/DzmAbmh5jOWYjlSsn881buTNAuOEQjXBWiTFKB/YtL
+         amElwSSIc1dTYFSg7tXvruJpGrdh2jiep3YA6YpPYczzyvC5sbChIHAPQeSIAMd6PgHD
+         9Uiu0H8w+J6VcSOK/G2e3d5RyPhr5dRLqF5ndI6zF2cnuwLNI1XOqgdLqQW42dghGZ44
+         GCRw==
+X-Forwarded-Encrypted: i=1; AJvYcCXzekR3CcWSFidam0JWuhKoPlN7UcRkulw2NSf/8w+PdaUayutSXOKgFdp2rtLEOTJN2obNRXLKruxR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1porNPRM1fwBAtINSSTlfmbNM3h44BvMYoT/mcmpQbhL2D3NB
+	wMPJCD4tKwWAQleKETABJOsRFUx1eepYjsdgRe2ISIwCp8ljWojdWQQptTfHVLA=
+X-Google-Smtp-Source: AGHT+IH65Py6ZoVFXJXAzrfoxCpg11Zu8PXx18r+jrhrvKhS9cBYCLJYMJJAgnToJzsiU/Uro8/0AA==
+X-Received: by 2002:a17:906:6a05:b0:a77:c95e:9b1c with SMTP id a640c23a62f3a-a998d1f6694mr148213966b.27.1728463363024;
+        Wed, 09 Oct 2024 01:42:43 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.23])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9957c683d1sm365002866b.203.2024.10.09.01.42.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Oct 2024 01:42:42 -0700 (PDT)
+Message-ID: <cbb9d3ab-ed61-43f6-aca1-8d35316c4ff6@tuxon.dev>
+Date: Wed, 9 Oct 2024 11:42:40 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [PATCH v2 2/2] arm64: dts: mediatek: mt8390-genio-700-evk: add
- keys and USB HUB
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 15/16] arm64: dts: renesas: rzg3s-smarc: Enable USB
+ support
 Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Rob
- Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
- Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	Alexandre Mergnat <amergnat@baylibre.com>
-CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
-	Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, "Chris-qj
- chen" <chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
-	<wenst@chromium.org>
-References: <20241007090244.1731-1-macpaul.lin@mediatek.com>
- <20241007090244.1731-2-macpaul.lin@mediatek.com>
- <8cdce399-1f42-4558-9cdb-c36b96205212@collabora.com>
-From: Macpaul Lin <macpaul.lin@mediatek.com>
-In-Reply-To: <8cdce399-1f42-4558-9cdb-c36b96205212@collabora.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, p.zabel@pengutronix.de, magnus.damm@gmail.com,
+ gregkh@linuxfoundation.org, mturquette@baylibre.com, sboyd@kernel.org,
+ yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com,
+ ulf.hansson@linaro.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+ linux-pm@vger.kernel.org, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+References: <20240822152801.602318-1-claudiu.beznea.uj@bp.renesas.com>
+ <20240822152801.602318-16-claudiu.beznea.uj@bp.renesas.com>
+ <CAMuHMdXbNRO--0ZGO4owi3At5n1dTMMWo4PTaubyNWEkVnPFFA@mail.gmail.com>
+From: claudiu beznea <claudiu.beznea@tuxon.dev>
+In-Reply-To: <CAMuHMdXbNRO--0ZGO4owi3At5n1dTMMWo4PTaubyNWEkVnPFFA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--15.507200-8.000000
-X-TMASE-MatchedRID: 1GZI+iG+MtcNtKv7cnNXnSa1MaKuob8PofZV/2Xa0cLBs8kDsMW7w9j3
-	ZmXrgmMgjwYPH9x94AlRJr0x5pq5roNNUcsMbelEbBu6+EIezdwXGEjE96ler99RlPzeVuQQlwW
-	f7/4SyDulL6ml/horeewFAXG5XM8DyU5XnWcIgDPhuXUWQoMQt77VXHusOfivFLXUWU5hGiH8Z6
-	9+gfjbulzsna8FWSVpW1nyZ73XgFcaAgQzCMe24Qs9VkfCh3uAQKuv8uQBDjohvFjBsLEZNNfpf
-	O5YhTb3EGriuommA29Uz7QIBqLdbduz/TmKWd6abajVAc2DKqa4hAMe708bDhPuWwH3mlrqA5He
-	1kDS+OLnzlXMYw4XMAGLeSok4rrZC24oEZ6SpSkj80Za3RRg8OTE7AvI+717DsePfxQaxS5tDwQ
-	X/T3LMgsQeNnCo+C/oloOgBiKq/U=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--15.507200-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 0CEDD76DD3F0A1570982FFD2F507549A12C2E622B9C4CAD2B27D6E2F7E860BA42000:8
 
+Hi, Geert,
 
-
-On 10/8/24 16:20, AngeloGioacchino Del Regno wrote:
-> Il 07/10/24 11:02, Macpaul Lin ha scritto:
->> 1. Add i2c, mmc to aliases.
->> 4. Add PMIC_KEY setting.
->> 5. Add USB HUB TUSB8020 to xhci1.
->> 6. Re-order spi2 node.
+On 08.10.2024 18:16, Geert Uytterhoeven wrote:
+> Hi Claudiu,
 > 
-> Please either add the aliases in a different commit, or add that to the 
-> title.
-> 
-> arm64: dts: mediatek: mt8390-genio-700-evk: Add aliases, keys and USB HUB
-> 
-> Additionally, I'd really like to see a "conversation-like" description 
-> instead
-> of a kind-of-checkbox list.
-> 
-> Something like..
-> 
-> "
-> Add aliases for the I2C and MMC/SD controllers to keep the numbering 
-> consistent and
-> describe the TUSB8020 hub present on the USB XHCI1 controller instance 
-> to enable
-> resetting it with its specific reset GPIO.
-> 
-> While at it, also move the spi2 node to keep nodes alphabetically ordered.
-> "
-
-Okay, Sorry for providing incorrect order of modified and added items.
-I'll update in the next patch.
-
+> On Thu, Aug 22, 2024 at 5:28 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
+>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 >>
->> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
->> ---
->>   .../dts/mediatek/mt8390-genio-700-evk.dts     | 57 +++++++++++++++----
->>   1 file changed, 47 insertions(+), 10 deletions(-)
+>> Enable USB support (host, device, USB PHYs and sysc).
 >>
->> Changes for v2:
->>   - Fix order of spi2.
->>   - Update pinctrl in i2c4 and rt1715.
->>   - Drop IT5205 and RT1715 nodes since the DTS are not completed yet.
->>   - Add #address-cells and #size-cells to xhci1 for supporting USB hubs.
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts 
->> b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->> index 96b272567cb1..3e77f59f2c74 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->> +++ b/arch/arm64/boot/dts/mediatek/mt8390-genio-700-evk.dts
->> @@ -23,6 +23,15 @@ / {
->>                "mediatek,mt8188";
->>       aliases {
->> +        i2c0 = &i2c0;
->> +        i2c1 = &i2c1;
->> +        i2c2 = &i2c2;
->> +        i2c3 = &i2c3;
->> +        i2c4 = &i2c4;
->> +        i2c5 = &i2c5;
->> +        i2c6 = &i2c6;
->> +        mmc0 = &mmc0;
->> +        mmc1 = &mmc1;
->>           serial0 = &uart0;
->>       };
->> @@ -249,7 +258,6 @@ &i2c3 {
->>   &i2c4 {
->>       pinctrl-names = "default";
->>       pinctrl-0 = <&i2c4_pins>;
->> -    pinctrl-1 = <&rt1715_int_pins>;
+>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > 
-> What is this extra change?
-> Please describe it in the commit description.
-
-okay, I'll fix this.
-
->>       clock-frequency = <1000000>;
->>       status = "okay";
->>   };
->> @@ -867,6 +875,17 @@ pins-wifi-enable {
->>   &pmic {
->>       interrupt-parent = <&pio>;
->>       interrupts = <222 IRQ_TYPE_LEVEL_HIGH>;
+> Thanks for your patch!
+> 
+>> --- a/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>> +++ b/arch/arm64/boot/dts/renesas/rzg3s-smarc.dtsi
+>> @@ -144,3 +188,20 @@ &sdhi1 {
+>>         max-frequency = <125000000>;
+>>         status = "okay";
+>>  };
 >> +
->> +    mt6359keys: keys {
-> 
-> Is there any reason why we can't just put this node in mt6359.dtsi?
-
-That's a good point.
-I think I can try to add this in a separate patch for mt6359.dtsi.
-
-> Cheers,
-> Angelo
-> 
->> +        compatible = "mediatek,mt6359-keys";
->> +        mediatek,long-press-mode = <1>;
->> +        power-off-time-sec = <0>;
->> +
->> +        power-key {
->> +            linux,keycodes = <KEY_POWER>;
->> +            wakeup-source;
->> +        };
->> +    };
->>   };
->>   &scp {
->> @@ -874,6 +893,15 @@ &scp {
->>       status = "okay";
->>   };
->> +&spi2 {
->> +    pinctrl-0 = <&spi2_pins>;
->> +    pinctrl-names = "default";
->> +    mediatek,pad-select = <0>;
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +    status = "okay";
+>> +&sysc {
+>> +       status = "okay";
 >> +};
 >> +
->>   &uart0 {
->>       pinctrl-0 = <&uart0_pins>;
->>       pinctrl-names = "default";
->> @@ -892,15 +920,6 @@ &uart2 {
->>       status = "okay";
->>   };
->> -&spi2 {
->> -    pinctrl-0 = <&spi2_pins>;
->> -    pinctrl-names = "default";
->> -    mediatek,pad-select = <0>;
->> -    #address-cells = <1>;
->> -    #size-cells = <0>;
->> -    status = "okay";
->> -};
->> -
->>   &u3phy0 {
->>       status = "okay";
->>   };
->> @@ -921,6 +940,24 @@ &xhci0 {
->>   &xhci1 {
->>       status = "okay";
->>       vusb33-supply = <&mt6359_vusb_ldo_reg>;
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +
->> +    hub_2_0: hub@1 {
->> +        compatible = "usb451,8025";
->> +        reg = <1>;
->> +        peer-hub = <&hub_3_0>;
->> +        reset-gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
->> +        vdd-supply = <&usb_hub_fixed_3v3>;
->> +    };
->> +
->> +    hub_3_0: hub@2 {
->> +        compatible = "usb451,8027";
->> +        reg = <2>;
->> +        peer-hub = <&hub_2_0>;
->> +        reset-gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
->> +        vdd-supply = <&usb_hub_fixed_3v3>;
->> +    };
->>   };
->>   &xhci2 {
 > 
+> To avoid regressions (/sys/devices/soc0/ disappearing), enabling sysc
+> is a dependency for "[PATCH 05/16] soc: renesas: sysc: Move RZ/G3S
+> SoC detection on SYSC driver", so I think it makes sense to change
+> its status to "okay" in r9a08g045.dtsi instead, and spin that off into
+> its own patch. 
 
-Thanks
-Macpaul Lin
+Good point! I'll add the dtsi changes into "[PATCH 05/16] soc: renesas:
+sysc: Move RZ/G3S SoC detection on SYSC driver".
+
+Thank you,
+Claudiu Beznea
+
+ I am not super-worried, so doing the driver and DTS
+> changes in separate patches should be fine, as long as they meet each
+> other in next or upstream.
+> 
+> The rest LGTM.
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
 
