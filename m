@@ -1,88 +1,91 @@
-Return-Path: <devicetree+bounces-109639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109640-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F28E997746
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0E0997757
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:17:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEA171C2148C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:12:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D97BA1C21762
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:17:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 124C91E2305;
-	Wed,  9 Oct 2024 21:11:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8A481E1A0A;
+	Wed,  9 Oct 2024 21:17:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QqEfWuoS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eFEuVeCv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC4DE1E22F5;
-	Wed,  9 Oct 2024 21:11:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6B342119;
+	Wed,  9 Oct 2024 21:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728508317; cv=none; b=eHPKppTh4OiTZUaAkm74G9mzdm4QljRXr/kIMUIimFUaucvNM9HlU4D3Q+giQkIgvpiEjxlUbdmI5XM0mx2L5Kv7v3LdXBPpfBrCBrf0Hj0KLudbSADQSKw/NoWL8EpBKTEKRjQS68scM+8HUNayHqNjuqJMcY/kikZCVdJ46Q0=
+	t=1728508623; cv=none; b=pOAfgwRhc9IaSFkykqHUFPKuU5YhNW+X7gnU1X7G1ofdy/zgfBQuhbny5z3wewjPMfTLg0zlibSP171MHDmgDpgVvg34YwDKvc2hzieP7743x+kzeJttPC2ZvXqA/+4w6utzEy+Q+NJ9t41Gmp7pnhIrHa+jYcBSw2LMKUm4MX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728508317; c=relaxed/simple;
-	bh=SSEHLLE9E7vCAzBWkV5vZ6fQtopJqQEGP1MH9fioIJ4=;
+	s=arc-20240116; t=1728508623; c=relaxed/simple;
+	bh=6uPEEux9dVSbfdFsuNQDuMdavJdAA8IW6x6/6G4B9Mc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OpwuIaqULjirR1sxeXAT75bgRRopdEy1lTjllqidPtvyzA2UYxiImnt+NVCKM43FlsJ5iva9q/uOtsAOr6nJd4/WG2T/6OPEsZl3DCJyFqYuO/JE5j5wifSK/zFU4GBY8y0jmMA6eKrHy26++bx1w2NxfzIV/MLTrWBBeF69NRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QqEfWuoS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48074C4CECF;
-	Wed,  9 Oct 2024 21:11:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=snpDtHpY4C4tc3zy0qCOxAXpJUHgFn09E+JSsjWceKVBLzoqEuhM6fr7sfLzQHSXNbAp1ADD1AU33lYlj37RNaOgm8si5zFc4pVcKGhW2mVE82ujolnlQd9jr5mQFzSUf/iopT7bkC/dHZMJTswvoSt41vJbD5S6gsu+zzVz3ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eFEuVeCv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BDCCC4CEC3;
+	Wed,  9 Oct 2024 21:17:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728508316;
-	bh=SSEHLLE9E7vCAzBWkV5vZ6fQtopJqQEGP1MH9fioIJ4=;
+	s=k20201202; t=1728508622;
+	bh=6uPEEux9dVSbfdFsuNQDuMdavJdAA8IW6x6/6G4B9Mc=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QqEfWuoSbjpD7q/yfTNvMzFWbN7EgjwvBzidkvuR6WELzolAiEBPs0nZpdf3cQWbW
-	 NE35cdHPa3g7z9OS0929vwYCJRX01TCN1qB8umPozVVq8HYYqy25USqcLhKB1BBFlH
-	 dxJkozOhcd77iFgxjzVcXOaZTcMA9F5OpFjbIFjR6OPSRHX7v/Ej1c4y0b4NC91kIC
-	 3TnJRtL0b1gBtWoYKkHpeK7Cx02hGHsvegVQYyQMVErTdRYArKRzfYqFFCXXyJq+3X
-	 Cz014B7os5WuCtVTWojRYoV+c27Sq9VCmC98h/fWAofz6KKGzca4ztL7ZMgcATadtY
-	 boWcoV5VjxVZQ==
-Date: Wed, 9 Oct 2024 16:11:55 -0500
+	b=eFEuVeCvmpscAH9jE0r84dyBT3N9IGMdelQ8e/jtsrSXeFsoqbbzIOz8p2GQZAfGM
+	 +i6di23xnM9jglRaD7KUQbQeXI7qR5OsthAzItogxLRv2b7e6710y0caE56xW1ZVH0
+	 7iG8+9x9VfPjIiWx59tK/roTgWpFGV3gSNm6HhEM01ix08NgP2vomqkIxIWB4STgqq
+	 hYDhNZerO24hn34UYLRJz9aGZr5oraifVFsWeyuik/U4RbKRP7baoepHG+ODfVLQvf
+	 xtnk3va854z+Ye43Wv2/iqGK1FyyNXwuNGucJMRXhL+SwtDTlLltTrHm3fVYmxbNTa
+	 b1n8sSYTG4hvQ==
+Date: Wed, 9 Oct 2024 16:17:01 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: herbert@gondor.apana.org.au, linux-crypto@vger.kernel.org,
-	Fabio Estevam <festevam@denx.de>, olivia@selenic.com,
-	krzk+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: imx-rng: Allow passing only "fsl,imx31-rnga"
-Message-ID: <172850831492.720293.5604676857893121245.robh@kernel.org>
-References: <20241009125144.560941-1-festevam@gmail.com>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: =?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-i2c@vger.kernel.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: i2c: nomadik: add
+ mobileye,eyeq6h-i2c bindings
+Message-ID: <172850862096.731062.11255027381297807098.robh@kernel.org>
+References: <20241009-mbly-i2c-v3-0-e7fd13bcf1c4@bootlin.com>
+ <20241009-mbly-i2c-v3-1-e7fd13bcf1c4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20241009125144.560941-1-festevam@gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241009-mbly-i2c-v3-1-e7fd13bcf1c4@bootlin.com>
 
 
-On Wed, 09 Oct 2024 09:51:44 -0300, Fabio Estevam wrote:
-> From: Fabio Estevam <festevam@denx.de>
+On Wed, 09 Oct 2024 16:01:07 +0200, Théo Lebrun wrote:
+> After EyeQ5, it is time for Mobileye EyeQ6H to reuse the Nomadik I2C
+> controller. Add a specific compatible because its HW integration is
+> slightly different from EyeQ5.
 > 
-> On imx31.dtsi the rng compatible string contains "fsl,imx31-rnga" only.
+> Do NOT add an example as it looks like EyeQ5 from a DT standpoint
+> (without the mobileye,olb property).
 > 
-> Adjust the binding to accept passing "fsl,imx31-rnga" only.
-> 
-> This fixes the following dt-schema warning:
-> 
-> imx31-lite.dtb: rng@53fb0000: compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['fsl,imx31-rnga'] is too short
-> 	'fsl,imx21-rnga' was expected
-> 	'fsl,imx25-rngb' was expected
-> 	'fsl,imx31-rnga' is not one of ['fsl,imx6sl-rngb', 'fsl,imx6sll-rngb', 'fsl,imx6ull-rngb']
-> 	'fsl,imx35-rngc' was expected
-> 
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/rng/imx-rng.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml | 11 ++++++-----
+>  1 file changed, 6 insertions(+), 5 deletions(-)
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
