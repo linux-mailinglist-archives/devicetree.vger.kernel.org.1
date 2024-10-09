@@ -1,121 +1,122 @@
-Return-Path: <devicetree+bounces-109598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B232899724E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 18:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EF6D997254
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 18:52:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B9E1B23CBA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:51:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEB8AB23F62
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:52:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B508F19CC3E;
-	Wed,  9 Oct 2024 16:50:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBEC4198E69;
+	Wed,  9 Oct 2024 16:52:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="T0CARoIV"
+	dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b="OQ+gFqKF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mxout3.routing.net (mxout3.routing.net [134.0.28.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACC21925A0;
-	Wed,  9 Oct 2024 16:50:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF8117E765;
+	Wed,  9 Oct 2024 16:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=134.0.28.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728492659; cv=none; b=C0/dorTgqQst9S61XD6gfLpBJ4kAfnXLGIR64pHUwNYg6aIn34Q4z/3byTEGTbQqQepTGG1RWdV9KJqVPiLBvBsfnjCuX+IzhWKAz1r2O+dnjKes7ikQM8mfcCIIkFScPhxImtQ5kTUX/tgLHbhK9o8J+zauhqhu838slc6X7Dw=
+	t=1728492765; cv=none; b=jqS/+TXnI4prybWgTEZyd32Tt7PganFOg3ZVKTdqaobDi/pLeMwCFZ4iO1LfyAiVq+Ag4gGEJwl6iMHSUuUpP/dndJZOxyn59zHKs4xO1uyWqJ+QUy6DAJvJzWZpaVwe7x/+fmv3qzUrnLIUhpVFFld1MNbtqEf+O81EDuylPJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728492659; c=relaxed/simple;
-	bh=gS4HMRH0q2TPHDpWTNcpjFiraeaB5hG2j7mBI3mqYek=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ICx7GAznLZLnLrYyN11j/yZ38u21B2imRQOniJiFFN0glBnbw8RN7Ks0lLFp+t5cCLrR8UnEEGEdJEqnAmJrblx9gcEgiruITdG7kZ2iHi/NgZewLLhbLu5BituBrOn5Q7aPEklHvPm+w5ri/WVk87306Z8fAyilfFlswLQnZJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=T0CARoIV; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=hoWN2VRIRjlyI3uHup5NKQ8PI2LmFRmGvM53PwKo3sE=; b=T0CARoIVEi+wmPCQlKiAP5ObQv
-	aQhFNjOoIsdPRfYZlVG4Ah58W38UJiTSG2l3Fo3nHP5itg0SttTqxDB7GScYW/dfknNi5Dxb6mzkt
-	gBGh7uSC+Mxq7l5BHBvDP6EBC5pHL7qVdCxyrbho5kQ8YTKf1X2Hkg3EoFq9SgO7qMIQLodSLN1GH
-	a7+tgwKcNb/L4MafL19ff7BftcQO1+Ewrn0iV4PjCvcIe7OfYsrGoPv3CXveCmUrylfl807c04CAC
-	YdH50yliHhUHVAxm1ypK5gAVslETHDAuziEZpu9YW2bTUHyo1ZXZHzCPxSJ+3YjSUy5DTZuiX9PLf
-	75ZY4ZZw==;
-Received: from i53875bf1.versanet.de ([83.135.91.241] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1syZtn-0006VZ-0H; Wed, 09 Oct 2024 18:50:55 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Lee Jones <lee@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: leds: Document "rc-feedback" trigger
-Date: Wed, 09 Oct 2024 18:50:54 +0200
-Message-ID: <23688435.6Emhk5qWAg@diego>
-In-Reply-To: <20241009144836.GA596552@google.com>
-References:
- <20241007205315.2477060-1-heiko@sntech.de>
- <20241009144836.GA596552@google.com>
+	s=arc-20240116; t=1728492765; c=relaxed/simple;
+	bh=b7Ps3bTMFX6klhLzpKmqv69HUnFie/ZwK482f7DSNv8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VKh3geDkV5RfsvPMdvVL1I4+YgclpvWgaVQg49inTwzyR9TT2TUx2amekDQfyZcDcc3XUYYRSTo5VIBDhHhZnj2mVD6WycvCRuuQtJhvZa+2RdKemcsdyVGtyc18C144i1z4Pj6nWzGCN1Y2BpT7315GgWLibvBCA2sJNO5nvVo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de; spf=pass smtp.mailfrom=fw-web.de; dkim=pass (1024-bit key) header.d=mailerdienst.de header.i=@mailerdienst.de header.b=OQ+gFqKF; arc=none smtp.client-ip=134.0.28.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=fw-web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fw-web.de
+Received: from mxbox4.masterlogin.de (unknown [192.168.10.79])
+	by mxout3.routing.net (Postfix) with ESMTP id 6D682616A2;
+	Wed,  9 Oct 2024 16:52:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailerdienst.de;
+	s=20200217; t=1728492754;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=UpGS3gTyhzjjSZbO4X6Vyyq4IACP8SWP3ZnkGETPtLk=;
+	b=OQ+gFqKFt8WwUNnxdIoSGv7v/PpLekziwmGcij40gQBc7yTtBy4GK+wqJZomr5vHHLewkk
+	Erdbl1b8e1c9n9UDQ4/ABCisTyyG/nzFIHpLoVx8AP5jfEs3nPfV0oO3d2ahTm5Mj6mkKo
+	RuckdCa8u18CVDZrtEg8QfHFi3XG0vg=
+Received: from frank-u24.. (fttx-pool-217.61.150.182.bambit.de [217.61.150.182])
+	by mxbox4.masterlogin.de (Postfix) with ESMTPSA id 54B628023D;
+	Wed,  9 Oct 2024 16:52:33 +0000 (UTC)
+From: Frank Wunderlich <linux@fw-web.de>
+To: Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sean Wang <sean.wang@kernel.org>
+Cc: Frank Wunderlich <frank-w@public-files.de>,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	daniel@makrotopia.org,
+	john@phrozen.org,
+	ansuelsmth@gmail.com,
+	eladwf@gmail.com
+Subject: [PATCH v4 0/4] Add pinctrl support for mt7988
+Date: Wed,  9 Oct 2024 18:52:10 +0200
+Message-ID: <20241009165222.5670-1-linux@fw-web.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Mail-ID: 7027da39-35ba-43dd-9915-1fe059df1531
 
-Hi Lee,
+From: Frank Wunderlich <frank-w@public-files.de>
 
-Am Mittwoch, 9. Oktober 2024, 16:48:36 CEST schrieb Lee Jones:
-> On Mon, 07 Oct 2024, Heiko Stuebner wrote:
-> 
-> > Document the "rc-feedback" trigger which is used to control LEDs by
-> > remote control device activity. This is an existing trigger used in
-> > existing DTs, document it so validation of those DTs would pass.
-> > 
-> > It was originally introduced into the Linux kernel in 2013 with
-> > commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypresses")
-> > 
-> > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > ---
-> > changes in v2:
-> > - put the entry in the correct position and comment above it (Pavel)
-> > 
-> >  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> > index bf9a101e4d42..9cd89f30fa7c 100644
-> > --- a/Documentation/devicetree/bindings/leds/common.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> > @@ -118,6 +118,8 @@ properties:
-> >              # No trigger assigned to the LED. This is the default mode
-> >              # if trigger is absent
-> >            - none
-> > +            # LED indicates remote control feedback
-> > +          - rc-feedback
-> 
-> Is 'rc' a recognised and well known abbreviation for remote control?
-> 
-> How about we people some (look-up) time and say:
-> 
->   - remote-control-feedback
+This series adds pinctrl driver, dt-bindings and dts node for pinctrl
+on mediatek mt7988 SoC.
 
-The issue being that this exact trigger rc-feedback is in the kernel for
-11 years already - see the commit link in the description, and used in
-a number of boards in the wild since then.
+changes in v4:
+- fixed fixed string binding error
 
-So the naming-ship has sailed for a while now, and this change
-"simply" documents the status quo. And judging from Rob's Ack
-it looks like he's okay with the naming too.
+changes in v3:
+- rebase on rafals dts patches
+- update binding to have mux subnode as fixed string and conf with optional suffix
 
+changes in v2:
+  binding:
+  - drop gpio-cells description
+  - move ref in mux subnode up
+  - order uart-functions alphanumeric and fix typo
+  dts:
+  - fix indentation of reg-values
 
-Heiko
+Daniel Golle (2):
+  pinctrl: mediatek: add support for MTK_PULL_PD_TYPE
+  pinctrl: mediatek: add MT7988 pinctrl driver
 
+Frank Wunderlich (2):
+  dt-bindings: pinctrl: add binding for MT7988 SoC
+  arm64: dts: mediatek: mt7988: add pinctrl support
+
+ .../pinctrl/mediatek,mt7988-pinctrl.yaml      |  571 ++++++
+ arch/arm64/boot/dts/mediatek/mt7988a.dtsi     |  241 +++
+ drivers/pinctrl/mediatek/Kconfig              |    7 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt7988.c     | 1526 +++++++++++++++++
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  |   59 +
+ .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |    1 +
+ 7 files changed, 2406 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7988-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt7988.c
+
+-- 
+2.43.0
 
 
