@@ -1,267 +1,103 @@
-Return-Path: <devicetree+bounces-109261-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109262-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7532995CEE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 03:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 43955995D27
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 03:41:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F3B41F23834
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:27:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA1891F26061
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:41:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A9C208D0;
-	Wed,  9 Oct 2024 01:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60C83219EB;
+	Wed,  9 Oct 2024 01:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="aaaTxY6c"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="vH9FSgLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3775C1F947;
-	Wed,  9 Oct 2024 01:27:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3FB51D69E
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 01:41:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728437241; cv=none; b=Ah9uBFtbt982tSNqWkEPGj0xLgp+a2PytDULVhPIMUvV0UB04940N1PZFbcIuB+hS0sELogDuwYyh6gMvZaC7B0GKNQivm4j2iuwwF7w4u+EWYqS4p0DYANRmosnrVsUUuXf8xT/TtMKIWKONdC20vlIdZFU8NDsfQKA3HeHwvk=
+	t=1728438109; cv=none; b=d6v1K2yG7knoyudwEbB7s/RGZVjzdLyNCcm2ne7B5HP9Ilou9HPYiH9LvkGxcAHb0RPBR2fTbOm+wSNcE0x9tTjEeRxKJ8ehz1I1VC4QZPWubIdP2H63JvxHr4pE20vXlXTuAEg7T47ugpOUmX1Ma7OnUN2LsDoMVZ/MaUnD2iY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728437241; c=relaxed/simple;
-	bh=cKuMDLKNX81P6yJL4MIQeJ1Gln7JePGUYfzaUPWhzQc=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ovnYdFSp6mrRcXEQSqdHNHK3k9xMRkQWeBLwJG5wtBQz2Zld+FR+9Xyxr4j9mXTdH40FtgyJLrSSgisJ5Fsm05d5bhd0qUSQn8VnFMxFdjMzpMy6SIQ1Ht6UUnYpQcxhhoBJ52GZ0gpcYmg+Ak0bstzuCd/jGiMAKnxI6oTakc4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=aaaTxY6c; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1728437230;
-	bh=wkuRk6jxUw0jV4GEtxreQLO/W5UhOPn3u8EdvBkuGrQ=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=aaaTxY6cKqWtOy7+Q1CiGUbKTXyFhXrrThL0niVbY11enCVcWRroxKOmb8dzqHlMI
-	 SAyAMbN2GqkvEft5kpBjbwQdA+VN8xCvBxeL+TFFCJzJLehP/o1dMbqqnZlU4+Li8T
-	 BAo4xL6Jb9TlGDhAjSIWyMVko3TvcVRZ3bGrnmAvPe1uqzRrxvL2FpqXkv6AWg/rdw
-	 GM38KdbiLnJuex5b/gtsmDcHTDAtJHRVVUjr6XFSvqoZQDFInECI18K69BXuXjZy9F
-	 KARASxpcESwb7KXBqBaodm9wxNsWfYLOVNHqcIK3KKUuU5Gcad1zMQDq0WywsZ3Fhc
-	 B4ZFGSqtKrukA==
-Received: from [192.168.68.112] (ppp118-210-190-105.adl-adc-lon-bras34.tpg.internode.on.net [118.210.190.105])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 1293F6497F;
-	Wed,  9 Oct 2024 09:27:08 +0800 (AWST)
-Message-ID: <e4dd331944168257bfd2f4239d24317424da7b9c.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v4 2/2] ARM: dts: aspeed: sbp1: IBM sbp1 BMC board
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Naresh Solanki <naresh.solanki@9elements.com>, Rob Herring
- <robh@kernel.org>,  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- devicetree@vger.kernel.org,  linux-arm-kernel@lists.infradead.org,
- linux-aspeed@lists.ozlabs.org,  linux-kernel@vger.kernel.org
-Cc: Patrick Rudolph <patrick.rudolph@9elements.com>
-Date: Wed, 09 Oct 2024 11:57:07 +1030
-In-Reply-To: <20241008111924.1865857-2-naresh.solanki@9elements.com>
-References: <20241008111924.1865857-1-naresh.solanki@9elements.com>
-	 <20241008111924.1865857-2-naresh.solanki@9elements.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1728438109; c=relaxed/simple;
+	bh=kdjN5CiCD3C/Yxnm0Q8kNJEFovXeqELGWDr2k16jBBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aCPYWiO0F8noSXq/sYchtP7hoIPiR2s0STijoD2tIZwk6t/hg4g1W/BMywttPXFHivF2Fqsg74I4XAJPfSQP5jK1e1KdnZa/SMTpT9r+TLfJb3Ux8/jMxyV/mTlLvcKQ/mOMLogwGa8AkR06TiMnD1A5sntTdNcIBs7GB0i7zMI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=vH9FSgLM; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from [192.168.0.105] (unknown [123.112.64.8])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 079953F9C2;
+	Wed,  9 Oct 2024 01:41:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1728438099;
+	bh=jLsUuUsyVSk/J7OR/Nv/A5h9fnMObGWMPGD1rDRUWv4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type;
+	b=vH9FSgLMei96W682vBApYcuj3lgM/cG/wJvFSPoUMzadvd+laltBb5iOA+pNxy0fo
+	 23WpMPQi0/cqOWbMg6zps9bTS1kVy7HPbtesOFCvETMrCLy1JVuVNI2XWn9SAmQVtV
+	 h90zq8w2CuTaJeNb+zWzp+F1uYQUAvrTAqqP6oMb8xCayT40N0fLJ/hWprqS72Pm0Y
+	 ogNjtwsNnag3hasgQAwlyKlwcJhkyy83c2xAraLqh/Hojccqjd7QWq4wlM7OpDJog5
+	 utqx/92cj3z9rNz5iM2XSBfYkjx3XUAIQCop+aKBlrPfi5AyuUx/r7JLajZFaXUkux
+	 qEe6ywUj5M37A==
+Message-ID: <6dad790a-479f-4591-bbaf-b8c234bd6438@canonical.com>
+Date: Wed, 9 Oct 2024 09:41:30 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: soc: ti: pruss: Fix a typo on
+ assigned-clock-parents
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: devicetree@vger.kernel.org, nm@ti.com, ssantosh@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, s-anna@ti.com,
+ grzegorz.jaszczyk@linaro.org
+References: <20241008045047.24069-1-hui.wang@canonical.com>
+ <5qysjqz7sj6nucy3bvxiwdoa4osqd77luz7jihe6smkz4qecr6@6kksr2nzhtn3>
+Content-Language: en-US
+From: Hui Wang <hui.wang@canonical.com>
+In-Reply-To: <5qysjqz7sj6nucy3bvxiwdoa4osqd77luz7jihe6smkz4qecr6@6kksr2nzhtn3>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Naresh,
 
-On Tue, 2024-10-08 at 16:49 +0530, Naresh Solanki wrote:
-> From: Patrick Rudolph <patrick.rudolph@9elements.com>
->=20
-> Add a device tree for IBM sbp1 BMC board which is based on AST2600 SOC.
->=20
-> sbp1 baseboard has:
-> - support for up to four Sapphire Rapids sockets having 16 DIMMS each.
->   - 240 core/480 threads at maximum
-> - 32x CPU PCIe slots
-> - 2x M.2 PCH PCIe slots
-> - Dual 200Gbit/s NIC
-> - SPI TPM
->=20
-> Added the following:
-> - Indication LEDs
-> - I2C mux & GPIO controller, pin assignments,
-> - Thermister,
-> - Voltage regulator
-> - EEPROM/VPD
->=20
-> Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
-> Signed-off-by: Naresh Solanki <Naresh.Solanki@9elements.com>
->=20
-> ---
-> Changes in V4:
-> - Move reset related entried under mdio to phy.
-> - Removed reserved gpio range.
-> Changes in V3:
-> Drop unused regulator entries which are not used by drivers.
-> Decouple p12v_a
-> Update pincfg for U62120
-> ---
->  arch/arm/boot/dts/aspeed/Makefile             |    1 +
->  .../boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dts   | 6128 +++++++++++++++++
->  2 files changed, 6129 insertions(+)
->  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dts
->=20
-> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
-/Makefile
-> index c4f064e4b073..577cc6754c45 100644
-> --- a/arch/arm/boot/dts/aspeed/Makefile
-> +++ b/arch/arm/boot/dts/aspeed/Makefile
-> @@ -41,6 +41,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
->  	aspeed-bmc-ibm-rainier-1s4u.dtb \
->  	aspeed-bmc-ibm-rainier-4u.dtb \
->  	aspeed-bmc-ibm-system1.dtb \
-> +	aspeed-bmc-ibm-sbp1.dtb \
-
-Please keep this list sorted alphabetically.
-
->  	aspeed-bmc-intel-s2600wf.dtb \
->  	aspeed-bmc-inspur-fp5280g2.dtb \
->  	aspeed-bmc-inspur-nf5280m6.dtb \
-> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dts b/arch/arm/=
-boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dts
-> new file mode 100644
-> index 000000000000..6036a9ca3840
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dts
->=20
-> +
-> +&i2c1 {
-> +	status =3D "okay";
-> +
-> +	bmc_mux_nic: mux@77 {
-> +		compatible =3D "maxim,max7357";
-> +		reg =3D <0x77>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +		reset-gpios =3D <&gpio0 ASPEED_GPIO(R, 3) (GPIO_ACTIVE_LOW | GPIO_OPEN=
-_DRAIN)>;
-> +		vdd-supply =3D <&p3v3_aux>;
-> +
-> +		i2c@0 {
-> +			reg =3D <0>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			smb_pex_nic: pinctrl@20 {
->=20
-...
-> +			};
-> +		};
-> +
-> +		i2c@1 {
-> +			reg =3D <1>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +		};
-> +
-> +		i2c@2 {
-> +			reg =3D <2>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			ir38263-pvcore-nic2@40 {
-> +				compatible =3D "infineon,ir38263";
-> +				reg =3D <0x40>;
-> +
-> +				regulators {
-> +					pvcore_nic2: vout {
-> +						regulator-name =3D "pvcore_nic2";
-> +						regulator-enable-ramp-delay =3D <2000>;
-> +						vin-supply =3D <&p12v>;
-> +					};
-> +				};
-> +			};
-
-This doesn't match my understanding of the infineon,ir38263 and
-regulator bindings. Certainly `make CHECK_DTBS=3Dy ...` complains about
-it.
-
-This is untested, but from my understanding, it should rather be
-something like:
-
-   pvcore_nic2: regulator@40 {
-       compatible =3D "infineon,ir38263";
-       reg =3D <0x40>;
-  =20
-       regulator-name =3D "pvcore_nic2";
-       regulator-enable-ramp-delay =3D <2000>;
-       vin-supply =3D <&p12v>;
-   };
-
-Note that this is _not_ the same as the maxim,max5978 binding, which
-_does_ specify the regulators subnode.
-
-Please fix all infineon,ir38263 nodes in the dts.
-
-...
-
-> +
-> +		i2c-protocol;
-> +	};
-> +};
-> +
-> +&i2c5 {
-> +	status =3D "okay";
-> +
-> +	i2cmux2: mux@77 {
-> +		compatible =3D "maxim,max7357";
-> +		reg =3D <0x77>;
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		reset-gpios =3D <&gpio0 ASPEED_GPIO(Z, 2) (GPIO_ACTIVE_LOW | GPIO_OPEN=
-_DRAIN)>;
-> +		vdd-supply =3D <&p3v3_aux>;
-> +
-> +		i2c@1 {
-> +			reg =3D <1>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			r38263-p1v05-pch-aux@40 {
-> +				compatible =3D "infineon,ir38263";
-> +				reg =3D <0x40>;
-> +
-> +				interrupt-parent =3D <&smb_pex_vr_ctrl>;
-> +				interrupts =3D <9 IRQ_TYPE_LEVEL_LOW>;
-
-Aside from the regulators subnode issue, the infineon,ir38263 binding
-doensn't specify interrupt properties. Does it need to be updated?
-
-Otherwise, we have the following warning:
-
-   r38263-p1v05-pch-aux@40: Unevaluated properties are not allowed ('interr=
-upt-parent', 'interrupts', 'regulators' were unexpected)
-
-> +
-> +				regulators {
-> +					p1v05_pch_aux: vout {
-> +						regulator-name =3D "p1v05_pch_aux";
-> +						regulator-enable-ramp-delay =3D <2000>;
-> +						vin-supply =3D <&p12v>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		i2c@2 {
-> +			reg =3D <2>;
-> +			#address-cells =3D <1>;
-> +			#size-cells =3D <0>;
-> +
-> +			ir38060-p1v8-pch-aux@40 {
-> +				compatible =3D "infineon,ir38060";
-> +				reg =3D <0x40>;
-> +
-> +				interrupt-parent =3D <&smb_pex_vr_ctrl>;
-> +				interrupts =3D <32 IRQ_TYPE_LEVEL_LOW>;
-
-As above.
-
-Andrew
+On 10/8/24 16:02, Krzysztof Kozlowski wrote:
+> On Tue, Oct 08, 2024 at 12:50:47PM +0800, Hui Wang wrote:
+>> It appears the assigned-clocks-parents is a typo of
+>> assigned-clock-parents even if it is in the description.
+>>
+>> Fixes: 25bafac9408f ("dt-bindings: soc: ti: Update TI PRUSS bindings regarding clock-muxes")
+>> Signed-off-by: Hui Wang <hui.wang@canonical.com>
+>> ---
+>>   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> index 3cb1471cc6b6..6d658b020be8 100644
+>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>> @@ -185,7 +185,7 @@ patternProperties:
+>>                 assigned-clock-parents:
+>>                   maxItems: 1
+>>                   description: |
+>> -                  Standard assigned-clocks-parents definition used for selecting
+>> +                  Standard assigned-clock-parents definition used for selecting
+> No, just drop the description. It looks redundant - I do not see
+> anything new said there. There is little point in correcting stuff which
+> should not be there in the first place.
+OK, got it. thanks.
+> Best regards,
+> Krzysztof
+>
 
