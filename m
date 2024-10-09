@@ -1,65 +1,60 @@
-Return-Path: <devicetree+bounces-109629-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109630-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECBF0997648
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:18:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0D9E99765A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:23:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66985B20A62
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:18:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0E0F1C2222C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:23:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E817B1A76D5;
-	Wed,  9 Oct 2024 20:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE46E1E230C;
+	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GbSeBiBC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfLj6KGU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B46885103F;
-	Wed,  9 Oct 2024 20:18:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F1A161313;
+	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728505132; cv=none; b=R8yUXcUEWeS7NJjItiFAV5kz6qxJtI6V2LT+OT/VBbykuKs57WLdR8Y3xsjVR8iR3ktPhEvj/wMRw/xSf0uk/Q4yoZhTAbVqHxaZUcHIHAsnh3gcI1NBuFZzFNJyg53sIQimMQPbyR9xLn8IXSGn+1h+u3U9DbiT4uY23CttKW8=
+	t=1728505360; cv=none; b=a2haJ1nVc5d2Jey+agE8W80AKmnW7R5++07t5Yzo7qZRbaA+JD/XAcCeIxLDPQmfyn3uzRw4r5zAM1hbs7CFVaShkE8YiMfMW31/z2KIWnmHQbmQxC/ZySGIm//d7DMwwBEZcacw2ei0JQ0U4hQBmmE47A+2EggZZGa60YB84N8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728505132; c=relaxed/simple;
-	bh=OcFTPbM9NeHy3fvnysa1czyxHpaPIC9tRyzN4gQrf+o=;
+	s=arc-20240116; t=1728505360; c=relaxed/simple;
+	bh=3chjhrxe4mVFzDrB9/1rKyEXfeTfkRp/J9ozq1wFLvk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hSe1Z1Cw7IsanIO8D/y8lIMLel64gpaYUOyg/6OcLwF4RmtBn818Sh8RtbyevnBq/P0Puqq8anNBDsR7aqZpyGAAp+WqwSDkrtRl9w8ghVmegX479elAr6p2gpifIxRanOStz//Dx31xaYxjdVOC99Yla+HNjFRyJrgR1dvT62Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GbSeBiBC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2087AC4CEC3;
-	Wed,  9 Oct 2024 20:18:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=G6MPZC1HA1jQfEaA/6yJwtJysy/PdkmMfKsKcp/tpXgCR5BjSiDhtZgnSExxQhKtZ4qkpGYqDGDzeIpOfplVjt3xI5BNv7JnPHC5F7skB0a0rSj9+Yg7KQuXT3PuNIc65bEU8GQDZAfGe1aKFQu7K4Ss/2wdzK9orYR9+FVnGLM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfLj6KGU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201FCC4CEC3;
+	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728505132;
-	bh=OcFTPbM9NeHy3fvnysa1czyxHpaPIC9tRyzN4gQrf+o=;
+	s=k20201202; t=1728505360;
+	bh=3chjhrxe4mVFzDrB9/1rKyEXfeTfkRp/J9ozq1wFLvk=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GbSeBiBCg0UfdT/wvFASl6Amf3g9GyhoUJyvLfK6WYKuGRwX/KCJV6GOkaJwsSeFk
-	 D09BlJpfSx4rU2TweKHwkmW8xsU43YcedZUc/FyWd9zDqWb+IKx78G0e83gmbl1EnC
-	 nxCnw20Cyot94xy4HDziLNKSDukw3i9x4nvIkzlGj1luVOpxvOS/W4uBl1GW26jlJi
-	 WdN+9iLrvcyRatDioFGk+j6wZOiYGfRRHrbVbofcuX8xGRqXjmeSKNWagSzJOP/Qsk
-	 0UcYcYhhmZBdtBqT6utFalNVJD1jMUOSCTiqQ+rDDZfBBAmu5AuxNDzO+hkbgdafxq
-	 uY4zxiuQHv05Q==
-Date: Wed, 9 Oct 2024 15:18:51 -0500
+	b=HfLj6KGUbwi336mxtmp/vTDCEEtmYu38uV4h1qVGNIndTx4/LneJr37cmIuACihH4
+	 7O7zcEfkzno+b2tFqwMqcgdXjQ5z9LRf61gvqOf3pd3JDmBaLrZdREDzDxS9aGQZHB
+	 OtkAcazr6WNq+qU+lSmNbuzvwXlX4xYQve/1wc/CT90YOeLfmLlFHUoJ2O87zXJVZ3
+	 ocWFB+CGbBxfKmIYvV1rM/qAD4djk3TvWbQYknejg4MIgLtXzQNHDC6qSWo2Pcqmr5
+	 wafK1UdD1s4ka10uI4Bhn6F8YGyjX98JA4i6NDGTxPijTrwxSFYk7X56O4HFsX4tsf
+	 awZ4y6tKCLxEg==
+Date: Wed, 9 Oct 2024 15:22:39 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Sunyeal Hong <sunyeal.hong@samsung.com>
-Cc: devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Sylwester Nawrocki <s.nawrocki@samsung.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: clock: exynosautov920: add peric1,
- misc and hsi0/1 clock definitions
-Message-ID: <172850513002.606825.17060605580264918193.robh@kernel.org>
-References: <20241009042110.2379903-1-sunyeal.hong@samsung.com>
- <CGME20241009042117epcas2p3fb2eea9d2618d36f6f9d6e0bb67a09f5@epcas2p3.samsung.com>
- <20241009042110.2379903-2-sunyeal.hong@samsung.com>
+To: Alexander Shiyan <eagle.alexander923@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-media@vger.kernel.org,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	devicetree@vger.kernel.org,
+	Mauro Carvalho Chehab <mchehab@kernel.org>
+Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Add AR0233 camera
+ sensor
+Message-ID: <172850535856.610900.16965477529708195917.robh@kernel.org>
+References: <20241009084304.14143-1-eagle.alexander923@gmail.com>
+ <20241009084304.14143-2-eagle.alexander923@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,23 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241009042110.2379903-2-sunyeal.hong@samsung.com>
+In-Reply-To: <20241009084304.14143-2-eagle.alexander923@gmail.com>
 
 
-On Wed, 09 Oct 2024 13:21:08 +0900, Sunyeal Hong wrote:
-> Add peric1, misc and hsi0/1 clock definitions.
+On Wed, 09 Oct 2024 11:43:04 +0300, Alexander Shiyan wrote:
+> Add device tree binding for the onsemi AR0233 CMOS camera sensor.
 > 
-> - CMU_PERIC1 for USI, IC2 and I3C
-> - CMU_MISC for MISC, GIC and OTP
-> - HSI0 for PCIE
-> - HSI1 for USB and MMC
-> 
-> Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
+> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
 > ---
->  .../clock/samsung,exynosautov920.h            | 47 +++++++++++++++++++
->  1 file changed, 47 insertions(+)
+>  .../bindings/media/i2c/onnn,ar0233.yaml       | 122 ++++++++++++++++++
+>  1 file changed, 122 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ar0233.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
