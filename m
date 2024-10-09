@@ -1,120 +1,163 @@
-Return-Path: <devicetree+bounces-109447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4001B996701
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:21:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E545599670E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:22:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 575811C20FF9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:21:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21C491C250C5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:22:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813CF18E763;
-	Wed,  9 Oct 2024 10:20:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5976918FDAE;
+	Wed,  9 Oct 2024 10:22:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s5gzntXx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEF8718DF81;
-	Wed,  9 Oct 2024 10:20:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBCB18F2DA
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 10:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728469248; cv=none; b=f90yxizk2d7TSP6ANWJ+aAPKScecFoH08Qb4KoErg9WcjLuvdNFq6opntwG1bNgqPoO+XKnbDKDTYmYyeIhCZjE9ScxKAZgMOCFashfl2i36evfNnJxc5Hc/JDzDziYAaixyHJfxSH6R9H075mStsOb46e6HvGwVApXqGer0j7Q=
+	t=1728469360; cv=none; b=MFUBqXlB0s2PeqParBDzHHsqsDeycsvx+8OCK8RTKTQs/w1vKUrMzmYZ3qcdhHSm1VgSvPXhXH3G1yW2RAOPPn1ksMN5tvglnwpcJpbDsZupRz2JA6K7eQzWUdUE5m59+1VUHhuH8MXz3z1Rr4m36BluQEs10qTd4ejjUhBVb3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728469248; c=relaxed/simple;
-	bh=WxQO53nShc3atpxASPIpnj4iBQ2ZCBiotS98AOqfNJ4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ZurxNhIEyX1IJefSihWIsv2nDrutIQHhZvmU3Gn3oPQaQwlJBtORXRJuhtH+EdUYc5gflRlPIaYESObKAfAffWuwPt9yEAQ62sNFUXeEvtgcs17hjDGl+yAXOL6a2/zBIRhYsqpKA0K0JF807/BdRmXDIV6EJHtcPt5JeqXwuiw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6de14e0f050so51670587b3.0;
-        Wed, 09 Oct 2024 03:20:46 -0700 (PDT)
+	s=arc-20240116; t=1728469360; c=relaxed/simple;
+	bh=1muRWa+wXawPE1eQ9HosXZjWY4RSa8MbWKpe3P4P9uQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RcT/Mtp46zgPc0cBKsyf2fvjH5dI18wpyogRU3Jrnor7WVjBVZwX1Rm0w2UmPd/xIc9vwcxiWNIhJzldlsWQPpfCTGjeHNC3SEsyn6DSCyeP+WWEU642YU2vsd6cBRkQ500XTinZsBv7VtIABl+fOw8V0mHoZh6L8ckoXTdK6ww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s5gzntXx; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a993302fa02so522884866b.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 03:22:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728469357; x=1729074157; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=s5VgD+wTXaNucrBWnqcE02bPzDtE/QymMPp7ZrJAaRA=;
+        b=s5gzntXx4N7oERKAZOKw8cZVIoRR0oYv5ClDy9hnyIHznRa0Y+V/JjL0F8ujk7wcKk
+         E/QAnNRso08a67lItzn8TZO3TrPiIxSRu9UTEVksSEKIj1wuDn6732r7eR1ps7WgfUme
+         MgyOuj/1ctCaFzJHN+//X5bMX4oGjSKwpMdN+yBUel/xGhEE6V7tIkcNPqwxPnIHP7gw
+         EZQ7MnZvjGW7MVLFItEbcuPvNUfN7Ym5K4sjnpcVDfQaRJSGQ2IoV/xo6s1ibNhCASdN
+         RxNRVPft5wyRiEerj//GDNw9r7EeazOliUZ512mOcMfjkAv3RjLlOJ23zEmioUhXle8L
+         BUMA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728469245; x=1729074045;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sdkcypZhy554wrLZ9BXXTdDsDbUmUhozZb/Cfup4ur0=;
-        b=Y5KD42wBcZY99JTxw1AOOPAVyCjVsCXHblmFJSeAgOppHDhECODeQzx85XFw7t2wK3
-         aL/F+1dYeUSZydlE3x7VtRaPgG1ln5s3kt+kSdhCIkCSPmWh86RGIOCJ8XOzgGUHGpyQ
-         8x4q/7yn5aZ5lIb5y6zVSK5Pc7VvVksZVMrgeIE2OnlzbksScawvRA6qsGN2sLT8GMVY
-         QBKAaK8K3pl3ozsMlmJkX1M7JP26MladCYWImKczyU4BD9gXXH+qEcwf1pWZvoug0G4g
-         7kgCucAEPRTVg/uPbcaeg3yBjQu+07diaFbba/cjzd2ZopgfJi7ZmCp1vKwQ/xMlf0re
-         ES/w==
-X-Forwarded-Encrypted: i=1; AJvYcCUx5aJIJdcm1plQz4CBNgFmi5U44/dWDtVkevEzouSkUIt/Nz8CgAy7BN1D54F5rzvVO19JhgS++rXu@vger.kernel.org, AJvYcCV/pFNzik61q6zcrSnDC4WocJ7n/7QncJYB/LuxcWptJhtR6q9Soq2FwJpuYEpd5AkOtXdWm8ALdV8s@vger.kernel.org, AJvYcCWmwZtWhu778VCVBWgUp/8JKlFrGJ26IAs0DEk5i/w+H4hGlTDAHJKChiUzf1wjDeLG6Qhu6K9g+m/Tndeh@vger.kernel.org, AJvYcCWxb9X9c8GOGeWBdIIWEA2VIqzVYOrDtShaG4rIfNqqyjn4YaZHaVjupEmA92cwGxDsiPRbvlCR@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEVANEiAtHz1x30HIv7ZZeJVigRXWO+EWYzP1jDSm2wPv0X1Oh
-	/Ehp6K0Ik9dbtC774KurISI7SyxLRNOocnTUWj8WjmGDFKWST81cJrB6MiEA
-X-Google-Smtp-Source: AGHT+IHibOC4mm11dZNaU52P3GYvFF7pQdJbx8+yXadMudDf/LGaZoqJj9d9OfW3RUIFZdAAYFuvRQ==
-X-Received: by 2002:a05:690c:4349:b0:6e2:2c72:3aaf with SMTP id 00721157ae682-6e32218bd03mr11875757b3.31.1728469245352;
-        Wed, 09 Oct 2024 03:20:45 -0700 (PDT)
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e30ba26925sm7789227b3.49.2024.10.09.03.20.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Oct 2024 03:20:44 -0700 (PDT)
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6de14e0f050so51670447b3.0;
-        Wed, 09 Oct 2024 03:20:44 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUpyCUw6uBztOnTRvwDj8dx00kHW4Ku5GP7oxmBM4u26dlW5a/D+CTA0I/Hm5x9a/VgmR6x8qpm1fys@vger.kernel.org, AJvYcCV/UD+Dd5s1OaOX0EmXBIEUrOXPYkJKgB1cbKaJRvtuBCzZouKk1ySTYfk0dhzM3kOkSqpujOAW@vger.kernel.org, AJvYcCVKQNigbF5g7YF1j56dx11NZ7e3Brbr+bJWSrsW0ZB8+O6GltKDJVNBOP2zByIaZxIeUF+HTinEQukC@vger.kernel.org, AJvYcCXZ7/nmIBXNI4+2+zRkqnQdNQTozx0a2RVZM3nyjUsDGZqpqrMdQg+hXFddDmP8vtRCwy9PJBToHTEUnNCL@vger.kernel.org
-X-Received: by 2002:a05:690c:fc7:b0:6e2:ef1:2555 with SMTP id
- 00721157ae682-6e32212b9c3mr18951917b3.8.1728469244467; Wed, 09 Oct 2024
- 03:20:44 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728469357; x=1729074157;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=s5VgD+wTXaNucrBWnqcE02bPzDtE/QymMPp7ZrJAaRA=;
+        b=BQV0dijBM/0OyA7k9t5KqKYw3AONXOzFtA/2oXW5SEQ6cNM46sbK6OmP1quv6pK4en
+         48QfLCTiSWXV5SHEEn1x7DouMtwDkGuwDXqim6xuDQ7dAudyVCEPHwp39AudwbqjwC2w
+         HRNsO/YH+HW2lwy7UAPk/bhMjBwc8VQjLBR2PMNt4oIVN5NFAoD3o85Vd+DsgYgNmOWP
+         hD0kGrah2P1ryJqFAECo3dCQw1r/pRRUxtFCsYqQdQQ3ORTZpHkXmcfOcv/FBqisZPax
+         H6/a4nc96VMEAZlAY4tYQIdlxOCRFmdzUU0psA/jK93bmCdlPaullSQLdvxC3XnLa/jI
+         hWng==
+X-Forwarded-Encrypted: i=1; AJvYcCXGlZ+UicziG8+2GopcSYpZGvt8B39HJLq2IYdFjIGLk1FE1LQx0mODsHHnw6X1hLDsFeExin0b0Ur/@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLFayCtiCMcaP5nHEirVbb+1dnc2kenJPnZYZoMyoxAakvjEy5
+	d32MvV3cpcNFw+wUDQPYHe0vKiHBFP698+GDptgpVwfyh0WLM9/NJyTtFqkMKko=
+X-Google-Smtp-Source: AGHT+IFgNDo1cyZoG4YBSn4FWa6hWBarcKKT8WDru+XyTCt2NUHvDMU1kIaP/0lbJiHrbIG5gGBXag==
+X-Received: by 2002:a17:907:9728:b0:a80:f81c:fd75 with SMTP id a640c23a62f3a-a998cf4d7a3mr166864766b.0.1728469356565;
+        Wed, 09 Oct 2024 03:22:36 -0700 (PDT)
+Received: from linaro.org ([82.77.84.93])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994ce357b2sm472465666b.144.2024.10.09.03.22.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 03:22:36 -0700 (PDT)
+Date: Wed, 9 Oct 2024 13:22:34 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Johan Hovold <johan@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: x1e80100: Describe the SDHC
+ controllers
+Message-ID: <ZwZZalFKXiQh0BAK@linaro.org>
+References: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
+ <20241008-x1e80100-qcp-sdhc-v1-2-dfef4c92ae31@linaro.org>
+ <syf3uyoyh55rxieyjnhsskmythce6vnkuq77asgml736gcysd7@op5b2pd6ijsj>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241003081647.642468-1-herve.codina@bootlin.com>
- <20241003081647.642468-4-herve.codina@bootlin.com> <71fb65a929e5d5be86f95ab76591beb77e641c14.camel@microchip.com>
-In-Reply-To: <71fb65a929e5d5be86f95ab76591beb77e641c14.camel@microchip.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 9 Oct 2024 12:20:32 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVR8UfZyGUS1c3nZqvPYBNs7oSe5p1GjCA3BYwrz8-bdQ@mail.gmail.com>
-Message-ID: <CAMuHMdVR8UfZyGUS1c3nZqvPYBNs7oSe5p1GjCA3BYwrz8-bdQ@mail.gmail.com>
-Subject: Re: [PATCH v7 3/6] reset: mchp: sparx5: Map cpu-syscon locally in
- case of LAN966x
-To: Steen Hegelund <steen.hegelund@microchip.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Simon Horman <horms@kernel.org>, Lee Jones <lee@kernel.org>, Arnd Bergmann <arnd@arndb.de>, 
-	Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic <dragan.cvetic@amd.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Lars Povlsen <lars.povlsen@microchip.com>, 
-	Daniel Machon <daniel.machon@microchip.com>, UNGLinuxDriver@microchip.com, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Saravana Kannan <saravanak@google.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, Andrew Lunn <andrew@lunn.ch>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-pci@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, 
-	Allan Nielsen <allan.nielsen@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <syf3uyoyh55rxieyjnhsskmythce6vnkuq77asgml736gcysd7@op5b2pd6ijsj>
 
-Hi Steve,
+On 24-10-09 08:49:03, Krzysztof Kozlowski wrote:
+> On Tue, Oct 08, 2024 at 05:05:56PM +0300, Abel Vesa wrote:
+> > Describe the two SHDC v5 controllers found on x1e80100 platform.
+> > 
+> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 108 +++++++++++++++++++++++++++++++++
+> >  1 file changed, 108 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > index a36076e3c56b5b8815eb41ec55e2e1e5bd878201..b835fd87b977ae81f687c4ea15f6f2f89e02e9b1 100644
+> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> > @@ -3880,6 +3880,114 @@ lpass_lpicx_noc: interconnect@7430000 {
+> >  			#interconnect-cells = <2>;
+> >  		};
+> >  
+> > +		sdhc_2: mmc@8804000 {
+> > +			compatible = "qcom,x1e80100-sdhci", "qcom,sdhci-msm-v5";
+> > +			reg = <0 0x08804000 0 0x1000>;
+> > +
+> > +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
+> > +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
+> > +			interrupt-names = "hc_irq", "pwr_irq";
+> > +
+> > +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
+> > +				 <&gcc GCC_SDCC2_APPS_CLK>,
+> > +				 <&rpmhcc RPMH_CXO_CLK>;
+> > +			clock-names = "iface", "core", "xo";
+> > +			iommus = <&apps_smmu 0x520 0>;
+> > +			qcom,dll-config = <0x0007642c>;
+> > +			qcom,ddr-config = <0x80040868>;
+> > +			power-domains = <&rpmhpd RPMHPD_CX>;
+> > +			operating-points-v2 = <&sdhc2_opp_table>;
+> > +
+> > +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
+> > +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
+> > +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+> > +			bus-width = <4>;
+> > +			dma-coherent;
+> > +
+> > +			/* Forbid SDR104/SDR50 - broken hw! */
+> 
+> Is it still valid or was it just copied from old code?
 
-On Wed, Oct 9, 2024 at 9:30=E2=80=AFAM Steen Hegelund
-<steen.hegelund@microchip.com> wrote:
-> On Thu, 2024-10-03 at 10:16 +0200, Herve Codina wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you
-> > know the content is safe
+So when I did the bring-up of this controller, for some reason I thought
+this was needed. But I guess that's not the case since I get this
+without it:
 
-Hmm, the email I received directly from Herv=C3=A9 did not have the part
-you are quoting, so it looks like you are subject to a MiTM-attack ;-)
+[    5.168918] mmc0: new ultra high speed SDR104 SDHC card at address
 
-Gr{oetje,eeting}s,
+So will drop in the next version.
 
-                        Geert
+Keep in mind that I have no way to test the sdhc_4, so I'll drop it from
+there as well.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+> 
+> > +			sdhci-caps-mask = <0x3 0>;
+> 
+> Best regards,
+> Krzysztof
+> 
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thanks for reviewing.
+
+Abel
 
