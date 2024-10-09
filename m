@@ -1,87 +1,101 @@
-Return-Path: <devicetree+bounces-109641-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109642-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD5FD99775A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:17:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72747997760
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:19:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84DAC1F2330E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:17:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155B2286AEB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D2BB1E1A0A;
-	Wed,  9 Oct 2024 21:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771CA1E231E;
+	Wed,  9 Oct 2024 21:19:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rcHnxDZ6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXxiwNUK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 209F019C563;
-	Wed,  9 Oct 2024 21:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D3819C563;
+	Wed,  9 Oct 2024 21:19:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728508661; cv=none; b=lm9R3VThPAmIktM6DJhMEf3ETYfOC+Td8MotGA3XgwWExEHWi9/gUeQ2D+xkSeI/eiOmmrhmMv1VYWde1ouIu+sAO7+uTfAipn9tyvmVXnL2c0E4WUiw9PV17jq1qN0pLzhOpTExa7v8m5rnHFM5wa0DVvKpnLA/OIE+vEYo5OU=
+	t=1728508774; cv=none; b=khSWeU7gkqsO8LJEokQ/fg0wN6C277KMSaT7EQqX6zc3OsJQpEtzKx5WmykzsJrCzTUfyWjD1zuHLgxYknmIsl4PFl/F4ghw23L5HfRn+/BsYCF1ZsGnoa/rFctYXLvddihTeIq8Xq5l9l0mcKUPQACvxSuEN04RT78VaPyA8Z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728508661; c=relaxed/simple;
-	bh=PeGgpuw2h6B6d511IkUAztNTH5VoRqnb1sCSe1yg7II=;
+	s=arc-20240116; t=1728508774; c=relaxed/simple;
+	bh=Vt+z5p5sQcbBWZ3AwQ1076IwrQIkaCh7SdfsfMYjZQQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pmPX7ep0l1AKjTc+dhaE0a02FJqRHE2IjRE+NKU7cHsztto1Pz5lPHbLmbNMEar3Sdag7N2GqEqLevRKNmJVewEs9kFoJN0p+qOZYHaewj7+LY6whVD3RifkclHElZJIXOgJZbUxJiBi4un8E8uEMAdODVprT+bWlyJTC01RHHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rcHnxDZ6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBE11C4CEC3;
-	Wed,  9 Oct 2024 21:17:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Pm4Bjh1YXV6Gi2cmf64XSRTDjouAonqVWS1pDwq3SztB4IYKg4Us/NFXyiwW85ep5DUCMyhKF4igYP7a21KDOyLXnJg2maemQo5ohU4poTuaAH4n4FvMWl25s38BOsYFBFt3ZvERt10iFGLozeJ7Q5U/GA88ZFe0yFXJePfa7F0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXxiwNUK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0292C4CEC3;
+	Wed,  9 Oct 2024 21:19:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728508661;
-	bh=PeGgpuw2h6B6d511IkUAztNTH5VoRqnb1sCSe1yg7II=;
+	s=k20201202; t=1728508773;
+	bh=Vt+z5p5sQcbBWZ3AwQ1076IwrQIkaCh7SdfsfMYjZQQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rcHnxDZ6AchLwju2OZlF2O6JJ6z+34uayHJpJWMt0wYuFduAkaAVDXq8yM/ttujwX
-	 pKHS/qFT9tqo3eJs5h8Zcv9pHpsBSmiyJoo1Igpriiyrm8Fh0aVx3Nrd8FXxDQlUqH
-	 u8pEQ6wSbikWHKUT/hUcjWtbxxAkF8Kx8kPgpmLYDWF3Avh29VFmVHxFmppPeOq4xA
-	 aYO7c26aE45V9aB0f8H+4v3BWGJnUGHcFw6gCGZZdfF8srDwHEbohxJwMyDTSfGsK1
-	 ISxvMeLRd6Ti8NiWSVZbiQQ+eFGaWLgWg1AAqLQUgUw1KKFzVFQU3TSXi0vnJt11x/
-	 q0cTTkj+LZkUg==
-Date: Wed, 9 Oct 2024 16:17:39 -0500
+	b=DXxiwNUKrF6OkSTYIaZo8fbWz/4mzh2UjHXR4xRlBFI7ovx1oHXRJKGKo+E3cuWDk
+	 f4nrsL0Yxo4m8r733D4J0WLsndLHmC/9O8koEVe0zvOQP9PM0+p4Z/3/Us3NOH+QV5
+	 WRKhYepQ64L00jmlGw4IoLQRIRcwP6KxsqR0cGBMxEAVHi3LNKP8TWt9dKRvSnT6xA
+	 NzOhnyG/qazQBBXy5VlJgdMZrkOHcUg5ayqgTTheCfhqaKzfv1QW22fQCQpbVigxEn
+	 RGFbs8kSedE3rDQBxqNnK82Lbt09aehYbIptEeD3PO2N6eL/c3PQ13GXVZ/P4GBDpU
+	 INvipZOXA65UQ==
+Date: Wed, 9 Oct 2024 16:19:32 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: =?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	linux-i2c@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
+To: Frank Wunderlich <linux@fw-web.de>
+Cc: linux-arm-kernel@lists.infradead.org,
 	Linus Walleij <linus.walleij@linaro.org>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 2/6] dt-bindings: i2c: nomadik: support 400kHz <
- clock-frequency <= 3.4MHz
-Message-ID: <172850865946.731856.7512114270634333579.robh@kernel.org>
-References: <20241009-mbly-i2c-v3-0-e7fd13bcf1c4@bootlin.com>
- <20241009-mbly-i2c-v3-2-e7fd13bcf1c4@bootlin.com>
+	linux-kernel@vger.kernel.org, eladwf@gmail.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Frank Wunderlich <frank-w@public-files.de>, john@phrozen.org,
+	linux-mediatek@lists.infradead.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	devicetree@vger.kernel.org, ansuelsmth@gmail.com,
+	linux-gpio@vger.kernel.org, daniel@makrotopia.org,
+	Sean Wang <sean.wang@kernel.org>
+Subject: Re: [PATCH v4 3/4] dt-bindings: pinctrl: add binding for MT7988 SoC
+Message-ID: <172850877244.733887.12458885415029802904.robh@kernel.org>
+References: <20241009165222.5670-1-linux@fw-web.de>
+ <20241009165222.5670-4-linux@fw-web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241009-mbly-i2c-v3-2-e7fd13bcf1c4@bootlin.com>
+In-Reply-To: <20241009165222.5670-4-linux@fw-web.de>
 
 
-On Wed, 09 Oct 2024 16:01:08 +0200, Théo Lebrun wrote:
-> Hardware is not limited to 400kHz, its documentation does mention how to
-> configure it for high-speed (a specific Speed-Mode enum value and
-> a different bus rate clock divider register to be used).
+On Wed, 09 Oct 2024 18:52:13 +0200, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> This adds bindings for MT7988 pinctrl driver.
+> 
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> changes in v4:
+> - dt-binding: pinctrl: fix dt_binding_check fixed-string error
+> 
+> '^mux$' should not be valid under {'pattern': '^\\^[a-zA-Z0-9,\\-._#@]+\\$$'}
+> 	hint: Fixed strings belong in 'properties', not 'patternProperties'
+> 
+> changes in v3:
+> - limit conf subnode name with optional suffix like mmc on mt7986
+> - match mux subnode without wildcards
+> 
+> changes in v2:
+> - drop gpio-cells description
+> - move ref in mux subnode up
+> - order uart-functions alphanumeric and fix typo
+> ---
+>  .../pinctrl/mediatek,mt7988-pinctrl.yaml      | 571 ++++++++++++++++++
+>  1 file changed, 571 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7988-pinctrl.yaml
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
