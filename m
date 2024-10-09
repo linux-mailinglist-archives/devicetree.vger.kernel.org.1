@@ -1,124 +1,114 @@
-Return-Path: <devicetree+bounces-109633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EFD69976F7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:53:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D22A997704
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EBEF3B21C7E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:53:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 967F7B20D5F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF8C1E231C;
-	Wed,  9 Oct 2024 20:53:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74DDE1A3BDE;
+	Wed,  9 Oct 2024 20:56:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DQCxYEML"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="dbMHHWHq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49EC91DFDAB;
-	Wed,  9 Oct 2024 20:53:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B73E6188926;
+	Wed,  9 Oct 2024 20:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728507186; cv=none; b=REz/pfsJTAxjNoWJqoHMWoKEfPIrtisGZGLfKOwoT3VANMwbfYBe1a+iB3pBqUw2qVdwbW1sNsswLHFdwsWwKkQK+gDKKTOdBtn3JMK+rU/pOxizH4Xo1dWsi9mlC4XfygeYDzAvqw9NKqqv7gP9zEcLMEsDyEP8yFtl4E+Sj1A=
+	t=1728507399; cv=none; b=IUHBeapP5vTgtu3HUhYaJlzU+jmXkWwTkSrZM0r1K1w3iOCYNaf2MjrqfC+lnmaJtAA1XT5G9nsosO0BMTKENPOuhFTXtcH3z7BbAwmGTPtAJ5/8whZ5I9+ksYgzAQnfcgTqcJcLxhxRPoQGzCu0j8UZIlOF0qffLKysV/P0iPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728507186; c=relaxed/simple;
-	bh=z3NFl3JU4cXkyowzq5opNhTPBloo/S0tofmm6les7ds=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QEvKIkvIZOBvtmvdjX+T1nK9PLm5dofgZkTY1ygu0hmFVgD7+pVDptHGwIC4/jnLDe+jOE4XCM+OAQWoHAHKWMnAVOw0jcNAkeLEg+Um3ghXc9nPe89uBHiiYhsuxEUGbZtEDeFXaE2JKi+1/ZuWAABSeSz5l5EftHffoHSsAWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DQCxYEML; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90E87C4CEC3;
-	Wed,  9 Oct 2024 20:53:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728507185;
-	bh=z3NFl3JU4cXkyowzq5opNhTPBloo/S0tofmm6les7ds=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DQCxYEMLzlgshGROEYfKV/8alUi36hXQwa0orX8JGwReVH5Ym1TNjOLdR8knjfiH3
-	 uHBKqP1xLZD6eN0aZGe5c2Yf6+1QsRBJ250iZdpG1IgO/a/21inaa41shI03t2U+wf
-	 8aCUK4DKa2aIdjK7IO8qVDttEaI7fE/7m/rAfuYEVCE5wjfMZTAoj3IvDrnyQgsUot
-	 Iycb4fgKZREQU6SO2UdnJ6iwgV9bcHEX02p+PU5PL27oMIZzXib/W1eHDexxpkEWrN
-	 2f6fFs/vnpEWsItbdy4xZvrrkpDZzZm0ydj9LGMKKh55+ZH3zs3T4f4cnlf9dhNnHV
-	 24KMvDoZS47Yw==
-Date: Wed, 9 Oct 2024 15:53:04 -0500
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Wei Fang <wei.fang@nxp.com>, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vladimir.oltean@nxp.com,
-	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
-	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
-	bhelgaas@google.com, imx@lists.linux.dev, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH net-next 02/11] dt-bindings: net: add i.MX95 ENETC support
-Message-ID: <20241009205304.GA615678-robh@kernel.org>
-References: <20241009095116.147412-1-wei.fang@nxp.com>
- <20241009095116.147412-3-wei.fang@nxp.com>
- <ZwavhfKthzaOR2R9@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1728507399; c=relaxed/simple;
+	bh=uHecwGZTeAdJYv1+uRlHFdDx0vUd1P+3XExydJncsoU=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Il4SHu3cE2A3HQmPYV9pve7hXKUoRxoVMPBWBz134W3IXnR6Blhxj38DrgTpCWU1rvQIol3VexNAtiqE1PR70krtaxOXgALphqf2gqA/kLA/PC+vsCj2lJJCzay6UEJNdgfpDepC9+SnYFpyR1eadGkWKhNeXUeqZSaSwwpWhqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=dbMHHWHq; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=From:Sender:Reply-To:Cc:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:In-Reply-To:References;
+	bh=pcw8S7IZiwFrBBm3SN24yyQYyUIOE4d4lAS5k1CzpUg=; b=dbMHHWHqAZU0hcHHkIX+LRJS1y
+	WgIZF/nZFK+CLATPf0ZxBjtBoUg7YN3y3Ieee2SAB7uvObxcFl7MJ5hsM65RlyXvmifXRbfJsdaD8
+	hwpNCkSZHzEXIOOzoACcoRm/+5enSoiHLYFtSp6I0zAVEWAGV6VfSf71YYKtbrRQFRMCMN2amqrYy
+	obB6maNn464AlbC+nS/uvyx4B+Q8oo0FatVykKuWkk5RnN/Z0ovnx1zoxJs3OK9Cs603mvZwxL7/9
+	vm4mAQiQgFGBQS3UbRyY+o8cF+EQGZ6mQicZ4SildBA2HQJMTZ3APJ3N6MBvi7q43kh1kDWqfx/FK
+	xKl6XGzA==;
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Aaro Koskinen <aaro.koskinen@iki.fi>,
+	Tony Lindgren <tony@atomide.com>,
+	Roger Quadros <rogerq@kernel.org>,
+	linux-omap@vger.kernel.org,
+	Kevin Hilman <khilman@baylibre.com>,
+	devicetree@vger.kernel.org,
+	Andreas Kemnade <andreas@kemnade.info>,
+	linux-clk@vger.kernel.org,
+	Tero Kristo <kristo@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH RFC v2 0/2] dt-bindings: clock: ti: convert to yaml
+Date: Wed,  9 Oct 2024 22:56:17 +0200
+Message-Id: <20241009205619.16250-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.5
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZwavhfKthzaOR2R9@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Oct 09, 2024 at 12:29:57PM -0400, Frank Li wrote:
-> On Wed, Oct 09, 2024 at 05:51:07PM +0800, Wei Fang wrote:
-> > The ENETC of i.MX95 has been upgraded to revision 4.1, and the vendor
-> > ID and device ID have also changed, so add the new compatible strings
-> > for i.MX95 ENETC. In addition, i.MX95 supports configuration of RGMII
-> > or RMII reference clock.
-> >
-> > Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> > ---
-> >  .../devicetree/bindings/net/fsl,enetc.yaml    | 23 +++++++++++++++----
-> >  1 file changed, 19 insertions(+), 4 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/net/fsl,enetc.yaml b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
-> > index e152c93998fe..1a6685bb7230 100644
-> > --- a/Documentation/devicetree/bindings/net/fsl,enetc.yaml
-> > +++ b/Documentation/devicetree/bindings/net/fsl,enetc.yaml
-> > @@ -20,14 +20,29 @@ maintainers:
-> >
-> >  properties:
-> >    compatible:
-> > -    items:
-> > -      - enum:
-> > -          - pci1957,e100
-> > -      - const: fsl,enetc
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - pci1957,e100
-> > +          - const: fsl,enetc
-> > +      - items:
-> > +          - const: pci1131,e101
-> > +      - items:
-> > +          - enum:
-> > +              - nxp,imx95-enetc
-> > +          - const: pci1131,e101
-> 
->     oneOf:
->       - items:
->           - enum:
->               - pci1957,e100
->           - const: fsl,enetc
->       - items:
->           - const: pci1131,e101
->           - enum:
->               - nxp,imx95-enetc
+Convert some clock schemas to yaml. These are one of the most used non-yaml
+compatibles.
 
-const.
+All can appear under a ti,clksel or without a ti,clksel
 
-Or maybe just drop it. Hopefully the PCI ID changes with each chip. If 
-not, we kind of have the compatibles backwards.
+Reason for being RFC. In the comments for the first version, it was said that
+everything which can be below a ti,clksel should be converted at the same
+time. But I want to know whether I am on the right track.
+I plan to convert the clock things from time to time.
+So enforcing certain compatibles below ti,clksel i not there yet.
 
->           minItems: 1
+Open question: I set license to GPL-2 only because the .txt bindings the
+yaml binding was derived from were
+GPL-2. I personally have no problem with dual-licensing the binding.
+No idea about the legal side wether that is possible or who must agree.
 
-Then why have the fallback?
+Changes in v2:
+- added conversion of divider
+- require reg now, makes sense after
+  https://lore.kernel.org/linux-omap/20240213105730.5287-1-tony@atomide.com/
+- clean up of examples
+- improvement of documentation
+
+v1 is at https://lore.kernel.org/linux-omap/20231127202359.145778-1-andreas@kemnade.info/
+
+Andreas Kemnade (2):
+  dt-bindings: clock: ti: Convert interface.txt to json-schema
+  dt-bindings: clock: ti: Convert divider.txt to json-schema
+
+ .../devicetree/bindings/clock/ti/divider.txt  | 115 ------------
+ .../bindings/clock/ti/interface.txt           |  55 ------
+ .../bindings/clock/ti/ti,divider-clock.yaml   | 175 ++++++++++++++++++
+ .../bindings/clock/ti/ti,interface-clock.yaml |  70 +++++++
+ 4 files changed, 245 insertions(+), 170 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti/divider.txt
+ delete mode 100644 Documentation/devicetree/bindings/clock/ti/interface.txt
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,divider-clock.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/ti/ti,interface-clock.yaml
+
+-- 
+2.39.5
+
 
