@@ -1,122 +1,105 @@
-Return-Path: <devicetree+bounces-109457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32208996739
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:27:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 083AA99675B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:33:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B9A90286328
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:27:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A80D61F249F7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:33:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6706318D650;
-	Wed,  9 Oct 2024 10:27:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7817418E74D;
+	Wed,  9 Oct 2024 10:33:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IaSZNmMU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U9yR8gF3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29C0515382F;
-	Wed,  9 Oct 2024 10:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B94B18C34D;
+	Wed,  9 Oct 2024 10:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728469631; cv=none; b=P0Cat8mvS6aUd4qvsevRwF+DjTaZNtPY80u47Dbbo0K25SN3fvVFjIr9+Vnhw6Xzh+GWnLJgPj2pbkAilm8N0UiW+VlIEirDmqWBIOuGh8FHWrG9kSwGpzdPZo4oqXX/P6xgv5eCK9W5uigudiajaDAOe9aN72X2fytYIZ1otjk=
+	t=1728469997; cv=none; b=cxI6VFgumNt6ltmu9bXueK60+7ARgNhHaoEi1k5DIHTsG1IQcB25Y4qXgs6w7X7WS3VC4XnBwSrP2vDDSmt3SdZ4IXjTFDbXoBWT07s+/7xUbhkfnBlX0sSLV2yU2XSYa8N/gMIQq9I9SOwMi//89IHNNnDoyBUb1SD599LtCLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728469631; c=relaxed/simple;
-	bh=5ZenLqU4VTWx8D4jCHpR0AkhS1gX0UMjyUhU2joZlLc=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=jctKml0nIroi1QtqL32CquKw13Kifga4W44mqgepx5vix+xZUUbiNs3j4Ky6GIJzwuhk4kwwFHdq2yzM3oQ75pRPUuK7MReUwbNT9OeT1y3k+H7rGbFO/so4EQZnEtFMY+lvBqtE2X1z4C2jYpXerpMRAXCvffuoMOKmqtITxCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IaSZNmMU; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id BAF6BFF807;
-	Wed,  9 Oct 2024 10:27:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728469627;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kYFf+MxvDup/RI+1Ncetwr45O3Q+xf0MstIDXJK3vW4=;
-	b=IaSZNmMUGBhEeWI3TA/wm7PqsHBAdZB9oovNm9/LaIHN8rK00jZ3mmYxWjduw5/5KYwqCl
-	zPlfOjzy4IVbyLlYrAICwciDTO+pMj/9p0rkQOo96+tHAusUG/cTpBTOdrxg/Yws4qxaTz
-	2mJBOErBo2LLiH/W2HzzGnr9djcO3WrdKOXvV88On7ah9U9P488xtJwanNllkdHB94gThC
-	eciqHtYW8k4Hy7Vm7/Uskx9GhXlkWS9zdJLaLDosJbyf0ZLxfmaYh13HxX9rcjQYy8C96Q
-	hIhx+2Z8qbiY1QS1VoVK5I72EvWt3QwEhLTW0aq2xjlWYD2hYE0t75KHw+/anA==
+	s=arc-20240116; t=1728469997; c=relaxed/simple;
+	bh=E0Ok0ODNbKtR756I4dYvGK/9d++arfILtePnfodKJdw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L1MvgkB5WzGcOL/CK3Wl4zHz4qydyechI+JhnZwuLv4ftZ6dihadG5175at3oH1Hddy9IEnpQxkuekLj/IxQAY2UtP9z5MxSDWh+XhYLvWBb+Nu4D+zMsD//t9sitt4/t6cU2oc5/t8ofVaHKVnYA1PTZubyZV3OX6/VqLHrm14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U9yR8gF3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BCBFCC4CEC5;
+	Wed,  9 Oct 2024 10:33:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728469996;
+	bh=E0Ok0ODNbKtR756I4dYvGK/9d++arfILtePnfodKJdw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=U9yR8gF3VlvOPQ3aI/EAxJyyKxvV+0CYS69eVQISX6rszh98YeFEfYXmRw/si29IE
+	 uk9S/wHJJTdavZNi1tfX6Nap9aumFFh8E0IGFs9ozGrvkta5jzNIAF21PNZ68rk98J
+	 iUboYRO4b45CUR1jCtu9qwQnf9yLaHJbl5OmvxxmfwSRpSKOk1HmnWxjCMpaS/uTyx
+	 vRUMdcyfxoH0io4mod0sNx8y3fH2HoNh72FipYunUsWxFEkQqb694fcUpiX5OpI9bL
+	 EM0CF9K7Q6GOhxhKfzrdSgJyrjfsLGHWXvm/YYLYfPXSUuf2/kmN44FmOd3MV+FeeN
+	 TWrLYW+NZwUnQ==
+Date: Wed, 9 Oct 2024 11:33:07 +0100
+From: Lee Jones <lee@kernel.org>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	matthias.bgg@gmail.com, eddie.huang@mediatek.com,
+	sean.wang@mediatek.com, alexandre.belloni@bootlin.com,
+	sen.chu@mediatek.com, macpaul.lin@mediatek.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-rtc@vger.kernel.org,
+	kernel@collabora.com
+Subject: Re: [PATCH v1 1/3] dt-bindings: mfd: mediatek: mt6397: Add
+ start-year property to RTC
+Message-ID: <20241009103307.GD276481@google.com>
+References: <20240923100010.97470-1-angelogioacchino.delregno@collabora.com>
+ <20240923100010.97470-2-angelogioacchino.delregno@collabora.com>
+ <20241009101549.GB276481@google.com>
+ <e0de3810-38b0-40a3-872d-678e9d4f72e5@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 09 Oct 2024 12:27:06 +0200
-Message-Id: <D4R7CGGQAJ50.U5UY2B7PBGG@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
- <andi.shyti@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Krzysztof Kozlowski" <krzk@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH 2/4] i2c: nomadik: support Mobileye EyeQ6H I2C
- controller
-X-Mailer: aerc 0.18.2-0-ge037c095a049
-References: <20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com>
- <20241008-mbly-i2c-v1-2-a06c1317a2f7@bootlin.com>
- <oxcxs6n7y4bw33yfgaacd2cayf7otfochvlaofva2kabzjim6h@d6pam3gciepl>
- <D4QI63B6YQU5.3UPKA7G75J445@bootlin.com>
- <fc17ef3d-7895-4ee8-bfa0-d31dd45f2f2c@kernel.org>
-In-Reply-To: <fc17ef3d-7895-4ee8-bfa0-d31dd45f2f2c@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e0de3810-38b0-40a3-872d-678e9d4f72e5@collabora.com>
 
-On Tue Oct 8, 2024 at 6:03 PM CEST, Krzysztof Kozlowski wrote:
-> On 08/10/2024 16:43, Th=C3=A9o Lebrun wrote:
-> > On Tue Oct 8, 2024 at 3:39 PM CEST, Krzysztof Kozlowski wrote:
-> >> On Tue, Oct 08, 2024 at 12:29:41PM +0200, Th=C3=A9o Lebrun wrote:
-> >>> +	bool is_eyeq6h =3D of_device_is_compatible(np, "mobileye,eyeq6h-i2c=
-");
-> >>> +	bool is_eyeq5 =3D of_device_is_compatible(np, "mobileye,eyeq5-i2c")=
-;
-> >>
-> >> You should use match data, not add compatibles in the middle of code.
-> >> That's preferred, scallable pattern. What you added here last time doe=
-s
-> >> not scale and above change is a proof for that.
-> >=20
-> > I would have used match data if the driver struct had a .of_match_table
-> > field. `struct amba_driver` does not. Are you recommending the approach
-> > below?
-> >=20
-> > I don't see how it brings much to the driver but I do get the scaling
-> > issue as the number of support compatibles increases. This is a fear
-> > based on what *could* happen in the future though.
->
-> You still have adev->dev.of_node, which you can use for matching in
-> probe. See for example of_match_device() (and add a note so people will
-> not convert it to device_get_match_data() blindly).
+On Wed, 09 Oct 2024, AngeloGioacchino Del Regno wrote:
 
-Just sent the new revision [0]. It uses of_match_device() in the same
-way as was shown in my previous answer to this thread [1]. Followed
-your recommendation and added a comment to avoid conversions to
-device_get_match_data().
+> Il 09/10/24 12:15, Lee Jones ha scritto:
+> > On Mon, 23 Sep 2024, AngeloGioacchino Del Regno wrote:
+> > 
+> > > Enable evaluating the start-year property to allow shifting the
+> > > RTC's HW range.
+> > > 
+> > > Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/mfd/mediatek,mt6397.yaml | 2 ++
+> > 
+> > No such file.
+> > 
+> 
+> In the cover letter, I wrote:
+> 
+> 
+> For the bindings commit, this series goes on top of the MT6397 schema
+> conversion from Macpaul Lin [1].
+> 
+> This series was tested on a MT8195 Cherry Tomato Chromebook.
+> 
+> [1]: https://lore.kernel.org/all/20240918064955.6518-1-macpaul.lin@mediatek.com/
+> 
+> 
+> So, that's why. :-)
 
-Thanks!
+Nope, try again. :)
 
-[0]: https://lore.kernel.org/lkml/20241009-mbly-i2c-v2-0-ac9230a8dac5@bootl=
-in.com/
-[1]: https://lore.kernel.org/lkml/D4QI63B6YQU5.3UPKA7G75J445@bootlin.com/
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+-- 
+Lee Jones [李琼斯]
 
