@@ -1,188 +1,146 @@
-Return-Path: <devicetree+bounces-109471-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109472-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D751996808
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:07:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4E45996814
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:11:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C924AB25941
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:07:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22AC01C221FA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E24F5190667;
-	Wed,  9 Oct 2024 11:07:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75F31190667;
+	Wed,  9 Oct 2024 11:11:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D7MQGR69"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Mz7RtfQh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E4019004E
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 11:07:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D1618E76E;
+	Wed,  9 Oct 2024 11:11:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728472055; cv=none; b=UqbtqsWWbXen8kqkh1rzVG/0giyEkCVw8Eb0IZbdpZykvpq/9R9xL5NnXasDD1Gaq7k7MpACI0QlPxk9583wqrI7cY2oZ6pre874SPU6f5MyXEtQM2ulFcmjTBneUb/ai5fUkMKbdZBRvhshlD8Wf4/8GnQmj+lfQ55IW8WpPMM=
+	t=1728472297; cv=none; b=kf3PilvI7VW7K1SgfB0ChpdWXY6bLqilX8ymW/VXcWhrHgEpGh6zgHYjt/9mw37fmTJleQZEzv0N/tyUlmYOsv5odHeRt7snvGDa5C9q7jHRVomKcIX2kJVTdci5WktkADK/+X6+6z4gmHWK1Mp/hbfCIPnvZqkzzz0Ky3EXnWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728472055; c=relaxed/simple;
-	bh=ii6GfROU9ArrFjcWdpR1qIu/SeG4G9OZDXuOJJXuIU4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ealjZhJ6BWQi14gp38ysmoRupcErgUBy/Ze/5OfnCTf4OEb7woxRpXE81mra1uKgYpPVsKZLCw+T6SsLZlQBcoEJ401LzcULM4533ZXLVDMi/GIP0OMHrEW2f7Wsa5/NQP31AyL8ubrETkBz2Unvf4ojD6RttbOhZeFbXVaDl9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D7MQGR69; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c9150f9ed4so1568347a12.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 04:07:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728472052; x=1729076852; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qC5xZXHruBUTfMPlyF7fUtQuDa89P4OUqC7YMxKyj+g=;
-        b=D7MQGR69PCvSdiNKXzHbVmoEiEXxWrPSSdnV8Z6vKccWTLLWArnHL8JNxNt9TXsEnj
-         pIgQUjfi9Q/abLhkxVey2ZoxNOVUbTy39xBkze1uL6XJgfgqoRGCSw+2Blv+JxJhFmM0
-         lxbuy1GcXoirSvvA8cfyBQ+Md5Gsc99aoO4LHX5hRPvjXjx5b4M++ffAH48LeO7IIBaU
-         VMXQNUZk/L+efOmBKQ+FS2R/cMP8sIptwa+D9bInmmMhLdm4xS+Fh2fxdXP+xAkOWu9w
-         MvA7/bafQfpQRolZ238I+CEccZ0ldj5D+Rh87yccCiejWc3yAUO8oO2xjIacxrYiPMZG
-         JK0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728472052; x=1729076852;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qC5xZXHruBUTfMPlyF7fUtQuDa89P4OUqC7YMxKyj+g=;
-        b=prdkRLI+LGMEgG8X4UTZ9Path3AQDrZmnse9bNeBWhD4iYr9PvdKjzAVy83X40DJOi
-         xwtHrVqhCLpPrKTy+qY4CGrChhq93fD0ZHFO9WhpbxqOZXtTrpvFs4Vq8+LFDI/GBst9
-         7pIC+que6SawArnv436hca3jlt0K7FKAk96DiMAAdl0ad195K481F8T928tQD/lBOsX/
-         dPhIoDbdOYL2yLSSsnHPYBhDrV7K4yXn5vaVMpWO3ErrEkW90vXSTXTJwlcnxJs1oAqI
-         olGaJoSr2BAukHBPjZoH47k+JGjv81a/CwzUxMu7ptyJu95A88cLkpQM/pL80tcUXzeW
-         SmuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcXisAN9RzaU4nAfEbiM3jncKRdISB+y6bs3QED5y5tfiyJUHpu/lWRpq6BeZv+YoXvPf1cuUw0Fyu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw8kuGXwRjw4c3oIbe628WjOwfCrFc2kWKQAJH715vg2tE+nMap
-	OFEZqVeyYiLdjJ+VOeITGT1DoAs0KlMEfuvFVp9F5q1pwYXb2nykidjNzD6JcKSsB8+3zkaCmKx
-	n
-X-Google-Smtp-Source: AGHT+IGhVpiLHwqHc0CC0SliGgvD5yURBzLT+qTi/vHuNL2ufLFKFmwTrP+FPEtGv/VEq7sYbPQUTA==
-X-Received: by 2002:a17:907:e654:b0:a99:585a:42a9 with SMTP id a640c23a62f3a-a998d117cb5mr181447166b.9.1728472052033;
-        Wed, 09 Oct 2024 04:07:32 -0700 (PDT)
-Received: from [127.0.1.1] ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a992e787eecsm635551766b.125.2024.10.09.04.07.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2024 04:07:31 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Wed, 09 Oct 2024 14:07:23 +0300
-Subject: [PATCH v3] arm64: dts: qcom: x1e80100: Fix PCIe 6a lanes
- description
+	s=arc-20240116; t=1728472297; c=relaxed/simple;
+	bh=e3rviv3TJdVjm4yn7ziTk9KSuLclDXQUchWzo7AyiA4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UWi35ReKZ8BCL6tZ80BEyYAYcmDVbYe58dYlkonzWt0tYV2Y/v+SqdGygpvqM+i0a2NIG/03BKhOHsoRKHc7bXS0hoYIgrM8dtkyo2/8oqbSBFVsKgtqV6cRjBWDR9aTBhvYCN+xY06OSER9MiIqMJIxVCZc3dkdkwiqrFb4LEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Mz7RtfQh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9AD7C4CEC5;
+	Wed,  9 Oct 2024 11:11:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728472295;
+	bh=e3rviv3TJdVjm4yn7ziTk9KSuLclDXQUchWzo7AyiA4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Mz7RtfQhCZ0uNCUFMWKtrHAFeascQPu/ebICZ3tR6PzNzrHFcc/TnETf+OJkJge90
+	 ZR7BDjTr/iiEplJZ/McnERDIbJoo4Ruuko8yzXydymmHZercGjMUXR86WYDdDQJwhN
+	 TIfk2Qog/C8fAdxxpVjiYALqqIduKNgy3iaiEe9KNN0SWuIast05sUg34l4uHjyfCn
+	 xXgrJNWDslnX8A3zp1HtNtRwrw3gHZjBDPwqOjvfkIBTkKfvKyla22qr1n5qra8it0
+	 9Vmmpa2HsBpKn4+LhSFP4gryYnJ0bcZMuKDcHnX9tTYsHSPZplMSMCHVO1DIZeMxqN
+	 C2HFPzUeHbo7w==
+Date: Wed, 9 Oct 2024 12:11:32 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Deepak Gupta <debug@rivosinc.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>, Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v6 02/33] mm: helper `is_shadow_stack_vma` to check
+ shadow stack vma
+Message-ID: <ZwZk5LufEv-7GLlf@finisterre.sirena.org.uk>
+References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
+ <20241008-v5_user_cfi_series-v6-2-60d9fe073f37@rivosinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241009-x1e80100-dts-fixes-pcie6a-v3-1-14a1163e691b@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAOpjBmcC/33NzQ6CMAwH8FchO1uzbsypJ9/DeBjQwRIDZCMLh
- vDuFg4mXrj1349fF5EoBkriXiwiUg4pDD0HfSpE3bm+JQgNZ6GkKlFKDTPSVXIFzZTAh5kSjHW
- gi4Pq5hEtjxtTCb4fI+1zPn++OHchTUP87K8ybt1dlUbjgZoRFKCxmqraEa893qF3cTgPsRUbm
- 9WPYqA8ohgC7fzNe+uMs/hHrev6BWQbnegOAQAA
-X-Change-ID: 20241003-x1e80100-dts-fixes-pcie6a-b9f1171e8d5b
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, stable+noautosel@kernel.org, 
- Abel Vesa <abel.vesa@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2808; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=ii6GfROU9ArrFjcWdpR1qIu/SeG4G9OZDXuOJJXuIU4=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnBmPsd17EksgNHsxvLDT/1tOvJuFbgytOOAarn
- l8Y0fSNG+OJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZwZj7AAKCRAbX0TJAJUV
- Vmf3D/wPMZaogmU6Ff48lf1t2IP2Q6tuSUBLQgoKPxyPdxrEau4qKDzRFUw4mCfjDQrZFSa7Drz
- /T4VAcV2QnMFAcUmpmdJQXRL3OmGmrUog2Ii77Loc/UaRMEPVQrLnREwiOvoUx5D1kDlI9GjOmg
- +FnJBaufmiLB8s35ihNuju6C1LN9GXdYPHTgJ6hbCxHw8RxFDn/dbUy1p84L8Ia+1w2NiU9sV6R
- 1WSYHmKNu8pntJfkTN5jiAzD3qlmbYqFeUsGDyhv3rv3EVqO+C4om6+yLhQe4RYDwBHF3dPOLqB
- eT1mHic42ZUv0IM6KBRp8t9QZsh6U2HWDtM81ggWOBUO2i/Vm8Pv44IDO0EVcLGKX5iIVPbPG58
- mg6vLjJJtx0JRelAq/Nijzv3rWoSPrVJfANV8opj3W13bE1pRFj3j0lJKUlO/0jhr3AUAed42Md
- gPVhRAfAEvzN0H0UDYYwxqu7z1+yiClO7K6rno8UUTVKlg0DpqzyNQnXN8sFMsBMUyFSuv/T32h
- M1Fzqb62LiWbreWA8CrrOaTv1qEiWqJF7cy3h2JbJhFMX6vyO4QmUHfAA1tXzSaen0CZEM3uj1B
- PCxslJulb5GPMpknGgXrP+bKEig4rBNrYuwAjJsNZCbnH8+mfWIJdAmAIpjjlcTIKXfTvFUWwyA
- PgmRc8ANIKpmWXg==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="RiYacTSmJWPXVleE"
+Content-Disposition: inline
+In-Reply-To: <20241008-v5_user_cfi_series-v6-2-60d9fe073f37@rivosinc.com>
+X-Cookie: Editing is a rewording activity.
 
-Fix the description and compatible for PCIe 6a, as it is in fact a
-4-lanes controller and PHY, but it can also be used in 2-lanes mode. For
-4-lanes mode, it uses the lanes provided by PCIe 6b. For 2-lanes mode,
-PCIe 6a uses 2 lanes and then PCIe 6b uses the other 2 lanes. The number
-of lanes in which the PHY should be configured depends on a TCSR register
-value on each individual board.
 
-Cc: stable+noautosel@kernel.org # Depends on pcie-qcom 16.0 GT/s support
-Fixes: 5eb83fc10289 ("arm64: dts: qcom: x1e80100: Add PCIe nodes")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
----
-Changes in v3:
-- Re-worded the commit message once more to suggest a fix w.r.t
-  lanes.
-- Added back fixes tag and CC stable but with noautosel reason
-- Picked up Konrad's R-b tag.
-- Link to v2: https://lore.kernel.org/r/20241004-x1e80100-dts-fixes-pcie6a-v2-1-3af9ff7a5a71@linaro.org
+--RiYacTSmJWPXVleE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Changes in v2:
-- Re-worded the commit message according to Johan's suggestions
-- Dropped the clocks changes.
-- Dropped the fixes tag as this relies on the Gen4 4-lanes stability
-  patchset which has been only merged in 6.12, so backporting this patch
-  would break NVMe support for all platforms.
-- Link to v1: https://lore.kernel.org/r/20240531-x1e80100-dts-fixes-pcie6a-v1-2-1573ebcae1e8@linaro.org
----
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 9 ++++++---
- 1 file changed, 6 insertions(+), 3 deletions(-)
+On Tue, Oct 08, 2024 at 03:36:44PM -0700, Deepak Gupta wrote:
+> VM_SHADOW_STACK (alias to VM_HIGH_ARCH_5) is used to encode shadow stack
+> VMA on three architectures (x86 shadow stack, arm GCS and RISC-V shadow
+> stack). In case architecture doesn't implement shadow stack, it's VM_NONE
+> Introducing a helper `is_shadow_stack_vma` to determine shadow stack vma
+> or not.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index a36076e3c56b5b8815eb41ec55e2e1e5bd878201..4ec712cb7a26d8fe434631cf15949524fd22c7d9 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -2931,7 +2931,7 @@ pcie6a: pci@1bf8000 {
- 			dma-coherent;
- 
- 			linux,pci-domain = <6>;
--			num-lanes = <2>;
-+			num-lanes = <4>;
- 
- 			interrupts = <GIC_SPI 773 IRQ_TYPE_LEVEL_HIGH>,
- 				     <GIC_SPI 774 IRQ_TYPE_LEVEL_HIGH>,
-@@ -2997,8 +2997,9 @@ &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
- 		};
- 
- 		pcie6a_phy: phy@1bfc000 {
--			compatible = "qcom,x1e80100-qmp-gen4x2-pcie-phy";
--			reg = <0 0x01bfc000 0 0x2000>;
-+			compatible = "qcom,x1e80100-qmp-gen4x4-pcie-phy";
-+			reg = <0 0x01bfc000 0 0x2000>,
-+			      <0 0x01bfe000 0 0x2000>;
- 
- 			clocks = <&gcc GCC_PCIE_6A_PHY_AUX_CLK>,
- 				 <&gcc GCC_PCIE_6A_CFG_AHB_CLK>,
-@@ -3021,6 +3022,8 @@ pcie6a_phy: phy@1bfc000 {
- 
- 			power-domains = <&gcc GCC_PCIE_6_PHY_GDSC>;
- 
-+			qcom,4ln-config-sel = <&tcsr 0x1a000 0>;
-+
- 			#clock-cells = <0>;
- 			clock-output-names = "pcie6a_pipe_clk";
- 
+Not that it makes any difference but the arm64 eneded up defining
+VM_SHADOW_STACK to VM_HIGH_ARCH_6.
 
----
-base-commit: c02d24a5af66a9806922391493205a344749f2c4
-change-id: 20241003-x1e80100-dts-fixes-pcie6a-b9f1171e8d5b
+> Signed-off-by: Deepak Gupta <debug@rivosinc.com>
+> ---
+>  mm/gup.c |  2 +-
+>  mm/vma.h | 10 +++++++---
+>  2 files changed, 8 insertions(+), 4 deletions(-)
 
-Best regards,
--- 
-Abel Vesa <abel.vesa@linaro.org>
+There's another test of VM_SHADOW_STACK in mainline now, added by my
+change df7e1286b1dc3d6c ("mm: care about shadow stack guard gap when
+getting an unmapped area") - sorry, I should've remembered this change
+=66rom your series and pulled it into mine.
 
+> @@ -387,7 +392,6 @@ static inline bool is_data_mapping(vm_flags_t flags)
+>         return (flags & (VM_WRITE | VM_SHARED | VM_STACK)) =3D=3D VM_WRIT=
+E;
+>  }
+>=20
+> -
+>  static inline void vma_iter_config(struct vma_iterator *vmi,
+>                 unsigned long index, unsigned long last)
+
+Unrelated whitespace change.
+
+--RiYacTSmJWPXVleE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcGZOMACgkQJNaLcl1U
+h9Dh9Qf/V2pf5NwELa5AFo32pS+UvPU+55Sn73YaN7CJwHb51fe8tNSKG9c3Gq8e
+E/N5zPxVN7izgYi2vXXf1GVM/Hm9oZUxNyU4BrkNeRLh7ofy0CsGwspy7Xp+k4LH
+mUZX01pPjiQ71euc4oxfaUpZT85PVe/Tj1pYyNSulKwk2My4BSuW+eHt+kD4v9uC
+TSSp4NrtEi8xN29WICLiOfJQ/GZnusdljjbOEDauW3H02lVyqsi9vr5nCUlViEqu
+A60ZAzYJ9XrQQEJXK6n0FL2ebd7wJH0RvYRKMCNrFBpLRUs7kiFCcczFV8QfnPTN
+B9GbsQB+3EaHLl6oGV2gv6QyQgmoCw==
+=uBsi
+-----END PGP SIGNATURE-----
+
+--RiYacTSmJWPXVleE--
 
