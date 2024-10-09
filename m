@@ -1,118 +1,114 @@
-Return-Path: <devicetree+bounces-109365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8D389961D5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:05:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E384996245
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:19:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 685C9B224AD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:05:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F5BD1C217E2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B6EF1885AA;
-	Wed,  9 Oct 2024 08:04:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A84F317C220;
+	Wed,  9 Oct 2024 08:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="CET+bD2a"
+	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="paP3h/PV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp-relay-canonical-1.canonical.com (smtp-relay-canonical-1.canonical.com [185.125.188.121])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87F4F188586;
-	Wed,  9 Oct 2024 08:04:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EED617E8E2
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 08:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.121
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728461096; cv=none; b=KXy3r2re+nmGIydNuB1ls7aaHOaper23B6UvX2HCTZKY8nk8n6i9OXkxcngfgUX4mMUoj/LNh2NMbsdfR1usBKXfWRMcNEymlBULNOsM7Tc2O/qAyYcBVht4XYtFdJxoP2SRWy96vpbsg9gzaNz5DNBgzomMaNJxD+JGjgAOy4I=
+	t=1728461975; cv=none; b=MLflGhvVCNKcKIzRAuC/d6OhIAbMS+bJU71Tj3qkEDHGKTtThX/wxfKAx3khmbXQ3cWAU7vbmLwZ4WWJ3axe9n/nHEZevxRARhIMJ+J+mYP3Dg+s8JQSQjkuqCEWddNpux7tCVVWZq0BnqT4w8/H/56U+8+RsFB3XUvDIFPSlCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728461096; c=relaxed/simple;
-	bh=PIPJaYVqB/0I9J24VTXd1sy1f8DObF+DnZqOAqQWUuE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=EkZMsqjO5mF5DxC2neFSm19e/SlHWUgr2TmRUG7H98meYiF/YabmgjGxkvYzJWkFWji25/gKLtE1O7bNb1kqd/3RW/anwKUSi1O/7T2LH6GVjjeSEXCt9tIprhRsaXLmuCnI73GjbGd3OeK2eE4yabwuxOUGHjRoW9bqy20wp4M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=CET+bD2a; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D55AB240002;
-	Wed,  9 Oct 2024 08:04:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728461092;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4ZqUu2zXtpPIFf6u2ipPatyPzUjw/B5iwIYSh3KUBBk=;
-	b=CET+bD2aQpIFbn83eKT+JAQlvpdrc0gESxRVHARr0UpzskXaayoxehxFYpeqV2I+pGYHf7
-	xSvkBl7b89C/+0Gdk47ezTrP7u6qPBIGR5kwqsIzgc3ZKH3047DghYSSp6FbBjBZvoxqlu
-	j6zm6Afpuenl/O0Lyd9lpC3DzF1Z91xyY1qE//1L7iEPG9apRogWNH7xuYpKJxsEJ0vFR8
-	f7awQRGnelx1xTR53a07BHU3UMyrCGrqIJqTl366jh6Nmmxl0DzFyVPbWQkTKSy/mEAo4/
-	0QUCeD6U6SN9pWklqIOJ4bFozd3MC1LJrrtFwXUpIuM/vk9XRWdRR6ANHh7WTg==
-Date: Wed, 9 Oct 2024 10:04:50 +0200
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Hui-Ping Chen <hpchen0nvt@gmail.com>
-Cc: richard@nod.at, vigneshr@ti.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, nikita.shubin@maquefel.me, arnd@arndb.de,
- vkoul@kernel.org, esben@geanix.com, linux-arm-kernel@lists.infradead.org,
- linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] mtd: rawnand: nuvoton: add new driver for the
- Nuvoton MA35 SoC
-Message-ID: <20241009100450.362e3556@xps-13>
-In-Reply-To: <02098767-19ce-407e-88be-24c6259c4053@gmail.com>
-References: <20240927020749.46791-1-hpchen0nvt@gmail.com>
-	<20240927020749.46791-3-hpchen0nvt@gmail.com>
-	<20241001215755.5c2f8465@xps-13>
-	<8d5e7755-17fd-4860-bcb0-8c1de04bf0c5@gmail.com>
-	<20241008105230.7fd25438@xps-13>
-	<02098767-19ce-407e-88be-24c6259c4053@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728461975; c=relaxed/simple;
+	bh=cdRIbJLGn7YxKBGuMqpxMtsVyFrjgweIZiA7ooI9VRA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=EIdbwY8ruI3GGD3q5gqGlsGZX4HT3vrcIzgt4K2wS1VYtupNPmJIpqDhHrkq76c6+YycwXad5e+tAYV0m3ButdnF/LWFXL7WhnSYWPAYROr9WhUneWnYF8+k5sk4pBn56c82rsSkxFpnslhAUA1zCaStHGi71VWCBWYpofjcv+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=paP3h/PV; arc=none smtp.client-ip=185.125.188.121
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
+Received: from hwang4-ThinkPad-T14s-Gen-2a.conference (unknown [103.229.218.199])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-relay-canonical-1.canonical.com (Postfix) with ESMTPSA id 9E7823F776;
+	Wed,  9 Oct 2024 08:19:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
+	s=20210705; t=1728461967;
+	bh=deNrMf3Olx7rgFVfWl4J5LPh/1V6+gur8Mue2zZit/4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version;
+	b=paP3h/PV21Jt7ZYnzvUwyuViaTJq2TztzZJq7io9GPqMEmNMsmc9eXin9KiE3r79F
+	 GBfW3RezHNAf2nUNTcAZqx5El/2OhCs4BU3c0cUcB4jhlpfB9wCvNOqGlxQQnt6yV7
+	 CnN3utog5g4ounkJsInQ5qsx44KKVHcXczOT6TCtzMgrhQwaqmNT68t7qIxGWE5MmO
+	 4sigpGPPlvatcKZPWncsV8lCWf5YnfZDhNGgNML433ylnirIW0/ZveXlYlF4YsSMpV
+	 nrldAp3PMpxh3p1R/H96C9AqlI7kinxlGwzQRkcezIW6wkNsILJjhiwifV8WFRedYW
+	 A5hr6/EP/8ieQ==
+From: Hui Wang <hui.wang@canonical.com>
+To: devicetree@vger.kernel.org,
+	nm@ti.com,
+	ssantosh@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	s-anna@ti.com,
+	grzegorz.jaszczyk@linaro.org
+Cc: hui.wang@canonical.com
+Subject: [PATCH v3] dt-bindings: soc: ti: pruss: Drop the desc for assigned-clock-parents
+Date: Wed,  9 Oct 2024 16:19:20 +0800
+Message-Id: <20241009081920.15077-1-hui.wang@canonical.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
+Content-Transfer-Encoding: 8bit
 
-Hi Hui-Ping,
+The description for assigned-clock-parents looks redundant, It doesn't
+contain anything new apart from rephrasing the straightforward meaning
+of assigned-clock-parents, and furthermore there is a typo in the
+description, hence let me drop the description here.
 
-> >>>> +		return 0;
-> >>>> +	}
-> >>>> +
-> >>>> +	ma35_nand_dmac_init(nand);
-> >>>> +
-> >>>> +	writel(mtd->oobsize, nand->regs + MA35_NFI_REG_NANDRACTL);
-> >>>> +
-> >>>> +	/* setup and start DMA using dma_addr */
-> >>>> +	dma_addr =3D dma_map_single(nand->dev, (void *)addr, len, DMA_FROM=
-_DEVICE);
-> >>>> +	ret =3D dma_mapping_error(nand->dev, dma_addr);
-> >>>> +	if (ret) {
-> >>>> +		dev_err(nand->dev, "dma mapping error\n");
-> >>>> +		return -EINVAL;
-> >>>> +	}
-> >>>> +
-> >>>> +	writel((unsigned long)dma_addr, nand->regs + MA35_NFI_REG_DMASA); =
-=20
-> >>> Please enforce a dma mask of 32 (even though it might be the fault). =
-=20
-> >> I will change it to dma_addr & 0xffffffff. =20
-> > That's not what I mean, I believe you should use the dma API to ask for
-> > a mapping within the accessible 32-bit address range. The
-> > dma_mapping_error() check should return an error if that's not the
-> > case. Then you can safely write the value. =20
->=20
-> Here is my misunderstanding: just fill in the dma_addr directly,
->=20
-> no type conversion is needed. I have already tested it.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Hui Wang <hui.wang@canonical.com>
+---
+In the v3:
+ drop the tag of Fixes since it is not worth backporting such a typo and desc fix
+In the v2:
+ drop the description for assigned-clock-parents instead of fixing the typo
 
-FYI, it only works because the default DMA mask for your device is gonna
-be 32 bits. If the reality (what your peripheral DMA can do) was
-different than this, you would have to set a different mask explicitly
-to make sure the dma-mapping step would not provide buffers which are
-out of reach.
+ Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 6 ------
+ 1 file changed, 6 deletions(-)
 
-Thanks,
-Miqu=C3=A8l
+diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+index 3cb1471cc6b6..9b495bac0343 100644
+--- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
++++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+@@ -184,9 +184,6 @@ patternProperties:
+ 
+               assigned-clock-parents:
+                 maxItems: 1
+-                description: |
+-                  Standard assigned-clocks-parents definition used for selecting
+-                  mux parent (one of the mux input).
+ 
+               reg:
+                 maxItems: 1
+@@ -218,9 +215,6 @@ patternProperties:
+ 
+               assigned-clock-parents:
+                 maxItems: 1
+-                description: |
+-                  Standard assigned-clocks-parents definition used for selecting
+-                  mux parent (one of the mux input).
+ 
+               reg:
+                 maxItems: 1
+-- 
+2.34.1
+
 
