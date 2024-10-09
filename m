@@ -1,178 +1,151 @@
-Return-Path: <devicetree+bounces-109464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CF709967B8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:52:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF09E9967D2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:56:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 02791281660
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:52:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1CEE81C24A1D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:56:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91B218B46B;
-	Wed,  9 Oct 2024 10:52:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32802190497;
+	Wed,  9 Oct 2024 10:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="hxZ6/PIx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB8F6189F20;
-	Wed,  9 Oct 2024 10:52:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ua1-f46.google.com (mail-ua1-f46.google.com [209.85.222.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76A7E190462
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 10:56:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728471148; cv=none; b=qFL/uiGOFsfDhp81vLt+MuSXI3Qirp3P/LBwhJYBFNdvUQNWh+KogPytlCQSBlKesiEIYKI0nCPj7BpyKYaNHKEEmHmq+rSBCoBwGrXtqnUoYsRmM+jh7rpU1QXoXO4EHCJsT4MuPfyQobG8GF4ZBA9AB1bGSr8SC/a6KV8GinU=
+	t=1728471369; cv=none; b=WEJ62sr4YvLMwKofbfLQcsW6dWye+bpmUU22wJBKEdi0f1YZYEG6UBEISDW4sr/MaRVOF/fQ/Cow+TwuqVx3z3rcQeW9SiMsrVqMqfWKcYHmdvVZhzs1tsRhGkvvcUJ4Gr+AgQKRmeusk13YFSUT8560PW+3iDj0nsVJqux+vxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728471148; c=relaxed/simple;
-	bh=PknlLcryNm75GsVtVIIRXRryldwlIq8U4BKG8JoBMUU=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=bvEHnNNXSlK4HkyuabYaQvnaso7b/J5AjLr/zYFeFSM4Yo55Dh5214KswbJGinJQg9bvAWOYVKlIj1YwrLQhOZaiRfLAjLLWIE/Qle3/HSuyb/rpxQkv0S2M8MsVXXjPlI921a4cSgSkYKh2mGMNBQvDI9yfGPimjuMcT/rQTJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E6F31139F;
-	Wed,  9 Oct 2024 03:52:55 -0700 (PDT)
-Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 763AD3F64C;
-	Wed,  9 Oct 2024 03:52:24 -0700 (PDT)
-Message-ID: <4a6066ed-ead4-4387-8c66-b3e7631c5e90@arm.com>
-Date: Wed, 9 Oct 2024 11:52:22 +0100
+	s=arc-20240116; t=1728471369; c=relaxed/simple;
+	bh=9V8jwIrSgcFpXYzIEYnO4UoXcbhff18KzNRe9Nwd0zA=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TdRaOgy22rTAgXR5W8DX68zvD6lEhucaOJ3E86sFoJKyDU+ilP2nnDASEVzbKb9PfP5CcRO02RcQzc24yqxyMMZ7ABUUkujHhsqJH/47MWJsjIsehT17I28Ik1CGgSLzGgDG/70hdksgBeh0EllyhOnlzef0xgqdj3tXzsmigfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=hxZ6/PIx; arc=none smtp.client-ip=209.85.222.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ua1-f46.google.com with SMTP id a1e0cc1a2514c-84f1ac129c7so2267515241.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 03:56:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728471366; x=1729076166; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RNG+QhTQAdWb1KvFrYofboNFibFz2WosHRUzPUAB8Y4=;
+        b=hxZ6/PIxwaeZLsMeTNc9oh8cZTPyBqJ6JV8r3ryKLSFH5TCpJ6cz8dyJLb5053nhdO
+         VfMAZt/n/0ZmOsPv80r+UlP3VlI7u+AS6syeeqb+a2gwybeS0bGaQmTkIdBt5x8rCln7
+         FS5Ksf/2iBG/MhXXjRz9sO3fbBT+l2i6Z3mT0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728471366; x=1729076166;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RNG+QhTQAdWb1KvFrYofboNFibFz2WosHRUzPUAB8Y4=;
+        b=BtEttDESbvPEG27x3OIT/4E4LjiRJQBKOnnD1qAhcMPrkCIcxZPKzzUNFJ8z8hzu/W
+         6A/rjJdYdNzvQhlDs1TVSV34QOmIbR7Oh+8c4hIi/vOpqTbuCO66qx92nsLRUwu2xy8W
+         4YdMkOgOciMX7rERwKCXTwv6pFmGLQw0XJ9SF61QAoSsi7r8sQBKQr8H24/IE/IUM+dE
+         zWfD5vePxY0SaRm+dO5nL8js8l3T7gbt3mcOL0R2XxHUYm+1vtfkDy2JoIT3gda/AhDm
+         Bvx8PlQwbxc/Vqamvq9SEnPwsPp6cbIqc1j+nZOeoQshvJ/5YE1dVelz+rJFkoFv/mNb
+         yn6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVadZ+a0awqtMrkS+c0bSzhorY+EoEfH73RjZXbNnFcfteqGhFQ8jniHUZ4DNEmZLe5WQ3T/oPjeKTb@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7WHz7eq18kotwbLqSiAYnOIGVS6XxjcIpz9i5BWSkU4EKzwg1
+	v+A31bBFWHJ3OrTeKHMqHDHQbNBM20f2K1ZJq9Yfxbsx+3lOEVFcxQaD4N/wZupsI0VTGwphydc
+	gPg==
+X-Google-Smtp-Source: AGHT+IHLFWxY9hGcn8IV8ZmQiBcp+Yc1MlHzFme1adFdKGTIFwXg57t+C1QQ6DtZMq2TsMCeUburQQ==
+X-Received: by 2002:a05:6102:370c:b0:4a3:3d4f:edd2 with SMTP id ada2fe7eead31-4a448d7d503mr2183281137.17.1728471366272;
+        Wed, 09 Oct 2024 03:56:06 -0700 (PDT)
+Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
+        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-4a412eb367fsm1695313137.34.2024.10.09.03.56.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Oct 2024 03:56:06 -0700 (PDT)
+Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-4a3cb09e28cso2053201137.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 03:56:05 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXrzKpuWeEcBSADS8UNsNaPgKw+CVVzCc/6OsU8iK7z8+eygN1sF85VlmX36tSpb27KXx1kmGFi7tNj@vger.kernel.org
+X-Received: by 2002:a05:6102:1612:b0:49b:d1d1:8f7d with SMTP id
+ ada2fe7eead31-4a448e347d3mr2296143137.26.1728471365444; Wed, 09 Oct 2024
+ 03:56:05 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm:
- qcom,coresight-static-replicator: Add property for source filtering
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Tao Zhang <quic_taozha@quicinc.com>, Mike Leach <mike.leach@linaro.org>,
- James Clark <james.clark@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Mathieu Poirier <mathieu.poirier@linaro.org>,
- Leo Yan <leo.yan@linux.dev>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>,
- coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240821031348.6837-1-quic_taozha@quicinc.com>
- <20240821031348.6837-2-quic_taozha@quicinc.com>
- <a01d2f2f-d963-4eb1-98ee-3dc6f86c9397@arm.com>
- <xmijaayxveghxx76nnudo5mlpxv6tpxvooiox7wj2jyojf3xpe@ntm67lxikfop>
- <44e2617c-62b0-436f-ac6a-0bd3e3855473@arm.com>
- <53ec46af-3438-44e0-82b2-9432fc7f0fcb@arm.com>
-Content-Language: en-US
-In-Reply-To: <53ec46af-3438-44e0-82b2-9432fc7f0fcb@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20241008053514.6800-1-macpaul.lin@mediatek.com>
+ <CAC=S1ngrsDxQ1Fe9xB_EevGbGB5nDoCB_n2oGb2VTLiv1vSsGA@mail.gmail.com> <f1bb941b-cb6d-32c4-2cf9-268fc3f43bf9@mediatek.com>
+In-Reply-To: <f1bb941b-cb6d-32c4-2cf9-268fc3f43bf9@mediatek.com>
+From: Fei Shao <fshao@chromium.org>
+Date: Wed, 9 Oct 2024 18:55:28 +0800
+X-Gmail-Original-Message-ID: <CAC=S1ngHAf+CNuyMB9ZEW38e3mfVRNy7upsoKyAp1gN8=FGrxg@mail.gmail.com>
+Message-ID: <CAC=S1ngHAf+CNuyMB9ZEW38e3mfVRNy7upsoKyAp1gN8=FGrxg@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix dtbs_check error for tphy
+To: Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Chunfeng Yun <chunfeng.yun@mediatek.com>, Jieyy Yang <jieyy.yang@mediatek.com>, 
+	Jian Yang <jian.yang@mediatek.com>, Jianguo Zhang <jianguo.zhang@mediatek.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Matthias Brugger <matthias.bgg@gmail.com>, 
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, Seiya Wang <seiya.wang@mediatek.com>, 
+	Tinghan Shen <tinghan.shen@mediatek.com>, Alexandre Mergnat <amergnat@baylibre.com>, 
+	Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
+	Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, 
+	Chris-qj chen <chris-qj.chen@mediatek.com>, 
+	MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	Chen-Yu Tsai <wenst@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Krzysztof
+On Wed, Oct 9, 2024 at 4:50=E2=80=AFPM Macpaul Lin <macpaul.lin@mediatek.co=
+m> wrote:
+>
+> On 10/8/24 15:10, Fei Shao wrote:
+> >
+> > External email : Please do not click links or open attachments until yo=
+u
+> > have verified the sender or the content.
+> >
+> > On Tue, Oct 8, 2024 at 1:36=E2=80=AFPM Macpaul Lin <macpaul.lin@mediate=
+k.com> wrote:
+> >>
+> >> The u3phy1 node in mt8195.dtsi was triggering a dtbs_check error.
+> >> The error message was:
+> >>   t-phy@11e30000: 'power-domains' does not match any of the regexes:
+> >>     '^(usb|pcie|sata)-phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+> >> Fix this issue by dropping 'power-domains' of u3phy1 node.
+> >>
+> >> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and evaluati=
+on board")
+> >> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> >> ---
+> >
+> > Apart from this, can you or Chunfeng confirm if we should make a
+> > similar change for MT8188[1]?
+> >
+> > [1]: https://lore.kernel.org/all/20241004081218.55962-3-fshao@chromium.=
+org/
+> >
+> > Regards,
+> > Fei
+> >
+>
+> According to the suggestion and discussion in
+>
+> [1]:
+> https://lore.kernel.org/lkml/20241008-disorder-slacking-d8196ceb68f7@spud=
+/T/#mccf978d76f52cc26970f3f3be6120055e4698fe6
+>
+> I think adding 'power-domains' to PCIE node of MT8188 is okay.
+>
 
-On 22/08/2024 12:50, Suzuki K Poulose wrote:
-> On 22/08/2024 11:34, Suzuki K Poulose wrote:
->> On 22/08/2024 08:08, Krzysztof Kozlowski wrote:
->>> On Wed, Aug 21, 2024 at 11:38:55AM +0100, Suzuki K Poulose wrote:
->>>> On 21/08/2024 04:13, Tao Zhang wrote:
->>>>> The is some "magic" hard coded filtering in the replicators,
->>>>> which only passes through trace from a particular "source". Add
->>>>> a new property "filter-src" to label a phandle to the coresight
->>>>> trace source device matching the hard coded filtering for the port.
->>>>
->>>> Minor nit: Please do not use abbreviate "source" in the bindings.
->>>> I am not an expert on other changes below and will leave it to
->>>> Rob/Krzysztof to comment.
->>>>
->>>> Rob, Krzysztof,
->>>>
->>>> We need someway to "link" (add a phandle) from a "port". The patch 
->>>> below
->>>> is extending "standard" port to add a phandle. Please let us know if
->>>> there is a better way.
->>>>
->>>> e.g.:
->>>>
->>>> filters = list of tuples of port, phandle. ?
->>>>
->>>> e.g.:
->>>>
->>>> filters = < 0, <&tpdm_video>,
->>>>              1, <&tpdm_mdss>
->>>>        >
->>>>
->>>
->>> Current solution feels like band-aid - what if next time you need some
->>> second filter? Or "wall"? Or whatever? Next property?
->>
->>
->>
->>>
->>> Isn't filter just one endpoint in the graph?
->>>
->>> A <--> filter <--> B
->>
->> To be more precise, "Filter" is a "port (p0, p1, p2 below)" (among a
->> multi output ports).
->>
->> For clearer example:
->>
->> A0 <--> .. <--> ..\                  p0  / --> Filtered for (A1) <--> B1
->> A1 <--> .. <--> .. - < L(filters>    p1  - --> Filtered for (A2) <--> B2
->> A2 <--> .. <--> ../                  p2  \ --> Unfiltered        <--> B0
->>
->>
->>
->>> Instead of
->>>
->>> A <----through-filter----> B?
->>
->> The problem is we need to know the components in the path from A0 to X
->> through, (Not just A0 and L). And also we need to know "which port (p0 
->> vs p1 vs p2)" does the traffic take from a source (A0/A1/A2) out of the
->> link "L".
->>
->> So ideally, we need a way to tie p0 -> A1, p1 -> A2.
->>
->> would we need something else in the future ? I don't know for sure.
->> People could design their own things ;-). But this was the first time
->> ever in the last 12yrs since we supported coresight in the kernel.
->> (there is always a first time).
->>
->> Fundamentally, the "ports" cannot have additional properties today.
->> Not sure if there are other usecases (I don't see why). So, we have
->> to manually extend like above, which I think is not nice.
-> 
-> Replying to the other thread [0], made me realize that the above is not
-> true. Indeed it is possible to add properties for endpoints, e.g:
-> 
-> e.g.: media/video-interfaces.yaml
-> 
-> So extending the endpoint node is indeed acceptable (unlike I thought).
-> May be the we it is achieved in this patch is making it look otherwise.
-> 
-> Suzuki
-> [0] https://lkml.kernel.org/r/4b51d5a9-3706-4630-83c1-01b01354d9a4@arm.com
+Acked, thanks!
 
-Please could you let us know if it is acceptable to extend "endpoint"
-node to have an optional property ?
-
-Suzuki
-
-
-> 
-> 
-> 
->>
->> Happy to proceed with anything that seems acceptable for you folks.
->>
->> Suzuki
->>
->>
->>
->>>
->>> Best regards,
->>> Krzysztof
->>>
->>
-> 
-
+Fei
 
