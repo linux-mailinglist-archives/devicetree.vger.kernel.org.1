@@ -1,131 +1,146 @@
-Return-Path: <devicetree+bounces-109326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAC8996115
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:40:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 272D899611D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:41:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A0E89283417
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:40:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D72CA281CD6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:41:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28C2187561;
-	Wed,  9 Oct 2024 07:39:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DAC2183088;
+	Wed,  9 Oct 2024 07:41:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="NTsv2DQ+"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lUN8gD02"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61CB5183CD9;
-	Wed,  9 Oct 2024 07:39:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFF7A17E010
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 07:41:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728459597; cv=none; b=Pd/02B/RQWpi2g6SKpz7eCBrhTtQ4smlkeJsxLuOrNVrFnxTFXBPhYSHXrOI6CaZ6eIH7xiaQHuDUvVnSroFyDWWXVp6oEKIA3L+Umg5Y8vi1ScdiLDkD++RKCIWKONFzGP1OiKlrFX3v0Xevj8u9SONAz9d518WmT41qCvCkS8=
+	t=1728459675; cv=none; b=CWphgwOPaBgwNoD4seRrCmRDjv/qoLOGql5shDrWdL7qXSnoE/SBRk9BMEbsaWXi+MLiP0DG8xuAuVz5722vP5IrTWvMUAMOfa0+8sCTk4uEGEDdv4UhrACosDgXOuAwQuofG+Vb18PGAFeZXknmDvv+qlN/rhoHzIvdfkEPU78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728459597; c=relaxed/simple;
-	bh=ZXALps+EHwY7XPezKlK/CkIw6NgcRIiespUxDFCgz7Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=k8jYmZHFPVjZLOvd6TGqRg0y8QVjI8d/bU55cpuqdmh7/23HfQTMWZmhUP6rpxIZUCIEkrCTtD7yjH7nDbauzBfFR4HF3tcl4FQ+uf/Dp6YO2jmFbxBtpkEBfwVYNRZRavgVzG7stwe+oBrEFWfBez1xV3SrIOOMkC6wELGkDWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=NTsv2DQ+; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 498MMg02000677;
-	Wed, 9 Oct 2024 07:39:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vnsPQONfZ61MaZhMi/vcxe9LQ679D9pa2oHkYGdMnqs=; b=NTsv2DQ+2lpXJdUy
-	7YTQ6IuB/wGcEmL6xmIOYpcJL9ffprnUL9fh4+H2CWLWkczXtjmatlNYgkb5JYeR
-	e5JZ9O3qQ8QHLYDSCfXHQ+xRa2WVAQdVguSq+tyyqivHSg2SikwciZ+5RHoDs1Hv
-	QlVQo0oXj700MFE05QJSD6xkqo6SXytnXMw5EjGZFx4tKJVkH0yiCOr7yZ2uURhX
-	egQy9BFNPIa7mdR4xaM8rD+MIxgarg1ziHnQ7SL+CRrgdePnA19w2+cfEXGe4Zn7
-	sAcFDGhkLhmMzTxpqLenPMpjTanjqkPpsphPxynyQNrPk5C4YjzxorYT8r5RCYBK
-	P3STdg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4252wstyyx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 07:39:38 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4997dbPO014720
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 07:39:37 GMT
-Received: from [10.152.195.140] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
- 00:39:30 -0700
-Message-ID: <7383268f-4655-433a-9b9b-ebc9ac3d57ea@quicinc.com>
-Date: Wed, 9 Oct 2024 13:09:27 +0530
+	s=arc-20240116; t=1728459675; c=relaxed/simple;
+	bh=8Om95y4F6es/Wxnlpk2uQdvoXMVAL2YO3FbbfSfgtM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tqEluKPDeMkAC+M0OmuAB0v7zk25dKrEMPC0fn9GOCluROUnzdl8Imh2Tid1hA3XKLZ2NvYm1n+GIFsvqjFGr/9c2LaiaxZyi8o/WcV9IRZoVDj57CjrCWzG5RgOKQOsJxMSnAdOp7/eBhNn0mdkx2uHz8Haxf+1VQxTuEvRWIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lUN8gD02; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d3ecad390so150270f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 00:41:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728459671; x=1729064471; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2viIowtWPbXMalgfD8+O9ZrcVwo57XCKNmEpCFwYjQ=;
+        b=lUN8gD02yxE0qRJ8Feslg8hK0KALM8ZjRnAs9aYwMBdFKtrlNDc0b2U5M7u3x5KP7d
+         uQgCI5vbIj/4AYO6IVSzUJKNSRZuFzndNmIaEfJClGynP7Nlc07/v1LOvH8/HY+8qbrz
+         mARjtAHkX4tpjvd1ewOAPZWIh0gN1vPYGYaMwl6Aply2tTCA24gn85GQwtLDhVehLcJx
+         06g+TQrgPfUHzJG6sIDEpZLIIEMKPvMopJrzlF+JG/MHEmjPogf44fn8MRdGtpiC5wF0
+         cEII5VQ+5za6iJYE6emU2WzL+usYTkSP7H4Ek1kL9ZotQBMb0jTcSaZ+9+rKsOds2tFn
+         4K0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728459671; x=1729064471;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Y2viIowtWPbXMalgfD8+O9ZrcVwo57XCKNmEpCFwYjQ=;
+        b=JVlQSP/GRVeH7xih1xqeGWF4equXW//BVr+pfOhFA2TCebofjG7cOwkOZjl+r2aQra
+         5fudWxd4z2S0BFRVjmHB5RDaaZbjwsuE8qH0p4FCD/lteEQCYAahHGMP2cqNQGxOa2uK
+         eC+9sSbKFpnYuKh4tlQ0WouyjoQ05bZBjlGkVlZe/WFWl7Xs6ERiqhZf0ATtumo3k3MX
+         FSVSwwM8awtuV3JBIPA2F4cgWLOkllp+O6voJtu8gZCZgCvUO17oDfHrYF4ImbL3OOfG
+         dHl6QKmHwBNLIg+VgfCCSwkZWZD828o31f4Qez5N0j/1n8oL0nHlfB6KSilp+/T0QabN
+         ZckQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWPb6YVgXLF7QDcRGxMeoh9QaYgc8ntXbjofXXL4I2YoEpaOmwDlagaFNTNOLotYkSGLQacQzbUxdV/@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyKxmxQqXJNbmcs3ZWbqTvKo4H9iitQk/cIWudVTZ2MDAlxoDS
+	FPSFKpcNW8MeiQmbP/IOZTi285gWkLDWW4KIUbr8tNYf5dGCo32qyrp1a8K4Kps=
+X-Google-Smtp-Source: AGHT+IEyd05ui1VmLA1rJ5jgdYGapO6L5DJBjVw/NMVD99NroiPJMW7cLe8u+UN9UqCyNM8dGfTC/g==
+X-Received: by 2002:a05:6000:23c6:b0:37d:321e:ef0c with SMTP id ffacd0b85a97d-37d321ef108mr2946699f8f.11.1728459670763;
+        Wed, 09 Oct 2024 00:41:10 -0700 (PDT)
+Received: from localhost (p509151f9.dip0.t-ipconnect.de. [80.145.81.249])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d2e65d618sm3025569f8f.23.2024.10.09.00.41.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 00:41:10 -0700 (PDT)
+Date: Wed, 9 Oct 2024 09:41:08 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: kelvin.zhang@amlogic.com
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-amlogic@lists.infradead.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2 0/2] Add support for Amlogic C3 PWM
+Message-ID: <nrrw2vvhyw2gsbqpne5pgw43yyp4uzkjq2ioskvjjwgfk4ahuo@rryumcqojbhm>
+References: <20240914-c3-pwm-v2-0-ac1f34c68ac2@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 5/7] clk: qcom: Add NSS clock Controller driver for
- IPQ9574
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: <andersson@kernel.org>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <konradybcio@kernel.org>, <catalin.marinas@arm.com>, <will@kernel.org>,
-        <p.zabel@pengutronix.de>, <richardcochran@gmail.com>,
-        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
-        <arnd@arndb.de>, <nfraprado@collabora.com>, <quic_anusha@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20241004080332.853503-1-quic_mmanikan@quicinc.com>
- <20241004080332.853503-6-quic_mmanikan@quicinc.com>
- <72r4uowjwoxkeqq6bxhdv72wq4rqogirb3yyp2ku66rr2cnzbs@i2lk6sgfvenh>
-Content-Language: en-US
-From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-In-Reply-To: <72r4uowjwoxkeqq6bxhdv72wq4rqogirb3yyp2ku66rr2cnzbs@i2lk6sgfvenh>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: cumxdSoADtOksco1skilAfCwCTXFKRac
-X-Proofpoint-GUID: cumxdSoADtOksco1skilAfCwCTXFKRac
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=727 priorityscore=1501 spamscore=0 mlxscore=0 suspectscore=0
- impostorscore=0 malwarescore=0 bulkscore=0 clxscore=1015 adultscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090049
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3g32dk24m6nlnxrf"
+Content-Disposition: inline
+In-Reply-To: <20240914-c3-pwm-v2-0-ac1f34c68ac2@amlogic.com>
 
 
+--3g32dk24m6nlnxrf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 10/7/2024 1:32 AM, Dmitry Baryshkov wrote:
-> On Fri, Oct 04, 2024 at 01:33:30PM GMT, Manikanta Mylavarapu wrote:
->> From: Devi Priya <quic_devipriy@quicinc.com>
->>
->> Add Networking Sub System Clock Controller(NSSCC) driver for ipq9574 based
->> devices.
->>
->> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
->> ---
->> Changes in V6:
->> 	- Remove 'nsscc_ipq9574_desc' and use 'nss_cc_ipq9574_desc' in
->> 	  probe()
->> 	- Drop of_clk_get() and clk_prepare_enable() in probe() because
->> 	  ethernet node will subscribe to GCC_NSSCC_CLK and enable it.
-> 
-> Does the cllock supply the clock controller? If not, it should be
-> dropped from bindings too.
-> 
-Hi Dmitry,
+On Sat, Sep 14, 2024 at 01:48:57PM +0800, Kelvin Zhang via B4 Relay wrote:
+> Add support for Amlogic C3 PWM, including the DT binding document and DTS.
+>=20
+> Signed-off-by: Kelvin Zhang <kelvin.zhang@amlogic.com>
+> ---
+> Changes in v2:
+> - Rebase this patchset due to recent upstream changes.
+> - Link to v1: https://lore.kernel.org/r/20240906-c3-pwm-v1-0-acaf17fad247=
+@amlogic.com
+>=20
+> ---
+> Kelvin Zhang (2):
+>       dt-bindings: pwm: amlogic: Document C3 PWM
+>       arm64: dts: amlogic: Add Amlogic C3 PWM
+>=20
+>  .../devicetree/bindings/pwm/pwm-amlogic.yaml       |   1 +
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi        | 364 +++++++++++++++=
+++++++
+>  2 files changed, 365 insertions(+)
+> ---
+> base-commit: 5acd9952f95fb4b7da6d09a3be39195a80845eb6
+> change-id: 20240906-c3-pwm-d17072517826
 
-Since GCC_NSSCC_CLK is the source for the NSS clock controller, there is no need to drop it from the bindings.
+Applied patch #1 to
+https://git.kernel.org/pub/scm/linux/kernel/git/ukleinek/linux.git pwm/for-=
+next
+=2E I guess patch #2 will go in via arm-soc?
 
-Thanks & Regards,
-Manikanta.
+Thanks
+Uwe
+
+--3g32dk24m6nlnxrf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcGM5EACgkQj4D7WH0S
+/k422Af/WeAeMG12qlVL9TxVyfgCoOaW67cCbyllbKGrSYC7OkgI+ujL4WpeqBw7
+S0buIREm1V5mtmzXBboD2scB1+QGKalmVSObFXMtgSfJnGszpUViETfwBI9c8az9
+oXC9IJSfmF7aqlfugMWcAhrlIZFXEn5I6RMQi8e4fM+F/i83G9aoXVJ6qqQKscr8
+uvcpfGZ+hXCdcjPLX2nryNaqNqmlHBk7RYncDYYLPsAnM1gVITTHf0rc/cjKotVj
+jcFV+dSSWr8bz6bR8ANt/Tv4reR+NVl3fzmEeQhkWT9gOZEy1YFsnjA+v7L+ect3
++CVMHadCSQx0G3uAK1jTKvVf8PyFRw==
+=Njq5
+-----END PGP SIGNATURE-----
+
+--3g32dk24m6nlnxrf--
 
