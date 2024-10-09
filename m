@@ -1,31 +1,31 @@
-Return-Path: <devicetree+bounces-109444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AA079966D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:16:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BAB19966DB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:17:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CDF51C23817
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:16:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 600BB2899A8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:17:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5FB018E76E;
-	Wed,  9 Oct 2024 10:16:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8FEC18FDAF;
+	Wed,  9 Oct 2024 10:16:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8045718DF9B
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 10:16:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB5318E750
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 10:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728468979; cv=none; b=Rb23v3lZoZegWVQ5JiOiobr4J3QZqIlmnMKraEZ18M9DWuBrXEQ3LYqi38Q4nYWYERNTX1ULAN6UGYMEuBlpUjOvPaQNzkHiEPVuITAMsVCLMH6NgKfPgUjMXEo5uuyJQeCtdSJ+dwHxoyjvm6keUNnoqrGmEJBtK5FL72E4b08=
+	t=1728468985; cv=none; b=nJZc1wj8BQBCJuE+AD2Yxy2IOVOBdSNNSyOZ2XVNTfFLLN/lsyQxnpmscXfKDi7f1AjJl5TKAI2W7OIZ7pnTHg2CDvLhvjtabXH363lCQjSQAPsjZAykOG56KYH4gBoivfJnE1RlycvK12fl7UcL5MHC5sKDZ9AmbYxhg0jRaPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728468979; c=relaxed/simple;
-	bh=AyNi6kz1dtLK9KT0flyMxn2iebZ96GLBi6jR1ZKjEA4=;
+	s=arc-20240116; t=1728468985; c=relaxed/simple;
+	bh=AmMZYRVxD32zx3X3TCEFkbpar8SD0iGV5EzI6KqS1AY=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=LoGb98wZJPNjQYPhL51y+sew4vh1912KIVoPXg/eGJ3E1HdkGCmps/dezSdP0c05DpM2TU9vEnEEdCIVq5qfwcYPR5//KeY73FFOWC+cy4UyjzetYedCE7o5zY+PZdo4UaEXWQmGaaGGTnl9oD2IS6nz7OenENCyGN1s20GYXwQ=
+	 Content-Type:MIME-Version; b=pQJSN6N2UatmODknO1j0EOJmhnkdOMMpl04GNYBCpEqLWW8JX6kRYEFoSFZLlFhRcy6pxW/Qi9ocdTzLCKG6YeUz3hJqyrlzWAH2NFlfbRRV/C97fhj/cAwZ7Y985xOaSpUe8HGGYj1NoReTwC21+5X1LtIqtLT0A4PXgUr6jWw=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
@@ -33,18 +33,19 @@ Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
 	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
 	(Exim 4.92)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1syTjV-00081A-8w; Wed, 09 Oct 2024 12:15:53 +0200
+	id 1syTjh-00083F-Mr; Wed, 09 Oct 2024 12:16:05 +0200
 Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
 	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1syTjU-000a12-PY; Wed, 09 Oct 2024 12:15:52 +0200
+	id 1syTjh-000a17-6n; Wed, 09 Oct 2024 12:16:05 +0200
 Received: from pza by lupine with local (Exim 4.96)
 	(envelope-from <p.zabel@pengutronix.de>)
-	id 1syTjU-0006xv-2E;
-	Wed, 09 Oct 2024 12:15:52 +0200
-Message-ID: <7ddcb4e6d3eafd3b2cf40710882b6491c73dba9e.camel@pengutronix.de>
-Subject: Re: [PATCH v7 5/6] reset: mchp: sparx5: Allow building as a module
+	id 1syTjh-0006zc-0K;
+	Wed, 09 Oct 2024 12:16:05 +0200
+Message-ID: <c5f290c042419262092a7cfdfe855d2082a604bc.camel@pengutronix.de>
+Subject: Re: [PATCH v7 6/6] reset: mchp: sparx5: set the dev member of the
+ reset controller
 From: Philipp Zabel <p.zabel@pengutronix.de>
 To: Herve Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
  <geert@linux-m68k.org>, Andy Shevchenko <andy.shevchenko@gmail.com>, Simon
@@ -67,10 +68,10 @@ Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
  <luca.ceresoli@bootlin.com>,  Thomas Petazzoni
  <thomas.petazzoni@bootlin.com>, =?ISO-8859-1?Q?Cl=E9ment_L=E9ger?=
  <clement.leger@bootlin.com>
-Date: Wed, 09 Oct 2024 12:15:52 +0200
-In-Reply-To: <20241003081647.642468-6-herve.codina@bootlin.com>
+Date: Wed, 09 Oct 2024 12:16:04 +0200
+In-Reply-To: <20241003081647.642468-7-herve.codina@bootlin.com>
 References: <20241003081647.642468-1-herve.codina@bootlin.com>
-	 <20241003081647.642468-6-herve.codina@bootlin.com>
+	 <20241003081647.642468-7-herve.codina@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -88,10 +89,8 @@ X-PTX-Original-Recipient: devicetree@vger.kernel.org
 On Do, 2024-10-03 at 10:16 +0200, Herve Codina wrote:
 > From: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
 >=20
-> This reset controller can be used by the LAN966x PCI device.
->=20
-> The LAN966x PCI device driver can be built as a module and this reset
-> controller driver has no reason to be a builtin driver in that case.
+> In order to guarantee the device will not be deleted by the reset
+> controller consumer, set the dev member of the reset controller.
 >=20
 > Signed-off-by: Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
 > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
