@@ -1,69 +1,69 @@
-Return-Path: <devicetree+bounces-109381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8061F996441
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8DB996448
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:59:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DD0C28962D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:58:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B658F288CE5
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:59:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF3E18EFD4;
-	Wed,  9 Oct 2024 08:55:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3582187561;
+	Wed,  9 Oct 2024 08:59:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XaNJx1uK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yvV6fD5P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6562D188906;
-	Wed,  9 Oct 2024 08:55:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D3CC55E53
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 08:59:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728464138; cv=none; b=qfuKr782i5hniNBAXsU8apwM3dotDJfW3FSlHf40Ntq4Hj0terd9vfv0ORRCsNczs7oaPn1ZIlr2839Pgf7aoyI1Md1okJQlaFah8kb68eMOxKv7TddEztwgKTgJc8biWYQFng/55OG5ihjh0rYwkSzNnaed0f3mMbv52hiW4CQ=
+	t=1728464373; cv=none; b=Fe1M1accs9zUTIIqJ/xC6PFcbxoJy/x4JRtAcgM6Ydm/6vcNH5skRMy730oOX1zwQCwAdxLbnNee5mW+KizL8mz1x6nck48c+amuqyO7BQrfXDvF0lZNIP/E7/OdeM0xkOGaS/pjSV1zBTJ/V74wCEZbZC1+gDPbOKZt+oF7HPo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728464138; c=relaxed/simple;
-	bh=0/gRJ6jJLc44WvH9OzkedYWrnCiZWnF//bS/JRemQQM=;
+	s=arc-20240116; t=1728464373; c=relaxed/simple;
+	bh=Fg1XN0GxX/Kla6xLUfQtPJ1bcuD9q+/DrBFKS3emMBo=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O2+IZtqCuI9xdJBwueNjfBICZ/JleSb6mEaFiGrnAYqtQkQuG8dsrf9t9wOrZLJFbpxEnE7JZg7b5/q2RDaSnBxxDUAPFagKAzcI3XLNth4DALigtRooy2ns50qFlZvbKFpcKzDvh9P4Hu/AfNFy+Dp8DshqKvuNBejC8aXy5vs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XaNJx1uK; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-37d3297b7deso1034299f8f.2;
-        Wed, 09 Oct 2024 01:55:36 -0700 (PDT)
+	 To:Cc:Content-Type; b=Vh0VWMkV1o+8hZquwxpd6W+r2Cfp/1ifsEABT0RgChbWZ36FUrrDKAfShl+cArcv44TZdMphAxuhFtGQvDROTqfHnuTaQ5/0MInCgTlJKRDmIargeuAxkcZo7kSgohs0HO5GQ5QD2bwr0Fh3O0cbN82mEhpQwR/oL7jEyFOXscI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yvV6fD5P; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5c903f5bd0eso3201404a12.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 01:59:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728464135; x=1729068935; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728464371; x=1729069171; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WphfgnPDMnwX7oaOi9JXFd7MQA5RROOBlEbuSKn1EsM=;
-        b=XaNJx1uK1ndD5M4sLUydAwhXaAcFZPm/xhCzenkGeVahpXwM3pREyBfYC/jzM/9NoY
-         dYIzyoltaVd6ZceBkeubapA6lyoInFzoAyW8VYYcdgQgzr4UV++1rK5t8lCQDlxOEtbu
-         EjbK9qyaOpzP5a3VgBU3IuX/OjF+y+f0k0pDTaVGUe6GoSqVaYy2uVDqI8S2MX0YB9ff
-         EziTYfkKOY0nUuM0dN5sX66A3XHN2NMNI09OPbjWNohl2ReaHMYkH3w+F0As2Beyuo3Q
-         p8dkWeMPT9yfLpugPbIrqQsGRLJ2UDigtKNIe9O72quw2sjm3T37BA3NTUicx4BlQzOX
-         60HA==
+        bh=Fg1XN0GxX/Kla6xLUfQtPJ1bcuD9q+/DrBFKS3emMBo=;
+        b=yvV6fD5Pclo4YZcxjNTCiwPPq34ltVo2CVS6XTqcJKS7mlf08jwAbEJomL54khjZuG
+         +wx5LktCotmHyagNSpXm39ySsMFPulyHaXefiO0NYwCPdmRxuS5dAMLWYc1Eeour6DPH
+         pTanHAVh90SUGR3QE81IJWt03cpZOXTw9tPAp/xL58KN+mY5kqt9dwXNtrX8rwjgOdXp
+         kksq3GxoTfMHqsQQhR4YFABvF7FDz1veAsIz+VzbUrHgem0GY9SrbUGRShngssdVbLI8
+         L2Eyvl1pCCpD6Dht0LNPcDIa4vubwL/E48Xrt2DdWNe4wFejbeD9AmSipV4E/FJm5C+f
+         3guw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728464135; x=1729068935;
+        d=1e100.net; s=20230601; t=1728464371; x=1729069171;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=WphfgnPDMnwX7oaOi9JXFd7MQA5RROOBlEbuSKn1EsM=;
-        b=P6g+AOIF6ZfT+IiLjg7Kc3pPld6V499kY0VymPtxTobOJjWXxIF1qtT44XFlno2RUB
-         tbYhO7shG/pursefI5711KAVpAfY66D1F6gJA5VBAmuxIAuCYWf0GObNipdPpfeIafHF
-         fXGVmMXm+FPc0ZW94kamveta2X7waxPNxFOnE5J/dQZoKn6RYS6fCGBoJxHBe++CrWSq
-         kQTQjDBhac7tY9AbH/KWJA7QRrxaXrG5NH/BQbpa3nE+V5f6rovbs1+FGifV/6A8/4qa
-         oS3lbxFtRG8QmwB9wFwCxt+dqYkxK5B66JUpOdcze7Sbr5JaI9RrxsMTw8gfgMgNPwew
-         X0NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUcuf2LcvzNPIxf1Aco7psfK4zNnKDd9tmfiiiwskG4/+00T26pj+bvHVedzkajLpO5wZHp+LdPIEgwgGde@vger.kernel.org, AJvYcCUhYRgsGnIU9HfuZ59IZ4j0E2+L9H7x54fK2e8Gi4eufpc0vhMVd5fJaBrpaEiGx4ERtu2nbXzC89merDVSow==@vger.kernel.org, AJvYcCWobt9cMD1SwdHo519MB/7vsmIRz9mFT/ThA0v7C7vBG8kg8c5xMw2z5AwI/8ZexLewjxMPQKIcmO+R@vger.kernel.org
-X-Gm-Message-State: AOJu0YzgdwcfuaJdsHuw/4E81StOdFdNjq7fu21KFZXB5z/GGBWWNUfx
-	3ng3OMbxrkU77MPKZxENrVd3iWtbxCD8mC0/dMBuqZPUOrDX5YAFoJqzKkb8/o0PGL5XT9KcEL6
-	10m0lcB8rwCxrGLKxoOgzIk3oi/32NNH42A==
-X-Google-Smtp-Source: AGHT+IEYzo3MA+dPvZPaY28/YTKYN9AcjwVylaHdAX/BSMOtf/4gGk6+GSIZBx+dytsDaLNLylwYYR1donBA56ZZJf0=
-X-Received: by 2002:a05:6000:247:b0:374:c16d:6282 with SMTP id
- ffacd0b85a97d-37d3aac1cfemr876070f8f.55.1728464134254; Wed, 09 Oct 2024
- 01:55:34 -0700 (PDT)
+        bh=Fg1XN0GxX/Kla6xLUfQtPJ1bcuD9q+/DrBFKS3emMBo=;
+        b=cxe7gpqKd2Nubq9DA5rEUPwDwKSbpAZus+WVRXpeBvdgh1BrMvEtCYqZ9InbsqcXrQ
+         gwM+faejtbXnK7HDElU16QyYIcVkWZfQVIcvoHOugQKhiU02mTdLfncXgnu0DAxCD0Ej
+         ZGqqkceHNCGonx5e9wc2KbSx6CS70v1c9uGH9p47cEi7e4piXtjPVchlSVd1irqTD3PS
+         Bw8ElRUa5lgBR8bJAD3NSC4CZX4S15d19xys//EYFKPXBYgEIFygw4B+U/Rl4S4ckVga
+         XW/2B0+5FofUd2lel/yezQbZpz8Ux0XFklDXb92WfFVQSOYc0w9jl/xmsCvbFnFncXNj
+         RV2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXVMG2nTSkWFT7wevoA8WANAnvqHxCf4MU2L332T51QpY2UnPLGcn7m4EXKD0kmJWMBML4WwBsqSUEv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxA8YhOfStebqJlL4CcqYWWb+FgiE8mVRVzyIqKpE1Uzyw0DZhC
+	E1FeGUk7gY1w99bJohFTvr7h6oJq/CE7AM0FUYEZbdAnrgbIUVHqlELdwG895hQPuYHfEnf8vL6
+	1ZK0WRoZWHSIPCxt4Zlpd/LCEQ3hV3Gwf+R2ZLg==
+X-Google-Smtp-Source: AGHT+IF5e5okLD8RYMY+0AoiICHKx1edgmljuMThgQAgpMLA2oJJxnHHHurgh1/t1QXhU0PNT2KsnIunoqJl2lcEQHc=
+X-Received: by 2002:a17:907:96a7:b0:a99:4ebb:a400 with SMTP id
+ a640c23a62f3a-a998d1b32c7mr166641966b.26.1728464370570; Wed, 09 Oct 2024
+ 01:59:30 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +72,14 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20241003211139.9296-1-alex.vinarskis@gmail.com>
  <20241003211139.9296-4-alex.vinarskis@gmail.com> <CAEvtbuv1OUekj5=fzafJKby6jBiZ6BzgT4TrrihDNdiQQM_vQQ@mail.gmail.com>
-In-Reply-To: <CAEvtbuv1OUekj5=fzafJKby6jBiZ6BzgT4TrrihDNdiQQM_vQQ@mail.gmail.com>
-From: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-Date: Wed, 9 Oct 2024 10:55:22 +0200
-Message-ID: <CAMcHhXoRgBS5q=70=nj72_dH3R2eHf3bPt=ZxjsUQEV5FZxvsQ@mail.gmail.com>
+ <CAMcHhXoRgBS5q=70=nj72_dH3R2eHf3bPt=ZxjsUQEV5FZxvsQ@mail.gmail.com>
+In-Reply-To: <CAMcHhXoRgBS5q=70=nj72_dH3R2eHf3bPt=ZxjsUQEV5FZxvsQ@mail.gmail.com>
+From: Stefan Schmidt <stefan.schmidt@linaro.org>
+Date: Wed, 9 Oct 2024 10:59:20 +0200
+Message-ID: <CAEvtbuuW6ynBQjZce28X3qZ8EYaCKYM2nH9212GGA7hMxyk8ig@mail.gmail.com>
 Subject: Re: [PATCH v4 3/3] arm64: dts: qcom: Add support for X1-based Dell
  XPS 13 9345
-To: Stefan Schmidt <stefan.schmidt@linaro.org>
+To: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
 Cc: Bjorn Andersson <andersson@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
 	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, linux-arm-msm@vger.kernel.org, 
@@ -88,62 +89,17 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	peterdekraker@umito.nl, Bryan.Kemp@dell.com, tudor.laurentiu.oss@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 8 Oct 2024 at 23:09, Stefan Schmidt <stefan.schmidt@linaro.org> wrote:
->
-> Hello Aleksandrs,
->
-> [Again in plain text]
->
-> On Thu, 3 Oct 2024 at 23:13, Aleksandrs Vinarskis
-> <alex.vinarskis@gmail.com> wrote:
-> >
-> > Initial support for Dell XPS 9345 13" 2024 (Codenamed 'Tributo') based
-> > on X1E80100.
-> >
-> > Working:
-> > * Touchpad
-> > * Keyboard (only post suspend&resume, i2c-hid patch required [1])
-> > * Touchscreen
-> > * eDP (low-res IPS, OLED) with brightness control
-> > * NVME
-> > * USB Type-C ports in USB2/USB3 (one orientation)
-> > * WiFi
-> > * GPU/aDSP/cDSP firmware loading (requires binaries from Windows)
-> > * Lid switch
-> > * Sleep/suspend, nothing visibly broken on resume
-> >
-> > Not working:
-> > * Speakers (WIP, pin guessing, x4 WSA8845)
-> > * Microphones (WIP, pin guessing, dual array)
-> > * Fingerprint Reader (WIP, USB MP with ptn3222)
-> > * USB as DP/USB3 (WIP, PS8830 based)
-> > * Camera (Likely OV01A10)
-> > * EC over i2c
-> >
-> > Should be working, but cannot be tested due to lack of hw:
-> > * higher res IPS panel
-> >
-> > [1] https://lore.kernel.org/all/20240925100303.9112-1-alex.vinarskis@gmail.com/
-> >
-> > Signed-off-by: Aleksandrs Vinarskis <alex.vinarskis@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/Makefile             |   1 +
-> >  .../dts/qcom/x1e80100-dell-xps13-9345.dts     | 863 ++++++++++++++++++
-> >  2 files changed, 864 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/qcom/x1e80100-dell-xps13-9345.dts
->
-> Tested-by: Stefan Schmidt <stefan.schmidt@linaro.org>
+Hello,
 
-Hi,
-
-Thanks for taking your time to test this.
-For the record, which variant did you test it on (low res
-IPS/OLED/high res IPS)?
-
-Regards,
-Alex
-
+On Wed, 9 Oct 2024 at 10:55, Aleksandrs Vinarskis
+<alex.vinarskis@gmail.com> wrote:
 >
-> regards
-> Stefan Schmidt
+> Thanks for taking your time to test this.
+> For the record, which variant did you test it on (low res
+> IPS/OLED/high res IPS)?
+
+OLED
+
+regards
+Stefan Schmidt
 
