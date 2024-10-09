@@ -1,177 +1,142 @@
-Return-Path: <devicetree+bounces-109453-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D4E7996723
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:24:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5946B996732
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:25:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBA49B21780
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:24:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 775901C249CA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:25:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73D7A191F66;
-	Wed,  9 Oct 2024 10:23:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7094218EFD6;
+	Wed,  9 Oct 2024 10:25:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="og5cD5ou"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CU/Syyph"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30CB118FDDC;
-	Wed,  9 Oct 2024 10:23:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33FB618C008;
+	Wed,  9 Oct 2024 10:25:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728469422; cv=none; b=UwQk3CfLZf5y547CsECHn7HR4PctkJBOqGm6sfu4D8Nh46ibVfLIFP/1xwYyyG8ILf4aawOxnJzHB+UzqK/mTJluxFZdPivA8/URGXS9ufckBwzKHJ6kVRYgLk6ceMaEABKFO7B4/rHdWOaIfAekjED7AMVeg3abexslWsa9m3A=
+	t=1728469535; cv=none; b=gH4odi6BhEEuFqNJZ4IW6xn3xzga9Hf5toy4KC0BBlYvRQoj/TvoxJSJYyY+QHrzvAniLekMfoSnm2A8Hav/snPI8HRUilzpMICKX2diJa6WDXutY0A3cgbrn2QV0jKCYX0oxRfavAxMtoPXoc1pY45ZanDLKwjyJD8oWp1rTa8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728469422; c=relaxed/simple;
-	bh=Olp5EwdvvkcdWx4Um1FowhF/GtYV24TawE4qMAcHWmY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=tbb6sPz6Yc0pXqL6JW9N4c6nHUjVxiRZYmxs2rXtdPafX3XuyTQ36WrWGlbneF/N7Eg4DeZqSDibzKMS8N5HJe/v0GlqRBGy1QfS9y93+MjCMDAso3lBGU9t8LW0qrz2/0hT1rc0fgDFktDRGxwBXJHI9cLPdPEnW2U1RSk6yxY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=og5cD5ou; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C1A3EC0005;
-	Wed,  9 Oct 2024 10:23:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728469413;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=iESo5G7yB8Huxqo8RT5l/9twIQ+BPxWkXsgQj+Afnmg=;
-	b=og5cD5ouK7G/7e2Jcykmwe5oCh1x150S4iqYjEyXVZ+xFiGWfdjy8qAalE5708/HWta/as
-	9CjAaZ2MuI+A2sEfaJgT9x98Dwocb5KwtmFGN2gmus1k5Bz8LK/R5s9NRRaSqe4On4ZT8k
-	WdWfzZbCg5xIjxI76rY7is/E7LIXki/YO5r47NYRTD/rC4i7q3tDq/QEnrfKIl0g8+yGE3
-	nnanSRuNYARm4rZRCtSCF2y7UazhPyZpsaG28mlUwbWckcGXPxQb3VTE/jOqI0fmXsKeIH
-	X/f1qiPpzhkAuMywOaF6x7b9JjPYE6fXTXEZjwdFlXJy+rzAgyneg/p/6/rFPA==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Wed, 09 Oct 2024 12:23:32 +0200
-Subject: [PATCH v2 6/6] i2c: nomadik: support >=1MHz speed modes
+	s=arc-20240116; t=1728469535; c=relaxed/simple;
+	bh=E98w9taq8sn2oCFo6PyCyTLfRrjriLoSIyE58uTuJiw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MMOuAz3yas3TvRM0NpkUWutt3q4tUgp6zK/V2/GZ5qsFygPBoRpxxClS1wHswLY5U2SN+4Wz55IVawV63sGYSjPGiXAnUY+F3h8wXqfRT4DeVnJQnV9xnb4uYuPKlURD12V6bQ64rGOEArsJM39fazTzQKQ8b2YJwVpz2MYFHIY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CU/Syyph; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F86C4CEC5;
+	Wed,  9 Oct 2024 10:25:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728469534;
+	bh=E98w9taq8sn2oCFo6PyCyTLfRrjriLoSIyE58uTuJiw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CU/SyyphBFW7CION5UzN5ZaM2s9B2KaWUYjQIE24jNpQiaaNBcPZ/JBx43vZR9RIm
+	 dKAuev96gZiqv3cQzmnlNpHZGs9yUnbcbXXoet9w9Wkw11upiEbCgMxXNsdL4ezFdY
+	 +p5Tmy9zeIo8mmLnp1544+X/5q23ssqCYC9uPdMTUlybp9F8xH4e8D5xzIK9/AHeT4
+	 VM8+SYp7oWGh1v48rq/tPnXUE9W2Y0QAcFjQlkkDsy7TNbdxWPifO6On6S6nNdb6x/
+	 +Q0hlFwhivhYuLDaOGJFcmJB/380AQV7gmfUOo5/8+ukhcjeDEpd9KT8HTxCDfwmeH
+	 x2vMMvQe1JdeA==
+Date: Wed, 9 Oct 2024 11:25:31 +0100
+From: Mark Brown <broonie@kernel.org>
+To: "Edgecombe, Rick P" <rick.p.edgecombe@intel.com>
+Cc: "corbet@lwn.net" <corbet@lwn.net>, "robh@kernel.org" <robh@kernel.org>,
+	"lorenzo.stoakes@oracle.com" <lorenzo.stoakes@oracle.com>,
+	"dave.hansen@linux.intel.com" <dave.hansen@linux.intel.com>,
+	"debug@rivosinc.com" <debug@rivosinc.com>,
+	"vbabka@suse.cz" <vbabka@suse.cz>,
+	"brauner@kernel.org" <brauner@kernel.org>,
+	"akpm@linux-foundation.org" <akpm@linux-foundation.org>,
+	"palmer@dabbelt.com" <palmer@dabbelt.com>,
+	"mingo@redhat.com" <mingo@redhat.com>,
+	"paul.walmsley@sifive.com" <paul.walmsley@sifive.com>,
+	"Liam.Howlett@oracle.com" <Liam.Howlett@oracle.com>,
+	"tglx@linutronix.de" <tglx@linutronix.de>,
+	"aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+	"oleg@redhat.com" <oleg@redhat.com>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor@kernel.org" <conor@kernel.org>,
+	"ebiederm@xmission.com" <ebiederm@xmission.com>,
+	"hpa@zytor.com" <hpa@zytor.com>,
+	"peterz@infradead.org" <peterz@infradead.org>,
+	"arnd@arndb.de" <arnd@arndb.de>, "bp@alien8.de" <bp@alien8.de>,
+	"kees@kernel.org" <kees@kernel.org>,
+	"x86@kernel.org" <x86@kernel.org>,
+	"shuah@kernel.org" <shuah@kernel.org>,
+	"jim.shu@sifive.com" <jim.shu@sifive.com>,
+	"alistair.francis@wdc.com" <alistair.francis@wdc.com>,
+	"cleger@rivosinc.com" <cleger@rivosinc.com>,
+	"kito.cheng@sifive.com" <kito.cheng@sifive.com>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"samitolvanen@google.com" <samitolvanen@google.com>,
+	"evan@rivosinc.com" <evan@rivosinc.com>,
+	"linux-mm@kvack.org" <linux-mm@kvack.org>,
+	"linux-arch@vger.kernel.org" <linux-arch@vger.kernel.org>,
+	"atishp@rivosinc.com" <atishp@rivosinc.com>,
+	"andybnac@gmail.com" <andybnac@gmail.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"charlie@rivosinc.com" <charlie@rivosinc.com>,
+	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+	"linux-fsdevel@vger.kernel.org" <linux-fsdevel@vger.kernel.org>,
+	"linux-kselftest@vger.kernel.org" <linux-kselftest@vger.kernel.org>,
+	"richard.henderson@linaro.org" <richard.henderson@linaro.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"alexghiti@rivosinc.com" <alexghiti@rivosinc.com>
+Subject: Re: [PATCH v6 16/33] riscv/shstk: If needed allocate a new shadow
+ stack on clone
+Message-ID: <ZwZaG3NT72BwYxJO@finisterre.sirena.org.uk>
+References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
+ <20241008-v5_user_cfi_series-v6-16-60d9fe073f37@rivosinc.com>
+ <aa75cbd142c51b996423f18769d8b8d7ecc39081.camel@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20241009-mbly-i2c-v2-6-ac9230a8dac5@bootlin.com>
-References: <20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com>
-In-Reply-To: <20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com>
-To: Linus Walleij <linus.walleij@linaro.org>, 
- Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="pV5KnxhmLMXWkQIN"
+Content-Disposition: inline
+In-Reply-To: <aa75cbd142c51b996423f18769d8b8d7ecc39081.camel@intel.com>
+X-Cookie: Editing is a rewording activity.
 
- - BRCR value must go into the BRCR1 field when in high-speed mode.
-   It goes into BRCR2 otherwise.
 
- - Remove fallback to standard mode if priv->sm > I2C_FREQ_MODE_FAST.
+--pV5KnxhmLMXWkQIN
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
- - Set SM properly in probe; previously it only checked STANDARD versus
-   FAST. Now we set STANDARD, FAST, FAST_PLUS or HIGH_SPEED.
+On Tue, Oct 08, 2024 at 10:55:29PM +0000, Edgecombe, Rick P wrote:
 
- - Remove all comment sections saying we only support low-speeds.
+> A lot of this patch and the previous one is similar to x86's and arm's. It great
+> that we can have consistency around this behavior.
 
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- drivers/i2c/busses/i2c-nomadik.c | 40 ++++++++++++++++------------------------
- 1 file changed, 16 insertions(+), 24 deletions(-)
+> There might be enough consistency to refactor some of the arch code into a
+> kernel/shstk.c.
 
-diff --git a/drivers/i2c/busses/i2c-nomadik.c b/drivers/i2c/busses/i2c-nomadik.c
-index b2b9da0b32ed903c080f4bdc427ea0dd7b031b49..0c1ea6c6d75e16b0336debe92829f33c512aaea0 100644
---- a/drivers/i2c/busses/i2c-nomadik.c
-+++ b/drivers/i2c/busses/i2c-nomadik.c
-@@ -397,7 +397,7 @@ static u32 load_i2c_mcr_reg(struct nmk_i2c_dev *priv, u16 flags)
-  */
- static void setup_i2c_controller(struct nmk_i2c_dev *priv)
- {
--	u32 brcr1, brcr2;
-+	u32 brcr;
- 	u32 i2c_clk, div;
- 	u32 ns;
- 	u16 slsu;
-@@ -444,7 +444,7 @@ static void setup_i2c_controller(struct nmk_i2c_dev *priv)
- 	/*
- 	 * The spec says, in case of std. mode the divider is
- 	 * 2 whereas it is 3 for fast and fastplus mode of
--	 * operation. TODO - high speed support.
-+	 * operation.
- 	 */
- 	div = (priv->clk_freq > I2C_MAX_STANDARD_MODE_FREQ) ? 3 : 2;
- 
-@@ -452,33 +452,22 @@ static void setup_i2c_controller(struct nmk_i2c_dev *priv)
- 	 * generate the mask for baud rate counters. The controller
- 	 * has two baud rate counters. One is used for High speed
- 	 * operation, and the other is for std, fast mode, fast mode
--	 * plus operation. Currently we do not supprt high speed mode
--	 * so set brcr1 to 0.
-+	 * plus operation.
- 	 *
- 	 * BRCR is a clock divider amount. Pick highest value that
- 	 * leads to rate strictly below target.
- 	 */
--	brcr1 = FIELD_PREP(I2C_BRCR_BRCNT1, 0);
--	brcr2 = FIELD_PREP(I2C_BRCR_BRCNT2, i2c_clk / (priv->clk_freq * div) + 1);
-+	brcr = i2c_clk / (priv->clk_freq * div) + 1;
-+
-+	if (priv->sm == I2C_FREQ_MODE_HIGH_SPEED)
-+		brcr = FIELD_PREP(I2C_BRCR_BRCNT1, brcr);
-+	else
-+		brcr = FIELD_PREP(I2C_BRCR_BRCNT2, brcr);
- 
- 	/* set the baud rate counter register */
--	writel((brcr1 | brcr2), priv->virtbase + I2C_BRCR);
-+	writel(brcr, priv->virtbase + I2C_BRCR);
- 
--	/*
--	 * set the speed mode. Currently we support
--	 * only standard and fast mode of operation
--	 * TODO - support for fast mode plus (up to 1Mb/s)
--	 * and high speed (up to 3.4 Mb/s)
--	 */
--	if (priv->sm > I2C_FREQ_MODE_FAST) {
--		dev_err(&priv->adev->dev,
--			"do not support this mode defaulting to std. mode\n");
--		brcr2 = FIELD_PREP(I2C_BRCR_BRCNT2,
--				   i2c_clk / (I2C_MAX_STANDARD_MODE_FREQ * 2));
--		writel((brcr1 | brcr2), priv->virtbase + I2C_BRCR);
--		writel(FIELD_PREP(I2C_CR_SM, I2C_FREQ_MODE_STANDARD),
--		       priv->virtbase + I2C_CR);
--	}
-+	/* set the speed mode */
- 	writel(FIELD_PREP(I2C_CR_SM, priv->sm), priv->virtbase + I2C_CR);
- 
- 	/* set the Tx and Rx FIFO threshold */
-@@ -1019,11 +1008,14 @@ static void nmk_i2c_of_probe(struct device_node *np,
- 	if (of_property_read_u32(np, "clock-frequency", &priv->clk_freq))
- 		priv->clk_freq = I2C_MAX_STANDARD_MODE_FREQ;
- 
--	/* This driver only supports 'standard' and 'fast' modes of operation. */
- 	if (priv->clk_freq <= I2C_MAX_STANDARD_MODE_FREQ)
- 		priv->sm = I2C_FREQ_MODE_STANDARD;
--	else
-+	else if (priv->clk_freq <= I2C_MAX_FAST_MODE_FREQ)
- 		priv->sm = I2C_FREQ_MODE_FAST;
-+	else if (priv->clk_freq <= I2C_MAX_FAST_MODE_PLUS_FREQ)
-+		priv->sm = I2C_FREQ_MODE_FAST_PLUS;
-+	else
-+		priv->sm = I2C_FREQ_MODE_HIGH_SPEED;
- 	priv->tft = 1; /* Tx FIFO threshold */
- 	priv->rft = 8; /* Rx FIFO threshold */
- 
+> Should we try?
 
--- 
-2.46.2
+I think so - I think we discussed it before.  I was thinking of looking
+at it once the clone3() stuff settles down, I don't want to trigger any
+unneeded refectorings there and cause further delays.
 
+--pV5KnxhmLMXWkQIN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcGWhUACgkQJNaLcl1U
+h9CV8Qf+Ph9QxNDXCUSDZQA7lOMJTS+c3a+WdGbveXt6JMb2hP4Udd4ELfDvQVsP
+2vwWUtByxmDax2qjADTJn56IYnJp+1yB9YBfBuwEGHGP67KgKDpcUHieu4xPemue
+2pid1MtBjTUsviljsva6rAoewc+MO3Z5AAICoplF1wXYwW8JWpgKpALzehjsUnOG
+xGgEXqiS5ycjWc0ikmHyeOQRK13/4EVaiJr+pklcIbhhggLbnNIB7jvKTKnBr/ds
+fkXQZeW9aA6kQUAetPKjlkvwxOhyxix4xDR3tCncJjA/emX+9fze/UwLrBDs75JO
+eMHp4p8ZUDqVuxPu6ZNF8wGk8VJChA==
+=EDL3
+-----END PGP SIGNATURE-----
+
+--pV5KnxhmLMXWkQIN--
 
