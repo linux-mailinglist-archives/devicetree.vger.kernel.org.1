@@ -1,91 +1,91 @@
-Return-Path: <devicetree+bounces-109274-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109275-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A63B0995D7D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 03:56:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2BF3995D84
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 03:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A31A288EBC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:56:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7164A1F25E63
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 01:57:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B164084D;
-	Wed,  9 Oct 2024 01:56:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069B044C76;
+	Wed,  9 Oct 2024 01:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="ZgQdKmFr"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Wrw3pHZL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63AD383;
-	Wed,  9 Oct 2024 01:56:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BB127DA67;
+	Wed,  9 Oct 2024 01:57:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728438972; cv=none; b=M3L77nC+PyotTxYUzm/A5xH6h9CUKbtcnBD5xSSx9AWcLCnVagOPsrmx90Yj0F8JZsiseWXDNVa//enG5H57RUX5SAwpsMSci5cWSY3kJGbdEJyq9l7zAKPP0xujMR8qG47WJ1bf56NqP9zidAxxWtXK7Ir2U8W/seVGZTbLHBQ=
+	t=1728439027; cv=none; b=W0oM12GyhNVvWgWOHCpn+xJqqvA/iuOL8JmL6w3fM4IzvE8C6DCwVm5xrUO28kjPZsLqXdkJjuB8fZKfPU3MZ0dTIuFYND2eq9la47eoB8oK9rTQGFCCtJzP33GfxmshlxYuLQiCongdwIynHlX3o++ykHsPJ1gevLUT2cpr+EE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728438972; c=relaxed/simple;
-	bh=+skyX18Cw/Mk9hJ3nJ7IAFqG3N0Qrlo3+F072XVLLOI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gOqkCglT/uKkFUlRAvt0ovh02I9fomweo7r+3T1YGAZleFBf1jUWAn0BpYKm2XhK2+1xv4krWWETZuD9Vm2u96dEbOj9U8BphPY1Qm+V6yxGDdyZ3OUtkXL7SzcHfHJTp1HxFaESoHC7OC+10lAlnnI7KqwW7zQbwKUFnuLK3+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=ZgQdKmFr; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id C7544890A9;
-	Wed,  9 Oct 2024 03:56:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1728438969;
-	bh=foI8pHzGkBAVELbTQPq3v4rUIZ60X3ygQWrpfbKRFmg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ZgQdKmFrPp2tX1f0mxzJuZO9GmAdxGd24n4bGthoBke6g2sZdA0CPa/jrRowX5WCf
-	 +8rav+Q20u/DNPaPcHa80Ulyr+UAZ/MwZWP6z26n2KzlG+amnbpvvyQXgOBpIIUGj7
-	 uPPVNNCFNbhuWFwx0Uc/4Rc62Y6xuLlLAmHeVApPO0b+jiZ6RqXBMQskeY5BA8cDQT
-	 KDCVhEgLD8ML+vu8XzYh32W/zIRRfGFnEUj/Z3LIu8eMl2zRNMpoF6LBn4p8WZwgax
-	 VCV851hpn6Ji4DMVyBjsbCsRoNtI4Es5vsIV8AivzmysP9WcC/aItdWKIBG74V6S/q
-	 borbxpd3+lEjw==
-Message-ID: <41cc47bd-f18f-463b-a0dc-843088ecf91e@denx.de>
-Date: Wed, 9 Oct 2024 03:55:35 +0200
+	s=arc-20240116; t=1728439027; c=relaxed/simple;
+	bh=0qIf2Ra8Gj4K+mN2QHbUYTSzc881tgucRsibpFVJjHY=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=t3tWO0GCjYcRayU9CER3cM3WaRBUQEKpLabO5HG/QrxRghhlY6Efnyou8sO+m50tGN1xZIXeiTfFLIz4EctIyDfXl4HkipAJKXBgPMO96j6xWNfMFlQQL5P7NhmTLi5e2glx5Jkjxg3/eiqA7r528ZlNDfFZX6mN/UNTC7l3ijA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Wrw3pHZL; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1728439024;
+	bh=0qIf2Ra8Gj4K+mN2QHbUYTSzc881tgucRsibpFVJjHY=;
+	h=Subject:From:To:Date:In-Reply-To:References;
+	b=Wrw3pHZLxa/6sZT06tIslv8qoZa2AOEiAy/CO0Gb9yi+rdClr/wzQLXlwxrOqtBNm
+	 dZpM+LB507nlDwPl9LoZbUbJIWw173I39js4qAL4PoXHnWwc7YfaU01iG4xEK1JF3P
+	 extxiTWqNB2+PPi5Ckol25bWJxrVYY228entsvxPJcoKhLg4vklzGF03ZYA1YnsP5E
+	 QGBm1hJzGz4YQe4Jt/yHCKDi5bab6KiOJs69EAeqL5i4xDGM3bwosAzdc8DGhRfvbT
+	 pOHpTaepqqiHiEVcFlIOXLqpt+DuIL36jBDR5O7oR4iATKCexfg5lFMA+yqJFpNv3E
+	 UR7UsRU5k1AXg==
+Received: from [192.168.68.112] (ppp118-210-190-105.adl-adc-lon-bras34.tpg.internode.on.net [118.210.190.105])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 58DCD6497F;
+	Wed,  9 Oct 2024 09:57:02 +0800 (AWST)
+Message-ID: <38c72aa9f4cbd3d4a6dc9f8baac20e9bd87db644.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v7 5/7] gpio: aspeed: Create llops to handle hardware
+ access
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Billy Tsai <billy_tsai@aspeedtech.com>, linus.walleij@linaro.org, 
+ brgl@bgdev.pl, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+ joel@jms.id.au, linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org, BMC-SW@aspeedtech.com,
+ Peter.Yin@quantatw.com,  Jay_Zhang@wiwynn.com
+Date: Wed, 09 Oct 2024 12:27:01 +1030
+In-Reply-To: <20241008081450.1490955-6-billy_tsai@aspeedtech.com>
+References: <20241008081450.1490955-1-billy_tsai@aspeedtech.com>
+	 <20241008081450.1490955-6-billy_tsai@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 1/1] pwm: imx27: workaround of the pwm output bug when
- decrease the duty cycle
-To: Frank Li <Frank.Li@nxp.com>, u.kleine-koenig@baylibre.com
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, festevam@gmail.com,
- francesco@dolcini.it, imx@lists.linux.dev, jun.li@nxp.com,
- kernel@pengutronix.de, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-pwm@vger.kernel.org, p.zabel@pengutronix.de, pratikmanvar09@gmail.com,
- robh@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org,
- xiaoning.wang@nxp.com
-References: <20241008194123.1943141-1-Frank.Li@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20241008194123.1943141-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
 
-On 10/8/24 9:41 PM, Frank Li wrote:
+On Tue, 2024-10-08 at 16:14 +0800, Billy Tsai wrote:
+> Add low-level operations (llops) to abstract the register access for GPIO
+> registers and the coprocessor request/release. With this abstraction
+> layer, the driver can separate the hardware and software logic, making it
+> easier to extend the driver to support different hardware register
+> layouts.
+>=20
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 
-[...]
+Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
 
-> +	c = clkrate * 1500;
-> +	do_div(c, NSEC_PER_SEC);
-> +
-> +	local_irq_save(flags);
-> +	val = FIELD_GET(MX3_PWMSR_FIFOAV, readl_relaxed(imx->mmio_base + MX3_PWMSR));
-> +
-> +	if (duty_cycles < imx->duty_cycle && (cr & MX3_PWMCR_EN)) {
+I've applied the series to here and booted it on a AST2600. I did some
+brief testing with a logic analyzer and gpio{get,set} and didn't see
+anything surprising, so:
 
-I think you can use state->enabled instead of (cr & MX3_PWMCR_EN).
+Tested-by: Andrew Jeffery <andrew@codeconstruct.com.au> # AST2600
+
+Thanks Billy!
+
+Andrew
 
