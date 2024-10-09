@@ -1,74 +1,161 @@
-Return-Path: <devicetree+bounces-109674-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109675-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 078CB9978C6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 00:59:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86F549978D0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 01:03:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B048E1F2341B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:59:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B21711C222F2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:03:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CF919923C;
-	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C002B18FDC8;
+	Wed,  9 Oct 2024 23:03:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j/Llr7Om"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="dyDCeq7X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A34190499;
-	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D3028F5;
+	Wed,  9 Oct 2024 23:03:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728514762; cv=none; b=ryE/zbwMaeXm+wEJFECMJYppeA/u2e7+YyJezgINhIyPYgXoTaWMOBqB1WnLoAl1y5LbnVaeLbdsF3umVmjrvaAqYGXYBbyYCAHsZ5XwdUhiRYfM9ZCVnNrLwWymLSVptKqNJ1sprBfL2mnQ4Qom5E8oKNdmUSHwjAXzkU5SD2I=
+	t=1728514992; cv=none; b=H4Wlqcuu8iJRpPGZOnEQwPlV5eAAIlS3IkOHjQog0GdBPuonPLBp93UNDJfSi3p+LmLetoibKJ2mJq9hAKdRfSCyU7GbpKvIXjHJ9xSXSlAiaHt6kXABgskoEIQXI3Tu+YCo7ySVzh2RIoE3rHnKTnF2k7rdjNIZWzR8uhtRup8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728514762; c=relaxed/simple;
-	bh=+hV9ctvyE/5w7nQBVOLafrusMSwAuRpOy+IJ31YSq6o=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=glW/rL2rfjGpUdjhPhVB9FLmBHS0yAu+40lMSzVa/v8NnNLFzGTmRp7k/FphnAKBt9ePS+vwHG5VMcOquuo5zoOMpN5bCp5BiMYsZSR8QTZlOxyXhhy50ZJUnZbUDhKUlgbPwRQCh9DnJRtk6xlHUmBDqsDVNItI0lxU/G/0iuI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j/Llr7Om; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48232C4CEC3;
-	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728514762;
-	bh=+hV9ctvyE/5w7nQBVOLafrusMSwAuRpOy+IJ31YSq6o=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=j/Llr7Om47okBfrDjzOJvoH2+dab946xBe1qYAGDdj6+CoSsyeJ4yoSsUa3jPl0Rd
-	 mUmVOdIjQeRt5Z+Cpm+eZVUOtOP4itHJijvlihxYM1XP6vGjPvBQrqNvXOvkuBlt90
-	 Yh/7vWMyTL0N4ekz9RVRmgZz+AdCx2BnqWeaG9ftiOfptNSsJiZcn87Qm1pYdpcVqs
-	 Shgun+9xNCkabBmLqq7DepYB7UNlQWN9otwaeHQ3kkna7A7hjAzMLV9DUSlvHuIdrc
-	 7BOU//xDSeeu93meZrXBrIOwEZtoVt2QjdNuMPeXkNOyJINpZri8X3J/OYktkQWM/P
-	 LwQqWgK/iolng==
-Message-ID: <8e4d80ebeb8400d27f1ccd88716bc99a.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1728514992; c=relaxed/simple;
+	bh=flB3GAXd531I7pJ9v5rHSbRqXKrrWbbOxKntv0nGr6M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=FK0HEo7eRrasgcAaNObFHXhzktQ/pRtUZ1S7UMYw32tpqKHZ4iHJ9oS0Q/k4XiFJJuCtPRTYvIlieWe3DDUG1VLxr2Y4DGE1mTKRuVOUzC9xmrUYKJieptZfIX9oBoNr9K7jNNIDjxOrC5oXK9U45SCe73kChXCsAJXgd6hecTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=dyDCeq7X; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728514988;
+	bh=flB3GAXd531I7pJ9v5rHSbRqXKrrWbbOxKntv0nGr6M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=dyDCeq7XxDxTQk9D+aU9Ss8vnfBOmEl2T1OOw50xuB6tOwV3jzCMzUVXPJ3bTvtkI
+	 6HnBOX805I/aaX+lwrPrT5MiZzueNqAN41WQSuM9F6uOTotVKVxHPJCcQfPYLPEFUu
+	 Kd76MBH4g84TKMUaRkNCgdvSolTFh7l0T4F6j7EfreWPEI0YU5L+NwmgYl3oewx1cl
+	 sId5a893yq4JBh1AAR3B6Lbot5oN2o0Jc4omFfginpj/rfakLknl39+6cff86eSDBd
+	 mYLezQG8FI/GBjwc70UHEn3/vjps2JdG5f7kohiUOoxEO3mBc8Kmv5Z7scWwB22gVn
+	 J1Yq7dPsKAIIA==
+Received: from [IPV6:2001:861:8b81:d330:d4b:52bf:3fe7:c311] (unknown [IPv6:2001:861:8b81:d330:d4b:52bf:3fe7:c311])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B690A17E0EAA;
+	Thu, 10 Oct 2024 01:03:07 +0200 (CEST)
+Message-ID: <ad07d7a3-5676-4a0b-a79c-9bd7b751cc74@collabora.com>
+Date: Thu, 10 Oct 2024 02:03:06 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240911143429.850071-2-fshao@chromium.org>
-References: <20240911143429.850071-1-fshao@chromium.org> <20240911143429.850071-2-fshao@chromium.org>
-Subject: Re: [PATCH v3 1/8] dt-bindings: spmi: spmi-mtk-pmif: Add compatible for MT8188
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Fei Shao <fshao@chromium.org>, Rob Herring (Arm) <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fei Shao <fshao@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>
-Date: Wed, 09 Oct 2024 15:59:20 -0700
-User-Agent: alot/0.12.dev1+gaa8c22fdeedb
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 3/3] drm/rockchip: Add basic RK3588 HDMI output support
+To: Jonas Karlman <jonas@kwiboo.se>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, kernel@collabora.com,
+ Alexandre ARNOUD <aarnoud@me.com>, Luis de Arquer <ldearquer@gmail.com>,
+ Algea Cao <algea.cao@rock-chips.com>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Mark Yao <markyao0591@gmail.com>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Simona Vetter <simona@ffwll.ch>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+References: <20240929-b4-rk3588-bridge-upstream-v8-0-83538c2cc325@collabora.com>
+ <20240929-b4-rk3588-bridge-upstream-v8-3-83538c2cc325@collabora.com>
+ <83349da6-17bc-432d-badc-5946c42a53ed@kwiboo.se>
+Content-Language: en-US
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <83349da6-17bc-432d-badc-5946c42a53ed@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Quoting Fei Shao (2024-09-11 07:33:54)
-> Add compatible string for the SPMI block on MT8188 SoC, which is
-> compatible with the one used on MT8195.
->=20
-> Acked-by: Stephen Boyd <sboyd@kernel.org>
-> Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
-> Signed-off-by: Fei Shao <fshao@chromium.org>
-> ---
+Hi Jonas,
 
-Applied to spmi-next
+On 9/29/24 3:34 AM, Jonas Karlman wrote:
+> Hi Cristian,
+> 
+> On 2024-09-29 00:36, Cristian Ciocaltea wrote:
+>> The RK3588 SoC family integrates the newer Synopsys DesignWare HDMI 2.1
+>> Quad-Pixel (QP) TX controller IP and a HDMI/eDP TX Combo PHY based on a
+>> Samsung IP block.
+>>
+>> Add just the basic support for now, i.e. RGB output up to 4K@60Hz,
+>> without audio, CEC or any of the HDMI 2.1 specific features.
+>>
+>> Co-developed-by: Algea Cao <algea.cao@rock-chips.com>
+>> Signed-off-by: Algea Cao <algea.cao@rock-chips.com>
+>> Tested-by: Heiko Stuebner <heiko@sntech.de>
+>> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+>> ---
+>>  drivers/gpu/drm/rockchip/Kconfig               |   9 +
+>>  drivers/gpu/drm/rockchip/Makefile              |   1 +
+>>  drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 425 +++++++++++++++++++++++++
+>>  drivers/gpu/drm/rockchip/rockchip_drm_drv.c    |   2 +
+>>  drivers/gpu/drm/rockchip/rockchip_drm_drv.h    |   1 +
+>>  5 files changed, 438 insertions(+)
+>>
+> 
+> [snip]
+> 
+>> diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
+>> new file mode 100644
+>> index 000000000000..6103d30d40fb
+> 
+> [snip]
+> 
+>> +static irqreturn_t dw_hdmi_qp_rk3588_irq(int irq, void *dev_id)
+>> +{
+>> +	struct rockchip_hdmi_qp *hdmi = dev_id;
+>> +	u32 intr_stat, val;
+>> +	int debounce_ms;
+>> +
+>> +	regmap_read(hdmi->regmap, RK3588_GRF_SOC_STATUS1, &intr_stat);
+>> +	if (!intr_stat)
+>> +		return IRQ_NONE;
+>> +
+>> +	val = HIWORD_UPDATE(RK3588_HDMI0_HPD_INT_CLR,
+>> +			    RK3588_HDMI0_HPD_INT_CLR);
+>> +	regmap_write(hdmi->regmap, RK3588_GRF_SOC_CON2, val);
+>> +
+>> +	debounce_ms = intr_stat & RK3588_HDMI0_LEVEL_INT ? 150 : 20;
+>> +	mod_delayed_work(system_wq, &hdmi->hpd_work,
+>> +			 msecs_to_jiffies(debounce_ms));
+> 
+> If I am understanding this correctly this will wait for 150 ms after HPD
+> goes high and 20 ms after HPD goes low to trigger the hpd_work.
+> 
+> Would it not make more sense to be the other way around? In order to
+> reduce unnecessary HOTPLUG=1 uevents from being triggered during short
+> EDID refresh pulses? At least that is what I am playing around with for
+> dw-hdmi.
+
+Sorry for my late reply, I'm on vacation but eventually managed to get
+access to a display, so I took the opportunity to prepare v9 [1].
+
+The debouncing setup was borrowed from downstream driver and I haven't
+payed much attention to it, but now that you pointed this out I think we
+could simplify it and just use 150 ms in both cases.
+
+Thanks,
+Cristian
+
+[1]: https://lore.kernel.org/all/20241010-b4-rk3588-bridge-upstream-v9-0-68c47dde0410@collabora.com/
+
 
