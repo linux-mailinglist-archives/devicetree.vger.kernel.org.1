@@ -1,163 +1,147 @@
-Return-Path: <devicetree+bounces-109448-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109449-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E545599670E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:22:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A37EF996717
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:23:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21C491C250C5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:22:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D41AB1C21908
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 10:23:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5976918FDAE;
-	Wed,  9 Oct 2024 10:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440EF18EFEB;
+	Wed,  9 Oct 2024 10:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="s5gzntXx"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Sroc8VNI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBCB18F2DA
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 10:22:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79293158DB1;
+	Wed,  9 Oct 2024 10:23:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728469360; cv=none; b=MFUBqXlB0s2PeqParBDzHHsqsDeycsvx+8OCK8RTKTQs/w1vKUrMzmYZ3qcdhHSm1VgSvPXhXH3G1yW2RAOPPn1ksMN5tvglnwpcJpbDsZupRz2JA6K7eQzWUdUE5m59+1VUHhuH8MXz3z1Rr4m36BluQEs10qTd4ejjUhBVb3E=
+	t=1728469419; cv=none; b=OHKI5HQzK3SYDbEpsMGR+v3OjEpIqDxZZELj/mciyHNdJLI7qR+FPCaK9wZR3TAQUw20fxJ90XdXNFZtfz4Q2IpeoXw4+LtmUK31LeFpoy8JySGnwK7Eir3TvE6iyAP0iRanwNdNimKlWthyDhFRAAZquIBmdrSLY8DWG+WToPQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728469360; c=relaxed/simple;
-	bh=1muRWa+wXawPE1eQ9HosXZjWY4RSa8MbWKpe3P4P9uQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RcT/Mtp46zgPc0cBKsyf2fvjH5dI18wpyogRU3Jrnor7WVjBVZwX1Rm0w2UmPd/xIc9vwcxiWNIhJzldlsWQPpfCTGjeHNC3SEsyn6DSCyeP+WWEU642YU2vsd6cBRkQ500XTinZsBv7VtIABl+fOw8V0mHoZh6L8ckoXTdK6ww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=s5gzntXx; arc=none smtp.client-ip=209.85.218.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a993302fa02so522884866b.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 03:22:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728469357; x=1729074157; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=s5VgD+wTXaNucrBWnqcE02bPzDtE/QymMPp7ZrJAaRA=;
-        b=s5gzntXx4N7oERKAZOKw8cZVIoRR0oYv5ClDy9hnyIHznRa0Y+V/JjL0F8ujk7wcKk
-         E/QAnNRso08a67lItzn8TZO3TrPiIxSRu9UTEVksSEKIj1wuDn6732r7eR1ps7WgfUme
-         MgyOuj/1ctCaFzJHN+//X5bMX4oGjSKwpMdN+yBUel/xGhEE6V7tIkcNPqwxPnIHP7gw
-         EZQ7MnZvjGW7MVLFItEbcuPvNUfN7Ym5K4sjnpcVDfQaRJSGQ2IoV/xo6s1ibNhCASdN
-         RxNRVPft5wyRiEerj//GDNw9r7EeazOliUZ512mOcMfjkAv3RjLlOJ23zEmioUhXle8L
-         BUMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728469357; x=1729074157;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s5VgD+wTXaNucrBWnqcE02bPzDtE/QymMPp7ZrJAaRA=;
-        b=BQV0dijBM/0OyA7k9t5KqKYw3AONXOzFtA/2oXW5SEQ6cNM46sbK6OmP1quv6pK4en
-         48QfLCTiSWXV5SHEEn1x7DouMtwDkGuwDXqim6xuDQ7dAudyVCEPHwp39AudwbqjwC2w
-         HRNsO/YH+HW2lwy7UAPk/bhMjBwc8VQjLBR2PMNt4oIVN5NFAoD3o85Vd+DsgYgNmOWP
-         hD0kGrah2P1ryJqFAECo3dCQw1r/pRRUxtFCsYqQdQQ3ORTZpHkXmcfOcv/FBqisZPax
-         H6/a4nc96VMEAZlAY4tYQIdlxOCRFmdzUU0psA/jK93bmCdlPaullSQLdvxC3XnLa/jI
-         hWng==
-X-Forwarded-Encrypted: i=1; AJvYcCXGlZ+UicziG8+2GopcSYpZGvt8B39HJLq2IYdFjIGLk1FE1LQx0mODsHHnw6X1hLDsFeExin0b0Ur/@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLFayCtiCMcaP5nHEirVbb+1dnc2kenJPnZYZoMyoxAakvjEy5
-	d32MvV3cpcNFw+wUDQPYHe0vKiHBFP698+GDptgpVwfyh0WLM9/NJyTtFqkMKko=
-X-Google-Smtp-Source: AGHT+IFgNDo1cyZoG4YBSn4FWa6hWBarcKKT8WDru+XyTCt2NUHvDMU1kIaP/0lbJiHrbIG5gGBXag==
-X-Received: by 2002:a17:907:9728:b0:a80:f81c:fd75 with SMTP id a640c23a62f3a-a998cf4d7a3mr166864766b.0.1728469356565;
-        Wed, 09 Oct 2024 03:22:36 -0700 (PDT)
-Received: from linaro.org ([82.77.84.93])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994ce357b2sm472465666b.144.2024.10.09.03.22.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2024 03:22:36 -0700 (PDT)
-Date: Wed, 9 Oct 2024 13:22:34 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: x1e80100: Describe the SDHC
- controllers
-Message-ID: <ZwZZalFKXiQh0BAK@linaro.org>
-References: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
- <20241008-x1e80100-qcp-sdhc-v1-2-dfef4c92ae31@linaro.org>
- <syf3uyoyh55rxieyjnhsskmythce6vnkuq77asgml736gcysd7@op5b2pd6ijsj>
+	s=arc-20240116; t=1728469419; c=relaxed/simple;
+	bh=kg8uGMxcJY0VGnMG4HflWm7gAZLcGN2UGbMOYHvT9Fo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nZAC8VdflDc6VaISD5YV6FHCCRC0uMVAY2kyVO3U1oPwGKK70z5OTjqjMSfZxkPrLIn+77xWGVYTRnCNXVouQnRUfhpaNhkjs46o7xvXzDcc4xOljWXu98BfPcOWV5PSKHMntrLF5spc6MuLdXVb39ReZ20Tdc7wQvFF9+eu3JE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Sroc8VNI; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 18AD5C0008;
+	Wed,  9 Oct 2024 10:23:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728469409;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=sciMm2xaCbtFbC/q7bparVgAbNpRaWLZ9FYaBQz2d4A=;
+	b=Sroc8VNIMhDIyF2UmZSK0zg1nxhr/xzKhwKnpIJLcoUInfvTqaj9WO8BOF+qwwlQ/i+/9w
+	clt8IdD/muxFjBr8BwlVa0hjLznJSaG4pttMHeMW6m8y7R9egunpWDo+v5FFvILsikaRMm
+	Vp6ZGURp3w1pdajzYVexMzjTEZssDhuLsww6M6KbdA4drwEQJVT4shy8f+uIBeWpoOMOzd
+	kezG1VI+Ce0VqdjwgbIaL6Jm2rUC/sWDpRkH2GYUZdUca0WOFVCZ1+V9XLFLfVGwye7PDG
+	wQ/ZMaFOiuHlUAtMLPZYtmA7GPMYpNQr0vGRRf+3THrJ1Pk+y5vW7KCLOuHMng==
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: [PATCH v2 0/6] i2c: nomadik: support >=1MHz & Mobileye EyeQ6H
+ platform
+Date: Wed, 09 Oct 2024 12:23:26 +0200
+Message-Id: <20241009-mbly-i2c-v2-0-ac9230a8dac5@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <syf3uyoyh55rxieyjnhsskmythce6vnkuq77asgml736gcysd7@op5b2pd6ijsj>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAJ5ZBmcC/0XM0QqDIBTG8VeJcz2HnkXWrvYeows1WwdKQ0MW4
+ bvPBWOX/4+P3wHRBrIR7tUBwSaK5F0JvFRgJuVeltFQGpBjLTiXbNHzzggNw0aabqhb1B2Hcl+
+ DHel9Us++9ERx82E/5SS+6w9p/0gSjDPFGyNuQioc5UN7v83krsYv0OecP9jFI+eiAAAA
+X-Change-ID: 20241007-mbly-i2c-267c9d482b90
+To: Linus Walleij <linus.walleij@linaro.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: b4 0.14.2
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On 24-10-09 08:49:03, Krzysztof Kozlowski wrote:
-> On Tue, Oct 08, 2024 at 05:05:56PM +0300, Abel Vesa wrote:
-> > Describe the two SHDC v5 controllers found on x1e80100 platform.
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 108 +++++++++++++++++++++++++++++++++
-> >  1 file changed, 108 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index a36076e3c56b5b8815eb41ec55e2e1e5bd878201..b835fd87b977ae81f687c4ea15f6f2f89e02e9b1 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -3880,6 +3880,114 @@ lpass_lpicx_noc: interconnect@7430000 {
-> >  			#interconnect-cells = <2>;
-> >  		};
-> >  
-> > +		sdhc_2: mmc@8804000 {
-> > +			compatible = "qcom,x1e80100-sdhci", "qcom,sdhci-msm-v5";
-> > +			reg = <0 0x08804000 0 0x1000>;
-> > +
-> > +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> > +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-names = "hc_irq", "pwr_irq";
-> > +
-> > +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> > +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> > +				 <&rpmhcc RPMH_CXO_CLK>;
-> > +			clock-names = "iface", "core", "xo";
-> > +			iommus = <&apps_smmu 0x520 0>;
-> > +			qcom,dll-config = <0x0007642c>;
-> > +			qcom,ddr-config = <0x80040868>;
-> > +			power-domains = <&rpmhpd RPMHPD_CX>;
-> > +			operating-points-v2 = <&sdhc2_opp_table>;
-> > +
-> > +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
-> > +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
-> > +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> > +			bus-width = <4>;
-> > +			dma-coherent;
-> > +
-> > +			/* Forbid SDR104/SDR50 - broken hw! */
-> 
-> Is it still valid or was it just copied from old code?
+Hi,
 
-So when I did the bring-up of this controller, for some reason I thought
-this was needed. But I guess that's not the case since I get this
-without it:
+Three patches are about adding Mobileye EyeQ6H support to the Nomadik
+I2C controller driver, in the same vein as was done a few months ago
+for EyeQ5.
+ - dt-bindings:
+    - [PATCH 1/6]: add new compatible.
+ - driver:
+    - [PATCH 3/6]: we switch from using a match table, before adding the
+      new EyeQ6H compatible.
+    - [PATCH 4/6]: adding EyeQ6H is only about creating a new match
+      table entry thanks to the previous patch; we reuse
+      the .has_32b_bus flag created for EyeQ5.
 
-[    5.168918] mmc0: new ultra high speed SDR104 SDHC card at address
+Three patches are about supporting higher speeds (fast-plus and
+high-speed).
+ - dt-bindings:
+    - [PATCH 2/6]: fix them, they indicated only a max of 400kHz.
+ - driver:
+    - [PATCH 5/6]: fix computation of the bus rate clock divider (BRCR).
+      It picks the smallest divider that gives a bus rate above target.
+      Switch to picking the largest divider that gives a bus rate below
+      target.
+    - [PATCH 6/6]: then support high SM (speed-mode) values.
+      This is not much work.
 
-So will drop in the next version.
+It works on EyeQ6H HW just fine. 1MHz has been tested but not 3.4MHz
+because HW doesn't support it. The theory is there, and BRCR
+computation has been checked to be valid with 3.4MHz clocks.
 
-Keep in mind that I have no way to test the sdhc_4, so I'll drop it from
-there as well.
+DTS patches are not provided because they depend on the platform's clock
+series [0]. Lore being down at the moment, see Patchwork [1].
 
-> 
-> > +			sdhci-caps-mask = <0x3 0>;
-> 
-> Best regards,
-> Krzysztof
-> 
+Have a nice day,
+Théo
 
-Thanks for reviewing.
+[0]: https://lore.kernel.org/lkml/20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com/
+[1]: https://patchwork.kernel.org/project/linux-clk/cover/20241007-mbly-clk-v5-0-e9d8994269cb@bootlin.com/
 
-Abel
+Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+---
+Changes in v2:
+- dt-bindings: change `clock-frequency: maximum` from 400kHz to 3.4MHz
+  in a separate patch.
+- dt-bindings: use enum to list compatibles.
+- Switch away from of_device_is_compatible() in probe. Use a match table
+  with flags inside .data, using of_match_device() from probe.
+  This is done as a separate commit before adding EyeQ6H support.
+- Link to v1: https://lore.kernel.org/r/20241008-mbly-i2c-v1-0-a06c1317a2f7@bootlin.com
+
+---
+Théo Lebrun (6):
+      dt-bindings: i2c: nomadik: add mobileye,eyeq6h-i2c bindings
+      dt-bindings: i2c: nomadik: support 400kHz < clock-frequency <= 3.4MHz
+      i2c: nomadik: switch from of_device_is_compatible() to of_match_device()
+      i2c: nomadik: support Mobileye EyeQ6H I2C controller
+      i2c: nomadik: fix BRCR computation
+      i2c: nomadik: support >=1MHz speed modes
+
+ .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 13 ++--
+ drivers/i2c/busses/i2c-nomadik.c                   | 88 +++++++++++++---------
+ 2 files changed, 60 insertions(+), 41 deletions(-)
+---
+base-commit: 6f1cfa7816af8b3286140f1b0476200d5e914eb9
+change-id: 20241007-mbly-i2c-267c9d482b90
+
+Best regards,
+-- 
+Théo Lebrun <theo.lebrun@bootlin.com>
+
 
