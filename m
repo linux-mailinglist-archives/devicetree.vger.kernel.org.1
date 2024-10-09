@@ -1,1668 +1,416 @@
-Return-Path: <devicetree+bounces-109296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74912995F6C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:06:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74D9E995F8B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:15:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7585A1C22405
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 06:06:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5302B21B66
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 06:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F279E17BEC6;
-	Wed,  9 Oct 2024 06:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 470C91428E0;
+	Wed,  9 Oct 2024 06:15:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="AjeO/o6Z";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="s+lnNqZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1444317B4FE;
-	Wed,  9 Oct 2024 06:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728453934; cv=none; b=lFlPVrH8VUS3ShG9xYoRL5lsINPQvaVbz9VZZd/cyBHY53VHBfhrAu8L4Nbu8g9B/m6gka0lYFXHYHOg3nrJyafJXn2dQpG8jTPl1Ik2mBmZw3q1qzPj4y1UvtVLOZzuIiGFVEhrehVesSNWjIGi72cecLasoHGxhNmmTaAG2nE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728453934; c=relaxed/simple;
-	bh=uYiltwmOFQVpjIB9I8WNdkliveFL32pV4U2gZHdpaso=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DVhqvoy1/m6iIY8V59IqKoWwn3KMmqWt3+wDnURmlRBSBUjCJJ5XInc1cr9Djk4HVuZtWMl4Nx+DZ7ReNlEbfn/7LUqOyTZQZ4QEbfJpCjSMBqnTHtIo6KUE3bMTAgOKXcUC4oL8qbwxBilcYNZ6dvD6S5AIZ0KikPjjncR0L4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.12; Wed, 9 Oct
- 2024 14:05:22 +0800
-Received: from twmbx02.aspeed.com (192.168.10.152) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1258.12 via Frontend
- Transport; Wed, 9 Oct 2024 14:05:22 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: <ryan_chen@aspeedtech.com>, <dmitry.baryshkov@linaro.org>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <joel@jms.id.au>,
-	<andrew@codeconstruct.com.au>, <p.zabel@pengutronix.de>,
-	<linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>
-Subject: [PATCH v5 3/3] clk: aspeed: add AST2700 clock driver.
-Date: Wed, 9 Oct 2024 14:05:21 +0800
-Message-ID: <20241009060521.2971168-4-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241009060521.2971168-1-ryan_chen@aspeedtech.com>
-References: <20241009060521.2971168-1-ryan_chen@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBC8E16F282;
+	Wed,  9 Oct 2024 06:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728454507; cv=fail; b=krKRdElqkqJgxsGbcogIvRcSMBbQsAIhGGjblNBYSzsnkQOHGxDA3bMaOKxr4sPvg/vcBpKKlUgw+nOFe2/J1jcRyxL80TPeNjQJT8YbXR4Ijlwdqvznfr7Ll81obdOhQRdbt7Dk5JZFyUDvNUKoybEEPSwrqOU1nikfchryDh0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728454507; c=relaxed/simple;
+	bh=sISxXaQ6dyw/GAxr8vVBZ4ttaRG8+/n6cIH8hXI4I48=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LyX5ywYaPxk4+RVmlnlfU8xJlkz0KHttBVUmkhMrFghyAVVd/bEXiVWxcj/2gO42HKWxK/jDbjTydoRgTuMR/GhkoCTF8JzngWADH5ozpqpOaHfXJn1/R9sY4KBGv7FLfLWMpyTrx3ZmuxRRowXTC+gO2mJpCABusVXEePyBXGM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=AjeO/o6Z; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=s+lnNqZS; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: ce335694860511ef88ecadb115cee93b-20241009
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=sISxXaQ6dyw/GAxr8vVBZ4ttaRG8+/n6cIH8hXI4I48=;
+	b=AjeO/o6ZalqWCukTP7v7zwKP1dkhM7+SF9FaXr/dcv5IX2cFCs74ornSC6QgQpYt7FNkWIw8Nyr85sr9CUIrFsHXVoGJIO7FYpHkBPkRZBwEAesbNjhV9JylqIfkfp3hMw4ni3knXXqBKgB9BOkaVIPV/AUUc7frBBTOtPAsb7g=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:05813fe1-797a-470f-bcef-55d949eb6324,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:e485f964-444a-4b47-a99a-591ade3b04b2,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0|-5,EDM:-3,IP:ni
+	l,URL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,
+	LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: ce335694860511ef88ecadb115cee93b-20241009
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
+	(envelope-from <andy-ld.lu@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 754579235; Wed, 09 Oct 2024 14:14:56 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 9 Oct 2024 14:14:55 +0800
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 9 Oct 2024 14:14:55 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=HJjnjt21mm5Tw2BeymkuC9G1erAcrq6KJ7Lov2WXYb5HXD2fU8Wgs+JMK+5Sfa2ZZluHTZg/GGSTDnPjkPtpb/+Ra4vcF1xgI3ZsHsELoZ45zdy6wE2fvMNL+9WLK1MPryR2n8hH2fRiEKWsOrjACyOsqOypn8BnqECV8mePIt2XH4MQYhYhRa+ow+GYWykuaqFzTaLPnKzpGWJsxe/RPfpOR1G66S+fqhvhcb2IRBZWMlFHJZGCcQgvcgaMamo5gKY9nIclZwsOUu0eg4BFKmBzPs04HQbBiqfk8H/k1k8krGyNe6kygH2nb3lIT3FeQQqivTVxgijaROKNz3ADDg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sISxXaQ6dyw/GAxr8vVBZ4ttaRG8+/n6cIH8hXI4I48=;
+ b=MPAl9XdrUkQHwtGKN6RZIN0qqaSz6jSQJHa4TqilOBfedB3sPKAmhdpHVN5PwOd0DTFmfayjxdBFYJGKJY9qF+9fGM8yigk2z5DAUTqMu8J5I6osqKQNk444JD5SuxYEdK1ZUZ34gvEDeCYdcGcjjrL2+H+ywI2NUKg20RrCepFycLrafHON4va6sPN6JQxpJXwQv4KRWGxr5Uh8SExHEyESojIUqF9+DnnRJbhDTEhXRMUGjD6c9BVhN0g3rSUxoos+KiXSmoIFmGAvRSH42jHGSy6xkil7ovNEWTr+zDqIgV1eMuBg7AOn2t+sKR8wIh9kuAswMF9UOVvO6CN/5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sISxXaQ6dyw/GAxr8vVBZ4ttaRG8+/n6cIH8hXI4I48=;
+ b=s+lnNqZSFRTw3u2llq/xQm79D0ODC+OKN5xcm2qJf1P2wFPDnH8oLzDu9IQj08R6PHVQ72b7d6kmec9mzQELe+7MpA+TPQuV10x083O4Hznlq+tJxeO1aMb2muadDrFhQelg3tTWfVC3vQg5ck/RKBtgHNgYa/yEG7AflDXmfG0=
+Received: from SEZPR03MB7998.apcprd03.prod.outlook.com (2603:1096:101:17b::11)
+ by SEZPR03MB6468.apcprd03.prod.outlook.com (2603:1096:101:47::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
+ 2024 06:14:50 +0000
+Received: from SEZPR03MB7998.apcprd03.prod.outlook.com
+ ([fe80::a616:ebcb:517:8b1]) by SEZPR03MB7998.apcprd03.prod.outlook.com
+ ([fe80::a616:ebcb:517:8b1%5]) with mapi id 15.20.8026.020; Wed, 9 Oct 2024
+ 06:14:50 +0000
+From: =?utf-8?B?QW5keS1sZCBMdSAo5Y2i5LicKQ==?= <Andy-ld.Lu@mediatek.com>
+To: "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	=?utf-8?B?V2VuYmluIE1laSAo5qKF5paH5b2sKQ==?= <Wenbin.Mei@mediatek.com>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+CC: "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-mmc@vger.kernel.org"
+	<linux-mmc@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 1/2] mmc: mtk-sd: Add support for MT8196
+Thread-Topic: [PATCH v2 1/2] mmc: mtk-sd: Add support for MT8196
+Thread-Index: AQHbEkO5yhLNHJCx5UObukNPBtyKqbJwDZgAgA3y94A=
+Date: Wed, 9 Oct 2024 06:14:50 +0000
+Message-ID: <251465227593fe118a1e70f48fe4d316acf861d1.camel@mediatek.com>
+References: <20240929074558.2076-1-andy-ld.lu@mediatek.com>
+	 <20240929074558.2076-2-andy-ld.lu@mediatek.com>
+	 <e969918b-3af4-4880-9dc6-fba868a9937a@collabora.com>
+In-Reply-To: <e969918b-3af4-4880-9dc6-fba868a9937a@collabora.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SEZPR03MB7998:EE_|SEZPR03MB6468:EE_
+x-ms-office365-filtering-correlation-id: b33b752b-4367-443e-085d-08dce829aecf
+x-ld-processed: a7687ede-7a6b-4ef6-bace-642f677fbe31,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info: =?utf-8?B?ZElnU1BKZFJIMkNqeU1JejlrOFNRWC9kVDdsTUxZN3BqSVR0UjNPSUZEY0JB?=
+ =?utf-8?B?WGUrajI1Y0pKRURDSUgyWG95cHpldEVpekJWL1JjR3BtOEpFRDBmNmt4YkNa?=
+ =?utf-8?B?UFllbmxLY3NNRUNVa242VlRrb3E5bzdnT0ZaT01UZjNqd3lpTXNaODdna2xC?=
+ =?utf-8?B?Z3IxMUw3dFkvUHhXYzZ2dUQ5R1lOeDZ0a2QxNTZxWE45TEIyUDBndC9TaVlB?=
+ =?utf-8?B?QURhelRtdDg4Mjc4QnJwdDdsRlVDMEovc003eTZhQzNQczlVdktnSC9YcWlr?=
+ =?utf-8?B?OXprN1AwbTdMd3NMRXBsbjlDRzZ3amkvbEJtM2k2d2RhcTIvTktpNUpRVStn?=
+ =?utf-8?B?THNINFFyZStEcHpUWG9PQmdoZXN0Ui9JcG9mWVRJSm5BSytPRlIraXBUOHli?=
+ =?utf-8?B?RUkwNjNIcTk2SkFseCtFMlo1T1FxOTNYTjVLUHZsSFVsQUNmMUE2ejN3UWE1?=
+ =?utf-8?B?WU0yKzNDT3F1dzZDeDFSZU5WK1VLbkw1TVpjYWNGTGIxYVVzSEtwN05ySENs?=
+ =?utf-8?B?MHJReTdrLzFsb3Bza0cvMjZsOWtEY213SUZWZ1ppUXI4Vk4vVEpHY3gySHhv?=
+ =?utf-8?B?RFYxaWJWT1VjOHhZWmtrWUxrdUdBNEVMUERKNHEwQ1Nac1JlK1ErREFDNklH?=
+ =?utf-8?B?dzd2SFVPVnBSSVViNnFLN2MzdmlPK1pYODJNU3IvRWxIVEJUTHNlelV2anNX?=
+ =?utf-8?B?SDVZQS9QcmFZRnZWS2ExMnJ2TDlpcjdKaWtkTlJwZUlicU4zbXhQYW83Z1Rh?=
+ =?utf-8?B?ZTFzcmpGdURwd1E1N3ByRUxDSk80a2lHUk5iREdZVGkzUitFRDJqemZBaWpO?=
+ =?utf-8?B?UVhwQlNySWtpWno0ZWM3cFdyalp0V2h3a1BBSVNWakIvNURPOGhqR2tYZmRu?=
+ =?utf-8?B?aExONVJIczd1aGVMNUttOHcvL003cnV4YUhodXhkajd3d2lGcmdSOExER2ZV?=
+ =?utf-8?B?MlArL2NlR21KQyt0d291TWgxZGVCdHZJRHZlQWRMVmtrVUhTTjMyWEc2ZWpu?=
+ =?utf-8?B?T1lGS3F2VXNDT0REZHhBbWVMNjc3UHpTQ2ZMZk0rN2J1RUI5aEZaNnRoWDJF?=
+ =?utf-8?B?ME9jcnZ0NzZlN0lXYlAvY3VOYk5ObXBrUzJ5ZE5qUGRlb0dQMzhqSE03NUlu?=
+ =?utf-8?B?L3dlTGpKTnM1d1RadW9TdnZyd21RSEtWTjQ3a0tDY0hRaE9ETTV5QUJUUGsv?=
+ =?utf-8?B?VEtOMXF2elZ0alNWanl2T0tQbGpkcVo0VWNaNis2SWN5MnVTVkNkSE9UR3R4?=
+ =?utf-8?B?ZmRlZWtTSXcxU3ZPNGVPbG1uTzcxd283VVVwME0ycHdYaUR0TU9XN3doR052?=
+ =?utf-8?B?ZkV4MCs3VlkyTXBGYTM4ZW1JT3hxa2ZUU1BmTGNFaTY2enJzTWJpVnVMOEZi?=
+ =?utf-8?B?VktrUmtHUXRJK3ZkV3RYZDZTRkxlKzJxcGdadVA5UTlCN3M3VXliVFMvazYz?=
+ =?utf-8?B?Wk8ySXYwY0Q3bllRSGJHZzdFWGNrMlFNSW1pRFhMK0puWHpkRWdTbnNQS0or?=
+ =?utf-8?B?VDlzd1Q3d2RPWEpZSjgvZTZvbnZWSHhhaVB1RnkwMndMR2RGZEQwVlNwMGVP?=
+ =?utf-8?B?K295WXFhTVlucGNpcy9VM2NJWWFuQTg0cnVGWWJhWUxmc0J4a1dyS1krbUhP?=
+ =?utf-8?B?UWVXQ2VncnBwU2RHZ3BCMDc4UEp0RDNjSkt6WEU3dDY4cVFRM0Naa24zdlhL?=
+ =?utf-8?B?QUJWS0xOQ3VGYkFLcnZqLzFuT3k4em1GbE9vdmRpSE5TMSttbnpUM3lVM2RR?=
+ =?utf-8?B?VW9IRG5WdHNqZ3lJZHFyYkM3alpwZ1hDYUlKR0s4U05GOXJQdUZQanY3Wk82?=
+ =?utf-8?B?QWkzWnl6NzY4ZjZwa1grZz09?=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEZPR03MB7998.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?ZHJQbEJSVDRCZjdGWDdTUHQ0YWZ2RUlOQXpBSnNpbGtrNTc1U0J5bFJUNzkx?=
+ =?utf-8?B?U2c5R1JXRmdPcGFFeXlaQys2RHd3MzZYbG8wL3Q5TmNvYXFkMVVhcXdpZ0lP?=
+ =?utf-8?B?bUg5aldyaWJRdW9RbGdqclhOVHZoZXJZUWFRa0Z3TGxxRUhEV3B0VUpDODZv?=
+ =?utf-8?B?VDVKcWJUWml0a0wvUHVIT2tLR1JsclVVbHJTWCtMN05iTGtQMk9QdFJ4WlM3?=
+ =?utf-8?B?MUJoakNxRnNUL2dqOVcwMzZmNllSUGVmSUp1Z3BDVWdJdFgxbDlxVU5jaUNr?=
+ =?utf-8?B?S0ZDUDBqM3pUNExWT2wwOG9RYkczYVJkT0Fxb0tuUitkb0xoLzJ5OHdtZ0JY?=
+ =?utf-8?B?QmhPZy8yTHloMTlrdGlLdWRGdFZUTjcwbDRRb0pQdUYwWGZxbnR5MHFKOUM5?=
+ =?utf-8?B?UjhUOVZ1UVBEa3lBKzdHMzhIcEp5Y3FiVWRvZEpseWJBZ1BBM2FJaHFQa3dz?=
+ =?utf-8?B?QnV6RmRZOURqRk5nL0J3NWdUeUpVSzFqcVJHVXBzMEU5WHZHVXVsaDZCOW9k?=
+ =?utf-8?B?VDZLZXpKS0ZZRGczT1JzWGNyMmYzVGlncFVtRHpQd2VIbFhtY3czR1VEb2tx?=
+ =?utf-8?B?WVE3S0djMG05WlRyRGRCdUUzc2R3SFJTVWdmbUcxUTdBKzdrUDBDYjFHQlZ1?=
+ =?utf-8?B?U2JxdElSTGRRRmJHeTduSkJSVVJkeEo2a2FDYlM0eTh3MGkvU2d1aGVzTmc1?=
+ =?utf-8?B?am9UYzA4c2crbDVleXh6WitaT2ZXa3hZZGpXK1RpdE9tSHFaQjl1YXBDaUo1?=
+ =?utf-8?B?c3JjeUZVOFFsb1l3cmN2VHdJWUJGOGw3TjJtelB6MGN5RjJxaWx3c2U2Wngw?=
+ =?utf-8?B?UmlDUzRVUXczMld6WjVwK2pkY2FLMVJyWGF4bkNBZEphU21tWDh1NVpkMEMy?=
+ =?utf-8?B?cCtkdm85MVdvd2ZtMitPM1R1TEplVHd5eGNPdkhOaGFqTW5mdVIyTmhtL0Js?=
+ =?utf-8?B?dWl5UEhlay92bVp1OW5mR1dIWDFlZUdxd3d4UzVwY2ZmVFgwemErVWdraXQ4?=
+ =?utf-8?B?NnFEOFhtV1JCNHhHNHN0UlFoV0NGUTdNZ3dyNXJROUthOFB3SFhGRXB4R0Rx?=
+ =?utf-8?B?Nkg0WXhpcEszd042RHZSekxvMjl1L3VZWlFPNWNIU2tCQ1FZcDFTd05DK0ZK?=
+ =?utf-8?B?ejE2U2hUR21BWmJGYXVWcHhiM0FLTWZHd3pkWWs2UnRmbDU5VlI3UVVhRjNC?=
+ =?utf-8?B?TVdLQXZaVFBXVHlwM1hkckJTWGp3MnJGNGdSb2E0RklEMWZ5VVJKWUlFZU5L?=
+ =?utf-8?B?bk1mdUtYMW9XaExFLzBHSGhIdUkwTVNUcW5yclhyVWpSc1huTDRVMGRQQXRm?=
+ =?utf-8?B?Y1gyd2c4S2U2RnplOEhCa1RJTTAydE1oZDM2K3JrdVNTZkswTlJQcHNScklo?=
+ =?utf-8?B?blRaR0lpaC8wekNRL0tvMWNvRHdDL29WSlAwUGFldFFGU3RERGRzWmUyOWNN?=
+ =?utf-8?B?NEpmNnh3eHZxUXRXNEVmZWo1RVo5T1BjM0VhZWdtdVZQMkRDZlJVZUhlVTJY?=
+ =?utf-8?B?RjQvVDVaSHVMeVluZ01XcHN2c09WOW8yaEJEQ0xDYk03Z2RDUFY3S3dBbElK?=
+ =?utf-8?B?MVpGTTF4U01QSkJ0SE5ZWC83NG9HMjNKR1J5dmxQQk9NTllpbTJGQkwraUdQ?=
+ =?utf-8?B?bkJ0b3ZqeFI3R3czWVl6WGJNQmhTeU5rTlZnRmJCaDBrL2RIUmZqM1Z5VTQ5?=
+ =?utf-8?B?SlBZSThCREZXQmFpYkRsYWgwYzl2RC9VVmVmZVV4SGYxWW1FZElwVnc2eEh2?=
+ =?utf-8?B?MmpUZzl5MmNpZEhpQUJNU1piRyt1aHAzSEhjNEF3WFNzeCtyL1ZXT0tkTVBm?=
+ =?utf-8?B?OGloeVNUZHBzZjRJcUJKQ3VJNEZJbEFlMXUvNnpsUDZLUlgwb1BYSENOck9E?=
+ =?utf-8?B?aTYyVkcvcnRHSUFpdnEvY2w3dldSeUFvZGJ1dVdvYjJqbGFWeG4rRmpLZ0ds?=
+ =?utf-8?B?SXNrMmZhY0U5Z0lPZUhnNmd3c3plOUczemxQNHBvWDdWVHkyRmp4NjVHVkwy?=
+ =?utf-8?B?VUo2YnRGcFZJSEJLQnp1WkdSeHl5ZGsrMlVGRmxoQnd0Qll2R1ZOVUh3RDVt?=
+ =?utf-8?B?UnNXWDRWU2ZITXlNUlY4QXlCNGFBSVNPVUo2clZCSEhTYWRDMnJidGFYSXE0?=
+ =?utf-8?B?V2FlVVpqaHh3SHZrOXh6anVYenNaV1ByWkR5c0xJbGRLeFM5dTZNK2ZreVVy?=
+ =?utf-8?B?eXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D81F5C293BDF6F43B40AA7100ACDB062@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR03MB7998.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b33b752b-4367-443e-085d-08dce829aecf
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Oct 2024 06:14:50.3438
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zV5t+tJKmDrQTvJI0+H85xN0iUYLXZIvBCv7iWpdLo9QpduuGKoNtlpo1RwLOzoZ7zIO98L0uQkKcrrbVnJ//g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB6468
 
-Add AST2700 clock controller driver and also use axiliary
-device framework register the reset controller driver.
-Due to clock and reset using the same register region.
-
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/clk/Kconfig       |    8 +
- drivers/clk/Makefile      |    1 +
- drivers/clk/clk-ast2700.c | 1554 +++++++++++++++++++++++++++++++++++++
- 3 files changed, 1563 insertions(+)
- create mode 100644 drivers/clk/clk-ast2700.c
-
-diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index 983ef4f36d8c..4cc35ecba1c0 100644
---- a/drivers/clk/Kconfig
-+++ b/drivers/clk/Kconfig
-@@ -269,6 +269,14 @@ config COMMON_CLK_ASPEED
- 	  The G4 and G5 series, including the ast2400 and ast2500, are supported
- 	  by this driver.
- 
-+config COMMON_CLK_AST2700
-+	bool "Clock driver for AST2700 SoC"
-+	depends on ARCH_ASPEED || COMPILE_TEST
-+	help
-+	  This driver provides support for clock on AST2700 SoC.
-+	  The driver is responsible for managing the various clocks required
-+	  by the peripherals and cores within the AST2700.
-+
- config COMMON_CLK_S2MPS11
- 	tristate "Clock driver for S2MPS1X/S5M8767 MFD"
- 	depends on MFD_SEC_CORE || COMPILE_TEST
-diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index f793a16cad40..fe95203c3138 100644
---- a/drivers/clk/Makefile
-+++ b/drivers/clk/Makefile
-@@ -38,6 +38,7 @@ obj-$(CONFIG_COMMON_CLK_FSL_SAI)	+= clk-fsl-sai.o
- obj-$(CONFIG_COMMON_CLK_GEMINI)		+= clk-gemini.o
- obj-$(CONFIG_COMMON_CLK_ASPEED)		+= clk-aspeed.o
- obj-$(CONFIG_MACH_ASPEED_G6)		+= clk-ast2600.o
-+obj-$(CONFIG_COMMON_CLK_AST2700)	+= clk-ast2700.o
- obj-$(CONFIG_ARCH_HIGHBANK)		+= clk-highbank.o
- obj-$(CONFIG_CLK_HSDK)			+= clk-hsdk-pll.o
- obj-$(CONFIG_COMMON_CLK_K210)		+= clk-k210.o
-diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
-new file mode 100644
-index 000000000000..ef1f939b1c9f
---- /dev/null
-+++ b/drivers/clk/clk-ast2700.c
-@@ -0,0 +1,1554 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2024 ASPEED Technology Inc.
-+ * Author: Ryan Chen <ryan_chen@aspeedtech.com>
-+ */
-+
-+#include <linux/auxiliary_bus.h>
-+#include <linux/clk-provider.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/slab.h>
-+#include <linux/units.h>
-+
-+#include <dt-bindings/clock/aspeed,ast2700-scu.h>
-+
-+#define SCU_CLK_12MHZ (12 * HZ_PER_MHZ)
-+#define SCU_CLK_24MHZ (24 * HZ_PER_MHZ)
-+#define SCU_CLK_25MHZ (25 * HZ_PER_MHZ)
-+#define SCU_CLK_192MHZ (192 * HZ_PER_MHZ)
-+
-+/* SOC0 */
-+#define SCU0_HWSTRAP1 0x010
-+#define SCU0_CLK_STOP 0x240
-+#define SCU0_CLK_SEL1 0x280
-+#define SCU0_CLK_SEL2 0x284
-+#define GET_USB_REFCLK_DIV(x) ((GENMASK(23, 20) & (x)) >> 20)
-+#define UART_DIV13_EN BIT(30)
-+#define SCU0_HPLL_PARAM 0x300
-+#define SCU0_DPLL_PARAM 0x308
-+#define SCU0_MPLL_PARAM 0x310
-+#define SCU0_D0CLK_PARAM 0x320
-+#define SCU0_D1CLK_PARAM 0x330
-+#define SCU0_CRT0CLK_PARAM 0x340
-+#define SCU0_CRT1CLK_PARAM 0x350
-+#define SCU0_MPHYCLK_PARAM 0x360
-+
-+/* SOC1 */
-+#define SCU1_REVISION_ID 0x0
-+#define REVISION_ID GENMASK(23, 16)
-+#define SCU1_CLK_STOP 0x240
-+#define SCU1_CLK_STOP2 0x260
-+#define SCU1_CLK_SEL1 0x280
-+#define SCU1_CLK_SEL2 0x284
-+#define UXCLK_MASK GENMASK(1, 0)
-+#define HUXCLK_MASK GENMASK(4, 3)
-+#define SCU1_HPLL_PARAM 0x300
-+#define SCU1_APLL_PARAM 0x310
-+#define SCU1_DPLL_PARAM 0x320
-+#define SCU1_UXCLK_CTRL 0x330
-+#define SCU1_HUXCLK_CTRL 0x334
-+#define SCU1_MAC12_CLK_DLY 0x390
-+#define SCU1_MAC12_CLK_DLY_100M 0x394
-+#define SCU1_MAC12_CLK_DLY_10M 0x398
-+
-+enum {
-+	CLK_MUX,
-+	CLK_PLL,
-+	CLK_GATE,
-+	CLK_MISC,
-+	CLK_FIXED,
-+	CLK_DIVIDER,
-+	CLK_UART_PLL,
-+	CLK_DIV_TABLE,
-+	CLK_FIXED_FACTOR,
-+};
-+
-+struct ast2700_clk_info {
-+	const char *name;
-+	const char * const *parent_names;
-+	const struct clk_div_table *div_table;
-+	unsigned long fixed_rate;
-+	unsigned int mult;
-+	unsigned int div;
-+	u32 reg;
-+	u32 flags;
-+	u32 type;
-+	u8 clk_idx;
-+	u8 bit_shift;
-+	u8 bit_width;
-+	u8 num_parents;
-+};
-+
-+struct ast2700_clk_data {
-+	struct ast2700_clk_info const *clk_info;
-+	unsigned int nr_clks;
-+	const int scu;
-+};
-+
-+struct ast2700_clk_ctrl {
-+	const struct ast2700_clk_data *clk_data;
-+	struct device *dev;
-+	void __iomem *base;
-+	spinlock_t lock; /* clk lock */
-+};
-+
-+static const struct clk_div_table ast2700_rgmii_div_table[] = {
-+	{ 0x0, 4 },
-+	{ 0x1, 4 },
-+	{ 0x2, 6 },
-+	{ 0x3, 8 },
-+	{ 0x4, 10 },
-+	{ 0x5, 12 },
-+	{ 0x6, 14 },
-+	{ 0x7, 16 },
-+	{ 0 }
-+};
-+
-+static const struct clk_div_table ast2700_rmii_div_table[] = {
-+	{ 0x0, 8 },
-+	{ 0x1, 8 },
-+	{ 0x2, 12 },
-+	{ 0x3, 16 },
-+	{ 0x4, 20 },
-+	{ 0x5, 24 },
-+	{ 0x6, 28 },
-+	{ 0x7, 32 },
-+	{ 0 }
-+};
-+
-+static const struct clk_div_table ast2700_clk_div_table[] = {
-+	{ 0x0, 2 },
-+	{ 0x1, 2 },
-+	{ 0x2, 3 },
-+	{ 0x3, 4 },
-+	{ 0x4, 5 },
-+	{ 0x5, 6 },
-+	{ 0x6, 7 },
-+	{ 0x7, 8 },
-+	{ 0 }
-+};
-+
-+static const struct clk_div_table ast2700_clk_div_table2[] = {
-+	{ 0x0, 2 },
-+	{ 0x1, 4 },
-+	{ 0x2, 6 },
-+	{ 0x3, 8 },
-+	{ 0x4, 10 },
-+	{ 0x5, 12 },
-+	{ 0x6, 14 },
-+	{ 0x7, 16 },
-+	{ 0 }
-+};
-+
-+static const struct clk_div_table ast2700_clk_uart_div_table[] = {
-+	{ 0x0, 1 },
-+	{ 0x1, 13 },
-+	{ 0 }
-+};
-+
-+static const struct ast2700_clk_info ast2700_scu0_clk_info[] __initconst = {
-+	[SCU0_CLKIN] = {
-+		.type = CLK_FIXED,
-+		.name = "soc0-clkin",
-+		.fixed_rate = SCU_CLK_25MHZ,
-+	},
-+	[SCU0_CLK_24M] = {
-+		.type = CLK_FIXED,
-+		.name = "soc0-clk24Mhz",
-+		.fixed_rate = SCU_CLK_24MHZ,
-+	},
-+	[SCU0_CLK_192M] = {
-+		.type = CLK_FIXED,
-+		.name = "soc0-clk192Mhz",
-+		.fixed_rate = SCU_CLK_192MHZ,
-+	},
-+	[SCU0_CLK_HPLL] = {
-+		.type = CLK_PLL,
-+		.name = "soc0-hpll",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_HPLL_PARAM,
-+	},
-+	[SCU0_CLK_HPLL_DIV2] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc0-hpll_div2",
-+		.parent_names = (const char *[]){ "soc0-hpll", },
-+		.mult = 1,
-+		.div = 2,
-+	},
-+	[SCU0_CLK_HPLL_DIV4] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc0-hpll_div4",
-+		.parent_names = (const char *[]){ "soc0-hpll", },
-+		.mult = 1,
-+		.div = 4,
-+	},
-+	[SCU0_CLK_HPLL_DIV_AHB] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc0-hpll_div_ahb",
-+		.parent_names = (const char *[]){ "soc0-hpll", },
-+		.reg = SCU0_HWSTRAP1,
-+		.bit_shift = 5,
-+		.bit_width = 2,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU0_CLK_DPLL] = {
-+		.type = CLK_PLL,
-+		.name = "dpll",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_DPLL_PARAM,
-+	},
-+	[SCU0_CLK_MPLL] = {
-+		.type = CLK_PLL,
-+		.name = "soc0-mpll",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_MPLL_PARAM,
-+	},
-+	[SCU0_CLK_MPLL_DIV2] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc0-mpll_div2",
-+		.parent_names = (const char *[]){ "soc0-mpll", },
-+		.mult = 1,
-+		.div = 2,
-+	},
-+	[SCU0_CLK_MPLL_DIV4] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc0-mpll_div4",
-+		.parent_names = (const char *[]){ "soc0-mpll", },
-+		.mult = 1,
-+		.div = 4,
-+	},
-+	[SCU0_CLK_MPLL_DIV8] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc0-mpll_div8",
-+		.parent_names = (const char *[]){ "soc0-mpll", },
-+		.mult = 1,
-+		.div = 8,
-+	},
-+	[SCU0_CLK_MPLL_DIV_AHB] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc0-mpll_div_ahb",
-+		.parent_names = (const char *[]){ "soc0-mpll", },
-+		.reg = SCU0_HWSTRAP1,
-+		.bit_shift = 5,
-+		.bit_width = 2,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU0_CLK_D0] = {
-+		.type = CLK_PLL,
-+		.name = "d0clk",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_D0CLK_PARAM,
-+	},
-+	[SCU0_CLK_D1] = {
-+		.type = CLK_PLL,
-+		.name = "d1clk",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_D1CLK_PARAM,
-+	},
-+	[SCU0_CLK_CRT0] = {
-+		.type = CLK_PLL,
-+		.name = "crt0clk",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_CRT0CLK_PARAM,
-+	},
-+	[SCU0_CLK_CRT1] = {
-+		.type = CLK_PLL,
-+		.name = "crt1clk",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_CRT1CLK_PARAM,
-+	},
-+	[SCU0_CLK_MPHY] = {
-+		.type = CLK_MISC,
-+		.name = "mphyclk",
-+		.parent_names = (const char *[]){ "soc0-hpll", },
-+		.reg = SCU0_MPHYCLK_PARAM,
-+	},
-+	[SCU0_CLK_PSP] = {
-+		.type = CLK_MUX,
-+		.name = "pspclk",
-+		.parent_names = (const char *[]){"soc0-mpll", "soc0-hpll", },
-+		.num_parents = 2,
-+		.reg = SCU0_HWSTRAP1,
-+		.bit_shift = 4,
-+		.bit_width = 1,
-+	},
-+	[SCU0_CLK_AXI0] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "axi0clk",
-+		.parent_names = (const char *[]){"pspclk", },
-+		.mult = 1,
-+		.div = 2,
-+	},
-+	[SCU0_CLK_AHB] = {
-+		.type = CLK_MUX,
-+		.name = "soc0-ahb",
-+		.parent_names = (const char *[]){"soc0-mpll_div_ahb", "soc0-hspll_div_ahb", },
-+		.num_parents = 2,
-+		.reg = SCU0_HWSTRAP1,
-+		.bit_shift = 7,
-+		.bit_width = 1,
-+	},
-+	[SCU0_CLK_AXI1] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "axi1clk",
-+		.parent_names = (const char *[]){ "soc0-ahb", },
-+		.mult = 1,
-+		.div = 2,
-+	},
-+	[SCU0_CLK_APB] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc0-apb",
-+		.parent_names = (const char *[]){ "axi0clk", },
-+		.reg = SCU0_CLK_SEL1,
-+		.bit_shift = 23,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table2,
-+	},
-+	[SCU0_CLK_GATE_MCLK] = {
-+		.type = CLK_GATE,
-+		.name = "mclk",
-+		.parent_names = (const char *[]){ "soc0-mpll", },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 0,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_ECLK] = {
-+		.type = CLK_GATE,
-+		.name = "eclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 1,
-+	},
-+	[SCU0_CLK_GATE_2DCLK] = {
-+		.type = CLK_GATE,
-+		.name = "gclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 2,
-+	},
-+	[SCU0_CLK_GATE_VCLK] = {
-+		.type = CLK_GATE,
-+		.name = "vclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 3,
-+	},
-+	[SCU0_CLK_GATE_BCLK] = {
-+		.type = CLK_GATE,
-+		.name = "bclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 4,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_VGA0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "d1clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 5,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_REFCLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc0-refclk-gate",
-+		.parent_names = (const char *[]){ "soc0-clkin", },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 6,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_U2PHY_REFCLK] = {
-+		.type = CLK_MISC,
-+		.name = "xhci_ref_clk",
-+		.parent_names = (const char *[]){ "soc0-mpll_div8", },
-+		.reg = SCU0_CLK_SEL2,
-+	},
-+	[SCU0_CLK_U2PHY_CLK12M] = {
-+		.type = CLK_FIXED,
-+		.name = "xhci_suspend_clk",
-+		.parent_names = (const char *[]){  },
-+		.fixed_rate = SCU_CLK_12MHZ,
-+	},
-+	[SCU0_CLK_GATE_PORTBUSB2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "portb-usb2clk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 7,
-+	},
-+	[SCU0_CLK_GATE_UHCICLK] = {
-+		.type = CLK_GATE,
-+		.name = "uhciclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 9,
-+	},
-+	[SCU0_CLK_GATE_VGA1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "d2clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 10,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_DDRPHYCLK] = {
-+		.type = CLK_GATE,
-+		.name = "ddrphy-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 11,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_E2M0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "e2m0clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 12,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_HACCLK] = {
-+		.type = CLK_GATE,
-+		.name = "hac-clk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 13,
-+	},
-+	[SCU0_CLK_GATE_PORTAUSB2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "porta-usb2clk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 14,
-+	},
-+	[SCU0_CLK_UART] = {
-+		.type = CLK_MUX,
-+		.name = "soc0-uartclk",
-+		.parent_names = (const char *[]){"soc0-clk24Mhz", "soc0-clk192Mhz", },
-+		.num_parents = 2,
-+		.reg = SCU0_CLK_SEL2,
-+		.bit_shift = 14,
-+		.bit_width = 1,
-+	},
-+	[SCU0_CLK_UART4] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "uart4clk",
-+		.parent_names = (const char *[]){ "soc0-uartclk", },
-+		.reg = SCU0_CLK_SEL2,
-+		.bit_shift = 30,
-+		.bit_width = 1,
-+		.div_table = ast2700_clk_uart_div_table,
-+	},
-+	[SCU0_CLK_GATE_UART4CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart4clk-gate",
-+		.parent_names = (const char *[]){"uart4clk" },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 15,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_SLICLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc0-sliclk-gate",
-+		.parent_names = (const char *[]){	},
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 16,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_DACCLK] = {
-+		.type = CLK_GATE,
-+		.name = "dacclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 17,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_DP] = {
-+		.type = CLK_GATE,
-+		.name = "dpclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 18,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_E2M1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "e2m1clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 19,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU0_CLK_GATE_CRT0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "crt0clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 20,
-+	},
-+	[SCU0_CLK_GATE_CRT1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "crt1clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 21,
-+	},
-+	[SCU0_CLK_GATE_ECDSACLK] = {
-+		.type = CLK_GATE,
-+		.name = "eccclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 23,
-+	},
-+	[SCU0_CLK_GATE_RSACLK] = {
-+		.type = CLK_GATE,
-+		.name = "rsaclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 24,
-+	},
-+	[SCU0_CLK_GATE_RVAS0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "rvasclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 25,
-+	},
-+	[SCU0_CLK_GATE_UFSCLK] = {
-+		.type = CLK_GATE,
-+		.name = "ufsclk",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 26,
-+	},
-+	[SCU0_CLK_EMMCMUX] = {
-+		.type = CLK_MUX,
-+		.name = "emmcsrc-mux",
-+		.parent_names = (const char *[]){"soc0-mpll_div4", "soc0-hpll_div4", },
-+		.num_parents = 2,
-+		.reg = SCU0_CLK_SEL1,
-+		.bit_shift = 11,
-+		.bit_width = 1,
-+	},
-+	[SCU0_CLK_EMMC] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "emmcclk",
-+		.parent_names = (const char *[]){ "emmcsrc-mux", },
-+		.reg = SCU0_CLK_SEL1,
-+		.bit_shift = 12,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table2,
-+	},
-+	[SCU0_CLK_GATE_EMMCCLK] = {
-+		.type = CLK_GATE,
-+		.name = "emmcclk-gate",
-+		.parent_names = (const char *[]){ "emmcclk", },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 27,
-+	},
-+	[SCU0_CLK_GATE_RVAS1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "rvas2clk",
-+		.parent_names = (const char *[]){ "emmcclk", },
-+		.reg = SCU0_CLK_STOP,
-+		.clk_idx = 28,
-+	},
-+};
-+
-+static const struct ast2700_clk_info ast2700_scu1_clk_info[] __initconst = {
-+	[SCU1_CLKIN] = {
-+		.type = CLK_FIXED,
-+		.name = "soc1-clkin",
-+		.fixed_rate = SCU_CLK_25MHZ,
-+	},
-+	[SCU1_CLK_HPLL] = {
-+		.type = CLK_PLL,
-+		.name = "soc1-hpll",
-+		.parent_names = (const char *[]){ "soc1-clkin", },
-+		.reg = SCU1_HPLL_PARAM,
-+	},
-+	[SCU1_CLK_APLL] = {
-+		.type = CLK_PLL,
-+		.name = "soc1-apll",
-+		.parent_names = (const char *[]){ "soc1-clkin", },
-+		.reg = SCU1_APLL_PARAM,
-+	},
-+	[SCU1_CLK_APLL_DIV2] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc1-apll_div2",
-+		.parent_names = (const char *[]){ "soc1-apll", },
-+		.mult = 1,
-+		.div = 2,
-+	},
-+	[SCU1_CLK_APLL_DIV4] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "soc1-apll_div4",
-+		.parent_names = (const char *[]){ "soc1-apll", },
-+		.mult = 1,
-+		.div = 4,
-+	},
-+	[SCU1_CLK_DPLL] = {
-+		.type = CLK_PLL,
-+		.name = "soc1-dpll",
-+		.parent_names = (const char *[]){ "soc1-clkin", },
-+		.reg = SCU1_DPLL_PARAM,
-+	},
-+	[SCU1_CLK_UXCLK] = {
-+		.type = CLK_MUX,
-+		.name = "uxclk",
-+		.parent_names = (const char *[]){ "soc1-apll_div4", "soc1-apll_div2",
-+						 "soc1-apll", "soc1-hpll",},
-+		.num_parents = 4,
-+		.reg = SCU1_CLK_SEL2,
-+		.bit_shift = 0,
-+		.bit_width = 2,
-+	},
-+	[SCU1_CLK_UARTX] = {
-+		.type = CLK_UART_PLL,
-+		.name = "uartxclk",
-+		.parent_names = (const char *[]){ "uxclk", },
-+		.reg = SCU1_UXCLK_CTRL,
-+	},
-+	[SCU1_CLK_HUXCLK] = {
-+		.type = CLK_MUX,
-+		.name = "huxclk",
-+		.parent_names = (const char *[]){"soc1-apll_div4", "soc1-apll_div2",
-+						 "soc1-apll", "soc1-hpll",},
-+		.num_parents = 4,
-+		.reg = SCU1_CLK_SEL2,
-+		.bit_shift = 3,
-+		.bit_width = 2,
-+	},
-+	[SCU1_CLK_HUARTX] = {
-+		.type = CLK_UART_PLL,
-+		.name = "huartxclk",
-+		.parent_names = (const char *[]){ "huxclk", },
-+		.reg = SCU1_HUXCLK_CTRL,
-+	},
-+	[SCU1_CLK_AHB] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc1-ahb",
-+		.parent_names = (const char *[]){"soc1-hpll", },
-+		.reg = SCU1_CLK_SEL2,
-+		.bit_shift = 20,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU1_CLK_APB] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc1-apb",
-+		.parent_names = (const char *[]){"soc1-hpll", },
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 18,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table2,
-+	},
-+	[SCU1_CLK_RMII] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "rmii",
-+		.parent_names = (const char *[]){"soc1-hpll", },
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 21,
-+		.bit_width = 3,
-+		.div_table = ast2700_rmii_div_table,
-+	},
-+	[SCU1_CLK_MAC0RCLK] = {
-+		.type = CLK_GATE,
-+		.name = "mac0rclk",
-+		.parent_names = (const char *[]){ "rmii", },
-+		.reg = SCU1_MAC12_CLK_DLY,
-+		.clk_idx = 29,
-+	},
-+	[SCU1_CLK_MAC1RCLK] = {
-+		.type = CLK_GATE,
-+		.name = "mac1rclk",
-+		.parent_names = (const char *[]){ "rmii", },
-+		.reg = SCU1_MAC12_CLK_DLY,
-+		.clk_idx = 30,
-+	},
-+	[SCU1_CLK_RGMII] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "rgmii",
-+		.parent_names = (const char *[]){"soc1-hpll", },
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 25,
-+		.bit_width = 3,
-+		.div_table = ast2700_rgmii_div_table,
-+	},
-+	[SCU1_CLK_MACHCLK] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "machclk",
-+		.parent_names = (const char *[]){"soc1-hpll", },
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 29,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU1_CLK_GATE_LCLK0] = {
-+		.type = CLK_GATE,
-+		.name = "lclk0-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 0,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_LCLK1] = {
-+		.type = CLK_GATE,
-+		.name = "lclk1-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 1,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_ESPI0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "espi0clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 2,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_ESPI1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "espi1clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 3,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_APLL_DIVN] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "soc1-apll_divn",
-+		.parent_names = (const char *[]){"soc1-apll", },
-+		.reg = SCU1_CLK_SEL2,
-+		.bit_shift = 8,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU1_CLK_SDMUX] = {
-+		.type = CLK_MUX,
-+		.name = "sdclk-mux",
-+		.parent_names = (const char *[]){ "soc1-hpll", "soc1-apll", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 13,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_SDCLK] = {
-+		.type = CLK_DIV_TABLE,
-+		.name = "sdclk",
-+		.parent_names = (const char *[]){"sdclk-mux", },
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 14,
-+		.bit_width = 3,
-+		.div_table = ast2700_clk_div_table,
-+	},
-+	[SCU1_CLK_GATE_SDCLK] = {
-+		.type = CLK_GATE,
-+		.name = "sdclk-gate",
-+		.parent_names = (const char *[]){"sdclk", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 4,
-+	},
-+	[SCU1_CLK_GATE_IPEREFCLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc1-iperefclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 5,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_REFCLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc1-refclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 6,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_LPCHCLK] = {
-+		.type = CLK_GATE,
-+		.name = "lpchclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 7,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_MAC0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "mac0clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 8,
-+	},
-+	[SCU1_CLK_GATE_MAC1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "mac1clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 9,
-+	},
-+	[SCU1_CLK_GATE_MAC2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "mac2clk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 10,
-+	},
-+	[SCU1_CLK_UART0] = {
-+		.type = CLK_MUX,
-+		.name = "uart0clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 0,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart0clk-gate",
-+		.parent_names = (const char *[]){ "uart0clk", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 11,
-+	},
-+	[SCU1_CLK_UART1] = {
-+		.type = CLK_MUX,
-+		.name = "uart1clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 1,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart1clk-gate",
-+		.parent_names = (const char *[]){ "uart1clk", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 12,
-+	},
-+	[SCU1_CLK_UART2] = {
-+		.type = CLK_MUX,
-+		.name = "uart2clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 2,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart2clk-gate",
-+		.parent_names = (const char *[]){ "uart2clk", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 13,
-+	},
-+	[SCU1_CLK_UART3] = {
-+		.type = CLK_MUX,
-+		.name = "uart3clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 3,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART3CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart3clk-gate",
-+		.parent_names = (const char *[]){ "uart3clk", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 14,
-+	},
-+	[SCU1_CLK_GATE_I2CCLK] = {
-+		.type = CLK_GATE,
-+		.name = "i2cclk-gate",
-+		.parent_names = (const char *[]){	},
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 15,
-+	},
-+	[SCU1_CLK_GATE_I3C0CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c0clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 16,
-+	},
-+	[SCU1_CLK_GATE_I3C1CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c1clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 17,
-+	},
-+	[SCU1_CLK_GATE_I3C2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c2clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 18,
-+	},
-+	[SCU1_CLK_GATE_I3C3CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c3clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 19,
-+	},
-+	[SCU1_CLK_GATE_I3C4CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c4clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 20,
-+	},
-+	[SCU1_CLK_GATE_I3C5CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c5clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 21,
-+	},
-+	[SCU1_CLK_GATE_I3C6CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c6clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 22,
-+	},
-+	[SCU1_CLK_GATE_I3C7CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c7clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 23,
-+	},
-+	[SCU1_CLK_GATE_I3C8CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c8clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 24,
-+	},
-+	[SCU1_CLK_GATE_I3C9CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c9clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 25,
-+	},
-+	[SCU1_CLK_GATE_I3C10CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c10clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 26,
-+	},
-+	[SCU1_CLK_GATE_I3C11CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c11clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 27,
-+	},
-+	[SCU1_CLK_GATE_I3C12CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c12clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 28,
-+	},
-+	[SCU1_CLK_GATE_I3C13CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c13clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 29,
-+	},
-+	[SCU1_CLK_GATE_I3C14CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c14clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 30,
-+	},
-+	[SCU1_CLK_GATE_I3C15CLK] = {
-+		.type = CLK_GATE,
-+		.name = "i3c15clk-gate",
-+		.parent_names = (const char *[]){ "soc1-ahb", },
-+		.reg = SCU1_CLK_STOP,
-+		.clk_idx = 31,
-+	},
-+	[SCU1_CLK_UART5] = {
-+		.type = CLK_MUX,
-+		.name = "uart5clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 5,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART5CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart5clk-gate",
-+		.parent_names = (const char *[]){ "uart5clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 0,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_UART6] = {
-+		.type = CLK_MUX,
-+		.name = "uart6clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 6,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART6CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart6clk-gate",
-+		.parent_names = (const char *[]){ "uart6clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 1,
-+	},
-+	[SCU1_CLK_UART7] = {
-+		.type = CLK_MUX,
-+		.name = "uart7clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 7,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART7CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart7clk-gate",
-+		.parent_names = (const char *[]){ "uart7clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 2,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_UART8] = {
-+		.type = CLK_MUX,
-+		.name = "uart8clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 8,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART8CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart8clk-gate",
-+		.parent_names = (const char *[]){ "uart8clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 3,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_UART9] = {
-+		.type = CLK_MUX,
-+		.name = "uart9clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 9,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART9CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart9clk-gate",
-+		.parent_names = (const char *[]){ "uart9clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 4,
-+	},
-+	[SCU1_CLK_UART10] = {
-+		.type = CLK_MUX,
-+		.name = "uart10clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 10,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART10CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart10clk-gate",
-+		.parent_names = (const char *[]){ "uart10clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 5,
-+	},
-+	[SCU1_CLK_UART11] = {
-+		.type = CLK_MUX,
-+		.name = "uart11clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 11,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART11CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart11clk-gate",
-+		.parent_names = (const char *[]){ "uart11clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 6,
-+	},
-+	[SCU1_CLK_UART12] = {
-+		.type = CLK_MUX,
-+		.name = "uart12clk",
-+		.parent_names = (const char *[]){"uartxclk", "huartxclk", },
-+		.num_parents = 2,
-+		.reg = SCU1_CLK_SEL1,
-+		.bit_shift = 12,
-+		.bit_width = 1,
-+	},
-+	[SCU1_CLK_GATE_UART12CLK] = {
-+		.type = CLK_GATE,
-+		.name = "uart12clk-gate",
-+		.parent_names = (const char *[]){ "uart12clk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 7,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_UART13] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "uart13clk",
-+		.parent_names = (const char *[]){ "huartxclk", },
-+		.mult = 1,
-+		.div = 1,
-+	},
-+	[SCU1_CLK_UART14] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "uart14clk",
-+		.parent_names = (const char *[]){ "huartxclk", },
-+		.mult = 1,
-+		.div = 1,
-+	},
-+	[SCU1_CLK_GATE_FSICLK] = {
-+		.type = CLK_GATE,
-+		.name = "fsiclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 8,
-+	},
-+	[SCU1_CLK_GATE_LTPIPHYCLK] = {
-+		.type = CLK_GATE,
-+		.name = "ltpiphyclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 9,
-+	},
-+	[SCU1_CLK_GATE_LTPICLK] = {
-+		.type = CLK_GATE,
-+		.name = "ltpiclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 10,
-+	},
-+	[SCU1_CLK_GATE_VGALCLK] = {
-+		.type = CLK_GATE,
-+		.name = "vgalclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 11,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_UHCICLK] = {
-+		.type = CLK_GATE,
-+		.name = "usbuartclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 12,
-+	},
-+	[SCU1_CLK_CAN] = {
-+		.type = CLK_FIXED_FACTOR,
-+		.name = "canclk",
-+		.parent_names = (const char *[]){ "soc1-apll", },
-+		.mult = 1,
-+		.div = 10,
-+	},
-+	[SCU1_CLK_GATE_CANCLK] = {
-+		.type = CLK_GATE,
-+		.name = "canclk-gate",
-+		.parent_names = (const char *[]){ "canclk", },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 13,
-+	},
-+	[SCU1_CLK_GATE_PCICLK] = {
-+		.type = CLK_GATE,
-+		.name = "pciclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 14,
-+	},
-+	[SCU1_CLK_GATE_SLICLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc1-sliclk-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 15,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_E2MCLK] = {
-+		.type = CLK_GATE,
-+		.name = "soc1-e2m-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 16,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_PORTCUSB2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "portcusb2-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 17,
-+		.flags = CLK_IS_CRITICAL,
-+	},
-+	[SCU1_CLK_GATE_PORTDUSB2CLK] = {
-+		.type = CLK_GATE,
-+		.name = "portdusb2-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 18,
-+	},
-+	[SCU1_CLK_GATE_LTPI1TXCLK] = {
-+		.type = CLK_GATE,
-+		.name = "ltp1tx-gate",
-+		.parent_names = (const char *[]){  },
-+		.reg = SCU1_CLK_STOP2,
-+		.clk_idx = 19,
-+	},
-+};
-+
-+static struct clk_hw *ast2700_clk_hw_register_pll(int clk_idx, void __iomem *reg,
-+						  const struct ast2700_clk_info *clk,
-+						  struct ast2700_clk_ctrl *clk_ctrl)
-+{
-+	int scu = clk_ctrl->clk_data->scu;
-+	unsigned int mult, div;
-+	u32 val;
-+
-+	if (!scu && clk_idx == SCU0_CLK_HPLL) {
-+		val = readl(clk_ctrl->base + SCU0_HWSTRAP1);
-+		if ((val & GENMASK(3, 2)) != 0) {
-+			switch ((val & GENMASK(3, 2)) >> 2) {
-+			case 1:
-+				return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, "soc0-hpll",
-+								       NULL, 0, 1900000000);
-+			case 2:
-+				return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, "soc0-hpll",
-+								       NULL, 0, 1800000000);
-+			case 3:
-+				return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, "soc0-hpll",
-+								       NULL, 0, 1700000000);
-+			default:
-+				return ERR_PTR(-EINVAL);
-+			}
-+		}
-+	}
-+
-+	val = readl(reg);
-+
-+	if (val & BIT(24)) {
-+		/* Pass through mode */
-+		mult = 1;
-+		div = 1;
-+	} else {
-+		u32 m = val & 0x1fff;
-+		u32 n = (val >> 13) & 0x3f;
-+		u32 p = (val >> 19) & 0xf;
-+
-+		if (scu) {
-+			mult = (m + 1) / (n + 1);
-+			div = (p + 1);
-+		} else {
-+			if (clk_idx == SCU0_CLK_MPLL) {
-+				mult = m / (n + 1);
-+				div = (p + 1);
-+			} else {
-+				mult = (m + 1) / (2 * (n + 1));
-+				div = (p + 1);
-+			}
-+		}
-+	}
-+
-+	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, clk->name,
-+						 clk->parent_names[0], 0, mult, div);
-+}
-+
-+static struct clk_hw *ast2700_clk_hw_register_uartpll(int clk_idx, void __iomem *reg,
-+						      const struct ast2700_clk_info *clk,
-+						      struct ast2700_clk_ctrl *clk_ctrl)
-+{
-+	unsigned int mult, div;
-+	u32 val = readl(reg);
-+	u32 r = val & 0xff;
-+	u32 n = (val >> 8) & 0x3ff;
-+
-+	mult = r;
-+	div = n * 2;
-+
-+	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, clk->name,
-+						 clk->parent_names[0], 0, mult, div);
-+}
-+
-+static struct clk_hw *ast2700_clk_hw_register_misc(int clk_idx, void __iomem *reg,
-+						   const struct ast2700_clk_info *clk,
-+						   struct ast2700_clk_ctrl *clk_ctrl)
-+{
-+	u32 div = 0;
-+
-+	if (clk_idx == SCU0_CLK_MPHY)
-+		div = readl(reg) + 1;
-+	else if (clk_idx == SCU0_CLK_U2PHY_REFCLK)
-+		div = (GET_USB_REFCLK_DIV(readl(reg)) + 1) << 1;
-+	else
-+		return ERR_PTR(-EINVAL);
-+
-+	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, clk->name,
-+						   clk->parent_names[0], clk->flags,
-+						   1, div);
-+}
-+
-+static int ast2700_clk_is_enabled(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+	u32 reg;
-+
-+	reg = readl(gate->reg);
-+
-+	return !(reg & clk);
-+}
-+
-+static int ast2700_clk_enable(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+
-+	if (readl(gate->reg) & clk)
-+		writel(clk, gate->reg + 0x04);
-+
-+	return 0;
-+}
-+
-+static void ast2700_clk_disable(struct clk_hw *hw)
-+{
-+	struct clk_gate *gate = to_clk_gate(hw);
-+	u32 clk = BIT(gate->bit_idx);
-+
-+	/* Clock is set to enable, so use write to set register */
-+	writel(clk, gate->reg);
-+}
-+
-+static const struct clk_ops ast2700_clk_gate_ops = {
-+	.enable = ast2700_clk_enable,
-+	.disable = ast2700_clk_disable,
-+	.is_enabled = ast2700_clk_is_enabled,
-+};
-+
-+static struct clk_hw *ast2700_clk_hw_register_gate(struct device *dev, const char *name,
-+						   const char *parent_name, unsigned long flags,
-+						   void __iomem *reg, u8 clock_idx,
-+						   u8 clk_gate_flags, spinlock_t *lock)
-+{
-+	struct clk_gate *gate;
-+	struct clk_hw *hw;
-+	struct clk_init_data init;
-+	int ret = -EINVAL;
-+
-+	gate = kzalloc(sizeof(*gate), GFP_KERNEL);
-+	if (!gate)
-+		return ERR_PTR(-ENOMEM);
-+
-+	init.name = name;
-+	init.ops = &ast2700_clk_gate_ops;
-+	init.flags = flags;
-+	init.parent_names = parent_name ? &parent_name : NULL;
-+	init.num_parents = parent_name ? 1 : 0;
-+
-+	gate->reg = reg;
-+	gate->bit_idx = clock_idx;
-+	gate->flags = clk_gate_flags;
-+	gate->lock = lock;
-+	gate->hw.init = &init;
-+
-+	hw = &gate->hw;
-+	ret = clk_hw_register(dev, hw);
-+	if (ret) {
-+		kfree(gate);
-+		hw = ERR_PTR(ret);
-+	}
-+
-+	return hw;
-+}
-+
-+static void aspeed_reset_unregister_adev(void *_adev)
-+{
-+	struct auxiliary_device *adev = _adev;
-+
-+	auxiliary_device_delete(adev);
-+	auxiliary_device_uninit(adev);
-+}
-+
-+static void aspeed_reset_adev_release(struct device *dev)
-+{
-+	struct auxiliary_device *adev = to_auxiliary_dev(dev);
-+
-+	kfree(adev);
-+}
-+
-+static int aspeed_reset_controller_register(struct device *clk_dev,
-+					    void __iomem *base, const char *adev_name)
-+{
-+	struct auxiliary_device *adev;
-+	int ret;
-+
-+	adev = kzalloc(sizeof(*adev), GFP_KERNEL);
-+	if (!adev)
-+		return -ENOMEM;
-+
-+	adev->name = adev_name;
-+	adev->dev.parent = clk_dev;
-+	adev->dev.release = aspeed_reset_adev_release;
-+	adev->id = 666u;
-+
-+	ret = auxiliary_device_init(adev);
-+	if (ret) {
-+		kfree(adev);
-+		return ret;
-+	}
-+
-+	ret = auxiliary_device_add(adev);
-+	if (ret) {
-+		auxiliary_device_uninit(adev);
-+		return ret;
-+	}
-+
-+	adev->dev.platform_data = (__force void *)base;
-+
-+	return devm_add_action_or_reset(clk_dev, aspeed_reset_unregister_adev, adev);
-+}
-+
-+static int ast2700_soc_clk_probe(struct platform_device *pdev)
-+{
-+	struct ast2700_clk_data *clk_data;
-+	struct ast2700_clk_ctrl *clk_ctrl;
-+	struct clk_hw_onecell_data *clk_hw_data;
-+	struct device *dev = &pdev->dev;
-+	void __iomem *clk_base;
-+	struct clk_hw **hws;
-+	char *reset_name;
-+	int ret;
-+	int i;
-+
-+	clk_ctrl = devm_kzalloc(dev, sizeof(*clk_ctrl), GFP_KERNEL);
-+	if (!clk_ctrl)
-+		return -ENOMEM;
-+	clk_ctrl->dev = dev;
-+	dev_set_drvdata(&pdev->dev, clk_ctrl);
-+
-+	spin_lock_init(&clk_ctrl->lock);
-+
-+	clk_base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(clk_base))
-+		return PTR_ERR(clk_base);
-+
-+	clk_ctrl->base = clk_base;
-+
-+	clk_data = (struct ast2700_clk_data *)of_device_get_match_data(dev);
-+	if (!clk_data)
-+		return devm_of_platform_populate(dev);
-+
-+	clk_ctrl->clk_data = clk_data;
-+	reset_name = devm_kasprintf(dev, GFP_KERNEL, "reset%d", clk_data->scu);
-+
-+	clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws, clk_data->nr_clks),
-+				   GFP_KERNEL);
-+	if (!clk_hw_data)
-+		return -ENOMEM;
-+
-+	clk_hw_data->num = clk_data->nr_clks;
-+	hws = clk_hw_data->hws;
-+
-+	for (i = 0; i < clk_data->nr_clks; i++) {
-+		const struct ast2700_clk_info *clk = &clk_data->clk_info[i];
-+		void __iomem *reg = clk_ctrl->base + clk->reg;
-+
-+		if (clk->type == CLK_FIXED) {
-+			hws[i] = devm_clk_hw_register_fixed_rate(dev, clk->name, NULL,
-+								 clk->flags, clk->fixed_rate);
-+		} else if (clk->type == CLK_FIXED_FACTOR) {
-+			hws[i] = devm_clk_hw_register_fixed_factor(dev, clk->name,
-+								   clk->parent_names[0], clk->flags,
-+								   clk->mult, clk->div);
-+		} else if (clk->type == CLK_PLL) {
-+			hws[i] = ast2700_clk_hw_register_pll(i, reg, clk, clk_ctrl);
-+		} else if (clk->type == CLK_UART_PLL) {
-+			hws[i] = ast2700_clk_hw_register_uartpll(i, reg, clk, clk_ctrl);
-+		} else if (clk->type == CLK_MUX) {
-+			hws[i] = devm_clk_hw_register_mux(dev, clk->name, clk->parent_names,
-+							  clk->num_parents, clk->flags, reg,
-+							  clk->bit_shift, clk->bit_width,
-+							  0, &clk_ctrl->lock);
-+		} else if (clk->type == CLK_MISC) {
-+			hws[i] = ast2700_clk_hw_register_misc(i, reg, clk, clk_ctrl);
-+		} else if (clk->type == CLK_DIVIDER) {
-+			hws[i] = devm_clk_hw_register_divider(dev, clk->name, clk->parent_names[0],
-+							      clk->flags, reg, clk->bit_shift,
-+							      clk->bit_width, 0,
-+							      &clk_ctrl->lock);
-+		} else if (clk->type == CLK_DIV_TABLE) {
-+			hws[i] = clk_hw_register_divider_table(dev, clk->name, clk->parent_names[0],
-+							       clk->flags, reg, clk->bit_shift,
-+							       clk->bit_width, 0,
-+							       clk->div_table, &clk_ctrl->lock);
-+		} else {
-+			hws[i] = ast2700_clk_hw_register_gate(dev, clk->name, clk->parent_names[0],
-+							      clk->flags, reg, clk->clk_idx,
-+							      clk->flags, &clk_ctrl->lock);
-+		}
-+
-+		if (IS_ERR(hws[i]))
-+			return PTR_ERR(hws[i]);
-+	}
-+
-+	ret = devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get, clk_hw_data);
-+	if (ret)
-+		return ret;
-+
-+	return aspeed_reset_controller_register(dev, clk_base, reset_name);
-+}
-+
-+static const struct ast2700_clk_data ast2700_clk0_data = {
-+	.scu = 0,
-+	.nr_clks = ARRAY_SIZE(ast2700_scu0_clk_info),
-+	.clk_info = ast2700_scu0_clk_info,
-+};
-+
-+static const struct ast2700_clk_data ast2700_clk1_data = {
-+	.scu = 1,
-+	.nr_clks = ARRAY_SIZE(ast2700_scu1_clk_info),
-+	.clk_info = ast2700_scu1_clk_info,
-+};
-+
-+static const struct of_device_id ast2700_scu_match[] = {
-+	{ .compatible = "aspeed,ast2700-scu0", .data = &ast2700_clk0_data },
-+	{ .compatible = "aspeed,ast2700-scu1", .data = &ast2700_clk1_data },
-+	{ /* sentinel */ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, ast2700_scu_match);
-+
-+static struct platform_driver ast2700_scu_driver = {
-+	.driver = {
-+		.name = "clk-ast2700",
-+		.of_match_table = ast2700_scu_match,
-+	},
-+};
-+
-+builtin_platform_driver_probe(ast2700_scu_driver, ast2700_soc_clk_probe);
--- 
-2.34.1
-
+T24gTW9uLCAyMDI0LTA5LTMwIGF0IDExOjEzICswMjAwLCBBbmdlbG9HaW9hY2NoaW5vIERlbCBS
+ZWdubyB3cm90ZToNCj4gSWwgMjkvMDkvMjQgMDk6NDQsIEFuZHktbGQgTHUgaGEgc2NyaXR0bzoN
+Cj4gPiBNZWRpYXRlayBTb0MgTVQ4MTk2IGZlYXR1cmVzIGEgbmV3IGRlc2lnbiBmb3IgdHgvcngg
+cGF0aC4gVGhlIG5ldw0KPiA+IHR4DQo+ID4gcGF0aCBpbmNvcnBvcmF0ZXMgcmVnaXN0ZXIgc2V0
+dGluZ3MgdGhhdCBhcmUgY2xvc2VseSBhc3NvY2lhdGVkDQo+ID4gd2l0aA0KPiA+IGJ1cyB0aW1p
+bmcuIEFuZCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIG5ldyByeCBwYXRoIGFuZCBvbGRlcg0KPiA+
+IHZlcnNpb25zDQo+ID4gaXMgdGhlIHVzYWdlIG9mIGRpc3RpbmN0IHJlZ2lzdGVyIGJpdHMgd2hl
+biBzZXR0aW5nIHRoZSBkYXRhDQo+ID4gc2FtcGxpbmcNCj4gPiBlZGdlIGFzIHBhcnQgb2YgdGhl
+IHR1bmluZyBwcm9jZXNzLg0KPiA+IA0KPiA+IEJlc2lkZXMsIHRoZXJlIGFyZSBtb2RpZmllZCBy
+ZWdpc3RlciBzZXR0aW5ncyBmb3IgU1RPUF9ETFlfU0VMIGFuZA0KPiA+IFBPUF9FTl9DTlQsIHdp
+dGggdHdvIG5ldyBmaWVsZHMgYWRkZWQgdG8gdGhlIGNvbXBhdGliaWxpdHkNCj4gPiBzdHJ1Y3R1
+cmUNCj4gPiB0byByZWZsZWN0IHRoZSBtb2RpZmljYXRpb25zLg0KPiA+IA0KPiA+IEZvciB0aGUg
+Y2hhbmdlcyBtZW50aW9uZWQgaW4gcmVsYXRpb24gdG8gdGhlIE1UODE5NiwgdGhlIG5ldw0KPiA+
+IGNvbXBhdGlibGUNCj4gPiBzdHJpbmcgJ21lZGlhdGVrLG10ODE5Ni1tbWMnIGlzIGludHJvZHVj
+ZWQuIFRoaXMgaXMgdG8gYWNjb21tb2RhdGUNCj4gPiBkaWZmZXJlbnQgc2V0dGluZ3MgYW5kIHdv
+cmtmbG93cyBzcGVjaWZpYyB0byB0aGUgTVQ4MTk2Lg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6
+IEFuZHktbGQgTHUgPGFuZHktbGQubHVAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAgZHJp
+dmVycy9tbWMvaG9zdC9tdGstc2QuYyB8IDE2Mg0KPiA+ICsrKysrKysrKysrKysrKysrKysrKysr
+KysrKysrKysrKy0tLS0tDQo+ID4gICAxIGZpbGUgY2hhbmdlZCwgMTQxIGluc2VydGlvbnMoKyks
+IDIxIGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL21tYy9ob3N0
+L210ay1zZC5jIGIvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KPiA+IGluZGV4IDg5MDE4YjZj
+OTdiOS4uNDI1NGIzMDEyYWViIDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvbW1jL2hvc3QvbXRr
+LXNkLmMNCj4gPiArKysgYi9kcml2ZXJzL21tYy9ob3N0L210ay1zZC5jDQo+ID4gQEAgLTY1LDYg
+KzY1LDcgQEANCj4gPiAgICNkZWZpbmUgU0RDX1JFU1AzICAgICAgICAweDRjDQo+ID4gICAjZGVm
+aW5lIFNEQ19CTEtfTlVNICAgICAgMHg1MA0KPiA+ICAgI2RlZmluZSBTRENfQURWX0NGRzAgICAg
+IDB4NjQNCj4gPiArI2RlZmluZSBNU0RDX05FV19SWF9DRkcgIDB4NjgNCj4gPiAgICNkZWZpbmUg
+RU1NQ19JT0NPTiAgICAgICAweDdjDQo+ID4gICAjZGVmaW5lIFNEQ19BQ01EX1JFU1AgICAgMHg4
+MA0KPiA+ICAgI2RlZmluZSBETUFfU0FfSDRCSVQgICAgIDB4OGMNCj4gPiBAQCAtOTEsNiArOTIs
+NyBAQA0KPiA+ICAgI2RlZmluZSBFTU1DX1RPUF9DT05UUk9MCTB4MDANCj4gPiAgICNkZWZpbmUg
+RU1NQ19UT1BfQ01ECQkweDA0DQo+ID4gICAjZGVmaW5lIEVNTUM1MF9QQURfRFNfVFVORQkweDBj
+DQo+ID4gKyNkZWZpbmUgTE9PUF9URVNUX0NPTlRST0wJMHgzMA0KPiA+ICAgDQo+ID4gICAvKi0t
+LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
+LS0tLQ0KPiA+IC0tLS0tLS0tLS0tKi8NCj4gPiAgIC8qIFJlZ2lzdGVyDQo+ID4gTWFzayAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICov
+DQo+ID4gQEAgLTIwMiw5ICsyMDQsMTMgQEANCj4gPiAgICNkZWZpbmUgU0RDX1NUU19DTURCVVNZ
+ICAgICAgICAgQklUKDEpCS8qIFJXICovDQo+ID4gICAjZGVmaW5lIFNEQ19TVFNfU1dSX0NPTVBM
+ICAgICAgIEJJVCgzMSkJLyogUlcgKi8NCj4gPiAgIA0KPiA+IC0jZGVmaW5lIFNEQ19EQVQxX0lS
+UV9UUklHR0VSCUJJVCgxOSkJLyogUlcgKi8NCj4gPiAgIC8qIFNEQ19BRFZfQ0ZHMCBtYXNrICov
+DQo+ID4gKyNkZWZpbmUgU0RDX0RBVDFfSVJRX1RSSUdHRVIJQklUKDE5KQkvKiBSVyAqLw0KPiA+
+ICAgI2RlZmluZSBTRENfUlhfRU5IQU5DRV9FTglCSVQoMjApCS8qIFJXICovDQo+ID4gKyNkZWZp
+bmUgU0RDX05FV19UWF9FTgkJQklUKDMxKQkvKiBSVyAqLw0KPiA+ICsNCj4gPiArLyogTVNEQ19O
+RVdfUlhfQ0ZHIG1hc2sgKi8NCj4gPiArI2RlZmluZSBNU0RDX05FV19SWF9QQVRIX1NFTAlCSVQo
+MCkJLyogUlcgKi8NCj4gPiAgIA0KPiA+ICAgLyogRE1BX1NBX0g0QklUIG1hc2sgKi8NCj4gPiAg
+ICNkZWZpbmUgRE1BX0FERFJfSElHSF80QklUICAgICAgR0VOTUFTSygzLCAwKQkvKiBSVyAqLw0K
+PiA+IEBAIC0yMjYsNiArMjMyLDcgQEANCj4gPiAgIA0KPiA+ICAgLyogTVNEQ19QQVRDSF9CSVQg
+bWFzayAqLw0KPiA+ICAgI2RlZmluZSBNU0RDX1BBVENIX0JJVF9PRERTVVBQICAgIEJJVCgxKQkv
+KiBSVyAqLw0KPiA+ICsjZGVmaW5lIE1TRENfUEFUQ0hfQklUX1JEX0RBVF9TRUwgQklUKDMpCS8q
+IFJXICovDQo+ID4gICAjZGVmaW5lIE1TRENfSU5UX0RBVF9MQVRDSF9DS19TRUwgR0VOTUFTSyg5
+LCA3KQ0KPiA+ICAgI2RlZmluZSBNU0RDX0NLR0VOX01TRENfRExZX1NFTCAgIEdFTk1BU0soMTQs
+IDEwKQ0KPiA+ICAgI2RlZmluZSBNU0RDX1BBVENIX0JJVF9JT0RTU0VMICAgIEJJVCgxNikJLyog
+UlcgKi8NCj4gPiBAQCAtMjQ3LDYgKzI1NCw4IEBADQo+ID4gICAjZGVmaW5lIE1TRENfUEIyX1NV
+UFBPUlRfNjRHICAgICAgQklUKDEpICAgIC8qIFJXICovDQo+ID4gICAjZGVmaW5lIE1TRENfUEIy
+X1JFU1BXQUlUICAgICAgICAgR0VOTUFTSygzLCAyKSAgIC8qIFJXICovDQo+ID4gICAjZGVmaW5l
+IE1TRENfUEIyX1JFU1BTVFNFTlNFTCAgICAgR0VOTUFTSygxOCwgMTYpIC8qIFJXICovDQo+ID4g
+KyNkZWZpbmUgTVNEQ19QQjJfUE9QX0VOX0NOVCAgICAgICBHRU5NQVNLKDIzLCAyMCkgLyogUlcg
+Ki8NCj4gPiArI2RlZmluZSBNU0RDX1BCMl9DRkdDUkNTVFNFREdFICAgIEJJVCgyNSkgICAvKiBS
+VyAqLw0KPiA+ICAgI2RlZmluZSBNU0RDX1BCMl9DUkNTVFNFTlNFTCAgICAgIEdFTk1BU0soMzEs
+IDI5KSAvKiBSVyAqLw0KPiA+ICAgDQo+ID4gICAjZGVmaW5lIE1TRENfUEFEX1RVTkVfREFUV1JE
+TFkJICBHRU5NQVNLKDQsIDApCQkvKg0KPiA+IFJXICovDQo+ID4gQEAgLTMxMSw2ICszMjAsMTIg
+QEANCj4gPiAgICNkZWZpbmUgUEFEX0RTX0RMWTEJCUdFTk1BU0soMTQsIDEwKQkvKiBSVyAqLw0K
+PiA+ICAgI2RlZmluZSBQQURfRFNfRExZMwkJR0VOTUFTSyg0LCAwKQkvKiBSVyAqLw0KPiA+ICAg
+DQo+ID4gKy8qIExPT1BfVEVTVF9DT05UUk9MIG1hc2sgKi8NCj4gPiArI2RlZmluZSBURVNUX0xP
+T1BfRFNDTEtfTVVYX1NFTCAgICAgICAgQklUKDApCS8qIFJXICovDQo+ID4gKyNkZWZpbmUgVEVT
+VF9MT09QX0xBVENIX01VWF9TRUwgICAgICAgIEJJVCgxKQkvKiBSVyAqLw0KPiA+ICsjZGVmaW5l
+IExPT1BfRU5fU0VMX0NMSyAgICAgICAgICAgICAgICBCSVQoMjApCS8qIFJXICovDQo+ID4gKyNk
+ZWZpbmUgVEVTVF9IUzQwMF9DTURfTE9PUF9NVVhfU0VMICAgIEJJVCgzMSkJLyogUlcgKi8NCj4g
+PiArDQo+ID4gICAjZGVmaW5lIFJFUV9DTURfRUlPICBCSVQoMCkNCj4gPiAgICNkZWZpbmUgUkVR
+X0NNRF9UTU8gIEJJVCgxKQ0KPiA+ICAgI2RlZmluZSBSRVFfREFUX0VSUiAgQklUKDIpDQo+ID4g
+QEAgLTM5MSw2ICs0MDYsNyBAQCBzdHJ1Y3QgbXNkY19zYXZlX3BhcmEgew0KPiA+ICAgCXUzMiBl
+bW1jX3RvcF9jb250cm9sOw0KPiA+ICAgCXUzMiBlbW1jX3RvcF9jbWQ7DQo+ID4gICAJdTMyIGVt
+bWM1MF9wYWRfZHNfdHVuZTsNCj4gPiArCXUzMiBsb29wX3Rlc3RfY29udHJvbDsNCj4gPiAgIH07
+DQo+ID4gICANCj4gPiAgIHN0cnVjdCBtdGtfbW1jX2NvbXBhdGlibGUgew0KPiA+IEBAIC00MDIs
+OSArNDE4LDEzIEBAIHN0cnVjdCBtdGtfbW1jX2NvbXBhdGlibGUgew0KPiA+ICAgCWJvb2wgZGF0
+YV90dW5lOw0KPiA+ICAgCWJvb2wgYnVzeV9jaGVjazsNCj4gPiAgIAlib29sIHN0b3BfY2xrX2Zp
+eDsNCj4gPiArCXU4IHN0b3BfZGx5X3NlbDsNCj4gPiArCXU4IHBvcF9lbl9jbnQ7DQo+ID4gICAJ
+Ym9vbCBlbmhhbmNlX3J4Ow0KPiA+ICAgCWJvb2wgc3VwcG9ydF82NGc7DQo+ID4gICAJYm9vbCB1
+c2VfaW50ZXJuYWxfY2Q7DQo+ID4gKwlib29sIHN1cHBvcnRfbmV3X3R4Ow0KPiA+ICsJYm9vbCBz
+dXBwb3J0X25ld19yeDsNCj4gDQo+IElzIHRoZXJlIHJlYWxseSBhbnkgcGxhdGZvcm0gdGhhdCBz
+dXBwb3J0cyBuZXdfdHggYnV0ICpub3QqIG5ld19yeCwNCj4gb3IgdmljZS12ZXJzYT8NCj4gDQo+
+IElmIG5vdCwgeW91IGNhbiBhZGQganVzdCBvbmUgYGJvb2wgc3VwcG9ydF9uZXdfcnhfdHhgIG1l
+bWJlciB0byB0aGlzDQo+IHN0cnVjdHVyZS4NCg0KVGhhbmtzIGZvciB5b3VyIHJldmlldywgYW5k
+IHNvcnJ5IGZvciB0aGUgbGF0ZSByZXBseS4NCg0KTmV3IHR4IGFuZCByeCBjb3VsZCBiZSBzZXBh
+cmF0ZWx5IHN1cHBvcnRlZCBpbiBvdXIgbmV4dCBwbGF0Zm9ybXMsIHNvDQp3ZSB1c2UgdHdvIGJv
+b2wgbWVtYmVycyB0byBpbmRpY2F0ZS4NCj4gDQo+ID4gICB9Ow0KPiA+ICAgDQo+ID4gICBzdHJ1
+Y3QgbXNkY190dW5lX3BhcmEgew0KPiA+IEBAIC02MjEsNiArNjQxLDIzIEBAIHN0YXRpYyBjb25z
+dCBzdHJ1Y3QgbXRrX21tY19jb21wYXRpYmxlDQo+ID4gbXQ4NTE2X2NvbXBhdCA9IHsNCj4gPiAg
+IAkuc3RvcF9jbGtfZml4ID0gdHJ1ZSwNCj4gPiAgIH07DQo+ID4gICANCj4gPiArc3RhdGljIGNv
+bnN0IHN0cnVjdCBtdGtfbW1jX2NvbXBhdGlibGUgbXQ4MTk2X2NvbXBhdCA9IHsNCj4gPiArCS5j
+bGtfZGl2X2JpdHMgPSAxMiwNCj4gPiArCS5yZWNoZWNrX3NkaW9faXJxID0gZmFsc2UsDQo+ID4g
+KwkuaHM0MDBfdHVuZSA9IGZhbHNlLA0KPiA+ICsJLnBhZF90dW5lX3JlZyA9IE1TRENfUEFEX1RV
+TkUwLA0KPiA+ICsJLmFzeW5jX2ZpZm8gPSB0cnVlLA0KPiA+ICsJLmRhdGFfdHVuZSA9IHRydWUs
+DQo+ID4gKwkuYnVzeV9jaGVjayA9IHRydWUsDQo+ID4gKwkuc3RvcF9jbGtfZml4ID0gdHJ1ZSwN
+Cj4gPiArCS5zdG9wX2RseV9zZWwgPSAxLA0KPiA+ICsJLnBvcF9lbl9jbnQgPSAyLA0KPiA+ICsJ
+LmVuaGFuY2VfcnggPSB0cnVlLA0KPiA+ICsJLnN1cHBvcnRfNjRnID0gdHJ1ZSwNCj4gPiArCS5z
+dXBwb3J0X25ld190eCA9IHRydWUsDQo+ID4gKwkuc3VwcG9ydF9uZXdfcnggPSB0cnVlLA0KPiA+
+ICt9Ow0KPiA+ICsNCj4gPiAgIHN0YXRpYyBjb25zdCBzdHJ1Y3Qgb2ZfZGV2aWNlX2lkIG1zZGNf
+b2ZfaWRzW10gPSB7DQo+ID4gICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3MDEtbW1j
+IiwgLmRhdGEgPSAmbXQyNzAxX2NvbXBhdH0sDQo+ID4gICAJeyAuY29tcGF0aWJsZSA9ICJtZWRp
+YXRlayxtdDI3MTItbW1jIiwgLmRhdGEgPSAmbXQyNzEyX2NvbXBhdH0sDQo+ID4gQEAgLTYzMiw2
+ICs2NjksNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtc2RjX29mX2lkc1td
+DQo+ID4gPSB7DQo+ID4gICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDgxMzUtbW1jIiwg
+LmRhdGEgPSAmbXQ4MTM1X2NvbXBhdH0sDQo+ID4gICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRl
+ayxtdDgxNzMtbW1jIiwgLmRhdGEgPSAmbXQ4MTczX2NvbXBhdH0sDQo+ID4gICAJeyAuY29tcGF0
+aWJsZSA9ICJtZWRpYXRlayxtdDgxODMtbW1jIiwgLmRhdGEgPSAmbXQ4MTgzX2NvbXBhdH0sDQo+
+ID4gKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE5Ni1tbWMiLCAuZGF0YSA9ICZtdDgx
+OTZfY29tcGF0fSwNCj4gPiAgIAl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODUxNi1tbWMi
+LCAuZGF0YSA9ICZtdDg1MTZfY29tcGF0fSwNCj4gPiAgIA0KPiA+ICAgCXt9DQo+ID4gQEAgLTg3
+Miw2ICs5MTAsNDIgQEAgc3RhdGljIGludCBtc2RjX3VuZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19o
+b3N0DQo+ID4gKmhvc3QpDQo+ID4gICAJCQkJICAodmFsICYgTVNEQ19DRkdfQ0tTVEIpLCAxLCAy
+MDAwMCk7DQo+ID4gICB9DQo+ID4gICANCj4gPiArc3RhdGljIHZvaWQgbXNkY19uZXdfdHhfc2V0
+dGluZyhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KPiA+ICt7DQo+IA0KPiBUaGF0J3Mgc2ltcGxl
+cjoNCj4gDQo+IAlpZiAoIWhvc3QtPnRvcF9iYXNlKQ0KPiAJCXJldHVybjsNCg0KSSB3aWxsIGZv
+bGxvdyB5b3VyIGNvbW1lbnQgaW4gbmV4dCBjaGFuZ2UuDQo+IA0KPiA+ICsJaWYgKGhvc3QtPnRv
+cF9iYXNlKSB7DQo+ID4gKwkJc2RyX3NldF9iaXRzKGhvc3QtPnRvcF9iYXNlICsgTE9PUF9URVNU
+X0NPTlRST0wsDQo+ID4gKwkJCSAgICAgVEVTVF9MT09QX0RTQ0xLX01VWF9TRUwpOw0KPiA+ICsJ
+CXNkcl9zZXRfYml0cyhob3N0LT50b3BfYmFzZSArIExPT1BfVEVTVF9DT05UUk9MLA0KPiA+ICsJ
+CQkgICAgIFRFU1RfTE9PUF9MQVRDSF9NVVhfU0VMKTsNCj4gPiArCQlzZHJfY2xyX2JpdHMoaG9z
+dC0+dG9wX2Jhc2UgKyBMT09QX1RFU1RfQ09OVFJPTCwNCj4gPiArCQkJICAgICBURVNUX0hTNDAw
+X0NNRF9MT09QX01VWF9TRUwpOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiArCXN3aXRjaCAoaG9zdC0+
+dGltaW5nKSB7DQo+ID4gKwljYXNlIE1NQ19USU1JTkdfTEVHQUNZOg0KPiA+ICsJY2FzZSBNTUNf
+VElNSU5HX01NQ19IUzoNCj4gPiArCWNhc2UgTU1DX1RJTUlOR19TRF9IUzoNCj4gPiArCWNhc2Ug
+TU1DX1RJTUlOR19VSFNfU0RSMTI6DQo+ID4gKwljYXNlIE1NQ19USU1JTkdfVUhTX1NEUjI1Og0K
+PiA+ICsJY2FzZSBNTUNfVElNSU5HX1VIU19ERFI1MDoNCj4gPiArCWNhc2UgTU1DX1RJTUlOR19N
+TUNfRERSNTI6DQo+ID4gKwkJaWYgKGhvc3QtPnRvcF9iYXNlKQ0KPiA+ICsJCQlzZHJfY2xyX2Jp
+dHMoaG9zdC0+dG9wX2Jhc2UgKw0KPiA+IExPT1BfVEVTVF9DT05UUk9MLA0KPiA+ICsJCQkJICAg
+ICBMT09QX0VOX1NFTF9DTEspOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJY2FzZSBNTUNfVElNSU5H
+X1VIU19TRFI1MDoNCj4gPiArCWNhc2UgTU1DX1RJTUlOR19VSFNfU0RSMTA0Og0KPiA+ICsJY2Fz
+ZSBNTUNfVElNSU5HX01NQ19IUzIwMDoNCj4gPiArCWNhc2UgTU1DX1RJTUlOR19NTUNfSFM0MDA6
+DQo+ID4gKwkJaWYgKGhvc3QtPnRvcF9iYXNlKQ0KPiA+ICsJCQlzZHJfc2V0X2JpdHMoaG9zdC0+
+dG9wX2Jhc2UgKw0KPiA+IExPT1BfVEVTVF9DT05UUk9MLA0KPiA+ICsJCQkJICAgICBMT09QX0VO
+X1NFTF9DTEspOw0KPiA+ICsJCWJyZWFrOw0KPiA+ICsJZGVmYXVsdDoNCj4gPiArCQlicmVhazsN
+Cj4gPiArCX0NCj4gPiArfQ0KPiA+ICsNCj4gPiAgIHN0YXRpYyB2b2lkIG1zZGNfc2V0X21jbGso
+c3RydWN0IG1zZGNfaG9zdCAqaG9zdCwgdW5zaWduZWQgY2hhcg0KPiA+IHRpbWluZywgdTMyIGh6
+KQ0KPiA+ICAgew0KPiA+ICAgCXN0cnVjdCBtbWNfaG9zdCAqbW1jID0gbW1jX2Zyb21fcHJpdiho
+b3N0KTsNCj4gPiBAQCAtODgxLDYgKzk1NSw3IEBAIHN0YXRpYyB2b2lkIG1zZGNfc2V0X21jbGso
+c3RydWN0IG1zZGNfaG9zdA0KPiA+ICpob3N0LCB1bnNpZ25lZCBjaGFyIHRpbWluZywgdTMyIGh6
+KQ0KPiA+ICAgCXUzMiBzY2xrOw0KPiA+ICAgCXUzMiB0dW5lX3JlZyA9IGhvc3QtPmRldl9jb21w
+LT5wYWRfdHVuZV9yZWc7DQo+ID4gICAJdTMyIHZhbDsNCj4gPiArCWJvb2wgdGltaW5nX2NoYW5n
+ZWQgPSBmYWxzZTsNCj4gDQo+IGJvb2wgdGltaW5nX2NoYW5nZWQ7DQoNCkkgd2lsbCBmb2xsb3cg
+eW91ciBjb21tZW50IGluIG5leHQgY2hhbmdlLg0KPiANCj4gPiAgIA0KPiA+ICAgCWlmICghaHop
+IHsNCj4gPiAgIAkJZGV2X2RiZyhob3N0LT5kZXYsICJzZXQgbWNsayB0byAwXG4iKTsNCj4gPiBA
+QCAtODkwLDYgKzk2NSw5IEBAIHN0YXRpYyB2b2lkIG1zZGNfc2V0X21jbGsoc3RydWN0IG1zZGNf
+aG9zdA0KPiA+ICpob3N0LCB1bnNpZ25lZCBjaGFyIHRpbWluZywgdTMyIGh6KQ0KPiA+ICAgCQly
+ZXR1cm47DQo+ID4gICAJfQ0KPiA+ICAgDQo+ID4gKwlpZiAoaG9zdC0+dGltaW5nICE9IHRpbWlu
+ZykNCj4gPiArCQl0aW1pbmdfY2hhbmdlZCA9IHRydWU7DQo+IA0KPiAJZWxzZQ0KPiAJCXRpbWlu
+Z19jaGFuZ2VkID0gZmFsc2U7DQoNCkkgd2lsbCBmb2xsb3cgeW91ciBjb21tZW50IGluIG5leHQg
+Y2hhbmdlLg0KPiANCj4gPiArDQo+ID4gICAJZmxhZ3MgPSByZWFkbChob3N0LT5iYXNlICsgTVNE
+Q19JTlRFTik7DQo+ID4gICAJc2RyX2Nscl9iaXRzKGhvc3QtPmJhc2UgKyBNU0RDX0lOVEVOLCBm
+bGFncyk7DQo+ID4gICAJaWYgKGhvc3QtPmRldl9jb21wLT5jbGtfZGl2X2JpdHMgPT0gOCkNCj4g
+PiBAQCAtOTk2LDYgKzEwNzQsOSBAQCBzdGF0aWMgdm9pZCBtc2RjX3NldF9tY2xrKHN0cnVjdCBt
+c2RjX2hvc3QNCj4gPiAqaG9zdCwgdW5zaWduZWQgY2hhciB0aW1pbmcsIHUzMiBoeikNCj4gPiAg
+IAkJc2RyX3NldF9maWVsZChob3N0LT5iYXNlICsgdHVuZV9yZWcsDQo+ID4gICAJCQkgICAgICBN
+U0RDX1BBRF9UVU5FX0NNRFJSRExZLA0KPiA+ICAgCQkJICAgICAgaG9zdC0+aHM0MDBfY21kX2lu
+dF9kZWxheSk7DQo+ID4gKwlpZiAodGltaW5nX2NoYW5nZWQgJiYgaG9zdC0+ZGV2X2NvbXAtPnN1
+cHBvcnRfbmV3X3R4KQ0KPiANCj4gSSB3b3VsZCBpbnZlcnQgdGhpcyB0byAoaG9zdC0+ZGV2X2Nv
+bXAtPnN1cHBvcnRfbmV3X3R4ICYmDQo+IHRpbWluZ19jaGFuZ2VkKQ0KPiBhcyB0aGF0LCBhdCBs
+ZWFzdCB0byBtZSwgcmVhZHMgYXMgImlmIHRoaXMgaXMgbmV3X3R4IC0gYW5kIHRoZSB0aW1pbmcN
+Cj4gY2hhbmdlZCINCj4gbWFuaW5nIHRoYXQgdGhlIHByaW1hcnkgcmVhc29uIHdoeSB3ZSdyZSBj
+aGVja2luZyBpcyAiaWYgdGhpcyBpcw0KPiBuZXdfdHgiLg0KPiANCj4gSXQncyBhIHBlcnNvbmFs
+IHByZWZlcmVuY2UgdGhvdWdoLCBzbyB0aGUgZmluYWwgY2hvaWNlIGlzIHlvdXJzLg0KDQpUaGFu
+a3MgZm9yIHlvdXIgd29uZGVyZnVsIHN1Z2dlc3Rpb24sIEkgd2lsbCBmb2xsb3cgeW91ciBjb21t
+ZW50IGluDQpuZXh0IGNoYW5nZS4NCj4gDQo+ID4gKwkJbXNkY19uZXdfdHhfc2V0dGluZyhob3N0
+KTsNCj4gPiArDQo+ID4gICAJZGV2X2RiZyhob3N0LT5kZXYsICJzY2xrOiAlZCwgdGltaW5nOiAl
+ZFxuIiwgbW1jLT5hY3R1YWxfY2xvY2ssDQo+ID4gICAJCXRpbWluZyk7DQo+ID4gICB9DQo+ID4g
+QEAgLTE3MDQsNiArMTc4NSwxNyBAQCBzdGF0aWMgdm9pZCBtc2RjX2luaXRfaHcoc3RydWN0IG1z
+ZGNfaG9zdA0KPiA+ICpob3N0KQ0KPiA+ICAgCQlyZXNldF9jb250cm9sX2RlYXNzZXJ0KGhvc3Qt
+PnJlc2V0KTsNCj4gPiAgIAl9DQo+ID4gICANCj4gPiArCS8qIE5ldyB0eC9yeCBlbmFibGUgYml0
+IG5lZWQgdG8gYmUgMC0+MSBmb3IgaGFyZHdhcmUgY2hlY2sgKi8NCj4gPiArCWlmIChob3N0LT5k
+ZXZfY29tcC0+c3VwcG9ydF9uZXdfdHgpIHsNCj4gPiArCQlzZHJfY2xyX2JpdHMoaG9zdC0+YmFz
+ZSArIFNEQ19BRFZfQ0ZHMCwgU0RDX05FV19UWF9FTik7DQo+ID4gKwkJc2RyX3NldF9iaXRzKGhv
+c3QtPmJhc2UgKyBTRENfQURWX0NGRzAsIFNEQ19ORVdfVFhfRU4pOw0KPiA+ICsJCW1zZGNfbmV3
+X3R4X3NldHRpbmcoaG9zdCk7DQo+ID4gKwl9DQo+ID4gKwlpZiAoaG9zdC0+ZGV2X2NvbXAtPnN1
+cHBvcnRfbmV3X3J4KSB7DQo+ID4gKwkJc2RyX2Nscl9iaXRzKGhvc3QtPmJhc2UgKyBNU0RDX05F
+V19SWF9DRkcsDQo+ID4gTVNEQ19ORVdfUlhfUEFUSF9TRUwpOw0KPiA+ICsJCXNkcl9zZXRfYml0
+cyhob3N0LT5iYXNlICsgTVNEQ19ORVdfUlhfQ0ZHLA0KPiA+IE1TRENfTkVXX1JYX1BBVEhfU0VM
+KTsNCj4gPiArCX0NCj4gPiArDQo+ID4gICAJLyogQ29uZmlndXJlIHRvIE1NQy9TRCBtb2RlLCBj
+bG9jayBmcmVlIHJ1bm5pbmcgKi8NCj4gPiAgIAlzZHJfc2V0X2JpdHMoaG9zdC0+YmFzZSArIE1T
+RENfQ0ZHLCBNU0RDX0NGR19NT0RFIHwNCj4gPiBNU0RDX0NGR19DS1BETik7DQo+ID4gICANCj4g
+PiBAQCAtMTc0Miw4ICsxODM0LDE5IEBAIHN0YXRpYyB2b2lkIG1zZGNfaW5pdF9odyhzdHJ1Y3Qg
+bXNkY19ob3N0DQo+ID4gKmhvc3QpDQo+ID4gICAJc2RyX3NldF9iaXRzKGhvc3QtPmJhc2UgKyBF
+TU1DNTBfQ0ZHMCwgRU1NQzUwX0NGR19DRkNTVFNfU0VMKTsNCj4gPiAgIA0KPiA+ICAgCWlmICho
+b3N0LT5kZXZfY29tcC0+c3RvcF9jbGtfZml4KSB7DQo+ID4gLQkJc2RyX3NldF9maWVsZChob3N0
+LT5iYXNlICsgTVNEQ19QQVRDSF9CSVQxLA0KPiA+IC0JCQkgICAgICBNU0RDX1BBVENIX0JJVDFf
+U1RPUF9ETFksIDMpOw0KPiA+ICsJCWlmIChob3N0LT5kZXZfY29tcC0+c3RvcF9kbHlfc2VsKQ0K
+PiA+ICsJCQlzZHJfc2V0X2ZpZWxkKGhvc3QtPmJhc2UgKyBNU0RDX1BBVENIX0JJVDEsDQo+ID4g
+KwkJCQkgICAgICBNU0RDX1BBVENIX0JJVDFfU1RPUF9ETFksDQo+ID4gKwkJCQkgICAgICBob3N0
+LT5kZXZfY29tcC0+c3RvcF9kbHlfc2VsICYNCj4gPiAweGYpOw0KPiANCj4gVGhpcyBkb2Vzbid0
+IGxvb2sgbGlrZSBiZWluZyBzb21ldGhpbmcgdG8gc3VwcG9ydCBuZXdfdHggYW5kIG5ld19yeCwN
+Cj4gYnV0IHJhdGhlcg0KPiBhIHdheSB0byBzcGVjaWZ5IGEgZGlmZmVyZW50IFNUT1BfRExZIGRl
+cGVuZGluZyBvbiB0aGUgU29DIGFuZCBpdHMNCj4gcGxhdGRhdGEuDQo+IA0KPiBTbyB0aGlzIG9u
+ZSBnb2VzIHRvIGEgZGlmZmVyZW50IGNvbW1pdCwgYW5kIHlvdSB3b24ndCBuZWVkIGVpdGhlciB0
+aGUNCj4gMHhmIG1hc2tpbmcNCj4gbm9yIHRoZSBgZWxzZWAsIGFzIHlvdSB3aWxsIGhhdmUgdG8g
+YWRkIHRoZSB2YWx1ZSB0byBhbGwgU29DcycNCj4gcGxhdGRhdGEgaW5zdGVhZC4NCg0KSSB3b3Vs
+ZCBtb3ZlIGl0IHRvIGFub3RoZXIgY29tbWl0LCBhbmQgYWRkIHRoZSB2YWx1ZSBvZiAnc3RvcF9k
+bHlfc2VsJw0KdG8gYWxsIHRoZSBTb0NzIHdob3NlICdzdG9wX2Nsa19maXgnIGlzIHRydWUuDQo+
+IA0KPiA+ICsJCWVsc2UNCj4gPiArCQkJc2RyX3NldF9maWVsZChob3N0LT5iYXNlICsgTVNEQ19Q
+QVRDSF9CSVQxLA0KPiA+ICsJCQkJICAgICAgTVNEQ19QQVRDSF9CSVQxX1NUT1BfRExZLCAzKTsN
+Cj4gPiArDQo+ID4gKwkJaWYgKGhvc3QtPmRldl9jb21wLT5wb3BfZW5fY250KQ0KPiA+ICsJCQlz
+ZHJfc2V0X2ZpZWxkKGhvc3QtPmJhc2UgKyBNU0RDX1BBVENIX0JJVDIsDQo+ID4gKwkJCQkgICAg
+ICBNU0RDX1BCMl9QT1BfRU5fQ05ULA0KPiA+ICsJCQkJICAgICAgaG9zdC0+ZGV2X2NvbXAtPnBv
+cF9lbl9jbnQgJg0KPiA+IDB4Zik7DQo+ID4gKw0KPiA+ICAgCQlzZHJfY2xyX2JpdHMoaG9zdC0+
+YmFzZSArIFNEQ19GSUZPX0NGRywNCj4gPiAgIAkJCSAgICAgU0RDX0ZJRk9fQ0ZHX1dSVkFMSURT
+RUwpOw0KPiA+ICAgCQlzZHJfY2xyX2JpdHMoaG9zdC0+YmFzZSArIFNEQ19GSUZPX0NGRywNCj4g
+PiBAQCAtMjA1NSw2ICsyMTU4LDE5IEBAIHN0YXRpYyBpbmxpbmUgdm9pZA0KPiA+IG1zZGNfc2V0
+X2RhdGFfZGVsYXkoc3RydWN0IG1zZGNfaG9zdCAqaG9zdCwgdTMyIHZhbHVlKQ0KPiA+ICAgCX0N
+Cj4gPiAgIH0NCj4gPiAgIA0KPiANCj4gUmVnYXJkcywNCj4gQW5nZWxvDQo=
 
