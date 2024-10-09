@@ -1,154 +1,165 @@
-Return-Path: <devicetree+bounces-109405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEE4C996530
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:24:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 39C12996535
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:25:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75EF51F26560
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:24:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7A5C1F22B31
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:25:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC6A18EFF9;
-	Wed,  9 Oct 2024 09:20:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03E5618A92C;
+	Wed,  9 Oct 2024 09:21:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YhbrNKQO"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="F8WlZO7v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ECD118E76E;
-	Wed,  9 Oct 2024 09:20:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C308188929;
+	Wed,  9 Oct 2024 09:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728465649; cv=none; b=jE+KEEHlBWWRRe4RPKPoBareS+VlyHK3mRPljcjGI5USP9dEgM65R7O8t2sOyxnKHHAk69W6ZQdOnDOxohMEortjWNb/b5+kLzsAJ7xqxrTvSOkHfpocPg5IFuJW7AAuIek9E1zVypPS5xwnw4en/kbhwh1ln8ZjS7evwJxcSpE=
+	t=1728465684; cv=none; b=N2fFpiwtu+mw71jQtnkLglHzPCUnkExhjxNzpC17A4F3iru6Qz9r6ADRszkEcfjtVfMZ/iBy9A3JjPJO8OPk2gEbPlzYIvbGMGJ6eAFf8pKwZMd+pdj1VhcMZ9bcc1IjfPv7epajhOdNerq0x35taA79viWddkQavOvU/s1grb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728465649; c=relaxed/simple;
-	bh=aeOCbk0PsLtE5JzLWPFz2lzRfvXT6wwOoAgjwany9N8=;
+	s=arc-20240116; t=1728465684; c=relaxed/simple;
+	bh=5rJacYbHgJtDxtv3PNAGVx97A2TLXEf8FNd4ufMljKU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Jg8cB7ENdatD/sL9XP0jiXCq1ekIGqDg4lgkdgokZpE4yJ5AAz480wACTirCA4a1Y3vOQREfYuT/CODo5N4Ic5mQzP1ON0HqmGQDDfqh0+jWGOAFwxDOpWALc0/ttXJZKSGa0PFp8j5cGd3UzEycj6mOaEMslRBg1pQHtkRzrFQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YhbrNKQO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 499786KF026815;
-	Wed, 9 Oct 2024 09:20:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	nopzlFAvEnKmID7NT6spIwtKQ7l5wvtm5oKw6QdIjsQ=; b=YhbrNKQOcHz22qpM
-	K1gqu1DOL1FXgo+mBI8bx0t9fOKIzVa6CVknXH4lpuvemDZqtx/oodRnwvdRErt6
-	C1KqhTo2dbphfz6p3DvCQQDRmYIuf1sXI3uNCDMVuYl1VtC0EqQMp/jlbV8cABtt
-	eSCc9M1YkSrgqrP7t+NsI5vGV15u6uOT5r3QlEbTERAWeJn/G1k5YF5E2QgzXPkY
-	/5/hFLYkGSNRHK6thxHnY+Ysx5TnXPOn7AfRpSfXLP5g64xXtpNoXsg49xKgalOW
-	2cxhD514jh6u+Bhzvlxhc/EIBm/08DvOpSlsqqht5GqopjD7Yboq4RhQ/o1yAlZt
-	6bweew==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 422xqa2bym-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 09:20:37 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4999Kbvk025740
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 09:20:37 GMT
-Received: from [10.239.133.242] (10.80.80.8) by nasanex01b.na.qualcomm.com
- (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Wed, 9 Oct 2024
- 02:20:33 -0700
-Message-ID: <0525c2a9-45a5-4654-aaf4-b0ab9e161884@quicinc.com>
-Date: Wed, 9 Oct 2024 17:20:26 +0800
+	 In-Reply-To:Content-Type; b=RwF4JWvdrahn9JUM41XfbmJ9jzc3pzMpnd8HVtBPOPhxXW9XvPUF4fsoy1fhTGpbpZGlHUmfoYAkGsVtUyrGTsh1k/xjhLqg/uKFh1tkSwJEs43G41Tq3qjvzPi8AAQVJJKma0aaPRSIgb3ArGmgcjEt6/4GnJwyDfyr5FmL8/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=F8WlZO7v; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: d6e3ad88861f11ef8b96093e013ec31c-20241009
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References:CC:To:Subject:MIME-Version:Date:Message-ID; bh=x/5+Sddg3H+O4oysQuhNA4Lmgxc5WiB96rQ7dFLcGlc=;
+	b=F8WlZO7vFeQpo70sDfkUfQYtNG+x4NobK5oN1NWw0Cr3XJuWaIw3ldBESMCXVPwHdUjQIG3Dcz9Tm9gJcOtAzN5FlXNxyJUpOPz/ThtfpCF4If9zMjYcZ/w5UYuPNSj5OwTqIp04JUoXHFmy2Yjf5zTyUochgRpEyYQMk+1AOxQ=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:9ccd4a46-aa9d-466c-9708-f35890c5ed6c,IP:0,U
+	RL:0,TC:0,Content:1,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:1
+X-CID-META: VersionHash:6dc6a47,CLOUDID:59318826-5902-4533-af4f-d0904aa89b3c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:4|-5,EDM:-3,IP:ni
+	l,URL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_ULS,TF_CID_SPAM_SNR
+X-UUID: d6e3ad88861f11ef8b96093e013ec31c-20241009
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw02.mediatek.com
+	(envelope-from <macpaul.lin@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1547505070; Wed, 09 Oct 2024 17:21:17 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 9 Oct 2024 17:21:15 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkmbs13n1.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Wed, 9 Oct 2024 17:21:14 +0800
+Message-ID: <314aafed-5903-2478-971f-59870b8ac5fa@mediatek.com>
+Date: Wed, 9 Oct 2024 17:21:13 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1] Coresight: Narrow down the matching range of tpdm
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        Alexander
- Shishkin <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-References: <20241009085042.1098-1-quic_songchai@quicinc.com>
- <a7fc66fe-0fb3-4d2c-8f23-03ccd46a4766@arm.com>
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [PATCH v2] arm64: dts: mediatek: mt8195: Fix dtbs_check error for
+ tphy
 Content-Language: en-US
-From: songchai <quic_songchai@quicinc.com>
-In-Reply-To: <a7fc66fe-0fb3-4d2c-8f23-03ccd46a4766@arm.com>
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	Seiya Wang <seiya.wang@mediatek.com>, Tinghan Shen
+	<tinghan.shen@mediatek.com>, Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Alexandre Mergnat <amergnat@baylibre.com>, Jian Yang
+	<jian.yang@mediatek.com>, Jianguo Zhang <jianguo.zhang@mediatek.com>, "Jieyy
+ Yang" <jieyy.yang@mediatek.com>
+CC: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+	Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, "Chris-qj
+ chen" <chris-qj.chen@mediatek.com>, MediaTek Chromebook Upstream
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, Chen-Yu Tsai
+	<wenst@chromium.org>
+References: <20241008071540.32607-1-macpaul.lin@mediatek.com>
+ <e9277edf-d372-4a8e-881c-49a907f0a883@collabora.com>
+From: Macpaul Lin <macpaul.lin@mediatek.com>
+In-Reply-To: <e9277edf-d372-4a8e-881c-49a907f0a883@collabora.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ITtbRwbSSCE1pC52BwfFQ4pT3RPX6ch1
-X-Proofpoint-GUID: ITtbRwbSSCE1pC52BwfFQ4pT3RPX6ch1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 phishscore=0
- spamscore=0 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- bulkscore=0 suspectscore=0 malwarescore=0 adultscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090061
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--15.120500-8.000000
+X-TMASE-MatchedRID: VfovoVrt/oYNtKv7cnNXnSa1MaKuob8PofZV/2Xa0cK+UkTh6A/Dwdno
+	quRwHY3BkAluVYknZHpbzVVgo9RtXiA1dgOjatGGXP5rFAucBUHnpmIrKZRxTs/PM4nfEDArIyZ
+	NTlgT7qnRLHyi43Gvn5VYfV6rzvhfRyV3gdKbiKMpa6LJktEjgPaS52LUPfcSUUVrdcYJZJ0sgd
+	kHScxUMWUQAwDxYVxG1S+wyEMlXe8HTXUunEyzWGwbuvhCHs3cfLPKYyLDlAffUZT83lbkEBHxr
+	RblSw8bLPQ+pa7MIVkfZdczzDm/ur9ZdlL8eonaVnRXm1iHN1bEQdG7H66TyH4gKq42LRYkUK59
+	MjR9wrsi5A4ICRHaqPCJJCAkXsc/RHeQpqAFdaB+3BndfXUhXQ==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--15.120500-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 62E55BFEEA33CD37E8BF54AEA8EB2CAABBF29006B944BE04D6245EF911B536242000:8
 
 
-On 10/9/2024 4:54 PM, Suzuki K Poulose wrote:
-> On 09/10/2024 09:50, Songwei Chai wrote:
->> The format of tpdm's peripheral id is 1f0exx. To avoid potential
->> conflicts in the future, update the .id_table's id to 0x001f0e00.
->> This update will narrow down the matching range and prevent incorrect
->> matches. For example, another component's peripheral id might be
->> f0e00, which would incorrectly match the old id.
+
+On 10/8/24 17:09, AngeloGioacchino Del Regno wrote:
+> Il 08/10/24 09:15, Macpaul Lin ha scritto:
+>> The u3phy1 node in mt8195.dtsi was triggering a dtbs_check error.
+>> The error message was:
+>>    t-phy@11e30000: 'power-domains' does not match any of the regexes:
+>>      '^(usb|pcie|sata)-phy@[0-9a-f]+$', 'pinctrl-[0-9]+'
+>> Fix this issue by dropping 'power-domains' of u3phy1 node.
 >>
->> Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+>> This is because MediaTek tphy dose not need to add mtcmos.  It is not
+>> necessary to add 'power-domains'. If the power of the tphy is turned off,
+>> it will affect other functions. From the current USB hardware design
+>> perspective, even if mtcmos is added to the phy, it is always on.
+>>
+>> Fixes: 37f2582883be ("arm64: dts: Add mediatek SoC mt8195 and 
+>> evaluation board")
+>> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+> 
+> Reviewed-by: AngeloGioacchino Del Regno 
+> <angelogioacchino.delregno@collabora.com>
+
+Sorry for bothering, it seems MediaTek internal still have some
+discussion about according to Conor's suggestion:
+
+[1] 
+https://lore.kernel.org/lkml/20241008-disorder-slacking-d8196ceb68f7@spud/T/#mccf978d76f52cc26970f3f3be6120055e4698fe6
+
+Please don't to pick this patch until if MediaTek could have some
+conclusions.
+
 >> ---
->>   drivers/hwtracing/coresight/coresight-tpdm.c | 4 ++--
->>   1 file changed, 2 insertions(+), 2 deletions(-)
+>>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 -
+>>   1 file changed, 1 deletion(-)
 >>
->> diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c 
->> b/drivers/hwtracing/coresight/coresight-tpdm.c
->> index b7d99e91ab84..8e2985d17549 100644
->> --- a/drivers/hwtracing/coresight/coresight-tpdm.c
->> +++ b/drivers/hwtracing/coresight/coresight-tpdm.c
->> @@ -1308,8 +1308,8 @@ static void tpdm_remove(struct amba_device *adev)
->>    */
->>   static struct amba_id tpdm_ids[] = {
->>       {
->> -        .id = 0x000f0e00,
->> -        .mask = 0x000fff00,
->> +        .id = 0x001f0e00,
->> +        .mask = 0x00ffff00,
->>       },
->>       { 0, 0, NULL },
->>   };
+>> Changes for v2:
+>>   - Add detail description of the tphy design for explaining the reason
+>>     of this change.
 >>
->
-> Please could you add "Fixes" tag for this ? You don't want an old 
-> kernel detect something else as TPDM, so this must go to stable kernels.
-> Also, while at it, please could you intend the id and mask values with
-> tabs, so it is easier to what exactly we are matching ? e.g,
-Thanks for your quick response, Suzuki.
-Corrected it in the new version!
->
->
->     .id    = 0x001f0e00,
->     .mask    = 0x00ffff00,
->
-> Kind regards
-> Suzuki
->
->
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi 
+>> b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> index ade685ed2190..1c6f08dde31c 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+>> @@ -1920,7 +1920,6 @@ u3phy1: t-phy@11e30000 {
+>>               #address-cells = <1>;
+>>               #size-cells = <1>;
+>>               ranges = <0 0 0x11e30000 0xe00>;
+>> -            power-domains = <&spm MT8195_POWER_DOMAIN_SSUSB_PCIE_PHY>;
+>>               status = "disabled";
+>>               u2port1: usb-phy@0 {
+> 
+> 
+
+Thanks!
+Macpaul Lin
 
