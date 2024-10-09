@@ -1,245 +1,147 @@
-Return-Path: <devicetree+bounces-109563-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109564-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E77FE996E2A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:35:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A697996E47
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:40:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB8F72862C2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:35:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A4B61C21991
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 939D01A3034;
-	Wed,  9 Oct 2024 14:34:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6E6126C18;
+	Wed,  9 Oct 2024 14:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QK9Irnic"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z1mjMCoJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22E21A2C21;
-	Wed,  9 Oct 2024 14:34:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A66093BBEB;
+	Wed,  9 Oct 2024 14:40:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728484497; cv=none; b=QAQVLLU9hXFhogudyZN0VhLzrTmP/PjRFPK0P02LQOG08cmDb72RAERWVWWTPjqm8o1y2bTxmNtcawM6u8LRibt7LN1FqVcUdy7rJ9/UvVRvtgTic6FMTrKa+l9gi9+o5TJgLwAFDnaYKVO5vvwkr22s59ThHvrqC2+pYMDii+U=
+	t=1728484803; cv=none; b=nVIlDR3ZI3ajDeVxxephkIMEU0kHQ9aJrYJl/9xxsnsGWg30+09bh8lekKNF5d7lAS4tUAQS+kryUdmQd2QyW/Iu0DT/9j0SQBAcEJfJaMn/xUcHjCmZnaUojL8uZJ4UuMeqLM1h6Th/kOW0ghdWNeXSP6cpgpcDf85rAQ4OO0A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728484497; c=relaxed/simple;
-	bh=NxId76CbkilA10S8YunQUSIa3h5eRd1ghnkkRRnbWGg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=ha5iXZAAqJwdYlxazRseSXH4Ze5TICjZKeAISgBbRu8VjeJZgjneVvwaWl5QBK0XdIIdxxh38gpDJ6tzBdPw2IPbiTbYsd75xCiDoo3audVwEtYEYtbTLuRIU/PRLZ6Q8ZPcqOUsWsynwoM3nqawVR3p8yxJZ9lusey1mj2IkD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QK9Irnic; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 499AYwqg023663;
-	Wed, 9 Oct 2024 14:34:45 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	qi9toDhuO/5t7d76fXOYIWzC/XBL9QahLZUf0Y2204I=; b=QK9IrnicBUzpGT5d
-	Lf25s2NyDm65Us7NTAw1t9/YJ33vXDuQ44MPDKEQkadBO3jMsLqUrbFpJTkoihtf
-	CNUUtJTLnYdlsZI7Pok5x1pWIXGqM9ht5NnWgV0S7WqGTnBo7XZwVXYr8Oti/D0p
-	4H5uUAgHrvaKGILR9RjUcTkwvM+TaGfk3n5W6cRx416TdVxvljY2Z0trQpHYKAYE
-	wKF7TlWDdn2NniYXZbcuQOxPhHZl6noXBTyn6uToLU1b7GS+cblZGANfnhgMKtZS
-	7Rqd/YlqeMaFXZKPJkMH+Z/IVR71dE2ppIJiRQDMKA+KIqq+G/hNXVqh/enFluBn
-	ZkVyPA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndye8r6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 14:34:44 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499EYhlg019121
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 14:34:43 GMT
-Received: from hu-mahap-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 07:34:36 -0700
-From: Mahadevan <quic_mahap@quicinc.com>
-Date: Wed, 9 Oct 2024 20:02:05 +0530
-Subject: [PATCH v4 5/5] arm64: dts: qcom: sa8775p: add display dt nodes for
- MDSS0 and DPU
+	s=arc-20240116; t=1728484803; c=relaxed/simple;
+	bh=WIxVQAkTWICRZjnmzg7/+ehtFeF1lYh/jn7EQ5extqY=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=ZwWanaR3Er+wCZpqcRHxZO2XKfuiFlQYHbZ51rQ9rs7Uu+ct/kT0rtY4xZFvjjyeAxs4j+bV+lx3e5zhYMAQlM1SuMPOuwqGqTgupXeWj1joiQ90j4/3ACKM2qkV8wEFjGcQQgX9hZr243jMxx6DPMLBZyReQ2rVKJ75CvGdrBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z1mjMCoJ; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9943897c07so609913766b.3;
+        Wed, 09 Oct 2024 07:40:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728484800; x=1729089600; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fQH4Rjgx8wyc4kWG1BHXE6ckcwQoBaKiq9RmNTLAvtQ=;
+        b=Z1mjMCoJEOh00FmiAQvJgxQDC3okeyhKdytIMP3GJBqZXQ6Jad1fM/Mxs42tWdR1mz
+         s7J5bM7/72JZGDioxnz94K2D4VFGvz1OaH8uNqMIO/oW7zuxGa+hm2xaSy/J1UEl9S9n
+         6vsHQOS/aYxftUWONwbpnK/2SpzbN4gBghgZhZrXft6cEjbN8uUcfLb6Fz97Bfn6b/zg
+         MoZqD/DsxuUMbns/6dr8MNoTbhrXJa4TUwA34U8ptDUwEObrLcTPYlOFaII/sOkcshG+
+         bgu+anzcPWQMqr+InHWNfrg70yKBY4XC+3Thdh5UaNcciFUcfapWP5pYwF4DJ6sinG+Q
+         PilQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728484800; x=1729089600;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fQH4Rjgx8wyc4kWG1BHXE6ckcwQoBaKiq9RmNTLAvtQ=;
+        b=tctQWVQLVRK97Qm8hz5hhyOYocmjFx9MP4QE/eXtSwnnOWV9PcyYjDdNBXgRktHZRu
+         nivLH+X5Tp2S61k4/wR/MhePvdUFH5XG7Yhczphh3VKOmygyfLQ0dbdyGWiDPBl4TBVk
+         2KKTAxiiC5M9NaT+tL5inHsZhEYKubemEpeBdhjiCmYUMnfZd6xyAGJ0Ek0P5JrRS5SA
+         Ro1yLfSRK72jjXACB5W0DVpkoX4QM0Dkp1ulVEIIJ0KqncAh1HtJSMvGElNep8MCQnBJ
+         o93S9/7I4iwGc0h/GbIRPmJFSwUv06Q8RzasC5xIw/Pc+CQRUc0EkwZn2hzugB4V7Ia/
+         9Z3A==
+X-Forwarded-Encrypted: i=1; AJvYcCUZYnxZLevoA+O0Uq5+cGe6if2s699Oyzde2B5k46sLij3VnKw5nmiskltly59fylsA/YjhmJpAPjpk@vger.kernel.org, AJvYcCUd20exIu2I3r8LqPt7eY1dbiT9NTUmnAMwRxQbJrhhUy8sl67Nx/Q4f6Ywpqcd1KfaVbEwmyQgcvaoEzX2@vger.kernel.org, AJvYcCVrA3r3gl8O6FjAsb6lGIe7yqRBxj7g641eLcaSadvve7/RAU99IUUx29rmzUxmJ0m3kECXBWkbhuMYkCo=@vger.kernel.org, AJvYcCXZc1U0hR9cPbynGWSS0MrCZwcS3tgXugfjnajB8SJLhegivr1qoztDUviNYgFHufeaULOT11Rn1RhC@vger.kernel.org, AJvYcCXfMiEGZ3b6+lOhOXbW7cY0hbggSwe3rwZPdAvyUb4Y/ICkTcb2XtRiNfWIbpGfGOhuokaxd0Qqvksj@vger.kernel.org
+X-Gm-Message-State: AOJu0YwRy/irq1d36ykPGtYSJYjXBeNrbcW1BKcyl4Hc8iLXCzDr8LbY
+	ggKwaF/I6mHHvfqXDB0YbJXUS3uLqtJedcd05rTotPuyffLwMfet
+X-Google-Smtp-Source: AGHT+IGf82so3ncJqcp1r2jhONc3QpN1q4ZExW5+Xw94byLu7PFFtYP9NN/erIT9QH3fFHdER/oNEQ==
+X-Received: by 2002:a17:907:7d9f:b0:a99:8abf:3610 with SMTP id a640c23a62f3a-a998d197392mr214942866b.14.1728484799774;
+        Wed, 09 Oct 2024 07:39:59 -0700 (PDT)
+Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a994610bccdsm532582766b.1.2024.10.09.07.39.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 07:39:59 -0700 (PDT)
+Message-ID: <facfe06f51a815f4ff5604aeacd8bd6ed0629be4.camel@gmail.com>
+Subject: Re: [PATCH v4 5/8] iio: adc: ad7606: Add compatibility to fw_nodes
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Guillaume Stols <gstols@baylibre.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com,  dlechner@baylibre.com, jstephan@baylibre.com,
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Date: Wed, 09 Oct 2024 16:39:58 +0200
+In-Reply-To: <20241009-ad7606_add_iio_backend_support-v4-5-6971a8c0f1d5@baylibre.com>
+References: 
+	<20241009-ad7606_add_iio_backend_support-v4-0-6971a8c0f1d5@baylibre.com>
+	 <20241009-ad7606_add_iio_backend_support-v4-5-6971a8c0f1d5@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20241009-patchv3_1-v4-5-cd683a9ca554@quicinc.com>
-References: <20241009-patchv3_1-v4-0-cd683a9ca554@quicinc.com>
-In-Reply-To: <20241009-patchv3_1-v4-0-cd683a9ca554@quicinc.com>
-To: Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar
-	<quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        "Maarten
- Lankhorst" <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard
-	<mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Mahadevan <quic_mahap@quicinc.com>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <freedreno@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Kalyan Thota <quic_kalyant@quicinc.com>,
-        Jayaprakash Madisetty <quic_jmadiset@quicinc.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1728484443; l=3797;
- i=quic_mahap@quicinc.com; s=20241001; h=from:subject:message-id;
- bh=NxId76CbkilA10S8YunQUSIa3h5eRd1ghnkkRRnbWGg=;
- b=Z82NgODg8aqdgfvUAH60xE53RN6NamNqn8aYLAa7T7nMfo5hYNoivU7aLme0Nnis7x8ykYo38
- QPmXpKWjRiQBS4sW04UqrPZ5lB9lX2Tf/Pr5Sogo8tdT/J85yMdswoB
-X-Developer-Key: i=quic_mahap@quicinc.com; a=ed25519;
- pk=Xc9CA438o9mZKp4uZ8vZMclALnJ8XtlKn/n3Y42mMBI=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tRvmOFLZxbWF-VcXU-yuuCG527TAj4LS
-X-Proofpoint-ORIG-GUID: tRvmOFLZxbWF-VcXU-yuuCG527TAj4LS
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=999 spamscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090090
 
-Add devicetree changes to enable MDSS0 display-subsystem its
-display-controller(DPU) for Qualcomm SA8775P platform.
+On Wed, 2024-10-09 at 09:19 +0000, Guillaume Stols wrote:
+> On the parallel version, the current implementation is only compatible
+> with id tables and won't work with fw_nodes, this commit intends to fix
+> it.
+>=20
+> Doing so required to declare ad7606_chip_info structures in the .h file
+> so to make them accessible to all the driver files that can set a
+> pointer to the corresponding chip as the driver data.
+>=20
+> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+> ---
+> =C2=A0drivers/iio/adc/ad7606.c=C2=A0=C2=A0=C2=A0=C2=A0 | 283 ++++++++++++=
+++++++++++++-------------------
+> =C2=A0drivers/iio/adc/ad7606.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 32 +++--
+> =C2=A0drivers/iio/adc/ad7606_par.c |=C2=A0 30 +++--
+> =C2=A0drivers/iio/adc/ad7606_spi.c |=C2=A0 96 +++++++++------
+> =C2=A04 files changed, 254 insertions(+), 187 deletions(-)
+>=20
+> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+> index 5b276d087ec3..dfbdea8c28ba 100644
+> --- a/drivers/iio/adc/ad7606.c
+> +++ b/drivers/iio/adc/ad7606.c
+> @@ -78,6 +78,155 @@ static const unsigned int ad7616_oversampling_avail[8=
+] =3D {
+>=20
+...
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Signed-off-by: Mahadevan <quic_mahap@quicinc.com>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 89 +++++++++++++++++++++++++++++++++++
- 1 file changed, 89 insertions(+)
+> +const struct ad7606_chip_info ad7616_info =3D {
+> +	.channels =3D ad7616_channels,
+> +	.init_delay_ms =3D 15,
+> +	.name =3D "ad7616",
+> +	.num_channels =3D 17,
+> +	.oversampling_avail =3D ad7616_oversampling_avail,
+> +	.oversampling_num =3D ARRAY_SIZE(ad7616_oversampling_avail),
+> +	.os_req_reset =3D true,
+> +	.scale_setup_cb =3D ad7606_16bit_chan_scale_setup,
+> +};
+> +EXPORT_SYMBOL_NS_GPL(ad7616_info, IIO_AD7606);
+>=20
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index 8fd68a8aa916e6595134b470f87b18b509178a51..66bd5e1c82a426f93097dee63a69c03527f04b3e 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -6,6 +6,7 @@
- #include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/qcom,rpmh.h>
-+#include <dt-bindings/clock/qcom,sa8775p-dispcc.h>
- #include <dt-bindings/clock/qcom,sa8775p-gcc.h>
- #include <dt-bindings/clock/qcom,sa8775p-gpucc.h>
- #include <dt-bindings/interconnect/qcom,sa8775p-rpmh.h>
-@@ -2937,6 +2938,94 @@ camcc: clock-controller@ade0000 {
- 			#power-domain-cells = <1>;
- 		};
- 
-+		mdss0: display-subsystem@ae00000 {
-+			compatible = "qcom,sa8775p-mdss";
-+			reg = <0x0 0x0ae00000 0x0 0x1000>;
-+			reg-names = "mdss";
-+
-+			/* same path used twice */
-+			interconnects = <&mmss_noc MASTER_MDP0 QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&mmss_noc MASTER_MDP1 QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ACTIVE_ONLY>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ACTIVE_ONLY
-+					 &config_noc SLAVE_DISPLAY_CFG QCOM_ICC_TAG_ACTIVE_ONLY>;
-+			interconnect-names = "mdp0-mem",
-+					     "mdp1-mem",
-+					     "cpu-cfg";
-+
-+			resets = <&dispcc0 MDSS_DISP_CC_MDSS_CORE_BCR>;
-+
-+			power-domains = <&dispcc0 MDSS_DISP_CC_MDSS_CORE_GDSC>;
-+
-+			clocks = <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-+				 <&gcc GCC_DISP_HF_AXI_CLK>,
-+				 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>;
-+
-+			interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+
-+			iommus = <&apps_smmu 0x1000 0x402>;
-+
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges;
-+
-+			status = "disabled";
-+
-+			mdss0_mdp: display-controller@ae01000 {
-+				compatible = "qcom,sa8775p-dpu";
-+				reg = <0x0 0x0ae01000 0x0 0x8f000>,
-+				      <0x0 0x0aeb0000 0x0 0x2008>;
-+				reg-names = "mdp", "vbif";
-+
-+				clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
-+					 <&dispcc0 MDSS_DISP_CC_MDSS_AHB_CLK>,
-+					 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_LUT_CLK>,
-+					 <&dispcc0 MDSS_DISP_CC_MDSS_MDP_CLK>,
-+					 <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-+				clock-names = "bus",
-+					      "iface",
-+					      "lut",
-+					      "core",
-+					      "vsync";
-+
-+				assigned-clocks = <&dispcc0 MDSS_DISP_CC_MDSS_VSYNC_CLK>;
-+				assigned-clock-rates = <19200000>;
-+
-+				operating-points-v2 = <&mdss0_mdp_opp_table>;
-+				power-domains = <&rpmhpd RPMHPD_MMCX>;
-+
-+				interrupt-parent = <&mdss0>;
-+				interrupts = <0>;
-+
-+				mdss0_mdp_opp_table: opp-table {
-+					compatible = "operating-points-v2";
-+
-+					opp-375000000 {
-+						opp-hz = /bits/ 64 <375000000>;
-+						required-opps = <&rpmhpd_opp_svs_l1>;
-+					};
-+
-+					opp-500000000 {
-+						opp-hz = /bits/ 64 <500000000>;
-+						required-opps = <&rpmhpd_opp_nom>;
-+					};
-+
-+					opp-575000000 {
-+						opp-hz = /bits/ 64 <575000000>;
-+						required-opps = <&rpmhpd_opp_turbo>;
-+					};
-+
-+					opp-650000000 {
-+						opp-hz = /bits/ 64 <650000000>;
-+						required-opps = <&rpmhpd_opp_turbo_l1>;
-+					};
-+				};
-+			};
-+		};
-+
- 		dispcc0: clock-controller@af00000 {
- 			compatible = "qcom,sa8775p-dispcc0";
- 			reg = <0x0 0x0af00000 0x0 0x20000>;
+Maybe my eyes are tricking me but I'm not seeing any MODULE_IMPORT_NS() in =
+the
+drivers?
 
--- 
-2.34.1
+- Nuno S=C3=A1
+
 
 
