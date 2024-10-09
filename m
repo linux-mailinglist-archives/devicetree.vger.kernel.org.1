@@ -1,111 +1,74 @@
-Return-Path: <devicetree+bounces-109673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F15E9978B6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 00:52:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 078CB9978C6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 00:59:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A1D41B21FB1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:52:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B048E1F2341B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5EC818A6D4;
-	Wed,  9 Oct 2024 22:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9CF919923C;
+	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oE314xCc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j/Llr7Om"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7C838DD6;
-	Wed,  9 Oct 2024 22:52:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A34190499;
+	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728514349; cv=none; b=rkAdwzbhglj6SqCTsYUql6tGRVKLC1CxfUt/42Ohsxeb9U953zEjxFDP9nLML6mKAmMMc9vt98Xkzuw212VhbLTtauVuTHrdMifevzHDZd9+79Akie0N6cGW3ymzglwQoSIM3+jzRjSUoFoRhvTYmZFi+ZIrwEYPERi3LqwZQyU=
+	t=1728514762; cv=none; b=ryE/zbwMaeXm+wEJFECMJYppeA/u2e7+YyJezgINhIyPYgXoTaWMOBqB1WnLoAl1y5LbnVaeLbdsF3umVmjrvaAqYGXYBbyYCAHsZ5XwdUhiRYfM9ZCVnNrLwWymLSVptKqNJ1sprBfL2mnQ4Qom5E8oKNdmUSHwjAXzkU5SD2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728514349; c=relaxed/simple;
-	bh=2DpsgIC2xB71M9j4e8NiR2ZDb0cZVWPP969bZsamMWA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DBy9LIL+G9hFmBkKeysi30BBRj/y1iedNF2ap6A92RUXXiG3gtkOJa084BgjVpOji65eD0UsIivuaCaWVA0227VqObC1k5+TI5rgiWA/dcEe/KIAkqJEW7Zmt4yvnMopUeK0sppUPNeVC8y/KCID6wigtjlPRF+lO1Egz7A/q58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oE314xCc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2B556C4CEC3;
-	Wed,  9 Oct 2024 22:52:24 +0000 (UTC)
+	s=arc-20240116; t=1728514762; c=relaxed/simple;
+	bh=+hV9ctvyE/5w7nQBVOLafrusMSwAuRpOy+IJ31YSq6o=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=glW/rL2rfjGpUdjhPhVB9FLmBHS0yAu+40lMSzVa/v8NnNLFzGTmRp7k/FphnAKBt9ePS+vwHG5VMcOquuo5zoOMpN5bCp5BiMYsZSR8QTZlOxyXhhy50ZJUnZbUDhKUlgbPwRQCh9DnJRtk6xlHUmBDqsDVNItI0lxU/G/0iuI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j/Llr7Om; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48232C4CEC3;
+	Wed,  9 Oct 2024 22:59:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728514349;
-	bh=2DpsgIC2xB71M9j4e8NiR2ZDb0cZVWPP969bZsamMWA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oE314xCcsktTLph2aDLrxjDWtbYCtywhl6o9feGp2GnNJaagXf6V0osJD/EgorZWr
-	 MOe69SILnOZIaJCk/xuX9Ncw6n0yUK1TxKZueDdN5DlD5vBnIUiEsHi5jNzS4VJGkF
-	 8cLH9yeNPgdgOoqyBvOC587WUrJ2wQiIXK5PLnmi0l5r9zzUo0i6y0BD9URZ4ZexGQ
-	 cCS94Wh5UXOXiOV/W8TjqbeJxSsfGhc87Zk6q4E1DCvjRejTjulnvoySGXb4Wxpjlr
-	 gQwxYB09kC+0+dQCKQOEAvKk75Idne0opaa+15E3eCaCmqHWdJbiGNivhIlRHicY/V
-	 FWLpEPYGkb8QA==
-Date: Wed, 9 Oct 2024 23:52:23 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Yangyu Chen <cyy@cyyself.name>, Jinyu Tang <tangjinyu@tinylab.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: interrupt-controller: Add Sophgo
- SG2044 ACLINT SSWI
-Message-ID: <20241009-retool-decorated-f6f7b61119ab@spud>
-References: <20241009224410.53188-1-inochiama@gmail.com>
- <20241009224410.53188-2-inochiama@gmail.com>
+	s=k20201202; t=1728514762;
+	bh=+hV9ctvyE/5w7nQBVOLafrusMSwAuRpOy+IJ31YSq6o=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=j/Llr7Om47okBfrDjzOJvoH2+dab946xBe1qYAGDdj6+CoSsyeJ4yoSsUa3jPl0Rd
+	 mUmVOdIjQeRt5Z+Cpm+eZVUOtOP4itHJijvlihxYM1XP6vGjPvBQrqNvXOvkuBlt90
+	 Yh/7vWMyTL0N4ekz9RVRmgZz+AdCx2BnqWeaG9ftiOfptNSsJiZcn87Qm1pYdpcVqs
+	 Shgun+9xNCkabBmLqq7DepYB7UNlQWN9otwaeHQ3kkna7A7hjAzMLV9DUSlvHuIdrc
+	 7BOU//xDSeeu93meZrXBrIOwEZtoVt2QjdNuMPeXkNOyJINpZri8X3J/OYktkQWM/P
+	 LwQqWgK/iolng==
+Message-ID: <8e4d80ebeb8400d27f1ccd88716bc99a.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mORKp+RCsc5th9HZ"
-Content-Disposition: inline
-In-Reply-To: <20241009224410.53188-2-inochiama@gmail.com>
-
-
---mORKp+RCsc5th9HZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240911143429.850071-2-fshao@chromium.org>
+References: <20240911143429.850071-1-fshao@chromium.org> <20240911143429.850071-2-fshao@chromium.org>
+Subject: Re: [PATCH v3 1/8] dt-bindings: spmi: spmi-mtk-pmif: Add compatible for MT8188
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Fei Shao <fshao@chromium.org>, Rob Herring (Arm) <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Fei Shao <fshao@chromium.org>, Matthias Brugger <matthias.bgg@gmail.com>
+Date: Wed, 09 Oct 2024 15:59:20 -0700
+User-Agent: alot/0.12.dev1+gaa8c22fdeedb
 
-On Thu, Oct 10, 2024 at 06:44:07AM +0800, Inochi Amaoto wrote:
-> Sophgo SG2044 has a new version of T-HEAD C920, which implement
-> a fully featured ACLINT device. This ACLINT has an extra SSWI
-> field to support fast S-mode IPI.
+Quoting Fei Shao (2024-09-11 07:33:54)
+> Add compatible string for the SPMI block on MT8188 SoC, which is
+> compatible with the one used on MT8195.
 >=20
-> Add necessary compatible string for the T-HEAD ACLINT sswi device.
->=20
-> Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> Acked-by: Stephen Boyd <sboyd@kernel.org>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
+ora.com>
+> Signed-off-by: Fei Shao <fshao@chromium.org>
+> ---
 
-This is not a complaint about speed of reposting, but I do have
-outstanding thoughts on the previous version of the patch. I've just
-been really busy with work this week and not yet had a chance to get
-back to you on it. I'll, hopefully, get there tomorrow.
-
---mORKp+RCsc5th9HZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwcJJgAKCRB4tDGHoIJi
-0leXAQDu/yK6OUIRAlXZ9jiK2OQUR90cLjuSBNWMpu5QDGZr+AEAyqf4vq9FHoNV
-FdDEIVwNZH0JxVX3zAAZ9TjJiaveUAo=
-=wYUM
------END PGP SIGNATURE-----
-
---mORKp+RCsc5th9HZ--
+Applied to spmi-next
 
