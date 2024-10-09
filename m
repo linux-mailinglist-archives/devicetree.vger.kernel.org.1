@@ -1,129 +1,212 @@
-Return-Path: <devicetree+bounces-109394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109395-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DBA619964D5
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:19:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C969964F4
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:21:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DDD5B211D7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:19:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBB711F21F2B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:21:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B886418A6DD;
-	Wed,  9 Oct 2024 09:17:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B9B18E345;
+	Wed,  9 Oct 2024 09:19:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Q1VLBxCy"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="g/NX4I02"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3593918A6BC;
-	Wed,  9 Oct 2024 09:17:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EFA418B47E
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 09:19:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728465476; cv=none; b=so3iXnliuauhFBqL9f0ssjMUAiKgjFNkjX7Rm9y5+vou7baLsgtLK7SXy+wfNe0RLOVzN028N58ZuUiiMAeHsgN1DnXs+bl7zQKf3K0CCe6brx4V81KcEXrssKBZwQYeDWMY+N/MVRLwbGlZ2W93R47aOkgDcFXN7YotN3AcAw4=
+	t=1728465588; cv=none; b=ooYTDMq1+SMhkTEbiXNlfig5XklembI6vHsGl5N4AyK6ue2sQwlxGOjOZJNVpFiFU8+3y030AiN/1B+yvmHe2l9UuhvTds5tHCTz/QY3OnHO3l8O6zlFAJc58YW+LkkVWl4wNc6Uz/TqRTSaSeSBwxFrzAOU0q2muW5yKhgNVqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728465476; c=relaxed/simple;
-	bh=Js9jBckP5Mh1h3ITIeHDzaiGv6P2dXs1sU/ZQUt4Kt0=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=brwHeCwhF9CS97n8DVxR6D6Y3VZNbh1gbiNrhacuG4i8q3GpKj0uPgzlZu4IMC/qQenhtRq9PvFnVjoikLQXB4a+9mKrN3cYd+LT4mqdnJ3g5SMZJR1BCBK9PGg7MbsMVUMcXWkmV025KMAijAd9mhnKyJOHAHNgVD3q9atR3PI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Q1VLBxCy; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49965QGZ029556;
-	Wed, 9 Oct 2024 09:17:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=Iyg6YvmHfFOAHjDa4JL9yq
-	qYTUYxm1A7VZRhszd+h9w=; b=Q1VLBxCy0po6QPG0Fsb81dr43csCqQewoLhpuK
-	nvFydTpR0Quu/Vw2l6C0ctiT6bubTychlb1q8Xf1UnDA250PfVsclwa+DFHoop5i
-	gfm6LzRb8C5pUmtEb/3TzwhuOWeVGPgQhZd9DjIMPJBtCxOn8m1ISxAABp+DgVpn
-	stMhhTEM8WgMPmVPhfX/h6ndBcIUd6t86ziXU6XrogDaH9ANrZlYtBfoqJzz/ZtU
-	ugf7H5gPP+/xJ5PBuDMTh3j7jreQYv5rnvy/axm0oZv24leJ3RfgkUWDyF96LS2b
-	hGSXZEdssz+fDHyyo9+bLxmni8AsHOE4jZwX+7oFCzdYJaDw==
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424yj0410y-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 09:17:40 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 4999Hd7V020618
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 09:17:39 GMT
-Received: from 3b5b8f7e4007.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 02:17:38 -0700
-From: Songwei Chai <quic_songchai@quicinc.com>
-To: Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Mike Leach
-	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
-        "Alexander
- Shishkin" <alexander.shishkin@linux.intel.com>,
-        Andy Gross
-	<agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Songwei Chai <quic_songchai@quicinc.com>, <linux-kernel@vger.kernel.org>,
-        <coresight@lists.linaro.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2] Coresight: Narrow down the matching range of tpdm
-Date: Wed, 9 Oct 2024 17:17:27 +0800
-Message-ID: <20241009091728.1638-1-quic_songchai@quicinc.com>
-X-Mailer: git-send-email 2.45.2
+	s=arc-20240116; t=1728465588; c=relaxed/simple;
+	bh=n9NcSx6B6mq5gEWt7lUtBdnyNqrVS/k0PL3jsKufD5g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lnt5p49pHiR/cW52ft0abEX9DlChR1LmAqtGtu6DDnuKtDhXNGa2BIm5ved/beQcBe1dV4nSN+kkWE1GUwkM6T8vbLzTJSSVxzN52V4YQMPyMBHbPg6AZLQIFiwRjjSn8Svi1ICjV9peVrfgMSyMV1q7q8FEqc2g6pxre3SQGHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=g/NX4I02; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-430ee5c9570so6005475e9.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 02:19:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728465583; x=1729070383; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jBR7OYZriJhDfvISw9B9LqPMX41wXLMjEmHGfAiqmLI=;
+        b=g/NX4I02L2fPyqNGD/tN6mEzDnMMeD7pE5MlfoNWYJz4qYQobZ8wFJ8QuqHEx8QvB4
+         wyS1BE6KpcFuaajpDKiOGp6m5Eqw02xDjQJOs1KwEittqGLyJ/g+RrEA8C4/65zP6h4j
+         bi2Ca/rDpWy3n9Zq5LvDo+yYcZN2xiKtxRsekW/rUeKWo+o9o2hMLyYOlvrIHo4mwviT
+         IoFpPkEV+/akfHEetrKBKA/v6ZfrBbXzNHcZQ/P0WAgDnKStgHpOZDoyYF3SdsdAu5jc
+         ZSOhXI8FrgZK/7iZTO51S6O2t6XuElwSVU+++Y/V9/lGpBa3tnl0X+pym7NX3uTkIi1g
+         u7yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728465583; x=1729070383;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jBR7OYZriJhDfvISw9B9LqPMX41wXLMjEmHGfAiqmLI=;
+        b=XtRqdm10dPmgopgqsb5pw8xdFLlICBULlY663oCtcuuZMnrPZp+oHc4jU+HvVdfrgW
+         4PFMtIO6n6ZFcodi121O+BmRMM1j6Jy4rVEnFzxtPjnCrb6alX2+twCIE3x9dLkdqZDS
+         yN7gi7O9tsHXJk2CQyWHaJqUGMfSM85QTFyleQkUe/V17yKkdHA8/JIwxKgx7VxfTqQS
+         XyjYxGgh6HDlhoPIg+FPu2+kJC1dyboHN9dTnG6IECy/nw8GArFF2aUXQAhRVitEOnWr
+         zZbVYePd46t0nJqdgbbsmhADfU+vdYVtsBsMxCu58xM/qOnH4Vx/vhIX1VQQ+o8j3izo
+         ZdlQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYH1uZ5IYiURBBbFluMjovRi0PKKYNaqVgu+tUtBgzc2FJHwHnYMCiFeME1gL7G/5aPYGz4cCOBtlA@vger.kernel.org
+X-Gm-Message-State: AOJu0YwrEG+xOaZtOMI7ORQxSL84rU+02qAxR0RT2EAi1DQXRcA7Zxyk
+	jG3RXclge+CIN1qRiH9hl3vYWUAyOChoJZxA9vFNch3dov4ExpiW51j3hk7PvMc=
+X-Google-Smtp-Source: AGHT+IFjXWWvtj0jzmE/w31GHgXvDjDbLGpThHIRDRdfMpzR6HxFmqq2psvrZUA+k9uwR4WGYITAMQ==
+X-Received: by 2002:a05:600c:19ca:b0:42c:bbd5:727b with SMTP id 5b1f17b1804b1-430d70b3d31mr17564835e9.25.1728465582224;
+        Wed, 09 Oct 2024 02:19:42 -0700 (PDT)
+Received: from [127.0.1.1] (frhb82016ds.ikexpress.com. [185.246.87.17])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-430d59b1207sm13892765e9.31.2024.10.09.02.19.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 02:19:41 -0700 (PDT)
+From: Guillaume Stols <gstols@baylibre.com>
+Subject: [PATCH v4 0/8] Add iio backend compatibility for ad7606
+Date: Wed, 09 Oct 2024 09:19:31 +0000
+Message-Id: <20241009-ad7606_add_iio_backend_support-v4-0-6971a8c0f1d5@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: IKrVCpdMqWnm3AQHIjltO6dVMKYBpWyP
-X-Proofpoint-ORIG-GUID: IKrVCpdMqWnm3AQHIjltO6dVMKYBpWyP
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 impostorscore=0
- bulkscore=0 mlxlogscore=931 mlxscore=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 suspectscore=0 priorityscore=1501 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090061
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKNKBmcC/4XO3UrEMBCG4VtZcmxk8tMk3SPvQ6RMkqkbdNuad
+ IvL0ns3dkFBhB5+c/DMe2OFcqLCjocby7SkksahDv1wYOGEwyvxFOtmEqQGKxuO0RowHcbYpTR
+ 2HsMbDbErl2ka88yDBqGgQdNKzSoyZerT5/bg+eW+M31c6p/5fmQeC/Ewns9pPh5a48nYgAg9a
+ AlRC+mCN7YH6320aHrdEihk39YplXnM1619ERu2ZTqxm7kIDjwQKhLCC0T95PH6nnymx5qy6Yv
+ 8FVsJu6KsIpB11kkkG+EfUf2IAkDviqqKytnGgpCBnPwjruv6BQwvFpq/AQAA
+To: =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Michael Hennerich <michael.hennerich@analog.com>, 
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+ aardelean@baylibre.com, dlechner@baylibre.com, jstephan@baylibre.com, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Guillaume Stols <gstols@baylibre.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728465581; l=5077;
+ i=gstols@baylibre.com; s=20240417; h=from:subject:message-id;
+ bh=n9NcSx6B6mq5gEWt7lUtBdnyNqrVS/k0PL3jsKufD5g=;
+ b=8So2hJjBpW+YQoPjEqfgcs8pso2hqjXTv7ye0zuY1s3sg325sPLFleO65eS1Sts/VcXsxp6Ht
+ kxlSt+kMRklAr4uGyI7N+uBvarxBJ1NCGA8QJahVt7UdOiV28+XXM6L
+X-Developer-Key: i=gstols@baylibre.com; a=ed25519;
+ pk=XvMm5WHuV67sGYOJZqIYzXndbaJOlNd8Q6li6vnb4Cs=
 
-The format of tpdm's peripheral id is 1f0exx. To avoid potential
-conflicts in the future, update the .id_table's id to 0x001f0e00.
-This update will narrow down the matching range and prevent incorrect
-matches. For example, another component's peripheral id might be
-f0e00, which would incorrectly match the old id.
+This series aims to add iio backend support for AD7606X ADCs.
 
-Fixes: b3c71626a9333b0b29f9921a39ce ("Coresight: Add coresight TPDM source driver")
-Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+In a nutshell, iio backend is a paradigm to shift the logic establishing
+the connexion between iio buffers and backend buffers into the backend's
+driver.  This provides a more stable programming interface to the driver
+developers, and give more flexibility in the way the hardware communicates.
+
+The support will be first added on AD7606B, and on next patches AD7606C16
+and AD7606C18 will be added.  The series have been tested on a Zedboard,
+using the latest HDL available, i.e
+https://github.com/analogdevicesinc/hdl/commit/7d0a4cee1b5fa403f175af513d7eb804c3bd75d0
+and an AD7606B FMCZ EKV.  This HDL handles both the conversion trigger
+(through a PWM), and the end of conversion interruption, and is compatible
+with axi-adc, which is "iio-backendable".
+
+More information about this HDL design can be found at:
+https://wiki.analog.com/resources/eval/user-guides/ad7606x-fmc/hdl
+
+The support is thus separated in two parts:
+
+- PWM support was first added.  My first intention was to make it available
+  for any version of the driver, but the time required to handle the
+  interruption is not neglectable, and I saw drifts that would eventually
+  cause an overlapping SPI read with a new conversion trigger, whith
+  catastrphic consequences. To mitigate this, CRC check must be
+  implemented, but indeed increasing the samplerate causes more sample to
+  be lost.  Therefore, I decided to only allow PWM for iio-backend
+  powered device as a first intention, leaving open the possibility to
+  add the general compatibility afterwards.
+
+- IIO backend support was added: Once the PWM support was ready, the driver
+  can be extended to iio-backend. The iio-backend powered version of the
+  driver is a platform driver, and an exemple devicetree node is available
+  in the bindings.
+
+The following features will be added in subsequent patch series:
+ - software mode for iio backend
+ - 18 bits mode (AD7606C18)
+ - single read (IIO_CHAN_READ_RAW)
+
+Signed-off-by: Guillaume Stols <gstols@baylibre.com>
 ---
- drivers/hwtracing/coresight/coresight-tpdm.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Changes in v4:
+- Removal of accepted patches.
+- Correction on fsleep (missing semicolon and incorrect spelling !).
+- Correction on buffer initialization that should not be conditionned by
+  the presence or not of a PWM, but by the presence of a backend.
+- Addition of blank lines between blocks.
+- Modification of some declaration to switch variables to static.
+- Link to v3: https://lore.kernel.org/r/20241004-ad7606_add_iio_backend_support-v3-0-38757012ce82@baylibre.com
 
-diff --git a/drivers/hwtracing/coresight/coresight-tpdm.c b/drivers/hwtracing/coresight/coresight-tpdm.c
-index b7d99e91ab84..3230d76aed90 100644
---- a/drivers/hwtracing/coresight/coresight-tpdm.c
-+++ b/drivers/hwtracing/coresight/coresight-tpdm.c
-@@ -1308,8 +1308,8 @@ static void tpdm_remove(struct amba_device *adev)
-  */
- static struct amba_id tpdm_ids[] = {
- 	{
--		.id = 0x000f0e00,
--		.mask = 0x000fff00,
-+		.id	= 0x001f0e00,
-+		.mask	= 0x00ffff00,
- 	},
- 	{ 0, 0, NULL },
- };
+Changes in v3:
+- Rebase on top of the series adding ad7606C16 and AD7606C18 support.
+- Addition of pwm-names actual values and improvement in the
+  description.
+- Introduction of .num_adc_channels field in ad7606_chip_info that
+  defines the number of hardware inputs.
+- Introduction of ad7606_bus_info which couples hardware and wiring
+  informations.
+- Addition of a delay in the scan_direct function for the backend.
+- Link to v2: https://lore.kernel.org/r/20240920-ad7606_add_iio_backend_support-v2-0-0e78782ae7d0@baylibre.com
+
+Changes in v2:
+- Logical change in dt-bindings, using a flag for the interface instead of
+  infering it from the value of the "reg" property.
+- Removal of get_platform_match_data addition, instead the logic is
+  directly used in the file.
+- Removal of use and export of pwm_get_state_hw, returning the configured
+  frequency instead of the running one.
+- Correction on various typos, whitespaces, bad order of includes.
+- Separation of SPI conditions and PWM disabling for no backend in other
+  commits.
+- Link to v1: https://lore.kernel.org/r/20240815-ad7606_add_iio_backend_support-v1-0-cea3e11b1aa4@baylibre.com
+
+---
+Guillaume Stols (8):
+      dt-bindings: iio: adc: ad7606: Remove spi-cpha from required
+      dt-bindings: iio: adc: ad7606: Add iio backend bindings
+      Documentation: iio: Document ad7606 driver
+      iio: adc: ad7606: Add PWM support for conversion trigger
+      iio: adc: ad7606: Add compatibility to fw_nodes
+      iio: adc: ad7606: Introduce num_adc_channels
+      iio: adc: ad7606: Add iio-backend support
+      iio: adc: ad7606: Disable PWM usage for non backend version
+
+ .../devicetree/bindings/iio/adc/adi,ad7606.yaml    |  72 ++-
+ Documentation/iio/ad7606.rst                       | 145 ++++++
+ Documentation/iio/index.rst                        |   1 +
+ MAINTAINERS                                        |   1 +
+ drivers/iio/adc/Kconfig                            |   2 +
+ drivers/iio/adc/ad7606.c                           | 575 +++++++++++++++------
+ drivers/iio/adc/ad7606.h                           |  51 +-
+ drivers/iio/adc/ad7606_par.c                       | 123 ++++-
+ drivers/iio/adc/ad7606_spi.c                       |  96 ++--
+ 9 files changed, 839 insertions(+), 227 deletions(-)
+---
+base-commit: 96be67caa0f0420d4128cb67f07bbd7a6f49e03a
+change-id: 20240725-ad7606_add_iio_backend_support-c401305a6924
+
+Best regards,
+--
+Guillaume Stols <gstols@baylibre.com>
 
 
