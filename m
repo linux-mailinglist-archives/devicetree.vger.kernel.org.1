@@ -1,150 +1,96 @@
-Return-Path: <devicetree+bounces-109584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 997B6997104
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 18:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A805997137
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 18:24:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 509F02857D6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:19:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B279287360
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:24:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723A31A256B;
-	Wed,  9 Oct 2024 16:01:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BDA01F1312;
+	Wed,  9 Oct 2024 16:12:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UD980E8A"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hxvP+wX7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40C65161313;
-	Wed,  9 Oct 2024 16:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1B2B1F130A;
+	Wed,  9 Oct 2024 16:12:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728489695; cv=none; b=d6lyyFvMYYsFZDJMIQrBAhgbnEa38gvcxq1r5mgMyoO9RiBrqy6BPrdS4SI2VSVK74ZUToWrmgLVaGWnFH7pMc/U53A/Iad925IeH0XetZsR9WIXySbkh3NC0YO1Y/Gn/Xlfu9Nga0a1/Iw61Z3dx7iFyzW9xry0hj/z3X5sC7o=
+	t=1728490369; cv=none; b=jrfH1IiqyVw60worblUIVHKDRzrU1yOH+8r3WT0/F9tUZOBWC1Wj0xAJkhD7SSYL0B834ZvTwepu7WOFrt8ZHq+yczqs7q1fHYp5a8S78nsaWeB13mCq54k8/ep2SPf8hAJV6Uvx8Lv3x7X6rLOlMCLAsi6FHUrCwZ1aciXEWqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728489695; c=relaxed/simple;
-	bh=aPf5UiYG1vsp/Il+DJSTs1K8163OCruXIBTQfDcJnk4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sp/g+g2u43ldo8jG8+ICh/YrMUTACP2lSItf5jdny17KkbJz+lR+G5Prj6bz00aIWZ1m6AY/TpUWNWbwnunOepmnBc6ExO8B59iz4Xtpvin6p4mIsv72D2F5LhStqHuEWh1M/Qgd00hMdgqRJsRUhSX1elAucWNnSycO0lLYrh0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UD980E8A; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4D56CC4CEC3;
-	Wed,  9 Oct 2024 16:01:30 +0000 (UTC)
+	s=arc-20240116; t=1728490369; c=relaxed/simple;
+	bh=S5aG80GvrKdfMXVhakyIDR2NbDXeLTTdwzkg9R4l52A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=gfVQwQWLWGM4k/N42KhTFmQ7G1YI0/xT+qJETeISj2+1xLaZItfttmRdMSHKh/OGtQa8pzQvSIZUvjjln3s/5hXnXAf5bpaa8rIehCd57sJLzFJWirizC3ooISyO5Edlb7IMgmKvUBBYMRmzTJQsH4GHJPcDDE6CjrbA7ejufsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hxvP+wX7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04529C4CEC3;
+	Wed,  9 Oct 2024 16:12:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728489694;
-	bh=aPf5UiYG1vsp/Il+DJSTs1K8163OCruXIBTQfDcJnk4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UD980E8ANwBR8CV6W0r545AsFquNd6VQJLZAhzv03kH/2722yJVUfx2XR5s9jc9Wc
-	 AUV5IbyCzTe3Coa25RIdrCecLNl0dL1/4PhErHS0znpmrtwWfuAMeKgbM+GXln8oI9
-	 wUmpInMKAAcNs4mTA6YGMM9+PyyOM6pz5XyU+lN2uzAffaKOG9V0OvZ3BjUvrIGGPU
-	 3cs3lX6bGTBCIgzzCH/8c+ZJ22OzxMpevAA0YLfuVThtbrF1cAezHQ8WwvwisbXVg/
-	 +7tZqaCl31FNmzpnYGWSPo/4SPE7bDk16U78rzvUaGoglXbgaUj8yNtEcg4w8M05r7
-	 +lwC1rbHYVY2g==
-Date: Wed, 9 Oct 2024 18:01:27 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: manivannan.sadhasivam@linaro.org, aisheng.dong@nxp.com,
-	bhelgaas@google.com, devicetree@vger.kernel.org, festevam@gmail.com,
-	imx@lists.linux.dev, jdmason@kudzu.us, kernel@pengutronix.de,
-	kishon@kernel.org, kw@linux.com,
-	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lorenzo.pieralisi@arm.com, lpieralisi@kernel.org, maz@kernel.org,
-	s.hauer@pengutronix.de, shawnguo@kernel.org, tglx@linutronix.de,
-	dlemoal@kernel.org
-Subject: Re: [PATCH v2 0/5] Add RC-to-EP doorbell with platform MSI controller
-Message-ID: <Zwao1x7m3MTT98NT@ryzen.lan>
-References: <20230911220920.1817033-1-Frank.Li@nxp.com>
+	s=k20201202; t=1728490368;
+	bh=S5aG80GvrKdfMXVhakyIDR2NbDXeLTTdwzkg9R4l52A=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=hxvP+wX7aPWLqTtiZP+W8BDHgAQNj/T5T8gVd3ljVbXCq7+6iSTL6G8IFidPvHgFc
+	 KVENSUMRVifuvcHhLxz+1mol24tzx4g1EVoBfTmbqkKr9OFtjFEjIa7uxWtpZqtzNq
+	 wZgU/F82FY31jx76spPYH2BrUz2uHoqf7DLMn2JMMdmdglyYA7o/n7BlG2Rgbtdirb
+	 VSQx47sSgJYaWCmy4huSPc0iRSCOJfC/QqAU0B+RlrLPor8c0w1u+w8SdmTJJiE+5/
+	 cfAKtrz9tOVWwLAuLX8q9qjcv70jvJKpZnupmXLtzLB9Lq/CWM9iv0MExz+UeL3NTS
+	 IctUKp5itIGUw==
+From: Lee Jones <lee@kernel.org>
+To: linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
+Cc: Conor Dooley <conor.dooley@microchip.com>, 
+ Daire McNamara <daire.mcnamara@microchip.com>, 
+ pierre-henry.moussay@microchip.com, valentina.fernandezalanis@microchip.com, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones <lee@kernel.org>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, linux-riscv@lists.infradead.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20241002-clambake-raider-a8cbb3a021a8@spud>
+References: <20241002-private-unequal-33cfa6101338@spud>
+ <20241002-clambake-raider-a8cbb3a021a8@spud>
+Subject: Re: (subset) [PATCH v1 03/11] dt-bindings: mfd: syscon document
+ the non simple-mfd syscon on PolarFire SoC
+Message-Id: <172849036272.666113.12889452067505651673.b4-ty@kernel.org>
+Date: Wed, 09 Oct 2024 17:12:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230911220920.1817033-1-Frank.Li@nxp.com>
+X-Mailer: b4 0.13.0
 
-On Mon, Sep 11, 2023 at 06:09:15PM -0400, Frank Li wrote:
-> ┌────────────┐   ┌───────────────────────────────────┐   ┌────────────────┐
-> │            │   │                                   │   │                │
-> │            │   │ PCI Endpoint                      │   │ PCI Host       │
-> │            │   │                                   │   │                │
-> │            │◄──┤ 1.platform_msi_domain_alloc_irqs()│   │                │
-> │            │   │                                   │   │                │
-> │ MSI        ├──►│ 2.write_msi_msg()                 ├──►├─BAR<n>         │
-> │ Controller │   │   update doorbell register address│   │                │
-> │            │   │   for BAR                         │   │                │
-> │            │   │                                   │   │ 3. Write BAR<n>│
-> │            │◄──┼───────────────────────────────────┼───┤                │
-> │            │   │                                   │   │                │
-> │            ├──►│ 4.Irq Handle                      │   │                │
-> │            │   │                                   │   │                │
-> │            │   │                                   │   │                │
-> └────────────┘   └───────────────────────────────────┘   └────────────────┘
+On Wed, 02 Oct 2024 11:48:01 +0100, Conor Dooley wrote:
+> The "mss_top_scb" register region on PolarFire SoC contains many
+> different functions, including controls for the AXI bus and other things
+> mainly of interest to the bootloader. The interrupt register for the
+> system controller's mailbox is also in here, which is needed by the
+> operating system.
 > 
-> This patches based on old https://lore.kernel.org/imx/20221124055036.1630573-1-Frank.Li@nxp.com/
 > 
-> Original patch only target to vntb driver. But actually it is common
-> method.
-> 
-> This patches add new API to pci-epf-core, so any EP driver can use it.
-> 
-> The key point is comments from Thomas Gleixner, who suggest use new
-> PCI/IMS. But arm platform change still not be merged yet.
-> 
-> git://git.kernel.org/pub/scm/linux/kernel/git/tglx/devel.git devmsi-v2-arm
-> 
-> So I still use existed method implement RC to EP doorbell.
-> 
-> If Thomas Gleixner want to continue work on devmsi-v2-arm, I can help test
-> and update this patch.
-> 
-> Change from v1 to v2
-> - Add missed patch for endpont/pci-epf-test.c
-> - Move alloc and free to epc driver from epf.
-> - Provide general help function for EPC driver to alloc platform msi irq.
-> - Fixed manivannan's comments.
-> 
-> Frank Li (5):
->   PCI: endpoint: Add RC-to-EP doorbell support using platform MSI
->     controller
->   PCI: dwc: add doorbell support by use MSI controller
->   PCI: endpoint: pci-epf-test: add doorbell test
->   misc: pci_endpoint_test: Add doorbell test case
->   tools: PCI: Add 'B' option for test doorbell
-> 
->  drivers/misc/pci_endpoint_test.c              |  48 +++++
->  .../pci/controller/dwc/pcie-designware-ep.c   |   2 +
->  drivers/pci/endpoint/functions/pci-epf-test.c |  59 +++++-
->  drivers/pci/endpoint/pci-epc-core.c           | 192 ++++++++++++++++++
->  drivers/pci/endpoint/pci-epf-core.c           |  44 ++++
->  include/linux/pci-epc.h                       |   6 +
->  include/linux/pci-epf.h                       |   7 +
->  include/uapi/linux/pcitest.h                  |   1 +
->  tools/pci/pcitest.c                           |  16 +-
->  9 files changed, 373 insertions(+), 2 deletions(-)
-> 
-> -- 
-> 2.34.1
-> 
+> [...]
 
-Hello Frank,
+Applied, thanks!
 
-Thank you for your work on this.
-This series is very interesting.
+[03/11] dt-bindings: mfd: syscon document the non simple-mfd syscon on PolarFire SoC
+        commit: 8ae16d3b2ff6650a90be78881cb88dcdf1bd1370
 
-As you probably know, IMS support was ripped out of the kernel a few
-months ago:
-b966b1102871 ("Revert "PCI/MSI: Provide IMS (Interrupt Message Store) support"")
+--
+Lee Jones [李琼斯]
 
-So this series seems as relevant as ever.
-
-Are you considering continuing work on this series any time soon?
-
-
-Kind regards,
-Niklas
 
