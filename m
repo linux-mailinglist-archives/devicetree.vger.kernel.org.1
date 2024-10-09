@@ -1,156 +1,228 @@
-Return-Path: <devicetree+bounces-109416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 737AF996615
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:55:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F00A996627
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:56:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A59941C24B58
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:55:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C328289FE3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:56:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C96191494;
-	Wed,  9 Oct 2024 09:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KUe/1xJ5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E3818DF73;
+	Wed,  9 Oct 2024 09:54:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA51190696;
-	Wed,  9 Oct 2024 09:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5177218BB9E;
+	Wed,  9 Oct 2024 09:54:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728467631; cv=none; b=euelM93rRw8IqYo/m2rXnQbCOq8oXMBCgR5rTFLDdqhofnp5u84bSukTdldXjokDIWTnYRJHCjl9uNqLP4LLtDtiC84Ay3qKIqtrD2V5VpNxQ8UUPOTdofFnEJSdbFTlx2bHXGwwLoXv7t0Ktabnu6hMqZs27JWGC86Iw7LGYNk=
+	t=1728467694; cv=none; b=aVNFz1eR9OvSGUKEutgMvobDA9cDW4fPDP5HBoMG+xi/jo3ahhXFHRkgB9pjAokVrk6/IUkaO+Y1MWOvXLiQmcomFdvDfdhhD0Wms+c06/4N1x2r7o4s/IUUiGaCOMJvvv6XcbY7pccEhmJGKo8Gsrqxfbbpc1R7/UC7FQo/92I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728467631; c=relaxed/simple;
-	bh=NIyPMmhdZjGAs7fBYKVzyddUl0tMwlIKJxqntEDOS0U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IRAfC9BPRyMXWcnRJZVVr8eJGwJQ57CBqNSAxrKd+/Pl2BvYzS7GTxFdcYZ2VWdj0NA7lrXuJZ70ZEggmBccHeQQKoSCnXDG9ZPUDJy7XdTstoihC90tWkJqGYPOhIixOiffdKaqsqYlr13Stq3asgqiLC37fKGwg7mADr2dLr4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KUe/1xJ5; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728467630; x=1760003630;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=NIyPMmhdZjGAs7fBYKVzyddUl0tMwlIKJxqntEDOS0U=;
-  b=KUe/1xJ5HdFIHVEzFOqY2wND0iAcOsFmA4hScwa5gUjiJVAnwSohUwKE
-   fJkKz0WCkQXBS+Ea4qC95J+Jhi1Dl8jYIHtPXhzCxYrIOV8uIBlA9yGzo
-   2CegD5nvlvtC+jH+UfYgRop7EWX5gqOqgT2DqaPtfJW27dqJ4B25G/6xM
-   ySUbZfFduM0t6Q0XxjficufUEkIfmgxpkdr9uSwgR8DpIEI0r2LSCvmuZ
-   wOdB4fhdrrloIrU4AAeWBo5Mr2HuH9Zg4w/vTfJTQ5q9qgldPd6brYI23
-   ayAMyjCQqqQol8dlDDuyApA+l9V6pJtiCTgXqBUEC8nq6Uw6wvNxiVjCj
-   Q==;
-X-CSE-ConnectionGUID: h+BE4+MUSryu++K1M1mJMQ==
-X-CSE-MsgGUID: L9trdupMSGuiA0rg302acQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11219"; a="27649801"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
-   d="scan'208";a="27649801"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2024 02:53:50 -0700
-X-CSE-ConnectionGUID: tMctLKAAQnSQz9R1a7sZow==
-X-CSE-MsgGUID: /L/cKijTS2CyMnLn+ctVzQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
-   d="scan'208";a="75789835"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa006.fm.intel.com with ESMTP; 09 Oct 2024 02:53:45 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1syTO2-00094m-2v;
-	Wed, 09 Oct 2024 09:53:42 +0000
-Date: Wed, 9 Oct 2024 17:52:54 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xu Yang <xu.yang_2@nxp.com>, vkoul@kernel.org, kishon@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-	festevam@gmail.com, gregkh@linuxfoundation.org,
-	peter.chen@kernel.org, herve.codina@bootlin.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
-	jun.li@nxp.com
-Subject: Re: [PATCH v6 1/3] phy: fsl-imx8mq-usb: add tca function driver for
- imx95
-Message-ID: <202410091742.HgStY96T-lkp@intel.com>
-References: <20241008062744.2211539-1-xu.yang_2@nxp.com>
+	s=arc-20240116; t=1728467694; c=relaxed/simple;
+	bh=HcBWktRVj7yOa0Q3x+sfHF6i79Q77mvz/xLNMXrAngk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MS7bD+/Ej9Ntlu1ZKxEzHKUkt0ooEU/FxVJxalrquasCOLwTdiQTQMMuo/0ieEU+eeN7BwrWTCps3lj9g3l9zJAiKKg4hW/k9HBH6JXq4z3nU3og8n4qs+vlYQ+QoBuaMYQ6veRhwM9VgDAhODhom44DFvfLqypsGIlwlyNEvuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 320A8FEC;
+	Wed,  9 Oct 2024 02:55:21 -0700 (PDT)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C36353F64C;
+	Wed,  9 Oct 2024 02:54:49 -0700 (PDT)
+Message-ID: <bc94a937-0b61-4f96-87e4-80af544d6453@arm.com>
+Date: Wed, 9 Oct 2024 10:54:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241008062744.2211539-1-xu.yang_2@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 RESEND 3/3] coresight: dummy: Add static trace id
+ support for dummy source
+To: Mao Jinlong <quic_jinlmao@quicinc.com>, Mike Leach
+ <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20240910100127.8948-1-quic_jinlmao@quicinc.com>
+ <20240910100127.8948-4-quic_jinlmao@quicinc.com>
+Content-Language: en-US
+From: Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20240910100127.8948-4-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Xu,
+On 10/09/2024 11:01, Mao Jinlong wrote:
+> Some dummy source has static trace id configured in HW and it cannot
+> be changed via software programming. Configure the trace id in device
+> tree and reserve the id when device probe.
+> 
+> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
+> ---
+>   .../sysfs-bus-coresight-devices-dummy-source  | 15 +++++
+>   drivers/hwtracing/coresight/coresight-dummy.c | 59 +++++++++++++++++--
+>   2 files changed, 70 insertions(+), 4 deletions(-)
+>   create mode 100644 Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> 
+> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> new file mode 100644
+> index 000000000000..db770bc972d9
+> --- /dev/null
+> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-dummy-source
+> @@ -0,0 +1,15 @@
+> +What:		/sys/bus/coresight/devices/dummy_source<N>/enable_source
+> +Date:		July 2024
 
-kernel test robot noticed the following build warnings:
+Update the date please
 
-[auto build test WARNING on shawnguo/for-next]
-[also build test WARNING on linus/master v6.12-rc2 next-20241008]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> +KernelVersion:	6.9
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Xu-Yang/arm64-dts-imx95-add-usb3-related-nodes/20241008-152345
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/shawnguo/linux.git for-next
-patch link:    https://lore.kernel.org/r/20241008062744.2211539-1-xu.yang_2%40nxp.com
-patch subject: [PATCH v6 1/3] phy: fsl-imx8mq-usb: add tca function driver for imx95
-config: arm-randconfig-r121-20241009 (https://download.01.org/0day-ci/archive/20241009/202410091742.HgStY96T-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20241009/202410091742.HgStY96T-lkp@intel.com/reproduce)
+6.13
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410091742.HgStY96T-lkp@intel.com/
+Similarly for the ones below.
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/phy/freescale/phy-fsl-imx8mq-usb.c:264:24: sparse: sparse: Using plain integer as NULL pointer
->> drivers/phy/freescale/phy-fsl-imx8mq-usb.c:272:27: sparse: sparse: incorrect type in return expression (different address spaces) @@     expected struct tca_blk * @@     got void [noderef] __iomem *base @@
-   drivers/phy/freescale/phy-fsl-imx8mq-usb.c:272:27: sparse:     expected struct tca_blk *
-   drivers/phy/freescale/phy-fsl-imx8mq-usb.c:272:27: sparse:     got void [noderef] __iomem *base
-   drivers/phy/freescale/phy-fsl-imx8mq-usb.c: note: in included file (through include/linux/mmzone.h, include/linux/gfp.h, include/linux/umh.h, include/linux/kmod.h, ...):
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
-   include/linux/page-flags.h:235:46: sparse: sparse: self-comparison always evaluates to false
 
-vim +264 drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> +Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:	(RW) Enable/disable tracing of dummy source. A sink should be activated
+> +		before enabling the source. The path of coresight components linking
+> +		the source to the sink is configured and managed automatically by the
+> +		coresight framework.
+> +
+> +What:		/sys/bus/coresight/devices/dummy_source<N>/traceid
+> +Date:		July 2024
+> +KernelVersion:	6.9
+> +Contact:	Mao Jinlong <quic_jinlmao@quicinc.com>
+> +Description:	(R) Show the trace ID that will appear in the trace stream
+> +		coming from this trace entity.
+> diff --git a/drivers/hwtracing/coresight/coresight-dummy.c b/drivers/hwtracing/coresight/coresight-dummy.c
+> index ac70c0b491be..3bf5437cbfb1 100644
+> --- a/drivers/hwtracing/coresight/coresight-dummy.c
+> +++ b/drivers/hwtracing/coresight/coresight-dummy.c
+> @@ -11,10 +11,12 @@
+>   #include <linux/pm_runtime.h>
+>   
+>   #include "coresight-priv.h"
+> +#include "coresight-trace-id.h"
+>   
+>   struct dummy_drvdata {
+>   	struct device			*dev;
+>   	struct coresight_device		*csdev;
+> +	u8				traceid;
+>   };
+>   
+>   DEFINE_CORESIGHT_DEVLIST(source_devs, "dummy_source");
+> @@ -67,6 +69,32 @@ static const struct coresight_ops dummy_sink_cs_ops = {
+>   	.sink_ops = &dummy_sink_ops,
+>   };
+>   
+> +/* User can get the trace id of dummy source from this node. */
+> +static ssize_t traceid_show(struct device *dev,
+> +			    struct device_attribute *attr, char *buf)
+> +{
+> +	unsigned long val;
+> +	struct dummy_drvdata *drvdata = dev_get_drvdata(dev->parent);
+> +
+> +	val = drvdata->traceid;
+> +	return scnprintf(buf, PAGE_SIZE, "%#lx\n", val);
+> +}
+> +static DEVICE_ATTR_RO(traceid);
+> +
+> +static struct attribute *coresight_dummy_attrs[] = {
+> +	&dev_attr_traceid.attr,
+> +	NULL,
+> +};
+> +
+> +static const struct attribute_group coresight_dummy_group = {
+> +	.attrs = coresight_dummy_attrs,
+> +};
+> +
+> +static const struct attribute_group *coresight_dummy_groups[] = {
+> +	&coresight_dummy_group,
+> +	NULL,
+> +};
+> +
+>   static int dummy_probe(struct platform_device *pdev)
+>   {
+>   	struct device *dev = &pdev->dev;
+> @@ -74,6 +102,11 @@ static int dummy_probe(struct platform_device *pdev)
+>   	struct coresight_platform_data *pdata;
+>   	struct dummy_drvdata *drvdata;
+>   	struct coresight_desc desc = { 0 };
+> +	int ret, trace_id;
+> +
+> +	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> +	if (!drvdata)
+> +		return -ENOMEM;
+>   
+>   	if (of_device_is_compatible(node, "arm,coresight-dummy-source")) {
+>   
+> @@ -85,6 +118,25 @@ static int dummy_probe(struct platform_device *pdev)
+>   		desc.subtype.source_subtype =
+>   					CORESIGHT_DEV_SUBTYPE_SOURCE_OTHERS;
+>   		desc.ops = &dummy_source_cs_ops;
+> +		desc.groups = coresight_dummy_groups;
+> +
+> +		ret = coresight_get_static_trace_id(dev, &trace_id);
+> +		if (!ret) {
+> +			/* Get the static id if id is set in device tree. */
+> +			ret = coresight_trace_id_get_static_system_id(trace_id);
+> +			if (ret < 0)
+> +				return ret;
+> +
+> +		} else {
+> +			/* Get next available id if id is not set in device tree. */
+> +			trace_id = coresight_trace_id_get_system_id();
+> +			if (trace_id < 0) {
+> +				ret = trace_id;
+> +				return ret;
+> +			}
+> +		}
+> +		drvdata->traceid = (u8)trace_id;
+> +
+>   	} else if (of_device_is_compatible(node, "arm,coresight-dummy-sink")) {
+>   		desc.name = coresight_alloc_device_name(&sink_devs, dev);
+>   		if (!desc.name)
+> @@ -103,10 +155,6 @@ static int dummy_probe(struct platform_device *pdev)
+>   		return PTR_ERR(pdata);
+>   	pdev->dev.platform_data = pdata;
+>   
+> -	drvdata = devm_kzalloc(dev, sizeof(*drvdata), GFP_KERNEL);
+> -	if (!drvdata)
+> -		return -ENOMEM;
+> -
+>   	drvdata->dev = &pdev->dev;
+>   	platform_set_drvdata(pdev, drvdata);
+>   
+> @@ -126,7 +174,10 @@ static void dummy_remove(struct platform_device *pdev)
+>   {
+>   	struct dummy_drvdata *drvdata = platform_get_drvdata(pdev);
+>   	struct device *dev = &pdev->dev;
+> +	struct device_node *node = dev->of_node;
+>   
+> +	if (of_device_is_compatible(node, "arm,coresight-dummy-source"))
 
-   254	
-   255	static struct tca_blk *imx95_usb_phy_get_tca(struct platform_device *pdev,
-   256					struct imx8mq_usb_phy *imx_phy)
-   257	{
-   258		struct device *dev = &pdev->dev;
-   259		struct resource *res;
-   260		struct tca_blk *tca;
-   261	
-   262		res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-   263		if (!res)
- > 264			return 0;
-   265	
-   266		tca = devm_kzalloc(dev, sizeof(*tca), GFP_KERNEL);
-   267		if (!tca)
-   268			return ERR_PTR(-ENOMEM);
-   269	
-   270		tca->base = devm_ioremap_resource(&pdev->dev, res);
-   271		if (IS_ERR(tca->base))
- > 272			return tca->base;
-   273	
-   274		mutex_init(&tca->mutex);
-   275	
-   276		tca->orientation = TYPEC_ORIENTATION_NORMAL;
-   277		tca->sw = tca_blk_get_typec_switch(pdev, imx_phy);
-   278	
-   279		return tca;
-   280	}
-   281	
+	if (drvdata->traceid) ?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Or even
+
+	if (IS_VALID_CS_TRACE_ID(drvdata->traceid))
+
+> +		coresight_trace_id_put_system_id(drvdata->traceid);
+>   	pm_runtime_disable(dev);
+>   	coresight_unregister(drvdata->csdev);
+>   }
+
+
+
+Rest looks fine.
+
+Suzuki
 
