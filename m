@@ -1,133 +1,145 @@
-Return-Path: <devicetree+bounces-109517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51B339969EB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:24:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BF38996A15
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:32:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B681C214EE
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:24:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37E00287781
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A96193404;
-	Wed,  9 Oct 2024 12:24:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C72B3194082;
+	Wed,  9 Oct 2024 12:32:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nigIrqIn"
+	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="l+f1fp4o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout.web.de (mout.web.de [212.227.15.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D72193071
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 12:24:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D06192580;
+	Wed,  9 Oct 2024 12:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728476684; cv=none; b=AXPXfWhBwZBxMzJXVTH6vRGHucMNLcoOdNPNArvmF6QMwG1QdFspMWPq6j90e8DPN4JCHLknwrNDftKGg3BnWUjpME9lun8ZzgJQ7Vi3cQNMkymOitDEhVgbJ1DbX7ztKzDa36221td1F/3Jq7ujW2EbJLSNBBw35TXoRbdmHok=
+	t=1728477173; cv=none; b=BGPI8JEjeN7ifYYYbQxQmVFrpiLIMVulxT5wjAIWKS6eRNlr5WQhZrgv3/C3G5CSZ0lnjZiae/3UbB2ZVarOtH2vxfydKck/SxsksziRDCoTT5q7W1Yf62upiH9juX4kRtwbQ4NqpKCmkSEcfsBuBxIta9vlNiGxL1Z3WgexjKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728476684; c=relaxed/simple;
-	bh=yZhWSBJtmUTNXjyY2f7F7cFoIFKcQcQq1EsrXrxhduY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Bo0lhsFbi8YMszL+uI4XmBo4OMEZkd42y4w7jyX1kfm8+2H064QkTYJYE4b/3930sgNEWB3B07xDL2fbItsnq0Pa653CrarUt5PO1IH15dE/kFVrN95/E5QN4Pnzc9OKJCrtSUMgr9ED+MIUGSCFJTqqn7oZHs4W+v4NMXnLxEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nigIrqIn; arc=none smtp.client-ip=209.85.216.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e221a7e7baso2653065a91.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 05:24:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728476681; x=1729081481; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pRO3w4YRlqmMfGpXpUyDIJ6SqFok++X3OxqH0iM6VD0=;
-        b=nigIrqInokmMe7REnilGUwEdNeoJ7/1/nTioPqpzwAK09x4TccMEd52ahxJlko3Vvd
-         d1ceusJmmgGA5wUrnPp+geBG2i+14ZeKAI+YPq8VW/fHo7NoopU9cxWxZj50RmucT4bK
-         heZru+29KMMRt0JKYZAqyaJzbME+ve5a52ZRg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728476681; x=1729081481;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=pRO3w4YRlqmMfGpXpUyDIJ6SqFok++X3OxqH0iM6VD0=;
-        b=fyIbaL33U7+QyrlUIfO0q4JG4e3YTKoa14XAzyyjHHrToGpbSZw1poXWsMyEOaaL4Y
-         Fz78gbShssAaQFeUdj+IEJtr2QkSipPDSYR12/feXHKosGWi2fW/A0gly8mge415GOXf
-         XEIUoMNx3sij9UcZs7UOCrKZ/7jfhbBYBynbWZzLLLkoJL8pux4oZYyMGteqhZG+4NVp
-         T+KWGjPd0I1gAOYJ8y72XezVOrvPvVxTw8wwqK0KzOu8DvpTPmTbBRbDo7FFLjd9iWAh
-         BWTyXkZcWA34+k+RdFsGYLdgyPHZ7wmQ3ed0h8syUGRPH/XbEybkrwVTQBJSCSK8QoeV
-         gZbQ==
-X-Gm-Message-State: AOJu0YwJJGhGuoAl6guZaCznBn8zO9hvE7ffqON1ILR4deD854BtPZvA
-	qI2I5pReaDIEfl5OY0W0zi9Kkz/eSUvs6kMSQ0FWA3EOZFyBNauhXWs3KEbgUg==
-X-Google-Smtp-Source: AGHT+IFR4YCq8o1WMj3ffJCtaQfwQjZYacyrIHuI3arITE/z1DIhbz2Woh4iMhd4PpzwQxl9pH5Aog==
-X-Received: by 2002:a17:90a:b10a:b0:2e2:bb32:73e0 with SMTP id 98e67ed59e1d1-2e2bb327553mr757104a91.12.1728476681282;
-        Wed, 09 Oct 2024 05:24:41 -0700 (PDT)
-Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:bfd7:eb4:8571:b3f4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2a584ea82sm1515960a91.33.2024.10.09.05.24.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2024 05:24:40 -0700 (PDT)
-From: Hsin-Te Yuan <yuanhsinte@chromium.org>
-Date: Wed, 09 Oct 2024 20:24:37 +0800
-Subject: [PATCH v3] arm64: dts: mt8183: set DMIC one-wire mode on Damu
+	s=arc-20240116; t=1728477173; c=relaxed/simple;
+	bh=10VIf3xpcfjl+spQkS0THT6kkcTMVh9YE+Vbqol6Nko=;
+	h=Message-ID:Date:MIME-Version:To:Cc:References:Subject:From:
+	 In-Reply-To:Content-Type; b=Jov1R1hk+qtQ67NmQ6yyosts0RN4urriGEa2WvqoFNUf5UKAr/MhH8quPULyvibR5nWKf99d8ifFtC6/tq9YIyRsJMSj1AH+/SUhQPyPxRCwRc1f8RFQiIonMgFTjjVU6AMvt6KPHRRwOkr7dyt5/pcMvOErZ1sxPlcSmRD+fgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=l+f1fp4o; arc=none smtp.client-ip=212.227.15.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+	s=s29768273; t=1728477135; x=1729081935; i=markus.elfring@web.de;
+	bh=fTLC63/37zNTLhxxSZfbfT1jlj/UPeR+t+SxAKcPCzw=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+	 Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+	 cc:content-transfer-encoding:content-type:date:from:message-id:
+	 mime-version:reply-to:subject:to;
+	b=l+f1fp4oIaruTt2PE9/Wusn9XmYNhl7ZVYHkMV5Ov6lcdKLFXRnoiuzUgQBKCOEC
+	 yRyUfvnxnUJbZAMFT4HURkufzv9b+B7AG79YDHkvDmmtPVvPZp54yMf3F6f/GoxSm
+	 54iPbD644GNAmKAqPXyXTnorclpxChT9Q7oFJ2i5UmCh1XlOGTMIMV56fSvV3wCG/
+	 G/pOOJ0QXk5mNXTmEOH5CJOMMzRqh5ZakiZQLJGgOjlydtNVQihM8Mtjfjn/Eb5sA
+	 1K9m4M89/1EpoW/bv9yBjvr1jG1p2zEaZthwenXCgn3uU4mjxGaNTOpwPMh84Plna
+	 KjbqwvzqNWkgvzvXgA==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from [192.168.178.21] ([94.31.81.95]) by smtp.web.de (mrweb005
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1MYLig-1tSde13LgA-00Vu41; Wed, 09
+ Oct 2024 14:32:15 +0200
+Message-ID: <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
+Date: Wed, 9 Oct 2024 14:32:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241009-damu-v3-1-1294c8e16829@chromium.org>
-X-B4-Tracking: v=1; b=H4sIAAR2BmcC/z3MQQ6CMBCF4auQWTtmaGsEV9zDuCh0SmcBNYOgC
- eHuNi5cfsn73w4Lq/ACt2oH5U0WyXOBPVUwJD+PjBKKwZBxNVGLwU8rehtNtO7aOGqhTJ/KUT6
- /m/ujOGqe8JWU/T+mtibMM+NblHEzWKPpe0fh4u0Qm25IpZF1Omcd4Ti+yc870pkAAAA=
-X-Change-ID: 20241009-damu-a3f2f3478409
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Hsin-Yi Wang <hsinyi@chromium.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Hsin-Te Yuan <yuanhsinte@chromium.org>
-X-Mailer: b4 0.15-dev-2a633
+User-Agent: Mozilla Thunderbird
+To: Kevin Chen <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Andrew Jeffery <andrew@codeconstruct.com.au>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ Thomas Gleixner <tglx@linutronix.de>
+Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
+References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
+Subject: Re: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
+Content-Language: en-GB
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:PCpmLz+Zi0O7z1Jgav1HZtP81S2dqF8GZsxRQVqHNWM4Mor8A4k
+ /EEuB9727FeHAmnW7fxJoJePoxEYlN9j9IYWCGumLgQOwzkHTXiTWxdI3xHyO36MQFrr+ax
+ pqY0vQPOReTPPYQcsQqIbZLzEmqB7p5WbvOh/MrlpSwh7VfFyUIthzeK0HTOZzFeQ1I1bxX
+ nnK5zBJYtsUNLnhNRNUOQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:o6uWhpcX/AM=;nfw5uX1xIx/2R7OZUSmWukyicJz
+ JPVM4iY0jkfFi7NTB+ffaU3MIOo9rbEdX2OQlpL5kOma4+zXMk2MxdQLnTb/GlYmIG9AI5UYy
+ NmDbMJaRbTKb+TtCx0DrJLsfdDbn76/6QT7JdyWhI//2f6BODmOihge2iKNyvzH6ZzLkWf9iq
+ CdiJ4nPoDNHOtWiyLm2CsYWcUw+mSB0zctWA5eqdrWnck3t1KSt++Qb2m+IY20mabNnpAfqV7
+ 67gHTnYFwzwn7S3MJxj8U1zgzqZ/K5TwkRg09Wo9lMljIW+Wk0/21+VDOf4gwDx9oUAfj/WdH
+ udrLmwt6Fl77ijgNvQkVowWCxc9ja8jB1XPLxVIhZIt2+pKxSPh5ITxHN7sGmJmI1IGj7P5Zz
+ pQr/YwviytLZf0DDfXJcgHmMhZCz0fRpRctjHcH9WixsaN11mg4Mn29lLyXv6pIJnHcG1f9Rf
+ 1t0hH6KaVPJUMAR2M92cghxT8t0O4JnXvfaA9RMcbO0AM7oBlqIj0PSsnU0zkQqCXPbzTqnX/
+ WHhm+cSlNZK++yqAqhWMmAmWplRPOcKnxAsxbKrnZ6/sBV7vXOMATEhQZeO9lYvcwzoAoTNbP
+ tVf2yOv27TAPRBOkCa8hqmJvKhoB6oHDZ3F0uS9GYrJY8eKUbrUtFjAda9y6J1rhvJ+8s32P4
+ vFDX8tyhRoXRg5M+k2p3IiC1wOWV0JA21PWN1DpsZVISRphpwTEab/fP3BsKo6DhucIAuuum1
+ 5iVvvc8Y6aybJd9bZFsfZ4yp0LTGIwmB3HXJ/Aaa8+ANCOl2ocbo1BQeq+aJ60ZG+Ts78cEzN
+ j7OLmG3f/qMLc7krAHa5HKGA==
 
-From: Hsin-Yi Wang <hsinyi@chromium.org>
+=E2=80=A6
+> To support ASPEED interrupt controller(INTC) maps the internal interrupt
+> sources of the AST27XX device to an parent interrupt controller.
+> ---
 
-Sets DMIC one-wire mode on Damu.
+* I miss your tag =E2=80=9CSigned-off-by=E2=80=9D.
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
+Documentation/process/submitting-patches.rst?h=3Dv6.12-rc2#n396
 
-Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
----
-Changes in v3:
-- Add missing Sign-off-by tag
-- Link to v2: https://lore.kernel.org/r/20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org
+* How do you think about to choose an additional imperative wording
+  for an improved change description?
+  https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/=
+Documentation/process/submitting-patches.rst?h=3Dv6.12-rc2#n94
 
-Changes in v2:
-- Add fixes tag 
-- Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
----
- arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
- 1 file changed, 4 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-index 0b45aee2e29953b6117b462034a00dff2596b9ff..06a689feff52945d141d196d439cba034f25fdf6 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
-@@ -26,6 +26,10 @@ &touchscreen {
- 	hid-descr-addr = <0x0001>;
- };
- 
-+&mt6358codec {
-+	mediatek,dmic-mode = <1>; /* one-wire */
-+};
-+
- &qca_wifi {
- 	qcom,ath10k-calibration-variant = "GO_DAMU";
- };
+=E2=80=A6
+> +++ b/drivers/irqchip/irq-aspeed-intc.c
+> @@ -0,0 +1,139 @@
+=E2=80=A6
+> +static void aspeed_intc_ic_irq_handler(struct irq_desc *desc)
++{
+> +	struct aspeed_intc_ic *intc_ic =3D irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> +	unsigned long bit, status;
 
----
-base-commit: 75b607fab38d149f232f01eae5e6392b394dd659
-change-id: 20241009-damu-a3f2f3478409
+I suggest to reduce the scopes for three local variables.
 
-Best regards,
--- 
-Hsin-Te Yuan <yuanhsinte@chromium.org>
 
+> +
+> +	chained_irq_enter(chip, desc);
+
+Would you become interested to collaborate with another scoped guard
+for this programming interface?
+https://elixir.bootlin.com/linux/v6.12-rc2/source/include/linux/irqchip/ch=
+ained_irq.h#L13
+
+
+> +
+> +	scoped_guard(raw_spinlock, &intc_ic->gic_lock) {
+> +		status =3D readl(intc_ic->base + INTC_INT_STATUS_REG);
+> +		for_each_set_bit(bit, &status, IRQS_PER_WORD) {
+> +			generic_handle_domain_irq(intc_ic->irq_domain, bit);
+> +			writel(BIT(bit), intc_ic->base + INTC_INT_STATUS_REG);
+> +		}
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+
+
+Regards,
+Markus
 
