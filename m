@@ -1,113 +1,106 @@
-Return-Path: <devicetree+bounces-109317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 476459960B7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:21:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0369C9960B8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A9563B24C1E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:21:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 995C41F220FA
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66DAA17DFF2;
-	Wed,  9 Oct 2024 07:21:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34354181D00;
+	Wed,  9 Oct 2024 07:21:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EgxDKkdW"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TyETTNC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6640A178CC5;
-	Wed,  9 Oct 2024 07:21:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64A7B178CC5
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 07:21:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728458472; cv=none; b=hKz3lxjPCjRQFLvGa9+RKOkOabt/NueSa10709GVZvWXQCG4C/YygZJ5Wfz0Jo9if1uDpo89I/kvJ2DwLjWrZZBsbkC6HT76qTJALPtlKDANglNfDTeA3+qL2fx1Qu4pQSK+tN4pLgSVVPPh0j3foM2F/WvubtUv9F6y8JQu5gs=
+	t=1728458480; cv=none; b=lltW9p4HqdFfCeAben1GIwE3cQq9dreC2cC4T1wkpb0piJuIiczMHEHp8PoUG8cMYf8yxb91onP2OBrlLbagg/UTLoGKjhmdFm2lnDWTaqUmb6tv8Ojf+tq4OY9FT9oIi8RSar8EBi3/1s8kpn0uOJFN5vwzvXq1vgFDL0I+nUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728458472; c=relaxed/simple;
-	bh=XelgteOQmlhm3vlLsvDGsuACRZkgpPlT4YLubA26rrw=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=VfquMFHzkGeif/lrx/DPqnM/V9Fxq8lKXKBHfLRj51ADpcIkmQJI1AiOV4bGd7I+DHH+e5kzbvLuHnW3z8vUy1ibNeeDT/T3bDsTnnI/bjXKTMoGgt3zBAHltMA9toWxNPokA44S06qqjqUzG42INhC1Q2r3RHjZIQWQsJja4lQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EgxDKkdW; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4997KwnV074036;
-	Wed, 9 Oct 2024 02:20:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1728458458;
-	bh=nnEc/O1OscdbKaKa4xXCWhizY6Sx8RbpzLP6SeIVCBs=;
-	h=From:To:CC:Subject:Date;
-	b=EgxDKkdWLfoCQ4BgqWt6Aj6MV7PhHVPEYm2cQAZFClELBwNvTdgJnS3Y+QsJHCmey
-	 bPqOt2HwuNfT4JgbwNJZxvKF3uw5OpdzOJPIOxR46HS5UuPUpxoSA5oev8T6WZWDrg
-	 LQ97B9V8aLNBN82itBq9lIkvGUiN4dW2vFsv/KtU=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4997KwiI001703
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Wed, 9 Oct 2024 02:20:58 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 9
- Oct 2024 02:20:57 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Wed, 9 Oct 2024 02:20:57 -0500
-Received: from localhost (a0498981-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.216])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4997KuSs117426;
-	Wed, 9 Oct 2024 02:20:57 -0500
-From: Bhavya Kapoor <b-kapoor@ti.com>
-To: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <b-kapoor@ti.com>, <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <conor+dt@kernel.org>,
-        <krzk+dt@kernel.org>, <robh@kernel.org>, <kristo@kernel.org>,
-        <vigneshr@ti.com>, <nm@ti.com>
-Subject: [PATCH] arm64: dts: ti: k3-j784s4-mcu-wakeup: Configure wkup_uart0 with clock settings
-Date: Wed, 9 Oct 2024 12:50:56 +0530
-Message-ID: <20241009072056.3511346-1-b-kapoor@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1728458480; c=relaxed/simple;
+	bh=h6f59Loxk4mtqbMnmdsF8jgzp29p0wU0LpWdEQ4Q+Rc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Np/SWVv68sQdiiTsVDkh/GUO9oGQSMVqGc44WOHFLmMhDrpaqvjdaKW8J7NHbrR6qTsiPzk7cN0UZY2C1ulnsfYIdm3EmK0Lm2bkgnaOsZrdg0JucVJGzSnOaPT/7ybildZ+eVuVS2JVZaYy+anij6po6p0xcmH2L8lVu6lE9cI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TyETTNC1; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728458476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=teJTPtRRgJhpXeRenDVLI/Et/c/d1xs+s7uhazdPDm0=;
+	b=TyETTNC1zl05T201XgrXqx0D0KiRvUAaraRZz1XxXCWydv7LPMdASYegWv6IGRDtVaoLGs
+	tiuV/8IpCRSNfO2LLkjevdVyE1tvGuiTgTiDkM2JqQTO2WeAqqzzz7N9sZcZDX2Xx2V746
+	UfLBTIQBGcmQe+KT3lbp3slxuEmupGZy2vwCa/1MiFd+kqXwzhjeTYGpkJ1dsRLQb/TZBf
+	+llqIwgDWXO6qalY27My0UvrChQ+6722Sujlby0ilmmwernpZJyM3UEem/fBq6fqxUxuYS
+	hHybBRsxtHmaa6vr6vkl+nbo/bceM8kBTr2ci3c8Nb6TUJpTOGialrGaGuly4A==
+Date: Wed, 09 Oct 2024 09:21:16 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Sergey
+ Bostandzhyan <jin@mediatomb.cc>
+Subject: Re: [PATCH v2 08/14] arm64: dts: rockchip: remove num-slots property
+ from rk3328-nanopi-r2s-plus
+In-Reply-To: <20241008203940.2573684-9-heiko@sntech.de>
+References: <20241008203940.2573684-1-heiko@sntech.de>
+ <20241008203940.2573684-9-heiko@sntech.de>
+Message-ID: <6d5e661117f23aa85c3a874290ea336f@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-This commit adds the assigned-clocks and assigned-clock-parents
-properties for wkup_uart0 in J784S4. Specifically, the assigned-clocks
-property is set to reference the clock identified by
-"wkup_usart_mcupll_bypass_out0", ensuring the UART operates with the
-correct clock source.
+Hello Heiko,
 
-The assigned-clock-parents property specifies "wkup_usart_clksel_out0"
-as the parent clock. This configuration is critical for establishing
-the proper clocking hierarchy, enabling the UART device to function
-reliably across different baud rates.
+On 2024-10-08 22:39, Heiko Stuebner wrote:
+> num-slots was not part of the dw-mmc binding and the last slipage of
+> one of them seeping in from the vendor kernel was removed way back in
+> 2017. Somehow the nanopi-r2s-plus managed to smuggle another on in the
+> kernel, so remove that as well.
+> 
+> Fixes: b8c028782922 ("arm64: dts: rockchip: Add DTS for FriendlyARM
+> NanoPi R2S Plus")
+> Cc: Sergey Bostandzhyan <jin@mediatomb.cc>
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 
-Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
----
+Looking good to me, thanks for the patch.  The introduced change
+is obviously correct.
 
-Rebased to next-20241008
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
- arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-index f603380fc91c..c2aa858c37c2 100644
---- a/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-mcu-wakeup.dtsi
-@@ -310,6 +310,8 @@ wkup_uart0: serial@42300000 {
- 		interrupts = <GIC_SPI 897 IRQ_TYPE_LEVEL_HIGH>;
- 		clocks = <&k3_clks 397 0>;
- 		clock-names = "fclk";
-+		assigned-clocks = <&k3_clks 397 0>;
-+		assigned-clock-parents = <&k3_clks 397 1>;
- 		power-domains = <&k3_pds 397 TI_SCI_PD_EXCLUSIVE>;
- 		status = "disabled";
- 	};
--- 
-2.34.1
-
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> index 3093f607f282..4b9ced67742d 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s-plus.dts
+> @@ -24,7 +24,6 @@ &emmc {
+>  	disable-wp;
+>  	mmc-hs200-1_8v;
+>  	non-removable;
+> -	num-slots = <1>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&emmc_clk &emmc_cmd &emmc_bus8>;
+>  	status = "okay";
 
