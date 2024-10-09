@@ -1,60 +1,63 @@
-Return-Path: <devicetree+bounces-109630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0D9E99765A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:23:07 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 097A599766C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 22:25:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0E0F1C2222C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:23:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF5CB2825EB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:25:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE46E1E230C;
-	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C790D1E1C01;
+	Wed,  9 Oct 2024 20:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HfLj6KGU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jUx+NO/N"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F1A161313;
-	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F029161313;
+	Wed,  9 Oct 2024 20:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728505360; cv=none; b=a2haJ1nVc5d2Jey+agE8W80AKmnW7R5++07t5Yzo7qZRbaA+JD/XAcCeIxLDPQmfyn3uzRw4r5zAM1hbs7CFVaShkE8YiMfMW31/z2KIWnmHQbmQxC/ZySGIm//d7DMwwBEZcacw2ei0JQ0U4hQBmmE47A+2EggZZGa60YB84N8=
+	t=1728505523; cv=none; b=Toti7RTLLnBF2uB1G2XkqInJjPAZlt7wzePhxZNOIm3FOOWUfPpE26zDGPS8N05lNBvjo7ZAC3LVCOIOvE8CIs6Hh7J16oub2X/i63smEqKf9F/QHfueha0fwNf/AENfYC2I+h1urYRuTIsSITgZFYOjr1AzE1X1kqa4iC0b0cg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728505360; c=relaxed/simple;
-	bh=3chjhrxe4mVFzDrB9/1rKyEXfeTfkRp/J9ozq1wFLvk=;
+	s=arc-20240116; t=1728505523; c=relaxed/simple;
+	bh=9DcWRqzRXQ7bjuDcrr4wCjK/5kicZsX5VMPHI05/h6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G6MPZC1HA1jQfEaA/6yJwtJysy/PdkmMfKsKcp/tpXgCR5BjSiDhtZgnSExxQhKtZ4qkpGYqDGDzeIpOfplVjt3xI5BNv7JnPHC5F7skB0a0rSj9+Yg7KQuXT3PuNIc65bEU8GQDZAfGe1aKFQu7K4Ss/2wdzK9orYR9+FVnGLM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HfLj6KGU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201FCC4CEC3;
-	Wed,  9 Oct 2024 20:22:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fW6v1v7xn5xWkxT7fuwdbAUAnTpAAU4z1yz2h26GTA5v+MC/jWoXDYlpWcZ6jPWoe02SY3k4ICbGT0zd1OHu1mWbdix6yFF9G85gbprCu+ycY+yuNraakNbI8/rDx9oIxUhCD5G7w9MAhL4lztVERcwIBYO3B8Cqgib2rKJoMJ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jUx+NO/N; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DDDA4C4CEC3;
+	Wed,  9 Oct 2024 20:25:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728505360;
-	bh=3chjhrxe4mVFzDrB9/1rKyEXfeTfkRp/J9ozq1wFLvk=;
+	s=k20201202; t=1728505523;
+	bh=9DcWRqzRXQ7bjuDcrr4wCjK/5kicZsX5VMPHI05/h6s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HfLj6KGUbwi336mxtmp/vTDCEEtmYu38uV4h1qVGNIndTx4/LneJr37cmIuACihH4
-	 7O7zcEfkzno+b2tFqwMqcgdXjQ5z9LRf61gvqOf3pd3JDmBaLrZdREDzDxS9aGQZHB
-	 OtkAcazr6WNq+qU+lSmNbuzvwXlX4xYQve/1wc/CT90YOeLfmLlFHUoJ2O87zXJVZ3
-	 ocWFB+CGbBxfKmIYvV1rM/qAD4djk3TvWbQYknejg4MIgLtXzQNHDC6qSWo2Pcqmr5
-	 wafK1UdD1s4ka10uI4Bhn6F8YGyjX98JA4i6NDGTxPijTrwxSFYk7X56O4HFsX4tsf
-	 awZ4y6tKCLxEg==
-Date: Wed, 9 Oct 2024 15:22:39 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexander Shiyan <eagle.alexander923@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-media@vger.kernel.org,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	devicetree@vger.kernel.org,
-	Mauro Carvalho Chehab <mchehab@kernel.org>
-Subject: Re: [PATCH 2/2] media: dt-bindings: media: i2c: Add AR0233 camera
- sensor
-Message-ID: <172850535856.610900.16965477529708195917.robh@kernel.org>
-References: <20241009084304.14143-1-eagle.alexander923@gmail.com>
- <20241009084304.14143-2-eagle.alexander923@gmail.com>
+	b=jUx+NO/NCskAYhlHNu0yu/+6op5AwZFKFcNiDh0IHtwF5IcU9CGgua7scNlOXbkcS
+	 aHEHby+MK4Xr1CrN4gDMBE0DmaymLdLumYwkhe81Sh5zjLJ8QtJHcMOpLImQebl2MS
+	 jIrzgL45AciurmR+cSj9GNKrLHzEXvNdRb7q7Y6QBhRNLqFLOPn0DasqlTIqkYq/Uz
+	 pJLWG5cpqITuHNFLDpqJs/JdCEHmMwzGcIZtwIOEAgia9+eNrwZtCI40MCqUDUQ7aa
+	 2IzdXQuipvfXbLXZ7PXpqOkIj+J407heML2kja2gXD4ZkfyqWgn0vbiTjNTvUywS3i
+	 8DCiyt+udTxpw==
+Date: Wed, 9 Oct 2024 15:25:22 -0500
+From: Rob Herring <robh@kernel.org>
+To: Qiang Yu <quic_qianyu@quicinc.com>
+Cc: manivannan.sadhasivam@linaro.org, vkoul@kernel.org, kishon@kernel.org,
+	andersson@kernel.org, konradybcio@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+	abel.vesa@linaro.org, quic_msarkar@quicinc.com,
+	quic_devipriy@quicinc.com, dmitry.baryshkov@linaro.org,
+	kw@linux.com, lpieralisi@kernel.org, neil.armstrong@linaro.org,
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 3/7] dt-bindings: PCI: qcom,pcie-x1e80100: Add
+ 'global' interrupt
+Message-ID: <20241009202522.GA611063-robh@kernel.org>
+References: <20241009091540.1446-1-quic_qianyu@quicinc.com>
+ <20241009091540.1446-4-quic_qianyu@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,19 +66,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241009084304.14143-2-eagle.alexander923@gmail.com>
+In-Reply-To: <20241009091540.1446-4-quic_qianyu@quicinc.com>
 
+On Wed, Oct 09, 2024 at 02:15:36AM -0700, Qiang Yu wrote:
+> Document 'global' SPI interrupt along with the existing MSI interrupts so
+> that QCOM PCIe RC driver can make use of it to get events such as PCIe
+> link specific events, safety events, etc.
 
-On Wed, 09 Oct 2024 11:43:04 +0300, Alexander Shiyan wrote:
-> Add device tree binding for the onsemi AR0233 CMOS camera sensor.
+Is it required for some reason vs. being optional? It's fine to break 
+the ABI because...?
+
+Answer those questions with your commit msg.
+
 > 
-> Signed-off-by: Alexander Shiyan <eagle.alexander923@gmail.com>
+> Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
 > ---
->  .../bindings/media/i2c/onnn,ar0233.yaml       | 122 ++++++++++++++++++
->  1 file changed, 122 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/onnn,ar0233.yaml
-> 
-
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+>  .../devicetree/bindings/pci/qcom,pcie-x1e80100.yaml    | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 
