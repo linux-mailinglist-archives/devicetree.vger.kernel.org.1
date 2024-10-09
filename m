@@ -1,141 +1,133 @@
-Return-Path: <devicetree+bounces-109516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B389969CF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:19:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B339969EB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:24:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E155FB20D45
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:19:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 77B681C214EE
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 12:24:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4400192B86;
-	Wed,  9 Oct 2024 12:18:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68A96193404;
+	Wed,  9 Oct 2024 12:24:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kXwrgTUs"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="nigIrqIn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F001E1922DD;
-	Wed,  9 Oct 2024 12:18:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D72193071
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 12:24:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728476336; cv=none; b=sgQjx4vfFnisle4zFXLW9i7xdhBLpOZUDqZTL9MRkB235BHr/d5XOMj3Aofjx+4ipNADsuOR2DPTbxkS93Y+EMstG7Zk1Wl93/vnQYmJgHyJOgLsrBJ9dmPSwIyz6NPysk3jLO/1x2te4Fbi3pDKvtXTR+yiuZwylPHuKXv3Gu8=
+	t=1728476684; cv=none; b=AXPXfWhBwZBxMzJXVTH6vRGHucMNLcoOdNPNArvmF6QMwG1QdFspMWPq6j90e8DPN4JCHLknwrNDftKGg3BnWUjpME9lun8ZzgJQ7Vi3cQNMkymOitDEhVgbJ1DbX7ztKzDa36221td1F/3Jq7ujW2EbJLSNBBw35TXoRbdmHok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728476336; c=relaxed/simple;
-	bh=c2gFY4gtveL1XpFdSfORF1+tbN/JPlxEpuexOeTX9cU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=flZh7mO0BJAuWSRSiD1jFqRSEqzkuX4jvbA55xFVBq5L6RgEAYUbnHZVnR+I4uoK1wgx+ZYhFXPV8UigUnqrK0663dCueJcXyWtcD6OkWI4hC5EI11PZGd+2EaS7sf+cHJoJZDvgg37ejeCZjUta8H8JdklspMb2P8kJBDETrDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kXwrgTUs; arc=none smtp.client-ip=198.175.65.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728476335; x=1760012335;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=c2gFY4gtveL1XpFdSfORF1+tbN/JPlxEpuexOeTX9cU=;
-  b=kXwrgTUsWW4L7cihZJQ5WqkqBKHCLxR/mz4tZY48fHdqh7Xz93iGq6dt
-   bUZWLrc9wCJYxgF3uRnlzQWyaiuw4ZpdVtJ0r4YFMqI018ZP3okOhRlTK
-   Cbs4acj44/Un7fp6y7o6MdbSi2fw45y2Ni3VLyXpuosLPouAxuF0ECdmO
-   lbey4tc4NvyzHxUFTjniEEMFBw4AhPGz2KiL572fA5TiQC8xTZvpx0l49
-   5UuLms2tj9FzlmFdorl5a/BfA+i4NHke6hRnm9RCugRkKYrlKfBkJFT1h
-   jEmPd9t+jljetVUbIKbQn6JjkpO/swgqm5B3+y4Y/KryX24FfUDZko+kI
-   A==;
-X-CSE-ConnectionGUID: A7mkl6lkToWDchcefrDGuA==
-X-CSE-MsgGUID: gM2d7+HtR/+NkU8MCHUGuw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="31563771"
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
-   d="scan'208";a="31563771"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2024 05:18:54 -0700
-X-CSE-ConnectionGUID: PbgVQfRNSVOsRuFInDbpIw==
-X-CSE-MsgGUID: qvIVTNMJRfizD8QMeqt59w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,189,1725346800"; 
-   d="scan'208";a="76188060"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 09 Oct 2024 05:18:51 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1syVeS-0009C0-30;
-	Wed, 09 Oct 2024 12:18:48 +0000
-Date: Wed, 9 Oct 2024 20:18:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Dzmitry Sankouski <dsankouski@gmail.com>
-Subject: Re: [PATCH v6 1/3] drm/mipi-dsi: add mipi_dsi_compression_mode_multi
-Message-ID: <202410092245.tfsuUllL-lkp@intel.com>
-References: <20241006-starqltechn_integration_upstream-v6-1-8336b9cd6c34@gmail.com>
+	s=arc-20240116; t=1728476684; c=relaxed/simple;
+	bh=yZhWSBJtmUTNXjyY2f7F7cFoIFKcQcQq1EsrXrxhduY=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Bo0lhsFbi8YMszL+uI4XmBo4OMEZkd42y4w7jyX1kfm8+2H064QkTYJYE4b/3930sgNEWB3B07xDL2fbItsnq0Pa653CrarUt5PO1IH15dE/kFVrN95/E5QN4Pnzc9OKJCrtSUMgr9ED+MIUGSCFJTqqn7oZHs4W+v4NMXnLxEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=nigIrqIn; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-2e221a7e7baso2653065a91.0
+        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 05:24:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728476681; x=1729081481; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=pRO3w4YRlqmMfGpXpUyDIJ6SqFok++X3OxqH0iM6VD0=;
+        b=nigIrqInokmMe7REnilGUwEdNeoJ7/1/nTioPqpzwAK09x4TccMEd52ahxJlko3Vvd
+         d1ceusJmmgGA5wUrnPp+geBG2i+14ZeKAI+YPq8VW/fHo7NoopU9cxWxZj50RmucT4bK
+         heZru+29KMMRt0JKYZAqyaJzbME+ve5a52ZRg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728476681; x=1729081481;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=pRO3w4YRlqmMfGpXpUyDIJ6SqFok++X3OxqH0iM6VD0=;
+        b=fyIbaL33U7+QyrlUIfO0q4JG4e3YTKoa14XAzyyjHHrToGpbSZw1poXWsMyEOaaL4Y
+         Fz78gbShssAaQFeUdj+IEJtr2QkSipPDSYR12/feXHKosGWi2fW/A0gly8mge415GOXf
+         XEIUoMNx3sij9UcZs7UOCrKZ/7jfhbBYBynbWZzLLLkoJL8pux4oZYyMGteqhZG+4NVp
+         T+KWGjPd0I1gAOYJ8y72XezVOrvPvVxTw8wwqK0KzOu8DvpTPmTbBRbDo7FFLjd9iWAh
+         BWTyXkZcWA34+k+RdFsGYLdgyPHZ7wmQ3ed0h8syUGRPH/XbEybkrwVTQBJSCSK8QoeV
+         gZbQ==
+X-Gm-Message-State: AOJu0YwJJGhGuoAl6guZaCznBn8zO9hvE7ffqON1ILR4deD854BtPZvA
+	qI2I5pReaDIEfl5OY0W0zi9Kkz/eSUvs6kMSQ0FWA3EOZFyBNauhXWs3KEbgUg==
+X-Google-Smtp-Source: AGHT+IFR4YCq8o1WMj3ffJCtaQfwQjZYacyrIHuI3arITE/z1DIhbz2Woh4iMhd4PpzwQxl9pH5Aog==
+X-Received: by 2002:a17:90a:b10a:b0:2e2:bb32:73e0 with SMTP id 98e67ed59e1d1-2e2bb327553mr757104a91.12.1728476681282;
+        Wed, 09 Oct 2024 05:24:41 -0700 (PDT)
+Received: from yuanhsinte-p620-1.tpe.corp.google.com ([2401:fa00:1:10:bfd7:eb4:8571:b3f4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2a584ea82sm1515960a91.33.2024.10.09.05.24.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Oct 2024 05:24:40 -0700 (PDT)
+From: Hsin-Te Yuan <yuanhsinte@chromium.org>
+Date: Wed, 09 Oct 2024 20:24:37 +0800
+Subject: [PATCH v3] arm64: dts: mt8183: set DMIC one-wire mode on Damu
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241006-starqltechn_integration_upstream-v6-1-8336b9cd6c34@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241009-damu-v3-1-1294c8e16829@chromium.org>
+X-B4-Tracking: v=1; b=H4sIAAR2BmcC/z3MQQ6CMBCF4auQWTtmaGsEV9zDuCh0SmcBNYOgC
+ eHuNi5cfsn73w4Lq/ACt2oH5U0WyXOBPVUwJD+PjBKKwZBxNVGLwU8rehtNtO7aOGqhTJ/KUT6
+ /m/ujOGqe8JWU/T+mtibMM+NblHEzWKPpe0fh4u0Qm25IpZF1Omcd4Ti+yc870pkAAAA=
+X-Change-ID: 20241009-damu-a3f2f3478409
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Hsin-Yi Wang <hsinyi@chromium.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ Hsin-Te Yuan <yuanhsinte@chromium.org>
+X-Mailer: b4 0.15-dev-2a633
 
-Hi Dzmitry,
+From: Hsin-Yi Wang <hsinyi@chromium.org>
 
-kernel test robot noticed the following build warnings:
+Sets DMIC one-wire mode on Damu.
 
-[auto build test WARNING on 58ca61c1a866bfdaa5e19fb19a2416764f847d75]
+Fixes: cabc71b08eb5 ("arm64: dts: mt8183: Add kukui-jacuzzi-damu board")
+Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+Signed-off-by: Hsin-Te Yuan <yuanhsinte@chromium.org>
+---
+Changes in v3:
+- Add missing Sign-off-by tag
+- Link to v2: https://lore.kernel.org/r/20240910-one-wire-v2-1-2bb40d5a3cf8@chromium.org
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dzmitry-Sankouski/drm-mipi-dsi-add-mipi_dsi_compression_mode_multi/20241007-022151
-base:   58ca61c1a866bfdaa5e19fb19a2416764f847d75
-patch link:    https://lore.kernel.org/r/20241006-starqltechn_integration_upstream-v6-1-8336b9cd6c34%40gmail.com
-patch subject: [PATCH v6 1/3] drm/mipi-dsi: add mipi_dsi_compression_mode_multi
-config: x86_64-rhel-8.3 (https://download.01.org/0day-ci/archive/20241009/202410092245.tfsuUllL-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.2.0-14) 12.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241009/202410092245.tfsuUllL-lkp@intel.com/reproduce)
+Changes in v2:
+- Add fixes tag 
+- Link to v1: https://lore.kernel.org/r/20240910-one-wire-v1-1-d25486a6ba6d@chromium.org
+---
+ arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410092245.tfsuUllL-lkp@intel.com/
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+index 0b45aee2e29953b6117b462034a00dff2596b9ff..06a689feff52945d141d196d439cba034f25fdf6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-damu.dts
+@@ -26,6 +26,10 @@ &touchscreen {
+ 	hid-descr-addr = <0x0001>;
+ };
+ 
++&mt6358codec {
++	mediatek,dmic-mode = <1>; /* one-wire */
++};
++
+ &qca_wifi {
+ 	qcom,ath10k-calibration-variant = "GO_DAMU";
+ };
 
-All warnings (new ones prefixed by >>):
+---
+base-commit: 75b607fab38d149f232f01eae5e6392b394dd659
+change-id: 20241009-damu-a3f2f3478409
 
->> drivers/gpu/drm/drm_mipi_dsi.c:1533: warning: Function parameter or struct member 'ctx' not described in 'mipi_dsi_compression_mode_multi'
->> drivers/gpu/drm/drm_mipi_dsi.c:1533: warning: Excess function parameter 'dsi' description in 'mipi_dsi_compression_mode_multi'
-
-
-vim +1533 drivers/gpu/drm/drm_mipi_dsi.c
-
-  1522	
-  1523	/**
-  1524	 * mipi_dsi_compression_mode_multi() - enable/disable DSC on the peripheral
-  1525	 * @dsi: DSI peripheral device
-  1526	 * @enable: Whether to enable or disable the DSC
-  1527	 *
-  1528	 * Enable or disable Display Stream Compression on the peripheral using the
-  1529	 * default Picture Parameter Set and VESA DSC 1.1 algorithm.
-  1530	 */
-  1531	void mipi_dsi_compression_mode_multi(struct mipi_dsi_multi_context *ctx,
-  1532					     bool enable)
-> 1533	{
-  1534		return mipi_dsi_compression_mode_ext_multi(ctx, enable,
-  1535							   MIPI_DSI_COMPRESSION_DSC, 0);
-  1536	}
-  1537	EXPORT_SYMBOL(mipi_dsi_compression_mode_multi);
-  1538	
-
+Best regards,
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Hsin-Te Yuan <yuanhsinte@chromium.org>
+
 
