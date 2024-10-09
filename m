@@ -1,192 +1,267 @@
-Return-Path: <devicetree+bounces-109552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31E8E996D2D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:04:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DE12996D37
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:06:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 627001C20F45
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:04:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5118A1C22332
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B69A199EA8;
-	Wed,  9 Oct 2024 14:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1295199FA7;
+	Wed,  9 Oct 2024 14:06:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Y789wuzr"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="jHm0Xmvw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76199197558;
-	Wed,  9 Oct 2024 14:04:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8A1199FB1;
+	Wed,  9 Oct 2024 14:06:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728482674; cv=none; b=rb2owjwDTWkCi8Zytg3CYfy81tG9Uc1R8Hu+ZfyAeAvpPD54rWh/CiZER5aBtyDvLAhX9dmXMb5nSbz3YrRpgjzvBKnu+y+yiYLlwupbhLVNWcb9trSYuOW4EFDJJawaSB7e45bLQLQ2+7iReNeCJotSdpc1UKCMWOxHX/vYPKA=
+	t=1728482772; cv=none; b=ADUmxVhxtDsrz+3jwExezKrk5lVzuPkZaVv+h0bkTCVkzsduJpeweYSmUJ3OYozamMh2dHudL3dx3MUlBSFZsoETezp9yrxsoGIUNtLA7uxvdGp2H2j2nMdBeytSKnUz0tMtUALj9GLP5aRORL1CaSRMV6ln/Lefeqc/TyJ6z/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728482674; c=relaxed/simple;
-	bh=cn/+7rAN0waeqJO+OoEtoic+ow7ulLW4bNF7zTzwvVo=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TriHbNzMHeIoHv61kJAABHz+1l+LuwXTztbcy9mSEMysLQUId202W1Td/MiypYy1ZoioTnEeSOdYZ0HmW5lyUmQFDXIcer+fQdJ/99633KtzyuJpWiibxj9eORnvgp4a2wb5Ge+cpGVuQ0MgPftYigEQMjrO5NfXL+kObILWh9M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Y789wuzr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49985i6Y025745;
-	Wed, 9 Oct 2024 14:04:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UKcdbQJ2jFrott/aEJlFWBdOxp7YlD/KOtBfPS0ut9E=; b=Y789wuzrYh83XvEX
-	toyCbwFZhfNk3NIR3cfh+tMV+QnOAoNKkK5zxXKJHCxNG7YuV0U9C12sIlXiuEd4
-	OBA7CJv3/5LfMGwMk5jpyh2GbFtPLxCmFXdP/9WRj8Ape2npFC3eNUXNvOBDfLEG
-	CzF1SnW4vQmLGakiEns+CxEefDr1z3SCxGxhAPgCSmhl4N6dC8RDwW0zv3kYn3jq
-	9wolQtx8F8CcqbwUr4w2FxMKdZiclRrmLpwKds65bwwRXXNm2yrbz9FuGJi/So5I
-	iPkdSDWEhsDHD2qiQ+JekrWqAbrsT3qO2cfpL5wi5If8+WP2K+ldEMjsM6hL1P7a
-	hfn05A==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4258psu2y5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 14:04:28 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499E4RP1002607
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 14:04:27 GMT
-Received: from hu-shashim-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 07:04:23 -0700
-Date: Wed, 9 Oct 2024 19:34:19 +0530
-From: Shiraz Hashim <quic_shashim@quicinc.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Mukesh Ojha <quic_mojha@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
- iommus and qcom,devmem property
-Message-ID: <20241009140419.GH1421305@hu-shashim-hyd.qualcomm.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-2-quic_mojha@quicinc.com>
- <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
- <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
- <CAA8EJpqay7Nryb5HwwHE1+iiMXKUvqi-djmCsYN8fxigt-s-tQ@mail.gmail.com>
+	s=arc-20240116; t=1728482772; c=relaxed/simple;
+	bh=8dDmyqULYHAkSt6pZF7dtcv3mSrEcsn1ZpMpG7A2MmQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=hn2KXjKtPtvY5XDz4YL+ZR6LjTwBON74vgDuc97JOXh8E4oO9vpZSlDZ9NTiIIBHkusq0/8KuzBWUstO4sJ2/0tSIrytkhXCvYVp+5Zz6Eqw5OcUtyJ0K2yY3c5gd9v/lna5YyHh+j8Neay7SH9McUum+MNrwWTw5BapvcAe6jc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=jHm0Xmvw; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728482767;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=W1ITkMiMoSN/pYqPWEMNqvLqGG5sdeNSnAC3XZQ2KnA=;
+	b=jHm0XmvwTEf+pUAU6hF3/HZ9MXYCrSNNJ/w/Qo3qky8TXfWmGuDZW5Sn484C8LZDmmBqLi
+	Ab/zKMkLb4A6oXr4efgvFaezpLpFt/rnCrAwH9zSq1ijh6dY3Goc/3TqADiuSFf1zg6tth
+	+jhS28CbKJ2qcg8dLSy6TuqV/8N3kTYntKeF55KE2AJoYTRAYba4rUreMXYwFTby9t3TmP
+	hQP05TGj8LaYXV3JyqrWSWtdfGy3jaTiWtJYA0hRZ9iXQNq+Fc+39vG3yvjHJoyui8gIPu
+	9JEVQtRu0HRy4EeAu7U0tpeE8q/wnkVM5wZhAMVabNNqFXtjIbd+66UyFxyaQg==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add dtsi file for RK3399S SoC variant
+Date: Wed,  9 Oct 2024 16:06:00 +0200
+Message-Id: <59c524a9a12465c21e01b779b42749fae148c41d.1728482151.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAA8EJpqay7Nryb5HwwHE1+iiMXKUvqi-djmCsYN8fxigt-s-tQ@mail.gmail.com>
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: u0lbiqUf52cxtVxBbSL0ivwUZBCQqs3E
-X-Proofpoint-ORIG-GUID: u0lbiqUf52cxtVxBbSL0ivwUZBCQqs3E
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 mlxscore=0 bulkscore=0 impostorscore=0 clxscore=1015
- suspectscore=0 lowpriorityscore=0 phishscore=0 malwarescore=0 adultscore=0
- mlxlogscore=790 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090087
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon, Oct 07, 2024 at 06:25:01PM +0200, Dmitry Baryshkov wrote:
-> On Mon, 7 Oct 2024 at 17:35, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
-> >
-> > On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
-> > > On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
-> > > > From: Shiraz Hashim <quic_shashim@quicinc.com>
-> > > >
-> > > > Qualcomm’s PAS implementation for remote processors only supports a
-> > > > single stage of IOMMU translation and is presently managed by the
-> > > > Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
-> > > > such as with a KVM hypervisor, IOMMU translations need to be set up by
-> > > > the KVM host. Remoteproc needs carveout memory region and its resource
-> > > > (device memory) permissions to be set before it comes up, and this
-> > > > information is presently available statically with QHEE.
-> > > >
-> > > > In the absence of QHEE, the boot firmware needs to overlay this
-> > > > information based on SoCs running with either QHEE or a KVM hypervisor
-> > > > (CPUs booted in EL2).
-> > > >
-> > > > The qcom,devmem property provides IOMMU devmem translation information
-> > > > intended for non-QHEE based systems.
-> > > >
-> > > > Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
-> > > > Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > > > ---
-> > > >  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++++
-> > > >  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
-> > > >  2 files changed, 62 insertions(+)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > > > index 63a82e7a8bf8..068e177ad934 100644
-> > > > --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > > > +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
-> > > > @@ -52,6 +52,48 @@ properties:
-> > > >      minItems: 1
-> > > >      maxItems: 3
-> > > >
-> > > > +  iommus:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  qcom,devmem:
-> > > > +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > > > +    description:
-> > > > +      Qualcomm’s PAS implementation for remote processors only supports a
-> > > > +      single stage of IOMMU translation and is presently managed by the
-> > > > +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
-> > > > +      such as with a KVM hypervisor, IOMMU translations need to be set up by
-> > > > +      the KVM host. Remoteproc might need some device resources and related
-> > > > +      access permissions to be set before it comes up, and this information is
-> > > > +      presently available statically with QHEE.
-> > > > +
-> > > > +      In the absence of QHEE, the boot firmware needs to overlay this
-> > > > +      information based on SoCs running with either QHEE or a KVM hypervisor
-> > > > +      (CPUs booted in EL2).
-> > > > +
-> > > > +      The qcom,devmem property provides IOMMU devmem translation information
-> > > > +      intended for non-QHEE based systems. It is an array of u32 values
-> > > > +      describing the device memory regions for which IOMMU translations need to
-> > > > +      be set up before bringing up Remoteproc. This array consists of 4-tuples
-> > > > +      defining the device address, physical address, size, and attribute flags
-> > > > +      with which it has to be mapped.
-> > >
-> > > I'd expect that this kind of information is hardware-dependent. As such
-> > > it can go to the driver itself, rather than the device tree. The driver
-> > > can use compatible string to select the correct table.
-> > >
-> >
-> > IIUC, are you saying that to move this into driver file and override the
-> > compatible string via overlay ?
-> 
-> Ideally we should live without compat overrides. On the other hand,
-> sc7180 and sc7280 provide an example of doing exactly that.
+Following the hierarchical representation of the SoC data that's been already
+established in the commit 296602b8e5f7 ("arm64: dts: rockchip: Move RK3399
+OPPs to dtsi files for SoC variants"), add new SoC dtsi file for the Rockchip
+RK3399S SoC, which is yet another variant of the Rockchip RK3399 SoC.
 
-I am not sure if there can arise a case where updated adsp firmware
-for particular board(s) may require additional access.
+The only perceivable differences between the RK3399S and the RK3399 are in
+the supported CPU DVFS OPPs, which result from the RK3399S being binned for
+lower maximum CPU frequencies than the regular RK3399 variant.
 
-Having it in device tree adds a convenience to deal with such
-variance. 
+The RK3399S variant is used in the Pine64 PinePhone Pro only, [1] whose board
+dts file included the necessary adjustments to the CPU DVFS OPPs.  This commit
+effectively moves those adjustments into the separate RK3399S SoC dtsi file,
+following the above-mentioned "encapsulation" approach.
 
-regards
-Shiraz
+The way the introduced RK3399S SoC variant dtsi file (rk3399s.dtsi) is named
+diverges from the way the two already present RK3399 SoC variant dtsi files
+(rk3399-op1.dtsi and rk3399-t.dtsi) are named, but that simply follows the
+commonly used and/or the official RK3399 SoC variant names.
+
+No functional changes are introduced, which was validated by decompiling and
+comparing the affected dtb file before and after these changes.
+
+[1] https://wiki.pine64.org/index.php/PinePhone_Pro
+
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ .../dts/rockchip/rk3399-pinephone-pro.dts     |  23 +---
+ arch/arm64/boot/dts/rockchip/rk3399s.dtsi     | 123 ++++++++++++++++++
+ 2 files changed, 124 insertions(+), 22 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399s.dtsi
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+index 1a44582a49fb..5bc4ced81953 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+@@ -13,7 +13,7 @@
+ #include <dt-bindings/input/gpio-keys.h>
+ #include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/leds/common.h>
+-#include "rk3399.dtsi"
++#include "rk3399s.dtsi"
+ 
+ / {
+ 	model = "Pine64 PinePhone Pro";
+@@ -456,27 +456,6 @@ mpu6500@68 {
+ 	};
+ };
+ 
+-&cluster0_opp {
+-	opp04 {
+-		status = "disabled";
+-	};
+-
+-	opp05 {
+-		status = "disabled";
+-	};
+-};
+-
+-&cluster1_opp {
+-	opp06 {
+-		opp-hz = /bits/ 64 <1500000000>;
+-		opp-microvolt = <1100000 1100000 1150000>;
+-	};
+-
+-	opp07 {
+-		status = "disabled";
+-	};
+-};
+-
+ &io_domains {
+ 	bt656-supply = <&vcc1v8_dvp>;
+ 	audio-supply = <&vcca1v8_codec>;
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399s.dtsi b/arch/arm64/boot/dts/rockchip/rk3399s.dtsi
+new file mode 100644
+index 000000000000..e54f451af9f3
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3399s.dtsi
+@@ -0,0 +1,123 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
++ */
++
++#include "rk3399-base.dtsi"
++
++/ {
++	cluster0_opp: opp-table-0 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp00 {
++			opp-hz = /bits/ 64 <408000000>;
++			opp-microvolt = <825000 825000 1250000>;
++			clock-latency-ns = <40000>;
++		};
++		opp01 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <825000 825000 1250000>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <816000000>;
++			opp-microvolt = <850000 850000 1250000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <1008000000>;
++			opp-microvolt = <925000 925000 1250000>;
++		};
++	};
++
++	cluster1_opp: opp-table-1 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp00 {
++			opp-hz = /bits/ 64 <408000000>;
++			opp-microvolt = <825000 825000 1250000>;
++			clock-latency-ns = <40000>;
++		};
++		opp01 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <825000 825000 1250000>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <816000000>;
++			opp-microvolt = <825000 825000 1250000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <1008000000>;
++			opp-microvolt = <875000 875000 1250000>;
++		};
++		opp04 {
++			opp-hz = /bits/ 64 <1200000000>;
++			opp-microvolt = <950000 950000 1250000>;
++		};
++		opp05 {
++			opp-hz = /bits/ 64 <1416000000>;
++			opp-microvolt = <1025000 1025000 1250000>;
++		};
++		opp06 {
++			opp-hz = /bits/ 64 <1500000000>;
++			opp-microvolt = <1100000 1100000 1150000>;
++		};
++	};
++
++	gpu_opp_table: opp-table-2 {
++		compatible = "operating-points-v2";
++
++		opp00 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <825000 825000 1150000>;
++		};
++		opp01 {
++			opp-hz = /bits/ 64 <297000000>;
++			opp-microvolt = <825000 825000 1150000>;
++		};
++		opp02 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <825000 825000 1150000>;
++		};
++		opp03 {
++			opp-hz = /bits/ 64 <500000000>;
++			opp-microvolt = <875000 875000 1150000>;
++		};
++		opp04 {
++			opp-hz = /bits/ 64 <600000000>;
++			opp-microvolt = <925000 925000 1150000>;
++		};
++		opp05 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <1100000 1100000 1150000>;
++		};
++	};
++};
++
++&cpu_l0 {
++	operating-points-v2 = <&cluster0_opp>;
++};
++
++&cpu_l1 {
++	operating-points-v2 = <&cluster0_opp>;
++};
++
++&cpu_l2 {
++	operating-points-v2 = <&cluster0_opp>;
++};
++
++&cpu_l3 {
++	operating-points-v2 = <&cluster0_opp>;
++};
++
++&cpu_b0 {
++	operating-points-v2 = <&cluster1_opp>;
++};
++
++&cpu_b1 {
++	operating-points-v2 = <&cluster1_opp>;
++};
++
++&gpu {
++	operating-points-v2 = <&gpu_opp_table>;
++};
 
