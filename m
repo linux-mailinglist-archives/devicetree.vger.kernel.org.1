@@ -1,218 +1,88 @@
-Return-Path: <devicetree+bounces-109615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00AAF9974EC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 20:31:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3421499756E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:07:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 24DC81C22F70
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 18:31:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCEF7B24D95
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 19:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E9BF1E04B3;
-	Wed,  9 Oct 2024 18:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0B41E1C34;
+	Wed,  9 Oct 2024 19:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="f1iZnrLR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sGRLqNV0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2049.outbound.protection.outlook.com [40.107.247.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B34A52F9E;
-	Wed,  9 Oct 2024 18:31:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.247.49
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728498686; cv=fail; b=UdIKVnCSpRwoToazIHGY5s/ErW60gBO6AEeVRYQ+avuJrt91vsjiQR6I4Tksz3w/TgP5yth4iUUAGTLfQ+VdAbpffL0AXRJE+0kAa3c1T+RqXozqKRdrOPocwpirK58Vs8bd2rv1nmQKeJfI8JGtMpcoaQQk/M+obIdWAmy9xyM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728498686; c=relaxed/simple;
-	bh=JkxzG5DKrVT++Wj8EVJFfs0vuD9A85zGejCjFI6zwJA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=kmzWPjeVJZy/L9eGLqAlUvs0Rk1RxsVqX8JKtfAtWmoyvNDMLbiLOIUGkkbeOFJ3tB6yEDDgyEQ283x1LN4JkG7NeyhyJeSSkdOPDj8G+ejAQ0WhDCQEeofN65UWw+Uj7EKqa9m5Lno0YsgN5Sg4W3bdJ91v9WvDFilMqZ9dEhI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=f1iZnrLR; arc=fail smtp.client-ip=40.107.247.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VERS9tEWpDvswY0a0OHGvGeyp+o3gaCp1St8PUh2C8TenY0bwBKW3HFBhyvWF0E+lMq2BdNLppEk2HRIPXVZzgCfIs+i1y5yzxMPo2mEOkUscDOCjM5qi0L+pyPykPxJmTXEapqUHzjt9RYJt8bs/yXhXV+3/5bo0FcfNDFBYKGxSzmYkv7XCKilJuUZ/twhJirHytp6qDOea4mwf55iEotSRduavmmmbpKClC7zh8+Igmt73Zc5pdDVuBx8RRuuF78WZu9F1HeV6FucxcJj5b0hKHtTUro4VTmIjtEBscAA0mFTSbiYlGTAmB2+fn7qHVvucAVsE3SPyDwPKY+/Lw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6fa1DOxbN0j+qUzbGKHQhuk+JMIvo/iX4rkICwsrc6k=;
- b=Y5+7bp7JLLKG+n5vY8JL776E5A5QVrqpTwX1+ak2CwM6NLmW8Zg37fBmgk+LkARPdhcLDU1cH0dHRMnlzM0xgZRS0uhxEiQViOXTM97I4m/qz+JwmuOJHQJKHpuYlPxNVB9YaRdNsDaT3LiS6yPxSKyRfB77qZaQqszAS7311IBqS2wmDdNYVwzPJx/V0CUO3Ebejx42h5yrkuICBCiqdhKUMh4y3yojI1/WozR5Qv8MgZ/XYkajaXCnpoSLRAgqdNFG+iHejh5TGGwqwB/vav1sYYNhmAAqhGcUupqJ0hqSjofN8UObe4J67k4DmLm+ToF0gWu8fr7XBCYrWkQ4gg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6fa1DOxbN0j+qUzbGKHQhuk+JMIvo/iX4rkICwsrc6k=;
- b=f1iZnrLR8rcSqXZ1bSGES6z3yU0v3PGgsto8L5t7ejfhud/BkCB7iIlIfscJOsSjZTlBZfYJ8Wmg8KTWWnzOgSgfuzE3SsklRAXOEzk53jU0fStfs5Mr8OwEeAdjlp34VApsjnRp0OvL1RzpWBm09iE6gUASCIFN2p/fXug+4Z8Qt2+65WvmD7E9cUpaXMZ/IXzDEGLLI72Iu3yqfnnp2FaOZv4bguCKBabGwkcO1ViEVaBQPA4qezV/N/KSyUQrBFBwM8qBf0FHTDj7C/63B1nbrje3CAOfHEvN9WsnxiwzJBltxDakOADoOZFBQ+6DJph9nYrJlgMY9nijAzejfg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8117.eurprd04.prod.outlook.com (2603:10a6:20b:3fc::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
- 2024 18:31:21 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8048.013; Wed, 9 Oct 2024
- 18:31:21 +0000
-Date: Wed, 9 Oct 2024 14:31:10 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Borislav Petkov <bp@alien8.de>
-Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, Borislav Petkov <bp@suse.de>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	Priyanka Singh <priyanka.singh@nxp.com>,
-	Sherry Sun <sherry.sun@nxp.com>, Li Yang <leoyang.li@nxp.com>,
-	Ye Li <ye.li@nxp.com>, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 0/6] EDAC: fsl-ddr, add imx9 support
-Message-ID: <ZwbL7iM2SV5cMb3d@lizhi-Precision-Tower-5810>
-References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
- <ZvsNJrxF6TpUC6ws@lizhi-Precision-Tower-5810>
- <20241002090834.GAZv0Nkp5YKcy86UmZ@fat_crate.local>
- <ZwalsAJdaHjtD1/E@lizhi-Precision-Tower-5810>
- <20241009162038.GNZwatVpTr9rOEyfQs@fat_crate.local>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009162038.GNZwatVpTr9rOEyfQs@fat_crate.local>
-X-ClientProxiedBy: BY5PR16CA0035.namprd16.prod.outlook.com
- (2603:10b6:a03:1a0::48) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D8B1E1A2D;
+	Wed,  9 Oct 2024 19:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728500832; cv=none; b=KsVs8c15MTsOFGxj3tvoMOuKtK77r6VHRKbpoUSe1eTlvRvhfVdmptfCNI0XA5zsgh82Q12hpnjO5cpc8KYc8tMhzI6xaHiNgYxLfu+WnJcHqHoMoAc5PUy62Oz8IfYt2I5g+t6+odWjYNebytZrpj58cljBIp8bKEl7ZC1wrSk=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728500832; c=relaxed/simple;
+	bh=4YhfyUPTJur7qJRzsElWPQS3vLCvkLgU3avegz4EN2Y=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=PXqJHctmuezFYRTzSnKMM3ixX5yWN7N/Xu6Q6BVDsxfhRW3plYxFGnQmQSPvoPTxKaVLdGBLwux3teIzpcrkunq1B6Y81QP56SD2KC/cIzhh2TouslPQtQNkaOyUOVSue/cDn45ryqL43un2M0/+hkw5VWNWzlJtYc0r7tlFyuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sGRLqNV0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FAC7C4CEC3;
+	Wed,  9 Oct 2024 19:07:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728500831;
+	bh=4YhfyUPTJur7qJRzsElWPQS3vLCvkLgU3avegz4EN2Y=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=sGRLqNV02n9pRRQsPmE0+bdGuK0ZSiJR+hnkoYqhKd/oPWvDtKOC9eMTzNVeQE0B0
+	 F0HReY/2YKP7xrDZQ5D8OpU8DtXhhufOgpQdY/yqBYlQ8cLaC4apN5MAsCrEqAi1LI
+	 A10Nt40p/jo11FOVMLrp/HQwldHtug3X8bnQbT0GxU63oOjj6woCLT+T4X/hXbvMzW
+	 4VbCSPD7VLnKXHt/Q7Eu2S3CR667uY0Xo2Wiu8g37sjinFy7JcXNCC/4b6T2FjMpIh
+	 gXqIiomtWTwJpW70OiuG7CHrV01jtk7X3JtWMgUodw+XVc5xKIKYU0GiE9az2+VANU
+	 1qjw3YZCruJ4g==
+Message-ID: <81668a9199b39fe46cefd256d3eac44c.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8117:EE_
-X-MS-Office365-Filtering-Correlation-Id: f16848c2-2159-4b47-aa2b-08dce890927e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?9wNyMjkp1xA0OqGV4IYLA1/0APZkRUSllMcPk2BDqTLvqNB5XvspQOxDUWXU?=
- =?us-ascii?Q?4mYbpqNHmJOpMULoWfbbF2Uq0A69nuHd0jCxB8VSjYD/wtVL9C12ifrwPb/j?=
- =?us-ascii?Q?RVrgDr5XxwMVYiHtaxfG8ukvpf7BCac4tmCth6bAkNUp2Bkk7Ig/eThGvwUj?=
- =?us-ascii?Q?t5hPSuUV+7p5I4yOTELAQ0ts/Y388rnk6QYojBxqlC1weNjz7UQ3renF9N1y?=
- =?us-ascii?Q?8qmhRI8ftBi1hCU4GIXrYJuXmmqsEiaBCgoGtvHffL4TsS5jVGIZ0Vm+eUQl?=
- =?us-ascii?Q?UyWQufCI2FcJeoEGScceoddQKQc4jeezUmBJAHct0GoIiz6NHW9Jbk/C7hmt?=
- =?us-ascii?Q?MLqz97QYRN/nFmSPDFkpuWBTj39YYsj9W2IlyQAFPrsqW2K7P3hQRsjkLHjm?=
- =?us-ascii?Q?smIL8SbY8VV4spCiLofcXSltl831n9YGrJ9etTrKAXIPCfe9JrmTex80+jeu?=
- =?us-ascii?Q?P6a/Z1VJpHnlD4t4Zy9G2YC03XYT0s1G2+RZwwMMBasrBuWPoqfgwXf+kLPi?=
- =?us-ascii?Q?1Ca8XvPRZGI+CFtmgz+zTuAK4+55EqcwI8+n5rk5GX/ezRNTXmcUUKWgG4I4?=
- =?us-ascii?Q?noS9+OLl5MyQDTU69olp2BirBhmYYs/zgSjNECOqML8da2k1rrzDHVIWEf2s?=
- =?us-ascii?Q?EFUaYxE9pUey3myDpTQaAzvUifzVOiTr8+tFBBc1kjHx443GYhz66ceFgwhE?=
- =?us-ascii?Q?OEEwZCy+Reve70eKJwNWXHu7Wr1jQBPVHpLjtsbgO2y1t5ckG33Pj6TfIJmy?=
- =?us-ascii?Q?Ii9CpRbSyAQSdotzd+UkJASxWEarLN9NH5qWhtUtIQp8kEuiyzKVNVeNIOE8?=
- =?us-ascii?Q?bQ6XnYZTWD5WAb0XCNZQVy9klc5CUY7z4wy4Bsz9w69B6PcAs9BUDSMoMUTW?=
- =?us-ascii?Q?w68yU0gN9Ts+mbldZBaxhpGyeFEhk9ZrnJHmJMlhQkJYZ4L3/CNHDsx+onV3?=
- =?us-ascii?Q?hlHui5l2HM+fI8+31jX4kriE5uhZ34RrbBhU2+hH3N+R4hzvI/b+kGxAvF+V?=
- =?us-ascii?Q?PlYa8J8TDTRNwkEpqq26bi3kMD/cskkUdwejoUP6HHsf50qKccqXvxH0j3y7?=
- =?us-ascii?Q?IRP1dJ03tDhyxxwAlqtEo9xnGRZjJB6EnTjM0XKRggwMNaEDH6Q+yF4F3NKK?=
- =?us-ascii?Q?XMjSRcTyiCNvXS6Ac5ZeRzaanrpCog+peXA6Vu451HkTNpRn6wWgvTGLV/k0?=
- =?us-ascii?Q?NjJAON263vfraW0PCj/wiVOTl9mlqKNHER/pQwtN/h69LDuqhLaHduh9nYIr?=
- =?us-ascii?Q?cb8LFyWgxRAnV+9vAYr/rvCJIqgWRaAPG+NhbhVlE8lxcMUORMdxgY7VI53s?=
- =?us-ascii?Q?rpSYDdp04YgKGq1DOb4N6WTOi9cT1mJe5PYMtC9mSy+mSA=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?nVKII3DoOBux2gXTH9AWapBjETo/Evu2VO9qvT/9MNNrt7sId25mztcRq2xE?=
- =?us-ascii?Q?BRY9OyAr3jaEFh+w5nqcK627cXsPUkD9FzFx3krRbLGI2kKte0SToZXnhe42?=
- =?us-ascii?Q?UyIImRp9WFxJf4kUzYUaXheB5k+Gg350CG8DPvUkl4KbHbsH+Ir1ZbHUlEXr?=
- =?us-ascii?Q?uYUFUG277BXsw56MWLbr6AhF68zl+RuMBhpY/l+oLcaKsvwxYGvqPjOn/mTM?=
- =?us-ascii?Q?h/vXU7S0i7z45DWgbTXubEZjcqXrTzFXFS/Xt3Z09d+ORHvXCmxYD/ZJlpQo?=
- =?us-ascii?Q?2sOBptiPL5JpkSGPl9Kq+onJpvtvjl8SRL47K9md2+XrYE2Njtqx5R5dlMt3?=
- =?us-ascii?Q?DFp5ABlTt9IohuoiyyrGpFaKwr4F5v3BDVGKj8bXiXm3ziYEGDPMQ/1Bb7hM?=
- =?us-ascii?Q?lOUJVE1II9NU43hUiuW5n/WT5PonoIgdy4F2GFUY2hxpilu5bJu6qPND5kwv?=
- =?us-ascii?Q?jjWo1fwnrH/biTRwkxu0OxgjWZwghfL9vZwRREKa3lLAUhxdG2EeL3lWAC99?=
- =?us-ascii?Q?rzsz2fO0WWm15T9y+vO4rUNlcZ1KRQ5JKHCy/Z++R3khczoKUs/9AKP8gbnS?=
- =?us-ascii?Q?1Zzp4N2XD2uBo1KSQygBrSym+CObvdxM4YqZGxTWdIKQKQ7qhlHQIc7ro2+X?=
- =?us-ascii?Q?8qYqaBCdGrTgk9oydMPV7G5txnRmHvzCYD9m5/hCTAtNEmiksUd1wm0WGBEp?=
- =?us-ascii?Q?diQdLM9nYLZyGyyBT1CDl4YJr47uvLJJnLDEbp8INYnP/WowUsMPn5dFt/77?=
- =?us-ascii?Q?uFND+F4t/wwB/P4YUq94wPoiRBqjTby8inWye6iRxhM0O8E3ajTp4juxmWYm?=
- =?us-ascii?Q?OwC4Wao4tZcMfwY1xmqubrp+ePlSoD8KtjiFWFqXFocGYFWZh51Ya42OdQaV?=
- =?us-ascii?Q?qcVyRy1qSFWdO+jcoSgQNpEdSRNTD+3k2WgR1OHAGgpJQGVmzt6NZyitTs2T?=
- =?us-ascii?Q?ebWo47B68z2LViFH+UqFUCPJRBZ10utCDvEyvHZj6XMmUv4iBOgjNiDcFZtd?=
- =?us-ascii?Q?LVGFrVGBpKp3vn4JKLXyB4HEjo5d4tUM32h2+Av+R8hfuhvmoB5z+wNSzXqE?=
- =?us-ascii?Q?vDJ6kI3Z8L9EfTZwgccmJaMC1pyZ323GPYWMUfv119kQJCw/Ukpq9Pqx6RCV?=
- =?us-ascii?Q?BXgU5FVA0aItg19DrYyRSPDOaB16gmfKoRqdvUbURdI706QfIB5hkrZCVHDu?=
- =?us-ascii?Q?pxo2lfCKKL75yeFdYQvf9xiIcWeXfMWy3KscMmyefV39jyLWq66jaL1/BG7i?=
- =?us-ascii?Q?czVnHwY8Jk0y2AqEDkWvz5XtLIg7YOYKb2bg7AlB7KyrHuLz7J6bB6NgYXV4?=
- =?us-ascii?Q?XnEmgeWHmB89frtzpffcEnl9YFQMi0lXn1uZEX3svwAkCnClFOYgLAzRPBXc?=
- =?us-ascii?Q?gA8t7ygUSAsDG1VkZtNKPMHruhQTpgfOZTFte+x6jPY5xPya81PjR29ICCLK?=
- =?us-ascii?Q?yqHv4XdbUUucL28GeB5bANNoVITrWt2V0VgyL/NKGFd7LgcpmewPiPZeLYlq?=
- =?us-ascii?Q?lVY8hFJQ5qkBL+yHA6uJFGaJYTlwMcRSYTgxHrl1E1YWMhtCPczxSdO5HXB5?=
- =?us-ascii?Q?q5w1jpwbcN3RoTmQYLE=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f16848c2-2159-4b47-aa2b-08dce890927e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 18:31:21.1790
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: XOeLtrEea3gdYpjH8cELyvgfQFpSqye+auZf9RgdWinOSgArAOVto1ei81sOwIttH/oD6AY3HBj/2o9jlbmhLQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8117
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <594e8e50-8322-480e-ae34-3f8e14f3fe18@roeck-us.net>
+References: <20240718210513.3801024-1-sboyd@kernel.org> <879831a8-2039-4cdb-bce2-aefdeb7ab25f@linuxfoundation.org> <da260b77-2ecb-4486-90cb-6db456d381ef@linuxfoundation.org> <f5f1c42d-77c0-48c7-ac52-3d4a3b5c2b47@roeck-us.net> <4a8abb5f501279de7907629f4dd6be24.sboyd@kernel.org> <3e1de608-008c-4439-acd2-647a288dcdc0@roeck-us.net> <cd31493888acc2b64a4986954dfa43ae.sboyd@kernel.org> <cb1e0119-6e3e-4fd2-92ea-3fec18f5843d@roeck-us.net> <ccd372f2754e80d6c01e38a9596bed34.sboyd@kernel.org> <594e8e50-8322-480e-ae34-3f8e14f3fe18@roeck-us.net>
+Subject: Re: [PATCH v8 8/8] clk: Add KUnit tests for clks registered with struct clk_parent_data
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, patches@lists.linux.dev, kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org, Brendan Higgins <brendan.higgins@linux.dev>, David Gow <davidgow@google.com>, Rae Moar <rmoar@google.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rafael J.Wysocki <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, Daniel Latypov <dlatypov@google.com>, Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Maxime Ripard <maxime@cerno.tech>, Geert Uytterhoeven <geert+renesas@glider.be>
+To: Guenter Roeck <linux@roeck-us.net>, Shuah Khan <skhan@linuxfoundation.org>
+Date: Wed, 09 Oct 2024 12:07:09 -0700
+User-Agent: alot/0.10
 
-On Wed, Oct 09, 2024 at 06:20:38PM +0200, Borislav Petkov wrote:
-> Frank,
->
-> On Wed, Oct 09, 2024 at 11:48:00AM -0400, Frank Li wrote:
-> > Krzy already sent patch remove him from MAINTANINERS.
-> >
-> > Do you have any more concerns about this patch series?
->
-> What are you actually asking?
+Quoting Guenter Roeck (2024-10-08 16:27:37)
+> On 10/8/24 16:12, Stephen Boyd wrote:
+> >=20
+> > The best I can come up with then is to test for a NULL of_root when
+> > CONFIG_ARM64 and CONFIG_ACPI are enabled, because the tests
+> > intentionally don't work when both those configs are enabled and the
+> > 'of_root' isn't populated. In all other cases the 'of_root' missing is a
+> > bug. I'll probably make this into some sort of kunit helper function in
+> > of_private.h and send it to DT maintainers.
+>=20
+> Sounds good. Thanks a lot for tracking this down.
+>=20
+> That makes me wonder though why only arm64 has that restriction. Both
+> riscv and loongarch have ACPI enabled in their defconfig files but call
+> unflatten_device_tree() unconditionally.
+>=20
+> Oh well ...
 
-I ask if there are any other things to prevent this moving foreward.
+Some of the reason is described in the thread I linked earlier. In
+particular, this email from Mark[1]. There's also more comments from
+Mark on an earlier patchset[2]. Maybe arm64 will allow it later, and
+then we'll be able to revert this skip patch.
 
->
-> Whether I should drop everything I'm doing and review your patches?
->
-> Do you need to read about the kernel development process and when new stuff
-> gets queued for the next merge window?
-
-I think I understood the process since
-git log --oneline --author='Frank Li' v6.10..v6.11 | wc
-87
-
-It is first time to work with EDAC. The difference maintainer has differece
-method to collect new stuff.
-
->
-> Let's cut to the chase and you explain to me what the reason is for you not
-> waiting patiently for your turn to come but keep pinging.
->
-> So, which is it?
-
-Generally, 7-10 days is reasonable frequent to ask. Contributor also takes
-their time and efforts to make kernel better. Why they have to endure a
-questioning or accusatory tone!
-
-These patches was already takes more than 3 months. I ask just because
-avoid to hold for the another 3 months just because some none technical
-reason.
-
-Frank
->
-> --
-> Regards/Gruss,
->     Boris.
->
-> https://people.kernel.org/tglx/notes-about-netiquette
+[1] https://lore.kernel.org/all/Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm=
+.com/
+[2] https://lore.kernel.org/all/ZaZtbU9hre3YhZam@FVFF77S0Q05N/
 
