@@ -1,60 +1,67 @@
-Return-Path: <devicetree+bounces-109304-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109305-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0FCB996019
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:49:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB47199601C
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 08:49:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F9161C2249A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 06:49:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5727A1F22B20
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 06:49:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3564F16EB4C;
-	Wed,  9 Oct 2024 06:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74B28175D4F;
+	Wed,  9 Oct 2024 06:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FaVoHJOQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EzRSu0vE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065151E48A;
-	Wed,  9 Oct 2024 06:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 491F01E48A;
+	Wed,  9 Oct 2024 06:49:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728456548; cv=none; b=JLpZZtkzSfz11PJhOKxha7d7qDmKdaq8M/j8AJrkLFwMK02Sn+/8vjbjS9NiwcyIU0Jiz6PTE9FQY7a3DNa4eo1iuYua9cMDzmCnQ5OYsHWUgg9+5m8eT2GZ8EOsKtZP6t45B7PyqaIiclTZOcwJ6fDmAY2BDHDMtq4n/98zBVk=
+	t=1728456566; cv=none; b=FVjnyZDuVV0KdljXejIYyEoxDSm6aN3999DmOJpPeP1y/aCmHAaOrx7GYXDC7dDumJrzkLHCrkaGaDrgzcTX1KgNhTFKSD8Giq2LNg1vejYYKz80NYTtJV7QzvORa8O4mK/Chuxcf0EZoqUSJ52sWBywg9gOI0S5LG59owdFjNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728456548; c=relaxed/simple;
-	bh=ucAg1m6COK1agpvptaine6ajoz5RBEwgMbZMz2fV+i8=;
+	s=arc-20240116; t=1728456566; c=relaxed/simple;
+	bh=K0wTO0P+SD9WkcMo9G1S7p8QWIzc7QXT/iG62OpJhNI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PYZyWn2eQln8Hs0bYOgJsX1NtI1N3hI4NJz4MFE2N1ckFgST7VJyBY/wvKFaM89Guo8rKw3j1/49OwXvp6IxYkZbymyIXZHqcMNS4ZGDLcVNJoy0qmtqqSSpRCFrhpTaY3pIdymhLSCwCNKba48M9epDAgLqhvb5XgN+3ISOjFg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FaVoHJOQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4286C4CEC5;
-	Wed,  9 Oct 2024 06:49:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z/lKu0M3e/Y5uHAnTOHht97Bp6OsRpmY11MBhu1ovd7FUg/GQ+Div621tF4S0idev3RrVgIdvVMhh29upnwcRT+bN8IQUsnowCTwSqUYacd3hP5ykIIorN7QyOlq/krkiSl7kLxM0Uj/dgS97k2lQI188IXUn5BEqpaGC5Ba5io=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EzRSu0vE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E334AC4CEC5;
+	Wed,  9 Oct 2024 06:49:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728456547;
-	bh=ucAg1m6COK1agpvptaine6ajoz5RBEwgMbZMz2fV+i8=;
+	s=k20201202; t=1728456565;
+	bh=K0wTO0P+SD9WkcMo9G1S7p8QWIzc7QXT/iG62OpJhNI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FaVoHJOQVSN/60dfw8bMYcTTxTbMCG9XZWONYL6yvobz3zDjd5/14mQ6bPtP4xIGT
-	 VgHLfJvDX3r10KnEuH5LP9I8J/wlEZfT97e4DpIFeBwNI7AGexVvmkfpPE4RBnGNvi
-	 7ME3ycs5bO4TsASSwXO0hmcxiDxNrxD5NE7k7EAiyJeLJYyC3a2gZ7BzsGKtI9J8lx
-	 qjXaW7GZWhf0OnoNlMS3IK805aGGCDlq02HfjiA7iUmgNgT8LXG07CGSUQplNwsGh0
-	 0J1XB+ZfSanu0Wt4thzxD8swGySNG1R9HFZT11ekxXSkfsisEk6rbXDqobl6kR55JQ
-	 RR7iVcKT/o8rQ==
-Date: Wed, 9 Oct 2024 08:49:03 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Abel Vesa <abel.vesa@linaro.org>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Johan Hovold <johan@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/4] arm64: dts: qcom: x1e80100: Describe the SDHC
- controllers
-Message-ID: <syf3uyoyh55rxieyjnhsskmythce6vnkuq77asgml736gcysd7@op5b2pd6ijsj>
-References: <20241008-x1e80100-qcp-sdhc-v1-0-dfef4c92ae31@linaro.org>
- <20241008-x1e80100-qcp-sdhc-v1-2-dfef4c92ae31@linaro.org>
+	b=EzRSu0vEscb8ZJFUNuun1/g+fZpuervnioQ8kBCYnbCnuVaiC5lMSz5ZZ405dKTzL
+	 2anW7T22mpiv2LgKxO2h87p7mQ4k9+l3bW4Brr3n1+ILh/r1TVy5wnrJNNsCL1kC6W
+	 L3ESbwswHBdmfukSuOdubveoypWt6SEafr0bNJV1rNj37ADP/MJ8fjxtLMigyfvt3r
+	 oPY7X+KKCAUe0f1TvAg0eTgvju3cW0390HE+BxNXD+UwGDJOaTFukxoi6j4IwHUdPp
+	 S8FfU3H85hlZjbfs2eh3n4byYXllLXGc/1S4ZKFItFF2MAbKEvIFvyFFyzCi22H5bT
+	 UX/hl4CYcs82g==
+Date: Tue, 8 Oct 2024 23:49:23 -0700
+From: Namhyung Kim <namhyung@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: Frank.li@nxp.com, will@kernel.org, mark.rutland@arm.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, john.g.garry@oracle.com, james.clark@linaro.org,
+	mike.leach@linaro.org, leo.yan@linux.dev, peterz@infradead.org,
+	mingo@redhat.com, acme@kernel.org,
+	alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+	irogers@google.com, adrian.hunter@intel.com,
+	kan.liang@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH 3/3] perf vendor events arm64: Add i.MX91 DDR Performance
+ Monitor metrics
+Message-ID: <ZwYncyUlAtTAeOjo@google.com>
+References: <20240924061251.3387850-1-xu.yang_2@nxp.com>
+ <20240924061251.3387850-3-xu.yang_2@nxp.com>
+ <ZvsTJ47yHFUjo1uw@google.com>
+ <20241008054935.zi2kqcaj4fwf2bda@hippo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,55 +70,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241008-x1e80100-qcp-sdhc-v1-2-dfef4c92ae31@linaro.org>
+In-Reply-To: <20241008054935.zi2kqcaj4fwf2bda@hippo>
 
-On Tue, Oct 08, 2024 at 05:05:56PM +0300, Abel Vesa wrote:
-> Describe the two SHDC v5 controllers found on x1e80100 platform.
+On Tue, Oct 08, 2024 at 01:49:35PM +0800, Xu Yang wrote:
+> Hi Namhyung,
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 108 +++++++++++++++++++++++++++++++++
->  1 file changed, 108 insertions(+)
+> On Mon, Sep 30, 2024 at 02:07:51PM -0700, Namhyung Kim wrote:
+> > Hello,
+> > 
+> > On Tue, Sep 24, 2024 at 02:12:51PM +0800, Xu Yang wrote:
+> > > Add JSON metrics for i.MX91 DDR Performance Monitor.
+> > > 
+> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > > ---
+> > >  .../arch/arm64/freescale/imx91/sys/ddrc.json  |  9 +++++++
+> > >  .../arm64/freescale/imx91/sys/metrics.json    | 26 +++++++++++++++++++
+> > >  2 files changed, 35 insertions(+)
+> > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/ddrc.json
+> > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/metrics.json
+> > 
+> > How do you want to route this?  As it's mixed with kernel changes, I
+> > would generally request to split but it's a change just to add new
+> > files so it should be ok to go with other tree.  In that case,
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index a36076e3c56b5b8815eb41ec55e2e1e5bd878201..b835fd87b977ae81f687c4ea15f6f2f89e02e9b1 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -3880,6 +3880,114 @@ lpass_lpicx_noc: interconnect@7430000 {
->  			#interconnect-cells = <2>;
->  		};
->  
-> +		sdhc_2: mmc@8804000 {
-> +			compatible = "qcom,x1e80100-sdhci", "qcom,sdhci-msm-v5";
-> +			reg = <0 0x08804000 0 0x1000>;
-> +
-> +			interrupts = <GIC_SPI 207 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 223 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +			clocks = <&gcc GCC_SDCC2_AHB_CLK>,
-> +				 <&gcc GCC_SDCC2_APPS_CLK>,
-> +				 <&rpmhcc RPMH_CXO_CLK>;
-> +			clock-names = "iface", "core", "xo";
-> +			iommus = <&apps_smmu 0x520 0>;
-> +			qcom,dll-config = <0x0007642c>;
-> +			qcom,ddr-config = <0x80040868>;
-> +			power-domains = <&rpmhpd RPMHPD_CX>;
-> +			operating-points-v2 = <&sdhc2_opp_table>;
-> +
-> +			interconnects = <&aggre2_noc MASTER_SDCC_2 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDCC_2 0>;
-> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> +			bus-width = <4>;
-> +			dma-coherent;
-> +
-> +			/* Forbid SDR104/SDR50 - broken hw! */
+> Sorry for late.
+> 
+> How about you pick up this one to perf-tools tree and Will Deacon pick up
+> the first 2 patches to his tree? I didn't see Will apply perf-tools patch
+> before.
 
-Is it still valid or was it just copied from old code?
+Did Will pick up the kernel patches already?
 
-> +			sdhci-caps-mask = <0x3 0>;
-
-Best regards,
-Krzysztof
+Thanks,
+Namhyung
 
 
