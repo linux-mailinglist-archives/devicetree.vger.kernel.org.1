@@ -1,189 +1,79 @@
-Return-Path: <devicetree+bounces-109678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7DB09978E0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 01:09:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CD91997918
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 01:25:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84438283CC4
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:09:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DAA9283DD6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:25:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA1F1E282B;
-	Wed,  9 Oct 2024 23:08:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95FBC1E32CC;
+	Wed,  9 Oct 2024 23:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dc8FJN6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E822C18F2FC;
-	Wed,  9 Oct 2024 23:08:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E50D18E02A;
+	Wed,  9 Oct 2024 23:24:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728515323; cv=none; b=ITomPNHIUO89OE47m09Ustmzfs0VKBsbWgvJO2jezk7iWi2h/P1Wc4UmGvAdgU8r1u82+i/r8e4pA9dGYjiiaQbbvxTVjbSKhUwVMfed5d8kYPVt55uTyWxMvUp09dDqaXtezD/5aKaPyVo4M+utL6kY+uiX12EffxZDfUb9rF0=
+	t=1728516298; cv=none; b=GT+zp7HdxwYbfQXwpphhjEsHOI8eIVoXF3HpzVd+sMvFDOqELE1jAAF4vySWnZLywm+4Bo7y4q+KqdkPSnFsxMlz4GmmfEUDRNyhbklMR0aTwxSVzGy5IpdVI+N1bo8mFY0qIZK2JiI33jEDZKLKKscoPJEzFcAIdro65iAljVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728515323; c=relaxed/simple;
-	bh=yaZxhMVXlOZVkblPcqtytzxi6RkPuhnsybajQpe/ua4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=SJPClKgav3mPJ/pLWaYXYVegDQCMMJvVK2V+hkJWtT5VvQPijj8AI6BaCDXGTmhrlsZG6dAhsaRtbCQwpEVoluU8t6q6U43dTdQducAnsk9DDh+7HMiBCVQcUnGCJ8zgDbpiKeJFAwWASYMdWJpgr/xZ0LcwGENlvYxZXIv4ics=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
-X-IronPort-AV: E=Sophos;i="6.11,191,1725289200"; 
-   d="scan'208";a="225463327"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 10 Oct 2024 08:08:40 +0900
-Received: from mulinux.home (unknown [10.226.93.36])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 45D644005456;
-	Thu, 10 Oct 2024 08:08:37 +0900 (JST)
-From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Chris Paterson <Chris.Paterson2@renesas.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v3 3/3] arm64: dts: renesas: r9a09g057: Add ICU node
-Date: Thu, 10 Oct 2024 00:08:17 +0100
-Message-Id: <20241009230817.798582-4-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241009230817.798582-1-fabrizio.castro.jz@renesas.com>
-References: <20241009230817.798582-1-fabrizio.castro.jz@renesas.com>
+	s=arc-20240116; t=1728516298; c=relaxed/simple;
+	bh=f8j5Rc2RHHhiF2GJc9OBWL+K6u2nb+DBAE4TxLYBxHE=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=MStjuLm66qnELsl++9HbfTXKRg1zcflKAE7wK4izkvcE7po0lzzVi3ErFStKxwn4L60YgEL4stWpqN0iRJ0quh7f+k7xuFDbhHP4tVpB2kpR7OeGz/OGYSLsj+n86zeF9Dxot3Eb7ehyTzyTk9puaGuLC7Ln/9Ba7b9GzRKA17Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dc8FJN6V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB812C4CEC3;
+	Wed,  9 Oct 2024 23:24:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728516298;
+	bh=f8j5Rc2RHHhiF2GJc9OBWL+K6u2nb+DBAE4TxLYBxHE=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=dc8FJN6VBianZ1+FazmVZdPlcp9zpSItKgTj557J2VYbbpZjCGF0DvR1E5fMSycW6
+	 DXb32sDm58B9P8HuFphQbt+VNbcZsAl+cwRQ5jGUFZ0UDZSpI0vKJIWdiLpP3vzDMU
+	 R+D+VFXsGwGqlg+PawFSSlqyXsUFh/7DXO6qfHlmgg+yNg+fqYt2wXBlMFGfDYFTSn
+	 fymy11T41cP3QIjZhqapVHEFbW1pw/0UyX+cQpD1AF40ULJ/oyH/44h+uH/8iVoqgo
+	 vY8Bjcc5WpH4jpyebJQckWrxSV8EpxWNc7NKHVmZVsTjIt7XyYdLDHaf4Ydk4kEqUe
+	 ubXaDVaaIdiVQ==
+Message-ID: <e0c20d3cc4490776fd2498bfd72ab6ad.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ZvuzQxjuN2zRrAMG@lore-desk>
+References: <20240903-clk-en7581-syscon-v2-0-86fbe2fc15c3@kernel.org> <ZvuzQxjuN2zRrAMG@lore-desk>
+Subject: Re: [PATCH v2 0/7] clk: en7523: Update register mapping for EN7581
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, upstream@airoha.com, angelogioacchino.delregno@collabora.com, linux-arm-kernel@lists.infradead.org, lorenzo.bianconi83@gmail.com, ansuelsmth@gmail.com
+To: Conor Dooley <conor+dt@kernel.org>, Felix Fietkau <nbd@nbd.name>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Lorenzo Bianconi <lorenzo@kernel.org>, Michael Turquette <mturquette@baylibre.com>, Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>
+Date: Wed, 09 Oct 2024 16:24:55 -0700
+User-Agent: alot/0.10
 
-Add node for the Interrupt Control Unit IP found on the Renesas
-RZ/V2H(P) SoC, and modify the pinctrl node as its interrupt parent
-is the ICU node.
+Quoting Lorenzo Bianconi (2024-10-01 01:30:59)
+> On Sep 03, Lorenzo Bianconi wrote:
+> > Map all clock-controller memory region in a single block for EN7581 SoC.
+> > Introduce chip_scu regmap pointer since EN7581 SoC will access chip-scu
+> > memory area through a syscon node.
+> > REG_PCIE*_MEM and REG_PCIE*_MEM_MASK registers (PBUS_CSR) are not
+> > part of the scu block on the EN7581 SoC and they are used to select the
+> > PCIE ports on the PBUS, so configure them via in the PCIE host driver.
+> > This series does not introduce any backward incompatibility since the
+> > dts for EN7581 SoC is not upstream yet.
+>=20
+> Hi,
+>=20
+> any update on this series? Are we supposed to do something?
+>=20
 
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
-
-v2->v3:
-* s/irq/port_irq/ in interrupt-names.
-
- arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 90 ++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-index 1ad5a1b6917f..abcdef3ba5bc 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-@@ -90,6 +90,95 @@ soc: soc {
- 		#size-cells = <2>;
- 		ranges;
- 
-+		icu: interrupt-controller@10400000 {
-+			compatible = "renesas,r9a09g057-icu";
-+			reg = <0 0x10400000 0 0x10000>;
-+			#interrupt-cells = <2>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 2 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 10 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 11 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 419 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 420 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 421 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 422 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 423 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 424 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 425 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 426 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 427 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 428 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 429 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 430 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 431 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 432 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 433 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 434 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 435 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 436 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 437 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 438 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 439 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 440 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 441 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 445 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 446 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 447 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 448 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 449 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 450 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 262 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 263 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 264 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 265 IRQ_TYPE_EDGE_RISING>,
-+				     <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 451 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 452 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 453 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 454 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "nmi",
-+					  "port_irq0", "port_irq1", "port_irq2",
-+					  "port_irq3", "port_irq4", "port_irq5",
-+					  "port_irq6", "port_irq7", "port_irq8",
-+					  "port_irq9", "port_irq10", "port_irq11",
-+					  "port_irq12", "port_irq13", "port_irq14",
-+					  "port_irq15",
-+					  "tint0", "tint1", "tint2", "tint3",
-+					  "tint4", "tint5", "tint6", "tint7",
-+					  "tint8", "tint9", "tint10", "tint11",
-+					  "tint12", "tint13", "tint14", "tint15",
-+					  "tint16", "tint17", "tint18", "tint19",
-+					  "tint20", "tint21", "tint22", "tint23",
-+					  "tint24", "tint25", "tint26", "tint27",
-+					  "tint28", "tint29", "tint30", "tint31",
-+					  "int-ca55-0", "int-ca55-1",
-+					  "int-ca55-2", "int-ca55-3",
-+					  "icu-error-ca55",
-+					  "gpt-u0-gtciada", "gpt-u0-gtciadb",
-+					  "gpt-u1-gtciada", "gpt-u1-gtciadb";
-+			clocks = <&cpg CPG_MOD 0x5>;
-+			power-domains = <&cpg>;
-+			resets = <&cpg 0x36>;
-+		};
-+
- 		pinctrl: pinctrl@10410000 {
- 			compatible = "renesas,r9a09g057-pinctrl";
- 			reg = <0 0x10410000 0 0x10000>;
-@@ -99,6 +188,7 @@ pinctrl: pinctrl@10410000 {
- 			gpio-ranges = <&pinctrl 0 0 96>;
- 			#interrupt-cells = <2>;
- 			interrupt-controller;
-+			interrupt-parent = <&icu>;
- 			power-domains = <&cpg>;
- 			resets = <&cpg 0xa5>, <&cpg 0xa6>;
- 		};
--- 
-2.34.1
-
+I was waiting for review from someone like AngeloGioacchino.
 
