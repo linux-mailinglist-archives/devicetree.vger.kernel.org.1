@@ -1,65 +1,63 @@
-Return-Path: <devicetree+bounces-109642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 72747997760
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:19:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE947997768
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 23:24:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155B2286AEB
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:19:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 763D3B21382
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771CA1E231E;
-	Wed,  9 Oct 2024 21:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10EA619006B;
+	Wed,  9 Oct 2024 21:24:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DXxiwNUK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pqrAB98l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D3819C563;
-	Wed,  9 Oct 2024 21:19:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D65C92119;
+	Wed,  9 Oct 2024 21:24:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728508774; cv=none; b=khSWeU7gkqsO8LJEokQ/fg0wN6C277KMSaT7EQqX6zc3OsJQpEtzKx5WmykzsJrCzTUfyWjD1zuHLgxYknmIsl4PFl/F4ghw23L5HfRn+/BsYCF1ZsGnoa/rFctYXLvddihTeIq8Xq5l9l0mcKUPQACvxSuEN04RT78VaPyA8Z8=
+	t=1728509042; cv=none; b=e4rkCq29IC2A3qjOSOZNf2LdURt1YdaGwIqyXy+KRPDD8+WDrk5KFNbIbVtNQrYJUDy5bC1m21eB1+i+WxD+TaFroneVGZ84uoBFLGPfqhzFPQKiyaO66kBz2RBqY8wJ+TrsotRMy+NyalLdAwl5H1MlavKdqCvBwcrpPwdM884=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728508774; c=relaxed/simple;
-	bh=Vt+z5p5sQcbBWZ3AwQ1076IwrQIkaCh7SdfsfMYjZQQ=;
+	s=arc-20240116; t=1728509042; c=relaxed/simple;
+	bh=BjEvB7skkEeR6d+4kVsgommqWcL5Ch3q5u9TPLPNrVg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Pm4Bjh1YXV6Gi2cmf64XSRTDjouAonqVWS1pDwq3SztB4IYKg4Us/NFXyiwW85ep5DUCMyhKF4igYP7a21KDOyLXnJg2maemQo5ohU4poTuaAH4n4FvMWl25s38BOsYFBFt3ZvERt10iFGLozeJ7Q5U/GA88ZFe0yFXJePfa7F0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DXxiwNUK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0292C4CEC3;
-	Wed,  9 Oct 2024 21:19:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FRyXa7crIblvma0dSg/ogtL5RNKPILMTd2CXBlz4KICqR+pHa5YEzPA8qZco5Ikuug9nRTz8IENNGi1VrR4S/aHAEcCt6mYY75XC9rYWAm/MrvtMMRHZfAaKQnN1OV9i4ALse9yd4CDdyRcq5+6+tVNpQMX+5cCUsy3YWsKNmuw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pqrAB98l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B1E5C4CEC3;
+	Wed,  9 Oct 2024 21:24:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728508773;
-	bh=Vt+z5p5sQcbBWZ3AwQ1076IwrQIkaCh7SdfsfMYjZQQ=;
+	s=k20201202; t=1728509041;
+	bh=BjEvB7skkEeR6d+4kVsgommqWcL5Ch3q5u9TPLPNrVg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DXxiwNUKrF6OkSTYIaZo8fbWz/4mzh2UjHXR4xRlBFI7ovx1oHXRJKGKo+E3cuWDk
-	 f4nrsL0Yxo4m8r733D4J0WLsndLHmC/9O8koEVe0zvOQP9PM0+p4Z/3/Us3NOH+QV5
-	 WRKhYepQ64L00jmlGw4IoLQRIRcwP6KxsqR0cGBMxEAVHi3LNKP8TWt9dKRvSnT6xA
-	 NzOhnyG/qazQBBXy5VlJgdMZrkOHcUg5ayqgTTheCfhqaKzfv1QW22fQCQpbVigxEn
-	 RGFbs8kSedE3rDQBxqNnK82Lbt09aehYbIptEeD3PO2N6eL/c3PQ13GXVZ/P4GBDpU
-	 INvipZOXA65UQ==
-Date: Wed, 9 Oct 2024 16:19:32 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	linux-kernel@vger.kernel.org, eladwf@gmail.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Frank Wunderlich <frank-w@public-files.de>, john@phrozen.org,
-	linux-mediatek@lists.infradead.org,
+	b=pqrAB98leIdj82zuYYUEUn+3JmIzM8kOG1niL8LYQxL1P8up1LKWsv25+F2mTPaMt
+	 F1lqhqogyrlVqBDReczONoUt/GCXcetIUCLRqe1Bsx2WR860+jfxcPkgqiynGV7LUq
+	 8uM7NUK0eaHIvbR4M+uDmmdsGU1aM0yo9o087NYG/B/+BBwSWDkDyOXYoQR+AnktEa
+	 /8ITYjZTYcMh0/mCLuuZriL8zfXHa7cjwUMNh5ykhfk7/kf5mK94QiNyAipzuQpnzr
+	 jsLiVy++8UETOmfboawJBPJPGdJ6sQB1HajdxptNbCqH9aa2OEiuIgRYPsrX78Ie4E
+	 JScIBdRUDWdtA==
+Date: Wed, 9 Oct 2024 16:24:00 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christian Marangi <ansuelsmth@gmail.com>
+Cc: Herbert Xu <herbert@gondor.apana.org.au>,
+	"David S. Miller" <davem@davemloft.net>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Matthias Brugger <matthias.bgg@gmail.com>,
-	devicetree@vger.kernel.org, ansuelsmth@gmail.com,
-	linux-gpio@vger.kernel.org, daniel@makrotopia.org,
-	Sean Wang <sean.wang@kernel.org>
-Subject: Re: [PATCH v4 3/4] dt-bindings: pinctrl: add binding for MT7988 SoC
-Message-ID: <172850877244.733887.12458885415029802904.robh@kernel.org>
-References: <20241009165222.5670-1-linux@fw-web.de>
- <20241009165222.5670-4-linux@fw-web.de>
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Richard van Schagen <vschagen@icloud.com>,
+	linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [RFC PATCH 1/2] dt-bindings: crypto: Add Mediatek EIP-93 crypto
+ engine
+Message-ID: <20241009212400.GA735586-robh@kernel.org>
+References: <20241009171223.12695-1-ansuelsmth@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,36 +66,70 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241009165222.5670-4-linux@fw-web.de>
+In-Reply-To: <20241009171223.12695-1-ansuelsmth@gmail.com>
 
-
-On Wed, 09 Oct 2024 18:52:13 +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
+On Wed, Oct 09, 2024 at 07:12:20PM +0200, Christian Marangi wrote:
+> Add bindings for the Mediatek EIP-93 crypto engine. The same IP is also
+> present on Airoha SoC.
 > 
-> This adds bindings for MT7988 pinctrl driver.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
 > ---
-> changes in v4:
-> - dt-binding: pinctrl: fix dt_binding_check fixed-string error
+>  .../bindings/crypto/mediatek,mtk-eip93.yaml   | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/crypto/mediatek,mtk-eip93.yaml
 > 
-> '^mux$' should not be valid under {'pattern': '^\\^[a-zA-Z0-9,\\-._#@]+\\$$'}
-> 	hint: Fixed strings belong in 'properties', not 'patternProperties'
-> 
-> changes in v3:
-> - limit conf subnode name with optional suffix like mmc on mt7986
-> - match mux subnode without wildcards
-> 
-> changes in v2:
-> - drop gpio-cells description
-> - move ref in mux subnode up
-> - order uart-functions alphanumeric and fix typo
-> ---
->  .../pinctrl/mediatek,mt7988-pinctrl.yaml      | 571 ++++++++++++++++++
->  1 file changed, 571 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt7988-pinctrl.yaml
-> 
+> diff --git a/Documentation/devicetree/bindings/crypto/mediatek,mtk-eip93.yaml b/Documentation/devicetree/bindings/crypto/mediatek,mtk-eip93.yaml
+> new file mode 100644
+> index 000000000000..b0173b4da42d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/crypto/mediatek,mtk-eip93.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/crypto/mediatek,mtk-eip93.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek EIP93 crypto engine
+> +
+> +maintainers:
+> +  - Christian Marangi <ansuelsmth@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - mediatek, mtk-eip93
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+space?
 
+Why mediatek and mtk? Is eip93 an SoC? 
+
+> +      - airoha,mtk-eip93
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    crypto@1e004000 {
+> +      compatible = "airoha,mtk-eip93";
+> +      reg = <0x1fb70000 0x1000>;
+> +
+> +      interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> -- 
+> 2.45.2
+> 
 
