@@ -1,188 +1,201 @@
-Return-Path: <devicetree+bounces-109408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F8B996550
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:28:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 249AA9965AB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:40:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EF531C209DD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:28:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC6E51F21D71
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:40:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8347218A92C;
-	Wed,  9 Oct 2024 09:28:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F66618A6C6;
+	Wed,  9 Oct 2024 09:40:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Oxy9ua1s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010063.outbound.protection.outlook.com [52.101.69.63])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42937189B9D;
-	Wed,  9 Oct 2024 09:28:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728466102; cv=none; b=ZZdOr/Iq/NcenjkClGjjH8FRmYtD3r63uV2aUvW/A8yNX2vzHq8tSmfmWkqTai8rcyLG+BtrJNrM0a/CGquNOH0fpcqI4CtQMP905YoQWBUYLZD3Pj6AXHBbl2Y5MUkSsyvSSKkon/j3y0TRlTfzfUCv/pVUm6jKM/5wPV6STzk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728466102; c=relaxed/simple;
-	bh=3uH0VHQ5FbfEU6U+DIwCrLir1cI06f1Nwd6HjQO06xc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VWb+d93DL7KPfsnat6A9MDzoy9eyV/7OZeG2zdljBUFWoSfJtrEEL1C3a7QK0EQKQni0xkqnOOX7k1LUkOWSxyOtdj96S6R03qm1yGGZTpK7V5f7HhhkJEnaucLDNy+1vcvG7afdB80MvATerALetNZVYfB2wxZl8LFOtg2sr38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-6dde476d3dfso53403027b3.3;
-        Wed, 09 Oct 2024 02:28:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728466098; x=1729070898;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K2aKKIBJN+fcgMd4SG9SyuTgYPFz3/hZQ2vaXaYBN9Y=;
-        b=AusfVUV6i4vaAArcHqJsYBY3mvtB+2+3x+P8zLNVT8TilslC4xS5cC0n2XBV+SFQ2T
-         EdYgD+gSUqtSuZxpG6Kx8SLCK9RLmJ7knezp/iruZNY3D8QBGoEm0MbZGE0hMB9izT1e
-         Hgfa+bEDXnckbPMQiW6VvUsny1GJPwKqWxK8j0e7EWPVsWCkYMBH5FggGUml/d4ltbPm
-         Kpmmo/ISo1ChiH6XtJSBViQxtY0A2DRslX31BxuYebTIB1eah5k9fc6f6pbKp/MvSbKN
-         WRyzIGzcB433lUlx8SLgzyteHb0GpkN5SjXjnMOBktU2FPhBmqWMlAYxljFwEhNoB/wE
-         r2JA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3IMA5JzjA+DnK7XTv46blvBWOzmdBRrqd1MmPUA3F2pxtI9ug+9ByjeVs7NnINi6Adf7tyTcRgp7l@vger.kernel.org, AJvYcCVY3A8M+zI5tVEO/2PQxT3VkdCJDaAPCuEDyLI7uHzz2CUIHC/C4wic3KUpBdkh8JbqCD582TlD17KUXImLcUyeXVM=@vger.kernel.org, AJvYcCXlfMRQHl+aRqnPZiK9TIL+UsXACrycCebOKmXMs9jCVA7lnal/J4cnoO9T84ObVR5dolg99e6IfpQlLCR5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4jkyblgKuTSwsAZlm0oXRAeWXUWyxH7dF+KLCUFrCjXDkPoJx
-	GKp/Pn0m+vqcLj9hqijCrSGXAzCT9msmjexjaFcCG4KleGbulk2XJ1YDfUHm
-X-Google-Smtp-Source: AGHT+IGwIN0KgjdXBRIUnow8+1heDS02mBfKjHKUuLUK/UOv5Zme7olUq6bkJ0wI+qmPgqskmxft5A==
-X-Received: by 2002:a05:690c:399:b0:6e2:71b:150 with SMTP id 00721157ae682-6e3221a1695mr15829927b3.29.1728466098234;
-        Wed, 09 Oct 2024 02:28:18 -0700 (PDT)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e32b55ad9dsm266297b3.98.2024.10.09.02.28.17
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Oct 2024 02:28:17 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6dde476d3dfso53402747b3.3;
-        Wed, 09 Oct 2024 02:28:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWTRq62LQzK82rHDL3z7M7ZXZ5sbLU+KYURtqU0Evh+iOJAu6Dooxjq6r5fcCVI7PrpHYXoLCGVkGOkZY/Va0ely2M=@vger.kernel.org, AJvYcCWoYhm7IbHwSkTrjwuOWb1kHO9LzeJFCxpeRQWMUbbTD2kfGUWTvupQizKHHbaeCS65SIlVV/thZ1m5Ip0e@vger.kernel.org, AJvYcCWs24KcHeMCk2LHo2vr/th014Vbsktt++vlekDwUS+US3QFyiFF6T6Htl42otzu4kD1rlW4KqBM+XVt@vger.kernel.org
-X-Received: by 2002:a05:690c:f06:b0:6e3:1f02:4069 with SMTP id
- 00721157ae682-6e322133df8mr20738077b3.7.1728466097482; Wed, 09 Oct 2024
- 02:28:17 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4338C189528;
+	Wed,  9 Oct 2024 09:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728466836; cv=fail; b=M0im4dV4bcFwXD4aeGUT+xeCXSNw1sjC+HJV0xsn5FuJW68yw/pjheQfgMqZocZvM0bmbSBqyyGB8qpxe6n8QUc5ZUr6PYFFf74cvHcnoHuU+7GE+rpprM54QvoPCc4h1bSqr6HMCsmwA/eRitoOMLIz7wjOvICYVTy9VpZTpP4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728466836; c=relaxed/simple;
+	bh=TJbC/a3NXUY3h2XFrBt6vwve5vPAm7MQdM4TCxSAIP0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=WrPWkiEGj1IWJUM7/d/LQVhJS8kLlszHUo5wLjjD+xKpzuqELTRin24Xtk5jrk4Tk1jD+8rzCXl0o/Yq1S1cve2n7B//hEAuEZi13z5kR2lBEYjhSieciuM3l/LM2IPQ0sWnaEBm0OIcxUVu0w0LhY8LCdmTPzpLdn6WtpOxWqY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Oxy9ua1s; arc=fail smtp.client-ip=52.101.69.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=A2l7cOHhxew7BKr9HkZgS3DdNcW0+/QzNIpbT3F/lahV+CzYmrWZNx3Wbjz0KHIcqSN7ECySVLrSB/317r2dZrCyMNrRFar3B7nQS8RYnZhpJhM6foPCTMHtb5eaIuk9BZSYSnEIdBU4/qI5Jx1FnYxSuG+VIGbOTXmv0T42VHn/UkURg1jlKyjqGcbTIqaJamjq9su9bjj0SyeuP7co1vGSeFifkKt8h2hKUHDu7bnydAuLR/O6NHf4Onn4YHbV2/FajsYIvrh+tSkelb5XV+s0AhPNiQFxz4exU14/T1G9yiXl07241ggq2mWO5Yiziug1dG5NX33lPMQXuobVeQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8+xcbBLo+vpS6ZBioXe0YZWW/mwPzTEpB90Ed8N7l8U=;
+ b=h+IxAW9NCpTcC3cvZ69YICUtCyRRe59C5p7EvQpxLVIAYiCv5EdfysSEr4dzL/Um87hN6wdubGGIfBQI9pdYWtQozwSbVUHyhmy7ieYgnaK7DQwmRns1nFiAAt/KKfLMSt6f0RzxTSdgQmM2THcb9uBKjuHlvNyAwrVVNfjOPN7lrZBpLfeIZWcwvU7CL9wYnJswjNlZ7JSB8grKw/8iQUnifXHGVWFXLlfJSTNASgXPB80IjFF2dgmwZKx7l8N0MqXrlC0+gMnZVBVJwX+AyLNd446qJQv42DIm5knafWQgcKSEcy6A2dO56cMwhcoVDLqN6zGGFmCnHZCXV8ISZw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=8+xcbBLo+vpS6ZBioXe0YZWW/mwPzTEpB90Ed8N7l8U=;
+ b=Oxy9ua1s8sZXNUPXzX4FjWTE0h2jIwp0J0h6nE351K0RH2cHOWiUcNt4/AyyRJnMNxaA7rmvfWMj5OXPTQ3OopE7WTTrdLuECR9HM25u0XT2zsJ12/C5DSmSCU/dJofLXgQNIJnLbtiA4eybAN99fgpLfFK8+w7Wbt3RQf05snX1xMBCJ2wv4TQA54QHG8qYjmXLx7fiMBDoer4U8XGRfZsdFb+nl3HrEbdHkehEwrxFmcgfb6jfr+7+BZHqrJy0QHtnqXeJcdaB61Cf88l4N0QdG+6k4HRhf/Zy4aI+VfxBLmNzLczXXKhQlg+qwNYyBv+g24DXqxqbZcpQS+cNKw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by DB9PR04MB8092.eurprd04.prod.outlook.com (2603:10a6:10:24f::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Wed, 9 Oct
+ 2024 09:40:30 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::4e24:c2c7:bd58:c5c7%4]) with mapi id 15.20.8026.020; Wed, 9 Oct 2024
+ 09:40:30 +0000
+Date: Wed, 9 Oct 2024 17:38:25 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Namhyung Kim <namhyung@kernel.org>
+Cc: Frank.li@nxp.com, will@kernel.org, mark.rutland@arm.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, john.g.garry@oracle.com, james.clark@linaro.org,
+	mike.leach@linaro.org, leo.yan@linux.dev, peterz@infradead.org,
+	mingo@redhat.com, acme@kernel.org,
+	alexander.shishkin@linux.intel.com, jolsa@kernel.org,
+	irogers@google.com, adrian.hunter@intel.com,
+	kan.liang@linux.intel.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-perf-users@vger.kernel.org
+Subject: Re: [PATCH 3/3] perf vendor events arm64: Add i.MX91 DDR Performance
+ Monitor metrics
+Message-ID: <20241009093750.6mbq3zkmupahrzmm@hippo>
+References: <20240924061251.3387850-1-xu.yang_2@nxp.com>
+ <20240924061251.3387850-3-xu.yang_2@nxp.com>
+ <ZvsTJ47yHFUjo1uw@google.com>
+ <20241008054935.zi2kqcaj4fwf2bda@hippo>
+ <ZwYncyUlAtTAeOjo@google.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZwYncyUlAtTAeOjo@google.com>
+X-ClientProxiedBy: SG2PR04CA0207.apcprd04.prod.outlook.com
+ (2603:1096:4:187::9) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008164935.335043-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <TY3PR01MB11346A1726BCE1687C6AFF519867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <TY3PR01MB113469ABB6393E0A6451034A4867E2@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <CA+V-a8vWpUmq9esgcnjWVcPb-jUaLuKvhJF2VwiWrCx5_nOtww@mail.gmail.com>
-In-Reply-To: <CA+V-a8vWpUmq9esgcnjWVcPb-jUaLuKvhJF2VwiWrCx5_nOtww@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Wed, 9 Oct 2024 11:28:04 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdULuCWd1V0Az=NWHhSb7voDKbTo9rp3Excntp7qvTbbuQ@mail.gmail.com>
-Message-ID: <CAMuHMdULuCWd1V0Az=NWHhSb7voDKbTo9rp3Excntp7qvTbbuQ@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: r9a09g057: Add OPP table
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|DB9PR04MB8092:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2cdd7d20-cf5a-4434-7a20-08dce8466a0e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|7416014|366016|376014|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?82ajroL+4DGp/IMhdgbPRPTfyTBvfMZPSPVAsV2STAcDRFxxqcstvEi/rmnR?=
+ =?us-ascii?Q?CAleTrv7/WOk4e2nDKFiUwwgr5pYyjwSgDilynXaijz+0br0x98y3+usVmkG?=
+ =?us-ascii?Q?C/jFerLsznD59AEaq0tjCHI9L07pft23y5DCBeX34RxCCd6BSPwz6v9demmw?=
+ =?us-ascii?Q?n6YLAjS+tg6vpdA5p24QXr+Rhl027WWjAaUEdifJ36eaKjSB0EwrwxFnYrmb?=
+ =?us-ascii?Q?Syx+d3DSHodcbT6+a8UTJLcKBGkxwIP+1K9ieEabWXohGrK0KUKalrbPQCCL?=
+ =?us-ascii?Q?LUNnx1diq2pHU0OrpMUZkBLIws4M9ALRtS7zXVxVtvFpZUqVtG8FV/Ou0Gst?=
+ =?us-ascii?Q?EKeoic/9pEnuvco16PlcVM8tGKOEoH2IFwe/JUZSmBw9Gfhq4igQdi0r+VlS?=
+ =?us-ascii?Q?d1W9oA+YudCRLnAuIsOQuYJMxcaeOWrmEQdRwcCu8qBAakgXB4kgqpuAybqz?=
+ =?us-ascii?Q?yJU6Zyg67Hcb6AYFoTKn+C0uhpyR1WgngnH/qbIePvdxwNP6F7kJHAxmvDFU?=
+ =?us-ascii?Q?dGv4W4sJxVqH4vzZPsg/vh1fA/ChiLJSfgQvobSBRok1mQnekKuSdcjii7+s?=
+ =?us-ascii?Q?op23hUCrulonzRzFPokSkMYQ0SSLQ1a7n1fJWMwpvRdRRygfk8aHXX7jHRpg?=
+ =?us-ascii?Q?nOpBRPay9a5PFFrAh7TXN0nEkfO0o5W1qidC/KpulPIMplv1s3wV9aiUl/mw?=
+ =?us-ascii?Q?vfHDoR1wMCI1TQ8e53lXu2WKdxbdzcddqDxdO/+kn13MRsySwHrOblGLYLv/?=
+ =?us-ascii?Q?hYIPwsjJTOvwF6X97LJ9E7Wd0QNL6GMWfH43ojSDBdtD2pYizS7FUtjSwhjO?=
+ =?us-ascii?Q?gZU4+uDWWZ0GSvXVSKzlX2chW7U8Wt9lIHb6Wen6ttFrtmt+MG97aeJx1z55?=
+ =?us-ascii?Q?vUxhIZe+CzqdPjrr8vF6gn6Qwh8/EMQEoNPqAgJkGrxjzFVQYFzjMC5IePKq?=
+ =?us-ascii?Q?mSD79bJJW4Ctzu4ndj7TGb5ysc93KZcQzStDHyT+IqYxJYt1DNvHXaHeX5uT?=
+ =?us-ascii?Q?hsDnbmFSqln/A1cs9uHxo8zAldc2BSV4o+6YGrzUJ+yrMNX1vyPZXNJI38t8?=
+ =?us-ascii?Q?bHyvuylYFCPjvAd1Ri9M9LBkX6KfF6rJVG57B2jpjiBkmfzqbZ8KNZGnpCmV?=
+ =?us-ascii?Q?8HQCFKBbKIMuqq6oKEI3WlaAtGDF4xrDBLRi4skfOcou4ZRzsh70OMsGJNQu?=
+ =?us-ascii?Q?l9jSKDpqc8123S5KhdmqbqDeON41/3Ti/eo364rfzLc54TQQOFnfpMHk8D4m?=
+ =?us-ascii?Q?NkyYD+T0D1QIklsudvGlZVboHdAim6YYQX50631zGRIKYbwAEjIxvFKCFiBw?=
+ =?us-ascii?Q?C4JFMgHYm9wM+a5thl2Qau9YcGrD9XXzGlRNDSdszfaJGg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(366016)(376014)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?qyj+rIVdyxY8FDnYSxK4B3s5R1wJNsS0LqfK6+Atn+upFlwBPcL5IqPksdkI?=
+ =?us-ascii?Q?8/gGy1AZixd4D8ynFRJY66JsRYBvRJpIt+vgU//2FX/MEgs13hHlpn4qldCe?=
+ =?us-ascii?Q?4qbGd6GPfz5yrjb1J808HuR5ji8NN8gZS/tOkkupH6xf7IycnWdMB96Dgrur?=
+ =?us-ascii?Q?S1lvDOao0KjJwod+D3cpnAW8DsHIWw4xo0CN5YIljgaKGh+sY4QyulxRxRzj?=
+ =?us-ascii?Q?RJTA9cek8Gop8CexeHzQEhMpM+1rXbbT89JXI6rJd4qS3662I2ULWKxr/J/b?=
+ =?us-ascii?Q?wFvU8cBJzuuAlYUyGP2I0lSfBw3b6674zk2zPV5NeVwSqcePS4JYAvuRWSHg?=
+ =?us-ascii?Q?0YLsfmKQbV0t8R7YCeQLKM8Cygj+4Z9i28h1XDbXMkFWu9nuATyIRLKzOl5f?=
+ =?us-ascii?Q?h6+vGvYkOT9upZzTZegolpKc28GdVyxcmzEZFb3IW23O+W2Qli0exh/bM7cN?=
+ =?us-ascii?Q?ebLPHPYipf3RINLWFjFEh66GV08sGt3ihIaz8QgIu4xLvrJo6WbsZPW9KtOX?=
+ =?us-ascii?Q?P6axQztwbHjUX/FZMQXdNqq118yabBjBpgFm3fddMEItGgJO9X6PucYgtopd?=
+ =?us-ascii?Q?RR2DCv2JYMje8Mx+73jvU5GH4WSlf+qxYF2xCZ3UHFfAPWhGbj3H0fbrnO5M?=
+ =?us-ascii?Q?5XW1EGxxge1K7O2LjWpmgllThKzGg642YrgJHeTR5VoyO/IVfOMU6NVs/OJd?=
+ =?us-ascii?Q?cceNlO+OYgYxtxXUh4HMzdJfMfLWbE0SlQ394v8vrXm+Z9jnWGmoSDpmniXz?=
+ =?us-ascii?Q?PEdA0E80urvGsKTYno1R6gX0r1f03Jx7s6HW5HfebuTsTDwQZlHXbnoJWufW?=
+ =?us-ascii?Q?XtCs84OIR5BoO7hWf2UrnNjE0JGk+Sj7Fg2NQIm8NjmZh52TPM6s44V8in9a?=
+ =?us-ascii?Q?XABeG2t05/0WduU2fdYpXEH6paDXU8CumWmzllJml4Q5kNSdZMn2z4lh8y0F?=
+ =?us-ascii?Q?QpSxHWRrZcURLfVqs9GyJS9uKTEpPksKdkt+S3i7Su6cfu3/uCklPG30XbB1?=
+ =?us-ascii?Q?RLveodQZY4mOaa2r+medxCXbPDcQle/uebZVpPzk0pk1CXrh/C1BkjJiwlZQ?=
+ =?us-ascii?Q?ZX11FOTynOle+6/hVJWphsj+H8EoLAMv9CdVmAjTFRG7n8qn3yKIkmK6wB5r?=
+ =?us-ascii?Q?jeaeRwX0i4OUD6ksRutxCju79KgxPgm702HqaUHg5itMDAqSxR64rmGEXjid?=
+ =?us-ascii?Q?UsL5OwjRHTvdYC/p92hlwKBJsD08dblOhGQPLw8uCUJwZTtDIxYcsyAAPF3o?=
+ =?us-ascii?Q?XwNKXsJlwmmX0zHKhW8RCciXuzD+B7Mx99bLTTWTGOmMH2cP/jLH8NGr6Pf7?=
+ =?us-ascii?Q?mZvG5TqktM3SnVEXwfENE+WqAOvFHOKzQLseiyKnPu3adibJjbS1g0RoUIpL?=
+ =?us-ascii?Q?sHNA5FiWl/v70twaaZM/+SDnPOruwlUbER43oQmkP0dT16YTBH9mpILZX/GM?=
+ =?us-ascii?Q?MB2/s7ZEwBPmYNz/qxterrmYCPsr3Ghn3lq3f08+bi75kV3slA46ma8KJ+X3?=
+ =?us-ascii?Q?nP5zWuty6tZh4sAVcI2LYaWkWgaw5A3NcATSUy6C1oxMEDHvFvIRyqN6Nx18?=
+ =?us-ascii?Q?+2IDsbxxCPsv12HywMge9LhfsWV9mrHLf6cdHZAT?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2cdd7d20-cf5a-4434-7a20-08dce8466a0e
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 09:40:30.6494
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 3RKm27so2G9GjxulcmbOZOM5T8pIF32JmVttVQJa5vDQ59Sd/8kWxGErjQ8RDPsrQ75JNJCm7xqIdMUDTDwYQA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8092
 
-Hi Prabhakar,
-
-On Tue, Oct 8, 2024 at 10:10=E2=80=AFPM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
-> On Tue, Oct 8, 2024 at 6:33=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.c=
-om> wrote:
-> > > From: Biju Das <biju.das.jz@bp.renesas.com>
-> > > > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Add OPP table for RZ/V2H(P) SoC.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.c=
-om>
+On Tue, Oct 08, 2024 at 11:49:23PM -0700, Namhyung Kim wrote:
+> On Tue, Oct 08, 2024 at 01:49:35PM +0800, Xu Yang wrote:
+> > Hi Namhyung,
+> > 
+> > On Mon, Sep 30, 2024 at 02:07:51PM -0700, Namhyung Kim wrote:
+> > > Hello,
+> > > 
+> > > On Tue, Sep 24, 2024 at 02:12:51PM +0800, Xu Yang wrote:
+> > > > Add JSON metrics for i.MX91 DDR Performance Monitor.
+> > > > 
+> > > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > > > > ---
-> > > > v1->v2
-> > > > - Set opp-microvolt to 800000 for frequencies below 1.1GHz
-> > > > ---
-> > > >  arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 41 ++++++++++++++++++=
-++++
-> > > >  1 file changed, 41 insertions(+)
-> > > >
-> > > > diff --git a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi b/arch/arm6=
-4/boot/dts/renesas/r9a09g057.dtsi
-> > > > index 1ad5a1b6917f..4bbe75b81f54 100644
-> > > > --- a/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> > > > +++ b/arch/arm64/boot/dts/renesas/r9a09g057.dtsi
-> > > > @@ -20,6 +20,39 @@ audio_extal_clk: audio-clk {
-> > > >             clock-frequency =3D <0>;
-> > > >     };
-> > > >
-> > > > +   /*
-> > > > +    * The default cluster table is based on the assumption that th=
-e PLLCA55 clock
-> > > > +    * frequency is set to 1.7GHz. The PLLCA55 clock frequency can =
-be set to
-> > > > +    * 1.7/1.6/1.5/1.1 GHz based on the BOOTPLLCA_0/1 pins (and add=
-itionally can be
-> > > > +    * clocked to 1.8GHz as well). The table below should be overri=
-dden in the board
-> > > > +    * DTS based on the PLLCA55 clock frequency.
-> > > > +    */
-> > > > +   cluster0_opp: opp-table-0 {
-> > > > +           compatible =3D "operating-points-v2";
-> > > > +
-> > > > +           opp-1700000000 {
-> > > > +                   opp-hz =3D /bits/ 64 <1700000000>;
-> > > > +                   opp-microvolt =3D <900000>;
-> > >
-> > > Not sure CA-55 can change voltage from 800mV to 900mV??
-> > > Based on Power Domain Control, it needs to be in AWO mode for changin=
-g the PD_CA55 voltage.
-> > >
-> > > The manual says OD voltage is 0.9V and ND voltage is 0.8V.
-> > >
-> > > Is 1.7GHZ is ND or OD?
-> >
-> > {1.7,1.6,1.5 GHz} is enabled when VDD09_CA55 is at 0.9 V
-> > and for 1.1 GHz it is 0.8V.
-> >
-> > Maybe when you do /2, /4, /8 using dividers, the voltage may be still
-> > the same??
-> >
-> I think you are right when BOOTPLLCA[1:0] pins are set to 1.7GHz the
-> VDD09_CA55 is at 0.9 V, further dividing the clock shouldnt affect the
-> voltage levels at the PMIC output.
->
-> Geert, please let me know if my understanding is incorrect.
+> > > >  .../arch/arm64/freescale/imx91/sys/ddrc.json  |  9 +++++++
+> > > >  .../arm64/freescale/imx91/sys/metrics.json    | 26 +++++++++++++++++++
+> > > >  2 files changed, 35 insertions(+)
+> > > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/ddrc.json
+> > > >  create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx91/sys/metrics.json
+> > > 
+> > > How do you want to route this?  As it's mixed with kernel changes, I
+> > > would generally request to split but it's a change just to add new
+> > > files so it should be ok to go with other tree.  In that case,
+> > 
+> > Sorry for late.
+> > 
+> > How about you pick up this one to perf-tools tree and Will Deacon pick up
+> > the first 2 patches to his tree? I didn't see Will apply perf-tools patch
+> > before.
+> 
+> Did Will pick up the kernel patches already?
 
-The actual VDD09_CA55 voltage is controlled by the external PMIC
-(RAA215300).  It is the responsibility of the system designer to make
-sure VDD09_CA55 is at 0.9V when BOOTPLLCA[1:0] is strapped for OD,
-as CPU core clock rates higher than 1.1 GHz need a higher core voltage.
-I don't think it hurts to supply the higher core voltage while
-running the CPU core at low core frequencies, except for extra power
-consumption.
+Not yet. I could ping you once it's done, is it ok?
 
-To control VDD09_CA55 dynamically, the CPU cores should have cpu-supply
-properties pointing to the regulator controlling it (raa215300).
-I haven't checked how Linux behaves when no cpu-supply property is
-present, or when it points to a fixed regulator.
-
-I am also wondering if other opps (1.1/1.5/1.6/1.8 GHz) should be
-added, too?  And probably any opp above 1.1GHz opp should be tagged with
-"turbo-mode"?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thanks,
+Xu Yang
 
