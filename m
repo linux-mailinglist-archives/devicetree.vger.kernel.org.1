@@ -1,231 +1,234 @@
-Return-Path: <devicetree+bounces-109280-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F81A995E88
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 06:21:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E41995ECC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 07:09:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 06CA8289ABC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 04:21:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF3412864E3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 05:09:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677DE15099C;
-	Wed,  9 Oct 2024 04:21:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E522614D280;
+	Wed,  9 Oct 2024 05:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dwSpkauk"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="eZXWaIRj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2108.outbound.protection.outlook.com [40.107.22.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31A7374BE1
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 04:21:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728447683; cv=none; b=GTrC9gaDb0HVQn+AWlz7k06nHxKmipiwKJl7JPxcYCiOHihXbhvbbxvH9XCifgiOqYlnpYA0CxKWJQ4HZPz6XF6zZFJ6ZTNbw+v9Z62b8E0iCSKeueTMa2+xHi0iO9N7D4Z+XaPcXf1OVQw/juQtNwvyFHmBolsdIOtZEIGKgn4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728447683; c=relaxed/simple;
-	bh=WRqjubW+I7cN3Hd71LqTLIqW6XSd4ucEaJXbUbMu5Ro=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=VmskovhQ5xULDOIKweoy11bAdLs5/aZaiYWqzqQBRW/uNuFsdCDPU97U52Nm0cSx7MmZ/Kg+z9D2ikeyHoTaQ/wj9aXH8S7wzypVfMTIrKWSB+t+l6Zhcyqc38fyruPN4+VaGX54ABlsaSVaEPRhs3TAVH9BcIGR2e1fOn/ixCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dwSpkauk; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20241009042119epoutp03a0b1e669a5fa033fb87ed0a2ce19e42c~8rgG_jdRC3243132431epoutp03g
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 04:21:19 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20241009042119epoutp03a0b1e669a5fa033fb87ed0a2ce19e42c~8rgG_jdRC3243132431epoutp03g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1728447679;
-	bh=ssRExWKD5A07LgoUhNw/tWVunYPb56F3kIxoBfoq3pA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=dwSpkaukive1T+Nb+5SU/VgnzbCwhieZORLdDsCW65oo5DBorCzHiAmVKyBYx97ZD
-	 1DCybyMMt2yveV+93hX6qnH6vDsP8/+7g6isCTvYwDo7NUCuI4pDZDzvr60xJ62YSI
-	 Rys0Po4gBs4HtJIwmDmiDLMTyYqRBTccUGfX/5CU=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTP id
-	20241009042118epcas2p42e337425aa1a66fe1b959cfb250378ac~8rgGdOr6w0752207522epcas2p4M;
-	Wed,  9 Oct 2024 04:21:18 +0000 (GMT)
-Received: from epsmges2p1.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4XNfpQ2ZlXz4x9Pr; Wed,  9 Oct
-	2024 04:21:18 +0000 (GMT)
-Received: from epcas2p3.samsung.com ( [182.195.41.55]) by
-	epsmges2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	02.9D.09396.EB406076; Wed,  9 Oct 2024 13:21:18 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241009042117epcas2p2335311cae816f9c92b15fcd28b56e413~8rgFX6kga2939729397epcas2p2P;
-	Wed,  9 Oct 2024 04:21:17 +0000 (GMT)
-Received: from epsmgmcp1.samsung.com (unknown [182.195.42.82]) by
-	epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-	20241009042117epsmtrp2a182521d8308f8cc26da4f0b261b6800~8rgFXPCNI2533825338epsmtrp2C;
-	Wed,  9 Oct 2024 04:21:17 +0000 (GMT)
-X-AuditID: b6c32a45-6c5b7700000024b4-11-670604be74bf
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-	epsmgmcp1.samsung.com (Symantec Messaging Gateway) with SMTP id
-	BD.F6.18937.DB406076; Wed,  9 Oct 2024 13:21:17 +0900 (KST)
-Received: from localhost.localdomain (unknown [10.229.9.60]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20241009042117epsmtip273c9ff915779c75f9bfb374324b94384~8rgFIlopM3166031660epsmtip2S;
-	Wed,  9 Oct 2024 04:21:17 +0000 (GMT)
-From: Sunyeal Hong <sunyeal.hong@samsung.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Sylwester Nawrocki
-	<s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar
-	<alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, Sunyeal Hong <sunyeal.hong@samsung.com>
-Subject: [PATCH v3 3/3] arm64: dts: exynosautov920: add peric1, misc and
- hsi0/1 clock DT nodes
-Date: Wed,  9 Oct 2024 13:21:10 +0900
-Message-ID: <20241009042110.2379903-4-sunyeal.hong@samsung.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241009042110.2379903-1-sunyeal.hong@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19CCE2F46
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 05:09:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.108
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728450557; cv=fail; b=YXlLE61bxBoe34af45gBHQSA2wbYefT1nOB4ugCJBIRtzsbPIho5554k2GWEVPuyjWUkqV34cZ1RGn56I6pUJYK/krkaPe6POD5jndn95/NCXEShboL+ZYnVVq5zQAVGkSUVU+6aVGfP2j/XRil+icCrngMM2LGp0oAyDR/JsrE=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728450557; c=relaxed/simple;
+	bh=tFHmgSg93wUlNphRBnbfgVMfnUCiS+XL/APiyXVvskc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=P9DeNbwRtxZhFH8bKol6t6nR2GNQzFrQQjX9EPdI/C2Ma7MT97DAeZPGcXTNGRs0QQ4oXmFbhaKTnonx/In70UTsnaUoajG3TnafMhBL2k3Fz/fWgw0MwOHIstp14AgmQUNmWp6C2ndxTgG5ohg5ihhvRahNTGyOOa8A1GQOyXY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=eZXWaIRj; arc=fail smtp.client-ip=40.107.22.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=UH2k6MD6+16+bBhClzMf1LQ0XQ2uH81JLM1Zs70jwJCd1SSjAfnREAzPH+8fiU6g55n+l4fY1z7Nyy6ZLMpfc9qGHuOkjipwpdQ9vYRsIjwHsrH7tS2iVO97ifN7rolKRMkCKyrUNQ3gBh55VMS0PzCIqVdQltbxSMLBeh7fHtfa3qQK/9IuMkC05TEoPlT+PPXQ4/5taQTShqKhTQ4kWoORDaJkHEi/NgP+DQjojIIcMxkdVmOs9O5F2D8qnM01xFzVcbcxG07E2ThVGknbiT3VIcuEGqcyyG23OZJlKQBesve5DnXsnKzrvxcpwXXPibAWhUK+uhWVDw4JkHyRKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9YcalQVrTRKdO0XDaYsNu1P/V6Pwwr09IGoqqXSESPw=;
+ b=NK9KB0bU2NiE5Pcnf9HqPcAdQK+MBglibIKLU1L3/1KxlC0XDKv5yxsyMLry5Kc1rzrw6rnwtZQ2m3SRxhXA0Vn1FunyUfHwqxzgO28eydxudFXE6AaQBS4k+dUA8rpIK4ic7+fATPkrsJj7B32flG4p3NEGk+DLCDjVveelbo4stu+WuJdLpqU6yjr5DDRqoV0xnfK+Rc8HfgrN680+U9YvIdizsqL1Mnsfx8f0F/hLHvx/uaIpyBvHrG4OWfyCW32Ca3LqPCEZtZaeShDkWrDnPDgTY9uTau/0PMfdlnawGyp2VB5xXFBaU6vBwUx698HUeAFmxVGh7DgNjVKSmg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9YcalQVrTRKdO0XDaYsNu1P/V6Pwwr09IGoqqXSESPw=;
+ b=eZXWaIRjxWhKA1ukKj4NlEz3NsEygd+rFfWxJ6TwZyN9127LMSC46TppAOnuVPgav23dulx6pvIugCFQYgGOowno4KVD59EIbBlqRwFmNdBn/0ff/vzUDQAJDD0y64a4IB8C2sHS6RRBturubv+WoIxmnquP/nKOH0IJI6yQUKI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com (2603:10a6:10:416::5)
+ by AM8PR08MB6403.eurprd08.prod.outlook.com (2603:10a6:20b:355::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Wed, 9 Oct
+ 2024 05:09:13 +0000
+Received: from DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d]) by DU0PR08MB9155.eurprd08.prod.outlook.com
+ ([fe80::4e72:c5d4:488e:f16d%4]) with mapi id 15.20.8048.013; Wed, 9 Oct 2024
+ 05:09:12 +0000
+Message-ID: <4b2fb95d-19df-4eb3-bb42-2f461610b2a3@wolfvision.net>
+Date: Wed, 9 Oct 2024 07:09:10 +0200
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 09/14] arm64: dts: rockchip: Remove 'enable-active-low'
+ from two boards
+To: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ Muhammed Efe Cetin <efectn@6tel.net>
+References: <20241008203940.2573684-1-heiko@sntech.de>
+ <20241008203940.2573684-10-heiko@sntech.de>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@wolfvision.net>
+Organization: WolfVision GmbH
+In-Reply-To: <20241008203940.2573684-10-heiko@sntech.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: VI1PR04CA0063.eurprd04.prod.outlook.com
+ (2603:10a6:802:2::34) To DU0PR08MB9155.eurprd08.prod.outlook.com
+ (2603:10a6:10:416::5)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrPJsWRmVeSWpSXmKPExsWy7bCmue4+FrZ0g/9PuS0ezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKOybTJSE1NSixRS85LzUzLz
-	0m2VvIPjneNNzQwMdQ0tLcyVFPISc1NtlVx8AnTdMnOA7lRSKEvMKQUKBSQWFyvp29kU5ZeW
-	pCpk5BeX2CqlFqTkFJgX6BUn5haX5qXr5aWWWBkaGBiZAhUmZGdM+ficseCsaMWcQ3dYGhhf
-	CXQxcnJICJhILH2+gqWLkYtDSGAHo0TDtA1MEM4nRoklM3eywjmflv1hh2k50d8FVbWTUaJ7
-	2SpGCOcjo8Ty7R/Zuhg5ONgEdCX+/HMAiYsI7GGS2HJ+CVgHs8BZRom7cxaAjRIWSJA4MG89
-	C4jNIqAqMXvSZDYQm1fAXqJ17XYWiHXyEtcfH2UCsTkFHCQ65l1hhKgRlDg58wlYDTNQTfPW
-	2cwgCyQEpnJIrDv/E+pWF4ndHzsZIWxhiVfHt0DFpSQ+v9vLBmHnS0y+/pYJormBUeLav25m
-	iIS9xKIzIIM4gDZoSqzfpQ9iSggoSxy5BbWXT6Lj8F92iDCvREebEESjmsSnK5ehhshIHDvx
-	DMr2kDi7bTY0SCczSnQ8OMc8gVFhFpJ3ZiF5ZxbC4gWMzKsYxVILinPTU4uNCgzhcZycn7uJ
-	EZxytVx3ME5++0HvECMTB+MhRgkOZiURXt2FrOlCvCmJlVWpRfnxRaU5qcWHGE2BgT2RWUo0
-	OR+Y9PNK4g1NLA1MzMwMzY1MDcyVxHnvtc5NERJITyxJzU5NLUgtgulj4uCUamCaL/29pDVd
-	fflizrYYnrMHNFr7c9ZOOhWV5tP5/2z9rlC2DYX66rdO7rH3+hQ149Vqd/VQ5o4/uq/SDfIf
-	RPM/YJ/xVLzXYAPb1q2Tl+SdiJ32bF7A3BWcq6vypopcF+N8yF6cMTkhVYt5apD9yZ6ZP2KP
-	7llusOuoxo+zSw8cd/kz7VUxv/qjWXKbvjYfD5mvIW36cvvUr7x9nyxYJbnevv2XtPxNMv8L
-	Z+aQhVrrV9wJWuDY1R2Qtpbz1ZtCOd1l1yMfr7HM8D4l0e/88GVe/dO3W/5skjy20E710NaX
-	Z9Wj899Pq/uVfIbXvu6uft6Reo2cZJ5JoYY+fI6uRtN7vBkWTjwZm3ND/OX1a8dllViKMxIN
-	tZiLihMBuq9xnkIEAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrCLMWRmVeSWpSXmKPExsWy7bCSvO5eFrZ0gy0zNCwezNvGZrFm7zkm
-	i+tfnrNazD9yjtXi/PkN7BabHl9jtfjYc4/V4vKuOWwWM87vY7K4eMrV4v+eHewWh9+0s1r8
-	u7aRxaJp2XomBz6P9zda2T02repk89i8pN6jb8sqRo/Pm+QCWKO4bFJSczLLUov07RK4MqZ8
-	fM5YcFa0Ys6hOywNjK8Euhg5OSQETCRO9HcxdTFycQgJbGeUeHJ1IwtEQkZiY8N/dghbWOJ+
-	yxFWiKL3jBIvHzUDORwcbAK6En/+OYDERQQOMUlM/PyUBcRhFrjMKHHs7mRmkCJhgTiJtQuL
-	QAaxCKhKzJ40mQ3E5hWwl2hdux1qmbzE9cdHmUBsTgEHiY55VxhBbCGgmictU5kh6gUlTs58
-	AlbPDFTfvHU28wRGgVlIUrOQpBYwMq1iFE0tKM5Nz00uMNQrTswtLs1L10vOz93ECI4IraAd
-	jMvW/9U7xMjEwXiIUYKDWUmEV3cha7oQb0piZVVqUX58UWlOavEhRmkOFiVxXuWczhQhgfTE
-	ktTs1NSC1CKYLBMHp1QDk87LzpCygIWFU59FtJbHXBCW3XjQK8EsqLoxfsniq12r5TgEKm6v
-	cM+WnfHr1uUZGuLpubKLPRy+mpqJSzw/59qUspbRckXxgRsZkUkVL4Q3L36wKX7r+WsyMUm1
-	CQdm7F3jGfj9A8+uRw07mkMs1gZH5sTKpJeUn3txretBVUUKz8wNPzambCs4sLzyZfeeAl6e
-	9RF28c2Wf5Z0PwnlXLpQ83ruxlWbr62Za3Mr0yxWeG619bEmroPnHpTf/fyc898vdfP1/Yes
-	tA9yPPhY49iYoxd3erb3dz3vxZemLdt2z36ZSsWDfqUTNxTvqUkcN5TZIdejHK3SrLxiymrl
-	01E/n1lJFQrs4Iy4vvTpBiWW4oxEQy3mouJEAJR+xrT3AgAA
-X-CMS-MailID: 20241009042117epcas2p2335311cae816f9c92b15fcd28b56e413
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20241009042117epcas2p2335311cae816f9c92b15fcd28b56e413
-References: <20241009042110.2379903-1-sunyeal.hong@samsung.com>
-	<CGME20241009042117epcas2p2335311cae816f9c92b15fcd28b56e413@epcas2p2.samsung.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR08MB9155:EE_|AM8PR08MB6403:EE_
+X-MS-Office365-Filtering-Correlation-Id: c37b8846-4b38-4218-447b-08dce82083aa
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?eWdXVkxpeGRBenV4d2NpR0YrQ1JTWkViWXhUT0VQb1AwaGp1Ungza2U4OUox?=
+ =?utf-8?B?c1N1QUIxby93SVpnTVpZNk5pbjBjNXl2QVRGSFZGZ3M5cTVvMm1YOEc4Z29v?=
+ =?utf-8?B?RkJYTGVSb1NtTlhnQ2t0YzNFN01vWWsvWVllWHlMUitzT0NGNWtSWG9MbTJC?=
+ =?utf-8?B?RUVWRzd1WUJydVVCUHFjclo2YkFucWZBS3ByWWtyT1UxUldVb1FSeXF4ajcr?=
+ =?utf-8?B?TGNJKzMwbG1Xdk9YcjhIcGdyOGdXb25kZldmb2dac0hJMUFMYStvTXNLeXhs?=
+ =?utf-8?B?aHY3eUZLS1g3WUpKdnBFVDhmQ1RGanFzTGVSVGxzUGpjRzcyVjJudXJFWFpm?=
+ =?utf-8?B?MWdEZE44SWZEZGRYcDB2NXNYN1YwTTEvQ1lFZW41OUJCcEdNNFVOTlM5QTNR?=
+ =?utf-8?B?Z24wNkh1aXd5TDVkV25uRVF6UGZqMEpjSnFnK3pVUlU3R2RtS0xBcUtGcnFJ?=
+ =?utf-8?B?UmFZT3B3dlhHVVdLWnA5OTlwRkpyZWtMYUJqT2JqRXhMODNuVm5jS2Y0K0JB?=
+ =?utf-8?B?NzVWVTRNN1NDTWxVZ0d0a1grRUhWRFdacDZpMk96cGJNMUwzd0dGN1BYUUtz?=
+ =?utf-8?B?S3l1S0FXZUJ1K1lqc1ZUYmp1Q1JCbi9ra1ptL3VDM3FXeEV1N051aTF6RmQw?=
+ =?utf-8?B?WElIVWozMHNDbnZQb0hldUc3MTRMRU5rbUcrQXF0U2V4N1BqaWcxQUQwM201?=
+ =?utf-8?B?K2Y5MVZNWmJRcUNEcmRkVWQzU013Z2YzdUthMjh3OWJqNFFnQytoUFFZeWdF?=
+ =?utf-8?B?RFJiSFJxczRkUjVsMlhvK1JUcWpvUDdqbW1PeEpCY2ZreVJHZjQxZXhHbm9I?=
+ =?utf-8?B?QXpLdGV0Qkh6b0xUM0V0ZitpRTZLWndRZFZ4S2RCRms4UUZvenNqRk55MnJY?=
+ =?utf-8?B?MGFWL2tkRytvd3hVQVY2dWRZdW5va2RKRFRHbE1SWlRlcHo3QlkvMi82UWt0?=
+ =?utf-8?B?eW9nMEZORW9jSm40MDFwUEZ5Z3lXUDR6blNJVU0zK0RJbFF4Y2xSVlJzbjJK?=
+ =?utf-8?B?cUtIZ0UrTnp6STlsREwrYm45aStjcE5ESlpYaW92MFRyalIrQW0rTHFPcW5x?=
+ =?utf-8?B?emNGb1NnODRQNjFuRW93TGdqWmlnYzhyTEJGTFEvUFlhaWJHYkV1aStVOEND?=
+ =?utf-8?B?MXlGWHlQcnNETmhDQ2sxSGM2S0YwZkJvQ3drcEo0bk12MmtVeDM2R3FaZ25i?=
+ =?utf-8?B?dzcyS2cyYVNUSi9pSkRoQmloTXNXNEczbkY0dURpVnR0WFEvTWh0bjZmRE93?=
+ =?utf-8?B?anR5ek5TUFRnS3pTaUtXQXFRYlphN0VPVkRCOGx6YXVadFFaelpvS3pUb2FD?=
+ =?utf-8?B?WmhjN013WEdsTlMvTkExZy9YMU11NHFqTDlvNDdLVnVFY1BUTEdoR3l4Vjdn?=
+ =?utf-8?B?YUU4eTd5QTFZTlZoSTRtRUtVVUtuMHkzTXg3b3lmRUsyaTlZV1RWV3VHZDFy?=
+ =?utf-8?B?eXE3bTlKZjFXUmMyd0wraFF3ZUt1OUtYem05bE8ycVRWK0wzZjAxZ1dhemVC?=
+ =?utf-8?B?eXhHcXRGdDJCSHkvRXlRaWxXUjVSOW00dFAyNXZTWDEzcSt1bWNka2t1YmtZ?=
+ =?utf-8?B?NDVLM3BDZzI1WWJ6Q01QMXN1VFQycUpLK256b0pRdlpxREFCM2pzc0F2MkdP?=
+ =?utf-8?B?NFI2dWo4OWxIUjhvcXRHcUFTVEVISFZySFVzbVFIZEg5dkVzK09NNElybVln?=
+ =?utf-8?B?SVozWXZiM0lUTFlITjVRRmZUMXZ4V2tCYmtBcnJYenNYOEVYOFZKM3NBPT0=?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR08MB9155.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V29INW1NMzlZVTM1TWN5Y2syb251dTdRWkdsY09idnFqVnJiZzJZZk1mMGFB?=
+ =?utf-8?B?UjJlRWYyRlo0T0dscW9hN21GMWowTXY0Rm9iaDY5NndWVmdIblpNWTdXazg0?=
+ =?utf-8?B?M0FnZThWT0t2VVdZT0k1Z3hraHJWalFENkNnMVZBZ2ZVYXFBNGIxZkVIeC9X?=
+ =?utf-8?B?a2k4SXdibmd3Zi9SaUE4cWxhLzI0VE53dWRSZzA0OUROSzhrTTJZWHJxOTd4?=
+ =?utf-8?B?Q1pEOXFFU0kxRGFpS0hpOUZrMnJ1STlIU3pTRWdtcWJ5S2MyeVNCOTVOZXhS?=
+ =?utf-8?B?MXVoRlhEZk85bTVyd0JtQW84TFdRRndzcGJjWk5RV3pad3RJSEgrWnJaTVlu?=
+ =?utf-8?B?Z2ZhYlpCYUlRbVk4ZXJrcGJJR1pIVVM4R3NGQU03WTJWbGJ2YjFMczNCVTRU?=
+ =?utf-8?B?NnhXSXltWm1FNThCMy8vUXlWWVZMUERpamtzcHBVbDZyWmVZREJ5MzRCd3Jx?=
+ =?utf-8?B?Y0IvTllIaGZXK0hGbCtFT05ZcWE5YWZ1cTZWQ01GQTFBQi9Zd2tpUVZUd1JQ?=
+ =?utf-8?B?SURMM29HQVJhVkJxTmh1dUhDMkhlZjNab0hDOG9pSmpoWlVQVmVvZmszVnlR?=
+ =?utf-8?B?UktwK1lhejVhL2RYZWhSREFPZkp6N0owaHVrNitmWVZXN2J5ZG9XUnJYRmhF?=
+ =?utf-8?B?Q3E1U2h0QWJnUlNqbkY1T3V5bnVpSlg2V0pQOHFYcG96OW5Ta1RSbWNGZ0d0?=
+ =?utf-8?B?eEd2R3ZpNzdSamZwZ3dzZXJuUU42UE1hRnpWOFkyTE5vTEQ2U25TbGhLSU5n?=
+ =?utf-8?B?RDNrS3paZEwvRXZFSjNMaXlhdVl1WW9aZ1RWVnkwMmJBWXNYWk1qekNHNEtw?=
+ =?utf-8?B?MVNLZ1E0K0I4MkhsRUlwVjNOSDNaZWJwZ3hpdGJUdGNvMWw2ZVdJdUtxNlJ2?=
+ =?utf-8?B?WWVWa29JQ0l6WUVldXMvYTJib3Y0YUF3Y3k4VHdlTVA1NGhJVlg3UHZyZGQw?=
+ =?utf-8?B?SDExQ0xtckxHRjFVUXNhajhzdHNiejhPRDNIbGVkQU40MjFEUmhpODNmNHBB?=
+ =?utf-8?B?QUhlUHB6RDUzU0d3ck9lTTk2MUsrbzdIOUhHV0EzVUEzcGtwMjVMSTlqWC9q?=
+ =?utf-8?B?d1F6bzAyd1hmRndFQkMyMHhZekxuaFZveENvWXpXYUc2SmFlbGlSajI0aDdr?=
+ =?utf-8?B?SUJtMDBYbkRDRXQyNFRnLzhMZU9RNDA2REhEOUdNcVg4VXFuc0EwTDFnckZz?=
+ =?utf-8?B?b0hwakROVUloWThFY0g1di94dG5CV2oyck9FWG1NWUR3MGk1LzBBZzN1b0tP?=
+ =?utf-8?B?Vk5ZT1R6ZkpzNTZad0h3MWp5bk4wRmpyWmdmRDRQUGx3RGM4TlRocGlCelFu?=
+ =?utf-8?B?YmJ2Z1lIVDRvTkFvNGJvaWI0Q2lQSVJlMmgxUkEwQlNJd1dibkVmWW9YQTU1?=
+ =?utf-8?B?ZnVxeXM4ZE9sSWlPc3J5ay8yRTQ2MUxGd1BSK041V3dGcWgvVktxMU0wZkxH?=
+ =?utf-8?B?b3c4RFVvSDQ2VGVnclZaU2QrWWZKbkVSQzB0RFZwRjJhL0o2QVAxM1FXV1VK?=
+ =?utf-8?B?VjdtQ3Mwb2szcC9GcUE4UGR2aGxhN0I0UEV1UkplRkVYQlFKZTJZNTNBdFBs?=
+ =?utf-8?B?NnJSR0ZHNnphY0V5em5iQjBnQkpqZURCQ0NwOG9CYXdJN2RZT3pOaGk5Zmtz?=
+ =?utf-8?B?QkMrTnBCQ2s1ZGs1aHAzSURBejY1cnlXQy9KZlFKaHc4RUhBeXpRdkkzSkw3?=
+ =?utf-8?B?V3JPTWYxalB1Mzh4V3VaZFkzMkxmMlZXUXJIcWVhRWtMdTc2RWMwY1RZYnV2?=
+ =?utf-8?B?L3lRNkp3dTVEb0NjVGxKQjZjd1RrZnJ0YitFTjdMYytuV1EyVHNkbkVJWDR0?=
+ =?utf-8?B?aDNLUlVhNVVjeXFIVzFGRkhidWw2dmJhWnRVeUxFZVBLdGlsVHY1aysyMU8z?=
+ =?utf-8?B?ZWl4U2NSMGVNaTZmeGxHTEJ5Qm9uWEwvSVZhb3F0byswRUVrcTA3Vjd5OHpX?=
+ =?utf-8?B?ak94SlBURlZjSDc2NXpmMDhEWU1DMkM0V0RIZTl4aGtrQ2dQZG9NcG9FS21R?=
+ =?utf-8?B?dllidGJtTkJRZlcyUEpYRkZVa1ArUGIzdVZvZ0xDbTF4Z1J4Zi92MVpFSG4v?=
+ =?utf-8?B?eEdwMGlxKzRGRHpURlF0aWRPQlVBbFYraEtZZUIwdW5PN1FDWDdhblNOSkFC?=
+ =?utf-8?B?VDJNVVNPYVNEazd1VW80TmgxMWVxS1VSWVB5NEpraForOHJvaExDeERDV3pZ?=
+ =?utf-8?B?bFE9PQ==?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: c37b8846-4b38-4218-447b-08dce82083aa
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR08MB9155.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Oct 2024 05:09:12.6525
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BgJ13/qGfiBx+9yla+lv8RHZN7/9xhWYGGH2rGIqCpvsa6b2EtZcuX58vnR8cWlne9EHAsZEWbIJEZqlySjAc9xh6wBpixpwdp4y6JMclnY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR08MB6403
 
-Add cmu_peric1 for USI, I2C and I3C clocks respectively.
-Add cmu_misc for MISC, GIC and OTP clocks respectively.
-Add cmu_hsi0 for PCIE clocks respectively.
-Add cmu_hsi1 for USB and MMC clocks respectively.
+Hi Heiko,
 
-Signed-off-by: Sunyeal Hong <sunyeal.hong@samsung.com>
----
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 50 +++++++++++++++++++
- 1 file changed, 50 insertions(+)
+On 10/8/24 22:39, Heiko Stuebner wrote:
+> The 'enable-active-low' property is not a valid, because it is the
 
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 91882b37fdb3..c759134c909e 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -172,6 +172,17 @@ chipid@10000000 {
- 			reg = <0x10000000 0x24>;
- 		};
- 
-+		cmu_misc: clock-controller@10020000 {
-+			compatible = "samsung,exynosautov920-cmu-misc";
-+			reg = <0x10020000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_MISC_NOC>;
-+			clock-names = "oscclk",
-+				      "noc";
-+		};
-+
- 		gic: interrupt-controller@10400000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
-@@ -247,6 +258,19 @@ pwm: pwm@109b0000 {
- 			status = "disabled";
- 		};
- 
-+		cmu_peric1: clock-controller@10c00000 {
-+			compatible = "samsung,exynosautov920-cmu-peric1";
-+			reg = <0x10c00000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_PERIC1_NOC>,
-+				 <&cmu_top DOUT_CLKCMU_PERIC1_IP>;
-+			clock-names = "oscclk",
-+				      "noc",
-+				      "ip";
-+		};
-+
- 		syscon_peric1: syscon@10c20000 {
- 			compatible = "samsung,exynosautov920-peric1-sysreg",
- 				     "syscon";
-@@ -283,12 +307,38 @@ pmu_system_controller: system-controller@11860000 {
- 			reg = <0x11860000 0x10000>;
- 		};
- 
-+		cmu_hsi0: clock-controller@16000000 {
-+			compatible = "samsung,exynosautov920-cmu-hsi0";
-+			reg = <0x16000000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_HSI0_NOC>;
-+			clock-names = "oscclk",
-+				      "noc";
-+		};
-+
- 		pinctrl_hsi0: pinctrl@16040000 {
- 			compatible = "samsung,exynosautov920-pinctrl";
- 			reg = <0x16040000 0x10000>;
- 			interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		cmu_hsi1: clock-controller@16400000 {
-+			compatible = "samsung,exynosautov920-cmu-hsi1";
-+			reg = <0x16400000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&xtcxo>,
-+				 <&cmu_top DOUT_CLKCMU_HSI1_NOC>,
-+				 <&cmu_top DOUT_CLKCMU_HSI1_USBDRD>,
-+				 <&cmu_top DOUT_CLKCMU_HSI1_MMC_CARD>;
-+			clock-names = "oscclk",
-+				      "noc",
-+				      "usbdrd",
-+				      "mmc_card";
-+		};
-+
- 		pinctrl_hsi1: pinctrl@16450000 {
- 			compatible = "samsung,exynosautov920-pinctrl";
- 			reg = <0x16450000 0x10000>;
--- 
-2.46.0
+"is not a valid" -> "is not a valid one"?
 
+> default behaviour of the fixed regulator.
+> 
+> Only 'enable-active-high' is valid, and when this property is absent
+> the fixed regulator will act as active low by default.
+> 
+> Both the rk3588-orange-pi-5 and the Wolfvision pf5 io expander overlay
+> smuggled those enable-active-low properties in, so remove them to
+> make dtbscheck happier.
+
+Ooops :-)
+
+> 
+> Fixes: 28799a7734a0 ("arm64: dts: rockchip: add wolfvision pf5 io expander board")
+> Cc: Michael Riesch <michael.riesch@wolfvision.net>
+> Fixes: b6bc755d806e ("arm64: dts: rockchip: Add Orange Pi 5")
+> Cc: Muhammed Efe Cetin <efectn@6tel.net>
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+
+Reviewed-by: Michael Riesch <michael.riesch@wolfvision.net>
+
+Thanks a lot and best regards,
+Michael
+
+> ---
+>  .../boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso     | 1 -
+>  arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts              | 1 -
+>  2 files changed, 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
+> index ebcaeafc3800..fa61633aea15 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-wolfvision-pf5-io-expander.dtso
+> @@ -49,7 +49,6 @@ vcc1v8_eth: vcc1v8-eth-regulator {
+>  
+>  	vcc3v3_eth: vcc3v3-eth-regulator {
+>  		compatible = "regulator-fixed";
+> -		enable-active-low;
+>  		gpio = <&gpio0 RK_PC0 GPIO_ACTIVE_LOW>;
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&vcc3v3_eth_enn>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> index feea6b20a6bf..6b77be643249 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dts
+> @@ -71,7 +71,6 @@ vcc5v0_sys: vcc5v0-sys-regulator {
+>  
+>  	vcc_3v3_sd_s0: vcc-3v3-sd-s0-regulator {
+>  		compatible = "regulator-fixed";
+> -		enable-active-low;
+>  		gpios = <&gpio4 RK_PB5 GPIO_ACTIVE_LOW>;
+>  		regulator-name = "vcc_3v3_sd_s0";
+>  		regulator-boot-on;
 
