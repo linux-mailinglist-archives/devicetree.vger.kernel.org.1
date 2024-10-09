@@ -1,116 +1,109 @@
-Return-Path: <devicetree+bounces-109566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2BF5996E83
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:45:51 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38D2B996E97
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 16:48:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EE5F1F22B1D
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:45:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA5C6B24E79
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 14:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFB8819B3D3;
-	Wed,  9 Oct 2024 14:45:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1632D19CC28;
+	Wed,  9 Oct 2024 14:48:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eZPAIoH9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E68s2qL8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42C78558B7;
-	Wed,  9 Oct 2024 14:45:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE5E19ABB4;
+	Wed,  9 Oct 2024 14:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728485145; cv=none; b=IT88Bzn1+eOWHtHr6keowi2Q11v63SWKQ2jSGdwPS85jMwEcd92d6GBDEg739cTMTUz/P59TJShx1uqu4kXbWFpvK7pye0vDgkwkgqXSosvB45gkmN2iw5yxDhjyK4N0TW+n65S109EX4JuuLTu2hDLfSHYr//7rbSzYdmF43zA=
+	t=1728485321; cv=none; b=LfEX+bfkasaxL9R0YNC3ZsfGAgNwuw30Tfa29SEfGBunBD6h69Egg6ODHVb3LV1jiXQTuDA01asYZg3LrEaruAPAapgaDldsTDsx9Okk+d6/xsS3vx+1bggH40O6Siy3NJ0bvZ3590fPcTwWDD/anzZTsa0XMdN6ZS6onJ4J3ns=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728485145; c=relaxed/simple;
-	bh=z9giLuqh+16SRki7I+asllyvLxyx93m2RVSASHgNCqM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=H+PstWT+d18YVkQnVQaMoTVw2ZjajvKuIbcgQT3TmDEmsvX/O4eoYQMyUYNLR54r1G3r+lD8aH/gnRalaMCUB4z0LEHKnSw5SzBj4BwdL2Ls8Fkf/XFuccxTUG3LY2sjrc5fw1mz4aJ755tgi62+WomyrHCJkacCjbBiX9hGgUk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eZPAIoH9; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a991fedbd04so469512466b.3;
-        Wed, 09 Oct 2024 07:45:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728485142; x=1729089942; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=z9giLuqh+16SRki7I+asllyvLxyx93m2RVSASHgNCqM=;
-        b=eZPAIoH9dOqou1h82T1wEeCFS6LiBeSrdVYdFbL9MESaBrywDMbe/TVxqKdKQdnkXH
-         mo3bSe0PGa+we3t3KuMbWSBLCNp78snCRDgsyI6aPy4v7J6vdv6+o/cfUkJjm2pQH/pn
-         vXn7zh5n/1N5mVtqBSRUG+hEQ2y+uTKMxZzQ1rC7UbtdMvaVpV1jibCj3ymcFOEqk/iS
-         Me2CM9uPYrcE87u1xFYSESLUuoT0j3D5/RNHIduEgN6bBYUCfBQF9s/Bnk+pkEkwKrcF
-         a/cNrDe5nkuu7JrpIWd2AM6TMCyEoQKGcWiBob4DBowyBKKBkN9EOACRM3RnAs28V91o
-         jo8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728485142; x=1729089942;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z9giLuqh+16SRki7I+asllyvLxyx93m2RVSASHgNCqM=;
-        b=bNjH07u8xAxo5z+yb7wPWYb4VfjMO+sq3Xv4/f4PmpJUefehb8W0yB7GNahgPlIUCz
-         G0HmqIfKYGH/+scBVxzFQT/yT2pwY7rljIBsYXdHk45Nd1dWMTmS3uRbsrk0WJPPwWbQ
-         0wwXYeazLJJp5habpdXEZUKB+8qr9gOw6XmEaz4VLAbNVUNAAsSz5hn4X33ovS14jT/v
-         D3OJIyDmzfAXGgYzp56G3h2kQwyOLPXeg6j4DKnZsmPjvbfiSLGesaWswUpWf91PoSCC
-         wqGbrklI4G+liov9tzgU1cMz+kSTjSm6VycY7Op/zwzaEOM5fQ2XQVL7CKtBAT/ZH/3Y
-         Ulcg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8++z6ij+iq9mJg/UA1DS0i1vc9rNCXcgWqanDLvOwKzV147v+EZi/nlMJh6hvxziVPMpKBk5UczWr@vger.kernel.org, AJvYcCUIoAMCIX8AJk7UuF6QdKdUX15doU46o0dJjNkTHGb9HeGUsMZzbL+xV3gVWNfW3kmlfUz2lSApM3Ho@vger.kernel.org, AJvYcCVFbDs+V6sCns1E5wKSHTkFqrEWSCzJW8aSyFGjKdI59HjGhN8LDSipDMVmsdc6kSDDWYgp1tUFp+684xYB@vger.kernel.org, AJvYcCVHubqXA5NLGATafsIac0hY4SONLiX3/ugulVXJIHm3Ld5Eb6a/hqFQXgl37N/djmgeNotFyHZaBsX0kKI=@vger.kernel.org, AJvYcCVkpNVE7ohx9QCKcgD6Zmf7dg+Jt2w81pZY5bR9G5jPx81q5nHGEQKsIS16O5CTs4UvD3GR2i232V6J@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw2WVBCO1N4VUaVHJIxENodO6CAQ/9sKxfE/8wrcxYQ0guakz0U
-	n9JkDicjMZ5DPk3tuL4q327N9y87ouf1AJNv13maRgbqjYHCP1Y3
-X-Google-Smtp-Source: AGHT+IGk+GcMmuO86SrRgY1+Q2QlflBxWNF5bBi07sPlNbBqwIH3NgMDhUtp/UVsAj4mjY+cT9/v5w==
-X-Received: by 2002:a05:6402:2808:b0:5c5:b7fd:170a with SMTP id 4fb4d7f45d1cf-5c91d624cffmr3578210a12.28.1728485142287;
-        Wed, 09 Oct 2024 07:45:42 -0700 (PDT)
-Received: from ?IPv6:2001:a61:34c9:ea01:14b4:7ed9:5135:9381? ([2001:a61:34c9:ea01:14b4:7ed9:5135:9381])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c8e05f4010sm5540116a12.93.2024.10.09.07.45.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Oct 2024 07:45:41 -0700 (PDT)
-Message-ID: <bff897a52650dbd499a83d955645cbc2290f80ce.camel@gmail.com>
-Subject: Re: [PATCH v4 8/8] iio: adc: ad7606: Disable PWM usage for non
- backend version
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Guillaume Stols <gstols@baylibre.com>, Uwe
- =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>
-Cc: linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
- aardelean@baylibre.com,  dlechner@baylibre.com, jstephan@baylibre.com,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Date: Wed, 09 Oct 2024 16:45:40 +0200
-In-Reply-To: <20241009-ad7606_add_iio_backend_support-v4-8-6971a8c0f1d5@baylibre.com>
-References: 
-	<20241009-ad7606_add_iio_backend_support-v4-0-6971a8c0f1d5@baylibre.com>
-	 <20241009-ad7606_add_iio_backend_support-v4-8-6971a8c0f1d5@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.52.4 (3.52.4-1.fc40) 
+	s=arc-20240116; t=1728485321; c=relaxed/simple;
+	bh=/px8Z9EoQkpFPcXutKrIm9lfL0PO8yTz3WJC8EVkC7I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tAcq9mF/wCcC1+oB3kFe+5uIvG+nhyQXorA++xqzCJops2vLnRW1nXrZYTKuFpCaOk87x9fLFC5lwO+X+70bWUhnPMUedgrarM/rz++3dQohsD7ynkHFSgak+g0LO9FhJxDl4ePRm4v6QbJqppbZRVJ6zknm4YU8Pun4WpGX/tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E68s2qL8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E69B5C4CEC3;
+	Wed,  9 Oct 2024 14:48:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728485320;
+	bh=/px8Z9EoQkpFPcXutKrIm9lfL0PO8yTz3WJC8EVkC7I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=E68s2qL8XqM/wVOB1adTupwrVpdNs5tOGYfp2r0tGnxQ7fFXn2gS9BRXpkQ9PtqUc
+	 NQunOIiUIZp03Nq3IhdeBPCcGosTp8fbo5Cf+PPWX4owwmILWZ5Gu8jIdKKzelpHF8
+	 9LtbwckVHTYPCRDZI1LFX06DtLIV8KOqzhCoVHpCt5XNkSvgOmA1evvrADtGGXbutj
+	 V8de0ucNTs9Yey/KTETA/GTU/Rn25TA16V6XhW5PWCUbodvM72O5z+Exf1y6Cr4yhT
+	 VZOYn9MNJeDikCn3eqQLzaXi8DNgZkkuZcKFuraRm9CFZOnbzZojVnfTQQFwOra0Ru
+	 H1tYqS1UaqvHw==
+Date: Wed, 9 Oct 2024 15:48:36 +0100
+From: Lee Jones <lee@kernel.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "rc-feedback" trigger
+Message-ID: <20241009144836.GA596552@google.com>
+References: <20241007205315.2477060-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241007205315.2477060-1-heiko@sntech.de>
 
-On Wed, 2024-10-09 at 09:19 +0000, Guillaume Stols wrote:
-> Since the pwm was introduced before backend, there was a mock use, with
-> a GPIO emulation. Now that iio backend is introduced, the mock use can
-> be removed.
->=20
-> Signed-off-by: Guillaume Stols <gstols@baylibre.com>
+On Mon, 07 Oct 2024, Heiko Stuebner wrote:
+
+> Document the "rc-feedback" trigger which is used to control LEDs by
+> remote control device activity. This is an existing trigger used in
+> existing DTs, document it so validation of those DTs would pass.
+> 
+> It was originally introduced into the Linux kernel in 2013 with
+> commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypresses")
+> 
+> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 > ---
+> changes in v2:
+> - put the entry in the correct position and comment above it (Pavel)
+> 
+>  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index bf9a101e4d42..9cd89f30fa7c 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -118,6 +118,8 @@ properties:
+>              # No trigger assigned to the LED. This is the default mode
+>              # if trigger is absent
+>            - none
+> +            # LED indicates remote control feedback
+> +          - rc-feedback
 
-Maybe this was agreed on the previous iterations but I wonder if we shouldn=
-'t just
-bring PWM support in the same patch as backend support is added...
+Is 'rc' a recognised and well known abbreviation for remote control?
 
-- Nuno S=C3=A1
+How about we people some (look-up) time and say:
 
+  - remote-control-feedback
 
+?
+
+>              # LED indicates camera torch state
+>            - torch
+>              # LED indicates USB gadget activity
+> -- 
+> 2.43.0
+> 
+
+-- 
+Lee Jones [李琼斯]
 
