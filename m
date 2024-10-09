@@ -1,130 +1,126 @@
-Return-Path: <devicetree+bounces-109619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2761F9975ED
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBE9D9975F7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 21:54:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 492951C226F7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 19:49:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 20AF11C21AC7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 19:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 578F51E1A12;
-	Wed,  9 Oct 2024 19:49:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8676F1D318A;
+	Wed,  9 Oct 2024 19:54:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iUco/PJ0"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="A4FMgyUk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DC91E132D;
-	Wed,  9 Oct 2024 19:49:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D617CD530;
+	Wed,  9 Oct 2024 19:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728503353; cv=none; b=dIdUjEI6AuwyTc2JAP7m5G460C4BJEUsJFow+WWqlEsLGoBP8Mbx/tQc/fiVSVPUElg5mitdyHUl25/tbwNDZpOUqY6Ffr+okqM26bhtEFLGFjsPDAS0j4CuxZmw1hqkCq2AxLjv5iV2fxrhAhlz9OkKfgUD5L31YvK5L9SLWJE=
+	t=1728503661; cv=none; b=kfZhqRBLfXbkSyr0HQFUIrkkO8Gwzt42bc1iTgtVRNcXV8iWPTDdm+2FX995YSWlU2xeEbQ1m8sMkMhEWfegleh0HU+pfWwngYtayh9sFJGI+xV/2ez54DZIgBm7qSLd5PPaPh8Jdz2bhdQpFEYk7bXwvW11f/f6t6dR1euAqHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728503353; c=relaxed/simple;
-	bh=C1NpSIwyabYuPOgSxRtFpJJ+JGk1iE4Uf4o/+dftn4U=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=UU9dE0HkQo0rTshEV4OOpc2JG0zVx+Fp1IPkbS97na5/lDzKSk0S55vOugtVrQwOJMPDFtD20e5Lav+NaMwBpKa8ZUrVCSkqEemntRQTItDwCXyX/YpOBuq8jNWWl3b62o+CTnoydCdOWNKe8yY2IFkd82oFB8cyzuxLlqITcgk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iUco/PJ0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7A52BC4CEC3;
-	Wed,  9 Oct 2024 19:49:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728503352;
-	bh=C1NpSIwyabYuPOgSxRtFpJJ+JGk1iE4Uf4o/+dftn4U=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=iUco/PJ0EvyCK95r884GLz5452WgNbDLEaiZHE338NnjcNkuXgb00c/5wIRO7/0zZ
-	 0xMTbCI7amCfzMPcCeXtHvOOM+cv3zdp6gh0SBSHWGwRKElVMXxAQW6iVBR17eqOG9
-	 rXwuDk4Ec0K5r4rXWm1prPtrq+UVVFpCBRVSjo4BzwKjKuPsm16jDI7RVYzzz/qUUs
-	 iCK8BgheyblKxeDpsB03mszQ2JACq0u6FA9VhwCyi2/bIXbvKuXyDn4qNTTgU9wGlJ
-	 u7VjwRCr55RbbouFol1rJTNJZnUtS+HWXAN7V4Kf01s9jPV2o6OnskggJtSFV9Zzg6
-	 Llj4/phkn6ZLg==
-Date: Wed, 09 Oct 2024 14:49:11 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1728503661; c=relaxed/simple;
+	bh=NOaYz3TlwelIGEnX2xdqfYe4BwQqmCGC+13epwzxjTI=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=QLJjbFOr/z0BwY25Z418rEyAfHHaALetOchxSiDqubcjYijAfNV9FPOOK4COZrIdGrKTkXPNQKaFsCDzYaStYtNRv1ZxV5Hie02G2/fFNAwT9CDMDLgUlcA+GJdhVH0lbLRl6M5enQ/zCfacoCX9A47H3dDx/ESDihUe17Umgfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=A4FMgyUk; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 499FDLjc022606;
+	Wed, 9 Oct 2024 19:54:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=h5NhgdrZThmxkhNJYKIxi+
+	89HThSLGgv6QLTXuhjyEg=; b=A4FMgyUk8rm3OdDhIgFwvD//AfM4G1RCOrK6xc
+	jtEPgwmM/J1YFPYXCBql92wuXQJjZI1Hlk0XFpwR6gmY5WRTt61oA8VSbJK/rhVM
+	5udMfIAkhhkL/3KPH35/jmJxm6zISF96tJn49rzx+bwJyzoUOm3a42RkiDod+423
+	62xPWQlS6Pu3jbTL/vk2nBX4LCr9Z0KkCtcJzpp3GvMC/uPLCay6AluWRo3MfCSB
+	jFJFtZcmBrqsnbOmKsSzFAN74e8yQCJg7iA5klMbpVoR1FwLDEyasXu7VtBkr5NN
+	kzLXREl6VbWK7i6/r7hW9K+Kg6nadXX+V8GXXF9xi3dA7y9g==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424kaeyh4k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 09 Oct 2024 19:54:07 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499Js6cT024599
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 9 Oct 2024 19:54:06 GMT
+Received: from hu-kriskura-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Wed, 9 Oct 2024 12:54:00 -0700
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+To: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Bjorn Andersson <quic_bjorande@quicinc.com>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, Mantas Pucka <mantas@8devices.com>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>
+CC: <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>, Krishna Kurapati <quic_kriskura@quicinc.com>
+Subject: [PATCH 0/4] Add USB Support for QCS8300
+Date: Thu, 10 Oct 2024 01:23:44 +0530
+Message-ID: <20241009195348.2649368-1-quic_kriskura@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Wunderlich <linux@fw-web.de>
-Cc: linux-arm-kernel@lists.infradead.org, eladwf@gmail.com, 
- daniel@makrotopia.org, ansuelsmth@gmail.com, 
- Conor Dooley <conor+dt@kernel.org>, 
- Frank Wunderlich <frank-w@public-files.de>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- linux-kernel@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>, 
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org, 
- Matthias Brugger <matthias.bgg@gmail.com>, john@phrozen.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-mmc@vger.kernel.org, 
- Chaotian Jing <chaotian.jing@mediatek.com>, 
- Wenbin Mei <wenbin.mei@mediatek.com>
-In-Reply-To: <20241009165547.5959-2-linux@fw-web.de>
-References: <20241009165547.5959-1-linux@fw-web.de>
- <20241009165547.5959-2-linux@fw-web.de>
-Message-Id: <172850335071.570182.9793183065235967586.robh@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: mtk-sd: Add mt7988 SoC
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: urM4tLSNWLGsC9297-gwI_kDVBLRYlsE
+X-Proofpoint-GUID: urM4tLSNWLGsC9297-gwI_kDVBLRYlsE
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 malwarescore=0
+ adultscore=0 spamscore=0 clxscore=1011 lowpriorityscore=0 phishscore=0
+ impostorscore=0 priorityscore=1501 mlxlogscore=870 suspectscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410090123
 
+This series aims at enabling USB on QCS8300 which has 2 USB controllers.
+The primary controller is SuperSpeed capable and secondary one is
+High Speed only capable. Both the High Speed Phys are Femto phys and the
+SuperSpeed Phy is a QMP Uni Phy.
 
-On Wed, 09 Oct 2024 18:55:41 +0200, Frank Wunderlich wrote:
-> From: Frank Wunderlich <frank-w@public-files.de>
-> 
-> Add binding definitions for mmc on MT7988 SoC.
-> 
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
-> v3:
-> - fixed minItems on clock-names too
-> v2:
-> - fixed minItems to 4
-> ---
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 24 +++++++++++++++++++
->  1 file changed, 24 insertions(+)
-> 
+Device tree patches will sent separately. DT Binding checks done on
+the binding patches. Flashed and verified working of NCM over primary
+usb controller.
 
-My bot found errors running 'make dt_binding_check' on your patch:
+Krishna Kurapati (4):
+  dt-bindings: usb: qcom,dwc3: Add QCS8300 to USB DWC3 bindings
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for QCS8300
+  dt-bindings: phy: qcom,sc8280xp-qmp-usb3-uni: Add QCS8300 compatible
+  phy: qcom: qmp: Add qmp configuration for QCS8300
 
-yamllint warnings/errors:
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  2 +
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |  1 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  4 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 65 +++++++++++++++++++
+ 4 files changed, 72 insertions(+)
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/mtk-sd.yaml: allOf:5:then:properties:clocks: 'oneOf' conditional failed, one must be fixed:
-	[{'description': 'source clock'}, {'description': 'HCLK which used for host'}, {'description': 'Advanced eXtensible Interface'}, {'description': 'Advanced High-performance Bus clock'}] is too long
-	[{'description': 'source clock'}, {'description': 'HCLK which used for host'}, {'description': 'Advanced eXtensible Interface'}, {'description': 'Advanced High-performance Bus clock'}] is too short
-	False schema does not allow 4
-	1 was expected
-	4 is greater than the maximum of 2
-	4 is greater than the maximum of 3
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mmc/mtk-sd.yaml: allOf:5:then:properties:clock-names: 'oneOf' conditional failed, one must be fixed:
-	[{'const': 'source'}, {'const': 'hclk'}, {'const': 'axi_cg'}, {'const': 'ahb_cg'}] is too long
-	[{'const': 'source'}, {'const': 'hclk'}, {'const': 'axi_cg'}, {'const': 'ahb_cg'}] is too short
-	False schema does not allow 4
-	1 was expected
-	4 is greater than the maximum of 2
-	4 is greater than the maximum of 3
-	hint: "minItems" is only needed if less than the "items" list length
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241009165547.5959-2-linux@fw-web.de
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.34.1
 
 
