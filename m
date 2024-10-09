@@ -1,191 +1,127 @@
-Return-Path: <devicetree+bounces-109534-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109535-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1E2A996B87
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:15:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 831CD996B97
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 15:17:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B229D2830A2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:15:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A9EC1F22772
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:17:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCA7192D89;
-	Wed,  9 Oct 2024 13:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F74C1946AA;
+	Wed,  9 Oct 2024 13:17:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vTRAmYFh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VWGf5rN8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98961192B70
-	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 13:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72E741EA91;
+	Wed,  9 Oct 2024 13:17:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728479741; cv=none; b=R25wKeuifryCTU6ArT4zoayHnUsptmUSkg4dTVapIFbbNtoUJqoHDQ9OK+RHKljJBy5kctwwOtZcoehvVZEj+OR2CMr+TdHitz0FXYWgW5QOQYxThA6YVxtzd/dPrPnCUZMhSSH5rH/iwDRDjKMyFH5lXRuQsrCsoWI+JatyFmM=
+	t=1728479824; cv=none; b=jRLlZecxpr59GtlHcVFnm0zQuyJzs8KPL9BM5jaW/2PV5ZBf/CKtEPb9zpQF39JZ8zcGMN+REfq9bxzpwcsIxyY4m21ica6stZmhb/fjOCnPx+lfAgg1MyLTmOv9GOCSKnwXrQRkPj/tsP7mRs7zfkqJjT65U40Waycbj+IGyHo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728479741; c=relaxed/simple;
-	bh=a/g/KSMW6CmKID3bt4x5A8ciB/In9mNPhttKBVqxwd8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QZUwpz1AJa9Vu4zIggKWyWRjU4PcMIZhnpMwb0y+Xp+Qll38OhU1gD7Jr6izRuYWtsWMBZ/Zhg4fQj8ox4J1RfakMlyiyltRF18zj8q7T7BpNCsxRAoTUWAhXe0Gtdzs0yLiCthrfjcjjpIqsSiScP/3xpCzGlgk60ByVnl78t8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vTRAmYFh; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e28ea358f65so780487276.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Oct 2024 06:15:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728479738; x=1729084538; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=X/BVh51Wei3dZ71+FMVXs9o7VKFoyrGm7h9GIR6kEtE=;
-        b=vTRAmYFht/6gtE3EfOPePLxI7aJqqRSor3wPT3b9v9SPIfsSaDHxeBqnFCw77sTj1j
-         vPk9a4fdpd+n/k3ICHYOKVrl18e2yhXregPVwLiTN7xpvkzVXOiSJh7K7iNBYp9Oh3cp
-         zZuZ3NgiBNyPDY2cL5sJajnZiTMySkl70b8TAibMV1B4Ur8vrKzOScMZejcwAMzFlzUP
-         VSr22scPyCzKIpkkiu3Xdl799I02aywApVnZdTqUe2zUNs90+TNoh3BwuSokcfu52HWA
-         nTCFaXfh74V5uMs54ed5c2WgWZvSBDVUDm8cajaEqp+RzLiYMfkdaPL4qEuKy5OiuqUB
-         8+PQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728479738; x=1729084538;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=X/BVh51Wei3dZ71+FMVXs9o7VKFoyrGm7h9GIR6kEtE=;
-        b=v778tC7reLDTyY1QLxsgzcSYeA2Fv41xrfuuCaqBm6eNQ7yWm1AS4CEwxDqDMXg9N1
-         49c/nZ5QQgyZkD+2YktBWuhiFMRje4X2Ntd/ubIylt5ap0/dYm5+MD+WmrCutuNS+UJU
-         blN2dC5xtlkm4Ha8oLUhP798zsmIW6zDOfKQGCWCA64ondzLjmTR6JQ6gkv8VTmdhPn9
-         n8QGhzbIdpgy4amxtbQUzxOIPfR5nka/bFKOHWoV9tkZrGHZovys9yzyUeB+6lXQ2htb
-         vijK6IUFsbZA6f8+r/d+koiKqwaEKM/ZgWaQcaDOldqUwa3yi816akDFFaW4BTHJT/1z
-         csXg==
-X-Forwarded-Encrypted: i=1; AJvYcCXCd986TCDvTk5TKAJsy9IZ1XTsaz2FfmWYiU5aB2KZIlD1P+/VC++eMJw2NP4ZRhHE43QGpNsWIFS7@vger.kernel.org
-X-Gm-Message-State: AOJu0YykJHDXtbXcNnxU8ZacJThsz6z+q9tREcvii/7mjy6gT2GlimMN
-	Iy7NTxUzVCdGR8i/KM4Iol+3cMtqBQNocJ+3Fm2ozAU+5+i173DQlJb7scXrsb76E9UN2P6soFK
-	doMMDuJCjNYVRm8pGScyEGc65U75sSqv8GHZOXg==
-X-Google-Smtp-Source: AGHT+IHp9MRWyf8+0EngQ/HGstXTs67OY8NhmDANMfWbtr8KbjZARvSO50M8FTVHd6rQq5UIIfOKejL4W5ObG6+T/7A=
-X-Received: by 2002:a05:6902:18d3:b0:e0b:4cb6:ec53 with SMTP id
- 3f1490d57ef6-e28fe348682mr1747706276.3.1728479738519; Wed, 09 Oct 2024
- 06:15:38 -0700 (PDT)
+	s=arc-20240116; t=1728479824; c=relaxed/simple;
+	bh=15x/+FMGXUcFomaVnMGSGRlOvKd4j6pe8/eextobHto=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=J9F877A4UhJ8KzLq1JFY6RXHRYr2bfxoM9YI9oNIwmcedihBbrmu1d6yLH8BY/XLg9bMLcIq34AzSBvnhcRr+LLdGkr8eNicvjqWIPsjJrFcCab/KbL9tQmoO0vylD3F2G6fK0z3EqzKVJkgBQ36rk5Rc0mHYXPbovluxDuW0l4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VWGf5rN8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BADD1C4CEC5;
+	Wed,  9 Oct 2024 13:17:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728479824;
+	bh=15x/+FMGXUcFomaVnMGSGRlOvKd4j6pe8/eextobHto=;
+	h=From:Subject:Date:To:Cc:From;
+	b=VWGf5rN85ltPidhUpERNEE94C4YMkO+NeYSpvoPI/3yK4YvLueXeQr4njhX75Tqeu
+	 I+Jqp2e4woFmB0OeNkMY2yvm6j/sFv7vZn5gqYOlrSNTEv/1WTJLOjfv0PjJvLmF2B
+	 kOmWb/0RBGWNsCi/vWMuIKyguMZjjNh56Meja+lWAv32s9xKxU8l0P78NzwEYRiQ3x
+	 uFX6sODGgU8QND3YJ9Xl0/2jxx6p9vhKjOHCMtep06jWSlK11MsWZedSiPAsEIIOkG
+	 WePWeoLCn+QYLpis10gD1/ULNhtsJ33vzI6HR8S+VURxPWoB8x8n2Ln775Sooz8gIf
+	 xOC9v/jsf31qw==
+From: Roger Quadros <rogerq@kernel.org>
+Subject: [PATCH v2 0/3] ARM: dts: ti: omap: fix dtbs_check warnings for
+ ti,gpmc-nand and ti,gpmc-onenend
+Date: Wed, 09 Oct 2024 16:16:53 +0300
+Message-Id: <20241009-gpmc-omap-dtbx-v2-0-fc68124a090a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com> <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
-In-Reply-To: <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 9 Oct 2024 15:15:02 +0200
-Message-ID: <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
-Subject: Re: [PATCH v3 5/5] scsi: ufs: rockchip: initial support for UFS
-To: Shawn Lin <shawn.lin@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	"James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>, 
-	"Martin K . Petersen" <martin.petersen@oracle.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
-	Avri Altman <avri.altman@wdc.com>, Bart Van Assche <bvanassche@acm.org>, 
-	YiFeng Zhao <zyf@rock-chips.com>, Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEWCBmcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxMDSwNj3fSC3GTd/NzEAt2UkqQK3RQTo0TDNBNDE4sUcyWgpoKi1LTMCrC
+ B0bG1tQAIRXDuYAAAAA==
+To: Kevin Hilman <khilman@baylibre.com>, Tony Lindgren <tony@atomide.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Enric Balletbo i Serra <eballetbo@gmail.com>, 
+ Javier Martinez Canillas <javier@dowhile0.org>
+Cc: Nishanth Menon <nm@ti.com>, srk@ti.com, linux-omap@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Roger Quadros <rogerq@kernel.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1814; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=15x/+FMGXUcFomaVnMGSGRlOvKd4j6pe8/eextobHto=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBnBoJJhqm3Dpfd2FzB364cRb9TQiwZgsBmLExPm
+ l3/GPIqBZ6JAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZwaCSQAKCRDSWmvTvnYw
+ k1BDD/wK0hVB8aXESRy07I8QhQcEWe0xEhVB9KBqQW99BKQwz7rRYYlF4/V+Vl3csN/MLz/zoxT
+ iNw47E94uWZu3Gn6ljMm7L1eiNtjEIvgfZrw+uE3SImFvmu1zPmVQR7JUVATngRQnR9NQWw46GQ
+ tymFgTbJsmY/MIdBtG+lH0sx5Xwu4IxWaH2PqmajCSVWETGUsdjiZ7aLqLNHOoBRQg5IOENNqbr
+ 8u8j52mO/z091gyULGZc804av0geJouw2TuqphznA4mTqMrf8k60bkEfMFU0bGD5JUJeTQVcfrX
+ t4DOTTH4h1OI6uTA8mQu4I35yneSHTWBwjtMHrpQqyjxUutD3/bXW1mFm4K4btnl/fb+eaDT8nE
+ hxa5VqZK0oC+VTUIHjd72jsYtu9JZPjXZCqs73erfF5uPmcAtrZmSFW5GX/Bmc6NBauWP1FrSek
+ oV614v0XdMIRib88RWScnRj5shm+/zYUlLwbSkt107qwikJ1PD9cyEtem1BVKWzq8Yme2cT3a4t
+ 3UdbCsBvfSNXPkRmEohne8GsvP9tAkGi6kAWWr+slK6hsUIKg7JiqbaVq8c/aU/L+w2hAmhOIjl
+ OMUyWsT8NLdB7QE8l1+ACYNga7cA2Yjtt9JYIswtkZA9YMP+Nftm2NNW7tU8AX1+OR+4KTL7oGL
+ WAihxejh9scvrRQ==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
-[...]
+This series fixes dtbs_check warnings on OMAP platforms
+for ti,gpmc-nand and ti,gpmc-onenand.
 
-> +
-> +static int ufs_rockchip_runtime_suspend(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +       struct generic_pm_domain *genpd = pd_to_genpd(dev->pm_domain);
+The following warnings are fixed
+- "nand@0,0: Unevaluated properties are not allowed ('linux,mtd-name' was unexpected)"
+- "nand@0,0: Unevaluated properties are not allowed ('gpmc,device-nand' was unexpected)"
+- "omap3430-sdp.dtb: onenand@2,0: Unevaluated properties are not allowed ('linux,mtd-name' was unexpected)"
 
-pd_to_genpd() isn't safe to use like this. It's solely to be used by
-genpd provider drivers.
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
+---
+Changes in v2:
+- Rebased on v6.12-rc1
+- Link to v1: https://lore.kernel.org/r/20240903-gpmc-dtb-v1-0-380952952e34@kernel.org
 
-> +
-> +       clk_disable_unprepare(host->ref_out_clk);
-> +
-> +       /*
-> +        * Shouldn't power down if rpm_lvl is less than level 5.
+---
+Roger Quadros (3):
+      ARM: dts: ti: drop linux,mtd-name from NAND nodes
+      ARM: dts: ti: omap: am335x-baltos: drop "gpmc,device-nand" from NAND node
+      ARM: dts: ti: omap3434-sdp: drop linux,mtd-name from onenand node
 
-Can you elaborate on why we must not power-off the power-domain when
-level is less than 5?
+ arch/arm/boot/dts/ti/omap/am335x-baltos.dtsi       | 1 -
+ arch/arm/boot/dts/ti/omap/am3517-som.dtsi          | 1 -
+ arch/arm/boot/dts/ti/omap/dm8148-evm.dts           | 1 -
+ arch/arm/boot/dts/ti/omap/dm8168-evm.dts           | 1 -
+ arch/arm/boot/dts/ti/omap/dra62x-j5eco-evm.dts     | 1 -
+ arch/arm/boot/dts/ti/omap/logicpd-som-lv.dtsi      | 1 -
+ arch/arm/boot/dts/ti/omap/logicpd-torpedo-som.dtsi | 1 -
+ arch/arm/boot/dts/ti/omap/omap3-evm-37xx.dts       | 1 -
+ arch/arm/boot/dts/ti/omap/omap3-evm.dts            | 1 -
+ arch/arm/boot/dts/ti/omap/omap3-igep.dtsi          | 1 -
+ arch/arm/boot/dts/ti/omap/omap3-ldp.dts            | 1 -
+ arch/arm/boot/dts/ti/omap/omap3-overo-base.dtsi    | 1 -
+ arch/arm/boot/dts/ti/omap/omap3430-sdp.dts         | 2 --
+ 13 files changed, 14 deletions(-)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20240903-gpmc-omap-dtbx-d42a1f4148d7
 
-What happens if we power-off anyway when the level is less than 5?
+Best regards,
+-- 
+Roger Quadros <rogerq@kernel.org>
 
-> +        * This flag will be passed down to platform power-domain driver
-> +        * which has the final decision.
-> +        */
-> +       if (hba->rpm_lvl < UFS_PM_LVL_5)
-> +               genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
-> +       else
-> +               genpd->flags &= ~GENPD_FLAG_RPM_ALWAYS_ON;
-
-The genpd->flags is not supposed to be changed like this - and
-especially not from a genpd consumer driver.
-
-I am trying to understand a bit more of the use case here. Let's see
-if that helps me to potentially suggest an alternative approach.
-
-> +
-> +       return ufshcd_runtime_suspend(dev);
-> +}
-> +
-> +static int ufs_rockchip_runtime_resume(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +       int err;
-> +
-> +       err = clk_prepare_enable(host->ref_out_clk);
-> +       if (err) {
-> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
-> +               return err;
-> +       }
-> +
-> +       reset_control_assert(host->rst);
-> +       usleep_range(1, 2);
-> +       reset_control_deassert(host->rst);
-> +
-> +       return ufshcd_runtime_resume(dev);
-> +}
-> +
-> +static int ufs_rockchip_system_suspend(struct device *dev)
-> +{
-> +       struct ufs_hba *hba = dev_get_drvdata(dev);
-> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
-> +
-> +       /* Pass down desired spm_lvl to Firmware */
-> +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
-> +                       host->pd_id, hba->spm_lvl < 5 ? 1 : 0, 0, 0, 0, 0, NULL);
-
-Can you please elaborate on what goes on here? Is this turning off the
-power-domain that the dev is attached to - or what is actually
-happening?
-
-> +
-> +       return ufshcd_system_suspend(dev);
-> +}
-> +
-> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
-> +       SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_system_suspend, ufshcd_system_resume)
-> +       SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
-> +       .prepare         = ufshcd_suspend_prepare,
-> +       .complete        = ufshcd_resume_complete,
-> +};
-> +
-> +static struct platform_driver ufs_rockchip_pltform = {
-> +       .probe = ufs_rockchip_probe,
-> +       .remove = ufs_rockchip_remove,
-> +       .driver = {
-> +               .name = "ufshcd-rockchip",
-> +               .pm = &ufs_rockchip_pm_ops,
-> +               .of_match_table = ufs_rockchip_of_match,
-> +       },
-> +};
-> +module_platform_driver(ufs_rockchip_pltform);
-> +
-
-[...]
-
-Kind regards
-Uffe
 
