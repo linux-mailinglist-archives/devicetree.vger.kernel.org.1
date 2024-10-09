@@ -1,73 +1,80 @@
-Return-Path: <devicetree+bounces-109474-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109475-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEE7199682A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:15:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C52B996834
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 13:16:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9A3E282458
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:15:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1136283CC2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:16:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7901E1917F6;
-	Wed,  9 Oct 2024 11:15:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2C21917D7;
+	Wed,  9 Oct 2024 11:16:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="nWXwkf+F"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="HSOPaN3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A608D1917D7;
-	Wed,  9 Oct 2024 11:14:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C189F1C6BE;
+	Wed,  9 Oct 2024 11:16:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728472500; cv=none; b=ZnISxZDNNktbeQSdTJRMZIPmzjQfJ5FOLDOpcGIOObCPLsyqA4/vOPZu5SwPSfGZ+2gUSFJv2yucYPp8wvZHAFAeQ4OLFsXePeOnsdaRxTGsyZwjfen6UELDms0wsFwdZL7+sZIacVoZNtbM49xqeIb3GYMXWmd9f0FxuVmC55E=
+	t=1728472571; cv=none; b=ggKgipN/IzDeMFoqG7/LTc2ZJDWX7yT4Jwl1KoKuNlj0ex7UDLK9to6vTqSn8C6c7zmRHq5uMl9eJC5XVRwBDznxgLNirLY2i6B1hubcWnqri3SG1j7SLR72Y+dWQJ3GIsQUrsHm9wHZ2s1QEYeY3Xy/LMCN1ObXnEboawWfmhQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728472500; c=relaxed/simple;
-	bh=kgAvW/CLBWLxXmvhJX3rMwSSzXa842atliTAUOE1ceM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Wle+K82A3rXqCLcdc02KL9B2e3ql4dENpyyp4WM9e7mMAZLdRJdohYe5ToR8D8WP0/PtVfAD3nLMBQ6DoxnsQY2Ge7CPqEZ0yRKdoFP7Hij+/El3C+rhWwgRQl1HA2nRl6mdoLCSlhvnxeFSz50s1UIpHfJ73crHCByl0rhm1Hw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=nWXwkf+F; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 499AcDor022770;
-	Wed, 9 Oct 2024 11:14:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:message-id:mime-version:subject:to; s=
-	qcppdkim1; bh=Sf0jVKd1o7kkQ+VgjQnZltXU/KppNrzofqKlTjJf91E=; b=nW
-	Xwkf+FzzB8y8waWOMv1QUfoeVQO37JjgsWLgaspWgkgJxD4+6c/c0Qp7wHD/JqZl
-	r54677EvQEZVWHgGDCxnKPWxcoQryRxrPO5ZjVTQx8qOW+Y091WVBHg2SCdwQY6x
-	jZZH2dai8a1nvD5V5BO3cHsk7IpgFMfItNweJkjgQnlMKHqkYGnRDvLG6DmaA05s
-	f4fXQBU+sDmgHLRr5N8eY3b3oPzTnWauOJEMkntquSmIa7o1FIwp6n635k83Qq/9
-	g//M2dfkNARx/Z80+EPF/ADd2g2C1DBOYODr+9l1JfG4zEqH620BEaLr08WOs7zW
-	EfwLmRtG3rtKi3zg5ifA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424x7rvh9v-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 09 Oct 2024 11:14:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 499BEsUp028665
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 9 Oct 2024 11:14:54 GMT
-Received: from hu-janathot-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+	s=arc-20240116; t=1728472571; c=relaxed/simple;
+	bh=5ynCkb7KI8rVXQ1EVFqvg+XEXi0qpuDi3gDPzXlm50I=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RP3/auE09WfiAUCTAbUv37p7UyAipdnDWwtteIXAYXyp1BwJ5AaLK4RG6lbWcSSqXYDs1Ai/TX+RL8s7ytuHMDAU8bPhFfd/jiVe0RCTztfyilQEYY52BMr8e+3ILJZCAtqLBGWE+MLR+VBcj2aQI2hXbFhkObEdTa93PH0fBXw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=HSOPaN3S; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: de15759a862f11ef88ecadb115cee93b-20241009
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=WDQk23QF8GeWnYzaw3f6RwMziRHPmdE4gatkybBRKwQ=;
+	b=HSOPaN3SFs1YZO/73Ww4v2lBtRPJx+4YdOJjjH4an8Op2MLDjSFoCQpLfkjYfzU9HSYcCKX2C6PY2DQvEstRopeDm6Oi8ivHYGfdffKjo/iv9koE19jGfRaR3kCmFeDdQcxZlT1fEqucHWBkVRd4PfBzA9OPBWGZOkY61X24TzM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:14c99a62-7d1c-4dfd-b57c-8794b384e1d7,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6dc6a47,CLOUDID:b7a48926-5902-4533-af4f-d0904aa89b3c,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: de15759a862f11ef88ecadb115cee93b-20241009
+Received: from mtkmbs10n1.mediatek.inc [(172.21.101.34)] by mailgw01.mediatek.com
+	(envelope-from <shu-hsiang.yang@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1338231174; Wed, 09 Oct 2024 19:16:01 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Wed, 9 Oct 2024 04:14:51 -0700
-From: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <quic_mohamull@quicinc.com>, <quic_hbandi@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1] arm64: dts: qcom: qcm6490-rb3gen2: enable Bluetooth
-Date: Wed, 9 Oct 2024 16:44:36 +0530
-Message-ID: <20241009111436.23473-1-quic_janathot@quicinc.com>
-X-Mailer: git-send-email 2.17.1
+ 15.2.1118.26; Wed, 9 Oct 2024 19:15:59 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 9 Oct 2024 19:15:59 +0800
+From: Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Sumit Semwal
+	<sumit.semwal@linaro.org>, Christian Konig <christian.koenig@amd.com>
+CC: <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-mediatek@lists.infradead.org>, <dri-devel@lists.freedesktop.org>,
+	<linaro-mm-sig@lists.linaro.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>,
+	<yaya.chang@mediatek.com>, <teddy.chen@mediatek.com>,
+	<hidenorik@chromium.org>, <yunkec@chromium.org>, <shun-yi.wang@mediatek.com>,
+	Shu-hsiang Yang <Shu-hsiang.Yang@mediatek.com>
+Subject: [PATCH v1 00/10] Add MediaTek ISP7 camera system driver
+Date: Wed, 9 Oct 2024 19:15:41 +0800
+Message-ID: <20241009111551.27052-1-Shu-hsiang.Yang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,181 +82,167 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8C5mrX6dAN2meqXqPMKVp7jHWBsYjnAn
-X-Proofpoint-ORIG-GUID: 8C5mrX6dAN2meqXqPMKVp7jHWBsYjnAn
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- phishscore=0 mlxlogscore=859 spamscore=0 clxscore=1011 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410090073
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--6.819300-8.000000
+X-TMASE-MatchedRID: /6tHgHEL3iGAaBshbPhdTBWCVBr+Ay98vhf/zJ92tsPdyIjG+fPOFe5n
+	np6b8PTveXq1+k2LDlqtCrdXtF3Jjy4UUq9htJ320C5BWPk1/EG0GxL+/GCnQ1wpnAAvAwazxca
+	mCHrGUIj+ZF6Oacqo2yQP4QGuRJMzRbwaQX0OEahH+PTjR9EWkl+iEcKpKdpuNSweOixQAJJHdE
+	c8dOyw1Vl+Hk3Iw2bEgDLqnrRlXrZ8nn9tnqel2MprJP8FBOIaqdk2nO+ebu9vQfhO+XsKpRGKW
+	WkeCBsRDfaaTTjjxxjC7y1r1oW8QA==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--6.819300-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: A293CE762DBA9DA2202B574D5BDF1F45F28941944CEBC2497E35940D4614489A2000:8
 
-Add Bluetooth and UART7 support for qcs6490-rb3gen2.
+Based on linux-next/master, tag: next-20241008
 
-Signed-off-by: Janaki Ramaiah Thota <quic_janathot@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 120 +++++++++++++++++++
- 1 file changed, 120 insertions(+)
+The patch set adds the MediaTek ISP7.x camera system hardware driver.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-index 0d45662b8028..a5da7657e47e 100644
---- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-+++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
-@@ -32,6 +32,8 @@
- 
- 	aliases {
- 		serial0 = &uart5;
-+		bluetooth0 = &bluetooth;
-+		serial1 = &uart7;
- 	};
- 
- 	chosen {
-@@ -688,6 +690,39 @@
- 	status = "okay";
- };
- 
-+&qup_uart7_cts {
-+	/*
-+	 * Configure a bias-bus-hold on CTS to lower power
-+	 * usage when Bluetooth is turned off. Bus hold will
-+	 * maintain a low power state regardless of whether
-+	 * the Bluetooth module drives the pin in either
-+	 * direction or leaves the pin fully unpowered.
-+	 */
-+	bias-bus-hold;
-+};
-+
-+&qup_uart7_rts {
-+	/* We'll drive RTS, so no pull */
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
-+&qup_uart7_rx {
-+	/*
-+	 * Configure a pull-up on RX. This is needed to avoid
-+	 * garbage data when the TX pin of the Bluetooth module is
-+	 * in tri-state (module powered off or not driving the
-+	 * signal yet).
-+	 */
-+	bias-pull-up;
-+};
-+
-+&qup_uart7_tx {
-+	/* We'll drive TX, so no pull */
-+	drive-strength = <2>;
-+	bias-disable;
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
-@@ -719,12 +754,97 @@
- &tlmm {
- 	gpio-reserved-ranges = <32 2>, /* ADSP */
- 			       <48 4>; /* NFC */
-+	bt_en: bt-en-state {
-+		pins = "gpio85";
-+		function = "gpio";
-+		output-low;
-+		bias-disable;
-+	};
-+
-+	qup_uart7_sleep_cts: qup-uart7-sleep-cts-state {
-+		pins = "gpio28";
-+		function = "gpio";
-+		/*
-+		 * Configure a bias-bus-hold on CTS to lower power
-+		 * usage when Bluetooth is turned off. Bus hold will
-+		 * maintain a low power state regardless of whether
-+		 * the Bluetooth module drives the pin in either
-+		 * direction or leaves the pin fully unpowered.
-+		 */
-+		bias-bus-hold;
-+	};
-+
-+	qup_uart7_sleep_rts: qup-uart7-sleep-rts-state {
-+		pins = "gpio29";
-+		function = "gpio";
-+		/*
-+		 * Configure pull-down on RTS. As RTS is active low
-+		 * signal, pull it low to indicate the BT SoC that it
-+		 * can wakeup the system anytime from suspend state by
-+		 * pulling RX low (by sending wakeup bytes).
-+		 */
-+		bias-pull-down;
-+	};
-+
-+	qup_uart7_sleep_rx: qup-uart7-sleep-rx-state {
-+		pins = "gpio31";
-+		function = "gpio";
-+		/*
-+		 * Configure a pull-up on RX. This is needed to avoid
-+		 * garbage data when the TX pin of the Bluetooth module
-+		 * is floating which may cause spurious wakeups.
-+		 */
-+		bias-pull-up;
-+	};
-+
-+	qup_uart7_sleep_tx: qup-uart7-sleep-tx-state {
-+		pins = "gpio30";
-+		function = "gpio";
-+		/*
-+		 * Configure pull-up on TX when it isn't actively driven
-+		 * to prevent BT SoC from receiving garbage during sleep.
-+		 */
-+		bias-pull-up;
-+	};
-+
-+	sw_ctrl: sw-ctrl-state {
-+		pins = "gpio86";
-+		function = "gpio";
-+		bias-pull-down;
-+	};
- };
- 
- &uart5 {
- 	status = "okay";
- };
- 
-+&uart7 {
-+	status = "okay";
-+	/delete-property/interrupts;
-+	interrupts-extended = <&intc GIC_SPI 608 IRQ_TYPE_LEVEL_HIGH>,
-+				<&tlmm 31 IRQ_TYPE_EDGE_FALLING>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-1 = <&qup_uart7_sleep_cts>, <&qup_uart7_sleep_rts>,
-+			<&qup_uart7_sleep_tx>, <&qup_uart7_sleep_rx>;
-+
-+	bluetooth: bluetooth {
-+		compatible = "qcom,wcn6750-bt";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_en>, <&sw_ctrl>;
-+		enable-gpios = <&tlmm 85 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
-+		vddaon-supply = <&vreg_s7b_0p972>;
-+		vddbtcxmx-supply = <&vreg_s7b_0p972>;
-+		vddrfacmn-supply = <&vreg_s7b_0p972>;
-+		vddrfa0p8-supply = <&vreg_s7b_0p972>;
-+		vddrfa1p7-supply = <&vreg_s1b_1p872>;
-+		vddrfa1p2-supply = <&vreg_s8b_1p272>;
-+		vddrfa2p2-supply = <&vreg_s1c_2p19>;
-+		vddasd-supply = <&vreg_l11c_2p8>;
-+		max-speed = <3200000>;
-+	};
-+};
-+
- &usb_1 {
- 	status = "okay";
- };
+This driver sets up ISP hardware, handles interrupts, and initializes
+V4L2 device nodes and functions. Moreover, implement V4L2 standard
+video driver that utilizes media framework APIs. It also connects
+the sensors and ISP, bridging with the seninf interface. Communicate
+with SCP co-processor to compose ISP registers in the firmware.
+
+These patches include CSI received data from sensors, sensor interface
+bridge, raw/YUV image pre-processing, ISP utility and ISP control parts.
+
+Thank you for reviewing these patches.
+
+Shu-hsiang Yang (10):
+  dt-bindings: media: mediatek: add camsys device
+  media: platform: mediatek: add seninf controller
+  media: platform: mediatek: add isp_7x seninf unit
+  media: platform: mediatek: add isp_7x cam-raw unit
+  media: platform: mediatek: add isp_7x camsys unit
+  media: platform: mediatek: add isp_7x utility
+  media: platform: mediatek: add isp_7x video ops
+  media: platform: mediatek: add isp_7x state ctrl
+  media: platform: mediatek: add isp_7x build config
+  uapi: linux: add mediatek isp_7x camsys user api
+
+ .../media/mediatek/mediatek,cam-raw.yaml      |  169 +
+ .../media/mediatek/mediatek,cam-yuv.yaml      |  148 +
+ .../media/mediatek/mediatek,camisp.yaml       |   71 +
+ .../media/mediatek/mediatek,seninf-core.yaml  |  106 +
+ .../media/mediatek/mediatek,seninf.yaml       |   88 +
+ drivers/media/platform/mediatek/Kconfig       |    1 +
+ drivers/media/platform/mediatek/Makefile      |    2 +
+ drivers/media/platform/mediatek/isp/Kconfig   |   21 +
+ .../platform/mediatek/isp/isp_7x/Makefile     |    7 +
+ .../mediatek/isp/isp_7x/camsys/Makefile       |   16 +
+ .../isp_7x/camsys/kd_imgsensor_define_v4l2.h  |   87 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.c | 1797 ++++++
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.h |  140 +
+ .../isp/isp_7x/camsys/mtk_cam-debug.c         | 1271 ++++
+ .../isp/isp_7x/camsys/mtk_cam-debug.h         |  273 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-defs.h |  168 +
+ .../isp/isp_7x/camsys/mtk_cam-dmadbg.h        |  721 +++
+ .../isp/isp_7x/camsys/mtk_cam-feature.c       |   40 +
+ .../isp/isp_7x/camsys/mtk_cam-feature.h       |   26 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-fmt.h  |   87 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-ipi.h  |  233 +
+ .../isp/isp_7x/camsys/mtk_cam-meta-mt8188.h   | 2436 ++++++++
+ .../isp/isp_7x/camsys/mtk_cam-plat-util.c     |  207 +
+ .../isp/isp_7x/camsys/mtk_cam-plat-util.h     |   16 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-pool.c |  393 ++
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-pool.h |   28 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-raw.c  | 5359 +++++++++++++++++
+ .../mediatek/isp/isp_7x/camsys/mtk_cam-raw.h  |  325 +
+ .../isp/isp_7x/camsys/mtk_cam-raw_debug.c     |  403 ++
+ .../isp/isp_7x/camsys/mtk_cam-raw_debug.h     |   39 +
+ .../isp/isp_7x/camsys/mtk_cam-regs-mt8188.h   |  382 ++
+ .../isp/isp_7x/camsys/mtk_cam-seninf-def.h    |  193 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf-drv.c    | 1741 ++++++
+ .../isp/isp_7x/camsys/mtk_cam-seninf-drv.h    |   16 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf-hw.h     |  120 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf-if.h     |   28 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf-regs.h   |   40 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf-route.c  |  356 ++
+ .../isp/isp_7x/camsys/mtk_cam-seninf-route.h  |   23 +
+ .../isp/isp_7x/camsys/mtk_cam-seninf.h        |  170 +
+ .../isp/isp_7x/camsys/mtk_cam-timesync.c      |  125 +
+ .../isp/isp_7x/camsys/mtk_cam-timesync.h      |   12 +
+ .../isp/isp_7x/camsys/mtk_cam-ufbc-def.h      |   59 +
+ .../isp/isp_7x/camsys/mtk_cam-video.c         | 1817 ++++++
+ .../isp/isp_7x/camsys/mtk_cam-video.h         |  224 +
+ .../mediatek/isp/isp_7x/camsys/mtk_cam.c      | 4168 +++++++++++++
+ .../mediatek/isp/isp_7x/camsys/mtk_cam.h      |  733 +++
+ .../isp_7x/camsys/mtk_camera-v4l2-controls.h  |   65 +
+ .../isp_7x/camsys/mtk_csi_phy_2_0/Makefile    |    5 +
+ .../mtk_csi_phy_2_0/mtk_cam-seninf-cammux.h   |  911 +++
+ .../mtk_cam-seninf-csi0-cphy.h                |   69 +
+ .../mtk_cam-seninf-csi0-dphy.h                |  139 +
+ .../mtk_cam-seninf-hw_phy_2_0.c               | 2879 +++++++++
+ .../mtk_cam-seninf-mipi-rx-ana-cdphy-csi0a.h  |  257 +
+ .../mtk_cam-seninf-seninf1-csi2.h             |  415 ++
+ .../mtk_cam-seninf-seninf1-mux.h              |  147 +
+ .../mtk_csi_phy_2_0/mtk_cam-seninf-seninf1.h  |   47 +
+ .../mtk_csi_phy_2_0/mtk_cam-seninf-tg1.h      |   49 +
+ .../mtk_csi_phy_2_0/mtk_cam-seninf-top-ctrl.h |   99 +
+ include/uapi/linux/mtkisp_camsys.h            |  227 +
+ 60 files changed, 30194 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek/mediatek,cam-raw.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek/mediatek,cam-yuv.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek/mediatek,camisp.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek/mediatek,seninf-core.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek/mediatek,seninf.yaml
+ create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/kd_imgsensor_define_v4l2.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-ctrl.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-debug.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-debug.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-defs.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-dmadbg.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-feature.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-feature.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-fmt.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-ipi.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-meta-mt8188.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-plat-util.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-plat-util.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-pool.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-pool.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-raw.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-raw.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-raw_debug.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-raw_debug.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-regs-mt8188.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-def.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-drv.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-drv.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-hw.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-if.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-regs.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-route.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf-route.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-seninf.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-timesync.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-timesync.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-ufbc-def.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-video.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam-video.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_cam.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_camera-v4l2-controls.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-cammux.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-csi0-cphy.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-csi0-dphy.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-hw_phy_2_0.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-mipi-rx-ana-cdphy-csi0a.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-seninf1-csi2.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-seninf1-mux.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-seninf1.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-tg1.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_7x/camsys/mtk_csi_phy_2_0/mtk_cam-seninf-top-ctrl.h
+ create mode 100644 include/uapi/linux/mtkisp_camsys.h
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.18.0
 
 
