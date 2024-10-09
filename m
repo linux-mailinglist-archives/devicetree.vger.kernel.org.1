@@ -1,185 +1,146 @@
-Return-Path: <devicetree+bounces-109412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1C399965C9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:46:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE409965D8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 11:48:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8970C2843E3
-	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:46:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AA7F21C2219A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Oct 2024 09:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B46C18B46B;
-	Wed,  9 Oct 2024 09:46:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F350A18DF68;
+	Wed,  9 Oct 2024 09:48:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C95228EF;
-	Wed,  9 Oct 2024 09:46:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FDD228EF
+	for <devicetree@vger.kernel.org>; Wed,  9 Oct 2024 09:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728467210; cv=none; b=U0XvfHdyQnQmYJ6dxiSjydViq3zkd9jWvUgBXd+3wU3Jz+5q5rY/xLjkYLamFbp5JwQTQNJLmn9ZJt6IaU0y13tLJqJvYmQxKzdmkolljnz/RwGiAcS30R+D2nbmjR4BP+MjLv4Q2nOQ/T8Jx8axlBufLdZ/AKgMKZf19cYoYR4=
+	t=1728467320; cv=none; b=scOhAMLVEA+u++CLvdSdUyh7oQ/+qOmDl57G7y2ut58FC28gtQXRbeC6+qSdHVY7fAY3tvguWI8lFWezRdbHftb+OQOpb6UlCfMInrJTu0iRiIITmm088DfmhISF7HmuwoEx7vsCCEFEfMGadgi9DxB/4z6OQ+Ai75s+0tjJhTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728467210; c=relaxed/simple;
-	bh=+/1qdEErw7r4OmVk0Wcg57j8okPyhJ1yRcVclaa3YsM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TUWfR2mkayc/1+ZMj67W2/A6po1zkRu+IzqlV+7zbkLg7evVnxsKLiO10HYfOLPSNU+gQ8HpzfESz/N5S/uKxBld9yXwWsJo44SXK2RTkuRTgDLeSj8eCsGCwDGc7o3sMoNVWXnTON5EtuvNLcxbr21xWVBuAMGFO8x18bdR+3A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D2FF0FEC;
-	Wed,  9 Oct 2024 02:47:16 -0700 (PDT)
-Received: from e130802.arm.com (unknown [10.1.25.50])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 05F4C3F64C;
-	Wed,  9 Oct 2024 02:46:43 -0700 (PDT)
-Date: Wed, 9 Oct 2024 10:46:35 +0100
-From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-To: mathieu.poirier@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-	robh@kernel.org, robin.murphy@arm.com
-Cc: Adam.Johnston@arm.com, Hugues.KambaMpiana@arm.com, Drew.Reed@arm.com,
-	andersson@kernel.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	liviu.dudau@arm.com, lpieralisi@kernel.org, sudeep.holla@arm.com
-Subject: Re: [PATCH v2 1/5] dt-bindings: remoteproc: sse710: Add the External
- Systems remote processors
-Message-ID: <20241009094635.GA14639@e130802.arm.com>
-References: <CANLsYkwOrtXxObL5MKf30OrUYB_uT=DnGEXUtfjH503r_LyMQA@mail.gmail.com>
- <20240822170951.339492-1-abdellatif.elkhlifi@arm.com>
- <20240822170951.339492-2-abdellatif.elkhlifi@arm.com>
- <ce534365-0110-4aba-b8b5-0a46c5ea81d0@arm.com>
+	s=arc-20240116; t=1728467320; c=relaxed/simple;
+	bh=eEYE+PvPuJAfcRqN/4j7lRC9I2Pi+wV0D/qMtoDrXQo=;
+	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=Pg/QbKxKi+INbmgxDOG8W3u8qhW/ZrVK4mkIv/7FgvL2Bm4u6qRU7l2sHSbIqMSMu13S8dbej/Vx9cRtz0WInVuhMFAPBqO7rw9DoFAFSWGzZ5cgoM9Ts0W2Xo2k9V3Q/gXNL1NIOIl/QE0ygAS/bSsjfSic3pqrGwuPXBel9TE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1syTIh-0004Zh-WB; Wed, 09 Oct 2024 11:48:12 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1syTIe-000ZhO-F9; Wed, 09 Oct 2024 11:48:08 +0200
+Received: from pza by lupine with local (Exim 4.96)
+	(envelope-from <p.zabel@pengutronix.de>)
+	id 1syTIe-00061T-1G;
+	Wed, 09 Oct 2024 11:48:08 +0200
+Message-ID: <cc7faea42df6281a24360090d99cef8f99aa7736.camel@pengutronix.de>
+Subject: Re: [PATCH v5 3/3] clk: aspeed: add AST2700 clock driver.
+From: Philipp Zabel <p.zabel@pengutronix.de>
+To: Ryan Chen <ryan_chen@aspeedtech.com>, dmitry.baryshkov@linaro.org, 
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org,  conor+dt@kernel.org, joel@jms.id.au,
+ andrew@codeconstruct.com.au,  linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org,  devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org,  linux-aspeed@lists.ozlabs.org
+Date: Wed, 09 Oct 2024 11:48:08 +0200
+In-Reply-To: <20241009060521.2971168-4-ryan_chen@aspeedtech.com>
+References: <20241009060521.2971168-1-ryan_chen@aspeedtech.com>
+	 <20241009060521.2971168-4-ryan_chen@aspeedtech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce534365-0110-4aba-b8b5-0a46c5ea81d0@arm.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hello folks,
+On Mi, 2024-10-09 at 14:05 +0800, Ryan Chen wrote:
+> Add AST2700 clock controller driver and also use axiliary
+> device framework register the reset controller driver.
+> Due to clock and reset using the same register region.
+>=20
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/clk/Kconfig       |    8 +
+>  drivers/clk/Makefile      |    1 +
+>  drivers/clk/clk-ast2700.c | 1554 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 1563 insertions(+)
+>  create mode 100644 drivers/clk/clk-ast2700.c
+>=20
+[...]
+> diff --git a/drivers/clk/clk-ast2700.c b/drivers/clk/clk-ast2700.c
+> new file mode 100644
+> index 000000000000..ef1f939b1c9f
+> --- /dev/null
+> +++ b/drivers/clk/clk-ast2700.c
+> @@ -0,0 +1,1554 @@
+[...]
+> +static void aspeed_reset_unregister_adev(void *_adev)
+> +{
+> +	struct auxiliary_device *adev =3D _adev;
+> +
+> +	auxiliary_device_delete(adev);
+> +	auxiliary_device_uninit(adev);
+> +}
+> +
+> +static void aspeed_reset_adev_release(struct device *dev)
+> +{
+> +	struct auxiliary_device *adev =3D to_auxiliary_dev(dev);
+> +
+> +	kfree(adev);
+> +}
+> +
+> +static int aspeed_reset_controller_register(struct device *clk_dev,
+> +					    void __iomem *base, const char *adev_name)
+> +{
+> +	struct auxiliary_device *adev;
+> +	int ret;
+> +
+> +	adev =3D kzalloc(sizeof(*adev), GFP_KERNEL);
+> +	if (!adev)
+> +		return -ENOMEM;
+> +
+> +	adev->name =3D adev_name;
+> +	adev->dev.parent =3D clk_dev;
+> +	adev->dev.release =3D aspeed_reset_adev_release;
+> +	adev->id =3D 666u;
+> +
+> +	ret =3D auxiliary_device_init(adev);
+> +	if (ret) {
+> +		kfree(adev);
+> +		return ret;
+> +	}
+> +
+> +	ret =3D auxiliary_device_add(adev);
+> +	if (ret) {
+> +		auxiliary_device_uninit(adev);
+> +		return ret;
+> +	}
+> +
+> +	adev->dev.platform_data =3D (__force void *)base;
+> +
+> +	return devm_add_action_or_reset(clk_dev, aspeed_reset_unregister_adev, =
+adev);
+> +}
 
-> On 22/08/2024 6:09 pm, Abdellatif El Khlifi wrote:
-> > Add devicetree binding schema for the External Systems remote processors
-> > 
-> > The External Systems remote processors are provided on the Corstone-1000
-> > IoT Reference Design Platform via the SSE-710 subsystem.
-> > 
-> > For more details about the External Systems, please see Corstone SSE-710
-> > subsystem features [1].
-> > 
-> > [1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-SSE-710-subsystem-features
-> > 
-> > Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> > ---
-> >   .../remoteproc/arm,sse710-extsys.yaml         | 90 +++++++++++++++++++
-> >   1 file changed, 90 insertions(+)
-> >   create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> > new file mode 100644
-> > index 000000000000..827ba8d962f1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/arm,sse710-extsys.yaml
-> > @@ -0,0 +1,90 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/remoteproc/arm,sse710-extsys.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: SSE-710 External System Remote Processor
-> 
-> Thing is, this is not describing SSE-710. As far as I can work out, it is
-> describing the firmware and hardware that a particular example
-> implementation of the Corstone-1000 kit has chosen to put in the "external
-> system" hole in the SSE-710 within that kit.
-> 
-> If I license SSE-710 alone or even the Corstone-1000 kit, I can put whatever
-> I want in *my* implementation of those subsystems, so there clearly cannot
-> possibly be a common binding for that.
-> 
-> For instance what if I decide to combine a Cortex-M core plus a radio and
-> some other glue as my external subsystem? Do we have dozens of remoteproc
-> bindings and drivers for weird fixed-function remoteprocs whose
-> "firmware-name" implies a Bluetooth protocol stack? No, we treat them as
-> Bluetooth controller devices. Look at
-> devicetree/bindings/sound/fsl,rpmsg.yaml - it's even unashamedly an rpmsg
-> client, but it's still not abusing the remoteproc subsystem because its
-> function to the host OS is as an audio controller, not an arbitrarily
-> configurable processor.
-> 
-> As I said before, all SSE-710 actually implements is a reset mechanism, so
-> it only seems logical to model it as a reset controller, e.g. something
-> like:
-> 
-> 	hbsys: syscon@xyz {
-> 		compatible = "arm,sse710-host-base-sysctrl", "syscon";
-> 		reg = <xyz>;
-> 		#reset-cells = <1>;
-> 	};
-> 
-> 	something {
-> 		...
-> 		resets = <&hbsys 0>;
-> 	};
-> 
-> 	something-else {
-> 		...
-> 		resets = <&hbsys 1>;
-> 	};
-> 
-> 
-> Then if there is actually any meaningful functionality in the default
-> extsys0 firmware preloaded on the FPGA setup then define a binding for
-> "arm,corstone1000-an550-extsys0" to describe whatever that actually does. If
-> a user chooses to create and load their own different firmware, they're
-> going to need their own binding and driver for whatever *that* firmware
-> does.
-> 
-> FWIW, driver-wise the mapping to the reset API seems straightforward -
-> .assert hits RST_REQ, .deassert clears CPUWAIT (.status is possibly a
-> combination of CPUWAIT and RST_ACK?)
+Should this be moved into reset-aspeed.c?
 
-We are happy to follow what Robin recommended.
-
-This can be summarized in two parts:
-
-Part 1: Writing an SSE-710 reset controller driver
-
-    An SSE-710 reset controller driver that switches on/off the external system.
-    The driver will be helpful for products using SSE-710. So whoever licenses
-    Corstone-1000 or SSE-710 will find the reset controller driver helpful.
-    They can use it with their implementation of the external system.
-
-    Note: It's likely that the external systems the end user will be using in
-    their products will be different from the Corstone-1000 external system
-    given as an example. Differences in the memory configuration, subsystem
-    involved, boot roms configurations, ...
-    These differences mean that the end user will need to write their own driver
-    which might or might not be a remoteproc driver (e.g: Bluetooth, audio, ...).
-
-Part 2: Corstone-1000 remoteproc driver
-
-    Corstone-1000 HW is being upgraded to support memory sharing between the
-    Cortex-A35 (Linux) and the external system (Cortex-M3).
-
-    Once the HW is ready, we can write a Corstone-1000 remoteproc driver able
-    to reload the external system firmware and doing communication with the MHUs.
-    This remoteproc driver can use the reset subsystem APIs to call the SSE-710
-    reset controller driver to switch on/off the external system (already
-    developed in part 1).
-
-Impact on the current patchset:
-
-- The current remoteproc patchset will be paused until the HW is upgraded.
-- In CY25Q1, I'll send to the mailing list the SSE-710 reset controller bindings
-  and a driver under the Reset Controller subsystem.
-
-Thank you for your support and expertise.
-
-Cheers,
-Abdellatif
+regards
+Philipp
 
