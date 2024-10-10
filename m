@@ -1,209 +1,249 @@
-Return-Path: <devicetree+bounces-109781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27042997F45
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:18:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6BF4D997F4D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:19:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48D301C21D94
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:18:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2695F282D50
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:19:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B2B1CF5CA;
-	Thu, 10 Oct 2024 07:16:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AA11E04B5;
+	Thu, 10 Oct 2024 07:21:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hp3lW6mn"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="t2v9hUQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E7B195390;
-	Thu, 10 Oct 2024 07:16:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729401E00BB
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:21:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728544566; cv=none; b=UGnLX9gbgACtfCSqiXwa2FpJdFH+55Z6627c0lo1k90AwyefuJipVs+udoqLEnXeTGv+kZQPLSsZJRzJFOIG2jwKS3kMmiyxC+5dt0PNr70oEYdQTH4NsaTmnreZwG5H8elybZUTNyd7ILujR+4H5CJcclvzKOZH3caCN+aDXMk=
+	t=1728544891; cv=none; b=Qdef3fQhB0PiXy8xB78ZnzbShVd0HQrVBUG4bp56rDLODRho5PyGAzquWDxiq7Utv24Am2zHNhUzv/TsAsOQ3d/d0cTff6bIoUjIUGzcxlMNliyJS9G2WFWL/isWZY8XNWg1LQvoG5h7gwX3m0TK417k6rwky/OzOreT+Q77xAg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728544566; c=relaxed/simple;
-	bh=drsg3VRIXQztC5tLFtVhcFRd98uKLaK+3DRFgQTrYFw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JSlZa0ORSxtYHz3ub0W0F2UFSi6eGZ19YsQz4mIOOtOY1LGEzVFhB+MwVtlg1/xFpn9BgE9Z9L8C4aEjjvmsplaVuFWUa32jqSoszkiKjNxh/5as+fmwnGWw4mhOlR/7JMN6pxaPiSO+IVN/rCAD1cKOJ69F27Su1EED0bGGHD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hp3lW6mn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17A1AC4CEC5;
-	Thu, 10 Oct 2024 07:16:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728544566;
-	bh=drsg3VRIXQztC5tLFtVhcFRd98uKLaK+3DRFgQTrYFw=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=hp3lW6mnbK0jx7EI0HliZfd0odArwHFCNnmQZGgW9dpaQs5pG6q2NUS6461nHeagX
-	 PGTLF0rU8d/3hzGNJexBDRiuvsHoc7Jb3UE2pDBJaa9B1bPFrh0kzwcjpAYNRf/Pc6
-	 70N4+c3QMSrlx8op2GOltSe9rJTZXncjxEyrIgvoinzwU1o5wNjLjt2Wa5bY46tYvw
-	 gLctvCGsAgY/2laDbUj3MbcIBkN/0dD/v232AWmwww5nbIjJ3I5CkH3RzTN6oQZdmm
-	 iPYHi5/EUP6vax/q8NVMzeK0rdTo1AXi+UeLTOX6vBaEBOWqVhpvGHcZNcD2C8+bWO
-	 MlxoecPthM2OQ==
-Message-ID: <f94de63b-2ca3-4749-b008-b47d6df8e1ff@kernel.org>
-Date: Thu, 10 Oct 2024 09:15:59 +0200
+	s=arc-20240116; t=1728544891; c=relaxed/simple;
+	bh=zmmuarEg/meYeS4+x7bOfqQq827p6Hje8eR0+Ub4K1s=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=Y0cVDerwditUTfhleup1rBQoJkPr1kc0Q1Sflg8EoM5sc4ioGb43vVGj2x3jy5ou50qHO3Ums/T7lzSR99cQPZB6UnDPYwutagc8ad57lmK6WVeZHKsnK9EDWjvc7SIs42ZPdRwa7HbmCmwGtVGMzyF4I6qNeDZWZX33TecNTfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=t2v9hUQg; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241010072127epoutp02ccf4a629ba8c8467a0d8928e849001b1~9BmrAKeUu1809718097epoutp02Y
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:21:27 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241010072127epoutp02ccf4a629ba8c8467a0d8928e849001b1~9BmrAKeUu1809718097epoutp02Y
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1728544887;
+	bh=eFHwSunMh4x/STddeWZ+qyxufOABiHlohn26QfKTBqI=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=t2v9hUQgF/IhfxYsystjuGRARmQndheiKo1DBx3KMD0LRfhNJT14MY9S/2m9B93k4
+	 Uiiu6+JRLLwt/46vrWsB1uCy3bJg2Iwr8qXUbxbXlyrr8qVQIiQoJ8mxdptGC5UbmA
+	 wY5KNr/MUoGtWivX9omAPDCVHov/34aGSw30yBuI=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20241010072126epcas2p204fffa17bc50fb3c8276ed644e9879e9~9BmqWOYw20826408264epcas2p2G;
+	Thu, 10 Oct 2024 07:21:26 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.97]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4XPLlp1bxtz4x9Q8; Thu, 10 Oct
+	2024 07:21:26 +0000 (GMT)
+Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	50.9B.09770.67087076; Thu, 10 Oct 2024 16:21:26 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241010072125epcas2p2e31b8d2e354ada2304272acf39dfded6~9BmpNW5360826408264epcas2p2B;
+	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241010072125epsmtrp1f5319d044989dd177c96c403164144ff~9BmpL4jtU2160921609epsmtrp1P;
+	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
+X-AuditID: b6c32a46-00dfa7000000262a-5d-67078076bbd1
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	B7.74.07371.57087076; Thu, 10 Oct 2024 16:21:25 +0900 (KST)
+Received: from KORCO119526 (unknown [10.229.18.158]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20241010072125epsmtip17dde2313a929e8dc583715879f1828f0~9Bmo51Rjk3108931089epsmtip1x;
+	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
+From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
+	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
+ Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
+	<alim.akhtar@samsung.com>
+Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
+In-Reply-To: <faf365a0-dfc4-4d26-9057-a80b977965e3@kernel.org>
+Subject: RE: [PATCH 2/3] watchdog: s3c2410_wdt: add support for
+ exynosautov920 SoC
+Date: Thu, 10 Oct 2024 16:21:24 +0900
+Message-ID: <000001db1ae5$03d44ec0$0b7cec40$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
- iommus and qcom,devmem property
-To: Shiraz Hashim <quic_shashim@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Mukesh Ojha <quic_mojha@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-2-quic_mojha@quicinc.com>
- <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
- <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
- <CAA8EJpqay7Nryb5HwwHE1+iiMXKUvqi-djmCsYN8fxigt-s-tQ@mail.gmail.com>
- <20241009140419.GH1421305@hu-shashim-hyd.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241009140419.GH1421305@hu-shashim-hyd.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQFKfb4qWITpWweaAS1H/eZT7s/knAIPcUUdAog0DUQCYGjah7NpDXcQ
+Content-Language: ko
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmqW5ZA3u6weWTLBYP5m1js7j/qY/J
+	Ys3ec0wW84+cY7V4Oesem8X58xvYLTY9vsZqcXnXHDaLGef3MVncWLeP3eLJwjNMFv/37GC3
+	ePzyH7MDr8emVZ1sHivXrGH12Lyk3mPn9wZ2j74tqxg9Pm+SC2CLyrbJSE1MSS1SSM1Lzk/J
+	zEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMATpUSaEsMacUKBSQWFyspG9nU5Rf
+	WpKqkJFfXGKrlFqQklNgXqBXnJhbXJqXrpeXWmJlaGBgZApUmJCdsbPpL2PBE/mKe53fWBsY
+	V0l1MXJySAiYSCw69Im9i5GLQ0hgB6PEg5k/2EASQgKfGCX29HBBJL4xSly/38II0/HuyG1W
+	iMReRonlR9qYIZyXjBIvz51lAaliE7CQWHLtAxNIQkRgA5PE1DM3WUESzAK3GSV2vjcGsTkF
+	7CTuPb0ONlZYIERiSddiJhCbRUBV4sueC+wgNq+ApcSL01OYIWxBiZMzn7BAzJGX2P52DjPE
+	SQoSP58uA5svIuAm8ef+FXaIGhGJ2Z0Q10kInOGQmDvhIFSDi8TkL1NZIWxhiVfHt7BD2FIS
+	L/vboOx8iZUrTzBB2DUS99p2sUDY9hKLzvwEquEAWqApsX6XPogpIaAsceQW1Gl8Eh2H/7JD
+	hHklOtqEIExVienLAiBmSEtMnLGWbQKj0iwkf81C8tcsJPfPQli1gJFlFaNYakFxbnpqsVGB
+	ETyuk/NzNzGCk7CW2w7GKW8/6B1iZOJgPMQowcGsJMKru5A1XYg3JbGyKrUoP76oNCe1+BCj
+	KTCkJzJLiSbnA/NAXkm8oYmlgYmZmaG5kamBuZI4773WuSlCAumJJanZqakFqUUwfUwcnFIN
+	TBWlRj8PCJrErjWSltzvJ6nEFmYTeO70mmXB7rWaxg0R3ydeTVXUi3kdu7RHXGXyi298P6dk
+	nzyckb3CdZ1605WQhCVFj77Nv14Z9+jFNf8H6z18v9zO4NcSiPd+K6i1lF3860PXw4uvOhZU
+	XDjxjbX8TmvpjO5Vy2bz9X/mNpFiep0vZeZrcMp/6a+b3zYenb5JbPVMw4ZjOT1zdj/6yy+x
+	xuhhwKka7V3qWb8bDqkraGWKnElJnCix7Nqt5pX797Ko/ntyuNP/nv/KK3ecvqksYBU/7d3z
+	7n9a64O+ia/X/uZcuEh5w9NAJ/a04EKD3PjDX10nfL46YcHStwr+y3UFbhtwpZt/aH620CVB
+	6K0SS3FGoqEWc1FxIgCKGOnUSwQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsWy7bCSnG5pA3u6QcMVaYsH87axWdz/1Mdk
+	sWbvOSaL+UfOsVq8nHWPzeL8+Q3sFpseX2O1uLxrDpvFjPP7mCxurNvHbvFk4Rkmi/97drBb
+	PH75j9mB12PTqk42j5Vr1rB6bF5S77HzewO7R9+WVYwenzfJBbBFcdmkpOZklqUW6dslcGXs
+	bPrLWPBEvuJe5zfWBsZVUl2MnBwSAiYS747cZu1i5OIQEtjNKHGo+RQbREJa4sjvF1C2sMT9
+	liNQRc8ZJbaePsUOkmATsJBYcu0DE0hCRGALk8T0V6cYQRxmgYeMEv9fHYBq+coosWDdarBZ
+	nAJ2EveeXmcEsYUFgiRazi9lBbFZBFQlvuy5ADaWV8BS4sXpKcwQtqDEyZlPWEBsZgFtiac3
+	n0LZ8hLb385hhrhPQeLn02Vgc0QE3CT+3L/CDlEjIjG7s415AqPwLCSjZiEZNQvJqFlIWhYw
+	sqxilEwtKM5Nz002LDDMSy3XK07MLS7NS9dLzs/dxAiOTC2NHYz35v/TO8TIxMF4iFGCg1lJ
+	hFd3IWu6EG9KYmVValF+fFFpTmrxIUZpDhYlcV7DGbNThATSE0tSs1NTC1KLYLJMHJxSDUyM
+	KXoNsVYcc3tnlxfV/jz/iW3pfheVn1dWuH2/et41LuPF8Wf9U9XcZXYsEDA0kVh0o+y8YM8d
+	tVtVscuVZ6xSNa9SDtaw/5m9z39P2v8133yvn5Zse6b6vNWgeJbXvgMKrR4i4T83fGBrXifb
+	M/v6w/9RJ8LezHldcDt5prBo90vLDRVpkivd7qaKa/24U3s4uo1bpFFeplvr6oR7+lt/cGto
+	SCzeweiecT4jZ/mPkGmd066JenKwsIl3RP+X/r05TWcez2/9qAcLg/brvNITf7c04e3JlokV
+	75Tuzwyf39T88u+RXZ+3HF27k8ln9aojxY/DTJ7zC7/a+nTFso0ffskxbLql/eFvTIKgl6qQ
+	EktxRqKhFnNRcSIAH5ck5DsDAAA=
+X-CMS-MailID: 20241010072125epcas2p2e31b8d2e354ada2304272acf39dfded6
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b
+References: <20240913080325.3676181-1-trunixs.kim@samsung.com>
+	<CGME20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b@epcas2p4.samsung.com>
+	<20240913080325.3676181-3-trunixs.kim@samsung.com>
+	<faf365a0-dfc4-4d26-9057-a80b977965e3@kernel.org>
 
-On 09/10/2024 16:04, Shiraz Hashim wrote:
-> On Mon, Oct 07, 2024 at 06:25:01PM +0200, Dmitry Baryshkov wrote:
->> On Mon, 7 Oct 2024 at 17:35, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>>
->>> On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
->>>> On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
->>>>> From: Shiraz Hashim <quic_shashim@quicinc.com>
->>>>>
->>>>> Qualcomm’s PAS implementation for remote processors only supports a
->>>>> single stage of IOMMU translation and is presently managed by the
->>>>> Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
->>>>> such as with a KVM hypervisor, IOMMU translations need to be set up by
->>>>> the KVM host. Remoteproc needs carveout memory region and its resource
->>>>> (device memory) permissions to be set before it comes up, and this
->>>>> information is presently available statically with QHEE.
->>>>>
->>>>> In the absence of QHEE, the boot firmware needs to overlay this
->>>>> information based on SoCs running with either QHEE or a KVM hypervisor
->>>>> (CPUs booted in EL2).
->>>>>
->>>>> The qcom,devmem property provides IOMMU devmem translation information
->>>>> intended for non-QHEE based systems.
->>>>>
->>>>> Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
->>>>> Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>>>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
->>>>> ---
->>>>>  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++++
->>>>>  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
->>>>>  2 files changed, 62 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> index 63a82e7a8bf8..068e177ad934 100644
->>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
->>>>> @@ -52,6 +52,48 @@ properties:
->>>>>      minItems: 1
->>>>>      maxItems: 3
->>>>>
->>>>> +  iommus:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  qcom,devmem:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
->>>>> +    description:
->>>>> +      Qualcomm’s PAS implementation for remote processors only supports a
->>>>> +      single stage of IOMMU translation and is presently managed by the
->>>>> +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
->>>>> +      such as with a KVM hypervisor, IOMMU translations need to be set up by
->>>>> +      the KVM host. Remoteproc might need some device resources and related
->>>>> +      access permissions to be set before it comes up, and this information is
->>>>> +      presently available statically with QHEE.
->>>>> +
->>>>> +      In the absence of QHEE, the boot firmware needs to overlay this
->>>>> +      information based on SoCs running with either QHEE or a KVM hypervisor
->>>>> +      (CPUs booted in EL2).
->>>>> +
->>>>> +      The qcom,devmem property provides IOMMU devmem translation information
->>>>> +      intended for non-QHEE based systems. It is an array of u32 values
->>>>> +      describing the device memory regions for which IOMMU translations need to
->>>>> +      be set up before bringing up Remoteproc. This array consists of 4-tuples
->>>>> +      defining the device address, physical address, size, and attribute flags
->>>>> +      with which it has to be mapped.
->>>>
->>>> I'd expect that this kind of information is hardware-dependent. As such
->>>> it can go to the driver itself, rather than the device tree. The driver
->>>> can use compatible string to select the correct table.
->>>>
->>>
->>> IIUC, are you saying that to move this into driver file and override the
->>> compatible string via overlay ?
->>
->> Ideally we should live without compat overrides. On the other hand,
->> sc7180 and sc7280 provide an example of doing exactly that.
-> 
-> I am not sure if there can arise a case where updated adsp firmware
-> for particular board(s) may require additional access.
-> 
-> Having it in device tree adds a convenience to deal with such
-> variance. 
-> 
+Hi,
 
-That's a downstream argument... Just look at the downstream DTS.
-Everything, even software properties, can be added to DT, right?
+Thank you for your review.
+I will apply your point to v2 patch.
 
 Best regards,
-Krzysztof
+Taewan Kim.
+
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Monday, September 30, 2024 9:05 PM
+> To: Taewan Kim <trunixs.kim@samsung.com>; Wim Van Sebroeck <wim@linux-
+> watchdog.org>; Guenter Roeck <linux@roeck-us.net>; Rob Herring
+> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
+> <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>
+> Cc: linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> samsung-soc@vger.kernel.org; Byoungtae Cho <bt.cho@samsung.com>
+> Subject: Re: [PATCH 2/3] watchdog: s3c2410_wdt: add support for
+> exynosautov920 SoC
+> 
+> On 13/09/2024 10:03, Taewan Kim wrote:
+> > From: Byoungtae Cho <bt.cho@samsung.com>
+> >
+> > Adds the compatibles and drvdata for the ExynosAuto V920 SoC. This SoC
+> > is almost similar to ExynosAutoV9, but some CPU configurations are
+> > quite different, so it should be added. Plus it also support DBGACK
+> > like as
+> > GS101 SoC.
+> >
+> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
+> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
+> > ---
+> >  drivers/watchdog/s3c2410_wdt.c | 37
+> > +++++++++++++++++++++++++++++++++-
+> >  1 file changed, 36 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/watchdog/s3c2410_wdt.c
+> > b/drivers/watchdog/s3c2410_wdt.c index 686cf544d0ae..c25133348f0e
+> > 100644
+> > --- a/drivers/watchdog/s3c2410_wdt.c
+> > +++ b/drivers/watchdog/s3c2410_wdt.c
+> > @@ -63,6 +63,10 @@
+> >  #define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
+> >  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_OUT	0x1520
+> >  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_INT_EN	0x1544
+> > +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT	0x1420
+> > +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN	0x1444
+> > +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT	0x1720
+> > +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN	0x1744
+> >
+> >  #define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
+> >  #define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
+> > @@ -303,6 +307,32 @@ static const struct s3c2410_wdt_variant
+> drv_data_gs101_cl1 = {
+> >  		  QUIRK_HAS_DBGACK_BIT,
+> >  };
+> >
+> > +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl0 = {
+> > +	.mask_reset_reg = EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN,
+> > +	.mask_bit = 2,
+> > +	.mask_reset_inv = true,
+> > +	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> > +	.rst_stat_bit = EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT,
+> > +	.cnt_en_reg = EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT,
+> > +	.cnt_en_bit = 7,
+> > +	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
+> > +		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
+> > +		  QUIRK_HAS_DBGACK_BIT,
+> > +};
+> > +
+> > +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl1 = {
+> > +	.mask_reset_reg = EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN,
+> > +	.mask_bit = 2,
+> > +	.mask_reset_inv = true,
+> > +	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
+> > +	.rst_stat_bit = EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT,
+> > +	.cnt_en_reg = EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT,
+> > +	.cnt_en_bit = 7,
+> > +	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
+> > +		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
+> > +		  QUIRK_HAS_DBGACK_BIT,
+> > +};
+> > +
+> >  static const struct of_device_id s3c2410_wdt_match[] = {
+> >  	{ .compatible = "google,gs101-wdt",
+> >  	  .data = &drv_data_gs101_cl0 },
+> > @@ -320,6 +350,8 @@ static const struct of_device_id s3c2410_wdt_match[]
+> = {
+> >  	  .data = &drv_data_exynos850_cl0 },
+> >  	{ .compatible = "samsung,exynosautov9-wdt",
+> >  	  .data = &drv_data_exynosautov9_cl0 },
+> > +	{ .compatible = "samsung,exynosautov920-wdt",
+> > +	  .data = &drv_data_exynosautov920_cl0},
+> 
+> Missing space before }
+> 
+> >  	{},
+> >  };
+> 
+> 
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Best regards,
+> Krzysztof
+
 
 
