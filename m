@@ -1,158 +1,91 @@
-Return-Path: <devicetree+bounces-109831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 022D7998258
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:34:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B578E998260
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:35:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0E46287986
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:34:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 75792284874
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:35:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3BF1BD50A;
-	Thu, 10 Oct 2024 09:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D20AA1AFB31;
+	Thu, 10 Oct 2024 09:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="En4Ag8Dl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="guTT+b+j"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADA5F33CE8;
-	Thu, 10 Oct 2024 09:33:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4F3033CE8;
+	Thu, 10 Oct 2024 09:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728552823; cv=none; b=CYYd1BIKZnxv9TE08PkTGE55vV8BUoVwiYfbr8yv+9UzkyhGEgTtUcH7zBNO/lxgG6zatF0otNQ07h8DLF3YKGOfAFNh01rgtak/iSuJJj6pDoQNIwIC2Zt5JIcyKdqDgg2gZPU5nxwQIQHdL6FhkX8VP9Nq0JcAvOpXU3iWvIg=
+	t=1728552880; cv=none; b=EVDt0hx74Yl29KUJY/LyYLKgwKEIHkdxVvoU2N3YhfzQzdVw/u7RJyEOUwO84P9bMwSnEEZFkbl6FSDSvvWxdGYM+UKa9foLAP08yTmrc62DlcpOs13W3OX+LR997Lcca+5z1Rc0i+VTnsWQ+0vKqzoSHvB6nOp6GHBB7/OI/qQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728552823; c=relaxed/simple;
-	bh=qBxQgkj2nJgxxaoqA5Dg7eRIG8Bdg50/61evn+NoLJ0=;
+	s=arc-20240116; t=1728552880; c=relaxed/simple;
+	bh=dWfSFjkqfTJgifxqlOgIG/IsOAQZKlT3tfzmz+XaNrU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n+j8BPIjv/Cnkn2BGioDuX+GeHP0jLy2+0J7wSyo2SMPmQvTznMhbvmgNHSwRWKCamPaHosDgxMUF32HkVPXXqn/y4i4E4zZzu+b9ffuSLYF9e03GyTOno2kar3u0D/Fsj8iU6/OsHMmpvvpeGpqqYnPzp7VlcB345D0NOxszt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=En4Ag8Dl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E2F6C4CEC5;
-	Thu, 10 Oct 2024 09:33:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WxU9F6LxQ49WBziiipR0KoPKXI61Sjcm8bJjvGyUrz3rut3Kcz+3FNCLVGhU3b0k0myOSA1tXTOjZoSfQRabwK0MqTv0zDlTtDvdRyY6TwpMvqZmyLtQGx9F+5ghAOU5sJR9TzE8YYWwH+CoeXK7SwPiUHvjx/aTuNAVJQdC+NE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=guTT+b+j; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 73971C4CEC5;
+	Thu, 10 Oct 2024 09:34:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728552823;
-	bh=qBxQgkj2nJgxxaoqA5Dg7eRIG8Bdg50/61evn+NoLJ0=;
+	s=k20201202; t=1728552880;
+	bh=dWfSFjkqfTJgifxqlOgIG/IsOAQZKlT3tfzmz+XaNrU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=En4Ag8DlmZ6disIgz53CZ3K0DvRM+gC92oLowhIX/DCCQXVFmeO6m4HrbmW9EVIlI
-	 xg05COwRn39bwJ2LXUzaWIbjQEiTZOeOXSmn4a0cS3vBNjAbMt33NhE4N0hsALnhlX
-	 e/SI9T38sDZcPnQiF+RyM/kZ7yMtfyfsZfcbeHNJPoj8VdEnQR3Rr/poUtbNQcT7tr
-	 UgvL7v2VWhkRVwojxQIlQDbLqiGpenIc4MOyhx6BtyUKjSeLi0Q8hoReD/rBuHXB07
-	 xCHtIVAws4xHmZm19B6Y+dREdmOmj+YYrJcSf0tRCyAto27CKikNGxPu7WZyZ2dYMj
-	 kUkvEVnOms8uQ==
-Date: Thu, 10 Oct 2024 11:33:38 +0200
-From: Niklas Cassel <cassel@kernel.org>
-To: Hongxing Zhu <hongxing.zhu@nxp.com>
-Cc: "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"shawnguo@kernel.org" <shawnguo@kernel.org>,
-	"l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>
-Subject: Re: [PATCH v5 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
- "atu" for i.MX8M PCIe Endpoint
-Message-ID: <ZwefciwGBSU-iwFg@ryzen.lan>
-References: <1723534943-28499-1-git-send-email-hongxing.zhu@nxp.com>
- <1723534943-28499-2-git-send-email-hongxing.zhu@nxp.com>
- <ZwaagtTx1ar1CW4V@ryzen.lan>
- <AS8PR04MB8676516366FB6EE23F4823C68C782@AS8PR04MB8676.eurprd04.prod.outlook.com>
+	b=guTT+b+jurmQHBP6Vh91ljDbL0KDxNByuebJtHcbp0k+5FmMcMYmsMmoIO4P+r4Z6
+	 4XUwyHgFgKmcAjJspXEcEBflLShDb2PALJD2Er1RgztDxcDqGt6+57hZnXDqmfmRFN
+	 oc5p/lRisRdu0+qXKJ1OmeP2aHkmbvobSGRMZJisjztkbyoaiUl1c7w4Xj19JKEd8b
+	 XU7FOaut+Nnd+EpLJetsKaYv6nrvAtF9iQaYP7knOt+NXGRX0xZBktqG5YRw4GIpQc
+	 2bXlzfdCxlXQN49fAvr6OfjrPf7M+LSaF/evT7jOsayvAwxpfLBlOkJzLGPOuNPdUV
+	 3ZzizRZgniqZw==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sypZE-000000001bV-3pNR;
+	Thu, 10 Oct 2024 11:34:44 +0200
+Date: Thu, 10 Oct 2024 11:34:44 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Stephan Gerhold <stephan.gerhold@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: x1e80100-qcp: Add WiFi/BT pwrseq
+Message-ID: <ZweftESPrJNEsqGE@hovoldconsulting.com>
+References: <20241007-x1e80100-pwrseq-qcp-v1-0-f7166510ab17@linaro.org>
+ <20241007-x1e80100-pwrseq-qcp-v1-3-f7166510ab17@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AS8PR04MB8676516366FB6EE23F4823C68C782@AS8PR04MB8676.eurprd04.prod.outlook.com>
+In-Reply-To: <20241007-x1e80100-pwrseq-qcp-v1-3-f7166510ab17@linaro.org>
 
-On Thu, Oct 10, 2024 at 02:17:25AM +0000, Hongxing Zhu wrote:
-> > -----Original Message-----
-> > From: Niklas Cassel <cassel@kernel.org>
-> > Sent: 2024年10月9日 23:00
-> > To: Hongxing Zhu <hongxing.zhu@nxp.com>
-> > Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > shawnguo@kernel.org; l.stach@pengutronix.de; devicetree@vger.kernel.org;
-> > linux-pci@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; kernel@pengutronix.de; imx@lists.linux.dev
-> > Subject: Re: [PATCH v5 1/4] dt-bindings: imx6q-pcie: Add reg-name "dbi2" and
-> > "atu" for i.MX8M PCIe Endpoint
-> > 
-> > On Tue, Aug 13, 2024 at 03:42:20PM +0800, Richard Zhu wrote:
-> > > Add reg-name: "dbi2", "atu" for i.MX8M PCIe Endpoint.
-> > >
-> > > For i.MX8M PCIe EP, the dbi2 and atu addresses are pre-defined in the
-> > > driver. This method is not good.
-> > >
-> > > In commit b7d67c6130ee ("PCI: imx6: Add iMX95 Endpoint (EP) support"),
-> > > Frank suggests to fetch the dbi2 and atu from DT directly. This commit
-> > > is preparation to do that for i.MX8M PCIe EP.
-> > >
-> > > These changes wouldn't break driver function. When "dbi2" and "atu"
-> > > properties are present, i.MX PCIe driver would fetch the according
-> > > base addresses from DT directly. If only two reg properties are
-> > > provided, i.MX PCIe driver would fall back to the old method.
-> > >
-> > > Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  .../devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml  | 13
-> > > +++++++++----
-> > >  1 file changed, 9 insertions(+), 4 deletions(-)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > index a06f75df8458..84ca12e8b25b 100644
-> > > --- a/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > +++ b/Documentation/devicetree/bindings/pci/fsl,imx6q-pcie-ep.yaml
-> > > @@ -65,12 +65,14 @@ allOf:
-> > >      then:
-> > >        properties:
-> > >          reg:
-> > > -          minItems: 2
-> > > -          maxItems: 2
-> > > +          minItems: 4
-> > > +          maxItems: 4
-> > 
-> > Now it seems like this patch has already been picked up, but how is this not
-> > breaking DT backwards compatibility?
-> > 
-> > You are here increasing minItems, which means that an older DT should now fail
-> > to validate using the new schema?
-> > 
-> > I thought that it was only acceptable to add new optional properties after the
-> > DT binding has been accepted.
-> > 
-> > What am I missing?
-> > 
-> > 
-> > If the specific compatible isn't used by any DTS in a released kernel, then I think
-> > that the commit log should have clearly stated so, and explained that that is the
-> > reason why it is okay to break DT backwards compatibility.
-> > 
-> Hi Niklas:
-> Thanks for your comments and concerns.
-> Up to now, the pcie_ep of i.MX8MP is only present in i.mx8mp.dtsi file.
-> And it isn't used by any DTS in the release kernels.
-> So, this series wouldn't break DT backwards compatibility.
+On Mon, Oct 07, 2024 at 08:22:27PM +0200, Stephan Gerhold wrote:
+> Add the WiFi/BT nodes for QCP and describe the regulators for the WCN7850
+> combo chip using the new power sequencing bindings. All voltages are
+> derived from chained fixed regulators controlled using a single GPIO.
+> 
+> The same setup also works for CRD (and likely most of the other X1E80100
+> laptops). However, unlike the QCP they use soldered or removable M.2 cards
+> supplied by a single 3.3V fixed regulator. The other necessary voltages are
+> then derived inside the M.2 card. Describing this properly requires
+> new bindings, so this commit only adds QCP for now.
 
-Ok, this information should have been in the commit message IMO.
-(Too late now, but for the next patch affecting i.mx8mp.dtsi)
+Based on our discussions it seems we do not really need to describe the
+internal PMU at all for WCN7850 (as the bluetooth and wlan blocks can be
+enabled indepdendently) so perhaps we can just restore the old binding
+and drop most of this boilerplate for all boards.
 
-In the normal case, someone reviewing a DT binding patch will of course
-assume there thre is actually a DTS using the binding, thus in the
-(non-normal) case where there is no DTS using the binding, I think that
-you should explicitly mention that in the commit message.
-
-
-Kind regards,
-Niklas
+Johan
 
