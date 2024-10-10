@@ -1,174 +1,224 @@
-Return-Path: <devicetree+bounces-109800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B02CF998013
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:36:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66920998024
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:37:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 403B71F26ABE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:36:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8917A1C2135B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:37:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E22206E96;
-	Thu, 10 Oct 2024 08:06:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 485D11BC069;
+	Thu, 10 Oct 2024 08:10:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cwN4nw00"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="A7yqGsbh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E172A204945;
-	Thu, 10 Oct 2024 08:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A0431B5EBC
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 08:10:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728547594; cv=none; b=RBOJlkShOd65wtTDcsEoLVe2eB6fleZKr9qrzqoFrZ1lZqK/9b4n4sxllO7r+/wi2kX3i5E7q/Z8hb3vG5WOyM2Qk6fTxEzGvOtu3SLHVpm6JHzfKtpwE6Cg/yITONttD36EQwP38vo7uPdBQ1IT9xRGiDtB1aozqC8nwp1m1fA=
+	t=1728547805; cv=none; b=mGICxv8Hk9nW3EFvvMygdpW6wI5bmloyifhX20HPYme1M9Bf0kNzaRtJhOE7APRwhNnk3+OpWocWU+23cl5BVm+488W9vJOvEkQhT+2b0XHyCBVKdmj443f0Tk1HRc2RQplfKF7+QxmEx+oDlQ00BJptOYUIo3d4hLm0Mk17e0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728547594; c=relaxed/simple;
-	bh=sbPXd7R0u+ekO4R8iUvVJzAYyng6QQzvDwZhXlFUU5g=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=oDnbJfKAFkdwOR84FopNsxBshrfMqHGR6JKdS7JiS9wRWdN52GmbGsp7v1NJnj5hHIM8Tg8Wd2bFZWRqs6BLP/VKc7VlPzm0e92baIRhgBrl/gzBHr4IZt9vSoRE1Kk5vOeDSVtlLeOQYqo9n7dOVlRRUFAZ/2krUDW4/+NkAKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cwN4nw00; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67DF9C4CEC5;
-	Thu, 10 Oct 2024 08:06:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728547593;
-	bh=sbPXd7R0u+ekO4R8iUvVJzAYyng6QQzvDwZhXlFUU5g=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=cwN4nw00d30HFm8yXF6gvuey9sQl8NmZJgvdmYRASrhJcaYlADHoVDuxsN9AFQy4Z
-	 re7BoUHiwg62kI+z7V8ww+Oc0YH9aI5AI4bbU1U6fpBlsx2HEz/+lPmvDM2nueKWRM
-	 Tzbh7bXdrlg4CnKZtM2sl9jhnhebnpsYBj1hKQ9gDt9KmrNjGt8/+WniXDlTjx5AU1
-	 t8DNOVPobPsS5yaew9OaKPHurbtnOUSJlG+zuHB+fKj3WE4A/JFsNy864FR9hG6ezD
-	 iQK+qd6LCFHamOoQQ9P+YEPqekz3DjjfUn95SACdZWtBZwUM0ZCRpBDYC5ZRYRhy9E
-	 VoH7j+Ek3soig==
-Message-ID: <ef02e1b1-2166-4660-ae12-f6256c624008@kernel.org>
-Date: Thu, 10 Oct 2024 10:06:23 +0200
+	s=arc-20240116; t=1728547805; c=relaxed/simple;
+	bh=g36zPfGHWbFIKy+xWCvY4miH9KOz74X7KhYaStb3iD8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cH+bGTXCF8Mr+dHn/BBInWhidrFJrMTPtReq7K5pq/ibaHaQFdO94PUw1eXXIBUhuMhcyYFdIx/FHtjl8punZKaKfChPuABz2KTHfT1V4ckhFnbsDyW9qknh7IokZ5nWY0uqRNUch+lQ0yBWf78S/GpC1jpKt9KSPNCzfAhJAFQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=A7yqGsbh; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-20c71603217so4901505ad.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 01:10:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728547803; x=1729152603; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=zmKcXJUPy3GJb83o8RShQJdgCDtW41p1Q1FD22fOmPo=;
+        b=A7yqGsbhWsWn4a1tYxZaggIeZg6TJtKagj8x7LtTYfMzFSgmRZI8cA9bzEkmhqD/hH
+         /LUH6ehQyLwwsS44MKFL56G27eck8nQ7J+1jV7ID0jQ0TxT36Rb0GmGG6ITVbKsHoA1k
+         3jCHv3jZvlSaCzozi8etdEZByEcT907Z2bslqurvhJ+oTreM+Oz51iflvgTVwYJUBUCg
+         J1h4x4ZWDjaX/j/vkoBWIXhHOllVQIyi+1MUslBTlzPWTGtEvHLSEDH5N6/zirrHMVr1
+         geeM5DIHfKO9XYKhZUqTYby4pKXhgtHQKw63+JRxmfsKidyNPbKf54ZwhabXF5t7CRgU
+         628Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728547803; x=1729152603;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zmKcXJUPy3GJb83o8RShQJdgCDtW41p1Q1FD22fOmPo=;
+        b=ayhdU3Ksk/gzehMuTjHv6urbsd5hbViGsLpIMRu50EglYGX+uUL0QeWj1eCmi97Tvw
+         DAIBZu48/n0xpv73ejaDyfjQnOO/3v/36BGNHCJsGP+MJ75RyMPi5Bsw73rsme1Hg8w/
+         HjdxiuwSsdXN4+IzR3trywmpEHfh43amkKQYpX3hTNsTVhrOpFBJMraRmSZYJINlxrcX
+         bTLGOq3BCRW5xmRnsbLoie/2eb2dIi8ZcrL4bDLcjhTLCSih2AT6ni8vV7uDEa6BUM1m
+         bfuBTWWTLVatQHBt1PwSfVP/+7QHUHpoFwcvvaWxSbnXl3cZh3yZ+lyYOUwDQNB3zsZa
+         Qx8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVzmJUKaeKOpY8pxAOeL/+g98TL/Wl9AV3Cc99nnsQPF+wap7PvAVDqGUOLRVhvhQ/F+J+ZJDb8i02t@vger.kernel.org
+X-Gm-Message-State: AOJu0YwYcs+EMcQ81BfTo1I3KvpFZAmGbnzthZWh0GesBrxeS5DHTIWC
+	QJDU8X3I5DuullnApuJbuEjS1nQLqHY/AdRHYPCuFXkWpf4UD6THW9muPKG5Dg==
+X-Google-Smtp-Source: AGHT+IEhI0oEHMpvi/Ep8rZT37rMBupuv4nErdDsje5nS4NaslF2zKOn4ZDc5nilfaVzbMlP4HVL5w==
+X-Received: by 2002:a17:903:124b:b0:206:9a3f:15e5 with SMTP id d9443c01a7336-20c63746cafmr77627535ad.32.1728547802706;
+        Thu, 10 Oct 2024 01:10:02 -0700 (PDT)
+Received: from thinkpad ([220.158.156.184])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c8bad33d6sm5162345ad.33.2024.10.10.01.09.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 01:10:02 -0700 (PDT)
+Date: Thu, 10 Oct 2024 13:39:56 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v3 07/12] PCI: rockchip-ep: Refactor
+ rockchip_pcie_ep_probe() MSI-X hiding
+Message-ID: <20241010080956.z3cw2mxxlgrjafhs@thinkpad>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-8-dlemoal@kernel.org>
+ <20241010072512.f7e4kdqcfe5okcvg@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/4] dt-bindings: leds: add 'active-high'
- property
-To: Daniel Golle <daniel@makrotopia.org>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Xu Liang <lxu@maxlinear.com>,
- Christian Marangi <ansuelsmth@gmail.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- Robert Marko <robimarko@gmail.com>, Russell King
- <rmk+kernel@armlinux.org.uk>, Abhishek Chauhan <quic_abchauha@quicinc.com>,
- Jacek Anaszewski <jacek.anaszewski@gmail.com>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-References: <e91ca84ac836fc40c94c52733f8fc607bcbed64c.1728145095.git.daniel@makrotopia.org>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <e91ca84ac836fc40c94c52733f8fc607bcbed64c.1728145095.git.daniel@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241010072512.f7e4kdqcfe5okcvg@thinkpad>
 
-On 05/10/2024 18:24, Daniel Golle wrote:
-> Other than described in commit c94d1783136 ("dt-bindings: net: phy: Make
-> LED active-low property common") the absence of the 'active-low'
-> property means not to touch the polarity settings which are inherited
-> from reset defaults, the bootloader or bootstrap configuration.
-> Hence, in order to override a LED pin being active-high in case of the
-> default, bootloader or bootstrap setting being active-low an additional
-> property 'active-high' is required.
-> Document that property and make it mutually exclusive to the existing
-> 'active-low' property.
+On Thu, Oct 10, 2024 at 12:55:12PM +0530, Manivannan Sadhasivam wrote:
+> On Mon, Oct 07, 2024 at 01:12:13PM +0900, Damien Le Moal wrote:
+> > Move the code in rockchip_pcie_ep_probe() to hide the MSI-X capability
+> > to its own function, rockchip_pcie_ep_hide_msix_cap(). No functional
+> > changes.
+> > 
+> > Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
->  Documentation/devicetree/bindings/leds/common.yaml | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > 
-> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> index bf9a101e4d42..7c3cd7b7412e 100644
-> --- a/Documentation/devicetree/bindings/leds/common.yaml
-> +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> @@ -202,6 +202,12 @@ properties:
->        #trigger-source-cells property in the source node.
->      $ref: /schemas/types.yaml#/definitions/phandle-array
->  
-> +  active-high:
-> +    type: boolean
-> +    description:
-> +      Makes LED active high. To turn the LED ON, line needs to be
-> +      set to high voltage instead of low.
-> +
->    active-low:
->      type: boolean
->      description:
-> @@ -225,6 +231,14 @@ properties:
->        Maximum timeout in microseconds after which the flash LED is turned off.
->        Required for flash LED nodes with configurable timeout.
->  
-> +allOf:
-> +  - if:
-> +      required:
-> +        - active-low
-> +    then:
-> +      properties:
-> +        active-high: false
+> Btw, can someone from Rockchip confirm if this hiding is necessary for all the
+> SoCs? It looks to me like an SoC quirk.
+> 
+> - Mani
+> 
+> > ---
+> >  drivers/pci/controller/pcie-rockchip-ep.c | 54 +++++++++++++----------
+> >  1 file changed, 30 insertions(+), 24 deletions(-)
+> > 
+> > diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+> > index 523e9cdfd241..7a1798fcc2ad 100644
+> > --- a/drivers/pci/controller/pcie-rockchip-ep.c
+> > +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+> > @@ -581,6 +581,34 @@ static void rockchip_pcie_ep_release_resources(struct rockchip_pcie_ep *ep)
+> >  	pci_epc_mem_exit(ep->epc);
+> >  }
+> >  
+> > +static void rockchip_pcie_ep_hide_msix_cap(struct rockchip_pcie *rockchip)
 
-I read prior discussion, so indeed that is safest bet.
+Perhaps a better name would be rockchip_pcie_disable_broken_msix()? As the
+function essentially disables MSIx which is broken. Again, it'd be good to know
+if this applies to all SoCs or just a few.
 
-With the commit SHA fixed:
+- Mani
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > +{
+> > +	u32 cfg_msi, cfg_msix_cp;
+> > +
+> > +	/*
+> > +	 * MSI-X is not supported but the controller still advertises the MSI-X
+> > +	 * capability by default, which can lead to the Root Complex side
+> > +	 * allocating MSI-X vectors which cannot be used. Avoid this by skipping
+> > +	 * the MSI-X capability entry in the PCIe capabilities linked-list: get
+> > +	 * the next pointer from the MSI-X entry and set that in the MSI
+> > +	 * capability entry (which is the previous entry). This way the MSI-X
+> > +	 * entry is skipped (left out of the linked-list) and not advertised.
+> > +	 */
+> > +	cfg_msi = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+> > +				     ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+> > +
+> > +	cfg_msi &= ~ROCKCHIP_PCIE_EP_MSI_CP1_MASK;
+> > +
+> > +	cfg_msix_cp = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+> > +					 ROCKCHIP_PCIE_EP_MSIX_CAP_REG) &
+> > +					 ROCKCHIP_PCIE_EP_MSIX_CAP_CP_MASK;
+> > +
+> > +	cfg_msi |= cfg_msix_cp;
+> > +
+> > +	rockchip_pcie_write(rockchip, cfg_msi,
+> > +			    PCIE_EP_CONFIG_BASE + ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+> > +}
+> > +
+> >  static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+> >  {
+> >  	struct device *dev = &pdev->dev;
+> > @@ -588,7 +616,6 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+> >  	struct rockchip_pcie *rockchip;
+> >  	struct pci_epc *epc;
+> >  	int err;
+> > -	u32 cfg_msi, cfg_msix_cp;
+> >  
+> >  	ep = devm_kzalloc(dev, sizeof(*ep), GFP_KERNEL);
+> >  	if (!ep)
+> > @@ -619,6 +646,8 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+> >  	if (err)
+> >  		goto err_disable_clocks;
+> >  
+> > +	rockchip_pcie_ep_hide_msix_cap(rockchip);
+> > +
+> >  	/* Establish the link automatically */
+> >  	rockchip_pcie_write(rockchip, PCIE_CLIENT_LINK_TRAIN_ENABLE,
+> >  			    PCIE_CLIENT_CONFIG);
+> > @@ -626,29 +655,6 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+> >  	/* Only enable function 0 by default */
+> >  	rockchip_pcie_write(rockchip, BIT(0), PCIE_CORE_PHY_FUNC_CFG);
+> >  
+> > -	/*
+> > -	 * MSI-X is not supported but the controller still advertises the MSI-X
+> > -	 * capability by default, which can lead to the Root Complex side
+> > -	 * allocating MSI-X vectors which cannot be used. Avoid this by skipping
+> > -	 * the MSI-X capability entry in the PCIe capabilities linked-list: get
+> > -	 * the next pointer from the MSI-X entry and set that in the MSI
+> > -	 * capability entry (which is the previous entry). This way the MSI-X
+> > -	 * entry is skipped (left out of the linked-list) and not advertised.
+> > -	 */
+> > -	cfg_msi = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+> > -				     ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+> > -
+> > -	cfg_msi &= ~ROCKCHIP_PCIE_EP_MSI_CP1_MASK;
+> > -
+> > -	cfg_msix_cp = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+> > -					 ROCKCHIP_PCIE_EP_MSIX_CAP_REG) &
+> > -					 ROCKCHIP_PCIE_EP_MSIX_CAP_CP_MASK;
+> > -
+> > -	cfg_msi |= cfg_msix_cp;
+> > -
+> > -	rockchip_pcie_write(rockchip, cfg_msi,
+> > -			    PCIE_EP_CONFIG_BASE + ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+> > -
+> >  	rockchip_pcie_write(rockchip, PCIE_CLIENT_CONF_ENABLE,
+> >  			    PCIE_CLIENT_CONFIG);
+> >  
+> > -- 
+> > 2.46.2
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
