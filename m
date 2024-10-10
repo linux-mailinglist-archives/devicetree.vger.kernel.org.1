@@ -1,154 +1,236 @@
-Return-Path: <devicetree+bounces-109999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B5FF998BD7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:36:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A1D998BF6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:43:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B6EE1C2345C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:36:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B352A1C22A42
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:43:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 967B51CDFBF;
-	Thu, 10 Oct 2024 15:35:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61DCA1CC886;
+	Thu, 10 Oct 2024 15:43:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="f0ooyYto"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="IxI7xerN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11012030.outbound.protection.outlook.com [52.101.66.30])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C54DE1C9ED3;
-	Thu, 10 Oct 2024 15:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728574524; cv=none; b=QSAOoVz0EtOawCiGIhx7YWuKM9682ezA7hHrOqioiTfpTL6wBWQOam5orIln7cb3yBXo10CXP+8rNEIQp5iAuKSYcM8O1xK1LZz3YTNwjRRXrTCnlYzSHAVOhbu3b0/NpboXvckqMKMQFcQQu+s71ZlyGo3P7pF/2/awZRZOGp0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728574524; c=relaxed/simple;
-	bh=S4ZTiA63hcp1zp2AaoACJv2E5yFttOZ3Qjc9pOsDwvc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ccAFdGR9G8oQSuvL0VJMA6lXATawWa58jBUWdNWyBpAD9FKP9+M0DFfljchjs5usujG9s/LG55HsBEm/xKTItniQNh1Rs516tqve2F89J+s360QFXrXCeaQ4uykWUCMtcG1Q87TQuyQX7EGqZJtM+gWFaqtTv/5qpSjYaNnxFZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=f0ooyYto; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49AFZCdj123024;
-	Thu, 10 Oct 2024 10:35:12 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1728574512;
-	bh=+n1MH9ezTRTumafnMkWg0MYerZadPH86fR420sIJO5k=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=f0ooyYtovZoVJsRDDLE0/dDBIPICxpybZiaQmkf3BEeYrjG1nnp8IqzbjiUgE30UA
-	 KRgT6PdOO2g0WF/Gl2vVaKJsh70UZM5jP/7naVVE6W5zutxeAAO9CT7BvFy6J9bg4M
-	 Es8xotWkhev+Xlj/ijyRGvL4FE6Din/LqgoJyBqU=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49AFZClQ107533;
-	Thu, 10 Oct 2024 10:35:12 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
- Oct 2024 10:35:11 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 10 Oct 2024 10:35:11 -0500
-Received: from [10.249.130.82] ([10.249.130.82])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49AFZ6T4064121;
-	Thu, 10 Oct 2024 10:35:07 -0500
-Message-ID: <c9b46bc4-aa4f-47fa-8c88-4fd80b91386f@ti.com>
-Date: Thu, 10 Oct 2024 21:05:05 +0530
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DCF9664C6;
+	Thu, 10 Oct 2024 15:43:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.30
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728575004; cv=fail; b=Q9J+Njh9k0w/uCEFvLBeg555WrHU4WCPxulmVtoKGpkElJQX43gJMlbjD1vOJVd70naFB5VEXp/5u4v/H4pbd11DhEOrt2+SqtemtBBNuVSVNs6NKCSV9CZRH8fJdtcD8g/nRSfjcK/+Z0ngzjFg+zgoxYPOyrKraHTWDnj6Z80=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728575004; c=relaxed/simple;
+	bh=FFW9vTTfu+1LclL+1qqt/RPtoMWa7YWs4PSsGztXa/s=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=MOZY0TW+93cG2lQ6xSKG9NYRFAXBu8mEtWD4ADZAgSbYY62SuU0kVP/45YS61XsRU4xZasl/DNlS4OgPRT/YCEFwp0r17ysEIaA9bbqIPt9jqo+fRFsyiov5CBu3LXfssfyDdziZk2mEi/M6M7HVtJzY+nPuyjx9TEmJrDtpBdE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=IxI7xerN; arc=fail smtp.client-ip=52.101.66.30
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Z7+y+iEJYZKzdmzJ6A2IZ7rwb27sXbmxYth8HfbMrutpj1jmwI4jwfGGo5Ty+pw63BqRP23w9aQn7Zj5VaOEwwZyLAXzzKWiAggdSAS25cq0YM/TaLHoOkxDjiGeVWzG4dWzdHySXFQ2HSuPUEynEe48w1WJGVzJiveykqku3sPLy+hBE7HyBgG0SNRWzm6+cwtMhxCBwXAzlDcTVteEfRPmPNEy1WSdkqFg5oVUvCeEKt9qzoWwidmL/w4BzzkMNKTNaAEkMmvj5TPLchlBoQUefaRUnAlTf+9DLiS1Xk4Hby8OV3JYFZ1tVscWNmxevM8r8QFlbAzsde0RfoDg0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=jOvTxzuTGn680qRYZEX29BxqJgSy50gXYhp8nBEANtQ=;
+ b=F8LxNksYVOXJmTSIKZibXGF5QgnOEsV9Vibs7m+VCNR9S5Ya0Pzuk1C15FK8YgQDS7DruwMugPSlDkq6xmVg8vB9RMNLpPNl3ghJkUm06ohbR1wJX9OSuFEpttBHcJGccaUHOOX96UYiEjgZpZRMgPLHMO8ya5tieU5T0Tn8ePjnh4LpAOnedt5Hh9uP4qEhPA81N4Q5VGlFpAoLv7xE4M4yE4TBBwSawoCQ5s8lI9quxEY/tZmBpjspb9tNfxtB5bS4JNg2AR5gkhX5Bj5ZN1aE/0OMWQM5uHBz5hXwJgG9bZZk0u14zjL/62gl02B4154svvLvI9Rla26q5QRphg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=jOvTxzuTGn680qRYZEX29BxqJgSy50gXYhp8nBEANtQ=;
+ b=IxI7xerNKHa9hZS130oDgKMt01Kvm8TnkvJuflemmiKYra8e0wbU4Z6tFJm019LzN0qt6U4Il/1lFYaqYuB2qqQAOQV7xDFbPotlmgMCLFspEyqvd17hwI7qWDUHkPTY6hHvJdZFgoHSyHVlTj7cb1KpqTA4tlEaStWTsEFbg/S3dCDavmpPQm9qAhW4Huf3opEAJqmwQ0KiyO4lJvrf4+JIPXHK1GFn5jtLJXdSrUaVqmd8jq+MrXOU6vTJ1ZQt3kU7oAhuuaBW5gU8hJ3gwpbHzG0YClMY9BBn22Z/ftj9FgVwypxK653ENz+ORCPpLw8HIa729UFZoMs9+jCqlA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8984.eurprd04.prod.outlook.com (2603:10a6:10:2e3::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18; Thu, 10 Oct
+ 2024 15:43:19 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8048.013; Thu, 10 Oct 2024
+ 15:43:18 +0000
+From: Frank Li <Frank.Li@nxp.com>
+Subject: [PATCH v2 0/5] dt-bindings: mfd: convert zii,rave-sp.txt and child
+ txt to yaml format
+Date: Thu, 10 Oct 2024 11:42:37 -0400
+Message-Id: <20241010-zii_yaml-v2-0-0ab730607422@nxp.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAO31B2cC/22MQQ6CMBAAv0L2bM12RVo5+Q9DTIEqmwglrWlA0
+ r9bOXucyWQ2CNazDVAXG3gbObCbMtChgG4w09MK7jMDIZUSUYsP830140uottSY9UWrE+R89vb
+ By766NZkHDm/n1/0c5c/+mUQpUPRYtUZZqojO12mZj50boUkpfQF/AlKRngAAAA==
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Daniel Thompson <daniel.thompson@linaro.org>, 
+ Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>, 
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>, 
+ Guenter Roeck <linux@roeck-us.net>
+Cc: linux-input@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+ linux-leds@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ Frank Li <Frank.Li@nxp.com>
+X-Mailer: b4 0.13-dev-e586c
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728574994; l=3634;
+ i=Frank.Li@nxp.com; s=20240130; h=from:subject:message-id;
+ bh=FFW9vTTfu+1LclL+1qqt/RPtoMWa7YWs4PSsGztXa/s=;
+ b=8Nvc42lR5QBNJ7txTr4fwA9aJRDpDJW2m1gbpeWChi2U+uVeQ96hFOBzEtMqDvQBCzeyaICv0
+ LaRaxSVOf0SBFgg7MtlG8Rf0+ozJNXH5UXUuvZ9q8bY8vl2SyaIubLp
+X-Developer-Key: i=Frank.Li@nxp.com; a=ed25519;
+ pk=I0L1sDUfPxpAkRvPKy7MdauTuSENRq+DnA+G4qcS94Q=
+X-ClientProxiedBy: SJ2PR07CA0022.namprd07.prod.outlook.com
+ (2603:10b6:a03:505::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] arm64: dts: ti: k3-j784s4: Mark tps659413
- regulators as bootph-all
-To: Andrew Halaney <ahalaney@redhat.com>, Nishanth Menon <nm@ti.com>,
-        Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Keerthy <j-keerthy@ti.com>, Neha Malcom Francis <n-francis@ti.com>,
-        Eric
- Chanudet <echanude@redhat.com>,
-        Enric Balletbo <eballetb@redhat.com>, Udit
- Kumar <u-kumar1@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
-Content-Language: en-US
-From: Beleswar Prasad Padhi <b-padhi@ti.com>
-In-Reply-To: <20240916-j784s4-tps6594-bootph-v3-0-ab70da0de7bd@redhat.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8984:EE_
+X-MS-Office365-Filtering-Correlation-Id: a5630e25-b258-4bc8-fc27-08dce9424360
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|7416014|376014|52116014|1800799024|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?OStRbEwyNks3bTMrRHhlTE5NK0dTVllDZlAzNUQwSjFaMCthMENtY1NteDND?=
+ =?utf-8?B?RmVEWFBNUjU0Y3ptYUFreTdYTCtJRVVjU3h3V1FYOFdBZ1k5aUp2VW5HcjN0?=
+ =?utf-8?B?MElmYnF5N1Rrb21YMEhvVndkZ2dKVUdXalo5Z0VZeWNWcGVLWXc3cVV4YkY0?=
+ =?utf-8?B?ZElPekV6MXRuaHl2Qko0MnhHRFloRFJnQm1BOUlSTjhROWNhWXI3a2JKeFVN?=
+ =?utf-8?B?WGRIY21JQWNGUVBaT2NDeWk1bmFyVU5Dak0xWDQxV0ZWQ0pZUFFZenNXck9C?=
+ =?utf-8?B?RUE1QktEVHoreS9yaXg5a1pkV0hDVXpSUnl6U0ZVSXlWNTJ6UFNZQ3BROHhi?=
+ =?utf-8?B?Z1h2amJTNkI4TU5KbEZqYVBuU1dSQmFjMG1wY3JmS09wTmJ4THNlSk8xRmI2?=
+ =?utf-8?B?dllWUHliL0xZZjBkV1J1SUxyQ3dpazRDUEpZQ0thVlQrcVJ2dFdlQnlWcUFT?=
+ =?utf-8?B?SUJNUWZ4UEFuT01EdURlS2dQL2hqMDFEUjFkOFFQbUxUdUxFMmVaSThveDY2?=
+ =?utf-8?B?TWg4azZrdndXZnZHNnJTSHNnTmlkNHE2dEM3dGs1b0hDWThaTG5hS05ud1Jo?=
+ =?utf-8?B?UlBJcUk2TkVST09HMnNFY05sR21BOUlES0doK3FWTFo4bGVXeWRZVGw0U3BD?=
+ =?utf-8?B?MVpreWJWbWRVMzlRWDkwajRsTk9MOG8vWU9VQm1IKzRwcWRpVkc5Mk5ndzh1?=
+ =?utf-8?B?cXFCbUt2Y0YrRlZYU3VTTjg1NkRGdTJjYzV1K1B4MTFuRkpDdVRNQ1ZKdm1J?=
+ =?utf-8?B?M2h4dVF3MzM4N21vcUgxYVZIcllWTWs4TTJkS0xlWDliTjRCdDRzaFJSeG1v?=
+ =?utf-8?B?N3hTQjhGWHBXZXlpTmwwOENLRXhLRVFIRG1mSUgwbGR1Sm9Qd21jTzU0dmNl?=
+ =?utf-8?B?YUNYaDBIazFWZCthdTdkMHMzaVF6dTR2by9xNE9vakswcnVlVG9la2FOWHJQ?=
+ =?utf-8?B?WDY5L0RnY0tBNitPdE14WEQrSmMzSVB4RjhMSS9pU1dFaHEzU2orQm1hMFpX?=
+ =?utf-8?B?RDdROFZIWi9wa3ZxL2VDL01YeTJkbytRYTBPaUR5dm1yWldaK2N0SlJDd0xy?=
+ =?utf-8?B?RFdYZ2UvWUpvS3oraXdYaVpHRFY0dVNkMk14L1YxZU5WN3F5TXJTOUphVnd2?=
+ =?utf-8?B?bEZER3VnQ0lwWkhsYms2MVlZb2NZeUNiTnhQR1dhM3RBdXBMaUkrcWxUSTRq?=
+ =?utf-8?B?V3dqbkYvQmhtcUtKT2tvRmJlUlluMzlZZmdnMlQ0dGQxTmpucm1TNnN6OUU5?=
+ =?utf-8?B?VkowbzM2cllhT1FmLzhsNnpiUjYxM2ZEb0pxZDZ0d2pxZENBaVloT2lEbnI1?=
+ =?utf-8?B?TmlIQzN4cXViM1MvNDdVb1dZR25qR0hsMTloNFNtblZXWFcrTFFheW1uZXI3?=
+ =?utf-8?B?Y2I3VWtlQmNMTU5VMWY2N0l1U0lPRjFnMmZ3cjgxRFozQTJGV3dCN0lqdU9F?=
+ =?utf-8?B?TCsvcVg2ZWQ1YVhrUXNRTmVvSWFDQ3ZqWTZWYjIxOEZEQy82WHhvbGtCMm5W?=
+ =?utf-8?B?ODVQeXVEQVdQRDMvTjZyNVNjaUd3dzRzYzExd2RDTjZiUFRJWm9XaysreVNw?=
+ =?utf-8?B?Qnl5LzR1aFNBYzF3ZGJIRE9SZm1yMDVPb2R4ZzdhY1QrRW9IalFFb0h0WnVu?=
+ =?utf-8?B?djhWWTZIRFdVYlFZZTluV2JuU1RmUThlZjdYU042Z3hOZnJOU2VXdUhvQ09J?=
+ =?utf-8?B?bGtPa2t2UnZKU0FLdDdKYnlodmRYcy8vTzR5SGRoT05EYncrdHdSWTNyeHVJ?=
+ =?utf-8?B?NjJuOVJVWVB4T3V2NmhRQldUUTBKWWZpY1Bzd1lxOUs5ejVHcXJyMEJxRHRY?=
+ =?utf-8?Q?8g/X6LmqpzxA2G+YDE4ucZPztQl3TlausPTlg=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(376014)(52116014)(1800799024)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?ZVhrRXdsNnpFV1hLc3Vsa09BM2JmTjF1a2FSaS8vbzVkcG9HL2NuL0tBVFE4?=
+ =?utf-8?B?cmw0RS9NTlUzNDNGdStWZnVzZlVXWlNxZVUySjl1WitjMFZlQ1ZnUWdOS0RB?=
+ =?utf-8?B?YWpQS2FQNzE2ajJIQ3Jxc05YNzBQdmN1dnpzMy9ENEo5Rld2UC92eHc4L3BP?=
+ =?utf-8?B?WHJrb081bldwZEdvZGZ2NjloTk00QWpLMnhwUU9FKytXVHhYU0FsSmNiRkx3?=
+ =?utf-8?B?eDRqVWM5bG8rdjN5UTBHTXZYOE81YzZJcldta2YrV2o0QlFEbitNZmZXZ1ll?=
+ =?utf-8?B?SmwwVk9rbE1XaE5wNitIRm1Dd1dNanBraHNwdnpFVG9STUFBZGx4dUFwdXB3?=
+ =?utf-8?B?Tk9OT3ozWTlVVFEzUm1aNHZVdUJOMTlkZ3Z2SVo5dlVOaE9HeFRWNiswcVph?=
+ =?utf-8?B?YUI5S3EzQjRiSFZ2R0hBeVFJMi9MWGExRzVyT2N5Zmd0Q2luN3hHK3NtSGFk?=
+ =?utf-8?B?UEhXdVd6dmlicDh6MzljeUhxQVFtSDhIeTQ1bVlDSkFPMEpTb0cxS2tXSWpT?=
+ =?utf-8?B?RE1scFc1TEFJYWtWNTMxaWdad1A0SnpNb3duWkFDUTl1K1didExkcnFqS2po?=
+ =?utf-8?B?cVcrZmJFbUZ4UEEySk5mSnZYOUZSZTY0clNQSzVIdEE5U205QkdHZFVrVWdw?=
+ =?utf-8?B?MG01OHBaTUhjZlFVdHZNYmdxMUF1bUd6TWJtMGdJZ0tyQ21TWFRNb3h0Zldt?=
+ =?utf-8?B?WFZTaytucDhGWSswcnZVRlJtbXMvRTFMRUMwejB5Z1JJMmt2d0xUNkdjVkZr?=
+ =?utf-8?B?bWRQKzlwYnU3OHlraUM0bGNuVXFzWHd5QjVqNVpuZlkvRnNTVCtXaXlaak1y?=
+ =?utf-8?B?dzI0RmdUUkRaN2w4MDhIbjMzL1NiSXdjTDNCYzBHeXFNZnorRnYyb1ZiMG14?=
+ =?utf-8?B?a2hvczZTNUgwWHJGSkFKSWR3QnVMTGRrVzVHMjdXdUh3c3FQSW5KaFJURGJn?=
+ =?utf-8?B?UDgvdW9oeGYrMGtGMmRJNEp3eE1mVExRdmo5ZHF1aHBaOW9UZ1RRSXhPQ3NH?=
+ =?utf-8?B?SEU1cGNOajhxUFN1Y1Z1Z200ekR1Ym85K1RJZ0hrYTJYblhMOU43VHcvRUsr?=
+ =?utf-8?B?ZThSNkwyQi93SWlhYjBEKzVUMGtGU1BQelFaWXdycWIrQzhYbHVDNGZOY2hX?=
+ =?utf-8?B?TzU0b3JxTDd1M2RTQmdjODd4c041R1QwcVBEaTJ6SXNpRWJzeW1nSnFPU1ND?=
+ =?utf-8?B?MU10ei9GUklEN3I5UWtZT25xNFBjTURQU3lUVDQxcUJHOWhEeC9TZ090WVdC?=
+ =?utf-8?B?bWYwbVVjd0FtdlhhaWs2M2pCZmI1MHk5TzYxUTlmTW1UNkcxYUdmS2U5OTVu?=
+ =?utf-8?B?eVliRnNGUkZSTXMzdTJEUmdRVjlzU3VVUng1eG8rdktHWVFTWVQyZUZrMDhX?=
+ =?utf-8?B?d0ZqUmJ4SUhMTFNSa2hPZ040QjI0ajUxeGFOQmFYTW9kY0xicVBpRWhKM1VH?=
+ =?utf-8?B?ZVFFdnUzM0lqVW5oZy9ZRmQyN0t4RlV2K2VTa0VHR3BuczVENGhHdFBKcEt0?=
+ =?utf-8?B?MEYyUFQrNlJ0Wnd6S0p4bFFNTnU2RWg2N3FZc0MxNzR1YVRDVkNWM2FpNVZn?=
+ =?utf-8?B?VG9wUldES0xUbXBkZHNPb0FRaXFLdXZxVHE4SDdBNEVRK1NiREpRM01ZMWlL?=
+ =?utf-8?B?SjAzWXg3MXdPcndlM2MyNHRJSHlmeGlydW5JL0pXZGFGbDRvNS81akZJamZi?=
+ =?utf-8?B?cnlBYnRaTGt2c1htVjBZb0w5UHpocHdPMklpVzlSb3pVWHhER0NqWktZREpT?=
+ =?utf-8?B?YlZvUWxldS9TN0ltUjhnSGRHS20vMHNBQUhmVktkKzFDNG15Ym5ZbzBkVnRt?=
+ =?utf-8?B?ZnNrQytJYVRuaTBGYkF0aEtwcFFiQW00Ynp2NkJqMmptSDhEcng4WVlLL2dH?=
+ =?utf-8?B?cmdqYmE5c2ZySlBya2NPays1cUM1UHhTUUgzM3lPRWhZOFE5bE9jMVh3UW9t?=
+ =?utf-8?B?dk5jek1RRnFhczYvSzNJUlhoRjZqVVkyd3ozZHFhaU5mS0htcUZ1R25Cc25z?=
+ =?utf-8?B?YVlmcDdVc3ZNMjAySFRxSmhKNW1nSkVlWTZnQ2ZoRGNvTm1mcHd3QXJISUJ4?=
+ =?utf-8?B?aWxVYmtRS2dWbUJoYks1N21nYnA3TXoweURSSkQ2bnpvb3NlbG4yRUdSSTNz?=
+ =?utf-8?Q?J8gc=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a5630e25-b258-4bc8-fc27-08dce9424360
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2024 15:43:18.8433
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: CnEq11VNAPKtbXXqPBKu3oIQd9M0hB1t5IHExss74nqFhyFpruOfGmOabt66ED9VpzMPAGInp3j+kWb6lpzcLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8984
 
+Fixed below warnings:
 
-On 16-09-2024 22:44, Andrew Halaney wrote:
-> This series marks tps659413's regulators as bootph-all in order for
-> the nodes (and parent nodes) to be accessible during MCU's u-boot SPL.
->
-> This in turn is desired since the tps659413 needs its MCU ESM
-> state machine setup in order for the watchdog to reset the board.
->
-> This took me a little while to track down, as enabling the ESM, TPS6594,
-> etc in u-boot would result in the below boot failure:
->
->      U-Boot SPL 2024.10-rc4-00007-g44b12cbcd1b3-dirty (Sep 06 2024 - 14:25:52 -0500)
->      SYSFW ABI: 3.1 (firmware rev 0x0009 '9.2.4--v09.02.04 (Kool Koala)')
->      Initialized 4 DRAM controllers
->      SPL initial stack usage: 13408 bytes
->      ### ERROR ### Please RESET the board ###
->
-> Which turns out to actually have failed far earlier in spl_early_init(),
-> due to these nodes not being accessible in u-boot. That's hard to tell
-> though since console isn't setup until later (and for that reason I
-> think spl_early_init()'s return value in j784s4_init.c isn't
-> evaluated since a panic() at that point would leave a user with *no*
-> information at all).
->
-> I've tested this in conjunction with a u-boot series which I'll link in
-> a follow-up response on the k3-j784s4-evm. I'd appreciate someone testing
-> on the k3-am69-sk at a minimum, as it should suffer the same fate if things
-> aren't setup appropriately.
->
-> Signed-off-by: Andrew Halaney <ahalaney@redhat.com>
-> ---
-> Changes in v3:
-> - Added Udit's Tested-by tags
-> - Reordered bootph-all to align with dts-coding-style (Beleswar)
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu: failed to match any schema with compatible: ['zii,rave-sp-rdu2']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/watchdog: failed to match any schema with compatible: ['zii,rave-sp-watchdog']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/backlight: failed to match any schema with compatible: ['zii,rave-sp-backlight']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/pwrbutton: failed to match any schema with compatible: ['zii,rave-sp-pwrbutton']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a3: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-rmb3.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a4: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu: failed to match any schema with compatible: ['zii,rave-sp-rdu2']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/watchdog: failed to match any schema with compatible: ['zii,rave-sp-watchdog']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/backlight: failed to match any schema with compatible: ['zii,rave-sp-backlight']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/pwrbutton: failed to match any schema with compatible: ['zii,rave-sp-pwrbutton']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a3: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
+arch/arm64/boot/dts/freescale/imx8mq-zii-ultra-zest.dtb: /soc@0/bus@30800000/serial@30890000/mcu/eeprom@a4: failed to match any schema with compatible: ['zii,rave-sp-eeprom']
 
+Signed-off-by: Frank Li <Frank.Li@nxp.com>
+---
+Changes in v2:
+- change all maintainer to frank li.
+- Link to v1: https://lore.kernel.org/r/20241008-zii_yaml-v1-0-d06ba7e26225@nxp.com
 
-Thanks for the change, LGTM. For the series,
+---
+Frank Li (5):
+      dt-bindings: input: convert zii,rave-sp-pwrbutton.txt to yaml
+      dt-bindings: backlight: convert zii,rave-sp-backlight.txt to yaml
+      dt-bindings: nvmem: convert zii,rave-sp-eeprom.txt to yaml format
+      dt-bindings: watchdog: convert zii,rave-sp-wdt.txt to yaml format
+      dt-bindings: mfd: convert zii,rave-sp.txt to yaml format
 
-Reviewed-by: Beleswar Padhi <b-padhi@ti.com>
+ .../bindings/input/zii,rave-sp-pwrbutton.txt       | 22 --------
+ .../bindings/input/zii,rave-sp-pwrbutton.yaml      | 36 +++++++++++++
+ .../leds/backlight/zii,rave-sp-backlight.txt       | 23 --------
+ .../leds/backlight/zii,rave-sp-backlight.yaml      | 36 +++++++++++++
+ .../devicetree/bindings/mfd/zii,rave-sp.txt        | 39 --------------
+ .../devicetree/bindings/mfd/zii,rave-sp.yaml       | 63 ++++++++++++++++++++++
+ .../bindings/nvmem/zii,rave-sp-eeprom.txt          | 40 --------------
+ .../bindings/nvmem/zii,rave-sp-eeprom.yaml         | 54 +++++++++++++++++++
+ .../bindings/watchdog/zii,rave-sp-wdt.txt          | 39 --------------
+ .../bindings/watchdog/zii,rave-sp-wdt.yaml         | 47 ++++++++++++++++
+ 10 files changed, 236 insertions(+), 163 deletions(-)
+---
+base-commit: 2c1dd8a45abe738d15a9ebe015a17eeac9a3b13f
+change-id: 20241008-zii_yaml-7b4802029873
 
-Thanks,
-Beleswar
+Best regards,
+---
+Frank Li <Frank.Li@nxp.com>
 
-> - Link to v2: https://lore.kernel.org/r/20240911-j784s4-tps6594-bootph-v2-0-a83526264ab1@redhat.com
->
-> Changes in v2:
-> - Only mark the regulator nodes as bootph-all since parents are implied
-> - Link to v1: https://lore.kernel.org/r/20240906-j784s4-tps6594-bootph-v1-0-c5b58d43bf04@redhat.com
->
-> ---
-> Andrew Halaney (2):
->        arm64: dts: ti: k3-j784s4-evm: Mark tps659413 regulators as bootph-all
->        arm64: dts: ti: k3-am69-sk:  Mark tps659413 regulators as bootph-all
->
->   arch/arm64/boot/dts/ti/k3-am69-sk.dts    | 8 ++++++++
->   arch/arm64/boot/dts/ti/k3-j784s4-evm.dts | 8 ++++++++
->   2 files changed, 16 insertions(+)
-> ---
-> base-commit: 7083504315d64199a329de322fce989e1e10f4f7
-> change-id: 20240906-j784s4-tps6594-bootph-19d3f00fb98a
->
-> Best regards,
 
