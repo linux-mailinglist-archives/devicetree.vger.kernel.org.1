@@ -1,172 +1,172 @@
-Return-Path: <devicetree+bounces-109996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F7DC998BC8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51079998BD4
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F4A11C243F2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:34:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80B4D1C23518
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966EE1CC8BF;
-	Thu, 10 Oct 2024 15:33:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B81001CDA25;
+	Thu, 10 Oct 2024 15:35:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="IE0oEvRc"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="G6GOVFPU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7131CC140;
-	Thu, 10 Oct 2024 15:33:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4472A1CCB45;
+	Thu, 10 Oct 2024 15:35:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728574435; cv=none; b=uq5y6jgeEmt6xDTxLpNJ4YERL3Bt3daRyp18WwQkP5ZZz+ySIwaYAeH4Ai39xGW4UuIVPlt0Qyx70MKxAauE3HNUsHgPVpdrrckZ3hPHr9Df5BLQIQnYN7Q4z3En0xmqbVWMzm1k49fWmifCRLeWOYDSQAJo31LWUWAs/84nwdM=
+	t=1728574510; cv=none; b=my3C0is79O4OrTFxfjQfLK7odcFJ7bI766xRfls/ZI2clZStse7r0UgV1fqv41vDIeGtkORGVLfzAiSlLCZXlwMjcl7ujfKrtQBtaIqcpaW95eGjcEngjaaveE5uy1QfJE1gW2YnGsOtr7r8UOyXqQdWvDGN5y4MJIkkdwtC92M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728574435; c=relaxed/simple;
-	bh=dlxa8WkgVla/y46rnMys2EnNObaeLNp/NdzuivF7Pd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UjVH4jiHL+KfdxGGTJ/b/uoLlQtneO1KwET7QUzOjEn+tcS3Y1Hx7O1KO5OMmIC3bcKOF1irH0bIdBaZz783zlLP3IiMeWzB9W9r4eqcvWiABla0mEo+ZcjcK3Maat9Rk9xZNL7w4kcraJ1keqQQQhkAeg/ULQJbWJq4tzpnRF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=IE0oEvRc; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 32F3B40E021E;
-	Thu, 10 Oct 2024 15:33:50 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id g5_EAXIcqA5L; Thu, 10 Oct 2024 15:33:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1728574425; bh=39uKMYCT3KgVkd7t9Lsq2trDmnvk6X8UkIGf6ni2s3I=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IE0oEvRcw/fymvusQ6smbGe9aC7VD/KGoZOlSrkR801eqGnvTbvr2DsGU6LwNvF9N
-	 icMEnhv9+gOqKejIQf3Qy62RZreAFqfygkHuXJDHCHMzlaiP5LYhJohYKRS8Mg29Qo
-	 bzpxiLs+3/u2WA4fiAuvaHZk2lt399iMQEdOwRlXgBG5Vm/8unHGfllvXV8SnN6r5N
-	 Pj/85Gy0c5MllbXDLZkLb6OKdebErRjtFoahP5d/riBEWVoSRLgobRWNnv7SrPWXG3
-	 po3Zqn4v/EI5XO++JdFqpYAbV5XASZ62iPyQu2vL88YFwl5tH7iACKkffsiNergudP
-	 79FOsNy8Qo5Knzu0Q2oa2CIexOBcogmParbbbBp5twTotq/U1eTghtYkTsvB0/67fn
-	 dt5sZcfqHAciIIPNFDnRwXZ7SuuLXr3qwApishqOt47xpjnZO8QeIjY80/BTRIzfeH
-	 rzW2sp+jBas495rT2eyjnZRip3Jpt9TUEpzuKsfqYGf2sj5K0cGkc5cXXT5BnQ4wQL
-	 29jHnxntodS0b4poIVB5FvOrQCVcLJ1FkY9DQUZqDmYbW5fY774TAm3mCvgLJtsJLy
-	 WxpzoqDGdwmJFla0DsRpAYwxnzT2R0/vH6su9Q3p5NUtUI2rWvFUZGTmxX4/R242eE
-	 Kaib41+hzx+f0kHe/k2gdCts=
-Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 18BD740E0163;
-	Thu, 10 Oct 2024 15:33:26 +0000 (UTC)
-Date: Thu, 10 Oct 2024 17:33:20 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32()
- and ddr_out32()
-Message-ID: <20241010153320.GPZwfzwGeFF1cz4arw@fat_crate.local>
-References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
- <20240709-imx95_edac-v1-1-3e9c146c1b01@nxp.com>
+	s=arc-20240116; t=1728574510; c=relaxed/simple;
+	bh=M6ArSolFyRhvgkpKBLV7GgtTxF0gj+vbVhIhSxcQfz4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oU+VdF/qpLPtrTw33TqPW24/y8QS0fPt7BzBaj1FVi0I5gSinWcXSo9Nq+de5TeneD8AgccNqOL6+YZomDxSi7BYVhC1lTLC8eU54/w1nP37UQYiwKGQ/OsSYh4YtUhCk6ACOGySvi2/6WGR9hacXNutX08EFHBzrfMhQxLYyPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=G6GOVFPU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49ACUXAm011324;
+	Thu, 10 Oct 2024 15:35:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	xhv5/1S/V1CCa4a0mCm7Uj1o1bdgK4qmxRkHgQo8kPM=; b=G6GOVFPUj4kQEOl2
+	vFVBryxGsrCCUHTrghdSdPAkb4C2RceiiOOua7u6TSsCGKuBV7FI4dHIuIwrojD4
+	Nk1j5n1gvRmHUh3s1lOe1Uwjzdo/Svx2jUBxLaErUfMoO+rTrDwuRgVEHOLRN8Pp
+	pVenwF7LN7rLrTgA/T5k9oUogzIF6eWLCShrHp1c6nnyazwb666P0DoHBgkAHGJ5
+	clJmzMy3wUe0TRMi9IfMdFnYmLiIRhFqBn8uZ4UYqVZovVIloI+CyitV4umhoPbm
+	vOjbxcsyLo0NdL1pufAPQODg68mDmMQN11/GArhEXh57MeFvd5ivz/i2+yQi/ays
+	plWe0Q==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 425xthu0ng-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 15:35:03 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49AFZ3oR004477
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 15:35:03 GMT
+Received: from [10.216.26.125] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
+ 2024 08:34:59 -0700
+Message-ID: <b03d111c-7e58-4320-b909-becb35f53767@quicinc.com>
+Date: Thu, 10 Oct 2024 21:04:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240709-imx95_edac-v1-1-3e9c146c1b01@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
+ <20241009195636.2649952-2-quic_kriskura@quicinc.com>
+ <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
+ <fe3ebd31-946c-499f-ac96-2cf71c6752e6@quicinc.com>
+ <CAA8EJpojz9-xhoxdp78b5=6R8gpjjHQgjb_P0LGfHs4PsdS3vA@mail.gmail.com>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <CAA8EJpojz9-xhoxdp78b5=6R8gpjjHQgjb_P0LGfHs4PsdS3vA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 75O4s2h5osZLlMSJgUpzP-Rv_2rt-VyH
+X-Proofpoint-GUID: 75O4s2h5osZLlMSJgUpzP-Rv_2rt-VyH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 suspectscore=0 spamscore=0 priorityscore=1501 bulkscore=0
+ phishscore=0 clxscore=1015 mlxlogscore=959 impostorscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410100103
 
-On Tue, Jul 09, 2024 at 04:23:02PM -0400, Frank Li wrote:
-Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32() and ddr_out32()
 
-The subject prefixes in the EDAC subsystem have the following format:
 
-"EDAC/driver: <Sentence starting with a capital letter"
+On 10/10/2024 8:42 PM, Dmitry Baryshkov wrote:
+> On Thu, 10 Oct 2024 at 17:57, Krishna Kurapati
+> <quic_kriskura@quicinc.com> wrote:
+>>
 
-> Pass down fsl_mc_data in help function ddr_in32() and ddr_out32() to
-> prepare add iMX9 support. iMX9 have a little difference register layout.
+[...]
 
-Since everyone is using AI nowadays, you could have it verify your commit
-messages. I did this:
+>>>> +                    resets = <&gcc GCC_USB20_PRIM_BCR>;
+>>>> +
+>>>> +                    interconnects = <&aggre1_noc MASTER_USB2 0 &mc_virt SLAVE_EBI1 0>,
+>>>> +                                    <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB2 0>;
+>>>> +                    interconnect-names = "usb-ddr", "apps-usb";
+>>>
+>>> As this is a USB2-only host, shouldn't it also have qcom,select-utmi-as-pipe-clk ?
+>>>
+>>
+>> Hi Dmitry,
+>>
+>> Thanks for the catch. You are right, it needs to be added according to
+>> bindings. Since I would be sending another patch after this series to
+>> enable the second controller, would it be fine if I add it in that patch
+>> or do you suggest updating this one.
+> 
+> I think it's better to fix it from the beginning.
+>
 
-| ChatGPT, Please verify and correct the grammar in this english text: "Pass
-| down fsl_mc_data in help function ddr_in32() and ddr_out32() to prepare add
-| iMX9 support. iMX9 have a little difference register layout."
+Ok, Will send a v2 adding this quirk.
+Can you also help review the DTS change. So that I can carry forward and 
+RB Tags I get to v2.
 
-It replied with:
+Regards,
+Krishna,
 
-| "Pass down fsl_mc_data in the helper functions ddr_in32() and ddr_out32() to
-| prepare for adding iMX9 support. The iMX9 has a slightly different register
-| layout."
-| 
-| Changes made:
-| 1. "help function" changed to "helper functions" for clarity.
-| 
-| 2. "prepare add iMX9 support" changed to "prepare for adding iMX9 support" for
-|    grammatical correctness.
-| 
-| 3. "iMX9 have a little difference register layout" changed to "The iMX9 has
-|    a slightly different register layout" for subject-verb agreement and
-|    smoother phrasing.
-
-And this all looks good to me.
-
-With all the cringe we all get from AI, I think it is very useful for
-verifying commit messages.
-
-Do that for all your commit messages pls.
-
-Thx.
-
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  drivers/edac/fsl_ddr_edac.c | 62 ++++++++++++++++++++++++---------------------
->  1 file changed, 33 insertions(+), 29 deletions(-)
-
-How did you test these patches of yours?
-
-They don't even build!
-
-drivers/edac/fsl_ddr_edac.c: In function 'fsl_mc_err_probe':
-drivers/edac/fsl_ddr_edac.c:538:21: error: too few arguments to function 'ddr_in32'
-  538 |         sdram_ctl = ddr_in32(pdata->mc_vbase + FSL_MC_DDR_SDRAM_CFG);
-      |                     ^~~~~~~~
-drivers/edac/fsl_ddr_edac.c:38:19: note: declared here
-   38 | static inline u32 ddr_in32(struct fsl_mc_pdata *pdata, unsigned int off)
-      |                   ^~~~~~~~
-make[4]: *** [scripts/Makefile.build:229: drivers/edac/fsl_ddr_edac.o] Error 1
-make[3]: *** [scripts/Makefile.build:478: drivers/edac] Error 2
-make[3]: *** Waiting for unfinished jobs....
-make[2]: *** [scripts/Makefile.build:478: drivers] Error 2
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/mnt/kernel/kernel/2nd/linux/Makefile:1936: .] Error 2
-make: *** [Makefile:224: __sub-make] Error 2
-
-Before you submit next time, build-test *every* *single* patch of yours and
-test the driver with all of them.
-
-This should not ever happen in submission.
-
-Stopping review here.
-
--- 
-Regards/Gruss,
-    Boris.
-
-https://people.kernel.org/tglx/notes-about-netiquette
+>>
+>> Also I see some others are not using it as well, like sc7280 which also
+>> might need to be updated.
+> 
+> Interesting enough I don't see this option being enabled on SC7280 platforms.
+> 
+>>
+>> Regards,
+>> Krishna,
+>>
+>>>> +
+>>>> +                    status = "disabled";
+>>>> +
+>>>> +                    usb_2_dwc3: usb@a400000 {
+>>>> +                            compatible = "snps,dwc3";
+>>>> +                            reg = <0x0 0x0a400000 0x0 0xe000>;
+>>>> +                            interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+>>>> +                            iommus = <&apps_smmu 0x20 0x0>;
+>>>> +                            phys = <&usb_2_hsphy>;
+>>>> +                            phy-names = "usb2-phy";
+>>>> +                            snps,dis_u2_susphy_quirk;
+>>>> +                            snps,dis_enblslpm_quirk;
+>>>> +                    };
+>>>> +            };
+>>>>       };
+>>>>
+>>>>       arch_timer: timer {
+>>>> --
+>>>> 2.34.1
+>>>>
+>>>
+> 
+> 
+> 
 
