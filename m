@@ -1,101 +1,182 @@
-Return-Path: <devicetree+bounces-110034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1921998E98
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:44:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 681A3998EAF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:47:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54C73280F69
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:44:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D59721F24C23
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:47:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E270C19D899;
-	Thu, 10 Oct 2024 17:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DC519D064;
+	Thu, 10 Oct 2024 17:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmxR6ljD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SMDC4abn"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38B219CD1D;
-	Thu, 10 Oct 2024 17:43:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F28A019C55F;
+	Thu, 10 Oct 2024 17:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728582213; cv=none; b=goTqJfJFP3Jvub/6FGwGlFOvbLuAr0LFeUJdHFFTUqfn3VhxUt0sGAkvbqmIHSbJQqVF6pH5ETCEGnvWptvoObi/TMT8P2dgc4pRbfKErAKo94h0NyzlpAJasA3cQcOHVL/jId/420y6Wh40VBCq59rckosA9f6X2TDrBrslKN8=
+	t=1728582327; cv=none; b=IAI0+6iJBsodE1FIYBf9qlidGXbwpRFR0wXeZ/dxkZQfz/TZNEziRLFSMnTbqxtLgknVQ/Y40DPJvqhFSFB0lAraK32y3H68uX33NTBO6/Dp8IDCNaKgnXSfNdEWilv2BybiQP0BJ+UxzwqCNs3tifGWXwvBntHSDrbJtgJxAzI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728582213; c=relaxed/simple;
-	bh=RMXsM9+daLz0wDlNHh/0NCwE/l30K6rBnwaZjnhUduA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oT5mbTznaFhkPYHwqDxIcZcU3734uG2risjbqz+ShVWueAzmjNntt29YtXBYOiYQiHUd44imxKPf82ZQ2q+sWBvpS6+qMXPXuMTUwu8je8TbThfXl5+o6PbkTQzfdEarZunOoELn7KhHGrwQpHEOd/pvzIk1AjhPFoRDzSUNaVY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmxR6ljD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7225C4CEC5;
-	Thu, 10 Oct 2024 17:43:32 +0000 (UTC)
+	s=arc-20240116; t=1728582327; c=relaxed/simple;
+	bh=RsT2v/nQ06UoiZ1wTWD5mT5xjsc7b1twZLFJ8QkV0ig=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nN9Og3hQ3++zqFskElJ+H1fcHFbQCXq9vyx7kESKUMm1aRUUTZddtej4fzkfEoxs8nUz4l1hGjDyf1fAKHrs6tJhpmjEZ2D3oSlUYFyCdpj/sM9BPJ93wJ81a15ZaIQtKOPuLNv5rOqV1VPMp35mYMR6cJXeiewsE6ITOZeUBUA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SMDC4abn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0BA4C4CEC5;
+	Thu, 10 Oct 2024 17:45:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728582213;
-	bh=RMXsM9+daLz0wDlNHh/0NCwE/l30K6rBnwaZjnhUduA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MmxR6ljDZQNaWsEGh7lI3NoP4YGIF6dWWnYUA8Agmgo8+GqnzBrafKDgimmEhJ2ry
-	 6x3dON7Jwnhb2c5BZzwPshbhzha8PFSYiH25FRM1LCKZqIMDZNHajfecrd0AUTYekj
-	 Cx9fFrSWP5lRSRWJdCnWdXeWroZ3kc+Pr/j9tZIYOY/BcDH45JqyAm3zaKnhz/rPs1
-	 ig03hT4DRM+FFDVHJvXMo8rJ8LClpUbU8jbjVj8675Onmp6oMVwnh9qYLzY1SHpKP4
-	 j+4dQ5nfuH0AH2bxM+8k90zuf5D1acObMwGe8kRH2a29LZ7kM7vPx2uJXewtKgSF+c
-	 MiWyH8PYUXmeg==
-Date: Thu, 10 Oct 2024 12:43:31 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: patches@lists.linux.dev, devicetree@vger.kernel.org,
-	Saravana Kannan <saravanak@google.com>,
-	linux-kernel@vger.kernel.org, David Gow <davidgow@google.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	linux-arm-kernel@lists.infradead.org,
-	Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH] of: Skip kunit tests when arm64+ACPI doesn't populate
- root node
-Message-ID: <172858218311.2064946.5279211050619703517.robh@kernel.org>
-References: <20241009204133.1169931-1-sboyd@kernel.org>
+	s=k20201202; t=1728582326;
+	bh=RsT2v/nQ06UoiZ1wTWD5mT5xjsc7b1twZLFJ8QkV0ig=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=SMDC4abn9tfAlDw2NocP1u5Nx6AOZXY6cKPdtCXViRneR4f0qL2j/bp3mKn1hUs2l
+	 Z0H9Z82Oy3V+rMNPpIT8wxxPx5piTgdjhV2DcCbNMDxz+NySe+2r7oB6b9SsUr56bU
+	 dEIo1qMRFrLjPxUCMQrC5yd+CtLaQ+8X9hZk7Uu4ZkSPs5HDeRDmJt6U8JVW49cgUp
+	 zHQFz+wfNHF9u7vR4TrBgmfwapipQlvbgb6hQdivnLXjZGWxuIEHIimAlWLy9+9Cyl
+	 SV6b8fwQWtfYOg2UNUmu2paXW0gVIDQAFoWaFMDEm5JgOW/ksgJsyGPK2bezTpHm0y
+	 Qv7DVHC6wKvcA==
+Date: Thu, 10 Oct 2024 18:45:16 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Nechita, Ramona" <Ramona.Nechita@analog.com>
+Cc: Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
+ "Hennerich, Michael" <Michael.Hennerich@analog.com>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "Sa, Nuno" <Nuno.Sa@analog.com>, David Lechner
+ <dlechner@baylibre.com>, "Schmitt, Marcelo" <Marcelo.Schmitt@analog.com>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, Dumitru Ceclan
+ <mitrutzceclan@gmail.com>, Matteo Martelli <matteomartelli3@gmail.com>,
+ =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29uw6dhbHZlcw==?=
+ <joao.goncalves@toradex.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
+ "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v6 3/3] drivers: iio: adc: add support for ad777x family
+Message-ID: <20241010184516.66826055@jic23-huawei>
+In-Reply-To: <DM6PR03MB4315785FB25B980264748BCBF3782@DM6PR03MB4315.namprd03.prod.outlook.com>
+References: <20240926135418.8342-1-ramona.nechita@analog.com>
+	<20240926135418.8342-4-ramona.nechita@analog.com>
+	<ZvV2mHkl4qxVVmBH@smile.fi.intel.com>
+	<DM6PR03MB4315785FB25B980264748BCBF3782@DM6PR03MB4315.namprd03.prod.outlook.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009204133.1169931-1-sboyd@kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+
+On Thu, 10 Oct 2024 14:32:49 +0000
+"Nechita, Ramona" <Ramona.Nechita@analog.com> wrote:
+
+> Hello,
+> 
+> I have some questions inline before sending out a new patch.
+> 
+> 
+> ....
+> >> +struct ad7779_state {
+> >> +	struct spi_device *spi;
+> >> +	const struct ad7779_chip_info *chip_info;
+> >> +	struct clk *mclk;
+> >> +	struct iio_trigger *trig;
+> >> +	struct completion completion;
+> >> +	unsigned int sampling_freq;
+> >> +	enum ad7779_filter filter_enabled;
+> >> +	/*
+> >> +	 * DMA (thus cache coherency maintenance) requires the
+> >> +	 * transfer buffers to live in their own cache lines.
+> >> +	 */
+> >> +	struct {
+> >> +		u32 chans[8];
+> >> +		s64 timestamp;  
+> >
+> >	aligned_s64 timestamp;
+> >
+> >while it makes no difference in this case, this makes code aligned inside the IIO subsystem.  
+> 
+> I might be missing something but I can't find the aligned_s64 data type, should I define it myself
+> in the driver?
+
+Recent addition to the iio tree so it is in linux-next but not in mainline yet.
+https://git.kernel.org/pub/scm/linux/kernel/git/jic23/iio.git/commit/?h=togreg&id=e4ca0e59c39442546866f3dd514a3a5956577daf
+It just missed last cycle.
+
+> 
+> >  
+> >> +	} data __aligned(IIO_DMA_MINALIGN);  
+> >
+> >Note, this is different alignment to the above. And isn't the buffer below should have it instead?
+
+While I'm here:  No to this one.  The s64 alignment is about
+performance of CPU access + consistency across CPU architectures.
+This one (which happens to always be 8 or more) is about DMA safety.
 
 
-On Wed, 09 Oct 2024 13:41:31 -0700, Stephen Boyd wrote:
-> A root node is required to apply DT overlays. A root node is usually
-> present after commit 7b937cc243e5 ("of: Create of_root if no dtb
-> provided by firmware"), except for on arm64 systems booted with ACPI
-> tables. In that case, the root node is intentionally not populated
-> because it would "allow DT devices to be instantiated atop an ACPI base
-> system"[1].
-> 
-> Introduce an OF function that skips the kunit test if the root node
-> isn't populated. Limit the test to when both CONFIG_ARM64 and
-> CONFIG_ACPI are set, because otherwise the lack of a root node is a bug.
-> Make the function private and take a kunit test parameter so that it
-> can't be abused to test for the presence of the root node in non-test
-> code.
-> 
-> Use this function to skip tests that require the root node. Currently
-> that's the DT tests and any tests that apply overlays.
-> 
-> Reported-by: Guenter Roeck <linux@roeck-us.net>
-> Closes: https://lore.kernel.org/r/6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net
-> Link: https://lore.kernel.org/r/Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm.com [1]
-> Fixes: 893ecc6d2d61 ("of: Add KUnit test to confirm DTB is loaded")
-> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> ---
->  drivers/of/of_kunit_helpers.c | 15 +++++++++++++++
->  drivers/of/of_private.h       |  3 +++
->  drivers/of/of_test.c          |  3 +++
->  drivers/of/overlay_test.c     |  3 +++
->  4 files changed, 24 insertions(+)
-> 
 
-Applied, thanks!
+> >  
+> >> +	u32			spidata_tx[8];
+> >> +	u8			reg_rx_buf[3];
+> >> +	u8			reg_tx_buf[3];
+> >> +	u8			reset_buf[8];
+> >> +};  
+> >
+> >....
+> >  
+> >> +static int ad7779_write_raw(struct iio_dev *indio_dev,
+> >> +			    struct iio_chan_spec const *chan, int val, int val2,
+> >> +			    long mask)  
+> >
+> >long? Not unsigned long?  
+> 
+> I copied the function header directly from iio.h, shouldn't it be left as such?
+
+Hmm. That's an ancient legacy that we should really cleanup at somepoint.
+Leave this as long.
+
+
+> 
+> >  
+> >> +{
+> >> +	struct ad7779_state *st = iio_priv(indio_dev);
+> >> +
+> >> +	iio_device_claim_direct_scoped(return -EBUSY, indio_dev) {
+> >> +		switch (mask) {
+> >> +		case IIO_CHAN_INFO_CALIBSCALE:
+> >> +			return ad7779_set_calibscale(st, chan->channel, val2);
+> >> +		case IIO_CHAN_INFO_CALIBBIAS:
+> >> +			return ad7779_set_calibbias(st, chan->channel, val);
+> >> +		case IIO_CHAN_INFO_SAMP_FREQ:
+> >> +			return ad7779_set_sampling_frequency(st, val);
+> >> +		default:
+> >> +			return -EINVAL;
+> >> +		}
+> >> +	}
+> >> +	unreachable();
+> >> +}  
+> >
+> >...
+> >  
+> >> +static irqreturn_t ad7779_trigger_handler(int irq, void *p) {
+> >> +	struct iio_poll_func *pf = p;
+> >> +	struct iio_dev *indio_dev = pf->indio_dev;
+> >> +	struct ad7779_state *st = iio_priv(indio_dev);
+> >> +	int ret;  
+> >
+> >...
+> >  
+> 
+> Thank you!
+> 
+> Best Regards,
+> Ramona
+> 
 
 
