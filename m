@@ -1,76 +1,94 @@
-Return-Path: <devicetree+bounces-110090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E58A4999391
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:17:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 590A099939D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EDAD41C224DF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:17:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31761F22DD2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:24:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A6531CFEB1;
-	Thu, 10 Oct 2024 20:17:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB8C1D0F52;
+	Thu, 10 Oct 2024 20:24:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CS0PTAho"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="AOUaztwu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F89318C03D;
-	Thu, 10 Oct 2024 20:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B14818C03D;
+	Thu, 10 Oct 2024 20:24:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728591438; cv=none; b=TqQExQBnTmwTxnNLZvXRbWBWX7tBVcVZfC1WrMGqiOYa7dfzVxXv5w6ZFq/Yca13sQkPx/Hrf7Qw9mprEB797VscC/E6fXL5lzTSBY/y+ZRb9+IzoLeA+BdGOA1v9Q3KkrAKn/DI5c1SH5yy9NKWG6bVOdIhyDjEatkHZJZ/uww=
+	t=1728591881; cv=none; b=c+LVa8QdRZOkWr5Aze0/56rn7uah7NZVNmIb5EO8ArH0hv1VOirbvq1Kcq2ZHZGVU1E/M8qhYBLe8Ma11f1fEoMhgyfsLGc5+LvGHaVtJqBvpJsvi0pHKDv9a6YHY3FykSvzc+N8Y9Ja9tSUc88E8/MYTFTZdjqHCO+MmCZYpVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728591438; c=relaxed/simple;
-	bh=RKWcVPjelQ3cvsy3qKD5QQj4cKgw7ydYbcd2aN43VyE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=RIk2dNdO6xd2xXl0uO6GGxPSNLnTbmIM7QQHKExxMTZ31wvGecfddz2ovx5SUwFPpeJUm9BGaCXv3EMfYPqX6t9vfi/9zHoRgO5CfS6iCNJPmHpoe75fnRfPWii1zI/Xy6rGSURjHmdG/qJiP82/kB24klFHXBTkoY8QqVdmNiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CS0PTAho; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0CE1AC4CEC5;
-	Thu, 10 Oct 2024 20:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728591438;
-	bh=RKWcVPjelQ3cvsy3qKD5QQj4cKgw7ydYbcd2aN43VyE=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=CS0PTAhoWX/X2iF5gMG38qihCqVp/xNvKtV3X1s2z3vLiP2PRHFRgz/pqp6wRbugr
-	 cifVC44ycHghNokrhq7Z/rqd/hqS4+Iw6WNocaXfIjSbgDrmywVHd97lmlEthGGXyp
-	 f+uh8J7GjQa/FWwvWHCUtJJWrFWMrUyENPQ1XwbKnsyv/olPZGEy5osK/uLa744QC+
-	 mUgt6MBtp7j/OzcjjJmnctkjJtxoPT5OV+0oaLQeGRHVZfFcVh+3OQ5j/EoZPcE7F6
-	 hcqqCAZ0VWkUdRsfZf93ewWFG8jD7xnQ5e8/h1oHaGjkZjXJvQfNa0USBqlsTWt6Ur
-	 iwAVlk/lDqIAw==
-Message-ID: <8fd056d5-a357-4705-9352-632afcfe12fa@kernel.org>
-Date: Thu, 10 Oct 2024 23:17:13 +0300
+	s=arc-20240116; t=1728591881; c=relaxed/simple;
+	bh=EZCATSrTvloVjbkKMEbSDOTA4ZTCzNep57DiW3EoUj0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bcs5biDt1EaYbqqnT7AO2JefA+kbm1zFfs7iA/8iXxJ4HtzXhlnQwblsiuu56HGNPM+dVB3P9j0ngdGpr7za9eZVvBUvoqLJFgUMF5Gu9TIxsEotUoeKJ3oINGzsyp0eYXh3z6X/x61+h95vHO+HlOB2ebXHuS2313Yt9WJXIA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=AOUaztwu; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=EZCATSrTvloVjbkKMEbSDOTA4ZTCzNep57DiW3EoUj0=; b=AOUaztwu1VEPoPcFH3OF+obr4I
+	3rkGPKWH+65SmtkocxtLd28D+UvXgrz3qssJf5si5mqGBrjU5SoUm5suDb7jZzZh9Ou7eAWX3IAVj
+	gO6Q8Hze4QhYOfqXxnDcUEIi7ALpwm+oBt+/0QMgLtrXTJtCQ857F4nBr+25PMiUIZUw8PwVd0HGO
+	WNBLuNC+Eu7UzMEdfHmbDnt8WMZTl6jlSx6goVonxi8OO/HhTi/h+a9xstLmG/y8LXljrhY71B3SK
+	AJY7txpv+tDIW1CH3k9SQhMohB7/XQa2G9KyxTlXcAGjT81g+ATDPNN0cDdT2KM0lUDeuGtXvSypu
+	wyyzlRfw==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1syzi6-0000k3-G9; Thu, 10 Oct 2024 22:24:34 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Add dtsi file for RK3399S SoC variant
+Date: Thu, 10 Oct 2024 22:24:33 +0200
+Message-ID: <46729153.fMDQidcC6G@diego>
+In-Reply-To:
+ <59c524a9a12465c21e01b779b42749fae148c41d.1728482151.git.dsimic@manjaro.org>
+References:
+ <59c524a9a12465c21e01b779b42749fae148c41d.1728482151.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] ARM: dts: omap: omap4-epson-embt2ws: add GPIO
- expander
-To: Andreas Kemnade <andreas@kemnade.info>, linux-kernel@vger.kernel.org,
- Rob Herring <robh@kernel.org>, linux-omap@vger.kernel.org,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, tony@atomide.com,
- devicetree@vger.kernel.org, khilman@baylibre.com,
- Conor Dooley <conor+dt@kernel.org>, aaro.koskinen@iki.fi
-References: <20241010122957.85164-1-andreas@kemnade.info>
- <20241010122957.85164-5-andreas@kemnade.info>
-Content-Language: en-US
-From: Roger Quadros <rogerq@kernel.org>
-In-Reply-To: <20241010122957.85164-5-andreas@kemnade.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Hi Dragan,
+
+Am Mittwoch, 9. Oktober 2024, 16:06:00 CEST schrieb Dragan Simic:
+> The way the introduced RK3399S SoC variant dtsi file (rk3399s.dtsi) is named
+> diverges from the way the two already present RK3399 SoC variant dtsi files
+> (rk3399-op1.dtsi and rk3399-t.dtsi) are named, but that simply follows the
+> commonly used and/or the official RK3399 SoC variant names.
+
+This is my only gripe with this ;-) .
+
+I.e. looking through simple google, the rk3399t also seems to be written
+without "-" most of the time.
+
+Though for me it would make the most sense to just go with "rk3399-s"
+here for some sort of clear style between -s -t and -op1
+
+
+Heiko
 
 
 
-On 10/10/2024 15:29, Andreas Kemnade wrote:
-> Define the GPIO expander which controls at least some camera gpios.
-> 
-> Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-
-Reviewed-by: Roger Quadros <rogerq@kernel.org>
 
