@@ -1,279 +1,193 @@
-Return-Path: <devicetree+bounces-109770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AE90997E89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:32:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045AB997EAA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:09:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4B4E1F230DB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 07:32:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06B3B1C237AC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CEC01BD4F8;
-	Thu, 10 Oct 2024 07:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 134621B9835;
+	Thu, 10 Oct 2024 07:02:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YXuF8+qb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pfmByN0v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B8241B5ED6;
-	Thu, 10 Oct 2024 07:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A3E196450
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:02:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728543986; cv=none; b=iWBekrV0L6zULv1Wl0XHdZZRU8P3D6l5Ep2ZHEYSIIZESDqscRR1mNXMAQI8Kw7dGllxce9kfApp1EPpwb8XqKGHRd7x8sYy5ThPrSXTGrK1Yeukwu5sLmfKleYf8A1ysdhCNwW4+NdCkpxj1u+hFrX5p8KI3UdnQCDHl7gA4QM=
+	t=1728543770; cv=none; b=aHn4tWhmhdQO3GbbrdrIYg78NXFgjWruOs7dyHE7q7w8MNK4pYvajmQeP3rZ6kuCXblDlReEigpGX7iarPxBnwt+mUyufGn67li8K+3hlAV0J+heyQ+fvWPCI0iTO2Cd2aMGNbP2+EKg6sa0HkGXNeY1HSroVYATn8MVenEFL3s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728543986; c=relaxed/simple;
-	bh=vuEpQ4RUZxQv/pOsCPinwqX70CELW16laofpwWDKP/4=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uS2e17C8q5X+4L/Yxc/sBVvC8h59nlLjBxxjwFq2C0eyvZ8hx/s3FImSZ6o9lE+FO4rQl3Wa++QJGZD9o55wuS7GHj00ox75rVHaNL5zdmqEJAdro6m6/zE38letiCF9yYBBaonm47EjdGrRY+WqXqohR9OoKKpRbiSd58cvwBo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YXuF8+qb; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49A1bRrv030491;
-	Thu, 10 Oct 2024 07:05:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=iWKu71tbyjUY2xSflRyTyV
-	MfAOtyEe4rEt6XsCm5LKQ=; b=YXuF8+qbZRJ1ul7iUcpLYzCFDF5rHMTvfN3uXe
-	mYmPLFIpAmt8cyG3mfcz+B5vZh3Ys0XCZxumVSyZZN7LKtwDVx2Hg+k1GJ5aqPk2
-	xUL6FnZnRp4RerX543vogGMbfpBJP8PsjIgnp/XE9GEM4fiaiAL2w/JfDrOar+P4
-	4bZlzPkIPWFP2w4otcx88fIQ+/SR/Pc4f1OT44EVtenzanyxwTCr6bQ3uKwMENp7
-	ebubxPaNPNOmnl/hB5gYM5RE3QPvtf67ZRm0OF42thyrfnqxPNVpLI5UzJ+nE0qq
-	Py0D4FHGitOcuj9EeUqzfCae2UYiE+/NWGUWtbdLf+FboLCQ==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424x7ryjyh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Oct 2024 07:05:43 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49A75gPA024983
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Oct 2024 07:05:42 GMT
-Received: from hu-mdalam-blr.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 10 Oct 2024 00:05:36 -0700
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: <broonie@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <arnd@arndb.de>,
-        <esben@geanix.com>, <nikita.shubin@maquefel.me>,
-        <linux-arm-msm@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-Subject: [PATCH v11 0/8] Add QPIC SPI NAND driver
-Date: Thu, 10 Oct 2024 12:35:02 +0530
-Message-ID: <20241010070510.1504250-1-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1728543770; c=relaxed/simple;
+	bh=5jwclqPu8O+bJfJLb8ugVc+m8lCQmIuz/y18oWorWWE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nO4bFH7HNo0ImYlhESx7fqxOud7pZ7chL2W9i2oDs4mMX9vfDNS64B2uD8KuWyZ7Nuo4vuuD0kWDgEoO4l2ANTsN3KxASOvGBmPaRIVxDhYOjdpw2kyblOZ21GvEZiHeyM7RZH4AKkUGV2bQSYZVblQNP9LsRoVis8IaWM6MwTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pfmByN0v; arc=none smtp.client-ip=209.85.210.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-71df0dbee46so462266b3a.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 00:02:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728543768; x=1729148568; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=ofdLwK0e1Hu9/kT0oZI4oEAcowiTCCVHzyg8IA1AEgg=;
+        b=pfmByN0v9f6T9ekEJ+Pfa2ZktdP33qNqp29eHCV4nGA7j1KY/8QDOkHtJoN+HhtjYW
+         IXbyFddaJ6o/utQR7ciwiKHlIq0npIgodbsQVxPfLUa/ADEszG/mksTqwoMEfKxKDJMu
+         MxwzpFuesp1BEkXRnWm/I7kBIR0dRxNDvSEoyIEA0sg/fJV+aL+lpzRipO1erDKkPBSP
+         iLa7iww1DrfQBpY6+0GD0MOhhd2m5S8s89C3zXW0j0dzfvQxtcEn39iGKTFc+7ja381W
+         2PS/DcMJrLQ8cRWImIswhdvEvWwMRdSuq3rRWcu6iXCHmpHM6D1NyIWaPaDh7RfEhY2A
+         HaMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728543768; x=1729148568;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ofdLwK0e1Hu9/kT0oZI4oEAcowiTCCVHzyg8IA1AEgg=;
+        b=NCXumdtnJMRHbNUGg1KJLWUCn5ffV4k+Say2DKPz768IAxskDBrsm0rgvMHQ0rVwzZ
+         J7W5vXZB7pz20UXKT99g/Tg2ON+RcsirZwMUStjIdoZooT1tECr2MWsQzzvDvPqIbsyf
+         dEd4ZdvhrCW5GauWmTVnq/agd1uPX2RIYSdboOZqgVdxR0JMMfCZP4FKcmw7oBGwAqrB
+         QlCeYgfN4/SmIJV065g8R7olaezBCw7FJ+0Xje976VLAtYeLqIy+ZU2l6ZPRMr5KQNE3
+         NAlqCAlaUjN4TrlUyisVXgJJItR9kNd14Sim1IyVnoV0yZdl4mhmk+yVzZBGnURr6ZZ1
+         UriA==
+X-Forwarded-Encrypted: i=1; AJvYcCVXarAdrE5qhx3D89rvj6hK3bDBwJ4UWWH5PJVqJA1Jry9VW0IvZL6uavGzW0brA6KEr00Budu7VZR0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3rX1FSxlk8KVtnK2/s8gTNjqzJxt+tsXZ6E68ZW/My2dtd95q
+	Qve5XBE89rIGg4GWxrRWh8FM4dCjUP8+UZM24i73NkPRHz6nX7QNUsO2/uYbTA==
+X-Google-Smtp-Source: AGHT+IGrFANFlLTmXxVWE2c2rxdYcnB/6DqzwfWYMOWliLnPwjikVFZe+VCkCjaG/hnETvmtC6uc9g==
+X-Received: by 2002:a05:6a21:8ccc:b0:1cf:38cf:df92 with SMTP id adf61e73a8af0-1d8a3c1e1cemr9627803637.30.1728543767753;
+        Thu, 10 Oct 2024 00:02:47 -0700 (PDT)
+Received: from thinkpad ([220.158.156.184])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2a9ea2b2sm456025b3a.3.2024.10.10.00.02.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 00:02:47 -0700 (PDT)
+Date: Thu, 10 Oct 2024 12:32:42 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v3 01/12] PCI: rockchip-ep: Fix address translation unit
+ programming
+Message-ID: <20241010070242.3i2f53kpdpr4fgl6@thinkpad>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-2-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: gEZA7mpsPY_6NXCgAGvtShwtpcQlsGXb
-X-Proofpoint-ORIG-GUID: gEZA7mpsPY_6NXCgAGvtShwtpcQlsGXb
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 suspectscore=0
- phishscore=0 mlxlogscore=822 spamscore=0 clxscore=1011 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 mlxscore=0 adultscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410100045
+In-Reply-To: <20241007041218.157516-2-dlemoal@kernel.org>
 
-v11:
- * Dropped Reviewed-by tag
- * Added soc based compatible "qcom,ipq9574-snand"
- * fixed build error reported by kernel test bot by
-   changing statement "depends on MTD" to "selct MTD"
-   in drivers/spi/Kconfig file
+On Mon, Oct 07, 2024 at 01:12:07PM +0900, Damien Le Moal wrote:
+> The rockchip PCIe endpoint controller handles PCIe transfers addresses
+> by masking the lower bits of the programmed PCI address and using the
+> same number of lower bits masked from the CPU address space used for the
+> mapping. For a PCI mapping of <size> bytes starting from <pci_addr>,
+> the number of bits masked is the number of address bits changing in the
+> address range [pci_addr..pci_addr + size - 1].
+> 
+> However, rockchip_pcie_prog_ep_ob_atu() calculates num_pass_bits only
+> using the size of the mapping, resulting in an incorrect number of mask
+> bits depending on the value of the PCI address to map.
+> 
+> Fix this by introducing the helper function
+> rockchip_pcie_ep_ob_atu_num_bits() to correctly calculate the number of
+> mask bits to use to program the address translation unit. The number of
+> mask bits iscalculated depending on both the PCI address and size of the
+> mapping, and clamped between 8 and 20 using the macros
+> ROCKCHIP_PCIE_AT_MIN_NUM_BITS and ROCKCHIP_PCIE_AT_MAX_NUM_BITS.
+> 
 
-v10:
- * Fixed compilation warnings reported by kernel test robot
- * Added depends on CONFIG_MTD for qpic-spi nand driver
- * Removed extra bracket from statement if (i == (num_cw - 1))
-   in qcom_spi_program_raw() api.
+How did you end up with these clamping values? Are the values (at least MAX
+applicable to all SoCs)?
 
-v9:
- * Fixed all the compilation warning reported by
-   kernel test robot
-  * Changed type of cmd1, vld to u32 from __le32 in qcom_nand_controller
-   structure
- * Changed type of cfg0, cfg1, cfg0_raw, cfg1_raw, clrflashstatus,
-   ecc_buf_cfg, ecc_bch_cfg, clrreadstatus to u32 in qcom_nand_host
-   structure
- * In nandc_set_read_loc_first() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * In nandc_set_read_loc_last() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * Changed data type of cw_offset, read_size, is_last_read_loc to
-   u32 in nandc_set_read_loc() api to fix compilation warning reported
-   by kernel test bot
- * In set_address() api added cpu_to_le32() macro to fix compilation
-   warning reported by kernel test bot
- * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
-   warning reported by kernel test bot
- * In qcom_op_cmd_mapping() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * In qcom_read_status_exec() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * In qcom_read_id_type_exec() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * In qcom_misc_cmd_type_exec() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot
- * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
-   compilation warning reported by kernel test bot   
- * In update_rw_regs() api added cpu_to_le32() macro to fix compilation
-   issue reported by kernel test bot
- * In qcom_param_page_type_exec() api added cpu_to_le32() macro to fix
-   compilation issue reported by kernel test bot
- * Changed data type of addr1, addr2, cmd, to __le32 in qpic_spi_nand
-   structure
- * In qcom_spi_set_read_loc_first() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_set_read_loc_last() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_init() api added cpu_to_le32() macro to fix compilation
-   warning
- * In qcom_spi_ecc_init_ctx_pipelined() api removed unused variables
-   reqs, user, step_size, strength and added cpu_to_le32() macro as well
-   to fix compilation warning
- * In qcom_spi_read_last_cw() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_check_error() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_read_page_ecc() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_read_page_oob() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_program_raw() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_program_ecc() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_program_oob() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_send_cmdaddr() api added cpu_to_le32() macro to fix
-   compilation warning
- * In qcom_spi_io_op() api added cpu_to_le32() macro to fix compilation
-    warning
-v8:
- * Fixed compilation warning reported by kernel test robot
- * Added "chip" description in nandc_set_read_loc_first()
- * Added "chip" description" in nandc_set_read_loc_last()
- * Changed data type of read_location0, read_location1,
-   read_location2, read_location3, addr0, addr1, cmd, cfg0,
-   cfg1, ecc_bch_cfg, ecc_buf_cfg, clrflashstatus, clrreadstatus,
-   orig_cmd1, orig_vld to __le32 to fix compilation warning.
- * Included bitfield.h header file in spi-qpic-snand.c to
-   fix compilation warning
- * Removed unused variable "steps" variable from 
-   qcom_spi_ecc_init_ctx_pipelined()
+Btw, it would be helpful if you referenced the TRM and the section that
+describes the outbound mapping. I'm able to find the reference:
 
-v7:
- * Added read_oob() and write_oob() api
- * Added FIELD_PREP() in spi init
- * Made CONFIG_SPI_QPIC_SNAND and CONFIG_MTD_NAND_QCOM
-   as bool type
- * Removed offset 0 in oob_ecc() layout
- * Handled multiple error condition
+Rockchip RK3399 TRM V1.3 Part2, Section 17.5.5.1.1
 
-v6:
- * Added FIELD_PREP() and GENMASK() macro
- * Added qpic_spi_nand{..} structure for
-   spi nand realted variables
- * Made qpic_common.c slectable based on
-   either CONFIG_MTD_NAND_QCOM or CONFIG_SPI_QPIC_SNAND
- * Removed rawnand.h from qpic-common.h 
- * Removed partitions.h and rawnand.h form spi-qpic-snand.c
- * Added qcom_nand_unalloc() in remove()
+- Mani
 
-v5:
- * Fixes nandbiterr issue
- * Added raw_read() and raw_write() API
- * Added qcom_ prefix to all the common API
- * Removed register indirection
- * Following tests for SPI-NAND devices passed
-
-   - mtd_oobtest
-   - mtd_pagetest
-   - mtd_readtest
-   - mtd_speedtest
-   - mtd_stresstest
-   - mtd_subpagetest
-   - mtd_nandbiterrs
-   - nandtest
-   - nanddump
-   - nandwrite
-   - nandbiterr -i
-   - mtd erase
-   - mtd write
-   - dd
-   - hexddump
-
-v4:
- * In this patch series fixes kernel doc for all the cmmon api
- * Also fixes dm-binding commit message
- * Fix qpic_common.c compilation based on config
-
-v3:
- * In this patch series fixes multiple things like
-   added clock-name, added _alloc_controller api instead
-   of alloc_master, made common apis more generic etc.
-
- * Addressed all the comment from v2 patch series
-
-v2:
- * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
- * In this series of patchs we have added basic working QPIC SPI NAND
-   driver with READ, WRITE, ERASE etc functionality
-
- * Addressed all the comments given in RFC [v1] patch
-
-v1:
- * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
- * Initial set of patches for handling QPIC SPI NAND.
-
-
-Md Sadre Alam (8):
-  spi: dt-bindings: Introduce qcom,spi-qpic-snand
-  mtd: rawnand: qcom: cleanup qcom_nandc driver
-  mtd: rawnand: qcom: Add qcom prefix to common api
-  mtd: nand: Add qpic_common API file
-  mtd: rawnand: qcom: use FIELD_PREP and GENMASK
-  spi: spi-qpic: add driver for QCOM SPI NAND flash Interface
-  arm64: dts: qcom: ipq9574: Add SPI nand support
-  arm64: dts: qcom: ipq9574: Disable eMMC node
-
- .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
- .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
- arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
- drivers/mtd/nand/Makefile                     |    7 +
- drivers/mtd/nand/qpic_common.c                |  738 +++++++
- drivers/mtd/nand/raw/Kconfig                  |    2 +-
- drivers/mtd/nand/raw/qcom_nandc.c             | 1763 +++--------------
- drivers/spi/Kconfig                           |    9 +
- drivers/spi/Makefile                          |    1 +
- drivers/spi/spi-qpic-snand.c                  | 1634 +++++++++++++++
- include/linux/mtd/nand-qpic-common.h          |  482 +++++
- 12 files changed, 3349 insertions(+), 1442 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
- create mode 100644 drivers/mtd/nand/qpic_common.c
- create mode 100644 drivers/spi/spi-qpic-snand.c
- create mode 100644 include/linux/mtd/nand-qpic-common.h
+> Fixes: cf590b078391 ("PCI: rockchip: Add EP driver for Rockchip PCIe controller")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+> ---
+>  drivers/pci/controller/pcie-rockchip-ep.c | 15 +++++++++++----
+>  drivers/pci/controller/pcie-rockchip.h    |  4 ++++
+>  2 files changed, 15 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+> index 136274533656..27a7febb74e0 100644
+> --- a/drivers/pci/controller/pcie-rockchip-ep.c
+> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+> @@ -63,16 +63,23 @@ static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
+>  			    ROCKCHIP_PCIE_AT_OB_REGION_DESC1(region));
+>  }
+>  
+> +static int rockchip_pcie_ep_ob_atu_num_bits(struct rockchip_pcie *rockchip,
+> +					    u64 pci_addr, size_t size)
+> +{
+> +	int num_pass_bits = fls64(pci_addr ^ (pci_addr + size - 1));
+> +
+> +	return clamp(num_pass_bits, ROCKCHIP_PCIE_AT_MIN_NUM_BITS,
+> +		     ROCKCHIP_PCIE_AT_MAX_NUM_BITS);
+> +}
+> +
+>  static void rockchip_pcie_prog_ep_ob_atu(struct rockchip_pcie *rockchip, u8 fn,
+>  					 u32 r, u64 cpu_addr, u64 pci_addr,
+>  					 size_t size)
+>  {
+> -	int num_pass_bits = fls64(size - 1);
+> +	int num_pass_bits =
+> +		rockchip_pcie_ep_ob_atu_num_bits(rockchip, pci_addr, size);
+>  	u32 addr0, addr1, desc0;
+>  
+> -	if (num_pass_bits < 8)
+> -		num_pass_bits = 8;
+> -
+>  	addr0 = ((num_pass_bits - 1) & PCIE_CORE_OB_REGION_ADDR0_NUM_BITS) |
+>  		(lower_32_bits(pci_addr) & PCIE_CORE_OB_REGION_ADDR0_LO_ADDR);
+>  	addr1 = upper_32_bits(pci_addr);
+> diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+> index 6111de35f84c..15ee949f2485 100644
+> --- a/drivers/pci/controller/pcie-rockchip.h
+> +++ b/drivers/pci/controller/pcie-rockchip.h
+> @@ -245,6 +245,10 @@
+>  	(PCIE_EP_PF_CONFIG_REGS_BASE + (((fn) << 12) & GENMASK(19, 12)))
+>  #define ROCKCHIP_PCIE_EP_VIRT_FUNC_BASE(fn) \
+>  	(PCIE_EP_PF_CONFIG_REGS_BASE + 0x10000 + (((fn) << 12) & GENMASK(19, 12)))
+> +
+> +#define ROCKCHIP_PCIE_AT_MIN_NUM_BITS  8
+> +#define ROCKCHIP_PCIE_AT_MAX_NUM_BITS  20
+> +
+>  #define ROCKCHIP_PCIE_AT_IB_EP_FUNC_BAR_ADDR0(fn, bar) \
+>  	(PCIE_CORE_AXI_CONF_BASE + 0x0828 + (fn) * 0x0040 + (bar) * 0x0008)
+>  #define ROCKCHIP_PCIE_AT_IB_EP_FUNC_BAR_ADDR1(fn, bar) \
+> -- 
+> 2.46.2
+> 
 
 -- 
-2.34.1
-
+மணிவண்ணன் சதாசிவம்
 
