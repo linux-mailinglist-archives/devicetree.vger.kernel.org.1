@@ -1,122 +1,141 @@
-Return-Path: <devicetree+bounces-110007-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110008-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F15ED998CB9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:04:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 073DC998CBF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:05:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7152F286651
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:04:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A9531F25065
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:05:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 669301CC8B7;
-	Thu, 10 Oct 2024 16:04:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C5B1CCB2D;
+	Thu, 10 Oct 2024 16:05:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ue3fvJwT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OAQDjIcZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2D942207A;
-	Thu, 10 Oct 2024 16:04:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D7A86FE16
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 16:05:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728576264; cv=none; b=iNvVMDawSe8J1UdOJvds2UOz6LbuEao2wkk8+7v+ftpc3nRSKo8Hl/1ETxR5WIQm+yBeFReHk8KVYKRiI1zn3CcjO1knRwivREq+fNi9hMruxNFdZ0qJVSWECmV5A//eylC9/MfEyJX0eYcGnI7ARUgBYlO3JCVPoenXL5JcDg4=
+	t=1728576305; cv=none; b=Tp05riQ3ttLxlIcgIMktlVNFGWlBk19LtqDZOB1vMjEAX3v7r3Xa+cVlQ+nXL8erHvW3DWEeepYpDWHlwzDYe92+LH2JEdmV57jtSU64wx2NTGpZpDncjk5qssRVd59rWl1u0g4qLhKglrJ2zYTg55Pt1p1y9yiro4syIc4jXmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728576264; c=relaxed/simple;
-	bh=o3EDci7FnB4sdL4nheWjIvOwpfcKu77OyfInnC/XHw0=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=eCjGRwrAOTs7WCS+iQHuGQ9ixdmQ+CjQvuOgB0ZeL2K/PWq3X5XgFClaS04JLXiWfsPbhtgK9Cuob8A5eQpxi9W5RpYcHGfM6Ewa6EMJ9qI2yRcB3j6UkEcuVW61h9qDO8ys7TzoJTjBLKvtHNpVCCBNfYQLJhBM4ftmG9CTaL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ue3fvJwT; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1728576305; c=relaxed/simple;
+	bh=H8EpiGxb7MZdfh1rqjoDtl0yYqhzVDv6ArYatW1EBZQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zav9QoMKnpStrZC8C10NONGgdGN1Yq1t55Oj0icXLN0MEB/Ygyd5W2FRDVfzvpezGU4Cq8tMzkIvl4YESqgSuuLtXS4fAzUbZEpdm29xN6UNj2bPzG9z87qdzpIqWt5Uei3PHf/rAcIxhPTRDCLEU1/1M+UDN6nJxfFojgdPvyw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OAQDjIcZ; arc=none smtp.client-ip=209.85.208.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2fadc95ccfcso11846391fa.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 09:05:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728576302; x=1729181102; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZO/1w/YU0WxgA0J9udv1RC8JJ0WK5YUdEtFL+ZE7B7Y=;
+        b=OAQDjIcZ1A8yvKDpXpwV2GvkIM9nM7muE/Qua7+OaLAMgeD569eJAhGFuHiyUqHw02
+         AXdFEJhvQDrwLpQT3cT8Q/TpbInr2x1ixblpPa5pW/jVtH2bLegp6Dj1XPgZ1MBlNADv
+         XH+7gGCRo+/OHYmbpigTFB/pJIO2Mb0gz8wgRxcpSGe4J35puXtCkvSSxLr3b7QBzeOC
+         NGOUe9d2DguXNlwc7cpDZLvXEDtpQ2eFTPbwJMyOeQ3YjwEhAxthdJTUr3uzdQAeQb3p
+         93xnd8j3Z/LXCOYQenBa4hGWo+8QcKjg3tGR/YTr5k4UmUxjyRpUlrEY1o6C3408/97c
+         3W4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728576302; x=1729181102;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZO/1w/YU0WxgA0J9udv1RC8JJ0WK5YUdEtFL+ZE7B7Y=;
+        b=HM/eS/tTQHSSbJFx8Yj84AW48yYwzSorDzwiFAreI4kd616askB6xTI663v415lR//
+         FMOoV8I/3CjRTVy1dm8G4sUNqbe+bXUlmM2nMDGKcHhjJ2qlf0dCphp2OTndkrz3cCOu
+         cNtQk8sPAmvI3GkY2Mrjgkq5OP3mtHO+kfrdm5gLiQRoWYEB9Mt2suAD+3wpJ+6HhA+t
+         LKp899LZFeZFDw5HxWn2iB+MDaHBOytvEfM6/1dFKwWNMGf52k/WH7OG04gDymcGO8S0
+         hNsi0bZM4qZO6RLVHefm7rYqQldqv6IYwJzj8Jd4EZISBNf0u/RVpL9tsTHjSYjlspFC
+         p0mA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxSD/bNEzKaWf1SkgIRpFnK91BNX7dhkl3Ls/o0dFrRXrZBMh0dCtytQzgk5Pv93CXcx3P6HAKGHxm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwukRdPJqE70XrLikNlM7p/unNWc7i642Xg5rGPrZfg77jfQlYY
+	Y2YnIIQvAoZaWFZ0gtRmzOE5bZb2IK1a7tjMRA9HV17KIlKfFd3aatQC4pwvNtY=
+X-Google-Smtp-Source: AGHT+IHiF+d8UCbWAR4TFTEqWftSjyGbqLiIXHFzDdSvOTJM1rDmOqUUmm8GW6gTZjuOMRJVmU+6WA==
+X-Received: by 2002:a05:651c:b0f:b0:2fa:d58d:dcf3 with SMTP id 38308e7fff4ca-2fb187cd62fmr47166951fa.33.1728576302168;
+        Thu, 10 Oct 2024 09:05:02 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb245ab69dsm2488111fa.57.2024.10.10.09.04.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 09:04:59 -0700 (PDT)
+Date: Thu, 10 Oct 2024 19:04:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: Enable USB controllers for QCS8300
+Message-ID: <iycqvw5ztqufcu3hgtpvrrir2anurjeckgmj6ll6twwsmotxhf@v72pwnmvq6yx>
+References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
+ <20241009195636.2649952-3-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1728576258;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=kHsk3WKYOtf6YIW4r4cEK0zr25z4Yvu6MikBAKtqoh8=;
-	b=ue3fvJwTCGlWlGqqLTCcmuyk7Ws8xNMck/cqE9KU4gs8F/3XbYxuu2dTa6NQ2tsutU1BLf
-	IfSuN/9e2j2iT4q3Z1i4reTHcple2eJkka1T9dofIcMMiKozE3DCFDxIAtLvuDBppzmo7Z
-	q8oeWPCCuIYFdHzdoxtYLlzNaNl5uI0G7Nj6s91pZrnQUm8m3/ammF4Q1d2OfI//C5r+TG
-	KYmUUZC4V6vS5iWaIxV0/x40jAiL9/heGVZwqochIQKQZddHWrjOQR2ZQaWWEs7MVYnBZB
-	+5phUGGvstM2tg6olDRq61ovtXGbbAvsJ91j3yczsBr+BHe5IwqHZ48XiN/UZw==
-Date: Thu, 10 Oct 2024 18:04:18 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308
- SoC dtsi
-In-Reply-To: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
-References: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
-Message-ID: <df92710498f66bcb4580cb2cd1573fb2@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241009195636.2649952-3-quic_kriskura@quicinc.com>
 
-On 2024-10-10 12:19, Dragan Simic wrote:
-> Until the TSADC, thermal zones, thermal trips and cooling maps are 
-> defined
-> in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one may 
-> be
-> enabled under any circumstances.  Allowing the DVFS to scale the CPU 
-> cores
-> up without even just the critical CPU thermal trip in place can rather 
-> easily
-> result in thermal runaways and damaged SoCs, which is bad.
+On Thu, Oct 10, 2024 at 01:26:36AM GMT, Krishna Kurapati wrote:
+> Enable primary USB controller on QCS8300 Ride platform and
+> set the dr mode to peripheral mode.
 > 
-> Thus, leave only the lowest available CPU OPP enabled for now.
-> 
-> Fixes: 6913c45239fd ("arm64: dts: rockchip: Add core dts for RK3308 
-> SOC")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-
-As a note, I'll hopefully get back with the proper implementation of the
-thermal configuration for the RK3308, but not before the 6.14 merge 
-window.
-In the meantime, let's stick to having only the lowest CPU OPP in place,
-as changed in this patch.
-
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
 > ---
->  arch/arm64/boot/dts/rockchip/rk3308.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
+>  arch/arm64/boot/dts/qcom/qcs8300-ride.dts | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> index 31c25de2d689..a7698e1f6b9e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> @@ -120,16 +120,19 @@ opp-600000000 {
->  			opp-hz = /bits/ 64 <600000000>;
->  			opp-microvolt = <950000 950000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-816000000 {
->  			opp-hz = /bits/ 64 <816000000>;
->  			opp-microvolt = <1025000 1025000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-1008000000 {
->  			opp-hz = /bits/ 64 <1008000000>;
->  			opp-microvolt = <1125000 1125000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  	};
+> diff --git a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> index 7eed19a694c3..3e925228379c 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs8300-ride.dts
+> @@ -265,3 +265,26 @@ &ufs_mem_phy {
+>  	vdda-pll-supply = <&vreg_l5a>;
+>  	status = "okay";
+>  };
+> +
+> +&usb_1_hsphy {
+> +	vdda-pll-supply = <&vreg_l7a>;
+> +	vdda18-supply = <&vreg_l7c>;
+> +	vdda33-supply = <&vreg_l9a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_qmpphy {
+> +	vdda-phy-supply = <&vreg_l7a>;
+> +	vdda-pll-supply = <&vreg_l5a>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_dwc3 {
+> +	dr_mode = "peripheral";
+
+Is it actually USB peripheral only? Or USB-C which isn't handled yet?
+
+> +};
+> -- 
+> 2.34.1
+> 
+
+-- 
+With best wishes
+Dmitry
 
