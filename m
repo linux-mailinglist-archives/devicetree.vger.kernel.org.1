@@ -1,126 +1,213 @@
-Return-Path: <devicetree+bounces-109845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F1B299832A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:09:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C6C1998342
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:10:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC18C1C2203A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:09:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182E528393B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:10:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 085A31BE239;
-	Thu, 10 Oct 2024 10:09:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 561991BF81A;
+	Thu, 10 Oct 2024 10:09:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lcUJbzBz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB0F18C03D;
-	Thu, 10 Oct 2024 10:09:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15D741BF80A;
+	Thu, 10 Oct 2024 10:09:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728554943; cv=none; b=kFTHddJwM65LpCyNUwWJBaDGim3AuMRToc0SE5HfHQIqFNKoBZxP0RyDhzMCOwdXULnNwGIdLbH4qPHw2QudvfMazs1bPdJpUDiKyRbzUAx60/q9NNpZB5Oh1Hhzu08GgYoeSbsbD9SHcFAu1I7sKtIeHHqQpJoFVEUooiDMbYk=
+	t=1728554995; cv=none; b=mQ6UkIuH790u9KNVVmReii2MEK9VKbQa4giHDn1/9ia9OabzBS/uPtFmv1E/rYy6oLYu1E1gWjHLAM8FUZBYK1JYDTNsFXfDINTJB1Rt4gXnOqmCRYIX0JgyaDCyHCSyYGohrL+9zUhwlrEKx8qdS2r1/CVIGirVpvc2tw+9VtA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728554943; c=relaxed/simple;
-	bh=YWHB+my37muquSy1XkY//hgr5fEDz/6DVNflN1m/7dI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=EXFduuPenDVfLtMcA2ZDWYS9AleOZUOm+GMItD0mdvP7FQ76GvQ2efYjMsmdDxXNnNoI0mrqXUakZIdN2fW0o0BTmMsnxjXeoMff0/S+cIQQ9WmOmfs9IldghQlsxxeYPzcNMgkpEmmAv794Nrd0WPAXXU3T5xvZjt/Lt+vkAuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-e02c4983bfaso743655276.2;
-        Thu, 10 Oct 2024 03:09:02 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728554941; x=1729159741;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=miJ8/WzZit7AkjMUZIt04ikXcWEMhi6CNqSN9WbGjyg=;
-        b=Jd7g8E/Kh9q2xUfNGiQ8wWKxKrsVweZf2hWK1aPYE9KUd+GaK8rxtRKJ7MTbbYj/A2
-         FEj6CfMML7ygxKl2IGXRbXslOVPcrpiSRC6yFtqDC1tddqh9W4AJ7lrOcoMNCUFc2CO4
-         JI1Y9e0ha1sVPqDb2lVKrsoKp75mSlGC66wbgMIzRCMJ0rbiAG/xBGdBzWVnCwiBRa3t
-         p/AApLsJxJiu+LyY1a3c91EZcp/iUFHsDHgaHxnulB2UvTivqGJiwKNi8h5J9wonjYyP
-         lKMJ7Va5upxnPvv+Ucc6kZKEp5QjBR1mW5vAcirZXxblvVZ4rkr4EAr9M+lEYQHsgAa9
-         Ae5w==
-X-Forwarded-Encrypted: i=1; AJvYcCU+c71rM5RvP2W/pJGctk6axYnIiK0IPFp+bimtYcxnINhmFLlzwDXMFAh1aaV983qJCNh4I7FqSJr8@vger.kernel.org, AJvYcCUluKuFUuUMH5EX7Tz62tPhzzB9+EyMREVK1tkcrDkWPRUNj+N0xsUjk742f1aleC5mHUulPECgEZoP@vger.kernel.org, AJvYcCUxfOlJZWmlUhuD5Is2kO/zjHh842aFYaxrZcr+mchJ7qqR3ewcmQcWOReDjy2+sq9Ocgow3gBsJL93@vger.kernel.org, AJvYcCVpPwpAncVDar78EViUrHsT36kCUrMCE2UsIe0QyxOWLq3uB9J5bHLxZUaxyFPID3Qvx6yH7O7wD8koRZio@vger.kernel.org, AJvYcCXaDDQk0P0LJUFcbvxZaL1bkSOrvARC4bzQAr/uokEslUG+PWAf+4AXSy8qaTu3yC3sTCkiI/p7LRekxKI1Z2fkYKY=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyYtTYr1l4QiwkthSFcurmj0PYbPwdpFKIRyzv/Y7Eh2llhWvDp
-	6YbA+dC8VD4ZKcf5kJ7qUrnXfjv9jcnsL2cSv936Kc49lwAOZUoEPpwvIDvf
-X-Google-Smtp-Source: AGHT+IFrm/zOqEfnuzkypReNrsnt9tcpSHCmbAaV9smH5Qz/Mis/RZGuPK4g5EmS6mGU4fyWKRvo3w==
-X-Received: by 2002:a05:6902:1609:b0:e29:6b8:af2 with SMTP id 3f1490d57ef6-e2906b80e18mr3622607276.55.1728554940782;
-        Thu, 10 Oct 2024 03:09:00 -0700 (PDT)
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
-        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e290ee18b5csm238374276.37.2024.10.10.03.09.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 03:09:00 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-6e2346f164cso7099017b3.3;
-        Thu, 10 Oct 2024 03:09:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUUnqcLRpIrCBfJrreWpL/4xbj8Q3GPIdMYNzl0t5UzEu+Ei70bLqZwnYIzcqyPCIADN9OY8UJWRtUqYoxuAkbXvVc=@vger.kernel.org, AJvYcCUdWeUYo3HZQet2Anju9vF/OkjEenDucXALmajBe4Jwwtczcl0VA2L93CYBlKEZnG5N8lOEthZdg2S7@vger.kernel.org, AJvYcCVAR4bGPLhz2TVpOqvOxdk+ehA2QFIpaU7TUPCEppt9D/RgPqGz4WTk9zJMpuDpx/9VxzfV8cZpZ2a4@vger.kernel.org, AJvYcCVSGM6rZc2Ez4C20DuXc9ZsKBT+czbugrq0ozUy/AN8hf/f53kiwDq5AbjE6mXlSHPHmKu5NmmqN1pt@vger.kernel.org, AJvYcCXw1y28P1Mr7MZZ0bq2VNOGmaVr6IufruyPk+V0CdZWOnccgE2Tr4QTg+aw8KiB/rdxMqgeac9tqhEXgsD/@vger.kernel.org
-X-Received: by 2002:a05:690c:4e89:b0:6e3:17b4:aeee with SMTP id
- 00721157ae682-6e322491428mr39513197b3.43.1728554940009; Thu, 10 Oct 2024
- 03:09:00 -0700 (PDT)
+	s=arc-20240116; t=1728554995; c=relaxed/simple;
+	bh=rW/b31wBv4+PQfo3AcFfLnClUQC5sTw9V60nXjaptIE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=suQDxQvComOv3ZpFGB8lIbgv0yuvg/uGOoYRGkqUh1dcA+ZbvDltLHYP8H/5RZaMgS336VM8BTq0vdwkdMYni4+/+7J2w9RK7sqWwd8nH+SYap9BE47OFClPrD+d+iE6M+dBSqAgfoFvFL4gB/YJKzskEH+LOAZ0A5K0X+MzdoY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lcUJbzBz; arc=none smtp.client-ip=198.47.23.248
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 49AA9cN2127588;
+	Thu, 10 Oct 2024 05:09:38 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1728554978;
+	bh=BHcIiz1GiHq8hXPud5/d6YIdHbu5yEfmYu88FpFDd2w=;
+	h=From:To:CC:Subject:Date;
+	b=lcUJbzBzQ0sBJabE/WbD8PK1p35HpLWSyC+vBFrmt3sWv8mCY0ZvFE1p1yijF6L3W
+	 k3swgrE2pwgufnz4+Mk+SZ29fK49688T7RMyXgj9h1+LXZgeCDxwEivKlI4NdWPPr4
+	 ohcB1iSudgCDqrsr8Fcj+fGPjdkPfRIim3HTveDw=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 49AA9cev012116
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 10 Oct 2024 05:09:38 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 10
+ Oct 2024 05:09:38 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 10 Oct 2024 05:09:37 -0500
+Received: from uda0492258.dhcp.ti.com (uda0492258.dhcp.ti.com [10.24.72.81])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 49AA9Yhd057930;
+	Thu, 10 Oct 2024 05:09:34 -0500
+From: Siddharth Vadapalli <s-vadapalli@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>
+Subject: [PATCH v3] arm64: dts: ti: k3-j721e-evm: Add overlay for PCIE1 Endpoint Mode
+Date: Thu, 10 Oct 2024 15:39:33 +0530
+Message-ID: <20241010100933.2492806-1-s-vadapalli@ti.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Oct 2024 12:08:48 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVqWdFmLAgXmieBjFgj8Rz1cJqVbdFDn0Ep76UawqsU2Q@mail.gmail.com>
-Message-ID: <CAMuHMdVqWdFmLAgXmieBjFgj8Rz1cJqVbdFDn0Ep76UawqsU2Q@mail.gmail.com>
-Subject: Re: [PATCH v3 01/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
- Document VBATTB
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Claudiu,
+Add overlay to enable the PCIE1 instance of PCIe on J721E-EVM in Endpoint
+mode of operation. Additionally, in order to support both PCIE0 and PCIE1
+in Endpoint Mode of operation, enable applying device-tree overlays on
+"k3-j721e-evm-pcie0-ep.dtb", thereby allowing the overlay for PCIE1 in
+Endpoint mode to be applied on the aforementioned DTB.
 
-On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
-> the tamper detector and a small general usage memory of 128B. Add
-> documentation for it.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v3:
-> - moved the file to clock dt bindings directory as it is the
->   only functionality supported at the moment; the other functionalities
->   (tamper detector, SRAM) are offered though register spreaded
->   though the address space of the VBATTB IP and not actually
->   individual devices; the other functionalities are not
->   planned to be supported soon and if they will be I think they
->   fit better on auxiliary bus than MFD
+Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+---
 
-The battery-backed-up SRAM could be exported through the
-NVMEM framework. I am not sure it offers some way to export the tamper
-flag (to indicate it's erased, i.e. empty).
+Hello,
 
-Gr{oetje,eeting}s,
+This patch is based on linux-next tagged next-20241010.
 
-                        Geert
+v2:
+https://lore.kernel.org/r/20240222065733.1213434-1-s-vadapalli@ti.com/
+Changes since v2:
+- Rebased patch on next-20241010.
+- Moved vendor specific property "ti,syscon-pcie-ctrl" to the end of the
+  node.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+v1:
+https://lore.kernel.org/r/20240220105006.1056824-1-s-vadapalli@ti.com/
+Changes since v1:
+- Created a new overlay for PCIE1 based on Andrew's suggestion at:
+  https://lore.kernel.org/r/415ee6d4-fe26-4582-80f3-9b503d308fdf@ti.com/
+- Updated Makefile to allow applying overlay on
+  "k3-j721e-evm-pcie0-ep.dtb"
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Regards,
+Siddharth.
+
+ arch/arm64/boot/dts/ti/Makefile               |  5 ++
+ .../boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso    | 53 +++++++++++++++++++
+ 2 files changed, 58 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
+
+diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+index bcd392c3206e..4b642e2ec386 100644
+--- a/arch/arm64/boot/dts/ti/Makefile
++++ b/arch/arm64/boot/dts/ti/Makefile
+@@ -104,6 +104,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board-infotainment.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-gesi-exp-board.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie0-ep.dtbo
++dtb-$(CONFIG_ARCH_K3) += k3-j721e-evm-pcie1-ep.dtbo
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk.dtb
+ dtb-$(CONFIG_ARCH_K3) += k3-j721e-sk-csi2-dual-imx219.dtbo
+ 
+@@ -192,6 +193,8 @@ k3-j721e-common-proc-board-infotainment-dtbs := k3-j721e-common-proc-board.dtb \
+ 	k3-j721e-common-proc-board-infotainment.dtbo
+ k3-j721e-evm-pcie0-ep-dtbs := k3-j721e-common-proc-board.dtb \
+ 	k3-j721e-evm-pcie0-ep.dtbo
++k3-j721e-evm-pcie1-ep-dtbs := k3-j721e-common-proc-board.dtb \
++	k3-j721e-evm-pcie1-ep.dtbo
+ k3-j721e-sk-csi2-dual-imx219-dtbs := k3-j721e-sk.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtbo
+ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+@@ -223,6 +226,7 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+ 	k3-am69-sk-csi2-dual-imx219.dtb \
+ 	k3-j721e-common-proc-board-infotainment.dtb \
+ 	k3-j721e-evm-pcie0-ep.dtb \
++	k3-j721e-evm-pcie1-ep.dtb \
+ 	k3-j721e-sk-csi2-dual-imx219.dtb \
+ 	k3-j721s2-evm-pcie1-ep.dtb \
+ 	k3-j784s4-evm-pcie0-pcie1-ep.dtb \
+@@ -244,6 +248,7 @@ DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+ DTC_FLAGS_k3-am68-sk-base-board += -@
+ DTC_FLAGS_k3-am69-sk += -@
+ DTC_FLAGS_k3-j721e-common-proc-board += -@
++DTC_FLAGS_k3-j721e-evm-pcie0-ep += -@
+ DTC_FLAGS_k3-j721e-sk += -@
+ DTC_FLAGS_k3-j721s2-common-proc-board += -@
+ DTC_FLAGS_k3-j784s4-evm += -@
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
+new file mode 100644
+index 000000000000..a8cccdcf3e3b
+--- /dev/null
++++ b/arch/arm64/boot/dts/ti/k3-j721e-evm-pcie1-ep.dtso
+@@ -0,0 +1,53 @@
++// SPDX-License-Identifier: GPL-2.0-only OR MIT
++/**
++ * DT Overlay for enabling PCIE1 instance in Endpoint Configuration with the
++ * J7 common processor board.
++ *
++ * J7 Common Processor Board Product Link: https://www.ti.com/tool/J721EXCPXEVM
++ *
++ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/interrupt-controller/arm-gic.h>
++#include <dt-bindings/soc/ti,sci_pm_domain.h>
++
++#include "k3-pinctrl.h"
++
++/*
++ * Since Root Complex and Endpoint modes are mutually exclusive
++ * disable Root Complex mode.
++ */
++&pcie1_rc {
++	status = "disabled";
++};
++
++&cbass_main {
++	#address-cells = <2>;
++	#size-cells = <2>;
++	interrupt-parent = <&gic500>;
++
++	pcie1_ep: pcie-ep@2910000 {
++		compatible = "ti,j721e-pcie-ep";
++		reg = <0x00 0x02910000 0x00 0x1000>,
++		      <0x00 0x02917000 0x00 0x400>,
++		      <0x00 0x0d800000 0x00 0x00800000>,
++		      <0x00 0x18000000 0x00 0x08000000>;
++		reg-names = "intd_cfg", "user_cfg", "reg", "mem";
++		interrupt-names = "link_state";
++		interrupts = <GIC_SPI 330 IRQ_TYPE_EDGE_RISING>;
++		max-link-speed = <3>;
++		num-lanes = <2>;
++		power-domains = <&k3_pds 240 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 240 1>;
++		clock-names = "fck";
++		max-functions = /bits/ 8 <6>;
++		max-virtual-functions = /bits/ 8 <4 4 4 4 0 0>;
++		dma-coherent;
++		phys = <&serdes1_pcie_link>;
++		phy-names = "pcie-phy";
++		ti,syscon-pcie-ctrl = <&scm_conf 0x4074>;
++	};
++};
+-- 
+2.40.1
+
 
