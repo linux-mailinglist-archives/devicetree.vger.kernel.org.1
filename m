@@ -1,111 +1,119 @@
-Return-Path: <devicetree+bounces-109935-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001D19988A8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:03:29 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 719F89988B2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:04:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0A301F28150
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:03:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 34165B29D92
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:03:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077481CBE83;
-	Thu, 10 Oct 2024 14:02:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36D801C9EDA;
+	Thu, 10 Oct 2024 14:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyCLCPQF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FO1lKsVO"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2FC1C9EB4;
-	Thu, 10 Oct 2024 14:02:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 091461C7B6A;
+	Thu, 10 Oct 2024 14:03:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728568967; cv=none; b=OI9F+dQGJxmQJJ+b9ZFwKsi/9glmhz/YUT2HlaYS7pnV4m9x/hi211RodiqXUbyVVbOPiVfAiB1kjvf2wg/7qvsyr0gQrx5lCk/pJY9q9wha7RR+2Iu3r8sI7lHmz4sPNEY96ZBLTGCqbarlu3c3UULv0JkBaD8gZXrPtziOS8s=
+	t=1728568990; cv=none; b=NLIvosuDEIGiT1jAYrk7m1M1th4e2ZLPV9NPiSqk/gfzCA0yG7cQ66e6QWvT2amRvepZKxvd2FmyMlGWYIQeBkdNbdJICXd+vBuVXMvJPFXvmC9txDrotpooqOC1FFZKw/JNoljtPqVaG4Urp1LbDeeEkdM47cu+Lk92hd+0HR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728568967; c=relaxed/simple;
-	bh=nS8LibFP7Uli0nM5nRHClR7oAA1za5RJPPtfXxGKNIc=;
+	s=arc-20240116; t=1728568990; c=relaxed/simple;
+	bh=BygIAlplpuoaa5rCG5EvJhHrt41vr/Z+Nx1Wiya21Ro=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=EiykE2MlSs83eb+dW4iCGTUng7Q2GSSla8J0odVA0r37wN/tHwmOyWWv21SAjM1Nsm4Y5YIGsHoXDX2JljyjsGwDY7f7DGWujuIrpyajAsn0Bg11LbaWYZr22XmbnGF1gWKH0G/VpZxxnAtuF30Qs3Lqh0+36IGf9Q41pIfDiC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyCLCPQF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65CB0C4CEC5;
-	Thu, 10 Oct 2024 14:02:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=euomGw+KMSRodJsGdXhpq4aNEhxLKF6fw+bTLDJQw5l9nlDsHyd2OELPZHTQF2d1Bai91JDJTAvRgxCFMuolrc5ImTH92gDmspI5g3HKRQk44zWRhHj0+VSdGzK2e1cdCmAcRFjpXtNU1WRs82Fuad7ejWGBh9UKQAaAD/FuJ7A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FO1lKsVO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B181BC4CEC5;
+	Thu, 10 Oct 2024 14:03:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728568966;
-	bh=nS8LibFP7Uli0nM5nRHClR7oAA1za5RJPPtfXxGKNIc=;
+	s=k20201202; t=1728568989;
+	bh=BygIAlplpuoaa5rCG5EvJhHrt41vr/Z+Nx1Wiya21Ro=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MyCLCPQFAFlAiWOS7trGzk0UzeG3YI+swbEmRrvEDad7VftBx5duSlzfY4+dEJbys
-	 +dq2tKvvOYJppgxQSMoo4PYs7kvOQpCz/Rcfow918vppbKySYYELc47k3Z0/U4Kp0g
-	 v/6BhoXVnchbDLdycv89jMiUN6PK6vo8hO4ZL3pd+DbeGWeZGVkgPbvDPVyw14ov1i
-	 PPTE+z04jtrOrVLimy1dYHVMwnzfCYay1XdEYDTQc6ORqbK0WWf9T0RAM9NKGiFXux
-	 XEG2hoDnO9fDEjgC1c2otmofLK19h8loetz5O4yZ6LtTC9yQswPqu+ouhbLxMUZQ5E
-	 leMII6DEFfNDA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1sytkh-000000005Pr-1g8e;
-	Thu, 10 Oct 2024 16:02:51 +0200
-Date: Thu, 10 Oct 2024 16:02:51 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	b=FO1lKsVOX5UNb4ZAVIk6Ma/WGoLBEd/tTa6/1edNYR7b/8105Vy6BC/Qhv2tv2cOX
+	 RZ6h6U3Bfr6+iYnvjBGJ41Wzu5tEpnx5WzFPgUp1amyRnnBAsWVWaH1DdeOTrkIkde
+	 HQyPXFk4nuKQUQlLgyY1QSjsANFlA1VvfLZBZ0w9NOravPh812MISdE2DHOcBOJ4Qv
+	 n/iQ+XDqHqSrK45hF7oP0XjIV29YxcVXGSMQeX+fAfNjJdStF8l5oh2PYktOwixMBY
+	 Myu+/ljnXnj6LI56F4DKIFyckJJMX8jL0HNzbNSkIQs8jOHxYtJRfGdHnfkg7ALhJb
+	 VvPnA2OK+6Bzg==
+Date: Thu, 10 Oct 2024 15:03:05 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
-Message-ID: <Zwfei-Jn6goiya4H@hovoldconsulting.com>
-References: <20241009161715.14994-1-johan+linaro@kernel.org>
- <xwscnif4mqzykjinjtbr7jqsksy2buzindyttkk754jmumktm3@p5xxnmia7fxe>
+	Huacai Chen <chenhuacai@kernel.org>,
+	Binbin Zhou <zhoubinbin@loongson.cn>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>,
+	Richard Fitzgerald <rf@opensource.cirrus.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Weidong Wang <wangweidong.a@awinic.com>,
+	Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Shuming Fan <shumingf@realtek.com>
+Subject: Re: (subset) [PATCH v3 0/9] ASoC: Some issues about loongson i2s
+Message-ID: <ZwfemUEfFHJRiCr9@finisterre.sirena.org.uk>
+References: <cover.1728459624.git.zhoubinbin@loongson.cn>
+ <172855884981.3258793.17729935826036139739.b4-ty@kernel.org>
+ <CAMpQs4+0_P0ExcU7O12XvKPQ+CoP8KpAWUJpL2wP4--+gWQ6hA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="elDH6aAabrlLvot5"
 Content-Disposition: inline
-In-Reply-To: <xwscnif4mqzykjinjtbr7jqsksy2buzindyttkk754jmumktm3@p5xxnmia7fxe>
+In-Reply-To: <CAMpQs4+0_P0ExcU7O12XvKPQ+CoP8KpAWUJpL2wP4--+gWQ6hA@mail.gmail.com>
+X-Cookie: Editing is a rewording activity.
 
-On Thu, Oct 10, 2024 at 04:54:19PM +0300, Dmitry Baryshkov wrote:
-> On Wed, Oct 09, 2024 at 06:17:15PM GMT, Johan Hovold wrote:
-> > The DWC PCIe controller can be used with its internal MSI controller or
-> > with an external one such as the GICv3 Interrupt Translation Service
-> > (ITS).
-> > 
-> > Add the msi-map properties needed to use the GIC ITS. This will also
-> > make Linux switch to the ITS implementation, which allows for assigning
-> > affinity to individual MSIs. This specifically allows NVMe and Wi-Fi
-> > interrupts to be processed on all cores (and not just on CPU0).
-> > 
-> > Note that using the GIC ITS on x1e80100 will cause Advanced Error
-> > Reporting (AER) interrupts to be received on errors unlike when using
-> > the internal MSI controller. Consequently, notifications about
-> > (correctable) errors may now be logged for errors that previously went
-> > unnoticed.
-> > 
-> > Also note that PCIe5 (and PCIe3) can currently only be used with the
-> > internal MSI controller due to a platform (firmware) limitation.
-> > 
-> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > ---
-> > 
-> > The PCIe Gen4 stability fixes [1] are now in 6.12-rc1 so that we can enable
-> > the GIC ITS without being flooded with link error notifications [2].
-> 
-> Cc: <stable+noautosel@kernel.org> # Depends on driver stability fixes
 
-This patch is enabling a new feature, it is not a fix, so Bjorn please
-do not include the above tag when applying.
+--elDH6aAabrlLvot5
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Oct 10, 2024 at 06:15:22PM +0600, Binbin Zhou wrote:
+> On Thu, Oct 10, 2024 at 5:14=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
 
-But thanks for reviewing.
+> > [5/9] ASoC: loongson: Fix component check failed on FDT systems
+> >       (no commit info)
 
-Johan
+> Thanks for applying this patchset.
+
+> But I don't seem to see the 5th patch in the for-next branch, what
+> other questions do you have about that patch?
+> On FDT systems we need this patch, otherwise the component check will fai=
+l.
+
+That's a bugfix so is going as such.
+
+--elDH6aAabrlLvot5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmcH3pEACgkQJNaLcl1U
+h9Dgzgf+JGDkp2/NsV0ZjdHREp4keQ6HGjDH37shxHpVA1zHNQvVwqlqgdkKjhZR
+sC0i1zIb1NJe+2214yDGwKfJf+quKJ/uBsvoD5UmR1+rYLGuhiQ0SS/NtjtC5w19
+Gk5PJUmHn3dKqNV07yLPulOuJ7Yv7373IUO8IqvWzjDShc5n5ThHSoT7F953vArf
+WH4S7M83Zvef5NqplBTcfensCgiC+P6OMDQhLvZkFtQvaUC73VjsHuB3MT8bg3dN
+r9O9bWWrAY6RsN8hFZb6ZHn/sP2kA5dHUr9uwxlZtJ+fjPSexkPfh0RpC2zJO1Mr
+VYZJpu0Eclb8nxbcV7C7P2L8aJkDQg==
+=MHlW
+-----END PGP SIGNATURE-----
+
+--elDH6aAabrlLvot5--
 
