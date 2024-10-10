@@ -1,247 +1,130 @@
-Return-Path: <devicetree+bounces-109851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9995399834B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:14:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF81B998350
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:14:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA87A1C22270
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:14:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 948FD1F21DE2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:14:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9854A1BE245;
-	Thu, 10 Oct 2024 10:14:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6DC1BF7E5;
+	Thu, 10 Oct 2024 10:14:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="m+G+Bv0Q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n80285aQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB56A18C03D;
-	Thu, 10 Oct 2024 10:14:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A0C18C03D;
+	Thu, 10 Oct 2024 10:14:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728555248; cv=none; b=iF+vnNkSD483pq0iR58G2Wbk11KJTY7xj9exIFIH68HFxaarbMVMc+VkF1Mz3g6OzlmWkJPd3ngN4LOmn9oghRoS8hqw03pWZTRt81INpRXxYVhQu065KIEfJLBRGSKXSTWD8XXt+N4OLAhk3tCstlpo1Bzu44OBoWLGAWOg26o=
+	t=1728555275; cv=none; b=j7D80a0JJcccr2Pl0agU+7kqDLZH/tIFY0HzJNAg6kLNLDzEqrkiBNKZWq6u0G7jni0ogMcjNYWBomdxqJtpIzOBlyTFaC6xdAoAqXeLaZgcy/I8Khw0WciqZPlOBv6s8ZlRvTjkSmU+23/uO947B3M/i3kngPYyJCzC4VbpcZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728555248; c=relaxed/simple;
-	bh=0KAiACrjjJ72TxGhBqwhkMqSGcqCFRpLzWvue9NX8Ik=;
-	h=Message-ID:Date:From:To:Cc:Subject:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KAJO8Rn8EnKVfjI9GfapulVQfv4tngwY455PfC4TvsgwVJ1lVEU56keCvaccswvotWnAjOwqC4sbkccoZamKBzeKWifrRHNu2+4RVph2gC9g0z5bqZizjp/tcxBOAzDf3ndgewVx6CCC/UGTO4yzZ+mSUdPLDzhjOFtFQmmEJ1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=m+G+Bv0Q; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-43111cff9d3so5409705e9.1;
-        Thu, 10 Oct 2024 03:14:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728555245; x=1729160045; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=NEBHPmIBUM6VSOI3jWXFPmWe5D+zUJl1ezE/xec47aQ=;
-        b=m+G+Bv0QBFoXAJsmsy8eym2F4eSbjA5hhDVpmonX6QwBtrSlzR9ozpdba1xcIZXoZf
-         ibcgut80lJSqsejGTRixgKFzMP8oCFtPXtSKpfdBlXt6l/f8Q2jWbjT8saUbxn2s0zQ/
-         cflLKz9QM1snWunmfvrf/A29dpp94NaQy/WUjBON3GUF4hHjEWVMmq7rLu/bzNfn9oWV
-         GgcJQKz4TgSg6g6ypQogWMAuKhypCSf3JyNt+j+ktAwc0X86MO/rRB7yGz5k4hzpnX+F
-         qvYyU3Mb8ZQMPrgPncBYIY54A/0oegegL4VmyAXcNOqDSl86PII3nTAuJrpsLi97xaF0
-         5lqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728555245; x=1729160045;
-        h=in-reply-to:content-disposition:mime-version:references:subject:cc
-         :to:from:date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NEBHPmIBUM6VSOI3jWXFPmWe5D+zUJl1ezE/xec47aQ=;
-        b=wyb5ccH61G/59e3+QD0OX+ORaqbpfyKbyzRX9S5/wPCQTPzfuFDog0pox+ytdQlLs4
-         5jE99g4OjmKkctqJOV434pfw/Opji3V+HrtfxPZt3IknrLKH20ybwrvQd8ssyZ9JJqTW
-         t2e8ykx1FungljZGjRaunkBJp5QSVALInbdsCvnlVqV4dbzHUTOyZlUetmWRP7t3fotX
-         yARxqINfAPTOM4j8ubJA/mpZuuDCJv01rMC3Nfyqq0WHnA80f0SdkAplODUmcSCnjwpt
-         VsL8JPegIeFuFm/al8vsBz8j5meFyiyLSa30ItHszCf/farnkPSsNqUMx+wVpXTEfmHn
-         JE0g==
-X-Forwarded-Encrypted: i=1; AJvYcCVwLAgJKlRz6dSJQhKqcXph+K3Kz0HRqdPXWHOsTc57VGrm5qrEnYAo42uWMEqxaQ0gPHoXp9gzF86TVA==@vger.kernel.org, AJvYcCX7fM2Pm7Ah7FEb2wtZ7XyCzaXs5f8e6DzZjbuebF4iIfcCba0XHaVEXdunQzcgaOd0rc335ZhWy/5V@vger.kernel.org, AJvYcCXHSgCdpbAPoINhB0iTk9SpRgTyV705DTSa3qovX8mE9+QAf8cNDBx5ns3d2t3bG6PCrmOmMW9fec7o@vger.kernel.org
-X-Gm-Message-State: AOJu0YzN2npupRjT0M86AHY0YH2BMAIZaPOMjSywSgslnSt1G1Z5WhEp
-	ibXS19QSnhI3I2t5c6te5Uw4yDyClZUded4rFi+q01vKB1f9A5CI
-X-Google-Smtp-Source: AGHT+IGDPGThMhthTE4710yoRanga/BmvaFtKZR6ry5ge58zkraATJT3E+r426UaY8y7XNd+9NOQAQ==
-X-Received: by 2002:a05:600c:47d7:b0:431:12d0:746b with SMTP id 5b1f17b1804b1-43112d0755emr31012825e9.35.1728555244842;
-        Thu, 10 Oct 2024 03:14:04 -0700 (PDT)
-Received: from Ansuel-XPS. (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b6a8940sm1117058f8f.6.2024.10.10.03.14.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 03:14:04 -0700 (PDT)
-Message-ID: <6707a8ec.df0a0220.376450.293e@mx.google.com>
-X-Google-Original-Message-ID: <Zweo6cusuf9_tnnt@Ansuel-XPS.>
-Date: Thu, 10 Oct 2024 12:14:01 +0200
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Lee Jones <lee@kernel.org>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] mfd: airoha: Add support for Airoha EN7581 MFD
-References: <20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org>
- <20241001-en7581-pinctrl-v5-3-dc1ce542b6c6@kernel.org>
- <20241002132518.GD7504@google.com>
- <ZwWscWk5axQI9H1t@lore-desk>
- <20241009104821.GF276481@google.com>
- <20241009105550.GG276481@google.com>
+	s=arc-20240116; t=1728555275; c=relaxed/simple;
+	bh=MrI7UO9DkNILrgrGDxPJFW3FSW9WF1yU5y98aHjfB9Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=UJi6VttoWMXw0zXrBcLjOdpeNLKRBKPXu/BqYfjWF6cpZ7/fa8PrdBCmKurlJbRPGMpKu/hEmn+FHgiaSNiVAAZk9htur0ombcjv2HK/xPfNDys/zeE79JMrqGEAG4C6Gnh4fholD3wm76FTeU38TRVe9niF/nNUP6mKQdOv7mI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n80285aQ; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49A1bLcD023702;
+	Thu, 10 Oct 2024 10:14:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	OM06fI4SwiEmMbVmLrFK9GDPa/CstAMR3gUBg0vz79Q=; b=n80285aQdJnkAKZL
+	5GMTU2qvXkYA+qmS1u8mlgPl6hbIBfhzc3jm82073rr3gINzF4e6k3kpONmUz/TP
+	SPU0pnAx+J+xOktEmDe/vcVEHHLsBQz6eeM3rWLq2wkFjlxgBOFDJnIH0gc8iW5e
+	22uT11+zKjhbYKQ8oSg6DNzMqdwU25n+Ot4hUxi/9rMTjOah/M3cE3fHhv74Qvhv
+	d7GyWFApmVoK9FqOr/Pu/EamiG2THk8JfkJpHFGzgIjMd14LqgK46ob3+P4SUNca
+	aP7HueTsdiRa11n3wgoDgdAKaL8ym69P9F4EhzIEDr7w1Ka5LPhcz8+P3WLuIz54
+	4miyIg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndyh21r-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 10:14:29 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49AAEScq005747
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 10:14:28 GMT
+Received: from [10.253.78.114] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
+ 2024 03:14:24 -0700
+Message-ID: <bd209e3c-41b5-4e70-ad15-b3f2ff265afb@quicinc.com>
+Date: Thu, 10 Oct 2024 18:14:21 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009105550.GG276481@google.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] arm64: dts: qcom: move common parts for qcs8300-ride
+ variants into a .dtsi
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Richard Cochran
+	<richardcochran@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>
+References: <20241010-dts_qcs8300-v1-0-bf5acf05830b@quicinc.com>
+ <20241010-dts_qcs8300-v1-4-bf5acf05830b@quicinc.com>
+ <75vxiq4n2tdx3ssmnbq7qpp2ujtzjs4bkgpkpsi623fs3mpslx@ijmaos2gg5ps>
+Content-Language: en-US
+From: Yijie Yang <quic_yijiyang@quicinc.com>
+In-Reply-To: <75vxiq4n2tdx3ssmnbq7qpp2ujtzjs4bkgpkpsi623fs3mpslx@ijmaos2gg5ps>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: TmYmN6RgKUPYTndxeSdPKTmNcd4aObyj
+X-Proofpoint-ORIG-GUID: TmYmN6RgKUPYTndxeSdPKTmNcd4aObyj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=949 spamscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410100067
 
-On Wed, Oct 09, 2024 at 11:55:50AM +0100, Lee Jones wrote:
-> On Wed, 09 Oct 2024, Lee Jones wrote:
+
+
+On 2024-10-10 14:18, Krzysztof Kozlowski wrote:
+> On Thu, Oct 10, 2024 at 10:57:18AM +0800, Yijie Yang wrote:
+>> In order to support multiple revisions of the qcs8300-ride board, create
+>> a .dtsi containing the common parts and split out the ethernet bits into
+>> the actual board file as they will change in revision 2.
+>>
+>> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts  | 373 +----------------------------
+>>   arch/arm64/boot/dts/qcom/qcs8300-ride.dtsi | 364 ++++++++++++++++++++++++++++
 > 
-> > On Wed, 09 Oct 2024, Lorenzo Bianconi wrote:
-> > 
-> > > On Oct 02, Lee Jones wrote:
-> > > > On Tue, 01 Oct 2024, Lorenzo Bianconi wrote:
-> > > > 
-> > > > > From: Christian Marangi <ansuelsmth@gmail.com>
-> > > > > 
-> > > > > Support for Airoha EN7581 Multi Function Device that
-> > > > > expose PINCTRL functionality and PWM functionality.
-> > > > 
-> > > > The device is a jumble of pinctrl registers, some of which can oscillate.
-> > > > 
-> > > > This is *still* not an MFD.
-> > > > 
-> > > > If you wish to spread this functionality over 2 drivers, use syscon to
-> > > > obtain the registers and simple-mfd to automatically probe the drivers.
-> > > 
-> > > Hi Lee,
-> > > 
-> > > IIUC you are suggesting two possible approaches here:
-> > > 
-> > > 1- have a single driver implementing both pinctrl and pwm functionalities.
-> > >    This approach will not let us reuse the code for future devices that
-> > >    have just one of them in common, like pwm (but we can live with that).
-> > 
-> > If you can have one without the other, then they are separate devices.
-> > 
-> > > 2- use a device node like the one below (something similar to [0])
-> > > 
-> > > system-controller@1fbf0200 {
-> > > 	compatible = "syscon", "simple-mfd";
-> > > 	reg = <0x0 0x1fbf0200 0x0 0xc0>;
-> > > 
-> > > 	interrupt-parent = <&gic>;
-> > > 	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> > > 
-> > > 	gpio-controller;
-> > > 	#gpio-cells = <2>;
-> > > 
-> > > 	interrupt-controller;
-> > > 	#interrupt-cells = <2>;
-> > > 
-> > > 	pio: pinctrl {
-> > > 		compatible = "airoha,en7581-pinctrl";
-> > > 
-> > > 		[ some pinctrl properties here ]
-> > > 	};
-> > > 
-> > > 	#pwm-cells = <3>;
-> > > 
-> > > 	pwm {
-> > > 		compatible = "airoha,en7581-pwm";
-> > > 	};
-> > > };
-> > > 
-> > > Please correct me if I am wrong, but using syscon/simple-mfd as compatible
-> > > string for the 'parent' device, will require to introduce the compatible strings
-> > > even for the child devices in order to probe them, correct? 
-> > > If so, as pointed out by Christian, this is something nacked by Rob/Krzysztof/Conor
-> > > (this is the main reason why we introduced a full mfd driver here).
-> > > 
-> > > @Rob, Krzysztof, Conor: am I right?
-> > 
-> > I don't see why separate functionality shouldn't have separate
-> > compatible strings, even if the registers are together.  Register layout
-> > and functionality separation are not related.
+> This is tricky to review. Use proper -M/-B/-C arguments for
+> format-patch, so the rename will be detected.
 > 
-> We've been happy to support both pinctrl and pwm devices before:
+> You basically renamed entire file!
+
+Sure, I'll handle the optimization of that.
+
 > 
->   git grep "\-pinctrl\|\-pwm" -- drivers/mfd
->   git grep "\-pinctrl\|\-pwm" -- arch/*/boot/dts
+> Best regards,
+> Krzysztof
 > 
->   git grep "\-pinctrl" -- arch/*/boot/dts | wc -l
->   602
->   git grep "\-pwm" -- arch/*/boot/dts | wc -l
->   856
-> 
-> What makes this particular device different to all of the others?
->
 
-Hi Lee,
-
-this would be the final DTS following the "simple-mfd" pattern.
-
-Can you confirm it's correct?
-
-mfd: system-controller@1fbf0200 {
-	compatible = "syscon", "simple-mfd";
-	reg = <0x0 0x1fbf0200 0x0 0xc0>;
- 
-	interrupt-parent = <&gic>;
-	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
- 
-	gpio-controller;
-	#gpio-cells = <2>;
- 
-	interrupt-controller;
-	#interrupt-cells = <2>;
-
-	gpio-ranges = <&mfd 0 13 47>;
-
-	#pwm-cells = <3>;
- 
-	pio: pinctrl {
-		compatible = "airoha,en7581-pinctrl";
- 
-		mdio_pins: mdio-pins {
-			mux {
-				function = "mdio";
-				groups = "mdio";
-			};
- 
-			conf {
-				pins = "gpio2";
-				output-high;
-			};
-		};
- 
-		pcie0_rst_pins: pcie0-rst-pins {
-			conf {
-				pins = "pcie_reset0";
-				drive-open-drain = <1>;
-			};
-		};
- 
-		pcie1_rst_pins: pcie1-rst-pins {
-			conf {
-				pins = "pcie_reset1";
-				drive-open-drain = <1>;
-			};
-		};
-	};
- 
-	pwm {
-		compatible = "airoha,en7581-pwm";
-	};
-};
-
--- 
-	Ansuel
 
