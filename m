@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-110050-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110051-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EC73998F72
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:10:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F31B998F7E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:11:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FD632884B3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:10:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B7731C23D0D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:11:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBB041CCEC5;
-	Thu, 10 Oct 2024 18:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FCB1C9DE6;
+	Thu, 10 Oct 2024 18:11:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ImVHqF34"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rkLoNcUh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C264619D07B;
-	Thu, 10 Oct 2024 18:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28DBE1C9B64;
+	Thu, 10 Oct 2024 18:11:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728583732; cv=none; b=u5DfrM4sJiPRitVW01qvVrnlYoKzSiPXSPYnKVeHYlt/swwnxIp6Sxs3IBSW29XGXFKJ2RkncRmC5uk+Qpc0nF6KYNTsE8CbcVba4Qpx2XBvtbU/mbi1joyRI1zhIgH4HtcUdyWnSN3Hxni76WokqDKx8SGC2q38NuEu9zJhU08=
+	t=1728583884; cv=none; b=CN7iq0ef3nDp+CNstgCBJN393QALnCgmtfDRbt5+CpYaCZCCnPAqEq7pcEd1Cc7pBcj2/mDbZYBmU1uxAR8SHVXdvuvTbAxPM70OXm/c/hw3ScwifYOJVvvvFobx96MIYa2AmR4OOb0tF60Fx7HJCRKWnEhds4VJaZuev+M4oac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728583732; c=relaxed/simple;
-	bh=kRyuQEirx8OT3QxshSDoNDq0jtdqV++P9IE7Wa7d97Y=;
+	s=arc-20240116; t=1728583884; c=relaxed/simple;
+	bh=9eB11WqtyHOt+MBm/RTQKveBaJUUL+c2eHCqHHpop84=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ehp1ZgOcpf45mmb4wX6UTR4K6VIlmsMUiJp0B4J//WR5bDYryuyOAh2TbBkrNsJp0SIIpezXvsClTBUKTFo2J/b4+KUdwY/gpbj8Ohr2BWdp9+zlqVESMJs431f0/BAMIpOIt0t+e7Zor/4APM6RODpOp/Ifnx6QLYrSmsKZISQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ImVHqF34; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 185C8C4CEC5;
-	Thu, 10 Oct 2024 18:08:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=jt3YUou3oW9PZReLTdUJtdeMVqAg8U7d7amDlQs6UFRUWippvYS6nMcm6F75UOeU3zmePP6ePrV+0/W5y1NuZCRTap6CoviUDDTPGcwRU0HG9Tw1CrhmuJCpIuHdeAFVEo2iegP/gbYGOh8iv8T50t0cEk0QkCgaJsDJwxM8x0s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rkLoNcUh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 50672C4CEC5;
+	Thu, 10 Oct 2024 18:11:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728583732;
-	bh=kRyuQEirx8OT3QxshSDoNDq0jtdqV++P9IE7Wa7d97Y=;
+	s=k20201202; t=1728583883;
+	bh=9eB11WqtyHOt+MBm/RTQKveBaJUUL+c2eHCqHHpop84=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ImVHqF34ZN8lV6UT/hSHMhvJ6R6TsRCOwj0xZPU5jUPfDOOi11a+8mbryjMJbw4Qc
-	 KIO/1QcnAGcTU/AY1Cb09cW+lzxuFUhE9CgRoxfrEQB65iREMGsjj7/RcXQpuiZl0a
-	 VdtCbBw34u6eApoKmfZAes1t6CRZeDcO31PasH4wuH6EMvDSWJiEZ6wJ6PPnzU8QIX
-	 U0iCzKpCa+VWoKjqdM3KdI71NFx7iTKXLdwxJ6BS/5PYa4mY+aZKvzCgqn3MFqG+AY
-	 cZzJj8+AAGmBPSxl/o1k+WKd0qUkaMCoBmJcycLyurJ0PsvAdpHQoFVMn4uYnAO3Sz
-	 Hsc+9IxuoIHig==
-Date: Thu, 10 Oct 2024 13:08:48 -0500
-From: Rob Herring <robh@kernel.org>
-To: Songwei Chai <quic_songchai@quicinc.com>
-Cc: Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>,
-	James Clark <james.clark@arm.com>,
-	Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-	Andy Gross <agross@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+	b=rkLoNcUhN4Nhu8seaL5Sq3HThSd9JqrmwB8zT4kdzEx9wZC/Ao/cVGvsFyliBue6C
+	 EMYHnrxHWWB90dzEd+iww7ivqMpPgHi6lbXY4GIX8ALUync3fsCvkCBmj/zxpW8qQY
+	 Wbnkr50JnbaaALbFPhzd/VzAFQlNnXF+/NvnEPvcoM5oCtk9LnS/72lCZXObY5DANn
+	 gN8/EwrvK5ZbAtaE0HGT7Iv9lcc98yrIp9nOW8RemMErjoxWJ/W7QX+B71ai8JRWdt
+	 k1jlSHzlkurbAziPrUN0g/gadXnOJFv5haDAJUXQCBQteBCvLgslnYAor7EkpLsN7v
+	 IZGiSvg1cu3Yw==
+Date: Thu, 10 Oct 2024 13:11:21 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>, dmaengine@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/7] dt-bindings: arm: Add support for Coresight TGU
- trace
-Message-ID: <20241010180848.GA2094931-robh@kernel.org>
-References: <20241010073917.16023-1-quic_songchai@quicinc.com>
- <20241010073917.16023-2-quic_songchai@quicinc.com>
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 01/11] dt-bindings: dma: stm32-dma3: prevent
+ packing/unpacking mode
+Message-ID: <172858388128.2107709.9101314940508767335.robh@kernel.org>
+References: <20241010-dma3-mp25-updates-v1-0-adf0633981ea@foss.st.com>
+ <20241010-dma3-mp25-updates-v1-1-adf0633981ea@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,214 +64,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241010073917.16023-2-quic_songchai@quicinc.com>
+In-Reply-To: <20241010-dma3-mp25-updates-v1-1-adf0633981ea@foss.st.com>
 
-On Thu, Oct 10, 2024 at 03:39:09PM +0800, Songwei Chai wrote:
-> The Trigger Generation Unit (TGU) is designed to detect patterns or
-> sequences within a specific region of the System on Chip (SoC). Once
-> configured and activated, it monitors sense inputs and can detect a
-> pre-programmed state or sequence across clock cycles, subsequently
-> producing a trigger.
+
+On Thu, 10 Oct 2024 16:27:51 +0200, Amelie Delaunay wrote:
+> When source data width/burst and destination data width/burst are
+> different, data are packed or unpacked in DMA3 channel FIFO.
+> Data are pushed out from DMA3 channel FIFO when the destination burst
+> length (= data width * burst) is reached.
+> If the channel is stopped before the transfer end, and if some bytes are
+> packed/unpacked in the DMA3 channel FIFO, these bytes are lost.
+> Indeed, DMA3 channel FIFO has no flush capability, only reset.
+> To avoid potential bytes lost, pack/unpack must be prevented by setting
+> memory data width/burst equal to peripheral data width/burst.
+> Memory accesses will be penalized. But it is the only way to avoid bytes
+> lost.
 > 
->    TGU configuration space
->         offset table
->  x-------------------------x
->  |                         |
->  |                         |
->  |                         |                           Step configuration
->  |                         |                             space layout
->  |   coresight management  |                           x-------------x
->  |        registers        |                     |---> |             |
->  |                         |                     |     |  reserve    |
->  |                         |                     |     |             |
->  |-------------------------|                     |     |-------------|
->  |                         |                     |     | priority[3] |
->  |         step[7]         |<--                  |     |-------------|
->  |-------------------------|   |                 |     | priority[2] |
->  |                         |   |                 |     |-------------|
->  |           ...           |   |Steps region     |     | priority[1] |
->  |                         |   |                 |     |-------------|
->  |-------------------------|   |                 |     | priority[0] |
->  |                         |<--                  |     |-------------|
->  |         step[0]         |-------------------->      |             |
->  |-------------------------|                           |  condition  |
->  |                         |                           |             |
->  |     control and status  |                           x-------------x
->  |           space         |                           |             |
->  x-------------------------x                           |Timer/Counter|
->                                                        |             |
-> 						       x-------------x
-> TGU Configuration in Hardware
+> Some devices (e.g. cyclic RX like UART) need this, so add the possibility
+> to prevent pack/unpack feature, by setting bit 16 of the 'DMA transfer
+> requirements' bit mask.
 > 
-> The TGU provides a step region for user configuration, similar
-> to a flow chart. Each step region consists of three register clusters:
-> 
-> 1.Priority Region: Sets the required signals with priority.
-> 2.Condition Region: Defines specific requirements (e.g., signal A
-> reaches three times) and the subsequent action once the requirement is
-> met.
-> 3.Timer/Counter (Optional): Provides timing or counting functionality.
-> 
-> Add a new coresight-tgu.yaml file to describe the bindings required to
-> define the TGU in the device trees.
-> 
-> Signed-off-by: Songwei Chai <quic_songchai@quicinc.com>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
 > ---
->  .../bindings/arm/qcom,coresight-tgu.yaml      | 133 ++++++++++++++++++
->  1 file changed, 133 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
+>  Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
-> new file mode 100644
-> index 000000000000..25b464486fe2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/qcom,coresight-tgu.yaml
-> @@ -0,0 +1,133 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +# Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/qcom,coresight-tgu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Trigger Generation Unit - TGU
-> +
-> +description: |
-> +  The Trigger Generation Unit (TGU) is a Data Engine which can be utilized
-> +  to sense a plurality of signals and create a trigger into the CTI or
-> +  generate interrupts to processors. The TGU is like the trigger circuit
-> +  of a Logic Analyzer.The corresponding trigger logic can be realized by
 
-space                    ^
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> +  configuring the conditions for each step after sensing the signal.
-> +  Once setup and enabled, it will observe sense inputs and based upon
-> +  the activity of those inputs, even over clock cycles, may detect a
-> +  preprogrammed state/sequence and then produce a trigger or interrupt.
-> +
-> +  The primary use case of the TGU is to detect patterns or sequences on a
-> +  given set of signals within some region of the SoC.
-> +
-> +maintainers:
-> +  - Mao Jinlong <quic_jinlmao@quicinc.com>
-> +  - Sam Chai <quic_songchai@quicinc.com>
-> +
-> +# Need a custom select here or 'arm,primecell' will match on lots of nodes
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - qcom,coresight-tgu
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: qcom,coresight-tgu
-> +      - const: arm,primecell
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
-> +
-> +  qcom,tgu-steps:
-> +    description:
-> +      The trigger logic is realized by configuring each step after sensing
-> +      the signal. The parameter here is used to describe the maximum of steps
-> +      that could be configured in the current TGU.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 8
-> +
-> +  qcom,tgu-regs:
-> +    description:
-> +      There are some "groups" register clusters in each step, which are used to configure the signal
-> +      that we want to detect.Meanwhile, each group has its own priority, and the priority increases
-
-space                           ^
-
-> +      with number of groups.For example, group3 has a higher priority than group2 ,the signal configured
-
-space                          ^
-
-Wrong spacing around the ','.
-
-> +      in group3 will be sensed more preferentially than the signal which is configured in group2.
-> +      The parameter here is used to describe the signal number that each group could be configured.
-
-Wrap lines at 80 unless there's some exception not to.
-
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 18
-> +
-> +  qcom,tgu-conditions:
-> +    description:
-> +      A condition sets a specific requirement for a step and defines the subsequent
-> +      action once the requirement is met. For example, in step two, if signal A is
-> +      detected three times, the process jumps back to step one. The parameter describes
-> +      the register number for each functionality, whether it is setting a specific
-> +      requirement or defining a subsequent action.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 1
-> +    maximum: 4
-> +
-> +  qcom,tgu-timer-counters:
-> +    description:
-> +      TGU has timer and counter which are used to set some requirement on each step.
-> +      For example, we could use counter to create a trigger into CTI once TGU senses
-> +      the target signal three times.This parameter is used to describe the number of
-> +      Timers/Counters in TGU.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0
-> +    maximum: 2
-> +
-> +  in-ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      port:
-> +        description: AXI Slave connected to another Coresight component
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    tgu@10b0e000 {
-> +        compatible = "qcom,coresight-tgu", "arm,primecell";
-> +        reg = <0x10b0e000 0x1000>;
-> +
-> +        clocks = <&aoss_qmp>;
-> +        clock-names = "apb_pclk";
-> +
-> +        qcom,tgu-steps = <3>;
-> +        qcom,tgu-regs = <4>;
-> +        qcom,tgu-conditions = <4>;
-> +        qcom,tgu-timer-counters = <1>;
-> +
-> +        in-ports {
-> +            port {
-> +                tgu_in_tpdm_swao: endpoint{
-> +                    remote-endpoint = <&tpdm_swao_out_tgu>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
 
