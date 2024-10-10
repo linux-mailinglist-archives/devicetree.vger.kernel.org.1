@@ -1,218 +1,141 @@
-Return-Path: <devicetree+bounces-110094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4989C9993DE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:46:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A40699940E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:00:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1BB2873BA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:46:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAD5D1C25644
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:00:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001D61C32FB;
-	Thu, 10 Oct 2024 20:46:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 777D61CF5E2;
+	Thu, 10 Oct 2024 21:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Km089xt7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="j13sf6yM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50231991B8;
-	Thu, 10 Oct 2024 20:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C061718DF9E;
+	Thu, 10 Oct 2024 21:00:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728593198; cv=none; b=iI+ngfTO3GrXKu26bcAVWzkV7firC8OPF87AE1xTk1lzmEDJ3XmbhvBkt1M7pNXp9HlqpECaJcji5xbwyGNbaGF9aFR38LF3nuHz87sHIzEDAPFXiqp+DR+UxWw9cpzA39PrrBQQi0N78uhUwuj5MlMiS225//xHoIi/g3AdyAw=
+	t=1728594043; cv=none; b=CrZbY+AK6853wnfvNbajg7x9awEVlwzui+atzPrjxkHQVqlNSY/8E0PEjEvYSClbDSDuucn6vkIurQshG5bWU8iwxgWnvgv0dFxF6N7iTauWmnNnqSpAXEgEo8t2vwNxb/YBO0csf70s3N67w1rDrcB8xIuAApFbfTst/a86Sn8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728593198; c=relaxed/simple;
-	bh=S1ahpzpXNdPKM3/solNYAwx4dKLcG2Uf70uStU5gJNo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=g3Np8zar9Ozda2QHks2tvJAjhRWysQsMpgmUWvifflQuBTHiBhKIFUP9ilMEH7bPKrudOayFbO7bEPPLmmnDJif/TdPeCaoABBQj33OJnw4wv4ufyhDcUNRG7G4frfQ34Abjp2FnUd3u6lk3X7FILrV3uYlpPIME4RIU5+MUCD4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Km089xt7; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728593197; x=1760129197;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=S1ahpzpXNdPKM3/solNYAwx4dKLcG2Uf70uStU5gJNo=;
-  b=Km089xt7jjBBbrl1FoamTn66FSve28nFF6jr53gcGDgoHJw4nkW80N+y
-   zNPLIfZu4tB+wi0LIFu4ZkY7oKQALbmBj2quPyrTHsPFwVyRmFP0FH8T6
-   Sx/zv0RMHvQMFU5efSb+ScA3MK7U+UWcTct+9RyQxu/0tW+UZ9LJ2XdTz
-   ytcRhEUjOaBlqDb6n4gEDDJq+8+73cieF5amb9GWlieV1io1x52YbLr9X
-   6mIT7VFybQGtOy7wtIR+67uGuA19FuqCiywyhHqDcCC/RlXYyKZ+Mbw9J
-   S1CI2dsX0ivEMWh1GpiMXvDACGJLULhBmqvSHczB0YCvSxWcBXaylBaip
-   g==;
-X-CSE-ConnectionGUID: UcdaIAkQSA68nzUn9VDuyg==
-X-CSE-MsgGUID: C3qr7vFzTTyfIbR2bG3e5w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27429745"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
-   d="scan'208";a="27429745"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 13:46:36 -0700
-X-CSE-ConnectionGUID: to4zHtkIQx2umYFIna6ERg==
-X-CSE-MsgGUID: 53zt824LRBeCJ7+J+CsTBQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
-   d="scan'208";a="76803645"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 10 Oct 2024 13:46:33 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sz03K-000BFr-0D;
-	Thu, 10 Oct 2024 20:46:30 +0000
-Date: Fri, 11 Oct 2024 04:45:59 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dzmitry Sankouski <dsankouski@gmail.com>,
-	Sebastian Reichel <sre@kernel.org>,
-	Chanwoo Choi <cw00.choi@samsung.com>,
-	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Pavel Machek <pavel@ucw.cz>
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Dzmitry Sankouski <dsankouski@gmail.com>
-Subject: Re: [PATCH v6 6/7] power: supply: max77705: Add fuel gauge driver
- for Maxim 77705
-Message-ID: <202410110404.etzjIhE5-lkp@intel.com>
-References: <20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57@gmail.com>
+	s=arc-20240116; t=1728594043; c=relaxed/simple;
+	bh=7bAsfej3F3UOQITbTD5i+PrHVQoQ/kGGgYNcoLQiNcM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=b2kReUAz7XR3LePgw/Oqxx0NnvgX5IZK4N51J6YQsP1t9sCvWqGiplpH8Xy71/HBQmWWWu3VRMLIbwPjhA/cu3BSVoVo682x3gvOv+db5mQ4fusG9LOGglU8Dqjt6iATJHTTbkFdJG4yNQL2Ndz4PXBJrMlpy9ywSLqxMStUnXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=j13sf6yM; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a995f56ea2dso218353066b.1;
+        Thu, 10 Oct 2024 14:00:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728594040; x=1729198840; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=BMaWiHE3pYIgk6DYKKitsC7ifQt/kUwZ8x7Uml2F/R0=;
+        b=j13sf6yMCjExi5CQPAvm8UrO9if2Xuog9a68WdR26UJN/nGSf1lF660atdZPhJrPLu
+         XlGpPlJZoBxSDe56CuKmEKnP2Dh3eb5dCmU4dt40FWXXX3rJrDWvlQVv1McDAzJjbkna
+         r+3c2PJ0Ll3IAPy1YLBe37P5BeVyD1tCJCgMWAPnjkGTn2VI0ZtKgX2rGgg/uObpQrRp
+         X8seCbOLKd/8vd+6wbWNVrjUoRS1TWbTH+N8i05xAELW3j3sYQdQgWPmsEp2WbGZE0nj
+         ekJxOOvMs1rx+94rdC4WYARcXUj9lg/H4q4TZ8U7f9TWXWFn3eu1lR5HUg8mOkpxk3QD
+         NDvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728594040; x=1729198840;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BMaWiHE3pYIgk6DYKKitsC7ifQt/kUwZ8x7Uml2F/R0=;
+        b=PkiWKg5LhxUhYUER9R1u558S386n0qXB3hNdb7WpPfqVk6A5lIAQzJ3yU44qzoI7XX
+         GRnQt/00frNzWIVZwVnllHHqOvTIr89P+TLcO1c6C+ofK3ojf0yaWCY3YqiuzqAr8ABe
+         Di7qlF8+m2HFKffPNk2gyvxNbVXITLkCwlDyexMRefPaz5zyMos6on8Lb1qFm4LZ8R+Z
+         tD6hZIQg9enZeIwY6L8St3Afue95TcY3Ap+MUATfoQFzbCuc8HIcn9VysI3+2nv9Y1cV
+         Ci/AN1q63uBE8QTXxSOxKJ6Zea9j0rlYf4Le0U3zlq9rlIz9V1cUWVVhP0Ane21R62ed
+         wKgg==
+X-Forwarded-Encrypted: i=1; AJvYcCWNy7++HFrkgD8RvObjVaOttcurZCW+eRatOa9itPkt6o0k+I44opwYQGccEpXjG8La2uyLquvJObWK@vger.kernel.org, AJvYcCXEOoMP0Kr5FiHtzwm+KIYbdIZ/zmoix6SvYeNx7fcHioWx2f28Onyy0Na7Fwjx6UPTCvemHD+r+gLK4U4W@vger.kernel.org, AJvYcCXfVBLnQewQvcj0vSHMAHeIvcTDYbuKbMemredj6sTx1G6cJ6u6+9MBYKRlVEixshVOd1/BUeLPhh49@vger.kernel.org
+X-Gm-Message-State: AOJu0YweXJxSHjpn1K4z12Fz4144S7i2NObyLs4jrwrq5rWeD7OIVUFA
+	Lrvh25LndIIbvqGVJz7N88/C2i6BA3fHW4fis/QcL9bMp0VtDurc
+X-Google-Smtp-Source: AGHT+IFXEiXNqJDX6cJ33qjqkWjyf7pBsT2sKMjO4XnJp1nYMnxIWO0lM8XP5UD5UNDdq9ZdwuXfIA==
+X-Received: by 2002:a17:907:7288:b0:a99:4a8f:c83f with SMTP id a640c23a62f3a-a99b9302719mr19547666b.5.1728594039916;
+        Thu, 10 Oct 2024 14:00:39 -0700 (PDT)
+Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:7eab:ec9d:62da:64f5])
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a99a7f25f4dsm135692566b.68.2024.10.10.14.00.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 14:00:39 -0700 (PDT)
+From: vamoirid <vassilisamir@gmail.com>
+To: jic23@kernel.org,
+	lars@metafoo.de,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: vassilisamir@gmail.com,
+	anshulusr@gmail.com,
+	gustavograzs@gmail.com,
+	andriy.shevchenko@linux.intel.com,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 00/13]: chemical: bme680: 2nd set of clean and add
+Date: Thu, 10 Oct 2024 23:00:17 +0200
+Message-ID: <20241010210030.33309-1-vassilisamir@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Dzmitry,
+This patch series is continuing the work that started on [1] by
+improving some small issues of the driver in the commits 1,2,3.
 
-kernel test robot noticed the following build warnings:
+Commits 4,5 are refactorizing existing code.
 
-[auto build test WARNING on 58ca61c1a866bfdaa5e19fb19a2416764f847d75]
+Commits 6,7,8 are adding DT, regulator and PM support.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Dzmitry-Sankouski/power-supply-add-undervoltage-health-status-property/20241008-000014
-base:   58ca61c1a866bfdaa5e19fb19a2416764f847d75
-patch link:    https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57%40gmail.com
-patch subject: [PATCH v6 6/7] power: supply: max77705: Add fuel gauge driver for Maxim 77705
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241011/202410110404.etzjIhE5-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241011/202410110404.etzjIhE5-lkp@intel.com/reproduce)
+Commit 9 is refactorizing one macro to attribute.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410110404.etzjIhE5-lkp@intel.com/
+Commit 10,11,12 are refactorizing the read/compensate functions
+to become generic and add triggered buffer support.
 
-All warnings (new ones prefixed by >>):
+Finally, commit 13 adds support for an *output* channel of type
+IIO_CURRENT in order to preheat the plate that is used to measure the
+quality of the air.
 
->> drivers/power/supply/max77705_fuel_gauge.c:220:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
-     220 |         case POWER_SUPPLY_PROP_MANUFACTURER:
-         |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/power/supply/max77705_fuel_gauge.c:227:6: note: uninitialized use occurs here
-     227 |         if (ret)
-         |             ^~~
-   drivers/power/supply/max77705_fuel_gauge.c:217:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
-     217 |         case POWER_SUPPLY_PROP_MODEL_NAME:
-         |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/power/supply/max77705_fuel_gauge.c:227:6: note: uninitialized use occurs here
-     227 |         if (ret)
-         |             ^~~
-   drivers/power/supply/max77705_fuel_gauge.c:169:9: note: initialize the variable 'ret' to silence this warning
-     169 |         int ret;
-         |                ^
-         |                 = 0
-   2 warnings generated.
+This and the previous series [1] started with the idea to add support
+for the new bme688 device but due to the structure of the driver I
+decided that it is better to restructure and improve some things before
+adding extra funcitonalities.
 
-Kconfig warnings: (for reference only)
-   WARNING: unmet direct dependencies detected for MODVERSIONS
-   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
-   Selected by [y]:
-   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+[1]: https://lore.kernel.org/linux-iio/20240609233826.330516-1-vassilisamir@gmail.com
 
+Vasileios Amoiridis (13):
+  iio: chemical: bme680: Fix indentation and unnecessary spaces
+  iio: chemical: bme680: avoid using camel case
+  iio: chemical: bme680: fix startup time
+  iio: chemical: bme680: move to fsleep()
+  iio: chemical: bme680: refactorize set_mode() mode
+  dt-bindings: iio: add binding for BME680 driver
+  iio: chemical: bme680: add regulators
+  iio: chemical: bme680: add power management
+  iio: chemical: bme680: Move ambient temperature to attributes
+  iio: chemical: bme680: generalize read_*() functions
+  iio: chemical: bme680: Add SCALE and RAW channels
+  iio: chemical: bme680: Add triggered buffer support
+  iio: chemical: bme680: Add support for preheat current
 
-vim +/ret +220 drivers/power/supply/max77705_fuel_gauge.c
-
-   162	
-   163	static int max77705_fg_get_property(struct power_supply *psy,
-   164					    enum power_supply_property psp,
-   165					    union power_supply_propval *val)
-   166	{
-   167		struct max77705_fuelgauge_data *fuelgauge =
-   168		    power_supply_get_drvdata(psy);
-   169		int ret;
-   170	
-   171		switch (psp) {
-   172		case POWER_SUPPLY_PROP_STATUS:
-   173			ret = max77705_battery_get_status(fuelgauge, &val->intval);
-   174			break;
-   175		case POWER_SUPPLY_PROP_PRESENT:
-   176			ret = max77705_fg_check_battery_present(fuelgauge, &val->intval);
-   177			break;
-   178		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-   179			ret = max77705_fg_read_reg(fuelgauge, VCELL_REG, &val->intval);
-   180			break;
-   181		case POWER_SUPPLY_PROP_VOLTAGE_OCV:
-   182			ret = max77705_fg_read_reg(fuelgauge, VFOCV_REG, &val->intval);
-   183			break;
-   184		case POWER_SUPPLY_PROP_VOLTAGE_AVG:
-   185			ret = max77705_fg_read_reg(fuelgauge, AVR_VCELL_REG, &val->intval);
-   186			break;
-   187		case POWER_SUPPLY_PROP_CURRENT_NOW:
-   188			ret = max77705_fg_read_reg(fuelgauge, CURRENT_REG, &val->intval);
-   189			break;
-   190		case POWER_SUPPLY_PROP_CURRENT_AVG:
-   191			ret = max77705_fg_read_reg(fuelgauge, AVG_CURRENT_REG, &val->intval);
-   192			break;
-   193		case POWER_SUPPLY_PROP_CHARGE_NOW:
-   194			ret = max77705_fg_read_reg(fuelgauge, REMCAP_REP_REG, &val->intval);
-   195			break;
-   196		case POWER_SUPPLY_PROP_CHARGE_FULL:
-   197			ret = max77705_fg_read_reg(fuelgauge, FULLCAP_REP_REG, &val->intval);
-   198			break;
-   199		case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-   200			ret = max77705_fg_read_reg(fuelgauge, DESIGNCAP_REG, &val->intval);
-   201			break;
-   202		case POWER_SUPPLY_PROP_CAPACITY:
-   203			ret = max77705_fg_read_reg(fuelgauge, SOCREP_REG, &val->intval);
-   204			break;
-   205		case POWER_SUPPLY_PROP_TEMP:
-   206			ret = max77705_fg_read_temp(fuelgauge, &val->intval);
-   207			break;
-   208		case POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW:
-   209			ret = max77705_fg_read_reg(fuelgauge, TIME_TO_EMPTY_REG, &val->intval);
-   210			break;
-   211		case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
-   212			ret = max77705_fg_read_reg(fuelgauge, TIME_TO_FULL_REG, &val->intval);
-   213			break;
-   214		case POWER_SUPPLY_PROP_CYCLE_COUNT:
-   215			ret = max77705_fg_read_reg(fuelgauge, CYCLES_REG, &val->intval);
-   216			break;
-   217		case POWER_SUPPLY_PROP_MODEL_NAME:
-   218			val->strval = max77705_fuelgauge_model;
-   219			break;
- > 220		case POWER_SUPPLY_PROP_MANUFACTURER:
-   221			val->strval = max77705_fuelgauge_manufacturer;
-   222			break;
-   223		default:
-   224			return -EINVAL;
-   225		}
-   226	
-   227		if (ret)
-   228			return ret;
-   229	
-   230		max77705_unit_adjustment(fuelgauge, psp, val);
-   231	
-   232		return 0;
-   233	}
-   234	
+ .../bindings/iio/chemical/bosch,bme680.yaml   |  64 ++
+ drivers/iio/chemical/Kconfig                  |   2 +
+ drivers/iio/chemical/bme680.h                 |   7 +-
+ drivers/iio/chemical/bme680_core.c            | 554 +++++++++++++++---
+ 4 files changed, 556 insertions(+), 71 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.43.0
+
 
