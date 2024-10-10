@@ -1,118 +1,208 @@
-Return-Path: <devicetree+bounces-109813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38FC69980B9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:50:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D399980CB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:50:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 65A441C27B80
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:50:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 632F0283FAC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B2E11BC076;
-	Thu, 10 Oct 2024 08:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5DFA1EF94F;
+	Thu, 10 Oct 2024 08:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jw/yCVYw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R8SkyaUa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9FD1BBBFD;
-	Thu, 10 Oct 2024 08:37:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9DA21EF949;
+	Thu, 10 Oct 2024 08:38:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728549462; cv=none; b=lpzxN7AFk6D+L7O7LKZFZDdgZwi+LYr8j2PFi55WtyImCTjRJ9IH/Mb7ZkNIbO0DMKuk0zjpixhx+pHH7WpK1vg31TQqvzTYQTdfyzrFYcf7lg9PO8gN7GTUoziP9xBd4P4TvnMTrsDBolI0HImXf/40H8dE2Zgr/VyqIlbkeDY=
+	t=1728549484; cv=none; b=elma+WG8Zid79w/kbwgDzvAQgGs8mfR/FCml+7iTKNF6ze4kSBp0QIkwYhwrtdQTQyADba8SmdRDZ+MzRxAG0HZFVUHz6s/gcaIZLWuhk+Nmk8E4Ikr9fFTsgshQ7/udHcLhIMERxQgaK5VY90kbczgOxXG3tKfMiSJLAP8JuHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728549462; c=relaxed/simple;
-	bh=P9e+2eRrhC0tKM9yFIwl/JWMAL2GOg+8NNW+Im1Ihw0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YHdgxyqchJwpkl7wn4QRY0/uavMsPMqxrcX9Y96vBucoBwlOq0epmk7sPcTUbBQGGUyMdXUpp8VLUuf2r3Pa78TFtJi8pscuN9YDRvVelrn8MbtE0GEqFZg2D/X38qWtm+Ry5e1q82vHlt2Ib1t5J6HqJQAlQH6ZVTx9N8y5Ins=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jw/yCVYw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB5B8C4CEC5;
-	Thu, 10 Oct 2024 08:37:40 +0000 (UTC)
+	s=arc-20240116; t=1728549484; c=relaxed/simple;
+	bh=93ri6kXjS04NlSJhVAtV+oc8pPS/l8+cSGguv6Oe0iQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j6Tc2nVEJzQ+1AxCdmX7dm4WTeLbwuBZGhhkWDF1R/SyOr3BEMAtZmm7J1J1FAo5ZY8b3/yRe/qAZ8pV+xlL9MM4ipq+JWqHEWSoBD+fEzHgswqYpauPz87IOMmKf5xEXVUMinUGoBLV6BOBEyIV3iWtmHJe6dT0Jc8phLLGaqk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R8SkyaUa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14E55C4CEC5;
+	Thu, 10 Oct 2024 08:38:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728549462;
-	bh=P9e+2eRrhC0tKM9yFIwl/JWMAL2GOg+8NNW+Im1Ihw0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jw/yCVYwJSHyqJgOyPbM7qBX5O8oMccJR5NT1mP0GyLNSOV3KSydd8mlwY05L7LD3
-	 /26Mr7KX2cnNbXJmY8jYlfXWVHllCQZVE1K4zF8Mx3BCUHBRMrEb8qFHb090o2SJMo
-	 lHTmEJcDf/KnOHy1zDG/shQB4akAMJYVJoJEwjheucDD0ZQdAXv1var7Py44L7Irbr
-	 kYacS0TrP06Lyky4WpmmEzv4LUcBeDm+NeiGIlV542CiN8obKaQ2aOonNxXaW79guh
-	 QZ2B2WONXUlAVT/ZtYmfWKOeWeWwuELpdf5efkWndeQOXKzsrlmjtWyTsQyQ3mMx4f
-	 XNZiZUIl5VXCg==
-Date: Thu, 10 Oct 2024 09:37:38 +0100
-From: Lee Jones <lee@kernel.org>
-To: Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: leds: Document "rc-feedback" trigger
-Message-ID: <20241010083738.GE661995@google.com>
-References: <20241007205315.2477060-1-heiko@sntech.de>
- <20241009144836.GA596552@google.com>
- <23688435.6Emhk5qWAg@diego>
+	s=k20201202; t=1728549484;
+	bh=93ri6kXjS04NlSJhVAtV+oc8pPS/l8+cSGguv6Oe0iQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=R8SkyaUac/+DdD9Fz8FlFbr4ogKpWYvEmil2TC/fGkkWhTdhVbFl9Ju/ImbGCHQ7I
+	 PJEte9XrXEZb4i1Yi4agDZBNlkRbV3l5sA6jGw4rEiO/qrAaG2nMHGtQ3xQzkFB+Ob
+	 ZLmaRqMk13BVhdpr8Yx/k2tMjQ5aCaeCWoxyA2NRbd9pHBwyTX3YFh91qxg+/1SPNJ
+	 ZySiqfc52f9s8+1HVFMWTgfFIlTRrzZtRjoPHwKoT/s4NG9O/T4pfs2GBLCUZjKJfn
+	 asjCyqt5Yf+6Q0NvJuXA9MvzItshHH0Y5JM11UoICZxs1ZQlOVx77M4Kg9QPPSIFhu
+	 q9cJsVUnkGTaw==
+Message-ID: <35339817-a768-49e8-9b64-c52edbeb4d13@kernel.org>
+Date: Thu, 10 Oct 2024 17:37:58 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 07/12] PCI: rockchip-ep: Refactor
+ rockchip_pcie_ep_probe() MSI-X hiding
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-8-dlemoal@kernel.org>
+ <20241010072512.f7e4kdqcfe5okcvg@thinkpad>
+ <20241010080956.z3cw2mxxlgrjafhs@thinkpad>
+Content-Language: en-US
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <20241010080956.z3cw2mxxlgrjafhs@thinkpad>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <23688435.6Emhk5qWAg@diego>
 
-On Wed, 09 Oct 2024, Heiko Stübner wrote:
+On 2024/10/10 17:09, Manivannan Sadhasivam wrote:
+> On Thu, Oct 10, 2024 at 12:55:12PM +0530, Manivannan Sadhasivam wrote:
+>> On Mon, Oct 07, 2024 at 01:12:13PM +0900, Damien Le Moal wrote:
+>>> Move the code in rockchip_pcie_ep_probe() to hide the MSI-X capability
+>>> to its own function, rockchip_pcie_ep_hide_msix_cap(). No functional
+>>> changes.
+>>>
+>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+>>
+>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>
+>> Btw, can someone from Rockchip confirm if this hiding is necessary for all the
+>> SoCs? It looks to me like an SoC quirk.
+>>
+>> - Mani
+>>
+>>> ---
+>>>  drivers/pci/controller/pcie-rockchip-ep.c | 54 +++++++++++++----------
+>>>  1 file changed, 30 insertions(+), 24 deletions(-)
+>>>
+>>> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+>>> index 523e9cdfd241..7a1798fcc2ad 100644
+>>> --- a/drivers/pci/controller/pcie-rockchip-ep.c
+>>> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+>>> @@ -581,6 +581,34 @@ static void rockchip_pcie_ep_release_resources(struct rockchip_pcie_ep *ep)
+>>>  	pci_epc_mem_exit(ep->epc);
+>>>  }
+>>>  
+>>> +static void rockchip_pcie_ep_hide_msix_cap(struct rockchip_pcie *rockchip)
+> 
+> Perhaps a better name would be rockchip_pcie_disable_broken_msix()? As the
+> function essentially disables MSIx which is broken. Again, it'd be good to know
+> if this applies to all SoCs or just a few.
 
-> Hi Lee,
-> 
-> Am Mittwoch, 9. Oktober 2024, 16:48:36 CEST schrieb Lee Jones:
-> > On Mon, 07 Oct 2024, Heiko Stuebner wrote:
-> > 
-> > > Document the "rc-feedback" trigger which is used to control LEDs by
-> > > remote control device activity. This is an existing trigger used in
-> > > existing DTs, document it so validation of those DTs would pass.
-> > > 
-> > > It was originally introduced into the Linux kernel in 2013 with
-> > > commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc keypresses")
-> > > 
-> > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> > > ---
-> > > changes in v2:
-> > > - put the entry in the correct position and comment above it (Pavel)
-> > > 
-> > >  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
-> > >  1 file changed, 2 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-> > > index bf9a101e4d42..9cd89f30fa7c 100644
-> > > --- a/Documentation/devicetree/bindings/leds/common.yaml
-> > > +++ b/Documentation/devicetree/bindings/leds/common.yaml
-> > > @@ -118,6 +118,8 @@ properties:
-> > >              # No trigger assigned to the LED. This is the default mode
-> > >              # if trigger is absent
-> > >            - none
-> > > +            # LED indicates remote control feedback
-> > > +          - rc-feedback
-> > 
-> > Is 'rc' a recognised and well known abbreviation for remote control?
-> > 
-> > How about we people some (look-up) time and say:
-> > 
-> >   - remote-control-feedback
-> 
-> The issue being that this exact trigger rc-feedback is in the kernel for
-> 11 years already - see the commit link in the description, and used in
-> a number of boards in the wild since then.
-> 
-> So the naming-ship has sailed for a while now, and this change
-> "simply" documents the status quo. And judging from Rob's Ack
-> it looks like he's okay with the naming too.
+This is for the rk3399... I am not aware of multiple versions of that SoC.
+The pcie_rockchip driver is for that SoC only as far as I know. This is unlike
+the Designware IP block which is used in multiple SoCs.
 
-This is why it's important for people to document things when they're
-introduced. :(
+> 
+> - Mani
+> 
+>>> +{
+>>> +	u32 cfg_msi, cfg_msix_cp;
+>>> +
+>>> +	/*
+>>> +	 * MSI-X is not supported but the controller still advertises the MSI-X
+>>> +	 * capability by default, which can lead to the Root Complex side
+>>> +	 * allocating MSI-X vectors which cannot be used. Avoid this by skipping
+>>> +	 * the MSI-X capability entry in the PCIe capabilities linked-list: get
+>>> +	 * the next pointer from the MSI-X entry and set that in the MSI
+>>> +	 * capability entry (which is the previous entry). This way the MSI-X
+>>> +	 * entry is skipped (left out of the linked-list) and not advertised.
+>>> +	 */
+>>> +	cfg_msi = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+>>> +				     ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+>>> +
+>>> +	cfg_msi &= ~ROCKCHIP_PCIE_EP_MSI_CP1_MASK;
+>>> +
+>>> +	cfg_msix_cp = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+>>> +					 ROCKCHIP_PCIE_EP_MSIX_CAP_REG) &
+>>> +					 ROCKCHIP_PCIE_EP_MSIX_CAP_CP_MASK;
+>>> +
+>>> +	cfg_msi |= cfg_msix_cp;
+>>> +
+>>> +	rockchip_pcie_write(rockchip, cfg_msi,
+>>> +			    PCIE_EP_CONFIG_BASE + ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+>>> +}
+>>> +
+>>>  static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+>>>  {
+>>>  	struct device *dev = &pdev->dev;
+>>> @@ -588,7 +616,6 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+>>>  	struct rockchip_pcie *rockchip;
+>>>  	struct pci_epc *epc;
+>>>  	int err;
+>>> -	u32 cfg_msi, cfg_msix_cp;
+>>>  
+>>>  	ep = devm_kzalloc(dev, sizeof(*ep), GFP_KERNEL);
+>>>  	if (!ep)
+>>> @@ -619,6 +646,8 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+>>>  	if (err)
+>>>  		goto err_disable_clocks;
+>>>  
+>>> +	rockchip_pcie_ep_hide_msix_cap(rockchip);
+>>> +
+>>>  	/* Establish the link automatically */
+>>>  	rockchip_pcie_write(rockchip, PCIE_CLIENT_LINK_TRAIN_ENABLE,
+>>>  			    PCIE_CLIENT_CONFIG);
+>>> @@ -626,29 +655,6 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+>>>  	/* Only enable function 0 by default */
+>>>  	rockchip_pcie_write(rockchip, BIT(0), PCIE_CORE_PHY_FUNC_CFG);
+>>>  
+>>> -	/*
+>>> -	 * MSI-X is not supported but the controller still advertises the MSI-X
+>>> -	 * capability by default, which can lead to the Root Complex side
+>>> -	 * allocating MSI-X vectors which cannot be used. Avoid this by skipping
+>>> -	 * the MSI-X capability entry in the PCIe capabilities linked-list: get
+>>> -	 * the next pointer from the MSI-X entry and set that in the MSI
+>>> -	 * capability entry (which is the previous entry). This way the MSI-X
+>>> -	 * entry is skipped (left out of the linked-list) and not advertised.
+>>> -	 */
+>>> -	cfg_msi = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+>>> -				     ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+>>> -
+>>> -	cfg_msi &= ~ROCKCHIP_PCIE_EP_MSI_CP1_MASK;
+>>> -
+>>> -	cfg_msix_cp = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_BASE +
+>>> -					 ROCKCHIP_PCIE_EP_MSIX_CAP_REG) &
+>>> -					 ROCKCHIP_PCIE_EP_MSIX_CAP_CP_MASK;
+>>> -
+>>> -	cfg_msi |= cfg_msix_cp;
+>>> -
+>>> -	rockchip_pcie_write(rockchip, cfg_msi,
+>>> -			    PCIE_EP_CONFIG_BASE + ROCKCHIP_PCIE_EP_MSI_CTRL_REG);
+>>> -
+>>>  	rockchip_pcie_write(rockchip, PCIE_CLIENT_CONF_ENABLE,
+>>>  			    PCIE_CLIENT_CONFIG);
+>>>  
+>>> -- 
+>>> 2.46.2
+>>>
+>>
+>> -- 
+>> மணிவண்ணன் சதாசிவம்
+> 
+
 
 -- 
-Lee Jones [李琼斯]
+Damien Le Moal
+Western Digital Research
 
