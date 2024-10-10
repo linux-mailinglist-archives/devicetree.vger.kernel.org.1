@@ -1,98 +1,117 @@
-Return-Path: <devicetree+bounces-109988-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109989-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06094998B5B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:24:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75E77998B8E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:28:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1DD611C25A6E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:24:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0B3A1C267C3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:28:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74BC81CC882;
-	Thu, 10 Oct 2024 15:24:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fgeC9S65"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B3AD1CC174;
+	Thu, 10 Oct 2024 15:28:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F61B1CC146;
-	Thu, 10 Oct 2024 15:23:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 186BB1C57BA;
+	Thu, 10 Oct 2024 15:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728573841; cv=none; b=nORb31QaT/6Ccth+1lkdTT8K3JmUCrNcZOt2KHhZUppVs1ZmcojYrm0ywSsiCNXBygJmY7GtkaBeSRttgjBirS80Us5spKZaXsvzfdOWu02P41/QvXI6VN8x2OLUKCFiyj7ytlQ3Zqu95OLOIRvOs+RjARHJEruLCCtpUnmVgRw=
+	t=1728574107; cv=none; b=Eky2Ilkb9f8F4QGI1CI74IWO/JWj83rBYPe6A4q8V9Dkusm9bzevrmDoxDuefXLQr/KJgB2gVod7xCjsHZ8eKG9qa3l23eGk2T/eEiuOru4NLt8VE7ASNpkN6XD+Hsbf1XVz0rkRHoY66nEG9zt0Rrqa1bwy/Tqk5G9umxM9/Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728573841; c=relaxed/simple;
-	bh=V19b+VCEs2Bs0LJtMPPUzPAihCMgMEquXW2T6zeTyG0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=klrSU2o5m3KnuWwFhqD52AuYLU9q9HMaq+b2ZEifQbJmKl+SdQK2p8nk83sTGGFE9pJL864auGjuHttOQ+UEQc5zRzrzZsiG0fXJSciZ97T0UM1xFUAN1rbCiVvK/3Bg6qnDY/VKlS3IywnlVMx1W9qRnHSI0Z6uJsVChXynfYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fgeC9S65; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4D03F1C0007;
-	Thu, 10 Oct 2024 15:23:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728573837;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7g+xGPfmPtCVDE9/xOLezbAJ5PFRDtUwPFyP2N7f7H4=;
-	b=fgeC9S65MDOezx4kw/I8xvjGqVf75HS8eJ720599rICrC2/T5ED7OzZcfP9mCAJkzdQh6I
-	mi3SWrzuD3dtS2fbHm9Nq2eGko4IpJ9Q3gJ70tvC0moYWQKms2Ubks9XdqrydtFcYpZLhc
-	YXMIl8q4KprrZz4a5HXoUZXzijQWaKRR3d+R/g1pB6cilen8oox5Jrar//ycffIs4RjzhI
-	bHq8MbSWHZic4BNH1iRV0GawpScgW7Ou0i8hghzESz9mVDjb8bweKnK6M8FKgKv5BZCxLU
-	HCn5Q2AYGtqvWhl3EENgwntFRpXZrE8lJFx1EP+TIh7tv3WAJ/X2C3GzBmEgYA==
-Message-ID: <d7b32bed-2078-4f5b-80c6-681b7d67302a@bootlin.com>
-Date: Thu, 10 Oct 2024 17:23:55 +0200
+	s=arc-20240116; t=1728574107; c=relaxed/simple;
+	bh=ewPr7Nugz+b5xJtHDibyLNTiQ+4VHImYxBCZi3pWaYc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=neboNcP9GP/jcVnmQB7ofbcI0PvRg1HdFx1g43T77lkmFMMZLEnXrHd68fe56YiE8e2ZFuN0006uzo2u81BKggrCSsWKhHZeGKZ5n4kFtSpKiwBXMB7kGEKcdqcMnaLAGcpjzhZvhldrR9iku7K9VTpd/x7RpK02A9BioLmnq3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e2e4244413so12611677b3.3;
+        Thu, 10 Oct 2024 08:28:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728574104; x=1729178904;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=q+FUiD0xVp5OOvt65U+GUfX5IiAyky/cSIiHVZpRQ6w=;
+        b=qYJlL9AAEcZaD9OV4xTFb+pDV875QjBOnWRXaIrHyuOpUOOcwRiUT4yT8rJza8KTac
+         u1JW+5gwTIoK5MOOruc/x3Oyo8Fer1ziEkuK8Q0RRalF0nAvO/EZoo6lXU122F2vfoA8
+         A4ve3LJ+9u++NoLwPpvEibeKZJfouJZ/sxG8FrrzgdW1FZvAxgSB2LhGL5AQUOAbAZUJ
+         zEEVrZbwBwl0m09q9EIr6UXpke9ibEnKJ144I5xs2q2qF7sKSJ1JRrna8+d5QSRV3Def
+         Sr+3k8t8hZWG3PbZxMiy//t3MMTjcMXtCVHzFn5S0Wv2+0IWY2cbn05oDk/OXrJ5CVxJ
+         yJGg==
+X-Forwarded-Encrypted: i=1; AJvYcCUrIf4dZzqBlzprhJI4NklbMiLjdhgkIs301pfeoIGlYLRmjHtuYsSIkGQ4Y6o1t5hxut3fizn9xcZo@vger.kernel.org, AJvYcCVQq3GamVG4vz8ZBJR5dIVNjBfo5WwItlty+N7FG6C3w72X2OT5tZhvdoGfpAvL6mqAORQCJEcCzLBC080/@vger.kernel.org, AJvYcCVm7mYsXROJ7ddyshXDXVaV7Qyp3GQ3z6IGYC0ytDwZ5IWlvmVfV4NeAkG+nlRxeDHEza7XCeAjWSB1RNmUqsFF+u4=@vger.kernel.org, AJvYcCWO14C9y19y8Jio/810W6ZBacNHN/NrjH1GA8/bt09DyzR84Mngu4oGodwWwTVMXVomxDhBGKEpYJBM@vger.kernel.org, AJvYcCXJf00Fq7qcYGFhAt8zbNbq8xCPjmKr4s1FDzkgWhbQXR6VVLAScnWqo2Oe/2/UmvqsEMmKDs0mAcLz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhSbaot0YWRcBSCBP7fxjoDBehLZZRgzqxuVqjWXSoT6ftfpRs
+	pePLYaC9EvAYH6i35fUdky5LtcRt4nfSw5iPzNn36eY7ym+0x9KoWXuVXPzn
+X-Google-Smtp-Source: AGHT+IGITm7nx8mYfQsDpCCfWzk27Bvg21SGubs6Yhpq3yhBQaT6KbgBM+iHPMzcsgT8sp5evMViOg==
+X-Received: by 2002:a05:690c:6706:b0:6e2:1bba:ed4c with SMTP id 00721157ae682-6e3221430b3mr65370927b3.17.1728574103708;
+        Thu, 10 Oct 2024 08:28:23 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e332cb383dsm2425777b3.139.2024.10.10.08.28.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Oct 2024 08:28:23 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6e2d36343caso9085277b3.2;
+        Thu, 10 Oct 2024 08:28:23 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCU8JhDg9UH3nHc8W4ShRdKaonhJ5hI7QOnQjkogsKTaw1cVx5Z+q1/We82BQH0FfRnk/g6t9cqQU2Ep@vger.kernel.org, AJvYcCUFWo3wkk3SAYDSohe4GuGLEOXSBynHwgwq07XHgp3cwFiny1QsrxIMVedTB55QzaiHbB40UZcVpY98@vger.kernel.org, AJvYcCVMghTZa/f5IVf0i2+YIfHE2v96hlb3QRqTgM1carW5YbYtHkYeGwfNMWmdn6BeqjZlJJ2c75KhcIDNfAM9DYVg9SQ=@vger.kernel.org, AJvYcCWjIjHMG1a9P2w7I/jJFD74fIrKgLpcTbC7c/QKaEjearCdWEJbJM7Ft52QumokTJGlfUg62QLJNqrLjUFC@vger.kernel.org, AJvYcCXcrEkUEftkQBIb/PuZK3o/+CgYwdFzuTgoU2kkkhozTe5Jralo8E9hyilIxPodQgSZdjxY5dUBOCyH@vger.kernel.org
+X-Received: by 2002:a05:690c:86:b0:6e3:2608:d5af with SMTP id
+ 00721157ae682-6e32608d759mr55680917b3.26.1728574103360; Thu, 10 Oct 2024
+ 08:28:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 1/2] riscv: dts: sophgo: Add initial SG2002 SoC device
- tree
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Paul Walmsley
- <paul.walmsley@sifive.com>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>, Chao Wei <chao.wei@sophgo.com>,
- Conor Dooley <conor@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>,
- Samuel Holland <samuel.holland@sifive.com>,
- Thomas Gleixner <tglx@linutronix.de>,
- Daniel Lezcano <daniel.lezcano@linaro.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-References: <20241010-sg2002-v5-0-a0f2e582b932@bootlin.com>
- <20241010-sg2002-v5-1-a0f2e582b932@bootlin.com>
-Content-Language: en-US
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-In-Reply-To: <20241010-sg2002-v5-1-a0f2e582b932@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-10-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240830130218.3377060-10-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Oct 2024 17:28:11 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWybEZHeQM526=xuvgs3tpDz96HwY69YRcVfc8pM48s+g@mail.gmail.com>
+Message-ID: <CAMuHMdWybEZHeQM526=xuvgs3tpDz96HwY69YRcVfc8pM48s+g@mail.gmail.com>
+Subject: Re: [PATCH v3 09/12] arm64: dts: renesas: rzg3s-smarc-som: Enable VBATTB
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hello, sorry for the double email.
-
-On 10/10/24 5:07 PM, Thomas Bonnefille wrote:
-> Add initial device tree for the SG2002 RISC-V SoC by SOPHGO.
-> 
-> Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Enable the VBATTB controller. It provides the clock for RTC.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 > ---
-> The commit adding the bindings for the compatible "sophgo,sg2002-clint"
-> has been applied to Daniel Lezcano git tree. This commit may trigger the
-> bots because of this missing binding.
-> ---
+>
+> Changes in v3:
+> - updated patch description
+> - dropped vbattclk
+> - added renesas,vbattb-load-nanofarads on vbattb
+> - moved vbattb before vbattb_xtal
 
-I wanted to say, that the comment above is no longer relevant because 
-Daniel Lezcano's branch was applied in 6.11.
+With assigned-clock* resolved
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Best regards,
-Thomas
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
