@@ -1,147 +1,170 @@
-Return-Path: <devicetree+bounces-109983-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109984-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED17C998B30
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:17:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4DA26998C7D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:56:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A785F2947F1
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:17:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DF18B28A79
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D99D01CBEB4;
-	Thu, 10 Oct 2024 15:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB011CBEBB;
+	Thu, 10 Oct 2024 15:20:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z0lpxxZS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C1821CB312;
-	Thu, 10 Oct 2024 15:17:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F73B646;
+	Thu, 10 Oct 2024 15:20:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728573450; cv=none; b=Kc6XVjoTUaQrx7J81CPuavoYt7s00U6xq9qhcW2G6IR+eDJWxCy5hXCtyNb+hHNtmmBBgr4IsZ2jZAjTf+jPhMO08K6ME2AtkcvXPslzrKhNupxS0EwBxd8P+v92J9L53kBeUlLKwG8YJr/3/pNdHMHydEV8Jsyvr95IZPeSs5k=
+	t=1728573641; cv=none; b=r2wGOPdi3hmQWBR0AhwdVURRvLyj6P9cLtifZXE+diRVyWX67018CnRbp4nfRbF5jfFEcX+k3AmfWYBKLcSpBqxx9pERd0F9P8yzKM1SLypgwSyaNq4umWRaU/Rr7hebb/TVu+rp+RbBwmt1aPf1gElkGwIrLX61vwuAA5dLJ3g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728573450; c=relaxed/simple;
-	bh=kAelzetrqpcRN5dm4O6YQ1TH+k97O3PeD6wil9BatBc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lcN3tbCsCOQBd97kIOVVut1UrgkAi/f5AORNyge9T5dQiykDA6YKkZod1KcF2wlNdClswzo8JxGqjRyDFK3eaK2Ay4xukkT7g0EovHD4RnrRPmq9425KKun2uvDMrOWGGDMl4FKEXzLkE8qbAjMKTnajAzoO3fKjHmL7rz9H1K4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6e2e4237da4so10363437b3.1;
-        Thu, 10 Oct 2024 08:17:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728573445; x=1729178245;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=w+Dll4htdUB23BCtM34CclguCZewJgpq4mv0+9yv+gs=;
-        b=GScR9ECKDf7vlokr5bVKCnNAlXbEgFYVlKKq+Ynv2E2rnX1yyCdv8COS6gNyev4H6D
-         ZLX9ISBl+5yLGwjbrnrQV4oov7XKoMVl6GuwoY2ihUZpcWZWWAbCM3+n4YPLuMtae9R+
-         NzUXJ76puhSrVBixE6RnotUbjE81g6DohIhEGDS5y4BboQgyjnkvfpU5DO0LAz44y+95
-         A33CFBT9J+VOgjqDOlb4brpD6MfaEfFvuOg9AGpkTvsGCbcq9twFePZwgG/sELpjn435
-         Rq7ZV0OsLGCjywZseeXHHV0SrByYreVu8n0RjurkLET4SysNGiZm6H4ibAnxKcjkMnAB
-         dxCQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUqlrJjLgQDfJm159kmHf6RlUxucicsmjQzMvP0Sx5Q3q3vsGN2ZjXYmvMYl5NYUNL0G78mEE2uZz7V@vger.kernel.org, AJvYcCVcc6unLiQ5Tt7v2oR8CO5RfYPfgeZVM5zLs15iLagXUg0CUt8CHy2sEevNgd86Xnpj1tWtu6hzx3v/@vger.kernel.org, AJvYcCVg8MpXM+l0pzwnvaMhNl9K5XtNHsOgO/XFFEg7+E6T4tJDgyKeY/+P0S1wZAXMIn7EF3VUNclhBEdw@vger.kernel.org, AJvYcCWDBZ9iYUiguHwz2hwttAPrW1sgI9RYAm4Azlk98uft5vG2vDcfG6Mx7MbPMraQhkeyO/8ByRelyRHX7zgFjjTK3Mk=@vger.kernel.org, AJvYcCXhcQI6k07fGMOqG0W76nXg4Q0dW0iBq49M/Hyt7lhYicrDedKmHWvDZM/GmfbvjI2pQe8odoLjCg3aaOiL@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaOqdtXW4jZRPugAvczkwTNDKh384B9/W39cVcMBYOO4OUSwVR
-	6Q7c/EGnVVl/RlqjNXV4mjM0g6Zh5jf6MIrax2ymR7VnjCdPL4ImkLxnU4Bq
-X-Google-Smtp-Source: AGHT+IH91kgKmCZOzY7Bbhg6gRS3DlpUaEddKN7XcqQDDxdpnNqSvn0tZplJ0LLJGUJs+c23XET1wg==
-X-Received: by 2002:a05:690c:3007:b0:6af:6762:eba1 with SMTP id 00721157ae682-6e32e20e20bmr31969927b3.20.1728573444918;
-        Thu, 10 Oct 2024 08:17:24 -0700 (PDT)
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com. [209.85.128.180])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e332bad8afsm2394907b3.59.2024.10.10.08.17.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 08:17:24 -0700 (PDT)
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6e305c2987bso10215917b3.0;
-        Thu, 10 Oct 2024 08:17:24 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVCVicTQBCo/ydHilSvQudrLjFBlS7XIOFQ4Nh3jW1jjVeQDl2iRzYenvXRC9lu6XlkdOvfTzBdxEsZLkKfH8+UyXU=@vger.kernel.org, AJvYcCVmZd4YDU0x56o3Wciw97cbU48auevTPraKHGzRnC4hctKbavZVdQq59GtTrNrMZU/bWHjcwInKQub8@vger.kernel.org, AJvYcCW10ujH9qKHEgwDYzqYbwYuW7jEBGfBza5fGW3kYkbMumwz4OewBXTvxfD9T7+0wYerQ6MVHRL32cx5TC6o@vger.kernel.org, AJvYcCWC3K424Md3KaHoCUqWejEA7MNiWE92jvYGzec1Tc85MePjT2M7ZD+KBqhMGhghzhWfKKK0x68IpaJ0@vger.kernel.org, AJvYcCWzmP47cNYBwBhU7bKFYTftMI7pLeL5m6FLevwS/bLAjBnoCkEN40WZx/YsmffLdr7fasAcPCgsSQx1@vger.kernel.org
-X-Received: by 2002:a05:690c:5605:b0:6e2:b263:105b with SMTP id
- 00721157ae682-6e32e445686mr46318437b3.41.1728573443947; Thu, 10 Oct 2024
- 08:17:23 -0700 (PDT)
+	s=arc-20240116; t=1728573641; c=relaxed/simple;
+	bh=FMOKQmRnRuG0u6SCHuk/rSndbZsClfTEYhslQL/e4Ss=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SnaL6pqJ4dpwrJfeahfMKD++CPfbavR1IqWvK9uaMq8tJRMr8HTHI9pxG3nhjdxqtnD9xgOBpiT6YVYhY9f/LPWD4lcIfvsGt7I/5RKyOHM3eWmNttHYDxJi1q3L8KLJ+e1CHJAtUkijSpXFCoEliltnHmy927IG8+XdKkefOMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z0lpxxZS; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728573640; x=1760109640;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FMOKQmRnRuG0u6SCHuk/rSndbZsClfTEYhslQL/e4Ss=;
+  b=Z0lpxxZSVK9zbaYNzoqGUBV29/foJEJf7mVF3GY8IWsSbnU0Qg0W3q0Y
+   58EZ6HUZswo1Z2M8utA7g9z7qUSdQkONfXHS2TliWtCw5oMkQ7FolWJpg
+   2Ls217S+PrhlJ5I0tVZzAGZMcfLUrUHmAFMvFLDpmLm4Q4eJwblg+Abxy
+   auyvLob1gN9vJ0lwjp5nh/NKgmsvm8iy2Ip+D1NAM8korusUGqnMRq3CO
+   6wLxOW0ltXsEc1887z8xx5ChoQaGRBr7TwYN/inChRG/3mu7Z02HVhD1e
+   +VSjQYq4TZ6Q/uEp+nCnWSpGvB+XrOoN1xM+/oB2oedecnrIgw55qnOTl
+   A==;
+X-CSE-ConnectionGUID: W35/HYwmSrqEun/momCJJA==
+X-CSE-MsgGUID: JqyMZV81RTu2+bLrf40CkA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="45417083"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
+   d="scan'208";a="45417083"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:20:39 -0700
+X-CSE-ConnectionGUID: uFuqKWFpRUGoCWa1ZSzSlg==
+X-CSE-MsgGUID: HFVp1nsLSFi0YkYM0dHCyg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
+   d="scan'208";a="76532971"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:20:35 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1syuxr-00000001ZlS-3lMj;
+	Thu, 10 Oct 2024 18:20:31 +0300
+Date: Thu, 10 Oct 2024 18:20:31 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
+Message-ID: <Zwfwv-O9ln-PVMdc@smile.fi.intel.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-7-wenst@chromium.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240830130218.3377060-8-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Oct 2024 17:17:11 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXVOZ22N6KXFdHgPQQnqs0ujBbmQR+CQ4-ekdpQCzFUHA@mail.gmail.com>
-Message-ID: <CAMuHMdXVOZ22N6KXFdHgPQQnqs0ujBbmQR+CQ4-ekdpQCzFUHA@mail.gmail.com>
-Subject: Re: [PATCH v3 07/12] arm64: dts: renesas: r9a08g045: Add VBATTB node
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241008073430.3992087-7-wenst@chromium.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Claudiu,
+On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
+> Add GPIO support to the simple helpers for the I2C OF component prober.
+> Components that the prober intends to probe likely require their
+> regulator supplies be enabled, and GPIOs be toggled to enable them or
+> bring them out of reset before they will respond to probe attempts.
+> Regulator supplies were handled in the previous patch.
+> 
+> The assumption is that the same class of components to be probed are
+> always connected in the same fashion with the same regulator supply
+> and GPIO. The names may vary due to binding differences, but the
+> physical layout does not change.
+> 
+> This supports at most one GPIO pin. The user must specify the GPIO name,
+> the polarity, and the amount of time to wait after the GPIO is toggled.
+> Devices with more than one GPIO pin likely require specific power
+> sequencing beyond what generic code can easily support.
 
-On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> Add the DT node for the VBATTB IP along with DT bindings for the clock
-> it provides.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> ---
->
-> Changes in v3:
-> - dropped the child nodes of vbattb; along with this dropped ranges,
->   interrupt-names, #address-cells, #size-cells
-> - added vbattb_xtal as input clock for vbattb
+...
 
-Thanks for the update!
-
-> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
-> @@ -160,6 +160,18 @@ i2c3: i2c@10090c00 {
->                         status =3D "disabled";
->                 };
->
-> +               vbattb: vbattb@1005c000 {
-
-Please insert this after serial@1004b800, to preserve sort order.
-
-> +                       compatible =3D "renesas,r9a08g045-vbattb";
-> +                       reg =3D <0 0x1005c000 0 0x1000>;
-> +                       interrupts =3D <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&=
-vbattb_xtal>;
-> +                       clock-names =3D "bclk", "rtx";
-> +                       #clock-cells =3D <1>;
-> +                       power-domains =3D <&cpg>;
-> +                       resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
-> +                       status =3D "disabled";
-> +               };
+> +static int i2c_of_probe_simple_get_gpiod(struct device *dev, struct device_node *node,
+> +					 struct i2c_of_probe_simple_ctx *ctx)
+> +{
+> +	struct fwnode_handle *fwnode = of_fwnode_handle(node);
+> +	struct gpio_desc *gpiod;
+> +	const char *con_id;
 > +
->                 cpg: clock-controller@11010000 {
->                         compatible =3D "renesas,r9a08g045-cpg";
->                         reg =3D <0 0x11010000 0 0x10000>;
+> +	/* NULL signals no GPIO needed */
+> +	if (!ctx->opts->gpio_name)
+> +		return 0;
+> +
+> +	/* An empty string signals an unnamed GPIO */
+> +	if (!ctx->opts->gpio_name[0])
+> +		con_id = NULL;
+> +	else
+> +		con_id = ctx->opts->gpio_name;
 
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Can it use positive conditional?
 
-Gr{oetje,eeting}s,
+	if (ctx->opts->gpio_name[0])
+		con_id = ctx->opts->gpio_name;
+	else
+		con_id = NULL;
 
-                        Geert
+> +	gpiod = fwnode_gpiod_get_index(fwnode, con_id, 0, GPIOD_ASIS, "i2c-of-prober");
+> +	if (IS_ERR(gpiod))
+> +		return PTR_ERR(gpiod);
+> +
+> +	ctx->gpiod = gpiod;
+> +
+> +	return 0;
+> +}
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+...
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> +static void i2c_of_probe_simple_disable_gpio(struct device *dev, struct i2c_of_probe_simple_ctx *ctx)
+> +{
+> +	if (!ctx->gpiod)
+> +		return;
+
+Do you need this check for the future patches?
+
+> +	/* Ignore error if GPIO is not in output direction */
+> +	gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_enable);
+> +}
+
+...
+
+>  struct regulator;
+> +struct gpio_desc;
+
+Ordered?
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
