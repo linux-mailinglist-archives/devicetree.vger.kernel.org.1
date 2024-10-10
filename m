@@ -1,69 +1,74 @@
-Return-Path: <devicetree+bounces-109946-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A15FD99895D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:24:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5331998963
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:25:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CB0F1F28BD3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:24:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92F7F1F2626F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:25:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F92E1CEADA;
-	Thu, 10 Oct 2024 14:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6EDD1D0DCA;
+	Thu, 10 Oct 2024 14:17:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q7QhSmgM"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QqBBr4WK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125DA1CB526;
-	Thu, 10 Oct 2024 14:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18B31CB526;
+	Thu, 10 Oct 2024 14:17:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728569796; cv=none; b=nZ3MoL5WaySBuwJhI6piiFj3er/uOuzKEzNjPAujrkzMh+tl/3aewys+FouhZvisiGLlCv4kod7kau+Wc5ERtwsrJf4FTdsm3q5IW2EcciTHCaZw4Hg7ZD9cxA60ElPJ4dn4ScDBvLdpSCx07Fgy2/lbbY9vfWID5fR9wqdSFao=
+	t=1728569870; cv=none; b=lQ5K4OdwoG49yo1x9ZGwZRchNbuLtjnAKkXUW3JjNlVg2p5llEZuQi5N0nQXIZ08+mMfs9rW1ZkyZO+C74XWCTD7dG6GchAS23aMxFe1wqB/yXI2t08/PbHQydg45Ku4rpzwGnoB46V9ZswTDfGJYp1o6dTffdr0c+0N16deNy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728569796; c=relaxed/simple;
-	bh=I8AFVuiClI8/t9SVb6J76HX+OuuiQwV9zIjeKm3tiUE=;
+	s=arc-20240116; t=1728569870; c=relaxed/simple;
+	bh=h5Lz21NmFhDFWlWi3Crr0UBegemspteX5FuYr2/euls=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lSsCf7AMU4o85iggpC3qRXteGj8HvqhKEKdyE9KvCeJo5GM69MxcA/RnDT9Jzx0ssjrItrgsPV5kDBtQa6OjFQMVsU93fJ3xIVCDVE5knE6xJGPZziNzSGRNTuE3a2lR/QlnX41yG18UFxx+FzyXH+G6gFTULqNdJK3CNJCYvfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q7QhSmgM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A14FEC4CEC5;
-	Thu, 10 Oct 2024 14:16:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728569795;
-	bh=I8AFVuiClI8/t9SVb6J76HX+OuuiQwV9zIjeKm3tiUE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Q7QhSmgMLCCwHIZhPVM8mGRcR0W68jOB9kDwscOBGpVR/BHzSDYpleR+X/jwTfYnw
-	 SSzAElXuFexe0O+gNuEq36XZMA1y6vnPipEfpkWWGrVLROb4GMccz3bFqFyyIEbms3
-	 wudW1S/mwRiV6RLCvg7oeUeg0hftuXjt5erV+bXc2pmha9Kya7rgcarUnHz7O3GVuk
-	 5nklqaQF4KuCcngJzND87f35+b+PvzwFOO0ZG+GB3LhtZoRHYqWRt/7R7Ub8Ee48i3
-	 NkdDrJRCbWpEibd7TNWDBzDwHvuvRSQzZ43nmFLyDIyEIKZdBZmVgPTSuqKcoP1U6N
-	 A9FaFuoLBYcig==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1syty3-000000005fb-44Dj;
-	Thu, 10 Oct 2024 16:16:40 +0200
-Date: Thu, 10 Oct 2024 16:16:39 +0200
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
-Message-ID: <Zwfhx9RSzMXKUwGJ@hovoldconsulting.com>
-References: <20241009161715.14994-1-johan+linaro@kernel.org>
- <xwscnif4mqzykjinjtbr7jqsksy2buzindyttkk754jmumktm3@p5xxnmia7fxe>
- <Zwfei-Jn6goiya4H@hovoldconsulting.com>
- <CAA8EJpq1U7=An1V=DRqd2tAr527est1UFKc59CE8wRL1tdN_Ug@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=TNOcdpIt8m26tIA8vkoNe9DSKr4iFPUv/3hZh7nM61WiZU1bDLGfYNvWGyztqd87BivZHQK2/KJoireSzbxlR2kUXQYT/cYRlGK/wV0hOZ8SM8vBnSZUeSFKa1swb29EGGwAX1HpBLWA6uqCj4jpxdu1XATZy5/rPg11VTb/9OU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QqBBr4WK; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=/6gsdzzgfkgnojHJwKsAT7buBqjmSJtoxMaSzXoKYZ0=; b=QqBBr4WKoO6Rzy428V+Ohah05T
+	vRBmUk7Lz7DiUtpLrGeXPPYPaVWSIGDNgEmU/GlRY1UbaXrDgi7V3Ex0TijWb/rPHPB/enGuKGaSv
+	CHZNt5plQImVx/Swh6Mqr5PVV1srrTenhN3Q6GBeFLEza9+gotshqsjUQ3rFwTRJV9+HFqPyXYPIr
+	j/NQyEbWQG9h5Q91LmigNmJPp8Ts8sCGFCBBdabltVgcUX7ygtSAaItSvIaDoUJc1f9gN2vwXY75o
+	AaHdo63xOq0Mxpg2dSv/Z/HrHQT5zJlHofFbOSQ/rL4dse8vgDh4spKmm3mvAngDB1EmlhlfTSqj3
+	6dqQIVmw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36062)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1sytyv-0002Wl-2V;
+	Thu, 10 Oct 2024 15:17:33 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1sytyr-0007ON-2D;
+	Thu, 10 Oct 2024 15:17:29 +0100
+Date: Thu, 10 Oct 2024 15:17:29 +0100
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: "Karumanchi, Vineeth" <vineeth@amd.com>
+Cc: vineeth.karumanchi@amd.com, nicolas.ferre@microchip.com,
+	claudiu.beznea@tuxon.dev, davem@davemloft.net, edumazet@google.com,
+	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, andrew@lunn.ch,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, git@amd.com
+Subject: Re: [RFC PATCH net-next 4/5] net: macb: Configure High Speed Mac for
+ given speed.
+Message-ID: <Zwfh-ZJB4BtnJY28@shell.armlinux.org.uk>
+References: <20241009053946.3198805-1-vineeth.karumanchi@amd.com>
+ <20241009053946.3198805-5-vineeth.karumanchi@amd.com>
+ <ZwZKumS3IEy54Jsk@shell.armlinux.org.uk>
+ <6fc42ade-66cf-4462-914c-3dd5589c9a9f@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,47 +77,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAA8EJpq1U7=An1V=DRqd2tAr527est1UFKc59CE8wRL1tdN_Ug@mail.gmail.com>
+In-Reply-To: <6fc42ade-66cf-4462-914c-3dd5589c9a9f@amd.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-On Thu, Oct 10, 2024 at 05:11:43PM +0300, Dmitry Baryshkov wrote:
-> On Thu, 10 Oct 2024 at 17:02, Johan Hovold <johan@kernel.org> wrote:
-> >
-> > On Thu, Oct 10, 2024 at 04:54:19PM +0300, Dmitry Baryshkov wrote:
-> > > On Wed, Oct 09, 2024 at 06:17:15PM GMT, Johan Hovold wrote:
-> > > > The DWC PCIe controller can be used with its internal MSI controller or
-> > > > with an external one such as the GICv3 Interrupt Translation Service
-> > > > (ITS).
-> > > >
-> > > > Add the msi-map properties needed to use the GIC ITS. This will also
-> > > > make Linux switch to the ITS implementation, which allows for assigning
-> > > > affinity to individual MSIs. This specifically allows NVMe and Wi-Fi
-> > > > interrupts to be processed on all cores (and not just on CPU0).
-> > > >
-> > > > Note that using the GIC ITS on x1e80100 will cause Advanced Error
-> > > > Reporting (AER) interrupts to be received on errors unlike when using
-> > > > the internal MSI controller. Consequently, notifications about
-> > > > (correctable) errors may now be logged for errors that previously went
-> > > > unnoticed.
-> > > >
-> > > > Also note that PCIe5 (and PCIe3) can currently only be used with the
-> > > > internal MSI controller due to a platform (firmware) limitation.
-> > > >
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > > ---
-> > > >
-> > > > The PCIe Gen4 stability fixes [1] are now in 6.12-rc1 so that we can enable
-> > > > the GIC ITS without being flooded with link error notifications [2].
-> > >
-> > > Cc: <stable+noautosel@kernel.org> # Depends on driver stability fixes
-> >
-> > This patch is enabling a new feature, it is not a fix, so Bjorn please
-> > do not include the above tag when applying.
+On Thu, Oct 10, 2024 at 07:39:16PM +0530, Karumanchi, Vineeth wrote:
+> Hi Russel,
 > 
-> This is for stopping autosel from picking up the patch, not for
-> picking it up. After just helping to revert random patches being
-> picked by autosel I start to like this header.
+> On 10/9/2024 2:49 PM, Russell King (Oracle) wrote:
+> > It also looks like you're messing with MAC registers in the PCS code,
+> > setting the MAC speed there. Are the PCS and MAC so integrated together
+> > that abstracting the PCS into its own separate code block leads to
+> > problems?
+> 
+> Agreed, Since our current hardware configuration lacks AN and PHY, I've
+> relocated the ENABLE_HS_MAC configuration into PCS to
+> allow speed changes using ethtool. When more hardware with a PHY that
+> supports AN becomes available,
+> the phylink will invoke macb_mac_config() with the communicated speed
+> (phylinkstate->speed).
 
-I know what it is, but you should not be adding them to my patches.
+Where are you getting that idea from, because that has not been true for
+a good number of years - and it's been stated in the phylink
+documentation for a very long time.
 
-Johan
+I've killed all the code references to ->speed in all mac_config()
+implementations, and I've even gone to the extent of now ensuring that
+all mac_config() methods will _always_ be called with state->speed
+set to SPEED_UNKNOWN, so no one can make any useful determinations
+from that.
+
+If people continue to insist on using this, then I'll have no option
+but to make a disruptive API change, making mac_config() take an
+explicit set of arguments for the items that it should have access
+to.
+
+> Currently, for fixed-link, will keep the earlier implementation.
+
+I want phylink users to be correct and easy to understand - because
+I maintain phylink, and that means I need to understand the code
+that makes use of its facilities. So, want to see phylink methods
+implemented properly. If they aren't going to be implemented
+properly, then I will ask that the driver ceases to use phylink
+quite simply because it makes _my_ maintenance more difficult
+when drivers don't implement phylink methods correctly.
+
+The choice is: implement phylink methods properly or don't use
+phylink.
+
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
