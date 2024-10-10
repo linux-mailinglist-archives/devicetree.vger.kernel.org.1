@@ -1,130 +1,106 @@
-Return-Path: <devicetree+bounces-109852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109853-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF81B998350
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:14:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 33CF799835F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:20:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 948FD1F21DE2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:14:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 446FA1C20294
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:20:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6DC1BF7E5;
-	Thu, 10 Oct 2024 10:14:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E30F1BE251;
+	Thu, 10 Oct 2024 10:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="n80285aQ"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="cAFRP0Ge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8A0C18C03D;
-	Thu, 10 Oct 2024 10:14:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 235B81BDA91;
+	Thu, 10 Oct 2024 10:20:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728555275; cv=none; b=j7D80a0JJcccr2Pl0agU+7kqDLZH/tIFY0HzJNAg6kLNLDzEqrkiBNKZWq6u0G7jni0ogMcjNYWBomdxqJtpIzOBlyTFaC6xdAoAqXeLaZgcy/I8Khw0WciqZPlOBv6s8ZlRvTjkSmU+23/uO947B3M/i3kngPYyJCzC4VbpcZs=
+	t=1728555604; cv=none; b=YLIJ/Qu3Kp9ydLt7kYzd3mcW1O00dANEyJVp3GSNJMb0XJiJllinH8OVZJpO3L6mC746BY45fifw4K79Db02ARS2mk9bphlCsT/2pU8aukYkmYMcqnxgaQW6BgXJvkI/PUwIFK1/Xo/fgVSCacci3kBglZA3cT94Yl2HlNayXHU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728555275; c=relaxed/simple;
-	bh=MrI7UO9DkNILrgrGDxPJFW3FSW9WF1yU5y98aHjfB9Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=UJi6VttoWMXw0zXrBcLjOdpeNLKRBKPXu/BqYfjWF6cpZ7/fa8PrdBCmKurlJbRPGMpKu/hEmn+FHgiaSNiVAAZk9htur0ombcjv2HK/xPfNDys/zeE79JMrqGEAG4C6Gnh4fholD3wm76FTeU38TRVe9niF/nNUP6mKQdOv7mI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=n80285aQ; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49A1bLcD023702;
-	Thu, 10 Oct 2024 10:14:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	OM06fI4SwiEmMbVmLrFK9GDPa/CstAMR3gUBg0vz79Q=; b=n80285aQdJnkAKZL
-	5GMTU2qvXkYA+qmS1u8mlgPl6hbIBfhzc3jm82073rr3gINzF4e6k3kpONmUz/TP
-	SPU0pnAx+J+xOktEmDe/vcVEHHLsBQz6eeM3rWLq2wkFjlxgBOFDJnIH0gc8iW5e
-	22uT11+zKjhbYKQ8oSg6DNzMqdwU25n+Ot4hUxi/9rMTjOah/M3cE3fHhv74Qvhv
-	d7GyWFApmVoK9FqOr/Pu/EamiG2THk8JfkJpHFGzgIjMd14LqgK46ob3+P4SUNca
-	aP7HueTsdiRa11n3wgoDgdAKaL8ym69P9F4EhzIEDr7w1Ka5LPhcz8+P3WLuIz54
-	4miyIg==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndyh21r-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Oct 2024 10:14:29 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49AAEScq005747
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 10 Oct 2024 10:14:28 GMT
-Received: from [10.253.78.114] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
- 2024 03:14:24 -0700
-Message-ID: <bd209e3c-41b5-4e70-ad15-b3f2ff265afb@quicinc.com>
-Date: Thu, 10 Oct 2024 18:14:21 +0800
+	s=arc-20240116; t=1728555604; c=relaxed/simple;
+	bh=c/6seuK0LsZaqyvw8i37BiYlIfMZwD3oi1R0YzQZ/aU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ta/5xl19yj/GjUhq5Wif/9izhvLNxnS9hYpb/eoz4MSRlYl5OpU53vUvhJGG9tSlX/0XA7awK0dATVMTjBurxLnI3OkCLqKGtYiqK0yosTIQWH0nPZ3962DI0V/cmnjBsb4XBM/+BV+nsiIf4IuRl3XWD/6nF8qNrXGGOtuF+CM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=cAFRP0Ge; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728555592;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=2t5G1nuRoT30uUHQhEAmI0rqUOvlejZIQbCf/G470I4=;
+	b=cAFRP0Ge91jsRZUPc1Y7Hxml3ClssfPkL7iEl55YX+Q+8Y3kHzPGbMULWqpDCgf9QurS23
+	dDQgM7dmZkIRc4a49nbje1QipkkHNUDafgSq7qeWW7Uc3n2B1bOzUgaVLYUUv47qlGnxuP
+	a5Si+9OZX7RJpvg+9LYdKE4cjSaNqvVcDq/3ccT0s55e6Vg5e6tgnq7ynpnQntUqkKJe/6
+	Msh+c3wL5PjhOKtYdeo1NFIRzSwoiHKp1iupO0EVCGNZ3T89X+H0k3Del8DOkseY41B8YU
+	jg2AEk18OJmU8Ea83OT17kIzJT9nPPWLRIG3lioZyNc8OY8+AYGTPTwnLYPqYg==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	stable@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308 SoC dtsi
+Date: Thu, 10 Oct 2024 12:19:41 +0200
+Message-Id: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] arm64: dts: qcom: move common parts for qcs8300-ride
- variants into a .dtsi
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran
-	<richardcochran@gmail.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>
-References: <20241010-dts_qcs8300-v1-0-bf5acf05830b@quicinc.com>
- <20241010-dts_qcs8300-v1-4-bf5acf05830b@quicinc.com>
- <75vxiq4n2tdx3ssmnbq7qpp2ujtzjs4bkgpkpsi623fs3mpslx@ijmaos2gg5ps>
-Content-Language: en-US
-From: Yijie Yang <quic_yijiyang@quicinc.com>
-In-Reply-To: <75vxiq4n2tdx3ssmnbq7qpp2ujtzjs4bkgpkpsi623fs3mpslx@ijmaos2gg5ps>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TmYmN6RgKUPYTndxeSdPKTmNcd4aObyj
-X-Proofpoint-ORIG-GUID: TmYmN6RgKUPYTndxeSdPKTmNcd4aObyj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
- bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
- mlxlogscore=949 spamscore=0 suspectscore=0 impostorscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410100067
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+Until the TSADC, thermal zones, thermal trips and cooling maps are defined
+in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one may be
+enabled under any circumstances.  Allowing the DVFS to scale the CPU cores
+up without even just the critical CPU thermal trip in place can rather easily
+result in thermal runaways and damaged SoCs, which is bad.
 
+Thus, leave only the lowest available CPU OPP enabled for now.
 
-On 2024-10-10 14:18, Krzysztof Kozlowski wrote:
-> On Thu, Oct 10, 2024 at 10:57:18AM +0800, Yijie Yang wrote:
->> In order to support multiple revisions of the qcs8300-ride board, create
->> a .dtsi containing the common parts and split out the ethernet bits into
->> the actual board file as they will change in revision 2.
->>
->> Signed-off-by: Yijie Yang <quic_yijiyang@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/qcs8300-ride.dts  | 373 +----------------------------
->>   arch/arm64/boot/dts/qcom/qcs8300-ride.dtsi | 364 ++++++++++++++++++++++++++++
-> 
-> This is tricky to review. Use proper -M/-B/-C arguments for
-> format-patch, so the rename will be detected.
-> 
-> You basically renamed entire file!
+Fixes: 6913c45239fd ("arm64: dts: rockchip: Add core dts for RK3308 SOC")
+Cc: stable@vger.kernel.org
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Sure, I'll handle the optimization of that.
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+index 31c25de2d689..a7698e1f6b9e 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+@@ -120,16 +120,19 @@ opp-600000000 {
+ 			opp-hz = /bits/ 64 <600000000>;
+ 			opp-microvolt = <950000 950000 1340000>;
+ 			clock-latency-ns = <40000>;
++			status = "disabled";
+ 		};
+ 		opp-816000000 {
+ 			opp-hz = /bits/ 64 <816000000>;
+ 			opp-microvolt = <1025000 1025000 1340000>;
+ 			clock-latency-ns = <40000>;
++			status = "disabled";
+ 		};
+ 		opp-1008000000 {
+ 			opp-hz = /bits/ 64 <1008000000>;
+ 			opp-microvolt = <1125000 1125000 1340000>;
+ 			clock-latency-ns = <40000>;
++			status = "disabled";
+ 		};
+ 	};
+ 
 
