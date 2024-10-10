@@ -1,94 +1,96 @@
-Return-Path: <devicetree+bounces-110091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 590A099939D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:24:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0359F9993A7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:27:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F31761F22DD2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:24:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F5FD1F228E9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:27:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAB8C1D0F52;
-	Thu, 10 Oct 2024 20:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C18871E0098;
+	Thu, 10 Oct 2024 20:27:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="AOUaztwu"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="oG3oURYs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B14818C03D;
-	Thu, 10 Oct 2024 20:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A9BC19C553;
+	Thu, 10 Oct 2024 20:27:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728591881; cv=none; b=c+LVa8QdRZOkWr5Aze0/56rn7uah7NZVNmIb5EO8ArH0hv1VOirbvq1Kcq2ZHZGVU1E/M8qhYBLe8Ma11f1fEoMhgyfsLGc5+LvGHaVtJqBvpJsvi0pHKDv9a6YHY3FykSvzc+N8Y9Ja9tSUc88E8/MYTFTZdjqHCO+MmCZYpVM=
+	t=1728592071; cv=none; b=bNBJgCymSx446Rxm2rnqCYYxGafwk05/OiqCerp7auvRF8v/yOlADb7M4XZTX8GVRQOy6LznkOxNVGtks82I6dNfHrE5PoG4CO/ncnwVg41roj5oFhC80cATzP/EQFjMx6eCt2E/k/Fn0LoA0FXM1BaKiQrkra/YqxRjJsm99TI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728591881; c=relaxed/simple;
-	bh=EZCATSrTvloVjbkKMEbSDOTA4ZTCzNep57DiW3EoUj0=;
+	s=arc-20240116; t=1728592071; c=relaxed/simple;
+	bh=4aVUhPMcFnXsYa4v6FhSoRCef9bQJORiqotQO5K5zvY=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=bcs5biDt1EaYbqqnT7AO2JefA+kbm1zFfs7iA/8iXxJ4HtzXhlnQwblsiuu56HGNPM+dVB3P9j0ngdGpr7za9eZVvBUvoqLJFgUMF5Gu9TIxsEotUoeKJ3oINGzsyp0eYXh3z6X/x61+h95vHO+HlOB2ebXHuS2313Yt9WJXIA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=AOUaztwu; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=mEl/M7Qxp9mOFzmNkLzFIFm6q35WXUTst+Nu5srSs9pWybMQ0xSSQKnJXnRUXUw1sDyNXkrKL+vLmhvkPfqqI+IGtsAVHZ+rkKM2tb57Xz+kMS6qH7TeoKkEKa5Fv9XccsVrpohiMnJSEuYDY03ZyXVLSXr3x+J4IFsMN6Uu4Zo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=oG3oURYs; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=EZCATSrTvloVjbkKMEbSDOTA4ZTCzNep57DiW3EoUj0=; b=AOUaztwu1VEPoPcFH3OF+obr4I
-	3rkGPKWH+65SmtkocxtLd28D+UvXgrz3qssJf5si5mqGBrjU5SoUm5suDb7jZzZh9Ou7eAWX3IAVj
-	gO6Q8Hze4QhYOfqXxnDcUEIi7ALpwm+oBt+/0QMgLtrXTJtCQ857F4nBr+25PMiUIZUw8PwVd0HGO
-	WNBLuNC+Eu7UzMEdfHmbDnt8WMZTl6jlSx6goVonxi8OO/HhTi/h+a9xstLmG/y8LXljrhY71B3SK
-	AJY7txpv+tDIW1CH3k9SQhMohB7/XQa2G9KyxTlXcAGjT81g+ATDPNN0cDdT2KM0lUDeuGtXvSypu
-	wyyzlRfw==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	bh=6BFDLIxR9WZQ3uKsX2doi4YcoFJOtB9dymEl4xDgCKY=; b=oG3oURYslPRZUea9n1SaXowBOr
+	vo1i72GboeOY1D3CTjubkqfc98GbwQy8gWl0JcDDQ32K7+jwcQcLBzqrC6TuLE4NlOyiuY7GzbIB+
+	4UhDZ4EFRWUK5u+q9xmFkH+t/bcibWV3/STvqmXQRqf3gSKISqjZTv0kQOlugBkH5tJtf8bcPBbwr
+	dHbhDesrVpNIAafzAyJXJbSKNegmZw/4NkVxqTFai99xVcJB6ayUsS/zp1VWXJKZO7K4tDOlbWA85
+	clfHYz1h6B3peZNGFp55R+SDWKfnGy2C4LdUR4Zg4foYXyghVkM7qptbkB6oVSDcbE30537UezpS8
+	cOAf8BqA==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1syzi6-0000k3-G9; Thu, 10 Oct 2024 22:24:34 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: linux-rockchip@lists.infradead.org, Dragan Simic <dsimic@manjaro.org>
-Cc: linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Subject:
- Re: [PATCH] arm64: dts: rockchip: Add dtsi file for RK3399S SoC variant
-Date: Thu, 10 Oct 2024 22:24:33 +0200
-Message-ID: <46729153.fMDQidcC6G@diego>
-In-Reply-To:
- <59c524a9a12465c21e01b779b42749fae148c41d.1728482151.git.dsimic@manjaro.org>
-References:
- <59c524a9a12465c21e01b779b42749fae148c41d.1728482151.git.dsimic@manjaro.org>
+	id 1syzlE-0000lb-22; Thu, 10 Oct 2024 22:27:48 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-rockchip@lists.infradead.org,
+	Dragan Simic <dsimic@manjaro.org>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	stable@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308 SoC dtsi
+Date: Thu, 10 Oct 2024 22:27:44 +0200
+Message-ID: <172859192266.2746127.3378168630215627036.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
+References: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Dragan,
+On Thu, 10 Oct 2024 12:19:41 +0200, Dragan Simic wrote:
+> Until the TSADC, thermal zones, thermal trips and cooling maps are defined
+> in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one may be
+> enabled under any circumstances.  Allowing the DVFS to scale the CPU cores
+> up without even just the critical CPU thermal trip in place can rather easily
+> result in thermal runaways and damaged SoCs, which is bad.
+> 
+> Thus, leave only the lowest available CPU OPP enabled for now.
+> 
+> [...]
 
-Am Mittwoch, 9. Oktober 2024, 16:06:00 CEST schrieb Dragan Simic:
-> The way the introduced RK3399S SoC variant dtsi file (rk3399s.dtsi) is named
-> diverges from the way the two already present RK3399 SoC variant dtsi files
-> (rk3399-op1.dtsi and rk3399-t.dtsi) are named, but that simply follows the
-> commonly used and/or the official RK3399 SoC variant names.
+Applied, thanks!
 
-This is my only gripe with this ;-) .
+[1/1] arm64: dts: rockchip: Prevent thermal runaways in RK3308 SoC dtsi
+      commit: 864f1a5b390278a4a8d4a6d7425c7022477c6c9f
 
-I.e. looking through simple google, the rk3399t also seems to be written
-without "-" most of the time.
-
-Though for me it would make the most sense to just go with "rk3399-s"
-here for some sort of clear style between -s -t and -op1
-
-
-Heiko
-
-
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
