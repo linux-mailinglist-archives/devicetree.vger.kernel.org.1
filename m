@@ -1,206 +1,304 @@
-Return-Path: <devicetree+bounces-109730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF855997BCA
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 06:27:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC3C997BDA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 06:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A6452819DB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 04:27:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F21261C2202D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 04:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB2D19D897;
-	Thu, 10 Oct 2024 04:26:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BD0B192B78;
+	Thu, 10 Oct 2024 04:35:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JUEgjjWs"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hOq5DNrw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m92233.xmail.ntesmail.com (mail-m92233.xmail.ntesmail.com [103.126.92.233])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5DC19C549;
-	Thu, 10 Oct 2024 04:26:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.92.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 465623D66;
+	Thu, 10 Oct 2024 04:35:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728534419; cv=none; b=a54UXNQTyYa9WMxhJ5+3E6qcn1czWwGpZHbVaR9OZ80ehCmt4otnIJfbbaIl8RSw97kQRptqBNJ4Gsm/JIxmxaoeFZ5pyf1c9RXCD2N303nbKp2itfy6gJVFVt8c8kNozuibA2todr49gy1oldH0GYLcxPTv9jTts9GQ8xO7tYY=
+	t=1728534955; cv=none; b=GPxgI/0fNNP4N6h0Ob9lHpwipRsi29vDgqbVokY7aS9e+b965ywzhg7vGqB6H6ZR5gkWHwsoBP9Wlyj9IvdCWWx8c0mRTtBQWoPvcjOapu0ffHfunfS8IUmFtYpaAtID7JZqMRXt74xMY6k7B/R0AXM3Phyh/gt06KhbU0RlHac=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728534419; c=relaxed/simple;
-	bh=6//KWScm9mX9fW3ydl5GhjP8SzMNCQwOOC0JNpGmk/4=;
-	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=j7ZPNAK9ZKpa9XahOa9VYXY1saFihGH4M+jBYbVBuvdANevWojIeMfDb03QZo7K29X4DnnUbzFYBl1ZMZtDy1jnNvrVQKYTVEAlZ4ORQLe5PAY3zwnk/jz8Z8iVRXeqTW9Q53K6BS68PVPxcpHarA78I2DV2HAIYHCvrOu9tWek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JUEgjjWs; arc=none smtp.client-ip=103.126.92.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
-DKIM-Signature: a=rsa-sha256;
-	b=JUEgjjWsw8WkgYb+mcECVsI9IkmmXko4RB2udUoVTr19YR+jrI2EiCkwocKdrB85u2ooGalZr4zn1fVqmOtcGX/SUp90/dS2xkk0galBmo+k5nbZW6RqSLhusQYNH/rZ1r4xyCOArDJMFmu40t95UgPPWeBGiwNqZlyEss0tugs=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
-	bh=aKBu267PcSvUBWDRFu4xvYcquBPnRNKWPIvfJjrnkG4=;
-	h=date:mime-version:subject:message-id:from;
-Received: from [172.16.12.45] (unknown [58.22.7.114])
-	by smtp.qiye.163.com (Hmail) with ESMTPA id 114E95203C3;
-	Thu, 10 Oct 2024 09:21:08 +0800 (CST)
-Message-ID: <3969bae0-eeb8-447a-86a5-dfdac0b136cd@rock-chips.com>
-Date: Thu, 10 Oct 2024 09:21:08 +0800
+	s=arc-20240116; t=1728534955; c=relaxed/simple;
+	bh=P85mdDr+6ogvc7JrH7HIaL8upROhQg5PhLxmzsIJZTo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NLDOV1G8NMAXdT5WjGNU004VNMnqYqdEGGyNpa6I8eQRVkac7ICd0Ydiw6anembUykwwWd3yCUGFWm2gSDfI0kpeePg4CjRIC6yvowI9bLZ2xmel8Z9jY4RGR7G+jNFFOeLjLLUZGyxpmWYJcEll046Pc/oDqSrqR+4eZEWv0PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hOq5DNrw; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728534952; x=1760070952;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=P85mdDr+6ogvc7JrH7HIaL8upROhQg5PhLxmzsIJZTo=;
+  b=hOq5DNrw99pdH9yt7/TBzT1pYO8uZd9jiSE8wgoDvKlshrykPqHMcwDU
+   KNrJYDSfbsEgOCQZYHssjjV/xWUyA74vmYDOWak4KP30HT5i7KUO6hqcE
+   IC8X868T91m5ImtCaO8G+ElSa7NQWl9lK4U2XFh/qnL0lyoB6qzpPlZ3J
+   E474IEML+OT8VGHvr64VLzkc9OWDNwS7wg3T5Mg0oOP+SL8DS5xFsigAz
+   zqi9MIcRrbMAEDE7WTWmuR7Yd976EmTX8LKLQch4Y2nCFhZh4GkfCjlaI
+   0/dXoj2gb7mPFQXj107slFVOILimuDm0St2zqrhx3z7Fy+z6G4A4qWYRe
+   g==;
+X-CSE-ConnectionGUID: 88StVbBRQVelT36264LeYg==
+X-CSE-MsgGUID: 3AAJSy7ETiu1lD2Dv0Vv4w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="53274698"
+X-IronPort-AV: E=Sophos;i="6.11,191,1725346800"; 
+   d="scan'208";a="53274698"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Oct 2024 21:35:51 -0700
+X-CSE-ConnectionGUID: Kvf6ziAXT1Kw8s+mZR5MtA==
+X-CSE-MsgGUID: pH6/SfkPTI6TJOnBgJXu/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,191,1725346800"; 
+   d="scan'208";a="76403777"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa009.jf.intel.com with ESMTP; 09 Oct 2024 21:35:48 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1syktt-000ABR-0T;
+	Thu, 10 Oct 2024 04:35:45 +0000
+Date: Thu, 10 Oct 2024 12:35:35 +0800
+From: kernel test robot <lkp@intel.com>
+To: Damien Le Moal <dlemoal@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v3 12/12] PCI: rockchip-ep: Handle PERST# signal in
+ endpoint mode
+Message-ID: <202410101236.xqI8ZWNd-lkp@intel.com>
+References: <20241007041218.157516-13-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Cc: shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
- "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K . Petersen" <martin.petersen@oracle.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
- Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
- Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 5/5] scsi: ufs: rockchip: initial support for UFS
-To: Ulf Hansson <ulf.hansson@linaro.org>
-References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com>
- <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
- <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
-Content-Language: en-GB
-From: Shawn Lin <shawn.lin@rock-chips.com>
-In-Reply-To: <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJCTFYdSUNMTh5LS0lPTR9WFRQJFh
-	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
-	NVSktLVUpCS0tZBg++
-X-HM-Tid: 0a927403f43303afkunm114e95203c3
-X-HM-MType: 1
-X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MT46Shw6SjIpFA9LHw89NxcJ
-	Pz9PCgtVSlVKTElDTklISU1CTExNVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
-	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1CTEg3Bg++
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007041218.157516-13-dlemoal@kernel.org>
 
-Hi Ulf
+Hi Damien,
 
-在 2024/10/9 21:15, Ulf Hansson 写道:
-> [...]
-> 
->> +
->> +static int ufs_rockchip_runtime_suspend(struct device *dev)
->> +{
->> +       struct ufs_hba *hba = dev_get_drvdata(dev);
->> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
->> +       struct generic_pm_domain *genpd = pd_to_genpd(dev->pm_domain);
-> 
-> pd_to_genpd() isn't safe to use like this. It's solely to be used by
-> genpd provider drivers.
-> 
->> +
->> +       clk_disable_unprepare(host->ref_out_clk);
->> +
->> +       /*
->> +        * Shouldn't power down if rpm_lvl is less than level 5.
-> 
-> Can you elaborate on why we must not power-off the power-domain when
-> level is less than 5?
-> 
+kernel test robot noticed the following build errors:
 
-Because ufshcd driver assume the controller is active and the link is on
-if level is less than 5. So the default resume policy will not try to
-recover the registers until the first error happened. Otherwise if the
-level is >=5, it assumes the controller is off and the link is down,
-then it will restore the registers and link.
+[auto build test ERROR on pci/next]
+[also build test ERROR on pci/for-linus mani-mhi/mhi-next linus/master v6.12-rc2 next-20241009]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-And the level is changeable via sysfs.
+url:    https://github.com/intel-lab-lkp/linux/commits/Damien-Le-Moal/PCI-rockchip-ep-Use-a-macro-to-define-EP-controller-align-feature/20241007-131224
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git next
+patch link:    https://lore.kernel.org/r/20241007041218.157516-13-dlemoal%40kernel.org
+patch subject: [PATCH v3 12/12] PCI: rockchip-ep: Handle PERST# signal in endpoint mode
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20241010/202410101236.xqI8ZWNd-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 14.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241010/202410101236.xqI8ZWNd-lkp@intel.com/reproduce)
 
-> What happens if we power-off anyway when the level is less than 5?
-> 
->> +        * This flag will be passed down to platform power-domain driver
->> +        * which has the final decision.
->> +        */
->> +       if (hba->rpm_lvl < UFS_PM_LVL_5)
->> +               genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
->> +       else
->> +               genpd->flags &= ~GENPD_FLAG_RPM_ALWAYS_ON;
-> 
-> The genpd->flags is not supposed to be changed like this - and
-> especially not from a genpd consumer driver.
-> 
-> I am trying to understand a bit more of the use case here. Let's see
-> if that helps me to potentially suggest an alternative approach.
-> 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410101236.xqI8ZWNd-lkp@intel.com/
 
-I was not familiar with the genpd part, so I haven't come up with 
-another solution. It would be great if you can guide me to the right
-way.
+All errors (new ones prefixed by >>):
 
->> +
->> +       return ufshcd_runtime_suspend(dev);
->> +}
->> +
->> +static int ufs_rockchip_runtime_resume(struct device *dev)
->> +{
->> +       struct ufs_hba *hba = dev_get_drvdata(dev);
->> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
->> +       int err;
->> +
->> +       err = clk_prepare_enable(host->ref_out_clk);
->> +       if (err) {
->> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
->> +               return err;
->> +       }
->> +
->> +       reset_control_assert(host->rst);
->> +       usleep_range(1, 2);
->> +       reset_control_deassert(host->rst);
->> +
->> +       return ufshcd_runtime_resume(dev);
->> +}
->> +
->> +static int ufs_rockchip_system_suspend(struct device *dev)
->> +{
->> +       struct ufs_hba *hba = dev_get_drvdata(dev);
->> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
->> +
->> +       /* Pass down desired spm_lvl to Firmware */
->> +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
->> +                       host->pd_id, hba->spm_lvl < 5 ? 1 : 0, 0, 0, 0, 0, NULL);
-> 
-> Can you please elaborate on what goes on here? Is this turning off the
-> power-domain that the dev is attached to - or what is actually
-> happening?
-> 
+         |                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:255:44: error: invalid use of undefined type 'struct pci_epc_map'
+     255 |         map->map_ofst = map->pci_addr - map->map_pci_addr;
+         |                                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:257:16: error: invalid use of undefined type 'struct pci_epc_map'
+     257 |         if (map->map_ofst + map->pci_size > SZ_1M)
+         |                ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:257:32: error: invalid use of undefined type 'struct pci_epc_map'
+     257 |         if (map->map_ofst + map->pci_size > SZ_1M)
+         |                                ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:258:20: error: invalid use of undefined type 'struct pci_epc_map'
+     258 |                 map->pci_size = SZ_1M - map->map_ofst;
+         |                    ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:258:44: error: invalid use of undefined type 'struct pci_epc_map'
+     258 |                 map->pci_size = SZ_1M - map->map_ofst;
+         |                                            ^~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:12: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |            ^~
+   In file included from include/vdso/const.h:5,
+                    from include/linux/const.h:4,
+                    from include/uapi/linux/kernel.h:6,
+                    from include/linux/cache.h:5,
+                    from include/linux/time.h:5,
+                    from include/linux/stat.h:19,
+                    from include/linux/configfs.h:22,
+                    from drivers/pci/controller/pcie-rockchip-ep.c:11:
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:44: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                            ^
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:44: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                            ^
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:50: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                  ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:50: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                  ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:34: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                  ^~
+   include/uapi/linux/const.h:49:61: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                             ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:50: error: invalid use of undefined type 'struct pci_epc_map'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                                                  ^~
+   include/uapi/linux/const.h:49:61: note: in definition of macro '__ALIGN_KERNEL_MASK'
+      49 | #define __ALIGN_KERNEL_MASK(x, mask)    (((x) + (mask)) & ~(mask))
+         |                                                             ^~~~
+   include/linux/align.h:8:33: note: in expansion of macro '__ALIGN_KERNEL'
+       8 | #define ALIGN(x, a)             __ALIGN_KERNEL((x), (a))
+         |                                 ^~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:260:25: note: in expansion of macro 'ALIGN'
+     260 |         map->map_size = ALIGN(map->map_ofst + map->pci_size,
+         |                         ^~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_perst_irq_thread':
+>> drivers/pci/controller/pcie-rockchip-ep.c:631:9: error: implicit declaration of function 'irq_set_irq_type'; did you mean 'irq_set_irq_wake'? [-Wimplicit-function-declaration]
+     631 |         irq_set_irq_type(ep->perst_irq,
+         |         ^~~~~~~~~~~~~~~~
+         |         irq_set_irq_wake
+   drivers/pci/controller/pcie-rockchip-ep.c: In function 'rockchip_pcie_ep_setup_irq':
+>> drivers/pci/controller/pcie-rockchip-ep.c:655:9: error: implicit declaration of function 'irq_set_status_flags' [-Wimplicit-function-declaration]
+     655 |         irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+         |         ^~~~~~~~~~~~~~~~~~~~
+>> drivers/pci/controller/pcie-rockchip-ep.c:655:45: error: 'IRQ_NOAUTOEN' undeclared (first use in this function); did you mean 'IRQF_NO_AUTOEN'?
+     655 |         irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+         |                                             ^~~~~~~~~~~~
+         |                                             IRQF_NO_AUTOEN
+   drivers/pci/controller/pcie-rockchip-ep.c:655:45: note: each undeclared identifier is reported only once for each function it appears in
+   drivers/pci/controller/pcie-rockchip-ep.c: At top level:
+   drivers/pci/controller/pcie-rockchip-ep.c:685:10: error: 'const struct pci_epc_ops' has no member named 'map_align'
+     685 |         .map_align      = rockchip_pcie_ep_map_align,
+         |          ^~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:685:27: error: initialization of 'int (*)(struct pci_epc *, u8,  u8,  phys_addr_t,  u64,  size_t)' {aka 'int (*)(struct pci_epc *, unsigned char,  unsigned char,  long long unsigned int,  long long unsigned int,  long unsigned int)'} from incompatible pointer type 'int (*)(struct pci_epc *, u8,  u8,  struct pci_epc_map *)' {aka 'int (*)(struct pci_epc *, unsigned char,  unsigned char,  struct pci_epc_map *)'} [-Wincompatible-pointer-types]
+     685 |         .map_align      = rockchip_pcie_ep_map_align,
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:685:27: note: (near initialization for 'rockchip_pcie_epc_ops.map_addr')
+   drivers/pci/controller/pcie-rockchip-ep.c:686:27: warning: initialized field overwritten [-Woverride-init]
+     686 |         .map_addr       = rockchip_pcie_ep_map_addr,
+         |                           ^~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/pci/controller/pcie-rockchip-ep.c:686:27: note: (near initialization for 'rockchip_pcie_epc_ops.map_addr')
 
-This smc call is trying to ask firmware not to turn off the power-domian
-that the UFS is attached to and also not to turn off the power of UFS
-conntroller.
 
-Per your comment at patch 4, should I use GENPD_FLAG_ALWAYS_ON +
-arm_smccc_smc here in system suspend?
+vim +631 drivers/pci/controller/pcie-rockchip-ep.c
 
->> +
->> +       return ufshcd_system_suspend(dev);
->> +}
->> +
->> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
->> +       SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_system_suspend, ufshcd_system_resume)
->> +       SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
->> +       .prepare         = ufshcd_suspend_prepare,
->> +       .complete        = ufshcd_resume_complete,
->> +};
->> +
->> +static struct platform_driver ufs_rockchip_pltform = {
->> +       .probe = ufs_rockchip_probe,
->> +       .remove = ufs_rockchip_remove,
->> +       .driver = {
->> +               .name = "ufshcd-rockchip",
->> +               .pm = &ufs_rockchip_pm_ops,
->> +               .of_match_table = ufs_rockchip_of_match,
->> +       },
->> +};
->> +module_platform_driver(ufs_rockchip_pltform);
->> +
-> 
-> [...]
-> 
-> Kind regards
-> Uffe
+   618	
+   619	static irqreturn_t rockchip_pcie_ep_perst_irq_thread(int irq, void *data)
+   620	{
+   621		struct pci_epc *epc = data;
+   622		struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+   623		struct rockchip_pcie *rockchip = &ep->rockchip;
+   624		u32 perst = gpiod_get_value(rockchip->ep_gpio);
+   625	
+   626		if (perst)
+   627			rockchip_pcie_ep_perst_assert(ep);
+   628		else
+   629			rockchip_pcie_ep_perst_deassert(ep);
+   630	
+ > 631		irq_set_irq_type(ep->perst_irq,
+   632				 (perst ? IRQF_TRIGGER_HIGH : IRQF_TRIGGER_LOW));
+   633	
+   634		return IRQ_HANDLED;
+   635	}
+   636	
+   637	static int rockchip_pcie_ep_setup_irq(struct pci_epc *epc)
+   638	{
+   639		struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+   640		struct rockchip_pcie *rockchip = &ep->rockchip;
+   641		struct device *dev = rockchip->dev;
+   642		int ret;
+   643	
+   644		if (!rockchip->ep_gpio)
+   645			return 0;
+   646	
+   647		/* PCIe reset interrupt */
+   648		ep->perst_irq = gpiod_to_irq(rockchip->ep_gpio);
+   649		if (ep->perst_irq < 0) {
+   650			dev_err(dev, "No corresponding IRQ for PERST GPIO\n");
+   651			return ep->perst_irq;
+   652		}
+   653	
+   654		ep->perst_asserted = true;
+ > 655		irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
+   656		ret = devm_request_threaded_irq(dev, ep->perst_irq, NULL,
+   657						rockchip_pcie_ep_perst_irq_thread,
+   658						IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+   659						"pcie-ep-perst", epc);
+   660		if (ret) {
+   661			dev_err(dev, "Request PERST GPIO IRQ failed %d\n", ret);
+   662			return ret;
+   663		}
+   664	
+   665		return 0;
+   666	}
+   667	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
