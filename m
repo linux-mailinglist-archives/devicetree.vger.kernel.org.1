@@ -1,118 +1,193 @@
-Return-Path: <devicetree+bounces-109971-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D45F2998AB9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:00:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F5E4998B52
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:23:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 647A61F2854B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:00:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5A71B30400
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:02:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E5251CDA18;
-	Thu, 10 Oct 2024 14:54:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6D41CBEAC;
+	Thu, 10 Oct 2024 14:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="iXqA8s3m"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cUEmsXnG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D68D41C9EDD;
-	Thu, 10 Oct 2024 14:54:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20CD91A08B1;
+	Thu, 10 Oct 2024 14:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728572096; cv=none; b=FnO0vx7Ju7UZj1O6nIh7xCCkF/Fnpa3zkImf8MRoddjo3bMYt8DDwsQC0UUMgViEHpHCutGyVgqnNjaEHy70w7/ebqZrfe9wY92JvzHyAK4oQgFBSLZsU82WzmwWXzULMbGpAldgSv3ouyRi4ITewYqMr+B4QJL8HwtkHEMBM8w=
+	t=1728572255; cv=none; b=rLyMMhfK1WUcC5Vu2gR4XVA1OmDB8KWXiaOIWBQx6DTeFUtfRZF1oVE0MrgpdLRQ5I+Ha57liFIoLECaie4bI+nm79TCh0AF3/qjI/jDSCsn5J6vZ3t44BycriSDfxNeyNb46y6ToNWCUzdXRj+FcvG4TP7ceES6yRNCBstGW90=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728572096; c=relaxed/simple;
-	bh=LgiGrQlM3gDVzjYBIboDkagGXFjdao2iqR3QbcZoJF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sI0EaiKJRAXWBzK01INrqVUqWX8Qr161XoSRGMHrPOiXlc4QwM0qjzuTq/Qj9RYD/gnEbFIZRiOCuWgNmxwesDDylp/TzL1UKIpREijg+70CsaOVJoQsOJeDBMzR/fX3aSVLz0VXhEu1is06DxS61iCm8uI812qvC5EkHgF9Q6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=iXqA8s3m; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728572095; x=1760108095;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=LgiGrQlM3gDVzjYBIboDkagGXFjdao2iqR3QbcZoJF0=;
-  b=iXqA8s3mi/WcWDRrNilacyyKP2YuthrUTQsBjtOXmxLiwjBpGfVgHkjK
-   hc0NfL9COqn0KHusazoB3sleCnjiDFbDRoPsYV3G9mO7NQSGylxtXLTcn
-   a84Kiy7pCqICJxXGFZ20lFAuYowJYiNPrc5uTq0jlOSV0Xdgo0SRa23gM
-   BzvXqeMZy3aVCdJh5Li36JoSQI3kJZSJUKsiQsqbYW1S2N6vDXlg4c/L2
-   7TxjHHjWAamoXjlHu49pJPP8H2C89jBk4t5u6xZldn7bNFdLpCUf/0N0D
-   G7/UquGyD2rlI22ytamctzR+GYhlda3CfWoS3FeUCinC4lQ+mu9HWSoE3
-   g==;
-X-CSE-ConnectionGUID: mcvZBt+0T7CnE1R/rmzVnA==
-X-CSE-MsgGUID: oAe3BW39QqqINxqQFYqXRg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="27828123"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="27828123"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 07:54:54 -0700
-X-CSE-ConnectionGUID: qkWAqSZRQWO1o9uZ1H90aQ==
-X-CSE-MsgGUID: Ip46FiQNQLeLcguU/URfYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="107337394"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 07:54:51 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1syuYy-00000001ZN8-1eFg;
-	Thu, 10 Oct 2024 17:54:48 +0300
-Date: Thu, 10 Oct 2024 17:54:48 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Inochi Amaoto <inochiama@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>, Yixun Lan <dlan@gentoo.org>,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: serial: snps-dw-apb-uart: Add Sophgo
- SG2044 uarts
-Message-ID: <ZwfquBFOVJEz5lTT@smile.fi.intel.com>
-References: <20241009233908.153188-1-inochiama@gmail.com>
- <20241009233908.153188-2-inochiama@gmail.com>
- <oyvqsywyznanpx5oflnemcsrk7r7nnhvxl6ly7b55oan2boi5d@kobrtldqbj6m>
- <muz6ze7cxho5niz67agoxwnaowumzlcto2vwydmxs2yzdjmisi@symog2asftmv>
+	s=arc-20240116; t=1728572255; c=relaxed/simple;
+	bh=6s1o0OZV5/ljAuMxNzowh++cNJdGI5BQln275WO3obA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=teJyAy8xNPQDoiq0QM0hPW+wfps8TY7CeLqhxzav9GnUm0b9DHWnTPta3OAMQu6viLChJtrezpW8ZAbgsMCIROdffa9BGYezsONhawZp3ZxEP8ItC7C+9ECzcMQhc8ZMxSnVfe3H4C1ceJTsETiGO+gwRPLJu84TLo27hJyHnHg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cUEmsXnG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AEeDFL006940;
+	Thu, 10 Oct 2024 14:57:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	LWccwnb/rSY1kxtpT37tSxJo7pTRUbn0UeQduJUQDTQ=; b=cUEmsXnGHMuhN+8a
+	j+bNrwi0gZanN1b3MPyu/u0cacubGQTj8tqxlb8HAk/0qGTlOqMV7KsuALR0hWnt
+	mGZ1svg7iZ5ObjoQ6V/TD4zFrCGgKpxIlm7u7JJ4L+HInZruB38WeJSI04uZkV2P
+	fRtr9kfeOOmofdXIak0njaAePlik0vKgPJ0a8jPeBXMkbbplczrbAfApRGCwGSH1
+	yUVXpBTSsCpIcyy0zvSDODS4rj+oBLHGR6B0VP7gE/fuCtsxfRo9tlsmvQA1aKF+
+	tOXoD+UYBP32qgXWyM/mo4hpTir1Tkz5rKDXHq9N2u+1VRRyKlSJ3nMqrcAVbF4i
+	4t9c6Q==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426gw2g1qy-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 14:57:29 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49AEvSTg032238
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 14:57:28 GMT
+Received: from [10.216.26.125] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
+ 2024 07:57:24 -0700
+Message-ID: <fe3ebd31-946c-499f-ac96-2cf71c6752e6@quicinc.com>
+Date: Thu, 10 Oct 2024 20:26:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <muz6ze7cxho5niz67agoxwnaowumzlcto2vwydmxs2yzdjmisi@symog2asftmv>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <quic_ppratap@quicinc.com>, <quic_jackp@quicinc.com>
+References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
+ <20241009195636.2649952-2-quic_kriskura@quicinc.com>
+ <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
+Content-Language: en-US
+From: Krishna Kurapati <quic_kriskura@quicinc.com>
+In-Reply-To: <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: AHOkvGcF6wzO9-peE8DvuHZhc8uM4drI
+X-Proofpoint-ORIG-GUID: AHOkvGcF6wzO9-peE8DvuHZhc8uM4drI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 suspectscore=0
+ mlxlogscore=999 bulkscore=0 malwarescore=0 lowpriorityscore=0
+ impostorscore=0 adultscore=0 phishscore=0 priorityscore=1501 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410100099
 
-On Thu, Oct 10, 2024 at 04:23:05PM +0800, Inochi Amaoto wrote:
-> On Thu, Oct 10, 2024 at 08:12:41AM +0200, Krzysztof Kozlowski wrote:
-> > On Thu, Oct 10, 2024 at 07:39:05AM +0800, Inochi Amaoto wrote:
-> > > Add compatibles string for the Sophgo SG2044 uarts.
-> > 
-> > This we see from the diff, say something about hardware.
+
+
+On 10/10/2024 7:52 PM, Dmitry Baryshkov wrote:
+> On Thu, Oct 10, 2024 at 01:26:35AM GMT, Krishna Kurapati wrote:
+>> Add support for USB controllers on QCS8300. The second
+>> controller is only High Speed capable.
+>>
+>> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 165 ++++++++++++++++++++++++++
+>>   1 file changed, 165 insertions(+)
 > 
-> The reason for this compatiable (and the hardware) is mainly in the
-> next patch. Will it be better to submit a new verion with improved
-> description? If so, I wonder whether I can reserve your ack.
+> [...]
 > 
-> > I would just add it to starfive enum, but this is fine as well.
+>> +
+>> +		usb_2: usb@a4f8800 {
+>> +			compatible = "qcom,qcs8300-dwc3", "qcom,dwc3";
+>> +			reg = <0x0 0x0a4f8800 0x0 0x400>;
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges;
+>> +
+>> +			clocks = <&gcc GCC_CFG_NOC_USB2_PRIM_AXI_CLK>,
+>> +				 <&gcc GCC_USB20_MASTER_CLK>,
+>> +				 <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
+>> +				 <&gcc GCC_USB20_SLEEP_CLK>,
+>> +				 <&gcc GCC_USB20_MOCK_UTMI_CLK>;
+>> +			clock-names = "cfg_noc",
+>> +				      "core",
+>> +				      "iface",
+>> +				      "sleep",
+>> +				      "mock_utmi";
+>> +
+>> +			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
+>> +					  <&gcc GCC_USB20_MASTER_CLK>;
+>> +			assigned-clock-rates = <19200000>, <120000000>;
+>> +
+>> +			interrupts-extended = <&intc GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+>> +					      <&intc GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
+>> +					      <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
+>> +					      <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
+>> +			interrupt-names = "pwr_event",
+>> +					  "hs_phy_irq",
+>> +					  "dp_hs_phy_irq",
+>> +					  "dm_hs_phy_irq";
+>> +
+>> +			power-domains = <&gcc GCC_USB20_PRIM_GDSC>;
+>> +			required-opps = <&rpmhpd_opp_nom>;
+>> +
+>> +			resets = <&gcc GCC_USB20_PRIM_BCR>;
+>> +
+>> +			interconnects = <&aggre1_noc MASTER_USB2 0 &mc_virt SLAVE_EBI1 0>,
+>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB2 0>;
+>> +			interconnect-names = "usb-ddr", "apps-usb";
+> 
+> As this is a USB2-only host, shouldn't it also have qcom,select-utmi-as-pipe-clk ?
+> 
 
-Even after reading the second patch I don't understand why you shouldn't re-use
-the starfive compatible or make a new one that covers this quirk? At least I would
-see that as second patch is basically not needed.
+Hi Dmitry,
 
--- 
-With Best Regards,
-Andy Shevchenko
+Thanks for the catch. You are right, it needs to be added according to 
+bindings. Since I would be sending another patch after this series to 
+enable the second controller, would it be fine if I add it in that patch 
+or do you suggest updating this one.
 
+Also I see some others are not using it as well, like sc7280 which also 
+might need to be updated.
 
+Regards,
+Krishna,
+
+>> +
+>> +			status = "disabled";
+>> +
+>> +			usb_2_dwc3: usb@a400000 {
+>> +				compatible = "snps,dwc3";
+>> +				reg = <0x0 0x0a400000 0x0 0xe000>;
+>> +				interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+>> +				iommus = <&apps_smmu 0x20 0x0>;
+>> +				phys = <&usb_2_hsphy>;
+>> +				phy-names = "usb2-phy";
+>> +				snps,dis_u2_susphy_quirk;
+>> +				snps,dis_enblslpm_quirk;
+>> +			};
+>> +		};
+>>   	};
+>>   
+>>   	arch_timer: timer {
+>> -- 
+>> 2.34.1
+>>
+> 
 
