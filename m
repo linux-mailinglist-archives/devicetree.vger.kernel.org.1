@@ -1,86 +1,59 @@
-Return-Path: <devicetree+bounces-110033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71489998E81
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:43:02 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1921998E98
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:44:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E37D1C21404
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:43:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 54C73280F69
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:44:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162EF19D09C;
-	Thu, 10 Oct 2024 17:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E270C19D899;
+	Thu, 10 Oct 2024 17:43:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yk9TVKhu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MmxR6ljD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDAC19D07B;
-	Thu, 10 Oct 2024 17:42:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B38B219CD1D;
+	Thu, 10 Oct 2024 17:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728582172; cv=none; b=svMNaC3QpNHs8OqQ6g8fHEuJq79BNqcd/XlO/EZ/jaS5yODUZDYP4XKHgUMTXHigcOPIAyW0oG0uoqnjjBwj8B7fnPFjHItnngBx+20Yia8jAzaro/oaDrj+tysPjiXLN/Hv6CRqAhHLR32NqHlkVWQDjPigouls0/rWJi069OI=
+	t=1728582213; cv=none; b=goTqJfJFP3Jvub/6FGwGlFOvbLuAr0LFeUJdHFFTUqfn3VhxUt0sGAkvbqmIHSbJQqVF6pH5ETCEGnvWptvoObi/TMT8P2dgc4pRbfKErAKo94h0NyzlpAJasA3cQcOHVL/jId/420y6Wh40VBCq59rckosA9f6X2TDrBrslKN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728582172; c=relaxed/simple;
-	bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
+	s=arc-20240116; t=1728582213; c=relaxed/simple;
+	bh=RMXsM9+daLz0wDlNHh/0NCwE/l30K6rBnwaZjnhUduA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=je1IIKI8HxBMpHzTTcCLs3DUfxXTtThoH6I9b03234UxBIua43VkRPVTu8WSXYGMG3Qt8rPBTvNmgjvOCH7D5rqFwPSyXtAGUljupo4M6jjkENfZz4uURkjQ2DpgweEZa1bQvIhAaI4Y6lvKS62mfxgOtl8//Xyk0P4mNhoUpD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yk9TVKhu; arc=none smtp.client-ip=209.85.210.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71def715ebdso848795b3a.2;
-        Thu, 10 Oct 2024 10:42:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728582170; x=1729186970; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
-        b=Yk9TVKhuQ3hOF/C82MAYVmPJ3tstFcHJtezGCHOnDWAwDp/M14GMnUS4+t/corn/Q7
-         UNvDQkonU5gXXXAIP70J7eJcfip/FLWAgsmrK4hGo2Bh1OJ2d5s2PXPDRoC37V6bR0Qv
-         eITt3PWTvy8JHh/jPdsF4F5nDBbw2EFcMLujZo6XPtJldHxaUQfnqEMPUFLdhebISc9b
-         8A+Hj65n5my0mZ2437Fz9sKW0wOXS7N/mPziconIOksAYVKOXzKWLxrCpOJ+kW0ves0G
-         Iwv+IomrzSWvVlUZauDWg1osn3jUDiYNhj6pMZGkohh5QhXzbvsITv9EHYH6cljf53MI
-         73kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728582170; x=1729186970;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
-        b=vKo6kiC/3X2GahwUMwNKCxFYICB3iBHrCgPXDsyMEsDDNm1Dr4HhI4O3n9Ah3/rt5e
-         Il1pMjddpChHN+adTgf9rza3WvvbSsfSEPLXWXyhc28HWi6IGJlCDMMyGKb/eirVNSWR
-         hpO38aCrjZp2dxI+ZZWGsZCPBWqekWXIBlcIClAZ2jn1BgWK10caADmFSkRvZwLTQBJ4
-         Ojlv11umocwSp59cZXsEq0Yrf543CfUFdAfEqouGraVXQwIcGYKpJ9WnlzGhHCOPfe1m
-         J/wMMS54US+VRKtdfC4/B9nd8H+eOEtvOT7fO1qB4O4VU90Oe9+pZPzBwNCs92SGWp5Y
-         T6zg==
-X-Forwarded-Encrypted: i=1; AJvYcCWvfuzPg2ugqEiYLotifdnscgLr7FNGxZjrcVJQ710w6LGdXQ7Mg9bLfnNIS9HU+CNwosWvANeLbuav@vger.kernel.org, AJvYcCXTV7Tn8ENjKFVCE6O1FZZK5V381Re1ZwY9u37YMjvrIy6e6OjVrQR9bcLY+3oRKJ6rJP9nMbICsAk6rhYN@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJheZcArbCss2XZhTYxBkelFkQ2yJpFU6HhDUve3S2eyMDkgUy
-	jpyDMKq0PJGoO7rj/Q7a2Egpv6JTFILT0Ber6kt2dpsP1KbtpioZmE7ankhd
-X-Google-Smtp-Source: AGHT+IG/bt6GaqrKZX93wp3w6yysAt6/pJEYER+jwtjNsIXy4062y+ky3XgGBO7Es//CJOF0hXDglQ==
-X-Received: by 2002:a05:6a00:1312:b0:71e:1cc4:2754 with SMTP id d2e1a72fcca58-71e1db63eefmr10819173b3a.5.1728582169664;
-        Thu, 10 Oct 2024 10:42:49 -0700 (PDT)
-Received: from hiago-nb ([67.159.246.222])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2a9e9843sm1287240b3a.24.2024.10.10.10.42.46
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 10:42:49 -0700 (PDT)
-Date: Thu, 10 Oct 2024 14:42:44 -0300
-From: Hiago De Franco <hiagofranco@gmail.com>
-To: Shawn Guo <shawnguo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Hiago De Franco <hiago.franco@toradex.com>
-Subject: Re: [PATCH v2 0/3] ARM: dts: imx[6qdl|7]-[apalis|colibri]: Update
- audio card names
-Message-ID: <20241010174244.r4sjlapbw5dhuvag@hiago-nb>
-References: <20241010171128.107819-1-hiagofranco@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oT5mbTznaFhkPYHwqDxIcZcU3734uG2risjbqz+ShVWueAzmjNntt29YtXBYOiYQiHUd44imxKPf82ZQ2q+sWBvpS6+qMXPXuMTUwu8je8TbThfXl5+o6PbkTQzfdEarZunOoELn7KhHGrwQpHEOd/pvzIk1AjhPFoRDzSUNaVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MmxR6ljD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7225C4CEC5;
+	Thu, 10 Oct 2024 17:43:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728582213;
+	bh=RMXsM9+daLz0wDlNHh/0NCwE/l30K6rBnwaZjnhUduA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MmxR6ljDZQNaWsEGh7lI3NoP4YGIF6dWWnYUA8Agmgo8+GqnzBrafKDgimmEhJ2ry
+	 6x3dON7Jwnhb2c5BZzwPshbhzha8PFSYiH25FRM1LCKZqIMDZNHajfecrd0AUTYekj
+	 Cx9fFrSWP5lRSRWJdCnWdXeWroZ3kc+Pr/j9tZIYOY/BcDH45JqyAm3zaKnhz/rPs1
+	 ig03hT4DRM+FFDVHJvXMo8rJ8LClpUbU8jbjVj8675Onmp6oMVwnh9qYLzY1SHpKP4
+	 j+4dQ5nfuH0AH2bxM+8k90zuf5D1acObMwGe8kRH2a29LZ7kM7vPx2uJXewtKgSF+c
+	 MiWyH8PYUXmeg==
+Date: Thu, 10 Oct 2024 12:43:31 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: patches@lists.linux.dev, devicetree@vger.kernel.org,
+	Saravana Kannan <saravanak@google.com>,
+	linux-kernel@vger.kernel.org, David Gow <davidgow@google.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	linux-arm-kernel@lists.infradead.org,
+	Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH] of: Skip kunit tests when arm64+ACPI doesn't populate
+ root node
+Message-ID: <172858218311.2064946.5279211050619703517.robh@kernel.org>
+References: <20241009204133.1169931-1-sboyd@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,18 +62,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241010171128.107819-1-hiagofranco@gmail.com>
+In-Reply-To: <20241009204133.1169931-1-sboyd@kernel.org>
 
-> This patch series update the audio card names for Apalis and Colibri
-> iMX6/7 to match their specific SoM names, making it shorter (less than
-> 15 characters, as shown in [1]) to fix warnings related to ALSA in
-> Apalis iMX6 and Colibri iMX6. For Colibri iMX7, also do the change to
-> make it compliant with the other card names.
->
-> [1] Documentation/sound/alsa-configuration.rst
 
-Related ALSA UCM PR https://github.com/alsa-project/alsa-ucm-conf/pull/448
+On Wed, 09 Oct 2024 13:41:31 -0700, Stephen Boyd wrote:
+> A root node is required to apply DT overlays. A root node is usually
+> present after commit 7b937cc243e5 ("of: Create of_root if no dtb
+> provided by firmware"), except for on arm64 systems booted with ACPI
+> tables. In that case, the root node is intentionally not populated
+> because it would "allow DT devices to be instantiated atop an ACPI base
+> system"[1].
+> 
+> Introduce an OF function that skips the kunit test if the root node
+> isn't populated. Limit the test to when both CONFIG_ARM64 and
+> CONFIG_ACPI are set, because otherwise the lack of a root node is a bug.
+> Make the function private and take a kunit test parameter so that it
+> can't be abused to test for the presence of the root node in non-test
+> code.
+> 
+> Use this function to skip tests that require the root node. Currently
+> that's the DT tests and any tests that apply overlays.
+> 
+> Reported-by: Guenter Roeck <linux@roeck-us.net>
+> Closes: https://lore.kernel.org/r/6cd337fb-38f0-41cb-b942-5844b84433db@roeck-us.net
+> Link: https://lore.kernel.org/r/Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm.com [1]
+> Fixes: 893ecc6d2d61 ("of: Add KUnit test to confirm DTB is loaded")
+> Signed-off-by: Stephen Boyd <sboyd@kernel.org>
+> ---
+>  drivers/of/of_kunit_helpers.c | 15 +++++++++++++++
+>  drivers/of/of_private.h       |  3 +++
+>  drivers/of/of_test.c          |  3 +++
+>  drivers/of/overlay_test.c     |  3 +++
+>  4 files changed, 24 insertions(+)
+> 
 
-Regards,
-Hiago.
+Applied, thanks!
+
 
