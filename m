@@ -1,55 +1,63 @@
-Return-Path: <devicetree+bounces-109835-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109836-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAED8998298
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 73C0E9982CB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:50:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 857A6286F84
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:42:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DBFF283980
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:50:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98B4A1BC092;
-	Thu, 10 Oct 2024 09:42:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D06D01C231C;
+	Thu, 10 Oct 2024 09:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="H63Qc4Ou"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="FX9wII5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 755B21BC061;
-	Thu, 10 Oct 2024 09:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18F301BDA84;
+	Thu, 10 Oct 2024 09:49:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728553333; cv=none; b=U5HvSqzlUuj1yQo3WvnB2ehTewrsQbwkckkJRmA49qZmQZsjV9wiczLvD84DDcAajf5YXEMDQowiuEyRKTNSAOpcnXmEfBy/Rlv1OPnPKtsAIUFMkZTmytjZSXoKkMcmPcgnFSjCeZNyaLBPNSkC0Hjsoif28Ld0ZNrB6sHc3h4=
+	t=1728553766; cv=none; b=f68nvrpAh28hAFC7rRIGOMqMf6hocMbn2jQlTuGelT10thXICr1fc1rbs4x+y1FR0YIHbmcu179Yu2yyZDQz4yp8zEi9mKzr59YGfBOwJjTeLpiBf96EoCokCNs4x7YoBb30yFBluw6923pHAOnU+OMgKE0sX8MeAXrYFhBDDHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728553333; c=relaxed/simple;
-	bh=8lRmGtzpKCSbPzQOWXLMKG/S0oTwOaaGGVrYaPtPoSM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XpQepd89AEFuRM5bjFOfSFfbDNY1RiLQgLyIEs5JNbRHIvAidYIC9NeEoKGKVKQ/QO7hIYl8VVZJJDBSaKfS8Vr0EGP2YkZ6Ki+A8oOhE3B0oT98HApvLZjRPAxqLePkgehNWu/DrAbdP+feICe8MGc7mfK+fFsM2pRBK3U+lqg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=H63Qc4Ou; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728553329;
-	bh=8lRmGtzpKCSbPzQOWXLMKG/S0oTwOaaGGVrYaPtPoSM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=H63Qc4OuDKzaagf/6BEAZRRH+6/bh9qoTk5fwBELyvN7HuZ1N426BHSVDHjrMboVA
-	 jpQ6ynBGIqwoFtXp+/juLmnYn4gF+lYD3bljIxs7YAeAeSY2WEpPjUPPCkrI/vOs8K
-	 dARCVpxi71vTHCKJzHOxI4UcXUR4WkJNy0VAKHR+kRVJ0moftd2gNYGDvyTS5pWi8u
-	 MpsAO5QLTlZOGySic6Adqj46+cFkAl1alipi28pfxJzZT/a1OGQufUCiXuIwLuU4V4
-	 DdJUvuMMxakPt838tOflXlfXT5IYkksCYSSVaU1PG9pHXGPVXNYmYEB3C7LdKCSJMr
-	 tw5jTJUTHc0oQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E458717E120F;
-	Thu, 10 Oct 2024 11:42:08 +0200 (CEST)
-Message-ID: <ce926e0c-74f3-4c7b-987f-3dc50b81a3aa@collabora.com>
-Date: Thu, 10 Oct 2024 11:42:08 +0200
+	s=arc-20240116; t=1728553766; c=relaxed/simple;
+	bh=Tyl00PbkL/ws7xZ1wCMqtutTUiJDn/3tjgm/2QQIBAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Pa58jGcDwOqHUPj4iLOw/0pWHu9EMPcaEBWPJYgzjXchobwEvv5lRhfpMc045F3D9a4SBiWPf1S120kIMFycFnEKcWjYEbih4YR90F/5p3S+c2uYSrtVKBx0W834tVEr7YgHhuzmP3upF5eXwohcYr77Wsam9fehLm39GQiDsVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=FX9wII5V; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49A1bWIj024265;
+	Thu, 10 Oct 2024 09:49:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	5S6BVALT7qXSFotZAPbtBOUp5KIHBelry/SMIeD57sk=; b=FX9wII5V1hCC2bpi
+	cO42Usl78ed9C7jMpNZuj8INHdCD8tfMEtWphDbcS8LsInid/tQk3oKwY8W4Wyu1
+	z7Jri/YQ99QkTmqUzRKMWTibqfX62goUtgzJHInbhXC/qOTzrtxcdyYDyneuCu64
+	mJtLK9YaR2U4aPZSeimX2MrLWKzmsp3SibJmDYn9xkdHMCJ7vjXw9uLZJW8tqh67
+	20THORRvjlTDuTg0B2G47y5wl0x8Nb7/e2sV7KrIsKpkAf7hNHmNldb0lulPLJZY
+	Y0OAx/uOuiZfqwu+23hr2HjbVM5ZyLTOUNtor4nQO0PIntGlMOKOntzb2hjPw9Wa
+	msB+Pg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424wgs83e4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 09:49:09 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49A9n8FW031874
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 09:49:08 GMT
+Received: from [10.239.133.49] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Thu, 10 Oct
+ 2024 02:49:04 -0700
+Message-ID: <742d1cec-13ec-4f08-b7f3-611c6d602b3b@quicinc.com>
+Date: Thu, 10 Oct 2024 17:49:02 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,204 +65,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/4] pinctrl: mediatek: add support for
- MTK_PULL_PD_TYPE
-To: Frank Wunderlich <linux@fw-web.de>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- Sean Wang <sean.wang@kernel.org>
-Cc: Frank Wunderlich <frank-w@public-files.de>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- daniel@makrotopia.org, john@phrozen.org, ansuelsmth@gmail.com,
- eladwf@gmail.com
-References: <20241009165222.5670-1-linux@fw-web.de>
- <20241009165222.5670-2-linux@fw-web.de>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH v1 0/2] Add Qualcomm extended CTI support
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach
+	<mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
+        Alexander
+ Shishkin <alexander.shishkin@linux.intel.com>,
+        Andy Gross
+	<agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <linux-kernel@vger.kernel.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>
+References: <20240903121847.6964-1-quic_jinlmao@quicinc.com>
 Content-Language: en-US
-In-Reply-To: <20241009165222.5670-2-linux@fw-web.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+From: Jinlong Mao <quic_jinlmao@quicinc.com>
+In-Reply-To: <20240903121847.6964-1-quic_jinlmao@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: tvXki-f8ORmCsyLIHWqsu_8qQ73ff2Ra
+X-Proofpoint-ORIG-GUID: tvXki-f8ORmCsyLIHWqsu_8qQ73ff2Ra
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
+ suspectscore=0 impostorscore=0 bulkscore=0 clxscore=1011 adultscore=0
+ spamscore=0 mlxscore=0 lowpriorityscore=0 malwarescore=0 phishscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410100064
 
-Il 09/10/24 18:52, Frank Wunderlich ha scritto:
-> From: Daniel Golle <daniel@makrotopia.org>
+
+
+On 2024/9/3 20:18, Mao Jinlong wrote:
+> The QCOM extended CTI is a heavily parameterized version of ARM’s CSCTI.
+> It allows a debugger to send to trigger events to a processor or to send
+> a trigger event to one or more processors when a trigger event occurs on
+> another processor on the same SoC, or even between SoCs.
 > 
-> The MediaTek MT7988 SoC got some pins which only got configurable
-> pull-down but unlike previous designs there is no pull-up option.
-> Add new type MTK_PULL_PD_TYPE to support configuring such pins.
+> QCOM extended CTI supports up to 128 triggers. And some of the register
+> offsets are changed.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> ---
->   .../pinctrl/mediatek/pinctrl-mtk-common-v2.c  | 59 +++++++++++++++++++
->   .../pinctrl/mediatek/pinctrl-mtk-common-v2.h  |  1 +
->   2 files changed, 60 insertions(+)
+> The commands to configure CTI triggers are the same as ARM's CTI.
 > 
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> index 54301fbba524..eff2aecd31dd 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c
-> @@ -601,6 +601,30 @@ static int mtk_pinconf_bias_set_pu_pd(struct mtk_pinctrl *hw,
->   	return err;
->   }
->   
-> +static int mtk_pinconf_bias_set_pd(struct mtk_pinctrl *hw,
-> +				const struct mtk_pin_desc *desc,
-> +				u32 pullup, u32 arg)
-> +{
-> +	int err, pd;
-> +
-> +	if (arg == MTK_DISABLE)
 
-if (arg != MTK_DISABLE && arg != MTK_ENABLE)
-	return -EINVAL
+Hi Reviewers,
 
-/* Either this */
-if (arg == MTK_DISABLE || pullup)
-	pd = 0;
-else if (!pullup)
-	pd = 1
+Could you please help to provide some comments from the design point of 
+view for the changes ?
 
-/* Or this (but it's probably a bit too cryptic) */
-pd = !(arg == MTK_DISABLE || pullup);
+The main difference of extended CTI to the normal CTI is that the
+address mapping is changed and it supports a max of 128 trigger signals.
 
-return mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_PD, pd);
+On one soc, there will be both normal arm CTIs and QCOM extended CTIs.
 
+As max trigger number becomes 128. So triger registers becomes 4.
 
+Like CTITRIGINSTATUS  --- > CTITRIGINSTATUS_EXTENDED(n)     (0x040 + (4 
+* n))  n is 0 to 4.
 
-...but then, you could otherwise modify mtk_pinconf_bias_set_pu_pd(), so that
+Thanks
+Jinlong Mao
 
-static int mtk_pinconf_bias_set_pu_pd(struct mtk_pinctrl *hw,
-				const struct mtk_pin_desc *desc,
-				u32 pullup, u32 arg, bool pd_only)
-{
-	int err, pu, pd;
-
-	if (arg == MTK_DISABLE) {
-		pu = 0;
-		pd = 0;
-	} else if ((arg == MTK_ENABLE) && pullup) {
-		pu = 1;
-		pd = 0;
-	} else if ((arg == MTK_ENABLE) && !pullup) {
-		pu = 0;
-		pd = 1;
-	} else {
-		return -EINVAL;
-	}
-
-	if (!pd_only) {
-		err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_PU, pu);
-		if (err)
-			return err;
-	}
-
-	return mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_PD, pd);
-}
-
-> +		pd = 0;
-> +	else if ((arg == MTK_ENABLE) && pullup)
-> +		pd = 0;
-> +	else if ((arg == MTK_ENABLE) && !pullup)
-> +		pd = 1;
-> +	else {
-> +		err = -EINVAL;
-> +		goto out;
-> +	}
-> +
-> +	err = mtk_hw_set_value(hw, desc, PINCTRL_PIN_REG_PD, pd);
-> +
-> +out:
-> +	return err;
-> +
-> +}
-> +
->   static int mtk_pinconf_bias_set_pullsel_pullen(struct mtk_pinctrl *hw,
->   				const struct mtk_pin_desc *desc,
->   				u32 pullup, u32 arg)
-> @@ -758,6 +782,12 @@ int mtk_pinconf_bias_set_combo(struct mtk_pinctrl *hw,
->   			return 0;
->   	}
->   
-> +	if (try_all_type & MTK_PULL_PD_TYPE) {
-> +		err = mtk_pinconf_bias_set_pd(hw, desc, pullup, arg);
-
-so if it is PD_TYPE, mtk_pinconf_bias_set_pu_pd(hw, desc, pullup, arg, true);
-
-> +		if (!err)
-> +			return err;
-> +	}
-> +
->   	if (try_all_type & MTK_PULL_PU_PD_TYPE) {
->   		err = mtk_pinconf_bias_set_pu_pd(hw, desc, pullup, arg);
-
-mtk_pinconf_bias_set_pu_pd(hw, desc, pullup, arg, false);
-
->   		if (!err)
-> @@ -878,6 +908,29 @@ static int mtk_pinconf_bias_get_pu_pd(struct mtk_pinctrl *hw,
->   	return err;
->   }
->   
-> +static int mtk_pinconf_bias_get_pd(struct mtk_pinctrl *hw,
-> +				const struct mtk_pin_desc *desc,
-> +				u32 *pullup, u32 *enable)
-> +{
-
-this one you can keep it as it is, because I don't think that you can get
-the get_pu_pd function to work with pd_only without making it .. well, messy.
-
-> +	int err, pd;
-> +
-> +	err = mtk_hw_get_value(hw, desc, PINCTRL_PIN_REG_PD, &pd);
-> +	if (err)
-> +		goto out;
-> +
-> +	if (pd == 0) {
-> +		*pullup = 0;
-> +		*enable = MTK_DISABLE;
-> +	} else if (pd == 1) {
-> +		*pullup = 0;
-> +		*enable = MTK_ENABLE;
-> +	} else
-> +		err = -EINVAL;
-> +
-> +out:
-> +	return err;
-> +}
-> +
->   static int mtk_pinconf_bias_get_pullsel_pullen(struct mtk_pinctrl *hw,
->   				const struct mtk_pin_desc *desc,
->   				u32 *pullup, u32 *enable)
-> @@ -947,6 +1000,12 @@ int mtk_pinconf_bias_get_combo(struct mtk_pinctrl *hw,
->   			return 0;
->   	}
->   
-> +	if (try_all_type & MTK_PULL_PD_TYPE) {
-> +		err = mtk_pinconf_bias_get_pd(hw, desc, pullup, enable);
-> +		if (!err)
-> +			return err;
-> +	}
-> +
->   	if (try_all_type & MTK_PULL_PU_PD_TYPE) {
->   		err = mtk_pinconf_bias_get_pu_pd(hw, desc, pullup, enable);
->   		if (!err)
-> diff --git a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> index 23688ca6d04e..9c271dc2b521 100644
-> --- a/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> +++ b/drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h
-> @@ -24,6 +24,7 @@
->    * turned on/off itself. But it can't be selected pull up/down
->    */
->   #define MTK_PULL_RSEL_TYPE		BIT(3)
-> +#define MTK_PULL_PD_TYPE        BIT(4)
->   /* MTK_PULL_PU_PD_RSEL_TYPE is a type which is controlled by
->    * MTK_PULL_PU_PD_TYPE and MTK_PULL_RSEL_TYPE.
->    */
-
-
-Cheers,
-Angelo
-
+> Mao Jinlong (2):
+>    dt-bindings: arm: Add Qualcomm extended CTI
+>    coresight: cti: Add Qualcomm extended CTI support
+> 
+>   .../bindings/arm/arm,coresight-cti.yaml       |  14 ++
+>   .../hwtracing/coresight/coresight-cti-core.c  |  75 +++++++----
+>   .../coresight/coresight-cti-platform.c        |  16 ++-
+>   .../hwtracing/coresight/coresight-cti-sysfs.c | 124 ++++++++++++++----
+>   drivers/hwtracing/coresight/coresight-cti.h   | 123 +++++++++++------
+>   5 files changed, 253 insertions(+), 99 deletions(-)
+> 
 
 
