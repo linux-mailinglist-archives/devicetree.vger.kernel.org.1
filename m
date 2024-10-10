@@ -1,112 +1,102 @@
-Return-Path: <devicetree+bounces-110047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49341998F34
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:01:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE010998F3C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:04:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 793201C23C8D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:01:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EAB061C21CE5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C35C1CCEF4;
-	Thu, 10 Oct 2024 18:00:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7813219D082;
+	Thu, 10 Oct 2024 18:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etvIoIqg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="X6E+4EKk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F202C19D880;
-	Thu, 10 Oct 2024 18:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE67188A08;
+	Thu, 10 Oct 2024 18:04:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728583237; cv=none; b=gAdw8bKGVz5wbT6/cZP4b7E71c8luwCcmrJGh6vnm+/R5svqpriF9Cvxt60xeA4kmRs9qec+ZUNbNo0xQ5nJj1rutI7/MwB+pq4DUKJM7sFd4VZs291l42wbfMC9gydYEWr7CvhZE05GWIw6vbop+1rZf5k3QU6SwWb8Zx+z5F4=
+	t=1728583456; cv=none; b=tq+ctl9rUdzNB0J1apXMVUDc61p+OiqpmcVmLKHbGbCZJ8vyS+S+lOu97sZLrFp67MpjTv3+jdPyFyVI+ZJbhXZ6fv9c5WyfQmj+azg/DimrTZuf/RV1UGzao0y+zBj/kDfEoiSU7CSUQk9Aq3XKw6D/Wf/toKdTU/WG1C1SGVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728583237; c=relaxed/simple;
-	bh=vnXCeY/eIb6pDREyFMJGaK+pFEB8fxIiROrKc/YO4eo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pf+mF3g9lSddpT3y+98wFwOI39x+Zbeb9OQlnwZnYqe3Fwxq8E2TGjTcmiYHZVL1HTsvZv4TBFHFs+qmB4axekhOY9tW7vzPORH/Mwdx6FauqNRuA7Y99gl6erAOPMo5a1FtduwxbOSCbZuG4RXRXy5D5txykY3OsG3rxjPeg4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etvIoIqg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE7AAC4CEC6;
-	Thu, 10 Oct 2024 18:00:35 +0000 (UTC)
+	s=arc-20240116; t=1728583456; c=relaxed/simple;
+	bh=bXzsja91oxEK7A4oh7gQhxbPTPspC3mQheHfMkv4M1w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rI+5axm9lr+pp0y64+CJ5xgxc1ST/sKGxHHxKc1gblocSR5Ta44t461yd4X+qvCQaXog+EZLO+sB/PSmXy7gbgkLTFENyL6Dgk/bVRqud8NcxEk5ED3B2VEhJzaJFd72VvOmsQr41QGdF4wK/00yGTlCcdsGcEZngLyUNpXJV5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=X6E+4EKk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 060D5C4CEC5;
+	Thu, 10 Oct 2024 18:04:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728583236;
-	bh=vnXCeY/eIb6pDREyFMJGaK+pFEB8fxIiROrKc/YO4eo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=etvIoIqgciTpA/ZXHpxMX1IfEQEmJV86AHXQPf+6ONCaV6uR9nNqfWhTsGrbM9R/8
-	 qvrsieY4P+Bt8l7BFMdxjSNKLI93qigtaFV1/fdH4VcSwAEtugBWeGgIPJtTx5zKVy
-	 6GWYd32euVFTKwvdgJxCB6581EoEOUPnXNCQOH7CT/Zoy5jY7J4AQXdk5XDRkDrFm0
-	 xbwmhgb0l+ozeMtEKbsCzyIDj0LBCkSQgvBzjZ93upXBahY/xREpjhrI62Agt1WSZq
-	 EJbQ+TEEy5tkpFhhoIFCbSzvRPhGZOAbM/Fd2nwpSdoVDPsWn8SmIbXic5pJMBtC6R
-	 fKXVP7Ej4jLYg==
-Date: Thu, 10 Oct 2024 13:00:34 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch,
-	andrei.botila@oss.nxp.com, horms@kernel.org,
-	devicetree@vger.kernel.org, kuba@kernel.org, imx@lists.linux.dev,
-	davem@davemloft.net, pabeni@redhat.com, hkallweit1@gmail.com,
-	edumazet@google.com, netdev@vger.kernel.org, f.fainelli@gmail.com
-Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: tja11xx: add
- "nxp,rmii-refclk-out" property
-Message-ID: <172858323378.2094687.9350859179293389445.robh@kernel.org>
-References: <20241010061944.266966-1-wei.fang@nxp.com>
- <20241010061944.266966-2-wei.fang@nxp.com>
+	s=k20201202; t=1728583455;
+	bh=bXzsja91oxEK7A4oh7gQhxbPTPspC3mQheHfMkv4M1w=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=X6E+4EKkTEMnER0y7X54Q3GxgUBkzewVbE3MXRvQtspaT4h78hayMtoHIGHBci/LL
+	 4KEoRBTA+l0HbHxU41XeTv8irhEHDzDelj4tLjNW5maFYy4WG+bBG114rOW1iOsYvH
+	 7NprZ/c5JHnuq7bu6wh3VHxdCSSQHJouefMj2VGlGZhxkUPtv4JTbdae82UmHndgTX
+	 3n3cL+NDYGzce4oti1RYMtA902XEQf6hX+QBEjNy8bfOkJnKBA82lRTA6Jx5KDIJzE
+	 fU09cG9jEYkBr28dHdwo6H6/nrZ3HY5Tb326w6lm1jB06NsihJLFnhJSS5ZK3a53BC
+	 WaBcVY5O2poTA==
+Date: Thu, 10 Oct 2024 19:04:00 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Guillaume Stols <gstols@baylibre.com>
+Cc: Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= <ukleinek@kernel.org>, Lars-Peter
+ Clausen <lars@metafoo.de>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-fbdev@vger.kernel.org, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
+ aardelean@baylibre.com, dlechner@baylibre.com, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v3 09/10] iio: adc: ad7606: Add iio-backend support
+Message-ID: <20241010190400.34905ab2@jic23-huawei>
+In-Reply-To: <ac765343-7804-4bd5-8057-d67fec2f17b1@baylibre.com>
+References: <20241004-ad7606_add_iio_backend_support-v3-0-38757012ce82@baylibre.com>
+	<20241004-ad7606_add_iio_backend_support-v3-9-38757012ce82@baylibre.com>
+	<20241005125318.0c4a7bc8@jic23-huawei>
+	<ac765343-7804-4bd5-8057-d67fec2f17b1@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010061944.266966-2-wei.fang@nxp.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
 
-On Thu, 10 Oct 2024 14:19:43 +0800, Wei Fang wrote:
-> Per the RMII specification, the REF_CLK is sourced from MAC to PHY
-> or from an external source. But for TJA11xx PHYs, they support to
-> output a 50MHz RMII reference clock on REF_CLK pin. Previously the
-> "nxp,rmii-refclk-in" was added to indicate that in RMII mode, if
-> this property present, REF_CLK is input to the PHY, otherwise it
-> is output. This seems inappropriate now. Because according to the
-> RMII specification, the REF_CLK is originally input, so there is
-> no need to add an additional "nxp,rmii-refclk-in" property to
-> declare that REF_CLK is input.
-> Unfortunately, because the "nxp,rmii-refclk-in" property has been
-> added for a while, and we cannot confirm which DTS use the TJA1100
-> and TJA1101 PHYs, changing it to switch polarity will cause an ABI
-> break. But fortunately, this property is only valid for TJA1100 and
-> TJA1101. For TJA1103/TJA1104/TJA1120/TJA1121 PHYs, this property is
-> invalid because they use the nxp-c45-tja11xx driver, which is a
-> different driver from TJA1100/TJA1101. Therefore, for PHYs using
-> nxp-c45-tja11xx driver, add "nxp,rmii-refclk-out" property to
-> support outputting RMII reference clock on REF_CLK pin.
+> >> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
+> >> index 3666a58f8a6f..d86eb7c3e4f7 100644
+> >> --- a/drivers/iio/adc/ad7606.c
+> >> +++ b/drivers/iio/adc/ad7606.c
+> >> @@ -21,6 +21,7 @@
+> >> @@ -737,6 +773,10 @@ static int ad7606_write_raw(struct iio_dev *indio_dev,
+> >>   			return ret;
+> >>   
+> >>   		return 0;
+> >> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> >> +		if (val < 0 && val2 != 0)
+> >> +			return -EINVAL;
+> >> +		return ad7606_set_sampling_freq(st, val);  
+> > Currently I think  for the !backend + pwm case this can go out of
+> > range for which that code works (fsleep removed in next patch).
+> > Perhaps delay adding this until after that patch.  
 > 
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> ---
-> V2 changes:
-> 1. Change the property name from "nxp,reverse-mode" to
-> "nxp,phy-output-refclk".
-> 2. Simplify the description of the property.
-> 3. Modify the subject and commit message.
-> V3 changes:
-> 1. Keep the "nxp,rmii-refclk-in" property for TJA1100 and TJA1101.
-> 2. Rephrase the commit message and subject.
-> V4 changes:
-> 1. Change the property name from "nxp,phy-output-refclk" to
-> "nxp,rmii-refclk-out", which means the opposite of "nxp,rmii-refclk-in".
-> 2. Refactor the patch after fixing the original issue with this YAML.
-> V5 changes:
-> 1. Reword the description of "nxp,rmii-refclk-out" property.
-> ---
->  .../devicetree/bindings/net/nxp,tja11xx.yaml     | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+> Hi Jonathan,
 > 
+> The sampling frequency can be adjusted only for the backend version, 
+> otherwise (including pwm+interrupt), there is no sysfs access to the 
+> sampling frequency (only available for AD7606_BI_CHANNEL).
+Ah! That makes sense.
+Thanks,
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+J
 
