@@ -1,417 +1,156 @@
-Return-Path: <devicetree+bounces-110123-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373EE999556
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 00:41:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A058999568
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 00:43:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A428F1F24549
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:41:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46AFC2820D7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:43:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD5321E5714;
-	Thu, 10 Oct 2024 22:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B107A1E573A;
+	Thu, 10 Oct 2024 22:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="c0+X4rzW"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="YMDYSQBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2076.outbound.protection.outlook.com [40.107.21.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23E851A2645;
-	Thu, 10 Oct 2024 22:41:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.76
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728600063; cv=fail; b=tKvdWEsKJs8EYOa1CgZ+o1hD2z0UWK45d4hL9RBAVdeVWu97jBli85b9KqCOXmpTfMhS/mtJNpUMpTnTvSNDA+zQ9F6Es2ySd5QgpJsPvJpN2mxeOecHbE7ZUmrLaqTuAqYH2fNADl/sf0qgVOIudUJsmGx9u8Sd4Dd6Mc88SaQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728600063; c=relaxed/simple;
-	bh=GtrNY9QbcOhap+nSdOpIeYFW03NjU023oTYquiD7OVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=KkiTiwXsOLBFmY/R7Zua9mRXSxymmQwqD+19VzxeFsd7sAYag+WTczm8SYy5SnHh7a8a19YEfsBM1wcVA5WczLWbTW9m0t/vI405fmkEkS1DOUbs6Ul3R4hROFWeRdc53xJoLu2FRjLuwU0mIk4FxNUGSKm57rdcA57wkmBvTlo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=c0+X4rzW; arc=fail smtp.client-ip=40.107.21.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Hx2FrJsTDMz0jvjs3dnuOwH3hTF21q3XahiCWt0eQwqvHkyZRLYrIFEl6tCXZ841ez+gmbWbf78w3U8nY3u2gqhFNPfmMoD5e7hhlcM+C2ymgRLyzkhK3GUeWHRxhWdrgeR4IugQwZxGEK7PcZUXLY4IYNcOj9ytNdV0ciIQhw1vcWYDPt+w9GJ46kIbHxro0kCGAnO+b42Ud/XBiL8hM+OHbrRAx8O9YdYJcX1+bvtUHzIy+w/rDUitISuLRd1gEaWR7Uf1zlqYyGIS0DvBjOEEzetSL97ihqIFf7hbF0PPgXl367dG04YKsrwkHZdTgZWCbumqWaFzCz0UfLlSKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=83+0/6Ywl6zihmDbm7BeC5/S8IzTD3uagiRaEzQ5c+g=;
- b=ND/Vf8fm9Ovxh4txX5+2i5KnlDgrfjWYmbIayjU6weRDn2FcE1NHpd2syzjfDHto/UX9vTbIakhFLEXzuL75BMgEkmJ0/S+tqzXtHiE3CmmYe6giFoWVt4CsomiqIjLn8J4CO+dajg+7k9rm+UIHsnUprtIdT+cPLvSSwDV7U+PBroDTjECFXhQzFKAqrXANMtI9KM45o6x5SnAAtbwepKy6qY+eCIKkehe0C7P/lLe9Ad4T0qfUqUuYp0YCrpQr8eCVoDjUrMoLUm7GeXxeUZpHv/chJSaG3UUvI0/JJz1QjmTToc9OvyRK66J4oktDIzfVNF1vGVcqgDux03Y0yA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=83+0/6Ywl6zihmDbm7BeC5/S8IzTD3uagiRaEzQ5c+g=;
- b=c0+X4rzWNAMJg34x7aKY/Mw5gzrqw9hikoy3sO0PLSmHeJnXwEj2wIhOjUTFB4dM19fwyjre4j6iEyuEjvyMowVWFn8NZB7mtqd7psTE/DP78S4S4OrFG7alZ1cY797rwxskrNYKH9FsQYpce7GEKeyhKxgd0GYd1KHHaG3DhvbQrMqbtpNJk5SAb//tlZ9kuiNeIdu3rgRxOpLG4j2bx7oGxGVJL6KC+/QrV17FEK4lGwTxN6tuhCrC0+Cc50rMrjfmg/tvSMChGl+NUec86BNPDVoFFr3ZeX26s705gcbHGrfbZ1Vt7EIZsMYrCRKOWi72LhPx42nh0w9rpZQE1w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AM7PR04MB7144.eurprd04.prod.outlook.com (2603:10a6:20b:11b::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.18; Thu, 10 Oct
- 2024 22:40:58 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8048.013; Thu, 10 Oct 2024
- 22:40:58 +0000
-Date: Thu, 10 Oct 2024 18:40:48 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Richard Zhu <hongxing.zhu@nxp.com>,
-	Lucas Stach <l.stach@pengutronix.de>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev
-Subject: Re: [PATCH v4 1/3] of: address: Add parent_bus_addr to struct
- of_pci_range
-Message-ID: <ZwhX8I1SIpbRA1OU@lizhi-Precision-Tower-5810>
-References: <20241008-pci_fixup_addr-v4-1-25e5200657bc@nxp.com>
- <20241010215745.GA575297@bhelgaas>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241010215745.GA575297@bhelgaas>
-X-ClientProxiedBy: SJ0PR03CA0291.namprd03.prod.outlook.com
- (2603:10b6:a03:39e::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01B6B1E5714
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 22:43:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728600218; cv=none; b=IP1lLZSNlZiBUNXviP0sJMGW6BSX7ugjJqAt28Sa9XPRJGYnJh9E7J7SYU9RBM3XkIHJHq3VBQUcRNoH3dSSrby1uVD6sYhrb+gDKwHGlFcaYWTqEZjNfXL+xTM87UxxXvzbXrIcC2z84Cq7xC2khM/SvbSpmRCl4wARe7yuQEw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728600218; c=relaxed/simple;
+	bh=rRcI0RUw1Jag1h85kqXKMUNy1mgQSNv3nPlsJjUAN+8=;
+	h=MIME-Version:In-Reply-To:References:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bBe+JiZWD1o3emR93/ZDjZ1tqzT1PHW+octzQG/8l3j+NLqszivrsvpRSDozWJYaxkCsSfdb1rROl44YzNSdKYRrs93dsJoGew1aqJXqZLZrS7M2OVoFBi8j99v2+bVmEwx50mViZLt/4mmeB0aXM4F0ZHE0eZKWZ48Hqql0ElY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=YMDYSQBK; arc=none smtp.client-ip=209.85.222.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qk1-f178.google.com with SMTP id af79cd13be357-7b1123f8f9bso123722985a.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 15:43:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1728600216; x=1729205016; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+7kS0OwpIJ8lzGVa/z5he+FP7V/PyYuqC5d6o/YyS+0=;
+        b=YMDYSQBKjIeJM0ic8v3SUwDll9eHP+RjqiIYApLoee42rh4Uho+ieUzqr8TywjinRU
+         bxO3FWrZLJk2dyVOBw+cIDII1RVfY3UgOXF9YtxmIkBu8R53+p8AulLwLEm/DghWF0k8
+         Kzi7ehWywrwZDWUg8FKHwxdI8rBB5VZt5q6t8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728600216; x=1729205016;
+        h=cc:to:subject:message-id:date:user-agent:from:references
+         :in-reply-to:mime-version:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+7kS0OwpIJ8lzGVa/z5he+FP7V/PyYuqC5d6o/YyS+0=;
+        b=rSymVors+FvDfACBWPvHaK4EZv9DcLGzCL4c4WvPCxr2qaHUx/XjSrFaF/6dce+XMO
+         EDW/0fLlTQK7TB/dUYlaMcTdrCFbke/wXkZ0CsRTafe+m08mZbCoOlgDSzQUPViHoYx6
+         4L+nEwWqxudqZqyktJIjnKplQSiBQETqQ1DFDz7OCdmWRDKZjx57h1TKzSad1j6V7iGK
+         zrdKBJRLlLIWFS8fIPK5SXXzAX7bUA8PBWJmTAl0mnIh0eC5jqNtaSDdcyZKDDoifKKK
+         l1EGQEXk/Hx1pU9jd2aUVJlQZGhXUmqNXA8tfkd6cbtyYFKziAZdLhik7ySnEldnDfKw
+         8qDA==
+X-Forwarded-Encrypted: i=1; AJvYcCV7FzuO9q7rRrq0Gyk9rPaCfuKiC2479NC8J7f0ONAAMQeUow8+nfUPYIqVQyQnNNiKSrHt8DwaYUiN@vger.kernel.org
+X-Gm-Message-State: AOJu0YygjS5ivz6RB6tXs9cuI/B3ZnanOih6XmuvvtATXlWQEAHoDNlD
+	dG+kFg9z3G3m3nE3xeD3gM+I/Z0iklRkp86h6GE8hSO+RxIWNxNRTAZ8mUiJxtCtbHohVDrb1pZ
+	xII1a3p/N2D/q7NJ8mptwvPdox7/XuaRWfTni
+X-Google-Smtp-Source: AGHT+IGgeD8OWkjTN2+txsFq08VyD7ih43EBc2xXYlKwMPaCKAPaVrQbOpHLD8TgOLBOWOgI5H4Qck7keHxdPo9DUQ0=
+X-Received: by 2002:a05:620a:460f:b0:7a9:aba6:d012 with SMTP id
+ af79cd13be357-7b11a37c515mr97106885a.22.1728600215870; Thu, 10 Oct 2024
+ 15:43:35 -0700 (PDT)
+Received: from 753933720722 named unknown by gmailapi.google.com with
+ HTTPREST; Thu, 10 Oct 2024 18:43:35 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AM7PR04MB7144:EE_
-X-MS-Office365-Filtering-Correlation-Id: 501e09cc-9be4-42e4-01e1-08dce97c9bb5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|7416014|52116014|1800799024|376014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?cW5HUGhVczZVcVdxT1R0eTBEdVp2UGJDdUdiOHVSZ1Rkb0o4MTYyaVVrZU4x?=
- =?utf-8?B?OElxdTd1VzRJVUY0aTlpUGJDbmFpTGhkZzhrUWpldGdvQ2xyQVNlNWlYcUhI?=
- =?utf-8?B?aVhsa1VuQSs4UjhGL2RSS0M1RE5qQkhValBCSnBUMy9FdXhOeTdMYUEveEtY?=
- =?utf-8?B?NkxxMUphQmxMRXZQZ2l0Q0JkTkV1UExiZ1lSNWo4b0trZHR5VDFtVU8wQjl3?=
- =?utf-8?B?K3dPSHB1b1ZqenhrMDk3Q3ZMQ1VKcHJhbjBud2JJeHVBR2FRaU5iVHUycXFm?=
- =?utf-8?B?dWtGb1ZVSkpydE5tWENNQ3VLUnpIeEpHS3pHVmNmRUZZMHJXWVdxSURUK1dZ?=
- =?utf-8?B?cEgvaHVVWEJEeUZlL21rNkFnNHQ0VVFteWxXaVdMdFc4UlZ6TmREc0laQkhY?=
- =?utf-8?B?Q3h1UmZ2bnZNTmVFdXgxemMrSkd1cTlYMENHR2RaLzFXZi9wS25QL3J1aXBS?=
- =?utf-8?B?Z09lYXVIVlNTRXFxR1NzeFRQU09wNHk4eU90SG9LMlppVU1BZVBHb2tJcEdJ?=
- =?utf-8?B?Y2lCNDFyMjgvelRmem02d1Y2MlBQMWxHRVZDclVMcEVnMkpQSDdqOTd0Tm5v?=
- =?utf-8?B?QXVhNnhjcmlDZFkxUXBhNDh4aHBVVCthaStKNk84NHpnUWRldklySEdYeVdH?=
- =?utf-8?B?NU5zRmkxdVpVQmliejVjMUNUN1RXaVdYczBKMGJwL25KTWViaWNsWG5mMkVo?=
- =?utf-8?B?WFZlZUFRbWxsMDhoK1ZrMS90UTV6b21vbUhQVFdaVzh2QkROMFdTdkE0WEJ3?=
- =?utf-8?B?OFpDOG5lUCtCSGhIVm1wL0xleWlxLzlJaSsxM2FKeklCaHBOaThhNG5BV3VH?=
- =?utf-8?B?TkV3aGk3WjVsZTVNRTVod0xmalIxZXY1dnFidWVSK1N4S1htRDI4VUE3WTJW?=
- =?utf-8?B?ZThlcDduRml1TVhtd2JQSXhUYURXMU5wNTlScFVrMzV3ckRuRmNQVmZWcnla?=
- =?utf-8?B?NFBreU1rYUlWdVVtZzhSOURJWFNSb2pVRytlaW5Xd2MyWkNQNW1CbVFTRDlR?=
- =?utf-8?B?VDg0MG9SaVhGUFFLOE81cVVGa1FHeTBTUXJRTDVISHcxKzAxKzd4RytRSVhm?=
- =?utf-8?B?NVlFeGlDcDRDVm9MRW1HVVE3clpYQ2pNMkZTVVhsMUM0WWJPQ001cTY4bzZh?=
- =?utf-8?B?Tnk3Z3hMeHlqMjlTYi9QWW9FUHZGNlBtaC9KMGJpSkg4dWhzMGNmN1JQTnNM?=
- =?utf-8?B?d3VCYjhxZ05ZZFhhWHlOeGhxbzFKUS90NEs2dnJya3haZkVLRE1DamIzT2ZX?=
- =?utf-8?B?UFJmeFAvWHNoQkVack5Ud3VNaHdFMVByc2pmbDA3emxRcHN3amtVTkVxRlhj?=
- =?utf-8?B?Rml0UktEamVkcXVqS0lWRjdBeHpGWnBqMHpobFhUbzdlcVZqOXBRa2FYTEtE?=
- =?utf-8?B?VUV6eTBlYWNjYzgyUXBGZ2N1Z1c5WXFwNlczamJLNXBka3J0K2g2eFM0bEhZ?=
- =?utf-8?B?a1ZabkNDT2JNb0dZcFRlOENWTWFNM3E1cXVJVzI4TE1UM2ZiMkF0czhtSHZh?=
- =?utf-8?B?bkRWOHlRTGZ3U0hCWWVwUVoxa2dkZThNVmQrcWN3dkRscUFNNklTdFV4aEV4?=
- =?utf-8?B?b2dOR3YvYzN2V2c1eWVVVzhlL2JaUHkrdXg3RURmV2oxQXM2VmFBRXJEc3lY?=
- =?utf-8?B?MHNqTzhmZ1MrZG91U2hWdkEzajRlY3hlbEplZEk0Zi9vMWFoMnNKMXlYaHhy?=
- =?utf-8?B?SG1ZTTRMQ1hvM200VHNJNVJYdkk5TDBwK2xwNXNBcHQ5allod1dYMkhVclRJ?=
- =?utf-8?B?QkZBWFJiN1gyZ0dDZUZzSy9YZkdHUGJONytBZXp1T2x6ekwyN3dLang2Uytj?=
- =?utf-8?B?YlBnRDNYZ3BlN05zT01adz09?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(7416014)(52116014)(1800799024)(376014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?VCtxeXpUSnk3S2MxYTBKQWFIMnlQbFdjVHhqbnRIVU50VTgwZ1JsN0NLR0Rs?=
- =?utf-8?B?U3dGc21uMDdnZDd5RHVrcHNaSDdYK0gwdXhjYUhtM1hwbHBXa204d3NveWdJ?=
- =?utf-8?B?SDY4UVJ5QWFwNWoyWFpyQUhlTjRCbGswS3VMY0huK01VKzBBeWl4bUVUMS8r?=
- =?utf-8?B?bHh2eGM2UUVsbkpLcGhXUXZtNlUxYS9YYUJCcDhxRCs5WnpHTk4xT2VaK1N0?=
- =?utf-8?B?Nnc4Q05WV1BpWnc1cWhlTUphUFVRTXJNK3hjTkgyYTFmWFlZK25XcUtQcytt?=
- =?utf-8?B?VHE0YkhCdldRc1ZYek5aMjB5bE5nTXpNUGxwZ3ppMnI1TUUzY1VDS3ZaUUE0?=
- =?utf-8?B?VDJ4aDQrdmQrU2pNUDNSRUo4R1RkNXFYWkl1aWRHM0l3QlpMbWhHOWVPY3l1?=
- =?utf-8?B?dWNjNEdqZUozSjR0azhYR3lUMC9tcnFkVnF1UlRRUUR1S29pL1RsOVZFY3Vr?=
- =?utf-8?B?WWxoOW9qQnJudzMzTW84Yi9RWHFxTzBuVWNaTWlqa0hxTERyM0ZmZlF0Vi82?=
- =?utf-8?B?dUJ4d0paZjdXK0ViRWdyUDMxTCtFcm5jNWlGVStzL0cvanJoMWczbGVjS1R5?=
- =?utf-8?B?NityckY2MTBuYzVmSm0yRjUrL3FyRzZQWndjRng2My9ZVDZDMlJZbnE2RWRs?=
- =?utf-8?B?THpKUVVzRUNzbEEvUnVPSTJhWUJBN0hyc2R0UXNFYVhhV25SME5yTWFYWXhW?=
- =?utf-8?B?MDB4Z0dNaWtkbHo0akhobENrZUhoZVFKZlh5SHVucHRnanFmbzdVbUxPeU15?=
- =?utf-8?B?bVNXNXhqTmM1WnJ0OEdIS3k4Q3NSTi9rRlVRWG92QU9mYzZNeGR3QXJPejAr?=
- =?utf-8?B?QW1lQ3dWYU55ejVjMDhxVjRHY1A0Sll3U09LM0hkRlo1N3drRi9qVEtDUTdw?=
- =?utf-8?B?WG5SWGxJUStBQnl0aER2dUZpekMvcmZ5cGdIcE5KV3lPN0Vya2dTQ3U5NFJ0?=
- =?utf-8?B?WTZvRWNId3NaeExPMHRMOXh4dDhOQ1pXeVlldlhXcjJ6aEp6UlRPdXNaaFY3?=
- =?utf-8?B?VnFvN3BIbHNtY1V3VFV4NjRxYjZsNzY5d0R5ZE5saDB4QlRWRGJFMEg2MjVX?=
- =?utf-8?B?Wmxxazg4T3RBQWlZY1gxdnlhbUs4dGx2b3ltUm8vMTZZd0FWVmFyUThhUm8w?=
- =?utf-8?B?L3VIVGRUbWNVT2NVNU9RdUo1UFA4TFNBVmJmTnJMNGQ4N0w4SHUzT0ZlRFBH?=
- =?utf-8?B?MG1HNGpDMUpyQjA5a3Fnd3JKTWtScHNaRjJaclhhQXNXcmtEK0ZwWSt6dlZl?=
- =?utf-8?B?Y3ZQdE9kWDhYYk5IanIyZUZVQXZnNHhxbFpLRnpobnduQnk1TmV4aUIxaG9P?=
- =?utf-8?B?QzBzQXVVdkZyQnoxNytwTktleGNXNUthakFpaEtSVkF5RkRTcEVwTHhxZXBY?=
- =?utf-8?B?K1IwRGxEOC9CWWoxbjZ5YjZ0V1BYTmlPdGhsTHJYaFZzai9XNnVveGx0Unhw?=
- =?utf-8?B?OXFkVVJ3TXVuVS82U1Ewb1JlRm8xeHNXR3Fub3Nwb09CTW16OUZqYnlTQnNG?=
- =?utf-8?B?M1RRVmk2bU5idXRRZ3B4YTVyemYvN0RFZzZPMm51VXBzUWZNT0hJdll2Tmpr?=
- =?utf-8?B?THhDWlY0bSs3NzloYVhvZHJPcm1MYjloYWh1WStqVFcwYVpiK1JnTFhldUtS?=
- =?utf-8?B?bGFPNU1qUnVIdWs0S0t1OFRQTnkwZ3J2Tk9ybjdxZ1kwWTNicnhYbjNFcEJ5?=
- =?utf-8?B?cFkwYmFlZUEyNC9uVUtzK1pIbHExWEhFNU52MWNUNndVNysrTHN4M1Q1YlBW?=
- =?utf-8?B?ZzlJQVBPQ0QyUnBscGIwU3NhSnF1OW9URTlabUhZa21aWldZdHUrYlIxTGRl?=
- =?utf-8?B?M2NiTTlpYzh1ZXYrZU83OW12Y2RabEFQNDY1dEEwdy9wUm94dDkyeWE1N2Vv?=
- =?utf-8?B?ZnFQYVFGTDYzL3M0V1JMMDhrVFBYWUoxeEU5ejV1eXhJWk1yb2dSN0krNzgy?=
- =?utf-8?B?QTVYS0xXYlJtMEJ2YXEyS3ovWG5ZZk5STDFvaUhzTVNaSHdnbXJiM3Z0VXlv?=
- =?utf-8?B?Y1VwSFRlRkZCdGZjUVAydFhPeThQQ2trU0J2eWE5WXd4cGFlR2ptWmVTMW1G?=
- =?utf-8?B?anFDc1R0UmM1WjJ5YjIrYkdBM3NCeG5WTUdtK0ZxbG1ESVduaTR4bHVieEo0?=
- =?utf-8?Q?PWjgcOg8ZX7qDfzhjzXtqi0pA?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 501e09cc-9be4-42e4-01e1-08dce97c9bb5
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2024 22:40:57.9840
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /RUFQXG8EDL0o/udJkP6ga2fmiAyi8G+m5ioNeYEl+7n1JEjAsJeRWOIb2X5TZxZNSecdRsrNr/SSVkfiEhwoA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7144
+In-Reply-To: <27acewh6h2xcwp63z5o3tgrjmimf4d3mftpnmkvhdhv273zgsp@i6i5ke4btdqx>
+References: <20240901040658.157425-1-swboyd@chromium.org> <20240901040658.157425-14-swboyd@chromium.org>
+ <27acewh6h2xcwp63z5o3tgrjmimf4d3mftpnmkvhdhv273zgsp@i6i5ke4btdqx>
+From: Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.10
+Date: Thu, 10 Oct 2024 18:43:35 -0400
+Message-ID: <CAE-0n53S2dFz74_rgx22_1i_bbEC6kj1SL5LAEq_F2wrdCgBNg@mail.gmail.com>
+Subject: Re: [PATCH v4 13/18] dt-bindings: usb-switch: Extend for DisplayPort altmode
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: chrome-platform@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	patches@lists.linux.dev, devicetree@vger.kernel.org, 
+	Douglas Anderson <dianders@chromium.org>, Pin-yen Lin <treapking@chromium.org>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Benson Leung <bleung@chromium.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
+	dri-devel@lists.freedesktop.org, Guenter Roeck <groeck@chromium.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Lee Jones <lee@kernel.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Prashant Malani <pmalani@chromium.org>, 
+	Robert Foss <rfoss@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, Tzung-Bi Shih <tzungbi@kernel.org>, 
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Ivan Orlov <ivan.orlov0322@gmail.com>, 
+	linux-acpi@vger.kernel.org, linux-usb@vger.kernel.org, 
+	Mika Westerberg <mika.westerberg@linux.intel.com>, 
+	"Rafael J . Wysocki" <rafael.j.wysocki@intel.com>, Sakari Ailus <sakari.ailus@linux.intel.com>, 
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Thu, Oct 10, 2024 at 04:57:45PM -0500, Bjorn Helgaas wrote:
-> On Tue, Oct 08, 2024 at 03:53:58PM -0400, Frank Li wrote:
-> > Introduce field 'parent_bus_addr' in of_pci_range to retrieve untranslated
-> > CPU address information.
->
-> s/in of_pci_range/in struct of_pci_range/
->
-> s/CPU address information/parent bus information/ ?
->
-> This patch adds "parent_bus_addr" (not "cpu_addr", which already
-> exists), and if I understand the example below correctly, it says
-> parent_bus_addr will be 0x8..._.... (an internal address), not a CPU
-> address, which would be 0x7..._....
-
-It is "untranslated CPU address", previous patch use cpu_untranslate_addr.
-Rob suggest change to parent_bus_addr.
-
-Is it better change to "to retrieve the address at bus fabric port" instead
-of *untranslated* CPU address
-
->
-> I guess "parent_bus_addr" would be a CPU address for the bus@5f000000
-> ranges, but an IA address for the pcie@5f010000 ranges?
-
-simple said "parent_bus_addr" should be address under pcie dt node.
-5f000000 should be 1:1 map.
-Only 80000000 range is not 1:1 map.
-
->
-> > Refer to the diagram below to understand that the bus fabric in some
-> > systems (like i.MX8QXP) does not use a 1:1 address map between input and
-> > output.
+Quoting Dmitry Baryshkov (2024-09-19 03:40:19)
+> On Sat, Aug 31, 2024 at 09:06:51PM GMT, Stephen Boyd wrote:
+> > diff --git a/Documentation/devicetree/bindings/usb/usb-switch.yaml b/Documentation/devicetree/bindings/usb/usb-switch.yaml
+> > index f5dc7e23b134..816f295f322f 100644
+> > --- a/Documentation/devicetree/bindings/usb/usb-switch.yaml
+> > +++ b/Documentation/devicetree/bindings/usb/usb-switch.yaml
+> > @@ -52,6 +52,14 @@ properties:
+> >            endpoint:
+> >              $ref: '#/$defs/usbc-in-endpoint'
 > >
-> > Currently, many controller drivers use .cpu_addr_fixup() callback hardcodes
-> > that translation in the code, e.g., "cpu_addr & CDNS_PLAT_CPU_TO_BUS_ADDR"
-> > (drivers/pci/controller/cadence/pcie-cadence-plat.c),
-> > "cpu_addr + BUS_IATU_OFFSET"(drivers/pci/controller/dwc/pcie-intel-gw.c),
-> > etc, even though those translations *should* be described via DT.
-> >
-> > The .cpu_addr_fixup() can be eliminated if DT correct reflect hardware
-> > behavior and driver use 'parent_bus_addr' in of_pci_range.
-> >
-> >             ┌─────────┐                    ┌────────────┐
-> >  ┌─────┐    │         │ IA: 0x8ff0_0000    │            │
-> >  │ CPU ├───►│   ┌────►├─────────────────┐  │ PCI        │
-> >  └─────┘    │   │     │ IA: 0x8ff8_0000 │  │            │
-> >   CPU Addr  │   │  ┌─►├─────────────┐   │  │ Controller │
-> > 0x7ff0_0000─┼───┘  │  │             │   │  │            │
-> >             │      │  │             │   │  │            │   PCI Addr
-> > 0x7ff8_0000─┼──────┘  │             │   └──► CfgSpace  ─┼────────────►
-> >             │         │             │      │            │    0
-> > 0x7000_0000─┼────────►├─────────┐   │      │            │
-> >             └─────────┘         │   └──────► IOSpace   ─┼────────────►
-> >              BUS Fabric         │          │            │    0
-> >                                 │          │            │
-> >                                 └──────────► MemSpace  ─┼────────────►
-> >                         IA: 0x8000_0000    │            │  0x8000_0000
-> >                                            └────────────┘
->
-> Thanks for this diagram.  I think it would be nice if the ranges were
-> in address order, e.g.,
->
->   0x7000_0000
->   0x7ff0_0000
->   0x7ff8_0000
->
-> (or the reverse).  But it's a little confusing that 0x7ff8_0000 is in
-> the middle because that's the highest address range of the picture.
-
-Okay, reverse should be simple.
-
->
-> > bus@5f000000 {
-> >         compatible = "simple-bus";
-> >         #address-cells = <1>;
-> >         #size-cells = <1>;
-> >         ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
-> >                  <0x80000000 0x0 0x70000000 0x10000000>;
-> >
-> >         pcie@5f010000 {
-> >                 compatible = "fsl,imx8q-pcie";
-> >                 reg = <0x5f010000 0x10000>, <0x8ff00000 0x80000>;
-> >                 reg-names = "dbi", "config";
-> >                 #address-cells = <3>;
-> >                 #size-cells = <2>;
-> >                 device_type = "pci";
-> >                 bus-range = <0x00 0xff>;
-> >                 ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
-> >                          <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
->
-> I'm still learning to interpret "ranges", so bear with me and help me
-> out a bit.
->
-> IIUC, "ranges" consists of (child-bus-address, parent-bus-address,
-> length) triplets.  child-bus-address requires #address-cells of THIS
-> node, parent-bus-address requires #address-cells of the PARENT, and
-> length requires #size-cells of THIS node.
->
-> I guess bus@5f000000 "ranges" describes the translation from CPU to IA
-> addresses, so the triplet format would be:
->
->   (1-cell IA child addr, 2-cell CPU parent addr, 1-cell IA length)
-> m
-> and this "ranges":
->
->   ranges = <0x5f000000 0x0 0x5f000000 0x21000000>,
->            <0x80000000 0x0 0x70000000 0x10000000>;
->
-> means:
->
->   (IA 0x5f000000, CPU 0x0 0x5f000000, length 0x21000000)
->   (IA 0x80000000, CPU 0x0 0x70000000, length 0x10000000)
->
-> which would mean:
->
->   CPU 0x0_5f000000-0x0_7fffffff -> IA 0x5f000000-0x7fffffff
->   CPU 0x0_70000000-0x0_7fffffff -> IA 0x80000000-0x8fffffff
-
-Yes,
-
->
-> I must be misunderstanding something because this would mean CPU addr
-> 0x70000000 would translate to IA addr 0x70000000 via the first range
-> and to IA addr 0x80000000 via the second range, which doesn't make
-> sense.
-
-Yes, it is my mistake, first length should reduce to 0x0100_0000 from
-0x21000000. It works because dt convert IA to CPU, instead of CPU to
-IA.  for example, input IA: 0x80000000, match second one, convert to
-CPU address 0x0_70000000.
-
->
-> 0x0_5f000000 doesn't appear in the diagram.  If it's not relevant, can
-> you just omit it from the bus@5f000000 "ranges" and just say something
-> like this?
->
->   ranges = <0x80000000 0x0 0x70000000 0x10000000>, ...;
-
-Yes.
-
->
-> Then pcie@5f010000 describes the translations from IA to PCI bus
-> address?  These triplets would be:
->
->   (3-cell PCI child addr, 1-cell IA parent addr, 2-cell PCI length)
->
->   ranges = <0x81000000 0 0x00000000 0x8ff80000 0 0x00010000>,
->            <0x82000000 0 0x80000000 0x80000000 0 0x0ff00000>;
->
-> which would mean:
->
->   (IA 0x8ff80000, PCI 0x81000000 0 0x00000000, length 0 0x00010000)
->   (IA 0x80000000, PCI 0x82000000 0 0x80000000, length 0 0x0ff00000)
->
->   IA 0x8ff80000-0x8ff8ffff -> PCI 0x0_00000000-0x0_0x0008ffff (I/O)
->   IA 0x80000000-0x8fefffff -> PCI 0x0_80000000-0x0_0x8fefffff (32-bit mem)
->
-> The diagram shows the address translations for all three address
-> spaces (config, I/O, memory).  If we ignore the 0x5f000000 range, the
-> mem and I/O paths through the diagram make sense to me:
->
->   CPU 0x0_7ff80000 -> IA 0x8ff80000 -> PCI   0x00000000 I/O
->   CPU 0x0_70000000 -> IA 0x80000000 -> PCI 0x0_80000000 mem
->
-> I guess config space handled separately from "ranges"?  The diagram
-> suggests that it's something like this:
-
-Yes, history reason, dwc's config space is not in ranges.
-
->
->   CPU 0x0_7ff00000 -> IA 0x8ff00000 -> PCI 0x00000000 config
->
-> which looks like it would match the "reg" property.
-
-regname = "config"
-
-Frank
->
-> > 	};
-> > };
-> >
-> > 'parent_bus_addr' in of_pci_range can indicate above diagram internal
-> > address (IA) address information.
-> >
-> > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> > Change from v3 to v4
-> > - improve commit message by driver source code path.
-> >
-> > Change from v2 to v3
-> > - cpu_untranslate_addr -> parent_bus_addr
-> > - Add Rob's review tag
-> >   I changed commit message base on Bjorn, if you have concern about review
-> > added tag, let me know.
-> >
-> > Change from v1 to v2
-> > - add parent_bus_addr in of_pci_range, instead adding new API.
-> > ---
-> >  drivers/of/address.c       | 2 ++
-> >  include/linux/of_address.h | 1 +
-> >  2 files changed, 3 insertions(+)
-> >
-> > diff --git a/drivers/of/address.c b/drivers/of/address.c
-> > index 286f0c161e332..1a0229ee4e0b2 100644
-> > --- a/drivers/of/address.c
-> > +++ b/drivers/of/address.c
-> > @@ -811,6 +811,8 @@ struct of_pci_range *of_pci_range_parser_one(struct of_pci_range_parser *parser,
-> >  	else
-> >  		range->cpu_addr = of_translate_address(parser->node,
-> >  				parser->range + na);
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/$defs/port-base
+> > +        unevaluatedProperties: false
 > > +
-> > +	range->parent_bus_addr = of_read_number(parser->range + na, parser->pna);
-> >  	range->size = of_read_number(parser->range + parser->pna + na, ns);
-> >
-> >  	parser->range += np;
-> > diff --git a/include/linux/of_address.h b/include/linux/of_address.h
-> > index 26a19daf0d092..13dd79186d02c 100644
-> > --- a/include/linux/of_address.h
-> > +++ b/include/linux/of_address.h
-> > @@ -26,6 +26,7 @@ struct of_pci_range {
-> >  		u64 bus_addr;
-> >  	};
-> >  	u64 cpu_addr;
-> > +	u64 parent_bus_addr;
-> >  	u64 size;
-> >  	u32 flags;
-> >  };
-> >
-> > --
-> > 2.34.1
-> >
+> > +        properties:
+> > +          endpoint:
+> > +            $ref: '#/$defs/dp-endpoint'
+>
+> Is it a separate port or is it an endpoint of the same upstream-facing
+> (non-connector-facing) SS port?
+
+I don't quite follow this comment. This is an input DP endpoint/port.
+
+>
+> > +
+> >  oneOf:
+> >    - required:
+> >        - port
+> > @@ -65,6 +73,19 @@ $defs:
+> >      $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> >      description: Super Speed (SS) output endpoint to a type-c connector
+> >      unevaluatedProperties: false
+> > +    properties:
+> > +      data-lanes:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-array
+> > +        description: |
+> > +          An array of physical USB Type-C data lane indexes.
+> > +          - 0 is SSRX1 lane
+> > +          - 1 is SSTX1 lane
+> > +          - 2 is SSTX2 lane
+> > +          - 3 is SSRX2 lane
+> > +        minItems: 4
+> > +        maxItems: 4
+> > +        items:
+> > +          maximum: 3
+>
+> What is the usecase to delare less than 4 lanes going to the USB-C
+> connector?
+
+I'm not aware of any usecase. The 'maximum: 3' is the max value in the
+cell, i.e. 0, 1, 2, or 3.
 
