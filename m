@@ -1,117 +1,131 @@
-Return-Path: <devicetree+bounces-109816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D4EC9980DE
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:52:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0377A9980F0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:54:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 598B21C2880D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:52:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD5C61F297CE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:54:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98C4919D897;
-	Thu, 10 Oct 2024 08:42:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41C311C8FC4;
+	Thu, 10 Oct 2024 08:44:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uXfIp7Ai"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="zXn9E3Ts"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7103219AD73;
-	Thu, 10 Oct 2024 08:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8939A1C8FBD;
+	Thu, 10 Oct 2024 08:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728549722; cv=none; b=Kd1f55qh2wPmS+sPdmiAztVdeIzfYmHuLN297+bzs2XUxIil4wuzgH/olpltSbcpmNk8UYrXUK3XvD5wZAAf6qEvLypAJjUuC+otjgYi2IMDGYlaW9Z0rVx3TVIU+o7mzqMr+0zTb7gZj5W3GpumSUJyhOcGqa8eV/ynQWW5rcA=
+	t=1728549853; cv=none; b=c+1MZIG30g3kmQzDxE2OEHJmU0euBT8lri4UVvWQOp8Wgvc5aUGgJM6zrEFaL+7bpCG3q8IiCcA4NFhIUXCIXE+oWo1BQvTThpeFmCaBwNbKveqKgNLf5FEWIYR3I5wxOU5BhioLJErzVW8YZnwNqqLfrTuB/S3MC3oxl1wZmag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728549722; c=relaxed/simple;
-	bh=yG2U03+rpXfeplBSeoqwKQhKM1LaYdj5AZHW2srLQHk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FfTSHbKB7dcj4hobB6dQrhr+bG7nqUlOnKUsRtLh5tuDOHDIHCCgMuGvctKFSepOIp5W3YK7OZN0kKotKw9nE/buZ0OqIF3Kj1SB8EkF89y/IK3twXyw5lrqyoZIVRU6TRocLrKoUJbqOwJ2G6JfpHMUAlNA0SPFMm7k73Uywfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uXfIp7Ai; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89EAFC4CEC5;
-	Thu, 10 Oct 2024 08:41:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728549722;
-	bh=yG2U03+rpXfeplBSeoqwKQhKM1LaYdj5AZHW2srLQHk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uXfIp7AiUnqRFFvN/a0zg4U5ytOL+ySRDHYP7LgsJ6kW7eH+qBHIRSeGcoH8bt25n
-	 wde4j8WesAOWNo5DO2ElcrQWZyZsBvFdGHWdnoPINlfFv5S8Ha7R30QVEziQ8mIOKI
-	 86AwUXBCyFoY873BCKkhVfZQxwzMhj00GvJvxKtVa2v9fs/8omTDCLYiqs7WClk/LM
-	 YBqNQ5kiiYgKo7DDnTT43zKHkYFe+Y/TMsKXiummLBRSzb8MzruBPhk9llcp/IoH0D
-	 8bkPQQ9DH7I1wJuhgsPpNztz5pHYuRySS6I5HqeqSlg+VHX+vildPMbr3KlY0f6Fal
-	 9w2FOwkNrTjwA==
-Message-ID: <016bb5a6-5f05-404c-acaf-e0a3ed6fcede@kernel.org>
-Date: Thu, 10 Oct 2024 17:41:56 +0900
+	s=arc-20240116; t=1728549853; c=relaxed/simple;
+	bh=5xx2sKzgepURMFfqi6aRbYvWqvkElOhXxFhGT/E+q+w=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UVeSRC73AniRwhbox6G2LjFokMLsxspxy3PJJgp6vvqwM8GMpDZOSZ2JhBzE7M6VGPu2Wp5fmlfP04rHIFcX4QQDI6xR53E1zb7McQ10ivbVSadQkYClI1f8wfMQT5TptccGDlhtIcJ0j6uypIVPkdatCAuZlwlh0okhOyXNtxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=zXn9E3Ts; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=X3jEBg7jkWA7DJfKHTHDAHOsaQY1XgeC8tjq7OWdZlU=; b=zXn9E3Ts7NQKLnjeXJiEsx2ul/
+	dZCiWwsGQMqRgAhhq1yIzEO8CTeSMxPg0uOHnFblF+mhyqAj8NFRpA/frSOMrs3imqPQmIKIOrhLT
+	HEYjhZs50SANJigpHE9r2b0jJd0JuNdbm0/M3J5e6AGOFBSTd4dhZb9xEEybJwwFpXAT/QxB3L+B1
+	Vi5CYXEGyQzfX145sJV3bUMax+A4HJZ3+o/ZngJyzyh3YPGTJbBGGwWVTvBxRFMyBNAxQF2xWtcgv
+	WlLs7BRqTihufLcltVbn0GoHTNvgfiJJyspa/ceQ8icFfG5uazGgARhKY8M0I16L0Yx4hArCwD0SF
+	yxnhk/ew==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1syom5-0001Th-N1; Thu, 10 Oct 2024 10:43:57 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Lee Jones <lee@kernel.org>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: leds: Document "rc-feedback" trigger
+Date: Thu, 10 Oct 2024 10:43:56 +0200
+Message-ID: <4386529.ejJDZkT8p0@diego>
+In-Reply-To: <20241010083738.GE661995@google.com>
+References:
+ <20241007205315.2477060-1-heiko@sntech.de> <23688435.6Emhk5qWAg@diego>
+ <20241010083738.GE661995@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/12] PCI: rockchip-ep: Fix address translation unit
- programming
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-2-dlemoal@kernel.org>
- <20241010070242.3i2f53kpdpr4fgl6@thinkpad>
-Content-Language: en-US
-From: Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20241010070242.3i2f53kpdpr4fgl6@thinkpad>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On 2024/10/10 16:02, Manivannan Sadhasivam wrote:
-> On Mon, Oct 07, 2024 at 01:12:07PM +0900, Damien Le Moal wrote:
->> The rockchip PCIe endpoint controller handles PCIe transfers addresses
->> by masking the lower bits of the programmed PCI address and using the
->> same number of lower bits masked from the CPU address space used for the
->> mapping. For a PCI mapping of <size> bytes starting from <pci_addr>,
->> the number of bits masked is the number of address bits changing in the
->> address range [pci_addr..pci_addr + size - 1].
->>
->> However, rockchip_pcie_prog_ep_ob_atu() calculates num_pass_bits only
->> using the size of the mapping, resulting in an incorrect number of mask
->> bits depending on the value of the PCI address to map.
->>
->> Fix this by introducing the helper function
->> rockchip_pcie_ep_ob_atu_num_bits() to correctly calculate the number of
->> mask bits to use to program the address translation unit. The number of
->> mask bits iscalculated depending on both the PCI address and size of the
->> mapping, and clamped between 8 and 20 using the macros
->> ROCKCHIP_PCIE_AT_MIN_NUM_BITS and ROCKCHIP_PCIE_AT_MAX_NUM_BITS.
->>
-> 
-> How did you end up with these clamping values? Are the values (at least MAX
-> applicable to all SoCs)?
-> 
-> Btw, it would be helpful if you referenced the TRM and the section that
-> describes the outbound mapping. I'm able to find the reference:
-> 
-> Rockchip RK3399 TRM V1.3 Part2, Section 17.5.5.1.1
+Am Donnerstag, 10. Oktober 2024, 10:37:38 CEST schrieb Lee Jones:
+> On Wed, 09 Oct 2024, Heiko St=FCbner wrote:
+>=20
+> > Hi Lee,
+> >=20
+> > Am Mittwoch, 9. Oktober 2024, 16:48:36 CEST schrieb Lee Jones:
+> > > On Mon, 07 Oct 2024, Heiko Stuebner wrote:
+> > >=20
+> > > > Document the "rc-feedback" trigger which is used to control LEDs by
+> > > > remote control device activity. This is an existing trigger used in
+> > > > existing DTs, document it so validation of those DTs would pass.
+> > > >=20
+> > > > It was originally introduced into the Linux kernel in 2013 with
+> > > > commit 153a60bb0fac ("[media] rc: add feedback led trigger for rc k=
+eypresses")
+> > > >=20
+> > > > Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+> > > > ---
+> > > > changes in v2:
+> > > > - put the entry in the correct position and comment above it (Pavel)
+> > > >=20
+> > > >  Documentation/devicetree/bindings/leds/common.yaml | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >=20
+> > > > diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/D=
+ocumentation/devicetree/bindings/leds/common.yaml
+> > > > index bf9a101e4d42..9cd89f30fa7c 100644
+> > > > --- a/Documentation/devicetree/bindings/leds/common.yaml
+> > > > +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> > > > @@ -118,6 +118,8 @@ properties:
+> > > >              # No trigger assigned to the LED. This is the default =
+mode
+> > > >              # if trigger is absent
+> > > >            - none
+> > > > +            # LED indicates remote control feedback
+> > > > +          - rc-feedback
+> > >=20
+> > > Is 'rc' a recognised and well known abbreviation for remote control?
+> > >=20
+> > > How about we people some (look-up) time and say:
+> > >=20
+> > >   - remote-control-feedback
+> >=20
+> > The issue being that this exact trigger rc-feedback is in the kernel for
+> > 11 years already - see the commit link in the description, and used in
+> > a number of boards in the wild since then.
+> >=20
+> > So the naming-ship has sailed for a while now, and this change
+> > "simply" documents the status quo. And judging from Rob's Ack
+> > it looks like he's okay with the naming too.
+>=20
+> This is why it's important for people to document things when they're
+> introduced. :(
 
-OK. Will add that.
+I fully agree with you on that :-) .
 
-I really appreciate very much all the reviews you are sending, but given that
-this patch series depends on the series "[PATCH v4 0/7] Improve PCI memory
-mapping API", could we start with that one and get it queued ASAP ?
 
-Thanks !
 
--- 
-Damien Le Moal
-Western Digital Research
+
 
