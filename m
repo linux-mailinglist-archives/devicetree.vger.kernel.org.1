@@ -1,74 +1,84 @@
-Return-Path: <devicetree+bounces-109948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109949-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5331998963
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:25:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64FDC998A46
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92F7F1F2626F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:25:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1E43B29694
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:27:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6EDD1D0DCA;
-	Thu, 10 Oct 2024 14:17:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428D21CCB2D;
+	Thu, 10 Oct 2024 14:22:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="QqBBr4WK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UDy+P/gm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D18B31CB526;
-	Thu, 10 Oct 2024 14:17:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C10B1CB510
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:22:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728569870; cv=none; b=lQ5K4OdwoG49yo1x9ZGwZRchNbuLtjnAKkXUW3JjNlVg2p5llEZuQi5N0nQXIZ08+mMfs9rW1ZkyZO+C74XWCTD7dG6GchAS23aMxFe1wqB/yXI2t08/PbHQydg45Ku4rpzwGnoB46V9ZswTDfGJYp1o6dTffdr0c+0N16deNy8=
+	t=1728570172; cv=none; b=VabHCe9ut2yoFQe9JJpRpKM8qyiO4YUlBUe1kOzwYzQiI+CE7C66bcTPIVfnXP1G0vQsduKX8KbiQD5uTaLSh9u/6yyyfkUyPus3CnkUeuA/cMJdrnPXA1KVzpZWvPT+tO5jHwgHfOYaWHRGDXJxNGXQE8RrMMliEBlbOtZzLhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728569870; c=relaxed/simple;
-	bh=h5Lz21NmFhDFWlWi3Crr0UBegemspteX5FuYr2/euls=;
+	s=arc-20240116; t=1728570172; c=relaxed/simple;
+	bh=pc8gV4huGZDoUca8YffQfxAWHm148iLaPYTVWk1l2jA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TNOcdpIt8m26tIA8vkoNe9DSKr4iFPUv/3hZh7nM61WiZU1bDLGfYNvWGyztqd87BivZHQK2/KJoireSzbxlR2kUXQYT/cYRlGK/wV0hOZ8SM8vBnSZUeSFKa1swb29EGGwAX1HpBLWA6uqCj4jpxdu1XATZy5/rPg11VTb/9OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=QqBBr4WK; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/6gsdzzgfkgnojHJwKsAT7buBqjmSJtoxMaSzXoKYZ0=; b=QqBBr4WKoO6Rzy428V+Ohah05T
-	vRBmUk7Lz7DiUtpLrGeXPPYPaVWSIGDNgEmU/GlRY1UbaXrDgi7V3Ex0TijWb/rPHPB/enGuKGaSv
-	CHZNt5plQImVx/Swh6Mqr5PVV1srrTenhN3Q6GBeFLEza9+gotshqsjUQ3rFwTRJV9+HFqPyXYPIr
-	j/NQyEbWQG9h5Q91LmigNmJPp8Ts8sCGFCBBdabltVgcUX7ygtSAaItSvIaDoUJc1f9gN2vwXY75o
-	AaHdo63xOq0Mxpg2dSv/Z/HrHQT5zJlHofFbOSQ/rL4dse8vgDh4spKmm3mvAngDB1EmlhlfTSqj3
-	6dqQIVmw==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:36062)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1sytyv-0002Wl-2V;
-	Thu, 10 Oct 2024 15:17:33 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.96)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1sytyr-0007ON-2D;
-	Thu, 10 Oct 2024 15:17:29 +0100
-Date: Thu, 10 Oct 2024 15:17:29 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Karumanchi, Vineeth" <vineeth@amd.com>
-Cc: vineeth.karumanchi@amd.com, nicolas.ferre@microchip.com,
-	claudiu.beznea@tuxon.dev, davem@davemloft.net, edumazet@google.com,
-	kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, andrew@lunn.ch,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, git@amd.com
-Subject: Re: [RFC PATCH net-next 4/5] net: macb: Configure High Speed Mac for
- given speed.
-Message-ID: <Zwfh-ZJB4BtnJY28@shell.armlinux.org.uk>
-References: <20241009053946.3198805-1-vineeth.karumanchi@amd.com>
- <20241009053946.3198805-5-vineeth.karumanchi@amd.com>
- <ZwZKumS3IEy54Jsk@shell.armlinux.org.uk>
- <6fc42ade-66cf-4462-914c-3dd5589c9a9f@amd.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=YEh1MBCliQ6TX7ZgzwbPNDGTi9LOsOXSiXefnQD3DiT/Vcc5kdZry/htoebSHTuFJAXHLJ0IYSBVuL+cdVQvieQ24txTkLI/JuM8Yj2byO1ciNyWmp+i6TlE9IuDR9Z8wn2sZQU6lsCrW4b9/VU0PaGOpf0E8H9BUFEMOsfxGhY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UDy+P/gm; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2facaa16826so9096241fa.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:22:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728570167; x=1729174967; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=T9AJcZVNqCADPxVrB/UoMC81RGbypBJxweSdqf11Fz4=;
+        b=UDy+P/gmM3DlA9/uyy+ivLTEbKxgexXSBHV3yKb8r0nZjcOFsz0rj4jA+pAJAPskYD
+         U3bOLH+N913gviSD0KOZXH9AnBISVxaKRs3daqwBRJLuZ+q4U9Dwo1sYTLkn1GMkQdtl
+         B4ze5wsciOOLXMECnyNcqMBOLPHpi2+1zLPfyL7au3Dz4DOTK385WRAVPvQE34OLgizp
+         Rr/LTUpUzCN5jzvPKdXgFvNAfG9y252bnc8yJYmlN10LMM69sCV+s7eBfmWoi2L4jtif
+         5qmZNYK+sMvK1mFIVrGMA2FG4CzA/v/YlI/aCC51gHPy4GK7s+SBqDFIuKSLO2AxbFZN
+         6nfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728570167; x=1729174967;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=T9AJcZVNqCADPxVrB/UoMC81RGbypBJxweSdqf11Fz4=;
+        b=sERvQU2gqXWjR9f1ZQoBtwGB9qOWje/uWKL42s5E/gyBBPtucshsTkWSJceWHQVmbL
+         Di5hB/SZMB3PuHpPRga6IgNqlOOe+4JRaTHlQnM+hRSJBLB+QwigaRPyY7DjCqlP8hJi
+         WauTu/KdHyJFkY4tbOy2fjeb/gj+rPph0Emdv8sP1G88gSJ9MRYLc4Ted9EPnsXRvzQH
+         ifSbNjUBtf+WShvAPOtTXdv1XhcebDGmZC3p8AnMGpSuez4DvrRoyEVKJGKWMYeOu9t/
+         26gqcsQgHezWZHqsf5sp6RR3cjFrFgoHEAjsbyYj04llvAIjg6ozLAfs0t6LimTIxL3r
+         zq4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU5DrzaumG3NqEbHfREvpKhj1aEmrOOa6EgjWax6fKvQ7mGx//2/3r1DPs9zcLPjjyQbJPdxnUj4lXn@vger.kernel.org
+X-Gm-Message-State: AOJu0YxbQXqQwBxd3sb81mXWn5mtTy6+EqlvePqf9/k2fxTB8ZKA3VoE
+	Ts3BWngc9LICL9F6MXY7SKSXXw35u0vhscSANab3dJQ4UaqV28ZyiH06f3ZEyq4=
+X-Google-Smtp-Source: AGHT+IF6rZ3MD8nH2vuXY8H2os5uX0/oGgjx49wYPUe6Dm++/RdT24HNnJYcg/TCT0rhnTNfVYjUEg==
+X-Received: by 2002:a2e:b8c1:0:b0:2fa:fe0c:4967 with SMTP id 38308e7fff4ca-2fb1873e465mr41125211fa.20.1728570167037;
+        Thu, 10 Oct 2024 07:22:47 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb2474c85esm2097331fa.115.2024.10.10.07.22.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 07:22:45 -0700 (PDT)
+Date: Thu, 10 Oct 2024 17:22:42 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add support for usb nodes on
+ QCS8300
+Message-ID: <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
+References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
+ <20241009195636.2649952-2-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,54 +87,84 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <6fc42ade-66cf-4462-914c-3dd5589c9a9f@amd.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20241009195636.2649952-2-quic_kriskura@quicinc.com>
 
-On Thu, Oct 10, 2024 at 07:39:16PM +0530, Karumanchi, Vineeth wrote:
-> Hi Russel,
+On Thu, Oct 10, 2024 at 01:26:35AM GMT, Krishna Kurapati wrote:
+> Add support for USB controllers on QCS8300. The second
+> controller is only High Speed capable.
 > 
-> On 10/9/2024 2:49 PM, Russell King (Oracle) wrote:
-> > It also looks like you're messing with MAC registers in the PCS code,
-> > setting the MAC speed there. Are the PCS and MAC so integrated together
-> > that abstracting the PCS into its own separate code block leads to
-> > problems?
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 165 ++++++++++++++++++++++++++
+>  1 file changed, 165 insertions(+)
+
+[...]
+
+> +
+> +		usb_2: usb@a4f8800 {
+> +			compatible = "qcom,qcs8300-dwc3", "qcom,dwc3";
+> +			reg = <0x0 0x0a4f8800 0x0 0x400>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges;
+> +
+> +			clocks = <&gcc GCC_CFG_NOC_USB2_PRIM_AXI_CLK>,
+> +				 <&gcc GCC_USB20_MASTER_CLK>,
+> +				 <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
+> +				 <&gcc GCC_USB20_SLEEP_CLK>,
+> +				 <&gcc GCC_USB20_MOCK_UTMI_CLK>;
+> +			clock-names = "cfg_noc",
+> +				      "core",
+> +				      "iface",
+> +				      "sleep",
+> +				      "mock_utmi";
+> +
+> +			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
+> +					  <&gcc GCC_USB20_MASTER_CLK>;
+> +			assigned-clock-rates = <19200000>, <120000000>;
+> +
+> +			interrupts-extended = <&intc GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&intc GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
+> +					      <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
+> +					      <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
+> +			interrupt-names = "pwr_event",
+> +					  "hs_phy_irq",
+> +					  "dp_hs_phy_irq",
+> +					  "dm_hs_phy_irq";
+> +
+> +			power-domains = <&gcc GCC_USB20_PRIM_GDSC>;
+> +			required-opps = <&rpmhpd_opp_nom>;
+> +
+> +			resets = <&gcc GCC_USB20_PRIM_BCR>;
+> +
+> +			interconnects = <&aggre1_noc MASTER_USB2 0 &mc_virt SLAVE_EBI1 0>,
+> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB2 0>;
+> +			interconnect-names = "usb-ddr", "apps-usb";
+
+As this is a USB2-only host, shouldn't it also have qcom,select-utmi-as-pipe-clk ?
+
+> +
+> +			status = "disabled";
+> +
+> +			usb_2_dwc3: usb@a400000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x0 0x0a400000 0x0 0xe000>;
+> +				interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+> +				iommus = <&apps_smmu 0x20 0x0>;
+> +				phys = <&usb_2_hsphy>;
+> +				phy-names = "usb2-phy";
+> +				snps,dis_u2_susphy_quirk;
+> +				snps,dis_enblslpm_quirk;
+> +			};
+> +		};
+>  	};
+>  
+>  	arch_timer: timer {
+> -- 
+> 2.34.1
 > 
-> Agreed, Since our current hardware configuration lacks AN and PHY, I've
-> relocated the ENABLE_HS_MAC configuration into PCS to
-> allow speed changes using ethtool. When more hardware with a PHY that
-> supports AN becomes available,
-> the phylink will invoke macb_mac_config() with the communicated speed
-> (phylinkstate->speed).
-
-Where are you getting that idea from, because that has not been true for
-a good number of years - and it's been stated in the phylink
-documentation for a very long time.
-
-I've killed all the code references to ->speed in all mac_config()
-implementations, and I've even gone to the extent of now ensuring that
-all mac_config() methods will _always_ be called with state->speed
-set to SPEED_UNKNOWN, so no one can make any useful determinations
-from that.
-
-If people continue to insist on using this, then I'll have no option
-but to make a disruptive API change, making mac_config() take an
-explicit set of arguments for the items that it should have access
-to.
-
-> Currently, for fixed-link, will keep the earlier implementation.
-
-I want phylink users to be correct and easy to understand - because
-I maintain phylink, and that means I need to understand the code
-that makes use of its facilities. So, want to see phylink methods
-implemented properly. If they aren't going to be implemented
-properly, then I will ask that the driver ceases to use phylink
-quite simply because it makes _my_ maintenance more difficult
-when drivers don't implement phylink methods correctly.
-
-The choice is: implement phylink methods properly or don't use
-phylink.
 
 -- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+With best wishes
+Dmitry
 
