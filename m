@@ -1,73 +1,73 @@
-Return-Path: <devicetree+bounces-109856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A6C9983D5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:36:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FEE29983E5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 444521F262F9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:36:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE7071F269EE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:37:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6BA1BDA91;
-	Thu, 10 Oct 2024 10:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FD931BE85C;
+	Thu, 10 Oct 2024 10:37:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mzLg81J/"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dRp6KLrY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB631BF33F
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 10:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2DA712D21F
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 10:37:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728556561; cv=none; b=sR+SPxRg2+yABy/1QCPzKAik0lEW8VWUpevZ4dik3yH94ZP65WN4ANzXx39g3mJ1keDx94lrqTuD2pt8DukPqSUX+rtarAeeM99tn/LsaJYZXisqxicsMIYAA8Gfi1DNBCs1XdfdD8gR5J0bqM9UhxOTvCQDxPlDb4DSgDcZEDI=
+	t=1728556623; cv=none; b=QFDZ4Gb9jsXjlbgXKW4/TaVz85fcMlSj+2GyH+1VWlC8Fj/P4yTSWoBdL81q5PE3SL7kJslcSX+CZHyEt4O6zRoWG6DB+E0Mekxx5Tr5U/KTP1L55P5+Kif5m7FvAg77clwPAr9v/Btpicypxmtr/Y5Rm1hZx8rbiuCEPzK8uqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728556561; c=relaxed/simple;
-	bh=CtyIT4ZNOQuxdgMNtatD9o1p8iGKg6KQy/UDY8yO1GE=;
+	s=arc-20240116; t=1728556623; c=relaxed/simple;
+	bh=xrcCvr6cYjS1RxxuNWmLWKg9qlwjebDzFF2vbBSibn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gxfwt21t6yxg5/6WPr9dUSDqe8tthPUdfaCl0GMU+wuLX8JePC/mH282ay/DRMQP5fRfUyT9aWTbzaagxEadc0ioF9aieCUyBMuUPszaVb6UsdUvslJtLjNYWNjF7vb+m4k5Dw/b2M9O25afFkB0vg48j1khdd5YubXRcBmKogk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mzLg81J/; arc=none smtp.client-ip=209.85.216.46
+	 Content-Type:Content-Disposition:In-Reply-To; b=aV0hexrs6ao22B7vr5hm7mcZkf6C2VwfMSKhrc1Gm9UHdK4PLDZrMaq2a0R9A8qq88aPpMUvWPWZKf3T3wf+yINmsKCyGglURWGFcjkRCLOl52taPAypE47T8oHwNGrtwzBwOjdnF9XU/DkjXqP8po4E5d8iFvMyF3SKQkpm0ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dRp6KLrY; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2976fca23so624364a91.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 03:35:58 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-20b7eb9e81eso7593355ad.2
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 03:37:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728556558; x=1729161358; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728556621; x=1729161421; darn=vger.kernel.org;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date:from:to
          :cc:subject:date:message-id:reply-to;
-        bh=90kCFwX2rvFJ1EX0qVrB7V4aNyyA47t7eqFcnQ7sd14=;
-        b=mzLg81J/MSzQJnb2moLOsmlnH2IxbD9JlrcIzMgVXypHQeCqO38qCSQmARgOeKVPQ8
-         ORIiMKdKOuraB1SSt04Iwo3N9/F1jr7I4ZwamsSmkZmDdqG3UtsjFfEKQRgcY1+/ShJ3
-         o/bkAY26u0bMtQ3eoTDz2dJgZRhWZ42vuYYd9usPzotuUezP/WYMCV6j/Z6dHzSebt9F
-         6lgHqdKqdsm0j3AO+rkWXumJhWfvujnt+44g0DifFDies7yBdXdZKuJoxVqw1QASSsbt
-         TSNrtxTdECMKUYshy7dTc+V53iTRwuuQkKus4I00YZ6bI9Sb+OESAbvKcEITAs3uapGj
-         u9PQ==
+        bh=qCYAf6ESDJaF8h/E6C6LcLUhPQEg3bLqnr89jUbXqs4=;
+        b=dRp6KLrYxbQkjm0EVlAHewrWm8jIpespDQvNOHdj39RbD4g284tzjr0Pc5jhUzQt1I
+         ZoXihGEDk7gMASvTKGk14NSW3S/1ddbe4KDRMbW0PWgySDNnMYgAXuatL6mASNjJd9fv
+         1nEr5D6WbuHTFGo8NX/HaPkFk23yQoyQaPSZ+D/Kohc5p3NQCVkiwBPwdSpwCHTcgEAU
+         hyOkIlKlB5LzmuxmFhiIqbLPtJRzqZcKsajk/ghkQN6BSDSB1Ad5wiZwbpzOPkrLs5C+
+         aRCOxBdJlLo9rNwm5GDlOJha8WZnvrYEwuJy+dPh2nzx8JvtA0yNsOHM9/t1sJ4Fq/k7
+         l8yA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728556558; x=1729161358;
+        d=1e100.net; s=20230601; t=1728556621; x=1729161421;
         h=in-reply-to:content-transfer-encoding:content-disposition
          :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=90kCFwX2rvFJ1EX0qVrB7V4aNyyA47t7eqFcnQ7sd14=;
-        b=ppUQtveDfYLjYYC23TLjFTMRDvXn7708Kzpa5dqsPhtvXHODdXUTrE/wbwJ/84YrU1
-         URobUpJ3AGfsVlBPgItMceaeZdGV2RRp4NZGJ2lwla2JOI8dnfeZ9rwaJqavbMQIFkb/
-         4nUKBi0Z+corcZ80rtUX0JbJplSNjSUo8OuROgQR5TSUrgG2MkgRQQBzY6WQKbetRSIe
-         wAE8CvPcXdJmBHuugL+W0KJp4B5vBZap2UlaZsyGeHRQ9ZgJ6fWM0IZbAtTW0npGWmY3
-         YpbvaLBZ6B2ggfDNc7JFB8+5k+4V0h2JeeZJqbi5XfZqg/eidZZ0zSVKwy5NHAw+rSle
-         2HaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVVEcwDngPs0MM7L/saQF+mNygqh/DYegVB/B+6+ZVlBlrnAoYVLbGCeTow0Xi1jk/qzzHFIvIkIDYs@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZO40uqw41exYhpRYxl0CleU/kNlz2X3zz/BEUb+7YMqQS77DK
-	ojZwjvzln2PHDVm+ooyRdavgPc6O6cNF5S1g2sbzaPcjFB3zCY73rd8z6R2uCQ==
-X-Google-Smtp-Source: AGHT+IED2bSUu+lVDaGy2RN4aKt78OaxV4xRcBnWCUkQllV8/en+YZ3X+i9YU8U4s95jGGviZKDKwQ==
-X-Received: by 2002:a17:90a:e395:b0:2e2:cf5c:8edf with SMTP id 98e67ed59e1d1-2e2cf5c8fe4mr2286223a91.9.1728556558052;
-        Thu, 10 Oct 2024 03:35:58 -0700 (PDT)
+        bh=qCYAf6ESDJaF8h/E6C6LcLUhPQEg3bLqnr89jUbXqs4=;
+        b=RpiBCL271ISTes07tDrm/Ly3e8ucaQDdS93xn4UDNx8GS49/yQZTJ9C13mjbU9Jzni
+         Qb67dgFYVQRrQ0ukx6C2mzbctMVDcI5gkkvClXEl5szseKJsNYOsSa2bT7+52eEXnS5P
+         ZMuhRIUjOlhl8LHfOZgBaBP4Br417Oebtc/0NKhXahZhLfGWQLwhdIzVaNPM7jhHnPRs
+         9nXwWkfSuq+72lL3SXMl9GXCZMVkdVYRcgwNHr4436iARNWyFJKaRejvwFYD4X03vcq2
+         w/2R8SkLUYCnIA8PTt1vAQJpk5IYKujm2iJJYKLhwRl6XL5IGkqbYxAp2WngshwGZW9o
+         9JOw==
+X-Forwarded-Encrypted: i=1; AJvYcCVXuYmmWYbYK8Slo/I8sWo+MmUcEkLlzB80DJ842S1KCrI/hpzFLVX3l0zpRRwxVmI5Hv46Vf1NTU8m@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJ7Rhd/vravfQVQ9ajx+y2xuGAOJjLDDxk+yuIZWSmT7YSsoc5
+	MquBVJEH/5k5KErYAI0B7co67ukeYwfmyiqBBnVM9Yz3z2Kq1oj+jS9COf+tqQ==
+X-Google-Smtp-Source: AGHT+IEwmkW/UOhppKl/eNVEZv+OwfFQ3W7u6qUF28b6WfCwiMcxAelS1R2T42W7e+n6yhRW56O8LA==
+X-Received: by 2002:a17:902:d2d1:b0:20c:5698:75bc with SMTP id d9443c01a7336-20c637992bdmr64864145ad.60.1728556621085;
+        Thu, 10 Oct 2024 03:37:01 -0700 (PDT)
 Received: from thinkpad ([220.158.156.184])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2b41f8377sm1503510a91.1.2024.10.10.03.35.53
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c8bc1c39fsm7234845ad.92.2024.10.10.03.36.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 03:35:57 -0700 (PDT)
-Date: Thu, 10 Oct 2024 16:05:50 +0530
+        Thu, 10 Oct 2024 03:37:00 -0700 (PDT)
+Date: Thu, 10 Oct 2024 16:06:54 +0530
 From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To: Damien Le Moal <dlemoal@kernel.org>
 Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
@@ -83,10 +83,13 @@ Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
 	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
 	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v3 10/12] PCI: rockchip-ep: Improve link training
-Message-ID: <20241010103550.elwd2k35t4k4cypu@thinkpad>
+Subject: Re: [PATCH v3 01/12] PCI: rockchip-ep: Fix address translation unit
+ programming
+Message-ID: <20241010103654.3qmsdtymto55nfl4@thinkpad>
 References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-11-dlemoal@kernel.org>
+ <20241007041218.157516-2-dlemoal@kernel.org>
+ <20241010070242.3i2f53kpdpr4fgl6@thinkpad>
+ <016bb5a6-5f05-404c-acaf-e0a3ed6fcede@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -96,191 +99,46 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241007041218.157516-11-dlemoal@kernel.org>
+In-Reply-To: <016bb5a6-5f05-404c-acaf-e0a3ed6fcede@kernel.org>
 
-On Mon, Oct 07, 2024 at 01:12:16PM +0900, Damien Le Moal wrote:
-> The Rockchip rk339 technical reference manual describe the endpoint mode
-
-RK3399
-
-Please include the full reference: TRM name followed by the section.
-
-> link training process clearly and states that:
->   Insure link training completion and success by observing link_st field
->   in PCIe Client BASIC_STATUS1 register change to 2'b11. If both side
->   support PCIe Gen2 speed, re-train can be Initiated by asserting the
->   Retrain Link field in Link Control and Status Register. The software
->   should insure the BASIC_STATUS0[negotiated_speed] changes to "1", that
->   indicates re-train to Gen2 successfully.
-> This procedure is very similar to what is done for the root-port mode in
-> rockchip_pcie_host_init_port().
+On Thu, Oct 10, 2024 at 05:41:56PM +0900, Damien Le Moal wrote:
+> On 2024/10/10 16:02, Manivannan Sadhasivam wrote:
+> > On Mon, Oct 07, 2024 at 01:12:07PM +0900, Damien Le Moal wrote:
+> >> The rockchip PCIe endpoint controller handles PCIe transfers addresses
+> >> by masking the lower bits of the programmed PCI address and using the
+> >> same number of lower bits masked from the CPU address space used for the
+> >> mapping. For a PCI mapping of <size> bytes starting from <pci_addr>,
+> >> the number of bits masked is the number of address bits changing in the
+> >> address range [pci_addr..pci_addr + size - 1].
+> >>
+> >> However, rockchip_pcie_prog_ep_ob_atu() calculates num_pass_bits only
+> >> using the size of the mapping, resulting in an incorrect number of mask
+> >> bits depending on the value of the PCI address to map.
+> >>
+> >> Fix this by introducing the helper function
+> >> rockchip_pcie_ep_ob_atu_num_bits() to correctly calculate the number of
+> >> mask bits to use to program the address translation unit. The number of
+> >> mask bits iscalculated depending on both the PCI address and size of the
+> >> mapping, and clamped between 8 and 20 using the macros
+> >> ROCKCHIP_PCIE_AT_MIN_NUM_BITS and ROCKCHIP_PCIE_AT_MAX_NUM_BITS.
+> >>
+> > 
+> > How did you end up with these clamping values? Are the values (at least MAX
+> > applicable to all SoCs)?
+> > 
+> > Btw, it would be helpful if you referenced the TRM and the section that
+> > describes the outbound mapping. I'm able to find the reference:
+> > 
+> > Rockchip RK3399 TRM V1.3 Part2, Section 17.5.5.1.1
 > 
-> Implement this link training procedure for the endpoint mode as well.
-> Given that the rk3399 SoC does not have an interrupt signaling link
-> status changes, training is implemented as a delayed work which is
-> rescheduled until the link training completes or the endpoint controller
-> is stopped. The link training work is first scheduled in
-> rockchip_pcie_ep_start() when the endpoint function is started. Link
-> training completion is signaled to the function using pci_epc_linkup().
-> Accordingly, the linkup_notifier field of the rockchip pci_epc_features
-> structure is changed to true.
+> OK. Will add that.
 > 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-> ---
->  drivers/pci/controller/pcie-rockchip-ep.c | 79 ++++++++++++++++++++++-
->  drivers/pci/controller/pcie-rockchip.h    | 11 ++++
->  2 files changed, 89 insertions(+), 1 deletion(-)
+> I really appreciate very much all the reviews you are sending, but given that
+> this patch series depends on the series "[PATCH v4 0/7] Improve PCI memory
+> mapping API", could we start with that one and get it queued ASAP ?
 > 
-> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
-> index a801e040bcad..af50432525b4 100644
-> --- a/drivers/pci/controller/pcie-rockchip-ep.c
-> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
-> @@ -16,6 +16,8 @@
->  #include <linux/platform_device.h>
->  #include <linux/pci-epf.h>
->  #include <linux/sizes.h>
-> +#include <linux/workqueue.h>
-> +#include <linux/iopoll.h>
 
-Please keep the includes sorted.
-
->  
->  #include "pcie-rockchip.h"
->  
-> @@ -48,6 +50,7 @@ struct rockchip_pcie_ep {
->  	u64			irq_pci_addr;
->  	u8			irq_pci_fn;
->  	u8			irq_pending;
-> +	struct delayed_work	link_training;
->  };
->  
->  static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
-> @@ -465,6 +468,8 @@ static int rockchip_pcie_ep_start(struct pci_epc *epc)
->  			    PCIE_CLIENT_CONF_ENABLE,
->  			    PCIE_CLIENT_CONFIG);
->  
-> +	schedule_delayed_work(&ep->link_training, 0);
-> +
->  	return 0;
->  }
->  
-> @@ -473,6 +478,8 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
->  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
->  	struct rockchip_pcie *rockchip = &ep->rockchip;
->  
-> +	cancel_delayed_work_sync(&ep->link_training);
-> +
->  	/* Stop link training and disable configuration */
->  	rockchip_pcie_write(rockchip,
->  			    PCIE_CLIENT_CONF_DISABLE |
-> @@ -480,8 +487,77 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
->  			    PCIE_CLIENT_CONFIG);
->  }
->  
-> +static void rockchip_pcie_ep_retrain_link(struct rockchip_pcie *rockchip)
-> +{
-> +	u32 status;
-> +
-> +	status = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_LCS);
-> +	status |= PCI_EXP_LNKCTL_RL;
-> +	rockchip_pcie_write(rockchip, status, PCIE_EP_CONFIG_LCS);
-> +}
-> +
-> +static bool rockchip_pcie_ep_link_up(struct rockchip_pcie *rockchip)
-> +{
-> +	u32 val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS1);
-> +
-> +	return PCIE_LINK_UP(val);
-> +}
-> +
-> +static void rockchip_pcie_ep_link_training(struct work_struct *work)
-> +{
-> +	struct rockchip_pcie_ep *ep =
-> +		container_of(work, struct rockchip_pcie_ep, link_training.work);
-> +	struct rockchip_pcie *rockchip = &ep->rockchip;
-> +	struct device *dev = rockchip->dev;
-> +	u32 val;
-> +	int ret;
-> +
-> +	/* Enable Gen1 training and wait for its completion */
-> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
-> +				 val, PCIE_LINK_TRAINING_DONE(val), 50,
-> +				 LINK_TRAIN_TIMEOUT);
-> +	if (ret)
-> +		goto again;
-> +
-> +	/* Make sure that the link is up */
-> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_BASIC_STATUS1,
-> +				 val, PCIE_LINK_UP(val), 50,
-> +				 LINK_TRAIN_TIMEOUT);
-> +	if (ret)
-> +		goto again;
-> +
-> +	/* Check the current speed */
-> +	val = rockchip_pcie_read(rockchip, PCIE_CORE_CTRL);
-> +	if (!PCIE_LINK_IS_GEN2(val) && rockchip->link_gen == 2) {
-
-PCIE_LINK_IS_GEN2()?
-
-> +		/* Enable retrain for gen2 */
-> +		rockchip_pcie_ep_retrain_link(rockchip);
-> +		readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
-> +				   val, PCIE_LINK_IS_GEN2(val), 50,
-> +				   LINK_TRAIN_TIMEOUT);
-> +	}
-> +
-> +	/* Check again that the link is up */
-> +	if (!rockchip_pcie_ep_link_up(rockchip))
-> +		goto again;
-
-TRM doesn't mention this check. Is this really necessary?
-
-> +
-> +	val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS0);
-> +	dev_info(dev,
-> +		 "Link UP (Negociated speed: %sGT/s, width: x%lu)\n",
-
-
-Negotiated
-
-> +		 (val & PCIE_CLIENT_NEG_LINK_SPEED) ? "5" : "2.5",
-> +		 ((val & PCIE_CLIENT_NEG_LINK_WIDTH_MASK) >>
-> +		  PCIE_CLIENT_NEG_LINK_WIDTH_SHIFT) << 1);
-> +
-> +	/* Notify the function */
-> +	pci_epc_linkup(ep->epc);
-> +
-> +	return;
-> +
-> +again:
-> +	schedule_delayed_work(&ep->link_training, msecs_to_jiffies(5));
-> +}
-> +
->  static const struct pci_epc_features rockchip_pcie_epc_features = {
-> -	.linkup_notifier = false,
-> +	.linkup_notifier = true,
->  	.msi_capable = true,
->  	.msix_capable = false,
->  	.align = ROCKCHIP_PCIE_AT_SIZE_ALIGN,
-> @@ -642,6 +718,7 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
->  	rockchip = &ep->rockchip;
->  	rockchip->is_rc = false;
->  	rockchip->dev = dev;
-> +	INIT_DELAYED_WORK(&ep->link_training, rockchip_pcie_ep_link_training);
->  
->  	epc = devm_pci_epc_create(dev, &rockchip_pcie_epc_ops);
->  	if (IS_ERR(epc)) {
-> diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
-> index 0263f158ee8d..3963b7097a91 100644
-> --- a/drivers/pci/controller/pcie-rockchip.h
-> +++ b/drivers/pci/controller/pcie-rockchip.h
-> @@ -26,6 +26,7 @@
->  #define MAX_LANE_NUM			4
->  #define MAX_REGION_LIMIT		32
->  #define MIN_EP_APERTURE			28
-> +#define LINK_TRAIN_TIMEOUT		(5000 * USEC_PER_MSEC)
-
-pcie-rockchip-host has only 500ms timeout.
+Sure. Sorry for being late btw. Personal errands are eating up the review time.
 
 - Mani
 
