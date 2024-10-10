@@ -1,235 +1,110 @@
-Return-Path: <devicetree+bounces-110012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BA2B998D50
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:25:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50E27998D5A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:28:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 96260282BAF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:25:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 80C8A1C2277D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:28:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19FC81CDFC2;
-	Thu, 10 Oct 2024 16:25:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 219F61CEAA2;
+	Thu, 10 Oct 2024 16:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iyB8D+9M"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jBfZ7uX+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2C427DA62;
-	Thu, 10 Oct 2024 16:25:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62B91CDA2D;
+	Thu, 10 Oct 2024 16:27:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728577530; cv=none; b=dZFxDAhR0+iDFo6DE7Ye6E6cM/+x6cZXj5ZLzapcbeDexK0bJP2P1WLMJMpRtOOqo6EE+FnTNAQV0k/w4Ccs3gFjMhnSUjY70WXkW9Q2kjT938lNh4bu47jjKqxNqXIdfiB/pyoNOxWmCKPiONkH2mfBN62HhFwOEd9W0bu5O2o=
+	t=1728577679; cv=none; b=uEbB87FFn1g7tpGrJ6uh0t2+j4dGOtXcjh7ATbThDoYA39+mVbyQfHpGogYV++OMu0X96LiTQxIEkm/SPgs5aSSDSfwjlBEO+Kz9zYIsJNGyJIrVB5M4Uix5QaatP96+cM4Zf161djMAM9MjwjKfflwighBXXdskLQZQXd5NIdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728577530; c=relaxed/simple;
-	bh=kuhtG6pu0KbKdRV5X1pxoX5/EESlie9bsRHdD9lFH1A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jgsm6FjT4Gv3XgJ5vc2xC3KIsWr6twPShyd2EJqwllyT/hMebZty3g21QBKXxkpslvmlOSJFeFmKy0ASMvaoF+GnRAM7aneqtr3WAV9k6JKccyw2F/HCR2vfe+xKg44wS/S/+wePK9H2b34zTkD7t+hIsg30ep1cLLItTa93mdc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iyB8D+9M; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 876C5C4CEC5;
-	Thu, 10 Oct 2024 16:25:26 +0000 (UTC)
+	s=arc-20240116; t=1728577679; c=relaxed/simple;
+	bh=pAybqgmIwmNbjIqIXpZlFut4c805d6kX1GVVhSSpf4E=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=RuHGWbDHb87Ujet5DVCf8KbsPoKLFtzJZmsJD//6ixPSG/L0SffletITfJbJTn/uFNvUl5EZ0M0qVjo+30TSmbRpqdVxYKgFMy4eU0snL8eCxj330DvBCrrM65etvp72gbaPEQwNRDinFmmMnifz4pB6HLoZDhAjR1c7UR3+54E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jBfZ7uX+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 572A8C4CEC5;
+	Thu, 10 Oct 2024 16:27:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728577529;
-	bh=kuhtG6pu0KbKdRV5X1pxoX5/EESlie9bsRHdD9lFH1A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iyB8D+9McXR1e2Ot6L4IemN+/dCjby7IWufPoXC70W3pkTBmzqV+oBZtaNmAuDwQU
-	 xF9HnEdIjVax2v7KO+0fUwnd4rfddGmAirDLLK3FPCmVJ3PfOEjkAChyBbaJ5zccob
-	 vlXD6dzANj5y0SEzJfqbPEqT6aoAoRsllkEGMVBB1Sa+yAzBwvE6RwPJ2Su9tm+nVj
-	 lYTtwfsivqXX7zpO3UggovNrFY9vdUZdKInPqFUh6CXFMNwyaSi94CI/u9OkyZLwzF
-	 0zq7sFhM7DIjuqk5onC9zPUad7rYwcD3U0eM59De//vA9YBlLsWBXjZkhpOsrWbyBr
-	 3dnulVLzQv70A==
-Date: Thu, 10 Oct 2024 17:25:23 +0100
-From: Lee Jones <lee@kernel.org>
-To: Christian Marangi <ansuelsmth@gmail.com>
-Cc: Lorenzo Bianconi <lorenzo@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sean Wang <sean.wang@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	upstream@airoha.com, benjamin.larsson@genexis.eu,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v5 3/5] mfd: airoha: Add support for Airoha EN7581 MFD
-Message-ID: <20241010162523.GJ661995@google.com>
-References: <20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org>
- <20241001-en7581-pinctrl-v5-3-dc1ce542b6c6@kernel.org>
- <20241002132518.GD7504@google.com>
- <ZwWscWk5axQI9H1t@lore-desk>
- <20241009104821.GF276481@google.com>
- <20241009105550.GG276481@google.com>
- <6707a8ec.df0a0220.376450.293e@mx.google.com>
+	s=k20201202; t=1728577678;
+	bh=pAybqgmIwmNbjIqIXpZlFut4c805d6kX1GVVhSSpf4E=;
+	h=From:Subject:Date:To:Cc:From;
+	b=jBfZ7uX+rcc6o5/ZXq3r82ktchz1KruUBipM0Bt1cyGrhWMVvmsNZiWSF252Q6CQt
+	 UOy9+fcU2zh1JfVpHygVieVMU04aO4PO05d0F95PYOONCEdIXt6SS6zj78PLzGUsa6
+	 l7KDGQqeGtrUjuUmBbVUPzVcp2bJjObcM31QvVjscGWIDXTgnkpG4WxvafZlt3eW1J
+	 PUAF4WBFay6uC4+oFrvtVtuo3g/yQ7gNAcu4CPdVhCNXZhY6krZnhnrlBzc3C3rdBP
+	 FOVQev0+vuXpd9cHSk6IixbWFVNZTzBkp62M5jT89rG23QaMvUxVrIQ+MHBB08AKrW
+	 HJUPahZtylCQA==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Subject: [PATCH 0/7] of: Constify DT structs
+Date: Thu, 10 Oct 2024 11:27:13 -0500
+Message-Id: <20241010-dt-const-v1-0-87a51f558425@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <6707a8ec.df0a0220.376450.293e@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGEACGcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxNDA0MD3ZQS3eT8vOISXfPk1NQ0c+OUNCPLZCWg8oKi1LTMCrBR0bG1tQC
+ 6u1wZWgAAAA==
+To: Bjorn Helgaas <bhelgaas@google.com>, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Saravana Kannan <saravanak@google.com>
+Cc: linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org
+X-Mailer: b4 0.15-dev
 
-On Thu, 10 Oct 2024, Christian Marangi wrote:
+This series constifies many usages of DT structs in the DT core code. 
+Many uses of struct device_node where the node refcount is not 
+changed can be const. Most uses of struct property can also be const.
 
-> On Wed, Oct 09, 2024 at 11:55:50AM +0100, Lee Jones wrote:
-> > On Wed, 09 Oct 2024, Lee Jones wrote:
-> > 
-> > > On Wed, 09 Oct 2024, Lorenzo Bianconi wrote:
-> > > 
-> > > > On Oct 02, Lee Jones wrote:
-> > > > > On Tue, 01 Oct 2024, Lorenzo Bianconi wrote:
-> > > > > 
-> > > > > > From: Christian Marangi <ansuelsmth@gmail.com>
-> > > > > > 
-> > > > > > Support for Airoha EN7581 Multi Function Device that
-> > > > > > expose PINCTRL functionality and PWM functionality.
-> > > > > 
-> > > > > The device is a jumble of pinctrl registers, some of which can oscillate.
-> > > > > 
-> > > > > This is *still* not an MFD.
-> > > > > 
-> > > > > If you wish to spread this functionality over 2 drivers, use syscon to
-> > > > > obtain the registers and simple-mfd to automatically probe the drivers.
-> > > > 
-> > > > Hi Lee,
-> > > > 
-> > > > IIUC you are suggesting two possible approaches here:
-> > > > 
-> > > > 1- have a single driver implementing both pinctrl and pwm functionalities.
-> > > >    This approach will not let us reuse the code for future devices that
-> > > >    have just one of them in common, like pwm (but we can live with that).
-> > > 
-> > > If you can have one without the other, then they are separate devices.
-> > > 
-> > > > 2- use a device node like the one below (something similar to [0])
-> > > > 
-> > > > system-controller@1fbf0200 {
-> > > > 	compatible = "syscon", "simple-mfd";
-> > > > 	reg = <0x0 0x1fbf0200 0x0 0xc0>;
-> > > > 
-> > > > 	interrupt-parent = <&gic>;
-> > > > 	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-> > > > 
-> > > > 	gpio-controller;
-> > > > 	#gpio-cells = <2>;
-> > > > 
-> > > > 	interrupt-controller;
-> > > > 	#interrupt-cells = <2>;
-> > > > 
-> > > > 	pio: pinctrl {
-> > > > 		compatible = "airoha,en7581-pinctrl";
-> > > > 
-> > > > 		[ some pinctrl properties here ]
-> > > > 	};
-> > > > 
-> > > > 	#pwm-cells = <3>;
-> > > > 
-> > > > 	pwm {
-> > > > 		compatible = "airoha,en7581-pwm";
-> > > > 	};
-> > > > };
-> > > > 
-> > > > Please correct me if I am wrong, but using syscon/simple-mfd as compatible
-> > > > string for the 'parent' device, will require to introduce the compatible strings
-> > > > even for the child devices in order to probe them, correct? 
-> > > > If so, as pointed out by Christian, this is something nacked by Rob/Krzysztof/Conor
-> > > > (this is the main reason why we introduced a full mfd driver here).
-> > > > 
-> > > > @Rob, Krzysztof, Conor: am I right?
-> > > 
-> > > I don't see why separate functionality shouldn't have separate
-> > > compatible strings, even if the registers are together.  Register layout
-> > > and functionality separation are not related.
-> > 
-> > We've been happy to support both pinctrl and pwm devices before:
-> > 
-> >   git grep "\-pinctrl\|\-pwm" -- drivers/mfd
-> >   git grep "\-pinctrl\|\-pwm" -- arch/*/boot/dts
-> > 
-> >   git grep "\-pinctrl" -- arch/*/boot/dts | wc -l
-> >   602
-> >   git grep "\-pwm" -- arch/*/boot/dts | wc -l
-> >   856
-> > 
-> > What makes this particular device different to all of the others?
-> >
-> 
-> Hi Lee,
-> 
-> this would be the final DTS following the "simple-mfd" pattern.
-> 
-> Can you confirm it's correct?
+The first 2 patches are dependencies. The functions called by the 
+DT core where the fwnode_handle needs to be const to make the containing 
+device_node const.
 
-I can't confirm that it's 100% correct, but it looks okay to me.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Rob Herring (Arm) (7):
+      PCI: Constify pci_register_io_range() fwnode_handle
+      logic_pio: Constify fwnode_handle
+      of: Constify struct device_node function arguments
+      of: Constify struct property pointers
+      of: Constify of_changeset_entry function arguments
+      of: Constify safe_name() kobject arg
+      of/address: Constify of_busses[] array and pointers
 
-> mfd: system-controller@1fbf0200 {
+ drivers/of/address.c       | 22 +++++++++++-----------
+ drivers/of/base.c          | 20 ++++++++++----------
+ drivers/of/cpu.c           |  2 +-
+ drivers/of/dynamic.c       |  4 ++--
+ drivers/of/irq.c           |  4 ++--
+ drivers/of/kobj.c          |  8 ++++----
+ drivers/of/of_private.h    | 12 ++++++------
+ drivers/of/overlay.c       | 19 ++++++++++---------
+ drivers/of/property.c      | 10 +++++-----
+ drivers/of/resolver.c      | 12 ++++++------
+ drivers/pci/pci.c          |  2 +-
+ include/linux/logic_pio.h  |  6 +++---
+ include/linux/of.h         | 28 ++++++++++++++--------------
+ include/linux/of_address.h |  6 +++---
+ include/linux/of_irq.h     |  4 ++--
+ include/linux/pci.h        |  2 +-
+ lib/logic_pio.c            |  4 ++--
+ 17 files changed, 83 insertions(+), 82 deletions(-)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241010-dt-const-7ceef73df29c
 
-Not sure about the mfd: label though.
-
-What is the device?
-
-> 	compatible = "syscon", "simple-mfd";
-> 	reg = <0x0 0x1fbf0200 0x0 0xc0>;
->  
-> 	interrupt-parent = <&gic>;
-> 	interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
->  
-> 	gpio-controller;
-> 	#gpio-cells = <2>;
->  
-> 	interrupt-controller;
-> 	#interrupt-cells = <2>;
-> 
-> 	gpio-ranges = <&mfd 0 13 47>;
-> 
-> 	#pwm-cells = <3>;
->  
-> 	pio: pinctrl {
-> 		compatible = "airoha,en7581-pinctrl";
->  
-> 		mdio_pins: mdio-pins {
-> 			mux {
-> 				function = "mdio";
-> 				groups = "mdio";
-> 			};
->  
-> 			conf {
-> 				pins = "gpio2";
-> 				output-high;
-> 			};
-> 		};
->  
-> 		pcie0_rst_pins: pcie0-rst-pins {
-> 			conf {
-> 				pins = "pcie_reset0";
-> 				drive-open-drain = <1>;
-> 			};
-> 		};
->  
-> 		pcie1_rst_pins: pcie1-rst-pins {
-> 			conf {
-> 				pins = "pcie_reset1";
-> 				drive-open-drain = <1>;
-> 			};
-> 		};
-> 	};
->  
-> 	pwm {
-> 		compatible = "airoha,en7581-pwm";
-> 	};
-> };
-> 
-> -- 
-> 	Ansuel
-
+Best regards,
 -- 
-Lee Jones [李琼斯]
+Rob Herring (Arm) <robh@kernel.org>
+
 
