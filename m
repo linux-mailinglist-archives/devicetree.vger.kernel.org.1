@@ -1,78 +1,132 @@
-Return-Path: <devicetree+bounces-109841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B8819982F3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F07F4998301
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:58:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 464771F2377B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:56:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9A2531F22689
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EB81BDAA0;
-	Thu, 10 Oct 2024 09:56:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kldeS9Hs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1411A1BDA8C;
+	Thu, 10 Oct 2024 09:58:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5B01A0BD1;
-	Thu, 10 Oct 2024 09:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5034119E7D0;
+	Thu, 10 Oct 2024 09:58:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728554174; cv=none; b=Ih2dHPvnLr/OSYdp7YpMlf5HpBlj3x0vDiBmWrDOwbsSIVKyacsPmi+ttYXDyN8rBLYgY1PsgBMrpTo06f/AjfUr44lRFBKcHTaurB7HcqwDDQYRtx9NxyWREFpHMqieje1RHESO0Cs4iDVfcCKKRiq6pdXwDtd4Et96Wx0or+M=
+	t=1728554302; cv=none; b=k+DwBGOsgfUu8yAaWWUKX05vNaTk7N8nPj+ZvhhEmpD8KVa/rmPz9uo+ixPOkYcTbpMPCzsrxZQMP24SBHqHLK9cTqQ4fHEQc+CB0PWdeUQ/t9VVlZldPOAgBBeciEvC8d0NdUehE6zWt634CBzmIV358JAa0ibHhlwEvUFxqBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728554174; c=relaxed/simple;
-	bh=ospF9mhD7lzZs9BejfsW6l90BD8RroO4aLp3K1G/cF8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FKYL4J2k5yUjqkWikgGU1qQI04gD+AL/9u/qKN7Lvy14G4A9pzTNmRcV4lUFo1TbkDL9i+/SFQ2p5zajfPrDcwe9Rhhq38PEf3C/CKSDpORedxvGM1GVICwKA60IeLUdqVaPzzGezzk7DprocpS4SfReLkJ7JCq5ghMhHg3q6qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kldeS9Hs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB0D0C4CEC5;
-	Thu, 10 Oct 2024 09:56:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728554173;
-	bh=ospF9mhD7lzZs9BejfsW6l90BD8RroO4aLp3K1G/cF8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=kldeS9HsG1XglKKaYTYw/VAH720ZQ0dg1Upv88QBIv9ORQMUneaz5e9dy7+8cS6d3
-	 A4pU+tG7TQJBsx/IBRDE9dbCtGU+XymmeIVzksIB+3MabH/29FhnKWXX9Yff059CoG
-	 1m0QS6sk6Z5J5BzJsJlGlNP17mMhcIPgrFAONDTMxsFftVBuDPkQKWDOROaqkK9Vrq
-	 irrHYC6pjmf20nREMGZripKLEpacHcGUYzIgoayam2RCQjTuS5T4S6lnuDRQ/II1/9
-	 Rqk16Ml66kzcxgLcup24YPjaxlR+Xft99l7XK5hz1ctRpsaIGrGnPs7i5pC5NRPmH9
-	 oUZX7jnh73Kwg==
-Date: Thu, 10 Oct 2024 10:56:08 +0100
-From: Simon Horman <horms@kernel.org>
-To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	git@amd.com, Abin Joseph <abin.joseph@amd.com>
-Subject: Re: [PATCH net-next v3 3/3] net: emaclite: Adopt clock support
-Message-ID: <20241010095608.GD1098236@kernel.org>
-References: <1728491303-1456171-1-git-send-email-radhey.shyam.pandey@amd.com>
- <1728491303-1456171-4-git-send-email-radhey.shyam.pandey@amd.com>
+	s=arc-20240116; t=1728554302; c=relaxed/simple;
+	bh=M/N4iyycHpjsNiBum0ltR+3tV9x06dWoQS7Pi+SV1cI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=md8wiIRxvQxk9Yxo21kAIKaPaiLvSWgQ5Fztgq77yon8mN6hsomG0lBx+FPH/fCBLE8alsvHlIISz9Hpde5eoYV4vsK94mQjDItHecZKfcnyGP/8yiG1Ods5RUuTapDccx2SL0hihOqwndgirXC2hRNdkSiPoDXCTEsaJn/vNSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-e29072f194aso627294276.3;
+        Thu, 10 Oct 2024 02:58:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728554297; x=1729159097;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gyYDEMJQN0e3qrTRJi0lW82aU2fQXGEhYCzwe7aKnDM=;
+        b=IFaqdgLLqIkCxSt+DINZKwSI7dwTKb9rTKzR3idm8ncUrUqPAqHwiUklPduLRn3wqm
+         kjaFdbwk2rcQyZTwM0XfQyohz6NNaT4gSsEeZuZxRRyd6dnq6KxO8qlnEMhDJppttV6t
+         6P1wwcDaeVw1rBBVjS2+/k9IvVKFM/8ZnMzfXjJsL7pvvkzv13NvFhcAXYoKc+SRAy3i
+         wAJhZ+W/I120v7vec/P31auCDRpViVux/6h8prYN2Zn53bLPd4Rhcu0sh343le1QRnRC
+         55S5yM2eNBgYC7HuHCFx/X3QSgVZrlyjT9A5vF4nDlT/iXDSpxkJhgpGET2mVn5tJFns
+         OHmQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUevWHW3ZD9cFAH2ZlpFukR5x9hGso2A8qhr7+G7wUB45JE0aXQALww5fMEGMoZR4J06w+IJDeSoFjO@vger.kernel.org, AJvYcCV7vXoEHEQDvrsfk/dUSqAJ/1tbkYZtfakkC5gvT9O7XxDbUkssGk2h4C5CragWWLCW9n00WcszxW8n@vger.kernel.org, AJvYcCVC0R6CMoxi4gaCeFM/qhz3V5DZuWHVIHRmwDFeDpNw9cubcLXAqnwhgMHRdoE7wUATnxzOCw65pCWLdH9B@vger.kernel.org, AJvYcCWLXJ76BaYfvTKPJA21XMQQ9+PgNx4SuRYLy6tF77S7W8NCSDWr4WApW9tmr8/x/kfTRt7EuPIeCQ/9oZSwRu+YLOo=@vger.kernel.org, AJvYcCWrtUGr9H4IKFuCPpwy+uM63N6riUx+fS5/d6r98NfEp5xunCv57nbUDORqQNh0a2I4iRPwjR3UPjLz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxYbfLzYmknXxOro2JmXJ1wmDyBN9bMX6ATRMtfmupnm1sn7szs
+	XMo0Tlo9TfpOAJS3t1UBvC9sqBG3GAejT91aN850aR7jG4yFaKiS/8904eIs
+X-Google-Smtp-Source: AGHT+IG/xzzoi6LYDUCzQ6zcX0arl82Xw+kQv6kMtHvywM3Jq2N1SPXsKTJFs/8rb/F5tkH8ygWKOw==
+X-Received: by 2002:a05:6902:228e:b0:e29:c32:431d with SMTP id 3f1490d57ef6-e290c324a77mr2465754276.11.1728554297512;
+        Thu, 10 Oct 2024 02:58:17 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e290ef8c89dsm229342276.64.2024.10.10.02.58.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Oct 2024 02:58:16 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6dbc9a60480so7443147b3.0;
+        Thu, 10 Oct 2024 02:58:16 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV5Nr9zAbzdSEincYdLycawyY4UvR1cWLh7TVkZ0xWdyJtaAGH3q9/9GxyZDpgWw01+O82ZhuWzXi2o@vger.kernel.org, AJvYcCVFPTJG124SUhmya6f7TguSGZOpYK9mPwbQlt9H5wpgWQQV3L3wwooyag6SwIX3HcdrTsqfEinHOstd@vger.kernel.org, AJvYcCVNTVJKa4j7412xPIldQniOb/P77e/d/K/JoVuI4s37fGA5fSq9/sCqG9WKzkJtOrPu0Vs4o8lLqIQx@vger.kernel.org, AJvYcCX4AMoc4XkJiAUgOw/+yPCkK4Csm6fNUz/aUApL7MibMO8MqBn6wENUncrKws8leP5slAmA7jsTobcxsI9o@vger.kernel.org, AJvYcCXYlCDfsbMciYSXaE5gpwm9TVQ5EiYzhRu1wF/wWxbVF6DYtmbgXw0TH8smuLowP8B3WIS0pH5PXLF3j9QT2XJ7Ntg=@vger.kernel.org
+X-Received: by 2002:a05:690c:6206:b0:6db:bfa1:5530 with SMTP id
+ 00721157ae682-6e322491433mr59403057b3.41.1728554296092; Thu, 10 Oct 2024
+ 02:58:16 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1728491303-1456171-4-git-send-email-radhey.shyam.pandey@amd.com>
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240830130218.3377060-2-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Oct 2024 11:58:04 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWGLPjjAbUG-RtgwYLrN+eaFD0SGoLTsrjTJokxNd_=CQ@mail.gmail.com>
+Message-ID: <CAMuHMdWGLPjjAbUG-RtgwYLrN+eaFD0SGoLTsrjTJokxNd_=CQ@mail.gmail.com>
+Subject: Re: [PATCH v3 01/12] dt-bindings: clock: renesas,r9a08g045-vbattb:
+ Document VBATTB
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Oct 09, 2024 at 09:58:23PM +0530, Radhey Shyam Pandey wrote:
-> From: Abin Joseph <abin.joseph@amd.com>
-> 
-> Adapt to use the clock framework. Add s_axi_aclk clock from the processor
-> bus clock domain and make clk optional to keep DTB backward compatibility.
-> 
-> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Hi Claudiu,
 
-Reviewed-by: Simon Horman <horms@kernel.org>
+On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock for RTC,
+> the tamper detector and a small general usage memory of 128B. Add
+> documentation for it.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v3:
+> - moved the file to clock dt bindings directory as it is the
+>   only functionality supported at the moment; the other functionalities
+>   (tamper detector, SRAM) are offered though register spreaded
+>   though the address space of the VBATTB IP and not actually
+>   individual devices; the other functionalities are not
+>   planned to be supported soon and if they will be I think they
+>   fit better on auxiliary bus than MFD
+> - dropped interrupt names as requested in the review process
+> - dropped the inner node for clock controller
+> - added #clock-cells
+> - added rtx clock
+> - updated description for renesas,vbattb-load-nanofarads
+> - included dt-bindings/interrupt-controller/irq.h in examples section
 
+Thanks for the update!
+
+LGTM, modulo issues pointed out in other review comments.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
