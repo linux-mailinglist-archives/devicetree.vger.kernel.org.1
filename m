@@ -1,191 +1,206 @@
-Return-Path: <devicetree+bounces-109729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B00EF997B83
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 05:52:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF855997BCA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 06:27:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 185EDB225D9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 03:52:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6A6452819DB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 04:27:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0A719258B;
-	Thu, 10 Oct 2024 03:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BB2D19D897;
+	Thu, 10 Oct 2024 04:26:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N1xEStT9"
+	dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b="JUEgjjWs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m92233.xmail.ntesmail.com (mail-m92233.xmail.ntesmail.com [103.126.92.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8DC3191F7C;
-	Thu, 10 Oct 2024 03:52:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A5DC19C549;
+	Thu, 10 Oct 2024 04:26:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.126.92.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728532323; cv=none; b=UXTUOCCuX5GXWMltiengEOgqWigwsiPNFhHEHqNMJvCyKOFgSaVSTbFHAHiEpOAP67hGlf68dATEs0wu2bev6ozQ1KBPtONatiR/zf0WhGjYIEQ38cJWoWMfue3RgUC3tQ/dcMwwQ3maVnTghymb9YSa5T9vbsMVfQZsoR/akMw=
+	t=1728534419; cv=none; b=a54UXNQTyYa9WMxhJ5+3E6qcn1czWwGpZHbVaR9OZ80ehCmt4otnIJfbbaIl8RSw97kQRptqBNJ4Gsm/JIxmxaoeFZ5pyf1c9RXCD2N303nbKp2itfy6gJVFVt8c8kNozuibA2todr49gy1oldH0GYLcxPTv9jTts9GQ8xO7tYY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728532323; c=relaxed/simple;
-	bh=/j0wHCMvWBlBwfRDpzNxKwFRlR8wmK3FeP7uq1EuBRE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MSaLHd2UM9+R3rpPwlmmSNqBT+d3IheqLh62J58azqU1enrcoyUpM05POeIAkKx+EGpD+wgvmsJNNKN4WZqjwOxes3F2aabyLtqo7WnDY7h+q7u3bw48+Lv+67NhQJt5xftSOUHExGLe3WMQSv00eUrDJI/O3IgrkjcD57H291s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N1xEStT9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0919AC4CEC6;
-	Thu, 10 Oct 2024 03:52:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728532323;
-	bh=/j0wHCMvWBlBwfRDpzNxKwFRlR8wmK3FeP7uq1EuBRE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=N1xEStT9EZHkZBip2nh4Kj+fOybGt28BgGM6nkiQ3kB6PL01A3NwWZJeW43IUE0DJ
-	 /i9Gm4H+uVPCa1u3JNQfpZqg5TX2HLe88zihGf76QlpMZhYFHKMpJfx8lGZdgHvvyW
-	 H8zGpHxpMbUdKldd8NZiF3qrBz8+lYyeIdquUmNqa4y3LjMjLPbzqfIk30rae++2Qf
-	 DZhDmvi6ForNeM2YMiGBWpU38JzihICg2gke9OldFcU7GfOCgHG45ltOdpPcqzyNTh
-	 xwYzP+9DV8kfQE/TxSUUcxCLw8hmvcgIApoizTrIKWrFSIrAJqHgcvLJwoDkoJBAe7
-	 /7JPvN9cnDcMg==
-Date: Wed, 9 Oct 2024 22:52:02 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jinjie Ruan <ruanjinjie@huawei.com>
-Cc: davidgow@google.com, saravanak@google.com, sboyd@kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3] of: Fix unbalanced of node refcount and memory leaks
-Message-ID: <172853232056.1399039.15155235332032802331.robh@kernel.org>
-References: <20241010034416.2324196-1-ruanjinjie@huawei.com>
+	s=arc-20240116; t=1728534419; c=relaxed/simple;
+	bh=6//KWScm9mX9fW3ydl5GhjP8SzMNCQwOOC0JNpGmk/4=;
+	h=Message-ID:Date:MIME-Version:Cc:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=j7ZPNAK9ZKpa9XahOa9VYXY1saFihGH4M+jBYbVBuvdANevWojIeMfDb03QZo7K29X4DnnUbzFYBl1ZMZtDy1jnNvrVQKYTVEAlZ4ORQLe5PAY3zwnk/jz8Z8iVRXeqTW9Q53K6BS68PVPxcpHarA78I2DV2HAIYHCvrOu9tWek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com; spf=pass smtp.mailfrom=rock-chips.com; dkim=pass (1024-bit key) header.d=rock-chips.com header.i=@rock-chips.com header.b=JUEgjjWs; arc=none smtp.client-ip=103.126.92.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rock-chips.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rock-chips.com
+DKIM-Signature: a=rsa-sha256;
+	b=JUEgjjWsw8WkgYb+mcECVsI9IkmmXko4RB2udUoVTr19YR+jrI2EiCkwocKdrB85u2ooGalZr4zn1fVqmOtcGX/SUp90/dS2xkk0galBmo+k5nbZW6RqSLhusQYNH/rZ1r4xyCOArDJMFmu40t95UgPPWeBGiwNqZlyEss0tugs=; s=default; c=relaxed/relaxed; d=rock-chips.com; v=1;
+	bh=aKBu267PcSvUBWDRFu4xvYcquBPnRNKWPIvfJjrnkG4=;
+	h=date:mime-version:subject:message-id:from;
+Received: from [172.16.12.45] (unknown [58.22.7.114])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 114E95203C3;
+	Thu, 10 Oct 2024 09:21:08 +0800 (CST)
+Message-ID: <3969bae0-eeb8-447a-86a5-dfdac0b136cd@rock-chips.com>
+Date: Thu, 10 Oct 2024 09:21:08 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010034416.2324196-1-ruanjinjie@huawei.com>
+User-Agent: Mozilla Thunderbird
+Cc: shawn.lin@rock-chips.com, Rob Herring <robh+dt@kernel.org>,
+ "James E . J . Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K . Petersen" <martin.petersen@oracle.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>,
+ Bart Van Assche <bvanassche@acm.org>, YiFeng Zhao <zyf@rock-chips.com>,
+ Liang Chen <cl@rock-chips.com>, linux-scsi@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v3 5/5] scsi: ufs: rockchip: initial support for UFS
+To: Ulf Hansson <ulf.hansson@linaro.org>
+References: <1728368130-37213-1-git-send-email-shawn.lin@rock-chips.com>
+ <1728368130-37213-6-git-send-email-shawn.lin@rock-chips.com>
+ <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
+Content-Language: en-GB
+From: Shawn Lin <shawn.lin@rock-chips.com>
+In-Reply-To: <CAPDyKForpLcmkqruuTfD6kkJhp_4CKFABWRxFVYNskGL1tjO=w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFDSUNOT01LS0k3V1ktWUFJV1kPCRoVCBIfWUFZGkJCTFYdSUNMTh5LS0lPTR9WFRQJFh
+	oXVRMBExYaEhckFA4PWVdZGBILWUFZTkNVSUlVTFVKSk9ZV1kWGg8SFR0UWUFZT0tIVUpLSUhCSE
+	NVSktLVUpCS0tZBg++
+X-HM-Tid: 0a927403f43303afkunm114e95203c3
+X-HM-MType: 1
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6MT46Shw6SjIpFA9LHw89NxcJ
+	Pz9PCgtVSlVKTElDTklISU1CTExNVTMWGhIXVQgTGgwVVRcSFTsJFBgQVhgTEgsIVRgUFkVZV1kS
+	C1lBWU5DVUlJVUxVSkpPWVdZCAFZQU1CTEg3Bg++
 
+Hi Ulf
 
-On Thu, 10 Oct 2024 11:44:16 +0800, Jinjie Ruan wrote:
-> Got following report when doing overlay_test:
+在 2024/10/9 21:15, Ulf Hansson 写道:
+> [...]
 > 
-> 	OF: ERROR: memory leak, expected refcount 1 instead of 2,
-> 	of_node_get()/of_node_put() unbalanced - destroy cset entry:
-> 	attach overlay node            /kunit-test
+>> +
+>> +static int ufs_rockchip_runtime_suspend(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>> +       struct generic_pm_domain *genpd = pd_to_genpd(dev->pm_domain);
 > 
-> 	OF: ERROR: memory leak before free overlay changeset,  /kunit-test
+> pd_to_genpd() isn't safe to use like this. It's solely to be used by
+> genpd provider drivers.
 > 
-> In of_overlay_apply_kunit_cleanup(), the "np" should be associated with
-> fake instead of test to call of_node_put(), so the node is put before
-> the overlay is removed.
+>> +
+>> +       clk_disable_unprepare(host->ref_out_clk);
+>> +
+>> +       /*
+>> +        * Shouldn't power down if rpm_lvl is less than level 5.
 > 
-> It also fix the following memory leaks:
-> 
-> 	unreferenced object 0xffffff80c7d22800 (size 256):
-> 	  comm "kunit_try_catch", pid 236, jiffies 4294894764
-> 	  hex dump (first 32 bytes):
-> 	    d0 26 d4 c2 80 ff ff ff 00 00 00 00 00 00 00 00  .&..............
-> 	    60 19 75 c1 80 ff ff ff 00 00 00 00 00 00 00 00  `.u.............
-> 	  backtrace (crc ee0a471c):
-> 	    [<0000000058ea1340>] kmemleak_alloc+0x34/0x40
-> 	    [<00000000c538ac7e>] __kmalloc_cache_noprof+0x26c/0x2f4
-> 	    [<00000000119f34f3>] __of_node_dup+0x4c/0x328
-> 	    [<00000000b212ca39>] build_changeset_next_level+0x2cc/0x4c0
-> 	    [<00000000eb208e87>] of_overlay_fdt_apply+0x930/0x1334
-> 	    [<000000005bdc53a3>] of_overlay_fdt_apply_kunit+0x54/0x10c
-> 	    [<00000000143acd5d>] of_overlay_apply_kunit_cleanup+0x12c/0x524
-> 	    [<00000000a813abc8>] kunit_try_run_case+0x13c/0x3ac
-> 	    [<00000000d77ab00c>] kunit_generic_run_threadfn_adapter+0x80/0xec
-> 	    [<000000000b296be1>] kthread+0x2e8/0x374
-> 	    [<0000000007bd1c51>] ret_from_fork+0x10/0x20
-> 	unreferenced object 0xffffff80c1751960 (size 16):
-> 	  comm "kunit_try_catch", pid 236, jiffies 4294894764
-> 	  hex dump (first 16 bytes):
-> 	    6b 75 6e 69 74 2d 74 65 73 74 00 c1 80 ff ff ff  kunit-test......
-> 	  backtrace (crc 18196259):
-> 	    [<0000000058ea1340>] kmemleak_alloc+0x34/0x40
-> 	    [<0000000071006e2c>] __kmalloc_node_track_caller_noprof+0x300/0x3e0
-> 	    [<00000000b16ac6cb>] kstrdup+0x48/0x84
-> 	    [<0000000050e3373b>] __of_node_dup+0x60/0x328
-> 	    [<00000000b212ca39>] build_changeset_next_level+0x2cc/0x4c0
-> 	    [<00000000eb208e87>] of_overlay_fdt_apply+0x930/0x1334
-> 	    [<000000005bdc53a3>] of_overlay_fdt_apply_kunit+0x54/0x10c
-> 	    [<00000000143acd5d>] of_overlay_apply_kunit_cleanup+0x12c/0x524
-> 	    [<00000000a813abc8>] kunit_try_run_case+0x13c/0x3ac
-> 	    [<00000000d77ab00c>] kunit_generic_run_threadfn_adapter+0x80/0xec
-> 	    [<000000000b296be1>] kthread+0x2e8/0x374
-> 	    [<0000000007bd1c51>] ret_from_fork+0x10/0x20
-> 	unreferenced object 0xffffff80c2e96e00 (size 192):
-> 	  comm "kunit_try_catch", pid 236, jiffies 4294894764
-> 	  hex dump (first 32 bytes):
-> 	    80 19 75 c1 80 ff ff ff 0b 00 00 00 00 00 00 00  ..u.............
-> 	    a0 19 75 c1 80 ff ff ff 00 6f e9 c2 80 ff ff ff  ..u......o......
-> 	  backtrace (crc 1924cba4):
-> 	    [<0000000058ea1340>] kmemleak_alloc+0x34/0x40
-> 	    [<00000000c538ac7e>] __kmalloc_cache_noprof+0x26c/0x2f4
-> 	    [<000000009fdd35ad>] __of_prop_dup+0x7c/0x2ec
-> 	    [<00000000aa4e0111>] add_changeset_property+0x548/0x9e0
-> 	    [<000000004777e25b>] build_changeset_next_level+0xd4/0x4c0
-> 	    [<00000000a9c93f8a>] build_changeset_next_level+0x3a8/0x4c0
-> 	    [<00000000eb208e87>] of_overlay_fdt_apply+0x930/0x1334
-> 	    [<000000005bdc53a3>] of_overlay_fdt_apply_kunit+0x54/0x10c
-> 	    [<00000000143acd5d>] of_overlay_apply_kunit_cleanup+0x12c/0x524
-> 	    [<00000000a813abc8>] kunit_try_run_case+0x13c/0x3ac
-> 	    [<00000000d77ab00c>] kunit_generic_run_threadfn_adapter+0x80/0xec
-> 	    [<000000000b296be1>] kthread+0x2e8/0x374
-> 	    [<0000000007bd1c51>] ret_from_fork+0x10/0x20
-> 	unreferenced object 0xffffff80c1751980 (size 16):
-> 	  comm "kunit_try_catch", pid 236, jiffies 4294894764
-> 	  hex dump (first 16 bytes):
-> 	    63 6f 6d 70 61 74 69 62 6c 65 00 c1 80 ff ff ff  compatible......
-> 	  backtrace (crc 42df3c87):
-> 	    [<0000000058ea1340>] kmemleak_alloc+0x34/0x40
-> 	    [<0000000071006e2c>] __kmalloc_node_track_caller_noprof+0x300/0x3e0
-> 	    [<00000000b16ac6cb>] kstrdup+0x48/0x84
-> 	    [<00000000a8888fd8>] __of_prop_dup+0xb0/0x2ec
-> 	    [<00000000aa4e0111>] add_changeset_property+0x548/0x9e0
-> 	    [<000000004777e25b>] build_changeset_next_level+0xd4/0x4c0
-> 	    [<00000000a9c93f8a>] build_changeset_next_level+0x3a8/0x4c0
-> 	    [<00000000eb208e87>] of_overlay_fdt_apply+0x930/0x1334
-> 	    [<000000005bdc53a3>] of_overlay_fdt_apply_kunit+0x54/0x10c
-> 	    [<00000000143acd5d>] of_overlay_apply_kunit_cleanup+0x12c/0x524
-> 	    [<00000000a813abc8>] kunit_try_run_case+0x13c/0x3ac
-> 	    [<00000000d77ab00c>] kunit_generic_run_threadfn_adapter+0x80/0xec
-> 	    [<000000000b296be1>] kthread+0x2e8/0x374
-> 	unreferenced object 0xffffff80c2e96f00 (size 192):
-> 	  comm "kunit_try_catch", pid 236, jiffies 4294894764
-> 	  hex dump (first 32 bytes):
-> 	    40 f7 bb c6 80 ff ff ff 0b 00 00 00 00 00 00 00  @...............
-> 	    c0 19 75 c1 80 ff ff ff 00 00 00 00 00 00 00 00  ..u.............
-> 	  backtrace (crc f2f57ea7):
-> 	    [<0000000058ea1340>] kmemleak_alloc+0x34/0x40
-> 	    [<00000000c538ac7e>] __kmalloc_cache_noprof+0x26c/0x2f4
-> 	    [<000000009fdd35ad>] __of_prop_dup+0x7c/0x2ec
-> 	    [<00000000aa4e0111>] add_changeset_property+0x548/0x9e0
-> 	    [<000000004777e25b>] build_changeset_next_level+0xd4/0x4c0
-> 	    [<00000000a9c93f8a>] build_changeset_next_level+0x3a8/0x4c0
-> 	    [<00000000eb208e87>] of_overlay_fdt_apply+0x930/0x1334
-> 	    [<000000005bdc53a3>] of_overlay_fdt_apply_kunit+0x54/0x10c
-> 	    [<00000000143acd5d>] of_overlay_apply_kunit_cleanup+0x12c/0x524
-> 	    [<00000000a813abc8>] kunit_try_run_case+0x13c/0x3ac
-> 	    [<00000000d77ab00c>] kunit_generic_run_threadfn_adapter+0x80/0xec
-> 	    [<000000000b296be1>] kthread+0x2e8/0x374
-> 	    [<0000000007bd1c51>] ret_from_fork+0x10/0x20
-> 	......
-> 
-> How to reproduce:
-> 	CONFIG_OF_OVERLAY_KUNIT_TEST=y, CONFIG_DEBUG_KMEMLEAK=y
-> 	and CONFIG_DEBUG_KMEMLEAK_AUTO_SCAN=y, launch the kernel.
-> 
-> Fixes: 5c9dd72d8385 ("of: Add a KUnit test for overlays and test managed APIs")
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
-> Signed-off-by: Jinjie Ruan <ruanjinjie@huawei.com>
-> ---
-> v3:
-> - Change the fix way by replacing test with fake.
-> - Add Reviewed-by.
-> v2:
-> - Add memory leak stack.
-> - Update the commit message.
-> ---
->  drivers/of/overlay_test.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Can you elaborate on why we must not power-off the power-domain when
+> level is less than 5?
 > 
 
-Applied, thanks!
+Because ufshcd driver assume the controller is active and the link is on
+if level is less than 5. So the default resume policy will not try to
+recover the registers until the first error happened. Otherwise if the
+level is >=5, it assumes the controller is off and the link is down,
+then it will restore the registers and link.
 
+And the level is changeable via sysfs.
+
+> What happens if we power-off anyway when the level is less than 5?
+> 
+>> +        * This flag will be passed down to platform power-domain driver
+>> +        * which has the final decision.
+>> +        */
+>> +       if (hba->rpm_lvl < UFS_PM_LVL_5)
+>> +               genpd->flags |= GENPD_FLAG_RPM_ALWAYS_ON;
+>> +       else
+>> +               genpd->flags &= ~GENPD_FLAG_RPM_ALWAYS_ON;
+> 
+> The genpd->flags is not supposed to be changed like this - and
+> especially not from a genpd consumer driver.
+> 
+> I am trying to understand a bit more of the use case here. Let's see
+> if that helps me to potentially suggest an alternative approach.
+> 
+
+I was not familiar with the genpd part, so I haven't come up with 
+another solution. It would be great if you can guide me to the right
+way.
+
+>> +
+>> +       return ufshcd_runtime_suspend(dev);
+>> +}
+>> +
+>> +static int ufs_rockchip_runtime_resume(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>> +       int err;
+>> +
+>> +       err = clk_prepare_enable(host->ref_out_clk);
+>> +       if (err) {
+>> +               dev_err(hba->dev, "failed to enable ref out clock %d\n", err);
+>> +               return err;
+>> +       }
+>> +
+>> +       reset_control_assert(host->rst);
+>> +       usleep_range(1, 2);
+>> +       reset_control_deassert(host->rst);
+>> +
+>> +       return ufshcd_runtime_resume(dev);
+>> +}
+>> +
+>> +static int ufs_rockchip_system_suspend(struct device *dev)
+>> +{
+>> +       struct ufs_hba *hba = dev_get_drvdata(dev);
+>> +       struct ufs_rockchip_host *host = ufshcd_get_variant(hba);
+>> +
+>> +       /* Pass down desired spm_lvl to Firmware */
+>> +       arm_smccc_smc(ROCKCHIP_SIP_SUSPEND_MODE, ROCKCHIP_SLEEP_PD_CONFIG,
+>> +                       host->pd_id, hba->spm_lvl < 5 ? 1 : 0, 0, 0, 0, 0, NULL);
+> 
+> Can you please elaborate on what goes on here? Is this turning off the
+> power-domain that the dev is attached to - or what is actually
+> happening?
+> 
+
+This smc call is trying to ask firmware not to turn off the power-domian
+that the UFS is attached to and also not to turn off the power of UFS
+conntroller.
+
+Per your comment at patch 4, should I use GENPD_FLAG_ALWAYS_ON +
+arm_smccc_smc here in system suspend?
+
+>> +
+>> +       return ufshcd_system_suspend(dev);
+>> +}
+>> +
+>> +static const struct dev_pm_ops ufs_rockchip_pm_ops = {
+>> +       SET_SYSTEM_SLEEP_PM_OPS(ufs_rockchip_system_suspend, ufshcd_system_resume)
+>> +       SET_RUNTIME_PM_OPS(ufs_rockchip_runtime_suspend, ufs_rockchip_runtime_resume, NULL)
+>> +       .prepare         = ufshcd_suspend_prepare,
+>> +       .complete        = ufshcd_resume_complete,
+>> +};
+>> +
+>> +static struct platform_driver ufs_rockchip_pltform = {
+>> +       .probe = ufs_rockchip_probe,
+>> +       .remove = ufs_rockchip_remove,
+>> +       .driver = {
+>> +               .name = "ufshcd-rockchip",
+>> +               .pm = &ufs_rockchip_pm_ops,
+>> +               .of_match_table = ufs_rockchip_of_match,
+>> +       },
+>> +};
+>> +module_platform_driver(ufs_rockchip_pltform);
+>> +
+> 
+> [...]
+> 
+> Kind regards
+> Uffe
 
