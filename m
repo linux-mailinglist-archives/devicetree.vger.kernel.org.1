@@ -1,249 +1,289 @@
-Return-Path: <devicetree+bounces-109855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BB349983B2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:34:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A6C9983D5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7A4B1F22C01
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:34:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 444521F262F9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6245B1C463B;
-	Thu, 10 Oct 2024 10:32:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6BA1BDA91;
+	Thu, 10 Oct 2024 10:36:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="D3gDTVyU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mzLg81J/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2066.outbound.protection.outlook.com [40.107.21.66])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C131BFE0E;
-	Thu, 10 Oct 2024 10:32:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.66
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728556369; cv=fail; b=RFZ04tO/NTDmCnpF7Up9oW0c9X7ur4JCcKH7QEh3Y2QZOTK5Q5WKcH2UacCxgZ2RpLcIcmLsd+YwGIqUz734/1xgkU/AfYwfE+eQII/TblkvPB/FBrT0qIZxs5vmuuCieQVO0AMZE24JTPTpxajmK8VecHVyDO+yd5NXBRucP9s=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728556369; c=relaxed/simple;
-	bh=OwEh22fgPbRVJf6Bx08MY5xnz6dA3j2xvebAt2B4Inc=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=bglYaMr4Dd/IbVvqVW1s0lwJ1N/JUEXz95DYRcbKCVcokG3+odJfifuVSPyGFKlI9P+BtNO5ib0ag0BtCwgWj03ofCrBv+a3tEd10z3rFX/FJQlwsj7csSzqM6f6gD/GJ3QoR/jKZjLnnne7f+9djXcUgguNA2PEL+44rNOznH0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=D3gDTVyU; arc=fail smtp.client-ip=40.107.21.66
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=hPf7c/zmZjSyAn1nmn2u0xZwu6orlmDOFP/jtUr46vwiZXdhkbUQo6e1AVNmAzw9iQ9aVpt7yi35Lpit7D74XtQcoyThOC3E9QPwotVHpOXNnaAYozmDo3aIgv1PFKmgv6BQ4qcjo69Y1lcyFBJUCa8naLyK0Hww9GbLnFyHy1sWNS2j6bKXJs0Gdk4OPAKxRtRIhSzDVx2tAU8a9RkrlaUPOG2OaPLVESnk0tF4bP0dBX+/67MNFngYlrpDjCIgRhuSljH93NN72RCNMi0wno3w3aHD+9e4/h7QgRr6Cx4Ptxg5LL9wAeL5CG4Fg5IvUWvft6ulbKdbAKd2mTH5rQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=uqWPGydy/oL0hPvFDiOx5JO/S70QWGILJLfd9f2hHHU=;
- b=YpmL88m8dCyZmAVQnkDH+0ZI8ZbWaIM22Z1xhmRPEec74NRB3/V8lreKEmYOvIG+RKEE5lCF0mZmuaAxsQ7QltKEMvZw38saevTF3nuYGDSAJGwzgwL52pZ0gYqauCbUpyRH4YQ1ZeAGmSUE/VTCZaw7/MtOXe3UQSBEkEzMuAkk0lN19EzdszT3YmXRLKRP+zNSDzBIthWeRChMWPHAQjXg06CTlHuhzuMPx+GY2MgFbzfbgl7QMrIkZt591lFpYkWKyJP3o4jWGxK0MfilLOV0kZ9GxfA1psKGEhHxC4AAmOuRkVGB+Ba1uPXN4JTl0bGw8cBx0GfuYIG2zGYXyQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=uqWPGydy/oL0hPvFDiOx5JO/S70QWGILJLfd9f2hHHU=;
- b=D3gDTVyUOeLxl1KD0G1K5CwdJWLwO5XBx+Dy3xM1M+cK2n5xOAjX35bsi7ZES121cfKpJgYt2aFfvxiLHaLDzFe33xrO015M1g1XTNadpn/Y0hgEXrEDTT1OJCkdWkbs3bdIEQgp6NBUupz7fnWkjnwF2CK5T8usyzl7Sycc841dMLmTQwbI42XgX1gPqkd01VljyJbklqH87c2RqZ96yd9UnoMdl3ryk4IQRh0JWl5Uo+WQSNV7BizIEPlwjldpO6/NsKfttx2fcaMDqxX3POaVO818ZrML1hmVu9RCZkS6i2jWFccxYucmkQsoSS0gy1kp1/siC1JITQF1ktXhVw==
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by DB9PR04MB8462.eurprd04.prod.outlook.com (2603:10a6:10:2cd::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.16; Thu, 10 Oct
- 2024 10:32:42 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%5]) with mapi id 15.20.8048.017; Thu, 10 Oct 2024
- 10:32:42 +0000
-From: Peng Fan <peng.fan@nxp.com>
-To: Shawn Guo <shawnguo2@yeah.net>, "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha
- Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team
-	<kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH v2 6/7] arm64: dts: freescale: imx95-19x19-evk: add
- nxp,ctrl-ids property
-Thread-Topic: [PATCH v2 6/7] arm64: dts: freescale: imx95-19x19-evk: add
- nxp,ctrl-ids property
-Thread-Index: AQHa/dAxgDaifdKMl0ylrOUrTqiWKbJ9CKcAgAL660A=
-Date: Thu, 10 Oct 2024 10:32:42 +0000
-Message-ID:
- <PAXPR04MB84591F09684CB69CECFD48F388782@PAXPR04MB8459.eurprd04.prod.outlook.com>
-References: <20240903-imx95-dts-new-v2-0-8ed795d61358@nxp.com>
- <20240903-imx95-dts-new-v2-6-8ed795d61358@nxp.com> <ZwUtFKhB3R2geN1D@dragon>
-In-Reply-To: <ZwUtFKhB3R2geN1D@dragon>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB8459:EE_|DB9PR04MB8462:EE_
-x-ms-office365-filtering-correlation-id: bb30c595-36f5-4070-65ef-08dce916df84
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?5iqDrdLHsZHD3VZwrW3C+Lj5bHxUJ0KUboRNKGtYeAqNiLb1uDtPvHs/oNtN?=
- =?us-ascii?Q?Gwl9y2Xpw1GRa4vwaKQvMeLAHQjSD6Z/18gQRl3A+g29dw6/DK1rUqQ36Z31?=
- =?us-ascii?Q?66Mj6Yi3Rj7Y/5myw5GpYgIDnkVC04S0OFcv9nQdq7pINemifD2TCPzHgV8o?=
- =?us-ascii?Q?PO//7Z9dJhOakw2xvkKCNd2tfp6GhiU+ABrIsZ1uG2BI0arO4750lX433uSz?=
- =?us-ascii?Q?uBNk8Dze6I8qUBYQ0jQ9VlA2+UfAgLjmKQETzipQkUTpRGGaZeubfgFEDFSY?=
- =?us-ascii?Q?F2pJr9fcGAZOwqQssuOX3mxbUzHmdV4C1iCaE8qz3ACzr/riIPWb0EUrKTm/?=
- =?us-ascii?Q?pB+7Yjy11pYGZ2wemt0LDhllr4vlbFyY+4F8evvH0btZNIZ5fkk37zx0GV2p?=
- =?us-ascii?Q?8fABXNOKQnKxyoXILK0Uxqm0IqCF8udlSow+glqT9yWi6kaGq2Pa+N3x8sND?=
- =?us-ascii?Q?j+GmcB9N7x17FHshhFFzHt5spm2PBUvuHCcnGkBM2+39ShONCXH999sgjGVT?=
- =?us-ascii?Q?jSsGo56UqrBB9yYfYfEpn9a0zpkB9gJfBvV9SeCsUi9SETrLIDmfgHu0TdYP?=
- =?us-ascii?Q?zRE4FsG1731sfDJhxdAcAbc1WTnK81y4F30MBsMWpdKLbrSd5MXNMnvmBPGC?=
- =?us-ascii?Q?uFmcouuGRvNO7P0F9D1lgsTgxv45kP/SJSAOabtdmsjOVQTroUTO93/25oMb?=
- =?us-ascii?Q?IXdyGZ0pavCTFm9vhbhql+HdeZgtYEoh79LJdqHvSdzWfjBbpQ/X1OojNL9z?=
- =?us-ascii?Q?Cw0uQw/QxyKBkfYOvCcRpb02U3y1MiMbnmohrM4SAbf4SiNWSiQgfVqY7hPu?=
- =?us-ascii?Q?NKgCMZkaJJiaWs/GGwBc0RFvDSiDCx6WQWCUVIFJsqUycfmBNUzG4+FC4TSj?=
- =?us-ascii?Q?JbQdR0SdNC3qIZ0x8zNstaUpB/jQJaOoOth3NMY0I9uV8Zdn1T+mVivZOhZR?=
- =?us-ascii?Q?XoKfIetREejyx32/nJcDujINnFWXgT3HP984IK5S6Grdrv0fj6B7DExKNkw9?=
- =?us-ascii?Q?LKZdSVxQCYz9wXSXOGC7vkgHiK0plEs2ATfW4Dps03/6tEREtnMfqwHBzy/A?=
- =?us-ascii?Q?5FuUVmISBRgk8BIhh/AFGnS9eVT6hmTfxCQG9Cm2Bn/enR9NLAHFW7XSbhlO?=
- =?us-ascii?Q?rojjqYYV4EksbrxhY3B87VHhklUjSG5enSv2JrK+QCwHShNbt94TT2UJXHQE?=
- =?us-ascii?Q?KNPQ4la2lc5aoP+MYTsE576Ap5TLRKO49LmYqt10N1jSq07B/KTQSk4AIgW1?=
- =?us-ascii?Q?oanf/iBjHc/3ZWqsUno+CNaCUGYh436xfGmckOdISU0quSkFjqHss2tBpyRx?=
- =?us-ascii?Q?IQsi+GtiI7jOah5PkSQg63yp0eEhbU19frmPCb5MH9Kx9A=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?UcxKm9Xp3pvq0WRIh0t25DKxkVKFJX/5ezCZAJIoDvKldKyUBI4tfko+HyIw?=
- =?us-ascii?Q?beNJtt/CpHCkIC7ICvXjqzExTNvgUh+ZHxuQDnqQuKq7/9jmSmLAXQhd8img?=
- =?us-ascii?Q?mGOLoVIOLO1rVO5fffjojsfbB8thZsplYJUN0Dd6urt37NA4LSSUgFC4N39l?=
- =?us-ascii?Q?x6Z2Fn5qjREVxkZ5+CJghGgx7a6NmpBn2fL3x4D+aCZ9NlATYl9Q3cgBOCqR?=
- =?us-ascii?Q?P5aFMJZL80jeOg5A075tawyASLKO7kzZ2tDAkRjxCMTnXt+qt29FZRFWImSv?=
- =?us-ascii?Q?cCg9ZKcaJMalaflDZeN5I/QxIxL5E4Hf9CUMO84p3RkDcxJT7gNPJJ7UdbNK?=
- =?us-ascii?Q?1pYI47joCyU+GuCOETExbf7eVFfyf8W5UMIh1mUgn25msMj+Ee9/fkx4jNpe?=
- =?us-ascii?Q?6N23Hi5sJaXqEyfqr3no9hlsLTMmxQvbD/ztbOXtjhnYVqyhobLxob9sMg1u?=
- =?us-ascii?Q?29OIxV4sc9lUBNhqd9rfz0k/lG1OHtgEYTxTb7Z84kAniOWjUSVKXOjUZwPB?=
- =?us-ascii?Q?ewBuJPvFyApKVqRZ/SWCthbg2VAqGM7697fOlj5OZ7H8a2yxziQJVq7roLOX?=
- =?us-ascii?Q?mqXhoslx7oPt87/9XxxhYNqmmfgBe26UHei25G6xdY1aJ89IgIe874EMjBo5?=
- =?us-ascii?Q?lb3gjcgqnDi12Q/PcQqP7T6Pky21LhHDUBW3+CSvF3/4eb6eIb6bpVCcy4m3?=
- =?us-ascii?Q?LENGfHdMDnePvlCAJroSfzhTbmlr+ftfUZEr17BAA2ISfi5pbEPENekDQ4Ul?=
- =?us-ascii?Q?DhHZSaLmpflcsJLYuuzYT3Lu1wChNyyWT/wosv6dNGixXi4xlpgNyOkQfDXX?=
- =?us-ascii?Q?mo3v74D8g0oH9mb/bczMTDLzxrCxpgJQqQLS250gRpKQJ2uo73yl4Y9Y01A6?=
- =?us-ascii?Q?m3mq8TsK0x90JdjUn0HUNcmW+flGbOx6/RUNDon8c9pO2Tm9SRu+1tuVzBs/?=
- =?us-ascii?Q?bN7pZVtd0Df0LzscS8vi/m5L24Wx+yDtIKmbzIGazMw+WFXwnLemClNGDvr8?=
- =?us-ascii?Q?lcmGIIqCvO4UFx/wh2UdkavHtAn6Ey5MLpqYiOSzUidXUHVw3bZR+GXa4GCK?=
- =?us-ascii?Q?AuWhso92OH9PxQiGZwRPIoNwwXZyp8VIMfSc+WY5piuSaqHCdVVz5HTRIkp5?=
- =?us-ascii?Q?87pGFEzx3vjH0NAZLkgCBCpU9TWgAEF8hSAjFat6JSse58lwa/dWnt7VYxQX?=
- =?us-ascii?Q?TZV/RHbQiXz1hMmBUsf7dlnNyTwDqpKnWDksaJf4uTwy1rRGn6JINCPfR5HY?=
- =?us-ascii?Q?awgV7DoqqB/H6SYClZzknVxeuxmFqZtXryiSscT5cA8/lv/wzW6C4WUFOpYR?=
- =?us-ascii?Q?LwhCvdB7YMehLljecYfaW7qGsRyCC5p12fjSc9VIBGjBR+vAlZqwMJMbtalT?=
- =?us-ascii?Q?rdeP/sRYHsxXLAZ3yXuBcmJvc0mw/hF7M8720IrFPuQHt80O3zTno30LJSzW?=
- =?us-ascii?Q?gFUUiDMzILCYX+3duPKfRWQP86z6ombgIonG4sW9sjhufSpjYrdWZP4iyPfJ?=
- =?us-ascii?Q?mhu5ixZAT2wZ8Cgr1EyVaZaZzx8KUE3JAZ2ItsUzddPuCg8cdoODlMEokvHX?=
- =?us-ascii?Q?q1ZShrovO/nCT0uIbrw=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBB631BF33F
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 10:35:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728556561; cv=none; b=sR+SPxRg2+yABy/1QCPzKAik0lEW8VWUpevZ4dik3yH94ZP65WN4ANzXx39g3mJ1keDx94lrqTuD2pt8DukPqSUX+rtarAeeM99tn/LsaJYZXisqxicsMIYAA8Gfi1DNBCs1XdfdD8gR5J0bqM9UhxOTvCQDxPlDb4DSgDcZEDI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728556561; c=relaxed/simple;
+	bh=CtyIT4ZNOQuxdgMNtatD9o1p8iGKg6KQy/UDY8yO1GE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gxfwt21t6yxg5/6WPr9dUSDqe8tthPUdfaCl0GMU+wuLX8JePC/mH282ay/DRMQP5fRfUyT9aWTbzaagxEadc0ioF9aieCUyBMuUPszaVb6UsdUvslJtLjNYWNjF7vb+m4k5Dw/b2M9O25afFkB0vg48j1khdd5YubXRcBmKogk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mzLg81J/; arc=none smtp.client-ip=209.85.216.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-2e2976fca23so624364a91.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 03:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728556558; x=1729161358; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=90kCFwX2rvFJ1EX0qVrB7V4aNyyA47t7eqFcnQ7sd14=;
+        b=mzLg81J/MSzQJnb2moLOsmlnH2IxbD9JlrcIzMgVXypHQeCqO38qCSQmARgOeKVPQ8
+         ORIiMKdKOuraB1SSt04Iwo3N9/F1jr7I4ZwamsSmkZmDdqG3UtsjFfEKQRgcY1+/ShJ3
+         o/bkAY26u0bMtQ3eoTDz2dJgZRhWZ42vuYYd9usPzotuUezP/WYMCV6j/Z6dHzSebt9F
+         6lgHqdKqdsm0j3AO+rkWXumJhWfvujnt+44g0DifFDies7yBdXdZKuJoxVqw1QASSsbt
+         TSNrtxTdECMKUYshy7dTc+V53iTRwuuQkKus4I00YZ6bI9Sb+OESAbvKcEITAs3uapGj
+         u9PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728556558; x=1729161358;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=90kCFwX2rvFJ1EX0qVrB7V4aNyyA47t7eqFcnQ7sd14=;
+        b=ppUQtveDfYLjYYC23TLjFTMRDvXn7708Kzpa5dqsPhtvXHODdXUTrE/wbwJ/84YrU1
+         URobUpJ3AGfsVlBPgItMceaeZdGV2RRp4NZGJ2lwla2JOI8dnfeZ9rwaJqavbMQIFkb/
+         4nUKBi0Z+corcZ80rtUX0JbJplSNjSUo8OuROgQR5TSUrgG2MkgRQQBzY6WQKbetRSIe
+         wAE8CvPcXdJmBHuugL+W0KJp4B5vBZap2UlaZsyGeHRQ9ZgJ6fWM0IZbAtTW0npGWmY3
+         YpbvaLBZ6B2ggfDNc7JFB8+5k+4V0h2JeeZJqbi5XfZqg/eidZZ0zSVKwy5NHAw+rSle
+         2HaA==
+X-Forwarded-Encrypted: i=1; AJvYcCVVEcwDngPs0MM7L/saQF+mNygqh/DYegVB/B+6+ZVlBlrnAoYVLbGCeTow0Xi1jk/qzzHFIvIkIDYs@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZO40uqw41exYhpRYxl0CleU/kNlz2X3zz/BEUb+7YMqQS77DK
+	ojZwjvzln2PHDVm+ooyRdavgPc6O6cNF5S1g2sbzaPcjFB3zCY73rd8z6R2uCQ==
+X-Google-Smtp-Source: AGHT+IED2bSUu+lVDaGy2RN4aKt78OaxV4xRcBnWCUkQllV8/en+YZ3X+i9YU8U4s95jGGviZKDKwQ==
+X-Received: by 2002:a17:90a:e395:b0:2e2:cf5c:8edf with SMTP id 98e67ed59e1d1-2e2cf5c8fe4mr2286223a91.9.1728556558052;
+        Thu, 10 Oct 2024 03:35:58 -0700 (PDT)
+Received: from thinkpad ([220.158.156.184])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2b41f8377sm1503510a91.1.2024.10.10.03.35.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 03:35:57 -0700 (PDT)
+Date: Thu, 10 Oct 2024 16:05:50 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v3 10/12] PCI: rockchip-ep: Improve link training
+Message-ID: <20241010103550.elwd2k35t4k4cypu@thinkpad>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-11-dlemoal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bb30c595-36f5-4070-65ef-08dce916df84
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Oct 2024 10:32:42.7880
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E0eFObASdciJOIs5ylx0ukcXa5YbkiyLEvpusIom+nF7ze/EPo/OdQOB1dsKkfeW1TNwQQuLQntFMxmfzLfEiA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8462
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241007041218.157516-11-dlemoal@kernel.org>
 
-> Subject: Re: [PATCH v2 6/7] arm64: dts: freescale: imx95-19x19-evk:
-> add nxp,ctrl-ids property
->=20
-> On Tue, Sep 03, 2024 at 03:17:51PM +0800, Peng Fan (OSS) wrote:
-> > From: Peng Fan <peng.fan@nxp.com>
-> >
-> > Add 'nxp,ctrl-ids' for SCMI firmware to confirm the board ctrls as
->=20
-> s/confirm/configure?
+On Mon, Oct 07, 2024 at 01:12:16PM +0900, Damien Le Moal wrote:
+> The Rockchip rk339 technical reference manual describe the endpoint mode
 
-Fix in v3.
+RK3399
 
->=20
-> > wakeup sources.
-> >
-> > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 17
-> > +++++++++++++++++
-> >  1 file changed, 17 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> > b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> > index 37a1d4ca1b20..5101cd171e09 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> > @@ -8,6 +8,15 @@
-> >  #include <dt-bindings/pwm/pwm.h>
-> >  #include "imx95.dtsi"
-> >
-> > +#define FALLING_EDGE			1
-> > +#define RISING_EDGE			2
-> > +
-> > +#define BRD_SM_CTRL_SD3_WAKE		0x8000	/*
-> PCAL6408A-0 */
-> > +#define BRD_SM_CTRL_PCIE1_WAKE		0x8001	/*
-> PCAL6408A-4 */
-> > +#define BRD_SM_CTRL_BT_WAKE		0x8002	/*
-> PCAL6408A-5 */
-> > +#define BRD_SM_CTRL_PCIE2_WAKE		0x8003	/*
-> PCAL6408A-6 */
-> > +#define BRD_SM_CTRL_BUTTON		0x8004	/*
-> PCAL6408A-7 */
->=20
-> Are these defines board specific?
+Please include the full reference: TRM name followed by the section.
 
-Yes, board specific.
+> link training process clearly and states that:
+>   Insure link training completion and success by observing link_st field
+>   in PCIe Client BASIC_STATUS1 register change to 2'b11. If both side
+>   support PCIe Gen2 speed, re-train can be Initiated by asserting the
+>   Retrain Link field in Link Control and Status Register. The software
+>   should insure the BASIC_STATUS0[negotiated_speed] changes to "1", that
+>   indicates re-train to Gen2 successfully.
+> This procedure is very similar to what is done for the root-port mode in
+> rockchip_pcie_host_init_port().
+> 
+> Implement this link training procedure for the endpoint mode as well.
+> Given that the rk3399 SoC does not have an interrupt signaling link
+> status changes, training is implemented as a delayed work which is
+> rescheduled until the link training completes or the endpoint controller
+> is stopped. The link training work is first scheduled in
+> rockchip_pcie_ep_start() when the endpoint function is started. Link
+> training completion is signaled to the function using pci_epc_linkup().
+> Accordingly, the linkup_notifier field of the rockchip pci_epc_features
+> structure is changed to true.
+> 
+> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+> ---
+>  drivers/pci/controller/pcie-rockchip-ep.c | 79 ++++++++++++++++++++++-
+>  drivers/pci/controller/pcie-rockchip.h    | 11 ++++
+>  2 files changed, 89 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
+> index a801e040bcad..af50432525b4 100644
+> --- a/drivers/pci/controller/pcie-rockchip-ep.c
+> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
+> @@ -16,6 +16,8 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pci-epf.h>
+>  #include <linux/sizes.h>
+> +#include <linux/workqueue.h>
+> +#include <linux/iopoll.h>
 
-Thanks,
-Peng.
+Please keep the includes sorted.
 
->=20
-> Shawn
->=20
-> > +
-> >  / {
-> >  	model =3D "NXP i.MX95 19X19 board";
-> >  	compatible =3D "fsl,imx95-19x19-evk", "fsl,imx95"; @@ -357,6
-> +366,14
-> > @@ &usdhc2 {
-> >  	status =3D "okay";
-> >  };
-> >
-> > +&scmi_misc {
-> > +	nxp,ctrl-ids =3D <BRD_SM_CTRL_SD3_WAKE	FALLING_EDGE
-> > +			BRD_SM_CTRL_PCIE1_WAKE
-> 	FALLING_EDGE
-> > +			BRD_SM_CTRL_BT_WAKE
-> 	FALLING_EDGE
-> > +			BRD_SM_CTRL_PCIE2_WAKE
-> 	FALLING_EDGE
-> > +			BRD_SM_CTRL_BUTTON	FALLING_EDGE>;
-> > +};
-> > +
-> >  &wdog3 {
-> >  	fsl,ext-reset-output;
-> >  	status =3D "okay";
-> >
-> > --
-> > 2.37.1
-> >
+>  
+>  #include "pcie-rockchip.h"
+>  
+> @@ -48,6 +50,7 @@ struct rockchip_pcie_ep {
+>  	u64			irq_pci_addr;
+>  	u8			irq_pci_fn;
+>  	u8			irq_pending;
+> +	struct delayed_work	link_training;
+>  };
+>  
+>  static void rockchip_pcie_clear_ep_ob_atu(struct rockchip_pcie *rockchip,
+> @@ -465,6 +468,8 @@ static int rockchip_pcie_ep_start(struct pci_epc *epc)
+>  			    PCIE_CLIENT_CONF_ENABLE,
+>  			    PCIE_CLIENT_CONFIG);
+>  
+> +	schedule_delayed_work(&ep->link_training, 0);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -473,6 +478,8 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
+>  	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
+>  	struct rockchip_pcie *rockchip = &ep->rockchip;
+>  
+> +	cancel_delayed_work_sync(&ep->link_training);
+> +
+>  	/* Stop link training and disable configuration */
+>  	rockchip_pcie_write(rockchip,
+>  			    PCIE_CLIENT_CONF_DISABLE |
+> @@ -480,8 +487,77 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
+>  			    PCIE_CLIENT_CONFIG);
+>  }
+>  
+> +static void rockchip_pcie_ep_retrain_link(struct rockchip_pcie *rockchip)
+> +{
+> +	u32 status;
+> +
+> +	status = rockchip_pcie_read(rockchip, PCIE_EP_CONFIG_LCS);
+> +	status |= PCI_EXP_LNKCTL_RL;
+> +	rockchip_pcie_write(rockchip, status, PCIE_EP_CONFIG_LCS);
+> +}
+> +
+> +static bool rockchip_pcie_ep_link_up(struct rockchip_pcie *rockchip)
+> +{
+> +	u32 val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS1);
+> +
+> +	return PCIE_LINK_UP(val);
+> +}
+> +
+> +static void rockchip_pcie_ep_link_training(struct work_struct *work)
+> +{
+> +	struct rockchip_pcie_ep *ep =
+> +		container_of(work, struct rockchip_pcie_ep, link_training.work);
+> +	struct rockchip_pcie *rockchip = &ep->rockchip;
+> +	struct device *dev = rockchip->dev;
+> +	u32 val;
+> +	int ret;
+> +
+> +	/* Enable Gen1 training and wait for its completion */
+> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
+> +				 val, PCIE_LINK_TRAINING_DONE(val), 50,
+> +				 LINK_TRAIN_TIMEOUT);
+> +	if (ret)
+> +		goto again;
+> +
+> +	/* Make sure that the link is up */
+> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_BASIC_STATUS1,
+> +				 val, PCIE_LINK_UP(val), 50,
+> +				 LINK_TRAIN_TIMEOUT);
+> +	if (ret)
+> +		goto again;
+> +
+> +	/* Check the current speed */
+> +	val = rockchip_pcie_read(rockchip, PCIE_CORE_CTRL);
+> +	if (!PCIE_LINK_IS_GEN2(val) && rockchip->link_gen == 2) {
 
+PCIE_LINK_IS_GEN2()?
+
+> +		/* Enable retrain for gen2 */
+> +		rockchip_pcie_ep_retrain_link(rockchip);
+> +		readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
+> +				   val, PCIE_LINK_IS_GEN2(val), 50,
+> +				   LINK_TRAIN_TIMEOUT);
+> +	}
+> +
+> +	/* Check again that the link is up */
+> +	if (!rockchip_pcie_ep_link_up(rockchip))
+> +		goto again;
+
+TRM doesn't mention this check. Is this really necessary?
+
+> +
+> +	val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS0);
+> +	dev_info(dev,
+> +		 "Link UP (Negociated speed: %sGT/s, width: x%lu)\n",
+
+
+Negotiated
+
+> +		 (val & PCIE_CLIENT_NEG_LINK_SPEED) ? "5" : "2.5",
+> +		 ((val & PCIE_CLIENT_NEG_LINK_WIDTH_MASK) >>
+> +		  PCIE_CLIENT_NEG_LINK_WIDTH_SHIFT) << 1);
+> +
+> +	/* Notify the function */
+> +	pci_epc_linkup(ep->epc);
+> +
+> +	return;
+> +
+> +again:
+> +	schedule_delayed_work(&ep->link_training, msecs_to_jiffies(5));
+> +}
+> +
+>  static const struct pci_epc_features rockchip_pcie_epc_features = {
+> -	.linkup_notifier = false,
+> +	.linkup_notifier = true,
+>  	.msi_capable = true,
+>  	.msix_capable = false,
+>  	.align = ROCKCHIP_PCIE_AT_SIZE_ALIGN,
+> @@ -642,6 +718,7 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
+>  	rockchip = &ep->rockchip;
+>  	rockchip->is_rc = false;
+>  	rockchip->dev = dev;
+> +	INIT_DELAYED_WORK(&ep->link_training, rockchip_pcie_ep_link_training);
+>  
+>  	epc = devm_pci_epc_create(dev, &rockchip_pcie_epc_ops);
+>  	if (IS_ERR(epc)) {
+> diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
+> index 0263f158ee8d..3963b7097a91 100644
+> --- a/drivers/pci/controller/pcie-rockchip.h
+> +++ b/drivers/pci/controller/pcie-rockchip.h
+> @@ -26,6 +26,7 @@
+>  #define MAX_LANE_NUM			4
+>  #define MAX_REGION_LIMIT		32
+>  #define MIN_EP_APERTURE			28
+> +#define LINK_TRAIN_TIMEOUT		(5000 * USEC_PER_MSEC)
+
+pcie-rockchip-host has only 500ms timeout.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
