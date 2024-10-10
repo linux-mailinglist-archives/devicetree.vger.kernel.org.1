@@ -1,75 +1,77 @@
-Return-Path: <devicetree+bounces-109938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 097099988FB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:14:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2BE59988DA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:11:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3391AB26036
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:11:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B9611F259F7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:11:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B93A1C8FD6;
-	Thu, 10 Oct 2024 14:10:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB26C1CB323;
+	Thu, 10 Oct 2024 14:11:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uB9tL3aa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jLdCEtHp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF26B1BDA99
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:10:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 584E71CB31C
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:10:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728569458; cv=none; b=VFpeuNPlYhngK74zm8abycTrkKiTJTVUsZTUaenuBgU90dTeE5TBhwwPJ1KAqbzzizdJ8F8MdEcqVm7LL4iAIuKj3+kNeC4zJuL1zoPTyt9/lcmTt9L0YOts4PNSGJkW5sWWvLVlBvqcrROfldLgGvD0eKU9QHFeXnqLKF0hd4I=
+	t=1728569460; cv=none; b=i3lQagCyMtsCB+4cE9RP10kVBzPCwk54u2XjHG8l8sk6AdHodxgmnq6icwzR5q74gmw6DwemKys2uQifqNer8tYZ6R2xD0A/r5JR6hz8u2yHqqicSYOoFajV4kVS+YVDvY8ATznAaqAziQGeSrorVyILquFIUWU3glflg/goeeU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728569458; c=relaxed/simple;
-	bh=U5fUG1+TZhgNOxPIZGjJlbfOBXv21gJ5RbbrwNyZFvU=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Ly0IJyjNQpFjhhS65b2kxm0kmo/Ll4gO/ed6jYBlSMNsBJlJH8210Ea0weE9z/dTGpIYBQp94dLCf6mAdfAfFS9KMUU0CSYLjxcDI4CEUAcrdpoIyx42q1Tlr7Y5UZTNbAp41Z0r54mqM26HOFgHfeCa17zE5p2oJW3j0cZ1s58=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uB9tL3aa; arc=none smtp.client-ip=209.85.218.53
+	s=arc-20240116; t=1728569460; c=relaxed/simple;
+	bh=0Qglc/xTIffv1fsSKk0eokjPIP1tzyiC6cSA5ONdmlo=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=ICmzG6xQC4lBubVYXaWHIiFJRFXNud+qOaNQTGIIi0zXqDxK7XPPkFb4hrhwNoI3n6cmLkwbuKr0Z4mTHkCLvXO1u0iG8UycKQVXBMMG4/5JK0JP7m0pVuUFQVwZTLhMcYvmrmvYEm+xqkNv0vCBQxbZHyhJeK/5aQ2BLoUoiA0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jLdCEtHp; arc=none smtp.client-ip=209.85.218.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9951fba3b4so154377766b.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:10:56 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a9951fba3b4so154386366b.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:10:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728569454; x=1729174254; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=pr/Di5t8rnNhD42fefKyTB/dVh53BZsjOGP+dMUNL2I=;
-        b=uB9tL3aawQHj1bt2vXMigQdA+P4XWNc/8F2HZ6r3YUwTTaQpnXVnpWgwmsBKw3S9+K
-         ATGbhcoaU2TcjZGQ/cnZ7urdfq/u3j33zH8cvHIY22NJgvJ74iWKYGwKSX9gx+3YYgEV
-         VWSvul42xBXcZgThJHFZL30AgsrLNOLjoOU72ldyBGtxDH2eXDCec1WjXW1Rg9KOet9w
-         153iGiKu/hyzxZUrncOSKeUeOO8l4hYIHGAq1qAxeHsElMlL5lz8EkdMvDeEcZ9TuT1R
-         h7N6OZhSXdYOTBj7D5Yc42vFZRRUvCDwkH+U+xaK0GlJB6BFGHduNFQJ0qImLm65aU9f
-         VXEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728569454; x=1729174254;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1728569457; x=1729174257; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=pr/Di5t8rnNhD42fefKyTB/dVh53BZsjOGP+dMUNL2I=;
-        b=rcn3oa2GeER6sSIOjHFMNc0mh6+sLPJmpwc0gSXbRPSpOOj7OTeu0fXEipA8XWxR4J
-         f4rmgoUWlDcHUZnmoZt06YQIkr1ufGgaMaAXuGgYGrlyVHxHn2XXE/t5KpI9q5fjuXkR
-         k+POmpaE3odCzK9oGJ3cCqFN1bv2TdPQ678SiHutrMD+BE4nKjW/x9uU3mZJDWxhcNoM
-         h1LUQiOVZwU4RuicM1RDRCM87TsTtpocMxX1X7GPcV5KZY/Ow07+jbgfl8M8KWxyYsHt
-         n8Qg+bR0qdI28txmDVFnxXCmjHSyGqUBEWb2OFYU/SxAeuS4z7p3D5Jkjd8+tXAeHab2
-         mnhA==
-X-Forwarded-Encrypted: i=1; AJvYcCW1Wwr5dKgXPsK+TlNI12kTMpDvpgX+gmLYNMfy1Sh84Z7xl4BLfd0mx+unGFb2ACtvmZAcGZi9xEVJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFAnWjjqt66u/O1XaqlKYiGsy8U2KvZCirPkKOgZEadZaeoDTe
-	jSZ+2wf7rAqUo48bIWe2s8wVXIXzyiSsJ9OfjiqBJhk5CTcuGsbl1lOynNInKMWC6xI80fucDPx
-	i
-X-Google-Smtp-Source: AGHT+IEpLoYQ9BKs/spoXp/Tyg7YA/Vt5Mplc2HZ6lJYitfgHM+6tUQOBHl5dNxkX1ypBMMIc8cSag==
-X-Received: by 2002:a17:907:d59f:b0:a99:7869:a1e3 with SMTP id a640c23a62f3a-a998d313d4emr563262866b.40.1728569454298;
-        Thu, 10 Oct 2024 07:10:54 -0700 (PDT)
+        bh=IW8XCdBGRYIhZReATpdQK1C+vM89LTQJraH135VfcEI=;
+        b=jLdCEtHpWvr2vIgWSFGobfykvXRRT87ZF3lfvdcGlsWp/DUPU1J6TwTpO4UKU5/fyk
+         aDjhc4XhnbwK2Fny9jv5xLsKH3iJ7a8vOugnMkcU0Bjuw6SuRbcWIX2uF4ArSClJdiT1
+         oD9OEn+g1K04WTTWZnDsVHJbUsf9Swy+yhF/ne4Q/+CxaNe8RBYCUCqNVxizQjMRJHhX
+         5A0zuPV15KwbfdFeZ1ICjNeipLG3skczN8og/viw5frwq7/ppuomdubJTVA5t9PDZuqe
+         Sn2CoJbm0LX3TkcczWbSph1I/Ev+dA+5Ts1Fp7e5FPUPx1lfPRq9byb1UBFREfAi2o2E
+         g+jg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728569457; x=1729174257;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=IW8XCdBGRYIhZReATpdQK1C+vM89LTQJraH135VfcEI=;
+        b=vAaQRcKv6qL4Zlezpqsdy69dV5rlXK3WDzpQ+4i3bpL22fLqQfUao8iXQtOJgMo6L3
+         I+4CQGZO3Zj6wQU65DUKqtV+RyKO6NhLjk6Yqj6ZgzL1OPnDSZNwqa3McnKzygdqRmb8
+         2hmbxrnDXE9BrdDnTup2J5yj6aP+eXDS0rbDpvjtfaVf15iwMxd/uKAfv/BchXq6VtaX
+         MFRK/44O4Tr/NkPHpxvj3and2R3CQGO/03QdQ+skFepgCwVubGLLNMRwD/9bNfWW0g6z
+         shXPFeQZATMwFmNtSyxq35X/3qMkW0dZJ+GWT0IOR38YGh6fk723x+gmn0cUX5vw3IA6
+         2iGg==
+X-Forwarded-Encrypted: i=1; AJvYcCVWoIkqspzCa/bocEEpj7BicvOM6PwlsUtFd43XVW1yvUvAXqBov/E+5CSNPGTbI7Wehj0XYkVKZ5Bm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwITtvqXO/QVNV50UQhDqZvP1Kjw8Q8oHG10zN+6fk0HqRvueKP
+	hktN2VofYFcJIJH5tXVZdkarA5kO6K+ZuimfEMzXeZT8vNFuMCTT8nKQITbKb1w2ecPePhjwGp6
+	T
+X-Google-Smtp-Source: AGHT+IF9T6MbyVFvtNK4bdZhjMeVz375HJKPnDEOmxQLJ4N6tuKly16JWaZNHR28YKCpHdpsPQ+hUw==
+X-Received: by 2002:a17:907:c899:b0:a99:56e1:bd30 with SMTP id a640c23a62f3a-a998d313b3amr552425666b.42.1728569457039;
+        Thu, 10 Oct 2024 07:10:57 -0700 (PDT)
 Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7ec5704sm94540866b.23.2024.10.10.07.10.52
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7ec5704sm94540866b.23.2024.10.10.07.10.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 07:10:53 -0700 (PDT)
+        Thu, 10 Oct 2024 07:10:55 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Subject: [PATCH v4 0/4] leds: bcm63138: Add some new bindings and code
-Date: Thu, 10 Oct 2024 16:10:49 +0200
-Message-Id: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
+Date: Thu, 10 Oct 2024 16:10:50 +0200
+Subject: [PATCH v4 1/4] dt-bindings: leds: bcm63138: Add shift register
+ bits
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,10 +80,9 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAGngB2cC/3XMSwrCMBSF4a1IxkZyk9uXI/chDvJqG6iNJBKU0
- r2bdiBacXgOfP9Eog3ORnLcTSTY5KLzYx643xHdy7Gz1Jm8CWccWcMZVfpaChA1HayJFJQuWgS
- NlTYkm1uwrXusvfMl797Fuw/PNZ9gef+VElBGNRSsrkBwlOw0uFEGf/ChI0sq8U9ebznPvC2lR
- IOmtC3/4eLNgTHccpG5kk0ja4slquaLz/P8AruOnHopAQAA
+Message-Id: <20241010-bcm63138-leds-v4-1-cdb80780a555@linaro.org>
+References: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
+In-Reply-To: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
 To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -95,51 +96,54 @@ Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.14.0
 
-This brings over the few know-how items and little things
-I found about the BCMBCA LEDs in my previous duplicate driver.
-
-This was tested on the BCM6846-based Genexis XG6846B.
-
-The main addition is the ability to define the number shifting
-bits in the serial shift register which is necessary if the
-previous boot stages have not set up the hardware properly
-before.
+The BCM63138 family of serial LED controllers has a register
+where we can set up bits for the shift registers. These are
+the number of rounds the bits need to be shifted before all
+bits have been shifted through the external shift registers.
 
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
-Changes in v4:
-- Rebase on v6.12-rc1
-- Add define for BCM63138_GLB_CTRL_SERIAL_LED_CLK_POL
-- Rename the BCM63138_POWER_LUT to BCM63138_POWER_LUT_BASE0
-- Link to v3: https://lore.kernel.org/r/20241004-bcm63138-leds-v3-0-ba99a8e464b9@linaro.org
-
-Changes in v3:
-- Mention in the DT binding that hardware defaults will be used if the
-  property is missing.
-- Link to v2: https://lore.kernel.org/r/20240928-bcm63138-leds-v2-0-f6aa4d4d6ef2@linaro.org
-
-Changes in v2:
-- Drop the u32 $ref in the schema, -bits is a standard suffix.
-- Fix algorithm for shift register configuration.
-- Fix spelling errors and numbering errors.
-- Link to v1: https://lore.kernel.org/r/20240920-bcm63138-leds-v1-0-c150871324a0@linaro.org
-
+ChangeLog v2->v3:
+- Mention that HW defaults will be used if the shift
+  register property is missing.
+ChangeLog v1->v2:
+- Drop the $ref to u32 since the new property is suffixed
+  with "-bits" and thus get standard treatment.
 ---
-Linus Walleij (4):
-      dt-bindings: leds: bcm63138: Add shift register bits
-      leds: bcm63138: Use scopes and guards
-      leds: bcm63138: Handle shift register config
-      leds: bcm63138: Add some register defines
+ Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
- .../devicetree/bindings/leds/leds-bcm63138.yaml    | 11 ++++++++
- drivers/leds/blink/leds-bcm63138.c                 | 29 +++++++++++++---------
- 2 files changed, 28 insertions(+), 12 deletions(-)
----
-base-commit: 840f68b874cfa5990e151f8716d33bf08098dda7
-change-id: 20240920-bcm63138-leds-1bc5f41c47cd
+diff --git a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
+index bb20394fca5c..62326507c1aa 100644
+--- a/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-bcm63138.yaml
+@@ -41,6 +41,16 @@ properties:
+   "#size-cells":
+     const: 0
+ 
++  brcm,serial-shift-bits:
++    minimum: 1
++    maximum: 32
++    description:
++      This describes the number of 8-bit serial shifters connected to the LED
++      controller block. The hardware is typically using 8-bit shift registers
++      with 8 LEDs per shift register, so 4 shifters results in 32 LEDs or 2
++      shifters give 16 LEDs etc, but the hardware supports any odd number of
++      registers. If left unspecified, the hardware boot-time default is used.
++
+ patternProperties:
+   "^led@[a-f0-9]+$":
+     type: object
+@@ -71,6 +81,7 @@ examples:
+     leds@ff800800 {
+         compatible = "brcm,bcm4908-leds", "brcm,bcm63138-leds";
+         reg = <0xff800800 0xdc>;
++        brcm,serial-shift-bits = <16>;
+ 
+         #address-cells = <1>;
+         #size-cells = <0>;
 
-Best regards,
 -- 
-Linus Walleij <linus.walleij@linaro.org>
+2.46.2
 
 
