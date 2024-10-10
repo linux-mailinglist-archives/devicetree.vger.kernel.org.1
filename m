@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-110061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110062-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E025299919F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:04:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27E0A9991A0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:04:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B56C280E7E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:04:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A5BE1C23B01
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A45901E5707;
-	Thu, 10 Oct 2024 18:52:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56B0F1E7674;
+	Thu, 10 Oct 2024 18:52:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="ZqrSaj6g"
+	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="R8NZNLUn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic308-18.consmr.mail.ir2.yahoo.com (sonic308-18.consmr.mail.ir2.yahoo.com [77.238.178.146])
+Received: from sonic313-21.consmr.mail.ir2.yahoo.com (sonic313-21.consmr.mail.ir2.yahoo.com [77.238.179.188])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D15651CB53B
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 096111CEAA6
 	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 18:52:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.178.146
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.179.188
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728586337; cv=none; b=DiDi9HdrnfYNLvLAwbCPG3c8OgbtZ48ZiXHrCErUo6d61dWbVXZagm+QXCJgzS5oyX6eGMiwLUSp3R7r3VquCHbwKT5g0oVrLXoEzPEsJDuE79OiqU5S+2VhHQ18XazhZpbVN5a9p062Vgz4LU96CvtaGKSgxhl7iK81KYQUqN4=
+	t=1728586338; cv=none; b=kgbDm5HtTjlleXqsUUx+LThCNFM97STJXiDsFeh9xyoTSk3dacSvjx/lVxnn6f7iDip9UUr7lVYBYjPNwthBPWn/rNLoP2Tv3V2K15Nk84Mbv3L9tjwmaVl5S9gJ0ORSXLDVO0SL0Dq3RJJkarSDXUh1yACkJR+GDiXShhZx7Ic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728586337; c=relaxed/simple;
-	bh=VJR9NQ2efHzfRgQtDZzAeM5DxMMYp4vaiW6QZ3ZumyM=;
+	s=arc-20240116; t=1728586338; c=relaxed/simple;
+	bh=RLoASV0tuN6BS3Rlj7Ph0YGO3InAKCMnzst6WrMalQs=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ATmZHkxhfd8zNV9seekQBNzLRUee/eztb4sNYa8H/NW6Ss4pOY7OovZkMPPfVoIkrl7O/HZpoozu/XTJlrvN/ecUgyG0VBhX9zqZcJ4O7+f1xgDj6B+QYZ/AQmWBAyrjNN7cyJ6SSsAnUCSTjZHYdD5pMuwyIlKsC3gZmA1ahyM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=ZqrSaj6g; arc=none smtp.client-ip=77.238.178.146
+	 MIME-Version; b=STMCrUUPJKDDCi/E+GrU0N6cUvK2OPcsK8Q0S4tnfQ0HmGiRMsv4CgvpgeqzxU+Pst4CzaMRih2nF+gZumy4bNgfPbnxgBW7KIkmvd9FZpKOMs+MwJHB7paEbBmaPVnFL7uSovRGVkcu7nygOGof7cQgXe2qZCDb3wKfnJUw1lY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=R8NZNLUn; arc=none smtp.client-ip=77.238.179.188
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1728586334; bh=jGaLpCXi0hWPUJkD+IJdr0e4LX3vaWBC+o7fEAUZV0c=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=ZqrSaj6gic1ZdP4dta6tCNjahq5/VKJgk+SoaSDrKscUclFHeI32rp2e1Z6rULxK2WhmmDWxVjbSg8JEBTRNZt6e6DmU7Xjw+Wa/+dFgwNDifEwOpJe492Dru9paOpNhvXFvDd98GvD8fDO74sJuKSbj2XW4f1dqtvuli8QwbfD7Twd7D1qPCBEIkty8jFHWbaDeU7Wf75bSe9bTG1AS3/SxqZwUNucK8O1Tzb3ewq3tHyoVJwHY1AoYoEN/e+q6xYtPoFloTh0LPZ562yU9k2nNvnsilh/B8CD8Hgj3gJuCdPxzU1cAvu5XGI/U2OY6eoNY8MxHmpRaew+ipXDy/g==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728586334; bh=m+SfjqZZbV8mOFUEY5X34izRJvdHcbSFg/+t2iWXasc=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=o/sh4127TXPDhDu+NT7LcVxk3GFC3BT+Ako7ijhz+oXUu7DM8ZAYgSIPPICU1SJVb3aiHHmZ8J6M0BUXNbySH0K2J9dIDTrMgL7LomqBLyel122O0LwD1o4SQGiJgfjEte/s64jzdQFDVEMol0MoG1FIzV0U7EH5usuQQVBiBssmVIh5tDlSPkyG4bIjk5i/V6xLzruLDpTLjzSdu74wiFKJ/Eks+lltiIAqu6HyB8HMZnDdCQjCIMGs7tEMMD1MRTBmFx2gHSyzGTuz9HHoxJk/4F5CU+44v+iKpJl3iVJ62Rx5T5UTnfizjFZyl1aAMmBNDz7Wsp1zfd4VKbnXHw==
-X-YMail-OSG: 0567YTgVM1mMr78UotIDX9bc7iQjTl69MOE57kqUkRNSnC6dhkNM.QnAWVTpy1u
- 4CbppctekZ7ZyxZY4t.GXw7tRLuybG6lE0hTnW4Hdd3js99E49zZnMBuN73Y2RvzpV3fviAWRzmY
- mqy0dpnFy8n3SskYK9QIo4dRCteFv5qIukJm.juSSXA2GeQW3sVdhcvKCFY7lQD7Sqk8t4cfxBTO
- vF7_1_J4W.izFWHTXYNwQpdChEz.v08OzUqQTpprNQfcd5TNc85eCBICz.68Hl3fSu4y962_v8Wo
- MraPdh5h1e_cgknnRlwqOtjSBkiGay5.Qtro_GqIdreJDPDhyLqmekn_Am9r4rFNHmS__72SJb2b
- v6Qq82eDnLnRXWP8aftG1dkgy8BimfzuLYnd.DD0IkWdjCJofDAt1JtxW8tYrarvh0DMPKTgmqS7
- 8si4MDX2nlcgzyc53ulXXzmNRw2HiZ2DrrQvnOKwBXwAUr0IT2WABGG8bi3Kisx_._Ze4xy0B60X
- QFamoy7tb5yEMFzp_382qPATroeiV8fcJPtt65Nta.1nohtiKPIdmbPnlYHPeFDa35iFhYXHrVx9
- ppWvY8sdSNXnfMsUsNG2sHLzHx4dz5V2jGWvEtcTMoFgI4xST0DE3hEqcwpWF6x4Me5WB0YHtZkN
- BO_8XFcjvCAJERrnCmM9L.fBYaL_QEhV_Zt_8vQsmnJesul8klXDEw3uv0Jgh71w16Rq7S4fiA8B
- 4Ot.Mzr4Oe_tFpQqokbv2nsq_0CaqltyMhY4FyW464qm3uXwII60DYwt.V7dqulN5cDhEPUx0aAv
- T4VkrZjNjTc3g2rmtIKkwfWrxo5EU4l_OEuADOzgJXZViGMCK6IUfA1lX4CnjWuYG4PtdUY_stBD
- dtYvKTWuZ7SoqodXJ9rBFTulx5pOzoVs33H.NTDntCyNCNiTX9cJPhA0C7lDcuEaTX2z7m89sHgG
- pv38mp0vSI33ttKeKkyOasAf3GYLQc1u8XNAPqhDFzPK7GIS4CyK1FevO7bx2davLMiPuFCs_p_E
- RPMwHzTDu2W6gq1A0OaASfZCAT2zVkjUr6TnFXQ8FfPAg9QVre_isCEUQUMEOQ4KBx2.fEzo7Kd7
- gcciWuu6JsCJTq5DCmBA.QCDcSImZFSsa9dGqsi2LD9UE.uUkZoviUq9uBj3962vbhB5oMF3xWfN
- UkrH.aSplr87bnWYdFwAe8Q4qempNqlRMMN3G.ymQ69eWMSG48ma7T8aTSt2kyg4xXd18FShBlzs
- 8hr2wBgfrEZp9LAYRmJDUlKhgBLqjXnmgF_KnxRFnC5Sigrans3jadsIQlqGIqrDMbpE3pNuPbfh
- AXlKe69jWK.fdEVENvbIBKZosTfYPc3dC7SwOUB5tdWpRY_sXf.oRL3_bSDVNSCEd1eC3VH69bPe
- bvMbiwCe84lYB7G.VbQy59qMHZQxFZHEuICKN55SfuzCvJyc8ahW3qvTsJOgg4f1Ml3mJjNYGch.
- J1laZkRbX.UWehJ2hAYFhLs9VUpcBGq8dlyLfucJk5_SD4OwLjUxWy.3sgIzfPHGGoWX6IqQDBPr
- IGXuwPcoZV0nZyHZmFrsQGPoqjEZRkBJNKDu9wp88JFuyOa9Imm5HYrL9a6YYI9FY7orgja_iKeK
- L8.aNJJEd66umiwoQbYsxdBdSJJEon38zlQKeZczg8jfvibq0TUBvVWCH6wSDKrn8T2ANlgpYmc4
- EuA0oPdcekLjmaBg2SVzSYN5Md5lNDluWcWa722m77B7W9_DS_Ac.SBJkwtdsdBZr2Ss2zhrpxGl
- Qt6Ae6v_W.3asFVB7Njp..Lmo3HxzeioImv7YQcALaYamYha1.GCCxenVDfhwwwpWe6rwsDqLcBs
- fOvkxQ_0ZglEIH6BMXfZCauClSQsIEZ.O9ZEfl3oMTnPtjqlHbC3uUFzd1cjxWuslMUXGV.vhN.R
- RztrxoEhGlLx4IUaTN6dkg1JfzA2fRKYnJ08sAI_p6LGJyNtuoKapstwiLtyS_QL8deM7WCRCeDI
- 7Fjv9GOFMLUcJOOwoTN.4vN7e4N13k69OI.jc6djQgnbSSCtAxg7EX8SGzeZGbEBWbdkx9rhUMBp
- yXZG56XtP11UdgBCDDfhmg0tzZOAQLpbt_ZJwPKTzqOm7HY8EGh_T4dOdsQaKRuQdPprn.fiNoAE
- 72kyx4bCE7eho9qaVBiKfAxx1PVuTWioOM2Z01PqyhXBuLS1ZB8xSJCrgU6XW5CJNwcdWu5gD23k
- aukZC9YthHe8SuCXcb.Ec1loQ72872E_NQS3mp1EGRvRl2T_u0sggUA1mfGlYWieea7TRLMiiv4r
- eo.zd5mCPxUlbZcfU9Ozz8DGFJhOa5swe6OUbVuF6pvK8ITRHgOf.UvYd
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1728586334; bh=VQ4NzBF3TD+BrXUOBvpilZ2FzFEEeRSPx8VYOZUJm+4=; h=From:To:Cc:Subject:Date:In-Reply-To:References:From:Subject:Reply-To; b=R8NZNLUnoVyVqQnpqa06tLIeodX9nxYgWZzdslpXYwctIY+kY6QKzaBifXwy0clYQsGuH+uOGSZ94rXR3/v2jEZFx3dkdS9KPv5qEl3Cl0t2Gov5eRXWLXqCIe62ImauExm6OrQ6fSUcNQBzYjBXEGvtnK5gJ0U8faO1Ql/gi9OVlcDDrlSuTSmij5PBA3xzgn24j0H01SRGvKsA4SQ9YMHqEFYetgxpkatLtKLIYiW/tfn2wCzlccPfIZkq4Vc/ap6L+xMIKUV2o9fS7n9SRtwtIu9U2LTWgeDpgbfh1bAXQCWHKw47ibcrbwutM+Fh2Q6jQTGiBnUUoj9YMZFiLg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728586334; bh=gh4IYEvDswJgEePzI052OR/sbmEiphRx7GaW2buFA4j=; h=X-Sonic-MF:From:To:Subject:Date:From:Subject; b=P8fsImUI2EE2V8Pfy8vEXVXFvVc3Jfg3w9N1K6lj6yt+lg58mdkly2N0REU0WTbKRoWyQhpwvT7fcg5V0H4AplnuI8o42d2N3IX/wLqI2DnbD6Q2ML4pwsDflW8IhyjaAeJpnYTwd4xFdIoJoPlXeSnZU2WGLJSSCVTb/+ltdEO3q4zNoREQYxp3LDnAHPsmYIfighUprVRdYDyhoQSanVveRXw2Nd6CxiaV/f41Wp1OqcQsQ7s7rj9O2tSDhvVEuPy7C6Wxaeswj9fIzHTwwxQOh8DYUP7PrDwR/kjIRmbj3b3mi1IautmlvVNGcR3eRKzPJOY5h1a9GHqdq+R/2A==
+X-YMail-OSG: 3biwbCAVM1mlJm9aOwgaudQl_eL6hS4.hyv1B4KHFQJSm4uZSVzsPG1b0yv0BE.
+ cJ0GXBSGPN4yhowR8EbDZSg5He3ro0ikTBf2q9TtbPymfUsn480CGgrwlmHU8oh6wtQ0WLQUxl_p
+ yvO3BSy0pMsgkiwm9XZCpUnPs9eCwPWbO6m653V1xmWsvhG5JwUT.Z08aNgNnb4OXZZJbkjaZJC.
+ ZrMhnY54eijM3ez_2eOqsM0LvB1h.zHrIJ.2hVIpD4V_ATGrpWJoHk0FpDyvneztvjJ3XzZvLRMg
+ cjE.bOr308TG..ubKyz2MdlP5kJzsUMOElc1Np65OOFESC3YbNewmgPFXEqpksFEMam262etqZKs
+ FL6C3A4aV4GSAM7MFXxAPwqmEEuDlpvg6UgmAwyaw8K4FbCyqyKE1UahzyFx6kZYjHCZIR5XQyQh
+ yZ6CE8jJF2Y0Mbh1rJMrCpBxfKhTxBG_FIOivZbdte_hlNt0p9yr6xKEE5tQj.E4w27IvGhe5b55
+ 8Dkj_lWDL8MtU983Gu2_rxrrwMSu1xAIz9PVgLHB6E9gKgVnPXdq5XVgczDarnwBDwy_QwtKKMF_
+ Ks8bOtRlip9qmvJYH9PAd6Jxxij2cL79oymPUbD2ICxG4wnyqRnP_qV4SDgL9xsoiU1vCGiFxddR
+ qb0F4ZXHqsbRpPYpTEIdhl99iG7_wMaYJzuHpu7Xd1ypYnxXxGdySYFzoB52JFocvCUQFaj1mTPK
+ AqasYdN5W3xgLzzGih9AyUIgA0IZaowo_oSU_QCUSWAkPfcEFqVtiomiaF_9XF3Mc8M.b3Dfne0J
+ Ok94fHB.fLz5qAUfoYZXV.cCHJsZgq2meWx_1.sZAqSFPJz8zcg4cZeAlRH3LMm3fCTOCwj0HR_h
+ rmcyHWPAtf1crTQzWeQB5IJbKACWLhwAIXhoxsEpyyGirmOCHn8AZvqHVs6k.kwN40R.GZBHOq1m
+ tIbB6G9i7aulJ2eVA6LsS5GbilU_q71Pev2NK3qaOb7x2lGIh3vpyv1M49VF1SkzhZozW_xncT7s
+ l0l4.mKPLSzmSO3toqqWv0M4kGVDYUZs6D6tio58oIJ7ehDsnUrW91f6MYu0U263wVdeDMYC7kTB
+ TKaIYEBmPtQVhIU9e0Q5vqsNzUrfJTYGLjStaEMCOdXCzAUwmRB_XbBU7Cn8Dvmc0.PvnJ5Ya8vx
+ I16DZS7VnGBEnGqyIt.p1I4E5Zhci9u9XKVRQCHH2hbF3YHa7GDAmt_5TKycpm.n5J574rdS6TtI
+ z7Mi_Ov6NwVpvxC0J67YOxcRzvmZlUaHYzw4VbWQAYF7gPcWXSHFEkv8cOG4jVnsKkcYDlvp3xVz
+ aCGE3qD3ZflRiTB8eUnMFbhG_zTjCK5Kd4pJi2hzkv5NBZ3v9_UtXvkokLTntibLu1TrK1I5pNDh
+ i.vmko6XkdRt_xW3wRHxsbKHISZGU84priLSJIxpwflI9TyQ3oWwv.TAJ7tgwIPCY43F3AVICNke
+ wwV1.6ud9f5tczQWn5WiKLqTpSSw6gwcgtKmOgNVL72cm1MydUlgb5uQtbBkqVvoop.GDQ7d5eIQ
+ jXK0RROft.yaZmGJyXK8jVAoG4OAZfzayqSOojoLTpqAf7.IvZCrE97v_DwgfZsafk6TrI0rATz5
+ o_83oaG8Ed8PIsMoBWcB5tDWs6etrbQFerIUrks5CAlHfwHy4.vtBkhNem8GZfC.bjiM1Glpk0E6
+ 4EjzYujz0FMB2V9Pr93Zp7le0UIv7sORRMDCaSZoL24ForBAKI3su7GneB.vI4czDQ9pfnWGI6tq
+ 6m9Ku1DGzls5ndHSVN2W1gXkt.mCmNn7lw712SbodbSGoU_S4.OcZC2vO1cST.36Dk70vGgD6opz
+ Gue.tkrZ3s.sK5n_VBLUB6b7L8Gg85zl17B4Q0xCqu1T.wlYkECBB32hVTzpq_xJpZxC_vGZH7KH
+ rYlTqwljOwBfCDStx60RUS4W0IfeZk5uftfQzyV9Z7uf3g1PjVOGhZwFubP0AI07yGaadGTTVKj.
+ cn4AWjG_bGYSh5xb4Fe1g82_m4kSxZ0frQmery1MJDkhl9mFg0JKm4FzF1QW262L96nZTymuRLsZ
+ 9mlcoQNE.XLWrPVWzDq_cGXEgNd6mIgQ1YPOxBmy0WS50w8nNX2moZYkjAhlBrh_MVkFMGXW9FDm
+ AoMpZ5lVDoJWmqr6m0trowEnLrxakWlKReSUde8wdYwSCvCuQFbFQIlikjR8rpLe3WphUgeldMCj
+ CpOiQhTi.Du9RGDMcoAcGiBMMR2esWz8v955IaoF0OY2VOBD7IEdbobCd5wwRs.tndvMXK4yeits
+ 4mj1SPDU8L67uSp3iLRZl.Y8EExK7MFIbbIUAtn7ZyHR58jz1lhhuPzle5Q--
 X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: a791284e-38df-4ff6-a31a-4522ea5a0e80
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.ir2.yahoo.com with HTTP; Thu, 10 Oct 2024 18:52:14 +0000
+X-Sonic-ID: c3365b06-8d82-45d8-b1b1-a24869898cf7
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.ir2.yahoo.com with HTTP; Thu, 10 Oct 2024 18:52:14 +0000
 Received: by hermes--production-ir2-6664f499fc-97g4x (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 7a7b462d09211a1a6528a42ebeb90f61;
-          Thu, 10 Oct 2024 18:31:57 +0000 (UTC)
+          Thu, 10 Oct 2024 18:31:58 +0000 (UTC)
 From: Jakob Hauser <jahau@rocketmail.com>
 To: Neil Armstrong <neil.armstrong@linaro.org>,
 	Jessica Zhang <quic_jesszhan@quicinc.com>,
@@ -81,9 +81,9 @@ Cc: dri-devel@lists.freedesktop.org,
 	linux-kernel@vger.kernel.org,
 	~postmarketos/upstreaming@lists.sr.ht,
 	Jakob Hauser <jahau@rocketmail.com>
-Subject: [PATCH 1/4] dt-bindings: display: panel: Add Samsung S6E88A0-AMS427AP24 bindings
-Date: Thu, 10 Oct 2024 20:31:48 +0200
-Message-Id: <3d754a2ee538d4c99ab71340706297d54b767c35.1728582727.git.jahau@rocketmail.com>
+Subject: [PATCH 2/4] drm/panel: samsung-s6e88a0-ams427ap24: Add initial driver
+Date: Thu, 10 Oct 2024 20:31:49 +0200
+Message-Id: <d36d0d152c509b78d02f9f7adbea665c0c863446.1728582727.git.jahau@rocketmail.com>
 X-Mailer: git-send-email 2.39.5
 In-Reply-To: <cover.1728582727.git.jahau@rocketmail.com>
 References: <cover.1728582727.git.jahau@rocketmail.com>
@@ -95,91 +95,337 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add bindings for Samsung AMS427AP24 panel with S6E88A0 controller.
+This initial part of the panel driver was mostly generated by the
+"linux-mdss-dsi-panel-driver-generator" tool [1], reading downstream
+Android kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [2].
+
+On top of the generic output of the tool, there were a couple of changes
+applied:
+- Added mipi_dsi_dcs_set_display_on() to function s6e88a0_ams427ap24_on(),
+  otherwise the display does not show up.
+- In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off()
+  changed DSI commands to multi context and used "accum_err" returns.
+- In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off() replaced
+  msleep() by mipi_dsi_msleep().
+- The function s6e88a0_ams427ap24_get_modes() was changed to make use of
+  drm_connector_helper_get_modes_fixed(). This also required to include
+  drm/drm_probe_helper.h.
+- In function s6e88a0_ams427ap24_probe() registring the regulators was changed
+  to devm_regulator_bulk_get_const(). This required to change supplies in struct
+  s6e88a0_ams427ap24 to a pointer.
+
+Coulnd't read out RAW EDID, /sys/class/drm/card0-DSI-1/edid is empty.
+
+[1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+[2] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi
 
 Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 ---
-Patch is based on https://gitlab.freedesktop.org/drm/misc/kernel.git
-current branch drm-misc-next.
----
- .../panel/samsung,s6e88a0-ams427ap24.yaml     | 68 +++++++++++++++++++
- 1 file changed, 68 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../panel/panel-samsung-s6e88a0-ams427ap24.c  | 261 ++++++++++++++++++
+ 3 files changed, 271 insertions(+)
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
 
-diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
+diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+index ddfaa99ea9dd..fa6a8c6cac5b 100644
+--- a/drivers/gpu/drm/panel/Kconfig
++++ b/drivers/gpu/drm/panel/Kconfig
+@@ -623,6 +623,15 @@ config DRM_PANEL_SAMSUNG_AMS639RQ08
+ 	  Say Y or M here if you want to enable support for the
+ 	  Samsung AMS639RQ08 FHD Plus (2340x1080@60Hz) CMD mode panel.
+ 
++config DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24
++	tristate "Samsung AMS427AP24 panel with S6E88A0 controller"
++	depends on GPIOLIB && OF && REGULATOR
++	depends on DRM_MIPI_DSI
++	help
++	  Say Y here if you want to enable support for Samsung AMS427AP24 panel
++	  with S6E88A0 controller (found in Samsung Galaxy S4 Mini Value Edition
++	  GT-I9195I). To compile this driver as a module, choose M here.
++
+ config DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01
+ 	tristate "Samsung AMS452EF01 panel with S6E88A0 DSI video mode controller"
+ 	depends on OF
+diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+index 4b5eaf111676..3002087c26d1 100644
+--- a/drivers/gpu/drm/panel/Makefile
++++ b/drivers/gpu/drm/panel/Makefile
+@@ -76,6 +76,7 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63J0X03) += panel-samsung-s6e63j0x03.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0) += panel-samsung-s6e63m0.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0_SPI) += panel-samsung-s6e63m0-spi.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0_DSI) += panel-samsung-s6e63m0-dsi.o
++obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24) += panel-samsung-s6e88a0-ams427ap24.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01) += panel-samsung-s6e88a0-ams452ef01.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0) += panel-samsung-s6e8aa0.o
+ obj-$(CONFIG_DRM_PANEL_SAMSUNG_SOFEF00) += panel-samsung-sofef00.o
+diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
 new file mode 100644
-index 000000000000..7010d3bbd07f
+index 000000000000..182ba8c347e2
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/samsung,s6e88a0-ams427ap24.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
+@@ -0,0 +1,261 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Samsung AMS427AP24 panel with S6E88A0 controller
++ * Copyright (c) 2024 Jakob Hauser <jahau@rocketmail.com>
++ */
 +
-+title: Samsung AMS427AP24 panel with S6E88A0 controller
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/regulator/consumer.h>
 +
-+maintainers:
-+  - Jakob Hauser <jahau@rocketmail.com>
++#include <video/mipi_display.h>
 +
-+allOf:
-+  - $ref: panel-common.yaml#
++#include <drm/drm_mipi_dsi.h>
++#include <drm/drm_modes.h>
++#include <drm/drm_panel.h>
++#include <drm/drm_probe_helper.h>
 +
-+properties:
-+  compatible:
-+    const: samsung,s6e88a0-ams427ap24
++struct s6e88a0_ams427ap24 {
++	struct drm_panel panel;
++	struct mipi_dsi_device *dsi;
++	struct regulator_bulk_data *supplies;
++	struct gpio_desc *reset_gpio;
++	bool prepared;
++};
 +
-+  reg:
-+    maxItems: 1
++const struct regulator_bulk_data s6e88a0_ams427ap24_supplies[] = {
++	{ .supply = "vdd3" },
++	{ .supply = "vci" },
++};
 +
-+  port: true
-+  reset-gpios: true
++static inline
++struct s6e88a0_ams427ap24 *to_s6e88a0_ams427ap24(struct drm_panel *panel)
++{
++	return container_of(panel, struct s6e88a0_ams427ap24, panel);
++}
 +
-+  vdd3-supply:
-+    description: core voltage supply
++static void s6e88a0_ams427ap24_reset(struct s6e88a0_ams427ap24 *ctx)
++{
++	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++	usleep_range(5000, 6000);
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++	usleep_range(1000, 2000);
++	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
++	usleep_range(18000, 19000);
++}
 +
-+  vci-supply:
-+    description: voltage supply for analog circuits
++static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
++{
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
 +
-+  flip-horizontal:
-+    description: boolean to flip image horizontally
-+    type: boolean
++	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
 +
-+required:
-+  - compatible
-+  - reg
-+  - port
-+  - reset-gpios
-+  - vdd3-supply
-+  - vci-supply
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0x5a, 0x5a);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x11);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x11);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x13);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x18);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x02);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x30);
 +
-+additionalProperties: false
++	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 20);
 +
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0x5a, 0x5a);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca,
++				     0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x80,
++				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
++				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
++				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
++				     0x80, 0x80, 0x00, 0x00, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2,
++				     0x40, 0x08, 0x20, 0x00, 0x08);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0x28, 0x0b);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf7, 0x03);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x55, 0x00);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
++	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
 +
-+    dsi {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
++	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
 +
-+            panel@0 {
-+                    compatible = "samsung,s6e88a0-ams427ap24";
-+                    reg = <0>;
++	return dsi_ctx.accum_err;
++}
 +
-+                    vdd3-supply = <&pm8916_l17>;
-+                    vci-supply = <&pm8916_l6>;
-+                    reset-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
-+                    flip-horizontal;
++static int s6e88a0_ams427ap24_off(struct s6e88a0_ams427ap24 *ctx)
++{
++	struct mipi_dsi_device *dsi = ctx->dsi;
++	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
 +
-+                    port {
-+                            panel_in: endpoint {
-+                                    remote-endpoint = <&mdss_dsi0_out>;
-+                            };
-+                    };
-+            };
-+    };
++	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
++
++	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
++	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
++	mipi_dsi_msleep(&dsi_ctx, 120);
++
++	return dsi_ctx.accum_err;
++}
++
++static int s6e88a0_ams427ap24_prepare(struct drm_panel *panel)
++{
++	struct s6e88a0_ams427ap24 *ctx = to_s6e88a0_ams427ap24(panel);
++	struct device *dev = &ctx->dsi->dev;
++	int ret;
++
++	if (ctx->prepared)
++		return 0;
++
++	ret = regulator_bulk_enable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
++				    ctx->supplies);
++	if (ret < 0) {
++		dev_err(dev, "Failed to enable regulators: %d\n", ret);
++		return ret;
++	}
++
++	s6e88a0_ams427ap24_reset(ctx);
++
++	ret = s6e88a0_ams427ap24_on(ctx);
++	if (ret < 0) {
++		dev_err(dev, "Failed to initialize panel: %d\n", ret);
++		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++		regulator_bulk_disable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
++				       ctx->supplies);
++		return ret;
++	}
++
++	ctx->prepared = true;
++	return 0;
++}
++
++static int s6e88a0_ams427ap24_unprepare(struct drm_panel *panel)
++{
++	struct s6e88a0_ams427ap24 *ctx = to_s6e88a0_ams427ap24(panel);
++	struct device *dev = &ctx->dsi->dev;
++	int ret;
++
++	if (!ctx->prepared)
++		return 0;
++
++	ret = s6e88a0_ams427ap24_off(ctx);
++	if (ret < 0)
++		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
++
++	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
++	regulator_bulk_disable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
++			       ctx->supplies);
++
++	ctx->prepared = false;
++	return 0;
++}
++
++static const struct drm_display_mode s6e88a0_ams427ap24_mode = {
++	.clock = (540 + 94 + 4 + 18) * (960 + 12 + 1 + 3) * 60 / 1000,
++	.hdisplay = 540,
++	.hsync_start = 540 + 94,
++	.hsync_end = 540 + 94 + 4,
++	.htotal = 540 + 94 + 4 + 18,
++	.vdisplay = 960,
++	.vsync_start = 960 + 12,
++	.vsync_end = 960 + 12 + 1,
++	.vtotal = 960 + 12 + 1 + 3,
++	.width_mm = 55,
++	.height_mm = 95,
++	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
++};
++
++static int s6e88a0_ams427ap24_get_modes(struct drm_panel *panel,
++					struct drm_connector *connector)
++{
++	return drm_connector_helper_get_modes_fixed(connector,
++						    &s6e88a0_ams427ap24_mode);
++}
++
++static const struct drm_panel_funcs s6e88a0_ams427ap24_panel_funcs = {
++	.prepare = s6e88a0_ams427ap24_prepare,
++	.unprepare = s6e88a0_ams427ap24_unprepare,
++	.get_modes = s6e88a0_ams427ap24_get_modes,
++};
++
++static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
++{
++	struct device *dev = &dsi->dev;
++	struct s6e88a0_ams427ap24 *ctx;
++	int ret;
++
++	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
++	if (!ctx)
++		return -ENOMEM;
++
++	ret = devm_regulator_bulk_get_const(dev,
++				      ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
++				      s6e88a0_ams427ap24_supplies,
++				      &ctx->supplies);
++	if (ret < 0)
++		return ret;
++
++	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
++	if (IS_ERR(ctx->reset_gpio))
++		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
++				     "Failed to get reset-gpios\n");
++
++	ctx->dsi = dsi;
++	mipi_dsi_set_drvdata(dsi, ctx);
++
++	dsi->lanes = 2;
++	dsi->format = MIPI_DSI_FMT_RGB888;
++	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
++			  MIPI_DSI_MODE_NO_EOT_PACKET;
++
++	drm_panel_init(&ctx->panel, dev, &s6e88a0_ams427ap24_panel_funcs,
++		       DRM_MODE_CONNECTOR_DSI);
++	ctx->panel.prepare_prev_first = true;
++
++	drm_panel_add(&ctx->panel);
++
++	ret = mipi_dsi_attach(dsi);
++	if (ret < 0) {
++		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
++		drm_panel_remove(&ctx->panel);
++		return ret;
++	}
++
++	return 0;
++}
++
++static void s6e88a0_ams427ap24_remove(struct mipi_dsi_device *dsi)
++{
++	struct s6e88a0_ams427ap24 *ctx = mipi_dsi_get_drvdata(dsi);
++	int ret;
++
++	ret = mipi_dsi_detach(dsi);
++	if (ret < 0)
++		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
++
++	drm_panel_remove(&ctx->panel);
++}
++
++static const struct of_device_id s6e88a0_ams427ap24_of_match[] = {
++	{ .compatible = "samsung,s6e88a0-ams427ap24" },
++	{ /* sentinel */ },
++};
++MODULE_DEVICE_TABLE(of, s6e88a0_ams427ap24_of_match);
++
++static struct mipi_dsi_driver s6e88a0_ams427ap24_driver = {
++	.probe = s6e88a0_ams427ap24_probe,
++	.remove = s6e88a0_ams427ap24_remove,
++	.driver = {
++		.name = "panel-s6e88a0-ams427ap24",
++		.of_match_table = s6e88a0_ams427ap24_of_match,
++	},
++};
++module_mipi_dsi_driver(s6e88a0_ams427ap24_driver);
++
++MODULE_AUTHOR("Jakob Hauser <jahau@rocketmail.com>");
++MODULE_DESCRIPTION("Samsung AMS427AP24 panel with S6E88A0 controller");
++MODULE_LICENSE("GPL v2");
 -- 
 2.39.5
 
