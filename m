@@ -1,106 +1,111 @@
-Return-Path: <devicetree+bounces-109934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A49998890
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:00:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 001D19988A8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:03:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A31C1F26F49
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:00:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0A301F28150
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:03:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFC0C1C9DFC;
-	Thu, 10 Oct 2024 14:00:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077481CBE83;
+	Thu, 10 Oct 2024 14:02:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DwH6SBFW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MyCLCPQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42121BDA90;
-	Thu, 10 Oct 2024 14:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2FC1C9EB4;
+	Thu, 10 Oct 2024 14:02:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728568857; cv=none; b=BuDDzAHqNBchWjbCRhMt/kYfCZprozK/lJT6+qhOVmotFD0WozI6QExYEfQG6NsExmg3P9JQTewda0FlbdK3Q3xcanJ3KsfZNLH78mnuWSBgVp7k3LMzY+weyNTPoNDv6tS7cbPYIOGfPH9bfWb89H2dUv0bBWEIF3O2zWWwB8w=
+	t=1728568967; cv=none; b=OI9F+dQGJxmQJJ+b9ZFwKsi/9glmhz/YUT2HlaYS7pnV4m9x/hi211RodiqXUbyVVbOPiVfAiB1kjvf2wg/7qvsyr0gQrx5lCk/pJY9q9wha7RR+2Iu3r8sI7lHmz4sPNEY96ZBLTGCqbarlu3c3UULv0JkBaD8gZXrPtziOS8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728568857; c=relaxed/simple;
-	bh=inVUxz74LeTafvVpc7yyQ+a9E48+irURsnVSweAxxHI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kCfXvwxJz2PwHiZ6M9rkevsvwsa6AyNXpFPnLPKB/ZzbYz6HjESyDLrVuUysqOtsAY1NmK4h8F0VR+EcLpftk4d4n+j6ksh7+PNGzTeLYRpClqCKAcXweFu+LhNM6hEoRNhneqL/qHnYCdlX+Mmk5SITj2dZMBLx7bwKUAU34tQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DwH6SBFW; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=3gu4vrCoGcCYQlq4BWraLzQK3LX4/Mgovi2zoTV8H2c=; b=DwH6SBFWkXWr1pA1j4nl2qX+07
-	9KWUyDZShKUQrXGcz+kFxYy1L9Jx53wD2pnrbVTZjrBE8nhAHxuORb8icMC65IJMmz3PVx6ptx7k2
-	mJI9JIPUHU5ZIKwqp42hlhEyWcTzjs8tUkqP9mqJngkqQNuE8GAp+vc8HcP93upaHFjymAE5JzG2o
-	mJYtgxgn9/fReIKvU6sPml4i0RkqLYOWg/mBEJc6yLL8NJK6ZASK2O5PAyZBjVET2KfAxotVSLl8h
-	F+/BRjELvdCOpY39psidABgksphijxx6lU70yvxqumRrsTCxc/02Vfg0yRMJ6rqVTuvMQnHa78H6v
-	XThENvLg==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1sytib-0005bC-J8; Thu, 10 Oct 2024 16:00:41 +0200
-From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: wim@linux-watchdog.org, linux@roeck-us.net, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org,
- Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Karthikeyan Krishnasamy <karthikeyan@linumiz.com>,
- Conor Dooley <conor.dooley@microchip.com>
-Subject:
- Re: [PATCH 1/1] dt-bindings: watchdog: rockchip: Add rockchip,rv1126-wdt
- string
-Date: Thu, 10 Oct 2024 16:00:40 +0200
-Message-ID: <3657223.R56niFO833@diego>
-In-Reply-To: <20241010061408.1351865-2-karthikeyan@linumiz.com>
-References:
- <20241010061408.1351865-1-karthikeyan@linumiz.com>
- <20241010061408.1351865-2-karthikeyan@linumiz.com>
+	s=arc-20240116; t=1728568967; c=relaxed/simple;
+	bh=nS8LibFP7Uli0nM5nRHClR7oAA1za5RJPPtfXxGKNIc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EiykE2MlSs83eb+dW4iCGTUng7Q2GSSla8J0odVA0r37wN/tHwmOyWWv21SAjM1Nsm4Y5YIGsHoXDX2JljyjsGwDY7f7DGWujuIrpyajAsn0Bg11LbaWYZr22XmbnGF1gWKH0G/VpZxxnAtuF30Qs3Lqh0+36IGf9Q41pIfDiC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MyCLCPQF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65CB0C4CEC5;
+	Thu, 10 Oct 2024 14:02:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728568966;
+	bh=nS8LibFP7Uli0nM5nRHClR7oAA1za5RJPPtfXxGKNIc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MyCLCPQFAFlAiWOS7trGzk0UzeG3YI+swbEmRrvEDad7VftBx5duSlzfY4+dEJbys
+	 +dq2tKvvOYJppgxQSMoo4PYs7kvOQpCz/Rcfow918vppbKySYYELc47k3Z0/U4Kp0g
+	 v/6BhoXVnchbDLdycv89jMiUN6PK6vo8hO4ZL3pd+DbeGWeZGVkgPbvDPVyw14ov1i
+	 PPTE+z04jtrOrVLimy1dYHVMwnzfCYay1XdEYDTQc6ORqbK0WWf9T0RAM9NKGiFXux
+	 XEG2hoDnO9fDEjgC1c2otmofLK19h8loetz5O4yZ6LtTC9yQswPqu+ouhbLxMUZQ5E
+	 leMII6DEFfNDA==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1sytkh-000000005Pr-1g8e;
+	Thu, 10 Oct 2024 16:02:51 +0200
+Date: Thu, 10 Oct 2024 16:02:51 +0200
+From: Johan Hovold <johan@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Abel Vesa <abel.vesa@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] arm64: dts: qcom: x1e80100: enable GICv3 ITS for PCIe
+Message-ID: <Zwfei-Jn6goiya4H@hovoldconsulting.com>
+References: <20241009161715.14994-1-johan+linaro@kernel.org>
+ <xwscnif4mqzykjinjtbr7jqsksy2buzindyttkk754jmumktm3@p5xxnmia7fxe>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <xwscnif4mqzykjinjtbr7jqsksy2buzindyttkk754jmumktm3@p5xxnmia7fxe>
 
-Am Donnerstag, 10. Oktober 2024, 08:14:08 CEST schrieb Karthikeyan Krishnasamy:
-> Add rockchip,rv1126-wdt compatible string.
+On Thu, Oct 10, 2024 at 04:54:19PM +0300, Dmitry Baryshkov wrote:
+> On Wed, Oct 09, 2024 at 06:17:15PM GMT, Johan Hovold wrote:
+> > The DWC PCIe controller can be used with its internal MSI controller or
+> > with an external one such as the GICv3 Interrupt Translation Service
+> > (ITS).
+> > 
+> > Add the msi-map properties needed to use the GIC ITS. This will also
+> > make Linux switch to the ITS implementation, which allows for assigning
+> > affinity to individual MSIs. This specifically allows NVMe and Wi-Fi
+> > interrupts to be processed on all cores (and not just on CPU0).
+> > 
+> > Note that using the GIC ITS on x1e80100 will cause Advanced Error
+> > Reporting (AER) interrupts to be received on errors unlike when using
+> > the internal MSI controller. Consequently, notifications about
+> > (correctable) errors may now be logged for errors that previously went
+> > unnoticed.
+> > 
+> > Also note that PCIe5 (and PCIe3) can currently only be used with the
+> > internal MSI controller due to a platform (firmware) limitation.
+> > 
+> > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+> > ---
+> > 
+> > The PCIe Gen4 stability fixes [1] are now in 6.12-rc1 so that we can enable
+> > the GIC ITS without being flooded with link error notifications [2].
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
+> Cc: <stable+noautosel@kernel.org> # Depends on driver stability fixes
 
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+This patch is enabling a new feature, it is not a fix, so Bjorn please
+do not include the above tag when applying.
 
-> ---
->  Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> index b5a3dc377070..1efefd741c06 100644
-> --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> @@ -32,6 +32,7 @@ properties:
->                - rockchip,rk3576-wdt
->                - rockchip,rk3588-wdt
->                - rockchip,rv1108-wdt
-> +              - rockchip,rv1126-wdt
->            - const: snps,dw-wdt
->  
->    reg:
-> 
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
+But thanks for reviewing.
 
-
-
+Johan
 
