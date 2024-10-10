@@ -1,138 +1,112 @@
-Return-Path: <devicetree+bounces-110046-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110047-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09C93998F2E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:01:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49341998F34
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:01:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA7F928BBAD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:01:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 793201C23C8D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4065A19AA6B;
-	Thu, 10 Oct 2024 18:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C35C1CCEF4;
+	Thu, 10 Oct 2024 18:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="ensdAfUg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etvIoIqg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E74E19CD1D
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 18:00:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F202C19D880;
+	Thu, 10 Oct 2024 18:00:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728583219; cv=none; b=Ups0vE9qtrgnfPlf3vlpAokuR3cSh/jbp2hBmnDosx9XaWsbKuyqd0lbYUQOCqApjHhcASQteXtjqKn4M3UX1mXfnu8DyNK5Wj4KOibsRlVluTo6J4caAWlWtKnStWj1tzcmOJ8P40Q8NRVq36+MCf4LhW29J+raR7YcpJCBC5A=
+	t=1728583237; cv=none; b=gAdw8bKGVz5wbT6/cZP4b7E71c8luwCcmrJGh6vnm+/R5svqpriF9Cvxt60xeA4kmRs9qec+ZUNbNo0xQ5nJj1rutI7/MwB+pq4DUKJM7sFd4VZs291l42wbfMC9gydYEWr7CvhZE05GWIw6vbop+1rZf5k3QU6SwWb8Zx+z5F4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728583219; c=relaxed/simple;
-	bh=uFGgFJh9IReXhMRF/LgzScfdi62DXCnsVdKV0NksdRc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hBj1DWG1s7QnhaBGcwxL7AmTRVdNAcbVhpXg7xJka1LS3V0ElDQRXqOvcPdkJXU6Z5qX3pfvQojRPFnE5hL58pskYZLo0t3/o9I+LaYhpjkPvNEJ+LbFamsF4iOK4wRHGOnct2itRHty48ea1N0Uyn/Hi9QrUPCdX2EOpJyEDjE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=ensdAfUg; arc=none smtp.client-ip=209.85.219.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6cb3d2ce75eso20708056d6.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 11:00:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1728583216; x=1729188016; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=b/p3PXzdBfpcfyv7KxhR2HXgRwL05Mmncl9CJKIynHo=;
-        b=ensdAfUgeqvW0lHLz8pwkN7OhdYuMXdX+vJkfWCPX3Ds1ay6S2hDUrADoyQiWyAizO
-         ob08daaGo6512BlRTMoBwV8nHt1SuxdAYyDWM9izdpWJm4ONnOu6qkwd3RP38nRQzHbX
-         OxSwchYoUJJa0shbJ2jTwqD/gKQuVg9CWwqDg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728583216; x=1729188016;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b/p3PXzdBfpcfyv7KxhR2HXgRwL05Mmncl9CJKIynHo=;
-        b=wDTeKaV5Suu3Qn31RtOwvYWZyDdFMGmyrGEf3oarGv4htsbN0QhiCZHcwkp4whlnvL
-         /vchHoq4Lib5IaAx9S+3JCyAA019DG19sQrq3ramDRiBswmlwtWpz34CArfXNFsSwFCL
-         uF7yV4KBLumns2sb2js5PAWwDPCHvJjeMD6iCbUBS1CmxxAafJCj9XcQtrdJRpy6Sa2u
-         /j1Jys9segNjLput3T5MTYxetkawp5DaeRaQmubedljr9ppql/9R/lkJx0HraK1yLf0U
-         JS7/DwP4F6b17+3B5CPGkMoZkfFPuUQvYkpDKiW8SIL8iYh0UXAAreD4efeB/Pt24g0h
-         b1/A==
-X-Forwarded-Encrypted: i=1; AJvYcCU++E8PrFgThoqfoIzq/1leNjAxkT7adeW7gm0nj5PRdLgAacXZUEdcuwBaqFOa/n5ARhGaa4UHhrwY@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhpK8ESb79oGw2aFWEcHUsJFGoete+Q365XpY01OnDODTn6FUu
-	Wyizp6DNIxPJhKPh0v/kvIR2lycIFD4nPJR1pba4HvGZ/F7O+72AZmlTQrjVcA==
-X-Google-Smtp-Source: AGHT+IELDsg8zLqUxr4WhEOTgSZuqnv/6KWkUoxQgivolpkQ4sTDM9BvfGLngOi5QM9ip0zx1bfC2w==
-X-Received: by 2002:a05:6214:62f:b0:6cb:ee9c:7045 with SMTP id 6a1803df08f44-6cbee9c7dcfmr9506426d6.2.1728583216360;
-        Thu, 10 Oct 2024 11:00:16 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cbe85a5806sm7550326d6.4.2024.10.10.11.00.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 11:00:15 -0700 (PDT)
-Message-ID: <d37a49d7-0e82-4d08-ba6a-7d466a4ab705@broadcom.com>
-Date: Thu, 10 Oct 2024 11:00:13 -0700
+	s=arc-20240116; t=1728583237; c=relaxed/simple;
+	bh=vnXCeY/eIb6pDREyFMJGaK+pFEB8fxIiROrKc/YO4eo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pf+mF3g9lSddpT3y+98wFwOI39x+Zbeb9OQlnwZnYqe3Fwxq8E2TGjTcmiYHZVL1HTsvZv4TBFHFs+qmB4axekhOY9tW7vzPORH/Mwdx6FauqNRuA7Y99gl6erAOPMo5a1FtduwxbOSCbZuG4RXRXy5D5txykY3OsG3rxjPeg4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etvIoIqg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE7AAC4CEC6;
+	Thu, 10 Oct 2024 18:00:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728583236;
+	bh=vnXCeY/eIb6pDREyFMJGaK+pFEB8fxIiROrKc/YO4eo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=etvIoIqgciTpA/ZXHpxMX1IfEQEmJV86AHXQPf+6ONCaV6uR9nNqfWhTsGrbM9R/8
+	 qvrsieY4P+Bt8l7BFMdxjSNKLI93qigtaFV1/fdH4VcSwAEtugBWeGgIPJtTx5zKVy
+	 6GWYd32euVFTKwvdgJxCB6581EoEOUPnXNCQOH7CT/Zoy5jY7J4AQXdk5XDRkDrFm0
+	 xbwmhgb0l+ozeMtEKbsCzyIDj0LBCkSQgvBzjZ93upXBahY/xREpjhrI62Agt1WSZq
+	 EJbQ+TEEy5tkpFhhoIFCbSzvRPhGZOAbM/Fd2nwpSdoVDPsWn8SmIbXic5pJMBtC6R
+	 fKXVP7Ej4jLYg==
+Date: Thu, 10 Oct 2024 13:00:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: linux@armlinux.org.uk, linux-kernel@vger.kernel.org,
+	conor+dt@kernel.org, krzk+dt@kernel.org, andrew@lunn.ch,
+	andrei.botila@oss.nxp.com, horms@kernel.org,
+	devicetree@vger.kernel.org, kuba@kernel.org, imx@lists.linux.dev,
+	davem@davemloft.net, pabeni@redhat.com, hkallweit1@gmail.com,
+	edumazet@google.com, netdev@vger.kernel.org, f.fainelli@gmail.com
+Subject: Re: [PATCH v5 net-next 1/2] dt-bindings: net: tja11xx: add
+ "nxp,rmii-refclk-out" property
+Message-ID: <172858323378.2094687.9350859179293389445.robh@kernel.org>
+References: <20241010061944.266966-1-wei.fang@nxp.com>
+ <20241010061944.266966-2-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 4/4] leds: bcm63138: Add some register defines
-To: Linus Walleij <linus.walleij@linaro.org>, Pavel Machek <pavel@ucw.cz>,
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, William Zhang <william.zhang@broadcom.com>,
- Anand Gore <anand.gore@broadcom.com>, Kursad Oney
- <kursad.oney@broadcom.com>, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?=
- <rafal@milecki.pl>,
- Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-References: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
- <20241010-bcm63138-leds-v4-4-cdb80780a555@linaro.org>
-Content-Language: en-US
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20241010-bcm63138-leds-v4-4-cdb80780a555@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241010061944.266966-2-wei.fang@nxp.com>
 
-On 10/10/24 07:10, Linus Walleij wrote:
-> The Power LUT (Look-up Table) register base was missing, also
-> add the bit define for sending serial LED data in reverse order,
-> and use the BIT() macro to define the bits in the control
-> register.
+
+On Thu, 10 Oct 2024 14:19:43 +0800, Wei Fang wrote:
+> Per the RMII specification, the REF_CLK is sourced from MAC to PHY
+> or from an external source. But for TJA11xx PHYs, they support to
+> output a 50MHz RMII reference clock on REF_CLK pin. Previously the
+> "nxp,rmii-refclk-in" was added to indicate that in RMII mode, if
+> this property present, REF_CLK is input to the PHY, otherwise it
+> is output. This seems inappropriate now. Because according to the
+> RMII specification, the REF_CLK is originally input, so there is
+> no need to add an additional "nxp,rmii-refclk-in" property to
+> declare that REF_CLK is input.
+> Unfortunately, because the "nxp,rmii-refclk-in" property has been
+> added for a while, and we cannot confirm which DTS use the TJA1100
+> and TJA1101 PHYs, changing it to switch polarity will cause an ABI
+> break. But fortunately, this property is only valid for TJA1100 and
+> TJA1101. For TJA1103/TJA1104/TJA1120/TJA1121 PHYs, this property is
+> invalid because they use the nxp-c45-tja11xx driver, which is a
+> different driver from TJA1100/TJA1101. Therefore, for PHYs using
+> nxp-c45-tja11xx driver, add "nxp,rmii-refclk-out" property to
+> support outputting RMII reference clock on REF_CLK pin.
 > 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> ---
+> V2 changes:
+> 1. Change the property name from "nxp,reverse-mode" to
+> "nxp,phy-output-refclk".
+> 2. Simplify the description of the property.
+> 3. Modify the subject and commit message.
+> V3 changes:
+> 1. Keep the "nxp,rmii-refclk-in" property for TJA1100 and TJA1101.
+> 2. Rephrase the commit message and subject.
+> V4 changes:
+> 1. Change the property name from "nxp,phy-output-refclk" to
+> "nxp,rmii-refclk-out", which means the opposite of "nxp,rmii-refclk-in".
+> 2. Refactor the patch after fixing the original issue with this YAML.
+> V5 changes:
+> 1. Reword the description of "nxp,rmii-refclk-out" property.
+> ---
+>  .../devicetree/bindings/net/nxp,tja11xx.yaml     | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
--- 
-Florian
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+
 
