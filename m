@@ -1,170 +1,156 @@
-Return-Path: <devicetree+bounces-109984-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DA26998C7D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:56:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71CCC998B4D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:22:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7DF18B28A79
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:20:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C4641F22DE1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:22:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CB011CBEBB;
-	Thu, 10 Oct 2024 15:20:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Z0lpxxZS"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1859C1CC887;
+	Thu, 10 Oct 2024 15:22:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6F73B646;
-	Thu, 10 Oct 2024 15:20:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2801CC147;
+	Thu, 10 Oct 2024 15:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728573641; cv=none; b=r2wGOPdi3hmQWBR0AhwdVURRvLyj6P9cLtifZXE+diRVyWX67018CnRbp4nfRbF5jfFEcX+k3AmfWYBKLcSpBqxx9pERd0F9P8yzKM1SLypgwSyaNq4umWRaU/Rr7hebb/TVu+rp+RbBwmt1aPf1gElkGwIrLX61vwuAA5dLJ3g=
+	t=1728573746; cv=none; b=YvWLsvzZJHGULe6z2TFLJloG9EkgwjBytEJd+mxGKf8TIABWjqgwxgs+P6GEaQSr9hBU7n8pf4BFJ2loK9xpvMyZ+QqOWb01KKVO6sgXCslCM+P2+j6wsQy4IQbPx4STFJg0xgjGp1c+yt7k/VydMrmcvCwTp8+T7wQki04Thpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728573641; c=relaxed/simple;
-	bh=FMOKQmRnRuG0u6SCHuk/rSndbZsClfTEYhslQL/e4Ss=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SnaL6pqJ4dpwrJfeahfMKD++CPfbavR1IqWvK9uaMq8tJRMr8HTHI9pxG3nhjdxqtnD9xgOBpiT6YVYhY9f/LPWD4lcIfvsGt7I/5RKyOHM3eWmNttHYDxJi1q3L8KLJ+e1CHJAtUkijSpXFCoEliltnHmy927IG8+XdKkefOMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Z0lpxxZS; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728573640; x=1760109640;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FMOKQmRnRuG0u6SCHuk/rSndbZsClfTEYhslQL/e4Ss=;
-  b=Z0lpxxZSVK9zbaYNzoqGUBV29/foJEJf7mVF3GY8IWsSbnU0Qg0W3q0Y
-   58EZ6HUZswo1Z2M8utA7g9z7qUSdQkONfXHS2TliWtCw5oMkQ7FolWJpg
-   2Ls217S+PrhlJ5I0tVZzAGZMcfLUrUHmAFMvFLDpmLm4Q4eJwblg+Abxy
-   auyvLob1gN9vJ0lwjp5nh/NKgmsvm8iy2Ip+D1NAM8korusUGqnMRq3CO
-   6wLxOW0ltXsEc1887z8xx5ChoQaGRBr7TwYN/inChRG/3mu7Z02HVhD1e
-   +VSjQYq4TZ6Q/uEp+nCnWSpGvB+XrOoN1xM+/oB2oedecnrIgw55qnOTl
-   A==;
-X-CSE-ConnectionGUID: W35/HYwmSrqEun/momCJJA==
-X-CSE-MsgGUID: JqyMZV81RTu2+bLrf40CkA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="45417083"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="45417083"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:20:39 -0700
-X-CSE-ConnectionGUID: uFuqKWFpRUGoCWa1ZSzSlg==
-X-CSE-MsgGUID: HFVp1nsLSFi0YkYM0dHCyg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="76532971"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:20:35 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1syuxr-00000001ZlS-3lMj;
-	Thu, 10 Oct 2024 18:20:31 +0300
-Date: Thu, 10 Oct 2024 18:20:31 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
-Message-ID: <Zwfwv-O9ln-PVMdc@smile.fi.intel.com>
-References: <20241008073430.3992087-1-wenst@chromium.org>
- <20241008073430.3992087-7-wenst@chromium.org>
+	s=arc-20240116; t=1728573746; c=relaxed/simple;
+	bh=s+8oKw9lYbGlfDOOh5Vzq21tMDHsDkvtvta/qIpwP5g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nLJCgu2OmFUHsMq0xj8xSzSDZi9/1bYycDr52Ae5rzwlbvzKJvvtgcuM3akjQyD6q63M09P2VhuvzSCyK3kfXjqYKtycklS1x0b/fEougP1RpgFPE4W8BDnhLqF2jNKW18L8R4Vf+jfE9WQqUR1qgg70kGgc/lQQpwDxdQlwnpA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e25f3748e0so12423947b3.0;
+        Thu, 10 Oct 2024 08:22:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728573742; x=1729178542;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Jao0Svc0n55kg/+w0la34Wpf1syzLSX8vW8f7gdO0JU=;
+        b=l1fGS1cwmCbUX0GNduwyHZaUEhPoKZvCu9wYU0yI6xtHTDr/zueWN/UqXFAPAALRyg
+         T4B/uXfLIJG/YmmmBA6Tav9HiYcfsOMdkQ7lxYIo396Ptr7WJ1jct3NLWOixwmnZ/Xgt
+         XFAyvUeDmFzEVb7ReVU+BPZCC7cCu7AmXxDvXxP/9c3TBWMfY7uuRxIqWbFKWacwBSfO
+         AkHd0oQ3rFHUwUed13SF7lCIpjwyHh6h8xBigoSNyA5uBCroX+MFvuW8LJ2+2b/KNVph
+         YvybPAhSUHuJkQRm/fvr3fG41E9e4iAFQLpUsk2rUuq2BTo4M4849+t6C4VhPZUmeWeh
+         Mcow==
+X-Forwarded-Encrypted: i=1; AJvYcCV1Jq13xRcGDXWT6FfkGxG05A0dfsNF5T0JzzK1gL5Qo5rJMnTYUiexvK78Cs8OlUBpk8Nvdybb2TAJ@vger.kernel.org, AJvYcCWCTZcQMTbkmvMZJ6cBQAnbSKZBkfjWCFL/RGIk4RNUJoW0Hz3GxUSOOEnSZDcSWayQ9gdvk6borXaKlFxA@vger.kernel.org, AJvYcCXil3BNsaGChils0SOQSr3IRiW43VLx3tl5BN6eymiXWR0/vjmF0wQwvDaFlVnLKQWKM0QVykVKrB8s@vger.kernel.org, AJvYcCXnxjcMPbPpzy8hgkjYVo7PV7JqqE9dCZjReJhC4+aiupUKnCb+w0GhGMZtSO4ubsOJczs4jCtC9bDA@vger.kernel.org, AJvYcCXsiPulz2UWDoBhWSKUGa+vhx0drRTrcJo8KuH4OrU2mvgnxYip3rMvEhnxfikVIv71CW6wuvDa+qBmdAIVSciqYLA=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqjW3LGSEQ2RDZf5ORXyuLLK/wsqMLVODbeA/BHiCTNHwW42Er
+	HdmCUJMJX9kCj5kkpP7o4i6xiQBUQ2uGbeBxrV6//TwBsTxCs+zuL7IU48Z/
+X-Google-Smtp-Source: AGHT+IGi2lqjdHiYuBMfImEnw66tasFC/37QTnDnra998ZrrgJyc4jpTeigb0L62IUL4na2Ugq+7Pw==
+X-Received: by 2002:a05:690c:85:b0:6e2:1a26:2974 with SMTP id 00721157ae682-6e3224ed762mr58939827b3.39.1728573742141;
+        Thu, 10 Oct 2024 08:22:22 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e332b618b7sm2439047b3.3.2024.10.10.08.22.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Oct 2024 08:22:21 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-e2908e8d45eso912241276.2;
+        Thu, 10 Oct 2024 08:22:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVOIeH+NZooRpc/cZi8MJnhrk4KUmQvYvoBJFexrG6Byost/j9BTs8fuzgF6cLshI4Uj15Ro6Ga7VTF@vger.kernel.org, AJvYcCVqaAADrQzkxESdzFb9WZqg6+qrnfD7LFHqHL55Ke3F8K+CYMXppYwiVEx7nnbGWBKVqs/RQ03q5LKF@vger.kernel.org, AJvYcCW2HZXxd4e5YEvMbUQQSu8Lrq0laA80C+WHNx8JJzDXUXT0BBV0k28UwTZVMj0tcHKN6ConpuLmK9s7@vger.kernel.org, AJvYcCW8+N/lsgwe536TMgYPwVLVBzkw+i7HNYvjunQcAuEgqTaQ756IAdCKUVNiatIUn/KpaKUUFPtNZBFHIdk7fJtPhwE=@vger.kernel.org, AJvYcCWvYIbIvqw7XR6u6ws606IUiLvRHdFxr9uQdiGETsiepj/SzZrz8vfcmBialrLx/wTcFkPmTWWf6i//AqZp@vger.kernel.org
+X-Received: by 2002:a05:690c:47c1:b0:6e3:1837:4860 with SMTP id
+ 00721157ae682-6e3221c2589mr45632497b3.13.1728573741351; Thu, 10 Oct 2024
+ 08:22:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241008073430.3992087-7-wenst@chromium.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-9-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240830130218.3377060-9-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Oct 2024 17:22:09 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVqno3vO9T0FtHnNL2afWP4abSE4vmf8vkLRRndg=ws7A@mail.gmail.com>
+Message-ID: <CAMuHMdVqno3vO9T0FtHnNL2afWP4abSE4vmf8vkLRRndg=ws7A@mail.gmail.com>
+Subject: Re: [PATCH v3 08/12] arm64: dts: renesas: r9a08g045: Add RTC node
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
-> Add GPIO support to the simple helpers for the I2C OF component prober.
-> Components that the prober intends to probe likely require their
-> regulator supplies be enabled, and GPIOs be toggled to enable them or
-> bring them out of reset before they will respond to probe attempts.
-> Regulator supplies were handled in the previous patch.
-> 
-> The assumption is that the same class of components to be probed are
-> always connected in the same fashion with the same regulator supply
-> and GPIO. The names may vary due to binding differences, but the
-> physical layout does not change.
-> 
-> This supports at most one GPIO pin. The user must specify the GPIO name,
-> the polarity, and the amount of time to wait after the GPIO is toggled.
-> Devices with more than one GPIO pin likely require specific power
-> sequencing beyond what generic code can easily support.
+Hi Claudiu,
 
-...
+On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Add the DT node for the RTC IP available on the Renesas RZ/G3S SoC.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v3:
+> - added CPG clock, power domain, reset
+> - and assigned-clocks, assigned-clock-parents to configure the
+>   VBATTCLK
+> - included dt-bindings/clock/r9a08g045-vbattb.h
 
-> +static int i2c_of_probe_simple_get_gpiod(struct device *dev, struct device_node *node,
-> +					 struct i2c_of_probe_simple_ctx *ctx)
-> +{
-> +	struct fwnode_handle *fwnode = of_fwnode_handle(node);
-> +	struct gpio_desc *gpiod;
-> +	const char *con_id;
+Thanks for your patch!
+
+> --- a/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r9a08g045.dtsi
+> @@ -160,6 +161,22 @@ i2c3: i2c@10090c00 {
+>                         status =3D "disabled";
+>                 };
+>
+> +               rtc: rtc@1004ec00 {
+
+Please insert this after serial@1004b800, to preserve sort order.
+
+> +                       compatible =3D "renesas,r9a08g045-rtca3", "renesa=
+s,rz-rtca3";
+> +                       reg =3D <0 0x1004ec00 0 0x400>;
+> +                       interrupts =3D <GIC_SPI 315 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 316 IRQ_TYPE_LEVEL_HIGH>,
+> +                                    <GIC_SPI 317 IRQ_TYPE_LEVEL_HIGH>;
+> +                       interrupt-names =3D "alarm", "period", "carry";
+> +                       clocks =3D <&cpg CPG_MOD R9A08G045_VBAT_BCLK>, <&=
+vbattb VBATTB_VBATTCLK>;
+> +                       clock-names =3D "bus", "counter";
+> +                       assigned-clocks =3D <&vbattb VBATTB_MUX>;
+> +                       assigned-clock-parents =3D <&vbattb VBATTB_XC>;
+
+Don't the assigned-clock* properties belong in the board DTS?
+In addition, I think they should be documented in the DT bindings,
+and be made required, so board developers don't forget about them.
+
+> +                       power-domains =3D <&cpg>;
+> +                       resets =3D <&cpg R9A08G045_VBAT_BRESETN>;
+> +                       status =3D "disabled";
+> +               };
 > +
-> +	/* NULL signals no GPIO needed */
-> +	if (!ctx->opts->gpio_name)
-> +		return 0;
-> +
-> +	/* An empty string signals an unnamed GPIO */
-> +	if (!ctx->opts->gpio_name[0])
-> +		con_id = NULL;
-> +	else
-> +		con_id = ctx->opts->gpio_name;
+>                 vbattb: vbattb@1005c000 {
+>                         compatible =3D "renesas,r9a08g045-vbattb";
+>                         reg =3D <0 0x1005c000 0 0x1000>;
 
-Can it use positive conditional?
+The rest LGTM.
 
-	if (ctx->opts->gpio_name[0])
-		con_id = ctx->opts->gpio_name;
-	else
-		con_id = NULL;
+Gr{oetje,eeting}s,
 
-> +	gpiod = fwnode_gpiod_get_index(fwnode, con_id, 0, GPIOD_ASIS, "i2c-of-prober");
-> +	if (IS_ERR(gpiod))
-> +		return PTR_ERR(gpiod);
-> +
-> +	ctx->gpiod = gpiod;
-> +
-> +	return 0;
-> +}
+                        Geert
 
-...
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-> +static void i2c_of_probe_simple_disable_gpio(struct device *dev, struct i2c_of_probe_simple_ctx *ctx)
-> +{
-> +	if (!ctx->gpiod)
-> +		return;
-
-Do you need this check for the future patches?
-
-> +	/* Ignore error if GPIO is not in output direction */
-> +	gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_enable);
-> +}
-
-...
-
->  struct regulator;
-> +struct gpio_desc;
-
-Ordered?
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
