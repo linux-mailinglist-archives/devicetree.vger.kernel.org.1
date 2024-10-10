@@ -1,137 +1,156 @@
-Return-Path: <devicetree+bounces-109994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6D4A998BB3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:32:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CE60998BBF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:33:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7D3628B733
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:32:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03F721F2227C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFF711CCB2E;
-	Thu, 10 Oct 2024 15:31:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BEA1CC8BB;
+	Thu, 10 Oct 2024 15:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hdlIpHYg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49BB8282FB;
-	Thu, 10 Oct 2024 15:31:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822131CC89F;
+	Thu, 10 Oct 2024 15:32:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728574286; cv=none; b=EXw/Ib4dxJCd5U+Oanem0ROd6kOOVGt+uqLgkT4fXlhxnJXTAPftF5Mj8qfkkEV8XGKiqxCtRkS/uScWLrAcVeTYDHyInmonMytYtz1k220oXbKvoOZDTsT0ddwPseB4k1CT5FfFv80tCdhfJvBJxRptfmkuw8xb9zuFrkTIqvI=
+	t=1728574352; cv=none; b=UmhjaEjRA9jwksCgxQaPDVbjd9s22kz+JJltsdb0q1M8jd6LqUhyvTFWdPFixohFIB8thFZu+kOCx82Vj0cUxphg0Tpby7kCZWoC8G9eig1wMrShlSgmPHZxCql/xLzFEwa9JICryAJxHpW9nlYeUkv4+YFGv91hTe8VRM/X+X8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728574286; c=relaxed/simple;
-	bh=JLmEn3Y3Mup+MIsj1v4X+aQ/1zIlI6rtFcqdaNpOSHY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HYxEN3V888sk01vn0lWbvYrTE7s9Dmiuw4v4y8wIa9//gTO2cOOJ32wkmPOhbR8Vetw+gep+phd6jgPItNNwcOwx98UQWQ8/6Yhxsi1SxBDdTIwXoQsYhB7gzkaxqJ4JaF4fD3OxXqpFNrg44KeLaBvCzigCo5YlGYqhNg1BfRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6e2e4244413so12652877b3.3;
-        Thu, 10 Oct 2024 08:31:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728574283; x=1729179083;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b0mCUH7aNgtABnVVF5yxDimhVzJlZrl+fopZk7Shdng=;
-        b=OBeTsDFHTfnjmDMgcbwpkxAHZ5QEybAABnSvtrBRAhE13zpuljL4Uayl2LrHqdW+ct
-         /VqmKzWoqDpdpsB46yv4MRV9pcNy3adPnRByzAiCkIXQ1htZamYapnybYfigYUGWqrGF
-         cuBbZA4QzkRFmrloJuSdtY63BMa9HfrGSSLnkIqFvPgXR/AU+rSHiewjLUdrNIxF9Rpr
-         Oc5e3w9u/63M6NCxg3Z/MHggrs5XJuwvfgmpxGBs7WGwL97W419/yohUwIKNNlPvPHT8
-         gq/zpWygg+JdZAFpQBX1gLreW5Iq47iFH29TBNFpuxpUB+OX0dLuELNhK88XNYuNkDia
-         /eHA==
-X-Forwarded-Encrypted: i=1; AJvYcCU2+Me++54MIEyQ/sa2E4nscqkiIhVGLNG+TPdmJVEPkCTuvlIjdA7S/xf5M8yvDeztX+cwiu5uPvSJ@vger.kernel.org, AJvYcCUpvY4XxD7I/9fVBCmWn0BDe2bG8GK6MdBh2aYze1vSS0S1nHeNH5wX2ZDQX7SnuwL7D3zFuOHDNb8U@vger.kernel.org, AJvYcCWqhejzMBeNeqigDarVT/7dxCVZyL3ssh1f2Ukm2EThmNSJshd4eTwJBRe4HBOZDcU1E7a4CXBWXfCv/pJy@vger.kernel.org, AJvYcCXe1wkwdyFkKJeBrFYIigc0qIUlhrLOj33tteMqA5X3GW1Qd9DVFOTLyFaXh6RmooGyruILOT/TYH4+pbiQMX8YBZI=@vger.kernel.org, AJvYcCXtxU6WqML4q+hFPDho8k7FG3XUS3ytPliBLnEurrXZGz+HUVRkxOpIGYfe5R7WAK4qtDHM0Hi9MkSO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrmxorECorvk583O6Gjns5+zFyyRrnlI1mCH+lZYfFNRVRAaFz
-	Duj4fFOqSbQWBCdzGG53+owjMJKZwxjCYuOo5xButBg5G2IX96gWjLWsI83w
-X-Google-Smtp-Source: AGHT+IHdQOYTFmbKtk9ycHJSV57flTpVebEOzQg2Y0AizXU7pFjOeG+FrxKCH3hrS15uimwesy2uKQ==
-X-Received: by 2002:a05:690c:7690:b0:6e3:323f:d8fb with SMTP id 00721157ae682-6e3323fdcafmr16339837b3.14.1728574283115;
-        Thu, 10 Oct 2024 08:31:23 -0700 (PDT)
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com. [209.85.128.182])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e332cb3783sm2378867b3.141.2024.10.10.08.31.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 08:31:22 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-6e2d36343caso9121057b3.2;
-        Thu, 10 Oct 2024 08:31:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVTJ50cAZdC8x3LsO5OEcEoQRYzhdLN539QTwJM6w3ygmpznekg9u8WbCazyPLmHyyANCHXdueyZZGw@vger.kernel.org, AJvYcCVmY3rnoZyAFLiQJGxqbxRnTTOpq9zRdUc0nU/3yoipSo1UlJuF1abxE7oxeQxJFFltT15IKvBdoOqY5ggTTRysjeM=@vger.kernel.org, AJvYcCWQ5LAVNCKAnhdcbcDZoEInveR8RjVKULx6UZ9CuKIa8HtI53U3bIkOM7iOPTijuRH8U8sOBsUkyI/e@vger.kernel.org, AJvYcCX8nMzbJ/i01UvMOT07QgLsELXPg/ovRJMc8Ke5ckH4Wf/b7bJbvWqYOSqMDeUBJ64120hGMfxgUUWa/SH6@vger.kernel.org, AJvYcCXKdMHcA0bSiuj5V5FNNkH50IvikEXIhw+tsZhM/mR0FeIPYvNZnW1rjxEAX3WMGDXWQtMN13fy5R9V@vger.kernel.org
-X-Received: by 2002:a05:690c:6606:b0:6e2:1742:590d with SMTP id
- 00721157ae682-6e32212b7d6mr61109317b3.3.1728574282330; Thu, 10 Oct 2024
- 08:31:22 -0700 (PDT)
+	s=arc-20240116; t=1728574352; c=relaxed/simple;
+	bh=MP15bS4w3vSqH5JjlnyEj+lJuyt5Y2WkrfBOlfGovZ8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uERW7ymBYAR8nYsS/M12IgcmfYvDIglfT3yeItYEES/QPNfcspBoTNbYYrhFwAEdn/6w6CiW8bdFJOAeG/iPI1Nuy6OhdKU+XfMxNP+1z3IEeGz1dlhLmJaPTZIkOd9PlzbRyclHI+Ubpie4fXBmZ594m3mGVEjkdcX7Uky/GB0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hdlIpHYg; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728574351; x=1760110351;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=MP15bS4w3vSqH5JjlnyEj+lJuyt5Y2WkrfBOlfGovZ8=;
+  b=hdlIpHYgrQ5JkCQACO2Ob6IQdjxn8egWXqagEB4ep1hdTH/modk9ua6z
+   8q8Ffoq3tzp0rWyXhTF2RJUewYxdSVBOBJP8aWI4YD6ktgViumHnJNA2w
+   m/632BPozGF7kh0P4/NjzUQdbIXX7gqmlrk9/8iBjv+PKsewEXTkZXkLO
+   DlR6NJHDZ8Y2jpvDhsIaqFYkDwANFYxP0XR35TTh3oWFN5xN/ylSxGwra
+   0Rg559p0uCUHmbtmA3/nkv63lBDI6VLwM8tRNLKZy/NpUthmHRQdoq+WD
+   vUB7fi4u5VmrURzWB8dVJL34I9SCHzo+XRJfLssM9+IXhyKtQK4i50tvW
+   Q==;
+X-CSE-ConnectionGUID: EYRAZESpQ5CXqn3EW0rFgw==
+X-CSE-MsgGUID: JptM8s08StyxFOj1vOPBsA==
+X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="45456275"
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
+   d="scan'208";a="45456275"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:32:30 -0700
+X-CSE-ConnectionGUID: 8qbP8zovS+qEoDxs1TzEVw==
+X-CSE-MsgGUID: BDJjDco/TJayOTFrgGJreA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
+   d="scan'208";a="76828992"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:32:25 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1syv9K-00000001Zwx-1c2G;
+	Thu, 10 Oct 2024 18:32:22 +0300
+Date: Thu, 10 Oct 2024 18:32:22 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Chen-Yu Tsai <wenst@chromium.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Douglas Anderson <dianders@chromium.org>,
+	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH v8 7/8] platform/chrome: Introduce device tree hardware
+ prober
+Message-ID: <ZwfzhsvlPrxMi61j@smile.fi.intel.com>
+References: <20241008073430.3992087-1-wenst@chromium.org>
+ <20241008073430.3992087-8-wenst@chromium.org>
+ <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdWeGC_N3-XF29+UUR43OGJKqVNNHs042J8HRuNpiD=vOg@mail.gmail.com> <1c733190-bd46-43d0-8f3d-62e0ed5fde42@tuxon.dev>
-In-Reply-To: <1c733190-bd46-43d0-8f3d-62e0ed5fde42@tuxon.dev>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Oct 2024 17:31:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVWhAoFQOHrDRFKX7bJFobC73qkHggFRdSCmhrsZmXWbA@mail.gmail.com>
-Message-ID: <CAMuHMdVWhAoFQOHrDRFKX7bJFobC73qkHggFRdSCmhrsZmXWbA@mail.gmail.com>
-Subject: Re: [PATCH v3 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document
- the Renesas RTCA-3 IP
-To: claudiu beznea <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Hi Claudiu,
+On Thu, Oct 10, 2024 at 06:29:44PM +0300, Andy Shevchenko wrote:
+> On Tue, Oct 08, 2024 at 03:34:26PM +0800, Chen-Yu Tsai wrote:
 
-On Thu, Oct 10, 2024 at 11:52=E2=80=AFAM claudiu beznea
-<claudiu.beznea@tuxon.dev> wrote:
-> On 10.10.2024 12:29, Geert Uytterhoeven wrote:
-> > On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.d=
-ev> wrote:
-> >> Document the RTC IP (RTCA-3) available on the Renesas RZ/G3S SoC.
-> >> The RTC IP available on Renesas RZ/V2H is almost identical with the
-> >> one found on Renesas RZ/G3S (it misses the time capture functionality
-> >> which is not yet implemented on proposed driver). For this, added also=
- a
-> >> generic compatible that will be used at the moment as fallback for bot=
-h
-> >> RZ/G3S and RZ/V2H.
+...
 
-> > Sorry for chiming in late, but this RTCA-3 block seems to be a
-> > derivative of the RTC blocks found on older SuperH SoCs, and on RZ/A1
-> > and RZ/A2 ARM SoCs.  Differences are found in (lack of)
-> > 100/1000-year-count parts and the Year Alarm Enable Register, and in
-> > some control register bits.
->
-> At a 1st look it seems so, yes. I was inclined at the beginning to just u=
-se
-> the rtc-sh but the RZ/G3S HW manual mentions a lot of restrictions that
-> need to be followed when configuring the IP. Because of these restriction=
-s
-> I chose to have a different driver. Otherwise the rtc-sh would have becom=
-e
-> way too complication as far as I can tell.
+> > +static const struct chromeos_i2c_probe_data chromeos_i2c_probe_dumb_touchscreen = {
+> > +	.cfg = &(const struct i2c_of_probe_cfg) {
+> 
+> Perhaps you can introduce something like
+> 
+> #define DEFINE_I2C_OF_PROBE_CFG(_type_, _ops_)		\
+> 	(struct ...) {					\
+> 		.ops = _ops_,				\
+> 		.type = #_type_,			\
+> 	}
+> 
+> and use it here as
+> 
+> 	.cfg = DEFINE_I2C_OF_PROBE_CFG(touchscreen, NULL),
+> 
+> > +		.type = "touchscreen"
+> 
+> Ditto.
 
-[...]
+This was for leaving trailing comma.
 
-Thank you, makes sense!
+> > +	}
+> 
+> Ditto.
+> 
+> > +};
+> > +
+> > +static const struct i2c_of_probe_cfg chromeos_i2c_probe_simple_trackpad_cfg = {
+> > +	.ops = &i2c_of_probe_simple_ops,
+> > +	.type = "trackpad"
+> 
+> Leave a comma.
+> 
+> > +};
 
-Gr{oetje,eeting}s,
+...
 
-                        Geert
+> > +	.cfg = &chromeos_i2c_probe_simple_trackpad_cfg,
+> 
+> 	.cfg = DEFINE_I2C_OF_PROBE_CFG(trackpad, i2c_of_probe_simple_ops),
+> 
+> Or even
+> 
+> #define DEFINE_I2C_OF_PROBE_CFG_SIMPLE(_type_)			\
+> 	DEFINE_I2C_OF_PROBE_CFG(type, &i2c_of_probe_simple_ops)
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+With that also looking at the above
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+#define DEFINE_I2C_OF_PROBE_CFG_NONE(_type_)				\
+	DEFINE_I2C_OF_PROBE_CFG(type, NULL)
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
