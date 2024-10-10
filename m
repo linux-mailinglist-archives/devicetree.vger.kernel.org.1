@@ -1,136 +1,209 @@
-Return-Path: <devicetree+bounces-109780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A074997F36
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:17:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27042997F45
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:18:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58F8C286BAC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:17:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48D301C21D94
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:18:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9589C1CEAD8;
-	Thu, 10 Oct 2024 07:14:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8B2B1CF5CA;
+	Thu, 10 Oct 2024 07:16:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="onhr9qUk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hp3lW6mn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f176.google.com (mail-pf1-f176.google.com [209.85.210.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F041CEAD5
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E7B195390;
+	Thu, 10 Oct 2024 07:16:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728544446; cv=none; b=FgW7WyjKq2NacIYLHUwuNceEzxgmw6vf5hy4tpUSZ2oIDQMH6zrsuDnVvRmFlX/aqveGWchnRw6k0tA2cd9xCIpvASA2FnolP05wqBsSdpB0Wsr7D8oXwdTsJgpvqGOQiD+Os/Kr5uJdC7G6WyhLwJwxfYni4KfLGIBnt1r3mR8=
+	t=1728544566; cv=none; b=UGnLX9gbgACtfCSqiXwa2FpJdFH+55Z6627c0lo1k90AwyefuJipVs+udoqLEnXeTGv+kZQPLSsZJRzJFOIG2jwKS3kMmiyxC+5dt0PNr70oEYdQTH4NsaTmnreZwG5H8elybZUTNyd7ILujR+4H5CJcclvzKOZH3caCN+aDXMk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728544446; c=relaxed/simple;
-	bh=4iOxIX8IGVA18xlHD/m26tJRWtsCYBqt+n68Y532fQA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R+JWfOtxpkWsrBmduOaujcX45pjld4TDCAmsbv+SI6j58TlOwVLWwTcjCG7pzwxNd35d2Gb9r0KjlIueBTvKNZg2uvwQTj9JHi46QvMk46Vn/E+lzeG3he1Gf70MNmwXdzXQbwEBQOxdqbDftD3w9VzGHRwKxe4JPajjVs0KKfI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=onhr9qUk; arc=none smtp.client-ip=209.85.210.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f176.google.com with SMTP id d2e1a72fcca58-71e15fe56c9so511897b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 00:14:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728544443; x=1729149243; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=5sDmeUpbgEUKwxwRuUhCja4Dxuub8EV9vOw4/pjad+c=;
-        b=onhr9qUkK1H5gq6+B0GcCuK4zg5MR8ziVlzWm6jBNNilYGClNAB5zh5JpIpGdzRLJV
-         4UTzMXnZfMD7SCv8tJG3QdXfJ0Flc0krzKf64AcG2k8gM7wPVYMkAXwVIicQO81AldPs
-         edJrHCwcalv4oQ2idDaOX9P/SWO+EGVfEeKmT7O6V/I+l6/bh31pSd41945vbv5/UYki
-         98Tv7TQnEDWu074iO71pdpNXrGLfNwStVQInerOwR0cBl3uDKRQG+23wDNrXl1zqG/Xw
-         GkjLADjw1Bu0jhPGwkXEAKraNt7OoKERP0HDgOJITL35ws3ewlm7wvfZ1v25PntIsyl0
-         v0ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728544443; x=1729149243;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5sDmeUpbgEUKwxwRuUhCja4Dxuub8EV9vOw4/pjad+c=;
-        b=urwmoFDRJcmUVQxhpUE4CjuTYTxfJH1zt6IXLO68riAXWZhPk7kJm/HrSuFclEP9gK
-         8JVB1TYSRPXpZx2TATrqRxlWg/Olztv3j8p6KHp3LBHZ8aehJmlGlT0944Yry/nNZsrr
-         0STMl3asNApwbzKzy7yJThx4N2eW1WDJlgZqh32KZ2ybbUPaV2BvZDicVTXMTQWclsYj
-         RiiwDt1jUjaiVfV/I1d2IFaFjfyb4v/RkEHyhogftUkBCC9YOF6EqtcwYo03LQAuBMSa
-         UBrxAPq1kP5FYfIYfdcnqAY0XJ7q2UFun6PqCRGfBrlyeAt462BDP7QCG94gT/A607P6
-         5vlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbsUO5BQvywwwFGQw9MRXV40IjILT41qdXsE2wopjrv1e1GaKLG1lEy/cNXy7zG/AzCWdnvmnbelqW@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmoGl605p5YXqgYEyYhVGgTkEZaG8qgm54ZK03U9NuuMbOLdCJ
-	qcVTwHk080tmaA+k7MrfsT3/eV5/XJpzkOfPZ3KYx0zv7My68cBHvTxsg0T49w==
-X-Google-Smtp-Source: AGHT+IEO0BjF4lnOqXZimpvv6/cR8GzLT8i2pb0ODWlwAKixhY/VBPqgnDGQ91Lcitig4AdIMRVtXg==
-X-Received: by 2002:a05:6a00:180e:b0:71e:9a8:2b9a with SMTP id d2e1a72fcca58-71e2680ad36mr4297170b3a.23.1728544443338;
-        Thu, 10 Oct 2024 00:14:03 -0700 (PDT)
-Received: from thinkpad ([220.158.156.184])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea4496816esm385681a12.89.2024.10.10.00.13.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 00:14:02 -0700 (PDT)
-Date: Thu, 10 Oct 2024 12:43:57 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: Re: [PATCH v3 04/12] PCI: rockchip-ep: Improve
- rockchip_pcie_ep_map_addr()
-Message-ID: <20241010071357.c3kck3rxdhvy6m67@thinkpad>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-5-dlemoal@kernel.org>
+	s=arc-20240116; t=1728544566; c=relaxed/simple;
+	bh=drsg3VRIXQztC5tLFtVhcFRd98uKLaK+3DRFgQTrYFw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JSlZa0ORSxtYHz3ub0W0F2UFSi6eGZ19YsQz4mIOOtOY1LGEzVFhB+MwVtlg1/xFpn9BgE9Z9L8C4aEjjvmsplaVuFWUa32jqSoszkiKjNxh/5as+fmwnGWw4mhOlR/7JMN6pxaPiSO+IVN/rCAD1cKOJ69F27Su1EED0bGGHD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hp3lW6mn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17A1AC4CEC5;
+	Thu, 10 Oct 2024 07:16:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728544566;
+	bh=drsg3VRIXQztC5tLFtVhcFRd98uKLaK+3DRFgQTrYFw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hp3lW6mnbK0jx7EI0HliZfd0odArwHFCNnmQZGgW9dpaQs5pG6q2NUS6461nHeagX
+	 PGTLF0rU8d/3hzGNJexBDRiuvsHoc7Jb3UE2pDBJaa9B1bPFrh0kzwcjpAYNRf/Pc6
+	 70N4+c3QMSrlx8op2GOltSe9rJTZXncjxEyrIgvoinzwU1o5wNjLjt2Wa5bY46tYvw
+	 gLctvCGsAgY/2laDbUj3MbcIBkN/0dD/v232AWmwww5nbIjJ3I5CkH3RzTN6oQZdmm
+	 iPYHi5/EUP6vax/q8NVMzeK0rdTo1AXi+UeLTOX6vBaEBOWqVhpvGHcZNcD2C8+bWO
+	 MlxoecPthM2OQ==
+Message-ID: <f94de63b-2ca3-4749-b008-b47d6df8e1ff@kernel.org>
+Date: Thu, 10 Oct 2024 09:15:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/6] dt-bindings: remoteproc: qcom,pas-common: Introduce
+ iommus and qcom,devmem property
+To: Shiraz Hashim <quic_shashim@quicinc.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Mukesh Ojha <quic_mojha@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-2-quic_mojha@quicinc.com>
+ <pt5x7miszg3vrqjimhdfesxghnpdsu4zzdr37vcmuze7yccmkn@twjeb5cfdqph>
+ <ZwP/tA06k6we7uUh@hu-mojha-hyd.qualcomm.com>
+ <CAA8EJpqay7Nryb5HwwHE1+iiMXKUvqi-djmCsYN8fxigt-s-tQ@mail.gmail.com>
+ <20241009140419.GH1421305@hu-shashim-hyd.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241009140419.GH1421305@hu-shashim-hyd.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241007041218.157516-5-dlemoal@kernel.org>
 
-On Mon, Oct 07, 2024 at 01:12:10PM +0900, Damien Le Moal wrote:
-> Add a check to verify that the outbound region to be used for mapping an
-> address is not already in use.
+On 09/10/2024 16:04, Shiraz Hashim wrote:
+> On Mon, Oct 07, 2024 at 06:25:01PM +0200, Dmitry Baryshkov wrote:
+>> On Mon, 7 Oct 2024 at 17:35, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+>>>
+>>> On Sun, Oct 06, 2024 at 10:38:01PM +0300, Dmitry Baryshkov wrote:
+>>>> On Sat, Oct 05, 2024 at 02:53:54AM GMT, Mukesh Ojha wrote:
+>>>>> From: Shiraz Hashim <quic_shashim@quicinc.com>
+>>>>>
+>>>>> Qualcomm’s PAS implementation for remote processors only supports a
+>>>>> single stage of IOMMU translation and is presently managed by the
+>>>>> Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
+>>>>> such as with a KVM hypervisor, IOMMU translations need to be set up by
+>>>>> the KVM host. Remoteproc needs carveout memory region and its resource
+>>>>> (device memory) permissions to be set before it comes up, and this
+>>>>> information is presently available statically with QHEE.
+>>>>>
+>>>>> In the absence of QHEE, the boot firmware needs to overlay this
+>>>>> information based on SoCs running with either QHEE or a KVM hypervisor
+>>>>> (CPUs booted in EL2).
+>>>>>
+>>>>> The qcom,devmem property provides IOMMU devmem translation information
+>>>>> intended for non-QHEE based systems.
+>>>>>
+>>>>> Signed-off-by: Shiraz Hashim <quic_shashim@quicinc.com>
+>>>>> Co-Developed-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>>>>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>>>>> ---
+>>>>>  .../bindings/remoteproc/qcom,pas-common.yaml  | 42 +++++++++++++++++++
+>>>>>  .../bindings/remoteproc/qcom,sa8775p-pas.yaml | 20 +++++++++
+>>>>>  2 files changed, 62 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>>>>> index 63a82e7a8bf8..068e177ad934 100644
+>>>>> --- a/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,pas-common.yaml
+>>>>> @@ -52,6 +52,48 @@ properties:
+>>>>>      minItems: 1
+>>>>>      maxItems: 3
+>>>>>
+>>>>> +  iommus:
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  qcom,devmem:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-matrix
+>>>>> +    description:
+>>>>> +      Qualcomm’s PAS implementation for remote processors only supports a
+>>>>> +      single stage of IOMMU translation and is presently managed by the
+>>>>> +      Qualcomm EL2 hypervisor (QHEE) if it is present. In the absence of QHEE,
+>>>>> +      such as with a KVM hypervisor, IOMMU translations need to be set up by
+>>>>> +      the KVM host. Remoteproc might need some device resources and related
+>>>>> +      access permissions to be set before it comes up, and this information is
+>>>>> +      presently available statically with QHEE.
+>>>>> +
+>>>>> +      In the absence of QHEE, the boot firmware needs to overlay this
+>>>>> +      information based on SoCs running with either QHEE or a KVM hypervisor
+>>>>> +      (CPUs booted in EL2).
+>>>>> +
+>>>>> +      The qcom,devmem property provides IOMMU devmem translation information
+>>>>> +      intended for non-QHEE based systems. It is an array of u32 values
+>>>>> +      describing the device memory regions for which IOMMU translations need to
+>>>>> +      be set up before bringing up Remoteproc. This array consists of 4-tuples
+>>>>> +      defining the device address, physical address, size, and attribute flags
+>>>>> +      with which it has to be mapped.
+>>>>
+>>>> I'd expect that this kind of information is hardware-dependent. As such
+>>>> it can go to the driver itself, rather than the device tree. The driver
+>>>> can use compatible string to select the correct table.
+>>>>
+>>>
+>>> IIUC, are you saying that to move this into driver file and override the
+>>> compatible string via overlay ?
+>>
+>> Ideally we should live without compat overrides. On the other hand,
+>> sc7180 and sc7280 provide an example of doing exactly that.
 > 
-> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-- Mani
-
-> ---
->  drivers/pci/controller/pcie-rockchip-ep.c | 3 +++
->  1 file changed, 3 insertions(+)
+> I am not sure if there can arise a case where updated adsp firmware
+> for particular board(s) may require additional access.
 > 
-> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
-> index 89ebdf3e4737..edb84fb1ba39 100644
-> --- a/drivers/pci/controller/pcie-rockchip-ep.c
-> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
-> @@ -243,6 +243,9 @@ static int rockchip_pcie_ep_map_addr(struct pci_epc *epc, u8 fn, u8 vfn,
->  	struct rockchip_pcie *pcie = &ep->rockchip;
->  	u32 r = rockchip_ob_region(addr);
->  
-> +	if (test_bit(r, &ep->ob_region_map))
-> +		return -EBUSY;
-> +
->  	rockchip_pcie_prog_ep_ob_atu(pcie, fn, r, addr, pci_addr, size);
->  
->  	set_bit(r, &ep->ob_region_map);
-> -- 
-> 2.46.2
+> Having it in device tree adds a convenience to deal with such
+> variance. 
 > 
 
--- 
-மணிவண்ணன் சதாசிவம்
+That's a downstream argument... Just look at the downstream DTS.
+Everything, even software properties, can be added to DT, right?
+
+Best regards,
+Krzysztof
+
 
