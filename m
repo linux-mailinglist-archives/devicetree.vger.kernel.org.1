@@ -1,448 +1,162 @@
-Return-Path: <devicetree+bounces-109877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 311D199858E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:05:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19E769985B0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:16:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DF956282B74
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:05:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DF091F24BA7
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:16:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DA401C6889;
-	Thu, 10 Oct 2024 12:05:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4381C4623;
+	Thu, 10 Oct 2024 12:15:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="HqeA2Knb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EztXT9c5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551D31C5797;
-	Thu, 10 Oct 2024 12:05:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B95A21C462D;
+	Thu, 10 Oct 2024 12:15:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728561905; cv=none; b=SV6SNHl7CkR+IJx1daq4KwFXZ6mWLTutFLSR40IT+jFGwZ6lebTqPqggeofCauOZQSJLDUGevHtVnTbHNm385Q9U33oY/ifMnjVn16+vMDXjdCIxlqSzjj9Vz8c5Po7Xn/+Dw+GmMiwLLPgU44XO42CUK/6uKzoP8KKEmoPNp9g=
+	t=1728562540; cv=none; b=ETyTi4i28hI5TU6vxIkWP6FnkWpr+R15H339t7heUNxaZir8LhcoglGNzekPTA3FWPruu6mjjyST8ccRlE/+FHjYQXxQX2qsiYYSiSTvjb+t/ARUerBy1Mw6Juh1lN0DsWKhzFxcq9uEDmsp9/MKxqt+Cg2ID92DqE8bisj8wjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728561905; c=relaxed/simple;
-	bh=pYm4Ktj0NXe7FFYDY1eyQ05P1eA1AobGAFOqQuCmjsQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MNP+Gk11Nsod0DkxozXwQpZ/Zmhvhz1+y4Wte561J08LmuQKPzmJqBM4fU8o+eqiRpluWJ/kO491BcZI8j0UBhUsqsx9gk6LSFCrP4p51f4vBRfyq5MV0hMf76eqOBvt9+NHByKAZoeEa5izHN3nJsU+K/URMo5KRKkBj6RmGN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=HqeA2Knb; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1728561903; x=1760097903;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=pYm4Ktj0NXe7FFYDY1eyQ05P1eA1AobGAFOqQuCmjsQ=;
-  b=HqeA2KnbghxY8JXP1zEmbREixgQAfO3X4pf4DR3S1UT79KB/3vAYE0cJ
-   m6Qz5kmfo84SXCU+pwO2otCDf4m3PWHyB6ZFqxAP34011plXlCUK721Cc
-   ImGI95slFjKYRXT0EjdkwSPSa5dOGxX6bxpRWiQSnxxG16ZAH4Ufayrbo
-   Sm2UrmfIm58OPIfOA8LTNIkkdGAbDt1lV3EziA5s2vJmzBtk1bH2u1MJi
-   aozNj2PVXLRhIiWc1sg4vkBZ1MWKEUasIhSPoJmLW6e9u8w5PaUIaSkZH
-   C71kqhNWfFIQJIs0zEZ7XnXKHYCj+fUW3ERHwZER7NZlx1dq0jbH29Iho
-   w==;
-X-CSE-ConnectionGUID: gR3ImswTTSW4aIPxRveY+Q==
-X-CSE-MsgGUID: UJzz08PlTje5SVOVUSXOwA==
-X-IronPort-AV: E=Sophos;i="6.11,192,1725346800"; 
-   d="scan'208";a="32664377"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 10 Oct 2024 05:04:59 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 10 Oct 2024 05:04:50 -0700
-Received: from che-lt-i67070.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Thu, 10 Oct 2024 05:04:47 -0700
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
-To: <nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <varshini.rajendran@microchip.com>, Hari Prasath Gujulan Elango
-	<hari.prasathge@microchip.com>
-Subject: [PATCH v8 9/9] ARM: dts: microchip: sam9x75_curiosity: add sam9x75 curiosity board
-Date: Thu, 10 Oct 2024 17:34:44 +0530
-Message-ID: <20241010120444.93252-1-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20241010120142.92057-1-varshini.rajendran@microchip.com>
-References: <20241010120142.92057-1-varshini.rajendran@microchip.com>
+	s=arc-20240116; t=1728562540; c=relaxed/simple;
+	bh=5VJgFYrRqUn6q6H26eMzLtMtVpybti1EcGRLCarbIDI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VKeLizXgXj/b2CjXqwnD62JUHef0YSlU+IW0FiSIybsZFU+/Zd0G0H0tQE4Mr6ZiHAUxvHZc/+skNMlmjAMVB3LJPekX1ivklAxV8d/2PDIwSt6mjDH6czqQbDzDMcQJ/iZ7Zq3s40YBlXLpwPZrWWTZ5B7mkqbtdprbZ3R/6k8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EztXT9c5; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a993a6348e0so54478166b.1;
+        Thu, 10 Oct 2024 05:15:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728562537; x=1729167337; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8/gfnI2SBhHwah5Wl7yD0ISsvU/I+TP7Ml1kxxMymlo=;
+        b=EztXT9c5uxDO5BOgLSqEohqn7zyTvrBelA7SEw02W4yhCx9tunjTpSB9uKeG3kZGj5
+         G4Ye996n71lLZRJJtQmiHm5pR35NXb/Dfie7NYh8Unu4e6QwesJ3Ta1B1jkTypZiUv5l
+         GW0koGeU3fJg8iMlb9XVOmA6Hhod5Wltb32bJFY6pRckwNJXEcYMwPOqW9Rxx+9msRfM
+         QTQ8Tk0st11+mjxBPGT43SjxOsI3lSCM61mLcHQ0lAy/cJuCz215fZgaDlWs1ukn17gz
+         DLGe3jVjLnzPsIKCBYP/YgUq7FcyRwaJGbiy8ygh1SY3kAqo97omHJC/G3T4Ct7DgwUl
+         WDlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728562537; x=1729167337;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8/gfnI2SBhHwah5Wl7yD0ISsvU/I+TP7Ml1kxxMymlo=;
+        b=nvcBXm7NBqTZkK6WO8id6mcbN63eLK1MRdxqfoXA3kPsglLXqj5ksPbptlmtFU0ky9
+         sO9DH0xKNom16ClFQkuI6gaRzrkxi/W5yzODuocOqRDfUOueonNk3irbZ0e9d6qGMvog
+         ooJlVILpJPSSPoKLKde/wd2lHW0vhdIQ7L5+jixXhDKQzCpgdh+vFojxoYfH76sB3nrQ
+         NBQApcxZd2iiCZhoSzUcR6ZzVhPxh4wB4u4oElxL9yRiDXk4Cw+4lvZZaFLB/KFR+I+3
+         f6k2I6VLcDBrG7+4soCFosCyqKGSuqYNLltgcTagLj60rBGlzofejGqb3Yjherxz99wY
+         5i1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW5GujZZn9JhFzhuGTYLGKY2F+mVV7BAriKr3GuitkDNYbxZBqfOMbwbKUNBUl8lQY/xY7tB12cRD6ylhU=@vger.kernel.org, AJvYcCXfp4fkyYj+jfSxCZkaHX4gcO0wNLPHnxHVVOmRLkSv3AHxUA2vmxjLPxW17xSC6mEDC+R4yOws6Sgf@vger.kernel.org
+X-Gm-Message-State: AOJu0YwAtREOZf7jtdvkrVVhz9uOp9LJsv3jvfAYuqlMpuZTwqKaghMp
+	dN9DXcD6ti4d+AM4gqNZUl7nRaTk/4bqr0clUi2+ZSFzcLLfsR067fKpMBMhSpEFitVK0AAGwSs
+	QC2VZGwvUoJ9/XgWfl1fb+3U7bIY=
+X-Google-Smtp-Source: AGHT+IEiYRJRB+HkFMOeRqY1TKBP80bIZBEqHDnrqmizaC4i1QreztoqIqB9+SJ0fIqKMwJiVZrFvtR1VgO8tJ6JNyg=
+X-Received: by 2002:a05:6402:249f:b0:5c7:202f:ec9b with SMTP id
+ 4fb4d7f45d1cf-5c91d58ecf9mr7898995a12.16.1728562536143; Thu, 10 Oct 2024
+ 05:15:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <cover.1728459624.git.zhoubinbin@loongson.cn> <172855884981.3258793.17729935826036139739.b4-ty@kernel.org>
+In-Reply-To: <172855884981.3258793.17729935826036139739.b4-ty@kernel.org>
+From: Binbin Zhou <zhoubb.aaron@gmail.com>
+Date: Thu, 10 Oct 2024 18:15:22 +0600
+Message-ID: <CAMpQs4+0_P0ExcU7O12XvKPQ+CoP8KpAWUJpL2wP4--+gWQ6hA@mail.gmail.com>
+Subject: Re: (subset) [PATCH v3 0/9] ASoC: Some issues about loongson i2s
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
+	Binbin Zhou <zhoubinbin@loongson.cn>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, loongarch@lists.linux.dev, 
+	Neil Armstrong <neil.armstrong@linaro.org>, 
+	Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
+	Richard Fitzgerald <rf@opensource.cirrus.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Weidong Wang <wangweidong.a@awinic.com>, Prasad Kumpatla <quic_pkumpatl@quicinc.com>, 
+	Herve Codina <herve.codina@bootlin.com>, Masahiro Yamada <masahiroy@kernel.org>, 
+	Shuming Fan <shumingf@realtek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Add device tree file for sam9x75 curiosity board.
+Hi Mark:
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
-Reviewed-by: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Reviewed-by: Hari Prasath Gujulan Elango <hari.prasathge@microchip.com>
----
- arch/arm/boot/dts/microchip/Makefile          |   3 +
- .../dts/microchip/at91-sam9x75_curiosity.dts  | 324 ++++++++++++++++++
- 2 files changed, 327 insertions(+)
- create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+On Thu, Oct 10, 2024 at 5:14=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
+te:
+>
+> On Wed, 09 Oct 2024 15:51:42 +0800, Binbin Zhou wrote:
+> > This patch set is mainly about Loongson i2s related issues.
+> >
+> > Please allow me to briefly explain this patch set:
+> > Patch 1-2: Add ES8323 codec required on Loongson-2K2000
+> > Patch 3-4: Add uda1342 codec required on Loongson-2K1000
+> > Patch 5: Fix the problem of unable to detect codec under FDT system.
+> > Patch 6-7: Add Loongson i2s platform device support
+> > Patch 8-9: Related DTS support.
+> >
+> > [...]
+>
+> Applied to
+>
+>    https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-=
+next
+>
+> Thanks!
+>
+> [1/9] ASoC: dt-bindings: Add Everest ES8323 Codec
+>       commit: 5bf2bea8a8b3d0255953868c7bf652235a17a65d
+> [2/9] ASoC: codecs: Add support for ES8323
+>       commit: b97391a604b9e259c6a983fc1b715d205d9da505
+> [3/9] ASoC: dt-bindings: Add NXP uda1342 Codec
+>       commit: de567431596a8163a9441407fdab315f12bc2769
+> [4/9] ASoC: codecs: Add uda1342 codec driver
+>       commit: de0fb25e37aae7aae133d6c3d0b0e1e31a79878d
+> [5/9] ASoC: loongson: Fix component check failed on FDT systems
+>       (no commit info)
 
-diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-index 0c45c8d17468..470fe46433a9 100644
---- a/arch/arm/boot/dts/microchip/Makefile
-+++ b/arch/arm/boot/dts/microchip/Makefile
-@@ -2,6 +2,7 @@
- # Enables support for device-tree overlays
- DTC_FLAGS_at91-sam9x60_curiosity := -@
- DTC_FLAGS_at91-sam9x60ek := -@
-+DTC_FLAGS_at91-sam9x75_curiosity := -@
- DTC_FLAGS_at91-sama5d27_som1_ek := -@
- DTC_FLAGS_at91-sama5d27_wlsom1_ek := -@
- DTC_FLAGS_at91-sama5d29_curiosity := -@
-@@ -60,6 +61,8 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
- dtb-$(CONFIG_SOC_SAM9X60) += \
- 	at91-sam9x60_curiosity.dtb \
- 	at91-sam9x60ek.dtb
-+dtb-$(CONFIG_SOC_SAM9X7) += \
-+	at91-sam9x75_curiosity.dtb
- dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-kizbox2-2.dtb \
- 	at91-kizbox3-hs.dtb \
-diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-new file mode 100644
-index 000000000000..87b6ea97590b
---- /dev/null
-+++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-@@ -0,0 +1,324 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-+ *
-+ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-+ */
-+/dts-v1/;
-+#include "sam9x7.dtsi"
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Microchip SAM9X75 Curiosity";
-+	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
-+
-+	aliases {
-+		i2c0 = &i2c6;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+
-+		button-user {
-+			label = "USER";
-+			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_0>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	led-controller {
-+		compatible = "gpio-leds";
-+
-+		led_red: led-red {
-+			label = "red";
-+			gpios = <&pioC 14 GPIO_ACTIVE_HIGH>;
-+			pinctrl-0 = <&pinctrl_red_led_gpio_default>;
-+		};
-+
-+		led_green: led-green {
-+			label = "green";
-+			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-+			pinctrl-0 = <&pinctrl_green_led_gpio_default>;
-+		};
-+
-+		led_blue: led-blue {
-+			label = "blue";
-+			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-+			pinctrl-0 = <&pinctrl_blue_led_gpio_default>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@20000000 {
-+		reg = <0x20000000 0x10000000>;
-+		device_type = "memory";
-+	};
-+};
-+
-+&classd {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_classd_default>;
-+	atmel,pwm-type = "diff";
-+	atmel,non-overlap-time = <10>;
-+	status = "okay";
-+};
-+
-+&dbgu {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_dbgu_default>;
-+	status = "okay";
-+};
-+
-+&dma0 {
-+	status = "okay";
-+};
-+
-+&flx6 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_flx6_default>;
-+	i2c-analog-filter;
-+	i2c-digital-filter;
-+	i2c-digital-filter-width-ns = <35>;
-+	status = "okay";
-+
-+	pmic@5b {
-+		compatible = "microchip,mcp16502";
-+		reg = <0x5b>;
-+
-+		regulators {
-+			vdd_3v3: VDD_IO {
-+				regulator-name = "VDD_IO";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddioddr: VDD_DDR {
-+				regulator-name = "VDD_DDR";
-+				regulator-min-microvolt = <1350000>;
-+				regulator-max-microvolt = <1350000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vddcore: VDD_CORE {
-+				regulator-name = "VDD_CORE";
-+				regulator-min-microvolt = <1150000>;
-+				regulator-max-microvolt = <1150000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			dcdc4: VDD_OTHER {
-+				regulator-name = "VDD_OTHER";
-+				regulator-min-microvolt = <1150000>;
-+				regulator-max-microvolt = <1150000>;
-+				regulator-initial-mode = <2>;
-+				regulator-allowed-modes = <2>, <4>;
-+				regulator-ramp-delay = <3125>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+					regulator-mode = <4>;
-+				};
-+
-+				regulator-state-mem {
-+					regulator-mode = <4>;
-+				};
-+			};
-+
-+			vldo1: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vldo2: LDO2 {
-+				regulator-name = "LDO2";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-standby {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&i2s {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2s_default>;
-+	#sound-dai-cells = <0>;
-+	status = "okay";
-+};
-+
-+&main_xtal {
-+	clock-frequency = <24000000>;
-+};
-+
-+&pinctrl {
-+	classd {
-+		pinctrl_classd_default: classd-default {
-+			atmel,pins =
-+				<AT91_PIOA 18 AT91_PERIPH_C AT91_PINCTRL_PULL_UP>,
-+				<AT91_PIOA 19 AT91_PERIPH_C AT91_PINCTRL_PULL_DOWN>;
-+		};
-+	};
-+
-+	dbgu {
-+		pinctrl_dbgu_default: dbgu-default {
-+			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
-+				     <AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	flexcom {
-+		pinctrl_flx6_default: flx6-default {
-+			atmel,pins =
-+				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>,
-+				<AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		pinctrl_key_gpio_default: key-gpio-default {
-+			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	i2s {
-+		pinctrl_i2s_default: i2s-default {
-+			atmel,pins =
-+				<AT91_PIOB 26 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SCK */
-+				<AT91_PIOB 15 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SWS */
-+				<AT91_PIOB 16 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SDIN */
-+				<AT91_PIOB 17 AT91_PERIPH_D AT91_PINCTRL_NONE>,		/* I2SDOUT */
-+				<AT91_PIOB 25 AT91_PERIPH_D AT91_PINCTRL_NONE>;		/* I2SMCK */
-+		};
-+	};
-+
-+	led-controller {
-+		pinctrl_red_led_gpio_default: red-led-gpio-default {
-+			atmel,pins = <AT91_PIOC 14 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+		pinctrl_green_led_gpio_default: green-led-gpio-default {
-+			atmel,pins = <AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+		pinctrl_blue_led_gpio_default: blue-led-gpio-default {
-+			atmel,pins = <AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc0 {
-+		pinctrl_sdmmc0_default: sdmmc0-default {
-+			atmel,pins =
-+				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,				/* PA2 CK  periph A with pullup */
-+				<AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA1 CMD periph A with pullup */
-+				<AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA0 DAT0 periph A */
-+				<AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA3 DAT1 periph A with pullup */
-+				<AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>,	/* PA4 DAT2 periph A with pullup */
-+				<AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_ENA)>;	/* PA5 DAT3 periph A with pullup */
-+		};
-+	};
-+}; /* pinctrl */
-+
-+&poweroff {
-+	debounce-delay-us = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&rtt {
-+	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-+	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&slow_xtal {
-+	clock-frequency = <32768>;
-+};
-+
-+&tcb {
-+	timer0: timer@0 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <0>;
-+	};
-+
-+	timer1: timer@1 {
-+		compatible = "atmel,tcb-timer";
-+		reg = <1>;
-+	};
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
--- 
-2.25.1
+Thanks for applying this patchset.
 
+But I don't seem to see the 5th patch in the for-next branch, what
+other questions do you have about that patch?
+On FDT systems we need this patch, otherwise the component check will fail.
+
+Thanks.
+Binbin
+> [6/9] ASoC: dt-bindings: Add Loongson I2S controller
+>       commit: d4c2e9e33a0c903cc3a00114d6c02aa2cf403d33
+> [7/9] ASoC: loongson: Add I2S controller driver as platform device
+>       commit: ba4c5fad598c07492844e514add3ccda467063b2
+>
+> All being well this means that it will be integrated into the linux-next
+> tree (usually sometime in the next 24 hours) and sent to Linus during
+> the next merge window (or sooner if it is a bug fix), however if
+> problems are discovered then the patch may be dropped or reverted.
+>
+> You may get further e-mails resulting from automated or manual testing
+> and review of the tree, please engage with people reporting problems and
+> send followup patches addressing any issues that are reported if needed.
+>
+> If any updates are required or you are submitting further changes they
+> should be sent as incremental updates against current git, existing
+> patches will not be replaced.
+>
+> Please add any relevant lists and maintainers to the CCs when replying
+> to this mail.
+>
+> Thanks,
+> Mark
+>
 
