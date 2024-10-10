@@ -1,125 +1,218 @@
-Return-Path: <devicetree+bounces-110093-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9D99993A8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:27:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4989C9993DE
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 22:46:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C5151F24BD2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:27:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CA1BB2873BA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:46:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89271E0E08;
-	Thu, 10 Oct 2024 20:27:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 001D61C32FB;
+	Thu, 10 Oct 2024 20:46:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="kW/HUU/c"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Km089xt7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AA221CF28C
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 20:27:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E50231991B8;
+	Thu, 10 Oct 2024 20:46:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728592071; cv=none; b=atb681Tu//rtDKSv+UB5lgNFGqKKhMWEAH4/fxO8w4PCfwwaDdFsQfHr5j2VA2TiUUS9rRrs3ClB0ZA/EgGApyFw1oDXvjQL3rDHHpxyH2+zf6kX+HNd55ASdoGbXF1apBjpqPSB5ZoKkKaCZ2MP7Y91wDhyssk7rHwXpGS33KM=
+	t=1728593198; cv=none; b=iI+ngfTO3GrXKu26bcAVWzkV7firC8OPF87AE1xTk1lzmEDJ3XmbhvBkt1M7pNXp9HlqpECaJcji5xbwyGNbaGF9aFR38LF3nuHz87sHIzEDAPFXiqp+DR+UxWw9cpzA39PrrBQQi0N78uhUwuj5MlMiS225//xHoIi/g3AdyAw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728592071; c=relaxed/simple;
-	bh=OwPbT2H+RItobGy0KlSp+Rw4cUBkkPc3J2V27o6D0U0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cCeWIaPbBRgJ1wDw6Lxl5cSkNF+fvIILBg3t8J6G1LbxRxpjQeqMAFZX6vMByn6+uvXsRsMfqC4FE2UIdSYywFEiSnMsQSl9pq3BZ9xRStvFJHkhEAdBwRBateNtBtlgxKqWcrW271TuGJUE+sv8yFx+f/hHwo38Eo70e6o+dUM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=kW/HUU/c; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=Go6/Rxw5ULvp3qmcx0fF/STMX2ar8olqgjRJbUbDDyg=; b=kW/HUU/cDFp1FkijOAX7m7LuUJ
-	4VN/atXy4M2/v0mXCFiv3JY3jrWol7ibOyQn+ISfCC/Fvlo4cLwRDXNEscw0MFpxJILDXvSoVdvN+
-	GBi0Ddq8iHwUSp9BOGLIoo5id6XNgCyJGl6ROhfa9BJM7o7UQL3b+lIYRyO0G7knS65P2C1KSe6eC
-	8K7ZLnOhuPEFHlG8J7lmXV3Xpo89Kn8ZmpP/AudbF4dADx1Q77vRkNhJDFJ+IdEYjf8+ztc7uSKFG
-	x/lMoTaYUtzeIbqx78F/XAdH/0MflFYHLDDjBHnlUqIpb1nxHYVD8jaaW8W+hw/x8QRslV5nz0EaO
-	R38zJ5dA==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1syzlE-0000lb-Bz; Thu, 10 Oct 2024 22:27:48 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: Heiko Stuebner <heiko@sntech.de>,
-	linux-rockchip@lists.infradead.org
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 00/14] Fixing some dtbscheck warnings
-Date: Thu, 10 Oct 2024 22:27:45 +0200
-Message-ID: <172859192264.2746127.9464366808978431094.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241008203940.2573684-1-heiko@sntech.de>
-References: <20241008203940.2573684-1-heiko@sntech.de>
+	s=arc-20240116; t=1728593198; c=relaxed/simple;
+	bh=S1ahpzpXNdPKM3/solNYAwx4dKLcG2Uf70uStU5gJNo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g3Np8zar9Ozda2QHks2tvJAjhRWysQsMpgmUWvifflQuBTHiBhKIFUP9ilMEH7bPKrudOayFbO7bEPPLmmnDJif/TdPeCaoABBQj33OJnw4wv4ufyhDcUNRG7G4frfQ34Abjp2FnUd3u6lk3X7FILrV3uYlpPIME4RIU5+MUCD4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Km089xt7; arc=none smtp.client-ip=192.198.163.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728593197; x=1760129197;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=S1ahpzpXNdPKM3/solNYAwx4dKLcG2Uf70uStU5gJNo=;
+  b=Km089xt7jjBBbrl1FoamTn66FSve28nFF6jr53gcGDgoHJw4nkW80N+y
+   zNPLIfZu4tB+wi0LIFu4ZkY7oKQALbmBj2quPyrTHsPFwVyRmFP0FH8T6
+   Sx/zv0RMHvQMFU5efSb+ScA3MK7U+UWcTct+9RyQxu/0tW+UZ9LJ2XdTz
+   ytcRhEUjOaBlqDb6n4gEDDJq+8+73cieF5amb9GWlieV1io1x52YbLr9X
+   6mIT7VFybQGtOy7wtIR+67uGuA19FuqCiywyhHqDcCC/RlXYyKZ+Mbw9J
+   S1CI2dsX0ivEMWh1GpiMXvDACGJLULhBmqvSHczB0YCvSxWcBXaylBaip
+   g==;
+X-CSE-ConnectionGUID: UcdaIAkQSA68nzUn9VDuyg==
+X-CSE-MsgGUID: C3qr7vFzTTyfIbR2bG3e5w==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27429745"
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
+   d="scan'208";a="27429745"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 13:46:36 -0700
+X-CSE-ConnectionGUID: to4zHtkIQx2umYFIna6ERg==
+X-CSE-MsgGUID: 53zt824LRBeCJ7+J+CsTBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
+   d="scan'208";a="76803645"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by fmviesa008.fm.intel.com with ESMTP; 10 Oct 2024 13:46:33 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sz03K-000BFr-0D;
+	Thu, 10 Oct 2024 20:46:30 +0000
+Date: Fri, 11 Oct 2024 04:45:59 +0800
+From: kernel test robot <lkp@intel.com>
+To: Dzmitry Sankouski <dsankouski@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Pavel Machek <pavel@ucw.cz>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	Dzmitry Sankouski <dsankouski@gmail.com>
+Subject: Re: [PATCH v6 6/7] power: supply: max77705: Add fuel gauge driver
+ for Maxim 77705
+Message-ID: <202410110404.etzjIhE5-lkp@intel.com>
+References: <20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57@gmail.com>
 
-On Tue, 8 Oct 2024 22:39:26 +0200, Heiko Stuebner wrote:
-> Fixing dtbs-check warnings should be declared addictive, one starts
-> with one warning, then another one and then it's oh, I'll just fix
-> this "last" one over and over ;-)
-> 
-> We still have more, if others want to play too :-D .
-> 
-> changes in v2:
-> - more fixes
-> - use more appropriate txco clk for brcm bluetooth
-> 
-> [...]
+Hi Dzmitry,
 
-Applied, thanks!
+kernel test robot noticed the following build warnings:
 
-[01/14] arm64: dts: rockchip: fix i2c2 pinctrl-names property on anbernic-rg353p/v
-        commit: f94b934336e30cebae75d4fbe04a2109a3c8fdec
-[02/14] arm64: dts: rockchip: Drop regulator-init-microvolt from two boards
-        commit: 98c3f4a2d61a29a53244ce45e50655140bd47afb
-[03/14] arm64: dts: rockchip: Fix bluetooth properties on rk3566 box demo
-        commit: 2fa98dcc8d3ea2ebbd9e6be778f8bb19231c28be
-[04/14] arm64: dts: rockchip: Fix bluetooth properties on Rock960 boards
-        commit: ea74528aaea5a1dfc8e3de09ef2af37530eca526
-[05/14] arm64: dts: rockchip: Remove undocumented supports-emmc property
-        commit: 1b670212ee3dd9d14c6d39a042dfe4ae79b49b4e
-[06/14] arm64: dts: rockchip: Remove #cooling-cells from fan on Theobroma boards
-        commit: 5ed96580568c4f79a0aff11a67f10b3e9229ba86
+[auto build test WARNING on 58ca61c1a866bfdaa5e19fb19a2416764f847d75]
 
-        I've limited the commit to only lion now. Both Puma and Ringneck
-        loose their #cooling-cells property in the i2c-mux-conversion for
-        6.13 already and the undocumented property is in the boards so
-        long already, that it didn't make sense to cause extra merge
-        conflicts for this.
+url:    https://github.com/intel-lab-lkp/linux/commits/Dzmitry-Sankouski/power-supply-add-undervoltage-health-status-property/20241008-000014
+base:   58ca61c1a866bfdaa5e19fb19a2416764f847d75
+patch link:    https://lore.kernel.org/r/20241007-starqltechn_integration_upstream-v6-6-0d38b5090c57%40gmail.com
+patch subject: [PATCH v6 6/7] power: supply: max77705: Add fuel gauge driver for Maxim 77705
+config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20241011/202410110404.etzjIhE5-lkp@intel.com/config)
+compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241011/202410110404.etzjIhE5-lkp@intel.com/reproduce)
 
-[07/14] arm64: dts: rockchip: Fix LED triggers on rk3308-roc-cc
-        commit: 3a53a7187f41ec3db12cf4c2cb0db4ba87c2f3a1
-[08/14] arm64: dts: rockchip: remove num-slots property from rk3328-nanopi-r2s-plus
-        commit: b1f8d3b81d9289e171141a7120093ddefe7bd2f4
-[09/14] arm64: dts: rockchip: Remove 'enable-active-low' from two boards
-        commit: f4d29bebaa6118c1e51e8f1c21ce2b34f43e1479
-[10/14] arm64: dts: rockchip: remove orphaned pinctrl-names from pinephone pro
-        commit: 8fb9f4ee733c50cc9b6dce2313d1948d6229e804
-[11/14] ARM: dts: rockchip: fix rk3036 acodec node
-        commit: d015181e18070dc53c2dfdcfaa7441567cc990f1
-[12/14] ARM: dts: rockchip: drop grf reference from rk3036 hdmi
-        commit: a30ef8fa0e6d70fcf7e933a876a05bc9ca101472
-[13/14] ARM: dts: rockchip: Fix the spi controller on rk3036
-        commit: 34387c259d42c7e62aa046ffb982c710c8971418
-[14/14] ARM: dts: rockchip: Fix the realtek audio codec on rk3036-kylin
-        commit: 9f03220ac5717d19d71ae21c9020e4dd56f1efa7
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410110404.etzjIhE5-lkp@intel.com/
 
-Best regards,
+All warnings (new ones prefixed by >>):
+
+>> drivers/power/supply/max77705_fuel_gauge.c:220:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     220 |         case POWER_SUPPLY_PROP_MANUFACTURER:
+         |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/power/supply/max77705_fuel_gauge.c:227:6: note: uninitialized use occurs here
+     227 |         if (ret)
+         |             ^~~
+   drivers/power/supply/max77705_fuel_gauge.c:217:7: warning: variable 'ret' is used uninitialized whenever switch case is taken [-Wsometimes-uninitialized]
+     217 |         case POWER_SUPPLY_PROP_MODEL_NAME:
+         |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   drivers/power/supply/max77705_fuel_gauge.c:227:6: note: uninitialized use occurs here
+     227 |         if (ret)
+         |             ^~~
+   drivers/power/supply/max77705_fuel_gauge.c:169:9: note: initialize the variable 'ret' to silence this warning
+     169 |         int ret;
+         |                ^
+         |                 = 0
+   2 warnings generated.
+
+Kconfig warnings: (for reference only)
+   WARNING: unmet direct dependencies detected for MODVERSIONS
+   Depends on [n]: MODULES [=y] && !COMPILE_TEST [=y]
+   Selected by [y]:
+   - RANDSTRUCT_FULL [=y] && (CC_HAS_RANDSTRUCT [=y] || GCC_PLUGINS [=n]) && MODULES [=y]
+
+
+vim +/ret +220 drivers/power/supply/max77705_fuel_gauge.c
+
+   162	
+   163	static int max77705_fg_get_property(struct power_supply *psy,
+   164					    enum power_supply_property psp,
+   165					    union power_supply_propval *val)
+   166	{
+   167		struct max77705_fuelgauge_data *fuelgauge =
+   168		    power_supply_get_drvdata(psy);
+   169		int ret;
+   170	
+   171		switch (psp) {
+   172		case POWER_SUPPLY_PROP_STATUS:
+   173			ret = max77705_battery_get_status(fuelgauge, &val->intval);
+   174			break;
+   175		case POWER_SUPPLY_PROP_PRESENT:
+   176			ret = max77705_fg_check_battery_present(fuelgauge, &val->intval);
+   177			break;
+   178		case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+   179			ret = max77705_fg_read_reg(fuelgauge, VCELL_REG, &val->intval);
+   180			break;
+   181		case POWER_SUPPLY_PROP_VOLTAGE_OCV:
+   182			ret = max77705_fg_read_reg(fuelgauge, VFOCV_REG, &val->intval);
+   183			break;
+   184		case POWER_SUPPLY_PROP_VOLTAGE_AVG:
+   185			ret = max77705_fg_read_reg(fuelgauge, AVR_VCELL_REG, &val->intval);
+   186			break;
+   187		case POWER_SUPPLY_PROP_CURRENT_NOW:
+   188			ret = max77705_fg_read_reg(fuelgauge, CURRENT_REG, &val->intval);
+   189			break;
+   190		case POWER_SUPPLY_PROP_CURRENT_AVG:
+   191			ret = max77705_fg_read_reg(fuelgauge, AVG_CURRENT_REG, &val->intval);
+   192			break;
+   193		case POWER_SUPPLY_PROP_CHARGE_NOW:
+   194			ret = max77705_fg_read_reg(fuelgauge, REMCAP_REP_REG, &val->intval);
+   195			break;
+   196		case POWER_SUPPLY_PROP_CHARGE_FULL:
+   197			ret = max77705_fg_read_reg(fuelgauge, FULLCAP_REP_REG, &val->intval);
+   198			break;
+   199		case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
+   200			ret = max77705_fg_read_reg(fuelgauge, DESIGNCAP_REG, &val->intval);
+   201			break;
+   202		case POWER_SUPPLY_PROP_CAPACITY:
+   203			ret = max77705_fg_read_reg(fuelgauge, SOCREP_REG, &val->intval);
+   204			break;
+   205		case POWER_SUPPLY_PROP_TEMP:
+   206			ret = max77705_fg_read_temp(fuelgauge, &val->intval);
+   207			break;
+   208		case POWER_SUPPLY_PROP_TIME_TO_EMPTY_NOW:
+   209			ret = max77705_fg_read_reg(fuelgauge, TIME_TO_EMPTY_REG, &val->intval);
+   210			break;
+   211		case POWER_SUPPLY_PROP_TIME_TO_FULL_NOW:
+   212			ret = max77705_fg_read_reg(fuelgauge, TIME_TO_FULL_REG, &val->intval);
+   213			break;
+   214		case POWER_SUPPLY_PROP_CYCLE_COUNT:
+   215			ret = max77705_fg_read_reg(fuelgauge, CYCLES_REG, &val->intval);
+   216			break;
+   217		case POWER_SUPPLY_PROP_MODEL_NAME:
+   218			val->strval = max77705_fuelgauge_model;
+   219			break;
+ > 220		case POWER_SUPPLY_PROP_MANUFACTURER:
+   221			val->strval = max77705_fuelgauge_manufacturer;
+   222			break;
+   223		default:
+   224			return -EINVAL;
+   225		}
+   226	
+   227		if (ret)
+   228			return ret;
+   229	
+   230		max77705_unit_adjustment(fuelgauge, psp, val);
+   231	
+   232		return 0;
+   233	}
+   234	
+
 -- 
-Heiko Stuebner <heiko@sntech.de>
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
