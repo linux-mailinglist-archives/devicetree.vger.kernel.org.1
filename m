@@ -1,143 +1,121 @@
-Return-Path: <devicetree+bounces-109923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3236C998806
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:42:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18E4D99880C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:43:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80292288BA6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 13:42:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD1A21F24FAB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 13:42:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 289951CC88A;
-	Thu, 10 Oct 2024 13:40:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150351CB320;
+	Thu, 10 Oct 2024 13:41:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bpCXqCns"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z0iYSE4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E3DA1CC8BC;
-	Thu, 10 Oct 2024 13:40:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE6471CB316;
+	Thu, 10 Oct 2024 13:41:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728567625; cv=none; b=CwDyIfva4wQrd6B/pILiLvQ+XsaQfAJqzrW40xO+4h4PrCCuKNYjrXfz8b/w3dX2J58oY2Qzx8mRioyt6llQsKuz8g/FCyXHdNdWYdojwuoA7GWCgFIqfwJ7DbV4tRGpZpEioECAiEUNqqtEbkiI08gEXLaY7KKjkgi4qC9JZus=
+	t=1728567711; cv=none; b=MKRfqiPbmaRVnkHPnXAzhgbgnwKVIEobnL/yzU65QXYhyCTEm3ihZAqzWQBeOSaA21AtK3DwcELupeb7clc3pGMz8SlHc/UHOZuV/h2CkF64+NRIsz5elQ2AFsXBP6kW9lNhEbsYUd+rkVMPlxEMEmgNWIm8QltVHNfbiozu4LU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728567625; c=relaxed/simple;
-	bh=sfahgSvO20tuszyXcjplQnhiPIH1X5txk1P6D/qzB7E=;
+	s=arc-20240116; t=1728567711; c=relaxed/simple;
+	bh=d4iIeICISX+R1+rFCH31YhNl+4sOJNEn2lFtTqfAaZ4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kEexmLyKwYLHZ2gYiYV6zoPAC3ZqJQmsNAZIoPfw1yVd4rWZYxjb5rgRmB2CaiEqzMz23WLpsI5jwlEzHx3b5NK/uugVKHtGuYIu3KkTP0VCMVoiUhGRPCMY+mcnFVswEkxWgWjlYzs3b2yK+Q09ZwYnhwT52ALq7kXpIPKoDEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bpCXqCns; arc=none smtp.client-ip=198.175.65.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728567624; x=1760103624;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=sfahgSvO20tuszyXcjplQnhiPIH1X5txk1P6D/qzB7E=;
-  b=bpCXqCnssldHi1Z74sJK8r12nYIzT6hc18dTrTV5LwKyFgLbs0e0LjNv
-   c+9l9EL+ncg/v4aUDECtG4PuBVhPN+bpkFZQKBF7hj1MU+k38j1WrWkhX
-   LgiuaYRi/XMXUz/oc01plVbIDfpeaInHkV7XFrIS+MI/DjF3Ut55VwQen
-   mz6s1jPq+sHVNlIk6zGRk1YdQDVYei6JTv9OsfqKUUJ1kz+pT85DkJULq
-   MJRQ9CkE8QfQWeS9knjPbKgUlX60HfBG9rBzVYdyQzmcxLzgcMIRXht2O
-   c01bvQZVJ9lRrNz26WYaw7cf/RxnJCxZvyqdF9MqgTi9+vJIeqcvsoEu1
-   g==;
-X-CSE-ConnectionGUID: cWMgZoJbS+WVuapbMbvFTg==
-X-CSE-MsgGUID: L7Ez3QCZR4C1HZt49b1H/g==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="50461091"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="50461091"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 06:40:23 -0700
-X-CSE-ConnectionGUID: 6qJ+jMC/SH249H8sQKl5+A==
-X-CSE-MsgGUID: wQZfN4DVSJqib9HV7c/yeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="76504990"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 06:40:20 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1sytOp-00000001Y6Z-3aj9;
-	Thu, 10 Oct 2024 16:40:15 +0300
-Date: Thu, 10 Oct 2024 16:40:15 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: kernel test robot <lkp@intel.com>
-Cc: Ryan Chen <ryan_chen@aspeedtech.com>, brendan.higgins@linux.dev,
-	benh@kernel.crashing.org, joel@jms.id.au, andi.shyti@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andrew@codeconstruct.com.au, p.zabel@pengutronix.de,
-	linux-i2c@vger.kernel.org, openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v14 2/3] i2c: aspeed: support AST2600 i2c new register
- mode driver
-Message-ID: <ZwfZP0LeqKobdbgK@smile.fi.intel.com>
-References: <20241002070213.1165263-3-ryan_chen@aspeedtech.com>
- <202410051547.vOL3qMOc-lkp@intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=rxsPL0POgvyOBay3I7FHxob1+cUCUE3Z9ztOgIH9yipC8V4Cs5SBiD8JmNsq0D5vdB2uxVssUXCL9xTFaeLk5jumdpph+i1p0Mtzqlda4sa8IVnay+Vaq/03vbgLny46oJ5umPcTqoQ4k0kqvvLryHoQ7hT2btD9hHGEy4/9Ujc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z0iYSE4D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3296C4CEC5;
+	Thu, 10 Oct 2024 13:41:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728567710;
+	bh=d4iIeICISX+R1+rFCH31YhNl+4sOJNEn2lFtTqfAaZ4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Z0iYSE4D9ehO5fL2ZvD821V4SAYlaEAsO9k6ZwgMczDowDkiNSP2TW8uakf9o+eVg
+	 HaF5oczSVQP4OmQuprYF9+n31XWcDZFnO8rQFqxEiePoO2hWPb2zMjyiDnPgqwz5zq
+	 xdJv6ieJygGsJrhhuMxs//nbqRVZWW3De+niE66ZB7NuAclrT2OecsOwfyZ4lhD9Ex
+	 jh5KrDkciPTl6WfBSJxiB574WqV1/ZL26AwaQiS4CDHuwmGq3obinntuY1gv8qC9Bb
+	 IQuyMmVJ1Pu3MfLYaXaOpsU/cd7jTfFDmdRv7ZAgJCJW3G1No0wEMtFMcZj5HXfRpe
+	 9JZLP00dVtYEw==
+Date: Thu, 10 Oct 2024 14:41:44 +0100
+From: Lee Jones <lee@kernel.org>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Pavel Machek <pavel@ucw.cz>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	William Zhang <william.zhang@broadcom.com>,
+	Anand Gore <anand.gore@broadcom.com>,
+	Kursad Oney <kursad.oney@broadcom.com>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 4/4] leds: bcm63138: Add some register defines
+Message-ID: <20241010134144.GG661995@google.com>
+References: <20241004-bcm63138-leds-v3-0-ba99a8e464b9@linaro.org>
+ <20241004-bcm63138-leds-v3-4-ba99a8e464b9@linaro.org>
+ <81b382d9-c290-40b9-be3a-916970a5797f@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <202410051547.vOL3qMOc-lkp@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <81b382d9-c290-40b9-be3a-916970a5797f@broadcom.com>
 
-On Sat, Oct 05, 2024 at 03:36:16PM +0800, kernel test robot wrote:
-> Hi Ryan,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on v6.11]
-> [cannot apply to andi-shyti/i2c/i2c-host v6.12-rc1 linus/master next-20241004]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/dt-bindings-i2c-aspeed-support-for-AST2600-i2cv2/20241002-150410
-> base:   v6.11
-> patch link:    https://lore.kernel.org/r/20241002070213.1165263-3-ryan_chen%40aspeedtech.com
-> patch subject: [PATCH v14 2/3] i2c: aspeed: support AST2600 i2c new register mode driver
-> config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20241005/202410051547.vOL3qMOc-lkp@intel.com/config)
-> compiler: sh4-linux-gcc (GCC) 14.1.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241005/202410051547.vOL3qMOc-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202410051547.vOL3qMOc-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>):
-> 
->    drivers/i2c/busses/i2c-ast2600.c: In function 'ast2600_i2c_setup_buff_tx':
-> >> drivers/i2c/busses/i2c-ast2600.c:437:41: error: implicit declaration of function 'get_unaligned_le16'; did you mean 'get_unalign_ctl'? [-Wimplicit-function-declaration]
->      437 |                                         get_unaligned_le16(&msg->buf[i2c_bus->master_xfer_cnt + i]);
->          |                                         ^~~~~~~~~~~~~~~~~~
->          |                                         get_unalign_ctl
-> >> drivers/i2c/busses/i2c-ast2600.c:441:41: error: implicit declaration of function 'get_unaligned_le24'; did you mean 'get_unalign_ctl'? [-Wimplicit-function-declaration]
->      441 |                                         get_unaligned_le24(&msg->buf[i2c_bus->master_xfer_cnt + i]);
->          |                                         ^~~~~~~~~~~~~~~~~~
->          |                                         get_unalign_ctl
-> >> drivers/i2c/busses/i2c-ast2600.c:445:41: error: implicit declaration of function 'get_unaligned_le32'; did you mean 'get_unalign_ctl'? [-Wimplicit-function-declaration]
->      445 |                                         get_unaligned_le32(&msg->buf[i2c_bus->master_xfer_cnt + i]);
->          |                                         ^~~~~~~~~~~~~~~~~~
->          |                                         get_unalign_ctl
+On Fri, 04 Oct 2024, Florian Fainelli wrote:
 
-You need to add
+> On 10/4/24 00:59, Linus Walleij wrote:
+> > The Power LUT (Look-up Table) register base was missing, also
+> > add the bit define for sending serial LED data in reverse order,
+> > and use the BIT() macro to define the bits in the control
+> > register.
+> > 
+> > Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> > ---
+> >   drivers/leds/blink/leds-bcm63138.c | 6 ++++--
+> >   1 file changed, 4 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/drivers/leds/blink/leds-bcm63138.c b/drivers/leds/blink/leds-bcm63138.c
+> > index 9fe1af156c80..190d9774164b 100644
+> > --- a/drivers/leds/blink/leds-bcm63138.c
+> > +++ b/drivers/leds/blink/leds-bcm63138.c
+> > @@ -21,8 +21,9 @@
+> >   #define BCM63138_LEDS_PER_REG				(32 / BCM63138_LED_BITS)	/* 8 */
+> >   #define BCM63138_GLB_CTRL				0x00
+> > -#define  BCM63138_GLB_CTRL_SERIAL_LED_DATA_PPOL		0x00000002
+> > -#define  BCM63138_GLB_CTRL_SERIAL_LED_EN_POL		0x00000008
+> > +#define  BCM63138_GLB_CTRL_SERIAL_LED_DATA_PPOL		BIT(1)
+> 
+> Want to add:
+> 
+> #define BCM63138_GLB_CTRL_SERIAL_LED_CLK_POL	BIT(2)
+> 
+> while at it?
+> 
+> > +#define  BCM63138_GLB_CTRL_SERIAL_LED_EN_POL		BIT(3)
+> > +#define  BCM63138_GLB_CTRL_SERIAL_LED_MSB_FIRST		BIT(4)
+> >   #define BCM63138_MASK					0x04
+> >   #define BCM63138_HW_LED_EN				0x08
+> >   #define BCM63138_SERIAL_LED_SHIFT_SEL			0x0c
+> > @@ -35,6 +36,7 @@
+> >   #define BCM63138_BRIGHT_CTRL3				0x28
+> >   #define BCM63138_BRIGHT_CTRL4				0x2c
+> >   #define BCM63138_POWER_LED_CFG				0x30
+> > +#define BCM63138_POWER_LUT				0x34 /* -> b0 */
+> 
+> Maybe BCM63138_POWER_LUT_BASE0, because it is an array on some chips, like
+> 63138 and at offset 0x74 we have BCM63138_POWER_LUT_BASE1.
 
-#include <asm/unaligned.h>
-
-_after_ other #include <linux/*.h> in the code.
+This set is on hold until we have some response to this.
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Lee Jones [李琼斯]
 
