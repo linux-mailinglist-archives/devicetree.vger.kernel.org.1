@@ -1,320 +1,142 @@
-Return-Path: <devicetree+bounces-109827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E5F59981F9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:21:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 84A7799822F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:29:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E0BA1F22831
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:21:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A6D381C23E5B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EBC1192B69;
-	Thu, 10 Oct 2024 09:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D7CF1BB6B3;
+	Thu, 10 Oct 2024 09:29:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B247925745;
-	Thu, 10 Oct 2024 09:19:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E727D1552FC;
+	Thu, 10 Oct 2024 09:29:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728551999; cv=none; b=u7awxZJGAD6uwPoHGZYQ9kdStZd0bj0eBCri/FI3NEy41NwtvJUhX+dRIgFYj5gVEDwDp4OIVEd/GIDo84q5/DIav39QFqPUYqDaO+BonFM/uxjoEWsA4Z6Nok8VDtf8bvLdHe8yL0VAAbWVj3r2dlnKbgRQFgnnzuPX+127xG8=
+	t=1728552582; cv=none; b=A6J2eSKIDKv0vGkXAyrOkMnSLCjUPTA8QS+VRzfoUdHOnwx8PpukN6YN1+42dU1M+oVyat820+Snh/D/GeihZ9FD7u8smv2euuOyvsAt5Q3G3SqwJ4ZqyfYREx9PShYoplf7CTc8UUkK52ZSCHLIcboYEYs1PFivfVw6tkCOx8U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728551999; c=relaxed/simple;
-	bh=yNS4+qa8aOnoZS51Ug4nwXg4sQ5SE8hp3ZJ7W/WSmQo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TmrLH7ymCLcZXuWCH2Gf71YF+U8yqxiqMyGHAWNDGZJ3HowpCcxoG9ukDh+uC3zXGo1+p4SCuajAn95/GL0tShOARW4P/mLh0p5wcSUaR9E/oi6nNCPud0lOLxtI35bPzYCakWu+Zg132gWCke33LjcuWGcGpgbnwewgcNk/LRQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7FF1F497;
-	Thu, 10 Oct 2024 02:20:25 -0700 (PDT)
-Received: from [10.96.9.208] (R90XE1FZ.arm.com [10.96.9.208])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 467283F64C;
-	Thu, 10 Oct 2024 02:19:53 -0700 (PDT)
-Message-ID: <c5830332-e590-413e-a6f7-31b68d6a1932@arm.com>
-Date: Thu, 10 Oct 2024 10:19:50 +0100
+	s=arc-20240116; t=1728552582; c=relaxed/simple;
+	bh=3PhQhBX/cDzwmSNYvkeaadDnXuaqJFOOfD26tjgtMKk=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Hb71EVscWJ0R9E6pbWc06VAWz2uPv+ipxNUgEAUOt07tV0hlQp4N0YTaWNuXH/IHiQFhuiD2vrr9JZojoMqTuKwSQC/38WZPwPUzWRUHUUeAHZvuRkkC6+gIqeCRa0rlfTZfyEKMfnWfSBCHtYrZF3AxI9ZFZ46ww8YdMQED4ts=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dff1ccdc17bso733502276.0;
+        Thu, 10 Oct 2024 02:29:39 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728552578; x=1729157378;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yIpkFoyH7xGEmp6Cri7WzAs1H6AzrtVGMzVSG3KUQ5U=;
+        b=d8+TeKmLKo5ucYSvYRKIzom5SJlDVRzv7ETSWFLY+tTLOwzMPQj5zJhVXWb2LvG0MZ
+         nK75Zrkx0t61UCpz36gIqeXOCkRODl6e6sq8QwzebCQ0IjP9p5gnQ5Rs0xrhhbjkt8tO
+         BBmd5cwuRvRGNivCzvyfbneqXOaY1U4FSCO4XKhqDbw3eUYzPKriB1TiEB+B0Kaczpto
+         kdU34KSFWlKZCAxB0n6ateks85WqbcNEyLaIJ1BSp1yQpri/LWaYmDJcAF+MMBM8Qsto
+         CtJPyt6KyCMlBbYxY9YGERir0cNY/gmyUZOCkxQ0fucCL/VSTqHSAP9Lq/+xnaGX9zaQ
+         D0PA==
+X-Forwarded-Encrypted: i=1; AJvYcCW+lPLyolPDnqf/dAm2kkDcabju5ND9UWycLq71bsgFHO91vZ7BmibmyS6gVrwGE0wZhlzyJXbURUpV@vger.kernel.org, AJvYcCXCOXexYkM5Z6d8aG4fZVQBc+qo55zrzAPrSSK5Z8a86I45qOKVd5nOG5zMFYyy+kGyLso2mxKSaKr2@vger.kernel.org, AJvYcCXR/2bPBYLK7lIOcualKUzyITd330VP0qNFfL+02BC1gGxZ0v/Bw6HIE4LTelSvRkwCNC7BhoKrDqhi@vger.kernel.org, AJvYcCXSnBW6mmZIRuyXD4swfPF6JSwgjPIVFMy24TRoZBxFRv3czF6qL1U8PeXSzWhT9n34nZhoMkxnt5DzyK+GC9mA0Es=@vger.kernel.org, AJvYcCXt1zfY7kSvZ1VuGNn3m0MMA/mvwZSKy5//wd0vnYlYf9CDNLCMHjd2+pvU3hD87tua7loWPZbO7c0dWfPx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxNFomwiMkHlWrWakAZRwfl5ynMmrv/L4E/3YTQZ5DE5YyUu8zC
+	FK2W7zllNHz5kp9NAin5iHHgIJZlAVUD1SrT64RH0o0kfLPf8FqY6+tc8QVO
+X-Google-Smtp-Source: AGHT+IEITeRqZai7zVrTHzIhSWiLlDHYxuIfLuix/cZ+vAtVjBglIPjXLnLBoOYXIdbbeownnSej5Q==
+X-Received: by 2002:a05:6902:2001:b0:e28:6758:fb0e with SMTP id 3f1490d57ef6-e2909c1a9ecmr2801842276.16.1728552578535;
+        Thu, 10 Oct 2024 02:29:38 -0700 (PDT)
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e290ef5c47bsm216133276.42.2024.10.10.02.29.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Oct 2024 02:29:38 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-6e2e4237da4so7140377b3.1;
+        Thu, 10 Oct 2024 02:29:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVLfSsKUzE2w43UcyebsoUHqbBC1wnikq00+3k361eGNjoClpFbOK1+q5kXQsbVhQDXjYRjUL4cazhu7fRqcCjzSq8=@vger.kernel.org, AJvYcCVad7yFI30fIhqAWJkidI4VNeI7Z+fuQrhgBBxt/gKMb2R2MzCm/0lkEkuy4Jet4iPjMrEywkQclv2TUOyt@vger.kernel.org, AJvYcCWDVfX+edS7UVWcoTe9gZXjACZVrujyk9BPgPCikog1RzhvlKVS77g2ssdtAKGH5tEfUC3AIRXEmQhl@vger.kernel.org, AJvYcCWsCW5x9kJ2pIqnEgdyHmhikhbD8L2v5MfjENG0FyR7caxP63ICuR5UyfBFA6OJrGJSk2InGdagkraD@vger.kernel.org, AJvYcCX+rEp2FmCFetGp9id7mFxl/gYu1wXLyVIk1t4l7/1YbFKbEphEeVGGh2pAc+uhU6X4/oq2muOG6xl/@vger.kernel.org
+X-Received: by 2002:a05:690c:388:b0:6e3:2f9d:59fd with SMTP id
+ 00721157ae682-6e32f9d5d11mr21861857b3.31.1728552577749; Thu, 10 Oct 2024
+ 02:29:37 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 RESEND 2/3] coresight: Add support to get static id for
- system trace sources
-Content-Language: en-GB
-To: Jinlong Mao <quic_jinlmao@quicinc.com>, Mike Leach
- <mike.leach@linaro.org>, James Clark <james.clark@arm.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Alexander Shishkin <alexander.shishkin@linux.intel.com>
-Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20240910100127.8948-1-quic_jinlmao@quicinc.com>
- <20240910100127.8948-3-quic_jinlmao@quicinc.com>
- <43612930-6c17-4c6f-bc4e-954bcfd7977e@arm.com>
- <832497c9-cae2-4531-b911-6f1bfa7ec4c9@quicinc.com>
-From: Suzuki K Poulose <suzuki.poulose@arm.com>
-In-Reply-To: <832497c9-cae2-4531-b911-6f1bfa7ec4c9@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
+In-Reply-To: <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 10 Oct 2024 11:29:25 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWeGC_N3-XF29+UUR43OGJKqVNNHs042J8HRuNpiD=vOg@mail.gmail.com>
+Message-ID: <CAMuHMdWeGC_N3-XF29+UUR43OGJKqVNNHs042J8HRuNpiD=vOg@mail.gmail.com>
+Subject: Re: [PATCH v3 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document
+ the Renesas RTCA-3 IP
+To: Claudiu <claudiu.beznea@tuxon.dev>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
+	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
+	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 09/10/2024 11:37, Jinlong Mao wrote:
-> 
-> 
-> On 2024/10/9 17:50, Suzuki K Poulose wrote:
->> On 10/09/2024 11:01, Mao Jinlong wrote:
->>> Dynamic trace id was introduced in coresight subsystem, so trace id is
->>> allocated dynamically. However, some hardware ATB source has static 
->>> trace
->>> id and it cannot be changed via software programming. For such source,
->>> it can call coresight_get_static_trace_id to get the fixed trace id from
->>> device node and pass id to coresight_trace_id_get_static_system_id to
->>> reserve the id.
->>>
->>> Signed-off-by: Mao Jinlong <quic_jinlmao@quicinc.com>
->>
->> This patch is technically doing two different things :
->>
->> 1. Support for reading the static traceid from the firmware. (users of 
->> which comes later in Dummy)
->>
->> 2. Support for allocating a "specific" traceid for system sources.
->>
->>
->> Both the names are a bit similar and could be confusing.
->>
->> For (1), I don't think we need to add a helper like that. See my 
->> comments below, and drop all of that from here this patch.
-> 
-> Hi Suzuki,
-> 
-> This helper will be common for other new drivers in future.
-> Some other driver will use it, not only for dummy driver.
+Hi Claudiu,
 
-Ok, fair enough. But couldn't we still use the fwnode_xx directly from
-the "helper" rather than defining of_xxx. That way it should work for
-ACPI based systems too.
+On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
+wrote:
+> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>
+> Document the RTC IP (RTCA-3) available on the Renesas RZ/G3S SoC.
+> The RTC IP available on Renesas RZ/V2H is almost identical with the
+> one found on Renesas RZ/G3S (it misses the time capture functionality
+> which is not yet implemented on proposed driver). For this, added also a
+> generic compatible that will be used at the moment as fallback for both
+> RZ/G3S and RZ/V2H.
+>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> ---
+>
+> Changes in v3:
+> - added RTC bus clock, reset and power-domain; it has been detected
+>   by reverse engineering that RTC and VBATTB clock, reset and power
+>   domain are shared; HW manual doesn't mention it
+> - updated example with these and with assigned-clock properties
+>   needed to configure the VBATTCLK MUX with proper parent
+> - updated example section with dt-bindings/clock/r9a08g045-cpg.h
+>   and dt-bindings/clock/r9a08g045-vbattb.h includes
+> - for all these, dropped Conor's Rb tag
 
-> 
-> Thanks
-> Jinlong Mao
-> 
->>
->>
->>> ---
->>>   .../hwtracing/coresight/coresight-platform.c  | 26 +++++++++++++
->>>   .../hwtracing/coresight/coresight-trace-id.c  | 38 ++++++++++++++-----
->>>   .../hwtracing/coresight/coresight-trace-id.h  |  9 +++++
->>>   include/linux/coresight.h                     |  1 +
->>>   4 files changed, 64 insertions(+), 10 deletions(-)
->>>
->>> diff --git a/drivers/hwtracing/coresight/coresight-platform.c b/ 
->>> drivers/hwtracing/coresight/coresight-platform.c
->>> index 64e171eaad82..703abf0fa3f9 100644
->>> --- a/drivers/hwtracing/coresight/coresight-platform.c
->>> +++ b/drivers/hwtracing/coresight/coresight-platform.c
->>> @@ -183,6 +183,18 @@ static int of_coresight_get_cpu(struct device *dev)
->>>       return cpu;
->>>   }
->>> +/*
->>> + * of_coresight_get_trace_id: Get the atid of a source device.
->>> + *
->>> + * Returns 0 on success.
->>> + */
->>> +static int of_coresight_get_static_trace_id(struct device *dev, u32 
->>> *id)
->>> +{
->>> +
->>> +    return of_property_read_u32(dev->of_node, "arm,static-trace-id", 
->>> id);
->>> +}
->>> +
->>> +
+Thanks for the update!
 
-Drop these ^^
+Sorry for chiming in late, but this RTCA-3 block seems to be a
+derivative of the RTC blocks found on older SuperH SoCs, and on RZ/A1
+and RZ/A2 ARM SoCs.  Differences are found in (lack of)
+100/1000-year-count parts and the Year Alarm Enable Register, and in
+some control register bits.
 
+The SuperH and RZ/A1 variant is supported by drivers/rtc/rtc-sh.c;
+DT bindings for the latter are found in
+Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml.
 
->>>   /*
->>>    * of_coresight_parse_endpoint : Parse the given output endpoint @ep
->>>    * and fill the connection information in @pdata->out_conns
->>> @@ -317,6 +329,11 @@ static inline int of_coresight_get_cpu(struct 
->>> device *dev)
->>>   {
->>>       return -ENODEV;
->>>   }
->>> +
->>> +static inline int of_coresight_get_static_trace_id(struct device 
->>> *dev, u32 *id)
->>> +{
->>> +    return -ENODEV;
->>> +}
->>>   #endif
->>
->>
->>>   #ifdef CONFIG_ACPI
->>> @@ -796,6 +813,15 @@ int coresight_get_cpu(struct device *dev)
->>>   }
->>>   EXPORT_SYMBOL_GPL(coresight_get_cpu);
->>> +int coresight_get_static_trace_id(struct device *dev, u32 *id)
->>> +{
->>> +    if (!is_of_node(dev->fwnode))
->>> +        return -EINVAL;
->>> +
->>> +    return of_coresight_get_static_trace_id(dev, id);
->>
->> Please could we not directly use :
->>
->> fwnode_property_read_u32(dev_fwnode(dev), "arm,static-trace-id", 
->> &traceid) in the dummy driver ?
+(My first guess was that RTC-A1 is used on RZ/A1, RTC-A2 on RZ/A2,
+ and RTC-A3 on RZ/A3, but apparently RZ/A3UL does not have an RTC...
+ Oh well, at least it is used on later RZ series SoCs...)
 
-	return fwnode_property_read_u32(dev_fwnode(dev), "arm,static-trace-id", 
-id);
+Gr{oetje,eeting}s,
 
+                        Geert
 
-Suzuki
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
->>
->> The rest looks fine to me.
->>
->> Suzuki
->>
->>
->>> +}
->>> +EXPORT_SYMBOL_GPL(coresight_get_static_trace_id);
->>> +
->>>   struct coresight_platform_data *
->>>   coresight_get_platform_data(struct device *dev)
->>>   {
->>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.c b/ 
->>> drivers/hwtracing/coresight/coresight-trace-id.c
->>> index af5b4ef59cea..ca3c3de4683e 100644
->>> --- a/drivers/hwtracing/coresight/coresight-trace-id.c
->>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.c
->>> @@ -11,6 +11,12 @@
->>>   #include "coresight-trace-id.h"
->>> +enum trace_id_flags {
->>> +    TRACE_ID_ANY = 0x0,
->>> +    TRACE_ID_PREFER_ODD = 0x1,
->>> +    TRACE_ID_REQ_STATIC = 0x2,
->>> +};
->>> +
->>>   /* Default trace ID map. Used on systems that don't require per 
->>> sink mappings */
->>>   static struct coresight_trace_id_map id_map_default;
->>> @@ -80,16 +86,19 @@ static int coresight_trace_id_find_odd_id(struct 
->>> coresight_trace_id_map *id_map)
->>>    * Otherwise allocate next available ID.
->>>    */
->>>   static int coresight_trace_id_alloc_new_id(struct 
->>> coresight_trace_id_map *id_map,
->>> -                       int preferred_id, bool prefer_odd_id)
->>> +                       int preferred_id, unsigned int flags)
->>>   {
->>>       int id = 0;
->>>       /* for backwards compatibility, cpu IDs may use preferred value */
->>> -    if (IS_VALID_CS_TRACE_ID(preferred_id) &&
->>> -        !test_bit(preferred_id, id_map->used_ids)) {
->>> -        id = preferred_id;
->>> -        goto trace_id_allocated;
->>> -    } else if (prefer_odd_id) {
->>> +    if (IS_VALID_CS_TRACE_ID(preferred_id)) {
->>> +        if (!test_bit(preferred_id, id_map->used_ids)) {
->>> +            id = preferred_id;
->>> +            goto trace_id_allocated;
->>> +        } else if (WARN((flags & TRACE_ID_REQ_STATIC), "Trace ID %d 
->>> is used.\n",
->>> +                    preferred_id))
->>> +            return -EINVAL;
->>> +    } else if (flags & TRACE_ID_PREFER_ODD) {
->>>       /* may use odd ids to avoid preferred legacy cpu IDs */
->>>           id = coresight_trace_id_find_odd_id(id_map);
->>>           if (id)
->>> @@ -175,7 +184,7 @@ static int coresight_trace_id_map_get_cpu_id(int 
->>> cpu, struct coresight_trace_id_
->>>        */
->>>       id = coresight_trace_id_alloc_new_id(id_map,
->>>                            CORESIGHT_LEGACY_CPU_TRACE_ID(cpu),
->>> -                         false);
->>> +                         TRACE_ID_ANY);
->>>       if (!IS_VALID_CS_TRACE_ID(id))
->>>           goto get_cpu_id_out_unlock;
->>> @@ -222,14 +231,15 @@ static void 
->>> coresight_trace_id_map_put_cpu_id(int cpu, struct coresight_trace_id
->>>       DUMP_ID_MAP(id_map);
->>>   }
->>> -static int coresight_trace_id_map_get_system_id(struct 
->>> coresight_trace_id_map *id_map)
->>> +static int coresight_trace_id_map_get_system_id(struct 
->>> coresight_trace_id_map *id_map,
->>> +                    int preferred_id, unsigned int traceid_flags)
->>>   {
->>>       unsigned long flags;
->>>       int id;
->>>       spin_lock_irqsave(&id_map_lock, flags);
->>>       /* prefer odd IDs for system components to avoid legacy CPU IDS */
->>> -    id = coresight_trace_id_alloc_new_id(id_map, 0, true);
->>> +    id = coresight_trace_id_alloc_new_id(id_map, preferred_id, 
->>> traceid_flags);
->>>       spin_unlock_irqrestore(&id_map_lock, flags);
->>>       DUMP_ID(id);
->>> @@ -271,10 +281,18 @@ EXPORT_SYMBOL_GPL(coresight_trace_id_read_cpu_id);
->>>   int coresight_trace_id_get_system_id(void)
->>>   {
->>> -    return coresight_trace_id_map_get_system_id(&id_map_default);
->>> +    return coresight_trace_id_map_get_system_id(&id_map_default, 0,
->>> +            TRACE_ID_PREFER_ODD);
->>>   }
->>>   EXPORT_SYMBOL_GPL(coresight_trace_id_get_system_id);
->>> +int coresight_trace_id_get_static_system_id(int trace_id)
->>> +{
->>> +    return coresight_trace_id_map_get_system_id(&id_map_default,
->>> +            trace_id, TRACE_ID_REQ_STATIC);
->>> +}
->>> +EXPORT_SYMBOL_GPL(coresight_trace_id_get_static_system_id);
->>> +
->>>   void coresight_trace_id_put_system_id(int id)
->>>   {
->>>       coresight_trace_id_map_put_system_id(&id_map_default, id);
->>> diff --git a/drivers/hwtracing/coresight/coresight-trace-id.h b/ 
->>> drivers/hwtracing/coresight/coresight-trace-id.h
->>> index 3797777d367e..ca2fdf31c835 100644
->>> --- a/drivers/hwtracing/coresight/coresight-trace-id.h
->>> +++ b/drivers/hwtracing/coresight/coresight-trace-id.h
->>> @@ -122,6 +122,15 @@ int coresight_trace_id_read_cpu_id(int cpu);
->>>    */
->>>   int coresight_trace_id_get_system_id(void);
->>> +/**
->>> + * Allocate a CoreSight static trace ID for a system component.
->>> + *
->>> + * Used to allocate static IDs for system trace sources such as 
->>> dummy source.
->>> + *
->>> + * return: Trace ID or -EINVAL if allocation is impossible.
->>> + */
->>> +int coresight_trace_id_get_static_system_id(int id);
->>> +
->>>   /**
->>>    * Release an allocated system trace ID.
->>>    *
->>> diff --git a/include/linux/coresight.h b/include/linux/coresight.h
->>> index f09ace92176e..2cdc0b1cd536 100644
->>> --- a/include/linux/coresight.h
->>> +++ b/include/linux/coresight.h
->>> @@ -643,6 +643,7 @@ void coresight_relaxed_write64(struct 
->>> coresight_device *csdev,
->>>   void coresight_write64(struct coresight_device *csdev, u64 val, u32 
->>> offset);
->>>   extern int coresight_get_cpu(struct device *dev);
->>> +extern int coresight_get_static_trace_id(struct device *dev, u32 *id);
->>>   struct coresight_platform_data *coresight_get_platform_data(struct 
->>> device *dev);
->>>   struct coresight_connection *
->>
-> 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
