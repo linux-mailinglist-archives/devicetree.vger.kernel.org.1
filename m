@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-109940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B53998905
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:15:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A713D99893A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:20:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45C5DB2B716
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:11:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC4F8B2AFDD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:11:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97EAE1C9B67;
-	Thu, 10 Oct 2024 14:11:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5651E1CB323;
+	Thu, 10 Oct 2024 14:11:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Yb856gu4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WfPxYS8x"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2A841C8FBA
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:11:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A1311C8FBA
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:11:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728569463; cv=none; b=fofwlGfak6xfYQ4WWV3+fJPP0D2eKo8D0f/7meHlWpM7LjdkPlVja1di5WtxLARBv5cun3a/hykLwWAooQdOw30ntt0dIiD13qux69jr18qUggfbOpqMVvHpX/sAWbW2QPidgiUAsISnKXxaJ10WpixelgPqIzHaDgxuAtomR18=
+	t=1728569466; cv=none; b=ApNyxyTnDKzd2sMhkNP7m5r2Pj2mIpxG1RID+00cLLn8Gk/hp6ZqR+QeysA4hjkuiXrp2z8KIDK2qGetwAl9P4QsRJO5Q4WGRGSY2x+yrSKTtMO8o+S0jVnDkPDy75JQ/7fkeNo4gRQKRj3P+6g7BZ3h8ZPJXSK2ygJqIMkLiQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728569463; c=relaxed/simple;
-	bh=gvBNRxgBPZ2zeZFI0slr0ZK/bibGW/1MvVv3P+uNb5g=;
+	s=arc-20240116; t=1728569466; c=relaxed/simple;
+	bh=TTK1NqTwKaAcG1R8Vv5dIM5PCnv14GB/InNEdUbcv4M=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lQL5R9EM/L/1DRneNLIwicWbG2pi9CuVpAoX7MomTzaK6os9tRlIh+Q8Sfl9BtKz3BXv+g8hSSyELwm3Bp1cYb0exGafont2uT6NToAu6vHwAUVj2Prs9Fk7hfRdgvpuZ0gB//u4PRod/2PcWRiCdN6Iet89YKSlxwHc22foQjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Yb856gu4; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:To:Cc; b=plLk1ovCJef2m0zaCAZ/mFLvmtgJKo/SLiH7HONfyXDY+5b+Dt0RB9PcaMBTLgqA7EnKgpBMIqcYUs47AyVia4uXaAbJ9y/FsF2nH6NGfj8Jjf4+HMh92r1IXwxkbmBFbb2IrS7Xn3kL7H1w556zQsWDCtse4aR+9BlY5lGBy4w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WfPxYS8x; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a99422929c5so114307266b.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:11:01 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-537a399e06dso1079972e87.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:11:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728569459; x=1729174259; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1728569462; x=1729174262; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Z7sMROkRKGoFLIFPCxBzcqqWuegoZL694cLilxCXEAc=;
-        b=Yb856gu4ZYUWe+KIhYVGbfzm8taZbaUSjxjckHrhvds8swO2sND9nCYyPbYePnMwis
-         Ifs9oTCvoxoHOSLMq0msO3BA+KwvyhY0mhQK6lrD9yZASCsZyYhIVaOlNKX5GwUiIhRY
-         we5jMey6TOqDBnopdHPefomtxwxQNnGTowpmaNCqyueAjKm6oYTK9nAkMg3SUE3Hzm3k
-         0Rie68VkhzKZRsUnDXYZBgRZ58eu9WMMRgwsJ8Nw/ZRFzKnLmp1DwJeRbhzmfFE9Cg65
-         wf/VCUCNTKu0Ki645NW8yy0BGSdus0Un6PL3cS26QjXYPNo8zooJxmcxVTLroIP8U4zt
-         efgQ==
+        bh=Q198k3laC4sYOI7HaGU3RlY+asnk7UU8bvlf4eyLYBM=;
+        b=WfPxYS8xrJ3J4+S9SiP12hZ8wtOSx6VGQBsrSR3MI5c2USr/A33aWjX8fOWHLCxcbM
+         YVwRT/ysYAfUA5P8pcbjA1oTUVByS/FxQ7C7k2fdkzrHQ8iFSlxi17MC6xYc73Id2kOR
+         +DUx5qXnk7t9FxLyre6gRK0Oo6OQsunmW4U906Is7BJXYMx94cquFlUnVlwOPA2aIDKP
+         8a7E8UJkeudb4jm7qKylLGEInviuy3GYajwsS4rq6f1C5t05WkWSbbF9XRdJU7S3PQy4
+         npzBuNm1CRxjeBaYs2bKLDB2fK1htacan8Uv3ivwukwCSlS7PxPCgcu1NaMvPMyLE0fZ
+         BZjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728569459; x=1729174259;
+        d=1e100.net; s=20230601; t=1728569462; x=1729174262;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Z7sMROkRKGoFLIFPCxBzcqqWuegoZL694cLilxCXEAc=;
-        b=B1HDa5g0fymMQq/dP9eMiub1Ekbkt252JrsbSqwn2wtUHdUBqr39tn9UBuBuQjF1OE
-         9pTEaiohPiob3yxLCU/trKF5YVMk3qIPIW4cQjtZXyqF1Fb+n3To5Tf+hrd8I/tYQ+R/
-         yaP+7+xpNjjwA5Bf7l0Iq3IRjWtpi1Aq5MIAW0++1jsHqHspGWzddcLYs5bxdfgTiwZr
-         cucrvgS3rQc2qVJaOagvcevbDhHTR3HPrxl0OyjnEHNVl5j29g6Y++NNUfwOyfJH4zuM
-         5qxvUPnkNmF8LwW8I9HHWMYDIdMdPucJ3XXsIY6ZR9VuzEbkeOMEqmk2EKhmPgPvjN1M
-         DxTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCU8Hh7tirPDQeO6A5HH8Vgn+u4CKbOeTrXYFNxyUFAzlSVx1uhyLslX7JAbNZ0AVjfwEH+1cooHijV5@vger.kernel.org
-X-Gm-Message-State: AOJu0YyR94GjkPeF13LcO7yuxftfQSeYGwdy7EnuuFINnEzbis9u5klR
-	IZjsp0Q3DzWXSuQq3bWeV7HiTA7M01Ic7Ve6QFhu+enuhm1FD8Wa0yqy1aDPyNBYwPOQsEp8v2q
-	V
-X-Google-Smtp-Source: AGHT+IEuuUbomch6k13XEw7+i2ujQMHPYDCYT4xRgwBH/IsoA7Ire1rPyJAiOKaWwFy0P328wZMOVA==
-X-Received: by 2002:a17:907:1ca5:b0:a99:40e3:23e8 with SMTP id a640c23a62f3a-a998d32d757mr457102466b.51.1728569459248;
-        Thu, 10 Oct 2024 07:10:59 -0700 (PDT)
+        bh=Q198k3laC4sYOI7HaGU3RlY+asnk7UU8bvlf4eyLYBM=;
+        b=ZFaF6zHhFGfv5eFWGGmp/8FqzWjjEx4H8gA+2Qmj6/eBfT92kmU1boW9oUPyvZvBTe
+         0vlz5gilz4UD1fXdkrT0/PXtkXpPXfUpW/rKDs5W0fbrikcu86Y6DDk9uUq3FDOrOLUj
+         lhhL0PxbWGFAbh1ZfmVx9yO8tkgE0eDAkNGmRxWGS0b05tO/yBjoDzTd1Cj2yGLCbsOf
+         fzLn4bWa6o3PAPawCm0c32VxkfXeVRWH0ZS8Qb/bG3Ln/JUZeWCQIV83G/nT7x6qzYVF
+         RmGlqqO00LHkefd54eccR55t2SFwfx6P1qLWCVbdLrFvm55+kB6vIS+HpYv7RSS4YCU4
+         zyfw==
+X-Forwarded-Encrypted: i=1; AJvYcCX6lLnSUpP9mZO+Zsf2zFVbLwPiaYbIn7vooQfI71f22q8TGOM8xsuLR5+u07dkhhHeaRw+L7AQn08I@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3B4Ejq2ZzjdEIZs3dHKxNG9Nkixy0iyQNT4yD3xziL31Jp6nB
+	vgs+hclQjAng9CLkWH3XTKY6A6DZudzeeiaarsA01A6Qh0SCdQCa/+sgPw1/1dwN+Wtq8rN6MOD
+	a
+X-Google-Smtp-Source: AGHT+IEHbvFN/0c3gTJeqcUxsxwpXpbvXc0bdD+m1MfpXj+Vxw5Z2jBW3d/SwwatThHPBe74AL3ahg==
+X-Received: by 2002:a05:6512:12c8:b0:52c:99c9:bef6 with SMTP id 2adb3069b0e04-539c488a4eemr4220783e87.7.1728569461791;
+        Thu, 10 Oct 2024 07:11:01 -0700 (PDT)
 Received: from lino.lan ([85.235.12.238])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7ec5704sm94540866b.23.2024.10.10.07.10.57
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7ec5704sm94540866b.23.2024.10.10.07.10.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 07:10:57 -0700 (PDT)
+        Thu, 10 Oct 2024 07:11:00 -0700 (PDT)
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 10 Oct 2024 16:10:51 +0200
-Subject: [PATCH v4 2/4] leds: bcm63138: Use scopes and guards
+Date: Thu, 10 Oct 2024 16:10:52 +0200
+Subject: [PATCH v4 3/4] leds: bcm63138: Handle shift register config
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20241010-bcm63138-leds-v4-2-cdb80780a555@linaro.org>
+Message-Id: <20241010-bcm63138-leds-v4-3-cdb80780a555@linaro.org>
 References: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
 In-Reply-To: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
 To: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, 
@@ -95,87 +95,51 @@ Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
  Linus Walleij <linus.walleij@linaro.org>
 X-Mailer: b4 0.14.0
 
-Use scoped helpers and guards to handle DT node iterations
-and spinlocks. This cuts some lines of code and eliminates
-common mistakes (such as the missing of_node_put()).
+This adds code to optionally read the width of the shift register
+chain from the device tree and use it to set up the register
+controlling the shifter hardware.
 
-Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+If the property is not present, the boot-time default is used so
+existing device trees keep working as this is what they assume.
+
 Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 ---
- drivers/leds/blink/leds-bcm63138.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ drivers/leds/blink/leds-bcm63138.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
 diff --git a/drivers/leds/blink/leds-bcm63138.c b/drivers/leds/blink/leds-bcm63138.c
-index 3a5e0b98bfbc..374f68f4f277 100644
+index 374f68f4f277..9fe1af156c80 100644
 --- a/drivers/leds/blink/leds-bcm63138.c
 +++ b/drivers/leds/blink/leds-bcm63138.c
 @@ -2,6 +2,7 @@
  /*
   * Copyright (C) 2021 Rafał Miłecki <rafal@milecki.pl>
   */
-+#include <linux/cleanup.h>
++#include <linux/bits.h>
+ #include <linux/cleanup.h>
  #include <linux/delay.h>
  #include <linux/io.h>
- #include <linux/leds.h>
-@@ -125,17 +126,14 @@ static void bcm63138_leds_brightness_set(struct led_classdev *led_cdev,
- {
- 	struct bcm63138_led *led = container_of(led_cdev, struct bcm63138_led, cdev);
- 	struct bcm63138_leds *leds = led->leds;
--	unsigned long flags;
- 
--	spin_lock_irqsave(&leds->lock, flags);
-+	guard(spinlock_irqsave)(&leds->lock);
- 
- 	bcm63138_leds_enable_led(leds, led, value);
- 	if (!value)
- 		bcm63138_leds_set_flash_rate(leds, led, 0);
- 	else
- 		bcm63138_leds_set_bright(leds, led, value);
--
--	spin_unlock_irqrestore(&leds->lock, flags);
- }
- 
- static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
-@@ -144,7 +142,6 @@ static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
- {
- 	struct bcm63138_led *led = container_of(led_cdev, struct bcm63138_led, cdev);
- 	struct bcm63138_leds *leds = led->leds;
--	unsigned long flags;
- 	u8 value;
- 
- 	if (!*delay_on && !*delay_off) {
-@@ -179,13 +176,11 @@ static int bcm63138_leds_blink_set(struct led_classdev *led_cdev,
- 		return -EINVAL;
- 	}
- 
--	spin_lock_irqsave(&leds->lock, flags);
-+	guard(spinlock_irqsave)(&leds->lock);
- 
- 	bcm63138_leds_enable_led(leds, led, BCM63138_MAX_BRIGHTNESS);
- 	bcm63138_leds_set_flash_rate(leds, led, value);
- 
--	spin_unlock_irqrestore(&leds->lock, flags);
--
- 	return 0;
- }
- 
-@@ -259,7 +254,6 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
+@@ -254,6 +255,7 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
  	struct device_node *np = dev_of_node(&pdev->dev);
  	struct device *dev = &pdev->dev;
  	struct bcm63138_leds *leds;
--	struct device_node *child;
++	u32 shift_bits;
  
  	leds = devm_kzalloc(dev, sizeof(*leds), GFP_KERNEL);
  	if (!leds)
-@@ -280,7 +274,7 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
- 	bcm63138_leds_write(leds, BCM63138_SERIAL_LED_POLARITY, 0);
- 	bcm63138_leds_write(leds, BCM63138_PARALLEL_LED_POLARITY, 0);
+@@ -267,6 +269,12 @@ static int bcm63138_leds_probe(struct platform_device *pdev)
  
--	for_each_available_child_of_node(np, child) {
-+	for_each_available_child_of_node_scoped(np, child) {
- 		bcm63138_leds_create_led(leds, child);
- 	}
+ 	spin_lock_init(&leds->lock);
  
++	/* If this property is not present, we use boot defaults */
++	if (!of_property_read_u32(np, "brcm,serial-shift-bits", &shift_bits)) {
++		bcm63138_leds_write(leds, BCM63138_SERIAL_LED_SHIFT_SEL,
++				    GENMASK(shift_bits - 1, 0));
++	}
++
+ 	bcm63138_leds_write(leds, BCM63138_GLB_CTRL,
+ 			    BCM63138_GLB_CTRL_SERIAL_LED_DATA_PPOL |
+ 			    BCM63138_GLB_CTRL_SERIAL_LED_EN_POL);
 
 -- 
 2.46.2
