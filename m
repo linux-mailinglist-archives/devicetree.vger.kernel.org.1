@@ -1,170 +1,137 @@
-Return-Path: <devicetree+bounces-109949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64FDC998A46
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:50:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C18959989F9
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:41:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1E43B29694
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:27:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F10991C24141
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 14:41:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 428D21CCB2D;
-	Thu, 10 Oct 2024 14:22:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6C31E503C;
+	Thu, 10 Oct 2024 14:31:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UDy+P/gm"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="169sq+2K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C10B1CB510
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 14:22:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F0EB1E5019;
+	Thu, 10 Oct 2024 14:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728570172; cv=none; b=VabHCe9ut2yoFQe9JJpRpKM8qyiO4YUlBUe1kOzwYzQiI+CE7C66bcTPIVfnXP1G0vQsduKX8KbiQD5uTaLSh9u/6yyyfkUyPus3CnkUeuA/cMJdrnPXA1KVzpZWvPT+tO5jHwgHfOYaWHRGDXJxNGXQE8RrMMliEBlbOtZzLhU=
+	t=1728570698; cv=none; b=oKdWoLeEl0RZfjtOhrMldTMiaE/ZNDsQocTehN/vwM6eZVlp8D125KvL/KU2a4QxA4nzg0ygEPoy16l0eEzmm8pAzwqrGqUC2NXO4EkB+MpsVsXIZA0fMSYn50dK6aBUET/k/orWvO714ddti9h2RJJiqFkxp1ecDj0Y565xTVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728570172; c=relaxed/simple;
-	bh=pc8gV4huGZDoUca8YffQfxAWHm148iLaPYTVWk1l2jA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YEh1MBCliQ6TX7ZgzwbPNDGTi9LOsOXSiXefnQD3DiT/Vcc5kdZry/htoebSHTuFJAXHLJ0IYSBVuL+cdVQvieQ24txTkLI/JuM8Yj2byO1ciNyWmp+i6TlE9IuDR9Z8wn2sZQU6lsCrW4b9/VU0PaGOpf0E8H9BUFEMOsfxGhY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UDy+P/gm; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2facaa16826so9096241fa.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:22:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728570167; x=1729174967; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=T9AJcZVNqCADPxVrB/UoMC81RGbypBJxweSdqf11Fz4=;
-        b=UDy+P/gmM3DlA9/uyy+ivLTEbKxgexXSBHV3yKb8r0nZjcOFsz0rj4jA+pAJAPskYD
-         U3bOLH+N913gviSD0KOZXH9AnBISVxaKRs3daqwBRJLuZ+q4U9Dwo1sYTLkn1GMkQdtl
-         B4ze5wsciOOLXMECnyNcqMBOLPHpi2+1zLPfyL7au3Dz4DOTK385WRAVPvQE34OLgizp
-         Rr/LTUpUzCN5jzvPKdXgFvNAfG9y252bnc8yJYmlN10LMM69sCV+s7eBfmWoi2L4jtif
-         5qmZNYK+sMvK1mFIVrGMA2FG4CzA/v/YlI/aCC51gHPy4GK7s+SBqDFIuKSLO2AxbFZN
-         6nfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728570167; x=1729174967;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=T9AJcZVNqCADPxVrB/UoMC81RGbypBJxweSdqf11Fz4=;
-        b=sERvQU2gqXWjR9f1ZQoBtwGB9qOWje/uWKL42s5E/gyBBPtucshsTkWSJceWHQVmbL
-         Di5hB/SZMB3PuHpPRga6IgNqlOOe+4JRaTHlQnM+hRSJBLB+QwigaRPyY7DjCqlP8hJi
-         WauTu/KdHyJFkY4tbOy2fjeb/gj+rPph0Emdv8sP1G88gSJ9MRYLc4Ted9EPnsXRvzQH
-         ifSbNjUBtf+WShvAPOtTXdv1XhcebDGmZC3p8AnMGpSuez4DvrRoyEVKJGKWMYeOu9t/
-         26gqcsQgHezWZHqsf5sp6RR3cjFrFgoHEAjsbyYj04llvAIjg6ozLAfs0t6LimTIxL3r
-         zq4w==
-X-Forwarded-Encrypted: i=1; AJvYcCU5DrzaumG3NqEbHfREvpKhj1aEmrOOa6EgjWax6fKvQ7mGx//2/3r1DPs9zcLPjjyQbJPdxnUj4lXn@vger.kernel.org
-X-Gm-Message-State: AOJu0YxbQXqQwBxd3sb81mXWn5mtTy6+EqlvePqf9/k2fxTB8ZKA3VoE
-	Ts3BWngc9LICL9F6MXY7SKSXXw35u0vhscSANab3dJQ4UaqV28ZyiH06f3ZEyq4=
-X-Google-Smtp-Source: AGHT+IF6rZ3MD8nH2vuXY8H2os5uX0/oGgjx49wYPUe6Dm++/RdT24HNnJYcg/TCT0rhnTNfVYjUEg==
-X-Received: by 2002:a2e:b8c1:0:b0:2fa:fe0c:4967 with SMTP id 38308e7fff4ca-2fb1873e465mr41125211fa.20.1728570167037;
-        Thu, 10 Oct 2024 07:22:47 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb2474c85esm2097331fa.115.2024.10.10.07.22.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 07:22:45 -0700 (PDT)
-Date: Thu, 10 Oct 2024 17:22:42 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, quic_ppratap@quicinc.com, 
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add support for usb nodes on
- QCS8300
-Message-ID: <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
-References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
- <20241009195636.2649952-2-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1728570698; c=relaxed/simple;
+	bh=zX/y3KjVM7XZ1/fA2LM2GqE67loJgY+qwscuZ4oeK4A=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=NOI3SpSNvYgMhtvHKhapkvVqLvlkTODX4pbfMnwRxaoIyqRhVHJ/OLacguSuvEcV3LD9pJTKkgvTm3uLi1u+17Uboy+pxUTFsbf2vENiQs9eALFNpcHpOSIbBjSlaFLVcSkC2nvM71fFyE6BFv5lmOBGnC7Ss5yxwCK7s/iJGVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=169sq+2K; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AE3d0V028646;
+	Thu, 10 Oct 2024 16:31:16 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=5Wa1hO62y0JRJXVgsIkzCN
+	ugxFg4hqAuzrDxJki9j+0=; b=169sq+2KQR2Av+gIn5Gdd0QA5BEmV9yU+Sdf+T
+	ecVwlqDvfTFn5R8URk+SKvcOr6beiHs5vQSzcws6sQGTpUHOam3xhWx/qccAsbix
+	VA77RN6lVJqMpN104yjjzadlq1oTnaRu8NtYSmmDgHJkXG4JKizd2uW4jCVrARTQ
+	YGODFe0TcbeN76mOYoSGQhaSRv3+eia26KglJTTEicqyZRI62wG0Hsq1v73eDaNt
+	ssmvrdybv+H60B28OO1xGYkQ1uO/Nj1W6dO/TWylTztrxz/cyffm/1hu+ST2U2Ry
+	Jh7IpGM93+yjjScSgInYztjHBabRl1mJ1LxlYAnXpucZKLdw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4263434121-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 16:31:16 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C9B0B4008A;
+	Thu, 10 Oct 2024 16:30:17 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 514BF289A51;
+	Thu, 10 Oct 2024 16:28:06 +0200 (CEST)
+Received: from localhost (10.252.31.182) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Thu, 10 Oct
+ 2024 16:28:06 +0200
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH 00/11] STM32 DMA3 updates for STM32MP25
+Date: Thu, 10 Oct 2024 16:27:50 +0200
+Message-ID: <20241010-dma3-mp25-updates-v1-0-adf0633981ea@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009195636.2649952-2-quic_kriskura@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAGbkB2cC/x2MywqAIBAAfyX23ILai/qV6KC51R4s0YpA+vek4
+ 8DMJIgUmCIMRYJAN0c+9gyyLGDe9L4Sss0MSqhaCinQOl2h86rBy1t9UsS6NT11WeiFgdz5QAs
+ //3Oc3vcDzqPYRGMAAAA=
+X-Change-ID: 20241010-dma3-mp25-updates-46b9e720290b
+To: Vinod Koul <vkoul@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>
+CC: <dmaengine@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Thu, Oct 10, 2024 at 01:26:35AM GMT, Krishna Kurapati wrote:
-> Add support for USB controllers on QCS8300. The second
-> controller is only High Speed capable.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi | 165 ++++++++++++++++++++++++++
->  1 file changed, 165 insertions(+)
+The HW version of STM32 DMA3 inside STM32MP25 requires some tunings to
+meet the needs of the interconnect. This series adds the linked list
+refactoring feature to have optimal performance when addressing the
+memory, and it adds the use of two new bits in the third cell specifying
+the DMA transfer requirements:
+- bit[16] to prevent packing/unpacking mode to avoid bytes loss in case
+of interrupting an ongoing transfer (e.g. UART RX)i,
+- bit[17] to prevent linked-list refactoring because some peripherals
+(e.g. FMC ECC) require a one-shot transfer, they trigger the DMA only
+once.
+It also adds a new property, st,axi-max-burst-len, to clamp the burst
+length when AXI port is used.
+Finally this series also contains STM32MP25 device tree updates, to add
+DMA support on SPI, I2C, UART and apply the tunings introduced.
 
-[...]
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+---
+Amelie Delaunay (11):
+      dt-bindings: dma: stm32-dma3: prevent packing/unpacking mode
+      dmaengine: stm32-dma3: prevent pack/unpack thanks to DT configuration
+      dmaengine: stm32-dma3: refactor HW linked-list to optimize memory accesses
+      dt-bindings: dma: stm32-dma3: prevent linked-list refactoring
+      dmaengine: stm32-dma3: prevent LL refactoring thanks to DT configuration
+      dt-bindings: dma: stm32-dma3: introduce st,axi-max-burst-len property
+      dmaengine: stm32-dma3: clamp AXI burst using st,axi-max-burst-len
+      arm64: dts: st: limit axi burst length in dma nodes of stm32mp25
+      arm64: dts: st: add DMA support on U(S)ART instances of stm32mp25
+      arm64: dts: st: add DMA support on I2C instances of stm32mp25
+      arm64: dts: st: add DMA support on SPI instances of stm32mp25
 
-> +
-> +		usb_2: usb@a4f8800 {
-> +			compatible = "qcom,qcs8300-dwc3", "qcom,dwc3";
-> +			reg = <0x0 0x0a4f8800 0x0 0x400>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges;
-> +
-> +			clocks = <&gcc GCC_CFG_NOC_USB2_PRIM_AXI_CLK>,
-> +				 <&gcc GCC_USB20_MASTER_CLK>,
-> +				 <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
-> +				 <&gcc GCC_USB20_SLEEP_CLK>,
-> +				 <&gcc GCC_USB20_MOCK_UTMI_CLK>;
-> +			clock-names = "cfg_noc",
-> +				      "core",
-> +				      "iface",
-> +				      "sleep",
-> +				      "mock_utmi";
-> +
-> +			assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
-> +					  <&gcc GCC_USB20_MASTER_CLK>;
-> +			assigned-clock-rates = <19200000>, <120000000>;
-> +
-> +			interrupts-extended = <&intc GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&intc GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
-> +					      <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
-> +					      <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
-> +			interrupt-names = "pwr_event",
-> +					  "hs_phy_irq",
-> +					  "dp_hs_phy_irq",
-> +					  "dm_hs_phy_irq";
-> +
-> +			power-domains = <&gcc GCC_USB20_PRIM_GDSC>;
-> +			required-opps = <&rpmhpd_opp_nom>;
-> +
-> +			resets = <&gcc GCC_USB20_PRIM_BCR>;
-> +
-> +			interconnects = <&aggre1_noc MASTER_USB2 0 &mc_virt SLAVE_EBI1 0>,
-> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB2 0>;
-> +			interconnect-names = "usb-ddr", "apps-usb";
+ .../bindings/dma/stm32/st,stm32-dma3.yaml          |  17 ++++
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |  78 +++++++++++++++
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |   2 +
+ drivers/dma/stm32/stm32-dma3.c                     | 107 +++++++++++++++++----
+ 4 files changed, 185 insertions(+), 19 deletions(-)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241010-dma3-mp25-updates-46b9e720290b
 
-As this is a USB2-only host, shouldn't it also have qcom,select-utmi-as-pipe-clk ?
-
-> +
-> +			status = "disabled";
-> +
-> +			usb_2_dwc3: usb@a400000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x0 0x0a400000 0x0 0xe000>;
-> +				interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
-> +				iommus = <&apps_smmu 0x20 0x0>;
-> +				phys = <&usb_2_hsphy>;
-> +				phy-names = "usb2-phy";
-> +				snps,dis_u2_susphy_quirk;
-> +				snps,dis_enblslpm_quirk;
-> +			};
-> +		};
->  	};
->  
->  	arch_timer: timer {
-> -- 
-> 2.34.1
-> 
-
+Best regards,
 -- 
-With best wishes
-Dmitry
+Amelie Delaunay <amelie.delaunay@foss.st.com>
+
 
