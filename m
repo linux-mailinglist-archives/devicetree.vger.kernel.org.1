@@ -1,187 +1,84 @@
-Return-Path: <devicetree+bounces-109837-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109838-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06E359982D7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:53:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6268A9982E1
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:54:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CD581C21DE3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:53:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2226C281A90
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 09:54:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5353C1BC9FE;
-	Thu, 10 Oct 2024 09:52:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C64B1BD039;
+	Thu, 10 Oct 2024 09:54:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="rP4ng+oP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W3SgVLVI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 577041B5EBC
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 09:52:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C3371BC9EC;
+	Thu, 10 Oct 2024 09:54:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728553978; cv=none; b=OTkoAkk5RPmOyplbVWjhZNzUEMl/XEteJuP98rCnbbVXBeeWkw2YpYq57M1QG2BCXt4lR6zmsJsMBa4aESOFD0yAoYY5ba9PGmbQADFul8PqKpCQ+d5/rcgTZlKsHKGWrVB1SStkFPx8xnVlAU0R9a31eDUdkP4NAHYb03H2PYM=
+	t=1728554063; cv=none; b=MIlpbTGK+fsoOugotS+aEYXHRaRKUx/6Xsjh0ZfgcUme0YK7sXTJf1RuHD23R+NZdtAiijz5l7axQGqc/wfmZk+ctcLXUO1/UwMrsD/o1PifO1Kco2myHfJkwNWXkoXir90Jww4tDXXVtW/jE/Gg/eNc2nLeVvls5dKQYtV6K3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728553978; c=relaxed/simple;
-	bh=aR/od7u1Dm0L0Askk5LTo4Dg9qcC5Z7NUkiE7B1SAOU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=In7ntLiF2v9vkuqa9vmAzfw7HV0t1O04FlFBx8D4Q6MDG2yxsdEYEbZTAdpsImPQQOiMeUX01b6ybM5YlGxhMu4SyBQykikIerceOrq+iYCDQ7kb2TyOUAWPa+kbsX4Lgy3rkXeV5nlkGerWGW/JSsUWiiIgEgrUY9oaYbLSV+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=rP4ng+oP; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a7aa086b077so102947666b.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 02:52:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1728553975; x=1729158775; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=40jcWFUFi0Oxb77A5Qmw+6hx6Ee/l4XlcgBsvUfMoMI=;
-        b=rP4ng+oPD0u2B3qdAe5EpJ170oqHVt1uypV1gQHuBQ1/fFwUFGbBYAoH4VigrbhvZ4
-         b/MKz6LyoIAljMDhRiCOeD07Jkn7a31nFuX5dIQcxDZeBksgtU7Vg8XaR0jfg0nRA03Y
-         aScZr+q+/gsziN9ljcKmgvei1BITqKtoE/giM6xY8uEnwpSWvASmxytf5AOs9A6qL4/O
-         PcB9tOTVbNSAaug0/yEk5nTF1iq7XdF/lHl2F1Qeg7bXqmOAvITKeDR5wzxc2GdD023W
-         kswsTvCFPCTlDavbtTLHUOivKp1MQqTZbNLj034oW34GBE4fWFmA6yi/pJZMGW91lkt5
-         acTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728553975; x=1729158775;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=40jcWFUFi0Oxb77A5Qmw+6hx6Ee/l4XlcgBsvUfMoMI=;
-        b=M3ZOjTAIhoupbqyyiTdpLBXUkWcoBaSEbyoudJXjuQPVrGr0tezuvvXQtK97cP63+n
-         UkxHIOlxroTkWunXenYa2kxFF2qjXklPHi+nh7k5sCNjGzLiOCjnRJj8O3EEp/PBmmgf
-         hjl0OAZCS12FDqBrJlEExu3eqnI5vDn6vVr85+GiR+zc7e2mwx5Ix0sFf/sSLtCtbfrj
-         VuQL7pYvaSoYn4nVznR0keMb9yQ9KM56UPRmyneB5mDiRiQhwMw4aO+SyabU0sOpxRvE
-         lZvK0280x3bRsCkYmfBprHcwe2O9ABzXgpfSzfZFnTiFK/aabfzBmEmu86ACOO11bMPj
-         xVAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW4i1UXsB432G4wB4/9G7AQGkfkdbNkaF0cqF0couYpZYFnKa7ULleOQESG4FewVlr3XSmQeM0fPdOk@vger.kernel.org
-X-Gm-Message-State: AOJu0YxLAOodNAajmlQRxX3gCrZXiO+MbhGcK7By4TcKNmDIAu+sqJes
-	RTa7Q6lz2elJEe7x1wEEk2p663n0h1GH10FBVo7rkNyFB7MYsmSgxIDf5SMDIQzBFTiTS2QhnyR
-	9
-X-Google-Smtp-Source: AGHT+IHGpgFAaHxId5Yu05QYCpBK0KheH6IwCDZNQtW0JlFbclcqU+qgTj7MahEzfh9iuoNu+rHtpQ==
-X-Received: by 2002:a17:907:1c8c:b0:a99:4698:cc5a with SMTP id a640c23a62f3a-a999e8ca4e9mr286372166b.47.1728553974406;
-        Thu, 10 Oct 2024 02:52:54 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.23])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a80dc524sm65297566b.148.2024.10.10.02.52.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 02:52:53 -0700 (PDT)
-Message-ID: <1c733190-bd46-43d0-8f3d-62e0ed5fde42@tuxon.dev>
-Date: Thu, 10 Oct 2024 12:52:52 +0300
+	s=arc-20240116; t=1728554063; c=relaxed/simple;
+	bh=oPlyeFx/F1I/aRcvpCxc3VfOaqbZr0rB7xSA+d2OXL0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bT4aoaRJx+J+FoRX1RN1IHM9Flh1RlmmK+l0iZvH7K03tJ5lBgO/peF3zaRivwSMW4XBozKa+vFqMjdLhjhDD8krqgOXMztBL1IjoW5vl0hP/EmsWYG62naO1yBtAJcRQhDLUB1KHZwkQAbov2dNixtBwXylxq0KUAIJJaf1fJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3SgVLVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5957C4CEC5;
+	Thu, 10 Oct 2024 09:54:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728554062;
+	bh=oPlyeFx/F1I/aRcvpCxc3VfOaqbZr0rB7xSA+d2OXL0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W3SgVLVIqruuohIu0xat728yKnTfBVNfmmb0+RBxHWp9ozpllcGr0Z2vq8sysz9wo
+	 s8hpEFtp2Vr7bbUKHxQNCFuVU/x0TynZJ0ODZ6nnUO0YKq73uvawz+rB7HO4YwTXdW
+	 ZAjouwm/MxnlFpPPNjus+OAVpbIiIBQK08QYluX4Jd9VPLBsNNGxolIGOx2L6m/Q8b
+	 714Tlt9sCFkpiTw0sbIasgBtBTpFUMCCrhEvwV2iSVu6ePTFuXSIND93wBTIdLTKvg
+	 YREOo2bU06oBAaB9CV1xW9y9fLUMGsR/P1Ee8xDkmPJxoPzGjGbtTmBSZjGqbpzxUm
+	 sqldDspH3uTew==
+Date: Thu, 10 Oct 2024 10:54:17 +0100
+From: Simon Horman <horms@kernel.org>
+To: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, michal.simek@amd.com, harini.katakam@amd.com,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	git@amd.com, Abin Joseph <abin.joseph@amd.com>
+Subject: Re: [PATCH net-next v3 3/3] net: emaclite: Adopt clock support
+Message-ID: <20241010095417.GB1098236@kernel.org>
+References: <1728491303-1456171-1-git-send-email-radhey.shyam.pandey@amd.com>
+ <1728491303-1456171-4-git-send-email-radhey.shyam.pandey@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 05/12] dt-bindings: rtc: renesas,rzg3s-rtc: Document
- the Renesas RTCA-3 IP
-Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com,
- magnus.damm@gmail.com, p.zabel@pengutronix.de,
- linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com>
- <20240830130218.3377060-6-claudiu.beznea.uj@bp.renesas.com>
- <CAMuHMdWeGC_N3-XF29+UUR43OGJKqVNNHs042J8HRuNpiD=vOg@mail.gmail.com>
-From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <CAMuHMdWeGC_N3-XF29+UUR43OGJKqVNNHs042J8HRuNpiD=vOg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1728491303-1456171-4-git-send-email-radhey.shyam.pandey@amd.com>
 
-Hi, Geert,
+On Wed, Oct 09, 2024 at 09:58:23PM +0530, Radhey Shyam Pandey wrote:
+> From: Abin Joseph <abin.joseph@amd.com>
+> 
+> Adapt to use the clock framework. Add s_axi_aclk clock from the processor
+> bus clock domain and make clk optional to keep DTB backward compatibility.
+> 
+> Signed-off-by: Abin Joseph <abin.joseph@amd.com>
+> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> ---
+> Changes for v3:
+> - Remove braces around dev_err_probe().
+> 
+> Changes for v2:
+> - None
 
-On 10.10.2024 12:29, Geert Uytterhoeven wrote:
-> Hi Claudiu,
-> 
-> On Fri, Aug 30, 2024 at 3:02 PM Claudiu <claudiu.beznea@tuxon.dev> wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> Document the RTC IP (RTCA-3) available on the Renesas RZ/G3S SoC.
->> The RTC IP available on Renesas RZ/V2H is almost identical with the
->> one found on Renesas RZ/G3S (it misses the time capture functionality
->> which is not yet implemented on proposed driver). For this, added also a
->> generic compatible that will be used at the moment as fallback for both
->> RZ/G3S and RZ/V2H.
->>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
->> Changes in v3:
->> - added RTC bus clock, reset and power-domain; it has been detected
->>   by reverse engineering that RTC and VBATTB clock, reset and power
->>   domain are shared; HW manual doesn't mention it
->> - updated example with these and with assigned-clock properties
->>   needed to configure the VBATTCLK MUX with proper parent
->> - updated example section with dt-bindings/clock/r9a08g045-cpg.h
->>   and dt-bindings/clock/r9a08g045-vbattb.h includes
->> - for all these, dropped Conor's Rb tag
-> 
-> Thanks for the update!
-> 
-> Sorry for chiming in late, but this RTCA-3 block seems to be a
-> derivative of the RTC blocks found on older SuperH SoCs, and on RZ/A1
-> and RZ/A2 ARM SoCs.  Differences are found in (lack of)
-> 100/1000-year-count parts and the Year Alarm Enable Register, and in
-> some control register bits.
+Reviewed-by: Simon Horman <horms@kernel.org>
 
-At a 1st look it seems so, yes. I was inclined at the beginning to just use
-the rtc-sh but the RZ/G3S HW manual mentions a lot of restrictions that
-need to be followed when configuring the IP. Because of these restrictions
-I chose to have a different driver. Otherwise the rtc-sh would have become
-way too complication as far as I can tell.
-
-From these restriction I can mention:
-- wait for 2*1/64 periods when configuring the alarm
-- from HW manual: When the RCR1 register is modified,
- check that all the
-  bits have been updated before proceeding to the next processing
-- from HW manual: section 22.6.4. Notes on writing to and
-  reading from registers) after writing to count registers, alarm
-  registers, year alarm enable register, bits RCR2.AADJE, AADJP,
-  and HR24 register, we need to do 3 empty reads before being
-  able to fetch the registers content.
-- updates to RCR2.START need to be checked before continuing (note 2 from
-  HW manual on RCR2 register: After writing to this bit, confirm that its
-  value has actually changed before proceeding with further processing)
-- there are many bits that are synchronized w/ count source and need to be
-  checked before proceeding (when setting it up).
-- According to HW manual (section 22.4.2. Clock and count mode setting
-  procedure) we need to wait at least 6 cycles of the 32KHz clock after
-  clock was enabled.
-- According to HW manual (section 22.3.19. RTC Control
-  Register 2) when set 24 hours mode this needs to be done separate from
-  stop operation.
-- According to HW manual (section 22.6.3. Notes on writing to and reading
-  from registers) after reset we need to wait 6 clock cycles before
-  writing to RTC registers.
-- According to HW manual (section 22.6.4. Notes on writing to and reading
-  from registers) we need to wait 1/128 seconds while the clock is
-  operating (RCR2.START bit = 1) to be able to read the counters after a
-  return from reset.
-- and there are other restrictions
-
-Thank you,
-Claudiu Beznea
-
-> 
-> The SuperH and RZ/A1 variant is supported by drivers/rtc/rtc-sh.c;
-> DT bindings for the latter are found in
-> Documentation/devicetree/bindings/rtc/renesas,sh-rtc.yaml.
-> 
-> (My first guess was that RTC-A1 is used on RZ/A1, RTC-A2 on RZ/A2,
->  and RTC-A3 on RZ/A3, but apparently RZ/A3UL does not have an RTC...
->  Oh well, at least it is used on later RZ series SoCs...)
-> 
-> Gr{oetje,eeting}s,
-> 
->                         Geert
-> 
 
