@@ -1,61 +1,64 @@
-Return-Path: <devicetree+bounces-110041-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110042-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86E7A998F0E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:58:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EEFE998F15
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:59:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4921E2884C3
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:58:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C72E11F25A92
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:59:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CC0219D078;
-	Thu, 10 Oct 2024 17:57:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DCC219D07B;
+	Thu, 10 Oct 2024 17:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nr33LrPJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QT7Az7YG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1998019D064;
-	Thu, 10 Oct 2024 17:57:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C7119CD1D;
+	Thu, 10 Oct 2024 17:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728583063; cv=none; b=XTEkuIv49ImHmQ3U0UQZDYYZMnspANVwdwoyB09UEBb6kiK+5oDv0Z1+n6D3wuzinGZMzUe8cCTTNkDfqwdNNbnBRtXKmOxLViEhtyMDs+PoCYe0Uo4OYN+NTsfYO2Lnc4dr7oNIIt0qpLvWfRs38rlfsI2osCpgUF/nCyDw7Hc=
+	t=1728583144; cv=none; b=GjRmW/7Bl2RS94VGBwpUEeFroWThVbTP4jk6GILPiVsqJAnF2nYv/UqnftzErofVVdJhql/uyBFOcd3zGdmX3hkOo1QFneZYPgXLZicDrY0JNXr6sT0n7avAlVbMp4FLV5EWZiBXH01a9e2zI2VskGClpBiYdkibjJXbfwyPSEo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728583063; c=relaxed/simple;
-	bh=LWqRgOJyjhmzC/oM31Wppo5HRgG6EO757vIU1WFMl3Q=;
+	s=arc-20240116; t=1728583144; c=relaxed/simple;
+	bh=IoPFD/Iol5uq0QVp0o5+LXdn1au6mAzdyW+O+wK5Q/8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qy8v7LWlPhx8flJbwpr5w8/gSrzJfnRfPHhVnU67k3zHcSpmMa3zDVrDt2iNAryYODapb3hYjReDfgUDUHtguVljRN882q9kr6ch91TYf+DeW/kFu7X86FlXmpfEkalVGZC/s4w1fcEqnUkU/606Ii8IWxfR4teKqqkK19J9GEs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nr33LrPJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7A07C4CEC5;
-	Thu, 10 Oct 2024 17:57:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=dsy6v2v1AUlWBKtBrVCXwbpm6/ywH9r2ohI8USIpWDCVwdtGUabU0rE6VPepywnpOC4HNIXXvUUr1NcItmQJ5RTCGCK13i5KHrea3XqAsXRiR3v8Fu4iCNtk8hQYjkTwFZ/JbFtIjv2IGS3pjvs2bnNo27kOJsyM1vl58jJjEP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QT7Az7YG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B3D4C4CEC5;
+	Thu, 10 Oct 2024 17:59:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728583062;
-	bh=LWqRgOJyjhmzC/oM31Wppo5HRgG6EO757vIU1WFMl3Q=;
+	s=k20201202; t=1728583144;
+	bh=IoPFD/Iol5uq0QVp0o5+LXdn1au6mAzdyW+O+wK5Q/8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nr33LrPJDjzXFmLgjgcyuwuiZux+fWPYa84/K3umfWTNtr/BiLgMyp2kv6SulKf6z
-	 QYD6yZSPOdF7RYJoz8lB30GY6bVipdTSOCbW+m8tUNhNEjBljJ6pub8XJFr32XC/UK
-	 uXWrrAyezHF+zyyoQZ1BQrfzmFXHi02Auz9LjBJf6YjRW7gGTlHkl6yW5n9ELjgxrI
-	 nfe0x+qIlw6QHxg0ddwLxjqgw6Y5Zpa215VbotvGueMPziER0V0tO0QIlB/zlqMzlJ
-	 CIvT4VI6xhnY31fdPqTHBkN0sw6m67c0K8/KlfVw6opktjcn5rtSiEWwzG9mFK1Q3V
-	 w/4duq3lVF7qg==
-Date: Thu, 10 Oct 2024 12:57:40 -0500
+	b=QT7Az7YG21Hb6yHNqJTBXdEwXreXSc+l2R2dswsJBciKQ1Ts7c69FUDQi527ML20O
+	 ScyZ/jrUjEmvY4AWaXPHuafK2QfQsFznXmxqIDeFbF48+t5itGC8SdrFLXR+lsrtB2
+	 TT4tXZlKoG5rQKjX/q+tbKSkt0A7HBT36zRDxWbOvbvAT+lHckDfNsXh6eSEFJrCl5
+	 gtdpdR+RIFEahaEFMGGKpHi40gQGB/o0FC895D0oVnfQwae4TEos02Q+aFpzHWSprW
+	 thEFs+OXGXkBLJuOmVJAj0ka87f8XUfhyWt0x38gUa3wtfRWeJeo4o1SlKPIla2mvO
+	 HU6YVfEBw4+1Q==
+Date: Thu, 10 Oct 2024 12:58:58 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com, esben@geanix.com,
-	conor+dt@kernel.org, manivannan.sadhasivam@linaro.org,
-	linux-kernel@vger.kernel.org, broonie@kernel.org,
-	nikita.shubin@maquefel.me, linux-mtd@lists.infradead.org,
-	vigneshr@ti.com, arnd@arndb.de, andersson@kernel.org,
-	linux-spi@vger.kernel.org, miquel.raynal@bootlin.com,
-	krzk+dt@kernel.org, konradybcio@kernel.org, richard@nod.at,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v11 1/8] spi: dt-bindings: Introduce qcom,spi-qpic-snand
-Message-ID: <172858304953.2090269.15996975253037715461.robh@kernel.org>
-References: <20241010070510.1504250-1-quic_mdalam@quicinc.com>
- <20241010070510.1504250-2-quic_mdalam@quicinc.com>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: William Zhang <william.zhang@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Pavel Machek <pavel@ucw.cz>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	devicetree@vger.kernel.org,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Anand Gore <anand.gore@broadcom.com>, Lee Jones <lee@kernel.org>,
+	Kursad Oney <kursad.oney@broadcom.com>, linux-leds@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: leds: bcm63138: Add shift register
+ bits
+Message-ID: <172858313648.2092159.8740994933271574101.robh@kernel.org>
+References: <20241010-bcm63138-leds-v4-0-cdb80780a555@linaro.org>
+ <20241010-bcm63138-leds-v4-1-cdb80780a555@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,88 +67,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241010070510.1504250-2-quic_mdalam@quicinc.com>
+In-Reply-To: <20241010-bcm63138-leds-v4-1-cdb80780a555@linaro.org>
 
 
-On Thu, 10 Oct 2024 12:35:03 +0530, Md Sadre Alam wrote:
-> Document the QPIC-SPI-NAND flash controller present in the IPQ SoCs.
-> It can work both in serial and parallel mode and supports typical
-> SPI-NAND page cache operations.
+On Thu, 10 Oct 2024 16:10:50 +0200, Linus Walleij wrote:
+> The BCM63138 family of serial LED controllers has a register
+> where we can set up bits for the shift registers. These are
+> the number of rounds the bits need to be shifted before all
+> bits have been shifted through the external shift registers.
 > 
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
 > ---
-> 
-> Change in [v11]
-> 
-> * Dropped Reviewed-by tag
-> * Added Soc based compitable "qcom,ipq9574-snand"
-> 
-> Change in [v10]
-> 
-> * No change
-> 
-> Change in [v9]
-> 
-> * No change
-> 
-> Change in [v8]
-> 
-> * No change
-> 
-> Change in [v7]
-> 
-> * No change
-> 
-> Change in [v6]
-> 
-> * No change
-> 
-> Change in [v5]
-> 
-> * No change
-> 
-> Change in [v4]
-> 
-> * Fix spelling mistake in HW description
-> 
-> * Added commit message
-> 
-> * Removed '|' from description
-> 
-> * Removed minItems in clock
-> 
-> * Added blank line
-> 
-> * Removed co-developed by
-> 
-> Change in [v3]
-> 
-> * Updated commit message, removed "dt-bindings" from commit
->   message
-> 
-> * Updated compatible name as file name
-> 
-> * Added hardware description
-> 
-> * Documented clock-name
-> 
-> * Moved dma-names property to top
-> 
-> * Droped unused label "qpic_nand"
-> 
-> * Fixed indentation in example dt node
-> 
-> Change in [v2]
-> 
-> * Added initial support for dt-bindings
-> 
-> Change in [v1]
-> 
-> * This patch was not included in [v1]
-> 
->  .../bindings/spi/qcom,spi-qpic-snand.yaml     | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+> ChangeLog v2->v3:
+> - Mention that HW defaults will be used if the shift
+>   register property is missing.
+> ChangeLog v1->v2:
+> - Drop the $ref to u32 since the new property is suffixed
+>   with "-bits" and thus get standard treatment.
+> ---
+>  Documentation/devicetree/bindings/leds/leds-bcm63138.yaml | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
