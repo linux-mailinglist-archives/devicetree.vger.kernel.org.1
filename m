@@ -1,103 +1,89 @@
-Return-Path: <devicetree+bounces-110054-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90D55998FC9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:23:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3915998FD6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 20:24:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF4951C24762
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:23:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C56A1F25D00
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEEE1CEAD8;
-	Thu, 10 Oct 2024 18:22:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE7B01CDA31;
+	Thu, 10 Oct 2024 18:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q4JL97Li"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W09yPTrs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F11E51A303E;
-	Thu, 10 Oct 2024 18:22:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 892B21C9B93;
+	Thu, 10 Oct 2024 18:24:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728584548; cv=none; b=p2GqGn5gegSU+my9ddymXlekjwseQ8Y+KkHz7kArdrziS/3TaxZ5aHepi46J0WTChNeuG7hFLlSLeCfLO1ebHF9GgezdN8LeqSMdcemtJyW2A6DEAgfGEiWmcOPvl9tYxt7neNKC5FT5ZSkhMMx0wNsP56nLUhF2BLyU767AJ5w=
+	t=1728584664; cv=none; b=CQeWpu6qeSfhkIgmi0XyYLOGeRAisbwBAa4P/Svtv1J7tesyQsQ5Tk45+RQhU9zetUAMERJrzAAE5FoJUQiQax2+BaiWgBi0DMgqSV34VjwA+aS/IbDB4Ia4JCWrhwi/CXyZ/g4+34lW8yPEIyEe6XMH8PWnMi0Wws6eUzVLBQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728584548; c=relaxed/simple;
-	bh=iHHNxPo48eGIoD/CN3nF+gO4PuOB8rnALVXIRbOFEL8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I0t7RBpBZ9ZLQ8n1YPaWi++KPa6IVwdQNXbdAiUzyf3/XX8ey6wwH1qaBbl9p70RDc9WMY1UZfCbV3cBxI2DqKQNPrUqmQa9vkTirvDlyprtlfMJDoDlgNw/N2350M63EItGFxjdFmQrwKQ4DV6kKRoCHdNDoTwwyc8mfj7nXk4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q4JL97Li; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B3639C4CEC5;
-	Thu, 10 Oct 2024 18:22:21 +0000 (UTC)
+	s=arc-20240116; t=1728584664; c=relaxed/simple;
+	bh=LXWRpUCFEW0Rx04S04rSJW8bkwD7Sr+8cSNN1CAscBM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qcV1fSgegJeLCN00Dv8fFGIYF70nbynNXqE6rGAAR1qjofii5RHQxdZZC8oc9rhKVIVJCXDJj5RafoQPZNZw/veNgRcL7Di3N87fvyqHw9EeG59QrdgiI8V55K5HA8nfG6P64YymTBTFFbhK+QswjOZxAO38vL8OTzbN+/jbyIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W09yPTrs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1C9EFC4CEC5;
+	Thu, 10 Oct 2024 18:24:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728584547;
-	bh=iHHNxPo48eGIoD/CN3nF+gO4PuOB8rnALVXIRbOFEL8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=q4JL97LikGDNtRlMN7v1YzgtoBXDTbuxbY7QcervbrtMajmzPaTvlw+Bvme9CpgIU
-	 ercXsLH5gRgqJT3j87lmM+9uTezE0kL+25wAD1XpCNDykOWVctqqsh3Vto6DI4yBXu
-	 D2ent+xbtIk3QQUiTXsAoOTcRWfqTj6rkuI5IQzFxHpBqs6KBG5UjfCsP1qeaXedlL
-	 raevMyrYtE20K6UwkYOpQWhIsXqiNhA42gZFm9hV4EwqUfp4anaK7ZnrTrTK2LnF9S
-	 E4cDjfXoRbRwEikDTPNQeyeHOkUAXvoIcTK3RLxWUNsWfg7f5+lvDxyLfAV+ZtlwRK
-	 oV91oMrOIf/Vw==
-Date: Thu, 10 Oct 2024 19:22:18 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Julien Stephan <jstephan@baylibre.com>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Lechner
- <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: iio: adc: ad7380: fix ad7380-4
- reference supply
-Message-ID: <20241010192218.12808268@jic23-huawei>
-In-Reply-To: <v7in5n6ktmu5kfzlndn4eujmk5n66fmft4lvwuvucqbcv5r5hb@etdqvn6ev6nl>
-References: <20241007-ad7380-fix-supplies-v1-0-badcf813c9b9@baylibre.com>
-	<20241007-ad7380-fix-supplies-v1-2-badcf813c9b9@baylibre.com>
-	<v7in5n6ktmu5kfzlndn4eujmk5n66fmft4lvwuvucqbcv5r5hb@etdqvn6ev6nl>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1728584664;
+	bh=LXWRpUCFEW0Rx04S04rSJW8bkwD7Sr+8cSNN1CAscBM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W09yPTrsAR0lHYNUF/tBo+WwwUzmSF3X/IPDGqlWqiO7J5dM9dmuHlI8bv8C30/NJ
+	 W3wRi4K5Y4dEfXG7JJQgL5s91rSZtBQM/xooGHy6CLEVXDJudAeToRi0/2LSU9A/Ym
+	 zyTJYO55nf/irDzKi+8GceKbR5rmjS1+ziMG+Ymr9dgRSKWpdwN3uuiLlAYjnr9TGb
+	 WNzqgARb+3h8JGXwcQt7nceDb7BMKPSrXXch7fIZi/SPu3tZcR0YIS2aKY/8nN3tcb
+	 RhRuFtxc+PshCMxIAif3BUwwY6nlO3CtGk0G2K7PDOURkcNJQ8JMaeycZG3PZT68HN
+	 P9CtfTVDaWkrQ==
+Date: Thu, 10 Oct 2024 13:24:23 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-watchdog@vger.kernel.org, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@ucw.cz>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-leds@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-input@vger.kernel.org,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 1/5] dt-bindings: input: convert
+ zii,rave-sp-pwrbutton.txt to yaml
+Message-ID: <172858466263.2206934.3878201862515578388.robh@kernel.org>
+References: <20241010-zii_yaml-v2-0-0ab730607422@nxp.com>
+ <20241010-zii_yaml-v2-1-0ab730607422@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241010-zii_yaml-v2-1-0ab730607422@nxp.com>
 
-On Tue, 8 Oct 2024 09:52:50 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> On Mon, Oct 07, 2024 at 05:45:45PM +0200, Julien Stephan wrote:
-> > ad7380-4 is the only device from ad738x family that doesn't have an
-> > internal reference. Moreover its external reference is called REFIN in
-> > the datasheet while all other use REFIO as an optional external
-> > reference. If refio-supply is omitted the internal reference is
-> > used.
-> > 
-> > Fix the binding by adding refin-supply and makes it required for
-> > ad7380-4 only.  
+On Thu, 10 Oct 2024 11:42:38 -0400, Frank Li wrote:
+> Convert device tree binding doc zii,rave-sp-pwrbutton.txt to yaml format.
+> Additional changes:
+> - add ref to input.yaml.
+> - remove mfd node in example.
 > 
-> Maybe let's just use refio as refin? Reference-IO fits here well.
-> Otherwise you have two supplies for the same.
-Whilst it is ugly, the effort this series is going to in order
-to paper over a naming mismatch makes me agree with Krzysztof.
-
-I think adding a comment to the dt-binding would be sensible
-though as people might fall into this hole.
-
-Other than the missing ret =, rest of series looks fine to me
-
-Jonathan
-
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../bindings/input/zii,rave-sp-pwrbutton.txt       | 22 -------------
+>  .../bindings/input/zii,rave-sp-pwrbutton.yaml      | 36 ++++++++++++++++++++++
+>  2 files changed, 36 insertions(+), 22 deletions(-)
 > 
-> Best regards,
-> Krzysztof
-> 
+
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
