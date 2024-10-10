@@ -1,252 +1,159 @@
-Return-Path: <devicetree+bounces-110009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A50B3998CCF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:08:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD99998D0C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 18:17:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C7A8B1C212CB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:08:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C52BF1F2121D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 16:17:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FCAD1CDA19;
-	Thu, 10 Oct 2024 16:07:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D4A1C2DA1;
+	Thu, 10 Oct 2024 16:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="V3UgTxfx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O0I54elw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2080.outbound.protection.outlook.com [40.107.21.80])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510791A303E;
-	Thu, 10 Oct 2024 16:07:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728576478; cv=fail; b=aF10r0yeIJcN71K5XcDbauV1gmRcQqu/QoEFHQ5T5jhe/8PDRNkGWltuMNBzuiSaED6VpVCTqXvpbXaDe1zHhaO4OHIrX4lohP3Gwh9Ce3HVY8l13BZdDR2t6J7GLSV6cdrJIT0ZSg7XEsRfMiw9KCxjMbF8cRaJokJJ4zqhl+U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728576478; c=relaxed/simple;
-	bh=eAZK4ZZJ2ab2uHjjJKszA416HXiISRjn1QP8oxjrVc0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=EDT45jkXSMjYLQM6C5+H96tCSD8Sgm+TwvP1SGRFB01m2y1MDoyCJtXZS+A+9PCjS3f2stkRx8VlFznLzyagzj3UwtV52tXiH8yTUvWwyjy9UK5on2S9rOu7mXOejqM0JwWvl/OqciDLre7oi2dx8qZscleeNWoTCUqNIvbpV5I=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=V3UgTxfx; arc=fail smtp.client-ip=40.107.21.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=W0/Uq2qe/4+YwzL57Dr+VgevFHVQ8EoLW+4wISNqtkoKh9ETNh5IGxYbRlTK35V9H3JCTeUHBOg+9igXB8JWacmRM1g43/kjHBlv7iKuO52gI/5Yq5puzxI/gb9NQfVos+Li30i4MUalepMsPY4XO5X+WK5I8EcPZU3tYS3KRGkyibYyH8/1jMgDLM9mkN7p9DhfvQzle2ERWsvU8INbpNgDyDO9s3ZKFQQ6Mc4x/fOQMlNmgA4HAbatAS9N8bqKfV+g9RdFCVgmo9/+CX36GLn/f1n2ujj76l0VyMZj2J5qldP0XmC0mZ3jXQFwCZJzVuglSx5vlqHuDcuBIIuwzA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wh8qiZ93QAr3rISfZ+MNoeDJTZNlEmC2c1xuQ7p8nWw=;
- b=COZVZQIh69y+iUoDWz1hBx7ZhM6zKRKlnl4+Tus9OflX/pjnznt0iSdoYr+EmMmFMOpSgrMiSX+vycPSMnRZ3PR0tkrBVqaNKbzhGn4StUVliVw+yTl4daKkixnFk08a6vI5F0iDXkUFwR/UovnvT/cg2ba/L/6IkqQYBOOHxwayX1/vI3wevUCWUieIHGvu2R8N6oPkelE3ACTsQ9zrIOUPspZENfkyNliZN2SHvJnBCd6NNDOa/ppM0QEhW6iE4BqNZ0+iQj3qDI/x9hjXQ7TkBqXYlOrMUo2RYvkJJbDrn6Qemm2bX9DOqoa8B6evkZM7qRk60Hytc34hfwf9Hg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wh8qiZ93QAr3rISfZ+MNoeDJTZNlEmC2c1xuQ7p8nWw=;
- b=V3UgTxfx+W5Bz51LEC25mq1HuQLBKdjK8rx3bheg2z+i3WF6vJPQgRSqQGJgt/tXuG33XyjY+gT7kCc6V4D/6u0+T6J5eLwa0DyvWeoeoZK2/i4+noljW7iwiJiEQu+GBchM1i5qIY/zvMxYwmxhdiuesurtxjMBClFrXOIEayUKh9SgvRIil2l7g0MgEpH1dSguRUiT+Ge4HGz7X1CdydwY3I28Pm/uGCn9r9l/NnSVqqbm9PuC10upojKfnsmWzZYJ/ENzFD1DkFuDIvjNwx+dR3C8sA2S5X7pB8fLCSUVCtKon1n8O7PbkxT8+FdHoFuG4oVR+8qDZFDo5x4HyQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by AS8PR04MB8658.eurprd04.prod.outlook.com (2603:10a6:20b:429::22) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8026.23; Thu, 10 Oct
- 2024 16:07:53 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8048.013; Thu, 10 Oct 2024
- 16:07:52 +0000
-Date: Thu, 10 Oct 2024 12:07:42 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Borislav Petkov <bp@alien8.de>
-Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
-	James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABF943A1BF;
+	Thu, 10 Oct 2024 16:16:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728577017; cv=none; b=HPEQ+tMiHho6iEO/Z/b+CK45rlLnmQHY4paAPw/WUaWK9DPNf99BwTAbK+UnXOzhsYg6t7DXAdmdVgAEI6mw+etg4zz0+7AS0Pn0cWuFnG+PZvtZ0ipGe8MZcG9M+0zVNEfZ0FJHfKdmSnwymfOlKpmpvN709NPk6QdwJlnFloI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728577017; c=relaxed/simple;
+	bh=voGVJTL+cAj6EmXPR+KQJh9ISLK3DMAUVPirCQBGkik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ofG+e7ibo+aQIsTdCH7Vueq8SyzvlYgrCfsmqNSsAO/n58JO4cWb39ecCVgQNOTEbP4P6fLP1ywzGpEEWUu68gc4yDAgstQb3r4hXcd8W6Fc6fr2sF9Af1GVJlmyy97diREjA2klvx/IobK87RCpq7igA8JvuVawb60l7RZyijY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O0I54elw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1AAFC4CEC5;
+	Thu, 10 Oct 2024 16:16:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728577017;
+	bh=voGVJTL+cAj6EmXPR+KQJh9ISLK3DMAUVPirCQBGkik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O0I54elwvtUsv/BNkncmFRr3FnQw1wYW4MAwz+lOyhu2lmD+2DO3YJmOhuSyC97Zh
+	 TXouELUyGL8SJqJcZdZApJm545a1UzQt4g4aPOpat+cVu0OpvWtg1mEave1Q0Qz0Bh
+	 sDu+4Ym++e5RZezklw3A/IlGVg/4JlZYssR+oO6jb3RoKcqvCnQRHq84GmSVJ02Laj
+	 Z3/pXkavUIIRo7h4ONPbjmlV4n8K5Jq+oDJFpEBdmZvfkKeXbaIrfDI3wP/Y1PF0Fo
+	 C3vbq1hnrf4FdrQNOhJy/jp8jYHWZpqJ3X+d/2453D2TThC4TAIcdu+cJL8if2K28P
+	 koSx87d8f32fw==
+Date: Thu, 10 Oct 2024 17:16:51 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Inochi Amaoto <inochiama@gmail.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32()
- and ddr_out32()
-Message-ID: <Zwf7zkAIIEr/QxHg@lizhi-Precision-Tower-5810>
-References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
- <20240709-imx95_edac-v1-1-3e9c146c1b01@nxp.com>
- <20241010153320.GPZwfzwGeFF1cz4arw@fat_crate.local>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010153320.GPZwfzwGeFF1cz4arw@fat_crate.local>
-X-ClientProxiedBy: BY3PR04CA0026.namprd04.prod.outlook.com
- (2603:10b6:a03:217::31) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Yixun Lan <dlan@gentoo.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 1/3] dt-bindings: interrupt-controller: Add Sophgo SG2044
+ ACLINT SSWI
+Message-ID: <20241010-playtime-liquid-cf9888d27052@spud>
+References: <20241004080557.2262872-1-inochiama@gmail.com>
+ <20241004080557.2262872-2-inochiama@gmail.com>
+ <20241004-patronize-doily-8406fa214347@spud>
+ <42ndts6wuoor3tbt3uv5kuco37kc6bnnoepqtauqosw2gg2xn7@7hfdc6wgvlsm>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|AS8PR04MB8658:EE_
-X-MS-Office365-Filtering-Correlation-Id: e62d2ed5-eb68-44e9-7bb9-08dce945b18e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|1800799024|366016|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?zPfLUTNNt4rUKFGya+vdQ7Gf0Eb4SC/jCbSYRjKb78h1cXTxrf8qDqLhcde5?=
- =?us-ascii?Q?jw/jVDNCLL0wqxQUGu9ZzYmXIYEcLuRpcDymL4Wl4VE6batDvwc0rayt6dzq?=
- =?us-ascii?Q?IQg29MRyvMUVQHOSwRcXs6q2sIp5u+06/P2rQ3ioskRUfa8udgHGpfVC+dI6?=
- =?us-ascii?Q?la/0yfYPhpcT6DT0Q7tDPlLoLWysnbH0aokvVrwHdmaV8PIygFdNeiyg+vAA?=
- =?us-ascii?Q?S0MGiVswXnV2ge1WRLz2e+f/Y8RUGLfl1MpX3CuEUrx0qwI/CAPwNNzXDxl9?=
- =?us-ascii?Q?UFXpLTxm0phVivWoojw42wc03L0goKrqGVdDgRUs0EDVGQqJGlC/wBMQsqmI?=
- =?us-ascii?Q?hVlp0qNuwmkIWQ6ESya2/IiDJwMJeboZSjDYpbQGvV7+MdCLQU/9quksNaVb?=
- =?us-ascii?Q?ENeK57dACNGFCLuJD5aQK5nf7QPF8tlG+iRjUb+lc5+hOpxgGyaSmjDwvWQu?=
- =?us-ascii?Q?xjyBWnRGYn3WxVFCWpRFIMvDGAHnuCgQmMutAoAXjR0CpsTPyb4mmWsaqenV?=
- =?us-ascii?Q?Jyhu6CeoSNTHcwWa4teh21wYd9MFx9+D8SdLRaC3wTT2IlLva1h1OqkGocvl?=
- =?us-ascii?Q?R7dnst7LXyLcScfZ4uAlk5s9aAeEenoYuFV77JUk4R1QklF7p22PonMXM4aF?=
- =?us-ascii?Q?i/JQPc7GY8zGcCiqlsqqQ8ctxQrSUh/nD9ZFdiKOiZPfEzl4AVsel6GsScFb?=
- =?us-ascii?Q?5HonYDi5tUskXq3/aGdEfzTUSl0rRYnsYTxdiZE/DnaAL0qBDqGKphQErKtw?=
- =?us-ascii?Q?BWo7XxCJspCG3mrUGiDqNvgYJZ9d0AkyDCKnRopJu7nD/fUA2Ace+1a04Q4+?=
- =?us-ascii?Q?gxy4tELHzFD94iLJZBA9P6oT92VPBcdMCqEkTz1iVwMEoWN8DoQWlXw5p+CQ?=
- =?us-ascii?Q?dpmwOE+NOmsD/m2OIh0soXy50MLWoWJNhlRfA8b2Z5fYnXL5jjxbaY9buInC?=
- =?us-ascii?Q?o2ukUH6ZyNqRpUyJv1c24xkkHZWr/nVTDPXiZEI0fBWWAcmCdJAH7o3oZ5iH?=
- =?us-ascii?Q?eSc5ALo9h2GDcjxhJG+a5sfscs0nwXlfNNfwo9ZD1f4yZ+r4sfSWfz6s3T7p?=
- =?us-ascii?Q?TYWt1j98SwDvDzZ5pqBHUGmeCePqhcUb6udYbc1konP7kj9CwF2P/zHeMvDo?=
- =?us-ascii?Q?R0z9d6PMlzUliJgwRre9OfUkKHYbtJpYFHqWCwf9rOKhDv90o9TXB+tGTI5b?=
- =?us-ascii?Q?Z+4p6q2U40VCQCnj/zk/N+KW2Xuxotdgz6UOQohCc7Sz3QrL+OTCDMDFF0o9?=
- =?us-ascii?Q?qrmHfn/2EARel+OxUF7CKLXBGQBaHRVy9kFENSbZIJEdGqqx194LwGkcR6HR?=
- =?us-ascii?Q?+5bbzPeGJh6mgCFSlb5VL+u4SVZIwwTNV5jq7+N1GFtd6g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(1800799024)(366016)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?s1pbGEZquTRrMg799EZoeRq5+0sMKUS4mc/BISdzEjBlBBRShbi5uE5gqavA?=
- =?us-ascii?Q?m9iqejXslAmGauBV1IG0T47VCSz+B36pFqcQS/7S4AzAdmlI9dhsJzvVGvTR?=
- =?us-ascii?Q?D/hqMfBUZDyjvX+pLZKvUouz4MFeYRs6crMi06x0XlMohthNGhhKrDWj/g82?=
- =?us-ascii?Q?o/yRIGKLHiOshN+uviuf2jhZ7RVZmoXTaxOxJd6OvUpNKJ0qi4AAbDYIflYL?=
- =?us-ascii?Q?bDCPU28zA3Ourm0Sdsc0QCpinCmB955ur2TcnCFqrhfsn2J5y+j4ngDfNyLZ?=
- =?us-ascii?Q?H5w0HVaop85c9hoiKhSTIDqnR4MdJag3+lI+k0t/ARJ2cdgVCavjoXWutoxv?=
- =?us-ascii?Q?NdgbaoZ/fYAAor1IIefczFZI0dUBXSvxS2c7xqZTVCGwu99rpvibG/4Y4NRi?=
- =?us-ascii?Q?cBVisNeR0uiIsHMKEBo8sL7c2ZMNy4XKomVzXpoRZ+nYBIpY98b6Kb2nQx1D?=
- =?us-ascii?Q?HGdFobw53f578cTFSc3D5QxRihYtWq+u3lB2FoxsHxh0l1ur8iEMfYsV0nsY?=
- =?us-ascii?Q?b7zLOV8BrXDguGh5oKuxr95AfQT2dHeOWARsWyVnSRJxXj1DSNMiVHa3kdWa?=
- =?us-ascii?Q?VIqkgwW4XECHuWGuhJgtj2dgtq4t4KZouxhRkbYi+rsoA2nILcwQAJglngak?=
- =?us-ascii?Q?LUg0996ruUIx6xcK0x3lwibN05gxVHcfQBfmVMbwVGDg2bQ69dr0KJAsfu+a?=
- =?us-ascii?Q?nLYfBTtq3uD2KR4RLQaX/gd0CoTBQ7wPJ3gqQAAFC3/eJNGFy07mVmFZ7iyA?=
- =?us-ascii?Q?iajsgP7U1WOsaOaon9H69ORa6DndkAk+y0DsYpBrkIt/KkBS1WO0ZGMQjKu6?=
- =?us-ascii?Q?q3RxXY7uKbVeFy1/YKDHJ01lnQNhEHDYXn6OtpHye+zEfjFtOl2dymJU1hsm?=
- =?us-ascii?Q?NlQiIa8gGyKA6l8omyJtVMsFZImYKMZJREQ3tkcDBB8lfrkGg0VYONgsdb0G?=
- =?us-ascii?Q?A4U1/uscN8Ia/GarGv2OzjWSLjSJZYQgT02l6hoi3ziChpkXUPFZ5LOEf3wJ?=
- =?us-ascii?Q?+NHwim4Hj0CfseAMFc0fJUoL5pcdv/2J/EU/B6O7BEMU8RQTrBpLMt1mTp2/?=
- =?us-ascii?Q?Mlnv0Jut2HrW6imyidHhaxxfYbh9NiGQGBvg5+Ga1KzFCTT7EFN1+M6OogWf?=
- =?us-ascii?Q?SlGV2Lgm+Nf1z+RRQcolAj5R1AedNNdSgAr2CZmrQedHlfBIQiW08QC99Y9e?=
- =?us-ascii?Q?QxBORmkpr5dJlW0NsK8eg6sCGW1+tF4Ut62mIWQiyEcLRJbPdHsIrdFX8fMn?=
- =?us-ascii?Q?Jau2gJAG09+IYRXuyi4peAaM1pzrT7xIx7+eQrke//O5i5f/OroCVDMgYZsj?=
- =?us-ascii?Q?/7RxtYGATI56ZlZoAw49nP1Uz+dmBlKbX9qBo4mdCOqIJckV6IDNl9kDjR2O?=
- =?us-ascii?Q?4Mc+Jlv3oDsnr9NlR3d6qs5Ys1EkNs5Rx4XeiS5eZ4yRYCM4UVB2NPtYI55E?=
- =?us-ascii?Q?H4/UwPjdctyaj10wLe5rJ5zgMmQHZ8FutTW/XtminWMzHAgOoNcp8saosUQ3?=
- =?us-ascii?Q?YuW3DCtH7VcZ313ZcM2mp2pxf/j3cbpRa1qC7OKQlZu6uDi2lGF+Tv02vmUc?=
- =?us-ascii?Q?v76sIifXvRepK2t6laE2U6IgdDh7CRmXxYIBd6It?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e62d2ed5-eb68-44e9-7bb9-08dce945b18e
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Oct 2024 16:07:52.2094
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: VbYRGd/0J5M3TRLAsccoeElmaY7PUU/hxZgwVXZXB08R58N5GAAFwoCZ4QJaNdkMh/dUYNjRyrM4/71TcK9roA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8658
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="NLIrl1uOyUVux6/2"
+Content-Disposition: inline
+In-Reply-To: <42ndts6wuoor3tbt3uv5kuco37kc6bnnoepqtauqosw2gg2xn7@7hfdc6wgvlsm>
 
-On Thu, Oct 10, 2024 at 05:33:20PM +0200, Borislav Petkov wrote:
-> On Tue, Jul 09, 2024 at 04:23:02PM -0400, Frank Li wrote:
-> Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32() and ddr_out32()
->
-> The subject prefixes in the EDAC subsystem have the following format:
->
-> "EDAC/driver: <Sentence starting with a capital letter"
->
-> > Pass down fsl_mc_data in help function ddr_in32() and ddr_out32() to
-> > prepare add iMX9 support. iMX9 have a little difference register layout.
->
-> Since everyone is using AI nowadays, you could have it verify your commit
-> messages. I did this:
->
-> | ChatGPT, Please verify and correct the grammar in this english text: "Pass
-> | down fsl_mc_data in help function ddr_in32() and ddr_out32() to prepare add
-> | iMX9 support. iMX9 have a little difference register layout."
->
-> It replied with:
->
-> | "Pass down fsl_mc_data in the helper functions ddr_in32() and ddr_out32() to
-> | prepare for adding iMX9 support. The iMX9 has a slightly different register
-> | layout."
-> |
-> | Changes made:
-> | 1. "help function" changed to "helper functions" for clarity.
-> |
-> | 2. "prepare add iMX9 support" changed to "prepare for adding iMX9 support" for
-> |    grammatical correctness.
-> |
-> | 3. "iMX9 have a little difference register layout" changed to "The iMX9 has
-> |    a slightly different register layout" for subject-verb agreement and
-> |    smoother phrasing.
->
-> And this all looks good to me.
->
-> With all the cringe we all get from AI, I think it is very useful for
-> verifying commit messages.
->
-> Do that for all your commit messages pls.
->
-> Thx.
->
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  drivers/edac/fsl_ddr_edac.c | 62 ++++++++++++++++++++++++---------------------
-> >  1 file changed, 33 insertions(+), 29 deletions(-)
->
-> How did you test these patches of yours?
->
-> They don't even build!
->
-> drivers/edac/fsl_ddr_edac.c: In function 'fsl_mc_err_probe':
-> drivers/edac/fsl_ddr_edac.c:538:21: error: too few arguments to function 'ddr_in32'
->   538 |         sdram_ctl = ddr_in32(pdata->mc_vbase + FSL_MC_DDR_SDRAM_CFG);
->       |                     ^~~~~~~~
-> drivers/edac/fsl_ddr_edac.c:38:19: note: declared here
->    38 | static inline u32 ddr_in32(struct fsl_mc_pdata *pdata, unsigned int off)
->       |                   ^~~~~~~~
-> make[4]: *** [scripts/Makefile.build:229: drivers/edac/fsl_ddr_edac.o] Error 1
-> make[3]: *** [scripts/Makefile.build:478: drivers/edac] Error 2
-> make[3]: *** Waiting for unfinished jobs....
-> make[2]: *** [scripts/Makefile.build:478: drivers] Error 2
-> make[2]: *** Waiting for unfinished jobs....
-> make[1]: *** [/mnt/kernel/kernel/2nd/linux/Makefile:1936: .] Error 2
-> make: *** [Makefile:224: __sub-make] Error 2
->
-> Before you submit next time, build-test *every* *single* patch of yours and
-> test the driver with all of them.
->
-> This should not ever happen in submission.
 
-Really sorry about this. I need debug why my check script have not found
-this problem.
+--NLIrl1uOyUVux6/2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Frank
+On Sat, Oct 05, 2024 at 08:46:37AM +0800, Inochi Amaoto wrote:
+> On Fri, Oct 04, 2024 at 04:44:22PM +0100, Conor Dooley wrote:
+> > On Fri, Oct 04, 2024 at 04:05:55PM +0800, Inochi Amaoto wrote:
+> > > Sophgo SG2044 has a new version of T-HEAD C920, which implement
+> > > a fully featured ACLINT device. This ACLINT has an extra SSWI
+> > > field to support fast S-mode IPI.
+> > >=20
+> > > Add necessary compatible string for the T-HEAD ACLINT sswi device.
+> > >=20
+> > > Signed-off-by: Inochi Amaoto <inochiama@gmail.com>
+> > > ---
+> > >  .../thead,c900-aclint-sswi.yaml               | 58 +++++++++++++++++=
+++
+> > >  1 file changed, 58 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/interrupt-contr=
+oller/thead,c900-aclint-sswi.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/interrupt-controller/t=
+head,c900-aclint-sswi.yaml b/Documentation/devicetree/bindings/interrupt-co=
+ntroller/thead,c900-aclint-sswi.yaml
+> > > new file mode 100644
+> > > index 000000000000..0106fbf3ea1f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/interrupt-controller/thead,c9=
+00-aclint-sswi.yaml
+> > > @@ -0,0 +1,58 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/interrupt-controller/thead,c900-a=
+clint-sswi.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sophgo sg2044 ACLINT Supervisor-level Software Interrupt Devi=
+ce
+> > > +
+> > > +maintainers:
+> > > +  - Inochi Amaoto <inochiama@outlook.com>
+> > > +
+> > > +description:
+> > > +  The SSWI device is a part of the riscv ACLINT device. It provides
+> > > +  supervisor-level IPI functionality for a set of HARTs on a RISC-V
+> > > +  platform. It provides a register to set an IPI (SETSSIP) for each
+> > > +  HART connected to the SSWI device.
+> >=20
+> > If it is part of the aclint, why should it have a separate node, rather
+> > than be part of the existing aclint node as a third reg property?
+>=20
+> For aclint, the current nodes that have documented are mswi and mtime.
+> Since the mtime is a M-mode time source, it is not suitable to add the
+> sswi reg into this device. For mswi, it is OK to add a sswi reg, but
+> this will cause problem while checking "interrupt-extend". Do we just
+> double the maxItem? Or just left it unchanged?
+>=20
+> Another reason to add it as a separate node is that the draft says
+> sswi can be multiple. If we add this device by adding reg. It will be
+> hard if we have multiple sswi devices but one mswi device.
 
->
-> Stopping review here.
->
-> --
-> Regards/Gruss,
->     Boris.
->
-> https://people.kernel.org/tglx/notes-about-netiquette
+Ah, I see we do indeed have 2 devices already for the aclint, one for
+mswi and mtimer.
+
+--NLIrl1uOyUVux6/2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwf98wAKCRB4tDGHoIJi
+0tquAQCi8VLHi3iAdTSDUqGhkFnId5un/ek8rvYQaquTvHU4sAD/el+Rhz0sf/CY
+mqYHgZepBr3qqOqJeAvrc6p2sIuS2A4=
+=6zwW
+-----END PGP SIGNATURE-----
+
+--NLIrl1uOyUVux6/2--
 
