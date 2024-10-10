@@ -1,159 +1,224 @@
-Return-Path: <devicetree+bounces-110109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC2699944A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:18:20 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEF3C99948B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:41:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B7A41C212CC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:18:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4D4A7B2378E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:41:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282221CDFD4;
-	Thu, 10 Oct 2024 21:18:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D53AF1E00B6;
+	Thu, 10 Oct 2024 21:41:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ST452Cah"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ff4smxCo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63DFB40C03;
-	Thu, 10 Oct 2024 21:18:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A98B28F6A;
+	Thu, 10 Oct 2024 21:41:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728595095; cv=none; b=F6rf+FVD3w2jkVHJUKqzWiXJm/nmK7WlWORnMCRyqSYPoeK9arWC/pYGTx3yR3DCTiuVJ2ttTdzVLtn6Xjfs89Om8u6N4dsHRBdVb1n+Q56LvBUGiLBN3gIOrBuza9Vllej42E+ID4w1qHs92AFYQ+DvVSbZ6SI+HRUJ3G89mYs=
+	t=1728596498; cv=none; b=L6NttK9c2bBcXtjhDHRGk9cPoXHIahkXUywDt+Pnzw3hRu8sTFWrNGQPzAAQkDoX6FNaJ9zzf+pTC/eoqnduMbZwA+HAklLDATLvlWiDjRc4ZC5eHuuet+pOKSApjDTLm98BClqoUcmp/PIAKVkmAk55TVAZKSVwJoApm6S7KpY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728595095; c=relaxed/simple;
-	bh=FcuSlW53WgqovRjICzIDSUMea9NRqIRhOb8YTIi6CPM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uAu4x/fAgdPSyfaERAemH+JbOljAwuYTWmpPnbr1YhoZhpAvzze60W5egGtfjbGWKQlF5SpiV6L/D4g7l1z5EWl9+Ac22Sv2/RcolhGMpsF9dMJKcPuZN6yd/5ZpdPKGkSHyz/iUHy5Lb2NKXFup9JNN+rdnx6v2sNrE+x1Bvs8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ST452Cah; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9944c4d5d4so197736666b.0;
-        Thu, 10 Oct 2024 14:18:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728595092; x=1729199892; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NauSHKeAvgpwTcQ1aKIngRfqQGp/N22b0tcNK2HfLP8=;
-        b=ST452CahTR8HZRsDJFKrC6R/qarUhWB4oKHlcmdj79BVUfVUCoOfq4P3NS9taigLKI
-         zD9v9qo76QwC1iGi/KJxztvgAN26nxn2398YYS7iD/eNsTF9Ba7ASB2NP3IhbeDNETqY
-         pMjR9k1ppcYW6isOuW1+4ntjATM8Uf45sBknszPjDSEZ2JUSKA4z6IoS74/Awh45NogT
-         ipzmNI5T2fOu6HJ8lsrYRKwn76c42dJXMg02G/acH+iVHDz4Ni8N1XGyP6WdAmrywCzO
-         ildznZx67A4YfkLnsVf5T070UDo0xire5Ijm/Z9uUYrz19D2FLLAlTu0rGvp/HopRHRT
-         sVVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728595092; x=1729199892;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NauSHKeAvgpwTcQ1aKIngRfqQGp/N22b0tcNK2HfLP8=;
-        b=Lsbl1z0FfZzMB5jm4xIKKTBlnmy0UukuSUDF/KaTJVIDo8bK9gNsve+TYMcHMk/htN
-         5Cr+Eg8A2Syk1L6vYivPzXWU8/ergu8zAenvi5X7vXZtH84ihzH0PnskeAqwf5NNUwFg
-         wM9XqrGYJvVpJ7cfG3Z+i4Vi4X0ABb3QZJrnQXrK4dpiaMPDFTCMBIMo6bk17X2yJqLC
-         RX4ppf7ZRSxHjz0BbK9uLiDi5VwEBLrC27OaM0tNpvAbzSexnA52kCxUdmoKuRr9mFrv
-         lwikAFscgp+Z2aG/6SkX8qKmh5+/5DGVrOZOKRhmHx8SoZW8APnuSHoCibr+2L9c68kX
-         o5Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCUYew1sFv1Qyh6dL2VrPupPgTohwjQ7VB7sex/2yGzg1EKCbFiMjn9wv1lmQ9BUqmhBUvq7IbOChdDYDpeE@vger.kernel.org, AJvYcCVkYU5vD5IFoGK+rehgxrJ9rtuPjSl1onUAsUVVS9dYGCHv4HD6V2wgJJ2w3mKuVFKe2QT0Es9vsdba@vger.kernel.org, AJvYcCXB8snEmlc7SkkEzcpAueJt8f7i3BWyyK+8YfgE/djGbk7BFyluxvKBLDzxXTIgF72mhuvmK+0bivbjRdLqsg==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyCeyq5s/m0s0oFyaV9HuymGR7In0U2IMKrEsW2ZxtyEoprbVTS
-	j7gCcRFk1WHGkH8QD/LwFjAn+NPalv2CmcLG63F0KBKYJMUhp5gsXYcnnmABcWx5MWTpzeQgu+C
-	44+StRrcD3thSVmWGjWJUp288Kw5x
-X-Google-Smtp-Source: AGHT+IG5yC+VmcHw8pOOXzfv1ag2UEXS5lbU6zfme1Z7unsKiiKWUbPZNOXUKrlqOahelOfhdwSbctYK4LtWJO7Yju0=
-X-Received: by 2002:a17:907:948b:b0:a99:8378:b939 with SMTP id
- a640c23a62f3a-a99b931457amr29426266b.2.1728595091526; Thu, 10 Oct 2024
- 14:18:11 -0700 (PDT)
+	s=arc-20240116; t=1728596498; c=relaxed/simple;
+	bh=Q3NSqYisG8WYYrz9LbzVCsdGWId+yQgVgrE9CldSbWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZjtOXljznDDAG6tj+AsWIgQMseEPX0HBIBcLNeeBUmmeEyppNFoUgFLIprAUH4Vqf4TEa/tgAgagtAufgJk898JX8/X4BTjbabrnqry7CCc1qUNoHwJy0qbSpvR3+2F3Ox5qnZvUIXf+USQkKxyfpXWx5IUIEnIPv+upqHqMa3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ff4smxCo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A19DC4CEC5;
+	Thu, 10 Oct 2024 21:41:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728596498;
+	bh=Q3NSqYisG8WYYrz9LbzVCsdGWId+yQgVgrE9CldSbWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ff4smxCowyQsOzSZBcDuIyVWqWv/61X1uavBKz8DJUX8cXkv5+Mx3jGn8sbcG38EP
+	 4fRAu7327zqxPs02gP0WqVovMYHXhL4/1XG3ck/E2sXzoWygvrJLe4pJxdskmMmggb
+	 OcR53YMM6BpHNp5pgxfil2lMD8PpEcKDVI/zvObcCJrfrHZIKhwpk2SDazat7jCQ4m
+	 uuaUReEE9U3KB1VxljIDS2k2i2iZu2Q0XV4+eJAUbI5SO1sDG73k6bDyl4bUSBQkyq
+	 s6TlXLpKUc9wiG2DPyyVafAuPndNXHQorowMctwTQ+9B2igTSUjmoo2xTB210y1KYJ
+	 n6/47pTrMCMoA==
+Date: Thu, 10 Oct 2024 23:41:36 +0200
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Christian Marangi <ansuelsmth@gmail.com>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sean Wang <sean.wang@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	upstream@airoha.com, benjamin.larsson@genexis.eu,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v5 3/5] mfd: airoha: Add support for Airoha EN7581 MFD
+Message-ID: <ZwhKECIpL7g7ZGEC@lore-desk>
+References: <20241001-en7581-pinctrl-v5-0-dc1ce542b6c6@kernel.org>
+ <20241001-en7581-pinctrl-v5-3-dc1ce542b6c6@kernel.org>
+ <20241002132518.GD7504@google.com>
+ <ZwWscWk5axQI9H1t@lore-desk>
+ <20241009104821.GF276481@google.com>
+ <20241009105550.GG276481@google.com>
+ <6707a8ec.df0a0220.376450.293e@mx.google.com>
+ <CACRpkdanpA-wq0sYv9HRF=uVeAX_mW4LaKhE8i6TgC9+0d7bCg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240908223505.21011-1-jerome.debretagne@gmail.com>
- <20240908223505.21011-6-jerome.debretagne@gmail.com> <ZweV5mcEWHofpF4J@hovoldconsulting.com>
-In-Reply-To: <ZweV5mcEWHofpF4J@hovoldconsulting.com>
-From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
-Date: Thu, 10 Oct 2024 23:17:35 +0200
-Message-ID: <CA+kEDGE9fVWNK+3Y8JtM8jG9ki+QCoPAM=8AGC+HARL2CwyJYg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc8280xp: Add Microsoft Surface
- Pro 9 5G
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Maximilian Luz <luzmaximilian@gmail.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="3Fg0vtOBpPK/9AuB"
+Content-Disposition: inline
+In-Reply-To: <CACRpkdanpA-wq0sYv9HRF=uVeAX_mW4LaKhE8i6TgC9+0d7bCg@mail.gmail.com>
+
+
+--3Fg0vtOBpPK/9AuB
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-Le jeu. 10 oct. 2024 =C3=A0 10:52, Johan Hovold <johan@kernel.org> a =C3=A9=
-crit :
->
-> On Mon, Sep 09, 2024 at 12:35:05AM +0200, J=C3=A9r=C3=B4me de Bretagne wr=
-ote:
-> > Add an initial devicetree for the Microsoft Surface Pro 9 5G, based
-> > on SC8280XP.
+> On Thu, Oct 10, 2024 at 12:14=E2=80=AFPM Christian Marangi <ansuelsmth@gm=
+ail.com> wrote:
+>=20
+> > mfd: system-controller@1fbf0200 {
+>=20
+> Drop the mfd: thing, you probably don't want to reference the syscon
+> node directly
+> in the device tree. If you still give it a label just say
+> en7581_syscon: system-controller...
+
+ack, I am fine with it.
+
+>=20
+> >         compatible =3D "syscon", "simple-mfd";
+> >         reg =3D <0x0 0x1fbf0200 0x0 0xc0>;
 > >
-> > It enables the support for Wi-Fi, NVMe, the two USB Type-C ports,
-> > Bluetooth, 5G cellular modem, audio output (via Bluetooth headsets
-> > or USB audio), external display via DisplayPort over Type-C (only
-> > the bottom USB Type-C port is working so far), charging, the Surface
-> > Aggregator Module (SAM) to get keyboard and touchpad working with
-> > Surface Type Cover accessories.
+> >         interrupt-parent =3D <&gic>;
+> >         interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
 > >
-> > Some key features not supported yet:
-> > - built-in display (but software fallback is working with efifb
-> >   when blacklisting the msm module)
-> > - built-in display touchscreen
-> > - external display with the top USB Type-C port
-> > - speakers and microphones
-> > - physical volume up and down keys
-> > - LID switch detection
+> >         gpio-controller;
+> >         #gpio-cells =3D <2>;
 > >
-> > This devicetree is based on the other SC8280XP ones, for the Lenovo
-> > ThinkPad X13s and the Qualcomm CRD.
+> >         interrupt-controller;
+> >         #interrupt-cells =3D <2>;
 > >
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.co=
-m>
->
-> > +// SPDX-License-Identifier: BSD-3-Clause
-> > +/*
-> > + * Copyright (c) 2024, J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne=
-@gmail.com>
-> > + */
->
-> You mention it in the commit message, but since a lot of this is copied
-> from the X13s (and CRD) devicetrees you should probably make that clear
-> here as well and include the relevant copyright notices. For example by
-> adding:
->
->         Based on ...
->
->         Copyright ...
->
-> Johan
+> >         gpio-ranges =3D <&mfd 0 13 47>;
+>=20
+> I think you want a separate GPIO node inside the system controller:
+>=20
+>   en7581_gpio: gpio {
+>          compatible =3D "airhoa,en7581-gpio";
+>          interrupt-parent =3D <&gic>;
+>          interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+>=20
+>          gpio-controller;
+>          #gpio-cells =3D <2>;
+>=20
+>          interrupt-controller;
+>          #interrupt-cells =3D <2>;
+>=20
+>          gpio-ranges =3D <&en7581_pinctrl 0 13 47>;
+> };
 
-Thank you for the suggestion, so it would look like this?
+So far I implemented the gpio functionalities in the en7581 pinctrl driver
+(as it is done for other mtk pinctrl drivers) but I am fine to reuse the
+gpio-en7523 driver for it. Do you prefer this second approach?
 
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Based on sc8280xp-crd.dts and sc8280xp-lenovo-thinkpad-x13s.dts
-+ *
-+ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2022, Linaro Limited
-+ * Copyright (c) 2024, J=C3=A9r=C3=B4me de Bretagne <...>
-+ */
+>=20
+> So users pick GPIOs:
+>=20
+> foo-gpios =3D <&en7581_gpio ...>;
+>=20
+> Notice that the gpio-ranges should refer to the pin controller
+> node.
+>=20
+> >
+> >         #pwm-cells =3D <3>;
+>=20
+> Shouldn't this be inside the pwm node?
+>=20
+>          en7581_pwm: pwm {
+>                  compatible =3D "airoha,en7581-pwm";
+>                  #pwm-cells =3D <3>;
+>          };
+>=20
+> So PWM users can pick a PWM with pwms =3D <&en7581_pwm ...>;
 
-Bjorn,
+ack, I am fine with it.
 
-How do you want me to add this to the patchset?
-Should I send a separate fix-up patch?
-Or should I create a newer v3 patchset?
+>=20
+> >         pio: pinctrl {
+>=20
+> I would use the label en7581_pinctrl:
 
-Thank you,
-J=C3=A9r=C3=B4me
+ack, I am fine with it.
+
+>=20
+> >                 compatible =3D "airoha,en7581-pinctrl";
+> >
+> >                 mdio_pins: mdio-pins {
+> >                         mux {
+> >                                 function =3D "mdio";
+> >                                 groups =3D "mdio";
+> >                         };
+> >
+> >                         conf {
+> >                                 pins =3D "gpio2";
+> >                                 output-high;
+> >                         };
+> >                 };
+> >
+> >                 pcie0_rst_pins: pcie0-rst-pins {
+> >                         conf {
+> >                                 pins =3D "pcie_reset0";
+> >                                 drive-open-drain =3D <1>;
+> >                         };
+> >                 };
+> >
+> >                 pcie1_rst_pins: pcie1-rst-pins {
+> >                         conf {
+> >                                 pins =3D "pcie_reset1";
+> >                                 drive-open-drain =3D <1>;
+> >                         };
+> >                 };
+> >         };
+> >
+> >         pwm {
+> >                 compatible =3D "airoha,en7581-pwm";
+> >         };
+> > };
+>=20
+> This will make subdevices probe and you can put the pure GPIO
+> driver in drivers/gpio/gpio-en7581.c
+
+We could actually reuse gpio-en7523 driver (removing the gpio part from en7=
+581
+pinctrl driver) and extend it to support irq_chip. I do not have a strong
+opinion about it.
+
+Regards,
+Lorenzo
+
+>=20
+> Yours,
+> Linus Walleij
+
+--3Fg0vtOBpPK/9AuB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZwhKDwAKCRA6cBh0uS2t
+rImsAP9+SEsCTPYOJYMr4ud8qWMHenJk1t0UVS3lUEut+um/GAD+NxbBrcxxZ9S+
+X5f21EFnXDysNRmyWuVjeQzkIJdZ6A0=
+=CX97
+-----END PGP SIGNATURE-----
+
+--3Fg0vtOBpPK/9AuB--
 
