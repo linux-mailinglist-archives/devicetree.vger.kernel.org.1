@@ -1,208 +1,196 @@
-Return-Path: <devicetree+bounces-109979-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109980-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 187FF998BE5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:39:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06042998B18
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D25FB30ABB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:10:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F09C1C24329
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F661CEAB6;
-	Thu, 10 Oct 2024 15:08:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 135451CBEA0;
+	Thu, 10 Oct 2024 15:12:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iTf8Wn0a"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eu1yqvo1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FC121C9DE5;
-	Thu, 10 Oct 2024 15:08:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47B4F1CB33F
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 15:12:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728572898; cv=none; b=Swv13MfQbb8QShnfuBoj5NOWjcKKXxYC6qRlwCcfRqitfTESpJeDg2S1F0k09TV4JAQHOEXbfD6XAF99g9yu56QCUxRQe+/rKTWeIh3EdbiXX1mF0HkOUqdKJBgcx1gwIUt/4eMsTFfZ3mmjp7j12L+JgziT+2Y2lY1rAGSpnLQ=
+	t=1728573140; cv=none; b=I+rW9ejzgDAPVtraaeV88H5thzt3bugT2MsIpGhvTtKDNj0oDy1av4wPMfeRbqXVY21idlnAnm9RMqr8VGn2R9tgqyfY67sLePNe553gCIU/CkL6N1d/s4Q8L20ovRa6w9vRNil4VqN5GTuJhHX5K7bveJhmuRylD2bKEdOFdz4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728572898; c=relaxed/simple;
-	bh=wD4i9kj/9audO4B4bzXaWXVPo7h0jiAhECyhyOHq/1o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=DWd4NyjPQy5NLLRZq0DNDNsY/FZPELZ+dou/+tf2G5OY4WAMgr0sLFDeVdp40eNETKErMTlvLlSRk8+Mt9FEnPAKKGlpy3IBKwaTH2B0dKd4TUQWCiHn9NuRotLOKnc7HzKybiQo4ntzUuivcpXJJ5bqZNZ7Gn8XS0RJpoO9Pdk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iTf8Wn0a; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id DF13A1C0004;
-	Thu, 10 Oct 2024 15:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728572888;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=0YNBiAIMY5vY73m87Shuq7HuEaUnsKbDGfj0sIKXoEg=;
-	b=iTf8Wn0aGkGTEZdNtHdcMECbuLWCy9mXdN8rCdsruUa1+g4zBODdhyUXZoFRdvJDtvvt87
-	Nzh7HHBaWT8QXnm1/z49JFihNcJ9aQ/SCbpb0m93dkF68PnhvMnw0hQAOA2I0eQRYxm2Zb
-	r/qPGrk8ixKWlIEZ7JTC95k5hWLIOW6iGrU4zuKwbakrqWd70lo5bfK4sUooS/8F9mcXmS
-	wXoInCNNoehbvzwWOUf/yMVrVW+f0f0NxOCLWARhfkw89kNru5wURMmRmo13NxL+abQmvQ
-	SA+wlS6riQ2M/mK+ZaNn/sJqwafhRdY8dbYNV122Emz+smEnn9NYVO0qeu3Z5Q==
-From: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Date: Thu, 10 Oct 2024 17:07:07 +0200
-Subject: [PATCH v5 2/2] riscv: dts: sophgo: Add LicheeRV Nano board device
- tree
+	s=arc-20240116; t=1728573140; c=relaxed/simple;
+	bh=xO+xrsV0m6ktnljEcqpoAG1lE8azlumTtyyOZH61p8c=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HOQCYwFXjwUwQMs5JSIqstclS8rvzIWnw+BdWMoXAKDueRVuHr7slGAfOUePKECPkg80oBwBi/ECRj/dY90F85sqJhWmxikmq3FAUyy6kYsqse5JhHocD96YPTTqEKnXmuUCyA75yHE0ShFloNZ99yMV7OI3aMZcsP5k7cSK1ow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eu1yqvo1; arc=none smtp.client-ip=209.85.219.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-dff1ccdc17bso1151576276.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 08:12:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728573137; x=1729177937; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8r9lf5vsYGAZg3qoBN90Qx8Rz8zTJDhUxvIq7CGMNYg=;
+        b=eu1yqvo1k0jl+i7FS9kr6OszcjHNFc2QBwrvwATsCNEHQHsYdf4+bD6O1R1+RSD4I3
+         yBwkWxZu3z6hXXY07vXWBmFa6S2rgmNaaJbyjCP9xjIahmekER+euySLAGvPa8zmEVgg
+         kETpYcVfJ0Hzzf/OEYUAsoBX6ovhJf2eBYQDf6zzaNRmhi+6JFVTYCGKGcxItKR+H7sl
+         jZ/xwElBE7zUzFqkFBlV3GEJWQnA2llIUeeVnpVkYeaaYA1qQIqPdINL9jLNGycGbMPC
+         T4mrDGOZAh+WG1t0mP6pdV3a3IeJU2lXTfPUxN31ajGIf6onbwxf4d5s1cO+FfP914bh
+         Flgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728573137; x=1729177937;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8r9lf5vsYGAZg3qoBN90Qx8Rz8zTJDhUxvIq7CGMNYg=;
+        b=R1k94Eoj2d4PRPrQc2BqnvFlgwU4yZJEQ8ckl51yvhxeh7DdOPiyHmp6kFr34SDyfe
+         wswTwAi/7B/aYZMy7V7yZ1NQdqzS6HzP4B9PW5nFu0N06QyTkBKlWPFii/CqvpjUXDBS
+         toZPIQomlE3j5ZEdiWgyJ0XQgZYTdl6uIU9xvpWHkh09Hw2QYi2QGygCaVa7v9W4hTeu
+         xkEXc88EpFyzinvCkyfONFyVTjzKhoDiXPMFUF3Uao0m83SdzfNPcZJQmHIk5SN7/O+e
+         LUnqNF8oVZyJDWnIbjHpsSHCnWi/1nOLAJsy9zDrepz5+oR19E++Y3AuFPrXBEVjSTqL
+         dcvA==
+X-Forwarded-Encrypted: i=1; AJvYcCWD+LJVWTpLusyPND1MWpIQMqCBe08aMiQRfqF203kRroLt7TIx1RnBvZ/ydFBvyPQWeLUJZLt2J7zn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzbOxBhXqTdU7J4QSxuzvZPjy9VgK1wl241MOLE7j4GRF9dRomF
+	BRE8Cie1nA9Ns28g+XTg34A6jdH3EpO3Fp/WcRXNum5M8KPI/sTjHWaSAnHpKQOtGc6sA0BKzok
+	Xh63cfJA8m6ZBEYe8xBLUKPSd1DtwTwMKw5K+OA==
+X-Google-Smtp-Source: AGHT+IEaEnIgwjZvAhRFQl53GhDBElGnM3KPGeMsZ+GGPwd8gASrTFJB007EfgE2E3zzOPq9Cvir8gU+v2p8b/OdcZA=
+X-Received: by 2002:a05:6902:726:b0:e28:ec71:eb87 with SMTP id
+ 3f1490d57ef6-e2909c00af1mr4623491276.4.1728573137216; Thu, 10 Oct 2024
+ 08:12:17 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241010-sg2002-v5-2-a0f2e582b932@bootlin.com>
-References: <20241010-sg2002-v5-0-a0f2e582b932@bootlin.com>
-In-Reply-To: <20241010-sg2002-v5-0-a0f2e582b932@bootlin.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Chen Wang <unicorn_wang@outlook.com>, Inochi Amaoto <inochiama@outlook.com>, 
- Chao Wei <chao.wei@sophgo.com>, Conor Dooley <conor@kernel.org>
-Cc: Albert Ou <aou@eecs.berkeley.edu>, Palmer Dabbelt <palmer@dabbelt.com>, 
- Samuel Holland <samuel.holland@sifive.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- =?utf-8?q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-X-Mailer: b4 0.14.2
-X-GND-Sasl: thomas.bonnefille@bootlin.com
+References: <20241009195636.2649952-1-quic_kriskura@quicinc.com>
+ <20241009195636.2649952-2-quic_kriskura@quicinc.com> <xwidjnw3fqc2slwl3vftw7yi4j7juiw6rwszjhtxepqd6zz33s@ncoi4aikbb4e>
+ <fe3ebd31-946c-499f-ac96-2cf71c6752e6@quicinc.com>
+In-Reply-To: <fe3ebd31-946c-499f-ac96-2cf71c6752e6@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 10 Oct 2024 18:12:05 +0300
+Message-ID: <CAA8EJpojz9-xhoxdp78b5=6R8gpjjHQgjb_P0LGfHs4PsdS3vA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: Add support for usb nodes on QCS8300
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	quic_ppratap@quicinc.com, quic_jackp@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
-LicheeRV Nano B [1] is an embedded development platform based on the SOPHGO
-SG2002 chip, the B(ase) version is deprived of Wifi/Bluetooth and Ethernet.
+On Thu, 10 Oct 2024 at 17:57, Krishna Kurapati
+<quic_kriskura@quicinc.com> wrote:
+>
+>
+>
+> On 10/10/2024 7:52 PM, Dmitry Baryshkov wrote:
+> > On Thu, Oct 10, 2024 at 01:26:35AM GMT, Krishna Kurapati wrote:
+> >> Add support for USB controllers on QCS8300. The second
+> >> controller is only High Speed capable.
+> >>
+> >> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/qcs8300.dtsi | 165 ++++++++++++++++++++++++++
+> >>   1 file changed, 165 insertions(+)
+> >
+> > [...]
+> >
+> >> +
+> >> +            usb_2: usb@a4f8800 {
+> >> +                    compatible = "qcom,qcs8300-dwc3", "qcom,dwc3";
+> >> +                    reg = <0x0 0x0a4f8800 0x0 0x400>;
+> >> +                    #address-cells = <2>;
+> >> +                    #size-cells = <2>;
+> >> +                    ranges;
+> >> +
+> >> +                    clocks = <&gcc GCC_CFG_NOC_USB2_PRIM_AXI_CLK>,
+> >> +                             <&gcc GCC_USB20_MASTER_CLK>,
+> >> +                             <&gcc GCC_AGGRE_USB2_PRIM_AXI_CLK>,
+> >> +                             <&gcc GCC_USB20_SLEEP_CLK>,
+> >> +                             <&gcc GCC_USB20_MOCK_UTMI_CLK>;
+> >> +                    clock-names = "cfg_noc",
+> >> +                                  "core",
+> >> +                                  "iface",
+> >> +                                  "sleep",
+> >> +                                  "mock_utmi";
+> >> +
+> >> +                    assigned-clocks = <&gcc GCC_USB20_MOCK_UTMI_CLK>,
+> >> +                                      <&gcc GCC_USB20_MASTER_CLK>;
+> >> +                    assigned-clock-rates = <19200000>, <120000000>;
+> >> +
+> >> +                    interrupts-extended = <&intc GIC_SPI 444 IRQ_TYPE_LEVEL_HIGH>,
+> >> +                                          <&intc GIC_SPI 443 IRQ_TYPE_LEVEL_HIGH>,
+> >> +                                          <&pdc 10 IRQ_TYPE_EDGE_BOTH>,
+> >> +                                          <&pdc 9 IRQ_TYPE_EDGE_BOTH>;
+> >> +                    interrupt-names = "pwr_event",
+> >> +                                      "hs_phy_irq",
+> >> +                                      "dp_hs_phy_irq",
+> >> +                                      "dm_hs_phy_irq";
+> >> +
+> >> +                    power-domains = <&gcc GCC_USB20_PRIM_GDSC>;
+> >> +                    required-opps = <&rpmhpd_opp_nom>;
+> >> +
+> >> +                    resets = <&gcc GCC_USB20_PRIM_BCR>;
+> >> +
+> >> +                    interconnects = <&aggre1_noc MASTER_USB2 0 &mc_virt SLAVE_EBI1 0>,
+> >> +                                    <&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_USB2 0>;
+> >> +                    interconnect-names = "usb-ddr", "apps-usb";
+> >
+> > As this is a USB2-only host, shouldn't it also have qcom,select-utmi-as-pipe-clk ?
+> >
+>
+> Hi Dmitry,
+>
+> Thanks for the catch. You are right, it needs to be added according to
+> bindings. Since I would be sending another patch after this series to
+> enable the second controller, would it be fine if I add it in that patch
+> or do you suggest updating this one.
 
-Add only support for UART and SDHCI.
+I think it's better to fix it from the beginning.
 
-Link: https://wiki.sipeed.com/hardware/en/lichee/RV_Nano/1_intro.html [1]
+>
+> Also I see some others are not using it as well, like sc7280 which also
+> might need to be updated.
 
-Signed-off-by: Thomas Bonnefille <thomas.bonnefille@bootlin.com>
----
- arch/riscv/boot/dts/sophgo/Makefile                |  1 +
- .../boot/dts/sophgo/sg2002-licheerv-nano-b.dts     | 95 ++++++++++++++++++++++
- 2 files changed, 96 insertions(+)
+Interesting enough I don't see this option being enabled on SC7280 platforms.
 
-diff --git a/arch/riscv/boot/dts/sophgo/Makefile b/arch/riscv/boot/dts/sophgo/Makefile
-index 57ad82a61ea6fc25f72d0ade991e33feaa53266e..47d4243a8f35a7d5572dbf5ef9899297b908afde 100644
---- a/arch/riscv/boot/dts/sophgo/Makefile
-+++ b/arch/riscv/boot/dts/sophgo/Makefile
-@@ -1,4 +1,5 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1800b-milkv-duo.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += cv1812h-huashan-pi.dtb
-+dtb-$(CONFIG_ARCH_SOPHGO) += sg2002-licheerv-nano-b.dtb
- dtb-$(CONFIG_ARCH_SOPHGO) += sg2042-milkv-pioneer.dtb
-diff --git a/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-new file mode 100644
-index 0000000000000000000000000000000000000000..86a712b953a5acd5926120db61354243f5580a05
---- /dev/null
-+++ b/arch/riscv/boot/dts/sophgo/sg2002-licheerv-nano-b.dts
-@@ -0,0 +1,95 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+/*
-+ * Copyright (C) 2024 Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "sg2002.dtsi"
-+
-+/ {
-+	model = "LicheeRV Nano B";
-+	compatible = "sipeed,licheerv-nano-b", "sipeed,licheerv-nano", "sophgo,sg2002";
-+
-+	aliases {
-+		gpio0 = &gpio0;
-+		gpio1 = &gpio1;
-+		gpio2 = &gpio2;
-+		gpio3 = &gpio3;
-+		serial0 = &uart0;
-+		serial1 = &uart1;
-+		serial2 = &uart2;
-+		serial3 = &uart3;
-+		serial4 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+};
-+
-+&osc {
-+	clock-frequency = <25000000>;
-+};
-+
-+&pinctrl {
-+	uart0_cfg: uart0-cfg {
-+		uart0-pins {
-+			pinmux = <PINMUX(PIN_UART0_TX, 0)>,
-+				 <PINMUX(PIN_UART0_RX, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+	};
-+
-+	sdhci0_cfg: sdhci0-cfg {
-+		sdhci0-clk-pins {
-+			pinmux = <PINMUX(PIN_SD0_CLK, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <16100>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-cmd-pins {
-+			pinmux = <PINMUX(PIN_SD0_CMD, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-data-pins {
-+			pinmux = <PINMUX(PIN_SD0_D0, 0)>,
-+				 <PINMUX(PIN_SD0_D1, 0)>,
-+				 <PINMUX(PIN_SD0_D2, 0)>,
-+				 <PINMUX(PIN_SD0_D3, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+
-+		sdhci0-cd-pins {
-+			pinmux = <PINMUX(PIN_SD0_CD, 0)>;
-+			bias-pull-up;
-+			drive-strength-microamp = <10800>;
-+			power-source = <3300>;
-+		};
-+	};
-+};
-+
-+&sdhci0 {
-+	pinctrl-0 = <&sdhci0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+	bus-width = <4>;
-+	no-1-8-v;
-+	no-mmc;
-+	no-sdio;
-+	disable-wp;
-+};
-+
-+&uart0 {
-+	pinctrl-0 = <&uart0_cfg>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
+>
+> Regards,
+> Krishna,
+>
+> >> +
+> >> +                    status = "disabled";
+> >> +
+> >> +                    usb_2_dwc3: usb@a400000 {
+> >> +                            compatible = "snps,dwc3";
+> >> +                            reg = <0x0 0x0a400000 0x0 0xe000>;
+> >> +                            interrupts = <GIC_SPI 442 IRQ_TYPE_LEVEL_HIGH>;
+> >> +                            iommus = <&apps_smmu 0x20 0x0>;
+> >> +                            phys = <&usb_2_hsphy>;
+> >> +                            phy-names = "usb2-phy";
+> >> +                            snps,dis_u2_susphy_quirk;
+> >> +                            snps,dis_enblslpm_quirk;
+> >> +                    };
+> >> +            };
+> >>      };
+> >>
+> >>      arch_timer: timer {
+> >> --
+> >> 2.34.1
+> >>
+> >
+
+
 
 -- 
-2.47.0
-
+With best wishes
+Dmitry
 
