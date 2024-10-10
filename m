@@ -1,249 +1,206 @@
-Return-Path: <devicetree+bounces-109782-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109783-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BF4D997F4D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:19:33 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2EC4997F54
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2695F282D50
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:19:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 449AEB258B8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 08:19:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0AA11E04B5;
-	Thu, 10 Oct 2024 07:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A9781E2830;
+	Thu, 10 Oct 2024 07:22:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="t2v9hUQg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LHcH6rkB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 729401E00BB
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:21:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5CF21E1A16;
+	Thu, 10 Oct 2024 07:22:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728544891; cv=none; b=Qdef3fQhB0PiXy8xB78ZnzbShVd0HQrVBUG4bp56rDLODRho5PyGAzquWDxiq7Utv24Am2zHNhUzv/TsAsOQ3d/d0cTff6bIoUjIUGzcxlMNliyJS9G2WFWL/isWZY8XNWg1LQvoG5h7gwX3m0TK417k6rwky/OzOreT+Q77xAg=
+	t=1728544949; cv=none; b=NgF1Frj1gxBC06Nq1W4AzOPbMvrp7xPry+ol6sPNU+4/aQbEUqO5YD4LbSXT4q01VkBUOCHQtFkmgu91vaYBqRItlf7+pFgPOxjPBskMVVlnltM5aDiWXvaA33id2wu0R161u+JyQBTRXSroPB79+4Yf7r7s78fW3ln/b5kcX4c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728544891; c=relaxed/simple;
-	bh=zmmuarEg/meYeS4+x7bOfqQq827p6Hje8eR0+Ub4K1s=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=Y0cVDerwditUTfhleup1rBQoJkPr1kc0Q1Sflg8EoM5sc4ioGb43vVGj2x3jy5ou50qHO3Ums/T7lzSR99cQPZB6UnDPYwutagc8ad57lmK6WVeZHKsnK9EDWjvc7SIs42ZPdRwa7HbmCmwGtVGMzyF4I6qNeDZWZX33TecNTfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=t2v9hUQg; arc=none smtp.client-ip=203.254.224.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241010072127epoutp02ccf4a629ba8c8467a0d8928e849001b1~9BmrAKeUu1809718097epoutp02Y
-	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 07:21:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241010072127epoutp02ccf4a629ba8c8467a0d8928e849001b1~9BmrAKeUu1809718097epoutp02Y
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1728544887;
-	bh=eFHwSunMh4x/STddeWZ+qyxufOABiHlohn26QfKTBqI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=t2v9hUQgF/IhfxYsystjuGRARmQndheiKo1DBx3KMD0LRfhNJT14MY9S/2m9B93k4
-	 Uiiu6+JRLLwt/46vrWsB1uCy3bJg2Iwr8qXUbxbXlyrr8qVQIiQoJ8mxdptGC5UbmA
-	 wY5KNr/MUoGtWivX9omAPDCVHov/34aGSw30yBuI=
-Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
-	20241010072126epcas2p204fffa17bc50fb3c8276ed644e9879e9~9BmqWOYw20826408264epcas2p2G;
-	Thu, 10 Oct 2024 07:21:26 +0000 (GMT)
-Received: from epsmges2p2.samsung.com (unknown [182.195.36.97]) by
-	epsnrtp3.localdomain (Postfix) with ESMTP id 4XPLlp1bxtz4x9Q8; Thu, 10 Oct
-	2024 07:21:26 +0000 (GMT)
-Received: from epcas2p1.samsung.com ( [182.195.41.53]) by
-	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-	50.9B.09770.67087076; Thu, 10 Oct 2024 16:21:26 +0900 (KST)
-Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241010072125epcas2p2e31b8d2e354ada2304272acf39dfded6~9BmpNW5360826408264epcas2p2B;
-	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
-Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
-	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241010072125epsmtrp1f5319d044989dd177c96c403164144ff~9BmpL4jtU2160921609epsmtrp1P;
-	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
-X-AuditID: b6c32a46-00dfa7000000262a-5d-67078076bbd1
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-	B7.74.07371.57087076; Thu, 10 Oct 2024 16:21:25 +0900 (KST)
-Received: from KORCO119526 (unknown [10.229.18.158]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20241010072125epsmtip17dde2313a929e8dc583715879f1828f0~9Bmo51Rjk3108931089epsmtip1x;
-	Thu, 10 Oct 2024 07:21:25 +0000 (GMT)
-From: =?utf-8?B?6rmA7YOc7JmE?= <trunixs.kim@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Wim Van Sebroeck'"
-	<wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>, "'Rob
- Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'" <krzk+dt@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, "'Byoungtae Cho'" <bt.cho@samsung.com>
-In-Reply-To: <faf365a0-dfc4-4d26-9057-a80b977965e3@kernel.org>
-Subject: RE: [PATCH 2/3] watchdog: s3c2410_wdt: add support for
- exynosautov920 SoC
-Date: Thu, 10 Oct 2024 16:21:24 +0900
-Message-ID: <000001db1ae5$03d44ec0$0b7cec40$@samsung.com>
+	s=arc-20240116; t=1728544949; c=relaxed/simple;
+	bh=hwGEak4KIJ11eUuNaEq87hocGnQxvDOhCJ9VphQmOaU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OndLIAAzq5fq6bsC0eChM8RL3CtM8APQZBFIT9c3JR+zSgJuxfiYrWqoY//e8pG2jePN8x/kMLYaA6fxpX7G2Okt3/qzxTzpwmXVfooT5pn2KY8D5NK2RQ0cCjMOjD48vJVY34WRZ16EzLnOYCz8Hk2GI7a42qNXXK+O4lb8AmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LHcH6rkB; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-20c8b557f91so1720915ad.2;
+        Thu, 10 Oct 2024 00:22:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728544947; x=1729149747; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=fAZN9C/GFdXF6RdMc8O3pl7Hwn2h+nafu8g8plyOOA0=;
+        b=LHcH6rkBaLb9wVkigMocXBN+sCpNsgrKTEE8P1jg78LlTb+Qxfk87yikPNP5q31wXF
+         gWligxz1Q+9yCp/I79nWL1rbbYTBBhWakt2UU89/lHmWXclZX+Or1IhCEK+b8k5sIUxq
+         Ad7EPyHOoQx2wEwSfIsBXu8ZVXSzepLirhMVttlI8Uo35DBS6IUcg7I9dy/DdfUnglLX
+         4hbcf0lD0UfMo2Q3rMvjnQmlpEv98ozydmBVB7JcxqqV6gw2stsgUOt0BhQfOmJOGdWS
+         tZ6DDMFe7OcEH1hO7C+IiFlOYyp45YGYmPLgjOBP5zGQ89IU7SGiRAdgqDuBrebV5Adz
+         3P5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728544947; x=1729149747;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fAZN9C/GFdXF6RdMc8O3pl7Hwn2h+nafu8g8plyOOA0=;
+        b=cEQ0jIQYKAnltHdSIIXNU4U9CxaFYvf6MIe5gu0GRzr5g341YQIkws53uyLMCtXGuL
+         zosI25KFyc2/R6QLyW7fiVqynJr3+j5MGb3jFiXZNLdLA4VWtm5CKFYIHb5FUxS7GSfI
+         1NbU8Au91hl6ArJYY3lNWYg41wDR1e4fb2DPN/X37fAMGb+4ujlOgWtOYWkFd7Vspik+
+         1/8nl8uhlQv7dwGvwJCuQ0xlTysR+VqUymM4jjIhGQgGaUJq4+s84lS5J2sGqyC6yV4P
+         bELadqsMci1XzPHjtXUOTtsTtb0Sxc7cMiD8FY0spkpFK/gmqWTWrGGiUcM8M8KwI9To
+         /VDQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVqIjhuhcsco1NbISVQPC9E1ft69bQqHu+hncwS60xppI4j9OP599BvCFq0rj8JKLJDAL++6DDyBBHm@vger.kernel.org, AJvYcCX9gIrpkz5WtQtTROfBA+FVNDt/9TB8M4cwysSI50SX3nGvWg8S/O8/Hye3Z9rb9GNuRURnN89z6RXoHA4O@vger.kernel.org
+X-Gm-Message-State: AOJu0YyT7OofHkfaRZ1MNe8EkGyti3s5hpTLk49G7P5+lwRPP0sLI+rX
+	87a8FGUJUgHZMOW8j2+ru5q8x4a2IBFGmnsN6ZCoIweY2BOCdQsS
+X-Google-Smtp-Source: AGHT+IGun9eCRZcpSJMPC1tFvuB8ARPLpuejb55VSsC6xFiZnGFpWUrfZe4+TzhboBaOJ0IQkXJifw==
+X-Received: by 2002:a17:902:d4c1:b0:20c:774b:5ae5 with SMTP id d9443c01a7336-20c774b5cfemr60270875ad.9.1728544946915;
+        Thu, 10 Oct 2024 00:22:26 -0700 (PDT)
+Received: from localhost.localdomain ([103.149.249.231])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c8c21616csm4413865ad.224.2024.10.10.00.22.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Oct 2024 00:22:26 -0700 (PDT)
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <jjohnson@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	ath11k@lists.infradead.org,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Jianhua Lu <lujianhua000@gmail.com>
+Subject: [PATCH v3 1/3] arm64: dts: qcom: sm8250-xiaomi-elish: Add qca6390-pmu node
+Date: Thu, 10 Oct 2024 15:22:41 +0800
+Message-ID: <20241010072243.10227-1-lujianhua000@gmail.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQFKfb4qWITpWweaAS1H/eZT7s/knAIPcUUdAog0DUQCYGjah7NpDXcQ
-Content-Language: ko
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBJsWRmVeSWpSXmKPExsWy7bCmqW5ZA3u6weWTLBYP5m1js7j/qY/J
-	Ys3ec0wW84+cY7V4Oesem8X58xvYLTY9vsZqcXnXHDaLGef3MVncWLeP3eLJwjNMFv/37GC3
-	ePzyH7MDr8emVZ1sHivXrGH12Lyk3mPn9wZ2j74tqxg9Pm+SC2CLyrbJSE1MSS1SSM1Lzk/J
-	zEu3VfIOjneONzUzMNQ1tLQwV1LIS8xNtVVy8QnQdcvMATpUSaEsMacUKBSQWFyspG9nU5Rf
-	WpKqkJFfXGKrlFqQklNgXqBXnJhbXJqXrpeXWmJlaGBgZApUmJCdsbPpL2PBE/mKe53fWBsY
-	V0l1MXJySAiYSCw69Im9i5GLQ0hgB6PEg5k/2EASQgKfGCX29HBBJL4xSly/38II0/HuyG1W
-	iMReRonlR9qYIZyXjBIvz51lAaliE7CQWHLtAxNIQkRgA5PE1DM3WUESzAK3GSV2vjcGsTkF
-	7CTuPb0ONlZYIERiSddiJhCbRUBV4sueC+wgNq+ApcSL01OYIWxBiZMzn7BAzJGX2P52DjPE
-	SQoSP58uA5svIuAm8ef+FXaIGhGJ2Z0Q10kInOGQmDvhIFSDi8TkL1NZIWxhiVfHt7BD2FIS
-	L/vboOx8iZUrTzBB2DUS99p2sUDY9hKLzvwEquEAWqApsX6XPogpIaAsceQW1Gl8Eh2H/7JD
-	hHklOtqEIExVienLAiBmSEtMnLGWbQKj0iwkf81C8tcsJPfPQli1gJFlFaNYakFxbnpqsVGB
-	ETyuk/NzNzGCk7CW2w7GKW8/6B1iZOJgPMQowcGsJMKru5A1XYg3JbGyKrUoP76oNCe1+BCj
-	KTCkJzJLiSbnA/NAXkm8oYmlgYmZmaG5kamBuZI4773WuSlCAumJJanZqakFqUUwfUwcnFIN
-	TBWlRj8PCJrErjWSltzvJ6nEFmYTeO70mmXB7rWaxg0R3ydeTVXUi3kdu7RHXGXyi298P6dk
-	nzyckb3CdZ1605WQhCVFj77Nv14Z9+jFNf8H6z18v9zO4NcSiPd+K6i1lF3860PXw4uvOhZU
-	XDjxjbX8TmvpjO5Vy2bz9X/mNpFiep0vZeZrcMp/6a+b3zYenb5JbPVMw4ZjOT1zdj/6yy+x
-	xuhhwKka7V3qWb8bDqkraGWKnElJnCix7Nqt5pX797Ko/ntyuNP/nv/KK3ecvqksYBU/7d3z
-	7n9a64O+ia/X/uZcuEh5w9NAJ/a04EKD3PjDX10nfL46YcHStwr+y3UFbhtwpZt/aH620CVB
-	6K0SS3FGoqEWc1FxIgCKGOnUSwQAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrBIsWRmVeSWpSXmKPExsWy7bCSnG5pA3u6QcMVaYsH87axWdz/1Mdk
-	sWbvOSaL+UfOsVq8nHWPzeL8+Q3sFpseX2O1uLxrDpvFjPP7mCxurNvHbvFk4Rkmi/97drBb
-	PH75j9mB12PTqk42j5Vr1rB6bF5S77HzewO7R9+WVYwenzfJBbBFcdmkpOZklqUW6dslcGXs
-	bPrLWPBEvuJe5zfWBsZVUl2MnBwSAiYS747cZu1i5OIQEtjNKHGo+RQbREJa4sjvF1C2sMT9
-	liNQRc8ZJbaePsUOkmATsJBYcu0DE0hCRGALk8T0V6cYQRxmgYeMEv9fHYBq+coosWDdarBZ
-	nAJ2EveeXmcEsYUFgiRazi9lBbFZBFQlvuy5ADaWV8BS4sXpKcwQtqDEyZlPWEBsZgFtiac3
-	n0LZ8hLb385hhrhPQeLn02Vgc0QE3CT+3L/CDlEjIjG7s415AqPwLCSjZiEZNQvJqFlIWhYw
-	sqxilEwtKM5Nz002LDDMSy3XK07MLS7NS9dLzs/dxAiOTC2NHYz35v/TO8TIxMF4iFGCg1lJ
-	hFd3IWu6EG9KYmVValF+fFFpTmrxIUZpDhYlcV7DGbNThATSE0tSs1NTC1KLYLJMHJxSDUyM
-	KXoNsVYcc3tnlxfV/jz/iW3pfheVn1dWuH2/et41LuPF8Wf9U9XcZXYsEDA0kVh0o+y8YM8d
-	tVtVscuVZ6xSNa9SDtaw/5m9z39P2v8133yvn5Zse6b6vNWgeJbXvgMKrR4i4T83fGBrXifb
-	M/v6w/9RJ8LezHldcDt5prBo90vLDRVpkivd7qaKa/24U3s4uo1bpFFeplvr6oR7+lt/cGto
-	SCzeweiecT4jZ/mPkGmd066JenKwsIl3RP+X/r05TWcez2/9qAcLg/brvNITf7c04e3JlokV
-	75Tuzwyf39T88u+RXZ+3HF27k8ln9aojxY/DTJ7zC7/a+nTFso0ffskxbLql/eFvTIKgl6qQ
-	EktxRqKhFnNRcSIAH5ck5DsDAAA=
-X-CMS-MailID: 20241010072125epcas2p2e31b8d2e354ada2304272acf39dfded6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b
-References: <20240913080325.3676181-1-trunixs.kim@samsung.com>
-	<CGME20240913080347epcas2p4b5694797cff88a22fd815a9de989d20b@epcas2p4.samsung.com>
-	<20240913080325.3676181-3-trunixs.kim@samsung.com>
-	<faf365a0-dfc4-4d26-9057-a80b977965e3@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Add qca6390-pmu node, which is used to manage power supply sequence for wifi and
+bluetooth on sm8250 soc based devices.
 
-Thank you for your review.
-I will apply your point to v2 patch.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+---
+No changes in v3.
 
-Best regards,
-Taewan Kim.
+changes in v2:
+1. pick up Dmitry Baryshkov's Reviewed-by
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: Monday, September 30, 2024 9:05 PM
-> To: Taewan Kim <trunixs.kim@samsung.com>; Wim Van Sebroeck <wim@linux-
-> watchdog.org>; Guenter Roeck <linux@roeck-us.net>; Rob Herring
-> <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>; Conor Dooley
-> <conor+dt@kernel.org>; Alim Akhtar <alim.akhtar@samsung.com>
-> Cc: linux-watchdog@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> samsung-soc@vger.kernel.org; Byoungtae Cho <bt.cho@samsung.com>
-> Subject: Re: [PATCH 2/3] watchdog: s3c2410_wdt: add support for
-> exynosautov920 SoC
-> 
-> On 13/09/2024 10:03, Taewan Kim wrote:
-> > From: Byoungtae Cho <bt.cho@samsung.com>
-> >
-> > Adds the compatibles and drvdata for the ExynosAuto V920 SoC. This SoC
-> > is almost similar to ExynosAutoV9, but some CPU configurations are
-> > quite different, so it should be added. Plus it also support DBGACK
-> > like as
-> > GS101 SoC.
-> >
-> > Signed-off-by: Byoungtae Cho <bt.cho@samsung.com>
-> > Signed-off-by: Taewan Kim <trunixs.kim@samsung.com>
-> > ---
-> >  drivers/watchdog/s3c2410_wdt.c | 37
-> > +++++++++++++++++++++++++++++++++-
-> >  1 file changed, 36 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/watchdog/s3c2410_wdt.c
-> > b/drivers/watchdog/s3c2410_wdt.c index 686cf544d0ae..c25133348f0e
-> > 100644
-> > --- a/drivers/watchdog/s3c2410_wdt.c
-> > +++ b/drivers/watchdog/s3c2410_wdt.c
-> > @@ -63,6 +63,10 @@
-> >  #define EXYNOS850_CLUSTER1_NONCPU_INT_EN	0x1644
-> >  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_OUT	0x1520
-> >  #define EXYNOSAUTOV9_CLUSTER1_NONCPU_INT_EN	0x1544
-> > +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT	0x1420
-> > +#define EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN	0x1444
-> > +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT	0x1720
-> > +#define EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN	0x1744
-> >
-> >  #define EXYNOS850_CLUSTER0_WDTRESET_BIT		24
-> >  #define EXYNOS850_CLUSTER1_WDTRESET_BIT		23
-> > @@ -303,6 +307,32 @@ static const struct s3c2410_wdt_variant
-> drv_data_gs101_cl1 = {
-> >  		  QUIRK_HAS_DBGACK_BIT,
-> >  };
-> >
-> > +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl0 = {
-> > +	.mask_reset_reg = EXYNOSAUTOV920_CLUSTER0_NONCPU_INT_EN,
-> > +	.mask_bit = 2,
-> > +	.mask_reset_inv = true,
-> > +	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> > +	.rst_stat_bit = EXYNOSAUTOV9_CLUSTER0_WDTRESET_BIT,
-> > +	.cnt_en_reg = EXYNOSAUTOV920_CLUSTER0_NONCPU_OUT,
-> > +	.cnt_en_bit = 7,
-> > +	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-> > +		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-> > +		  QUIRK_HAS_DBGACK_BIT,
-> > +};
-> > +
-> > +static const struct s3c2410_wdt_variant drv_data_exynosautov920_cl1 = {
-> > +	.mask_reset_reg = EXYNOSAUTOV920_CLUSTER1_NONCPU_INT_EN,
-> > +	.mask_bit = 2,
-> > +	.mask_reset_inv = true,
-> > +	.rst_stat_reg = EXYNOS5_RST_STAT_REG_OFFSET,
-> > +	.rst_stat_bit = EXYNOSAUTOV9_CLUSTER1_WDTRESET_BIT,
-> > +	.cnt_en_reg = EXYNOSAUTOV920_CLUSTER1_NONCPU_OUT,
-> > +	.cnt_en_bit = 7,
-> > +	.quirks = QUIRK_HAS_WTCLRINT_REG | QUIRK_HAS_PMU_MASK_RESET |
-> > +		  QUIRK_HAS_PMU_RST_STAT | QUIRK_HAS_PMU_CNT_EN |
-> > +		  QUIRK_HAS_DBGACK_BIT,
-> > +};
-> > +
-> >  static const struct of_device_id s3c2410_wdt_match[] = {
-> >  	{ .compatible = "google,gs101-wdt",
-> >  	  .data = &drv_data_gs101_cl0 },
-> > @@ -320,6 +350,8 @@ static const struct of_device_id s3c2410_wdt_match[]
-> = {
-> >  	  .data = &drv_data_exynos850_cl0 },
-> >  	{ .compatible = "samsung,exynosautov9-wdt",
-> >  	  .data = &drv_data_exynosautov9_cl0 },
-> > +	{ .compatible = "samsung,exynosautov920-wdt",
-> > +	  .data = &drv_data_exynosautov920_cl0},
-> 
-> Missing space before }
-> 
-> >  	{},
-> >  };
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
+ .../dts/qcom/sm8250-xiaomi-elish-common.dtsi  | 77 +++++++++++++++++++
+ 1 file changed, 77 insertions(+)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+index 3596dd328c31..ebea283f56ea 100644
+--- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+@@ -97,6 +97,67 @@ key-vol-up {
+ 		};
+ 	};
+ 
++	qca6390-pmu {
++		compatible = "qcom,qca6390-pmu";
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_en_state>, <&wlan_en_state>;
++
++		vddaon-supply = <&vreg_s6a_0p95>;
++		vddpmu-supply = <&vreg_s6a_0p95>;
++		vddrfa0p95-supply = <&vreg_s6a_0p95>;
++		vddrfa1p3-supply = <&vreg_s8c_1p35>;
++		vddrfa1p9-supply = <&vreg_s5a_1p9>;
++		vddpcie1p3-supply = <&vreg_s8c_1p35>;
++		vddpcie1p9-supply = <&vreg_s5a_1p9>;
++		vddio-supply = <&vreg_s4a_1p8>;
++
++		wlan-enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
++		bt-enable-gpios = <&tlmm 21 GPIO_ACTIVE_HIGH>;
++
++		regulators {
++			vreg_pmu_rfa_cmn: ldo0 {
++				regulator-name = "vreg_pmu_rfa_cmn";
++			};
++
++			vreg_pmu_aon_0p59: ldo1 {
++				regulator-name = "vreg_pmu_aon_0p59";
++			};
++
++			vreg_pmu_wlcx_0p8: ldo2 {
++				regulator-name = "vreg_pmu_wlcx_0p8";
++			};
++
++			vreg_pmu_wlmx_0p85: ldo3 {
++				regulator-name = "vreg_pmu_wlmx_0p85";
++			};
++
++			vreg_pmu_btcmx_0p85: ldo4 {
++				regulator-name = "vreg_pmu_btcmx_0p85";
++			};
++
++			vreg_pmu_rfa_0p8: ldo5 {
++				regulator-name = "vreg_pmu_rfa_0p8";
++			};
++
++			vreg_pmu_rfa_1p2: ldo6 {
++				regulator-name = "vreg_pmu_rfa_1p2";
++			};
++
++			vreg_pmu_rfa_1p7: ldo7 {
++				regulator-name = "vreg_pmu_rfa_1p7";
++			};
++
++			vreg_pmu_pcie_0p9: ldo8 {
++				regulator-name = "vreg_pmu_pcie_0p9";
++			};
++
++			vreg_pmu_pcie_1p8: ldo9 {
++				regulator-name = "vreg_pmu_pcie_1p8";
++			};
++		};
++	};
++
+ 	vph_pwr: vph-pwr-regulator {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vph_pwr";
+@@ -701,6 +762,22 @@ &slpi {
+ 
+ &tlmm {
+ 	gpio-reserved-ranges = <40 4>;
++
++	bt_en_state: bt-default-state {
++		pins = "gpio21";
++		function = "gpio";
++		drive-strength = <16>;
++		output-low;
++		bias-pull-up;
++	};
++
++	wlan_en_state: wlan-default-state {
++		pins = "gpio20";
++		function = "gpio";
++		drive-strength = <16>;
++		output-low;
++		bias-pull-up;
++	};
+ };
+ 
+ &usb_1 {
+-- 
+2.46.1
 
 
