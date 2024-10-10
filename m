@@ -1,128 +1,159 @@
-Return-Path: <devicetree+bounces-109864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9277E998498
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 13:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 609869984BA
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 13:18:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C2D0E1C211B8
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:14:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5089D1C23E36
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 11:18:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 763D61C32FE;
-	Thu, 10 Oct 2024 11:14:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86FF11C245B;
+	Thu, 10 Oct 2024 11:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jsnjJsC6"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="aM5GQir3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B6571C2DC8;
-	Thu, 10 Oct 2024 11:14:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A671BBBE5
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 11:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728558855; cv=none; b=BTeggg+fvhRWYIQGsBF5lDRgG0TcGfZygew0yLHOqILWYgP0lJ5diQ6fT4FS9N9rtT5glAgaYx93LGbc74SvLZ2aSQJXTTt+NDMW1CAOgu1jZieVSpWIJ8O4bwT9JUvj6/KPUQ7U3IHKXK2SSv3k0RXxrcgdOzNoT9u0HFL2nPo=
+	t=1728559122; cv=none; b=l2Tm2CXGXjRzjJ9K55Tw4dZj8mbcmRRdzxGT+9nTAAGI48ajyxMXsKqgb8N6mCJcqq8i9bFZ0V+KVTm8Ya+ShGOAjS+EwqLrKMIC3UWr8iihCCaJivAqxhb0LZGzPMgS7Q/vWVAbrGIFc+8tyuovWB6Z+iEfuATc7H9kaq37d8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728558855; c=relaxed/simple;
-	bh=yimnheOQtKviFcnoHT8nlYQ+Lzpz2qCO7iOqKUctSxI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=mKsGTp+5qADEEa//yqC79MAVgrLhplcMQPQToI3TuR0G+pGxH6UeIzHAPPEzbf7lLSb3HI6hYlp4oEC9GCMiI0iRtoHNpr1DKkX45GWPlRdtHZ7VIZKGIaNwT0O/6ezTIo17RqQxGmX7cSweK0pQ23weVrGBjaYWn1FrV//BT38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jsnjJsC6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B82AC4CEC6;
-	Thu, 10 Oct 2024 11:14:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728558854;
-	bh=yimnheOQtKviFcnoHT8nlYQ+Lzpz2qCO7iOqKUctSxI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=jsnjJsC6wV1HeLK5bX5su+dwHaEQPFBKCIOWSp90CXMAXanaDsv1Aanz47DVSbYOK
-	 BsNBu2at46GYpSQcNC0Xd2eMyBanh8moyYV3e7k2bXtF0nU4zL9mTlWKhYJQBkK+Yp
-	 gSSYsdrOYslaF7b7lj0b0/kwtCPtH8vv6XPZ4ZS7Vx306nlDmWEbV7ReBmVOUJR+08
-	 RtkQstZvo1KDKsWPtJO82Hlsle9k5CACLQWTRyi+g/QwrI/pZ3DsjB/0LmFvOt3dRm
-	 Mh7KfEYOd25f8QI8mV1EIaJdvT/8xKLwjTJgjza9ftZD18HPDY3FinajQMmMNbiJMp
-	 dEZA+M9v4aklg==
-From: Mark Brown <broonie@kernel.org>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>, 
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Huacai Chen <chenhuacai@kernel.org>, 
- Binbin Zhou <zhoubinbin@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>, linux-sound@vger.kernel.org, 
- devicetree@vger.kernel.org, Xuerui Wang <kernel@xen0n.name>, 
- loongarch@lists.linux.dev, Neil Armstrong <neil.armstrong@linaro.org>, 
- Pierre-Louis Bossart <pierre-louis.bossart@linux.dev>, 
- Richard Fitzgerald <rf@opensource.cirrus.com>, 
- Luca Ceresoli <luca.ceresoli@bootlin.com>, 
- Weidong Wang <wangweidong.a@awinic.com>, 
- Prasad Kumpatla <quic_pkumpatl@quicinc.com>, 
- Herve Codina <herve.codina@bootlin.com>, 
- Masahiro Yamada <masahiroy@kernel.org>, Shuming Fan <shumingf@realtek.com>
-In-Reply-To: <cover.1728459624.git.zhoubinbin@loongson.cn>
-References: <cover.1728459624.git.zhoubinbin@loongson.cn>
-Subject: Re: (subset) [PATCH v3 0/9] ASoC: Some issues about loongson i2s
-Message-Id: <172855884981.3258793.17729935826036139739.b4-ty@kernel.org>
-Date: Thu, 10 Oct 2024 12:14:09 +0100
+	s=arc-20240116; t=1728559122; c=relaxed/simple;
+	bh=Zc926r4ALPVfipCEL0nsTaRtvIld/QQvT7k+cbNSDho=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
+	 References; b=DpEewgoLmUISCs2oyVKImllXZZepiuXNtCgw7Rwe320YqVwIf0mAQ9wdzMDXRsEwS1YT6OBPs3Ng0dLF2Dk5riF9lI63+AL0gkyIqNUtdSsITPbIr48woSbg5l6/qxhHOAMyCWd5bWKKzHOtXZ3leWPIJx6bzx7YH51IKVh4Drk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=aM5GQir3; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20241010111837epoutp029bd99083cea775122bddfb4192fe346e~9E1vt7_N52189921899epoutp02q
+	for <devicetree@vger.kernel.org>; Thu, 10 Oct 2024 11:18:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20241010111837epoutp029bd99083cea775122bddfb4192fe346e~9E1vt7_N52189921899epoutp02q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1728559117;
+	bh=XW5I0qQ4mXeBZjDt6k5n6eX/hNh2dFhfU+kpEj7ZIXA=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=aM5GQir3PlP3dREzQ661b13CS6D1ziHajpI42QWbZI5Ufk6p6DDEv7naMbWcReoUk
+	 jdedBVH7yGbGOYgcAmYhlNgWp0r3xRq2sVgR3DZJRP+ygaRBpSW/rihW1U6q/4Uiws
+	 b3/4M+CeK2Sl3R1glC/+iK94yMqsRRhpX4rGB9Fk=
+Received: from epsnrtp3.localdomain (unknown [182.195.42.164]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTP id
+	20241010111836epcas2p18c45b3e0353da13abafd54838e79313b~9E1vBUDzv2326923269epcas2p1F;
+	Thu, 10 Oct 2024 11:18:36 +0000 (GMT)
+Received: from epsmges2p2.samsung.com (unknown [182.195.36.88]) by
+	epsnrtp3.localdomain (Postfix) with ESMTP id 4XPS1S3GCgz4x9Pp; Thu, 10 Oct
+	2024 11:18:36 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+	epsmges2p2.samsung.com (Symantec Messaging Gateway) with SMTP id
+	25.6A.09770.C08B7076; Thu, 10 Oct 2024 20:18:36 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
+	20241010111835epcas2p298d37f8b2ce4769b33a56c276c4f9d1f~9E1t4_obr0738407384epcas2p2b;
+	Thu, 10 Oct 2024 11:18:35 +0000 (GMT)
+Received: from epsmgmc1p1new.samsung.com (unknown [182.195.42.40]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20241010111835epsmtrp1f2499d59a8dbe483b63a51f2d89d495f~9E1t4DnoW3121631216epsmtrp1R;
+	Thu, 10 Oct 2024 11:18:35 +0000 (GMT)
+X-AuditID: b6c32a46-da9ff7000000262a-c5-6707b80c0b8c
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+	epsmgmc1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	BD.FE.07371.B08B7076; Thu, 10 Oct 2024 20:18:35 +0900 (KST)
+Received: from localhost.localdomain (unknown [10.229.9.55]) by
+	epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+	20241010111835epsmtip1a488eb6ae7e94d2e2dfc967381e0b84e~9E1tpO3oC0906509065epsmtip1A;
+	Thu, 10 Oct 2024 11:18:35 +0000 (GMT)
+From: Taewan Kim <trunixs.kim@samsung.com>
+To: Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+	<linux@roeck-us.net>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Alim Akhtar
+	<alim.akhtar@samsung.com>
+Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, Taewan Kim <trunixs.kim@samsung.com>
+Subject: [PATCH v2 0/3] support watchdog for exynosautov920
+Date: Thu, 10 Oct 2024 20:18:04 +0900
+Message-ID: <20241010111807.3635504-1-trunixs.kim@samsung.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprFJsWRmVeSWpSXmKPExsWy7bCmhS7PDvZ0gwV3xC0ezNvGZrFm7zkm
+	i/lHzrFavJx1j81i0+NrrBaXd81hs5hxfh+TxY11+9gtniw8w2Txf88OdotJi88zWTx++Y/Z
+	gcdj06pONo+Va9awemxeUu+x83sDu0ffllWMHp83yQWwRWXbZKQmpqQWKaTmJeenZOal2yp5
+	B8c7x5uaGRjqGlpamCsp5CXmptoqufgE6Lpl5gDdqKRQlphTChQKSCwuVtK3synKLy1JVcjI
+	Ly6xVUotSMkpMC/QK07MLS7NS9fLSy2xMjQwMDIFKkzIznj37wdzwWL2iu5vS5gaGF+wdjFy
+	ckgImEhs7LzK1sXIxSEksINR4vqFTVDOJ0aJOUv7mEGqhAS+ATlz7WE6ehY8YoGI72WUWPtc
+	FaLhI6NEy7StTCAJNgEtiW2HXzGBJEQEXjNKNPW+YwZxmAXOM0ocOtQE1M7BISxgLfHsoQhI
+	A4uAqsSajR/YQWxeATuJI6vPMUJsk5e4/vgoE0RcUOLkzCdgm5mB4s1bZ4PNlBD4yy5xcG4v
+	C0SDi8T3TWehmoUlXh3fwg5hS0m87G+DsvMlVq48wQRh10jca9sF1WsvsejMT3aQ25gFNCXW
+	79IHMSUElCWO3IJayyfRcfgvO0SYV6KjTQjCVJWYviwAYoa0xMQZa9kgbA+Jh/daGCFBFSsx
+	4cNHpgmM8rOQ/DILyS+zENYuYGRexSiWWlCcm55abFRgBI/S5PzcTYzgRKrltoNxytsPeocY
+	mTgYDzFKcDArifDqLmRNF+JNSaysSi3Kjy8qzUktPsRoCgzdicxSosn5wFSeVxJvaGJpYGJm
+	ZmhuZGpgriTOe691boqQQHpiSWp2ampBahFMHxMHp1QDk/p5rrht1ianJlY9uzPj0/eEZJvV
+	lgs/iayy5VRT0wpakJC7Xn3t5CfRDQt2hWaVb2CdyNGfNudufvgW3c0yd+/NXDyvM0tl9e34
+	oBoTw2suh0+f0koKzU3kmqNyQehWl+YvfTH+I+sq57C2nokXmqN3/bVfg2b3XOm7jB/89vzS
+	vd3BdYbRVDX3oOyqwLknVB6fvBaZ+Lh50o0ejukJDUUbsj4JLDx+Yb3D/etxnxkPu31JVDyg
+	c1054umX3auz3c4c3Oi3wrCtd82rF51bn91bYxvwJ/sp65XDnkvEfl+cYVgfOXmaxom4uhB9
+	T4lv69uy2ycfmLG85PacLU0vezdElHlPyIlP3rHt3AcpoXYlluKMREMt5qLiRACizyr/LQQA
+	AA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDLMWRmVeSWpSXmKPExsWy7bCSnC73DvZ0g2cnZSwezNvGZrFm7zkm
+	i/lHzrFavJx1j81i0+NrrBaXd81hs5hxfh+TxY11+9gtniw8w2Txf88OdotJi88zWTx++Y/Z
+	gcdj06pONo+Va9awemxeUu+x83sDu0ffllWMHp83yQWwRXHZpKTmZJalFunbJXBlvPv3g7lg
+	MXtF97clTA2ML1i7GDk5JARMJHoWPGIBsYUEdjNKrDzlABGXljjy+wUbhC0scb/lCFA9F1DN
+	e0aJR3tOgSXYBLQkth1+xQSSEAFJnP3yixHEYRa4yijxY9E79i5GDg5hAWuJZw9FQBpYBFQl
+	1mz8wA5i8wrYSRxZfY4RYoO8xPXHR5kg4oISJ2c+AbuIGSjevHU28wRGvllIUrOQpBYwMq1i
+	lEwtKM5Nz002LDDMSy3XK07MLS7NS9dLzs/dxAgOcC2NHYz35v/TO8TIxMF4iFGCg1lJhFd3
+	IWu6EG9KYmVValF+fFFpTmrxIUZpDhYlcV7DGbNThATSE0tSs1NTC1KLYLJMHJxSDUwr331Y
+	181ZVW83WUdtnqrrP63OvW8+/LH4tCHYsevWE8dpdR/uyMTuf2tV1qcaEf7m8g4vu71LDpcG
+	PDVMXSQcwzxtf8n/63XPFdk+7pDNNa54H1P+r/br7isfyza+y7TdJ/jc6VioTbiFf5X+iv9V
+	GU9zElTE5zt8favdznzyD4ONyILnMS6ZNlM3bK3Oadv8/31UwzsFC6saq6Pzdk6e+eNJZ8/5
+	6VaRE0N3RJ6bz/Be//SqHYfrpjg5drDFvT9yTuSwg0/J3gyBE6bRif9uTNsyxzzUcv67520P
+	7XdoLV7z0sr5bfBa8WdVl83ZNxT7vtvY9zsp7WibokZxhCTj86pDM+tfcDrnlX78y/xGiaU4
+	I9FQi7moOBEAOv/iDd8CAAA=
+X-CMS-MailID: 20241010111835epcas2p298d37f8b2ce4769b33a56c276c4f9d1f
+X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-99b12
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20241010111835epcas2p298d37f8b2ce4769b33a56c276c4f9d1f
+References: <CGME20241010111835epcas2p298d37f8b2ce4769b33a56c276c4f9d1f@epcas2p2.samsung.com>
 
-On Wed, 09 Oct 2024 15:51:42 +0800, Binbin Zhou wrote:
-> This patch set is mainly about Loongson i2s related issues.
-> 
-> Please allow me to briefly explain this patch set:
-> Patch 1-2: Add ES8323 codec required on Loongson-2K2000
-> Patch 3-4: Add uda1342 codec required on Loongson-2K1000
-> Patch 5: Fix the problem of unable to detect codec under FDT system.
-> Patch 6-7: Add Loongson i2s platform device support
-> Patch 8-9: Related DTS support.
-> 
-> [...]
+Add support for the ExynosAutoV920 SoC. Basically this is almost
+similar to ExynosAuto V9 or Exynos850 such as two watchdog instance for
+each cluster but some CPU configuration are quite different.
+Therefore device tree, compatibles and drvdata should be added.
 
-Applied to
+---
+Changes in v2:
+- Add a space before }
+- Fix worng variant condition (cl1 -> cl0)
+- Move the location declaring watchdog node
+  to the correct location that fits the DTS coding rules
+---
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Byoungtae Cho (3):
+  dt-bindings: watchdog: Document ExynosAutoV920 watchdog bindings
+  watchdog: s3c2410_wdt: add support for exynosautov920 SoC
+  arm64: dts: exynosautov920: add watchdog DT node
 
-Thanks!
+ .../bindings/watchdog/samsung-wdt.yaml        |  3 ++
+ .../arm64/boot/dts/exynos/exynosautov920.dtsi | 20 ++++++++++
+ drivers/watchdog/s3c2410_wdt.c                | 37 ++++++++++++++++++-
+ 3 files changed, 59 insertions(+), 1 deletion(-)
 
-[1/9] ASoC: dt-bindings: Add Everest ES8323 Codec
-      commit: 5bf2bea8a8b3d0255953868c7bf652235a17a65d
-[2/9] ASoC: codecs: Add support for ES8323
-      commit: b97391a604b9e259c6a983fc1b715d205d9da505
-[3/9] ASoC: dt-bindings: Add NXP uda1342 Codec
-      commit: de567431596a8163a9441407fdab315f12bc2769
-[4/9] ASoC: codecs: Add uda1342 codec driver
-      commit: de0fb25e37aae7aae133d6c3d0b0e1e31a79878d
-[5/9] ASoC: loongson: Fix component check failed on FDT systems
-      (no commit info)
-[6/9] ASoC: dt-bindings: Add Loongson I2S controller
-      commit: d4c2e9e33a0c903cc3a00114d6c02aa2cf403d33
-[7/9] ASoC: loongson: Add I2S controller driver as platform device
-      commit: ba4c5fad598c07492844e514add3ccda467063b2
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+2.46.0
 
 
