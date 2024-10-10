@@ -1,215 +1,159 @@
-Return-Path: <devicetree+bounces-110108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 511F6999435
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:04:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BC2699944A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:18:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7220E1C264E9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:04:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B7A41C212CC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 21:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6093A1F12F2;
-	Thu, 10 Oct 2024 21:00:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 282221CDFD4;
+	Thu, 10 Oct 2024 21:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WD+NH7PG"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ST452Cah"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B21A1EF93F;
-	Thu, 10 Oct 2024 21:00:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63DFB40C03;
+	Thu, 10 Oct 2024 21:18:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728594059; cv=none; b=IS9MXIy1bsjEyRxP2mIJ2Jg91H2wOH0qBYG5S75kzEIhu48cQxPTGL7PsW12h+VGfWvkIz4tK8bmMS8EsZj3fM7Oork3ESMWoCdyowgb0juH8TfjBFfSwtx2jmobLQqh6CZCXbig5GYckXJd9ddmiwC121q3SgeYCNPmFK/evuY=
+	t=1728595095; cv=none; b=F6rf+FVD3w2jkVHJUKqzWiXJm/nmK7WlWORnMCRyqSYPoeK9arWC/pYGTx3yR3DCTiuVJ2ttTdzVLtn6Xjfs89Om8u6N4dsHRBdVb1n+Q56LvBUGiLBN3gIOrBuza9Vllej42E+ID4w1qHs92AFYQ+DvVSbZ6SI+HRUJ3G89mYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728594059; c=relaxed/simple;
-	bh=htghE5bfd+kQ4viLBkQpuFbt4H05U95ieqRgBCY1ekg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=mHo18/fln8ciKUIHXYny0elq5+zzGeqTeDYZUkcDlQg51BvQR/X2qqnLU9+eZ5S6xAyfpMk+EkUomlRFeOtztDBCyNEYdoDzVcn3Xw0StbN1bzgzJ9iw++MAJzDtf9qhqUbD/jrXZYyoeQftdBgkBW1XplN/VJCeaxtSO+5PYic=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WD+NH7PG; arc=none smtp.client-ip=209.85.167.50
+	s=arc-20240116; t=1728595095; c=relaxed/simple;
+	bh=FcuSlW53WgqovRjICzIDSUMea9NRqIRhOb8YTIi6CPM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uAu4x/fAgdPSyfaERAemH+JbOljAwuYTWmpPnbr1YhoZhpAvzze60W5egGtfjbGWKQlF5SpiV6L/D4g7l1z5EWl9+Ac22Sv2/RcolhGMpsF9dMJKcPuZN6yd/5ZpdPKGkSHyz/iUHy5Lb2NKXFup9JNN+rdnx6v2sNrE+x1Bvs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ST452Cah; arc=none smtp.client-ip=209.85.218.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5398b589032so2384441e87.1;
-        Thu, 10 Oct 2024 14:00:57 -0700 (PDT)
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a9944c4d5d4so197736666b.0;
+        Thu, 10 Oct 2024 14:18:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728594056; x=1729198856; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1728595092; x=1729199892; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=hFZcG4G/nDJlbBxKx5ip52fFFHl5Oj4RpUgHu+Xf+xI=;
-        b=WD+NH7PGwIghdl550yLg+Ylq/8yxC+g/pSmuMnNnsWN+VnIAkY9qC0sw04HVjSeSaq
-         5QsLrz5XaYrX7Gpgoxx4B/brRBxvt5Hv7deBQbuCmi9UZvSIXMWISIbHiOeol/v1Gx5T
-         GMYI2cnX5YhiYF4qHqC5YCs829k5wIlMXq+6IlW4QZatTE/wkJmwv4Fsku9n5LSTUkLF
-         7rLqEmKtWnZGdNL6XyYJMz+aB1yDk+IJ3aqE38udIBvasPeR66dlPELAJVXAdeXKC9J+
-         QmzGxpKZDHG+smSowW9Et0YeCfofRA0HUZPv0t+iEh3b+jhPOoqSh9UltOwa/mUpqLHY
-         2lVA==
+        bh=NauSHKeAvgpwTcQ1aKIngRfqQGp/N22b0tcNK2HfLP8=;
+        b=ST452CahTR8HZRsDJFKrC6R/qarUhWB4oKHlcmdj79BVUfVUCoOfq4P3NS9taigLKI
+         zD9v9qo76QwC1iGi/KJxztvgAN26nxn2398YYS7iD/eNsTF9Ba7ASB2NP3IhbeDNETqY
+         pMjR9k1ppcYW6isOuW1+4ntjATM8Uf45sBknszPjDSEZ2JUSKA4z6IoS74/Awh45NogT
+         ipzmNI5T2fOu6HJ8lsrYRKwn76c42dJXMg02G/acH+iVHDz4Ni8N1XGyP6WdAmrywCzO
+         ildznZx67A4YfkLnsVf5T070UDo0xire5Ijm/Z9uUYrz19D2FLLAlTu0rGvp/HopRHRT
+         sVVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728594056; x=1729198856;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1728595092; x=1729199892;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=hFZcG4G/nDJlbBxKx5ip52fFFHl5Oj4RpUgHu+Xf+xI=;
-        b=Cy7WVBOV5gvGbVa6PxNc484YpeWkEK+LaMGZB0ngkXDPdDrQqgUg1qcsyepJUlhbFc
-         LM3RPfMcIS539fTd9rbcm7+eQQWC38yBhrURq8ScFoELF49l5qafmy8f1O/M3KcOrlSx
-         LS3JTJk4yiPdnwFDnsK7A/0NnD2U90f3Zo3lFoVnXxhrT2dOzWSbe0J/+VTPSAvopebW
-         +XkeE8UK6oVOxdE9lx/kMP1dQGV44zYpHulgZxFiKAi81AWEOqoiM+jJflsGLbxiaWf2
-         T4vUC2xlQFKWhPY576tD5UHKKkYprKHjROwm1xoQJN8VGxM7shs/gdeTSrS5YxLRjWLt
-         VmYw==
-X-Forwarded-Encrypted: i=1; AJvYcCVFnaLR/sct0eTj8jIfqcB7R+9zyJ26OwLt8Z37xglorwHRyiBzYQ9WnNyaZ2caE4nFNys6Czzv7q/s@vger.kernel.org, AJvYcCWGoexOU+QX1lsj6mHIlDvvtsZ/mcIRBvpQ7FbHt2ITEfXA0Lw+a+coxj+AetzOZ+xxgh7p1FZe/fa3@vger.kernel.org, AJvYcCWfRJSxIE3OM4khWShJyUNVwbydObHNdhEHR/o4tO/hzwECzNNPp56Llz4l4ifUTeAqaVt8DVCTFBlLveuS@vger.kernel.org
-X-Gm-Message-State: AOJu0YyUh6dfT6yb5Q245u/pfgd78xmKPUA9TUwVelU0TPlPjPH4imJ+
-	zHGlPEiiUR0mfjPt4pZzpS1p/pLwvypJ6ZqoKzrot6xQP0KeoQXD
-X-Google-Smtp-Source: AGHT+IHUHptKoHrqPPCbXGaA3a+T1isiiRkGcpjAvzUotIy4gQ6iWdZtolCvWzro8Oe+sONYrOIMQQ==
-X-Received: by 2002:a05:6512:108a:b0:539:901c:e2e with SMTP id 2adb3069b0e04-539da598edcmr68580e87.58.1728594055542;
-        Thu, 10 Oct 2024 14:00:55 -0700 (PDT)
-Received: from vamoirid-laptop.. ([2a04:ee41:82:7577:7eab:ec9d:62da:64f5])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-a99a7f25f4dsm135692566b.68.2024.10.10.14.00.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 14:00:54 -0700 (PDT)
-From: vamoirid <vassilisamir@gmail.com>
-To: jic23@kernel.org,
-	lars@metafoo.de,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org
-Cc: vassilisamir@gmail.com,
-	anshulusr@gmail.com,
-	gustavograzs@gmail.com,
-	andriy.shevchenko@linux.intel.com,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1 13/13] iio: chemical: bme680: Add support for preheat current
-Date: Thu, 10 Oct 2024 23:00:30 +0200
-Message-ID: <20241010210030.33309-14-vassilisamir@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241010210030.33309-1-vassilisamir@gmail.com>
-References: <20241010210030.33309-1-vassilisamir@gmail.com>
+        bh=NauSHKeAvgpwTcQ1aKIngRfqQGp/N22b0tcNK2HfLP8=;
+        b=Lsbl1z0FfZzMB5jm4xIKKTBlnmy0UukuSUDF/KaTJVIDo8bK9gNsve+TYMcHMk/htN
+         5Cr+Eg8A2Syk1L6vYivPzXWU8/ergu8zAenvi5X7vXZtH84ihzH0PnskeAqwf5NNUwFg
+         wM9XqrGYJvVpJ7cfG3Z+i4Vi4X0ABb3QZJrnQXrK4dpiaMPDFTCMBIMo6bk17X2yJqLC
+         RX4ppf7ZRSxHjz0BbK9uLiDi5VwEBLrC27OaM0tNpvAbzSexnA52kCxUdmoKuRr9mFrv
+         lwikAFscgp+Z2aG/6SkX8qKmh5+/5DGVrOZOKRhmHx8SoZW8APnuSHoCibr+2L9c68kX
+         o5Ww==
+X-Forwarded-Encrypted: i=1; AJvYcCUYew1sFv1Qyh6dL2VrPupPgTohwjQ7VB7sex/2yGzg1EKCbFiMjn9wv1lmQ9BUqmhBUvq7IbOChdDYDpeE@vger.kernel.org, AJvYcCVkYU5vD5IFoGK+rehgxrJ9rtuPjSl1onUAsUVVS9dYGCHv4HD6V2wgJJ2w3mKuVFKe2QT0Es9vsdba@vger.kernel.org, AJvYcCXB8snEmlc7SkkEzcpAueJt8f7i3BWyyK+8YfgE/djGbk7BFyluxvKBLDzxXTIgF72mhuvmK+0bivbjRdLqsg==@vger.kernel.org
+X-Gm-Message-State: AOJu0YyCeyq5s/m0s0oFyaV9HuymGR7In0U2IMKrEsW2ZxtyEoprbVTS
+	j7gCcRFk1WHGkH8QD/LwFjAn+NPalv2CmcLG63F0KBKYJMUhp5gsXYcnnmABcWx5MWTpzeQgu+C
+	44+StRrcD3thSVmWGjWJUp288Kw5x
+X-Google-Smtp-Source: AGHT+IG5yC+VmcHw8pOOXzfv1ag2UEXS5lbU6zfme1Z7unsKiiKWUbPZNOXUKrlqOahelOfhdwSbctYK4LtWJO7Yju0=
+X-Received: by 2002:a17:907:948b:b0:a99:8378:b939 with SMTP id
+ a640c23a62f3a-a99b931457amr29426266b.2.1728595091526; Thu, 10 Oct 2024
+ 14:18:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240908223505.21011-1-jerome.debretagne@gmail.com>
+ <20240908223505.21011-6-jerome.debretagne@gmail.com> <ZweV5mcEWHofpF4J@hovoldconsulting.com>
+In-Reply-To: <ZweV5mcEWHofpF4J@hovoldconsulting.com>
+From: =?UTF-8?B?SsOpcsO0bWUgZGUgQnJldGFnbmU=?= <jerome.debretagne@gmail.com>
+Date: Thu, 10 Oct 2024 23:17:35 +0200
+Message-ID: <CA+kEDGE9fVWNK+3Y8JtM8jG9ki+QCoPAM=8AGC+HARL2CwyJYg@mail.gmail.com>
+Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sc8280xp: Add Microsoft Surface
+ Pro 9 5G
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Johan Hovold <johan+linaro@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Maximilian Luz <luzmaximilian@gmail.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
+Le jeu. 10 oct. 2024 =C3=A0 10:52, Johan Hovold <johan@kernel.org> a =C3=A9=
+crit :
+>
+> On Mon, Sep 09, 2024 at 12:35:05AM +0200, J=C3=A9r=C3=B4me de Bretagne wr=
+ote:
+> > Add an initial devicetree for the Microsoft Surface Pro 9 5G, based
+> > on SC8280XP.
+> >
+> > It enables the support for Wi-Fi, NVMe, the two USB Type-C ports,
+> > Bluetooth, 5G cellular modem, audio output (via Bluetooth headsets
+> > or USB audio), external display via DisplayPort over Type-C (only
+> > the bottom USB Type-C port is working so far), charging, the Surface
+> > Aggregator Module (SAM) to get keyboard and touchpad working with
+> > Surface Type Cover accessories.
+> >
+> > Some key features not supported yet:
+> > - built-in display (but software fallback is working with efifb
+> >   when blacklisting the msm module)
+> > - built-in display touchscreen
+> > - external display with the top USB Type-C port
+> > - speakers and microphones
+> > - physical volume up and down keys
+> > - LID switch detection
+> >
+> > This devicetree is based on the other SC8280XP ones, for the Lenovo
+> > ThinkPad X13s and the Qualcomm CRD.
+> >
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Signed-off-by: J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne@gmail.co=
+m>
+>
+> > +// SPDX-License-Identifier: BSD-3-Clause
+> > +/*
+> > + * Copyright (c) 2024, J=C3=A9r=C3=B4me de Bretagne <jerome.debretagne=
+@gmail.com>
+> > + */
+>
+> You mention it in the commit message, but since a lot of this is copied
+> from the X13s (and CRD) devicetrees you should probably make that clear
+> here as well and include the relevant copyright notices. For example by
+> adding:
+>
+>         Based on ...
+>
+>         Copyright ...
+>
+> Johan
 
-Add functionality to inject a specified amount of current to the heating
-plate before the start of the gas measurement to allow the sensor to reach
-faster to the requested temperature.
+Thank you for the suggestion, so it would look like this?
 
-Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
----
- drivers/iio/chemical/bme680.h      |  1 +
- drivers/iio/chemical/bme680_core.c | 38 ++++++++++++++++++++++++++++++
- 2 files changed, 39 insertions(+)
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Based on sc8280xp-crd.dts and sc8280xp-lenovo-thinkpad-x13s.dts
++ *
++ * Copyright (c) 2021, The Linux Foundation. All rights reserved.
++ * Copyright (c) 2022, Linaro Limited
++ * Copyright (c) 2024, J=C3=A9r=C3=B4me de Bretagne <...>
++ */
 
-diff --git a/drivers/iio/chemical/bme680.h b/drivers/iio/chemical/bme680.h
-index e7eed2962baa..c658cb631b52 100644
---- a/drivers/iio/chemical/bme680.h
-+++ b/drivers/iio/chemical/bme680.h
-@@ -42,6 +42,7 @@
- #define   BME680_RHRANGE_MASK			GENMASK(5, 4)
- #define BME680_REG_RES_HEAT_VAL			0x00
- #define   BME680_RSERROR_MASK			GENMASK(7, 4)
-+#define BME680_REG_IDAC_HEAT_0			0x50
- #define BME680_REG_RES_HEAT_0			0x5A
- #define BME680_REG_GAS_WAIT_0			0x64
- #define BME680_ADC_GAS_RES			GENMASK(15, 6)
-diff --git a/drivers/iio/chemical/bme680_core.c b/drivers/iio/chemical/bme680_core.c
-index df6ae4355902..6cdf8b9dbf2b 100644
---- a/drivers/iio/chemical/bme680_core.c
-+++ b/drivers/iio/chemical/bme680_core.c
-@@ -126,6 +126,7 @@ struct bme680_data {
- 	u8 oversampling_temp;
- 	u8 oversampling_press;
- 	u8 oversampling_humid;
-+	u8 preheat_curr;
- 	u16 heater_dur;
- 	u16 heater_temp;
- 
-@@ -223,6 +224,12 @@ static const struct iio_chan_spec bme680_channels[] = {
- 		},
- 	},
- 	IIO_CHAN_SOFT_TIMESTAMP(4),
-+	{
-+		.type = IIO_CURRENT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-+		.output = 1,
-+		.scan_index = 5,
-+	},
- };
- 
- static int bme680_read_calib(struct bme680_data *data,
-@@ -569,6 +576,12 @@ static u8 bme680_calc_heater_dur(u16 dur)
- 	return durval;
- }
- 
-+/* Taken from datasheet, section 5.3.3 */
-+static u8 bme680_calc_heater_preheat_current(u8 curr)
-+{
-+	return 8 * curr - 1;
-+}
-+
- static int bme680_set_mode(struct bme680_data *data, enum bme680_op_mode mode)
- {
- 	struct device *dev = regmap_get_device(data->regmap);
-@@ -673,6 +686,19 @@ static int bme680_chip_config(struct bme680_data *data)
- 	return 0;
- }
- 
-+static int bme680_preheat_curr_config(struct bme680_data *data, u8 val)
-+{
-+	u8 heatr_curr;
-+	int ret;
-+
-+	heatr_curr = bme680_calc_heater_preheat_current(val);
-+	ret = regmap_write(data->regmap, BME680_REG_IDAC_HEAT_0, heatr_curr);
-+	if (ret < 0)
-+		dev_err(data->dev, "failed to write idac_heat_0 register\n");
-+
-+	return ret;
-+}
-+
- static int bme680_gas_config(struct bme680_data *data)
- {
- 	struct device *dev = regmap_get_device(data->regmap);
-@@ -701,6 +727,10 @@ static int bme680_gas_config(struct bme680_data *data)
- 		return ret;
- 	}
- 
-+	ret = bme680_preheat_curr_config(data, data->preheat_curr);
-+	if (ret)
-+		return ret;
-+
- 	/* Enable the gas sensor and select heater profile set-point 0 */
- 	ret = regmap_update_bits(data->regmap, BME680_REG_CTRL_GAS_1,
- 				 BME680_RUN_GAS_MASK | BME680_NB_CONV_MASK,
-@@ -967,6 +997,13 @@ static int __bme680_write_raw(struct iio_dev *indio_dev,
- 
- 		return bme680_chip_config(data);
- 	}
-+	case IIO_CHAN_INFO_RAW:
-+	{
-+		if (chan->type != IIO_CURRENT)
-+			return -EINVAL;
-+
-+		return bme680_preheat_curr_config(data, (u8)val);
-+	}
- 	default:
- 		return -EINVAL;
- 	}
-@@ -1199,6 +1236,7 @@ int bme680_core_probe(struct device *dev, struct regmap *regmap,
- 	data->oversampling_temp = 8;  /* 8X oversampling rate */
- 	data->heater_temp = 320; /* degree Celsius */
- 	data->heater_dur = 150;  /* milliseconds */
-+	data->preheat_curr = 0; /* milliamps */
- 
- 	regulator_bulk_set_supply_names(data->supplies, bme680_supply_names,
- 					BME680_NUM_SUPPLIES);
--- 
-2.43.0
+Bjorn,
 
+How do you want me to add this to the patchset?
+Should I send a separate fix-up patch?
+Or should I create a newer v3 patchset?
+
+Thank you,
+J=C3=A9r=C3=B4me
 
