@@ -1,198 +1,153 @@
-Return-Path: <devicetree+bounces-109844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB0A99831E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:06:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE41A99832E
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 12:09:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5B0D31F24D88
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:06:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6EBC41F24F81
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 10:09:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69741BDAB8;
-	Thu, 10 Oct 2024 10:06:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4851BE23C;
+	Thu, 10 Oct 2024 10:09:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gdRBwdvz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4798336D;
-	Thu, 10 Oct 2024 10:06:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC8241BE236;
+	Thu, 10 Oct 2024 10:09:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728554799; cv=none; b=SXYRhMX7w2FbDxCcnBIVpulIcfDoXA5U5Djw4zbPc+Z5sHCcx0LC/tbfR0ifuULY+m9FX0ij4bG9JX9tQM14jS9HIPCyzo7vmegRrN6o10oaokPb1BPkeg1x/7bhVMuqYqGjWJo/v0FHNZx2Kaul+4zr38FDfGMYZQSId+sjxP8=
+	t=1728554973; cv=none; b=cg5l2ztPwKHL+AOXihWf2ZZrGQSgdQYd/HWpNVuddtUwbE341wUwV52TEAi/RU+QZc7atcyLJ5PZv57J3Xs7qoG9p5lpiSUO3QNMnFuxjLGRBdgcMprlIGNyI3bh2MX8cWZvnKO1Kw+QdnGtdl0n8WeedORHymOkZenRbKBQ/qU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728554799; c=relaxed/simple;
-	bh=MAL/b0vn6waV9G2tjWzPCbrzfCr1JhdzdB6eQCpdEBk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fu2tVpxyBDuTdLESI9b2GOURfPtF9GDERJgZxrMOqIamH8U4qqlo9SbLPOWY6BYZI+aKsq65ePXgFdfL3z8BbSw91O28beM1XSK+LU8Tzr3RGiRF7oM6SC5oEnmORo+dJr1riIW66tL0BSA2YRJJbdZo2SFNkA/eUnkUpvruUDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6e2ef9af517so6257587b3.1;
-        Thu, 10 Oct 2024 03:06:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728554796; x=1729159596;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sf8lcHNIhpoD8hLdz22DUdfdP58SjzWmYMm2IE4WypY=;
-        b=qXJApvyc4mjxds5kj+76PzWzc68RKJB7VHTDBBpfD1p3Hb0WZ4yN+4k1jHmWNzf2FB
-         nsZjPBNG3nHesssIvyXvGsGprfW89tHV4MRW+H9JL7iJxAx3Q3SeN1AjvCNnUKlX2lUG
-         yMorAesQPVSVuZl5fM0/iuL5MH6Zc+YeTyG2/vVIM9NTt0aEevBbCppB0LxM/TftnwRm
-         R69JfgrnpaZ3vZ6qEttkSXaHXWn0xx/Y0JXWPk/Ux09t4U/7z809vNhZyOni+OK/Hlpr
-         g635+TEhvKgf6iSqzz7SK9Yjuv3k3hcAlCcJzXZEPZ+NcSk0jXBgVa/lDTa1kqYmGjWu
-         sizw==
-X-Forwarded-Encrypted: i=1; AJvYcCU/wYeddIEc6jDTcwg61u8RZA0APjRdMUEbBG6SYbd2DJpvVR1xRFqgdRlMpwcImOFf+H5JJFaLjm97@vger.kernel.org, AJvYcCUVVqRFZ/760X9KKDjnZfsmmA44B3I23UPhc37ubr+0bKoVoD63A14kpJqSTUCjHG3WDTUVyWBeI6aqTGT7@vger.kernel.org, AJvYcCUoYSXNd/pvgCFMSEB1SenGdZxvOSCCeLpOlQw66Smhbn4j9ixEoYCewk5sTA27JXBkGaQFGsw2hs/d@vger.kernel.org, AJvYcCWdutCQrzkuyYXVta5U0OklrWfHFOStFOXJ7v2NhcUkSHNaR45PlhAPdYFcloKDJ0ezM7x4hH5256DQs/6P6Bi+V1c=@vger.kernel.org, AJvYcCX8kX6/nYhU8JlxW3TrElZW4tCsyHcw7eBmWeUNaUbuH+Ro3MG21fn+Uq/XITZpl9cN34PS7/1iAzhI@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmfxNeiBee00l3PLHdXa9z14+cvursVOlVC0J5GrNaaRQXMMWJ
-	lk85697dK96UUIHjF9q1lWLPwjqppOA4jvrowgpX5L1v/Pwv0WfqSEr24r4A
-X-Google-Smtp-Source: AGHT+IGtIhegWL8q2r2CrOgPJN9fvo3ZgtD0nRcW2HZQgiETn3s3lvSG1hLTQKvcboz1TA3jsRMkUA==
-X-Received: by 2002:a05:690c:5290:b0:6e3:24c1:cdf8 with SMTP id 00721157ae682-6e324c1d29dmr35972567b3.22.1728554795963;
-        Thu, 10 Oct 2024 03:06:35 -0700 (PDT)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-6e332c6d784sm1557057b3.105.2024.10.10.03.06.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Oct 2024 03:06:35 -0700 (PDT)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e330a7b120so5050017b3.2;
-        Thu, 10 Oct 2024 03:06:35 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUtZdaEZunh2OmuvJ2IPxxfHU2sBp/3Hs4BXyKwt73jgb1H3MR+23PUyarVkwIfFp/isBzviM5lcmO+Aalv@vger.kernel.org, AJvYcCWobl4TxU1Rkn2mXwlxakbD2Ovxc2xubzKmZ/N47T4eXO6PT8Cp+5cFc84WKgyTvEBmcOraZAkLhdWR@vger.kernel.org, AJvYcCWx29mJGeFbMHp/WFWRkK2iqLfl7uEFyddJLFT9y6Dilw06e0PU2UVCaQNeITzCu5kL1JWB1lZXxFgv@vger.kernel.org, AJvYcCXrGd9+Z2w4F1c/TdY0EajqFKy9wbIFXMue8LCfIYzdSu8QPl3RVMQPfL9wefB/DatRG6+U+TKcj5XD@vger.kernel.org, AJvYcCXvQj0N2C5DmOFO/9RUMAHHcriB+uKpD3/JGRsBmvCFovhdSF6UJZ+j67L8ecKeu8yLZ/0oHjMFEO3eteh1bXYl05U=@vger.kernel.org
-X-Received: by 2002:a05:690c:113:b0:6e3:ceb:ce2b with SMTP id
- 00721157ae682-6e32250ade9mr50039847b3.44.1728554794830; Thu, 10 Oct 2024
- 03:06:34 -0700 (PDT)
+	s=arc-20240116; t=1728554973; c=relaxed/simple;
+	bh=cR/MMSF4kGoSo2AihCSgWkCP3y4gaCXmbPEC2y9PbDA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=HKejO0enbfQJ0OtUpqQt3+w8A36IA3s9aMyF8T3npEBpGUc6CSC8WIUfCrcPC6VZid5fnkHtCj8F1ZG4nxIKJT957CS+E2SQE3ibAwvRf5EBEgYEPLck54g0dXYU48SjqOF6LVzz4eDMsxBN3K16I9o55WZIWea7i4f40nmElwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gdRBwdvz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49A1b5k9023566;
+	Thu, 10 Oct 2024 10:09:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=hnOJuM5HK8tldySVmPF0NH
+	ZhxdG2qAKpDiNzCMb3HZE=; b=gdRBwdvz78uRAEha9GmL/uEkuzuSRPIU0k5siq
+	coQhiWxoyzj6MRaK503U2vdVBLimy7kzaLe1/+s+ZAotz3sZXf3g89EDD+i5+xvD
+	cd78yugoC4CR+ilfJCRETqcMNrFE/Ek+hWAAL6Ngue4FgOkJ+Xwxa57p8apiG2Rr
+	3KVCuRu/v6JdYMQ8vwedUyudfvKGuwSVMPigi+sZD8kIHzDbVXGqSHNgOnuQP+S2
+	Ql1+cB3pdUf60um9ThsFiA5cU1/UzM//hQ1Q1sVdHuGcx1F7zf4YTeDhUaErJlLH
+	NyctHu2TLGZ01DOCmaYwBh5VO7YR5HmUavOlJFY6hWB9y0xg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 424ndyh1nm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 10:09:27 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49AA9QZi015872
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 10 Oct 2024 10:09:26 GMT
+Received: from jingyw-gv.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 10 Oct 2024 03:09:22 -0700
+From: Jingyi Wang <quic_jingyw@quicinc.com>
+Subject: [PATCH v2 0/3] soc: qcom: llcc: Add LLCC support for the QCS8300
+ platform
+Date: Thu, 10 Oct 2024 18:08:45 +0800
+Message-ID: <20241010-qcs8300_llcc-v2-0-d4123a241db2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240830130218.3377060-1-claudiu.beznea.uj@bp.renesas.com> <20240830130218.3377060-5-claudiu.beznea.uj@bp.renesas.com>
-In-Reply-To: <20240830130218.3377060-5-claudiu.beznea.uj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 10 Oct 2024 12:06:23 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWiycV+_ZzeMYzM118u+rqYoj_hfxFWxm95VKXpTmmuiA@mail.gmail.com>
-Message-ID: <CAMuHMdWiycV+_ZzeMYzM118u+rqYoj_hfxFWxm95VKXpTmmuiA@mail.gmail.com>
-Subject: Re: [PATCH v3 04/12] clk: renesas: clk-vbattb: Add VBATTB clock driver
-To: Claudiu <claudiu.beznea@tuxon.dev>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, alexandre.belloni@bootlin.com, 
-	magnus.damm@gmail.com, p.zabel@pengutronix.de, 
-	linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK6nB2cC/1WPzWrDMBCEX8XoXJXVb2yf+h4lGGm9bhYcO5Fc0
+ xL87lVsaOlpmYX5ZuYhMiWmLNrqIRKtnHmeitAvlcBLmD5Icl+00KCtAgXyjrk2AN04IkptbET
+ vtDo1KIrllmjgrx33fj50ovtnoS7H8w9aMgoSGu1+kTzxwmHs+iWzpOCVHcg6Y1W76ic9hkwS5
+ +uVl7YyBknbUmDAYBFqQ97XLqg6Wg/lUIyud6jEs8eF8zKn733lqvYiRzqYf4O6PvFKSa5KgtS
+ 69q6J/QD+9FZGIE/4WuLFedu2H7NOImw5AQAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>,
+        Conor Dooley <conor@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: <quic_tengfan@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_tingweiz@quicinc.com>, <quic_aiquny@quicinc.com>,
+        Jingyi Wang
+	<quic_jingyw@quicinc.com>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.15-dev-99b12
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728554962; l=1730;
+ i=quic_jingyw@quicinc.com; s=20240910; h=from:subject:message-id;
+ bh=cR/MMSF4kGoSo2AihCSgWkCP3y4gaCXmbPEC2y9PbDA=;
+ b=511oGlx/cZzZ/3c1AukDYIqYoccRv5TXCa68X4bGKI0BRxD0raB8dO26xMa4SZv94v/rboKOp
+ cUugVvfZGeoDQFf+BpciEynlrU/4C8fGGWoXpcZMJPsUndfJv0ZqHUE
+X-Developer-Key: i=quic_jingyw@quicinc.com; a=ed25519;
+ pk=ZRP1KgWMhlXXWlSYLoO7TSfwKgt6ke8hw5xWcSY+wLQ=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: YYmMl9ogOcDDz5GTlIhvMANBU9-M8s9B
+X-Proofpoint-ORIG-GUID: YYmMl9ogOcDDz5GTlIhvMANBU9-M8s9B
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 mlxscore=0
+ bulkscore=0 adultscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0
+ mlxlogscore=780 spamscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410100067
 
-Hi Claudiu,
+The QCS8300 platform has LLCC(Last Level Cache Controller) as the system
+cache controller. Add binding, configuration and device tree node to
+support this. There is an errata to get the number of the banks of the
+LLCC on QCS8300 platform, hardcode it as a workaround.
 
-Thanks for your patch!
+Patch3 depends on below patch series:
+https://lore.kernel.org/all/20240925-qcs8300_initial_dtsi-v2-0-494c40fa2a42@quicinc.com/
 
-On Fri, Aug 30, 2024 at 3:02=E2=80=AFPM Claudiu <claudiu.beznea@tuxon.dev> =
-wrote:
-> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->
-> The VBATTB IP of the Renesas RZ/G3S SoC controls the clock that is used
-> by the RTC. The input to the VBATTB could be a 32KHz crystal oscillator
+Signed-off-by: Jingyi Wang <quic_jingyw@quicinc.com>
+---
+Changes in v2:
+- Hardcoding instead of adding property in dt node and remove related patches
+- Add LLCC deivcetree node
+- Add reviewed-by tag
+- Patch rebased for LLCC configuration format change
+- Link to v1: https://lore.kernel.org/r/20240903-qcs8300_llcc_driver-v1-0-228659bdf067@quicinc.com
 
-Please drop "oscillator".
+---
+Jingyi Wang (3):
+      dt-bindings: cache: qcom,llcc: Document the QCS8300 LLCC
+      soc: qcom: llcc: Add LLCC configuration for the QCS8300 platform
+      arm64: dts: qcom: qcs8300: Add LLCC support for QCS8300
 
-> or an external clock device.
->
-> The HW block diagram for the clock generator is as follows:
->
->            +----------+ XC   `\
-> RTXIN  --->|          |----->| \       +----+  VBATTCLK
->            | 32K clock|      |  |----->|gate|----------->
->            | osc      | XBYP |  |      +----+
-> RTXOUT --->|          |----->| /
->            +----------+      ,
->
-> After discussions w/ Stephen Boyd the clock tree associated with this
-> hardware block was exported in Linux as:
->
-> vbattb-xtal
->    xbyp
->    xc
->       mux
->          vbattbclk
->
-> where:
-> - input-xtal is the input clock (connected to RTXIN, RTXOUT pins)
-> - xc, xbyp are mux inputs
-> - mux is the internal mux
-> - vbattclk is the gate clock that feeds in the end the RTC
->
-> to allow selecting the input of the MUX though assigned-clock DT
-> properties, using the already existing clock drivers and avoid adding
-> other DT properties. If the crystal oscillator is connected as on RTXIN,
+ .../devicetree/bindings/cache/qcom,llcc.yaml       |  2 +
+ arch/arm64/boot/dts/qcom/qcs8300.dtsi              | 15 +++++
+ drivers/soc/qcom/llcc-qcom.c                       | 72 ++++++++++++++++++++++
+ 3 files changed, 89 insertions(+)
+---
+base-commit: 33ce24234fca4c083e6685a18b460a18ebb5d5c1
+change-id: 20241010-qcs8300_llcc-234bc652179c
+prerequisite-change-id: 20240925-qcs8300_initial_dtsi-ea614fe45341:v2
+prerequisite-patch-id: 73c78f31fa1d504124d4a82b578a6a14126cccd8
+prerequisite-patch-id: 5a01283c8654ae7c696d9c69cb21505b71c5ca27
+prerequisite-patch-id: dc633d5aaac790776a8a213ea2faa4890a3f665d
+prerequisite-patch-id: 9ecf4cb8b5842ac64e51d6baa0e6c1fbe449ee66
 
-Please drop "oscillator".
+Best regards,
+-- 
+Jingyi Wang <quic_jingyw@quicinc.com>
 
-> RTXOUT pins the XC will be selected as mux input. If an external clock
-> device is connected on RTXIN, RTXOUT pins the XBYP will be selected as
-> mux input.
->
-> The load capacitance of the on-board crystal oscillator can be configured
-
-s/on-board/internal/
-
-> with renesas,vbattb-load-nanofarads DT property.
->
-> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-
-> --- /dev/null
-> +++ b/drivers/clk/renesas/clk-vbattb.c
-> @@ -0,0 +1,204 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * VBATTB clock driver
-> + *
-> + * Copyright (C) 2024 Renesas Electronics Corp.
-> + */
-> +
-> +#include <linux/cleanup.h>
-> +#include <linux/clk-provider.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
-> +
-> +#include <dt-bindings/clock/r9a08g045-vbattb.h>
-> +
-> +#define VBATTB_BKSCCR                  0x1c
-> +#define VBATTB_BKSCCR_SOSEL_BIT                6
-> +#define VBATTB_SOSCCR2                 0x24
-> +#define VBATTB_SOSCCR2_SOSTP2_BIT      0
-> +#define VBATTB_XOSCCR                  0x30
-> +#define VBATTB_XOSCCR_OUTEN_BIT                16
-
-Please either drop the "_BIT"-suffixes...
-
-> +#define VBATTB_XOSCCR_XSEL             GENMASK(1, 0)
-
-or add a "_MASK"-suffix here.
-
-> +#define VBATTB_XOSCCR_XSEL_4_PF                0x0
-> +#define VBATTB_XOSCCR_XSEL_7_PF                0x1
-> +#define VBATTB_XOSCCR_XSEL_9_PF                0x2
-> +#define VBATTB_XOSCCR_XSEL_12_5_PF     0x3
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
