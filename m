@@ -1,156 +1,172 @@
-Return-Path: <devicetree+bounces-109995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-109996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CE60998BBF
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:33:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7DC998BC8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:34:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 03F721F2227C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:33:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6F4A11C243F2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 15:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BEA1CC8BB;
-	Thu, 10 Oct 2024 15:32:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 966EE1CC8BF;
+	Thu, 10 Oct 2024 15:33:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hdlIpHYg"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="IE0oEvRc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 822131CC89F;
-	Thu, 10 Oct 2024 15:32:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7131CC140;
+	Thu, 10 Oct 2024 15:33:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728574352; cv=none; b=UmhjaEjRA9jwksCgxQaPDVbjd9s22kz+JJltsdb0q1M8jd6LqUhyvTFWdPFixohFIB8thFZu+kOCx82Vj0cUxphg0Tpby7kCZWoC8G9eig1wMrShlSgmPHZxCql/xLzFEwa9JICryAJxHpW9nlYeUkv4+YFGv91hTe8VRM/X+X8=
+	t=1728574435; cv=none; b=uq5y6jgeEmt6xDTxLpNJ4YERL3Bt3daRyp18WwQkP5ZZz+ySIwaYAeH4Ai39xGW4UuIVPlt0Qyx70MKxAauE3HNUsHgPVpdrrckZ3hPHr9Df5BLQIQnYN7Q4z3En0xmqbVWMzm1k49fWmifCRLeWOYDSQAJo31LWUWAs/84nwdM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728574352; c=relaxed/simple;
-	bh=MP15bS4w3vSqH5JjlnyEj+lJuyt5Y2WkrfBOlfGovZ8=;
+	s=arc-20240116; t=1728574435; c=relaxed/simple;
+	bh=dlxa8WkgVla/y46rnMys2EnNObaeLNp/NdzuivF7Pd4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uERW7ymBYAR8nYsS/M12IgcmfYvDIglfT3yeItYEES/QPNfcspBoTNbYYrhFwAEdn/6w6CiW8bdFJOAeG/iPI1Nuy6OhdKU+XfMxNP+1z3IEeGz1dlhLmJaPTZIkOd9PlzbRyclHI+Ubpie4fXBmZ594m3mGVEjkdcX7Uky/GB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hdlIpHYg; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728574351; x=1760110351;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=MP15bS4w3vSqH5JjlnyEj+lJuyt5Y2WkrfBOlfGovZ8=;
-  b=hdlIpHYgrQ5JkCQACO2Ob6IQdjxn8egWXqagEB4ep1hdTH/modk9ua6z
-   8q8Ffoq3tzp0rWyXhTF2RJUewYxdSVBOBJP8aWI4YD6ktgViumHnJNA2w
-   m/632BPozGF7kh0P4/NjzUQdbIXX7gqmlrk9/8iBjv+PKsewEXTkZXkLO
-   DlR6NJHDZ8Y2jpvDhsIaqFYkDwANFYxP0XR35TTh3oWFN5xN/ylSxGwra
-   0Rg559p0uCUHmbtmA3/nkv63lBDI6VLwM8tRNLKZy/NpUthmHRQdoq+WD
-   vUB7fi4u5VmrURzWB8dVJL34I9SCHzo+XRJfLssM9+IXhyKtQK4i50tvW
-   Q==;
-X-CSE-ConnectionGUID: EYRAZESpQ5CXqn3EW0rFgw==
-X-CSE-MsgGUID: JptM8s08StyxFOj1vOPBsA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11220"; a="45456275"
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="45456275"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:32:30 -0700
-X-CSE-ConnectionGUID: 8qbP8zovS+qEoDxs1TzEVw==
-X-CSE-MsgGUID: BDJjDco/TJayOTFrgGJreA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,193,1725346800"; 
-   d="scan'208";a="76828992"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 08:32:25 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1syv9K-00000001Zwx-1c2G;
-	Thu, 10 Oct 2024 18:32:22 +0300
-Date: Thu, 10 Oct 2024 18:32:22 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Chen-Yu Tsai <wenst@chromium.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Wolfram Sang <wsa@kernel.org>, Benson Leung <bleung@chromium.org>,
-	Tzung-Bi Shih <tzungbi@kernel.org>, chrome-platform@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Douglas Anderson <dianders@chromium.org>,
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>,
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v8 7/8] platform/chrome: Introduce device tree hardware
- prober
-Message-ID: <ZwfzhsvlPrxMi61j@smile.fi.intel.com>
-References: <20241008073430.3992087-1-wenst@chromium.org>
- <20241008073430.3992087-8-wenst@chromium.org>
- <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=UjVH4jiHL+KfdxGGTJ/b/uoLlQtneO1KwET7QUzOjEn+tcS3Y1Hx7O1KO5OMmIC3bcKOF1irH0bIdBaZz783zlLP3IiMeWzB9W9r4eqcvWiABla0mEo+ZcjcK3Maat9Rk9xZNL7w4kcraJ1keqQQQhkAeg/ULQJbWJq4tzpnRF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=IE0oEvRc; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 32F3B40E021E;
+	Thu, 10 Oct 2024 15:33:50 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id g5_EAXIcqA5L; Thu, 10 Oct 2024 15:33:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1728574425; bh=39uKMYCT3KgVkd7t9Lsq2trDmnvk6X8UkIGf6ni2s3I=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IE0oEvRcw/fymvusQ6smbGe9aC7VD/KGoZOlSrkR801eqGnvTbvr2DsGU6LwNvF9N
+	 icMEnhv9+gOqKejIQf3Qy62RZreAFqfygkHuXJDHCHMzlaiP5LYhJohYKRS8Mg29Qo
+	 bzpxiLs+3/u2WA4fiAuvaHZk2lt399iMQEdOwRlXgBG5Vm/8unHGfllvXV8SnN6r5N
+	 Pj/85Gy0c5MllbXDLZkLb6OKdebErRjtFoahP5d/riBEWVoSRLgobRWNnv7SrPWXG3
+	 po3Zqn4v/EI5XO++JdFqpYAbV5XASZ62iPyQu2vL88YFwl5tH7iACKkffsiNergudP
+	 79FOsNy8Qo5Knzu0Q2oa2CIexOBcogmParbbbBp5twTotq/U1eTghtYkTsvB0/67fn
+	 dt5sZcfqHAciIIPNFDnRwXZ7SuuLXr3qwApishqOt47xpjnZO8QeIjY80/BTRIzfeH
+	 rzW2sp+jBas495rT2eyjnZRip3Jpt9TUEpzuKsfqYGf2sj5K0cGkc5cXXT5BnQ4wQL
+	 29jHnxntodS0b4poIVB5FvOrQCVcLJ1FkY9DQUZqDmYbW5fY774TAm3mCvgLJtsJLy
+	 WxpzoqDGdwmJFla0DsRpAYwxnzT2R0/vH6su9Q3p5NUtUI2rWvFUZGTmxX4/R242eE
+	 Kaib41+hzx+f0kHe/k2gdCts=
+Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id 18BD740E0163;
+	Thu, 10 Oct 2024 15:33:26 +0000 (UTC)
+Date: Thu, 10 Oct 2024 17:33:20 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32()
+ and ddr_out32()
+Message-ID: <20241010153320.GPZwfzwGeFF1cz4arw@fat_crate.local>
+References: <20240709-imx95_edac-v1-0-3e9c146c1b01@nxp.com>
+ <20240709-imx95_edac-v1-1-3e9c146c1b01@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zwfy6ER6sbr_QxsY@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240709-imx95_edac-v1-1-3e9c146c1b01@nxp.com>
 
-On Thu, Oct 10, 2024 at 06:29:44PM +0300, Andy Shevchenko wrote:
-> On Tue, Oct 08, 2024 at 03:34:26PM +0800, Chen-Yu Tsai wrote:
+On Tue, Jul 09, 2024 at 04:23:02PM -0400, Frank Li wrote:
+Subject: Re: [PATCH 1/6] EDAC: fsl_ddr: Pass down fsl_mc_pdata in ddr_in32() and ddr_out32()
 
-...
+The subject prefixes in the EDAC subsystem have the following format:
 
-> > +static const struct chromeos_i2c_probe_data chromeos_i2c_probe_dumb_touchscreen = {
-> > +	.cfg = &(const struct i2c_of_probe_cfg) {
-> 
-> Perhaps you can introduce something like
-> 
-> #define DEFINE_I2C_OF_PROBE_CFG(_type_, _ops_)		\
-> 	(struct ...) {					\
-> 		.ops = _ops_,				\
-> 		.type = #_type_,			\
-> 	}
-> 
-> and use it here as
-> 
-> 	.cfg = DEFINE_I2C_OF_PROBE_CFG(touchscreen, NULL),
-> 
-> > +		.type = "touchscreen"
-> 
-> Ditto.
+"EDAC/driver: <Sentence starting with a capital letter"
 
-This was for leaving trailing comma.
+> Pass down fsl_mc_data in help function ddr_in32() and ddr_out32() to
+> prepare add iMX9 support. iMX9 have a little difference register layout.
 
-> > +	}
-> 
-> Ditto.
-> 
-> > +};
-> > +
-> > +static const struct i2c_of_probe_cfg chromeos_i2c_probe_simple_trackpad_cfg = {
-> > +	.ops = &i2c_of_probe_simple_ops,
-> > +	.type = "trackpad"
-> 
-> Leave a comma.
-> 
-> > +};
+Since everyone is using AI nowadays, you could have it verify your commit
+messages. I did this:
 
-...
+| ChatGPT, Please verify and correct the grammar in this english text: "Pass
+| down fsl_mc_data in help function ddr_in32() and ddr_out32() to prepare add
+| iMX9 support. iMX9 have a little difference register layout."
 
-> > +	.cfg = &chromeos_i2c_probe_simple_trackpad_cfg,
-> 
-> 	.cfg = DEFINE_I2C_OF_PROBE_CFG(trackpad, i2c_of_probe_simple_ops),
-> 
-> Or even
-> 
-> #define DEFINE_I2C_OF_PROBE_CFG_SIMPLE(_type_)			\
-> 	DEFINE_I2C_OF_PROBE_CFG(type, &i2c_of_probe_simple_ops)
+It replied with:
 
-With that also looking at the above
+| "Pass down fsl_mc_data in the helper functions ddr_in32() and ddr_out32() to
+| prepare for adding iMX9 support. The iMX9 has a slightly different register
+| layout."
+| 
+| Changes made:
+| 1. "help function" changed to "helper functions" for clarity.
+| 
+| 2. "prepare add iMX9 support" changed to "prepare for adding iMX9 support" for
+|    grammatical correctness.
+| 
+| 3. "iMX9 have a little difference register layout" changed to "The iMX9 has
+|    a slightly different register layout" for subject-verb agreement and
+|    smoother phrasing.
 
-#define DEFINE_I2C_OF_PROBE_CFG_NONE(_type_)				\
-	DEFINE_I2C_OF_PROBE_CFG(type, NULL)
+And this all looks good to me.
+
+With all the cringe we all get from AI, I think it is very useful for
+verifying commit messages.
+
+Do that for all your commit messages pls.
+
+Thx.
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/edac/fsl_ddr_edac.c | 62 ++++++++++++++++++++++++---------------------
+>  1 file changed, 33 insertions(+), 29 deletions(-)
+
+How did you test these patches of yours?
+
+They don't even build!
+
+drivers/edac/fsl_ddr_edac.c: In function 'fsl_mc_err_probe':
+drivers/edac/fsl_ddr_edac.c:538:21: error: too few arguments to function 'ddr_in32'
+  538 |         sdram_ctl = ddr_in32(pdata->mc_vbase + FSL_MC_DDR_SDRAM_CFG);
+      |                     ^~~~~~~~
+drivers/edac/fsl_ddr_edac.c:38:19: note: declared here
+   38 | static inline u32 ddr_in32(struct fsl_mc_pdata *pdata, unsigned int off)
+      |                   ^~~~~~~~
+make[4]: *** [scripts/Makefile.build:229: drivers/edac/fsl_ddr_edac.o] Error 1
+make[3]: *** [scripts/Makefile.build:478: drivers/edac] Error 2
+make[3]: *** Waiting for unfinished jobs....
+make[2]: *** [scripts/Makefile.build:478: drivers] Error 2
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/mnt/kernel/kernel/2nd/linux/Makefile:1936: .] Error 2
+make: *** [Makefile:224: __sub-make] Error 2
+
+Before you submit next time, build-test *every* *single* patch of yours and
+test the driver with all of them.
+
+This should not ever happen in submission.
+
+Stopping review here.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards/Gruss,
+    Boris.
 
-
+https://people.kernel.org/tglx/notes-about-netiquette
 
