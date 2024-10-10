@@ -1,145 +1,106 @@
-Return-Path: <devicetree+bounces-110032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD8F998E5E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:32:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71489998E81
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 19:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 27FF1B23D9C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:32:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E37D1C21404
+	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 17:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E4519B581;
-	Thu, 10 Oct 2024 17:32:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 162EF19D09C;
+	Thu, 10 Oct 2024 17:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z0KeYF6j"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Yk9TVKhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f48.google.com (mail-qv1-f48.google.com [209.85.219.48])
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E5D18950A;
-	Thu, 10 Oct 2024 17:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEDAC19D07B;
+	Thu, 10 Oct 2024 17:42:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728581546; cv=none; b=D4dRXaJBK/mA18mHFD2ZTajOOFFrFAwFRvxhz0Dxp+shSGz1xZ0E4YUnE1QuqKC5TyAQ9tBdCmKffX96bwj2Z5ZsldnJ4XLGYblpULTxSD7R5VuoPOMhJyiKSWJDNWz7Q/ZvSILWgUsw8nTywITwzf5b+VQhLoBORbOhSQvG+QY=
+	t=1728582172; cv=none; b=svMNaC3QpNHs8OqQ6g8fHEuJq79BNqcd/XlO/EZ/jaS5yODUZDYP4XKHgUMTXHigcOPIAyW0oG0uoqnjjBwj8B7fnPFjHItnngBx+20Yia8jAzaro/oaDrj+tysPjiXLN/Hv6CRqAhHLR32NqHlkVWQDjPigouls0/rWJi069OI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728581546; c=relaxed/simple;
-	bh=SmRFvrAoUmt6qHVrIVPp4aWb6oj16rrPfPziLvDQL9A=;
+	s=arc-20240116; t=1728582172; c=relaxed/simple;
+	bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OIs85qiIU77fQYQoY+rQCqtd881YoiWKuiiKfmTjErrbJCHO+vvku4rrNYPQkLVMvblykc2RCLiTB7Q5UQkeMcfoIRArPb0uQVryh8C5FxGpjK7DdjRr2TYEP0mXzHwxMOhrtm1JHSus3+ZExrA19/Ft76esopolsucRxYEO1jk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z0KeYF6j; arc=none smtp.client-ip=209.85.219.48
+	 Content-Type:Content-Disposition:In-Reply-To; b=je1IIKI8HxBMpHzTTcCLs3DUfxXTtThoH6I9b03234UxBIua43VkRPVTu8WSXYGMG3Qt8rPBTvNmgjvOCH7D5rqFwPSyXtAGUljupo4M6jjkENfZz4uURkjQ2DpgweEZa1bQvIhAaI4Y6lvKS62mfxgOtl8//Xyk0P4mNhoUpD0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Yk9TVKhu; arc=none smtp.client-ip=209.85.210.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qv1-f48.google.com with SMTP id 6a1803df08f44-6cbe700dcc3so7639246d6.3;
-        Thu, 10 Oct 2024 10:32:25 -0700 (PDT)
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-71def715ebdso848795b3a.2;
+        Thu, 10 Oct 2024 10:42:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728581544; x=1729186344; darn=vger.kernel.org;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l0nMlLvviJmPYv2MjcZTCv3Irnh3bCL8aaXvUPWjA1g=;
-        b=Z0KeYF6jx7nK52MIwJpxME3PDqWldXNWT83fcisJxB9ci+tHf46WBGKk616cocpaLw
-         8eC+0f9x2QT11TFuR167bS1bSZ0Ftd0F675y1nFeFZ4EmARNp2+YBpxk5EiJYp36EO3K
-         E8Ycm1wZViH7aCoRhr5xmUT1yscJc+fQrMrU4Fgll79y2Y/u+ozFcAUMHvg7zcJQcrct
-         prmDf3xZUTlQAPaVTeb58rfrN1e0+zXsCpTUKdhgEXdfxd2wN6z4u6N95nUfczl6/wKT
-         sswSRC92K8g01czZf0JfDAq9QjQZQ52TgLvVQxoWrPX44qTcVcmHvgjEPALedK5/8Sbs
-         3tfg==
+        d=gmail.com; s=20230601; t=1728582170; x=1729186970; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
+        b=Yk9TVKhuQ3hOF/C82MAYVmPJ3tstFcHJtezGCHOnDWAwDp/M14GMnUS4+t/corn/Q7
+         UNvDQkonU5gXXXAIP70J7eJcfip/FLWAgsmrK4hGo2Bh1OJ2d5s2PXPDRoC37V6bR0Qv
+         eITt3PWTvy8JHh/jPdsF4F5nDBbw2EFcMLujZo6XPtJldHxaUQfnqEMPUFLdhebISc9b
+         8A+Hj65n5my0mZ2437Fz9sKW0wOXS7N/mPziconIOksAYVKOXzKWLxrCpOJ+kW0ves0G
+         Iwv+IomrzSWvVlUZauDWg1osn3jUDiYNhj6pMZGkohh5QhXzbvsITv9EHYH6cljf53MI
+         73kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728581544; x=1729186344;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l0nMlLvviJmPYv2MjcZTCv3Irnh3bCL8aaXvUPWjA1g=;
-        b=XvCR4XpX3flF/02kzyNdyu+B26izT0tRiPu6Oiy50VgPfg9VKzqCIYVCAQh/N4AnQ7
-         QFNmht38VXq4SW0K7SmDBE201yVSJhXfNgbOKv3xcR0QGc497Vj4jbCoouJKxsmI2Cq6
-         CB4QRUIFOjgs4Vh+XgGV/EssuFRgRISf/lUn2jyss1FK69aCYHWycc/KaqAQQdeK1KqR
-         SFdD80WO3kxiCQSJQoclY/yNS93ko9sM8FuRabnKsWb3jZCO/5yM7UKkAr/2O4PPl0dR
-         6ErHxGS5gsyL78U4kppV8ne+F3V8Feyz03ad3t8sTw1+eOPNR18rSCC1votR0UQfidZP
-         HD2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUZMY48g+KxRbrbUz5KD4sQGeoBCoFCrS1hMM8INfunx5oE+yEWQJMrGXBqyDDVjmX3sJi1k+8jkCqg@vger.kernel.org, AJvYcCUboDE2nIJvaYHYNKMuc6bMSCiYxnt5xZMds+1QcmGLh6zSWK7N1DZcOX53AR9ujSzZWB32Ix+q@vger.kernel.org, AJvYcCVFFRfh6D5Be73oCwO1T99qshG1tdzKIV0ABbzxb60kxZK/zbWlV3XjWbsGThHDxJpTPwUrfRQcHlV6nrjL@vger.kernel.org
-X-Gm-Message-State: AOJu0YwAEBTHfBcB4nV3y4QtzeGVbvvgPtO9gFon3IIHttfQSIQfsQf2
-	tuSFGywmvPFZsdnWjdbrYhEOOQpsvNuR+EruPwoQWazIyHG1OuFv
-X-Google-Smtp-Source: AGHT+IFRlhEVbo3tzXbvvXuvHuYvVHINoj93prdPjLq37t+ElASZTNRAmEMoAEOgjndfOlphLPpM6A==
-X-Received: by 2002:a05:6214:3a07:b0:6cb:e632:a059 with SMTP id 6a1803df08f44-6cbe632c1f4mr44223376d6.49.1728581544094;
-        Thu, 10 Oct 2024 10:32:24 -0700 (PDT)
-Received: from localhost (pppoe-209-91-167-254.vianet.ca. [209.91.167.254])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-6cbe862fe87sm7116246d6.106.2024.10.10.10.32.22
+        d=1e100.net; s=20230601; t=1728582170; x=1729186970;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=r9Y9dp0ia21GJKEJhhjl4hsk6OfUJQDV0li1hpz2F4Q=;
+        b=vKo6kiC/3X2GahwUMwNKCxFYICB3iBHrCgPXDsyMEsDDNm1Dr4HhI4O3n9Ah3/rt5e
+         Il1pMjddpChHN+adTgf9rza3WvvbSsfSEPLXWXyhc28HWi6IGJlCDMMyGKb/eirVNSWR
+         hpO38aCrjZp2dxI+ZZWGsZCPBWqekWXIBlcIClAZ2jn1BgWK10caADmFSkRvZwLTQBJ4
+         Ojlv11umocwSp59cZXsEq0Yrf543CfUFdAfEqouGraVXQwIcGYKpJ9WnlzGhHCOPfe1m
+         J/wMMS54US+VRKtdfC4/B9nd8H+eOEtvOT7fO1qB4O4VU90Oe9+pZPzBwNCs92SGWp5Y
+         T6zg==
+X-Forwarded-Encrypted: i=1; AJvYcCWvfuzPg2ugqEiYLotifdnscgLr7FNGxZjrcVJQ710w6LGdXQ7Mg9bLfnNIS9HU+CNwosWvANeLbuav@vger.kernel.org, AJvYcCXTV7Tn8ENjKFVCE6O1FZZK5V381Re1ZwY9u37YMjvrIy6e6OjVrQR9bcLY+3oRKJ6rJP9nMbICsAk6rhYN@vger.kernel.org
+X-Gm-Message-State: AOJu0YzJheZcArbCss2XZhTYxBkelFkQ2yJpFU6HhDUve3S2eyMDkgUy
+	jpyDMKq0PJGoO7rj/Q7a2Egpv6JTFILT0Ber6kt2dpsP1KbtpioZmE7ankhd
+X-Google-Smtp-Source: AGHT+IG/bt6GaqrKZX93wp3w6yysAt6/pJEYER+jwtjNsIXy4062y+ky3XgGBO7Es//CJOF0hXDglQ==
+X-Received: by 2002:a05:6a00:1312:b0:71e:1cc4:2754 with SMTP id d2e1a72fcca58-71e1db63eefmr10819173b3a.5.1728582169664;
+        Thu, 10 Oct 2024 10:42:49 -0700 (PDT)
+Received: from hiago-nb ([67.159.246.222])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2a9e9843sm1287240b3a.24.2024.10.10.10.42.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 10:32:23 -0700 (PDT)
-Date: Thu, 10 Oct 2024 13:32:21 -0400
-From: Trevor Woerner <twoerner@gmail.com>
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308
- SoC dtsi
-Message-ID: <20241010173154.GA32479@localhost>
-References: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
+        Thu, 10 Oct 2024 10:42:49 -0700 (PDT)
+Date: Thu, 10 Oct 2024 14:42:44 -0300
+From: Hiago De Franco <hiagofranco@gmail.com>
+To: Shawn Guo <shawnguo@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Hiago De Franco <hiago.franco@toradex.com>
+Subject: Re: [PATCH v2 0/3] ARM: dts: imx[6qdl|7]-[apalis|colibri]: Update
+ audio card names
+Message-ID: <20241010174244.r4sjlapbw5dhuvag@hiago-nb>
+References: <20241010171128.107819-1-hiagofranco@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20241010171128.107819-1-hiagofranco@gmail.com>
 
-On Thu 2024-10-10 @ 12:19:41 PM, Dragan Simic wrote:
-> Until the TSADC, thermal zones, thermal trips and cooling maps are defined
-> in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one may be
-> enabled under any circumstances.  Allowing the DVFS to scale the CPU cores
-> up without even just the critical CPU thermal trip in place can rather easily
-> result in thermal runaways and damaged SoCs, which is bad.
-> 
-> Thus, leave only the lowest available CPU OPP enabled for now.
-> 
+> This patch series update the audio card names for Apalis and Colibri
+> iMX6/7 to match their specific SoM names, making it shorter (less than
+> 15 characters, as shown in [1]) to fix warnings related to ALSA in
+> Apalis iMX6 and Colibri iMX6. For Colibri iMX7, also do the change to
+> make it compliant with the other card names.
+>
+> [1] Documentation/sound/alsa-configuration.rst
 
-It builds, it runs, it's been running on one of my rock-pi-s boards for ~3h
-now. I can read my spi, i2c, and w1 sensors, so no issues for me.
+Related ALSA UCM PR https://github.com/alsa-project/alsa-ucm-conf/pull/448
 
-# cat /sys/bus/cpu/devices/cpu*/cpufreq/stats/time_in_state
-408000 1168942
-408000 1168942
-408000 1168942
-408000 1168942
-
-Tested-by: Trevor Woerner <twoerner@gmail.com>
-
-> Fixes: 6913c45239fd ("arm64: dts: rockchip: Add core dts for RK3308 SOC")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3308.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> index 31c25de2d689..a7698e1f6b9e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> @@ -120,16 +120,19 @@ opp-600000000 {
->  			opp-hz = /bits/ 64 <600000000>;
->  			opp-microvolt = <950000 950000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-816000000 {
->  			opp-hz = /bits/ 64 <816000000>;
->  			opp-microvolt = <1025000 1025000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-1008000000 {
->  			opp-hz = /bits/ 64 <1008000000>;
->  			opp-microvolt = <1125000 1125000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  	};
->  
-> 
+Regards,
+Hiago.
 
