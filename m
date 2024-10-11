@@ -1,295 +1,190 @@
-Return-Path: <devicetree+bounces-110355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AF2A99A307
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 13:54:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61B3F99A33B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:05:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B607928512C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:54:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E13BC1F21B4A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482BC21730E;
-	Fri, 11 Oct 2024 11:54:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF5E6210C18;
+	Fri, 11 Oct 2024 12:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Xluqv25C"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HXbYvKDC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38683216A1E;
-	Fri, 11 Oct 2024 11:54:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3A4A19923C;
+	Fri, 11 Oct 2024 12:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728647687; cv=none; b=NbHjtEqdz58eSqW/Dz1DJDdq5JkcXawqtBC+VtbdSIFiHLDTuq9JrZnknw1O0jSxPFritEQk5Rbf3nwWfFzJAekjNg97JbXKDsexAWdj2AKKDDUJTgBGeOxGVCL86470AhyTvUyC7Id0gHzQf3R5faElNbxNG63EMaOJpBSX32M=
+	t=1728648342; cv=none; b=kiUriHrIsFnKp3KNQAS7BhiRqLBoRvu3hg+KV1W08qwPqoPkgrGao85WaUSrGixQNNbJ85jgcM4NEJ73xvXxGFsi+UwKru1G8dIGghtNnp1K+mrSBtOUwtR/ZF9ttPFf6iAfZSd6rgowMPXeBhJl/UgTOTboXR7iXF2qd2HlrWI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728647687; c=relaxed/simple;
-	bh=SApK/39gvjPNAxcgbtJYmUOba43oHFWpeYksd2ZYoKk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GO36OCWUx3SHD2ykwg813DlKHUqpNOOsO4XKYeK4ElRUV2Q94Nub/MYKVUY++QvSVsuxQfSpblNUzvs59RCEDUkWcbX0cRuZiuxrINzqZ9KVcZXuTFVU3DN8o/H92Q8HuHA6631DTzFWbtuFn4j/XZ5wiBGQswWvawr6XuUV3K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Xluqv25C; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B50o1v029089;
-	Fri, 11 Oct 2024 11:54:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jTo14+oK5KKtwWN2j0jzAmesONfG/qfgIeutVskgHGA=; b=Xluqv25C0VvaicRI
-	tAuOosKgE6IOM8c63y8Fm4yFhSdEFtAbD84Dum2A4EBe3Z+1i1Ccm9dV7uVrbuc5
-	rtQ5OyEJ0k7zznuzylKiKFUeHpHdq/wFBKM9af0DvjL/iO4nkn6mOISF/6aTA6EI
-	eUQa53dBZFiujv9S/T/3QskfFsRpgvtWCDwbHBQa2IKzio6h7TxtZaLfNxsoTi4S
-	j/nv/JTaSrZ7NBdFRUtnsdq+MnwNLOyeOmMfViwFyI3MnTHnCiYMMGGiYtL7ZAmB
-	CxssqQZ0X5KVq1okZ/fhCdr2YozrRLk1glFBXoJt9e66ek+5WJoWaCFZhHCCHtmp
-	wf03yQ==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426g6nb383-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 11:54:40 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA05.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BBsdxk024844
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 11:54:39 GMT
-Received: from [10.216.13.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Oct
- 2024 04:54:33 -0700
-Message-ID: <9c24ba5d-431a-c45e-ce1c-3541eac7d017@quicinc.com>
-Date: Fri, 11 Oct 2024 17:24:29 +0530
+	s=arc-20240116; t=1728648342; c=relaxed/simple;
+	bh=YFfS9e7Xy/HGqNY0ms5BgOEaQecnVNO9e9YPNo6MKHQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YK5Bke6gdPFYpIU1iUhfblwObIS50ldQ8caIb5ke0pFKadKKvHwWl64uFXkaeUOzlvPqvwkvO48rO9a8oN0SpcKWEOj0cSeKRHou5YcvoWhIJW0aGs9EuWHB4s/mrWzyd+QX2B6qA/ThPbTqKHnoz7jKd6c8ItNkxpDffaqxGIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HXbYvKDC; arc=none smtp.client-ip=209.85.208.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5c94c4ad9d8so650809a12.2;
+        Fri, 11 Oct 2024 05:05:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728648339; x=1729253139; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=knj4iyceQ5slQxHMWQ23f65+4O6ZSQmh9/DDT8JHkyk=;
+        b=HXbYvKDCwb/MMYZ7Pyq14do1+p1HlEkxPHo70hNHAVuIhkdlA+bD4hlIMFoKLDqFGx
+         ECdA3HknOdApjjjrMHOLJ6O7aKMDdA4aRJKf/EvwBpUXei/foJQf5LUKRZ4oIzOTN01w
+         mlCzGn/1ubrURWeN30XDiDu2O3QfJVpKMUvX+XHUnDNQx46rip67d/qrflO7b2kaS5SA
+         uSVoDMEgJp+LPvA8VF4e1tqAlPPHGfrqHiR6YJ91mm3BjeCqrxAHltoYjA7Q5aM2rtLj
+         QINzGvrThllLlEmvEzW5QGQ9VStRIu578zBISOtuFtE9dmmtDAgWbNdtJT5SWPJIQfUG
+         iEUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728648339; x=1729253139;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=knj4iyceQ5slQxHMWQ23f65+4O6ZSQmh9/DDT8JHkyk=;
+        b=h7t7hC4EEhu5XWonb2G/ghjY5Sh+yBcCfNf8AWxUm219mWGODUVOI+eWMMn2L6LKDr
+         VQYnAREkghdBviP/uFUnHcmtCv3ps1qCpkR1dxmkV3ulAGu+fg5wIdIHv1FCZZ989Eo7
+         gmf1YrQldxXVaB9aAwxCzufhB9nS9cSIbuC++PJfTsOzf3Coq/xxs7VxFfw126WWC+H2
+         JDEiOsyp5eO0r9cCMa22yA7hfs43H9LOu8UoTjpii/iCjIbp1P8r/FEfCxxMjvHVCv9z
+         F3tE3jyNWW1lFUgA35EnhFvRGsFZIh1GEpbGV3CTg17Qka1bo1+sYGVynUQ8z2TZ6noi
+         CIMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKwLMi6sh1WtBzQeGmqxNJAcyYNlS2UjamriJzKdM0Xi3wI5v4ZpZix/S7S7AAIK74nKf9qzd+5kCuPg==@vger.kernel.org, AJvYcCUb0b/4B+LDELjW5csJRRkJJmq6vHBKW5QnVpCP7C7e+5JOAhAw72fTJ4kc67TD+2O3sjDqBbScRJKd/+eg@vger.kernel.org, AJvYcCVHnZk5cgmc6x0MvOr3BB19OvOit3PPRAC9xUySqXIb7Dcwg9Eaau7NpnkthckxrxIs//xqVHXz5PV9@vger.kernel.org
+X-Gm-Message-State: AOJu0YzqUpD9kSM4wEvEBwKKdNVDCc9hkUerYU1ggtpUw9jSMLaEobDJ
+	jHTd79EeaXCKhZqKmIUYg0ekoZe9lK7dZ2WAe4iJyewAxLobkvVZ/oGRtL0c04k=
+X-Google-Smtp-Source: AGHT+IGMP8cyZjEIxPba+iTIKgstjGnGcwHKJB1zqw/qhTxhHKDo0hhPTQXebtPL0aKrYHvp68eRpw==
+X-Received: by 2002:a17:907:9610:b0:a99:90b6:1b10 with SMTP id a640c23a62f3a-a99b8eea8bcmr224593366b.0.1728648338769;
+        Fri, 11 Oct 2024 05:05:38 -0700 (PDT)
+Received: from zenbook.agu.edu.tr ([95.183.227.31])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99b804ea59sm88962366b.151.2024.10.11.05.05.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 05:05:37 -0700 (PDT)
+From: Yassine Oudjana <yassine.oudjana@gmail.com>
+X-Google-Original-From: Yassine Oudjana <y.oudjana@protonmail.com>
+To: Sean Wang <sean.wang@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Yassine Oudjana <y.oudjana@protonmail.com>,
+	Yassine Oudjana <yassine.oudjana@gmail.com>,
+	Andy Teng <andy.teng@mediatek.com>,
+	linux-mediatek@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v6 0/8] MediaTek pinctrl DT binding cleanup and MT6735 pinctrl support
+Date: Fri, 11 Oct 2024 15:03:45 +0300
+Message-ID: <20241011120520.140318-1-y.oudjana@protonmail.com>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: [PATCH] arm64: dts: qcom: qcs6490-rb3gen2: Add PCIe nodes
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>
-CC: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_vbadigan@quicinc.com>, <quic_ramkri@quicinc.com>,
-        <quic_nitegupt@quicinc.com>, <quic_skananth@quicinc.com>,
-        <quic_parass@quicinc.com>
-References: <CAA8EJpqjm_2aE+7BtMkFUdet11q7v_jyHbUEpiDHSBSnzhndYA@mail.gmail.com>
- <dec2976e-6e1e-6121-e175-210377ff6925@quicinc.com>
- <CAA8EJprsm5Tw=vFpmfEKL8fxS-S+aW+YR0byfyL=v78k75TGEw@mail.gmail.com>
- <3ad77846-b4a8-80ee-e9e1-d5cbf4add6d8@quicinc.com>
- <CAA8EJprRF0tVFZK9c=MT8bSRcBdRvcugBaeEzpX5-wfRyNgc3Q@mail.gmail.com>
- <c8be2bbf-a51c-a38f-6e6f-a88801f953d5@quicinc.com>
- <20240209075716.GA12035@thinkpad>
- <CAA8EJppfzc_dM9c9mHPVWheVxi-1gJxCmaWPvreELijEQDDSyA@mail.gmail.com>
- <20241001101622.ys36slymgjbaz26q@thinkpad>
- <8459161B-87B8-481F-AE71-3D5156B1CA56@linaro.org>
- <20241001141948.g74rn6777ywvtcmx@thinkpad>
- <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
-From: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-In-Reply-To: <CFF89D4D-8131-47C2-95B8-A0E130A16E46@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8ke2pOR7KZZssvD17G3N3TtjKwSt-mc9
-X-Proofpoint-GUID: 8ke2pOR7KZZssvD17G3N3TtjKwSt-mc9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 adultscore=0 impostorscore=0
- mlxlogscore=999 mlxscore=0 spamscore=0 phishscore=0 malwarescore=0
- clxscore=1011 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410110082
+Content-Transfer-Encoding: 8bit
 
+From: Yassine Oudjana <y.oudjana@protonmail.com>
 
+These patches are part of a larger effort to support the MT6735 SoC family in
+mainline Linux. More patches (unsent or sent and pending review or revision) can
+be found here[1].
 
-On 10/1/2024 8:38 PM, Dmitry Baryshkov wrote:
-> On October 1, 2024 5:19:48 PM GMT+03:00, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
->> On Tue, Oct 01, 2024 at 03:30:14PM +0300, Dmitry Baryshkov wrote:
->>> On October 1, 2024 1:16:22 PM GMT+03:00, Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org> wrote:
->>>> On Fri, Feb 09, 2024 at 12:56:18PM +0200, Dmitry Baryshkov wrote:
->>>>> On Fri, 9 Feb 2024 at 09:57, Manivannan Sadhasivam
->>>>> <manivannan.sadhasivam@linaro.org> wrote:
->>>>>>
->>>>>> On Fri, Feb 09, 2024 at 12:58:15PM +0530, Krishna Chaitanya Chundru wrote:
->>>>>>>
->>>>>>>
->>>>>>> On 2/8/2024 8:49 PM, Dmitry Baryshkov wrote:
->>>>>>>> On Thu, 8 Feb 2024 at 16:58, Krishna Chaitanya Chundru
->>>>>>>> <quic_krichai@quicinc.com> wrote:
->>>>>>>>> On 2/8/2024 12:21 PM, Dmitry Baryshkov wrote:
->>>>>>>>>> On Thu, 8 Feb 2024 at 08:14, Krishna Chaitanya Chundru
->>>>>>>>>> <quic_krichai@quicinc.com> wrote:
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>>
->>>>>>>>>>> On 2/7/2024 5:17 PM, Dmitry Baryshkov wrote:
->>>>>>>>>>>> On Wed, 7 Feb 2024 at 12:42, Krishna chaitanya chundru
->>>>>>>>>>>> <quic_krichai@quicinc.com> wrote:
->>>>>>>>>>>>>
->>>>>>>>>>>>> Enable PCIe1 controller and its corresponding PHY nodes on
->>>>>>>>>>>>> qcs6490-rb3g2 platform.
->>>>>>>>>>>>>
->>>>>>>>>>>>> PCIe switch is connected to PCIe1, PCIe switch has multiple endpoints
->>>>>>>>>>>>> connected. For each endpoint a unique BDF will be assigned and should
->>>>>>>>>>>>> assign unique smmu id. So for each BDF add smmu id.
->>>>>>>>>>>>>
->>>>>>>>>>>>> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
->>>>>>>>>>>>> ---
->>>>>>>>>>>>>      arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts | 42 ++++++++++++++++++++++++++++
->>>>>>>>>>>>>      1 file changed, 42 insertions(+)
->>>>>>>>>>>>>
->>>>>>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->>>>>>>>>>>>> index 8bb7d13d85f6..0082a3399453 100644
->>>>>>>>>>>>> --- a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->>>>>>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2.dts
->>>>>>>>>>>>> @@ -413,6 +413,32 @@ vreg_bob_3p296: bob {
->>>>>>>>>>>>>             };
->>>>>>>>>>>>>      };
->>>>>>>>>>>>>
->>>>>>>>>>>>> +&pcie1 {
->>>>>>>>>>>>> +       perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
->>>>>>>>>>>>> +
->>>>>>>>>>>>> +       pinctrl-0 = <&pcie1_reset_n>, <&pcie1_wake_n>;
->>>>>>>>>>>>> +       pinctrl-names = "default";
->>>>>>>>>>>>> +
->>>>>>>>>>>>> +       iommu-map = <0x0 &apps_smmu 0x1c80 0x1>,
->>>>>>>>>>>>> +                   <0x100 &apps_smmu 0x1c81 0x1>,
->>>>>>>>>>>>> +                   <0x208 &apps_smmu 0x1c84 0x1>,
->>>>>>>>>>>>> +                   <0x210 &apps_smmu 0x1c85 0x1>,
->>>>>>>>>>>>> +                   <0x218 &apps_smmu 0x1c86 0x1>,
->>>>>>>>>>>>> +                   <0x300 &apps_smmu 0x1c87 0x1>,
->>>>>>>>>>>>> +                   <0x400 &apps_smmu 0x1c88 0x1>,
->>>>>>>>>>>>> +                   <0x500 &apps_smmu 0x1c89 0x1>,
->>>>>>>>>>>>> +                   <0x501 &apps_smmu 0x1c90 0x1>;
->>>>>>>>>>>>
->>>>>>>>>>>> Is the iommu-map really board specific?
->>>>>>>>>>>>
->>>>>>>>>>> The iommu-map for PCIe varies if PCIe switch is connected.
->>>>>>>>>>> For this platform a PCIe switch is connected and for that reason
->>>>>>>>>>> we need to define additional smmu ID's for each BDF.
->>>>>>>>>>>
->>>>>>>>>>> For that reason we defined here as these ID's are applicable only
->>>>>>>>>>> for this board.
->>>>>>>>>>
->>>>>>>>>> So, these IDs are the same for all boards, just being unused on
->>>>>>>>>> devices which have no bridges / switches connected to this PCIe host.
->>>>>>>>>> If this is correct, please move them to sc7280.dtsi.
->>>>>>>>>>
->>>>>>>>> Yes ID's will be same for all boards. we can move them sc7280.dtsi
->>>>>>>>> but the BDF to smmu mapping will be specific to this board only.
->>>>>>>>> if there is some other PCIe switch with different configuration is
->>>>>>>>> connected to different board of same variant in future again these
->>>>>>>>> mapping needs to updated.
->>>>>>>>
->>>>>>>> Could you possibly clarify this? Are they assigned one at a time
->>>>>>>> manually? Or is it somehow handled by the board's TZ code, which
->>>>>>>> assigns them sequentially to the known endpoints? And is it done via
->>>>>>>> probing the link or via some static configuration?
->>>>>>>
->>>>>>> There is no assignment of SID's in TZ for PCIe.
->>>>>>> PCIe controller has BDF to SID mapping table which we need to
->>>>>>> program with the iommu map table.
->>>>>>>
->>>>>>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pci/controller/dwc/pcie-qcom.c?h=v6.8-rc3#n997
->>>>>>>
->>>>>>> Based upon switch the BDF to SID table will change for example I had two
->>>>>>> switches with one switch has 2 PCIe ports and other has 3 ports one
->>>>>>> embedded port which supports multiple functions.
->>>>>>>
->>>>>>> For the first switch the BDF's are
->>>>>>>        - 0x000(root complex),
->>>>>>>        - 0x100(USP),
->>>>>>>        - 0x208(DSP 0),
->>>>>>>        - 0x210(DSP 1),
->>>>>>>        - 0x300(endpoint connected to DSP 0),
->>>>>>>        - 0x400( endpoint connected to DSP 1).
->>>>>>>
->>>>>>> For 2nd switch the BDF's are
->>>>>>>        - 0x000(root complex),
->>>>>>>        - 0x100(USP),
->>>>>>>        - 0x208(embeeded DSP 0),
->>>>>>>        - 0x210(DSP 1),
->>>>>>>        - 0x218 (DSP 2),
->>>>>>>        - 0x300(embedded endpoint function 0),
->>>>>>>        - 0x301 (embedded endpoint function 1)
->>>>>>>        - 0x400( endpoint connected to DSP 1)
->>>>>>>        - 0x500(endpoint connected to DSP2).
->>>>>>>
->>>>>>> For these two switches we need different BDF to SID table so for that
->>>>>>> reason we are keeping iommu map here as this is specific to this board.
->>>>>>>
->>>>>>
->>>>>> I don't understand why the SID table has to change between PCIe devices. The SID
->>>>>> mapping should be part of the SoC dtsi, where a single SID would be defined for
->>>>>> the devices under a bus. And all the devices under the bus have to use the same
->>>>>> SID.
->>>>>
->>>>> This sounds like a sane default, indeed. Nevertheless, I see a point
->>>>> in having per-device-SID assignment. This increases isolation and can
->>>>> potentially prevent security issues. However in such case SID
->>>>> assignment should be handled in some automagic way. In other words,
->>>>> there must be no need to duplicate the topology of the PCIe bus in the
->>>>> iommu-maps property.
->>>>>
->>>>
->>>> Agree with you on this. This is what I suggested some time back to have the
->>>> logic in the SMMU/PCIe drivers to assign SIDs dynamically. Unfortunately, it is
->>>> not a trivial work and it requires a broader discussion with the community.
->>>>
->>>> Also starting with SMMUv3, there are practically no limitations in SIDs and
->>>> each device should get a unique SID by default.
->>>>
->>>> So I got convinced that we can have these static mappings in the DT *atm* for
->>>> non SMMUv3 based hardwares and at the same time let the discussion happen with
->>>> the community. But this static mapping solution is just an interim one and won't
->>>> scale if more devices are added to the topology.
->>>e
->>> My main question to this approach is if it can support additional devices plugged into the switch. If there is no way to plug addon cards, then it is fine as a temporary measure.
->>>
->>
->> The logic here is that the fixed endpoints in the switch will get an unique SID
->> and the devices getting attached to slots will share the same SID of the bus
->> (this is the usual case with all Qcom SoCs).
->>
->> But I guess we would need 'iommu-map-mask' as well. Hope this addresses your
->> concern.
-> 
-> Yes, thank you!
-> 
-Hi dimitry & mani,
+This series adds a driver for the pin controller found on the MediaTek MT6735
+and MT6735M SoCs. The two differ in the last 6 physical pins, which are used
+for MSDC2 on MT6735 but don't exist on MT6735M (since MSDC2 doesn't exist on it
+to begin with). In preparation to document DT bindings for this pin controller,
+the existing documents for MT67xx SoCs are combined into one in order to
+eliminate duplicate property definitions and standardize pin configuration node
+names. Necessary cleanup is done along the way.
 
-This particular board variant doesn't expose any open slots to connect
-a different endpoints like another switch(which might have BDF unknown
-to us) so static table should be fine for this board variant.
+[1] https://gitlab.com/mt6735-mainline/linux/-/commits/mt6735-staging
 
-I tries to add iommu-map-mask property, the issue with that property is
-that the driver is applying the mask to the bdf before searching for the
-entry in the table. If I use a mask value which satisfies all the
-entries in the table ( mask as 0x718) and if a new bdf is enumerated
-lets say 0x600 due to mask 0x718 its value is again 0x600 only.
+Changes since v5:
+ - Revise and fix all register bits for all group register types (IES, SMT,
+   RDSEL, TDSEL, PUPD_R0_R1, PULLEN and PULLSEL).
+ - Add pull_type array.
+ - Use proper getters/setters for bias and drive.
+ - Add minItems for MT6795 interrupts.
+Changes since v4:
+ - Remove patches that were applied previously.
+ - Define interrupts items for each variant (bringing back maxItems: 1 to the top
+   level definition then adding maxItems: 2 under the MT6795 condition causes a
+   dt_binding_check error for some reason)
+ - Move example changes to the patch they belong to
+ - Don't unnecessarily move the allOf block.
+Changes since v3:
+ - Improve interrupts description to make clear what sysirq means.
+ - Set drive-strength constraints per variant.
+ - Set maxItems for reg in MT6795.
+ - Add blank lines between conditionals.
+ - Add ref for both pinmux-node.yaml and pincfg-node.yaml.
+ - Make pinctrl subnode-related changes in separate patch.
+ - Fix up some pinctrl subnode property descriptions.
+ - Add interrupts items descriptions to MT6765 and MT6735.Changes since v3:
+ - Improve interrupts description to make clear what sysirq means.
+ - Set drive-strength constraints per variant.
+ - Set maxItems for reg in MT6795.
+ - Add blank lines between conditionals.
+ - Add ref for both pinmux-node.yaml and pincfg-node.yaml.
+ - Make pinctrl subnode-related changes in separate patch.
+ - Fix up some pinctrl subnode property descriptions.
+ - Add interrupts items descriptions to MT6765 and MT6735.
+Changes since v2:
+ - Add interrupt descriptions.
+ - Change interrupts property item limits.
+ - Move pinmux examples from node description to example dts.
+ - Properly add myself as maintainer for MT6735 pinctrl driver and DT bindings
+   document.
+ - Remove tabs from a few defines in pinctrl-mt6735.c.
+Changes since v1:
+ - Combine other documents into existing mediatek,mt6779-pinctrl.yaml
+   instead of creating a new document with wild card in its name.
+ - Split first patch into smaller patches focused on specific changes.
+ - Remove syscon compatible from MT6779 DT to avoid a check error.
+ - Fix interrupt count for MT6795.
 
-Can we skip iommu-map-mask property and use only static table for this
-board as we know this board doesn't expose any open slots.
+Yassine Oudjana (8):
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Pull pinctrl node
+    changes from MT6795 document
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Improve pinctrl subnode
+    and property descriptions
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Add MT6795
+  arm64: dts: mediatek: mt6797: Make pin configuration nodes follow DT
+    bindings
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6765 pin
+    controller
+  dt-bindings: pinctrl: mediatek: Add bindings for MT6735 pin controller
+  dt-bindings: pinctrl: mediatek,mt6779-pinctrl: Document MT6735 pin
+    controller
+  pinctrl: mediatek: Add MT6735 pinctrl driver
 
-- Krishna chaitanya.
-variant doesn't expose any open slots >
->>
->> - Mani
->>
-> 
-> 
+ .../pinctrl/mediatek,mt6779-pinctrl.yaml      |  191 +-
+ .../pinctrl/mediatek,mt6795-pinctrl.yaml      |  228 -
+ MAINTAINERS                                   |    9 +
+ arch/arm64/boot/dts/mediatek/mt6797.dtsi      |   20 +-
+ drivers/pinctrl/mediatek/Kconfig              |    6 +
+ drivers/pinctrl/mediatek/Makefile             |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6735.c     |  880 ++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h | 3993 +++++++++++++++++
+ .../pinctrl/mediatek,mt6735-pinctrl.h         | 1148 +++++
+ 9 files changed, 6221 insertions(+), 255 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/pinctrl/mediatek,mt6795-pinctrl.yaml
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mt6735.c
+ create mode 100644 drivers/pinctrl/mediatek/pinctrl-mtk-mt6735.h
+ create mode 100644 include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h
+
+-- 
+2.46.2
+
 
