@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-110405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C27799A5AF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:02:15 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0798A99A5B9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:05:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BF121C24516
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:02:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89E8C2851C3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127CC2194AD;
-	Fri, 11 Oct 2024 14:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADFC62141BB;
+	Fri, 11 Oct 2024 14:05:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="y7YVhH5d"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OP2ZZYJZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780354431;
-	Fri, 11 Oct 2024 14:02:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1141C4431
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 14:05:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728655327; cv=none; b=S1H1/EO1g6MoNPwYqeRLedS/TA/NdMznmqUXjgGHoklTxVNpF5L8Mfn7PDqPTPZwhaN+SCTH3L64LzGre1ydpdm7VUsAEX3VJwOwkuaGQ62dYxcBwnGZ1CdqvAWHlTqz+yIXMVuRhO8WeqCc3dz7BwDR6RjXfb2bVlyctrMs9hg=
+	t=1728655511; cv=none; b=MLb6Upg6CG4maQQ9OcQXC99nNwK+AvW6WR+NLTEXNKLFdBlr+Civxa16nQGW0O5dNf94m6d0gOAeiDY5oxs6jJCLqHy7O7FyRCDXpE8BIHfDNzHrvKTvKcoWUEo4RGNKQOjrcUnegI30BlA9ik0Q61a1vpd2FsNaDGC1qjtaPy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728655327; c=relaxed/simple;
-	bh=i/HxZYSj3x29bpukEzZcwPkb9qFoaouDs9iL1Ghkig8=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=XSg2Zs+BLqHvhqIAIzZccslseKIX3e8TPW0ONJso5eDolZ0rC20wA9bn31tQWyTw7mFsTMEtHQiBaF2oTGqMa1dBGj6nuwTmjiPEphVO5dyaUfqvqdZPQDW1jd/w+hV3Q5AgjY1xWkx2KiQUc0Ov6cozfPFmTfZc3+C1jHcx+rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=y7YVhH5d; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1728655325; x=1760191325;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=i/HxZYSj3x29bpukEzZcwPkb9qFoaouDs9iL1Ghkig8=;
-  b=y7YVhH5d0n7/DBkLdTyNBb9zbueuNjscSm6hWXU8uwIJEzcuoQAmNRtC
-   d2zQuICiDWjWR/C3qaTL7MupS5Np5wDxMjFa6YuSEMW+0HFPccUmL3+SO
-   Ij/CwI7rbu6IJIy+S4oIVJ1NNVJ+NnpSFSdyRTUz0j1Y3+oBFUhb66dqO
-   0iBRUvu9/mQ7ucA2SFflVd8xiNSH9Jd/0QSzxc0a6AeDq0SMpu/IoW1Te
-   oKkkLK2UZfC1LN+7q/a3WHg2RcPHXuKTGMbIc4kxNXKUOf3O1wHSyIkUr
-   w+hGuFK28Xo8E1kT1WY7uW+y1cd0buI/ASEPS0vGcNJRlK7gnYGxrzWLk
-   w==;
-X-CSE-ConnectionGUID: PBjGkC+SSZ+djG4FWi+TaQ==
-X-CSE-MsgGUID: NA3T2Q4uRL6emXVb6Tl09A==
-X-IronPort-AV: E=Sophos;i="6.11,196,1725346800"; 
-   d="scan'208";a="263956568"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 11 Oct 2024 07:02:04 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Fri, 11 Oct 2024 07:01:42 -0700
-Received: from wendy.microchip.com (10.10.85.11) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Fri, 11 Oct 2024 07:01:40 -0700
-From: <daire.mcnamara@microchip.com>
-To: <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>
-CC: <conor.dooley@microchip.com>, <lpieralisi@kernel.org>, <kw@linux.com>,
-	<robh@kernel.org>, <bhelgaas@google.com>, <linux-kernel@vger.kernel.org>,
-	<linux-riscv@lists.infradead.org>, <krzk+dt@kernel.org>,
-	<conor+dt@kernel.org>, <daire.mcnamara@microchip.com>,
-	<ilpo.jarvinen@linux.intel.com>, <kevin.xie@starfivetech.com>
-Subject: [PATCH v10 3/3] dt-bindings: PCI: microchip,pcie-host: allow dma-noncoherent
-Date: Fri, 11 Oct 2024 15:00:43 +0100
-Message-ID: <20241011140043.1250030-4-daire.mcnamara@microchip.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20241011140043.1250030-1-daire.mcnamara@microchip.com>
-References: <20241011140043.1250030-1-daire.mcnamara@microchip.com>
+	s=arc-20240116; t=1728655511; c=relaxed/simple;
+	bh=/dJZWNQ0JGDprPegQ9bqLZD5D6cCOmTT7d5l/dvZz/8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IfHLN/toGAe1iyZd4Z8BdDv8AFe41E+cIwNzj1Y+7rcEtWbVId0vtNaqc7mezNrPaxvsDhkzgGPC8EkwJo//wsl4Q+flxKJSBhlrIgsQ1RzCLb8CYLMlBg/2Xch0blGdKded0+L5KYSB+VhNAboQ3ZG9Y4NlaIVwmnxP+B4apWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OP2ZZYJZ; arc=none smtp.client-ip=209.85.222.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f182.google.com with SMTP id af79cd13be357-7afcf50e2d0so99296385a.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 07:05:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728655509; x=1729260309; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eVD5WGtgFy4iT8mZySY5sG2jQ7mHiLKJSVqOlN2xeBk=;
+        b=OP2ZZYJZQvq76W3jC9A+KyT5dW7eV40wEIKl5YL703aNMR9ErC+mpLWVJBbf13ZD8H
+         m0GJqm+bZvL8dAdG5BW5WzlpmTHQQ4ORdh99lub85lhcKAqWqnsIh7YTtLhb3/n9Pfzv
+         9LdqiyWD+nd4cyYWYXWh/rDqVFu6PMLUZXEvcwrBzz53VHnkJSKqa9b9/T8yl9CoZBKu
+         h9BKuldSHvZAqaW+lKpI+7apfhgQEsgOcMcs3gX7Gu/yVfvECCv7VydSNPIAAFrpuOxy
+         kyiKchpLMb9yLBsUYiyYM50ngU7tgu6Vp4/WQ/m8FS1YQ0Hh9J8pGoWuOf+fH9Z9Ghe/
+         Fohg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728655509; x=1729260309;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eVD5WGtgFy4iT8mZySY5sG2jQ7mHiLKJSVqOlN2xeBk=;
+        b=l+bLbamiYrIq2QopJ4hz6o9Mqa4ZSUyGhxkdf2qwd0+NPeaP1XyIvf/Bij9j8etlGm
+         sHjy7VUWef/qVMlXCOvzxfi1uA61KcQzxxBf1joyh1pmyme4ztig82UBB2vFlZ6KclUK
+         FXjGQduX2DdGE7XK66XBpn8D6lrAKu/1MDhQViQFmU6vPcA053V35nEcpwH+7W+6XdcY
+         xPeubBjDKJREt5TPPGKRlUKUV3u7WZc/TQP8hRAFEbN07yOGLeTQxV0rtOVByXZeewih
+         74ZQD9j3vePWq/IWpsiV6EPr6E638lgUns4uoCXlThNVyfzhkMcWbqUKOgvI/k2My/Ct
+         cfhg==
+X-Gm-Message-State: AOJu0Yyw+j8qeyGF8KNLCoFMiAmb29UMv5DPdDABJM+sXSBaWQe+kYZK
+	mkRnYKUFSoIujDpfgk3tplQMoZ9HDf98PZRd7jdFVtFLKAGHtMLUI1cNcg==
+X-Google-Smtp-Source: AGHT+IFGDJoHdQiCeZ/cSIu6mFB7sCM9TuNEqHCI0yBMIqVQfQm9iuc+FDkHFww42VtsO0sI2j9MZA==
+X-Received: by 2002:a05:620a:460e:b0:7a9:bcd1:527a with SMTP id af79cd13be357-7b11a3b6b04mr397401985a.55.1728655508591;
+        Fri, 11 Oct 2024 07:05:08 -0700 (PDT)
+Received: from localhost ([2620:10d:c091:400::5:7799])
+        by smtp.gmail.com with ESMTPSA id d75a77b69052e-460427d53bfsm15567971cf.29.2024.10.11.07.05.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 07:05:08 -0700 (PDT)
+From: Jes Sorensen <jes.sorensen@gmail.com>
+X-Google-Original-From: Jes Sorensen <Jes.Sorensen@gmail.com>
+To: devicetree@vger.kernel.org
+Cc: tnovak@meta.com,
+	Jes Sorensen <jes@trained-monkey.org>
+Subject: [RFC PATCH 0/1] Only build dtc when DTC= is not set on the command line
+Date: Fri, 11 Oct 2024 10:05:06 -0400
+Message-ID: <20241011140507.3703348-1-Jes.Sorensen@gmail.com>
+X-Mailer: git-send-email 2.46.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,35 +80,28 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
 
-From: Conor Dooley <conor.dooley@microchip.com>
+From: Jes Sorensen <jes@trained-monkey.org>
 
-PolarFire SoC may be configured in a way that requires non-coherent DMA
-handling. On RISC-V, buses are coherent by default & the dma-noncoherent
-property is required to denote buses or devices that are non-coherent.
+RFC on Android it is quite common to have a prebuilt version of dtc. In
+this case one doesn't really want to build dtc in the kernel tree, as it
+is unused and to avoid the risk of mixing and matching dtc versions.
 
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Daire McNamara <daire.mcnamara@microchip.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+This is the simplest fix I see for this. An alternative would be to define
+a new DTC_USE_PREBUILT flag.
 
-diff --git a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-index 612633ba59e2..5f5f2b25d797 100644
---- a/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-+++ b/Documentation/devicetree/bindings/pci/microchip,pcie-host.yaml
-@@ -44,6 +44,8 @@ properties:
-     items:
-       pattern: '^fic[0-3]$'
- 
-+  dma-coherent: true
-+
-   ranges:
-     minItems: 1
-     maxItems: 3
+Thoughts?
+
+Jes
+
+
+Jes Sorensen (1):
+  Skip building dtc if a prebuilt binary is specified via DTC=
+
+ scripts/dtc/Makefile | 3 +++
+ 1 file changed, 3 insertions(+)
+
 -- 
-2.43.0
+2.46.1
 
 
