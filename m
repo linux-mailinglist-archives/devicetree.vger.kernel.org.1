@@ -1,120 +1,105 @@
-Return-Path: <devicetree+bounces-110314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1EEB99A0EB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:12:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D3099A0F6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:14:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62845285C54
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:12:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C6BB1C23063
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17FD7210C03;
-	Fri, 11 Oct 2024 10:12:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09233210C09;
+	Fri, 11 Oct 2024 10:14:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Jv4etrwU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uWSNzcHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26663210182;
-	Fri, 11 Oct 2024 10:12:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD796210182;
+	Fri, 11 Oct 2024 10:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728641551; cv=none; b=uKT4qJs9MKVI/P8NuXQjBg8/kD+WBBvL8YxzBmjdWRYJygO0q2n5P1iMBbngaRHt+DPeLR8yqPEE0Tna20KGpgT/RZ+S6vPG3meGQOwac7zNWe6cDoDxewMGOXtNkZV1QD9Fpubo2zO3x0N2wBoTXxVrullDwLpX0T9lg2Btg3Q=
+	t=1728641650; cv=none; b=imYRSsN9hHt+6En44lDxKssKi3F3NOkWsYsKFnHtcVJz+U9u1sEm/bbd5AZW47SPvh10xbbhfl3uatfN/bvk0qmNZpG6uhvdpj0HQ6mvI15mtztynM/pr4O2XWy6uo1vPjD2/wWDwJLLKiUELnxS7V1cHzcKhtPDZNUMqcyQ7Po=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728641551; c=relaxed/simple;
-	bh=knVAo+b/lJS34xtrgQP01JcZx5fc22uyIO2k7QFKYG0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sLOI8aHzheSQhev50cRmBribTnsX7yNQSLNeEkd56fr5jhCRcvGbjAO3gz2Lbfox/Uk41T+2HBpavwJjjhm4KmAUHYiBcEmF9OQAX2bCmOkvSW0YgPPa5/pXP+PVO2N8rOVD5OGcK/k78qkBVdeIJnHTczdR2f99eo/JboUTRog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Jv4etrwU; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728641550; x=1760177550;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=knVAo+b/lJS34xtrgQP01JcZx5fc22uyIO2k7QFKYG0=;
-  b=Jv4etrwUDaEF4A4RCiBQ8cbQGK52iUrdaUjinjIf7toIIivTAdpZbauo
-   9jeu9i3klxidf6SJbHlTuz2Ug3nKt5DRelwIQRtK3n71x/yGAt/aUE5Gk
-   oPbaiSkp1Y8PwP+XeukF9i8TDeyq5WJSNwc8ZvJUh4oBUHl2sVjynJeqo
-   ngk1KkznRwGB239jl9jvXE/Vgk1tYMw8oB93UeJWnKoSFGVrMKGrzWfw3
-   cN1nZC1Lq1tgQUSF/8qvEXu+nwyOvr4gpQowDvnSHo6jdGjIuHibRmVg7
-   46vgrI9ZzMDVoqD5NSoPinDTIoj34ipE2gU1uazj2is++q5lX/fuy1IWn
-   w==;
-X-CSE-ConnectionGUID: hmKjz+bmT6aOERVdbULzvw==
-X-CSE-MsgGUID: +Kwlo+tmTcGGnvXEDEfqfw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="30911655"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="30911655"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:12:28 -0700
-X-CSE-ConnectionGUID: fOhO5L/GRYi5DupXQr+Vmw==
-X-CSE-MsgGUID: MugWOdI4SOqFoZhH6vHrJg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="107722257"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:12:24 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1szCdC-00000001qyw-0iQC;
-	Fri, 11 Oct 2024 13:12:22 +0300
-Date: Fri, 11 Oct 2024 13:12:21 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: vamoirid <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, anshulusr@gmail.com, gustavograzs@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 09/13] iio: chemical: bme680: Move ambient temperature
- to attributes
-Message-ID: <Zwj6BQNhyRp_oN2M@smile.fi.intel.com>
-References: <20241010210030.33309-1-vassilisamir@gmail.com>
- <20241010210030.33309-10-vassilisamir@gmail.com>
+	s=arc-20240116; t=1728641650; c=relaxed/simple;
+	bh=REVZTIJAy9FQsHSv/lLjJzgIPSP7Spv7rDiLIhURfB0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=KBkMFQI0II5QtrVPp19tjDYpj4XzcPyIJln5tW6GDz1QqV+sZkuimWESrwAaRn/pGbPfF4PHVfy4BaMrSZ1fmlDSjBrjze9n86CiiUchpIO4PoonAnbgyIMKnn7cR3RUKFyLVmlNUacxQIsznt0YJn7jN3roA40szBpOZGpG9cs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uWSNzcHg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4BDABC4CEC3;
+	Fri, 11 Oct 2024 10:14:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728641650;
+	bh=REVZTIJAy9FQsHSv/lLjJzgIPSP7Spv7rDiLIhURfB0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=uWSNzcHgkJ5WKx1RrP+LuntaSCnwKm7ijB1URpeFn5r0bTalwdIZTRUVC0hSwlil2
+	 PHV5dt0A1KuDaQfZ2p2mcxV/q9YUKDWvGRL+vm373tzj/urE9s7J4miGk5o/i5jfAw
+	 AHs0ADXuGjsfjcCdCrlQ9nF4s8AyQAu2KOUsANsVjAO1wwn51Uhsqf2a1b3yJ7xseg
+	 TDV6xLkrO1ysWmyQ1fwZ0d3hLJeFDv2rcp6FgyOGAUhXReZMvlzsB6b25RexMLAobQ
+	 wqtq++zVQunmw08/yNYiBqYXICvihsS6ElwffaTFAYyg0HS0yD2HtpsUbdTKLRvkBI
+	 ebBVtBxk/UmmA==
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, 
+ Dzmitry Sankouski <dsankouski@gmail.com>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org
+In-Reply-To: <20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com>
+References: <20241007-starqltechn_integration_upstream-v6-0-264309aa66de@gmail.com>
+Subject: Re: [PATCH v6 0/3] Add Samsung s2dos05 pmic support
+Message-Id: <172864164727.3853713.7051380602109888746.b4-ty@kernel.org>
+Date: Fri, 11 Oct 2024 11:14:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010210030.33309-10-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-99b12
 
-On Thu, Oct 10, 2024 at 11:00:26PM +0200, vamoirid wrote:
-> From: Vasileios Amoiridis <vassilisamir@gmail.com>
+On Mon, 07 Oct 2024 17:49:58 +0300, Dzmitry Sankouski wrote:
+> The S2DOS05 is a companion power management IC for the panel and touchscreen
+> in smart phones. Provides voltage regulators and
+> ADC for power/current measurements.
 > 
-> Remove the ambient temperature from being a macro and implement it as
-> an attribute. This way, it is possible to dynamically configure the
-> ambient temperature of the environment to improve the accuracy of the
-> measurements.
+> 
 
-...
+Applied to
 
-> -	var1 = (((s32)BME680_AMB_TEMP * calib->par_gh3) / 1000) * 256;
-> +	var1 = (((s32)data->ambient_temp * calib->par_gh3) / 1000) * 256;
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-MILLI? KILO?
+Thanks!
 
-...
+[1/3] dt-bindings: mfd: add samsung,s2dos05
+      commit: ef9690c04f3b2deebf08f6a889fbe9032f75855d
+[2/3] mfd: sec-core: add s2dos05 support
+      commit: d7a5f27342a84e2999b9d1195c537832a11e85a0
+[3/3] regulator: add s2dos05 regulator support
+      commit: 2ba4dbb7b763df343df7741fca1bfda15fd1e0cb
 
->  static struct attribute *bme680_attributes[] = {
->  	&iio_const_attr_oversampling_ratio_available.dev_attr.attr,
-> +	&iio_dev_attr_ambient_temp.dev_attr.attr,
->  	NULL,
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-Side note: Perhaps a patch or an additional change in the existing one to drop
-the trailing comma here.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
->  };
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
--- 
-With Best Regards,
-Andy Shevchenko
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
+Thanks,
+Mark
 
 
