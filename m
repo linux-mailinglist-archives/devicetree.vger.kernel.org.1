@@ -1,77 +1,77 @@
-Return-Path: <devicetree+bounces-110529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6FE099ACCF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:38:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C1D899ACE5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:43:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40E9A1F219BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:38:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BBFF28B249
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:42:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 189531D0436;
-	Fri, 11 Oct 2024 19:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 241451D0B99;
+	Fri, 11 Oct 2024 19:42:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="p/acxGKB"
+	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="joLeekbU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sonic312-26.consmr.mail.ir2.yahoo.com (sonic312-26.consmr.mail.ir2.yahoo.com [77.238.178.97])
+Received: from sonic314-20.consmr.mail.ir2.yahoo.com (sonic314-20.consmr.mail.ir2.yahoo.com [77.238.177.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7CC1D0421
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:38:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.178.97
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75DC51D0B82
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:42:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.177.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728675500; cv=none; b=K0cDrxdnf+ygdMY4gFvxRiMax/xoJQdGRDuGFKk3aGAZ6FGpzh5Uf6SSuy3UmguVmlSdrSfr7YnVrLTpyVdJF9ktSA2hXJ13LF1UMILWAKR+k14Ik4fiv1+PdrPV4HFTO+s5pNRrDDCou1KGxPPwCHsoyh0xO7kYO+mu2O87eGY=
+	t=1728675740; cv=none; b=FDG32v/TDeNPU9jj9niAW9GXG7maJSOAIxo3MfPuMDA8SCA/tgUy4G2OvgtgtKmWpdLV7xcAVae0zTE2ynDUvTLMwORE9KN0oz8Xmg8YegardEc2fHC4gmxMhXzv8b3MMQ8JUfWyI2/HBJdpz2+C0uYnQM8NXqFEY6k+IUpoaP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728675500; c=relaxed/simple;
-	bh=XiRT/1XkciFCsvl/IDlH+UqqF401Hd8YWnIi3BZv2Qg=;
+	s=arc-20240116; t=1728675740; c=relaxed/simple;
+	bh=QdxfIqBJgxkSu9IxavGoJTl6cPZPsvz83rW/wuE0ntA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XQFJc5cdhAtL8ZmfVbDYvh3+Mn5O9vAci/Et2AbXUR5yVCy/qUDOzwYLsyONULRRK9bZymiYloloOpROQuqIQrARoSeWqITBHj4VbbPZmOV36CTzjlIzUceSimmKcvHXu8tXhmaJpwsqzyRHlpzFbvrNsbBpu/OnAiKkWvaiEeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=p/acxGKB; arc=none smtp.client-ip=77.238.178.97
+	 In-Reply-To:Content-Type; b=AM6j5aoyWkaiDNuPH8LQKFVBZzY1H83PGi0zB3CdYoLTK7oHmMSqai/U/zuO34WXS8God8j96MTv11BkNzHyzwqQyMhlwX2vQZfCsK10brVhuMjCo0StQfFLQpKJKNv57mIFNhCaH/fkOHRzOxAliuZzZHzYrIQMEiApdsfc4yI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=joLeekbU; arc=none smtp.client-ip=77.238.177.146
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1728675490; bh=QHU4ALk3cTM5qiCcrJHDaLD0EAmeKUjtEkJMuDli6Zw=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=p/acxGKBQTPH2QpSv9zYQTCr1lf/G/gZqwUy/uv5IGMiOb2mkV40LSUvkWpX3/SWwoadZvZzlkpSd8kX1XURLzQpLAtDUNMJSoRraDLK9g7fQmYbXOD7O10OPhVrn/EYcPOqg2BGikciADtwdM4/z70m57zy/5WC03+yAqV//yZVVvYrcPAO/TDOoAChA5EqCvdYjL7OD2iTb+U8LdivDwahmVYAyhM+3U4it/3DH3zKcRc0FZAa3ch4XL+JFQvCLgmSR/sxn+ruH0GoMxOI/1WISQMLNcqNukiu7HL9gu1MSxADU2KsH27gY9XXGMLGf1+jWqZE6SxyE4exNKYUzw==
-X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728675490; bh=LkLpuM0mI2FQr8vHuYRDzk4GeuP/tcWNVMGHOdHqbnD=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=ZiANrrkDdi6NUJ1B6ypO1XGYQbJy/Y8Lyuo8TImkHHd8ZWIQs0saPTCaoKgLEFtoYNqFUH4/tz1JyE4saQKVTlUhJrRVBE3f+GARdE6XKYtnz+oUNRzq4P6EDFp3x709pb8daOuU4QE0c+xLhTojKmb/IbAZgxVgy0oNobjEjbTGTiTXNmNqHmZnOMpMcfa5fPwIA2zzATE9nKExOjG4SBw9xTH86HwcMtFE61FsmizxLpcotU2A70rU6yv+wkk4R9FhaKJp4xqy35UA2KHIAzVw/TK4/eds4n56emCOv0jliQ4jtSJZs+FuKFdhpOnsK46ayJ92Z8YrEcsRcVqpxQ==
-X-YMail-OSG: jAjLiloVM1mS9fp457dg_f885bMLaN2gZIHC2hZivi0_.6aFaauMCeRBEUB9A60
- 8O20OMM6dttqEFUdbjTZobqBQQIwJwSDeXWCj9B2_I35ptEXj45CuQ5hmpBsm4sKvIr10LLzAV1b
- mVqMo82LaW0Pn9sTv5jmB3MsNXREPkuTkI9sZcqhwASVXSqfIDJcS2KUx9sobx1ej7rM0Oe1suM7
- rtYZaavLDftmcoBkSF1W3sAjy2MqxyMM3fRGvKRty9whL6PNgx9poDcRXCUndFMs7vqkAgossV3f
- cWAm85em9LY.GjFV_cjCg_J3TWYvs1Tibtmnr59GErAtqe7Jc4o0JrBkQIgxOA.0mL.mr5P8LFMv
- hXqz7jDirV4xJVu0u5umXxkEEL2GEeSEt3aQmyX60HyLS_2.j9lK11VE_CTuxpUQ0qLo1OMnIVdd
- EzqJhVbDIcBDoIFXMtcZtxJ7hAK5lWrwxFX1vgxsnOBdWqkYAbS5_B1RK854hD_Otj5aMPvlIsB9
- LbywxoQGZy1wLJw1TLenrSl2F0IYKtVTCTRp7UT3ML7hNIxOpfw13HAUWeMoOnDe8aXJeNdN6.ks
- OdlTAl5nFdaNRuVvkIWdoiYeN0b3sp0v6Wy9Fl4iSHCYIlQ71CYe1b5Ghv8B2q1LOWkBp8wtfkih
- 8paZ8KdCW_l9MvzCw6UHcxkRj47nmDZI87XIKP3XISDJavLEyEe2oxb2MswQ3BjaDVYq0ihd6mmR
- faTq1Ve0lEa138twmxCO7pHz9uu28R9JlnXzkGso6h59_oQOchlcmMDRkkHdCPPDw.qRDH89MvDg
- PMGYfZ6gW5zIxTayCgspSDuJ7Ii.Zr1qTrScbx7H7wFV4nL7UerTxjaBhhzh9PN1EQM44kdTvnY_
- p9QpSX4IdigizttSxrS3zmwKbIZRYBk5yTOrimgse4dqP9PwqGrnIVDWFaGXxRxWbS246w98Hg6h
- mEGx.x63ftuctcmEClkZPPkzaam.C4wRm76808FKDcwTeNEuKnlePoc9ppyhELx84ANynw4pUqAW
- .fNhSYnTaqxXuNUMwwqKPDyOZLC7xiVa7ICkvM7BHK3ysuH3OQIPGikQt_KMfo0dWzFvUuA7PrEu
- SgTTy45o_T1um4XG0PKumP_dS._r6lRqjk3umdn3vX8_ahlYfYGReDt.LvfxIBfU_y7uQLTItsey
- 5vODdB2WnkcxfkB45rrC6bDbRb.cD42z9tyY2PU.76MwRiAyPnPddrjqELgGtmk3Mxo1n25_LVqH
- Rp7jUUbymEmMpIErKW5Y6lE0gsKIFsD.yz_rrowOMjsgH8ePXECkWEFG0xTlYaCypo053e8lvhki
- siTi9OWX83ycPIxpVoG8TKMZWx2CG8_lrOIC0k1qyiRcmLaiMfaI8epotN9IsK4g36zolpEdCCRW
- 7stykNjpjvpMw0dhcWHITIpaIIQzbsLLWWa_u9KKdMfS516AweRKYeEQoccOrhSM5GnGPG1Eg6sf
- J6jcFIy4OsW1uqMIPjeFjvg190LgfNDBGy4JeNdtnfKguzRlsZxQJIm7jdTEQfGfLJphZqlxIVPn
- 9cO2jTevsMVDeNjUuK5Rgej6ZadjObvNIrkxoU1oMqFBCim5zknefkj399Dw6qj.oC8zxn8VMT0M
- Bj_n1b569GZigt.AXLkNxbIqF3EtCyUNzM2elcOPGvQdgYADsdIOb5epuwyi4fnNkUnFeB9Xwjtx
- bsq0c2XkvZQf4KubrWsTRswtLvpjxmdFgv2CdV7cGZ0SRpX7.VB5oifCPMoxpvfaU8zdCAqF1CwW
- 8C0RfJsthCrZh0p9DKiM5aFkSY5FOmG0nV7UcSHg7uS.uTzpGTR3tiyOVpMIyI0npR1CUDW1J0_F
- eZc9W7t_y4GTRUuF6Fj6ZdRQaqW2gAxr4aTeKKYegcK7sUdtxuB6jFpSiN0pwisp_77MvM0MUShH
- 2DxB2dFbnEDlkZ7.iJ1JIm9z_273W.lDqnAn09zcFoGPUWvK.JvcgQu0Kw2UXBw43F29f0WvQZpF
- sUGq2lKsU8cuGbd_f_ZnkXAs84n_ounnLo0U831iq8wJP4i2QZFDz4L8GuO1_cFNCNh4kDRLBpxl
- 9UYBlxXVIXJIzOz4EWikWFDAkQYwF.n.D13mntYpIg.V5OhR90ILMEo.tj2NWtnm07bNhnib20Mw
- EWCg6NGgrBaLPAYLoUmk0rICRW1KZ2esW7ZtlnDJdTPvI9h2AxncXn1O4ZlyInq1e5FltjXwhN6t
- g_aRBmHuWVRf3PzXjhiumCTmkWw2Gt6sK7FiA6M0oOMPF9LiOXDm53uRf98CL.8NdXvHrxiTIqwA
- fhmhw9LbDDvdEneNsli2gNG3IRe089XTuL6Z5nD_KHvjynlEDr3mWFw--
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1728675730; bh=QdxfIqBJgxkSu9IxavGoJTl6cPZPsvz83rW/wuE0ntA=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=joLeekbUBw+JEM/GPn2DwvG2BouFH+lBUi85EIfPm84LYW1aPC0SnLc3BmMOqpPGxHxJpSVI/VPHYWcalas3x/wXhzbZXhua2wHwwyNljQJs8GVBEjzyPLAhCz5eLiOotezFoo4VjnGQZH61aGwZt7wYF0JaYHGD0PJU8OoAljmKsCKz5OQnkhnuDkYPm1XkWwCkSvJnHSKAg743XdbhaicrsIWi2fJTIL+1734kUSkzgNrAiALTJa9Eiff+eigqn9Y+fHViyqY5stFH781IKHLEifIxqQSwWjFeL78YV4BpgUkUByLK+RPlGLCP36QSR//0H3gY4OXgfYohT41j8Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728675730; bh=PDEqepCN+aqz2KbFNIyZrkMWN7nMbrJjyqfRqC71czB=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=pNRjErnD3tbL1YP04eq9i42ho6f5FrI0yQKA9wXuhbxaT8DMkO6lY2fz/NQ1goMPTTp+8N0K+HdHzTkLjp2XyGVJoRFHGlCbwM4wxJ4sJ6Tvv2aWTJe+3Zfi4iVMmxuUs2/sFTAfgBnl8ZiOF39y469zAOcV0bYQxMd1SIHUCf+hD9d9J0XZEIO6htR+eY8peb6YlIQltxfhlRbpUqz2Gw8YU4luanVzr4S6H/tpJvH/KsSryvKi76qakiKCwSWH05QraqYU8824suWyTGZ8EIURt3cL01taOFrSOWoHK5b/wHvYJA56n+hVIPYTKsal5mh1bwGHJl7ZAfGPfWMKpQ==
+X-YMail-OSG: MBTzprIVM1mA65Cu246_MUdx.IwNDtKyXB332rt_XiQ5wNuwIayUiKJphiKSW_w
+ rwyGbqI2rysa6rare3.gy0Ig8zIh3gp2TUNLR_LnoLmwbUJ4UXiJZCYlHs0laG_K.E4WR6J.WTYs
+ 1CcQgWkQ8.Mo8aFsxSd9fAgDBwtB3RVb9v_FZv2kF3EljDY9AQ8ia_zj6d6b4qfPpJAJoZQrSQfX
+ sdJUrA01dcuqZlK7W_40mL6ciFhj0nvBXU8Q08LfIpLjmVFDe3.4ibxgl92hlqzWiK6PV1rJSi9B
+ ypv8A1VmRPKhuPg5ktHpeg_wjcM81PFXvTkdwcfrn89QmJ9T29MKAUX96UIg7jdVfEjIggOHxht2
+ Le8DC83h.l5llnls13aCRrEpEutmaVqcmJJwzM1B4CRIIVh2ZB.7VCe15lzaFW4YNCx4986RYRL5
+ hVswA8YdXY8rbxPpQyIGmr6XB8qPogCrnA9rrJ9SQ5ngnDPDGOG6EyuThHgq26TxuVrrVt4uQdFd
+ HtDaQX312zxPofCunYOz2CaJ2FtX9vAjxFXQSI9X2jIxYBkGtFQnoG8oLsM3a3ztPlO7PYM2dQeX
+ USJzOIO6cSv6IW2VJnLSHUzyyndhzAWGRyLdef0TiONN75J.TIH4TXY.fHMrg_61.WrRK91p8rKr
+ LUt9gcIRga7yc2Mh0biudRsL.e.zgJIHqlPA8xQmfaPBpQIwPofhx7EaV8XZ.JmmweqWF9CmGrgF
+ yXPBwDa9.Ui3LPlkqeR8SljfkkMfoC0gCit.iY0ZPw84L5Jt5OqqWHNttJWEPritSByD3s1Y7QO2
+ pV2kT9OBU9ZOP4p8bv6zdU0VzQQVcXwmxKUAlg06VrEsjlHuau245aN6sY.6q07TY4h2jajb44MZ
+ U94g4JZoMLJ4MkxyQShT.uwL4_AG_p2G9iPpMgB0Cnf0JzC1RiIPq9cDIqY45ryB78eJgYrrxdHu
+ 91SlsP_4lX7hN.XhKmVxow_OlYgpFZhYFsg63mboSdWNWZGAv1XbIDENzBan1ChmDQqHY8cw6oMF
+ kO1.kXpj0e5xrXLLm.qRty.AeIA4oCCQr9PkCn583xCnpYEQAjvFjd3gQdu0onYH3Mwt5NQTOvVi
+ 1U1j4Le4W1YvC10jMCqD55HKGj5i_2Ack98ofMjBmNnUTrnahO8V062.g8rrKkiby7my5bsFCLon
+ Kzos9ytK_KHWz9wBxnz_c0Ka1Dfm5dhPtJKmixMJw_UhTqv7QHV4kR30y52zByDBBYXnZrG849Cn
+ UFx7BkrsI4aGbdIJnt_8NHdWNyaflBlt4SGqL3d_WH8cfewBQmcqZM3oa3SKFqU6l.fRSHZoY_Im
+ 0lhcagRyyDxMnAKBF33AVjyvsOpebeaCwVHwWPqpBWLLZPrseOryjawWw5C1OjZ0EGDNI2ji9pSb
+ o6iHbNMEVMmdlQ0IqYMedgF4ZW7x6Xd6jgocUaX6hCwCECxZoOIh7OvMPiEXsNe0JtrUU4OsmYfl
+ Ck5P3Chq66j68N6X6KgQ7vtPwDuyxYDsnk1rYk.V5sSmsKGpQxg3vwcgDTCwXP4pF1fXmaGhzvuv
+ ix_n9u7GI.ypzYHYHdAh8X4QGChrMfBiR6BUrY3TYhE21M8AFmGSrkBvSnj_kxR41u2hs.l_iwb9
+ FarTGt64uwFgXQNwrDV.46lMTFGe55y2Xjw35NZ6EF8wuSfkLS3T1mjLofRCnjeh4XYlbuOOi8Aa
+ uNknwkf_mDXPr5uk2LXDSL6et4ZWFIR6iH.mDo5J1TL7fWnOk8IgNgqApIaAZ1FLK4AiiGe3p6mG
+ N7s_F.ZhZ1DDzNlU9URmN8ZZfYsNj4Z9J81sF2OQsyaljaoe9eGSUJHeyfnYBsUlPCAhYdGJT7kS
+ J5oJpA0BgKiOn2YvSCPjhtaTK9oWQXWFz3vrmB.tTFwmnc.r4xHD1jjmYcOaqId6JgRxunIAnfZx
+ h5NlVQ7HtHFONFiEehmh_kiNfFM579McxwyuGbg51jkD3908YjzHJmNCnpNLbB4EUEp33miyZlNp
+ c8rPFPsSIjDGdu8dpVmCebyCPanawdk_SrImZ3tJtoMxiLwts1vJ7okrY05hpIv_sr8mKEQw7Y8E
+ 2tW7eHzzlBnd.Vapy6Wyc28mJIykXZdmJfVrx6n2Z4ZZ3NqTLHRZHfywLjgNI3ZVtEteVuOw0w0d
+ AEbSw8Xv.3ZFLgimCuWyJNF2oxkvlrCKk_boBSoDXyo_MwZH7StW8xedJwm6YKOdqc1lXKSWoa42
+ SxILLddwGRWedn0.j94t_KJJ72.ZkKH5KW.iaUrvA7LsQpvgH1hChrtZF73Lnts6AQN7baaLAw2D
+ uS5arguiY9YRzrALHXeCeemlFomrj4UGgWQZxFZTw4l6A
 X-Sonic-MF: <jahau@rocketmail.com>
-X-Sonic-ID: 7a86045a-0f5a-4289-9ff9-b5e3813d05d4
-Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.ir2.yahoo.com with HTTP; Fri, 11 Oct 2024 19:38:10 +0000
-Received: by hermes--production-ir2-6664f499fc-6rh2p (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID bf19aae88d6458a459d6c2da51db105c;
-          Fri, 11 Oct 2024 19:38:06 +0000 (UTC)
-Message-ID: <50eda01a-2948-49e9-9b1f-eb38367d238b@rocketmail.com>
-Date: Fri, 11 Oct 2024 21:38:04 +0200
+X-Sonic-ID: 33d90e31-71f6-47e4-93fd-d85ec77e0a35
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ir2.yahoo.com with HTTP; Fri, 11 Oct 2024 19:42:10 +0000
+Received: by hermes--production-ir2-6664f499fc-ggmrm (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 5c9e3e37c360bbb7e8327b384596edb5;
+          Fri, 11 Oct 2024 19:42:08 +0000 (UTC)
+Message-ID: <eaf1994a-a85d-4dcd-b729-2dba8354e8cc@rocketmail.com>
+Date: Fri, 11 Oct 2024 21:42:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,132 +79,35 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: display: panel: Add Samsung
- S6E88A0-AMS427AP24 bindings
-To: Rob Herring <robh@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
- Andrzej Hajda <a.hajda@samsung.com>, dri-devel@lists.freedesktop.org,
+Subject: Re: [PATCH 2/4] drm/panel: samsung-s6e88a0-ams427ap24: Add initial
+ driver
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  ~postmarketos/upstreaming@lists.sr.ht
 References: <cover.1728582727.git.jahau@rocketmail.com>
- <3d754a2ee538d4c99ab71340706297d54b767c35.1728582727.git.jahau@rocketmail.com>
- <20241011142709.GA2289410-robh@kernel.org>
+ <d36d0d152c509b78d02f9f7adbea665c0c863446.1728582727.git.jahau@rocketmail.com>
+ <6d67c2c6-819b-481a-8cc9-e24ef8f6c142@quicinc.com>
 Content-Language: de-DE, en-US
 From: Jakob Hauser <jahau@rocketmail.com>
-In-Reply-To: <20241011142709.GA2289410-robh@kernel.org>
+In-Reply-To: <6d67c2c6-819b-481a-8cc9-e24ef8f6c142@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: base64
 X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 
-Hi Rob,
-
-On 11.10.24 16:27, Rob Herring wrote:
-> On Thu, Oct 10, 2024 at 08:31:48PM +0200, Jakob Hauser wrote:
->> Add bindings for Samsung AMS427AP24 panel with S6E88A0 controller.
->>
->> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
->> ---
->> Patch is based on https://gitlab.freedesktop.org/drm/misc/kernel.git
->> current branch drm-misc-next.
->> ---
->>   .../panel/samsung,s6e88a0-ams427ap24.yaml     | 68 +++++++++++++++++++
->>   1 file changed, 68 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
->> new file mode 100644
->> index 000000000000..7010d3bbd07f
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
->> @@ -0,0 +1,68 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/display/panel/samsung,s6e88a0-ams427ap24.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Samsung AMS427AP24 panel with S6E88A0 controller
->> +
->> +maintainers:
->> +  - Jakob Hauser <jahau@rocketmail.com>
->> +
->> +allOf:
->> +  - $ref: panel-common.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: samsung,s6e88a0-ams427ap24
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  port: true
->> +  reset-gpios: true
->> +
->> +  vdd3-supply:
->> +    description: core voltage supply
->> +
->> +  vci-supply:
->> +    description: voltage supply for analog circuits
->> +
->> +  flip-horizontal:
->> +    description: boolean to flip image horizontally
->> +    type: boolean
-> 
-> This is already used in another panel. Please move it to
-> panel-common.yaml.
-> 
-
-I'll add a patch in v2 to move "flip-horizontal" and along with it also 
-"flip-vertical" to "panel-common.yaml". File "samsung,s6e8aa0.yaml" 
-needs to be changed accordingly.
-
-@ Thierry, Laurent & Andrzej: CC'ing you as you're listed as maintainers 
-of the affected files.
-
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - port
->> +  - reset-gpios
->> +  - vdd3-supply
->> +  - vci-supply
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +
->> +    dsi {
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            panel@0 {
->> +                    compatible = "samsung,s6e88a0-ams427ap24";
->> +                    reg = <0>;
->> +
->> +                    vdd3-supply = <&pm8916_l17>;
->> +                    vci-supply = <&pm8916_l6>;
->> +                    reset-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
->> +                    flip-horizontal;
->> +
->> +                    port {
->> +                            panel_in: endpoint {
->> +                                    remote-endpoint = <&mdss_dsi0_out>;
->> +                            };
->> +                    };
->> +            };
->> +    };
->> -- 
->> 2.39.5
->>
-
-Kind regards,
-Jakob
+SGkgSmVzc2ljYSwNCg0KT24gMTEuMTAuMjQgMTg6NTIsIEplc3NpY2EgWmhhbmcgd3JvdGU6
+DQo+IA0KPiANCj4gT24gMTAvMTAvMjAyNCAxMTozMSBBTSwgSmFrb2IgSGF1c2VyIHdyb3Rl
+Og0KDQouLi4NCg0KPj4gK3N0cnVjdCBzNmU4OGEwX2FtczQyN2FwMjQgew0KPj4gK8KgwqDC
+oCBzdHJ1Y3QgZHJtX3BhbmVsIHBhbmVsOw0KPj4gK8KgwqDCoCBzdHJ1Y3QgbWlwaV9kc2lf
+ZGV2aWNlICpkc2k7DQo+PiArwqDCoMKgIHN0cnVjdCByZWd1bGF0b3JfYnVsa19kYXRhICpz
+dXBwbGllczsNCj4+ICvCoMKgwqAgc3RydWN0IGdwaW9fZGVzYyAqcmVzZXRfZ3BpbzsNCj4+
+ICvCoMKgwqAgYm9vbCBwcmVwYXJlZDsNCj4gDQo+IEhpIEpha29iLA0KPiANCj4gSSB0aGlu
+ayB5b3UgY2FuIGRyb3AgdGhlIGBwcmVwYXJlZGAgaGVyZSBhcyBpdCBzaG91bGQgYmUgaGFu
+ZGxlZCBieSANCj4gZnJhbWV3b3JrIG5vdyBbMV0NCj4gDQo+IFRoYW5rcywNCj4gDQo+IEpl
+c3NpY2EgWmhhbmcNCj4gDQo+IFsxXSANCj4gaHR0cHM6Ly9lbGl4aXIuYm9vdGxpbi5jb20v
+bGludXgvdjYuMTEuMy9zb3VyY2UvaW5jbHVkZS9kcm0vZHJtX3BhbmVsLmgjTDI2Mg0KPiAN
+Cj4+ICt9Ow0KDQpUaGFua3MgZm9yIHRoZSBoaW50LiBJJ2xsIGNoYW5nZSB0aGF0IGluIHYy
+Lg0KDQouLi4NCg0KS2luZCByZWdhcmRzLA0KSmFrb2INCg==
 
