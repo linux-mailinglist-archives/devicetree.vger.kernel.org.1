@@ -1,102 +1,117 @@
-Return-Path: <devicetree+bounces-110433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2279299A6AD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:44:09 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E4399A6B4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4D92284D0F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:44:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B24FB1F2339E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA4AC82C60;
-	Fri, 11 Oct 2024 14:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 230EA12FF70;
+	Fri, 11 Oct 2024 14:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nKvQKtTI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iQi8qIMV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A88D381720;
-	Fri, 11 Oct 2024 14:44:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EAC1579DC7;
+	Fri, 11 Oct 2024 14:45:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728657844; cv=none; b=KmMK62Q2scGoqN/ngwy834qlI/vv3+Bj4TyFjUzZnQ09GbovQGW+z9cc6ZlcnVWlguR19ror/ljkTJI64fyu8v2vXOwnoKxZRoW1SQjW521yfa/ekdKxN8U2Ja3qME5LixGKwszS/K2552RDFX2fe+yRs/dHB5G3fvRdiG3PM0o=
+	t=1728657928; cv=none; b=HMp8rIhaxtBMMj3us34FIKobukvrv7AdZKx5eqZu3HqclZo6TtEYbCiEcTScqhs+FOqztSk6b52TkBv/OVp8HdO7zpv1i/mEsyqKqE673dcISzQVcTT5mj5/EQ+tgY5JUpBEHOJYpUIcY3FJYg+ZINL8K6RigzX2wqlGnDzmM3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728657844; c=relaxed/simple;
-	bh=+Bfc/h3wXzcXYp8P74NjzQObBuibQL+a4Ik7JWONOAg=;
+	s=arc-20240116; t=1728657928; c=relaxed/simple;
+	bh=Kf4RmL1eFhHWtgVhMXLKXNDA5oA9mv9BqxY/AcsVGn8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KToLxYoowU0/XlZgf38+PBZgHqX8kAiKBHvyWXtszNhrjlNzZo+NmXXpW3tOgjtJrITIiTNq2m1IlyKTnFpn3d9Hej52yyfGavubrirm4fzlnyTwk4sWLDIuKWek1aqdjsCeUKWZd2VD41G0NTCrVvH+KknuLrFI/Jw9t9BPmNE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nKvQKtTI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32759C4CEC3;
-	Fri, 11 Oct 2024 14:44:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=PqRFbg/lvHYMrjbYpQfwe1UhZt/4uhJJeDfU7u5NjRcmKPHLgzd70d69+67YGfGjxOVqrbYsHV9rr35fPkn5q0Zg78Rchgy+Sx1CFVCEEiGKwgNQOdCNYkXYERET/2sHDa2InrUYus7PGE4U5xxvKiHuhHsHDrTjXk+6HoL+Hl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iQi8qIMV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC743C4CEC7;
+	Fri, 11 Oct 2024 14:45:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728657844;
-	bh=+Bfc/h3wXzcXYp8P74NjzQObBuibQL+a4Ik7JWONOAg=;
+	s=k20201202; t=1728657927;
+	bh=Kf4RmL1eFhHWtgVhMXLKXNDA5oA9mv9BqxY/AcsVGn8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nKvQKtTIBQsxlW32D6uK36R6aMcJDyUVKKRlekAMWnC5B0jAp5cWkFqvU8XqczAKF
-	 EHYUA0pPC+v5WsKvPNZZxRqecUY8/j8TGwZAv/3/CzQDcaijOA6BOZSK0WfyfbIZN8
-	 MhSv2hcXzXC09FxBeYf+Hl+X1oBHd/+nPfw6t2207bdUVooXrsnu2M45epv6zlKwgO
-	 s2CM/nv644PM9UWIROVpvfjIB3qCikVAcJo/C6e2qf/KfgGkfYgazPL7k6cKSre7QM
-	 1p/M2KHiGX1MfzXXSlarUWDDaZsxbzkXcKj447VZGzrki9EsQSq7jn/wA83atFry6H
-	 yhG7mjvu+/kSQ==
-Date: Fri, 11 Oct 2024 16:44:00 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
-	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
-	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>
-Subject: Re: [PATCH v3 2/9] dt-bindings: can: m_can: Add vio-supply
-Message-ID: <bbz7h4vfbzusvdqtbfzxo5xdoddqp5nonoywvbrhtwukjus3pp@5amm37u22ehh>
-References: <20241011-topic-mcan-wakeup-source-v6-12-v3-0-9752c714ad12@baylibre.com>
- <20241011-topic-mcan-wakeup-source-v6-12-v3-2-9752c714ad12@baylibre.com>
+	b=iQi8qIMVeBiovHvQ+lETOWc0aXFbi3B/6GxeNyl+tY3KHSXC0CLkq1zmOshRhfq6H
+	 UTol437DZ1SKckikehWUE8dkBeubSxDiMHEeI3sS3CfvbL6S6D+6HvI/el8L40rz1j
+	 58Jsfh/QB6xDOSrRWGGRv57zR5/jRtTUFv+L4Rt2Gjs15KmaThmUM4FTHPIhVGy5D9
+	 hp8eQ27/aBuyQM55W7fFk9HiAqMQiLelCnWAD41fqO74Ur6B67F6UWU5lo/iQoCHMf
+	 wqTOU5vwF93PK+InJIYSOOgCTOhH+Fvq6w7vq0Vm3IMZw+7b0CjSvu6QX0wKwGRAIl
+	 knzc2utoDUSkg==
+Date: Fri, 11 Oct 2024 15:45:23 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Conor.Dooley@microchip.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, Daire.McNamara@microchip.com,
+	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: mpfs-rtc: remove Lewis from maintainers
+Message-ID: <20241011-prominent-strode-37ed00b909c6@spud>
+References: <20241011-boozy-blinking-f76d3891dacd@wendy>
+ <c565f64b-9d5b-4dee-945d-44be9762282e@microchip.com>
+ <202410111230367324262a@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="S1WjI273VcJPVlbn"
 Content-Disposition: inline
-In-Reply-To: <20241011-topic-mcan-wakeup-source-v6-12-v3-2-9752c714ad12@baylibre.com>
-
-On Fri, Oct 11, 2024 at 03:16:39PM +0200, Markus Schneider-Pargmann wrote:
-> The m_can unit can be integrated in different ways. For AM62 the unit is
-> integrated in different parts of the system (MCU or Main domain) and can
-> be powered by different external power sources. For examle on am62-lp-sk
-> mcu_mcan0 and mcu_mcan1 are powered through VDDSHV_CANUART by an
-> external regulator. To be able to describe these relationships, add a
-> vio-supply property to this binding.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/net/can/bosch,m_can.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> index 0c1f9fa7371897d45539ead49c9d290fb4966f30..e35cabce92c658c1b548cbac0940e16f7c2504ee 100644
-> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> @@ -140,6 +140,10 @@ properties:
->  
->    wakeup-source: true
->  
-> +  vio-supply:
-> +    description: |
-
-If there is going to be new version: drop |
+In-Reply-To: <202410111230367324262a@mail.local>
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--S1WjI273VcJPVlbn
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Fri, Oct 11, 2024 at 02:30:36PM +0200, Alexandre Belloni wrote:
+> Hello,
+>=20
+> On 11/10/2024 11:00:40+0000, Conor.Dooley@microchip.com wrote:
+> > On 11/10/2024 11:39, Conor Dooley wrote:
+> > > Lewis hasn't worked at Microchip for a while, and IIRC never actually
+> > > worked on the RTC in the first place. Remove him from the maintainers
+> > > list in the binding, leaving Daire.
+> > >=20
+> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > > Noticed him in the CC list of your rename, figured it was worth remov=
+ing
+> > > him, even though I don't /think/ our mail system will create bounce s=
+pam
+> > > in this case.
+> >=20
+>=20
+> I never received this patch and lore seems to agree with me:
+>=20
+> https://lore.kernel.org/all/c565f64b-9d5b-4dee-945d-44be9762282e@microchi=
+p.com/
+>=20
+> [parent not found: <20241011-boozy-blinking-f76d3891dacd@wendy>]
+>=20
+> Can you resend?
 
+Sure. And I figured out what happened - I ran the command to send using
+my kernel.org address from the corporate network, where it cannot be
+used. It delivered the mail to microchip.com addresses though, for some
+reason I don't quite understand, which is why I was able to reply to it.
+
+--S1WjI273VcJPVlbn
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZwk6AwAKCRB4tDGHoIJi
+0q6CAP4jVD7UDP/knnHAx80v4iwjG8ZZd1dV58TqfR+ij0T2egD/QNCJ+X+q69O2
+f932G8c1Q2+4XDYyTDv4B4k2bmo0VAk=
+=x2nR
+-----END PGP SIGNATURE-----
+
+--S1WjI273VcJPVlbn--
 
