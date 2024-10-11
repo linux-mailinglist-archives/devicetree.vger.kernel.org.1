@@ -1,101 +1,126 @@
-Return-Path: <devicetree+bounces-110299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E0DA99A083
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:57:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FFD99A0A9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:02:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93C8CB25630
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:57:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11BEA1C20328
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:02:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41E68213ED8;
-	Fri, 11 Oct 2024 09:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9713F20C497;
+	Fri, 11 Oct 2024 10:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jLkHTrD6"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="8cTmyw6+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E41C20C497;
-	Fri, 11 Oct 2024 09:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD89820C462;
+	Fri, 11 Oct 2024 10:02:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728640508; cv=none; b=kOvvG0f8Ulqwk7pftbZDf0LU5M5rARwjffv3+oyOlVzaPicbYuHJnRYDt1HV19EBGwbbgIiMPibNV38+fhp+QiCAHmLhimlO2pwulY/9QkkofrHltM2z2Ul09ekrUwLQCNI5SynSurGHS6+F96xUkTdCq6BvWh8Yk5qRHsTFY0Q=
+	t=1728640935; cv=none; b=s/LxQFyRbtaLcmdw2Pg/pQX5hCwDrCkp3vppfQs7gI9micdzsq1CJF/rk7ISoKvE/Kmc7NJuOiDnR58T5xVr/5tlEvyOb8zEnUjBzq4qL6SYkCwwTdYdN7l66AQ+ZSLKH9UWwn564AOl+q0mBgNoRqAyGjK3cgmge/di9E2EHZc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728640508; c=relaxed/simple;
-	bh=4UhPzKAxq1htJyVXoa6Yn6iXVYNDJylwqoGp59Hnk8o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b9AL47MW7e9xiw2WveW3w+LN8i5bXo8S1V2JG5SDj4b3zlm4Bv+OcdYqc5tq4U/NSI5ZnukR/1Pgrp9LtsxGeCEuI/Cow8ZnLerbDDshFvTBQCVeeO4Pa/wzcvUeo1ILzrdPFElDs8oxEUpM9JbmouEQOGvfjGfOKPcQUt3OWK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jLkHTrD6; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728640507; x=1760176507;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=4UhPzKAxq1htJyVXoa6Yn6iXVYNDJylwqoGp59Hnk8o=;
-  b=jLkHTrD6ViI4PmiRTFY166/UJT9fAWyI6WuX2yb0uMlKuVt2GzXrvaDA
-   bwInfXl0UOLe3rruXzW0KRaZKihBsbXPPcoRWpHmh0qFy7jN2Mh/p3NMr
-   Y5MI30vmxKpXzw6AVSERdk/gvcz6d7/RTarCzOm9t8Fcq9J/1OHBdKi9r
-   RNyNegrK6RpvHgmbzIdoLhxw297u+2LCi1NXielu3a4KPJSC+Y4uxUGol
-   TsG1dKT6am3oqeAJid0UZPHUID/azw/Py9J0/xUa+UdIWxxNMeL7QFsq+
-   tB0HUnALNgi5FwU2YjO9ahVPXFLTvUshXur2hmy3rxCaH8L7AjtaLqODX
-   w==;
-X-CSE-ConnectionGUID: sD1IUPHxTMuWejysG9JqkQ==
-X-CSE-MsgGUID: qUmJVpm9RSmNRgrggo7vJw==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="31736419"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="31736419"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 02:55:07 -0700
-X-CSE-ConnectionGUID: NVo8UdIuT1+BB/rfQQu3GQ==
-X-CSE-MsgGUID: p8fLXQakTo2LVPCdCw2hsg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="81686615"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 02:55:04 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1szCMO-00000001qjM-3g4a;
-	Fri, 11 Oct 2024 12:55:00 +0300
-Date: Fri, 11 Oct 2024 12:55:00 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: vamoirid <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, anshulusr@gmail.com, gustavograzs@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 01/13] iio: chemical: bme680: Fix indentation and
- unnecessary spaces
-Message-ID: <Zwj19ONfbDr0f4Fh@smile.fi.intel.com>
-References: <20241010210030.33309-1-vassilisamir@gmail.com>
- <20241010210030.33309-2-vassilisamir@gmail.com>
+	s=arc-20240116; t=1728640935; c=relaxed/simple;
+	bh=3p58vwjm0mX+q1bBDxCzK98sObgMUqPvTC/bY3+/RIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=ELgB0LJ26T8cULSq8L+AoqUMaG1+k+DTdQIy2S8s1Q0Ns/X3OuMpxNPJ1YovaZO2D7nRu1jFUjpU6YoOgVdg3WlnDR0OEgsLGZZBOQLiGtYoB4lXsI1FhgHS0iSEF+RyvUr3KfTjSA3/wDA3Urc+VUggT6xgj9Px1T4eqNEJK/Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=8cTmyw6+; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B7kBUt015393;
+	Fri, 11 Oct 2024 12:01:38 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	95TUYhry6R22ZNdbrt7ktasqRqP2EG69mmNh12OjVR8=; b=8cTmyw6+tRX/sJJC
+	S1mUbCmn8/44Xw1kBz0ZjAyazUxFFtlm8/d107770OLw9sKNYJBsyrgWkHNow2Tn
+	Nv18PIqhVR6zoU5THcZwZwWscbb75v+/70jw5iFcuTV5NTPdxxvI1DGBNt3o0vCQ
+	30KngZPY3jxSxKBb0FhzE2R6eXIDjCS/CGfbgEGLhBWUAwXjaRn1JduNdwn52n3h
+	l+WnJgZopoP8pir8djXJdzQq9/jlAD1fUIcgbAbJrKHpSBGZ+559AjjoBF9lieeS
+	WiyL0pjz+STfUkgEGZkpQHWZ7am0R4msIF54fjHMJu75Gwg7jYVKNyKb2oQ5Ue1m
+	kKoVGA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 425q9839mh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 12:01:38 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id D904C40054;
+	Fri, 11 Oct 2024 12:00:05 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6566E268186;
+	Fri, 11 Oct 2024 11:57:06 +0200 (CEST)
+Received: from [10.252.28.117] (10.252.28.117) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 11 Oct
+ 2024 11:57:05 +0200
+Message-ID: <9283caeb-1b84-43c2-a8a4-6b43a6962f34@foss.st.com>
+Date: Fri, 11 Oct 2024 11:55:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010210030.33309-2-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] hwrng: stm32 - implement support for STM32MP25x
+ platforms
+To: Marek Vasut <marex@denx.de>, Olivia Mackall <olivia@selenic.com>,
+        Herbert
+ Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre
+ Torgue <alexandre.torgue@foss.st.com>
+CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+        Lionel
+ Debieve <lionel.debieve@foss.st.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Yang
+ Yingliang <yangyingliang@huawei.com>
+References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
+ <20241007132721.168428-3-gatien.chevallier@foss.st.com>
+ <2fad1566-49f9-4586-b0d4-8a4a12f9e69e@denx.de>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <2fad1566-49f9-4586-b0d4-8a4a12f9e69e@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On Thu, Oct 10, 2024 at 11:00:18PM +0200, vamoirid wrote:
-> From: Vasileios Amoiridis <vassilisamir@gmail.com>
-> 
-> Fix indentation issues, line breaking and unnecessary spaces
-> reported by checkpatch.pl.
-
-Can we move this to be the last (or close to the end) in the series?
-
--- 
-With Best Regards,
-Andy Shevchenko
 
 
+On 10/7/24 15:54, Marek Vasut wrote:
+> On 10/7/24 3:27 PM, Gatien Chevallier wrote:
+>> Implement the support for STM32MP25x platforms. On this platform, a
+>> security clock is shared between some hardware blocks. For the RNG,
+>> it is the RNG kernel clock. Therefore, the gate is no more shared
+>> between the RNG bus and kernel clocks as on STM32MP1x platforms and
+>> the bus clock has to be managed on its own.
+>>
+>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> A bit of a higher-level design question -- can you use 
+> drivers/clk/clk-bulk.c clk_bulk_*() to handle all these disparate count 
+> of clock easily ?
+
+Hi, I'd like to make sure that we enable the core clock before the bus
+clock so that the RNG hardware block can start its internal tests while
+we ungate the bus clock. It's not a strong opinion but it feels better.
+
+Cheers,
+Gatien
 
