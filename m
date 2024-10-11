@@ -1,365 +1,244 @@
-Return-Path: <devicetree+bounces-110379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15E3D99A3A1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:14:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E81F299A3C3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:20:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EA9D1F25781
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:14:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 708721F26478
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBAE2217314;
-	Fri, 11 Oct 2024 12:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41FD1212F13;
+	Fri, 11 Oct 2024 12:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RYTr8EoM"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UURG80Ci"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B58522141CE;
-	Fri, 11 Oct 2024 12:14:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E24A802;
+	Fri, 11 Oct 2024 12:20:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728648879; cv=none; b=GZScFTCEHc1QNhspgqP5tUqJ+QxKP1TRPb8vD9MPiQoGyIDePWDo4Npe/VLoAQm88YGAubMXNqc1mV7/6KoyEVCfoX5LdyXBQMDntmeYOGUqWAsuG9RAExsCwEExgMPxJdaXCHiAOpHjsmyZKH6LZyM4HLu/QFHQTeGZNzmqSJQ=
+	t=1728649222; cv=none; b=iIZojGLDsqzBgQK/q8Fsrdoctmma5Ylm3suVAWtZAyPLwOjgqiqagLuOA0WF7JOkx48ZHhjr4WpVKwMsD/PYxVJTSMrYm0pU5tB872P0zE71pTGun9iYkqdE9bvvZOlvj73lseLc98WUkVjiDrh+NTcYqptuDU6PHUmbHIp3YOo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728648879; c=relaxed/simple;
-	bh=3FpVbYWRhZys2Q1ZuVEZur1JYUJbUcy5kBWzAgbmX5U=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=edqX/GbSYE5eGBHZt8Q8iZdDNEgLZcXs+Gsb/6Hh2T5majIwQZvVxj2coq8EnXerAB2Px2xiUBUtGydYAq5wZMdTi32Dr4JZblIuaDTUHhw6w70ZEMLMP4dKmXXpeK5ISukc1vRqTSeboXmZfs4xB3a/XFRFqNkh+unqdcKmLB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RYTr8EoM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 525C2C4CED0;
-	Fri, 11 Oct 2024 12:14:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728648879;
-	bh=3FpVbYWRhZys2Q1ZuVEZur1JYUJbUcy5kBWzAgbmX5U=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=RYTr8EoMsl2pZRtk6M29cmB/uEGvdxJ5b6IpMe5gxMf0wbgWDF5eA4xWyU3vYhvcw
-	 5V9LOY3MJNJNygXuprQu2Z1mIr5YDBhFte/Qn+2dquJwM/ZAykT6kezK6p1klFt0Eq
-	 H2/BTW4TVYfMzJ99gdjw3rlkqbfDOkunj1Gxv64r90tQCUDuNvCcAiSVW3fXfwVs4Q
-	 +gPPEotTxoxCwLpi06uU3cQFrrB3SU0Cx6qU2tAi8pgHrfEBAeQ7XghBYSKHeT28yP
-	 /yqGMqJh7RkF8n1MYt7yB+9cKhxWpeduBAwC7fh6AqLgaj8kaMsoDAqNJNfwDGV6oe
-	 GB5PvX355fRgw==
-From: Damien Le Moal <dlemoal@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Shawn Lin <shawn.lin@rock-chips.com>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Heiko Stuebner <heiko@sntech.de>,
-	linux-pci@vger.kernel.org,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Cc: linux-rockchip@lists.infradead.org,
-	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
-	Niklas Cassel <cassel@kernel.org>
-Subject: [PATCH v4 12/12] PCI: rockchip-ep: Handle PERST# signal in endpoint mode
-Date: Fri, 11 Oct 2024 21:14:08 +0900
-Message-ID: <20241011121408.89890-13-dlemoal@kernel.org>
-X-Mailer: git-send-email 2.46.2
-In-Reply-To: <20241011121408.89890-1-dlemoal@kernel.org>
-References: <20241011121408.89890-1-dlemoal@kernel.org>
+	s=arc-20240116; t=1728649222; c=relaxed/simple;
+	bh=FSVcya7AJzmLP8fH5k5lDNVInzXYZ9khIORtUZZH74I=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=UwEgsWGLCd8r/KK5+EZyFWeqKTfO77VrEUgN+daurbR0VgoJo1DfOZDnl+phWCbr6Y10cDl0KyKiM7EHBYd+cmCGxhuxxhFrMz5APodRWqPjIExMDK4b4M6iuHoqXlme60M8fFsxCCQwPa6s33eH/POiKMhbWRH6aoTez4eY6uY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UURG80Ci; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a9968114422so281885066b.2;
+        Fri, 11 Oct 2024 05:20:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728649218; x=1729254018; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Jlz12XyotTNNntibanQHl5R2spdT9YwbfoEX8IEOgkY=;
+        b=UURG80CiOhj39W0FPiR/tvBN5BBf/c3yQkgF1zIIutkpOCCSXX2rhb88hUtj2K+UOa
+         T3EEZ0PfhIhRh4UDHPyB08g9sWTa9iN/9OirML5QR1KNdD7b9fcauV+oVu69amlIuBa2
+         ywEdL+AZY+8xj6nOsgqWhA6ZS9XuQsv7hKYYkfpmU+hnwfJeK43kBYB0KPb0LRn00ERv
+         m4EbOVM5HRmRlaHn2l8WvjwaDgbvMRoHoWNaHx2BzTYPE5JsaGa9R2H038N8fsd+NJ4o
+         bbOQB7BdRho5yUvn7RIDdxzQvQ1r1uUhE9ZSTArmPotBvJ5J2RxtKbrth1uHIXpsMb7X
+         92RA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728649218; x=1729254018;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jlz12XyotTNNntibanQHl5R2spdT9YwbfoEX8IEOgkY=;
+        b=R7wyUls78m5XBxoyESpTFYSt+5u9s2Q4rD85MDK2xPDaJ9F6pFo/UBtCSqWQ2f0C8L
+         3O+YnnAYtew/Xadb15RFeql4f2s8sVuzbgEwBxvCXO28djQz5B7lJAZEFfCC8vkRJ6ya
+         V7BRkppriExHqnZzK/o2MbAApzvEZmDSCHUQMwi0SYLTIEhonEnskAbepBNb0UsDqeH5
+         aY5MySfirt+4phphH3eo4lnUPJ3iCrqirNrcA8SlTVQL4uV6t/JUbFuMQ0MzIO+KGJal
+         PRdK+txzs75Etxlc5iuTk24A45t7aGr69pZtRmjARMFyNa24cTAVv/ZjLhq5G34G6Hek
+         WA2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUtyVHhTI8iDdeAKo0uCo3jFJwx/ge9PA+ZPLEboANHf2k5ypxwIWs1KkNDyiHq/UPC2ARH9JjX7vMR@vger.kernel.org, AJvYcCV5tMq3+nej7eLvxpeRtPB1r66x591YJqHIy6ShJ4GWGh2fCir5p/9q0lalpOrL7t/e7lTSWU8Y7AODtw6v@vger.kernel.org, AJvYcCW6c2+7dtozRtalqCI+Yryaq8i9z54StKG7WE5w+OdLt3egFFyoVGEsres14mH/pTX8hxFU6KqZJEnV@vger.kernel.org, AJvYcCXI4EIYntJdTz0x7vsMNF0L1a+9ot9fIk823gB1KlvcWUvYVbm1j6Z3s+J+Wu392cXJ3fwTVYoDSXzP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyeRWdtLX5WaZ0iIYUudQzuc2J9FSoFvf5ehzTezpovtJfDtCpJ
+	4u0thlYtlfjvqO4ijRJzPOh8a0XZ27QSnj0wHXQhURErr2iUvgR5
+X-Google-Smtp-Source: AGHT+IGhTynSDPKMzHVc1xr4jVsPbryff/kx9+zBubOf6lnVucB5ML8xrhIU7Q6n8RWO/kmDj3GvQg==
+X-Received: by 2002:a17:907:9806:b0:a99:497f:317 with SMTP id a640c23a62f3a-a99b95fb02bmr173285866b.62.1728649217375;
+        Fri, 11 Oct 2024 05:20:17 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef15:2100:888:d3c6:a442:4910? (p200300f6ef1521000888d3c6a4424910.dip0.t-ipconnect.de. [2003:f6:ef15:2100:888:d3c6:a442:4910])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a80c022dsm206038466b.126.2024.10.11.05.20.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 05:20:17 -0700 (PDT)
+Message-ID: <e1979dbb5d79d18f84b6395d307a13734e7949b1.camel@gmail.com>
+Subject: Re: [PATCH v2 7/7] Documentation: ABI: testing: ad485x: add ABI docs
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Jonathan Cameron <jic23@kernel.org>, Antoniu Miclaus
+	 <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Michael Hennerich	
+ <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nuno Sa
+ <nuno.sa@analog.com>,  Olivier Moysan <olivier.moysan@foss.st.com>, Uwe
+ =?ISO-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>, Andy Shevchenko
+ <andy@kernel.org>, David Lechner <dlechner@baylibre.com>, Marcelo Schmitt	
+ <marcelo.schmitt@analog.com>, AngeloGioacchino Del Regno	
+ <angelogioacchino.delregno@collabora.com>, Mike Looijmans	
+ <mike.looijmans@topic.nl>, Dumitru Ceclan <mitrutzceclan@gmail.com>, 
+ =?ISO-8859-1?Q?Jo=E3o?= Paulo =?ISO-8859-1?Q?Gon=E7alves?=	
+ <joao.goncalves@toradex.com>, Alisa-Dariana Roman <alisadariana@gmail.com>,
+  Sergiu Cuciurean <sergiu.cuciurean@analog.com>, Dragos Bogdan
+ <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-pwm@vger.kernel.org
+Date: Fri, 11 Oct 2024 14:24:32 +0200
+In-Reply-To: <20241005183629.6a9cd4da@jic23-huawei>
+References: <20241004140922.233939-1-antoniu.miclaus@analog.com>
+		<20241004140922.233939-7-antoniu.miclaus@analog.com>
+	 <20241005183629.6a9cd4da@jic23-huawei>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.54.0 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 
-Currently, the Rockchip PCIe endpoint controller driver does not handle
-the PERST# signal, which prevents detecting when link training should
-actually be started or if the host resets the device. This however can
-be supported using the controller reset_gpios property set as an input
-GPIO for endpoint mode.
+On Sat, 2024-10-05 at 18:36 +0100, Jonathan Cameron wrote:
+> On Fri, 4 Oct 2024 17:07:56 +0300
+> Antoniu Miclaus <antoniu.miclaus@analog.com> wrote:
+>=20
+> > Add documentation for the packet size.
+> >=20
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+> > ---
+> > changes in v2:
+> > =C2=A0- improve description for packet_format
+> > =C2=A0- add kernel version
+> > =C2=A0.../ABI/testing/sysfs-bus-iio-adc-ad485x=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 | 16 ++++++++++++++++
+> > =C2=A01 file changed, 16 insertions(+)
+> > =C2=A0create mode 100644 Documentation/ABI/testing/sysfs-bus-iio-adc-ad=
+485x
+> >=20
+> > diff --git a/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
+> > b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
+> > new file mode 100644
+> > index 000000000000..5d69a8d30383
+> > --- /dev/null
+> > +++ b/Documentation/ABI/testing/sysfs-bus-iio-adc-ad485x
+> > @@ -0,0 +1,16 @@
+> > +What:		/sys/bus/iio/devices/iio:deviceX/packet_format_available
+> > +KernelVersion:	6.13
+> > +Contact:	linux-iio@vger.kernel.org
+> > +Description:
+> > +		Packet sizes on the CMOS or LVDS conversion data output
+> > bus.
+> > +		Reading this returns the valid values that can be written
+> > to the
+> > +		packet_format.
+> > +
+> > +What:		/sys/bus/iio/devices/iio:deviceX/packet_format
+> > +KernelVersion:	6.13
+> > +Contact:	linux-iio@vger.kernel.org
+> > +Description:
+> > +		This attribute configures the frame size on conversion data
+> > +		output bus. See packet_format_available for available sizes
+> > +		based on the device used.
+> > +		Reading returns the actual size used.
+> This needs to give some guidance to the user on 'why' they might pick a
+> particular
+> format.
+>=20
+> I'm also inclined to suggest that for now we pick a sensible default depe=
+ndent
+> on the other options enabled (oversampling etc) and don't expose it to th=
+e
+> user.=20
+>=20
 
-Modify the rockchip PCI endpoint controller driver to get the reset_gpio
-and its associated interrupt which is serviced using a threaded IRQ with
-the function rockchip_pcie_ep_perst_irq_thread() as handler.
+Just for documentations and if someone does not want to check the datasheet=
+ :):
 
-This handler function notifies a link down event corresponding to the RC
-side asserting the PERST# signal using pci_epc_linkdown() when the gpio
-is high. Once the gpio value goes down, corresponding to the RC
-de-asserting the PERST# signal, link training is started. The polarity
-of the gpio interrupt trigger is changed from high to low after the RC
-asserted PERST#, and conversely changed from low to high after the RC
-de-asserts PERST#.
+- Nonoversampling Packet Formats:
 
-Also, given that the host mode controller and the endpoint mode
-controller use two different property names for the same PERST# signal
-(ep_gpios property and reset_gpios property respectively), for clarity,
-rename the ep_gpio field of struct rockchip_pcie to perst_gpio.
+			  -------------------
+20bit (packet_size =3D 0) - |20 bit conversion|
+			  -------------------
 
-Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
----
- drivers/pci/controller/pcie-rockchip-ep.c   | 126 +++++++++++++++++++-
- drivers/pci/controller/pcie-rockchip-host.c |   4 +-
- drivers/pci/controller/pcie-rockchip.c      |  16 +--
- drivers/pci/controller/pcie-rockchip.h      |   2 +-
- 4 files changed, 135 insertions(+), 13 deletions(-)
+                          -------------------------------------------
+24bit (packet_size =3D 1) - |20 bit conversion| OR/UR | 3 bit chan_id |
+			  -------------------------------------------
 
-diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
-index 07dcda1d1d09..3d7e58629801 100644
---- a/drivers/pci/controller/pcie-rockchip-ep.c
-+++ b/drivers/pci/controller/pcie-rockchip-ep.c
-@@ -10,6 +10,7 @@
- 
- #include <linux/configfs.h>
- #include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
- #include <linux/iopoll.h>
- #include <linux/kernel.h>
- #include <linux/of.h>
-@@ -50,6 +51,9 @@ struct rockchip_pcie_ep {
- 	u64			irq_pci_addr;
- 	u8			irq_pci_fn;
- 	u8			irq_pending;
-+	int			perst_irq;
-+	bool			perst_asserted;
-+	bool			link_up;
- 	struct delayed_work	link_training;
- };
- 
-@@ -462,13 +466,17 @@ static int rockchip_pcie_ep_start(struct pci_epc *epc)
- 
- 	rockchip_pcie_write(rockchip, cfg, PCIE_CORE_PHY_FUNC_CFG);
- 
-+	if (rockchip->perst_gpio)
-+		enable_irq(ep->perst_irq);
-+
- 	/* Enable configuration and start link training */
- 	rockchip_pcie_write(rockchip,
- 			    PCIE_CLIENT_LINK_TRAIN_ENABLE |
- 			    PCIE_CLIENT_CONF_ENABLE,
- 			    PCIE_CLIENT_CONFIG);
- 
--	schedule_delayed_work(&ep->link_training, 0);
-+	if (!rockchip->perst_gpio)
-+		schedule_delayed_work(&ep->link_training, 0);
- 
- 	return 0;
- }
-@@ -478,6 +486,11 @@ static void rockchip_pcie_ep_stop(struct pci_epc *epc)
- 	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
- 	struct rockchip_pcie *rockchip = &ep->rockchip;
- 
-+	if (rockchip->perst_gpio) {
-+		ep->perst_asserted = true;
-+		disable_irq(ep->perst_irq);
-+	}
-+
- 	cancel_delayed_work_sync(&ep->link_training);
- 
- 	/* Stop link training and disable configuration */
-@@ -540,6 +553,13 @@ static void rockchip_pcie_ep_link_training(struct work_struct *work)
- 	if (!rockchip_pcie_ep_link_up(rockchip))
- 		goto again;
- 
-+	/*
-+	 * If PERST was asserted while polling the link, do not notify
-+	 * the function.
-+	 */
-+	if (ep->perst_asserted)
-+		return;
-+
- 	val = rockchip_pcie_read(rockchip, PCIE_CLIENT_BASIC_STATUS0);
- 	dev_info(dev,
- 		 "Link UP (Negotiated speed: %sGT/s, width: x%lu)\n",
-@@ -549,6 +569,7 @@ static void rockchip_pcie_ep_link_training(struct work_struct *work)
- 
- 	/* Notify the function */
- 	pci_epc_linkup(ep->epc);
-+	ep->link_up = true;
- 
- 	return;
- 
-@@ -556,6 +577,99 @@ static void rockchip_pcie_ep_link_training(struct work_struct *work)
- 	schedule_delayed_work(&ep->link_training, msecs_to_jiffies(5));
- }
- 
-+static void rockchip_pcie_ep_perst_assert(struct rockchip_pcie_ep *ep)
-+{
-+	struct rockchip_pcie *rockchip = &ep->rockchip;
-+	struct device *dev = rockchip->dev;
-+
-+	dev_dbg(dev, "PERST asserted, link down\n");
-+
-+	if (ep->perst_asserted)
-+		return;
-+
-+	ep->perst_asserted = true;
-+
-+	cancel_delayed_work_sync(&ep->link_training);
-+
-+	if (ep->link_up) {
-+		pci_epc_linkdown(ep->epc);
-+		ep->link_up = false;
-+	}
-+}
-+
-+static void rockchip_pcie_ep_perst_deassert(struct rockchip_pcie_ep *ep)
-+{
-+	struct rockchip_pcie *rockchip = &ep->rockchip;
-+	struct device *dev = rockchip->dev;
-+
-+	dev_dbg(dev, "PERST de-asserted, starting link training\n");
-+
-+	if (!ep->perst_asserted)
-+		return;
-+
-+	ep->perst_asserted = false;
-+
-+	/* Enable link re-training */
-+	rockchip_pcie_ep_retrain_link(rockchip);
-+
-+	/* Start link training */
-+	schedule_delayed_work(&ep->link_training, 0);
-+}
-+
-+static irqreturn_t rockchip_pcie_ep_perst_irq_thread(int irq, void *data)
-+{
-+	struct pci_epc *epc = data;
-+	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
-+	struct rockchip_pcie *rockchip = &ep->rockchip;
-+	u32 perst = gpiod_get_value(rockchip->perst_gpio);
-+
-+	if (perst)
-+		rockchip_pcie_ep_perst_assert(ep);
-+	else
-+		rockchip_pcie_ep_perst_deassert(ep);
-+
-+	irq_set_irq_type(ep->perst_irq,
-+			 (perst ? IRQF_TRIGGER_HIGH : IRQF_TRIGGER_LOW));
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int rockchip_pcie_ep_setup_irq(struct pci_epc *epc)
-+{
-+	struct rockchip_pcie_ep *ep = epc_get_drvdata(epc);
-+	struct rockchip_pcie *rockchip = &ep->rockchip;
-+	struct device *dev = rockchip->dev;
-+	int ret;
-+
-+	if (!rockchip->perst_gpio)
-+		return 0;
-+
-+	/* PCIe reset interrupt */
-+	ep->perst_irq = gpiod_to_irq(rockchip->perst_gpio);
-+	if (ep->perst_irq < 0) {
-+		dev_err(dev, "No corresponding IRQ for PERST GPIO\n");
-+		return ep->perst_irq;
-+	}
-+
-+	/*
-+	 * The perst_gpio is active low, so when it is inactive on start, it
-+	 * is high and will trigger the perst_irq handler. So treat this initial
-+	 * IRQ as a dummy one by faking the host asserting #PERST.
-+	 */
-+	ep->perst_asserted = true;
-+	irq_set_status_flags(ep->perst_irq, IRQ_NOAUTOEN);
-+	ret = devm_request_threaded_irq(dev, ep->perst_irq, NULL,
-+					rockchip_pcie_ep_perst_irq_thread,
-+					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
-+					"pcie-ep-perst", epc);
-+	if (ret) {
-+		dev_err(dev, "Request PERST GPIO IRQ failed %d\n", ret);
-+		return ret;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct pci_epc_features rockchip_pcie_epc_features = {
- 	.linkup_notifier = true,
- 	.msi_capable = true,
-@@ -749,11 +863,17 @@ static int rockchip_pcie_ep_probe(struct platform_device *pdev)
- 
- 	pci_epc_init_notify(epc);
- 
-+	err = rockchip_pcie_ep_setup_irq(epc);
-+	if (err < 0)
-+		goto err_uninit_port;
-+
- 	return 0;
--err_exit_ob_mem:
--	rockchip_pcie_ep_exit_ob_mem(ep);
-+err_uninit_port:
-+	rockchip_pcie_deinit_phys(rockchip);
- err_disable_clocks:
- 	rockchip_pcie_disable_clocks(rockchip);
-+err_exit_ob_mem:
-+	rockchip_pcie_ep_exit_ob_mem(ep);
- 	return err;
- }
- 
-diff --git a/drivers/pci/controller/pcie-rockchip-host.c b/drivers/pci/controller/pcie-rockchip-host.c
-index cbec71114825..7471d9fd18bc 100644
---- a/drivers/pci/controller/pcie-rockchip-host.c
-+++ b/drivers/pci/controller/pcie-rockchip-host.c
-@@ -294,7 +294,7 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
- 	int err, i = MAX_LANE_NUM;
- 	u32 status;
- 
--	gpiod_set_value_cansleep(rockchip->ep_gpio, 0);
-+	gpiod_set_value_cansleep(rockchip->perst_gpio, 0);
- 
- 	err = rockchip_pcie_init_port(rockchip);
- 	if (err)
-@@ -323,7 +323,7 @@ static int rockchip_pcie_host_init_port(struct rockchip_pcie *rockchip)
- 			    PCIE_CLIENT_CONFIG);
- 
- 	msleep(PCIE_T_PVPERL_MS);
--	gpiod_set_value_cansleep(rockchip->ep_gpio, 1);
-+	gpiod_set_value_cansleep(rockchip->perst_gpio, 1);
- 
- 	msleep(PCIE_T_RRS_READY_MS);
- 
-diff --git a/drivers/pci/controller/pcie-rockchip.c b/drivers/pci/controller/pcie-rockchip.c
-index 154e78819e6e..51eb60fc72a2 100644
---- a/drivers/pci/controller/pcie-rockchip.c
-+++ b/drivers/pci/controller/pcie-rockchip.c
-@@ -119,13 +119,15 @@ int rockchip_pcie_parse_dt(struct rockchip_pcie *rockchip)
- 		return PTR_ERR(rockchip->aclk_rst);
- 	}
- 
--	if (rockchip->is_rc) {
--		rockchip->ep_gpio = devm_gpiod_get_optional(dev, "ep",
--							    GPIOD_OUT_LOW);
--		if (IS_ERR(rockchip->ep_gpio))
--			return dev_err_probe(dev, PTR_ERR(rockchip->ep_gpio),
--					     "failed to get ep GPIO\n");
--	}
-+	if (rockchip->is_rc)
-+		rockchip->perst_gpio = devm_gpiod_get_optional(dev, "ep",
-+							       GPIOD_OUT_LOW);
-+	else
-+		rockchip->perst_gpio = devm_gpiod_get_optional(dev, "reset",
-+							       GPIOD_IN);
-+	if (IS_ERR(rockchip->perst_gpio))
-+		return dev_err_probe(dev, PTR_ERR(rockchip->perst_gpio),
-+				     "failed to get #PERST GPIO\n");
- 
- 	rockchip->aclk_pcie = devm_clk_get(dev, "aclk");
- 	if (IS_ERR(rockchip->aclk_pcie)) {
-diff --git a/drivers/pci/controller/pcie-rockchip.h b/drivers/pci/controller/pcie-rockchip.h
-index 24796176f658..a51b087ce878 100644
---- a/drivers/pci/controller/pcie-rockchip.h
-+++ b/drivers/pci/controller/pcie-rockchip.h
-@@ -329,7 +329,7 @@ struct rockchip_pcie {
- 	struct	regulator *vpcie3v3; /* 3.3V power supply */
- 	struct	regulator *vpcie1v8; /* 1.8V power supply */
- 	struct	regulator *vpcie0v9; /* 0.9V power supply */
--	struct	gpio_desc *ep_gpio;
-+	struct	gpio_desc *perst_gpio;
- 	u32	lanes;
- 	u8      lanes_map;
- 	int	link_gen;
--- 
-2.47.0
+                          -------------------------------------------------=
+-------------------
+32bit (packet_size =3D 2) - |20 bit conversion| OR/UR | 3 bit chan_id | 4 b=
+it softspan | 0s... |
+			  --------------------------------------------------------------------
 
+- Oversampling Packet Formats
+
+			  -------------------
+20bit (packet_size =3D 0) - |20 bit conversion|
+			  -------------------
+
+                          --------------------
+24bit (packet_size =3D 1) - |24 bit conversion |
+			  --------------------
+
+                          -------------------------------------------------=
+-----------
+32bit (packet_size =3D 2) - |24 bit conversion| OR/UR | 3 bit chan_id | 4 b=
+it softspan |
+			  ------------------------------------------------------------
+
+> Eventually it looks like we may have to figure out a solution to describe
+> metadata packed alongside the channel readings but that may take a while
+> and I don't want to stall this driver on that discussion.
+>=20
+
+There's something still not fully clear to me. So, oversampling would be ea=
+sy to
+deal with (for arguing about some packet size). OR/UR is the more tricky ca=
+se
+because of having metadata. But I'm trying to understand on how it could lo=
+ok
+because we still need a way to enable/disable OR/UR.=C2=A0
+
+Do you have in mind to have a form of metadata description in 'struct
+iio_scan_types' plus additional IIO_METADATA channels to enable/disable tho=
+se
+bits? For this usecase and as OR/UR actually depends on the packet format w=
+e
+could flip things with something like in_metadataX_enable and then argue ab=
+out
+the packet size settings.
+
+But things get messier if we look closer to the packets as we can see that =
+for
+non oversampled samples, the softspan info is optional. Now, I'm not convin=
+ced
+about that information being useful in the sample as we already have the sc=
+ale
+attribute and I'm not expecting people to change it during buffering... But=
+ for
+the fun of things, how could we handle it if we cared (or if we actually ca=
+re)
+about it? Custom ABI like in_metadataX_scan_enable?
+
+Other thing that came to mind and that might be a sneaky way of bypassing t=
+he
+metadata stuff (for now) is to use events. AFAIU, we have status registers =
+were
+we can check the OR/UR and push those as normal events. But we would need t=
+o
+rely on an external trigger as hrtimer or something like that. So we could =
+have
+this "slowpath" for checking the channel status but still use the events AB=
+I
+(and this is the sneaky part) to argue about the packet_size and whether or=
+ not
+that info will be available in the sample through DMA. Not sure if it's wor=
+th it
+though...
+
+- Nuno S=C3=A1
 
