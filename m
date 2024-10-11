@@ -1,150 +1,119 @@
-Return-Path: <devicetree+bounces-110291-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E81C999FB2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:03:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87D61999FB5
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:04:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30CA4288A20
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:03:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F8191F21B29
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54AB720C46F;
-	Fri, 11 Oct 2024 09:03:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4525420C480;
+	Fri, 11 Oct 2024 09:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="3R75dh2+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UjlKepA4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8B20ADE4;
-	Fri, 11 Oct 2024 09:03:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8678D20C46D
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 09:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728637415; cv=none; b=X2BowGoxjACNfPmHbYiRjLnK+dkpQg6LScClY8BR6WZnHyPhiGL0Ku2hYlt6V7fXRdZGW6SLE83aGkZblFCwihnRTRRqbR+/ZNUPyan58gtOREEY+zSsCmotrjzF++p5XhvqmN5hbsbssksqGut1jkxVeb7puwVpXZQp0NqPrp8=
+	t=1728637442; cv=none; b=oSoFdqBUImOkH21hmql76P4hI3GmxvACXB008oWODPmvxFwaDVtiHJoOE38KqLXtfUAezspDYMolkIjLwx4yvFgrdDULU1f4NB9VgfLog/CKU2B9mE37RDbPgf56Y6/zeiLTDw7QCJldZVWpXDIzgdrBowuQHVlJufcoZp25Nls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728637415; c=relaxed/simple;
-	bh=Ha/AF5v+viIStrFAcTTJyf/v+jRRHbq4Sk/R278Ki44=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iDVyz5xrYKlHH0+sJ4Lkkd1U2krriH3xBQX30SDY1PPFrp3hf9VGS6UCno3+yn1OqNmK1qrMgqsIcupuAjyL3hxnTVdMLpN5yqxVhrAa4Du7mtp9V8OOnocqY4w5dWqjq4IW3f7xcCgArIpWnU4nDH6EOQBdyWjNY2pzKgwqU7c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=3R75dh2+; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B82WQq014668;
-	Fri, 11 Oct 2024 11:03:11 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	W32014r5y3QWUubB7ejNQ9RucL4lQCYgXfxr9DFI93s=; b=3R75dh2+n959fKbq
-	+QQvxFOLciVR6SRNVBS4EZ3HqkbkSd6f5qRqAkI/AE2cAf6VyTPtc/OSY1MWLYXX
-	CnLrDrcQQVEAiuAoZkOdkvDZnoVv0maRtUVEVZtqWOfICN0N3hqEL9QuC9RYl4af
-	L1xZM67augvNz2FbiPvUSf5xZBMAh22MxQ9LmVF71WosnwRyJo/xoCsxQegEDfWN
-	gYkt+9cc4qMRlqvEdmfVRWsZi0SLkY1vziFKBt9a2f42sbNE3MBeA3jeQaGebyod
-	Ng+KlZQxLGq3bDQTempsZgwiVnb4KCIs+Fv+k+FNaAGEEU5FsMKkfHBEpmCbGUG+
-	Enm9ug==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 425w9xgt74-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 11:03:11 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 93C594004B;
-	Fri, 11 Oct 2024 11:02:13 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD55626D0AD;
-	Fri, 11 Oct 2024 11:01:33 +0200 (CEST)
-Received: from [10.48.87.35] (10.48.87.35) by SHFDAG1NODE3.st.com
- (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 11 Oct
- 2024 11:01:33 +0200
-Message-ID: <3b7b46ca-426c-44a9-b4f2-ce104e0d3b1c@foss.st.com>
-Date: Fri, 11 Oct 2024 11:01:32 +0200
+	s=arc-20240116; t=1728637442; c=relaxed/simple;
+	bh=8d4yjmVwCnaXxPXrZ2Bik8WHksaHIVN+6JB2kOkIujY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=f0kRlsVpqb3onCHEudRk43YN7/JRb8LV3BkrFZwXvtedFBXx4fjT4Sf9ymjuW3BbPxJa5Oy9nEfgt9LoyK+t7eu/foDnRWlDlnGfa2CMoy+Z4GFzkvheTJj/1/gG2zN+ENBuCl3kjP80ivGN4/hxl8SyW1iYLWzeJICi0lBuDoE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UjlKepA4; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2facaa16826so16354811fa.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 02:04:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728637439; x=1729242239; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8d4yjmVwCnaXxPXrZ2Bik8WHksaHIVN+6JB2kOkIujY=;
+        b=UjlKepA4hAD++SNdy4LOvTtOw5ntAamFNtOgJrl7dvwC8IUPOa7K/0XYwrqZLD31ru
+         4FHGjztNtOMH2pb/w3YjJ3ikFns0urYSNzSahMYApTk0E7HQVGG/Maz1ccLZTYOAdZEJ
+         wRxypVtkF30WHz4P7W9FdDRG2/gGZN/8j5TXxip8iAYo+SnIxf8xguNAJJ/S6El28LrX
+         SuUv5Bwt9sIvdScFo4EIhNU4Qvhfgxk9/9PSe8irDOFwlPNV+MEpIaAk9aq+xIJYKaRm
+         eEhF16Un5/CcK3UIixNmVn33BhtnM9CBj4/CpzdUPA9hiIwdFHpTC/pTG3GiIK2C+BQg
+         qIQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728637439; x=1729242239;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8d4yjmVwCnaXxPXrZ2Bik8WHksaHIVN+6JB2kOkIujY=;
+        b=kGuqL3YYhZS5tNZrsb697SIbC3MWqmQqbeApOkKSBDzyyC15JarF/tq4YqRsg60rLP
+         GiNmcUtorcJyHseIuqTg+dRJ0QCpZiXCThQrwfWxj7lQAZRmuVnj+wtk8w13DANSfXvm
+         ONwsF336/mIYym4lnfZYahAhPSLVSRbCem1P+xdqrBj43S4q7QcDwwWmYMRnsTXmNyij
+         xSKwI0b1H60n6JTh8ZN+Bem/Y1fHV5V7Av8bxOuNJY+mmHXaPnzyJxylsl2dhJ3hSRD6
+         2g4qu6p0D3MWHQT1npdwhN9MR/1OMhtuS8Jskce12a3FaRMdMN2kHiESwtbbfoyxePVw
+         R2ow==
+X-Forwarded-Encrypted: i=1; AJvYcCUViqgbLtg8URG9zL+Poi7nQIs7bmmU24w6Wjnrjg0UjZ2ltcxQAs07m6OvjezIcVnSj1gtRYmxWXW0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyGyl5Hav9/9oaAOsPj3QswXPRG4V2QNE/tRdnn+dML9YJHasej
+	w2RvrGkZtq1gtpiIuU0NT3XoTkGHTUOEYXvk5DTuVBo6m9x92sOzf8eEnapRvyIT9YlqWRg4byN
+	VbgDzjv+MGbKBD7ODrNS0UYeVLFewETBL2kCVgw==
+X-Google-Smtp-Source: AGHT+IE5OeNgFUzqHYTpHS7727BD0udgza39pHKdVWlcHOHz9ZIbGL1mxOhjbFQg5l0MRwkHUObjvdE6hjbd88hX09I=
+X-Received: by 2002:a2e:f1a:0:b0:2fb:3a92:d1a7 with SMTP id
+ 38308e7fff4ca-2fb3a92d591mr3422661fa.33.1728637438600; Fri, 11 Oct 2024
+ 02:03:58 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 04/11] dt-bindings: dma: stm32-dma3: prevent linked-list
- refactoring
-To: Rob Herring <robh@kernel.org>
-CC: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <dmaengine@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20241010-dma3-mp25-updates-v1-0-adf0633981ea@foss.st.com>
- <20241010-dma3-mp25-updates-v1-4-adf0633981ea@foss.st.com>
- <20241010181426.GA2107926-robh@kernel.org>
-Content-Language: en-US
-From: Amelie Delaunay <amelie.delaunay@foss.st.com>
-In-Reply-To: <20241010181426.GA2107926-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
- (10.75.129.71)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+References: <cover.1728300189.git.andrea.porta@suse.com> <199a4994312b120c73c95fa368954ad5a2a8aee6.1728300190.git.andrea.porta@suse.com>
+In-Reply-To: <199a4994312b120c73c95fa368954ad5a2a8aee6.1728300190.git.andrea.porta@suse.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Fri, 11 Oct 2024 11:03:47 +0200
+Message-ID: <CACRpkdb1muovPmKoUw=Q5sNXj3bsCt84LcKVDSLY09_5_1rXZQ@mail.gmail.com>
+Subject: Re: [PATCH v2 09/14] pinctrl: rp1: Implement RaspberryPi RP1 gpio support
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Florian Fainelli <florian.fainelli@broadcom.com>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>, Derek Kiernan <derek.kiernan@amd.com>, 
+	Dragan Cvetic <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Saravana Kannan <saravanak@google.com>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-rpi-kernel@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, Masahiro Yamada <masahiroy@kernel.org>, 
+	Stefan Wahren <wahrenst@gmx.net>, Herve Codina <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 10/10/24 20:14, Rob Herring wrote:
-> On Thu, Oct 10, 2024 at 04:27:54PM +0200, Amelie Delaunay wrote:
->> stm32-dma3 driver refactors the linked-list in order to address the memory
->> with the highest possible data width.
->> It means that it can introduce up to 2 linked-list items. One with a
->> transfer length multiple of channel maximum burst length and so with the
->> highest possible data width. And an extra one with the latest bytes, with
->> lower data width.
->> Some devices (e.g. FMC ECC) don't support having several transfers instead
->> of only one.
->> So add the possibility to prevent linked-list refactoring, by setting bit
->> 17 of the 'DMA transfer requirements' bit mask.
->>
->> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
->> ---
->>   Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml | 3 +++
->>   1 file changed, 3 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
->> index 5484848735f8ac3d2050104bbab1d986e82ba6a7..38c30271f732e0c8da48199a224a88bb647eeca7 100644
->> --- a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
->> +++ b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
->> @@ -99,6 +99,9 @@ properties:
->>           -bit 16: Prevent packing/unpacking mode
->>             0x0: pack/unpack enabled when source data width/burst != destination data width/burst
->>             0x1: memory data width/burst forced to peripheral data width/burst to prevent pack/unpack
->> +        -bit 17: Prevent linked-list refactoring
->> +          0x0: don't prevent driver to refactor the linked-list for optimal performance
->> +          0x1: prevent driver to refactor the linked-list, despite not optimal performance
-> 
-> Driver settings don't belong in DT. Perhaps reword it in terms of h/w
-> constraints (i.e. single transfer limitation).
-> 
+On Mon, Oct 7, 2024 at 2:39=E2=80=AFPM Andrea della Porta <andrea.porta@sus=
+e.com> wrote:
 
-Thanks for the review and suggestion. I'll reword it in V2. Indeed, it 
-is due to single transfer limitation, e.g. for ECC status registers 
-transfer.
+> The RP1 is an MFD supporting a gpio controller and /pinmux/pinctrl.
+> Add minimum support for the gpio only portion. The driver is in
+> pinctrl folder since upcoming patches will add the pinmux/pinctrl
+> support where the gpio part can be seen as an addition.
+>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
--bit 17: Prevent additional transfers due to linked-list refactoring
-   0x0: don't prevent additional transfers for optimal performance
-   0x1: prevent additional transfers to accommodate user constraints 
-such as single transfer
+This is a nice driver and I find no issues with it, what causes
+an issue is gpiochip_set_names() as pointed out by Bartosz.
+If you can live without the names you can remove that part for
+now and we can merge the driver, then you can add the names
+later when we sorted out how to share that function.
 
-
-Regards,
-Amelie
-
->>   
->>   required:
->>     - compatible
->>
->> -- 
->> 2.25.1
->>
+Yours,
+Linus Walleij
 
