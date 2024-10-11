@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-110549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5B8599AF42
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 01:20:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19B9899AF40
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 01:20:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86DCE283B2C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 23:20:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCF4D283C03
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 23:20:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD6CB1E490B;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4163A1E2841;
 	Fri, 11 Oct 2024 23:20:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="YVZQ8UqY"
+	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="bc4Uy37e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D7451D12F0
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 23:20:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D6391D14F0
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 23:20:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728688825; cv=none; b=pf2EWEBc41LXGILq2dWsMhNGWzp53GaC78yN6gKAg8dTB6lB1GqR0JlXqTMea5+TyJ5DRRB6eUScmR0yunVEJyRgHS3ZZAdQAnLaURO27GPhRuj1Dsdx1NoD3xtW4ndPqtXE4s4DLhWkawDw4hwdY8CpJAvQrVv38kHCbdyi9dY=
+	t=1728688825; cv=none; b=oK5K1APNQ8gfgGpFdxkDMby+ZXfgaBpP7YvskNHFcHxKjG3acpwyTchbtGLJmRXTmrykXEZloC1ZC35VRje/HFdhSiKXXaJWElO+oNqlwxFH2D7yl2HbngxRZPNzW/DdJXJzr3pmPLmkPqsbqXw/MOgcrblpIUxkYIu4Tl3tayk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1728688825; c=relaxed/simple;
-	bh=N9nDXoTGhNDbp9x4MKIIxmkPH7u9rknjdJ489yrHSSI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cmAVlomnrZZOmTFut/BtyPkUjTCeP7DAn/eG0/HuEXpTs9TrxXLqBvEEnJww//AGCnY3uP5xFjOLkPAxvlVfSE3Ky+MhczNUawK+5i/6LypB2DL+CuNRsKMZd4yKQNjIEaGXDRJH7C9BzqwKVRGWafNUd31p88PSv0/JKLrpBU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=YVZQ8UqY; arc=none smtp.client-ip=209.85.160.180
+	bh=nDNDo7ALv+O3cxUau8Fj+PX+xIMtyBWTHRXfMjz46/M=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=Jn1I1wZQEJzv1QFIyUOxf+gi+7yUN4pl22r2q3HgqBpwhF1pkCXnXVZe5nZmGYqH6zrezVHjyhZF5vhOyKXWCIQHJ2hxokiJyUwiec8AK1WrU8GCNPyEv/wSHMrWRcN7cI56b5OeI1caas8YmFcrldqdknu/M0+SGgdvw0LS9xY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=bc4Uy37e; arc=none smtp.client-ip=209.85.222.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-4603d3e4552so25366661cf.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 16:20:22 -0700 (PDT)
+Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-7b120428a3cso34191185a.3
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 16:20:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1728688821; x=1729293621; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=mAh+zbWt6KyD1XQvhob2WxW+jNwJ1pd4ci6zFtaf4q8=;
-        b=YVZQ8UqY29WM06EwSMe2DKIsy1dCsUFwf/+/wBWUj5x7sylXbYtkFuAI23Okr4JrI3
-         3Ffff92C0R5HNV7eupf33SovFEa9WOqUA8svB/i82a13lCo/Jy8mu5FIfak8lDEp13cA
-         mEWbw/UrDNm30+xXx5b4Km9eEaTAbu1701Bn3hDZIrIagUThg//gGle9lwe5CrOXV13o
-         r1BA6sGGep5ftp18hsr9sW+7eyQC+ED2rWrVX649E++5tCoHlSDp0U6GT4UhW+6/OF0F
-         ryKeI6prqsKZJdEuz+OkPFkd8x8SB7MTbi5ot3CykUwqnY4W1z6jXzd6EmHn7EJdPGKd
-         jfzQ==
+        d=marek.ca; s=google; t=1728688822; x=1729293622; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=AduvL8sRkCTgfrWSsu7rKhjd0f6vDDJasPZpnT/qEYQ=;
+        b=bc4Uy37eU+yFaQyNBGmAEw/avs7Q/VVscCax3yO4kzspawxhHSj41mf7dXyQ/NqncQ
+         249Kt4Z7Co010gdTpFKh5ffAa5P7H99z4rNTc13KQLYhyR8IUxey9+bKS7b6qd3XuzOd
+         qwLzlEgTp17BjX0vW9U93axNcfwUGYgus5rbH054QWcijpcEmr0jHl6n1j43V0a4Wyja
+         82d9h4XhtGkyVh5o5Qgf7TY+cuJZl0haNzvbXMppOIE0a9br3rJp4SzMrsY658N67piP
+         i3oz2HLCmzu81rdnXbjKATx1DGlABConyu6+FMBWQ3DrwrDKF+mWK7Fj/J/E3hoKQ0rP
+         x3BA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728688821; x=1729293621;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mAh+zbWt6KyD1XQvhob2WxW+jNwJ1pd4ci6zFtaf4q8=;
-        b=vl8fvWQzs6BgjKXCMVqGDPRVCjmCt+l+Up6qkXwIwks+e1BAefj06a2Ulj/upfmWrN
-         Gf7eyE9Iai3/G7JhKfPIDN0D0Fqf4MhJjwYZqbsrkv2uQTDskqyFquOs2F3ZvisxComt
-         CU5ozq58+kb3d/qHvau6DPB+c8hnRFyaAdcAajjNWcK70hcEsocp9CI97CKvJrBCVXhv
-         mOPQH7WZqj7N1dSFXiTTfLZk0XhDMrSpvKOH6wz8s31bSm/xyvqYIW7TkEd2jAT6rbRL
-         0gt7wDJTO0rDifKluidCnHiCPGucOdDaJMFbMwg+4iRXx3pkL/V3c48F3UAHpVwr1QBa
-         +DZA==
-X-Forwarded-Encrypted: i=1; AJvYcCXvPCR8z6VLkjQNSpS5un/N2f/vJIbn9Tz0e9LTqmhX6H9XeFIiPJENl2ff3XyXB6ZO9Snx7z9wN0YQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywc5dWn3Jc/H5qG2suiEWpkXc9pJcoD5HgA8XLWa3q2CxJLsfhH
-	JG7J3DWqA+mtvLq8RIcRtdgGXRpZ8JJvNib6bR0/cE+yV9/pDD30iZXEasVi+Qw=
-X-Google-Smtp-Source: AGHT+IEtCnEYlF69zuVjVFKwIZFEx8PnBR19MdQGWN4MFFkom5KeV6aUsF+uwV1sjfm7ynb6WreqRA==
-X-Received: by 2002:a05:622a:53c4:b0:45c:a9fa:cbfe with SMTP id d75a77b69052e-46058444fb1mr23670861cf.27.1728688821143;
-        Fri, 11 Oct 2024 16:20:21 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728688822; x=1729293622;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AduvL8sRkCTgfrWSsu7rKhjd0f6vDDJasPZpnT/qEYQ=;
+        b=sBwN9Z4/UDYMM+AW5Ztt6qX2XD0rThAfTt8wBsZfpDRDxregaPBbGF3Hfm6nXz573K
+         jXBq/f5sCBMT60rmXyEFKK1GfOEe9J4zxZK2IihrGWkbsa17FIzy33nngVYCwrbaMoTN
+         TCZqY1DNNgpNIfbXeoHFvU3R49j10wjOahmO1hp9fso3rd8X4HBwQ0xaXfEKoxkJeP0k
+         /OZ4qPYcim0xHbSccw6WZwE2rVNNQ9NrkGYcx6vB8JnoPb1b4rinH6CHdzzSmUx6Vs58
+         6Y9QBquk7h9+ztORZ9CLQbSKkHntHq+XIkGNFtFgbK9QS1f6TZ0oSHjUi9rEtofYgKkz
+         NzOg==
+X-Forwarded-Encrypted: i=1; AJvYcCXjb0b4N9k6RmDW0izcKZGCKbSZ6Xn8JV2JZUkFp166xELn1TIfwnLXll3nXZJ30rG1iFeCTLfdvD/j@vger.kernel.org
+X-Gm-Message-State: AOJu0YzHO2Tmjk/N7NFl1sRI8GmW0e19Um6A7P/d3rTcqgF10Y1E2oYv
+	zO8pP5Onr7oLbAwSNxNvz8XO+m9adlzf5uKfvyLl3AFxNDDjg8Ae2nEJ+CpfpVM=
+X-Google-Smtp-Source: AGHT+IHERRNksDcH4woDGxy6Xo1Vuyyg8Mbm887V41NlviKjtKHNlpNjAXx0lyE4C/9XGCG4TpjpNw==
+X-Received: by 2002:a05:620a:3f85:b0:7ae:2f04:bf9c with SMTP id af79cd13be357-7b11a35f56dmr600500385a.18.1728688822487;
+        Fri, 11 Oct 2024 16:20:22 -0700 (PDT)
 Received: from localhost.localdomain (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b11c0a8902sm89949785a.31.2024.10.11.16.20.20
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b11c0a8902sm89949785a.31.2024.10.11.16.20.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 16:20:20 -0700 (PDT)
+        Fri, 11 Oct 2024 16:20:22 -0700 (PDT)
 From: Jonathan Marek <jonathan@marek.ca>
 To: linux-arm-msm@vger.kernel.org
 Cc: Bjorn Andersson <andersson@kernel.org>,
@@ -74,10 +76,12 @@ Cc: Bjorn Andersson <andersson@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
 	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 1/3] arm64: dts: qcom: x1e80100: enable OTG on USB-C controllers
-Date: Fri, 11 Oct 2024 19:16:21 -0400
-Message-ID: <20241011231624.30628-1-jonathan@marek.ca>
+Subject: [PATCH v2 2/3] arm64: dts: qcom: x1e80100-crd: enable otg on usb ports
+Date: Fri, 11 Oct 2024 19:16:22 -0400
+Message-ID: <20241011231624.30628-2-jonathan@marek.ca>
 X-Mailer: git-send-email 2.45.1
+In-Reply-To: <20241011231624.30628-1-jonathan@marek.ca>
+References: <20241011231624.30628-1-jonathan@marek.ca>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,45 +90,51 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-These 3 controllers support OTG and the driver requires the usb-role-switch
-property to enable OTG. Add the property to enable OTG by default.
+The 3 USB ports on x1e80100-crd are OTG-capable, remove the dr_mode
+override to enable OTG.
 
 Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 ---
- arch/arm64/boot/dts/qcom/x1e80100.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+ arch/arm64/boot/dts/qcom/x1e80100-crd.dts | 12 ------------
+ 1 file changed, 12 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-index 7778e17fb2610..fb16047d803c9 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-@@ -4199,6 +4199,8 @@ usb_1_ss2_dwc3: usb@a000000 {
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+index eb6b735c41453..bc66f4713b231 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
++++ b/arch/arm64/boot/dts/qcom/x1e80100-crd.dts
+@@ -1568,10 +1568,6 @@ &usb_1_ss0 {
+ 	status = "okay";
+ };
  
- 				dma-coherent;
+-&usb_1_ss0_dwc3 {
+-	dr_mode = "host";
+-};
+-
+ &usb_1_ss0_dwc3_hs {
+ 	remote-endpoint = <&pmic_glink_ss0_hs_in>;
+ };
+@@ -1600,10 +1596,6 @@ &usb_1_ss1 {
+ 	status = "okay";
+ };
  
-+				usb-role-switch;
-+
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -4452,6 +4454,8 @@ usb_1_ss0_dwc3: usb@a600000 {
+-&usb_1_ss1_dwc3 {
+-	dr_mode = "host";
+-};
+-
+ &usb_1_ss1_dwc3_hs {
+ 	remote-endpoint = <&pmic_glink_ss1_hs_in>;
+ };
+@@ -1632,10 +1624,6 @@ &usb_1_ss2 {
+ 	status = "okay";
+ };
  
- 				dma-coherent;
- 
-+				usb-role-switch;
-+
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
-@@ -4550,6 +4554,8 @@ usb_1_ss1_dwc3: usb@a800000 {
- 
- 				dma-coherent;
- 
-+				usb-role-switch;
-+
- 				ports {
- 					#address-cells = <1>;
- 					#size-cells = <0>;
+-&usb_1_ss2_dwc3 {
+-	dr_mode = "host";
+-};
+-
+ &usb_1_ss2_dwc3_hs {
+ 	remote-endpoint = <&pmic_glink_ss2_hs_in>;
+ };
 -- 
 2.45.1
 
