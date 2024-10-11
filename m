@@ -1,114 +1,189 @@
-Return-Path: <devicetree+bounces-110257-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40C96999D5D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:03:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 478AA999D7B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:09:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E914E1F22ED9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 07:03:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B580F28615C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 07:09:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C0C419F121;
-	Fri, 11 Oct 2024 07:03:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17D70208993;
+	Fri, 11 Oct 2024 07:09:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FQFqUwA3"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VgIJNAdZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A74A3BA2D
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 07:03:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 739E71CDFD9;
+	Fri, 11 Oct 2024 07:09:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728630211; cv=none; b=hgnvn/189W2rpWVLloqoz5tHo0SyM+rhsh+aZEudvjVg374lyg+oPHduqk1cWOzOoSNpnmNqKU6ldEcv6tddqMSLgfKPfDKUg5BuLGmq/KuJE6TJrj796vNCsGW8MlFhAoKvumkcRNJbTmtSRyUW5gUUYpyPle5ZR463V4v3h10=
+	t=1728630562; cv=none; b=J0nqIh+Tb6Qho0UmPHOs9gDEWw4tJRo64ZpGNKOxKu5/FpoKP08LnnBBVZEATeMW+NcnDiir0UF+5FA19JdMattIcFLTJe48kjO19gBDrtzKlnEkvdCw7+C0KsoyhEj6uRqZxHUaD+zt7BvWbUiLCQX/uOETjoVlCkTka07erm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728630211; c=relaxed/simple;
-	bh=cUYKvKXx3YacZEKlsfNYw4eUSZHyuCNL6LqQD01H25g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AkPXzkIy8ZnMBiZaJ+nfiQjx5F005J6Du/D5zUMSJPmODw9bwHG/3bEGgcUdEndsKhkmlB635OaIpF5m6l8l+9BBMV+wrQ4sZUzzCKvME62d4Dn/cdLV9pF3UWGdAKPpDVjsLEN9SaBSlDWkF+/0EnZypiC5Pq2FPbpQrxBwzOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FQFqUwA3; arc=none smtp.client-ip=209.85.208.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2fac3f1287bso17465201fa.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 00:03:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728630208; x=1729235008; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cUYKvKXx3YacZEKlsfNYw4eUSZHyuCNL6LqQD01H25g=;
-        b=FQFqUwA34iNrCv9+khaqvOZzGT+ODv2idH2ymcqqq4bwDEIVIdVVY4O0bXOuYtc87t
-         wtxoG42/arOMDupfqoxw6kRbNIvfqaPI3sjWfzpdFo0gycRx825DsoN2jwWeDtPZaalO
-         YuZamQ/t+Fu3iS3UbLuX/EQhahtdYU08JCdvnixthqXM/ouEYsRndqrmP8JvDQExrwcU
-         EL1bh6jLiybHAW3Br69yT6ILJL3PTbmmwWQGqXfXiM0Ze+g3nbroqd6nYZqtGhV4u1F/
-         7DsFgM4wrjjZ2CGEZgzoQAMiHPvRypID2ApO3t/nb2Ca3BACMG6M+ilD8QwGNNX340d5
-         FFtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728630208; x=1729235008;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cUYKvKXx3YacZEKlsfNYw4eUSZHyuCNL6LqQD01H25g=;
-        b=H14Bc26CjtkSgjTD4chLpnJRTR+P1wahaSE+p7natQ08KVS7QNlFimnoMFzyqqKh2y
-         SWXcnMqRt+LzCtAcc467SmQpTLsnGZZM+zoFYJZq7dURzMxtOeTzXBZJwljcBVx9moc6
-         fVmifrPPqY2n06j58j5f6ZQSB6Ruij2GqOaEFe1D3GRVDgLoW+3NcWsrhJgUKd54TxNA
-         5NQQneo0mdP7ZdW1136Rwdyi08z56YytCJksjMBtJr+DF4wn0ISZmlnNxMjAsj4dq4Ze
-         E/s6q4AQDsbj4evDqSy3Z4Edbhl+Uen+43Yhl0EtcS31TYzKDM2C2DEvi/Ghg7cym6VT
-         ZsjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV8vJkeZeXXHkkYcPdYP/yQODNlHJNm7eZ0Y/zpGLWU7052sfTUlU2GwJPzWcCTE+1LivLhx/8OFIPZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YztD9/DFT2XgTGCSYZOqh7+Ze4pklaKtKufmVOUyhtWJ4/YU4Ls
-	YijN58cqgo1P8ieFhPi4N4+/If3jjDeLHzDraaUCPZPoZvA7mgqid9R0nnVzddWj3OL32d76K8s
-	Jf4GggPoYYkt8q99UeQaMC71Om6cBuZKUg4VGlQ==
-X-Google-Smtp-Source: AGHT+IEMLmWgU40XaEz7cg2fJjnrrvSFsX+Ixe67yUNnaZpe60YgcllCtweYxA726xWakmCHrvQLlc71P3K6O6pyHVY=
-X-Received: by 2002:a2e:4e11:0:b0:2fa:d4c1:3b71 with SMTP id
- 38308e7fff4ca-2fb3272a9a1mr5139231fa.19.1728630207670; Fri, 11 Oct 2024
- 00:03:27 -0700 (PDT)
+	s=arc-20240116; t=1728630562; c=relaxed/simple;
+	bh=VrPtVv5FlCUskE9B1vvUk/ASInsexebhl7HGm16yv7o=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n1uHz/kMKoVh1detgMWHIRQoGSGZWsJvwdwa2StFBrepR8BP7qOQT4N6xBr6uBiqBwx6r8cosAC6BV1EdFKjEkWcNe7qAM68Mk8vGle8Bns/cyy2IZWxSXS8RGfW0BNHTQonKV+qGaTLG8t47gS07J5mh1GF9Q5KeUwUWFH3j9o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VgIJNAdZ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B179Yp020093;
+	Fri, 11 Oct 2024 07:09:16 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=hv9LlgEFyhdrxyjodnLdh+xm
+	Zed4tH4L1a+qmH7of0A=; b=VgIJNAdZTEs0/Yju4jN+B7ygb3cUzle13pOnZG9d
+	N2oMsn7hY4y0Df2MWfZR/zwa1ZriPEY/hNJnSDCkysnBO4s9p4iev9WYcBJIUm0X
+	BY5EoQUNxR0tnhKB+fVkKbfi0/+7R6ZpyIHfyHuUwlZA6DTNSevVVA3hGkJTef91
+	B4zyxxJmHrESvxudDpHgpeL2/pNdsm/h5BY2ZyXWWwj63lC+LzIIHOHpIXmkJNK0
+	PLjYRDTANSYYF7lb5GWE72ZHE5zwALn5PXC8ng9mxK8XSrPKZdA3fuB2uzJgFbeG
+	7rCz2PGMDYaQTah7T3fqyvJcoaJzjQCqh4Ycvjd9FWu3ig==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426db7jr73-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 07:09:16 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B79FrM032452
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 07:09:15 GMT
+Received: from hu-shashim-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 11 Oct 2024 00:09:10 -0700
+Date: Fri, 11 Oct 2024 12:39:07 +0530
+From: Shiraz Hashim <quic_shashim@quicinc.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: <neil.armstrong@linaro.org>, Mukesh Ojha <quic_mojha@quicinc.com>,
+        "Bjorn
+ Andersson" <andersson@kernel.org>,
+        Mathieu Poirier
+	<mathieu.poirier@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Bartosz Golaszewski
+	<bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] remoteproc: qcom: Enable map/unmap and SHM bridge
+ support
+Message-ID: <20241011070907.GK1421305@hu-shashim-hyd.qualcomm.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-7-quic_mojha@quicinc.com>
+ <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
+ <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
+ <ZwTPghV36CSIpkE4@hu-mojha-hyd.qualcomm.com>
+ <dfe46653-5243-47c8-8de9-17a38d13da53@linaro.org>
+ <20241011050518.GJ1421305@hu-shashim-hyd.qualcomm.com>
+ <rbek5diyuwhquhbhk6pukzv474xug3pupcqqc2svrceyodvem5@obah2ahgmcox>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011020819.1254157-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20241011020819.1254157-1-yangcong5@huaqin.corp-partner.google.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Oct 2024 09:03:16 +0200
-Message-ID: <CACRpkdZR0UxF69rcuSpcfYR69FC-rGOakeOiUUbzJH6BWGVh=Q@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: himax-hx83102: Adjust power and gamma to
- optimize brightness
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, dianders@chromium.org, 
-	airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <rbek5diyuwhquhbhk6pukzv474xug3pupcqqc2svrceyodvem5@obah2ahgmcox>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: KUgT_JaMbyozpd_MAOuH6ur7Gkg9xQfM
+X-Proofpoint-GUID: KUgT_JaMbyozpd_MAOuH6ur7Gkg9xQfM
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 impostorscore=0 mlxlogscore=999 bulkscore=0
+ malwarescore=0 mlxscore=0 phishscore=0 clxscore=1015 spamscore=0
+ adultscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2410110046
 
-On Fri, Oct 11, 2024 at 4:08=E2=80=AFAM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
+On Fri, Oct 11, 2024 at 09:23:05AM +0300, Dmitry Baryshkov wrote:
+> On Fri, Oct 11, 2024 at 10:35:18AM GMT, Shiraz Hashim wrote:
+> > On Thu, Oct 10, 2024 at 08:57:56AM +0200, neil.armstrong@linaro.org wrote:
+> > > On 08/10/2024 08:21, Mukesh Ojha wrote:
+> > > > On Mon, Oct 07, 2024 at 08:22:39PM +0530, Mukesh Ojha wrote:
+> > > > > On Mon, Oct 07, 2024 at 10:05:08AM +0200, neil.armstrong@linaro.org wrote:
+> > > > > > On 04/10/2024 23:23, Mukesh Ojha wrote:
+> > > > > > > For Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
+> > > > > > > translation for remote processors is managed by QHEE and if the same SoC
+> > > > > > > run under KVM, remoteproc carveout and devmem region should be IOMMU
+> > > > > > > mapped from Linux PAS driver before remoteproc is brought up and
+> > > > > > > unmapped once it is tear down and apart from this, SHM bridge also need
+> > > > > > > to set up to enable memory protection on both remoteproc meta data
+> > > > > > > memory as well as for the carveout region.
+> > > > > > > 
+> > > > > > > Enable the support required to run Qualcomm remoteprocs on non-QHEE
+> > > > > > > hypervisors.
+> > > > > > > 
+> > > > > > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > > > > > ---
+> > > > > > >    drivers/remoteproc/qcom_q6v5_pas.c | 41 +++++++++++++++++++++++++++++-
+> > > > > > >    1 file changed, 40 insertions(+), 1 deletion(-)
+> > > > > > > 
+> > > > > > > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> > > > > > > index ac339145e072..13bd13f1b989 100644
+> > > > > > > --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> > > > > > > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+> > 
+> > <snip>
+> > 
+> > > > > > > +		struct of_phandle_args args;
+> > > > > > > +
+> > > > > > > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus", "#iommu-cells", 0, &args);
+> > > > > > > +		if (ret < 0)
+> > > > > > > +			return ret;
+> > > > > > > +
+> > > > > > > +		rproc->has_iommu = true;
+> > > > > > > +		adsp->sid = args.args[0];
+> > > > > > > +		of_node_put(args.np);
+> > > > > > > +		ret = adsp_devmem_init(adsp);
+> > > > > > > +		if (ret)
+> > > > > > > +			return ret;
+> > > > > > 
+> > > > > > Why don't you get this table from the firmware like presumably
+> > > > > > QHEE does ?
+> > > > > 
+> > > > > Well, AFAIK, QHEE(EL2) has this information statically present
+> > > > > and does not get it from anywhere., but will confirm this
+> > > > > twice..
+> > > > 
+> > > > Double confirmed, device memory region required by remoteproc is
+> > > > statically present with QHEE.
+> > > 
+> > > Right, in this case why those tables can't be embedded in the elf
+> > > .resource_table like it's done with qcom_q6v5_adsp.c by calling
+> > > rproc_elf_load_rsc_table() and let the remoteproc framework load the
+> > > resource table and setup the devmem ssmu_map ?
+> > 
+> > Mainly for two reasons -
+> > 
+> > firmware images on platforms where we like to bring additional no-qhee
+> > support do not have resource table.
+> > 
+> > QCOM PAS implementation for secure remoteproc supports single TZ call
+> > of auth_and_rest that authenticates and brings remoteproc out of
+> > reset. And we don't have provision to authenticate resource table
+> > before it is used for devmem/iommu setup.
+> 
+> So normally TZ / QHEE have the platform-specific resource table? Isn't
+> it tied to the firmware binary?
 
-> The current panel brightness is only 360 nit. Adjust the power and gamma =
-to
-> optimize the panel brightness. The brightness after adjustment is 390 nit=
-.
->
-> Fixes: 3179338750d8 ("drm/panel: Support for IVO t109nw41 MIPI-DSI panel"=
-)
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Yes this table is with QHEE and not firmware binary. Now with no-qhee
+case, this patch series is proposing to get it from device tree.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-If you look in panel-samsung-s6e63m0.c you can see how that driver actually
-uses a set of gamma+power (ACL) settings to regulate the "backlight",
-i.e. the brightness of the OLED display. You might want to implement
-something similar in your driver to actually provide the user with a
-brightness setting.
-
-It's a bit unfortunate that this is for historical reasons called "backligh=
-t"
-but the usecase is definitely the same.
-
-Yours,
-Linus Walleij
+regards
+Shiraz
 
