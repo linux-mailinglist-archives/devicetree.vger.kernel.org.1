@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-110285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5DEF999F29
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:39:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BCBA999F34
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:43:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D72451C2145C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:39:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87C101F238CB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:43:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0ED320B20B;
-	Fri, 11 Oct 2024 08:39:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 899B220B200;
+	Fri, 11 Oct 2024 08:43:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="obWaGTzm"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="Z6lvzrqv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EEA520A5D1;
-	Fri, 11 Oct 2024 08:39:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB1120ADD9;
+	Fri, 11 Oct 2024 08:43:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728635959; cv=none; b=U6Tch+K1lC6mHu46V7Upwlhh58il6/J7GneDZlQ5CrrsnL9JE8Q25x35TjigL4srIx7OJb0Y8vPq+8IiJV04h862IOAw2835gpeTpn6FzCXmv2Gso2m84hWVRZOyJbGxgurEO5wSuJtnfD7u47QLD2bf2lyRT6tcudBTQwMtPnU=
+	t=1728636231; cv=none; b=Fmd/X+CH5Nsi9cDwUAHSFFdOZVM5HNQZee0bJjTbH5e4jsRlimjTM2KXpuG2CD7fLLwNANQg2MqZ+kuQzh7gi8qh66r7jmNmXrqjUezi+ryko44d75B591RO5lFZwpcpxfNN0BYLW6g9we58RFGBlOLReGST2ZEl+dEm/X0bJLU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728635959; c=relaxed/simple;
-	bh=KRGFx9KkVHVxlEh9kS8WiaDdvD5XL7fP62L9ma6Ks/w=;
+	s=arc-20240116; t=1728636231; c=relaxed/simple;
+	bh=m4iic7uKAXnsL6uCrTkkS8/BqTZS/Mc3ys/B02K28sE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FyGq2UrwptoZudtfn9TsSopZmOXoMZV8p3d+iLnsJqRm585aXx2tWwK5qZSyMkDl85iBRZB6160CZt33YlXe+OwC70WTpIsIJO77Q+/fi8U7Th72aZqcxSsliSqQ1a0NDInG8cLfIT2zQfcdKO0Hsr/Yt6IuqmWFoqktGnVGc4g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=obWaGTzm; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=dRmwCPfqXlTbp1okYQVXBhs/bsw6cQlasgmImcK0y/SsaWYfSuyb7qO06ZbXtDS1JT2CoipmqCmAMM4BkHb6EXx2mJ11SbCSiY0UlWRZfBZhukDPNE9++wsTHXQHrpPkNhc2GL6YmOSWi3vHAPGheWxozOFHk8JVylpVqKpx9xw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=Z6lvzrqv; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
@@ -37,33 +37,32 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
 	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
 	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=sJfEiOpKXJgNS1LtGX6COaLi/A3lHdF4NYThJU9ou6U=; b=obWaGTzm7MJwN5xL9aRROWLlJN
-	RdOt5UCMTloG2yp0uZdIeRGaFyeXUXnlwnuVWiaulnQ+RO9aK5tJyhWM9WJIVxkOe14NVyO2TPZhK
-	/vNDGnfPXvBbu9YD/tTcGuB0xtQBDnSEf4jLMXv9/Wvg/Gz3JFzehvCz6euq3Rum5/lrS+Eaukd4Q
-	jU5g61YsxuVWIyOruD8w4juCC/uNLw4cqxY5IfdffQeRXjWDLdxD5KQxzvTqgjO37tg/VpU8jlamx
-	tUWewMjVO9gO2GcvpjH2GIq1tUi5yTgNVwCt+U+GZ///nAaWGPiYF9tZb5zpxB+zmHw5q7X5eJoxj
-	A+HbIKAw==;
+	bh=reuDQlwZETnYSzS/i7ijoLlelnSTU2XRw/IvwMzVWMQ=; b=Z6lvzrqv5WpV5ajzRR/JH6hisw
+	dg1veub6KgDb9AV1WD8qUiRRk8EiTl51ZC5GVO0zbAgcMvBZwYGufCH2haBjfbx/CM3DDq7sr9dQs
+	07dztG9S5r4ggIjCqSXp8S9FiuyBDR2hNeXLh/wYw316xmyA2z65xRvwEyn5khM781blw10YTfgn5
+	UoshcCss63COWkW1F4SMHNCXXgofjrBecZF4GJoptW7KsLoKsJSazL5L15CPDnI/PoPzdthOYzc0v
+	7RbJalfaxHxJ357BL4Z23cvP/x8uJGcXo1lYSesI6xw9aLk6FCXSNll8MMPEKutfzxnQEV8Cj3X0O
+	k2L2tMpA==;
 Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1szBAp-0005Dg-Jo; Fri, 11 Oct 2024 10:38:59 +0200
+	id 1szBFP-0005Ig-7T; Fri, 11 Oct 2024 10:43:43 +0200
 From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>, wim@linux-watchdog.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- Guenter Roeck <linux@roeck-us.net>
-Cc: linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+To: Dragan Simic <dsimic@manjaro.org>,
+ Diederik de Haas <didi.debian@cknow.org>
+Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
 Subject:
- Re: [PATCH 1/1] dt-bindings: watchdog: rockchip: Add rockchip,rv1126-wdt
- string
-Date: Fri, 11 Oct 2024 10:38:58 +0200
-Message-ID: <2414676.NG923GbCHz@diego>
-In-Reply-To: <40083f48-5e8a-4483-9858-8907c6a4643b@roeck-us.net>
+ Re: [PATCH v2] arm64: dts: rockchip: Add dtsi file for RK3399S SoC variant
+Date: Fri, 11 Oct 2024 10:43:42 +0200
+Message-ID: <1999678.yKVeVyVuyW@diego>
+In-Reply-To: <D4SU6WHZCN34.2XL5W4D2T188G@cknow.org>
 References:
- <20241010061408.1351865-1-karthikeyan@linumiz.com>
- <20241010061408.1351865-2-karthikeyan@linumiz.com>
- <40083f48-5e8a-4483-9858-8907c6a4643b@roeck-us.net>
+ <c32622e4a6897378d9df81c8c3eda1bdb9211e0b.1728632052.git.dsimic@manjaro.org>
+ <20da65423e77e13511cc7c7bb39e0246@manjaro.org>
+ <D4SU6WHZCN34.2XL5W4D2T188G@cknow.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,40 +72,146 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
 
-Hi Guenter,
-
-Am Donnerstag, 10. Oktober 2024, 16:14:48 CEST schrieb Guenter Roeck:
-> On 10/9/24 23:14, Karthikeyan Krishnasamy wrote:
-> > Add rockchip,rv1126-wdt compatible string.
-> > 
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > Signed-off-by: Karthikeyan Krishnasamy <karthikeyan@linumiz.com>
+Am Freitag, 11. Oktober 2024, 10:33:56 CEST schrieb Diederik de Haas:
+> Hi Dragan,
 > 
-> Reviewed-by: Guenter Roeck <linux@roeck-us.net>
+> On Fri Oct 11, 2024 at 10:23 AM CEST, Dragan Simic wrote:
+> > On 2024-10-11 10:00, Diederik de Haas wrote:
+> > > On Fri Oct 11, 2024 at 9:40 AM CEST, Dragan Simic wrote:
+> > >> Following the hierarchical representation of the SoC data that's been 
+> > >> already
+> > >> established in the commit 296602b8e5f7 ("arm64: dts: rockchip: Move 
+> > >> RK3399
+> > >> OPPs to dtsi files for SoC variants"), add new SoC dtsi file for the 
+> > >> Rockchip
+> > >> RK3399S SoC, which is yet another variant of the Rockchip RK3399 SoC.
+> > >> ...
+> > >> The RK3399S variant is used in the Pine64 PinePhone Pro only, [1] 
+> > >> whose board
+> > >> dts file included the necessary adjustments to the CPU DVFS OPPs.  
+> > >> This commit
+> > >> effectively moves those adjustments into the separate RK3399S SoC dtsi 
+> > >> file,
+> > >> following the above-mentioned "encapsulation" approach.
+> > >> ...
+> > >> ---
+> > >> ...
+> > >>  .../dts/rockchip/rk3399-pinephone-pro.dts     |  23 +---
+> > >>  arch/arm64/boot/dts/rockchip/rk3399-s.dtsi    | 123 
+> > >> ++++++++++++++++++
+> > >>  2 files changed, 124 insertions(+), 22 deletions(-)
+> > >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+> > >> 
+> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts 
+> > >> b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > >> index 1a44582a49fb..eee6cfb6de01 100644
+> > >> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > >> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+> > >> @@ -13,7 +13,7 @@
+> > >>  #include <dt-bindings/input/gpio-keys.h>
+> > >>  #include <dt-bindings/input/linux-event-codes.h>
+> > >>  #include <dt-bindings/leds/common.h>
+> > >> -#include "rk3399.dtsi"
+> > >> +#include "rk3399-s.dtsi"
+> > >> 
+> > >>  / {
+> > >>  	model = "Pine64 PinePhone Pro";
+> > >> @@ -456,27 +456,6 @@ mpu6500@68 {
+> > >>  	};
+> > >>  };
+> > >> 
+> > >> -&cluster0_opp {
+> > >> -	opp04 {
+> > >> -		status = "disabled";
+> > >> -	};
+> > >> -
+> > >> -	opp05 {
+> > >> -		status = "disabled";
+> > >> -	};
+> > >> -};
+> > >> -
+> > >> -&cluster1_opp {
+> > >> -	opp06 {
+> > >> -		opp-hz = /bits/ 64 <1500000000>;
+> > >> -		opp-microvolt = <1100000 1100000 1150000>;
+> > >> -	};
+> > >> -
+> > >> -	opp07 {
+> > >> -		status = "disabled";
+> > >> -	};
+> > >> -};
+> > >> -
+> > >>  &io_domains {
+> > >>  	bt656-supply = <&vcc1v8_dvp>;
+> > >>  	audio-supply = <&vcca1v8_codec>;
+> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi 
+> > >> b/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+> > >> new file mode 100644
+> > >> index 000000000000..e54f451af9f3
+> > >> --- /dev/null
+> > >> +++ b/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+> > >> @@ -0,0 +1,123 @@
+> > >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> > >> +/*
+> > >> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
+> > >> + */
+> > >> +
+> > >> +#include "rk3399-base.dtsi"
+> > >> +
+> > >> +/ {
+> > >> +	cluster0_opp: opp-table-0 {
+> > >> +		compatible = "operating-points-v2";
+> > >> +		opp-shared;
+> > >> +
+> > >> +		opp00 {
+> > >> +			opp-hz = /bits/ 64 <408000000>;
+> > >> +			opp-microvolt = <825000 825000 1250000>;
+> > >> +			clock-latency-ns = <40000>;
+> > >> +		};
+> > >> +		opp01 {
+> > >> +			opp-hz = /bits/ 64 <600000000>;
+> > >> +			opp-microvolt = <825000 825000 1250000>;
+> > >> +		};
+> > >> +		opp02 {
+> > >> +			opp-hz = /bits/ 64 <816000000>;
+> > >> +			opp-microvolt = <850000 850000 1250000>;
+> > >> +		};
+> > > 
+> > > Is there a reason why there isn't a line separator between the various
+> > > opp nodes? Normally there is one between nodes.
+> > > Note that in rk3588-opp.dtsi there are no separator lines between the
+> > > opp nodes, while they do exist between other nodes.
+> > > And in rk356x.dtsi the opp nodes do have a separator line.
+> >
+> > That has also bothered me. :)  I already had a look around in various
+> > dts(i) files long time ago and there seems to be no preferred layout.
 
-I'll go the same route as before and apply this patch with the rest
-of the rv1126 changes.
+I guess "with" lines in between is sort-of preferred in general.
+I sometime add them in new board-dts when applying and noticing them,
+but also sometimes miss them.
+
+I guess empty lines are helpful when the nodes are "not the same",
+but I guess for OPPs it doesn't matter so much, as the individual nodes
+are all the same.
 
 
-Heiko
+But in the end, I guess just follow the other OPPs in rk3399 for now ;-)
+[as this patch does]
 
-> > ---
-> >   Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> > index b5a3dc377070..1efefd741c06 100644
-> > --- a/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> > +++ b/Documentation/devicetree/bindings/watchdog/snps,dw-wdt.yaml
-> > @@ -32,6 +32,7 @@ properties:
-> >                 - rockchip,rk3576-wdt
-> >                 - rockchip,rk3588-wdt
-> >                 - rockchip,rv1108-wdt
-> > +              - rockchip,rv1126-wdt
-> >             - const: snps,dw-wdt
-> >   
-> >     reg:
+> I'm inclined to say the opp ones are the odd ones.
 > 
+> > In this particular case, it's better to have no separator lines because
+> > that's what we already have lacking in rk3399.dtsi, rk3399-t.dtsi, etc.,
+> > so running something like "diff rk3399.dtsi rk3399-s.dtsi" makes it easy
+> > to see what actually differs in the RK3399 SoC variants, without having
+> > to filter out any whitespace differences.
+> 
+> Besides that inconsistencies always seem to 'trigger' me, I especially
+> noticed it as this patch changed it from having separator lines to
+> having no separator lines.
+> 
+> Cheers,
+>   Diederik
 > 
 
 
