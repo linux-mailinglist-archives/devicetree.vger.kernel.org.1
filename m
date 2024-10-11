@@ -1,77 +1,154 @@
-Return-Path: <devicetree+bounces-110446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A638B99A70B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:59:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1BC5799A71E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 17:05:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C4E51F2491D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:59:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8C311F2353F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15CC185B73;
-	Fri, 11 Oct 2024 14:59:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4803B12C491;
+	Fri, 11 Oct 2024 15:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qjwd4aes"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LOzhcHGI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A61D714D717;
-	Fri, 11 Oct 2024 14:59:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9EF0218E02D;
+	Fri, 11 Oct 2024 15:05:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728658755; cv=none; b=n5cDsIM7BQk5Mfjtobd/2tHepI6qA70BsNvoLOCmqbM3vbvMn55yfiFXDaoI49lrMultMg716dkNTAMvEVlOrAApJkHlh4Fd42Qm90kNGYFbPkqkjf4y5YtX00de0Jd7L1zLakE7dnUgK/7bDyAtl+wMyFGhNBf64XAAexo3v54=
+	t=1728659145; cv=none; b=fonNIII1uPS55fPeKc4DmzMyQDtQVC8Hu3AtggWUNOoHAczpSPMbHGr1X/9lLXlY71Y5K6H/mpdVw55E2Qt5Z15Cu+9oRW4hC1duAVmbADF5A1SxGwB2QnoZoxa/qRoP0Kcd8MYyVxWp+4dLgd6R6hsOfoB5YKoo3Gpoc7uNeEg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728658755; c=relaxed/simple;
-	bh=q9Melzix6WD5z7861+jjpI6SZJSvXuUU11iBE+bflD0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fljkyd8qR9Jf9KLaJCHWYzL7bnH23GhXx3xORM0I+x5aOQ4MeUje0ZNbw3qg1CgVNySBSeAeqJjDLSsmoGAV9iayhrRi+LQ+HiKU0wTLgotSJVWA49oTIqnTp/W4TBIbqRK7SyBe9/ApVdiOff99wxLsi7VrYvAIRNBVoXDh8TI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qjwd4aes; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD3EC4CEC3;
-	Fri, 11 Oct 2024 14:59:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728658755;
-	bh=q9Melzix6WD5z7861+jjpI6SZJSvXuUU11iBE+bflD0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Qjwd4aeslEZCB3DCKRUfcjg7NJmaTfLaBd3yQBeQBdmNQaIYZ1SBddX8n63vAyBVi
-	 lJSuBJ/v/tpgPnVS0mgc/qwNqfpuXpikATVgzzPdx6IWhPxIGfrUrdWweC7mKevFLr
-	 pSHnd6SJzQZ9x4ohKSvV6ULFRWDDkb2gmIP+WnGbQhqS08BPCnx5qlyVrZVuAV1KTD
-	 GkbOW8oC2QFzHeKtmbAjKzImktcDt7FR4atQQMBn8C9CoBY8o2a6op+ckHZzZXXoIA
-	 rprNb6Vq3UepXYkGvsFdl+J2j/3vtfPb7WjwzljLgUfO5EzHeP4L/KxZsTL4SUyIi5
-	 mkuSVLeET9uyw==
-Date: Fri, 11 Oct 2024 16:59:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/7] logic_pio: Constify fwnode_handle
-Message-ID: <cnow7dcfcevhlstodpbyghdsqytygcarsbonwv5qjgfou6hukf@p525rdpumr2d>
-References: <20241010-dt-const-v1-0-87a51f558425@kernel.org>
- <20241010-dt-const-v1-2-87a51f558425@kernel.org>
+	s=arc-20240116; t=1728659145; c=relaxed/simple;
+	bh=S7hC2uywjAi3J2LiD/sEewm3zShuQTHXN6TAUI1rcwM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=c3FSFKNECJmImzT2rA+VVAkUjxHMymrS14YCdRVZPgYJkSTsSwNbFWCuKg5ENhxgf8xnK2YilFfd+JT+uyDDp9gQTiduABAijnnpcCOLTsbmilQXJqqDuDXUbBGH1Lmuj0cP25CutOn+NBjceUQJRi01G894xr/QRogTsBokWJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LOzhcHGI; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a99422c796eso349064466b.3;
+        Fri, 11 Oct 2024 08:05:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728659142; x=1729263942; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=JLi2DAw+2fMekfQEPfo5D7B5LkOQMf8QQR4y0YqqiDg=;
+        b=LOzhcHGIVLnWkKa3REnlQzmocSqyE+z6aGsb8OHN5Po8Q3k1Va5X/KG2wcPCPfceBf
+         GmjlBeWIhbKvjfODyA5Hdynd2GBKS/jGKfkl/ACPIHOgBixBc0C2lSTNa7XEj12/MvFw
+         VWVBXYByvgHbL9MuEMGHRtZMy/hSoh43hIKTT3wDq4F0kZCnDDTWKt5zghfvPBrL/Ljs
+         Pr5zIl2n83NxDow2D/nFIF9rwl/FddUn/k7pORioPWB2oz6+BKWYSsk1sst+TZLMuhL8
+         0ubiYQT36/R7Al5hnRY1+1Mw3uW6y3BflQIFBDzq+RFn+HUfNKRCpXdNJriPxDDmmGw3
+         qmJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728659142; x=1729263942;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JLi2DAw+2fMekfQEPfo5D7B5LkOQMf8QQR4y0YqqiDg=;
+        b=dMqVvsNzPEHk78qGsMZC/5+7HKz7MuDryQAk150hBLSXkrnmr51F+iq8nFFk28kZud
+         9bK4AQzQOoflD3EBgV8Qhjb103ogM0KBW2eYfuF/Naj+PljHk+2HiXUxJXTeXmWwzMxN
+         QzUj7t37hDK5hDlT+m6VSfXbXvwdwTBcavKZbL3Tot4q/Jjfj8APMso4A/kA1JTNq+Yw
+         dPS7yksT/XBJ/JAzD4PkqqSpXQKQn0sH/CjRmlwwhasIsxC5JY/RBMiyjrQO+kWOnPQX
+         FAe8pz8ET4XbSQGkMrZSt05/GuTQ2EOmEk8F2r2a+7wKAtqpzPxzwS39882peQuGhaJY
+         gq2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUJp9BHNrrWbLXBVzKmDFDiY0kBW4v0Yd7aEWfxnCdC7+5ORtABpYC349mv8NPr8JE0Xft1cuAVn2hzrTw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxkh8tl22JOvBuSNzCz1+mw9nR0w6w/w9vAd/L1pJT9+w10XSIV
+	vetzS6tbPjel1YYdm3yC9CGfeRBHvw3nFp6ZJe3pJCTfyXUWDNPm
+X-Google-Smtp-Source: AGHT+IHR8U61EsX5VMeZ4KH4278MjiC8lHiSwSBRd4SFpOrYz9cno9dfpAt6fts9S5Z6KeqeIRXxaQ==
+X-Received: by 2002:a17:907:1c81:b0:a99:374e:f3cb with SMTP id a640c23a62f3a-a99b95bc034mr235078566b.46.1728659141728;
+        Fri, 11 Oct 2024 08:05:41 -0700 (PDT)
+Received: from playground.localdomain ([86.127.146.72])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7f5b0b5sm220879366b.94.2024.10.11.08.05.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 08:05:41 -0700 (PDT)
+From: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Daniel Baluta <daniel.baluta@nxp.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Iuliana Prodan <iuliana.prodan@nxp.com>,
+	Tushar Khandelwal <Tushar.Khandelwal@arm.com>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Frank Li <Frank.li@nxp.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v3 0/6] configure imx8 dsp DT node for rproc usage
+Date: Fri, 11 Oct 2024 11:04:33 -0400
+Message-Id: <20241011150439.4027-1-laurentiumihalcea111@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241010-dt-const-v1-2-87a51f558425@kernel.org>
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 10, 2024 at 11:27:15AM -0500, Rob Herring (Arm) wrote:
-> The fwnode_handle passed into find_io_range_by_fwnode() and
-> logic_pio_trans_hwaddr() are not modified, so make them const.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> Please ack and I'll take with the rest of the series.
+From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-Now I see. This one should be before #1.
+Configure/add imx8 dsp DT node for rproc usage.
+Additionally, fix number of power domains from the fsl,dsp.yaml binding.
 
-Best regards,
-Krzysztof
+---
+Changes in v3:
+- Moved handling of IRQSTR_DSP PD to fiwmare side. Now QXP has 2
+mandatory PDs, while QM has 4.
+
+- Dropped the optional PDs. All PDs are now mandatory.
+
+- Dropped Linux implementation details from the binding's commit
+message.
+
+- Renamed reserved memory nodes to generic "memory".
+
+- Split QXP board and soc DT changes into dif. patches.
+
+- Dropped comments about SOF and rewrote the commit message of the
+patch that modifies the 'dsp' node from 'imx8-ss-audio.dtsi'. Hopefully,
+should be more clear why the change is done.
+
+- Squashed arm,mhuv2 binding changes.
+
+- Link to v2: https://lore.kernel.org/lkml/20240925232008.205802-1-laurentiumihalcea111@gmail.com/
+
+Changes in v2:
+- Modify subject of commit changing fsl,dsp.yaml to state that the change
+  is for fsl,dsp.yaml
+
+- Fix issue with arm,mhuv2 binding found by Rob's bot caused by the
+  changes to fsl,dsp binding
+
+- Improve formatting of commit messages
+
+- Link to v1: https://lore.kernel.org/lkml/20240918182117.86221-1-laurentiumihalcea111@gmail.com
+---
+
+Laurentiu Mihalcea (6):
+  dt-bindings: dsp: fsl,dsp: fix power domain count
+  arm64: dts: imx8-ss-audio: configure dsp node for rproc usage
+  arm64: dts: imx8qxp-mek: add dsp rproc-related mem regions
+  arm64: dts: imx8qm: drop dsp node from audio_subsys bus
+  arm64: dts: imx8qm: add node for VPU dsp
+  arm64: dts: imx8qm-mek: enable dsp node for rproc usage
+
+ .../devicetree/bindings/dsp/fsl,dsp.yaml      | 31 +++++++++++++++----
+ .../bindings/mailbox/arm,mhuv2.yaml           |  2 +-
+ .../boot/dts/freescale/imx8-ss-audio.dtsi     | 19 +++++-------
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts  | 27 ++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi     | 28 +++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts | 21 ++++++++++++-
+ 6 files changed, 109 insertions(+), 19 deletions(-)
+
+-- 
+2.34.1
 
 
