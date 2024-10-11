@@ -1,111 +1,162 @@
-Return-Path: <devicetree+bounces-110331-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A29B099A19A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:39:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1E499A1CB
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:44:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF5D1F23590
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:39:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3D46D2874DD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:44:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3008212D09;
-	Fri, 11 Oct 2024 10:39:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 631BC212EF0;
+	Fri, 11 Oct 2024 10:42:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="R1W8q/2B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fzhwPZ99"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13D4320FA83;
-	Fri, 11 Oct 2024 10:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4717198A3F;
+	Fri, 11 Oct 2024 10:42:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728643176; cv=none; b=iYOhoo6lKpc+uA2YohcD3CSQZk1hjFHXoOt9mBNFkXPX9Sf0Dsoh13hwJCwSDdcBrYmDJgkSX4eXNLZVdnSjAqwu8XHZ6r/KDMnCXO/QCbKWuvw8rOO/bJGPs38RtqikbN29JGaFYnq1CSYEuaG/F7T0wHPANRckIANTFjxKnCA=
+	t=1728643353; cv=none; b=CclrgO/jREWjuDlBSVKZ20+ebgiw8R0hjbHwypdT+0oKkNCDVVZPNcr3uzvAkG6/EFV9N8ZWuh14dzHq/uXDls07oIFvDRTK+qE3XXWPcf3HZOzK7adVd03i4ZrZGAR7XXOcKYOWOFe/MHTNgaEI5zCG4gUbIFxI/j5qUomsaXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728643176; c=relaxed/simple;
-	bh=QNV6+hfo8+uIipAV1Xpk/BTtDZyc+iyhhES32I67r64=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uyWEMpAn99d1XvV3Ks6twouIL9Mdasv4An1sYYwljQsmH60OtnWK8OIOlgbTZXU54tuH9B87/VDUANqslntbz5vYHA7JvUVuHurHPeJPif1sMpWbnnXyNdrEYHSNLjzSLhqQ59VfL8o6oXnx+vLv1ijY/s6VOfvNTgeLtpY8z1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=R1W8q/2B; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728643175; x=1760179175;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QNV6+hfo8+uIipAV1Xpk/BTtDZyc+iyhhES32I67r64=;
-  b=R1W8q/2BIogQ5qOfdex7WGJpKvLkn5WXwnameTD8fAyJq39YBiiquXpc
-   xpqFqtqHiMsd/Of3dvWBUpjADI9KZQbHKQv+Ot+VdkVFMrvWWSXvqz5bS
-   FogwbHVO7Tc69OfvZEWCeZiKVZXiCDtTtHd69unUL9Q6dxiRP5QgKfddU
-   LzLSkpo6rKSO/YDi7zleQ6Aal/zlk5yWzyxX09eybOa0LlW5atfOu5YvO
-   krUMhVIorGs1dXibRwl2sbxEKbqAImU4GPNd/UY+2Cyes42XB4K2a83/6
-   xkju6fTnmk5bN3nK3yoJfetqdvRbDpqecRO8Z59PWq70k5v9Lphrk010s
-   w==;
-X-CSE-ConnectionGUID: AAb1g4quQLC9yKhYQhQ76g==
-X-CSE-MsgGUID: iXEX02sfSb+CQeA0i9mk1w==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="27909114"
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="27909114"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:39:34 -0700
-X-CSE-ConnectionGUID: OZPGtiSzRw+cIRxNOYW7Zg==
-X-CSE-MsgGUID: yAaSVd2iT0eQApQQShi01A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
-   d="scan'208";a="80885286"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:39:31 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1szD3R-00000001rTw-1LAS;
-	Fri, 11 Oct 2024 13:39:29 +0300
-Date: Fri, 11 Oct 2024 13:39:29 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: vamoirid <vassilisamir@gmail.com>
-Cc: jic23@kernel.org, lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, anshulusr@gmail.com, gustavograzs@gmail.com,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 13/13] iio: chemical: bme680: Add support for preheat
- current
-Message-ID: <ZwkAYSvmYyu1F5dU@smile.fi.intel.com>
-References: <20241010210030.33309-1-vassilisamir@gmail.com>
- <20241010210030.33309-14-vassilisamir@gmail.com>
+	s=arc-20240116; t=1728643353; c=relaxed/simple;
+	bh=yALbYNl0T5Trgu0DW0CUG5TdXrwzgrycJz//ZNeR8DA=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=jP96RSQbjXWmcoY6Izd/DLh/GNooJemjYpDjmbnVSpsIQCR62Gla5HT7kVTABgUcP2u4IZgaUYd4ica8cQtK1zQv9d3JfMPDZuijkKLSOhSFH2kcVEdBRTSYawwjr37pfeBq3OcB3BNXQyH6DDImX8jIXY6F7j5hukIfua3evbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fzhwPZ99; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BAAO4B021189;
+	Fri, 11 Oct 2024 10:42:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=juKH+WuNN2QXEskv3d4mxU
+	0etrgfR//XbR10xZr0gvs=; b=fzhwPZ994sM1UCWoS805Ja91yVc5rZHnFXltEY
+	ZxsRH40dmPxON+1vwc8IlmHqzaROXSZEhEQBYOZrHtV2UAssnX7iXITMlKdRpvDn
+	fYmP6ANSZMuvoD4AM/XhhRWmZ4b7WUGVKhQ35egRF7qYqWbb8WyB4szoaOZjXNL+
+	97fiKES2C3QCeKXygWtPqo7R0mxHoDmT4EP4mbbPKDpmd/9Ha4V0AVYhn07QrLNf
+	pQUUp52oUvahtZD4XcfIKXa2kwxfRN+N38Bwukvh0M+/cJNyZOosWcu0Zw6oyEU9
+	J+xduR/IWsrPf6XSGPhL5lrE5LRpw5rrZfv01GemPbZvLY5g==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42721c82te-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 10:42:28 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BAgR9H009465
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 10:42:27 GMT
+Received: from songxue-gv.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Fri, 11 Oct 2024 03:42:21 -0700
+From: Song Xue <quic_songxue@quicinc.com>
+Date: Fri, 11 Oct 2024 18:41:05 +0800
+Subject: [PATCH] arm64: dts: qcom: qcs615: Add LLCC support for QCS615
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241010210030.33309-14-vassilisamir@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-ID: <20241011-add_llcc_dts_node_for_qcs615-v1-1-e7aa45244c36@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAMEACWcC/22OQW7DIBBFr2KxrqUBPCTmKlGEBhi3SI5xwLEqR
+ bl7nXiRLLp8f/Hev4vKJXEVtrmLwmuqKU8byK9GhB+avrlNcWOhQHUSpGwpRjeOIbi4VDflyG7
+ IxV1DNRJbrwgjIYInFJtiLjyk35f+dN658PW2VZZ9fEds80xAr7pXIk1pSTS6epvnXJbPCIH0X
+ sXYGQS7avF5dbdIgP599B+FMUccMICWXttVPRWeKrchXy5psY036gBB+0D98YAamIZgSOLQR+w
+ 4RACtGViL8+PxB62dgqhDAQAA
+X-Change-ID: 20241011-add_llcc_dts_node_for_qcs615-b2a5da550ba5
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <kernel@quicinc.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Song Xue
+	<quic_songxue@quicinc.com>
+X-Mailer: b4 0.15-dev-88a27
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728643341; l=2273;
+ i=quic_songxue@quicinc.com; s=20240911; h=from:subject:message-id;
+ bh=yALbYNl0T5Trgu0DW0CUG5TdXrwzgrycJz//ZNeR8DA=;
+ b=6yjfp/cV9hc75OJeo6P6+uCKhxMV+ilO1pF8DJcdN2TPz/CK+DElIBzhF2V2yPIfz9S8MHg0i
+ L3zZc+sUj6/AhSyRMcjYPckSvDf/sp9kFd1xHSzUFkeVTt4jPiDmfa9
+X-Developer-Key: i=quic_songxue@quicinc.com; a=ed25519;
+ pk=Z6tjs+BBbyg1kYqhBq0EfW2Pl/yZdOPXutG9TOVA1yc=
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 37-jjRs_yI82k7LRn8rykfC3mGNNr3F0
+X-Proofpoint-GUID: 37-jjRs_yI82k7LRn8rykfC3mGNNr3F0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=877 priorityscore=1501 adultscore=0
+ phishscore=0 malwarescore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ spamscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410110073
 
-On Thu, Oct 10, 2024 at 11:00:30PM +0200, vamoirid wrote:
-> From: Vasileios Amoiridis <vassilisamir@gmail.com>
-> 
-> Add functionality to inject a specified amount of current to the heating
-> plate before the start of the gas measurement to allow the sensor to reach
-> faster to the requested temperature.
+The QCS615 platform has LLCC(Last Level Cache Controller) as the system
+cache controller. It includes 1 LLCC instance and 1 LLCC broadcast
+interface.
 
-...
+Add LLCC node support for the QCS615 platform.
 
-> +	data->preheat_curr = 0; /* milliamps */
+Signed-off-by: Song Xue <quic_songxue@quicinc.com>
+---
+This patch series depends on below patch series:
+https://lore.kernel.org/all/20240926-add_initial_support_for_qcs615-v3-0-e37617e91c62@quicinc.com/
+https://lore.kernel.org/linux-arm-msm/20241010-add_llcc_support_for_qcs615-v2-1-044432450a75@quicinc.com/
+---
+ arch/arm64/boot/dts/qcom/qcs615.dtsi | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-Instead of the comment, make it better to any appearance of the variable in the
-code by adding unit suffix.
+diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+index ac4c4c751da1fbb28865877555ba317677bc6bd2..b718a4d2270d64ed43c2eca078bfe52b78ff680c 100644
+--- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+@@ -495,6 +495,14 @@ dc_noc: interconnect@9160000 {
+ 			qcom,bcm-voters = <&apps_bcm_voter>;
+ 		};
+ 
++		llcc: system-cache-controller@9200000 {
++			compatible = "qcom,qcs615-llcc";
++			reg = <0x0 0x9200000 0x0 0x50000>,
++			      <0x0 0x9600000 0x0 0x50000>;
++			reg-names = "llcc0_base",
++				    "llcc_broadcast_base";
++		};
++
+ 		gem_noc: interconnect@9680000 {
+ 			reg = <0x0 0x9680000 0x0 0x3e200>;
+ 			compatible = "qcom,qcs615-gem-noc";
 
-	data->preheat_curr_mA = 0;
+---
+base-commit: b6270c3bca987530eafc6a15f9d54ecd0033e0e3
+change-id: 20241011-add_llcc_dts_node_for_qcs615-b2a5da550ba5
+prerequisite-change-id: 20240924-add_initial_support_for_qcs615-a01bb2dd4650:v3
+prerequisite-patch-id: 09782474af7eecf1013425fd34f9d2f082fb3616
+prerequisite-patch-id: 624720e543d7857e46d3ee49b8cea413772deb4c
+prerequisite-patch-id: 04ca722967256efddc402b7bab94136a5174b0b9
+prerequisite-patch-id: ab88a42ec69ad90e8509c9c5b7c6bdd595a7f783
+prerequisite-patch-id: 918724fafe43acaa4c4b980bfabe36e9c3212cd1
+prerequisite-patch-id: 91cb230c6d129ff21c24d124fad9e37a66cb6a22
+prerequisite-patch-id: 57afeee80c9aa069ee243f5a5b634702867d20f1
+prerequisite-change-id: 20241009-add_llcc_support_for_qcs615-6685f5c031b3:v2
+prerequisite-patch-id: 7f93f240f926884c60a86c3ca651bb2232b88bed
+prerequisite-patch-id: 6758ca439e10ac057d7834bb42860eb58198287b
 
-(yes, capital 'A').
-
+Best regards,
 -- 
-With Best Regards,
-Andy Shevchenko
-
+Song Xue <quic_songxue@quicinc.com>
 
 
