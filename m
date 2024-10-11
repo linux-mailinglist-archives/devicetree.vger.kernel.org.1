@@ -1,181 +1,453 @@
-Return-Path: <devicetree+bounces-110502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB0E099A8F7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 18:35:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A8D99A92B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 18:52:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 520081F22916
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:35:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B0921C2236E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D709199932;
-	Fri, 11 Oct 2024 16:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 946B319DF9E;
+	Fri, 11 Oct 2024 16:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="FnpfjoSx"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fg5ssYzW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8893919922F
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 16:35:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84B3B198A30;
+	Fri, 11 Oct 2024 16:52:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728664529; cv=none; b=KuSYqzGGvaJzPR8xrV11IEGZSNgW/vHYNncN0Don7EsC9S0K4pSlmfJ3N68Aw+wfPttP+T9Ex19rIovzqNYFY20T8oPOw6b6PxIEp1L1tcutpZ9xdfSJyT1jTjrM8acPyPfDNNUW54USy1Eqm2colLberQHD6jDQDiI35n9ucos=
+	t=1728665562; cv=none; b=QytNLLqWoCWsc79MXo05xPUXEeaQrL/inzEFiSoWwpSTt175Y7dZIDiBHbOiKHP0b5kMRJNd9BRcY0piXScS5+JGbemsxcFReoiEJsHtQObS2Wq/yB53FH/wbM8ts1OdGBfODxmVR1VSoftNWQlLsP1Xx4vd2KyuzsOk9Bumt+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728664529; c=relaxed/simple;
-	bh=b3qHa7r+6pV4lwvw748wSsm3U6bD7sQalwfrgCBv/O4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X3MAt4IUwEIq5WPHiLWmHCX3ApdMOi2VU+c19iWF63gUJz7GEv2TaQw/rD3ZvxpHHrvvYQ/m/7R73nGzh/KQSOMB/yfTmMT0F6nWEuLhSa4GjVcR6Wk8EknoUfG35WerdM4TIOaL+B7GS5TppTp0Hv+EvWK3YXwniSRvcyr+N84=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=FnpfjoSx; arc=none smtp.client-ip=209.85.216.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-2e221a7e7baso1560294a91.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 09:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1728664527; x=1729269327; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=TmThUYkOTDaIhgghepZ/G5vDjgtJ1yvPAxuWgnKKjgg=;
-        b=FnpfjoSxp8vDP5r606YLYnmCEB96q9KPPc8bi/Uldx+wLgkH7U1LB115j0oiVVmjYH
-         sIkoOhCXZSLXCS+UUlwl1sSs21n/SP00yTaWS/9vNGAUYGweKxgThRyKaiZ/2spVZ7eP
-         yiUwY10jqCwX0hvAhLhc8N3tPB/3tm9ZHsM01V9WGzKSftF9jhyCfKYe3tw/2fMnOWLu
-         DkXwcY+zmdgqKET1ofczeWQl0G254fvmgtqMhMcOLOOMb2H4E5ETyHqizX4y+JGWXTKj
-         RhWnRnsPFxpUccwxWgKAiIUB9ttIwxcjX7R5bNAGPkw91ZHhaB2FS9ct/eZd8GKCCXUX
-         fUcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728664527; x=1729269327;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TmThUYkOTDaIhgghepZ/G5vDjgtJ1yvPAxuWgnKKjgg=;
-        b=idYtad/+L+VWZEJusuk6q0cVeTLJqytPQVIgG+uBQmOxBFmJMxeE/gOB/wIismjx8V
-         JLgZTHe9dO2BIYAeKGYpkq0uV+0NZyRlRiQwzn7XHedRldQFXmIe6HBGo/2DT0vek1Ow
-         Y/wC/u53kcTx3Ue8RvUNqqLsINCiqOxfS3wx3AWFzvfFZC+hRhBTgtZBC49b1cthaMgO
-         TBSIkAuRAg2Qb5L2wtZ1W1eun7wJIlP+55MGZMWC0Rprr2ZzmEVwtpRYSYqwOGQCG5w5
-         KwBk/QZPPWPmznqHDlGd8Mo9utrLTxTA2DgjcmXiur5hseogPEZfAlgnBFaP3nLLAqpM
-         twOg==
-X-Forwarded-Encrypted: i=1; AJvYcCUezmS+THq+DeSovYvEgKtFoctGVsEW0ub053+kAbd3cspIuuBowA9w7ShPIizR6Tsp74lHsuUsxJh1@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0/l5+uLlDxWUcVZ6j4HhKC4DLb4klUXToSY0KkE63KgZ+qo/Q
-	keEYJ3q5CXti6mhvJmGfu766JuZF0wt27XKaQ2gVjfTah353HuD8z5h0/gCbthJLp9MvvBGeKW2
-	T
-X-Google-Smtp-Source: AGHT+IGLIOSThxWqsd5665YVQNbI9JkSuYl+8F50zeEjp5XfPQiX8r4yeY1njTehNjbi8gl5qYZD8A==
-X-Received: by 2002:a17:90a:d815:b0:2e2:e086:f550 with SMTP id 98e67ed59e1d1-2e2f0af2ee3mr4374574a91.21.1728664526828;
-        Fri, 11 Oct 2024 09:35:26 -0700 (PDT)
-Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2d5c99db3sm3415093a91.0.2024.10.11.09.35.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 09:35:26 -0700 (PDT)
-Date: Fri, 11 Oct 2024 09:35:25 -0700
-From: Drew Fustini <dfustini@tenstorrent.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Subject: Re: [PATCH v1 3/3] pinctrl: th1520: Factor out casts
-Message-ID: <ZwlTzbsiyr8994S+@x1>
-References: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
- <20241011144826.381104-4-emil.renner.berthing@canonical.com>
+	s=arc-20240116; t=1728665562; c=relaxed/simple;
+	bh=NLWTkqQBlZ5fQp6FKts9KKvEidNRUHCfy8wl2aWXoA4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XdatjeNiMo2t521xLRWtvJa2PqGOgZjZGIpQMTygv/xY68Sboc/RUCQhaG5CHjH7KGe1e4hry7nONLaJqpCQkh7ltMyK5w7BSns/m/+xUn17lyvyGLX3JuxBctUnuwR0AFk1oSqFbCLmzFH5vXvGvwNzKy+jS2MkUSPigd6sRmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fg5ssYzW; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BD5qBM027261;
+	Fri, 11 Oct 2024 16:52:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YdTapo4S6feBiVPiCSeV3MciWWfF9x6DOTd25x31i+s=; b=fg5ssYzWNdH+cHD5
+	pkp2DBrsWsxvN2BeVmJ7u4gPHF1XcnVeJHvQqsyRWojdGvn0aoovt34wr1hIf84/
+	YlhhUWpTU5S1Ka4xHVVt/VXeBByE5KcQowkfYcO6hIyZSMAiwbE37dmrvTa9P2x+
+	28Z1XJYZlMPddlOBmIxg1bCfAQpDZX1Fryerdebl6a9gwl+gLEmTkbZqep/qBvHV
+	ADP9JVmp5CtjsPqQXsfIHz9YC1eJU0E42PxZHJIreogpVnnrsMZgbPCPWAKKW59d
+	+TdgWeJQjTwii6R/IuLxiexvhKT3+tu7+TU8gH0W5OQuU8aOC1BF57GQ0mh262n3
+	nioJ0A==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426fj6v1kn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 16:52:31 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BGqUVo031421
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 16:52:30 GMT
+Received: from [10.110.78.155] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Oct
+ 2024 09:52:29 -0700
+Message-ID: <6d67c2c6-819b-481a-8cc9-e24ef8f6c142@quicinc.com>
+Date: Fri, 11 Oct 2024 09:52:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241011144826.381104-4-emil.renner.berthing@canonical.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] drm/panel: samsung-s6e88a0-ams427ap24: Add initial
+ driver
+To: Jakob Hauser <jahau@rocketmail.com>,
+        Neil Armstrong
+	<neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>
+References: <cover.1728582727.git.jahau@rocketmail.com>
+ <d36d0d152c509b78d02f9f7adbea665c0c863446.1728582727.git.jahau@rocketmail.com>
+Content-Language: en-US
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <d36d0d152c509b78d02f9f7adbea665c0c863446.1728582727.git.jahau@rocketmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Ycvy_0ng3J6UYrpz85-OCgtoylUA1SbQ
+X-Proofpoint-ORIG-GUID: Ycvy_0ng3J6UYrpz85-OCgtoylUA1SbQ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxlogscore=999
+ lowpriorityscore=0 spamscore=0 malwarescore=0 adultscore=0 suspectscore=0
+ clxscore=1011 mlxscore=0 impostorscore=0 priorityscore=1501 phishscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2409260000
+ definitions=main-2410110117
 
-On Fri, Oct 11, 2024 at 04:48:25PM +0200, Emil Renner Berthing wrote:
-> Limit the casts to get the mux data and flags from the driver data
-> pointer with each pin to two inline functions as requested by Andy
-> during review.
+
+
+On 10/10/2024 11:31 AM, Jakob Hauser wrote:
+> This initial part of the panel driver was mostly generated by the
+> "linux-mdss-dsi-panel-driver-generator" tool [1], reading downstream
+> Android kernel file "dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi" [2].
 > 
-> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> On top of the generic output of the tool, there were a couple of changes
+> applied:
+> - Added mipi_dsi_dcs_set_display_on() to function s6e88a0_ams427ap24_on(),
+>    otherwise the display does not show up.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off()
+>    changed DSI commands to multi context and used "accum_err" returns.
+> - In functions s6e88a0_ams427ap24_on() and s6e88a0_ams427ap24_off() replaced
+>    msleep() by mipi_dsi_msleep().
+> - The function s6e88a0_ams427ap24_get_modes() was changed to make use of
+>    drm_connector_helper_get_modes_fixed(). This also required to include
+>    drm/drm_probe_helper.h.
+> - In function s6e88a0_ams427ap24_probe() registring the regulators was changed
+>    to devm_regulator_bulk_get_const(). This required to change supplies in struct
+>    s6e88a0_ams427ap24 to a pointer.
+> 
+> Coulnd't read out RAW EDID, /sys/class/drm/card0-DSI-1/edid is empty.
+> 
+> [1] https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
+> [2] https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi
+> 
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 > ---
->  drivers/pinctrl/pinctrl-th1520.c | 22 +++++++++++++++++-----
->  1 file changed, 17 insertions(+), 5 deletions(-)
+>   drivers/gpu/drm/panel/Kconfig                 |   9 +
+>   drivers/gpu/drm/panel/Makefile                |   1 +
+>   .../panel/panel-samsung-s6e88a0-ams427ap24.c  | 261 ++++++++++++++++++
+>   3 files changed, 271 insertions(+)
+>   create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
 > 
-> diff --git a/drivers/pinctrl/pinctrl-th1520.c b/drivers/pinctrl/pinctrl-th1520.c
-> index 8bd40cb2f013..7474d8da32f9 100644
-> --- a/drivers/pinctrl/pinctrl-th1520.c
-> +++ b/drivers/pinctrl/pinctrl-th1520.c
-> @@ -152,6 +152,16 @@ static enum th1520_muxtype th1520_muxtype_get(const char *str)
->  		(TH1520_MUX_##m0 <<  0) | (TH1520_MUX_##m1 <<  5) | (TH1520_MUX_##m2 << 10) | \
->  		(TH1520_MUX_##m3 << 15) | (TH1520_MUX_##m4 << 20) | (TH1520_MUX_##m5 << 25)) }
->  
-> +static unsigned long th1520_pad_muxdata(void *drv_data)
+> diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
+> index ddfaa99ea9dd..fa6a8c6cac5b 100644
+> --- a/drivers/gpu/drm/panel/Kconfig
+> +++ b/drivers/gpu/drm/panel/Kconfig
+> @@ -623,6 +623,15 @@ config DRM_PANEL_SAMSUNG_AMS639RQ08
+>   	  Say Y or M here if you want to enable support for the
+>   	  Samsung AMS639RQ08 FHD Plus (2340x1080@60Hz) CMD mode panel.
+>   
+> +config DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24
+> +	tristate "Samsung AMS427AP24 panel with S6E88A0 controller"
+> +	depends on GPIOLIB && OF && REGULATOR
+> +	depends on DRM_MIPI_DSI
+> +	help
+> +	  Say Y here if you want to enable support for Samsung AMS427AP24 panel
+> +	  with S6E88A0 controller (found in Samsung Galaxy S4 Mini Value Edition
+> +	  GT-I9195I). To compile this driver as a module, choose M here.
+> +
+>   config DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01
+>   	tristate "Samsung AMS452EF01 panel with S6E88A0 DSI video mode controller"
+>   	depends on OF
+> diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
+> index 4b5eaf111676..3002087c26d1 100644
+> --- a/drivers/gpu/drm/panel/Makefile
+> +++ b/drivers/gpu/drm/panel/Makefile
+> @@ -76,6 +76,7 @@ obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63J0X03) += panel-samsung-s6e63j0x03.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0) += panel-samsung-s6e63m0.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0_SPI) += panel-samsung-s6e63m0-spi.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E63M0_DSI) += panel-samsung-s6e63m0-dsi.o
+> +obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS427AP24) += panel-samsung-s6e88a0-ams427ap24.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E88A0_AMS452EF01) += panel-samsung-s6e88a0-ams452ef01.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_S6E8AA0) += panel-samsung-s6e8aa0.o
+>   obj-$(CONFIG_DRM_PANEL_SAMSUNG_SOFEF00) += panel-samsung-sofef00.o
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
+> new file mode 100644
+> index 000000000000..182ba8c347e2
+> --- /dev/null
+> +++ b/drivers/gpu/drm/panel/panel-samsung-s6e88a0-ams427ap24.c
+> @@ -0,0 +1,261 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Samsung AMS427AP24 panel with S6E88A0 controller
+> + * Copyright (c) 2024 Jakob Hauser <jahau@rocketmail.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#include <video/mipi_display.h>
+> +
+> +#include <drm/drm_mipi_dsi.h>
+> +#include <drm/drm_modes.h>
+> +#include <drm/drm_panel.h>
+> +#include <drm/drm_probe_helper.h>
+> +
+> +struct s6e88a0_ams427ap24 {
+> +	struct drm_panel panel;
+> +	struct mipi_dsi_device *dsi;
+> +	struct regulator_bulk_data *supplies;
+> +	struct gpio_desc *reset_gpio;
+> +	bool prepared;
+
+Hi Jakob,
+
+I think you can drop the `prepared` here as it should be handled by 
+framework now [1]
+
+Thanks,
+
+Jessica Zhang
+
+[1] 
+https://elixir.bootlin.com/linux/v6.11.3/source/include/drm/drm_panel.h#L262
+
+> +};
+> +
+> +const struct regulator_bulk_data s6e88a0_ams427ap24_supplies[] = {
+> +	{ .supply = "vdd3" },
+> +	{ .supply = "vci" },
+> +};
+> +
+> +static inline
+> +struct s6e88a0_ams427ap24 *to_s6e88a0_ams427ap24(struct drm_panel *panel)
 > +{
-> +	return (uintptr_t)drv_data & TH1520_PAD_MUXDATA;
+> +	return container_of(panel, struct s6e88a0_ams427ap24, panel);
 > +}
 > +
-> +static bool th1520_pad_no_padcfg(void *drv_data)
+> +static void s6e88a0_ams427ap24_reset(struct s6e88a0_ams427ap24 *ctx)
 > +{
-> +	return (uintptr_t)drv_data & TH1520_PAD_NO_PADCFG;
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(5000, 6000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	usleep_range(1000, 2000);
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
+> +	usleep_range(18000, 19000);
 > +}
 > +
->  static const struct pinctrl_pin_desc th1520_group1_pins[] = {
->  	TH1520_PAD(0,  OSC_CLK_IN,    ____, ____, ____, ____, ____, ____, TH1520_PAD_NO_PADCFG),
->  	TH1520_PAD(1,  OSC_CLK_OUT,   ____, ____, ____, ____, ____, ____, TH1520_PAD_NO_PADCFG),
-> @@ -590,7 +600,7 @@ static int th1520_pinconf_get(struct pinctrl_dev *pctldev,
->  	u32 value;
->  	u32 arg;
->  
-> -	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
-> +	if (th1520_pad_no_padcfg(desc->drv_data))
->  		return -ENOTSUPP;
->  
->  	value = readl_relaxed(th1520_padcfg(thp, pin));
-> @@ -660,7 +670,7 @@ static int th1520_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
->  	unsigned int i;
->  	u16 mask, value;
->  
-> -	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
-> +	if (th1520_pad_no_padcfg(desc->drv_data))
->  		return -ENOTSUPP;
->  
->  	mask = 0;
-> @@ -793,12 +803,14 @@ static int th1520_pinmux_set_mux(struct pinctrl_dev *pctldev,
->  {
->  	struct th1520_pinctrl *thp = pinctrl_dev_get_drvdata(pctldev);
->  	const struct function_desc *func = pinmux_generic_get_function(pctldev, fsel);
-> +	enum th1520_muxtype muxtype = (uintptr_t)func->data;
->  
->  	if (!func)
->  		return -EINVAL;
+> +static int s6e88a0_ams427ap24_on(struct s6e88a0_ams427ap24 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
 > +
->  	return th1520_pinmux_set(thp, thp->desc.pins[gsel].number,
-> -				 (uintptr_t)thp->desc.pins[gsel].drv_data & TH1520_PAD_MUXDATA,
-> -				 (uintptr_t)func->data);
-> +				 th1520_pad_muxdata(thp->desc.pins[gsel].drv_data),
-> +				 muxtype);
->  }
->  
->  static int th1520_gpio_request_enable(struct pinctrl_dev *pctldev,
-> @@ -809,7 +821,7 @@ static int th1520_gpio_request_enable(struct pinctrl_dev *pctldev,
->  	const struct pin_desc *desc = pin_desc_get(pctldev, offset);
->  
->  	return th1520_pinmux_set(thp, offset,
-> -				 (uintptr_t)desc->drv_data & TH1520_PAD_MUXDATA,
-> +				 th1520_pad_muxdata(desc->drv_data),
->  				 TH1520_MUX_GPIO);
->  }
->  
+> +	dsi->mode_flags |= MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x11);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x11);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x13);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfd, 0x18);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb0, 0x02);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb8, 0x30);
+> +
+> +	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 20);
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0x5a, 0x5a);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xcc, 0x4c);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf2, 0x03, 0x0d);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf1, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xca,
+> +				     0x01, 0x00, 0x01, 0x00, 0x01, 0x00, 0x80,
+> +				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+> +				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+> +				     0x80, 0x80, 0x80, 0x80, 0x80, 0x80, 0x80,
+> +				     0x80, 0x80, 0x00, 0x00, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb2,
+> +				     0x40, 0x08, 0x20, 0x00, 0x08);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xb6, 0x28, 0x0b);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf7, 0x03);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0x55, 0x00);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xf0, 0xa5, 0xa5);
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, 0xfc, 0xa5, 0xa5);
+> +
+> +	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int s6e88a0_ams427ap24_off(struct s6e88a0_ams427ap24 *ctx)
+> +{
+> +	struct mipi_dsi_device *dsi = ctx->dsi;
+> +	struct mipi_dsi_multi_context dsi_ctx = { .dsi = dsi };
+> +
+> +	dsi->mode_flags &= ~MIPI_DSI_MODE_LPM;
+> +
+> +	mipi_dsi_dcs_set_display_off_multi(&dsi_ctx);
+> +	mipi_dsi_dcs_enter_sleep_mode_multi(&dsi_ctx);
+> +	mipi_dsi_msleep(&dsi_ctx, 120);
+> +
+> +	return dsi_ctx.accum_err;
+> +}
+> +
+> +static int s6e88a0_ams427ap24_prepare(struct drm_panel *panel)
+> +{
+> +	struct s6e88a0_ams427ap24 *ctx = to_s6e88a0_ams427ap24(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	if (ctx->prepared)
+> +		return 0;
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
+> +				    ctx->supplies);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to enable regulators: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	s6e88a0_ams427ap24_reset(ctx);
+> +
+> +	ret = s6e88a0_ams427ap24_on(ctx);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to initialize panel: %d\n", ret);
+> +		gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +		regulator_bulk_disable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
+> +				       ctx->supplies);
+> +		return ret;
+> +	}
+> +
+> +	ctx->prepared = true;
+> +	return 0;
+> +}
+> +
+> +static int s6e88a0_ams427ap24_unprepare(struct drm_panel *panel)
+> +{
+> +	struct s6e88a0_ams427ap24 *ctx = to_s6e88a0_ams427ap24(panel);
+> +	struct device *dev = &ctx->dsi->dev;
+> +	int ret;
+> +
+> +	if (!ctx->prepared)
+> +		return 0;
+> +
+> +	ret = s6e88a0_ams427ap24_off(ctx);
+> +	if (ret < 0)
+> +		dev_err(dev, "Failed to un-initialize panel: %d\n", ret);
+> +
+> +	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
+> +	regulator_bulk_disable(ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
+> +			       ctx->supplies);
+> +
+> +	ctx->prepared = false;
+> +	return 0;
+> +}
+> +
+> +static const struct drm_display_mode s6e88a0_ams427ap24_mode = {
+> +	.clock = (540 + 94 + 4 + 18) * (960 + 12 + 1 + 3) * 60 / 1000,
+> +	.hdisplay = 540,
+> +	.hsync_start = 540 + 94,
+> +	.hsync_end = 540 + 94 + 4,
+> +	.htotal = 540 + 94 + 4 + 18,
+> +	.vdisplay = 960,
+> +	.vsync_start = 960 + 12,
+> +	.vsync_end = 960 + 12 + 1,
+> +	.vtotal = 960 + 12 + 1 + 3,
+> +	.width_mm = 55,
+> +	.height_mm = 95,
+> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED,
+> +};
+> +
+> +static int s6e88a0_ams427ap24_get_modes(struct drm_panel *panel,
+> +					struct drm_connector *connector)
+> +{
+> +	return drm_connector_helper_get_modes_fixed(connector,
+> +						    &s6e88a0_ams427ap24_mode);
+> +}
+> +
+> +static const struct drm_panel_funcs s6e88a0_ams427ap24_panel_funcs = {
+> +	.prepare = s6e88a0_ams427ap24_prepare,
+> +	.unprepare = s6e88a0_ams427ap24_unprepare,
+> +	.get_modes = s6e88a0_ams427ap24_get_modes,
+> +};
+> +
+> +static int s6e88a0_ams427ap24_probe(struct mipi_dsi_device *dsi)
+> +{
+> +	struct device *dev = &dsi->dev;
+> +	struct s6e88a0_ams427ap24 *ctx;
+> +	int ret;
+> +
+> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
+> +	if (!ctx)
+> +		return -ENOMEM;
+> +
+> +	ret = devm_regulator_bulk_get_const(dev,
+> +				      ARRAY_SIZE(s6e88a0_ams427ap24_supplies),
+> +				      s6e88a0_ams427ap24_supplies,
+> +				      &ctx->supplies);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ctx->reset_gpio))
+> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
+> +				     "Failed to get reset-gpios\n");
+> +
+> +	ctx->dsi = dsi;
+> +	mipi_dsi_set_drvdata(dsi, ctx);
+> +
+> +	dsi->lanes = 2;
+> +	dsi->format = MIPI_DSI_FMT_RGB888;
+> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+> +			  MIPI_DSI_MODE_NO_EOT_PACKET;
+> +
+> +	drm_panel_init(&ctx->panel, dev, &s6e88a0_ams427ap24_panel_funcs,
+> +		       DRM_MODE_CONNECTOR_DSI);
+> +	ctx->panel.prepare_prev_first = true;
+> +
+> +	drm_panel_add(&ctx->panel);
+> +
+> +	ret = mipi_dsi_attach(dsi);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
+> +		drm_panel_remove(&ctx->panel);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void s6e88a0_ams427ap24_remove(struct mipi_dsi_device *dsi)
+> +{
+> +	struct s6e88a0_ams427ap24 *ctx = mipi_dsi_get_drvdata(dsi);
+> +	int ret;
+> +
+> +	ret = mipi_dsi_detach(dsi);
+> +	if (ret < 0)
+> +		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
+> +
+> +	drm_panel_remove(&ctx->panel);
+> +}
+> +
+> +static const struct of_device_id s6e88a0_ams427ap24_of_match[] = {
+> +	{ .compatible = "samsung,s6e88a0-ams427ap24" },
+> +	{ /* sentinel */ },
+> +};
+> +MODULE_DEVICE_TABLE(of, s6e88a0_ams427ap24_of_match);
+> +
+> +static struct mipi_dsi_driver s6e88a0_ams427ap24_driver = {
+> +	.probe = s6e88a0_ams427ap24_probe,
+> +	.remove = s6e88a0_ams427ap24_remove,
+> +	.driver = {
+> +		.name = "panel-s6e88a0-ams427ap24",
+> +		.of_match_table = s6e88a0_ams427ap24_of_match,
+> +	},
+> +};
+> +module_mipi_dsi_driver(s6e88a0_ams427ap24_driver);
+> +
+> +MODULE_AUTHOR("Jakob Hauser <jahau@rocketmail.com>");
+> +MODULE_DESCRIPTION("Samsung AMS427AP24 panel with S6E88A0 controller");
+> +MODULE_LICENSE("GPL v2");
 > -- 
-> 2.43.0
+> 2.39.5
 > 
 
-Reviewed-by: Drew Fustini <dfustini@tenstorrent.com>
-
-Thanks for improving this. I see the feedback from Andy [1] on your v2
-now that you mention it.
-
--Drew
-
-[1] https://lore.kernel.org/linux-gpio/Zj8K_0zpI_IAY66R@surfacebook.localdomain/
 
