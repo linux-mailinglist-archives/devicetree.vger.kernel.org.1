@@ -1,104 +1,123 @@
-Return-Path: <devicetree+bounces-110527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51CC299AC9D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:28:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA06899ACA0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:29:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09E1928E513
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:28:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D9FCB1C24083
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:29:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7133A1CF7AD;
-	Fri, 11 Oct 2024 19:28:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E801CF7C8;
+	Fri, 11 Oct 2024 19:29:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eKYCAS/z"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PDVU14dV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4E151CF5E1
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:28:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85CD91CEAB1;
+	Fri, 11 Oct 2024 19:28:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728674906; cv=none; b=o1On0PcdLcLhwK8VFFBM3qoN+aHR9fotezjXt1R5ors9D+othwhlQB/VIVoFK83e00IogXik5F+645ppQcoKPYq5vD7u7n7u7Osix3MtWEspG9bKN1DUkEz68hwt+y4XaeKINhglM+ANt7dIhjZ0MgPAR+dat6cxJTie8t7hxtQ=
+	t=1728674941; cv=none; b=MXP1qg5KKIDVxVZAY826lNJyBbsHDkBl02Og+89vEjYRHBGFeUQuD/3I1oxxBHRSUDJ02Fg+TvirLbCH1P2eL1C061nFuQxusGQXOJR/G1kG6eLIZfs4qen2qsgFvnXswbAmn1joyT68rIyJDzcUY60ybgRq4OIV1s7ekVThjzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728674906; c=relaxed/simple;
-	bh=bCrM0ifBSlVXk6QQFecaM58N9s/5IKOpuSb72C4+e6I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iNnwr0WFfBlyCHBaHxDPZ3KE7pHEu/2O50joaSvXSBEfSE2SQ7zimXEm5Av0fehuOzN0Id5ZVnivvnyxG+gGhrUnld3SzwUSo6dXhcjTxFjo+dyDkiULEJzcoQlOlsyHWbwkHOlyDUnNedoRpkDyqSu0gPmn4m2n9sjc1TbfLKQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eKYCAS/z; arc=none smtp.client-ip=209.85.208.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2fac3f1287bso24436871fa.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 12:28:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728674903; x=1729279703; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/ib9PFYzvaqKheX8msfR0z/jz+7hM5FTJQOY9PaaT2U=;
-        b=eKYCAS/zPP/DNP4X/TYDyaorgM4AZaaZpUZd4L2tGiTitNFjjCG+WaUQhUV4AnNlR4
-         eYFc8sbeK/vLeJrti4B3sdBxY1KePFaBK3W5xD/axS/yvHqR7yP705fyT+mxpuHlv3Gi
-         g3r32GphcKtWC+AUJ5kh+qXgsYUuhfgqnpgWLAmGvM0MjpqerTzrRWhFfDIOexO1i8hL
-         uXfsz1PBn0tw76/MYqikGNHtIVIhW21vt9T4nF6TZl4qexxjsrI7zbeQ/LWlpLNzgGZ3
-         x6ci16cWbC9/7C0yzuAX0ZQslnBOTCjSf9jBUYh/MPjKqYdtgpEk/p4peNXDdMa/tRjK
-         Ymbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728674903; x=1729279703;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/ib9PFYzvaqKheX8msfR0z/jz+7hM5FTJQOY9PaaT2U=;
-        b=VFWh16fLUzw5S8Vko0tbhU9+5TsljwmY0fQCHj9CYXszU3rvT8bX5KcCjqiPM59zjp
-         kGI+yELBgQJ/Ogxm/M2oLUVo6aBVp5KIylozg0ozBl5YIQOSnIG4Py0Hx6K7yVdJ0y7s
-         vWUWo5AJcDQaRDgm7PX9u9mMnrBUhRf/kj257FsnQlbHiN4dEZ+Bc1JQATQdxFYVow9j
-         Nb/x3zDAZ+l+W+QvTr5SYj3SKjoclPSeV76p/9jLjqmJIR/2e/HL4psDkaR9oUeldX38
-         AvAWueK9GQqgx8/pSd9vx362gRPM8H1DrOaUeXdJY5MgdqrWbYAUikZ+hDVEeyrXU134
-         ImCg==
-X-Forwarded-Encrypted: i=1; AJvYcCUTmLJ7qUfodL7CLtGwxVNhxSakm6JwZYw6JoSC2Hdy2GGq/iOQFI9Z0AgLMe+L/+y0wWpSSiEoDSsF@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywh34k7AKHYZG5PZ0KZ0iBq5QqkWAdbJ+NrZ0f/PnAArxP8ZNbt
-	Bqv9bg8njHQ8Pv9P3o1G+LMFkBkmY/AzrHLR+v2SfEPakvjEsOCCuChi3c7AVF5NWDZR0woeTi7
-	ZAR5O8vrdJo9nE5rLJQcBs/kMSjPwzbXefAsIjQ==
-X-Google-Smtp-Source: AGHT+IHlWWYZkL7hRcimo9K372QrNGbFn3mXFWV+V/AQ1PzC7xBBqLXpG6DkMtKk+v5931tSyYIzbc46u7Y3dONqlR0=
-X-Received: by 2002:a05:651c:b0d:b0:2fa:e7f2:764b with SMTP id
- 38308e7fff4ca-2fb3f2b0d19mr4483581fa.33.1728674902415; Fri, 11 Oct 2024
- 12:28:22 -0700 (PDT)
+	s=arc-20240116; t=1728674941; c=relaxed/simple;
+	bh=GVQjFwuYbCH7yjARIcIxxvv0rVZPVA9qarHpbXL4s9w=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oZU8KS94efumK3hC52OW5BSUx/Hkx1zOVfPJjZKywLIywvlioZ/irxTEWjdx+RT3u1WNv2lqFByjj15BzgI93hYKEky6MS/IkZXcgTWYy0DeXBMTMhpz29f9s4gfavRids9sWwEJQ3oLp19vwvMpqvUGOQJORxC2QcuOcp0wg3k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PDVU14dV; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BAA6at020701;
+	Fri, 11 Oct 2024 19:28:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	GVQjFwuYbCH7yjARIcIxxvv0rVZPVA9qarHpbXL4s9w=; b=PDVU14dVX80PHf9a
+	9g9WsCdgfOqez4+ucjxEH1H/tBcFxYk9dDxjMPf83WeHYIjb/e1+1cPBCrAixEIn
+	12L8TFvmK3EFbHVmImMp5x/K7Dj9Px82TGuDISL8WYH3qHKEY02MpqdogkRgnd8S
+	7PqVLNFWaBH92eCBRlObIIZ89DndQtUoKCPl/Xb/aONTAOif+NERO+BSOON1L7ZY
+	7lx+CbUztjfvKcA034RIu94+4aQApPMbPrpbBPIRxEweNFfM4oOASZg7HPD69syr
+	kUmXQLUAkHigZwRwr7S1dPkamoHgAfyP6DQVTNexRvRzTXBN82TUxO0FbuUtQV1H
+	pxa9yA==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 42721c9dgv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 19:28:55 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BJSh02008959
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 19:28:43 GMT
+Received: from [10.48.240.152] (10.49.16.6) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Oct
+ 2024 12:28:42 -0700
+Message-ID: <b62a851c-ffb8-475a-9de1-1211a5a6b590@quicinc.com>
+Date: Fri, 11 Oct 2024 12:28:41 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
-In-Reply-To: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Oct 2024 21:28:10 +0200
-Message-ID: <CACRpkdayc=5ee_D-t_xpOe3hSNHKDYN63J_6WO0HECNUH36hrg@mail.gmail.com>
-Subject: Re: [PATCH v1 0/3] pinctrl: th1520: Unbreak the driver
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V2 2/4] remoteproc: qcom: add hexagon based WCSS secure
+ PIL driver
+To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
+        <andersson@kernel.org>, <krzk+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
+        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
+        <quic_gokulsri@quiconc.com>
+References: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
+ <20240829134021.1452711-3-quic_gokulsri@quicinc.com>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+Content-Language: en-US
+In-Reply-To: <20240829134021.1452711-3-quic_gokulsri@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 1-QFsvHruxnr1Omsoj49_EwZ2XTbfmpj
+X-Proofpoint-GUID: 1-QFsvHruxnr1Omsoj49_EwZ2XTbfmpj
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=663 priorityscore=1501 adultscore=0
+ phishscore=0 malwarescore=0 mlxscore=0 bulkscore=0 suspectscore=0
+ spamscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410110136
 
-On Fri, Oct 11, 2024 at 4:48=E2=80=AFPM Emil Renner Berthing
-<emil.renner.berthing@canonical.com> wrote:
+On 8/29/2024 6:40 AM, Gokul Sriram Palanisamy wrote:
+...
 
-> Here are 2 important fixes and a code improvement to the T-Head TH1520
-> pinctrl driver that was either introduced or missed when Drew took over
-> upstreaming it.
->
-> It is based on Linus' pinctrl/for-next:
->
->   6dbd1577b7dc ("Merge branch 'devel' into for-next")
+> +++ b/drivers/remoteproc/qcom_q6v5_wcss_sec.c
+> @@ -0,0 +1,354 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2016-2018 Linaro Ltd.
+> + * Copyright (C) 2014 Sony Mobile Communications AB
+> + * Copyright (c) 2012-2018, 2024 The Linux Foundation. All rights reserved.
 
-All patches applied!
+I'm currently vetting a proposed ath driver change that is dependent upon two
+of yours, and my vetting tools ran on your patchsets as well. This is one of
+several issues that my vetting tools flagged.
 
-Yours,
-Linus Walleij
+This last copyright doesn't look correct.
+
+As of December 2021 Qualcomm stopped assigning copyright to the Linux
+Foundation via the Code Aurora Forum. Any Qualcomm contributions after
+December 2021 should be Copyright Qualcomm Innovation Center, Inc.
+
+So I suspect this last line should be replaced with two:
+> + * Copyright (c) 2012-2018 The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
 
