@@ -1,178 +1,141 @@
-Return-Path: <devicetree+bounces-110478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110482-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29B1E99A7E0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 17:35:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3541099A838
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 17:48:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3B06D1C2138B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:35:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A73DAB21101
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE43D194C67;
-	Fri, 11 Oct 2024 15:35:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60370194AD1;
+	Fri, 11 Oct 2024 15:47:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="VkXuS6e4"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="aKnMQXAA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [217.72.192.78])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AD8E129E9C;
-	Fri, 11 Oct 2024 15:35:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.72.192.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984278121F;
+	Fri, 11 Oct 2024 15:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728660910; cv=none; b=cLxgz/EpTIyPY1b4ABqsUqWBTwKvC+1MV/7ivYDA1Gh6sOlpkv/40pcNGos8/dVUUPHc+YOklcvcLC2V48PVmhDaVKyMrody36DpM3pgi9/YHCG8wtn6WKHwjdU0/QpVFHVUjr/ppyxYIm4tvywvQbco2MG+M5gnAn+bZjKdVoQ=
+	t=1728661679; cv=none; b=sFr+FNkW1WmKlDm4qylCjf3OjNO0uBYL8HJjwIFBmbLqWF+hotgNI53DCpKoh96VrxsEcoAVT/uNkhMaCM69zPoH597kQeImJKUjs/9ymCF8xtnq2bmH7JVuLIY+GXJCBhpaJY6uNkcDdeLZuM2cfc129ktvzwYCJ0Gr3AdC3D4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728660910; c=relaxed/simple;
-	bh=5q2pxOJGhjxRkV6Sh/y1SW2FUUkTvUWxmQfriDkZaYg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RwwU5xub2PFdteDnEopjgXbtlraXol/iHfZzpSztvmSsokX5HHKNBc6eTe1YENCXFArPsVfeXejn0r3uj4HKZfAQsUlA6SeTfMxWVKWsgWa8HT6KRyKWXf+AFcg1BfbZmzBbU1DQCkNvSU+rgoH0EJBJyEcBTS9xwy90YxfrHNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=VkXuS6e4; arc=none smtp.client-ip=217.72.192.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1728660863; x=1729265663; i=markus.elfring@web.de;
-	bh=JEMAcjbF3FPvsYIlnj1lZs9kGTRyH0qqeK3Whe3Jzxw=;
-	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To:Content-Type:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=VkXuS6e4vEcm7FBmcLsmecktpuZBhodcmhtcG1MjoaQlMBpWGSZWppe66/lzmU+P
-	 6Mj+mOW7QVD5gA/1zDDbo/QS49wuWb1RZz49iYkQiJiq5VC5Jak9yDI7IPvyZuwtk
-	 YoVeho66f1YQ5bikxqChGGrqvqwO9V43m7m6UbRL1VeyuOKeJraNwna4xuY+uEDRh
-	 dkCeC5Nn6e/bJ+gq208jUqAwWd8gKp7fZm2oggn8kJXR0HiKeBCPvK1pAjKAsZ/b3
-	 fHxHr/RvPGMa1718rQnRFmkKWQI5Y34RP7cLE1ARuYXmWU7cvYxEVAhdlOXHOwwvL
-	 Ngbs1I+SME2uAnHaAA==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [192.168.178.21] ([94.31.85.95]) by smtp.web.de (mrweb105
- [213.165.67.124]) with ESMTPSA (Nemesis) id 1MFJnX-1tA4DG3Kzx-00F9Oq; Fri, 11
- Oct 2024 17:34:23 +0200
-Message-ID: <0b995a34-28c4-4ba6-8ad2-e8413c6a63f5@web.de>
-Date: Fri, 11 Oct 2024 17:34:02 +0200
+	s=arc-20240116; t=1728661679; c=relaxed/simple;
+	bh=lM5/KYg7Fxq95Kn/TgBwcphBGdjVeKeLfxmH0g3IwEk=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=G/UNpMWmiU8xRP2NGDIoHjqWckTruwtYt+5nMOyIZFq0hbqQOWf2xiYRHTDz4SHJ23XsmAYeAoTyzGbyXxJjqRapn/GIhWvjho78YE3k/pZPX7xpWN3V6bn+avM39ync8r7+3jaG0FsMnUvsSHxBMaCwK+h+Rabucx5EAvKYoJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=aKnMQXAA; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BCUVHT000480;
+	Fri, 11 Oct 2024 17:47:30 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=EWFrQzCRBMV4WxG/iPDIlA
+	u8I6Hlt8CYexPjPZ/79FM=; b=aKnMQXAAPBuDQqaOQ9jtbxPosdQJMyEU4EntXp
+	9N5I+cu7+SB+ild+A4DFs2SFQ+H8Tz5Shd+Xmn2BsGfEohVtuRPHVbWKQ2Hryx5n
+	dhpfx+aXD9c9zGyH02RqNmVYcHugJ5ogIGYrLJdPkho6ir1Tey560zBsLV3OX8nl
+	7MHc5iNqy/K6gMJAN5PXVK7ER/gNM6nUzpa3dSLWsluM41ugNvhv0qgefBZXwW75
+	RgDWPTSQ95Ldrilz/1FXCWzDCwEfDw2pCy+/foUu/rAQgPhE3Taeh66Qo8bep0QO
+	CYn5enq2QR+bgfpnXHM0+YN/PaBrQIf5TEmOAQ2b768sRzjQ==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 423f11da7a-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 17:47:30 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A789240049;
+	Fri, 11 Oct 2024 17:46:15 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D43B229E023;
+	Fri, 11 Oct 2024 17:43:14 +0200 (CEST)
+Received: from localhost (10.252.28.117) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 11 Oct
+ 2024 17:43:14 +0200
+From: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Subject: [PATCH v2 0/4] Add support for stm32mp25x RNG
+Date: Fri, 11 Oct 2024 17:41:40 +0200
+Message-ID: <20241011-rng-mp25-v2-v2-0-76fd6170280c@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
-To: Kevin Chen <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- Andrew Jeffery <andrew@codeconstruct.com.au>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Thomas Gleixner <tglx@linutronix.de>, BMC-SW <BMC-SW@aspeedtech.com>
-Cc: LKML <linux-kernel@vger.kernel.org>, kernel-janitors@vger.kernel.org
-References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
- <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
- <PSAPR06MB4949904D1FA95DBD3EF5288A89792@PSAPR06MB4949.apcprd06.prod.outlook.com>
-Content-Language: en-GB
-From: Markus Elfring <Markus.Elfring@web.de>
-In-Reply-To: <PSAPR06MB4949904D1FA95DBD3EF5288A89792@PSAPR06MB4949.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:i9rIChLNyWYHyUTxDAbalAUCtiWIR3TehRTXM4XO7QD22dAeIcU
- 2Je5blRBlhhl0Zu8Fe4xt31/nZvF0LqZnWssAuOLPnytex7FWgro8OETzQRTGPAkWKFWErq
- PduH+/NIVn9OhZGSWl2zSSFzMW5gROLqxdQVoDFwdulPU9K6gtHPo14dUC3u1+rChTDKJtL
- DUB9dP0zI/qwHYP6d/BnQ==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:qREi+IcNmIk=;6u/CF+JhpeuSNi2B8eBr9G1Gnsx
- CvZzyNmfatpqrkh36kagQPFRZ8MJvhp3MxDk1VnrpA3lJsSYOjvVkwfNvvs/La6WoBezcNFE2
- awRiKpI1MJOmtzOlnUMz/SwJ4TInqHpj7he0Aczhkx/o2mHpyzk1vDib1gXpSyJlJt7c15M/u
- Q1arjIfzyRzFUB50BywjGO+sSy4VOVImWPVYYBKtT6rhDUuh5AonDVqrABkeLICYpJrMIX8ay
- tSlx9Wmc++Vv499RKLX2++QWnRuhEEDPqZ3CmzMwXgIyP+1SgTmB7U8H6eVptaOkxBS9b9INH
- llkyCmpV5u5igXtlpaWE+AYVWEQbghrShNO1KDcT4aGbZImSJPDUOP0vMwlMIk4SddF3QwpwN
- 0Jg+V/VGv3tCBH2dZRzS5If2IdO/Io52ow2XxuP+atJ1otphVPnFoCSRYcxUUjrIIBE3hf4+N
- StoKVjbQNTTvYtc40XP4yGwK5opBqM5skP3HRs4Z/3dzBBMrxdKiHb/Jw+TWjSsJNXrxP9fmC
- AyOtI3obcyOyiTyEG6jCpZd5srzeDbMKCJzN5T+wDJ3Xg5G3Gr8t+9Cm5nxcyYSYMFV7LQvMW
- YGNNjng/vKrwI6gDZDZBGsnPLhrd3djXTOVA/Qr6vzmcE17UUhCTEfxPRuvHSbkGsXtc3CVwb
- MZWc7oDxYyI6olMudjvl+weL3q0qUxj17d2w59buC3MAq1YUSYkLeanmA8ZiH25QluLCcPw/a
- zud8Zi5+ecyXltL/rADHaWGpKXxfB45pAND3MBEZsfraK8YM1Y0DlEXzfGEvvGXarxMLURVcn
- eH3D6/Kh11MU8Z98HRyb43kw==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIADRHCWcC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
+ vPSU3UzU4B8JSMDIxNDA0ND3aK8dN3cAiNT3TIj3SQzEzOD1DRDw1TDNCWgjoKi1LTMCrBp0bG
+ 1tQBlNmmyXQAAAA==
+X-Change-ID: 20241011-rng-mp25-v2-b6460ef11e1f
+To: Olivia Mackall <olivia@selenic.com>,
+        Herbert Xu
+	<herbert@gondor.apana.org.au>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>, <marex@denx.de>
+CC: <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Gatien Chevallier <gatien.chevallier@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
->> =E2=80=A6
->>> +++ b/drivers/irqchip/irq-aspeed-intc.c
->>> @@ -0,0 +1,139 @@
->> =E2=80=A6
->>> +static void aspeed_intc_ic_irq_handler(struct irq_desc *desc)
->> +{
->>> +	struct aspeed_intc_ic *intc_ic =3D irq_desc_get_handler_data(desc);
->>> +	struct irq_chip *chip =3D irq_desc_get_chip(desc);
->>> +	unsigned long bit, status;
->>
->> I suggest to reduce the scopes for three local variables.
-> May I check the scopes of bit and status usage?
-> Variables of bit and status are used in for_each_set_bit.
-> How could I reduce the scopes?
+This patchset adds support for the Random Number
+Generator(RNG) present on the stm32mp25x platforms.
+On these platforms, the clock management and the RNG
+parameters are different.
 
-I propose to move selected variable definitions into corresponding compoun=
-d statements
-(by using extra curly brackets).
-https://refactoring.com/catalog/reduceScopeOfVariable.html
+While there, update the RNG max clock frequency on
+stm32mp15 platforms according to the latest specs.
 
+Tested on the stm32mp257f-ev1 platform with a deep
+power sequence with rngtest before/after the sequence with
+satisfying results.
 
->> Would you become interested to collaborate with another scoped guard fo=
-r
->> this programming interface?
->> https://elixir.bootlin.com/linux/v6.12-rc2/source/include/linux/irqchip=
-/chained
->> _irq.h#L13
->
-> Maybe like the change in the following?
->
-> diff --git a/drivers/irqchip/irq-aspeed-intc.c b/drivers/irqchip/irq-asp=
-eed-intc.c
-> index ef1c095ad09e..54d1881c56c6 100644
-> --- a/drivers/irqchip/irq-aspeed-intc.c
-> +++ b/drivers/irqchip/irq-aspeed-intc.c
-> @@ -32,7 +32,7 @@ static void aspeed_intc_ic_irq_handler(struct irq_desc=
- *desc)
->         struct irq_chip *chip =3D irq_desc_get_chip(desc);
->         unsigned long bit, status;
->
-> -       chained_irq_enter(chip, desc);
-> +       guard(chained_irq)(desc);
->
->         scoped_guard(raw_spinlock, &intc_ic->gic_lock) {
->                 status =3D readl(intc_ic->base + INTC_INT_STATUS_REG);
+Same was done on stm32mp135f-dk to make sure no regression was added.
 
-Perhaps.
+On stm32mp157c-dk2, I didn't perform a power sequence but the rngtest
+results were satisfying.
 
+Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+---
+Changes in V2:
+	-Fixes in bindings
+	-Removed MP25 RNG example
+	-Renamed RNG clocks for mp25 to "core" and "bus"
 
-> @@ -41,8 +41,6 @@ static void aspeed_intc_ic_irq_handler(struct irq_desc=
- *desc)
->                         writel(BIT(bit), intc_ic->base + INTC_INT_STATUS=
-_REG);
->                 }
->         }
-> -
-> -       chained_irq_exit(chip, desc);
->  }
-=E2=80=A6
+---
+Gatien Chevallier (4):
+      dt-bindings: rng: add st,stm32mp25-rng support
+      hwrng: stm32 - implement support for STM32MP25x platforms
+      hwrng: stm32 - update STM32MP15 RNG max clock frequency
+      arm64: dts: st: add RNG node on stm32mp251
 
-Probably, yes.
+ .../devicetree/bindings/rng/st,stm32-rng.yaml      | 30 +++++++-
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             | 10 +++
+ drivers/char/hw_random/stm32-rng.c                 | 87 +++++++++++++++++-----
+ 3 files changed, 107 insertions(+), 20 deletions(-)
+---
+base-commit: 1d227fcc72223cbdd34d0ce13541cbaab5e0d72f
+change-id: 20241011-rng-mp25-v2-b6460ef11e1f
 
+Best regards,
+-- 
+Gatien Chevallier <gatien.chevallier@foss.st.com>
 
-=E2=80=A6
-> +++ b/include/linux/irqchip/chained_irq.h
-> @@ -38,4 +38,5 @@ static inline void chained_irq_exit(struct irq_chip *c=
-hip,
->                 chip->irq_unmask(&desc->irq_data);
->  }
->
-> +DEFINE_GUARD (chained_irq, struct irq_desc * , chained_irq_exit ( _T ->=
-irq_data.chip, _T ), chained_irq_enter (_T->irq_data.chip, _T))
-=E2=80=A6
-
-* Such a macro call looks promising.
-  Would you like to omit any space characters before open parentheses?
-
-* Would you like to support scoped guard variants accordingly?
-
-
-Regards,
-Markus
 
