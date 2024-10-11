@@ -1,173 +1,192 @@
-Return-Path: <devicetree+bounces-110130-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EAEE9995F0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 02:05:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4770499965E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 02:11:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35F1D1C20E9E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 00:05:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C9666B21D2E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 00:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3FD391;
-	Fri, 11 Oct 2024 00:05:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D5E1946DA;
+	Fri, 11 Oct 2024 00:07:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GXN37i3o"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pzUkIjt+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669BB366;
-	Fri, 11 Oct 2024 00:05:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 890031A269;
+	Fri, 11 Oct 2024 00:07:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728605140; cv=none; b=CUioKIJvDXWCZY0MS78QlnrkdLNXqY9p/WrShBHZdr/UgbmYa+/Uh+ehI9GY96mmp9uR9yI/32P1iEY1hXZQ8Iqe5O07QiPcXBq9kD393gnbxE7EEFM9THYE06mWfTvU25DvHGrWe+1flkjilVd3HHXcK3O+tKN7mOcKTVS3vC8=
+	t=1728605255; cv=none; b=f4lGoRqYq9EvR4AM24s9FcDY6nImkrmCQiKn8WGbj86w0un/RSo9SR1FYqyR3v7KK6LVWrI8H1uykiqxXIBwWYmMO3BGn+kiEJ16/lJ3NaLskxj0Wdbaz/T7BNnx8sIRqAJlX0oHerNvPX1sHrdgTL9PFw+TpnsujSzcf82oScQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728605140; c=relaxed/simple;
-	bh=Xm/FWl+xu0YOGG+kySDr/1ytGcLKcxzic5ONZXrVc4E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Zct6UrAGwK860NT/3IzdmKCziS8/qTbrOzjN1WQ9kH+MvFdBPlizPwB6Gm4P3OcGdvxExT4ib2UgeN7zCNDYwg7A4u6SSYNBMhXZe8SX/0VcCOxU/ee8b2WbQtHuvhLSecdRX3+4O7QiBhuyODD4GPRbSVQ81XHgsTKd2YrjArI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GXN37i3o; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c935d99dc5so1425299a12.1;
-        Thu, 10 Oct 2024 17:05:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728605137; x=1729209937; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Sf7V8r5HK3udmg4PXTFWlyhTEIgEcd1NxvdHS3A9s7M=;
-        b=GXN37i3oULKOBOa8kiyCWwWDH26Z3XhL+Hkig4o9PefQCiy8ANKaXnIAp6kx28SerC
-         j4vKqMUdwEIK80Wf3YZP+tbxWLSUiiCocBRXsdeCmx+30NkBznRUiVXJyLwzqJqQC02e
-         FcJzgZ6/04YCIfAk7ZxNJiSIrmi1IyP/lRRNVIZYHD9AvIlhWVnY1Lp7rDkQhqdMKjgL
-         yZ4DpAAOjg/2HzTOyfVY8OU+Sp8Y1j+BvbLnOqLt5Seqy9XJNVQI5aruTZ8A/L+s6+Ia
-         Z8ld0VuhItp428waViwCB3dwhYa8HZxQMHATy/MrGHD7T5v2JtQZ+6IXCUIwROs0i7+E
-         tBbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728605137; x=1729209937;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Sf7V8r5HK3udmg4PXTFWlyhTEIgEcd1NxvdHS3A9s7M=;
-        b=MKOT6q8mMfsrO7MvRF28gJftY+ulTFo6L1fDVY9k9BfEjGX9U40YSj0LD5Q5iTaDQ8
-         aNSf5UEgOy6Skapt95kbYmju6McNYxOY4W2eGDqPZGncjixQgMi5TAsTeMQN3uQ7cF3U
-         IFvqoQ+89WpHSwLEDqNZZJCK3tj8TKPxjrcrhk9jmpkRpjEcAIxQE/hqzk7nsnFu7Ce9
-         wdPaIZ9V9hyGsL+2KzGctWdD/oDeex46Br7AehMa/YD8mePk8s3Zpu2JkzEwkdmtnqFy
-         TvJBl7vYzbnflC0a721i4cP7Rf0PYBUPQOpt6vVHY2xmQIiGf8jNIU8t6c3xCywyOYyP
-         KNUg==
-X-Forwarded-Encrypted: i=1; AJvYcCUCqIgvW3kuaDdpvVrLUrQJFkdN32P8oWPq0S06QFQ81iPAeh54yNKdpZsuxg63EftbenC7zqBEhQyk@vger.kernel.org, AJvYcCVdWHUlMVoRHpZxI+xvryF/pYnvUevhtWm2p0kzM7EPXsd0fqLhohyM1haSRGRSxicO3G3g25OtMN3aAJ3a@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1Iw4xBsAySAgyQ36wPrq0A+WvtAfderHslh9hQlbfNcf4neiN
-	yQkDyIEl77MCG2ZpThgi504F++0R3IeJkHz4b+YwPr5VxdtbZkj1xZWwqUSnt8moZWBcZupKjj0
-	/IzsLlY0NK1n3OFgx1bo+th7TsW8=
-X-Google-Smtp-Source: AGHT+IHcWSRHmaRvrv3nzx9uKEKja1uko+ZHjWtuZTl0i8kEEFv3LovSUPiAOd0AGgCqc0oS8blEXfFcKGio/KV7iMI=
-X-Received: by 2002:a05:6402:d0b:b0:5c9:16e2:4db1 with SMTP id
- 4fb4d7f45d1cf-5c948c95b97mr321200a12.8.1728605136416; Thu, 10 Oct 2024
- 17:05:36 -0700 (PDT)
+	s=arc-20240116; t=1728605255; c=relaxed/simple;
+	bh=3nFyRTVOUVhLHMFASESfShsxhY8idPyIGAYXXG9qqd0=;
+	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=CssK+Cu7+R/iG69awYCscKPO9MSFCTG/LWihAWCFkH/1HbBTVyDCRACvq7/19DOUzFjnyYzWnZDcpMVyMBpGGKQkTfmU+s3Egs3QYxpGjBul4H+qAGczK7ynzSSdg8oWC7VBuM/ND5TtY/1dZN8PdOjxBAFjm/zMRJZDbBo/RgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pzUkIjt+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49AChYNC022461;
+	Fri, 11 Oct 2024 00:07:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SVZiV+f4SnId4RLZpdWICppkMgvqXrXjIq8fTSzECKc=; b=pzUkIjt+B0Nzr/b4
+	3FA5sySkb7gjKrTtGyT2NNnHRRWtwvEW1GmC54HN4vxzoL/8iumfOqoF+D1OyGgN
+	j+MnfklG7WigbXebKQdg1atQxI1ZG+76B5fTlLR1b8D+wxagb+n34m0JTJA7cByb
+	muZtiaRxgTkJpgyXkuYADHHxNTYmcMGgh0UdcK3M9E/lEFX5XWYVVH4Wqp/qa9Kz
+	5AFijDMG4qfDuMIv9p1iOGf1US9Xh1bGhLL/6DeHs1hMnIM6eEevhneZlGG5N4tL
+	fx1NrMBev+Ss1Iqdaxk2R7brqxMmLImJsOX000yghyB5fB0sVUwlcuR/XBZ9bRn8
+	+jVG7g==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 425xptv1eg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 00:07:03 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B072lg003264
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 00:07:03 GMT
+Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 10 Oct 2024 17:07:02 -0700
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <dmitry.torokhov@gmail.com>,
+        <corbet@lwn.net>, <broonie@kernel.org>, <lgirdwood@gmail.com>,
+        <tiwai@suse.com>, <krzk+dt@kernel.org>,
+        <pierre-louis.bossart@linux.intel.com>, <Thinh.Nguyen@synopsys.com>,
+        <bgoswami@quicinc.com>, <robh@kernel.org>,
+        <gregkh@linuxfoundation.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-input@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Mathias Nyman
+	<mathias.nyman@linux.intel.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: [PATCH v28 01/32] xhci: add helper to stop endpoint and wait for completion
+Date: Thu, 10 Oct 2024 17:05:46 -0700
+Message-ID: <20241011000650.2585600-2-quic_wcheng@quicinc.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20241011000650.2585600-1-quic_wcheng@quicinc.com>
+References: <20241011000650.2585600-1-quic_wcheng@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241005050155.61103-1-CFSworks@gmail.com> <20241005050155.61103-2-CFSworks@gmail.com>
- <ccc78255-a2c4-4144-b580-9a16aada09c2@broadcom.com>
-In-Reply-To: <ccc78255-a2c4-4144-b580-9a16aada09c2@broadcom.com>
-From: Sam Edwards <cfsworks@gmail.com>
-Date: Thu, 10 Oct 2024 17:05:25 -0700
-Message-ID: <CAH5Ym4jgadgT=7NDULOZt4VaeoP8TFDcgxCsTdDcA0+AM-H=fw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE
- stub area
-To: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
-	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
-	Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 4FvtNjJ74vgtkAz9L-lRDfWM-dvAy39X
+X-Proofpoint-GUID: 4FvtNjJ74vgtkAz9L-lRDfWM-dvAy39X
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ adultscore=0 suspectscore=0 spamscore=0 mlxscore=0 bulkscore=0
+ phishscore=0 mlxlogscore=999 lowpriorityscore=0 clxscore=1011
+ impostorscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2409260000 definitions=main-2410100159
 
-On Thu, Oct 10, 2024 at 3:57=E2=80=AFPM Florian Fainelli
-<florian.fainelli@broadcom.com> wrote:
->
-> On 10/4/24 22:01, Sam Edwards wrote:
-> > The CFE bootloader places a stub program in the first page of physical
-> > memory to hold the secondary CPUs until the boot CPU writes the release
-> > address, but does not splice a /reserved-memory node into the FDT to
-> > protect it. If Linux overwrites this program before execution reaches
-> > smp_prepare_cpus(), the secondary CPUs may become inaccessible.
-> >
-> > This is only a problem with CFE, and then only until the secondary CPUs
-> > are brought online. Ideally, there would be some hypothetical mechanism
-> > we could use to indicate that this area of memory is sensitive only
-> > during boot. But as there is none, and since it is such a small amount
-> > of memory, it is easiest to reserve it unconditionally.
->
-> If we supported CPU hotplug on those platforms (do we?) then it actually
-> does matter that this memory remains protected, and it cannot be
-> reclaimed. This does not invalidate the commit message and I will take
-> it as-is, but it it is not memory that we can necessarily reclaim that
-> easily, if we did things properly.
+From: Mathias Nyman <mathias.nyman@linux.intel.com>
 
-I am looking at only one build of CFE, so don't take what I'm saying
-as gospel, but as I understand it:
+Expose xhci_stop_endpoint_sync() which is a synchronous variant of
+xhci_queue_stop_endpoint().  This is useful for client drivers that are
+using the secondary interrupters, and need to stop the current endpoint
+session.
 
-CFE implements only the spin-table method, which isn't dynamic. Once
-the kernel calls for the secondary CPUs to be released, it cannot shut
-them down and bring them up again, so they have no need to reenter the
-spin stub.
+This does not go through the normal xhci_handle_cmd_stop_ep() command
+completion handler, because it utilizes the completion path to achieve
+synchronous behavior.  Users of this API are primarily intended to be
+clients that maintain their own transfer rings, such as in the case of USB
+audio offload.
 
-With U-Boot+ATF, it's of course a different story: ATF needs to stay
-resident in memory to implement PSCI (which _is_ dynamic), but U-Boot
-inserts/overwrites the necessary DT structures to protect ATF and tell
-Linux to use PSCI, so we don't need to be thinking about that here.
+Signed-off-by: Mathias Nyman <mathias.nyman@linux.intel.com>
+Signed-off-by: Wesley Cheng <quic_wcheng@quicinc.com>
+---
+ drivers/usb/host/xhci.c | 45 +++++++++++++++++++++++++++++++++++++++++
+ drivers/usb/host/xhci.h |  2 ++
+ 2 files changed, 47 insertions(+)
 
-But, again, that's just my understanding. If there's a version of CFE
-out there that loads ATF/similar or implements PSCI itself, then,
-well, that'd invalidate this patch('s commit message). I doubt such a
-variant of CFE exists, but you're much better equipped to confirm or
-refute that possibility, given your familiarity with the platform and
-internal details.
-
-Best wishes,
-Sam
-
->
-> >
-> > Therefore, add a /reserved-memory node to bcm4908.dtsi to protect the
-> > first 4KiB of physical memory.
-> >
-> > Signed-off-by: Sam Edwards <CFSworks@gmail.com>
-> > ---
-> >   arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 10 ++++++++++
-> >   1 file changed, 10 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/ar=
-m64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> > index 8b924812322c..c51b92387fad 100644
-> > --- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> > +++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-> > @@ -68,6 +68,16 @@ l2: l2-cache0 {
-> >               };
-> >       };
-> >
-> > +     reserved-memory {
-> > +             #address-cells =3D <2>;
-> > +             #size-cells =3D <2>;
-> > +             ranges;
-> > +
-> > +             cfe-stub@0 {
-> > +                     reg =3D <0x0 0x0 0x0 0x1000>;
-> > +             };
-> > +     };
-> > +
-> >       axi@81000000 {
-> >               compatible =3D "simple-bus";
-> >               #address-cells =3D <1>;
->
->
-> --
-> Florian
+diff --git a/drivers/usb/host/xhci.c b/drivers/usb/host/xhci.c
+index ed1bb7ed44b0..8d7566e33faf 100644
+--- a/drivers/usb/host/xhci.c
++++ b/drivers/usb/host/xhci.c
+@@ -2784,6 +2784,51 @@ static int xhci_reserve_bandwidth(struct xhci_hcd *xhci,
+ 	return -ENOMEM;
+ }
+ 
++/*
++ * Synchronous XHCI stop endpoint helper.  Issues the stop endpoint command and
++ * waits for the command completion before returning.  This does not call
++ * xhci_handle_cmd_stop_ep(), which has additional handling for 'context error'
++ * cases, along with transfer ring cleanup.
++ *
++ * xhci_stop_endpoint_sync() is intended to be utilized by clients that manage
++ * their own transfer ring, such as offload situations.
++ */
++int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep, int suspend,
++			    gfp_t gfp_flags)
++{
++	struct xhci_command *command;
++	unsigned long flags;
++	int ret;
++
++	command = xhci_alloc_command(xhci, true, gfp_flags);
++	if (!command)
++		return -ENOMEM;
++
++	spin_lock_irqsave(&xhci->lock, flags);
++	ret = xhci_queue_stop_endpoint(xhci, command, ep->vdev->slot_id,
++				       ep->ep_index, suspend);
++	if (ret < 0) {
++		spin_unlock_irqrestore(&xhci->lock, flags);
++		goto out;
++	}
++
++	xhci_ring_cmd_db(xhci);
++	spin_unlock_irqrestore(&xhci->lock, flags);
++
++	wait_for_completion(command->completion);
++
++	/* No handling for COMP_CONTEXT_STATE_ERROR done at command completion*/
++	if (command->status == COMP_COMMAND_ABORTED ||
++	    command->status == COMP_COMMAND_RING_STOPPED) {
++		xhci_warn(xhci, "Timeout while waiting for stop endpoint command\n");
++		ret = -ETIME;
++	}
++out:
++	xhci_free_command(xhci, command);
++
++	return ret;
++}
++EXPORT_SYMBOL_GPL(xhci_stop_endpoint_sync);
+ 
+ /* Issue a configure endpoint command or evaluate context command
+  * and wait for it to finish.
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index 324644165d93..51a992d8ffcf 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1917,6 +1917,8 @@ void xhci_ring_doorbell_for_active_rings(struct xhci_hcd *xhci,
+ void xhci_cleanup_command_queue(struct xhci_hcd *xhci);
+ void inc_deq(struct xhci_hcd *xhci, struct xhci_ring *ring);
+ unsigned int count_trbs(u64 addr, u64 len);
++int xhci_stop_endpoint_sync(struct xhci_hcd *xhci, struct xhci_virt_ep *ep,
++			    int suspend, gfp_t gfp_flags);
+ 
+ /* xHCI roothub code */
+ void xhci_set_link_state(struct xhci_hcd *xhci, struct xhci_port *port,
 
