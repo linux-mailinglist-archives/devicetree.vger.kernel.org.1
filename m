@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-110248-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110249-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1906999D09
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:50:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F099999D13
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:51:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C83B1F22E86
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 06:50:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2AE3E285E18
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 06:51:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C93E820B1F2;
-	Fri, 11 Oct 2024 06:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FC58209699;
+	Fri, 11 Oct 2024 06:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P5d71/ZQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XGJCie79"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC6A209F39;
-	Fri, 11 Oct 2024 06:48:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E92F209660;
+	Fri, 11 Oct 2024 06:51:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728629310; cv=none; b=SIpuvqw/3/gBTAX2RcFYxgUKP5UXGibiNKW7oLu7SQ+I5L5oJD3riZgFas3Ox1qJh+/XD2pA0f5WNAXsCBl0KHZyn78UhGP7Qk59wIu0Jtq72qssd0MzUoRvb9tb4noEtwh9UJhovuQK802z8QBSlfGP5NPBofDTbtHpLod6zRY=
+	t=1728629468; cv=none; b=h4EwkspcGzbHBcF6EGY0pEhTizSh9G0iYv6+1WkyG3ZOziIYbgmOwuicTIjhZGUdpTvNkbUBS7TwL5XVCiXbi5Rrdfk5ufH3/GzxL/d9a/fP2Gxtkp1hG0niBZkohDu9PQMJldjo31+9XC5k7ewL0PS6D+m6mf/aShRw1QziixA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728629310; c=relaxed/simple;
-	bh=f/Ha9eZk9cRtlqqwLztUMaVSBwOx1Ks4xBtXsNe4Hy8=;
+	s=arc-20240116; t=1728629468; c=relaxed/simple;
+	bh=6VmDg2Li4aD41/Esto7OymB5gFb9yxweeoxyO9g6QEA=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ogGrZdvbts5AnE3FpKT/uTanwiizkiZnL8WCPW8WsBz161XVPQ93vunzGhaTBk0xS1Sm5AvWPnZRe/3rhmWJ0KTYDLAYr7WPCKVYX/KCUQe59MHbXJ4IapaAD701AgRn54lT9dxdxZeyUE9Nrys0n5YKGTjkwjyDBNvTqIPTNPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P5d71/ZQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91795C4CECD;
-	Fri, 11 Oct 2024 06:48:24 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=qVtvVgaFW7qdheqvjm3B6EhmGx9vsqTw2cFxUxfoIv4IjyuSJYiDlNNyb8NEpe1QMU5GIZ1xLvydQ4mhufvzEYk2ibrEjOBkU0u8KQHIJmQsrZ0WeT08g+JISUCtKJySzajAfncgrl263WT1jtXY70THC7FpAqVNmDU0/MJWBHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XGJCie79; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E649C4CEC3;
+	Fri, 11 Oct 2024 06:51:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728629310;
-	bh=f/Ha9eZk9cRtlqqwLztUMaVSBwOx1Ks4xBtXsNe4Hy8=;
+	s=k20201202; t=1728629467;
+	bh=6VmDg2Li4aD41/Esto7OymB5gFb9yxweeoxyO9g6QEA=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=P5d71/ZQ9ECQ2PJ3TAaLm6FTRpvJ3mC0GTTG+zepTxyYUSkGyjnDhhzuW3hAGv+do
-	 +ApYngZGyRuPKSZfDqv+6Ib4eZd6Sev+ovGL0UBn8BHD0s2510lktJVl3QuY79ocBF
-	 IO+ni/VZnc8HgTvA5AmHfjaI4bX37006AaRoagcGtIGJHE7DRg273QnHp5Qa5cgjpW
-	 i2X8axlHRdo209qJUNpWY/3J1z+o9F+G58vF5N8GDp83yiF5c7+RWwGMxlHEaYfw/y
-	 8PACLRJ3d2yZZsksLzvOevDgG85WttiAClEA17RAtCQR9hf45IdVaEOECYCFCwlesR
-	 Zg9BTh0qvv+Bg==
-Message-ID: <2cd4b44a-18dd-401f-b921-06d8a5841512@kernel.org>
-Date: Fri, 11 Oct 2024 08:48:23 +0200
+	b=XGJCie79DbYmp5Go3HmSvZO1n3Ul6N6/liF2H7ZwawhQWUzF/9ycHMiVJaB00ULMG
+	 cGkPGumPyg8eK6IcsCbMYE7Dx+usRddIxa3jPwMduNWbkmKzVsN9FddkKKy4eZi4jm
+	 8/lqXvnhbvHVIB0Vo1z/5VaHBNf8ovQd/vZSqViF/CnE9h+IxFAbonqJW8sovvpUqT
+	 9V79tI2q8tgPzEsE6zBwcycYYX5wud9nwE3a2UqmEiObiU7EgZPpF2eOTaibVnSK9i
+	 7j3/YZS2QiBI5vXJkeSqOfdocdJMEPwe1MrhK0p/OPw0ZTTPHwBiplUjxRJVp8w0AE
+	 Tkt21geFoFFGg==
+Message-ID: <9fc325ee-0c14-4d17-a0a5-8cf35a8ce245@kernel.org>
+Date: Fri, 11 Oct 2024 08:51:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: firmware: qcom,scm: document SCM on
- QCS615
-To: Qingqing Zhou <quic_qqzhou@quicinc.com>, andersson@kernel.org,
- konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, robimarko@gmail.com, quic_gurus@quicinc.com,
- will@kernel.org, robin.murphy@arm.com, joro@8bytes.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, iommu@lists.linux.dev
-References: <20241011063112.19087-1-quic_qqzhou@quicinc.com>
- <20241011063112.19087-2-quic_qqzhou@quicinc.com>
+Subject: Re: [PATCH v1 06/13] dt-bindings: iio: add binding for BME680 driver
+To: vamoirid <vassilisamir@gmail.com>, jic23@kernel.org, lars@metafoo.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: anshulusr@gmail.com, gustavograzs@gmail.com,
+ andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241010210030.33309-1-vassilisamir@gmail.com>
+ <20241010210030.33309-7-vassilisamir@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -105,18 +103,23 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <20241011063112.19087-2-quic_qqzhou@quicinc.com>
+In-Reply-To: <20241010210030.33309-7-vassilisamir@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/10/2024 08:31, Qingqing Zhou wrote:
-> Document scm compatible for QCS615 SoCs. It is an interface to
-> communicate to the secure firmware.
+On 10/10/2024 23:00, vamoirid wrote:
+> From: Vasileios Amoiridis <vassilisamir@gmail.com>
+> 
+> Add dt-binding for BME680 gas sensor device. The device incorporates as
+> well temperature, pressure and relative humidity sensors.
+> 
+> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+> ---
+>  .../bindings/iio/chemical/bosch,bme680.yaml   | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/bosch,bme680.yaml
 
-Same comment.
-
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The device is already documented. You need to move it from trivial devices.
 
 Best regards,
 Krzysztof
