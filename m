@@ -1,104 +1,93 @@
-Return-Path: <devicetree+bounces-110431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE9B899A69D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:41:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86DF299A6AA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:43:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A06321F2422D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:41:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 287561F23C61
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:43:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F1407B3E1;
-	Fri, 11 Oct 2024 14:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB1F481720;
+	Fri, 11 Oct 2024 14:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cqh9cYii"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JD3OJ9/s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10168405FB;
-	Fri, 11 Oct 2024 14:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7831A405FB;
+	Fri, 11 Oct 2024 14:43:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728657691; cv=none; b=lMZ4yBdePkEBUr4RguirOIn9l9uqIIsVRzxHdgb1p7XZouNvFAcLdyBqexxRid5dCq8SwfWlTSCVnu70KLlnTY7zodhpISPCCoKmg3znWuWJQ3pUlLmD/lW/NPT0KYBI+2Z9Vcgbl7qAzCEBf4Ul8GXVTzsXMHEBtDBmrin2iS4=
+	t=1728657797; cv=none; b=GIQvSyCKcu+uceMNlITwyNoMRFyHQgtZIC0PoLJsBrXv2RPP0sj+zy3slJV5YVAspDDhtO+4rA0qlgcCDD0NC7h4Bm+gtdyGgjFmxyGHcQfMC5NdzQHr442BJOGWbzO1D1difO07rgHKrA9yieD8kqKIeCmKlU+lXs37vz1T1nU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728657691; c=relaxed/simple;
-	bh=Y0MK6Ir1naH6KdRmkyIQkGi5RdptzjZfItnSwsoMv00=;
+	s=arc-20240116; t=1728657797; c=relaxed/simple;
+	bh=gLtu5AZpGZcbTycLCtaJUcwPuMObUTXBrj/CeTpBl64=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qUC7z8P4VX/vFi3rYM7wfXTw0cktt0cfSvuKjnoXl+z0vLm5cmRDGs6hPMeBcae6Jeo7oyTmagpQrd+RhSBGBoLTtUEDNIHhqXPzY4fBKTq3/ELurqFK5OrXtZCAO3nASsFE72fK8xr1UzNjVaEviiaUzITVF34vxxjwF1IGfvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cqh9cYii; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC59AC4CEC3;
-	Fri, 11 Oct 2024 14:41:30 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=bTGcsGidEPOXgVou1WjrPyPUSv+25ZOGGKLvl472IIh9VYsanM5IpyW1ncx6WAmhBH3N4fVSF0Co6mr9Ofd/f0oiQcsJNcRDZqCkyABiPHRMKbAG9fEfNLjQ20dhZPwARKVeeHuY+PdNfDxGfC2rKJ9gWPf8jIKggxP25SpDMDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JD3OJ9/s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28BE7C4CEC3;
+	Fri, 11 Oct 2024 14:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728657690;
-	bh=Y0MK6Ir1naH6KdRmkyIQkGi5RdptzjZfItnSwsoMv00=;
+	s=k20201202; t=1728657797;
+	bh=gLtu5AZpGZcbTycLCtaJUcwPuMObUTXBrj/CeTpBl64=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cqh9cYii9B4DdEJVX9zLDAdWcG/3VUNSV92Z8y2h+dbshUodjcbwa3d6Q8EXKbLf/
-	 xy/oxBQz+dGGfq5YldPJ6H9X94o2sSmVvMPmv180t1A6jfarVwdsDM8jSY7+2sgF37
-	 h8wTe4tw+oTMFdRalSTxe9gKcrN7zi3xHQkSKD7yWofbStn4JuCNXQgcuZLYvIhKG+
-	 grhTFMMyNQWPKhLM/ZiiamT/j2utVRg1oB1xhuguPsp+V0mk7uuf9kOWvDNRRh2jLH
-	 ufSAxTXZhBD4c39cHqtOBjX2/1tE6e/jU2w/GiUkeg+pv727iITE8/i35yOZ2cL8mR
-	 /216e8mi8SdmQ==
-Date: Fri, 11 Oct 2024 09:41:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Richard Acayan <mailingradian@gmail.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Todor Tomov <todor.too@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] dt-bindings: media: camss: Add qcom,sdm670-camss
-Message-ID: <20241011144129.GA2295617-robh@kernel.org>
-References: <20241011023724.614584-7-mailingradian@gmail.com>
- <20241011023724.614584-9-mailingradian@gmail.com>
- <785c82d5-549d-454b-86bf-a00a39e6f521@linaro.org>
- <a230de8f-a11d-41c1-9bc6-7e06e850b51d@linaro.org>
+	b=JD3OJ9/ssGzEV5F6hwF1sPqaa8FV/FQhLnvPSl0++2YkU0KMrETL2YnFM2wsrM+do
+	 0/QEtWg3sNSzY1YwSwcr3M25UPF6AviGEsPodHdIrLefhJSU9kVtE0E5tY/S9FM47Q
+	 ktwgmK55xZpPtssCXwbP17jc3MvAmrZWWXlP0ow0TsJuBIxFdLEzDqJ3YI8vfdJAve
+	 omJcqOtTanFnoLGpIUiSSTjpEeeWGYAhG0pvpWTUFHK6zMmy4XXtazh+xHJkgikpiv
+	 /kRyAcOY6BJOlOLuca5pFyLPaxfV4E3ROPPzkPC4R6bwbRzxZpOyyUACnRmbVPzj+j
+	 mJybp63U3J8MQ==
+Date: Fri, 11 Oct 2024 16:43:13 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Marc Kleine-Budde <mkl@pengutronix.de>, Vincent Mailhol <mailhol.vincent@wanadoo.fr>, 
+	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, 
+	Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>
+Subject: Re: [PATCH v3 1/9] dt-bindings: can: m_can: Add wakeup properties
+Message-ID: <ffatirswspolq67yg3vlxptslkkdaa3ufd7n2b2scaaqcf6hvw@r4jy55rmfsmy>
+References: <20241011-topic-mcan-wakeup-source-v6-12-v3-0-9752c714ad12@baylibre.com>
+ <20241011-topic-mcan-wakeup-source-v6-12-v3-1-9752c714ad12@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <a230de8f-a11d-41c1-9bc6-7e06e850b51d@linaro.org>
+In-Reply-To: <20241011-topic-mcan-wakeup-source-v6-12-v3-1-9752c714ad12@baylibre.com>
 
-On Fri, Oct 11, 2024 at 09:31:06AM +0100, Bryan O'Donoghue wrote:
-> On 11/10/2024 08:14, Vladimir Zapolskiy wrote:
-> > 
-> > Two most recently added CAMSS IP descriptions (qcom,sm8250-camss.yaml and
-> > qcom,sc8280xp-camss.yaml) do implement sorting by reg values, I believe
-> > from now on
-> > it should be assumed that all subsequently added CAMSS IP descriptions
-> > to follow
-> > the same established policy.
+On Fri, Oct 11, 2024 at 03:16:38PM +0200, Markus Schneider-Pargmann wrote:
+> m_can can be a wakeup source on some devices. Especially on some of the
+> am62* SoCs pins, connected to m_can in the mcu, can be used to wakeup
+> the SoC.
 > 
-> My preference is sort by address not sort by name => we sort the device
-> nodes themselves by address so it seems more consistent to sort by address
-> inside of the devices too.
-
-Strictly speaking, the values of addresses are unknown to the binding, 
-so you can't sort by address. However, if something is truly a single 
-block, then the offsets are probably fixed in order by offset makes 
-sense. But when a block is changed, any rule on sorting may go out 
-the window since we add new regions on the end.
-
-This one in particular I have to wonder why csiphy is not a separate 
-node.
-
+> The wakeup-source property defines on which devices m_can can be used
+> for wakeup.
 > 
-> Which means sorting reg by address and irq too.
+> The pins associated with m_can have to have a special configuration to
+> be able to wakeup the SoC. This configuration is described in the wakeup
+> pinctrl state while the default state describes the default
+> configuration.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  .../devicetree/bindings/net/can/bosch,m_can.yaml       | 18 ++++++++++++++++++
+>  1 file changed, 18 insertions(+)
 
-IRQs make little sense to sort IMO.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Rob
+Best regards,
+Krzysztof
+
 
