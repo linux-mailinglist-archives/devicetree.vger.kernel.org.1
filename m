@@ -1,369 +1,138 @@
-Return-Path: <devicetree+bounces-110341-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5C2599A1D7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:45:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0490F99A204
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:53:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 50AF72831E1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:45:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFBB81C234BF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C7B5215009;
-	Fri, 11 Oct 2024 10:44:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A991E212623;
+	Fri, 11 Oct 2024 10:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bew2+tXn"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DR4dyFr1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E652F212636;
-	Fri, 11 Oct 2024 10:44:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDCB319F110;
+	Fri, 11 Oct 2024 10:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728643491; cv=none; b=D1NkP/DZfx4jSSZk3L+j+RmPDXvNjadaGe+blppfTuQ2FnVDCEUchaffOdIFp2s3ePCZKYy02ywl4MEnP8d6A8GWZogwuK/bNuP8dkaU8jnnCGVzRff9+YcWHV3DEaKyD3/GsD7bKj9BArB21tpHaBHVh3dDpn2Wc2MyHmetZlw=
+	t=1728644011; cv=none; b=dzAMTWBjtMyDDf64LWbeS9bQFtnD4NXbvnHNZixcVmXRZDpYJkUqZhUoZnGHoyUsUXv/ZLqTsvUrGOxKa8v3Sw+P4eeW/53RPKt45pZp9ecsIUT4SwlYNzUgCJYOZyTb2ZNe1etepX4Z3ubyDBe6yvSpY80YUmpIMut583Q8c2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728643491; c=relaxed/simple;
-	bh=ncQGDjVqIcmqLB13jlbaC2EccM0p0Skycwurb7HuorM=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WwFHFOxYGLsL+QZpYin6+mTtYtAgjGIza8NtmhuA+5nLgbRO2uBnZOKXtAOcr4p1vz1qkwnSIBvHNekAHmbYbyPukM5pap/Sg9GaWhePOiET86MgssIaBhgeWVhhiXAu8OFQl35faUrxFspqOa8bC/OuhLy2Ro4MltEXO7rKuJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bew2+tXn; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-43117917eb9so14557475e9.0;
-        Fri, 11 Oct 2024 03:44:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728643488; x=1729248288; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1FAu/jToo6vv9tVssK1OXqICVkrR1vSVMbEXikZEdW4=;
-        b=Bew2+tXnayeCPy1IBh12JLUipenYG2ptE+Uaush1qCDOLtmojGLpIkTlqKxjIg6FI3
-         WmMJKmPSm11U3CPPkw6Sk05RSO45EoKxJee2q9E2ddF7OHt6Rk+NtndH8lr16i61GlEN
-         nlZZctrrSWQa95AANZOlZPxwjiRO7Tm0kXtmWU5h770gD3ynJkNF/QWLpwGmBpAeuj5w
-         vjh2/aj0KBwkVhB2KQlvlDiQ98haFUsfDo2sXXhIY9AJiwYJ/Y88Xc9t/yZIEaNC7Br9
-         10HmhAETkjpHSrmf5h3gvnYDwq6FIaWY2KKw5ANEMek4HVXHRtJweGDG4vjC1yZpjBkQ
-         c8HA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728643488; x=1729248288;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1FAu/jToo6vv9tVssK1OXqICVkrR1vSVMbEXikZEdW4=;
-        b=w6j297ahjjWLOAjwlEClYRwZ1KHMgd8xPfE3oA6GH7Y2YaJEV1T9Rnaom9R0PnJn+S
-         24QkjVQefcTB/Wb7Gm3aiVg8AOS1iVVQw8V42dANWK7pe4C2zia/u6U7x7S0cUBJm9Kx
-         +pTSh2qpLKLSK3ECte8oJD+zjqqeAWg+PzznGPQY60ioO/IcGOx7sqH8Sfht1wYCES3t
-         1/81aCLyzZSZNt96ibz0ulzCDG79MPxSYFTIm5dU9ugBZ16ksfzlxsd1PMzKC993Jhp9
-         pjOQtnV+/MoxQVr0ROdvxXUhN6blnHDv3HJ0BmWkb+RT27TiMrjY0MZAW5nalwcIw5sV
-         sKZw==
-X-Forwarded-Encrypted: i=1; AJvYcCU+REkIaWtKJnRIftl7N+ugFkWiZNSteADXRucTrrZa/i5TdnLmQw+4O2zlJrEk6NIcy/FuNtDFpli6SnVdnC0=@vger.kernel.org, AJvYcCUFRVqxs0atOMzIwvf8R8pYfxWHG4wXXBqhqK+hepnanHssgbAIOjQ1xozlt2/a4R9lOUPfNzPQJn6W@vger.kernel.org, AJvYcCVyYe1itcBhiEGkK+j/c/yQ/XMikJYcI0r4AHKGcdkSvqOhR2GYkH1IPI+CDVT8b/VGyAlYzjR1sRw6ukJQ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxe5sB6T/jXWA1ojTqgY3jS6A3/2+GzQoyOlx1bAyI92ZPy0uNn
-	Fh4loHyRo6VhHWy4z59vRC0SzVZ+cvnbQyrxRIz82rwdy+YNGhknILfwwQ==
-X-Google-Smtp-Source: AGHT+IFRK9mJrgtb0XVK0HHzpweY6iOhlcls5NSGPz+DRPt8E8L16l/1Kv4AjY72BXHTiJ1jxJ21hQ==
-X-Received: by 2002:a05:600c:4449:b0:42c:ba83:3f0e with SMTP id 5b1f17b1804b1-4311dea3aaamr16559675e9.7.1728643488025;
-        Fri, 11 Oct 2024 03:44:48 -0700 (PDT)
-Received: from localhost.localdomain (93-34-90-105.ip49.fastwebnet.it. [93.34.90.105])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-37d4b6bd23esm3642375f8f.44.2024.10.11.03.44.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 03:44:47 -0700 (PDT)
-From: Christian Marangi <ansuelsmth@gmail.com>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	upstream@airoha.com
-Subject: [PATCH v3 2/2] watchdog: Add support for Airoha EN7851 watchdog
-Date: Fri, 11 Oct 2024 12:43:53 +0200
-Message-ID: <20241011104411.28659-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20241011104411.28659-1-ansuelsmth@gmail.com>
-References: <20241011104411.28659-1-ansuelsmth@gmail.com>
+	s=arc-20240116; t=1728644011; c=relaxed/simple;
+	bh=NYNd9OfIuCbrYYoLUEbZNO/rqyiZW+zgAsaJ8SpxLcY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q/A4BQaDV9zvqWvOwQvCKX9F7olztMqerL/RCEjZJGrBJH2t2a7pMHbznSNR9Lossf+PWoD4QW8IPvK7ryTwSSmtxb7UbK/mt289vL7ACzYIjfgvxkNeaWShysUGPiMxNZ9NbpLxYHUgZLngq4T/BxonLRNuKXk3r9HevHZ7Doc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DR4dyFr1; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728644010; x=1760180010;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NYNd9OfIuCbrYYoLUEbZNO/rqyiZW+zgAsaJ8SpxLcY=;
+  b=DR4dyFr1UXHlldBsx29WOZ1hSN0luIRBk8nkR4DF7IjVGHpskMkiz50d
+   NK9MITPnKetBzrbkr6bN+0V2f6MRa8YRIiSDipsreZacG+I1tZhbhm4b3
+   9eQy7Oc+rjDY/Lz8WHqPHbE3xpKNaoRjNwu7AgDqaCLJ8wIKBGYkfEkGS
+   cbgmMnBp1mD0kSCsjWctSmxTgfTC9Qm1R5udE6SFX2rQKef7KH0wGwmvU
+   dayGCQrKPOL7ZQIgnS8DSRUBGwcFTzZlFPkeJpQjH7b9oSDIQD/J+VDo3
+   +vy4tguRTdY/I1BQvk0J54zN0U2LrpZmnMfVJe/Rfk8hQqXfm26Knj2UE
+   Q==;
+X-CSE-ConnectionGUID: rNV52/vJQpibEafltZNqGw==
+X-CSE-MsgGUID: e0WNBGRsQRKr8Xsq81UBfg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="39167983"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
+   d="scan'208";a="39167983"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:53:29 -0700
+X-CSE-ConnectionGUID: dmOtC1YnSmq7NF49WTQdRQ==
+X-CSE-MsgGUID: OjZo3MXmRA+qBzoUSG5bZw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
+   d="scan'208";a="107729525"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Oct 2024 03:53:25 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1szDGr-00000001riR-2E3Z;
+	Fri, 11 Oct 2024 13:53:21 +0300
+Date: Fri, 11 Oct 2024 13:53:21 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: kernel test robot <lkp@intel.com>
+Cc: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
+	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, llvm@lists.linux.dev,
+	oe-kbuild-all@lists.linux.dev, ang.iglesiasg@gmail.com,
+	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
+	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
+	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	christophe.jaillet@wanadoo.fr
+Subject: Re: [PATCH v8 1/4] iio: pressure: bmp280: Use sleep and forced mode
+ for oneshot captures
+Message-ID: <ZwkDoSeXA1T4VD0L@smile.fi.intel.com>
+References: <20241007194945.66192-2-vassilisamir@gmail.com>
+ <202410111221.YIeXHxOv-lkp@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <202410111221.YIeXHxOv-lkp@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Add support for Airoha EN7851 watchdog. This is a very basic watchdog
-with no pretimeout support, max timeout is 28 seconds and it ticks based
-on half the SoC BUS clock.
+On Fri, Oct 11, 2024 at 12:32:12PM +0800, kernel test robot wrote:
+> Hi Vasileios,
+> 
+> kernel test robot noticed the following build warnings:
+> 
+> [auto build test WARNING on 96be67caa0f0420d4128cb67f07bbd7a6f49e03a]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Vasileios-Amoiridis/iio-pressure-bmp280-Use-sleep-and-forced-mode-for-oneshot-captures/20241008-035238
+> base:   96be67caa0f0420d4128cb67f07bbd7a6f49e03a
+> patch link:    https://lore.kernel.org/r/20241007194945.66192-2-vassilisamir%40gmail.com
+> patch subject: [PATCH v8 1/4] iio: pressure: bmp280: Use sleep and forced mode for oneshot captures
+> config: i386-randconfig-006-20241011 (https://download.01.org/0day-ci/archive/20241011/202410111221.YIeXHxOv-lkp@intel.com/config)
+> compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
+> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241011/202410111221.YIeXHxOv-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202410111221.YIeXHxOv-lkp@intel.com/
+> 
+> All warnings (new ones prefixed by >>):
+> 
+> >> drivers/iio/pressure/bmp280-core.c:1051:3: warning: variable 'meas_time_us' is uninitialized when used here [-Wuninitialized]
+>     1051 |                 meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
+>          |                 ^~~~~~~~~~~~
+>    drivers/iio/pressure/bmp280-core.c:1046:32: note: initialize the variable 'meas_time_us' to silence this warning
+>     1046 |         unsigned int reg, meas_time_us;
+>          |                                       ^
+>          |                                        = 0
+>    drivers/iio/pressure/bmp280-core.c:2452:2: warning: variable 'offset' is uninitialized when used here [-Wuninitialized]
+>     2452 |         offset += sizeof(s32);
+>          |         ^~~~~~
+>    drivers/iio/pressure/bmp280-core.c:2437:17: note: initialize the variable 'offset' to silence this warning
+>     2437 |         int ret, offset;
+>          |                        ^
+>          |                         = 0
 
-Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
----
-Changes v2:
-- Drop clock-frequency implementation
-- Add missing bitfield.h header
-- Attach BUS clock
+Rarely, but looks like this suggestion is okay, rather I would do it as 'else'
+branch and convert '+=' in the 'if' part to be '='.
 
- drivers/watchdog/Kconfig      |   8 ++
- drivers/watchdog/Makefile     |   1 +
- drivers/watchdog/airoha_wdt.c | 216 ++++++++++++++++++++++++++++++++++
- 3 files changed, 225 insertions(+)
- create mode 100644 drivers/watchdog/airoha_wdt.c
-
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index 85eea38dbdf4..be4616d18b29 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -394,6 +394,14 @@ config SL28CPLD_WATCHDOG
- 
- # ARM Architecture
- 
-+config AIROHA_WATCHDOG
-+	tristate "Airoha EN7581 Watchdog"
-+	depends on ARCH_AIROHA || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Watchdog timer embedded into Airoha SoC. This will reboot your
-+	  system when the timeout is reached.
-+
- config ARM_SP805_WATCHDOG
- 	tristate "ARM SP805 Watchdog"
- 	depends on (ARM || ARM64 || COMPILE_TEST) && ARM_AMBA
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 2d1117564f5b..32a0f689a9be 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -40,6 +40,7 @@ obj-$(CONFIG_USBPCWATCHDOG) += pcwd_usb.o
- obj-$(CONFIG_ARM_SP805_WATCHDOG) += sp805_wdt.o
- obj-$(CONFIG_ARM_SBSA_WATCHDOG) += sbsa_gwdt.o
- obj-$(CONFIG_ARMADA_37XX_WATCHDOG) += armada_37xx_wdt.o
-+obj-$(CONFIG_AIROHA_WATCHDOG) += airoha_wdt.o
- obj-$(CONFIG_ASM9260_WATCHDOG) += asm9260_wdt.o
- obj-$(CONFIG_AT91RM9200_WATCHDOG) += at91rm9200_wdt.o
- obj-$(CONFIG_AT91SAM9X_WATCHDOG) += at91sam9_wdt.o
-diff --git a/drivers/watchdog/airoha_wdt.c b/drivers/watchdog/airoha_wdt.c
-new file mode 100644
-index 000000000000..dc8ca11c14d8
---- /dev/null
-+++ b/drivers/watchdog/airoha_wdt.c
-@@ -0,0 +1,216 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ *	Airoha Watchdog Driver
-+ *
-+ *	Copyright (c) 2024, AIROHA  All rights reserved.
-+ *
-+ *	Mayur Kumar <mayur.kumar@airoha.com>
-+ *	Christian Marangi <ansuelsmth@gmail.com>
-+ *
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/moduleparam.h>
-+#include <linux/types.h>
-+#include <linux/bitfield.h>
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/math.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
-+
-+/* Base address of timer and watchdog registers */
-+#define TIMER_CTRL			0x0
-+#define   WDT_ENABLE			BIT(25)
-+#define   WDT_TIMER_INTERRUPT		BIT(21)
-+/* Timer3 is used as Watchdog Timer */
-+#define   WDT_TIMER_ENABLE		BIT(5)
-+#define WDT_TIMER_LOAD_VALUE		0x2c
-+#define WDT_TIMER_CUR_VALUE		0x30
-+#define  WDT_TIMER_VAL			GENMASK(31, 0)
-+#define WDT_RELOAD			0x38
-+#define   WDT_RLD			BIT(0)
-+
-+/* Airoha watchdog structure description */
-+struct airoha_wdt_desc {
-+	struct watchdog_device wdog_dev;
-+	unsigned int wdt_freq;
-+	void __iomem *base;
-+};
-+
-+#define WDT_HEARTBEAT			24
-+static int heartbeat = WDT_HEARTBEAT;
-+module_param(heartbeat, int, 0);
-+MODULE_PARM_DESC(heartbeat, "Watchdog heartbeats in seconds. (default="
-+		 __MODULE_STRING(WDT_HEARTBEAT) ")");
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(nowayout, "Watchdog cannot be stopped once started (default="
-+		 __MODULE_STRING(WATCHDOG_NOWAYOUT) ")");
-+
-+static int airoha_wdt_start(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + TIMER_CTRL);
-+	val |= (WDT_TIMER_ENABLE | WDT_ENABLE | WDT_TIMER_INTERRUPT);
-+	writel(val, airoha_wdt->base + TIMER_CTRL);
-+	val = wdog_dev->timeout * airoha_wdt->wdt_freq;
-+	writel(val, airoha_wdt->base + WDT_TIMER_LOAD_VALUE);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_stop(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + TIMER_CTRL);
-+	val &= (~WDT_ENABLE & ~WDT_TIMER_ENABLE);
-+	writel(val, airoha_wdt->base + TIMER_CTRL);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_ping(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + WDT_RELOAD);
-+	val |= WDT_RLD;
-+	writel(val, airoha_wdt->base + WDT_RELOAD);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_set_timeout(struct watchdog_device *wdog_dev, unsigned int timeout)
-+{
-+	wdog_dev->timeout = timeout;
-+
-+	if (watchdog_active(wdog_dev)) {
-+		airoha_wdt_stop(wdog_dev);
-+		return airoha_wdt_start(wdog_dev);
-+	}
-+
-+	return 0;
-+}
-+
-+static unsigned int airoha_wdt_get_timeleft(struct watchdog_device *wdog_dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = watchdog_get_drvdata(wdog_dev);
-+	u32 val;
-+
-+	val = readl(airoha_wdt->base + WDT_TIMER_CUR_VALUE);
-+	return DIV_ROUND_UP(val, airoha_wdt->wdt_freq);
-+}
-+
-+static const struct watchdog_info airoha_wdt_info = {
-+	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
-+	.identity = "Airoha Watchdog",
-+};
-+
-+static const struct watchdog_ops airoha_wdt_ops = {
-+	.owner = THIS_MODULE,
-+	.start = airoha_wdt_start,
-+	.stop = airoha_wdt_stop,
-+	.ping = airoha_wdt_ping,
-+	.set_timeout = airoha_wdt_set_timeout,
-+	.get_timeleft = airoha_wdt_get_timeleft,
-+};
-+
-+static int airoha_wdt_probe(struct platform_device *pdev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt;
-+	struct watchdog_device *wdog_dev;
-+	struct device *dev = &pdev->dev;
-+	struct clk *bus_clk;
-+	int ret;
-+
-+	airoha_wdt = devm_kzalloc(dev, sizeof(*airoha_wdt), GFP_KERNEL);
-+	if (!airoha_wdt)
-+		return -ENOMEM;
-+
-+	airoha_wdt->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(airoha_wdt->base))
-+		return PTR_ERR(airoha_wdt->base);
-+
-+	bus_clk = devm_clk_get_enabled(dev, "bus");
-+	if (IS_ERR(bus_clk))
-+		return dev_err_probe(dev, PTR_ERR(bus_clk),
-+				     "failed to enable bus clock\n");
-+
-+	/* Watchdog ticks at half the bus rate */
-+	airoha_wdt->wdt_freq = clk_get_rate(bus_clk) / 2;
-+
-+	/* Initialize struct watchdog device */
-+	wdog_dev = &airoha_wdt->wdog_dev;
-+	wdog_dev->timeout = heartbeat;
-+	wdog_dev->info = &airoha_wdt_info;
-+	wdog_dev->ops = &airoha_wdt_ops;
-+	/* Bus 300MHz, watchdog 150MHz, 28 seconds */
-+	wdog_dev->max_timeout = FIELD_MAX(WDT_TIMER_VAL) / airoha_wdt->wdt_freq;
-+	wdog_dev->parent = dev;
-+
-+	watchdog_set_drvdata(wdog_dev, airoha_wdt);
-+	watchdog_set_nowayout(wdog_dev, nowayout);
-+	watchdog_stop_on_unregister(wdog_dev);
-+
-+	ret = devm_watchdog_register_device(dev, wdog_dev);
-+	if (ret)
-+		return ret;
-+
-+	platform_set_drvdata(pdev, airoha_wdt);
-+	return 0;
-+}
-+
-+static int airoha_wdt_suspend(struct device *dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&airoha_wdt->wdog_dev))
-+		airoha_wdt_stop(&airoha_wdt->wdog_dev);
-+
-+	return 0;
-+}
-+
-+static int airoha_wdt_resume(struct device *dev)
-+{
-+	struct airoha_wdt_desc *airoha_wdt = dev_get_drvdata(dev);
-+
-+	if (watchdog_active(&airoha_wdt->wdog_dev)) {
-+		airoha_wdt_start(&airoha_wdt->wdog_dev);
-+		airoha_wdt_ping(&airoha_wdt->wdog_dev);
-+	}
-+	return 0;
-+}
-+
-+static const struct of_device_id airoha_wdt_of_match[] = {
-+	{ .compatible = "airoha,en7581-wdt", },
-+	{ },
-+};
-+
-+MODULE_DEVICE_TABLE(of, airoha_wdt_of_match);
-+
-+static DEFINE_SIMPLE_DEV_PM_OPS(airoha_wdt_pm_ops, airoha_wdt_suspend, airoha_wdt_resume);
-+
-+static struct platform_driver airoha_wdt_driver = {
-+	.probe = airoha_wdt_probe,
-+	.driver = {
-+		.name = "airoha-wdt",
-+		.pm = pm_sleep_ptr(&airoha_wdt_pm_ops),
-+		.of_match_table = airoha_wdt_of_match,
-+	},
-+};
-+
-+module_platform_driver(airoha_wdt_driver);
-+
-+MODULE_AUTHOR("Mayur Kumar <mayur.kumar@airoha.com>");
-+MODULE_AUTHOR("Christian Marangi <ansuelsmth@gmail.com>");
-+MODULE_DESCRIPTION("Airoha EN7581 Watchdog Driver");
-+MODULE_LICENSE("GPL");
 -- 
-2.45.2
+With Best Regards,
+Andy Shevchenko
+
 
 
