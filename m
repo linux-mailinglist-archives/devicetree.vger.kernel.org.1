@@ -1,83 +1,161 @@
-Return-Path: <devicetree+bounces-110419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E338A99A62F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:21:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 864CB99A645
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:27:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 92C41285ED3
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:21:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 367EF286542
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:27:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D1A0219CA1;
-	Fri, 11 Oct 2024 14:21:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02C7218D91;
+	Fri, 11 Oct 2024 14:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRac+aNI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MraT0TRZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0874219C94;
-	Fri, 11 Oct 2024 14:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B62FD212F13;
+	Fri, 11 Oct 2024 14:27:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728656490; cv=none; b=LF56xnzuMN2Oo6/2G42iimYr7D+0JJuCIau4SwDylKb750v1/WA00gWGRongXRJmDmFsxpzHTu5nvUUgKzz1UJobiNti7JaY5BIDnXIO3npoB3ngAMVqoBiN0Oz4ALDGRRGyoGPvvsyMr0TFGADV2NVmjblUnGIwOdkEtYk9cfM=
+	t=1728656831; cv=none; b=HewVgGEIwNJ2iDno7O/ARJmUagkhYeIG5D2aVPc4n7o1x5OOKR6S859k2rP0/0aTe2fkYkIL7viWEA+rzufEBMLQzX23Dj5QS1XQKrvlAYYqjDn6FyjLQGGe7naQE4PBZIuIXFI843KEl9xWm31EseCA/Ds3HPeBmBMiIhk4dGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728656490; c=relaxed/simple;
-	bh=37MtFp99OIt7vNoiuAnY53uiK3IjAbyhbAdFTFwG0U0=;
+	s=arc-20240116; t=1728656831; c=relaxed/simple;
+	bh=pUd9AMdtvemQ98FlMluaPmqLuijLZiDm9z3uByCDb8s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I2sNXOpxnE2SK7Z/s2VYuQTpekyQvb07Idie86wcQz2EwWOUswMzbxHCQDsPk3tAK1f1m/wLr/GG+H6+yL4Hty94lM08vbkBxLj93CFD5Kc4hdeIGrM81yINDgZldogM+3iqUMpG2oBdncxC60tInEM9gOFmJrnUSub/6KZXeoE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRac+aNI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A80F7C4CEC3;
-	Fri, 11 Oct 2024 14:21:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=LKfN6QzKIagih0Ttbl2b6J1wvL685eIYynyNCHQkbtllILBNS+m4DK/LJNITDlf7P1rQASIJkChhYQXR8yQXQ9b0jrNao/3c4ClL0bvyzfrNuuDOpeADkSNlkj45xYAH2+acqgOf/Mvt7DiTKoV3DnC/DKVlAlGoe4kfI2TIIYI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MraT0TRZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FD10C4CEC3;
+	Fri, 11 Oct 2024 14:27:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728656490;
-	bh=37MtFp99OIt7vNoiuAnY53uiK3IjAbyhbAdFTFwG0U0=;
+	s=k20201202; t=1728656831;
+	bh=pUd9AMdtvemQ98FlMluaPmqLuijLZiDm9z3uByCDb8s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MRac+aNIsKGINHCEeI6SJEZL8ZPvfU5wjYFMaO040rmiup8j5b9pcSPmEjmqsKfY8
-	 WUrLgUl/RRX+FRwGSIUrOxA1apLvqpF6gFe7xn7msby+rkRQch57IEQ2v1vWv88T1Q
-	 HIgWKhR89/r4JM1GtuGXxLvOS7JunYJpsuVPhew/qEhgv+9iR5WY1UqVkThxZPXh71
-	 JLjtPqjqdtUgmRGyLgjk3I8aiMNoFLqR0RrerZDAif23yjg1zVIeeAe2xo+v3NOuGs
-	 62jGt4dPH2sjJVnJk9rQNdY0BD9AiTWEqr7EVLBa3QIkbi0g8nTfSvseBtlC1x9JJi
-	 bpkDQIfGgkb0Q==
-Date: Fri, 11 Oct 2024 16:21:26 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Sakari Ailus <sakari.ailus@linux.intel.com>, 
-	Jason Chen <jason.z.chen@intel.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Sergey Senozhatsky <senozhatsky@chromium.org>, Hans Verkuil <hverkuil-cisco@xs4all.nl>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/4] media: dt-bindings: Add OmniVision OV08X40
-Message-ID: <4plzz64zfeozca7prwgffvsx62eh4ez5g3eo4hdp3wq65d6ibu@qxmt2hmvewcp>
-References: <20241010-b4-master-24-11-25-ov08x40-v6-0-cf966e34e685@linaro.org>
- <20241010-b4-master-24-11-25-ov08x40-v6-2-cf966e34e685@linaro.org>
+	b=MraT0TRZ+85TeEd3wb1RuFlN9IT8vBcK35E9VxW0iq+VprEF69kk2WTAJdNReynhg
+	 EVfh+0M96X/fDjxXlTYIsAN4O2du+oecC3eyBzbb/oS33oRzJ/Cc7a/L9VqDlMXknV
+	 RYqFe5D+8NmRqi9Uh5vDJ3pnRZjiszoElr/df1sgiZ732MT1kwjIPnTejYfs9NlKui
+	 4RIfSGPlE7t3is56gdSGe04ruAVmnyFUT954EdFCBIEdS/Xpe9/pqCmy8/3eyffCSL
+	 0PX0Aj9QN/8hKXPWTVhsaY7YG8TLyKz4Jyqxk4aOaVySvX/Tp9xiV7IN/5Zm4+g19d
+	 uWHmyqW6x+uIw==
+Date: Fri, 11 Oct 2024 09:27:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Jakob Hauser <jahau@rocketmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 1/4] dt-bindings: display: panel: Add Samsung
+ S6E88A0-AMS427AP24 bindings
+Message-ID: <20241011142709.GA2289410-robh@kernel.org>
+References: <cover.1728582727.git.jahau@rocketmail.com>
+ <3d754a2ee538d4c99ab71340706297d54b767c35.1728582727.git.jahau@rocketmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20241010-b4-master-24-11-25-ov08x40-v6-2-cf966e34e685@linaro.org>
+In-Reply-To: <3d754a2ee538d4c99ab71340706297d54b767c35.1728582727.git.jahau@rocketmail.com>
 
-On Thu, Oct 10, 2024 at 01:33:18PM +0100, Bryan O'Donoghue wrote:
-> Add bindings for the already upstream OV08X40 to enable usage of this
-> sensor on DTS based systems.
+On Thu, Oct 10, 2024 at 08:31:48PM +0200, Jakob Hauser wrote:
+> Add bindings for Samsung AMS427AP24 panel with S6E88A0 controller.
 > 
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Jakob Hauser <jahau@rocketmail.com>
 > ---
->  .../bindings/media/i2c/ovti,ov08x40.yaml           | 120 +++++++++++++++++++++
->  1 file changed, 120 insertions(+)
+> Patch is based on https://gitlab.freedesktop.org/drm/misc/kernel.git
+> current branch drm-misc-next.
+> ---
+>  .../panel/samsung,s6e88a0-ams427ap24.yaml     | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
+> new file mode 100644
+> index 000000000000..7010d3bbd07f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/samsung,s6e88a0-ams427ap24.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/samsung,s6e88a0-ams427ap24.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Samsung AMS427AP24 panel with S6E88A0 controller
+> +
+> +maintainers:
+> +  - Jakob Hauser <jahau@rocketmail.com>
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: samsung,s6e88a0-ams427ap24
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  port: true
+> +  reset-gpios: true
+> +
+> +  vdd3-supply:
+> +    description: core voltage supply
+> +
+> +  vci-supply:
+> +    description: voltage supply for analog circuits
+> +
+> +  flip-horizontal:
+> +    description: boolean to flip image horizontally
+> +    type: boolean
 
-I found the reason in cover letter.
+This is already used in another panel. Please move it to 
+panel-common.yaml.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - port
+> +  - reset-gpios
+> +  - vdd3-supply
+> +  - vci-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            panel@0 {
+> +                    compatible = "samsung,s6e88a0-ams427ap24";
+> +                    reg = <0>;
+> +
+> +                    vdd3-supply = <&pm8916_l17>;
+> +                    vci-supply = <&pm8916_l6>;
+> +                    reset-gpios = <&tlmm 25 GPIO_ACTIVE_LOW>;
+> +                    flip-horizontal;
+> +
+> +                    port {
+> +                            panel_in: endpoint {
+> +                                    remote-endpoint = <&mdss_dsi0_out>;
+> +                            };
+> +                    };
+> +            };
+> +    };
+> -- 
+> 2.39.5
+> 
 
