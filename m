@@ -1,118 +1,180 @@
-Return-Path: <devicetree+bounces-110543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CFF799AE4F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 23:55:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECA799AE8D
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 00:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F852B22EC2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:55:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07D63285F54
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 22:15:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 697D61D0F7D;
-	Fri, 11 Oct 2024 21:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58E631D1741;
+	Fri, 11 Oct 2024 22:15:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lf9Vm5y6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zjn5h6bx"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F715194A67;
-	Fri, 11 Oct 2024 21:55:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B58E1CFEAD;
+	Fri, 11 Oct 2024 22:15:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728683736; cv=none; b=U9FBUdMq0YSbTfCcbUTb1JmeeYGqmMy/XDWcKrEmKmbzD5fF8og0ktvQzcvj60dF2B6GSOJdJf65wIMLJ0bWq/X4YW06Qw74f9cn+0KZ1j/Idqv0CeIIDbYod36OuvQmi3zfaNxgpPhZRnI6Ws09t62LSoZhB8DoY/iIm8FZkYI=
+	t=1728684921; cv=none; b=Cq0lHPdPTSkM2aAQWzyfyUOfpWFyMHFaGW7RnFNrsWWe8Irtq+U5fS61YGmXK7HwSacqvkOUsInP987oGDlUMuTQsgGdUQyoyyTGjmfpb6+PyZJtyFeLNgvTVdoEGgwCWbfKge7ERqOKldY5Pev1pZj2VCR5DHcoJzFIaPEgy18=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728683736; c=relaxed/simple;
-	bh=eD71LVrxqwlv2wKWxK9+4d3rK3+9jdnoxnKHogtfupg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=Aq4CNwyW16cYQz831G4DARqf8IIV/1sLvjCvM1cz+jMD4uJJDmyNNzkWM5un954w24Wy1Sm11+etgU6d5IV07Y8SVzZav0sSRKqMXQESH64ajf9pV++YHK2XaigFaNTFI6oj1f+ryExWN0QjSNtglVU+h2+zwsQUV3jP/CR+deo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lf9Vm5y6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AC54FC4CEC3;
-	Fri, 11 Oct 2024 21:55:35 +0000 (UTC)
+	s=arc-20240116; t=1728684921; c=relaxed/simple;
+	bh=ELP8L478B16ztqydobuxgj5YxtYig7+S68KIYDDeqLY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=k0mjjmxaSFpYrpWnpcrdgGN7kYDXJk2Zect1MV3t04vinv1Be8mFQg8edwiT6pcQabhxfm+bpXmDPeLgF8KG+dFxrsDivHSC0/bBt+Ikl+X2+O9yCHylW7PM8LrhRHIALTt79tbwxLok7Vy/ePOR+ai2hPEvaJGpbQKeuHn6inc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zjn5h6bx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A234EC4CED1;
+	Fri, 11 Oct 2024 22:15:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728683735;
-	bh=eD71LVrxqwlv2wKWxK9+4d3rK3+9jdnoxnKHogtfupg=;
-	h=Date:From:To:Cc:Subject:From;
-	b=lf9Vm5y6cv8SzrfaBMkI078RLf5Nhq4JKoktjRxkXDDifMLXzGOdEk52xZYEyf9+l
-	 SSnJec2OKLc5u1YMM+hA5ULZXb72vbr6jdVQuhkxnTwzupRQDDK83Ynbtg1u5lxbx6
-	 e+rw3MU5GLfqqUtVQH7zTctwLj1feufo6uGNLGWNLUsE7r91UjfxwYx5WKbwIHTJnp
-	 ZzQGzv2TOML3sfz06YqwNF1A7aJS4mY1bz9UfnKn1AGLNZT3+bozC6rwxAHLhDcaTm
-	 1YrRE5nmSz5aDZT/9g9lTXmbU5cCpTyNQHBf0qC+E8Oj9P+4U/Lr027D8mWh58zkNb
-	 UrGZUBIKJT61g==
-Date: Fri, 11 Oct 2024 16:55:29 -0500
-From: Rob Herring <robh@kernel.org>
-To: Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Saravana Kannan <saravanak@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [GIT PULL] Devicetree fixes for v6.12, part 1
-Message-ID: <20241011215529.GA2601838-robh@kernel.org>
+	s=k20201202; t=1728684920;
+	bh=ELP8L478B16ztqydobuxgj5YxtYig7+S68KIYDDeqLY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=Zjn5h6bxsTfHdSjmsw3xZzC9NnFt9LLBRiL1gLEZ9MPe2rHf2VFBr3wdq0x0zPlO0
+	 TmhfWnV4qr9xzLDdO5oFi0dQ6r4vsHF1GbotmtsS9f6GJnv3zfyZjIYQMMSDn3hp/k
+	 ZboIwLveYUg8zUwlImOW81JC2JSKpOSm/2gYCnynXm1r+f2phrg1TsIprInpBGxCPB
+	 R9rql6nRINUG7I0zAG+4AGCkXnwhltA2nz9nxglxlbuAmvCQ6nLY3wH+i3IvS7SFZC
+	 SoDq2bzKlC+4Cl/Ax8NoWbkJJTUKciau9ofuJsTa7IxaEekYlkjnQAc2CejxazXYkv
+	 F3I91Ig4z+ckA==
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-53997328633so4197849e87.3;
+        Fri, 11 Oct 2024 15:15:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUdCah1OpgQ2TVUBFQi3EpDKlJ+FEP2mAGM2omC5jcZib74QWcWxh0aUDM8vkryju/Jn0Hl7LMdr1UR@vger.kernel.org, AJvYcCWSiGZY5NwjixB38Ext7ntheO5Ee3QO+FLn9cS9+CHYT6Je7nkCKRP0d/bNSPdepyhKSTAEIJjiiURmqPMU@vger.kernel.org, AJvYcCXBDjbNe03uHnw96GQEPjxPuH3EbEXNqi0+otuTzotfphoR5AqkRsjEaOj1y9Prj11L4IF7IUzqlXY=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz2fVTImkw0BjrZk/Se8s7CrHKVwt3UYVseznhm5cWLhUwcUtVQ
+	UAYc+6XWifq9VrgD5jeWptEb9ZOjPsR/eXJsgzIyHaSIvMJPIk1hSD0xypOfcHaeTurv1bT2gDx
+	QNrQY2zMKc9D/zjbwF5xBFCY62w==
+X-Google-Smtp-Source: AGHT+IGF99XBUxkOenEdwmIQtOgExe7ME91mPqvFEk96liE+RiiXVBhJMUT6h/UsrdC6DJPbt++sPunoF7UITTYb8zQ=
+X-Received: by 2002:a05:6512:e9d:b0:535:6a34:b8c3 with SMTP id
+ 2adb3069b0e04-539e54d772bmr770312e87.5.1728684918931; Fri, 11 Oct 2024
+ 15:15:18 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Fri, 11 Oct 2024 17:15:05 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+F_pwhVLD1HF7=sYLp2w5kpc53UmzzffxyKzwh8WZthw@mail.gmail.com>
+Message-ID: <CAL_Jsq+F_pwhVLD1HF7=sYLp2w5kpc53UmzzffxyKzwh8WZthw@mail.gmail.com>
+Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, lgirdwood@gmail.com, broonie@kernel.org, 
+	keescook@chromium.org, gustavoars@kernel.org, henryc.chen@mediatek.com, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, kernel@collabora.com, wenst@chromium.org, 
+	amergnat@baylibre.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Linus,
+On Mon, Jun 10, 2024 at 3:57=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Changes in v6:
+>  - Fixed build with clang (thanks Nathan!)
+>  - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
+>  - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
+>
+> Changes in v5:
+>  - Fixed Kconfig dependencies in interconnect
+>  - Fixed module build for dvfsrc and interconnect
+>
+> Changes in v4:
+>  - Updated patch [3/7] to actually remove address/size cells
+>    as the old version got unexpectedly pushed in v3.
+>
+> Changes in v3:
+>  - Removed examples from interconnect and regulator bindings
+>    and kept example node with interconnect and regulator in
+>    the main DVFSRC binding as suggested
+>  - Removed 'reg' from interconnect and regulator, removed both
+>    address and size cells from the main DVFSRC binding as that
+>    was not really needed
+>  - Added anyOf-required entries in the regulator binding as it
+>    doesn't make sense to probe it without any regulator subnode
+>
+> Changes in v2:
+>  - Fixed issues with regulator binding about useless quotes and
+>    wrong binding path (oops)
+>  - Removed useless 'items' from DVFSRC main binding
+>  - Allowed address/size cells to DVFSRC main binding to resolve
+>    validation issues on the regulator and interconnect bindings
+>  - Changed dvfsrc node name to `system-controller`, as the DVFSRC
+>    is actually able to control multiple system components.
+>  - Added a commit to remove mtk-dvfs-regulator.c before adding the
+>    new, refactored regulator driver
+>
+>
+> This series adds support for the MediaTek Dynamic Voltage and Frequency
+> Scaling Resource Controller (DVFSRC), found on many MediaTek SoCs.
+>
+> This hardware collects requests from both software and the various remote
+> processors embededd into the SoC, and decides about a minimum operating
+> voltage and a minimum DRAM frequency to fulfill those requests, in an
+> effort to provide the best achievable performance per watt.
+>
+> Such hardware IP is capable of transparently performing direct register
+> R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
+>
+> Summarizing how the DVFSRC works for Interconnect:
+>
+>              ICC provider         ICC Nodes
+>                               ----          ----
+>              _________       |CPU |   |--- |VPU |
+>     _____   |         |-----  ----    |     ----
+>    |     |->|  DRAM   |       ----    |     ----
+>    |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
+>    |     |->|  (EMI)  |       ----    |     ----
+>    |_____|->|_________|---.   -----   |     ----
+>                /|\         `-|MMSYS|--|--- |VDEC|
+>                 |             -----   |     ----
+>                 |                     |     ----
+>                 | change DRAM freq    |--- |VENC|
+>              --------                 |     ----
+>     SMC --> | DVFSRC |                |     ----
+>              --------                 |--- |IMG |
+>                                       |     ----
+>                                       |     ----
+>                                       |--- |CAM |
+>                                             ----
+>
+> ...and for regulators, it's simply...
+>    SMC -> DVFSRC -> Regulator voltage decider -> (vreg) Registers R/W
+>
+> Please note that this series is based on an old (abandoned) series from
+> MediaTek [1], and reuses some parts of the code found in that.
+>
+> Besides, included in this series, there's also a refactoring of the
+> mtk-dvfsrc-regulator driver, which never got compiled at all, and would
+> not build anyway because of missing headers and typos: that commit did
+> not get any Fixes tag because, well, backporting makes no sense at all
+> as the DVFSRC support - which is critical for that driver to work - is
+> introduced with *this series*! :-)
+>
+> P.S.: The DVFSRC regulator is a requirement for the MediaTek UFSHCI
+>       controller's crypto boost feature, which is already upstream but
+>       lacking the actual regulator to work....... :-)
+>
+> [1]: https://lore.kernel.org/all/20210812085846.2628-1-dawei.chien@mediat=
+ek.com/
+>
+> AngeloGioacchino Del Regno (7):
+>   dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
+>   dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
+>   dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
+>   soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
 
-Please pull a few fixes for 6.12.
+Looks like the driver got picked up, but not the binding.
+mediatek,mt8183-dvfsrc and mediatek,mt8195-dvfsrc show up in next as
+undocumented.
 
 Rob
-
-
-The following changes since commit 9852d85ec9d492ebef56dc5f229416c925758edc:
-
-  Linux 6.12-rc1 (2024-09-29 15:06:19 -0700)
-
-are available in the Git repository at:
-
-  ssh://git@gitolite.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.12-1
-
-for you to fetch changes up to 6e0391e48cf9fb8b1b5e27c0cbbaf2e4639f2c33:
-
-  of: Skip kunit tests when arm64+ACPI doesn't populate root node (2024-10-10 12:43:01 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v6.12, part 1:
-
-- Disable kunit tests for arm64+ACPI
-
-- Fix refcount issue in kunit tests
-
-- Drop constraints on non-conformant 'interrupt-map' in fsl,ls-extirq
-
-- Drop type ref on 'msi-parent in fsl,qoriq-mc binding
-
-- Move elgin,jg10309-01 to its own binding from trivial-devices
-
-----------------------------------------------------------------
-Fabio Estevam (1):
-      dt-bindings: display: elgin,jg10309-01: Add own binding
-
-Frank Li (2):
-      dt-bindings: misc: fsl,qoriq-mc: remove ref for msi-parent
-      dt-bindings: interrupt-controller: fsl,ls-extirq: workaround wrong interrupt-map number
-
-Jinjie Ruan (1):
-      of: Fix unbalanced of node refcount and memory leaks
-
-Stephen Boyd (1):
-      of: Skip kunit tests when arm64+ACPI doesn't populate root node
-
- .../bindings/display/elgin,jg10309-01.yaml         | 54 ++++++++++++++++++++++
- .../interrupt-controller/fsl,ls-extirq.yaml        | 26 +++++++++--
- .../devicetree/bindings/misc/fsl,qoriq-mc.yaml     |  2 +-
- .../devicetree/bindings/trivial-devices.yaml       |  2 -
- drivers/of/of_kunit_helpers.c                      | 15 ++++++
- drivers/of/of_private.h                            |  3 ++
- drivers/of/of_test.c                               |  3 ++
- drivers/of/overlay_test.c                          |  5 +-
- 8 files changed, 103 insertions(+), 7 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/elgin,jg10309-01.yaml
 
