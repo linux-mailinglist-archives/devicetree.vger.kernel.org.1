@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-110250-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4940F999D23
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:52:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44E32999D25
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:52:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BA8A1C21B2C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 06:52:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C39EA1F2501C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 06:52:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2406209F57;
-	Fri, 11 Oct 2024 06:51:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E8220A5DD;
+	Fri, 11 Oct 2024 06:51:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dzgCpQEW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eP1M3YRx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 404D6209F2E;
-	Fri, 11 Oct 2024 06:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4DB209F56;
+	Fri, 11 Oct 2024 06:51:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728629510; cv=none; b=kByQTzSvdnUW4cl4vBy549SFisH4qlWVdtCT8Pf9HechxKonB+VNkyTA2naqSPamtqgHJeKv6/Qjz/qUArU0FpPjIsLV/naUIloR6czSyH4s5XE62Bid2oVtid2gl6aKH289EQbKsXBLG2hM9y0DKXM+vW8pdHHrMSIFqrJG2u0=
+	t=1728629515; cv=none; b=afeIBBVKyFo8WsqWHs69ZC7+LtX+Krwkna98jR1pTzSbUR1aL+vih94bf6jkWDFiCMJANcpquAa20tajOvLY8xbso+l6PIW4IRITW7BfI4XQPrv3lGBlqNAk6Ha7JI1mVbsXjTrVebKOjQNJP5kDirxfXDYOQ3EHnI0pPipEpV4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728629510; c=relaxed/simple;
-	bh=mveF5OFUCCMuTMM+EMAHhBrzvd7W8z0qKBuM6cDQ4Og=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=FyWG8b7e0ZBRBGh80iqmPYLnKTuBEISW5+7CByWIhUVeNWwho2hK7yovwv4vxYTyevKDKtsfcj7XHmR/q77SeqS7UEZsJAOCQsaVK6P2Um7ZplpySrcoGTArCv5H9p1C5lXwMlzEg8GeawobfygjCK93CTjHhbg1MnAtGww/5Ks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dzgCpQEW; arc=none smtp.client-ip=209.85.210.169
+	s=arc-20240116; t=1728629515; c=relaxed/simple;
+	bh=akJPEqjhH9LuTqDWvnXLp4kmnis6ozcHNYQn9WwrF8s=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=MI3CYhw7dZ1OhNYR6uUxIOKs/kxI42IdCmQAZUgP9ilKoQKNYPZrHkHTp1DMf5G/NdBFmY7zP2V+t1jU+MPneL/MkdQzcA0I99/lqO3qN5753509l7g+wYmsyLcHvrm8JiGeD5czohJDxWmmYHgGPINlryiySfssFn2q6qITE7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eP1M3YRx; arc=none smtp.client-ip=209.85.210.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-71e18b65fbeso82518b3a.1;
-        Thu, 10 Oct 2024 23:51:49 -0700 (PDT)
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-71e269e2145so133793b3a.0;
+        Thu, 10 Oct 2024 23:51:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728629508; x=1729234308; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vUd+ptjyv9QJ5lB7HGC0V0YSPXyHnn+kNuvjqh6RNSw=;
-        b=dzgCpQEWDv3Ke0gDb80yYyBF5fuuebEHBJNpeIucFFV30QX9yE9fodhW/UPqkgqZXz
-         tqoYjYS4wHVzYhcDApeMFzUc/SQcBBnOGL1BD3Oj+EcQN3BTtxBxE63Sa5js1UoYFrKn
-         OhuHGMCwAAukmiuL3IL0WSo4f3lmsO2KDgdWNxwpwtpYrycfOeRop0XU3KmzAMyr0YgE
-         AqoIm2T93JTpwOHBdOIDY9IF5RvRbErUCOmnzbm0nv6ocQOTpu3n6xubvcg/Uatm081d
-         2pa0mmhzH05SpHhI2U2JTPGY/XiFZplFJgf/QfSozHtDwsukwyixO4m05WJ53iY7x7+J
-         9jQQ==
+        d=gmail.com; s=20230601; t=1728629513; x=1729234313; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EdDw79rH2ZZXFzCqs3bPN+dRZOAgzWUPfJIf5p7fl3c=;
+        b=eP1M3YRx5bVhKqccBph2YJIZEU9D8Pkuh6StCAsRoEHVK8hqngUirPfUtdP9bWc9Xu
+         Z3GOFBQJX2XuLMe1JE+AwyvDu6ZEcXvu1n5u5kIMif3NI4+fbm34gdSlWSWh3/EEmnOl
+         nB99nnvb3tqUgx4XBMOq662BvyXqyh7k1GlRlgTe4AhS9VOy+zzvX636DlS0/CUFE+uu
+         C67zbhuBMVMLIySIb6pUbcpJ4I/ZtEIuoujyxTpwAfxDu2vjqpmbh/MCwbHG7xFi/Q/Y
+         XsZzgduqf0zYQAtsqngOik/5nUt2vGJO8mB85W/HEknjgR4QVv/Izra0Ix4vV1Ld3QlS
+         YpLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728629508; x=1729234308;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vUd+ptjyv9QJ5lB7HGC0V0YSPXyHnn+kNuvjqh6RNSw=;
-        b=WBkox58er3zPwTSZw9fNIpETq7SbJuIw8M6iDTS87nTU8VKnQSLV7bZfF80ehAu40E
-         +/FFKzXBLr2i3Uv9pQ1vlSIgimsFNGa6lIHYSClhgctkhOVnL43EY6PdpeoenSHXuDjd
-         gbKSjgzR47D/7/KP4VRSLzm9tb2zNrGzGcNimxnQBcbYole761qvLGqO2pyEmDpnC7tA
-         iA4GqUHDWt1bHHX2FLa2vQajyEqqiuJvzetNewlDZDskcBMbbMiu6OpML3Ce6c5qws8u
-         dgc6rISSnhW1O3OArGNia7FnBflhboOvDu8YkbVNKFzaYZIBYWFYCFIUn1Jfn9FA/XRM
-         x5KA==
-X-Forwarded-Encrypted: i=1; AJvYcCUiUvtE07MBPr7sEAsVa45LueXnpSKa+gwGBoX3XD56AFAK0E8AlGDe+I+/j2iwCALI/mGWdZ/23mY1FhFU@vger.kernel.org, AJvYcCXnCE2BcMTUKnVX+TVg5xhz9kLdLhccS8qW4H2Oo+ElC9Y/cHJlBEpc6kvqORTqLc0uKPsjeiVnU3V5@vger.kernel.org
-X-Gm-Message-State: AOJu0YySN7iEZLDMX+l9cR0AhUE27vgfoVwK0lrupkc2xG4JTqqwgAVa
-	rujQRp3gYyzXvRH5afMvk8GjoqySkfikDV1YebS/TYm92Ks0KYTm
-X-Google-Smtp-Source: AGHT+IHjExOTWS+ut51FciTmYkVQWJwbGbZ+dp9P/ObMFftp08A8WqGSO9KFwxV+tjO4x0yePjh8LQ==
-X-Received: by 2002:a05:6a00:8594:b0:718:e49f:4185 with SMTP id d2e1a72fcca58-71e38126090mr1026885b3a.7.1728629508440;
-        Thu, 10 Oct 2024 23:51:48 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728629513; x=1729234313;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EdDw79rH2ZZXFzCqs3bPN+dRZOAgzWUPfJIf5p7fl3c=;
+        b=TrPBqnId1cJluCE/Rc0XBwtcAedgYSVDs1bx82LiHun6o2/K1OUDjpeMKV7ddH2q1p
+         0cr/E+Yu8xFBA8qRCiwTKaOWiYDg95aC4jWGIRbVZIKSuwmyAnkARjQMTDJE0uWsS4Ke
+         qpA5P9MfOfT215U6Sv446uPo9RDK8zotslGdS/lqEGq05VTG5uI0tGVt2wXPC4CODVJy
+         CoPHKTbo6XZ0V4Afq/L9ZIKmkipyMorC04tBzADwwbUf7hu74qED0r6PY4mH1qcGviZW
+         RNKf1rT5OQLnAbK/tk1esTIjiVKDV+bx7T0ht8w6i3CQkji3hp1Sl9j34tYRBbgQHPMM
+         dfmw==
+X-Forwarded-Encrypted: i=1; AJvYcCVZyIUfhnImAasLWO9NqdNrVWscQVEHp82xwDS2egBaA1zgOmJX3QqZZkhb3xms4kFFyIl0m8WXJRJVp3gV@vger.kernel.org, AJvYcCWhLsui0adQEeYMBQW0Yhw46yxaS3XYNl9m0gHuKj73Fw4UvPBmqdjwedvhuJmmZOLW0D8oMMb0YYfP@vger.kernel.org
+X-Gm-Message-State: AOJu0YyXHXv2IM7HVP3zE4iqo28CPeyOJW0nsPUixDLscqvzvdVvQ8AT
+	BAmNxDdcldEAAmW+2B6ZHA2C9jmdhwkXungw40hCzzwAtz4srqUh
+X-Google-Smtp-Source: AGHT+IEvzv0o+ss8gCY1Mp117fH1qmaJdW78qEOqQWOSBsVTBUkvz8aULfP30Jh+8lxMYgt+jtRYDg==
+X-Received: by 2002:a05:6a00:92a8:b0:71e:3b51:e84d with SMTP id d2e1a72fcca58-71e3b51ea63mr796027b3a.4.1728629512713;
+        Thu, 10 Oct 2024 23:51:52 -0700 (PDT)
 Received: from localhost.localdomain ([103.29.142.67])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2ab109e4sm2036099b3a.206.2024.10.10.23.51.44
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2ab109e4sm2036099b3a.206.2024.10.10.23.51.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Oct 2024 23:51:48 -0700 (PDT)
+        Thu, 10 Oct 2024 23:51:52 -0700 (PDT)
 From: Frank Wang <frawang.cn@gmail.com>
 To: vkoul@kernel.org,
 	kishon@kernel.org,
@@ -80,10 +82,12 @@ Cc: linux-phy@lists.infradead.org,
 	william.wu@rock-chips.com,
 	tim.chen@rock-chips.com,
 	Frank Wang <frank.wang@rock-chips.com>
-Subject: [PATCH v5 1/3] phy: rockchip: inno-usb2: convert clock management to bulk
-Date: Fri, 11 Oct 2024 14:51:38 +0800
-Message-Id: <20241011065140.19999-1-frawang.cn@gmail.com>
+Subject: [PATCH v5 2/3] dt-bindings: phy: rockchip,inno-usb2phy: add rk3576
+Date: Fri, 11 Oct 2024 14:51:39 +0800
+Message-Id: <20241011065140.19999-2-frawang.cn@gmail.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20241011065140.19999-1-frawang.cn@gmail.com>
+References: <20241011065140.19999-1-frawang.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,126 +98,105 @@ Content-Transfer-Encoding: 8bit
 
 From: Frank Wang <frank.wang@rock-chips.com>
 
-Since some Rockchip SoCs (e.g RK3576) have more than one clock,
-this converts the clock management from single to bulk method to
-make the driver more flexible.
+Add compatible for the USB2 phy in the Rockchip RK3576 SoC.
+
+This change also refactor the clocks list as there are new clocks
+adding used for the USB MMU in RK3576 SoC.
 
 Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
 ---
 Changelog:
-V5:
- - use dev_err_probe() in clock enable error path in probe.
+v5:
+ - move the clock-names item list to top-level property.
+ - only defined minItems/maxItems in each if: then block.
 
 v4:
- - a new patch split from the [PATCH v3 2/2], suggestions from Heiko.
+ - refactor the clocks list used if:then:
 
-v1-v3:
- - none
+v3:
+ - narrowed rk3576 clocks by compatible property.
 
- drivers/phy/rockchip/phy-rockchip-inno-usb2.c | 45 +++++++++++++++----
- 1 file changed, 37 insertions(+), 8 deletions(-)
+v2:
+ - Categorize clock names by oneOf keyword.
 
-diff --git a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-index 6e5214862b8a3..f71266c27091e 100644
---- a/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-+++ b/drivers/phy/rockchip/phy-rockchip-inno-usb2.c
-@@ -229,9 +229,10 @@ struct rockchip_usb2phy_port {
-  * @dev: pointer to device.
-  * @grf: General Register Files regmap.
-  * @usbgrf: USB General Register Files regmap.
-- * @clk: clock struct of phy input clk.
-+ * @clks: array of phy input clocks.
-  * @clk480m: clock struct of phy output clk.
-  * @clk480m_hw: clock struct of phy output clk management.
-+ * @num_clks: number of phy input clocks.
-  * @phy_reset: phy reset control.
-  * @chg_state: states involved in USB charger detection.
-  * @chg_type: USB charger types.
-@@ -246,9 +247,10 @@ struct rockchip_usb2phy {
- 	struct device	*dev;
- 	struct regmap	*grf;
- 	struct regmap	*usbgrf;
--	struct clk	*clk;
-+	struct clk_bulk_data	*clks;
- 	struct clk	*clk480m;
- 	struct clk_hw	clk480m_hw;
-+	int			num_clks;
- 	struct reset_control	*phy_reset;
- 	enum usb_chg_state	chg_state;
- 	enum power_supply_type	chg_type;
-@@ -310,6 +312,13 @@ static int rockchip_usb2phy_reset(struct rockchip_usb2phy *rphy)
- 	return 0;
- }
+v1:
+ - https://patchwork.kernel.org/project/linux-phy/patch/20240923025326.10467-1-frank.wang@rock-chips.com/
+
+ .../bindings/phy/rockchip,inno-usb2phy.yaml   | 45 ++++++++++++++++++-
+ 1 file changed, 43 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+index 5254413137c64..6a7ef556414ce 100644
+--- a/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
++++ b/Documentation/devicetree/bindings/phy/rockchip,inno-usb2phy.yaml
+@@ -20,6 +20,7 @@ properties:
+       - rockchip,rk3366-usb2phy
+       - rockchip,rk3399-usb2phy
+       - rockchip,rk3568-usb2phy
++      - rockchip,rk3576-usb2phy
+       - rockchip,rk3588-usb2phy
+       - rockchip,rv1108-usb2phy
  
-+static void rockchip_usb2phy_clk_bulk_disable(void *data)
-+{
-+	struct rockchip_usb2phy *rphy = data;
-+
-+	clk_bulk_disable_unprepare(rphy->num_clks, rphy->clks);
-+}
-+
- static int rockchip_usb2phy_clk480m_prepare(struct clk_hw *hw)
- {
- 	struct rockchip_usb2phy *rphy =
-@@ -376,7 +385,9 @@ rockchip_usb2phy_clk480m_register(struct rockchip_usb2phy *rphy)
- {
- 	struct device_node *node = rphy->dev->of_node;
- 	struct clk_init_data init;
-+	struct clk *refclk = NULL;
- 	const char *clk_name;
-+	int i;
- 	int ret = 0;
+@@ -34,10 +35,15 @@ properties:
+     const: 0
  
- 	init.flags = 0;
-@@ -386,8 +397,15 @@ rockchip_usb2phy_clk480m_register(struct rockchip_usb2phy *rphy)
- 	/* optional override of the clockname */
- 	of_property_read_string(node, "clock-output-names", &init.name);
+   clocks:
+-    maxItems: 1
++    minItems: 1
++    maxItems: 3
  
--	if (rphy->clk) {
--		clk_name = __clk_get_name(rphy->clk);
-+	for (i = 0; i < rphy->num_clks; i++) {
-+		if (!strncmp(rphy->clks[i].id, "phyclk", 6)) {
-+			refclk = rphy->clks[i].clk;
-+			break;
-+		}
-+	}
-+
-+	if (!IS_ERR(refclk)) {
-+		clk_name = __clk_get_name(refclk);
- 		init.parent_names = &clk_name;
- 		init.num_parents = 1;
- 	} else {
-@@ -1399,15 +1417,26 @@ static int rockchip_usb2phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(rphy->phy_reset))
- 		return PTR_ERR(rphy->phy_reset);
+   clock-names:
+-    const: phyclk
++    minItems: 1
++    items:
++      - const: phyclk
++      - const: aclk
++      - const: aclk_slv
  
--	rphy->clk = devm_clk_get_optional_enabled(dev, "phyclk");
--	if (IS_ERR(rphy->clk))
--		return dev_err_probe(&pdev->dev, PTR_ERR(rphy->clk),
--				     "failed to get phyclk\n");
-+	ret = devm_clk_bulk_get_all(dev, &rphy->clks);
-+	if (ret == -EPROBE_DEFER)
-+		return dev_err_probe(&pdev->dev, -EPROBE_DEFER,
-+				     "failed to get phy clock\n");
-+
-+	/* Clocks are optional */
-+	rphy->num_clks = ret < 0 ? 0 : ret;
+   assigned-clocks:
+     description:
+@@ -172,6 +178,41 @@ allOf:
+             - interrupts
+             - interrupt-names
  
- 	ret = rockchip_usb2phy_clk480m_register(rphy);
- 	if (ret)
- 		return dev_err_probe(dev, ret, "failed to register 480m output clock\n");
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,px30-usb2phy
++              - rockchip,rk3128-usb2phy
++              - rockchip,rk3228-usb2phy
++              - rockchip,rk3308-usb2phy
++              - rockchip,rk3328-usb2phy
++              - rockchip,rk3366-usb2phy
++              - rockchip,rk3399-usb2phy
++              - rockchip,rk3568-usb2phy
++              - rockchip,rk3588-usb2phy
++              - rockchip,rv1108-usb2phy
++    then:
++      properties:
++        clocks:
++          maxItems: 1
++        clock-names:
++          maxItems: 1
++
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - rockchip,rk3576-usb2phy
++    then:
++      properties:
++        clocks:
++          minItems: 3
++        clock-names:
++          minItems: 3
++
+ additionalProperties: false
  
-+	ret = clk_bulk_prepare_enable(rphy->num_clks, rphy->clks);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to enable phy clock\n");
-+
-+	ret = devm_add_action_or_reset(dev, rockchip_usb2phy_clk_bulk_disable, rphy);
-+	if (ret)
-+		return ret;
-+
- 	if (rphy->phy_cfg->phy_tuning) {
- 		ret = rphy->phy_cfg->phy_tuning(rphy);
- 		if (ret)
+ examples:
 -- 
 2.45.2
 
