@@ -1,177 +1,144 @@
-Return-Path: <devicetree+bounces-110232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B54F4999BF0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 07:05:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDA53999BFE
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 07:16:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E06C1F24962
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 05:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 381E6B218D1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 05:16:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772CC1CEAC8;
-	Fri, 11 Oct 2024 05:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0503D19B5B2;
+	Fri, 11 Oct 2024 05:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cxau8N8a"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aqDn6Jub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21212581;
-	Fri, 11 Oct 2024 05:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BFF519413B;
+	Fri, 11 Oct 2024 05:16:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728623134; cv=none; b=V2Q3wyk0hADZv6fkKIQW8VdeZh1fDUVMH1Pwj7XRlyJ1HG39oQFIlgGlX2TChLPjA8id3Izy1ycVp+3eSF0qC33IPOIRY0zxM5Rwesh8K8fIw2En90ef5fozz1RGmPekoD5u2JpTx2beQYujQnSVrXyLA2+Tve2lQVaRD8Zg7Xc=
+	t=1728623766; cv=none; b=B7SJxVp/7z70sbjVEkDBQDg9c/7iO5f9L/ZhpDPLcfOjdTaAE1oGJU/Fy6F8TNQqCRBrYO6Yw10Yf05sz4X4j5MM3crVoj+q5X9dNpgzJcKqjRD0a2a0HOGG75NlZEFEkAmWf5hD7AEPzww8Rbsfl/Y871Q/nR0K/N/PMS61J5w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728623134; c=relaxed/simple;
-	bh=Z+lOO4HtqgHurovB4N3qX+ffyX+Js59pB/KSjEd4SMc=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P1oFVMhddlL1vx7zLdZ/5wFp6xK1O7SnuO/fg1MqfSJBBjhvQQygdLWcmyPSFNf6lGmt5MqngFTs71TYIs9tC1m86y/1bT1YEE8dws9+sOHomdTPyxAk91NT5ETu59Hyomz6/VvuHPIyK3IoXdKVWOKkMQchTC82Yj3grrZu5wA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cxau8N8a; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B1Hf8D005437;
-	Fri, 11 Oct 2024 05:05:28 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=DeRAgiKCa7UKV6icCaoPho23
-	OOxbcTE0/jFXarh9Q4E=; b=cxau8N8aYDAbFrsL82bKVsl8NJwAcV+3LO78PYbu
-	LzXNOTUdoV3FRw59VaY9r+WW0rrQSYV+MCqlmV4wEYTkki8o1OdiV3+Z7IUghgY0
-	GH8Sx9t6yDxLoBL8GmlQ3a59AddoedfspYgqwPoyjjeLb3Fdq3aulWrewFYo2IzP
-	fItSBZB04bfEaizqfYSzJ+7j9LPW7RwhomVY02nbP+efK5uZ5pXl3gjbyx7qTa7O
-	DrhvHJbOuiIWYFhagG8A75dDfun6TOpPw3Wmzp9LUUXO4ZVJBNmFXYKAxzeX3IkM
-	EW+fk3ppNtH12qKjGq1m2S6whbGmSiQpVhd85EDCcKCvzQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426t7srdmq-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 05:05:27 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B55QGL010827
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 05:05:26 GMT
-Received: from hu-shashim-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.9; Thu, 10 Oct 2024 22:05:22 -0700
-Date: Fri, 11 Oct 2024 10:35:18 +0530
-From: Shiraz Hashim <quic_shashim@quicinc.com>
-To: <neil.armstrong@linaro.org>
-CC: Mukesh Ojha <quic_mojha@quicinc.com>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        "Rob
- Herring" <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
-        Manivannan Sadhasivam
-	<manivannan.sadhasivam@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 6/6] remoteproc: qcom: Enable map/unmap and SHM bridge
- support
-Message-ID: <20241011050518.GJ1421305@hu-shashim-hyd.qualcomm.com>
-References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
- <20241004212359.2263502-7-quic_mojha@quicinc.com>
- <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
- <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
- <ZwTPghV36CSIpkE4@hu-mojha-hyd.qualcomm.com>
- <dfe46653-5243-47c8-8de9-17a38d13da53@linaro.org>
+	s=arc-20240116; t=1728623766; c=relaxed/simple;
+	bh=oXPKp2uZEnGUtYeEYnykIZVlicObW/XIzlul2tJetiM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D5YUyOLiC5UW8mLDUyF1yAyBZsnFu/vSKc42Xi45UYjywQ/TZj0jb7GmtJrPn1OCifh6qiPwvw6S1G66WH44Rtqtb63Ct1WVI5f7+z72SbJWTksvKYKBnAfhFXAWNCRftr0TCo9IV/PQplLxio8VUmvsWc/i7khRYb1pAgNwpwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aqDn6Jub; arc=none smtp.client-ip=192.198.163.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728623765; x=1760159765;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=oXPKp2uZEnGUtYeEYnykIZVlicObW/XIzlul2tJetiM=;
+  b=aqDn6Jub7ozeAIoxC89IEE0rH5sUrzxTa1FHevE35iqRvBgW9CR7FGdV
+   BZpIHQffGs+82CPwX++P6Qx8pPmpqNwP7yaBOa2hwiVmTr0qOCj2+cplU
+   hRcqaXXHPIkxCbAyJ6+pJNwTHOCHPArFwk3tK7yiqThLmQ93zwcUving4
+   R1MFYqGf358jglqN1PLuJDgXbH9W2L/iRoY5IzE7QyaeWQY0eAfKMt6ag
+   x9rgzz2RejXtsc8GPe+nRCZZ13gjKuODmRklSpNizP1CMAf82/k1wz2gv
+   sMx+JK3x6MPIpGYlaV/X2DRTR+EQwb0E4kUV6vImvXSsIMIzQF6dHZ5gB
+   A==;
+X-CSE-ConnectionGUID: MpXxEBQlQSy67j8lPbZOrA==
+X-CSE-MsgGUID: 5fk4wcPEQNy3YmIvUwiWJg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="15635861"
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
+   d="scan'208";a="15635861"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 22:16:04 -0700
+X-CSE-ConnectionGUID: OcOAqgggRkynTfXpGipgfQ==
+X-CSE-MsgGUID: FrTbE1n2TLajNJFQH08VTQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,195,1725346800"; 
+   d="scan'208";a="76716322"
+Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
+  by orviesa010.jf.intel.com with ESMTP; 10 Oct 2024 22:15:56 -0700
+Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1sz80I-000Bq9-0p;
+	Fri, 11 Oct 2024 05:15:54 +0000
+Date: Fri, 11 Oct 2024 13:15:32 +0800
+From: kernel test robot <lkp@intel.com>
+To: Andrea della Porta <andrea.porta@suse.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Bjorn Helgaas <helgaas@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Saravana Kannan <saravanak@google.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Masahiro Yamada <masahiroy@kernel.org>,
+	Stefan Wahren <wahrenst@gmx.net>
+Cc: Paul Gazzillo <paul@pgazz.com>,
+	Necip Fazil Yildiran <fazilyildiran@gmail.com>,
+	oe-kbuild-all@lists.linux.dev
+Subject: Re: [PATCH v2 11/14] misc: rp1: RaspberryPi RP1 misc driver
+Message-ID: <202410111247.L5n2NDAU-lkp@intel.com>
+References: <c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta@suse.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <dfe46653-5243-47c8-8de9-17a38d13da53@linaro.org>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: CcvRwPar5ILwrw7DO8J-LVxz8aFxxHw9
-X-Proofpoint-ORIG-GUID: CcvRwPar5ILwrw7DO8J-LVxz8aFxxHw9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=999 malwarescore=0 phishscore=0 mlxscore=0 priorityscore=1501
- suspectscore=0 impostorscore=0 clxscore=1011 adultscore=0 bulkscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410110030
+In-Reply-To: <c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta@suse.com>
 
-On Thu, Oct 10, 2024 at 08:57:56AM +0200, neil.armstrong@linaro.org wrote:
-> On 08/10/2024 08:21, Mukesh Ojha wrote:
-> > On Mon, Oct 07, 2024 at 08:22:39PM +0530, Mukesh Ojha wrote:
-> > > On Mon, Oct 07, 2024 at 10:05:08AM +0200, neil.armstrong@linaro.org wrote:
-> > > > On 04/10/2024 23:23, Mukesh Ojha wrote:
-> > > > > For Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
-> > > > > translation for remote processors is managed by QHEE and if the same SoC
-> > > > > run under KVM, remoteproc carveout and devmem region should be IOMMU
-> > > > > mapped from Linux PAS driver before remoteproc is brought up and
-> > > > > unmapped once it is tear down and apart from this, SHM bridge also need
-> > > > > to set up to enable memory protection on both remoteproc meta data
-> > > > > memory as well as for the carveout region.
-> > > > > 
-> > > > > Enable the support required to run Qualcomm remoteprocs on non-QHEE
-> > > > > hypervisors.
-> > > > > 
-> > > > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > > > > ---
-> > > > >    drivers/remoteproc/qcom_q6v5_pas.c | 41 +++++++++++++++++++++++++++++-
-> > > > >    1 file changed, 40 insertions(+), 1 deletion(-)
-> > > > > 
-> > > > > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
-> > > > > index ac339145e072..13bd13f1b989 100644
-> > > > > --- a/drivers/remoteproc/qcom_q6v5_pas.c
-> > > > > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
+Hi Andrea,
 
-<snip>
+kernel test robot noticed the following build warnings:
 
-> > > > > +		struct of_phandle_args args;
-> > > > > +
-> > > > > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus", "#iommu-cells", 0, &args);
-> > > > > +		if (ret < 0)
-> > > > > +			return ret;
-> > > > > +
-> > > > > +		rproc->has_iommu = true;
-> > > > > +		adsp->sid = args.args[0];
-> > > > > +		of_node_put(args.np);
-> > > > > +		ret = adsp_devmem_init(adsp);
-> > > > > +		if (ret)
-> > > > > +			return ret;
-> > > > 
-> > > > Why don't you get this table from the firmware like presumably
-> > > > QHEE does ?
-> > > 
-> > > Well, AFAIK, QHEE(EL2) has this information statically present
-> > > and does not get it from anywhere., but will confirm this
-> > > twice..
-> > 
-> > Double confirmed, device memory region required by remoteproc is
-> > statically present with QHEE.
-> 
-> Right, in this case why those tables can't be embedded in the elf
-> .resource_table like it's done with qcom_q6v5_adsp.c by calling
-> rproc_elf_load_rsc_table() and let the remoteproc framework load the
-> resource table and setup the devmem ssmu_map ?
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on clk/clk-next char-misc/char-misc-testing char-misc/char-misc-next char-misc/char-misc-linus linus/master v6.12-rc2 next-20241010]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Mainly for two reasons -
+url:    https://github.com/intel-lab-lkp/linux/commits/Andrea-della-Porta/dt-bindings-clock-Add-RaspberryPi-RP1-clock-bindings/20241007-204440
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/c5b072393d2dc157d34f6dbeff6261d142d4de69.1728300190.git.andrea.porta%40suse.com
+patch subject: [PATCH v2 11/14] misc: rp1: RaspberryPi RP1 misc driver
+config: sparc-kismet-CONFIG_OF_IRQ-CONFIG_MISC_RP1-0-0 (https://download.01.org/0day-ci/archive/20241011/202410111247.L5n2NDAU-lkp@intel.com/config)
+reproduce: (https://download.01.org/0day-ci/archive/20241011/202410111247.L5n2NDAU-lkp@intel.com/reproduce)
 
-firmware images on platforms where we like to bring additional no-qhee
-support do not have resource table.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202410111247.L5n2NDAU-lkp@intel.com/
 
-QCOM PAS implementation for secure remoteproc supports single TZ call
-of auth_and_rest that authenticates and brings remoteproc out of
-reset. And we don't have provision to authenticate resource table
-before it is used for devmem/iommu setup.
+kismet warnings: (new ones prefixed by >>)
+>> kismet: WARNING: unmet direct dependencies detected for OF_IRQ when selected by MISC_RP1
+   WARNING: unmet direct dependencies detected for OF_IRQ
+     Depends on [n]: OF [=y] && !SPARC [=y] && IRQ_DOMAIN [=y]
+     Selected by [y]:
+     - MISC_RP1 [=y] && PCI [=y] && PCI_QUIRKS [=y]
+   
+   WARNING: unmet direct dependencies detected for GET_FREE_REGION
+     Depends on [n]: SPARSEMEM [=n]
+     Selected by [y]:
+     - RESOURCE_KUNIT_TEST [=y] && RUNTIME_TESTING_MENU [=y] && KUNIT [=y]
 
-regards
-Shiraz
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
