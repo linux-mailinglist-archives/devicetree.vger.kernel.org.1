@@ -1,48 +1,65 @@
-Return-Path: <devicetree+bounces-110289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD399999F67
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:55:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E81C999FB2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:03:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 903A01F22603
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:55:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 30CA4288A20
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:03:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE45F20B218;
-	Fri, 11 Oct 2024 08:55:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54AB720C46F;
+	Fri, 11 Oct 2024 09:03:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WCnyouQQ"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="3R75dh2+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B300020ADD4;
-	Fri, 11 Oct 2024 08:55:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42F8B20ADE4;
+	Fri, 11 Oct 2024 09:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728636929; cv=none; b=qwGsKatIEzlcWDV5aY2XXMzVViJLIhy88mirD3wfzRDcq80/FChbaNegcWt06nbtWLmUAvL3U5Q84yFTAdCmss4bcSXbNCS8rL3vtXeFKVLXChvFZ3+UNtedbV1ZInqifItYLAyqQjcb5C6LiQlmGYjFt+VCt0RLHgntiPDDOTQ=
+	t=1728637415; cv=none; b=X2BowGoxjACNfPmHbYiRjLnK+dkpQg6LScClY8BR6WZnHyPhiGL0Ku2hYlt6V7fXRdZGW6SLE83aGkZblFCwihnRTRRqbR+/ZNUPyan58gtOREEY+zSsCmotrjzF++p5XhvqmN5hbsbssksqGut1jkxVeb7puwVpXZQp0NqPrp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728636929; c=relaxed/simple;
-	bh=TM7wSSesHKlnFGC0qSeniGMPWLlPft7VpoxJkrXmJac=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DPAuPDxPvr82p3fNO+aVUF2ocfDMJ3DhFCn5M+4hdlgBhb9PC6M/JQc8M46UpikHJ4Pt1Y0Id9kYKamBny3YhmSjw53wrtbydX/cVEI88VhFPtSoYCYrXvPw5ikPLJdm54U9aNZ5oFBNfv6P0hctJsqv0N0rJ+rgHMc+bhenxao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WCnyouQQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9894C4CEC3;
-	Fri, 11 Oct 2024 08:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728636929;
-	bh=TM7wSSesHKlnFGC0qSeniGMPWLlPft7VpoxJkrXmJac=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WCnyouQQ93Px4D/Kw71I4zkZsG4Xsrk0vJcX2jrUgv16T3xpNOIVYnTnocq7PNH4U
-	 4tib8ZZazDBNRIYf3GkgQe4gLwk47kLFJAjbDuu7D7+ZcgzlvoTdZfPye2eSnozLqM
-	 SJ2xGqzeHOzFvxDYG+XbQJXjWlia0ShQy2FKVkz5rogott1PZRXKW2RpfWU7cdkYe0
-	 F+3DsywZxSIZ1jw0R7ykuAPLuaro3M+3BxWRN1sfEXjJ/xqAGstXVOhxiu1aflfVGT
-	 txml2rOuG5PBtOFiEsO5lpIZsNyoplAbNXf8++JAuMo4aJeQZ2tWdY2zfZg8/Nguvf
-	 U6Dy4w87VWYrA==
-Message-ID: <84efa346-c1de-44d5-8b27-2481043e9102@kernel.org>
-Date: Fri, 11 Oct 2024 17:55:25 +0900
+	s=arc-20240116; t=1728637415; c=relaxed/simple;
+	bh=Ha/AF5v+viIStrFAcTTJyf/v+jRRHbq4Sk/R278Ki44=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=iDVyz5xrYKlHH0+sJ4Lkkd1U2krriH3xBQX30SDY1PPFrp3hf9VGS6UCno3+yn1OqNmK1qrMgqsIcupuAjyL3hxnTVdMLpN5yqxVhrAa4Du7mtp9V8OOnocqY4w5dWqjq4IW3f7xcCgArIpWnU4nDH6EOQBdyWjNY2pzKgwqU7c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=3R75dh2+; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B82WQq014668;
+	Fri, 11 Oct 2024 11:03:11 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	W32014r5y3QWUubB7ejNQ9RucL4lQCYgXfxr9DFI93s=; b=3R75dh2+n959fKbq
+	+QQvxFOLciVR6SRNVBS4EZ3HqkbkSd6f5qRqAkI/AE2cAf6VyTPtc/OSY1MWLYXX
+	CnLrDrcQQVEAiuAoZkOdkvDZnoVv0maRtUVEVZtqWOfICN0N3hqEL9QuC9RYl4af
+	L1xZM67augvNz2FbiPvUSf5xZBMAh22MxQ9LmVF71WosnwRyJo/xoCsxQegEDfWN
+	gYkt+9cc4qMRlqvEdmfVRWsZi0SLkY1vziFKBt9a2f42sbNE3MBeA3jeQaGebyod
+	Ng+KlZQxLGq3bDQTempsZgwiVnb4KCIs+Fv+k+FNaAGEEU5FsMKkfHBEpmCbGUG+
+	Enm9ug==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 425w9xgt74-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 11:03:11 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 93C594004B;
+	Fri, 11 Oct 2024 11:02:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node3.st.com [10.75.129.71])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id BD55626D0AD;
+	Fri, 11 Oct 2024 11:01:33 +0200 (CEST)
+Received: from [10.48.87.35] (10.48.87.35) by SHFDAG1NODE3.st.com
+ (10.75.129.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 11 Oct
+ 2024 11:01:33 +0200
+Message-ID: <3b7b46ca-426c-44a9-b4f2-ce104e0d3b1c@foss.st.com>
+Date: Fri, 11 Oct 2024 11:01:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,81 +67,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 10/12] PCI: rockchip-ep: Improve link training
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-11-dlemoal@kernel.org>
- <20241010103550.elwd2k35t4k4cypu@thinkpad>
-From: Damien Le Moal <dlemoal@kernel.org>
+Subject: Re: [PATCH 04/11] dt-bindings: dma: stm32-dma3: prevent linked-list
+ refactoring
+To: Rob Herring <robh@kernel.org>
+CC: Vinod Koul <vkoul@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <dmaengine@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20241010-dma3-mp25-updates-v1-0-adf0633981ea@foss.st.com>
+ <20241010-dma3-mp25-updates-v1-4-adf0633981ea@foss.st.com>
+ <20241010181426.GA2107926-robh@kernel.org>
 Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241010103550.elwd2k35t4k4cypu@thinkpad>
-Content-Type: text/plain; charset=UTF-8
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+In-Reply-To: <20241010181426.GA2107926-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-On 10/10/24 19:35, Manivannan Sadhasivam wrote:
->> +static void rockchip_pcie_ep_link_training(struct work_struct *work)
->> +{
->> +	struct rockchip_pcie_ep *ep =
->> +		container_of(work, struct rockchip_pcie_ep, link_training.work);
->> +	struct rockchip_pcie *rockchip = &ep->rockchip;
->> +	struct device *dev = rockchip->dev;
->> +	u32 val;
->> +	int ret;
->> +
->> +	/* Enable Gen1 training and wait for its completion */
->> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
->> +				 val, PCIE_LINK_TRAINING_DONE(val), 50,
->> +				 LINK_TRAIN_TIMEOUT);
->> +	if (ret)
->> +		goto again;
->> +
->> +	/* Make sure that the link is up */
->> +	ret = readl_poll_timeout(rockchip->apb_base + PCIE_CLIENT_BASIC_STATUS1,
->> +				 val, PCIE_LINK_UP(val), 50,
->> +				 LINK_TRAIN_TIMEOUT);
->> +	if (ret)
->> +		goto again;
->> +
->> +	/* Check the current speed */
->> +	val = rockchip_pcie_read(rockchip, PCIE_CORE_CTRL);
->> +	if (!PCIE_LINK_IS_GEN2(val) && rockchip->link_gen == 2) {
+On 10/10/24 20:14, Rob Herring wrote:
+> On Thu, Oct 10, 2024 at 04:27:54PM +0200, Amelie Delaunay wrote:
+>> stm32-dma3 driver refactors the linked-list in order to address the memory
+>> with the highest possible data width.
+>> It means that it can introduce up to 2 linked-list items. One with a
+>> transfer length multiple of channel maximum burst length and so with the
+>> highest possible data width. And an extra one with the latest bytes, with
+>> lower data width.
+>> Some devices (e.g. FMC ECC) don't support having several transfers instead
+>> of only one.
+>> So add the possibility to prevent linked-list refactoring, by setting bit
+>> 17 of the 'DMA transfer requirements' bit mask.
+>>
+>> Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+>> ---
+>>   Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml | 3 +++
+>>   1 file changed, 3 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
+>> index 5484848735f8ac3d2050104bbab1d986e82ba6a7..38c30271f732e0c8da48199a224a88bb647eeca7 100644
+>> --- a/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
+>> +++ b/Documentation/devicetree/bindings/dma/stm32/st,stm32-dma3.yaml
+>> @@ -99,6 +99,9 @@ properties:
+>>           -bit 16: Prevent packing/unpacking mode
+>>             0x0: pack/unpack enabled when source data width/burst != destination data width/burst
+>>             0x1: memory data width/burst forced to peripheral data width/burst to prevent pack/unpack
+>> +        -bit 17: Prevent linked-list refactoring
+>> +          0x0: don't prevent driver to refactor the linked-list for optimal performance
+>> +          0x1: prevent driver to refactor the linked-list, despite not optimal performance
 > 
-> PCIE_LINK_IS_GEN2()?
-
-This is defined in drivers/pci/controller/pcie-rockchip.h. What is it exactly
-you would like to know about this ?
-
+> Driver settings don't belong in DT. Perhaps reword it in terms of h/w
+> constraints (i.e. single transfer limitation).
 > 
->> +		/* Enable retrain for gen2 */
->> +		rockchip_pcie_ep_retrain_link(rockchip);
->> +		readl_poll_timeout(rockchip->apb_base + PCIE_CORE_CTRL,
->> +				   val, PCIE_LINK_IS_GEN2(val), 50,
->> +				   LINK_TRAIN_TIMEOUT);
->> +	}
->> +
->> +	/* Check again that the link is up */
->> +	if (!rockchip_pcie_ep_link_up(rockchip))
->> +		goto again;
-> 
-> TRM doesn't mention this check. Is this really necessary?
 
-I think so, to check the result of the second training for gen2.
-Even though the TRM does not say so, I prefer checking that the result is what
-we expect: the link is up.
+Thanks for the review and suggestion. I'll reword it in V2. Indeed, it 
+is due to single transfer limitation, e.g. for ECC status registers 
+transfer.
 
--- 
-Damien Le Moal
-Western Digital Research
+-bit 17: Prevent additional transfers due to linked-list refactoring
+   0x0: don't prevent additional transfers for optimal performance
+   0x1: prevent additional transfers to accommodate user constraints 
+such as single transfer
+
+
+Regards,
+Amelie
+
+>>   
+>>   required:
+>>     - compatible
+>>
+>> -- 
+>> 2.25.1
+>>
 
