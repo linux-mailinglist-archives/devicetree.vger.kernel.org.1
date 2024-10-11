@@ -1,194 +1,552 @@
-Return-Path: <devicetree+bounces-110276-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110277-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D32A999EA5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:00:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01909999EBA
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:08:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C3B01C22C4B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:00:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40F41B20CC3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:08:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C561209F4A;
-	Fri, 11 Oct 2024 08:00:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6899620ADC7;
+	Fri, 11 Oct 2024 08:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="i6lRSdIH"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="nnuqvxtd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-185.mta0.migadu.com (out-185.mta0.migadu.com [91.218.175.185])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33EFD19CC36
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 08:00:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F041CDA31
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 08:07:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728633632; cv=none; b=i2h6v4Jof0zYTfGoMCEnG2GuSspPNbJzM/pGAjbwx8uS/MixrWQyJ9RdgWAm0zsPPCi+T3/tNMdVukHxfQQWFmERC272u5qWLxtwxe0Uf7CjINl6LGL6fg26PdbwzfaOIVpt4ngk5eeo6M7phsxs7rez8W5+ezTgtdHXt3/Z6bI=
+	t=1728634078; cv=none; b=TOXtHmdHiF4t8LK74MDNJoPVBKF7GY3exqOL2qKl71/ryoskegU5balxYOfht6zlKoyKO8bC1+UfZwoUe523LZp5xltQti1vrgj5csZhbwa6bJ+LXZc0rcFQMjmr3MhUQWyzP4MaRUfIaz77fZMRZexn12NJ4+vW/0/6nnrEFeg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728633632; c=relaxed/simple;
-	bh=2lV20s1fnFmNmxcSMXI0tq9f04FISvBJ6zNOT1wjozg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
-	 References:In-Reply-To; b=IPqGo3AZ/UGyl2ODNgh1GOpB6TiJp+LfFDE6zdLjwrGZfCHHDsn2kxa7SMplY4yeh8o0LeULyGxGF3/DC5jZAneEU8MB4Fv4aj3AwWJSTRO9ok8njRETbSnLJxQ7pqFjkOD3NJNr7W9Y2b8nW4AJH/Gajxjpm+oOkes0JF+48/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=i6lRSdIH; arc=none smtp.client-ip=91.218.175.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
+	s=arc-20240116; t=1728634078; c=relaxed/simple;
+	bh=7ftOlJC1PtwoD9F01QWr+UAlvSzlPJQuPxb9pqcTnsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=p2OuJAcNIFKs9K2s+1eTqSuLQe6jKw7K5nZDzWAzy48L1X0idWtZsaQmzvp6C77gwtM/C4a/pMz8GqdGBJMbA8xhf/OIw8PU0eKo6AL+G5CPBSsoZGSyfR8KkpTR0EVSmbZb2ywlI0JWIgq+fZ/O+5f0Iur5SJBnw8PGpTH3hSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=nnuqvxtd; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4311420b63fso12680455e9.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 01:07:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728634074; x=1729238874; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=vIaEQc/8vBhlzJfOx2+dGd0buFxvNNtQA/s3X/88a6A=;
+        b=nnuqvxtdrqK3NXFxhIUQw4UXgTBp0KB6iCTSp+mp9AvLSPEH0nJtCjeC2q2O+PmcoI
+         MViRT/7h+NLhZP3x2XsJlyZhaRZneApkQ7Uvn2U4fn99z+tUgFah6KxkICxTuldLYs1f
+         KdYFMAH9UMzI67kzaJxIRwIaUlMXWBWiM3eqfsKYx15Y6DVt4bU+Bob4Ss14C2ZHEeqC
+         a9xXVPYN8jxtW8aXn850hrpV6hvnTThtJBk83e76xeV/KfB4A3x3xvNyAvhXhi7sFM8T
+         E7F3YH6h4zWSM7FOYg8jZfVeCE7naMuQwSM7fkhbB9Ftq7S1cul3pe0AP3iU5qwjhf7B
+         sV7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728634074; x=1729238874;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vIaEQc/8vBhlzJfOx2+dGd0buFxvNNtQA/s3X/88a6A=;
+        b=q9rA9hJ2F2DV7VRSICuiiTrcWN/1hpZ1X6lsIcle7P0eswOYx9HSeCWQwmnmPPlyg9
+         8yzaWfna5339gttONTGi0Guuw1jDjP2n8mJjdal3OxTLL3qnlMmLKpCcIg5l5UhLOJYl
+         t8YLo4vM+8omZtD+nV6NNN6JTEUTubaPo3RFLUXYCgltLUn0xRDKMpKQurU5N0zOy/CB
+         UjaEEX8m2HsxMBDX1LtAO6QNYzUBCk2ZS3OemouPA/qCI5jIF36aDESg0tvEKJdTL0fn
+         sxbFDfjQqyU64gcQbSx6tvyIbqIEaetAWe8/vGRosowrVtE1h/ImmOJq0kyrAAU50gmI
+         S9Sg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+a23/DObB+Vfe5Mp3r+Pc90ZK1aEDVcwdvE4DRJq7l5exq3thuHL8CMWwKsEN0rR+qlklwtnecctA@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywi2GGA6O8fTmmbgn1Cx0/KU1GBdn18XRlivzycoT6yTXoQ5/zB
+	Y8iJxHLGKFtnaJYmMOtIix4P2MfRh17O7xrLYQW0uGMGqDfO6MOY5ElvlN9yZA0=
+X-Google-Smtp-Source: AGHT+IHuIE86BSl8AWPzS1jE9ZhGa+A9OBx8PYLXJ4/H7ERLu5EwwnPKHyY21NQoLs0HxqbHizvATg==
+X-Received: by 2002:a05:600c:1f8e:b0:428:1b0d:8657 with SMTP id 5b1f17b1804b1-4311df5ac41mr10314135e9.22.1728634073815;
+        Fri, 11 Oct 2024 01:07:53 -0700 (PDT)
+Received: from dfj (host-79-54-25-3.retail.telecomitalia.it. [79.54.25.3])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b6a881bsm3343446f8f.16.2024.10.11.01.07.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 01:07:53 -0700 (PDT)
+Date: Fri, 11 Oct 2024 10:06:32 +0200
+From: Angelo Dureghello <adureghello@baylibre.com>
+To: Nuno =?utf-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, Nuno Sa <nuno.sa@analog.com>, 
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Olivier Moysan <olivier.moysan@foss.st.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	dletchner@baylibre.com, Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v5 06/10] iio: dac: adi-axi-dac: extend features
+Message-ID: <iu27yjjqt3fpd46uum4hr3yb642cueesjda5k2zvjaq2vx2i57@lztomcj4esfo>
+References: <20241008-wip-bl-ad3552r-axi-v0-iio-testing-v5-0-3d410944a63d@baylibre.com>
+ <20241008-wip-bl-ad3552r-axi-v0-iio-testing-v5-6-3d410944a63d@baylibre.com>
+ <11b397492cd6c20876e3eb6a2d89173c0dfcbc70.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1728633626;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x/Bc0fVN2f3md10XL6wu8hXYesW1d3yvz5HBdGjRGWU=;
-	b=i6lRSdIHKlDIozT5vJH6ojotYpMTC6d3mCOslrqAb+qJJO4WqSssdRGaKppmi9JQM9I/EP
-	/x1SjQtuFpS3nogCJymK6pBEmbkl2hETUtTH2j25L7oz//PgHPJTAmTGSXWC+CxjNGQUPP
-	+K5fTMDtG01s+agUnabRGPaR3XgA1OeZoNyW7LRKXXbSuzuXn2jxcx0yI/dL8szRdb+6ph
-	HA4S6MK4kCBGxMxHJOS1k+ApRCDCo+7yX7cr2cEzqSNmm4sDeYGYXm26ZZsX7kOOVn/BS1
-	iaxGwCI9+7IXbA7O/U3jviK/M15TGWRjtvr71Lmvo/CeaEL8phpH4tL533THvw==
-Content-Type: multipart/signed;
- boundary=af1154c69e001df7fb7f323f84794bbd4d176e15b89faa8d2c6e93554628;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Fri, 11 Oct 2024 10:00:17 +0200
-Message-Id: <D4STH4Z8LTHN.2X4BJJVACFSIS@cknow.org>
-To: "Dragan Simic" <dsimic@manjaro.org>,
- <linux-rockchip@lists.infradead.org>
-Cc: <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>, "Diederik
- de Haas" <didi.debian@cknow.org>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add dtsi file for RK3399S SoC
- variant
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
-References: <c32622e4a6897378d9df81c8c3eda1bdb9211e0b.1728632052.git.dsimic@manjaro.org>
-In-Reply-To: <c32622e4a6897378d9df81c8c3eda1bdb9211e0b.1728632052.git.dsimic@manjaro.org>
-X-Migadu-Flow: FLOW_OUT
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <11b397492cd6c20876e3eb6a2d89173c0dfcbc70.camel@gmail.com>
 
---af1154c69e001df7fb7f323f84794bbd4d176e15b89faa8d2c6e93554628
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On 10.10.2024 15:20, Nuno Sá wrote:
+> On Tue, 2024-10-08 at 17:43 +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Extend AXI-DAC backend with new features required to interface
+> > to the ad3552r DAC. Mainly, a new compatible string is added to
+> > support the ad3552r-axi DAC IP, very similar to the generic DAC
+> > IP but with some customizations to work with the ad3552r.
+> > 
+> > Then, a serie of generic functions has been added to match with
+> > ad3552r needs. Function names has been kept generic as much as
+> > possible, to allow re-utilization from other frontend drivers.
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > ---
+> 
+> Just some minor stuff. Not seeing any fundamental issue with this patch.
+> 
+> >  drivers/iio/dac/adi-axi-dac.c | 285 ++++++++++++++++++++++++++++++++++++++++-
+> > -
+> >  1 file changed, 274 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
+> > index 04193a98616e..e43d0ecccb50 100644
+> > --- a/drivers/iio/dac/adi-axi-dac.c
+> > +++ b/drivers/iio/dac/adi-axi-dac.c
+> > @@ -46,9 +46,28 @@
+> >  #define AXI_DAC_CNTRL_1_REG			0x0044
+> >  #define   AXI_DAC_CNTRL_1_SYNC			BIT(0)
+> >  #define AXI_DAC_CNTRL_2_REG			0x0048
+> > +#define   AXI_DAC_CNTRL_2_SDR_DDR_N		BIT(16)
+> > +#define   AXI_DAC_CNTRL_2_SYMB_8B		BIT(14)
+> >  #define   ADI_DAC_CNTRL_2_R1_MODE		BIT(5)
+> > +#define   AXI_DAC_CNTRL_2_UNSIGNED_DATA		BIT(4)
+> > +#define AXI_DAC_STATUS_1_REG			0x0054
+> > +#define AXI_DAC_STATUS_2_REG			0x0058
+> >  #define AXI_DAC_DRP_STATUS_REG			0x0074
+> >  #define   AXI_DAC_DRP_STATUS_DRP_LOCKED		BIT(17)
+> > +#define AXI_DAC_CUSTOM_RD_REG			0x0080
+> > +#define AXI_DAC_CUSTOM_WR_REG			0x0084
+> > +#define   AXI_DAC_CUSTOM_WR_DATA_8		GENMASK(23, 16)
+> > +#define   AXI_DAC_CUSTOM_WR_DATA_16		GENMASK(23, 8)
+> > +#define AXI_DAC_UI_STATUS_REG			0x0088
+> > +#define   AXI_DAC_UI_STATUS_IF_BUSY		BIT(4)
+> > +#define AXI_DAC_CUSTOM_CTRL_REG			0x008C
+> > +#define   AXI_DAC_CUSTOM_CTRL_ADDRESS		GENMASK(31, 24)
+> > +#define   AXI_DAC_CUSTOM_CTRL_SYNCED_TRANSFER	BIT(2)
+> > +#define   AXI_DAC_CUSTOM_CTRL_STREAM		BIT(1)
+> > +#define   AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA	BIT(0)
+> > +
+> > +#define
+> > AXI_DAC_STREAM_ENABLE			(AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA | \
+> > +						AXI_DAC_CUSTOM_CTRL_STREAM)
+> >  
+> >  /* DAC Channel controls */
+> >  #define AXI_DAC_CHAN_CNTRL_1_REG(c)		(0x0400 + (c) * 0x40)
+> > @@ -63,12 +82,27 @@
+> >  #define AXI_DAC_CHAN_CNTRL_7_REG(c)		(0x0418 + (c) * 0x40)
+> >  #define   AXI_DAC_CHAN_CNTRL_7_DATA_SEL		GENMASK(3, 0)
+> >  
+> > +#define AXI_DAC_RD_ADDR(x)			(BIT(7) | (x))
+> > +
+> >  /* 360 degrees in rad */
+> >  #define AXI_DAC_2_PI_MEGA			6283190
+> >  
+> >  enum {
+> >  	AXI_DAC_DATA_INTERNAL_TONE,
+> >  	AXI_DAC_DATA_DMA = 2,
+> > +	AXI_DAC_DATA_INTERNAL_RAMP_16BIT = 11,
+> > +};
+> > +
+> > +enum {
+> > +	AXI_DAC_BUS_TYPE_NONE,
+> > +	AXI_DAC_BUS_TYPE_DDR_QSPI,
+> > +};
+> 
+> Do we still need the above?
+> 
+> > +
+> > +struct axi_dac_info {
+> > +	unsigned int version;
+> > +	const struct iio_backend_info *backend_info;
+> > +	bool bus_controller;
+> > +	bool has_dac_clk;
+> >  };
+> > 
+> >  struct axi_dac_state {
+> > @@ -79,9 +113,12 @@ struct axi_dac_state {
+> >  	 * data/variables.
+> >  	 */
+> >  	struct mutex lock;
+> > +	const struct axi_dac_info *info;
+> > +	struct clk *clk;
+> 
+> Is it used?
+> 
+> >  	u64 dac_clk;
+> >  	u32 reg_config;
+> >  	bool int_tone;
+> > +	int dac_clk_rate;
+> >  };
+> >  
+> >  static int axi_dac_enable(struct iio_backend *back)
+> > @@ -471,6 +508,11 @@ static int axi_dac_data_source_set(struct iio_backend
+> > *back, unsigned int chan,
+> >  					  AXI_DAC_CHAN_CNTRL_7_REG(chan),
+> >  					  AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
+> >  					  AXI_DAC_DATA_DMA);
+> > +	case IIO_BACKEND_INTERNAL_RAMP_16BIT:
+> > +		return regmap_update_bits(st->regmap,
+> > +					  AXI_DAC_CHAN_CNTRL_7_REG(chan),
+> > +					  AXI_DAC_CHAN_CNTRL_7_DATA_SEL,
+> > +					  AXI_DAC_DATA_INTERNAL_RAMP_16BIT);
+> >  	default:
+> >  		return -EINVAL;
+> >  	}
+> > @@ -528,6 +570,186 @@ static int axi_dac_reg_access(struct iio_backend *back,
+> > unsigned int reg,
+> >  	return regmap_write(st->regmap, reg, writeval);
+> >  }
+> >  
+> > +static int axi_dac_ddr_enable(struct iio_backend *back)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +
+> > +	return regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
+> > +				 AXI_DAC_CNTRL_2_SDR_DDR_N);
+> > +}
+> > +
+> > +static int axi_dac_ddr_disable(struct iio_backend *back)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +
+> > +	return regmap_set_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
+> > +			       AXI_DAC_CNTRL_2_SDR_DDR_N);
+> > +}
+> > +
+> > +static int axi_dac_data_stream_enable(struct iio_backend *back)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +
+> > +	return regmap_set_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +			       AXI_DAC_STREAM_ENABLE);
+> > +}
+> > +
+> > +static int axi_dac_data_stream_disable(struct iio_backend *back)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +
+> > +	return regmap_clear_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +				 AXI_DAC_STREAM_ENABLE);
+> > +}
+> > +
+> > +static int axi_dac_data_transfer_addr(struct iio_backend *back, u32 address)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +
+> 
+> We could add some validation for address with FIELD_MAX()
+> 
+> > +	/*
+> > +	 * Sample register address, when the DAC is configured, or stream
+> > +	 * start address when the FSM is in stream state.
+> > +	 */
+> > +	return regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +				  AXI_DAC_CUSTOM_CTRL_ADDRESS,
+> > +				  FIELD_PREP(AXI_DAC_CUSTOM_CTRL_ADDRESS,
+> > +				  address));
+> > +}
+> > +
+> > +static int axi_dac_data_format_set(struct iio_backend *back, unsigned int ch,
+> > +				   const struct iio_backend_data_fmt *data)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +	int err;
+> > 
+> 
+> Not sure if I mentioned it already but please use 'ret' so it's consistent with
+> what we have. But for this function, see below
+> 
+> > +	switch (data->type) {
+> > +	case IIO_BACKEND_DATA_UNSIGNED:
+> > +		err = regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
+> > +					AXI_DAC_CNTRL_2_UNSIGNED_DATA);
+> > +		if (err)
+> > +			return err;
+> > +		break;
+> 		return regmap_clear_bits();
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> 
+> remove the above...
+> 
+> > +}
+> > +
+> > +static int axi_dac_read_raw(struct iio_backend *back,
+> > +			    struct iio_chan_spec const *chan,
+> > +			    int *val, int *val2, long mask)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +	int err;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_FREQUENCY: {
+> > +		int reg;
+> 
+> I would just declare it at top scope and remove {}. Otherwise...
+> > +
+> > +		if (!st->info->has_dac_clk)
+> > +			return -EOPNOTSUPP;
+> > +
+> > +		/*
+> > +		 * As from ad3552r AXI IP documentation,
+> > +		 * returning the SCLK depending on the stream mode.
+> > +		 */
+> > +		err = regmap_read(st->regmap, AXI_DAC_CUSTOM_CTRL_REG, &reg);
+> > +		if (err)
+> > +			return err;
+> > +
+> > +		if (reg & AXI_DAC_CUSTOM_CTRL_STREAM)
+> > +			*val = st->dac_clk_rate / 2;
+> > +		else
+> > +			*val = st->dac_clk_rate / 8;
+> > +
+> > +		return IIO_VAL_INT;
+> > +		}
+> 
+> ... does not look good
+>  
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
+> > +
+> > +static int axi_dac_bus_reg_write(struct iio_backend *back, u32 reg, u32 val,
+> > +				 size_t data_size)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +	int ret;
+> > +	u32 ival;
+> > +
+> > +	if (data_size == 2)
+> 
+> nit: sizeof(u16)
+> 
+> > +		ival = FIELD_PREP(AXI_DAC_CUSTOM_WR_DATA_16, val);
+> > +	else
+> > +		ival = FIELD_PREP(AXI_DAC_CUSTOM_WR_DATA_8, val);
+> > +
+> > +	ret = regmap_write(st->regmap, AXI_DAC_CUSTOM_WR_REG, ival);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/*
+> > +	 * Both REG_CNTRL_2 and AXI_DAC_CNTRL_DATA_WR need to know
+> > +	 * the data size. So keeping data size control here only,
+> > +	 * since data size is mandatory for the current transfer.
+> > +	 * DDR state handled separately by specific backend calls,
+> > +	 * generally all raw register writes are SDR.
+> > +	 */
+> > +	if (data_size == 1)
+> > +		ret = regmap_set_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
+> > +				      AXI_DAC_CNTRL_2_SYMB_8B);
+> > +	else
+> > +		ret = regmap_clear_bits(st->regmap, AXI_DAC_CNTRL_2_REG,
+> > +					AXI_DAC_CNTRL_2_SYMB_8B);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +				 AXI_DAC_CUSTOM_CTRL_ADDRESS,
+> > +				 FIELD_PREP(AXI_DAC_CUSTOM_CTRL_ADDRESS,
+> > reg));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_update_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA,
+> > +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_read_poll_timeout(st->regmap,
+> > +				       AXI_DAC_CUSTOM_CTRL_REG, ival,
+> > +				       ival &
+> > AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA,
+> > +				       10, 100 * KILO);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return regmap_clear_bits(st->regmap, AXI_DAC_CUSTOM_CTRL_REG,
+> > +				 AXI_DAC_CUSTOM_CTRL_TRANSFER_DATA);
+> > +}
+> > +
+> > +static int axi_dac_bus_reg_read(struct iio_backend *back, u32 reg, u32 *val,
+> > +				size_t data_size)
+> > +{
+> > +	struct axi_dac_state *st = iio_backend_get_priv(back);
+> > +	int ret;
+> > +	u32 ival;
+> > +
+> > +	/*
+> > +	 * SPI, we write with read flag, then we read just at the AXI
+> > +	 * io address space to get data read.
+> > +	 */
+> > +	ret = axi_dac_bus_reg_write(back, AXI_DAC_RD_ADDR(reg), 0,
+> > data_size);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_read_poll_timeout(st->regmap, AXI_DAC_UI_STATUS_REG,
+> > ival,
+> > +				FIELD_GET(AXI_DAC_UI_STATUS_IF_BUSY, ival) !=
+> > +				AXI_DAC_UI_STATUS_IF_BUSY,
+> > +				10, 100);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
+> > +}
+> > +
+> >  static const struct iio_backend_ops axi_dac_generic_ops = {
+> >  	.enable = axi_dac_enable,
+> >  	.disable = axi_dac_disable,
+> > @@ -541,11 +763,29 @@ static const struct iio_backend_ops axi_dac_generic_ops
+> > = {
+> >  	.debugfs_reg_access = iio_backend_debugfs_ptr(axi_dac_reg_access),
+> >  };
+> >  
+> > +static const struct iio_backend_ops axi_ad3552r_ops = {
+> > +	.enable = axi_dac_enable,
+> > +	.read_raw = axi_dac_read_raw,
+> > +	.request_buffer = axi_dac_request_buffer,
+> > +	.data_source_set = axi_dac_data_source_set,
+> > +	.ddr_enable = axi_dac_ddr_enable,
+> > +	.ddr_disable = axi_dac_ddr_disable,
+> > +	.data_stream_enable = axi_dac_data_stream_enable,
+> > +	.data_stream_disable = axi_dac_data_stream_disable,
+> > +	.data_format_set = axi_dac_data_format_set,
+> > +	.data_transfer_addr = axi_dac_data_transfer_addr,
+> > +};
+> > +
+> >  static const struct iio_backend_info axi_dac_generic = {
+> >  	.name = "axi-dac",
+> >  	.ops = &axi_dac_generic_ops,
+> >  };
+> >  
+> > +static const struct iio_backend_info axi_ad3552r = {
+> > +	.name = "axi-ad3552r",
+> > +	.ops = &axi_ad3552r_ops,
+> > +};
+> > +
+> >  static const struct regmap_config axi_dac_regmap_config = {
+> >  	.val_bits = 32,
+> >  	.reg_bits = 32,
+> > @@ -555,7 +795,6 @@ static const struct regmap_config axi_dac_regmap_config =
+> > {
+> >  
+> >  static int axi_dac_probe(struct platform_device *pdev)
+> >  {
+> > -	const unsigned int *expected_ver;
+> >  	struct axi_dac_state *st;
+> >  	void __iomem *base;
+> >  	unsigned int ver;
+> > @@ -566,15 +805,26 @@ static int axi_dac_probe(struct platform_device *pdev)
+> >  	if (!st)
+> >  		return -ENOMEM;
+> >  
+> > -	expected_ver = device_get_match_data(&pdev->dev);
+> > -	if (!expected_ver)
+> > +	st->info = device_get_match_data(&pdev->dev);
+> > +	if (!st->info)
+> >  		return -ENODEV;
+> >  
+> > -	clk = devm_clk_get_enabled(&pdev->dev, NULL);
+> > +	clk = devm_clk_get_enabled(&pdev->dev, "s_axi_aclk");
+> >  	if (IS_ERR(clk))
+> >  		return dev_err_probe(&pdev->dev, PTR_ERR(clk),
+> >  				     "failed to get clock\n");
+> >  
+> > +	if (st->info->has_dac_clk) {
+> > +		struct clk *dac_clk;
+> > +
+> > +		dac_clk = devm_clk_get_enabled(&pdev->dev, "dac_clk");
+> > +		if (IS_ERR(dac_clk))
+> > +			return dev_err_probe(&pdev->dev, PTR_ERR(dac_clk),
+> > +					     "failed to get dac_clk
+> > clock\n");
+> > +
+> > +		st->dac_clk_rate = clk_get_rate(dac_clk);
+> > +	}
+> > +
+> >  	base = devm_platform_ioremap_resource(pdev, 0);
+> >  	if (IS_ERR(base))
+> >  		return PTR_ERR(base);
+> > @@ -598,12 +848,13 @@ static int axi_dac_probe(struct platform_device *pdev)
+> >  	if (ret)
+> >  		return ret;
+> >  
+> > -	if (ADI_AXI_PCORE_VER_MAJOR(ver) !=
+> > ADI_AXI_PCORE_VER_MAJOR(*expected_ver)) {
+> > +	if (ADI_AXI_PCORE_VER_MAJOR(ver) !=
+> > +		ADI_AXI_PCORE_VER_MAJOR(st->info->version)) {
+> >  		dev_err(&pdev->dev,
+> >  			"Major version mismatch. Expected %d.%.2d.%c,
+> > Reported %d.%.2d.%c\n",
+> > -			ADI_AXI_PCORE_VER_MAJOR(*expected_ver),
+> > -			ADI_AXI_PCORE_VER_MINOR(*expected_ver),
+> > -			ADI_AXI_PCORE_VER_PATCH(*expected_ver),
+> > +			ADI_AXI_PCORE_VER_MAJOR(st->info->version),
+> > +			ADI_AXI_PCORE_VER_MINOR(st->info->version),
+> > +			ADI_AXI_PCORE_VER_PATCH(st->info->version),
+> >  			ADI_AXI_PCORE_VER_MAJOR(ver),
+> >  			ADI_AXI_PCORE_VER_MINOR(ver),
+> >  			ADI_AXI_PCORE_VER_PATCH(ver));
+> > @@ -629,7 +880,8 @@ static int axi_dac_probe(struct platform_device *pdev)
+> >  		return ret;
+> >  
+> >  	mutex_init(&st->lock);
+> > -	ret = devm_iio_backend_register(&pdev->dev, &axi_dac_generic, st);
+> > +
+> > +	ret = devm_iio_backend_register(&pdev->dev, st->info->backend_info,
+> > st);
+> >  	if (ret)
+> >  		return dev_err_probe(&pdev->dev, ret,
+> >  				     "failed to register iio backend\n");
+> > @@ -642,10 +894,21 @@ static int axi_dac_probe(struct platform_device *pdev)
+> >  	return 0;
+> >  }
+> >  
+> > -static unsigned int axi_dac_9_1_b_info = ADI_AXI_PCORE_VER(9, 1, 'b');
+> > +static const struct axi_dac_info dac_generic = {
+> > +	.version = ADI_AXI_PCORE_VER(9, 1, 'b'),
+> > +	.backend_info = &axi_dac_generic,
+> > +};
+> > +
+> > +static const struct axi_dac_info dac_ad3552r = {
+> > +	.version = ADI_AXI_PCORE_VER(9, 1, 'b'),
+> > +	.backend_info = &axi_ad3552r,
+> > +	.bus_controller = true,
+> 
+> Do we still need bus_controller?
 
-On Fri Oct 11, 2024 at 9:40 AM CEST, Dragan Simic wrote:
-> Following the hierarchical representation of the SoC data that's been alr=
-eady
-> established in the commit 296602b8e5f7 ("arm64: dts: rockchip: Move RK339=
-9
-> OPPs to dtsi files for SoC variants"), add new SoC dtsi file for the Rock=
-chip
-> RK3399S SoC, which is yet another variant of the Rockchip RK3399 SoC.
-> ...
-> The RK3399S variant is used in the Pine64 PinePhone Pro only, [1] whose b=
-oard
-> dts file included the necessary adjustments to the CPU DVFS OPPs.  This c=
-ommit
-> effectively moves those adjustments into the separate RK3399S SoC dtsi fi=
-le,
-> following the above-mentioned "encapsulation" approach.
-> ...
-> ---
-> ...
->  .../dts/rockchip/rk3399-pinephone-pro.dts     |  23 +---
->  arch/arm64/boot/dts/rockchip/rk3399-s.dtsi    | 123 ++++++++++++++++++
->  2 files changed, 124 insertions(+), 22 deletions(-)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
->
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts b/arch=
-/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> index 1a44582a49fb..eee6cfb6de01 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
-> @@ -13,7 +13,7 @@
->  #include <dt-bindings/input/gpio-keys.h>
->  #include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/leds/common.h>
-> -#include "rk3399.dtsi"
-> +#include "rk3399-s.dtsi"
-> =20
->  / {
->  	model =3D "Pine64 PinePhone Pro";
-> @@ -456,27 +456,6 @@ mpu6500@68 {
->  	};
->  };
-> =20
-> -&cluster0_opp {
-> -	opp04 {
-> -		status =3D "disabled";
-> -	};
-> -
-> -	opp05 {
-> -		status =3D "disabled";
-> -	};
-> -};
-> -
-> -&cluster1_opp {
-> -	opp06 {
-> -		opp-hz =3D /bits/ 64 <1500000000>;
-> -		opp-microvolt =3D <1100000 1100000 1150000>;
-> -	};
-> -
-> -	opp07 {
-> -		status =3D "disabled";
-> -	};
-> -};
-> -
->  &io_domains {
->  	bt656-supply =3D <&vcc1v8_dvp>;
->  	audio-supply =3D <&vcca1v8_codec>;
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi b/arch/arm64/boot=
-/dts/rockchip/rk3399-s.dtsi
-> new file mode 100644
-> index 000000000000..e54f451af9f3
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
-> @@ -0,0 +1,123 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
-> + */
-> +
-> +#include "rk3399-base.dtsi"
-> +
-> +/ {
-> +	cluster0_opp: opp-table-0 {
-> +		compatible =3D "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp00 {
-> +			opp-hz =3D /bits/ 64 <408000000>;
-> +			opp-microvolt =3D <825000 825000 1250000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +		opp01 {
-> +			opp-hz =3D /bits/ 64 <600000000>;
-> +			opp-microvolt =3D <825000 825000 1250000>;
-> +		};
-> +		opp02 {
-> +			opp-hz =3D /bits/ 64 <816000000>;
-> +			opp-microvolt =3D <850000 850000 1250000>;
-> +		};
+actually still using it to create devices subnodes.
+Will move it to the last patch.
+ 
+> 
+> - Nuno Sá
+> 
+> 
 
-Is there a reason why there isn't a line separator between the various
-opp nodes? Normally there is one between nodes.
-Note that in rk3588-opp.dtsi there are no separator lines between the
-opp nodes, while they do exist between other nodes.
-And in rk356x.dtsi the opp nodes do have a separator line.
-
-Cheers,
-  Diederik
-
---af1154c69e001df7fb7f323f84794bbd4d176e15b89faa8d2c6e93554628
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwjbEwAKCRDXblvOeH7b
-bn4ZAP9SAfzaXLnoMbuoF3dTehc8Jr9FMBa7745ZKmbW5eoeFwD+NA0wkfjetNtB
-JuZcgcqxGj3DzG5bgYci1MaFeWc+2A8=
-=kuwT
------END PGP SIGNATURE-----
-
---af1154c69e001df7fb7f323f84794bbd4d176e15b89faa8d2c6e93554628--
+Regards,
+  angelo
 
