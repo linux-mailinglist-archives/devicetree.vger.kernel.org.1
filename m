@@ -1,170 +1,177 @@
-Return-Path: <devicetree+bounces-110231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F78999BAD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 06:33:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B54F4999BF0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 07:05:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E34D1F2599F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 04:33:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E06C1F24962
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 05:05:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86131F4FB0;
-	Fri, 11 Oct 2024 04:33:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 772CC1CEAC8;
+	Fri, 11 Oct 2024 05:05:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fgZM9LAD"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cxau8N8a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D5471F4FAF;
-	Fri, 11 Oct 2024 04:32:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D21212581;
+	Fri, 11 Oct 2024 05:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728621181; cv=none; b=AXBuWh1YFw2AXXHKo2cnmibjnhpQS1azhfxyXgbIUy67fXCNnPRg27s2sz0/AR7Gs+fPFS7fvOiecc45A3Aixnjj33y08P0yubIhzqgNn2/qC6NQe1Q1xSu3rguHhWaVRGVOpMBoudBPNdv5DP2zWY5HJER82fKtbgG8wFO0MZg=
+	t=1728623134; cv=none; b=V2Q3wyk0hADZv6fkKIQW8VdeZh1fDUVMH1Pwj7XRlyJ1HG39oQFIlgGlX2TChLPjA8id3Izy1ycVp+3eSF0qC33IPOIRY0zxM5Rwesh8K8fIw2En90ef5fozz1RGmPekoD5u2JpTx2beQYujQnSVrXyLA2+Tve2lQVaRD8Zg7Xc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728621181; c=relaxed/simple;
-	bh=WPsimNbw3/FLAWkS8kcN9an0/txl+7xFw5VfWVObtaw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iuTh2r0Ut0TI3BH3St6WQCwu96qa6ED/U2+OCcLIfyh+NrGd1Zq8kD37Ety5Fvk0cYshwYEER0hUeKlaMqTixrYm7D2xWDtm+88GaNG4qss0CCF43a0psgF58pYOUJxUip6ltMbU03KBcLiQ4B5r3kbmmj60Tu2t5hJp1XlivDY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fgZM9LAD; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728621180; x=1760157180;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WPsimNbw3/FLAWkS8kcN9an0/txl+7xFw5VfWVObtaw=;
-  b=fgZM9LADAOHfwsDpJBDggIFo+9aVmyAhkz+TbN1sk65676YnSeV5FGRc
-   QMaC7g61ktoX6MqYcGV5LsW5wrhV5KS9rMONmEP5+dvIlk5YoyTU1j27H
-   VZTFODxZX5GQXTH+w6mi8JZLpFi5tm49GAYTib2eeSqjEN6W162HZfXIY
-   fPQVCInPG1m3bWqLQSmByYyDey5glwVa2yMS0TklwIaYjLbFZIR6ub34y
-   a/U4XqpavEe8xvJPX77qAWvKlTvyr+TYRxDCEmL1krQXWhuJ7R8yURZ3h
-   FeGKeUnUXoxRZU/SsAoNlmSiTdRPfURw2UeXleYqp1FqmDQ+yuBpuSRIU
-   g==;
-X-CSE-ConnectionGUID: ZcRx5KkcTK24dv0DUsmbZg==
-X-CSE-MsgGUID: 4IVC8LveTOK6K5TNByvxOQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11221"; a="28101891"
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
-   d="scan'208";a="28101891"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Oct 2024 21:32:59 -0700
-X-CSE-ConnectionGUID: xlrxdYeoRVCGPpSXEZMSUQ==
-X-CSE-MsgGUID: 18hiwM1BSyycpyc4jLTsYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,194,1725346800"; 
-   d="scan'208";a="81412364"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by fmviesa004.fm.intel.com with ESMTP; 10 Oct 2024 21:32:54 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1sz7Ke-000BnT-1j;
-	Fri, 11 Oct 2024 04:32:52 +0000
-Date: Fri, 11 Oct 2024 12:32:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>, jic23@kernel.org,
-	lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	vassilisamir@gmail.com, ang.iglesiasg@gmail.com,
-	linus.walleij@linaro.org, biju.das.jz@bp.renesas.com,
-	javier.carrasco.cruz@gmail.com, semen.protsenko@linaro.org,
-	579lpy@gmail.com, ak@it-klinger.de, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v8 1/4] iio: pressure: bmp280: Use sleep and forced mode
- for oneshot captures
-Message-ID: <202410111221.YIeXHxOv-lkp@intel.com>
-References: <20241007194945.66192-2-vassilisamir@gmail.com>
+	s=arc-20240116; t=1728623134; c=relaxed/simple;
+	bh=Z+lOO4HtqgHurovB4N3qX+ffyX+Js59pB/KSjEd4SMc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P1oFVMhddlL1vx7zLdZ/5wFp6xK1O7SnuO/fg1MqfSJBBjhvQQygdLWcmyPSFNf6lGmt5MqngFTs71TYIs9tC1m86y/1bT1YEE8dws9+sOHomdTPyxAk91NT5ETu59Hyomz6/VvuHPIyK3IoXdKVWOKkMQchTC82Yj3grrZu5wA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cxau8N8a; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B1Hf8D005437;
+	Fri, 11 Oct 2024 05:05:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=DeRAgiKCa7UKV6icCaoPho23
+	OOxbcTE0/jFXarh9Q4E=; b=cxau8N8aYDAbFrsL82bKVsl8NJwAcV+3LO78PYbu
+	LzXNOTUdoV3FRw59VaY9r+WW0rrQSYV+MCqlmV4wEYTkki8o1OdiV3+Z7IUghgY0
+	GH8Sx9t6yDxLoBL8GmlQ3a59AddoedfspYgqwPoyjjeLb3Fdq3aulWrewFYo2IzP
+	fItSBZB04bfEaizqfYSzJ+7j9LPW7RwhomVY02nbP+efK5uZ5pXl3gjbyx7qTa7O
+	DrhvHJbOuiIWYFhagG8A75dDfun6TOpPw3Wmzp9LUUXO4ZVJBNmFXYKAxzeX3IkM
+	EW+fk3ppNtH12qKjGq1m2S6whbGmSiQpVhd85EDCcKCvzQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426t7srdmq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 05:05:27 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49B55QGL010827
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 05:05:26 GMT
+Received: from hu-shashim-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.9; Thu, 10 Oct 2024 22:05:22 -0700
+Date: Fri, 11 Oct 2024 10:35:18 +0530
+From: Shiraz Hashim <quic_shashim@quicinc.com>
+To: <neil.armstrong@linaro.org>
+CC: Mukesh Ojha <quic_mojha@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "Rob
+ Herring" <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        "Conor
+ Dooley" <conor+dt@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        "Bartosz Golaszewski" <bartosz.golaszewski@linaro.org>,
+        Manivannan Sadhasivam
+	<manivannan.sadhasivam@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 6/6] remoteproc: qcom: Enable map/unmap and SHM bridge
+ support
+Message-ID: <20241011050518.GJ1421305@hu-shashim-hyd.qualcomm.com>
+References: <20241004212359.2263502-1-quic_mojha@quicinc.com>
+ <20241004212359.2263502-7-quic_mojha@quicinc.com>
+ <9eb910d4-e521-4c14-8e73-8fd3d5ff9573@linaro.org>
+ <ZwP1t45ni/gk754B@hu-mojha-hyd.qualcomm.com>
+ <ZwTPghV36CSIpkE4@hu-mojha-hyd.qualcomm.com>
+ <dfe46653-5243-47c8-8de9-17a38d13da53@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20241007194945.66192-2-vassilisamir@gmail.com>
+In-Reply-To: <dfe46653-5243-47c8-8de9-17a38d13da53@linaro.org>
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: CcvRwPar5ILwrw7DO8J-LVxz8aFxxHw9
+X-Proofpoint-ORIG-GUID: CcvRwPar5ILwrw7DO8J-LVxz8aFxxHw9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 malwarescore=0 phishscore=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 clxscore=1011 adultscore=0 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410110030
 
-Hi Vasileios,
+On Thu, Oct 10, 2024 at 08:57:56AM +0200, neil.armstrong@linaro.org wrote:
+> On 08/10/2024 08:21, Mukesh Ojha wrote:
+> > On Mon, Oct 07, 2024 at 08:22:39PM +0530, Mukesh Ojha wrote:
+> > > On Mon, Oct 07, 2024 at 10:05:08AM +0200, neil.armstrong@linaro.org wrote:
+> > > > On 04/10/2024 23:23, Mukesh Ojha wrote:
+> > > > > For Qualcomm SoCs runnning with Qualcomm EL2 hypervisor(QHEE), IOMMU
+> > > > > translation for remote processors is managed by QHEE and if the same SoC
+> > > > > run under KVM, remoteproc carveout and devmem region should be IOMMU
+> > > > > mapped from Linux PAS driver before remoteproc is brought up and
+> > > > > unmapped once it is tear down and apart from this, SHM bridge also need
+> > > > > to set up to enable memory protection on both remoteproc meta data
+> > > > > memory as well as for the carveout region.
+> > > > > 
+> > > > > Enable the support required to run Qualcomm remoteprocs on non-QHEE
+> > > > > hypervisors.
+> > > > > 
+> > > > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> > > > > ---
+> > > > >    drivers/remoteproc/qcom_q6v5_pas.c | 41 +++++++++++++++++++++++++++++-
+> > > > >    1 file changed, 40 insertions(+), 1 deletion(-)
+> > > > > 
+> > > > > diff --git a/drivers/remoteproc/qcom_q6v5_pas.c b/drivers/remoteproc/qcom_q6v5_pas.c
+> > > > > index ac339145e072..13bd13f1b989 100644
+> > > > > --- a/drivers/remoteproc/qcom_q6v5_pas.c
+> > > > > +++ b/drivers/remoteproc/qcom_q6v5_pas.c
 
-kernel test robot noticed the following build warnings:
+<snip>
 
-[auto build test WARNING on 96be67caa0f0420d4128cb67f07bbd7a6f49e03a]
+> > > > > +		struct of_phandle_args args;
+> > > > > +
+> > > > > +		ret = of_parse_phandle_with_args(pdev->dev.of_node, "iommus", "#iommu-cells", 0, &args);
+> > > > > +		if (ret < 0)
+> > > > > +			return ret;
+> > > > > +
+> > > > > +		rproc->has_iommu = true;
+> > > > > +		adsp->sid = args.args[0];
+> > > > > +		of_node_put(args.np);
+> > > > > +		ret = adsp_devmem_init(adsp);
+> > > > > +		if (ret)
+> > > > > +			return ret;
+> > > > 
+> > > > Why don't you get this table from the firmware like presumably
+> > > > QHEE does ?
+> > > 
+> > > Well, AFAIK, QHEE(EL2) has this information statically present
+> > > and does not get it from anywhere., but will confirm this
+> > > twice..
+> > 
+> > Double confirmed, device memory region required by remoteproc is
+> > statically present with QHEE.
+> 
+> Right, in this case why those tables can't be embedded in the elf
+> .resource_table like it's done with qcom_q6v5_adsp.c by calling
+> rproc_elf_load_rsc_table() and let the remoteproc framework load the
+> resource table and setup the devmem ssmu_map ?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Vasileios-Amoiridis/iio-pressure-bmp280-Use-sleep-and-forced-mode-for-oneshot-captures/20241008-035238
-base:   96be67caa0f0420d4128cb67f07bbd7a6f49e03a
-patch link:    https://lore.kernel.org/r/20241007194945.66192-2-vassilisamir%40gmail.com
-patch subject: [PATCH v8 1/4] iio: pressure: bmp280: Use sleep and forced mode for oneshot captures
-config: i386-randconfig-006-20241011 (https://download.01.org/0day-ci/archive/20241011/202410111221.YIeXHxOv-lkp@intel.com/config)
-compiler: clang version 18.1.8 (https://github.com/llvm/llvm-project 3b5b5c1ec4a3095ab096dd780e84d7ab81f3d7ff)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241011/202410111221.YIeXHxOv-lkp@intel.com/reproduce)
+Mainly for two reasons -
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410111221.YIeXHxOv-lkp@intel.com/
+firmware images on platforms where we like to bring additional no-qhee
+support do not have resource table.
 
-All warnings (new ones prefixed by >>):
+QCOM PAS implementation for secure remoteproc supports single TZ call
+of auth_and_rest that authenticates and brings remoteproc out of
+reset. And we don't have provision to authenticate resource table
+before it is used for devmem/iommu setup.
 
->> drivers/iio/pressure/bmp280-core.c:1051:3: warning: variable 'meas_time_us' is uninitialized when used here [-Wuninitialized]
-    1051 |                 meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
-         |                 ^~~~~~~~~~~~
-   drivers/iio/pressure/bmp280-core.c:1046:32: note: initialize the variable 'meas_time_us' to silence this warning
-    1046 |         unsigned int reg, meas_time_us;
-         |                                       ^
-         |                                        = 0
-   drivers/iio/pressure/bmp280-core.c:2452:2: warning: variable 'offset' is uninitialized when used here [-Wuninitialized]
-    2452 |         offset += sizeof(s32);
-         |         ^~~~~~
-   drivers/iio/pressure/bmp280-core.c:2437:17: note: initialize the variable 'offset' to silence this warning
-    2437 |         int ret, offset;
-         |                        ^
-         |                         = 0
-   2 warnings generated.
-
-
-vim +/meas_time_us +1051 drivers/iio/pressure/bmp280-core.c
-
-  1043	
-  1044	static int bmp280_wait_conv(struct bmp280_data *data)
-  1045	{
-  1046		unsigned int reg, meas_time_us;
-  1047		int ret;
-  1048	
-  1049		/* Check if we are using a BME280 device */
-  1050		if (data->oversampling_humid)
-> 1051			meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
-  1052					BIT(data->oversampling_humid) * BMP280_MEAS_DUR;
-  1053	
-  1054		/* Pressure measurement time */
-  1055		meas_time_us += BMP280_PRESS_HUMID_MEAS_OFFSET +
-  1056				BIT(data->oversampling_press) * BMP280_MEAS_DUR;
-  1057	
-  1058		/* Temperature measurement time */
-  1059		meas_time_us += BIT(data->oversampling_temp) * BMP280_MEAS_DUR;
-  1060	
-  1061		/* Waiting time according to the BM(P/E)2 Sensor API */
-  1062		fsleep(meas_time_us);
-  1063	
-  1064		ret = regmap_read(data->regmap, BMP280_REG_STATUS, &reg);
-  1065		if (ret) {
-  1066			dev_err(data->dev, "failed to read status register.\n");
-  1067			return ret;
-  1068		}
-  1069	
-  1070		if (reg & BMP280_REG_STATUS_MEAS_BIT) {
-  1071			dev_err(data->dev, "Measurement cycle didn't complete.\n");
-  1072			return -EBUSY;
-  1073		}
-  1074	
-  1075		return 0;
-  1076	}
-  1077	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+regards
+Shiraz
 
