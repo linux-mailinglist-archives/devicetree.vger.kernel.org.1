@@ -1,129 +1,175 @@
-Return-Path: <devicetree+bounces-110470-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9A2799A7B9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 17:31:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09C2E99A7B1
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 17:29:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45AFB28568F
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:31:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 215B11C2653A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:29:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1023219645D;
-	Fri, 11 Oct 2024 15:31:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C9F9195F22;
+	Fri, 11 Oct 2024 15:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="g4sTiufL"
+	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="NycKO9b2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A94785270
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 15:31:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 804FC195385
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 15:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728660670; cv=none; b=K0BXbbzqYBd4zD5ddRXJxveRZCdq62jZiki0G0bjobAZDVYmI51GAoQteFzAE4SUA0bNt0l94BC0nqyGojDjHRbGDnpatea3extA2b5a1hfwGD3dQJ81qZuDDuqMiN/dG5QLwV5FJOOGafCmdxSgmbY2BxaTLqUd077e7QCbvl4=
+	t=1728660583; cv=none; b=m2sKP6O5g51k4c38fdteBDjljBiQZhUwnx8vdeXSh3fn/19wnBNj+sfc24Z3Au2zhNrPKAUpSYONr3LhSisLGVZidtb2ZhSl5mGI3WZlr2XBdBI3iPpnAc37xg9wBn2CBiSyw7X5LabCoAcriwkJrkUvJxuRc5FA5Qvsb18vjiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728660670; c=relaxed/simple;
-	bh=l7jQ1X2oBQuwdyuwW7KQ7mPnxUbY84M9o4xS5gFr5Pw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=QN0bf9986l/qy8CkflnSxthiZ4UHMHAqFvcDugNsN02L40BtpoeZSfE3/uN24QcX5iZ6wbtKW/Lpy7Dc5HmpEH9uOg9BPv19kSAUqBDhV8CmvreVW53raCawFVtQv+CvjzBaOoNjNCMN8sq1VxKYZlCF4+9hGUrD9+ASVmZcgU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=g4sTiufL; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7a9c3a4e809so161682485a.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 08:31:07 -0700 (PDT)
+	s=arc-20240116; t=1728660583; c=relaxed/simple;
+	bh=L+1vIZ1LGvXuZQq8x99G7kK5sIk7Bhl5Usj3xUZX794=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Fc2nSh2kHJN+Uz7PwE20TOmY93eFgKTINOC593SdndFwMtgTDShSMwqrIWWTJN6eNq0HWL9okMrA+9wOFsUTtmmMhwI2o7WPVLZD2D+cNMwdo6VMX4YRz8Zq4W2rlIRzfrfhxU7VZ70fNo8TU5YozyYV5AkDjeCyr5raU9AT5eo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=NycKO9b2; arc=none smtp.client-ip=209.85.216.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
+Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-2e2bd347124so1507959a91.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 08:29:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1728660666; x=1729265466; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Fb2KcZ8vB52++p4TQiPnR8QcBRBwDyWeIHZkz6fpi0I=;
-        b=g4sTiufLjFl/0P4WCDbmVNR41hUUyBshzw2UUWVWp83PxZzEu3Z7mC4/p7TTYNrjA2
-         sOJyyEEhV0vySd+1QiDnORqKGJW0Fbu24MQPq/xhBaPw3hr0N2FHJvXfEekuirwaywy+
-         Quippa/lbwaVfjl0SzkfasEi3IjNRssxg0CT35H/N4tMJ7Fdtzul4iL0dT9V3ppLVT8+
-         ZtyVvI8qfshZTyIv7xIeeHmryKBKDalZfraBBETVZ66ekRUvl34Lb06ghPd9k/7ekxkt
-         uJOKlUEPPHlkJomyI6M+BU6wA/SRB/Xs64b9giHMs2780RlC4UxnWn1IXRyjtQu5d8wY
-         EL3Q==
+        d=tenstorrent.com; s=google; t=1728660581; x=1729265381; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=OfEakMtjipcZbjXlN6+R0PDo0Z9g86WwST3PngXMQx0=;
+        b=NycKO9b2BIx8v0+JqOCpzYkycgK1qceNSMy/8pAlEbccJ9NzSiF6UVQo+nGtC04wlw
+         AKf9pifUQ65DjwRfJsVgrvJ9y1Oq43//xVCF13BO70yUZ7C1c/G9J+iE1nsgRz5jcJEx
+         +J97Hyr2VSAf1rmUDzh0z6fj5k4M2JWRnMXe0XjsAPO+cySzpuoIOaS45ftr1F6x++2W
+         kK2hK9yeElM9V8O+vbwTn54odNlu2FsFXI8rmw//yxJxMzefOXR/+vL3EtaSyqOMKojL
+         r6BZ+X9rC4sWqEb30fbZlMwYdd9jqK7Xez9tx+o665xGI2/FRT7NhjzC9Q6DVP49r2Xo
+         YudA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728660666; x=1729265466;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Fb2KcZ8vB52++p4TQiPnR8QcBRBwDyWeIHZkz6fpi0I=;
-        b=Nk8VFS+0eoFWF89ligFVlvSFUYlGiOAf3Otrm1j7D/XQ9MtqQv8u6684N4RlL3Y+Fp
-         6YOozSbcOJeHsZOxEPYOvm97YxfwI034gRh1G4Ugsd6aUMXH+aexykN63/XHPDWZM7R9
-         zHoDG358jjs+g8Uaex3p2yWyyjSg1bulzIntYsfRZQUhp0jmH2RRP5QtU8WPm1Fy4fUC
-         tq4696faPNz5oKkPyYZ7h5pCswSKOlGA/n9MluHNaYGKWPctuPMgJl/ZCgwyJKPeDHuh
-         awW5F5EBz2b7EyVvyY4i6qyVmGlL13lEYzOfqXXkOXOPLYPSUgCOOksZ4c0gnJ6QOXSl
-         8NyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXtxHYxh2dZE5LmhIUupo+JgVEW0PKxLQHZNyvi32bkV85rIs49et+oQm80coIpSvEA+Tf9oGJFT9Cc@vger.kernel.org
-X-Gm-Message-State: AOJu0YwipPobMuuUrY1qfrwaiqdOm3mJPy+vifi7mz7O+SLJHuogD82Q
-	D1wVja3jnWvf3FhQHDVchNaIF1WSIx+IAFaFpL9yAJk0flYZUhK6rdgUoF6DauuuQEXRC7nYaDP
-	5RPs=
-X-Google-Smtp-Source: AGHT+IEFEE0XPv0XTlAVQlyG8kxf8Dil8h+qcmlGDZ/regXb5Cq3ODYbkDwLIinAt94OV1ArDaIyGA==
-X-Received: by 2002:a05:620a:170a:b0:7af:cea1:2de5 with SMTP id af79cd13be357-7b11a3a6685mr404387485a.41.1728660666581;
-        Fri, 11 Oct 2024 08:31:06 -0700 (PDT)
-Received: from localhost.localdomain (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b1148d6a09sm141714785a.42.2024.10.11.08.31.05
+        d=1e100.net; s=20230601; t=1728660581; x=1729265381;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OfEakMtjipcZbjXlN6+R0PDo0Z9g86WwST3PngXMQx0=;
+        b=MEC2UPomRoqrWgNYjzmFaReD5a6CHWKwPyCxcZgl5L9gxkXTYUbcjmiNBUqD821gF1
+         Gc/6VBK1kfgOs/d/FPKbJeZJpkpe1cbIoF6ANIYU5kEXpwGS2Nq/s2KFsPPEqhnPNXAm
+         RYv8sGpp5qkJ1C8iorxuwwuB9GNBQ9KRxEi3lxcm/VDMxUe0QVuEgyKgPlQvmQuWgUHV
+         x7uTZ3WW8BthEJn6DLwYq0NAISf2lUhncqgjQ3QzFDuXhDUVndZCMnArmz12Xs4QFaGK
+         hYe9N4anNpx1SBNctcLZ/VJZ9o7BanARFM0DzwEvDMmDnP7Djaxl6gbN69AuyPXAlAZW
+         eRQg==
+X-Forwarded-Encrypted: i=1; AJvYcCUMeRhtpFlyCpOiVKWLuRUbu8wYLO0f3D26nMkhtyfsqIdOho8cZIwLfrKIjfpbdtPKQAcKHdChcav8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyUmHMWf3FZPzl9oEgWMw7Nr5rHqRq2veUG9Do66T5Q1GkuUQse
+	jCtpuv56pjtF5EZlBYdXJtjaztfv4lVIJah58j19P4UTWe3dKHmahkxuOSC603NgeU2cLcOBTeK
+	Y
+X-Google-Smtp-Source: AGHT+IHgtz1x0nXARrJgLDPonSVb2k7CZhKElZ+N4WzyvXUVmzhbMekGN14tBxZaVtYhG/oDkXvWBQ==
+X-Received: by 2002:a17:90b:4a08:b0:2c9:6a38:54e4 with SMTP id 98e67ed59e1d1-2e2f0dd81efmr3710515a91.41.1728660580594;
+        Fri, 11 Oct 2024 08:29:40 -0700 (PDT)
+Received: from x1 (71-34-69-82.ptld.qwest.net. [71.34.69.82])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2d5eeafe8sm3361493a91.13.2024.10.11.08.29.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 08:31:06 -0700 (PDT)
-From: Jonathan Marek <jonathan@marek.ca>
-To: linux-arm-msm@vger.kernel.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e78100-t14s: enable otg on usb-c ports
-Date: Fri, 11 Oct 2024 11:27:12 -0400
-Message-ID: <20241011152712.31571-2-jonathan@marek.ca>
-X-Mailer: git-send-email 2.45.1
-In-Reply-To: <20241011152712.31571-1-jonathan@marek.ca>
-References: <20241011152712.31571-1-jonathan@marek.ca>
+        Fri, 11 Oct 2024 08:29:40 -0700 (PDT)
+Date: Fri, 11 Oct 2024 08:29:38 -0700
+From: Drew Fustini <dfustini@tenstorrent.com>
+To: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Jisheng Zhang <jszhang@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Fu Wei <wefu@redhat.com>, Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
+Subject: Re: [PATCH v1 1/3] pinctrl: th1520: Fix pinconf return values
+Message-ID: <ZwlEYi/AFCTWVOl5@x1>
+References: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
+ <20241011144826.381104-2-emil.renner.berthing@canonical.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241011144826.381104-2-emil.renner.berthing@canonical.com>
 
-The 2 USB-C ports on x1e78100-t14s are OTG-capable, change dr_mode and add
-usb-role-switch flag to enable OTG.
+On Fri, Oct 11, 2024 at 04:48:23PM +0200, Emil Renner Berthing wrote:
+> When Drew took over the pinctrl driver he must have changed
+> all the -ENOTSUPP returns into -EOPNOTSUPP. This subtle change
+> was most likely not spotted because it was never mentioned in the
+> changelog of the patchset, but it breaks all the places in the
+> pin control and GPIO frameworks where -ENOTSUPP is expected.
+> 
+> Fixes: bed5cd6f8a98 ("pinctrl: Add driver for the T-Head TH1520 SoC")
+> Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> ---
+>  drivers/pinctrl/pinctrl-th1520.c | 12 ++++++------
+>  1 file changed, 6 insertions(+), 6 deletions(-)
+> 
+> diff --git a/drivers/pinctrl/pinctrl-th1520.c b/drivers/pinctrl/pinctrl-th1520.c
+> index c8d2ee6defa7..03326df69668 100644
+> --- a/drivers/pinctrl/pinctrl-th1520.c
+> +++ b/drivers/pinctrl/pinctrl-th1520.c
+> @@ -591,7 +591,7 @@ static int th1520_pinconf_get(struct pinctrl_dev *pctldev,
+>  	u32 arg;
+>  
+>  	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
+> -		return -EOPNOTSUPP;
+> +		return -ENOTSUPP;
+>  
+>  	value = readl_relaxed(th1520_padcfg(thp, pin));
+>  	value = (value >> th1520_padcfg_shift(pin)) & GENMASK(9, 0);
+> @@ -636,7 +636,7 @@ static int th1520_pinconf_get(struct pinctrl_dev *pctldev,
+>  		arg = enabled ? 1 : 0;
+>  		break;
+>  	default:
+> -		return -EOPNOTSUPP;
+> +		return -ENOTSUPP;
+>  	}
+>  
+>  	*config = pinconf_to_config_packed(param, arg);
+> @@ -661,7 +661,7 @@ static int th1520_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
+>  	u16 mask, value;
+>  
+>  	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
+> -		return -EOPNOTSUPP;
+> +		return -ENOTSUPP;
+>  
+>  	mask = 0;
+>  	value = 0;
+> @@ -676,14 +676,14 @@ static int th1520_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
+>  			break;
+>  		case PIN_CONFIG_BIAS_PULL_DOWN:
+>  			if (arg == 0)
+> -				return -EOPNOTSUPP;
+> +				return -ENOTSUPP;
+>  			mask |= TH1520_PADCFG_BIAS;
+>  			value &= ~TH1520_PADCFG_BIAS;
+>  			value |= TH1520_PADCFG_PE;
+>  			break;
+>  		case PIN_CONFIG_BIAS_PULL_UP:
+>  			if (arg == 0)
+> -				return -EOPNOTSUPP;
+> +				return -ENOTSUPP;
+>  			mask |= TH1520_PADCFG_BIAS;
+>  			value &= ~TH1520_PADCFG_BIAS;
+>  			if (arg == TH1520_PULL_STRONG_OHM)
+> @@ -718,7 +718,7 @@ static int th1520_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
+>  				value &= ~TH1520_PADCFG_SL;
+>  			break;
+>  		default:
+> -			return -EOPNOTSUPP;
+> +			return -ENOTSUPP;
+>  		}
+>  	}
+>  
+> -- 
+> 2.43.0
+> 
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+Reviewed-by: Drew Fustini <dfustini@tenstorrent.com>
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-index 08ec2419f95fc..8579c45dcb0a4 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dts
-@@ -1033,7 +1033,8 @@ &usb_1_ss0 {
- };
- 
- &usb_1_ss0_dwc3 {
--	dr_mode = "host";
-+	dr_mode = "otg";
-+	usb-role-switch;
- };
- 
- &usb_1_ss0_dwc3_hs {
-@@ -1065,7 +1066,8 @@ &usb_1_ss1 {
- };
- 
- &usb_1_ss1_dwc3 {
--	dr_mode = "host";
-+	dr_mode = "otg";
-+	usb-role-switch;
- };
- 
- &usb_1_ss1_dwc3_hs {
--- 
-2.45.1
+Thanks for the fix. This was something I changed due to checkpatch
+("ENOTSUPP is not a SUSV4 error code, prefer EOPNOTSUPP") wihtout
+realizing the implication.
 
+-Drew
 
