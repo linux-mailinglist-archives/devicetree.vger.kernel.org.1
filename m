@@ -1,221 +1,145 @@
-Return-Path: <devicetree+bounces-110384-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110385-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4A0099A437
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:54:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D83699A464
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 15:06:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E57C11C2245B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:54:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C4B0E285542
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 13:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 261E22178F8;
-	Fri, 11 Oct 2024 12:54:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04D34216A0D;
+	Fri, 11 Oct 2024 13:06:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b="VbVHhWG9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qZc21V87"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAA732141B5;
-	Fri, 11 Oct 2024 12:54:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B827218591
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 13:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728651250; cv=none; b=irnQLVS28giAFBl/F7n/OxN1zFp5ROKbT+a3m7EKDZc3DouAUVpLoiIuM5KQFEWRwhlriaq9A426mJsGuqUB+NyjvJUhqyZnZDp4MULlyQ2cMM684UQGZsDWJ6w9YaoCkXEFHWxzDZBYG3qit/s0R940H28Rlg3FH9Z3ucfVg34=
+	t=1728651973; cv=none; b=qjdD5+zYCG64z9yOt+wUsHMUeU1J1apSSuMwQSvUFWS1r+/9U2cOOUm8QXkhfAjia2EkPPhoQctaFP2pzYHLJJnaiqfSrzBPmp8zEU61RMqTeApNR6Qm2nylTf3PHKUh0V8RR5KKM65ZZjYVmzf3MWQ/BbaAqIVO3pPlhGuNTWc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728651250; c=relaxed/simple;
-	bh=MPJGN4wESKD2gf1aeyittLoAkXe9uQPgjXC70LtSMww=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=WUObPLlbpEqO8aVLQyki08//B6G/q0frOifja9YOPZ3X1RoonWemzatYexkcWwIV6cp5/2BXz+aeiXBTqgEjGASgr8ma+5PDdUwkf8KxeOjDdnMvNOcpB+LKAW0wju9HSs60Vo0lRX9O4DeRZeeYjoTITbhA3GAhNkysfxo4gb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de; spf=pass smtp.mailfrom=public-files.de; dkim=pass (2048-bit key) header.d=public-files.de header.i=frank-w@public-files.de header.b=VbVHhWG9; arc=none smtp.client-ip=212.227.15.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=public-files.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=public-files.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=public-files.de;
-	s=s31663417; t=1728651225; x=1729256025; i=frank-w@public-files.de;
-	bh=pqvc/oNdc0PsTL4Mg/npxkx7wLb4cU550Stv88W38fY=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=VbVHhWG9+1LYA64yWGRqSuFuTZcKnbTMJ8xHVIzVFCVSSBgU8c5IbpTHIYrSD4GX
-	 Hqlm9X/rRBn+uLYkMrqNjShSMMM1HnGIQRBqmmqMAofMqkuuh6POzQeV6L5nbVwQE
-	 gKOctFEK9wQshGuL4ryAWGjN0cMdN3oiBg+64TAvkfKU6kE356/v+Hbyj18U28pXu
-	 lQQFQMeX3lgMl/wLgCkBZ2Q1J8kYy9YAnr0Ns+hURU+ncsibAaGlYDS6Kh2Mc0vdm
-	 WhVqLV5iCMv/CZHSUQA3S3nhRq1yC2aqDdEH7sO55EUsPgzmX/2nsIehssqTN61yz
-	 vTOR00LqC6/TosoGYg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.153.152] ([217.61.153.152]) by web-mail.gmx.net
- (3c-app-gmx-bs32.server.lan [172.19.170.84]) (via HTTP); Fri, 11 Oct 2024
- 14:53:45 +0200
+	s=arc-20240116; t=1728651973; c=relaxed/simple;
+	bh=d0fo0z+KzVHWc/06H+Czk13uO8+83lUhqNEXn43C/qA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YPB2A+aBoBZOHUBsA3YNCARiFGCc9fnu7EZVhC2goWxH4vP5ex+GBgdoq42EAobzzC4kXkSbYMEkzbmJwXAP0XqqSs24yiaM/TmCkEPQZYHtOFguqWcm6YBjlw8HBwWI6p7HHWkapsrzIhpoW9GtHC3iXGS8N8X4Ch4VzNfdK8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qZc21V87; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-430f6bc9ca6so15638315e9.2
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 06:06:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728651970; x=1729256770; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=zCr37LXC8U2CQB6S8iXUVH+w4SrNi18E4HtRCwJJuJ8=;
+        b=qZc21V87DSWD+vanWyj05b7XBXkmLRDucxzgZgf3gct/21OBkySphabBMzWYkNZ+UB
+         k+adBOEzauM2D7NQBtTGKhPNO9a1sGlKhqnelE4tiPGCgmVDmk+unx/ZahlG9gtmfzFj
+         kaOKPZTvXk6XGBGLTgojqqQDWo7pSKMZ7Hv0kWaK1rO7eBfC70dnadZWD/zjv+bdtkNY
+         /TXsQy+Cz/Z2sQEJXHXknfasqD1B0PCPfaO5IKvfoD6lP4cDlMFcDEYEgVUk99ymlKlb
+         ZTSqS1LINyWATiXrYZQfxoBTWygazLZYSqmb5Ynji10ixhdXaHUwSJwGLgF4c8ErJhc2
+         ShkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728651970; x=1729256770;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zCr37LXC8U2CQB6S8iXUVH+w4SrNi18E4HtRCwJJuJ8=;
+        b=V3KuHU+UuKEXNA/g3zTTNG6Esn2j85PF2nP2Wj3XaoSusLIk1fpPEe3ODX1RxImPiD
+         NN5xPIepPU9U1Clm6kg6QBIjPqFQJ8u2AihePgRd9O8YQtBFHCCXSNC5SK2UYYKafLKE
+         iCxjAiB9/0XHR8jrtjgBmDSLo6+TaFleOMKzN8KQLU6sMdWK3iLUvV31E0m4pgcdxVWQ
+         UxYbeXWFb7jfWf4KljW855n9aX2ApWbpjPdFlnL92LwJUVrzXyo30Bzxyak9t5zuF2A7
+         T+ruDz9cUp72ihgwVJTPbismlcbfpDQL1RVDezIJ/PufQup8hgm7fxBmoGtqQuc9xkhq
+         NPRw==
+X-Forwarded-Encrypted: i=1; AJvYcCXjisa8em5AkYdRyaFHpO8vlw9k70HzgeXG9uGK21it7JS9t3RprFyJ3L8D/EAfOlYw+YibdpULfjK0@vger.kernel.org
+X-Gm-Message-State: AOJu0YzRdEkgaMptT1zJN+Pk6YnHuA5tXnWUGEPGV2qbfDzo7mPfi9rM
+	1gxT339G+SKDPlKKz8XSIg1PyC2YG0Cow1GtG7fdaExO9g5s0W74635Z17QKdNU=
+X-Google-Smtp-Source: AGHT+IGAa0EQAJZF+Lh7FUx2jhBZmgYnqQLqg9c45XbgMirrVdFpJCh5ZEZCWOekRRCzVbWbfunFNQ==
+X-Received: by 2002:adf:ef11:0:b0:37d:3dfc:949c with SMTP id ffacd0b85a97d-37d552957eemr1640400f8f.41.1728651970538;
+        Fri, 11 Oct 2024 06:06:10 -0700 (PDT)
+Received: from localhost ([196.207.164.177])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b79fdc2sm3910675f8f.88.2024.10.11.06.06.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 06:06:10 -0700 (PDT)
+Date: Fri, 11 Oct 2024 16:06:06 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Kevin Chen <kevin_chen@aspeedtech.com>
+Cc: tglx@linutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX INTC
+Message-ID: <37525238-c9f8-4f0e-b4e5-4e2f05fab775@stanley.mountain>
+References: <20241009115813.2908803-1-kevin_chen@aspeedtech.com>
+ <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-090e30b8-45a9-4a2b-98f1-e34904616b2d-1728651225070@3c-app-gmx-bs32>
-From: Frank Wunderlich <frank-w@public-files.de>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Frank Wunderlich <linux@fw-web.de>, Linus Walleij
- <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Sean Wang
- <sean.wang@kernel.org>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- daniel@makrotopia.org, john@phrozen.org, ansuelsmth@gmail.com,
- eladwf@gmail.com
-Subject: Aw: Re: [PATCH v4 4/4] arm64: dts: mediatek: mt7988: add pinctrl
- support
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 11 Oct 2024 14:53:45 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <4ac4c8ab-4180-4fcc-9e48-6dede7448dee@collabora.com>
-References: <20241009165222.5670-1-linux@fw-web.de>
- <20241009165222.5670-5-linux@fw-web.de>
- <4ac4c8ab-4180-4fcc-9e48-6dede7448dee@collabora.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:VxR+ZCvzqrITMlxMKyyrVv8NDsGfVlHJ/2Z23LevYUCc5uV8UGtaX6lN/ACVGdM03ILKp
- bOgLorgQbXbzYxD2pyvuSfOyfquZSDSHGu91cK0Njkk8EoGf5++nrgQyLSGy/8H0J8IZ/X5DnJGw
- wg0W4NB8dwPR5ewIk7yABHDMYo38Jm4Icwru1ycLZ7yB/qC4B8P5faVOmeyCwtfNKVo3roSH6B9m
- weglWLqYNQDRScUgpPT/FYUzVRIQ5SvLlUpzjLaKDbMa5BPjszG6r6znArn2a+pb9pPX4eI5Xnn5
- 2I=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:HIN9WLpnYPY=;Jq8RJJfCG9pX1doLo0aeI2OltCi
- 32OT7k4Bii7ka3FBvIrwHGBuuKkkt8EDbnrTzTfoY/3cPtm51HIu6OGD2DO1JU7I6N5Uw+6wr
- 0y8J8x4A3Nxq8909Rqh2MosGf/qmWMM2cK+ToFU34s3tnAzKVGaL1HNYmms9AKX3cFyj4gM48
- qi5eWI4Li46x6mRJj90UETSmoidoTVwnJdvQTVtUwx9hNS99fylk+j1bkn3Slgyo/ajqPfFZM
- 8EgB0UWZLzbjnPKneDkccEpTuaYDLP4KW/7aKuod3rTlha7TPs9PSGaeI99wwATa7oW3mlCtW
- h/pE7eOOWkmA87oJjDU5tkmwsk0gkUyTDmH6a8HqC3EVKCWeLxlMLKPRqLHGLbsGzkscw02uc
- ZOih3uPLU9VVVSPY+0fIZrcth87O2F4buyZKyMaCmH2eZ0eK7P3HJVMamLdiIGOfqYS+JMf1G
- h3QK3qoMzggDSIiN2/CRq+dEDHssQZuTc0ncM65Y8OdfAylj6deNIyXVYBaYjfj839QcAn1xR
- hfTeVsAYs38ciejWOIfqUGAMJhzk0tB/1ZJjen8sGD8d3Wt2qJHH8K/yz+YwFA0VnMzRbp+8W
- tDS4IFgmNMllbGvgOu11VPJHO1Ctjj4wOQbY7181TdCKrlnyjkLuRB+RsB7KVNAJkT8Z/1IFD
- nHNQLNudg3oqNFLd+aK/hjDQp6S230E+dmwCHOg0rw==
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
 
-Hi
+On Wed, Oct 09, 2024 at 07:58:13PM +0800, Kevin Chen wrote:
+> +static int __init aspeed_intc_ic_of_init(struct device_node *node,
+> +					 struct device_node *parent)
+> +{
+> +	struct aspeed_intc_ic *intc_ic;
+> +	int ret = 0;
+> +	int irq, i;
+> +
+> +	intc_ic = kzalloc(sizeof(*intc_ic), GFP_KERNEL);
+> +	if (!intc_ic)
+> +		return -ENOMEM;
+> +
+> +	intc_ic->base = of_iomap(node, 0);
+> +	if (!intc_ic->base) {
+> +		pr_err("Failed to iomap intc_ic base\n");
+> +		ret = -ENOMEM;
+> +		goto err_free_ic;
+> +	}
+> +	writel(0xffffffff, intc_ic->base + INTC_INT_STATUS_REG);
+> +	writel(0x0, intc_ic->base + INTC_INT_ENABLE_REG);
+> +
+> +	intc_ic->irq_domain = irq_domain_add_linear(node, 32,
+> +						    &aspeed_intc_ic_irq_domain_ops, intc_ic);
+> +	if (!intc_ic->irq_domain) {
+> +		ret = -ENOMEM;
+> +		goto err_iounmap;
+> +	}
+> +
+> +	raw_spin_lock_init(&intc_ic->gic_lock);
+> +	raw_spin_lock_init(&intc_ic->intc_lock);
+> +
+> +	/* Check all the irq numbers valid. If not, unmaps all the base and frees the data. */
+> +	for (i = 0; i < of_irq_count(node); i++) {
+> +		irq = irq_of_parse_and_map(node, i);
+> +		if (!irq) {
+> +			pr_err("Failed to get irq number\n");
+> +			ret = -EINVAL;
+> +			goto err_iounmap;
+> +		}
+> +	}
+> +
+> +	for (i = 0; i < of_irq_count(node); i++) {
+> +		irq = irq_of_parse_and_map(node, i);
+> +			irq_set_chained_handler_and_data(irq, aspeed_intc_ic_irq_handler, intc_ic);
 
-> Gesendet: Donnerstag, 10. Oktober 2024 um 14:36 Uhr
-> Von: "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.c=
-om>
-> Betreff: Re: [PATCH v4 4/4] arm64: dts: mediatek: mt7988: add pinctrl su=
-pport
->
-> Il 09/10/24 18:52, Frank Wunderlich ha scritto:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > Add mt7988a pinctrl node.
-> >
-> > Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> > ---
-> > v2:
-> > - fix wrong alignment of reg values
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt7988a.dtsi | 241 ++++++++++++++++++++=
-++
-> >   1 file changed, 241 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi b/arch/arm64/bo=
-ot/dts/mediatek/mt7988a.dtsi
-> > index c9649b815276..7e15934efe0b 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt7988a.dtsi
-> > @@ -3,6 +3,7 @@
-> >   #include <dt-bindings/clock/mediatek,mt7988-clk.h>
-> >   #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >   #include <dt-bindings/phy/phy.h>
-> > +#include <dt-bindings/pinctrl/mt65xx.h>
-> >
-> >   / {
-> >   	compatible =3D "mediatek,mt7988a";
-> > @@ -105,6 +106,246 @@ clock-controller@1001e000 {
-> >   			#clock-cells =3D <1>;
-> >   		};
-> >
-> > +		pio: pinctrl@1001f000 {
-> > +			compatible =3D "mediatek,mt7988-pinctrl";
-> > +			reg =3D <0 0x1001f000 0 0x1000>,
-> > +			      <0 0x11c10000 0 0x1000>,
-> > +			      <0 0x11d00000 0 0x1000>,
-> > +			      <0 0x11d20000 0 0x1000>,
-> > +			      <0 0x11e00000 0 0x1000>,
-> > +			      <0 0x11f00000 0 0x1000>,
-> > +			      <0 0x1000b000 0 0x1000>;
-> > +			reg-names =3D "gpio", "iocfg_tr",
-> > +				    "iocfg_br", "iocfg_rb",
-> > +				    "iocfg_lb", "iocfg_tl", "eint";
-> > +			gpio-controller;
-> > +			#gpio-cells =3D <2>;
-> > +			gpio-ranges =3D <&pio 0 0 84>;
-> > +			interrupt-controller;
-> > +			interrupts =3D <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
-> > +			interrupt-parent =3D <&gic>;
-> > +			#interrupt-cells =3D <2>;
-> > +
-> > +			mdio0_pins: mdio0-pins {
-> > +				mux {
-> > +					function =3D "eth";
-> > +					groups =3D "mdc_mdio0";
-> > +				};
-> > +
-> > +				conf {
-> > +					pins =3D "SMI_0_MDC", "SMI_0_MDIO";
-> > +					drive-strength =3D <MTK_DRIVE_8mA>;
->
-> Please do *not* use the MTK_DRIVE_(x)mA definitions anymore.
->
-> Here it is `drive-strength =3D <8>`.
+There is an extra tab on this line.
 
-OK
+regards,
+dan carpenter
 
-> > +				};
-> > +			};
-> > +
-> > +			i2c0_pins: i2c0-g0-pins {
-> > +				mux {
-> > +					function =3D "i2c";
-> > +					groups =3D "i2c0_1";
-> > +				};
-> > +			};
-> > +
-> > +			i2c1_pins: i2c1-g0-pins {
-> > +				mux {
-> > +					function =3D "i2c";
-> > +					groups =3D "i2c1_0";
-> > +				};
-> > +			};
->
-> Whatever pin can be configured with one or multiple groups that can be d=
-ifferent
-> must *not* be in the SoC dtsi, but rather in the *board* dts(i) file, as=
- the wanted
-> configuration of those pins is *not* soc-specific but board-specific.
->
->  From a fast look, I can see that at least the I2C pins can be assigned =
-to different
-> functions: for example, pins 15+16 can be either of i2c0_1, *or* u30_phy=
-_i2c0, *or*
-> u32_phy_i2c0, *or* xfi_phy0_i2c1 ... or others, even.
->
-> Finally - I think that *most* of the muxing that you're declaring here m=
-ust instead
-> go to your board specific devicetree and not in mt7988a.dtsi.
+> +	}
+> +
+> +	return 0;
 
-As far as i see also mdio and uart0 sharing pins with other pin definition=
-s.
-It looks for me that nearly all (except pcie) needs to go in board(s) dts =
-then...
-imho this creates duplicates of same nodes, if 2 boards using the same pin=
-conf.
-But if it is the way to go, i drop all subnodes except the pcie-pins.
 
-> Cheers,
-> Angelo
-
-regards Frank
 
