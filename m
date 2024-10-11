@@ -1,128 +1,142 @@
-Return-Path: <devicetree+bounces-110443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110444-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8B3699A6F7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4386899A705
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:56:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 966C428628E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:53:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E64712847C9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:56:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD048194A54;
-	Fri, 11 Oct 2024 14:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75C8D14D717;
+	Fri, 11 Oct 2024 14:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmB6MEQF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kTJd1OuT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E6C417BA2;
-	Fri, 11 Oct 2024 14:52:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B354405FB;
+	Fri, 11 Oct 2024 14:56:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728658346; cv=none; b=WRy6Qe6w4bNCrY/2lmxHIXS3JLHqtaJ34VHJRhA0nl8t/tFbnIMuqrhUz5w1yzdSIX0MjhrLtZFvJCiCgXvb1j/nn8cY7KSZrGerDqgszWCQzb+UQuzYftcTzH/E7fjG3DQ+/N83MVMuQLBu/Mfw5I8TzzmDeKKpbCwH9bEcpBU=
+	t=1728658597; cv=none; b=t2wOrW+hErqmqcyHwLQ+GGnSTrVypCPjOjKWDOzbus8lgiH62zh/aCV5n73c9iCkRfcpKRt7yDo9oCr5Yhvewd+cXqJyH1qckfLLVgm4eFIw+emYZavlHKyYJitDZ7mnfHLo9HdWW6wMNvdefEryHLnXcNMPnHZ1TbnJ5biGUXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728658346; c=relaxed/simple;
-	bh=CDaJplkccu4hEDe3esLpGxaZAoaNxHaVgBwOAdLBLkM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qw6N4WxEPQssIGZZNE4He2PBgHF0OS79jxoQZuIUzqiOnmxX8b3iQ2p01/zaN/qTFwhUnAdykw3nMXPOQuG37FvCiFkghYw2/CtkfGc3TBFwy19byVc0DptFtecgLRf0W+8n9nPNYI/E8kunIGbr/PFHfvIB+kSRJIr7dfd7UXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmB6MEQF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BF7EC4CEC3;
-	Fri, 11 Oct 2024 14:52:25 +0000 (UTC)
+	s=arc-20240116; t=1728658597; c=relaxed/simple;
+	bh=PhKPsduoog1RfxuSrwk2Z/ASgKqlNXmshZ+VnXDX3nQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Gt9tVVcNFQKOFewV1Q96oKEGZ6yMmhDE7S6dE92waYW3nOm3J5aVQ4klt21RAfq0WYu7IZMprDyz2TLy9f90qC2tLdkFXaW1DLV7j4pQxJwUtqxxevozp9a0NMyrSWNvjtBsMzNFnQGm6eziVwaJ3auZgcpMyCFrhZJ6iZzZtS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kTJd1OuT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D4D5C4CEC3;
+	Fri, 11 Oct 2024 14:56:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728658346;
-	bh=CDaJplkccu4hEDe3esLpGxaZAoaNxHaVgBwOAdLBLkM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GmB6MEQFTZN0mnJPXnbRyDd4PsSmZbUDjXWG6fWxbzZaHgqvah9biGC84g5FZDSGL
-	 YUWwv0tzLHCoK6FdGEFZ8MX0R1TNQg4ZZOeUkmefF5kyukZ3UhrwhS6wpFJS4Fsu6N
-	 RlYUMa/L0GLnRhz4+xkF0s8Bb/e2Xx4PEZIwAsAZZKyW7YMRPdbIC552r4YPYrU0BW
-	 nz79brr+Ye0ZdrydtZRoHkhqQdEECvPRhDnECGySdRWY/wS438sOjRkTKaQ4HGDs9G
-	 7eY55AWMO6X81ivQq8yo58OBv+0ZyJ6GkgQIMiQ+KYJuwJp8kUHeBfK3w8oyd95ZAb
-	 qJoiXDLIEghBQ==
-Date: Fri, 11 Oct 2024 16:52:22 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Vikram Sharma <quic_vikramsa@quicinc.com>
-Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org, 
-	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org, 
-	konradybcio@kernel.org, hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org, 
-	catalin.marinas@arm.com, will@kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, kernel@quicinc.com
-Subject: Re: [PATCH v3 8/8] arm64: dts: qcom:
- qcs6490-rb3gen2-vision-mezzanine: Add vision mezzanine
-Message-ID: <bv7cd7wxukon2ipnqjjzhdsz33cgny6yqwcswdc2xld6xt5pmu@gxxniotohuzm>
-References: <20241011140932.1744124-1-quic_vikramsa@quicinc.com>
- <20241011140932.1744124-9-quic_vikramsa@quicinc.com>
+	s=k20201202; t=1728658596;
+	bh=PhKPsduoog1RfxuSrwk2Z/ASgKqlNXmshZ+VnXDX3nQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kTJd1OuTSFuqz5x+9aUDWPcmbLMgpTVH5eX9ee2MfTm7LaXEM9GQhDJhqQNUSeLsA
+	 wC9xWdB+67g2he327vbGvGibb0Mj805fW4dKH3OKnle+abW022C6DxgDYQGgqka9BA
+	 CImAvHecdZj8CAy3Xr2gnCIhBw46uT7E4TadzMfJWoY6EAq4Nb20mCPSWMNujlMxEF
+	 2dsrcL4HnFe6rj9dd43+3O5MZ9G/FdJExvkAYUMS7+KKUJyBcaCLTU49nl2s04o+9D
+	 OktQcgHfa0qBP57vELtvKIHMTPq3c79Zj4AOaBjtCdudsKYXOTTcORobBQlc3YyY2F
+	 nQMzZWnOy9tzw==
+Message-ID: <6594dc3d-4abc-4507-9ff6-d1994778d701@kernel.org>
+Date: Fri, 11 Oct 2024 16:56:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241011140932.1744124-9-quic_vikramsa@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] dt-bindings: phy: mediatek: tphy: add a property for
+ power-domains
+To: Macpaul Lin <macpaul.lin@mediatek.com>,
+ Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
+ Macpaul Lin <macpaul@gmail.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com
+References: <20241011064810.5103-1-macpaul.lin@mediatek.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241011064810.5103-1-macpaul.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Oct 11, 2024 at 07:39:32PM +0530, Vikram Sharma wrote:
-> The Vision Mezzanine for the RB3 ships with an imx577 camera sensor.
-> Enable the IMX577 on the vision mezzanine.
-> 
-> An example media-ctl pipeline for the imx577 is:
-> 
-> media-ctl --reset
-> media-ctl -v -V '"imx577 '19-001a'":0[fmt:SRGGB10/4056x3040 field:none]'
-> media-ctl -V '"msm_csiphy3":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -V '"msm_csid0":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -V '"msm_vfe0_rdi0":0[fmt:SRGGB10/4056x3040]'
-> media-ctl -l '"msm_csiphy3":1->"msm_csid0":0[1]'
-> media-ctl -l '"msm_csid0":1->"msm_vfe0_rdi0":0[1]'
-> 
-> yavta -B capture-mplane -c -I -n 5 -f SRGGB10P -s 4056x3040 -F /dev/video0
-> 
-> Signed-off-by: Hariram Purushothaman <quic_hariramp@quicinc.com>
-> Signed-off-by: Vikram Sharma <quic_vikramsa@quicinc.com>
-> Signed-off-by: Trishansh Bhardwaj <quic_tbhardwa@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |  1 +
->  .../qcom/qcs6490-rb3gen2-vision-mezzanine.dts | 61 +++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi          | 33 ++++++++++
->  3 files changed, 95 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index aea1d69db541..7208da1d3697 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -111,6 +111,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2-vision-mezzanine.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs8550-aim300-aiot.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qdu1000-idp.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qrb2210-rb1.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dts b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dts
-> new file mode 100644
-> index 000000000000..04b5fe80d38d
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/qcs6490-rb3gen2-vision-mezzanine.dts
-> @@ -0,0 +1,61 @@
-> +// SPDX-License-Identifier: BSD-3-Clause
-> +/*
-> + * Copyright (c) 2024, Qualcomm Innovation Center, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "qcs6490-rb3gen2.dts"
+On 11/10/2024 08:48, Macpaul Lin wrote:
+> MediaTek TPHY should be existed in a power-domains.
 
-DTS does not include DTS, but DTSI.
+should be part of power domain, hm?
 
-And where is the compatible you wanted to use? This looks sketchy...
-mezzanines are supposed to be overlays, I think.
+> So we add property 'power-domains' and set 'maxItems: 1' in the
+> DT Schema.
+
+Entire commit msg would benefit from Google Doc/office or ChatGpt/AI
+grammar correction.
+
+Many of us, including myself, are not native speakers so use tools when
+needed for that.
+
+> 
+> A reminder is also added to the description of 'power-domains'
+> property.
+
+Use imperative. See longer explanation here:
+https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
