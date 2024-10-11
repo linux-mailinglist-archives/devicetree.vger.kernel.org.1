@@ -1,166 +1,222 @@
-Return-Path: <devicetree+bounces-110533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B47D099AD0A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:46:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB61199AD40
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 22:00:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5372A28C1A4
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:46:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7781E282512
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 20:00:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF141D0E17;
-	Fri, 11 Oct 2024 19:46:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5533E1D0E1A;
+	Fri, 11 Oct 2024 19:58:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="lV4yCNxs"
+	dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b="S2mvSDQm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+Received: from sonic314-20.consmr.mail.ir2.yahoo.com (sonic314-20.consmr.mail.ir2.yahoo.com [77.238.177.146])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC671D0E00
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:46:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FACF1D12F0
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:58:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.238.177.146
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728675964; cv=none; b=mrwj1IPuGVVYmRnlTmtvB8i+rLk3EFJ3Ko+C2Kuki0ia8K6dv2nBI9KlSXsF0Rvm1DMvhFe1HuisnSHqwYZp4FC88JtWZTtmxxI16PNIzYpRJdNuRAXyyr37HTZcoqHfZVUuxnuKocICLkULTmjPGgeYMNx1XKkjqPj1LkGNqtg=
+	t=1728676695; cv=none; b=AgZtifUahsx9Qd5nGc0DJcIvk270VMYkT+yo7cdFFyRO14m3G27+pEm7VlSCYhERmAu4P8yE3AZ3YgZVhgn81ivp4otxwlzCLov10FmxZrDLfFzPfC8PPcoziInGcSJEaUavBzKLGRRWYbblrMq78q3aChk950L9+1EPFQpfGUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728675964; c=relaxed/simple;
-	bh=t7P/KEncHEjcXdz1K3PihQemKIQQ61oPnVKnhfUk5n8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k3F5wF4d65JqZlNlK9k7+mD8ISdW6ssFatyZHJxza8bNmHjl0ZOB7ARiaAJPEUZy6uZJQ2uEuIkpHkvl6ZaAgYjCnxdvzBrVpXuJKfDemSLwe9KBrOsw1xLOSDFJ58KjRu8I8XvlQ7cVAl6c7SDCw1wHx07id7939GaDdRef/No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=lV4yCNxs; arc=none smtp.client-ip=209.85.215.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
-Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7e6ed072cdaso1676576a12.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1728675961; x=1729280761; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=exLsQV8+AgRTzSgIuh9REhlgyhIFFL6ykktOdGZoGFg=;
-        b=lV4yCNxsWdv45991ghfe2wns7l+/s/d+YLcrIZFmoS3x3hGwHVNM/lLDoTb1S148g/
-         wjCNMuU7ASe99vAOixL04qe3q/lGax6rpPyt1lm67ppD2F21CTYZGTN8/X4wycTxHsxL
-         P/A2LCQBZjkSqlvCJI7zm+qY8vwkdXglEPn3QADdA2zYO8iZeXVHbU9BZJLzXkn6beFT
-         ts9isgOszzowJr6cetdaSLt8ipo3Z6+Aey5qB1O+raze27joEJIvyv4Hklm3/FhjSfT8
-         jaZi6Qz7N48YVKso4KxssvtnXgxeSllxs48Rq9PKybtpTBlB++fwin5ip7uz97JKL8LE
-         BytA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728675961; x=1729280761;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=exLsQV8+AgRTzSgIuh9REhlgyhIFFL6ykktOdGZoGFg=;
-        b=u9dkf5R665ntbyElP1WXvbwHjOt4xF4s0pGhFi3mxW3pSfO8KlSE8H/3yEuX3MYpuI
-         oQSMVE76KPw3ZEAAPliNzAwhCINjr4mhJPhKxdzhA2XK+GJ9FuxM5DDNBUFVXl/v+WaU
-         fb3s/OREzRLlHvDS6nT8OQWvIRwGpKsErMN8U1K2UFsBzgnQU+z8CeM16YBReoNQxeRt
-         aTTgkFbme7gj+yEfDMe7qWCi73oDPTG9MtGLXALCwju5J06JMB1jPILUDCZZS3uggpPE
-         csW+z89lC0jVhoZnBhtHtUliZnOYbd1B7jQw2Q5hHF9ePFHsOjOC1b6VoFBEjua83Xcx
-         DHsw==
-X-Forwarded-Encrypted: i=1; AJvYcCU3sZptSpD5M7+qySUeWUnODdNLI0URCWYiGvg2pS612yAV6hyaQGrUt7VLs6IamcQHB3rY7Aev7A8e@vger.kernel.org
-X-Gm-Message-State: AOJu0YzjMCcNMbL2MnRk79YnLEFnPePF9Tu26/WI80aca1odUP/FE6pd
-	odP6GvuXVIdMp4D/UkCcIezgK/83729MDE7BCpMI1QttIdcQdYQhEPBg3Mr0UFM=
-X-Google-Smtp-Source: AGHT+IHj8rWFWjfeD1jnOseU69L54Nubw7fuAuLENErbM2G1CFqjE5ekNxV2rf8nSVkMr8qy+VgzZQ==
-X-Received: by 2002:a05:6a21:1519:b0:1cf:4d4e:532b with SMTP id adf61e73a8af0-1d8c96b986bmr675268637.43.1728675961468;
-        Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
-Received: from debug.ba.rivosinc.com ([64.71.180.162])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2ab0f1dcsm2951118b3a.209.2024.10.11.12.45.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
-Date: Fri, 11 Oct 2024 12:45:57 -0700
-From: Deepak Gupta <debug@rivosinc.com>
-To: Zong Li <zong.li@sifive.com>
-Cc: Mark Brown <broonie@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
-	Vlastimil Babka <vbabka@suse.cz>,
-	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Christian Brauner <brauner@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Oleg Nesterov <oleg@redhat.com>,
-	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
-	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
-	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
-	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
-	alistair.francis@wdc.com, richard.henderson@linaro.org,
-	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
-	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
-	cleger@rivosinc.com, alexghiti@rivosinc.com,
-	samitolvanen@google.com, rick.p.edgecombe@intel.com
-Subject: Re: [PATCH v6 33/33] kselftest/riscv: kselftest for user mode cfi
-Message-ID: <ZwmAdRb5BRkPLbWg@debug.ba.rivosinc.com>
-References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
- <20241008-v5_user_cfi_series-v6-33-60d9fe073f37@rivosinc.com>
- <CANXhq0pXVS2s-hZNusPLoQ4qPkyi1S2BTQ-FyAvcz=cDctKQng@mail.gmail.com>
- <Zwj7aZj36TBGzpZa@finisterre.sirena.org.uk>
- <CANXhq0q49k6q3ZGYqzczMeFr+_rrfa9mL7FMu62xPHeUKfvhMw@mail.gmail.com>
+	s=arc-20240116; t=1728676695; c=relaxed/simple;
+	bh=q6WJn5V37jgaOBGQY7ynpSvLqrUUNjt+vz5O6G68050=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hPvha1Sb2N3kRZb3KZQzhqLSW7U0fBNQgtu0XFCNert0T19/jsh53iV+JuuSBvTZI5Wkj4cejyzegfnFnr+cNIFl9phiXgB2nlifZwMOzWfA6g1i8giIPSvzjFlvkmfO1KG/E+asoJ/Icb/vkAx7x//SSBjAn5VJ/Du+UfB+bTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com; spf=pass smtp.mailfrom=rocketmail.com; dkim=pass (2048-bit key) header.d=rocketmail.com header.i=@rocketmail.com header.b=S2mvSDQm; arc=none smtp.client-ip=77.238.177.146
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=rocketmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rocketmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rocketmail.com; s=s2048; t=1728676691; bh=W60cShMzR1/zWQBkEs/U2DaVpWxIfzQSToVxJLNFJ5M=; h=Date:Subject:To:Cc:References:From:In-Reply-To:From:Subject:Reply-To; b=S2mvSDQmhZhHQeuNawmXKxErmwYDw7yWru8sZkPfVgYE8I1ihAQz8PU8plfEP71kuRbO/zzt8guvQenSPizpSNltIRp9sJZ0ylXUu47BJlu8j52qgjRNbNRN+pnGuFq1Ma79o/hEoByzqNuIuSpR5/QuSuUEadA+pFIQHn/CW0eewYcffc9halERkqGr4rp0Y/skGcfTkMi+PRN9x97cK8AxsnJBDTPpXHoKDKyQZ0j3rvZ06NFhS6NghBhGssqkg4U8qw69/b0fsN+CdsgXgeyk+UsyPQOgWYo3duAGM1UgFYkrkPv1+1bE7NbyEZcPc8XhP20rQeB/ZzeapXxTQQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728676691; bh=LgKcZvQincNYX2dW5muYRMf6Xldzf2/KGHVeO7K/0sz=; h=X-Sonic-MF:Date:Subject:To:From:From:Subject; b=GAJ7mBBGdmYV3id4h4y9V3b3hUtrCu1dHV8K8oFrFAdyZjyBsmHjscHQ/wMUAwWGwmIZaqVlfg6RNR4OCDN0Kp2oehYJoP2F8ufNeeepOwq4726LL9yrUAdR6wtRYwUVT7EU7o28S6vXCh8Dr8AuE9QbYofuvgQ3FNAZThOIasKOn6plUu/SjUwWRa64lVviazVNK1G2noWPC3Lvzh5tsdzX/8XUGJgssdDtNyVTyWiTfIVwbZ9Kms7QEd1RPS8VTSuIUfDZnfCJj/Q/A+V8dR08+JUcJx3XsgJu65UCuXI5rX+XSM5/unNUqqhALm7qGvPPQT3ZoxqjGocIqcjJUw==
+X-YMail-OSG: 65BngOkVM1m5ejVn66vv6kcilrBhaEanG.LIDctCaFnaFYYHqCUiO7OcllRz1kx
+ DYXpmQkzDt1gjpLm0GuupFETZLO0BXjtNHQaqVI6QJd166.7RR_JlS_M2Ly7HUN8EGDoc7NMgL9u
+ VniAGBvSWR49qZKtIUDhWaMbJuDv2ySdbO3ZGi_zfRt23DRWonY.KWz2anF7Aa5qgfvf8121Tczy
+ KKHRsiMV8EiH3wrTIBN98yHF9ppqRz1ElOOFdxeUWQK4R7WtiuB7HUhSMZj73001xlol9XvB_kPJ
+ DtekRThTdfVnpRv6XjbOi5AG2QCTxiVhpX3JKCgbSqsZ3ErBDdzpA7far7iy8Z5FSM7JgdyG1YKD
+ i8kMGJq31jOIzF_wyEvRoBrzkdnXeypx0JrucC8Xm3KODvZmcYUq7i2jWs.CcyjtbUPhHscEMiX2
+ FOMiSul4MXMplS38I.enw1UtUN1_QHJiCeYlP286xry_0TAKq1XsvW1pj74sc34GnyqkGyzThfY5
+ MjSy7LWEjqY_f_ZD9Z6zQJtRAJVpgq40vXZXqUTiXXw2tNHqK7i8zfmzfsXO05L4HZMlUl8d6PCE
+ Qm7zIerNZuORsteQSyUf0O97cw3jfCL68rklPpaHJOqVHwP4AKNWv7vMxtykN847ixSii8sNZc4q
+ E27XfJrLBivAg1FgfboBoGOAHVtBqovaJi4qq_okoPd_xpxV512TgJoZ0jwm53fykws9FkufuNrs
+ Qb8wpkNAQY0RUgg3n_oJR4M9kCDbQkaN0c1fMp7lMrMJd.Ks8GynmPcBLkevHxIueKs_EcYoKDgt
+ nE0l6pWyzyS6nqSduYWQHDPgSAs0dMaQyWBhubKZpvMSJdhDfTJ4u9pWUlxQQeTV6fDodhqTwZsR
+ GfrBKyvBUhJQB5.YNYWnCU2xHhL4wEbLgxIPkP5egF8KUAM6tC_ZM80X.VWrXTBm_FUMrMctzazE
+ WiDkPz.8BYh4jrVt5Y4LHZ1os5ibX3zm32bgZ5.5xgslBOicYDdzAEflCI3lK8q370YN0OBe1weF
+ umk4Q.rpYMqj8NRY_SfxiQIcuiyYmG0XyDhLua8NTFnI.osqEIJJ5Uvcg.OircG6b2XiJz.RSpQD
+ T8cFXhN0LnkQ6Yf5mhsh7pMEn26tCPgZZ7UuZDE4.gqo0Bov0fQxLhtSmOMvc.sXoNjkx37EcX7b
+ o7wjXeo.2jZKs9B4ZpzXuxBubmxqS9XtlQdGNOv9s0aI0cTlSw8eV_TR2bnUEA30qQBZbW.vqWg.
+ euBnnAGZ2lx2xQrDuLCDvXAghThZ5FBeFADkJQ.Wl2___k2U1HeGTxidR3fU5ZQLdabew1X5CSr.
+ yfe_DYE6TzDyZmd1lY0GdQaWzoTInLSdIPSqu9qZaMAg1y11NmcZXkcWSAaln1saIxVuKDXi0Rkn
+ ZlmVfsKe3gpOFn.XgK1v9NU9b2akx5DTK3zf6zu0PqRsdbogZOEJmE30rAMYBuM2r_ZCYtVkAFHT
+ BIBEQNX1Hc_PWxgoMB7XH3y8Vy3Yh_rg7Ap.4_vtB7e3Ose7j46R24E8BfFL20yuuzINfOuXFv_f
+ ltMLjs16j8QfoOfTKy7nWlw7n0wHski9dM9EzJ8xEVktO7ZcWd5vVlTfWpn611hDdXzr5eslbJbw
+ mch0qZRHoQTG06vm4AzqREBZxfYTGTJONR2KMYsqDntOBrDJc4DHSvTZlZqYxIymR5WJZohBtsds
+ 4jMxpAUwCsKQZJUFdJinXOidIcdYv6llTLuXbpnnFr6.iDC3m8am4J6rT3MZzCc_pu7ttfzJQKvU
+ 8q7moIaBYGirOqswGXIwLuSObo_DTQ4mqDSzo7esT5.DqHIzvXXS7_Iw6FOHYvplD9GvgNnRjdhy
+ r4JRKdHN1JDKBBrplYzrQn6P7hDM88UIzWiz7Bc8fernXYcQOjRpKyJLr8Hm6Km_bMkSQKuX5jET
+ ui.atkrIhNC29Ke7tvoudIpiP2ny98lFCi4i9qGuNWfpjwamvst5xMz_UYsKjSnIsMdEh42heNko
+ qqTeseQwLhbCI7W4nxXdSL2q7LJU5GIKBrqAYXxyk7r39L64s7xCHHhP7pCtFwWSpSVraM.rBuQV
+ YUmCblNuhMtE4ZNYxs4L5gjTomw_FzmStuSCRZKuAkqy7exJDNxO18_afcAh8VCOL4hM8mc0ERXI
+ RP6rvZUfEJSfLOL1ERx1m2R7kuyzcQDb_gd3IdqQHN6jC_mCokHEAgbxekE6WtXo0UcnBYBgSEqK
+ KIRZN3mVLSk28huco6K3roUNOM9tDdljS7RHJMZNVY9q1lzuuAETOQKc3TbpKBhEThjcYCsWap0k
+ Za_snsvAYjxaIBh86tox8jS84.U_1qYGx7ciN_YALzphoNsM-
+X-Sonic-MF: <jahau@rocketmail.com>
+X-Sonic-ID: acf74f57-cbbe-4bb1-b0b7-53f14ebff1c2
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.ir2.yahoo.com with HTTP; Fri, 11 Oct 2024 19:58:11 +0000
+Received: by hermes--production-ir2-6664f499fc-fs9vv (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 6ba60adc37f62cfbd8f0cfdc1b2d543e;
+          Fri, 11 Oct 2024 19:58:06 +0000 (UTC)
+Message-ID: <a3e214fc-43e3-4f95-b73f-5040b733c7a5@rocketmail.com>
+Date: Fri, 11 Oct 2024 21:58:05 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CANXhq0q49k6q3ZGYqzczMeFr+_rrfa9mL7FMu62xPHeUKfvhMw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/4] drm/panel: samsung-s6e88a0-ams427ap24: Add flip
+ option
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht
+References: <cover.1728582727.git.jahau@rocketmail.com>
+ <70ea852342001779956905ed9002a977d1d95293.1728582727.git.jahau@rocketmail.com>
+ <1e23cfa8-66c6-476b-927c-695172e76143@quicinc.com>
+Content-Language: en-US
+From: Jakob Hauser <jahau@rocketmail.com>
+In-Reply-To: <1e23cfa8-66c6-476b-927c-695172e76143@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Mailer: WebService/1.1.22806 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
 
-On Fri, Oct 11, 2024 at 07:43:30PM +0800, Zong Li wrote:
->On Fri, Oct 11, 2024 at 6:18 PM Mark Brown <broonie@kernel.org> wrote:
+Hi Jessica,
+
+On 11.10.24 19:17, Jessica Zhang wrote:
+> 
+> On 10/10/2024 11:31 AM, Jakob Hauser wrote:
+>> The way of implementing a flip option follows the existing
+>> panel-samsung-s6e8aa0.c [1][2][3].
 >>
->> On Fri, Oct 11, 2024 at 01:44:55PM +0800, Zong Li wrote:
->> > On Wed, Oct 9, 2024 at 7:46 AM Deepak Gupta <debug@rivosinc.com> wrote:
+>> The value to flip the screen is taken from a downstream kernel file of
+>> a similar but older panel [4]. The mipi clock [5] for the new panel
+>> samsung-s6e88a0-ams427ap24 matches 461 MHz and a hardware read-out of the
+>> 0xcb values corresponds to revision R01 of that older panel [6]. Although
+>> for samsung-s6e88a0-ams427ap24 that's in non-flipped state while in this
+>> older driver it seems to be the other way around. Further up there is a
+> 
+> Hi Jakob,
+> 
+> I'm a bit confused by the wording here. Do you mean that even though the 
+> downstream driver comments state the panel is in a non-flipped state by 
+> default, your observations suggest that it's actually defaulting to a 
+> flipped state?
+> 
+> Thanks,
+> 
+> Jessica Zhang
+> 
+>> hint [7] basically saying for revision R01 to change the first word of 
+>> the
+>> 0xcb command from 0x06 to 0x0e, which is actually setting BIT(3) of that
+>> word. This causes a horizontal flip.
 >>
->> > > +       if (si->si_code == SEGV_CPERR) {
->>
->> > Hi Deepak,
->> > I got some errors when building this test, I suppose they should be
->> > fixed in the next version.
->>
->> > riscv_cfi_test.c: In function 'sigsegv_handler':
->> > riscv_cfi_test.c:17:28: error: 'SEGV_CPERR' undeclared (first use in
->> > this function); did you mean 'SEGV_ACCERR'?
->> >    17 |         if (si->si_code == SEGV_CPERR) {
->> >       |                            ^~~~~~~~~~
->> >       |                            SEGV_ACCERR
->> >
->>
->> Did you run "make headers_install" prior to building kselftest to get
->> the current kernel's headers available for userspace builds?
->
->Yes, I have run "make header" and "make header_install" before
->building the kselftest. This error happens when I cross compiled it,
->perhaps I can help to check if it is missing some header files or
->header search path.
+>> [1] 
+>> https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L103
+>> [2] 
+>> https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L207-L211
+>> [3] 
+>> https://github.com/torvalds/linux/blob/v6.11/drivers/gpu/drm/panel/panel-samsung-s6e8aa0.c#L954-L974
+>> [4] 
+>> https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c
+>> [5] 
+>> https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L2027-L2028
+>> [6] 
+>> https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L137-L151
+>> [7] 
+>> https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L66-L74
 
-That's wierd.
+In the commit message I'm referencing another downstream driver for a 
+different (similar but older) panel. The commit message is very 
+summarized. I'll try to describe the situation more detailed here. Maybe 
+this is going too far but I don't know how to dissolve it otherwise.
 
-It doesn't fail for me even if I do not do `make headers_install`. But I am
-building kernel and selftests with toolchain which supports shadow stack and
-landing pad. It's defined in `siginfo.h`. When I built toolchain, I did point
-it at the latest kernel headers. May be that's the trick.
+The panel AMS427AP24 of this patchset is mounted in device 
+samsung-serranove "Samsung Galaxy S4 Mini Value Edition". On this device 
+the picture by default is the wrong way around (flipped/mirrored). So it 
+needs horizontal flip to get it right. In the downstream Android kernel 
+this is done in the panel controller. Following links are just for 
+reference, no need to study them in deep: "hflip" in dtsi file [a], 
+reading "hflip" in mdss_dsi_panel.c [b], and then I'm fully not sure how 
+it continues... processing in mdss_mdp_overlay.c [d] or in 
+mdss_mdp_rotator.c [e] or in mdss_mdp_pipe.c [f].
 
-"""
+I noticed that in another downstream panel driver used by the similar 
+but older device samsung-serranolte ("Samsung Galaxy S4 Mini LTE", not 
+the "ve" Value Edition) the flip is done directly in the panel driver. 
+That driver is labelled "AMS427AP01" [f] but it seems to serve a couple 
+of different dimensions [g] and also distinguishes between an original 
+revision and a revision "r01". This driver contains a section "#if 
+defined(CONFIG_FEATURE_FLIPLR)" [h]. FLIPLR means flip left-right. That 
+section holds values for the 0xcb command for different sizes (different 
+mipi clocks) and the two different revisions.
 
-$ grep -nir SEGV_CPERR /scratch/debug/linux/kbuild/usr/include/*
-/scratch/debug/linux/kbuild/usr/include/asm-generic/siginfo.h:240:#define SEGV_CPERR    10      /* Control protection fault */
+When reading out the default values of the 0xcb command on the newer 
+device samsung-serranove ("ve" Value Edition") with panel AMS427AP24, 
+they match with the values of the older driver AMS427AP01 for mipi clock 
+461 MHz revision r01 [i].
 
-$ grep -nir SEGV_CPERR /scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/*
-/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/asm-generic/siginfo.h:240:#define SEGV_CPERR    10      /* Control protection fault */
-/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/bits/siginfo-consts.h:139:  SEGV_CPERR                  /* Control protection fault.  */
-/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/bits/siginfo-consts.h:140:#  define SEGV_CPERR  SEGV_CPERR
+However, for the newer device samsung-serranove ("ve" Value Edition") 
+with panel AMS427AP24 that's the default value. Now it needs a 
+horizontal flip to get the picture right. This can be achieved by 
+changing the first value of 0xcb command from 0x06 to 0x0e. That's what 
+I implemented in the patch as an option.
 
-"""
+For the older device samsung-serranolte (LTE, not "ve" Value Edition) 
+with panel AMS427AP01 I can't say much. That's possibly where the 
+confusion comes from. In that driver for that older panel the hint on 
+value 0x0e is just a comment [j] while the value 0x06 [k] is part of the 
+"#if defined(CONFIG_FEATURE_FLIPLR)" section. Therefore I assume that on 
+the older panel AMS427AP01 it's the other way around: value 0x0e as 
+default and 0x06 as flip option.
+
+I hope this more detailed description is comprehensible. Let me know if 
+you have questions. Also feel free to suggest improvements on the commit 
+message.
+
+[a] 
+https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/samsung/S6E88A0_AMS427AP24/dsi_panel_S6E88A0_AMS427AP24_qhd_octa_video.dtsi#L112
+[b] 
+https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/mdss_dsi_panel.c#L1290-L1291
+[c] 
+https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/mdss_mdp_overlay.c#L709-L711
+[d] 
+https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/mdss_mdp_rotator.c#L590-L591
+[e] 
+https://github.com/msm8916-mainline/linux-downstream/blob/GT-I9195I/drivers/video/msm/mdss/mdss_mdp_pipe.c#L1309-L1310
+[f] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L1867
+[g] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L1980-L1995
+[h] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L65-L246
+[i] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L137-L151
+[j] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L68
+[k] 
+https://github.com/LineageOS/android_kernel_samsung_msm8930-common/blob/lineage-15.1/drivers/video/msm/mipi_samsung_oled_video_qhd_pt-8930.c#L139-L140
+
+...
+
+Kind regards,
+Jakob
 
 
