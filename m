@@ -1,122 +1,166 @@
-Return-Path: <devicetree+bounces-110532-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF62499ACF6
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:44:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B47D099AD0A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 21:46:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 783FF1F21F04
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:44:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5372A28C1A4
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 19:46:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 222BF1D174B;
-	Fri, 11 Oct 2024 19:43:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FF141D0E17;
+	Fri, 11 Oct 2024 19:46:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jZ7DJ46P"
+	dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b="lV4yCNxs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C33C1D1519;
-	Fri, 11 Oct 2024 19:43:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EC671D0E00
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:46:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728675798; cv=none; b=WTJmUY5+oUlQFtIVZpLSjOQwxo0sQ4q8WeX71blI9O25Pxi0c+Tzv9sCttF6CxFdAhYhZ5nEnGw5/0wJQk35zNRkaV3SV0qt3MTDxPfc3Qn659xkwMs28iw/dH4jrAb0s5y5hwF6KS7c0KX85Rd5jPxrAO9+QkZgFxTHHbiblZM=
+	t=1728675964; cv=none; b=mrwj1IPuGVVYmRnlTmtvB8i+rLk3EFJ3Ko+C2Kuki0ia8K6dv2nBI9KlSXsF0Rvm1DMvhFe1HuisnSHqwYZp4FC88JtWZTtmxxI16PNIzYpRJdNuRAXyyr37HTZcoqHfZVUuxnuKocICLkULTmjPGgeYMNx1XKkjqPj1LkGNqtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728675798; c=relaxed/simple;
-	bh=19dcVNGjClN7dc6fgBSZBGsjrxIzdsSE0BFNT1BBkfk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=nt7DQFc5OiZ/HRPTXv5n/dmp2+ROQryFUC37JjM+qWIAXWbrgwbdPXzGKbSXsnM6rAnbdYzsEAjymhpV/C+H5tji3GAWWzNQUB8hkfPMWmLc+Vvj/Na7BGilyzznws4NdG0nxek8XiyYnVKRFS/xRGkyivQl5f3nBBpQpn75BrI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jZ7DJ46P; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49B9Kack020018;
-	Fri, 11 Oct 2024 19:43:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	2pF0zjAyQUiqbVHpPNRTuGzaKQoOSQt9mZXU5eHyqL8=; b=jZ7DJ46POuhN0SRJ
-	7Cre3yUvEC5Qcgo3cPiqkV9WXj+19JKmKdNxI15HBD4xjvw0lmzQkJLS+iTDCf8V
-	C+udm+JvS2WbHOAIrt2zD8K9ywCQSJ8mArLayHniksKUX+zvuOciPaI7wxd4oODK
-	UbQlOf4SvoRWiLUJc+ehxQVwpCtTx6cDxnQ5pPwwDqidZIhoeAS14ZfzYx0hFZ9v
-	FLbtk1Cs7BtEF1iSRAPcQMYDlZVJwWeyCXUE85sMpa8kmlYt/49ETcI7oBVvVIe1
-	XQXYvmPDF4u9aCHsyEIGzotCub4HBdTDUdMmezEOMismzQhGcMOeZXX7YkmA37ce
-	9lZAlw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426db7mu0t-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 19:43:13 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BJhDca029830
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 19:43:13 GMT
-Received: from [10.48.240.152] (10.49.16.6) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Oct
- 2024 12:43:12 -0700
-Message-ID: <31cdb71d-8545-4d36-b2b3-480e75606fb3@quicinc.com>
-Date: Fri, 11 Oct 2024 12:43:12 -0700
+	s=arc-20240116; t=1728675964; c=relaxed/simple;
+	bh=t7P/KEncHEjcXdz1K3PihQemKIQQ61oPnVKnhfUk5n8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k3F5wF4d65JqZlNlK9k7+mD8ISdW6ssFatyZHJxza8bNmHjl0ZOB7ARiaAJPEUZy6uZJQ2uEuIkpHkvl6ZaAgYjCnxdvzBrVpXuJKfDemSLwe9KBrOsw1xLOSDFJ58KjRu8I8XvlQ7cVAl6c7SDCw1wHx07id7939GaDdRef/No=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com; spf=pass smtp.mailfrom=rivosinc.com; dkim=pass (2048-bit key) header.d=rivosinc-com.20230601.gappssmtp.com header.i=@rivosinc-com.20230601.gappssmtp.com header.b=lV4yCNxs; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=rivosinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rivosinc.com
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-7e6ed072cdaso1676576a12.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20230601.gappssmtp.com; s=20230601; t=1728675961; x=1729280761; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=exLsQV8+AgRTzSgIuh9REhlgyhIFFL6ykktOdGZoGFg=;
+        b=lV4yCNxsWdv45991ghfe2wns7l+/s/d+YLcrIZFmoS3x3hGwHVNM/lLDoTb1S148g/
+         wjCNMuU7ASe99vAOixL04qe3q/lGax6rpPyt1lm67ppD2F21CTYZGTN8/X4wycTxHsxL
+         P/A2LCQBZjkSqlvCJI7zm+qY8vwkdXglEPn3QADdA2zYO8iZeXVHbU9BZJLzXkn6beFT
+         ts9isgOszzowJr6cetdaSLt8ipo3Z6+Aey5qB1O+raze27joEJIvyv4Hklm3/FhjSfT8
+         jaZi6Qz7N48YVKso4KxssvtnXgxeSllxs48Rq9PKybtpTBlB++fwin5ip7uz97JKL8LE
+         BytA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728675961; x=1729280761;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=exLsQV8+AgRTzSgIuh9REhlgyhIFFL6ykktOdGZoGFg=;
+        b=u9dkf5R665ntbyElP1WXvbwHjOt4xF4s0pGhFi3mxW3pSfO8KlSE8H/3yEuX3MYpuI
+         oQSMVE76KPw3ZEAAPliNzAwhCINjr4mhJPhKxdzhA2XK+GJ9FuxM5DDNBUFVXl/v+WaU
+         fb3s/OREzRLlHvDS6nT8OQWvIRwGpKsErMN8U1K2UFsBzgnQU+z8CeM16YBReoNQxeRt
+         aTTgkFbme7gj+yEfDMe7qWCi73oDPTG9MtGLXALCwju5J06JMB1jPILUDCZZS3uggpPE
+         csW+z89lC0jVhoZnBhtHtUliZnOYbd1B7jQw2Q5hHF9ePFHsOjOC1b6VoFBEjua83Xcx
+         DHsw==
+X-Forwarded-Encrypted: i=1; AJvYcCU3sZptSpD5M7+qySUeWUnODdNLI0URCWYiGvg2pS612yAV6hyaQGrUt7VLs6IamcQHB3rY7Aev7A8e@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjMCcNMbL2MnRk79YnLEFnPePF9Tu26/WI80aca1odUP/FE6pd
+	odP6GvuXVIdMp4D/UkCcIezgK/83729MDE7BCpMI1QttIdcQdYQhEPBg3Mr0UFM=
+X-Google-Smtp-Source: AGHT+IHj8rWFWjfeD1jnOseU69L54Nubw7fuAuLENErbM2G1CFqjE5ekNxV2rf8nSVkMr8qy+VgzZQ==
+X-Received: by 2002:a05:6a21:1519:b0:1cf:4d4e:532b with SMTP id adf61e73a8af0-1d8c96b986bmr675268637.43.1728675961468;
+        Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
+Received: from debug.ba.rivosinc.com ([64.71.180.162])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e2ab0f1dcsm2951118b3a.209.2024.10.11.12.45.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Oct 2024 12:46:01 -0700 (PDT)
+Date: Fri, 11 Oct 2024 12:45:57 -0700
+From: Deepak Gupta <debug@rivosinc.com>
+To: Zong Li <zong.li@sifive.com>
+Cc: Mark Brown <broonie@kernel.org>, Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	"Liam R. Howlett" <Liam.Howlett@oracle.com>,
+	Vlastimil Babka <vbabka@suse.cz>,
+	Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Christian Brauner <brauner@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Oleg Nesterov <oleg@redhat.com>,
+	Eric Biederman <ebiederm@xmission.com>, Kees Cook <kees@kernel.org>,
+	Jonathan Corbet <corbet@lwn.net>, Shuah Khan <shuah@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-mm@kvack.org, linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kselftest@vger.kernel.org,
+	alistair.francis@wdc.com, richard.henderson@linaro.org,
+	jim.shu@sifive.com, andybnac@gmail.com, kito.cheng@sifive.com,
+	charlie@rivosinc.com, atishp@rivosinc.com, evan@rivosinc.com,
+	cleger@rivosinc.com, alexghiti@rivosinc.com,
+	samitolvanen@google.com, rick.p.edgecombe@intel.com
+Subject: Re: [PATCH v6 33/33] kselftest/riscv: kselftest for user mode cfi
+Message-ID: <ZwmAdRb5BRkPLbWg@debug.ba.rivosinc.com>
+References: <20241008-v5_user_cfi_series-v6-0-60d9fe073f37@rivosinc.com>
+ <20241008-v5_user_cfi_series-v6-33-60d9fe073f37@rivosinc.com>
+ <CANXhq0pXVS2s-hZNusPLoQ4qPkyi1S2BTQ-FyAvcz=cDctKQng@mail.gmail.com>
+ <Zwj7aZj36TBGzpZa@finisterre.sirena.org.uk>
+ <CANXhq0q49k6q3ZGYqzczMeFr+_rrfa9mL7FMu62xPHeUKfvhMw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V2 4/4] arm64: dts: qcom: ipq9574: add nodes to bring up
- q6
-To: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>,
-        <andersson@kernel.org>, <krzk+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: <quic_viswanat@quicinc.com>, <quic_mmanikan@quicinc.com>,
-        <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
-        <quic_gokulsri@quiconc.com>
-References: <20240829134021.1452711-1-quic_gokulsri@quicinc.com>
- <20240829134021.1452711-5-quic_gokulsri@quicinc.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <20240829134021.1452711-5-quic_gokulsri@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7RdJwOByCK5hrb-3BuzkKCwh05pVTrtq
-X-Proofpoint-GUID: 7RdJwOByCK5hrb-3BuzkKCwh05pVTrtq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- priorityscore=1501 impostorscore=0 mlxlogscore=732 bulkscore=0
- malwarescore=0 mlxscore=0 phishscore=0 clxscore=1015 spamscore=0
- adultscore=0 lowpriorityscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2409260000 definitions=main-2410110137
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CANXhq0q49k6q3ZGYqzczMeFr+_rrfa9mL7FMu62xPHeUKfvhMw@mail.gmail.com>
 
-On 8/29/2024 6:40 AM, Gokul Sriram Palanisamy wrote:
-> From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> 
-> Enable nodes required for q6 remoteproc bring up.
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> Signed-off-by: Gokul Sriram Palanisamy <quic_gokulsri@quicinc.com>
-> ---
-> changes since v1: Addressed comments by Krzysztof
-> 	- updated the order of items to 'qcom,smem-states' keeping
-> 	  'stop' first based on changes to binding documentation.
-> 
->  arch/arm64/boot/dts/qcom/ipq9574.dtsi | 58 +++++++++++++++++++++++++++
->  1 file changed, 58 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> index 08a82a5cf667..2d55f0697225 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+On Fri, Oct 11, 2024 at 07:43:30PM +0800, Zong Li wrote:
+>On Fri, Oct 11, 2024 at 6:18 PM Mark Brown <broonie@kernel.org> wrote:
+>>
+>> On Fri, Oct 11, 2024 at 01:44:55PM +0800, Zong Li wrote:
+>> > On Wed, Oct 9, 2024 at 7:46 AM Deepak Gupta <debug@rivosinc.com> wrote:
+>>
+>> > > +       if (si->si_code == SEGV_CPERR) {
+>>
+>> > Hi Deepak,
+>> > I got some errors when building this test, I suppose they should be
+>> > fixed in the next version.
+>>
+>> > riscv_cfi_test.c: In function 'sigsegv_handler':
+>> > riscv_cfi_test.c:17:28: error: 'SEGV_CPERR' undeclared (first use in
+>> > this function); did you mean 'SEGV_ACCERR'?
+>> >    17 |         if (si->si_code == SEGV_CPERR) {
+>> >       |                            ^~~~~~~~~~
+>> >       |                            SEGV_ACCERR
+>> >
+>>
+>> Did you run "make headers_install" prior to building kselftest to get
+>> the current kernel's headers available for userspace builds?
+>
+>Yes, I have run "make header" and "make header_install" before
+>building the kselftest. This error happens when I cross compiled it,
+>perhaps I can help to check if it is missing some header files or
+>header search path.
 
-My ath vetting tool flagged this file as having a Qualcomm Innovation Center
-copyright that was not updated to contain the year 2024.
+That's wierd.
+
+It doesn't fail for me even if I do not do `make headers_install`. But I am
+building kernel and selftests with toolchain which supports shadow stack and
+landing pad. It's defined in `siginfo.h`. When I built toolchain, I did point
+it at the latest kernel headers. May be that's the trick.
+
+"""
+
+$ grep -nir SEGV_CPERR /scratch/debug/linux/kbuild/usr/include/*
+/scratch/debug/linux/kbuild/usr/include/asm-generic/siginfo.h:240:#define SEGV_CPERR    10      /* Control protection fault */
+
+$ grep -nir SEGV_CPERR /scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/*
+/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/asm-generic/siginfo.h:240:#define SEGV_CPERR    10      /* Control protection fault */
+/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/bits/siginfo-consts.h:139:  SEGV_CPERR                  /* Control protection fault.  */
+/scratch/debug/open_src/sifive_cfi_toolchain/INSTALL_Sept18/sysroot/usr/include/bits/siginfo-consts.h:140:#  define SEGV_CPERR  SEGV_CPERR
+
+"""
 
 
