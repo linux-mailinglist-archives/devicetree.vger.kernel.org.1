@@ -1,182 +1,249 @@
-Return-Path: <devicetree+bounces-110438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E510B99A6CE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:49:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54B5599A6D6
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 16:50:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 902FC285AA5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:49:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCEFAB25C5A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:50:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4F3194A49;
-	Fri, 11 Oct 2024 14:48:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4831940B1;
+	Fri, 11 Oct 2024 14:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="efParbGW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nMTfrFYu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2788718E373
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 14:48:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12C9615252D;
+	Fri, 11 Oct 2024 14:49:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728658121; cv=none; b=o+zxpBxBRDLOzFm0JKelgiwn7ecW2JT5Q2ODAxzCLnqr0Uxl7X6xQ1q5iPGlYz0qpS8HdtPumtkYRHMTDWzpZ5YQtx2y5xq9WvSuOyauM26ZVuczxT7MdrZI3rhfzf5QEWVB03+WZkwAIDCh89G1yubU+MtyRPvuZU93j86F5SU=
+	t=1728658160; cv=none; b=Znab166OtmMioNhKICOC8n9be3WaDIBXIxn1mr42B7lL66mL7ossr64Oihk6g+hiGnESSMo/mfLI9D0CmygANf3IgF52cpy/SC7ilZJngV8bKZh2zsfeR1wPmKPfhMg1o+rIISO4GFLyDjAAmBgD1B5u3Qi8yl7tKVBrhrIK9fU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728658121; c=relaxed/simple;
-	bh=vCAthdAHVhbrVJ4dzxNhL9OQ38Q3l8lgUPnhH8VC4F0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=GK6hifn/C8riU+f5Rq4xBpKU8ioMz/Yy08bTriUNyr9m9T0IF8TkMbFXNKLIcM1EmTih26IuuA9nCwu2JckX61GcgUQxAqkipXn82ZpBLquToSJKg+cYH1CeL0asdm9S2neiWokcfU+iI15sG7seysErcMVIeFfRoN5DnDwo02A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=efParbGW; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-ej1-f70.google.com (mail-ej1-f70.google.com [209.85.218.70])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 0E5CB40B06
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 14:48:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1728658113;
-	bh=iqBh7nzoh4RgidcVzY4detvGARn0I3+5VA/OmJU1Iu8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version;
-	b=efParbGWB01VrjoKWpz/zHaR/jKQjfxq8jGGzHc+H2nPhNGpic6Xuk/vzmYkk3qJb
-	 xNY0B/ytkO1bePO/rg/gtfE2+yog5n//h0QjeFgtpAovHErreu4MwlD5AyuBRQ+z6O
-	 NieG3BSYGXd2+YP7b9UhC5btzNtQ75wbI8AGVPiy8nZM1HgUD1yLs+jNlOgJv+1UW+
-	 wHYPU/UHRw5JsVTaR0plpXBP7+uHhMHRe3EQYFLkl17jcmr1XFRQPNEAh+cC05cB9l
-	 D6dMRCveDiTdEOkAWQkFSYL8D9MCPx5Z5IKarXZ8EzudWue6ANhlm65iiWozTqEyCL
-	 MDKJanLrW67WQ==
-Received: by mail-ej1-f70.google.com with SMTP id a640c23a62f3a-a99592b5f27so329513566b.1
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 07:48:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728658112; x=1729262912;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iqBh7nzoh4RgidcVzY4detvGARn0I3+5VA/OmJU1Iu8=;
-        b=nMr58Uowv3a07UR3+tBX71YtbYFJH+pXakfe07F7Ckn6oJSBgx8mcGisTR3Xmw1+ee
-         3EPHNIUo/ox4tRVkGRM4CfNrJ4bUoWsbKyxm+mQh7azCJoQYyKrolfwe86/Le58bCVSk
-         C3W0xPUiesM0vJvVJewiNqmhgHd6yY4o+8BXZKkl0oO62ThaO7VD6pi2ByUAglBiNAUt
-         T9u/0gTrZsl40QsDp6V0IRrf9Z7xHua1f3iwnhvSJJjdycyZ/8r2OFNimuwzX10M8lvB
-         faDYlWhhQEiBPpSPFmxiTfJlG48H9X5vNuY/Xbjp9mBYaXCL5+sPFGOz516TDQ6svN42
-         yZ0A==
-X-Forwarded-Encrypted: i=1; AJvYcCUEwgUFbMd/OVi8m+DFU9txEFzWAm/q/b/Y0K6X5fHfC5b/Ba68Y+a1jQSLS3nzG2LdnZK7Y2h58bvk@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzj/Kc2ZFy+eLSgSdpBnOEaW9D6ORyw1Vbh1ACk1gGaqViR9h/8
-	aVdlegIrlayoFk19W5lFOa+BpJ0ow27Q/RzHa01NLbNwfM6NF2/FzfvtJoUQ9jVSpPDRxu7+vpE
-	muEVgtV6eA/6RS8CXfvS6+EMwLor79K5M4w3Vzk7hCzuILY3ruzFXi5g+I601tMYtmXlGjCT/32
-	k=
-X-Received: by 2002:a17:906:dc8e:b0:a8a:6bd8:b671 with SMTP id a640c23a62f3a-a99a0eb825dmr782896166b.5.1728658112559;
-        Fri, 11 Oct 2024 07:48:32 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGjQsLbc6u+mCW6UAgHzZ7I5ogU9vr//qu3BpEYvisyFo1ZiWCcvFSN+KbnXtVt+gsG6NG3Rw==
-X-Received: by 2002:a17:906:dc8e:b0:a8a:6bd8:b671 with SMTP id a640c23a62f3a-a99a0eb825dmr782893866b.5.1728658112081;
-        Fri, 11 Oct 2024 07:48:32 -0700 (PDT)
-Received: from stitch.. ([194.62.169.86])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99c0c89bfasm54134666b.162.2024.10.11.07.48.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Oct 2024 07:48:31 -0700 (PDT)
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-To: linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Jisheng Zhang <jszhang@kernel.org>,
-	Guo Ren <guoren@kernel.org>,
-	Fu Wei <wefu@redhat.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>
-Subject: [PATCH v1 3/3] pinctrl: th1520: Factor out casts
-Date: Fri, 11 Oct 2024 16:48:25 +0200
-Message-ID: <20241011144826.381104-4-emil.renner.berthing@canonical.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
-References: <20241011144826.381104-1-emil.renner.berthing@canonical.com>
+	s=arc-20240116; t=1728658160; c=relaxed/simple;
+	bh=RjYgyZ44THuAQGuVEDjAJZed+5wFrxBFRaSeQQ6Exv4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XGdwBcGH8L44nq0KP13EgkeRRibGJIJoFvDlxyxXD8UvzUj56SvSGQjw6M0kM8KNL3v5HZXxxXCXGHe4aPWwCLJJTrpFC3U6biJ7Sz9BHYCOSKeQ3gtY8DJcGzICNRuA/9zvAZnQvqkweRA6aF7YsFHdmYMrykfjdPB/tO8rl8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nMTfrFYu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C54EDC4CECF;
+	Fri, 11 Oct 2024 14:49:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728658159;
+	bh=RjYgyZ44THuAQGuVEDjAJZed+5wFrxBFRaSeQQ6Exv4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nMTfrFYu+g54px9K4gkvB+d4NBedupfc5G13PZUpUKQA7lJaIa5XOTYNNYwWU1Yhe
+	 vQBCWwzaLtMPfJrK/qTGElpNaUfhhx5sq0vPDYL8EZz10WmHSnh7rnJ1fvSHZnUIbG
+	 nN66qQl80+FfxlvvdezvEkPjthYnN1jupALrkXaAmI6l2coHz34f4wTY6v7FbRySZr
+	 4EF/WdiSpxkBtKZyJQMfYQcjWdNMX17D0H+bYucsYPOD83vVyX49sHZwMewC936FHV
+	 aeuiMx9TurY4HhaTZyB+kbW1yDlJwo/ELnSJHPqa0Fb6unVW0jNSBRVDPfjZeb41GE
+	 S57PKHj5dg84w==
+Date: Fri, 11 Oct 2024 16:49:15 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vikram Sharma <quic_vikramsa@quicinc.com>
+Cc: rfoss@kernel.org, todor.too@gmail.com, bryan.odonoghue@linaro.org, 
+	mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	akapatra@quicinc.com, hariramp@quicinc.com, andersson@kernel.org, 
+	konradybcio@kernel.org, hverkuil-cisco@xs4all.nl, cros-qcom-dts-watchers@chromium.org, 
+	catalin.marinas@arm.com, will@kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, kernel@quicinc.com
+Subject: Re: [PATCH v3 1/8] media: dt-bindings: media: camss: Add
+ qcom,sc7280-camss binding
+Message-ID: <q63w23zeoteagtw3px4sk3il4567plydgdhckmvpiksm6qc5i2@3rcdrr5uribq>
+References: <20241011140932.1744124-1-quic_vikramsa@quicinc.com>
+ <20241011140932.1744124-2-quic_vikramsa@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241011140932.1744124-2-quic_vikramsa@quicinc.com>
 
-Limit the casts to get the mux data and flags from the driver data
-pointer with each pin to two inline functions as requested by Andy
-during review.
+On Fri, Oct 11, 2024 at 07:39:25PM +0530, Vikram Sharma wrote:
+> @@ -0,0 +1,440 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +
 
-Signed-off-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
----
- drivers/pinctrl/pinctrl-th1520.c | 22 +++++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+Drop blank line (that's a new finding, I would not complain except that
+I expect new version, see further).
 
-diff --git a/drivers/pinctrl/pinctrl-th1520.c b/drivers/pinctrl/pinctrl-th1520.c
-index 8bd40cb2f013..7474d8da32f9 100644
---- a/drivers/pinctrl/pinctrl-th1520.c
-+++ b/drivers/pinctrl/pinctrl-th1520.c
-@@ -152,6 +152,16 @@ static enum th1520_muxtype th1520_muxtype_get(const char *str)
- 		(TH1520_MUX_##m0 <<  0) | (TH1520_MUX_##m1 <<  5) | (TH1520_MUX_##m2 << 10) | \
- 		(TH1520_MUX_##m3 << 15) | (TH1520_MUX_##m4 << 20) | (TH1520_MUX_##m5 << 25)) }
- 
-+static unsigned long th1520_pad_muxdata(void *drv_data)
-+{
-+	return (uintptr_t)drv_data & TH1520_PAD_MUXDATA;
-+}
-+
-+static bool th1520_pad_no_padcfg(void *drv_data)
-+{
-+	return (uintptr_t)drv_data & TH1520_PAD_NO_PADCFG;
-+}
-+
- static const struct pinctrl_pin_desc th1520_group1_pins[] = {
- 	TH1520_PAD(0,  OSC_CLK_IN,    ____, ____, ____, ____, ____, ____, TH1520_PAD_NO_PADCFG),
- 	TH1520_PAD(1,  OSC_CLK_OUT,   ____, ____, ____, ____, ____, ____, TH1520_PAD_NO_PADCFG),
-@@ -590,7 +600,7 @@ static int th1520_pinconf_get(struct pinctrl_dev *pctldev,
- 	u32 value;
- 	u32 arg;
- 
--	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
-+	if (th1520_pad_no_padcfg(desc->drv_data))
- 		return -ENOTSUPP;
- 
- 	value = readl_relaxed(th1520_padcfg(thp, pin));
-@@ -660,7 +670,7 @@ static int th1520_pinconf_set(struct pinctrl_dev *pctldev, unsigned int pin,
- 	unsigned int i;
- 	u16 mask, value;
- 
--	if ((uintptr_t)desc->drv_data & TH1520_PAD_NO_PADCFG)
-+	if (th1520_pad_no_padcfg(desc->drv_data))
- 		return -ENOTSUPP;
- 
- 	mask = 0;
-@@ -793,12 +803,14 @@ static int th1520_pinmux_set_mux(struct pinctrl_dev *pctldev,
- {
- 	struct th1520_pinctrl *thp = pinctrl_dev_get_drvdata(pctldev);
- 	const struct function_desc *func = pinmux_generic_get_function(pctldev, fsel);
-+	enum th1520_muxtype muxtype = (uintptr_t)func->data;
- 
- 	if (!func)
- 		return -EINVAL;
-+
- 	return th1520_pinmux_set(thp, thp->desc.pins[gsel].number,
--				 (uintptr_t)thp->desc.pins[gsel].drv_data & TH1520_PAD_MUXDATA,
--				 (uintptr_t)func->data);
-+				 th1520_pad_muxdata(thp->desc.pins[gsel].drv_data),
-+				 muxtype);
- }
- 
- static int th1520_gpio_request_enable(struct pinctrl_dev *pctldev,
-@@ -809,7 +821,7 @@ static int th1520_gpio_request_enable(struct pinctrl_dev *pctldev,
- 	const struct pin_desc *desc = pin_desc_get(pctldev, offset);
- 
- 	return th1520_pinmux_set(thp, offset,
--				 (uintptr_t)desc->drv_data & TH1520_PAD_MUXDATA,
-+				 th1520_pad_muxdata(desc->drv_data),
- 				 TH1520_MUX_GPIO);
- }
- 
--- 
-2.43.0
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        camss: camss@acaf000 {
+> +            compatible = "qcom,sc7280-camss";
+> +
+> +            clocks = <&clock_camcc CAM_CC_CAMNOC_AXI_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_0_CSID_CLK>,
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                <&clock_camcc CAM_CC_IFE_1_CSID_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_2_CSID_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_0_CSID_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_1_CSID_CLK>,
+> +                <&clock_camcc CAM_CC_CSIPHY0_CLK>,
+> +                <&clock_camcc CAM_CC_CSI0PHYTIMER_CLK>,
+> +                <&clock_camcc CAM_CC_CSIPHY1_CLK>,
+> +                <&clock_camcc CAM_CC_CSI1PHYTIMER_CLK>,
+> +                <&clock_camcc CAM_CC_CSIPHY2_CLK>,
+> +                <&clock_camcc CAM_CC_CSI2PHYTIMER_CLK>,
+> +                <&clock_camcc CAM_CC_CSIPHY3_CLK>,
+> +                <&clock_camcc CAM_CC_CSI3PHYTIMER_CLK>,
+> +                <&clock_camcc CAM_CC_CSIPHY4_CLK>,
+> +                <&clock_camcc CAM_CC_CSI4PHYTIMER_CLK>,
+> +                <&gcc GCC_CAMERA_AHB_CLK>,
+> +                <&gcc GCC_CAMERA_HF_AXI_CLK>,
+> +                <&clock_camcc CAM_CC_CPAS_AHB_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_0_AXI_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_0_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_0_CPHY_RX_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_1_AXI_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_1_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_1_CPHY_RX_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_2_AXI_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_2_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_2_CPHY_RX_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_0_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_0_CPHY_RX_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_1_CLK>,
+> +                <&clock_camcc CAM_CC_IFE_LITE_1_CPHY_RX_CLK>;
+> +
+> +            clock-names = "camnoc_axi",
+> +                "csi0",
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                "csi1",
+> +                "csi2",
+> +                "csi3",
+> +                "csi4",
+> +                "csiphy0",
+> +                "csiphy0_timer",
+> +                "csiphy1",
+> +                "csiphy1_timer",
+> +                "csiphy2",
+> +                "csiphy2_timer",
+> +                "csiphy3",
+> +                "csiphy3_timer",
+> +                "csiphy4",
+> +                "csiphy4_timer",
+> +                "gcc_camera_ahb",
+> +                "gcc_camera_axi",
+> +                "soc_ahb",
+> +                "vfe0_axi",
+> +                "vfe0",
+> +                "vfe0_cphy_rx",
+> +                "vfe1_axi",
+> +                "vfe1",
+> +                "vfe1_cphy_rx",
+> +                "vfe2_axi",
+> +                "vfe2",
+> +                "vfe2_cphy_rx",
+> +                "vfe0_lite",
+> +                "vfe0_lite_cphy_rx",
+> +                "vfe1_lite",
+> +                "vfe1_lite_cphy_rx";
+> +
+> +            interconnects = <&gem_noc MASTER_APPSS_PROC 0 &cnoc2 SLAVE_CAMERA_CFG 0>,
+> +                <&mmss_noc MASTER_CAMNOC_HF 0 &mc_virt SLAVE_EBI1 0>;
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +
+> +            interconnect-names = "ahb", "hf_0";
+> +
+> +            interrupts = <GIC_SPI 464 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 466 IRQ_TYPE_EDGE_RISING>,
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                <GIC_SPI 640 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 468 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 359 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 477 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 478 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 479 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 448 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 122 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 465 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 467 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 641 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 469 IRQ_TYPE_EDGE_RISING>,
+> +                <GIC_SPI 360 IRQ_TYPE_EDGE_RISING>;
+> +
+> +            interrupt-names = "csid0",
+> +                "csid1",
+> +                "csid2",
+> +                "csid_lite0",
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                "csid_lite1",
+> +                "csiphy0",
+> +                "csiphy1",
+> +                "csiphy2",
+> +                "csiphy3",
+> +                "csiphy4",
+> +                "vfe0",
+> +                "vfe1",
+> +                "vfe2",
+> +                "vfe_lite0",
+> +                "vfe_lite1";
+> +
+> +            iommus = <&apps_smmu 0x800 0x4e0>;
+> +
+> +            power-domains = <&camcc CAM_CC_IFE_0_GDSC>,
+> +                <&camcc CAM_CC_IFE_1_GDSC>,
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                <&camcc CAM_CC_IFE_2_GDSC>,
+> +                <&camcc CAM_CC_TITAN_TOP_GDSC>;
+> +
+> +            power-domains-names = "ife0", "ife1", "ife2", "top";
+> +
+> +            reg = <0x0 0x0acb3000 0x0 0x1000>,
+> +                <0x0 0x0acba000 0x0 0x1000>,
+> +                <0x0 0x0acc1000 0x0 0x1000>,
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                <0x0 0x0acc8000 0x0 0x1000>,
+> +                <0x0 0x0accf000 0x0 0x1000>,
+> +                <0x0 0x0ace0000 0x0 0x2000>,
+> +                <0x0 0x0ace2000 0x0 0x2000>,
+> +                <0x0 0x0ace4000 0x0 0x2000>,
+> +                <0x0 0x0ace6000 0x0 0x2000>,
+> +                <0x0 0x0ace8000 0x0 0x2000>,
+> +                <0x0 0x0acaf000 0x0 0x4000>,
+> +                <0x0 0x0acb6000 0x0 0x4000>,
+> +                <0x0 0x0acbd000 0x0 0x4000>,
+> +                <0x0 0x0acc4000 0x0 0x4000>,
+> +                <0x0 0x0accb000 0x0 0x4000>;
+> +
+> +            reg-names = "csid0",
+> +                "csid1",
+> +                "csid2",
+> +                "csid_lite0",
+
+Alignment did not improve. Please carefully read DTS coding style.
+
+> +                "csid_lite1",
+> +                "csiphy0",
+> +                "csiphy1",
+> +                "csiphy2",
+
+Best regards,
+Krzysztof
 
 
