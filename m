@@ -1,48 +1,74 @@
-Return-Path: <devicetree+bounces-110282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110283-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7958999F06
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:30:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 911BE999F0A
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:31:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E91C1F2267C
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:30:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF3E31C2306D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32FF2209F51;
-	Fri, 11 Oct 2024 08:30:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4BA220B1EB;
+	Fri, 11 Oct 2024 08:31:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WoqlzMfP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="c2MMUnMv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08DC219CC08;
-	Fri, 11 Oct 2024 08:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02AA319C57C
+	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 08:31:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728635405; cv=none; b=qNoi9F5ndG5CJXiAMyohDGnP8oVCpp5y2SzxLL4Z/Q8QNXUwuWaztF6KPShZNnKA8yr5Z1cB7Z8XE9TQyGKR0dOi9j7hgMpUdj8YS1kTAo0N+YI41PC4Y7Cz6igpnRUkL5xVe5LgNMvJIWPwGF5Eiw7fvJwwFRnzbMsCouMIivE=
+	t=1728635471; cv=none; b=NHk1Pq6fQlaxYV6TadRA55Ksnsj3Dyia2F+CnDZ98PSR8gC7tEnVCxxV/8p3Jm+bvqQ+HFFjh76NOZ2UwV/nIHGGfCbqW2zSXOaxSBbtuwPQAo/gNDMK0XXEXaO2k/Dss5E2PqiDNk2bV6nVLJ3oUTGZqGAY81dXG0n5tTkPda8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728635405; c=relaxed/simple;
-	bh=NQrTiZByneHIXcuPUCaVgQWb9k85uwMIf+r+Fo/+4/I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H0BMWPjFOjSCxAnuLrX/gCuZZreMuPa0lW+/hhAxUl3c5juiBl1TrNYaPSs7tZi7nBRcpxHRrm/5DcrifDYPqATI6n4+OzhJ2vaztCdOEsCE0a12L+V5rGSHdTJyD01HhNEXO1qv+kqXWgNkE+jLIzygfuJtvf5ugFeN4EZSpbE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WoqlzMfP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 376F6C4CEC3;
-	Fri, 11 Oct 2024 08:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728635404;
-	bh=NQrTiZByneHIXcuPUCaVgQWb9k85uwMIf+r+Fo/+4/I=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=WoqlzMfP0obsncPCD3Xqb/kPiEGFecyNh6JImInOWRPVbZFVkNMnA53lsRxumaI27
-	 pyNp2LnF9ibG5bYHFq4W860C8bvffIYr80u06R4TrBLljdi5amzEDLv4oNTZMb/cYK
-	 vxS+nJOasXOwZPgEv5CWwOP7mN5guLjuCDC5/dWXJdYj9GFdnC/f+T9wMBLhNVg2Ta
-	 hNhiG1Ig7Igv51G6MhhwyRPZ+lYFLHzl9LXchRb8uEDoYWdYyXqk1j0TH5piZwX15o
-	 0dL4ll7INRrvoFLkpy0ysMpKqPhXf0UqtEcpBXkaMZplkPsOX0i765SRHu4Semi62D
-	 tHZQIFyLkwZ7A==
-Message-ID: <bafe2763-8aac-4051-a2d2-d94a0deae04e@kernel.org>
-Date: Fri, 11 Oct 2024 17:30:00 +0900
+	s=arc-20240116; t=1728635471; c=relaxed/simple;
+	bh=SEJdlxQ23Wh1PJutMKkwgNXKdM73Ivu4Y76y3S/iMcU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=okRP8/RohONBTPU5ZmMDQbFm/49SRC3u6MUUMkukbStNZknfm4TjSWzi+bG86SywNi82Slihwxn//txd1LP9mkYX+OkcP5MYKbD+HYs8IjzhG0au5H1dMWHccnkC1kDwN5WTQRklQP1ewI51xf1yZVsTbfMp2dbpBVKOwHfOiQw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=c2MMUnMv; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a7aa086b077so249611566b.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 01:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728635468; x=1729240268; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=nAD5v+org+QPFKjhH7xH1l9zocUcHG+37XArsBcPgZg=;
+        b=c2MMUnMv7t50613fX3tILGU74tI24Vqck5uE9B2W4RMWrFfSH9D1Ur9+J3dkKOt94/
+         TniI3UuP2PWvW7sVNAGEziDxeqgapzUDFmEqb4mrATi9nQK8xG5WxtFqTOqNSow1bHX9
+         87x8ljpQXz5iCXB6I7jZ8Qr7kaR4FsQjTJSyrGN+rzcD6meaMiRNWpil5KCiKuctkiNj
+         zQG0XatjPuURd8J4g8s1t3PbeALQZzbMd0WkJ8h0RDYyElU46T39y52n0aDL5uMIjDUT
+         mPyAAfLwH52VX/b6GuCH61f48xLIGpJK87IE+42gyM420VHocDQrBIe7eTYhEqrA4mmv
+         9dBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728635468; x=1729240268;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nAD5v+org+QPFKjhH7xH1l9zocUcHG+37XArsBcPgZg=;
+        b=pw5yOkY3+mWzPNCqO98uTYC9+2Q7+3jjBMHQFGeqbyZW+Uqoi1pGA2nj1+3Q+LwRbF
+         rqjMxGtOKQbs23k9LDPMDujAWx4d9mSUqWN5ZdvgOskW0n2Qh6WolmjeDQqQwna/iNwz
+         ZNy92OvbIdaMzLXZWkoWnAlGk2V6J7mtzv2E74Nv8JBqlhJy0rUinph2+macBzuoBfc6
+         cWt/QybQ5IB+uTe6E6Mpi+dRWHv7frIwYw57agEOSHN5i4Cr4+IQN4ARqiztH1+kLmXc
+         CuCfHDEv82fDg2JwQqFHL06dK1zKQovQ2u582aVq017tW1iE/0uUZYth8yKrslFT3Sns
+         /qfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWmbz/MmyZ4Uf1uyCHg0ZdrHgDQz1iHqdrnmAAPZIspXM1XjdqNw7BihVeYqfykUQQNE28wGKEYLzSn@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywh6EeMPXAbnPyI0AsMpO78HCa4KK2oYcgrEyiVelrbFqteM0VV
+	lSCX+QG8gue+xqFGPp3d8DLSnBmVGSo05khCNRhJeHQI3Jn8HgtPFhpb7ciQ5sA=
+X-Google-Smtp-Source: AGHT+IGwUhHDGXHO6KgriwcoHKU56ZhIDBRkdsGJETJImu6rNJO+hbQAho6na7sM96Ccnl3slVQy9A==
+X-Received: by 2002:a17:907:7409:b0:a99:c85c:6646 with SMTP id a640c23a62f3a-a99c85c67a8mr12978766b.30.1728635468259;
+        Fri, 11 Oct 2024 01:31:08 -0700 (PDT)
+Received: from [192.168.0.40] ([176.61.106.227])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99a7f5cebdsm188524266b.93.2024.10.11.01.31.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Oct 2024 01:31:07 -0700 (PDT)
+Message-ID: <a230de8f-a11d-41c1-9bc6-7e06e850b51d@linaro.org>
+Date: Fri, 11 Oct 2024 09:31:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,72 +76,42 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 07/12] PCI: rockchip-ep: Refactor
- rockchip_pcie_ep_probe() MSI-X hiding
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
- <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
- Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- Rick Wertenbroek <rick.wertenbroek@gmail.com>,
- Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
-References: <20241007041218.157516-1-dlemoal@kernel.org>
- <20241007041218.157516-8-dlemoal@kernel.org>
- <20241010072512.f7e4kdqcfe5okcvg@thinkpad>
- <20241010080956.z3cw2mxxlgrjafhs@thinkpad>
-From: Damien Le Moal <dlemoal@kernel.org>
+Subject: Re: [PATCH v6 2/5] dt-bindings: media: camss: Add qcom,sdm670-camss
+To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Richard Acayan <mailingradian@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>, Mauro Carvalho Chehab
+ <mchehab@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-media@vger.kernel.org
+References: <20241011023724.614584-7-mailingradian@gmail.com>
+ <20241011023724.614584-9-mailingradian@gmail.com>
+ <785c82d5-549d-454b-86bf-a00a39e6f521@linaro.org>
 Content-Language: en-US
-Organization: Western Digital Research
-In-Reply-To: <20241010080956.z3cw2mxxlgrjafhs@thinkpad>
-Content-Type: text/plain; charset=UTF-8
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <785c82d5-549d-454b-86bf-a00a39e6f521@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 10/10/24 17:09, Manivannan Sadhasivam wrote:
-> On Thu, Oct 10, 2024 at 12:55:12PM +0530, Manivannan Sadhasivam wrote:
->> On Mon, Oct 07, 2024 at 01:12:13PM +0900, Damien Le Moal wrote:
->>> Move the code in rockchip_pcie_ep_probe() to hide the MSI-X capability
->>> to its own function, rockchip_pcie_ep_hide_msix_cap(). No functional
->>> changes.
->>>
->>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
->>
->> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->>
->> Btw, can someone from Rockchip confirm if this hiding is necessary for all the
->> SoCs? It looks to me like an SoC quirk.
->>
->> - Mani
->>
->>> ---
->>>  drivers/pci/controller/pcie-rockchip-ep.c | 54 +++++++++++++----------
->>>  1 file changed, 30 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/drivers/pci/controller/pcie-rockchip-ep.c b/drivers/pci/controller/pcie-rockchip-ep.c
->>> index 523e9cdfd241..7a1798fcc2ad 100644
->>> --- a/drivers/pci/controller/pcie-rockchip-ep.c
->>> +++ b/drivers/pci/controller/pcie-rockchip-ep.c
->>> @@ -581,6 +581,34 @@ static void rockchip_pcie_ep_release_resources(struct rockchip_pcie_ep *ep)
->>>  	pci_epc_mem_exit(ep->epc);
->>>  }
->>>  
->>> +static void rockchip_pcie_ep_hide_msix_cap(struct rockchip_pcie *rockchip)
+On 11/10/2024 08:14, Vladimir Zapolskiy wrote:
 > 
-> Perhaps a better name would be rockchip_pcie_disable_broken_msix()? As the
-> function essentially disables MSIx which is broken. Again, it'd be good to know
-> if this applies to all SoCs or just a few.
+> Two most recently added CAMSS IP descriptions (qcom,sm8250-camss.yaml and
+> qcom,sc8280xp-camss.yaml) do implement sorting by reg values, I believe 
+> from now on
+> it should be assumed that all subsequently added CAMSS IP descriptions 
+> to follow
+> the same established policy.
 
-The function does not disable anything but *really* simply hides the capability
-in the capability list so that the host does not see it. So I think the better
-name is:
+My preference is sort by address not sort by name => we sort the device 
+nodes themselves by address so it seems more consistent to sort by 
+address inside of the devices too.
 
-rockchip_pcie_ep_hide_broken_msix_cap()
+Which means sorting reg by address and irq too.
 
--- 
-Damien Le Moal
-Western Digital Research
+---
+bod
 
