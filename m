@@ -1,147 +1,226 @@
-Return-Path: <devicetree+bounces-110290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065E5999FAF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:03:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19C34999F5F
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 10:54:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8A6B5B236E7
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:03:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 91BB81F25D46
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 08:54:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC92320C499;
-	Fri, 11 Oct 2024 09:02:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D6C920ADD4;
+	Fri, 11 Oct 2024 08:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="slSlc4ZM"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="OegMyo4h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B7120C484
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 09:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DABCD20C47D;
+	Fri, 11 Oct 2024 08:53:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728637372; cv=none; b=fGOdBr/rXDZ7YBNjtm3YBVHqItGkRzdH5E2pnYTv5xZbxzvBG/F1vHjhF94QfV618SAVsFeZxC31JE288mXIBm+dNfVEP6akakymBafssOR+/gImill46PzcTUyo+V76+WPojGuIawYQBh91Fya0e2GVXtvAGwhb0sPVuZfxato=
+	t=1728636841; cv=none; b=PONJmxcM+JRYe9LV2W7Kx5gzzz9Dws6nMHd1ITfL/UFBUg4euVgWNAYSTDBUQfNszTp1G9uDXMcHkZuhO14S3RJx/hI3cBf8y6cKgWDwdPWRS9YT4770Nll4HfnbTZMHJ3E7bIA+fiTjVXJsFAeIDY5HnuVt9Qm8wuqwK1zuNhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728637372; c=relaxed/simple;
-	bh=19z3d0aqkHvJwN+Hk7S9ZrvGY/Nf3msL/Lxq7i9eJyA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MO2vxGkPbtcRDTX5GjltdjZL0NG2epJEDdMLO7pN35DxrE8sbFm1I78vYrJeOnk4/Fw6s7oGZf6vIMN49Z+WBxkkhgGEYDFtUf0tmhK8J2ccezZWLN3kh8nRCk6iy6IhBbUL1bW69EbmBa7YsDJ0WQyr7C+vpGicOOj1wkaCvIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=slSlc4ZM; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1728637367;
- bh=PR7Qyd/O87/6PBrhIOrZqQvu9qgOrZhgZxSmRsZHQyM=;
- b=slSlc4ZMiqYtv6xtlf/LBI9QAFKlTKcLt4DfUrLKmERh+r+8WanJ04EN8W440RwtgXeN3++di
- aI9Id8C0Cl4tuOfR9MdTRs9naNavtHHmfURqpOtIS6JdmqLln6HcjFsKSQmJ2pEcgZavXSPQg4+
- +C75E8jZDHlecGNu4Up9EjuNl1UBr/ffcoJABJtCxUXO3c7Ig3h0YgdRKDPgONfaeXwqjOvUoY/
- /DDh2Cn/QfBjq7oqfsK5hmlztSQrnMQ6zCa9JTqoI79uyWIduqPyftsD7rn/btHiqGmU0KFWxcg
- RsplSa+h833d046ZVcNmq7OZTy245qifAT5i8W+Bagfg==
-Message-ID: <86ff39fe-cc88-4cf4-a1ad-6398a74ceb11@kwiboo.se>
-Date: Fri, 11 Oct 2024 10:52:19 +0200
+	s=arc-20240116; t=1728636841; c=relaxed/simple;
+	bh=54Gx2qUiNgWU+v/F9liAlg+w8InkTbHxQh2Kf7Keigo=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=gZ+yMSWrH3pMp5DMuPoNJQOffEprNS25ujcr4rFmKH49pYGMpSG1hfv8m5JaVY5BcPHMc5JYvruc64RRG+3bJ8Eh7Cooor9XS2rOPkHegqAy4e4mvuh271ARkoMxEBni9tb+tkUXm1+5k8NLt6ZqWomSq7YOT7cmsUkO/m16X+E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=OegMyo4h; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308
- SoC dtsi
-To: Dragan Simic <dsimic@manjaro.org>, heiko@sntech.de
-Cc: linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728636836;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=B61H3AsIRefgNI5gLBJtHOe90Y7/nRLePBmPSNiOvqE=;
+	b=OegMyo4hlpc/uuHG2hS1bMCRK/Pzq5AA4XS5Dfszn4bcvWtAq/mQjiWmszbgGTVEwYAbPT
+	nojCU1iuZF0ujESnzfA/N8zuE6WBEs5fOCN/ycOQAJTYXvVpEQxf32hnObhhMWVBHKS9iA
+	whqihiVCcWxThrhYofkKDHIDkfHnDlIFvnyqu0TfnErmqSKaHuduGMsU9mQT3ImWmKyxKn
+	u3ZOhFy0qqAtJtqFPdE0kOOSaqgXKpqtx+Ce5I15OfEBp6IjItxdHUiw7A9EsZGUgabYKt
+	L0cQZa0OfX9tkzgHD855KYMiANu/stJI2wp03KSZMde7ygk7vUZL1uUB+qwh+Q==
+Date: Fri, 11 Oct 2024 10:53:56 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Diederik de Haas <didi.debian@cknow.org>,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, stable@vger.kernel.org
-References: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Report-Abuse-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-ForwardEmail-Version: 0.4.40
-X-ForwardEmail-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-ForwardEmail-ID: 6708e747ea3bbe7728966137
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Add dtsi file for RK3399S SoC
+ variant
+In-Reply-To: <1999678.yKVeVyVuyW@diego>
+References: <c32622e4a6897378d9df81c8c3eda1bdb9211e0b.1728632052.git.dsimic@manjaro.org>
+ <20da65423e77e13511cc7c7bb39e0246@manjaro.org>
+ <D4SU6WHZCN34.2XL5W4D2T188G@cknow.org> <1999678.yKVeVyVuyW@diego>
+Message-ID: <c3270b51d026d69b4eb1a3793ee81e32@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi Dragan,
+Hello Heiko and Diederik,
 
-On 2024-10-10 12:19, Dragan Simic wrote:
-> Until the TSADC, thermal zones, thermal trips and cooling maps are defined
-> in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one may be
-> enabled under any circumstances.  Allowing the DVFS to scale the CPU cores
-> up without even just the critical CPU thermal trip in place can rather easily
-> result in thermal runaways and damaged SoCs, which is bad.
+On 2024-10-11 10:43, Heiko Stübner wrote:
+> Am Freitag, 11. Oktober 2024, 10:33:56 CEST schrieb Diederik de Haas:
+>> On Fri Oct 11, 2024 at 10:23 AM CEST, Dragan Simic wrote:
+>> > On 2024-10-11 10:00, Diederik de Haas wrote:
+>> > > On Fri Oct 11, 2024 at 9:40 AM CEST, Dragan Simic wrote:
+>> > >> Following the hierarchical representation of the SoC data that's been
+>> > >> already
+>> > >> established in the commit 296602b8e5f7 ("arm64: dts: rockchip: Move
+>> > >> RK3399
+>> > >> OPPs to dtsi files for SoC variants"), add new SoC dtsi file for the
+>> > >> Rockchip
+>> > >> RK3399S SoC, which is yet another variant of the Rockchip RK3399 SoC.
+>> > >> ...
+>> > >> The RK3399S variant is used in the Pine64 PinePhone Pro only, [1]
+>> > >> whose board
+>> > >> dts file included the necessary adjustments to the CPU DVFS OPPs.
+>> > >> This commit
+>> > >> effectively moves those adjustments into the separate RK3399S SoC dtsi
+>> > >> file,
+>> > >> following the above-mentioned "encapsulation" approach.
+>> > >> ...
+>> > >> ---
+>> > >> ...
+>> > >>  .../dts/rockchip/rk3399-pinephone-pro.dts     |  23 +---
+>> > >>  arch/arm64/boot/dts/rockchip/rk3399-s.dtsi    | 123
+>> > >> ++++++++++++++++++
+>> > >>  2 files changed, 124 insertions(+), 22 deletions(-)
+>> > >>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+>> > >>
+>> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> > >> b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> > >> index 1a44582a49fb..eee6cfb6de01 100644
+>> > >> --- a/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> > >> +++ b/arch/arm64/boot/dts/rockchip/rk3399-pinephone-pro.dts
+>> > >> @@ -13,7 +13,7 @@
+>> > >>  #include <dt-bindings/input/gpio-keys.h>
+>> > >>  #include <dt-bindings/input/linux-event-codes.h>
+>> > >>  #include <dt-bindings/leds/common.h>
+>> > >> -#include "rk3399.dtsi"
+>> > >> +#include "rk3399-s.dtsi"
+>> > >>
+>> > >>  / {
+>> > >>  	model = "Pine64 PinePhone Pro";
+>> > >> @@ -456,27 +456,6 @@ mpu6500@68 {
+>> > >>  	};
+>> > >>  };
+>> > >>
+>> > >> -&cluster0_opp {
+>> > >> -	opp04 {
+>> > >> -		status = "disabled";
+>> > >> -	};
+>> > >> -
+>> > >> -	opp05 {
+>> > >> -		status = "disabled";
+>> > >> -	};
+>> > >> -};
+>> > >> -
+>> > >> -&cluster1_opp {
+>> > >> -	opp06 {
+>> > >> -		opp-hz = /bits/ 64 <1500000000>;
+>> > >> -		opp-microvolt = <1100000 1100000 1150000>;
+>> > >> -	};
+>> > >> -
+>> > >> -	opp07 {
+>> > >> -		status = "disabled";
+>> > >> -	};
+>> > >> -};
+>> > >> -
+>> > >>  &io_domains {
+>> > >>  	bt656-supply = <&vcc1v8_dvp>;
+>> > >>  	audio-supply = <&vcca1v8_codec>;
+>> > >> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+>> > >> b/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+>> > >> new file mode 100644
+>> > >> index 000000000000..e54f451af9f3
+>> > >> --- /dev/null
+>> > >> +++ b/arch/arm64/boot/dts/rockchip/rk3399-s.dtsi
+>> > >> @@ -0,0 +1,123 @@
+>> > >> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> > >> +/*
+>> > >> + * Copyright (c) 2016-2017 Fuzhou Rockchip Electronics Co., Ltd
+>> > >> + */
+>> > >> +
+>> > >> +#include "rk3399-base.dtsi"
+>> > >> +
+>> > >> +/ {
+>> > >> +	cluster0_opp: opp-table-0 {
+>> > >> +		compatible = "operating-points-v2";
+>> > >> +		opp-shared;
+>> > >> +
+>> > >> +		opp00 {
+>> > >> +			opp-hz = /bits/ 64 <408000000>;
+>> > >> +			opp-microvolt = <825000 825000 1250000>;
+>> > >> +			clock-latency-ns = <40000>;
+>> > >> +		};
+>> > >> +		opp01 {
+>> > >> +			opp-hz = /bits/ 64 <600000000>;
+>> > >> +			opp-microvolt = <825000 825000 1250000>;
+>> > >> +		};
+>> > >> +		opp02 {
+>> > >> +			opp-hz = /bits/ 64 <816000000>;
+>> > >> +			opp-microvolt = <850000 850000 1250000>;
+>> > >> +		};
+>> > >
+>> > > Is there a reason why there isn't a line separator between the various
+>> > > opp nodes? Normally there is one between nodes.
+>> > > Note that in rk3588-opp.dtsi there are no separator lines between the
+>> > > opp nodes, while they do exist between other nodes.
+>> > > And in rk356x.dtsi the opp nodes do have a separator line.
+>> >
+>> > That has also bothered me. :)  I already had a look around in various
+>> > dts(i) files long time ago and there seems to be no preferred layout.
 > 
-> Thus, leave only the lowest available CPU OPP enabled for now.
-
-This feel like a very aggressive limitation, to only allow the
-opp-suspend rate, that is not even used under normal load.
-
-I let my Rock Pi S board with a RK3308B variant run "stress -c 8" for
-around 10 hours and the reported temp only reach around 50-55 deg c,
-ambient temp around 20 deg c and board laying flat on a table without
-any enclosure or heat sink.
-
-This was running with performance as scaling_governor and cpu running
-the 1008000 opp.
-
-Most RK3308 variants datasheets list 1.3 GHz as max rate for CPU,
-the K-variant lists 1.2 GHz, and the -S-variants seem to have both
-reduced voltage and max rate.
-
-The OPPs for this SoC already limits max rate to 1 GHz and is more than
-likely good enough to not reach the max temperature of 115-125 deg c as
-rated in datasheets and vendor DTs.
-
-Adding the tsadc and trips (same/similar as px30) will probably allow us
-to add/use the "missing" 1.2 and 1.3 GHz OPPs.
-
-Regards,
-Jonas
-
+> I guess "with" lines in between is sort-of preferred in general.
+> I sometime add them in new board-dts when applying and noticing them,
+> but also sometimes miss them.
 > 
-> Fixes: 6913c45239fd ("arm64: dts: rockchip: Add core dts for RK3308 SOC")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3308.dtsi | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> index 31c25de2d689..a7698e1f6b9e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
-> @@ -120,16 +120,19 @@ opp-600000000 {
->  			opp-hz = /bits/ 64 <600000000>;
->  			opp-microvolt = <950000 950000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-816000000 {
->  			opp-hz = /bits/ 64 <816000000>;
->  			opp-microvolt = <1025000 1025000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  		opp-1008000000 {
->  			opp-hz = /bits/ 64 <1008000000>;
->  			opp-microvolt = <1125000 1125000 1340000>;
->  			clock-latency-ns = <40000>;
-> +			status = "disabled";
->  		};
->  	};
->  
-> 
-> _______________________________________________
-> Linux-rockchip mailing list
-> Linux-rockchip@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-rockchip
+> I guess empty lines are helpful when the nodes are "not the same",
+> but I guess for OPPs it doesn't matter so much, as the individual nodes
+> are all the same.
 
+Ah, sorry, I wasn't precise enough in my earlier response to
+Diederik...  My research that I referred to was about the OPP nodes
+in various dts(i) files, for which there seems to be no preferred
+or commonly used layout.
+
+For other nodes, in most cases it's much better to have separator
+lines, because they represent different things, which also seems to
+be the preferred layout used in most places.
+
+> But in the end, I guess just follow the other OPPs in rk3399 for now 
+> ;-)
+> [as this patch does]
+
+Agreed.  We'd need to patch a few additional RK3399 files otherwise,
+because we'd then need to add separator lines into other RK3399 files
+as well...  Inconsistency is also not so great. :)
+
+>> I'm inclined to say the opp ones are the odd ones.
+>> 
+>> > In this particular case, it's better to have no separator lines because
+>> > that's what we already have lacking in rk3399.dtsi, rk3399-t.dtsi, etc.,
+>> > so running something like "diff rk3399.dtsi rk3399-s.dtsi" makes it easy
+>> > to see what actually differs in the RK3399 SoC variants, without having
+>> > to filter out any whitespace differences.
+>> 
+>> Besides that inconsistencies always seem to 'trigger' me, I especially
+>> noticed it as this patch changed it from having separator lines to
+>> having no separator lines.
+
+Ah, totally understood. :)
 
