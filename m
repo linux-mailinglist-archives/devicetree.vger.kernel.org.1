@@ -1,124 +1,163 @@
-Return-Path: <devicetree+bounces-110535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D4D99AD44
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 22:00:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739A499AD80
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 22:30:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B7251F28950
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 20:00:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAE891F239C9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 20:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EC421D1300;
-	Fri, 11 Oct 2024 19:59:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08A351C233E;
+	Fri, 11 Oct 2024 20:30:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EHziWnCM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Sm9BkrDO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBFA21D12EC
-	for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 19:59:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4092F19AA72;
+	Fri, 11 Oct 2024 20:30:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728676782; cv=none; b=UqFso/kwzkG/CekIIu/v4iaCaxF6BzwUNBJ27WVrYHzvGqiMikos0JsOatlAk/U/yEoD202LVozQUnSsy3NVsylSDpP/vZgldMniSTa8drSoc9Ly2DY8nPImL6WmrLpdnIlGC88uZD0embe0pvMvlSUBYZ8En7+4vaZ+nbMCKkw=
+	t=1728678628; cv=none; b=RpHS2WKMgSPZmuRipMFg99XPSjJpWS4CfeFiA9ezX/0Vz+/3VCkFoezSNIgncE+wNG6Q+7XVo8AoJ024JWzlL90BTIZJ5qPNKc842meXGZdoWsXpz+75l8hIVTLkkjOy6911xEeJfUuCpdDwxiwIFeHXtAIJOaA9ZlwvlGbrplc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728676782; c=relaxed/simple;
-	bh=b3t/6WlSF/m01dr3JqwvO6A1PNlbPysSRIdrRHqnmAY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XiOh1tfM3pHD5gFLzEBBWSc03XN2iU/RoYoOrcHkDfZTm6OOkTFZ79m1vMC4ycUgov7K+uurFxzEEBa7PM+jM8vgQ+pTeXJu4B7dTTNPAPqsdiiT7sxuv70oip6k0Zn07PWF8+zx2+m2d5J5t+3MER1O8aBg+L6Xyq+OJG9kT0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EHziWnCM; arc=none smtp.client-ip=209.85.128.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-6dbb24ee34dso21538657b3.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Oct 2024 12:59:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728676780; x=1729281580; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=b3t/6WlSF/m01dr3JqwvO6A1PNlbPysSRIdrRHqnmAY=;
-        b=EHziWnCMURu34idNgNXQl4xyRVcddHTweLctXq8iK+REnwjG+In+bNzFg46FA3Au2C
-         7xGhtXVC/eujF80m2u/SpW34juBEq2HGbHLRWoJX2U8SqKWFNU+//VNze0g6Zi5oH9KJ
-         UmNC6AHvUy5nMcGnasgtugL4iQ6eqMZX3Yvm/PlUgd5fWGRrPc5W4CRpa4h8lX8HUKzS
-         7BhQSdyNS870ZjMtOIdCQGKNQExRVgyM4KvW1wrYEA5iIdhmvT3xxE/mowLv/W0Vn7Ol
-         7Vvl6HGUsd3VmB7rTeJM8K762xrlsy+Hf+DsCu2axpZ4gCX6i5cQyOhk+SLljVT4StdP
-         VnAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728676780; x=1729281580;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=b3t/6WlSF/m01dr3JqwvO6A1PNlbPysSRIdrRHqnmAY=;
-        b=QEboC4diKe4/8wJn5mL11SeaOFz+7EKQmOyUh8qYAzATsu7T2OJl/q/Yps79VHNNeS
-         RyhYFP9Z0RXnN5nAsyzJ4BG57bjJcDtaX9nVsKKLV6Ox+GHzifoE80cfHdGXB/C3Awph
-         OnoInpYqMyHn0r3h4Dmny9CXXpyjANMM6QYPINnwji8yYNJJHDF4s+we7pBFv+sipLv4
-         OinzVR48HMilHfTbbMBuRqbrdWhSryWOK6SXU26cb23eyWniOyINeWRhPafw7QJhOttk
-         Qe1ZteGoqMakaPhfc/BTXx08iRYLAH/r/5R1sHMhnEXHH4KMhie2SB/JKfxckwd1UDgp
-         NeUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmiZ9Sd3TGOPuDyMQhu+0KRIdstXDx5vOPENPLB5Yoegz2Xy6Xmdx34scdj/5iNbSE1QvKxBn4eYj5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxi8NvDVHFRQRx8R9MOrSxV7WoslBavb+jysPn8mjDSPjkwz9SY
-	YcliV2hCm93K1Ow+z/hX0b+mTaQEdDHlHU6E1XsMrJD8eAhBROhI96OtWt1obtygS3QBn6rPyRI
-	/no2T/oqWWPbUTenUIfPsSe6d/dDS2ZVAmxuW6g==
-X-Google-Smtp-Source: AGHT+IHjM2GvHz3Aq3fHGIQKpV063T+kfFhYOorOlX0bt74yIAWxcubkag8mG5yY3qwwQRASFB0kIRqgK4TTo+XYaUs=
-X-Received: by 2002:a05:690c:5608:b0:6e2:ada7:ab89 with SMTP id
- 00721157ae682-6e3479e1d7cmr37079067b3.26.1728676779984; Fri, 11 Oct 2024
- 12:59:39 -0700 (PDT)
+	s=arc-20240116; t=1728678628; c=relaxed/simple;
+	bh=lqTW1EIajGpu2JkzQF54VaQMNG3JfXVMaoOUMNDT0co=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=l/+lhfbzxtG644aRZELI9A86enHd6XUSxMfu/DYwe01V69bZXh8hmUCZCvN04HRzo09jItA3v7NMTlm6IuZ/YLqHMDevMnteUwuK/ETzTTsOfooeMS0wfVAnqJLIOUFYYH8F4TgmZDVlc/f8zn+dUGrM2b8O/zov9WLCXktozMY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Sm9BkrDO; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BAw75v006577;
+	Fri, 11 Oct 2024 20:30:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=nsNU9A/fN1NQ6rHXF+XynD
+	tkqhsEAGj067QIk562RqE=; b=Sm9BkrDO1WCURJyYLrvQxWKns+X02wcTzjWhCD
+	aooaDiE2RFxKTtrrfc3wy+4UIVx++G9NkXw4i/s85f7m2d6RMkAwBisF3kSJ8Bsg
+	9Bg+X2hQ9tyyQngElzAcoVqIi9pH8CkGPc4+LvuB2b1IY7C7euAIj9OS9H9ReHBt
+	G2Du160xYEDsQ1uLIb88hIm62Rf8LYyXFIQnPicZcnB/FCny5dX+lxgFsbFVJS41
+	ImOW71kiHCVU8v4irxpcp2T8oq9fMaGLNJigdSP+2ZkFo2Amie4KjbKCZB0+/yek
+	+e8G1AXutsPWCxoySsyA6e1huMethmlLqBwOLL8CP0btqNxg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 426t7stuvx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 20:30:13 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49BKUCTl024322
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 11 Oct 2024 20:30:12 GMT
+Received: from [10.213.111.143] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Fri, 11 Oct
+ 2024 13:30:06 -0700
+From: Akhil P Oommen <quic_akhilpo@quicinc.com>
+Subject: [PATCH RFC 0/3] Support for GPU ACD feature on Adreno X1-85
+Date: Sat, 12 Oct 2024 01:59:27 +0530
+Message-ID: <20241012-gpu-acd-v1-0-1e5e91aa95b6@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011120520.140318-1-y.oudjana@protonmail.com>
-In-Reply-To: <20241011120520.140318-1-y.oudjana@protonmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 11 Oct 2024 21:59:27 +0200
-Message-ID: <CACRpkdaWZ6R4wtTs_YqzbhSrUyfOCqd9tGWFP7dZTqp6v7ijzA@mail.gmail.com>
-Subject: Re: [PATCH v6 0/8] MediaTek pinctrl DT binding cleanup and MT6735
- pinctrl support
-To: Yassine Oudjana <yassine.oudjana@gmail.com>
-Cc: Sean Wang <sean.wang@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Yassine Oudjana <y.oudjana@protonmail.com>, Andy Teng <andy.teng@mediatek.com>, 
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKeKCWcC/z2OTY7CMAyFr1J5TVDSpillhYQ0B5gtYuG6DnhBC
+ 0mpZoS4O1ZB7N6P9T0/IHMSzrAtHpB4lizjoMatCqAzDic20quH0pbeNqU3p+vdIPUmkOup7in
+ WLoBeXxNH+VtIB/j92cNRw7PkaUz/C312S/UBhS9odsaaxmOFTfS+Cpvd7S4kA61pvMDx+WYn1
+ jTL9BnoMLPR/iLTtsDSYuti57qI+pKtmeqOYouRLbVVqGKgjQqFPV9+poV48QAAAA==
+To: Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        "Konrad
+ Dybcio" <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten
+	<marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, "Simona
+ Vetter" <simona@ffwll.ch>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon
+	<nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Akhil P Oommen <quic_akhilpo@quicinc.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <freedreno@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <devicetree@vger.kernel.org>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1728678606; l=2083;
+ i=quic_akhilpo@quicinc.com; s=20240726; h=from:subject:message-id;
+ bh=lqTW1EIajGpu2JkzQF54VaQMNG3JfXVMaoOUMNDT0co=;
+ b=DiinyLHnhSwliDcSHTQXn4g+yUMd5uz4xc6Lm0HFtaYYWOC0uXQvrbUrAhhwAGqfOPuuL19UE
+ 1fbwCIXGvGXAC4S3HiXr2yo6Lh2oxYly+3zycMino6bZIMA7yXXOyXW
+X-Developer-Key: i=quic_akhilpo@quicinc.com; a=ed25519;
+ pk=lmVtttSHmAUYFnJsQHX80IIRmYmXA4+CzpGcWOOsfKA=
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wOlbdTAU9tJ8VsoRG-VDnYO7I0s-BaLO
+X-Proofpoint-ORIG-GUID: wOlbdTAU9tJ8VsoRG-VDnYO7I0s-BaLO
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=999 malwarescore=0 phishscore=0 mlxscore=0 priorityscore=1501
+ suspectscore=0 impostorscore=0 clxscore=1011 adultscore=0 bulkscore=0
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410110143
 
-On Fri, Oct 11, 2024 at 2:05=E2=80=AFPM Yassine Oudjana
-<yassine.oudjana@gmail.com> wrote:
+This series adds support for ACD feature for Adreno GPU which helps to
+lower the power consumption on GX rail and also sometimes is a requirement
+to enable higher GPU frequencies. At high level, following are the
+sequences required for ACD feature:
+	1. Identify the ACD level data for each regulator corner
+	2. Send a message to AOSS to switch voltage plan
+	3. Send a table with ACD level information to GMU during every
+	gpu wake up
 
-> From: Yassine Oudjana <y.oudjana@protonmail.com>
->
-> These patches are part of a larger effort to support the MT6735 SoC famil=
-y in
-> mainline Linux. More patches (unsent or sent and pending review or revisi=
-on) can
-> be found here[1].
->
-> This series adds a driver for the pin controller found on the MediaTek MT=
-6735
-> and MT6735M SoCs. The two differ in the last 6 physical pins, which are u=
-sed
-> for MSDC2 on MT6735 but don't exist on MT6735M (since MSDC2 doesn't exist=
- on it
-> to begin with). In preparation to document DT bindings for this pin contr=
-oller,
-> the existing documents for MT67xx SoCs are combined into one in order to
-> eliminate duplicate property definitions and standardize pin configuratio=
-n node
-> names. Necessary cleanup is done along the way.
+For (1), it is better to keep ACD level data in devicetree because this
+value depends on the process node, voltage margins etc which are
+chipset specific. For instance, same GPU HW IP on a different chipset
+would have a different set of values. So, a new schema which extends
+opp-v2 is created to add a new property called "qcom,opp-acd-level".
+I would like to have more feedback on this, hence the RFC tag for this
+series.
 
-Once Rob is happy with all binding patches, my plan is to merge all
-except the DTS[I] changes to an immutable branch in the pin control
-tree and then you can offer that as a base for the SoC tree if it's
-needed for the DTS[I] files.
+ACD support is dynamically detected based on the presence of
+"qcom,opp-acd-level" property in GPU's opp table. Also, qmp node should be
+present under GMU node in devicetree for communication with AOSS.
 
-Yours,
-Linus Walleij
+The devicetree patch in this series adds the acd-level data for X1-85
+GPU present in Snapdragon X1 Elite chipset.
+
+This series is rebased on top of drm-msm/msm-next.
+
+---
+Akhil P Oommen (3):
+      drm/msm/adreno: Add support for ACD
+      dt-bindings: opp: Add v2-qcom-adreno vendor bindings
+      arm64: dts: qcom: x1e80100: Add ACD levels for GPU
+
+ .../bindings/opp/opp-v2-qcom-adreno.yaml           | 84 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi             | 11 ++-
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.c              | 81 +++++++++++++++++----
+ drivers/gpu/drm/msm/adreno/a6xx_gmu.h              |  1 +
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.c              | 36 ++++++++++
+ drivers/gpu/drm/msm/adreno/a6xx_hfi.h              | 21 ++++++
+ 6 files changed, 218 insertions(+), 16 deletions(-)
+---
+base-commit: a20a91fb1bfac5d05ec5bcf9afe0c9363f6c8c93
+change-id: 20240724-gpu-acd-6c1dc5dcf516
+
+Best regards,
+-- 
+Akhil P Oommen <quic_akhilpo@quicinc.com>
+
 
