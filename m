@@ -1,160 +1,138 @@
-Return-Path: <devicetree+bounces-110293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 262CE999FBA
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:04:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E70F999FDC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 11:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C05311F22ABC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:04:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D75F3B21340
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 09:12:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C57320C48C;
-	Fri, 11 Oct 2024 09:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4EAEE20C48B;
+	Fri, 11 Oct 2024 09:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="cEFUoYYN"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="lm+kYWHO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 205B820C46C;
-	Fri, 11 Oct 2024 09:04:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79B8F20C46C;
+	Fri, 11 Oct 2024 09:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728637484; cv=none; b=q12CyZTptmlp23xP87p0c/NbyXgsEaY2gj2OEwm20wKz4+VFcQdm1S7Xy5CD7TjT7V+MTed1RW8K5Wxbwt3niYwhuJ4U9tUWyxvB2net40+41rIR9J6pQLBxNLxWOhmfTlO7vCcrjwaHNzJa7vomXZiksxT2SQg4LoVeTNOeBvA=
+	t=1728637943; cv=none; b=kmwQ5lMWQuoWNiHhvpGy0mfX0t0bdbVcaCWC9fpgNiOjTvOFgofadEEwvAoBEf6cJa4FOm9hzuavEcFgngIXDXS08h0yQOaTUNUqr2UmCdtw2V71/4roBTX7pZpLLoRR4NS2Qv540zpnaZyzjsCXONwCikUVH735a48NX/cCXyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728637484; c=relaxed/simple;
-	bh=CSgU8Dzf25nC9ck28gNNpuYna2RdrBM8G0dvf/lKoww=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=rWJCaFc/znLUzzCk1nqbAo/dGBIAvIV5Fcxn1jRRYKRaOv+8PyjZgX3nvvYyXbkBV0znoQOphqlnmhSf98W7Wy5plV6mZVBPtWR12AGkVLSeu6gbmBi3MEGUpvYJEkx4hGt+nSmNmMPpqfGOKhJJOq83opubb0C+gy2cs2v9Chw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=cEFUoYYN; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1728637943; c=relaxed/simple;
+	bh=bLHgUxnHnm6nAbuqDcwCWdMNYnyXNokEveeBOy9gnl0=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ml0RVNTmjFLIzFMQYPsn6DN2qIlEJhdhuG9+Zuhtf7r0kbb7dFgcIMxCSJbMSHDVs0ocPFcTSeaTa7MRaaBDWBgG+qmf+FBd7qiUo9I5bnMpG792Wo7UVRTGpghdrWeWrJt7Ok5cuigrGMlhvz05EzUzod5gtgY5gXBrYL8AS/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=lm+kYWHO; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=RNqNpxGxeeBAwX+19iC/FZZJ/fILbxplvkx/pcESrjA=; b=lm+kYWHOOUhxM9U8xqgQql7VVt
+	8UzoIxp7jYv2/pVOqdSp03IqQD9mfa6UEp6rEcvd8y/BT5AxnAw7ta3slMIcEZhFlX+6FSa6EuUQZ
+	dOVOHXV0ilTh38756LLGBxl/wQhWO1PEuWuW+gHfeiT12bIq88s/XIrI4UjRB/+lPTI7CdFmele2v
+	m9SYWrhmKvzOUUKWQoMVlMpht+lxV5k0l7SQMdflEwO/3nHdfYhohJibm/N5IM1hARXrA7VZp0Nfy
+	l6O91Ja4MfbWXLTcpVf/wAwDXgDWIPhFHkcpHOWe4BT0XaU6qw2nMXSZHnRZDmTJnwO4kybRvHiOg
+	/IY4hWwQ==;
+Date: Fri, 11 Oct 2024 11:12:12 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Roger Quadros <rogerq@kernel.org>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ linux-omap@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ tony@atomide.com, devicetree@vger.kernel.org, khilman@baylibre.com, Conor
+ Dooley <conor+dt@kernel.org>, aaro.koskinen@iki.fi
+Subject: Re: [PATCH v2 3/4] ARM: dts: omap: omap4-epson-embt2ws: add unknown
+ gpio outputs
+Message-ID: <20241011111212.1b935eb8@akair>
+In-Reply-To: <7cde7090-639b-4115-8240-88a63c760d93@kernel.org>
+References: <20241010122957.85164-1-andreas@kemnade.info>
+	<20241010122957.85164-4-andreas@kemnade.info>
+	<7cde7090-639b-4115-8240-88a63c760d93@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1728637479;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=9IwHXICNlB47Mb3S6Hx/Vh96+vbK4fXXn18CeBnTOBM=;
-	b=cEFUoYYNfEhpxueydoz7/VZusF9OzIuICMZv9QCSyLfRqitWo8Ly2vItuij+pGwHe4rs6u
-	KBk7i7Y+S/cLXmxxmhohiT6GaXJvory0k4kgpsyNFEd9RtXi8YXvmIw5laNCptLZnFU+Yh
-	bR7eexLuYInYSH685eMqJpippQkqGBKbXrWvCaisz5jvwd9o/7RmtU7qQtJX8CZpb6+Par
-	AyvYCOjFPBrRyoMHOfeRmRu+YSyOYEOoK/pSTqe+ZIRmhJ+ktkLmkXyexn4oU7fHgG3xe6
-	ZtJhH5t9Kpti8U6MvD3JgoIAIJWRJjuTRbnId7UYSjx0oA0hLvitj9aAlRyj3A==
-Date: Fri, 11 Oct 2024 11:04:38 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Jonas Karlman <jonas@kwiboo.se>
-Cc: heiko@sntech.de, linux-rockchip@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Prevent thermal runaways in RK3308
- SoC dtsi
-In-Reply-To: <86ff39fe-cc88-4cf4-a1ad-6398a74ceb11@kwiboo.se>
-References: <d3e9dc4201d38894b09f3198368428153a3af1a4.1728555461.git.dsimic@manjaro.org>
- <86ff39fe-cc88-4cf4-a1ad-6398a74ceb11@kwiboo.se>
-Message-ID: <01e42e08965e58a337b9b531c10446fd@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hello Jonas,
+Am Thu, 10 Oct 2024 23:15:51 +0300
+schrieb Roger Quadros <rogerq@kernel.org>:
 
-On 2024-10-11 10:52, Jonas Karlman wrote:
-> On 2024-10-10 12:19, Dragan Simic wrote:
->> Until the TSADC, thermal zones, thermal trips and cooling maps are 
->> defined
->> in the RK3308 SoC dtsi, none of the CPU OPPs except the slowest one 
->> may be
->> enabled under any circumstances.  Allowing the DVFS to scale the CPU 
->> cores
->> up without even just the critical CPU thermal trip in place can rather 
->> easily
->> result in thermal runaways and damaged SoCs, which is bad.
->> 
->> Thus, leave only the lowest available CPU OPP enabled for now.
+> On 10/10/2024 15:29, Andreas Kemnade wrote:
+> > Set them to the state seen in a running system, initialized
+> > by vendor u-boot or kernel. Add line names where they are defined
+> > in the vendor kernel.
+> > gpio15 resets something in the display, otherwise meaning of the
+> > gpios is not known.
+> > 
+> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+> > ---
+> >  .../boot/dts/ti/omap/omap4-epson-embt2ws.dts  | 92
+> > +++++++++++++++++++ 1 file changed, 92 insertions(+)
+> > 
+> > diff --git a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts index
+> > 7684868a2eed..983a21d95db3 100644 ---
+> > a/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts +++
+> > b/arch/arm/boot/dts/ti/omap/omap4-epson-embt2ws.dts @@ -115,6
+> > +115,73 @@ wl12xx_vmmc: wl12xx-vmmc { };
+> >  };
+> >  
+> > +&gpio1 {
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&gpio1_hog_pins &gpio1wk_hog_pins>;
+> > +
+> > +	lb-reset-hog {
+> > +		gpio-hog;
+> > +		gpios = <9 GPIO_ACTIVE_HIGH>;
+> > +		output-low;
+> > +		line-name = "lb_reset";
+> > +	};
+> > +
+> > +	power-en-hog {
+> > +		gpio-hog;
+> > +		gpios = <10 GPIO_ACTIVE_HIGH>;
+> > +		output-high;
+> > +		line-name = "power_en";
+> > +	};  
 > 
-> This feel like a very aggressive limitation, to only allow the
-> opp-suspend rate, that is not even used under normal load.
+> As GPIO 9 and 10 come form the Wake-up domain, my guess is 
+> they are used as wake-up input source. Reset button / Power off/wake
+> button? From pinmux they seem to be Input. So why do we need to force
+> them to a certain output state?
+
+Interesting reasoning and good to bring up those thoughts.
+
+Vendor v3.0 kernel:
+shell@android:/sys/kernel/debug # cat gpio 
+GPIOs 0-31, gpio:
+[...]
+ gpio-9   (gpio_lb_reset       ) out lo
+ gpio-10  (gpio_power_en       ) out hi
+
+So they are configured as output.
+There is one power button. It can be handled via the TWL6032 (driver
+not upstreamed yet). There is also one reset button resetting the SoC.
+
+I do not see a reason why to deviate from vendor kernel.
+ 
+> Can you please confirm if everything works as usual without this hog?
 > 
-> I let my Rock Pi S board with a RK3308B variant run "stress -c 8" for
-> around 10 hours and the reported temp only reach around 50-55 deg c,
-> ambient temp around 20 deg c and board laying flat on a table without
-> any enclosure or heat sink.
-> 
-> This was running with performance as scaling_governor and cpu running
-> the 1008000 opp.
+Well, if everything is working well, I would agree to optimize
+these things. But not now. There are races in the boot process
+and I would like to rule out that any random or strange behavior has
+anything to do with some gpio setting.
 
-Thanks for testing all that!  That's very low CPU temperature under
-stress testing indeed.  Maybe the cooling gets worse and the CPU
-temperature goes higher if the board is installed into some small
-enclosure with no natural or forced airflow?
-
-> Most RK3308 variants datasheets list 1.3 GHz as max rate for CPU,
-> the K-variant lists 1.2 GHz, and the -S-variants seem to have both
-> reduced voltage and max rate.
-> 
-> The OPPs for this SoC already limits max rate to 1 GHz and is more than
-> likely good enough to not reach the max temperature of 115-125 deg c as
-> rated in datasheets and vendor DTs.
-> 
-> Adding the tsadc and trips (same/similar as px30) will probably allow 
-> us
-> to add/use the "missing" 1.2 and 1.3 GHz OPPs.
-
-With these insights, I agree that the patch might have been a bit
-too extreme, but it also promotes good practices when it comes to
-upstreaming.  The general rule is not to add CPU or GPU OPPs with
-no proper thermal configuration already in place.
-
-The patch has already been merged, and as I already noted, [1] I'll
-try to implement, test and submit the proper thermal configuration
-ASAP.  It's up Heiko to decide whether to drop this patch or not.
-
-[1] 
-https://lore.kernel.org/linux-rockchip/df92710498f66bcb4580cb2cd1573fb2@manjaro.org/
-
->> Fixes: 6913c45239fd ("arm64: dts: rockchip: Add core dts for RK3308 
->> SOC")
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3308.dtsi | 3 +++
->>  1 file changed, 3 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi 
->> b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> index 31c25de2d689..a7698e1f6b9e 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
->> @@ -120,16 +120,19 @@ opp-600000000 {
->>  			opp-hz = /bits/ 64 <600000000>;
->>  			opp-microvolt = <950000 950000 1340000>;
->>  			clock-latency-ns = <40000>;
->> +			status = "disabled";
->>  		};
->>  		opp-816000000 {
->>  			opp-hz = /bits/ 64 <816000000>;
->>  			opp-microvolt = <1025000 1025000 1340000>;
->>  			clock-latency-ns = <40000>;
->> +			status = "disabled";
->>  		};
->>  		opp-1008000000 {
->>  			opp-hz = /bits/ 64 <1008000000>;
->>  			opp-microvolt = <1125000 1125000 1340000>;
->>  			clock-latency-ns = <40000>;
->> +			status = "disabled";
->>  		};
->>  	};
+Regards,
+Andreas
 
