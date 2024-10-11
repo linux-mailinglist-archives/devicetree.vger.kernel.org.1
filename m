@@ -1,161 +1,173 @@
-Return-Path: <devicetree+bounces-110129-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110130-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97459995D0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 01:45:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EAEE9995F0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 02:05:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 589971F243F4
-	for <lists+devicetree@lfdr.de>; Thu, 10 Oct 2024 23:45:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 35F1D1C20E9E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 00:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D8681BE242;
-	Thu, 10 Oct 2024 23:45:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E3FD391;
+	Fri, 11 Oct 2024 00:05:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="RA5Riigd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GXN37i3o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1536C1A704B;
-	Thu, 10 Oct 2024 23:45:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 669BB366;
+	Fri, 11 Oct 2024 00:05:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728603931; cv=none; b=L066iih3/22uamXuZoEeNVIxEXdcExHIB5hadwsZeEON+0SgemMIHq6hFR32hSF31o+eDtfTzHBlgCXWBK/SbhLZxn9UiPIwtSpL5gARIuSWinLxGo76RbzG9mbRqf6QHvZBrG1sOoBLmldJnReatZZ/rU0gf7btgCJcsXWsgeI=
+	t=1728605140; cv=none; b=CUioKIJvDXWCZY0MS78QlnrkdLNXqY9p/WrShBHZdr/UgbmYa+/Uh+ehI9GY96mmp9uR9yI/32P1iEY1hXZQ8Iqe5O07QiPcXBq9kD393gnbxE7EEFM9THYE06mWfTvU25DvHGrWe+1flkjilVd3HHXcK3O+tKN7mOcKTVS3vC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728603931; c=relaxed/simple;
-	bh=ho7nao2xPmktpHD7OEEo6s+MRd6lCw5Pr/HD1XtrfOE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PzaSFhZONSCTZkwnqCBV55EjerMQbQEoNsWjWQAmpcwLj0r560GAl2ToeqQj1Wcb2tMnUnV2gHClEH2MAKHdWVZPFqf99Z3eY7UKIJiv94YOwMvFgeBr41tGV7O6OHX+aIpzo4COSlWMnKD2XUkZySwmc7r2Fo4lKXlTG04dNug=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=RA5Riigd; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+	s=arc-20240116; t=1728605140; c=relaxed/simple;
+	bh=Xm/FWl+xu0YOGG+kySDr/1ytGcLKcxzic5ONZXrVc4E=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zct6UrAGwK860NT/3IzdmKCziS8/qTbrOzjN1WQ9kH+MvFdBPlizPwB6Gm4P3OcGdvxExT4ib2UgeN7zCNDYwg7A4u6SSYNBMhXZe8SX/0VcCOxU/ee8b2WbQtHuvhLSecdRX3+4O7QiBhuyODD4GPRbSVQ81XHgsTKd2YrjArI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GXN37i3o; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c935d99dc5so1425299a12.1;
+        Thu, 10 Oct 2024 17:05:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1728603921;
-	bh=ToZcgnbZ8v7eof9auRtT/Slo3MhgKvn3XM1vCWslblw=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=RA5RiigdYBT2fodE39/oNGDHLsvyZWKvCLJz1582UnsnOFdxjAqDBlD2vIC3TI+Y9
-	 /2NaRgOm750UW87yok5DYxQvdFZf33b8HFY7iN3b6eTwHsswafzhsNxgvweCqycTsn
-	 HUm1PR7+yzpdZGBkwmT64/zRP/MG//rzdIlJDb5/HbQAIUG8JRUtGzjU9AHdTGSeHG
-	 JPSUrxm5Nudq3mWnYMlBaiMKwbeofFbQnvXMmv45SbfdcNtR8wX73LUjxPxCyFcY7x
-	 6qoj11WE3H9fCGwKMZxtrwDR5G0RWcSUKDv03vqm2N2exy7TezBoYt1nxCd1QBJZWk
-	 hvWIK40rsJEWQ==
-Received: from [192.168.68.112] (ppp118-210-188-189.adl-adc-lon-bras34.tpg.internode.on.net [118.210.188.189])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 5D0BC64998;
-	Fri, 11 Oct 2024 07:45:19 +0800 (AWST)
-Message-ID: <4d596ac9a2215be8510369c948e0b9680ee2fce3.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add IBM SBP1 board
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Conor Dooley
- <conor.dooley@microchip.com>,  Joel Stanley <joel@jms.id.au>, Conor Dooley
- <conor+dt@kernel.org>, linux-aspeed@lists.ozlabs.org
-Date: Fri, 11 Oct 2024 10:15:17 +1030
-In-Reply-To: <172857036038.1533242.5775916298170949713.robh@kernel.org>
-References: <20241010112337.3840703-1-naresh.solanki@9elements.com>
-	 <172857036038.1533242.5775916298170949713.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+        d=gmail.com; s=20230601; t=1728605137; x=1729209937; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Sf7V8r5HK3udmg4PXTFWlyhTEIgEcd1NxvdHS3A9s7M=;
+        b=GXN37i3oULKOBOa8kiyCWwWDH26Z3XhL+Hkig4o9PefQCiy8ANKaXnIAp6kx28SerC
+         j4vKqMUdwEIK80Wf3YZP+tbxWLSUiiCocBRXsdeCmx+30NkBznRUiVXJyLwzqJqQC02e
+         FcJzgZ6/04YCIfAk7ZxNJiSIrmi1IyP/lRRNVIZYHD9AvIlhWVnY1Lp7rDkQhqdMKjgL
+         yZ4DpAAOjg/2HzTOyfVY8OU+Sp8Y1j+BvbLnOqLt5Seqy9XJNVQI5aruTZ8A/L+s6+Ia
+         Z8ld0VuhItp428waViwCB3dwhYa8HZxQMHATy/MrGHD7T5v2JtQZ+6IXCUIwROs0i7+E
+         tBbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728605137; x=1729209937;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Sf7V8r5HK3udmg4PXTFWlyhTEIgEcd1NxvdHS3A9s7M=;
+        b=MKOT6q8mMfsrO7MvRF28gJftY+ulTFo6L1fDVY9k9BfEjGX9U40YSj0LD5Q5iTaDQ8
+         aNSf5UEgOy6Skapt95kbYmju6McNYxOY4W2eGDqPZGncjixQgMi5TAsTeMQN3uQ7cF3U
+         IFvqoQ+89WpHSwLEDqNZZJCK3tj8TKPxjrcrhk9jmpkRpjEcAIxQE/hqzk7nsnFu7Ce9
+         wdPaIZ9V9hyGsL+2KzGctWdD/oDeex46Br7AehMa/YD8mePk8s3Zpu2JkzEwkdmtnqFy
+         TvJBl7vYzbnflC0a721i4cP7Rf0PYBUPQOpt6vVHY2xmQIiGf8jNIU8t6c3xCywyOYyP
+         KNUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUCqIgvW3kuaDdpvVrLUrQJFkdN32P8oWPq0S06QFQ81iPAeh54yNKdpZsuxg63EftbenC7zqBEhQyk@vger.kernel.org, AJvYcCVdWHUlMVoRHpZxI+xvryF/pYnvUevhtWm2p0kzM7EPXsd0fqLhohyM1haSRGRSxicO3G3g25OtMN3aAJ3a@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1Iw4xBsAySAgyQ36wPrq0A+WvtAfderHslh9hQlbfNcf4neiN
+	yQkDyIEl77MCG2ZpThgi504F++0R3IeJkHz4b+YwPr5VxdtbZkj1xZWwqUSnt8moZWBcZupKjj0
+	/IzsLlY0NK1n3OFgx1bo+th7TsW8=
+X-Google-Smtp-Source: AGHT+IHcWSRHmaRvrv3nzx9uKEKja1uko+ZHjWtuZTl0i8kEEFv3LovSUPiAOd0AGgCqc0oS8blEXfFcKGio/KV7iMI=
+X-Received: by 2002:a05:6402:d0b:b0:5c9:16e2:4db1 with SMTP id
+ 4fb4d7f45d1cf-5c948c95b97mr321200a12.8.1728605136416; Thu, 10 Oct 2024
+ 17:05:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20241005050155.61103-1-CFSworks@gmail.com> <20241005050155.61103-2-CFSworks@gmail.com>
+ <ccc78255-a2c4-4144-b580-9a16aada09c2@broadcom.com>
+In-Reply-To: <ccc78255-a2c4-4144-b580-9a16aada09c2@broadcom.com>
+From: Sam Edwards <cfsworks@gmail.com>
+Date: Thu, 10 Oct 2024 17:05:25 -0700
+Message-ID: <CAH5Ym4jgadgT=7NDULOZt4VaeoP8TFDcgxCsTdDcA0+AM-H=fw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: broadcom: bcmbca: bcm4908: Reserve CFE
+ stub area
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	William Zhang <william.zhang@broadcom.com>, Anand Gore <anand.gore@broadcom.com>, 
+	Kursad Oney <kursad.oney@broadcom.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Naresh,
+On Thu, Oct 10, 2024 at 3:57=E2=80=AFPM Florian Fainelli
+<florian.fainelli@broadcom.com> wrote:
+>
+> On 10/4/24 22:01, Sam Edwards wrote:
+> > The CFE bootloader places a stub program in the first page of physical
+> > memory to hold the secondary CPUs until the boot CPU writes the release
+> > address, but does not splice a /reserved-memory node into the FDT to
+> > protect it. If Linux overwrites this program before execution reaches
+> > smp_prepare_cpus(), the secondary CPUs may become inaccessible.
+> >
+> > This is only a problem with CFE, and then only until the secondary CPUs
+> > are brought online. Ideally, there would be some hypothetical mechanism
+> > we could use to indicate that this area of memory is sensitive only
+> > during boot. But as there is none, and since it is such a small amount
+> > of memory, it is easiest to reserve it unconditionally.
+>
+> If we supported CPU hotplug on those platforms (do we?) then it actually
+> does matter that this memory remains protected, and it cannot be
+> reclaimed. This does not invalidate the commit message and I will take
+> it as-is, but it it is not memory that we can necessarily reclaim that
+> easily, if we did things properly.
 
-On Thu, 2024-10-10 at 09:30 -0500, Rob Herring (Arm) wrote:
-> On Thu, 10 Oct 2024 16:53:31 +0530, Naresh Solanki wrote:
-> > Document the new compatibles used on IBM SBP1.
-> >=20
-> > Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I am looking at only one build of CFE, so don't take what I'm saying
+as gospel, but as I understand it:
+
+CFE implements only the spin-table method, which isn't dynamic. Once
+the kernel calls for the secondary CPUs to be released, it cannot shut
+them down and bring them up again, so they have no need to reenter the
+spin stub.
+
+With U-Boot+ATF, it's of course a different story: ATF needs to stay
+resident in memory to implement PSCI (which _is_ dynamic), but U-Boot
+inserts/overwrites the necessary DT structures to protect ATF and tell
+Linux to use PSCI, so we don't need to be thinking about that here.
+
+But, again, that's just my understanding. If there's a version of CFE
+out there that loads ATF/similar or implements PSCI itself, then,
+well, that'd invalidate this patch('s commit message). I doubt such a
+variant of CFE exists, but you're much better equipped to confirm or
+refute that possibility, given your familiarity with the platform and
+internal details.
+
+Best wishes,
+Sam
+
+>
+> >
+> > Therefore, add a /reserved-memory node to bcm4908.dtsi to protect the
+> > first 4KiB of physical memory.
+> >
+> > Signed-off-by: Sam Edwards <CFSworks@gmail.com>
 > > ---
-> > Changes in V4:
-> > - Retain Acked-by from v2.
-> > - Fix alphabetic order
-> > ---
-> >  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >=20
->=20
->=20
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
->=20
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
->=20
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
->=20
->   pip3 install dtschema --upgrade
->=20
->=20
-> New warnings running 'make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.dtb'=
- for 20241010112337.3840703-1-naresh.solanki@9elements.com:
->=20
-
-...
-
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mux@77: interrupts: Fal=
-se schema does not allow [[44, 4]]
-> 	from schema $id: http://devicetree.org/schemas/i2c/i2c-mux-pca954x.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu2@=
-58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cp=
-u2@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu1@=
-58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cp=
-u1@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu3@=
-58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cp=
-u3@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulato=
-rs' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulato=
-rs' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulato=
-rs' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: regulator@5f: 'regulato=
-rs' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: pvccinfaon-pvccfa-cpu0@=
-58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-> arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-sbp1.dtb: mp2973-pvccin-pvccfa-cp=
-u0@58: 'regulators' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 	from schema $id: http://devicetree.org/schemas/trivial-devices.yaml#
-
-These still must be addressed as mentioned on v3 (with more specific
-comments regarding the infineon,ir38263 on v4). Please look through the
-binding documents for the affected nodes and make sure the nodes in
-your DTS conform to their definitions. You can check your work with
-`make CHECK_DTBS=3Dy aspeed/aspeed-bmc-ibm-sbp1.dtb` prior to sending.
-
-It may help to base your series on top of [1] to reduce the volume of
-output from CHECK_DTBS=3Dy.
-
-Andrew
-
-[1]: https://github.com/amboar/linux/tree/for/bmc/aspeed/dt
-
+> >   arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi | 10 ++++++++++
+> >   1 file changed, 10 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/ar=
+m64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+> > index 8b924812322c..c51b92387fad 100644
+> > --- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+> > +++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
+> > @@ -68,6 +68,16 @@ l2: l2-cache0 {
+> >               };
+> >       };
+> >
+> > +     reserved-memory {
+> > +             #address-cells =3D <2>;
+> > +             #size-cells =3D <2>;
+> > +             ranges;
+> > +
+> > +             cfe-stub@0 {
+> > +                     reg =3D <0x0 0x0 0x0 0x1000>;
+> > +             };
+> > +     };
+> > +
+> >       axi@81000000 {
+> >               compatible =3D "simple-bus";
+> >               #address-cells =3D <1>;
+>
+>
+> --
+> Florian
 
