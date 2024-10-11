@@ -1,136 +1,135 @@
-Return-Path: <devicetree+bounces-110366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BD1A99A380
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:13:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5596199A389
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 14:14:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4F1D91F21C82
-	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:13:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F1D021F21D19
+	for <lists+devicetree@lfdr.de>; Fri, 11 Oct 2024 12:14:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B92B215F55;
-	Fri, 11 Oct 2024 12:13:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D9C8216A32;
+	Fri, 11 Oct 2024 12:14:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="SeFwIU4v"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IG2E0WoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3262219923C;
-	Fri, 11 Oct 2024 12:13:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA45921500F;
+	Fri, 11 Oct 2024 12:14:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728648795; cv=none; b=Wm+8rjOg4dBRi/h4MCeZjmYBY3S2h4x88ssRrp+TLN8g3djJNnCxmJHByGv+KDOo+FJ6UDDFnnE+sJQAsEAF+xsNs6uXweu859pqNA3lfWs60CQ2hDmqENwtXDihbORl8fe0h1+AraTAjPwEQTSlbiX4bTieDA8wvbvU7zzxARU=
+	t=1728648851; cv=none; b=Kj8OUk9+SPFERum3F6OeWDFBZVO/uxgqqxTf5DoZWswF7f0bEttDyHP80S61f8rxE1xe1UWHZ9xIWPa6G5gdVPVqcuUkJFaE5iPog9lYVyeSPThcQqYNoP49nvCars3JkichfYCAxx+YMApzB+iATi40dPikYuUbIlhOS8LWUbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728648795; c=relaxed/simple;
-	bh=apbQAH3SWt6kRnCOpfxBZSM///7pZYCMSxT/CIMlLJs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NWu90fvdrddGUAa41v5mJoHJR/j9XttCqKO7yIh+W3F3UmqAeSpfO1goFhp+iH4SKcDigOElxw3GfH/7b8w76/7vL2/9N6SVVONXUuSlZh21BA8GbP/JYykSJwSS5TvMWZAmC25JLNzYaclRtYrz+2tos0emOqKGFzKurd4vnLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=SeFwIU4v; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49BBwVM6031027;
-	Fri, 11 Oct 2024 14:12:39 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	hTVrXnYYt+rcLary/TZa08XbMHLGNZVgAQjoCN87HBI=; b=SeFwIU4v2wjNS4Lu
-	1B6yq1V50PMTfnHIZOpDhtQniDh8m2Evn4rQOlzAY6Y+R1RKPr0YY4gSNWUBTAMx
-	Lkhs+bqQJXrfY7i1Nc4a5edvvmEhvCkeRV2EJfo8xw2OIH5OrN/hRa9Kzu/buYeu
-	XPL4jVFwdOvLgF/YRd0FM8e4hxOav1LGCLWSiMW146MjBUSOsTo2wEeSo7mqLodI
-	JVJcUWurzZ9xOsAaAS9uR0hQJzhFtzYGCbgmkyVWiXpRtLcFTVPtGa5utIayM008
-	j/FzdmTfRHnD6SD+flrgGUNIv8CYqiwl8ONh9Nk3cI6fGtWaoK/jMEUrIJTd5AAN
-	mhebAg==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 425q5wc6kx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 11 Oct 2024 14:12:39 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8EC2B4005D;
-	Fri, 11 Oct 2024 14:11:09 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2AB672734EB;
-	Fri, 11 Oct 2024 14:07:52 +0200 (CEST)
-Received: from [10.252.28.117] (10.252.28.117) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Fri, 11 Oct
- 2024 14:07:51 +0200
-Message-ID: <6a4cccb4-9e55-437d-925b-5f5bb1804159@foss.st.com>
-Date: Fri, 11 Oct 2024 14:07:50 +0200
+	s=arc-20240116; t=1728648851; c=relaxed/simple;
+	bh=kd54sH6YhOnXIo+Km/qLp2CNCHxAoohftut1wYnFYkA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QrR00KhGO7pIZqiOBOAfIwUGUC3v6qsyx9zBuMhkMRkTO0lxKjbKgXpgV2DlFTOdZM/KMHbFHxord071GZOETloukWow13YVw+xiWtrQLRhNvqcL72akufzpFgsT0BiWvrR9gsEyLn33T5FIbBMixPb0ju/17PNqPqzjwjoOOaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IG2E0WoE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77999C4CEC3;
+	Fri, 11 Oct 2024 12:14:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728648851;
+	bh=kd54sH6YhOnXIo+Km/qLp2CNCHxAoohftut1wYnFYkA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=IG2E0WoEvJqxcUAcVv7v+asTeHVwM4c49eBztyYcm3w0sc4waRiB1fPn5c/1VbENl
+	 aUC2UzQ8g8A2YYQSrpRYyizf9JG0QUFjEteTADfPS7dZ7NviEG/jUaUB8Htr2aVy5z
+	 KPPGT9N1ZtoqiEjYkxs9+c97rcgFu7EwlXHmwpk0cfPnfNcv1FOnt5brbdAEHsyLNU
+	 Kkwf80MESHV4GgRsHgDZwcNUnqcO/+tfqPU0qO9vVb7E/0t6OF/i3DwMNqwN+Eknl6
+	 XTV+0zvUVmyfOMuUhwStPxPl6snRszjjqoZKYBVbl/7Iq/2wkWp1Aw8SMj3eqQ78pK
+	 f/x2ukcFEMAvQ==
+From: Damien Le Moal <dlemoal@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>,
+	linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org
+Cc: linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: [PATCH v4 00/12] Fix and improve the Rockchip endpoint driver
+Date: Fri, 11 Oct 2024 21:13:56 +0900
+Message-ID: <20241011121408.89890-1-dlemoal@kernel.org>
+X-Mailer: git-send-email 2.46.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] hwrng: stm32 - implement support for STM32MP25x
- platforms
-To: Marek Vasut <marex@denx.de>, Olivia Mackall <olivia@selenic.com>,
-        Herbert
- Xu <herbert@gondor.apana.org.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre
- Torgue <alexandre.torgue@foss.st.com>
-CC: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-        Lionel
- Debieve <lionel.debieve@foss.st.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        Yang
- Yingliang <yangyingliang@huawei.com>
-References: <20241007132721.168428-1-gatien.chevallier@foss.st.com>
- <20241007132721.168428-3-gatien.chevallier@foss.st.com>
- <2fad1566-49f9-4586-b0d4-8a4a12f9e69e@denx.de>
- <9283caeb-1b84-43c2-a8a4-6b43a6962f34@foss.st.com>
- <b4932f99-cda4-42ef-88d8-461ca6e8cefd@denx.de>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <b4932f99-cda4-42ef-88d8-461ca6e8cefd@denx.de>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+Content-Transfer-Encoding: 8bit
 
+This patch series fix the PCI address mapping handling of the Rockchip
+endpoint driver, refactor some of its code, improves link training and
+adds handling of the #PERST signal.
 
+This series is organized as follows:
+ - Patch 1 fixes the rockchip ATU programming
+ - Patch 2, 3 and 4 introduce small code improvments
+ - Patch 5 implements the .get_mem_map() operation to make the RK3399
+   endpoint controller driver fully functional with the new
+   pci_epc_mem_map() function
+ - Patch 6, 7, 8 and 9 refactor the driver code to make it more readable
+ - Patch 10 introduces the .stop() endpoint controller operation to
+   correctly disable the endpopint controller after use
+ - Patch 11 improves link training
+ - Patch 12 implements handling of the #PERST signal
 
-On 10/11/24 13:24, Marek Vasut wrote:
-> On 10/11/24 11:55 AM, Gatien CHEVALLIER wrote:
->>
->>
->> On 10/7/24 15:54, Marek Vasut wrote:
->>> On 10/7/24 3:27 PM, Gatien Chevallier wrote:
->>>> Implement the support for STM32MP25x platforms. On this platform, a
->>>> security clock is shared between some hardware blocks. For the RNG,
->>>> it is the RNG kernel clock. Therefore, the gate is no more shared
->>>> between the RNG bus and kernel clocks as on STM32MP1x platforms and
->>>> the bus clock has to be managed on its own.
->>>>
->>>> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
->>> A bit of a higher-level design question -- can you use drivers/clk/ 
->>> clk-bulk.c clk_bulk_*() to handle all these disparate count of clock 
->>> easily ?
->>
->> Hi, I'd like to make sure that we enable the core clock before the bus
->> clock so that the RNG hardware block can start its internal tests while
->> we ungate the bus clock. It's not a strong opinion but it feels better.
-> Maybe this could still work if the struct clk_bulk_data {} is ordered 
-> that way, so the bus clock are first, and the rest afterward ?
+This patch series depends on the PCI endpoint core patches from the
+V5 series "Improve PCI memory mapping API". The patches were tested
+using a Pine Rockpro64 board used as an endpoint with the test endpoint
+function driver and a prototype nvme endpoint function driver.
 
-I guess you meant, the core first.
-Putting the bus clock first with the updated YAML doc generates a
-warning when checking the bindings. I guess what you propose is OK
-then. Core clock is defined first in the device tree.
+Changes from v3:
+ - Addressed Mani's comments (see mailing list for details).
+ - Removed old patch 11 (dt-binding changes) and instead use in patch 12
+   the already defined reset_gpios property.
+ - Added patch 6
+ - Added review tags
+
+Changes from v2:
+ - Split the patch series
+ - Corrected patch 11 to add the missing "maxItem"
+
+Changes from v1:
+ - Changed pci_epc_check_func() to pci_epc_function_is_valid() in patch
+   1.
+ - Removed patch "PCI: endpoint: Improve pci_epc_mem_alloc_addr()"
+   (former patch 2 of v1)
+ - Various typos cleanups all over. Also fixed some blank space
+   indentation.
+ - Added review tags
+
+Damien Le Moal (12):
+  PCI: rockchip-ep: Fix address translation unit programming
+  PCI: rockchip-ep: Use a macro to define EP controller .align feature
+  PCI: rockchip-ep: Improve rockchip_pcie_ep_unmap_addr()
+  PCI: rockchip-ep: Improve rockchip_pcie_ep_map_addr()
+  PCI: rockchip-ep: Implement the pci_epc_ops::get_mem_map() operation
+  PCI: rockchip-ep: Rename rockchip_pcie_parse_ep_dt()
+  PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() memory allocations
+  PCI: rockchip-ep: Refactor rockchip_pcie_ep_probe() MSI-X hiding
+  PCI: rockchip-ep: Refactor endpoint link training enable
+  PCI: rockship-ep: Implement the pci_epc_ops::stop_link() operation
+  PCI: rockchip-ep: Improve link training
+  PCI: rockchip-ep: Handle PERST# signal in endpoint mode
+
+ drivers/pci/controller/pcie-rockchip-ep.c   | 408 ++++++++++++++++----
+ drivers/pci/controller/pcie-rockchip-host.c |   4 +-
+ drivers/pci/controller/pcie-rockchip.c      |  21 +-
+ drivers/pci/controller/pcie-rockchip.h      |  24 +-
+ 4 files changed, 370 insertions(+), 87 deletions(-)
+
+-- 
+2.47.0
+
 
