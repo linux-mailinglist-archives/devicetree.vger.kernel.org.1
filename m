@@ -1,109 +1,169 @@
-Return-Path: <devicetree+bounces-110633-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD48A99B4EE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:48:51 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEF199B544
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 16:00:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3DC8B2836D2
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:48:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3FD11F2258C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C1E175D2D;
-	Sat, 12 Oct 2024 12:48:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A1D178395;
+	Sat, 12 Oct 2024 14:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q7rOlrTF"
+	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="zZyBVo6B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4991F1F5FA;
-	Sat, 12 Oct 2024 12:48:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705CA149DF0;
+	Sat, 12 Oct 2024 14:00:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728737326; cv=none; b=US+Nh5BgSMrw5u/qOLOLz5L6rHy6TI2fTMHH29Enbr0MyYN0HmrmKehLwztv0cR60T3ao9OlbnhHKDF8l5uGV3bZacargtIW3SEVyn5SWpnrGLmHg5fE1mCXvgV84T1lL9NAR42RdD6M/fzpPcLmGhROPZGvvGfeQfChZkgYBf4=
+	t=1728741633; cv=none; b=FKfOOxPPTWxGtWv6DrIJSv+YOoHoU6CSATHYEG1vdiGpj7HAoMd/q9Yj9j+7MpnRyYraeD2Bzz4d9GpRx1Qq82kJPtGKTXOTR+jttrZtRnxxYhaJ1z1iflJT/0HJcmPq6WHaZ/W/T0CTjgSa98Wxj8n00Q8NZbcRu+7OQwCPya8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728737326; c=relaxed/simple;
-	bh=kEHSPvWvZBqgdTZFy+tP0oWL6gH6iFh2YX2nHzfWWqM=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j3wd28P88JWXdidHI/aAEfCDObyU0vpx4EsMUUczZfWnh765Ueq1qj6NK9gwD5sd49pTFI1MbIgrC65FNT5aXK/d1r7A/PUG3bQTyHPLLIT38rZqjhbYmBD+y7v3dbDnxuS2HoextnW3uDnsIM+f0fgUASEWLOCIyTGH58iCXYg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q7rOlrTF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A749C4CEC6;
-	Sat, 12 Oct 2024 12:48:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728737325;
-	bh=kEHSPvWvZBqgdTZFy+tP0oWL6gH6iFh2YX2nHzfWWqM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=Q7rOlrTFiXnLisjmjCE7GIIup2AbY82CuRDY4hyYlMPLFUSbKgEv1aAf4TNfH4a+9
-	 wOPTir+U+zi9juEBWzdH5N6wMSRLbBJHWCR7LWsdry3ta0vuk+hYgfh0kK69eyI+YG
-	 7FpmkVNM0iBNY/yA2swQGaAYev87YBX6cs6xYQJvQUHqpaH+Si6WiU/iEntw+/+Q6u
-	 1KtR+/NS2GW25tL0vjLBr7VB19p457skL8zJnypB4fJsznhldjzV06KO91+mYSOezg
-	 ZpLIqo9MjvDDr3yBd7YXN7MORvMhc1j8sygpIQqN91TavjFt8keqxR3SlEocElxJlj
-	 MBVo2ypKDoutw==
-Date: Sat, 12 Oct 2024 13:48:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: Guillaume Stols <gstols@baylibre.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5p?=
- =?UTF-8?B?Zw==?= <ukleinek@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
- Dooley <conor+dt@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, linux-pwm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org, aardelean@baylibre.com, dlechner@baylibre.com,
- jstephan@baylibre.com, Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v4 8/8] iio: adc: ad7606: Disable PWM usage for non
- backend version
-Message-ID: <20241012134833.31531e18@jic23-huawei>
-In-Reply-To: <bff897a52650dbd499a83d955645cbc2290f80ce.camel@gmail.com>
-References: <20241009-ad7606_add_iio_backend_support-v4-0-6971a8c0f1d5@baylibre.com>
-	<20241009-ad7606_add_iio_backend_support-v4-8-6971a8c0f1d5@baylibre.com>
-	<bff897a52650dbd499a83d955645cbc2290f80ce.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728741633; c=relaxed/simple;
+	bh=Oko5pEJSjCqvkp/hXyJplBKuu7k81GI8vfiRbw3SQBI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BiEJsYKx0bzsx9slHvdorocsDWWy3yjWMBZ91MvUCKbwSeeU9f1N3Q3iazymlGpB+TU4XD111tAct8dasDwY3ewln/mZbgTtq94DNyZ/b63QXcLHd8ErlSG/ea60mXMx7qjP7Hkecv5eKHsouU+7Ch1tgut1FXQ6EojZPgNElSQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=zZyBVo6B; arc=none smtp.client-ip=195.154.113.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
+	; s=202004.hall; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:Reply-To:
+	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
+	bh=86LUFeiSctauCmIBlqHrJmZxrAIYPqEdqsSwFAfU0sE=; b=zZyBVo6BMQP1cuNJ6PGdOOkOVo
+	ypvs/AkLg6J+QUOI6bBBIAxsFKMy1cfReTMN6clE7w0+77K4uGRINpQQfUGAAt2qqg/S5zunkUHh6
+	uwsrsThwmHi/OsUz/w5E0TaWs+jfgyoTPWpVTHTH/2Xtwd5cxwUjUvR4M+UUJMZif/9p98mLAs+9G
+	Fa8Z88v1Io4Ir1/1Pbe4AfOz+UFIGK7yT+ZGtbJl+/Xpn/g7pasfUzPJn9CFuV1mL949km3xx42VX
+	ED6524KlLqGBqX39OOWN3q1ABwJMSkzxg7Fcy4aCa06yP8ebAAEHWsyHA/dbsrbeY2X/Pe+ZgUJ4b
+	Ayo0vBAQ==;
+Received: from ohm.aurel32.net ([2001:bc8:30d7:111::2] helo=ohm.rr44.fr)
+	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <aurelien@aurel32.net>)
+	id 1szcBV-000lVG-0Q;
+	Sat, 12 Oct 2024 15:29:29 +0200
+Date: Sat, 12 Oct 2024 15:29:28 +0200
+From: Aurelien Jarno <aurelien@aurel32.net>
+To: Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Jack Zhu <jack.zhu@starfivetech.com>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	E Shattow <lucent@gmail.com>
+Subject: Re: [v3] riscv: dts: starfive: jh7110: Add camera subsystem nodes
+Message-ID: <Zwp5uFiGqxQa-yC9@aurel32.net>
+Mail-Followup-To: Changhuang Liang <changhuang.liang@starfivetech.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jack Zhu <jack.zhu@starfivetech.com>, linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	E Shattow <lucent@gmail.com>
+References: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
+User-Agent: Mutt/2.2.13 (2024-03-09)
 
-On Wed, 09 Oct 2024 16:45:40 +0200
-Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+Hi,
 
-> On Wed, 2024-10-09 at 09:19 +0000, Guillaume Stols wrote:
-> > Since the pwm was introduced before backend, there was a mock use, with
-> > a GPIO emulation. Now that iio backend is introduced, the mock use can
-> > be removed.
-> >=20
-> > Signed-off-by: Guillaume Stols <gstols@baylibre.com>
-> > --- =20
+On 2024-02-18 19:27, Changhuang Liang wrote:
+> Add camera subsystem nodes for the StarFive JH7110 SoC. They contain the
+> dphy-rx, csi2rx, camss nodes.
 >=20
-> Maybe this was agreed on the previous iterations but I wonder if we shoul=
-dn't just
-> bring PWM support in the same patch as backend support is added...
+> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 49 ++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 67 +++++++++++++++++++
+>  2 files changed, 116 insertions(+)
+
+We have been asked to enable CONFIG_VIDEO_STARFIVE_CAMSS in the Debian
+kernel, which from my understanding and given the device tree shown
+below also requires enabling CONFIG_VIDEO_CADENCE_CSI2RX. That said
+doing so triggers the following error in dmesg:
+
+[   25.143282] cdns-csi2rx 19800000.csi: probe with driver cdns-csi2rx fail=
+ed with error -22
+
+=46rom a quick look it seems there is something in the port@0 csi2rx
+entry. Do you happen to know what is wrong?
+
+Thanks
+Aurelien
+
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
+si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index b89e9791efa7..737ee97a3577 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -125,6 +125,55 @@ &tdm_ext {
+>  	clock-frequency =3D <49152000>;
+>  };
 >=20
+> +&camss {
+> +	assigned-clocks =3D <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
+> +			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
+> +	assigned-clock-rates =3D <49500000>, <198000000>;
+> +	status =3D "okay";
+> +
+> +	ports {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		port@0 {
+> +			reg =3D <0>;
+> +		};
+> +
+> +		port@1 {
+> +			reg =3D <1>;
+> +
+> +			camss_from_csi2rx: endpoint {
+> +				remote-endpoint =3D <&csi2rx_to_camss>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&csi2rx {
+> +	assigned-clocks =3D <&ispcrg JH7110_ISPCLK_VIN_SYS>;
+> +	assigned-clock-rates =3D <297000000>;
+> +	status =3D "okay";
+> +
+> +	ports {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		port@0 {
+> +			reg =3D <0>;
+> +
+> +			/* remote MIPI sensor endpoint */
+> +		};
+> +
+> +		port@1 {
+> +			reg =3D <1>;
+> +
+> +			csi2rx_to_camss: endpoint {
+> +				remote-endpoint =3D <&camss_from_csi2rx>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+>  &gmac0 {
+>  	phy-handle =3D <&phy0>;
+>  	phy-mode =3D "rgmii-id";
+=20
 
-I can't remember why we ended up in this position (might have been me
-who asked for it!) but I'm fine with the logical steps we have in the
-series, and it will all merge together. So probably not worth rethinking
-now!
-
-I took another look and other than the stuff Nuno has raised this series
-looks good to me.
-
-Figures crossed for v5 :)
-
-Jonathan
-
-
-> - Nuno S=C3=A1
->=20
->=20
->=20
-
+--=20
+Aurelien Jarno                          GPG: 4096R/1DDD8C9B
+aurelien@aurel32.net                     http://aurel32.net
 
