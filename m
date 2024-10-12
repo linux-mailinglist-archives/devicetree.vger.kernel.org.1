@@ -1,159 +1,103 @@
-Return-Path: <devicetree+bounces-110667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C46299B609
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 18:08:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EB4D99B620
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:04:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0015D282459
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 16:08:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0E5331F218A9
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:04:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49813C488;
-	Sat, 12 Oct 2024 16:08:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 560FF50276;
+	Sat, 12 Oct 2024 17:04:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JxHFxlkg"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="cylJN7TP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 978D52E401;
-	Sat, 12 Oct 2024 16:08:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6444175BF;
+	Sat, 12 Oct 2024 17:04:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728749312; cv=none; b=goHih8SQg/afLnBUaVhn1ihwhkHGn+tu7kvNhSBPaX90aTgsed1KRiPbA6BNX+E9a/vJAOEVgSRSFKgJw12KEZcPXifQsnm0TkePyhcxdzor8VPgUynJ3grwkzXkLzT45Xe+wNkEDYIP2xJCErzc+DAOFsDhv7S3SsiKeptdeEs=
+	t=1728752693; cv=none; b=EnsA/nsZ8e2eci6ng2dq657vt9SGmm4sw62OYv3aYT6jE5rf5/VzNctgKFr6OCIKUBvMMJIiEfFGErq6/hCDIEBEE9lAbxECrU9vF2ubSXopQBcD7ZN8HnyXbut3v8Hj8u8O9AHGn0IEnoTACuQTO1ip19aCb/yN716sHvQJd7k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728749312; c=relaxed/simple;
-	bh=KyM2WeJo+Oc9zR3gSGuNiRtdbPq4sGgsdLpizlOopAQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pkJ1y/hxkFgovjvLz+oISJHXn0zgc9NtRwH0ZIQllwUgOiWjtdP4HYCMrqEDnbf0drf8BaoVBvSZnUAGVKPQ4kGXjwdOLxlgQV/aknNaUiqhilFjJOkVKXtaL7stO17177e4Tcpjxm5O9JkkJWXZ+/x6uD8uJBhZrriW2WA2YFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxHFxlkg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B855C4CEC6;
-	Sat, 12 Oct 2024 16:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728749312;
-	bh=KyM2WeJo+Oc9zR3gSGuNiRtdbPq4sGgsdLpizlOopAQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=JxHFxlkg+cR4xCAlNL74cm57dxaGzW8ltbmA1UHbumPihQWCMRxYrxH17phTtlrxx
-	 JUejNT5GT5i9L7M5AevTb+UekMn9TXhIYnbFq6h+vEjBFNAdsvRkBU/1q1ijgK16FW
-	 xumrLOIWd0xyulTAYsoErDmTv8P/uarmVxiQZqmfYdbLgqdxuXJ7CB/fAq14I1gv+/
-	 p33pzzFaymeGtc/EtUazHXUicyl0kspmBOHu6qx2BRKmo/lOfTPrWG+LnLGsIWJrOh
-	 CX+r5h2L8gKl8hCH3wBc7Y4eiphdlbWtfBFYKCAkJ6BiovAs1eClW2zkdgaQuwSgKg
-	 1BesdtJJ6Pj/w==
-Date: Sat, 12 Oct 2024 17:08:23 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Vasileios Amoiridis <vassilisamir@gmail.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
- ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
- biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
- semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v8 3/4] iio: pressure: bmp280: Add data ready trigger
- support
-Message-ID: <20241012170823.3c6d3df9@jic23-huawei>
-In-Reply-To: <20241007194945.66192-4-vassilisamir@gmail.com>
-References: <20241007194945.66192-1-vassilisamir@gmail.com>
-	<20241007194945.66192-4-vassilisamir@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728752693; c=relaxed/simple;
+	bh=cehPu9F8GEfyS6AFYDXu9M4zY0McfXYpr7xbHOPtizc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kMSam7X8rik/d/07vQQEpr4naTAQFT8UpevvBHloBx382zo3mLiIKLAFFW6c3Ru9z5E/Rfb3vv1NP42ghbzJYGfrTwmLSEm3/3dXgLDrHL2pyUNPkzEUW3Bt7x6kSPuUbkEZ6iC8vUsGqT8lkZUm9yE6M73oHYuV2wgYKdwodWM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=cylJN7TP; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728752680;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=iM3UE8DQe02WAdlGsdyyi6qgsRCUdBbEF5+N10Dhsd0=;
+	b=cylJN7TPl6anhfCNNFwta7cxiuu7tDHpjk5QkhyU+VPsd3/GOGi7uAf2Uc6XnXXSg0fL5F
+	lKEK1SY1ZhmYrQweEsPCcSnhNOPESvRo4QHaq1E7c8xg2uQqTPoplE+S6GLzOBGPJA3C8T
+	O7DwbIyi4+zOsyKlom+pcz3TIhxWWQTdn93CPaN7xQnqoeA0lBgcXoPQjDpZEQmf/Pj+Vf
+	DnFzc9bCrA8Fbd3U4dON0evcTf6Xrw7cr6vX/73M3JyKYIOfv1vZOeEM8qrN13zge6C8DE
+	U04nbhNP3o0ETT7utXNl9Hm0GENZoaNJwr4duP09Q9kabQBNkrws98ffMa027g==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Subject: [PATCH 0/3] Update, encapsulate and expand the RK356x SoC dtsi files
+Date: Sat, 12 Oct 2024 19:04:33 +0200
+Message-Id: <cover.1728752527.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Mon,  7 Oct 2024 21:49:44 +0200
-Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
+This series tackles the Rockchip RK356x SoC dtsi files in a few different
+ways.  First, it updates the lower and upper voltage limits and the exact
+voltages for the Rockchip RK356x CPU OPPs, using the most conservative
+per-OPP values for different SoC bins.  This is rather similar to the
+already performed adjustment of the GPU OPP voltages. [1]
 
-> The BMP3xx and BMP5xx sensors have an interrupt pin which can be used as
-> a trigger for when there are data ready in the sensor for pick up.
-> 
-> This use case is used along with NORMAL_MODE in the sensor, which allows
-> the sensor to do consecutive measurements depending on the ODR rate value.
-> 
-> The trigger pin can be configured to be open-drain or push-pull and either
-> rising or falling edge.
-> 
-> No support is added yet for interrupts for FIFO, WATERMARK and out of range
-> values.
-> 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
+Next, this series prepares the RK356x SoC dtsi files for per-variant OPPs,
+with the RK3566T being the first new RK356x SoC variant to be introduced.
+This follows the approach used for the RK3588 SoC variants. [2]
 
-Hi Vasileios,
+Lastly, this series introduces new SoC dtsi for the RK3566T variant, which
+is capable of operating at the CPU and GPU OPPs/frequencies lower than the
+"full-fat" RK3566 variant's.  The RK3566T is found on some of the already
+supported boards and rather importantly, this stops the CPU cores and the
+GPU from being overclocked on these boards.
 
-One questing about locking below.  What you have is probably correct
-but might be tighter than it needs to be, or need a comment to say why
-for future readers.
+[1] https://lore.kernel.org/linux-rockchip/cover.1719763100.git.dsimic@manjaro.org/T/#m786f0e0a45377d29aea826f05c95b5052a8bb3d9
+[2] https://lore.kernel.org/all/9ffedc0e2ca7f167d9d795b2a8f43cb9f56a653b.1717923308.git.dsimic@manjaro.org/T/#u
 
-I hate register reads with side effects btw.  It's an 'optimization'
-hardware designers thing is nice, but makes for really ugly software
-interfaces.
+Dragan Simic (3):
+  arm64: dts: rockchip: Update CPU OPP voltages in RK356x SoC dtsi
+  arm64: dts: rockchip: Prepare RK356x SoC dtsi files for per-variant
+    OPPs
+  arm64: dts: rockchip: Add new SoC dtsi for the RK3566T variant
 
-> @@ -2429,6 +2564,88 @@ static int bmp580_chip_config(struct bmp280_data *data)
->  	return 0;
->  }
->  
-> +static void bmp580_trigger_reenable(struct iio_trigger *trig)
-> +{
-> +	struct bmp280_data *data = iio_trigger_get_drvdata(trig);
-> +	unsigned int tmp;
-> +	int ret;
-> +
-> +	ret = regmap_read(data->regmap, BMP580_REG_INT_STATUS, &tmp);
-As below. Seems this read has side effects (horrible!)
-I'm not sure if this is related to the locking though.
-> +	if (ret)
-> +		dev_err(data->dev, "Failed to reset interrupt.\n");
-> +}
-
-> +static int bmp580_int_pin_config(struct bmp280_data *data)
-> +{
-> +	int pin_drive_cfg = FIELD_PREP(BMP580_INT_CONFIG_OPEN_DRAIN,
-> +				       data->trig_open_drain);
-> +	int pin_level_cfg = FIELD_PREP(BMP580_INT_CONFIG_LEVEL,
-> +				       data->trig_active_high);
-> +	int ret, int_pin_cfg = pin_drive_cfg | pin_level_cfg;
-	int int_pin_cfg = pin...
-	int ret;
-
-Is easier to follow.
-
-> +
-> +	ret = regmap_update_bits(data->regmap, BMP580_REG_INT_CONFIG,
-> +				 BMP580_INT_CONFIG_MASK, int_pin_cfg);
-> +	if (ret) {
-> +		dev_err(data->dev, "Could not set interrupt settings.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = regmap_set_bits(data->regmap, BMP580_REG_INT_SOURCE,
-> +			      BMP580_INT_SOURCE_DRDY);
-> +	if (ret)
-> +		dev_err(data->dev, "Could not set interrupt source.\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static irqreturn_t bmp580_irq_thread_handler(int irq, void *p)
-> +{
-> +	struct iio_dev *indio_dev = p;
-> +	struct bmp280_data *data = iio_priv(indio_dev);
-> +	unsigned int int_ctrl;
-> +	int ret;
-> +
-> +	scoped_guard(mutex, &data->lock) {
-> +		ret = regmap_read(data->regmap, BMP580_REG_INT_STATUS, &int_ctrl);
-What are you locking against here?  Seems this read may have side effects?
-If not the regmap internal locking should be enough for a register read.
-> +		if (ret)
-> +			return IRQ_NONE;
-> +	}
-
+ .../{rk3566.dtsi => rk3566-base.dtsi}         |   2 +-
+ .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |   2 +-
+ .../boot/dts/rockchip/rk3566-rock-3c.dts      |   2 +-
+ arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 116 ++++++++++++++----
+ arch/arm64/boot/dts/rockchip/rk3566t.dtsi     |  90 ++++++++++++++
+ arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 113 ++++++++++++++++-
+ .../{rk356x.dtsi => rk356x-base.dtsi}         |  81 ------------
+ 7 files changed, 294 insertions(+), 112 deletions(-)
+ copy arch/arm64/boot/dts/rockchip/{rk3566.dtsi => rk3566-base.dtsi} (95%)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+ rename arch/arm64/boot/dts/rockchip/{rk356x.dtsi => rk356x-base.dtsi} (96%)
 
 
