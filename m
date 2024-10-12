@@ -1,95 +1,144 @@
-Return-Path: <devicetree+bounces-110675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A5199B64D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:30:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B69999B658
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72C021F22024
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:30:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8AE1C21034
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:35:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E26281AB6;
-	Sat, 12 Oct 2024 17:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110148002A;
+	Sat, 12 Oct 2024 17:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="S4Ff3VwS"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="uNW5X8oQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 155B46F06A;
-	Sat, 12 Oct 2024 17:30:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30CC1EA65;
+	Sat, 12 Oct 2024 17:35:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728754235; cv=none; b=B5m+1MWeuVn+DMpAkBiGC1DdNl6JnXmEi4f4dMF0vSclerzZT4V4YhmpKKIsLUOkMfd6Ytkdo3VXPt4l1bWj4PxnHDRvbQhf4BFaJsmVQAiiCk9+wk2AWqym8w0HyeWn8y5B5PC5riwfPDYE8htn8xXCyEL1Y4k0BF2/M9ve20E=
+	t=1728754553; cv=none; b=LEQlaKkIIfGmd5yjyRBLwu61+aL/dLdbR3e80Lc3jsYkUGPWcc3tb5zfcOQgGVRR6uyaCQCUJXEIdFwQTnNC38afPA5qLAVZIMIDuWcKb+zjk0nd12KnkgBi7LjejTAHBWEmkFCtW3T3PvwrjCAxj2NDvChsjn+loNp2/lnm00U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728754235; c=relaxed/simple;
-	bh=lAmk8qweEfG9WF+FkFKFFHuHtt4spQx5ZrigpxHR2oE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XvYVrm14PvJDU4R9Fn8VZZsYMDIrhphLVcHyIt77mKfibpjQUPzz1zWsirt/p46JUmK0RV3yvkeoYfsvI4Kz/wpHXB8xUZnDEpNXZ6lbHLO0cmWQD6nv0imwNSoWWjk58Sjj5Q+w+bQK0ookSFmGFO7zZGJ2hYd4rD2dNIlhgPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=S4Ff3VwS; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=DQm141ViCMzhU11jXjJClJYjjMCDmk8T4ukFMZIGqnc=; b=S4Ff3VwSFeXUoMKXaJ6HEPfZ8v
-	CUoSBNtqEp8z3PQ+A4E24cO5Ipjt8p04YwFuz3oDjav398C24tjeCTwGInoiBNugaCYKYb2rkKS2c
-	OX0iVUGwfNEk48fuLs3m59NQngJkXGnhf2/IfGvmjng9C3byQXc1+NfHQXX98ejQlNSE=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1szfwa-009oJ2-Vr; Sat, 12 Oct 2024 19:30:20 +0200
-Date: Sat, 12 Oct 2024 19:30:20 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1728754553; c=relaxed/simple;
+	bh=B/ZlyxiX2NnLgtqIFj15AHbmeHrL4+2HNnXLckZf1o0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Cbdk1g6XQgyaN/hjBEtwPxhuZnBxNxKtNbqy8Wa6JbEYq4ywIiKc6K3d8EcTMxTnkMGRsrfNnP8c4Hoq78uvhzmZNut7L93yr8FzlvyYdsTtXkTSa1X+TeXrZ+KdLZb5OpIdjsi+YeOUqwtFrJkvaspdCbVMxBuqCsEciC22+4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=uNW5X8oQ; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=AQhSOcq/aIa70jmnVrqHrmUcq5CjjmXv02YVDlavj3k=; b=uNW5X8oQ7/TOXG/4sbWLaBuPTX
+	YhTRKIC5395aQiOZ1mAgpFu9zMCVrMdHEvsjMa+K18IBsUeUOB6PobQ3n8OZ+nPxV4Q27YkZe8coz
+	qcjrqQmwNZwMQU4iWqxW49gryiGIwmCUHim2VMqBPZ5+pSdfB2lOMP/SnEdQxAQExVutDL1hNZ3Mu
+	NkEmQDESZlZPLSRAbYtm/hH2zpiua1nLzyWmBXKnU00t5/6x0ArIsm6/OmjE/JZjOXRtGVoAN35nD
+	Q0rBgWgWdfCNun0FhYuVsoavbXds6RNJxe0OlHuDAA9JmVmDGwctciSJegyQVsH4FD7zdVQBf7iMF
+	uYUE3DvA==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1szg1D-00019k-IQ; Sat, 12 Oct 2024 19:35:07 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: linux-kernel@vger.kernel.org,
+	Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Muhammed Efe Cetin <efectn@protonmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Elon Zhang <zhangzj@rock-chips.com>,
+	Jagan Teki <jagan@edgeble.ai>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	linux-serial@vger.kernel.org,
+	Guenter Roeck <linux@roeck-us.net>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Xu Liang <lxu@maxlinear.com>,
-	Christian Marangi <ansuelsmth@gmail.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	Robert Marko <robimarko@gmail.com>,
-	Russell King <rmk+kernel@armlinux.org.uk>,
-	Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: Re: [PATCH net-next v2 5/5] net: phy: intel-xway: add support for
- PHY LEDs
-Message-ID: <8ee4f92f-aaf4-436a-bc1e-23fcb24e22ca@lunn.ch>
-References: <e9b15613a81129ceecb07ec51f71bbe75425ad2e.1728558223.git.daniel@makrotopia.org>
- <81f4717ab9acf38f3239727a4540ae96fd01109b.1728558223.git.daniel@makrotopia.org>
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Simona Vetter <simona.vetter@ffwll.ch>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Jamie Iles <jamie@jamieiles.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Liang Chen <cl@rock-chips.com>,
+	dri-devel@lists.freedesktop.org,
+	Alexey Charkov <alchark@gmail.com>,
+	linux-i2c@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Maxime Ripard <mripard@kernel.org>,
+	linux-spi@vger.kernel.org,
+	Ondrej Jirman <megi@xff.cz>,
+	Andy Yan <andyshrk@163.com>,
+	kernel@collabora.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Finley Xiao <finley.xiao@rock-chips.com>,
+	Elaine Zhang <zhangqing@rock-chips.com>,
+	Rob Herring <robh@kernel.org>,
+	Tim Lunn <tim@feathertop.org>
+Subject: Re: (subset) [PATCH v4 0/9] Add device tree for ArmSoM Sige 5 board
+Date: Sat, 12 Oct 2024 19:35:04 +0200
+Message-ID: <172875437678.35125.9831204281305504545.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20240903152308.13565-1-detlev.casanova@collabora.com>
+References: <20240903152308.13565-1-detlev.casanova@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <81f4717ab9acf38f3239727a4540ae96fd01109b.1728558223.git.daniel@makrotopia.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, Oct 10, 2024 at 01:55:29PM +0100, Daniel Golle wrote:
-> The intel-xway PHY driver predates the PHY LED framework and currently
-> initializes all LED pins to equal default values.
+On Tue, 3 Sep 2024 11:22:30 -0400, Detlev Casanova wrote:
+> Add the rk3576-armsom-sige5 device tree as well as its rk3576.dtsi base
+> and pinctrl information in rk3576-pinctrl.dtsi.
 > 
-> Add PHY LED functions to the drivers and don't set default values if
-> LEDs are defined in device tree.
+> The other commits add DT bindings documentation for the devices that
+> already work with the current corresponding drivers.
 > 
-> According the datasheets 3 LEDs are supported on all Intel XWAY PHYs.
+> Note that as is, the rockchip gpio driver needs the gpio nodes
+> to be children of the pinctrl node, even though this is deprecated.
 > 
-> Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> ---
+> [...]
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Applied, thanks!
 
-    Andrew
+[1/9] dt-bindings: arm: rockchip: Add ArmSoM Sige 5
+      commit: 78dee7b6ef085c6a1becad536035bdd39557c9b0
+[8/9] arm64: dts: rockchip: Add rk3576 SoC base DT
+      commit: 4b9dc5d536b988fbd84e68e8d8ac420752b185b6
+[9/9] arm64: dts: rockchip: Add rk3576-armsom-sige5 board
+      commit: 54a18f63eb1aaf50cad17dd64076293f2817e1d5
+
+changes:
+- added some lines between node
+- resortet regulator nodes
+- removed trailing whitespace from one line
+- drop clock-frequency from armsom sige5 rtc@51
+- drop rockchip,grf from cru (lookup is done via compatible)
+- order gpu interrupts like expected in the binding
+- adjust mmc compatible to binding
+
+
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
