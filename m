@@ -1,158 +1,152 @@
-Return-Path: <devicetree+bounces-110663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A1D699B5D0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:10:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0826699B5F0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:47:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87F371C210C0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 15:10:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E5B91F2128A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 15:47:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E7DF8199934;
-	Sat, 12 Oct 2024 15:10:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CEEF51DDEA;
+	Sat, 12 Oct 2024 15:47:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZN6wHfa1"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mY0BGE9D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B97A81991BF;
-	Sat, 12 Oct 2024 15:10:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3909917BA3;
+	Sat, 12 Oct 2024 15:47:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728745849; cv=none; b=nFXkFYPLhO6quBiCQ7hTRBG9e2y/qXIgcC43EbADaqK0tUdHFdn0knQJLoicHWnU7WczZ8uZnFPHKxI+2NWG3fpG7eCdIAPe1f/oClA/Oh3plBpl4oTbI65CZUXgXLYJBfpc0P6NYKTestecj13JeJzNAhi+mF2S1AgWh4ZdjXI=
+	t=1728748031; cv=none; b=Hv8BCc6mtqM6GCmBMWOhiTabJ7bHQwf1oQcYL+iznH05CVfIa59kSHMrTrsBQ5hxbGr0JYIXt/sIjJMpDvFdGjar200LlPwyun7qwB45Nj3fRwD8/MzitRDqjZXhhF2ua2EYBiQZYBay/maJl1DNapAsc9d4OGPAsv2RgLF6/Ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728745849; c=relaxed/simple;
-	bh=gcNbMJ4Gd2izwSIIWqm/hjsuE/w9FW79EmcBGXtchag=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Mx/dlTE9a0RMjuwxk4HvzLY2difjyMB+HBKc5I/tG9uym5BdPkUcW+n4kYh+BVDUwkzId5u4MmTTHmsZCrgEYPkl3jalWcl0p/jx4LMz/XRmOuffdyXuFypaniwIBMTxw5wL21ly/754Cowtcm1/UUvqTewabiJxGwgZwUge9BM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZN6wHfa1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 404D5C4CEC6;
-	Sat, 12 Oct 2024 15:10:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728745849;
-	bh=gcNbMJ4Gd2izwSIIWqm/hjsuE/w9FW79EmcBGXtchag=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ZN6wHfa1x4FE1+M18/tYMEzEdHz+XJMkbPjTXduySTpAaayHu1xN0+TJ+C0NXGo5q
-	 DP2WCINjN2zH7H1Qbxpv76tvI6j5Z8F/xrqz195Go4RJXWj/59fvkXM2u78gXUnWoU
-	 jqCiFpQZyyqF+QmnJMjn4qdYem73sF/b0ZK/JbemLVJuk47jeeN7L/sF+5N5QQrL+d
-	 3OAj0LuZzYDGziYpF22Gi1Wj68LmM8LR3yOnRuOzDPMh2F9FCV6CFUOwUbAuwGQYPA
-	 Jgy9pSO+MEybHuSiP6vX4coVcICm6C3ZHdC1vWmabPuzw9nbgFB7JpY4S22E4EhWAl
-	 Hekgag8vSiDIw==
-Date: Sat, 12 Oct 2024 16:10:40 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Emil Gedenryd <Emil.Gedenryd@axis.com>
-Cc: "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "robh@kernel.org" <robh@kernel.org>, "linux-kernel@vger.kernel.org"
- <linux-kernel@vger.kernel.org>, "dannenberg@ti.com" <dannenberg@ti.com>,
- "krzk+dt@kernel.org" <krzk+dt@kernel.org>, "lars@metafoo.de"
- <lars@metafoo.de>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Kernel
- <Kernel@axis.com>
-Subject: Re: [PATCH v4 2/2] iio: light: opt3001: add support for TI's
- opt3002 light sensor
-Message-ID: <20241012161040.1506a7a4@jic23-huawei>
-In-Reply-To: <fab164228b4d567a147cd8d93150e687c6db0c70.camel@axis.com>
-References: <20241003-add_opt3002-v4-0-c550dc4591b4@axis.com>
-	<20241003-add_opt3002-v4-2-c550dc4591b4@axis.com>
-	<20241006141624.3fa5bf34@jic23-huawei>
-	<b40d22b5bdf487b40207e676d35a0507c47cbb26.camel@axis.com>
-	<20241010184742.1747bfe2@jic23-huawei>
-	<fab164228b4d567a147cd8d93150e687c6db0c70.camel@axis.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1728748031; c=relaxed/simple;
+	bh=BwFf6upCJNAdJ40mkYVPW+Ta9bTNXw5vnfXHGSPr1gM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rnqDaS4CmdHKU8QhSqoBIGGqEHI7ka0z17KYzLOIXcyGuY4aZ5NPVUyKQWyRxO/YHgLtO0nL6sosiqoFbEByx6YU0v6yApm0lNw9kRKJ4brCOjpJvKtSzHXPytUXq6OcD71Bb2xaJrdy9oRpeHBZUT3IwQfIAo1psizFPJBSWiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mY0BGE9D; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-20c803787abso19968905ad.0;
+        Sat, 12 Oct 2024 08:47:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728748029; x=1729352829; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=XLMUXamEtLIqeIpfxCxeP30iEHUYuhfBpCnBWVAFBd4=;
+        b=mY0BGE9DGyTiUkTt6f+ka3SqxqdS3ylXHXE19dB5hm5Z7EhBNzWyA5BHQ9IEF99PHc
+         2v4+WePFaV64Uj5Im9Gv5sw9zTYCoV0TkQhrbOzy3k4+9PUYIi6qlVmldnXI8qx9n1RK
+         bOQYsoDSyoGkmB7Zf2kKB7O4/xLJ3RLCTFRbMU8NFjha8bqJKmENwoWqm0hBqP6HO0nh
+         QchYPpjzdReYoQYPWVdkKI/EFCqPTviPgAKi7932OmsKTuwzv2gCOj2ZhVEb+sUTP+Ma
+         6L5EPPkEHKoRR0NPYIKALbPCdCuB6GIkTLyiNXI+3wwiz6UwgA53gS4j/MXCSgr2KY/0
+         I/Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728748029; x=1729352829;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XLMUXamEtLIqeIpfxCxeP30iEHUYuhfBpCnBWVAFBd4=;
+        b=wNO2pqEIddKCcIos+H/UsUaeOFirasP95c5MfO6MCSLDOp65VSWqXs4nD86CcGEi0i
+         ozUfP5o3XcEPququrwCGXZwwCuC3vnTCzLZZrfptj8O6LKQJTBDKxQJwPPpU3SBlar9u
+         Y1B4Gdt3RySPMLnRPi/TSLam2vnb+O76NOckkOW46/QfDmn7OqnRHGkDdBwg68A4X8Dm
+         D3dT6oZzMka+TlOUmRkcmUJ9Kx4x4pAAbhjLPHH9OiQ+ipCfOhYlon54c3L5usLnPYJZ
+         /FjPGUftVjRi14v5kq7aWOkHr8ynFZDNQKoSx7UeRf+gscCtpid0kS9RnZ7D4qC8jpGj
+         hzHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVmkaiuRjnpCwGtlsKkUMSmg3zliDRKbF5aA70k40y4flQzkuH/V9XlMox5YLwLmTRWxsfXoHkuuy3S@vger.kernel.org, AJvYcCXBBDeBj/JxSQgXNooE0Kq6NNwFF9zipDEI5NxPjaO8Zd9n/V/e7A2uylLrhiN3BSBbfpOw6wCVfdPsM0pfjdE=@vger.kernel.org, AJvYcCXl6sdHtpWcSUw5zpTSUmtmlW38Ka3iZcwm4FMU2GQh77Y3hjy5Aetd+FuiyYdqDxvsIN5SAWkQ2xfASYZl@vger.kernel.org
+X-Gm-Message-State: AOJu0Yydn551OH83UxPH5dbg1jresKNTGkXkVYIemELdDII//DhLWf0i
+	H/SPp4K8Qgh2h5YOQfgMu0aJoGAEFuGiIlKCmfvUxP+CvybuJIwLQ+mnMw==
+X-Google-Smtp-Source: AGHT+IH2X/2CraMLah4T1W4dj08Ekq5evuLcjvHRohEUNuM9leWAPTb3294GE2CUl5CU0PL0kxrQsw==
+X-Received: by 2002:a17:902:748c:b0:20b:9df1:54d5 with SMTP id d9443c01a7336-20ca041887dmr82939425ad.29.1728748029359;
+        Sat, 12 Oct 2024 08:47:09 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c8c0e75fesm38294595ad.158.2024.10.12.08.47.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 12 Oct 2024 08:47:08 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <b953d076-3901-47fe-a73e-f990ed1ddf69@roeck-us.net>
+Date: Sat, 12 Oct 2024 08:47:07 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: watchdog: airoha: document watchdog
+ for Airoha EN7581
+To: Christian Marangi <ansuelsmth@gmail.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Lorenzo Bianconi <lorenzo@kernel.org>, upstream@airoha.com
+Cc: Krzysztof Kozlowski <krzk@kernel.org>
+References: <20241011104411.28659-1-ansuelsmth@gmail.com>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+In-Reply-To: <20241011104411.28659-1-ansuelsmth@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 11 Oct 2024 07:12:05 +0000
-Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
+On 10/11/24 03:43, Christian Marangi wrote:
+> Document watchdog for Airoha EN7581. This SoC implement a simple
+> watchdog that supports a max timeout of 28 seconds.
+> 
+> The watchdog ticks on half the BUS clock and requires the BUS clock to be
+> referenced.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> On Thu, 2024-10-10 at 18:47 +0100, Jonathan Cameron wrote:
-> > On Mon, 7 Oct 2024 07:19:06 +0000
-> > Emil Gedenryd <Emil.Gedenryd@axis.com> wrote:
-> >  =20
-> > > On Sun, 2024-10-06 at 14:16 +0100, Jonathan Cameron wrote: =20
-> > > > On Thu, 3 Oct 2024 14:22:17 +0200
-> > > > Emil Gedenryd <emil.gedenryd@axis.com> wrote:   =20
-> > > > >=20
-> > > > > +struct opt3001_chip_info {
-> > > > > +	const struct iio_chan_spec (*channels)[2];
-> > > > > +	enum iio_chan_type chan_type;
-> > > > > +	int num_channels;
-> > > > > +
-> > > > > +	const struct opt3001_scale (*scales)[12];   =20
-> > > > This doesn't compile for me as one of the two options only
-> > > > has 11 entries.  You could either force them to be 12
-> > > > entries each or use a pointer without the size and
-> > > > add a num_scales entry in here.
-> > > >=20
-> > > > Jonathan   =20
-> > >=20
-> > > Hi Jonathan,
-> > >=20
-> > > Are you building on top of the patch that was accepted in earlier ver=
-sions of this
-> > > patch set? That patch adds the twelfth missing scale value for the op=
-t3001.
-> > > See:=C2=A0https://lore.kernel.org/all/20240916-add_opt3002-v3-1-984b1=
-90cd68c@axis.com/
-> > >=20
-> > > Should I have added some tag to highlight the dependency for this ver=
-sion of the
-> > > patch set? =20
-> > Ah.  Yes, I was half asleep.
-> > They are going via different branches (slow and fast) so I'll have to
-> > sit on this series until after that fix is in the upstream for the togr=
-eg
-> > branch of iio.git.
-> >=20
-> > If I seem to have lost it after that is the case feel free to give me a=
- poke.
-> >=20
-> > Jonathan
-> >  =20
-> Hi,
->=20
-> No worries. Just to clarify, do you mean sit on it as that you will conti=
-nue reviewing
-> the code after the fix is in upstream, or should I consider this patch to=
- be approved?
-Assuming not other review comes in, I consider this ready to go.
->=20
-> Also, do you have an approximation of what time frame we're talking about?
-2 weeks most likely.
-
-I've just sent Greg KH a pull request with the fix in it. He will hopefully
-pick that up and then send a pull request on to Linus.  Then we wait for the
-next rc after that at which point Greg will probably pull it into char-misc=
--next or
-I can always merge it into my togreg branch once it is in a release candida=
-te of
-Linus' tree.
-
-In parallel with that I'll probably do a pull request for what is already i=
-n the
-togreg tree to get a lot of stuff in char-misc-next for the next cycle. Tha=
-t makes
-the history a little cleaner as I can fast forward my tree and end up with
-whatever is in char-misc-next (hopefully including this).
-
-Anyhow, a bit of tree juggling for me, but we have plenty of time as rc3 wi=
-ll probably
-be out tomorrow and it normally goes to rc7 at one rc a week
-
-Thanks,
-
-Jonathan
-> Best Regards,
-> Emil=20
->=20
+Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
 
