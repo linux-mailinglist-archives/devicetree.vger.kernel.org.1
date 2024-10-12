@@ -1,207 +1,749 @@
-Return-Path: <devicetree+bounces-110679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91F399B689
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 20:00:28 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B820D99B68C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 20:10:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4B67FB2196E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 18:00:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1368FB21B8B
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 18:10:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 143D8823DE;
-	Sat, 12 Oct 2024 18:00:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FECA824A0;
+	Sat, 12 Oct 2024 18:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="gw6ghBew"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="VjwWB+JC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 003E5770F1;
-	Sat, 12 Oct 2024 18:00:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C84CD3FB8B;
+	Sat, 12 Oct 2024 18:10:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728756022; cv=none; b=aOFa7gxF4h8PXb8pLYDHg7BX+tMvfD/BcXwjzYV8b5zt05HoB8UOZJvYXrJRMsgLhxYQ8wqleQQ17QAccZy5mg4ibfLcUsFQlQffpgdtxw3JLAooDd2IRFcpC83F5nIhub/SA4CDFdm/ykLyOSyuEB/aVQhZ36D87NHzy7kM9y4=
+	t=1728756608; cv=none; b=Cn+DvEJxXVEolMnqWn0Po4tNnjte7p9+X9pTOVQ100JJ4yQVr8fWyMc3+7DAd9wy2pXhJPLLprjg7iTX67LXl5etfP2t3DS9JHeSmaeSXHZA3wuH1xy1CLRGIhA2i9qX49IWHy9s4hjHt5wbCtymY2qMAJHgh203+gjv6fuARyk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728756022; c=relaxed/simple;
-	bh=QZbghKMG5mddRcnYL0oUUjDtFdAbMtMB+WmbxAp1KO4=;
+	s=arc-20240116; t=1728756608; c=relaxed/simple;
+	bh=RlGNorzjVHm9kw32mhWKejp/5jhHHRtlv3tETncOF3o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HuT7QqkixvuM8ahuf8wleIbfFhnp0ivGLLcmyTg9Fh3+Fo1NO9kktuY/9Wzwj8YUqMXSzS+fk+Rs8gFMGTXg1HfmjwUFEOW8HAiAYsL/cysVn/EkiSgljmO+ZQfr7B2rk2Ql/gatdXX5IFPoi2AxE3SkJAWOgSRpjFycvZ9yxRo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=gw6ghBew; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728756020; x=1760292020;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=QZbghKMG5mddRcnYL0oUUjDtFdAbMtMB+WmbxAp1KO4=;
-  b=gw6ghBewjHzh+ut3aEyT0SIi1sunUOzQYFcWLfg0f6bVjzol78/nh8h5
-   2RkGlIBHCucBn5jiOcKGdoa7IQcQKF/7HfFHg80H/Ic6Wn+Pfp/P8+oKZ
-   TlTQIjohZaVwngcIePcwDhkMC4rExF7BT+rNBEWwkauULN2HwJ8elY+yo
-   E6zjwkIPd+XApb3eFdV4qv8g8ZTCxquaEME4f/wbflKR9vytShXg6XrLe
-   YnhkKOn7b8FwCOizS2+4e5ZcuSo1IQb/+igzsxYwae0O7j66xYRaj6oao
-   P21mxCPxixaG+AZ7J/yG5/sde499/2ey65mSnw606T9mG/jajsq97x8+9
-   g==;
-X-CSE-ConnectionGUID: fv5Cc8DEQkaIQzB5+tM6lA==
-X-CSE-MsgGUID: +trNSOIsR2m9o1MmF2ZKfQ==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28315437"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="28315437"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Oct 2024 11:00:18 -0700
-X-CSE-ConnectionGUID: 2TXqMIK5QayDULncJRh8vA==
-X-CSE-MsgGUID: 9KGUO9srSdGv0XhB8YEqRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="81974009"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa005.jf.intel.com with ESMTP; 12 Oct 2024 10:58:12 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1szgNV-000DaJ-2b;
-	Sat, 12 Oct 2024 17:58:09 +0000
-Date: Sun, 13 Oct 2024 01:57:12 +0800
-From: kernel test robot <lkp@intel.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, broonie@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	andersson@kernel.org, konradybcio@kernel.org,
-	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	manivannan.sadhasivam@linaro.org, arnd@arndb.de, esben@geanix.com,
-	nikita.shubin@maquefel.me, linux-arm-msm@vger.kernel.org,
-	linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc: oe-kbuild-all@lists.linux.dev, quic_srichara@quicinc.com,
-	quic_varada@quicinc.com
-Subject: Re: [PATCH v11 4/8] mtd: nand: Add qpic_common API file
-Message-ID: <202410130129.M8J7VJoG-lkp@intel.com>
-References: <20241010070510.1504250-5-quic_mdalam@quicinc.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=ndg8YlEUSTKC3DT2S7/KXILl18ltz4jseQs8LZu0+1MDkVH6gk54vxMTdzKCbE9fFJTZ1CkYfAumPFl7kFO4oV99fmMPHEtfcFEOQjoUCvilCHlNV9PfZZwU2VPdh+mszovgybmnd2xmw6BFIkjW0H3gI8WY9P9SA+gUYYy8mGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=VjwWB+JC; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [23.233.251.139])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5D0448BF;
+	Sat, 12 Oct 2024 20:08:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1728756503;
+	bh=RlGNorzjVHm9kw32mhWKejp/5jhHHRtlv3tETncOF3o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VjwWB+JCPWbNVUpOrXWSHqpG/vhlzui+J1ySviyDIbY/0GSxMVu03KKLu3NAAylrn
+	 fmz+PvQUxEUv60r7nqGbPDuDtiptA+UrpLVzxu54bnzPGe06F1vQtQ3aUPrp60pmne
+	 SB9w68HV2EmZW+LdxRbPlEhC+f8L0fBHEIetfCsQ=
+Date: Sat, 12 Oct 2024 21:09:35 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <martin.hecht@avnet.eu>,
+	Zhi Mao <zhi.mao@mediatek.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/2] media: dt-bindings: Use additionalProperties: false
+ for endpoint: properties:
+Message-ID: <20241012180935.GC5212@pendragon.ideasonboard.com>
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-2-a2bb12a1796d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20241010070510.1504250-5-quic_mdalam@quicinc.com>
+In-Reply-To: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-2-a2bb12a1796d@linaro.org>
 
-Hi Md,
+Hi Bryan,
 
-kernel test robot noticed the following build errors:
+Thank you for the patch.
 
-[auto build test ERROR on mtd/nand/next]
-[also build test ERROR on broonie-spi/for-next robh/for-next linus/master v6.12-rc2 next-20241011]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Sat, Oct 12, 2024 at 04:02:51PM +0100, Bryan O'Donoghue wrote:
+> Some of our sensor schemas use unevaluatedProperities: false for endpoint:
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Md-Sadre-Alam/spi-dt-bindings-Introduce-qcom-spi-qpic-snand/20241010-161236
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git nand/next
-patch link:    https://lore.kernel.org/r/20241010070510.1504250-5-quic_mdalam%40quicinc.com
-patch subject: [PATCH v11 4/8] mtd: nand: Add qpic_common API file
-config: csky-randconfig-r123-20241012 (https://download.01.org/0day-ci/archive/20241013/202410130129.M8J7VJoG-lkp@intel.com/config)
-compiler: csky-linux-gcc (GCC) 14.1.0
-reproduce: (https://download.01.org/0day-ci/archive/20241013/202410130129.M8J7VJoG-lkp@intel.com/reproduce)
+s/unevaluatedProperities/unevaluatedProperties/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410130129.M8J7VJoG-lkp@intel.com/
+Same below.
 
-All errors (new ones prefixed by >>):
+> properties: while other schemas use additionalProperties: false.
+> 
+> The effect of using unevaluatedProperities: false in this instance is that
+> any property in media/video-interfaces.yaml can be considered in a dts for
+> an endpoint.
+> 
+> Converting to additionalProperties: false and running DT checkers show that
+> such a liberal policy is unnecessary.
+> 
+> We should have a consistent way of defining these properties if for no
+> other reason than aid other developers in the preferred way of writing
+> these schemas for media/i2c in the future.
+> 
+> Convert to additionalProperties: as a result remote-endpoint needs to be
+> added to the property list for most sensors. In a few cases some
+> additional properties clock data-lanes or clock-lanes need to be added too
+> but, for-the-most-part remote-endpoint is the only missing property.
+> 
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml     | 5 ++++-
+>  Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml  | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml  | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml  | 6 +++++-
+>  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/imx219.yaml             | 6 +++++-
+>  Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml           | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml       | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml       | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml        | 5 ++++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml        | 3 ++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml        | 5 ++++-
+>  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml        | 4 +++-
+>  Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml   | 4 +++-
+>  23 files changed, 75 insertions(+), 23 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
+> index d3329e991d1652936fcf671012b8018e4317ea40..ba166ecf4fcbb77efab69ebcbdb46f5666af8e77 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/alliedvision,alvium-csi2.yaml
+> @@ -32,7 +32,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            link-frequencies: true
+> @@ -45,9 +45,12 @@ properties:
+>                - const: 3
+>                - const: 4
+>  
+> +          remote-endpoint: true
+> +
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml
+> index 0e7a7b5ac89f618e6cba0d86f6f7ea853e59ae1e..8b42440586aa8c853d8bf6046ccab0c3b23cb907 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc05a2.yaml
+> @@ -44,7 +44,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -59,10 +59,12 @@ properties:
+>                    - const: 2
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> index 51b8ece09c722e057fdb01b38d3e360e7604f39a..c15169ef901139411273e110523a311d87b4322e 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+> @@ -44,7 +44,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -59,10 +59,12 @@ properties:
+>                    - const: 2
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> index 9eac588de0bc28d85f44663afe5472e35f1e652c..702625962d90ea7fafb4f4f4f865659097b51406 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> @@ -56,13 +56,17 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+> +          data-lanes: true
 
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_remove':
->> drivers/mtd/nand/raw/qcom_nandc.c:2347:(.text+0x3ce): undefined reference to `nand_cleanup'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `config_nand_page_write':
-   drivers/mtd/nand/raw/qcom_nandc.c:377:(.text+0x538): undefined reference to `nand_cleanup'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_parse_instructions':
->> drivers/mtd/nand/raw/qcom_nandc.c:1626:(.text+0x756): undefined reference to `nand_subop_get_addr_start_off'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1627:(.text+0x766): undefined reference to `nand_subop_get_num_addr_cyc'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_misc_cmd_type_exec':
-   drivers/mtd/nand/raw/qcom_nandc.c:1823:(.text+0x8a8): undefined reference to `nand_subop_get_addr_start_off'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1823:(.text+0x8ac): undefined reference to `nand_subop_get_num_addr_cyc'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_param_page_type_exec':
->> drivers/mtd/nand/raw/qcom_nandc.c:1917:(.text+0xa3e): undefined reference to `nand_subop_get_data_len'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1951:(.text+0xb64): undefined reference to `nand_subop_get_data_len'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_read_status_exec':
-   drivers/mtd/nand/raw/qcom_nandc.c:1747:(.text+0xcc6): undefined reference to `nand_subop_get_data_len'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1752:(.text+0xd14): undefined reference to `nand_subop_get_data_len'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_read_id_type_exec':
-   drivers/mtd/nand/raw/qcom_nandc.c:1794:(.text+0xdee): undefined reference to `nand_subop_get_data_len'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nand_attach_chip':
->> drivers/mtd/nand/raw/qcom_nandc.c:1393:(.text+0xe4c): undefined reference to `nand_ecc_choose_conf'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1403:(.text+0xed8): undefined reference to `nand_subop_get_data_len'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1403:(.text+0xee8): undefined reference to `nand_ecc_choose_conf'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_write_page_raw':
->> drivers/mtd/nand/raw/qcom_nandc.c:1054:(.text+0x10cc): undefined reference to `nand_prog_page_begin_op'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1109:(.text+0x11fe): undefined reference to `nand_prog_page_end_op'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1110:(.text+0x1218): undefined reference to `nand_prog_page_begin_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1110:(.text+0x1238): undefined reference to `nand_prog_page_end_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_read_cw_raw':
->> drivers/mtd/nand/raw/qcom_nandc.c:482:(.text+0x1266): undefined reference to `nand_read_page_op'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:542:(.text+0x1468): undefined reference to `nand_read_page_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `check_for_erased_page':
->> drivers/mtd/nand/raw/qcom_nandc.c:600:(.text+0x15bc): undefined reference to `nand_check_erased_ecc_chunk'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:613:(.text+0x1618): undefined reference to `nand_check_erased_ecc_chunk'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `nand_scan':
->> include/linux/mtd/rawnand.h:1592:(.text+0x1af6): undefined reference to `nand_scan_with_ids'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nand_host_parse_boot_partitions':
->> drivers/mtd/nand/raw/qcom_nandc.c:2091:(.text+0x1bb0): undefined reference to `nand_scan_with_ids'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nand_host_init_and_register':
-   drivers/mtd/nand/raw/qcom_nandc.c:2195:(.text+0x1c88): undefined reference to `nand_cleanup'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_check_op':
-   drivers/mtd/nand/raw/qcom_nandc.c:2008:(.text+0x1d4c): undefined reference to `nand_cleanup'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nand_exec_op':
->> drivers/mtd/nand/raw/qcom_nandc.c:2017:(.text+0x1d60): undefined reference to `nand_op_parser_exec_op'
->> csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:2018:(.text+0x1d94): undefined reference to `nand_op_parser_exec_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_read_page':
-   drivers/mtd/nand/raw/qcom_nandc.c:905:(.text+0x20fe): undefined reference to `nand_read_page_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:919:(.text+0x2198): undefined reference to `nand_read_page_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_block_markbad':
->> drivers/mtd/nand/raw/qcom_nandc.c:1234:(.text+0x228c): undefined reference to `nand_prog_page_end_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_write_oob':
-   drivers/mtd/nand/raw/qcom_nandc.c:1158:(.text+0x239a): undefined reference to `nand_prog_page_end_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1159:(.text+0x23cc): undefined reference to `nand_prog_page_end_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_write_page':
-   drivers/mtd/nand/raw/qcom_nandc.c:980:(.text+0x2410): undefined reference to `nand_prog_page_begin_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1036:(.text+0x2524): undefined reference to `nand_prog_page_end_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.o: in function `qcom_nandc_block_bad':
-   drivers/mtd/nand/raw/qcom_nandc.c:1167:(.text+0x2648): undefined reference to `nand_prog_page_begin_op'
-   csky-linux-ld: drivers/mtd/nand/raw/qcom_nandc.c:1167:(.text+0x2668): undefined reference to `nand_prog_page_end_op'
+We should have a more precise constraint here. The sensor supports
+single or dual data lanes operation, so you can write
 
+          data-lanes:
+	    minItems: 1
+	    items:
+	      - const: 1
+	      - const: 2
 
-vim +2347 drivers/mtd/nand/raw/qcom_nandc.c
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+> +          - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> index d18ead8f7fc43bfacc291aed85b5ca9166c46edb..52bb089bd67fd0f9b5464e068b8db0b8e4406b3d 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> @@ -52,7 +52,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -67,10 +67,12 @@ properties:
+>                    - const: 2
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/imx219.yaml b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> index 07d088cf66e0bde362b12d3494e5c91a1dd96bf3..5f395cf04b95ca47d5e685b8c43b8265db6910ae 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/imx219.yaml
+> @@ -52,7 +52,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -65,10 +65,14 @@ properties:
+>                - const: 2
+>  
+>            clock-noncontinuous: true
+> +          clock-lanes: true
 
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2334  
-ec185b18c22323 drivers/mtd/nand/raw/qcom_nandc.c Uwe Kleine-König 2023-04-11  2335  static void qcom_nandc_remove(struct platform_device *pdev)
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2336  {
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2337  	struct qcom_nand_controller *nandc = platform_get_drvdata(pdev);
-7330fc505af4af drivers/mtd/nand/raw/qcom_nandc.c Arnd Bergmann    2018-07-17  2338  	struct resource *res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2339  	struct qcom_nand_host *host;
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2340  	struct nand_chip *chip;
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2341  	int ret;
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2342  
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2343  	list_for_each_entry(host, &nandc->host_list, node) {
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2344  		chip = &host->chip;
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2345  		ret = mtd_device_unregister(nand_to_mtd(chip));
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2346  		WARN_ON(ret);
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19 @2347  		nand_cleanup(chip);
-0a2bc9919cf74e drivers/mtd/nand/raw/qcom_nandc.c Miquel Raynal    2020-05-19  2348  	}
-7330fc505af4af drivers/mtd/nand/raw/qcom_nandc.c Arnd Bergmann    2018-07-17  2349  
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2350  	qcom_nandc_unalloc(nandc);
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2351  
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2352  	clk_disable_unprepare(nandc->aon_clk);
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2353  	clk_disable_unprepare(nandc->core_clk);
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2354  
-7330fc505af4af drivers/mtd/nand/raw/qcom_nandc.c Arnd Bergmann    2018-07-17  2355  	dma_unmap_resource(&pdev->dev, nandc->base_dma, resource_size(res),
-7330fc505af4af drivers/mtd/nand/raw/qcom_nandc.c Arnd Bergmann    2018-07-17  2356  			   DMA_BIDIRECTIONAL, 0);
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2357  }
-c76b78d8ec05a2 drivers/mtd/nand/qcom_nandc.c     Archit Taneja    2016-02-03  2358  
+This shouldn't be needed, as the sensor doesn't support clock lane
+remapping. Could we drop the clock-lanes property from upstream device
+tree sources instead ?
+
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+> +          - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> index f8ace8cbccdbac482ffba733d5b28a3a38aaf822..ce45bd8409597fa6989f632d68cd4aa1a468d152 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/mipi-ccs.yaml
+> @@ -77,7 +77,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            link-frequencies: true
+> @@ -87,11 +87,13 @@ properties:
+>                - 1 # CSI-2 C-PHY
+>                - 3 # CCP2
+>                - 4 # CSI-2 D-PHY
+> +          remote-endpoint: true
+>  
+>          required:
+>            - link-frequencies
+>            - data-lanes
+>            - bus-type
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+> index ca57c01739d2b93100a37db56255ab717c1197ff..9b3738956c482d8826bf64f557c2e91630ea9799 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,og01a1b.yaml
+> @@ -55,7 +55,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -65,10 +65,12 @@ properties:
+>                enum: [1, 2]
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> index 67c1c291327b7febb6a039bf6f28c8dc1f32ed7f..b8db4be137085fe31ec2f076c7dc66b30bf0b66c 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov02a10.yaml
+> @@ -77,7 +77,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            link-frequencies: true
+> @@ -88,9 +88,11 @@ properties:
+>                the link speed defined by the 'link-frequencies' property.
+>                If present, the value shall be in the range of 0-4.
+>              default: 4
+> +          remote-endpoint: true
+>  
+>          required:
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> index d96199031b66c5c162a034824f195e277f2a1795..7499523a6e0fbd64b9b980333adaa14a0c40a33b 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov4689.yaml
+> @@ -61,7 +61,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -77,10 +77,12 @@ properties:
+>                - items:
+>                    - const: 1
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+> index 622243cae03caa5d14aa312df40ef5907e190d2c..358c0422451f7faa8e0ebfc9226a5cfb087e3598 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml
+> @@ -45,7 +45,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            link-frequencies: true
+> @@ -54,9 +54,12 @@ properties:
+>              minItems: 1
+>              maxItems: 2
+>  
+> +          remote-endpoint: true
+> +
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+> index ad07204057f979ade534d29c99c3aff7372bd332..eff212524bf3c7b1ec6aa7e826d4318d58ba53a5 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov5675.yaml
+> @@ -60,7 +60,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -69,6 +69,7 @@ properties:
+>  
+>            # Supports max data transfer of 900 Mbps per lane
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
+> index 2e5187acbbb89728cbb8a402559d24766198a3da..cbbe3c9ce151eb33d2b0cc1a44e6ebf66d9b59fa 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov7251.yaml
+> @@ -53,7 +53,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            clock-lanes:
+> @@ -63,10 +63,12 @@ properties:
+>              maxItems: 1
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> index 382d7de7a89bcea11be384a2a3800512994f9346..dd5c5715fdcfc00e6d851f375f41e4d077b92bc0 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml
+> @@ -45,7 +45,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            link-frequencies: true
+> @@ -54,9 +54,12 @@ properties:
+>              minItems: 1
+>              maxItems: 4
+>  
+> +          remote-endpoint: true
+> +
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> index 38325cf318f7bd2cd60a4c7bbb6a65b54b855e26..dde4e7426bf00920f1bd9ed1bf4d8594932dedaf 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml
+> @@ -51,15 +51,17 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes: true
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> index 0162eec8ca993a7614d29908f89fa9fe6d4b545d..9b78ff6bd5f114c7f63ac90e71fa677445ddf702 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> @@ -58,7 +58,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -73,10 +73,12 @@ properties:
+>                    - const: 4
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      additionalProperties: false
+>  
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> index f0f9726a2add89492b8c56e17ed607841baa3a0d..4cf49472c24f1b800f6d2e41b8716e2ac32f959a 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> @@ -56,7 +56,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -71,10 +71,12 @@ properties:
+>                    - const: 2
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>  required:
+>    - compatible
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+> index e4f49f1435a5c2e6e1507d250662ea6ecbf3c7dc..75b78a3e925ed2fd09f56c8349d234a32739f141 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+> @@ -48,7 +48,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -60,10 +60,12 @@ properties:
+>                    - const: 4
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> index bf05ca48601abda53d60a3d03aa556e7b8fd825b..e6aec7a1ba2b22a11111d19a61384f1200041df5 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx290.yaml
+> @@ -71,7 +71,7 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes:
+> @@ -86,10 +86,12 @@ properties:
+>                    - const: 4
+>  
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      additionalProperties: false
+>  
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> index 872b8288948b2bba743f2365a55165181df156ae..d30ef330e5af225728d1a6c40b26050cd33ba4be 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml
+> @@ -38,15 +38,17 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes: true
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> index 38bd1c7304a59bb5fea90954c1e4e626a7c86f2f..36c3a0ba7822475770cd903cec3343d31bb66520 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml
+> @@ -48,15 +48,17 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes: true
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> index ece1e17fe34553671e61c965eb1833c5eb08131b..0bbdf657a8c0643ffe512ae04c14dfc8e6b4fc94 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml
+> @@ -50,15 +50,17 @@ properties:
+>      properties:
+>        endpoint:
+>          $ref: /schemas/media/video-interfaces.yaml#
+> -        unevaluatedProperties: false
+> +        additionalProperties: false
+>  
+>          properties:
+>            data-lanes: true
+>            link-frequencies: true
+> +          remote-endpoint: true
+>  
+>          required:
+>            - data-lanes
+>            - link-frequencies
+> +          - remote-endpoint
+>  
+>      required:
+>        - endpoint
+> diff --git a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> index 1c476b635b690865cff0882578d72b1db2dc7c50..367d669ad864ed6b2a8762f953f58e206c8c8194 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/toshiba,tc358746.yaml
+> @@ -96,7 +96,7 @@ properties:
+>          properties:
+>            endpoint:
+>              $ref: /schemas/media/video-interfaces.yaml#
+> -            unevaluatedProperties: false
+> +            additionalProperties: false
+>  
+>              properties:
+>                data-lanes:
+> @@ -105,10 +105,12 @@ properties:
+>  
+>                clock-noncontinuous: true
+>                link-frequencies: true
+> +              remote-endpoint: true
+>  
+>              required:
+>                - data-lanes
+>                - link-frequencies
+> +              - remote-endpoint
+>  
+>      required:
+>        - port@0
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+
+Laurent Pinchart
 
