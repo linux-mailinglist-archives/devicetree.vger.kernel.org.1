@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-110611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD46A99B411
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:41:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF55799B42F
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:44:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 387231F21832
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 11:41:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E9A91F22898
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 11:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A17DB19EEBD;
-	Sat, 12 Oct 2024 11:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3894D1FBC82;
+	Sat, 12 Oct 2024 11:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAVywOGp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="buW2NJXc"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D6A1F8900;
-	Sat, 12 Oct 2024 11:29:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA2D1FB3F7;
+	Sat, 12 Oct 2024 11:29:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728732552; cv=none; b=USYgRTutWqZDfmLuNWP5yV4QPuKaijG/fgvhR00NtNOFs67HqevueGPo6h+/qD3yWqvuRykZ9oQfAz951HSx+eipfVE0bSm3dTzSO0SqXmO+gi0DjwyMG/nCgkkBEZQMwmGU7VhyC5kywPY8utYzD7Ktv8/L+w3FsBYRlfM+fk8=
+	t=1728732580; cv=none; b=NFhA5gZ7eORDHcuEm2+NFu6lorI2nfu0ci0Yk4pQnbbnzaEIa3Wwjb2RWUcrdYguni6nOF1HQHwTCHFocb0yxTDiaV564mR2rfo2lEtWzBrWpC0rg8PjgHGjpHMxA32bvJh4kWwqndRfiVkoO4zzLrvnaf51+szL8bfqcX7vAJs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728732552; c=relaxed/simple;
+	s=arc-20240116; t=1728732580; c=relaxed/simple;
 	bh=ftaZRHD5hqouTbzrWn8/bG8js8icJYEI7jfe3BGfZUg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=POub/otskYCEu+1GKBNleM8yb73/UH3BmEpVTLwL0nBhTR0/sEgLF1Ez8UTMVElFPe5wnnzb/3eLVb1xgjIHb07ilF1NvG/xqn8Q9lAMJ7wzNOEALeC7jXIzlizYhXSim/HeW7r1xi+YHms6dcELeRglQhT/n5qLHNqD+WSecGs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAVywOGp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FC34C4CEC7;
-	Sat, 12 Oct 2024 11:29:11 +0000 (UTC)
+	 MIME-Version; b=tOUJjpfQWtNn/ezI+UextWZcoeRNMXIoKD5PiVj96frX4IeP1priHME/27uwahDJs43B7k3TnuOfwKg4Lv7fxTdy+8Gfb/Lgih9g69U6fL+dQp/ayIl+RLT8ByNvTcIpCpAqXv159rcOeu96hRDyeTAtyR7C6tP0lTf3oB9icNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=buW2NJXc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04D44C4CECE;
+	Sat, 12 Oct 2024 11:29:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728732552;
+	s=k20201202; t=1728732579;
 	bh=ftaZRHD5hqouTbzrWn8/bG8js8icJYEI7jfe3BGfZUg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HAVywOGp6BgRv+C6RFdWTLPdRdShVdE/hoVg6Uz1LFtuG0pUI0R2tfK3v0UwFqMCl
-	 XKK2PybPzFUtr1QlaVmlVP2HP5wHiLuD8eGREKWLWL3AiZSP4CSoxrDilMRv985p/K
-	 WJzkXvUNAx1klYGDbK3JUbbPEgETLC9Tt1AM6FJSQHvopJURfGZLxN35M0bqAnia1R
-	 evZFFp5ZIJ9fC1injGRm5CzJ2Ka1RR6yz8pctKuqMRFqU+kTukyz5TtUQi+GYZZcXh
-	 RpRdxt2aoJpHzTKhBXdrJHDX5UFyN5x4vubjZrVuCm3URzuGgS5D6NBh/w+ZCgu+ZO
-	 CnEjlOJ6jZXKg==
+	b=buW2NJXc/JhKE0avAEibh6Z+AjESN6IT/EnZqRyzoamOiCj/Frt33+ZixMrkiEH4F
+	 +IFadvVk7SaPGD9P7bhVQmWXZKMtRHW7/dbALXEkkkjWXw7JyvhkI6mc6Ut6EopFvP
+	 fpKGWHHwcvbA5lafS34Pf2P6NwDO3nZvQKxSIUMr2rrDUKDnPuY5RaWpe/vQiCcbvI
+	 4iDRot8xTpVaapQAfjs9x+hOh0jEgDQxAYssfmKr7Nn8mzBSTGPzm7zXi96z6TZsX8
+	 2+A8QreCi8s+Rc7zFxEpDTL7V1KZphXa/LVf/bRAD9IheRKJfsQ6i9q8UefpDaCeCT
+	 kjH0/GFLzXfXw==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -49,12 +49,12 @@ Cc: Stefan Wiehler <stefan.wiehler@nokia.com>,
 	Sasha Levin <sashal@kernel.org>,
 	saravanak@google.com,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.15 7/9] of/irq: Prevent device address out-of-bounds read in interrupt map walk
-Date: Sat, 12 Oct 2024 07:28:45 -0400
-Message-ID: <20241012112855.1764028-7-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.10 7/9] of/irq: Prevent device address out-of-bounds read in interrupt map walk
+Date: Sat, 12 Oct 2024 07:29:12 -0400
+Message-ID: <20241012112922.1764240-7-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241012112855.1764028-1-sashal@kernel.org>
-References: <20241012112855.1764028-1-sashal@kernel.org>
+In-Reply-To: <20241012112922.1764240-1-sashal@kernel.org>
+References: <20241012112922.1764240-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.167
+X-stable-base: Linux 5.10.226
 Content-Transfer-Encoding: 8bit
 
 From: Stefan Wiehler <stefan.wiehler@nokia.com>
