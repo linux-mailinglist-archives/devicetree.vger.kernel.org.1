@@ -1,169 +1,128 @@
-Return-Path: <devicetree+bounces-110644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110634-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EEF199B544
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 16:00:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F50E99B51E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 15:43:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3FD11F2258C
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:00:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 67FFD1C211D0
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:43:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97A1D178395;
-	Sat, 12 Oct 2024 14:00:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E89F17B51B;
+	Sat, 12 Oct 2024 13:43:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b="zZyBVo6B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ezGRihu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from hall.aurel32.net (hall.aurel32.net [195.154.113.88])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 705CA149DF0;
-	Sat, 12 Oct 2024 14:00:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.154.113.88
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1327A1E511;
+	Sat, 12 Oct 2024 13:43:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728741633; cv=none; b=FKfOOxPPTWxGtWv6DrIJSv+YOoHoU6CSATHYEG1vdiGpj7HAoMd/q9Yj9j+7MpnRyYraeD2Bzz4d9GpRx1Qq82kJPtGKTXOTR+jttrZtRnxxYhaJ1z1iflJT/0HJcmPq6WHaZ/W/T0CTjgSa98Wxj8n00Q8NZbcRu+7OQwCPya8=
+	t=1728740600; cv=none; b=IZA8vqqgpeanBGtelueL6a+WkZtjjrnd6RA9VK/bpizhXMYaZI6MjeanHum6N/f6TznnyrcP53cIUJsITCbyref5LXqISwmn+aNGO4jJIWgvD5rq/h8xi69BoUvu/Bm7bh7LtyOcAPCJ+kzaR2sXVT6x1Hf/65MiXn7z7w5dR88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728741633; c=relaxed/simple;
-	bh=Oko5pEJSjCqvkp/hXyJplBKuu7k81GI8vfiRbw3SQBI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BiEJsYKx0bzsx9slHvdorocsDWWy3yjWMBZ91MvUCKbwSeeU9f1N3Q3iazymlGpB+TU4XD111tAct8dasDwY3ewln/mZbgTtq94DNyZ/b63QXcLHd8ErlSG/ea60mXMx7qjP7Hkecv5eKHsouU+7Ch1tgut1FXQ6EojZPgNElSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net; spf=pass smtp.mailfrom=aurel32.net; dkim=pass (2048-bit key) header.d=aurel32.net header.i=@aurel32.net header.b=zZyBVo6B; arc=none smtp.client-ip=195.154.113.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=aurel32.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aurel32.net
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-	; s=202004.hall; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:Reply-To:
-	Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-	bh=86LUFeiSctauCmIBlqHrJmZxrAIYPqEdqsSwFAfU0sE=; b=zZyBVo6BMQP1cuNJ6PGdOOkOVo
-	ypvs/AkLg6J+QUOI6bBBIAxsFKMy1cfReTMN6clE7w0+77K4uGRINpQQfUGAAt2qqg/S5zunkUHh6
-	uwsrsThwmHi/OsUz/w5E0TaWs+jfgyoTPWpVTHTH/2Xtwd5cxwUjUvR4M+UUJMZif/9p98mLAs+9G
-	Fa8Z88v1Io4Ir1/1Pbe4AfOz+UFIGK7yT+ZGtbJl+/Xpn/g7pasfUzPJn9CFuV1mL949km3xx42VX
-	ED6524KlLqGBqX39OOWN3q1ABwJMSkzxg7Fcy4aCa06yP8ebAAEHWsyHA/dbsrbeY2X/Pe+ZgUJ4b
-	Ayo0vBAQ==;
-Received: from ohm.aurel32.net ([2001:bc8:30d7:111::2] helo=ohm.rr44.fr)
-	by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <aurelien@aurel32.net>)
-	id 1szcBV-000lVG-0Q;
-	Sat, 12 Oct 2024 15:29:29 +0200
-Date: Sat, 12 Oct 2024 15:29:28 +0200
-From: Aurelien Jarno <aurelien@aurel32.net>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Jack Zhu <jack.zhu@starfivetech.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	E Shattow <lucent@gmail.com>
-Subject: Re: [v3] riscv: dts: starfive: jh7110: Add camera subsystem nodes
-Message-ID: <Zwp5uFiGqxQa-yC9@aurel32.net>
-Mail-Followup-To: Changhuang Liang <changhuang.liang@starfivetech.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Jack Zhu <jack.zhu@starfivetech.com>, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-	E Shattow <lucent@gmail.com>
-References: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
+	s=arc-20240116; t=1728740600; c=relaxed/simple;
+	bh=nfmJPzRyVxzMj82Jti4CDk4VBuGKE5wuLCbuJgq++PY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=JTl98QN8W6mm8qtwos7Kyca0pZKz1euxPTa6MCq9rGDKSVtXmu6XY9+8967CW6yusZwe1NfUJgau6+bLB+BhgVIre9owzEeshLt4UpHCnOWU8NtIGWwgyxd8f68ikb/aQ778Q51Z///+cy4709EWIbIyZewWK4ebFpqeRNoBl30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ezGRihu4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 269F8C4CEC6;
+	Sat, 12 Oct 2024 13:43:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728740600;
+	bh=nfmJPzRyVxzMj82Jti4CDk4VBuGKE5wuLCbuJgq++PY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=ezGRihu4OT/0yt9dGNC/afbmSNXQDWmLjOXjWfYMVLMjWXsek/qdzxaOBLk+2dNro
+	 X35QsmF4OlUmzibghTi9qStcyxTTL8prWSBg1938hOJJ9raVf0SqUhBdTfDZCG43o9
+	 Bl5h6L6KUxegstBUPWTABmF5NXfXfJJT6MY6v/MhWjJfDyfrmuYTUjhWYYr5tfiALV
+	 QhYV0XGD5TLULm3A4cCmSYCxnWKjC32SLvSzUwZBhxojMFZBbprxwevILRfuGiT7Q8
+	 c1PNn53ojzkLZ+qgpUH3/KR/vamPZIflYDUjDPmRShwX1KLIsfx37z9jMjZETrq13/
+	 o0dpqEXY++Psw==
+Date: Sat, 12 Oct 2024 14:43:13 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Angelo Dureghello <adureghello@baylibre.com>,
+ devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Olivier Moysan <olivier.moysan@foss.st.com>, Lars-Peter Clausen
+ <lars@metafoo.de>, Nuno Sa <nuno.sa@analog.com>, Michael Hennerich
+ <Michael.Hennerich@analog.com>, linux-kernel@vger.kernel.org, Mark Brown
+ <broonie@kernel.org>, dletchner@baylibre.com, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, Conor Dooley <conor+dt@kernel.org>,
+ linux-iio@vger.kernel.org
+Subject: Re: [PATCH v5 04/10] dt-bindings: iio: dac: adi-axi-dac: add
+ ad3552r axi variant
+Message-ID: <20241012144313.2ef2f282@jic23-huawei>
+In-Reply-To: <172840812598.1881490.11957892692384833449.robh@kernel.org>
+References: <20241008-wip-bl-ad3552r-axi-v0-iio-testing-v5-0-3d410944a63d@baylibre.com>
+	<20241008-wip-bl-ad3552r-axi-v0-iio-testing-v5-4-3d410944a63d@baylibre.com>
+	<172840812598.1881490.11957892692384833449.robh@kernel.org>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
-User-Agent: Mutt/2.2.13 (2024-03-09)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Tue, 08 Oct 2024 12:22:06 -0500
+"Rob Herring (Arm)" <robh@kernel.org> wrote:
 
-On 2024-02-18 19:27, Changhuang Liang wrote:
-> Add camera subsystem nodes for the StarFive JH7110 SoC. They contain the
-> dphy-rx, csi2rx, camss nodes.
->=20
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 49 ++++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 67 +++++++++++++++++++
->  2 files changed, 116 insertions(+)
+> On Tue, 08 Oct 2024 17:43:36 +0200, Angelo Dureghello wrote:
+> > From: Angelo Dureghello <adureghello@baylibre.com>
+> > 
+> > Add a new compatible and related bindigns for the fpga-based
+> > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
+> > 
+> > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
+> > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
+> > mainly to reach high speed transfer rates using a QSPI DDR
+> > (dobule-data-rate) interface.
+> > 
+> > The ad3552r device is defined as a child of the AXI DAC, that in
+> > this case is acting as an SPI controller.
+> > 
+> > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
+> > ---
+> >  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 56 ++++++++++++++++++++--
+> >  1 file changed, 53 insertions(+), 3 deletions(-)
+> >   
+> 
+> My bot found errors running 'make dt_binding_check' on your patch:
 
-We have been asked to enable CONFIG_VIDEO_STARFIVE_CAMSS in the Debian
-kernel, which from my understanding and given the device tree shown
-below also requires enabling CONFIG_VIDEO_CADENCE_CSI2RX. That said
-doing so triggers the following error in dmesg:
+For the record, this is due to me having already picked up a fix on this
+frequency range into the togreg branch of iio.git
+So wrong base tree for the test run.
 
-[   25.143282] cdns-csi2rx 19800000.csi: probe with driver cdns-csi2rx fail=
-ed with error -22
+Jonathan
 
-=46rom a quick look it seems there is something in the port@0 csi2rx
-entry. Do you happen to know what is wrong?
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.example.dtb: dac@0: spi-max-frequency: 66000000 is greater than the maximum of 30000000
+> 	from schema $id: http://devicetree.org/schemas/iio/dac/adi,ad3552r.yaml#
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20241008-wip-bl-ad3552r-axi-v0-iio-testing-v5-4-3d410944a63d@baylibre.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+> 
 
-Thanks
-Aurelien
-
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
-si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index b89e9791efa7..737ee97a3577 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -125,6 +125,55 @@ &tdm_ext {
->  	clock-frequency =3D <49152000>;
->  };
->=20
-> +&camss {
-> +	assigned-clocks =3D <&ispcrg JH7110_ISPCLK_DOM4_APB_FUNC>,
-> +			  <&ispcrg JH7110_ISPCLK_MIPI_RX0_PXL>;
-> +	assigned-clock-rates =3D <49500000>, <198000000>;
-> +	status =3D "okay";
-> +
-> +	ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		port@0 {
-> +			reg =3D <0>;
-> +		};
-> +
-> +		port@1 {
-> +			reg =3D <1>;
-> +
-> +			camss_from_csi2rx: endpoint {
-> +				remote-endpoint =3D <&csi2rx_to_camss>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&csi2rx {
-> +	assigned-clocks =3D <&ispcrg JH7110_ISPCLK_VIN_SYS>;
-> +	assigned-clock-rates =3D <297000000>;
-> +	status =3D "okay";
-> +
-> +	ports {
-> +		#address-cells =3D <1>;
-> +		#size-cells =3D <0>;
-> +
-> +		port@0 {
-> +			reg =3D <0>;
-> +
-> +			/* remote MIPI sensor endpoint */
-> +		};
-> +
-> +		port@1 {
-> +			reg =3D <1>;
-> +
-> +			csi2rx_to_camss: endpoint {
-> +				remote-endpoint =3D <&camss_from_csi2rx>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &gmac0 {
->  	phy-handle =3D <&phy0>;
->  	phy-mode =3D "rgmii-id";
-=20
-
---=20
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                     http://aurel32.net
 
