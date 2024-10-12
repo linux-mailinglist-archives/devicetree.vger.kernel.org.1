@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-110683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110684-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4598F99B6C8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 21:41:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F191399B6CC
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 21:43:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69FCC1C21043
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:41:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 749351F21D0C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:43:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63EB318C325;
-	Sat, 12 Oct 2024 19:41:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB99B16F8E5;
+	Sat, 12 Oct 2024 19:42:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="A6wN9CqB"
+	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="MWr6fxQI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com [95.215.58.170])
+Received: from out-175.mta1.migadu.com (out-175.mta1.migadu.com [95.215.58.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F3C417837A
-	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 19:41:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF8724EB38
+	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 19:42:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728762091; cv=none; b=lMPwRFw/jD6+SUdgzyyz5UV72L3Zr4kgYqQGVHNbpDdzPzPU9iUoxOGnFs9P74DhJosILMqe/VyaZilBzNzn6+C0xOam6FgMkTrW0bQioWC3OaZHKOIV5zh3MIKcuemQ0YAvUZaUqbFq7m9cocCUZAi9xB/EiK5E/nxKkdeIkYA=
+	t=1728762177; cv=none; b=rRHBXiHk5gtT8cpREkzurW09jP+kT8bQEGh695kNJQes1F4gItBcK2m0SbHmHdAaDNzVu/jLdYSijBRUS8GyZnazW+AjZxzMouXc/ZvW4pQ+s5Bgk3jO2mEACenKcX+afShDjrtoyQKBnayDQxehh8F4Ktl0DHgdNywElFsrb2U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728762091; c=relaxed/simple;
-	bh=B+yLUaic7dpm1O0TFxZwdOCFuRltV9gtPivB0VEI3/U=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=qAI4WKvXa7SC7gHTSDRpY7PkgkJ+8zezsmH7rQ7/z6R2oawFfcJDFhcGKR8fJeAqpZbG92kXOmh6GdRUASkdxro4cF3X4IHgAaZGPAH/ceavUYSdp6PKFXJ47rgEgtbuXeQ/otsdP9B5O2z8I7hSkuhTLC5k7NGKcesjGILpP6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=A6wN9CqB; arc=none smtp.client-ip=95.215.58.170
+	s=arc-20240116; t=1728762177; c=relaxed/simple;
+	bh=QuJ8EyXMBvgKTbug7NRvw49B8+obtP4UJFFQ1NnOby0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:To:Cc:Subject:From:
+	 References:In-Reply-To; b=izKsv72dc9Pfyznyy0D2/1dZzD7BfTswQ0VS/+ftGzLXe4Bi5p3TOLmck81cnneZ40iSi7M2NU0X5rRVhp+g4Y4L8SGKo/2L/nmfSUiEC2BoDu7kqc+0qP7jyXN7zSXMlNzT/SQwrMYcNk06FeaM1VHZlt13oaPpDmj7U40KBT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=MWr6fxQI; arc=none smtp.client-ip=95.215.58.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
 Precedence: bulk
@@ -38,134 +38,165 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 Mime-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1728762080;
+	t=1728762173;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=UO3j/GOAOSD8wyZvMkmDxShNf5vExBkrilFxmG3hn+8=;
-	b=A6wN9CqBVPFaWy8FtfOrLRTdDPmD+ksJakOTrSGhVv0HR27+JJ6fNKXKYi+rlTUNPG+Irj
-	9dHjHh2xJlnXLNG0xkQA0qMHRJRIpoLlDUwJ+njK8xhM4BqwBXe6C2+R1DqPP/SV/Cf46X
-	awEWTVFRX1/bd6W5bWKWKEE9C5+dBYepX+DdJEtkqT/zFY3JkqpyykcSWzT8IMPZLRuVL8
-	Y1yHGQqDO6c7+eush5qc6cgNvH3ydsf/CluqRCh+7rfw0z0+ScR0k7VuI34zU1Skg2tJ0A
-	6Atws2iWgPPMtXTbXJXa+P9mv7WU38VA0SdVyrjtjYDonMQzHaB7fKll/fjWIw==
+	bh=b64LRzS0K1xNpUCxz5A33hxeBDQfr+W1xfxRyrbN/Vo=;
+	b=MWr6fxQIQPPgIeAl5dgj7l0bAlEBPcvWfZZeKHQXRoBu84aYdBilYwohPNrR7NA/1UOBa0
+	58yFspj7LGAOQlvodhYsvjBQeS6q7mw4FTV7rcdRHZjYdWD1E+q4e1w8oWJRerGWbOymAb
+	rX+h/QIcsEp48ElZ+SYaCnoDZWdsB/OVxO0VBXhkFiw3fveB3FBfsy6aHfsOt1wBr5//3r
+	MCACn6VHrQw/pOyni6GIUbC2f4Hg9/xy4YQN0ytb76D2iilJTbdXQOKMQGPzXRavmdoS6d
+	muC7yi/QnDbeLoGgrQ3Af0X3F+NCQNUJ5WIqNTRjsGwtKn5nMnPB76a3EFG7yA==
 Content-Type: multipart/signed;
- boundary=61fb12ab53aa8895f52b41f4f9fca6bd16aa98e69df586cfe9f98b2bb65f;
+ boundary=2ac6e6696d22f858c7a33b96674888b04300dffc6f4ecc92215db824f2a3;
  micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Sat, 12 Oct 2024 21:41:09 +0200
-Message-Id: <D4U30AUOH6UR.1QPH47KN5EWE4@cknow.org>
-Cc: <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
- <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Prepare RK356x SoC dtsi files
- for per-variant OPPs
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: "Diederik de Haas" <didi.debian@cknow.org>
+Date: Sat, 12 Oct 2024 21:42:50 +0200
+Message-Id: <D4U31LE9JG2Q.CW68BA95B9QZ@cknow.org>
 To: "Dragan Simic" <dsimic@manjaro.org>,
  <linux-rockchip@lists.infradead.org>
+Cc: <heiko@sntech.de>, <linux-arm-kernel@lists.infradead.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>, "TL Lim"
+ <tllim@pine64.org>, "Marek Kraus" <gamiee@pine64.org>, "Tom Cubie"
+ <tom@radxa.com>, "FUKAUMI Naoki" <naoki@radxa.com>, "Nicolas Frattaroli"
+ <frattaroli.nicolas@gmail.com>, "Jonas Karlman" <jonas@kwiboo.se>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add new SoC dtsi for the
+ RK3566T variant
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
+From: "Diederik de Haas" <didi.debian@cknow.org>
 References: <cover.1728752527.git.dsimic@manjaro.org>
- <cc2aed3116a57dd50e2bb15ab41b12784adfafe3.1728752527.git.dsimic@manjaro.org>
-In-Reply-To: <cc2aed3116a57dd50e2bb15ab41b12784adfafe3.1728752527.git.dsimic@manjaro.org>
+ <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
+In-Reply-To: <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
 X-Migadu-Flow: FLOW_OUT
 
---61fb12ab53aa8895f52b41f4f9fca6bd16aa98e69df586cfe9f98b2bb65f
+--2ac6e6696d22f858c7a33b96674888b04300dffc6f4ecc92215db824f2a3
 Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
 
 Hi Dragan,
 
 On Sat Oct 12, 2024 at 7:04 PM CEST, Dragan Simic wrote:
-> Rename the Rockchip RK356x SoC dtsi files and, consequently, adjust their
-> contents appropriately, to prepare them for the ability to specify differ=
-ent
-> CPU and GPU OPPs for each of the supported RK356x SoC variants.
+> Add new SoC dtsi file for the RK3566T variant of the Rockchip RK3566 SoC.
+> The difference between the RK3566T variant and the "full-fat" RK3566 vari=
+ant
+> is in fewer supported CPU and GPU OPPs on the RK3566T, and in the absence=
+ of
+> a functional NPU, which we currently don't have to worry about.
 >
-> The first new RK356x SoC variant to be introduced is the RK3566T, which t=
-he
-> Pine64 Quartz64 Zero SBC is officially based on. [1]  Some other SBCs are
-> also based on the RK3566T variant, including Radxa ROCK 3C and ZERO 3E/3W=
-,
-> but the slight trouble is that Radxa doesn't state that officially.  Thou=
-gh,
-> it's rather easy to spot the RK3566T on such boards, because their offici=
-al
-> specifications state that the maximum frequency for the Cortex-A55 cores =
-is
-> lower than the "full-fat" RK3566's 1.8 GHz. [2][3][4]
-
-I think we changed terminology from "full-fat" to something else in the
-rk3588 variant? Would be nice to be consisten.
-
-> These changes follow the approach used for the Rockchip RK3588 SoC varian=
-ts,
-> which was introduced and described further in commit def88eb4d836 ("arm64=
-:
-> dts: rockchip: Prepare RK3588 SoC dtsi files for per-variant OPPs").  Ple=
-ase
-> see that commit for a more detailed explanation.
->
-> No functional changes are introduced, which was validated by decompiling =
-and
-
-No functional changes ...
-
-> comparing all affected board dtb files before and after these changes.  I=
-n
-> more detail, the affected dtb files have some of their blocks shuffled ar=
-ound
-> a bit and some of their phandles have different values, as a result of th=
+> Examples of the boards based on the RK3566T include the Pine64 Quartz64 Z=
+ero
+> SBC, [2] the Radxa ROCK 3C and the Radxa ZERO 3E/3W SBCs.  Unfortunately,
+> Radxa doesn't mention the use of RK3566T officially, but its official SBC
+> specifications do state that the maximum frequency for the Cortex-A55 cor=
+es
+> on those SBCs is lower than the "full-fat" RK3566's 1.8 GHz, which makes
+> spotting the presence of the RK3566T SoC variant rather easy. [3][4][5]  =
+An
+> additional, helpful cue is that Radxa handles the CPU and GPU OPPs for th=
 e
-> changes to the order in which the building blocks from the parent dtsi fi=
-les
-> are included, but they effectively remain the same as the originals.
+> RK3566T variant separately in its downstream kernel. [6]
 >
-> [1] https://wiki.pine64.org/wiki/Quartz64
-> [2] https://dl.radxa.com/rock3/docs/hw/3c/radxa_rock3c_product_brief.pdf
-> [3] https://dl.radxa.com/zero3/docs/hw/3e/radxa_zero_3e_product_brief.pdf
-> [4] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_product_brief.pdf
+> The CPU and GPU OPPs supported on the RK3566T SoC variant are taken from =
+the
+> vendor kernel source, [1] which uses the values of the "opp-supported-hw"=
+ OPP
+> properties to determine which ones are supported on a particular SoC vari=
+ant.
+> The actual values of the "opp-supported-hw" properties make it rather eas=
+y
+> to see what OPPs are supported on the RK3566T SoC variant, but that, rath=
+er
+> unfortunately, clashes with the maximum frequencies advertised officially
+> for the Cortex-A55 CPU cores on the above-mentioned SBCs. [2][3][4][5]  T=
+he
+> vendor kernel source indicates that the maximum frequency for the CPU cor=
+es
+> is 1.4 GHz, while the SBC specifications state that to be 1.6 GHz.  Unles=
+s
+> that discrepancy is resolved somehow, let's take the safe approach and us=
+e
+> the lower maximum frequency for the CPU cores.
 >
-> Related-to: def88eb4d836 ("arm64: dts: rockchip: Prepare RK3588 SoC dtsi =
-files for per-variant OPPs")
+> Update the dts files of the currently supported RK3566T-based boards to u=
+se
+> the new SoC dtsi for the RK3566T variant.  This actually takes the CPU co=
+res
+> and the GPUs found on these boards out of their earlier overclocks, but i=
+t
+> also means that the officially advertised specifications [2][3][4][5] of =
+the
+> highest supported frequencies for the Cortex-A55 CPU cores on these board=
+s
+> may actually be wrong, as already explained above.
+>
+> The correctness of the introduced changes was validated by decompiling an=
+d
+> comparing all affected board dtb files before and after these changes.
+>
+> [1] https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed=
+561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> [2] https://wiki.pine64.org/wiki/Quartz64
+> [3] https://dl.radxa.com/rock3/docs/hw/3c/radxa_rock3c_product_brief.pdf
+> [4] https://dl.radxa.com/zero3/docs/hw/3e/radxa_zero_3e_product_brief.pdf
+> [5] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_product_brief.pdf
+> [6] https://github.com/radxa/kernel/commit/2dfd51da472e7ebb5ef0d3db78f902=
+454af826b8
+>
+> Cc: TL Lim <tllim@pine64.org>
+> Cc: Marek Kraus <gamiee@pine64.org>
+> Cc: Tom Cubie <tom@radxa.com>
+> Cc: FUKAUMI Naoki <naoki@radxa.com>
+> Helped-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> Helped-by: Jonas Karlman <jonas@kwiboo.se>
 > Signed-off-by: Dragan Simic <dsimic@manjaro.org>
 > ---
->  .../{rk3566.dtsi =3D> rk3566-base.dtsi}         |   2 +-
->  arch/arm64/boot/dts/rockchip/rk3566.dtsi      | 116 ++++++++++++++----
->  arch/arm64/boot/dts/rockchip/rk3568.dtsi      | 114 +++++++++++++++--
->  .../{rk356x.dtsi =3D> rk356x-base.dtsi}         |  87 -------------
->  4 files changed, 202 insertions(+), 117 deletions(-)
->  copy arch/arm64/boot/dts/rockchip/{rk3566.dtsi =3D> rk3566-base.dtsi} (9=
-5%)
->  rename arch/arm64/boot/dts/rockchip/{rk356x.dtsi =3D> rk356x-base.dtsi} =
-(96%)
+>  .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |  2 +-
+>  .../boot/dts/rockchip/rk3566-rock-3c.dts      |  2 +-
+>  arch/arm64/boot/dts/rockchip/rk3566t.dtsi     | 90 +++++++++++++++++++
+>  3 files changed, 92 insertions(+), 2 deletions(-)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
 >
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3566-base.dtsi
-> similarity index 95%
-> copy from arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> copy to arch/arm64/boot/dts/rockchip/rk3566-base.dtsi
-> index 6c4b17d27bdc..e56e0b6ba941 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566-base.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> =20
-> -#include "rk356x.dtsi"
-> +#include "rk356x-base.dtsi"
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch=
+/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> index de390d92c35e..1ee5d96a46a1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> @@ -3,7 +3,7 @@
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/soc/rockchip,vop2.h>
+> -#include "rk3566.dtsi"
+> +#include "rk3566t.dtsi"
 > =20
 >  / {
->  	compatible =3D "rockchip,rk3566";
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3566.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3566.dtsi
-> index 6c4b17d27bdc..3fcca79279f7 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3566.dtsi
-> @@ -1,35 +1,107 @@
->  // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>  	chosen {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64=
+/boot/dts/rockchip/rk3566-rock-3c.dts
+> index f2cc086e5001..9a8f4f774dbc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> @@ -5,7 +5,7 @@
+>  #include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/rockchip.h>
+>  #include <dt-bindings/soc/rockchip,vop2.h>
+> -#include "rk3566.dtsi"
+> +#include "rk3566t.dtsi"
 > =20
-> -#include "rk356x.dtsi"
+>  / {
+>  	model =3D "Radxa ROCK 3C";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566t.dtsi b/arch/arm64/boot/=
+dts/rockchip/rk3566t.dtsi
+> new file mode 100644
+> index 000000000000..cd89bd3b125b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
 > +#include "rk3566-base.dtsi"
-> =20
->  / {
-> -	compatible =3D "rockchip,rk3566";
+> +
+> +/ {
 > +	cpu0_opp_table: opp-table-0 {
 > +		compatible =3D "operating-points-v2";
 > +		opp-shared;
@@ -188,164 +219,13 @@ ts/rockchip/rk3566.dtsi
 > +			clock-latency-ns =3D <40000>;
 > +			opp-suspend;
 > +		};
+> +
 
-Just like with patch 1 of this series, drop the blank line?
-
-> +
-> +		opp-1104000000 {
-> +			opp-hz =3D /bits/ 64 <1104000000>;
-> +			opp-microvolt =3D <900000 900000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1416000000 {
-> +			opp-hz =3D /bits/ 64 <1416000000>;
-> +			opp-microvolt =3D <1025000 1025000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1608000000 {
-> +			opp-hz =3D /bits/ 64 <1608000000>;
-> +			opp-microvolt =3D <1100000 1100000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1800000000 {
-> +			opp-hz =3D /bits/ 64 <1800000000>;
-> +			opp-microvolt =3D <1150000 1150000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +	};
-> +
-> +	gpu_opp_table: opp-table-1 {
-> +		compatible =3D "operating-points-v2";
-> +
-> +		opp-200000000 {
-> +			opp-hz =3D /bits/ 64 <200000000>;
-> +			opp-microvolt =3D <850000 850000 1000000>;
-> +		};
-> +
-> +		opp-300000000 {
-> +			opp-hz =3D /bits/ 64 <300000000>;
-> +			opp-microvolt =3D <850000 850000 1000000>;
-> +		};
-> +
-> +		opp-400000000 {
-> +			opp-hz =3D /bits/ 64 <400000000>;
-> +			opp-microvolt =3D <850000 850000 1000000>;
-> +		};
-> +
-> +		opp-600000000 {
-> +			opp-hz =3D /bits/ 64 <600000000>;
-> +			opp-microvolt =3D <900000 900000 1000000>;
-> +		};
-> +
-> +		opp-700000000 {
-> +			opp-hz =3D /bits/ 64 <700000000>;
-> +			opp-microvolt =3D <950000 950000 1000000>;
-> +		};
-> +
-> +		opp-800000000 {
-> +			opp-hz =3D /bits/ 64 <800000000>;
-> +			opp-microvolt =3D <1000000 1000000 1000000>;
-> +		};
-> +	};
->  };
-> =20
-> -&pipegrf {
-> -	compatible =3D "rockchip,rk3566-pipe-grf", "syscon";
-
-This seems unrelated?
-
-> +&cpu0 {
-> +	operating-points-v2 =3D <&cpu0_opp_table>;
->  };
-> =20
-> -&power {
-> -	power-domain@RK3568_PD_PIPE {
-> -		reg =3D <RK3568_PD_PIPE>;
-> -		clocks =3D <&cru PCLK_PIPE>;
-> -		pm_qos =3D <&qos_pcie2x1>,
-> -			 <&qos_sata1>,
-> -			 <&qos_sata2>,
-> -			 <&qos_usb3_0>,
-> -			 <&qos_usb3_1>;
-> -		#power-domain-cells =3D <0>;
-> -	};
-
-This seems unrelated to me and possibly a functional change?
-If this was intended, then a description in the commit message would be
-nice why this is appropriate and possibly moved to a separate patch?
-
-> +&cpu1 {
-> +	operating-points-v2 =3D <&cpu0_opp_table>;
-> +};
-> +
-> +&cpu2 {
-> +	operating-points-v2 =3D <&cpu0_opp_table>;
->  };
-> =20
-> -&usb_host0_xhci {
-> -	phys =3D <&usb2phy0_otg>;
-> -	phy-names =3D "usb2-phy";
-> -	extcon =3D <&usb2phy0>;
-> -	maximum-speed =3D "high-speed";
-
-This also looks unrelated and a functional change?
-
-> +&cpu3 {
-> +	operating-points-v2 =3D <&cpu0_opp_table>;
->  };
-> =20
-> -&vop {
-> -	compatible =3D "rockchip,rk3566-vop";
-
-This also looks unrelated?
+For consistency, no blank lines between the opp nodes would be nice ;)
 
 Cheers,
   Diederik
 
-> +&gpu {
-> +	operating-points-v2 =3D <&gpu_opp_table>;
->  };
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk3568.dtsi
-> index 5c54898f6ed1..ecaefe208e3e 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
-> @@ -3,11 +3,99 @@
->   * Copyright (c) 2021 Rockchip Electronics Co., Ltd.
->   */
-> =20
-> -#include "rk356x.dtsi"
-> +#include "rk356x-base.dtsi"
-> =20
->  / {
->  	compatible =3D "rockchip,rk3568";
-> =20
-> +	cpu0_opp_table: opp-table-0 {
-> +		compatible =3D "operating-points-v2";
-> +		opp-shared;
-> +
-> +		opp-408000000 {
-> +			opp-hz =3D /bits/ 64 <408000000>;
-> +			opp-microvolt =3D <850000 850000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-600000000 {
-> +			opp-hz =3D /bits/ 64 <600000000>;
-> +			opp-microvolt =3D <850000 850000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-816000000 {
-> +			opp-hz =3D /bits/ 64 <816000000>;
-> +			opp-microvolt =3D <850000 850000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +			opp-suspend;
-> +		};
-> +
 > +		opp-1104000000 {
 > +			opp-hz =3D /bits/ 64 <1104000000>;
 > +			opp-microvolt =3D <900000 900000 1150000>;
@@ -355,24 +235,6 @@ ts/rockchip/rk3568.dtsi
 > +		opp-1416000000 {
 > +			opp-hz =3D /bits/ 64 <1416000000>;
 > +			opp-microvolt =3D <1025000 1025000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1608000000 {
-> +			opp-hz =3D /bits/ 64 <1608000000>;
-> +			opp-microvolt =3D <1100000 1100000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1800000000 {
-> +			opp-hz =3D /bits/ 64 <1800000000>;
-> +			opp-microvolt =3D <1150000 1150000 1150000>;
-> +			clock-latency-ns =3D <40000>;
-> +		};
-> +
-> +		opp-1992000000 {
-> +			opp-hz =3D /bits/ 64 <1992000000>;
-> +			opp-microvolt =3D <1150000 1150000 1150000>;
 > +			clock-latency-ns =3D <40000>;
 > +		};
 > +	};
@@ -404,26 +266,9 @@ ts/rockchip/rk3568.dtsi
 > +			opp-hz =3D /bits/ 64 <700000000>;
 > +			opp-microvolt =3D <950000 950000 1000000>;
 > +		};
-> +
-> +		opp-800000000 {
-> +			opp-hz =3D /bits/ 64 <800000000>;
-> +			opp-microvolt =3D <1000000 1000000 1000000>;
-> +		};
 > +	};
+> +};
 > +
->  	sata0: sata@fc000000 {
->  		compatible =3D "rockchip,rk3568-dwc-ahci", "snps,dwc-ahci";
->  		reg =3D <0 0xfc000000 0 0x1000>;
-> @@ -269,12 +357,24 @@ combphy0: phy@fe820000 {
->  	};
->  };
-> =20
-> -&cpu0_opp_table {
-> -	opp-1992000000 {
-> -		opp-hz =3D /bits/ 64 <1992000000>;
-> -		opp-microvolt =3D <1150000 1150000 1150000>;
-> -		clock-latency-ns =3D <40000>;
-> -	};
 > +&cpu0 {
 > +	operating-points-v2 =3D <&cpu0_opp_table>;
 > +};
@@ -442,153 +287,7 @@ ts/rockchip/rk3568.dtsi
 > +
 > +&gpu {
 > +	operating-points-v2 =3D <&gpu_opp_table>;
->  };
-> =20
->  &pipegrf {
-> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/d=
-ts/rockchip/rk356x-base.dtsi
-> similarity index 96%
-> rename from arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> rename to arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> index 534593f2ed0b..62be06f3b863 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk356x-base.dtsi
-> @@ -56,7 +56,6 @@ cpu0: cpu@0 {
->  			clocks =3D <&scmi_clk 0>;
->  			#cooling-cells =3D <2>;
->  			enable-method =3D "psci";
-> -			operating-points-v2 =3D <&cpu0_opp_table>;
->  			i-cache-size =3D <0x8000>;
->  			i-cache-line-size =3D <64>;
->  			i-cache-sets =3D <128>;
-> @@ -72,7 +71,6 @@ cpu1: cpu@100 {
->  			reg =3D <0x0 0x100>;
->  			#cooling-cells =3D <2>;
->  			enable-method =3D "psci";
-> -			operating-points-v2 =3D <&cpu0_opp_table>;
->  			i-cache-size =3D <0x8000>;
->  			i-cache-line-size =3D <64>;
->  			i-cache-sets =3D <128>;
-> @@ -88,7 +86,6 @@ cpu2: cpu@200 {
->  			reg =3D <0x0 0x200>;
->  			#cooling-cells =3D <2>;
->  			enable-method =3D "psci";
-> -			operating-points-v2 =3D <&cpu0_opp_table>;
->  			i-cache-size =3D <0x8000>;
->  			i-cache-line-size =3D <64>;
->  			i-cache-sets =3D <128>;
-> @@ -104,7 +101,6 @@ cpu3: cpu@300 {
->  			reg =3D <0x0 0x300>;
->  			#cooling-cells =3D <2>;
->  			enable-method =3D "psci";
-> -			operating-points-v2 =3D <&cpu0_opp_table>;
->  			i-cache-size =3D <0x8000>;
->  			i-cache-line-size =3D <64>;
->  			i-cache-sets =3D <128>;
-> @@ -128,54 +124,6 @@ l3_cache: l3-cache {
->  		cache-sets =3D <512>;
->  	};
-> =20
-> -	cpu0_opp_table: opp-table-0 {
-> -		compatible =3D "operating-points-v2";
-> -		opp-shared;
-> -
-> -		opp-408000000 {
-> -			opp-hz =3D /bits/ 64 <408000000>;
-> -			opp-microvolt =3D <850000 850000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -
-> -		opp-600000000 {
-> -			opp-hz =3D /bits/ 64 <600000000>;
-> -			opp-microvolt =3D <850000 850000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -
-> -		opp-816000000 {
-> -			opp-hz =3D /bits/ 64 <816000000>;
-> -			opp-microvolt =3D <850000 850000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -			opp-suspend;
-> -		};
-> -
-> -		opp-1104000000 {
-> -			opp-hz =3D /bits/ 64 <1104000000>;
-> -			opp-microvolt =3D <900000 900000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -
-> -		opp-1416000000 {
-> -			opp-hz =3D /bits/ 64 <1416000000>;
-> -			opp-microvolt =3D <1025000 1025000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -
-> -		opp-1608000000 {
-> -			opp-hz =3D /bits/ 64 <1608000000>;
-> -			opp-microvolt =3D <1100000 1100000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -
-> -		opp-1800000000 {
-> -			opp-hz =3D /bits/ 64 <1800000000>;
-> -			opp-microvolt =3D <1150000 1150000 1150000>;
-> -			clock-latency-ns =3D <40000>;
-> -		};
-> -	};
-> -
->  	display_subsystem: display-subsystem {
->  		compatible =3D "rockchip,display-subsystem";
->  		ports =3D <&vop_out>;
-> @@ -196,40 +144,6 @@ scmi_clk: protocol@14 {
->  		};
->  	};
-> =20
-> -	gpu_opp_table: opp-table-1 {
-> -		compatible =3D "operating-points-v2";
-> -
-> -		opp-200000000 {
-> -			opp-hz =3D /bits/ 64 <200000000>;
-> -			opp-microvolt =3D <850000 850000 1000000>;
-> -		};
-> -
-> -		opp-300000000 {
-> -			opp-hz =3D /bits/ 64 <300000000>;
-> -			opp-microvolt =3D <850000 850000 1000000>;
-> -		};
-> -
-> -		opp-400000000 {
-> -			opp-hz =3D /bits/ 64 <400000000>;
-> -			opp-microvolt =3D <850000 850000 1000000>;
-> -		};
-> -
-> -		opp-600000000 {
-> -			opp-hz =3D /bits/ 64 <600000000>;
-> -			opp-microvolt =3D <900000 900000 1000000>;
-> -		};
-> -
-> -		opp-700000000 {
-> -			opp-hz =3D /bits/ 64 <700000000>;
-> -			opp-microvolt =3D <950000 950000 1000000>;
-> -		};
-> -
-> -		opp-800000000 {
-> -			opp-hz =3D /bits/ 64 <800000000>;
-> -			opp-microvolt =3D <1000000 1000000 1000000>;
-> -		};
-> -	};
-> -
->  	hdmi_sound: hdmi-sound {
->  		compatible =3D "simple-audio-card";
->  		simple-audio-card,name =3D "HDMI";
-> @@ -635,7 +549,6 @@ gpu: gpu@fde60000 {
->  		clocks =3D <&scmi_clk 1>, <&cru CLK_GPU>;
->  		clock-names =3D "gpu", "bus";
->  		#cooling-cells =3D <2>;
-> -		operating-points-v2 =3D <&gpu_opp_table>;
->  		power-domains =3D <&power RK3568_PD_GPU>;
->  		status =3D "disabled";
->  	};
+> +};
 >
 > _______________________________________________
 > Linux-rockchip mailing list
@@ -596,16 +295,16 @@ ts/rockchip/rk356x-base.dtsi
 > http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
 
---61fb12ab53aa8895f52b41f4f9fca6bd16aa98e69df586cfe9f98b2bb65f
+--2ac6e6696d22f858c7a33b96674888b04300dffc6f4ecc92215db824f2a3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwrQ2gAKCRDXblvOeH7b
-bnnIAQCOaw0BDSSQZIpkP1UaiQICi6wX6TTNPg6CLnmZ6kpiaAEAn8cx/exw6cXp
-+rixAOkHerNqGTGxWqzAxc2xp7Qgwwg=
-=bABJ
+iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZwrRPQAKCRDXblvOeH7b
+bmjcAQCeNqqm97Nc2PFzycIlqCXV5PD0AHf+jeMsvHLDdu49rwEAxBVEpDXvqpbP
+9IwtMSL7LErw4w7ecjk/M7h8qJJIpwo=
+=Wms1
 -----END PGP SIGNATURE-----
 
---61fb12ab53aa8895f52b41f4f9fca6bd16aa98e69df586cfe9f98b2bb65f--
+--2ac6e6696d22f858c7a33b96674888b04300dffc6f4ecc92215db824f2a3--
 
