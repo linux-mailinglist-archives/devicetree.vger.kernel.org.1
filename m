@@ -1,52 +1,53 @@
-Return-Path: <devicetree+bounces-110639-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D15C99B532
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 15:49:04 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 551BF99B534
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 15:49:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F8461C21CE4
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:49:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A0769B22187
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:49:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9E061865E5;
-	Sat, 12 Oct 2024 13:49:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07C318953A;
+	Sat, 12 Oct 2024 13:49:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="nXVf/4Nx"
+	dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b="eSZg2bNW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A2AE154C03
-	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 13:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59464154C03
+	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 13:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728740942; cv=none; b=KB2CZ7kI1JdFtSELQoUhEQaIVdGG2TQOhw9JIuXfPXUvFkLS9vIv35mDOM4BAqGiGIAOkjPEfa1r6BtMflVQehvoEWUDbLqLy7aHkj/cYJy3kURi1b+D/WTlPKR/p3BMkoDf5bDXAZXewffkXEAi3jUgbiTf08BdTW1CpcWZUn4=
+	t=1728740952; cv=none; b=YljknnXzrC8WMfkXFBsdHrENskEuUhMWW1bIFSQBOcQPVCX5iUDdwVsPXxMPudRnUf41piYWJNBd6oFstSwA2rb+cBHwVIbpUFuM9tsF/npNAE0WJxhG81YKAUheAF+i5qd9WOsPdXoI+QQAt8VgoMqM1yuQoul5XX4SaWjXCUQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728740942; c=relaxed/simple;
-	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=lg2IabkzcWguP+A6JZf7TBrY+IBFMOnhFjSVAhllb2nz2/H3qDEdz0GiIphPhFtC7hEdg9j3/IvGDbu2THQHAYbFRRDdP9kCrgek3RfLGhoZ527HyJ0oDkA9oE8VQbOv+V3XnFQ17/qWEUFIwvsA2062iYRrnXEldUKslJpWHiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=nXVf/4Nx; arc=none smtp.client-ip=212.227.15.18
+	s=arc-20240116; t=1728740952; c=relaxed/simple;
+	bh=1w91/2dbsoce4Fpc1+XDvYQTbOif9Vxu4gqesm56VfY=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=phpGZQKfHHg1MuUAbb7BuSs9UWCyEnLIz8tVqjCq0ivImOLAbunXt9YtKU0uzMqlS2GRp7qgGZk1B1FcxQE0Nd4Mg2C8mINyI0KxcD4Nonb4twr5bKujuBsgotULTjM174vSJMxgRdyG1GV9INFbq50oI59Mf2nBt6ROUkzlMdE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de; spf=pass smtp.mailfrom=gmx.de; dkim=pass (2048-bit key) header.d=gmx.de header.i=markus.stockhausen@gmx.de header.b=eSZg2bNW; arc=none smtp.client-ip=212.227.15.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.de
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gmx.de;
 	s=s31663417; t=1728740918; x=1729345718;
 	i=markus.stockhausen@gmx.de;
-	bh=lk3UA/xG0turmQ05InXY1YnCg4vvyf0svh1HVwn0xS4=;
-	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:
-	 MIME-Version:Content-Transfer-Encoding:cc:
+	bh=GYj5Y8dYhOKGETE0dKfWIyajVQoJN4CpNoHfjXbDEw0=;
+	h=X-UI-Sender-Class:From:To:Cc:Subject:Date:Message-ID:In-Reply-To:
+	 References:MIME-Version:Content-Transfer-Encoding:cc:
 	 content-transfer-encoding:content-type:date:from:message-id:
 	 mime-version:reply-to:subject:to;
-	b=nXVf/4NxTZHXoXG0nAhX3/pYaqyejLHIfi60wrPArd3lHg5s1xzac4xLv7DauHpD
-	 +HHVadnN15OlMkzzihotK4v76KVyykD1mr60g2e4GGR5Ed4o+gbdXEF6GElZUO+aM
-	 r4FCT2Xo6OE4ekopvXOGBlUuox5XWvzS5bSgAeR7rSGWWeXOT2MmUPNx7/cR5bgJk
-	 xXjWCZXJe11GDY96mU1HcnpgV5yarGC+r3hjEPbjNvpO8JE+UDowTJReH4iU/bVrX
-	 O4db/GUN1LHjP090vax/5cf10V2Ww1BWORc3+T/dVX2oeUXo5R1zxjmpetc/OmC4l
-	 APAPTOsicxKofPr5Zg==
+	b=eSZg2bNWfIOZ/GwPF5WKUmEib+CiafTTHmabaYMmpS9aIXBTt/gMabrwcYgvUFHc
+	 vFpllSAbKmzIK2+ZI6JDMzt4tUYGS22kAin5B+RfTxNLJYZCVtU4S/SmiyhYvRN2e
+	 i+5rOtZkumtxrH1XyaxFykUm5fNCJmpFBy2q+qFmqqqkU4zg+UofeXYNya1xvdOdf
+	 e0OXtd5ZpKxCeLomQKoEWJ7CKB8mlU1gmX98uylbHo5C7W1BPWDUDTd1fBglHECYq
+	 yaZl1mQTDvgWv9C6/u9lRalS7FXL5fvoekUvM5tBBKQlmjzL51XMscSaJDQmkuv9f
+	 iOxmI1Q2UWLhoAMcbA==
 X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
 Received: from openwrt ([94.31.70.17]) by mail.gmx.net (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MIMbO-1tDrYA1xga-00GJSe; Sat, 12
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MJVDW-1tEwRi2yUa-00JZeS; Sat, 12
  Oct 2024 15:48:38 +0200
 From: Markus Stockhausen <markus.stockhausen@gmx.de>
 To: vkoul@kernel.org,
@@ -58,63 +59,147 @@ To: vkoul@kernel.org,
 	devicetree@vger.kernel.org,
 	chris.packham@alliedtelesis.co.nz
 Cc: Markus Stockhausen <markus.stockhausen@gmx.de>
-Subject: [PATCH v3 0/2] phy: Realtek Otto SerDes: add new driver
-Date: Sat, 12 Oct 2024 09:48:32 -0400
-Message-ID: <20241012134834.1306992-1-markus.stockhausen@gmx.de>
+Subject: [PATCH v3 1/2] dt-bindings: phy: add realtek,rtl8380m-serdes
+Date: Sat, 12 Oct 2024 09:48:33 -0400
+Message-ID: <20241012134834.1306992-2-markus.stockhausen@gmx.de>
 X-Mailer: git-send-email 2.46.2
+In-Reply-To: <20241012134834.1306992-1-markus.stockhausen@gmx.de>
+References: <20241012134834.1306992-1-markus.stockhausen@gmx.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:Oj8+337dM8VJHfGd9kXbSLhqqhg89TtZbSkxaUshb8QSX6Zq1z9
- tWYcsdfrgil6xGLtUbjZFEQzDO740wByqztI6L23i0jFJeTvvhuk0EYYU/gXIg77zcmoYwA
- T+isb827CC/Yo34/WU6p7vlkORG2RhdBLLdTPJpbPSX1NAsq1zim8Dz+nw59zbIp82oWJFv
- /x6GpK8yxkV1tNyykZK4w==
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:xPlqO6n/Cw0yXYnx4nmw5uYX2LUN0f8/ahCnFjTfIsppaB24i1h
+ o5ilD3MEXm2yBtsXgBfSwdWEv9+bkv9gekGBtKV9ZzYEf2Ne9wUWzdVetxKH4K3v5nPq3lf
+ SoxGl53rtjkweVRzuxWSLOYYXeGZYE41giDd6I5sboIjyO65zFsmcHK7ts+dO7NeWcswPmB
+ dm5rxXEfZzceD8olLzK5w==
 X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:GOTzriedaP0=;iRItdQR7bb+AzeLFf45XxZ+xxGd
- FbEvlPBpVTksghd5NZ7b60kliZt9uJcCMRk07qTUllxeGj5NcH4uYoRDS87y/hART2/mqrjIo
- mV5Cb3xNiiMuFDtjroU2hisLiEq5mLXNyfC1wk+G4wNiAhYiRi6xwQLgkVxzTVbbBeLLgYMW6
- SUgpbZyvel8uCQ5XF0Cy0nR0mWisdAWv2x5nWYic7FNuJzFnc2Nuv3IiI0k/T7pZ7XQWfUqC5
- KB3blMmRIIGmBO4szyvhmJU+HWoiUvhAMW/6Xj6fbrnSFMvZnKH92Ra7jbw6se9lBumC1pKFc
- /wWSOUcNxKrLLhtdo1rLbh2gneLyUnTehyOgxFhpNMuxoYVNDvmKW5usI/43rfO60OcCfMDIr
- 5K8JtePVy38xJu7fdcnYNFYT9HDsskoS4uds4dvS4SLK2mJC+YUd2Jxl/0k257dP1tLYIYX6a
- gkhI1l96deM2nydgd8j/mpHNrO1a9wQcFb4FEmVu97+RGWaemCoCIjP5kzUO2NO7eZvvmGAEC
- qMo7emfVL1SOT5KeWgH+usePfetluFvbsKo49ECZX0IyuhXrhdnZe4t7jQ6SKEzT3lxjMnvsF
- 1gBoBmG2Smbk4G7TCOxl9y1TpptPeOCncNKJFrqBPh19AC2qdxtSxy5NghWNqt765y4HVP3JW
- sAT2MiRPpXLfOPFx5lzJGd6AKLRnHciAqfMojxuX4EHEu2PW4oBVK8widSJtvw4NNpVUeFjL8
- vb2e18gZK/p4YPwowB1OeELS5PNJ31vk2r1dDVSVqeW8sUP8vVKFe0xdl0DFqyiDvP5uPwA+Q
- MwZ2QPFazclAbZqRna1CJFiQ==
+UI-OutboundReport: notjunk:1;M01:P0:vw5mg7WeZQw=;e9lhV4cdZ7dGzOthZEypc9Rjbpx
+ ZzE2ubHcng7Qi6MiG33eU19D+wqkkHELvUEJi2q1Ob4WMXN57H3+yCzV2GXefRBPh6MFfmjQI
+ oBanb5Wt/dta3cTfMFjYo+2VJHlgF9NIpCWsoqHCv/MFAwDODLzTApqo99hYjYItrExm+7AjA
+ LTh699sVdNp/o2fFiB7Dxzv8uWNCCpH/L7HpyBlRMHOfZoMpFgUsW1LwFFBOPMtHRQkwaB8mR
+ lwqXpsEo+jNIYj+U8QNINRA329zzTUUPorrxZDje8+YsGx9/44+uSOV8BvRY0T4ckIRoiUzJY
+ tQwl99xRfcuF2VPzpmFBgHL551O8VyRa7MnYKc4OdhTI5CPw5zn3yeeu2EAVskohtU8kGJc7Z
+ J7YgosHoBeRBasEywSSQU6CjkOpCWJiPGZhftOl3W16dqbM/8Pfyg5SCM2IxguNNo2fayUJIJ
+ q1ZGa96y/nA2I92MxJALRa23T+dVjpLQuaK2bUQOHutf/w+mkc7wX9EfGSoe6KfL/ae7R2nFG
+ nLG4xouS9yzeJ3UjNC7JmxRc7d3qhoE/M9LL9kAxxedYDu8tf04Wl8hTpOtZL21F++vKM7SK/
+ pplJpMPAHVl/tyu59uCDwmI/v/nx+ufHsXRdPZ6HgzqWUbs5ZzIoq7Aq4k7NDWXbMZTPeJpgH
+ azu7JlH2alV6EQ60wzaRR8rEzkebgckj3mojGvBbaCOBFzBZZ0W2SjI1EgHBZ2KRX4HfALU3a
+ At5mKperEWp/ItH1tmQmfeGocB10h60UlMvQwFiCEg9QQl990wuSHMydYyzQHPSLJFoy9jFxN
+ /0LSB5He8DrF/uguurlv0UIw==
 
-This patch series adds support for the SerDes in the Realtek Otto platform.
-These are 8-52 port switch SoCs of the RTL83xx and RTL93xx series with MIPS
-cores. The ports are based on 1-8 port PHYs (e.g. RTL8218D) that are connected
-via multiple SerDes.
+Add bindings for the SerDes of the Realtek Otto platform. These are
+MIPS based network Switch SoCs with up to 52 ports divided into four
+different model lines.
 
-The driver is based on the GPL source drops from the different switch vendors.
-It supports all 4 SoC series and was developed and tested on the following
-devices:
+Changes in v3
 
-RTL838x - codename maple - Linksys LGS310C
-RTL839x - codename cypress - Zyxel GS1920-24
-RTL930x - codename langon - Zyxel XGS1210-10
-RTL931x - codename mango - Linksys LGS352C
+ - renamed to realtek,rtl8380m-serdes.yaml
+ - removed parameter controlled-ports
+ - verified with make dt_binding_check
+ - recipient list according to get_maintainers
 
-Due to very little information and fundamentally different I/O handling and
-port ranges of the devices the driver assumes and translates some handling
-to provide a common consistent interface.
+Changes in v2:
 
-Currently only provide the most basic operations for mode set and device
-reset as well as some debugging information if enabled. The strength lies in
-the fact that the driver can run patch sequences for the SerDes registers at
-certain events, e.g. during setup. This allows to run configuration
-operations to get the SerDes up and running.
+ - new subject
+ - removed patch command sequences
+ - renamed parameter controlled-ports to realtek,controlled-ports
 
-For more information see:
+Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+=2D--
+ .../bindings/phy/realtek,rtl8380m-serdes.yaml | 67 +++++++++++++++++++
+ 1 file changed, 67 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/realtek,rtl8380m=
+-serdes.yaml
 
-https://svanheule.net/switches/gpl_source_drops
-https://svanheule.net/realtek/
+diff --git a/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes=
+.yaml b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
+new file mode 100644
+index 000000000000..c1deef8ec63c
+=2D-- /dev/null
++++ b/Documentation/devicetree/bindings/phy/realtek,rtl8380m-serdes.yaml
+@@ -0,0 +1,67 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/phy/realtek,rtl8380m-serdes.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Realtek Otto SerDes controller
++
++maintainers:
++  - Markus Stockhausen <markus.stockhausen@gmx.de>
++
++description:
++  The MIPS based Realtek Switch SoCs of the Realtek RTL838x, RTL839x, RTL=
+930x
++  and RTL931x series have multiple SerDes built in. They are linked to si=
+ngle,
++  quad or octa PHYs like the RTL8218B, RTL8218D or RTL8214FC and are one =
+of
++  the integral part of the up-to-52-port switch architecture. Although th=
+ese
++  SerDes controllers have common basics they are designed differently in =
+the
++  SoC families.
++
++properties:
++  $nodename:
++    pattern: "^phy@[0-9a-f]+$"
++
++  compatible:
++    items:
++      - enum:
++          - realtek,rtl8380m-serdes
++          - realtek,rtl8392m-serdes
++          - realtek,rtl9302b-serdes
++          - realtek,rtl9311-serdes
++
++  reg:
++    items:
++      description:
++        The primary register memory location. On RTL83xx devices this is =
+the
++        address to the I/O register range, on RTL93xx devices this is the
++        address of the MDIO style command/data registers.
++
++  "#phy-cells":
++    const: 4
++    description:
++      The first number defines the SerDes to use. The second number a lin=
+ked
++      SerDes. E.g. if a octa 1G PHY is attached to two QSGMII SerDes. The=
+ third
++      number is the first switch port this SerDes is working for, the fou=
+rth
++      number is the last switch port the SerDes is working for.
++
++  firmware-name:
++    maxItems: 1
++    description:
++      An alternative name of the SerDes firmware image file located in th=
+e
++      firmware search path. Set to "" to disable firmware loading.
++
++required:
++  - compatible
++  - reg
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    serdes: phy@1b00e780 {
++      compatible =3D "realtek,rtl9302b-serdes";
++      reg =3D <0x1b0003b0 0x8>;
++      firmware-name =3D "zyxel-xgs1210-12-serdes.fw";
++      #phy-cells =3D <4>;
++    };
+=2D-
+2.46.2
 
 
