@@ -1,90 +1,127 @@
-Return-Path: <devicetree+bounces-110620-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110621-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 460BB99B4AE
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:01:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E8BB499B4B1
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:02:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 038D8281366
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:01:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88C481F2137C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:02:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD8C2155726;
-	Sat, 12 Oct 2024 12:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA86C1527AC;
+	Sat, 12 Oct 2024 12:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="If9Mqfx5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oZyBpFzK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFD8815C0;
-	Sat, 12 Oct 2024 12:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C226C15C0;
+	Sat, 12 Oct 2024 12:02:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728734499; cv=none; b=m7QEXldHZtsTkwJaULA4dssHNgWsLA1mVOxjtqYCPua6on+oLRA7/7b/fYVjWnlcmsigDwI7ip3xjy/UK24QaC25gNVV4PuMFcmVRrc76lq8xI1jjCJdvKxXjPzNQRTJAHBQr41LJ0Szbm0Qw6oNpe/FZxQAmIdgRGe1fSj5c1s=
+	t=1728734566; cv=none; b=dueTORSQGqOcjdeqY47vS781Iz/KhbNnHsPPY8FmSLdQ8xVI6MhVCrHZSadAhfHG0UenmXGBw+1cyNErEOa7ZuvL/jMAfC3cgWiDh2y+Vk90J56tcFS+pc3z9Dj8GkP4NJL6qPnvd9sj5KqPR5mfjka1nRVMrnUjPci/XSSfXhs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728734499; c=relaxed/simple;
-	bh=plERdmNBM5/sxntNA4IfxGm9pbV3oKBHNIWGFVDmHcA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=eC9Dcq37uv7eXYjPjs3xuH0/WOt+H9y7R1uaCD3q3GxOSHqCm6t73t9oilQcSSPLNnCaCPIvyrN7+ATz1HfpceG2LzrdljlYBK/UUd8qIhHekVaSt1eVY0ZLGLEv1PZlN613QRjjHirIDRLdXYyQrcdtYH6PFTDsaGONvBl7xPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=If9Mqfx5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93C55C4CEC6;
-	Sat, 12 Oct 2024 12:01:32 +0000 (UTC)
+	s=arc-20240116; t=1728734566; c=relaxed/simple;
+	bh=iBsRVLDpMR+KZSbI3gtf3MamOPTT2NshBNeVSlN779g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=p5f7jOB9gsm18Lacn23pngoL7BVLkxlGToSitE1GrtUClqVggi3a48JwjtrNiB2BK/ecaQand9+SHgJRbjYsDyjH+74Nfqw3sjFFFJUkLYrDqm6X6M5LbZKeyH+hKzdHiE5k6fHLrvfAHmxUokKyM3L/uLQNBgPqRoxxON2kHVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oZyBpFzK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62978C4CEC7;
+	Sat, 12 Oct 2024 12:02:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728734499;
-	bh=plERdmNBM5/sxntNA4IfxGm9pbV3oKBHNIWGFVDmHcA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=If9Mqfx5J0lEBpqHqt6keIoR0sMnpkG5LHIGrM2ICSwdEY1Why+H3G32GPT6iJZIR
-	 Y45uncyG8NVIgP8u2Oo9JcPWLJuqnjtUqbOA851VNMC35M6vcSK9AD3/sQ0s6m5d/l
-	 plmFqhlfA+788aIDSWI+Q0ISiksG9IGV9JcS3d9y4c07G2c5ZOzDJNMXaqo+W1i8hs
-	 j4uz4rzaLZZhAhrW+pl0nDGviCh/a1A7U4HoUPFOeXaIhl3vjgVBISibHM/lBcRNiz
-	 nDFYXqA/scAmSNGHvt7xeDyDJAmCpsjqkZGmbzAjHhYJTRgG2Cuj7Ow6Sqc8FunxpP
-	 l3qhvLHyIyTpg==
-Date: Sat, 12 Oct 2024 13:01:24 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: vamoirid <vassilisamir@gmail.com>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, anshulusr@gmail.com, gustavograzs@gmail.com,
- andriy.shevchenko@linux.intel.com, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 09/13] iio: chemical: bme680: Move ambient
- temperature to attributes
-Message-ID: <20241012130124.44c69521@jic23-huawei>
-In-Reply-To: <20241010210030.33309-10-vassilisamir@gmail.com>
-References: <20241010210030.33309-1-vassilisamir@gmail.com>
-	<20241010210030.33309-10-vassilisamir@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1728734566;
+	bh=iBsRVLDpMR+KZSbI3gtf3MamOPTT2NshBNeVSlN779g=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=oZyBpFzKfn5sRonlKanpV+X0uSE3V5lDsixB73OrsC9TmAXpMQChTwWD7+WOHuWxX
+	 Vbb3fVoecg8bAT1CcSO3RZaMxW9wvZfpQ6hzpqLW7GBc8KvCxxs3XuyQM0VfLJXTSj
+	 INdp/kbgKHAaGFzFJtIqS3n4ceJd0NrxH7W0SrNpQdHpQTY6hGpaUF/a9+3mi4RQO4
+	 YkEVg6aaGi/xUp6CtDdNBgD0LkPYkkgxRZouFjmibYQhr2fGxSHKaoFy79hOc3xXh5
+	 TE5+rZVr+IRDTNnYhUzMAcssxWE8lS6j0w3NvuyM9mi1yWmzxWNklpWRBX+g1byZJS
+	 jPigtRZcEKGpA==
+Message-ID: <b70c7850-1fd2-4267-aa18-5e944a0bf81d@kernel.org>
+Date: Sat, 12 Oct 2024 21:02:43 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/12] PCI: rockchip-ep: Improve
+ rockchip_pcie_ep_map_addr()
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Shawn Lin <shawn.lin@rock-chips.com>, =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?=
+ <kw@linux.com>, Bjorn Helgaas <bhelgaas@google.com>,
+ Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org,
+ Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+ Wilfred Mallawa <wilfred.mallawa@wdc.com>, Niklas Cassel <cassel@kernel.org>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-5-dlemoal@kernel.org>
+ <20241010071357.c3kck3rxdhvy6m67@thinkpad>
+ <20241012093101.aj5hyeo3r7g6qlnn@thinkpad>
+From: Damien Le Moal <dlemoal@kernel.org>
+Content-Language: en-US
+Organization: Western Digital Research
+In-Reply-To: <20241012093101.aj5hyeo3r7g6qlnn@thinkpad>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 10 Oct 2024 23:00:26 +0200
-vamoirid <vassilisamir@gmail.com> wrote:
-
-> From: Vasileios Amoiridis <vassilisamir@gmail.com>
+On 10/12/24 18:31, Manivannan Sadhasivam wrote:
+> On Thu, Oct 10, 2024 at 12:43:57PM +0530, Manivannan Sadhasivam wrote:
+>> On Mon, Oct 07, 2024 at 01:12:10PM +0900, Damien Le Moal wrote:
+>>> Add a check to verify that the outbound region to be used for mapping an
+>>> address is not already in use.
+>>>
+>>> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+>>
+>> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>
 > 
-> Remove the ambient temperature from being a macro and implement it as
-> an attribute. This way, it is possible to dynamically configure the
-> ambient temperature of the environment to improve the accuracy of the
-> measurements.
-> 
-> Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-New ABI? Would need docs.
+> I'm trying to understand the ob window mapping here. So if rockchip_ob_region()
+> returns same index for different *CPU* addresses, then you cannot map both of
+> them? Is this a hardware ATU limitation?
 
-However, I 'think' we have a few cases where we handle this via the slightly
-odd interface of out_temp_processed / _raw with a label saying it's
-ambient temperature.
+The CPU addresses mapped are (under normal use) addresses from one of the 32 1MB
+memory windows that pci_epc_alloc_addr() will give us. To map a memory window
+address, we use the ATU entry at the index given by:
 
-The tenuous argument is that we have heaters that actually control the
-temperature and the affect of either heating the thing or just happening
-to know the external temperature ends up being the same. Hence use
-an output channel for this control.
+static inline u32 rockchip_ob_region(phys_addr_t addr)
+{
+        return (addr >> ilog2(SZ_1M)) & 0x1f;
+}
 
-Jonathan
+So each memory window always use the same ATU entry and addresses from different
+windows cannot use the same entry, ever.
+
+But if there is a bug in the endpoint driver and map() or unmap() are called
+with an invalid address (e.g. one that is not from a memory window), we will
+still get a valid ATU entry number for that address. Hence the check that the
+address passed to unmap is the one that is actually mapped, and also why we
+check that the entry for an address to map is not being used.
+
+> Also rockchip_pcie_prog_ep_ob_atu() is not taking into account of the cpu_addr.
+> So I'm not sure how the mapping happens either.
+
+Each ATU entry is for the corresponding memory window at the same index in the
+controller memory. So the cpu address is not needed when programming the ATU as
+it is implied from the entry we are programming.
+
+So we could remove the cpu_addr argument of this function.
+
+I also suspect that we potentially could play games with the .align_addr() to
+assume a fixed 1MB alignment constraint for a PCI address mapping and always
+pass 20 to the num_bits field of the ADDR0 register. However, I have not tried that.
+
+-- 
+Damien Le Moal
+Western Digital Research
 
