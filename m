@@ -1,46 +1,46 @@
-Return-Path: <devicetree+bounces-110612-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110613-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF55799B42F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:44:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B6AA99B462
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 13:50:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E9A91F22898
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 11:44:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C33F11F25AD4
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 11:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3894D1FBC82;
-	Sat, 12 Oct 2024 11:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07DDE20604B;
+	Sat, 12 Oct 2024 11:30:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="buW2NJXc"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R5/VrxyK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CA2D1FB3F7;
-	Sat, 12 Oct 2024 11:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E8D206047;
+	Sat, 12 Oct 2024 11:30:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728732580; cv=none; b=NFhA5gZ7eORDHcuEm2+NFu6lorI2nfu0ci0Yk4pQnbbnzaEIa3Wwjb2RWUcrdYguni6nOF1HQHwTCHFocb0yxTDiaV564mR2rfo2lEtWzBrWpC0rg8PjgHGjpHMxA32bvJh4kWwqndRfiVkoO4zzLrvnaf51+szL8bfqcX7vAJs=
+	t=1728732602; cv=none; b=HPb3H+ephSf9a7YMTTnkuB1TOvNfx49cV196CsWsjgpSghzsjcuQP+iPB+gyB+r/UF86g+JYwnHEPGdBZeLd36g4U4KRGE2gDfPS1CzHAvW4plDraJ/514klcu5Gur2V2WU+hiJopyX4EvKtTVLd9ZBCscSjmLkLHtIXDzI4Y9Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728732580; c=relaxed/simple;
+	s=arc-20240116; t=1728732602; c=relaxed/simple;
 	bh=ftaZRHD5hqouTbzrWn8/bG8js8icJYEI7jfe3BGfZUg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tOUJjpfQWtNn/ezI+UextWZcoeRNMXIoKD5PiVj96frX4IeP1priHME/27uwahDJs43B7k3TnuOfwKg4Lv7fxTdy+8Gfb/Lgih9g69U6fL+dQp/ayIl+RLT8ByNvTcIpCpAqXv159rcOeu96hRDyeTAtyR7C6tP0lTf3oB9icNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=buW2NJXc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04D44C4CECE;
-	Sat, 12 Oct 2024 11:29:38 +0000 (UTC)
+	 MIME-Version; b=sVmTjN3H/kaU6kuVuRx0qFBqVDEneQN5Ho8bFBzsM7CujXKdcX2ejRn4B0/CwmHEEHARqW1BhIkL0tlGk9M0BWiEYJM3ClbWF8RatjWZhWZOIM57ui6nY3dZtitaXRd1hh8xfLpv/Pvv6CXo6bkRd0GU3QVOIMkTOg03MsCN2co=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R5/VrxyK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78AE5C4CED2;
+	Sat, 12 Oct 2024 11:30:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728732579;
+	s=k20201202; t=1728732602;
 	bh=ftaZRHD5hqouTbzrWn8/bG8js8icJYEI7jfe3BGfZUg=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=buW2NJXc/JhKE0avAEibh6Z+AjESN6IT/EnZqRyzoamOiCj/Frt33+ZixMrkiEH4F
-	 +IFadvVk7SaPGD9P7bhVQmWXZKMtRHW7/dbALXEkkkjWXw7JyvhkI6mc6Ut6EopFvP
-	 fpKGWHHwcvbA5lafS34Pf2P6NwDO3nZvQKxSIUMr2rrDUKDnPuY5RaWpe/vQiCcbvI
-	 4iDRot8xTpVaapQAfjs9x+hOh0jEgDQxAYssfmKr7Nn8mzBSTGPzm7zXi96z6TZsX8
-	 2+A8QreCi8s+Rc7zFxEpDTL7V1KZphXa/LVf/bRAD9IheRKJfsQ6i9q8UefpDaCeCT
-	 kjH0/GFLzXfXw==
+	b=R5/VrxyKGSJo4k+XJm06Morvuu3VRld+hCu8mRZNaLjOLXqB6EBMX1Fo+t2177znh
+	 2nxo/eQxe+MAt44+FMN3AUANz60sGEJRL2VfXZ3wnppOBDHt7lJQysBPdltbktYD9x
+	 e7xqmY1lsq9JuZoh0i9CojPdw4GRCMHeEpN5oFG9m0uGoo8G0tu6/EsTBInZSrgRQL
+	 zd8HO3lVaPfXL0EaZfjHUGknd6qeXGLJA+IjpXokxcbN5ZRtSTihWBKMRmGVPjQEUX
+	 bDz3NTTjsCRiPH84lgEKpe+KefOYTwW/zjLztLdvwWkY91Q4m0R6+95qeEJ4R7wRBZ
+	 8AYxCR+RaCuRA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -49,12 +49,12 @@ Cc: Stefan Wiehler <stefan.wiehler@nokia.com>,
 	Sasha Levin <sashal@kernel.org>,
 	saravanak@google.com,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.10 7/9] of/irq: Prevent device address out-of-bounds read in interrupt map walk
-Date: Sat, 12 Oct 2024 07:29:12 -0400
-Message-ID: <20241012112922.1764240-7-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 6/7] of/irq: Prevent device address out-of-bounds read in interrupt map walk
+Date: Sat, 12 Oct 2024 07:29:41 -0400
+Message-ID: <20241012112948.1764454-6-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20241012112922.1764240-1-sashal@kernel.org>
-References: <20241012112922.1764240-1-sashal@kernel.org>
+In-Reply-To: <20241012112948.1764454-1-sashal@kernel.org>
+References: <20241012112948.1764454-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,7 +63,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.10.226
+X-stable-base: Linux 5.4.284
 Content-Transfer-Encoding: 8bit
 
 From: Stefan Wiehler <stefan.wiehler@nokia.com>
