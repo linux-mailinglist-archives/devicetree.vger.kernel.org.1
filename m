@@ -1,136 +1,312 @@
-Return-Path: <devicetree+bounces-110598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7668D99B2CF
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:07:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46C8B99B30E
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:31:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 314D32840A9
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 10:07:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0AFC1F22E68
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 10:31:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4454E14EC73;
-	Sat, 12 Oct 2024 10:07:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF2A81482F5;
+	Sat, 12 Oct 2024 10:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aa0ZmdAV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YkKv+OVS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14754136330;
-	Sat, 12 Oct 2024 10:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F21A13B58A;
+	Sat, 12 Oct 2024 10:31:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728727623; cv=none; b=NqaNKZwUiLLbnbJvZ2m2SohNB9wYE7ikCBo0b7IXeficvRAIi3APnAQ3K5BvT9Hho+gv5QXc+Em6FJIsbHGOxdAfkqCwo2lDJSENsIHB80A3oMTN8dgu1EfDUKby7HrIxB+913PJhoJo/gW7ENI6witAm25sMniQDuzb959Ng48=
+	t=1728729083; cv=none; b=uyJUrKTbQQ46HZ1kbThHRMmYS3Cjr1uluslcMVDarKlU4DqVIelim4j8acQN4fMb/YwHYEDDW1pWkOjjvpE8W1D8eFi1bfIsInLxe1nGNfbyTapMciAYv2cbX7WUSPigSmj8wZo1UIf1DHKF9Gug/yNzoehl3ym6/S8gG7tQ/10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728727623; c=relaxed/simple;
-	bh=LF6rAw8lZWIdkWpscHtz5ZOfje3+hfNGJ57w0AJ9/to=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hoqDzZx8FzDYP8dkaRa6zXX+5JWdtrb4reGpmMGaAlmhDqVSmFNJOtyWmg/s+10eVX8uiN68VqtMEhWjcGCiZpOlanhMY+/SI1BjztFqXPvyN93pCSv0xZIFEjLShmpJLvN1QF9tJXM7ZCEg5ZRv55iuFui9N5y5m5gnviApEsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aa0ZmdAV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3757C4CEC6;
-	Sat, 12 Oct 2024 10:06:58 +0000 (UTC)
+	s=arc-20240116; t=1728729083; c=relaxed/simple;
+	bh=smzZH4GgUaoNZk5BI4jkWg5/JcIDUWy67eVjqZiM9MU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=cRuZTPiB+t8x/ith9o9kShOkM75nd4GnajVWCdRBhue3CiHqAP+DZvENZdV4DdWXPJc9KPQ7g2skQrXHYTLu9NQotcxIkh5CwXXNOhgx59sPK45QamAqwtQbnS1uyQ8j6AxXCCahUYBATV9NFGqqzPnhhdo/a7pPB2ZimNReHAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YkKv+OVS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DBB1DC4CECE;
+	Sat, 12 Oct 2024 10:31:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728727622;
-	bh=LF6rAw8lZWIdkWpscHtz5ZOfje3+hfNGJ57w0AJ9/to=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aa0ZmdAVxo7964t8x487xEPC7dZ0V/+AoIUC8dr48Gn+CvkX4WG16AcrsBsg2aIWK
-	 tlqS6osq105BML8OjLdtPDZIpv2RJch/WDqLlYCnvYt52WXfEJREAq2Y5owL8UCdFF
-	 5knGStzI5uJigrg6tsmefiJ+we18xVLbyxNVjIWZ7qObXZhOY5BdwmrDr6tz6EjREX
-	 aKTW/sZtAAMoI+j6mOImKtIpvVTQdG7DHUUGxg6gnGizy88B7J96si9dR2LLJvMHS+
-	 1EmPhW1TWGBV0fe6d2jjl7ptf3XnH3YISS1BEKb2mEdbN6EKsucFxxTOperoqQzeN4
-	 PS5uAyB5Of9fg==
-Message-ID: <40b01554-44ab-4a67-b9ff-d8b821eb74a8@kernel.org>
-Date: Sat, 12 Oct 2024 12:06:56 +0200
+	s=k20201202; t=1728729083;
+	bh=smzZH4GgUaoNZk5BI4jkWg5/JcIDUWy67eVjqZiM9MU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=YkKv+OVSA3tGjfiFOv6wVNhGVt2KZxF8nLCUucTH58jfj35PKuL9EQEIKnKU1LUs2
+	 F6x6MWA8zDy/XEXtPGXSPPWs9Mbs1HvKsqsGCpoSxa3SnHpLZRLVcMEThFew4FasPb
+	 njHb9FzIsnYYTHFNV2Lq8DDNPNxLE0seUk0WNndDZ0uQ+1Cu/DKgagjWGHHt+glFcw
+	 ELKXGlgShLEwSFrm88wddnjmliUhNSXEzr7zED3zOBF1nrZX0MV+VZ3SSi7J4NVvFR
+	 KrpHOel/TBeQlhmAUcEw0m8n5Iy124qKDAquDLLCBLP9U3jZzYZizl/rmI4mQw1qdU
+	 bE5HqTk/CcfGw==
+Date: Sat, 12 Oct 2024 11:31:10 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Antoniu Miclaus	
+ <antoniu.miclaus@analog.com>, Lars-Peter Clausen <lars@metafoo.de>, Michael
+ Hennerich <Michael.Hennerich@analog.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski	 <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Nuno Sa	 <nuno.sa@analog.com>, Olivier Moysan
+ <olivier.moysan@foss.st.com>, Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?=	
+ <ukleinek@kernel.org>, Andy Shevchenko <andy@kernel.org>, Marcelo Schmitt	
+ <marcelo.schmitt@analog.com>, =?UTF-8?B?Sm/Do28=?= Paulo =?UTF-8?B?R29u?=
+ =?UTF-8?B?w6dhbHZlcw==?=	 <joao.goncalves@toradex.com>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Dumitru Ceclan <mitrutzceclan@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, Sergiu Cuciurean
+ <sergiu.cuciurean@analog.com>, Dragos Bogdan	 <dragos.bogdan@analog.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 6/7] iio: adc: ad485x: add ad485x driver
+Message-ID: <20241012113110.7fdd01c7@jic23-huawei>
+In-Reply-To: <13800d4f04e1302488d357144b2e51e914951d67.camel@gmail.com>
+References: <20240923101206.3753-1-antoniu.miclaus@analog.com>
+	<20240923101206.3753-7-antoniu.miclaus@analog.com>
+	<CAMknhBHRfj7d8Uea8vX=t+y+9dqoPABQSzsgNhBMTK-8-f6L7w@mail.gmail.com>
+	<20240928183044.0b5ea2e0@jic23-huawei>
+	<35944d57af0ed62124e1e7cea544ef357fad1659.camel@gmail.com>
+	<20241005182608.2be20d3a@jic23-huawei>
+	<13800d4f04e1302488d357144b2e51e914951d67.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH linux dev-6.11 2/2] v3: dt-bindings: modified ina2xx to
- match SY24655
-To: Wenliang <wenliang202407@163.com>, linux@roeck-us.net
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <f7653d58-9cee-4496-91b8-55dda44289bc@roeck-us.net>
- <20241012070627.20788-1-wenliang202407@163.com>
- <20241012070627.20788-2-wenliang202407@163.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 fv0=
-In-Reply-To: <20241012070627.20788-2-wenliang202407@163.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
-On 12/10/2024 09:06, Wenliang wrote:
-> Modified the binding of ina2xx to make it compatible with SY24655. 
-> 
+On Fri, 11 Oct 2024 12:23:49 +0200
+Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
 
-Your subject is odd. We do not develop v6.11, that's something already
-old. The cc-list suggest you just want it for next release, so rebase on
-mainline or next and avoid any unusual patch prefixes.
+> On Sat, 2024-10-05 at 18:26 +0100, Jonathan Cameron wrote:
+> > On Mon, 30 Sep 2024 09:05:04 +0200
+> > Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+> >  =20
+> > > On Sat, 2024-09-28 at 18:30 +0100, Jonathan Cameron wrote: =20
+> > > > =C2=A0  =20
+> > > > > =C2=A0  =20
+> > > > > > +static struct iio_chan_spec_ext_info ad4858_ext_info[] =3D {
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_ENUM("packet_format",=
+ IIO_SHARED_BY_ALL,
+> > > > > > &ad4858_packet_fmt),
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_ENUM_AVAILABLE("packe=
+t_format",
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 IIO_SHARED_BY_ALL, &ad4858_packet_fmt),
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {},
+> > > > > > +};
+> > > > > > +
+> > > > > > +static struct iio_chan_spec_ext_info ad4857_ext_info[] =3D {
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_ENUM("packet_format",=
+ IIO_SHARED_BY_ALL,
+> > > > > > &ad4857_packet_fmt),
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IIO_ENUM_AVAILABLE("packe=
+t_format",
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0 IIO_SHARED_BY_ALL, &ad4857_packet_fmt),
+> > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 {},
+> > > > > > +};=C2=A0=C2=A0=C2=A0  =20
+> > > > >=20
+> > > > > Usually, something like this packet format would be automatically
+> > > > > selected when buffered reads are enabled based on what other feat=
+ures
+> > > > > it provides are needed, i.e only enable the status bits when even=
+ts
+> > > > > are enabled.
+> > > > >=20
+> > > > > (For those that didn't read the datasheet, the different packet
+> > > > > formats basically enable extra status bits per sample. And in the=
+ case
+> > > > > of oversampling, one of the formats also selects a reduced number=
+ of
+> > > > > sample bits.)
+> > > > >=20
+> > > > > We have quite a few parts in the pipline right like this one that=
+ have
+> > > > > per-sample status bits. In the past, these were generally handled=
+ with
+> > > > > IIO events, but this doesn't really work for these high-speed bac=
+kends
+> > > > > since the data is being piped directly to DMA and we don't look at
+> > > > > each sample in the ADC driver. So it would be worthwhile to try to
+> > > > > find some general solution here for handling this sort of thing.=
+=C2=A0  =20
+> > >=20
+> > > I did not read the datasheet that extensively but here it goes my 2 c=
+ents
+> > > (basically my internal feedback on this one):
+> > >=20
+> > > So this packet format thingy may be a very "funny" discussion if we r=
+eally
+> > > need
+> > > to support it. I'm not sure how useful it is the 32 bits format rathe=
+r than
+> > > being used in test pattern. I'm not seeing too much benefit on the ch=
+annel
+> > > id or
+> > > span id information (we can already get that info with other attribut=
+es).
+> > > The
+> > > OR/UR is the one that could be more useful but is there someone using=
+ it? Do
+> > > we
+> > > really need to have it close to the sample? If not, there's the status
+> > > register
+> > > and... Also, I think this can be implemented using IIO events (likely=
+ what
+> > > we
+> > > will be asked). So what comes to mind could be: =20
+> >=20
+> > Definite preference for using events, but for a device doing DMA I'm no=
+t sure
+> > how we can do that without requiring parsing all the data.
+> >=20
+> > So we would need some metadata description to know it is there.
+> >  =20
+> > >=20
+> > > For test_pattern (could be implemented as ext_info or an additional c=
+hannel
+> > > I
+> > > think - not for now I guess) we can easily look at our word side and
+> > > dynamically
+> > > set the proper packet size. So, to me, this is effectively the only p=
+lace
+> > > where
+> > > 32bits would make sense (assuming we don't implement OR/UR for now).
+> > > For oversampling we can have both 20/24 bit averaged data. But from t=
+he
+> > > datasheet:
+> > >=20
+> > > "Oversampling is useful in applications requiring lower noise and hig=
+her
+> > > dynamic
+> > > range per output data-word, which the AD4858 supports with 24-bit out=
+put
+> > > resolution and reduced average output data rates"
+> > >=20
+> > > So from the above it looks like it could make sense to default to 24b=
+it
+> > > packets
+> > > if oversampling is enabled. =20
+> >=20
+> > That sounds like what we do for the DMA oversampling cases that change
+> > the resolutions.
+> >  =20
+> > >=20
+> > > Now the question is OR/UR. If that is something we can support with e=
+vents,
+> > > we
+> > > could see when one of OR/UR is being requested to either enable 24 pa=
+ckets
+> > > (no
+> > > oversampling) or 32 bit packets (oversampling on).
+> > >=20
+> > >=20
+> > >  =20
+> > > >=20
+> > > > We have previously talked about schemes to describe metadata
+> > > > alongside channels. I guess maybe it's time to actually look at how
+> > > > that works.=C2=A0 I'm not sure dynamic control of that metadata
+> > > > is going to be easy to do though or if we even want to
+> > > > (as opposed to always on or off for a particular device).
+> > > > =C2=A0  =20
+> > >=20
+> > > Indeed this is something we have been discussing and the ability to h=
+ave
+> > > status
+> > > alongside a buffered samples is starting to be requested more and mor=
+e. Some
+> > > parts do have the status bit alongside the sample (meaning in the same
+> > > register
+> > > read) which means it basically goes with the sample as part of it's
+> > > storage_bits. While not ideal, an application caring about those bits=
+ still
+> > > has
+> > > access to the complete raw sample and can access them.  =20
+> >=20
+> > This has the advantage that if we come along later and define a metadata
+> > in storage bits description it is backwards compatible.=C2=A0 We've bee=
+n doing
+> > this for years with some devices.
+> >  =20
+> > > It gets more complicated
+> > > where the status (sometimes a per device status register) is located =
+in
+> > > another
+> > > register. I guess we can have two case:
+> > >=20
+> > > 1) A device status which applies for all channels being sampled;
+> > > 2) A per channel status (where the .metada approach could make sense)=
+. =20
+> >=20
+> > If it's a separate register per channel and optional, we'd have to trea=
+t it as
+> > a metadata
+> > channel as no guarantee it would be packed next to the main channel.
+> >=20
+> > If we have a description of metadata additions in main channel storage,=
+ I'm
+> > not
+> > against having a IIO_METADATA channel type.=20
+> >  =20
+>=20
+> I guess you mean that a complete solution would never only be a IIO_METAD=
+ATA but
+> also extending 'struct iio_scan_type'?
 
-OTOH, v3 is not part of subject. Use b4 or git format-patch -v3.
+Yes we needs a way to refer to an existing scan element then we could add a=
+dditional
+channels and refer into them as needed.
 
-> Signed-off-by: Wenliang <wenliang202407@163.com>
-> ---
-> 
-> SY24655 is a fixed gain power monitor from Silergy, with a power supply
-> of 2.7-5.5V and communication mode of IIC capable of detecting bus voltage
-> and voltage on shunt resistors. Its first 5 registers are identical to
-> ina226, and also have alert and limit functions. So, the sy24655 is
-> compatible with the ina2xx devices.
+>=20
+> > If it's a single channel I'm not sure how we'd make as channel descript=
+ion
+> > general enough easily as we end up with every field possibly needed an
+> > association
+> > with a different channel. =20
+>=20
+> Not sure I followed the above... You mean having a single channel (like o=
+ne
+> register) pointing to different channels?=20
 
-This is hardware description, why it is not part of commit message?
+Both way's around occur.  Multiple channels, some normal, some metadata some
+separate pointing to a single storage location and per channel meta data
+for different 'signals' shoved in one register.
 
+>=20
+> What I mean with 1) is for example what happens with IMUs (eg: adis16475)=
+. They
+> have a DIAG_STAT register (which is pretty much device wide status/error
+> information) that's also part of burst transfers (where we get our sample=
+s) and
+> while some bits might not be meaningful for the sampling "session", other=
+s might
+> make sense to reason about data integrity or correctness.=20
+>=20
+> For the above case, I think the IIO_METADATA channel type would fit.
+That one is easy. Fiddly case is where we have say overflow bits for
+multiple signals (i.e. pins) in a single dmabuffer element.
+To make that work cleanly we need a way to not only describe the contents
+but cross reference it to the related data.
 
-Best regards,
-Krzysztof
+We've discussed ways to group actual channel (i.e. current and power on sam=
+e pin)
+in the past but doing this for metadata that is packed in multiple channels
+is going to be a real pain.
+
+Basically it all needs to be very flexible and any attempt to support a sub=
+set
+is likely to wall us into an inflexible ABI.
+
+Jonathan
+
+>=20
+> - Nuno S=C3=A1
 
 
