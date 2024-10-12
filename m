@@ -1,144 +1,433 @@
-Return-Path: <devicetree+bounces-110677-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B69999B658
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:35:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 03E4D99B655
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 19:35:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB8AE1C21034
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:35:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25A311C20F6C
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 17:35:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 110148002A;
-	Sat, 12 Oct 2024 17:35:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10CFB8002A;
+	Sat, 12 Oct 2024 17:35:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="uNW5X8oQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pqvg0Fvx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A30CC1EA65;
-	Sat, 12 Oct 2024 17:35:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBD91EA65;
+	Sat, 12 Oct 2024 17:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728754553; cv=none; b=LEQlaKkIIfGmd5yjyRBLwu61+aL/dLdbR3e80Lc3jsYkUGPWcc3tb5zfcOQgGVRR6uyaCQCUJXEIdFwQTnNC38afPA5qLAVZIMIDuWcKb+zjk0nd12KnkgBi7LjejTAHBWEmkFCtW3T3PvwrjCAxj2NDvChsjn+loNp2/lnm00U=
+	t=1728754540; cv=none; b=F1QDKg0lUFFd9gv8Efz+Y0M6fu6z8aDqEAjIx5Dr6CyypN509HOJmWh1iJ8oKFb1zl3DriOOSiKAg94QnAEPt5qClVrjByOLL3rAwu4vgsiYgN2O5K2itXGuCo+ZOkFoSO7YSr6xLVALra09Tz52edqjwNq6hVceoEJn2w7aujw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728754553; c=relaxed/simple;
-	bh=B/ZlyxiX2NnLgtqIFj15AHbmeHrL4+2HNnXLckZf1o0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Cbdk1g6XQgyaN/hjBEtwPxhuZnBxNxKtNbqy8Wa6JbEYq4ywIiKc6K3d8EcTMxTnkMGRsrfNnP8c4Hoq78uvhzmZNut7L93yr8FzlvyYdsTtXkTSa1X+TeXrZ+KdLZb5OpIdjsi+YeOUqwtFrJkvaspdCbVMxBuqCsEciC22+4I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=uNW5X8oQ; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=AQhSOcq/aIa70jmnVrqHrmUcq5CjjmXv02YVDlavj3k=; b=uNW5X8oQ7/TOXG/4sbWLaBuPTX
-	YhTRKIC5395aQiOZ1mAgpFu9zMCVrMdHEvsjMa+K18IBsUeUOB6PobQ3n8OZ+nPxV4Q27YkZe8coz
-	qcjrqQmwNZwMQU4iWqxW49gryiGIwmCUHim2VMqBPZ5+pSdfB2lOMP/SnEdQxAQExVutDL1hNZ3Mu
-	NkEmQDESZlZPLSRAbYtm/hH2zpiua1nLzyWmBXKnU00t5/6x0ArIsm6/OmjE/JZjOXRtGVoAN35nD
-	Q0rBgWgWdfCNun0FhYuVsoavbXds6RNJxe0OlHuDAA9JmVmDGwctciSJegyQVsH4FD7zdVQBf7iMF
-	uYUE3DvA==;
-Received: from i53875b34.versanet.de ([83.135.91.52] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1szg1D-00019k-IQ; Sat, 12 Oct 2024 19:35:07 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: linux-kernel@vger.kernel.org,
-	Detlev Casanova <detlev.casanova@collabora.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Muhammed Efe Cetin <efectn@protonmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Elon Zhang <zhangzj@rock-chips.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Jimmy Hon <honyuenkwun@gmail.com>,
-	linux-serial@vger.kernel.org,
-	Guenter Roeck <linux@roeck-us.net>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Simona Vetter <simona.vetter@ffwll.ch>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Jamie Iles <jamie@jamieiles.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Yifeng Zhao <yifeng.zhao@rock-chips.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Liang Chen <cl@rock-chips.com>,
-	dri-devel@lists.freedesktop.org,
-	Alexey Charkov <alchark@gmail.com>,
-	linux-i2c@vger.kernel.org,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Maxime Ripard <mripard@kernel.org>,
-	linux-spi@vger.kernel.org,
-	Ondrej Jirman <megi@xff.cz>,
-	Andy Yan <andyshrk@163.com>,
-	kernel@collabora.com,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Finley Xiao <finley.xiao@rock-chips.com>,
-	Elaine Zhang <zhangqing@rock-chips.com>,
-	Rob Herring <robh@kernel.org>,
-	Tim Lunn <tim@feathertop.org>
-Subject: Re: (subset) [PATCH v4 0/9] Add device tree for ArmSoM Sige 5 board
-Date: Sat, 12 Oct 2024 19:35:04 +0200
-Message-ID: <172875437678.35125.9831204281305504545.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20240903152308.13565-1-detlev.casanova@collabora.com>
-References: <20240903152308.13565-1-detlev.casanova@collabora.com>
+	s=arc-20240116; t=1728754540; c=relaxed/simple;
+	bh=FUj3m7AxwKhLtalglvHoMqNJU6DbmtxgHK1NyIs6RcE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=omhw2ELAOO/SMCa8G1+Jl4ELAmlYG0D+Tob9BQUj3ZHSdzbWYUVT5ffYMJ+oIFOkfIhReJ6s/ihM0V/airkdkwpxyIbsmfpwW6VzpUtP4/pOMnOLSEKq18EYblQDlR7kbuMCLyszFKTZLt5QDDsyaSeT+U+9apxFgIPdvMiZLbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pqvg0Fvx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8EAF8C4CEC6;
+	Sat, 12 Oct 2024 17:35:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728754540;
+	bh=FUj3m7AxwKhLtalglvHoMqNJU6DbmtxgHK1NyIs6RcE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pqvg0FvxCGiQuZMNtxbF4TyokIAWf4Hg79BMflKEdfKw7Caj5+5ycLeJMn3QBXXuu
+	 fHEAaRDcLutjB4jesWjt2XEmWwoYBmXBhOuvxBbbzFaBqiVE61CXV/W+p9Q4x41EPK
+	 A5hCJLF0UwM8AK3KbKIUozTMuOjuRy1kP3422JnPe9w2jd3njjTpK5hD53erQz4AS8
+	 tjD1XVYIlSgMMNLIyhvo5oEJkUIcoyWtz/BhSsrFHIfJmlrO8xtu/Ld/AxAgkbnrYa
+	 cVH654pGqdpPuMGL2LR9hFQMuw+3A+VvulMumunCHNfsdF1rIXYumtbniMj2WJwXh9
+	 2X9AHxlxpThqg==
+Date: Sat, 12 Oct 2024 23:05:36 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+	kernel@pengutronix.de, festevam@gmail.com,
+	gregkh@linuxfoundation.org, peter.chen@kernel.org,
+	herve.codina@bootlin.com, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+	jun.li@nxp.com
+Subject: Re: [PATCH v7 1/3] phy: fsl-imx8mq-usb: add tca function driver for
+ imx95
+Message-ID: <ZwqzaKH9Ub8poNgX@vaman>
+References: <20241010090822.3915064-1-xu.yang_2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241010090822.3915064-1-xu.yang_2@nxp.com>
 
-On Tue, 3 Sep 2024 11:22:30 -0400, Detlev Casanova wrote:
-> Add the rk3576-armsom-sige5 device tree as well as its rk3576.dtsi base
-> and pinctrl information in rk3576-pinctrl.dtsi.
+On 10-10-24, 17:08, Xu Yang wrote:
+> The i.MX95 USB3 phy has a Type-C Assist block (TCA). This block consists
+> two functional blocks (XBar assist and VBus assist) and one system
+> access interface using APB.
 > 
-> The other commits add DT bindings documentation for the devices that
-> already work with the current corresponding drivers.
+> The primary functionality of XBar assist is:
+>  - switching lane for flip
+>  - moving unused lanes into lower power states.
 > 
-> Note that as is, the rockchip gpio driver needs the gpio nodes
-> to be children of the pinctrl node, even though this is deprecated.
+> This info can be get from:
+> i.MX95 RM Chapter 163.3.8 Type-C assist (TCA) block.
 > 
-> [...]
+> This will add support for TCA block to achieve lane switching and tca
+> lower power functionality.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> Reviewed-by: Jun Li <jun.li@nxp.com>
+> 
+> ---
+> Changes in v2:
+>  - return the value of imx95_usb_phy_get_tca()
+> Changes in v3:
+>  - no changes
+> Changes in v4:
+>  - remove compatible check for imx95
+>  - check whether tca register region exist or not, yes means has tca,
+>    otherwise skip tca setup
+> Changes in v5:
+>  - no changes
+> Changes in v6:
+>  - no changes
+> Changes in v7:
+>  - fix sparse warnings in imx95_usb_phy_get_tca()
+> ---
+>  drivers/phy/freescale/Kconfig              |   1 +
+>  drivers/phy/freescale/phy-fsl-imx8mq-usb.c | 243 +++++++++++++++++++++
+>  2 files changed, 244 insertions(+)
+> 
+> diff --git a/drivers/phy/freescale/Kconfig b/drivers/phy/freescale/Kconfig
+> index dcd9acff6d01..81f53564ee15 100644
+> --- a/drivers/phy/freescale/Kconfig
+> +++ b/drivers/phy/freescale/Kconfig
+> @@ -5,6 +5,7 @@ if (ARCH_MXC && ARM64) || COMPILE_TEST
+>  config PHY_FSL_IMX8MQ_USB
+>  	tristate "Freescale i.MX8M USB3 PHY"
+>  	depends on OF && HAS_IOMEM
+> +	depends on TYPEC || TYPEC=n
+>  	select GENERIC_PHY
+>  	default ARCH_MXC && ARM64
+>  
+> diff --git a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> index adc6394626ce..661191276b27 100644
+> --- a/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> +++ b/drivers/phy/freescale/phy-fsl-imx8mq-usb.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regulator/consumer.h>
+> +#include <linux/usb/typec_mux.h>
+>  
+>  #define PHY_CTRL0			0x0
+>  #define PHY_CTRL0_REF_SSP_EN		BIT(2)
+> @@ -50,11 +51,66 @@
+>  
+>  #define PHY_TUNE_DEFAULT		0xffffffff
+>  
+> +#define TCA_CLK_RST			0x00
+> +#define TCA_CLK_RST_SW			BIT(9)
+> +#define TCA_CLK_RST_REF_CLK_EN		BIT(1)
+> +#define TCA_CLK_RST_SUSPEND_CLK_EN	BIT(0)
+> +
+> +#define TCA_INTR_EN			0x04
+> +#define TCA_INTR_STS			0x08
+> +
+> +#define TCA_GCFG			0x10
+> +#define TCA_GCFG_ROLE_HSTDEV		BIT(4)
+> +#define TCA_GCFG_OP_MODE		GENMASK(1, 0)
+> +#define TCA_GCFG_OP_MODE_SYSMODE	0
+> +#define TCA_GCFG_OP_MODE_SYNCMODE	1
+> +
+> +#define TCA_TCPC			0x14
+> +#define TCA_TCPC_VALID			BIT(4)
+> +#define TCA_TCPC_LOW_POWER_EN		BIT(3)
+> +#define TCA_TCPC_ORIENTATION_NORMAL	BIT(2)
+> +#define TCA_TCPC_MUX_CONTRL		GENMASK(1, 0)
+> +#define TCA_TCPC_MUX_CONTRL_NO_CONN	0
+> +#define TCA_TCPC_MUX_CONTRL_USB_CONN	1
+> +
+> +#define TCA_SYSMODE_CFG			0x18
+> +#define TCA_SYSMODE_TCPC_DISABLE	BIT(3)
+> +#define TCA_SYSMODE_TCPC_FLIP		BIT(2)
+> +
+> +#define TCA_CTRLSYNCMODE_CFG0		0x20
+> +#define TCA_CTRLSYNCMODE_CFG1           0x20
+> +
+> +#define TCA_PSTATE			0x30
+> +#define TCA_PSTATE_CM_STS		BIT(4)
+> +#define TCA_PSTATE_TX_STS		BIT(3)
+> +#define TCA_PSTATE_RX_PLL_STS		BIT(2)
+> +#define TCA_PSTATE_PIPE0_POWER_DOWN	GENMASK(1, 0)
+> +
+> +#define TCA_GEN_STATUS			0x34
+> +#define TCA_GEN_DEV_POR			BIT(12)
+> +#define TCA_GEN_REF_CLK_SEL		BIT(8)
+> +#define TCA_GEN_TYPEC_FLIP_INVERT	BIT(4)
+> +#define TCA_GEN_PHY_TYPEC_DISABLE	BIT(3)
+> +#define TCA_GEN_PHY_TYPEC_FLIP		BIT(2)
+> +
+> +#define TCA_VBUS_CTRL			0x40
+> +#define TCA_VBUS_STATUS			0x44
+> +
+> +#define TCA_INFO			0xFC
 
-Applied, thanks!
+lowercase please
 
-[1/9] dt-bindings: arm: rockchip: Add ArmSoM Sige 5
-      commit: 78dee7b6ef085c6a1becad536035bdd39557c9b0
-[8/9] arm64: dts: rockchip: Add rk3576 SoC base DT
-      commit: 4b9dc5d536b988fbd84e68e8d8ac420752b185b6
-[9/9] arm64: dts: rockchip: Add rk3576-armsom-sige5 board
-      commit: 54a18f63eb1aaf50cad17dd64076293f2817e1d5
+> +
+> +struct tca_blk {
+> +	struct typec_switch_dev *sw;
+> +	void __iomem *base;
+> +	struct mutex mutex;
+> +	enum typec_orientation orientation;
+> +};
+> +
+>  struct imx8mq_usb_phy {
+>  	struct phy *phy;
+>  	struct clk *clk;
+>  	void __iomem *base;
+>  	struct regulator *vbus;
+> +	struct tca_blk *tca;
+>  	u32 pcs_tx_swing_full;
+>  	u32 pcs_tx_deemph_3p5db;
+>  	u32 tx_vref_tune;
+> @@ -64,6 +120,175 @@ struct imx8mq_usb_phy {
+>  	u32 comp_dis_tune;
+>  };
+>  
+> +
+> +static void tca_blk_orientation_set(struct tca_blk *tca,
+> +				enum typec_orientation orientation);
+> +
+> +#ifdef CONFIG_TYPEC
+> +
+> +static int tca_blk_typec_switch_set(struct typec_switch_dev *sw,
+> +				enum typec_orientation orientation)
+> +{
+> +	struct imx8mq_usb_phy *imx_phy = typec_switch_get_drvdata(sw);
+> +	struct tca_blk *tca = imx_phy->tca;
+> +	int ret;
+> +
+> +	if (tca->orientation == orientation)
+> +		return 0;
+> +
+> +	ret = clk_prepare_enable(imx_phy->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	tca_blk_orientation_set(tca, orientation);
+> +	clk_disable_unprepare(imx_phy->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
+> +					struct imx8mq_usb_phy *imx_phy)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct typec_switch_dev *sw;
+> +	struct typec_switch_desc sw_desc = { };
+> +
+> +	sw_desc.drvdata = imx_phy;
+> +	sw_desc.fwnode = dev->fwnode;
+> +	sw_desc.set = tca_blk_typec_switch_set;
+> +	sw_desc.name = NULL;
+> +
+> +	sw = typec_switch_register(dev, &sw_desc);
+> +	if (IS_ERR(sw)) {
+> +		dev_err(dev, "Error register tca orientation switch: %ld",
+> +				PTR_ERR(sw));
+> +		return NULL;
+> +	}
+> +
+> +	return sw;
+> +}
+> +
+> +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw)
+> +{
+> +	typec_switch_unregister(sw);
+> +}
 
-changes:
-- added some lines between node
-- resortet regulator nodes
-- removed trailing whitespace from one line
-- drop clock-frequency from armsom sige5 rtc@51
-- drop rockchip,grf from cru (lookup is done via compatible)
-- order gpu interrupts like expected in the binding
-- adjust mmc compatible to binding
+Why to put a wrapper over an API, call this instead?
 
+> +
+> +#else
+> +
+> +static struct typec_switch_dev *tca_blk_get_typec_switch(struct platform_device *pdev,
+> +			struct imx8mq_usb_phy *imx_phy)
+> +{
+> +	return NULL;
+> +}
+> +
+> +static void tca_blk_put_typec_switch(struct typec_switch_dev *sw) {}
+> +
+> +#endif /* CONFIG_TYPEC */
+> +
+> +static void tca_blk_orientation_set(struct tca_blk *tca,
+> +				enum typec_orientation orientation)
+> +{
+> +	u32 val;
+> +
+> +	mutex_lock(&tca->mutex);
+> +
+> +	if (orientation == TYPEC_ORIENTATION_NONE) {
+> +		/*
+> +		 * use Controller Synced Mode for TCA low power enable and
+> +		 * put PHY to USB safe state.
+> +		 */
+> +		val = readl(tca->base + TCA_GCFG);
+> +		val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYNCMODE);
+> +		writel(val, tca->base + TCA_GCFG);
+> +
+> +		val = readl(tca->base + TCA_TCPC);
+> +		val = TCA_TCPC_VALID | TCA_TCPC_LOW_POWER_EN;
+> +		writel(val, tca->base + TCA_TCPC);
+> +
+> +		goto out;
+> +	}
+> +
+> +	/* use System Configuration Mode for TCA mux control. */
+> +	val = readl(tca->base + TCA_GCFG);
+> +	val = FIELD_PREP(TCA_GCFG_OP_MODE, TCA_GCFG_OP_MODE_SYSMODE);
+> +	writel(val, tca->base + TCA_GCFG);
+> +
+> +	/* Disable TCA module */
+> +	val = readl(tca->base + TCA_SYSMODE_CFG);
+> +	val |= TCA_SYSMODE_TCPC_DISABLE;
+> +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> +
+> +	if (orientation == TYPEC_ORIENTATION_REVERSE)
+> +		val |= TCA_SYSMODE_TCPC_FLIP;
+> +	else if (orientation == TYPEC_ORIENTATION_NORMAL)
+> +		val &= ~TCA_SYSMODE_TCPC_FLIP;
+> +
+> +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> +
+> +	/* Enable TCA module */
+> +	val &= ~TCA_SYSMODE_TCPC_DISABLE;
+> +	writel(val, tca->base + TCA_SYSMODE_CFG);
+> +
+> +out:
+> +	tca->orientation = orientation;
+> +	mutex_unlock(&tca->mutex);
+> +}
+> +
+> +static void tca_blk_init(struct tca_blk *tca)
+> +{
+> +	u32 val;
+> +
+> +	/* reset XBar block */
+> +	val = readl(tca->base + TCA_CLK_RST);
+> +	val &= ~TCA_CLK_RST_SW;
+> +	writel(val, tca->base + TCA_CLK_RST);
+> +
+> +	udelay(100);
+> +
+> +	/* clear reset */
+> +	val |= TCA_CLK_RST_SW;
+> +	writel(val, tca->base + TCA_CLK_RST);
+> +
+> +	tca_blk_orientation_set(tca, tca->orientation);
+> +}
+> +
+> +static struct tca_blk *imx95_usb_phy_get_tca(struct platform_device *pdev,
+> +				struct imx8mq_usb_phy *imx_phy)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct resource *res;
+> +	struct tca_blk *tca;
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+> +	if (!res)
+> +		return NULL;
+> +
+> +	tca = devm_kzalloc(dev, sizeof(*tca), GFP_KERNEL);
+> +	if (!tca)
+> +		return ERR_PTR(-ENOMEM);
+> +
+> +	tca->base = devm_ioremap_resource(&pdev->dev, res);
+> +	if (IS_ERR(tca->base))
+> +		return ERR_CAST(tca->base);
+> +
+> +	mutex_init(&tca->mutex);
+> +
+> +	tca->orientation = TYPEC_ORIENTATION_NORMAL;
+> +	tca->sw = tca_blk_get_typec_switch(pdev, imx_phy);
+> +
+> +	return tca;
+> +}
+> +
+> +static void imx95_usb_phy_put_tca(struct imx8mq_usb_phy *imx_phy)
+> +{
+> +	struct tca_blk *tca = imx_phy->tca;
+> +
+> +	if (!tca)
+> +		return;
+> +
+> +	tca_blk_put_typec_switch(tca->sw);
+> +}
+> +
+>  static u32 phy_tx_vref_tune_from_property(u32 percent)
+>  {
+>  	percent = clamp(percent, 94U, 124U);
+> @@ -315,6 +540,9 @@ static int imx8mp_usb_phy_init(struct phy *phy)
+>  
+>  	imx8m_phy_tune(imx_phy);
+>  
+> +	if (imx_phy->tca)
+> +		tca_blk_init(imx_phy->tca);
+> +
+>  	return 0;
+>  }
+>  
+> @@ -359,6 +587,8 @@ static const struct of_device_id imx8mq_usb_phy_of_match[] = {
+>  	 .data = &imx8mq_usb_phy_ops,},
+>  	{.compatible = "fsl,imx8mp-usb-phy",
+>  	 .data = &imx8mp_usb_phy_ops,},
+> +	{.compatible = "fsl,imx95-usb-phy",
+> +	 .data = &imx8mp_usb_phy_ops,},
+>  	{ }
+>  };
+>  MODULE_DEVICE_TABLE(of, imx8mq_usb_phy_of_match);
+> @@ -398,6 +628,11 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+>  
+>  	phy_set_drvdata(imx_phy->phy, imx_phy);
+>  
+> +	imx_phy->tca = imx95_usb_phy_get_tca(pdev, imx_phy);
+> +	if (IS_ERR(imx_phy->tca))
+> +		return dev_err_probe(dev, PTR_ERR(imx_phy->tca),
+> +					"failed to get tca\n");
+> +
+>  	imx8m_get_phy_tuning_data(imx_phy);
+>  
+>  	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
+> @@ -405,8 +640,16 @@ static int imx8mq_usb_phy_probe(struct platform_device *pdev)
+>  	return PTR_ERR_OR_ZERO(phy_provider);
+>  }
+>  
+> +static void imx8mq_usb_phy_remove(struct platform_device *pdev)
+> +{
+> +	struct imx8mq_usb_phy *imx_phy = platform_get_drvdata(pdev);
+> +
+> +	imx95_usb_phy_put_tca(imx_phy);
+> +}
+> +
+>  static struct platform_driver imx8mq_usb_phy_driver = {
+>  	.probe	= imx8mq_usb_phy_probe,
+> +	.remove = imx8mq_usb_phy_remove,
+>  	.driver = {
+>  		.name	= "imx8mq-usb-phy",
+>  		.of_match_table	= imx8mq_usb_phy_of_match,
+> -- 
+> 2.34.1
 
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+~Vinod
 
