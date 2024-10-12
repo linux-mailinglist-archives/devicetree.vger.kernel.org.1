@@ -1,196 +1,140 @@
-Return-Path: <devicetree+bounces-110689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110697-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BCA899B6E8
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 22:21:02 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81EFB99B725
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 23:26:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A3BF282A5E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 20:21:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1D21BB21A12
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 21:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F21E612CD88;
-	Sat, 12 Oct 2024 20:20:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7352B1494BF;
+	Sat, 12 Oct 2024 21:25:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="qUzbdLHn"
+	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="SChqKvAi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0004A57CAC;
-	Sat, 12 Oct 2024 20:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D52877316E;
+	Sat, 12 Oct 2024 21:25:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728764456; cv=none; b=qBHbEfdZ+HoAAHNcVTMXJKBh1b6gNlVtJXj93CGmQ7qSURH3j/suoesPrVDGa/WRrlgeKBxPjQ3PtWqDMZUk1twhPiRLrpsk/D86x8RbOOpeINg2zedmPfzVbB6/jW2Sw1yrWrDVC9NjozypHpvnpA7HvbBtjxTPUaQCm2Yns6c=
+	t=1728768359; cv=none; b=jD4McBxR7t6WLBtJW9iDS6MbsZ2PFczwRMtHzRYm4wAqnvhZ5J1AyxrmIsdJde6C3Uky0aYVx0/SbDiokSZ7z2knYhAUrumu/P9Ms3vSMtg4m26SdHhtjOThrhK2wy3Q+heiZvlwnZWSp2YTT6xYrkAZHHv0M6jGXLPIbbqbCEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728764456; c=relaxed/simple;
-	bh=+uGp7x6Z33R9yq6AzM9JDurFi1vot7zaI9OYhle9pD4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=rWCx2XrcGK2Bazx0l0twwhbDrmPMreDM8+XPeNYeAHSqaE+ESmBGBn98b99W4XL6FhvqAaZqj78XZLFg680Ji29Y5aNx1FRK68rmlUVuu3T1TcDZL0IVRT0sHzIM51EgCG9fNR4Vht+8+vUYu+lRPtqDwxYea1Lphkh9xqAlAks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=qUzbdLHn; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1728768359; c=relaxed/simple;
+	bh=eTK+xTnuX3CB132bXOERrEEj9Rb8J1BKPMSPDjmfugQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dRQ0+D8WvVnVSLiUntb14zVAlppPZZwlAdZOH2pVowRQ2brP4U/x+7ViPmlAJ98uGog9KkC9cvZzeWE+dM2QQqQUVtsul2k9TUoRMfP6902Ay3WXAtMoFyYNmcGggNPrQB/R37zgf5l1toIkKKMjDSTV3e39lJBQaRy7rty92gQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=SChqKvAi; arc=none smtp.client-ip=85.214.62.61
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+	(No client certificate requested)
+	(Authenticated sender: marex@denx.de)
+	by phobos.denx.de (Postfix) with ESMTPSA id AA3DA88A1C;
+	Sat, 12 Oct 2024 23:25:52 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+	s=phobos-20191101; t=1728768355;
+	bh=D/0NXLlVjCKoU8ERDheF+eCP+jOOO+P9lmqbc6AqhSQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SChqKvAiVOTrjHXhlaeeP1kWBOtrn8ykmw3KUofl9Ce1sEwX7p+cmPC4nIezgfDsV
+	 FQgUlEFW92+YbsUMORoH18LHdROdSQ+vHCtEe7GTZlMk6l6yoj0ttudutfcK2jyjBa
+	 X1v82kzdUb31xUZAqObPqAwNXfwrpIowUFrKXBNzjqwa3Iqjar1/nOjXyjZgP7kaKL
+	 tZYYspyhu5zz6Fozu72034Qd3Vwvej4xono1hmreR4GBKJmL81eqfXL06ZC5zs2JBk
+	 gNpV5L0kOG0yxSqeMfCKbPvS6z04Xh1RwdQpQYl3HGgtRukDqaNANM/JVPww404Vz0
+	 NSFFgZ4d9tSug==
+Message-ID: <17caacb0-379f-47b4-a7b9-f3eccc327783@denx.de>
+Date: Sat, 12 Oct 2024 22:33:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1728764452;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ueGfS9O2UFxaYTzR7snUif34QAcEL+PBvOxPQLQLi8c=;
-	b=qUzbdLHninY4NAX9Sm3zOx4Pg4vHpUnsr7mbkYjXEUW3AnmI5p3T7+Zuza+rjcMN/vtCG2
-	dSKsMGI/ETLaWQ+Shvc6Stbc2K2F9alEXCZSjoZ+ASap/8WPgcXxEZf9o79TdfJdY29eyQ
-	qnBbhxe38X/SxiFpVE+WYFiGctBXudXMSIFVIZ8oPvPuwIvBLkZk6SxQB6Xrc+fbpMpMmM
-	jwbe5xlxmWe8WBTuVJmkGJ4ePmt29CuXrFMwe8CHMBqbFJFSl1WiYxFHyYjd614aFiYcSi
-	pOLIOwUwYItnRg5+UfycSL6uS/HkZdiSq7mKn5cOQEgOAiYrrdRhFFrniewnXw==
-Date: Sat, 12 Oct 2024 22:20:52 +0200
-From: Dragan Simic <dsimic@manjaro.org>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Subject: Re: [PATCH 1/3] arm64: dts: rockchip: Update CPU OPP voltages in
- RK356x SoC dtsi
-In-Reply-To: <D4U3GKLN5U06.6VOVFCPFN6G7@cknow.org>
-References: <cover.1728752527.git.dsimic@manjaro.org>
- <2e1e100284b1edb470d6e7fde021a0f1779336c8.1728752527.git.dsimic@manjaro.org>
- <D4U2PO4VF4ST.9SBVKYF6095M@cknow.org>
- <0a1f13d06ec3668c136997e72d0aea44@manjaro.org>
- <D4U3GKLN5U06.6VOVFCPFN6G7@cknow.org>
-Message-ID: <76b5a5548b4cb8b6d8ae92ec92b57bc1@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/9] arm64: dts: imx8mp-skov-revb-mi1010ait-1cp1: Add
+ panel-timing node to panel node
+To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
+ Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+ festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+ quic_bjorande@quicinc.com, geert+renesas@glider.be,
+ dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
+ o.rempel@pengutronix.de, y.moog@phytec.de, isaac.scott@ideasonboard.com,
+ biju.das.jz@bp.renesas.com
+References: <20241012073543.1388069-1-victor.liu@nxp.com>
+ <20241012073543.1388069-2-victor.liu@nxp.com>
+Content-Language: en-US
+From: Marek Vasut <marex@denx.de>
+In-Reply-To: <20241012073543.1388069-2-victor.liu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
 
-Hello Diederik,
-
-On 2024-10-12 22:02, Diederik de Haas wrote:
-> On Sat Oct 12, 2024 at 9:45 PM CEST, Dragan Simic wrote:
->> On 2024-10-12 21:27, Diederik de Haas wrote:
->> > On Sat Oct 12, 2024 at 7:04 PM CEST, Dragan Simic wrote:
->> >> Update the lower/upper voltage limits and the exact voltages for the
->> >> Rockchip
->> >> RK356x CPU OPPs, using the most conservative values (i.e. the highest
->> >> per-OPP
->> >> voltages) found in the vendor kernel source. [1]
->> >>
->> >> Using the most conservative per-OPP voltages ensures reliable CPU
->> >> operation
->> >> regardless of the actual CPU binning, with the downside of possibly
->> >> using
->> >> a bit more power for the CPU cores than absolutely needed.
->> >>
->> >> Additionally, fill in the missing "clock-latency-ns" CPU OPP
->> >> properties, using
->> >> the values found in the vendor kernel source. [1]
->> >>
->> >> [1]
->> >> https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->> >>
->> >> Related-to: eb665b1c06bc ("arm64: dts: rockchip: Update GPU OPP
->> >> voltages in RK356x SoC dtsi")
->> >> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
->> >> ---
->> >>  arch/arm64/boot/dts/rockchip/rk3568.dtsi |  1 +
->> >>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 18 ++++++++++++------
->> >>  2 files changed, 13 insertions(+), 6 deletions(-)
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->> >> b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->> >> index 0946310e8c12..5c54898f6ed1 100644
->> >> --- a/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk3568.dtsi
->> >> @@ -273,6 +273,7 @@ &cpu0_opp_table {
->> >>  	opp-1992000000 {
->> >>  		opp-hz = /bits/ 64 <1992000000>;
->> >>  		opp-microvolt = <1150000 1150000 1150000>;
->> >> +		clock-latency-ns = <40000>;
->> >>  	};
->> >>  };
->> >>
->> >> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> >> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> >> index 0ee0ada6f0ab..534593f2ed0b 100644
->> >> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> >> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
->> >> @@ -134,39 +134,45 @@ cpu0_opp_table: opp-table-0 {
->> >>
->> >>  		opp-408000000 {
->> >>  			opp-hz = /bits/ 64 <408000000>;
->> >> -			opp-microvolt = <900000 900000 1150000>;
->> >> +			opp-microvolt = <850000 850000 1150000>;
->> >>  			clock-latency-ns = <40000>;
->> >>  		};
->> >>
->> >>  		opp-600000000 {
->> >>  			opp-hz = /bits/ 64 <600000000>;
->> >> -			opp-microvolt = <900000 900000 1150000>;
->> >> +			opp-microvolt = <850000 850000 1150000>;
->> >> +			clock-latency-ns = <40000>;
->> >>  		};
->> >>
->> >>  		opp-816000000 {
->> >>  			opp-hz = /bits/ 64 <816000000>;
->> >> -			opp-microvolt = <900000 900000 1150000>;
->> >> +			opp-microvolt = <850000 850000 1150000>;
->> >> +			clock-latency-ns = <40000>;
->> >>  			opp-suspend;
->> >>  		};
->> >
->> > While it felt a bit much to send a patch just to remove the blank lines
->> > between the opp nodes, this sounds like an excellent opportunity to
->> > make it consistent with the opp list in other DT files?
->> 
->> Actually, my plan is to work on the SoC binning, which will involve
->> touching nearly every OPP in the Rockchip DTs, and will add much more
->> data to each OPP node.  Thus, having empty lines as the separators
->> between the OPP nodes is something we should actually want, because
+On 10/12/24 9:35 AM, Liu Ying wrote:
+> Add a panel-timing node to panel node to override any fixed display
+> modes written in a panel driver.  This way, 68.9MHz clock frequency
+> specified in panel-timing node may accommodate 7-fold 482.3MHz
+> "media_ldb" clock which is derived from 964.6MHz "video_pll1" clock.
+> The above clock frequencies align to the clock rates assigned in the
+> lvds_bridge node and media_blk_ctrl node in this DT file.
 > 
-> As indicated in the "arm64: dts: rockchip: Add dtsi file for RK3399S 
-> SoC
-> variant" patch series, I do prefer the separator lines ...
-
-Oh, I also prefer them.  I just opted for introducing fewer changes
-in the RK3399S patch series, to keep the size of the series smaller,
-and to end up with easier diffing of the SoC variant dtsi files.
-
->> not having them will actually reduce the readability after the size
->> of the individual OPP nodes is increased.
->> 
->> That's the reason why I opted for having the separator lines in this
->> patch series, i.e. because having them everywhere should be the final
->> outcome, and because in this case they were already present where the
->> OPPs were moved or copied from.
+> This should be able to suppress this LDB driver warning:
+> [   17.206644] fsl-ldb 32ec0000.blk-ctrl:bridge@5c: Configured LDB clock (70000000 Hz) does not match requested LVDS clock: 490000000 Hz
 > 
-> ... but you actually removed those lines in the other patch set.
+> This also makes the display mode used by the panel pass mode validation
+> against pixel clock rate and "media_ldb" clock rate in a certain display
+> driver.
+> 
+> Fixes: 6d382d51d979 ("arm64: dts: freescale: Add SKOV IMX8MP CPU revB board")
+> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> ---
+> v2:
+> * No change.
+> 
+>   .../freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts | 15 +++++++++++++++
+>   1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts
+> index 3c2efdc59bfa..4e9f76de7462 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-skov-revb-mi1010ait-1cp1.dts
+> @@ -13,6 +13,21 @@ panel {
+>   		backlight = <&backlight>;
+>   		power-supply = <&reg_tft_vcom>;
+>   
+> +		panel-timing {
+> +			clock-frequency = <68900000>;
+> +			hactive = <1280>;
+> +			vactive = <800>;
+> +			hfront-porch = <30>;
+> +			hback-porch = <30>;
+> +			hsync-len = <10>;
+> +			vfront-porch = <5>;
+> +			vback-porch = <5>;
+> +			vsync-len = <5>;
+> +			hsync-active = <0>;
+> +			vsync-active = <0>;
+> +			de-active = <1>;
+> +		};
+There is an existing entry for this panel in panel-simple.c , please do 
+not duplicate timings in the DT:
 
-Well, I didn't remove them in place, but en route to another, much
-larger file, :) which originally didn't have them.  As described
-above, that was my choice to keep the things a bit more consistent
-(in the "RK3399 way"), and to reduce the amount of "code churn"
-a bit.  I'll try to explain it further below.
-
-> While I'm looking forward to the extra data to the OPP nodes, I don't
-> think the amount of properties should determine whether it should have 
-> a
-> separator line or not.
-
-True, the size of the node shouldn't be the determining factor.
-The reason why I emphasized the node size was because other people
-may be a bit "allergic" to whitespace changes and such "cosmetic"
-code layout changes, so justifying such changes can only help.
-
-See, just as you're "triggered" by whitespace inconsistency, some
-other people may be "triggered" by cosmetic code changes.   It's
-quite tough to strike some kind of balance there. :)
+drivers/gpu/drm/panel/panel-simple.c:   .timings = 
+&multi_inno_mi1010ait_1cp_timing,
+drivers/gpu/drm/panel/panel-simple.c:           .compatible = 
+"multi-inno,mi1010ait-1cp",
+drivers/gpu/drm/panel/panel-simple.c:           .data = 
+&multi_inno_mi1010ait_1cp,
 
