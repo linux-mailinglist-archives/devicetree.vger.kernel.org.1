@@ -1,161 +1,138 @@
-Return-Path: <devicetree+bounces-110624-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B79A899B4C5
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:12:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBAF499B4C7
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 14:12:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3931BB21388
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:12:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D8831F21344
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 12:12:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDEA516DEA7;
-	Sat, 12 Oct 2024 12:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2F716DEBD;
+	Sat, 12 Oct 2024 12:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q5Oc+hVG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iYUgf64M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D236145A19;
-	Sat, 12 Oct 2024 12:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7193616C6A7
+	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 12:12:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728735152; cv=none; b=VsPve8QRPO37FhjHKKfasAnOikzG8xJACNoF0YFeMCItTTRmiDzcpWmZZPtd+DWIaKL12h2n7tyD9KVuoUyQwplpUJC2Hyx6yWb1vj/vHJfPJS2mKeINUhOjBLKuUGaS40XeE9NGck0BWRVCxrTz9zLLAU85U3LOASWxol8MKvk=
+	t=1728735160; cv=none; b=KV+eSEPiPzG3yKy2RYf/XLC4S6MsmJwRHr0h8wACmK27vtRc5SQp2J8cFFNC91W/clTjXmWdHwgDdmtynHok3nMug/4vN7oIE1ctHGSnSmMy/8IidZ3s/nATOhRivaVeYUVKLCrrggtWRtMf8EX8ZHb8maZ8RHmN7xoetnecAJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728735152; c=relaxed/simple;
-	bh=hmj6UhdB5lhPLzukksSaSSQvujpIaLecwEaCA+7PzRM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RDBPpMPsXAz/tIkDXx1/pMwQtS9CyZpUHqTNy87g0CPHnQQTVlgAxgj81vd67l1Kl44OaXnolQyXqe4PLdxu3KQlUZtx0Z2rtWAiQa0RXA4vc/HeJ0rSKRD1vS43guJlkMuIBBnFqOJWaNjRExU+C8dnZLngjIIUug51tRosPUQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q5Oc+hVG; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-20c6f492d2dso30528485ad.0;
-        Sat, 12 Oct 2024 05:12:30 -0700 (PDT)
+	s=arc-20240116; t=1728735160; c=relaxed/simple;
+	bh=bLMNDWnEogF9s5f7XKNsSDnFY3X4yw+Fr0M9XvpqsOc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=L6mjiFIWbc2hhnkuMt89MNW/GwHw8nx4e+QAw5ZlrLCriz8wSrB7dUZJRrKy8ldoh8vNB9tn3KAJa8mC9ISYkYTfoBhu+1g/CAvB08C/7Rw6ydNNDoUuAxrI3gcmz1HncXiTlemqBY5DmBBY9S3bcD6BZYUDOYlto+Kluu5L0tA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iYUgf64M; arc=none smtp.client-ip=209.85.215.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-7d4fa972cbeso2175541a12.2
+        for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 05:12:39 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728735150; x=1729339950; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=jG9lrE9DmMpJN9A+2kqJ/BJcBfUwU0x80O3iC8t6XpQ=;
-        b=Q5Oc+hVG4jOFcillmqYpz14IE4n9c7BgaY4utAdC3JsqPT3F2TLugKhKOqClNRLbcU
-         Jx0xFIfIB+5JHmBQHpAdUxVWCCC705q1fUpuiJy3QsTdGRDUSpT/8zVZQ0HmBW22UHZ5
-         v8UobgSWxsgsFb+FrUdNnFURsHDHiQgf3LyLl3MvQKqs1l1Z/DMvWGnEieq+rJic7mDL
-         3J4c80fNFMYCFwYNjqISbiwQ9qUtRgUPauoMaYveT+RB1hjtd36BvHed7c5RvRE0Am2P
-         Vh8BsDuLou3MWC2SA3NqjxzxAV1gZlKpbmXhxmMzLXqiBnJc3THP66Ry3Q85RtEy/jjh
-         Lgvw==
+        d=linaro.org; s=google; t=1728735159; x=1729339959; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=21O66+SU3YfelK3nlXJ5Y2o3jZna0jsz3r+miBWwveA=;
+        b=iYUgf64Mlbg29oE3cxm1KkUDVwdnd5heDxXhnt/0HRHGoI1amljY5IYw8ESESx/PXR
+         UtNbUB7/cc0G1FNaK7SvdWfO1CX1NhG130MIrHfg0Ku95GgMA6quelew9+x1SiFhOfTN
+         EyzZSm13XRmj3JFw+hXALARQTEezfZwkKLuGuDECbfLC4syjktbB536xJ8sxkzlbR3qs
+         O0qutr2boaYCyv2oiZvf3e/KjgkHK+/x5vGxJ7FsnrYy/c9c4xd+PC6nwfJbSYFKmz2E
+         gg/7yOMk+9Z8x/28ZrrwaZW/YtTe75hWQnuL0HQYSBGgw44lOgMM5KbzQjNmBMEtcrzm
+         EhrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728735150; x=1729339950;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jG9lrE9DmMpJN9A+2kqJ/BJcBfUwU0x80O3iC8t6XpQ=;
-        b=BVQbaYXPjpCkbFxbV6q75AHXvQdwoVte+2nY3V4Ik6UE3k8idLVzZ2Img7E+fBU1dN
-         kDIXvokzTpPWGS9TY/KobZtlf9YpKGqdXu4b9M0SwE6CAvzLRHWc4K5O5DA1YtSjDJ7c
-         DXMb9Q8HPCvFhl++DJgJZGpkQq36clzZ2kMEIVzc2qaIFTDtI3vNvjRp8gMQf0Itgv/T
-         cbb6XbkJVIurTSdaAhnt4t0tWj2DOz5KmhsHxLyxvzCpBqPh2SAx2qiLTeFzeMP7Np35
-         HzPyFopEGql9Hz11WnKi1KaF3j/qlZ/zY9Tncna+hbz2be3wM1yXFpCy4ruZDo9Mc8Cc
-         JLTw==
-X-Forwarded-Encrypted: i=1; AJvYcCVTf9X5StUhI8H9CulPIQ/datjyo0BwHhBU6im9szuRt3s7UwCtHQ5v23NfQ0mhTLU48n8KjzUnLLPF@vger.kernel.org, AJvYcCVhXs6YSDFH0BmPc3e5MxKaJ77tbnx4dL3kMqrwLVcuHkPjlkuFQei9jlJS1+fsLoh0zkplSIbLcBSYH2lc@vger.kernel.org, AJvYcCWdpj3LdoB3JNzG3FMq3L6+IR1Av7qfbaEQzrFRWBqfRk0MwhIbneqLJbrtWz/0K0Z7VXXaI/t++9kFwPQ=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy37eT7Ov/KwVuEuWKCI6KOmQkPEXigN4kk3iu+QjN9flGZ4/wR
-	JX13sc3cZ3m6FIWAppIkoGkR8CZLMvWUjh5VleWuX/1pSupxGNVm0JaaOw==
-X-Google-Smtp-Source: AGHT+IEvY+hLEP1JqjgYJrqkXN4vG3PbxKjZlDjPLUw2MQjrJyUay4rMY2Tute7w7RTKAD0mT+Vr5g==
-X-Received: by 2002:a17:902:d489:b0:20b:a25e:16c5 with SMTP id d9443c01a7336-20cbb2a0c4emr41026865ad.53.1728735150251;
-        Sat, 12 Oct 2024 05:12:30 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c8c0f5b90sm36048655ad.128.2024.10.12.05.12.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 12 Oct 2024 05:12:29 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <80bfd968-8f12-46b1-9b72-837502ccdb2a@roeck-us.net>
-Date: Sat, 12 Oct 2024 05:12:27 -0700
+        d=1e100.net; s=20230601; t=1728735159; x=1729339959;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=21O66+SU3YfelK3nlXJ5Y2o3jZna0jsz3r+miBWwveA=;
+        b=foRAIYO0wtehnubJLj4qf1ygVHS3c7z4F+LIqvwJ2UwryDE65EObbuHbl91TCG2N08
+         3bFRlU72CUVikb0fNibqd4iM2raEpBqxTNR55we+lAaxmfWlcqwKPHMVSgfJY8hh0jzx
+         kRL2oSn/tzd3DLdzKjmHQklnRLu7j74xTLw4f7NzdXrHNKX+8WTgAkIfiHFhySsXAEj+
+         UE48dbXneYo1a6/DHZ0lhKYdEXZuoQG3rAtJZVkmHHc/OaRFdRgfqBGg1UyWKZr0tndO
+         OcaRxC9cYyjUfPLF+Oi/da7UGVzo0HGgHxTCIri1br1tPB3f3xcMBmTu87QGtVu8umkv
+         nMHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVuVYj6El2O+Kt5IAP//tKUWliyd7IXfd/trFZQanuhiP6+7ivZgceAnga1ntrPrHilOZL2ZeJcrsY3@vger.kernel.org
+X-Gm-Message-State: AOJu0YzB2Kn8Trd4BSwSsrE69UCreWHfraF8iGXPYZTraA/v2ye5fptb
+	z9pOoxrReM7LVHeBnTcrtUEFxxTGHq8sDhjh9dAgIfSTNwqXOqQ9X0fr9b+qhQ==
+X-Google-Smtp-Source: AGHT+IG9vPOVD8vUEqJwuKkm3f16T3uzMK7nqJJkJNeda4s7TAV4woX7mMgayOACf8Ywhe0NJfW+nw==
+X-Received: by 2002:a17:90a:e00e:b0:2e2:ede0:91c with SMTP id 98e67ed59e1d1-2e2f0dc2e8cmr7840262a91.36.1728735158763;
+        Sat, 12 Oct 2024 05:12:38 -0700 (PDT)
+Received: from thinkpad ([220.158.156.122])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-2e2d5eeb093sm4919451a91.23.2024.10.12.05.12.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Oct 2024 05:12:38 -0700 (PDT)
+Date: Sat, 12 Oct 2024 17:42:31 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Heiko Stuebner <heiko@sntech.de>, linux-pci@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-rockchip@lists.infradead.org,
+	Rick Wertenbroek <rick.wertenbroek@gmail.com>,
+	Wilfred Mallawa <wilfred.mallawa@wdc.com>,
+	Niklas Cassel <cassel@kernel.org>
+Subject: Re: [PATCH v3 07/12] PCI: rockchip-ep: Refactor
+ rockchip_pcie_ep_probe() MSI-X hiding
+Message-ID: <20241012121231.glddtpfjmsu6wiwz@thinkpad>
+References: <20241007041218.157516-1-dlemoal@kernel.org>
+ <20241007041218.157516-8-dlemoal@kernel.org>
+ <20241010072512.f7e4kdqcfe5okcvg@thinkpad>
+ <11cf07c7-08d6-425d-9590-1afab6d052d2@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH linux dev-6.11 2/2] v3: dt-bindings: modified ina2xx to
- match SY24655
-To: Krzysztof Kozlowski <krzk@kernel.org>, Wenliang <wenliang202407@163.com>
-Cc: jdelvare@suse.com, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, linux-hwmon@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <f7653d58-9cee-4496-91b8-55dda44289bc@roeck-us.net>
- <20241012070627.20788-1-wenliang202407@163.com>
- <20241012070627.20788-2-wenliang202407@163.com>
- <40b01554-44ab-4a67-b9ff-d8b821eb74a8@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <40b01554-44ab-4a67-b9ff-d8b821eb74a8@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <11cf07c7-08d6-425d-9590-1afab6d052d2@kernel.org>
 
-On 10/12/24 03:06, Krzysztof Kozlowski wrote:
-> On 12/10/2024 09:06, Wenliang wrote:
->> Modified the binding of ina2xx to make it compatible with SY24655.
->>
+On Fri, Oct 11, 2024 at 05:25:56PM +0900, Damien Le Moal wrote:
+> On 10/10/24 16:25, Manivannan Sadhasivam wrote:
+> > On Mon, Oct 07, 2024 at 01:12:13PM +0900, Damien Le Moal wrote:
+> >> Move the code in rockchip_pcie_ep_probe() to hide the MSI-X capability
+> >> to its own function, rockchip_pcie_ep_hide_msix_cap(). No functional
+> >> changes.
+> >>
+> >> Signed-off-by: Damien Le Moal <dlemoal@kernel.org>
+> > 
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > 
+> > Btw, can someone from Rockchip confirm if this hiding is necessary for all the
+> > SoCs? It looks to me like an SoC quirk.
 > 
-> Your subject is odd. We do not develop v6.11, that's something already
-> old. The cc-list suggest you just want it for next release, so rebase on
-> mainline or next and avoid any unusual patch prefixes.
+> All SoCs ? Are there several versions of the RK3399 ?
+
+There seems to be some:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=296602b8e5f7
+
+> As far as I know, there is only one. This is unlike the designware IP block used
+> in the RK3588 which can also be found in other SoC and may have some variations
+> due to different synthesis parameters.
 > 
 
-The submitter also still refuses to use imperative mood. I don't know
-how often this has to be repeated. I take this as "does not address feedback"
-and will not even look at the patches anymore until the reported problems
-have been fixed.
+But anyway, let's keep the quirk until we hear otherwise.
 
-Oh, and I just noticed that this version has been sent as response to the
-previous version, which is also discouraged. On top of that, there is
-no change log.
+- Mani
 
-Guenter
+> -- 
+> Damien Le Moal
+> Western Digital Research
 
+-- 
+மணிவண்ணன் சதாசிவம்
 
