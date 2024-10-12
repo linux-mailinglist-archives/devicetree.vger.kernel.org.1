@@ -1,139 +1,121 @@
-Return-Path: <devicetree+bounces-110698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110691-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32A4B99B728
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 23:26:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E297599B6F2
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 22:35:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6350C1C20E03
-	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 21:26:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 73D52B213F5
+	for <lists+devicetree@lfdr.de>; Sat, 12 Oct 2024 20:35:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E224019ABAC;
-	Sat, 12 Oct 2024 21:26:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35BAF199240;
+	Sat, 12 Oct 2024 20:35:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b="G9P03NsD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UEI5FE09"
 X-Original-To: devicetree@vger.kernel.org
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2137414830F;
-	Sat, 12 Oct 2024 21:25:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.62.61
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F180188905
+	for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 20:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728768360; cv=none; b=I4Ip+0eU/aGcWpPmhmKZpordrWcAqzt0NMaNyZSxjVkXOyIC/nzNqcxJuCJVG7M5axjC6H/iiPVoKKejDeexWVrRUhuRiXT1zrNc27gKT14wGODRYK34zyaBq5It8Y5K/1bqeFTtxEYA749prusT+2GueZ0GLkJH80qP+vnDlgw=
+	t=1728765331; cv=none; b=syABFx0Qppl+n0jkbSGc6c3kJvpWYXl0KsX3CxlBTA7xihaf30e/P5C5Wci2Q3P7SSq4Co/+XcQgEWie1ZOVSGlef9FElcsVkiaaVmZGumUSWL8KkeXfLQ/KsLN7aW8o51w03aOACo8MnqVckW1KrebtX+Nj5NA2/n7Zx5uQckE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728768360; c=relaxed/simple;
-	bh=AvOUhNSxRnr6SvNCqKAqHT3FYaLMUbzrkmd4gAznGfE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=adR490rRU+MU8Ik5RqasUHTA43f9MIUNSE4WzBzbsn38JL6zo3w1BHLXGrfOUhj1BPB8E17TzQompm5Li/k9v5g8B670TYTwwev3Lp9tMB1i3oeVFacVUwHS39RL7wfBezFyJaQTSBzJdml4ILaG3ykG+TI/2XjJZPz8RXglH1E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de; spf=pass smtp.mailfrom=denx.de; dkim=pass (2048-bit key) header.d=denx.de header.i=@denx.de header.b=G9P03NsD; arc=none smtp.client-ip=85.214.62.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=denx.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=denx.de
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-	(No client certificate requested)
-	(Authenticated sender: marex@denx.de)
-	by phobos.denx.de (Postfix) with ESMTPSA id 767F388B11;
-	Sat, 12 Oct 2024 23:25:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-	s=phobos-20191101; t=1728768357;
-	bh=BP45u0ssYzJkTPgwj3CsIlqMPzwYXzDkvjYBgk+9DGQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=G9P03NsDnej4WwV74DoVZCkWXjLFl+P+CgceGJKpW9dg+rtgbGbcQfeiB0YhtCSrU
-	 gYtZ/jMdEuXQQlCL8TvrkiI0ceGTIGm0bZZHrnxY+VlrxjP9vG5HahCOBWgASvcAQ4
-	 mlhzrgnQh3tY8VCJBHeMpegrdL6qe0Vf+ednlOL/GS4J0sWjTWwCT8VLSarAHOixb1
-	 +JJxppQqmePdL85cMVUpKE/Ah+l351/MznirNDJqczxjCf4kH3HYWLtdS+aZlC8yqz
-	 0OYBsmy1um9VONCtN4BDG0fTXACxkThAZurnNFva4Iho8xiQdqPb5A0sJBHXNOV0TR
-	 zG0AOVXzeaJGg==
-Message-ID: <51ec54bd-92cf-4d66-9e7d-5cabe3e210dc@denx.de>
-Date: Sat, 12 Oct 2024 22:34:45 +0200
+	s=arc-20240116; t=1728765331; c=relaxed/simple;
+	bh=VRKULwpPbp0Cv94+pXHf87SbaWqT8Zbhw+Pl8htPJbE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NhgucpKRlOtOt4NCNf0jAJrtdefojNaPExT7iYE9HB5sxnKB/rGqWAkF7KrqQyi3FirIkPLd7ka7QpNBfa5LBtXq4WrDyeFg2NYf0UchJAuDvz7zewg5EfUbYF7ah32M7FJV/g7Az5pXdi4zuQkms3MvacnomxmHrUeIgWh/mz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UEI5FE09; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-5c937b5169cso4262419a12.1
+        for <devicetree@vger.kernel.org>; Sat, 12 Oct 2024 13:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728765328; x=1729370128; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C9BNyB46AHTIhhiaPND1rZDxSWDvflwaPYk83T4GY7k=;
+        b=UEI5FE09E2F/wLUpVci9QQDvBvK8FFbtC9yPBYkCRCZWPvf4JOHJVtDo0wQbo0BRrQ
+         NJSreTTDlRRlgJBMbAYXuh6NutpNj2gdbl2MNJD2fnt0VOJ6ITLgj2wmZTsVatu2hlD+
+         MsLViEd7D5G3JNmhC3qN7tgbCpfPgFChirL9mS0pIPj+vTmgMy42QyNaMTVrp/y7Si9o
+         D5nGsZZsCzVMFdABXDjS0fpT2NYeBzoPhN02UYaLDQPbDjzgM8pKY6g7flu8L/7sWTGZ
+         k7VwL5FRwFA0Xe25MvAEBD3pr6N5bwkrDJkGSB+mNUwbxYmSk090qPVHB27+xYvP6VkE
+         narQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728765328; x=1729370128;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=C9BNyB46AHTIhhiaPND1rZDxSWDvflwaPYk83T4GY7k=;
+        b=AoXODSqwWZPR1lbXn3HJSJbxvIED3UrMVDCaXwCusUglaust75QDGCR9TBqx66glGM
+         PlG8e93yVOtRNMeHBoN6Lv+7jnfC4siE1f9SgaR5GpBfQYyY+KGZy8iqiaJIy1xQsCcP
+         QeNnSLinzWzjMG8tgcoWAYk8+tXe5dAtx5BuKpgju2iiROlO9pkRhJV778qvM1XjS/Ph
+         nb72zpe3KsRUMMM2OFUuHODYNVqbKfZLD+c+FS93Tu2lXg/sz6C5xQDzJzv+1pyhJhjz
+         6yDgNFzeJ5yUyIsx1uR1/MiK2LQPeYnVhOJxJmaqOIWeyB23y1Dc7e1Z0E++ZjNLq9LQ
+         22yg==
+X-Forwarded-Encrypted: i=1; AJvYcCVk6iIzksIksGhp+3RIs0kQfRDsddy7MPYJIQMfwVy09FmCqs32bVOrJARK1H2okvUIXD75hYx6quhY@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjpWq14INaW8LFn1/l6W8yRwbfYxlnE+383qYoD7005hyMC/kf
+	sIGEMrvFPDdRsYkYNkvY/t2qvbgK4j/iiSX/qIYCI5m++YztKBb5z1RS9XrRsRw=
+X-Google-Smtp-Source: AGHT+IEDKnALI1x3lBgN0NVYiBrTVdiIc4xFRNjHNsIBxwp7CVJelv46PTux9TosylYEe5zqWrQ8wQ==
+X-Received: by 2002:a05:6402:270a:b0:5c8:8b0e:8658 with SMTP id 4fb4d7f45d1cf-5c933577d5amr10097110a12.14.1728765327673;
+        Sat, 12 Oct 2024 13:35:27 -0700 (PDT)
+Received: from lino.lan ([85.235.12.238])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c9372940c1sm3164335a12.82.2024.10.12.13.35.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Oct 2024 13:35:27 -0700 (PDT)
+From: Linus Walleij <linus.walleij@linaro.org>
+Subject: [PATCH 0/2] net: phy: mdio-bcm-unimac: Add BCM6846 variant
+Date: Sat, 12 Oct 2024 22:35:21 +0200
+Message-Id: <20241012-bcm6846-mdio-v1-0-c703ca83e962@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/9] arm64: dts: imx8mp-phyboard-pollux-rdk: Add
- panel-timing node to panel-lvds node
-To: Liu Ying <victor.liu@nxp.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Cc: andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
- Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
- jernej.skrabec@gmail.com, airlied@gmail.com, simona@ffwll.ch,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
- festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org,
- quic_bjorande@quicinc.com, geert+renesas@glider.be,
- dmitry.baryshkov@linaro.org, arnd@arndb.de, nfraprado@collabora.com,
- o.rempel@pengutronix.de, y.moog@phytec.de, isaac.scott@ideasonboard.com,
- biju.das.jz@bp.renesas.com
-References: <20241012073543.1388069-1-victor.liu@nxp.com>
- <20241012073543.1388069-3-victor.liu@nxp.com>
-Content-Language: en-US
-From: Marek Vasut <marex@denx.de>
-In-Reply-To: <20241012073543.1388069-3-victor.liu@nxp.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
+X-B4-Tracking: v=1; b=H4sIAIndCmcC/x3MQQqAIBBA0avIrBMcEYmuEi1Sp5qFGgoRiHdPW
+ r7F/w0qFaYKi2hQ6OHKOQ3gJMBfezpJchgGrbRBhVo6H+1srIyBs0S0DnUwFBBhJHehg99/t26
+ 9f4CUbl9eAAAA
+To: Doug Berger <opendmb@gmail.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: Florian Fainelli <f.fainelli@gmail.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.0
 
-On 10/12/24 9:35 AM, Liu Ying wrote:
-> Add a panel-timing node to panel-lvds node to override any fixed
-> display modes written in a panel driver.  This way, 74.25MHz clock
-> frequency specified in panel-timing node may accommodate 7-fold
-> 519.75MHz "media_ldb" clock which is derived from 1.0395GHz
-> "video_pll1" clock.
-> 
-> This should suppress this LDB driver warning:
-> [   17.923709] fsl-ldb 32ec0000.blk-ctrl:bridge@5c: Configured LDB clock (72400000 Hz) does not match requested LVDS clock: 506800000 Hz
-> 
-> This also makes the display mode used by the panel pass mode validation
-> against pixel clock rate and "media_ldb" clock rate in a certain display
-> driver.
-> 
-> Fixes: 326d86e197fc ("arm64: dts: imx8mp-phyboard-pollux-rdk: add etml panel support")
-> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> ---
-> v2:
-> * No change.
-> 
->   .../dts/freescale/imx8mp-phyboard-pollux-rdk.dts  | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> index 50debe821c42..20cb5363cccb 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp-phyboard-pollux-rdk.dts
-> @@ -37,6 +37,21 @@ panel1_lvds: panel-lvds {
->   		backlight = <&backlight_lvds>;
->   		power-supply = <&reg_vcc_3v3_sw>;
->   
-> +		panel-timing {
-> +			clock-frequency = <74250000>;
-> +			hactive = <1280>;
-> +			vactive = <800>;
-> +			hfront-porch = <72>;
-> +			hback-porch = <86>;
-> +			hsync-len = <2>;
-> +			vfront-porch = <15>;
-> +			vback-porch = <21>;
-> +			vsync-len = <2>;
-> +			hsync-active = <0>;
-> +			vsync-active = <0>;
-> +			de-active = <1>;
-> +		};
-There is an existing entry for this panel in panel-simple.c , please do 
-not duplicate timings in the DT:
+As pointed out by Florian:
+https://lore.kernel.org/linux-devicetree/b542b2e8-115c-4234-a464-e73aa6bece5c@broadcom.com/
 
-drivers/gpu/drm/panel/panel-simple.c:static const struct panel_desc 
-edt_etml1010g3dra = {
-drivers/gpu/drm/panel/panel-simple.c:   .timings = 
-&edt_etml1010g3dra_timing,
-drivers/gpu/drm/panel/panel-simple.c:           .compatible = 
-"edt,etml1010g3dra",
+The BCM6846 has a few extra registers and cannot reuse the
+compatible string from other variants of the Unimac
+MDIO block: we need to be able to tell them apart.
+
+Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+---
+Linus Walleij (2):
+      dt-bindings: net: brcm,unimac-mdio: Add bcm6846-mdio
+      net: phy: mdio-bcm-unimac: Add BCM6846 support
+
+ Documentation/devicetree/bindings/net/brcm,unimac-mdio.yaml | 1 +
+ drivers/net/mdio/mdio-bcm-unimac.c                          | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: 9852d85ec9d492ebef56dc5f229416c925758edc
+change-id: 20241012-bcm6846-mdio-116b12d4ed11
+
+Best regards,
+-- 
+Linus Walleij <linus.walleij@linaro.org>
+
 
