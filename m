@@ -1,87 +1,143 @@
-Return-Path: <devicetree+bounces-110721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DF0999B966
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 14:34:22 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3C899B9C1
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 16:31:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61496281593
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 12:34:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36AE1B21471
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 14:30:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB374140E2E;
-	Sun, 13 Oct 2024 12:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42891146A83;
+	Sun, 13 Oct 2024 14:30:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="jHqiDTmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DDC02AD11;
-	Sun, 13 Oct 2024 12:34:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD0F804;
+	Sun, 13 Oct 2024 14:30:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728822856; cv=none; b=TyZCxV5useM5Re0rZmldHKrOiRf+vDWWbWV0FOSdO2Em+c+qri9y9GBN1G6mdBrPzYvpbLGAXwXehCVxLc7fOg0KyZWUTwzCsCmOCYXX/7AexT2H3MTWI6bR8PXcS/Y+bw7jZh0sHVVm/ieqiZ+MepeePx0o3wJGGTQPgV7PkkQ=
+	t=1728829843; cv=none; b=XePjGSdVbhxSrl0Wqw2QgBfrBmJSmoPHVC/s2lCs2H03wM5THEGKuvBBYDA/JreeQVp7N3NgtSo6nafS1jcqpedIRAz1aToJyMeCR5+UDFJNeAxHvaLTP7zMtfJMjfkCSzJywO4SL6VyXeMGqs8oqLuYtjfbmy4qGnFIjGpkVNU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728822856; c=relaxed/simple;
-	bh=KVjBzbJn5qvjmNyqcgzY7Gr4rCMtvwarG/tbRhyo/3w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WBucQ21fvmSprg6q+Dh44gCK2h+ON+KyFJQ+OpNsx7PMNNSHpfrr6ztEB9axH1x8DLewtbbS5t9fbsVs6YLErev3znYdRmFBippQir3AUlVN9AWAkuJPsDMNreBvYfZE7I9PQkux7h5Du6JHk0XeZ7Rb8x1uSkzYnFScZQ80X/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=wanadoo.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-5c94a7239cfso1238433a12.3;
-        Sun, 13 Oct 2024 05:34:15 -0700 (PDT)
+	s=arc-20240116; t=1728829843; c=relaxed/simple;
+	bh=AEmoM+EFuaT+288e1DXK4XYKWCGrIOxbGOJ/+zJg9lI=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version; b=uCwJSuDhj4bjA4cQ4If2wBCUgCYfEtVUhDRzix+a5KeYaQ7/iNeNCGCcVoejy8xCqDOJ5A+tRU9vZvJA1TiHG4PZRcW9a3g4H8oR54q3LQdnUCmUmI9PCETXvpYMg6Nvmtpbz3qiRzc8jnlvIeuqD9x4DmOsrs5bBe71zSWYpys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=jHqiDTmQ; arc=none smtp.client-ip=209.85.218.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a99f646ff1bso146022466b.2;
+        Sun, 13 Oct 2024 07:30:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1728829839; x=1729434639; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=L0glNYA5rVjsDnyfMCJSUHAQP7BmZHrAonKDRalhrkE=;
+        b=jHqiDTmQpBNw59UrmJINrX/dPWVvu/dz0b7HLEZwJs0/w+Cd2i1aA3lh27hgvfjJPF
+         3t9BKYOHgEV37/NQaze4cHylm2/vgxiuEsTheq17Ej8bsf0kXtJnXQeWLEGLwphmzi9N
+         spV9mPlUKlcm1AYbDn8K5uslX2VmrLAPljki+0ykHED9aZZGSI8AanA369lTrhXaFORt
+         FwXTulEkq24Nri1/qOhHJ2W/XMU+wF26JUj7a8A4rJ9KqQc7MeuCVRLp0tye5b/3HY/D
+         Hy6wPpa1C1F5pIbs3lvt0s0sY4fDXzM6gR/AkGUIRbgFB6qZU50lanPDh0Xa3a9Uo/qB
+         FKkw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728822854; x=1729427654;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KVjBzbJn5qvjmNyqcgzY7Gr4rCMtvwarG/tbRhyo/3w=;
-        b=nsosrqQRWlaKRDafKfgnQVcdASsYnVnz1exxdtRm4I2DN5UmcCEQHQzIwnUkLVi6Wm
-         kkEa2gjepA9iPjdEQOpoq/eQAUgy6dBQYRnhtXPJ0j1E2/fbrY3a/xKcL0UTB89ayETN
-         IcNcLy26Z9P9N3AXs0P0WqhixFt27m0nd+DrnujDJAkySxB6D4mylX7HZg3VRfYumdql
-         Mxh6YUdrObtGmGHbjN8F/cerlntAw0rVFkuGpQ24z5vBmvAJl5ILXm/9UAC+Lo9w554f
-         POa0qT7J1YS+EF8eELgQePlt2ZrK85SVYQZutpWgWEaF+O7VWHjywNXagOiy3PhjaFlL
-         hlEA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXs2Ba1KGOom7auBxPvcE3OolVVsN0tTzTgm4gDv1bKrVngIPmdiiwgMwW5La6Ps/tHXVc9JLS7fPY@vger.kernel.org, AJvYcCWV5LeWuHc3NFyaq/PhpiI856ayZ48y/Ofb6ufclzemUgrVWY4nXbky/cF+gVXxAifiRxHSQrrc@vger.kernel.org, AJvYcCWjr2Pf/aCN1TMRbbjrWg4n/UkCorm9oIk3mCAkUtSN8HJrt3PBjqu3CbFztla0gZxdHxaFYh7W4yft@vger.kernel.org, AJvYcCXX+lC9dAZHdOE3LQX18rI66cVu2zhWippLxEIPHjAhDyG6ZywVoJtIIaqBzSF5RBvreBUz28FHCNxFWbFo@vger.kernel.org
-X-Gm-Message-State: AOJu0YyeD/jQzFQJUUZ5f0D/nZTje2olVdJ4l0toQaY1uvokcZDzNP71
-	J4vyZ48Kf/WXpB0AMNZ9fr04FQzdpOflI2pUVfQuIsQzCq2fz2zHvO45rGgMM0RB9KqfPJZBWUm
-	6nBWvid7JGfcelvPgAkxx8aK45g4=
-X-Google-Smtp-Source: AGHT+IGjIfuYgWXbzMHWa/jQj9mBLzXL4HpmJdHa8oqu7nEyDsnHglrnWDthyUaa2cHW45KewKrlHL0wkF0rMDpZvu4=
-X-Received: by 2002:a05:6402:26d1:b0:5c5:da5e:68e with SMTP id
- 4fb4d7f45d1cf-5c95ac09876mr8889087a12.3.1728822853466; Sun, 13 Oct 2024
- 05:34:13 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728829839; x=1729434639;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L0glNYA5rVjsDnyfMCJSUHAQP7BmZHrAonKDRalhrkE=;
+        b=Mmgl4R7vAfJ7aLm7LRz3H2Wb/fgHQfgfk2uvTF/SRqdTxSwvXvuGxGL68T8PHtOIIa
+         XCjScsagjDKJXbYZfcVOgdBkFrkRF6rRRWkXgx96vIcBcSKb3OiPWr/kjQUqvJZZPDQL
+         Mvne05LDYBPx0hYOmOURYXvk2+dTkMHvyfhzIiqutyGkni/pXBS14mlnwi74gmd6tQKu
+         Z26ylgUhT7s22Cqj0zbn++LWeYV/xJs5oPmo/MSyrHQF2Wp0SGDDz6VxalxCDM2dlQug
+         dz0/3qVGT3jog6reb1dSqWBoPC9YSj3PEr+6ujBFp7O9lv9eYygJlhp26IANMg7c8v8M
+         W7wA==
+X-Forwarded-Encrypted: i=1; AJvYcCUmoEFNgc9/nSHBblcExwVxJBJFWrj9lxQiPeFbZaqMS1BVCNw93NnnwFUMKin88EV7a8hkavZMdUCV@vger.kernel.org, AJvYcCX3OzFWgZUEXd/8tiduyCqJCseQiU9WeX7NEG80pczfeuSkmOykXkRgrzVhmaOVLl9d6f01qnilw1ePUj4P@vger.kernel.org
+X-Gm-Message-State: AOJu0YymPbNWpQ7XsQCT77nGX2zRaUBAieT6J8u6e0XXjCDKHDesBlay
+	eVvulG6uPgAL2qjatQezRIruZ8yxnO7X4vdv0kZffTsWJdBewLF6
+X-Google-Smtp-Source: AGHT+IFKXJhAqy3N9LwfreF+1hi3YEC45npDa52jeGv4glBoubxV5vad2zdUq+GQY4jnDZUy2Xchzg==
+X-Received: by 2002:a17:907:3689:b0:a99:5021:bcf0 with SMTP id a640c23a62f3a-a99b93cb817mr918249966b.34.1728829838441;
+        Sun, 13 Oct 2024 07:30:38 -0700 (PDT)
+Received: from localhost.localdomain ([2a02:908:1587:1e60:ba33:7ef4:2f9b:8303])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99ef5d6b93sm192205866b.80.2024.10.13.07.30.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Oct 2024 07:30:38 -0700 (PDT)
+From: Cenk Uluisik <cenk.uluisik@googlemail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	Andy Yan <andyshrk@163.com>,
+	"GitAuthor: Cenk Uluisik" <cenk.uluisik@googlemail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add board device tree for rk3588-orangepi-5b
+Date: Sun, 13 Oct 2024 16:30:09 +0200
+Message-ID: <20241013143016.16145-1-cenk.uluisik@googlemail.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011-topic-mcan-wakeup-source-v6-12-v3-0-9752c714ad12@baylibre.com>
- <20241011-topic-mcan-wakeup-source-v6-12-v3-6-9752c714ad12@baylibre.com>
-In-Reply-To: <20241011-topic-mcan-wakeup-source-v6-12-v3-6-9752c714ad12@baylibre.com>
-From: Vincent MAILHOL <mailhol.vincent@wanadoo.fr>
-Date: Sun, 13 Oct 2024 21:34:02 +0900
-Message-ID: <CAMZ6Rq+Rcnz3oiE-r_K9P76kAS4ssR4B2_VqC_VH3sbzYNQaCg@mail.gmail.com>
-Subject: Re: [PATCH v3 6/9] can: m_can: Add use of optional regulator
-To: Markus Schneider-Pargmann <msp@baylibre.com>
-Cc: Chandrasekar Ramakrishnan <rcsekar@samsung.com>, Marc Kleine-Budde <mkl@pengutronix.de>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, linux-can@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>, Vishal Mahaveer <vishalm@ti.com>, 
-	Kevin Hilman <khilman@baylibre.com>, Dhruva Gole <d-gole@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri. 11 Oct. 2024 at 22:20, Markus Schneider-Pargmann
-<msp@baylibre.com> wrote:
-> Add support to use a regulator for the core. This is optional and used
-> to register the dependency on the regulator.
->
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+---
+ arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+ .../boot/dts/rockchip/rk3588s-orangepi-5b.dts | 26 +++++++++++++++++++
+ 2 files changed, 27 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
 
-Reviewed-by: Vincent Mailhol <mailhol.vincent@wanadoo.fr>
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index 09423070c992..45249ce15175 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -154,3 +154,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+new file mode 100644
+index 000000000000..107b65a5e7ea
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/dts-v1/;
++
++#include "rk3588s-orangepi-5.dts"
++
++/ {
++	model = "Xunlong Orange Pi 5B";
++	compatible = "rockchip,rk3588s-orangepi-5", "rockchip,rk3588";
++};
++
++&sdhci {
++	status = "okay";
++};
++
++&sfc {
++	status = "disabled";
++};
++
++&wireless_bluetooth {
++	status = "okay";
++};
++
++&wireless_wlan {
++	status = "okay";
++};
+-- 
+2.46.0
+
 
