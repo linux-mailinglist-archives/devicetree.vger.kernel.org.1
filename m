@@ -1,147 +1,109 @@
-Return-Path: <devicetree+bounces-110725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF6DF99BA2F
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 17:52:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA7C599BA52
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 18:24:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 748AF1F21937
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 15:52:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 549131F21903
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 16:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D61D61411C8;
-	Sun, 13 Oct 2024 15:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 868C714831E;
+	Sun, 13 Oct 2024 16:24:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="msMjasvK"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="bR+1dp+G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FFC42233B;
-	Sun, 13 Oct 2024 15:52:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF17414831D;
+	Sun, 13 Oct 2024 16:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728834764; cv=none; b=QmfgW13da3DiLiRVV/NFtlsEdYJDgEdwtSicunQFvGj5aumcx2ziPUMJcOMCvsbTT74Va1/w6eAXLe1Ptlk6lt6DJdQfD95NUEn8+notjjSuQvYVoyk+uo0YT7vrUQF5i7D1jgJDI5A3+d/gOfeS0gPILg0FuRTcWpUzk8smm3Y=
+	t=1728836673; cv=none; b=hGoto7rTJ04ldgoeF1eXogAjpqAmRLh6pi2IfHY4GQ3r9q1thzg+a9d7OhH13bvA58ZFaL5GVCkOjc4zOHx0pa6AVPVmQtX+O2PaMsO9Nxy2NU+BJ2/eVe790dg2bGsxlzHcl0JCM86k/mYOp5sZU2ERU3Q7slJjwnWoD50MGXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728834764; c=relaxed/simple;
-	bh=R+liUnQLUiXs/TzzkDL4w9Cd45dKutzbT14EXrrTBcY=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=dlT+nKm2PGLW+8xH8VXpeI2buQbmAuQp2qjKKwZmw6pwhx6PScFr/qWBkByIwtJ8eTn3hPWtIN8rhkOFo9DrA14hIuPjqCymeQcqP3voltfBJkfbjnH8R3L3/aVM3yTO8BvkDP63m97bShZitt7ZuyG+yzMTeGjQQbFExu7Sel0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=msMjasvK; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a9a0ef5179dso20052666b.1;
-        Sun, 13 Oct 2024 08:52:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1728834761; x=1729439561; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rcWDuzAT1cWkPvStrvUoyoxPcvB11KzBluywXLg6fw=;
-        b=msMjasvKwtPbV7kvs5JCuDp4I5ZhEnYH4WE390TvDYn5tnXVA1aVYbX1/gkh7hBUzx
-         sTY9AvBty64R+pzmADug4YVysVJdeBYwIc5FVNg3nYnQt6NUz4YjdWrKEJDqRcVbucQt
-         RM+AtxMa4zSwK0GmFF2n9Km7i6SUZYA/d65lO8vpolJ7/0r9x3X8i9e+i7O3DxkPMuNs
-         YGsUq1MtDdMtgJuWoRDtq+NS5acTs3AfsDxXiiwUg/mTisMutDlrN+ee6QieMw1B9//P
-         qkUS4sqyPp+iyfe13Xyqr5RHyX8HNvyZ/FAO9x8DLWKINv3Y9etUnYg+sPPGsrtPq8vw
-         Rblw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728834761; x=1729439561;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5rcWDuzAT1cWkPvStrvUoyoxPcvB11KzBluywXLg6fw=;
-        b=InxTxXKLeGHz3pwJgy8wKQbqDP8Svl8gknjIkq/7NnS6kFxnGDg7H9gZ+yDsUyYrSN
-         Vm8dNcnxPcP1+++sa2AUstz1D5mXIyC8VuPkniIvu8N1GDw+t1UjL90Zk7KUVBk0W/8L
-         XEesk9GAIKRnKzH3k++Caw/gfIce+ATEunB9PArLmzfmLqMk/KJUTox3kyWGpV+MXfNi
-         KZWQiCyJCSkC/86/Fmu2mmuLE6akwzJYMHQPMPdfsPwPVfphsEFhiOZ4DyGNAcTqfGTj
-         kwobzW83ZQfb1+/X6v5liEtQGEC0x7aKkvbL3oujWGxcj804FgK9h/HceAlUFOUa9Hda
-         aQog==
-X-Forwarded-Encrypted: i=1; AJvYcCVBo9218xryO7qRlM5a5nLB+a8YQWw3wroKYy3ODrJwIP2lVJ+XPNX+vnd5eS3iifP7xgAMnb1uehfE@vger.kernel.org, AJvYcCWNNV11seGqDKlt0pqJ2GVBaKe5rxRLeuoZWANQtAcac9LxyuRKcjRL65vV7QPqSyl+3iegZKOVS+tnElFY@vger.kernel.org
-X-Gm-Message-State: AOJu0YyhrPIgN6k/nLYx0gwr6k8XE1lkW8sv8FNxysEmZrVaX1mlGIrW
-	udp3gZixnLLyl61S9UIy6Rg/8CvjjbDh5vtdEb9Jtwlurq5pOEr/
-X-Google-Smtp-Source: AGHT+IEj1O8jS8V6YrjgiYlvy+7IPDApkSTule9/hdF2bu3I0CXdsAoQP83/e3cXQFpSo+BGO73mjQ==
-X-Received: by 2002:a17:907:6ea1:b0:a9a:8ee:5951 with SMTP id a640c23a62f3a-a9a08ee5b62mr185854566b.25.1728834761312;
-        Sun, 13 Oct 2024 08:52:41 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:908:1587:1e60:ba33:7ef4:2f9b:8303])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99dfa32196sm245975466b.160.2024.10.13.08.52.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Oct 2024 08:52:41 -0700 (PDT)
-From: Cenk Uluisik <cenk.uluisik@googlemail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Andy Yan <andyshrk@163.com>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Cenk Uluisik <cenk.uluisik@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	s=arc-20240116; t=1728836673; c=relaxed/simple;
+	bh=NE4FbCOloT4eH5vN817TuK0z5R9di0EBvDq7W5Sn73U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oVTzrLq0uBkJNbryKIsQTWMmG4vLXU1vulZuy/wFz/UOoyxW6Y+JPeWWGNfvwpfFmnRThigzsWfW2yavq6KITy2DxG0FuxuI//L9AKTdqaYWt85ZIVO7eRUJ929NdF42/wj9xKTwuSUpk8gMX7AieY5qKvc6bUG+4K2jb48kP6g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=bR+1dp+G; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [23.233.251.139])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7336882E;
+	Sun, 13 Oct 2024 18:22:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1728836569;
+	bh=NE4FbCOloT4eH5vN817TuK0z5R9di0EBvDq7W5Sn73U=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bR+1dp+GIl4PTHoXhkmQCE84uMDZH/Q2T+6RZ4g3kURHmZopOTYzTdcN2oMeWhWOD
+	 HadkG+VNrP13ODUJLVxGfFywRvsbmlqjBuO2g3DOy0UQdjI7Zr8ZbEmSHHu/DPgERJ
+	 iLZX78BCmGGP0ON4E5+AVGom+DZA1iFZ2M0jvajE=
+Date: Sun, 13 Oct 2024 19:24:22 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: guoniu.zhou@oss.nxp.com
+Cc: linux-media@vger.kernel.org, jacopo@jmondi.org, mchehab@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.d,
+	festevam@gmail.com, devicetree@vger.kernel.org, imx@lists.linux.dev,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add board device tree for rk3588-orangepi-5b
-Date: Sun, 13 Oct 2024 17:52:18 +0200
-Message-ID: <20241013155225.26259-1-cenk.uluisik@googlemail.com>
-X-Mailer: git-send-email 2.46.0
+Subject: Re: [PATCH v2 2/2] dt-bindings: media: nxp,imx8-isi: Add i.MX8ULP
+ ISI compatible string
+Message-ID: <20241013162422.GE5212@pendragon.ideasonboard.com>
+References: <20241012084732.1036652-1-guoniu.zhou@oss.nxp.com>
+ <20241012084732.1036652-3-guoniu.zhou@oss.nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20241012084732.1036652-3-guoniu.zhou@oss.nxp.com>
 
-Add initial support for OPi5b that includes support for USB2, PCIe2, Sata,
-Sdmmc, SPI Flash, PMIC.
+Hi Guoniu,
 
-Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3588s-orangepi-5b.dts | 26 +++++++++++++++++++
- 2 files changed, 27 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+Thank you for the patch.
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 09423070c992..45249ce15175 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -154,3 +154,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
-new file mode 100644
-index 000000000000..107b65a5e7ea
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588s-orangepi-5.dts"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5B";
-+	compatible = "rockchip,rk3588s-orangepi-5", "rockchip,rk3588";
-+};
-+
-+&sdhci {
-+	status = "okay";
-+};
-+
-+&sfc {
-+	status = "disabled";
-+};
-+
-+&wireless_bluetooth {
-+	status = "okay";
-+};
-+
-+&wireless_wlan {
-+	status = "okay";
-+};
+On Sat, Oct 12, 2024 at 04:47:35PM +0800, guoniu.zhou@oss.nxp.com wrote:
+> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+> 
+> Add the compatible string support for i.MX8ULP ISI.
+> 
+> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> index 4d5348d456a1..f43b91984f01 100644
+> --- a/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> +++ b/Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml
+> @@ -21,6 +21,7 @@ properties:
+>      enum:
+>        - fsl,imx8mn-isi
+>        - fsl,imx8mp-isi
+> +      - fsl,imx8ulp-isi
+>        - fsl,imx93-isi
+>  
+>    reg:
+> @@ -75,6 +76,7 @@ allOf:
+>            contains:
+>              enum:
+>                - fsl,imx8mn-isi
+> +              - fsl,imx8ulp-isi
+>                - fsl,imx93-isi
+>      then:
+>        properties:
+
 -- 
-2.46.0
+Regards,
 
+Laurent Pinchart
 
