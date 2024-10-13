@@ -1,143 +1,240 @@
-Return-Path: <devicetree+bounces-110722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB3C899B9C1
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 16:31:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1C599BA17
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 17:33:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 36AE1B21471
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 14:30:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 827681C209E6
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 15:33:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42891146A83;
-	Sun, 13 Oct 2024 14:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="jHqiDTmQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84DC913C9A6;
+	Sun, 13 Oct 2024 15:33:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FD0F804;
-	Sun, 13 Oct 2024 14:30:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 662B22F855;
+	Sun, 13 Oct 2024 15:33:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728829843; cv=none; b=XePjGSdVbhxSrl0Wqw2QgBfrBmJSmoPHVC/s2lCs2H03wM5THEGKuvBBYDA/JreeQVp7N3NgtSo6nafS1jcqpedIRAz1aToJyMeCR5+UDFJNeAxHvaLTP7zMtfJMjfkCSzJywO4SL6VyXeMGqs8oqLuYtjfbmy4qGnFIjGpkVNU=
+	t=1728833604; cv=none; b=Q5HDNW3YpgdOmYa/2UNWjkMjZDrtsWx/W2HrklLEOz47UsoX/Qxgwi0QNm1IQBibWxvCBX4LKEX4eEtI+RFj6bV/Ehi6CCMA7A42VpKPnc9kcv1nNcYZvBG0aDAJ2LWdB1gsLvy56m+BZKwUA0Qs1oVeZOWfKX5Fn7WFsmOxWA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728829843; c=relaxed/simple;
-	bh=AEmoM+EFuaT+288e1DXK4XYKWCGrIOxbGOJ/+zJg9lI=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version; b=uCwJSuDhj4bjA4cQ4If2wBCUgCYfEtVUhDRzix+a5KeYaQ7/iNeNCGCcVoejy8xCqDOJ5A+tRU9vZvJA1TiHG4PZRcW9a3g4H8oR54q3LQdnUCmUmI9PCETXvpYMg6Nvmtpbz3qiRzc8jnlvIeuqD9x4DmOsrs5bBe71zSWYpys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=jHqiDTmQ; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a99f646ff1bso146022466b.2;
-        Sun, 13 Oct 2024 07:30:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1728829839; x=1729434639; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=L0glNYA5rVjsDnyfMCJSUHAQP7BmZHrAonKDRalhrkE=;
-        b=jHqiDTmQpBNw59UrmJINrX/dPWVvu/dz0b7HLEZwJs0/w+Cd2i1aA3lh27hgvfjJPF
-         3t9BKYOHgEV37/NQaze4cHylm2/vgxiuEsTheq17Ej8bsf0kXtJnXQeWLEGLwphmzi9N
-         spV9mPlUKlcm1AYbDn8K5uslX2VmrLAPljki+0ykHED9aZZGSI8AanA369lTrhXaFORt
-         FwXTulEkq24Nri1/qOhHJ2W/XMU+wF26JUj7a8A4rJ9KqQc7MeuCVRLp0tye5b/3HY/D
-         Hy6wPpa1C1F5pIbs3lvt0s0sY4fDXzM6gR/AkGUIRbgFB6qZU50lanPDh0Xa3a9Uo/qB
-         FKkw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728829839; x=1729434639;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=L0glNYA5rVjsDnyfMCJSUHAQP7BmZHrAonKDRalhrkE=;
-        b=Mmgl4R7vAfJ7aLm7LRz3H2Wb/fgHQfgfk2uvTF/SRqdTxSwvXvuGxGL68T8PHtOIIa
-         XCjScsagjDKJXbYZfcVOgdBkFrkRF6rRRWkXgx96vIcBcSKb3OiPWr/kjQUqvJZZPDQL
-         Mvne05LDYBPx0hYOmOURYXvk2+dTkMHvyfhzIiqutyGkni/pXBS14mlnwi74gmd6tQKu
-         Z26ylgUhT7s22Cqj0zbn++LWeYV/xJs5oPmo/MSyrHQF2Wp0SGDDz6VxalxCDM2dlQug
-         dz0/3qVGT3jog6reb1dSqWBoPC9YSj3PEr+6ujBFp7O9lv9eYygJlhp26IANMg7c8v8M
-         W7wA==
-X-Forwarded-Encrypted: i=1; AJvYcCUmoEFNgc9/nSHBblcExwVxJBJFWrj9lxQiPeFbZaqMS1BVCNw93NnnwFUMKin88EV7a8hkavZMdUCV@vger.kernel.org, AJvYcCX3OzFWgZUEXd/8tiduyCqJCseQiU9WeX7NEG80pczfeuSkmOykXkRgrzVhmaOVLl9d6f01qnilw1ePUj4P@vger.kernel.org
-X-Gm-Message-State: AOJu0YymPbNWpQ7XsQCT77nGX2zRaUBAieT6J8u6e0XXjCDKHDesBlay
-	eVvulG6uPgAL2qjatQezRIruZ8yxnO7X4vdv0kZffTsWJdBewLF6
-X-Google-Smtp-Source: AGHT+IFKXJhAqy3N9LwfreF+1hi3YEC45npDa52jeGv4glBoubxV5vad2zdUq+GQY4jnDZUy2Xchzg==
-X-Received: by 2002:a17:907:3689:b0:a99:5021:bcf0 with SMTP id a640c23a62f3a-a99b93cb817mr918249966b.34.1728829838441;
-        Sun, 13 Oct 2024 07:30:38 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:908:1587:1e60:ba33:7ef4:2f9b:8303])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a99ef5d6b93sm192205866b.80.2024.10.13.07.30.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Oct 2024 07:30:38 -0700 (PDT)
-From: Cenk Uluisik <cenk.uluisik@googlemail.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1728833604; c=relaxed/simple;
+	bh=fJkul6k+1xkEG6jqLAyJbONQ+3rSxf+oxu/+tMfJTrI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U1xM0RrR7CkqZnyd7yU1vZ4XqPSIP5HMh7kRu3j870t1Y9Jaz7YkZG7UvI7jvOStQuCnhnzja6ZZpSQNaKuv0dTX337MJF+pGr7aPUOA5MFR65YNxNs5eslshGSx76ZELdeSvwNTxC6RDiK3aSkuY39Olcb5g2U59STaHuInk+U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0C6EA1A13F7;
+	Sun, 13 Oct 2024 17:33:15 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 052241A1C55;
+	Sun, 13 Oct 2024 17:33:15 +0200 (CEST)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id C72CB20406;
+	Sun, 13 Oct 2024 17:33:15 +0200 (CEST)
+Date: Sun, 13 Oct 2024 17:33:14 +0200
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Andy Yan <andyshrk@163.com>,
-	"GitAuthor: Cenk Uluisik" <cenk.uluisik@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: rockchip: Add board device tree for rk3588-orangepi-5b
-Date: Sun, 13 Oct 2024 16:30:09 +0200
-Message-ID: <20241013143016.16145-1-cenk.uluisik@googlemail.com>
-X-Mailer: git-send-email 2.46.0
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Vinod Koul <vkoul@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	"netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-stm32@st-md-mailman.stormreply.com" <linux-stm32@st-md-mailman.stormreply.com>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+	dl-S32 <S32@nxp.com>
+Subject: Re: [PATCH v2 3/7] dt-bindings: net: Add DT bindings for DWMAC on
+ NXP S32G/R SoCs
+Message-ID: <ZwvoOpgApLQWWY05@lsv051416.swis.nl-cdc01.nxp.com>
+References: <AM9PR04MB8506A1FAC2DA26F27771D039E2832@AM9PR04MB8506.eurprd04.prod.outlook.com>
+ <7bbd48c8-7fa6-4d41-9560-3de0a2394c55@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7bbd48c8-7fa6-4d41-9560-3de0a2394c55@kernel.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
----
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3588s-orangepi-5b.dts | 26 +++++++++++++++++++
- 2 files changed, 27 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+On Mon, Aug 19, 2024 at 08:21:03AM +0200, Krzysztof Kozlowski wrote:
+> On 18/08/2024 23:50, Jan Petrous (OSS) wrote:
+> > Add basic description for DWMAC ethernet IP on NXP S32G2xx, S32G3xx
+> > and S32R45 automotive series SoCs.
+> 
+> Fix your email threading. b4 handle everything correctly, so start using it.
+> 
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index 09423070c992..45249ce15175 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -154,3 +154,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
-new file mode 100644
-index 000000000000..107b65a5e7ea
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+
-+/dts-v1/;
-+
-+#include "rk3588s-orangepi-5.dts"
-+
-+/ {
-+	model = "Xunlong Orange Pi 5B";
-+	compatible = "rockchip,rk3588s-orangepi-5", "rockchip,rk3588";
-+};
-+
-+&sdhci {
-+	status = "okay";
-+};
-+
-+&sfc {
-+	status = "disabled";
-+};
-+
-+&wireless_bluetooth {
-+	status = "okay";
-+};
-+
-+&wireless_wlan {
-+	status = "okay";
-+};
--- 
-2.46.0
+Done. V3 will be sent by b4/msmtp.
 
+> > 
+> > Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> > ---
+> >  .../bindings/net/nxp,s32cc-dwmac.yaml         | 127 ++++++++++++++++++
+> >  .../devicetree/bindings/net/snps,dwmac.yaml   |   1 +
+> >  2 files changed, 128 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
+> > new file mode 100644
+> > index 000000000000..443ad918a9a5
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/net/nxp,s32cc-dwmac.yaml
+> 
+> Filename based on compatible, so what does "cc" stand for?
+
+Ok, removed 'cc'.
+
+> 
+> > @@ -0,0 +1,127 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +# Copyright 2021-2024 NXP
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/net/nxp,s32cc-dwmac.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: NXP S32G2xx/S32G3xx/S32R45 GMAC ethernet controller
+> > +
+> > +maintainers:
+> > +  - Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> > +
+> > +description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+
+Removed.
+
+> 
+> > +  This device is a platform glue layer for stmmac.
+> 
+> Drop description of driver and instead describe the hardware.
+
+Changed in v3.
+
+> 
+> > +  Please see snps,dwmac.yaml for the other unchanged properties.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nxp,s32g2-dwmac
+> > +      - nxp,s32g3-dwmac
+> > +      - nxp,s32r45-dwmac
+> > +
+> > +  reg:
+> > +    items:
+> > +      - description: Main GMAC registers
+> > +      - description: GMAC PHY mode control register
+> > +
+> > +  interrupts:
+> > +    description: Common GMAC interrupt
+> 
+> No, instead maxItems: 1
+> 
+
+Done.
+
+> > +
+> > +  interrupt-names:
+> > +    const: macirq
+> > +
+> > +  clocks:
+> > +    items:
+> > +      - description: Main GMAC clock
+> > +      - description: Transmit clock
+> > +      - description: Receive clock
+> > +      - description: PTP reference clock
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: stmmaceth
+> > +      - const: tx
+> > +      - const: rx
+> > +      - const: ptp_ref
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - interrupt-names
+> > +  - clocks
+> > +  - clock-names
+> > +  - phy-mode
+> 
+> Drop, snps,dwmac requires this.
+
+Compressed to 'clocks' and 'clock-names'.
+
+> 
+> > +
+> > +allOf:
+> > +  - $ref: snps,dwmac.yaml#
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/phy/phy.h>
+> > +    bus {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      ethernet@4033c000 {
+> > +        compatible = "nxp,s32cc-dwmac";
+> > +        reg = <0x0 0x4033c000 0x0 0x2000>, /* gmac IP */
+> > +              <0x0 0x4007c004 0x0 0x4>;    /* GMAC_0_CTRL_STS */
+> > +        interrupt-parent = <&gic>;
+> > +        interrupts = <GIC_SPI 57 IRQ_TYPE_LEVEL_HIGH>;
+> > +        interrupt-names = "macirq";
+> > +        snps,mtl-rx-config = <&mtl_rx_setup>;
+> > +        snps,mtl-tx-config = <&mtl_tx_setup>;
+> > +        clocks = <&clks 24>, <&clks 17>, <&clks 16>, <&clks 15>;
+> > +        clock-names = "stmmaceth", "tx", "rx", "ptp_ref";
+> > +        phy-mode = "rgmii-id";
+> > +        phy-handle = <&phy0>;
+> > +
+> > +        mtl_rx_setup: rx-queues-config {
+> > +          snps,rx-queues-to-use = <5>;
+> > +
+> > +          queue0 {
+> > +          };
+> > +          queue1 {
+> > +          };
+> 
+> 
+> Why listing empty nodes?
+
+Removed in v3.
+
+> 
+> Best regards,
+> Krzysztof
+> 
+
+Thanks.
+/Jan
 
