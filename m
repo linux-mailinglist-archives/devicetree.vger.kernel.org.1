@@ -1,132 +1,121 @@
-Return-Path: <devicetree+bounces-110735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0FE99BBC6
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 22:45:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF4299BBDC
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 22:56:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47C351C20D9F
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 20:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6A8E71F21342
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 20:56:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0110314EC4B;
-	Sun, 13 Oct 2024 20:45:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 444CC14B956;
+	Sun, 13 Oct 2024 20:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b="bIrWRZvq"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="uAb3DIJj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E2AB1531F2;
-	Sun, 13 Oct 2024 20:45:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B9A26149E13;
+	Sun, 13 Oct 2024 20:56:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728852312; cv=none; b=fXLcFZ8h9z8vog0sbYhgwaY2SpBs2Jcx1Y+uw6w5Qx10jPDJRyDEIN5NlUKzD3MAWLLkXYCD08dUfhopHAf4aqec5iAk1vXK0CCFJOpaLZTzFofU07YeCzSTVbS7xSnBGRch9WVXsL7fGlNZ+yIMYjBmfglRHgUYenc0ncFO5PI=
+	t=1728852963; cv=none; b=K3v4ib7w+0n3Wjan7T4vpI8v8zgGkYtfPMl8mDmYHtkgIwnNsMYFURZRF4vnPRW9qRTNo2hJ+1uO+nLPphcBbDzNBfSGX7PT07Qk+z6yU48yvXVtnyBsUf1ERc76cIyoy0Np/WE9ujuE82Hk0TkeKFIoDTMfXTlPsiOCgmc++Ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728852312; c=relaxed/simple;
-	bh=pHUprJJUm+kOD8ILCnwS/XICc6ujwvZL6GeC8rTuTj8=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bmaa4NtgRSwU8C2zwKIPGweQOnTIBNtBytPNEkL7qj8NthcD4H5zEhq85koH9YNNIYcTLyplBgYooE8HZ/nEQJGmaaFqqwPi99a+/ZeD2A/f8NOt5TUHngZHv0fCxut/NR+5o9W/pJ5bzSz/E5tH4LTmcbd+f/s5v4/9TWn07Vk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com; spf=pass smtp.mailfrom=googlemail.com; dkim=pass (2048-bit key) header.d=googlemail.com header.i=@googlemail.com header.b=bIrWRZvq; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=googlemail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=googlemail.com
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-5c94861ee25so2087331a12.0;
-        Sun, 13 Oct 2024 13:45:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20230601; t=1728852309; x=1729457109; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=sytY2FNkkLBnOCAcfUv9hkr9CctUcl1zNo07NA/NCoo=;
-        b=bIrWRZvqcPIhqgFgLG40U7iS0tir2qQCHHrjkIYkeXzFoNhaogWBVD+zYfHWIyrzkm
-         g7CHEkl3qMkWBOTR2fcsR11TpdKLCdzgIHqae8Ray8zcX9tiTR8xjjauX3BSvJYFm151
-         HxyHK2K77yQUfdSj+ge+1K3c7spLEGcnT6QylXS2u4qilA8IHe1D8owbYJljgUCCvbsE
-         lYTySriaQHq0t+XcoTjxSS2QgHaClroHKFA++5pkfcPSc2mo1sbl1sS1EFqvcnShk6rr
-         NSIaiqd/AIZJEgo6lgjZRvk+MXvJSrl6C8flBEGezcwXweJ2Su7iJNZukyOfVOXRdeYW
-         59sQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728852309; x=1729457109;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sytY2FNkkLBnOCAcfUv9hkr9CctUcl1zNo07NA/NCoo=;
-        b=T0keKV2bkwIcF3jjoL++koCTSBQl2cZ3auAmpSahwVSV7LIcNs6ZVFlYsw1ghAbYh0
-         pjKJif/VZ5I4fvs0rcc9C4DMBzVqNi3753Rmdi8I4m/aa66gtBm6OFQJLkU4eZcjZ0tu
-         0VaKFv4HocVi1cow3tciybApoH76ZLMNcVfKHwDtO9fNrhm4F713KlfmvDCClfqRFeaE
-         7bzrw2IjMq5H69dpIa7CWdohemyFZXawDI9Q72z2SWJhdr34FUj5Nwv+oUH0SNs9w83B
-         GNVTXoo+8D2lsQBKyetTYW5Oxgu+OWhV2LBWPa9ZC/igHsEIvTktDveGT/uOJzxVqOZe
-         hSBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVq7GSOlBs17yqemcs/RG/8zxuMPb+MDX7MugZi+OhxfgmZwQ5kcDtKNSLnD5fgt5fFlxsjTavu7LngsGyJ@vger.kernel.org, AJvYcCXbnRNzawCQpjG+3MXKDC8sry4BSAckpDCl1YGWnr9NN7YtG3XXcijGIHT7zgF69sYm0LP+lXByu/6o@vger.kernel.org
-X-Gm-Message-State: AOJu0YxfNwQYSbZjFi6/0AEKgTnt35Np0JOGEP5oKgZTZpr1EOIIAumR
-	rVwRFwntAe8gKlRfdRzFC7Nc1IXpNiJp6O7+CuEN/LkxrS/9M3Uf
-X-Google-Smtp-Source: AGHT+IG6hjVN41eeX/ukLBNVoBT3VqnYSYGyiAQdyRNtjxLf1w1mNS+qSGuF+dQPFS2mvhgSf0IuqA==
-X-Received: by 2002:a05:6402:8c3:b0:5c9:55aa:4285 with SMTP id 4fb4d7f45d1cf-5c95ac63c95mr10120852a12.34.1728852309459;
-        Sun, 13 Oct 2024 13:45:09 -0700 (PDT)
-Received: from localhost.localdomain ([2a02:908:1587:1e60:ba33:7ef4:2f9b:8303])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-5c93729adcdsm4132770a12.89.2024.10.13.13.45.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 13 Oct 2024 13:45:09 -0700 (PDT)
-From: Cenk Uluisik <cenk.uluisik@googlemail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Chris Morgan <macromorgan@hotmail.com>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Tim Lunn <tim@feathertop.org>,
-	Andy Yan <andyshrk@163.com>,
-	Jagan Teki <jagan@edgeble.ai>,
-	Dragan Simic <dsimic@manjaro.org>,
-	Michael Riesch <michael.riesch@wolfvision.net>,
-	Cenk Uluisik <cenk.uluisik@googlemail.com>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: arm: rockchip: Add Orange Pi 5b
-Date: Sun, 13 Oct 2024 22:44:24 +0200
-Message-ID: <20241013204446.303727-2-cenk.uluisik@googlemail.com>
-X-Mailer: git-send-email 2.46.0
-In-Reply-To: <20241013204446.303727-1-cenk.uluisik@googlemail.com>
-References: <20241013204446.303727-1-cenk.uluisik@googlemail.com>
+	s=arc-20240116; t=1728852963; c=relaxed/simple;
+	bh=LVwogbIZf9dCBb2rSSLVdEj15lOo+Dvj0bAAKh1lAjk=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=bFZIb1DqvxPnt/h0ghjFclKv0DVVh43Rn3BhftInwMNUmRxo2y5Wc5Omiq0gVjYvIvGS4kck2lNkvcotDJTlYKAPK2SE5lYGuWOf11/kfrpmEzpQjwePJCKtfAKFkxZdOr3eqAy6FpFiyPsrucXRawtnZCMWLKtr0ZTmL2fqiZ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=uAb3DIJj; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728852958;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=MD/SPpvVFaQ7Z8UPvB4YaamXnme8WhZVptqS1G1BBmE=;
+	b=uAb3DIJjun6Ex60NNKIpSO3rm8Qw2trBk/7L25KuK2IX5HcexVs8tTTxXO22UqO/H03aFX
+	0TylSZ6FDmoiY/ImVHjdO3rbFiIpaGxDdtO+QjyqXH/2Pu9k2IYSISHSMdTNQS+rHf2lLz
+	HRVugT1U4U7JMDtcUaKM3lmg+Zg9x4eGvlfdceQMWDwkXH6JZXJi+66K7LZftrhX3NadIA
+	0DuqJyr6knbqJZVG0UuhayhBwOfsDP1ooASytD2Du4cdMgeuSXxg8zTD1KYWf+zPpSS2Nn
+	YQ+v++J0gUPIsW/fWWZ2UCDe9vpC45iiOX844WEW+YB2qn+m17kkfY9Ut24I/g==
+Date: Sun, 13 Oct 2024 22:55:57 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Cenk Uluisik <cenk.uluisik@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Chris
+ Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Michael
+ Riesch <michael.riesch@wolfvision.net>, Andy Yan <andyshrk@163.com>, Jimmy
+ Hon <honyuenkwun@gmail.com>, Jing Luo <jing@jing.rocks>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: Add rk3588-orangepi-5b device
+ tree and refactor
+In-Reply-To: <20241013204446.303727-1-cenk.uluisik@googlemail.com>
+References: <20241013204446.303727-1-cenk.uluisik@googlemail.com>
+Message-ID: <bac3a8702d3e92c401bc4c4d9401258c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-This commit adds the Xunlong Orange Pi 5b entry to the device tree
-bindings inside the Documentation folder. I know you said I
-should extend the Orange Pi 5 one with an enum, but I made a whole new
-entry, because looking at all the other entries, they also create new
-entries in a case "like this". I hope this is okay, or maybe I misunderstand something.
-Thank you in advance.
+Hello Cenk,
 
-Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
----
- Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+On 2024-10-13 22:44, Cenk Uluisik wrote:
+> Implements a slightly modified rk3588s-orangepi-5b.dts from the vendor.
+> Unfortunately the &wireless_bluetooth and &wireless_wlan overlays don't 
+> seem
+> to compile, so I removed them for now:
+> 
+> Error: arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts:20.1-20
+> Label or path wireless_bluetooth not found
+> Error: arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts:24.1-15
+> Label or path wireless_wlan not found
+> 
+> Bigger parts of the rk3588s-orangepi-5.dts file were moved into a new
+> rk3588s-orangepi-5.dtsi file, so that both device trees from the
+> orangepi-5 and 5b include from it and avoid including from the .dts.
+> 
+> How does this board differ from the original Orange Pi 5?
+>   - builtin eMMC storage
+>   - no SPI NOR flash (u-boot, preboot etc. initiates from within the 
+> eMMC
+>     storage)
+>   - ap6275p Wifi module (like the Orange Pi 5 Plus)
+>   - builtin BlueTooth module
+> 
+> Beside that everything is exactly the same as far as I know.
+> 
+> Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>  .../boot/dts/rockchip/rk3588s-orangepi-5.dts  | 760 +----------------
+>  .../boot/dts/rockchip/rk3588s-orangepi-5.dtsi | 763 ++++++++++++++++++
+>  .../boot/dts/rockchip/rk3588s-orangepi-5b.dts |  18 +
+>  4 files changed, 784 insertions(+), 758 deletions(-)
+>  create mode 100644 
+> arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
+>  create mode 100644 
+> arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
 
-diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-index 687823e58c22..130f6ccc1658 100644
---- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-+++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-@@ -1053,6 +1053,11 @@ properties:
-         items:
-           - const: xunlong,orangepi-5
-           - const: rockchip,rk3588s
-+      
-+      - description: Xunlong Orange Pi 5B
-+        items:
-+          - const: xunlong,orangepi-5b
-+          - const: rockchip,rk3588s
- 
-       - description: Zkmagic A95X Z2
-         items:
--- 
-2.46.0
+Please try using the --break-rewrites [*] to generate the patches,
+which should produce much shorter diffs, easier to review.
 
+Also, please enumerate the patch versions.  E.g., this should be v2,
+and I'm not sure what happened with the multiple v1s you sent earlier.
+
+[*] 
+https://git-scm.com/docs/diff-options#Documentation/diff-options.txt---break-rewritesltngtltmgt
 
