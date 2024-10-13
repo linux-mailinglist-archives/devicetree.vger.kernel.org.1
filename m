@@ -1,134 +1,160 @@
-Return-Path: <devicetree+bounces-110728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9EE99BA81
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 19:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9903B99BAC3
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 20:21:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 08F9F281B45
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 17:18:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5CD0E281B44
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 18:21:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CC4E1465AE;
-	Sun, 13 Oct 2024 17:18:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99826148308;
+	Sun, 13 Oct 2024 18:21:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="V+qM79pE"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="xYDjiaJA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8707A231CB3;
-	Sun, 13 Oct 2024 17:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A1813AD22;
+	Sun, 13 Oct 2024 18:21:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728839886; cv=none; b=oSqB8W0/kv7tggLRyDs/BSyoUv/RCATrsnRRkp27HalbPf86mxtflvcMYoPwJpkf/AmAutgQYFDqtjrOWmObXVIC6vibr2PybAmXdXGJ1cxOloDu0NfwsFFDbiwkE4RlaE2efsr+3rAbMiTb8XA+OWp6Pr2lw+dV75siy6taVC8=
+	t=1728843683; cv=none; b=rmP42q3OOb41ZsgMf4WRGE31Hkfu4U3MWA1bexDvfNhLLYhoC8lY48pwd+cwJyuJy6Z0mitSM47hi4zM4qYOd7YYXiu71TulwpzPHBitokdoJoQOVayhMFVdKUQrslZzjmIqTfj1hGGbvXsPYCKfL34aCe5Xbzg/5o6g8FbRIVM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728839886; c=relaxed/simple;
-	bh=WbydFYAz5ZoV3Bxyd7+H0mgxO9Ixg4pDxJOa+O7WmhM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tx89nM2hUAHkfyfn3+buBMEBEMhPAdZzNzJmerGd+DcJN+bbR0kFgpm8AVnTIllSonepDsHGO6XCJUG0hE2jYjUJJxz95bXIRrNWLnZQ33anOtwppe2HrZ+B2hkkVALlj4L3EX+ApNdrGaaJhbIXqfFJOQ63bdw/cQh2qacSTTY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=V+qM79pE; arc=none smtp.client-ip=198.175.65.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1728839884; x=1760375884;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WbydFYAz5ZoV3Bxyd7+H0mgxO9Ixg4pDxJOa+O7WmhM=;
-  b=V+qM79pEfIlIB/qrcM7BQLsXawC75SBcYkayTNmgUNBCncMvLYX9Y20+
-   FP6LEg8O192e9btVvknL8y90uCegKzk6Na0O1pRbcCXXN8GDIjl2l/2dB
-   TKtVaGxvkClLmP+n4fBfnTgLlO2sM29uVbMnvnXVwvwgYjB2i1Ho/nf8C
-   rQK5bhAiexeUUHAZ59OdWeSvUg9Um0Ji+45gS4LsPdlEOgSAtVejf5qli
-   Ov+kyzaeKvHMnCC7plcA33ulPoemfZm9COMQKDyock4RtUa3Hu+vPz+2r
-   1LWNADH/zaQkyNTjyUqaXGtsKmkoXdNTGerun/oYvNbNr1LG11erQhH8m
-   w==;
-X-CSE-ConnectionGUID: LwTOV6SyRzSUZyB4mVcn6Q==
-X-CSE-MsgGUID: d4jZUMg8QiOiqMuO599wPA==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28315575"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="28315575"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 Oct 2024 10:18:04 -0700
-X-CSE-ConnectionGUID: McE/a4jjRLeIzbeAIDSdXw==
-X-CSE-MsgGUID: T73fj4mGSc+AlQGTXdLMtw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,201,1725346800"; 
-   d="scan'208";a="77228813"
-Received: from lkp-server01.sh.intel.com (HELO a48cf1aa22e8) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 13 Oct 2024 10:17:59 -0700
-Received: from kbuild by a48cf1aa22e8 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1t02E8-000EYh-1W;
-	Sun, 13 Oct 2024 17:17:56 +0000
-Date: Mon, 14 Oct 2024 01:17:48 +0800
-From: kernel test robot <lkp@intel.com>
-To: Inochi Amaoto <inochiama@gmail.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Yangyu Chen <cyy@cyyself.name>, Jinyu Tang <tangjinyu@tinylab.org>,
-	Hal Feng <hal.feng@starfivetech.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: oe-kbuild-all@lists.linux.dev, Yixun Lan <dlan@gentoo.org>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-Message-ID: <202410140004.WwnrCUnq-lkp@intel.com>
-References: <20241009224410.53188-3-inochiama@gmail.com>
+	s=arc-20240116; t=1728843683; c=relaxed/simple;
+	bh=N0bmPdOuLw0onEUb80WNSBMCdDG6SFhYsmdVUiAkgD0=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dQg0akxG0pov1pdQ2VEIKtiRsXT/II9rYfQG/ZHutF7zhJWhyCRL20Fp2XqcXuViZvfWii2tLhFhoys9Uo2PzRUKyJXQCLMVLvzIlItD2c3bY91mnyHp3VcYfjtEPCdi8y3BqCvhz/hTM7SiaH0mTLmfF/HHxUVBV0GLN20sEok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=xYDjiaJA; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=P95hhQv9EQTGpPqL3cZ9sFDz6v/d/ZsXagWbz/otrCs=; b=xYDjiaJAOFIhyaZwMcxn6Ta/WW
+	RP9ZRqWAiE34BWiUeYDeDT1g2MgRC36HODTaCwRHC5xZO/URi0N4AZnG0c4udP3pgVwdExrGEDLui
+	Yk4+glouMCI6szXes9wpTm5dQAXVUL9r9QScr0AlEJGyfLwXQK2kcRhkBsH2IbDHmdckjdeygtsVT
+	UsVsTcA47t9z1SJp+TKb3/Ic+I+0w6qtXl9VHSJZd7I5crmcwbZ6M9iqjRxvB6Ro79Wxu4TYn2k1Z
+	a417Ls3pl9qLHIBXd/1PaFUWvXBqoGQ91pOqwOTh3wz1+w9OOGjYMrLSE8bSi3cYjRDOZpCejyOvQ
+	jApfeTbQ==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t03DA-0000r1-1Q; Sun, 13 Oct 2024 20:21:00 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chris Morgan <macromorgan@hotmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Andy Yan <andyshrk@163.com>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Cenk Uluisik <cenk.uluisik@googlemail.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Cenk Uluisik <cenk.uluisik@googlemail.com>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: Add board device tree for
+ rk3588-orangepi-5b
+Date: Sun, 13 Oct 2024 20:20:58 +0200
+Message-ID: <4956547.31r3eYUQgx@diego>
+In-Reply-To: <20241013155225.26259-1-cenk.uluisik@googlemail.com>
+References: <20241013155225.26259-1-cenk.uluisik@googlemail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241009224410.53188-3-inochiama@gmail.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-Hi Inochi,
+Hi,
 
-kernel test robot noticed the following build errors:
+Am Sonntag, 13. Oktober 2024, 17:52:18 CEST schrieb Cenk Uluisik:
+> Add initial support for OPi5b that includes support for USB2, PCIe2, Sata,
+> Sdmmc, SPI Flash, PMIC.
 
-[auto build test ERROR on tip/irq/core]
-[also build test ERROR on robh/for-next tip/smp/core linus/master v6.12-rc2 next-20241011]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Please describe in a better way what actually makes this board different
+from the original OrangePi 5.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Inochi-Amaoto/dt-bindings-interrupt-controller-Add-Sophgo-SG2044-ACLINT-SSWI/20241010-064628
-base:   tip/irq/core
-patch link:    https://lore.kernel.org/r/20241009224410.53188-3-inochiama%40gmail.com
-patch subject: [PATCH v2 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-config: riscv-randconfig-r054-20241013 (https://download.01.org/0day-ci/archive/20241014/202410140004.WwnrCUnq-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20241014/202410140004.WwnrCUnq-lkp@intel.com/reproduce)
+I.e. it does look like the 5b does have an emmc where the 5 does not.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202410140004.WwnrCUnq-lkp@intel.com/
+You also need a separate second patch to update
+	Documentation/devicetree/bindings/arm/rockchip.yaml
 
-All errors (new ones prefixed by >>):
+You need to update the Xunlong Orange Pi 5 entry with an enum.
+Please see for example the orange-pi-3 entry on how that should look.
 
->> ld.lld: error: undefined symbol: ipi_mux_process
-   >>> referenced by irq-thead-c900-aclint-sswi.c:38 (drivers/irqchip/irq-thead-c900-aclint-sswi.c:38)
-   >>>               drivers/irqchip/irq-thead-c900-aclint-sswi.o:(thead_aclint_sswi_ipi_handle) in archive vmlinux.a
---
->> ld.lld: error: undefined symbol: ipi_mux_create
-   >>> referenced by err.h:81 (include/linux/err.h:81)
-   >>>               drivers/irqchip/irq-thead-c900-aclint-sswi.o:(aclint_sswi_probe) in archive vmlinux.a
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Signed-off-by: Cenk Uluisik <cenk.uluisik@googlemail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |  1 +
+>  .../boot/dts/rockchip/rk3588s-orangepi-5b.dts | 26 +++++++++++++++++++
+>
+>  2 files changed, 27 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index 09423070c992..45249ce15175 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -154,3 +154,4 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-nanopi-r6c.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-rock-5a.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-odroid-m2.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588s-orangepi-5b.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+> new file mode 100644
+> index 000000000000..107b65a5e7ea
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5b.dts
+> @@ -0,0 +1,26 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +/dts-v1/;
+> +
+> +#include "rk3588s-orangepi-5.dts"
+
+Please don't include the board dts.
+Take a look for example at the rk3566-orangepi-3b on how to do this.
+
+I.e. you want a rk3588s-orangepi-5.dtsi which then gets included
+into both the original-5 as well as your 5b .
+
+
+> +
+> +/ {
+> +	model = "Xunlong Orange Pi 5B";
+> +	compatible = "rockchip,rk3588s-orangepi-5", "rockchip,rk3588";
+> +};
+> +
+> +&sdhci {
+> +	status = "okay";
+> +};
+> +
+> +&sfc {
+> +	status = "disabled";
+> +};
+> +
+> +&wireless_bluetooth {
+> +	status = "okay";
+> +};
+> +
+> +&wireless_wlan {
+> +	status = "okay";
+> +};
+
+both the wireless_bluetooth as well as the wireless_wlan phandles
+are not part of the orange pi 5 in mainline. So this probably doesn't
+even compile?
+
+
+Heiko
+
+
+
 
