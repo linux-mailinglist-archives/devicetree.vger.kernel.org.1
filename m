@@ -1,170 +1,138 @@
-Return-Path: <devicetree+bounces-110732-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110733-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15D2299BB5B
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 22:16:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6933499BBAA
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 22:27:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 962961F210F9
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 20:16:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A18701C20B91
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 20:27:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DAD1132124;
-	Sun, 13 Oct 2024 20:16:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BCB214A0AA;
+	Sun, 13 Oct 2024 20:27:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Dxe5xpZ8"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="JPGZWtCs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E964B3E499
-	for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 20:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68A887F48C;
+	Sun, 13 Oct 2024 20:27:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728850601; cv=none; b=aw4LX2WKpx2QP9MoB5t1jdsp064uLQPGtEgaQPAvGPSvHGZaWe/XugHrM7ysg3mLuDIJSutk98zlqrUcHrluyQUUEV7uYVlhRPHhj1g9WJFtrTKexPMNnB/6ApFvYyPzRldHx68q5xUOOeX00sWoja3sUerGrDuSlfn67OrjrpE=
+	t=1728851265; cv=none; b=tZiJNfDf0/QxocjXMbJATqDP3x9QDs0gLk3x697v05VWxdmenINZE3mivHd3NwOCqd9pZakUJGkPYIJrOKVAq7ZLYRQ1J7sfyPzxcyd9MdF8/Oa0jZCy6v/l7dd5WsBcgUr+QcNui6bFhpLVjzHkR6bMDb4vevxjcuHRyJ//d+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728850601; c=relaxed/simple;
-	bh=n3aL7QBd93HecoBZ3RrysFWa7UAjV/qiZF42VjSVfxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oRxw7zmwl/Z6PgLXhP/Zj+Nj6bfsZNTXazz/8+d0jLyEHCr/H6D/fHUqVGlyTk/FGTY+jgburExfDyy/Evd89stg0dNhhCKsG29RVqfJdEGdpovhbPIpV7TKT+b6KPjuNX9alfcCoREwWftPBf0z/j8JHHpXnAtBtQIPeEm0gCI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Dxe5xpZ8; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id AC1502C0404;
-	Mon, 14 Oct 2024 09:16:29 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1728850589;
-	bh=CviG87Gxw+/eZ9A7f0iznUZ3zcPHLQqJBw0vRPoGROo=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Dxe5xpZ8leZBnCIiS1eFizgkxuXMIaZfFXWiieMnTuTkYiuIA6lEpy3BCwVK6Jml3
-	 w4mjy8a/s1/E4MW3FADLK38Bf/B5QcMaChKM0+je2nBLKSOBkdgQ/w2VImjrDe+pDh
-	 iGOxuMsBHZFTSgj/S81UsYmP+aTb4kZkLUHAaXN7iMmzJaE8StxRF9cWShAaX6+bWu
-	 +ClSIhsbhC+CofKfRluAN0X5XYhPtgIQquyQa7Fcf7BbsCRLim86uPiNyRYILFFjgx
-	 H6MHcxIEqa0H+ACOdGVjGBdr62afdnhe+GaS9+3WG+MTuQmRkAr7mIrfS6YaE8x57y
-	 zzShfL+NJJsog==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B670c2a9d0000>; Mon, 14 Oct 2024 09:16:29 +1300
-Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 8CBFC13ED7B;
-	Mon, 14 Oct 2024 09:16:29 +1300 (NZDT)
-Message-ID: <0b717cbb-ad89-4d3a-a795-080dd716f06d@alliedtelesis.co.nz>
-Date: Mon, 14 Oct 2024 09:16:29 +1300
+	s=arc-20240116; t=1728851265; c=relaxed/simple;
+	bh=62/V9eJs/KS7YDoVYFGQZpWGLYhSj9R84vJQsQA0k0Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=M5gO5RIG/XmGK8/uIhTaDQ4fsTmEJuQsTfZ4tCINJ3NUhrVIDgTLn7SN/8rfJ1mzj9PCKV4gr3xKnXW+QO9UNBkN11OVIH4zeZbMwsFwYsLyagxUuvtVDtcWTayCh59KbSxMkFO7q3/rze5JbV0VLMyc7odmwn2mXXxjIL70Kp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=JPGZWtCs; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=QrBSdPL+PTvkNQLckrp23vyrqP/UgjfKLUytwWKGKho=; b=JPGZWtCsTMq3gEqBJj9Ed6XPaF
+	O/Mx9hNnb4alm+ViB/ARZTLca7ji8OJ5szNaH5Itwcg+eHXtYUI8ToRVkPjWGqpIKUDo2bOOdjJmN
+	dGaHoKmUzC5Y157E2hWFK/j0C6BtelRJSC6vD13dhcSJ65qnpZML39fGw6rsLrdzx8G6AQCN9/R6J
+	HqMLzAOheY1kKJmuXleyaD6qs91RKee+xlQ5HRPjWb0tNgOSfA+rsS0TXHXW5Gqo4wM4VOJZ+jRDD
+	C0ryetmMDOG2Nd79YBn+oiS1yyyVWDrs178iy7cKHx4mckcf3cu8q1EAMyK2zi9FWGA4noPq2o+6k
+	HuH0WY9A==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t05Bj-0001Q6-WF; Sun, 13 Oct 2024 22:27:40 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH v4 0/5] Binding and driver for gated-fixed-clocks
+Date: Sun, 13 Oct 2024 22:27:39 +0200
+Message-ID: <2342287.ElGaqSPkdT@diego>
+In-Reply-To: <3dd94272e827703c2a2a390fcbd9ff5b@manjaro.org>
+References:
+ <20240906082511.2963890-1-heiko@sntech.de>
+ <3dd94272e827703c2a2a390fcbd9ff5b@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 1/3] dt-bindings: spi: Add realtek,rtl9300-snand
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org
-References: <20241006233347.333586-1-chris.packham@alliedtelesis.co.nz>
- <20241006233347.333586-2-chris.packham@alliedtelesis.co.nz>
- <3tu6x2644lxvvbk74nv5qva7qupsvgxyxkwc5g5n7n4bh3mbwi@457wbps4kpns>
- <963a57ec-c09d-4a4e-b8b8-a89354cf3264@alliedtelesis.co.nz>
- <93c4dfe6-8ddf-425d-bf9c-245e94c4290e@kernel.org>
-Content-Language: en-US
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <93c4dfe6-8ddf-425d-bf9c-245e94c4290e@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=670c2a9d a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=nxSgMk7qIiEtrF1QXo4A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Sonntag, 13. Oktober 2024, 21:58:41 CEST schrieb Dragan Simic:
+> Hello Heiko,
+> 
+> On 2024-09-06 10:25, Heiko Stuebner wrote:
+> > Rockchip boards with PCIe3 controllers inside the soc (rk3568, rk3588) 
+> > have
+> > external oscillators on the board to generate the needed 100MHz 
+> > reference
+> > clock the PCIe3 controller needs.
+> > 
+> > Often these clock generators need supplies to be enabled to run.
+> > 
+> > Modelling this clock has taken a number of shapes:
+> > - The rk3568 Rock-3a modelled the generator-regulator as "phy-supply" 
+> > [0]
+> >   &pcie30phy {
+> >   	phy-supply = <&vcc3v3_pi6c_03>;
+> >   	status = "okay";
+> >   };
+> >   which is of course not part of the binding
+> > 
+> > - On the Rock-5-ITX the supply of the clock generator is controlled by
+> >   the same gpio as the regulator supplying the the port connected to 
+> > the
+> >   pcie30x4 controller, so if this controller probes first, both
+> >   controllers will just run. But if the pcie30x2 controller probes 
+> > first
+> >   (which has a different supply), the controller will stall at the 
+> > first
+> >   dbi read.
+> > 
+> > There are other types too, where an 25MHz oscillator supplies a PLL
+> > chip like the diodes,pi6c557 used on Theobroma Jaguar and Tiger boards.
+> > 
+> > As we established in v1 [1], these are essentially different types, so
+> > this series attempts to solve the first case of "voltage controlled
+> > oscillators" as Stephen called them.
+> > 
+> > With the discussion in v2, gated-fixed-clock was deemed one possible
+> > nice naming, so I did go with that.
+> 
+> Thanks, I find "gated-fixed-clock" a much better choice.
+> 
+> > Stephen also suggested reusing more of clk-gpio to not re-implement the
+> > gpio handling wrt. sleeping and non-sleeping gpios.
+> > 
+> > Though instead of exporting masses of structs and ops, 
+> > gated-fixed-clock
+> > is quite close to the other gpio-clocks, so I've put it into the 
+> > clk-gpio
+> > file.
+> 
+> Just checking, what's the current state of this patch series?
+> Would another review help with getting it accepted?
+
+I guess me needing to ping Stephen to look at it now that the
+merge window is done ;-) .
+
+In the previous version he sounded ok with the naming, so hopefully
+it'll just need a tiny ping.
 
 
-On 8/10/24 19:59, Krzysztof Kozlowski wrote:
-> On 07/10/2024 21:58, Chris Packham wrote:
->> On 7/10/24 19:40, Krzysztof Kozlowski wrote:
->>> On Mon, Oct 07, 2024 at 12:33:45PM +1300, Chris Packham wrote:
->>>> Add a dtschema for the SPI-NAND controller on the RTL9300 SoCs. The
->>>> controller supports
->>>>    * Serial/Dual/Quad data with
->>>>    * PIO and DMA data read/write operation
->>>>    * Configurable flash access timing
->>>>
->>>> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>> ---
->>>>    .../bindings/spi/realtek,rtl9300-snand.yaml   | 58 +++++++++++++++++++
->>>>    1 file changed, 58 insertions(+)
->>>>    create mode 100644 Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
->>>> new file mode 100644
->>>> index 000000000000..c66aea24cb35
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9300-snand.yaml
->>>> @@ -0,0 +1,58 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://scanmail.trustwave.com/?c=20988&d=2tiE5xx2mR7Mo-BCj_ZnEp9_tDM1bfG85uPlEm-9ag&u=http%3a%2f%2fdevicetree%2eorg%2fschemas%2fspi%2frealtek%2crtl9300-snand%2eyaml%23
->>>> +$schema: http://scanmail.trustwave.com/?c=20988&d=2tiE5xx2mR7Mo-BCj_ZnEp9_tDM1bfG85uCwRjixZQ&u=http%3a%2f%2fdevicetree%2eorg%2fmeta-schemas%2fcore%2eyaml%23
->>>> +
->>>> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
->>>> +
->>>> +maintainers:
->>>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
->>>> +
->>>> +description:
->>>> +  The Realtek RTL9300 SoCs have a built in SPI-NAND controller. It supports
->>>> +  typical SPI-NAND page cache operations in single, dual or quad IO mode.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>> Why 9300 cannot be alone? What does 9300 mean even? Wildcards and family
->>> models are not allowed in general.
->> The main thing about the RTL9300 is that that is what all the Realtek
->> documents use to refer to these chips and the specific numbers are akin
->> to the manufacturing part number that you'd actually order (maybe that's
->> a bit of a stretch).
->>
->> The SoC/CPU block probably does exist as a separate silicon die that
->> they connect to the different switch blocks in the chips that they sell
->> but I don't think you can get "just" the SoC. There is every chance that
->> we'll see that same SoC/CPU block pop up in new chips (I see references
->> to a RTL9302D in some documents). I'd like to be able to support these
->> chips using "rtl9300" but if that's violating the wildcard rule I can
->> drop it.
-> Yeah, that's violating the wildcard rule. You cannot even guarantee that
-> 9300 will match future designs.
+Heiko
 
-When the dust settles I'll try do clean up the things I've already had 
-in flight. Hopefully it's not too late to just change things rather than 
-needing to support the incorrect wildcards as deprecated.
 
-I have been meaning to clean up the mips dtsi files so that there is one 
-for each of the rtl9301, rtl9302b etc but wanted to wait for my other 
-changes to land. Sorry for creating a bit of a mess.
-
->>>> +      - enum:
->>>> +          - realtek,rtl9301-snand
->>>> +          - realtek,rtl9302b-snand
->>>> +          - realtek,rtl9302c-snand
->>>> +          - realtek,rtl9303-snand
->>>> +      - const: realtek,rtl9300-snand
->>>> +
->>>> +  reg:
->>>> +    items:
->>>> +      - description: SPI NAND controller registers address and size
->>> Also: why no clocks? Binding is supposed to be complete. If it cannot,
->>> you should explain it in the commit msg.
->> I didn't add it because I had no need for it in my driver. But as you've
->> said previously the binding shouldn't care what the driver does.
->>
->> I do have the clocking info from the datasheets. I'll add it in v2.
->
-> Best regards,
-> Krzysztof
->
 
