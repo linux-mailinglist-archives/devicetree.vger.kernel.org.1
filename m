@@ -1,151 +1,141 @@
-Return-Path: <devicetree+bounces-110738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8255899BBF7
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 23:12:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A474C99BC54
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 23:43:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31A721F20F8C
-	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 21:12:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C6F7B1C20EB0
+	for <lists+devicetree@lfdr.de>; Sun, 13 Oct 2024 21:43:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1455F14AD2E;
-	Sun, 13 Oct 2024 21:12:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7924014A08E;
+	Sun, 13 Oct 2024 21:43:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="imWwclgL"
+	dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="Ezg1B+X8";
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b="TqyKREel"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fallback24.i.mail.ru (fallback24.i.mail.ru [79.137.243.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E9D7F48C
-	for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 21:12:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E30D1465BE;
+	Sun, 13 Oct 2024 21:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.137.243.78
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728853941; cv=none; b=QU9rj2E1QyvpC35yfEq5Yd+ki/oToxOSTqLzESIJarUpEuNzANvYgbIn2mSZeE7MwzYkf56N5cYxm4G3tfYX/ZBf4Ztu1DJeexN8Or4hy3c2AEwoYAhsfF+k3ZjsjD9wvBT4vsIQV5xsO1Zvk6ufeIOWJlE/muEZ8PWYVlWj4qw=
+	t=1728855817; cv=none; b=q+YsV1RU2oM9vzWy9Hn2AqHDGiWagYSPsIMEZSiReVLNWdaqIsIcWSUIPdbdMpRPxXSl+TNaaAstQFZmpHLv2hzuO6jtk5oOE3L7KXUpfq7/EaJMjifZen5Vagkss1XLHWw1a7tOBqh+u4ZPRObbFxE1UA9dVojitekrRy9EvL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728853941; c=relaxed/simple;
-	bh=JpAsQjdO8xDgz+DjNBuDcK+8eQNAm/nQvmxK2hx0Obk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aguHAKlBGPZ6eCPQrIbepOOTPLQ6lDScw9zBEkTbuJsNonR1RxKqwTJm35Gr5QhbO8TWkNX24+cfnyytl7cOIFajYkl5ZXweP7SSKZDYGNb+H4AlQXIb+V+fiPfuBRVYKqLWSfbJGAVhg8Ak+59zYXoKSGmqNqebZemeHET57hM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=imWwclgL; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5366fd6fdf1so4171869e87.0
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 14:12:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728853937; x=1729458737; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pwQ+0QBqpruUrAoix4rKJMBSmDvfPtsp4gDbiv475pg=;
-        b=imWwclgLmB1f33vAaYTs6COSLkFQRzbULOw6bmbLGIGroYsr4RrIVw1nMMcNsL12Bj
-         2bT2ae735QKR5hs8oI22iVYc3cvKcsat6IDzmmKLcl21Ev8wxM2cftrVQX3d6pBYmwdl
-         5BCEzAMRylWPc1sWfi41WXg9U7mZdLZNSP316fLtguQMr4iADRdDpPHgyZwMpMcELJgR
-         rra5Q5Ud8KrP4Cj8jsZy4S+zv7RafFAs1/VytOBhO+Rr3Lq+oBxzZxBDFaGPlHje6BoX
-         dq3r97aZIaspDXqwemmkyuvCMU+F77MAASCPGZbtPtBTx7GH6TwWkyQDcQg2rTndTLbD
-         +KxA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728853937; x=1729458737;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pwQ+0QBqpruUrAoix4rKJMBSmDvfPtsp4gDbiv475pg=;
-        b=Fmsze0gkI0THxiBig2lHj7a7u5ArCNHyRsJPCHtA1uGKZa9Lzj4rgBeLw01KRBtRMU
-         R5MXpmHnY4ii99Ukd6OExJzGYwG9bPSp3v5aj9UTRLMA9vADSbJQFS1gt1TXEMmvQGWl
-         dMrdMPjd8/2DI10GzJZJEw6bQHBRLieLLymETWcwd3W9ySetrsActfvTXbcsToeo1Wrl
-         Zl97HdK1lF9C/vveChP7HUqOhfkLrUMOFytJ+bgM2ebJN+fU4hBYdPBzKDWWq+RXHmEt
-         ciiiXRZ4emNkrWpk+YlN68KhD4sit9ImFc5PGvV0Xh0p1tR4K5g2P76Kv1h/16fxmiFj
-         POsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWpExpwBiflhJVxI2m4qfoPWENTJ+ajtpSlcYmfHATxipVYcP+EpDqAif1Jwtfrw4gGo4TbwKRtwBNK@vger.kernel.org
-X-Gm-Message-State: AOJu0YzYOtTlnpg2DhXMo+aiSDTplrIifp0LdsfRbhgxzuKb5W/pOd8k
-	mpsUDf6zkj2JwAvogtR3pmZjR9Vm5P/9OtaY/0rya8cwLE1fXOrcz8eKdYwjj4AwklMqQn9my1+
-	HG5N/jSs6XZlBojDE4TMqZn1K3iPGv00e3Q9MUg==
-X-Google-Smtp-Source: AGHT+IG22JRYupZ1fLsDed6hOclviXUZ6gkDKTz/1J3tmXWEWFDaDkSBlGmH4CesWUEdr/RrovlO1A4TEXMMoyRsCbs=
-X-Received: by 2002:ac2:4e16:0:b0:536:554a:24c2 with SMTP id
- 2adb3069b0e04-539da3c5ee1mr4707787e87.13.1728853937291; Sun, 13 Oct 2024
- 14:12:17 -0700 (PDT)
+	s=arc-20240116; t=1728855817; c=relaxed/simple;
+	bh=OJeB8nrZGQlyZrA4yg3ZWNlOiZLt8SHzBSZYmrNUP9Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iEd6QqA4gaMSPHCks7illEJ7WoxZhb62018CnK4yplgIJQXOP7mkKpqhg2ZFV/InoXtB8x/JrzlPUcSi4d9Sl/NT7J7B0ga33PzHNCQwkX2MECh8n/RioVtz+OkqXl8h5f8Qw7p9PbTVg/68MUkpRdd2mlAnQ/vOvuSitrnDkl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com; spf=pass smtp.mailfrom=jiaxyga.com; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=Ezg1B+X8; dkim=pass (1024-bit key) header.d=jiaxyga.com header.i=@jiaxyga.com header.b=TqyKREel; arc=none smtp.client-ip=79.137.243.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jiaxyga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jiaxyga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com; s=mailru;
+	h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:Cc:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=DJsoerbn2g9YnhOA+aAVi/ROcgeH/2vbVJReRJZRy0M=;
+	t=1728855814;x=1728945814; 
+	b=Ezg1B+X89+rKGz6sYrR9ZkUcb3gW+mIQNVDiNfKybl2yCfV5LwnAhxUoNQ01EezsxNCP/dTt0qVG5NCzd4rwcJihS+Po8nA46whP/I7p9mHCceR+Da5VdbakRdNO+BskA6W/keAk5p9iUGIndHZ0RNkFKxuoYNtdenypz1+OIX0=;
+Received: from [10.113.254.35] (port=55274 helo=smtp46.i.mail.ru)
+	by fallback24.i.mail.ru with esmtp (envelope-from <danila@jiaxyga.com>)
+	id 1t064e-00CSOB-AR; Mon, 14 Oct 2024 00:24:24 +0300
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=jiaxyga.com
+	; s=mailru; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+	Cc:To:From:From:Sender:Reply-To:To:Cc:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive:
+	X-Cloud-Ids:Disposition-Notification-To;
+	bh=DJsoerbn2g9YnhOA+aAVi/ROcgeH/2vbVJReRJZRy0M=; t=1728854664; x=1728944664; 
+	b=TqyKREelPumxFR0urMFbvaXlGYk9g9yUEvFP3sPKZchW0T1ShNJ7Nj9PBC5qA4hz2EaWgoZT9oU
+	OoPuKAkEbLqdNNwDiqHQhRX/uE/BCuMA0l943WDewkVBjHCccnRVieQYZFKn+iMRx1caeyWSsfqo9
+	NJsP53nK6frA6ce/Mus=;
+Received: by exim-smtp-57f79c7799-ff99r with esmtpa (envelope-from <danila@jiaxyga.com>)
+	id 1t064M-00000000ArH-0rF3; Mon, 14 Oct 2024 00:24:08 +0300
+From: Danila Tikhonov <danila@jiaxyga.com>
+To: neil.armstrong@linaro.org,
+	quic_jesszhan@quicinc.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux@mainlining.org,
+	danila@jiaxyga.com
+Subject: [PATCH 0/2] Add Samsung AMS581VF01 panel support
+Date: Mon, 14 Oct 2024 00:24:00 +0300
+Message-ID: <20241013212402.15624-1-danila@jiaxyga.com>
+X-Mailer: git-send-email 2.47.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241013-en7581-pinctrl-v6-0-2048e2d099c2@kernel.org> <20241013-en7581-pinctrl-v6-5-2048e2d099c2@kernel.org>
-In-Reply-To: <20241013-en7581-pinctrl-v6-5-2048e2d099c2@kernel.org>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 13 Oct 2024 23:12:06 +0200
-Message-ID: <CACRpkdZKkv=CKkA1WS4ZwSj8vXzzZFM-uv6eiMeij+fL_cvTzQ@mail.gmail.com>
-Subject: Re: [PATCH v6 5/6] pinctrl: airoha: Add support for EN7581 SoC
-To: Lorenzo Bianconi <lorenzo@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Sean Wang <sean.wang@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Lee Jones <lee@kernel.org>, 
-	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <ukleinek@kernel.org>, 
-	linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	upstream@airoha.com, benjamin.larsson@genexis.eu, ansuelsmth@gmail.com, 
-	linux-pwm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-Mailru-Src: smtp
+X-7564579A: 646B95376F6C166E
+X-77F55803: 4F1203BC0FB41BD9B01871A0ED523BBFF2944416096D9CA3AE14DD4C63332AA4182A05F53808504013DD3176E971EEAA3DE06ABAFEAF67056BC648B22CFE4DC16FE32FC68D7A26215E6CE7239E2C5700
+X-7FA49CB5: FF5795518A3D127A4AD6D5ED66289B5278DA827A17800CE70CB15FA6C489297DEA1F7E6F0F101C67BD4B6F7A4D31EC0BCC500DACC3FED6E28638F802B75D45FF8AA50765F7900637040380BD28C1B15C8638F802B75D45FF36EB9D2243A4F8B5A6FCA7DBDB1FC311F39EFFDF887939037866D6147AF826D8EC40544D673B9D93B209FDF25BDF1A94320F95A1A5734699CC7F00164DA146DAFE8445B8C89999728AA50765F7900637F6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637BA939FD1B3BAB99B389733CBF5DBD5E9B5C8C57E37DE458BD9DD9810294C998ED8FC6C240DEA76428AA50765F79006374DE940E1D5066CFBD32BA5DBAC0009BE395957E7521B51C2330BD67F2E7D9AF1090A508E0FED6299176DF2183F8FC7C028765F5520A300B2B3661434B16C20ACC84D3B47A649675FE827F84554CEF5019E625A9149C048EE140C956E756FBB7A2E808ACE2090B5E1725E5C173C3A84C3D6B8D1F75A55B56D75ECD9A6C639B01B78DA827A17800CE7DBBA001AFC1C4016731C566533BA786AA5CC5B56E945C8DA
+X-C1DE0DAB: 0D63561A33F958A581E5C18D857CD09F5002B1117B3ED696151D57D9E149EAF803803A57F48E4E5A823CB91A9FED034534781492E4B8EEAD05E80F4396618BB2C79554A2A72441328621D336A7BC284946AD531847A6065A17B107DEF921CE79BDAD6C7F3747799A
+X-C8649E89: 1C3962B70DF3F0ADE00A9FD3E00BEEDF77DD89D51EBB7742D3581295AF09D3DF87807E0823442EA2ED31085941D9CD0AF7F820E7B07EA4CF831D47FB02EB9A09BFDF06F2C0A4555CDFBFAD9B7E637E2BA4B00099E5EAAFC086260C86DC1AF1467C85317C21026A4916A324304D278F70E9F78341A6FF8F0F2B26EEB1B55DE588457F7985AD47CF5C02C26D483E81D6BE72B480F99247062FEE42F474E8A1C6FD34D382445848F2F3
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojbL9S8ysBdXh4Yk9t5uvvwexZDSZUiMG1
+X-Mailru-Sender: 9EB879F2C80682A09F26F806C7394981D35572ECED80C0D408AF9BFB128101EEF65C61FAEF2CAEDAECD8E3C9D15857412C62728BC403A049225EC17F3711B6CF1A6F2E8989E84EC137BFB0221605B344978139F6FA5A77F05FEEDEB644C299C0ED14614B50AE0675
+X-Mras: Ok
+X-7564579A: 646B95376F6C166E
+X-77F55803: 6242723A09DB00B42DA9BE0E4F7CCE4C920C9969AF7F7D50DA10E0C0C57A2ACB049FFFDB7839CE9E3928B87FA8A99B4499D9CF92E70DFBBC20C89EA2BDA1295B54D21228237775D6
+X-7FA49CB5: 0D63561A33F958A5CA61BECD78F80F474B52209FD31D9DB26365B2346D0CB40A8941B15DA834481FA18204E546F3947C27087801AC92D1FAF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637E86CBEAED33ED63B389733CBF5DBD5E9B5C8C57E37DE458BD96E472CDF7238E0725E5C173C3A84C3D8B0ABA717EF295735872C767BF85DA2F004C90652538430E4A6367B16DE6309
+X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5ycPtXkTV4k65bRjmOUUP8cvGozZ33TWg5HZplvhhXbhDGzqmQDTd6OAevLeAnq3Ra9uf7zvY2zzsIhlcp/Y7m53TZgf2aB4JOg4gkr2biojTJ02HBIKT7IGXOCpeSUWww==
+X-Mailru-MI: 8000000000000800
+X-Mras: Ok
 
-On Sun, Oct 13, 2024 at 12:08=E2=80=AFAM Lorenzo Bianconi <lorenzo@kernel.o=
-rg> wrote:
+This patch series adds support for the Samsung AMS581VF01 panel, used in
+the Google Pixel 4a (sm7150-google-sunfish). Unlike many other devices,
+which may use different panels in various revisions, the Pixel 4a has only
+one possible panel option. Also this panel is not used in other devices.
+Testing has been done by me.
 
-> Introduce pinctrl driver for EN7581 SoC. Current EN7581 pinctrl driver
-> supports the following functionalities:
-> - pin multiplexing
-> - pin pull-up, pull-down, open-drain, current strength,
->   {input,output}_enable, output_{low,high}
-> - gpio controller
-> - irq controller
->
-> Tested-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Co-developed-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Signed-off-by: Benjamin Larsson <benjamin.larsson@genexis.eu>
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+The driver initializes the panel in normal mode (High Brightness Mode and
+Brightness Dimming are disabled). High Brightness Mode and Brightness
+Dimming are not supported yet.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+In the downstream device tree, the panel is named as
+"dsi-panel-sofef01-1080p-cmd".
 
-Nitpicks follow:
+To: Neil Armstrong <neil.armstrong@linaro.org>
+To: Jessica Zhang <quic_jesszhan@quicinc.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Simona Vetter <simona@ffwll.ch>
+To: Rob Herring <robh@kernel.org>
+To: Krzysztof Kozlowski <krzk+dt@kernel.org>
+To: Conor Dooley <conor+dt@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux@mainlining.org
+Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
 
-I would have changed the below:
+Danila Tikhonov (2):
+  dt-bindings: display: panel: Add Samsung AMS581VF01
+  drm/panel: Add Samsung AMS581VF01 panel driver
 
-+       pinctrl->gpiochip.data =3D gpio_data_regs;
-+       pinctrl->gpiochip.dir =3D gpio_dir_regs;
-+       pinctrl->gpiochip.out =3D gpio_out_regs;
-+       pinctrl->gpiochip.status =3D irq_status_regs;
-+       pinctrl->gpiochip.level =3D irq_level_regs;
-+       pinctrl->gpiochip.edge =3D irq_edge_regs;
+ .../display/panel/samsung,ams581vf01.yaml     |  79 +++++
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ .../gpu/drm/panel/panel-samsung-ams581vf01.c  | 283 ++++++++++++++++++
+ 4 files changed, 372 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/samsung,ams581vf01.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-samsung-ams581vf01.c
 
-Can't you just use e.g.
+-- 
+2.47.0
 
-chip->data =3D ... etc in the top section?
-
-+       chip->parent =3D dev;
-+       chip->label =3D dev_name(dev);
-+       chip->request =3D gpiochip_generic_request;
-+       chip->free =3D gpiochip_generic_free;
-+       chip->direction_input =3D pinctrl_gpio_direction_input;
-+       chip->direction_output =3D airoha_gpio_direction_output;
-+       chip->set =3D airoha_gpio_set;
-+       chip->get =3D airoha_gpio_get;
-+       chip->base =3D -1;
-+       chip->ngpio =3D AIROHA_NUM_PINS;
-
-I always call that varible "gc" rather than chip, but no big deal.
-
-+       chip->irq.default_type =3D IRQ_TYPE_NONE;
-+       chip->irq.handler =3D handle_simple_irq;
-+       gpio_irq_chip_set_chip(&chip->irq, &airoha_gpio_irq_chip);
-
-I usually declare a local variable
-struct gpio_irq_chip *girq;
-
-girq =3D &chip->irq;
-girq->default_type =3D...
-
-Yours,
-Linus Walleij
 
