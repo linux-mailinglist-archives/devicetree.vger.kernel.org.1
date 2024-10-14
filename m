@@ -1,173 +1,93 @@
-Return-Path: <devicetree+bounces-111159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5966B99D753
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:26:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8453599D76F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:29:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1971528415A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:26:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49CD0282F51
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:29:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DB71CC143;
-	Mon, 14 Oct 2024 19:26:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9E61CB33E;
+	Mon, 14 Oct 2024 19:27:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="iSUxXAwi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWq3rNM6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC3D1C5798
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 19:26:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBBF31D2207;
+	Mon, 14 Oct 2024 19:27:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728933967; cv=none; b=m/PnRUfDuLwTzm3osKSXaJghye9dgYNylbezTRt3sEvsV/v7f59g+chPiYpGWc5z6q615F3vMjaPHv3SyuzrgjHa1bNFQDpQCcyrIWpb8Dd43ABNIELXtFIuWpIpMa+NVrea2MK02ZiFlH1PjfDnQXmhnU07Bfx7IX6NvRqXLrA=
+	t=1728934041; cv=none; b=uL0ufSPXE0s/RADRHeHAxpRamjNY7ZGaaQjZeBgNA6g2v59Yv3dqYmzP+aEraRsbw8n7jaTSjDX9wyv8+7WbLOkzqLiXyNgjNeZWLwT/ZkRWt5ReJKGwuJG+W6bMwpjeYxtg8w8Gg3iNvMMLb1sExVOD4Y7ju5q+ClRKDW1dQ9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728933967; c=relaxed/simple;
-	bh=wgw2OAlJK7DqhjidmbliVOj9gQrHL8j/AKhNMHV1EAc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z2Qo3DeFGu3q9EddR970Id5Q0gFbXES2M74gqojskN7SggzgaJc63R/zcIyu6fp9Hx+Li41tE7ArgZX/k8ihpCP4w00aAN6hxfuQ5yfnNQI74XPCP7j+5R41nflzdp90zYjLvxK0sC3B4wEmoxdM+VwYyV6ICz6Q+tZLm7VjxGQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=iSUxXAwi; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4305413aec9so44595635e9.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 12:26:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728933962; x=1729538762; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=OQFel9daBpAI8WojLFq466cXumXh/MVmFONQmu9MWy8=;
-        b=iSUxXAwijifzwNeyafUVgBPtThlmDQKieX1AIJlUdxCSkN3HCeHOyiA8A8fSlMo0q9
-         tbFZCCJMQJwxDRHq9ls3aWbJNIIesjLBycWraOSAlEYvSvpLC6Dg7fXSmtNKcwTSFAGl
-         a9Pi1DI1DH84M0Fdws4vpQyg/7ZplvzpaMi+GxecP/jQoYTqFiPLxJUSFxie6LLvX0Db
-         37uxuRXKpLrwhlPQ58AE5JgxrQo8wJ4DafT+6URkOEDtXy+tNGCuf/8uQAP/N6Xg8rdv
-         d5WG7C/aGc17g0hKBtMLet1VK+Bu+HuByWi69KBLysqn813lYJyzkghURkBHxmB3Tltg
-         quIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728933962; x=1729538762;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OQFel9daBpAI8WojLFq466cXumXh/MVmFONQmu9MWy8=;
-        b=v9MgASyQUBP5uABDRUCEi3UkdB5L+V3+4F4qc589wxdk6yLXeiDfdt/XQ2EtDqbF7d
-         WS6Yw7GnWVBY0eZYafXl92I14cmlKpENvQP1bArLV8gUacm0/NmTr9YtwTQ/wdTxBlRw
-         n/ZBoo3qEP9DiJe1ciiUPRYxllUEtxZQVpE5JbKJ8yBgsPgi4CvT2zeOrkGIA3F9djdT
-         S5HXIDzHdJTizF+aE7rWqTke7pPLRzVRva7+N1t5oKmRvYj2L2dPGTPtHJSrPEMoN2lC
-         X33l6liaaqZwCaRkK2fxCytEBjv+xltegm8Y0Eod3dGHq2+ihpftLzJBIgX9+GidiP+g
-         ji9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWK1LvTbgTzIvQHLXMnnE7uegaZfj5OftsEVr7mKEKXb1wtUWbirG8VQd/Biodhux5JK+ZqQK1DAfp7@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyUqDe7RHLS8wxNlQh1gsPgFX79kq95CDsYCSpuxH3jJlu6pcD
-	SwenVnxhVlzPz6mIlNpyWoQxa8YpU84yzgHNTc4GJLhmME9MfvQmhQdTNhLJ5dY=
-X-Google-Smtp-Source: AGHT+IFtTfS2MqMy7w7oJkFD5tNAiEp1UeXze3wU6Ex0A/U2U9ZMVwxrjNvixtUDNrFKoMP3T/B+Sg==
-X-Received: by 2002:a5d:564d:0:b0:37d:5405:817b with SMTP id ffacd0b85a97d-37d5518e69fmr7766570f8f.7.1728933962209;
-        Mon, 14 Oct 2024 12:26:02 -0700 (PDT)
-Received: from dfj (host-79-45-239-138.retail.telecomitalia.it. [79.45.239.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b9190f7sm12115554f8f.114.2024.10.14.12.26.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 12:26:01 -0700 (PDT)
-Date: Mon, 14 Oct 2024 21:24:34 +0200
-From: Angelo Dureghello <adureghello@baylibre.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, linux-iio@vger.kernel.org, 
-	Olivier Moysan <olivier.moysan@foss.st.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Nuno =?utf-8?B?U8Oh?= <nuno.sa@analog.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	dlechner@baylibre.com, Lars-Peter Clausen <lars@metafoo.de>, 
-	Michael Hennerich <Michael.Hennerich@analog.com>
-Subject: Re: [PATCH v6 2/8] dt-bindings: iio: dac: adi-axi-dac: add ad3552r
- axi variant
-Message-ID: <hcf5nrotmvvoknehnf2nvje4stnoodam34wgmhnddbavcyybj6@ogq33ss66pnx>
-References: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
- <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-2-eeef0c1e0e56@baylibre.com>
- <172890486251.793259.16216468875581353928.robh@kernel.org>
- <20241014133823.GA1018400-robh@kernel.org>
- <r2gmorclmtcrykws4sd7l3hkjzg6f72vbh7ulh3ml2jsnev35z@on2stvxr36qm>
- <20241014202000.0654a1bd@jic23-huawei>
+	s=arc-20240116; t=1728934041; c=relaxed/simple;
+	bh=tQzPQb5VWw3cawctsi84HIWKh2eL1jlGRlFHBbBCF68=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=gsOiPRywRLWJg500W+j4ZBgUNKEEJWsx0i/YOJL5UfKoUxG5U3Vphg5+C2DZ2azMmVD/DsyQE5s9ktu2cPox9Pmh05ZB8dMQy/ijPTisF5UBw08mgVGyqaKKdydyEUTZOw0KSlatlL702DZwfyHEhbMFIuk6OA5r9mlI3f6lfeM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWq3rNM6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72EF1C4CEC3;
+	Mon, 14 Oct 2024 19:27:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728934040;
+	bh=tQzPQb5VWw3cawctsi84HIWKh2eL1jlGRlFHBbBCF68=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=bWq3rNM6yrz4R/mQctp7qZlwuck14t11vNQDLZE2BHhLGFGYoO5JrcuYEhe4zMFI2
+	 5Q71iq+8SslrCq4M9lO3nFOapYvSexgduhhXnEIsP8TN536Lh2gVWNKepXYUa6g8bJ
+	 3bzChGAMxMDQWDNn05I9IOAWqisZhkbZZziIH3TAP2XI+dk5h5L+2Lqd56wQ9fTq8J
+	 VORFa6/3v2zXBfzGhT+tvFMe/l9d/GWKaTV59+7FgK00IhoAnDEbmVTCQrVkPxQkIE
+	 ZhGNPj8WFPYmQ4PgUkfvB2353yRJg+d8BU+V/RCaw7VEYXJ7AWXSe9b8klq34+u+FQ
+	 LQwZrQ7uyxG0A==
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e34339d41bso29362587b3.0;
+        Mon, 14 Oct 2024 12:27:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV+bD4fBYdL96pTYNqWYBeUNd6e0nsWgHTXgSdUiP4KoK9J7AJqy5lxx4l91lGjOtVqF9PA8aV4rVga@vger.kernel.org, AJvYcCV2G/+Qj84NoaIfBwGEY/AJHNnUN3BXG1riRvOkJ1HXfZdAMGhWs9R3aZxzqeyliQkjUDp8dZU8v+cPPjIj@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjif0tmD2Uf2Sgq5UZTt/UYyfQRbh5exzvfX85c/pBSUnsP6Lq
+	nadWNhyEDQ7UhjVV+UvWzlUi0It4aJKaq+SOqGpz+oQhC1zVVkixyDeKwh4FIRN2trO2e2els7R
+	+GGWTv051sNfGLmbKQA5OsNs5EQ==
+X-Google-Smtp-Source: AGHT+IHFxbFOoxL3R+0pc4MYk8c6g6Gw1OP6SSIGjNMlluYLOdAMkWmNh+/64HHDfLcXoB7qqBC+F19FewtdTjaQwF0=
+X-Received: by 2002:a05:690c:6c0d:b0:6e3:31ee:23ab with SMTP id
+ 00721157ae682-6e347a03e92mr95243767b3.25.1728934039744; Mon, 14 Oct 2024
+ 12:27:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241014202000.0654a1bd@jic23-huawei>
+References: <20241014180324.536702-1-cenk.uluisik@googlemail.com>
+In-Reply-To: <20241014180324.536702-1-cenk.uluisik@googlemail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 14 Oct 2024 14:27:05 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ8k6rNssQNdve2jzS4yqxShE4+g4t+yopyWSsn-WtEuQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ8k6rNssQNdve2jzS4yqxShE4+g4t+yopyWSsn-WtEuQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add Orange Pi 5b enum
+ to Orange Pi 5 entry
+To: Cenk Uluisik <cenk.uluisik@googlemail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Chris Morgan <macromorgan@hotmail.com>, 
+	Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, 
+	Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, 
+	Michael Riesch <michael.riesch@wolfvision.net>, Jimmy Hon <honyuenkwun@gmail.com>, 
+	Jing Luo <jing@jing.rocks>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14.10.2024 20:20, Jonathan Cameron wrote:
-> On Mon, 14 Oct 2024 16:04:35 +0200
-> Angelo Dureghello <adureghello@baylibre.com> wrote:
-> 
-> > Hi Rob,
-> > 
-> > On 14.10.2024 08:38, Rob Herring wrote:
-> > > On Mon, Oct 14, 2024 at 06:21:02AM -0500, Rob Herring (Arm) wrote:  
-> > > > 
-> > > > On Mon, 14 Oct 2024 12:08:08 +0200, Angelo Dureghello wrote:  
-> > > > > From: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > 
-> > > > > Add a new compatible and related bindigns for the fpga-based
-> > > > > "ad3552r" AXI IP core, a variant of the generic AXI DAC IP.
-> > > > > 
-> > > > > The AXI "ad3552r" IP is a very similar HDL (fpga) variant of the
-> > > > > generic AXI "DAC" IP, intended to control ad3552r and similar chips,
-> > > > > mainly to reach high speed transfer rates using a QSPI DDR
-> > > > > (dobule-data-rate) interface.
-> > > > > 
-> > > > > The ad3552r device is defined as a child of the AXI DAC, that in
-> > > > > this case is acting as an SPI controller.
-> > > > > 
-> > > > > Note, #io-backend is present because it is possible (in theory anyway)
-> > > > > to use a separate controller for the control path than that used
-> > > > > for the datapath.
-> > > > > 
-> > > > > Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
-> > > > > ---
-> > > > >  .../devicetree/bindings/iio/dac/adi,axi-dac.yaml   | 56 ++++++++++++++++++++--
-> > > > >  1 file changed, 53 insertions(+), 3 deletions(-)
-> > > > >   
-> > > > 
-> > > > My bot found errors running 'make dt_binding_check' on your patch:
-> > > > 
-> > > > yamllint warnings/errors:
-> > > > 
-> > > > dtschema/dtc warnings/errors:
-> > > > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/iio/dac/adi,axi-dac.example.dtb: dac@0: spi-max-frequency: 66000000 is greater than the maximum of 30000000
-> > > > 	from schema $id: http://devicetree.org/schemas/iio/dac/adi,ad3552r.yaml#  
-> > > 
-> > > This is at least the third time this issue has been reported. Don't send 
-> > > more versions until you fix it.
-> > >   
-> > 
-> > as stated in the patch message, this patch applies to linux-iio testing,
-> > where there are no errors, from my tests.
-> > 
-> > Error is due to the spi-max-frequency fix already applied in iio testing,
-> > but still not where your bot is testing, proably in mainline.
-> 
-> Whilst it's a fix, given the fix broadens the accepted range and doesn't matter
-> until this patch (which will behind it) I currently have no intention
-> of sending that fix until next merge window.
-> 
-> Cynic in me says just change the example to a value under the old limit
-> and bot will be happy. Example is just that, so doesn't have to reflect
-> the maximum possible or even what people commonly run.
-> 
-> Or include that patch again in this series with a note to say it's
-> just here to ensure the base is correct for the bots.
-> 
-> Jonathan
+On Mon, Oct 14, 2024 at 1:03=E2=80=AFPM Cenk Uluisik
+<cenk.uluisik@googlemail.com> wrote:
+>
+> This extends the Xunlong Orange Pi 5 device tree binding
+> with an enum for the Orange Pi 5b, which is implemented
+> before the device tree.
 
-ack, if a next version is necessry, will do that.
+Please don't send 5 versions in 2 days. Give reviewers a chance to
+comment even if you got comments from one reviewer. We're not all on 1
+time zone and I don't work weekends. 1 version per 24 hours at most.
 
-Regards,
-angelo
 
-> 
-> > 
-> > Regards,
-> > angelo
-> > 
-> > > Rob  
-> 
+Rob
 
