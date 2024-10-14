@@ -1,186 +1,282 @@
-Return-Path: <devicetree+bounces-110796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D279799BF0B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 06:13:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9640799BF2E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 06:38:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 560CD1F25101
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 04:13:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B0D811C2158D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 04:38:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0F013C836;
-	Mon, 14 Oct 2024 04:06:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="fOrjtmr9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFCB83A1BA;
+	Mon, 14 Oct 2024 04:38:41 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.124.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BC234CC4
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 04:06:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50987231CB1;
+	Mon, 14 Oct 2024 04:38:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.124.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728878791; cv=none; b=pTtaQvyBykTzkw/HT8mbdjl9lNb/iUWSTc+vyRz9FVtV/9/T8MuCf1nGIKWdn9k81dHdr9PkOC1gqSdveT5Mo7/FJtfJuWKFJrUd57Q1SDjG9PZRMYCs3ETlSqqF4X/1TNo7Rqwzv6/IFcBeL3gO7ZeX2QXweLPNqFhfkMgG5is=
+	t=1728880721; cv=none; b=B4I/R7vbFLN830xHLHgdk7gseJWJrkfxr4D77ZC8g3zTYMPgpf1JBFT1y0eUiZdQ6Fm0gptQd6C0FFa2FN4Pb8i1C2O0PffQBYj+vJqnOV2SUsUjObsg/ZtqHgN33mcUE4vlNNzEfVCn28eS5yZ8BaAW8xOi8OftKKtvo0yqISc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728878791; c=relaxed/simple;
-	bh=6XMY82kHwb1/XGELiVpYOSMalSat/OmAEwuN9ofu9jc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fylvm6p7NeFWUHUhswEoz5po4xn8Xnq5/VTrD7F+ck6aepNng1wbdO5jpvn4tzTwALoXj5I1d+nJqsjKCh+2E8JahbjluP688Jd8wO9K0E6WoJLmEawWh2Dc7jXU0jnARhUeWxaTZ/b1sN2Sazi5b/klj9WavUWABk8/OBM0oKA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=fOrjtmr9; arc=none smtp.client-ip=209.85.167.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-539f84907caso395940e87.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 21:06:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728878788; x=1729483588; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pwgD744i+ZALkiommnSs81xuS9bpxKIuuRPbiBw3DbE=;
-        b=fOrjtmr9jo5tMhwMQ7sReG/Q/9N5P5gzu4DfCRM575qCxrrdJ7aGj1HNq6Hqx30aIt
-         B/0SfW1PqpkEKcYjMACXSopX3qsjkTqq6/hU1VQ8m0uQyIgS0cbBxPRg1SuvHd7wDcva
-         Zwzv0GnKTwQM4QW5OzHEzK1otll+eUhBzLnTs=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728878788; x=1729483588;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pwgD744i+ZALkiommnSs81xuS9bpxKIuuRPbiBw3DbE=;
-        b=DgTNO9UDykdIBvEz9PLMKXVrgyT/Iww6gvZhelEd1PJvoaeXEZCNt6vAW/zjUJxDNc
-         KY5lTOJJb/PLkZ+X5MBxrKEeoQQ60q5rb7Z4HSeH3eYUGG2FeUxNdKkpOdj4MnLqDHy8
-         iT4VoOFoiFJeahF3T5qE3ft8mHgiISlUyvcrmoS1bW4y8kzM4rdJDCT98B+FTKHRct48
-         YVzYpN8qI7idwg0Q/2ow8uRFtwRxG3tyyCRwEu6QkKU49fryvZ8gh3m6m3PYVSPVUxec
-         swz2dBbguJc9Oz0RUl2ugAyCGGH7UaAC0gsDLWSbBOoY8/JmTM6/STJjZh1druR5/rUq
-         G2Xg==
-X-Forwarded-Encrypted: i=1; AJvYcCW8CrCJr4xFjdqNb5HGF+zoP+XUieSdF4q/rhBXEoVopxTbuztjo/NTClFYZvW4oo2ebJArJGfqId/E@vger.kernel.org
-X-Gm-Message-State: AOJu0YzlCjxk+KBvZo6kJn75edpJHvPVB8y4Sm51zuDPAREVym0JG1iE
-	mHJru2kxOaVpdp1zzCX49VdjiB1xyWg/hEGYV8QNjn4JluIROVa/m/HtWb+wCUq6S1yYKQtgGb4
-	sfqUT/of8ytbfjI4QN5eyCVWybzjG16djRgJO
-X-Google-Smtp-Source: AGHT+IE1orh0TGasMBM1uZhGLqabgowh/X3mBeLGnxxsLSwvcm3PZp6MdB0eScoG5fQBdjANEp0bV2Y/ZCL10eWobUA=
-X-Received: by 2002:a05:6512:438a:b0:539:de9c:c890 with SMTP id
- 2adb3069b0e04-539de9cc99emr3721935e87.42.1728878787515; Sun, 13 Oct 2024
- 21:06:27 -0700 (PDT)
+	s=arc-20240116; t=1728880721; c=relaxed/simple;
+	bh=VnMOFtM0rlHaYJg0Ihqs5/eTndvXXGk4vEpt32Iqk/I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YGAkL8PExaaGHF5c/yKM3Ld0e3zUn/DyP0Bg3p+6tyOYd+MVs6EODCQ939lTfauL9ScG7aRon5A6WgeW0UUcBCd3m42goEM7Rg9RG9IlI1z00jEqxjs4k7pKRuZ5sFVF6f0URH04oy4KNSffvEm/TlRFu32spefLqrIsJfJMkMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com; spf=pass smtp.mailfrom=radxa.com; arc=none smtp.client-ip=114.132.124.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=radxa.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=radxa.com
+X-QQ-mid: bizesmtpip4t1728880692tn6r7d7
+X-QQ-Originating-IP: EQSBChDx8AzRGfPF8zb2/7A9tODnohSmh1T0qLU6P6M=
+Received: from [IPV6:240f:10b:7440:1:5070:3965 ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 14 Oct 2024 12:38:07 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 13288931529560564606
+Message-ID: <CE605641E53903DC+0f0ea6b2-9423-4aa2-ac9d-652a9ac5c237@radxa.com>
+Date: Mon, 14 Oct 2024 13:38:06 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241008073430.3992087-1-wenst@chromium.org> <20241008073430.3992087-7-wenst@chromium.org>
- <Zwfwv-O9ln-PVMdc@smile.fi.intel.com>
-In-Reply-To: <Zwfwv-O9ln-PVMdc@smile.fi.intel.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Mon, 14 Oct 2024 12:06:16 +0800
-Message-ID: <CAGXv+5F=5f4R5AExANxOwgTL6_VbpHdNKKhHnzy_PDcxtcFoEQ@mail.gmail.com>
-Subject: Re: [PATCH v8 6/8] i2c: of-prober: Add GPIO support to simple helpers
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, Wolfram Sang <wsa@kernel.org>, 
-	Benson Leung <bleung@chromium.org>, Tzung-Bi Shih <tzungbi@kernel.org>, 
-	chrome-platform@lists.linux.dev, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, Douglas Anderson <dianders@chromium.org>, 
-	Johan Hovold <johan@kernel.org>, Jiri Kosina <jikos@kernel.org>, linux-i2c@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add new SoC dtsi for the
+ RK3566T variant
+To: Dragan Simic <dsimic@manjaro.org>, linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, TL Lim <tllim@pine64.org>,
+ Marek Kraus <gamiee@pine64.org>, Tom Cubie <tom@radxa.com>,
+ Nicolas Frattaroli <frattaroli.nicolas@gmail.com>,
+ Jonas Karlman <jonas@kwiboo.se>
+References: <cover.1728752527.git.dsimic@manjaro.org>
+ <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
+Content-Language: en-US
+From: FUKAUMI Naoki <naoki@radxa.com>
+In-Reply-To: <95fc64aaf6d3ac7124926bcb0c664406b4e5fe3d.1728752527.git.dsimic@manjaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtpip:radxa.com:qybglogicsvrgz:qybglogicsvrgz8a-1
+X-QQ-XMAILINFO: NvH2zBBgt3uT+tf1ztEnscQb8q8EJj8iUYLudHj4RY97astqYsjZu+Lm
+	x8a0ZDoKYyIcSM8mtC1By0wX69RgXlnrqhUZoVb5r/dQBzGPq5L9AbDNgPgORYUbKq5cfOF
+	W32HGGlYbcUSOd4lRRJGJjH0mVl3fGjWc33dfa8+O5LJ3xTkYanzK3V5452JNLBYENjdosc
+	TxnNIgsXsBkAvHJ3bo20NrC5cqLqD2aY8Dj1Mr8UfOzmkjX4Vir7a103t4TnjB+8kn6xnT7
+	mdbmZhEEhfQ8NRYL9dHTvaVI3i/+SHJfh4FfUtuWr+NJY1THg9yYqN6kiJgHDaiuV6VFW5l
+	TJrfcTx26/U796KKr4602oKug1pagtuRwCGAQNiNQP6Xcn7lPhBdSt9hMExfAUeLlV42TTy
+	xytU/dfp0nc80dPNCzLnCQrsTNS/HHJ5uTiAUBGawTw5VbxbuMewjfGqEFvXFLvUCUJQ7p3
+	6ODl55A+qKJ0VvNX0xqDDWJSv+FnuLCEgfUWwn8A2q63LXp7xNk6FUMOh7c/zW8XLpXF2vz
+	sr3P5nwQhxsjRmDSMgcLXrYOJs+NhF6Xib849PuXJehGhmRenIQ5LBEec2iZGTcP1ZB/DxI
+	Jo0tM76+7+f1nqSQjlSRr32aY6P92v9pvrdXuBPMrvDwwHNSDErg2mIzrN6q+HbXs/JvPQI
+	Bd8qtYO4tdA9XarWp8XJlf+fplEEETcdLot/6Cb1Pihc8ujXp+Ou8nuN2a+rg8IGLh5h14x
+	4zPbqQVtwe+Es67KrQ6v0C8xSGwhr9AxUwe2tCrGzt8e2XVImDBpCVOJair0jvfEckrkEH6
+	BnEeBZPbj7BQNcwapVaYze0oykKwHDnx9XBqrgVcuCCvxSStuPj29vw3VyeZ7mjTbcg8/A7
+	lRQMq701yuzR+wShogqfCSxQ+BuPVTKE/89++Y1DvDJioNCOYnPtyfFcfRWnzxcYYU1JaKk
+	eqQ7O9WceS2RwlYcSNIrbHeOUbsoEGxlmS+dYGtRR4knInw==
+X-QQ-XMRINFO: OWPUhxQsoeAVDbp3OJHYyFg=
+X-QQ-RECHKSPAM: 0
 
-On Thu, Oct 10, 2024 at 11:20=E2=80=AFPM Andy Shevchenko
-<andriy.shevchenko@linux.intel.com> wrote:
->
-> On Tue, Oct 08, 2024 at 03:34:25PM +0800, Chen-Yu Tsai wrote:
-> > Add GPIO support to the simple helpers for the I2C OF component prober.
-> > Components that the prober intends to probe likely require their
-> > regulator supplies be enabled, and GPIOs be toggled to enable them or
-> > bring them out of reset before they will respond to probe attempts.
-> > Regulator supplies were handled in the previous patch.
-> >
-> > The assumption is that the same class of components to be probed are
-> > always connected in the same fashion with the same regulator supply
-> > and GPIO. The names may vary due to binding differences, but the
-> > physical layout does not change.
-> >
-> > This supports at most one GPIO pin. The user must specify the GPIO name=
-,
-> > the polarity, and the amount of time to wait after the GPIO is toggled.
-> > Devices with more than one GPIO pin likely require specific power
-> > sequencing beyond what generic code can easily support.
->
-> ...
->
-> > +static int i2c_of_probe_simple_get_gpiod(struct device *dev, struct de=
-vice_node *node,
-> > +                                      struct i2c_of_probe_simple_ctx *=
-ctx)
-> > +{
-> > +     struct fwnode_handle *fwnode =3D of_fwnode_handle(node);
-> > +     struct gpio_desc *gpiod;
-> > +     const char *con_id;
-> > +
-> > +     /* NULL signals no GPIO needed */
-> > +     if (!ctx->opts->gpio_name)
-> > +             return 0;
-> > +
-> > +     /* An empty string signals an unnamed GPIO */
-> > +     if (!ctx->opts->gpio_name[0])
-> > +             con_id =3D NULL;
-> > +     else
-> > +             con_id =3D ctx->opts->gpio_name;
->
-> Can it use positive conditional?
->
->         if (ctx->opts->gpio_name[0])
->                 con_id =3D ctx->opts->gpio_name;
->         else
->                 con_id =3D NULL;
+Hi,
 
-You suggested writing it this way in your reply to v7. Please pick one.
+On 10/13/24 02:04, Dragan Simic wrote:
+> Add new SoC dtsi file for the RK3566T variant of the Rockchip RK3566 SoC.
+> The difference between the RK3566T variant and the "full-fat" RK3566 variant
+> is in fewer supported CPU and GPU OPPs on the RK3566T, and in the absence of
+> a functional NPU, which we currently don't have to worry about.
+> 
+> Examples of the boards based on the RK3566T include the Pine64 Quartz64 Zero
+> SBC, [2] the Radxa ROCK 3C and the Radxa ZERO 3E/3W SBCs.  Unfortunately,
+> Radxa doesn't mention the use of RK3566T officially, but its official SBC
+> specifications do state that the maximum frequency for the Cortex-A55 cores
+> on those SBCs is lower than the "full-fat" RK3566's 1.8 GHz, which makes
+> spotting the presence of the RK3566T SoC variant rather easy. [3][4][5]  An
+> additional, helpful cue is that Radxa handles the CPU and GPU OPPs for the
+> RK3566T variant separately in its downstream kernel. [6]
+> 
+> The CPU and GPU OPPs supported on the RK3566T SoC variant are taken from the
+> vendor kernel source, [1] which uses the values of the "opp-supported-hw" OPP
+> properties to determine which ones are supported on a particular SoC variant.
+> The actual values of the "opp-supported-hw" properties make it rather easy
+> to see what OPPs are supported on the RK3566T SoC variant, but that, rather
+> unfortunately, clashes with the maximum frequencies advertised officially
+> for the Cortex-A55 CPU cores on the above-mentioned SBCs. [2][3][4][5]  The
+> vendor kernel source indicates that the maximum frequency for the CPU cores
+> is 1.4 GHz, while the SBC specifications state that to be 1.6 GHz.  Unless
+> that discrepancy is resolved somehow, let's take the safe approach and use
+> the lower maximum frequency for the CPU cores.
+> 
+> Update the dts files of the currently supported RK3566T-based boards to use
+> the new SoC dtsi for the RK3566T variant.  This actually takes the CPU cores
+> and the GPUs found on these boards out of their earlier overclocks, but it
+> also means that the officially advertised specifications [2][3][4][5] of the
+> highest supported frequencies for the Cortex-A55 CPU cores on these boards
+> may actually be wrong, as already explained above.
+> 
+> The correctness of the introduced changes was validated by decompiling and
+> comparing all affected board dtb files before and after these changes.
+> 
+> [1] https://raw.githubusercontent.com/rockchip-linux/kernel/f8b9431ee38ed561650be7092ab93f564598daa9/arch/arm64/boot/dts/rockchip/rk3568.dtsi
+> [2] https://wiki.pine64.org/wiki/Quartz64
+> [3] https://dl.radxa.com/rock3/docs/hw/3c/radxa_rock3c_product_brief.pdf
+> [4] https://dl.radxa.com/zero3/docs/hw/3e/radxa_zero_3e_product_brief.pdf
+> [5] https://dl.radxa.com/zero3/docs/hw/3w/radxa_zero_3w_product_brief.pdf
+> [6] https://github.com/radxa/kernel/commit/2dfd51da472e7ebb5ef0d3db78f902454af826b8
+> 
+> Cc: TL Lim <tllim@pine64.org>
+> Cc: Marek Kraus <gamiee@pine64.org>
+> Cc: Tom Cubie <tom@radxa.com>
+> Cc: FUKAUMI Naoki <naoki@radxa.com>
+> Helped-by: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
+> Helped-by: Jonas Karlman <jonas@kwiboo.se>
+> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+> ---
+>   .../dts/rockchip/rk3566-radxa-zero-3.dtsi     |  2 +-
+>   .../boot/dts/rockchip/rk3566-rock-3c.dts      |  2 +-
+>   arch/arm64/boot/dts/rockchip/rk3566t.dtsi     | 90 +++++++++++++++++++
+>   3 files changed, 92 insertions(+), 2 deletions(-)
+>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> index de390d92c35e..1ee5d96a46a1 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-radxa-zero-3.dtsi
+> @@ -3,7 +3,7 @@
+>   #include <dt-bindings/gpio/gpio.h>
+>   #include <dt-bindings/leds/common.h>
+>   #include <dt-bindings/soc/rockchip,vop2.h>
+> -#include "rk3566.dtsi"
+> +#include "rk3566t.dtsi"
 
-> > +     gpiod =3D fwnode_gpiod_get_index(fwnode, con_id, 0, GPIOD_ASIS, "=
-i2c-of-prober");
-> > +     if (IS_ERR(gpiod))
-> > +             return PTR_ERR(gpiod);
-> > +
-> > +     ctx->gpiod =3D gpiod;
-> > +
-> > +     return 0;
-> > +}
->
-> ...
->
-> > +static void i2c_of_probe_simple_disable_gpio(struct device *dev, struc=
-t i2c_of_probe_simple_ctx *ctx)
-> > +{
-> > +     if (!ctx->gpiod)
-> > +             return;
->
-> Do you need this check for the future patches?
+could you drop this change for now?
 
-Not sure I follow. The check is needed because this function is called
-in i2c_of_probe_simple_cleanup(), but the GPIO could have been released
-earlier in i2c_of_probe_simple_cleanup_early(), and that makes this
-function a no-op.
+We(Radxa) think we use RK3566.
 
-The helpers for the release side are quite short, but the ones on the
-request side wrap some conditional and error handling. I think it's
-better to keep it symmetric?
+and vendor kernel[6] refers efuse value to determine it's -T or not.
+can you do similar way?
 
-> > +     /* Ignore error if GPIO is not in output direction */
-> > +     gpiod_set_value(ctx->gpiod, !ctx->opts->gpio_assert_to_enable);
-> > +}
->
-> ...
->
-> >  struct regulator;
-> > +struct gpio_desc;
->
-> Ordered?
+>   / {
+>   	chosen {
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> index f2cc086e5001..9a8f4f774dbc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566-rock-3c.dts
+> @@ -5,7 +5,7 @@
+>   #include <dt-bindings/leds/common.h>
+>   #include <dt-bindings/pinctrl/rockchip.h>
+>   #include <dt-bindings/soc/rockchip,vop2.h>
+> -#include "rk3566.dtsi"
+> +#include "rk3566t.dtsi"
 
-Will fix.
+same here.
 
+Best regards,
 
-Thanks
-ChenYu
+--
+FUKAUMI Naoki
+Radxa Computer (Shenzhen) Co., Ltd.
+
+>   / {
+>   	model = "Radxa ROCK 3C";
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3566t.dtsi b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+> new file mode 100644
+> index 000000000000..cd89bd3b125b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3566t.dtsi
+> @@ -0,0 +1,90 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +
+> +#include "rk3566-base.dtsi"
+> +
+> +/ {
+> +	cpu0_opp_table: opp-table-0 {
+> +		compatible = "operating-points-v2";
+> +		opp-shared;
+> +
+> +		opp-408000000 {
+> +			opp-hz = /bits/ 64 <408000000>;
+> +			opp-microvolt = <850000 850000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <850000 850000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +
+> +		opp-816000000 {
+> +			opp-hz = /bits/ 64 <816000000>;
+> +			opp-microvolt = <850000 850000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +			opp-suspend;
+> +		};
+> +
+> +		opp-1104000000 {
+> +			opp-hz = /bits/ 64 <1104000000>;
+> +			opp-microvolt = <900000 900000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +
+> +		opp-1416000000 {
+> +			opp-hz = /bits/ 64 <1416000000>;
+> +			opp-microvolt = <1025000 1025000 1150000>;
+> +			clock-latency-ns = <40000>;
+> +		};
+> +	};
+> +
+> +	gpu_opp_table: opp-table-1 {
+> +		compatible = "operating-points-v2";
+> +
+> +		opp-200000000 {
+> +			opp-hz = /bits/ 64 <200000000>;
+> +			opp-microvolt = <850000 850000 1000000>;
+> +		};
+> +
+> +		opp-300000000 {
+> +			opp-hz = /bits/ 64 <300000000>;
+> +			opp-microvolt = <850000 850000 1000000>;
+> +		};
+> +
+> +		opp-400000000 {
+> +			opp-hz = /bits/ 64 <400000000>;
+> +			opp-microvolt = <850000 850000 1000000>;
+> +		};
+> +
+> +		opp-600000000 {
+> +			opp-hz = /bits/ 64 <600000000>;
+> +			opp-microvolt = <900000 900000 1000000>;
+> +		};
+> +
+> +		opp-700000000 {
+> +			opp-hz = /bits/ 64 <700000000>;
+> +			opp-microvolt = <950000 950000 1000000>;
+> +		};
+> +	};
+> +};
+> +
+> +&cpu0 {
+> +	operating-points-v2 = <&cpu0_opp_table>;
+> +};
+> +
+> +&cpu1 {
+> +	operating-points-v2 = <&cpu0_opp_table>;
+> +};
+> +
+> +&cpu2 {
+> +	operating-points-v2 = <&cpu0_opp_table>;
+> +};
+> +
+> +&cpu3 {
+> +	operating-points-v2 = <&cpu0_opp_table>;
+> +};
+> +
+> +&gpu {
+> +	operating-points-v2 = <&gpu_opp_table>;
+> +};
 
