@@ -1,128 +1,149 @@
-Return-Path: <devicetree+bounces-110905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 042AC99C411
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:52:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D6CF99C482
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:01:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6E9C1B23047
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:52:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93B61F21268
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:01:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D29D155CB0;
-	Mon, 14 Oct 2024 08:51:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 653B8155725;
+	Mon, 14 Oct 2024 09:00:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sigma-star.at header.i=@sigma-star.at header.b="fiIpGZUD"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Wa8fpNv2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCA05154BE2
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 08:51:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AD5F14A0AA
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 09:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728895916; cv=none; b=RijUPL9e6gIecr6FDeqF8rHBYDbd3mdUeQ1fe3gjTQkus46ynste3izExF7oN87lFz1O0tOp/0KD8KrLZHij8suTLm+pV4cAWjyUX0xoVR6BiAjc+P5ZVymVbvfMmzpFYzhlI9tx5gcAHj/dIwNXKvL4Brv+VCmtBOJfc5hI4bc=
+	t=1728896453; cv=none; b=bJeyPzCmqWnkPVY59M1NaPTkBRMxc4RCOTX/2yWLXCJx62OamBD1+1sTjjxL8oYgH8Cx4RHsMdMJuxVVdrne37LasyK4BwqFNINTT+kkOzoZhLtqdtE/rlVsWUfIzsPSkQELHNxp0dB5GSZhaCCJJfzh+hzfrHQ2nqpnQ51Xjbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728895916; c=relaxed/simple;
-	bh=7y3i8RI0B9xeH/V6pkYoLkhTjNtFrZO1Xsun3cPjRYw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IK6Nxsad3lON8NEbQP6SVJACm3WMKQD/pLP1h7xuvHEKqVKHeDAIgrlfLqrZP6w+NW5W3/nFJvU1wwdWB4u7Jv3ID3j+WR02DmAEgrbqRLqiKvGNQhfjWrpSkbMRs0Eg/rayJVq70XwMvbB/Mqoij3bLmoae17bMPcJQJhSW+PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigma-star.at; spf=pass smtp.mailfrom=sigma-star.at; dkim=pass (2048-bit key) header.d=sigma-star.at header.i=@sigma-star.at header.b=fiIpGZUD; arc=none smtp.client-ip=209.85.128.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigma-star.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigma-star.at
-Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-431160cdbd0so24812325e9.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 01:51:54 -0700 (PDT)
+	s=arc-20240116; t=1728896453; c=relaxed/simple;
+	bh=MflAoS/JVwsJxPi1EnBqpdAqnLAu6sZoC0d+TTvhdAM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=STR/3O62Ub3YsoCm3wQMocgu8N5bM+ECnYmZ7DKrWv8d7Y/qqwqpRlsF3hxxt3JpT1cISufxup3jMjHz3psF81J3mb8wetsJWKal5aWWNhFt585DnqqNfwn+cnX3AXtoiQWN41wxb50wMISqlim4DIeJWWPo7WlpMIMF0n+UWIk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Wa8fpNv2; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a9a01810fffso160194866b.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 02:00:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sigma-star.at; s=google; t=1728895913; x=1729500713; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728896450; x=1729501250; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=50tK4yvCZ1zBy7QMujeB5OZr1BzENlZ/OjW/RDqvA4U=;
-        b=fiIpGZUDWtcLS/X8Ss3W9RUpifunZZWmkN7rbh0/R5mn+qC0+oT5VOf2k1y5VntYnF
-         yZxmwVBJgqu6nsHrl1isIawjKFfiEK8gqgeT60365+6j3KFTSKmBqRQsmzfxitebFnA5
-         ZKj8m12pGXyiYf4/7qO3fwdPmdRk6VNLGiFO9PboWBTAcggXZFjm0sMoO7hCvhcqXmMJ
-         ZAmQe5osgccH2PHh1hw1C0EEtUkPYqSI9KfwvOYS8ko6ioKVUeiSLKtOf7DvL5jEeaN/
-         CGHiPQpos0BFpsRLsZKYrXX9ssv2JmH543aDqMMUp7orASSpXBg7U1R9yfFB/mAy90BZ
-         wdoQ==
+        bh=MflAoS/JVwsJxPi1EnBqpdAqnLAu6sZoC0d+TTvhdAM=;
+        b=Wa8fpNv2n0rmPJNhCm2oTJGqGi2zC81zaeIxNvcTy7PonpjLc5Pbil0MLG2X7bk3Us
+         cgMCczONEqz+GjAk8jq27p5w7TN2jHlMuO6kLH8wWOVDRU3Ft1xZEmTzqqTPzXnkZAFy
+         KaJ+r28nwcYXdj2BVM6AEVcqcK4vcWn5ApwxmJY0Bn0FmjQCk6i3AdFmJp4+8rDqdKbC
+         qXf4hTEp/gH6ROkVIC73MwLxMihMF1jzwbcJ0SYvVbAmAO5NoAx/aiKhTYd4OTUN2/02
+         gMVo7g2Oq8+fvkifPUFrRlIBIbExAEmk+LaN5mVdGO4P9pvcAzbNJsJM7L76fHvoCab5
+         lJbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728895913; x=1729500713;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1728896450; x=1729501250;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=50tK4yvCZ1zBy7QMujeB5OZr1BzENlZ/OjW/RDqvA4U=;
-        b=T6xKPlUAlJ/dDppLHK54pVnteCTUkBloNMXvtVGM9kgVs7hvSaYlHTBjkXY4MzlQrI
-         vfNS23NbZgIm1mzBC0PLlkv+dvJ5vnk53OHRbwf22cXhQeF7HmapigM+kqqUFL2etAMY
-         DG4Pg1MC04Je1Nfhh482gA6SXB3Nfk0nW5WxgQHoZL2xS8WwrRkhtuBUt6zQyIuHl4Eo
-         shKsN/xY2dy+CWv0pGPfVhE78XrigXUX+GtNGIewwlqKWZp6ra31O4yG0dh3ejIvIFn4
-         0OHvpNpyrlLwcEN+pV34fN61+faLi+rF3D66yZ3Y4e4uzkoceYADYihINL7nDAu9hcAA
-         wINg==
-X-Forwarded-Encrypted: i=1; AJvYcCWAi3DHD3XXjXx/OuUBhdbFAKZwP5uCtvAa1iY/N/f8Y929Fyy2smCQKE6fXmrfBXqUXFDVt7R1/X4F@vger.kernel.org
-X-Gm-Message-State: AOJu0YwQOW6ATmSF2ByrNa2eQ647rKoLrO5gMHJyrymBe0vQ4a5NCvDy
-	B7vkpg8k3R1vjGBm+79lz4Hk2s74U3Reyq7B7SYjLAMA/ATAnE7MdUgPSdqLJO8=
-X-Google-Smtp-Source: AGHT+IEU0Ii92En2nBlsoOH0pa0j37alp117gc0n9MfzbJE/bM8tD/pJayX7UozgKh/NuroT/DJw3w==
-X-Received: by 2002:a05:600c:5486:b0:430:56f5:4d1f with SMTP id 5b1f17b1804b1-43115a96f4bmr123435565e9.2.1728895912833;
-        Mon, 14 Oct 2024 01:51:52 -0700 (PDT)
-Received: from blindfold.localnet ([82.150.214.1])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-4311835d78fsm113754245e9.43.2024.10.14.01.51.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 01:51:52 -0700 (PDT)
-From: Richard Weinberger <richard@sigma-star.at>
-To: Richard Weinberger <richard@nod.at>, devicetree@vger.kernel.org
-Cc: robh@kernel.org, saravanak@google.com, linux-kernel@vger.kernel.org, upstream+devicetree@sigma-star.at, Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH] [RFC] of: Add debug aid to find unused device tree properties
-Date: Mon, 14 Oct 2024 10:51:51 +0200
-Message-ID: <3247761.5fSG56mABF@somecomputer>
-In-Reply-To: <7aq4nedii5jgrlg54kzyi3plri6ivheeo2kpxxg7q6ofr3wfsc@acsrg5rzzmzg>
-References: <20241013200730.20542-1-richard@nod.at> <7aq4nedii5jgrlg54kzyi3plri6ivheeo2kpxxg7q6ofr3wfsc@acsrg5rzzmzg>
+        bh=MflAoS/JVwsJxPi1EnBqpdAqnLAu6sZoC0d+TTvhdAM=;
+        b=BapE9u4bd9J7xbBHrF4dW+mwCOcWWhbmSyjbKo0Ggf0P5BV2txe3WU/c01w3qd0YSk
+         m2eVMffwPkEi2RJYdNoX9amzJgcA34PHnD8RATK98yNuAqCBbkvkmtSjN8GnHs56AUKQ
+         XroGoGZ8E2JVZYt6V846/nzO4r/bw4bOQ/1SVEHUcU8B/X+RLwbK66ss5PD7HxxE5LyM
+         aLX1ZzrvzJmDGIXhvPVBxOtYzUMkDbYMbNm3xVfEctrI5e2LPYXsnsIDeau9+d0lYrxJ
+         n81nPW1sDOcUYLF0N+3umT4QOM/8wxjsnJIEX+nwaMAPJQjrrvMy4Io4AVrznHgN9P53
+         +Vyg==
+X-Forwarded-Encrypted: i=1; AJvYcCWZ1nyPy6rV6UKv/mUCBm5e2OYRQ/3XSNe61j4DGTF+bk6Wj9fRnbZpNFBZHhwWqpkEgv/wAy7oNbHl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQX2N3hqbEugmiAagwQCPZ0wEyefN/4uAqoQTjjVBSu0uacaPI
+	XmbWOq5zU5E08nKtInDz0xyBNzlDXNDVqO9hnPNcKZ0hfkaO8aQMAgd5SHiRS5SRrKmYx7beepV
+	nD4asO9mUjpX5gFpIlTGp/UXDlGmjGk4hVXtEXg==
+X-Google-Smtp-Source: AGHT+IFlRvGBzelFcPb4MlBwiC6Xm+9AzmFqSrtThZwPQzH3LVUNBawvPUHSA7ddlyUofnVK+089RIIf9I7sU9/EVTw=
+X-Received: by 2002:a17:906:fe4b:b0:a99:8abf:3610 with SMTP id
+ a640c23a62f3a-a99e3b30f48mr661900666b.14.1728896449865; Mon, 14 Oct 2024
+ 02:00:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20241007-ad7380-fix-supplies-v1-0-badcf813c9b9@baylibre.com>
+ <20241007-ad7380-fix-supplies-v1-2-badcf813c9b9@baylibre.com>
+ <v7in5n6ktmu5kfzlndn4eujmk5n66fmft4lvwuvucqbcv5r5hb@etdqvn6ev6nl> <20241010192218.12808268@jic23-huawei>
+In-Reply-To: <20241010192218.12808268@jic23-huawei>
+From: Julien Stephan <jstephan@baylibre.com>
+Date: Mon, 14 Oct 2024 11:00:39 +0200
+Message-ID: <CAEHHSvaGTKFA1mUeONXUQ=aTirVemHWFc_E-i76sQgtQ5_Svtg@mail.gmail.com>
+Subject: Re: [PATCH 2/6] dt-bindings: iio: adc: ad7380: fix ad7380-4 reference supply
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>, 
+	Michael Hennerich <Michael.Hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	David Lechner <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Krzysztof,
+Le jeu. 10 oct. 2024 =C3=A0 20:22, Jonathan Cameron <jic23@kernel.org> a =
+=C3=A9crit :
+>
+> On Tue, 8 Oct 2024 09:52:50 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> > On Mon, Oct 07, 2024 at 05:45:45PM +0200, Julien Stephan wrote:
+> > > ad7380-4 is the only device from ad738x family that doesn't have an
+> > > internal reference. Moreover its external reference is called REFIN i=
+n
+> > > the datasheet while all other use REFIO as an optional external
+> > > reference. If refio-supply is omitted the internal reference is
+> > > used.
+> > >
+> > > Fix the binding by adding refin-supply and makes it required for
+> > > ad7380-4 only.
+> >
+> > Maybe let's just use refio as refin? Reference-IO fits here well.
+> > Otherwise you have two supplies for the same.
+> Whilst it is ugly, the effort this series is going to in order
+> to paper over a naming mismatch makes me agree with Krzysztof.
+>
+> I think adding a comment to the dt-binding would be sensible
+> though as people might fall into this hole.
+>
 
-Am Montag, 14. Oktober 2024, 09:49:14 CEST schrieb 'Krzysztof Kozlowski' vi=
-a upstream:
-> On Sun, Oct 13, 2024 at 10:07:30PM +0200, Richard Weinberger wrote:
-> > This is a proof-of-concept patch that introduces a debug feature I find
-> > particularly useful.  I frequently encounter situations where I'm
-> > uncertain if my device tree configuration is correct or being utilized
-> > by the kernel.  This is especially common when porting device trees
-> > from vendor kernels, as some properties may have slightly different
-> > names in the upstream kernel, or upstream drivers may not use certain
-> > properties at all.
->=20
-> In general I don't mind, but I have a comment about above rationale.
-> It's just wrong. The point of DT is to describe hardware, not the one
-> given, fixed in time implementation.
+Hi Jonathan and Krzysztof,
 
-I agree with you, sorry for being imprecise.
+I am currently adding support for another chip to this family
+(ADAQ4380-4) and it also uses REFIN.. but in another way ad7380-4
+does..
+So:
+- ad7380-4 does not have any internal reference and use a mandatory
+refin supply as external reference
+- adaq4380-4 does not have external reference but uses a 3V internal
+reference derived from a 5V mandatory refin supply
+- all others (AFAIK) use an optional refio external reference. If
+omitted, use an internal 2.5V reference.
 
-> What's more, writing bindings mentions this explicit: make binding
-> complete, even if it is not used.
+I am not sure using a single refio-supply for all will make things
+clearer.. What do you think? Should I also send the adaq series now to
+bring more context? (I wanted feedback on this series first).
 
-Yes, with this aid, it is IMHO easier to find bindings that need attention.
-Just as an example, lately the device tree of a vendor used the property "t=
-imers",
-but in mainline it is "ti,timers".  With this debug feature, it is easy to =
-see that
-"timers" is not being used, and somebody has to decide whether the property=
- is
-really not used by a driver, or if the binding needs more work.
+Cheers
+Julien
 
-Thanks,
-//richard
-
-
-=2D-=20
-=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8Bsigma star gmbh | Eduard-Bodem=
-=2DGasse 6, 6020 Innsbruck, AUT
-UID/VAT Nr: ATU 66964118 | FN: 374287y
-
-
+> Other than the missing ret =3D, rest of series looks fine to me
+>
+> Jonathan
+>
+> >
+> > Best regards,
+> > Krzysztof
+> >
+>
 
