@@ -1,360 +1,125 @@
-Return-Path: <devicetree+bounces-111031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D79799C9A6
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:04:33 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5944F99C9C7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:12:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 988A71C21F99
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:04:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F34311F22E93
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7354B19E982;
-	Mon, 14 Oct 2024 12:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE3B319F421;
+	Mon, 14 Oct 2024 12:12:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XtdfJ1i2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sr9eR9rt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73237156F3F;
-	Mon, 14 Oct 2024 12:04:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B2E2619D086;
+	Mon, 14 Oct 2024 12:12:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728907470; cv=none; b=AtuXrbTBvVDigzhVn+aFQijzu+kajwmRZVZ4WeOwllJjxECDWaIPc+4yoyE3Bm/OB8uMqHwxw7yKOF7nrVskvr6reTKIOgcEroCEn06p8MuSG16eNpPEj3uNtPXtVSIE2yqrg9+UiPN5H2x8tNAZSPOZB3eVHEfNfJy5thtzgzY=
+	t=1728907940; cv=none; b=uZeOtrqnhlnQ6WU56zzOvfE+zmlehJUYew0C9+nNp8/MeMWFWfSabWSL9AfP74yG/cdgRuF0dkRz9aseqsoeG8zS3rfjEDCkvV4ApH1imUSu9y8iNLlHQBdidnrmf5FkDuB8/c+AZ/rXURW5gIoQgNZHOWHwPbmzpkCTLC82Z+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728907470; c=relaxed/simple;
-	bh=m65bwQBzBs6jiScEhJWWmGVNumyDIywRlIH4SEAIzDQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XaFC1PqY5wCSDQOp+JNP96B4LDnUwsl78hffOgNtiiZuwHNoN0cfOhQWmR/fKBGAALGi94FaAv4/2FUvxIQhB9s7HemJ9lNtNzzeXKKqxq5iNc9XlTAhsZAaIZ+81+8Wjwb39Vi8EN+umapz+C8o7GYnvXILHUlnrFrp5/e+qKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XtdfJ1i2; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-539fbe22ac0so370709e87.2;
-        Mon, 14 Oct 2024 05:04:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728907466; x=1729512266; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=gAhKE9vd5VoPEDERdDcAkweB+/fuBqaQlx8ZWt7jHoE=;
-        b=XtdfJ1i2HW9voLB0sc9lo3zUFU8efqLR9Mc3Bfg/5iJpZqe+pV48ekjU1XpzFI7guY
-         psSQTB004WugYAsTI4lfby0KXKcBYFRxWaqyqwf8vtmUHAi0kldq/ZDwWK8it86SgjDN
-         /cECNJLeOFyj72d5kJvzpiyW7UK3n/eLb2EDYNB3qiQ/f+Ow6RDZytquN9rTKvhlXgLI
-         osax32hK6B3hDz4OoOARlTiO41HY3FYp8Fhg2RVD2TYJVbgXpNCVL/xdEz09331TdD5/
-         B+7GYSChd+k8uafXDeyGuFiZQlm4WFJfTa4j2IFasfQIQyCiaA/54rlwtncqGD8+TSGv
-         cJaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728907466; x=1729512266;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gAhKE9vd5VoPEDERdDcAkweB+/fuBqaQlx8ZWt7jHoE=;
-        b=SJBKrXhKmQu5qxpgaUu2w4IK2JcG0ORRo+A+Ehfywr9S5osPNJNaZ8TrG0cUNE3gra
-         vbbUTeW/9x0zXLMxA9Ywm2p3RnqHYs0RrshXU2YIrlQXL8JYSKVXjjzd3RDlQWm91793
-         xoPk/g1WP/cjJ5HMFxtnKOgZGvKVyoL61mwUIYwT71C+NOK3emtburv2EAV9tASYiMfS
-         gJRyet0BswCLGEUpVL5AIqTrTnUe9BOd2vfuxIxe1vyhM30V6+gOl3Lr/HEEDZoQpqtS
-         +gxokDstxiI6yKvg5t69aqfKBiqrrcQBxtq1rju/jmnRC1uuikxJYljuCIkFsjAbVJN2
-         2npA==
-X-Forwarded-Encrypted: i=1; AJvYcCXNnVG67F+2QyCN5ubN8ykCcrViJI2vfHeXs+Wb0qvPm7ekwTiRhw6HkapwfBzFrxPQcGK/Zf0VBqqrQvar@vger.kernel.org, AJvYcCXiukG4H3SDy/sgHoqeOYe7Ni9JODbdnZCJ59gxTkjWFL7/vy2ztf+Mp+aWcTmFY07038TFMXA7sB45@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNO2KdiSyu6ovbXrIH3ECoqXeR4q8wyKYPoI68vJyOvoAHKmYf
-	WqD0rvWw8ffi6yZepE1c6ckDqngxSckxJPSfqqg84Sdl68r05r2w
-X-Google-Smtp-Source: AGHT+IGstZmxwNsompie+aLTNH6Adpdfi+FGz/MmaD5OGfP/FGHcH7YFWNRG3hj+N8YDPneCt2WGoA==
-X-Received: by 2002:a05:6512:1105:b0:539:fc42:e5ee with SMTP id 2adb3069b0e04-539fc42e6femr776977e87.29.1728907466071;
-        Mon, 14 Oct 2024 05:04:26 -0700 (PDT)
-Received: from gmail.com (83-233-6-197.cust.bredband2.com. [83.233.6.197])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539e2c4a137sm1111628e87.243.2024.10.14.05.04.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 05:04:25 -0700 (PDT)
-Date: Mon, 14 Oct 2024 14:04:23 +0200
-From: Marcus Folkesson <marcus.folkesson@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 2/2] dt-bindings: mtd: davinci: convert to yaml
-Message-ID: <Zw0Ixx9Qu9tgGXGP@gmail.com>
-References: <20241008-ondie-v5-0-041ca4ccc5ee@gmail.com>
- <20241008-ondie-v5-2-041ca4ccc5ee@gmail.com>
- <4u5iv24enpz46funfvbo2aggx6yiqxy7beaa3ldt5ai5wf65kl@bnlm4eyuwkui>
+	s=arc-20240116; t=1728907940; c=relaxed/simple;
+	bh=5s90H2Dujhli4g9NQkly4j1smt2b9w+YbHmuVt/j444=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WmWxav2aDWkgCsxRBmt0ZRR9AwzTrCxjmNIMFtciy+rgBD7s6kt2hTKWe11QPlvEd59WmBym+mYMmpALMjfeuOp3I15oBHT1+bNGy2frSw2USK7gLJ5ObhOeoYn7wDwvwnA8GR7kMBmY7+Ecp2haAuXwQ0gSkyQDAJtK/0TgXx0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sr9eR9rt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79F9BC4CEC3;
+	Mon, 14 Oct 2024 12:12:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728907940;
+	bh=5s90H2Dujhli4g9NQkly4j1smt2b9w+YbHmuVt/j444=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=sr9eR9rtlyhWnX5ErCtzLja6VFP9EPSoOvAOJ2cDIwe2k7dWjfpPhhCIByFh0DbL2
+	 8ZLm4opKXaLvkpIOz0U0WhS1W7QHz9TelaYJg+9ye+9yfR4sbRvvLZ4t3wxM+3QQvm
+	 5O7SB5ADlpEIaXNLjihFrJR/kvLryS/rk3Oi86Lo74hjF02VYBiKvuNoC630PmlKZG
+	 BR95hCy25l6dujYOlJJLQSn+erH3Ss2H/I3E22YPDhcxcuf89bTW93c4y9P09JdkhW
+	 QpoK8KPMk7548EotP+JRNfZvYgBayezZocTxmXmnBwwEQz46O37NkVU7CI12JdAWlp
+	 Jvf5L3DeK0+Vg==
+Message-ID: <5e8c4f51-cc38-4bb8-a75e-5152544a31c4@kernel.org>
+Date: Mon, 14 Oct 2024 14:12:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="D0LLp9JK1EE8uudv"
-Content-Disposition: inline
-In-Reply-To: <4u5iv24enpz46funfvbo2aggx6yiqxy7beaa3ldt5ai5wf65kl@bnlm4eyuwkui>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/9] arm64: dts: mediatek: mt8188: Assign GCE aliases
+To: Fei Shao <fshao@chromium.org>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <20241014111053.2294519-1-fshao@chromium.org>
+ <20241014111053.2294519-2-fshao@chromium.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241014111053.2294519-2-fshao@chromium.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 14/10/2024 13:09, Fei Shao wrote:
+> Create and assign aliases for the MediaTek GCE mailboxes.
+
+Why?
+
+Your commit msg still does not explain why you are doing things. What
+you are doing is pretty easy to see.
 
 
---D0LLp9JK1EE8uudv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
+Best regards,
+Krzysztof
 
-Krzysztof,
-
-I'm sorry for all these iterations, it wouldn't have been necessary if I had
-done my homework better. I'm not too familiar with writing these and I do
-often find the descriptions unclear and not obvious.
-Anyway, thank you for your patience, reviews and help.
-
-
-On Tue, Oct 08, 2024 at 03:28:33PM +0200, Krzysztof Kozlowski wrote:
-> On Tue, Oct 08, 2024 at 09:02:45AM +0200, Marcus Folkesson wrote:
-> > Convert the bindings to yaml format.
-> >=20
-> > Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
-> > ---
-> >  .../devicetree/bindings/mtd/davinci-nand.txt       |  94 -------------=
-----
-> >  .../devicetree/bindings/mtd/ti,davinci-nand.yaml   | 115 +++++++++++++=
-++++++++
-> >  2 files changed, 115 insertions(+), 94 deletions(-)
-> >=20
->=20
->=20
-> > diff --git a/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml=
- b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..1263616593532e8483d556b=
-4242b004a16620ddf
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/ti,davinci-nand.yaml
-> > @@ -0,0 +1,115 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mtd/ti,davinci-nand.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: TI DaVinci NAND controller
-> > +
-> > +maintainers:
-> > +  - Marcus Folkesson <marcus.folkesson@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: nand-controller.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - ti,davinci-nand
-> > +      - ti,keystone-nand
-> > +
-> > +  reg:
-> > +    maxItems: 1
->=20
-> This was different in original binding and commit msg does not explain
-> changes.  Be sure any change from pure conversion is explained in the
-> commit msg.
-
-Hm. Another misinterpretation from my side.
-Should I use items instead? E.g.
-
-  reg:
-    items:
-      - description: |
-        Contains 2 offset/length values:
-        - offset and length for the access window.
-        - offset and length for accessing the AEMIF
-        control registers.
-
->=20
-> > +
-> > +  partitions:
-> > +    $ref: /schemas/mtd/partitions/partitions.yaml
-> > +
-> > +  ti,davinci-chipselect:
-> > +    description:
-> > +      Number of chipselect. Indicate on the davinci_nand driver which
-> > +      chipselect is used for accessing the nand.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [0, 1, 2, 3]
-> > +
-> > +  ti,davinci-mask-ale:
-> > +    description:
-> > +      Mask for ALE. Needed for executing address phase. These offset w=
-ill be
-> > +      added to the base address for the chip select space the NAND Fla=
-sh
-> > +      device is connected to.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x08
-> > +
-> > +  ti,davinci-mask-cle:
-> > +    description:
-> > +      Mask for CLE. Needed for executing command phase. These offset w=
-ill be
-> > +      added to the base address for the chip select space the NAND Fla=
-sh device
-> > +      is connected to.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0x10
-> > +
-> > +  ti,davinci-mask-chipsel:
-> > +    description:
-> > +      Mask for chipselect address. Needed to mask addresses for given
-> > +      chipselect.
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    default: 0
-> > +
-> > +  ti,davinci-ecc-bits:
-> > +    description: Used ECC bits.
-> > +    enum: [1, 4]
-> > +
-> > +  ti,davinci-ecc-mode:
-> > +    description: Operation mode of the NAND ECC mode.
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    enum: [none, soft, hw, on-die]
-> > +    deprecated: true
-> > +
-> > +  ti,davinci-nand-buswidth:
-> > +    description: Bus width to the NAND chip
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    enum: [8, 16]
-> > +    default: 8
-> > +    deprecated: true
-> > +
-> > +  ti,davinci-nand-use-bbt:
-> > +    type: boolean
-> > +    description:
-> > +      Use flash based bad block table support. OOB identifier is saved=
- in OOB
-> > +      area.
-> > +    deprecated: true
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - ti,davinci-chipselect
-> > +
-> > +unevaluatedProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    nand-controller@2000000 {
-> > +      compatible =3D "ti,davinci-nand";
-> > +      #address-cells =3D <1>;
-> > +      #size-cells =3D <0>;
->=20
-> I did not notice it last time.... but what is this? How could you have
-> no sizes?
->=20
-> > +
-> > +      reg =3D <0 0x02000000>;
->=20
-> This is odd. Address is not 0... and size should be 0.
->=20
-> I don't get how it even works. For sure it is not correct.
-
-Outch. It slipped through when I was laborating.
-
-This was the example I wanted to get working:
-
-
-```
-examples:
-  - |
-    nand-controller@2000000,0 {
-      compatible =3D "ti,davinci-nand";
-      #address-cells =3D <1>;
-      #size-cells =3D <1>;
-      reg =3D <0 0x02000000 0x02000000
-      1 0x00000000 0x00008000>;
-
-      ti,davinci-chipselect =3D <1>;
-      ti,davinci-mask-ale =3D <0>;
-      ti,davinci-mask-cle =3D <0>;
-      ti,davinci-mask-chipsel =3D <0>;
-
-      ti,davinci-nand-buswidth =3D <16>;
-      ti,davinci-ecc-mode =3D "hw";
-      ti,davinci-ecc-bits =3D <4>;
-      ti,davinci-nand-use-bbt;
-
-      partitions {
-        compatible =3D "fixed-partitions";
-        #address-cells =3D <1>;
-        #size-cells =3D <1>;
-
-        partition@0 {
-          label =3D "u-boot env";
-          reg =3D <0 0x020000>;
-        };
-      };
-    };
-```
-
-
-But I'm getting the following errors:
-
-```
-=2E../ti,davinci-nand.example.dtb: nand-controller@2000000,0: #size-cells: =
-0 was expected
-        from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.=
-yaml#
-=2E../ti,davinci-nand.example.dtb: nand-controller@2000000,0: reg: [[0, 335=
-54432], [33554432, 1], [0, 32768]] is too long
-        from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.=
-yaml#
-=2E../ti,davinci-nand.example.dtb: nand-controller@2000000,0: Unevaluated p=
-roperties are not allowed ('reg' was unexpected)
-        from schema $id: http://devicetree.org/schemas/mtd/ti,davinci-nand.=
-yaml#
-```
-
-The resuling 'ti,davinci-nand.example.dts' contains the following:
-
-```
-    example-0 {
-        #address-cells =3D <1>;
-        #size-cells =3D <1>;
-
-        nand-controller@2000000,0 {
-          compatible =3D "ti,davinci-nand";
-          #address-cells =3D <1>;
-          #size-cells =3D <1>;
-          reg =3D <0 0x02000000 0x02000000
-          1 0x00000000 0x00008000>;
-```
-       =20
-
-How do I set #address-cells in example-0 to 2?
-I guess that is the problem.
->=20
-> Best regards,
-> Krzysztof
-
-Thanks,
-Marcus
-
---D0LLp9JK1EE8uudv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCAAdFiEEBVGi6LZstU1kwSxliIBOb1ldUjIFAmcNCMEACgkQiIBOb1ld
-UjItAxAApvXS5J63yVeffC/7GhIWALzNCxsP8G8svrNF+6jz0b6j/FkvhWVYsTxQ
-FpPEkVM8KBOY9ZBYEHeNVlJNciDJMV9SNNiWbiPTTLFofBED14eXEbCN5yorUCjY
-PFDcYYPDJYdwkHsdyMkH7XrSNVl0y8mT5hM1FsTR0zm0CO7SDvN4riQ+1Bdbh2Xh
-3s7bdcnfOE8YY+UQYf6c85SfGQWmw5WX3voQzuBlo1rh7G2rLkg7UM4vQ4+A5Bsp
-Ht1pAy0RieodHZziuTnYWGvHhMCS8gIRO/NiLUEL1GUjye2tY6JJ4vptLdH1lvmQ
-+8fW0RKnTnuvwaxpYVDQl1NVF3388U1hRlLTID3etPZ34ig1NB/JfAg/W6VbrLOk
-R4myKdRvnfNC6Ets/K8KsPvu+vUbJ/HMcAeI09dCXni3m+NScoZQx8iOcdBSMxL+
-SGznacfKhW+d4R1cqv9sgcmwCDApYDOnWfg7bB/bGSEKYSAWvgkX/1j6A9b6IpNw
-ZV++pw07YcrAW3Ex2n/2GyozuiWl5tjua8VXX2xbwkkk2mpUfq5Kg++yipDSPtet
-F74nk3kgheUZvNqhuHiEyG6LhBeNfP2WLlDn1vg70R8TpyPJazdVjH100ZI/cbbG
-PfqOeAiUVfOaoKCOvHUOYq3U3Xk0vF5y9gnCtPXtSNi3anvN3w0=
-=2XDV
------END PGP SIGNATURE-----
-
---D0LLp9JK1EE8uudv--
 
