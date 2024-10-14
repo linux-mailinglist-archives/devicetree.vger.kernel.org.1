@@ -1,172 +1,256 @@
-Return-Path: <devicetree+bounces-111097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63A2499CFFA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:59:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8A799D072
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:04:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 02AF0B238DA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:59:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03947B23A30
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D8B01C303D;
-	Mon, 14 Oct 2024 14:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2141AB538;
+	Mon, 14 Oct 2024 15:03:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b="oqaDaQod"
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="c+JnI8eS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-relay-internal-1.canonical.com (smtp-relay-internal-1.canonical.com [185.125.188.123])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2133.outbound.protection.outlook.com [40.107.243.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0493D1ACDE8
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 14:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.125.188.123
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728917857; cv=none; b=QSW9tUTtuJv6j+aEwgxqLvPdCvY6k3/ZYDa0BlJZhP7mtHYwqRwWC4Jkns6HSTZ4pDDG7PA3Izbvj6SsdtVfrNqCyI77BcmUeWvarobaXtHHEQaDVY7r5fZrG5OYt6+Mh3hlVtcT7TZUj41zlGmRvu3fBKQ+TyRK1rb0U1iXfss=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728917857; c=relaxed/simple;
-	bh=4I22R8EH6rJft0GBNcZ0FqU8QlkA7JHkZcP5FIrhCMQ=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LwGcxIpSHs7vcIQVlOsr79gDhogCP1aUCbwqZ06tgqMjuus3wcevLhkOSXH+6MBGZDOf0QMsJfXkGDsijYMq4dOorbZ9an3UKrLNZlSubxhh2auYy8z4Xmck/2kKIkS+8HX7PlWQKRpJEv9f5jYGkfnS3aoEvrSVDPB/2j7WVOI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com; spf=pass smtp.mailfrom=canonical.com; dkim=pass (2048-bit key) header.d=canonical.com header.i=@canonical.com header.b=oqaDaQod; arc=none smtp.client-ip=185.125.188.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=canonical.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=canonical.com
-Received: from mail-oi1-f199.google.com (mail-oi1-f199.google.com [209.85.167.199])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 8024140624
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 14:57:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
-	s=20210705; t=1728917843;
-	bh=w7jcJQQrs2lciGR+l1IMV3wPi6SzvVaYcIWT6ArXKPU=;
-	h=From:In-Reply-To:References:Mime-Version:Date:Message-ID:Subject:
-	 To:Cc:Content-Type;
-	b=oqaDaQodQE6Tf+dNfyZ1RdwJa87Kz9p0bIg3rHSHK+GopyTX8tQOhuQDyMDD5GUfF
-	 DC9yFIq8hPk244lUkL7fRWOBaInjpsNHXaMqcWKjdt7b+rGhiuOEuz5cPzjOm65x9d
-	 9jq8AKVg45zvF3hwvH0NTkmuRnnttBAPJBUYbcczS1pzkqZK0u9ayykDC+ERZofZGx
-	 cgIfwAJyhXpoI0u8MGYbO0TJlSHqiQPjUpQnsLQ1VZf4SJTMzJdmKG56ZyWRyrRF38
-	 xmg0efxLW3Lf8yubNu0o/godt418aYZupUY0cs7M49IdEk3m7DcjKJl30Gfxh8SaHY
-	 GMmjhDztO5qOQ==
-Received: by mail-oi1-f199.google.com with SMTP id 5614622812f47-3e5d8cf7088so1248277b6e.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 07:57:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728917842; x=1729522642;
-        h=cc:to:subject:message-id:date:mime-version:references:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w7jcJQQrs2lciGR+l1IMV3wPi6SzvVaYcIWT6ArXKPU=;
-        b=KGBtFRC4Vh6CK7f7r/UZz7cY24KyoaPP/U/9wnohEiNBqfwOfGHw2+tTq0b7kyHqwW
-         brB2mo4LmhlIukq0BIBpBWx358jqEHh68TBbYXGxDSnHP3VXu5WCf8hxMenbFgGxa6CL
-         rQOY1tgF9XCJLjEJ58GRf2SzAb0Re1du3pVMC9GfyFDPhFYdAnvJwefQsRUDbJ+0tLjQ
-         l4fz6LhSGbhHzvYvfy+XnwdFW1lKxVlU8Cjj8btIct5Zup4nyEDQGqFO0JIZChHngmwn
-         mTJQbDoEuxyJSv2pGPgHbdeIqQm3uUdJgZmQ5xpRERqH+cp6LEk9+O5W//o4RDzB1F0l
-         oHdQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXl5RWvQHeOpuvXpvEQPF54miwvZEZbfaUxNgHkZUHJW/UC9O89pMWAyJ7CL0yObqOVzZHGg32rGRr6@vger.kernel.org
-X-Gm-Message-State: AOJu0YyH997SZ2qmyUKMuRfcIjnjTYm9yocVIkTKjPVeR8OjU7JNgPz7
-	EpqPqOEz74hmTN5A17H1WaTGEegjL/nkSVfKqT1oRjOzCaeQvxh8r/bDE6iXbCxrA3xcTh5o4gC
-	rDyTgZ6giZdVMvM6U74sPxbSLoktMuga3B6wJ/D7f3m8aE70yAoHZfh248cI8qgpaEVLcIfRGkS
-	gJFl7nGG1NZxM8GW34QaHOqDVasFxxxjHz/lfSfiMd2EPFgy1V8Q==
-X-Received: by 2002:a05:6870:4214:b0:278:bfa:87da with SMTP id 586e51a60fabf-2886dced84amr7421847fac.10.1728917841765;
-        Mon, 14 Oct 2024 07:57:21 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEZc7S/SsrDerBCPsPZzUzEauPicO5lJ3x7aYFJHGS/2FP/NfQZYzrPO7bg8HBk/3yI2N7NccykyCVKHL+eU0Q=
-X-Received: by 2002:a05:6870:4214:b0:278:bfa:87da with SMTP id
- 586e51a60fabf-2886dced84amr7421814fac.10.1728917841412; Mon, 14 Oct 2024
- 07:57:21 -0700 (PDT)
-Received: from 348282803490 named unknown by gmailapi.google.com with
- HTTPREST; Mon, 14 Oct 2024 10:57:20 -0400
-From: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-In-Reply-To: <20241014123314.1231517-4-m.wilczynski@samsung.com>
-References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
- <CGME20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328@eucas1p2.samsung.com>
- <20241014123314.1231517-4-m.wilczynski@samsung.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1DD481B7;
+	Mon, 14 Oct 2024 15:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.133
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728918190; cv=fail; b=sgZ95JtXZgV38aZY0YUb/OrInRc4pIMaRAIxtj055j8Si0Y7wFEascaQMxUPNMD0IJPKHgs8XNiJpCGrIL7Vvostle8BmR5TyoUrJFVi4oCxrsjWi8JdECqNTDA7mtcmdNX0nFm+ZbJutZL5Df+2VKdh8qDJa/gjNn/+QApewSI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728918190; c=relaxed/simple;
+	bh=PM2kHOIn4dgAeli6WqGB8tw08eskhuD0QI5GmHGq1qc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=S+SMtKzaox6LWFErxKvtGXGkJ6MF+ikIPZnUK8pklandBRFNKrOqFxnCnd4hETlPvhnUGDWBePF8ozOercJD82LMWtxgwdN+mIasFqxRtM6l+OUbl90CTYfB8XwpmzzlcR8FAZVWh0dsMLfFRo4i3ihDkMd0baxFjwg697i9Cs4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=c+JnI8eS reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.243.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=aAPt2X6syWuUD6zeJnP6dDi9UyzKxiqAZOskLgzrBBQVr0l8LaYfWddYwNjx5tumLT5gDtscLgNikMFDEQKiPkZxaMNdfPlMX1Bg4ABdYSExrvghWuP+XheHxle2WktmLYnnUiV0I4Lq9lk0xSfhvDaZZGQtLC19wnguU1n7/s52Aruj0Tf9UuLdU4nV3uTJOpGeuhe/hYIgnd7/2ubhq64IL625K0CRXxHn17vQwM3om//vVf7xA026Bdge8c0xNBLRAy1QAbeJ0glCHH4YrRYn1yIPjtir385FY9ji3MJ5T9zrhXU8GZcadzZ7FVPZK54oAzLMClLxtVgGetbeYw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2nclub39f5O7yaHC0mr1HmtTiVrl0MhpRp/q1v8VnzM=;
+ b=dvQfXJZnGiWQYsfNvIMDt7y7k/Ctj2d6nzgq3VixOaDD5Zjq7gF2SDWPxh2y3jh3POpzyFW9iDgU5OnOg5Wi+OPaknUIgStvWgqkmIv09NyvsmYbqw0dbH4EBAxTxL5sxEQRdHTq/yLC2651t5QEaMvVHsxHDv66q7AdPWUV80syLjKaWWKc00thhq3fngMyExMLD3q3SvGmz4DZ9mZkbXOh35eDhyAmy3RmRhgRZ3qHfXJx1orENd4f4W+Xhi0reMXgAXBOmqyLmeBxRi77RKm1weW/jI8Bm3tpZ9QF/hp9KcEmwgkpx0Ho7qz4jvU0xrCvQXCwffWn9hbzZjlu3Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=amperemail.onmicrosoft.com; dkim=pass
+ header.d=amperemail.onmicrosoft.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2nclub39f5O7yaHC0mr1HmtTiVrl0MhpRp/q1v8VnzM=;
+ b=c+JnI8eS/SZcKGnsniModWjN4BaYwQJ8Ak2v6CjT2s/d8W/WARFHVRXSshLDWshSnNdg0EhmShxbHiv5RJbimKkJl/sGVL1ClYD4L2bB6I60M2y4ZveUie1aFOVByiAwFYpILczdTswjIzunx7ZbJHErKtXgB00w5xD6j7giQxs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
+Received: from BL3PR01MB7057.prod.exchangelabs.com (2603:10b6:208:35c::16) by
+ PH7PR01MB8448.prod.exchangelabs.com (2603:10b6:510:2f3::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7982.34; Mon, 14 Oct 2024 15:02:56 +0000
+Received: from BL3PR01MB7057.prod.exchangelabs.com
+ ([fe80::b69e:5684:ed7c:4d09]) by BL3PR01MB7057.prod.exchangelabs.com
+ ([fe80::b69e:5684:ed7c:4d09%4]) with mapi id 15.20.7982.033; Mon, 14 Oct 2024
+ 15:02:56 +0000
+Message-ID: <01c3d596-197a-46c6-b56c-05ef602b9c96@amperemail.onmicrosoft.com>
+Date: Mon, 14 Oct 2024 22:02:44 +0700
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
+ Jefferson BMC
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Chanh Nguyen <chanh@os.amperecomputing.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
+ Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+ Open Source Submission <patches@amperecomputing.com>
+Cc: Phong Vo <phong@os.amperecomputing.com>,
+ Thang Nguyen <thang@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>,
+ Khanh Pham <khpham@amperecomputing.com>
+References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
+ <975ab37a-7429-4c52-b1e7-6ec9ba63048a@kernel.org>
+Content-Language: en-US
+From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
+In-Reply-To: <975ab37a-7429-4c52-b1e7-6ec9ba63048a@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: CYXPR03CA0014.namprd03.prod.outlook.com
+ (2603:10b6:930:d0::13) To BL3PR01MB7057.prod.exchangelabs.com
+ (2603:10b6:208:35c::16)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Date: Mon, 14 Oct 2024 10:57:20 -0400
-Message-ID: <CAJM55Z-bzivMZWUsHiii+2tw2-kdRe7kqtVa+MvPEAVTmOvChg@mail.gmail.com>
-Subject: Re: [PATCH v4 3/3] riscv: dts: thead: Add mailbox node
-To: Michal Wilczynski <m.wilczynski@samsung.com>, drew@pdp7.com, guoren@kernel.org, 
-	wefu@redhat.com, jassisinghbrar@gmail.com, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, paul.walmsley@sifive.com, 
-	palmer@dabbelt.com, aou@eecs.berkeley.edu, m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL3PR01MB7057:EE_|PH7PR01MB8448:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3f8e3df6-448f-49ac-55d0-08dcec614920
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|376014|1800799024|7416014|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?Tmh5SHMyR25odXF3bUJSU3BqTlpKYmRXTkE4S1BqWXcwSWdqNHcxcWdJVFQy?=
+ =?utf-8?B?S2JKbjB2M25janRsaTd6Njdwd1dLODhJOFY2VnFxeFpGM1IyOXEzTVBGNFRo?=
+ =?utf-8?B?dVR0d3hFdnhnT1FVZThCMU8yLzltb3VRbWhFclhnVVpOQ3Y3MElxZ0pzT3Vi?=
+ =?utf-8?B?OStHK0JuL0hNamlTekNkNVJuaG5IMmVhTFRKdGVYaWhPcEsrZWxsSCt2QjJ5?=
+ =?utf-8?B?Y2VzcjFEclh4RnFxV0Y1ZnNPcTh6bCtxblVlNVBDMkpMNUs2clhIcW9lUGhF?=
+ =?utf-8?B?SWxJcUJ4WlZjQ1NEOXNMMzZQc2djd0RjNkhGWHhPMGwxeXlDT1NGY3lYclpu?=
+ =?utf-8?B?dm5XajdBVC83VGYwa3dlZnBlRTh5ZHhpOFNnQTkrOTB1YTRpYmQ2cDh0dExE?=
+ =?utf-8?B?dU02b2xlNWwwVUFWN3lWWkFUUkdEdHdYa1VkeGU4YnNCYWVwV0puY01ZZ0FZ?=
+ =?utf-8?B?Sm1kdU1JNnZmTnVYZUlUcmhwSURMQklQdVBnbzJUQTA1Q2NKeTlGeTZmRFdz?=
+ =?utf-8?B?MDRGTDY1TFJnaUZTK3lPek5DcVpJMFp3cks0Y0N3TGN6YUFUV2Y2dkxVYjcv?=
+ =?utf-8?B?NmNrREJwcCtTd0JUY2NRUjI5bCtPYWhSNThvbDVaLzF3M2xkQjluNlZiWi9M?=
+ =?utf-8?B?VzFsYmtxYklaOEdMQXZHOVdIYkUzQmtNOW5mdGZ0c2g3LzF1QUxUc2M1ZU9y?=
+ =?utf-8?B?RHlFMVZSVUd2N3U0UURXNTBaMkI2WGtUYTRRaXM5d250bGszQjR3N3NJemN2?=
+ =?utf-8?B?N3l1MTQydWFnTE05aUVIZllCaVUwdmtmUTloOWk3SUdYU0QxMDBUSHVmQWxu?=
+ =?utf-8?B?THFqbEZ4bDV0OEo5VWVhSldOOGc1d1BsY29wSitURVMrYzhQMDZ5K2RuejUz?=
+ =?utf-8?B?QTMvaUw3cVplSEdsK2xYa292c3dnL1BaeTVjeWlqdGVHT2NwSWlXWFk3UDM3?=
+ =?utf-8?B?dmw5UUxDaTZGa0lKT2pFcWVTamlvSzQ2UTdyTURMNU83OU9pYWxCUExJRjdq?=
+ =?utf-8?B?WmU0RVFQMHlmUkRwVEVqcEdRd21HRXc0VENiZThDaHE1K2hKYXQ5cE5HQkt0?=
+ =?utf-8?B?YXhueDVHVGpiK1ZwRVJqMkFQdVFHay8rMkVNaE9ZNk9BYXpsbkROcUx5VHE3?=
+ =?utf-8?B?M0doOHl2UlVTOTdiNnBaZVdYNkZHVzRqNzdJTnVRWEtoV1E1a1QwU2w0L0pr?=
+ =?utf-8?B?anNuWDRnTVVRVFJkblFKVGdGbUY3cmtveDNlS3Q5V0NWNXdOb0tja3ZKaEpv?=
+ =?utf-8?B?WW1wc2RENmpoL1dHc1R6MVIwK3dpU2FGMG1TOFVpdVVHVU5ibUU5d2RiLzAw?=
+ =?utf-8?B?SVhKQXkwU0VJenROY1pjYkd3amIxOGk2S2UzRFd2Y2lNYW9TNytTblh3TG5h?=
+ =?utf-8?B?MFFBRnJnT01CbnRqMGFiL3REWTdvQ3VLUXV3ejZ3Qks4d2M4MjdlQjkwNjUv?=
+ =?utf-8?B?ekZiZkUyZWc4d2V2dGFEZWZmenA5d1Vpek9HVllnVUtzaUpTR1E0bUpLSHpL?=
+ =?utf-8?B?WHBqZTl1YTFFZTAyZm1INjJBR1dVMDhVNGZYT2d2aWk0MXNvRVY2VUI3R0xD?=
+ =?utf-8?B?dlNORnk2MjY2MVVIdldtT2UyTWYwaTlHZk0xVnRoSkJCT3lGalU5RlNzRmU3?=
+ =?utf-8?B?blk5UXVVdm9MbWRrc1dGRVZPdXBIdkN1WjBRVGJQY3ZWUENHOVBzWWlLMzFX?=
+ =?utf-8?B?YU5ZUEE0Q05PKzhjbFNWbVFLTkVKa1M3d3cvdDRURHdHQ0hXL2dkZWxEZnNj?=
+ =?utf-8?Q?Z+hBO23Oh9oOrYQO/TYNlVVIOvT/XixTCUwayTE?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR01MB7057.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(921020);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?MWJRUm5WbTg0WWg3MXdYdldwMTJXbW9yTnB0eGtGLytaUXlsTnUzZGE0SDdS?=
+ =?utf-8?B?bStCbVpEYWwrYnBxd0NTMDR5YnVQZ2dOS3dEc2dSVEx4WWdUQ25ZRkJjdHdR?=
+ =?utf-8?B?Q1JNandxTTdmdUR0RjQ5Z0lKRzJoa1h6SFZsRm5kV0NZREczVHVTWmtBendr?=
+ =?utf-8?B?V1dhYy9rQ0VvMEd4dTRsZ1JBdjBSNnFpSURWUnZWaHNqdzIwSkp5UmZkWjdU?=
+ =?utf-8?B?elY1akU1NlhzVVdXdk4zaENEc1VpNVpYdkY5ZVBrQmIrdHFaL0pXdFpYTFNs?=
+ =?utf-8?B?QytOOThxOUp1cktkV0p1MkR6ay9ONEZYMGkwRVAvNXl2K0F6SkJYSXU5NU41?=
+ =?utf-8?B?MU1uT2dqSEwyMUcwV3JLNGtRaDJaQ3Y1U0hSNlNob3kyaVFxckFWN0tlZkJV?=
+ =?utf-8?B?K3ZyRU81NnBJVGkwbTBsRTlSWjU4aTQraDFaSlVoeEJtdVlWU0F3R2JjMUZz?=
+ =?utf-8?B?NVR0ZWJaK1dWY3NsamhacFpudkxjN3JXVVRrNGNNM21KZnlDMkJiSVpkWEVM?=
+ =?utf-8?B?TVBGRStYNjFkZWlMeFJVdjdUVzRjVkpib3pmVWVja1N3YkFrajBSTXZLV1FH?=
+ =?utf-8?B?cDE2MzBsRzlDMzNDb2ZKNzNwUDd4WXU3Tzgyc01BQi8xZWxOK1prak1Nb2Q4?=
+ =?utf-8?B?V3V4ZDVtRmYzbFUwL2FMRDRwUjRpWVkzaFBPSVpnY1VDdlcvQitlZkpBYWpz?=
+ =?utf-8?B?WWswK256VnIvY1pOQ0t5MVVkWmJrVkkyMFlsZm4rUy9UdEJ1aTlkODBQcVJa?=
+ =?utf-8?B?a2ZlZlIrM1lpU2h5dWx5MHlyam13MmtLSFBKL3hwZ1BXVEdVSTRHanFiOS91?=
+ =?utf-8?B?NkMwZHQxQW11dG81bWE4VDN4N0U5bkpWdXZlb0JFa0FTcXBDd3N1dlFZREw1?=
+ =?utf-8?B?MHlVTU02eUd1N0c5VkpZUjlldDB0MkI3OFQ1T3pCK08xdGdPUUFjL3VoSm1x?=
+ =?utf-8?B?TzVCR2RxQWxZeU1KZ2dOTmhIdFd6ZytLaWZJV1JmTi85dis0NWtKM2d5dkFN?=
+ =?utf-8?B?bTczQkRBckhuK2tYVjNCTnRQMGNyWDg0YlU2TFZWK3dLU3NENWRTamtzeHkz?=
+ =?utf-8?B?bjRJWGxQMUZvL2VKblFOVktJcmdrakNrdHJPT3V4bDJtTmVYRy9lbnR3bFht?=
+ =?utf-8?B?NkhOdWRQc0FBVjZETmRVU1FROWFHaUR3S3Z6Mnc3UkljTmZSd3EyaEs3SFJt?=
+ =?utf-8?B?SmxGTkxNaE5KWnkzUEdWSUlaaGd5YXloY3lucTFFTWg4bHBEZy9NZk0rTGdp?=
+ =?utf-8?B?cFVaMklpWWdqYVZmbjlpSmpoQWQxRmNrV1lwNmFzemFUdXhoT1FMMElrVFlk?=
+ =?utf-8?B?cTBUeE5ST2dRcDJyN09aYVBkVkhuOWgrSFFvcXBxN2JkR2lTeDBsblFIOHA2?=
+ =?utf-8?B?SFIrUklQTVpHaFhFdFVJZFZhNnowZU9iVWQ1QnhyOU1MWHBhNURKdkFhazZk?=
+ =?utf-8?B?LzhGRVFwa0IyalNBU256a0FPeFJoR3NlamRXUlRReEYwQXNlZmNkbmZPanJ4?=
+ =?utf-8?B?SzdUYWdNaCtleWRNRlUvclhlNHhnRjZTckh4MERDNE1sMTYxY2V1eUdHQ0I2?=
+ =?utf-8?B?VmZyb09jOG94a041MktKd1ZoT0Y4K0VBOUg0S3lXWXNEMlRkb3FuWXk0Vjd2?=
+ =?utf-8?B?anBUUjJKbWorNm1rRGdHcktQUWh5d0JyRlZVSjVES1d5dEdYeHY1a2h4Z2kv?=
+ =?utf-8?B?OTM4bU5aQ203SDEzQnlXMzZ3RVNMWGJkbU1ST3loYWk5SmdyWVIvZ0U5MzRo?=
+ =?utf-8?B?eTFxZkJuU2w2ZlptTmdJMzY2TEtLcVVDMVdlZjkyQ0luM3RoVE00R0VEWnpX?=
+ =?utf-8?B?aDVuRHFmN2pXQVpYSjZodnp5c0JyM0F5ekFNVG1QNHZpZUdVeG9RUkt0WnRo?=
+ =?utf-8?B?d09sU0pJSzNCWmVnNGk1OG5wRDBLQ1d0VU0zUGhmN1pjNEdBWGFSYjVNamJa?=
+ =?utf-8?B?NEpDSkkxS2gxQmpKQ0NlaVJRSmdBTXcxUkUvOUZ5Z1B3Sm9lWnZuVlZTQndq?=
+ =?utf-8?B?Zjl1TmxsWWVKQ1RnL20zZU5jT2FSTlJUQXJ3MzlRenJzNm1xQkJEVkdoZUhm?=
+ =?utf-8?B?SzRpZXRFR0VFWFIybTNkVDNjQkd4WHJLRDl5M0Z0ZDV3anR0T1FRN1hYN2ZH?=
+ =?utf-8?B?d0tCWjY0SUNBYzZKTVR2NVJVYno2dGVNN0paOXppb0ZVSkNBeDlRTzNjNm9N?=
+ =?utf-8?Q?9qJm2x3V8fgN/0R61DxHpwc=3D?=
+X-OriginatorOrg: amperemail.onmicrosoft.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f8e3df6-448f-49ac-55d0-08dcec614920
+X-MS-Exchange-CrossTenant-AuthSource: BL3PR01MB7057.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 15:02:56.5187
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zez/jUZn+gPZRLCadUDodMo6aTIe0qukhzl3czeYVlZoCoS1aWoE3d3GeYe5hXoTEbsKxIhJ5nOU0PyWQADAlzCBmMLYApUCgFp7OySXxil8uaVbNGrKXTMksjMelM1Y
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR01MB8448
 
-Michal Wilczynski wrote:
-> Add mailbox device tree node. This work is based on the vendor kernel [1].
->
-> Link: https://github.com/revyos/thead-kernel.git [1]
->
-> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
-> ---
->  arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-> index 6992060e6a54..435f0ab0174d 100644
-> --- a/arch/riscv/boot/dts/thead/th1520.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-> @@ -555,5 +555,17 @@ portf: gpio-controller@0 {
->  				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
->  			};
->  		};
-> +
-> +		mbox_910t: mailbox@ffffc38000 {
 
-Hi Michal,
 
-Thanks for your patch! Please sort this by address similar to the other nodes.
+On 14/10/2024 18:58, Krzysztof Kozlowski wrote:
+> On 14/10/2024 12:50, Chanh Nguyen wrote:
+>> The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Jefferson
+>> hardware reference platform with AmpereOne(TM)M processor.
+>>
+>> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
+>> ---
+>>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>>   .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 ++++++++++++++++++
+>>   2 files changed, 647 insertions(+)
+>>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
+>>
+>> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+>> index c4f064e4b073..b1fb0853a789 100644
+>> --- a/arch/arm/boot/dts/aspeed/Makefile
+>> +++ b/arch/arm/boot/dts/aspeed/Makefile
+>> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>>   	aspeed-bmc-amd-daytonax.dtb \
+>>   	aspeed-bmc-amd-ethanolx.dtb \
+>>   	aspeed-bmc-ampere-mtjade.dtb \
+>> +	aspeed-bmc-ampere-mtjefferson.dtb \
+>>   	aspeed-bmc-ampere-mtmitchell.dtb \
+>>   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>>   	aspeed-bmc-asrock-e3c246d4i.dtb \
+>> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
+>> new file mode 100644
+>> index 000000000000..f24111ab9e65
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
+>> @@ -0,0 +1,646 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +// Copyright 2024 Ampere Computing LLC.
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "aspeed-g6.dtsi"
+>> +#include <dt-bindings/i2c/i2c.h>
+>> +#include <dt-bindings/gpio/aspeed-gpio.h>
+>> +
+>> +/ {
+>> +	model = "Ampere Mt. Jefferson BMC";
+>> +	compatible = "ampere,mtjefferson-bmc", "aspeed,ast2600";
+> 
+> Missing binding.
+> 
+> Please run scripts/checkpatch.pl and fix reported warnings. Then please
+> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
+> Some warnings can be ignored, especially from --strict run, but the code
+> here looks like it needs a fix. Feel free to get in touch if the warning
+> is not clear.
+> 
 
-> +		       compatible = "thead,th1520-mbox";
-> +		       reg = <0xff 0xffc38000 0x0 0x4000>,
+Thank Krzysztof for your review!
 
-The documentation[1] calls this area MBOX0_T, but it says it's 24kB long.
+I will add my board to dt-bindings in patch v2.
 
-[1]: https://git.beagleboard.org/beaglev-ahead/beaglev-ahead/-/blob/main/docs/TH1520%20System%20User%20Manual.pdf
+Follow some previous patches on 
+Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
 
-> +			     <0xff 0xffc44000 0x0 0x1000>,
+https://lore.kernel.org/all/20240805-potin-catalina-dts-v7-1-286bfd2ab93b@gmail.com/
+https://lore.kernel.org/all/20240522192524.3286237-13-eajames@linux.ibm.com/
+https://lore.kernel.org/all/20240502002836.17862-7-zev@bewilderbeest.net/
 
-According to the documentation this is inside the 24kB MBOX1_T area.
+Best regards,
+Chanh
 
-> +			     <0xff 0xffc4c000 0x0 0x1000>,
+> Best regards,
+> Krzysztof
+> 
 
-This is callod MBOX2_T, but is 8kB long.
-
-> +			     <0xff 0xffc54000 0x0 0x1000>;
-
-This is callod MBOX3_T, but is 8kB long.
-
-> +		       reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-
-Maybe these should match the MBOXn_T names in the documentation?
-
-> +		       interrupt-parent = <&plic>;
-> +		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-
-You should probably also add the clocks here:
-
-	clocks = <&clk CLK_MBOX0>,  .., <&clk CLK_MBOX3>;
-
-..and claim them in the driver. Otherwise the clock framework will consider
-them unused and turn them off without the clk_ignore_unesed kernel command
-line.
-
-/Emil
-
-> +		       #mbox-cells = <2>;
-> +		};
->  	};
->  };
-> --
-> 2.34.1
->
->
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
