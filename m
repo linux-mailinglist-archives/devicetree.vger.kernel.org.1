@@ -1,250 +1,110 @@
-Return-Path: <devicetree+bounces-111012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29F5599C89B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:20:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 74F1A99C8A1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B24F1C225CB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:20:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F32C289A09
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:21:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA7A71ABEC9;
-	Mon, 14 Oct 2024 11:16:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1C8214B06A;
+	Mon, 14 Oct 2024 11:19:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ve6xDzpA"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="EdjcBH3h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86D31158DD1
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 11:16:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA73149C57;
+	Mon, 14 Oct 2024 11:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728904596; cv=none; b=qpLP5ewvc3f6MFZmmuQWGcblXh+Wwk8BxyuyQcu3MoHGFglulMraeqIJcXPJoUzGrRZBroVnDO7UkEl+ArHdt/QibPbHhS5VcXLgkShzlJSUn9GaI9/wErPLoQfRjVabFOEgDvw96oXvRNEe9Tkrp7sLf2AhTF2LKBGMqs+C8x8=
+	t=1728904783; cv=none; b=XbKF5FEsZc4DE8Q4HuWdy/ZKSHtUT8AAEgaXM84GrD8fIBDskiMWd4OZnu0PulY0bCxuMbkJm5C3LQudqzCpV74qYBfXMlB3t/LLFxCssv8t5bIar66TWGwWKWoof2kS7QkGDL9NoeAWR9Z805nGJxKjjL6Ooj8kvpDbDTChFCY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728904596; c=relaxed/simple;
-	bh=q8xn13G2JLnINWn7XM/JZSqwR/jIxOEPsASBJ+UhOFU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o7vkHddGzDZvcB4WWuwomtwu+rM/rMGwW1kiHmg/ow2hZrU/gILlLdpHE7Sm1OwIyZBwPy/cNAKD/SSKJ4rF7+3qNpOrMJZTMSISBtJajv8s23tTpu5gFE3w7l6eAr1XkzCpbVqA0zWQC/zXozYm3iqZ2DeVDlYozgSSUGsVeMY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ve6xDzpA; arc=none smtp.client-ip=209.85.208.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2fb51f39394so6376941fa.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 04:16:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728904593; x=1729509393; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=6iKMYh9oSOiPHX5MB8zVYm5Uz7Q4gZEo4Fjhxbd/uKo=;
-        b=ve6xDzpA2y7WtmUBJet57yxraZQdz8FAyydO1mjxXlpRi5D3+DipI+MK+zS5WZGphZ
-         9fvx2y5XTwN6FJXamrqyzEiR6JpXJbEEk23bs0gXFWrVyiC3vWusA61jcggBSptgAw+U
-         RD+657zwYeYyk4dHkVVTmMFVzQYVScXCrHuTjcNgaMFUoTFSCHEvXBbzcM8d94Mk7iY+
-         oZ95SMbAH0g9OJYztANDhT8gFAEsDskS1Si519Gr59tV8rCQXdINwoUls5YuRCerUjjH
-         UPnViiE9fdI29CcTavgXVC9WfRjb2yO/UK1UAyClQbztdxa2f72PMTrmvyZ+KOpeFYGW
-         PaIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728904593; x=1729509393;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6iKMYh9oSOiPHX5MB8zVYm5Uz7Q4gZEo4Fjhxbd/uKo=;
-        b=dhoY7CLmoRegoieqquLb3vqwcxR4PtX1ot5d7SpMad23h5a9wQaDtMYTZRObm6lZgS
-         wStSGajaJvwpw5F+IaPzCSOHWAh10IP3XwDPLeRMuZwpT/vMy/h3OpcUfFjcRWZxX4lr
-         SkKcIhXXzKMrPvrKIvVjd/gY7yxgWk6Ko4mVTQbJg66C6oi/ke9fPFacrZlUebuDhN3z
-         hLSYhduskiOLWJI3EYJ60wchmL0lktmZQ4UDjMqQUPy7+AaTUslhS+0FmYTZuNmXZYMm
-         UeAXr6uUYwUnciGJiLLNyp7BwQIb2q89WodIL+gnHk6S2PU61g/qB25Uo712TAZfROye
-         TyFg==
-X-Forwarded-Encrypted: i=1; AJvYcCWd5HcDoKQClZq2sQ0ImJHZSAIch8GIrjZXksz8XhEMNDxm0fc33W7+SV9p5evNSg9U/BB4r5Jtjloy@vger.kernel.org
-X-Gm-Message-State: AOJu0YxCtGl2OOH02p1QPsURcb1+Dh2HDWX22Cdn/OkmPYTSqdhFwPx8
-	XlHwoV4OMZ0XpFTAqK3acn0o8yxpuRLprRT0u4+9dqfadwwYuiWVlEDaDnAxKak=
-X-Google-Smtp-Source: AGHT+IFyRE26TjB4tT/MsFr8imPfDicH3NsN5nWBwmwpqRjbY5FCggbJmvwRTRVlwm6RGPRd3jbmvQ==
-X-Received: by 2002:a2e:e19:0:b0:2f5:2e2:eadf with SMTP id 38308e7fff4ca-2fb3270ab14mr38619491fa.10.1728904592591;
-        Mon, 14 Oct 2024 04:16:32 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb50148d25sm3695571fa.97.2024.10.14.04.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 04:16:31 -0700 (PDT)
-Date: Mon, 14 Oct 2024 14:16:28 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Liu Ying <victor.liu@nxp.com>, 
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>, 
-	"neil.armstrong@linaro.org" <neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>, 
-	"laurent.pinchart" <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se" <jonas@kwiboo.se>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, "airlied@gmail.com" <airlied@gmail.com>, 
-	"simona@ffwll.ch" <simona@ffwll.ch>, 
-	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>, "mripard@kernel.org" <mripard@kernel.org>, 
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"shawnguo@kernel.org" <shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, 
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>, 
-	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, 
-	"quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>, "geert+renesas@glider.be" <geert+renesas@glider.be>, 
-	"arnd@arndb.de" <arnd@arndb.de>, "nfraprado@collabora.com" <nfraprado@collabora.com>, 
-	"o.rempel@pengutronix.de" <o.rempel@pengutronix.de>, "y.moog@phytec.de" <y.moog@phytec.de>, 
-	"marex@denx.de" <marex@denx.de>, "isaac.scott@ideasonboard.com" <isaac.scott@ideasonboard.com>
-Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 LVDS
- to HDMI converter
-Message-ID: <p42wdftkplib2c3hrnobinhytglok53cunqywtbcdfcp4gg7cg@4oclcixgcxso>
-References: <20241012073543.1388069-1-victor.liu@nxp.com>
- <20241012073543.1388069-6-victor.liu@nxp.com>
- <4a7rwguypyaspgr5akpxgw4c45gph4h3lx6nkjv3znn32cldrk@k7qskts7ws73>
- <07b47f70-5dab-4813-97fa-388a0c0f42e9@nxp.com>
- <dvcdy32dig3w3r3a7eib576zaumsoxw4xb5iw6u6b2rds3zaov@lvdevbyl6skf>
- <90e0c4ac-1636-4936-ba40-2f7693bc6b32@nxp.com>
- <TY3PR01MB11346530A53C8085561713B6086442@TY3PR01MB11346.jpnprd01.prod.outlook.com>
- <ki7zj2qvf64oi45kcnxl4maoxfvxtawko3vcdikg7dc5q6gw7u@5obyfvyylb3w>
- <TY3PR01MB113463A0E53DAA7481926219186442@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+	s=arc-20240116; t=1728904783; c=relaxed/simple;
+	bh=/fb6TY0+Ozh7vKmaHycGQhRR0AayQLHOM1cQjCfprq0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=IBRXXg8dFAQ3BjDhgqjbYj3GDHbxq+2cu8yY1StMjGVAWa2RMsvd6AB3s+2UpdAMEAOuSJl12wiUvJPsfPlHL41oylnApRNGhE2czkfM7Ae9MU1AhRLLW9AH6kwjUmL3cJeRg8bWa48P2oBAihbqsRGToKC2KKUo0XkHcLsihuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=EdjcBH3h; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728904780;
+	bh=/fb6TY0+Ozh7vKmaHycGQhRR0AayQLHOM1cQjCfprq0=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=EdjcBH3hIss5MqTd0Ls6YLDmV2CPEqo8bKyUO6p2VHeVEE8yKhs6pwtcBald0uv26
+	 lxUhEGrsSSoV60b9V7tle9itNOmkdfffY+X8IMXPtHyfSjodqRtVHcAJ9olHc9wmns
+	 qBfxsBBaxykZdyS2b+Bkh1t2wZlUGVm2X1Fw1mHKPMezfVVwXoElnzu+9Lk57VDP3y
+	 UAR/9Dyf+ejk+xAl/eEfonw9dYkJKhH8Cicq0gbHphPIEc1jCAGoxOV313VRdx3TAX
+	 9Px2qN30N38WqtZkP00a5wmyJlS9ZX/DRj5hprFCmsRyG+uZsMEivrHQnd4cTterbN
+	 8KGXyOxqBXZoA==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id B0B4817E1366;
+	Mon, 14 Oct 2024 13:19:39 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>, 
+ Fei Shao <fshao@chromium.org>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+In-Reply-To: <20241014111053.2294519-1-fshao@chromium.org>
+References: <20241014111053.2294519-1-fshao@chromium.org>
+Subject: Re: [PATCH v4 0/9] Add platform supports to MediaTek MT8188 SoC
+ (part 2)
+Message-Id: <172890477965.134864.8253638961403618415.b4-ty@collabora.com>
+Date: Mon, 14 Oct 2024 13:19:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TY3PR01MB113463A0E53DAA7481926219186442@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Mon, Oct 14, 2024 at 08:09:44AM +0000, Biju Das wrote:
-> Hi Dmitry,
+On Mon, 14 Oct 2024 19:09:22 +0800, Fei Shao wrote:
+> I'm re-sending this v4 series to hotfix a bug in the patch that adds
+> vdosys1 display nodes, as suggested in this [link].
 > 
-> > -----Original Message-----
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Sent: Monday, October 14, 2024 9:04 AM
-> > Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 LVDS to HDMI converter
-> > 
-> > On Mon, Oct 14, 2024 at 07:39:16AM +0000, Biju Das wrote:
-> > > Hi Liu and Dmitry,
-> > >
-> > > > -----Original Message-----
-> > > > From: Liu Ying <victor.liu@nxp.com>
-> > > > Sent: Monday, October 14, 2024 6:34 AM
-> > > > Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE
-> > > > IT6263 LVDS to HDMI converter
-> > > >
-> > > > On 10/14/2024, Dmitry Baryshkov wrote:
-> > > > > On Sat, Oct 12, 2024 at 05:14:13PM +0800, Liu Ying wrote:
-> > > > >> On 10/12/2024, Dmitry Baryshkov wrote:
-> > > > >>> On Sat, Oct 12, 2024 at 03:35:39PM +0800, Liu Ying wrote:
-> > > > >>>> Document ITE IT6263 LVDS to HDMI converter.
-> > > > >>>>
-> > > > >>>> Product link:
-> > > > >>>> https://www.ite.com.tw/en/product/cate1/IT6263
-> > > > >>>>
-> > > > >>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> > > > >>>> ---
-> > > > >>>> v2:
-> > > > >>>> * Document number of LVDS link data lanes.  (Biju)
-> > > > >>>> * Simplify ports property by dropping "oneOf".  (Rob)
-> > > > >>>>
-> > > > >>>>  .../bindings/display/bridge/ite,it6263.yaml   | 276 ++++++++++++++++++
-> > > > >>>>  1 file changed, 276 insertions(+)  create mode 100644
-> > > > >>>> Documentation/devicetree/bindings/display/bridge/ite,it6263.yam
-> > > > >>>> l
-> > > > >>>>
-> > > > >>>> diff --git
-> > > > >>>> a/Documentation/devicetree/bindings/display/bridge/ite,it6263.y
-> > > > >>>> aml
-> > > > >>>> b/Documentation/devicetree/bindings/display/bridge/ite,it6263.y
-> > > > >>>> aml
-> > > > >>>> new file mode 100644
-> > > > >>>> index 000000000000..bc2bbec07623
-> > > > >>>> --- /dev/null
-> > > > >>>> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it62
-> > > > >>>> +++ 63.y
-> > > > >>>> +++ aml
-> > > > >>>> @@ -0,0 +1,276 @@
-> > > > >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > >>>> +%YAML
-> > > > >>>> +1.2
-> > > > >>>> +---
-> > > > >>>> +$id:
-> > > > >>>> +http://devicetree.org/schemas/display/bridge/ite,it6263.yaml#
-> > > > >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > >>>> +
-> > > > >>>> +title: ITE IT6263 LVDS to HDMI converter
-> > > > >>>> +
-> > > > >>>> +maintainers:
-> > > > >>>> +  - Liu Ying <victor.liu@nxp.com>
-> > > > >>>> +
-> > > > >>>> +description: |
-> > > > >>>> +  The IT6263 is a high-performance single-chip
-> > > > >>>> +De-SSC(De-Spread
-> > > > >>>> +Spectrum) LVDS
-> > > > >>>> +  to HDMI converter.  Combined with LVDS receiver and HDMI
-> > > > >>>> +1.4a transmitter,
-> > > > >>>> +  the IT6263 supports LVDS input and HDMI 1.4 output by conversion function.
-> > > > >>>> +  The built-in LVDS receiver can support single-link and
-> > > > >>>> +dual-link LVDS inputs,
-> > > > >>>> +  and the built-in HDMI transmitter is fully compliant with
-> > > > >>>> +HDMI 1.4a/3D, HDCP
-> > > > >>>> +  1.2 and backward compatible with DVI 1.0 specification.
-> > > > >>>> +
-> > > > >>>> +  The IT6263 also encodes and transmits up to 8 channels of
-> > > > >>>> + I2S digital audio,  with sampling rate up to 192KHz and
-> > > > >>>> + sample size up to 24 bits. In addition,  an S/PDIF input port
-> > > > >>>> + takes in compressed audio of up to 192KHz
-> > > > frame rate.
-> > > > >>>> +
-> > > > >>>> +  The newly supported High-Bit Rate(HBR) audio by HDMI
-> > > > >>>> + specifications v1.3 is  provided by the IT6263 in two interfaces:
-> > > > >>>> + the four I2S input ports or the  S/PDIF input port.  With
-> > > > >>>> + both interfaces the highest possible HBR frame rate  is supported at up to 768KHz.
-> > > > >>>> +
-> > > > >>>> +properties:
-> > > > >>>
-> > > > >>> No LVDS data-mapping support?
-> > > > >>
-> > > > >> It is enough to document number of LVDS link data lanes because
-> > > > >> OS should be able to determine the data-mapping by looking at the
-> > > > >> number and the data-mapping capability of the other side of the LVDS link.
-> > > > >
-> > > > > From what I can see, data-mapping is specified on the consumer
-> > > > > sink side of the LVDS link. This means it should go to the bridge's device node.
-> > > >
-> > > > Then, I won't define data-lanes, because data-mapping implies it,
-> > > > e.g., jeida-24 implies data lanes 0/1/2/3, see lvds-data-mapping.yaml.
-> > > >
-> > > > Please let me know which one you prefer.
-> > >
-> > > Assume a top level use case where a user changes the format from JEDAI
-> > > to VESA using On screen display or modetest(if some one adds support
-> > > for lvds-mapping) then setting of the lvds data mapping should be dynamic.
-> > >
-> > > Maybe for initial version hardcode with JEDAI or VESA as default and
-> > > provide a way to override the host driver and bridge with requested lvds-data mapping dynamically
-> > later??
-> > 
-> > The ite,lvds-link-num-data-lanes property should be removed, it is not standard. I foresee two ways to
-> > specify the number of lanes used: either the data-lanes property or the data-mapping property. Granted
-> > that data-mapping replaces the data-lanes functionality for LVDS links, I think it's better to use it
-> > from the start.
-> > 
-> > Frankly speaking, what is the usecase for specifying the data mapping dynamically? What kind of uAPI
-> > do you have in mind and what is the usecase for it?
+> Note that the previous [v3] series is in v6.12-next/dts64, so please
+> drop that series and reapply this v4 instead.
 > 
-> It simple just want to change from VESA to JEDAI, how do you change it with existing DRM framework?
-
-Why do you want to change it on the fly?
-
-> Currently I see LVDS panel driver use drm_of_lvds_get_data_mapping(bus_node) to get this info.
-> IT6263 bridge device can use that API to get that info.
+> Sorry for causing any inconvenience.
 > 
-> Some vendors use VESA as default LVDS data mapping whereas some others use JEDAI.
+> [...]
 
-I think this is logical. Bus format is set by the system design
-constraints. In theory one can use buf format negotiation for the same
-purpose.
+Applied to v6.12-next/dts64, thanks!
 
-> 
-> Cheers,
-> Biju
+[1/9] arm64: dts: mediatek: mt8188: Assign GCE aliases
+      commit: 45f57a28629ab6f37ca7c2920daf0eac90608e45
+[2/9] arm64: dts: mediatek: mt8188: Add PCIe nodes
+      commit: 355508880d41cfa5b0643515f27b6da490a1345e
+[3/9] arm64: dts: mediatek: mt8188: Add MIPI DSI nodes
+      commit: 3147d168a516e4f6f7aebb25d2206f40d3168c85
+[4/9] arm64: dts: mediatek: mt8188: Add video decoder and encoder nodes
+      commit: 3ebe1aefa27e87b688f5bdd06713e01de3f19c12
+[5/9] arm64: dts: mediatek: mt8188: Add JPEG decoder and encoder nodes
+      commit: 4d3a0bbca1b6d7d5c873f9b1ebe81be2f5301905
+[6/9] arm64: dts: mediatek: mt8188: Add display nodes for vdosys0
+      commit: 7d3008158e9ccc45bec8f85b2393e279de1b2c93
+[7/9] arm64: dts: mediatek: mt8188: Add display nodes for vdosys1
+      commit: 6a6ebbeea64256d2b69ce660dc2a510714be537d
+[8/9] arm64: dts: mediatek: mt8188: Add DP-INTF nodes
+      commit: 42bf3bbd6237a816ef3d5d66c9734618838e81d3
+[9/9] arm64: dts: mediatek: mt8188: Add eDP and DP TX nodes
+      commit: 05c2e1902c73d6bbd93d77611b4495c587664029
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Angelo
+
+
 
