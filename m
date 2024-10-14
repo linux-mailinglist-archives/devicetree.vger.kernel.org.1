@@ -1,145 +1,108 @@
-Return-Path: <devicetree+bounces-111119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8670B99D53D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:04:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C23C199D541
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:06:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3BAEB1F23F14
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:04:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 874402835B2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:06:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423BB1C3024;
-	Mon, 14 Oct 2024 17:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A9801ABEC6;
+	Mon, 14 Oct 2024 17:06:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OucqymU9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YlWCavob"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60BA33CF73
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 17:03:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F16893CF73;
+	Mon, 14 Oct 2024 17:06:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728925436; cv=none; b=BxnCGMkESOyrRuUNFpLVdTaLRtB1p23HGkLNQ0DkG7JxsGN1zYRa7xdmkcmO+EbjI6DosSfActSMC0Tj94ZdEUddGlhsRzVtXog1XGDbJGocvFTJtK3gSCWs6JizBn6Mesv0SVH1QjCc2WF1wr2igtVSWxsk6jKeneaWYp3HBOg=
+	t=1728925591; cv=none; b=mXDVlnA5cy7wxm6WE88oNBGhpLITDCi93beQGN+nUEocIf2+RrtmdWyhr3ZRSh8PLxZNxB1Lfj3+seEGGjs45u9RfUcXZTTlvss246bx+QbgcPDQLkvZkiLVBWiAg0F4a6clJKjKgUZglZND+y6Vfg9xZMHJ46lxqV09O4FPUE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728925436; c=relaxed/simple;
-	bh=QgHhEkaLzgOlydjYpoXN7smlVjp0xbTpJ42Xq4kBQvs=;
+	s=arc-20240116; t=1728925591; c=relaxed/simple;
+	bh=/dnktnE3qxcyfDL5/O4PC4+jajYbFDpcdzF8Kx+P3TA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Fkjz0g4ZYm+6ZW+NGBn2aL4PMqRdxlFHryLxS7PM6asiyl5AX0yE9aTH1mbNYytPtJ4leiKUfcK7c2xUXzPIq0gjSC4OMgj1rIXi90dle9t8brDAhLmyWIsJGvhcyJrIy3/0n+jieMRRZYG9WgGYgJrnt6M1gdGdOyv6lyRJ6Z4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OucqymU9; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2fb4af0b6beso16505971fa.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 10:03:54 -0700 (PDT)
+	 To:Cc:Content-Type; b=IWycbuHI8R9aCXIwAUAtm7dyxdJViU9wvGzxp6f/rvolud7+wffDGo078LRZKV+78BfWHakfjyLPbtn3NQti1y/RIvBnCVvcbu8P9zaHKN1MJVe460GpEevgQMAMokcEXFRUk1+D7HBz2jE/CoDEF+3dAc60d0lq4CIeIRMQBHw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YlWCavob; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-431286f50e1so25244725e9.0;
+        Mon, 14 Oct 2024 10:06:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728925431; x=1729530231; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=WpqfZpy0KhNOi4dX7TpD4nUG6HhaVwhIk+AiVaYBRNs=;
-        b=OucqymU9nKSARJKfhLarRaXcNvM+Bgx+b6i/ZjkMsO0xwbQdtSJ2yHhyLjqUTOKzTq
-         TmVTbFGNAc9Ag1TmsSupPoUlAKm2oJ1OQ4pjglaqb9zlue9d78GmB53uXexJkCVv5xEa
-         +tGaXP2IWYhUmZ0p4XibBJlqbuYvPOQ67vAIM=
+        d=gmail.com; s=20230601; t=1728925588; x=1729530388; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Rmj5wqoQXUBwHs0IOpYFvV74qYSXZb3xJuEp56/YMRI=;
+        b=YlWCavobvPqT8eU93633+hLmSOQzMIhiTt/23F2JkMsQ+pnUFP5WkXK363dXWUDYJv
+         oM43Bv/Fm1YFJUirejNU39DeCk3LaXdr4NzzKFtVJzhWB7RKzKy4fQWvPuFcla2USR3k
+         TLtz5slDgiBotFpIY3un4fcsjh1XMowZole9+dg8JUdVITKVtTrtUtw331CkMHtvoEY9
+         kL3OeUmUfevl5SIOK/Q8InfatYUg3DpUNNjcMRaCwuc2bHaQPRGpYCUiv16syg02PVjI
+         PsqN1pwzLvPRwK6CusAqSxJDAu3nGRf57Rvrkvhgt8fNcXcUaw4RSdqPU9xZwUnkDhqI
+         2cqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728925431; x=1729530231;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WpqfZpy0KhNOi4dX7TpD4nUG6HhaVwhIk+AiVaYBRNs=;
-        b=OLd/p08izlIkP5a1Y+KNK9No/9+4JJ1PhYpl4i5emOO2hSXdO1lqEEGPTXmFLj3F0k
-         ylBUF8RGztChp/LgmnOYYq4wFwX7EUIbnCxn2xSrdUgxP6OtE2XsgONx+EBnshHxuB66
-         6rAJr81nuWRMwNoUh9DNZsOJJ6laRz77BP5U+HWp6eWq9pLYCgbtBS7Rydt5a9UlmK61
-         i4dUJE6z5JufXDLNkDwPzLyBay2nOND2i+6rKevusYwobU4dHzQmSN75ZL4c+izNeoTQ
-         wffbHFOsuAw7kGQkxAFHlBCCyyIpJBgCnTyHTOpv0X6EjgUK0gj3JjlxRafuHMqUetxt
-         hkwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBlR+4WpyD8Th32rrc6VAIIfpP8U8M6hXxhU2f1JCUl5/X7EgiayPJc6PuunkXSMnSA9C5dafm0u/p@vger.kernel.org
-X-Gm-Message-State: AOJu0YycdMllElkTGUwQk3tY5bJoA9PZlicxg6cZEYv6seHu9fNHhPwA
-	EivG0jZU/d1c3pZ+y8laLULdPkuxGZvcHZzmJ2RV/ppN7te1defaivcSUO+FJ6reBcQFbA923Cu
-	IBw==
-X-Google-Smtp-Source: AGHT+IFzuHdCGzuYjrQPB4fgKUXcE2e9L+YnQLCyZyoKIUC7TOfEvJBHUJoVkYW0oZy7b02fk465Ag==
-X-Received: by 2002:a05:651c:2222:b0:2fb:5206:1675 with SMTP id 38308e7fff4ca-2fb5206179fmr20872041fa.27.1728925430753;
-        Mon, 14 Oct 2024 10:03:50 -0700 (PDT)
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com. [209.85.167.51])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb5180532esm3810271fa.118.2024.10.14.10.03.49
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 10:03:50 -0700 (PDT)
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-539f2b95775so1645538e87.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 10:03:49 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXwDi6ZGdMETuu4mOuiwH/ieHnsIr9K5vLJSZUbRwXtyihMW7LkoY1sYFk/Fgblv+rD8cURk4A2ddXy@vger.kernel.org
-X-Received: by 2002:a05:6512:39c7:b0:531:8f2f:8ae7 with SMTP id
- 2adb3069b0e04-539e550179cmr5026613e87.25.1728925429365; Mon, 14 Oct 2024
- 10:03:49 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1728925588; x=1729530388;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Rmj5wqoQXUBwHs0IOpYFvV74qYSXZb3xJuEp56/YMRI=;
+        b=vJdBLTTydgv9Z7vGAg0gk36+uZxRkAPUnRf/dOveOuIXAt5HVUAM1XuzZuiSHslUzw
+         wawN4KPZly0DvLgF5ggvI6C4RUUZ8S0WF5CXHRtiZXp0XkH+HNhnZ0TEAF+MFqJpSbdY
+         aHnRrm869e9gp+otFkKcLppsBTBsR+aa6/cgAz0G62Qq9Zc0LYeofmNdRsY48SzJCdJy
+         rGCM/m/V5TRxxKVtYIXhGDAjm4+yIOrgO60QgjSg5EZiX/uLIdsryaEzWD/O9N3HETGv
+         NaAlUyJ2tfwxpXvDl1FCdZNYCoqracpFbTwNZ2FrtS/lkZtLtc1l+2pIQUly/8HLK0kU
+         DUjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUpwyM6mixTMxGLnWLYil/YG8FHC3KB7n0gO0/of2rH6CLMcDD44us7z4+miUtMQGoO5qdcwYwQc+nIucCB@vger.kernel.org, AJvYcCWIXQAw47jrTnkKIP3yXaAfmYowfcst13RtG+WF4WBvbfqEA9JYA+Evxw4MEjWH/j3liyuFQTWEGo4p@vger.kernel.org
+X-Gm-Message-State: AOJu0YwiUvnCZL/+l18uiLnGSxawn2nHE8tyD66ufB05rE1KGr7FcOCy
+	wDTauX/b4cSFfFkhFpKiiODTGfKJR9RKpwW7wDUTelB50KwGhXzwKL5YlNpxPUUPj2XhxEZ0jFh
+	wk9Y1GLLJnvRdeqWBfrK/VUIvgXU=
+X-Google-Smtp-Source: AGHT+IEnFBWqjIOaGaZbba4zXDyEvBojrp8MCtPj5r2Zz8Cpo7iDNvO9gYkZEdez0FW0jPJ2gr8hJaZxyWKJkHBNtJw=
+X-Received: by 2002:adf:b359:0:b0:37d:4c40:699 with SMTP id
+ ffacd0b85a97d-37d5ff25593mr8736543f8f.5.1728925588008; Mon, 14 Oct 2024
+ 10:06:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241011020819.1254157-1-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=XfHtdc9RpEwAtVHNYwBGJGhHUAoHaJhP+ZPWuUHAASFQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=XfHtdc9RpEwAtVHNYwBGJGhHUAoHaJhP+ZPWuUHAASFQ@mail.gmail.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 14 Oct 2024 10:03:34 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UMaAo9x0URaaVNxzx+ztLreAcbiAfLFvDFNcHut5srvg@mail.gmail.com>
-Message-ID: <CAD=FV=UMaAo9x0URaaVNxzx+ztLreAcbiAfLFvDFNcHut5srvg@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: himax-hx83102: Adjust power and gamma to
- optimize brightness
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, linus.walleij@linaro.org, 
-	airlied@gmail.com, simona@ffwll.ch, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20241014113026.78853-1-cenk.uluisik@googlemail.com> <20241014113026.78853-2-cenk.uluisik@googlemail.com>
+In-Reply-To: <20241014113026.78853-2-cenk.uluisik@googlemail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Mon, 14 Oct 2024 12:06:17 -0500
+Message-ID: <CALWfF7+DzqYYPZAE4zGMX3jUnbzG+tUEuAJeMQM0_Chn_Vq04w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] dt-bindings: arm: rockchip: Add Orange Pi 5b enum
+ to Orange Pi 5 entry
+To: Cenk Uluisik <cenk.uluisik@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Chris Morgan <macromorgan@hotmail.com>, Jonas Karlman <jonas@kwiboo.se>, Andy Yan <andyshrk@163.com>, 
+	Tim Lunn <tim@feathertop.org>, Jagan Teki <jagan@edgeble.ai>, Dragan Simic <dsimic@manjaro.org>, 
+	Michael Riesch <michael.riesch@wolfvision.net>, Jing Luo <jing@jing.rocks>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
-
-On Fri, Oct 11, 2024 at 7:20=E2=80=AFAM Doug Anderson <dianders@chromium.or=
-g> wrote:
+> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> index 687823e58c22..62bb6587da8f 100644
+> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
+> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+> @@ -1051,7 +1051,9 @@ properties:
 >
-> Hi,
->
-> On Thu, Oct 10, 2024 at 7:08=E2=80=AFPM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > The current panel brightness is only 360 nit. Adjust the power and gamm=
-a to
-> > optimize the panel brightness. The brightness after adjustment is 390 n=
-it.
-> >
-> > Fixes: 3179338750d8 ("drm/panel: Support for IVO t109nw41 MIPI-DSI pane=
-l")
+>        - description: Xunlong Orange Pi 5
+>          items:
+> -          - const: xunlong,orangepi-5
+> +          - enum:
+> +              - xunlong,orangepi-5
+> +              - xunlong,orangepi-5b
+>            - const: rockchip,rk3588s
 
-When applying your patch, I got a yell about your "Fixes" line. It
-turns out you didn't copy the subject of the patch you're fixing
-exactly. The above should be:
-
-Fixes: 3179338750d8 ("drm/panel: himax-hx83102: Support for IVO
-t109nw41 MIPI-DSI panel")
-
-I'll fix that when applying. Please make sure you get the commit
-subject exactly in the future.
-
-
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > ---
-> >  drivers/gpu/drm/panel/panel-himax-hx83102.c | 12 ++++++------
-> >  1 file changed, 6 insertions(+), 6 deletions(-)
->
-> No objection on my part. This is just modification of some constants,
-> is well described, and is to a panel that you added so I don't think
-> it needs a long bake time on the list. I'll plan to apply this on
-> Monday unless there are comments or someone beats me to applying.
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
-
-I've applied and pushed to drm-misc-fixes:
-
-[1/1] drm/panel: himax-hx83102: Adjust power and gamma to optimize brightne=
-ss
-      commit: fcf38bc321fbc87dfcd829f42e64e541f17599f7
-
--Doug
+As Krzysztof mentioned in v3. The binding commit should come before
+the devicetree commit. You'll want to reorder your commits. Otherwise,
+if you git bisect, you can get an error with only the devicetree
+updates without the changes to the bindings.
 
