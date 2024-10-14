@@ -1,96 +1,105 @@
-Return-Path: <devicetree+bounces-111112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7600099D4D5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:38:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 077E299D507
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:54:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32BAB282BFF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:38:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD6A91F23F2B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:54:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F4D1A76DE;
-	Mon, 14 Oct 2024 16:38:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8691ABEC9;
+	Mon, 14 Oct 2024 16:54:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="bAcwgtUu";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xTroEj4c"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iS8/1+Ff"
 X-Original-To: devicetree@vger.kernel.org
-Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FCE231C92;
-	Mon, 14 Oct 2024 16:38:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9281BFE03;
+	Mon, 14 Oct 2024 16:54:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728923931; cv=none; b=U5TN629rgezv5JrRKoRhLIvVyjb7oldd+/Ccc1bSr2TPacUpHPDXvIaalLpigjYTZEI+092L8ty3nKOA+KRPERJgnTjd4GlKWbsa2T6GA2mKgZsjHyD1pqa8h6/WWwL+8jl1xpn2p1SwnEp9CXcXAFlxOiO9epjb9lq69LeB99c=
+	t=1728924854; cv=none; b=YTFCm0DT2AZPc/sBbzie2NRZphOczn3ZU3IkJmcpcU1N/qH3xo2pc3KyffQ7zIcgIwbVS3hncMHOhO/u9hbsx8yl0f5q61BADcTw27fzc5ToVJsizuyIJwDONgfztrEX2Fd/woK+zkQTOZ9ctCS/dl58W8ox7Y6nCC0R4pPs3cE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728923931; c=relaxed/simple;
-	bh=mEdzq09V15Xwnr66U6AvoYDlsXhPCZU3z5I0NbdtL28=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=LP2XQYAtZ1FBJbukZSdLlbw+lsgzGhA6gCGvYZXAsyENxF0SqLrCixjN6Kl8ztnKauYbshZJDwCQUp+iD7yPesRZNr4ceAfeIw+i21OHknVkPbJA22wQR2gNI1AtB9xDt3MWSRPm5olZec0mvjCTKpYlVQpEQ2aPmDi9rVBhINU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=bAcwgtUu; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=xTroEj4c; arc=none smtp.client-ip=193.142.43.55
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
-From: Thomas Gleixner <tglx@linutronix.de>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1728923928;
+	s=arc-20240116; t=1728924854; c=relaxed/simple;
+	bh=J1xh+KeiCiUEKcxI7/lL6ZOZWUFLYQ95c2233jGs85w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z3hMUL7ObTUK1dkjELNaZK6jYAs7jEPBtlL7oFiS88l5022pfkUkZomsM+vzKKyfeP/wLP7AJTnkbPIMo/pBcnJm2kspUyDtLCIsw4acL1F8Jr/Wf6RU9o/WS3yVH+TgIu3DgV6l+DoXx1kn5A9JbxYGbnM5GqITT12Niis+ncc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iS8/1+Ff; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 547C5C0005;
+	Mon, 14 Oct 2024 16:54:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1728924844;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=YIY16wXiGYjvpyHqlLYNoeeEF3MtoTc0EB4XbDJop/o=;
-	b=bAcwgtUu3xFLP8Lco3S25VfYe78YgxOCRrvsYOhcUEjNIe5uyhJjVW+mhk3MGFbc+WSvKB
-	bFH2fOrzr7zSZzVDp5mR8bD1A1rJ0Q0BirRC5T/jWY1+yiRUsXcMXeSPMxQrybm29fIhhr
-	9N7GZI+/HH3en6R7K3nmjqgjvephhsZHw/0EUadRJc439KDwYSXb//708DSYBbPwhLgDVu
-	b91t6hFjMCLx+g+9AP32kFwUBvXATR/YBCvAofCIsSvelICgL/pvE+SnTlSTRnrb1ztGj/
-	+AfQpARP76G6WdrLv7Vuq/aaIJ0YFRqK3cYukaORonVZV0YkpaO0ezp5ceCuCg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1728923928;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=YIY16wXiGYjvpyHqlLYNoeeEF3MtoTc0EB4XbDJop/o=;
-	b=xTroEj4cBADdE1o+N9fbYKa/4pmpakOv+wcnu7mALpMU6XjcNrzWA0Z1jenjtoTIrpsh9/
-	PH+h7MnATOpiAiCA==
-To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
- Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Peter
- Zijlstra <peterz@infradead.org>, Chen Wang <unicorn_wang@outlook.com>,
- Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>, Lad
- Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heikki Krogerus
- <heikki.krogerus@linux.intel.com>, Yangyu Chen <cyy@cyyself.name>, Jinyu
- Tang <tangjinyu@tinylab.org>, Hal Feng <hal.feng@starfivetech.com>, Geert
- Uytterhoeven <geert+renesas@glider.be>
-Cc: Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@gmail.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
-In-Reply-To: <20241009224410.53188-3-inochiama@gmail.com>
-References: <20241009224410.53188-1-inochiama@gmail.com>
- <20241009224410.53188-3-inochiama@gmail.com>
-Date: Mon, 14 Oct 2024 18:38:47 +0200
-Message-ID: <87ldyqfxm0.ffs@tglx>
+	bh=ZzPbyORImSzImPqpC0hAEvFAttjRAmROKHtmKvXA2IU=;
+	b=iS8/1+FfbwnGHg7nDvADC9E3N7sZkE7GFuq+J/lsAfk0iPR74oW9cQWH84oYsOLsvZH1yF
+	MIMcwYag0Yzrr3iHa0ZeBDWm6Pe8uf+qwgnGRFbMDnfcWH4cUoK1ujnduU13UitQu4iUXZ
+	aNGDyhurayD/hlK15VGMUsSjjUb+KoleQzFcLCIe39UwstIrrytKInyvWc6cEetX4TOM1X
+	yPfsoULgOoKDawJ6Oor239xM7t1hPZaWMLhTNQOVPa2AagZlhu/e+pcxTMXLn/RfVG0Kvk
+	k4Ekf+1Lef5uCNQIdUZ5RaLqB5Guy3kPgulFWQYTuJr4LJW/2YXTv3J+IWPjwA==
+Date: Mon, 14 Oct 2024 18:54:03 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Rob Herring <robh@kernel.org>
+Cc: pierre-henry.moussay@microchip.com,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Daire McNamara <daire.mcnamara@microchip.com>,
+	Lewis Hanly <lewis.hanly@microchip.com>, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: rtc: mpfs-rtc: Properly name file
+Message-ID: <20241014165403e640f637@mail.local>
+References: <20241011100608.862428-1-alexandre.belloni@bootlin.com>
+ <CAL_JsqL=OJss3kudaQBx==g2zBiqtsbWJZ5oOFWJF-vLCQZ+yg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAL_JsqL=OJss3kudaQBx==g2zBiqtsbWJZ5oOFWJF-vLCQZ+yg@mail.gmail.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Thu, Oct 10 2024 at 06:44, Inochi Amaoto wrote:
-> +config THEAD_C900_ACLINT_SSWI
-> +	bool "THEAD C9XX ACLINT S-mode IPI Interrupt Controller"
-> +	depends on RISCV
-> +	select IRQ_DOMAIN_HIERARCHY
+On 14/10/2024 10:39:20-0500, Rob Herring wrote:
+> On Fri, Oct 11, 2024 at 5:06 AM <alexandre.belloni@bootlin.com> wrote:
+> >
+> > From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> >
+> > The actual compatible string is microchip,mpfs-rtc, not microchip,mfps-rtc.
+> >
+> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > ---
+> >  .../rtc/{microchip,mfps-rtc.yaml => microchip,mpfs-rtc.yaml}      | 0
+> >  1 file changed, 0 insertions(+), 0 deletions(-)
+> >  rename Documentation/devicetree/bindings/rtc/{microchip,mfps-rtc.yaml => microchip,mpfs-rtc.yaml} (100%)
+> >
+> > diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
+> > similarity index 100%
+> > rename from Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
+> > rename to Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
+> 
+> Incomplete. Now next has this warning:
+> 
+> /builds/robherring/linux-dt/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml:
+> $id: Cannot determine base path from $id, relative path/filename
+> doesn't match actual path or filename
+>          $id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml
+>         file: /builds/robherring/linux-dt/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
 
-Lacks
-        select GENERIC_IRQ_IPI_MUX
+I fixed it directly in my tree...
 
-Other than that this looks good.
-
-Thanks,
-
-        tglx
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
