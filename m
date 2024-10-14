@@ -1,182 +1,334 @@
-Return-Path: <devicetree+bounces-110872-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C548799C284
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:06:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B1FF99C2A2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:10:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD0F51C218EF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:06:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C67412813C8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:09:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B9351494A7;
-	Mon, 14 Oct 2024 08:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CFDE14C5AE;
+	Mon, 14 Oct 2024 08:09:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="jGAGlW9q"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="pFYQBYPT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11010070.outbound.protection.outlook.com [52.101.228.70])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72AD9474;
-	Mon, 14 Oct 2024 08:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728893201; cv=none; b=pN3wJFIZV4jsOScOjW7+pwcyYoDG0ZOCU/QsQKvn7QWvQsBKlD52c+yV+ABc7J8256kC96Rh1Tt/qNJ6Kq68yZC+hwVXwXpj3pr8QT+AXqHAuXKSWGI5r92alBHPvRogEne6Xu9YhW3XBnlEinbNdCdbBb0Fdk4y40fGSGmNcB8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728893201; c=relaxed/simple;
-	bh=sSQ/JLtfOylYmetmA4x1PJlINm2mWwdgTelJNw1+qv8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kx7p0J2lh8OkBMqKEZlelU5zdC1jrqmNVI4BOL59Iml47bLkQVaMx6AQRDnD2azMunK/x1w0Ls0JYCjONcD5J1viBc8qW8OgY+IQFV6bkjDy9iF+RJeoQc1yAhW5R8UsA0JenjCjJn3Nq1vcaFVCRCxi6sIK+1qzpUPg50ZciEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=jGAGlW9q; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728893198;
-	bh=sSQ/JLtfOylYmetmA4x1PJlINm2mWwdgTelJNw1+qv8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=jGAGlW9qACfI26EUDUV9ViwMCdDvwOhgDdmF4wXFH4qKTONWDsWczOgCX4imvaOmH
-	 RcTOLerC2LWpfDhNXVQVpqUrA3eph8tCQiy0N29Vv2JLTv2HvR+lvSzkwUsL29oYPW
-	 9HgsBum46bSbUbojdRFc3n5OQOR8FiKBO/Xjzi2/yzhc87WdFFFv3cBjiTm3h0taW6
-	 mIn/VBWwLEpExGXCoPSXPm7SdaiuDZoJRsE2+t3QCxwcOt7mnY7Nbqmcss56oEsHbz
-	 HyqhcxIjjTTSgMxoVHsCrioltl/OgvtX3naJY5Oawcx5ntQ2bycFqv4gBdqFkMCUNE
-	 FbpmQOqJqH7Ag==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 5405217E10C7;
-	Mon, 14 Oct 2024 10:06:37 +0200 (CEST)
-Message-ID: <863458cb-cac7-40c0-856d-edc0fa6ee6a6@collabora.com>
-Date: Mon, 14 Oct 2024 10:06:36 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 571F0142E77;
+	Mon, 14 Oct 2024 08:09:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.70
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728893393; cv=fail; b=Hb0GR4UorND73GtSVCf6BLekPlCrO/8VvNq+LMraPjTkDZjrLKF6nM4RUYRIExZlrNKJ0vadd4my2QtvcMRUarkvvOrlymj144nfBYqrFPuWmbsh027PNyu7y3qlMhLDAdtn/mA0QtEqSPYw+d3hhRrkJ/e2E19IzYTPt2GYkfY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728893393; c=relaxed/simple;
+	bh=BkG67DOYD6vWEgHqc0fzuz9xddfYyvMYtBjzNfQCN+k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=GACdskHsD74DeyFngB4OKupEcUSCQSltUpv4Q5CGH4hNqBLbOHijeX6w5o6Usk+oG3qP6LoQneFfi1vU4/K5Z+uyDUjbjDwHsAzPUZfNSqsyFmZyCqTuH7PK5ZfDtajQ1GqgxcKnb2oKa4zSSvTKc5X2NHy+Cj1QaeLrj3MSnpA=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=pFYQBYPT; arc=fail smtp.client-ip=52.101.228.70
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=sSC8YQQC7eZ4KUGya818+eCMGuOeBHL4Kb11idkzMigKZQBVgjUnSTU+FcYFDdXWehCbvWnM9cjh/2Hhlj/XvV1xxrF1SGvn8YZzHbdyOsc5mE0uQMrY8Ed8sRY3ol4HG0N6WzrspYDjVCA1Y+E5dLt2v46sK+LS8n3TGvOXPIeYTFJD94EfzU99UR4TYGB/TuLF1JNJW+k12YAIcemharQnc7W0bGavcn75ZA42QEtrcO349y7+THHmCjBLHR+gdhbw3jBE/7sEeHO5ETJtxsSsySOr/mPC+3SnE1qTlt9Cc/dyJmcuIrYEYRwblzeCYrBY6+FhmKRAeCltnJbNLA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cn4jK8cd8FkS2EgLJH+hRrXRPlWPiYOMkj1L6xB7k4s=;
+ b=cRwdvf09MVqXAMUQVFWnVr6T7E6wmb97xCRUQNfg+oywziaA7WZ/qWbfU6wqyaU3kEscDwn2/Z50snFIFUJlgvMtf72U+U2DjLEAiCwL1GqRo6c3K1Kfckn05u94qBl5lZQOf7fFeX8TY0jO9RCz2dLTKX2N1ThtTaCBjNFVEN7GOAo4wZf//oEpdf4gJOA64vVt568RpglSiwVy5lq8Q/H9VVgQiNVhu/ifbdxmKA/7qczg8YqT+bTTWdY+WmBf8KzML20QmXloFUIjEvrcZnm4Zg1WPY8JgKTxlblGnFBwKTWLWRfYlGEjVAEjvuSjOecjR4giPH15YrOg/vn3SA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cn4jK8cd8FkS2EgLJH+hRrXRPlWPiYOMkj1L6xB7k4s=;
+ b=pFYQBYPTjal/KW8jNpdVbP93UBHGkfTMbCSl7jsD0thnPoZrjAcpj/yh8v2gAwqlZq8MBF/8xNbdHTFbuEDUsuo2TMwnjA82Jc4y87qdE1z7xVaHvEDrKic0YC55QNkotau6shgY5sOrv2F3dyJ/wJ2JPDpQ/8hQeNlHDUvQ4i4=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYCPR01MB8644.jpnprd01.prod.outlook.com (2603:1096:400:159::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.26; Mon, 14 Oct
+ 2024 08:09:44 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.8048.020; Mon, 14 Oct 2024
+ 08:09:44 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Liu Ying <victor.liu@nxp.com>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "imx@lists.linux.dev" <imx@lists.linux.dev>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "andrzej.hajda@intel.com"
+	<andrzej.hajda@intel.com>, "neil.armstrong@linaro.org"
+	<neil.armstrong@linaro.org>, "rfoss@kernel.org" <rfoss@kernel.org>,
+	laurent.pinchart <laurent.pinchart@ideasonboard.com>, "jonas@kwiboo.se"
+	<jonas@kwiboo.se>, "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
+	"airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch" <simona@ffwll.ch>,
+	"maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+	"mripard@kernel.org" <mripard@kernel.org>, "tzimmermann@suse.de"
+	<tzimmermann@suse.de>, "robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "shawnguo@kernel.org" <shawnguo@kernel.org>,
+	"s.hauer@pengutronix.de" <s.hauer@pengutronix.de>, "kernel@pengutronix.de"
+	<kernel@pengutronix.de>, "festevam@gmail.com" <festevam@gmail.com>,
+	"catalin.marinas@arm.com" <catalin.marinas@arm.com>, "will@kernel.org"
+	<will@kernel.org>, "quic_bjorande@quicinc.com" <quic_bjorande@quicinc.com>,
+	"geert+renesas@glider.be" <geert+renesas@glider.be>, "arnd@arndb.de"
+	<arnd@arndb.de>, "nfraprado@collabora.com" <nfraprado@collabora.com>,
+	"o.rempel@pengutronix.de" <o.rempel@pengutronix.de>, "y.moog@phytec.de"
+	<y.moog@phytec.de>, "marex@denx.de" <marex@denx.de>,
+	"isaac.scott@ideasonboard.com" <isaac.scott@ideasonboard.com>
+Subject: RE: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 LVDS
+ to HDMI converter
+Thread-Topic: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 LVDS
+ to HDMI converter
+Thread-Index:
+ AQHbHHmcAQrmzLsoUU25rfXdj34z0LKCyOiAgAAMWYCAAoXDgIAAYU0AgAAhkXCAAAh2gIAAAEmg
+Date: Mon, 14 Oct 2024 08:09:44 +0000
+Message-ID:
+ <TY3PR01MB113463A0E53DAA7481926219186442@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20241012073543.1388069-1-victor.liu@nxp.com>
+ <20241012073543.1388069-6-victor.liu@nxp.com>
+ <4a7rwguypyaspgr5akpxgw4c45gph4h3lx6nkjv3znn32cldrk@k7qskts7ws73>
+ <07b47f70-5dab-4813-97fa-388a0c0f42e9@nxp.com>
+ <dvcdy32dig3w3r3a7eib576zaumsoxw4xb5iw6u6b2rds3zaov@lvdevbyl6skf>
+ <90e0c4ac-1636-4936-ba40-2f7693bc6b32@nxp.com>
+ <TY3PR01MB11346530A53C8085561713B6086442@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+ <ki7zj2qvf64oi45kcnxl4maoxfvxtawko3vcdikg7dc5q6gw7u@5obyfvyylb3w>
+In-Reply-To: <ki7zj2qvf64oi45kcnxl4maoxfvxtawko3vcdikg7dc5q6gw7u@5obyfvyylb3w>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYCPR01MB8644:EE_
+x-ms-office365-filtering-correlation-id: 81e415e0-a751-40c2-4328-08dcec279030
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|7416014|366016|1800799024|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?K5BFP7yx7Za+Ml/d68fzZU9zQ5PJYRtEWgOBaG04XJ21DuSB+byR1X0TX3eU?=
+ =?us-ascii?Q?xcqNEhtEAqBTf9ACEO17CtDR6ywkd6qtd6APdAXr4D+0NYGPKSYB5dJWFjXN?=
+ =?us-ascii?Q?Ul4E5AGh8MtUREWbYUOHbIfDvjKsWltZsiOnqG3sPW1tg2EfuL6BMFxjcqjQ?=
+ =?us-ascii?Q?QItofF0CleomOYNImsiqhljEuw/Za5HK9b7urf8Nkg65x51soIDpultPGCtE?=
+ =?us-ascii?Q?ZVmg2uncAbVFofwMob7jOXlz3AlyxsfzJl9EELgm/cPjfen621BA3GNQeeUQ?=
+ =?us-ascii?Q?oZVlCc75BjWxOJMfewAwrj15XZV5I/sqVKMwbK8UpFxarkjhO6uxT3NvU1m/?=
+ =?us-ascii?Q?f7y4Lukkqr1uu0HlT3QVgAXYW5IGAiNUq8o0FW8kGajMUnZ64pXOo/+VjuE5?=
+ =?us-ascii?Q?/TEIJXFVopsT+pqmpmkTyT/ovrnCFUMVTIDF/viY7g3t27TDzJLjdT4ou4gn?=
+ =?us-ascii?Q?7Fd2C6x/maqS3pBX/qJKMISIoNld4wfdX9htb85HUNQA8D5pCQzZwHKiq2+E?=
+ =?us-ascii?Q?j69Q0Tj9sekWpKF+EHD5jXSSvoL37ccDtNDtmwGxuTk8pHo5b8SqHRrSyvNT?=
+ =?us-ascii?Q?6PeTj5lsGjkkjfQOdBVahiDDA/KDojekrK6M5LRztBr2m6wD/Gau/8FfiARa?=
+ =?us-ascii?Q?eGXouowhyxPwoQwrPYYFYhdRl6n+AfD4KlQW3PXptniprCcnV18DEeyfRCA6?=
+ =?us-ascii?Q?DUH8O8tN+3Chqm3hkJgioBXz4iE/GKW4iZJgFya0lBTWyTXyvgq8e52yJ+cJ?=
+ =?us-ascii?Q?kLoV61KPoW0mKTIWCZK1EUjz0LX3J4gZyeBKD5I/Gef3i4dDMglKNNqr28AX?=
+ =?us-ascii?Q?7n2OLhAzxau/BxmUr4XIkN0TubqE2F0PoZBvLVHUdyaBR4E5MXduK4z1G4Pq?=
+ =?us-ascii?Q?l9SACWFTUVM3S/XQV8UIMbG6tKwbFau+dH9qSbb0K3gWyWqhrvDJ/TWPz2aT?=
+ =?us-ascii?Q?579tf2RWuCMBimeYulFFu4UY9tvkZmeYH2/nlil9XHHHm4gMeGwdxTYg/QEi?=
+ =?us-ascii?Q?FI2M2zBIEAPviXbtZLEN9Ac17LhO++ouD+bznzNAy3g6Rl8SBwPMhct4pPuD?=
+ =?us-ascii?Q?/Kkv3CZtojW38RqOQofJFKfetBdOHDLGkkMW2WaarmvBVIsatWivNTxC3lAE?=
+ =?us-ascii?Q?lnkC8C9OGgKj8vZnLypI5AwqG8sHXq1WebN7OoEwCovqB/t9zGgbw93atm+4?=
+ =?us-ascii?Q?nGkKKpE1p2dqlX4/AkX02NsS9fKOeDgpFm6uRjG4cISBtYYc2/2/sevQ8+Fq?=
+ =?us-ascii?Q?/0zhINl4abCR7uynnxShzzbbIAkjRdcQd5HSCPAilw=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(366016)(1800799024)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?qrBoSDPQzV9TWNiYaE9DsKOHdGg7utZsDjT9UZwO797QD6qMHLNowyFBLRTq?=
+ =?us-ascii?Q?aepDDcfGeigGST8hXhPQo/IKwutHVAHTE6g2E49Z/nuNi1lV3VHyGg0CEsE0?=
+ =?us-ascii?Q?FPaH8B3MTR7zpVeKz2Gzmy1lWdyHbC3CS2jRgMlVB/zDJ2CXfp9xY7lSdrNT?=
+ =?us-ascii?Q?OigLVDpAtJwUEUX8S6BakaCrP8PLelKwIcSKBedRx6Zj64YkFeDGs/lt/FSI?=
+ =?us-ascii?Q?TIqZp+0jtIuqlMdZi2NsZoWgy9GofdORnKM2WDxKTW4hwl41S7qkIMBY/x8A?=
+ =?us-ascii?Q?OfCYh2fWiZnqEn1WpxnY/Ht22BK/TzW4Dek6KtOU72e5JUu4wIWMa8i6m2tt?=
+ =?us-ascii?Q?eEYw3z8g/RvdiecDYRMHgdR2wtLlivKDGOoYl7wjaZZOEx1wMi86Kaz6nb+c?=
+ =?us-ascii?Q?FjFoMa0Anp1ZXnujhi9M5eOkcDoKZ3SXHuU/h2jlEHCe8l28juQxTZeiDZEe?=
+ =?us-ascii?Q?mcPcRLk3g19WZaKW5P6ExoH8cX4uG3Oxz5OWJozPBqgsLmTyNJfY4WtJxUtk?=
+ =?us-ascii?Q?zzEFZkmDAVOTsx6lj+aCosg64WAUoDYeaYC2gDUE3R9tc6OubxWRokPm5Hyr?=
+ =?us-ascii?Q?Lch5oCFrzG6ujfaAP7iObFlKDSS/fNEc5pFl4SLSh4VKOFO7GNFxhnfou0d2?=
+ =?us-ascii?Q?bEvYpX/Uf7b3m18bhc+dECRVSFLJAZrf+Fnpb7XgnLPKV69371LSOM5myFco?=
+ =?us-ascii?Q?jg0P2WYC0aTyf6m0/fxnYRI/O5I6eOt8AB52HIQqTBn8otCnd60pNdt2ksDI?=
+ =?us-ascii?Q?TtVjEKnwSiXPL1+WTd2/p25lO4JTc3w2SDzAC6vxOFCrs18ht0AsfRAd6CHA?=
+ =?us-ascii?Q?kKeCcgBjGQUDNcadWYxgtwv6pclmmzn/p8d/iPntuxlXMENu1pwsVPr8SV1J?=
+ =?us-ascii?Q?FwTMX72JbQnmvlGDlI3LSakSTfF1Q7ciYKd45bNX5O65T/LlgolPulOm3T2+?=
+ =?us-ascii?Q?MhdvI4SSx/5a+6XvvaUC+wwuhkwjo6zHJuXRa7BaduAd8otU0pV4QZve72Zl?=
+ =?us-ascii?Q?zl4A4V8i3Z2dm1iRHPfmrtoQsNpO9ENMFfyRfVD2dI61jWq0RzF8d/ZLMQIx?=
+ =?us-ascii?Q?SdMGFggDmQ0Ykx0YSjS8xAWVWGdU2svv28Ao268M9AYb1iC+bUZuXBL4JSQ8?=
+ =?us-ascii?Q?0WQlH7nCTQHX6gdtUW+LVgNJvN+71UCdAJ0zcsXX2DEE5xNJgMqZy1gyOd4c?=
+ =?us-ascii?Q?CDlkQ7O32tu8Ae2F711AbGnuZDMyZQac+p4knRhv8lK2yfRTfi0wqnaoVyqn?=
+ =?us-ascii?Q?l1ykQVxV8rCdhGYu+OAQfpmS12ki0dhM8ppo6k3BtQnBadsuVtvipkM87gYF?=
+ =?us-ascii?Q?JCNXItrfDQta0iQmQkIbvmRPHoor3L6dxxMn+OSUhy0Q8H6D/WDm9MFaO6V6?=
+ =?us-ascii?Q?eoN99cp9VjZ/6DJftHzGzkW4SIz7/Z9CI8bdwTLa1yDzY7Oxemjyf6WKAAHw?=
+ =?us-ascii?Q?athdTDPTAs/2ZZV+K3rDB0PtxXkoCJceTm/PDTtKzVcD5AsCUhRKDrLvZ8ae?=
+ =?us-ascii?Q?oQnNaiZZffx2jDV9wwW/VioeWBTZ1grPSxcK4Vo3hoipzBKZj5e1x8vaGVqz?=
+ =?us-ascii?Q?Vo1bDVdWkrwUmttEQ7wYUEpaI6+KcqpGvvxIJnuu?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 0/7] MediaTek DVFSRC Bus Bandwidth and Regulator knobs
-To: Rob Herring <robh@kernel.org>
-Cc: djakov@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, matthias.bgg@gmail.com, lgirdwood@gmail.com,
- broonie@kernel.org, keescook@chromium.org, gustavoars@kernel.org,
- henryc.chen@mediatek.com, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com, wenst@chromium.org, amergnat@baylibre.com
-References: <20240610085735.147134-1-angelogioacchino.delregno@collabora.com>
- <CAL_Jsq+F_pwhVLD1HF7=sYLp2w5kpc53UmzzffxyKzwh8WZthw@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Content-Language: en-US
-In-Reply-To: <CAL_Jsq+F_pwhVLD1HF7=sYLp2w5kpc53UmzzffxyKzwh8WZthw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 81e415e0-a751-40c2-4328-08dcec279030
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2024 08:09:44.6189
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dQwB1yEm89A0TwS2TVFjWOPmC2YC+ZiD2o8/pAJegwuWMXi+3bhN85I5WQBFvlY3zWg8LnksKp1HcqTA8DJyNJpeYuVQA9s6ZNtkZNQzcx4=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8644
 
-Il 12/10/24 00:15, Rob Herring ha scritto:
-> On Mon, Jun 10, 2024 at 3:57 AM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Changes in v6:
->>   - Fixed build with clang (thanks Nathan!)
->>   - Removed unused mtk_rmw() macro in mtk-dvfsrc.c
->>   - Added MODULE_DESCRIPTION() to mtk-dvfsrc-regulator.c
->>
->> Changes in v5:
->>   - Fixed Kconfig dependencies in interconnect
->>   - Fixed module build for dvfsrc and interconnect
->>
->> Changes in v4:
->>   - Updated patch [3/7] to actually remove address/size cells
->>     as the old version got unexpectedly pushed in v3.
->>
->> Changes in v3:
->>   - Removed examples from interconnect and regulator bindings
->>     and kept example node with interconnect and regulator in
->>     the main DVFSRC binding as suggested
->>   - Removed 'reg' from interconnect and regulator, removed both
->>     address and size cells from the main DVFSRC binding as that
->>     was not really needed
->>   - Added anyOf-required entries in the regulator binding as it
->>     doesn't make sense to probe it without any regulator subnode
->>
->> Changes in v2:
->>   - Fixed issues with regulator binding about useless quotes and
->>     wrong binding path (oops)
->>   - Removed useless 'items' from DVFSRC main binding
->>   - Allowed address/size cells to DVFSRC main binding to resolve
->>     validation issues on the regulator and interconnect bindings
->>   - Changed dvfsrc node name to `system-controller`, as the DVFSRC
->>     is actually able to control multiple system components.
->>   - Added a commit to remove mtk-dvfs-regulator.c before adding the
->>     new, refactored regulator driver
->>
->>
->> This series adds support for the MediaTek Dynamic Voltage and Frequency
->> Scaling Resource Controller (DVFSRC), found on many MediaTek SoCs.
->>
->> This hardware collects requests from both software and the various remote
->> processors embededd into the SoC, and decides about a minimum operating
->> voltage and a minimum DRAM frequency to fulfill those requests, in an
->> effort to provide the best achievable performance per watt.
->>
->> Such hardware IP is capable of transparently performing direct register
->> R/W on all of the DVFSRC-controlled regulators and SoC bandwidth knobs.
->>
->> Summarizing how the DVFSRC works for Interconnect:
->>
->>               ICC provider         ICC Nodes
->>                                ----          ----
->>               _________       |CPU |   |--- |VPU |
->>      _____   |         |-----  ----    |     ----
->>     |     |->|  DRAM   |       ----    |     ----
->>     |DRAM |->|scheduler|----- |GPU |   |--- |DISP|
->>     |     |->|  (EMI)  |       ----    |     ----
->>     |_____|->|_________|---.   -----   |     ----
->>                 /|\         `-|MMSYS|--|--- |VDEC|
->>                  |             -----   |     ----
->>                  |                     |     ----
->>                  | change DRAM freq    |--- |VENC|
->>               --------                 |     ----
->>      SMC --> | DVFSRC |                |     ----
->>               --------                 |--- |IMG |
->>                                        |     ----
->>                                        |     ----
->>                                        |--- |CAM |
->>                                              ----
->>
->> ...and for regulators, it's simply...
->>     SMC -> DVFSRC -> Regulator voltage decider -> (vreg) Registers R/W
->>
->> Please note that this series is based on an old (abandoned) series from
->> MediaTek [1], and reuses some parts of the code found in that.
->>
->> Besides, included in this series, there's also a refactoring of the
->> mtk-dvfsrc-regulator driver, which never got compiled at all, and would
->> not build anyway because of missing headers and typos: that commit did
->> not get any Fixes tag because, well, backporting makes no sense at all
->> as the DVFSRC support - which is critical for that driver to work - is
->> introduced with *this series*! :-)
->>
->> P.S.: The DVFSRC regulator is a requirement for the MediaTek UFSHCI
->>        controller's crypto boost feature, which is already upstream but
->>        lacking the actual regulator to work....... :-)
->>
->> [1]: https://lore.kernel.org/all/20210812085846.2628-1-dawei.chien@mediatek.com/
->>
->> AngeloGioacchino Del Regno (7):
->>    dt-bindings: regulator: Add bindings for MediaTek DVFSRC Regulators
->>    dt-bindings: interconnect: Add MediaTek EMI Interconnect bindings
->>    dt-bindings: soc: mediatek: Add DVFSRC bindings for MT8183 and MT8195
->>    soc: mediatek: Add MediaTek DVFS Resource Collector (DVFSRC) driver
-> 
-> Looks like the driver got picked up, but not the binding.
-> mediatek,mt8183-dvfsrc and mediatek,mt8195-dvfsrc show up in next as
-> undocumented.
-> 
-Thanks for making me notice. Adding it up right now.
+Hi Dmitry,
+
+> -----Original Message-----
+> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Sent: Monday, October 14, 2024 9:04 AM
+> Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE IT6263 =
+LVDS to HDMI converter
+>=20
+> On Mon, Oct 14, 2024 at 07:39:16AM +0000, Biju Das wrote:
+> > Hi Liu and Dmitry,
+> >
+> > > -----Original Message-----
+> > > From: Liu Ying <victor.liu@nxp.com>
+> > > Sent: Monday, October 14, 2024 6:34 AM
+> > > Subject: Re: [PATCH v2 5/9] dt-bindings: display: bridge: Add ITE
+> > > IT6263 LVDS to HDMI converter
+> > >
+> > > On 10/14/2024, Dmitry Baryshkov wrote:
+> > > > On Sat, Oct 12, 2024 at 05:14:13PM +0800, Liu Ying wrote:
+> > > >> On 10/12/2024, Dmitry Baryshkov wrote:
+> > > >>> On Sat, Oct 12, 2024 at 03:35:39PM +0800, Liu Ying wrote:
+> > > >>>> Document ITE IT6263 LVDS to HDMI converter.
+> > > >>>>
+> > > >>>> Product link:
+> > > >>>> https://www.ite.com.tw/en/product/cate1/IT6263
+> > > >>>>
+> > > >>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> > > >>>> ---
+> > > >>>> v2:
+> > > >>>> * Document number of LVDS link data lanes.  (Biju)
+> > > >>>> * Simplify ports property by dropping "oneOf".  (Rob)
+> > > >>>>
+> > > >>>>  .../bindings/display/bridge/ite,it6263.yaml   | 276 +++++++++++=
++++++++
+> > > >>>>  1 file changed, 276 insertions(+)  create mode 100644
+> > > >>>> Documentation/devicetree/bindings/display/bridge/ite,it6263.yam
+> > > >>>> l
+> > > >>>>
+> > > >>>> diff --git
+> > > >>>> a/Documentation/devicetree/bindings/display/bridge/ite,it6263.y
+> > > >>>> aml
+> > > >>>> b/Documentation/devicetree/bindings/display/bridge/ite,it6263.y
+> > > >>>> aml
+> > > >>>> new file mode 100644
+> > > >>>> index 000000000000..bc2bbec07623
+> > > >>>> --- /dev/null
+> > > >>>> +++ b/Documentation/devicetree/bindings/display/bridge/ite,it62
+> > > >>>> +++ 63.y
+> > > >>>> +++ aml
+> > > >>>> @@ -0,0 +1,276 @@
+> > > >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > >>>> +%YAML
+> > > >>>> +1.2
+> > > >>>> +---
+> > > >>>> +$id:
+> > > >>>> +http://devicetree.org/schemas/display/bridge/ite,it6263.yaml#
+> > > >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > >>>> +
+> > > >>>> +title: ITE IT6263 LVDS to HDMI converter
+> > > >>>> +
+> > > >>>> +maintainers:
+> > > >>>> +  - Liu Ying <victor.liu@nxp.com>
+> > > >>>> +
+> > > >>>> +description: |
+> > > >>>> +  The IT6263 is a high-performance single-chip
+> > > >>>> +De-SSC(De-Spread
+> > > >>>> +Spectrum) LVDS
+> > > >>>> +  to HDMI converter.  Combined with LVDS receiver and HDMI
+> > > >>>> +1.4a transmitter,
+> > > >>>> +  the IT6263 supports LVDS input and HDMI 1.4 output by convers=
+ion function.
+> > > >>>> +  The built-in LVDS receiver can support single-link and
+> > > >>>> +dual-link LVDS inputs,
+> > > >>>> +  and the built-in HDMI transmitter is fully compliant with
+> > > >>>> +HDMI 1.4a/3D, HDCP
+> > > >>>> +  1.2 and backward compatible with DVI 1.0 specification.
+> > > >>>> +
+> > > >>>> +  The IT6263 also encodes and transmits up to 8 channels of
+> > > >>>> + I2S digital audio,  with sampling rate up to 192KHz and
+> > > >>>> + sample size up to 24 bits. In addition,  an S/PDIF input port
+> > > >>>> + takes in compressed audio of up to 192KHz
+> > > frame rate.
+> > > >>>> +
+> > > >>>> +  The newly supported High-Bit Rate(HBR) audio by HDMI
+> > > >>>> + specifications v1.3 is  provided by the IT6263 in two interfac=
+es:
+> > > >>>> + the four I2S input ports or the  S/PDIF input port.  With
+> > > >>>> + both interfaces the highest possible HBR frame rate  is suppor=
+ted at up to 768KHz.
+> > > >>>> +
+> > > >>>> +properties:
+> > > >>>
+> > > >>> No LVDS data-mapping support?
+> > > >>
+> > > >> It is enough to document number of LVDS link data lanes because
+> > > >> OS should be able to determine the data-mapping by looking at the
+> > > >> number and the data-mapping capability of the other side of the LV=
+DS link.
+> > > >
+> > > > From what I can see, data-mapping is specified on the consumer
+> > > > sink side of the LVDS link. This means it should go to the bridge's=
+ device node.
+> > >
+> > > Then, I won't define data-lanes, because data-mapping implies it,
+> > > e.g., jeida-24 implies data lanes 0/1/2/3, see lvds-data-mapping.yaml=
+.
+> > >
+> > > Please let me know which one you prefer.
+> >
+> > Assume a top level use case where a user changes the format from JEDAI
+> > to VESA using On screen display or modetest(if some one adds support
+> > for lvds-mapping) then setting of the lvds data mapping should be dynam=
+ic.
+> >
+> > Maybe for initial version hardcode with JEDAI or VESA as default and
+> > provide a way to override the host driver and bridge with requested lvd=
+s-data mapping dynamically
+> later??
+>=20
+> The ite,lvds-link-num-data-lanes property should be removed, it is not st=
+andard. I foresee two ways to
+> specify the number of lanes used: either the data-lanes property or the d=
+ata-mapping property. Granted
+> that data-mapping replaces the data-lanes functionality for LVDS links, I=
+ think it's better to use it
+> from the start.
+>=20
+> Frankly speaking, what is the usecase for specifying the data mapping dyn=
+amically? What kind of uAPI
+> do you have in mind and what is the usecase for it?
+
+It simple just want to change from VESA to JEDAI, how do you change it with=
+ existing DRM framework?
+
+Currently I see LVDS panel driver use drm_of_lvds_get_data_mapping(bus_node=
+) to get this info.
+IT6263 bridge device can use that API to get that info.
+
+Some vendors use VESA as default LVDS data mapping whereas some others use =
+JEDAI.
 
 Cheers,
-Angelo
+Biju
 
