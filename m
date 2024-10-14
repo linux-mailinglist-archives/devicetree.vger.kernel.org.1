@@ -1,174 +1,109 @@
-Return-Path: <devicetree+bounces-110791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBDAF99BE46
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 05:38:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E23B99BE48
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 05:41:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 552B4B2334F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 03:38:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8171F22B1E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 03:41:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05ED613B7A3;
-	Mon, 14 Oct 2024 03:38:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDBA61FD7;
+	Mon, 14 Oct 2024 03:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="QwNGk678"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KT1WX7fb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F56084A2F;
-	Mon, 14 Oct 2024 03:38:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA080231CA6;
+	Mon, 14 Oct 2024 03:41:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728877082; cv=none; b=TS5ZnBv5subUjGF8lATuHjRjBSOPojqMl2GOMo8i7zAXzoBC+NvccKoDXxBRF4JY+oJ0dGXUSIUakNpE23YeqZDZNYFM4LsaYm002YY/J3PI14oMn2Ba6kWIOtLYUvQXspU6PEYQTreV/gfKuLhXp75xMfvBU3IfTgVuB4EcNPA=
+	t=1728877285; cv=none; b=EHy/+rAJq87MeFy2kMLxQPFt/fbrKEgRuuX7KXg0mNxRX9IW03WcAfuKAOkbcAI3xfpNChGpG+KHZvk3efeldyyvAVZFzk11BvbJ/qdXbpe/OjEHJXX1lplRGpuqlwggvl9BtzW56+7R4CLSCXzW9dJ5jxo0eslDKZsIengTYuI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728877082; c=relaxed/simple;
-	bh=nakAHXjXuEiKAWt3kFmE/zY0COayKHgh6TPeb/YFlCA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VHOghsN+/uaYvGrEUcXArMgIIx0w6j0EqjhPlFecmLmnBFvQuI5NX509yBwZSxklmUWEcoe3sm/VzAneJ/QA3x+MuMlnwA/1pMz4llqi11eugL2Z3RFtR1bgggBFrAxClO5/bIeF/i2tUBeX2fsyKvqQym2su2MLv0Rs4YN0tSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=QwNGk678; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49DMmArm019902;
-	Mon, 14 Oct 2024 03:37:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EVmGkDQFALOSNGVp4SJXLafB4/6GYX01frE3m+m7m/Q=; b=QwNGk678AsfInkjT
-	M5pFmoxAo/Wg5ffQuexP3VDIozngdyauMw+ZgXBUfYRw6MYy/B64cmceBEHciRO6
-	dT9zDW9FCK13Azj1oKKuiehqlli8U+vFVcjqbwFTr0kmFdO7MLZnP1pzw03AK+ul
-	Gv9m4EyUo7MB3MvqgPXHFg5y/yPoypGK+3kVdVMSChebuIwGAoRgj9ZFxp2/amM4
-	rR0c2LuohjoUggWzAJ61U31dF4eoKLmtD+LvHRXzltr0fBAg+ggLQs8G3+pOq4TS
-	93HYk2zg6PsEhS6TXrNbsviblnTYtyz5FJqgFr3+NEPM6y0Kz1wMFzVr4YjX8LlI
-	sCwKrQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 427hg733t6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Oct 2024 03:37:55 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49E3bsut017621
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 14 Oct 2024 03:37:54 GMT
-Received: from [10.216.1.154] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 13 Oct
- 2024 20:37:50 -0700
-Message-ID: <050f8c5e-b16f-4df1-b1b1-06e60f838085@quicinc.com>
-Date: Mon, 14 Oct 2024 09:07:48 +0530
+	s=arc-20240116; t=1728877285; c=relaxed/simple;
+	bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=PF1+0gYVXeJHxf6mIXSOMu7JQ36t2SgPEL92Lidbk9FzPUskuC1H5M0Cc5UFTJpr4oqYPHTQB3xn5YGyaSfCl+VhBAk0mSV7ukpGpHgWx/MGer25GM70KzR1LxXb0fdKvzVgKbH8x2FpM1UyzH7RTb+I8Ya4/oHcQXIiRsNSA6Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KT1WX7fb; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d495d217bso3337948f8f.0;
+        Sun, 13 Oct 2024 20:41:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1728877282; x=1729482082; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
+        b=KT1WX7fbciOEQ+oV0LDnitGX9YaAdVOz4tQCoNjzseocLHTzy5mpKIGbiOrh13LDfp
+         Xw761OAcF5O9wtTfbGcNMxVc+vwZTMdNnGYnnMfcqFQHKnadoYIU2i1UylD/zwhv5Qm3
+         J7WU5Fe2+YuCbbpNH/hB4HNiGtDiwuxPx+fkStnxA40Jj65A/90qs4lKx261Xq16bbSH
+         yMYuXDY1VT4IR1axCgV+umVfUUvv0HifomM4C4c35GbTJPyy7mjRLkwrR3K8GboXSa2S
+         v5iew4GiUeldz4sz7aEggFWp54kKyeaLX0AU21L4r/k2ZaYqMWT9BnNvYRZ0AF+mQP88
+         oaHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728877282; x=1729482082;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
+        b=mc+QS1aQeumCBas8yucIbGc7tuVfgEyhd2vCIOr4c0Ji6otd3Q2aFwFwA84GHzawYh
+         u+nHSwwCYmp6QDiQtXZW8xMltCeNlzGTK2gZ19PaqzSu9S66RpY4rIMkO1F6x3j2k4Yi
+         47IiLh4E8zeo70jCtfD1l56ooNlrk0laB1ycsJDKRBY0Btzvl4BDYug2k0U4hd2MzoUs
+         woOVbXra3S87DO8bLjGhO/OP+5keCO2MTlb86nth03wcv81NJjN7y7lCaAIHXoPQtkIn
+         x+DN+pQuPkzFKeL1CDoIQSiULIFcWuxMI/CVTLzYEi4cwc/e2KOEYk/Mx2H9UfrGtjqB
+         smfw==
+X-Forwarded-Encrypted: i=1; AJvYcCWP9PBX71NwGASvrpZjUIAxJcrnZ1Vq7baidEe/vBIiJaYtw0Lkl/Ljp0V7ZX4TZwSssTHKq5eJrojFTdEJ@vger.kernel.org, AJvYcCXhaPhV8RC+RF+7DF54+e91t7+BgWc9N+UkOS0M6vp4hbPPJ3hz1PJDG0c9397PhoyHkHQ8wrCVpBWK@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx39dobcGm+xC6J6k0W5y2HXmZ6K0sLJaLN3i4uaklO/Ijftxde
+	vttCMw4Yc+WkEValRfFf0amI5XG7The277OKFTJlx5OX7g+fvW5I2JVdQY+reBQqv2YfJf6F5k/
+	8xiKiFUQM9jn+iqA6Wr7bnUyEyDM=
+X-Google-Smtp-Source: AGHT+IEuZXkrca6rIsUVQwVU97haNonzhsHAqe8u5lA+PAFqgXiPP+0kQTUchcBTz53mVNKJeYrFkQei/keoHkeSEYo=
+X-Received: by 2002:adf:b359:0:b0:37d:4c40:699 with SMTP id
+ ffacd0b85a97d-37d5ff25593mr6606983f8f.5.1728877281830; Sun, 13 Oct 2024
+ 20:41:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: sc8280xp-blackrock: dt
- definition for WDK2023
-To: <jens.glathe@oldschoolsolutions.biz>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Conor
- Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Rob
- Herring <robh@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
-        Bjorn
- Andersson <andersson@kernel.org>,
-        <linux-kernel@vger.kernel.org>, Merck Hung
-	<merckhung@gmail.com>
-References: <20241013-jg-blackrock-for-upstream-v3-0-839d3483a8e7@oldschoolsolutions.biz>
- <20241013-jg-blackrock-for-upstream-v3-3-839d3483a8e7@oldschoolsolutions.biz>
-Content-Language: en-US
-From: Krishna Kurapati <quic_kriskura@quicinc.com>
-In-Reply-To: <20241013-jg-blackrock-for-upstream-v3-3-839d3483a8e7@oldschoolsolutions.biz>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Wxay2Ju9CBbpW7QvACHJZ8GNCTvF446m
-X-Proofpoint-GUID: Wxay2Ju9CBbpW7QvACHJZ8GNCTvF446m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
- definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=709
- lowpriorityscore=0 spamscore=0 adultscore=0 priorityscore=1501
- suspectscore=0 bulkscore=0 phishscore=0 malwarescore=0 impostorscore=0
- mlxscore=0 clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2409260000 definitions=main-2410140025
+References: <20241013213305.310844-1-cenk.uluisik@googlemail.com> <20241013213305.310844-2-cenk.uluisik@googlemail.com>
+In-Reply-To: <20241013213305.310844-2-cenk.uluisik@googlemail.com>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Sun, 13 Oct 2024 22:41:10 -0500
+Message-ID: <CALWfF7+nek6S--Cfq51QE-vSTnnENkbzgGiQkH7RQyjXeUpC-Q@mail.gmail.com>
+Subject: Re: [PATCH V3 2/2] dt-bindings: arm: rockchip: Add Orange Pi 5b
+To: Cenk Uluisik <cenk.uluisik@googlemail.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
+	Chris Morgan <macromorgan@hotmail.com>, Dragan Simic <dsimic@manjaro.org>, 
+	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, Andy Yan <andyshrk@163.com>, 
+	Jagan Teki <jagan@edgeble.ai>, Michael Riesch <michael.riesch@wolfvision.net>, 
+	Jing Luo <jing@jing.rocks>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sun, Oct 13, 2024 at 4:33=E2=80=AFPM Cenk Uluisik
+<cenk.uluisik@googlemail.com> wrote:
+>
+> This commit adds the Xunlong Orange Pi 5b entry to the device tree
+> bindings inside the Documentation folder. I know you said I
+> should extend the Orange Pi 5 one with an enum, but I made a whole new
+> entry, because looking at all the other entries, they also create new
+> entries in a case "like this". I hope this is okay, or maybe I misunderst=
+and something.
+> Thank you in advance.
+>
 
+An example of using an enum is the NanoPi R6 boards
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/devicetree/bindings/arm/rockchip.yaml?h=3Dv6.11#n241
 
-On 10/13/2024 5:24 PM, Jens Glathe via B4 Relay wrote:
-> From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> 
-> Device tree for the Microsoft Windows Dev Kit 2023. This work
-> is based on the initial work of Merck Hung <merckhung@gmail.com>.
-> 
-> The Windows Dev Kit 2023 is a nice little desktop based on sc8280xp.
-> Link: https://learn.microsoft.com/en-us/windows/arm/dev-kit/
-> 
-> Supported features:
-> - USB type-c and type-a ports
-> - minidp connector
-> - built-in r8152 Ethernet adapter
-> - PCIe devices
-> - nvme
-> - ath11k WiFi (WCN6855)
-> - WCN6855 Bluetooth
-> - A690 GPU
-> - ADSP and CDSP
-> - GPIO keys
-> - Audio definition (works via USB)
-> 
-> Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
-> Signed-off-by: Merck Hung <merckhung@gmail.com>
-
-[...]
-
-> +
-> +&usb_0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_0_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb_0_dwc3_hs {
-> +	remote-endpoint = <&pmic_glink_con0_hs>;
-> +};
-> +
-> +&usb_0_hsphy {
-> +	vdda-pll-supply = <&vreg_l9d>;
-> +	vdda-phy-supply = <&vreg_l4d>;
-> +	phy-supply = <&vreg_l4d>;
-> +	vdda18-supply = <&vreg_l1c>;
-> +	vdda33-supply = <&vreg_l7d>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_0_qmpphy {
-> +	vdda-phy-supply = <&vreg_l4d>;
-> +	phy-supply = <&vreg_l4d>;
-> +	vdda-pll-supply = <&vreg_l9d>;
-> +	pll-supply = <&vreg_l9d>;
-> +
-> +	orientation-switch;
-> +
-> +	status = "okay";
-> +};
-> +
-
-I may be wrong but aren't only 3 supplies for femto and 2 supplies for 
-qmp sufficient ? I see two extra supplies in each node.
-
-Same for all the other usb phys as well.
-
-Regards,
-Krishna,
+>
 
