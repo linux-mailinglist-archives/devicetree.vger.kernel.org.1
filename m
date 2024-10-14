@@ -1,146 +1,278 @@
-Return-Path: <devicetree+bounces-111018-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B00399C8B1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:23:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6EA99C8B5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:23:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C9871C21572
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:23:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC60D1C234A6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:23:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900891A3A8D;
-	Mon, 14 Oct 2024 11:22:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 446231A4F30;
+	Mon, 14 Oct 2024 11:22:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LEP99TSz"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OCMKF5PR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B939E17C990
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 11:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0B71A0B07
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 11:22:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728904929; cv=none; b=eJ4TZuzwJdjyvQH5LuX6w/HGZmbqq2a9Z9vhNPHxXbj3ddycqFxEQFYYrKJk229vZJEwHsaijtGJ8Ezui3LfyxGuChM7NisQPRHNV4MRz7a3QnjdxJ73H2iki0o+xQeTDdABnF5/8GlKBRQ/ovoWB8nKa6ndy1FROKa6Qr5D3Yg=
+	t=1728904931; cv=none; b=AzDaevwViUQsk78lCbGhJcLsAJ1ME9qOKpmno2Doc8yiR092ICWSNTJbmVlzw+LENwUh5gGD2usONVVaC6DucEbATOKoiMwmjCXQX1mWNWrekUr4y8grCbRTMGAt/ZmrTiUzAfCOD3D5A0w2hoJQ9MYQ5HQg2JuPdRqgEc0npvw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728904929; c=relaxed/simple;
-	bh=5j7RWbokREf3/yVv+64zXc+WC7gGHZ0KTGF/8hvreSM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=kSd8OtdrpOf1Kyg5inUzeirU884JOukmmlDOUPQNhz/juG59zX5XCMj6vqs+WBP6OXtoVM7bLVoqYw7xuxiorZJM4UKAAT7yZkBROR9dTplwyOS10qDk/1nYT1S+p6GWQxpLcCXQxafLxsupwxv4ZAZvRYxOxMgIGyPQYTQFV8I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LEP99TSz; arc=none smtp.client-ip=209.85.221.43
+	s=arc-20240116; t=1728904931; c=relaxed/simple;
+	bh=2wdQhAhyw/SdXzugpRpMo4y4p7fkvbNM1sGdlnuD0Ok=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NrqO10P41BoeoOJGAivzfz02Zwk19eKD7KRBGSNoohSuml7DW69xZVEQf7t7O79JaSAhF0/8TR4kmI42gTZJ21tu8bzOowftzcXfkInICN8LMoAghlgx39CVYjnZPim6k/PO394exWY7KBbnoGWkmojz6oa9LaLjVrLej4zfZmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OCMKF5PR; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-37d6a2aa748so842876f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 04:22:07 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-539f0f9ee49so1164038e87.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 04:22:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728904926; x=1729509726; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jV/pGOZ7jki2Dt++ge2j58v/V+/bbaCGx8cjzODRBdU=;
-        b=LEP99TSz1xpEKoPTBCr3D/+LlrcJ1nnGruEP8Ktwip1C/9PBLD/7BjIhj83cCXk3hz
-         GGV9D8ozQxCpXbB1y6fHefbcayXQHa8RnXAbpf7jBcjt0e4urNqOJR2TocePaBOfn0hC
-         QZFQF4pdQr8J6P74atZ6oUk7z6kKDvBKaDlR3D8Ad41khr5CSeKcVAye9w5pRhILg0rf
-         NSfsZBrT59XMmEUIR90FYz439Xf7VHHumhUfzCd4TAFh3oRTEAX2PsyEtXaVvkU5rFLb
-         /9imRcsxUDYpJs2AtFhQv4ZzIo1etqA/6O7LITVDnggSsaMSC1In9FcdgtIqzQH340JR
-         RjXw==
+        d=linaro.org; s=google; t=1728904927; x=1729509727; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=c/WJZ6TxkTCNzjbO8VtHNLVTfZRsmiEKJfPFl0v8JMg=;
+        b=OCMKF5PREoVAuXyFCsH52t1It1xtvygNfPfzo/4tNpZkRJYY5tn6x/31UOj0QJgmD6
+         Ff05GsPhIchcXH08rqqr9BQdxhBQI4VJLTp+XJS9+ejRbNAJyj3fXYJl1i4bllNhI95z
+         /TWeAyFiBZ0cG/aLuGCCoZkNUEZf4HgyQg0M7d1jgi8Bow8h4PBozXEMl1ipeZRsSoit
+         xrV1O4kxoRAvBTR8+Cb1RYeXRDHROg6XMC0ofe6dcgHWoGENi4xSG1ryhB03QgpgIoYY
+         map+9idNtXeKvJSv/HDbSMDOdtjkpHM8j9R/c2Chd68W3g3VpsHQe6b/fRdrHdLJjCI1
+         PSmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728904926; x=1729509726;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jV/pGOZ7jki2Dt++ge2j58v/V+/bbaCGx8cjzODRBdU=;
-        b=YKgWG5L77GXAdk5qb9d7zBQV521ccKfvhH2VemUyYHMJFYcRT//eAF91DeWD1WRLgU
-         AKL5kRL0zwjqIVJaJRYjr0e/rtND6JT5Koe19FCP3rk9XUALY7gsgj3wm6jlIiQZ3FOx
-         i8fRoqdS5q1sGZzJybihdwE+vheX8CtF8JlbvFjLphA8B38ToDj3RdKvDLgy582vDgn8
-         9jOcY7EaDnhDtojNRzMnI9wEuEji4MeWVgexo8EMFtndU1ezb6JwMZlqs/v2zQeZMi0T
-         W5ZARmUcpVe9OKOozz1QSJ+VV/NNv6iqTVpo0vTj2slm9PR8XZv1j0EOHn2ANv/srBya
-         AwPg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvoW0jYBdWMOiOduJJAGYhrqtCjst1M7sOkx+EFfMBa4tUwOTySa65mzEoA+j7zyCQsy/wexeakVle@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywp53k1nX/akrfQwsvOU0TXHyIQCZocLYKO8396SfTui/38VhAR
-	8s0ENCCQHOHrVoQOqxSIxV3zA33XM7+0j+zqJnZgObjxU/tu1SQ5vl7mUqQ3MC0=
-X-Google-Smtp-Source: AGHT+IGfSE9dQTcADr9Wnv4UAhYoxwFIKKy8ClV/SB0O2U7/2LnGTJ6xYUNY+Iv4r50STsabEmDbng==
-X-Received: by 2002:a5d:62cc:0:b0:37d:4c8f:2e1 with SMTP id ffacd0b85a97d-37d5ff2c395mr4827225f8f.22.1728904926082;
+        d=1e100.net; s=20230601; t=1728904927; x=1729509727;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=c/WJZ6TxkTCNzjbO8VtHNLVTfZRsmiEKJfPFl0v8JMg=;
+        b=jiCpWHnKcGkWkaSbrbnXk54yIUE8RQh4a16mGf1YPynUg0ehzHmQPdqKhVaE0ldyds
+         +j5zpZBsnd+g65Tw6YCdqrPetRMrjtF4kmmT40NRukRMyyUXeMGRwL+K3NcU19D5nz88
+         iQog4MRonLsAjUInk975mprEu/hm5TReCuTnDapNtRtxVfqIL0LXYXNZ1I7T37VTlZ8P
+         K89qIXpN6Nq/UwzaAblZHGhrZ+xyPHO6S5zsIjGEJL2wTeVkqwk19csj/phuEyffgdSD
+         CMA5LDu19Ax2HdrKknIA1coqWhhZhQUFW0iT8ag5myng+1BtZ8PjDObXgj8jnPDsRARi
+         Tyjw==
+X-Forwarded-Encrypted: i=1; AJvYcCXlq7zeNg+NzqvHd+k4B87zhMACOdhKykQC466MmK/6kVTbu7QI8JnnSlAmKUf/qnUC7nWHj+o8o7/7@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyo4zQMOlKdZVJN2PQrfYHCPdCGDgnh18XvJ7QlG8nUhI2uYyV0
+	pbHqQmla6B8mntdyZtcUU7ov5pIj21POgFVa3iEgP8RwhRQ4iyOQQu7GDOPQshg=
+X-Google-Smtp-Source: AGHT+IHyq2KzCbTQHgIF+N3Wkwz4ktOrcRxxTc37r4GkdQ0eTp8kNWi6LQOgPbMbscQq22sm9zgMXw==
+X-Received: by 2002:a05:6512:1305:b0:539:d05c:f553 with SMTP id 2adb3069b0e04-539da3c6967mr5271456e87.21.1728904926491;
         Mon, 14 Oct 2024 04:22:06 -0700 (PDT)
-Received: from [127.0.1.1] ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b6a8666sm11098702f8f.22.2024.10.14.04.22.04
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539e86e2fa5sm834727e87.145.2024.10.14.04.22.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 14 Oct 2024 04:22:05 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Mon, 14 Oct 2024 14:21:49 +0300
-Subject: [PATCH 2/2] arm64: dts: qcom: x1e80100-vivobook-s15: Drop
- orientation-switch from USB SS[0-1] QMP PHYs
+Date: Mon, 14 Oct 2024 14:22:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Liu Ying <victor.liu@nxp.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
+	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
+	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
+	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de, nfraprado@collabora.com, 
+	o.rempel@pengutronix.de, y.moog@phytec.de, marex@denx.de, isaac.scott@ideasonboard.com, 
+	biju.das.jz@bp.renesas.com
+Subject: Re: [PATCH v2 6/9] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
+Message-ID: <re3oe4nlz3mqecdlaetrgtqsdjzrzlwxjnxu6cojkbyzcjpwkn@24gg755jm2lv>
+References: <20241012073543.1388069-1-victor.liu@nxp.com>
+ <20241012073543.1388069-7-victor.liu@nxp.com>
+ <dtloyyghjep5rm34qjjinvhvrar5jzj3n24czvpdmnkfesntjq@t2uijuez7myj>
+ <f47bc3f1-20d9-4f7e-acdd-85eabdb8d743@nxp.com>
+ <kaoqse23we5lyhaawk6xe2ouxwwjtjfpkiqb3j7xe64o2jscny@3yswlkjhuuxw>
+ <91d1e176-f578-466b-991b-2df1728e2f78@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241014-x1e80100-dts-drop-orientation-switch-v1-2-26afa6d4afd9@linaro.org>
-References: <20241014-x1e80100-dts-drop-orientation-switch-v1-0-26afa6d4afd9@linaro.org>
-In-Reply-To: <20241014-x1e80100-dts-drop-orientation-switch-v1-0-26afa6d4afd9@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1051; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=5j7RWbokREf3/yVv+64zXc+WC7gGHZ0KTGF/8hvreSM=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnDP7ZDGL6UG+uoxoZGoo0NfoYAFiOwyo+YdNkc
- 5kdtBG+pcOJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZwz+2QAKCRAbX0TJAJUV
- VuptEADNoRbQrFkBrNYvH0t+n+KlGB1+WP066An+9VKvQmwI2W54Hms64DNQ5SxrvhGv42JIE2N
- yhDDjCJsFJuRmanHm3ZHAlZsJkfZhMf1uHeEGXOOkMOPWe56PNHhCjeKvsXb3GJGGCzsm7oTckJ
- stXMXe1iWeXc2nCPxOtltOoNQ8x82xd0Jouct32pFb4ynolVXDh76JQ9CAR/Qz+hl6RR2/GFVtF
- /qT0f8AX7IoZGhZnULGhrdUnFKhN46f/tUxnqxJotUb6po0/Dgi1zMCwP2RkGmDpSm0QN0UowWj
- 3+WXoQeSG9dBorL4S+QKPm8QA1ere4YdN8nzN8udSGVVgSgaRYvaaBHUmzGhFZZIR2+G5Bwdggp
- w0EsEQX4tPaShuverd+SOh6h05zoqesdUlSY6602fcpvsuul+9xXMDIFSV/aJaqn7WkM/YBsM7f
- IoajM0NQVzBL2BlLNSi4xGTzp733lG7EAiQumCsIBy2hVlGeomrpciDr8f36EttBJYxv/YsWrLr
- MBTDehaiN7161uHV+sUVHu2KK+N4KmVruQs0R7JwbB6TXCEHFCMfNSpXh2nlBc6f1vH/U13+Q2b
- oES9TLAwppF99XAVfzAm6+rv7D6ZlHOI+FrbCWlprsVTOOo9Ux82pgj0jtsL8QdGG0u20ZfALPY
- 2szirTUXFy31ITQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <91d1e176-f578-466b-991b-2df1728e2f78@nxp.com>
 
-The orientation-switch is already set in the x1e80100 SoC dtsi,
-so drop from Vivobook S15 dts.
+On Mon, Oct 14, 2024 at 04:28:29PM +0800, Liu Ying wrote:
+> On 10/14/2024, Dmitry Baryshkov wrote:
+> > On Mon, Oct 14, 2024 at 03:18:15PM +0800, Liu Ying wrote:
+> >> On 10/14/2024, Dmitry Baryshkov wrote:
+> >>> On Sat, Oct 12, 2024 at 03:35:40PM +0800, Liu Ying wrote:
+> >>>> Add basic HDMI video output support. Currently, only RGB888 output
+> >>>> pixel format is supported.  At the LVDS input side, the driver
+> >>>> supports single LVDS link and dual LVDS links with "jeida-24" LVDS
+> >>>> mapping.
+> >>>>
+> >>>> Product link:
+> >>>> https://www.ite.com.tw/en/product/cate1/IT6263
+> >>>>
+> >>>> Signed-off-by: Liu Ying <victor.liu@nxp.com>
+> >>>> ---
+> >>>> v2:
+> >>>> * Add AVI inforframe support.  (Maxime)
+> >>>> * Add DRM_MODE_CONNECTOR_HDMIA.  (Biju)
+> >>>> * Rename it6263_reset() to it6263_hw_reset().  (Biju)
+> >>>> * Check number of LVDS link data lanes.  (Biju)
+> >>>>
+> >>>>  drivers/gpu/drm/bridge/Kconfig      |   8 +
+> >>>>  drivers/gpu/drm/bridge/Makefile     |   1 +
+> >>>>  drivers/gpu/drm/bridge/ite-it6263.c | 919 ++++++++++++++++++++++++++++
+> >>>>  3 files changed, 928 insertions(+)
+> >>>>  create mode 100644 drivers/gpu/drm/bridge/ite-it6263.c
+> >>>>
+> >>>
+> >>> [...]
+> >>>
+> >>>> +static int it6263_parse_dt(struct it6263 *it)
+> >>>> +{
+> >>>> +	struct device *dev = it->dev;
+> >>>> +	struct device_node *port0, *port1;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	ret = of_property_read_u8(dev->of_node, "ite,lvds-link-num-data-lanes",
+> >>>> +				  &it->lvds_link_num_dlanes);
+> >>>> +	if (ret) {
+> >>>> +		dev_err(dev, "failed to get LVDS link number of data lanes: %d\n",
+> >>>> +			ret);
+> >>>> +		return ret;
+> >>>> +	}
+> >>>> +
+> >>>> +	it->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 2, 0);
+> >>>> +	if (IS_ERR(it->next_bridge))
+> >>>> +		return dev_err_probe(dev, PTR_ERR(it->next_bridge),
+> >>>> +				     "failed to get next bridge\n");
+> >>>> +
+> >>>> +	port0 = of_graph_get_port_by_id(dev->of_node, 0);
+> >>>> +	port1 = of_graph_get_port_by_id(dev->of_node, 1);
+> >>>> +	if (port0 && port1) {
+> >>>> +		if (of_property_read_bool(port0, "dual-lvds-even-pixels") &&
+> >>>> +		    of_property_read_bool(port1, "dual-lvds-odd-pixels")) {
+> >>>> +			it->lvds_dual_link = true;
+> >>>> +			it->lvds_link12_swap = true;
+> >>>> +		} else if (of_property_read_bool(port0, "dual-lvds-odd-pixels") &&
+> >>>> +			   of_property_read_bool(port1, "dual-lvds-even-pixels")) {
+> >>>> +			it->lvds_dual_link = true;
+> >>>> +		}
+> >>>> +
+> >>>> +		if (!it->lvds_dual_link) {
+> >>>> +			dev_err(dev,
+> >>>> +				"failed to get LVDS dual link pixel order\n");
+> >>>> +			ret = -EINVAL;
+> >>>> +		}
+> >>>
+> >>> Please use drm_of_lvds_get_dual_link_pixel_order(), it validates that
+> >>> the DT definition is sound: one port for odd pixels, one port for even
+> >>> pixels.
+> >>
+> >> It cannot be used, because it get the pixel order for the LVDS
+> >> source not sink. IT6263 is the LVDS sink.
+> > 
+> > Then you need a similar function for the sink side. Add it to the
+> > drm_of.c
+> 
+> How about getting remote LVDS source ports first and use
+> drm_of_lvds_get_dual_link_pixel_order() like the snippet below?
+> This way, no need to add a similar function or modify
+> drm_of_lvds_get_dual_link_pixel_order() implementation.
+> 
+> If you don't like this, can you please suggest a similar function
+> name or maybe an additional parameter(with type and name) for
+> drm_of_lvds_get_dual_link_pixel_order()?
+> 
+> ---8<---
+>         port0_ep = of_graph_get_endpoint_by_regs(dev->of_node, 0, -1);           
+>         if (port0_ep) {                                                          
+>                 remote_port0 = of_graph_get_remote_port(port0_ep);               
+>                 of_node_put(port0_ep);                                           
+>         }                                                                        
+>         port1_ep = of_graph_get_endpoint_by_regs(dev->of_node, 1, -1);           
+>         if (port1_ep) {                                                          
+>                 remote_port1 = of_graph_get_remote_port(port1_ep);               
+>                 of_node_put(port1_ep);                                           
+>         }                                                                        
 
-Fixes: d0e2f8f62dff ("arm64: dts: qcom: Add device tree for ASUS Vivobook S 15")
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts | 4 ----
- 1 file changed, 4 deletions(-)
+I think getting remotes just to get remotes back is a little bit clumsy.
+Adding drm_of_lvds_get_dual_link_pixel_order_sink() looks like a claner
+solution.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-index 20616bd4aa6c5c10ee989f1b98d22502b8834c0d..b54fe61002033188d0b95515a8cf19cdf9cdb11b 100644
---- a/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-+++ b/arch/arm64/boot/dts/qcom/x1e80100-asus-vivobook-s15.dts
-@@ -592,8 +592,6 @@ &usb_1_ss0_qmpphy {
- 	vdda-phy-supply = <&vreg_l3e_1p2>;
- 	vdda-pll-supply = <&vreg_l1j_0p8>;
- 
--	orientation-switch;
--
- 	status = "okay";
- };
- 
-@@ -626,8 +624,6 @@ &usb_1_ss1_qmpphy {
- 	vdda-phy-supply = <&vreg_l3e_1p2>;
- 	vdda-pll-supply = <&vreg_l2d_0p9>;
- 
--	orientation-switch;
--
- 	status = "okay";
- };
- 
+>                                                                                  
+>         if (remote_port0 && remote_port1) {                                      
+>                 order = drm_of_lvds_get_dual_link_pixel_order(remote_port0,      
+>                                                               remote_port1);     
+>                 if (order < 0) {                                                 
+>                         dev_err(dev,                                             
+>                                 "failed to get dual link pixel order: %d\n",     
+>                                 order);                                          
+>                         ret = order;                                             
+>                 } else if (order == DRM_LVDS_DUAL_LINK_ODD_EVEN_PIXELS) {        
+>                         it->lvds_dual_link = true;                               
+>                 } else if (order == DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS) {        
+>                         it->lvds_dual_link = true;                               
+>                         it->lvds_link12_swap = true;                             
+>                 }                                                                
+
+	it->lvds_dual_link = true;
+	order = drm_of_lvds_get_dual_link_pixel_order_sink(port0_ep,
+							   port1_ep);
+	if (order < 0) {
+		dev_err(...);
+		ret = order;
+	} else if (order == DRM_LVDS_DUAL_LINK_EVEN_ODD_PIXELS) {
+		it->lvds_link12_swap = true;
+	}
+
+>         } else if (remote_port1) {                                               
+>                 ret = -EINVAL;                                                   
+>                 dev_err(dev, "single input LVDS port1 is not supported\n");      
+>         } else if (!remote_port0) {                                              
+>                 ret = -EINVAL;                                                   
+>                 dev_err(dev, "no input LVDS port\n");                            
+>         }                                                                        
+>                                                                                  
+>         of_node_put(remote_port0);                                               
+>         of_node_put(remote_port1); 
+> ---8<---
+> 
+> > 
+> >>
+> >>  * drm_of_lvds_get_dual_link_pixel_order - Get LVDS dual-link pixel order        
+> >>  * @port1: First DT port node of the Dual-link LVDS source                       
+> >>  * @port2: Second DT port node of the Dual-link LVDS source      
+> >>
+> >>>
+> >>>> +	} else if (port1) {
+> >>>> +		ret = -EINVAL;
+> >>>> +		dev_err(dev, "single input LVDS port1 is not supported\n");
+> >>>> +	} else if (!port0) {
+> >>>> +		ret = -EINVAL;
+> >>>> +		dev_err(dev, "no input LVDS port\n");
+> >>>> +	}
+> >>>> +
+> >>>> +	of_node_put(port0);
+> >>>> +	of_node_put(port1);
+> >>>> +
+> >>>> +	return ret;
+> >>>> +}
+> >>>> +
+> >>>
+> >>
+> >> -- 
+> >> Regards,
+> >> Liu Ying
+> >>
+> > 
+> 
+> -- 
+> Regards,
+> Liu Ying
+> 
 
 -- 
-2.34.1
-
+With best wishes
+Dmitry
 
