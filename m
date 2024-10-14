@@ -1,176 +1,131 @@
-Return-Path: <devicetree+bounces-111077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111079-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D2B99CC38
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:06:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 940BE99CC62
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:09:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5B49284351
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:06:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46EFD1F23904
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:09:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72571AC8A2;
-	Mon, 14 Oct 2024 14:05:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65B81AAE06;
+	Mon, 14 Oct 2024 14:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wb+SUd2f"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T8G5airz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80CC1AC885;
-	Mon, 14 Oct 2024 14:05:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092EE1531E1
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 14:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728914732; cv=none; b=lqjoMm94KgBw1+vfuMCyA6nNiplgwgJ32bGhzYQonX6SQtr8zxoQzt7KJImPFagazok5AC18Ze+JA41xSZieAMoKhO+ahSY7EUkvZn+qevTSOHw85fpsngHEJgMkWkhJ6tWHCbqOSvU+Eq8jar6C7qnhUxY5KfrrDR/bkmTKy9c=
+	t=1728914944; cv=none; b=u5hjwrz7HdQqcxLXY8fqFsNDMtxMUMIeitax28Eu8iOqxdBQTNbStb+lsUTPk1paN/Vdg7zV4acx9oBccTRunxE7i1Ji1RfITeo62WY3YRK6u2A8zBmBb6EM/d6Ie35jfXLKcQufo/kHBH6JTHULnwPybEPmLh+3JIkRhD5LSkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728914732; c=relaxed/simple;
-	bh=eiBz2oCRNLu1LEWaYxV3JYICGOhv3PmcLnzaYHKoTsA=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=EHvJSzjajOs1aAvVhBFr+bWLrkk/owgyywZJ8PkTdJsoQrIuB9EpKLuR8kiy4x7DkAlcVT+rEvh0eRWrRKlSs4LiNF9RdR77aYvShTVMaExXBPPfPJEflqz1oSn55zV6xyQX7XwWsMU1j+KD3aFttKkE+QarqNTYJUAAMub/UWI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wb+SUd2f; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44CE1C4CEC3;
-	Mon, 14 Oct 2024 14:05:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728914732;
-	bh=eiBz2oCRNLu1LEWaYxV3JYICGOhv3PmcLnzaYHKoTsA=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=Wb+SUd2fDKIJr+msk5x3l2yLqY3VO+INwsSJZKHSEkiDTZ0pA/0xbALhBAIUW3X3Z
-	 uGQ4DA23I85earVnDxoSQJKCvKvKJRm3TwT73BRBuav6bNkGZWOGEjr4dWXJCWbo8R
-	 PylLhpjo6N27F3LAIJmrBPF7caftb4eex5+yyHRVO5JHtoLmmNnVdgmDtQQeyhwCic
-	 bXG4ZY8FkKX8rY5sb1oTTfKNIJxGAdEmDwO/w1NzyeidGcctrTTt5sr8FGxwOfy3Rd
-	 3DpBPhx2/dwAHagI8M+BxueQwEYvVD4TaFZLKeBAuTuLUBnc8JthOL1uMUVOlLwjoI
-	 nai7lYSRZy8lA==
-Date: Mon, 14 Oct 2024 09:05:31 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1728914944; c=relaxed/simple;
+	bh=096XcezsKIhNQbiuhcWjPx2NJjm/QlTds+fuC3x2q2I=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WPVAe2aCFlgeVKNAUCKhJBQEOSKPYPmyTDMk12KHitR34f2G3Rt4WPZua05zYnhGbx29RqmEPb0fPJ7tGcpRYDDE7XuC0UYhLorFH28cSs2S1WHI8B8/gQQ8cxyNFNZ65DlEltqAmVeBozmQblfl9CBSQSKcLNZ7PdLPJqDm1+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T8G5airz; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5398ec2f3c3so5070591e87.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 07:09:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728914941; x=1729519741; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=nkTfeSKVH/igcH5ZriHsNKyR0CJ+YrUmZw3kxQGcYG4=;
+        b=T8G5airzS0rKPMefGc+R0ND3wCAHsXcDorqxHIQrXpy06LpDqut4KlpBvbk+wFHNKG
+         QwfoEigZkfRj19CoffnDheZyG5npPWv7uxFSmkfYg49MwmdxJfmzclQ852SOn49d/fBe
+         +8rhCqUMdMkZXHig7g3yDLbso4LQbncxiZe5+MnEa0qYwj1UHvN2pmZASt5ajb+ClwTP
+         RXGRhGXAM4x4e0ttN+yZvEZcY/UWJ+fmhtw4s+HPidRPR1Fucvxw/oRqWjsdV9d87xED
+         tZfyZgA7CNOeXfm+Zh3iSxr2/Qlg6HYnMdQrO60Lesw1lmBgcEHYgeBUQGMjalur854J
+         GSfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728914941; x=1729519741;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nkTfeSKVH/igcH5ZriHsNKyR0CJ+YrUmZw3kxQGcYG4=;
+        b=uNa4rFxIBnobWUTMsHfVEZN3PvfWjPKX8pA+JTZS8CxfQOSDfK7De7PVlxq/t8/rQ7
+         h8j20FJwV0Cx4aj7XsLyhD+enij9yKQkSyydZYk+ALzOIop35c6eNngav9666QEg5ZFZ
+         kSz0X/EGx3VVE5vaI6zpHcfkvbj/ZfKdISVxmpbb7qBWL/HJG0Dp/YDx5k4pGRPNJo6z
+         0Ere+rUpvv0mgNnpYWLLvmuLTbWNQW+AK0A9RuF2NCI6FwCLmUEGjeE8kWUhrj80WfXZ
+         fPUmIdLTzpL4wRCkQkiH18mCoxdXi17Ss5eSewxKkEIAQMZWqH+mnAzM3h42xmqbRGRk
+         su5g==
+X-Forwarded-Encrypted: i=1; AJvYcCWf6KznAWgKjhbdfpyovm1qsz2JgRIHhCYsZ+WQkAoLe+rZ/VwEdj8FvzR/fBsBUXQzsj2nY7JjINN1@vger.kernel.org
+X-Gm-Message-State: AOJu0YyV69WAhuvN1FbuOcJ2OYJjUI0JjmPdkCPkIU2JD045CNSVHHNN
+	CIceH61DrG0X236UhWEav4VnxKlK5WGZffxfu8xNWtoBYzwHVYEfAiTtAbwQ138=
+X-Google-Smtp-Source: AGHT+IFaNV+gPEt3QJTDCvRINUz+1tvBKw2CJneHcD66w+NG/nUTfSgQyfrwPGJ3FNaKyTTlJR6Ucg==
+X-Received: by 2002:a05:6512:1048:b0:536:a50a:3c25 with SMTP id 2adb3069b0e04-539e54d7979mr2852605e87.12.1728914941171;
+        Mon, 14 Oct 2024 07:09:01 -0700 (PDT)
+Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-539e3c3e0d6sm1089090e87.161.2024.10.14.07.09.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2024 07:09:00 -0700 (PDT)
+Date: Mon, 14 Oct 2024 17:08:59 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To: Jianhua Lu <lujianhua000@gmail.com>
+Cc: Dikshita Agarwal <quic_dikshita@quicinc.com>, 
+	Vikash Garodia <quic_vgarodia@quicinc.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Hans Verkuil <hverkuil@xs4all.nl>, 
+	Sebastian Fricke <sebastian.fricke@collabora.com>, linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 27/28] media: iris: enable video driver probe of
+ SM8250 SoC
+Message-ID: <7vmxx5qtbvhyfcdeariqiult27j5rmykxrefl2qmkhqnrw5wi5@6ugxtx643bmq>
+References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
+ <20241014-qcom-video-iris-v4-v4-27-c5eaa4e9ab9e@quicinc.com>
+ <Zw0j9UeJmC1MZ3Xt@localhost.localdomain>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Stanimir Varbanov <svarbanov@suse.de>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org, 
- Jonathan Bell <jonathan@raspberrypi.com>, 
- Jim Quinlan <jim2101024@gmail.com>, linux-rpi-kernel@lists.infradead.org, 
- kw@linux.com, Andrea della Porta <andrea.porta@suse.com>, 
- devicetree@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>, 
- Thomas Gleixner <tglx@linutronix.de>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Lorenzo Pieralisi <lpieralisi@kernel.org>, 
- Nicolas Saenz Julienne <nsaenz@kernel.org>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20241014130710.413-1-svarbanov@suse.de>
-References: <20241014130710.413-1-svarbanov@suse.de>
-Message-Id: <172891445648.1127418.3673645217921706886.robh@kernel.org>
-Subject: Re: [PATCH v3 00/11] Add PCIe support for bcm2712
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zw0j9UeJmC1MZ3Xt@localhost.localdomain>
 
-
-On Mon, 14 Oct 2024 16:06:59 +0300, Stanimir Varbanov wrote:
-> Hello,
+On Mon, Oct 14, 2024 at 10:00:21PM +0800, Jianhua Lu wrote:
+> On Mon, Oct 14, 2024 at 02:37:48PM +0530, Dikshita Agarwal wrote:
+> > Initialize the platform data and enable video driver
+> > probe of SM8250 SoC.
+> > 
+> > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> > ---
+> [..] 
+> > diff --git a/drivers/media/platform/qcom/iris/iris_probe.c b/drivers/media/platform/qcom/iris/iris_probe.c
+> > index 86ef2e5c488e..a2aadd48926f 100644
+> > --- a/drivers/media/platform/qcom/iris/iris_probe.c
+> > +++ b/drivers/media/platform/qcom/iris/iris_probe.c
+> > @@ -325,6 +325,10 @@ static const struct of_device_id iris_dt_match[] = {
+> >  		.compatible = "qcom,sm8550-iris",
+> >  		.data = &sm8550_data,
+> >  	},
+> > +	{
+> > +		.compatible = "qcom,sm8250-venus",
+> > +		.data = &sm8250_data,
+> > +	},
+> >  	{ },
+> >  };
+> >  MODULE_DEVICE_TABLE(of, iris_dt_match);
 > 
-> Here is v3 the series to add support for PCIe on bcm2712 SoC
-> used by RPi5. Previous v2 can be found at [1].
-> 
-> v2 -> v3 changes include:
->  - Added Reviewed-by/Acked-by tags.
->  - MIP MSI-X driver has been converted to MSI parent.
->  - Added a new patch for PHY PLL adjustment need to succesfully
->    enumerate PCIe endpoints on extension connector (tested with
->    Pineboards AI Bundle + NVME SSD adapter card).
->  - Re-introduced brcm,msi-offset DT private property for MIP
->    interrupt-controller (without it I'm anable to use the interrupts
->    of adapter cards on PCIe enxtension connector).
-> 
-> For more info check patches.
-> 
-> [1] https://patchwork.kernel.org/project/linux-pci/cover/20240910151845.17308-1-svarbanov@suse.de/
-> 
-> Stanimir Varbanov (11):
->   dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
->   dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
->   irqchip: mip: Add Broadcom bcm2712 MSI-X interrupt controller
->   PCI: brcmstb: Expand inbound size calculation helper
->   PCI: brcmstb: Enable external MSI-X if available
->   PCI: brcmstb: Avoid turn off of bridge reset
->   PCI: brcmstb: Add bcm2712 support
->   PCI: brcmstb: Reuse config structure
->   PCI: brcmstb: Adjust PHY PLL setup to use a 54MHz input refclk
->   arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
->   arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
-> 
->  .../brcm,bcm2712-msix.yaml                    |  60 ++++
->  .../bindings/pci/brcm,stb-pcie.yaml           |   5 +-
->  .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
->  arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 160 +++++++++
->  drivers/irqchip/Kconfig                       |  16 +
->  drivers/irqchip/Makefile                      |   1 +
->  drivers/irqchip/irq-bcm2712-mip.c             | 308 ++++++++++++++++++
->  drivers/pci/controller/pcie-brcmstb.c         | 197 ++++++++---
->  8 files changed, 707 insertions(+), 48 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
->  create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
-> 
-> --
-> 2.43.0
-> 
-> 
-> 
+> qcom-venus driver has already supported sm8250 soc, I think you should add
+> an extra patch to drop sm8250 releated code from qcom-venus driver if you
+> tend to add support for sm8250 in qcom-iris driver.
 
+Iris driver did not feature parity with the venus driver, so it is
+expected that two drivers will exist side by side for some time.
+Nevertheless ideally we should have a way to specify which driver should
+be used for sm8250 (and other platforms being migrated).
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y broadcom/bcm2712-rpi-5-b.dtb' for 20241014130710.413-1-svarbanov@suse.de:
-
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: resets: [[12, 42], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@100000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: 'msi-controller' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: resets: [[12, 43], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@110000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: 'msi-controller' is a required property
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: resets: [[12, 44], [13]] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names:0: 'rescal' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names:1: 'bridge' was expected
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@120000: reset-names: ['bridge', 'rescal'] is too short
-	from schema $id: http://devicetree.org/schemas/pci/brcm,stb-pcie.yaml#
-
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
