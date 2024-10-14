@@ -1,303 +1,131 @@
-Return-Path: <devicetree+bounces-110789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA41F99BDCE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 04:37:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2669199BDF7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 05:10:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDAE281251
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 02:37:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CAF01C2116E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 03:10:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275F23B796;
-	Mon, 14 Oct 2024 02:37:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6FD43179;
+	Mon, 14 Oct 2024 03:10:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="J0UvWuXo"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U41PJ2iQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB244778E
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 02:37:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D4B28467;
+	Mon, 14 Oct 2024 03:10:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728873472; cv=none; b=Qze+DQchBQdXV/z18S7mYtIpPEVFb6PdV5PbkORAnZmu8pVRJhd9flKMS93/JuKjDY9ck0mQ3gtoe2+1wC0GCKOVCcoI1OsQc4LkBKR9qAxUcHFSDJb6nIY5Hl8G/pydtpUG140d6TmC4aLcV7xTGJRJR4QJVcW06lw3Q3tlCVw=
+	t=1728875425; cv=none; b=TVyQn4Y8b9MmSBVCp4s7UlvziBKpnmUcWNGmND5mWfrxLWtU3rDzb9rf+P1+XIkLechGy/F71frEDR/q6KnwaYEWIYcuCCZ2/WwkIVOG5nj8E5y6RPEVS/WthMeY5DMugAbZ0s4k3kmBwbbF3zgsilac007Ic0WIuLvUN2oHNYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728873472; c=relaxed/simple;
-	bh=sIxI7e5sgdvRRPR9jHSTfcKb4j6Q+ooisLwyqBkg2wo=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lblVAzAc1ab9P0OKkJOXI7JgxezsZuCaVv/ailiLTnRdqu5lFUw92iT7wuii2we9x/ebaJm56oPq1jgum5SCo5OeksTNzsD/BpKyP2zfRCvlSsQnsiTrnGDlsmuDwpMTVpY4RAGfxiR/cVaeWOuX1lcl6CTB0jeKo6mPceo9yQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=J0UvWuXo; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2bd0e2c4fso2912914a91.3
-        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 19:37:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1728873470; x=1729478270; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yvS7dkDnxUI6bp1u5nJxrjFDPThHi48yAYLmv0eTJmw=;
-        b=J0UvWuXorwx4HbQSZ+FpbStEaaO5YqVDwvuglIlMQLDZ1VYq9uIB/qfChZslk3+xn/
-         FXdqopWC9z6UR2GJyGqQnertCGRyH1dDODQFRk39uwsHqKA54T45rQm5/Fc/jCsklgPT
-         Xx6X7WMJ9g9RrFGMfOgQ7MdZs1oT+wj1g8E8UH46+Ojcd2lxBKWb9vdZNaNymFGT2ean
-         wohJkUiajzAx3hvndab+HNFfp3e8oazApp4JsTBNJKG5dSXDWHdlXnybBmUhLzg4LEe+
-         50rkWxW5ErlvuBOg8Mq2lUBmi/uzOldNGaZREjx2HyDe9HV7cfE111UtiIhsrR5yfk2S
-         9OYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728873470; x=1729478270;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yvS7dkDnxUI6bp1u5nJxrjFDPThHi48yAYLmv0eTJmw=;
-        b=Ei+QidAilCgU9arGYe7AGtcUQ9TbrKYGxTB43wJ9wuq6gtLEuVbetmqXBbqVXPJYCn
-         ecIA8KK3e00boRgzffp+Py+DlvMBoMFpLkJ7EMiM/VQaRTpVAk8EgS4oqNxYCDL6cUDg
-         AFwnsLFF/+K/B5XPDQNmrmqdwH5N47pouErsjDslSOFyrJp9NP6VGeD7REhROb4qX3XY
-         1E30x4mOTrecHt4i9R8Xhx4WtQpzXdAr8vg3/OhOw71eG+0KHW+sRZt65jwQCzouMpvL
-         HBRSGzLy7HwjxVulsANwY/VU04eywi66ltYq2BIzWaEWKSDFH1EeyjIERXPjXO4yWLrT
-         758Q==
-X-Gm-Message-State: AOJu0Yx1OcI9aUYjWGbMB/xVc1zj9NJXxgWXzqF2hNQERr5DcOaPxSsE
-	nXsmHr3QQpXcY0CF6iQoo2X/jK9rODTIhcmGtkFfXELfOACZphVnkoVP5TyWFnz/NmuXV5BHPDJ
-	YOLcNUxDoIRdZMFY60qRnOKvpj4QviAD3nMMI
-X-Google-Smtp-Source: AGHT+IHdscZngOk4DHV6or3IO500O+lpxngvQQvWAeD6ImszLIemhpRLBPXwXKk532fxYhBAl3tOt4Dgaa+rt8JSCL0=
-X-Received: by 2002:a17:90a:df89:b0:2e2:bd10:599d with SMTP id
- 98e67ed59e1d1-2e2f0ad2040mr12976320a91.11.1728873469285; Sun, 13 Oct 2024
- 19:37:49 -0700 (PDT)
+	s=arc-20240116; t=1728875425; c=relaxed/simple;
+	bh=DdQ/o5IyAE1ef2BCYx1IXwALl3MWzI8TPRzuZrl3jQ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Bx0gcKospiDcEC9NimPDtETJYhbSpbyD7Jn6hGdzm20wPEsQsGiREshjVpEPmIfdICVBgcG0wouHSEb6dH4pqCCgkv+SU1aqOtCZoDiuRrN21yyE6GLrwWIoup31fcaf+wK2iPaNGobVC1KZX7Ae6BLMiUMDvrSdNHPZ8JumnUk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U41PJ2iQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49E0NYdo001018;
+	Mon, 14 Oct 2024 03:10:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	KeAYuDGyuiL1QDxIhtx6FIuHKkO563Nn7tQ/PODSPfY=; b=U41PJ2iQw6SWw75s
+	0Wu6y5K3GO0jt+/xL2yL6921Zl5bmNqJ7aIVPYRNpsEooSKqR7pv6zmqmNiVsEIk
+	+4wlCXQdwLESfCN1I8/vlpxrM+zvsR1kMrizDaOEntEzpK/cpqKQLRCaMyEeRPcz
+	oHBeeM/jl9tLDaa32BLKlipWRymfw8hn+EJVwwgrw8bG9hYR5vBoSkuNqSyda3B2
+	U8rROn8qUNYN2o0avgB1lWKKByKxZ0pkOa+3ENdClQaV+vJEZB/QQfs0wZMHOJin
+	tYSl3pU5ut/IBDnblyWgz7ikp8ba5Vlr/0y1JWIzoVOE0uJ4DWnAzLX5belhaI2E
+	19DzJA==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 427jd8u1k1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Oct 2024 03:10:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 49E3A1bE010849
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Oct 2024 03:10:01 GMT
+Received: from [10.239.132.41] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.9; Sun, 13 Oct
+ 2024 20:09:57 -0700
+Message-ID: <2224b2fe-4e72-4371-9f0b-d5ee211c2210@quicinc.com>
+Date: Mon, 14 Oct 2024 11:09:53 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241013200730.20542-1-richard@nod.at>
-In-Reply-To: <20241013200730.20542-1-richard@nod.at>
-From: Saravana Kannan <saravanak@google.com>
-Date: Sun, 13 Oct 2024 19:37:10 -0700
-Message-ID: <CAGETcx_+Poy8b_QhKY21Wg9=TBjtxrhCmFWTq8Qv6rLSJMURCw@mail.gmail.com>
-Subject: Re: [PATCH] [RFC] of: Add debug aid to find unused device tree properties
-To: Richard Weinberger <richard@nod.at>
-Cc: devicetree@vger.kernel.org, robh@kernel.org, linux-kernel@vger.kernel.org, 
-	upstream+devicetree@sigma-star.at
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] dt-bindings: arm-smmu: Document Qualcomm QCS615 apps
+ smmu
+To: Krzysztof Kozlowski <krzk@kernel.org>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <robimarko@gmail.com>, <quic_gurus@quicinc.com>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <iommu@lists.linux.dev>
+References: <20241011063112.19087-1-quic_qqzhou@quicinc.com>
+ <20241011063112.19087-3-quic_qqzhou@quicinc.com>
+ <af81be27-fdfa-4dec-a18c-56c7022e3c75@kernel.org>
+From: Qingqing Zhou <quic_qqzhou@quicinc.com>
+In-Reply-To: <af81be27-fdfa-4dec-a18c-56c7022e3c75@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: wm-Jb0utSsOu_EBBr2vz4zGZn5fUxE4A
+X-Proofpoint-ORIG-GUID: wm-Jb0utSsOu_EBBr2vz4zGZn5fUxE4A
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0
+ lowpriorityscore=0 phishscore=0 suspectscore=0 impostorscore=0 bulkscore=0
+ mlxscore=0 mlxlogscore=999 malwarescore=0 priorityscore=1501 adultscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2409260000 definitions=main-2410140022
 
-On Sun, Oct 13, 2024 at 1:07=E2=80=AFPM Richard Weinberger <richard@nod.at>=
- wrote:
->
-> This is a proof-of-concept patch that introduces a debug feature I find
-> particularly useful.  I frequently encounter situations where I'm
-> uncertain if my device tree configuration is correct or being utilized
-> by the kernel.  This is especially common when porting device trees
-> from vendor kernels, as some properties may have slightly different
-> names in the upstream kernel, or upstream drivers may not use certain
-> properties at all.
 
-Why not just add debug logs? You can print the full path of the
-properties being read and it should be easy to grep for the property
-you care about.
 
-> By writing 'y' to <debugfs>/of_mark_queried, every queried device tree
-
-A lot of querying is going to happen at boot time. So, I'm not sure if
-this method of enabling it is helpful. If we do this, make it a kernel
-command line.
-
-> property will gain S_IWUSR in sysfs.  While abusing S_IWUSR is
-> admittedly a crude hack, it works for now.   I'm open to better ideas,
-> perhaps using an xattr?
-
-This seems quite convoluted. Why not just add another file per node
-that lists all the queried properties?
-
-> That way, dtc can easily add an annotation to unused device trees when
-> reading from /proc/device-tree.
-
-I'm not too familiar with this part. Can you elaborate more?
-
--Saravana
-
->
-> Signed-off-by: Richard Weinberger <richard@nod.at>
-> ---
->  drivers/of/Kconfig      |  9 +++++
->  drivers/of/Makefile     |  1 +
->  drivers/of/base.c       |  2 +
->  drivers/of/debug.c      | 83 +++++++++++++++++++++++++++++++++++++++++
->  drivers/of/of_private.h |  6 +++
->  include/linux/of.h      |  3 ++
->  6 files changed, 104 insertions(+)
->  create mode 100644 drivers/of/debug.c
->
-> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> index 0e2d608c3e207..39079ab9f1dc9 100644
-> --- a/drivers/of/Kconfig
-> +++ b/drivers/of/Kconfig
-> @@ -90,6 +90,15 @@ config OF_IRQ
->         def_bool y
->         depends on !SPARC && IRQ_DOMAIN
->
-> +config OF_DEBUG
-> +       bool "Device Tree debug features"
-> +       select DEBUG_FS
-> +       help
-> +        This option enables device tree debug features.
-> +        Currently only <debugfs>/of_mark_queried, writing 'y' to this fi=
-le
-> +        causes setting S_IWUSR on each device tree property in sysfs tha=
-t
-> +        was queried by a device driver.  This is useful to find dead pro=
-perties.
-> +
->  config OF_RESERVED_MEM
->         def_bool OF_EARLY_FLATTREE
->
-> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-> index 379a0afcbdc0b..041502125e897 100644
-> --- a/drivers/of/Makefile
-> +++ b/drivers/of/Makefile
-> @@ -25,3 +25,4 @@ obj-$(CONFIG_OF_OVERLAY_KUNIT_TEST) +=3D overlay-test.o
->  overlay-test-y :=3D overlay_test.o kunit_overlay_test.dtbo.o
->
->  obj-$(CONFIG_OF_UNITTEST) +=3D unittest-data/
-> +obj-$(CONFIG_OF_DEBUG) +=3D debug.o
-> diff --git a/drivers/of/base.c b/drivers/of/base.c
-> index 20603d3c9931b..00807da2187aa 100644
-> --- a/drivers/of/base.c
-> +++ b/drivers/of/base.c
-> @@ -202,6 +202,8 @@ static struct property *__of_find_property(const stru=
-ct device_node *np,
->                 if (of_prop_cmp(pp->name, name) =3D=3D 0) {
->                         if (lenp)
->                                 *lenp =3D pp->length;
-> +                       of_debug_mark_queried(pp);
-> +
->                         break;
->                 }
->         }
-> diff --git a/drivers/of/debug.c b/drivers/of/debug.c
-> new file mode 100644
-> index 0000000000000..ceb88062e9dec
-> --- /dev/null
-> +++ b/drivers/of/debug.c
-> @@ -0,0 +1,83 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +#include <linux/debugfs.h>
-> +#include <linux/kstrtox.h>
-> +#include <linux/of.h>
-> +
-> +#include "of_private.h"
-> +
-> +void of_debug_mark_queried(struct property *pp)
-> +{
-> +       pp->queried =3D true;
-> +}
-> +
-> +static int dtmq_update_node_sysfs(struct device_node *np)
-> +{
-> +       struct property *pp;
-> +       int ret =3D 0;
-> +
-> +       if (!IS_ENABLED(CONFIG_SYSFS) || !of_kset)
-> +               goto out;
-> +
-> +       for_each_property_of_node(np, pp) {
-> +               if (pp->queried) {
-> +                       ret =3D sysfs_chmod_file(&np->kobj, &pp->attr.att=
-r,
-> +                                              pp->attr.attr.mode | S_IWU=
-SR);
-> +                       if (ret)
-> +                               break;
-> +               }
-> +       }
-> +
-> +out:
-> +       return ret;
-> +}
-> +
-> +static int dtmq_update_sysfs(void)
-> +{
-> +       struct device_node *np;
-> +       int ret =3D 0;
-> +
-> +       mutex_lock(&of_mutex);
-> +       for_each_of_allnodes(np) {
-> +               ret =3D dtmq_update_node_sysfs(np);
-> +               if (ret)
-> +                       break;
-> +       }
-> +       mutex_unlock(&of_mutex);
-> +
-> +       return ret;
-> +}
-> +
-> +static ssize_t dtmq_file_write(struct file *file, const char __user *use=
-r_buf,
-> +                              size_t count, loff_t *ppos)
-> +{
-> +       bool do_it;
-> +       int ret;
-> +
-> +       ret =3D kstrtobool_from_user(user_buf, count, &do_it);
-> +       if (ret)
-> +               goto out;
-> +
-> +       if (do_it) {
-> +               ret =3D dtmq_update_sysfs();
-> +               if (!ret)
-> +                       ret =3D count;
-> +       } else {
-> +               ret =3D -EINVAL;
-> +       }
-> +
-> +out:
-> +       return ret;
-> +}
-> +
-> +static const struct file_operations dtmq_fops =3D {
-> +       .write  =3D dtmq_file_write,
-> +       .open   =3D simple_open,
-> +       .owner  =3D THIS_MODULE,
-> +};
-> +
-> +static int __init of_debug_init(void)
-> +{
-> +       return PTR_ERR_OR_ZERO(debugfs_create_file("of_mark_queried", 064=
-4, NULL, NULL,
-> +                              &dtmq_fops));
-> +}
-> +late_initcall(of_debug_init);
-> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
-> index 04aa2a91f851a..55a21ef292064 100644
-> --- a/drivers/of/of_private.h
-> +++ b/drivers/of/of_private.h
-> @@ -184,4 +184,10 @@ void fdt_init_reserved_mem(void);
->
->  bool of_fdt_device_is_available(const void *blob, unsigned long node);
->
-> +#if defined(CONFIG_OF_DEBUG)
-> +void of_debug_mark_queried(struct property *pp);
-> +#else
-> +static inline void of_debug_mark_queried(struct property *pp) { }
-> +#endif
-> +
->  #endif /* _LINUX_OF_PRIVATE_H */
-> diff --git a/include/linux/of.h b/include/linux/of.h
-> index 85b60ac9eec50..3b7afa252fca3 100644
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -39,6 +39,9 @@ struct property {
->  #if defined(CONFIG_OF_KOBJ)
->         struct bin_attribute attr;
->  #endif
-> +#if defined(CONFIG_OF_DEBUG)
-> +       bool    queried;
-> +#endif
->  };
->
->  #if defined(CONFIG_SPARC)
-> --
-> 2.35.3
->
+在 10/11/2024 2:48 PM, Krzysztof Kozlowski 写道:
+> On 11/10/2024 08:31, Qingqing Zhou wrote:
+>> Add devicetree binding for apps smmu on Qualcomm QCS615 SoC. SMMU function
+>> is required by multiple functions including USB/UFS/Ethernet.
+> 
+> Do not explain what SMMU is, because it is obvious, but explain how this
+> hardware differs from everything existing.
+OK, will improve the comments in next patch version.
+> 
+>>
+>> Signed-off-by: Qingqing Zhou <quic_qqzhou@quicinc.com>
+>> ---
+>>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> index 92d350b8e01a..9e62c2cdda08 100644
+>> --- a/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> +++ b/Documentation/devicetree/bindings/iommu/arm,smmu.yaml
+>> @@ -36,6 +36,7 @@ properties:
+>>          items:
+>>            - enum:
+>>                - qcom,qcm2290-smmu-500
+>> +              - qcom,qcs615-smmu-500
+> 
+> This is incomplete? No clocks? No power-domains?
+This is APPS SMMU, no clocks and no power-domains are needed for DT.
+> 
+> Best regards,
+> Krzysztof
+> 
 
