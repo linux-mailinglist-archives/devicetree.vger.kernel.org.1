@@ -1,256 +1,130 @@
-Return-Path: <devicetree+bounces-111098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA8A799D072
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:04:08 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D04CC99D1F8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:22:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 03947B23A30
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:04:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7BF741F24E5C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:22:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F2141AB538;
-	Mon, 14 Oct 2024 15:03:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AB1C1ABEB1;
+	Mon, 14 Oct 2024 15:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="key not found in DNS" (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b="c+JnI8eS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sLYSH+zG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2133.outbound.protection.outlook.com [40.107.243.133])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C1DD481B7;
-	Mon, 14 Oct 2024 15:03:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.133
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728918190; cv=fail; b=sgZ95JtXZgV38aZY0YUb/OrInRc4pIMaRAIxtj055j8Si0Y7wFEascaQMxUPNMD0IJPKHgs8XNiJpCGrIL7Vvostle8BmR5TyoUrJFVi4oCxrsjWi8JdECqNTDA7mtcmdNX0nFm+ZbJutZL5Df+2VKdh8qDJa/gjNn/+QApewSI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728918190; c=relaxed/simple;
-	bh=PM2kHOIn4dgAeli6WqGB8tw08eskhuD0QI5GmHGq1qc=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=S+SMtKzaox6LWFErxKvtGXGkJ6MF+ikIPZnUK8pklandBRFNKrOqFxnCnd4hETlPvhnUGDWBePF8ozOercJD82LMWtxgwdN+mIasFqxRtM6l+OUbl90CTYfB8XwpmzzlcR8FAZVWh0dsMLfFRo4i3ihDkMd0baxFjwg697i9Cs4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com; spf=pass smtp.mailfrom=os.amperecomputing.com; dkim=fail (0-bit key) header.d=amperemail.onmicrosoft.com header.i=@amperemail.onmicrosoft.com header.b=c+JnI8eS reason="key not found in DNS"; arc=fail smtp.client-ip=40.107.243.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=amperemail.onmicrosoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=os.amperecomputing.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=aAPt2X6syWuUD6zeJnP6dDi9UyzKxiqAZOskLgzrBBQVr0l8LaYfWddYwNjx5tumLT5gDtscLgNikMFDEQKiPkZxaMNdfPlMX1Bg4ABdYSExrvghWuP+XheHxle2WktmLYnnUiV0I4Lq9lk0xSfhvDaZZGQtLC19wnguU1n7/s52Aruj0Tf9UuLdU4nV3uTJOpGeuhe/hYIgnd7/2ubhq64IL625K0CRXxHn17vQwM3om//vVf7xA026Bdge8c0xNBLRAy1QAbeJ0glCHH4YrRYn1yIPjtir385FY9ji3MJ5T9zrhXU8GZcadzZ7FVPZK54oAzLMClLxtVgGetbeYw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=2nclub39f5O7yaHC0mr1HmtTiVrl0MhpRp/q1v8VnzM=;
- b=dvQfXJZnGiWQYsfNvIMDt7y7k/Ctj2d6nzgq3VixOaDD5Zjq7gF2SDWPxh2y3jh3POpzyFW9iDgU5OnOg5Wi+OPaknUIgStvWgqkmIv09NyvsmYbqw0dbH4EBAxTxL5sxEQRdHTq/yLC2651t5QEaMvVHsxHDv66q7AdPWUV80syLjKaWWKc00thhq3fngMyExMLD3q3SvGmz4DZ9mZkbXOh35eDhyAmy3RmRhgRZ3qHfXJx1orENd4f4W+Xhi0reMXgAXBOmqyLmeBxRi77RKm1weW/jI8Bm3tpZ9QF/hp9KcEmwgkpx0Ho7qz4jvU0xrCvQXCwffWn9hbzZjlu3Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
- header.from=amperemail.onmicrosoft.com; dkim=pass
- header.d=amperemail.onmicrosoft.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=amperemail.onmicrosoft.com; s=selector1-amperemail-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2nclub39f5O7yaHC0mr1HmtTiVrl0MhpRp/q1v8VnzM=;
- b=c+JnI8eS/SZcKGnsniModWjN4BaYwQJ8Ak2v6CjT2s/d8W/WARFHVRXSshLDWshSnNdg0EhmShxbHiv5RJbimKkJl/sGVL1ClYD4L2bB6I60M2y4ZveUie1aFOVByiAwFYpILczdTswjIzunx7ZbJHErKtXgB00w5xD6j7giQxs=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amperemail.onmicrosoft.com;
-Received: from BL3PR01MB7057.prod.exchangelabs.com (2603:10b6:208:35c::16) by
- PH7PR01MB8448.prod.exchangelabs.com (2603:10b6:510:2f3::20) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7982.34; Mon, 14 Oct 2024 15:02:56 +0000
-Received: from BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09]) by BL3PR01MB7057.prod.exchangelabs.com
- ([fe80::b69e:5684:ed7c:4d09%4]) with mapi id 15.20.7982.033; Mon, 14 Oct 2024
- 15:02:56 +0000
-Message-ID: <01c3d596-197a-46c6-b56c-05ef602b9c96@amperemail.onmicrosoft.com>
-Date: Mon, 14 Oct 2024 22:02:44 +0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: aspeed: Add device tree for Ampere's Mt.
- Jefferson BMC
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Chanh Nguyen <chanh@os.amperecomputing.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
- Andrew Jeffery <andrew@codeconstruct.com.au>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, OpenBMC Maillist <openbmc@lists.ozlabs.org>,
- Open Source Submission <patches@amperecomputing.com>
-Cc: Phong Vo <phong@os.amperecomputing.com>,
- Thang Nguyen <thang@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>,
- Khanh Pham <khpham@amperecomputing.com>
-References: <20241014105031.1963079-1-chanh@os.amperecomputing.com>
- <975ab37a-7429-4c52-b1e7-6ec9ba63048a@kernel.org>
-Content-Language: en-US
-From: Chanh Nguyen <chanh@amperemail.onmicrosoft.com>
-In-Reply-To: <975ab37a-7429-4c52-b1e7-6ec9ba63048a@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: CYXPR03CA0014.namprd03.prod.outlook.com
- (2603:10b6:930:d0::13) To BL3PR01MB7057.prod.exchangelabs.com
- (2603:10b6:208:35c::16)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 055BB1ABEB0
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 15:18:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728919095; cv=none; b=qWWj8CHTnqKpWbTVUwsfmAqPXP9UIHrfuNB0OxdCsRzFQImig3gVVixNSKWtQ+k/fTueH6hu2R0RYRI+dSYvQF9QMG3qpg6so0kp5leLbxXjqHyQJj5NOfthwAeb6KCCsnmjKUG6/mNpc8mmJvPV0/x23AfJOqFl9JqV+OFnMFQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728919095; c=relaxed/simple;
+	bh=KWdjn6bnKBOb9tSh9bKTAzS6Vf4h/Y1vaV/2N7DadoY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SZSu3DAGRBphL7NKnJxaE5875jLLnmOeRjUB6XSUiKUeQ7AQP5fpn7BL/b05jh55O4piZ9ILc9AwvTPoWYgWpmBZV3Ackh9J9+t5qz05UfVBxHJYbCU7WLVkYHxU1HIuAKxsJK0E0KdsxFWjRqlXA1lJIoa09Bt2WbRiwNs6xLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sLYSH+zG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA5A9C4CEE6
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 15:18:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728919094;
+	bh=KWdjn6bnKBOb9tSh9bKTAzS6Vf4h/Y1vaV/2N7DadoY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sLYSH+zGsaFjWa4+6iHGP62t+hgqDiY/nDmg84ip+TiKYao3w2nPRp7k5lg7e1B7Z
+	 wj1Qkolawk9IP7HZfJw8tlXGWiynb/xdadMIf0NEWv83YIdc/Jcque7kpt0wsI1+AJ
+	 AQWMtYOkm45EYxEuD36mZj7EaKNSK6rBdBRS92Xi6hVVMn1rbmMKRA5TKS2JHp9JAW
+	 xXpk/1YiBpTqkdkXrRzuZ/QRdZPRP0cFZOrj/usZCQ3A7H3HfYBt7duKgi/+bLPgxs
+	 ZEETG3oJ8hGpqDbeahQcyXySCTMRtvFdJIolQjNNaAilhYiqnce+CelWTA6BGCfJLc
+	 nwDKBIhqAcd0w==
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-539fbbadf83so893983e87.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 08:18:14 -0700 (PDT)
+X-Gm-Message-State: AOJu0YwHpH7BoNWEHdg8veV4VvVNyMKrHqxRa/9aVDHdDlklL04UvSsv
+	F9RypdLhPnNphiBrkESqmPzwNBt981m1JOtq/70m9W59SQSX98WDRHvYiCOr+qhab1M0U+wbD27
+	cSNnyG40SEiKx0ZeQbla86PqU3w==
+X-Google-Smtp-Source: AGHT+IFN9WVPlFSqvhpH0qBeNSLOBt0lglLYLXDFY/UHxpnkkCT+HeW94BqClsOpSwHUgrYCeRpe8QEXAgU67NSmQPQ=
+X-Received: by 2002:a05:6512:1092:b0:539:f5a9:b224 with SMTP id
+ 2adb3069b0e04-539f5a9b44dmr2051392e87.11.1728919093146; Mon, 14 Oct 2024
+ 08:18:13 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR01MB7057:EE_|PH7PR01MB8448:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3f8e3df6-448f-49ac-55d0-08dcec614920
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|376014|1800799024|7416014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Tmh5SHMyR25odXF3bUJSU3BqTlpKYmRXTkE4S1BqWXcwSWdqNHcxcWdJVFQy?=
- =?utf-8?B?S2JKbjB2M25janRsaTd6Njdwd1dLODhJOFY2VnFxeFpGM1IyOXEzTVBGNFRo?=
- =?utf-8?B?dVR0d3hFdnhnT1FVZThCMU8yLzltb3VRbWhFclhnVVpOQ3Y3MElxZ0pzT3Vi?=
- =?utf-8?B?OStHK0JuL0hNamlTekNkNVJuaG5IMmVhTFRKdGVYaWhPcEsrZWxsSCt2QjJ5?=
- =?utf-8?B?Y2VzcjFEclh4RnFxV0Y1ZnNPcTh6bCtxblVlNVBDMkpMNUs2clhIcW9lUGhF?=
- =?utf-8?B?SWxJcUJ4WlZjQ1NEOXNMMzZQc2djd0RjNkhGWHhPMGwxeXlDT1NGY3lYclpu?=
- =?utf-8?B?dm5XajdBVC83VGYwa3dlZnBlRTh5ZHhpOFNnQTkrOTB1YTRpYmQ2cDh0dExE?=
- =?utf-8?B?dU02b2xlNWwwVUFWN3lWWkFUUkdEdHdYa1VkeGU4YnNCYWVwV0puY01ZZ0FZ?=
- =?utf-8?B?Sm1kdU1JNnZmTnVYZUlUcmhwSURMQklQdVBnbzJUQTA1Q2NKeTlGeTZmRFdz?=
- =?utf-8?B?MDRGTDY1TFJnaUZTK3lPek5DcVpJMFp3cks0Y0N3TGN6YUFUV2Y2dkxVYjcv?=
- =?utf-8?B?NmNrREJwcCtTd0JUY2NRUjI5bCtPYWhSNThvbDVaLzF3M2xkQjluNlZiWi9M?=
- =?utf-8?B?VzFsYmtxYklaOEdMQXZHOVdIYkUzQmtNOW5mdGZ0c2g3LzF1QUxUc2M1ZU9y?=
- =?utf-8?B?RHlFMVZSVUd2N3U0UURXNTBaMkI2WGtUYTRRaXM5d250bGszQjR3N3NJemN2?=
- =?utf-8?B?N3l1MTQydWFnTE05aUVIZllCaVUwdmtmUTloOWk3SUdYU0QxMDBUSHVmQWxu?=
- =?utf-8?B?THFqbEZ4bDV0OEo5VWVhSldOOGc1d1BsY29wSitURVMrYzhQMDZ5K2RuejUz?=
- =?utf-8?B?QTMvaUw3cVplSEdsK2xYa292c3dnL1BaeTVjeWlqdGVHT2NwSWlXWFk3UDM3?=
- =?utf-8?B?dmw5UUxDaTZGa0lKT2pFcWVTamlvSzQ2UTdyTURMNU83OU9pYWxCUExJRjdq?=
- =?utf-8?B?WmU0RVFQMHlmUkRwVEVqcEdRd21HRXc0VENiZThDaHE1K2hKYXQ5cE5HQkt0?=
- =?utf-8?B?YXhueDVHVGpiK1ZwRVJqMkFQdVFHay8rMkVNaE9ZNk9BYXpsbkROcUx5VHE3?=
- =?utf-8?B?M0doOHl2UlVTOTdiNnBaZVdYNkZHVzRqNzdJTnVRWEtoV1E1a1QwU2w0L0pr?=
- =?utf-8?B?anNuWDRnTVVRVFJkblFKVGdGbUY3cmtveDNlS3Q5V0NWNXdOb0tja3ZKaEpv?=
- =?utf-8?B?WW1wc2RENmpoL1dHc1R6MVIwK3dpU2FGMG1TOFVpdVVHVU5ibUU5d2RiLzAw?=
- =?utf-8?B?SVhKQXkwU0VJenROY1pjYkd3amIxOGk2S2UzRFd2Y2lNYW9TNytTblh3TG5h?=
- =?utf-8?B?MFFBRnJnT01CbnRqMGFiL3REWTdvQ3VLUXV3ejZ3Qks4d2M4MjdlQjkwNjUv?=
- =?utf-8?B?ekZiZkUyZWc4d2V2dGFEZWZmenA5d1Vpek9HVllnVUtzaUpTR1E0bUpLSHpL?=
- =?utf-8?B?WHBqZTl1YTFFZTAyZm1INjJBR1dVMDhVNGZYT2d2aWk0MXNvRVY2VUI3R0xD?=
- =?utf-8?B?dlNORnk2MjY2MVVIdldtT2UyTWYwaTlHZk0xVnRoSkJCT3lGalU5RlNzRmU3?=
- =?utf-8?B?blk5UXVVdm9MbWRrc1dGRVZPdXBIdkN1WjBRVGJQY3ZWUENHOVBzWWlLMzFX?=
- =?utf-8?B?YU5ZUEE0Q05PKzhjbFNWbVFLTkVKa1M3d3cvdDRURHdHQ0hXL2dkZWxEZnNj?=
- =?utf-8?Q?Z+hBO23Oh9oOrYQO/TYNlVVIOvT/XixTCUwayTE?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL3PR01MB7057.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014)(921020);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MWJRUm5WbTg0WWg3MXdYdldwMTJXbW9yTnB0eGtGLytaUXlsTnUzZGE0SDdS?=
- =?utf-8?B?bStCbVpEYWwrYnBxd0NTMDR5YnVQZ2dOS3dEc2dSVEx4WWdUQ25ZRkJjdHdR?=
- =?utf-8?B?Q1JNandxTTdmdUR0RjQ5Z0lKRzJoa1h6SFZsRm5kV0NZREczVHVTWmtBendr?=
- =?utf-8?B?V1dhYy9rQ0VvMEd4dTRsZ1JBdjBSNnFpSURWUnZWaHNqdzIwSkp5UmZkWjdU?=
- =?utf-8?B?elY1akU1NlhzVVdXdk4zaENEc1VpNVpYdkY5ZVBrQmIrdHFaL0pXdFpYTFNs?=
- =?utf-8?B?QytOOThxOUp1cktkV0p1MkR6ay9ONEZYMGkwRVAvNXl2K0F6SkJYSXU5NU41?=
- =?utf-8?B?MU1uT2dqSEwyMUcwV3JLNGtRaDJaQ3Y1U0hSNlNob3kyaVFxckFWN0tlZkJV?=
- =?utf-8?B?K3ZyRU81NnBJVGkwbTBsRTlSWjU4aTQraDFaSlVoeEJtdVlWU0F3R2JjMUZz?=
- =?utf-8?B?NVR0ZWJaK1dWY3NsamhacFpudkxjN3JXVVRrNGNNM21KZnlDMkJiSVpkWEVM?=
- =?utf-8?B?TVBGRStYNjFkZWlMeFJVdjdUVzRjVkpib3pmVWVja1N3YkFrajBSTXZLV1FH?=
- =?utf-8?B?cDE2MzBsRzlDMzNDb2ZKNzNwUDd4WXU3Tzgyc01BQi8xZWxOK1prak1Nb2Q4?=
- =?utf-8?B?V3V4ZDVtRmYzbFUwL2FMRDRwUjRpWVkzaFBPSVpnY1VDdlcvQitlZkpBYWpz?=
- =?utf-8?B?WWswK256VnIvY1pOQ0t5MVVkWmJrVkkyMFlsZm4rUy9UdEJ1aTlkODBQcVJa?=
- =?utf-8?B?a2ZlZlIrM1lpU2h5dWx5MHlyam13MmtLSFBKL3hwZ1BXVEdVSTRHanFiOS91?=
- =?utf-8?B?NkMwZHQxQW11dG81bWE4VDN4N0U5bkpWdXZlb0JFa0FTcXBDd3N1dlFZREw1?=
- =?utf-8?B?MHlVTU02eUd1N0c5VkpZUjlldDB0MkI3OFQ1T3pCK08xdGdPUUFjL3VoSm1x?=
- =?utf-8?B?TzVCR2RxQWxZeU1KZ2dOTmhIdFd6ZytLaWZJV1JmTi85dis0NWtKM2d5dkFN?=
- =?utf-8?B?bTczQkRBckhuK2tYVjNCTnRQMGNyWDg0YlU2TFZWK3dLU3NENWRTamtzeHkz?=
- =?utf-8?B?bjRJWGxQMUZvL2VKblFOVktJcmdrakNrdHJPT3V4bDJtTmVYRy9lbnR3bFht?=
- =?utf-8?B?NkhOdWRQc0FBVjZETmRVU1FROWFHaUR3S3Z6Mnc3UkljTmZSd3EyaEs3SFJt?=
- =?utf-8?B?SmxGTkxNaE5KWnkzUEdWSUlaaGd5YXloY3lucTFFTWg4bHBEZy9NZk0rTGdp?=
- =?utf-8?B?cFVaMklpWWdqYVZmbjlpSmpoQWQxRmNrV1lwNmFzemFUdXhoT1FMMElrVFlk?=
- =?utf-8?B?cTBUeE5ST2dRcDJyN09aYVBkVkhuOWgrSFFvcXBxN2JkR2lTeDBsblFIOHA2?=
- =?utf-8?B?SFIrUklQTVpHaFhFdFVJZFZhNnowZU9iVWQ1QnhyOU1MWHBhNURKdkFhazZk?=
- =?utf-8?B?LzhGRVFwa0IyalNBU256a0FPeFJoR3NlamRXUlRReEYwQXNlZmNkbmZPanJ4?=
- =?utf-8?B?SzdUYWdNaCtleWRNRlUvclhlNHhnRjZTckh4MERDNE1sMTYxY2V1eUdHQ0I2?=
- =?utf-8?B?VmZyb09jOG94a041MktKd1ZoT0Y4K0VBOUg0S3lXWXNEMlRkb3FuWXk0Vjd2?=
- =?utf-8?B?anBUUjJKbWorNm1rRGdHcktQUWh5d0JyRlZVSjVES1d5dEdYeHY1a2h4Z2kv?=
- =?utf-8?B?OTM4bU5aQ203SDEzQnlXMzZ3RVNMWGJkbU1ST3loYWk5SmdyWVIvZ0U5MzRo?=
- =?utf-8?B?eTFxZkJuU2w2ZlptTmdJMzY2TEtLcVVDMVdlZjkyQ0luM3RoVE00R0VEWnpX?=
- =?utf-8?B?aDVuRHFmN2pXQVpYSjZodnp5c0JyM0F5ekFNVG1QNHZpZUdVeG9RUkt0WnRo?=
- =?utf-8?B?d09sU0pJSzNCWmVnNGk1OG5wRDBLQ1d0VU0zUGhmN1pjNEdBWGFSYjVNamJa?=
- =?utf-8?B?NEpDSkkxS2gxQmpKQ0NlaVJRSmdBTXcxUkUvOUZ5Z1B3Sm9lWnZuVlZTQndq?=
- =?utf-8?B?Zjl1TmxsWWVKQ1RnL20zZU5jT2FSTlJUQXJ3MzlRenJzNm1xQkJEVkdoZUhm?=
- =?utf-8?B?SzRpZXRFR0VFWFIybTNkVDNjQkd4WHJLRDl5M0Z0ZDV3anR0T1FRN1hYN2ZH?=
- =?utf-8?B?d0tCWjY0SUNBYzZKTVR2NVJVYno2dGVNN0paOXppb0ZVSkNBeDlRTzNjNm9N?=
- =?utf-8?Q?9qJm2x3V8fgN/0R61DxHpwc=3D?=
-X-OriginatorOrg: amperemail.onmicrosoft.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f8e3df6-448f-49ac-55d0-08dcec614920
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR01MB7057.prod.exchangelabs.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Oct 2024 15:02:56.5187
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: zez/jUZn+gPZRLCadUDodMo6aTIe0qukhzl3czeYVlZoCoS1aWoE3d3GeYe5hXoTEbsKxIhJ5nOU0PyWQADAlzCBmMLYApUCgFp7OySXxil8uaVbNGrKXTMksjMelM1Y
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR01MB8448
+References: <20241011140507.3703348-1-Jes.Sorensen@gmail.com>
+ <20241011140507.3703348-2-Jes.Sorensen@gmail.com> <CAL_JsqJcha9xDkQVu1U_R2hZCVwsUq106afhnJfOan4V+cBdAg@mail.gmail.com>
+ <7543f364-b413-4789-9aba-cc23bf54df52@trained-monkey.org> <CAL_Jsq+rjTQSOhEQwh35LfqrarrNmP3NzRyKXfBSfK7EGhVq4Q@mail.gmail.com>
+ <fd483e9c-2896-4ce6-8511-2660ed7d0021@trained-monkey.org>
+In-Reply-To: <fd483e9c-2896-4ce6-8511-2660ed7d0021@trained-monkey.org>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 14 Oct 2024 10:17:59 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLVS21ha1E9Az3vsh0+vADzOWwP9qpeXUcAGSv3dYDHog@mail.gmail.com>
+Message-ID: <CAL_JsqLVS21ha1E9Az3vsh0+vADzOWwP9qpeXUcAGSv3dYDHog@mail.gmail.com>
+Subject: Re: [PATCH 1/1] Skip building dtc if a prebuilt binary is specified
+ via DTC=
+To: Jes Sorensen <jes@trained-monkey.org>
+Cc: devicetree@vger.kernel.org, tnovak@meta.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Mon, Oct 14, 2024 at 10:05=E2=80=AFAM Jes Sorensen <jes@trained-monkey.o=
+rg> wrote:
+>
+> On 10/14/24 10:48, Rob Herring wrote:
+> > On Mon, Oct 14, 2024 at 9:41=E2=80=AFAM Jes Sorensen <jes@trained-monke=
+y.org> wrote:
+> >>
+> >> On 10/11/24 18:46, Rob Herring wrote:
+> >>> On Fri, Oct 11, 2024 at 9:05=E2=80=AFAM Jes Sorensen <jes.sorensen@gm=
+ail.com> wrote:
+> >>>>
+> >>>> From: Jes Sorensen <jes@trained-monkey.org>
+> >>>>
+> >>>> For Android it is common to use a prebuilt dtc, speficied via DTC=3D=
+. In
+> >>>> this case building dtc as part of the kernel is not necessary, and e=
+ven
+> >>>> unwanted to avoid mix and match between two different versions of dt=
+c.
+> >>>>
+> >>>> Signed-off-by: Jes Sorensen <jes@trained-monkey.org>
+> >>>> ---
+> >>>>  scripts/dtc/Makefile | 3 +++
+> >>>>  1 file changed, 3 insertions(+)
+> >>>
+> >>> Well, this one is much simpler than a prior attempt[1] and may be
+> >>> acceptable. But I wonder if something is not handled here.
+> >>>
+> >>> I think lack of external fdtoverlay support makes this incomplete.
+> >>
+> >> So I was thinking about that. The only places I see in the tree that
+> >> reference fdtoverlay are scripts/make_fit.py, scripts/Makefile.dtbs, a=
+nd
+> >> scripts/dtc/Makefile. I don't see anything calling make_fit.py.
+> >
+> > "make dtbs" will use fdtoverlay if there are any base+overlay targets
+> > which there are an increasing number of.
+> >
+> >> We can either exclude fdtoverlay from this, or assume that if one
+> >> explicitly sets prebuilts, fdtoverlay is there too.
+> >
+> > Currently, if you set DTC you'll get external dtc plus in-tree
+> > fdtoverlay. With your patch, you'll get external dtc plus a build
+> > error because $(objtree)/scripts/dtc/fdtoverlay does not exist.
+> > Neither case is ideal.
+>
+> Agree, what path calls fdtoverlay ? I didn't see anything calling that
+> script.
 
+It is the same magic used used to combine object files for a module.
+Anywhere you have "foo-dtbs =3D base.dtb overlay.dtbo \n dtbs-y +=3D
+foo.dtb", foo.dtb will be built by applying the overlay with
+fdtoverlay.
 
-On 14/10/2024 18:58, Krzysztof Kozlowski wrote:
-> On 14/10/2024 12:50, Chanh Nguyen wrote:
->> The Mt. Jefferson BMC is an ASPEED AST2600-based BMC for the Mt. Jefferson
->> hardware reference platform with AmpereOne(TM)M processor.
->>
->> Signed-off-by: Chanh Nguyen <chanh@os.amperecomputing.com>
->> ---
->>   arch/arm/boot/dts/aspeed/Makefile             |   1 +
->>   .../aspeed/aspeed-bmc-ampere-mtjefferson.dts  | 646 ++++++++++++++++++
->>   2 files changed, 647 insertions(+)
->>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
->>
->> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->> index c4f064e4b073..b1fb0853a789 100644
->> --- a/arch/arm/boot/dts/aspeed/Makefile
->> +++ b/arch/arm/boot/dts/aspeed/Makefile
->> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
->>   	aspeed-bmc-amd-daytonax.dtb \
->>   	aspeed-bmc-amd-ethanolx.dtb \
->>   	aspeed-bmc-ampere-mtjade.dtb \
->> +	aspeed-bmc-ampere-mtjefferson.dtb \
->>   	aspeed-bmc-ampere-mtmitchell.dtb \
->>   	aspeed-bmc-arm-stardragon4800-rep2.dtb \
->>   	aspeed-bmc-asrock-e3c246d4i.dtb \
->> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
->> new file mode 100644
->> index 000000000000..f24111ab9e65
->> --- /dev/null
->> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-ampere-mtjefferson.dts
->> @@ -0,0 +1,646 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +// Copyright 2024 Ampere Computing LLC.
->> +
->> +/dts-v1/;
->> +
->> +#include "aspeed-g6.dtsi"
->> +#include <dt-bindings/i2c/i2c.h>
->> +#include <dt-bindings/gpio/aspeed-gpio.h>
->> +
->> +/ {
->> +	model = "Ampere Mt. Jefferson BMC";
->> +	compatible = "ampere,mtjefferson-bmc", "aspeed,ast2600";
-> 
-> Missing binding.
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Then please
-> run `scripts/checkpatch.pl --strict` and (probably) fix more warnings.
-> Some warnings can be ignored, especially from --strict run, but the code
-> here looks like it needs a fix. Feel free to get in touch if the warning
-> is not clear.
-> 
-
-Thank Krzysztof for your review!
-
-I will add my board to dt-bindings in patch v2.
-
-Follow some previous patches on 
-Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-
-https://lore.kernel.org/all/20240805-potin-catalina-dts-v7-1-286bfd2ab93b@gmail.com/
-https://lore.kernel.org/all/20240522192524.3286237-13-eajames@linux.ibm.com/
-https://lore.kernel.org/all/20240502002836.17862-7-zev@bewilderbeest.net/
-
-Best regards,
-Chanh
-
-> Best regards,
-> Krzysztof
-> 
-
+Rob
 
