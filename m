@@ -1,126 +1,97 @@
-Return-Path: <devicetree+bounces-110987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD93999C74C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:39:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFF2599C750
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:41:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A8DA1C21A09
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:39:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96BA91F21F1F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:41:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 403A717625C;
-	Mon, 14 Oct 2024 10:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9189017625C;
+	Mon, 14 Oct 2024 10:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="dQNArusc"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="DuC3PmSc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com [209.85.217.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920ED156C69
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 10:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB2FC15855C;
+	Mon, 14 Oct 2024 10:41:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728902374; cv=none; b=DVE3AveVgFYakj+0ho15f9ClI8eQTnop/4jPR8OXuBuSiP3rtAZRKNAqKSXu9UNA14RE/N2c/Rn4PHOERDrGABLfpoJSseeLOMmL5A+hjIxjDzydgIk6/4/lPqPN003Wm61nLpzjes+dH7u3YaQBiGyA/cuOaONnXutv8v9rBTU=
+	t=1728902481; cv=none; b=fK4bc8xZ7YBoLubQnE+oGUyO3ftOPEtNu99OYR3c1LKWsiqwnIOap62TBh5UOxnTwZXV2hWjZkhEseWoL3g0Ij3VPYMuAR8ui0lstaVsgbvWIDHZLrEpk3p66kwrqO7xQ9C062drWIUu+jD5cjOebTukK0eFNBxncaamPgrCZBY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728902374; c=relaxed/simple;
-	bh=vGJpjQ49w8gK06HPVUKE6WRHK8KhkaqN4tjSHC1kO/U=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Q5U+ylSoKrNrWARGqFSK8qU621BHRmPaDg27wJ74oNvFK+rznMTeIdRYKitdAL2aTSQgYYDEM75W+3uzISlWjlhvmpY68P/SuQm191/zgM2yvoKBPv9wCXSNc1hq4hAovNkRylHN729FEk/vD3jMPfZMVwPG3KKJEz082Wskqdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=dQNArusc; arc=none smtp.client-ip=209.85.217.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-vs1-f46.google.com with SMTP id ada2fe7eead31-4a48477b25eso672159137.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 03:39:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1728902371; x=1729507171; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vGJpjQ49w8gK06HPVUKE6WRHK8KhkaqN4tjSHC1kO/U=;
-        b=dQNAruscNVzQV8o22baV/o63av39WENJAeTGsiTsIBlvnzqw0lenZnqtL4fCfvECUm
-         Wkd+Rx5NJhafU70z8bpgqwEEc3IiYp78CsUSXoAT8LpFa8NvVHymc2c4oUnB1JGpPOtw
-         pVaj12V1YtzsSytsWFZhPdsPerYlvDSJ2uYjc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728902371; x=1729507171;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=vGJpjQ49w8gK06HPVUKE6WRHK8KhkaqN4tjSHC1kO/U=;
-        b=O7YtObJYpv/tU4cqQ4j2yu02YkGE92go/7JmK6qroYmwWrwdqAif8VmP1rPmxONxch
-         mmpmPxSl496GHn0YHgY1QGrw1L6mx8yw8xKk/uFdihUFaRI9K1eDc5y5fW9ltEUZz1fq
-         Z13J/V/UpuJFm/ddT7XE5JZunTxi2JOvqxTKkdjlSF7psziZ62GEUmANHtm5lSDdLira
-         YqxfIxS8PhneLQrf1cbpJgCUfEYgyXa2E/Qv5gpYq+8PbtgBbZDVVJyc679hlDWZ3Pzs
-         9i8uw9LItLpjFGwKLsKMHs7hX93RAo6+wZSGmPJnJ2+KSbm/1318LV711p6QftTKQ9qI
-         Hcmw==
-X-Forwarded-Encrypted: i=1; AJvYcCV+ENCtbBuJKyJYhVLNdVSCv4LS/Imj0AIqlQmAPVySiNuxmKpQjB7lyGdroIFb2IGsSJzNlc9tg5B0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOUZ4RvXmg4enRFke3Px1hFabfkhuGAvpN/erXNKuYc+1mrrpW
-	x1DCUXAm7Cotg3f6E1hLqgdbFhRP9TPdQZOjE1Bjsa0KBpF0ccZhWF7zQuBYnuW9BplGAVqZoKX
-	WvQ==
-X-Google-Smtp-Source: AGHT+IEo3glOuJ3HIxI+n8ZbluW1AOnY2NRbKdqXoEfmlDmzkNxE3zX4kjXyFiKGNGjSn60SmwzZ4g==
-X-Received: by 2002:a05:6102:390a:b0:4a4:94a8:7e9d with SMTP id ada2fe7eead31-4a494a88c0emr192488137.4.1728902371156;
-        Mon, 14 Oct 2024 03:39:31 -0700 (PDT)
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com. [209.85.222.52])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-84fd356f2cbsm1449344241.37.2024.10.14.03.39.29
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 03:39:29 -0700 (PDT)
-Received: by mail-ua1-f52.google.com with SMTP id a1e0cc1a2514c-84ea1e5e964so2824922241.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 03:39:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCWsn08SacyzeIenPk+YX2lgfQoAdnnktYtihpOtPM0dipKdEZrW/c6alQJDpubgByczts41x7S8dWm1@vger.kernel.org
-X-Received: by 2002:a05:6102:2f5:b0:4a4:8502:491f with SMTP id
- ada2fe7eead31-4a4850251d6mr1181599137.7.1728902369150; Mon, 14 Oct 2024
- 03:39:29 -0700 (PDT)
+	s=arc-20240116; t=1728902481; c=relaxed/simple;
+	bh=XmwBEieipqI98EXzozIfgzSqZkvtvNI1ertavm/6D7Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=rMmMZOpPVA+tQhtGthRspFzENeLacFxHm4RVMSZzGOKo23gTvn3IZcAOj22jTfH8VGmZf0mG3wKHm8qc66o1ajysaKgCrC8uwm8DdfRLC2DSK6MhSOu2TzVkubYhwkz216Mx+cQPA6iJEYex2S1K4wIuvU7L8cFGj1vivfEcZs8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=DuC3PmSc; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1728902477;
+	bh=XmwBEieipqI98EXzozIfgzSqZkvtvNI1ertavm/6D7Q=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=DuC3PmScZZNXT0jjO3PVBPdoaDsbC4eXLWd0JvfIR9FrSRyDD+LerT8n67kCflzgx
+	 zdQv+ta5yjdbZZ0ufqSQ8f1c8Q5q3/zfWBshOfVhisrBTBwv1MSOXSe+mxZRMinfF6
+	 +GYMsnIbTF9lQvErGnF2muaoAXVUu2a+Pa00ey/A7l/FGxWK2HS5msza5nTqXlQ+wO
+	 FEu69GRl08tqL1FMWuAwkmPUaNLr7JRAopCQe3pNwh7/+XRMlqjvkRdwEAdvGt3AE4
+	 co5/ztMsPAbErIcfV9+DiiFdO+avy9bJZ2z8Cz62F5+pxEEH98rwOLck/6qRhdfjk/
+	 wpmSe9QV1a6PQ==
+Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 3043417E1394;
+	Mon, 14 Oct 2024 12:41:16 +0200 (CEST)
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, Jieyy Yang <jieyy.yang@mediatek.com>, 
+ Jian Yang <jian.yang@mediatek.com>, 
+ Jianguo Zhang <jianguo.zhang@mediatek.com>, 
+ Alexandre Mergnat <amergnat@baylibre.com>, 
+ Macpaul Lin <macpaul.lin@mediatek.com>
+Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>, 
+ Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>, 
+ Chris-qj chen <chris-qj.chen@mediatek.com>, 
+ MediaTek Chromebook Upstream <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+ Chen-Yu Tsai <wenst@chromium.org>
+In-Reply-To: <20241007100749.6657-1-macpaul.lin@mediatek.com>
+References: <20241007100749.6657-1-macpaul.lin@mediatek.com>
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8390-genio-700-evk: enable
+ pcie
+Message-Id: <172890247611.118422.12613533040969688519.b4-ty@collabora.com>
+Date: Mon, 14 Oct 2024 12:41:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241014094622.1720289-1-fshao@chromium.org> <40ce7287-7fed-4670-b16b-695c36535661@collabora.com>
-In-Reply-To: <40ce7287-7fed-4670-b16b-695c36535661@collabora.com>
-From: Fei Shao <fshao@chromium.org>
-Date: Mon, 14 Oct 2024 18:38:51 +0800
-X-Gmail-Original-Message-ID: <CAC=S1nhwn_ec4-ATNkEzUOpfUtZPEOb0niXpr202U5ysytsNxw@mail.gmail.com>
-Message-ID: <CAC=S1nhwn_ec4-ATNkEzUOpfUtZPEOb0niXpr202U5ysytsNxw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8188: Fix MERGE's alias IDs
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Mon, Oct 14, 2024 at 6:34=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 14/10/24 11:45, Fei Shao ha scritto:
-> > MediaTek's ovl_adaptor driver requires the alias IDs of the MERGE
-> > components to be indexed from 1 to 5 to construct the MT8188 vdosys1
-> > routing path, since merge0 is particularly reserved for vdosys0
-> > according to the mmsys routing tables.
-> >
-> > Update the alias IDs to ensure that ovl_adaptor can find the correct
-> > MERGE components, allowing DRM to initialize without issues.
-> >
-> > Fixes: b13ecb7c6f67 ("arm64: dts: mediatek: mt8188: Add display nodes f=
-or vdosys1")
-> > Signed-off-by: Fei Shao <fshao@chromium.org>
->
-> I prefer that you resend the original series with this fix squashed into
-> the right commit instead, as I can still replace the series that I picked=
-.
->
-> That makes things cleaner, so please do that.
+On Mon, 07 Oct 2024 18:07:49 +0800, Macpaul Lin wrote:
+> Enable PCIE, PCIEPHY and related Pinctrls for mt8390-genio-700-evk
+> board.
+> 
+> 
 
-I see, I'll resend that later, thanks!
+Applied to mediatek-next, thanks!
 
-Fei
+[1/1] arm64: dts: mediatek: mt8390-genio-700-evk: enable pcie
+      (no commit info)
 
->
-> Thanks,
-> Angelo
->
+Cheers,
+Angelo
+
+
 
