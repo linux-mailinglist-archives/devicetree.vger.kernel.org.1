@@ -1,55 +1,55 @@
-Return-Path: <devicetree+bounces-110866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110867-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73A3399C253
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:59:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1ADFE99C267
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:01:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33872280EF3
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 07:59:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D2142282BBF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:01:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E5C21547C8;
-	Mon, 14 Oct 2024 07:59:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E138213B792;
+	Mon, 14 Oct 2024 08:01:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="J1CbHuoa"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JkY4DTKG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5042E14B946;
-	Mon, 14 Oct 2024 07:59:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 281E9231CA6;
+	Mon, 14 Oct 2024 08:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728892750; cv=none; b=k1IXL3Kvy7ngtMURh8O/i1ZBsyX+PSjFqMCIq4pSsqs4ZRTeS5Vp4TRBMEDXGuAFO88CR5lpdawYgrrEmWPrh9Na67ykOQXV8HMMihLdgP/HxsBtPWy7TNDKDZOKRUjLBS87NedwmuKPNhsEpUue1ThEdqPE3JWJm/3iaLsysHg=
+	t=1728892906; cv=none; b=pnZFpZeN2i3/aM6kIc5KSeW+XKjhkNIT6Bo9PVb0CItDphp7RhGp1zp5xAA3y9eSP55JkOr64Gjy9jStEGbR5/wTnqBQCoAMlqkp4GT5iF0t0j/41WNfdUX4QQbpBmzrfFtfvNAzkj6LkQYbftSRdSklOBUg2zNwb2P8Nfk/Oso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728892750; c=relaxed/simple;
-	bh=W+cHl7IlQoiGhHQv9LKkyFt5GXD/dU8V71qLOXnRP/U=;
+	s=arc-20240116; t=1728892906; c=relaxed/simple;
+	bh=M6TUkPMLYd41Oi3TQHyP3BZuQAAKZ7vP7NSxtsaWBls=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GxAx61DYpV20SDrYxCgsErxYQOlk9mQ8zwlqMXk4CklyR502LCRqoiz9HbAW1YSb3AwSCQifJgGvZ1jFD/nsJWztR/HV0aShSty//R77ZT3sD/kQWf6ra0TScYUDW/t376bY/bicsgN06wcQylTG29DfjREvXNM7N2XHEROU37o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=J1CbHuoa; arc=none smtp.client-ip=148.251.105.195
+	 In-Reply-To:Content-Type; b=pcdaHwSv6CNzOyjePlXsDt53ZzD0/E8cTklBiLALbwQso92W10QTlFzfgQU4wOWvXslTGVwwaH+/dHcEAByfaFb238mUdXi+f0nQ32d6lEsHnzcF+lT1Bf3NJM1myYWbtID+0Qj0UCShLL6efSeHzF1luJGKinEAgClemcZfnlI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JkY4DTKG; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728892746;
-	bh=W+cHl7IlQoiGhHQv9LKkyFt5GXD/dU8V71qLOXnRP/U=;
+	s=mail; t=1728892902;
+	bh=M6TUkPMLYd41Oi3TQHyP3BZuQAAKZ7vP7NSxtsaWBls=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=J1CbHuoa5+YDRoE0wlR5ZqbuEVKI6pMJOiObf3nRtXrcnFHIeJtFsAjayselWHdXU
-	 EoMxmYpXs3JcGk8s60E5PdahN9TRnl8mdDzqXwmBMmxJTIlReV6i3Y1r6I72RHi4oJ
-	 Lg45Tp+7FUc4Evr81rkWSnjxWxeWuoxzzLjrUe5hZb3cIb4mIlYtClB1GMlQnkpP23
-	 MSVfiD/yCIhuZM9D8E+EMc/fs0AUMVIqphcVvdOaRpemD/pV0KRNn8tcmY3pJl/q62
-	 7kSqXCR/h5SXM4yQJv9/0IDLHjVYm/GojExllNa9yjWXKMB+AMsLU1atDPENJb8gnj
-	 DIRiUovB1n1MQ==
+	b=JkY4DTKGmxpg/SswlfsSk/9mwqCsQO3hTmq9zHkyXCS8Zn0+4LE946fyiB/C7F96i
+	 TrXnTbywAcuvn1vyMXm0mNFkTtujEzurxZUzzebpqnAnfixuvGwMLyVzC45MpvJbUY
+	 XVPE2qRy6PaGMTfa4WQkxb3oQtmVBtZ3nPSbL9HvY8NkA8VLUS4LP6mK+zG57bHm/D
+	 UTaCbwOrIiJVJoZcsKlPCb/b3nJD0YstZghwt1hEZgZElDMpqJvd0/6xrHIEdl/IhP
+	 soztR9N6QXtM3ej9fHGMd1L1UG3bxPA8swLvdO49bXoDvQpqp3P84toyUnnEzOCmKW
+	 QJTHdqR8RqlnQ==
 Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id E3E7C17E10C2;
-	Mon, 14 Oct 2024 09:59:05 +0200 (CEST)
-Message-ID: <66ad5cd6-cac2-400a-95c2-f72d68b2a706@collabora.com>
-Date: Mon, 14 Oct 2024 09:59:05 +0200
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id E54C717E10C2;
+	Mon, 14 Oct 2024 10:01:41 +0200 (CEST)
+Message-ID: <4c7128aa-11fb-4536-814d-138a4be87a47@collabora.com>
+Date: Mon, 14 Oct 2024 10:01:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,8 +57,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 6/8] dt-bindings: pinctrl: mediatek: Add bindings for
- MT6735 pin controller
+Subject: Re: [PATCH v6 1/8] dt-bindings: pinctrl: mediatek,mt6779-pinctrl:
+ Pull pinctrl node changes from MT6795 document
 To: Yassine Oudjana <yassine.oudjana@gmail.com>,
  Sean Wang <sean.wang@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -68,70 +68,28 @@ Cc: Yassine Oudjana <y.oudjana@protonmail.com>,
  linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 References: <20241011120520.140318-1-y.oudjana@protonmail.com>
- <20241011120520.140318-7-y.oudjana@protonmail.com>
+ <20241011120520.140318-2-y.oudjana@protonmail.com>
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 Content-Language: en-US
-In-Reply-To: <20241011120520.140318-7-y.oudjana@protonmail.com>
+In-Reply-To: <20241011120520.140318-2-y.oudjana@protonmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 Il 11/10/24 14:03, Yassine Oudjana ha scritto:
 > From: Yassine Oudjana <y.oudjana@protonmail.com>
 > 
-> Add DT bindings for the MT6735 pin controller, which consist of macros
-> to be used as values for the pinmux property. Each macro corresponds
-> to a unique possible pin-function combination.
+> mediatek,pinctrl-mt6795.yaml has different node name patterns which match
+> bindings of other MediaTek pin controllers, ref for pinmux-node.yaml which
+> has a description of the pinmux property, as well as some additional
+> descriptions for some pin configuration properties. Pull those changes
+> into mediatek,mt6779-pinctrl.yaml and adjust the example DTS to match in
+> preparation to combine the MT6795 document into it.
 > 
 > Signed-off-by: Yassine Oudjana <y.oudjana@protonmail.com>
-> ---
->   MAINTAINERS                                   |    6 +
->   .../pinctrl/mediatek,mt6735-pinctrl.h         | 1148 +++++++++++++++++
->   2 files changed, 1154 insertions(+)
->   create mode 100644 include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e336dab6fdd1a..f95ae886f9fd8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -18311,6 +18311,12 @@ F:	drivers/pinctrl/mediatek/pinctrl-rt2880.c
->   F:	drivers/pinctrl/mediatek/pinctrl-rt305x.c
->   F:	drivers/pinctrl/mediatek/pinctrl-rt3883.c
->   
-> +PIN CONTROLLER - MEDIATEK MT6735
-> +M:	Yassine Oudjana <y.oudjana@protonmail.com>
-> +L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
-> +S:	Maintained
-> +F:	include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h
-> +
->   PIN CONTROLLER - MICROCHIP AT91
->   M:	Ludovic Desroches <ludovic.desroches@microchip.com>
->   L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-> diff --git a/include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h b/include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h
-> new file mode 100644
-> index 0000000000000..1134caf9022c5
-> --- /dev/null
-> +++ b/include/dt-bindings/pinctrl/mediatek,mt6735-pinctrl.h
 
-They're all called "pinfunc", even the newest mt8188 one, so please:
+For the sake of consistency and reducing duplication, I agree.
 
-mediatek,mt6735-pinfunc.h
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-just for consistency and nothing else
 
-> @@ -0,0 +1,1148 @@
-> +/* SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) */
-> +/*
-> + * Copyright (C) 2022 Yassine Oudjana <y.oudjana@protonmail.com>
-> + */
-> +
-> +#ifndef __DT_BINDINGS_PINCTRL_MEDIATEK_MT6735_PINFUNC_H__
-> +#define __DT_BINDINGS_PINCTRL_MEDIATEK_MT6735_PINFUNC_H__
-
-#ifndef _DT_BINDINGS_PINCTRL_MEDIATEK_MT6735_PINFUNC_H
-#define _DT_BINDINGS_PINCTRL_MEDIATEK_MT6735_PINFUNC_H
-
-#endif /* _DT_BINDINGS_PINCTRL_MEDIATEK_MT6735_PINFUNC_H */
-
-Cheers,
-Angelo
 
