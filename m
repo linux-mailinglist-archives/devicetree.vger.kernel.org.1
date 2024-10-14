@@ -1,138 +1,171 @@
-Return-Path: <devicetree+bounces-111147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C99499D63C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:16:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8BDF99D649
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:17:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40082283A25
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:16:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 06DCD1C22365
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:17:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A911C6886;
-	Mon, 14 Oct 2024 18:16:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BCDA1C9EA7;
+	Mon, 14 Oct 2024 18:17:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iq/e39Ho"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="MTPMgIde"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AE9C1AC8AE
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 18:16:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2709B1FAA;
+	Mon, 14 Oct 2024 18:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728929774; cv=none; b=Zh8oa8oId4bFLnfk9TtQSkaU85kQw9f5j8G4XO7homp++VE5+TLGWkO948Gol+Fhf3hv0nrwqnPU1/NHOCSjcfTVl9jugdQfTb7TvzKypfc4h9Rv7bYBMkz74bECyhybzUI4Dvf44Ay4JYbLVZm3EgBdS0OwzfHA83yWkK5j4xM=
+	t=1728929845; cv=none; b=Q0dQkZLOosDf+NFWgQgzNCVPA24MtVqeANyQjUX+/EVE/WvoU28VdTsMYeSc3e8Uj2KyLmJY1HV9IPAQ0VbYgcuQS78no7BwjOwx/3sxJBkKqtk5A47YjY0P+7QrbyMIy/fz6Sn9xF8Q2NfW9hmwV0yXxncgVDFMFkbBVVPlZao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728929774; c=relaxed/simple;
-	bh=LNSqYzxmmz9OD/0UUcyOFn6AeN1Z072goWVOC0q2yrU=;
+	s=arc-20240116; t=1728929845; c=relaxed/simple;
+	bh=P3Pzj722a0qn2KFz7CJfgBKO+JfL3dlBqaxecPwjeek=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sjmEWE7MPG0fgTCApvVTvk2Q9b86o8+m0qkMZ82T9sX+oUt87CLKp7wgE1X5jplX/oaWr56cQqVxD/51FqbgP6Zw3eZHmllqZqUtk/CPBHy9f4yDJ1nPPacERbow6EUb8yWgjMVA6JfXy3aJR1XhSqktqej8zObPfoT+Jzva2KQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iq/e39Ho; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-37d4d1b48f3so2869786f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 11:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728929771; x=1729534571; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UtdPkrYN7fe8w5mEL3LeVayblW7M45DrbmZRpipI97s=;
-        b=iq/e39Ho83LrRJLweE7RmoiKxCReXY6UGTvGrYtrofUdDQoUHE2k87bTo/K11qN6rN
-         QHS3lNmmOLU8cRSkovgIjMcq0fccawkIyu1ZjtmBKd2SK6Ar3/l4j0JB3ruCTyJNuMKg
-         GdNFjTih7u6y5wWQ7JCiANNECKZ5y6hHBLORgSnfvr3h1YM2/KLAHQzqgvGpvetdeySg
-         DQ/e0VAm/uk3pGbb8lbgpoQC9/eg5RPcXPiYhM2nCJgQf7z6dRNJGV5XwDqO2i2EmWIv
-         YahG0RMxnK1NDCbQCtixyS5k2KdA6ardCV/9Fopma4f4wRGaT18U3awUXRjPB+l2L5yr
-         rcMQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728929771; x=1729534571;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UtdPkrYN7fe8w5mEL3LeVayblW7M45DrbmZRpipI97s=;
-        b=L25otdKitZ7aUcXY5R1g3jA4l3I2CugHKNGXV8QKqA0453iW7P8g0G9WcOuDkN2aau
-         0ZPwIj3RidWzTsasoRo5P2oNgNX+GuNCYcqBFhUlsirqxQ0P5ILb6kc+2DvnpbHzLUFj
-         aD5vNuAiZn7XcXluOtIctwR3dblqycwYOKovdIyFCTNc8uiSD9VUxdySnqNPAzc8LDz5
-         loHyyxPO+jSNd4XDKaMCiZbchHGHWm9JdXxN5hhyZJGcQT0/zq54km25pbbd2EETm57E
-         niPUDtJIw7Nsz7rPlhZJ+ev4Be9XjiYd7KSp5fVd7+00QPXavyC5L3nqg5w8DpXFSxq8
-         NKbg==
-X-Forwarded-Encrypted: i=1; AJvYcCWD9Xgva30jhl+Glq/pXejOGy5GFErBYCA2f+9OqdVrkpQJHFTm6UqN4taQyWto1jqwVkf3KqILNa+b@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVgR8ptfO0DtZ6Vau2wtZoL1SlBVYbLSv0jfPqELQAfhlYcy3U
-	BF9D47pZkpKMtD5z64/AsBEdRTRA62hsAiaAhZvGExWH7Bi3+DmmAz1udd1sRV0=
-X-Google-Smtp-Source: AGHT+IHIQJqhAsmdVgPSCMWemS66sPfa9EYola/ZvTPYafkvTQqqNnZqlNbzsw8xXyLnNoUxhgl25w==
-X-Received: by 2002:a5d:4dc6:0:b0:37d:4657:ea78 with SMTP id ffacd0b85a97d-37d5529f8d6mr8858619f8f.54.1728929770899;
-        Mon, 14 Oct 2024 11:16:10 -0700 (PDT)
-Received: from linaro.org ([82.76.168.176])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b7f05bfsm12010610f8f.108.2024.10.14.11.16.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 11:16:10 -0700 (PDT)
-Date: Mon, 14 Oct 2024 21:16:09 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: neil.armstrong@linaro.org
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=aSs82ZBhn5+N8AOCnxg7RPAvs3WBgKgijn/zeTWxQCG1xBCF7x4RRpZ0+/Nv+nQMwA99vBOPHJcbFeQcBWC/uxprHUHOXelGeQ+uH7KWq5lG0KFFf+tVLzMMS8CtqghMa8o7xU77ozdzeBWtkscH+QwAGjJzx4JVSGaGjUZdI7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=MTPMgIde; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 9DA5440E0184;
+	Mon, 14 Oct 2024 18:17:20 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id FdZTbS5Yi9uB; Mon, 14 Oct 2024 18:17:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1728929835; bh=rRulwwslaCiKpYQiRcp3k5u/GU44D2gHabFxhCGCe2k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=MTPMgIdelKAHQlU+HXCBeAaSxV0Ui/L3cr6Xmo31ldIIcLmnP7D4yadrMwJr3I6DK
+	 x5aRFKCygueVgCT4ABt6WkPjIxfTQtJzn8scvo7XLEWuY0MP3ryR+G1mU5+x39zRxy
+	 0qTqJs2sr8nTWfEW4A7rDf55zuMOCqrTx65nAnEaRGkxsw+Xeq3XJopNq+hv2+NZ0w
+	 zEtzEVBvFR4S5lKwKvOmwJ/gr9Samx+3Pmtkg+yd1ffZCRx3J4xoSKA9Xwh4LhGBzY
+	 EssseZkPgIMoGB/ZkMXGcSdK2LhUYkqOfWJVZTz/ztw+PpEio9q6ZDI27wv3pvAxon
+	 P1VUpTRXcW/ouQ1U+cD96In1NZp4abLzIxWHUDR8XuYHvnY+Szuk1LxXSS5hvNVYH6
+	 SFjQD+1N7hCHFHBbVRfzIvxQ2EUjsCIMzYOn1y9Iw6g6YO+hbBU5DodBMmsoOQl4zF
+	 tzxkkFFTbOiwpmsu+zHwtih92WPYNA0LSE+Yq/iMZu8XiVlF7LoVHuwaTYeM+H8hOB
+	 MA0rljcPbgb5E6hGaRfnWzViLNb/ASRRL2utzBls+bEOA/tWIKGttv/AneXcKt0gzT
+	 0Cxt6mJKJ/wkS+n5PXZ2t+zpKTrmVwtv6Da+sWW5OQBbWRvQISXRcNnQh8lsey/uOZ
+	 yPUGFx3OJTY7fvqQ4Y2BFTLk=
+Received: from zn.tnic (p5de8e8eb.dip0.t-ipconnect.de [93.232.232.235])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E5E4140E0163;
+	Mon, 14 Oct 2024 18:16:52 +0000 (UTC)
+Date: Mon, 14 Oct 2024 20:16:47 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: York Sun <york.sun@nxp.com>, Tony Luck <tony.luck@intel.com>,
+	James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Force host dr_mode for usb_2
- controller
-Message-ID: <Zw1f6S9d1JygJ6VU@linaro.org>
-References: <20241014-x1e80100-usb2-dwc3-set-dr-mode-host-v1-1-3baab3ad17d8@linaro.org>
- <c1cd82c2-5af7-44ec-ac18-996dbc212ce0@linaro.org>
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-edac@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	Priyanka Singh <priyanka.singh@nxp.com>,
+	Sherry Sun <sherry.sun@nxp.com>, Li Yang <leoyang.li@nxp.com>
+Subject: Re: [PATCH v2 3/6] EDAC/fsl_ddr: Fix bad bit shift operations
+Message-ID: <20241014181647.GQZw1gDwIhBdnFnleH@fat_crate.local>
+References: <20241011-imx95_edac-v2-0-011b68290951@nxp.com>
+ <20241011-imx95_edac-v2-3-011b68290951@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <c1cd82c2-5af7-44ec-ac18-996dbc212ce0@linaro.org>
+In-Reply-To: <20241011-imx95_edac-v2-3-011b68290951@nxp.com>
 
-On 24-10-14 17:48:37, neil.armstrong@linaro.org wrote:
-> On 14/10/2024 16:14, Abel Vesa wrote:
-> > The usb_2 controller has only a USB 2.0 PHY connected to it. There is no
-> > USB 3.x PHY fot it. So since dual-role is not an option, explicitly set
-> > the dr_mode to host to match the hardware.
+On Fri, Oct 11, 2024 at 11:31:31AM -0400, Frank Li wrote:
+> From: Priyanka Singh <priyanka.singh@nxp.com>
 > 
-> I don't follow, dual role is perfectly possible with USB2 only, where is the limitation ?
-
-You're right. USB2 could be OTG.
-
-Consider this patch dropped.
-
+> Fix undefined behavior caused by left-shifting a negative value in the
+> expression:
 > 
-> Neil
+>     cap_high ^ (1 << (bad_data_bit - 32))
 > 
-> > 
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
-> >   1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > index 0e6802c1d2d8375987c614ec69c440e2f38d25c6..4da13c8472392d842442193dc740027fa011ee1f 100644
-> > --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> > @@ -4143,6 +4143,7 @@ usb_2_dwc3: usb@a200000 {
-> >   				iommus = <&apps_smmu 0x14e0 0x0>;
-> >   				phys = <&usb_2_hsphy>;
-> >   				phy-names = "usb2-phy";
-> > +				dr_mode = "host";
-> >   				maximum-speed = "high-speed";
-> >   				ports {
-> > 
-> > ---
-> > base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
-> > change-id: 20241014-x1e80100-usb2-dwc3-set-dr-mode-host-35312d1d25b2
-> > 
-> > Best regards,
+> The variable `bad_data_bit` ranges from 0 to 63. When `bad_data_bit` is
+> less than 32, `bad_data_bit - 32` becomes negative, and left-shifting by a
+> negative value in C is undefined behavior.
 > 
+> Fix this by checking the range of `bad_data_bit` before performing the
+> shift.
+> 
+> Fixes: ea2eb9a8b620 ("EDAC, fsl-ddr: Separate FSL DDR driver from MPC85xx")
 
-Thanks for reviewing.
+Is this an urgent fix which needs to go to stable or someone just caught it
+from code review?
 
-Abel
+Does it trigger in real life, IOW?
+
+> Signed-off-by: Priyanka Singh <priyanka.singh@nxp.com>
+> Reviewed-by: Sherry Sun <sherry.sun@nxp.com>
+> Signed-off-by: Li Yang <leoyang.li@nxp.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  drivers/edac/fsl_ddr_edac.c | 17 ++++++++++++-----
+>  1 file changed, 12 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/edac/fsl_ddr_edac.c b/drivers/edac/fsl_ddr_edac.c
+> index 7a9fb1202f1a0..ccc13c2adfd6f 100644
+> --- a/drivers/edac/fsl_ddr_edac.c
+> +++ b/drivers/edac/fsl_ddr_edac.c
+> @@ -338,11 +338,18 @@ static void fsl_mc_check(struct mem_ctl_info *mci)
+>  			fsl_mc_printk(mci, KERN_ERR,
+>  				"Faulty ECC bit: %d\n", bad_ecc_bit);
+>  
+> -		fsl_mc_printk(mci, KERN_ERR,
+> -			"Expected Data / ECC:\t%#8.8x_%08x / %#2.2x\n",
+> -			cap_high ^ (1 << (bad_data_bit - 32)),
+> -			cap_low ^ (1 << bad_data_bit),
+> -			syndrome ^ (1 << bad_ecc_bit));
+> +		if ((bad_data_bit > 0 && bad_data_bit < 32) && bad_ecc_bit > 0) {
+> +			fsl_mc_printk(mci, KERN_ERR,
+> +				      "Expected Data / ECC:\t%#8.8x_%08x / %#2.2x\n",
+> +				      cap_high, cap_low ^ (1 << bad_data_bit),
+> +				      syndrome ^ (1 << bad_ecc_bit));
+> +		}
+> +		if (bad_data_bit >= 32 && bad_ecc_bit > 0) {
+> +			fsl_mc_printk(mci, KERN_ERR,
+> +				      "Expected Data / ECC:\t%#8.8x_%08x / %#2.2x\n",
+> +				      cap_high ^ (1 << (bad_data_bit - 32)),
+> +				      cap_low, syndrome ^ (1 << bad_ecc_bit));
+> +		}
+
+This is getting unnecessarily clumsy than it should be. Please do the
+following:
+
+	if (bad_data_bit != 1 && bad_ecc_bit != -1) {
+
+		// prep the values you need to print
+
+		// do an exactly one fsl_mc_printk() with the prepared values.
+
+	}
+
+Not have 4 fsl_mc_printks with a bunch of silly if-checks in front.
+
+Thx.
+
+-- 
+Regards/Gruss,
+    Boris.
+
+https://people.kernel.org/tglx/notes-about-netiquette
 
