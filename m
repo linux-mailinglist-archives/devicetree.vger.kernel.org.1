@@ -1,164 +1,164 @@
-Return-Path: <devicetree+bounces-111037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111040-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4C0199CA46
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:34:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00E9A99CA6F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 896DC2871E4
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:34:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 28A281C219C3
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:42:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65E8C1A76A3;
-	Mon, 14 Oct 2024 12:34:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D8F71A725F;
+	Mon, 14 Oct 2024 12:42:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="Mut85KB+"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="S1L6QIFM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.w1.samsung.com (mailout1.w1.samsung.com [210.118.77.11])
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CDA61A706E
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 12:34:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.118.77.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D80B1A0726;
+	Mon, 14 Oct 2024 12:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728909256; cv=none; b=otRfo/U4zYg9AP9CIrPlIkCYRQVQTg+FKR4SprhpEnQOIkxcHqXFz7Ml5fGMkzJEe3dygv87bR8wA80PhtyOKXM2/l/NsFnbf0bt8Q8ZEJsKtDqpUQAsReeFOQH19zxYFbpUA4T90sxloYmu++PrKu9TwV+LinZNiu37mrP3hqI=
+	t=1728909731; cv=none; b=AVmDu2VMkOEsawegQOagFfDaCQf55XL6C3xQKQCMlh2PFRFcnPQeDw9SOJQ9hC8vWYOJLdX8ev0C6mZqR95uf39VuDK/utFgky29dI09dLSG0Fh4OS6bCero0FvWWjosdZe4ZJIRoDRhbuz7MQrTO2h/ra8VrJgW2m+N6gEtpT0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728909256; c=relaxed/simple;
-	bh=pbX6ealTQx9fVIgIJYGW1OYa9DK6ZwQ9MQACLMUHfbA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=eDMsY/M6Q7clXPKKrjWnUXBiaBs2UTgzpiPAmFtrq6lCO9uqGJgLI4xF4UDppzem6Sk2E/sYYxoj4KcAt2nHANJaeRpttJ0f8u+RztJcucod0PfKGP0Iedr/J5tocpTgiUsf6VeZdsnD9QgkdQlOvSV5+p0LEv8NX/gK6+/1AaA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=Mut85KB+; arc=none smtp.client-ip=210.118.77.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-	by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20241014123412euoutp01f0839ce2c7fc585cf9f21c84677eda5f~_Uc4xuC0w0321103211euoutp01S
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 12:34:12 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20241014123412euoutp01f0839ce2c7fc585cf9f21c84677eda5f~_Uc4xuC0w0321103211euoutp01S
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1728909253;
-	bh=k5bx/+S6KDMkK8Imq/hflrXf6RmrkhVBbi73CyaDrlQ=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=Mut85KB+bjc212Fb3lhT+CYDsVhpU42bt4nLrhdYPjnplyOr4RIpKdNMgK9nPy8s/
-	 j+NtsyovWQdQ0EHpOQ4sJ+bOcDPXoZjSNbUNur0mdO1bgas4xhH1RZY7efTfKca74h
-	 w66vZRnb38Gkyl1NNv0gS8VJfq6gg2LdLMzOv8EU=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-	20241014123412eucas1p2317656ae2718e5559068372f1e69eb46~_Uc4cYYuW3262332623eucas1p2x;
-	Mon, 14 Oct 2024 12:34:12 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-	eusmges2new.samsung.com (EUCPMTA) with SMTP id FF.01.09875.4CF0D076; Mon, 14
-	Oct 2024 13:34:12 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-	eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-	20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328~_Uc39weuk3263132631eucas1p20;
-	Mon, 14 Oct 2024 12:34:12 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-	eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-	20241014123412eusmtrp123830495008b1b9e8e3a7dd8c739473d~_Uc36kM-U1593615936eusmtrp1c;
-	Mon, 14 Oct 2024 12:34:12 +0000 (GMT)
-X-AuditID: cbfec7f4-11bff70000002693-7d-670d0fc482c0
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-	eusmgms2.samsung.com (EUCPMTA) with SMTP id B1.23.19096.3CF0D076; Mon, 14
-	Oct 2024 13:34:11 +0100 (BST)
-Received: from AMDC4942.home (unknown [106.210.136.40]) by
-	eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-	20241014123411eusmtip1cde3dc3cf904bf3c313474de9c110b18~_Uc3ILKWt0548005480eusmtip1-;
-	Mon, 14 Oct 2024 12:34:11 +0000 (GMT)
-From: Michal Wilczynski <m.wilczynski@samsung.com>
-To: drew@pdp7.com, guoren@kernel.org, wefu@redhat.com,
-	jassisinghbrar@gmail.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, m.szyprowski@samsung.com
-Cc: linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Michal Wilczynski <m.wilczynski@samsung.com>
-Subject: [PATCH v4 3/3] riscv: dts: thead: Add mailbox node
-Date: Mon, 14 Oct 2024 14:33:14 +0200
-Message-Id: <20241014123314.1231517-4-m.wilczynski@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20241014123314.1231517-1-m.wilczynski@samsung.com>
+	s=arc-20240116; t=1728909731; c=relaxed/simple;
+	bh=siwxZ990WVReYQTp5BU84u61TZnBwHllWJmTTlrmi/k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kvKzJDyvXUNxEnKKv+uJ8zjh+3i5W1xbzDWxWihf98Xgf7GbflEXYcUlkNT1aMbVW7eq/TCQY1Uv4Iwj0DsBN4i/3FXfh6tP9bVTI1Cgs2s6c2NRz6Tf9I+rgVQ6hBwGYBSQ1odGqbFZezsxLf/mmxZ8B3LKzis22gTDPHOvLT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=S1L6QIFM; arc=none smtp.client-ip=91.207.212.93
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 49EA1LYb021364;
+	Mon, 14 Oct 2024 14:41:42 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	meVxP/72UxtTH816mMUL0SiTexlDHbve/hY9rxQg5uA=; b=S1L6QIFMEQcaz9px
+	3ku77xK3UU2Y7DIxrJZFE4j/dQGFBDrlNZItWy6CSRTht823n520KH2PspoWzSHv
+	I2vmI50o1j8yuiD73MYRitb1LmGdvaoJM2qQMCA73twaXkdklcR8P6KhfJQKt7Xe
+	pT+lZs830jyeGjO6J7YgRLaaiIjB2WBrdsO6LvkDx9XGrQc2M9w5d1heKpYIU4/A
+	nrO2aegzI6J/b3LLpnBQPkzFJLVZDkrgsXVeO3628JeSKypiR/BjQhnzAqW43JJ/
+	ub7GHFYhZIuMEHw+KQiDGb/6LzzjENxun5ZV6/VUn1ErSvZ8bF0UvydBh7zkVx3d
+	nY6O2w==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 427g0bg2pt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 14 Oct 2024 14:41:41 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 468D24004F;
+	Mon, 14 Oct 2024 14:40:25 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7066526B65F;
+	Mon, 14 Oct 2024 14:36:51 +0200 (CEST)
+Received: from [10.252.25.66] (10.252.25.66) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.37; Mon, 14 Oct
+ 2024 14:36:50 +0200
+Message-ID: <d862765e-e396-4f7c-97ff-76df9aa03216@foss.st.com>
+Date: Mon, 14 Oct 2024 14:36:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/4] hwrng: stm32 - implement support for STM32MP25x
+ platforms
+To: Marek Vasut <marex@denx.de>, Olivia Mackall <olivia@selenic.com>,
+        Herbert
+ Xu <herbert@gondor.apana.org.au>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime
+ Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Lionel Debieve <lionel.debieve@foss.st.com>
+CC: <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20241011-rng-mp25-v2-v2-0-76fd6170280c@foss.st.com>
+ <20241011-rng-mp25-v2-v2-2-76fd6170280c@foss.st.com>
+ <318dbd5e-f547-4d78-b42e-4dcacc08d328@denx.de>
+ <f191d034-4116-4169-8c05-201450412bbd@foss.st.com>
+ <8c13b0aa-7fb1-493c-9abc-5e5cfd982855@denx.de>
+Content-Language: en-US
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <8c13b0aa-7fb1-493c-9abc-5e5cfd982855@denx.de>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUwTURSFeTPDdFosDMWEByJqRRATAYnBUYkURTJxD9EoEJdqJ7URCrQi
-	aIhiQKwILgg0jgqaIGCjgmyCigsiqEiJVKwIJZpgYhWL2KqpBpcydfn33XvOzXn35hGoqMfV
-	l1AodzMqpTRJjAuwpg57z9x2D6E8rPuZmGr8zvKoy616hCpv17tSQ70NCPW29SBGPa8+x6PM
-	7BBOGW6cxakmay5OXWk38aiaz+UIZTYUoFQe60H9vNXMo3LvFGMSD3rEbMbo+xobj25hTTy6
-	TncEp+srDtC5VzoQevR2H04fa9ABujfHyKOtdf7rBAmCSBmTpNjDqEKXbBPsrBy04qkGIrO5
-	yA6ywTCeDwgCkvPhqDY8HwgIEVkNYM3RapQrbADa2hoAV1gBND6tdM0H/IkJy90zTqEKwEOt
-	XZhDEJEjAA71L3IwTobDV1Xlrg7TZNICYNHzAcRRoGQhgCWtpxGHy4tcDB9r3uIOxshZcODL
-	+4kIIRkFNV+f4FzcNHjnXjfqYD4pgRV3b2GcxxM+Oj08wehvT07jGZTza/nQWhHBcQyss4zx
-	OPaC7zobnOwHu04VYBynwFeNn5yzWbCloNPJi+Gg/tvEkVAyGNbcCOXa0fD6RaPzdu7wxQdP
-	7gXusKhJi3JtIdTkiTh3ICwpKPwbqq9uQjim4c9sLXYCzGD/24X9bxf2X+55gOqAN5OuTpYz
-	6nAlkxGiliar05XykB0pyXXg95/r+tFpawZV78ZC2gBCgDYACVQ8WThawpeLhDLp3n2MKmWr
-	Kj2JUbeBKQQm9hbOkk1jRKRcupvZxTCpjOqPihB832ykxSfWtLAk5iRhdzmmfSkJviSLGDQu
-	N1wIsuc2vuzzebiFCuwrnD62Jvr81KMvbJFH1upTi7fqxg3muNCsb5H1UatHBt3zOiyJST5l
-	3usC4jzc/OTtj3ULPpYZAuS1gZWl/CDE/Dnuw3oYHpjmMt6bnhf5YOr8wxsUx30NOSvIpfft
-	GZL6LSvH3RKvbQp7msWqfXRaP1lMRIAlId7LpvN6vxTvH0iTXt0uqtxrkln0M4P2I2Hdm9MS
-	PP2NOjTq47m1ErY/p+dgd3xhctnczKwobX/pTc0k71r/1RnNtp6N+UysYGbQthSZUrFKEVJq
-	W5aWObvL/Dp6x/d9pjcubsXDYky9UzpvDqpSS38B39c4RuIDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrAIsWRmVeSWpSXmKPExsVy+t/xu7qH+XnTDS7MtrbY+nsWu8WaveeY
-	LOYfOcdqce/SFiaLF3sbWSyurZjLbvFy1j02i8u75rBZbPvcwmax9shddov1X+czWby83MNs
-	0TaL3+L/nh3sFi37p7A48Hu8efmSxeNwxxd2j52z7rJ7bFrVyeaxeUm9R8vaY0we7/ddZfPo
-	27KK0eNS83V2j8+b5AK4ovRsivJLS1IVMvKLS2yVog0tjPQMLS30jEws9QyNzWOtjEyV9O1s
-	UlJzMstSi/TtEvQylt35zFZwmaNix6SfjA2MT9i6GDk5JARMJN4dmM3YxcjFISSwlFHi/9+3
-	rBAJGYlr3S9ZIGxhiT/XusAahAReMUocfGkDYrMJGEk8WD6fFaRZROAPo8T1Z2/AJjELTGSU
-	uDn3PiNIlbCAtcSpjhdg3SwCqhK3v70G28ArYC/R8f0M1BnyEvsPnmUGsTkFHCSWHNjDArHN
-	XqJzzVs2iHpBiZMzn4DFmYHqm7fOZp7AKDALSWoWktQCRqZVjCKppcW56bnFRnrFibnFpXnp
-	esn5uZsYgVG57djPLTsYV776qHeIkYmD8RCjBAezkgjv+6mc6UK8KYmVValF+fFFpTmpxYcY
-	TYHunsgsJZqcD0wLeSXxhmYGpoYmZpYGppZmxkrivGxXzqcJCaQnlqRmp6YWpBbB9DFxcEo1
-	MHXvmOlx31ti1ixlp1B7Resyzd9icopTv151ObX/7CmBjJpW3Zhke1mDKZVP1nGvbd7CGas0
-	8YfO1wb/oC0LLvwpqfmbfOOALQv/scOvQ9uLZh/6/PXQu+A/Oz4IM1vM8KiqkhFrMVn1fU5D
-	6t01elxVXIxCTF5tpiVqSQ7LW6zb+GK0RHXex5mIV5yV0ZruxaNyRmjPC/vi9j69pFJ/rtBT
-	kYvbg6RO3JFbpsHlzCUt/TiH9UePgPvkuddbU0QO6Lqmdekpqy8v3POoeWbMz8bnITk8F9bW
-	l2Z8jCn1ZVHbUfGo6v7fad3Lv6dNWrYp6xJ/p6cXo/qRetPDK75zvz7Opeso9f9HndaV2qlK
-	LMUZiYZazEXFiQACReCxUwMAAA==
-X-CMS-MailID: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328
-References: <20241014123314.1231517-1-m.wilczynski@samsung.com>
-	<CGME20241014123412eucas1p2144768f373a2e2de7f6d00e7b67f9328@eucas1p2.samsung.com>
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1039,Hydra:6.0.680,FMLib:17.12.60.29
+ definitions=2024-09-06_09,2024-09-06_01,2024-09-02_01
 
-Add mailbox device tree node. This work is based on the vendor kernel [1].
 
-Link: https://github.com/revyos/thead-kernel.git [1]
 
-Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
----
- arch/riscv/boot/dts/thead/th1520.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On 10/14/24 10:52, Marek Vasut wrote:
+> On 10/14/24 10:38 AM, Gatien CHEVALLIER wrote:
+>>
+>>
+>> On 10/11/24 18:17, Marek Vasut wrote:
+>>> On 10/11/24 5:41 PM, Gatien Chevallier wrote:
+>>>
+>>> [...]
+>>>
+>>>> @@ -551,6 +565,41 @@ static int stm32_rng_probe(struct 
+>>>> platform_device *ofdev)
+>>>>       priv->rng.read = stm32_rng_read;
+>>>>       priv->rng.quality = 900;
+>>>> +    if (!priv->data->nb_clock || priv->data->nb_clock > 2)
+>>>> +        return -EINVAL;
+>>>> +
+>>>> +    priv->clk_bulk = devm_kzalloc(dev, priv->data->nb_clock * 
+>>>> sizeof(*priv->clk_bulk),
+>>>> +                      GFP_KERNEL);
+>>>> +    if (!priv->clk_bulk)
+>>>> +        return -ENOMEM;
+>>>
+>>> Try this:
+>>>
+>>> ret = devm_clk_bulk_get(dev, priv->data->nb_clock, priv->clk_bulk);
+>>> ...
+>>> // Swap the clock if they are not in the right order:
+>>> if (priv->data->nb_clock == 2 &&
+>>>      strcmp(__clk_get_name(priv->clk_bulk[0].clk), "core"))
+>>> {
+>>>   const char *id = priv->clk_bulk[1].id;
+>>>   struct clk *clk = priv->clk_bulk[1].clk;
+>>>   priv->clk_bulk[1].id = priv->clk_bulk[0].id;
+>>>   priv->clk_bulk[1].clk = priv->clk_bulk[0].clk;
+>>>   priv->clk_bulk[0].id = id;
+>>>   priv->clk_bulk[0].clk = clk;
+>>> }
+>>>
+>>
+>> Hi Marek,
+>>
+>> This won't work as the name returned by this API is clk->core->name.
+>> AFAICT, it doesn't correspond to the names present in the device tree
+>> under the "clock-names" property.
+>> Any other idea or are you fine with what's below?
+> Hmmm, it is not great, but at least it reduces the changes throughout 
+> the driver, so that is an improvement.
+> 
+> I guess one could do some of_clk_get() and clk_is_match() in probe to 
+> look up the clock in OF by name and then compare which clock is which 
+> before swapping them in clk_bulk[] array, but that might be too convoluted?
 
-diff --git a/arch/riscv/boot/dts/thead/th1520.dtsi b/arch/riscv/boot/dts/thead/th1520.dtsi
-index 6992060e6a54..435f0ab0174d 100644
---- a/arch/riscv/boot/dts/thead/th1520.dtsi
-+++ b/arch/riscv/boot/dts/thead/th1520.dtsi
-@@ -555,5 +555,17 @@ portf: gpio-controller@0 {
- 				interrupts = <55 IRQ_TYPE_LEVEL_HIGH>;
- 			};
- 		};
-+
-+		mbox_910t: mailbox@ffffc38000 {
-+		       compatible = "thead,th1520-mbox";
-+		       reg = <0xff 0xffc38000 0x0 0x4000>,
-+			     <0xff 0xffc44000 0x0 0x1000>,
-+			     <0xff 0xffc4c000 0x0 0x1000>,
-+			     <0xff 0xffc54000 0x0 0x1000>;
-+		       reg-names = "local", "remote-icu0", "remote-icu1", "remote-icu2";
-+		       interrupt-parent = <&plic>;
-+		       interrupts = <28 IRQ_TYPE_LEVEL_HIGH>;
-+		       #mbox-cells = <2>;
-+		};
- 	};
- };
--- 
-2.34.1
+Yes, probably too much. What's present in the patch is not close to
+perfection but has the advantage of being straightforward. If we agree
+on that, I'll send a V3 containing the modifications in the bindings
+file.
 
+Thanks for reviewing,
+Gatien
 
