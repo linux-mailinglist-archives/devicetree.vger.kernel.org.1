@@ -1,109 +1,104 @@
-Return-Path: <devicetree+bounces-110792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E23B99BE48
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 05:41:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAAA899BE57
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 05:53:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8171F22B1E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 03:41:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 034EF1C21994
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 03:53:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DDBA61FD7;
-	Mon, 14 Oct 2024 03:41:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79F8D61FD7;
+	Mon, 14 Oct 2024 03:53:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KT1WX7fb"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="LjmScu4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA080231CA6;
-	Mon, 14 Oct 2024 03:41:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DD5231CB1;
+	Mon, 14 Oct 2024 03:53:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728877285; cv=none; b=EHy/+rAJq87MeFy2kMLxQPFt/fbrKEgRuuX7KXg0mNxRX9IW03WcAfuKAOkbcAI3xfpNChGpG+KHZvk3efeldyyvAVZFzk11BvbJ/qdXbpe/OjEHJXX1lplRGpuqlwggvl9BtzW56+7R4CLSCXzW9dJ5jxo0eslDKZsIengTYuI=
+	t=1728878028; cv=none; b=OtNoCe8qGGkCrjn4KR9wEZsoo0VivRDIM4u9AeZdNjW2lkMBWPoLqdJvxiru0fsakyPHtnmYnjgexrlX2PIq5XJ3fPalYcMpYGnh7clwFI5smJeB7FFKZ0IAV8NVIR74IYGpYHNZm2vCLazN6DifZ48x1lUodSXCGtxvDYa0l78=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728877285; c=relaxed/simple;
-	bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=PF1+0gYVXeJHxf6mIXSOMu7JQ36t2SgPEL92Lidbk9FzPUskuC1H5M0Cc5UFTJpr4oqYPHTQB3xn5YGyaSfCl+VhBAk0mSV7ukpGpHgWx/MGer25GM70KzR1LxXb0fdKvzVgKbH8x2FpM1UyzH7RTb+I8Ya4/oHcQXIiRsNSA6Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KT1WX7fb; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d495d217bso3337948f8f.0;
-        Sun, 13 Oct 2024 20:41:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728877282; x=1729482082; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
-        b=KT1WX7fbciOEQ+oV0LDnitGX9YaAdVOz4tQCoNjzseocLHTzy5mpKIGbiOrh13LDfp
-         Xw761OAcF5O9wtTfbGcNMxVc+vwZTMdNnGYnnMfcqFQHKnadoYIU2i1UylD/zwhv5Qm3
-         J7WU5Fe2+YuCbbpNH/hB4HNiGtDiwuxPx+fkStnxA40Jj65A/90qs4lKx261Xq16bbSH
-         yMYuXDY1VT4IR1axCgV+umVfUUvv0HifomM4C4c35GbTJPyy7mjRLkwrR3K8GboXSa2S
-         v5iew4GiUeldz4sz7aEggFWp54kKyeaLX0AU21L4r/k2ZaYqMWT9BnNvYRZ0AF+mQP88
-         oaHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728877282; x=1729482082;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mELz8a8zfTbhzWj4Dc9TOqu9NWONfm+X3dBjyrOSck4=;
-        b=mc+QS1aQeumCBas8yucIbGc7tuVfgEyhd2vCIOr4c0Ji6otd3Q2aFwFwA84GHzawYh
-         u+nHSwwCYmp6QDiQtXZW8xMltCeNlzGTK2gZ19PaqzSu9S66RpY4rIMkO1F6x3j2k4Yi
-         47IiLh4E8zeo70jCtfD1l56ooNlrk0laB1ycsJDKRBY0Btzvl4BDYug2k0U4hd2MzoUs
-         woOVbXra3S87DO8bLjGhO/OP+5keCO2MTlb86nth03wcv81NJjN7y7lCaAIHXoPQtkIn
-         x+DN+pQuPkzFKeL1CDoIQSiULIFcWuxMI/CVTLzYEi4cwc/e2KOEYk/Mx2H9UfrGtjqB
-         smfw==
-X-Forwarded-Encrypted: i=1; AJvYcCWP9PBX71NwGASvrpZjUIAxJcrnZ1Vq7baidEe/vBIiJaYtw0Lkl/Ljp0V7ZX4TZwSssTHKq5eJrojFTdEJ@vger.kernel.org, AJvYcCXhaPhV8RC+RF+7DF54+e91t7+BgWc9N+UkOS0M6vp4hbPPJ3hz1PJDG0c9397PhoyHkHQ8wrCVpBWK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx39dobcGm+xC6J6k0W5y2HXmZ6K0sLJaLN3i4uaklO/Ijftxde
-	vttCMw4Yc+WkEValRfFf0amI5XG7The277OKFTJlx5OX7g+fvW5I2JVdQY+reBQqv2YfJf6F5k/
-	8xiKiFUQM9jn+iqA6Wr7bnUyEyDM=
-X-Google-Smtp-Source: AGHT+IEuZXkrca6rIsUVQwVU97haNonzhsHAqe8u5lA+PAFqgXiPP+0kQTUchcBTz53mVNKJeYrFkQei/keoHkeSEYo=
-X-Received: by 2002:adf:b359:0:b0:37d:4c40:699 with SMTP id
- ffacd0b85a97d-37d5ff25593mr6606983f8f.5.1728877281830; Sun, 13 Oct 2024
- 20:41:21 -0700 (PDT)
+	s=arc-20240116; t=1728878028; c=relaxed/simple;
+	bh=T0PylFUGGEvk/NxJbKOo0gN2s6qagSt3zCfg4Ee1feQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=IAIZU+8MXadORjzQUVudxFC997P2Vtbt497ctg2tFhU6xdaOMtrmPZhQC5VDNcJqUkItdq7nO1WqkgI88YzXWJF2mb6WgQJ7D1bJ9vZ0CmxXuDMMSqIC6Fngk36CS6ohyG2pyK5CiWN7mBa849m0dWmN9WaffROENEgZtQymFN0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=LjmScu4v; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241013213305.310844-1-cenk.uluisik@googlemail.com> <20241013213305.310844-2-cenk.uluisik@googlemail.com>
-In-Reply-To: <20241013213305.310844-2-cenk.uluisik@googlemail.com>
-From: Jimmy Hon <honyuenkwun@gmail.com>
-Date: Sun, 13 Oct 2024 22:41:10 -0500
-Message-ID: <CALWfF7+nek6S--Cfq51QE-vSTnnENkbzgGiQkH7RQyjXeUpC-Q@mail.gmail.com>
-Subject: Re: [PATCH V3 2/2] dt-bindings: arm: rockchip: Add Orange Pi 5b
-To: Cenk Uluisik <cenk.uluisik@googlemail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
-	Chris Morgan <macromorgan@hotmail.com>, Dragan Simic <dsimic@manjaro.org>, 
-	Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, Andy Yan <andyshrk@163.com>, 
-	Jagan Teki <jagan@edgeble.ai>, Michael Riesch <michael.riesch@wolfvision.net>, 
-	Jing Luo <jing@jing.rocks>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728878022;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y1kR0sfl5tb/JBd/o562F1YUU5L9dc/UgrNB2JP6zYU=;
+	b=LjmScu4vRNphEIqQE9JBQ026JkApI3Iyyl5w66rT93cJil/Myh717LkU0GzqG7H++9WrfS
+	mW5qWEK4F3QVP0naYvBhnvZNglv6b3jyePG5qWSXQcwKTG80KBWBqhfLJJfY7Px9KsQ6Le
+	6NBxMnjPw3jooKBGoumcA1fblFfd0/MSGd8iQO+SHLU/5MynnT1EYqBBnJYaYT2thXFYT1
+	DyXnos9TPh5aEDsO85u9iaC3d+a8h2li/ocjL4e2z/wxA9DAKqJhQ4cc5/sYsXSCp2bRRI
+	5HGhI0L1IZTEit3YQQ6USZfYuapcO8QiahyKNfqrakF1r3wvvl+FtEVbcI8phg==
+Date: Mon, 14 Oct 2024 05:53:42 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Frank Wang <frawang.cn@gmail.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, heiko@sntech.de,
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, yubing.zhang@rock-chips.com, Frank Wang
+ <frank.wang@rock-chips.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip-usbdp: add rk3576
+In-Reply-To: <20241014020342.15974-1-frawang.cn@gmail.com>
+References: <20241014020342.15974-1-frawang.cn@gmail.com>
+Message-ID: <00175534f48f419c44836129f9cacbeb@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Sun, Oct 13, 2024 at 4:33=E2=80=AFPM Cenk Uluisik
-<cenk.uluisik@googlemail.com> wrote:
->
-> This commit adds the Xunlong Orange Pi 5b entry to the device tree
-> bindings inside the Documentation folder. I know you said I
-> should extend the Orange Pi 5 one with an enum, but I made a whole new
-> entry, because looking at all the other entries, they also create new
-> entries in a case "like this". I hope this is okay, or maybe I misunderst=
-and something.
-> Thank you in advance.
->
+Hello Frank,
 
-An example of using an enum is the NanoPi R6 boards
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
-umentation/devicetree/bindings/arm/rockchip.yaml?h=3Dv6.11#n241
+On 2024-10-14 04:03, Frank Wang wrote:
+> From: Frank Wang <frank.wang@rock-chips.com>
+> 
+> Add compatible for the USBDP phy in the Rockchip RK3576 SoC.
+> 
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
 
->
+Looking good to me, thanks for the patch.
+
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+> ---
+>  Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git
+> a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> index 1f1f8863b80d..b42f1272903d 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> @@ -13,6 +13,7 @@ maintainers:
+>  properties:
+>    compatible:
+>      enum:
+> +      - rockchip,rk3576-usbdp-phy
+>        - rockchip,rk3588-usbdp-phy
+> 
+>    reg:
 
