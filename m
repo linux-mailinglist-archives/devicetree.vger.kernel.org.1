@@ -1,140 +1,160 @@
-Return-Path: <devicetree+bounces-111179-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111180-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D892499D838
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 22:31:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 767B099D847
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 22:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 160F01C22C88
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:31:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A600E1C20AEA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFE571474D9;
-	Mon, 14 Oct 2024 20:31:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE28A1C9B7A;
+	Mon, 14 Oct 2024 20:34:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gBcUVaQn"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QyxhfCJh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5D674C7C;
-	Mon, 14 Oct 2024 20:31:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9004C7C;
+	Mon, 14 Oct 2024 20:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728937873; cv=none; b=t8HwokQ7yE2CUW4AwZPPJaIDcQLzubUflEdxUq4wYNyTnDYRURRtMWQQnKTIpQRYL1epWJ0vREO4xwRbCv7E1UDtEVOO02Iukyvv16Dp3/dmtLaw6annH5r8Vllgkx9I4S4zAev2pjSIqVza5AijsRiUW+Z8zP/cfSYlZsJpJVI=
+	t=1728938095; cv=none; b=ptatjZtpefUgAUELeHLk6G7WJo8wlVRxVAkRiiWBA6ytSGfqhhRec96RPmlPpdrfK+z3mLeGNu+kS3U97Ge1I4LgoOkTfh5R3aEm6inIBTDyI7noMKuhE/yNnkqQdzoSk2b/dU1oGgOhM+uVnvoHXDzUpDA57NliiDSDy9Xlx1A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728937873; c=relaxed/simple;
-	bh=/519vrXSCEBrD8167XIHl1Q+dorXR1ZPGe+dQgXTbfc=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K8U3xIV+3ET+M3AWdAUvagcbNN+gw2meT/l85mKiKcycXFhDkk8hcgIkAh+UF7aNsRULzmhqaaEiDqWH/90dTx/ZRT3tQe7srIdF6FYtpPhgpB/fFW/lFmD+8I+HQF42KN7d0e9vny3tZo9pFSHszw48K1YxutFUI7OQtEt0wso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gBcUVaQn; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D16EAC4CEC3;
-	Mon, 14 Oct 2024 20:31:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728937873;
-	bh=/519vrXSCEBrD8167XIHl1Q+dorXR1ZPGe+dQgXTbfc=;
-	h=Date:From:To:Subject:References:In-Reply-To:From;
-	b=gBcUVaQnHhFUCe5WUEVgYCtrlI6M6a4O80Q7mJz7rcdfmE5/Y9G7vBFwQw+xP7q/9
-	 72ferCcQ0dXgfgYy9nKixtl+b+opIuj+lMuIAw41KW427fJr0wNFLZC8mS2RTMiYEH
-	 S/OLWWvBI5oQDz/XannhpYf1VvJ+IbBlfdVnbMhvSxvlT2txZyVCe934sIWrHhhnGj
-	 y/TQf8jm4UIlBxOGxXAx38KZlScBZlAuZQSFsulAeZEFaMoSTw35whA/clFMGxaaWx
-	 x52SEQucqS4W1J0OmxADkMtH/R2GbjZVIMRvyBm8EUXsx4+MVoHT+aQN1O4LUOkaKQ
-	 90PE0zwzzgxAg==
-Date: Mon, 14 Oct 2024 21:31:09 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Changhuang Liang <changhuang.liang@starfivetech.com>,
+	s=arc-20240116; t=1728938095; c=relaxed/simple;
+	bh=Lk4I6UURrH3IQswz39h4iub5KOG09WnFz6iqw+Qh2c4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=qqgl0GPbZEH6G7Y4hpciWaAF5ococCNx8PyhxUb/pxdabL41jzRxnWOuf1SiPud+HFO0q1Ryc1vaiuJZfUbF6OaJjfpUEhyuhbg/x/ctC7CpqIaRp7lZLo7cAH15R382V5AT7QBJZ6TOsp5Zj3Ynl9Z4Npjotek8ciNTIz9ym0k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QyxhfCJh; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (unknown [23.233.251.139])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F24A71A7D;
+	Mon, 14 Oct 2024 22:33:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1728937990;
+	bh=Lk4I6UURrH3IQswz39h4iub5KOG09WnFz6iqw+Qh2c4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QyxhfCJhunR/Xb9ItJfdPZNAZ6mYdQj27QWwv2Du955G5zLoPClW+Vk055gwMLbTi
+	 fFxioz/SvtwVJsDt148PYGPeAPMjhnWXBogFCM0Kte8uo6nL3dRfr7nsDOfTIFVTle
+	 /xpqnFB1CLB37dhtKZGLKaJAwXG1jVYD6vo1j8I4=
+Date: Mon, 14 Oct 2024 23:34:41 +0300
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Jack Zhu <jack.zhu@starfivetech.com>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	E Shattow <lucent@gmail.com>
-Subject: Re: =?utf-8?B?5Zue5aSNOiBbdjM=?= =?utf-8?Q?=5D?= riscv: dts:
- starfive: jh7110: Add camera subsystem nodes
-Message-ID: <20241014-roamer-cinnamon-1e100b485052@spud>
-References: <ZQ0PR01MB13026F78B2580376095AF7E7F2442@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
- <Zw1-vcN4CoVkfLjU@aurel32.net>
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <martin.hecht@avnet.eu>,
+	Zhi Mao <zhi.mao@mediatek.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
+ various schema
+Message-ID: <20241014203441.GF5522@pendragon.ideasonboard.com>
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
+ <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Bjrafg8s2P5yt9cp"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <Zw1-vcN4CoVkfLjU@aurel32.net>
+In-Reply-To: <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
 
+On Mon, Oct 14, 2024 at 09:43:07AM +0200, Krzysztof Kozlowski wrote:
+> On Sat, Oct 12, 2024 at 04:02:50PM +0100, Bryan O'Donoghue wrote:
+> > Remove extraneous assigned-clock* from media/i2c/* schemas, retain in the
+> > relevant examples.
+> > 
+> > Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
+> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> > ---
+> >  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 8 --------
+> >  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 8 --------
+> >  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 8 --------
+> >  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 4 ----
+> >  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ----
+> >  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml | 4 ----
+> >  Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml | 4 ----
+> >  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 ----
+> >  8 files changed, 44 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > @@ -28,12 +28,6 @@ properties:
+> >      items:
+> >        - description: Reference to the mclk clock.
+> >  
+> > -  assigned-clocks:
+> > -    maxItems: 1
+> > -
+> > -  assigned-clock-rates:
+> > -    maxItems: 1
+> > -
+> >    reset-gpios:
+> >      description: Reference to the GPIO connected to the RESETB pin. Active low.
+> >      maxItems: 1
+> > @@ -82,8 +76,6 @@ required:
+> >    - compatible
+> >    - reg
+> >    - clocks
+> > -  - assigned-clocks
+> > -  - assigned-clock-rates
+> 
+> That's not extraneous, but has a meaning that without assigned-clocks
+> this device or driver will not operate.
 
---Bjrafg8s2P5yt9cp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+How so ? Even if we assume that the device requires a specific clock
+frequency (which is often not the case for camera sensors, the
+limitation usually comes from drivers, so the constraint shouldn't be
+expressed in the bindings in that case), there is no overall requirement
+to assign a clock rate as in many cases the clock will come from a
+fixed-frequency oscillator. This seems to be a constraint that is
+outside of the scope of DT bindings. It is similar to regulators, where
+the regulator consumer doesn't have a way to express supported voltages
+in its DT bindings.
 
-On Mon, Oct 14, 2024 at 10:27:41PM +0200, Aurelien Jarno wrote:
-> Hi,
->=20
-> On 2024-10-14 01:08, Changhuang Liang wrote:
-> > Hi, Aurelien
-> >=20
-> > >=20
-> > > Hi,
-> > >=20
-> > > On 2024-02-18 19:27, Changhuang Liang wrote:
-> > > > Add camera subsystem nodes for the StarFive JH7110 SoC. They contain
-> > > > the dphy-rx, csi2rx, camss nodes.
-> > > >
-> > > > Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> > > > ---
-> > > >  .../jh7110-starfive-visionfive-2.dtsi         | 49 ++++++++++++++
-> > > >  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 67
-> > > +++++++++++++++++++
-> > > >  2 files changed, 116 insertions(+)
-> > >=20
-> > > We have been asked to enable CONFIG_VIDEO_STARFIVE_CAMSS in the
-> > > Debian kernel, which from my understanding and given the device tree =
-shown
-> > > below also requires enabling CONFIG_VIDEO_CADENCE_CSI2RX. That said
-> > > doing so triggers the following error in dmesg:
-> > >=20
-> > > [   25.143282] cdns-csi2rx 19800000.csi: probe with driver cdns-csi2rx
-> > > failed with error -22
-> > >=20
-> > > From a quick look it seems there is something in the port@0 csi2rx en=
-try. Do
-> > > you happen to know what is wrong?
-> > >=20
-> >=20
-> > You need to add your sensor node. You can refer to this patch:
-> > https://patchwork.kernel.org/project/linux-riscv/patch/20240119100639.8=
-4029-3-changhuang.liang@starfivetech.com/
-> >=20
-> > We suggest that using the imx219
->=20
-> Thanks for your answer. I do not have any sensor attached, the goal is
-> to build a generic kernel, and people can use overlays or patch their
-> device tree to add support for additional devices.
->=20
-> In that regard, I have the impression that csi2rx device (and maybe the
-> camss device?) should not be marked as enabled in the default device
-> tree. I think they could be enabled by users as part of the change need
-> to add the sensor node.
+> File should rather stay as is.
+> 
+> >    - vddio-supply
+> >    - vdda-supply
+> >    - vddd-supply
 
-Yeah, that's probably what should've been done when the imx219 node was
-removed. Feel free to send a patch with a Fixes: tag for that removal
-and a cc: stable on it - otherwise I'll send one out tomorrow or w/e.
+[snip]
 
---Bjrafg8s2P5yt9cp
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+Regards,
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZw1/jQAKCRB4tDGHoIJi
-0q8FAQDgeLWFLXi0q6X4bNcfHbUpz10qI/NjWDXGcvylrBjMCgEA7y/5Vki87xQ+
-/7MuPhrTacNGUSIwcbhKT8B2yd/OnQg=
-=AKJE
------END PGP SIGNATURE-----
-
---Bjrafg8s2P5yt9cp--
+Laurent Pinchart
 
