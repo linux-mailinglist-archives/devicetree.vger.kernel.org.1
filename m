@@ -1,53 +1,53 @@
-Return-Path: <devicetree+bounces-110989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBA5A99C754
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:43:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4987899C75B
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:44:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C7A21F21F86
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:43:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D2DCBB25C22
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:44:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED62176AAD;
-	Mon, 14 Oct 2024 10:43:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C00F119D895;
+	Mon, 14 Oct 2024 10:43:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="UbfoJSZz"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KGqk5ly+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F888176AD0;
-	Mon, 14 Oct 2024 10:43:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C80519CCFA;
+	Mon, 14 Oct 2024 10:43:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728902602; cv=none; b=cXLfAz7tBSj/uPVebXy4iBAPVBgMkuhiYViNAZEHTN/BL0oPMohg+Ri3s2lHCYuYLouL88LK2ffSWZt23Cs7h9UXh1ttqg3etiZpXQTrMVsPsBnFDUX+AAMdSgQy2Ig1n8wKRfU8NW6su9ipVd9xg8iyzQeR1UOpiiobteZmbAY=
+	t=1728902639; cv=none; b=D/WDYY3nUbV4dKgAhr6EnffWV+eOTq8egrHkLfg9gCeZnvyuf77T9KbrX+E7P2CiwAd2+p66T4LoRRp+WBc8WNwZi7peLw9IhR8cmXmvAy5PRYNOCCdV3qvpGRu27kAT79zZFFKnVtFrCmuMZQKkiGZbFK+CqxnRd3LoU+V6UZE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728902602; c=relaxed/simple;
-	bh=TO+fsH/eUQ60nwauDDyn9iX3cCBxGqwedbX5VWj2Sa4=;
+	s=arc-20240116; t=1728902639; c=relaxed/simple;
+	bh=zFfoFsOW4aI08PZHk3ptJ0clOIxFlUdsSM/Wo+lQl1c=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cwBFSgfcX3myhtMYVzvxQUQeN4YzVs7SNC1pj4N+j/cNTnL9ThGWeNAAlaEbybYQuSJIHY/9zSgZzkdhnqMz6B3w6z94QpH7Dy9w7YbOJvIg2sYKLHNVDY1A5z75ZvTinOiVe7ebAuWK4XjP52VO6AjUpSSJZYs1sB4/ujZq1B0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=UbfoJSZz; arc=none smtp.client-ip=148.251.105.195
+	 MIME-Version:Content-Type; b=qijvz/rOQ4BMORho8cd0JKrbd2ZH0VQPqfWeiKqoT4M1tEnjG9/RQKLsjWGP5Rum9EXLZoBKcCnZ2rYfAJbcBkgzdjyxcu/xoSqfbAsOnEKuBnj3kLltkaXrNl2kx/agQwT9sKLpZ3AOk7ID0dmhJAlRURgWNr3Otb2oIhkByKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KGqk5ly+; arc=none smtp.client-ip=148.251.105.195
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728902597;
-	bh=TO+fsH/eUQ60nwauDDyn9iX3cCBxGqwedbX5VWj2Sa4=;
+	s=mail; t=1728902636;
+	bh=zFfoFsOW4aI08PZHk3ptJ0clOIxFlUdsSM/Wo+lQl1c=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=UbfoJSZzSxK9B/c9I5V+BRUXd++1Atv6hIKf1JAt3nJncKI8W9+7EFSYL6c3ZHRox
-	 NkEtAjRCaIaaqy5iTzNvmh2j1mrVEpj5sf882PuP/upLXR5G7yFX8Skslhkye8Aov+
-	 Znbk+Xj83wDPO5HkoNoZaQhCv2TL/Z/B0qX6ZgUVDjfnvxw+CJkRMubl4Dw5O6fXG+
-	 iVPX87i7V1OblkRYLLzxFyhqGA2N+3sRedsp3NK/WF+ibv9YsmMrdhzJDojX38WRTJ
-	 IjRrDAo8IZqntMeiFZNpg5M8s3chzBqzmm7smDCRTowrSx22abjkz7Jzbj6uZ18J1S
-	 tVQnmwxGEaVpg==
+	b=KGqk5ly+yUNt70G/i3UxSCVVZp2/URpXU8o39e191dK5cPhLNukJcZqDHqR9p4mlc
+	 sIJGeWqnOtc8cAoRhDDgTFxxF157rTvDB3eOlb6FjUS+rkgq1bcs0RO4ISnyMBQWxQ
+	 5L9D69RCSpb2ZxS8z4EhKnWGkE+24fnqIuX805orU6dZvHFv9cvxz8RNf5F7WDUysQ
+	 7gi41HK2puEvWxlETJsQ6bb5PcDjOoFaImnb2CinS6qIGKs//wLxP/UvN0YiLfmBVk
+	 6uysZQdJqV8XhKhdwuCnX9xBu/tJybPLV4MtsW7R0AxTpaoNAY3ruAcsJ48XpnMa6c
+	 qysItZe/pf10w==
 Received: from IcarusMOD.eternityproject.eu (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
 	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 1F5EC17E1395;
-	Mon, 14 Oct 2024 12:43:17 +0200 (CEST)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id CC9D517E1395;
+	Mon, 14 Oct 2024 12:43:55 +0200 (CEST)
 From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
  Conor Dooley <conor+dt@kernel.org>, 
@@ -65,8 +65,8 @@ In-Reply-To: <20241007090244.1731-1-macpaul.lin@mediatek.com>
 References: <20241007090244.1731-1-macpaul.lin@mediatek.com>
 Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: mt8390-genio-700-evk:
  update regulator names
-Message-Id: <172890259705.119414.11953532411383385450.b4-ty@collabora.com>
-Date: Mon, 14 Oct 2024 12:43:17 +0200
+Message-Id: <172890263578.119829.14354732422757704375.b4-ty@collabora.com>
+Date: Mon, 14 Oct 2024 12:43:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,12 +94,12 @@ On Mon, 07 Oct 2024 17:02:43 +0800, Macpaul Lin wrote:
 > 
 > [...]
 
-Applied to mediatek-next, thanks!
+Applied to v6.12-next/dts64, thanks!
 
 [1/2] arm64: dts: mediatek: mt8390-genio-700-evk: update regulator names
-      commit: 54a1168b1a0adf9ee033b29bf32affca6059be7e
+      commit: 4fcf4347c2a74bbc297b6f626de4ad0ca8fee96b
 [2/2] arm64: dts: mediatek: mt8390-genio-700-evk: add keys and USB HUB
-      commit: 46c2803425543deff4cb9be01da0cbd4bd6045a7
+      commit: 13799dcd86813793349bf2136937bca91ae73253
 
 Cheers,
 Angelo
