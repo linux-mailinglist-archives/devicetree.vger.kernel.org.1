@@ -1,157 +1,138 @@
-Return-Path: <devicetree+bounces-111106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D82699D3DE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:49:13 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 415C299D3F4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:54:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 01E9D1F24F94
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:49:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 420C9B29833
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771961AB501;
-	Mon, 14 Oct 2024 15:48:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 932DD1ABEAD;
+	Mon, 14 Oct 2024 15:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ThpYbkyP"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="nCxpvM7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB734C3D0
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 15:48:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900771AB501
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 15:49:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728920922; cv=none; b=AQDUnJ+BMV2/Kmr3Nt1xadWgUReMW2AUsC1/o1B2jpb6tpK/rB1ehZp2DRxj4rBhiv1dF17prwU7AakSj2oaANiYcOZlnIHG7/qH8knD1qoQSSDZU9iKjrZ9BEL/Y8+3QilEYGV95hDUmqaDCzTkk3IrnyFVJXOepSWcH0k5gq0=
+	t=1728920960; cv=none; b=I9HUY0XdV2r960bSxMWqZ8AabTyr05Z1x6Rx3Gp1any4Pyt/BzeY9vEJOwGWuLp7XE/h1iGo/HS76FgBVHx9cCeSEEBpWkii8mKXEesCFPzLkgT03SVysYFn3XsBKCnVH+JT3kYYCsSu0OWPcII8D6YYEp6J26s6Q0shddAtW8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728920922; c=relaxed/simple;
-	bh=mPRZfKW56jqyFnTJam3p/k2JpNjwrrSWBbed46KD91o=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=j7AWjv6ym7Tl2TfjZ3IbMQ3lHx5nYpvd0KVQG/l9tVAMXcSqObxw41Kk6cI8WZTK3zTKkpQqMN66gNBshtIRKJfxUa8Q9aquFHEUwQloFL93XODEUPQc6P3rJ/3Vu5xnhpnsm0Zw7vECQGCCM0U3VjsrJ510Az+YjFaTKAHxdD0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ThpYbkyP; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4311695c6c2so33768525e9.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 08:48:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728920919; x=1729525719; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NQuhNjqG9A4ysuIinRQhei7fHPxyrjwXLCFyUeTW3+A=;
-        b=ThpYbkyPX+vnivF+zUNp9ElkSX2NBlASsKDV9lVu8EE4pwVzQxhzPm0m3/z3dlXGqB
-         4SmBLeVJvJhaZTHvclB/0qzhiK6jkbVLwIEwfWyHcG1grsxPyt0yH9M0Ib++xg2ndgIB
-         edLV3L0UNVs3cCjJzLmM7P9bHN8AMc8lB9/tYPP9WEOw3FumD2uXGIqYGYRLDsxv9YK/
-         FgL+o+cA5K2LcslN7T58lYB5BTfWAbUjKTQ9jAWCTcaLLpMEvdbVXVJxim4zzr906AU6
-         lAfSTorrYbtxxvcMAxmy671rub5BKfiURN6YXmyqpVdvY+t4Z49KQOhjSyRKILw2pDlM
-         4xRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728920919; x=1729525719;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NQuhNjqG9A4ysuIinRQhei7fHPxyrjwXLCFyUeTW3+A=;
-        b=RwpUrvSR6bS0wWu43hzCJqzg7KdQqRpikL8KO2dOe4R/RLmCM2dZRIjewJhASpnrF1
-         WzWqJfFfHh4mk2yvZ1jR/JDxgf2rD5iKSHtGvbEiX4ZBQE+1Wbj2RZRnAIbT8YD5z7LB
-         asw/vKkyFSFugdGU311g2eW8xApKxW/c9OZfUNWGzEn3rc21Imje551TNI44cW0hxzc4
-         viT7jiiWfOWb9eioFpg3cuDQFr4yrashhlb4cn4/K7mNU2EX72grmm8NU3D8mPVx1oMO
-         J8yh2lN/DumapD9aG3TRtiQv5PR+3bbdNVr1qBT9itJ2XtZOgFmjCCU26ZLxW0Mk/rCv
-         WBQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVQzjwXL/zdNRhy6cAJZ3goaBZmGTQ9u4Hh2dSlTpdq2YCgruZWT6VWgmXYYimXFznJOKz3x0jmN5QF@vger.kernel.org
-X-Gm-Message-State: AOJu0YysrSbMmouSz193EYe2vQOiaSiO6R87zBw+rXEItzJjPE4L7iWB
-	wVszRglY1I0S19+uqD2hfDwWvVAjtrb10WPDY4Ls6ZPjFc65fMfZPLfMPm1E+mU=
-X-Google-Smtp-Source: AGHT+IG4V4AZbocEw7Zs+OTB3XyUfkmbanLEi8JX1ATBmgTxW4aFl25lhdvdJUhLmgniX5mKet1USw==
-X-Received: by 2002:a05:600c:1c9c:b0:430:563a:b20a with SMTP id 5b1f17b1804b1-431255dc851mr75876565e9.11.1728920918893;
-        Mon, 14 Oct 2024 08:48:38 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:6bf3:bb7:467:a56f? ([2a01:e0a:982:cbb0:6bf3:bb7:467:a56f])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-430ccf51c69sm155310915e9.28.2024.10.14.08.48.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 08:48:38 -0700 (PDT)
-Message-ID: <c1cd82c2-5af7-44ec-ac18-996dbc212ce0@linaro.org>
-Date: Mon, 14 Oct 2024 17:48:37 +0200
+	s=arc-20240116; t=1728920960; c=relaxed/simple;
+	bh=bIQpmLT+G8QeXw+kJTQbwE8S1IxK2IKNJpbcf2rixg0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=rx97vcoiWJubQ2cFkZ++2yx91Omn+cwQK2/8BJvRYy3UJmX6c/LVZCMNVbygZCtE5QCbMNBYSrIEqGkPaV710cIkhdEO9XcBVptV3GnFXHfyncCXXPaTN7WUv8vLqtYctNdMytZGIZZouAgQY83n1tqUH/EJA2zkwYBaHmkBTU8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=nCxpvM7/; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: x1e80100: Force host dr_mode for usb_2
- controller
-To: Abel Vesa <abel.vesa@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20241014-x1e80100-usb2-dwc3-set-dr-mode-host-v1-1-3baab3ad17d8@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20241014-x1e80100-usb2-dwc3-set-dr-mode-host-v1-1-3baab3ad17d8@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1728920955;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=07GU8WAJO17q5kdEYI1T6Pkw2Te0wqsYowGyYUe3E2Y=;
+	b=nCxpvM7/REPjEP7L+Eu+UD5LaESncMaO408biL9S099TjPN4oAaHd6bachmrfsWtbjEibr
+	t0fMGljO5BKSv5Wy1Cg1NrFAgMkPEigUlQigSNlGoJZYi1QPo4KRayvO/jXsKZ70bRR65O
+	taO/t1fcjayKsZ1V5IicY9Q/Gjh2aOUk9gYn8ZtKSSvxproXOZWMSspfT53xmNnDLi2CaH
+	O9gIifPgOa+4bofj1RjK2bhIxW+S3mGJEkd/8vJiLmD2peJwevILTvOaIgAEJQUy357FlB
+	BnWPN+F70tJtDnVdIa9sCp7YDDQj2vyuXg9tK7kBASbFBtbYkmfh+kmz5hTICg==
+Date: Mon, 14 Oct 2024 17:49:14 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <quentin.schulz@cherry.de>
+Cc: Heiko Stuebner <heiko@sntech.de>, linux-rockchip@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, Quentin
+ Schulz <quentin.schulz@theobroma-systems.com>, Klaus Goger
+ <klaus.goger@theobroma-systems.com>
+Subject: Re: [PATCH v2 06/14] arm64: dts: rockchip: Remove #cooling-cells from
+ fan on Theobroma boards
+In-Reply-To: <4f8a87da-76b1-4fa6-8755-5dbf10bfd74e@cherry.de>
+References: <20241008203940.2573684-1-heiko@sntech.de>
+ <20241008203940.2573684-7-heiko@sntech.de>
+ <3fe3561f1839ed17dfa74ba0a408482d@manjaro.org>
+ <4f8a87da-76b1-4fa6-8755-5dbf10bfd74e@cherry.de>
+Message-ID: <ff20557655d689571590d5b908b705c1@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 14/10/2024 16:14, Abel Vesa wrote:
-> The usb_2 controller has only a USB 2.0 PHY connected to it. There is no
-> USB 3.x PHY fot it. So since dual-role is not an option, explicitly set
-> the dr_mode to host to match the hardware.
+Hello Quentin,
 
-I don't follow, dual role is perfectly possible with USB2 only, where is the limitation ?
-
-Neil
-
+On 2024-10-14 17:39, Quentin Schulz wrote:
+> On 10/9/24 9:16 AM, Dragan Simic wrote:
+>> On 2024-10-08 22:39, Heiko Stuebner wrote:
+>>> All Theobroma boards use a ti,amc6821 as fan controller.
+>>> It normally runs in an automatically controlled way and while it may 
+>>> be
+>>> possible to use it as part of a dt-based thermal management, this is
+>>> not yet specified in the binding, nor implemented in any kernel.
+>>> 
+>>> Newer boards already don't contain that #cooling-cells property, but
+>>> older ones do. So remove them for now, they can be re-added if 
+>>> thermal
+>>> integration gets implemented in the future.
+>>> 
+>>> Fixes: c484cf93f61b ("arm64: dts: rockchip: add PX30-µQ7 (Ringneck)
+>>> SoM with Haikou baseboard")
+>>> Fixes: d99a02bcfa81 ("arm64: dts: rockchip: add RK3368-uQ7 (Lion) 
+>>> SoM")
+>>> Fixes: 2c66fc34e945 ("arm64: dts: rockchip: add RK3399-Q7 (Puma) 
+>>> SoM")
+>>> Cc: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+>>> Cc: Klaus Goger <klaus.goger@theobroma-systems.com>
+>>> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+>>> Reviewed-by: Quentin Schulz <quentin.schulz@cherry.de>
+>> 
+>> Looking good to me, thanks for the patch.  In addition to the amc6821
+>> driver currently not supporting full integration into the thermal
+>> framework, the "fan" DT node also isn't referenced in any cooling map,
+>> so having it define the "cooling-cells" property is of no use.
+>> 
+>> By the way, it would be nice to see the amc6821 driver supporting fan
+>> speed regulation, and test it to check who does a better job when it
+>> comes to cooling and fan speed regulation, the thermal framework or
+>> the chip's built-in logic. :)
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
->   1 file changed, 1 insertion(+)
+> Wasn't this feature added this summer by Guenter?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> index 0e6802c1d2d8375987c614ec69c440e2f38d25c6..4da13c8472392d842442193dc740027fa011ee1f 100644
-> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
-> @@ -4143,6 +4143,7 @@ usb_2_dwc3: usb@a200000 {
->   				iommus = <&apps_smmu 0x14e0 0x0>;
->   				phys = <&usb_2_hsphy>;
->   				phy-names = "usb2-phy";
-> +				dr_mode = "host";
->   				maximum-speed = "high-speed";
->   
->   				ports {
+> c.f. 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/drivers/hwmon/amc6821.c?id=becbd16ed2f8f427239ffda66b5d894008bc56af
 > 
-> ---
-> base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
-> change-id: 20241014-x1e80100-usb2-dwc3-set-dr-mode-host-35312d1d25b2
-> 
-> Best regards,
+> Mode 4 is
+> https://elixir.bootlin.com/linux/v6.11.3/source/drivers/hwmon/amc6821.c#L367
+> ([FDRC1:FDRC0] = [01] -> Software-RPM Control Mode (Fan Speed
+> Regulator) according to the datasheet).
 
+Ah, SENSOR_DEVICE_ATTR_RW(fan1_target, fan, IDX_FAN1_TARGET)...
+How did I miss that?  Hmm...  Maybe I was looking at some older
+local branch, which happened not to include that commit.
+
+Anywyay, good to know, thanks.
+
+> In any case, we cannot compare those for our products as we do not
+> have a genuine AMC6821 but a handmade simulation of the IP we run in
+> an MCU.
+
+I seem to remember your MCU that performs a few tasks, back from
+some related discussions.  I wonder what was the reason to implement
+it in software, instead of using actual fan controller chip?
+
+> But that'd be an interesting data point indeed :)
+
+I'm glad that you agree. :)
 
