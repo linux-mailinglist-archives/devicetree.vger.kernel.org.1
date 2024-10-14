@@ -1,204 +1,125 @@
-Return-Path: <devicetree+bounces-110832-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110833-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85DB99C15C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:32:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFF6299C15E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:33:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81065282EFF
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 07:32:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E116F1C2085D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 07:33:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99E8E148317;
-	Mon, 14 Oct 2024 07:32:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 598581482E7;
+	Mon, 14 Oct 2024 07:33:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BipLYaiS"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="H22dOdLm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD9D146A62
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 07:32:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AF7114373F;
+	Mon, 14 Oct 2024 07:33:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728891130; cv=none; b=sD2VSEgRHl40xkss9WuRSlmP2ON0tQlcBeb02p8G88xQ4nyZa6MTeCL7W3rSi3c2BoOttQci/0Tx2tgzzihUTvRhPRodfWCo+ndQcRBI9CnwbmChAP+9OVd7BTv9wW1j9x2+l1a6Usj8C/keg9eIRn3/LN2SXgiLRty0hxj1iBw=
+	t=1728891200; cv=none; b=jxmKq155KBYZunwVtbFSl2NKXFcgYYrjZV3M+Y8XerbnF6wmgWV5sqXY11gIniThOCRUbG7dY/CPFDCCPjKqQ6aSDB48K6pOc1RqFZwDJTQ/vqt555Ms/B4RReFlqyCawjt1Y9/ZhqbZDeMdVc49TaiW1G7OS9sh6/a9GCP1/t8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728891130; c=relaxed/simple;
-	bh=xsdqhXIVJnZkOoTSSEX+6oyDcw+MQtfhAhCytFlvR5M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m+3hqfEQ/9TbmdNJ8zvQKJ9mRcYqv1fXlQNUL2deiGsXW2D+aUvCo5MTW6j2iyZrBMPT/m5qDLoM1KQrb4g868d8VDqdB3GLrWfJ+6Ex4gMkTkf9e1ET59GX5IcyneRAmjWJEK4zPYgA3w6ZLol64ThfxVFy2B8K2PyuQ3SLYws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BipLYaiS; arc=none smtp.client-ip=209.85.208.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-2fac3f1287bso34720481fa.1
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 00:32:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728891127; x=1729495927; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=0l5Vpt48y+wyU8Bmw/8CtDa7S7s/PIqP43uNSVoXr+M=;
-        b=BipLYaiSSEQjufj57LUXo5o/0IS/D9JgFbaSGr5WL7LBx12Daef0nZsBmefaNrexMF
-         f80pk2Zg5CAE7jG5Jb3+Mf2mBznOawxbN2pAFRx2gYywXOr+2BXtxp7Us7AIpIdmgzHh
-         8aviOzk5aBNSrduqCZmXAZ+Gr8JIAu19SdQ7zVN1FYdQPHtRoGf0XSX+rawgC3C/8NEH
-         GIUZ/PMGa43guNW2ypUG7VDLk4MrFFcKuq1d331AI2LKesbf2Cz/ZBt8G/eJGZnIxNEF
-         adcxRQgZrkg+RmzTPQK5JFS91Fbgfk3PIaNlW6P/sHzifdlVVNrg4vAbyZvjLBbZgiQS
-         eD4Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728891127; x=1729495927;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0l5Vpt48y+wyU8Bmw/8CtDa7S7s/PIqP43uNSVoXr+M=;
-        b=iPMdyA4PGv5lN4su/0gR3jIcPTLEUtHq1HLoo0L36IqpmdRitMk3//wE6PmKSCq7mt
-         tj5hVM0+7YioOrTQDxgwWGKN1Zqmn2iLG2vHoSL6q96G1vg1o3RXB3pPifWNcFBr7W0v
-         +WfYiTnq6EgF7znyO2CiE9T9NqXjbEXwLszklJdj9SQza2wtEKBiKDOmZ0NoX/ax6g1i
-         Esij7CoRPdYevbxw2EnxbekaItTO7fDJBEnRn+F4o2FLa16YFWPjaZQ74IMP9VcPEZO1
-         k6nbwmY/Alx0vfQB+JylASvmDkVZkCImlIdwzhc7Du20KViu9cEWlxWYOLQWem9Z6IZy
-         wgXg==
-X-Forwarded-Encrypted: i=1; AJvYcCXfa0I2AYW5cZeQVl50ftdyLYRJrZgvKk2fiYL3sL+7LtZ2DGNa1dg2XP7LOf/0n2moHJoEu0dYHWaP@vger.kernel.org
-X-Gm-Message-State: AOJu0YyqQWn/sYfv6PGOqyph6L9cGhU1YUkk3+ESwWYR+RtTKuNK7czx
-	DnOgs4FQbro2l2kOpjznL+JRCEdsxAGBuNtl9t/bGCx4psnMld7SMCG8vSGFjeM=
-X-Google-Smtp-Source: AGHT+IGiaLeQf8+Vr/79F1V0S+ghGnacb+eZWAJIcx/Xabv/TekeMK0rkcfw0OdHNeB4hMf+D9aZrg==
-X-Received: by 2002:a2e:4a19:0:b0:2fb:3d91:f218 with SMTP id 38308e7fff4ca-2fb3f1d10e8mr20878621fa.26.1728891126669;
-        Mon, 14 Oct 2024 00:32:06 -0700 (PDT)
-Received: from eriador.lumag.spb.ru (2001-14ba-a0c3-3a00--7a1.rev.dnainternet.fi. [2001:14ba:a0c3:3a00::7a1])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-2fb497affa6sm5058111fa.74.2024.10.14.00.32.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 00:32:05 -0700 (PDT)
-Date: Mon, 14 Oct 2024 10:32:02 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To: Liu Ying <victor.liu@nxp.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org, 
-	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com, 
-	simona@ffwll.ch, maarten.lankhorst@linux.intel.com, mripard@kernel.org, 
-	tzimmermann@suse.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	festevam@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	quic_bjorande@quicinc.com, geert+renesas@glider.be, arnd@arndb.de, nfraprado@collabora.com, 
-	o.rempel@pengutronix.de, y.moog@phytec.de, marex@denx.de, isaac.scott@ideasonboard.com, 
-	biju.das.jz@bp.renesas.com
-Subject: Re: [PATCH v2 6/9] drm/bridge: Add ITE IT6263 LVDS to HDMI converter
-Message-ID: <kaoqse23we5lyhaawk6xe2ouxwwjtjfpkiqb3j7xe64o2jscny@3yswlkjhuuxw>
-References: <20241012073543.1388069-1-victor.liu@nxp.com>
- <20241012073543.1388069-7-victor.liu@nxp.com>
- <dtloyyghjep5rm34qjjinvhvrar5jzj3n24czvpdmnkfesntjq@t2uijuez7myj>
- <f47bc3f1-20d9-4f7e-acdd-85eabdb8d743@nxp.com>
+	s=arc-20240116; t=1728891200; c=relaxed/simple;
+	bh=3kMsJqU2vFObyJn3KXp+d82yG/GUzn1cufdm/AqjBj8=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hB4+Vx2eky3wCltG721ffIjE/i4lKD2KNocSPjzELNmO0Lf/9wKYX2Tv+PnYlkpDg7uy9XIb7URaJu0z8DZwhgcIRnh08aa7IivuM5fExy9TzzirLgO0723nFczvtlDfgPEXwFwgxeEgTwJBkJc/9X9a/ofI70ap7fgpp7qzdVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=H22dOdLm; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 919ad27889fe11ef88ecadb115cee93b-20241014
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=+ccPUlxoWYb2N/Xj1O6fXBzFxm62ZRQMc5csPYeqYmk=;
+	b=H22dOdLm0WQci99chqRDyPI8Mi/HPfHD3n2kcLzuCrg4wIjFyGcgAqzIY9n7uf+m7ChJE1bix94vBiJ3qacA+UUYRV90Wpq8EjtFT0HwRKe2pJT2msAcU3qdUDlKfrVghiY5/r629I05iqjlg1x1X/LSbCUMI+0fZjhTHOfqZaw=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.41,REQID:5817445b-234e-4067-864d-1a6c7e063218,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6dc6a47,CLOUDID:7d913641-8751-41b2-98dd-475503d45150,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 919ad27889fe11ef88ecadb115cee93b-20241014
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1721229125; Mon, 14 Oct 2024 15:33:12 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs10n1.mediatek.inc (172.21.101.34) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Mon, 14 Oct 2024 15:33:11 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 14 Oct 2024 15:33:10 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Daniel Almeida <daniel.almeida@collabora.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
+ Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH 0/6] media: mediatek: vcodec: support h264 extend vsi
+Date: Mon, 14 Oct 2024 15:33:04 +0800
+Message-ID: <20241014073314.18409-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.46.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f47bc3f1-20d9-4f7e-acdd-85eabdb8d743@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--5.660900-8.000000
+X-TMASE-MatchedRID: AIneCDrHljUEQqIqKFLtTmf5YFI3LLMhmX+W7bzPOQFcKZwALwMGs0cW
+	Drfntjxwc6aye5Pnub+uVX99ICt6ji6NsFOtZ8f6EhGH3CRdKUVWOQQSa4vbHQfxTM57BPHD12F
+	2GovFrSOVMlcqqHWd7aBVvEjzNBpCHxPMjOKY7A8LbigRnpKlKTpcQTtiHDgW4g49Ra2QKgvDfU
+	E7T1eqLdVCaGNhZgZBCDiARPE8nvNojKASPn5iew==
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--5.660900-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 86686F6C60E70B8125DCE2D6446E57279E7D83F3E49091D6548527FC217E89402000:8
+X-MTK: N
 
-On Mon, Oct 14, 2024 at 03:18:15PM +0800, Liu Ying wrote:
-> On 10/14/2024, Dmitry Baryshkov wrote:
-> > On Sat, Oct 12, 2024 at 03:35:40PM +0800, Liu Ying wrote:
-> >> Add basic HDMI video output support. Currently, only RGB888 output
-> >> pixel format is supported.  At the LVDS input side, the driver
-> >> supports single LVDS link and dual LVDS links with "jeida-24" LVDS
-> >> mapping.
-> >>
-> >> Product link:
-> >> https://www.ite.com.tw/en/product/cate1/IT6263
-> >>
-> >> Signed-off-by: Liu Ying <victor.liu@nxp.com>
-> >> ---
-> >> v2:
-> >> * Add AVI inforframe support.  (Maxime)
-> >> * Add DRM_MODE_CONNECTOR_HDMIA.  (Biju)
-> >> * Rename it6263_reset() to it6263_hw_reset().  (Biju)
-> >> * Check number of LVDS link data lanes.  (Biju)
-> >>
-> >>  drivers/gpu/drm/bridge/Kconfig      |   8 +
-> >>  drivers/gpu/drm/bridge/Makefile     |   1 +
-> >>  drivers/gpu/drm/bridge/ite-it6263.c | 919 ++++++++++++++++++++++++++++
-> >>  3 files changed, 928 insertions(+)
-> >>  create mode 100644 drivers/gpu/drm/bridge/ite-it6263.c
-> >>
-> > 
-> > [...]
-> > 
-> >> +static int it6263_parse_dt(struct it6263 *it)
-> >> +{
-> >> +	struct device *dev = it->dev;
-> >> +	struct device_node *port0, *port1;
-> >> +	int ret;
-> >> +
-> >> +	ret = of_property_read_u8(dev->of_node, "ite,lvds-link-num-data-lanes",
-> >> +				  &it->lvds_link_num_dlanes);
-> >> +	if (ret) {
-> >> +		dev_err(dev, "failed to get LVDS link number of data lanes: %d\n",
-> >> +			ret);
-> >> +		return ret;
-> >> +	}
-> >> +
-> >> +	it->next_bridge = devm_drm_of_get_bridge(dev, dev->of_node, 2, 0);
-> >> +	if (IS_ERR(it->next_bridge))
-> >> +		return dev_err_probe(dev, PTR_ERR(it->next_bridge),
-> >> +				     "failed to get next bridge\n");
-> >> +
-> >> +	port0 = of_graph_get_port_by_id(dev->of_node, 0);
-> >> +	port1 = of_graph_get_port_by_id(dev->of_node, 1);
-> >> +	if (port0 && port1) {
-> >> +		if (of_property_read_bool(port0, "dual-lvds-even-pixels") &&
-> >> +		    of_property_read_bool(port1, "dual-lvds-odd-pixels")) {
-> >> +			it->lvds_dual_link = true;
-> >> +			it->lvds_link12_swap = true;
-> >> +		} else if (of_property_read_bool(port0, "dual-lvds-odd-pixels") &&
-> >> +			   of_property_read_bool(port1, "dual-lvds-even-pixels")) {
-> >> +			it->lvds_dual_link = true;
-> >> +		}
-> >> +
-> >> +		if (!it->lvds_dual_link) {
-> >> +			dev_err(dev,
-> >> +				"failed to get LVDS dual link pixel order\n");
-> >> +			ret = -EINVAL;
-> >> +		}
-> > 
-> > Please use drm_of_lvds_get_dual_link_pixel_order(), it validates that
-> > the DT definition is sound: one port for odd pixels, one port for even
-> > pixels.
-> 
-> It cannot be used, because it get the pixel order for the LVDS
-> source not sink. IT6263 is the LVDS sink.
+The working buffer address start and end are calculated in kernel
+side currently, can't calculate the address end if the driver only
+getting the address file handle, not the real physical address. Need
+to extend the vsi to calculate the address end in scp.
 
-Then you need a similar function for the sink side. Add it to the
-drm_of.c
+Re-construct some interface and add config to support extend and non
+extend at the same time.
+---
+This patch series depends on:
+[1] https://patchwork.kernel.org/project/linux-mediatek/cover/20241012064333.27269-1-yunfei.dong@mediatek.com
+---
+Yunfei Dong (6):
+  media: mediatek: vcodec: extend h264 video share information
+  media: mediatek: vcodec: remove parse nal info in kernel
+  media: mediatek: vcodec: remove vsi operation in common interface
+  media: mediatek: vcodec: rename vsi to extend vsi
+  media: mediatek: vcodec: adding non extend struct
+  media: mediatek: vcodec: support extend h264 driver
 
-> 
->  * drm_of_lvds_get_dual_link_pixel_order - Get LVDS dual-link pixel order        
->  * @port1: First DT port node of the Dual-link LVDS source                       
->  * @port2: Second DT port node of the Dual-link LVDS source      
-> 
-> > 
-> >> +	} else if (port1) {
-> >> +		ret = -EINVAL;
-> >> +		dev_err(dev, "single input LVDS port1 is not supported\n");
-> >> +	} else if (!port0) {
-> >> +		ret = -EINVAL;
-> >> +		dev_err(dev, "no input LVDS port\n");
-> >> +	}
-> >> +
-> >> +	of_node_put(port0);
-> >> +	of_node_put(port1);
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> > 
-> 
-> -- 
-> Regards,
-> Liu Ying
-> 
+ .../vcodec/decoder/mtk_vcodec_dec_drv.h       |   2 +
+ .../decoder/vdec/vdec_h264_req_multi_if.c     | 516 +++++++++++++++++-
+ 2 files changed, 493 insertions(+), 25 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.46.0
+
 
