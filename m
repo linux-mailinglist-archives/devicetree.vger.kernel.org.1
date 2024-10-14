@@ -1,137 +1,203 @@
-Return-Path: <devicetree+bounces-111140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB60299D5F2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:56:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDAF299D5F8
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:57:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 78E47B247B8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:56:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C05D1C20CCE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 17:57:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA2471CF5EE;
-	Mon, 14 Oct 2024 17:54:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1667B1C7601;
+	Mon, 14 Oct 2024 17:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b="gcCczIL2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rsNnrEK8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AA391CF2B6
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 17:54:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3A1B1C728E;
+	Mon, 14 Oct 2024 17:56:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728928488; cv=none; b=WQMsz2OViFp0uauLpR/CfIyz+cBxq4KcAyu73XLjiBoHLwBWNurR2W/XVEStiySIqSdcZtzCdYiUMIjHR7/8lFsuFqB39AmV9B5aaD6q0aPnLBVpxb2fonNNw6ibbIzO2I5AntVfoj3aQ30ZPMoawdsn8p2r60p56nPfU+L13jg=
+	t=1728928561; cv=none; b=SsRk2AuYK5t0+LB8mKk+p8EPfwGna0bNZP3GbivlZjiXnV11DHJ/OTuQ5cUD5E6okn3PNUfzBgO0Az5cHLhSKSt3w9keiLTh9tYhkYX24plyzU0pT/mJSM+GrBcbTcJPMNlab3iBWoglFkPpgXmeXf2gdPgJmjXD545U/dmVpn0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728928488; c=relaxed/simple;
-	bh=j8PRpBk/lIiVe/T2RTs5CZVHcgqvJy9CT3C0m3PRVNA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=JJ7O1ZEEdIQ7soKmqNG2UyJ8mG6XoDbGKMQ8vFwUB7wxmat8xvyn5K2pYUBDCIwGQw8gRkRoYoEO44ZvbdAxi8e2oKWm6oY1ZVh4EPQNW6wXwtpwxV7YH0A4u7bbrTpplVWLGQK6Db32MmKfBU6aT+kLCNhpFwTWRS6X3ApquDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com; spf=pass smtp.mailfrom=tenstorrent.com; dkim=pass (2048-bit key) header.d=tenstorrent.com header.i=@tenstorrent.com header.b=gcCczIL2; arc=none smtp.client-ip=209.85.210.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=tenstorrent.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tenstorrent.com
-Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-71e483c83dbso2702910b3a.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 10:54:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tenstorrent.com; s=google; t=1728928485; x=1729533285; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Ib0LzHxCGUP2Of7LzCAvLTsWSTSTY5vzi6Axbb4I5D0=;
-        b=gcCczIL2vD5NxmIJu4XU3mzFGSscbuC5Q2wz7lw0TlYmoABIZpBTmy1kP1IqZa+Eds
-         tvFuncHhFc1izI61ygrqs5RmKIUxpLId8q5vRox7Gxkj28OS4RPyi+lRMTEic9oSvNOj
-         fhh9g1CzXKjYkni3P8msQ/YyAZh5bJgNVyx49hlulMoc1niwtACAlrM9htalqFo5rJ39
-         S6vstqOJ0/OLvFdoiMXlqbxnP9nzc8Dss8tUvvMEwIs9VwkzPdL41a/pTADGf+gh65i0
-         m9CQ1QzVZmqgJVXqkPMQsBtIZSfuNZCxumur5SbHxuyGHsmXfNqjsUo1FOohSmr0lGXJ
-         UhlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728928485; x=1729533285;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Ib0LzHxCGUP2Of7LzCAvLTsWSTSTY5vzi6Axbb4I5D0=;
-        b=GNvDGZyVbvT1e3HSpt1tnvqlnxbI5we0CBi5M76YvlCKFjfZ7t1Rl7JQ4PiKGLQviX
-         Ir+XI7GRRw7E1Fq7a65bphfBH+ItYeP183Yx7nDmCYks/Tbv0v+5qewr0ftXaCibJXgX
-         2Ye3bRjx8ztq7NsOcxZCKgD0Weln72FUZ8PPK6FH6EOomhsAiOwPxJ66b/Ln2WssDf8s
-         wBiscKLPDZegl6KIqdS1hSRWI80cGcm6brP7QErWp14SRjHUUNFPOPX4xlXnAo+yt5C2
-         OrdHJNZKqz9PmCSLp0e4D/tyj4hCWxG28PmLxKJbL36k77wbkhurCBKsaNlXU8i5uedq
-         EPcA==
-X-Forwarded-Encrypted: i=1; AJvYcCX/h0wzIoqtW7rXahHoU0WbNlL8eiGik1TpgSFljZ1iPbx0qbNtffoZuVN9fAwDdgWT9i+CXFQun6Wi@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMRewPGNF9G9QmpO+JHqNU1dvMZMGytwOLA4BXWCi4bmcnpGcA
-	7K1xsTPWwhn7Q/BoZbdFLCiAMz99gf0bMiNgybTwyVAao9gQShFKHT/6NexQL/I=
-X-Google-Smtp-Source: AGHT+IGn+w4J6ujcKmDO9lhPgpFFwLHQORkcQhURsA6+UDHkjEM67AndBJceCtyLERFJD54nONsRxA==
-X-Received: by 2002:a05:6a00:ac7:b0:71e:4fe4:282a with SMTP id d2e1a72fcca58-71e4fe430admr12455912b3a.2.1728928485620;
-        Mon, 14 Oct 2024 10:54:45 -0700 (PDT)
-Received: from [127.0.1.1] (71-34-69-82.ptld.qwest.net. [71.34.69.82])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-71e49a7e5e7sm5611109b3a.179.2024.10.14.10.54.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 10:54:44 -0700 (PDT)
-From: Drew Fustini <dfustini@tenstorrent.com>
-Date: Mon, 14 Oct 2024 10:54:25 -0700
-Subject: [PATCH 8/8] riscv: dts: thead: remove enabled property for spi0
+	s=arc-20240116; t=1728928561; c=relaxed/simple;
+	bh=mcGr/Qk55+ehm1NdNnm15cxWTIYN+dqT7soiOu6JPbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gDwtxxF/9ZhS2EaJAp1bRwm4X416fPcHDNQC29rAYpwwcdO0Qgdh5iKBgxcstRHeKV9Ads83MNt90srmtLuZU0UFhvE/DCflo+GKamA/m0Uq5rWQ0xTGgzZI6PMs48Mmjawc5zMTAewa0vGfD7mBAXwE5VZOGbZf1//X8dCe7ME=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rsNnrEK8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5686BC4CEC3;
+	Mon, 14 Oct 2024 17:55:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728928560;
+	bh=mcGr/Qk55+ehm1NdNnm15cxWTIYN+dqT7soiOu6JPbQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rsNnrEK8291R6w+A7tVgCxswKoBjvbCNOquXVBYYb2+9hzdgfGKph/nsPnnSru8+z
+	 ts2LX4DKHiWTu6gInh20kGIYFdO4lIrbPiLq8bvly0uBDIXh2m/5ACHswELcRdG/m9
+	 HH3mEp3702oW5hW96PUEVUYN41gUAX7ufBRfW2/FDAhsxROHminrzRJhywzf3uLiVj
+	 3z+cH3h5cPQZvIljRMkjqTqD/tkpF1clKVEfFaSnV44epQvXi1AajaqVBRW2OR/nQx
+	 Gbxnb5xPQNbg8Xfc+6PzAMIOIWY/+TvTfanduW4uuSVMMtMG3v86Z/1Jx+iIt1koag
+	 o5VuEeRjAR3Lw==
+Message-ID: <06784780-641b-459f-b0d6-a6d81029e6d3@kernel.org>
+Date: Mon, 14 Oct 2024 19:55:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/5] dt-bindings: rtc: qcom-pm8xxx: document no-alarm
+ flag
+To: Jonathan Marek <jonathan@marek.ca>
+Cc: linux-arm-msm@vger.kernel.org,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Satya Priya <quic_c_skakit@quicinc.com>,
+ "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20241013051859.22800-1-jonathan@marek.ca>
+ <20241013051859.22800-3-jonathan@marek.ca>
+ <gpika7a5ho36gx3pz7k5t4rz5spvpnmnvzs277r64z2npdmfmg@4vcmw6x5zvwn>
+ <f3b4bb12-d025-1cc9-6dbd-04913b951425@marek.ca>
+ <322c44e7-897a-43fb-b617-f4d73c9384a9@kernel.org>
+ <a91e4a52-c427-bfdb-0675-f8417dc24006@marek.ca>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <a91e4a52-c427-bfdb-0675-f8417dc24006@marek.ca>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20241014-th1520-pinctrl-dts-v1-8-268592ca786e@tenstorrent.com>
-References: <20241014-th1520-pinctrl-dts-v1-0-268592ca786e@tenstorrent.com>
-In-Reply-To: <20241014-th1520-pinctrl-dts-v1-0-268592ca786e@tenstorrent.com>
-To: Emil Renner Berthing <emil.renner.berthing@canonical.com>, 
- Drew Fustini <drew@pdp7.com>, Guo Ren <guoren@kernel.org>, 
- Fu Wei <wefu@redhat.com>, Linus Walleij <linus.walleij@linaro.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>, 
- Kanak Shilledar <kanakshilledar@gmail.com>
-Cc: linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Drew Fustini <dfustini@tenstorrent.com>
-X-Mailer: b4 0.14.1
 
-There are currently no nodes that use spi0 so remove the enabled
-property for it in the beaglev ahead and lpi4a dts files. It can be
-re-enabled in the future if any peripherals will use it. The definition
-of spi0 remains in the th1520.dtsi file.
+On 14/10/2024 16:09, Jonathan Marek wrote:
+> On 10/14/24 9:38 AM, Krzysztof Kozlowski wrote:
+>> On 14/10/2024 14:58, Jonathan Marek wrote:
+>>> On 10/14/24 3:34 AM, Krzysztof Kozlowski wrote:
+>>>> On Sun, Oct 13, 2024 at 01:15:27AM -0400, Jonathan Marek wrote:
+>>>>> Qualcomm x1e80100 firmware sets the ownership of the RTC alarm to ADSP.
+>>>>> Thus writing to RTC alarm registers and receiving alarm interrupts is not
+>>>>> possible.
+>>>>>
+>>>>> Add a no-alarm flag to support RTC on this platform.
+>>>>>
+>>>>> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>>>>> index d274bb7a534b5..210f76a819e90 100644
+>>>>> --- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
+>>>>> @@ -40,6 +40,11 @@ properties:
+>>>>>        description:
+>>>>>          Indicates that the setting of RTC time is allowed by the host CPU.
+>>>>>    
+>>>>> +  no-alarm:
+>>>>> +    $ref: /schemas/types.yaml#/definitions/flag
+>>>>> +    description:
+>>>>> +      Indicates that RTC alarm is not owned by HLOS (Linux).
+>>>>
+>>>> This is not even properly used/tested, because you disable the RTC
+>>>> entirely in your DTS.
+>>>>
+>>>
+>>> What? The next patch in this series is enabling RTC on x1e using this flag
+>>
+>> D'oh, right, I must have looked at wrong diff hunks. I had somehow
+>> impression you add status=reserved, but you just dropped it.
+>>
+>>>
+>>>> I expect here unified property for all Qualcomm devices for this case.
+>>>> We already have "remotely-controlled" and other flavors. I don't want
+>>>> each device to express the same with different name...
+>>>>
+>>>> Also: missing vendor prefix.
+>>>>
+>>>
+>>> I don't care what the property is named (as long as its a bool
+>>> property), if you have a name you prefer I will use it.
+>>>
+>>> The existing 'allow-set-time' property (also related to HLOS permissions
+>>> to the RTC) is also specific to this driver doesn't have a vendor prefix.
+>>
+>> Yeah, that one sneaked in some years ago.
+>>
+>> So you can set time, but not alarm? Some previous platforms could not
+>> set time, but could set alarm?
+>>
+>> I wonder whether we actually describe the real issue here. It looks like
+>> group of band-aids.
+>>
+>> Best regards,
+>> Krzysztof
+>>
+> 
+> Firmware can set different permissions for the RTC time (0x61xx) and RTC 
+> alarm (0x62xx) regions. So it makes sense to have one flag for each region.
+> 
+> RTC time is almost always read-only (not owned by HLOS/Linux), so the 
+> 'allow-set-time' property is almost never used (the driver supports 
+> using nvmem to store an offset for setting time as a workaround).
+> 
+> The "can set time, but not alarm" combination will probably never be 
+> used, but the 3 other combinations are possible (the common one is 
+> "can't set time, but can set alarm").
+> 
+> (in the next patch I deleted the "alarm" region/interrupt from the dts 
+> but that's wrong, the HW still exists, the patch should be only 
+> replacing the reserved status with the new flag)
 
-Suggested-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Signed-off-by: Drew Fustini <dfustini@tenstorrent.com>
----
- arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts | 4 ----
- arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts  | 4 ----
- 2 files changed, 8 deletions(-)
+OK, let's just add vendor prefix and describe actual hardware property,
+e.g. qcom,no-alarm or qcom,alarm-restricted
 
-diff --git a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-index c0cf9b086f81..86feb3df02c8 100644
---- a/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-beaglev-ahead.dts
-@@ -150,7 +150,3 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
--
--&spi0 {
--	status = "okay";
--};
-diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-index f60b1879192d..4020c727f09e 100644
---- a/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-+++ b/arch/riscv/boot/dts/thead/th1520-lichee-pi-4a.dts
-@@ -59,7 +59,3 @@ &uart0 {
- 	pinctrl-0 = <&uart0_pins>;
- 	status = "okay";
- };
--
--&spi0 {
--	status = "okay";
--};
-
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
