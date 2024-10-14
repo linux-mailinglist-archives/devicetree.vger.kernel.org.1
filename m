@@ -1,93 +1,177 @@
-Return-Path: <devicetree+bounces-111160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8453599D76F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:29:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB2D799D78F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:38:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 49CD0282F51
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:29:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 62A141F236E0
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:38:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F9E61CB33E;
-	Mon, 14 Oct 2024 19:27:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3C91C302E;
+	Mon, 14 Oct 2024 19:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bWq3rNM6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rusEydND"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBBF31D2207;
-	Mon, 14 Oct 2024 19:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 783193A1B6;
+	Mon, 14 Oct 2024 19:37:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728934041; cv=none; b=uL0ufSPXE0s/RADRHeHAxpRamjNY7ZGaaQjZeBgNA6g2v59Yv3dqYmzP+aEraRsbw8n7jaTSjDX9wyv8+7WbLOkzqLiXyNgjNeZWLwT/ZkRWt5ReJKGwuJG+W6bMwpjeYxtg8w8Gg3iNvMMLb1sExVOD4Y7ju5q+ClRKDW1dQ9w=
+	t=1728934668; cv=none; b=kd1D/g4DZiKRstTOFpMYhpiDZfUa2T37mg7KEhdab7f814KGcb5tkBTxbn+og9jzF1FDMl6yT0ehUSPmUUcRhLG/qYrDals90F2RXrtF9E7aKswHAgN6DT6FzONmlkVRPuhyyR+QtYA3P0whxvoehrVWnY0MgO1ZmfyUkN32lVo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728934041; c=relaxed/simple;
-	bh=tQzPQb5VWw3cawctsi84HIWKh2eL1jlGRlFHBbBCF68=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gsOiPRywRLWJg500W+j4ZBgUNKEEJWsx0i/YOJL5UfKoUxG5U3Vphg5+C2DZ2azMmVD/DsyQE5s9ktu2cPox9Pmh05ZB8dMQy/ijPTisF5UBw08mgVGyqaKKdydyEUTZOw0KSlatlL702DZwfyHEhbMFIuk6OA5r9mlI3f6lfeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bWq3rNM6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72EF1C4CEC3;
-	Mon, 14 Oct 2024 19:27:20 +0000 (UTC)
+	s=arc-20240116; t=1728934668; c=relaxed/simple;
+	bh=hZgVMIIvlSiElRRLPiOvCWNvKS24U8DsyY4C2AEMgkM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XxSh7ybynwuULU0kDLzFkCWa71BOTX9jAwF7KsWYAaah96aVyGlnVeUL06HNeumc2M9mGb8hxrlAMnhcCqNc/AS1mCEZHF4E8KK50cvITCtLWq/HIGCHjPYQY0U2/3kv/TzKxNaTys+DJKnH8H0SmWs02b8VJpjUvJ82Fh095yY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rusEydND; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CE933C4CEC3;
+	Mon, 14 Oct 2024 19:37:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728934040;
-	bh=tQzPQb5VWw3cawctsi84HIWKh2eL1jlGRlFHBbBCF68=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=bWq3rNM6yrz4R/mQctp7qZlwuck14t11vNQDLZE2BHhLGFGYoO5JrcuYEhe4zMFI2
-	 5Q71iq+8SslrCq4M9lO3nFOapYvSexgduhhXnEIsP8TN536Lh2gVWNKepXYUa6g8bJ
-	 3bzChGAMxMDQWDNn05I9IOAWqisZhkbZZziIH3TAP2XI+dk5h5L+2Lqd56wQ9fTq8J
-	 VORFa6/3v2zXBfzGhT+tvFMe/l9d/GWKaTV59+7FgK00IhoAnDEbmVTCQrVkPxQkIE
-	 ZhGNPj8WFPYmQ4PgUkfvB2353yRJg+d8BU+V/RCaw7VEYXJ7AWXSe9b8klq34+u+FQ
-	 LQwZrQ7uyxG0A==
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6e34339d41bso29362587b3.0;
-        Mon, 14 Oct 2024 12:27:20 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV+bD4fBYdL96pTYNqWYBeUNd6e0nsWgHTXgSdUiP4KoK9J7AJqy5lxx4l91lGjOtVqF9PA8aV4rVga@vger.kernel.org, AJvYcCV2G/+Qj84NoaIfBwGEY/AJHNnUN3BXG1riRvOkJ1HXfZdAMGhWs9R3aZxzqeyliQkjUDp8dZU8v+cPPjIj@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywjif0tmD2Uf2Sgq5UZTt/UYyfQRbh5exzvfX85c/pBSUnsP6Lq
-	nadWNhyEDQ7UhjVV+UvWzlUi0It4aJKaq+SOqGpz+oQhC1zVVkixyDeKwh4FIRN2trO2e2els7R
-	+GGWTv051sNfGLmbKQA5OsNs5EQ==
-X-Google-Smtp-Source: AGHT+IHFxbFOoxL3R+0pc4MYk8c6g6Gw1OP6SSIGjNMlluYLOdAMkWmNh+/64HHDfLcXoB7qqBC+F19FewtdTjaQwF0=
-X-Received: by 2002:a05:690c:6c0d:b0:6e3:31ee:23ab with SMTP id
- 00721157ae682-6e347a03e92mr95243767b3.25.1728934039744; Mon, 14 Oct 2024
- 12:27:19 -0700 (PDT)
+	s=k20201202; t=1728934668;
+	bh=hZgVMIIvlSiElRRLPiOvCWNvKS24U8DsyY4C2AEMgkM=;
+	h=From:To:Cc:Subject:Date:From;
+	b=rusEydNDNp4pOzhRGecnr4WnpH7fUFJZvv8B5X3EIEl/eAYxVmUUvBFjDDAh0L4lc
+	 aoXWtX9sviQoPVD32fayyxfNChv5oBwqYAv/ke8mwPke40c5JkTE7aBzOGFygx7Lte
+	 eVk33rVufgQMwoySbGjgralvoSC7LhTmAKfAnozEz5j/7vkxF5sR6sEEhGq5W2XOTo
+	 N+WsbpF1eVdwX9YGgxkClh38lphT5PTE6wOBAk3PQf/NI+mO5H+CpgqFR4dnmlNZ7F
+	 aWfIjd5RRndtnRl5BOZmZEVCwJ5BFzesCJHzqFBTb+rMajj5fHcUO+MzM4frdQh7Zk
+	 wep4T0EjPEIzw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Andrew Lunn <andrew@lunn.ch>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Frank Wunderlich <linux@fw-web.de>
+Subject: [PATCH] arm64: dts: marvell: Drop undocumented SATA phy names
+Date: Mon, 14 Oct 2024 14:35:27 -0500
+Message-ID: <20241014193528.1896905-2-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241014180324.536702-1-cenk.uluisik@googlemail.com>
-In-Reply-To: <20241014180324.536702-1-cenk.uluisik@googlemail.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 14 Oct 2024 14:27:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ8k6rNssQNdve2jzS4yqxShE4+g4t+yopyWSsn-WtEuQ@mail.gmail.com>
-Message-ID: <CAL_JsqJ8k6rNssQNdve2jzS4yqxShE4+g4t+yopyWSsn-WtEuQ@mail.gmail.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: rockchip: Add Orange Pi 5b enum
- to Orange Pi 5 entry
-To: Cenk Uluisik <cenk.uluisik@googlemail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Chris Morgan <macromorgan@hotmail.com>, 
-	Dragan Simic <dsimic@manjaro.org>, Jonas Karlman <jonas@kwiboo.se>, Tim Lunn <tim@feathertop.org>, 
-	Andy Yan <andyshrk@163.com>, Jagan Teki <jagan@edgeble.ai>, 
-	Michael Riesch <michael.riesch@wolfvision.net>, Jimmy Hon <honyuenkwun@gmail.com>, 
-	Jing Luo <jing@jing.rocks>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, Oct 14, 2024 at 1:03=E2=80=AFPM Cenk Uluisik
-<cenk.uluisik@googlemail.com> wrote:
->
-> This extends the Xunlong Orange Pi 5 device tree binding
-> with an enum for the Orange Pi 5b, which is implemented
-> before the device tree.
+While "phy-names" is allowed for sata-port nodes, the names used aren't
+documented and are incorrect ("sata-phy" is what's documented). The name
+for a single entry is fairly useless, so just drop the property.
 
-Please don't send 5 versions in 2 days. Give reviewers a chance to
-comment even if you got comments from one reviewer. We're not all on 1
-time zone and I don't work weekends. 1 version per 24 hours at most.
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Cc: Frank Wunderlich <linux@fw-web.de>
 
+There's also this 2 year old patch fixing other SATA errors[1] which 
+was never picked up. :(
 
-Rob
+[1] https://lore.kernel.org/linux-arm-kernel/20220311210357.222830-3-linux@fw-web.de/
+
+ arch/arm64/boot/dts/marvell/armada-7040-db.dts             | 1 -
+ arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts       | 2 --
+ arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts | 1 -
+ arch/arm64/boot/dts/marvell/armada-8040-db.dts             | 2 --
+ arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi         | 1 -
+ arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts    | 2 --
+ 6 files changed, 9 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+index 5e5baf6beea4..1e0ab35cc686 100644
+--- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
++++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
+@@ -214,7 +214,6 @@ &cp0_sata0 {
+ 
+ 	sata-port@1 {
+ 		phys = <&cp0_comphy3 1>;
+-		phy-names = "cp0-sata0-1-phy";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+index 40b7ee7ead72..7af949092b91 100644
+--- a/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
++++ b/arch/arm64/boot/dts/marvell/armada-7040-mochabin.dts
+@@ -433,13 +433,11 @@ &cp0_sata0 {
+ 	/* 7 + 12 SATA connector (J24) */
+ 	sata-port@0 {
+ 		phys = <&cp0_comphy2 0>;
+-		phy-names = "cp0-sata0-0-phy";
+ 	};
+ 
+ 	/* M.2-2250 B-key (J39) */
+ 	sata-port@1 {
+ 		phys = <&cp0_comphy3 1>;
+-		phy-names = "cp0-sata0-1-phy";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+index 67892f0d2863..7005a32a6e1e 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
+@@ -475,7 +475,6 @@ &cp1_sata0 {
+ 
+ 	sata-port@1 {
+ 		phys = <&cp1_comphy0 1>;
+-		phy-names = "cp1-sata0-1-phy";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-db.dts b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
+index 92897bd7e6cf..2ec19d364e62 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-db.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
+@@ -145,11 +145,9 @@ &cp0_sata0 {
+ 
+ 	sata-port@0 {
+ 		phys = <&cp0_comphy1 0>;
+-		phy-names = "cp0-sata0-0-phy";
+ 	};
+ 	sata-port@1 {
+ 		phys = <&cp0_comphy3 1>;
+-		phy-names = "cp0-sata0-1-phy";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+index c864df9ec84d..e88ff5b179c8 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
+@@ -245,7 +245,6 @@ &cp0_sata0 {
+ 	/* CPM Lane 5 - U29 */
+ 	sata-port@1 {
+ 		phys = <&cp0_comphy5 1>;
+-		phy-names = "cp0-sata0-1-phy";
+ 	};
+ };
+ 
+diff --git a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts b/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+index 42a60f3dd5d1..3e5e0651ce68 100644
+--- a/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
++++ b/arch/arm64/boot/dts/marvell/armada-8040-puzzle-m801.dts
+@@ -408,12 +408,10 @@ &cp0_sata0 {
+ 
+ 	sata-port@0 {
+ 		phys = <&cp0_comphy2 0>;
+-		phy-names = "cp0-sata0-0-phy";
+ 	};
+ 
+ 	sata-port@1 {
+ 		phys = <&cp0_comphy5 1>;
+-		phy-names = "cp0-sata0-1-phy";
+ 	};
+ };
+ 
+-- 
+2.45.2
+
 
