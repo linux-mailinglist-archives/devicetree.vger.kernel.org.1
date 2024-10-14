@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-111111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D9EC399D4B2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:31:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7600099D4D5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:38:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 81C2D1F23650
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:31:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 32BAB282BFF
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D9D671B4F24;
-	Mon, 14 Oct 2024 16:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2F4D1A76DE;
+	Mon, 14 Oct 2024 16:38:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="rrQud1Bm";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="wPq0vw4z"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="bAcwgtUu";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xTroEj4c"
 X-Original-To: devicetree@vger.kernel.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3126B231C92;
-	Mon, 14 Oct 2024 16:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53FCE231C92;
+	Mon, 14 Oct 2024 16:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728923496; cv=none; b=CSaCtZpkp3Wb161pg9GZUjyQPOuFk/EjJT8pOwkpzDcIVJvH5TQLiMyOme+EGxCH0T7CyDaVYCNVH8y9cHqTe9L6FvU6mHGJXsP7ws8qXgdI5+GdQ1KyFFD+qX+E5ORDLam3vMddaLVc8zaJdYs5ywjHTXfxTpy+7solSblMxV0=
+	t=1728923931; cv=none; b=U5TN629rgezv5JrRKoRhLIvVyjb7oldd+/Ccc1bSr2TPacUpHPDXvIaalLpigjYTZEI+092L8ty3nKOA+KRPERJgnTjd4GlKWbsa2T6GA2mKgZsjHyD1pqa8h6/WWwL+8jl1xpn2p1SwnEp9CXcXAFlxOiO9epjb9lq69LeB99c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728923496; c=relaxed/simple;
-	bh=hRoA3ccR5Y8oRXRdOMvMWRGqLfR7Pm1OrtYuVHblhug=;
+	s=arc-20240116; t=1728923931; c=relaxed/simple;
+	bh=mEdzq09V15Xwnr66U6AvoYDlsXhPCZU3z5I0NbdtL28=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=JR/GpQ1NPWc+kgepWLK+mZ16V4ldnUq1jGk5setQXY6jmnI9bsz7jW7BgcDqJEqT1ky9k3lQ19HjdETZdzN2Cn8FAUUtumDLZVzrDwvVwz4KulkE+4nsxJICTBXPixDAfsrLlh4+waO/HhSZe/H3N1hsTBz2Jrt81oy8rwxwcwo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=rrQud1Bm; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=wPq0vw4z; arc=none smtp.client-ip=193.142.43.55
+	 MIME-Version:Content-Type; b=LP2XQYAtZ1FBJbukZSdLlbw+lsgzGhA6gCGvYZXAsyENxF0SqLrCixjN6Kl8ztnKauYbshZJDwCQUp+iD7yPesRZNr4ceAfeIw+i21OHknVkPbJA22wQR2gNI1AtB9xDt3MWSRPm5olZec0mvjCTKpYlVQpEQ2aPmDi9rVBhINU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=bAcwgtUu; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=xTroEj4c; arc=none smtp.client-ip=193.142.43.55
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
 From: Thomas Gleixner <tglx@linutronix.de>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020; t=1728923492;
+	s=2020; t=1728923928;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ow/UxrNjYbB9p7imk5iwLyMoJAD0hoXV5EJONRnoywA=;
-	b=rrQud1Bmrb6k1OJO8EmZWxF/QUHGHoo6snHSxtVUgsEFeCxNzJ4q1QMFXvIBHiCXLrKOnp
-	5n2zfs4cjvMRW84uP2ReREOXB4GsDYWko8jIDJkr9l+9zdO8YwS26aL6ZSWCDjRud13enR
-	KsHcpVLiarsShJnRVFn4EhH3D+c78VhqrZZnmHAwIZ55bCGCLkxhmQ/ki2Ny5NpX5G+FiT
-	4el9dkx2BNEHvetIh2DFvh54IORDpOroEmPDh5UZ/bgbVFpY3DjPUqwrOzaJX72HycQoPj
-	jBUluAEhaic3IhLOaOiqXwD4Lzr/iEcOr5BdHwPnyX7HYGY6YL619CT/VYHswQ==
+	bh=YIY16wXiGYjvpyHqlLYNoeeEF3MtoTc0EB4XbDJop/o=;
+	b=bAcwgtUu3xFLP8Lco3S25VfYe78YgxOCRrvsYOhcUEjNIe5uyhJjVW+mhk3MGFbc+WSvKB
+	bFH2fOrzr7zSZzVDp5mR8bD1A1rJ0Q0BirRC5T/jWY1+yiRUsXcMXeSPMxQrybm29fIhhr
+	9N7GZI+/HH3en6R7K3nmjqgjvephhsZHw/0EUadRJc439KDwYSXb//708DSYBbPwhLgDVu
+	b91t6hFjMCLx+g+9AP32kFwUBvXATR/YBCvAofCIsSvelICgL/pvE+SnTlSTRnrb1ztGj/
+	+AfQpARP76G6WdrLv7Vuq/aaIJ0YFRqK3cYukaORonVZV0YkpaO0ezp5ceCuCg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
-	s=2020e; t=1728923492;
+	s=2020e; t=1728923928;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ow/UxrNjYbB9p7imk5iwLyMoJAD0hoXV5EJONRnoywA=;
-	b=wPq0vw4zgDf7pPyiwHAm5p05qXTlNkIJPC5VQTxfHidMe8ODXZEdfMPPimcsSbxLQli+/+
-	ZLuoGkIRW8RucaDg==
-To: Stanimir Varbanov <svarbanov@suse.de>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org, Broadcom
- internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Florian Fainelli
- <florian.fainelli@broadcom.com>, Jim Quinlan <jim2101024@gmail.com>,
- Nicolas Saenz Julienne <nsaenz@kernel.org>, Bjorn Helgaas
- <bhelgaas@google.com>, Lorenzo Pieralisi <lpieralisi@kernel.org>,
- kw@linux.com, Philipp Zabel <p.zabel@pengutronix.de>, Andrea della Porta
- <andrea.porta@suse.com>, Phil Elwell <phil@raspberrypi.com>, Jonathan Bell
- <jonathan@raspberrypi.com>, Stanimir Varbanov <svarbanov@suse.de>
-Subject: Re: [PATCH v3 03/11] irqchip: mip: Add Broadcom bcm2712 MSI-X
- interrupt controller
-In-Reply-To: <20241014130710.413-4-svarbanov@suse.de>
-References: <20241014130710.413-1-svarbanov@suse.de>
- <20241014130710.413-4-svarbanov@suse.de>
-Date: Mon, 14 Oct 2024 18:31:32 +0200
-Message-ID: <87o73mfxy3.ffs@tglx>
+	bh=YIY16wXiGYjvpyHqlLYNoeeEF3MtoTc0EB4XbDJop/o=;
+	b=xTroEj4cBADdE1o+N9fbYKa/4pmpakOv+wcnu7mALpMU6XjcNrzWA0Z1jenjtoTIrpsh9/
+	PH+h7MnATOpiAiCA==
+To: Inochi Amaoto <inochiama@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Peter
+ Zijlstra <peterz@infradead.org>, Chen Wang <unicorn_wang@outlook.com>,
+ Inochi Amaoto <inochiama@outlook.com>, Guo Ren <guoren@kernel.org>, Lad
+ Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, Heikki Krogerus
+ <heikki.krogerus@linux.intel.com>, Yangyu Chen <cyy@cyyself.name>, Jinyu
+ Tang <tangjinyu@tinylab.org>, Hal Feng <hal.feng@starfivetech.com>, Geert
+ Uytterhoeven <geert+renesas@glider.be>
+Cc: Yixun Lan <dlan@gentoo.org>, Inochi Amaoto <inochiama@gmail.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] irqchip: add T-HEAD C900 ACLINT SSWI driver
+In-Reply-To: <20241009224410.53188-3-inochiama@gmail.com>
+References: <20241009224410.53188-1-inochiama@gmail.com>
+ <20241009224410.53188-3-inochiama@gmail.com>
+Date: Mon, 14 Oct 2024 18:38:47 +0200
+Message-ID: <87ldyqfxm0.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,74 +79,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain
 
+On Thu, Oct 10 2024 at 06:44, Inochi Amaoto wrote:
+> +config THEAD_C900_ACLINT_SSWI
+> +	bool "THEAD C9XX ACLINT S-mode IPI Interrupt Controller"
+> +	depends on RISCV
+> +	select IRQ_DOMAIN_HIERARCHY
 
-> Subject: irqchip: mip:
+Lacks
+        select GENERIC_IRQ_IPI_MUX
 
-is not a valid prefix
-
-Just make it: irqchip: Add Broadcom  .....
-
-> +static int mip_middle_domain_alloc(struct irq_domain *domain, unsigned int virq,
-> +				   unsigned int nr_irqs, void *arg)
-> +{
-> +	struct mip_priv *mip = domain->host_data;
-> +	struct irq_fwspec fwspec = {0};
-> +	struct irq_data *irqd;
-> +	unsigned int hwirq, irq, i;
-
-	unsigned int hwirq, irq, i;
-	struct irq_data *irqd;
-
-> +
-> +#define MIP_MSI_FLAGS_REQUIRED	(MSI_FLAG_USE_DEF_DOM_OPS |	\
-> +				 MSI_FLAG_USE_DEF_CHIP_OPS |	\
-> +				 MSI_FLAG_PCI_MSI_MASK_PARENT |	\
-> +				 MSI_FLAG_PCI_MSIX)
-
-Why are you requiring MSI_FLAG_PCI_MSIX here? That's a supported flag,
-not a required one.
-
-> +#define MIP_MSI_FLAGS_SUPPORTED	(MSI_GENERIC_FLAGS_MASK |	\
-> +				 MSI_FLAG_PCI_MSIX |		\
-
-So this does not support multi MSI, but your allocation function looks
-like it supports it (nr_irqs is not range checked).
-
-> +				 IRQ_DOMAIN_FLAG_MSI_PARENT)
-
-This is not a MSI flag and has no place here.
-
-> +static const struct msi_parent_ops mip_msi_parent_ops = {
-> +	.supported_flags	= MIP_MSI_FLAGS_SUPPORTED,
-> +	.required_flags		= MIP_MSI_FLAGS_REQUIRED,
-> +	.bus_select_token       = DOMAIN_BUS_PCI_MSI,
-> +	.bus_select_mask	= MATCH_PCI_MSI,
-> +	.prefix			= "MIP-MSI-",
-> +	.init_dev_msi_info	= msi_lib_init_dev_msi_info,
-> +};
-> +
-> +static int mip_init_domains(struct mip_priv *mip, struct device_node *np)
-> +{
-> +	struct irq_domain *middle;
-> +
-> +	middle = irq_domain_add_hierarchy(mip->parent, 0, mip->num_msis, np,
-> +					  &mip_middle_domain_ops, mip);
-> +	if (!middle)
-> +		return -ENOMEM;
-> +
-> +	irq_domain_update_bus_token(middle, DOMAIN_BUS_PCI_MSI);
-
-That's the wrong token. DOMAIN_BUS_PCI_MSI is what the v2 global PCI/MSI
-domain uses. But that's not what this is about. This is the parent
-domain for PCI/MSI. DOMAIN_BUS_GENERIC_MSI or DOMAIN_BUS_NEXUS is what
-you want here.
-
-> +	middle->dev = mip->dev;
-> +	middle->flags |= IRQ_DOMAIN_FLAG_MSI_PARENT;
-> +	middle->msi_parent_ops = &mip_msi_parent_ops;
-> +
-
-Other than this, this looks good now.
+Other than that this looks good.
 
 Thanks,
 
