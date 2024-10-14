@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-110813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0A7D99C06E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:53:41 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 321F999C07A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 08:57:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B59E1C2240C
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 06:53:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 99770B21313
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 06:57:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DCE01448C7;
-	Mon, 14 Oct 2024 06:53:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A71A145348;
+	Mon, 14 Oct 2024 06:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rGDiJthX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ez/K+hcV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 127FF17C91;
-	Mon, 14 Oct 2024 06:53:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F96136B;
+	Mon, 14 Oct 2024 06:57:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728888818; cv=none; b=UdoeySFuDsJ2i6shOPRaxSSgJHWjmaPUJ0RjgBBiFnWJSvIVWzz5mFUSXu/jzTTTUN2YqweHwET0jbDmUvvJCY+gKRCoQwpohUPiFXmkETGU/l8rBlvtPMlDKbxOLoU9TWJ3pH3PduN4Qbsq4OrcE+26ls3zmhrs5EYGuigSN+U=
+	t=1728889032; cv=none; b=llD5GQmIKOjYr7IwW6gIb3ZEvTGfJlQMUtpFpg8Sc08Wv6PmEBSwV+mWBk2ZumLl730CUQQIEn12JZyE0iWAPvArPne/UReA/rstXniZjO3rNIcfMLYMshjDjTQQMEEfV6ikak2MrHMOeZ2Y6EH+jj5PCfCsYBbtOgZlcgP3ATI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728888818; c=relaxed/simple;
-	bh=vhoTT8s1JGb/9tyN4DGENWhCfB9gXwEeAO5oMOAb7aM=;
+	s=arc-20240116; t=1728889032; c=relaxed/simple;
+	bh=l1IR20OYZSHD0YXSTjh4eX1/mfiIwLUa2p0IsEGKYfM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LloHLn24D75dt+q+7UtoQBWR06791KqPBlo+UoXwF22Fy7NIeFNl4oSUx33/BlVYOfzMAxyJlIsnaMb7U8Fv1pRvE7vb6JYmOuWFcOGmzqhU5UchRsaKvsoabNmJs1HLsS0svz6G/vy2XVE29Qw0ERutbLhQpbMvhlekfREmFhU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rGDiJthX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A95EC4CEC3;
-	Mon, 14 Oct 2024 06:53:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=In5SnRIZ2ZWe3YtLuZBK9XdIGmnY3ElShrdGIY4KRnr923FAiTFWHLpHUaOeF7eYHr7PQCM1D+2HJmJt4qP6cr096RuQBWVuH71sUbns+OxSyptJoWVkpKVLQYCLzejI2n2DfoP8IkVdClK75XNdmpFSp7LZIiTpMVq72YNF6xg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ez/K+hcV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AD51C4CEC3;
+	Mon, 14 Oct 2024 06:57:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728888817;
-	bh=vhoTT8s1JGb/9tyN4DGENWhCfB9gXwEeAO5oMOAb7aM=;
+	s=k20201202; t=1728889031;
+	bh=l1IR20OYZSHD0YXSTjh4eX1/mfiIwLUa2p0IsEGKYfM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=rGDiJthXelGmaTwGij9O2HN8zT8+ZII5jxPMQcX4j96XzkMorm3BM3AFpTfjsUbCw
-	 qyVcCGJ33cm0bjqR0M+qCCnKo7QKysWkkTwrvEueGkM93vUeGMS6pv1gq/D3BlS/kv
-	 P/hRVkr/rW9jzOclqpBMsMNuuAgsA89tV0RQrjblGYZziiGeR3vqJGRXQW+5bM9tKY
-	 1aFWhgqQE4OQM2Xn0mXAUw7lLsEnK4/q1vZGwqVfpQ57gFHEtDzVQXRVdBNDBVL3M3
-	 pgSeX1FhTCTZQVzEvDuk/D7GZhci1AhM1Y4N6izk7kHopaUZyQc4Mk+4GwuFlDTrVJ
-	 HYgaAU89gA54g==
-Message-ID: <e53369a9-c205-4297-b151-7a1e61d8459f@kernel.org>
-Date: Mon, 14 Oct 2024 08:53:28 +0200
+	b=ez/K+hcVDZcjSWlKJHLVK2TePJty62/ep+zkAfZv+r0IdnFd3eMNrs7IJ+d1KgJ8o
+	 S+OhZ/esGs6OdC+yKmagtR17/I6m9kyfsmHDdZj34LRX4Uwvb95XIdsEe9dOYMQh+T
+	 Ez+8gvszMQ2/XGVlEQsPTpH4G8YC59D87ZUEuibtRWlZX69MNLq4KxJAMfI1wat4Qs
+	 B57CO7GRlC3oXtNheZ6mi3PrNFFjxPtwTMx7UJT/93qi6Lz3YCaFzAH3V+3IN21cDx
+	 oj5NF3CJaTZP5cbMTw+shT8ek6/WRd/DyT1whJu9/YqZPMootwyvY8Cf2w6POYBf6L
+	 wmRpUj1DEqLMw==
+Message-ID: <44745af3-1644-4a71-82b6-a33fb7dc1ff4@kernel.org>
+Date: Mon, 14 Oct 2024 08:56:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,31 +50,33 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: watchdog: aspeed: Add property for WDT
- SW reset
-To: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>,
- "patrick@stwcx.xyz" <patrick@stwcx.xyz>,
- "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
- "linux@roeck-us.net" <linux@roeck-us.net>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
- <joel@jms.id.au>, "andrew@codeconstruct.com.au"
- <andrew@codeconstruct.com.au>,
- "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc: "Peter.Yin@quantatw.com" <Peter.Yin@quantatw.com>,
- "Patrick_NC_Lin@wiwynn.com" <Patrick_NC_Lin@wiwynn.com>,
- "Bonnie_Lo@wiwynn.com" <Bonnie_Lo@wiwynn.com>,
- "DELPHINE_CHIU@wiwynn.com" <DELPHINE_CHIU@wiwynn.com>,
- BMC-SW <BMC-SW@aspeedtech.com>, Aaron Lee <aaron_lee@aspeedtech.com>
-References: <20241007063408.2360874-1-chin-ting_kuo@aspeedtech.com>
- <20241007063408.2360874-2-chin-ting_kuo@aspeedtech.com>
- <6bb599b4-141c-43a5-8b9f-4cf6ca6c3384@kernel.org>
- <TYZPR06MB5203B274C68C34FD478EA162B2442@TYZPR06MB5203.apcprd06.prod.outlook.com>
+Subject: Re: [PATCH v3 13/16] dt-bindings: net: Add DT bindings for DWMAC on
+ NXP S32G/R SoCs
+To: jan.petrous@oss.nxp.com, Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Vinod Koul <vkoul@kernel.org>,
+ Richard Cochran <richardcochran@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Emil Renner Berthing <kernel@esmil.dk>,
+ Minda Chen <minda.chen@starfivetech.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+ Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+ Keyur Chudgar <keyur@os.amperecomputing.com>,
+ Quan Nguyen <quan@os.amperecomputing.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Giuseppe Cavallaro <peppe.cavallaro@st.com>
+Cc: linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, NXP S32 Linux Team <s32@nxp.com>
+References: <20241013-upstream_s32cc_gmac-v3-0-d84b5a67b930@oss.nxp.com>
+ <20241013-upstream_s32cc_gmac-v3-13-d84b5a67b930@oss.nxp.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -120,98 +122,72 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <TYZPR06MB5203B274C68C34FD478EA162B2442@TYZPR06MB5203.apcprd06.prod.outlook.com>
+In-Reply-To: <20241013-upstream_s32cc_gmac-v3-13-d84b5a67b930@oss.nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/10/2024 04:07, Chin-Ting Kuo wrote:
-> Hi Krzysztof,
+On 13/10/2024 23:27, Jan Petrous via B4 Relay wrote:
+> From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
 > 
-> Thanks for the review.
+> Add basic description for DWMAC ethernet IP on NXP S32G2xx, S32G3xx
+> and S32R45 automotive series SoCs.
 > 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Monday, October 7, 2024 2:58 PM
->> Subject: Re: [PATCH 1/4] dt-bindings: watchdog: aspeed: Add property for WDT
->> SW reset
->>
->> On 07/10/2024 08:34, Chin-Ting Kuo wrote:
->>> Add "aspeed,restart-sw" property to distinguish normal WDT reset from
->>> system restart triggered by SW consciously.
->>>
->>> Signed-off-by: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
->>> ---
->>>  .../bindings/watchdog/aspeed,ast2400-wdt.yaml         | 11
->> +++++++++++
->>>  1 file changed, 11 insertions(+)
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
->>> b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
->>> index be78a9865584..6cc3604c295a 100644
->>> ---
->>> a/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.yaml
->>> +++ b/Documentation/devicetree/bindings/watchdog/aspeed,ast2400-wdt.ya
->>> +++ ml
->>> @@ -95,6 +95,17 @@ properties:
->>>        array with the first word defined using the AST2600_WDT_RESET1_*
->> macros,
->>>        and the second word defined using the AST2600_WDT_RESET2_*
->> macros.
->>>
->>> +  aspeed,restart-sw:
->>> +    $ref: /schemas/types.yaml#/definitions/flag
->>> +    description: >
->>
->> Why >?
->>
+> Signed-off-by: Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> ---
+>  .../devicetree/bindings/net/nxp,s32-dwmac.yaml     | 97 ++++++++++++++++++++++
+>  .../devicetree/bindings/net/snps,dwmac.yaml        |  1 +
+>  2 files changed, 98 insertions(+)
 > 
-> ">" will be removed in the next patch series and the description content will be
-> concatenated after the colon, ":".
-> 
->>> +      Normally, ASPEED WDT reset may occur when system hangs or
->> reboot
->>> +      triggered by SW consciously. However, system doesn't know whether
->> the
->>> +      restart is triggered by SW consciously since the reset event flag is
->>> +      the same as normal WDT timeout reset. With this property, SW
->>> + can
->>
->> So DTS has this property and watchdog bites (timeout) but you will ignore it
->> and claim that it was software choice?
->>
-> 
-> No. Normally, when WDT is enabled, a counter is also be enabled. When the counter
-> is equal to an expected value, timeout event occurs. AST2600 hardware supports a SW
-> mode, when a magic number is filled into a specific register, WDT reset is triggered
-> immediately without controlling the counter and the counter is not counted.
-> Thus, WDT timeout doesn't occur.
+> diff --git a/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> new file mode 100644
+> index 000000000000..4c65994cbe8b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/nxp,s32-dwmac.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright 2021-2024 NXP
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/nxp,s32-dwmac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP S32G2xx/S32G3xx/S32R45 GMAC ethernet controller
+> +
+> +maintainers:
+> +  - Jan Petrous (OSS) <jan.petrous@oss.nxp.com>
+> +
+> +description:
+> +  This device is a Synopsys DWC IP, integrated on NXP S32G/R SoCs.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,s32g2-dwmac
 
-How is this a no?
+Where are the other compatibles? Commit msg mentions several devices.
 
-> 
->> This does not make much sense to me, at least based on this explanation
->>
->>> +      restart the system immediately and directly without wait for WDT
->>> +      timeout occurs. The reset event flag is also different from the
->> normal
->>> +      WDT reset. This property is only supported since AST2600 platform.
->>
->> Supported as drivers? How is this related? Or you mean hardware? Then
->> property should be restricted there.
->>
-> 
-> It is a hardware supported function on AST2600. For platform compatibility, without
-> this property, all behaviors are the same as the previous generation platform, AST2500.
-> 
-> This property may be removed in the next patch series with referring to Rob suggestion
+> +
+> +  reg:
+> +    items:
+> +      - description: Main GMAC registers
+> +      - description: GMAC PHY mode control register
+> +
 
-s/may/will/
+...
 
-> in the other reply. After checking with the major users, it is feasible to remove this
-> property and using SW reset by default when the restart operation is triggered by SW
-> deliberately on AST2600 platform.
-> 
+> +
+> +        mdio {
+> +          #address-cells = <1>;
+> +          #size-cells = <0>;
+> +          compatible = "snps,dwmac-mdio";
+> +
+> +          phy0: ethernet-phy@0 {
+> +              reg = <0>;
+> +          };
+> +
+
+Stray blank line.
+
 
 
 Best regards,
