@@ -1,252 +1,132 @@
-Return-Path: <devicetree+bounces-111168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B33099D7BE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:50:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5EA199D7DB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 22:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 972F7B20A5A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 19:50:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 721D31F222EA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7A3D1CBE8F;
-	Mon, 14 Oct 2024 19:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 950091CF5C4;
+	Mon, 14 Oct 2024 20:05:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SKHOW7mr"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="bFNy/FGK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9B801487DF;
-	Mon, 14 Oct 2024 19:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A701A1CF2A7
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 20:05:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728935407; cv=none; b=sa6l3yubWPXMTc9QGM+IdRudJZEV19VZdx8YQ6pjNuVQ/+Z1nVXiIS066LJtYAL/8pfOLHhzAKmk2n9nH80k9rERT07YjBpMM0nN8SpO/fhPPd8IP71vGeoRi36pVvB4F7sBuy7/Wxr9pp6B09kDRIE0zLHrnAbtTPvIi7ODV8o=
+	t=1728936346; cv=none; b=rGcIrwl37gYPuZ1gzmW9lzFd63Rb30mt83mZw0bthrNaWlkgrytZX6v4Q5awAqZ5PX6rLAICBuXXZQ6bCFaKwXvJ0a4VnLetHnFN9pR2F4r0anr4vO0QWMw6LF/R06lEZ0GPjc3XteYSrk4Sf0Bcm9LHxc7S1Iz1XeNU1uCPDsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728935407; c=relaxed/simple;
-	bh=JQdVav4g/f8FSyzu2263+6QYRv4zspMrf7aDYmCgngk=;
+	s=arc-20240116; t=1728936346; c=relaxed/simple;
+	bh=/p0fsinLEF+6jqle9DFYB7wdd7XNPvVlqtJXR24v4JQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nxhF1I6ZPwq5oLE0+wleopzwi6CgXRSsO4Dc6ixRak3fuwgHBt9vKvfK9jKssA/qCJuFacNImsfWSFkq8b+YWg/VybUbsiNFSREmny+v2tZZJavI1tfd7X0s9JTRn7tRIajiuXCHcWmkVWOpRijyGmmULjiqj2Vkmvuc1/qHXWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SKHOW7mr; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-539f6e1f756so1487554e87.0;
-        Mon, 14 Oct 2024 12:50:05 -0700 (PDT)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xcyg7VGf/Bj7KC3kUHyd3natr9I2MKAXeOA5JEcaSNGPj6PKua5qZDfQkWOO+A43YZgKizZEDOpWyIZ6lZbH9Rr/EMuVq8nkolzjC9PsWFM4h8DZBqFzNC4cZa3kaFa/WH5IGZuJuHqfSCMp+8cSgUqYh43A4wjP7kFv+/h4mf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=bFNy/FGK; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-37d4c482844so2642571f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 13:05:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1728935404; x=1729540204; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728936343; x=1729541143; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qb7G3h2Xy7lt8voZGAC1N6xxQ4OoXhNwcK/4eUCoKvc=;
-        b=SKHOW7mrHhDVo0gcM2skmO+aFXX65r6B4qwDXS0abVJOmmY8qcmT+cq7EMspihoXCK
-         PfdtRIKUkeETsi/XrW70NFZdH8LVCTp1LAzD23c6y9G0rVNTy037nTG2G/32uZZ4NS4/
-         kJyGy7yWMjSlLGGQV5UOC6b9fkcbkF+JAVS9Ft49NuJ7tXX+Q4xr18hPJwij4MXI53mH
-         hCw6ERVQbuCKLsU6n2Vf5wfGGLtBOx1RQzftWhOxJCriyEFHTwUjs60ymX4WJLN+Pwq+
-         rSxknCQpzXSJPn10rygBk20fb/v94pZkQf9o9QwklKS3X/A+SLMVlAk7Igs+libP0I06
-         x0WQ==
+        bh=/p0fsinLEF+6jqle9DFYB7wdd7XNPvVlqtJXR24v4JQ=;
+        b=bFNy/FGKbuW8mqxxfuPRBmPajG5CWHd19UEPFs1T8mG3DI6lkasD5ru18XmRvhH7j6
+         s+kuFpSuzJ/8jiGYai9w2Yjo/A2qXDep/XkdknD481d/D9yhHn1U81SXYJncrtgW6EK3
+         cxgwMQb5SPi3kYJ4CbXuDdFL+btv9O8Gzw5KD2wmPIFT3wJAYcIQB9GtsS+mWpg1BWQl
+         sz28upbeggmdlQuEYDjaj8sO0qAaObHMGpW543gkAvtlX71j+EJ46kw2tUeoSkhCHfH6
+         EknILaN41mbKoJL1fQ+hnAj4sDDrCgk11zpKNgrqQJiWvA8Dei1H7AzqJlvInHEAFbTm
+         Ax7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728935404; x=1729540204;
+        d=1e100.net; s=20230601; t=1728936343; x=1729541143;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Qb7G3h2Xy7lt8voZGAC1N6xxQ4OoXhNwcK/4eUCoKvc=;
-        b=vNdDGb3wMr5aWg5aHtA9ObN+PthWk4KlZFhkQqdxumBTxOQd/P/yUeYT09MrmdtXhY
-         uZcGIUQuI+FFeERZ4W43uQootSfqukEufPfkr6b07ggmxlia6UWP7KASLewzHBTG9s1u
-         s0/7O/ajM8IsZEAwz0+YRfD3Cty/Z0NNHyfXnbOrwUkzdb4plIK8VECALHJID4l6PJ84
-         ckKRZrVZirgF5taQqyFhEyloZP2HTtER9uA2zlfndbuhw5J3l40FazXWBzCiIGKFp6WN
-         2AELjVJrabmsBmTxvbS9QRptpGpNdbi+DnGQyEzuBXrBwaPyStGjTp9iMTWo5tVObGIM
-         dDpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWPoEMKbxXFBPG4AU9oB/PUukDv/117ZQhY8PIieS3i4hz+9/LkxZeO96eZ0id/mE3QYBa3aQkmpfTJ@vger.kernel.org, AJvYcCWm6dy94Kj/FsxeUH6Fgor5SA1JXd1LGUqugkec4665kMRUooUEUb1NJTPWyJlFxGmbyFdQMbW/Kr/u@vger.kernel.org, AJvYcCWwm/YLUhqBE1KKbp92xZshtNv0h7LUtPiB8n2x9XuuajhIaVbIMGktEwnYlK+KeHLwJqnAUzVezDS1DdK0@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyc2TdX9V/Zqd5LAJNAoJxBO4NbMfZN/MG6yBLPWWqknyYCUn78
-	0lYnJyob2R9yj11vq29dQDwuG3J7MeONVpk4qVrDR06fpkygXP4b
-X-Google-Smtp-Source: AGHT+IGLmgkthupiwQYt9dDWj+G0ZaP8nvb1BjVvBp5bD+nergMGW0L2XdA+lpNV4AcStb+xZpcbyQ==
-X-Received: by 2002:a05:6512:6ca:b0:539:f995:5b00 with SMTP id 2adb3069b0e04-539f9957713mr2071923e87.7.1728935403471;
-        Mon, 14 Oct 2024 12:50:03 -0700 (PDT)
-Received: from vamoirid-laptop ([2a04:ee41:82:7577:e435:fb96:76da:7162])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-431182ff6d3sm129646255e9.12.2024.10.14.12.50.02
+        bh=/p0fsinLEF+6jqle9DFYB7wdd7XNPvVlqtJXR24v4JQ=;
+        b=KDfJjrliufgvc7OVG+3PegfFUkPw5Y5ki2e6AsqfJyAnxtNbUYYwsCq6L713jw3Q/8
+         wxRE+nPnhQm5sIHnilAYMpOvZGANbmbXplKSgf7Vh3MREV89pg1hgsortIDmqARhK0rS
+         /gO/YWqd8yMvUcj2kIM+nJM+xZ/r+2hC78TlSNvs9cm6o9q+9RwpRLtMN1UWsZTosVvb
+         dWLRcjGTXTggDv3CRW4qalaF2t1ABxKHX9dVFD/b2y5UsCn3m1qgaULlEq9mmlt+A58Q
+         uSgf+qQgw6t0MNwNDADAaMfE8bOhrgC52x6MFarMerSIHEmcOA8hvXXukS0vNqIUPNWh
+         RNpA==
+X-Forwarded-Encrypted: i=1; AJvYcCUvVfdghLW6RXgd68NPsMdnxu82Wv4hDhQraPTOigUvyjrk291RupuoSbqK2yAdy2LZBvbjrZuE4I02@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8f6KXW033AMVYTy+BLaNc+H3XateONm3bX1kBEnIsmujzuAxz
+	yQQfQp3fhK/FljJhsJRzDR/u5WaIhOkxMdtpysCEx1NiBN6tDihjjNZHoEUrD/I=
+X-Google-Smtp-Source: AGHT+IFOPR8MYYQWwDkLVexcUVJZet9k0gP7hpDIjbBtdgwb/++D2QZVJSpb0Xd1vOfW2SNUD6dHNA==
+X-Received: by 2002:a05:6000:cf:b0:37d:5133:8cba with SMTP id ffacd0b85a97d-37d55204527mr8720364f8f.20.1728936343009;
+        Mon, 14 Oct 2024 13:05:43 -0700 (PDT)
+Received: from localhost ([2a02:8071:b783:6940:9cc:1a74:296e:df4d])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b9180adsm12253910f8f.112.2024.10.14.13.05.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 12:50:02 -0700 (PDT)
-Date: Mon, 14 Oct 2024 21:50:00 +0200
-From: Vasileios Amoiridis <vassilisamir@gmail.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: lars@metafoo.de, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, andriy.shevchenko@linux.intel.com,
-	ang.iglesiasg@gmail.com, linus.walleij@linaro.org,
-	biju.das.jz@bp.renesas.com, javier.carrasco.cruz@gmail.com,
-	semen.protsenko@linaro.org, 579lpy@gmail.com, ak@it-klinger.de,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, christophe.jaillet@wanadoo.fr
-Subject: Re: [PATCH v8 1/4] iio: pressure: bmp280: Use sleep and forced mode
- for oneshot captures
-Message-ID: <Zw116IDMKFZ-MKIi@vamoirid-laptop>
-References: <20241007194945.66192-1-vassilisamir@gmail.com>
- <20241007194945.66192-2-vassilisamir@gmail.com>
- <20241012170333.37059686@jic23-huawei>
+        Mon, 14 Oct 2024 13:05:42 -0700 (PDT)
+Date: Mon, 14 Oct 2024 22:05:40 +0200
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	"open list:PWM SUBSYSTEM" <linux-pwm@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, 
+	"moderated list:BROADCOM BCM7XXX ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>, justin.chen@broadcom.com
+Subject: Re: [PATCH 0/2] pwm: brcmstb: Support configurable open-drain mode
+Message-ID: <2lxrtu6mnzs4v6h3x7skbmxwtdmhgn7g3qmmxyr5n4lof6lkb2@6rfckn2g45ho>
+References: <20241012025603.1644451-1-florian.fainelli@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="74noghsmn7dtdnbd"
 Content-Disposition: inline
-In-Reply-To: <20241012170333.37059686@jic23-huawei>
+In-Reply-To: <20241012025603.1644451-1-florian.fainelli@broadcom.com>
 
-On Sat, Oct 12, 2024 at 05:03:33PM +0100, Jonathan Cameron wrote:
-> On Mon,  7 Oct 2024 21:49:42 +0200
-> Vasileios Amoiridis <vassilisamir@gmail.com> wrote:
-> 
-> > Add forced mode support in sensors BMP28x, BME28x, BMP3xx and BMP58x.
-> > Sensors BMP18x and BMP085 are old and do not support this feature so
-> > their operation is not affected at all.
-> > 
-> > Essentially, up to now, the rest of the sensors were used in normal mode
-> > all the time. This means that they are continuously doing measurements
-> > even though these measurements are not used. Even though the sensor does
-> > provide PM support, to cover all the possible use cases, the sensor needs
-> > to go into sleep mode and wake up whenever necessary.
-> > 
-> > The idea is that the sensor is by default in sleep mode, wakes up in
-> > forced mode when a oneshot capture is requested, or in normal mode
-> > when the buffer is enabled. The difference lays in the fact that in
-> > forced mode, the sensor does only one conversion and goes back to sleep
-> > while in normal mode, the sensor does continuous measurements with the
-> > frequency that was set in the ODR registers.
-> > 
-> > The bmpX_chip_config() functions which are responsible for applying
-> > the requested configuration to the sensor, are modified accordingly
-> > in order to set the sensor by default in sleep mode.
-> > 
-> > DEEP STANDBY, Low Power NORMAL and CONTINUOUS modes, supported only by
-> > the BMP58x version, are not added.
-> > 
-> > Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> > Signed-off-by: Vasileios Amoiridis <vassilisamir@gmail.com>
-> Hi Vasilieos
-> 
-> Given it looks like you'll be doing a v9 anyway, a few comments inline
-> on some minor simplifications and potential readability improvements.
-> 
-> Thanks,
-> 
-> Jonathan
-> 
 
-Hi Jonathan,
+--74noghsmn7dtdnbd
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: Re: [PATCH 0/2] pwm: brcmstb: Support configurable open-drain mode
+MIME-Version: 1.0
 
-> 
-> > ---
-> >  drivers/iio/pressure/bmp280-core.c | 296 +++++++++++++++++++++++++++--
-> >  drivers/iio/pressure/bmp280.h      |  21 ++
-> >  2 files changed, 296 insertions(+), 21 deletions(-)
-> > 
-> > diff --git a/drivers/iio/pressure/bmp280-core.c b/drivers/iio/pressure/bmp280-core.c
-> > index 6811619c6f11..9ad29cf4c2ac 100644
-> > --- a/drivers/iio/pressure/bmp280-core.c
-> > +++ b/drivers/iio/pressure/bmp280-core.c
-> > @@ -16,6 +16,11 @@
-> 
-> 
-> > @@ -1522,6 +1610,71 @@ static int bmp380_preinit(struct bmp280_data *data)
-> >  	return bmp380_cmd(data, BMP380_CMD_SOFT_RESET);
-> >  }
-> >  
-> > +static const u8 bmp380_operation_mode[] = {
-> > +	BMP380_MODE_SLEEP, BMP380_MODE_FORCED, BMP380_MODE_NORMAL,
-> > +};
-> 
-> As below - I'd assign these to specific entries to make the fairly obvious association
-> even more obvious!
-> 
+Hello Florian,
 
-ACK! Makes total sense. Thanks for your time!
+On Fri, Oct 11, 2024 at 07:56:01PM -0700, Florian Fainelli wrote:
+> This patch series updates the pwm-brcmstb driver to not assume an
+> open-drain mode, but instead get that sort of configuration from Device
+> Tree using the 'open-drain' property.
 
-Cheers,
-Vasilis
+Just for me to be sure to understand correctly: A kernel without your
+patch #2 behaves identical to a kernel with that patch if the open-drain
+property is present, right?
 
-> > +
-> > +static int bmp380_set_mode(struct bmp280_data *data, enum bmp280_op_mode mode)
-> > +{
-> > +	int ret;
-> > +
-> > +	switch (mode) {
-> > +	case BMP280_SLEEP:
-> > +	case BMP280_FORCED:
-> > +	case BMP280_NORMAL:
-> > +		break;
-> > +	default:
-> > +		return -EINVAL;
-> 
-> Currently there aren't others. So the compiler should shout if you try to pass
-> something else. Hence this check shouldn't be needed.
-> 
-> > +	}
-> > +
-> > +	ret = regmap_write_bits(data->regmap, BMP380_REG_POWER_CONTROL,
-> > +				BMP380_MODE_MASK,
-> > +				FIELD_PREP(BMP380_MODE_MASK,
-> > +					   bmp380_operation_mode[mode]));
-> > +	if (ret) {
-> > +		dev_err(data->dev, "failed to  write power control register.\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	data->op_mode = mode;
-> > +
-> > +	return 0;
-> > +}
-> >
-> 
-> >  	return PTR_ERR_OR_ZERO(devm_nvmem_register(config.dev, &config));
-> >  }
-> >  
-> > +static const u8 bmp580_operation_mode[] = {
-> > +	BMP580_MODE_SLEEP, BMP580_MODE_FORCED, BMP580_MODE_NORMAL,
-> 
-> For these, explicit setting will make it more obvious.
-> 	[BMP280_SLEEP] = BMP580_MODE_SLEEP,
-> etc
-> 
-> > +};
-> > +
-> > +static int bmp580_set_mode(struct bmp280_data *data, enum bmp280_op_mode mode)
-> > +{
-> > +	struct device *dev = data->dev;
-> > +	int ret;
-> > +
-> > +	switch (mode) {
-> > +	case BMP280_SLEEP:
-> > +	case BMP280_NORMAL:
-> > +		break;
-> > +	case BMP280_FORCED:
-> > +		ret = regmap_set_bits(data->regmap, BMP580_REG_DSP_CONFIG,
-> > +				      BMP580_DSP_IIR_FORCED_FLUSH);
-> > +		if (ret) {
-> > +			dev_err(dev, "Could not flush IIR filter constants.\n");
-> > +			return ret;
-> > +		}
-> > +		break;
-> > +	default:
-> There are only the values above, and we should hopefully be able to rely
-> on compiler warnings to shout at us if a future modification adds more.
-> 
-> So should be able to drop the default here.
-> 
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	ret = regmap_write_bits(data->regmap, BMP580_REG_ODR_CONFIG,
-> > +				BMP580_MODE_MASK,
-> > +				FIELD_PREP(BMP580_MODE_MASK,
-> > +					   bmp580_operation_mode[mode]));
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to  write power control register.\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	data->op_mode = mode;
-> > +
-> > +	return 0;
-> > +}
-> 
+It's not clear to me why totem-pole is the better default and the commit
+logs don't justify the updated default. Can you improve here?
+
+Best regards
+Uwe
+
+--74noghsmn7dtdnbd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmcNeZEACgkQj4D7WH0S
+/k5NLAgAnE0plbMtCwz2Wv6bQ8vEDVdoNHD3hCUdvomaNZPj5Dy1f0/u2J5Hj/NW
+KRn/AUbVCJYGa4LQ+7MJ5VMLY8GGeAYgpv1jdnBMJJX9yXp1Hwovz8akFV1Hc8LI
+fQPoBICMk+bVDNB8j5iFplnH5G5cDespFv56Nns0ImOp3maL5CjojP1RZmUsayM6
+3RQafWpyPIkhuI4mrjAtGSAoLoWig7E08ZD2UPIs0vw9phZEB08fUhW6CGf88pev
+fNHViOI4wyumI7l9RO2LvotnV1syhNy052zzgM1e43WwxosYhKfG2xmbGRaOTkGT
+P/6yQseolE3vX7bwd14iAgbYEmoY5g==
+=fdY+
+-----END PGP SIGNATURE-----
+
+--74noghsmn7dtdnbd--
 
