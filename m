@@ -1,133 +1,108 @@
-Return-Path: <devicetree+bounces-111187-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111188-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8A7599D939
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 23:37:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69C8299D94F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 23:40:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34A5B1F21DE5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:37:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 070791F22EAD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 21:40:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44BBE1D151B;
-	Mon, 14 Oct 2024 21:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="r2tK3ENy"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77B1A1D2F59;
+	Mon, 14 Oct 2024 21:40:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from inva021.nxp.com (inva021.nxp.com [92.121.34.21])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 827DA1D0F4A
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 21:36:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2C1A1D1728;
+	Mon, 14 Oct 2024 21:40:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=92.121.34.21
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728941815; cv=none; b=F0nvMkMeSuoq1ANRETKnmhoDIKRr0ODaodqCMq9o5Iu2b3+/dKM5bqJXIa7aiSVUg0TV0Vh91ckzVeq0+uAiFU5SfRu4Ja9C8evfTgVdMvwnDrAPthSWguzQzfGK/Zaf49Sdd/qZZ/dUnP2LJomGErODEMmFEcDMtp8U6uFkgCs=
+	t=1728942035; cv=none; b=MZzZigAhG5uUTjEfsXqIit3lvPv3Pq7HzwX2n66S47INop3fFKdzX7tXHmg9Y47IBHOMiPrn9rtGjmV4L+Gf/UcmnxvNA1Q7HdJncfYPoTkHZNjzQa6+MRBraQyWTHMTEgvJBBzGGCLaAiLA9WaELqyU0UYULP8a+8+pN3PU47s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728941815; c=relaxed/simple;
-	bh=k4SFlVjh+uR65uwdgKDRqHhs8xqLl0Ct7TG7dQW52lw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=owXgy1YBnghiQLbReXoo24Kgdj1jiDB3Ak5APMqbrZUYZ98fVEPfN85L2JcdZH9Fupkje3GCHh0kaWCVC/h4c2gkmGn7AN3c30hqIk/7ZRuWQrcOMIBJ9YhsUiw/JoE1Cyj30+NKympoCypfhkDFGDnvuwQKFMoIfMBxFRxGWxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=r2tK3ENy; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5c9625cfe4dso3577969a12.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 14:36:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1728941812; x=1729546612; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=aS5oHRHtEas82fi6dLQvcPoGTT6ij1fnB8J0TcYqkvo=;
-        b=r2tK3ENyMKvhrCAi7B1+Nfz/vQgmfUumEGaeN64F7XDwtJdB1HlrbmkFbY55dup8lE
-         E2dSqcbaVhJkNM5X8aJdgcQzUn3MST+uryw3S/Cqsh59egA1iVcGYsLH2ftMPsKYHELY
-         f77S1/zYmf/Bkfet+eQuvx5FDvh1/mCy+kzXWlnIb8RKQqnlSoLjIC0Nz9UBkMHCX8eb
-         BFDDBzQ6EMldAAzRYnJC5ylqzonKLkQHYbPlLBntZE3RBFiu4mzFglwJtlm9XCMb0kuN
-         hNK15wK+5GoyUPXByKgdGyRBQ7SD/TqrSFeaAX7EeLI78LzVnFnqo2R4cMX57VdopjBO
-         uhFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728941812; x=1729546612;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aS5oHRHtEas82fi6dLQvcPoGTT6ij1fnB8J0TcYqkvo=;
-        b=q9dozK+t+zL6SY4ozMobESBg8NzZDRrf72CFlJ3s0MNbtIk5M252TamZf/geQaYpxi
-         uC9OGC6LHx4X+V9I0besMWktqYnfy31q+PeuYafBywy1fP1gQAmJffJXZspmcIiD8PfS
-         Fra2+GMELuqGDRdWbDzt7ZG59f5nXtVHmGSxZtLJtcVioo4qayoS/qtf+7RHW7/COiJd
-         2vKJkpxuzIeo/JA0sAM+bjzcIhyCUvkGDC+2O70TJHmGsRmZ813MxpNwfsgvMPbPnrFG
-         8WtqK0WW45iDwTF+ae0MM1/ePBq6vhIFRWv+DrCMlzYyquBtISa0tKA4aXgza15kyi/i
-         snig==
-X-Forwarded-Encrypted: i=1; AJvYcCVUQd4+X/u59xoNkAZCJjOQoRUwMBEefLsK4Bl4ERjhjvSPefzvsWAW4nt2eCfHYDtAgn3lcCJ3VwHe@vger.kernel.org
-X-Gm-Message-State: AOJu0YyG8ZjJANPxnyK/IGk5zdiAuK7i3ThuXal2kMLM0A/l6qk7k3Ra
-	AqnmYHR/Q2+sExK3ND9uKW935B1VMA3irzibEwql2hD1RUYAiT4rKSZMDSP2KKU=
-X-Google-Smtp-Source: AGHT+IGMbzqVMCN4nXkCJp0ZbA/DVg+/3LgMvva+vLk+OtvbPDG71diTtg6++8GyVXSdB/0w22sZkw==
-X-Received: by 2002:a17:907:e2d0:b0:a7a:aa35:408c with SMTP id a640c23a62f3a-a99e39e4fbbmr856093066b.8.1728941811683;
-        Mon, 14 Oct 2024 14:36:51 -0700 (PDT)
-Received: from [192.168.0.40] ([176.61.106.227])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a9a06169946sm260451066b.204.2024.10.14.14.36.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 14:36:51 -0700 (PDT)
-Message-ID: <6a060f86-82af-4d39-9ab8-a377650e6bf3@linaro.org>
-Date: Mon, 14 Oct 2024 22:36:50 +0100
+	s=arc-20240116; t=1728942035; c=relaxed/simple;
+	bh=77/8jR5Bft15FMbxXdTWqphAhiu72q9meKgSlzWhDnk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a4pl5HuqC+yd8259jxnkVO3wRJg/dZG8/ZqQ/DNsmcA9E1AixV4pLQ0itREifrDKKxFdGdMEI4t9HwGdXkopzgt9CoHLNfwHyP//G0uJxWvKlQdlpA4Rc6o1ZCFf096Lv1pRi+x9a0u6aiUpm+b7QirAYFYUz/c3ay8tDCDXBRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; arc=none smtp.client-ip=92.121.34.21
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4D55F200A7E;
+	Mon, 14 Oct 2024 23:40:32 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+	by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3DCF820067A;
+	Mon, 14 Oct 2024 23:40:32 +0200 (CEST)
+Received: from lsv051416.swis.nl-cdc01.nxp.com (lsv051416.swis.nl-cdc01.nxp.com [10.168.48.122])
+	by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id BBCBD20340;
+	Mon, 14 Oct 2024 23:40:32 +0200 (CEST)
+Date: Mon, 14 Oct 2024 23:40:32 +0200
+From: Jan Petrous <jan.petrous@oss.nxp.com>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Jose Abreu <joabreu@synopsys.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Minda Chen <minda.chen@starfivetech.com>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Iyappan Subramanian <iyappan@os.amperecomputing.com>,
+	Keyur Chudgar <keyur@os.amperecomputing.com>,
+	Quan Nguyen <quan@os.amperecomputing.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	NXP S32 Linux Team <s32@nxp.com>
+Subject: Re: [PATCH v3 05/16] net: dwmac-dwc-qos-eth: Use helper rgmii_clock
+Message-ID: <Zw2P0OCKGqMxh/+K@lsv051416.swis.nl-cdc01.nxp.com>
+References: <20241013-upstream_s32cc_gmac-v3-0-d84b5a67b930@oss.nxp.com>
+ <20241013-upstream_s32cc_gmac-v3-5-d84b5a67b930@oss.nxp.com>
+ <1f38695e-642d-41e5-bf95-d4a4c55e416b@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 4/4] i2c: i2c-qcom-geni: Enable i2c controller sharing
- between two subsystems
-To: Mukesh Kumar Savaliya <quic_msavaliy@quicinc.com>,
- konrad.dybcio@linaro.org, andersson@kernel.org, andi.shyti@kernel.org,
- linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
- conor+dt@kernel.org, agross@kernel.org, devicetree@vger.kernel.org,
- vkoul@kernel.org, linux@treblig.org, dan.carpenter@linaro.org,
- Frank.Li@nxp.com, konradybcio@kernel.org, krzk+dt@kernel.org, robh@kernel.org
-References: <20240927063108.2773304-1-quic_msavaliy@quicinc.com>
- <20240927063108.2773304-5-quic_msavaliy@quicinc.com>
-Content-Language: en-US
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20240927063108.2773304-5-quic_msavaliy@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1f38695e-642d-41e5-bf95-d4a4c55e416b@lunn.ch>
+X-Virus-Scanned: ClamAV using ClamSMTP
 
-On 27/09/2024 07:31, Mukesh Kumar Savaliya wrote:
-> Add support to share I2C SE by two Subsystems in a mutually exclusive way.
+On Mon, Oct 14, 2024 at 03:46:56PM +0200, Andrew Lunn wrote:
+> On Sun, Oct 13, 2024 at 11:27:40PM +0200, Jan Petrous via B4 Relay wrote:
+> > From: "Jan Petrous (OSS)" <jan.petrous@oss.nxp.com>
+> > 
+> > ???
+> 
+> It does need to say something. The change is also not 100% obviously
+> correct. So you could explain the change a bit.
+> 
 
-As I read this the question jumps out "what is a subsystem" - in Linux 
-speak subsystem is say a bus or a memory management method but, here 
-what you really mean if I've understood the intent of this series is to 
-share the serial engine between two different bus-masters or perhaps a 
-better description is "system agent".
+Oh, my prepared commit messaged got lost. I'm sorry, I will
+fix it in v4.
 
-Please make that delination clear - its not two Linux subsystems but two 
-different Qcom SoC bus masters right ?
-
-For example the APSS - Application Specific Sub Subsystem - where Linux 
-runs and say cDSP - the compute DSP on qcom SoCs.
-
-I'd rename this patch to make that clear - because "between two 
-subsystems" if you aren't intimately versed in qcom's architecture 
-suggests that a Linux i2c and spi driver are somehow muxing pins ..
-
-Really this is a type of AMP - asymmetric multi processing.
-
-"i2c: i2c-qcom-geni: Enable i2c controller sharing between two different 
-bus masters"
-
-And I'd mention in the commit log specific examples - APSS yes we get 
-but what is the other system agent in your use-case ?
-
-A DSP ? Some other processor in the SoC ?
-
-Anyway highlight one use-case for this AMP case, please.
-
----
-bod
-
-
-
-
+> 
+>     Andrew
+> 
+> ---
+> pw-bot: cr
 
