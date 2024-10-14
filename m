@@ -1,143 +1,120 @@
-Return-Path: <devicetree+bounces-111153-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111154-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39FA899D6A0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:37:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A29799D6D7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:55:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE8D71F22C87
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:37:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BF631C22952
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:55:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A42AC1C877E;
-	Mon, 14 Oct 2024 18:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CA21CBE82;
+	Mon, 14 Oct 2024 18:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MvTH/000"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V+QYDmC9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73DDD1AB6FC;
-	Mon, 14 Oct 2024 18:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63BC1AC45F;
+	Mon, 14 Oct 2024 18:55:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728931033; cv=none; b=l0p3MWdG0vIVd0uJ1e4RG/l6xprOl4ZCHVx+TRu18h5MLBnvQrr0ei8S19e/yWeOksvEkhVdToxppfHdHLtIMCa8EHKn+hqhwWWadzJV7EWqhdKiisxBMExKn0EalbmGg3Py0EzfYR3VQz4zYCDzKDhyT/cFsLS3GhLj767vMNE=
+	t=1728932109; cv=none; b=k1vZEfro2UoYm1x1i28bwLBwyPcuxtmHrOLSbqfzc2Hal5Xx3ClAbuC3ZXb7TXzRoSi0GS4dtbtxFkJ+zFWvb9lGNWa5xmXBoEbkbZG8TrMS6FmFtlL0ftrnoxRZ+NtcHZAVkxAuQI+IWVfY5CciqITZvxyeel50C61p9Cn1Au0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728931033; c=relaxed/simple;
-	bh=VYkzv62Tv2hPBGCkoeopLT5+FAqEnNT/1ZDpLUILkMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DEL/gPd196x8epcCePUItlY/+46boCXpqBghVolDyNKhmPOGu0X9mF1DnyXVnaQ1IL8Gnt34KiUTGHWEHJpLAopK/dX5CVdd8rqIf4Ji9kDwz3XyWitMRboCEnxf701MIeccEhMkaBT0xfpXcvWMH6fu7xwtCYvzVeqZMipzVAU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MvTH/000; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D018C4CEC3;
-	Mon, 14 Oct 2024 18:37:07 +0000 (UTC)
+	s=arc-20240116; t=1728932109; c=relaxed/simple;
+	bh=MEnARyCy8ZhQv5hcAqw282lo3d4lT4pcqhEA+2UdDrg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=s/NsncBp8KjDimLn5vRk67Ud09Gvto2BFxdub4WCpvuVP6PRaEcX2dtmjgQDyrY53inH0u+IiubWOpNikWDqFekWXWInj31H+p2a5zFmTTeu6vrSDK09TK+XAFBumgX9j4Wv4vAY7iN6zsZW3uPTulMpLyK7zBJ+ADqlv2L0Qb0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V+QYDmC9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E58C4CECE;
+	Mon, 14 Oct 2024 18:55:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728931033;
-	bh=VYkzv62Tv2hPBGCkoeopLT5+FAqEnNT/1ZDpLUILkMs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=MvTH/000qxj3FRGeoUrZ9ZJ2d9Sv7C/hZwti0S8ZhivwTkgFjXf6iUeKmaeJW/V8n
-	 eh9HmiGGiAZ9AJGLzZx/x/iQsrWsMq2s0KTWY5ig0e2Yyo/vyY1MhqMAxyQ1RdGUQ3
-	 NfA42MRlR18uPZQSa0CUQOvrLiu962/fhBwVEFEQqcl3/zRiu0ZUgb7hO6nCvx9oEN
-	 Kj4Mxg5aRnQ+qXfl1TkldyqIj7Ot983Mi+HYcIQ/UTSCyHIXjXSQg6Wk2MzrTCurf/
-	 HUxSCk0L6T+jMZq+4kg+sfiH+lfRv02vKDmroRXf0yqQxgGAHFO19KXRxJNvTHjdRW
-	 4P2zF+fs87w8w==
-Date: Mon, 14 Oct 2024 19:37:01 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Julien Stephan <jstephan@baylibre.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, David Lechner
- <dlechner@baylibre.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-doc@vger.kernel.org
-Subject: Re: [PATCH 2/6] dt-bindings: iio: adc: ad7380: fix ad7380-4
- reference supply
-Message-ID: <20241014193701.40e3785a@jic23-huawei>
-In-Reply-To: <CAEHHSvaGTKFA1mUeONXUQ=aTirVemHWFc_E-i76sQgtQ5_Svtg@mail.gmail.com>
-References: <20241007-ad7380-fix-supplies-v1-0-badcf813c9b9@baylibre.com>
-	<20241007-ad7380-fix-supplies-v1-2-badcf813c9b9@baylibre.com>
-	<v7in5n6ktmu5kfzlndn4eujmk5n66fmft4lvwuvucqbcv5r5hb@etdqvn6ev6nl>
-	<20241010192218.12808268@jic23-huawei>
-	<CAEHHSvaGTKFA1mUeONXUQ=aTirVemHWFc_E-i76sQgtQ5_Svtg@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.43; x86_64-pc-linux-gnu)
+	s=k20201202; t=1728932109;
+	bh=MEnARyCy8ZhQv5hcAqw282lo3d4lT4pcqhEA+2UdDrg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=V+QYDmC99fszEIk3HlXB8O6GjJLEOYQ5uaZhSEU1gg2vN9IVRJ3YS1SG+Hg0CsHBX
+	 yGChbHNPxdIOXbOq+G2gsqsaI1jOb9lOiyrL9I6bjHcb4lKPw/Y9Ek5RmqwqqBm+GY
+	 LLWkucAXtNcopZcFEjY2hQFcSMy6RpGK43Mp8Fyr+my4eWg6ITndqmCPozR0za7Xko
+	 PBh2F3/5jZcx9gK91uy3WAUjN1efdpqNXCvyrY9JuqCF6L8+5CR22Q+e5SS9jZxARa
+	 x8wPNsUkF2DUeqsIJ3fGF9mDf/KZbmUKUBoA5zsA7cT6h2WRHYtKINpeq04Bs4Z7aL
+	 tHfaXlm0J4K7w==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Olivia Mackall <olivia@selenic.com>,
+	Herbert Xu <herbert@gondor.apana.org.au>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jayesh Choudhary <j-choudhary@ti.com>
+Cc: linux-crypto@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: rng: Add Marvell Armada RNG support
+Date: Mon, 14 Oct 2024 13:54:57 -0500
+Message-ID: <20241014185457.1827734-1-robh@kernel.org>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Mon, 14 Oct 2024 11:00:39 +0200
-Julien Stephan <jstephan@baylibre.com> wrote:
+The Marvell Armada RNG uses the same IP as TI from Inside Secure and is
+already using the binding. The only missing part is the
+"marvell,armada-8k-rng" compatible string.
 
-> Le jeu. 10 oct. 2024 =C3=A0 20:22, Jonathan Cameron <jic23@kernel.org> a =
-=C3=A9crit :
-> >
-> > On Tue, 8 Oct 2024 09:52:50 +0200
-> > Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > =20
-> > > On Mon, Oct 07, 2024 at 05:45:45PM +0200, Julien Stephan wrote: =20
-> > > > ad7380-4 is the only device from ad738x family that doesn't have an
-> > > > internal reference. Moreover its external reference is called REFIN=
- in
-> > > > the datasheet while all other use REFIO as an optional external
-> > > > reference. If refio-supply is omitted the internal reference is
-> > > > used.
-> > > >
-> > > > Fix the binding by adding refin-supply and makes it required for
-> > > > ad7380-4 only. =20
-> > >
-> > > Maybe let's just use refio as refin? Reference-IO fits here well.
-> > > Otherwise you have two supplies for the same. =20
-> > Whilst it is ugly, the effort this series is going to in order
-> > to paper over a naming mismatch makes me agree with Krzysztof.
-> >
-> > I think adding a comment to the dt-binding would be sensible
-> > though as people might fall into this hole.
-> > =20
->=20
-> Hi Jonathan and Krzysztof,
->=20
-> I am currently adding support for another chip to this family
-> (ADAQ4380-4) and it also uses REFIN.. but in another way ad7380-4
-> does..
-> So:
-> - ad7380-4 does not have any internal reference and use a mandatory
-> refin supply as external reference
-> - adaq4380-4 does not have external reference but uses a 3V internal
-> reference derived from a 5V mandatory refin supply
-> - all others (AFAIK) use an optional refio external reference. If
-> omitted, use an internal 2.5V reference.
->=20
-> I am not sure using a single refio-supply for all will make things
-> clearer.. What do you think? Should I also send the adaq series now to
-> bring more context? (I wanted feedback on this series first).
->=20
+Rename the binding to inside-secure,safexcel-eip76.yaml to better
+reflect it is multi-vendor, licensed IP and to follow the naming
+convention using compatible string.
 
-Sounds like that context would be useful if you have it more or less
-ready to send anyway.  I don't have particularly strong views on this
-either way.  If we 'fix' the case you have here, old bindings should
-continue to work for the part you are moving over (though no need
-to have them in the dt-bindings file).
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ ...g.yaml => inside-secure,safexcel-eip76.yaml} | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
+ rename Documentation/devicetree/bindings/rng/{omap_rng.yaml => inside-secure,safexcel-eip76.yaml} (79%)
 
-Jonathan
-
-> Cheers
-> Julien
->=20
-> > Other than the missing ret =3D, rest of series looks fine to me
-> >
-> > Jonathan
-> > =20
-> > >
-> > > Best regards,
-> > > Krzysztof
-> > > =20
-> > =20
+diff --git a/Documentation/devicetree/bindings/rng/omap_rng.yaml b/Documentation/devicetree/bindings/rng/inside-secure,safexcel-eip76.yaml
+similarity index 79%
+rename from Documentation/devicetree/bindings/rng/omap_rng.yaml
+rename to Documentation/devicetree/bindings/rng/inside-secure,safexcel-eip76.yaml
+index c0ac4f68ea54..0877eb44f9ed 100644
+--- a/Documentation/devicetree/bindings/rng/omap_rng.yaml
++++ b/Documentation/devicetree/bindings/rng/inside-secure,safexcel-eip76.yaml
+@@ -1,20 +1,25 @@
+ # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/rng/omap_rng.yaml#
++$id: http://devicetree.org/schemas/rng/inside-secure,safexcel-eip76.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: OMAP SoC and Inside-Secure HWRNG Module
++title: Inside-Secure HWRNG Module
+ 
+ maintainers:
+   - Jayesh Choudhary <j-choudhary@ti.com>
+ 
+ properties:
+   compatible:
+-    enum:
+-      - ti,omap2-rng
+-      - ti,omap4-rng
+-      - inside-secure,safexcel-eip76
++    oneOf:
++      - enum:
++          - ti,omap2-rng
++          - ti,omap4-rng
++          - inside-secure,safexcel-eip76
++      - items:
++          - enum:
++              - marvell,armada-8k-rng
++          - const: inside-secure,safexcel-eip76
+ 
+   ti,hwmods:
+     const: rng
+-- 
+2.45.2
 
 
