@@ -1,56 +1,60 @@
-Return-Path: <devicetree+bounces-110822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9227799C0D0
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:12:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21B7199C0E4
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 09:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 548C4283773
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 07:12:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 534811C237F5
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 07:14:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C71E7145B39;
-	Mon, 14 Oct 2024 07:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A283D145B2D;
+	Mon, 14 Oct 2024 07:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SyGEZNG5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qtwniOL0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 971D24C7C;
-	Mon, 14 Oct 2024 07:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75BF42B2DA;
+	Mon, 14 Oct 2024 07:14:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728889945; cv=none; b=A7Jsi8/mGKyiQZnLXvFlPgP2qKBpo+jKtnlNOiqj7vd4cZeE6C2DViZXagO+c6Sqy98NRVUOPrp6pv2czTngRI1K2qotrXuCeNFlGgjBRIwVPOvbhpKhp/O3j02OL4cS8KZWMdkY2DvzDSVngUzqtRokJ8uX9kLRW2eUpcih5ao=
+	t=1728890062; cv=none; b=nNE8KO3lbNSXy5pmhbVkmgf6bfcPjyKj/grZlpRit85q9FKIPJwR1hrHrIVwv9zC/ysnq42tUaLm8QFyll/HyCjPM/jv5Y7iH6LygOuX5NaPXTWZKn8t2i2DSttHBV8KG1M/SqldQ6QhJtTv99iLfgBUcoNyxNmIfBf2TEpVvDA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728889945; c=relaxed/simple;
-	bh=UcQUHK/Sgz6lopkosdItwhkbc5msm2SD0odvFPImROs=;
+	s=arc-20240116; t=1728890062; c=relaxed/simple;
+	bh=dX2gYGAyAH0L9uSffl8AQXYQwhZkX3NRmm3cjU2gkkA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Robv33H5lmjhPmxPJZSK8YK52XAHeWMk4QzNM4k7M7TWFPftNDmv041qUifINhYJv1MCU47bMZih8ghByvf5ROkO6wESmRyrXAlNx22ljZ0/4pDCXNFNc5eGB1nQVglPpQQTitJoIOWB6F9w4rT1NzTj1cjMNk1Kj+Svqu3bQ4U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SyGEZNG5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57071C4CEC3;
-	Mon, 14 Oct 2024 07:12:23 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=gCCG43J18oGYWgU/TwQkNpLe/Evl5XsFDf1JSrVfSBiFBhhq3pUEzhewQ96WMP7fKpbqmKFObyj2sgZHtVKmf3Qd1SO3D3pH8XB2+4cmhpnv5lUrCLTZMEEDGVDCO0ZGncVtEVH+/8eAZcYuryJVBOpyr685MUWOHAoCVuaoS3A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qtwniOL0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19AFFC4CED0;
+	Mon, 14 Oct 2024 07:14:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728889945;
-	bh=UcQUHK/Sgz6lopkosdItwhkbc5msm2SD0odvFPImROs=;
+	s=k20201202; t=1728890062;
+	bh=dX2gYGAyAH0L9uSffl8AQXYQwhZkX3NRmm3cjU2gkkA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SyGEZNG5TFwoEDhsAIFSRz1e4TVla3h9OW9OKoNcZlT9rJpsrqcT55WAaMdUN0aIT
-	 SJogod4PHnu8WfDYax0jXRYQx5b16MQ2zOgAv75Zyq6w3S6nX9xcwlKyDHknv497Hu
-	 D2JYOlCXuFqE+de2XKPUnNyek1V8V+qhg3dOB5zYYjAKO76pjCL2t6HAbSlKTYPOjA
-	 McVkzxmzlTU3Vt3YZXLdsIKw6fq3LBlFhfvJ+57yhTMdnL5aOWCHwFb/RX2YgBtV5H
-	 lkOYs9YdCVOFHY6H/oCXt2wHcOyg7MmgYpdhCukzoWy2YD/WxiWzoFFfLML3dC3fiI
-	 T33UFhT4Y9COg==
-Date: Mon, 14 Oct 2024 09:12:21 +0200
+	b=qtwniOL07HzUOp6RdhplycrVnepfforCAKmxtWq45162oV27o0XwpsSav0/5P7SaF
+	 9YdzVg8MnXzTKnFejZQ9y9SLG9Ii2MIuQ9TUh8h34qEqljwSsKU/+Y3ZEQSP400Jyv
+	 hGCvr6CZ0zTY07H+f9RWPYHp59aL4XFKdpykELOjNflapH4jcviQpbZ7D8CI2tQsd5
+	 ZjFcyJOdqC20lsdsaXWs88A2/UbLdwja64APsPh8II1CIZhj6vR02kMO7oC8w3bygf
+	 IXGMhBJnUmzLOpY4HSHm/o1VYFGQ9jbvfCDXKJCbaTg9arNq3uVpZnBt14dpNNf6bs
+	 i/yoFJj95hvMw==
+Date: Mon, 14 Oct 2024 09:14:17 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: spi: Add realtek,rtl9301-snand
-Message-ID: <nuadh2elbry2qc4l7rdngfvs4inbsmo2vg2w72w5d4cgpnail2@zidp7kzxp7qp>
-References: <20241014015245.2513738-1-chris.packham@alliedtelesis.co.nz>
- <20241014015245.2513738-2-chris.packham@alliedtelesis.co.nz>
+To: Laurentiu Mihalcea <laurentiumihalcea111@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Daniel Baluta <daniel.baluta@nxp.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, 
+	Iuliana Prodan <iuliana.prodan@nxp.com>, Tushar Khandelwal <Tushar.Khandelwal@arm.com>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Frank Li <Frank.li@nxp.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: dsp: fsl,dsp: fix power domain count
+Message-ID: <xx7n7gubb376mreajyux2kzjj56cg3kkokb54pssqexi7b6rlu@4kcgl4gb2wr3>
+References: <20241011150439.4027-1-laurentiumihalcea111@gmail.com>
+ <20241011150439.4027-2-laurentiumihalcea111@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,41 +63,34 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20241014015245.2513738-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20241011150439.4027-2-laurentiumihalcea111@gmail.com>
 
-On Mon, Oct 14, 2024 at 02:52:43PM +1300, Chris Packham wrote:
- 
-> diff --git a/Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yaml b/Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yaml
-> new file mode 100644
-> index 000000000000..397b32b41e86
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yaml
-> @@ -0,0 +1,59 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/realtek,rtl9301-snand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
-> +
-> +maintainers:
-> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-> +
-> +description:
-> +  The Realtek RTL9300 SoCs have a built in SPI-NAND controller. It supports
-> +  typical SPI-NAND page cache operations in single, dual or quad IO mode.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - realtek,rtl9301-snand
-> +      - realtek,rtl9302b-snand
-> +      - realtek,rtl9302c-snand
-> +      - realtek,rtl9303-snand
+On Fri, Oct 11, 2024 at 11:04:34AM -0400, Laurentiu Mihalcea wrote:
+> From: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
+> 
+> Per the current binding, QM/QXP DSPs are supposed to have 4
+> power domains, while the rest just 1. For QM/QXP, the 4 power
+> domains are: DSP, DSP_RAM, MU13A, MU13B.
+> 
+> First off, drop MU13A from the count as its already attached
+> to lsio_mu13. This decreases the count to 3.
+> 
+> Secondly, drop DSP and DSP_RAM from the count for QXP. These
+> are already attached to the DSP's LPCGs.
+> 
+> Thirdly, a new power domain is required for DSP-SCU communication
+> (MU2A). With this in mind, the number of required power domains
+> for QXP is 2 (MU2A, MU13B), while for QM it's 4 (MU13B, DSP,
+> DSP_RAM, MU2A).
+> 
+> Update the fsl,dsp binding to reflect all of this information.
+> Since the arm,mhuv2 binding has an example node using the
+> fsl,imx8qxp-dsp compatible, remove two of the extra PDs to
+> align with the required power domain count.
+> 
+> Signed-off-by: Laurentiu Mihalcea <laurentiu.mihalcea@nxp.com>
 
-All of them look compatible with each other, why not using fallback to
-9301? That's common and expected pattern.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
