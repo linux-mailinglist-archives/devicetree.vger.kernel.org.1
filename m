@@ -1,194 +1,173 @@
-Return-Path: <devicetree+bounces-110981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0979799C6D8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1738499C709
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:21:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B8E62283B54
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:11:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D05A0285952
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDFC819D8A2;
-	Mon, 14 Oct 2024 10:09:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EFA15B122;
+	Mon, 14 Oct 2024 10:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="f3ePl3cR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="VvC4t6/f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08E2C19CC0D
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 10:09:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1E1E156676;
+	Mon, 14 Oct 2024 10:21:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728900590; cv=none; b=Be8PNYOfTZh/FSjsKBXCNnYne97TEGqU1WSAdQQGwmJ8lfjCimBBNaNdJhsNWjLbJ09xyPgGX1YeDlb2UqE87AYLYZzRrubg623o5wFHUSBzeEvxny4R/cUA3HWOJmXbk/XXMDYrGtI3zWGlphCtN/4+GPP9BcHyDrARsIMzGpA=
+	t=1728901263; cv=none; b=dihIDf7A+Ep9liEJCWXlxqbXSfLdM7+VX/X88eB1KTHocBLl8bPmphHXfm+xlFybWWLb9JaN91GenpRGs8LoTYTzyQXaPpRg3Pvoyn18kFeRsbGLa986ujHfH8IvBhI1P4tdW8yb1HZ8N2OgI37wq1CIPLPjKW3+2haSf523aAI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728900590; c=relaxed/simple;
-	bh=hUhx+tvYi47jQoSXDvgX4coJm17v9UceFQPwKhKQI64=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=mxtm3+jOr0EKfvJWsR32WyjD9LYRDDrx40+E1xuCmMrfiNR7iTyigu/fZdRaoxTuyIyDiZZiFfO6hAtimWKl3afgwqh0t7lrK8WmGfbMdZ0+yh2iXqb8gWJeq2euFZBt/wRwtXVb1DshU/QGEIPpfkAgr1CTt/b9tN4wgSeuAxo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=f3ePl3cR; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-37d4a5ecc44so2900752f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 03:09:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1728900587; x=1729505387; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cgPxxBkzLK3FAX+hb0rCBt3sAxL4kx844/NCgxHuNGA=;
-        b=f3ePl3cRtlBtkh2vt1jRBFteWg3+kChtSSy8V+R6eKfmBDTkJ9CmORMVEDCMKPrTXk
-         5OLKatpAsnQbxHeDDyCwm+5qP1CJjHGwDjZo38zWvs1dUw/fS81NYGJCyg9mZFpiclEs
-         iWoXqR7sYkduYZ1lunI45MOm0n9OyXx8yLtgMxGEjgTnkMfV9cUumgGE1Xduap7zeVZt
-         tciImXpS+13WSfPlRdtfyliEVDqb+uXYjJDRgGUt2U6r4EjmCzMjGPdIkv1D/1xGgFvs
-         JAb4dAhhHQuKFBlFY3sIdG2w6iou5L5W2vK8TjEtyD41sZUNO4WolGGedtUs6hsWNCmm
-         kdPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728900587; x=1729505387;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cgPxxBkzLK3FAX+hb0rCBt3sAxL4kx844/NCgxHuNGA=;
-        b=lEmNgraP2E36ErK8Q/ervFXO4Rm0dyoRX0cPvHtM4AAgmEoNyACWvseK7QMTCoBSJ/
-         usr7D+YhMGQ7nMSEkyGUj+xHsvc1Ejk9psYG+OSJ3adlmfZ1RnT7vzCzLpJSn2SowQid
-         jSoa9gUiwY8oMWoKSM3s/SWz6+pOf91JaTay50UO6XR5ON32cXypD1PO9m1nSaEKozA7
-         TZcGig4Ux+rbIRomjpajl0HKmRvl1YuLRcT4vL1icETTqkrn955WOpikc1Gs6P+wTBe2
-         LTqFViLahbGz0jd8EmnrQmr6jZ2HKgG+SiM4/dneGRNREJZYQyLHPel7uYNGDFdz3yG/
-         np5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVe4z8htTcKnL5GVP+gAWKXa4uqDAkoDe2xfS8U7buU/IIe9QDDKHq42op7jTxoliGufmmtWZnSh9FT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMDRoR02CUXb14B+RbDSKFQJ+PnAI8zgGB4HmCtCp3s8L+8w3Q
-	kj03TL2cuE53sIUhJ0302G1mou9zJQ9bbW7wg4c4FjQNb8gxxVfyiCGsPtHljd0=
-X-Google-Smtp-Source: AGHT+IGU8XDKwR1oSsXn7gbKxdE0BPtraSLs/+RkoPDcJF/ZZBiXrgLdjAWA+4fCD54l7kysRAGfdg==
-X-Received: by 2002:a05:6000:e85:b0:37d:4d21:350c with SMTP id ffacd0b85a97d-37d551e1303mr6575967f8f.13.1728900587314;
-        Mon, 14 Oct 2024 03:09:47 -0700 (PDT)
-Received: from [127.0.1.1] (host-79-45-239-138.retail.telecomitalia.it. [79.45.239.138])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37d4b7ee0afsm10969352f8f.102.2024.10.14.03.09.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Oct 2024 03:09:46 -0700 (PDT)
-From: Angelo Dureghello <adureghello@baylibre.com>
-X-Google-Original-From: Angelo Dureghello <adureghello@baylibre.org>
-Date: Mon, 14 Oct 2024 12:08:14 +0200
-Subject: [PATCH v6 8/8] iio: dac: adi-axi-dac: add registering of child fdt
- node
+	s=arc-20240116; t=1728901263; c=relaxed/simple;
+	bh=NX1n+qdicUkZyC+SXzciZ/SjHBzSBusQnlPixrangjA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZEYs934QsPAbh+1YrYqOB23KATHBVBCdBIEE0kOQsM4VMtcYd2PDvbjtBwXiPlXTOJQSOTYGdpcBdIkkF3qDxiy2sNvZHFUpGl6n6Pfjk6fHZ+wy7C4vzE3wT9IcqeaKJPAZDBfZlCr2a5RhbKgTgCCPlUm/S3HNGVCMZe64bmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=VvC4t6/f; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1728901262; x=1760437262;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=NX1n+qdicUkZyC+SXzciZ/SjHBzSBusQnlPixrangjA=;
+  b=VvC4t6/fh3AOz9bkWW6vqCi5ZNfCf3hpyNB40Cm80GeOWX7rxU/i05xB
+   +biKjwe8miJgpG8dpOwU5mSjIm0wQjDMMIJklrzHsiK/fl0gIdknkqWg/
+   HBjkcDHP4BoAWEEowq55Y+0MbyUd7bli8nUu2td+rnCpehDnl+UKykRvq
+   ngp9E45y8EBBDNwow7FDubVC645QUHAssRl12ZbG0n2dAO/d6OVeAElqY
+   u+xb8f7VyctBTzmGRuOBYqRmiXf/IZVx1h5AJNvPBwzshAad4ZlzhILp4
+   KZQ3s6lrBoC4TMV0basmC5ARKJUDGAKHCoURaXQG79HH+TXvpfGxLNYop
+   w==;
+X-CSE-ConnectionGUID: ocB+DX1HQsWmHzkSsYvjNg==
+X-CSE-MsgGUID: MHNs0dQrTISu+tjM8lXvtg==
+X-IronPort-AV: E=McAfee;i="6700,10204,11224"; a="53661531"
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; 
+   d="scan'208";a="53661531"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 03:21:01 -0700
+X-CSE-ConnectionGUID: eWs8iXt7TmS7DLowp/iWqg==
+X-CSE-MsgGUID: 7kHTV7WwStekEMnHdALu/w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,202,1725346800"; 
+   d="scan'208";a="77461389"
+Received: from turnipsi.fi.intel.com (HELO kekkonen.fi.intel.com) ([10.237.72.44])
+  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 03:20:53 -0700
+Received: from kekkonen.localdomain (localhost [127.0.0.1])
+	by kekkonen.fi.intel.com (Postfix) with SMTP id 9F82011F855;
+	Mon, 14 Oct 2024 13:20:50 +0300 (EEST)
+Date: Mon, 14 Oct 2024 10:20:50 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+From: Sakari Ailus <sakari.ailus@linux.intel.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+	"Paul J. Murphy" <paul.j.murphy@intel.com>,
+	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
+	Tommaso Merciai <tomm.merciai@gmail.com>,
+	Martin Hecht <martin.hecht@avnet.eu>,
+	Zhi Mao <zhi.mao@mediatek.com>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Mikhail Rudenko <mike.rudenko@gmail.com>,
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+	Dongchun Zhu <dongchun.zhu@mediatek.com>,
+	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
+	Todor Tomov <todor.too@gmail.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
+ various schema
+Message-ID: <ZwzwgkBQzUZJWMvi@kekkonen.localdomain>
+References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
+ <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
+ <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-8-eeef0c1e0e56@baylibre.com>
-References: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
-In-Reply-To: <20241014-wip-bl-ad3552r-axi-v0-iio-testing-v6-0-eeef0c1e0e56@baylibre.com>
-To: =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- Michael Hennerich <Michael.Hennerich@analog.com>, 
- Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Olivier Moysan <olivier.moysan@foss.st.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, dlechner@baylibre.com, 
- Mark Brown <broonie@kernel.org>, 
- Angelo Dureghello <adureghello@baylibre.com>
-X-Mailer: b4 0.14.1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
 
-From: Angelo Dureghello <adureghello@baylibre.com>
+Hi Krzysztof,
 
-Change to obtain the fdt use case as reported in the
-adi,ad3552r.yaml file in this patchset.
+On Mon, Oct 14, 2024 at 09:43:07AM +0200, Krzysztof Kozlowski wrote:
+> On Sat, Oct 12, 2024 at 04:02:50PM +0100, Bryan O'Donoghue wrote:
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
+> > @@ -28,12 +28,6 @@ properties:
+> >      items:
+> >        - description: Reference to the mclk clock.
+> >  
+> > -  assigned-clocks:
+> > -    maxItems: 1
+> > -
+> > -  assigned-clock-rates:
+> > -    maxItems: 1
+> > -
+> >    reset-gpios:
+> >      description: Reference to the GPIO connected to the RESETB pin. Active low.
+> >      maxItems: 1
+> > @@ -82,8 +76,6 @@ required:
+> >    - compatible
+> >    - reg
+> >    - clocks
+> > -  - assigned-clocks
+> > -  - assigned-clock-rates
+> 
+> That's not extraneous, but has a meaning that without assigned-clocks
+> this device or driver will not operate.
+> 
+> File should rather stay as is.
 
-The DAC device is defined as a child node of the backend.
-Registering the child fdt node as a platform devices.
+...
 
-Signed-off-by: Angelo Dureghello <adureghello@baylibre.com>
----
- drivers/iio/dac/adi-axi-dac.c | 53 +++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 53 insertions(+)
+> > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > index c978abc0cdb35cfe2b85069946cf1be435a58cb8..f0f9726a2add89492b8c56e17ed607841baa3a0d 100644
+> > --- a/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml
+> > @@ -24,10 +24,6 @@ properties:
+> >        - sony,imx258
+> >        - sony,imx258-pdaf
+> >  
+> > -  assigned-clocks: true
+> > -  assigned-clock-parents: true
+> > -  assigned-clock-rates: true
+> > -
+> 
+> This is ok.
 
-diff --git a/drivers/iio/dac/adi-axi-dac.c b/drivers/iio/dac/adi-axi-dac.c
-index b887c6343f96..f85e3138d428 100644
---- a/drivers/iio/dac/adi-axi-dac.c
-+++ b/drivers/iio/dac/adi-axi-dac.c
-@@ -29,6 +29,8 @@
- #include <linux/iio/buffer.h>
- #include <linux/iio/iio.h>
- 
-+#include "ad3552r-hs.h"
-+
- /*
-  * Register definitions:
-  *   https://wiki.analog.com/resources/fpga/docs/axi_dac_ip#register_map
-@@ -738,6 +740,39 @@ static int axi_dac_bus_reg_read(struct iio_backend *back, u32 reg, u32 *val,
- 	return regmap_read(st->regmap, AXI_DAC_CUSTOM_RD_REG, val);
- }
- 
-+static void axi_dac_child_remove(void *data)
-+{
-+	struct platform_device *pdev = data;
-+
-+	platform_device_unregister(pdev);
-+}
-+
-+static int axi_dac_create_platform_device(struct axi_dac_state *st,
-+					  struct fwnode_handle *child)
-+{
-+	struct ad3552r_hs_platform_data pdata = {
-+		.bus_reg_read = axi_dac_bus_reg_read,
-+		.bus_reg_write = axi_dac_bus_reg_write,
-+	};
-+	struct platform_device_info pi = {
-+		.parent = st->dev,
-+		.name = fwnode_get_name(child),
-+		.id = PLATFORM_DEVID_AUTO,
-+		.fwnode = child,
-+		.data = &pdata,
-+		.size_data = sizeof(pdata),
-+	};
-+	struct platform_device *pdev;
-+
-+	pdev = platform_device_register_full(&pi);
-+	if (IS_ERR(pdev))
-+		return PTR_ERR(pdev);
-+
-+	device_set_node(&pdev->dev, child);
-+
-+	return devm_add_action_or_reset(st->dev, axi_dac_child_remove, pdev);
-+}
-+
- static const struct iio_backend_ops axi_dac_generic_ops = {
- 	.enable = axi_dac_enable,
- 	.disable = axi_dac_disable,
-@@ -874,6 +909,24 @@ static int axi_dac_probe(struct platform_device *pdev)
- 		return dev_err_probe(&pdev->dev, ret,
- 				     "failed to register iio backend\n");
- 
-+	device_for_each_child_node_scoped(&pdev->dev, child) {
-+		int val;
-+
-+		/* Processing only reg 0 node */
-+		ret = fwnode_property_read_u32(child, "reg", &val);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, ret,
-+						"child node missing.");
-+		if (val != 0)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"invalid node address.");
-+
-+		ret = axi_dac_create_platform_device(st, child);
-+		if (ret)
-+			return dev_err_probe(&pdev->dev, -EINVAL,
-+						"could not create device.");
-+	}
-+
- 	dev_info(&pdev->dev, "AXI DAC IP core (%d.%.2d.%c) probed\n",
- 		 ADI_AXI_PCORE_VER_MAJOR(ver),
- 		 ADI_AXI_PCORE_VER_MINOR(ver),
+Basically the clock related requirements for these devices are the same:
+they all need a clock configured at a board specific frequency. Shouldn't
+we treat them the same way?
 
 -- 
-2.45.0.rc1
+Kind regards,
 
+Sakari Ailus
 
