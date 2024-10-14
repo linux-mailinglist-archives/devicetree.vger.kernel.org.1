@@ -1,160 +1,149 @@
-Return-Path: <devicetree+bounces-111180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 767B099D847
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 22:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AD1D99D86C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 22:39:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A600E1C20AEA
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:34:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D07A1C21598
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 20:39:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE28A1C9B7A;
-	Mon, 14 Oct 2024 20:34:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90CD51D0E05;
+	Mon, 14 Oct 2024 20:39:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="QyxhfCJh"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="rvRbnYTj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9004C7C;
-	Mon, 14 Oct 2024 20:34:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 026751CF7AE
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 20:38:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728938095; cv=none; b=ptatjZtpefUgAUELeHLk6G7WJo8wlVRxVAkRiiWBA6ytSGfqhhRec96RPmlPpdrfK+z3mLeGNu+kS3U97Ge1I4LgoOkTfh5R3aEm6inIBTDyI7noMKuhE/yNnkqQdzoSk2b/dU1oGgOhM+uVnvoHXDzUpDA57NliiDSDy9Xlx1A=
+	t=1728938340; cv=none; b=dC9u+jHT6kjJdUIO2xRUmQetTpZeOjPFetCGpwj/vaOu6E/RosntYIONsI56QufCAn/Ep36nmmqQZMwJFOE3Pu3duhL3wFZBhsHcRl6XGcmFSb8ccxcsfDAlWflQC+IxWLekH1+Sn0ojeiuU8FXTmWq7ObCg9twXEZ9e5PeHqUg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728938095; c=relaxed/simple;
-	bh=Lk4I6UURrH3IQswz39h4iub5KOG09WnFz6iqw+Qh2c4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qqgl0GPbZEH6G7Y4hpciWaAF5ococCNx8PyhxUb/pxdabL41jzRxnWOuf1SiPud+HFO0q1Ryc1vaiuJZfUbF6OaJjfpUEhyuhbg/x/ctC7CpqIaRp7lZLo7cAH15R382V5AT7QBJZ6TOsp5Zj3Ynl9Z4Npjotek8ciNTIz9ym0k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=QyxhfCJh; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [23.233.251.139])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F24A71A7D;
-	Mon, 14 Oct 2024 22:33:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1728937990;
-	bh=Lk4I6UURrH3IQswz39h4iub5KOG09WnFz6iqw+Qh2c4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QyxhfCJhunR/Xb9ItJfdPZNAZ6mYdQj27QWwv2Du955G5zLoPClW+Vk055gwMLbTi
-	 fFxioz/SvtwVJsDt148PYGPeAPMjhnWXBogFCM0Kte8uo6nL3dRfr7nsDOfTIFVTle
-	 /xpqnFB1CLB37dhtKZGLKaJAwXG1jVYD6vo1j8I4=
-Date: Mon, 14 Oct 2024 23:34:41 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-	"Paul J. Murphy" <paul.j.murphy@intel.com>,
-	Daniele Alessandrelli <daniele.alessandrelli@intel.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	Martin Hecht <martin.hecht@avnet.eu>,
-	Zhi Mao <zhi.mao@mediatek.com>,
-	Alain Volmat <alain.volmat@foss.st.com>,
-	Mikhail Rudenko <mike.rudenko@gmail.com>,
-	Ricardo Ribalda <ribalda@kernel.org>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Umang Jain <umang.jain@ideasonboard.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-	Dongchun Zhu <dongchun.zhu@mediatek.com>,
-	Quentin Schulz <quentin.schulz@theobroma-systems.com>,
-	Todor Tomov <todor.too@gmail.com>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: Remove assigned-clock-* from
- various schema
-Message-ID: <20241014203441.GF5522@pendragon.ideasonboard.com>
-References: <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-0-a2bb12a1796d@linaro.org>
- <20241012-b4-linux-next-202041004-i2c-media-yaml-fixes-v1-1-a2bb12a1796d@linaro.org>
- <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
+	s=arc-20240116; t=1728938340; c=relaxed/simple;
+	bh=nEaffIp+CJuW+N1iMoCee0jOln2gnRywVic31Yjps30=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VCRrhE1Y1QaH0qrXVPbqqjOpcSeTwu1nit5zWYBJ2LCOKo8bi7mHsfgbZT7aasj2/VchB7qlqDxHKhdOrT2XqSAgxpiyOzQDYEztcI7xLPJsKA03lQELIas/1H0LWwaGUKHi6MuSIfrySjKWdzu57LZo5xD3xigZm1989cfPTTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=rvRbnYTj; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 6EEAC2C0276;
+	Tue, 15 Oct 2024 09:38:49 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1728938329;
+	bh=baEpGfW7rxqNpgz/S8mcS2prZpYssy/RFfM0CNMgx9A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rvRbnYTjCePWHxkqDNxQy2BugsYUg5xCKn+f4nXMuHhx641ObimRtiZx3AcNMy6jl
+	 7ZiUHBLPki+CUI/C1WDW6IYD0SILY3LKAx4MTksbpU3tRZViqYuJlbqwvCoai/MqDc
+	 6A7/3Uwo3raVk2OVIxFhj0EcjdmzsMyZQwxfJ5mHYkG5e0RlYK+vhiVN1a06lIQdd2
+	 x5Aolorh4RXV+JdE8awHjKL172p8o0g2H4m3NSGWn8UTpsqnorJ+gtVmQR/aTG0Dqy
+	 F9HRwfYdyScEfQZIdraJjI3Df+QRuEwnCmLadfUxRKkn/7VTR6xkXPrR8jWG6XI2ok
+	 P5tkdZ5npORwg==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B670d81590000>; Tue, 15 Oct 2024 09:38:49 +1300
+Received: from [10.33.22.30] (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 53E3913EE32;
+	Tue, 15 Oct 2024 09:38:49 +1300 (NZDT)
+Message-ID: <bd802a5c-e09e-4f4d-9d37-b87d85efb4e4@alliedtelesis.co.nz>
+Date: Tue, 15 Oct 2024 09:38:49 +1300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <w4ta26svh34gojqpakrgp5cpsempedkewkmbllyvs5z5fm274z@jqs3tvunxq2s>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v4 1/3] dt-bindings: spi: Add realtek,rtl9301-snand
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, tsbogend@alpha.franken.de, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mips@vger.kernel.org
+References: <20241014015245.2513738-1-chris.packham@alliedtelesis.co.nz>
+ <20241014015245.2513738-2-chris.packham@alliedtelesis.co.nz>
+ <nuadh2elbry2qc4l7rdngfvs4inbsmo2vg2w72w5d4cgpnail2@zidp7kzxp7qp>
+Content-Language: en-US
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <nuadh2elbry2qc4l7rdngfvs4inbsmo2vg2w72w5d4cgpnail2@zidp7kzxp7qp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=ca1xrWDM c=1 sm=1 tr=0 ts=670d8159 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=IkcTkHD0fZMA:10 a=DAUX931o1VcA:10 a=62ntRvTiAAAA:8 a=gEfo2CItAAAA:8 a=G81r_u4-8cHXR2Yzib8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Mon, Oct 14, 2024 at 09:43:07AM +0200, Krzysztof Kozlowski wrote:
-> On Sat, Oct 12, 2024 at 04:02:50PM +0100, Bryan O'Donoghue wrote:
-> > Remove extraneous assigned-clock* from media/i2c/* schemas, retain in the
-> > relevant examples.
-> > 
-> > Link: https://lore.kernel.org/linux-media/j7kgz2lyxnler5qwd7yiazdq6fmsv77kyozdrxf33h54ydakjz@uqjhwhoyv6re
-> > Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> > ---
-> >  Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml | 8 --------
-> >  Documentation/devicetree/bindings/media/i2c/ovti,ov5648.yaml | 8 --------
-> >  Documentation/devicetree/bindings/media/i2c/ovti,ov8865.yaml | 8 --------
-> >  Documentation/devicetree/bindings/media/i2c/ovti,ov9282.yaml | 4 ----
-> >  Documentation/devicetree/bindings/media/i2c/sony,imx258.yaml | 4 ----
-> >  Documentation/devicetree/bindings/media/i2c/sony,imx334.yaml | 4 ----
-> >  Documentation/devicetree/bindings/media/i2c/sony,imx335.yaml | 4 ----
-> >  Documentation/devicetree/bindings/media/i2c/sony,imx412.yaml | 4 ----
-> >  8 files changed, 44 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > index 60f19e1152b33128cf3baa15b8c70a874ca6d52e..d18ead8f7fc43bfacc291aed85b5ca9166c46edb 100644
-> > --- a/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > +++ b/Documentation/devicetree/bindings/media/i2c/hynix,hi846.yaml
-> > @@ -28,12 +28,6 @@ properties:
-> >      items:
-> >        - description: Reference to the mclk clock.
-> >  
-> > -  assigned-clocks:
-> > -    maxItems: 1
-> > -
-> > -  assigned-clock-rates:
-> > -    maxItems: 1
-> > -
-> >    reset-gpios:
-> >      description: Reference to the GPIO connected to the RESETB pin. Active low.
-> >      maxItems: 1
-> > @@ -82,8 +76,6 @@ required:
-> >    - compatible
-> >    - reg
-> >    - clocks
-> > -  - assigned-clocks
-> > -  - assigned-clock-rates
-> 
-> That's not extraneous, but has a meaning that without assigned-clocks
-> this device or driver will not operate.
 
-How so ? Even if we assume that the device requires a specific clock
-frequency (which is often not the case for camera sensors, the
-limitation usually comes from drivers, so the constraint shouldn't be
-expressed in the bindings in that case), there is no overall requirement
-to assign a clock rate as in many cases the clock will come from a
-fixed-frequency oscillator. This seems to be a constraint that is
-outside of the scope of DT bindings. It is similar to regulators, where
-the regulator consumer doesn't have a way to express supported voltages
-in its DT bindings.
+On 14/10/24 20:12, Krzysztof Kozlowski wrote:
+> On Mon, Oct 14, 2024 at 02:52:43PM +1300, Chris Packham wrote:
+>  =20
+>> diff --git a/Documentation/devicetree/bindings/spi/realtek,rtl9301-sna=
+nd.yaml b/Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yam=
+l
+>> new file mode 100644
+>> index 000000000000..397b32b41e86
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/realtek,rtl9301-snand.yaml
+>> @@ -0,0 +1,59 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://scanmail.trustwave.com/?c=3D20988&d=3D3cSM59Be7zhiOY6j70B=
+GhTh0kCvZ-1Nf0f5XJZnTzQ&u=3Dhttp%3a%2f%2fdevicetree%2eorg%2fschemas%2fspi=
+%2frealtek%2crtl9301-snand%2eyaml%23
+>> +$schema: http://scanmail.trustwave.com/?c=3D20988&d=3D3cSM59Be7zhiOY6=
+j70BGhTh0kCvZ-1Nf0a1RIsqGnw&u=3Dhttp%3a%2f%2fdevicetree%2eorg%2fmeta-sche=
+mas%2fcore%2eyaml%23
+>> +
+>> +title: SPI-NAND Flash Controller for Realtek RTL9300 SoCs
+>> +
+>> +maintainers:
+>> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+>> +
+>> +description:
+>> +  The Realtek RTL9300 SoCs have a built in SPI-NAND controller. It su=
+pports
+>> +  typical SPI-NAND page cache operations in single, dual or quad IO m=
+ode.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - realtek,rtl9301-snand
+>> +      - realtek,rtl9302b-snand
+>> +      - realtek,rtl9302c-snand
+>> +      - realtek,rtl9303-snand
+> All of them look compatible with each other, why not using fallback to
+> 9301? That's common and expected pattern.
 
-> File should rather stay as is.
-> 
-> >    - vddio-supply
-> >    - vdda-supply
-> >    - vddd-supply
+So something like
 
-[snip]
+properties:
+ =C2=A0 compatible:
+ =C2=A0=C2=A0=C2=A0 oneOf:
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - items:
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 -=C2=A0 enum:
+ =C2=A0=C2=A0=C2=A0=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 - realtek,rtl9302b-=
+snand
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - rea=
+ltek,rtl9302c-snand
+ =C2=A0 =C2=A0 =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0 - realtek,rtl9303-sn=
+and
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 - const: realtek,rtl9301-snand
+ =C2=A0=C2=A0=C2=A0=C2=A0 - items:
+ =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 const: realtek,rtl9301-snand
 
--- 
-Regards,
+Or am I over thinking it and I should just use only a single "const:=20
+realtek,rtl9301-snand"?
 
-Laurent Pinchart
+>
+> Best regards,
+> Krzysztof
+>
 
