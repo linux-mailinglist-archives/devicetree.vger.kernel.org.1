@@ -1,105 +1,120 @@
-Return-Path: <devicetree+bounces-111113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 077E299D507
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:54:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8E8499D513
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 18:58:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD6A91F23F2B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:54:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50FF7B26558
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:58:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A8691ABEC9;
-	Mon, 14 Oct 2024 16:54:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F6C1C2327;
+	Mon, 14 Oct 2024 16:57:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iS8/1+Ff"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GgiUybSY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A9281BFE03;
-	Mon, 14 Oct 2024 16:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2241F28FC;
+	Mon, 14 Oct 2024 16:57:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728924854; cv=none; b=YTFCm0DT2AZPc/sBbzie2NRZphOczn3ZU3IkJmcpcU1N/qH3xo2pc3KyffQ7zIcgIwbVS3hncMHOhO/u9hbsx8yl0f5q61BADcTw27fzc5ToVJsizuyIJwDONgfztrEX2Fd/woK+zkQTOZ9ctCS/dl58W8ox7Y6nCC0R4pPs3cE=
+	t=1728925075; cv=none; b=WIPNMuxytWDmEhJkB3iF9X+jlx/MkunaJdGqRbJSezKtCwgbYuE0bzYdDE7lLLtnvlLvsOJNpIkzoFkbJuWgiKjN9wtM4XkdCzYAc63lXwAfzz4RGsmYTpcm/crcZ7ZpZleh9z5Yd4DCrQD65WhA5DP3j88Fws7N/AiXRpKu4dk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728924854; c=relaxed/simple;
-	bh=J1xh+KeiCiUEKcxI7/lL6ZOZWUFLYQ95c2233jGs85w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z3hMUL7ObTUK1dkjELNaZK6jYAs7jEPBtlL7oFiS88l5022pfkUkZomsM+vzKKyfeP/wLP7AJTnkbPIMo/pBcnJm2kspUyDtLCIsw4acL1F8Jr/Wf6RU9o/WS3yVH+TgIu3DgV6l+DoXx1kn5A9JbxYGbnM5GqITT12Niis+ncc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iS8/1+Ff; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 547C5C0005;
-	Mon, 14 Oct 2024 16:54:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1728924844;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZzPbyORImSzImPqpC0hAEvFAttjRAmROKHtmKvXA2IU=;
-	b=iS8/1+FfbwnGHg7nDvADC9E3N7sZkE7GFuq+J/lsAfk0iPR74oW9cQWH84oYsOLsvZH1yF
-	MIMcwYag0Yzrr3iHa0ZeBDWm6Pe8uf+qwgnGRFbMDnfcWH4cUoK1ujnduU13UitQu4iUXZ
-	aNGDyhurayD/hlK15VGMUsSjjUb+KoleQzFcLCIe39UwstIrrytKInyvWc6cEetX4TOM1X
-	yPfsoULgOoKDawJ6Oor239xM7t1hPZaWMLhTNQOVPa2AagZlhu/e+pcxTMXLn/RfVG0Kvk
-	k4Ekf+1Lef5uCNQIdUZ5RaLqB5Guy3kPgulFWQYTuJr4LJW/2YXTv3J+IWPjwA==
-Date: Mon, 14 Oct 2024 18:54:03 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: pierre-henry.moussay@microchip.com,
+	s=arc-20240116; t=1728925075; c=relaxed/simple;
+	bh=wXWzMdrUxolDFmjz40s5QfHgXPCyiA7KBOB9gExbNoo=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=YwlLSCdMaBWfPVcBDzb//4iKs0kK9DZwNk4AcwYxKP6vDSvgx7vmjI9XFjMYN1VgWYLECXPEUIJnSEPrel6v9ENSHGtSug7m/OFPrMxUITfKZWKet0swa/EcxtD/GluFZV/NgS7FVeT172jWJrMS3x1KEWa/NS/KBONXlrOkK20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GgiUybSY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C67EC4CEC3;
+	Mon, 14 Oct 2024 16:57:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728925074;
+	bh=wXWzMdrUxolDFmjz40s5QfHgXPCyiA7KBOB9gExbNoo=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=GgiUybSYshbUNzejaSCnPLicOmznG3IXLZs0Ne0pYdd0FwUTMy5rnBRB7PvARVe7o
+	 rgVV3XvNr15M+ceo4vir7M+oPOiSp4xszzdfBWjx3rHAW2eQts4smdBQDg3gxJscNB
+	 rBvsube5oReuK32CkktFMqviLgNBavmqlYx7A0hrp7R4gC3SC/EunDoww1pBEnGS/q
+	 UdiOS+236BW8VU4+kKTissW9IkdTxTFNihEBGNV+lhh7wOrDFsEby24zuexmXWbN/J
+	 vu3uEBWPiZRON8OJlMqut4O8AWDxXj2rYe2orUSBQtHz81yPVo6LdnokYqDBH3DQJu
+	 63NmYkBzN2d9w==
+Date: Mon, 14 Oct 2024 11:57:52 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Lewis Hanly <lewis.hanly@microchip.com>, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rtc: mpfs-rtc: Properly name file
-Message-ID: <20241014165403e640f637@mail.local>
-References: <20241011100608.862428-1-alexandre.belloni@bootlin.com>
- <CAL_JsqL=OJss3kudaQBx==g2zBiqtsbWJZ5oOFWJF-vLCQZ+yg@mail.gmail.com>
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>
+Subject: Re: [PATCH v3 04/11] PCI: brcmstb: Expand inbound size calculation
+ helper
+Message-ID: <20241014165752.GA611670@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_JsqL=OJss3kudaQBx==g2zBiqtsbWJZ5oOFWJF-vLCQZ+yg@mail.gmail.com>
-X-GND-Sasl: alexandre.belloni@bootlin.com
+In-Reply-To: <20241014130710.413-5-svarbanov@suse.de>
 
-On 14/10/2024 10:39:20-0500, Rob Herring wrote:
-> On Fri, Oct 11, 2024 at 5:06 AM <alexandre.belloni@bootlin.com> wrote:
-> >
-> > From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> >
-> > The actual compatible string is microchip,mpfs-rtc, not microchip,mfps-rtc.
-> >
-> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> > ---
-> >  .../rtc/{microchip,mfps-rtc.yaml => microchip,mpfs-rtc.yaml}      | 0
-> >  1 file changed, 0 insertions(+), 0 deletions(-)
-> >  rename Documentation/devicetree/bindings/rtc/{microchip,mfps-rtc.yaml => microchip,mpfs-rtc.yaml} (100%)
-> >
-> > diff --git a/Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml b/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
-> > similarity index 100%
-> > rename from Documentation/devicetree/bindings/rtc/microchip,mfps-rtc.yaml
-> > rename to Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
+On Mon, Oct 14, 2024 at 04:07:03PM +0300, Stanimir Varbanov wrote:
+> BCM2712 memory map can supports up to 64GB of system
+> memory, thus expand the inbound size calculation in
+> helper function up to 64GB.
+
+The fact that the calculation is done in a helper isn't important
+here.  Can you make the subject line say something about supporting
+DMA for up to 64GB of system memory?
+
+This is being done specifically for BCM2712, but I assume it's safe
+for *all* brcmstb devices, right?
+
+s/can supports/can support/
+
+Rewrap commit log to fill 75 columns.
+
+> Signed-off-by: Stanimir Varbanov <svarbanov@suse.de>
+> Reviewed-by: Florian Fainelli <florian.fainelli@broadcom.com>
+> ---
+> v2 -> v3:
+>  - Added Reviewed-by tags.
+>  - Improved patch description (Florian).
 > 
-> Incomplete. Now next has this warning:
+>  drivers/pci/controller/pcie-brcmstb.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> /builds/robherring/linux-dt/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml:
-> $id: Cannot determine base path from $id, relative path/filename
-> doesn't match actual path or filename
->          $id: http://devicetree.org/schemas/rtc/microchip,mfps-rtc.yaml
->         file: /builds/robherring/linux-dt/Documentation/devicetree/bindings/rtc/microchip,mpfs-rtc.yaml
-
-I fixed it directly in my tree...
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> diff --git a/drivers/pci/controller/pcie-brcmstb.c b/drivers/pci/controller/pcie-brcmstb.c
+> index 9321280f6edb..b0ef2f31914d 100644
+> --- a/drivers/pci/controller/pcie-brcmstb.c
+> +++ b/drivers/pci/controller/pcie-brcmstb.c
+> @@ -309,8 +309,8 @@ static int brcm_pcie_encode_ibar_size(u64 size)
+>  	if (log2_in >= 12 && log2_in <= 15)
+>  		/* Covers 4KB to 32KB (inclusive) */
+>  		return (log2_in - 12) + 0x1c;
+> -	else if (log2_in >= 16 && log2_in <= 35)
+> -		/* Covers 64KB to 32GB, (inclusive) */
+> +	else if (log2_in >= 16 && log2_in <= 36)
+> +		/* Covers 64KB to 64GB, (inclusive) */
+>  		return log2_in - 15;
+>  	/* Something is awry so disable */
+>  	return 0;
+> -- 
+> 2.43.0
+> 
 
