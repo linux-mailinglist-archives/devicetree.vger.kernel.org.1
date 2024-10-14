@@ -1,148 +1,197 @@
-Return-Path: <devicetree+bounces-111048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CE8E199CAE5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:01:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3313999CB01
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:07:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A66F1C220D7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:01:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AD2031F233E2
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64A381AA78B;
-	Mon, 14 Oct 2024 13:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABA61AA7BC;
+	Mon, 14 Oct 2024 13:07:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b="FOXrXD9Y"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="rllpg817";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YcW8KmYn";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="rllpg817";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="YcW8KmYn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E72A919CD0E
-	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 13:01:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41D521A76C4;
+	Mon, 14 Oct 2024 13:07:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728910899; cv=none; b=dA7nVpTXxvZc/krQnnfWXtiEFZ9Nun+Tqlvkz5f8+N9PrWKik2qJng8oi1K8mOTUZmassDPA/u0IsGXyxUUVrC362V0GBx5QDv6ZKqwaW1k5v2J80D9C/rajmqVF/qb/td3O/zb8a0pscgQLK5l3neijc++KDClF4K9FjYPzZX8=
+	t=1728911256; cv=none; b=R4MQN1PQRygo66pooxDSuyeXD18ikqAkaCpGAAoPf4qk5ZGXJr/VBRgBVLoq+1d/EiQsn1XLLLX/EPC0Dnf8exqdj3Oc/3J4/64RjwDOIEYTXIatHeG6hJxM8aLDd0ConDTXIaXp7lQl3BMy5NVLvSWDzbvzMaxcy4OH32tPmyM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728910899; c=relaxed/simple;
-	bh=++dcIeDFDIn2Ao7fa3l8I6kCkaljhMOysKS1UQX8IyI=;
-	h=Subject:To:Cc:References:From:Message-ID:Date:MIME-Version:
-	 In-Reply-To:Content-Type; b=BFLXHkZgdXpaslCpYXkfNokpmksW4UuZkBBLbXA3s6ueiZLGPf6achS4PQJJo6+e7x6Lyfz8JVy0SKC6ha7nX2Kz/+0LsHrUZFFvdRVC6dB15owBjDdG3z5ItMT6pKGqsYpL/pTJyg8NIxYn70pgSNID+mfVNGbf08p5gaP5wFI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca; spf=pass smtp.mailfrom=marek.ca; dkim=pass (2048-bit key) header.d=marek.ca header.i=@marek.ca header.b=FOXrXD9Y; arc=none smtp.client-ip=209.85.222.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=marek.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=marek.ca
-Received: by mail-qk1-f169.google.com with SMTP id af79cd13be357-7b1205e0e03so185479085a.3
-        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 06:01:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek.ca; s=google; t=1728910895; x=1729515695; darn=vger.kernel.org;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9RHxE4BwKc3ZjDQztQ5oMassHpRi7zp5cvhCSidmTTk=;
-        b=FOXrXD9Yi/AC4n/KEvhIWyGLWXnG4sepYNGZby9xrlR/v6XwIcOI/iIzL5e7NUrcDu
-         ILAh2+lJTnxrJ4cmTobwt/sXB8MB1JzuHRpIP4jzsYED1gIFKzHNPkcQ9L2x+m4cBF7u
-         kXArpHKo48BKhUVTU74QM8XdLSnEcs0kEQNbRx5W05zNWhPoDH3CEK9chaS88bZcCUUQ
-         eSc8iGcC443wWVUiqtHrxNE+Ib/520SZWzQFyd71tQTV+EYF1pqAqM4FPaSORewwOits
-         zH7x7SvRNAtbtwgObgnv6RlD1Ro8mDXoBymEsI8ZIGZFX1NFCxakc8nnApFmwV2wNX0T
-         UQNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1728910895; x=1729515695;
-        h=content-transfer-encoding:content-language:in-reply-to:mime-version
-         :user-agent:date:message-id:from:references:cc:to:subject
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9RHxE4BwKc3ZjDQztQ5oMassHpRi7zp5cvhCSidmTTk=;
-        b=kOTfQBMQgoXa0IEz8yHa4oVN0Ore1eDTfaxN6EecVDDGUte3aHd9SIf1wuHS8Tk6r8
-         l/9NN7l4JXIBuMspjzbxmh+kMPtUVtUJY+VMoc7ttWFYAxU6LmUJrlIxfu0446TBHtjZ
-         omXNRzx8lQxYTxkgcfoCRJEaikVlOQXXOpymnQogf/Iif3QjqVauNdcW2G5hC9gu1zQE
-         tWoJMibE86Gt/ZwGft2XXsH/XbiXhZDwJo25HzYXDtRl/SaUTNS4DO2dPebCnf8dDb3X
-         2KOvBgTYzf87vCNHVXKejeOxBYLBYLwSHJ0QCxDbS2tWR7bxeHkFOn8d1haFVYHmY93s
-         a56g==
-X-Forwarded-Encrypted: i=1; AJvYcCXpN0xlPJzr2W5CDz0I7cKSZlt1h45WY8yYFfmHwu+ocPzERbhDd9cntFn8Uwb4MCF6EmNeqAXaGDW9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxqR0pUNLMvU0JwaKjcXFwApHxN2sQgHxeqvRRvSzg8JEsbhQYw
-	zN0w0YeRwYIuFKHcjhpKS6Ak0rpiLjdwgiSvzVtKVn6BTLKC73i3yN7DrHOiSZdv950cTlYaYFQ
-	6tkc=
-X-Google-Smtp-Source: AGHT+IGh0QuJA6b0OOwNfoiRKhU3ExuhAHzAqesdDNj776vJw3RQWyW54B6RNyGsIvJBrvQs2fM8Ww==
-X-Received: by 2002:a05:620a:190f:b0:7ac:a077:6a1e with SMTP id af79cd13be357-7b11a352f87mr1621830785a.9.1728910895574;
-        Mon, 14 Oct 2024 06:01:35 -0700 (PDT)
-Received: from [192.168.0.189] (modemcable125.110-19-135.mc.videotron.ca. [135.19.110.125])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7b11497d799sm413618885a.117.2024.10.14.06.01.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Oct 2024 06:01:35 -0700 (PDT)
-Subject: Re: [PATCH v2 2/5] dt-bindings: rtc: qcom-pm8xxx: document no-alarm
- flag
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Satya Priya <quic_c_skakit@quicinc.com>,
- "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20241013051859.22800-1-jonathan@marek.ca>
- <20241013051859.22800-3-jonathan@marek.ca>
- <gpika7a5ho36gx3pz7k5t4rz5spvpnmnvzs277r64z2npdmfmg@4vcmw6x5zvwn>
-From: Jonathan Marek <jonathan@marek.ca>
-Message-ID: <f3b4bb12-d025-1cc9-6dbd-04913b951425@marek.ca>
-Date: Mon, 14 Oct 2024 08:58:08 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+	s=arc-20240116; t=1728911256; c=relaxed/simple;
+	bh=x3GiOz239MFSFd041iij7RDs+kgXlz88ADllNxdluUQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=qSjz8XugnpANXIHNmro9Ihnlf4f7gJZc9e494NwEUiZSNw4bGhw18rSS/d9gqTVJie4Jvwb66jMCaKI0V3zd/3wdDMJU4CZu1MfRKldoDpShu0wGZ7wqVeBb3/jQgbvuiwKbBsy6Io71FIzaoJvx1X4qaQGRtaH8hkal+3rc+nY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=rllpg817; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=YcW8KmYn; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=rllpg817; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=YcW8KmYn; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org [IPv6:2a07:de40:b281:104:10:150:64:97])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by smtp-out1.suse.de (Postfix) with ESMTPS id 64AA321D3F;
+	Mon, 14 Oct 2024 13:07:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1728911252; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=dnazj/SBO1aQxEa66dJTvC8ksemBo5idWIChnf144/w=;
+	b=rllpg817fNVE+ltyDyG88s4d+O2XIc1VwTNoWUkGH4L4fslTQHJRVyi5SM5cqJTgSYIrVv
+	dFMIj3iofkFJqJO8luXZ5rXknTyolijj5IATQMUv5ybEeAOcJ39awvkHN7dCjLR+kHvoeu
+	khcrcqLng9yplh5jrzl2FAJy5OI+PhI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1728911252;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=dnazj/SBO1aQxEa66dJTvC8ksemBo5idWIChnf144/w=;
+	b=YcW8KmYnf3YJX9Jw+b5s2D9gcgTEAr3Xyh1xAQ3yoBP9dFb4Knds7LWIvSVQaoKznYZfTr
+	4sbut5o5wqHfBjBw==
+Authentication-Results: smtp-out1.suse.de;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=rllpg817;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=YcW8KmYn
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1728911252; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=dnazj/SBO1aQxEa66dJTvC8ksemBo5idWIChnf144/w=;
+	b=rllpg817fNVE+ltyDyG88s4d+O2XIc1VwTNoWUkGH4L4fslTQHJRVyi5SM5cqJTgSYIrVv
+	dFMIj3iofkFJqJO8luXZ5rXknTyolijj5IATQMUv5ybEeAOcJ39awvkHN7dCjLR+kHvoeu
+	khcrcqLng9yplh5jrzl2FAJy5OI+PhI=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1728911252;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:  content-transfer-encoding:content-transfer-encoding;
+	bh=dnazj/SBO1aQxEa66dJTvC8ksemBo5idWIChnf144/w=;
+	b=YcW8KmYnf3YJX9Jw+b5s2D9gcgTEAr3Xyh1xAQ3yoBP9dFb4Knds7LWIvSVQaoKznYZfTr
+	4sbut5o5wqHfBjBw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 5B43213A42;
+	Mon, 14 Oct 2024 13:07:31 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id moq0E5MXDWcqTwAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Mon, 14 Oct 2024 13:07:31 +0000
+From: Stanimir Varbanov <svarbanov@suse.de>
+To: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-pci@vger.kernel.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Jim Quinlan <jim2101024@gmail.com>,
+	Nicolas Saenz Julienne <nsaenz@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	kw@linux.com,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Phil Elwell <phil@raspberrypi.com>,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Stanimir Varbanov <svarbanov@suse.de>
+Subject: [PATCH v3 00/11] Add PCIe support for bcm2712
+Date: Mon, 14 Oct 2024 16:06:59 +0300
+Message-ID: <20241014130710.413-1-svarbanov@suse.de>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <gpika7a5ho36gx3pz7k5t4rz5spvpnmnvzs277r64z2npdmfmg@4vcmw6x5zvwn>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 64AA321D3F
+X-Spam-Level: 
+X-Spamd-Result: default: False [-1.51 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	MX_GOOD(-0.01)[];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	FUZZY_BLOCKED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	FREEMAIL_CC(0.00)[linutronix.de,kernel.org,broadcom.com,gmail.com,google.com,linux.com,pengutronix.de,suse.com,raspberrypi.com,suse.de];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_EQ_ENVFROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:mid];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[dt];
+	DKIM_TRACE(0.00)[suse.de:+];
+	FREEMAIL_ENVRCPT(0.00)[gmail.com]
+X-Rspamd-Server: rspamd2.dmz-prg2.suse.org
+X-Rspamd-Action: no action
+X-Spam-Score: -1.51
+X-Spam-Flag: NO
 
-On 10/14/24 3:34 AM, Krzysztof Kozlowski wrote:
-> On Sun, Oct 13, 2024 at 01:15:27AM -0400, Jonathan Marek wrote:
->> Qualcomm x1e80100 firmware sets the ownership of the RTC alarm to ADSP.
->> Thus writing to RTC alarm registers and receiving alarm interrupts is not
->> possible.
->>
->> Add a no-alarm flag to support RTC on this platform.
->>
->> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
->> ---
->>   Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml | 5 +++++
->>   1 file changed, 5 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
->> index d274bb7a534b5..210f76a819e90 100644
->> --- a/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
->> +++ b/Documentation/devicetree/bindings/rtc/qcom-pm8xxx-rtc.yaml
->> @@ -40,6 +40,11 @@ properties:
->>       description:
->>         Indicates that the setting of RTC time is allowed by the host CPU.
->>   
->> +  no-alarm:
->> +    $ref: /schemas/types.yaml#/definitions/flag
->> +    description:
->> +      Indicates that RTC alarm is not owned by HLOS (Linux).
-> 
-> This is not even properly used/tested, because you disable the RTC
-> entirely in your DTS.
-> 
+Hello,
 
-What? The next patch in this series is enabling RTC on x1e using this flag
+Here is v3 the series to add support for PCIe on bcm2712 SoC
+used by RPi5. Previous v2 can be found at [1].
 
-> I expect here unified property for all Qualcomm devices for this case.
-> We already have "remotely-controlled" and other flavors. I don't want
-> each device to express the same with different name...
-> 
-> Also: missing vendor prefix.
-> 
+v2 -> v3 changes include:
+ - Added Reviewed-by/Acked-by tags.
+ - MIP MSI-X driver has been converted to MSI parent.
+ - Added a new patch for PHY PLL adjustment need to succesfully
+   enumerate PCIe endpoints on extension connector (tested with
+   Pineboards AI Bundle + NVME SSD adapter card).
+ - Re-introduced brcm,msi-offset DT private property for MIP
+   interrupt-controller (without it I'm anable to use the interrupts
+   of adapter cards on PCIe enxtension connector).
 
-I don't care what the property is named (as long as its a bool 
-property), if you have a name you prefer I will use it.
+For more info check patches.
 
-The existing 'allow-set-time' property (also related to HLOS permissions 
-to the RTC) is also specific to this driver doesn't have a vendor prefix.
+[1] https://patchwork.kernel.org/project/linux-pci/cover/20240910151845.17308-1-svarbanov@suse.de/
 
-> Best regards,
-> Krzysztof
-> 
+Stanimir Varbanov (11):
+  dt-bindings: interrupt-controller: Add bcm2712 MSI-X DT bindings
+  dt-bindings: PCI: brcmstb: Update bindings for PCIe on bcm2712
+  irqchip: mip: Add Broadcom bcm2712 MSI-X interrupt controller
+  PCI: brcmstb: Expand inbound size calculation helper
+  PCI: brcmstb: Enable external MSI-X if available
+  PCI: brcmstb: Avoid turn off of bridge reset
+  PCI: brcmstb: Add bcm2712 support
+  PCI: brcmstb: Reuse config structure
+  PCI: brcmstb: Adjust PHY PLL setup to use a 54MHz input refclk
+  arm64: dts: broadcom: bcm2712: Add PCIe DT nodes
+  arm64: dts: broadcom: bcm2712-rpi-5-b: Enable PCIe DT nodes
+
+ .../brcm,bcm2712-msix.yaml                    |  60 ++++
+ .../bindings/pci/brcm,stb-pcie.yaml           |   5 +-
+ .../boot/dts/broadcom/bcm2712-rpi-5-b.dts     |   8 +
+ arch/arm64/boot/dts/broadcom/bcm2712.dtsi     | 160 +++++++++
+ drivers/irqchip/Kconfig                       |  16 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-bcm2712-mip.c             | 308 ++++++++++++++++++
+ drivers/pci/controller/pcie-brcmstb.c         | 197 ++++++++---
+ 8 files changed, 707 insertions(+), 48 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/brcm,bcm2712-msix.yaml
+ create mode 100644 drivers/irqchip/irq-bcm2712-mip.c
+
+-- 
+2.43.0
+
 
