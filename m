@@ -1,105 +1,142 @@
-Return-Path: <devicetree+bounces-111094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D72B99CF9F
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:56:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF3EB99CC89
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 16:15:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1950E28C690
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:56:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82AE81F23957
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 14:15:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28FD51ABEDF;
-	Mon, 14 Oct 2024 14:53:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C1701AB526;
+	Mon, 14 Oct 2024 14:15:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="m3N/hZUO"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pZt3Ldo3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8475E4595B;
-	Mon, 14 Oct 2024 14:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB041AA7A5
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 14:15:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728917626; cv=none; b=JCvEErKVaCHpNZaT373E8gKlJeh7sK5FFAvFG7XVC6LkouX9F3OCJxEUwYDQpngIi4QgCugJHFA60lDoivNv6jGNGxR8htyNtNm2qu1W5zu7cMDzGHWTOws7RPO1XrLD5Dg16z+COSjgfv60OAy2rMeXiKhsQMMRbctwCsxqqzo=
+	t=1728915308; cv=none; b=EomYaBpT10/IqacoCilZ//h1PqEywbKlC/rwezRk29cQdrN+cHQ7zCciJDSWo3so2bNtYRVcVK9oYjqOxRxupnQHR2sPXfOV+UnH1hlYB3iyHrY/fOcHlSynb+GAW5R23znTEwNowGq9WZQjDAKwXBv7xPDOfgvnDMGvJSM27fM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728917626; c=relaxed/simple;
-	bh=8fVr6gzTsVSd9RJTj3DDOtYEVKuodxZash/T0KweiBw=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=k0GwR7fDY3WzyPqApTjoYqBFHiEeghLIkgt0ki0IIrueT+M0bMLE1E7etiYmwK1iS2coruqefFl8Fy1LUXe8EFvlYcfzRVj+DW+Zq5+QeMJSl7g/Po7PaLXPkMlsrJONexcj8TJqmUNTHKyseVl9ppogj0CDDlE17EUJPy94tio=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=m3N/hZUO; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:From:Sender:Reply-To:Cc:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=tEHKWSYZzrPud4eXjIaCbUyCf6H6XReStSM2EiV1xCk=; b=m3N/hZUOAZgKVqJ4STMDBZ0Rpp
-	oqj6R4bYf+U08CcHux+/PgpLknRmBcxJUe6bzXKupy5H7fy+8A/sSgql/Mu5Z6DMMiOlKJbEqXGdo
-	bAHEojeqXPirMCkTIG+qcxoIcY38uE91q8GeXEjGPeTCUmwZj56e6Qaswx+vBW9FLRcACYSK4s6iU
-	QieP3cbOOuzCnuKc8QxdZh5iZ0RfQRh+tlvEj8aqsf5PLqliwTffMv2aQ21fk34CTdnnejrRPn7LX
-	LHy6IjXo1cPfJWbFIvVkUTsFkTGgXH84Gteei0Rai23dbH4sy+gc2KrQqtUjWrGWknPff4dPD9SK5
-	yiom9F/Q==;
-From: Andreas Kemnade <andreas@kemnade.info>
-To: khilman@baylibre.com,
-	devicetree@vger.kernel.org,
-	Tony Lindgren <tony@atomide.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Andreas Kemnade <andreas@kemnade.info>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	linux-input@vger.kernel.org,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	linux-omap@vger.kernel.org
-Subject: [PATCH 2/2] ARM: dts: ti/omap: omap3-gta04: use proper touchscreen properties
-Date: Mon, 14 Oct 2024 16:12:40 +0200
-Message-Id: <20241014141240.92072-3-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20241014141240.92072-1-andreas@kemnade.info>
-References: <20241014141240.92072-1-andreas@kemnade.info>
+	s=arc-20240116; t=1728915308; c=relaxed/simple;
+	bh=K0bOWEC+HE1kkNV0lJmyf9eNjeLakCtO0ersbpJzOt8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=A+bUIraBPAwn5xTZtLU+XzHnmhLP2wXsI1gMg6mMwW+qryCb8vTHq9shOLF2iFHSEA1v9DBHyst4dcZ0GJsRV/nCbDB+GtG1BrG1xA+leJvaI4R+MsrgC4vAVKvw+kE2DtFmI04cJXR18evSLPYBILNO1/SevYhJhj+MDPyttE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pZt3Ldo3; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-37d4821e6b4so2680965f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 07:15:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1728915304; x=1729520104; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mW2Gu00UK++/xXWN5E2WTl/GlqCg0a99qal31mqPqL4=;
+        b=pZt3Ldo3Q5igYGdD5d6kOkQM4YgHnT/yMpn/afw4SfpNWRzgvmU+DbW5ijw2iIdpbd
+         p2R1yIn+M1pL5iu888FjcDT6bDQTFrmjf0mZzDHef9phcchrfrdWHcfNu+toKvlsOXFe
+         13JXSHfY8D6wV6uuxb4bhHPYwj1zSoLxqMJBu0GZYhIjnmyvRiQuqFQCpBlVuTn4k1Oq
+         nvaoSSeyWLuhBTR3j1IxvQ8NfhOrVSC6S+LQztfK+Gb5k4wh9i0N94WvRDwuZ76Zcvz3
+         ZXDJhLtBs8NvpPz/SK9LQMoo+faHOYAJIXV4k+P717yMEuRYJu52gA9B2qnMJ2bOJd69
+         n2Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728915304; x=1729520104;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mW2Gu00UK++/xXWN5E2WTl/GlqCg0a99qal31mqPqL4=;
+        b=OyqYW7gA0Milg5UEw7ZGw6lOskgI66b30868Mk61rKzt3EHCeqiVX4L+dDggkSBi47
+         DSzAIJC6NejyuZ3rVcrkw4S7PPrq6dmvdxFD7FcgMsUUlnXk8exQ8erjhG1IIrlMualB
+         +KcvHd/+MgYpVnZQuGMTYViUfsPU+ptpw6Q/94z/v/MzEhWDTrhnNpjurYC+QTvSG7zB
+         24eNtxUZeBlePP33XhR2kJQUWyLmkQHqwJl0Bxpb6JSAycc8NRTygzdrB0jfPQ0c0WEy
+         FAmwf8H0YJ9VYGSnLoSLur4BCc/AUynv0QxDjSWVQaemDUBsfUe5GvaR8KvF06bGh0h9
+         dwJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV445lNLDcC0LPya65sgDNW1T8zTYtAo++lNFi7FFc1S1Kv7GCr5nLIBWe1HK/yI1sdH5iwtC42/1hL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwJ7ducfi7e58iBgwm3X1SxcLpwBGnSd9qPQPWDWfVgDSS2KvaK
+	7LLvB9i5IDWowerR4h1eCZRWE0j4YpsNwtgGjkfGWIr5BhbuAtp1m2aCMjIlfIFPt/3lmd317kV
+	+
+X-Google-Smtp-Source: AGHT+IH842xmdL5bgstxtrmHRDZldATMix1NsKVGEEADafMqa0y/TCecTEVTp7Q6EJfpih1E+b+IEw==
+X-Received: by 2002:a5d:67d2:0:b0:37d:492c:4f54 with SMTP id ffacd0b85a97d-37d5518e02fmr8134392f8f.3.1728915304493;
+        Mon, 14 Oct 2024 07:15:04 -0700 (PDT)
+Received: from [127.0.1.1] ([82.76.168.176])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-430ccf45d49sm154135035e9.12.2024.10.14.07.15.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Oct 2024 07:15:04 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Date: Mon, 14 Oct 2024 17:14:51 +0300
+Subject: [PATCH] arm64: dts: qcom: x1e80100: Force host dr_mode for usb_2
+ controller
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20241014-x1e80100-usb2-dwc3-set-dr-mode-host-v1-1-3baab3ad17d8@linaro.org>
+X-B4-Tracking: v=1; b=H4sIAFonDWcC/x3NQQ6CQAxA0auQrm3SdiAxXsW4EFqkCxkzRSQh3
+ N0Jy7f5f4ew4hZwa3Yotnp4niv40sAwPeeXoWs1CEnLxC1ubFdiIvxGL6i/IWHYglrwndVwyrF
+ g6hKLskrXC9TSp9jo23m5P47jD07N0Bh1AAAA
+X-Change-ID: 20241014-x1e80100-usb2-dwc3-set-dr-mode-host-35312d1d25b2
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Johan Hovold <johan@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1025; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=K0bOWEC+HE1kkNV0lJmyf9eNjeLakCtO0ersbpJzOt8=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBnDSdhH2/cZLsXmymGJqy7UxGVRgwXHjFlNiBcS
+ P0vJuqejsuJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCZw0nYQAKCRAbX0TJAJUV
+ Vt0+D/90zb+NBqLdICEDlaiQgWoO6WnVto3rxw2B497MTfOCFvx4cnqbaoEGTM9o3NC85DvL1ht
+ 0TG/+CA0kqqkUdFggDHf5RuF+xc87v0sVQrkL2kqV3iFLlXgpcNXWirQHeWyAMNj66EVMh0KuUt
+ 1xCU7Rk2OyamOSAz+58yRhqBs5zEX0gksWOFL4+9bf2EJeJuQu2E2NdIYxBGFtUBvL45PuZYEf6
+ E0d1Bocj0eHvKsaw93fVhQ+4LAPvddYhYb1Ilcf5Lz0Z6hHtBk5tBua8pBlPkYabhT61Lu5Ljx7
+ Tp1B7RTq7kzgMRl8NXTzZ5P0aBPHhqaG2tUdULxkrG5y0M91/v/0FWkG0hocnm7Qz0JntSWSaDO
+ yElIkHDnD5lUUjXcPcAFbbRrYPW7fXv3PoOjCTWAVwSIs2a/x8MhAkZjGhsjqjJS/VSPlYzzvsq
+ SZLAEL19dkuaRoHSB4jeFTwshdMp3Gmd6uAvrcbjKhpTJ18LeCbawVbVjpeWfTzKZ5Wajoqwe0A
+ qQw8sa3iXWujHWHVMUYvfrRFU0uwGVAS/OSt8FAqJJTjzpKEfSt25mLSj4PL6vtW/7EqdNNZZXm
+ jZEAolQB+IoD/dxNm11eUsbkuu0mUiMtr8sM9ORb6k/GLZJAdBVL4IbicJ3M2H/KMbWkXRmGndl
+ 091ciVll+DrEpQQ==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Specify the dimensions of the touchscreen propertly so that
-no userspace configuration is needed for it.
-Tested with x11 and weston on Debian bookworm.
+The usb_2 controller has only a USB 2.0 PHY connected to it. There is no
+USB 3.x PHY fot it. So since dual-role is not an option, explicitly set
+the dr_mode to host to match the hardware.
 
-What is in now is some debris from earlier tries to handle
-scaling in kernel:
-
-https://lore.kernel.org/linux-input/cover.1482936802.git.hns@goldelico.com/
-
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-index 3661340009e7a..6e25db29a4bb9 100644
---- a/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/ti/omap/omap3-gta04.dtsi
-@@ -591,8 +591,10 @@ tsc2007@48 {
- 		interrupts = <0 IRQ_TYPE_EDGE_FALLING>; /* GPIO_160 */
- 		gpios = <&gpio6 0 GPIO_ACTIVE_LOW>;	/* GPIO_160 */
- 		ti,x-plate-ohms = <600>;
--		touchscreen-size-x = <480>;
--		touchscreen-size-y = <640>;
-+		touchscreen-size-x = <0xf00>;
-+		touchscreen-size-y = <0xf00>;
-+		touchscreen-min-x = <0x100>;
-+		touchscreen-min-y = <0x100>;
- 		touchscreen-max-pressure = <1000>;
- 		touchscreen-fuzz-x = <3>;
- 		touchscreen-fuzz-y = <8>;
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 0e6802c1d2d8375987c614ec69c440e2f38d25c6..4da13c8472392d842442193dc740027fa011ee1f 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -4143,6 +4143,7 @@ usb_2_dwc3: usb@a200000 {
+ 				iommus = <&apps_smmu 0x14e0 0x0>;
+ 				phys = <&usb_2_hsphy>;
+ 				phy-names = "usb2-phy";
++				dr_mode = "host";
+ 				maximum-speed = "high-speed";
+ 
+ 				ports {
+
+---
+base-commit: d61a00525464bfc5fe92c6ad713350988e492b88
+change-id: 20241014-x1e80100-usb2-dwc3-set-dr-mode-host-35312d1d25b2
+
+Best regards,
 -- 
-2.39.2
+Abel Vesa <abel.vesa@linaro.org>
 
 
