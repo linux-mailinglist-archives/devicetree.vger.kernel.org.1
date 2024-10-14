@@ -1,55 +1,48 @@
-Return-Path: <devicetree+bounces-110991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2F6899C75E
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:45:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C93E99C761
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 12:45:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 303D71C221DE
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:45:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0C28DB243EA
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 10:45:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F26A1553BC;
-	Mon, 14 Oct 2024 10:45:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFA7195811;
+	Mon, 14 Oct 2024 10:45:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="B2L/wPeN"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pIEK9U3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5257E54670;
-	Mon, 14 Oct 2024 10:45:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C9BD54670;
+	Mon, 14 Oct 2024 10:45:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728902730; cv=none; b=UpCrxWjntxtTT1O/omCn+dje80pV7c2EatsJokEx6XqPWKt1xjvOqVs6a8FTbI8TgkRvEtITD7+Gy4RIXIZTTgCSI0MQNVxl7axQDSIQdh5ZBMLozXCpxFVenqZYfHlLarM7+FMbl0OznHmof3EYFL2fFVqsDtpPZdQI5eNE+bs=
+	t=1728902737; cv=none; b=tiNVLKcGznBjLs9MF+Qc4fvB7/qwM/j12/nGqpDuUFlYfgXP9wuDOMwmm2cU/WDehNV0j9v6Od4bTSkCQ5c1E/S5S2Kkovutt4GHNLwY+TCslfHVceX4L9GdVpcxPF1agsN5XEO6GdT1XPuQFk5eoKerENCpQNqW7xFHli1X+8Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728902730; c=relaxed/simple;
-	bh=LzevbGBn889H796YREVQWJs6MBQ0CW+YuvI8kJMU7wY=;
+	s=arc-20240116; t=1728902737; c=relaxed/simple;
+	bh=ND07tjjWpjaxxUHhF6bHURYHzf+68TVHeOsi+PLFOE4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pE7W8cCH5YaqIejqYOOZ1YG3+dsdJwmUK1F4tCF+x33nF9Mhw6PpSKN0p9rKBN1clktBVWLdObLbaekcNrj2hRX5CKhQ7KF+yDGdXtwntOAuxtrqs9zxvBtARA+WBAWdnYPz7dLyoGjnO7Y7/81n5Eh6rTOQ6l6UQFDTqaR8Chs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=B2L/wPeN; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1728902724;
-	bh=LzevbGBn889H796YREVQWJs6MBQ0CW+YuvI8kJMU7wY=;
+	 In-Reply-To:Content-Type; b=pmnOHWyvoyuPsSeax1/79uK++JYwEEYfDfS36I8Ak2x0u71geLr/XcFyr0pdCSC9jGb3rGPXi4R1nIz5IQBQSmL1AhCoMUm80PtANMy9PhDD21xcQh7DHbjCWiWigbJocSec1zwhLmPQtJ8B/MO6P4v8gqwDLNi3fdlcHJpB5Zs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pIEK9U3S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9572AC4CEC3;
+	Mon, 14 Oct 2024 10:45:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728902736;
+	bh=ND07tjjWpjaxxUHhF6bHURYHzf+68TVHeOsi+PLFOE4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B2L/wPeN5bTBjFe/9yQusjatVCQwxsJ/NlzvSDYpBBZtgNm+b3hvitqsy6KH4PDpB
-	 kpSoxX9IeEPU3qyV8cjMmjbHmr//8zWFan5mVq8xfaCGguCWDN+H+1PigNmBpvmQv5
-	 W8cIEpDoSs638HPMjRvkqI0cqXSWQC+Sa1t33SWnQ25v3/keer4gR5Hu25qx+2FtS4
-	 LYU05rDC+Cj2zhYpG80fG5+pLH6Iez4cijsFDmYrmQvfaq2n5u61XyWdheQFPQIExc
-	 i2jZCbK8HqVYJUptB/ZFXx/vbCAUrseJTbiXE9ir1escoTZxPuhciqxXn15J6K/o/n
-	 PB/Qt0Om3EUwQ==
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 0190917E1395;
-	Mon, 14 Oct 2024 12:45:23 +0200 (CEST)
-Message-ID: <4c4c8e5f-80a7-46f9-a485-6cf0b5aa7e83@collabora.com>
-Date: Mon, 14 Oct 2024 12:45:23 +0200
+	b=pIEK9U3SWFUlbzfh5RgvtEsYZG6qhXFM7twQwRfGifCGPWn2n8m+OO15tY3nRu171
+	 C8fXyKn3hdzzD7LjI8Wg/ru+KxG/iP1hQQ/32f65bj5CpSWxWg2/T5QDcsycbfNFrg
+	 xvBTZpqmkZ+crLTje2LRy/PALBLMjwmtf8HqhjNCilBuLgyf98sGXvBFOEy0Yf0gbt
+	 BCbHiT7uWLr4h+YVsbMDkk6qeOXtFlzzhYbWlCFjrR8xkUA81QTVwzqyFE/D/WnnmT
+	 9Cwf3KhwcgaJ9qeK8Byb+rFJ3bewdrAv46bL4/+3Q6FY8TgTK/7zbhNGwybMdryIOE
+	 N5l42DFx9eTiA==
+Message-ID: <354b544e-3799-4421-aeb3-8401dffb34d6@kernel.org>
+Date: Mon, 14 Oct 2024 12:45:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,50 +50,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: mt8390-genio-700-evk: update
- regulator names
-To: Macpaul Lin <macpaul.lin@mediatek.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- Alexandre Mergnat <amergnat@baylibre.com>
-Cc: Bear Wang <bear.wang@mediatek.com>, Pablo Sun <pablo.sun@mediatek.com>,
- Macpaul Lin <macpaul@gmail.com>, Sen Chu <sen.chu@mediatek.com>,
- Chris-qj chen <chris-qj.chen@mediatek.com>,
- MediaTek Chromebook Upstream
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- Chen-Yu Tsai <wenst@chromium.org>
-References: <20241007090244.1731-1-macpaul.lin@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Subject: Re: [PATCH] arm64: dts: qcom: qcs615: Adds SPMI bus, PMIC and
+ peripherals
+To: Tingguo Cheng <quic_tingguoc@quicinc.com>, quic_fenglinw@quicinc.com,
+ quic_tingweiz@quicinc.com, kernel@quicinc.com,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241014-adds-spmi-pmic-peripherals-for-qcs615-v1-1-8a3c67d894d8@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <20241007090244.1731-1-macpaul.lin@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 fv0=
+In-Reply-To: <20241014-adds-spmi-pmic-peripherals-for-qcs615-v1-1-8a3c67d894d8@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Il 07/10/24 11:02, Macpaul Lin ha scritto:
-> Update regulator names to match schematics, replacing generic terms.
-> 1. Add system wide 'reg_vsys' node for 4.2V power rail.
-> 2. Add 'reg_vsys' node as 'vin-supply' for the following nodes
->   - common_fixed_5v, edp_panel_fixed_3v3, gpio_fixed_3v3, sdio_fixed_3v3,
->     touch0_fixed_3v3, usb_hub_fixed_3v3, usb_p0_vbus, and usb_p1_vbus.
-> 3. Update regulator names according to the stable output name on
->     schematics.
->   - vdd_5v, vedp_3v3, ext_3v3, vio18_conn, wifi_3v3, vio33_tp1, vhub_3v3,
->     vbus_p0, vbus_p1.
->   - vcn18_pmu, vcn33_2_pmu, dvdd_proc_l, dvdd_core, vpa_pmu, dvdd_adsp,
->     va12_abb2_pmu, vsim1_pmu, vufs18_pmu.
-> 4. Remove usb_hub_reset_1v8. Use 'hub' node to probe USB HUB
->     in subsequent patches.
-> 
-> Suggested-by: Chen-Yu Tsai <wenst@chromium.org>
-> Signed-off-by: Macpaul Lin <macpaul.lin@mediatek.com>
+On 14/10/2024 12:08, Tingguo Cheng wrote:
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> index 4ef969a6af150933c72a7a83374a5a2657eebc1b..b79c22730920e3097425e1d1933e744205b3c18e 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> @@ -6,6 +6,7 @@
+>  
+>  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>  #include "qcs615.dtsi"
+> +#include "qcs615-pmic.dtsi"
+>  / {
+>  	model = "Qualcomm Technologies, Inc. QCS615 Ride";
+>  	compatible = "qcom,qcs615-ride", "qcom,qcs615";
+> diff --git a/arch/arm64/boot/dts/qcom/qcs615.dtsi b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> index ac4c4c751da1fbb28865877555ba317677bc6bd2..9793161db515a2ef1df6465c8d0a04a11e71ffc1 100644
+> --- a/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/qcs615.dtsi
+> @@ -517,6 +517,29 @@ sram@c3f0000 {
+>  			reg = <0x0 0x0c3f0000 0x0 0x400>;
+>  		};
+>  
+> +		spmi_bus: qcom,spmi@c440000 {
 
-Please disregard the first "applied" email, as that was on the wrong kernel tree.
+Please do not send your downstream code... Don't just copy and paste
+that stuff.
 
-I confirm the series was applied to v6.12-next/dts64 and that this is the
-right tree and right branch.
+Rewrite it from scratch or use the upstream as template. I find it waste
+of time to comment or fix the same issue over and over again. The
+problem is the way you work - copying and sending downstream at us. This
+must stop.
 
-Cheers,
-Angelo
+Best regards,
+Krzysztof
+
 
