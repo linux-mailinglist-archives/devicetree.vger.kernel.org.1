@@ -1,119 +1,157 @@
-Return-Path: <devicetree+bounces-111027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FC0699C93D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:45:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F58D99C97F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:54:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6B5D1F21C7A
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:45:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B193D1C21AFE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 11:54:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BFA519CC0D;
-	Mon, 14 Oct 2024 11:45:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 385E319E98B;
+	Mon, 14 Oct 2024 11:54:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FV5EPMmH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D35A5158A19;
-	Mon, 14 Oct 2024 11:45:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8AF1684B4;
+	Mon, 14 Oct 2024 11:54:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728906343; cv=none; b=p117JZPsWFq7iC9MvdiKgys8xz97AHKCh6w8gLcXrv2pB0GzCUtgKYED8MGbrBjL9/4O69TCue0Ahoqm6/TjChEZDx3P4SQYEMrluplWaYhYDLsjTfk/QGGs1VWYKHEo6HQF1nvDNK7wJ/dNDwlIyPh+xvyIoC2UcJxEkbqDG3U=
+	t=1728906895; cv=none; b=PrqwP+JS9YMU9JmQa4jz7dY7M/Ftfux4Xj0gEPLuH3qIiXnbAf1e17THzr34+wLuIiteEUgCyXmJhwPAbVCBVOF4MUXjjwAQ6tTfQpbjeiIq4D4zYPkl9g0vcEn67bzdYUY5/hq4W5xu5/3X9E1JdJDYqK9p2W5MIkwbYWzo0ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728906343; c=relaxed/simple;
-	bh=kvBg45epIZBluaGPE8QC6UH9A/pJOQir32Ks9euA3nA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H0h6bnqdtnLf3QScVFGR9Hx4mZOWxrD88krHXPpqBQcUsPNLIrXyZGKOL7UGp2OJyZSPkIYYkCSgLZeZJWFO5HmH+A3RFxN8ACF19iwS7c6xVSj1jtgNW0NycACt4kVRut8fX6G9osdQQSUtRuoKGZ6EN5C0KCtU1cf4uq6XFig=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-CSE-ConnectionGUID: hLIAoa5kTRCWVwVH7PmeNw==
-X-CSE-MsgGUID: eXlziHwHRxS9kGtWYELmDg==
-X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="39371261"
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="39371261"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 04:45:42 -0700
-X-CSE-ConnectionGUID: I6LRMQnuTia7F1G6zsgNJQ==
-X-CSE-MsgGUID: y1/A7EKwS36Pokn0s+H9Rw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
-   d="scan'208";a="82326571"
-Received: from smile.fi.intel.com ([10.237.72.154])
-  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 04:45:36 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98)
-	(envelope-from <andy@kernel.org>)
-	id 1t0JW1-00000002sv1-1GM4;
-	Mon, 14 Oct 2024 14:45:33 +0300
-Date: Mon, 14 Oct 2024 14:45:33 +0300
-From: Andy Shevchenko <andy@kernel.org>
-To: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
-	Olivier Moysan <olivier.moysan@foss.st.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Marius Cristea <marius.cristea@microchip.com>,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>,
-	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
-	Alisa-Dariana Roman <alisadariana@gmail.com>,
-	Ivan Mikhaylov <fr0st61te@gmail.com>,
-	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
-	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v3 4/6] iio: adc: adi-axi-adc: set data format
-Message-ID: <Zw0EXXDJPjWtLCIr@smile.fi.intel.com>
-References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
- <20241014094154.9439-4-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1728906895; c=relaxed/simple;
+	bh=+NUoB2KWnhXVxPJy2rBq9yU3lqucDq8xA8mF45ThAu0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BT5ce7nlnHnGONlxo3yBLs1pDvCbLJIOImNCdHmfdB/cKCkf1zhtDKPohJioqKcaevuIx9NX570bLBUpW5DBkaSf6qz9ZFlDLWHoHuwKfsTc8E6zJn9CjOk24u3yU11SjBVjVWzIlLESgr3IZyJw9V1eeVdCpil7BcPWc712TOQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FV5EPMmH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39FCCC4CEC3;
+	Mon, 14 Oct 2024 11:54:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1728906894;
+	bh=+NUoB2KWnhXVxPJy2rBq9yU3lqucDq8xA8mF45ThAu0=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=FV5EPMmHWLILjQG7AjnIK/KE7REyPg1aPSj4yBfGI130RJRgoLpit3fUqfpLCdft2
+	 DevorJj2/Jte8qGD6523sskV0f/ILtOKzPmXrjPQkKhfeok7MD3e92tM1C7A2nJk9O
+	 kXoGAQ55beroPbZPGTkTCujf8GybU2r+VDUQsaeP0MNy2SCz3RKdxC0NdrIVjiPnZb
+	 sNyoc6bLYFihXol/rMtSB7dS4ORuDTS/PD7KT5lZlXjY0b01FaOat+jNwBykaCo0Bi
+	 ehKClRHVlmPNgWGkFonijYRjMgHpH+awob4I0SPoSYveAg/CS2PtALeTRCYSpnfxvH
+	 llbYYTgbyJhcg==
+Message-ID: <e954a3b7-296f-4dbf-8325-b5993d11da92@kernel.org>
+Date: Mon, 14 Oct 2024 13:54:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241014094154.9439-4-antoniu.miclaus@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 00/28] Qualcomm iris video decoder driver
+To: Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Abhinav Kumar <quic_abhinavk@quicinc.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Hans Verkuil <hverkuil@xs4all.nl>,
+ Sebastian Fricke <sebastian.fricke@collabora.com>,
+ linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vedang Nagar <quic_vnagar@quicinc.com>
+References: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJgPO8PBQkUX63hAAoJEBuTQ307
+ QWKbBn8P+QFxwl7pDsAKR1InemMAmuykCHl+XgC0LDqrsWhAH5TYeTVXGSyDsuZjHvj+FRP+
+ gZaEIYSw2Yf0e91U9HXo3RYhEwSmxUQ4Fjhc9qAwGKVPQf6YuQ5yy6pzI8brcKmHHOGrB3tP
+ /MODPt81M1zpograAC2WTDzkICfHKj8LpXp45PylD99J9q0Y+gb04CG5/wXs+1hJy/dz0tYy
+ iua4nCuSRbxnSHKBS5vvjosWWjWQXsRKd+zzXp6kfRHHpzJkhRwF6ArXi4XnQ+REnoTfM5Fk
+ VmVmSQ3yFKKePEzoIriT1b2sXO0g5QXOAvFqB65LZjXG9jGJoVG6ZJrUV1MVK8vamKoVbUEe
+ 0NlLl/tX96HLowHHoKhxEsbFzGzKiFLh7hyboTpy2whdonkDxpnv/H8wE9M3VW/fPgnL2nPe
+ xaBLqyHxy9hA9JrZvxg3IQ61x7rtBWBUQPmEaK0azW+l3ysiNpBhISkZrsW3ZUdknWu87nh6
+ eTB7mR7xBcVxnomxWwJI4B0wuMwCPdgbV6YDUKCuSgRMUEiVry10xd9KLypR9Vfyn1AhROrq
+ AubRPVeJBf9zR5UW1trJNfwVt3XmbHX50HCcHdEdCKiT9O+FiEcahIaWh9lihvO0ci0TtVGZ
+ MCEtaCE80Q3Ma9RdHYB3uVF930jwquplFLNF+IBCn5JRzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmA872oFCRRflLYACgkQG5NDfTtBYpvScw/9GrqBrVLuJoJ52qBBKUBDo4E+5fU1bjt0
+ Gv0nh/hNJuecuRY6aemU6HOPNc2t8QHMSvwbSF+Vp9ZkOvrM36yUOufctoqON+wXrliEY0J4
+ ksR89ZILRRAold9Mh0YDqEJc1HmuxYLJ7lnbLYH1oui8bLbMBM8S2Uo9RKqV2GROLi44enVt
+ vdrDvo+CxKj2K+d4cleCNiz5qbTxPUW/cgkwG0lJc4I4sso7l4XMDKn95c7JtNsuzqKvhEVS
+ oic5by3fbUnuI0cemeizF4QdtX2uQxrP7RwHFBd+YUia7zCcz0//rv6FZmAxWZGy5arNl6Vm
+ lQqNo7/Poh8WWfRS+xegBxc6hBXahpyUKphAKYkah+m+I0QToCfnGKnPqyYIMDEHCS/RfqA5
+ t8F+O56+oyLBAeWX7XcmyM6TGeVfb+OZVMJnZzK0s2VYAuI0Rl87FBFYgULdgqKV7R7WHzwD
+ uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
+ 7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
+ 5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
+In-Reply-To: <20241014-qcom-video-iris-v4-v4-0-c5eaa4e9ab9e@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Oct 14, 2024 at 12:40:38PM +0300, Antoniu Miclaus wrote:
-> Add support for selecting the data format within the AXI ADC ip.
+On 14/10/2024 11:07, Dikshita Agarwal wrote:
+> Introduce support for Qualcomm new video acceleration hardware i.e.
+> iris, used for video stream decoding.
+> 
+> Iris is a multi pipe based hardware that offloads video stream decoding
+> from the application processor (AP). It supports H.264 decoding.
+> The AP communicates with hardware through a well defined protocol,
+> called as host firmware interface (HFI), which provides fine-grained
+> and asynchronous control over individual hardware features.
+> 
+> This driver implements upgraded HFI gen2 to communicate with firmware.
+> It supports SM8550 which is based out of HFI gen 2. It also supports
+> SM8250 which is based out of HFI gen1.
+> 
+> This driver comes with below capabilities:
+> - V4L2 complaint video driver with M2M and STREAMING capability.
+> - Supports H264 decoder.
+> 
+> This driver comes with below features:
+> - Centralized resource management.
+> - Centralized management of core and instance states.
+> - Defines platform specific capabilities and features. As a results, it
+>   provides a single point of control to enable/disable a given feature
+>   depending on specific platform capabilities.
+> - Handles various video recommended sequences, like DRC, Drain, Seek,
+>   EOS.
+> - Implements asynchronous communication with hardware to achieve better
+>   experience in low latency usecases.
+> - Output and capture planes are controlled independently. Thereby
+>   providing a way to reconfigure individual plane.
+> - Native hardware support of LAST flag which is mandatory to align with
+>   port reconfiguration and DRAIN sequence as per V4L guidelines.
+> 
+> Changes since v3:
 
-IP
+You send the patches with b4, so why do you strip the link to previous
+series? It makes out life just more difficult. Include the link, how the
+b4 instructs you.
 
-...
-
->  #define ADI_AXI_ADC_REG_CTRL			0x0044
->  #define    ADI_AXI_ADC_CTRL_DDR_EDGESEL_MASK	BIT(1)
->  
-> +#define ADI_AXI_ADC_REG_CNTRL_3			0x004c
-> +#define ADI_AXI_ADC_CNTRL_3_CUSTOM_CONTROL_MSK	GENMASK(7, 0)
-
-And here is no (additional) indentation at all and no proper prefix...
-Can you be consistent (to some extent) with the existing code? Or
-update it to be consistent all over the places.
-
->  #define ADI_AXI_ADC_REG_DRP_STATUS		0x0074
->  #define   ADI_AXI_ADC_DRP_LOCKED		BIT(17)
-
-...
-
-> +static int axi_adc_data_size_set(struct iio_backend *back,
-> +				 ssize_t size)
-
-This is perfectly one line. We wrap at 80. I believe your text editor
-configuration has to be adjusted for this project.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Best regards,
+Krzysztof
 
 
