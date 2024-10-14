@@ -1,233 +1,303 @@
-Return-Path: <devicetree+bounces-110783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-110789-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE0999BDA1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 04:08:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA41F99BDCE
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 04:37:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EC8D1F22896
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 02:08:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FDAE281251
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 02:37:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8C6E2AE74;
-	Mon, 14 Oct 2024 02:08:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 275F23B796;
+	Mon, 14 Oct 2024 02:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="juVDiBpP"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="J0UvWuXo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2104.outbound.protection.outlook.com [40.107.215.104])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E15F43AA9;
-	Mon, 14 Oct 2024 02:08:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.104
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728871691; cv=fail; b=hQ3+DDSNf3DoV/2yeoIyMutnJpwMrTGEcuRKlS5hnlt/gDPXGFYDncpUgeNto92n2HeBDBXmghOkt/N2dpt9QzTfRFpDLDEparsOohTpcrZ1aE4IbaG/YATxDO3qAt/ykIGxvKLdMsE9Np+dMjoPZpsmp3hlCUa4NnFK752GT0U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728871691; c=relaxed/simple;
-	bh=ANO2HQboqVicZAI6eCetxefyRF36/CZrgK2mg6IgeUg=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=UL1Wn6lDmEUH7kSp2RieIfgXxbs7U6yUWr3dgfKa42IUz/JbpHRcikWd+kOoMLu6vHcRDZJrfVrOuqVWX/B3c/1Z+PPBqJ7ZA93iJ4UrVCQ4238XNsJa/icYRXiJG2w1hja8gBKpL7CWmX4xbEhGcPvfxN2YY77fqzwEph1lmKA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=juVDiBpP; arc=fail smtp.client-ip=40.107.215.104
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pPbiRgDDQcSDtc6tOeYkxeXIo03DEyZj2C/aYadMwz+Pxyv+hS8n3lf/aVuAx5zyaxugF4jETsy82IWLb/E+623ms6ITVQV0FKD7KteAZljaH5kq1JRbgqqtQC8JO6179wJSXxaqXKAY3DuJm1BgduUVUtWhT3LXaX0fYnnW3PjWFXNecT4/g+imHnVm1uY+ZocteZjg7Dfn/dPB1o05+yToNr62mkgmFmrZSQdOjKbB/E5I5ZzxvrmF6hoVMycIfZh+orsq/JhLQlA/fKwV/v9xud5JanW6vCmcWFHT1dYaRNRWgStQB6jzqgDvtLo8Ycwyzkz2+ZznsJawSAiGmA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ANO2HQboqVicZAI6eCetxefyRF36/CZrgK2mg6IgeUg=;
- b=k6vHLXL30AsGAgt6lcno5CdC3T6WOSsm7G+KNcqMzWH1jUkxfqv7GQZtjHLsg0IeYNz7LUBkbTFXrGdQY4bLpFm4VodS3NRJeCcp+xhCqa5O0ioTmOftMIX3IkueQea9eevXITQhObXs5NOg8nEghtckCR6BFBTRGOAmOAwOT4dHPMleNyNW2vTlkMXpxBYs4CtE/PQOFq53fQhRhkbtpHVBaEpJmiED74YhKYt8Fqtl6pu2VMsV3xA7HpXcAef1h0I48NpjizDj5CUYWdXOw46J3pJMEJg1tOQ0C/PfH4y9/xPF5wiIFooDcMswmiV6l5675e0Bmnf0DmLBL7Qjmg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ANO2HQboqVicZAI6eCetxefyRF36/CZrgK2mg6IgeUg=;
- b=juVDiBpPSn0lhuWU9DBFUyDQGDI+HrN49JXozJsLDuu58mZPAj1t57W6ydBfwYUqbLVf7ZXE5/I9A/Jo0sFEwFyNiMrNlWkt8CmYL1AwPom9RmofhO2iflJafEumaIb3CdQVcgsBaudgRBIiO6YsdO0aS+IZcCR32lM65yi3ts2uXj50y3VK176+F5KyPHzn52Os26u41BcCK+yWBkRKIlEqkCggL9h2XGs9C7mHATxDbJJ5qD1CogdOG1kMo/dk6cOOVY1r5N8a9Ncsq01KKTuIoS3Uea0RBARmmtA0z0SVTqLFNm5XWavaq/gz3YQtcT1sgDYi6/5M5SZ1bN/Aug==
-Received: from TYZPR06MB5203.apcprd06.prod.outlook.com (2603:1096:400:1f9::9)
- by TYZPR06MB6356.apcprd06.prod.outlook.com (2603:1096:400:41b::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.13; Mon, 14 Oct
- 2024 02:08:07 +0000
-Received: from TYZPR06MB5203.apcprd06.prod.outlook.com
- ([fe80::b7e4:5d25:213:ef9b]) by TYZPR06MB5203.apcprd06.prod.outlook.com
- ([fe80::b7e4:5d25:213:ef9b%3]) with mapi id 15.20.8069.009; Mon, 14 Oct 2024
- 02:08:07 +0000
-From: Chin-Ting Kuo <chin-ting_kuo@aspeedtech.com>
-To: Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>
-CC: "patrick@stwcx.xyz" <patrick@stwcx.xyz>, "wim@linux-watchdog.org"
-	<wim@linux-watchdog.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
-	<joel@jms.id.au>, "andrew@codeconstruct.com.au"
-	<andrew@codeconstruct.com.au>, "linux-watchdog@vger.kernel.org"
-	<linux-watchdog@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "linux-aspeed@lists.ozlabs.org"
-	<linux-aspeed@lists.ozlabs.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "Peter.Yin@quantatw.com"
-	<Peter.Yin@quantatw.com>, "Patrick_NC_Lin@wiwynn.com"
-	<Patrick_NC_Lin@wiwynn.com>, "Bonnie_Lo@wiwynn.com" <Bonnie_Lo@wiwynn.com>,
-	"DELPHINE_CHIU@wiwynn.com" <DELPHINE_CHIU@wiwynn.com>, BMC-SW
-	<BMC-SW@aspeedtech.com>
-Subject: RE: [PATCH 1/4] dt-bindings: watchdog: aspeed: Add property for WDT
- SW reset
-Thread-Topic: [PATCH 1/4] dt-bindings: watchdog: aspeed: Add property for WDT
- SW reset
-Thread-Index: AQHbGILwQgrDNDHU9U+K+QITBzViybJ7lGGAgAAgJwCACdQ6EA==
-Date: Mon, 14 Oct 2024 02:08:07 +0000
-Message-ID:
- <TYZPR06MB520352D80EF554E86934230AB2442@TYZPR06MB5203.apcprd06.prod.outlook.com>
-References: <20241007063408.2360874-1-chin-ting_kuo@aspeedtech.com>
- <20241007063408.2360874-2-chin-ting_kuo@aspeedtech.com>
- <20241007175949.GA1738291-robh@kernel.org>
- <3b7e7305-5711-4b4e-abdd-a9a3e11ca33b@roeck-us.net>
-In-Reply-To: <3b7e7305-5711-4b4e-abdd-a9a3e11ca33b@roeck-us.net>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: TYZPR06MB5203:EE_|TYZPR06MB6356:EE_
-x-ms-office365-filtering-correlation-id: e9223aa5-c3df-4967-49dd-08dcebf50b7f
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?UU16QW5hRklpVVJYTXhTVWpZRGg1WHh3UlZjaUJSWjFsWElyMkwxOVdzT2Iv?=
- =?utf-8?B?QWZMQkJUUXNId3VUQ216am1tZXVqWmNOM3p1ZDUzbnN2NUtNSHNxOU85Q0Jq?=
- =?utf-8?B?VzlBeE9HMmdkN3VzbzllK25VNkltRHJPSE41eUxNUFdUVXZvVzFoQzBXWHdS?=
- =?utf-8?B?WVhrcnBFS2l2MHZtRzZRQnZSRDdoUG1maTRDZWx3dUFmdEhzbkdybTFBZGR0?=
- =?utf-8?B?cFlGSXFtcVpiWCt3WEFsY04ra3Awbzk2TFY5ODB3akU5OTNkbHhTZGtmUWp6?=
- =?utf-8?B?UjJIYUs2cHZVUnZSdUxISG5qQ1ZjZDl4WUUxNmczQ1g2bTR3Z1ZlakFPMi9H?=
- =?utf-8?B?ZWNjcXhQeEtUQUViZHo2bklqRHpadWxzVmFQcUduVUdHNjlYbHpJVi9ZL2ZC?=
- =?utf-8?B?dUltWkVHK2RvbzdQNmsrODRwZW5GNU1zQ2Y1M041aU8xZEZHVzRSc3ZKS1pN?=
- =?utf-8?B?R3d4L09nZ0JmZk92N0U1R3VTVWo4ODEyKzk3bTF1eUN5eG12ZkdVL3l5L0cv?=
- =?utf-8?B?UXdIZDJ4WVJhbzlTdUZGVXZROUh2eWl3MVplYnJNQ1pXN2dmc1FIRVJXWXpz?=
- =?utf-8?B?Ym1Bcmx6N21nOFg3bWVmRGkrd0dtVzltbUY5dTlEQWE1VTJseVA2MllBNHhk?=
- =?utf-8?B?bFJzOEVpSGMvV1ZKYXR1c29GaWlGc216WWxlcjJ5VHNCeTd2QitkTy9LWVJT?=
- =?utf-8?B?Zk0ybjJ3K1BwdndiODdOWXBNeWNUS0xoNDJSckJCZ3FCWTNsY3hiVWVKallK?=
- =?utf-8?B?dzFVQWZMaTlSVGt0cFVBZGlCSDM3YVl1bW5wUlNhaG9Pc3JEVkdOd050emJ0?=
- =?utf-8?B?L29mbGNLaFZEM0IxUGVFNVJzdkZSRTZnZnVCaEdBU3lIN0xwN1N2RHZwRHNW?=
- =?utf-8?B?ZTlUa0FrOTdubDJxOTRQaXhVKzNiRkp1U0RKM2Y3MkRkNVBzQm9LOWZTbzN6?=
- =?utf-8?B?VG9Ua2hhQjNRNnNTVThlaWIwYXBwNjZHU2dXaHZqdXNGd0FuZHdNNzk4Q2JO?=
- =?utf-8?B?cWpJeW9hMS82NWJ3cmhIejFyZHpDOThOQ3JxblBBTHZsQzJNem5POXpVT1Z4?=
- =?utf-8?B?NG92bnNsdFZDSTZmSE1TaXJBYUtzanNNZnRteldDNjFjTk85WFFUeE1WenJ4?=
- =?utf-8?B?SEFJVjJpM3hoVkowUzdPS1JiT0FxOFNlUVd1WXpZWGs1UDVTQXJEeHM3WWlQ?=
- =?utf-8?B?K0lvSmd0aU9GL2VIK0hFMXRZQnplcG5CWDRtZ0hSQ2lzekhIRldEU2hsTUxt?=
- =?utf-8?B?UmNtRUV5VWx2MVJVZlA5MjZxK3dXNUoxcHFYTytPUEc1K2pIVjkzMmUyRXNM?=
- =?utf-8?B?cVdra2tuSFRSWWVQZys0RXhwZ2Z0dkJkTDI2SEtzZ1NkRnByT2kzekVPNW1M?=
- =?utf-8?B?dkxNMDZQM1JUMkVFbFp6T0djRzM1R2p2ekZ2M3JOZXVTWFA4TytzTmJSUDEw?=
- =?utf-8?B?TlU0Q3dJWkZPWTM1QWdtM3hEaUpYZnNJMGpRbkNtdVltaDFRZWNwc1dtVkRi?=
- =?utf-8?B?ZTc2dk9VMlFRdlFheSs5a3AzQ3NQbzA4ekFnRy92SDE0cG1ONEs1LytYbno1?=
- =?utf-8?B?WWYrNml1VmVPdGRsWXNkMVBhZk9DK0EydmRTWUVGQVRNbDFPU29TSFNTVlM2?=
- =?utf-8?B?Q1hYeS9sMnZFNTJML0s5T2JGbmFKUTgxcC9lMXQ4K0hIM2VwRTdZSjgrUVNU?=
- =?utf-8?B?S1Z3TFE4ZXp3T3pWWjRCR3BZNWJTWjQ5clQ1UGYwdVYxQTBsT3RuSjhXSitS?=
- =?utf-8?B?d3FtRXRTclNnMy9TZkRRTnkyMzBiclUvVmdkQlZ1Ri9HaGI1Qk5VSStvWFQx?=
- =?utf-8?B?NkdzK1N6L0g3SW9aSnVGdz09?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:zh-tw;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB5203.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?WHlEMFlHTUtaWkFtM25kMldRWndFMmFiczNXRHZnUHdsVjJHSjQxZjU3WUhD?=
- =?utf-8?B?eVRWenlleTdIR3l5TTRXMkMvZEdKblNDOTNmeEdTMnd3cXMyNmMrKzduMW4w?=
- =?utf-8?B?aldpY0xtZ0dQMC9mYVp5bW94bHlPcUVtK29nVjVBN29uN0xKRDI1bVM1bVY5?=
- =?utf-8?B?UVY4N1BGdlA1UkhaNW9OOGVBcU1oZnBsODFKMlNIZHVGaUJDc0lTcnVTelp0?=
- =?utf-8?B?bW1XSFFmU0xMaWdZYktsWEdkR2FNMzVWOExMMkpqM29WV0hQTlFhV2ZneHk4?=
- =?utf-8?B?NVltYVhWTTZMT1BWMTJkTU85OUVzeEcvRUJvMndhcnE5eUU0QW1QTlFobDlu?=
- =?utf-8?B?RzFkNktGbmFCUHltRTFiaWRGdkNrNldzT0hBeHR3RWxXWloxYjAyRHpsS1hY?=
- =?utf-8?B?di96U1lNNXNGYXdva2I0bnNwSFhGOXBTUjBRQTR2eUM1Z2FpbWlBTVNxMUM0?=
- =?utf-8?B?bjBFelNDZ0pUODlwUkRXSHA2RVlJWU1IeGNRRHlreXF0aXphVktoMHJWV0pT?=
- =?utf-8?B?ZzdnWXFsd3VKRjh3T3Z0WlZtN3prNnFtbjZQRVhzVTd2RFprUHZmVXowcTdt?=
- =?utf-8?B?WW9jSVVKT3U1eGxkMGJiUERNbXpDQVlTRm00SzNzYzRJSHZLUzM4YXNjekdY?=
- =?utf-8?B?YU5rV2U4Q294b3ZPK2tVTDBVSG9RblF5TitzQUlXRmVZampCTFNtVlpmZDVi?=
- =?utf-8?B?eE05VXJVWUJPTzBPRXp0OWNNSGxNM1RveXVhd1daUHU5L0VzYkJOd0hOOHp2?=
- =?utf-8?B?c3pUWW9VaXR6YUIrb2RiTVhCSUpmV0o0LysvZ3VTOVhkd0hYdTRQWEtrWDNM?=
- =?utf-8?B?NWphRlBNRldhQU9rOUNFdlAwaEdKY012N0RIZWg4aEhtVWdub1hYdFhCcWxX?=
- =?utf-8?B?THErUE9MZWl5VkY0djI3cW5ubXdwUGVYVXlONzlxNnhMMUYrYkNwa1JjbVgr?=
- =?utf-8?B?NUd3U1JoMThFSFVoSFZSbnNyN01TTE5sOVdvOE5KcU5sSmYwZnROSWJqbCsr?=
- =?utf-8?B?R3NiY2Y2eG8zVVNLYkJCNnJnK201eWxoN2U4dzJBVzRiUGFpbmNtcE9uemlR?=
- =?utf-8?B?VmtVTHV4K2JQWmRocmQrKytORHZONDJvN2NlcitsbzVZT2g4K0MwYmlZeXlG?=
- =?utf-8?B?TzVOM1ZLblhJWkJIT0xWNUxJQ1VrOEN5SEtSUEtaajhwUjIrVWZhZ2t3OVVW?=
- =?utf-8?B?aTBaQS90Wjc4WnVONEIrdFgxWFVDVm9lR0dXR3o4VmxoOHFsa3pxQnBaT2x0?=
- =?utf-8?B?UHM5WHNIcjJuTFVxeC9ERkIyRzIzcmdPL2p5YUVLYmJZdmphUThjc1ZvVGJz?=
- =?utf-8?B?UDk5d3FCWmVMc0Z6MEFSVVptNmg2NVUwcGVVdXEvMkVWQ3l5Y1VBY0RUdWIz?=
- =?utf-8?B?SWtyeWJGeG1IZU1yTTVSU0U4UGlwRWZXMi9RcWZvWkdRNTBJMzRvQUx4bmQ0?=
- =?utf-8?B?MjlXVVREcDZxZ3k4VkFLdWJjUjJOVGhmQ2xwTFZ5UlZPSHdsVUhVR3E0S3ZF?=
- =?utf-8?B?elJMUFNGVTU4N2Irb25QcDNaMjBQRFA2aFMrU05qSnMrdVcxL0dGbjl4UG5a?=
- =?utf-8?B?aWVHWXVObEN4cnUxbXBhaWx2ZitwSTQrREFrcHlYSUNocWh3TVhKZU9kYVg2?=
- =?utf-8?B?U241K3JhaUdROWZVaFJmYVU4QXdKRHQyWnpQd3laNG0xRFl6OEVvNEYyZ3d1?=
- =?utf-8?B?UGpXamxLU1hNNW5tZGNJRUxGZUV6VXRzN1R2VU5QbjFFOVVnT3R2K0VWaW81?=
- =?utf-8?B?VklYYkkvcURWYmhxVEFyMUxVY3Z0MmVoeDhjK2t1dWxSTFdPbnQ0Tmx3QzVO?=
- =?utf-8?B?N1hBTXp0dERlT2o1Z1VJTzBCcFBXUkJNSWRkVTdQZnc2YytJTEN0a3locE9S?=
- =?utf-8?B?VHIvaCtoQTVPOVlsTmpmeHhnM1p2RkdiQnR2M1FUWll5NlFEK3d6R0tFZktM?=
- =?utf-8?B?c01wWkVGSUo5TTNLbFRWRjZJbkhUVy9ieXkzWVdmTHVxZXBBTUpEL3lGLzJD?=
- =?utf-8?B?eU5zbkF3MERRdEl0OTBHMTBkLytJYkhORURaZnVkWHhQeVVDWFhUdlBEU1hx?=
- =?utf-8?B?VDNqMlVJUE9WQWwrdURoTi9GRGMrM3YxQjVEV1FjWW84cUJOVjMwRlVGL05K?=
- =?utf-8?B?bjZtZHkvVFAycUhHTzQ2a3k4em10SnRIMld6UEUvTkgyTnJQUWRMOFZGNmt5?=
- =?utf-8?B?RXc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FB244778E
+	for <devicetree@vger.kernel.org>; Mon, 14 Oct 2024 02:37:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1728873472; cv=none; b=Qze+DQchBQdXV/z18S7mYtIpPEVFb6PdV5PbkORAnZmu8pVRJhd9flKMS93/JuKjDY9ck0mQ3gtoe2+1wC0GCKOVCcoI1OsQc4LkBKR9qAxUcHFSDJb6nIY5Hl8G/pydtpUG140d6TmC4aLcV7xTGJRJR4QJVcW06lw3Q3tlCVw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1728873472; c=relaxed/simple;
+	bh=sIxI7e5sgdvRRPR9jHSTfcKb4j6Q+ooisLwyqBkg2wo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lblVAzAc1ab9P0OKkJOXI7JgxezsZuCaVv/ailiLTnRdqu5lFUw92iT7wuii2we9x/ebaJm56oPq1jgum5SCo5OeksTNzsD/BpKyP2zfRCvlSsQnsiTrnGDlsmuDwpMTVpY4RAGfxiR/cVaeWOuX1lcl6CTB0jeKo6mPceo9yQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=J0UvWuXo; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-2e2bd0e2c4fso2912914a91.3
+        for <devicetree@vger.kernel.org>; Sun, 13 Oct 2024 19:37:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1728873470; x=1729478270; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yvS7dkDnxUI6bp1u5nJxrjFDPThHi48yAYLmv0eTJmw=;
+        b=J0UvWuXorwx4HbQSZ+FpbStEaaO5YqVDwvuglIlMQLDZ1VYq9uIB/qfChZslk3+xn/
+         FXdqopWC9z6UR2GJyGqQnertCGRyH1dDODQFRk39uwsHqKA54T45rQm5/Fc/jCsklgPT
+         Xx6X7WMJ9g9RrFGMfOgQ7MdZs1oT+wj1g8E8UH46+Ojcd2lxBKWb9vdZNaNymFGT2ean
+         wohJkUiajzAx3hvndab+HNFfp3e8oazApp4JsTBNJKG5dSXDWHdlXnybBmUhLzg4LEe+
+         50rkWxW5ErlvuBOg8Mq2lUBmi/uzOldNGaZREjx2HyDe9HV7cfE111UtiIhsrR5yfk2S
+         9OYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728873470; x=1729478270;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=yvS7dkDnxUI6bp1u5nJxrjFDPThHi48yAYLmv0eTJmw=;
+        b=Ei+QidAilCgU9arGYe7AGtcUQ9TbrKYGxTB43wJ9wuq6gtLEuVbetmqXBbqVXPJYCn
+         ecIA8KK3e00boRgzffp+Py+DlvMBoMFpLkJ7EMiM/VQaRTpVAk8EgS4oqNxYCDL6cUDg
+         AFwnsLFF/+K/B5XPDQNmrmqdwH5N47pouErsjDslSOFyrJp9NP6VGeD7REhROb4qX3XY
+         1E30x4mOTrecHt4i9R8Xhx4WtQpzXdAr8vg3/OhOw71eG+0KHW+sRZt65jwQCzouMpvL
+         HBRSGzLy7HwjxVulsANwY/VU04eywi66ltYq2BIzWaEWKSDFH1EeyjIERXPjXO4yWLrT
+         758Q==
+X-Gm-Message-State: AOJu0Yx1OcI9aUYjWGbMB/xVc1zj9NJXxgWXzqF2hNQERr5DcOaPxSsE
+	nXsmHr3QQpXcY0CF6iQoo2X/jK9rODTIhcmGtkFfXELfOACZphVnkoVP5TyWFnz/NmuXV5BHPDJ
+	YOLcNUxDoIRdZMFY60qRnOKvpj4QviAD3nMMI
+X-Google-Smtp-Source: AGHT+IHdscZngOk4DHV6or3IO500O+lpxngvQQvWAeD6ImszLIemhpRLBPXwXKk532fxYhBAl3tOt4Dgaa+rt8JSCL0=
+X-Received: by 2002:a17:90a:df89:b0:2e2:bd10:599d with SMTP id
+ 98e67ed59e1d1-2e2f0ad2040mr12976320a91.11.1728873469285; Sun, 13 Oct 2024
+ 19:37:49 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB5203.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9223aa5-c3df-4967-49dd-08dcebf50b7f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Oct 2024 02:08:07.1859
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: LruqtjPWYDK/lLk6/X/h2w29aMOkfYksM0VlNuEr9emoMMx/XVpOLgOF5KWfFtohijFpXEEE4vGDw2WVub4KhACdtoe5ZDxDjUVSn4ZrF68=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB6356
+References: <20241013200730.20542-1-richard@nod.at>
+In-Reply-To: <20241013200730.20542-1-richard@nod.at>
+From: Saravana Kannan <saravanak@google.com>
+Date: Sun, 13 Oct 2024 19:37:10 -0700
+Message-ID: <CAGETcx_+Poy8b_QhKY21Wg9=TBjtxrhCmFWTq8Qv6rLSJMURCw@mail.gmail.com>
+Subject: Re: [PATCH] [RFC] of: Add debug aid to find unused device tree properties
+To: Richard Weinberger <richard@nod.at>
+Cc: devicetree@vger.kernel.org, robh@kernel.org, linux-kernel@vger.kernel.org, 
+	upstream+devicetree@sigma-star.at
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-SGkgR3VlbnRlciwNCg0KVGhhbmtzIGZvciB0aGUgcmV2aWV3Lg0KDQo+IC0tLS0tT3JpZ2luYWwg
-TWVzc2FnZS0tLS0tDQo+IEZyb206IEd1ZW50ZXIgUm9lY2sgPGdyb2VjazdAZ21haWwuY29tPiBP
-biBCZWhhbGYgT2YgR3VlbnRlciBSb2Vjaw0KPiBTZW50OiBUdWVzZGF5LCBPY3RvYmVyIDgsIDIw
-MjQgMzo1NSBBTQ0KPiBTdWJqZWN0OiBSZTogW1BBVENIIDEvNF0gZHQtYmluZGluZ3M6IHdhdGNo
-ZG9nOiBhc3BlZWQ6IEFkZCBwcm9wZXJ0eSBmb3IgV0RUDQo+IFNXIHJlc2V0DQo+IA0KPiBPbiAx
-MC83LzI0IDEwOjU5LCBSb2IgSGVycmluZyB3cm90ZToNCj4gPiBPbiBNb24sIE9jdCAwNywgMjAy
-NCBhdCAwMjozNDowNVBNICswODAwLCBDaGluLVRpbmcgS3VvIHdyb3RlOg0KPiA+PiBBZGQgImFz
-cGVlZCxyZXN0YXJ0LXN3IiBwcm9wZXJ0eSB0byBkaXN0aW5ndWlzaCBub3JtYWwgV0RUIHJlc2V0
-IGZyb20NCj4gPj4gc3lzdGVtIHJlc3RhcnQgdHJpZ2dlcmVkIGJ5IFNXIGNvbnNjaW91c2x5Lg0K
-PiA+Pg0KPiA+PiBTaWduZWQtb2ZmLWJ5OiBDaGluLVRpbmcgS3VvIDxjaGluLXRpbmdfa3VvQGFz
-cGVlZHRlY2guY29tPg0KPiA+PiAtLS0NCj4gPj4gICAuLi4vYmluZGluZ3Mvd2F0Y2hkb2cvYXNw
-ZWVkLGFzdDI0MDAtd2R0LnlhbWwgICAgICAgICB8IDExDQo+ICsrKysrKysrKysrDQo+ID4+ICAg
-MSBmaWxlIGNoYW5nZWQsIDExIGluc2VydGlvbnMoKykNCj4gPj4NCj4gPj4gZGlmZiAtLWdpdA0K
-PiA+PiBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy9hc3BlZWQs
-YXN0MjQwMC13ZHQueWFtbA0KPiA+PiBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5n
-cy93YXRjaGRvZy9hc3BlZWQsYXN0MjQwMC13ZHQueWFtbA0KPiA+PiBpbmRleCBiZTc4YTk4NjU1
-ODQuLjZjYzM2MDRjMjk1YSAxMDA2NDQNCj4gPj4gLS0tDQo+ID4+IGEvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL3dhdGNoZG9nL2FzcGVlZCxhc3QyNDAwLXdkdC55YW1sDQo+ID4+
-ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy93YXRjaGRvZy9hc3BlZWQs
-YXN0MjQwMC13ZHQueQ0KPiA+PiArKysgYW1sDQo+ID4+IEBAIC05NSw2ICs5NSwxNyBAQCBwcm9w
-ZXJ0aWVzOg0KPiA+PiAgICAgICAgIGFycmF5IHdpdGggdGhlIGZpcnN0IHdvcmQgZGVmaW5lZCB1
-c2luZyB0aGUNCj4gQVNUMjYwMF9XRFRfUkVTRVQxXyogbWFjcm9zLA0KPiA+PiAgICAgICAgIGFu
-ZCB0aGUgc2Vjb25kIHdvcmQgZGVmaW5lZCB1c2luZyB0aGUgQVNUMjYwMF9XRFRfUkVTRVQyXyoN
-Cj4gbWFjcm9zLg0KPiA+Pg0KPiA+PiArICBhc3BlZWQscmVzdGFydC1zdzoNCj4gPj4gKyAgICAk
-cmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy9mbGFnDQo+ID4+ICsgICAgZGVz
-Y3JpcHRpb246ID4NCj4gPj4gKyAgICAgIE5vcm1hbGx5LCBBU1BFRUQgV0RUIHJlc2V0IG1heSBv
-Y2N1ciB3aGVuIHN5c3RlbSBoYW5ncyBvcg0KPiByZWJvb3QNCj4gPj4gKyAgICAgIHRyaWdnZXJl
-ZCBieSBTVyBjb25zY2lvdXNseS4gSG93ZXZlciwgc3lzdGVtIGRvZXNuJ3Qga25vdw0KPiB3aGV0
-aGVyIHRoZQ0KPiA+PiArICAgICAgcmVzdGFydCBpcyB0cmlnZ2VyZWQgYnkgU1cgY29uc2Npb3Vz
-bHkgc2luY2UgdGhlIHJlc2V0IGV2ZW50IGZsYWcgaXMNCj4gPj4gKyAgICAgIHRoZSBzYW1lIGFz
-IG5vcm1hbCBXRFQgdGltZW91dCByZXNldC4gV2l0aCB0aGlzIHByb3BlcnR5LCBTVyBjYW4NCj4g
-Pj4gKyAgICAgIHJlc3RhcnQgdGhlIHN5c3RlbSBpbW1lZGlhdGVseSBhbmQgZGlyZWN0bHkgd2l0
-aG91dCB3YWl0IGZvciBXRFQNCj4gPj4gKyAgICAgIHRpbWVvdXQgb2NjdXJzLiBUaGUgcmVzZXQg
-ZXZlbnQgZmxhZyBpcyBhbHNvIGRpZmZlcmVudCBmcm9tIHRoZQ0KPiBub3JtYWwNCj4gPj4gKyAg
-ICAgIFdEVCByZXNldC4gVGhpcyBwcm9wZXJ0eSBpcyBvbmx5IHN1cHBvcnRlZCBzaW5jZSBBU1Qy
-NjAwIHBsYXRmb3JtLg0KPiA+DQo+ID4gV2h5IGNhbid0IHRoaXMgYmUgaW1wbGljaXQgYmFzZWQg
-b24gdGhlIGFzdDI2MDAgY29tcGF0aWJsZSBzdHJpbmc/DQo+ID4NCj4gDQo+IFNhbWUgcXVlc3Rp
-b24gaGVyZS4NCj4gDQpZZXMsIHRoaXMgcHJvcGVydHkgd2lsbCBiZSBpbXBsaWNpdCBiYXNlZCBv
-biB0aGUgYXN0MjYwMCBjb21wYXRpYmxlIHN0cmluZw0KaW4gdGhlIG5leHQgcGF0Y2ggc2VyaWVz
-Lg0KDQo+IEd1ZW50ZXINCg0KQ2hpbi1UaW5nDQo=
+On Sun, Oct 13, 2024 at 1:07=E2=80=AFPM Richard Weinberger <richard@nod.at>=
+ wrote:
+>
+> This is a proof-of-concept patch that introduces a debug feature I find
+> particularly useful.  I frequently encounter situations where I'm
+> uncertain if my device tree configuration is correct or being utilized
+> by the kernel.  This is especially common when porting device trees
+> from vendor kernels, as some properties may have slightly different
+> names in the upstream kernel, or upstream drivers may not use certain
+> properties at all.
+
+Why not just add debug logs? You can print the full path of the
+properties being read and it should be easy to grep for the property
+you care about.
+
+> By writing 'y' to <debugfs>/of_mark_queried, every queried device tree
+
+A lot of querying is going to happen at boot time. So, I'm not sure if
+this method of enabling it is helpful. If we do this, make it a kernel
+command line.
+
+> property will gain S_IWUSR in sysfs.  While abusing S_IWUSR is
+> admittedly a crude hack, it works for now.   I'm open to better ideas,
+> perhaps using an xattr?
+
+This seems quite convoluted. Why not just add another file per node
+that lists all the queried properties?
+
+> That way, dtc can easily add an annotation to unused device trees when
+> reading from /proc/device-tree.
+
+I'm not too familiar with this part. Can you elaborate more?
+
+-Saravana
+
+>
+> Signed-off-by: Richard Weinberger <richard@nod.at>
+> ---
+>  drivers/of/Kconfig      |  9 +++++
+>  drivers/of/Makefile     |  1 +
+>  drivers/of/base.c       |  2 +
+>  drivers/of/debug.c      | 83 +++++++++++++++++++++++++++++++++++++++++
+>  drivers/of/of_private.h |  6 +++
+>  include/linux/of.h      |  3 ++
+>  6 files changed, 104 insertions(+)
+>  create mode 100644 drivers/of/debug.c
+>
+> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> index 0e2d608c3e207..39079ab9f1dc9 100644
+> --- a/drivers/of/Kconfig
+> +++ b/drivers/of/Kconfig
+> @@ -90,6 +90,15 @@ config OF_IRQ
+>         def_bool y
+>         depends on !SPARC && IRQ_DOMAIN
+>
+> +config OF_DEBUG
+> +       bool "Device Tree debug features"
+> +       select DEBUG_FS
+> +       help
+> +        This option enables device tree debug features.
+> +        Currently only <debugfs>/of_mark_queried, writing 'y' to this fi=
+le
+> +        causes setting S_IWUSR on each device tree property in sysfs tha=
+t
+> +        was queried by a device driver.  This is useful to find dead pro=
+perties.
+> +
+>  config OF_RESERVED_MEM
+>         def_bool OF_EARLY_FLATTREE
+>
+> diff --git a/drivers/of/Makefile b/drivers/of/Makefile
+> index 379a0afcbdc0b..041502125e897 100644
+> --- a/drivers/of/Makefile
+> +++ b/drivers/of/Makefile
+> @@ -25,3 +25,4 @@ obj-$(CONFIG_OF_OVERLAY_KUNIT_TEST) +=3D overlay-test.o
+>  overlay-test-y :=3D overlay_test.o kunit_overlay_test.dtbo.o
+>
+>  obj-$(CONFIG_OF_UNITTEST) +=3D unittest-data/
+> +obj-$(CONFIG_OF_DEBUG) +=3D debug.o
+> diff --git a/drivers/of/base.c b/drivers/of/base.c
+> index 20603d3c9931b..00807da2187aa 100644
+> --- a/drivers/of/base.c
+> +++ b/drivers/of/base.c
+> @@ -202,6 +202,8 @@ static struct property *__of_find_property(const stru=
+ct device_node *np,
+>                 if (of_prop_cmp(pp->name, name) =3D=3D 0) {
+>                         if (lenp)
+>                                 *lenp =3D pp->length;
+> +                       of_debug_mark_queried(pp);
+> +
+>                         break;
+>                 }
+>         }
+> diff --git a/drivers/of/debug.c b/drivers/of/debug.c
+> new file mode 100644
+> index 0000000000000..ceb88062e9dec
+> --- /dev/null
+> +++ b/drivers/of/debug.c
+> @@ -0,0 +1,83 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +#include <linux/debugfs.h>
+> +#include <linux/kstrtox.h>
+> +#include <linux/of.h>
+> +
+> +#include "of_private.h"
+> +
+> +void of_debug_mark_queried(struct property *pp)
+> +{
+> +       pp->queried =3D true;
+> +}
+> +
+> +static int dtmq_update_node_sysfs(struct device_node *np)
+> +{
+> +       struct property *pp;
+> +       int ret =3D 0;
+> +
+> +       if (!IS_ENABLED(CONFIG_SYSFS) || !of_kset)
+> +               goto out;
+> +
+> +       for_each_property_of_node(np, pp) {
+> +               if (pp->queried) {
+> +                       ret =3D sysfs_chmod_file(&np->kobj, &pp->attr.att=
+r,
+> +                                              pp->attr.attr.mode | S_IWU=
+SR);
+> +                       if (ret)
+> +                               break;
+> +               }
+> +       }
+> +
+> +out:
+> +       return ret;
+> +}
+> +
+> +static int dtmq_update_sysfs(void)
+> +{
+> +       struct device_node *np;
+> +       int ret =3D 0;
+> +
+> +       mutex_lock(&of_mutex);
+> +       for_each_of_allnodes(np) {
+> +               ret =3D dtmq_update_node_sysfs(np);
+> +               if (ret)
+> +                       break;
+> +       }
+> +       mutex_unlock(&of_mutex);
+> +
+> +       return ret;
+> +}
+> +
+> +static ssize_t dtmq_file_write(struct file *file, const char __user *use=
+r_buf,
+> +                              size_t count, loff_t *ppos)
+> +{
+> +       bool do_it;
+> +       int ret;
+> +
+> +       ret =3D kstrtobool_from_user(user_buf, count, &do_it);
+> +       if (ret)
+> +               goto out;
+> +
+> +       if (do_it) {
+> +               ret =3D dtmq_update_sysfs();
+> +               if (!ret)
+> +                       ret =3D count;
+> +       } else {
+> +               ret =3D -EINVAL;
+> +       }
+> +
+> +out:
+> +       return ret;
+> +}
+> +
+> +static const struct file_operations dtmq_fops =3D {
+> +       .write  =3D dtmq_file_write,
+> +       .open   =3D simple_open,
+> +       .owner  =3D THIS_MODULE,
+> +};
+> +
+> +static int __init of_debug_init(void)
+> +{
+> +       return PTR_ERR_OR_ZERO(debugfs_create_file("of_mark_queried", 064=
+4, NULL, NULL,
+> +                              &dtmq_fops));
+> +}
+> +late_initcall(of_debug_init);
+> diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+> index 04aa2a91f851a..55a21ef292064 100644
+> --- a/drivers/of/of_private.h
+> +++ b/drivers/of/of_private.h
+> @@ -184,4 +184,10 @@ void fdt_init_reserved_mem(void);
+>
+>  bool of_fdt_device_is_available(const void *blob, unsigned long node);
+>
+> +#if defined(CONFIG_OF_DEBUG)
+> +void of_debug_mark_queried(struct property *pp);
+> +#else
+> +static inline void of_debug_mark_queried(struct property *pp) { }
+> +#endif
+> +
+>  #endif /* _LINUX_OF_PRIVATE_H */
+> diff --git a/include/linux/of.h b/include/linux/of.h
+> index 85b60ac9eec50..3b7afa252fca3 100644
+> --- a/include/linux/of.h
+> +++ b/include/linux/of.h
+> @@ -39,6 +39,9 @@ struct property {
+>  #if defined(CONFIG_OF_KOBJ)
+>         struct bin_attribute attr;
+>  #endif
+> +#if defined(CONFIG_OF_DEBUG)
+> +       bool    queried;
+> +#endif
+>  };
+>
+>  #if defined(CONFIG_SPARC)
+> --
+> 2.35.3
+>
 
