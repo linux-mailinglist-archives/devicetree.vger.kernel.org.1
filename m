@@ -1,148 +1,317 @@
-Return-Path: <devicetree+bounces-111061-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 333D899CB41
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:13:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAF0599CB66
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 15:17:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC52E28135B
-	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:13:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C5A881C219D6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Oct 2024 13:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BC5E1AAE2D;
-	Mon, 14 Oct 2024 13:11:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b="RsqfMZQ9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2002F1AC450;
+	Mon, 14 Oct 2024 13:14:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.web.de (mout.web.de [212.227.15.3])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9781A76C4;
-	Mon, 14 Oct 2024 13:11:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.3
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D5561ABECB;
+	Mon, 14 Oct 2024 13:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728911507; cv=none; b=BjtK8x41Y9GPFerIN0GdQ4HbdPOi5Oi3ppDXff7Oia8/41wLKLixn9U+6K6iIRY6fzJim6BpKdtm0xwiXmbTw/FAqLSTBxN0XodRolcTFzgFKT+cqFh3oG3x0TN7XEfiWqzMAaa4CajhuDHQTN3kTrdMXC6aSopOx0pibq3E+iw=
+	t=1728911679; cv=none; b=UEGPqw1QYvVKYb2EEvQc3bfZH85MEwF1yd52x3S68Tj0O/GupKJRw7bA4HBT4bLbOM9ohpCW63J+irK4I3cR6CXPiiQOROB72pT/1diR9ok1EpOzY3O9z3uzynMvUun8G1Qn/wxKFQ3mblrgEbj4UTwtR7BUJ2VxIY9YA2ssof8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728911507; c=relaxed/simple;
-	bh=5yU4dRg8eWV7Fgu5/bN7jBjpK68MkobODeODS6fxwYM=;
-	h=MIME-Version:Message-ID:From:To:Cc:Subject:Content-Type:Date:
-	 In-Reply-To:References; b=J515l60RMLe8nhLrp7hSANhGnaMEK685oI/cTIM0YoJNyyMt8hYIVTsA1kpLTZWR758RPhX3uhlBFLLZtWCF6JZYdEzXZ3k0aeAvlBC/LNoAAairv7vyAJN3jLhgHiftfc4egxxIbf4kWiBHvlm5LWM30JP0AHT1lwU10Bsj01U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de; spf=pass smtp.mailfrom=web.de; dkim=pass (2048-bit key) header.d=web.de header.i=markus.elfring@web.de header.b=RsqfMZQ9; arc=none smtp.client-ip=212.227.15.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=web.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=web.de
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
-	s=s29768273; t=1728911450; x=1729516250; i=markus.elfring@web.de;
-	bh=TfCLl53lB42+HRnDMfXfFuOecGZa7W9eJj72/YGIQ90=;
-	h=X-UI-Sender-Class:MIME-Version:Message-ID:From:To:Cc:Subject:
-	 Content-Type:Date:In-Reply-To:References:
-	 Content-Transfer-Encoding:cc:content-transfer-encoding:
-	 content-type:date:from:message-id:mime-version:reply-to:subject:
-	 to;
-	b=RsqfMZQ9Q+piDeHZsRcFUz3vDcgukjqoWXoDiTWFgKUxTOc9IPe2aCGni6qXn7sp
-	 cWrWorf72z2G6j8w2Tb4TUOIB4mjb13kkPjpGGcQreoyMbHBe0gldDx8qm+J2d2fX
-	 if4LMXB2Q1UeFTSnlBQ8hxMq9sc03DBN9jFRiYvYa8/2bA9rSkL3qzPeGGgr941bq
-	 eAxgsqZGQDpmYGKSLCCCVEGJfxVfA3vTLVUbGWTGpamLNUau6zGj3hBIXji0aq4TR
-	 ebvHDjkaUsvf1+JsHWeAmltdZcS4bcVAiv8KnleMRXbGfrdgJYQd979y7eS7t91RX
-	 soazwx1zCzQFXrVzjQ==
-X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
-Received: from [94.31.82.95] ([94.31.82.95]) by web-mail.web.de
- (3c-app-webde-bs22.server.lan [172.19.170.22]) (via HTTP); Mon, 14 Oct 2024
- 15:10:50 +0200
+	s=arc-20240116; t=1728911679; c=relaxed/simple;
+	bh=xXwO4yEcDBCtdafekjGBgr3jCuXdIIzWlt3mftDTRWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fl7EZf72Q9mxuo1wnr9ai7xyc0Gmw3ziatfWbH/9OiH0VhyAVNASALeYXHravExx+z4TpzXoTEHS+lXZrR3WpYZT4Wmf1f1Im09+bMs143o5Q+YuoLWHgl44yiWbxmjXk8qRyk5Cv78y1G3l3vGHTJ061Ff89mB/picN6HfuQEc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=198.175.65.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-CSE-ConnectionGUID: YqpTYbecSTq0wBZcMKLiKw==
+X-CSE-MsgGUID: iP8gxxCHR3erMdMjUdPUFQ==
+X-IronPort-AV: E=McAfee;i="6700,10204,11222"; a="28056318"
+X-IronPort-AV: E=Sophos;i="6.11,199,1725346800"; 
+   d="scan'208";a="28056318"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 06:14:36 -0700
+X-CSE-ConnectionGUID: rsQQmIELTc2V7MzR6xPP4g==
+X-CSE-MsgGUID: tW5MjrUZQgqZIzRKycMaMA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.11,203,1725346800"; 
+   d="scan'208";a="77222177"
+Received: from smile.fi.intel.com ([10.237.72.154])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 14 Oct 2024 06:14:31 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98)
+	(envelope-from <andy@kernel.org>)
+	id 1t0Ku3-00000002uP8-3VE2;
+	Mon, 14 Oct 2024 16:14:27 +0300
+Date: Mon, 14 Oct 2024 16:14:27 +0300
+From: Andy Shevchenko <andy@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>,
+	Olivier Moysan <olivier.moysan@foss.st.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Ivan Mikhaylov <fr0st61te@gmail.com>,
+	Marius Cristea <marius.cristea@microchip.com>,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>,
+	=?iso-8859-1?Q?Jo=E3o_Paulo_Gon=E7alves?= <joao.goncalves@toradex.com>,
+	Alisa-Dariana Roman <alisadariana@gmail.com>,
+	Mike Looijmans <mike.looijmans@topic.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Sergiu Cuciurean <sergiu.cuciurean@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org
+Subject: Re: [PATCH v3 6/6] iio: adc: ad4851: add ad485x driver
+Message-ID: <Zw0ZM0vQXJep3dFJ@smile.fi.intel.com>
+References: <20241014094154.9439-1-antoniu.miclaus@analog.com>
+ <20241014094154.9439-6-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <trinity-a5696b99-bf11-4ae3-8b00-20db116f86e4-1728911450361@3c-app-webde-bs22>
-From: Markus Elfring <Markus.Elfring@web.de>
-To: Kevin Chen <kevin_chen@aspeedtech.com>, linux-aspeed@lists.ozlabs.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Cc: Andrew Jeffery <andrew@codeconstruct.com.au>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, Thomas Gleixner
- <tglx@linutronix.de>, kernel-janitors@vger.kernel.org, LKML
- <linux-kernel@vger.kernel.org>, BMC-SW <BMC-SW@aspeedtech.com>
-Subject: RE: [PATCH v3 2/2] irqchip/aspeed-intc: Add support for AST27XX
- INTC
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 14 Oct 2024 15:10:50 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <PSAPR06MB49491F8E0CE4069E9B9B1EA289442@PSAPR06MB4949.apcprd06.prod.outlook.com>
-References: <20241009115813.2908803-3-kevin_chen@aspeedtech.com>
- <f65dd139-1021-47d6-93a1-1477d6b4ca1d@web.de>
- <PSAPR06MB4949904D1FA95DBD3EF5288A89792@PSAPR06MB4949.apcprd06.prod.outlook.com>
- <0b995a34-28c4-4ba6-8ad2-e8413c6a63f5@web.de>
- <PSAPR06MB49491F8E0CE4069E9B9B1EA289442@PSAPR06MB4949.apcprd06.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:ovMgIH1q08E5i7Y9d9W6SUygzJNgl2aH+f4oZ4d1KfDWxtS1ZMfItM3wjo2ZYndBhaV9q
- sVsLTIFgAYVRuSGipm1FsubPyMzqvHvSteb4G59YcNgWaH80fuZ+UuXRhPLk821rLkBWIHkW30Ba
- VuUDtM44h0UWnxTNZYXbFpGTgDzjWiAqxxZewwynGk07TGaZ4vBcMMMseNsjk6+009ifsSk1T9Ls
- iLk4yLDwTV9z52eLXfrkRI8yHmF15qSC360cl5/tXmjX9eSQZSPkWuhDfWfFwGqJltTJCXY+R1n6
- Lg=
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:8QIWZabSQls=;BMNnAN1dJoT/6h4uy684oy1oyg8
- jrr4wBj+qthZ8l5y3dGE0as9BdePavt6FDWiZKGS3Yr049y/u0M/KiuShJ0T2cDVVKUbEU+zi
- Xl5t6BmSc61xxFU9MdSfNICci4xBwBccugddklaAsddcr2R3CaPDxnBIpwjEWt5IfsippsbXo
- XMQaT2aeUTUeH2NJ5ahSYKQX1XzAFtPT0DyrpMFZAjD8NFCi+sCScDnS0oML6SJTWh16r3N2a
- lQCcJ4e64lhGQl6xQqMsgOjXMwKNzw9+LfRRKWICv5jIIjTGFFqGhqd9rDxGnzAkM9h92Z3QY
- h4VyosDzY+iyf62bvzV266k7Bkor4XhdmG4dZcQ8gACuyDklooc/yxqrASQHtxvNzRhkwu13G
- ysI0HF4gNIOlqkpZNj5S1PwDPHh4MvNPnASCcbC2PhdZ0uuN1W/pdlCyzVZYGTkGLHroGyX4X
- uZ4z5OOD+0sJBjzda777h/6WDufB+Bn9wLlSt9mdaEFpZEgh/mo6L3G42b3hGW6V/t+7i9PiK
- XKPA6/hyqPvPB6nzz4/zsXGBfl/Vf1AGY73RIL9/qBTKRL14OCkz3CZ2tQg+llzPA29N+jzBt
- 0wFLFE2HXPBjU7gi4SxYZuvg/HhrprBjX1rKExITz/nYgz2FUw9Q+1KrsbdzWNdudmOy/Nsy9
- fcK81NPE/cadP3hS6Ihiu0Md3pwMkaexbVlfkxeHmA==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20241014094154.9439-6-antoniu.miclaus@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-> > I propose to move selected variable definitions into corresponding comp=
-ound
-> > statements (by using extra curly brackets)=2E
-> > https://refactoring=2Ecom/catalog/reduceScopeOfVariable=2Ehtml
-> OK=2E I moved these two local variables into scoped_guard=2E
+On Mon, Oct 14, 2024 at 12:40:40PM +0300, Antoniu Miclaus wrote:
+> Add support for the AD485X a fully buffered, 8-channel simultaneous
+> sampling, 16/20-bit, 1 MSPS data acquisition system (DAS) with
+> differential, wide common-mode range inputs.
 
-Will development interests grow for further refactorings?
+...
 
+> +config AD4851
+> +	tristate "Analog Device AD4851 DAS Driver"
+> +	depends on SPI
+> +	select REGMAP_SPI
+> +	select IIO_BACKEND
+> +	help
+> +	  Say yes here to build support for Analog Devices AD4851, AD4852,
+> +	  AD4853, AD4854, AD4855, AD4856, AD4857, AD4858, AD4858I high speed
+> +	  data acquisition system (DAS).
 
-> +static void aspeed_intc_ic_irq_handler(struct irq_desc *desc)
+I think I already commented on this... Anyway, it's much better to support when
+this list is broke down on per device per line. In such a case it's less churn
+if we need to remove or add an entry in the future.
+
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called ad4851.
+
+Also, with all these devices to be supported why not ad485x as the name of
+the driver? Is it a preference by the IIO subsystem?
+
+...
+
+> +#include <asm/unaligned.h>
+
+linux/unaligned nowadays (I learnt it quite recently).
+(It requires v6.12-rc2).
+
+...
+
+> +struct ad4851_chip_info {
+
+Have you run `pahole`? It seems you may reduce the memory footprint of this
+structure.
+
+> +	const char *name;
+> +	unsigned int product_id;
+> +	const unsigned int (*scale_table)[2];
+> +	int num_scales;
+> +	const int *offset_table;
+> +	int num_offset;
+> +	const struct iio_chan_spec *channels;
+> +	unsigned int num_channels;
+> +	unsigned long throughput;
+> +	unsigned int resolution;
+> +};
+
+...
+
+> +static const int ad4851_oversampling_ratios[] = {
+> +	1,
+> +	2,
+> +	4,
+> +	8,
+> +	16,
+> +	32,
+> +	64,
+> +	128,
+> +	256,
+> +	512,
+> +	1024,
+> +	2048,
+> +	4096,
+> +	8192,
+> +	16384,
+> +	32768,
+> +	65536,
+
+I believe you can compact them to be 4 or 8 per line
+
+	1, 2, 4, 8, 16, 32, 64, 128,			/* 0-7 */
+	256, 512, 1024, 2048, 4096, 8192, 16384, 32768,	/* 8-15 */
+	65536,						/* 16 */
+
+> +};
+
+...
+
+> +static int ad4851_osr_to_regval(int ratio)
 > +{
-> +       struct aspeed_intc_ic *intc_ic =3D irq_desc_get_handler_data(des=
-c);
-
-Another update candidate (for scope reduction)?
-
-
+> +	int i;
 > +
-> +       guard(chained_irq)(desc);
+> +	for (i = 1; i < ARRAY_SIZE(ad4851_oversampling_ratios); i++)
+> +		if (ratio == ad4851_oversampling_ratios[i])
+> +			return i - 1;
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int ad4851_set_oversampling_ratio(struct ad4851_state *st,
+> +					 const struct iio_chan_spec *chan,
+> +					 unsigned int osr)
+> +{
+> +	unsigned int val;
+> +	int ret;
+> +
+> +	guard(mutex)(&st->lock);
+> +
+> +	if (osr == 1) {
+> +		ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +					 AD4851_OS_EN_MSK, 0);
+> +		if (ret)
+> +			return ret;
+> +	} else {
 
-Using another macro call =E2=80=9Cscoped_guard(=E2=80=A6) { =E2=80=A6 }=E2=
-=80=9D?
+0 is listed here. Is it a problem?
+
+> +		ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +					 AD4851_OS_EN_MSK, AD4851_OS_EN_MSK);
+> +		if (ret)
+> +			return ret;
+> +
+> +		val = ad4851_osr_to_regval(osr);
+> +		if (val < 0)
+> +			return -EINVAL;
+> +
+> +		ret = regmap_update_bits(st->regmap, AD4851_REG_OVERSAMPLE,
+> +					 AD4851_OS_RATIO_MSK, val);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	switch (chan->scan_type.realbits) {
+> +	case 20:
+> +		switch (osr) {
+> +		case 1:
+> +			val = 20;
+> +			break;
+> +		default:
+
+Ditto.
+
+> +			val = 24;
+> +			break;
+> +		}
+> +		break;
+> +	case 16:
+> +		val = 16;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = iio_backend_data_size_set(st->back, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
+> +				  AD4851_PACKET_FORMAT_MASK, (osr == 1) ? 0 : 1);
+
+I would do it with a conditional
+
+	if (osr ...)
+		return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
+					  AD4851_PACKET_FORMAT_MASK, 0);
+
+	return regmap_update_bits(st->regmap, AD4851_REG_PACKET,
+				  AD4851_PACKET_FORMAT_MASK, 1);
+
+But looking at the above I would split this to three functions, that outer will
+look like
+
+int ...(...)
+{
+	if (osr ...)
+		return _osr_X(...);
+	return _osr_Y(...);
+}
+
+> +}
+
+...
+
+> +static int ad4851_find_opt(bool *field, u32 size, u32 *ret_start)
+> +{
+> +	unsigned int i, cnt = 0, max_cnt = 0, max_start = 0;
+> +	int start;
+> +
+> +	for (i = 0, start = -1; i < size; i++) {
+> +		if (field[i] == 0) {
+> +			if (start == -1)
+> +				start = i;
+> +			cnt++;
+> +		} else {
+> +			if (cnt > max_cnt) {
+> +				max_cnt = cnt;
+> +				max_start = start;
+> +			}
+> +			start = -1;
+> +			cnt = 0;
+> +		}
+> +	}
+
+This magic has to be commented... I have a déjà vu that I have commented on all
+this, but it hasn't been addressed!
+
+> +	if (cnt > max_cnt) {
+> +		max_cnt = cnt;
+> +		max_start = start;
+> +	}
+> +
+> +	if (!max_cnt)
+> +		return -ENOENT;
+> +
+> +	*ret_start = max_start;
+> +
+> +	return max_cnt;
+> +}
+
+Also the cover letter is missing.
+
+I would recommend you to use my "smart" script [1] for sending series, it has
+some good heuristics on whom to include into the email thread and handles
+missed cover letters for the series.
+
+[1]: https://github.com/andy-shev/home-bin-tools/blob/master/ge2maintainer.sh
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
-> +       scoped_guard(raw_spinlock, &intc_ic->gic_lock) {
-
-Would you like to reconsider the proposed macro mixture once more?
-
-
-> +               unsigned long bit, status;
-=E2=80=A6
-
-=E2=80=A6
-> +++ b/include/linux/irqchip/chained_irq=2Eh
-> @@ -38,4 +38,6 @@ static inline void chained_irq_exit(struct irq_chip *c=
-hip,
->                 chip->irq_unmask(&desc->irq_data);
->  }
->=20
-> +DEFINE_GUARD(chained_irq, struct irq_desc *, chained_irq_exit((_T->irq_=
-data=2Echip), (_T)),
-> +            chained_irq_enter((_T->irq_data=2Echip), (_T)))
-
-Would you like to add a #include directive in this header file accordingly=
-?
-
-Regards,
-Markus
 
