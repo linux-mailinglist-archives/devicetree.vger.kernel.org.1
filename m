@@ -1,301 +1,140 @@
-Return-Path: <devicetree+bounces-111517-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C56D99F1BC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:45:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CC8299F1E4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:49:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A70A61C20C5F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:45:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 030FE2826E2
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:49:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CA5B16F839;
-	Tue, 15 Oct 2024 15:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E1CF1DD0D6;
+	Tue, 15 Oct 2024 15:49:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="HPvZHxlU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GmB4dJ1E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010002.outbound.protection.outlook.com [52.101.69.2])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D1016F8E9;
-	Tue, 15 Oct 2024 15:45:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.2
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729007125; cv=fail; b=PUNsmmp+yOxV8IyKG8a8g0dAuwO8jQbiryJJQmK+hXg8wXRLtaM1WNdS8jOpoiyNXUywUR/VezISubQ4rgeI8V/3sDjf6mnXtT0y0lpNZqdFCyuBA+/j1IZwZduVjzoxAX033uDJtT9rdgPSBhRqtG7GHo2RYyDLXoQCtEWztP4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729007125; c=relaxed/simple;
-	bh=H9Tbb3OUtx4H3JmiTqjRMDQu+gpblRUixXI62mt7ka8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=TPkxg1eZxhQ+cj/ZXHOMD1rA2Pokepdg9tcvAMqt9ZCd15nkKJ2w8hta1GuNiqd8F9929a8X2f0HXmfZHiUVfqCDvfsiT7ToU/O0cwvRqc6c//uCuQZbGpVG/CaStpZszPc2Egh6IdQoZrG3+9CvH2CbimVRjccb91vR6KcTjxk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=HPvZHxlU; arc=fail smtp.client-ip=52.101.69.2
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bpM5Xyj29vuU1HnV5FdFWzTdZavFmDAismPQ/zmYd11E6Z0XsNchgMoj78uMLVaC48XidLbTmikv/3lAuqzvQm6vo277NfUq2HuD0vahmfI3oBRClb/CTjcAcKuHRimQ8YPnB32LJ0jDqSiT2h1AsZFB8bJILgr70gupEXJHRMdFTfR3L1aNC3MizZAuD5sDqGriOiTi/MkiThoxrVMcCTpijY1sQ+gE4YPeVPBLdcDse0t7JZO5ntxiz1BO6Od6caIGbMnoL6zmzBkM/SShaWqqLPkFCbKw1JHH2XeipSLwp92i2sPty7tFJbu+PJASnB4fZHXPs9kqpVoOO+KWTA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jhm1ooMjERUcchpF5xcNE1zz99lZ40+BQYtRnFmpgI4=;
- b=UtSD0b6g16W4LA4eB3CRoJenKFc/Jjozdz3G76AaxABm4PGppESV/ql5ZeZM9ZV9ipTO/8HxFB9zFkCoe9heoP4RMUfbmhjtylfCQoVlAz7pvy1+L44/Cxgx0b7pLG2jj85YVdaj1A2tZy9Aa8iwDqzg7Scy+2J7BdbpZQZwYJyUji1zuNbUvABuw6wOCVOfozSOe7aOuqV9nOUYWAzW6k8lsdoMYzOKM069cb8KLB7ozV5WI5G7gpPlIR3u88+BKmvJTUzYtyR2iYSVFhudrx+hGAieSUH0RgRIqXT2G1TVZ16e6MOCA5SkmveSB9H/okwDZYodWVsgbZHy529FkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jhm1ooMjERUcchpF5xcNE1zz99lZ40+BQYtRnFmpgI4=;
- b=HPvZHxlUbXY5b/GRSdexPggJIKsd8DvQl6WGxT363wr3CMOOVZlxd+rjvhsMcIA5Jbu4Y9XTVSWhMXJTOUAehKZuPsDR0JEraIs+j5r3xC193rEXI8SU+0sTb7yzpNstTokiZu3A0nw3watFnxboUogDOZjGQQRMLrnGp4KJxyDlSNO255Yq3vvcAMbexn5QBZEEE2dP4a3u1HVERHyYkRPbC4r2xqYYwID2YDc3B9315pwnjdRfqRVcfO/cgCtSz4EY6+cLtH9jj4goPriWgIpB5VO1ADIq5ZwsC62lH+Kr+Q3kWSw5JpORXu/XmfiaI1zdOWBHe8ZTUE+ttuW2aw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA2PR04MB10185.eurprd04.prod.outlook.com (2603:10a6:102:401::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8069.17; Tue, 15 Oct
- 2024 15:45:19 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8069.016; Tue, 15 Oct 2024
- 15:45:14 +0000
-Date: Tue, 15 Oct 2024 11:45:05 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vladimir.oltean@nxp.com,
-	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
-	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
-	bhelgaas@google.com, horms@kernel.org, imx@lists.linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 03/13] dt-bindings: net: add bindings for
- NETC blocks control
-Message-ID: <Zw6OAVT10JrnFkSO@lizhi-Precision-Tower-5810>
-References: <20241015125841.1075560-1-wei.fang@nxp.com>
- <20241015125841.1075560-4-wei.fang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015125841.1075560-4-wei.fang@nxp.com>
-X-ClientProxiedBy: BYAPR08CA0034.namprd08.prod.outlook.com
- (2603:10b6:a03:100::47) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE3F170A19;
+	Tue, 15 Oct 2024 15:49:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729007354; cv=none; b=mRyfExr9o1afBoSQOVxFkK9pLzDBx3sFsJrscq88zcpm5UHnKb1qmen2xgJ6I87vfcpPCAggkY/mTh0K6ECZotrwJ4FLT1L8003sIAdMMew2/GiK/83sGygKic+ni0KBjsgubM+eAXhw8LoFeVXA9siCsIJCgQwSvOz9GJnfRiA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729007354; c=relaxed/simple;
+	bh=8rs5FX8euimoaM+3TEF5t4bWzdqlREeZB9JxJ8XE8xM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=myDG40b5hioxGETLKbqLuaENTioeC8eawigIGy8yrSenqzcT7VMIiWE0JJQGh2xRiQcZoCWrFpBnIjW7BKFWA0VpYdYxm06FhBeXF3Sm8TYUSUdjom+0J/mV/q+j1FXJuiD3q8m4hat141eLQ11Tcoxc0+oqzzBSnxAZbOCEeFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GmB4dJ1E; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A2CEC4CEC6;
+	Tue, 15 Oct 2024 15:49:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729007354;
+	bh=8rs5FX8euimoaM+3TEF5t4bWzdqlREeZB9JxJ8XE8xM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=GmB4dJ1EdYGO/ZUli8Icg0bDOLS/0AUWPsg/90a/xeHWFCI7amjMB6XsK9a0MT3hj
+	 p4lF7AKbO6OIIg6f1FbAfYokBk7rGOFWBopSlm4fwr3yCnCq87JzoShYWAF1vXDdn0
+	 pYg5PVf4V0zXkIzdl6zQk0+o8lqu4ac7jI+qRzvV+MD/RyKl4UbyMWCgacoQubTBc5
+	 2ARx5JvudAYmFhS3WJ/AzMLSRlbO7DQgpnSOucWZdeT6tZVbTgu9g4pEzhYuJy6Zz+
+	 IsyCW49MFuG3635ZcmrN1AurDeoiGWu5A/PO3mvr5GPkm0h5+sKN49KNcBkcncETIQ
+	 b11D/Z6vhhsxg==
+Date: Tue, 15 Oct 2024 10:49:12 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>,
+	Helge Deller <deller@gmx.de>, Jaroslav Kysela <perex@perex.cz>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Mark Brown <broonie@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Maxime Ripard <mripard@kernel.org>,
+	Michal Simek <michal.simek@amd.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Takashi Iwai <tiwai@suse.com>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org, linux-fbdev@vger.kernel.org,
+	linux-media@vger.kernel.org, linux-omap@vger.kernel.org,
+	linux-sound@vger.kernel.org, Sakari Ailus <sakari.ailus@iki.fi>
+Subject: Re: [PATCH v7 0/9] of: property: add
+ of_graph_get_next_port/port_endpoint()
+Message-ID: <20241015154912.GA1152221-robh@kernel.org>
+References: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA2PR04MB10185:EE_
-X-MS-Office365-Filtering-Correlation-Id: 90822189-a2a4-4571-0e6b-08dced305ca3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|1800799024|376014|366016|7416014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?VvxhysofUFHV5vbNhk48W+C2YiwTLNoniiE9qHNEAcyf6vJu957Q27BnEt+v?=
- =?us-ascii?Q?a37IQp8cV5ZI7b/DvfWN5crV/89jftvuPNLlZp3T6b96RJwd0F9GDaWHenu0?=
- =?us-ascii?Q?zKWvAtqJ661WY5Zow4DATo5Qm98Qt/AjVpqOYBwZRmbdwik2k1HrqMMl1L3K?=
- =?us-ascii?Q?gL3giKSaTIQIGBDijq/IUNx6T9xL+yUpiObtR8a/DK3D4EJmPYhJWRLV8Ryd?=
- =?us-ascii?Q?BDHeHvh1ikkDTcgYUZrZte1L7h9VasEMkXEBDBYKPqWKsWQDs009G9gpGCmd?=
- =?us-ascii?Q?DJWv1AsDE96QtBK0mTIPi4/vGj1rqZH0duihczoUCDP37sgeP275w3PF/7rQ?=
- =?us-ascii?Q?iXJh2Vr1Oy309Twar9s/Y1wHkQ+/EhniJCj87kqYWkHmG/i9ov8mWcBmeSZX?=
- =?us-ascii?Q?fYaf1K0Q//IaMGWepHtyBuifD/HUXA8UgiZi/sud14cW9wXuU8rtBYA7dvdE?=
- =?us-ascii?Q?ImUQ0LE438ebrbQYEExtXeY2CiTGbzc/TYTxJRT8UvDEdh5xu1XaW+E87xYp?=
- =?us-ascii?Q?a7S/M+RmpDuq3vxHmjc2QjGBtCrQsoa5BLpZ+hbpFzw/+0LROmKlID6pAmTx?=
- =?us-ascii?Q?YgzloW4AGCHliKvIM5JItNe8qQkyDmeJZVYhSTCAsMjcIJmzr3at8ZoHQbYb?=
- =?us-ascii?Q?cryKpogA0AYbYJto1PJohM/Bb/4O5WK2IpwXyJYGkD8Me+t9Fq4gQA6Obh6N?=
- =?us-ascii?Q?5xFJKEWTmTeOw3p+7bc4Y7jvn641ODEkVWtj9+KmhgrQiH5wtvrkTVMOc2WF?=
- =?us-ascii?Q?jAnqeomEcTQOC2cziqTF+2opLxUE5B4mzdYcNWBsgD6Wql4UElrP7+Zlwz3G?=
- =?us-ascii?Q?9PptJFPSuoOaXU8AnPR96JZYDtuo3pTw6eYjMSXC9KWJdBvKMx4lP+WHHNs8?=
- =?us-ascii?Q?7JkjDwA3oZXP1wyEL5F8SEa6C3j/bLd3eVM3zZrHcZQDqqlC5yMOBnWG7s1H?=
- =?us-ascii?Q?HS04Y7VRyD0HTkatsyf0dy4yMqiR676y3KN0fH1YicdaL2XFS1dvra+3hvyR?=
- =?us-ascii?Q?bsjtIJzJQPrsBlMRuVMaQq0wtwmGex7FCz5cUV2JLA3Y8mdp8z7uSXMv6Mxz?=
- =?us-ascii?Q?z9Y4dJz+jKi4Xyl7viMn2DCQMC7jg3TSUXXRGT9rT2y+3FRaLwPH7yphZI5Q?=
- =?us-ascii?Q?fLm9LCZos4nDjClcAaAVptu4vSDHGGa7/IZODZPn/krmSc21AZWE7z3/bWL3?=
- =?us-ascii?Q?FONH4i+oJO5/rC84vpSVncbVItm44fqtkch9cG5G/bhMh8fix7MxkGVoRr7r?=
- =?us-ascii?Q?uNxKxftdCe2gs3EaKnV7B3bpz/DNoFtkwuDBAkZk+g=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(7416014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?EJg+HbFkMWoCPEDJa1zjk01fTF2NN/kLbhZFRBZsss3GGDmUSQgWVUq+ehAz?=
- =?us-ascii?Q?HzNNOC5vZO3LPxxlE10K5WqYP9yURT0iY+7iqKswhln5ffSOK3eD6EHihSo1?=
- =?us-ascii?Q?OAfxI6s5dQwwBdYWLYQpBqaSfPOcjK6zqavaIcqPUEnI7dhNRGaMziSbY5Je?=
- =?us-ascii?Q?i7dP+7M1W38knf+LiYdkD/HPlVVpLSmIeJ+XbL5sG9L5BPSVWFAbPfOYh8Cm?=
- =?us-ascii?Q?mNMTjCHMYFjSw6NSQqQQa0IgdBMYTnQMKuPVHU4GUGGqHEE11yX8eybyM6IW?=
- =?us-ascii?Q?KtkMCGb4m7ELZ5S+B8f/rWLRowuolKQwBAFpiqLKl38RwB0dscL4L3/zId7V?=
- =?us-ascii?Q?s4p+WItsytLCk2OvAfmtVGuE46bmQCAHoUk5FpXONATCp0KfpiluJafQX5iW?=
- =?us-ascii?Q?WpPE4W3vsSZjH/70P5Xffp9w5bQVwiNbRNddsmRm7jwYrIY9oSkQuDYol61+?=
- =?us-ascii?Q?wUcZNn9WOCDXoQZ3jtWPnEbdSVeXBqifGQdBAs0cy+JJtzbSPlUOBbqzolgk?=
- =?us-ascii?Q?3ruNLHG099/1iGznVmt91jSVQDMbjF9W/xMJmGB9TrhTjkLwy4+d5V6chyy7?=
- =?us-ascii?Q?Zw5dkTQGwnQpd/sG+42FQkOsViRmXKQmmiJMH8E3k5K2I6tu0L0zOwF5QvRM?=
- =?us-ascii?Q?tmyRlNeaLTMbE7Y885sxBRTzHh+oT1O8ufYQTggtlvh0r+j+bgXZT8SWBK0B?=
- =?us-ascii?Q?eSr5hZr6dPv3tzfGQl3geHeXKwRdhhZCjWtbI7hEs9kM+Jmr2hHg20giyyE1?=
- =?us-ascii?Q?PX0BZ3pREDW75+vrckRmj7pwOLxk/grsolU3Q/1P2OTYz2noqUcN0lQAMAk7?=
- =?us-ascii?Q?spvcB6YAeJNplkGASpv0JHQUA2emXpgsNlr/Z1JitFCHHZo1M55/Iol7Orky?=
- =?us-ascii?Q?fgPgJr13z13BTqBarspCwpc+GkJpEENqMMQzxY8bbmzkiU/CMYuOq0eUki49?=
- =?us-ascii?Q?4MuwxHAOX8pYyCLD/lLSII4Xm9SgxSV9vG+bRXmWY8GgErJYrLCN78D7mWDS?=
- =?us-ascii?Q?+STWzWDHsShJpipHECmhay0uurQmGC4rx3kBQGEEOi5CvgHOWPuTaCaXnekj?=
- =?us-ascii?Q?p+XrGvw9//0JU+h7xbWPbBawcpdX3vMQ2Ubel+B/derhCc3ENqIQKzqaBYvG?=
- =?us-ascii?Q?XPU6PZoRwn+BL7a/yyygq+c4ou27bgA1M4fYlCtq3p+qEZ+4cPCe4t4CBOwh?=
- =?us-ascii?Q?BCetWNEWPLV9Dkx+FxLAkDqLJFhHM32LRhBgj53WUyHspAAUtOGPt6xBjDhV?=
- =?us-ascii?Q?daxh72y6m93kbZvh7u+PyHhVn99s17pIKrB1AhVC3kL8AqTtyMMrljrXT9Au?=
- =?us-ascii?Q?sRdNmyJnkVaWt1hK6z+6RlTnB7INq+6uRFe5vb06L8rKfTGXSuHb3CLIAsbu?=
- =?us-ascii?Q?3o9y73598ZhL3MBTvIn3JXX+vA3BtFH8kOSHvtpMTbdK1Mk9IlgTRDJht7+b?=
- =?us-ascii?Q?hXlFx/mV43veyG9vGzcXffrvm08hzUvoapyJWP+J/jHwh8dquBidDkANQWFp?=
- =?us-ascii?Q?qHboJMeu3UFfNi5zgQ34dnJxEUsMdqKuhtdFPfnlFkndhnBjE1USXLtWXqm8?=
- =?us-ascii?Q?qnyLL22xdoq+86WKssDQ+iMO1f3PDUdg2+vOW8pj?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 90822189-a2a4-4571-0e6b-08dced305ca3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 15:45:14.9288
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +5s8f4RqYn+grIsJ+gkLSHnwSYwDG6dyYMNF+M5mcgL4zR2X5uRwDQiJt3BqBbWRsICPK/N6kylHwdEGurH1uw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA2PR04MB10185
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <87wmiirqwy.wl-kuninori.morimoto.gx@renesas.com>
 
-On Tue, Oct 15, 2024 at 08:58:31PM +0800, Wei Fang wrote:
-> Add bindings for NXP NETC blocks control. Usually, NETC has 2 blocks of
-> 64KB registers, integrated endpoint register block (IERB) and privileged
-> register block (PRB). IERB is used for pre-boot initialization for all
-> NETC devices, such as ENETC, Timer, EMIDO and so on. And PRB controls
-> global reset and global error handling for NETC. Moreover, for the i.MX
-> platform, there is also a NETCMIX block for link configuration, such as
-> MII protocol, PCS protocol, etc.
->
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> ---
-> v2 changes:
-> 1. Rephrase the commit message.
-> 2. Change unevaluatedProperties to additionalProperties.
-> 3. Remove the useless lables from examples.
-> ---
->  .../bindings/net/nxp,netc-blk-ctrl.yaml       | 107 ++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
->
-> diff --git a/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml b/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
-> new file mode 100644
-> index 000000000000..18a6ccf6bc2e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/nxp,netc-blk-ctrl.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/nxp,netc-blk-ctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NETC Blocks Control
-> +
-> +description:
-> +  Usually, NETC has 2 blocks of 64KB registers, integrated endpoint register
-> +  block (IERB) and privileged register block (PRB). IERB is used for pre-boot
-> +  initialization for all NETC devices, such as ENETC, Timer, EMIDO and so on.
-> +  And PRB controls global reset and global error handling for NETC. Moreover,
-> +  for the i.MX platform, there is also a NETCMIX block for link configuration,
-> +  such as MII protocol, PCS protocol, etc.
-> +
-> +maintainers:
-> +  - Wei Fang <wei.fang@nxp.com>
-> +  - Clark Wang <xiaoning.wang@nxp.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,imx95-netc-blk-ctrl
-> +
-> +  reg:
-> +    minItems: 2
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    minItems: 2
-> +    items:
-> +      - const: ierb
-> +      - const: prb
-> +      - const: netcmix
+On Wed, Oct 09, 2024 at 01:44:30AM +0000, Kuninori Morimoto wrote:
+> 
+> Hi Rob, Saravana, Tomi, Laurent, Sakari, Mark
+> 
+> This is v7 patch-set
+> 
+> Current Of-graph has "endpoint base" for loop, but doesn't have
+> "port base" loop. "endpoint base" loop only is not enough.
+> This patch-set add new "port base" for loop, and use it.
+> 
+> v6 -> v7
+> 	- based on latest linus/master branch
+> 	- remove "ports" base functions
+> 	- use "port" base function on "endpoint" function ([3/9])
+> 	- tidyup [1/9] explanation
+> 
+> v5 -> v6
+> 	- based on latest linus/master branch
+> 	- [9/9]: fixed compile warrning
+> 
+> v4 -> v5
+> 	- tidyup comments
+> 	- [8/9]: parent NULL check was removed
+> 	- [9/9]: use for_each_of_graph_port()
+> 
+> v3 -> v4
+> 	- new for_each loop includes __free()
+> 	 - comment indicates to use return_ptr() or no_free_ptr() if
+> 	   it need to continue to use node
+> 	 - each driver based on it
+> 	- care "prev" leak on of_graph_get_next_ports()
+> 	- of_graph_get_next_port_endpoint() indicates WARN() if port
+> 	  has non-endpoint node
+> 	- tidyup each git-log
+> 
+> v2 -> v3
+> 	- return NULL if it it doesn't have ports / port
+> 	- add visible comment on of_graph_get_next_ports()
+> 
+> v1 -> v2
+> 	- add each Reviewed-by / Acked-by
+> 	- tidyup/update Kernel Docs
+> 	- use prev as parameter
+> 	- update git-log explanation
+> 	- remove extra changes
+> 
+> Kuninori Morimoto (9):
+>   of: property: add of_graph_get_next_port()
+>   of: property: add of_graph_get_next_port_endpoint()
+>   of: property: use new of_graph functions
+>   ASoC: test-component: use new of_graph functions
+>   ASoC: audio-graph-card: use new of_graph functions
+>   ASoC: audio-graph-card2: use new of_graph functions
+>   gpu: drm: omapdrm: use new of_graph functions
+>   fbdev: omapfb: use new of_graph functions
+>   media: xilinx-tpg: use new of_graph functions
 
-Is 'netcmix'  optional?
+The DT parts look fine to me now. I see Mark acked this so he's not 
+expecting to take it. I can take it, but need acks on the fbdev and 
+media patches.
 
-Frank
-
-> +
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  ranges: true
-> +
-> +  clocks:
-> +    items:
-> +      - description: NETC system clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ipg_clk
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +patternProperties:
-> +  "^pcie@[0-9a-f]+$":
-> +    $ref: /schemas/pci/host-generic-pci.yaml#
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - reg
-> +  - reg-names
-> +  - ranges
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        netc-blk-ctrl@4cde0000 {
-> +            compatible = "nxp,imx95-netc-blk-ctrl";
-> +            reg = <0x0 0x4cde0000 0x0 0x10000>,
-> +                  <0x0 0x4cdf0000 0x0 0x10000>,
-> +                  <0x0 0x4c81000c 0x0 0x18>;
-> +            reg-names = "ierb", "prb", "netcmix";
-> +            #address-cells = <2>;
-> +            #size-cells = <2>;
-> +            ranges;
-> +            clocks = <&scmi_clk 98>;
-> +            clock-names = "ipg_clk";
-> +            power-domains = <&scmi_devpd 18>;
-> +
-> +            pcie@4cb00000 {
-> +                compatible = "pci-host-ecam-generic";
-> +                reg = <0x0 0x4cb00000 0x0 0x100000>;
-> +                #address-cells = <3>;
-> +                #size-cells = <2>;
-> +                device_type = "pci";
-> +                bus-range = <0x1 0x1>;
-> +                ranges = <0x82000000 0x0 0x4cce0000  0x0 0x4cce0000  0x0 0x20000
-> +                          0xc2000000 0x0 0x4cd10000  0x0 0x4cd10000  0x0 0x10000>;
-> +
-> +                mdio@0,0 {
-> +                    compatible = "pci1131,ee00";
-> +                    reg = <0x010000 0 0 0 0>;
-> +                    #address-cells = <1>;
-> +                    #size-cells = <0>;
-> +                };
-> +            };
-> +        };
-> +    };
-> --
-> 2.34.1
->
+Rob
 
