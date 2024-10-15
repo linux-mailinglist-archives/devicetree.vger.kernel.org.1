@@ -1,201 +1,254 @@
-Return-Path: <devicetree+bounces-111513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81DC999F14C
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:33:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3D699F154
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 17:35:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1266BB2198B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:33:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84FB91F24386
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 15:35:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B691CB9FE;
-	Tue, 15 Oct 2024 15:33:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620BB1E9096;
+	Tue, 15 Oct 2024 15:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Bxu6LJjq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IC7N8+ML"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2046.outbound.protection.outlook.com [40.107.22.46])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA9E61CB9E2;
-	Tue, 15 Oct 2024 15:33:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.46
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1729006427; cv=fail; b=ggxZgoAspDS5YnnnCJRYDo6Fm85cEPYKRmn51tCoJK2mL78QqCGK6foNKas8GE8eCWqnBP4WB0MW90oqS2FENcpjb8V7eu8AEVUr+SdZksTpDLo/9dZ6XQD3S5S02OkeNBygpCaoPTSffuHKODDyWkOuspe0/oLYWSEEemt97MI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1729006427; c=relaxed/simple;
-	bh=WhCd1SWFpzFXdZ4Lquu3ielncoYrjFlTD/qyuGsPKnk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=CBPJTe307gaPnaGp9CEVLJbAbNsdqE6+UFsLFstdeahWene4caQvnOM7DA3FDqfHGkEzsk0XeE8BsKyLNYHGc1T9/ICRPQmQVf7meRJoe8GKjjOlTKyjvJVJGvBslBaxBr/l9Xz9t8OmNllPOMym1EGIFkgNcTUoZ0kwqxsjSE8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Bxu6LJjq; arc=fail smtp.client-ip=40.107.22.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=r9ldyal/7DwhTXT6O8VNValOHFR9GXTkAis9ugv5ojhb/y4hGAhsh+kr6jpyP1Wqdi5QFuPJRNni9uXCgOH/J1eCY0s3/bSiC46ZU2VLZUsfW7uIyxC2ooYC1Y2d1CzzMaJf5gvNM4lccJZEfN7P+x9dFjBAWKX2GnXPVqDMaCv+04syKQlRupUdVJjlbKx5LsZeXyfQZYCKMfcRTSW2+RloYV1gsS/M2lFfGitSJ+hk+jC/f8bEJYJA4ovRQdCTUYIo6lgKhMO/CNGddn5ycKZDibr7NVQoKqgfjwQJZ4eZ/M/qw9YevvFf67a1mFFj6Zf9EnbDoHPykRBdemVyMg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wYG6w/Ev/vzP09I61yWw+MKn0O5HW/QizFdQf9zVF80=;
- b=cI8FBXsd5T15kGlIkW4v0oNeq2tIsVBeldRdmLtZzOaIwN01pvuLkuqN/WcmJpsPfWXYFATQb51UXgYn1Tl2cVwbe2gSaHOHOxIwoQ7GP76SL4ykv6p3FsLD+ONQOGEKquEN0g4YAlfBDHCvMcttTMSS3/OzCfoDxVwtywv55dP3q2Mne22eAfJ5KbF9ZIkFllWPRClJxG1rKWjD58um1lj3T7WbEMmNtSE2q6t14ld+DDH9mJd+JUmQDs/r7LatLKV2e8t8N9NcP2k572KCwknPDOFFy+dM2XcWX/UpYVPVt6quBZKumj4DIA5WMhW3IbqH7PqqQ+kQifzNP84dXA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wYG6w/Ev/vzP09I61yWw+MKn0O5HW/QizFdQf9zVF80=;
- b=Bxu6LJjqAF8Fc7g+TFmpc/9ByLhYLnKAKwXXcuBJEfLuZc1ynZW/9r007ysHJjrqfXZgBlHs1AHfeBk6loTIWjZSoala0clvOQFSAdEbDmVLGkaaxtNIiqeuZLi4vebvOmDV/KwaOIx66dTHZX1Q/1z1lrl02WFxGDo7uTwdOfOYc0N86tPY9ZdGJ//GCFzy6iSdfoTakn/41wYFOVjB8bmxBqUga5Ls2YemCohwdBeV/j+OmDHDkevmfF5D7cNvHASh+/BvQceI92ljGDLPYYX8FK1evWJ3caskM7V1r/AcGuPnEZOYhtEmmtQNwY4RXTD3YHAmAhh97YQMrhVVuQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DU2PR04MB8759.eurprd04.prod.outlook.com (2603:10a6:10:2e2::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8048.27; Tue, 15 Oct
- 2024 15:33:42 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9126:a61e:341d:4b06%4]) with mapi id 15.20.8069.016; Tue, 15 Oct 2024
- 15:33:42 +0000
-Date: Tue, 15 Oct 2024 11:33:32 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, vladimir.oltean@nxp.com,
-	claudiu.manoil@nxp.com, xiaoning.wang@nxp.com,
-	christophe.leroy@csgroup.eu, linux@armlinux.org.uk,
-	bhelgaas@google.com, horms@kernel.org, imx@lists.linux.dev,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 01/13] dt-bindings: net: add compatible
- string for i.MX95 EMDIO
-Message-ID: <Zw6LTCeHL8eH8shy@lizhi-Precision-Tower-5810>
-References: <20241015125841.1075560-1-wei.fang@nxp.com>
- <20241015125841.1075560-2-wei.fang@nxp.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20241015125841.1075560-2-wei.fang@nxp.com>
-X-ClientProxiedBy: SJ0PR05CA0022.namprd05.prod.outlook.com
- (2603:10b6:a03:33b::27) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35CCE1D5144;
+	Tue, 15 Oct 2024 15:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1729006496; cv=none; b=D9DmGua9gbn001led9V+8kdmqaiL8makCr2I3ZdQ5LQ4T5fe0DxUsfJBrpMx6y/hUgF0AkFruMWeTkrgImZr5thuTJUwMXCz6HFQ3yZ61E+ULIBI/2Crha5TwHVkViQbTBP3r0m3KejB1XZ9E1ooxfnt3PuFDY3sWQolyDPrI7Q=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1729006496; c=relaxed/simple;
+	bh=PhRvpPKrx/+TlxkQdY6IJqPpUFZ5XqXmhuDaY9RXZPw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hr+T7fM4V9c/QvoBYNSCdeEFsbOMCI0aSSIowa7Gz2JDVyLFUVYgvSoj8w4v0+2ejsrLPQHjFD4JXoZWbobmtSBYY1QIL1qHIHrthVd7+0T6Tejwy/JXUmK45fQBnZE+6HKwm6B+Uy1p4ZeNpBWqe4UlWHw1g2l/Tj20ymjpYZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IC7N8+ML; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AA198C4CEC6;
+	Tue, 15 Oct 2024 15:34:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1729006495;
+	bh=PhRvpPKrx/+TlxkQdY6IJqPpUFZ5XqXmhuDaY9RXZPw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IC7N8+MLCIXEQWLyo1LhMNCFV9jtw5dMvV9M+EryVmtYPYOwRtgC8MFFPq27V3ZB7
+	 8XQDXUJaQMf3an0IBFfOlGwwYNQ+0diMmD0AAR+QbwKb4uxNifo8rUbHQ5X3EBV7yZ
+	 d7T9pVLm8Vq34TFyXih4nnOxSc9MnTkIW7edxg+JYN8+fkCiyyntiq9BVhv0VBjGJJ
+	 MV0O30dCGPj5cfgoRt2ykuUVJnckN/nv0itIoAPz7Za8CTqYiOkUNsAtk8+J2PYNqr
+	 yLb89G6V9tKtEheYNGtDmj6b1XTuVVewYcM8SdqeWzCSqEw1c7CReMMYqbCTUTriPM
+	 zGFFmAvDmqmlg==
+Date: Tue, 15 Oct 2024 10:34:54 -0500
+From: Rob Herring <robh@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: aisheng.dong@nxp.com, andy@black.fi.intel.com, catalin.marinas@arm.com,
+	devicetree@vger.kernel.org, hch@lst.de, iommu@lists.linux.dev,
+	kernel@quicinc.com, klarasmodin@gmail.com,
+	linux-kernel@vger.kernel.org, m.szyprowski@samsung.com,
+	quic_ninanaik@quicinc.com, robin.murphy@arm.com,
+	saravanak@google.com, will@kernel.org
+Subject: Re: [PATCH v10 0/2] Dynamic Allocation of the reserved_mem array
+Message-ID: <20241015153454.GA982004-robh@kernel.org>
+References: <20241008220624.551309-1-quic_obabatun@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8759:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0d2499a7-691e-41b1-0bac-08dced2ebfb7
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|52116014|7416014|376014|366016|1800799024|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?4SVP4R8OiyWjH6boaqTbR2QwMwO0NHn0hBuhhol3ZgRn+F5mhUlPt366Bm5u?=
- =?us-ascii?Q?SaL1GqAwYHBXWu2nrKSpb6zuoEquht7iP8RXjQ/VJW1lgMm7ILw07WHQoyGM?=
- =?us-ascii?Q?PcnTXdDe3Mfk0IznxlzhMQy5VE7QU66R9Laa4mNt3x1KhqkyoZrsGHQFOdDi?=
- =?us-ascii?Q?pquA/2W7Gu2eCsD9QLSvfxg/wSqS9aT79F7CwWyqBCrf7CZf77S2BYwv8dQZ?=
- =?us-ascii?Q?oEqaZIYTSeSAlRVmZ17YMwHw9Rkc1QHODSlRE4XzWwOSC65Zb5Jdk/SQnRBP?=
- =?us-ascii?Q?TWIUqtSYlasRWabRAPAWMKCeN6FlzHYUguBsv382woyRNKAmQkyaTjg+FpOK?=
- =?us-ascii?Q?3hjWwlEW7wgc4DdTr0ewTa7pu+dy3il2hQ3R5UYTFKUxAJ03HlXJNETK+6+K?=
- =?us-ascii?Q?pVDFR/DMcmAnUey+drnejPnc8i2b7d6Ke39E3/TNWOyYk9wmafBSPgU53B55?=
- =?us-ascii?Q?2gy1IK80kWhh7jQn+e0uvH6ckfekBq/qyWb7bPylxFfq3Q09pE6rf7zyUNf6?=
- =?us-ascii?Q?LCHQamuegsq2LeWn7WcFleKgZ9kny0GieZFc57LZDyTp1VHzeiEyBHoR6oIv?=
- =?us-ascii?Q?SVbJN8E3Hm7FwVgtR79XWz33Ibcuf5VqnTE1oPTowThC6gcRXgsvIpABB0xr?=
- =?us-ascii?Q?MjdBaUVkbZa4Uj9erTCHRrCgRN+2ZawBwaZ44UmDwlfg+PxKD4pjwhHtd+AT?=
- =?us-ascii?Q?x/c8qUqL20bg2UPzjHUmNBi5dpdbcfFEHFXTjb6wdXM3GTCrvREPdu3ivP32?=
- =?us-ascii?Q?bdyjjdgR97eQDS24QkMk7QuJr6e4YgZF35ewe8QuES3gxToQuEpFBFeb6L2g?=
- =?us-ascii?Q?jpsYuB8+n3dreSCSDbOOXH3vimGpAOFg29bIcPUtLYqLTBDFEOyerwVTp3B9?=
- =?us-ascii?Q?ta/mabmJUO/nPRX65ayePNknqq2A2D7cH8I75KhyjvFGSMxrTt59Py/ayPQj?=
- =?us-ascii?Q?n9JB1oBwDF3bLxUp1IvYIHEmO7b9MqGk4uGieDddPXv3SE72tr3k13P1YC3y?=
- =?us-ascii?Q?NS4QA6Qonqza6gWXjZgUVDSUFikoaQ9aAhqYCZx3YCTVk4plNC6skREQlrge?=
- =?us-ascii?Q?lg7QPgbhBdNTN9NXQO6SJwZ5OHkxGiGXJNBe/B7Lz9HKN/UAUe0MivG5RC4g?=
- =?us-ascii?Q?h96z3OslaS5T+zdDD15zM+PlG1wfvVv0k02aBih2R7FCoOzzFkGjxi+zCv/t?=
- =?us-ascii?Q?0dNrh+O6us+JgMfwnWBJ+n3zKUIVQVPXZuUo47JKoZcHd4Cp/bMVVNAuoWf3?=
- =?us-ascii?Q?rML6Tc1n5Qc3vbJBlXSoJCW+CO6MHlmk7WYHbjVCtnQ1TxrokNKCIcnkyyTc?=
- =?us-ascii?Q?LHZ8IeMRL+sqOC+tZaM6+WNx4QeiMpVs5gP5sfs5IQKA1Q=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(7416014)(376014)(366016)(1800799024)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?JNpeI0hxEDWkucnJU2VjpTvHlqcDAlR28kULTwCNBzcU9uEevb83yFuE0boG?=
- =?us-ascii?Q?nr9nrnR8ZmYhjcOHcKQ8Q7lrajT2Sd/Q+kRmTvo4+RbGsQyMFNdWuBD4eiLo?=
- =?us-ascii?Q?anXOfB0tJ9QhVL/WN0e9+ArrSux823vTEbDus0uyTETKD5A5gKSMtabMDejW?=
- =?us-ascii?Q?QqmMHqJHKnWJn5CJZwY7imf6NLrT625Yn62UZ12QS88uxXWs2/UhGb6ilMc5?=
- =?us-ascii?Q?mRB/0rSMwPJRDniyuTRKrih1R8A9QOha72ZT4G19NqThUA/229f4v9frebGk?=
- =?us-ascii?Q?DBcNLhUcGLiKQyAjaaRqJAv+FcKuLA70IojcQ7q9LCEJehNsLKG4Pn0yRPUS?=
- =?us-ascii?Q?kUvJ0YcMutwUwG0Roa5ZqQOdcjb8JpMeWXRdpddc2FUXWaP4KkJW/PfcuvfD?=
- =?us-ascii?Q?78ghYEKuz3MqdrcicRIT39FGc4Yy183QgdV0zS4cSI1IYzamGmA5euZsUb9y?=
- =?us-ascii?Q?M+guGFTOzdjwJUvDV59iWQh34s7gQGzRaIf/cCkmQP4lYsdSCubBrQe7RuhU?=
- =?us-ascii?Q?J430p+cTdptGPBOwPPHqh+NPypDhcfTy7Eky8USmIPcjS72jcVidqB55V4PL?=
- =?us-ascii?Q?YXjdkiJU/6C6ZQdhGPA/9BJUAx8OqHCN5MEJyKuzWNszhihO6iJuhbBtnEN1?=
- =?us-ascii?Q?3N5ARYCfP1P8RmX2dk8+WKmunVb4X/rbZ2RXrETbwKc83KSFhSNOrb8wcrV9?=
- =?us-ascii?Q?lIfNevqwchrSLpOfie8UJRlfVoWehoH3biohvR4olENHYEhpzifqGvg0bwA6?=
- =?us-ascii?Q?gbEsU9JoiXVxsNuzovuBTxdWBTl2L0CxSj9JgKB6TMa1B1aCiE/HgPArPw2c?=
- =?us-ascii?Q?KhVy/db9/lnTgAlim8WmraffGV6qhT3Z8WbjjKtXxa3Z80+EsYCLK7UdJ7yI?=
- =?us-ascii?Q?6ipRzDzpwVEWfifsetGjv/NCELFJ146s3eKmcNN/H/pPIUWdlPtE9w0HNH/O?=
- =?us-ascii?Q?Y0Mown94QpTx9Ob9bxTaCy/CVByIaO4AVl9/sGf0lxdY5ISUSn44iAJQgUB8?=
- =?us-ascii?Q?p4J+8pJ8lcaMfy/jESpTgPylNZ2UwaGUzb4GclqMhC5EVBzYV/sLLRvjAr38?=
- =?us-ascii?Q?ALG/W9N3QYKmvJ6D+zeI8iiaaa0TZYJWE7qvjlP5mdPjh9arMaz2DiGiLG6f?=
- =?us-ascii?Q?/HeQfCwgz1FLxGOkEmITUbpwJDMYeDLfrq8Ffh7OPBJHWRkAv2/IElSVR1I7?=
- =?us-ascii?Q?zr59qBxVdGx8nsLJQk2Xmsi4fLhDwWA5HeTEItIicufykaxmuJ4Qz8DWSXsh?=
- =?us-ascii?Q?s558tPZzXSyuVTuokXzUduRLBbgS7byyvGG8fkkR1Px0OHftaT/PLJDBKnN2?=
- =?us-ascii?Q?sOvJG9nbSLboSzK1I16xvND8ut373ZqK422cVzcXMioD051XHKtoGhOew/iC?=
- =?us-ascii?Q?WX4Z04XxDmt9xff0Zu7RBVcAKNNBnSnryiC37UV0yaX6QeL5Fyp0yFzxt72b?=
- =?us-ascii?Q?/TXC2lww2BVUTQhV2ku09wvscpsp0lv2TJRfDPN+Z3IhISV8oGBA8GeWAmmn?=
- =?us-ascii?Q?tjG5hyzGi1oe8G7IUD0MGhs7bqunrQ4FlF/4ci+202Q4nFtLcJcAFxckDT3X?=
- =?us-ascii?Q?gKLI8vl9Oi0DSPkEgEQ=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0d2499a7-691e-41b1-0bac-08dced2ebfb7
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Oct 2024 15:33:42.1355
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bS1sncGpFGhADJSyt7/YUU88/R34lm9IdzMae04SG8TD+cHHynvvxh/xbF73FzIuCj8LzdtbVX5zRo3XucnWNw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8759
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20241008220624.551309-1-quic_obabatun@quicinc.com>
 
-On Tue, Oct 15, 2024 at 08:58:29PM +0800, Wei Fang wrote:
-> The EMDIO of i.MX95 has been upgraded to revision 4.1, and the vendor
-> ID and device ID have also changed, so add the new compatible strings
-> for i.MX95 EMDIO.
->
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+On Tue, Oct 08, 2024 at 03:06:22PM -0700, Oreoluwa Babatunde wrote:
+> The reserved_mem array is used to store data for the different
+> reserved memory regions defined in the DT of a device.  The array
+> stores information such as region name, node reference, start-address,
+> and size of the different reserved memory regions.
+> 
+> The array is currently statically allocated with a size of
+> MAX_RESERVED_REGIONS(64). This means that any system that specifies a
+> number of reserved memory regions greater than MAX_RESERVED_REGIONS(64)
+> will not have enough space to store the information for all the regions.
+> 
+> This can be fixed by making the reserved_mem array a dynamically sized
+> array which is allocated using memblock_alloc() based on the exact
+> number of reserved memory regions defined in the DT.
+> 
+> On architectures such as arm64, memblock allocated memory is not
+> writable until after the page tables have been setup.
+> This is an issue because the current implementation initializes the
+> reserved memory regions and stores their information in the array before
+> the page tables are setup. Hence, dynamically allocating the
+> reserved_mem array and attempting to write information to it at this
+> point will fail.
+> 
+> Therefore, the allocation of the reserved_mem array will need to be done
+> after the page tables have been setup, which means that the reserved
+> memory regions will also need to wait until after the page tables have
+> been setup to be stored in the array.
+> 
+> When processing the reserved memory regions defined in the DT, these
+> regions are marked as reserved by calling memblock_reserve(base, size).
+> Where:  base = base address of the reserved region.
+>         size = the size of the reserved memory region.
+> 
+> Depending on if that region is defined using the "no-map" property,
+> memblock_mark_nomap(base, size) is also called.
+> 
+> The "no-map" property is used to indicate to the operating system that a
+> mapping of the specified region must NOT be created. This also means
+> that no access (including speculative accesses) is allowed on this
+> region of memory except when it is coming from the device driver that
+> this region of memory is being reserved for.[1]
+> 
+> Therefore, it is important to call memblock_reserve() and
+> memblock_mark_nomap() on all the reserved memory regions before the
+> system sets up the page tables so that the system does not unknowingly
+> include any of the no-map reserved memory regions in the memory map.
+> 
+> There are two ways to define how/where a reserved memory region is
+> placed in memory:
+> i) Statically-placed reserved memory regions
+> i.e. regions defined with a set start address and size using the
+>      "reg" property in the DT.
+> ii) Dynamically-placed reserved memory regions.
+> i.e. regions defined by specifying a range of addresses where they can
+>      be placed in memory using the "alloc_ranges" and "size" properties
+>      in the DT.
+> 
+> The dynamically-placed reserved memory regions get assigned a start
+> address only at runtime. And this needs to  be done before the page
+> tables are setup so that memblock_reserve() and memblock_mark_nomap()
+> can be called on the allocated region as explained above.
+> Since the dynamically allocated reserved_mem array can only be
+> available after the page tables have been setup, the information for
+> the dynamically-placed reserved memory regions needs to be stored
+> somewhere temporarily until the reserved_mem array is available.
+> 
+> Therefore, this series makes use of a temporary static array to store
+> the information of the dynamically-placed reserved memory regions until
+> the reserved_mem array is allocated.
+> Once the reserved_mem array is available, the information is copied over
+> from the temporary array into the reserved_mem array, and the memory for
+> the temporary array is freed back to the system.
+> 
+> The information for the statically-placed reserved memory regions does
+> not need to be stored in a temporary array because their starting
+> address is already stored in the devicetree.
+> Once the reserved_mem array is allocated, the information for the
+> statically-placed reserved memory regions is added to the array.
+> 
+> Note:
+> Because of the use of a temporary array to store the information of the
+> dynamically-placed reserved memory regions, there still exists a
+> limitation of 64 for this particular kind of reserved memory regions.
+> >From my observation, these regions are typically small in number and
+> hence I expect this to not be an issue for now.
+> 
+> Patch Versions:
+> 
+> v10:
+> - Rebase patchset on v6.12-rc2.
+> 
+> v9:
+> - fix issue reported from v8:
+>   https://lore.kernel.org/all/DU0PR04MB92999E9EEE959DBC3B1EAB6E80932@DU0PR04MB9299.eurprd04.prod.outlook.com/
+>   In v8, the rmem struct being passed into __reserved_mem_init_node()
+>   was not the same as what was being stored in the reserved_mem array.
+>   As a result, information such as rmem->ops was not being stored in
+>   the array for these regions.
+>   Make changes to pass the same reserved_mem struct into
+>   __reserved_mem_init_node() as what is being stored in the reserved_mem
+>   array.
+> 
+> v8:
+> https://lore.kernel.org/all/20240830162857.2821502-1-quic_obabatun@quicinc.com/
+> - Check the value of initial_boot_params in
+>   fdt_scan_reserved_mem_reg_nodes() to avoid breakage on architectures
+>   where this is not being used as was found to be the case for x86 in
+>   the issues reported below:
+>   https://lore.kernel.org/all/202408192157.8d8fe8a9-oliver.sang@intel.com/
+>   https://lore.kernel.org/all/ZsN_p9l8Pw2_X3j3@black.fi.intel.com/
+> 
+> v7:
+> https://lore.kernel.org/all/20240809184814.2703050-1-quic_obabatun@quicinc.com/
+> - Make changes to initialize the reserved memory regions earlier in
+>   response to issue reported in v6:
+>   https://lore.kernel.org/all/20240610213403.GA1697364@thelio-3990X/
+> 
+> - For the reserved regions to be setup properly,
+>   fdt_init_reserved_mem_node() needs to be called on each of the regions
+>   before the page tables are setup. Since the function requires a
+>   refernece to the devicetree node of each region, we are not able to
+>   use the unflattened_devicetree APIs since they are not available until
+>   after the page tables have been setup.
+>   Hence, revert the use of the unflatten_device APIs as a result of this
+>   limitation which was discovered in v6:
+>   https://lore.kernel.org/all/986361f4-f000-4129-8214-39f2fb4a90da@gmail.com/
+>   https://lore.kernel.org/all/DU0PR04MB9299C3EC247E1FE2C373440F80DE2@DU0PR04MB9299.eurprd04.prod.outlook.com/
+> 
+> v6:
+> https://lore.kernel.org/all/20240528223650.619532-1-quic_obabatun@quicinc.com/
+> - Rebased patchset on top of v6.10-rc1.
+> - Addressed comments received in v5 such as:
+>   1. Switched to using relevant typed functions such as
+>      of_property_read_u32(), of_property_present(), etc.
+>   2. Switched to using of_address_to_resource() to read the "reg"
+>      property of nodes.
+>   3. Renamed functions using "of_*" naming scheme instead of "dt_*".
+> 
+> v5:
+> https://lore.kernel.org/all/20240328211543.191876-1-quic_obabatun@quicinc.com/
+> - Rebased changes on top of v6.9-rc1.
+> - Addressed minor code comments from v4.
+> 
+> v4:
+> https://lore.kernel.org/all/20240308191204.819487-2-quic_obabatun@quicinc.com/
+> - Move fdt_init_reserved_mem() back into the unflatten_device_tree()
+>   function.
+> - Fix warnings found by Kernel test robot:
+>   https://lore.kernel.org/all/202401281219.iIhqs1Si-lkp@intel.com/
+>   https://lore.kernel.org/all/202401281304.tsu89Kcm-lkp@intel.com/
+>   https://lore.kernel.org/all/202401291128.e7tdNh5x-lkp@intel.com/
+> 
+> v3:
+> https://lore.kernel.org/all/20240126235425.12233-1-quic_obabatun@quicinc.com/
+> - Make use of __initdata to delete the temporary static array after
+>   dynamically allocating memory for reserved_mem array using memblock.
+> - Move call to fdt_init_reserved_mem() out of the
+>   unflatten_device_tree() function and into architecture specific setup
+>   code.
+> - Breaking up the changes for the individual architectures into separate
+>   patches.
+> 
+> v2:
+> https://lore.kernel.org/all/20231204041339.9902-1-quic_obabatun@quicinc.com/
+> - Extend changes to all other relevant architectures by moving
+>   fdt_init_reserved_mem() into the unflatten_device_tree() function.
+> - Add code to use unflatten devicetree APIs to process the reserved
+>   memory regions.
+> 
+> v1:
+> https://lore.kernel.org/all/20231019184825.9712-1-quic_obabatun@quicinc.com/
+> 
+> References:
+> [1] https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/reserved-memory/reserved-memory.yaml#L79
+> 
+> Oreoluwa Babatunde (2):
+>   of: reserved_mem: Restruture how the reserved memory regions are
+>     processed
+>   of: reserved_mem: Add code to dynamically allocate reserved_mem array
+> 
+>  drivers/of/fdt.c             |   5 +-
+>  drivers/of/of_private.h      |   3 +-
+>  drivers/of/of_reserved_mem.c | 227 +++++++++++++++++++++++++++--------
+>  3 files changed, 179 insertions(+), 56 deletions(-)
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
+Applied, thanks.
 
-> ---
-> v2 changes: remove "nxp,netc-emdio" compatible string.
-> ---
->  .../devicetree/bindings/net/fsl,enetc-mdio.yaml       | 11 +++++++----
->  1 file changed, 7 insertions(+), 4 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
-> index c1dd6aa04321..71c43ece8295 100644
-> --- a/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
-> +++ b/Documentation/devicetree/bindings/net/fsl,enetc-mdio.yaml
-> @@ -20,10 +20,13 @@ maintainers:
->
->  properties:
->    compatible:
-> -    items:
-> -      - enum:
-> -          - pci1957,ee01
-> -      - const: fsl,enetc-mdio
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - pci1957,ee01
-> +          - const: fsl,enetc-mdio
-> +      - items:
-> +          - const: pci1131,ee00
->
->    reg:
->      maxItems: 1
-> --
-> 2.34.1
->
+Rob
 
