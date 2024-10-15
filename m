@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-111281-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8673299E012
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:00:06 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF7AB99E029
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 10:02:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A94EF1C21769
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:00:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E1A2B23831
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:02:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C491B4F2B;
-	Tue, 15 Oct 2024 08:00:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 254521AB538;
+	Tue, 15 Oct 2024 08:02:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bv1YQk3i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AA2uh2/U"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227C91AF4EE;
-	Tue, 15 Oct 2024 08:00:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E91FD1741C3;
+	Tue, 15 Oct 2024 08:02:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728979203; cv=none; b=dYyIc6MqnsQCRRghQ6bOCxGYy76hSkus+EerPpiP3n1IPLkJbIz39An4xWb2iWBu7nc5EfrQHNSFnUiRL2y4hbaWjWWndDgcsfE2tv1xWjoTvXhIA0sbqUWzTouAzidwwcbCec070gXwomwILfQShOK0MS0LaH1mZC67h5Re6V8=
+	t=1728979349; cv=none; b=cewwbU/TfZrl3d+sTh54Wxhsfa+w5Qu/XuOKr+OBGmwiCX8ksygJaTnzOXu3Cr0uTW8Ml/oYHMUZxXf94gbPKB4bcS0KWPOS4fb2i5X4onbrUhUOsZPBpH0OQK5/wWWGunsSLbqNHvsbSPgpKYL1aUstdLZDuY7ocCspgqDQvlM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728979203; c=relaxed/simple;
-	bh=rL++ewozoXto81Yc1rbqAgf54mHr09dluoYtOFAcW5w=;
+	s=arc-20240116; t=1728979349; c=relaxed/simple;
+	bh=+4LZciiB4pvFS5ClsfPK9lGllyRTY2VBQwBnC98TgiQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YH9OcBboF+IMt9Cs8lBJqsadbAhLtOVscbiY5I8uF6DYTk1UKXuCdPF+O4vsvEuno6YYLJRsDmNGKRnsr7qjklj53QlRehQGb/dMdK7RRiiYcYwzIGErbtNHcSR7lsw27wu2AYdnW3IqAi8XtNAOJzZ1NDQsUnKCVtzgvM8LfPk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bv1YQk3i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E97E5C4CEC7;
-	Tue, 15 Oct 2024 07:59:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=WMb9f5tw2QPf58Gm6t86IWh4VSo/bbLR5PfTUHeUmDrUpIfHv4x26bJLyt0gRNoTWmbBzL158nFOHNj7A079ds+gUvrXNFzNHT06lHXEnQSDEauxgpcL92NYmxvODTgZpzwpKVqbqq0p5mRBs+u4OXR9GvDyXXXZrJ/3fxXS6gg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AA2uh2/U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9CE27C4CEC7;
+	Tue, 15 Oct 2024 08:02:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728979202;
-	bh=rL++ewozoXto81Yc1rbqAgf54mHr09dluoYtOFAcW5w=;
+	s=k20201202; t=1728979348;
+	bh=+4LZciiB4pvFS5ClsfPK9lGllyRTY2VBQwBnC98TgiQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=bv1YQk3iD1eSxJHZHi8RXPgJZCFbvJhEW8fBDGP/ZF1uVphUH3yd/OxIGGs/fTOun
-	 Co6g46kVVCw0DbHrATa/ke2QdsdMdf4XxaUa24x71/0A5qKZN8TBnA/1bVJyUmK3Fc
-	 c1lS/iS31DPP0CTrbt3JPq3Oz5wo1sZGIaube9+aeQw8q4U7YOWyzQ8HsDHRLpKHRT
-	 aIE7mUUve1+KZCyjGJiAUAyX2p9uVk6SoHTr2PuGT5u+NYUo2qMoCOAXRxpWxK8CUc
-	 HdQXaeXuxxuNMqlgLcfUE8SnRqonasE3eT7znNdm0EXJhyR2sVWRRBEElQvSHNPO2r
-	 f7UOOx0En1ROQ==
-Message-ID: <9c7f0c20-aafe-45b2-aa3e-c2c21e3a5b71@kernel.org>
-Date: Tue, 15 Oct 2024 09:59:53 +0200
+	b=AA2uh2/UPExJglAvChIjbiip1CLR6L6yreSs+pE6t5KI+NjTm55WS7pYjfcYXKmMU
+	 jet8/b+WMXAyNIpVrSmV5b1TsvZuGbpwXnyeG1Tkt8bIxaG+M02czzCrQVm55EaI1B
+	 Cw1gGSZD+dL2br1ivIrXOEQuYiBAZ2RxtLtcsLwmZC04a3cZkfX8hnseZLyGMTlR6i
+	 NauF9aDcdwVOjYqa0J8L+oJl3l281ms5OBOg2YtfAy40F2HH4BnXSih3MP9IwkVcxr
+	 Oylg1B5umiu5/UTF1Yd/JeLc8NbK8ARIZoGxEQF2Y2mth7C96lAmHG78EKKkaZ7hIM
+	 n3YSfqIsYRcBg==
+Message-ID: <1524dbc2-2c9a-476f-a06a-0d998c29534d@kernel.org>
+Date: Tue, 15 Oct 2024 10:02:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
- SoCs
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
- <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
- <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
- <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: spacemit: add support for K1 SoC
+To: Troy Mitchell <troymitchell988@gmail.com>, andi.shyti@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20241015075134.1449458-1-TroyMitchell988@gmail.com>
+ <20241015075134.1449458-2-TroyMitchell988@gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,82 +102,99 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  uZwJCLykjad45hsWcOGk3OcaAGQS6NDlfhM6O9aYNwGL6tGt/6BkRikNOs7VDEa4/HlbaSJo
  7FgndGw1kWmkeL6oQh7wBvYll2buKod4qYntmNKEicoHGU+x91Gcan8mCoqhJkbqrL7+nXG2
  5Q/GS5M9RFWS+nYyJh+c3OcfKqVcZQNANItt7+ULzdNJuhvTRRdC3g9hmCEuNSr+CLMdnRBY fv0=
-In-Reply-To: <1c054eb4-9ac1-4965-8847-d851b9fb1131@amlogic.com>
+In-Reply-To: <20241015075134.1449458-2-TroyMitchell988@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/10/2024 09:54, Xianwei Zhao wrote:
-> Hi Krzysztof,
->      Thanks for your reply.
-> 
-> On 2024/10/15 14:01, Krzysztof Kozlowski wrote:
->> [ EXTERNAL EMAIL ]
->>
->> On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
->>> Add a new pinctrl driver for Amlogic A4 SoCs which share
->>> the same register layout as the previous Amlogic S4.
->>>
->>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> ---
->>>   drivers/pinctrl/meson/Kconfig              |    6 +
->>>   drivers/pinctrl/meson/Makefile             |    1 +
->>>   drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
->>>   3 files changed, 1183 insertions(+)
->>>
->>> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
->>> index cc397896762c..3e90bb5ec442 100644
->>> --- a/drivers/pinctrl/meson/Kconfig
->>> +++ b/drivers/pinctrl/meson/Kconfig
->>> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
->>>        select PINCTRL_MESON_AXG_PMX
->>>        default y
->>>
->>> +config PINCTRL_AMLOGIC_A4
->>> +     tristate "Amlogic A4 SoC pinctrl driver"
->>> +     depends on ARM64
->>> +     select PINCTRL_MESON_AXG_PMX
->>> +     default y
->>> +
->>>   config PINCTRL_AMLOGIC_C3
->>>        tristate "Amlogic C3 SoC pinctrl driver"
->>>        depends on ARM64
->>> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
->>> index 9e538b9ffb9b..c92a65a83344 100644
->>> --- a/drivers/pinctrl/meson/Makefile
->>> +++ b/drivers/pinctrl/meson/Makefile
->>> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
->>>   obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
->>>   obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
->>>   obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
->>> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
->>>   obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
->>>   obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
->>> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>> new file mode 100644
->>> index 000000000000..dee1ae43edb5
->>> --- /dev/null
->>> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
->>> @@ -0,0 +1,1176 @@
->>> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
->>> +/*
->>> + * Pin controller and GPIO driver for Amlogic A4 SoC.
->>> + *
->>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>> + *         Huqiang Qin <huqiang.qin@amlogic.com>
->>> + */
->>> +
->>> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
->>
->> I do not see any usage of it.
->>
-> 
-> The header file "amlogic-a4-gpio.h"  is used by AMLOGIC_PIN and 
-> GPIO_GROUP_V2, The code used  is  AMLOGIC_GPIO().
-> This is binding definition.
+On 15/10/2024 09:51, Troy Mitchell wrote:
+> The i2c of K1 supports fast-speed-mode and high-speed-mode,
 
-Then all other defines are not used. AMLOGIC_GPIO is not used by DTS, so
-how is that a binding? Don't stuff random defines into the bindings.
+s/i2c/I2C/
+
+> and supports FIFO transmission.
+> 
+> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> ---
+>  .../bindings/i2c/spacemit,k1-i2c.yaml         | 59 +++++++++++++++++++
+>  1 file changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> new file mode 100644
+> index 000000000000..c1460ec2b323
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/spacemit,k1-i2c.yaml
+> @@ -0,0 +1,59 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/spacemit,k1-i2c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C controller embedded in SpacemiT's K1 SoC
+> +
+> +maintainers:
+> +  - Troy Mitchell <troymitchell988@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: spacemit,k1-i2c
+
+There is no such vendor prefix.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-frequency:
+> +    description:
+> +      Desired I2C bus clock frequency in Hz. As only fast and high-speed
+> +      modes are supported by hardware, possible values are 100000 and 400000.
+> +    enum: [100000, 400000]
+> +    default: 100000
+> +
+> +  fifo-disable:
+
+Why is this a property of a board?
+
+Also, missing vendor prefix.
+
+
+> +    type: boolean
+> +    description:
+> +      Whether to disable FIFO. If FIFO is turned on, it will be interrupted
+> +      only when the FIFO depth is reached, which can reduce the frequency
+> +      of interruption.
+> +    default: false
+
+Drop
+
+> +
+> +unevaluatedProperties: false
+
+This goes after required: block.
+
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +
+> +examples:
+> +  - |
+> +    i2c0: i2c@d4010800 {
+
+Drop unused alias
+
+> +        compatible = "spacemit,k1-i2c";
 
 Best regards,
 Krzysztof
