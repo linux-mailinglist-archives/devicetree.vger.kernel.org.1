@@ -1,130 +1,82 @@
-Return-Path: <devicetree+bounces-111222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-111223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2989A99DDE0
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:01:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F33599DDED
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 08:06:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC28728561F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:01:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE6EA1F21A8F
+	for <lists+devicetree@lfdr.de>; Tue, 15 Oct 2024 06:06:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 198F1175D5A;
-	Tue, 15 Oct 2024 06:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C60818732C;
+	Tue, 15 Oct 2024 06:06:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f8qwitj+"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="DC0kyElX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E176616B75C;
-	Tue, 15 Oct 2024 06:01:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C17113C3F2;
+	Tue, 15 Oct 2024 06:06:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1728972107; cv=none; b=VFZM1c1/W6r+7QrWJGdW9+brmhi+aZF8JFk+yPXjdJVFeSmOjZJJCb6alNbkslrqaPjspHKktVWv7IyMNUNkIQ2P5cxHH4yaTL4rIzyMlGBWNGYSAOnNwd9BlMb55uxmmA3iwIAHWGhAyY4WhSuNTCVsF9Er052M8E/EBaMid7s=
+	t=1728972375; cv=none; b=Y7mP9qGSqWWoHpp7eN5UGMD3S5KbnUzd0Ze7GGwydNFtHb0t5WZ4lDdONTke0fuqFuzNVYM09eVCsVwF8C7x84FeSlNSVuqZI00UCFCku73+rW7n4tOUgOlABNUHZOMhShBttC55HC4wwOtwI4WnQZqSUr+OF7Zjy0mLXorXT1s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1728972107; c=relaxed/simple;
-	bh=hjLVAsAxmaKiJMaFRVR95Sfr8mL4+9Ch2JcbTvocQLo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qTSR/ax26cOgQVHpluvwf6Ld+xCdLCIKOi76WpuofkF6ErPQxTyy4WHfijL5HfLF2SwFulq6KUyKHsWWks5359SKDKd3Tx5wETvPr/AF0tRJ+0naM07c5pp1ZW+X9YKMUD6WBglGZ+NWlEH/W7wmOQ1fK2V5qZH1yne/jCcdixU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f8qwitj+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AAA9CC4CEC7;
-	Tue, 15 Oct 2024 06:01:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1728972106;
-	bh=hjLVAsAxmaKiJMaFRVR95Sfr8mL4+9Ch2JcbTvocQLo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=f8qwitj+XNX7VmqfwUPzOqQ3tX62tj/bJMrhXxBiUBNPV7km+tKe3BmC/jGpu8aeO
-	 WY7Itdqyv3omV3ZJF4opKEmTc4TgT/isawrqO326Bw6GmW/FwKikym4GrYbm8J770O
-	 ZluFfdA3Je2ReIeCf9X7kc2PuAb2cPjQPuqmNhzGo0w5My0Alx/U04jrMBc4VF7KYf
-	 HVc7RCA7p3w2zV97n6tFG+i1+OYeKgm/IZsukdvLR6yFecXroGehmcCqWvcaDJx68u
-	 MI2hqVkRRaBKzPIwjlBsh0sQanM8jwCf9GMIiMbKYMP3OwhZxBDs7TjfuwNIMLTIKV
-	 XmT8ecabPa08g==
-Date: Tue, 15 Oct 2024 08:01:42 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] pinctrl: meson: Add driver support for Amlogic A4
- SoCs
-Message-ID: <aju3dgugbmj52i74j7csyuwejczsvk4sxtsdzuq62jutq7jxbe@wbc7fveloxv2>
-References: <20241014-a4_pinctrl-v2-0-3e74a65c285e@amlogic.com>
- <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
+	s=arc-20240116; t=1728972375; c=relaxed/simple;
+	bh=UOc2GMt219Ucp2LEz8uG4xfOIHYym8Fi6q68FxagS38=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qTP7OhFug9g2B+K5e9JmFN9Ddw8GfM+mm6SBOH12FxKl0bvZS5Ql8vWQzEs/QEb8fC4ovvGi+ueN1VUDDXbW6Y63EtT6J3/BZvseycOagm90ACNn42pFgxuMRJ0hQifxJm0uqz09n1GfecPFFHhuK0+327WlWGJQo6EZ5tiGVTg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=DC0kyElX; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+	List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=ASuBcpLVRHwqVESDWXGS90dfdjQqRtTA3nVmTt7XIHM=; b=DC0kyElXnIAgTkVIE9Yb6zwK8M
+	Sq02nthbwrp3zH3WKRRKi3FnyYVvFGtVyNJ94Az8FiXPCSGbpDX5pI7S8+mQAGeqDfiPVtM/vKVbK
+	MS5WXh2DxoGT5pGXL452jG70HztHWIrcdp0oB1iaczCTAkgQQ/8uyEwB3DdF/BhwRU2ZY1bxnf8ZL
+	JEbrM6P63miqJ43+Qw/8rpFa8kHdx4DC6njoCL8pP/FT7awk4ymNuLlFwdCaQrCdTtSGFSmQ5y+rU
+	qXDgy5b8GAmioztzwXyoPh+MWIOHzdqlh++3KK1pG1k8ILGjyG+vnSO8a7eY0B6DiyxbBvDiULG+x
+	9nvlPh0g==;
+Received: from i53875b34.versanet.de ([83.135.91.52] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1t0ah1-0006wa-AN; Tue, 15 Oct 2024 08:06:03 +0200
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, Frank Wang <frawang.cn@gmail.com>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, william.wu@rock-chips.com,
+ tim.chen@rock-chips.com, Frank Wang <frank.wang@rock-chips.com>
+Subject: Re: [PATCH 1/2] dt-bindings: phy: rockchip: add rk3576 compatible
+Date: Tue, 15 Oct 2024 08:06:02 +0200
+Message-ID: <3315048.aeNJFYEL58@diego>
+In-Reply-To: <20241015013351.4884-1-frawang.cn@gmail.com>
+References: <20241015013351.4884-1-frawang.cn@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20241014-a4_pinctrl-v2-2-3e74a65c285e@amlogic.com>
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 
-On Mon, Oct 14, 2024 at 05:05:52PM +0800, Xianwei Zhao wrote:
-> Add a new pinctrl driver for Amlogic A4 SoCs which share
-> the same register layout as the previous Amlogic S4.
+Am Dienstag, 15. Oktober 2024, 03:33:50 CEST schrieb Frank Wang:
+> From: Frank Wang <frank.wang@rock-chips.com>
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  drivers/pinctrl/meson/Kconfig              |    6 +
->  drivers/pinctrl/meson/Makefile             |    1 +
->  drivers/pinctrl/meson/pinctrl-amlogic-a4.c | 1176 ++++++++++++++++++++++++++++
->  3 files changed, 1183 insertions(+)
+> Adds the compatible line to support RK3576 SoC.
 > 
-> diff --git a/drivers/pinctrl/meson/Kconfig b/drivers/pinctrl/meson/Kconfig
-> index cc397896762c..3e90bb5ec442 100644
-> --- a/drivers/pinctrl/meson/Kconfig
-> +++ b/drivers/pinctrl/meson/Kconfig
-> @@ -67,6 +67,12 @@ config PINCTRL_MESON_S4
->  	select PINCTRL_MESON_AXG_PMX
->  	default y
->  
-> +config PINCTRL_AMLOGIC_A4
-> +	tristate "Amlogic A4 SoC pinctrl driver"
-> +	depends on ARM64
-> +	select PINCTRL_MESON_AXG_PMX
-> +	default y
-> +
->  config PINCTRL_AMLOGIC_C3
->  	tristate "Amlogic C3 SoC pinctrl driver"
->  	depends on ARM64
-> diff --git a/drivers/pinctrl/meson/Makefile b/drivers/pinctrl/meson/Makefile
-> index 9e538b9ffb9b..c92a65a83344 100644
-> --- a/drivers/pinctrl/meson/Makefile
-> +++ b/drivers/pinctrl/meson/Makefile
-> @@ -10,5 +10,6 @@ obj-$(CONFIG_PINCTRL_MESON_AXG) += pinctrl-meson-axg.o
->  obj-$(CONFIG_PINCTRL_MESON_G12A) += pinctrl-meson-g12a.o
->  obj-$(CONFIG_PINCTRL_MESON_A1) += pinctrl-meson-a1.o
->  obj-$(CONFIG_PINCTRL_MESON_S4) += pinctrl-meson-s4.o
-> +obj-$(CONFIG_PINCTRL_AMLOGIC_A4) += pinctrl-amlogic-a4.o
->  obj-$(CONFIG_PINCTRL_AMLOGIC_C3) += pinctrl-amlogic-c3.o
->  obj-$(CONFIG_PINCTRL_AMLOGIC_T7) += pinctrl-amlogic-t7.o
-> diff --git a/drivers/pinctrl/meson/pinctrl-amlogic-a4.c b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> new file mode 100644
-> index 000000000000..dee1ae43edb5
-> --- /dev/null
-> +++ b/drivers/pinctrl/meson/pinctrl-amlogic-a4.c
-> @@ -0,0 +1,1176 @@
-> +// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
-> +/*
-> + * Pin controller and GPIO driver for Amlogic A4 SoC.
-> + *
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + * Author: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> + *         Huqiang Qin <huqiang.qin@amlogic.com>
-> + */
-> +
-> +#include <dt-bindings/gpio/amlogic-a4-gpio.h>
+> Signed-off-by: Frank Wang <frank.wang@rock-chips.com>
 
-I do not see any usage of it.
+Reviewed-by: Heiko Stuebner <heiko@sntech.de>
 
-Best regards,
-Krzysztof
 
 
